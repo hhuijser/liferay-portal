@@ -107,7 +107,7 @@ List<ScopeSearchFacetTermDisplayContext> scopeSearchFacetTermDisplayContexts = s
 													<%= scopeSearchFacetTermDisplayContext.isSelected() ? "checked" : StringPool.BLANK %>
 												/>
 
-												<span class="custom-control-label term-name <%= scopeSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>">
+												<span class='custom-control-label term-name <%= scopeSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>'>
 													<span class="custom-control-label-text"><%= HtmlUtil.escape(scopeSearchFacetTermDisplayContext.getDescriptiveName()) %></span>
 												</span>
 

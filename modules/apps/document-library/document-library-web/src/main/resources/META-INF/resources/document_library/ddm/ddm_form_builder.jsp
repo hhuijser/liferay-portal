@@ -21,7 +21,7 @@ DLEditFileEntryTypeDisplayContext dlEditFileEntryTypeDisplayContext = (DLEditFil
 %>
 
 <liferay-util:html-top>
-	<link href="<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/document_library/css/ddm.css") %>" rel="stylesheet" type="text/css" />
+	<link href='<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/document_library/css/ddm.css") %>' rel="stylesheet" type="text/css" />
 </liferay-util:html-top>
 
 <div class="separator"><!-- --></div>

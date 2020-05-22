@@ -54,6 +54,7 @@ public class ViewAppsManagerManagementToolbarDisplayContext
 		_searchContainer = _createSearchContainer(liferayPortletRequest);
 	}
 
+	@Override
 	public String getClearResultsURL() {
 		PortletURL removeLabelURL = getPortletURL();
 
@@ -85,6 +86,7 @@ public class ViewAppsManagerManagementToolbarDisplayContext
 		).build();
 	}
 
+	@Override
 	public List<LabelItem> getFilterLabelItems() {
 		String category = getCategory();
 		String state = getState();

@@ -50,6 +50,7 @@ public class PersonalMenuConfigurationTrackerImpl
 		_unmapPid(pid);
 	}
 
+	@Override
 	public PersonalMenuConfiguration getCompanyPersonalMenuConfiguration(
 		long companyId) {
 

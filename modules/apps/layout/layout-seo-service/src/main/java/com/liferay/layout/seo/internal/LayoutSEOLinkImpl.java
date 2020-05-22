@@ -38,14 +38,17 @@ public class LayoutSEOLinkImpl implements LayoutSEOLink {
 		_relationship = relationship;
 	}
 
+	@Override
 	public String getHref() {
 		return _href;
 	}
 
+	@Override
 	public String getHrefLang() {
 		return _hrefLang;
 	}
 
+	@Override
 	public Relationship getRelationship() {
 		return _relationship;
 	}

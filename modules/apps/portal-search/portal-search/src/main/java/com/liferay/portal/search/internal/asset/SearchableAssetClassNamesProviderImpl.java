@@ -31,6 +31,7 @@ import org.osgi.service.component.annotations.Component;
 public class SearchableAssetClassNamesProviderImpl
 	implements SearchableAssetClassNamesProvider {
 
+	@Override
 	public String[] getClassNames(long companyId) {
 		List<String> classNames = new ArrayList<>();
 

@@ -487,6 +487,7 @@ public class OAuth2ApplicationLocalServiceImpl
 	 * @deprecated As of Mueller (7.2.x)
 	 */
 	@Deprecated
+	@Override
 	public OAuth2Application updateOAuth2Application(
 			long oAuth2ApplicationId, List<GrantType> allowedGrantTypesList,
 			String clientId, int clientProfile, String clientSecret,

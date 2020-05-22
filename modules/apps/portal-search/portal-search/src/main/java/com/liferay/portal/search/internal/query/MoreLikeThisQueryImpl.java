@@ -56,6 +56,7 @@ public class MoreLikeThisQueryImpl
 		_documentIdentifiers.add(documentIdentifier);
 	}
 
+	@Override
 	public void addDocumentIdentifiers(
 		Collection<DocumentIdentifier> documentIdentifiers) {
 
@@ -83,10 +84,12 @@ public class MoreLikeThisQueryImpl
 		Collections.addAll(_fields, fields);
 	}
 
+	@Override
 	public void addLikeText(String likeText) {
 		_likeTexts.add(likeText);
 	}
 
+	@Override
 	public void addLikeTexts(Collection<String> likeTexts) {
 		_likeTexts.addAll(likeTexts);
 	}
@@ -95,10 +98,12 @@ public class MoreLikeThisQueryImpl
 		Collections.addAll(_likeTexts, likeTexts);
 	}
 
+	@Override
 	public void addStopWord(String stopWord) {
 		_stopWords.add(stopWord);
 	}
 
+	@Override
 	public void addStopWords(Collection<String> stopWords) {
 		_stopWords.addAll(stopWords);
 	}
@@ -107,114 +112,142 @@ public class MoreLikeThisQueryImpl
 		Collections.addAll(_stopWords, stopWords);
 	}
 
+	@Override
 	public String getAnalyzer() {
 		return _analyzer;
 	}
 
+	@Override
 	public Set<DocumentIdentifier> getDocumentIdentifiers() {
 		return Collections.unmodifiableSet(_documentIdentifiers);
 	}
 
+	@Override
 	public List<String> getFields() {
 		return Collections.unmodifiableList(_fields);
 	}
 
+	@Override
 	public List<String> getLikeTexts() {
 		return Collections.unmodifiableList(_likeTexts);
 	}
 
+	@Override
 	public Integer getMaxDocFrequency() {
 		return _maxDocFrequency;
 	}
 
+	@Override
 	public Integer getMaxQueryTerms() {
 		return _maxQueryTerms;
 	}
 
+	@Override
 	public Integer getMaxWordLength() {
 		return _maxWordLength;
 	}
 
+	@Override
 	public Integer getMinDocFrequency() {
 		return _minDocFrequency;
 	}
 
+	@Override
 	public String getMinShouldMatch() {
 		return _minShouldMatch;
 	}
 
+	@Override
 	public Integer getMinTermFrequency() {
 		return _minTermFrequency;
 	}
 
+	@Override
 	public Integer getMinWordLength() {
 		return _minWordLength;
 	}
 
+	@Override
 	public Set<String> getStopWords() {
 		return Collections.unmodifiableSet(_stopWords);
 	}
 
+	@Override
 	public Float getTermBoost() {
 		return _termBoost;
 	}
 
+	@Override
 	public String getType() {
 		return _type;
 	}
 
+	@Override
 	public boolean isDocumentUIDsEmpty() {
 		return _documentIdentifiers.isEmpty();
 	}
 
+	@Override
 	public boolean isFieldsEmpty() {
 		return _likeTexts.isEmpty();
 	}
 
+	@Override
 	public Boolean isIncludeInput() {
 		return _includeInput;
 	}
 
+	@Override
 	public void setAnalyzer(String analyzer) {
 		_analyzer = analyzer;
 	}
 
+	@Override
 	public void setIncludeInput(Boolean includeInput) {
 		_includeInput = includeInput;
 	}
 
+	@Override
 	public void setMaxDocFrequency(Integer maxDocFrequency) {
 		_maxDocFrequency = maxDocFrequency;
 	}
 
+	@Override
 	public void setMaxQueryTerms(Integer maxQueryTerms) {
 		_maxQueryTerms = maxQueryTerms;
 	}
 
+	@Override
 	public void setMaxWordLength(Integer maxWordLength) {
 		_maxWordLength = maxWordLength;
 	}
 
+	@Override
 	public void setMinDocFrequency(Integer minDocFrequency) {
 		_minDocFrequency = minDocFrequency;
 	}
 
+	@Override
 	public void setMinShouldMatch(String minShouldMatch) {
 		_minShouldMatch = minShouldMatch;
 	}
 
+	@Override
 	public void setMinTermFrequency(Integer minTermFrequency) {
 		_minTermFrequency = minTermFrequency;
 	}
 
+	@Override
 	public void setMinWordLength(Integer minWordLength) {
 		_minWordLength = minWordLength;
 	}
 
+	@Override
 	public void setTermBoost(Float termBoost) {
 		_termBoost = termBoost;
 	}
 
+	@Override
 	public void setType(String type) {
 		_type = type;
 	}

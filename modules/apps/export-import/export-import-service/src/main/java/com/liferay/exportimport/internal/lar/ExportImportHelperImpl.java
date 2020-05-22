@@ -717,6 +717,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		return true;
 	}
 
+	@Override
 	public boolean isLayoutRevisionInReview(Layout layout) {
 		List<LayoutRevision> layoutRevisions =
 			_layoutRevisionLocalService.getLayoutRevisions(layout.getPlid());

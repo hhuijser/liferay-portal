@@ -142,6 +142,7 @@ public abstract class BaseTemplate implements Template {
 		}
 	}
 
+	@Override
 	public void processTemplate(
 			Writer writer,
 			Supplier<TemplateResource> errorTemplateResourceSupplier)

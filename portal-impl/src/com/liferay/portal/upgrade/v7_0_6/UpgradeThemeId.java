@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.upgrade.BaseUpgradeThemeId;
  */
 public class UpgradeThemeId extends BaseUpgradeThemeId {
 
+	@Override
 	public String[][] getThemeIds() {
 		return new String[][] {
 			{"classic", "classic_WAR_classictheme"},

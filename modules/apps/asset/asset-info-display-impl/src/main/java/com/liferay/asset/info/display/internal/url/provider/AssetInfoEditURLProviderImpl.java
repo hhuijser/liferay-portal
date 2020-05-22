@@ -35,6 +35,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(immediate = true, service = AssetInfoEditURLProvider.class)
 public class AssetInfoEditURLProviderImpl implements AssetInfoEditURLProvider {
 
+	@Override
 	public String getURL(
 		String className, long classPK, HttpServletRequest httpServletRequest) {
 

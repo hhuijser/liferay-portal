@@ -65,6 +65,7 @@ public class ViewAccountUsersManagementToolbarDisplayContext
 			searchContainer);
 	}
 
+	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemList.of(
 			() -> {
@@ -102,6 +103,7 @@ public class ViewAccountUsersManagementToolbarDisplayContext
 		return clearResultsURL.toString();
 	}
 
+	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
 			dropdownItem -> {
@@ -155,6 +157,7 @@ public class ViewAccountUsersManagementToolbarDisplayContext
 		return "ACCOUNT_USERS_MANAGEMENT_TOOLBAR_DEFAULT_EVENT_HANDLER";
 	}
 
+	@Override
 	public List<LabelItem> getFilterLabelItems() {
 		return LabelItemListBuilder.add(
 			() -> !Objects.equals(getNavigation(), "active"),

@@ -166,6 +166,7 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 		return filterDropdownItems;
 	}
 
+	@Override
 	public List<LabelItem> getFilterLabelItems() {
 		return LabelItemListBuilder.add(
 			() -> !StringUtil.equals(getNavigation(), "active-urls"),
@@ -231,6 +232,7 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 		return LanguageUtil.get(request, "filter-by-type");
 	}
 
+	@Override
 	protected String getNavigation() {
 		return ParamUtil.getString(
 			liferayPortletRequest, getNavigationParam(), "active-urls");

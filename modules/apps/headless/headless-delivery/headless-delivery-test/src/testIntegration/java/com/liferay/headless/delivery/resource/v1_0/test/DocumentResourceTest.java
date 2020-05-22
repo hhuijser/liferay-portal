@@ -44,6 +44,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class DocumentResourceTest extends BaseDocumentResourceTestCase {
 
+	@Override
 	@Test
 	public void testGraphQLGetSiteDocumentsPage() throws Exception {
 		Document document1 = testGraphQLDocument_addDocument();

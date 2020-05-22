@@ -23,10 +23,12 @@ import java.util.List;
  */
 public class ItemListBuilderCheck extends BaseBuilderCheck {
 
+	@Override
 	protected boolean allowNullValues() {
 		return true;
 	}
 
+	@Override
 	protected List<BaseBuilderCheck.BuilderInformation>
 		getBuilderInformationList() {
 
@@ -40,6 +42,7 @@ public class ItemListBuilderCheck extends BaseBuilderCheck {
 				"NavigationItemList", "NavigationItemListBuilder", "add"));
 	}
 
+	@Override
 	protected boolean isSupportsNestedMethodCalls() {
 		return false;
 	}

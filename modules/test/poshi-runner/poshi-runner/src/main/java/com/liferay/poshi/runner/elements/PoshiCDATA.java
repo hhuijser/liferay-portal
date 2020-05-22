@@ -60,6 +60,7 @@ public class PoshiCDATA
 		_poshiScript = poshiScript;
 	}
 
+	@Override
 	public String toPoshiScript() {
 		return null;
 	}

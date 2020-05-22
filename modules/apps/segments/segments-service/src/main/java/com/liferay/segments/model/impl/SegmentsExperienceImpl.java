@@ -25,6 +25,7 @@ public class SegmentsExperienceImpl extends SegmentsExperienceBaseImpl {
 	public SegmentsExperienceImpl() {
 	}
 
+	@Override
 	public boolean hasSegmentsExperiment() {
 		return SegmentsExperimentLocalServiceUtil.hasSegmentsExperiment(
 			getSegmentsExperienceId(), getClassNameId(), getClassPK(),

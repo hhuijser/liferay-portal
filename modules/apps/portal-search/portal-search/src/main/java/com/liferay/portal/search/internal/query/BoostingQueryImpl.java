@@ -33,18 +33,22 @@ public class BoostingQueryImpl extends BaseQueryImpl implements BoostingQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public Float getNegativeBoost() {
 		return _negativeBoost;
 	}
 
+	@Override
 	public Query getNegativeQuery() {
 		return _negativeQuery;
 	}
 
+	@Override
 	public Query getPositiveQuery() {
 		return _positiveQuery;
 	}
 
+	@Override
 	public void setNegativeBoost(Float negativeBoost) {
 		_negativeBoost = negativeBoost;
 	}

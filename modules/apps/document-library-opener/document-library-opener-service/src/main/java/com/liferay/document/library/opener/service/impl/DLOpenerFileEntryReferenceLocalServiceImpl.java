@@ -66,6 +66,7 @@ public class DLOpenerFileEntryReferenceLocalServiceImpl
 	 *             FileEntry, int)}
 	 */
 	@Deprecated
+	@Override
 	public DLOpenerFileEntryReference addPlaceholderDLOpenerFileEntryReference(
 			long userId, FileEntry fileEntry, int type)
 		throws PortalException {

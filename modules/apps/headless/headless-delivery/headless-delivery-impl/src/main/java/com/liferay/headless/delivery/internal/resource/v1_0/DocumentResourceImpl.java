@@ -139,6 +139,7 @@ public class DocumentResourceImpl
 			filter, search, pagination, sorts);
 	}
 
+	@Override
 	public Rating getDocumentMyRating(Long documentId) throws Exception {
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
@@ -270,6 +271,7 @@ public class DocumentResourceImpl
 			multipartBody);
 	}
 
+	@Override
 	public Rating postDocumentMyRating(Long documentId, Rating rating)
 		throws Exception {
 

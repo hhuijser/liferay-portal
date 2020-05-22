@@ -35,6 +35,7 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 public class ScopeLocatorConfigurationProviderImpl
 	implements ScopeLocatorConfigurationProvider {
 
+	@Override
 	public ScopeLocatorConfiguration getScopeLocatorConfiguration() {
 		return _scopeLocatorConfiguration;
 	}

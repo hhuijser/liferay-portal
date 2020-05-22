@@ -35,6 +35,7 @@ public interface AdvancedFileSystemStoreConfiguration
 		description = "file-system-store-configuration-root-dir-description",
 		name = "root-dir"
 	)
+	@Override
 	public String rootDir();
 
 }

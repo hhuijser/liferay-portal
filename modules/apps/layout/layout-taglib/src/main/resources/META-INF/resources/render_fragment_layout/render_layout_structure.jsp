@@ -55,7 +55,7 @@ for (String childrenItemId : childrenItemIds) {
 					<clay:row>
 
 						<%
-						InfoDisplayContributor currentInfoDisplayContributor = (InfoDisplayContributor)request.getAttribute(InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR);
+						InfoDisplayContributor<?> currentInfoDisplayContributor = (InfoDisplayContributor<?>)request.getAttribute(InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR);
 
 						try {
 							request.setAttribute(InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR, renderFragmentLayoutDisplayContext.getCollectionInfoDisplayContributor(collectionLayoutStructureItem));

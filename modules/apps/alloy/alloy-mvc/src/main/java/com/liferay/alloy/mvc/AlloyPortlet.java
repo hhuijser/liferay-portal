@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Destination;
 import com.liferay.portal.kernel.messaging.MessageListener;
+import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.portlet.FriendlyURLMapper;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.Router;
@@ -63,7 +64,7 @@ public abstract class AlloyPortlet extends GenericPortlet {
 		for (BaseAlloyControllerImpl baseAlloyControllerImpl :
 				_alloyControllers.values()) {
 
-			Indexer indexer = baseAlloyControllerImpl.indexer;
+			Indexer<BaseModel<?>> indexer = baseAlloyControllerImpl.indexer;
 
 			if (indexer != null) {
 				IndexerRegistryUtil.unregister(indexer);

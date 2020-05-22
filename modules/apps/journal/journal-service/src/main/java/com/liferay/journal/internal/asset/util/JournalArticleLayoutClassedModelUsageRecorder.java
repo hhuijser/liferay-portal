@@ -65,11 +65,11 @@ public class JournalArticleLayoutClassedModelUsageRecorder
 			return;
 		}
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				_portal.getClassName(classNameId));
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 			infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
 
 		_recordJournalContentSearches(infoDisplayObjectProvider);
@@ -82,7 +82,7 @@ public class JournalArticleLayoutClassedModelUsageRecorder
 	}
 
 	private void _recordJournalContentSearches(
-		InfoDisplayObjectProvider infoDisplayObjectProvider) {
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider) {
 
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
@@ -123,7 +123,7 @@ public class JournalArticleLayoutClassedModelUsageRecorder
 	}
 
 	private void _recordPortletPreferences(
-		InfoDisplayObjectProvider infoDisplayObjectProvider,
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider,
 		boolean privateLayout) {
 
 		JournalArticle article =

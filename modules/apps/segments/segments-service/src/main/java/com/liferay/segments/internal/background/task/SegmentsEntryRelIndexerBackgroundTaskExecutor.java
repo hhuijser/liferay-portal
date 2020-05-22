@@ -161,7 +161,7 @@ public class SegmentsEntryRelIndexerBackgroundTaskExecutor
 	}
 
 	private Set<Long> _getOldClassPKs(
-			long companyId, long segmentsEntryId, Indexer indexer)
+			long companyId, long segmentsEntryId, Indexer<Object> indexer)
 		throws SearchException {
 
 		SearchContext searchContext = new SearchContext();

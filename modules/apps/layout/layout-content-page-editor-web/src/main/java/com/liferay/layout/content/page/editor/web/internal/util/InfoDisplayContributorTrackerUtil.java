@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = {})
 public class InfoDisplayContributorTrackerUtil {
 
-	public static InfoDisplayContributor getInfoDisplayContributor(
+	public static InfoDisplayContributor<?> getInfoDisplayContributor(
 		String className) {
 
 		return _infoDisplayContributorTracker.getInfoDisplayContributor(

@@ -130,11 +130,11 @@ public class GetAvailableTemplatesMVCResourceCommand
 	}
 
 	private Object _getDisplayObject(String className, long classPK) {
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
 
 		try {
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 				infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
 
 			if (infoDisplayObjectProvider == null) {

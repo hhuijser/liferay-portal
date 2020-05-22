@@ -298,7 +298,8 @@ public class RedirectDisplayContext {
 			RedirectEntrySearch redirectEntrySearch)
 		throws Exception {
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(RedirectEntry.class);
+		Indexer<RedirectEntry> indexer = IndexerRegistryUtil.getIndexer(
+			RedirectEntry.class);
 
 		SearchContext searchContext = SearchContextFactory.getInstance(
 			PortalUtil.getHttpServletRequest(_liferayPortletRequest));

@@ -333,8 +333,8 @@ public class AssetPublisherDisplayContext {
 				new DefaultInfoListProviderContext(
 					_themeDisplay.getScopeGroup(), _themeDisplay.getUser());
 
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
-				(InfoDisplayObjectProvider)_portletRequest.getAttribute(
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
+				(InfoDisplayObjectProvider<?>)_portletRequest.getAttribute(
 					AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
 
 			defaultInfoListProviderContext.setInfoDisplayObjectProvider(
@@ -669,7 +669,7 @@ public class AssetPublisherDisplayContext {
 		_availableClassNameIds = ArrayUtil.filter(
 			availableClassNameIds,
 			availableClassNameId -> {
-				Indexer indexer = IndexerRegistryUtil.getIndexer(
+				Indexer<?> indexer = IndexerRegistryUtil.getIndexer(
 					PortalUtil.getClassName(availableClassNameId));
 
 				return indexer != null;

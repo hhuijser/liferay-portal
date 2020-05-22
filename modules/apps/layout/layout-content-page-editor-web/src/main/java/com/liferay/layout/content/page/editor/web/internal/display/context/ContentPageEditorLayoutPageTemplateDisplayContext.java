@@ -154,7 +154,7 @@ public class ContentPageEditorLayoutPageTemplateDisplayContext
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_getLayoutPageTemplateEntry();
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			infoDisplayContributorTracker.getInfoDisplayContributor(
 				layoutPageTemplateEntry.getClassName());
 

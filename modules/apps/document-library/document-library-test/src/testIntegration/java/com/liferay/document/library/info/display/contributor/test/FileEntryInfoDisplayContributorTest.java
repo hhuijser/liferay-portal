@@ -183,7 +183,7 @@ public class FileEntryInfoDisplayContributorTest {
 	public void testInfoDisplayObjectProvider() throws Exception {
 		_withAndWithoutAssetEntry(
 			fileEntry -> {
-				InfoDisplayObjectProvider infoDisplayObjectProvider =
+				InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 					_infoDisplayContributor.getInfoDisplayObjectProvider(
 						fileEntry.getFileEntryId());
 

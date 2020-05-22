@@ -101,7 +101,4 @@ public class RenderChildrenTag extends TreeTag {
 		this.nodeJspFragment = nodeJspFragment;
 	}
 
-	protected JspFragment leafJspFragment;
-	protected JspFragment nodeJspFragment;
-
 }

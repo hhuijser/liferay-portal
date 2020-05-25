@@ -154,7 +154,7 @@ public class SelectUserGroupsDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getUserGroupSearchContainer() {
+	public SearchContainer<UserGroup> getUserGroupSearchContainer() {
 		if (_userGroupSearch != null) {
 			return _userGroupSearch;
 		}

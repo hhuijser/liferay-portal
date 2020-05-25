@@ -171,7 +171,7 @@ public class SelectUserGroupsDisplayContext {
 		return _teamId;
 	}
 
-	public SearchContainer getUserGroupSearchContainer() {
+	public SearchContainer<UserGroup> getUserGroupSearchContainer() {
 		if (_userGroupSearchContainer != null) {
 			return _userGroupSearchContainer;
 		}
@@ -180,8 +180,8 @@ public class SelectUserGroupsDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer userGroupSearchContainer = new UserGroupSearch(
-			_renderRequest, getPortletURL());
+		SearchContainer<UserGroup> userGroupSearchContainer =
+			new UserGroupSearch(_renderRequest, getPortletURL());
 
 		OrderByComparator<UserGroup> orderByComparator =
 			UsersAdminUtil.getUserGroupOrderByComparator(
@@ -244,6 +244,6 @@ public class SelectUserGroupsDisplayContext {
 	private final RenderResponse _renderResponse;
 	private Team _team;
 	private Long _teamId;
-	private SearchContainer _userGroupSearchContainer;
+	private SearchContainer<UserGroup> _userGroupSearchContainer;
 
 }

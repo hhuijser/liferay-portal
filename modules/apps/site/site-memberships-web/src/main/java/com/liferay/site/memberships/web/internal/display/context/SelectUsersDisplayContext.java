@@ -156,7 +156,7 @@ public class SelectUsersDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getUserSearchContainer() {
+	public SearchContainer<User> getUserSearchContainer() {
 		if (_userSearch != null) {
 			return _userSearch;
 		}

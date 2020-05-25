@@ -118,7 +118,7 @@ public class EditSiteTeamAssignmentsUsersDisplayContext
 		return _orderByType;
 	}
 
-	public SearchContainer getUserSearchContainer() {
+	public SearchContainer<User> getUserSearchContainer() {
 		if (_userSearchContainer != null) {
 			return _userSearchContainer;
 		}
@@ -127,7 +127,7 @@ public class EditSiteTeamAssignmentsUsersDisplayContext
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer userSearchContainer = new UserSearch(
+		SearchContainer<User> userSearchContainer = new UserSearch(
 			renderRequest, getEditTeamAssignmentsURL());
 
 		OrderByComparator<User> orderByComparator =
@@ -174,6 +174,6 @@ public class EditSiteTeamAssignmentsUsersDisplayContext
 	private String _keywords;
 	private String _orderByCol;
 	private String _orderByType;
-	private SearchContainer _userSearchContainer;
+	private SearchContainer<User> _userSearchContainer;
 
 }

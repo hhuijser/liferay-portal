@@ -127,7 +127,9 @@ public class SelectOrganizationsDisplayContext {
 		return _orderByType;
 	}
 
-	public SearchContainer getOrganizationSearchContainer() throws Exception {
+	public SearchContainer<Organization> getOrganizationSearchContainer()
+		throws Exception {
+
 		if (_organizationSearch != null) {
 			return _organizationSearch;
 		}

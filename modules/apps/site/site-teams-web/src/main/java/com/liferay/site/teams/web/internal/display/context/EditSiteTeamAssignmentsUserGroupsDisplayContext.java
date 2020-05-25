@@ -119,7 +119,7 @@ public class EditSiteTeamAssignmentsUserGroupsDisplayContext
 		return _orderByType;
 	}
 
-	public SearchContainer getUserGroupSearchContainer() {
+	public SearchContainer<UserGroup> getUserGroupSearchContainer() {
 		if (_userGroupSearchContainer != null) {
 			return _userGroupSearchContainer;
 		}
@@ -128,8 +128,8 @@ public class EditSiteTeamAssignmentsUserGroupsDisplayContext
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer userGroupSearchContainer = new UserGroupSearch(
-			renderRequest, getEditTeamAssignmentsURL());
+		SearchContainer<UserGroup> userGroupSearchContainer =
+			new UserGroupSearch(renderRequest, getEditTeamAssignmentsURL());
 
 		OrderByComparator<UserGroup> orderByComparator =
 			UsersAdminUtil.getUserGroupOrderByComparator(
@@ -174,6 +174,6 @@ public class EditSiteTeamAssignmentsUserGroupsDisplayContext
 	private String _keywords;
 	private String _orderByCol;
 	private String _orderByType;
-	private SearchContainer _userGroupSearchContainer;
+	private SearchContainer<UserGroup> _userGroupSearchContainer;
 
 }

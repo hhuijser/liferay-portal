@@ -79,7 +79,9 @@ public class SelectSiteInitializerDisplayContext {
 		return _parentGroupId;
 	}
 
-	public SearchContainer getSearchContainer() throws PortalException {
+	public SearchContainer<SiteInitializerItem> getSearchContainer()
+		throws PortalException {
+
 		SearchContainer<SiteInitializerItem>
 			siteInitializerItemSearchContainer = new SearchContainer<>(
 				_renderRequest, _getPortletURL(), null,

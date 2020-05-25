@@ -163,7 +163,9 @@ public class ViewMembershipRequestsDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getSiteMembershipSearchContainer() {
+	public SearchContainer<MembershipRequest>
+		getSiteMembershipSearchContainer() {
+
 		if (_siteMembershipSearch != null) {
 			return _siteMembershipSearch;
 		}
@@ -172,8 +174,10 @@ public class ViewMembershipRequestsDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer siteMembershipSearch = new SearchContainer(
-			_renderRequest, getPortletURL(), null, "no-requests-were-found");
+		SearchContainer<MembershipRequest> siteMembershipSearch =
+			new SearchContainer(
+				_renderRequest, getPortletURL(), null,
+				"no-requests-were-found");
 
 		siteMembershipSearch.setOrderByCol(getOrderByCol());
 
@@ -236,7 +240,7 @@ public class ViewMembershipRequestsDisplayContext {
 	private String _orderByType;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _siteMembershipSearch;
+	private SearchContainer<MembershipRequest> _siteMembershipSearch;
 	private String _tabs1;
 
 }

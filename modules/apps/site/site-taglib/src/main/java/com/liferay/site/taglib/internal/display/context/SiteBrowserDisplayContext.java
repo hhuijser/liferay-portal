@@ -93,12 +93,12 @@ public class SiteBrowserDisplayContext {
 		return _portletURL;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<Group> getSearchContainer() {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<Group> searchContainer = new SearchContainer(
 			_renderRequest, getPortletURL(), null, _emptyResultsMessage);
 
 		searchContainer.setOrderByCol(getOrderByCol());
@@ -120,6 +120,6 @@ public class SiteBrowserDisplayContext {
 	private String _orderByType;
 	private PortletURL _portletURL;
 	private final RenderRequest _renderRequest;
-	private SearchContainer _searchContainer;
+	private SearchContainer<Group> _searchContainer;
 
 }

@@ -190,7 +190,7 @@ public class UsersDisplayContext {
 		return _role;
 	}
 
-	public SearchContainer getUserSearchContainer() {
+	public SearchContainer<User> getUserSearchContainer() {
 		if (_userSearch != null) {
 			return _userSearch;
 		}

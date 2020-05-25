@@ -167,7 +167,7 @@ public class UserGroupRolesDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getRoleSearchSearchContainer()
+	public SearchContainer<Role> getRoleSearchSearchContainer()
 		throws PortalException {
 
 		if (_roleSearch != null) {

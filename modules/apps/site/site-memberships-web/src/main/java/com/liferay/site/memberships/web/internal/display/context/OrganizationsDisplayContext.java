@@ -112,7 +112,7 @@ public class OrganizationsDisplayContext {
 		return _orderByType;
 	}
 
-	public SearchContainer getOrganizationSearchContainer() {
+	public SearchContainer<Organization> getOrganizationSearchContainer() {
 		if (_organizationSearch != null) {
 			return _organizationSearch;
 		}

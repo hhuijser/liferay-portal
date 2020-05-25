@@ -89,12 +89,12 @@ public class SiteTeamsDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<Team> getSearchContainer() {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer searchContainer = new TeamSearch(
+		SearchContainer<Team> searchContainer = new TeamSearch(
 			_renderRequest, getPortletURL());
 
 		searchContainer.setEmptyResultsMessage("there-are-no-teams");

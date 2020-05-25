@@ -190,7 +190,7 @@ public class UserGroupsDisplayContext {
 		return _role;
 	}
 
-	public SearchContainer getUserGroupSearchContainer() {
+	public SearchContainer<UserGroup> getUserGroupSearchContainer() {
 		if (_userGroupSearch != null) {
 			return _userGroupSearch;
 		}

@@ -89,7 +89,7 @@ public class UserRolesDisplayContext {
 		return _eventName;
 	}
 
-	public SearchContainer getRoleSearchSearchContainer()
+	public SearchContainer<Role> getRoleSearchSearchContainer()
 		throws PortalException {
 
 		if (_roleSearch != null) {

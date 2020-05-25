@@ -210,12 +210,12 @@ public class SelectUsersDisplayContext {
 	}
 
 	public int getTotalItems() throws PortalException {
-		SearchContainer userSearchContainer = getUserSearchContainer();
+		SearchContainer<User> userSearchContainer = getUserSearchContainer();
 
 		return userSearchContainer.getTotal();
 	}
 
-	public SearchContainer getUserSearchContainer() {
+	public SearchContainer<User> getUserSearchContainer() {
 		if (_userSearchContainer != null) {
 			return _userSearchContainer;
 		}
@@ -224,7 +224,7 @@ public class SelectUsersDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer userSearchContainer = new UserSearch(
+		SearchContainer<User> userSearchContainer = new UserSearch(
 			_renderRequest, getPortletURL());
 
 		OrderByComparator<User> orderByComparator =
@@ -345,6 +345,6 @@ public class SelectUsersDisplayContext {
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final UserLocalService _userLocalService;
-	private SearchContainer _userSearchContainer;
+	private SearchContainer<User> _userSearchContainer;
 
 }

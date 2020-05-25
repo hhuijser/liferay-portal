@@ -158,7 +158,7 @@ public class SelectOrganizationsDisplayContext {
 		return _orderByType;
 	}
 
-	public SearchContainer getOrganizationSearchContainer()
+	public SearchContainer<Organization> getOrganizationSearchContainer()
 		throws PortalException {
 
 		if (_organizationSearchContainer != null) {
@@ -258,7 +258,7 @@ public class SelectOrganizationsDisplayContext {
 	}
 
 	public int getTotalItems() throws PortalException {
-		SearchContainer organizationSearchContainer =
+		SearchContainer<Organization> organizationSearchContainer =
 			getOrganizationSearchContainer();
 
 		return organizationSearchContainer.getTotal();
@@ -342,7 +342,7 @@ public class SelectOrganizationsDisplayContext {
 	private String _orderByCol;
 	private String _orderByType;
 	private final OrganizationLocalService _organizationLocalService;
-	private SearchContainer _organizationSearchContainer;
+	private SearchContainer<Organization> _organizationSearchContainer;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 

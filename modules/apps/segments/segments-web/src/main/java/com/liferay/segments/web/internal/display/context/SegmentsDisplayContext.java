@@ -163,12 +163,14 @@ public class SegmentsDisplayContext {
 		return portletURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() throws PortalException {
+	public SearchContainer<SegmentsEntry> getSearchContainer()
+		throws PortalException {
+
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<SegmentsEntry> searchContainer = new SearchContainer(
 			_renderRequest, _getPortletURL(), null, "there-are-no-segments");
 
 		searchContainer.setId("segmentsEntries");
@@ -451,7 +453,7 @@ public class SegmentsDisplayContext {
 	private String _orderByType;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<SegmentsEntry> _searchContainer;
 	private final SegmentsEntryService _segmentsEntryService;
 	private final ThemeDisplay _themeDisplay;
 

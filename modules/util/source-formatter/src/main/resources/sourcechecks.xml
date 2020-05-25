@@ -611,7 +611,11 @@
 
 		<!-- Liferay Source Checks -->
 
-		<check name="PropertiesBuildIncludeDirsCheck" />
+		<check name="PropertiesBuildIncludeDirsCheck">
+			<property name="buildIncludeDirs" value="apps" />
+			<property name="buildIncludeDirs" value="core" />
+			<property name="buildIncludeDirs" value="util" />
+		</check>
 		<check name="PropertiesLanguageKeysCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that there is no HTML markup in language keys" />

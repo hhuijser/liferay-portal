@@ -31,6 +31,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
@@ -140,20 +141,32 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			return null;
 		}
 
-		int y = absolutePath.indexOf("/", x + 9);
+		x = x + 9;
+
+		int y = absolutePath.indexOf("/", x);
 
 		if (y == -1) {
 			return null;
 		}
 
-		y = absolutePath.indexOf("/", y + 1);
+		String subdirectoryName = absolutePath.substring(x, y);
 
-		if (y != -1) {
-			return absolutePath.substring(x + 9, y);
+		List<String> buildIncludeDirs = getAttributeValues(
+			_BUILD_INCLUDE_DIRS, absolutePath);
+
+		int deeper = 3;
+
+		if (buildIncludeDirs.contains(subdirectoryName)) {
+			deeper = 2;
 		}
 
-		return null;
+		String moduleDirName = absolutePath.replaceAll(
+			".*?/modules((/[^/]+){" + deeper + "}).*", "$1");
+
+		return moduleDirName.substring(1);
 	}
+
+	private static final String _BUILD_INCLUDE_DIRS = "buildIncludeDirs";
 
 	private static final String[] _SKIP_DIR_NAMES = {
 		".git", ".gradle", ".idea", ".m2", ".settings", "bin", "build",

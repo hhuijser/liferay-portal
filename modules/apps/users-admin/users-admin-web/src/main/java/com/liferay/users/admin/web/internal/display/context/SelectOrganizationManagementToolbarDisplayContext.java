@@ -168,7 +168,7 @@ public class SelectOrganizationManagementToolbarDisplayContext {
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer(
+	public SearchContainer<Organization> getSearchContainer(
 			LinkedHashMap<String, Object> organizationParams)
 		throws Exception {
 

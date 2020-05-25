@@ -51,7 +51,7 @@ request.setAttribute(UsersAdminWebKeys.STATUS, status);
 
 ViewUsersManagementToolbarDisplayContext viewUsersManagementToolbarDisplayContext = new ViewUsersManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle, domain, navigation, status);
 
-SearchContainer searchContainer = viewUsersManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<User> searchContainer = viewUsersManagementToolbarDisplayContext.getSearchContainer();
 
 PortletURL portletURL = viewUsersManagementToolbarDisplayContext.getPortletURL();
 

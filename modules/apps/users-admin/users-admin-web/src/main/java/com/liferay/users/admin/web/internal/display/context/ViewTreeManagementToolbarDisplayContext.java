@@ -378,12 +378,12 @@ public class ViewTreeManagementToolbarDisplayContext {
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() throws Exception {
+	public SearchContainer<Object> getSearchContainer() throws Exception {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<Object> searchContainer = new SearchContainer(
 			_renderRequest,
 			PortletURLUtil.getCurrent(_renderRequest, _renderResponse),
 			ListUtil.fromString("name,type,status"), "no-results-were-found");
@@ -554,6 +554,6 @@ public class ViewTreeManagementToolbarDisplayContext {
 	private final PermissionChecker _permissionChecker;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<Object> _searchContainer;
 
 }

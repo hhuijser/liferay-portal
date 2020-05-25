@@ -33,7 +33,7 @@ if (filterManageableOrganizations) {
 	organizationParams.put("organizationsTree", user.getOrganizations());
 }
 
-SearchContainer searchContainer = selectOrganizationManagementToolbarDisplayContext.getSearchContainer(organizationParams);
+SearchContainer<Organization> searchContainer = selectOrganizationManagementToolbarDisplayContext.getSearchContainer(organizationParams);
 
 renderResponse.setTitle(LanguageUtil.get(request, "organizations"));
 %>

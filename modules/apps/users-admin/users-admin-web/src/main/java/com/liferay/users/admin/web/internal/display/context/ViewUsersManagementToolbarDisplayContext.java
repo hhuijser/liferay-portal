@@ -252,7 +252,7 @@ public class ViewUsersManagementToolbarDisplayContext {
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<User> getSearchContainer() {
 		if (_userSearch != null) {
 			return _userSearch;
 		}

@@ -71,7 +71,7 @@ if (organization != null) {
 		<%
 		ViewTreeManagementToolbarDisplayContext viewTreeManagementToolbarDisplayContext = new ViewTreeManagementToolbarDisplayContext(request, renderRequest, renderResponse, organization, displayStyle);
 
-		SearchContainer searchContainer = viewTreeManagementToolbarDisplayContext.getSearchContainer();
+		SearchContainer<Object> searchContainer = viewTreeManagementToolbarDisplayContext.getSearchContainer();
 		%>
 
 		<clay:management-toolbar

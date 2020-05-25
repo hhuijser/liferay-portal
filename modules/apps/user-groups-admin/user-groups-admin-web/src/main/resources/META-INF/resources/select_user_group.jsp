@@ -25,7 +25,7 @@ SelectUserGroupManagementToolbarDisplayContext selectUserGroupManagementToolbarD
 
 PortletURL portletURL = selectUserGroupManagementToolbarDisplayContext.getPortletURL();
 
-SearchContainer userGroupSearch = selectUserGroupManagementToolbarDisplayContext.getSearchContainer(filterManageableUserGroups);
+SearchContainer<UserGroup> userGroupSearch = selectUserGroupManagementToolbarDisplayContext.getSearchContainer(filterManageableUserGroups);
 
 renderResponse.setTitle(LanguageUtil.get(request, "user-groups"));
 %>

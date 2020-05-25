@@ -175,7 +175,7 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer(
+	public SearchContainer<User> getSearchContainer(
 			LinkedHashMap<String, Object> userParams)
 		throws Exception {
 

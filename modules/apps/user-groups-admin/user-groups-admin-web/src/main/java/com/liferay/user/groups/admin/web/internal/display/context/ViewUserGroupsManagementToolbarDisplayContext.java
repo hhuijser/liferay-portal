@@ -183,7 +183,7 @@ public class ViewUserGroupsManagementToolbarDisplayContext {
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() throws Exception {
+	public SearchContainer<UserGroup> getSearchContainer() throws Exception {
 		if (_userGroupSearch != null) {
 			return _userGroupSearch;
 		}

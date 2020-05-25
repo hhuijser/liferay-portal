@@ -99,7 +99,7 @@ public class SelectUserGroupManagementToolbarDisplayContext {
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer(
+	public SearchContainer<UserGroup> getSearchContainer(
 			boolean filterManageableUserGroups)
 		throws Exception {
 

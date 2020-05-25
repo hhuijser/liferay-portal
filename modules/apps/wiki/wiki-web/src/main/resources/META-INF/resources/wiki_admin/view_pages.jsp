@@ -27,7 +27,7 @@ PortletURL portletURL = PortletURLUtil.clone(currentURLObj, liferayPortletRespon
 
 WikiListPagesDisplayContext wikiListPagesDisplayContext = wikiDisplayContextProvider.getWikiListPagesDisplayContext(request, response, node);
 
-SearchContainer wikiPagesSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, currentURLObj, null, wikiListPagesDisplayContext.getEmptyResultsMessage());
+SearchContainer<WikiPage> wikiPagesSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, currentURLObj, null, wikiListPagesDisplayContext.getEmptyResultsMessage());
 
 if (Validator.isNull(keywords)) {
 	String orderByCol = ParamUtil.getString(request, "orderByCol");

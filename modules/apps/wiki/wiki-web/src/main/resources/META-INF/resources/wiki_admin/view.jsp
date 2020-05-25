@@ -60,7 +60,7 @@ request.setAttribute("view.jsp-orderByType", orderByType);
 </portlet:actionURL>
 
 <%
-SearchContainer wikiNodesSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-no-wikis");
+SearchContainer<WikiNode> wikiNodesSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-no-wikis");
 
 NodesChecker nodesChecker = new NodesChecker(liferayPortletRequest, liferayPortletResponse);
 

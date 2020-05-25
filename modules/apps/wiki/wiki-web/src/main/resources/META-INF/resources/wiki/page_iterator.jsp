@@ -118,7 +118,7 @@ WikiListPagesDisplayContext wikiListPagesDisplayContext = wikiDisplayContextProv
 String orderByCol = ParamUtil.getString(request, "orderByCol");
 String orderByType = ParamUtil.getString(request, "orderByType");
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, currentURLObj, headerNames, wikiListPagesDisplayContext.getEmptyResultsMessage());
+SearchContainer<WikiPage> searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, currentURLObj, headerNames, wikiListPagesDisplayContext.getEmptyResultsMessage());
 
 Map<String, String> orderableHeaders = new HashMap<>();
 
@@ -143,7 +143,7 @@ wikiListPagesDisplayContext.populateResultsAndTotal(searchContainer);
 
 List<WikiPage> pages = searchContainer.getResults();
 
-List<ResultRow> resultRows = searchContainer.getResultRows();
+List<com.liferay.portal.kernel.dao.search.ResultRow> resultRows = searchContainer.getResultRows();
 
 for (int i = 0; i < pages.size(); i++) {
 	WikiPage curWikiPage = pages.get(i);

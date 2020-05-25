@@ -29,7 +29,8 @@ public interface WikiListPagesDisplayContext extends WikiDisplayContext {
 
 	public Menu getMenu(WikiPage wikiPage) throws PortalException;
 
-	public void populateResultsAndTotal(SearchContainer searchContainer)
+	public void populateResultsAndTotal(
+			SearchContainer<WikiPage> searchContainer)
 		throws PortalException;
 
 }

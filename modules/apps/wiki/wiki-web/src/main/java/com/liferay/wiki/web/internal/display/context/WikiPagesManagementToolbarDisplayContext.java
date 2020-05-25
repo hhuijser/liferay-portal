@@ -61,7 +61,7 @@ public class WikiPagesManagementToolbarDisplayContext {
 	public WikiPagesManagementToolbarDisplayContext(
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse, String displayStyle,
-		SearchContainer searchContainer, TrashHelper trashHelper,
+		SearchContainer<WikiPage> searchContainer, TrashHelper trashHelper,
 		WikiURLHelper wikiURLHelper) {
 
 		_liferayPortletRequest = liferayPortletRequest;
@@ -391,7 +391,7 @@ public class WikiPagesManagementToolbarDisplayContext {
 	private final HttpServletRequest _httpServletRequest;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
-	private final SearchContainer _searchContainer;
+	private final SearchContainer<WikiPage> _searchContainer;
 	private final ThemeDisplay _themeDisplay;
 	private final TrashHelper _trashHelper;
 	private final WikiURLHelper _wikiURLHelper;

@@ -53,7 +53,7 @@ public class WikiNodesManagementToolbarDisplayContext {
 	public WikiNodesManagementToolbarDisplayContext(
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse, String displayStyle,
-		SearchContainer searchContainer, TrashHelper trashHelper) {
+		SearchContainer<WikiNode> searchContainer, TrashHelper trashHelper) {
 
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
@@ -239,7 +239,7 @@ public class WikiNodesManagementToolbarDisplayContext {
 	private final HttpServletRequest _httpServletRequest;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
-	private final SearchContainer _searchContainer;
+	private final SearchContainer<WikiNode> _searchContainer;
 	private final ThemeDisplay _themeDisplay;
 	private final TrashHelper _trashHelper;
 

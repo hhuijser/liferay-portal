@@ -53,7 +53,8 @@ public class BaseWikiListPagesDisplayContext
 	}
 
 	@Override
-	public void populateResultsAndTotal(SearchContainer searchContainer)
+	public void populateResultsAndTotal(
+			SearchContainer<WikiPage> searchContainer)
 		throws PortalException {
 
 		parentDisplayContext.populateResultsAndTotal(searchContainer);

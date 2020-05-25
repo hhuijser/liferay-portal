@@ -23,7 +23,7 @@ WikiNode node = wikiPageItemSelectorViewDisplayContext.getNode();
 
 String keywords = ParamUtil.getString(request, "keywords");
 
-SearchContainer wikiPagesSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, wikiPageItemSelectorViewDisplayContext.getPortletURL(request, liferayPortletResponse), null, wikiPageItemSelectorViewDisplayContext.isSearch() ? LanguageUtil.format(locale, "no-pages-were-found-that-matched-the-keywords-x", "<strong>" + HtmlUtil.escape(keywords) + "</strong>", false) : "there-are-no-pages");
+SearchContainer<WikiPage> wikiPagesSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, wikiPageItemSelectorViewDisplayContext.getPortletURL(request, liferayPortletResponse), null, wikiPageItemSelectorViewDisplayContext.isSearch() ? LanguageUtil.format(locale, "no-pages-were-found-that-matched-the-keywords-x", "<strong>" + HtmlUtil.escape(keywords) + "</strong>", false) : "there-are-no-pages");
 
 if (wikiPageItemSelectorViewDisplayContext.isSearch()) {
 	Indexer<WikiPage> indexer = IndexerRegistryUtil.getIndexer(WikiPage.class);

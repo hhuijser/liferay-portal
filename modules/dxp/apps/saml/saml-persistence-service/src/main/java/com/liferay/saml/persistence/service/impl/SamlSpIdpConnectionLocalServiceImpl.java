@@ -117,11 +117,11 @@ public class SamlSpIdpConnectionLocalServiceImpl
 				"Unable to get metadata from " + metadataUrl);
 		}
 
+		samlSpIdpConnection.setSamlIdpEntityId(samlIdpEntityId);
 		samlSpIdpConnection.setMetadataXml(
 			getMetadataXml(metadataXmlInputStream, samlIdpEntityId));
 		samlSpIdpConnection.setName(name);
 		samlSpIdpConnection.setNameIdFormat(nameIdFormat);
-		samlSpIdpConnection.setSamlIdpEntityId(samlIdpEntityId);
 		samlSpIdpConnection.setSignAuthnRequest(signAuthnRequest);
 		samlSpIdpConnection.setUserAttributeMappings(userAttributeMappings);
 
@@ -313,9 +313,9 @@ public class SamlSpIdpConnectionLocalServiceImpl
 			samlSpIdpConnection.setMetadataXml(metadataXml);
 		}
 
+		samlSpIdpConnection.setSamlIdpEntityId(samlIdpEntityId);
 		samlSpIdpConnection.setName(name);
 		samlSpIdpConnection.setNameIdFormat(nameIdFormat);
-		samlSpIdpConnection.setSamlIdpEntityId(samlIdpEntityId);
 		samlSpIdpConnection.setSignAuthnRequest(signAuthnRequest);
 		samlSpIdpConnection.setUserAttributeMappings(userAttributeMappings);
 

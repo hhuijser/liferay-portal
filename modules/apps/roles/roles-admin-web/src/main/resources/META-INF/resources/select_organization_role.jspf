@@ -55,7 +55,7 @@ if (step == 2) {
 	selectedOrganization = OrganizationServiceUtil.getOrganization(organizationId);
 }
 
-SearchContainer roleSearchContainer = null;
+SearchContainer<Role> roleSearchContainer = null;
 
 if (selectedOrganization == null) {
 	roleSearchContainer = selectRoleManagementToolbarDisplayContext.getRoleSearchContainer(filterManageableRoles);

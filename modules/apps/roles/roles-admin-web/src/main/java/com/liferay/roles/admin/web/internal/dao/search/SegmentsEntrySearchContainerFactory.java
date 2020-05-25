@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.segments.model.SegmentsEntry;
 import com.liferay.segments.service.SegmentsEntryLocalServiceUtil;
 
 import java.io.Serializable;
@@ -43,11 +44,11 @@ import javax.portlet.RenderResponse;
  */
 public class SegmentsEntrySearchContainerFactory {
 
-	public static SearchContainer create(
+	public static SearchContainer<SegmentsEntry> create(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<SegmentsEntry> searchContainer = new SearchContainer(
 			renderRequest,
 			PortletURLUtil.getCurrent(renderRequest, renderResponse), null,
 			"no-segments-were-found");
@@ -84,7 +85,7 @@ public class SegmentsEntrySearchContainerFactory {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		BaseModelSearchResult baseModelSearchResult =
+		BaseModelSearchResult<SegmentsEntry> baseModelSearchResult =
 			SegmentsEntryLocalServiceUtil.searchSegmentsEntries(
 				_buildSearchContext(
 					themeDisplay.getCompanyId(),

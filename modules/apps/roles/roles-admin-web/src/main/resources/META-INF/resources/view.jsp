@@ -30,7 +30,7 @@ else {
 
 ViewRolesManagementToolbarDisplayContext viewRolesManagementToolbarDisplayContext = new ViewRolesManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle);
 
-SearchContainer searchContainer = viewRolesManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<Role> searchContainer = viewRolesManagementToolbarDisplayContext.getSearchContainer();
 
 PortletURL portletURL = viewRolesManagementToolbarDisplayContext.getPortletURL();
 %>

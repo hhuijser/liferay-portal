@@ -123,13 +123,14 @@ public class SelectRoleManagementToolbarDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getRoleSearchContainer(boolean filterManageableRoles)
+	public SearchContainer<Role> getRoleSearchContainer(
+			boolean filterManageableRoles)
 		throws Exception {
 
 		return getRoleSearchContainer(filterManageableRoles, 0);
 	}
 
-	public SearchContainer getRoleSearchContainer(
+	public SearchContainer<Role> getRoleSearchContainer(
 			boolean filterManageableRoles, long groupId)
 		throws Exception {
 

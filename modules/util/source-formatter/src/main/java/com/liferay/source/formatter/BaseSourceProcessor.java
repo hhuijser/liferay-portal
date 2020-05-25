@@ -51,7 +51,6 @@ import java.nio.charset.CodingErrorAction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -480,40 +479,25 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		}
 	}
 
-	protected synchronized Set<SourceFormatterMessage> processCheckstyle(
+	protected Set<SourceFormatterMessage> processCheckstyle(
 			Configuration configuration, CheckstyleLogger checkstyleLogger,
-			File[] files)
-		throws CheckstyleException {
-
-		if (ArrayUtil.isEmpty(files)) {
-			return Collections.emptySet();
-		}
-
-		Checker checker = new Checker(
-			configuration, checkstyleLogger, checkstyleLogger,
-			getSourceFormatterSuppressions());
-
-		checker.process(Arrays.asList(files));
-
-		return checker.getSourceFormatterMessages();
-	}
-
-	protected synchronized Set<SourceFormatterMessage> processCheckstyle(
-			Configuration configuration, CheckstyleLogger checkstyleLogger,
-			List<String[]> fileContents)
+			Object object)
 		throws CheckstyleException, IOException {
 
-		if (fileContents.isEmpty()) {
-			return Collections.emptySet();
+		synchronized (BaseSourceProcessor.class) {
+			Checker checker = new Checker(
+				configuration, checkstyleLogger, checkstyleLogger,
+				getSourceFormatterSuppressions());
+
+			if (object instanceof File[]) {
+				checker.process(Arrays.asList((File[])object));
+			}
+			else if (object instanceof List<?>) {
+				checker.processFileContents((List<String[]>)object);
+			}
+
+			return checker.getSourceFormatterMessages();
 		}
-
-		Checker checker = new Checker(
-			configuration, checkstyleLogger, checkstyleLogger,
-			getSourceFormatterSuppressions());
-
-		checker.processFileContents(fileContents);
-
-		return checker.getSourceFormatterMessages();
 	}
 
 	protected File processFormattedFile(

@@ -99,7 +99,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 	}
 
 	@Override
-	protected void postFormat() throws CheckstyleException {
+	protected void postFormat() throws CheckstyleException, IOException {
 		_processCheckstyle(_ungeneratedFiles.toArray(new File[0]));
 
 		_ungeneratedFiles.clear();
@@ -211,7 +211,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 	}
 
 	private synchronized void _processCheckstyle(File file)
-		throws CheckstyleException {
+		throws CheckstyleException, IOException {
 
 		_ungeneratedFiles.add(file);
 
@@ -222,7 +222,9 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		}
 	}
 
-	private void _processCheckstyle(File[] files) throws CheckstyleException {
+	private void _processCheckstyle(File[] files)
+		throws CheckstyleException, IOException {
+
 		if (ArrayUtil.isEmpty(files)) {
 			return;
 		}

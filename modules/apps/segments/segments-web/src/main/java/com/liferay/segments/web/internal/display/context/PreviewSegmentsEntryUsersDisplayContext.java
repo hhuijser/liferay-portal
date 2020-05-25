@@ -68,12 +68,12 @@ public class PreviewSegmentsEntryUsersDisplayContext {
 			WebKeys.THEME_DISPLAY);
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<User> getSearchContainer() {
 		if (_userSearchContainer != null) {
 			return _userSearchContainer;
 		}
 
-		SearchContainer userSearchContainer = new SearchContainer(
+		SearchContainer<User> userSearchContainer = new SearchContainer(
 			_renderRequest, getPortletURL(), null,
 			"no-users-have-been-assigned-to-this-segment");
 
@@ -211,6 +211,6 @@ public class PreviewSegmentsEntryUsersDisplayContext {
 	private final ThemeDisplay _themeDisplay;
 	private final UserLocalService _userLocalService;
 	private final ODataRetriever<User> _userODataRetriever;
-	private SearchContainer _userSearchContainer;
+	private SearchContainer<User> _userSearchContainer;
 
 }

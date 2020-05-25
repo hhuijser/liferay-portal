@@ -159,10 +159,12 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 						int y = content.lastIndexOf(previousMatch, x);
 
 						content = StringUtil.replaceFirst(
-							content, match, previousMatch, x);
+							content, match, previousMatch,
+							matcher1.start() + x);
 
 						return StringUtil.replaceFirst(
-							content, previousMatch, match, y);
+							content, previousMatch, match,
+							matcher1.start() + y);
 					}
 				}
 

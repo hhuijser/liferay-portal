@@ -362,7 +362,8 @@ public class WorkflowInstanceViewDisplayContext
 	}
 
 	public int getTotalItems() throws PortalException {
-		SearchContainer searchContainer = getSearchContainer();
+		SearchContainer<WorkflowInstance> searchContainer =
+			getSearchContainer();
 
 		return searchContainer.getTotal();
 	}

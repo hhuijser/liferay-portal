@@ -22,7 +22,7 @@ RoleTypeContributorProvider roleTypeContributorProvider = (RoleTypeContributorPr
 PortletConfigurationPermissionsDisplayContext portletConfigurationPermissionsDisplayContext = new PortletConfigurationPermissionsDisplayContext(request, renderRequest, roleTypeContributorProvider);
 
 Resource resource = portletConfigurationPermissionsDisplayContext.getResource();
-SearchContainer roleSearchContainer = portletConfigurationPermissionsDisplayContext.getRoleSearchContainer();
+SearchContainer<Role> roleSearchContainer = portletConfigurationPermissionsDisplayContext.getRoleSearchContainer();
 
 if (Validator.isNotNull(portletConfigurationPermissionsDisplayContext.getModelResource())) {
 	PortalUtil.addPortletBreadcrumbEntry(request, HtmlUtil.unescape(portletConfigurationPermissionsDisplayContext.getSelResourceDescription()), null);

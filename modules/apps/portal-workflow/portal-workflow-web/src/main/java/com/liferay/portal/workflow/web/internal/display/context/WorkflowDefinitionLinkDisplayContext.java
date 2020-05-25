@@ -405,7 +405,8 @@ public class WorkflowDefinitionLinkDisplayContext {
 	}
 
 	public int getTotalItems() throws PortalException {
-		SearchContainer searchContainer = getSearchContainer();
+		SearchContainer<WorkflowDefinitionLinkSearchEntry> searchContainer =
+			getSearchContainer();
 
 		return searchContainer.getTotal();
 	}

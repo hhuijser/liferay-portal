@@ -330,7 +330,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 		return _resourcePrimKey;
 	}
 
-	public SearchContainer getRoleSearchContainer() throws Exception {
+	public SearchContainer<Role> getRoleSearchContainer() throws Exception {
 		if (_roleSearchContainer != null) {
 			return _roleSearchContainer;
 		}
@@ -748,7 +748,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 	private Long _resourceGroupId;
 	private String _resourcePrimKey;
 	private String _returnToFullPageURL;
-	private SearchContainer _roleSearchContainer;
+	private SearchContainer<Role> _roleSearchContainer;
 	private final RoleTypeContributorProvider _roleTypeContributorProvider;
 	private int[] _roleTypes;
 	private String _roleTypesParam;

@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.wedeploy.auth.constants.WeDeployAuthActionKeys;
+import com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthApp;
 import com.liferay.portal.security.wedeploy.auth.web.internal.security.permission.resource.WeDeployAuthPermission;
 
 import javax.portlet.PortletURL;
@@ -40,7 +41,7 @@ public class WeDeployAuthAppsManagementToolbarDisplayContext
 		HttpServletRequest httpServletRequest,
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
-		SearchContainer weDeployAuthAppsSearchContainer) {
+		SearchContainer<WeDeployAuthApp> weDeployAuthAppsSearchContainer) {
 
 		super(
 			httpServletRequest, liferayPortletRequest, liferayPortletResponse,

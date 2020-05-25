@@ -70,7 +70,9 @@ public class PortletConfigurationTemplatesDisplayContext {
 			getActionDropdownItems();
 	}
 
-	public SearchContainer getArchivedSettingsSearchContainer() {
+	public SearchContainer<ArchivedSettings>
+		getArchivedSettingsSearchContainer() {
+
 		if (_archivedSettingsSearch != null) {
 			return _archivedSettingsSearch;
 		}
@@ -234,7 +236,7 @@ public class PortletConfigurationTemplatesDisplayContext {
 		return _returnToFullPageURL;
 	}
 
-	private SearchContainer _archivedSettingsSearch;
+	private SearchContainer<ArchivedSettings> _archivedSettingsSearch;
 	private String _displayStyle;
 	private final HttpServletRequest _httpServletRequest;
 	private final String _moduleName;

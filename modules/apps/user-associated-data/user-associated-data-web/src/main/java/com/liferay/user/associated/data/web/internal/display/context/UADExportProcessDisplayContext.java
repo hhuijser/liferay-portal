@@ -159,7 +159,9 @@ public class UADExportProcessDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getSearchContainer() throws PortalException {
+	public SearchContainer<BackgroundTask> getSearchContainer()
+		throws PortalException {
+
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -168,7 +170,7 @@ public class UADExportProcessDisplayContext {
 			(PortletRequest)_httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_REQUEST);
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<BackgroundTask> searchContainer = new SearchContainer(
 			portletRequest, getPortletURL(), null,
 			"no-personal-data-export-processes-were-found");
 
@@ -234,6 +236,6 @@ public class UADExportProcessDisplayContext {
 	private String _orderByCol;
 	private String _orderByType;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<BackgroundTask> _searchContainer;
 
 }

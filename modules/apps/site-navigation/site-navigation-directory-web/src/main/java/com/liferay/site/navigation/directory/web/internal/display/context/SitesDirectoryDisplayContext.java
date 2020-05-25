@@ -133,7 +133,7 @@ public class SitesDirectoryDisplayContext {
 		return rootGroup;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<Group> getSearchContainer() {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -240,7 +240,7 @@ public class SitesDirectoryDisplayContext {
 	private String _displayStyle;
 	private final HttpServletRequest _httpServletRequest;
 	private final PortletRequest _portletRequest;
-	private SearchContainer _searchContainer;
+	private SearchContainer<Group> _searchContainer;
 	private String _sites;
 	private final SitesDirectoryPortletInstanceConfiguration
 		_sitesDirectoryPortletInstanceConfiguration;

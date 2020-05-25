@@ -119,7 +119,7 @@ public class SiteNavigationMenuItemSelectorViewDisplayContext {
 		return _portletURL;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<SiteNavigationMenu> getSearchContainer() {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -128,9 +128,10 @@ public class SiteNavigationMenuItemSelectorViewDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer searchContainer = new SearchContainer(
-			_getPortletRequest(), getPortletURL(), null,
-			"there-are-no-navigation-menus");
+		SearchContainer<SiteNavigationMenu> searchContainer =
+			new SearchContainer(
+				_getPortletRequest(), getPortletURL(), null,
+				"there-are-no-navigation-menus");
 
 		OrderByComparator<SiteNavigationMenu> orderByComparator =
 			_getOrderByComparator(getOrderByCol(), getOrderByType());
@@ -213,6 +214,6 @@ public class SiteNavigationMenuItemSelectorViewDisplayContext {
 	private String _orderByCol;
 	private String _orderByType;
 	private final PortletURL _portletURL;
-	private SearchContainer _searchContainer;
+	private SearchContainer<SiteNavigationMenu> _searchContainer;
 
 }

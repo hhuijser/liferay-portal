@@ -187,7 +187,7 @@ public class SiteNavigationAdminDisplayContext {
 			themeDisplay.getScopeGroupId());
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<SiteNavigationMenu> getSearchContainer() {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -196,9 +196,10 @@ public class SiteNavigationAdminDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer searchContainer = new SearchContainer(
-			_liferayPortletRequest, getPortletURL(), null,
-			"there-are-no-navigation-menus");
+		SearchContainer<SiteNavigationMenu> searchContainer =
+			new SearchContainer(
+				_liferayPortletRequest, getPortletURL(), null,
+				"there-are-no-navigation-menus");
 
 		OrderByComparator<SiteNavigationMenu> orderByComparator =
 			SiteNavigationMenuPortletUtil.getOrderByComparator(
@@ -362,7 +363,7 @@ public class SiteNavigationAdminDisplayContext {
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private String _orderByCol;
 	private String _orderByType;
-	private SearchContainer _searchContainer;
+	private SearchContainer<SiteNavigationMenu> _searchContainer;
 	private Long _siteNavigationMenuId;
 	private final SiteNavigationMenuItemTypeRegistry
 		_siteNavigationMenuItemTypeRegistry;

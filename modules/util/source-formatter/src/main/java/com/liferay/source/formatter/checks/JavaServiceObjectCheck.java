@@ -192,7 +192,9 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 			for (Element columnElement :
 					(List<Element>)entityElement.elements("column")) {
 
-				if (columnName.equals(columnElement.attributeValue("name"))) {
+				if (StringUtil.equalsIgnoreCase(
+						columnName, columnElement.attributeValue("name"))) {
+
 					return i;
 				}
 

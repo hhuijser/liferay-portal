@@ -419,7 +419,7 @@ public class TrashDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getTrashContainerSearchContainer()
+	public SearchContainer<TrashedModel> getTrashContainerSearchContainer()
 		throws PortalException {
 
 		if (_trashContainerSearchContainer != null) {
@@ -443,7 +443,7 @@ public class TrashDisplayContext {
 			"classNameId", String.valueOf(getClassNameId()));
 		iteratorURL.setParameter("classPK", String.valueOf(getClassPK()));
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<TrashedModel> searchContainer = new SearchContainer(
 			_liferayPortletRequest, iteratorURL, null, emptyResultsMessage);
 
 		searchContainer.setDeltaConfigurable(false);
@@ -465,7 +465,8 @@ public class TrashDisplayContext {
 	}
 
 	public int getTrashContainerTotalItems() throws PortalException {
-		SearchContainer searchContainer = getTrashContainerSearchContainer();
+		SearchContainer<TrashedModel> searchContainer =
+			getTrashContainerSearchContainer();
 
 		return searchContainer.getTotal();
 	}
@@ -698,7 +699,7 @@ public class TrashDisplayContext {
 	private String _navigation;
 	private String _orderByCol;
 	private String _orderByType;
-	private SearchContainer _trashContainerSearchContainer;
+	private SearchContainer<TrashedModel> _trashContainerSearchContainer;
 	private TrashEntry _trashEntry;
 	private TrashHandler _trashHandler;
 	private final TrashHelper _trashHelper;

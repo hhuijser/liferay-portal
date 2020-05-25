@@ -109,7 +109,7 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<ExportImportConfiguration> getSearchContainer() {
 		return _searchContainer;
 	}
 
@@ -117,16 +117,18 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 		return liferayPortletResponse.createRenderURL();
 	}
 
-	private SearchContainer _createSearchContainer(
+	private SearchContainer<ExportImportConfiguration> _createSearchContainer(
 		long companyId, long groupId, PortletURL iteratorURL,
 		boolean stagedRemotely) {
 
-		SearchContainer searchContainer = new SearchContainer(
-			liferayPortletRequest,
-			new PublishConfigurationDisplayTerms(liferayPortletRequest),
-			new PublishConfigurationSearchTerms(liferayPortletRequest),
-			SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA,
-			iteratorURL, null, "there-are-no-saved-publish-templates");
+		SearchContainer<ExportImportConfiguration> searchContainer =
+			new SearchContainer(
+				liferayPortletRequest,
+				new PublishConfigurationDisplayTerms(liferayPortletRequest),
+				new PublishConfigurationSearchTerms(liferayPortletRequest),
+				SearchContainer.DEFAULT_CUR_PARAM,
+				SearchContainer.DEFAULT_DELTA, iteratorURL, null,
+				"there-are-no-saved-publish-templates");
 
 		searchContainer.setOrderByCol("name");
 		searchContainer.setOrderByComparator(
@@ -164,7 +166,7 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 		return searchContainer;
 	}
 
-	private final SearchContainer _searchContainer;
+	private final SearchContainer<ExportImportConfiguration> _searchContainer;
 	private final long _stagingGroupId;
 
 }

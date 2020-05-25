@@ -160,7 +160,7 @@ public class TrashContainerModelDisplayContext {
 			return _containerModels;
 		}
 
-		SearchContainer searchContainer = getSearchContainer();
+		SearchContainer<?> searchContainer = getSearchContainer();
 
 		TrashHandler trashHandler = getTrashHandler();
 
@@ -258,7 +258,7 @@ public class TrashContainerModelDisplayContext {
 		return _redirect;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<?> getSearchContainer() {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -344,7 +344,7 @@ public class TrashContainerModelDisplayContext {
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private Object[] _missingContainerMessageArguments;
 	private String _redirect;
-	private SearchContainer _searchContainer;
+	private SearchContainer<?> _searchContainer;
 	private Boolean _showBackIcon;
 	private TrashHandler _trashHandler;
 	private TrashRenderer _trashRenderer;

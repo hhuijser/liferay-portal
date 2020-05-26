@@ -109,14 +109,15 @@ public class LayoutPrototypeDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<LayoutPageTemplateEntry> getSearchContainer() {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer searchContainer = new SearchContainer(
-			_renderRequest, _renderResponse.createRenderURL(), null,
-			"there-are-no-page-templates");
+		SearchContainer<LayoutPageTemplateEntry> searchContainer =
+			new SearchContainer(
+				_renderRequest, _renderResponse.createRenderURL(), null,
+				"there-are-no-page-templates");
 
 		searchContainer.setId("layoutPrototype");
 		searchContainer.setRowChecker(

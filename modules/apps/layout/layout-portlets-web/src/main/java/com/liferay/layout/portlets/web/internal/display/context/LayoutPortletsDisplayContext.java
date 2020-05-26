@@ -117,8 +117,8 @@ public class LayoutPortletsDisplayContext {
 		return portletURL;
 	}
 
-	public SearchContainer getSearchContainer() {
-		SearchContainer searchContainer = new PortletSearch(
+	public SearchContainer<Portlet> getSearchContainer() {
+		SearchContainer<Portlet> searchContainer = new PortletSearch(
 			_renderRequest, getPortletURL());
 
 		searchContainer.setEmptyResultsMessage("there-are-no-widgets");

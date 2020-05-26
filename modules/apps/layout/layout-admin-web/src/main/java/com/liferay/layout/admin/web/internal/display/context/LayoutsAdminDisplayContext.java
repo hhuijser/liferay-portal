@@ -341,12 +341,12 @@ public class LayoutsAdminDisplayContext {
 		return editLayoutSetURL.toString();
 	}
 
-	public SearchContainer getFirstColumnLayoutsSearchContainer() {
+	public SearchContainer<String> getFirstColumnLayoutsSearchContainer() {
 		if (_layoutsSearchContainer != null) {
 			return _layoutsSearchContainer;
 		}
 
-		SearchContainer layoutsSearchContainer = new SearchContainer(
+		SearchContainer<String> layoutsSearchContainer = new SearchContainer(
 			_liferayPortletRequest, getPortletURL(), null, StringPool.BLANK);
 
 		List<String> results = new ArrayList<>();
@@ -504,7 +504,9 @@ public class LayoutsAdminDisplayContext {
 		return _layoutId;
 	}
 
-	public SearchContainer getLayoutsSearchContainer() throws PortalException {
+	public SearchContainer<Layout> getLayoutsSearchContainer()
+		throws PortalException {
+
 		if (_layoutsSearchContainer != null) {
 			return _layoutsSearchContainer;
 		}
@@ -515,7 +517,7 @@ public class LayoutsAdminDisplayContext {
 			emptyResultMessage = "there-are-no-private-pages";
 		}
 
-		SearchContainer layoutsSearchContainer = new SearchContainer(
+		SearchContainer<Layout> layoutsSearchContainer = new SearchContainer(
 			_liferayPortletRequest, getPortletURL(), null, emptyResultMessage);
 
 		layoutsSearchContainer.setOrderByCol(_getOrderByCol());
@@ -1618,7 +1620,7 @@ public class LayoutsAdminDisplayContext {
 	private final LayoutCopyHelper _layoutCopyHelper;
 	private List<LayoutDescription> _layoutDescriptions;
 	private Long _layoutId;
-	private SearchContainer _layoutsSearchContainer;
+	private SearchContainer<String> _layoutsSearchContainer;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private Boolean _liveGroup;

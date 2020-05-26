@@ -69,7 +69,7 @@ public class LayoutPageTemplateCollectionsDisplayContext {
 		return _orderByType;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<LayoutPageTemplateCollection> getSearchContainer() {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -78,9 +78,10 @@ public class LayoutPageTemplateCollectionsDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer searchContainer = new SearchContainer(
-			_renderRequest, _renderResponse.createRenderURL(), null,
-			"there-are-no-collections");
+		SearchContainer<LayoutPageTemplateCollection> searchContainer =
+			new SearchContainer(
+				_renderRequest, _renderResponse.createRenderURL(), null,
+				"there-are-no-collections");
 
 		searchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
@@ -170,6 +171,6 @@ public class LayoutPageTemplateCollectionsDisplayContext {
 	private String _orderByType;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<LayoutPageTemplateCollection> _searchContainer;
 
 }

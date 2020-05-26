@@ -153,13 +153,15 @@ public class LayoutPageTemplateDisplayContext {
 		return _layoutPageTemplateCollections;
 	}
 
-	public SearchContainer getLayoutPageTemplateEntriesSearchContainer() {
+	public SearchContainer<LayoutPageTemplateEntry>
+		getLayoutPageTemplateEntriesSearchContainer() {
+
 		if (_layoutPageTemplateEntriesSearchContainer != null) {
 			return _layoutPageTemplateEntriesSearchContainer;
 		}
 
-		SearchContainer layoutPageTemplateEntriesSearchContainer =
-			new SearchContainer(
+		SearchContainer<LayoutPageTemplateEntry>
+			layoutPageTemplateEntriesSearchContainer = new SearchContainer(
 				_renderRequest, getPortletURL(), null,
 				"there-are-no-page-templates");
 
@@ -331,7 +333,8 @@ public class LayoutPageTemplateDisplayContext {
 	private LayoutPageTemplateCollection _layoutPageTemplateCollection;
 	private Long _layoutPageTemplateCollectionId;
 	private List<LayoutPageTemplateCollection> _layoutPageTemplateCollections;
-	private SearchContainer _layoutPageTemplateEntriesSearchContainer;
+	private SearchContainer<LayoutPageTemplateEntry>
+		_layoutPageTemplateEntriesSearchContainer;
 	private LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private Long _layoutPageTemplateEntryId;
 	private String _orderByCol;

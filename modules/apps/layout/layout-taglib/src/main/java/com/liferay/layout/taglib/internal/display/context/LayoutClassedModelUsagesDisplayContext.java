@@ -352,13 +352,15 @@ public class LayoutClassedModelUsagesDisplayContext {
 		return _redirect;
 	}
 
-	public SearchContainer getSearchContainer() throws PortletException {
+	public SearchContainer<LayoutClassedModelUsage> getSearchContainer()
+		throws PortletException {
+
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
 
-		SearchContainer layoutClassedModelUsagesSearchContainer =
-			new SearchContainer(
+		SearchContainer<LayoutClassedModelUsage>
+			layoutClassedModelUsagesSearchContainer = new SearchContainer(
 				_renderRequest, getPortletURL(), null, "there-are-no-usages");
 
 		boolean orderByAsc = false;
@@ -605,7 +607,7 @@ public class LayoutClassedModelUsagesDisplayContext {
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final ResourceBundle _resourceBundle;
-	private SearchContainer _searchContainer;
+	private SearchContainer<LayoutClassedModelUsage> _searchContainer;
 	private final ThemeDisplay _themeDisplay;
 
 }

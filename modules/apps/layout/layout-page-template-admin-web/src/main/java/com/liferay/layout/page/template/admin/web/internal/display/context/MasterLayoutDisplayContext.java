@@ -76,13 +76,17 @@ public class MasterLayoutDisplayContext {
 		return _layoutPageTemplateEntryId;
 	}
 
-	public SearchContainer getMasterLayoutsSearchContainer() {
+	public SearchContainer<LayoutPageTemplateEntry>
+		getMasterLayoutsSearchContainer() {
+
 		if (_masterLayoutsSearchContainer != null) {
 			return _masterLayoutsSearchContainer;
 		}
 
-		SearchContainer masterLayoutsSearchContainer = new SearchContainer(
-			_renderRequest, getPortletURL(), null, "there-are-no-master-pages");
+		SearchContainer<LayoutPageTemplateEntry> masterLayoutsSearchContainer =
+			new SearchContainer(
+				_renderRequest, getPortletURL(), null,
+				"there-are-no-master-pages");
 
 		masterLayoutsSearchContainer.setOrderByCol(getOrderByCol());
 
@@ -222,7 +226,8 @@ public class MasterLayoutDisplayContext {
 	private final HttpServletRequest _httpServletRequest;
 	private String _keywords;
 	private Long _layoutPageTemplateEntryId;
-	private SearchContainer _masterLayoutsSearchContainer;
+	private SearchContainer<LayoutPageTemplateEntry>
+		_masterLayoutsSearchContainer;
 	private String _orderByCol;
 	private String _orderByType;
 	private final RenderRequest _renderRequest;

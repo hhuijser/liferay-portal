@@ -183,14 +183,15 @@ public class LayoutSetPrototypeDisplayContext {
 		return searchURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<LayoutSetPrototype> getSearchContainer() {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer searchContainer = new SearchContainer(
-			_renderRequest, _renderResponse.createRenderURL(), null,
-			"there-are-no-site-templates");
+		SearchContainer<LayoutSetPrototype> searchContainer =
+			new SearchContainer(
+				_renderRequest, _renderResponse.createRenderURL(), null,
+				"there-are-no-site-templates");
 
 		searchContainer.setId("layoutSetPrototype");
 		searchContainer.setRowChecker(
@@ -235,7 +236,8 @@ public class LayoutSetPrototypeDisplayContext {
 	}
 
 	public int getTotalItems() throws PortalException {
-		SearchContainer searchContainer = getSearchContainer();
+		SearchContainer<LayoutSetPrototype> searchContainer =
+			getSearchContainer();
 
 		return searchContainer.getTotal();
 	}

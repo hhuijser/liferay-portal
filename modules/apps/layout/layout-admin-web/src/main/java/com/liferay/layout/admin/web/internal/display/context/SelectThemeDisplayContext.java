@@ -142,7 +142,7 @@ public class SelectThemeDisplayContext {
 		return _themeId;
 	}
 
-	public SearchContainer getThemesSearchContainer() {
+	public SearchContainer<Theme> getThemesSearchContainer() {
 		if (_themesSearchContainer != null) {
 			return _themesSearchContainer;
 		}
@@ -151,7 +151,7 @@ public class SelectThemeDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer themesSearchContainer = new SearchContainer(
+		SearchContainer<Theme> themesSearchContainer = new SearchContainer(
 			_liferayPortletRequest, getPortletURL(), null, null);
 
 		themesSearchContainer.setOrderByCol(getOrderByCol());
@@ -193,6 +193,6 @@ public class SelectThemeDisplayContext {
 	private String _orderByType;
 	private String _redirect;
 	private String _themeId;
-	private SearchContainer _themesSearchContainer;
+	private SearchContainer<Theme> _themesSearchContainer;
 
 }

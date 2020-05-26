@@ -95,8 +95,9 @@ public class JournalArticleInfoDisplayContributorTest {
 		throws PortalException {
 
 		InfoDisplayContributor<JournalArticle> infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(
-				JournalArticle.class.getName());
+			(InfoDisplayContributor<JournalArticle>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					JournalArticle.class.getName());
 
 		Set<InfoDisplayField> infoDisplayFields =
 			infoDisplayContributor.getInfoDisplayFields(
@@ -119,8 +120,9 @@ public class JournalArticleInfoDisplayContributorTest {
 		throws PortalException {
 
 		InfoDisplayContributor<JournalArticle> infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(
-				JournalArticle.class.getName());
+			(InfoDisplayContributor<JournalArticle>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					JournalArticle.class.getName());
 
 		Set<InfoDisplayField> infoDisplayFields =
 			infoDisplayContributor.getInfoDisplayFields(

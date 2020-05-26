@@ -196,7 +196,9 @@ public class DisplayPageTemplateServiceTest {
 		Registry registry = RegistryUtil.getRegistry();
 
 		_serviceRegistration = registry.registerService(
-			InfoDisplayContributor.class, infoDisplayContributor);
+			(Class<InfoDisplayContributor<?>>)
+				(Class<?>)InfoDisplayContributor.class,
+			infoDisplayContributor);
 	}
 
 	private static final long _CLASS_TYPE_ID = 99999L;

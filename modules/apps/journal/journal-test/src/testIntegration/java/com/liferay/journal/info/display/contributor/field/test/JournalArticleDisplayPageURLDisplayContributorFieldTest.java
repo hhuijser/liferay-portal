@@ -97,8 +97,9 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 	@Test
 	public void testCannotSelectDisplayPageURLIfNoneExists() throws Exception {
 		InfoDisplayContributor<JournalArticle> infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(
-				JournalArticle.class.getName());
+			(InfoDisplayContributor<JournalArticle>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					JournalArticle.class.getName());
 
 		JournalArticle journalArticle = _addJournalArticle();
 
@@ -112,8 +113,9 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 	@Test
 	public void testCanSelectDefaultDisplayPageURL() throws Exception {
 		InfoDisplayContributor<JournalArticle> infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(
-				JournalArticle.class.getName());
+			(InfoDisplayContributor<JournalArticle>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					JournalArticle.class.getName());
 
 		JournalArticle article = _addJournalArticle();
 
@@ -143,8 +145,9 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 	@Test
 	public void testCanSelectSpecificDisplayPageURL() throws Exception {
 		InfoDisplayContributor<JournalArticle> infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(
-				JournalArticle.class.getName());
+			(InfoDisplayContributor<JournalArticle>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					JournalArticle.class.getName());
 
 		JournalArticle article = _addJournalArticle();
 

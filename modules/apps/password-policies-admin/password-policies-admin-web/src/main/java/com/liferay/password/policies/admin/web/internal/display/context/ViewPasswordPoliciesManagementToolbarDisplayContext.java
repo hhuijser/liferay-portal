@@ -153,7 +153,9 @@ public class ViewPasswordPoliciesManagementToolbarDisplayContext {
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() throws Exception {
+	public SearchContainer<PasswordPolicy> getSearchContainer()
+		throws Exception {
+
 		if (_passwordPolicySearch != null) {
 			return _passwordPolicySearch;
 		}

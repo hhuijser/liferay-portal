@@ -39,7 +39,7 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 
 EditPasswordPolicyAssignmentsManagementToolbarDisplayContext editPasswordPolicyAssignmentsManagementToolbarDisplayContext = new EditPasswordPolicyAssignmentsManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle, "/select_members.jsp");
 
-SearchContainer searchContainer = editPasswordPolicyAssignmentsManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<?> searchContainer = editPasswordPolicyAssignmentsManagementToolbarDisplayContext.getSearchContainer();
 %>
 
 <clay:navigation-bar

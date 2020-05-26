@@ -151,7 +151,7 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 		return _orderByType;
 	}
 
-	public SearchContainer getOrganizationSearchContainer()
+	public SearchContainer<Organization> getOrganizationSearchContainer()
 		throws PortalException {
 
 		OrganizationSearch organizationSearch = new OrganizationSearch(
@@ -244,7 +244,7 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() throws Exception {
+	public SearchContainer<?> getSearchContainer() throws Exception {
 		if (Objects.equals(getTabs2(), "organizations")) {
 			_searchContainer = getOrganizationSearchContainer();
 		}
@@ -273,7 +273,7 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 		return _tabs2;
 	}
 
-	public SearchContainer getUserSearchContainer() {
+	public SearchContainer<User> getUserSearchContainer() {
 		UserSearch userSearch = new UserSearch(_renderRequest, getPortletURL());
 
 		RowChecker rowChecker = new AddUserPasswordPolicyChecker(
@@ -372,7 +372,7 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 	private final PasswordPolicy _passwordPolicy;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<?> _searchContainer;
 	private String _tabs2;
 
 }

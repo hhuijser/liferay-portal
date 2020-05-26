@@ -49,7 +49,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, passwordPolicy.getName(), null);
 
 EditPasswordPolicyAssignmentsManagementToolbarDisplayContext editPasswordPolicyAssignmentsManagementToolbarDisplayContext = new EditPasswordPolicyAssignmentsManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle, "/edit_password_policy_assignments.jsp");
 
-SearchContainer searchContainer = editPasswordPolicyAssignmentsManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<?> searchContainer = editPasswordPolicyAssignmentsManagementToolbarDisplayContext.getSearchContainer();
 %>
 
 <liferay-util:include page="/edit_password_policy_tabs.jsp" servletContext="<%= application %>" />

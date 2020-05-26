@@ -36,7 +36,7 @@ portletDisplay.setDescription(description);
 
 ViewPasswordPoliciesManagementToolbarDisplayContext viewPasswordPoliciesManagementToolbarDisplayContext = new ViewPasswordPoliciesManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle);
 
-SearchContainer searchContainer = viewPasswordPoliciesManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<PasswordPolicy> searchContainer = viewPasswordPoliciesManagementToolbarDisplayContext.getSearchContainer();
 
 PortletURL portletURL = viewPasswordPoliciesManagementToolbarDisplayContext.getPortletURL();
 %>

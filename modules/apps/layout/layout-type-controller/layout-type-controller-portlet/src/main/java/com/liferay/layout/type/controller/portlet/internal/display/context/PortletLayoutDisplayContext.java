@@ -206,7 +206,7 @@ public class PortletLayoutDisplayContext {
 			listObjectReference, defaultLayoutListRetrieverContext);
 	}
 
-	public InfoDisplayContributor getCollectionInfoDisplayContributor(
+	public InfoDisplayContributor<?> getCollectionInfoDisplayContributor(
 		CollectionLayoutStructureItem collectionLayoutStructureItem) {
 
 		ListObjectReference listObjectReference = _getListObjectReference(

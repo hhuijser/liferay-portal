@@ -38,6 +38,7 @@ page import="com.liferay.portal.kernel.model.Layout" %><%@
 page import="com.liferay.portal.kernel.model.Portlet" %><%@
 page import="com.liferay.portal.kernel.model.PublicRenderParameter" %><%@
 page import="com.liferay.portal.kernel.model.Resource" %><%@
+page import="com.liferay.portal.kernel.model.Role" %><%@
 page import="com.liferay.portal.kernel.model.role.RoleConstants" %><%@
 page import="com.liferay.portal.kernel.portlet.ConfigurationAction" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@

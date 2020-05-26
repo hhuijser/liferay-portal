@@ -42,16 +42,17 @@ public class MDRActionDisplayContext {
 		_resourceBundle = resourceBundle;
 	}
 
-	public SearchContainer getActionSearchContainer() {
+	public SearchContainer<MDRAction> getActionSearchContainer() {
 		if (_ruleActionSearchContainer != null) {
 			return _ruleActionSearchContainer;
 		}
 
 		long ruleGroupInstanceId = getRuleGroupInstanceId();
 
-		SearchContainer ruleActionSearchContainer = new SearchContainer(
-			_renderRequest, getPortletURL(), null,
-			"no-actions-are-configured-for-this-device-family");
+		SearchContainer<MDRAction> ruleActionSearchContainer =
+			new SearchContainer(
+				_renderRequest, getPortletURL(), null,
+				"no-actions-are-configured-for-this-device-family");
 
 		ruleActionSearchContainer.setOrderByCol(getOrderByCol());
 
@@ -152,7 +153,7 @@ public class MDRActionDisplayContext {
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final ResourceBundle _resourceBundle;
-	private SearchContainer _ruleActionSearchContainer;
+	private SearchContainer<MDRAction> _ruleActionSearchContainer;
 	private Long _ruleGroupInstanceId;
 
 }

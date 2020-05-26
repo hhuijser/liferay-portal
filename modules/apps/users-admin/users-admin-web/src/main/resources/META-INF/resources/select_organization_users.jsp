@@ -38,7 +38,7 @@ SelectOrganizationUsersManagementToolbarDisplayContext selectOrganizationUsersMa
 
 PortletURL portletURL = selectOrganizationUsersManagementToolbarDisplayContext.getPortletURL();
 
-SearchContainer<Organization> userSearchContainer = selectOrganizationUsersManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<User> userSearchContainer = selectOrganizationUsersManagementToolbarDisplayContext.getSearchContainer();
 %>
 
 <liferay-ui:membership-policy-error />

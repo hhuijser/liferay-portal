@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -133,7 +134,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 	}
 
 	private String _getModuleDirName(Path dirPath) {
-		String absolutePath = SourceUtil.getAbsolutePath(dirPath) + "/";
+		String absolutePath = SourceUtil.getAbsolutePath(dirPath);
 
 		int x = absolutePath.indexOf("/modules/");
 
@@ -141,29 +142,27 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			return null;
 		}
 
-		x = x + 9;
+		String directoryPath = absolutePath.substring(x + 9);
 
-		int y = absolutePath.indexOf("/", x);
+		String[] directoryNames = StringUtil.split(
+			directoryPath, CharPool.SLASH);
 
-		if (y == -1) {
+		if (directoryNames.length < 2) {
 			return null;
 		}
-
-		String subdirectoryName = absolutePath.substring(x, y);
 
 		List<String> buildIncludeCategoryNames = getAttributeValues(
 			_BUILD_INCLUDE_CATEGORY_NAMES, absolutePath);
 
-		int deeper = 3;
-
-		if (buildIncludeCategoryNames.contains(subdirectoryName)) {
-			deeper = 2;
+		for (int i = 0; i < (directoryNames.length - 1); i++) {
+			if (buildIncludeCategoryNames.contains(directoryNames[i])) {
+				return StringUtil.merge(
+					ArrayUtil.subset(directoryNames, 0, i + 2),
+					StringPool.SLASH);
+			}
 		}
 
-		String moduleDirName = absolutePath.replaceAll(
-			".*?/modules((/[^/]+){" + deeper + "}).*", "$1");
-
-		return moduleDirName.substring(1);
+		return null;
 	}
 
 	private static final String _BUILD_INCLUDE_CATEGORY_NAMES =

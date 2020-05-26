@@ -151,12 +151,12 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 
 		String subdirectoryName = absolutePath.substring(x, y);
 
-		List<String> buildIncludeDirs = getAttributeValues(
-			_BUILD_INCLUDE_DIRS, absolutePath);
+		List<String> buildIncludeCategoryNames = getAttributeValues(
+			_BUILD_INCLUDE_CATEGORY_NAMES, absolutePath);
 
 		int deeper = 3;
 
-		if (buildIncludeDirs.contains(subdirectoryName)) {
+		if (buildIncludeCategoryNames.contains(subdirectoryName)) {
 			deeper = 2;
 		}
 
@@ -166,7 +166,8 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		return moduleDirName.substring(1);
 	}
 
-	private static final String _BUILD_INCLUDE_DIRS = "buildIncludeDirs";
+	private static final String _BUILD_INCLUDE_CATEGORY_NAMES =
+		"buildIncludeCategoryNames";
 
 	private static final String[] _SKIP_DIR_NAMES = {
 		".git", ".gradle", ".idea", ".m2", ".settings", "bin", "build",

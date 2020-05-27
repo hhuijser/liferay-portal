@@ -14,6 +14,9 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.source.formatter.checks.util.BNDSourceUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
@@ -60,7 +63,7 @@ public class JavaDuplicateVariableCheck extends BaseJavaTermCheck {
 
 				_checkDuplicateVariable(
 					fileName, absolutePath, extendedClassNames,
-					childJavaTerm.getName(), javaClass.getPackageName());
+					(JavaVariable)childJavaTerm, javaClass.getPackageName());
 			}
 		}
 
@@ -74,19 +77,51 @@ public class JavaDuplicateVariableCheck extends BaseJavaTermCheck {
 
 	private void _checkDuplicateVariable(
 			String fileName, String absolutePath,
-			List<String> extendedClassNames, String variableName,
+			List<String> extendedClassNames, JavaVariable javaVariable,
 			String packageName)
 		throws IOException {
 
+		String variableName = javaVariable.getName();
+
 		for (String extendedClassName : extendedClassNames) {
-			List<String> extendedVariableNames = _getVariableNames(
-				absolutePath, extendedClassName);
+			Map<String, List<JavaVariable>> extendedJavaVariablesMap =
+				_getJavaVariablesMap(absolutePath, extendedClassName);
 
-			if (extendedVariableNames.contains(variableName) ||
-				extendedVariableNames.contains(
-					packageName + "." + variableName)) {
+			for (Map.Entry<String, List<JavaVariable>> entry :
+					extendedJavaVariablesMap.entrySet()) {
 
-				addMessage(fileName, variableName);
+				List<JavaVariable> javaVariables = entry.getValue();
+
+				for (JavaVariable curJavaVariable : javaVariables) {
+					if (!variableName.equals(curJavaVariable.getName())) {
+						continue;
+					}
+
+					String fullyQualifiedClassName = entry.getKey();
+
+					int pos = fullyQualifiedClassName.lastIndexOf(
+						CharPool.PERIOD);
+
+					String variablePackageName =
+						fullyQualifiedClassName.substring(0, pos);
+
+					if (curJavaVariable.isPublic() ||
+						(curJavaVariable.isProtected() &&
+						 packageName.equals(variablePackageName))) {
+
+						String variableClassName =
+							fullyQualifiedClassName.substring(pos + 1);
+
+						addMessage(
+							fileName,
+							StringBundler.concat(
+								javaVariable.getAccessModifier(), " variable '",
+								variableName,
+								"' already exists in extended class '",
+								variableClassName, "'"),
+							javaVariable.getLineNumber());
+					}
+				}
 			}
 		}
 	}
@@ -104,55 +139,15 @@ public class JavaDuplicateVariableCheck extends BaseJavaTermCheck {
 		return _bundleSymbolicNamesMap;
 	}
 
-	private synchronized String _getRootDirName(String absolutePath) {
-		if (_rootDirName != null) {
-			return _rootDirName;
-		}
-
-		_rootDirName = SourceUtil.getRootDirName(absolutePath);
-
-		return _rootDirName;
-	}
-
-	private List<String> _getVariableNames(
-			String absolutePath, JavaClass javaClass)
-		throws IOException {
-
-		List<String> variableNames = new ArrayList<>();
-
-		for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
-			if (!(javaTerm instanceof JavaVariable)) {
-				continue;
-			}
-
-			if (javaTerm.isPublic()) {
-				variableNames.add(javaTerm.getName());
-			}
-			else if (javaTerm.isProtected()) {
-				variableNames.add(
-					javaClass.getPackageName() + "." + javaTerm.getName());
-			}
-		}
-
-		List<String> extendedClassNames = javaClass.getExtendedClassNames(true);
-
-		for (String extendedClassName : extendedClassNames) {
-			variableNames.addAll(
-				_getVariableNames(absolutePath, extendedClassName));
-		}
-
-		return variableNames;
-	}
-
-	private List<String> _getVariableNames(
+	private Map<String, List<JavaVariable>> _getJavaVariablesMap(
 			String absolutePath, String fullyQualifiedClassName)
 		throws IOException {
 
-		if (_variableNamesMap.containsKey(fullyQualifiedClassName)) {
-			return _variableNamesMap.get(fullyQualifiedClassName);
+		if (_javaVariablesMap.containsKey(fullyQualifiedClassName)) {
+			return _javaVariablesMap.get(fullyQualifiedClassName);
 		}
 
-		List<String> variableNames = new ArrayList<>();
+		Map<String, List<JavaVariable>> javaVariablesMap = new HashMap<>();
 
 		File file = JavaSourceUtil.getJavaFile(
 			fullyQualifiedClassName, _getRootDirName(absolutePath),
@@ -163,20 +158,60 @@ public class JavaDuplicateVariableCheck extends BaseJavaTermCheck {
 				JavaClass javaClass = JavaClassParser.parseJavaClass(
 					SourceUtil.getAbsolutePath(file), FileUtil.read(file));
 
-				variableNames.addAll(
-					_getVariableNames(absolutePath, javaClass));
+				javaVariablesMap.putAll(
+					_getJavaVariablesMap(
+						absolutePath, fullyQualifiedClassName, javaClass));
 			}
 			catch (Exception exception) {
 			}
 		}
 
-		_variableNamesMap.put(fullyQualifiedClassName, variableNames);
+		_javaVariablesMap.put(fullyQualifiedClassName, javaVariablesMap);
 
-		return variableNames;
+		return javaVariablesMap;
+	}
+
+	private Map<String, List<JavaVariable>> _getJavaVariablesMap(
+			String absolutePath, String fullyQualifiedName, JavaClass javaClass)
+		throws IOException {
+
+		List<JavaVariable> javaVariables = new ArrayList<>();
+
+		for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
+			if ((javaTerm instanceof JavaVariable) &&
+				(javaTerm.isProtected() || javaTerm.isPublic())) {
+
+				javaVariables.add((JavaVariable)javaTerm);
+			}
+		}
+
+		Map<String, List<JavaVariable>> javaVariablesMap = HashMapBuilder.put(
+			fullyQualifiedName, javaVariables
+		).build();
+
+		List<String> extendedClassNames = javaClass.getExtendedClassNames(true);
+
+		for (String extendedClassName : extendedClassNames) {
+			javaVariablesMap.putAll(
+				_getJavaVariablesMap(absolutePath, extendedClassName));
+		}
+
+		return javaVariablesMap;
+	}
+
+	private synchronized String _getRootDirName(String absolutePath) {
+		if (_rootDirName != null) {
+			return _rootDirName;
+		}
+
+		_rootDirName = SourceUtil.getRootDirName(absolutePath);
+
+		return _rootDirName;
 	}
 
 	private Map<String, String> _bundleSymbolicNamesMap;
+	private final Map<String, Map<String, List<JavaVariable>>>
+		_javaVariablesMap = new HashMap<>();
 	private String _rootDirName;
-	private final Map<String, List<String>> _variableNamesMap = new HashMap<>();
 
 }

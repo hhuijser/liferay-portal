@@ -97,7 +97,8 @@ public class ItemSelectorViewReturnTypeProviderHandlerImpl
 		_bundleContext = bundleContext;
 
 		_serviceTracker = ServiceTrackerFactory.open(
-			bundleContext, ItemSelectorView.class,
+			bundleContext,
+			(Class<ItemSelectorView<?>>)(Class<?>)ItemSelectorView.class,
 			new ItemSelectorViewServiceTrackerCustomizer());
 
 		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
@@ -115,19 +116,20 @@ public class ItemSelectorViewReturnTypeProviderHandlerImpl
 	private BundleContext _bundleContext;
 	private final Map<String, String> _itemSelectorViewKeysMap =
 		new ConcurrentHashMap<>();
-	private ServiceTracker<ItemSelectorView, ItemSelectorView> _serviceTracker;
+	private ServiceTracker<ItemSelectorView<?>, ItemSelectorView<?>>
+		_serviceTracker;
 	private ServiceTrackerMap<String, List<ItemSelectorViewReturnTypeProvider>>
 		_serviceTrackerMap;
 
 	private class ItemSelectorViewServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer
-			<ItemSelectorView, ItemSelectorView> {
+			<ItemSelectorView<?>, ItemSelectorView<?>> {
 
 		@Override
 		public ItemSelectorView addingService(
-			ServiceReference<ItemSelectorView> serviceReference) {
+			ServiceReference<ItemSelectorView<?>> serviceReference) {
 
-			ItemSelectorView itemSelectorView = _bundleContext.getService(
+			ItemSelectorView<?> itemSelectorView = _bundleContext.getService(
 				serviceReference);
 
 			String itemSelectorViewKey = GetterUtil.getString(
@@ -146,14 +148,14 @@ public class ItemSelectorViewReturnTypeProviderHandlerImpl
 
 		@Override
 		public void modifiedService(
-			ServiceReference<ItemSelectorView> serviceReference,
-			ItemSelectorView itemSelectorView) {
+			ServiceReference<ItemSelectorView<?>> serviceReference,
+			ItemSelectorView<?> itemSelectorView) {
 		}
 
 		@Override
 		public void removedService(
-			ServiceReference<ItemSelectorView> serviceReference,
-			ItemSelectorView itemSelectorView) {
+			ServiceReference<ItemSelectorView<?>> serviceReference,
+			ItemSelectorView<?> itemSelectorView) {
 
 			try {
 				Class<? extends ItemSelectorView> itemSelectorViewClass =

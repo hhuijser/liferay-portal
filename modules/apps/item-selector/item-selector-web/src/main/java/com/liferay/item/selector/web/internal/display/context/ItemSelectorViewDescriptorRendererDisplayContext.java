@@ -43,7 +43,7 @@ public class ItemSelectorViewDescriptorRendererDisplayContext {
 
 	public ItemSelectorViewDescriptorRendererDisplayContext(
 		HttpServletRequest httpServletRequest, String itemSelectedEventName,
-		ItemSelectorViewDescriptor itemSelectorViewDescriptor,
+		ItemSelectorViewDescriptor<Object> itemSelectorViewDescriptor,
 		LiferayPortletResponse liferayPortletResponse) {
 
 		_httpServletRequest = httpServletRequest;
@@ -79,7 +79,7 @@ public class ItemSelectorViewDescriptorRendererDisplayContext {
 		return _itemSelectedEventName;
 	}
 
-	public ItemSelectorViewDescriptor getItemSelectorViewDescriptor() {
+	public ItemSelectorViewDescriptor<Object> getItemSelectorViewDescriptor() {
 		return _itemSelectorViewDescriptor;
 	}
 
@@ -143,7 +143,8 @@ public class ItemSelectorViewDescriptorRendererDisplayContext {
 	private String _displayStyle;
 	private final HttpServletRequest _httpServletRequest;
 	private final String _itemSelectedEventName;
-	private final ItemSelectorViewDescriptor _itemSelectorViewDescriptor;
+	private final ItemSelectorViewDescriptor<Object>
+		_itemSelectorViewDescriptor;
 	private final LiferayPortletResponse _liferayPortletResponse;
 
 }

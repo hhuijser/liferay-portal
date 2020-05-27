@@ -29,7 +29,7 @@ public class ItemSelectorViewDescriptorRendererManagementToolbarDisplayContext
 	extends SearchContainerManagementToolbarDisplayContext {
 
 	public ItemSelectorViewDescriptorRendererManagementToolbarDisplayContext(
-		ItemSelectorViewDescriptor itemSelectorViewDescriptor,
+		ItemSelectorViewDescriptor<Object> itemSelectorViewDescriptor,
 		HttpServletRequest httpServletRequest,
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
@@ -77,6 +77,7 @@ public class ItemSelectorViewDescriptorRendererManagementToolbarDisplayContext
 		return new String[] {"descriptive", "icon"};
 	}
 
-	private final ItemSelectorViewDescriptor _itemSelectorViewDescriptor;
+	private final ItemSelectorViewDescriptor<Object>
+		_itemSelectorViewDescriptor;
 
 }

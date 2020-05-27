@@ -81,7 +81,7 @@ public class DepotItemSelectorViewTest {
 	}
 
 	@Inject(filter = "component.name=*.DepotItemSelectorView")
-	private ItemSelectorView _depotItemSelectorView;
+	private ItemSelectorView<GroupItemSelectorCriterion> _depotItemSelectorView;
 
 	@Inject
 	private GroupLocalService _groupLocalService;

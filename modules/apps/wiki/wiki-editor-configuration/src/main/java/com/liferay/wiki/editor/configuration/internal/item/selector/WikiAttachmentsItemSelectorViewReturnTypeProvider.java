@@ -48,6 +48,6 @@ public class WikiAttachmentsItemSelectorViewReturnTypeProvider
 	@Reference(
 		target = "(item.selector.view.key=" + WikiItemSelectorViewConstants.ITEM_SELECTOR_VIEW_KEY + ")"
 	)
-	private ItemSelectorView _itemSelectorView;
+	private ItemSelectorView<?> _itemSelectorView;
 
 }

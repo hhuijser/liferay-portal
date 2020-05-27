@@ -59,7 +59,8 @@ public class LayoutItemSelectorCriterionHandler
 			itemSelectorViews.iterator();
 
 		while (iterator.hasNext()) {
-			ItemSelectorView itemSelectorView = iterator.next();
+			ItemSelectorView<LayoutItemSelectorCriterion> itemSelectorView =
+				iterator.next();
 
 			if (!(itemSelectorView instanceof LayoutItemSelectorView)) {
 				continue;

@@ -64,7 +64,7 @@ public class ItemSelectorCriterionSerializerTest {
 	public void testSerializationAndDeserializationWithProvidedSupportedReturnTypes() {
 		TestItemSelectorView testItemSelectorView = new TestItemSelectorView();
 
-		ServiceRegistration<ItemSelectorView>
+		ServiceRegistration<ItemSelectorView<?>>
 			itemSelectorViewServiceRegistration = registerItemSelectorView(
 				testItemSelectorView, "test-view");
 
@@ -124,15 +124,16 @@ public class ItemSelectorCriterionSerializerTest {
 		}
 	}
 
-	protected ServiceRegistration<ItemSelectorView> registerItemSelectorView(
-		ItemSelectorView itemSelectorView, String itemSelectorViewKey) {
+	protected ServiceRegistration<ItemSelectorView<?>> registerItemSelectorView(
+		ItemSelectorView<?> itemSelectorView, String itemSelectorViewKey) {
 
 		Dictionary<String, Object> properties = new Hashtable<>();
 
 		properties.put("item.selector.view.key", itemSelectorViewKey);
 
 		return _bundleContext.registerService(
-			ItemSelectorView.class, itemSelectorView, properties);
+			(Class<ItemSelectorView<?>>)(Class<?>)ItemSelectorView.class,
+			itemSelectorView, properties);
 	}
 
 	protected ServiceRegistration<ItemSelectorViewReturnTypeProvider>

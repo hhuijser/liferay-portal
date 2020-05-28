@@ -83,14 +83,14 @@ public class JournalViewMoreMenuItemsDisplayContext {
 		return _ddmStructures;
 	}
 
-	public SearchContainer getDDMStructuresSearchContainer()
+	public SearchContainer<DDMStructure> getDDMStructuresSearchContainer()
 		throws PortalException {
 
 		if (_ddmStructuresSearchContainer != null) {
 			return _ddmStructuresSearchContainer;
 		}
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<DDMStructure> searchContainer = new SearchContainer(
 			_renderRequest, getPortletURL(), null, "no-results-were-found");
 
 		searchContainer.setOrderByCol(getOrderByCol());
@@ -200,7 +200,7 @@ public class JournalViewMoreMenuItemsDisplayContext {
 	}
 
 	private List<DDMStructure> _ddmStructures;
-	private SearchContainer _ddmStructuresSearchContainer;
+	private SearchContainer<DDMStructure> _ddmStructuresSearchContainer;
 	private String _eventName;
 	private final long _folderId;
 	private final HttpServletRequest _httpServletRequest;

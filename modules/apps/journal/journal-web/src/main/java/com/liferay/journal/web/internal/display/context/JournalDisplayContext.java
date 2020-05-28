@@ -254,7 +254,8 @@ public class JournalDisplayContext {
 		return getArticleActionDropdownItems(article);
 	}
 
-	public SearchContainer getArticleTranslationsSearchContainer()
+	public SearchContainer<JournalArticleTranslation>
+			getArticleTranslationsSearchContainer()
 		throws Exception {
 
 		if (_articleTranslationsSearchContainer != null) {
@@ -268,8 +269,9 @@ public class JournalDisplayContext {
 
 		portletURL.setParameter("mvcPath", "/select_article_translations.jsp");
 
-		SearchContainer articleTranslationsSearchContainer =
-			new SearchContainer(_liferayPortletRequest, portletURL, null, null);
+		SearchContainer<JournalArticleTranslation>
+			articleTranslationsSearchContainer = new SearchContainer(
+				_liferayPortletRequest, portletURL, null, null);
 
 		articleTranslationsSearchContainer.setId("articleTranslations");
 		articleTranslationsSearchContainer.setRowChecker(
@@ -883,7 +885,7 @@ public class JournalDisplayContext {
 		return _restrictionType;
 	}
 
-	public SearchContainer getSearchContainer() throws PortalException {
+	public SearchContainer<?> getSearchContainer() throws PortalException {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -933,13 +935,13 @@ public class JournalDisplayContext {
 	}
 
 	public int getTotalItems() throws PortalException {
-		SearchContainer articleSearch = _getArticlesSearchContainer();
+		SearchContainer<?> articleSearch = _getArticlesSearchContainer();
 
 		return articleSearch.getTotal();
 	}
 
 	public int getVersionsTotal() throws PortalException {
-		SearchContainer articleSearch = _getVersionsSearchContainer();
+		SearchContainer<?> articleSearch = _getVersionsSearchContainer();
 
 		return articleSearch.getTotal();
 	}
@@ -1540,7 +1542,8 @@ public class JournalDisplayContext {
 	private JournalArticle _article;
 	private JournalArticleDisplay _articleDisplay;
 	private SearchContainer _articleSearchContainer;
-	private SearchContainer _articleTranslationsSearchContainer;
+	private SearchContainer<JournalArticleTranslation>
+		_articleTranslationsSearchContainer;
 	private SearchContainer _articleVersionsSearchContainer;
 	private final AssetDisplayPageFriendlyURLProvider
 		_assetDisplayPageFriendlyURLProvider;
@@ -1562,7 +1565,7 @@ public class JournalDisplayContext {
 	private Long _parentFolderId;
 	private final PortalPreferences _portalPreferences;
 	private Integer _restrictionType;
-	private SearchContainer _searchContainer;
+	private SearchContainer<?> _searchContainer;
 	private Integer _status;
 	private String _tabs1;
 	private final ThemeDisplay _themeDisplay;

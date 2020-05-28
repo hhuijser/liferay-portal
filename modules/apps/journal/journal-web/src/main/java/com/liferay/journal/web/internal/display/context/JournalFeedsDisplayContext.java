@@ -53,7 +53,7 @@ public class JournalFeedsDisplayContext {
 		return _displayStyle;
 	}
 
-	public SearchContainer getFeedsSearchContainer() {
+	public SearchContainer<JournalFeed> getFeedsSearchContainer() {
 		if (_feedSearch != null) {
 			return _feedSearch;
 		}

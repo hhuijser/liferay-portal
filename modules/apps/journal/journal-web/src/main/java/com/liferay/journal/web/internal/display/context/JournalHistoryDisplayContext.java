@@ -51,9 +51,9 @@ public class JournalHistoryDisplayContext {
 		_httpServletRequest = PortalUtil.getHttpServletRequest(renderRequest);
 	}
 
-	public SearchContainer getArticleSearchContainer() {
-		SearchContainer articleSearchContainer = new SearchContainer(
-			_renderRequest, getPortletURL(), null, null);
+	public SearchContainer<JournalArticle> getArticleSearchContainer() {
+		SearchContainer<JournalArticle> articleSearchContainer =
+			new SearchContainer(_renderRequest, getPortletURL(), null, null);
 
 		articleSearchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));

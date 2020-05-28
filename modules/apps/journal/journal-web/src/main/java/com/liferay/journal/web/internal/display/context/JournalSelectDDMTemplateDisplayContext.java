@@ -117,7 +117,7 @@ public class JournalSelectDDMTemplateDisplayContext {
 		return _orderByType;
 	}
 
-	public SearchContainer getTemplateSearch() throws Exception {
+	public SearchContainer<DDMTemplate> getTemplateSearch() throws Exception {
 		if (_templateSearch != null) {
 			return _templateSearch;
 		}
@@ -126,7 +126,7 @@ public class JournalSelectDDMTemplateDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer templateSearch = new SearchContainer(
+		SearchContainer<DDMTemplate> templateSearch = new SearchContainer(
 			_renderRequest, _getPortletURL(), null, "there-are-no-templates");
 
 		if (templateSearch.isSearch()) {
@@ -241,6 +241,6 @@ public class JournalSelectDDMTemplateDisplayContext {
 	private String _orderByType;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _templateSearch;
+	private SearchContainer<DDMTemplate> _templateSearch;
 
 }

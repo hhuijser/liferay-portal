@@ -321,9 +321,10 @@ public class AssetPublisherDisplayContext {
 				return Collections.emptyList();
 			}
 
-			InfoListProvider infoListProvider =
-				_infoListProviderTracker.getInfoListProvider(
-					infoListProviderClassName);
+			InfoListProvider<AssetEntry> infoListProvider =
+				(InfoListProvider<AssetEntry>)
+					_infoListProviderTracker.getInfoListProvider(
+						infoListProviderClassName);
 
 			if (infoListProvider == null) {
 				return Collections.emptyList();
@@ -356,7 +357,7 @@ public class AssetPublisherDisplayContext {
 		return ParamUtil.getString(_httpServletRequest, "assetEntryId");
 	}
 
-	public List<InfoListProvider> getAssetEntryInfoListProviders() {
+	public List<InfoListProvider<?>> getAssetEntryInfoListProviders() {
 		return _infoListProviderTracker.getInfoListProviders(
 			AssetEntry.class.getName());
 	}

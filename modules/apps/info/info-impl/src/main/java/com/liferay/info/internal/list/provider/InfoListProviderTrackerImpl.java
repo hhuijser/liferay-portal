@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 
 	@Override
-	public InfoListProvider getInfoListProvider(String key) {
+	public InfoListProvider<?> getInfoListProvider(String key) {
 		if (Validator.isNull(key)) {
 			return null;
 		}
@@ -46,18 +46,18 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 	}
 
 	@Override
-	public List<InfoListProvider> getInfoListProviders() {
+	public List<InfoListProvider<?>> getInfoListProviders() {
 		return new ArrayList<>(_infoListProviders.values());
 	}
 
 	@Override
-	public List<InfoListProvider> getInfoListProviders(Class<?> itemClass) {
+	public List<InfoListProvider<?>> getInfoListProviders(Class<?> itemClass) {
 		return getInfoListProviders(GenericUtil.getGenericClassName(itemClass));
 	}
 
 	@Override
-	public List<InfoListProvider> getInfoListProviders(String className) {
-		List<InfoListProvider> infoListProviders =
+	public List<InfoListProvider<?>> getInfoListProviders(String className) {
+		List<InfoListProvider<?>> infoListProviders =
 			_itemClassInfoListProviders.get(className);
 
 		if (infoListProviders != null) {
@@ -71,10 +71,10 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 		cardinality = ReferenceCardinality.MULTIPLE,
 		policy = ReferencePolicy.DYNAMIC
 	)
-	protected void setInfoListProvider(InfoListProvider infoListProvider) {
+	protected void setInfoListProvider(InfoListProvider<?> infoListProvider) {
 		_infoListProviders.put(infoListProvider.getKey(), infoListProvider);
 
-		List<InfoListProvider> itemClassInfoListProviders =
+		List<InfoListProvider<?>> itemClassInfoListProviders =
 			_itemClassInfoListProviders.computeIfAbsent(
 				GenericUtil.getGenericClassName(infoListProvider),
 				itemClass -> new ArrayList<>());
@@ -82,10 +82,10 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 		itemClassInfoListProviders.add(infoListProvider);
 	}
 
-	protected void unsetInfoListProvider(InfoListProvider infoListProvider) {
+	protected void unsetInfoListProvider(InfoListProvider<?> infoListProvider) {
 		_infoListProviders.remove(infoListProvider.getKey());
 
-		List<InfoListProvider> itemClassInfoListProviders =
+		List<InfoListProvider<?>> itemClassInfoListProviders =
 			_itemClassInfoListProviders.get(
 				GenericUtil.getGenericClassName(infoListProvider));
 
@@ -94,9 +94,9 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 		}
 	}
 
-	private final Map<String, InfoListProvider> _infoListProviders =
+	private final Map<String, InfoListProvider<?>> _infoListProviders =
 		new ConcurrentHashMap<>();
-	private final Map<String, List<InfoListProvider>>
+	private final Map<String, List<InfoListProvider<?>>>
 		_itemClassInfoListProviders = new ConcurrentHashMap<>();
 
 }

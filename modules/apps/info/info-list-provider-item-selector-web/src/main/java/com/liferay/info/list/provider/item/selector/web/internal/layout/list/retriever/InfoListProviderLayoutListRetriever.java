@@ -52,9 +52,10 @@ public class InfoListProviderLayoutListRetriever
 		KeyListObjectReference keyListObjectReference,
 		LayoutListRetrieverContext layoutListRetrieverContext) {
 
-		InfoListProvider infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				keyListObjectReference.getKey());
+		InfoListProvider<Object> infoListProvider =
+			(InfoListProvider<Object>)
+				_infoListProviderTracker.getInfoListProvider(
+					keyListObjectReference.getKey());
 
 		if (infoListProvider == null) {
 			return Collections.emptyList();
@@ -87,7 +88,7 @@ public class InfoListProviderLayoutListRetriever
 		KeyListObjectReference keyListObjectReference,
 		LayoutListRetrieverContext layoutListRetrieverContext) {
 
-		InfoListProvider infoListProvider =
+		InfoListProvider<?> infoListProvider =
 			_infoListProviderTracker.getInfoListProvider(
 				keyListObjectReference.getKey());
 

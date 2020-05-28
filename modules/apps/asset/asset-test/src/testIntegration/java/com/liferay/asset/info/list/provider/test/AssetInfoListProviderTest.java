@@ -93,9 +93,10 @@ public class AssetInfoListProviderTest {
 			article2.getResourcePrimKey(), 1, serviceContext);
 
 		InfoListProvider<AssetEntry> infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				"com.liferay.asset.internal.info.list.provider." +
-					"HighestRatedAssetsInfoListProvider");
+			(InfoListProvider<AssetEntry>)
+				_infoListProviderTracker.getInfoListProvider(
+					"com.liferay.asset.internal.info.list.provider." +
+						"HighestRatedAssetsInfoListProvider");
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -146,9 +147,10 @@ public class AssetInfoListProviderTest {
 			JournalArticle.class.getName(), article2.getResourcePrimKey());
 
 		InfoListProvider<AssetEntry> infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				"com.liferay.asset.internal.info.list.provider." +
-					"MostViewedAssetsInfoListProvider");
+			(InfoListProvider<AssetEntry>)
+				_infoListProviderTracker.getInfoListProvider(
+					"com.liferay.asset.internal.info.list.provider." +
+						"MostViewedAssetsInfoListProvider");
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -189,9 +191,10 @@ public class AssetInfoListProviderTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		InfoListProvider<AssetEntry> infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				"com.liferay.asset.internal.info.list.provider." +
-					"RecentContentInfoListProvider");
+			(InfoListProvider<AssetEntry>)
+				_infoListProviderTracker.getInfoListProvider(
+					"com.liferay.asset.internal.info.list.provider." +
+						"RecentContentInfoListProvider");
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);
@@ -258,9 +261,10 @@ public class AssetInfoListProviderTest {
 		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
 		InfoListProvider<AssetEntry> infoListProvider =
-			_infoListProviderTracker.getInfoListProvider(
-				"com.liferay.asset.internal.info.list.provider." +
-					"RelatedAssetsInfoListProvider");
+			(InfoListProvider<AssetEntry>)
+				_infoListProviderTracker.getInfoListProvider(
+					"com.liferay.asset.internal.info.list.provider." +
+						"RelatedAssetsInfoListProvider");
 
 		List<AssetEntry> assetEntries = infoListProvider.getInfoList(
 			_infoListProviderContext);

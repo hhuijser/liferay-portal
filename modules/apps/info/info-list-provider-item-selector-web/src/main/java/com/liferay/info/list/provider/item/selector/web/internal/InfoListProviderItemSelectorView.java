@@ -122,7 +122,7 @@ public class InfoListProviderItemSelectorView
 	private ServletContext _servletContext;
 
 	private class InfoListProviderItemSelectorViewDescriptor
-		implements ItemSelectorViewDescriptor<InfoListProvider> {
+		implements ItemSelectorViewDescriptor<InfoListProvider<?>> {
 
 		public InfoListProviderItemSelectorViewDescriptor(
 			HttpServletRequest httpServletRequest,
@@ -138,7 +138,7 @@ public class InfoListProviderItemSelectorView
 
 		@Override
 		public ItemDescriptor getItemDescriptor(
-			InfoListProvider infoListProvider) {
+			InfoListProvider<?> infoListProvider) {
 
 			return new ItemDescriptor() {
 
@@ -194,7 +194,7 @@ public class InfoListProviderItemSelectorView
 		}
 
 		@Override
-		public SearchContainer<InfoListProvider> getSearchContainer() {
+		public SearchContainer<InfoListProvider<?>> getSearchContainer() {
 			PortletRequest portletRequest =
 				(PortletRequest)_httpServletRequest.getAttribute(
 					JavaConstants.JAVAX_PORTLET_REQUEST);
@@ -206,13 +206,13 @@ public class InfoListProviderItemSelectorView
 			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 				"content.Language", themeDisplay.getLocale(), getClass());
 
-			SearchContainer<InfoListProvider> searchContainer =
+			SearchContainer<InfoListProvider<?>> searchContainer =
 				new SearchContainer<>(
 					portletRequest, _portletURL, null,
 					_language.get(
 						resourceBundle, "there-are-no-collection-providers"));
 
-			List<InfoListProvider> infoListProviders = new ArrayList<>();
+			List<InfoListProvider<?>> infoListProviders = new ArrayList<>();
 
 			List<String> itemTypes =
 				_infoListProviderItemSelectorCriterion.getItemTypes();
@@ -243,7 +243,7 @@ public class InfoListProviderItemSelectorView
 			return false;
 		}
 
-		private String _getClassName(InfoListProvider infoListProvider) {
+		private String _getClassName(InfoListProvider<?> infoListProvider) {
 			Class<?> clazz = infoListProvider.getClass();
 
 			Type[] genericInterfaceTypes = clazz.getGenericInterfaces();

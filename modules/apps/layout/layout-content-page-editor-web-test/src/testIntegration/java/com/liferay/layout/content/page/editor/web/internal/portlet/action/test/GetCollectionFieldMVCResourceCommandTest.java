@@ -99,7 +99,8 @@ public class GetCollectionFieldMVCResourceCommandTest {
 		Registry registry = RegistryUtil.getRegistry();
 
 		_infoListProviderServiceRegistration = registry.registerService(
-			InfoListProvider.class, new TestInfoListProvider());
+			(Class<InfoListProvider<?>>)(Class<?>)InfoListProvider.class,
+			new TestInfoListProvider());
 	}
 
 	@After
@@ -277,7 +278,7 @@ public class GetCollectionFieldMVCResourceCommandTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private ServiceRegistration<InfoListProvider>
+	private ServiceRegistration<InfoListProvider<?>>
 		_infoListProviderServiceRegistration;
 
 	@Inject(filter = "mvc.command.name=/content_layout/get_collection_field")

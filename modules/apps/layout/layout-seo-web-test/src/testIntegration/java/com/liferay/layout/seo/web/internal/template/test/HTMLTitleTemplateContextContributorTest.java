@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.seo.web.internal.context.contributor.test;
+package com.liferay.layout.seo.web.internal.template.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.layout.test.util.LayoutTestUtil;
@@ -131,7 +131,7 @@ public class HTMLTitleTemplateContextContributorTest {
 	private LayoutSetLocalService _layoutSetLocalService;
 
 	@Inject(
-		filter = "component.name=com.liferay.layout.seo.web.internal.context.contributor.HTMLTitleTemplateContextContributor"
+		filter = "component.name=com.liferay.layout.seo.web.internal.template.HTMLTitleTemplateContextContributor"
 	)
 	private TemplateContextContributor _templateContextContributor;
 

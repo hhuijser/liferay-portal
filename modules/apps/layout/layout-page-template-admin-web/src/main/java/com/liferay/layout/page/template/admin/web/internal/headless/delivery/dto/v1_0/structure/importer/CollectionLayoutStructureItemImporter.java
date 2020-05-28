@@ -161,7 +161,7 @@ public class CollectionLayoutStructureItemImporter
 
 		String className = (String)collectionReference.get("className");
 
-		InfoListProvider infoListProvider =
+		InfoListProvider<?> infoListProvider =
 			_infoListProviderTracker.getInfoListProvider(className);
 
 		if (infoListProvider == null) {

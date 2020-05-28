@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(service = ItemSelectorReturnTypeResolver.class)
 public class InfoListProviderItemSelectorReturnTypeResolver
 	implements ItemSelectorReturnTypeResolver
-		<InfoListProviderItemSelectorReturnType, InfoListProvider> {
+		<InfoListProviderItemSelectorReturnType, InfoListProvider<?>> {
 
 	@Override
 	public Class<InfoListProviderItemSelectorReturnType>
@@ -38,13 +38,13 @@ public class InfoListProviderItemSelectorReturnTypeResolver
 	}
 
 	@Override
-	public Class<InfoListProvider> getModelClass() {
-		return InfoListProvider.class;
+	public Class<InfoListProvider<?>> getModelClass() {
+		return (Class<InfoListProvider<?>>)(Class<?>)InfoListProvider.class;
 	}
 
 	@Override
 	public String getValue(
-		InfoListProvider infoListProvider, ThemeDisplay themeDisplay) {
+		InfoListProvider<?> infoListProvider, ThemeDisplay themeDisplay) {
 
 		return JSONUtil.put(
 			"key", infoListProvider.getKey()

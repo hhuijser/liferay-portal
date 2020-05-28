@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.template.soy.context.contributor.internal;
+package com.liferay.portal.template.soy.context.contributor.internal.template;
 
 import com.liferay.portal.kernel.portlet.ThemeDisplayModel;
 import com.liferay.portal.kernel.template.TemplateConstants;

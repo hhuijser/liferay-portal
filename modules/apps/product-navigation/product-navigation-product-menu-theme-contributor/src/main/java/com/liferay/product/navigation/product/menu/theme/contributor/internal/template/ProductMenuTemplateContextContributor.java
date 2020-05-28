@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.product.navigation.product.menu.theme.contributor.internal;
+package com.liferay.product.navigation.product.menu.theme.contributor.internal.template;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.template.TemplateContextContributor;

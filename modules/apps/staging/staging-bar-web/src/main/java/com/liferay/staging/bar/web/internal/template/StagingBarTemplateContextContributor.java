@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.staging.bar.web.internal.theme.contributor;
+package com.liferay.staging.bar.web.internal.template;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;

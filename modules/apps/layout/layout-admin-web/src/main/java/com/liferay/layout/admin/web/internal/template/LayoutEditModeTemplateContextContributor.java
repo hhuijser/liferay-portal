@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.frontend.theme.browser.support.internal.theme.contributor;
+package com.liferay.layout.admin.web.internal.template;
 
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.servlet.BrowserSnifferUtil;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.Map;
 
@@ -26,14 +27,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Chema Balsas
+ * @author Pavel Savinov
  */
 @Component(
 	immediate = true,
 	property = "type=" + TemplateContextContributor.TYPE_THEME,
 	service = TemplateContextContributor.class
 )
-public class BrowserTemplateContextContributor
+public class LayoutEditModeTemplateContextContributor
 	implements TemplateContextContributor {
 
 	@Override
@@ -41,18 +42,18 @@ public class BrowserTemplateContextContributor
 		Map<String, Object> contextObjects,
 		HttpServletRequest httpServletRequest) {
 
-		StringBuilder sb = new StringBuilder();
+		String layoutMode = ParamUtil.getString(
+			httpServletRequest, "p_l_mode", Constants.VIEW);
 
-		sb.append(GetterUtil.getString(contextObjects.get("bodyCssClass")));
-		sb.append(StringPool.SPACE);
-		sb.append(BrowserSnifferUtil.getBrowserId(httpServletRequest));
+		if (layoutMode.equals(Constants.EDIT)) {
+			StringBuilder sb = new StringBuilder(3);
 
-		if (BrowserSnifferUtil.isMobile(httpServletRequest)) {
+			sb.append(GetterUtil.getString(contextObjects.get("bodyCssClass")));
 			sb.append(StringPool.SPACE);
-			sb.append("mobile");
-		}
+			sb.append("has-edit-mode-menu");
 
-		contextObjects.put("bodyCssClass", sb.toString());
+			contextObjects.put("bodyCssClass", sb.toString());
+		}
 	}
 
 }

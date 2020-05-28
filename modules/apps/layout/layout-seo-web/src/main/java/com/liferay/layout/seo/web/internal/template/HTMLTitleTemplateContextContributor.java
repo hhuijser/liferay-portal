@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.seo.web.internal.context.contributor;
+package com.liferay.layout.seo.web.internal.template;
 
 import com.liferay.layout.seo.kernel.LayoutSEOLinkManager;
 import com.liferay.layout.seo.web.internal.util.TitleProvider;

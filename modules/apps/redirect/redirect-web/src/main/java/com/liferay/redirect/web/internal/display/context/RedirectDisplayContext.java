@@ -190,7 +190,7 @@ public class RedirectDisplayContext {
 		return _redirectEntrySearch;
 	}
 
-	private OrderByComparator _getOrderByComparator() {
+	private OrderByComparator<RedirectEntry> _getOrderByComparator() {
 		boolean orderByAsc = StringUtil.equals(
 			_redirectEntrySearch.getOrderByType(), "asc");
 

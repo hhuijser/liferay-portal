@@ -193,7 +193,7 @@ public class RedirectNotFoundEntriesDisplayContext {
 		return Date.from(instant.minus(Duration.ofDays(days)));
 	}
 
-	private OrderByComparator _getOrderByComparator() {
+	private OrderByComparator<RedirectNotFoundEntry> _getOrderByComparator() {
 		boolean orderByAsc = StringUtil.equals(
 			_redirectNotFoundEntrySearch.getOrderByType(), "asc");
 

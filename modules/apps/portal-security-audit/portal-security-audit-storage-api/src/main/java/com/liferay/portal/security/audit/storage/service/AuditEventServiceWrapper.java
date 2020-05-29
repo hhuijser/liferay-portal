@@ -45,7 +45,8 @@ public class AuditEventServiceWrapper
 				getAuditEvents(
 					long companyId, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
-						orderByComparator)
+						<com.liferay.portal.security.audit.storage.model.
+							AuditEvent> orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _auditEventService.getAuditEvents(
@@ -81,7 +82,8 @@ public class AuditEventServiceWrapper
 					int serverPort, String sessionID, boolean andSearch,
 					int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
-						orderByComparator)
+						<com.liferay.portal.security.audit.storage.model.
+							AuditEvent> orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _auditEventService.getAuditEvents(

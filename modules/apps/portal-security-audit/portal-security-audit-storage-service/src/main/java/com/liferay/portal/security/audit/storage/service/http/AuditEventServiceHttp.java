@@ -102,7 +102,8 @@ public class AuditEventServiceHttp {
 					HttpPrincipal httpPrincipal, long companyId, int start,
 					int end,
 					com.liferay.portal.kernel.util.OrderByComparator
-						orderByComparator)
+						<com.liferay.portal.security.audit.storage.model.
+							AuditEvent> orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -205,7 +206,8 @@ public class AuditEventServiceHttp {
 					String clientIP, String serverName, int serverPort,
 					String sessionID, boolean andSearch, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
-						orderByComparator)
+						<com.liferay.portal.security.audit.storage.model.
+							AuditEvent> orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {

@@ -110,7 +110,7 @@ public class WikiPageImpl extends WikiPageBaseImpl {
 
 	@Override
 	public List<FileEntry> getAttachmentsFileEntries(
-			int start, int end, OrderByComparator obc)
+			int start, int end, OrderByComparator<FileEntry> obc)
 		throws PortalException {
 
 		long attachmentsFolderId = getAttachmentsFolderId();
@@ -121,8 +121,7 @@ public class WikiPageImpl extends WikiPageBaseImpl {
 
 		return PortletFileRepositoryUtil.getPortletFileEntries(
 			getGroupId(), attachmentsFolderId,
-			WorkflowConstants.STATUS_APPROVED, start, end,
-			(OrderByComparator<FileEntry>)obc);
+			WorkflowConstants.STATUS_APPROVED, start, end, obc);
 	}
 
 	@Override

@@ -30,7 +30,7 @@ public class PowwowMeetingFinderUtil {
 		findByU_S(
 			long userId, int[] statuses, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.powwow.model.PowwowMeeting> orderByComparator) {
 
 		return getFinder().findByU_S(
 			userId, statuses, start, end, orderByComparator);

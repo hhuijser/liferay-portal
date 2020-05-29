@@ -27,6 +27,7 @@ public interface PowwowMeetingFinder {
 
 	public java.util.List<com.liferay.powwow.model.PowwowMeeting> findByU_S(
 		long userId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.powwow.model.PowwowMeeting> orderByComparator);
 
 }

@@ -100,7 +100,8 @@ public class PowwowMeetingServiceSoap {
 	public static com.liferay.powwow.model.PowwowMeetingSoap[]
 			getPowwowMeetings(
 				long groupId, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator obc)
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.powwow.model.PowwowMeeting> obc)
 		throws RemoteException {
 
 		try {

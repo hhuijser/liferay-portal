@@ -155,7 +155,7 @@ public abstract class BookmarksBaseTrashHandler extends BaseTrashHandler {
 
 	@Override
 	public List<TrashedModel> getTrashModelTrashedModels(
-			long classPK, int start, int end, OrderByComparator obc)
+			long classPK, int start, int end, OrderByComparator<?> obc)
 		throws PortalException {
 
 		List<TrashedModel> trashedModels = new ArrayList<>();

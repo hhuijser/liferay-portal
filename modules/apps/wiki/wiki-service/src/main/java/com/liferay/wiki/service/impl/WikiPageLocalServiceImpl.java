@@ -910,7 +910,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 	@Override
 	public List<WikiPage> getChildren(
 		long nodeId, boolean head, String parentTitle, int status, int start,
-		int end, OrderByComparator obc) {
+		int end, OrderByComparator<WikiPage> obc) {
 
 		return wikiPagePersistence.findByN_H_P_S(
 			nodeId, head, parentTitle, status, start, end, obc);

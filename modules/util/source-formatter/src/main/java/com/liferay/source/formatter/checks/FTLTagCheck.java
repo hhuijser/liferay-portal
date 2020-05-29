@@ -18,7 +18,6 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 
 import java.util.Map;
@@ -65,10 +64,6 @@ public class FTLTagCheck extends BaseFileCheck {
 			sb.append("<#assign");
 
 			for (String line : lines) {
-				if (Validator.isNull(line)) {
-					continue;
-				}
-
 				sb.append("\n\t");
 				sb.append(tabs);
 				sb.append(line);

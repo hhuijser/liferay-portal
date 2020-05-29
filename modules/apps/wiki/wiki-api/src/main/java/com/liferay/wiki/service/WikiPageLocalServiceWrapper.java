@@ -474,7 +474,9 @@ public class WikiPageLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.wiki.model.WikiPage> getChildren(
 		long nodeId, boolean head, String parentTitle, int status, int start,
-		int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.wiki.model.WikiPage> obc) {
 
 		return _wikiPageLocalService.getChildren(
 			nodeId, head, parentTitle, status, start, end, obc);

@@ -433,7 +433,7 @@ public class BookmarksFolderLocalServiceUtil {
 
 	public static java.util.List<Object> getFoldersAndEntries(
 		long groupId, long folderId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
 
 		return getService().getFoldersAndEntries(
 			groupId, folderId, status, start, end, obc);

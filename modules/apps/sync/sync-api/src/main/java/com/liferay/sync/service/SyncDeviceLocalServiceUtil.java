@@ -317,7 +317,7 @@ public class SyncDeviceLocalServiceUtil {
 			getSyncDevices(
 				long userId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator)
+					<com.liferay.sync.model.SyncDevice> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getSyncDevices(

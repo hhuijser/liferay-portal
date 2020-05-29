@@ -267,7 +267,7 @@ public interface SyncDeviceLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SyncDevice> getSyncDevices(
 			long userId, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<SyncDevice> orderByComparator)
 		throws PortalException;
 
 	/**

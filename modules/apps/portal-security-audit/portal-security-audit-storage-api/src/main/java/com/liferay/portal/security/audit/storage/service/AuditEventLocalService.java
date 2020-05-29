@@ -222,7 +222,7 @@ public interface AuditEventLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AuditEvent> getAuditEvents(
 		long companyId, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<AuditEvent> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AuditEvent> getAuditEvents(
@@ -237,7 +237,7 @@ public interface AuditEventLocalService
 		Date createDateLT, String eventType, String className, String classPK,
 		String clientHost, String clientIP, String serverName, int serverPort,
 		String sessionID, boolean andSearch, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<AuditEvent> orderByComparator);
 
 	/**
 	 * Returns the number of audit events.

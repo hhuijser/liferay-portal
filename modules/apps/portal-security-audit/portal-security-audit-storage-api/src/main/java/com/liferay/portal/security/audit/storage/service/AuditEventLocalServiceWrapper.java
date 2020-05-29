@@ -277,7 +277,8 @@ public class AuditEventLocalServiceWrapper
 			getAuditEvents(
 				long companyId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.portal.security.audit.storage.model.AuditEvent>
+						orderByComparator) {
 
 		return _auditEventLocalService.getAuditEvents(
 			companyId, start, end, orderByComparator);
@@ -311,7 +312,8 @@ public class AuditEventLocalServiceWrapper
 				int serverPort, String sessionID, boolean andSearch, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.portal.security.audit.storage.model.AuditEvent>
+						orderByComparator) {
 
 		return _auditEventLocalService.getAuditEvents(
 			companyId, userId, userName, createDateGT, createDateLT, eventType,

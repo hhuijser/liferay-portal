@@ -60,7 +60,7 @@ public interface AuditEventService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AuditEvent> getAuditEvents(
 			long companyId, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<AuditEvent> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -79,7 +79,7 @@ public interface AuditEventService extends BaseService {
 			String classPK, String clientHost, String clientIP,
 			String serverName, int serverPort, String sessionID,
 			boolean andSearch, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<AuditEvent> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -267,7 +267,8 @@ public class AuditEventLocalServiceUtil {
 			getAuditEvents(
 				long companyId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.portal.security.audit.storage.model.AuditEvent>
+						orderByComparator) {
 
 		return getService().getAuditEvents(
 			companyId, start, end, orderByComparator);
@@ -299,7 +300,8 @@ public class AuditEventLocalServiceUtil {
 				int serverPort, String sessionID, boolean andSearch, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.portal.security.audit.storage.model.AuditEvent>
+						orderByComparator) {
 
 		return getService().getAuditEvents(
 			companyId, userId, userName, createDateGT, createDateLT, eventType,

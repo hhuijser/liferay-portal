@@ -86,22 +86,23 @@ public interface SiteNavigationMenuService extends BaseService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
-		long groupId, int start, int end, OrderByComparator orderByComparator);
+		long groupId, int start, int end,
+		OrderByComparator<SiteNavigationMenu> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
 		long groupId, String keywords, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<SiteNavigationMenu> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
 		long[] groupIds, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<SiteNavigationMenu> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
 		long[] groupIds, String keywords, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<SiteNavigationMenu> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSiteNavigationMenusCount(long groupId);

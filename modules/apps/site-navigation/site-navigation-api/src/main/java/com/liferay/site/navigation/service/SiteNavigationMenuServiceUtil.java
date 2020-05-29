@@ -102,7 +102,8 @@ public class SiteNavigationMenuServiceUtil {
 			getSiteNavigationMenus(
 				long groupId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.site.navigation.model.SiteNavigationMenu>
+						orderByComparator) {
 
 		return getService().getSiteNavigationMenus(
 			groupId, start, end, orderByComparator);
@@ -113,7 +114,8 @@ public class SiteNavigationMenuServiceUtil {
 			getSiteNavigationMenus(
 				long groupId, String keywords, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.site.navigation.model.SiteNavigationMenu>
+						orderByComparator) {
 
 		return getService().getSiteNavigationMenus(
 			groupId, keywords, start, end, orderByComparator);
@@ -124,7 +126,8 @@ public class SiteNavigationMenuServiceUtil {
 			getSiteNavigationMenus(
 				long[] groupIds, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.site.navigation.model.SiteNavigationMenu>
+						orderByComparator) {
 
 		return getService().getSiteNavigationMenus(
 			groupIds, start, end, orderByComparator);
@@ -135,7 +138,8 @@ public class SiteNavigationMenuServiceUtil {
 			getSiteNavigationMenus(
 				long[] groupIds, String keywords, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.site.navigation.model.SiteNavigationMenu>
+						orderByComparator) {
 
 		return getService().getSiteNavigationMenus(
 			groupIds, keywords, start, end, orderByComparator);

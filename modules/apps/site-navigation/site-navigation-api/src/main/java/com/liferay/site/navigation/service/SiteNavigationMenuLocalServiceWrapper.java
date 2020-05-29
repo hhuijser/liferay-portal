@@ -412,7 +412,8 @@ public class SiteNavigationMenuLocalServiceWrapper
 		getSiteNavigationMenus(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.site.navigation.model.SiteNavigationMenu>
+					orderByComparator) {
 
 		return _siteNavigationMenuLocalService.getSiteNavigationMenus(
 			groupId, start, end, orderByComparator);
@@ -423,7 +424,8 @@ public class SiteNavigationMenuLocalServiceWrapper
 		getSiteNavigationMenus(
 			long groupId, String keywords, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.site.navigation.model.SiteNavigationMenu>
+					orderByComparator) {
 
 		return _siteNavigationMenuLocalService.getSiteNavigationMenus(
 			groupId, keywords, start, end, orderByComparator);

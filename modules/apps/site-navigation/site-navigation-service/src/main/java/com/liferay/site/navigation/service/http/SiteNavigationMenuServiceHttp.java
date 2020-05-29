@@ -305,7 +305,8 @@ public class SiteNavigationMenuServiceHttp {
 			getSiteNavigationMenus(
 				HttpPrincipal httpPrincipal, long groupId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.site.navigation.model.SiteNavigationMenu>
+						orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -344,7 +345,8 @@ public class SiteNavigationMenuServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, String keywords,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.site.navigation.model.SiteNavigationMenu>
+						orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -383,7 +385,8 @@ public class SiteNavigationMenuServiceHttp {
 				HttpPrincipal httpPrincipal, long[] groupIds, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.site.navigation.model.SiteNavigationMenu>
+						orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -422,7 +425,8 @@ public class SiteNavigationMenuServiceHttp {
 				HttpPrincipal httpPrincipal, long[] groupIds, String keywords,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.site.navigation.model.SiteNavigationMenu>
+						orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(

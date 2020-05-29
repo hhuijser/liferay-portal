@@ -331,7 +331,8 @@ public class SyncDeviceLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.sync.model.SyncDevice> getSyncDevices(
 			long userId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.sync.model.SyncDevice> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _syncDeviceLocalService.getSyncDevices(

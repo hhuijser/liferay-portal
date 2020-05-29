@@ -305,7 +305,7 @@ public class BookmarksFolderLocalServiceImpl
 	@Override
 	public List<Object> getFoldersAndEntries(
 		long groupId, long folderId, int status, int start, int end,
-		OrderByComparator obc) {
+		OrderByComparator<?> obc) {
 
 		QueryDefinition<?> queryDefinition = new QueryDefinition<>(
 			status, start, end, obc);

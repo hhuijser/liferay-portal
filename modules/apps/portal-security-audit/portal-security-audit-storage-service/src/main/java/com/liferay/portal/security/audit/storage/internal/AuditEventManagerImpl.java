@@ -53,7 +53,9 @@ public class AuditEventManagerImpl implements AuditEventManager {
 	@Override
 	public List<AuditEvent> getAuditEvents(
 		long companyId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator
+			<com.liferay.portal.security.audit.storage.model.AuditEvent>
+				orderByComparator) {
 
 		List<com.liferay.portal.security.audit.storage.model.AuditEvent>
 			auditEvents = _auditEventLocalService.getAuditEvents(
@@ -68,7 +70,9 @@ public class AuditEventManagerImpl implements AuditEventManager {
 		Date createDateLT, String eventType, String className, String classPK,
 		String clientHost, String clientIP, String serverName, int serverPort,
 		String sessionID, boolean andSearch, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator
+			<com.liferay.portal.security.audit.storage.model.AuditEvent>
+				orderByComparator) {
 
 		List<com.liferay.portal.security.audit.storage.model.AuditEvent>
 			auditEvents = _auditEventLocalService.getAuditEvents(

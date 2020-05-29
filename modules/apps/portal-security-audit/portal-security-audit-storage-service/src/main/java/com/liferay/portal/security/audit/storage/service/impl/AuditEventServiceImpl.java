@@ -60,7 +60,7 @@ public class AuditEventServiceImpl extends AuditEventServiceBaseImpl {
 	@Override
 	public List<AuditEvent> getAuditEvents(
 			long companyId, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<AuditEvent> orderByComparator)
 		throws PortalException {
 
 		PermissionChecker permissionChecker = getPermissionChecker();
@@ -109,7 +109,7 @@ public class AuditEventServiceImpl extends AuditEventServiceBaseImpl {
 			String classPK, String clientHost, String clientIP,
 			String serverName, int serverPort, String sessionID,
 			boolean andSearch, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<AuditEvent> orderByComparator)
 		throws PortalException {
 
 		PermissionChecker permissionChecker = getPermissionChecker();

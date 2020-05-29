@@ -235,7 +235,7 @@ public interface MicroblogsEntryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MicroblogsEntry> getMicroblogsEntries(
 		long companyId, long creatorClassNameId, int type, int start, int end,
-		OrderByComparator obc);
+		OrderByComparator<MicroblogsEntry> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MicroblogsEntry> getMicroblogsEntries(

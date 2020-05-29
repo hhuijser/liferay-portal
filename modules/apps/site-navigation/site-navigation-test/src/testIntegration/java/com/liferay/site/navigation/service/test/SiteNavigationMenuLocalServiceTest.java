@@ -349,7 +349,7 @@ public class SiteNavigationMenuLocalServiceTest {
 		SiteNavigationMenuTestUtil.addSiteNavigationMenu(_group, "aa");
 		SiteNavigationMenuTestUtil.addSiteNavigationMenu(_group, "dd");
 
-		OrderByComparator orderByComparator =
+		OrderByComparator<SiteNavigationMenu> orderByComparator =
 			new SiteNavigationMenuNameComparator(true);
 
 		List<SiteNavigationMenu> siteNavigationMenus =
@@ -377,7 +377,7 @@ public class SiteNavigationMenuLocalServiceTest {
 
 		SiteNavigationMenuTestUtil.addSiteNavigationMenu(_group, "dd");
 
-		OrderByComparator orderByComparator =
+		OrderByComparator<SiteNavigationMenu> orderByComparator =
 			new SiteNavigationMenuNameComparator(false);
 
 		List<SiteNavigationMenu> siteNavigationMenus =
@@ -402,7 +402,7 @@ public class SiteNavigationMenuLocalServiceTest {
 		SiteNavigationMenuTestUtil.addSiteNavigationMenu(
 			_group, "bb Menu Name");
 
-		OrderByComparator orderByComparator =
+		OrderByComparator<SiteNavigationMenu> orderByComparator =
 			new SiteNavigationMenuNameComparator(true);
 
 		List<SiteNavigationMenu> siteNavigationMenus =
@@ -426,7 +426,7 @@ public class SiteNavigationMenuLocalServiceTest {
 		SiteNavigationMenuTestUtil.addSiteNavigationMenu(
 			_group, "bb Menu Name");
 
-		OrderByComparator orderByComparator =
+		OrderByComparator<SiteNavigationMenu> orderByComparator =
 			new SiteNavigationMenuNameComparator(false);
 
 		List<SiteNavigationMenu> descSiteNavigationMenus =

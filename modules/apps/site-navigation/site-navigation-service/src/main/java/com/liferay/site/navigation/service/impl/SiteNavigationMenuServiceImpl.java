@@ -116,7 +116,8 @@ public class SiteNavigationMenuServiceImpl
 
 	@Override
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
-		long groupId, int start, int end, OrderByComparator orderByComparator) {
+		long groupId, int start, int end,
+		OrderByComparator<SiteNavigationMenu> orderByComparator) {
 
 		return getSiteNavigationMenus(
 			new long[] {groupId}, start, end, orderByComparator);
@@ -125,7 +126,7 @@ public class SiteNavigationMenuServiceImpl
 	@Override
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
 		long groupId, String keywords, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SiteNavigationMenu> orderByComparator) {
 
 		return getSiteNavigationMenus(
 			new long[] {groupId}, keywords, start, end, orderByComparator);
@@ -134,7 +135,7 @@ public class SiteNavigationMenuServiceImpl
 	@Override
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
 		long[] groupIds, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SiteNavigationMenu> orderByComparator) {
 
 		return siteNavigationMenuPersistence.filterFindByGroupId(
 			groupIds, start, end, orderByComparator);
@@ -143,7 +144,7 @@ public class SiteNavigationMenuServiceImpl
 	@Override
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
 		long[] groupIds, String keywords, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SiteNavigationMenu> orderByComparator) {
 
 		return siteNavigationMenuPersistence.filterFindByG_LikeN(
 			groupIds,

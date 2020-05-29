@@ -68,7 +68,7 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 	@Override
 	public List<SyncDevice> getSyncDevices(
 			long userId, int start, int end,
-			OrderByComparator orderByComparator)
+			OrderByComparator<SyncDevice> orderByComparator)
 		throws PortalException {
 
 		return syncDevicePersistence.findByUserId(

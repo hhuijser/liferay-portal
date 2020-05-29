@@ -508,6 +508,14 @@ public class ChainingCheck extends BaseCheck {
 			fullIdent = FullIdent.createFullIdent(dotDetailAST);
 		}
 
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if ((firstChildDetailAST != null) &&
+			(firstChildDetailAST.getType() == TokenTypes.DOT)) {
+
+			return fullIdent.getText();
+		}
+
 		String s = fullIdent.getText();
 
 		int x = s.lastIndexOf(CharPool.PERIOD);

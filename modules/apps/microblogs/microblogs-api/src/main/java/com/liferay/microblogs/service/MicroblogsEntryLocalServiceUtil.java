@@ -291,7 +291,9 @@ public class MicroblogsEntryLocalServiceUtil {
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry>
 		getMicroblogsEntries(
 			long companyId, long creatorClassNameId, int type, int start,
-			int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
+			int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.microblogs.model.MicroblogsEntry> obc) {
 
 		return getService().getMicroblogsEntries(
 			companyId, creatorClassNameId, type, start, end, obc);

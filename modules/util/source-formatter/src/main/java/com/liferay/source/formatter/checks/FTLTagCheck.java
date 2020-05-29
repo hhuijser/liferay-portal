@@ -52,7 +52,9 @@ public class FTLTagCheck extends BaseFileCheck {
 			String tabs = matcher.group(2);
 
 			String replacement = StringUtil.removeSubstrings(
-				match, "<#assign ", "<#assign\n", "/>");
+				match, "<#assign ", "<#assign\n");
+
+			replacement = StringUtil.replace(replacement, "/>", "\n");
 
 			replacement = StringUtil.removeChar(replacement, CharPool.TAB);
 

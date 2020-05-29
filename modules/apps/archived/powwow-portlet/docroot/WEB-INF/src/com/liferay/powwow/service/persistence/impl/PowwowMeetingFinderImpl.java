@@ -101,7 +101,7 @@ public class PowwowMeetingFinderImpl
 	@Override
 	public List<PowwowMeeting> findByU_S(
 		long userId, int[] statuses, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<PowwowMeeting> orderByComparator) {
 
 		Session session = null;
 

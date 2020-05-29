@@ -192,7 +192,7 @@ public class AssetListEntryServiceTest {
 		_assetListEntryService.addAssetListEntry(
 			_group.getGroupId(), "B Test name", 0, serviceContext);
 
-		OrderByComparator orderByComparator =
+		OrderByComparator<AssetListEntry> orderByComparator =
 			new AssetListEntryCreateDateComparator(true);
 
 		List<AssetListEntry> assetListEntries =
@@ -234,8 +234,8 @@ public class AssetListEntryServiceTest {
 		_assetListEntryService.addAssetListEntry(
 			_group.getGroupId(), "AC Asset List Entry", 0, serviceContext);
 
-		OrderByComparator orderByComparator = new AssetListEntryTitleComparator(
-			true);
+		OrderByComparator<AssetListEntry> orderByComparator =
+			new AssetListEntryTitleComparator(true);
 
 		List<AssetListEntry> assetListEntries =
 			_assetListEntryService.getAssetListEntries(

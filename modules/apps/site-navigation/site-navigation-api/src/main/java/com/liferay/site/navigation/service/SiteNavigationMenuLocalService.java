@@ -302,12 +302,13 @@ public interface SiteNavigationMenuLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
-		long groupId, int start, int end, OrderByComparator orderByComparator);
+		long groupId, int start, int end,
+		OrderByComparator<SiteNavigationMenu> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SiteNavigationMenu> getSiteNavigationMenus(
 		long groupId, String keywords, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<SiteNavigationMenu> orderByComparator);
 
 	/**
 	 * Returns all the site navigation menus matching the UUID and company.

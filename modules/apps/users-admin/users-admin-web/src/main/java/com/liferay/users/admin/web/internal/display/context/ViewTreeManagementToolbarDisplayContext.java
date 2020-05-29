@@ -394,7 +394,7 @@ public class ViewTreeManagementToolbarDisplayContext {
 
 		searchContainer.setOrderByType(orderByType);
 
-		OrderByComparator orderByComparator =
+		OrderByComparator<Object> orderByComparator =
 			new OrganizationUserNameComparator(orderByType.equals("asc"));
 
 		searchContainer.setOrderByComparator(orderByComparator);

@@ -262,7 +262,7 @@ public class PowwowMeetingLocalServiceWrapper
 		getParticipantPowwowMeetings(
 			long userId, int[] statuses, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.powwow.model.PowwowMeeting> orderByComparator) {
 
 		return _powwowMeetingLocalService.getParticipantPowwowMeetings(
 			userId, statuses, start, end, orderByComparator);
@@ -329,7 +329,8 @@ public class PowwowMeetingLocalServiceWrapper
 	public java.util.List<com.liferay.powwow.model.PowwowMeeting>
 		getPowwowMeetings(
 			long groupId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator obc) {
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.powwow.model.PowwowMeeting> obc) {
 
 		return _powwowMeetingLocalService.getPowwowMeetings(
 			groupId, start, end, obc);

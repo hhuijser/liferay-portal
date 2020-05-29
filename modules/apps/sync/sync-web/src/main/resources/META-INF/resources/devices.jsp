@@ -96,7 +96,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 				orderByComparator = OrderByComparatorFactoryUtil.create("SyncDevice", "modifiedDate", orderByType.equals("asc"));
 			}
 			else {
-				OrderByComparatorFactoryUtil.create("SyncDevice", orderByCol, orderByType.equals("asc"));
+				orderByComparator = OrderByComparatorFactoryUtil.create("SyncDevice", orderByCol, orderByType.equals("asc"));
 			}
 
 			String portletId = (String)request.getAttribute(WebKeys.PORTLET_ID);

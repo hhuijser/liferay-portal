@@ -620,7 +620,7 @@ public class LiferayPortlet extends GenericPortlet {
 
 	protected void writeJSON(
 			PortletRequest portletRequest, ActionResponse actionResponse,
-			Object jsonObject)
+			Object object)
 		throws IOException {
 
 		HttpServletResponse httpServletResponse =
@@ -629,20 +629,20 @@ public class LiferayPortlet extends GenericPortlet {
 		httpServletResponse.setContentType(getJSONContentType(portletRequest));
 
 		ServletResponseUtil.write(
-			httpServletResponse, _toXSSSafeJSON(jsonObject.toString()));
+			httpServletResponse, _toXSSSafeJSON(object.toString()));
 
 		httpServletResponse.flushBuffer();
 	}
 
 	protected void writeJSON(
 			PortletRequest portletRequest, MimeResponse mimeResponse,
-			Object jsonObject)
+			Object object)
 		throws IOException {
 
 		mimeResponse.setContentType(getJSONContentType(portletRequest));
 
 		PortletResponseUtil.write(
-			mimeResponse, _toXSSSafeJSON(jsonObject.toString()));
+			mimeResponse, _toXSSSafeJSON(object.toString()));
 
 		mimeResponse.flushBuffer();
 	}

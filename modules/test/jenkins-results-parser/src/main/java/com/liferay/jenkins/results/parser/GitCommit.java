@@ -24,7 +24,7 @@ import org.json.JSONObject;
 public interface GitCommit {
 
 	@Override
-	public boolean equals(Object o);
+	public boolean equals(Object object);
 
 	public String getAbbreviatedSHA();
 

@@ -338,16 +338,16 @@ public class AssignScopesDisplayContext
 		}
 
 		@Override
-		public boolean equals(Object o) {
-			if (this == o) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if ((o == null) || (getClass() != o.getClass())) {
+			if ((object == null) || (getClass() != object.getClass())) {
 				return false;
 			}
 
-			Relations relations = (Relations)o;
+			Relations relations = (Relations)object;
 
 			if (Objects.equals(
 					_globalAssignableScopes,

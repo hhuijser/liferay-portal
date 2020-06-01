@@ -1300,8 +1300,8 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void setAttribute(String name, Object o) {
-			attributeMap.put(name, o);
+		public void setAttribute(String name, Object object) {
+			attributeMap.put(name, object);
 		}
 
 		protected Map<String, Object> attributeMap = new HashMap<>();

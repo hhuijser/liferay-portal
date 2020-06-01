@@ -33,10 +33,10 @@ public class StringQueryTranslatorImpl implements StringQueryTranslator {
 		return new Query() {
 
 			@Override
-			public boolean equals(Object o) {
+			public boolean equals(Object object) {
 				String query = stringQuery.getQuery();
 
-				return query.equals(o);
+				return query.equals(object);
 			}
 
 			@Override

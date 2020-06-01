@@ -313,7 +313,7 @@ public class BundleServletContextAdapter
 	}
 
 	@Override
-	public void setAttribute(String s, Object o) {
+	public void setAttribute(String s, Object object) {
 		throw new UnsupportedOperationException();
 	}
 

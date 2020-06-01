@@ -57,14 +57,14 @@ public abstract class BaseSpiraArtifact implements SpiraArtifact {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (!Objects.equals(getClass(), o.getClass())) {
+	public boolean equals(Object object) {
+		if (!Objects.equals(getClass(), object.getClass())) {
 			return false;
 		}
 
-		SpiraArtifact spiraArtifact = (SpiraArtifact)o;
+		SpiraArtifact spiraArtifact = (SpiraArtifact)object;
 
-		if (!(o instanceof SpiraProject)) {
+		if (!(object instanceof SpiraProject)) {
 			SpiraProject spiraProject = spiraArtifact.getSpiraProject();
 
 			if (!spiraProject.equals(getSpiraProject())) {

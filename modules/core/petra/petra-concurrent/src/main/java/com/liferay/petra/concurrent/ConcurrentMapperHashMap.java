@@ -618,8 +618,8 @@ public abstract class ConcurrentMapperHashMap<K, IK, V, IV>
 		}
 
 		@Override
-		public boolean contains(Object o) {
-			return ConcurrentMapperHashMap.this.containsKey(o);
+		public boolean contains(Object object) {
+			return ConcurrentMapperHashMap.this.containsKey(object);
 		}
 
 		@Override
@@ -633,8 +633,8 @@ public abstract class ConcurrentMapperHashMap<K, IK, V, IV>
 		}
 
 		@Override
-		public boolean remove(Object o) {
-			if (ConcurrentMapperHashMap.this.remove(o) != null) {
+		public boolean remove(Object object) {
+			if (ConcurrentMapperHashMap.this.remove(object) != null) {
 				return true;
 			}
 

@@ -250,7 +250,7 @@ public class DisplayPageTemplateServiceTest {
 
 		@Override
 		public Map<String, Object> getInfoDisplayFieldsValues(
-			Object o, Locale locale) {
+			Object object, Locale locale) {
 
 			return Collections.emptyMap();
 		}

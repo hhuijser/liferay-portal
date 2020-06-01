@@ -45,8 +45,8 @@ public class Base64 {
 		return _encode(raw, 0, raw.length, true);
 	}
 
-	public static String objectToString(Object o) {
-		if (o == null) {
+	public static String objectToString(Object object) {
+		if (object == null) {
 			return null;
 		}
 
@@ -56,7 +56,7 @@ public class Base64 {
 		try (ObjectOutputStream os = new ObjectOutputStream(
 				unsyncByteArrayOutputStream)) {
 
-			os.writeObject(o);
+			os.writeObject(object);
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);

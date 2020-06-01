@@ -273,12 +273,12 @@ public interface AccountRoleLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public BaseModelSearchResult<AccountRole> searchAccountRoles(
 		long accountEntryId, String keywords, int start, int end,
-		OrderByComparator obc);
+		OrderByComparator<?> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public BaseModelSearchResult<AccountRole> searchAccountRoles(
 		long[] accountEntryIds, String keywords, int start, int end,
-		OrderByComparator obc);
+		OrderByComparator<?> obc);
 
 	public void unassociateUser(
 			long accountEntryId, long accountRoleId, long userId)

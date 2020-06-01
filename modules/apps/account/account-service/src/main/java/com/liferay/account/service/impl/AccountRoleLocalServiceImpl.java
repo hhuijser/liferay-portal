@@ -172,7 +172,7 @@ public class AccountRoleLocalServiceImpl
 	@Override
 	public BaseModelSearchResult<AccountRole> searchAccountRoles(
 		long accountEntryId, String keywords, int start, int end,
-		OrderByComparator obc) {
+		OrderByComparator<?> obc) {
 
 		return searchAccountRoles(
 			new long[] {accountEntryId}, keywords, start, end, obc);
@@ -181,7 +181,7 @@ public class AccountRoleLocalServiceImpl
 	@Override
 	public BaseModelSearchResult<AccountRole> searchAccountRoles(
 		long[] accountEntryIds, String keywords, int start, int end,
-		OrderByComparator obc) {
+		OrderByComparator<?> obc) {
 
 		DynamicQuery roleDynamicQuery = _getRoleDynamicQuery(
 			accountEntryIds, keywords, obc);
@@ -217,7 +217,7 @@ public class AccountRoleLocalServiceImpl
 	}
 
 	private DynamicQuery _getRoleDynamicQuery(
-		long[] accountEntryIds, String keywords, OrderByComparator obc) {
+		long[] accountEntryIds, String keywords, OrderByComparator<?> obc) {
 
 		DynamicQuery accountRoleDynamicQuery =
 			accountRoleLocalService.dynamicQuery();

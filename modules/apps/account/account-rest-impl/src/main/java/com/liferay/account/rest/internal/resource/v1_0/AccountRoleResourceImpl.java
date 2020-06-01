@@ -104,7 +104,7 @@ public class AccountRoleResourceImpl
 			accountId, accountRoleId, accountUserId);
 	}
 
-	private OrderByComparator _getOrderByComparator(Sort[] sorts) {
+	private OrderByComparator<?> _getOrderByComparator(Sort[] sorts) {
 		if ((sorts == null) || (sorts.length == 0)) {
 			return _roleNameComparator;
 		}

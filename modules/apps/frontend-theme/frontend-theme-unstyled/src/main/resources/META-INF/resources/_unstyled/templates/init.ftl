@@ -326,6 +326,7 @@
 <#if navItems??>
 	<#assign
 		nav_items = navItems
+
 		has_navigation = (nav_items?size > 0)
 	/>
 </#if>

@@ -38,9 +38,9 @@ public class AuditEventCreateDateComparator extends OrderByComparator {
 	}
 
 	@Override
-	public int compare(Object obj1, Object obj2) {
-		AuditEvent auditEvent1 = (AuditEvent)obj1;
-		AuditEvent auditEvent2 = (AuditEvent)obj2;
+	public int compare(Object object1, Object object2) {
+		AuditEvent auditEvent1 = (AuditEvent)object1;
+		AuditEvent auditEvent2 = (AuditEvent)object2;
 
 		int value = DateUtil.compareTo(
 			auditEvent1.getCreateDate(), auditEvent2.getCreateDate());

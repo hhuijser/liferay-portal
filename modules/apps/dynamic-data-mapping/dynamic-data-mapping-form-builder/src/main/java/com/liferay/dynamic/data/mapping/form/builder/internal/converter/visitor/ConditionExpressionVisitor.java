@@ -183,15 +183,15 @@ public class ConditionExpressionVisitor extends ExpressionVisitor<Object> {
 	protected List<SPIDDMFormRuleCondition> doVisitLogicalExpression(
 		BinaryExpression binaryExpression) {
 
-		Object o1 = doVisit(binaryExpression.getLeftOperandExpression());
-		Object o2 = doVisit(binaryExpression.getRightOperandExpression());
+		Object object1 = doVisit(binaryExpression.getLeftOperandExpression());
+		Object object2 = doVisit(binaryExpression.getRightOperandExpression());
 
-		if (o1 instanceof SPIDDMFormRuleCondition) {
-			_spiDDMFormRuleConditions.push((SPIDDMFormRuleCondition)o1);
+		if (object1 instanceof SPIDDMFormRuleCondition) {
+			_spiDDMFormRuleConditions.push((SPIDDMFormRuleCondition)object1);
 		}
 
-		if (o2 instanceof SPIDDMFormRuleCondition) {
-			_spiDDMFormRuleConditions.push((SPIDDMFormRuleCondition)o2);
+		if (object2 instanceof SPIDDMFormRuleCondition) {
+			_spiDDMFormRuleConditions.push((SPIDDMFormRuleCondition)object2);
 		}
 
 		return _spiDDMFormRuleConditions;

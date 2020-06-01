@@ -113,7 +113,7 @@ public class TableNameOrderByComparatorTest {
 		}
 
 		@Override
-		public int compare(Object obj1, Object obj2) {
+		public int compare(Object object1, Object object2) {
 			return 0;
 		}
 

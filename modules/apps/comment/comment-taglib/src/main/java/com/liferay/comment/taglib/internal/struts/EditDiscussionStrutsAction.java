@@ -280,12 +280,12 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 	protected void writeJSON(
 			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse, Object jsonObj)
+			HttpServletResponse httpServletResponse, Object jsonObject)
 		throws IOException {
 
 		httpServletResponse.setContentType(ContentTypes.APPLICATION_JSON);
 
-		ServletResponseUtil.write(httpServletResponse, jsonObj.toString());
+		ServletResponseUtil.write(httpServletResponse, jsonObject.toString());
 
 		httpServletResponse.flushBuffer();
 	}

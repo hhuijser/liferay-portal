@@ -334,14 +334,14 @@ public class ConfigurationModel implements ExtendedObjectClassDefinition {
 			Dictionary<String, Object> properties =
 				_configuration.getProperties();
 
-			Object valueObj = properties.get(factoryInstanceLabelAttribute);
+			Object valueObject = properties.get(factoryInstanceLabelAttribute);
 
-			if (valueObj instanceof Object[]) {
+			if (valueObject instanceof Object[]) {
 				value = StringUtil.merge(
-					(Object[])valueObj, StringPool.COMMA_AND_SPACE);
+					(Object[])valueObject, StringPool.COMMA_AND_SPACE);
 			}
 			else {
-				value = String.valueOf(valueObj);
+				value = String.valueOf(valueObject);
 			}
 		}
 

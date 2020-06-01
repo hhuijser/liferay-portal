@@ -107,9 +107,9 @@ public class LdapUtil {
 
 				Rdn rdn = dn.getRdn(rdnIndex);
 
-				Object valueObj = rdn.getValue(rdn.getNormType());
+				Object valueObject = rdn.getValue(rdn.getNormType());
 
-				return valueObj.toString();
+				return valueObject.toString();
 			}
 		}
 		catch (LdapInvalidDnException ldapInvalidDnException) {

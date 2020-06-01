@@ -42,30 +42,30 @@ public interface JournalCreationStrategy {
 
 	/**
 	 * Returns <code>true</code> if the default group permissions should be
-	 * added when the specified journalObj is created.
+	 * added when the specified journalObject is created.
 	 *
 	 * @param  context the portlet data context
-	 * @param  journalObj the journal object
+	 * @param  journalObject the journal object
 	 * @return <code>true</code> if default group permissions should be added to
-	 *         the specified journalObj
+	 *         the specified journalObject
 	 * @throws Exception if an exception occurred
 	 */
 	public boolean addGroupPermissions(
-			PortletDataContext context, Object journalObj)
+			PortletDataContext context, Object journalObject)
 		throws Exception;
 
 	/**
 	 * Returns <code>true</code> if the default guest permissions should be
-	 * added when the specified journalObj is created.
+	 * added when the specified journalObject is created.
 	 *
 	 * @param  context the portlet data context
-	 * @param  journalObj the journal object
+	 * @param  journalObject the journal object
 	 * @return <code>true</code> if default guest permissions should be added to
-	 *         the specified journalObj
+	 *         the specified journalObject
 	 * @throws Exception if an exception occurred
 	 */
 	public boolean addGuestPermissions(
-			PortletDataContext context, Object journalObj)
+			PortletDataContext context, Object journalObject)
 		throws Exception;
 
 	/**
@@ -74,12 +74,13 @@ public interface JournalCreationStrategy {
 	 * author ID.
 	 *
 	 * @param  context the portlet data context
-	 * @param  journalObj the journal object
+	 * @param  journalObject the journal object
 	 * @return the author's user ID or USE_DEFAULT_USER_ID_STRATEGY to use the
 	 *         default user ID strategy
 	 * @throws Exception if an exception occurred
 	 */
-	public long getAuthorUserId(PortletDataContext context, Object journalObj)
+	public long getAuthorUserId(
+			PortletDataContext context, Object journalObject)
 		throws Exception;
 
 	/**

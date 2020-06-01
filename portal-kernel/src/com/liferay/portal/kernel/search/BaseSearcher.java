@@ -71,12 +71,12 @@ public abstract class BaseSearcher extends BaseIndexer<Object> {
 	}
 
 	@Override
-	protected void doDelete(Object obj) throws Exception {
+	protected void doDelete(Object object) throws Exception {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	protected Document doGetDocument(Object obj) throws Exception {
+	protected Document doGetDocument(Object object) throws Exception {
 		throw new UnsupportedOperationException();
 	}
 
@@ -103,7 +103,7 @@ public abstract class BaseSearcher extends BaseIndexer<Object> {
 	}
 
 	@Override
-	protected void doReindex(Object obj) throws Exception {
+	protected void doReindex(Object object) throws Exception {
 		throw new UnsupportedOperationException();
 	}
 

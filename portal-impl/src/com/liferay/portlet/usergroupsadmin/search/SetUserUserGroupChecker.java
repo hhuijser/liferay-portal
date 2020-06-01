@@ -39,8 +39,8 @@ public class SetUserUserGroupChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		User user = (User)obj;
+	public boolean isChecked(Object object) {
+		User user = (User)object;
 
 		try {
 			return UserLocalServiceUtil.hasUserGroupUser(
@@ -54,8 +54,8 @@ public class SetUserUserGroupChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		User user = (User)obj;
+	public boolean isDisabled(Object object) {
+		User user = (User)object;
 
 		try {
 			if (isChecked(user) ||
@@ -69,7 +69,7 @@ public class SetUserUserGroupChecker extends EmptyOnClickRowChecker {
 			_log.error(exception, exception);
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

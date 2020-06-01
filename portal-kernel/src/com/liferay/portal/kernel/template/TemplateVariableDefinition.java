@@ -52,17 +52,17 @@ public class TemplateVariableDefinition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof TemplateVariableDefinition)) {
+		if (!(object instanceof TemplateVariableDefinition)) {
 			return false;
 		}
 
 		TemplateVariableDefinition templateVariableDefinition =
-			(TemplateVariableDefinition)obj;
+			(TemplateVariableDefinition)object;
 
 		if (Objects.equals(_name, templateVariableDefinition._name) &&
 			Objects.equals(_accessor, templateVariableDefinition._accessor)) {

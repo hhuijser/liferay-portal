@@ -87,8 +87,8 @@ public class InstancePool {
 		return instance;
 	}
 
-	public static void put(String className, Object obj) {
-		_instances.put(className.trim(), obj);
+	public static void put(String className, Object object) {
+		_instances.put(className.trim(), object);
 	}
 
 	public static void reset() {

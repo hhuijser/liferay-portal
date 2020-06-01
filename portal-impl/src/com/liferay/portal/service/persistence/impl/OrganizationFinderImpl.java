@@ -693,18 +693,18 @@ public class OrganizationFinderImpl
 
 				long organizationId = (Long)array[0];
 
-				Object obj = null;
+				Object object = null;
 
 				if (organizationId > 0) {
-					obj = OrganizationUtil.findByPrimaryKey(organizationId);
+					object = OrganizationUtil.findByPrimaryKey(organizationId);
 				}
 				else {
 					long userId = (Long)array[1];
 
-					obj = UserUtil.findByPrimaryKey(userId);
+					object = UserUtil.findByPrimaryKey(userId);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;

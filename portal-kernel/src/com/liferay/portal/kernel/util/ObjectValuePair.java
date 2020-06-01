@@ -32,16 +32,16 @@ public class ObjectValuePair<K, V> implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ObjectValuePair<?, ?>)) {
+		if (!(object instanceof ObjectValuePair<?, ?>)) {
 			return false;
 		}
 
-		ObjectValuePair<K, V> kvp = (ObjectValuePair<K, V>)obj;
+		ObjectValuePair<K, V> kvp = (ObjectValuePair<K, V>)object;
 
 		if (Objects.equals(_key, kvp._key)) {
 			return true;

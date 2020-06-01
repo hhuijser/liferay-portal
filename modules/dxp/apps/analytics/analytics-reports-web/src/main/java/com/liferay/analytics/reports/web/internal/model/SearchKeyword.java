@@ -37,16 +37,16 @@ public class SearchKeyword {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SearchKeyword)) {
+		if (!(object instanceof SearchKeyword)) {
 			return false;
 		}
 
-		SearchKeyword searchKeyword = (SearchKeyword)obj;
+		SearchKeyword searchKeyword = (SearchKeyword)object;
 
 		if (Objects.equals(_keyword, searchKeyword._keyword) &&
 			Objects.equals(_position, searchKeyword._position) &&

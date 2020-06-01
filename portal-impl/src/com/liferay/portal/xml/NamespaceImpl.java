@@ -34,16 +34,16 @@ public class NamespaceImpl extends NodeImpl implements Namespace {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof NamespaceImpl)) {
+		if (!(object instanceof NamespaceImpl)) {
 			return false;
 		}
 
-		NamespaceImpl namespaceImpl = (NamespaceImpl)obj;
+		NamespaceImpl namespaceImpl = (NamespaceImpl)object;
 
 		org.dom4j.Namespace namespace = namespaceImpl.getWrappedNamespace();
 

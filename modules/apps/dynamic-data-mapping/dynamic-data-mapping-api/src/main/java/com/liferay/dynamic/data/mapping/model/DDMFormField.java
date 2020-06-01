@@ -113,16 +113,16 @@ public class DDMFormField implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormField)) {
+		if (!(object instanceof DDMFormField)) {
 			return false;
 		}
 
-		DDMFormField ddmFormField = (DDMFormField)obj;
+		DDMFormField ddmFormField = (DDMFormField)object;
 
 		if (Objects.equals(_properties, ddmFormField._properties) &&
 			Objects.equals(

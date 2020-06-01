@@ -40,8 +40,8 @@ public class SelectAccountRoleUserRowChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		AccountUserDisplay accountUserDisplay = (AccountUserDisplay)obj;
+	public boolean isChecked(Object object) {
+		AccountUserDisplay accountUserDisplay = (AccountUserDisplay)object;
 
 		AccountEntry accountEntry =
 			AccountEntryLocalServiceUtil.fetchAccountEntry(_accountEntryId);
@@ -61,8 +61,8 @@ public class SelectAccountRoleUserRowChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		return isChecked(obj);
+	public boolean isDisabled(Object object) {
+		return isChecked(object);
 	}
 
 	private final long _accountEntryId;

@@ -32,16 +32,16 @@ public class PortletDependency {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if ((obj == null) || !(obj instanceof PortletDependency)) {
+		if ((object == null) || !(object instanceof PortletDependency)) {
 			return false;
 		}
 
-		PortletDependency portletDependency = (PortletDependency)obj;
+		PortletDependency portletDependency = (PortletDependency)object;
 
 		if (Objects.equals(_name, portletDependency._name) &&
 			Objects.equals(_scope, portletDependency._scope) &&

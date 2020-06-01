@@ -303,16 +303,16 @@ public class ModifiableServletContextAdapter
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof ServletContext)) {
+	public boolean equals(Object object) {
+		if (!(object instanceof ServletContext)) {
 			return true;
 		}
 
-		ServletContext servletContext = (ServletContext)obj;
+		ServletContext servletContext = (ServletContext)object;
 
-		if (obj instanceof ModifiableServletContext) {
+		if (object instanceof ModifiableServletContext) {
 			ModifiableServletContext modifiableServletContext =
-				(ModifiableServletContext)obj;
+				(ModifiableServletContext)object;
 
 			servletContext =
 				modifiableServletContext.getWrappedServletContext();

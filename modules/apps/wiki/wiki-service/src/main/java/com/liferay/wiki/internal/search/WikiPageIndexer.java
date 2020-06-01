@@ -106,18 +106,18 @@ public class WikiPageIndexer
 	}
 
 	@Override
-	public void addRelatedEntryFields(Document document, Object obj)
+	public void addRelatedEntryFields(Document document, Object object)
 		throws Exception {
 
 		long classPK = 0;
 
-		if (obj instanceof Comment) {
-			Comment comment = (Comment)obj;
+		if (object instanceof Comment) {
+			Comment comment = (Comment)object;
 
 			classPK = comment.getClassPK();
 		}
-		else if (obj instanceof FileEntry) {
-			FileEntry fileEntry = (FileEntry)obj;
+		else if (object instanceof FileEntry) {
+			FileEntry fileEntry = (FileEntry)object;
 
 			RelatedModelCapability relatedModelCapability =
 				fileEntry.getRepositoryCapability(RelatedModelCapability.class);

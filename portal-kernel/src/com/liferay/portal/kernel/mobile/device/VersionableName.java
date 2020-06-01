@@ -76,16 +76,16 @@ public class VersionableName
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof VersionableName)) {
+		if (!(object instanceof VersionableName)) {
 			return false;
 		}
 
-		VersionableName versionableName = (VersionableName)obj;
+		VersionableName versionableName = (VersionableName)object;
 
 		if (Objects.equals(_name, versionableName._name)) {
 			return true;

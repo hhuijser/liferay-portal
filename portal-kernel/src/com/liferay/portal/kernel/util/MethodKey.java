@@ -76,16 +76,16 @@ public class MethodKey implements Externalizable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof MethodKey)) {
+		if (!(object instanceof MethodKey)) {
 			return false;
 		}
 
-		MethodKey methodKey = (MethodKey)obj;
+		MethodKey methodKey = (MethodKey)object;
 
 		if ((_declaringClass == methodKey._declaringClass) &&
 			Objects.equals(_methodName, methodKey._methodName) &&

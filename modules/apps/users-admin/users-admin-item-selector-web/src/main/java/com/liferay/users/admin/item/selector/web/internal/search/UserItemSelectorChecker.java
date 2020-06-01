@@ -34,15 +34,15 @@ public class UserItemSelectorChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		User user = (User)obj;
+	public boolean isChecked(Object object) {
+		User user = (User)object;
 
 		return ArrayUtil.contains(_checkedUserIds, user.getUserId());
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		return isChecked(obj);
+	public boolean isDisabled(Object object) {
+		return isChecked(object);
 	}
 
 	private final long[] _checkedUserIds;

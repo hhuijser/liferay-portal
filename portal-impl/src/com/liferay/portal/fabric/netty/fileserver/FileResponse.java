@@ -42,16 +42,16 @@ public class FileResponse implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof FileResponse)) {
+		if (!(object instanceof FileResponse)) {
 			return false;
 		}
 
-		FileResponse fileResponse = (FileResponse)obj;
+		FileResponse fileResponse = (FileResponse)object;
 
 		if ((_folder == fileResponse._folder) &&
 			(_lastModifiedTime == fileResponse._lastModifiedTime) &&

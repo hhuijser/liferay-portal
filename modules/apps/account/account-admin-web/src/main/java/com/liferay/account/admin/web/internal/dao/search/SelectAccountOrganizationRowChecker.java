@@ -35,8 +35,8 @@ public class SelectAccountOrganizationRowChecker
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		Organization organization = (Organization)obj;
+	public boolean isChecked(Object object) {
+		Organization organization = (Organization)object;
 
 		if (AccountEntryOrganizationRelLocalServiceUtil.
 				hasAccountEntryOrganizationRel(
@@ -49,8 +49,8 @@ public class SelectAccountOrganizationRowChecker
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		return isChecked(obj);
+	public boolean isDisabled(Object object) {
+		return isChecked(object);
 	}
 
 	private final long _accountEntryId;

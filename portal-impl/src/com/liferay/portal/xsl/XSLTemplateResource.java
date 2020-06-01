@@ -61,16 +61,16 @@ public class XSLTemplateResource implements TemplateResource {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof XSLTemplateResource)) {
+		if (!(object instanceof XSLTemplateResource)) {
 			return false;
 		}
 
-		XSLTemplateResource xslTemplateResource = (XSLTemplateResource)obj;
+		XSLTemplateResource xslTemplateResource = (XSLTemplateResource)object;
 
 		if (_templateId.equals(xslTemplateResource._templateId) &&
 			_xsl.equals(xslTemplateResource._xsl) &&

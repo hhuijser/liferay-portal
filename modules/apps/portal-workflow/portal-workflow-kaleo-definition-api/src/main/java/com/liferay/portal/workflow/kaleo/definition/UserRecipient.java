@@ -37,16 +37,16 @@ public class UserRecipient extends Recipient {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof UserRecipient)) {
+		if (!(object instanceof UserRecipient)) {
 			return false;
 		}
 
-		UserRecipient userRecipient = (UserRecipient)obj;
+		UserRecipient userRecipient = (UserRecipient)object;
 
 		if (Objects.equals(_emailAddress, userRecipient._emailAddress) &&
 			Objects.equals(_screenName, userRecipient._screenName) &&

@@ -628,13 +628,13 @@ public class QuartzSchedulerEngineTest {
 				public String answer(InvocationOnMock invocationOnMock)
 					throws Throwable {
 
-					Object obj = invocationOnMock.getArguments()[0];
+					Object object = invocationOnMock.getArguments()[0];
 
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 					ObjectOutputStream oos = new ObjectOutputStream(baos);
 
-					oos.writeObject(obj);
+					oos.writeObject(object);
 
 					byte[] bytes = baos.toByteArray();
 

@@ -36,16 +36,16 @@ public class AttributeImpl extends NodeImpl implements Attribute {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AttributeImpl)) {
+		if (!(object instanceof AttributeImpl)) {
 			return false;
 		}
 
-		AttributeImpl attributeImpl = (AttributeImpl)obj;
+		AttributeImpl attributeImpl = (AttributeImpl)object;
 
 		org.dom4j.Attribute attribute = attributeImpl.getWrappedAttribute();
 

@@ -139,8 +139,8 @@ public class MailboxUtil {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			ReceiptStub receiptStub = (ReceiptStub)obj;
+		public boolean equals(Object object) {
+			ReceiptStub receiptStub = (ReceiptStub)object;
 
 			if (_receipt == receiptStub._receipt) {
 				return true;

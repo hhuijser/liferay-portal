@@ -37,13 +37,13 @@ public abstract class OrderByComparator<T>
 		return getOrderByFields();
 	}
 
-	public Object[] getOrderByConditionValues(Object obj) {
+	public Object[] getOrderByConditionValues(Object object) {
 		String[] fields = getOrderByConditionFields();
 
 		Object[] values = new Object[fields.length];
 
 		for (int i = 0; i < fields.length; i++) {
-			values[i] = BeanPropertiesUtil.getObject(obj, fields[i]);
+			values[i] = BeanPropertiesUtil.getObject(object, fields[i]);
 		}
 
 		return values;

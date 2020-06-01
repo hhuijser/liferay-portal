@@ -42,17 +42,17 @@ public class DocumentumVersionNumber
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DocumentumVersionNumber)) {
+		if (!(object instanceof DocumentumVersionNumber)) {
 			return false;
 		}
 
 		DocumentumVersionNumber documentumVersionNumber =
-			(DocumentumVersionNumber)obj;
+			(DocumentumVersionNumber)object;
 
 		if ((major == documentumVersionNumber.major) &&
 			(minor == documentumVersionNumber.minor)) {

@@ -31,17 +31,17 @@ public class InvokerMessageListener implements MessageListener {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof InvokerMessageListener)) {
+		if (!(object instanceof InvokerMessageListener)) {
 			return false;
 		}
 
 		InvokerMessageListener messageListenerInvoker =
-			(InvokerMessageListener)obj;
+			(InvokerMessageListener)object;
 
 		return _messageListener.equals(
 			messageListenerInvoker.getMessageListener());

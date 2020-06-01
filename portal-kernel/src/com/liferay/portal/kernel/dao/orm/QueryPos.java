@@ -249,56 +249,56 @@ public class QueryPos {
 		}
 	}
 
-	public void add(Object obj) {
-		if (obj == null) {
+	public void add(Object object) {
+		if (object == null) {
 			_addNull();
 
 			return;
 		}
 
-		Class<?> clazz = obj.getClass();
+		Class<?> clazz = object.getClass();
 
 		if (clazz == BigDecimal.class) {
-			add((BigDecimal)obj);
+			add((BigDecimal)object);
 		}
 		else if (clazz == Boolean.class) {
-			Boolean booleanObj = (Boolean)obj;
+			Boolean booleanObj = (Boolean)object;
 
 			add(booleanObj.booleanValue());
 		}
 		else if (clazz == Date.class) {
-			add(CalendarUtil.getTimestamp((Date)obj));
+			add(CalendarUtil.getTimestamp((Date)object));
 		}
 		else if (clazz == Double.class) {
-			Double doubleObj = (Double)obj;
+			Double doubleObj = (Double)object;
 
 			add(doubleObj.doubleValue());
 		}
 		else if (clazz == Float.class) {
-			Float floatObj = (Float)obj;
+			Float floatObj = (Float)object;
 
 			add(floatObj.floatValue());
 		}
 		else if (clazz == Integer.class) {
-			Integer integerObj = (Integer)obj;
+			Integer integerObj = (Integer)object;
 
 			add(integerObj.intValue());
 		}
 		else if (clazz == Long.class) {
-			Long longObj = (Long)obj;
+			Long longObj = (Long)object;
 
 			add(longObj.longValue());
 		}
 		else if (clazz == Short.class) {
-			Short shortObj = (Short)obj;
+			Short shortObj = (Short)object;
 
 			add(shortObj.shortValue());
 		}
 		else if (clazz == String.class) {
-			add((String)obj);
+			add((String)object);
 		}
 		else if (clazz == Timestamp.class) {
-			add((Timestamp)obj);
+			add((Timestamp)object);
 		}
 		else {
 			throw new RuntimeException("Unsupport type " + clazz.getName());

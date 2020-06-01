@@ -41,10 +41,10 @@ import org.osgi.service.component.annotations.Reference;
 public class MBMessageRelatedEntryIndexer extends BaseRelatedEntryIndexer {
 
 	@Override
-	public void addRelatedEntryFields(Document document, Object obj)
+	public void addRelatedEntryFields(Document document, Object object)
 		throws Exception {
 
-		FileEntry fileEntry = (FileEntry)obj;
+		FileEntry fileEntry = (FileEntry)object;
 
 		MBMessage mbMessage = mbMessageLocalService.fetchFileEntryMessage(
 			fileEntry.getFileEntryId());

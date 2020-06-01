@@ -74,16 +74,16 @@ public class DDMForm implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMForm)) {
+		if (!(object instanceof DDMForm)) {
 			return false;
 		}
 
-		DDMForm ddmForm = (DDMForm)obj;
+		DDMForm ddmForm = (DDMForm)object;
 
 		if (Objects.equals(_availableLocales, ddmForm._availableLocales) &&
 			Objects.equals(_defaultLocale, ddmForm._defaultLocale) &&

@@ -165,7 +165,7 @@ public class ThreadLocalCacheManager {
 		}
 
 		@Override
-		public void put(String key, T obj) {
+		public void put(String key, T object) {
 		}
 
 		@Override

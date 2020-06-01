@@ -469,8 +469,8 @@ public class PortletServletRequest extends HttpServletRequestWrapper {
 	}
 
 	@Override
-	public void setAttribute(String name, Object obj) {
-		_portletRequest.setAttribute(name, obj);
+	public void setAttribute(String name, Object object) {
+		_portletRequest.setAttribute(name, object);
 	}
 
 	@Override

@@ -26,16 +26,16 @@ public class IdentityKey<K> implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof IdentityKey)) {
+		if (!(object instanceof IdentityKey)) {
 			return false;
 		}
 
-		IdentityKey<K> identityKey = (IdentityKey<K>)obj;
+		IdentityKey<K> identityKey = (IdentityKey<K>)object;
 
 		if (_key == identityKey._key) {
 			return true;

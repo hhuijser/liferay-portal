@@ -35,17 +35,17 @@ public class RowLayoutStructureItem extends LayoutStructureItem {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof RowLayoutStructureItem)) {
+		if (!(object instanceof RowLayoutStructureItem)) {
 			return false;
 		}
 
 		RowLayoutStructureItem rowLayoutStructureItem =
-			(RowLayoutStructureItem)obj;
+			(RowLayoutStructureItem)object;
 
 		if (!Objects.equals(_gutters, rowLayoutStructureItem._gutters) ||
 			!Objects.equals(
@@ -61,7 +61,7 @@ public class RowLayoutStructureItem extends LayoutStructureItem {
 			return false;
 		}
 
-		return super.equals(obj);
+		return super.equals(object);
 	}
 
 	@Override

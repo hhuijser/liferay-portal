@@ -74,14 +74,14 @@ public class NPMResolvedPackageNameUtil {
 	 * @review
 	 */
 	public static String get(ServletContext servletContext) {
-		Object obj = servletContext.getAttribute(
+		Object object = servletContext.getAttribute(
 			NPMResolvedPackageNameUtil.class.getName());
 
-		if (obj instanceof String) {
-			return (String)obj;
+		if (object instanceof String) {
+			return (String)object;
 		}
 
-		if (obj == _NULL_HOLDER) {
+		if (object == _NULL_HOLDER) {
 			return null;
 		}
 

@@ -36,16 +36,16 @@ public class PathHolder implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof PathHolder)) {
+		if (!(object instanceof PathHolder)) {
 			return false;
 		}
 
-		PathHolder pathHolder = (PathHolder)obj;
+		PathHolder pathHolder = (PathHolder)object;
 
 		if (Objects.equals(toString(), pathHolder.toString())) {
 			return true;

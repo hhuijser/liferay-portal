@@ -253,17 +253,18 @@ public class FragmentEntryFinderImpl
 				long fragmentCompositionId = (Long)array[0];
 				long fragmentEntryId = (Long)array[1];
 
-				Object obj = null;
+				Object object = null;
 
 				if (fragmentCompositionId > 0) {
-					obj = FragmentCompositionUtil.findByPrimaryKey(
+					object = FragmentCompositionUtil.findByPrimaryKey(
 						fragmentCompositionId);
 				}
 				else {
-					obj = FragmentEntryUtil.findByPrimaryKey(fragmentEntryId);
+					object = FragmentEntryUtil.findByPrimaryKey(
+						fragmentEntryId);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;
@@ -336,17 +337,18 @@ public class FragmentEntryFinderImpl
 				long fragmentCompositionId = (Long)array[0];
 				long fragmentEntryId = (Long)array[1];
 
-				Object obj = null;
+				Object object = null;
 
 				if (fragmentCompositionId > 0) {
-					obj = FragmentCompositionUtil.findByPrimaryKey(
+					object = FragmentCompositionUtil.findByPrimaryKey(
 						fragmentCompositionId);
 				}
 				else {
-					obj = FragmentEntryUtil.findByPrimaryKey(fragmentEntryId);
+					object = FragmentEntryUtil.findByPrimaryKey(
+						fragmentEntryId);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;

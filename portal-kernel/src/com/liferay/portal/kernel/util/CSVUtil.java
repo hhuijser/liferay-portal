@@ -22,14 +22,14 @@ import com.liferay.petra.string.StringPool;
  */
 public class CSVUtil {
 
-	public static String encode(Object obj) {
-		Class<?> clazz = obj.getClass();
+	public static String encode(Object object) {
+		Class<?> clazz = object.getClass();
 
 		if (!clazz.isArray()) {
-			return encode(String.valueOf(obj));
+			return encode(String.valueOf(object));
 		}
 
-		Object[] array = (Object[])obj;
+		Object[] array = (Object[])object;
 
 		return encode(StringUtil.merge(array));
 	}

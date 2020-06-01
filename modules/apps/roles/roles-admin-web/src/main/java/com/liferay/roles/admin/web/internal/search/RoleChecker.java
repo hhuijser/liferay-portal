@@ -42,8 +42,8 @@ public class RoleChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		Role role = (Role)obj;
+	public boolean isDisabled(Object object) {
+		Role role = (Role)object;
 
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -71,7 +71,7 @@ public class RoleChecker extends EmptyOnClickRowChecker {
 			_log.error(exception, exception);
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(RoleChecker.class);

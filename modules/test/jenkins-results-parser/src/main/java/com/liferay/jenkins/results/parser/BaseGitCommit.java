@@ -25,16 +25,16 @@ import org.json.JSONObject;
 public abstract class BaseGitCommit implements GitCommit {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof BaseGitCommit)) {
+		if (!(object instanceof BaseGitCommit)) {
 			return false;
 		}
 
-		if (Objects.equals(hashCode(), obj.hashCode())) {
+		if (Objects.equals(hashCode(), object.hashCode())) {
 			return true;
 		}
 

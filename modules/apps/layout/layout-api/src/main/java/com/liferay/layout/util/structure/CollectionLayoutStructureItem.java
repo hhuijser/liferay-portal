@@ -32,17 +32,17 @@ public class CollectionLayoutStructureItem extends LayoutStructureItem {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CollectionLayoutStructureItem)) {
+		if (!(object instanceof CollectionLayoutStructureItem)) {
 			return false;
 		}
 
 		CollectionLayoutStructureItem collectionLayoutStructureItem =
-			(CollectionLayoutStructureItem)obj;
+			(CollectionLayoutStructureItem)object;
 
 		if (!Objects.equals(
 				_collectionJSONObject,
@@ -58,7 +58,7 @@ public class CollectionLayoutStructureItem extends LayoutStructureItem {
 			return false;
 		}
 
-		return super.equals(obj);
+		return super.equals(object);
 	}
 
 	public JSONObject getCollectionJSONObject() {

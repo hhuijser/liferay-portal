@@ -249,12 +249,12 @@ public class PortletContextImpl implements LiferayPortletContext {
 	}
 
 	@Override
-	public void setAttribute(String name, Object obj) {
+	public void setAttribute(String name, Object object) {
 		if (name == null) {
 			throw new IllegalArgumentException();
 		}
 
-		_servletContext.setAttribute(name, obj);
+		_servletContext.setAttribute(name, object);
 	}
 
 	private static final int _MAJOR_VERSION = 3;

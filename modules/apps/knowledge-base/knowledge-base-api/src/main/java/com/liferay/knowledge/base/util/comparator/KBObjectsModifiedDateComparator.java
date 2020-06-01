@@ -127,26 +127,26 @@ public class KBObjectsModifiedDateComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected Date getModifiedDate(Object obj) {
-		if (obj instanceof KBArticle) {
-			KBArticle kbArticle = (KBArticle)obj;
+	protected Date getModifiedDate(Object object) {
+		if (object instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)object;
 
 			return kbArticle.getModifiedDate();
 		}
 
-		KBFolder kbFolder = (KBFolder)obj;
+		KBFolder kbFolder = (KBFolder)object;
 
 		return kbFolder.getModifiedDate();
 	}
 
-	protected String getTitle(Object obj) {
-		if (obj instanceof KBArticle) {
-			KBArticle kbArticle = (KBArticle)obj;
+	protected String getTitle(Object object) {
+		if (object instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)object;
 
 			return kbArticle.getTitle();
 		}
 
-		KBFolder kbFolder = (KBFolder)obj;
+		KBFolder kbFolder = (KBFolder)object;
 
 		return kbFolder.getName();
 	}

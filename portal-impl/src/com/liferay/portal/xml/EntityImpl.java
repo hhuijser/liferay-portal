@@ -34,16 +34,16 @@ public class EntityImpl extends NodeImpl implements Entity {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof EntityImpl)) {
+		if (!(object instanceof EntityImpl)) {
 			return false;
 		}
 
-		EntityImpl entityImpl = (EntityImpl)obj;
+		EntityImpl entityImpl = (EntityImpl)object;
 
 		org.dom4j.Entity entity = entityImpl.getWrappedEntity();
 

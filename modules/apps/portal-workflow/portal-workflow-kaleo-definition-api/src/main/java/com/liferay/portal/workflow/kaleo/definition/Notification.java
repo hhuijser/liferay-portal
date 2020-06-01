@@ -64,16 +64,16 @@ public class Notification {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Notification)) {
+		if (!(object instanceof Notification)) {
 			return false;
 		}
 
-		Notification notification = (Notification)obj;
+		Notification notification = (Notification)object;
 
 		if (Objects.equals(_name, notification._name)) {
 			return true;

@@ -86,9 +86,9 @@ public class BatchablePipe<K, V> {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(Object object) {
 			IncreasableEntryWrapper<K, V> increasableEntryWrapper =
-				(IncreasableEntryWrapper<K, V>)obj;
+				(IncreasableEntryWrapper<K, V>)object;
 
 			if (increasableEntry == increasableEntryWrapper.increasableEntry) {
 				return true;

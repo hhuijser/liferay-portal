@@ -38,16 +38,16 @@ public class ConfigurationScreenConfigurationEntry
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ConfigurationEntry)) {
+		if (!(object instanceof ConfigurationEntry)) {
 			return false;
 		}
 
-		ConfigurationEntry configurationEntry = (ConfigurationEntry)obj;
+		ConfigurationEntry configurationEntry = (ConfigurationEntry)object;
 
 		if (Objects.equals(getCategory(), configurationEntry.getCategory()) &&
 			Objects.equals(getKey(), configurationEntry.getKey()) &&

@@ -71,14 +71,14 @@ public class RetryWebElementImpl extends RemoteWebElement {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object object) {
 		try {
-			return _remoteWebElement.equals(obj);
+			return _remoteWebElement.equals(object);
 		}
 		catch (StaleElementReferenceException staleElementReferenceException) {
 			_refreshWebElement(staleElementReferenceException);
 
-			return _remoteWebElement.equals(obj);
+			return _remoteWebElement.equals(object);
 		}
 	}
 

@@ -72,8 +72,8 @@ public class ConfigurationModel implements ExtendedObjectClassDefinition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		ConfigurationModel configurationModel = (ConfigurationModel)obj;
+	public boolean equals(Object object) {
+		ConfigurationModel configurationModel = (ConfigurationModel)object;
 
 		return Objects.equals(getID(), configurationModel.getID());
 	}

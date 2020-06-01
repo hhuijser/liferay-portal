@@ -34,16 +34,16 @@ public class CDATAImpl extends NodeImpl implements CDATA {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CDATAImpl)) {
+		if (!(object instanceof CDATAImpl)) {
 			return false;
 		}
 
-		CDATAImpl cdataImpl = (CDATAImpl)obj;
+		CDATAImpl cdataImpl = (CDATAImpl)object;
 
 		org.dom4j.CDATA cdata = cdataImpl.getWrappedCDATA();
 

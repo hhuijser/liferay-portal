@@ -28,16 +28,16 @@ public class Tuple implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Tuple)) {
+		if (!(object instanceof Tuple)) {
 			return false;
 		}
 
-		Tuple tuple = (Tuple)obj;
+		Tuple tuple = (Tuple)object;
 
 		return Arrays.equals(_array, tuple._array);
 	}

@@ -33,17 +33,17 @@ public class SPIDDMFormRuleCondition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SPIDDMFormRuleCondition)) {
+		if (!(object instanceof SPIDDMFormRuleCondition)) {
 			return false;
 		}
 
 		SPIDDMFormRuleCondition spiDDMFormRuleCondition =
-			(SPIDDMFormRuleCondition)obj;
+			(SPIDDMFormRuleCondition)object;
 
 		if (Objects.equals(_operands, spiDDMFormRuleCondition._operands) &&
 			Objects.equals(_operator, spiDDMFormRuleCondition._operator)) {
@@ -88,16 +88,16 @@ public class SPIDDMFormRuleCondition {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof Operand)) {
+			if (!(object instanceof Operand)) {
 				return false;
 			}
 
-			Operand operand = (Operand)obj;
+			Operand operand = (Operand)object;
 
 			if (Objects.equals(_type, operand._type) &&
 				Objects.equals(_value, operand._value)) {

@@ -53,16 +53,16 @@ public class InfoFieldSet implements InfoFieldSetEntry {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof InfoFieldSet)) {
+		if (!(object instanceof InfoFieldSet)) {
 			return false;
 		}
 
-		InfoFieldSet infoFieldSet = (InfoFieldSet)obj;
+		InfoFieldSet infoFieldSet = (InfoFieldSet)object;
 
 		if (Objects.equals(
 				_labelInfoLocalizedValue,

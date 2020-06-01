@@ -33,16 +33,16 @@ public class Capability implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Capability)) {
+		if (!(object instanceof Capability)) {
 			return false;
 		}
 
-		Capability capability = (Capability)obj;
+		Capability capability = (Capability)object;
 
 		if (Objects.equals(_name, capability._name) &&
 			Objects.equals(_value, capability._value)) {

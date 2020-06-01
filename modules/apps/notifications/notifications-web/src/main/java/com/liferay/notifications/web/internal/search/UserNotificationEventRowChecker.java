@@ -29,15 +29,15 @@ public class UserNotificationEventRowChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
+	public boolean isDisabled(Object object) {
 		UserNotificationEvent userNotificationEvent =
-			(UserNotificationEvent)obj;
+			(UserNotificationEvent)object;
 
 		if (userNotificationEvent.isActionRequired()) {
 			return true;
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 }

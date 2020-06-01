@@ -35,23 +35,23 @@ public class ColumnLayoutStructureItem extends LayoutStructureItem {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ColumnLayoutStructureItem)) {
+		if (!(object instanceof ColumnLayoutStructureItem)) {
 			return false;
 		}
 
 		ColumnLayoutStructureItem columnLayoutStructureItem =
-			(ColumnLayoutStructureItem)obj;
+			(ColumnLayoutStructureItem)object;
 
 		if (!Objects.equals(_size, columnLayoutStructureItem._size)) {
 			return false;
 		}
 
-		return super.equals(obj);
+		return super.equals(object);
 	}
 
 	@Override

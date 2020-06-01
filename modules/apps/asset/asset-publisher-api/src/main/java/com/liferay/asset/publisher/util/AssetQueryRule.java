@@ -33,16 +33,16 @@ public class AssetQueryRule {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AssetQueryRule)) {
+		if (!(object instanceof AssetQueryRule)) {
 			return false;
 		}
 
-		AssetQueryRule assetQueryRule = (AssetQueryRule)obj;
+		AssetQueryRule assetQueryRule = (AssetQueryRule)object;
 
 		if ((_contains == assetQueryRule._contains) &&
 			(_andOperator == assetQueryRule._andOperator) &&

@@ -69,16 +69,16 @@ public class PluginPackageImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof PluginPackage)) {
+		if (!(object instanceof PluginPackage)) {
 			return false;
 		}
 
-		PluginPackage pluginPackage = (PluginPackage)obj;
+		PluginPackage pluginPackage = (PluginPackage)object;
 
 		EqualsBuilder equalsBuilder = new EqualsBuilder();
 

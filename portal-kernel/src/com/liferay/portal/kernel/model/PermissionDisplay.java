@@ -57,16 +57,16 @@ public class PermissionDisplay
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof PermissionDisplay)) {
+		if (!(object instanceof PermissionDisplay)) {
 			return false;
 		}
 
-		PermissionDisplay permissionDisplay = (PermissionDisplay)obj;
+		PermissionDisplay permissionDisplay = (PermissionDisplay)object;
 
 		if (_portletName.equals(permissionDisplay.getPortletName()) &&
 			_modelName.equals(permissionDisplay.getModelName()) &&

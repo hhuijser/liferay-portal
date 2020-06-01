@@ -32,8 +32,8 @@ public class UserGroupChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		UserGroup userGroup = (UserGroup)obj;
+	public boolean isDisabled(Object object) {
+		UserGroup userGroup = (UserGroup)object;
 
 		if (!UserGroupPermissionUtil.contains(
 				PermissionThreadLocal.getPermissionChecker(),
@@ -42,7 +42,7 @@ public class UserGroupChecker extends EmptyOnClickRowChecker {
 			return true;
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 }

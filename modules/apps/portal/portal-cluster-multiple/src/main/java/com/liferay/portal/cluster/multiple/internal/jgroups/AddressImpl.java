@@ -36,16 +36,16 @@ public class AddressImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AddressImpl)) {
+		if (!(object instanceof AddressImpl)) {
 			return false;
 		}
 
-		AddressImpl addressImpl = (AddressImpl)obj;
+		AddressImpl addressImpl = (AddressImpl)object;
 
 		if (_address.equals(addressImpl._address)) {
 			return true;

@@ -63,8 +63,8 @@ public class JSONObjectImpl implements JSONObject {
 		_jsonObject = new org.json.JSONObject(bean);
 	}
 
-	public JSONObjectImpl(Object obj, String[] names) {
-		_jsonObject = new org.json.JSONObject(obj, names);
+	public JSONObjectImpl(Object object, String[] names) {
+		_jsonObject = new org.json.JSONObject(object, names);
 	}
 
 	public JSONObjectImpl(org.json.JSONObject jsonObject) {

@@ -34,16 +34,16 @@ public class TextImpl extends NodeImpl implements Text {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof TextImpl)) {
+		if (!(object instanceof TextImpl)) {
 			return false;
 		}
 
-		TextImpl textImpl = (TextImpl)obj;
+		TextImpl textImpl = (TextImpl)object;
 
 		org.dom4j.Text text = textImpl.getWrappedText();
 

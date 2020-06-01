@@ -46,16 +46,16 @@ public class HistogramMetric {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof HistogramMetric)) {
+		if (!(object instanceof HistogramMetric)) {
 			return false;
 		}
 
-		HistogramMetric histogramMetric = (HistogramMetric)obj;
+		HistogramMetric histogramMetric = (HistogramMetric)object;
 
 		if (Objects.equals(_key, histogramMetric._key) &&
 			Objects.equals(_value, histogramMetric._value)) {

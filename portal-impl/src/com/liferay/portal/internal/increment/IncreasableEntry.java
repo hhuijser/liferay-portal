@@ -30,16 +30,17 @@ public abstract class IncreasableEntry<K, V> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof IncreasableEntry<?, ?>)) {
+		if (!(object instanceof IncreasableEntry<?, ?>)) {
 			return false;
 		}
 
-		IncreasableEntry<K, V> increasableEntry = (IncreasableEntry<K, V>)obj;
+		IncreasableEntry<K, V> increasableEntry =
+			(IncreasableEntry<K, V>)object;
 
 		if (Objects.equals(key, increasableEntry.key) &&
 			Objects.equals(value, increasableEntry.value)) {

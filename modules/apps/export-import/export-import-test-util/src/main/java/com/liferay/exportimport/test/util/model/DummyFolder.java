@@ -64,16 +64,16 @@ public class DummyFolder implements Serializable, StagedGroupedModel {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DummyFolder)) {
+		if (!(object instanceof DummyFolder)) {
 			return false;
 		}
 
-		DummyFolder dummyFolder = (DummyFolder)obj;
+		DummyFolder dummyFolder = (DummyFolder)object;
 
 		long primaryKey = dummyFolder.getPrimaryKey();
 

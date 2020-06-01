@@ -35,36 +35,36 @@ import javax.servlet.http.HttpServletResponse;
 public class ResultRow
 	implements com.liferay.portal.kernel.dao.search.ResultRow {
 
-	public ResultRow(Object obj, long primaryKey, int pos) {
-		this(obj, String.valueOf(primaryKey), pos);
+	public ResultRow(Object object, long primaryKey, int pos) {
+		this(object, String.valueOf(primaryKey), pos);
 	}
 
-	public ResultRow(Object obj, long primaryKey, int pos, boolean bold) {
-		this(obj, String.valueOf(primaryKey), pos, bold);
+	public ResultRow(Object object, long primaryKey, int pos, boolean bold) {
+		this(object, String.valueOf(primaryKey), pos, bold);
 	}
 
-	public ResultRow(Object obj, String primaryKey, int pos) {
-		this(obj, primaryKey, pos, false);
+	public ResultRow(Object object, String primaryKey, int pos) {
+		this(object, primaryKey, pos, false);
 	}
 
-	public ResultRow(Object obj, String primaryKey, int pos, boolean bold) {
-		this(String.valueOf(pos + 1), obj, primaryKey, pos, bold);
+	public ResultRow(Object object, String primaryKey, int pos, boolean bold) {
+		this(String.valueOf(pos + 1), object, primaryKey, pos, bold);
 	}
 
 	public ResultRow(
-		String rowId, Object obj, String primaryKey, int pos, boolean bold) {
+		String rowId, Object object, String primaryKey, int pos, boolean bold) {
 
 		this(
-			rowId, obj, primaryKey, pos, bold, StringPool.BLANK,
+			rowId, object, primaryKey, pos, bold, StringPool.BLANK,
 			StringPool.BLANK);
 	}
 
 	public ResultRow(
-		String rowId, Object obj, String primaryKey, int pos, boolean bold,
+		String rowId, Object object, String primaryKey, int pos, boolean bold,
 		String cssClass, String state) {
 
 		_rowId = rowId;
-		_obj = obj;
+		_obj = object;
 		_primaryKey = primaryKey;
 		_pos = pos;
 		_bold = bold;
@@ -597,8 +597,8 @@ public class ResultRow
 	}
 
 	@Override
-	public void setObject(Object obj) {
-		_obj = obj;
+	public void setObject(Object object) {
+		_obj = object;
 	}
 
 	@Override

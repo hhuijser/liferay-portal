@@ -265,8 +265,8 @@ public class LPKGDeployerRegistrar {
 	private static class Tuple {
 
 		@Override
-		public boolean equals(Object obj) {
-			Tuple tuple = (Tuple)obj;
+		public boolean equals(Object object) {
+			Tuple tuple = (Tuple)object;
 
 			if (Objects.equals(_symbolicName, tuple._symbolicName) &&
 				Objects.equals(_version, tuple._version) &&

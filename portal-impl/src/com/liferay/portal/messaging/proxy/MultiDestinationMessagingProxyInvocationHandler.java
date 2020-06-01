@@ -59,9 +59,9 @@ public class MultiDestinationMessagingProxyInvocationHandler
 		new InvocationHandlerFactory() {
 
 			@Override
-			public InvocationHandler createInvocationHandler(Object obj) {
+			public InvocationHandler createInvocationHandler(Object object) {
 				return new MultiDestinationMessagingProxyInvocationHandler(
-					(BaseMultiDestinationProxyBean)obj);
+					(BaseMultiDestinationProxyBean)object);
 			}
 
 		};

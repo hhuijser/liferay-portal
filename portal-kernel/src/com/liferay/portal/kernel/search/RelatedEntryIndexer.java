@@ -28,7 +28,7 @@ public interface RelatedEntryIndexer {
 			BooleanFilter contextBooleanFilter, SearchContext searchContext)
 		throws Exception;
 
-	public void addRelatedEntryFields(Document document, Object obj)
+	public void addRelatedEntryFields(Document document, Object object)
 		throws Exception;
 
 	public boolean isVisibleRelatedEntry(long classPK, int status)

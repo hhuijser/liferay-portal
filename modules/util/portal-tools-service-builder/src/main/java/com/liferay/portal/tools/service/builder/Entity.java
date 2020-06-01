@@ -232,16 +232,16 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Entity)) {
+		if (!(object instanceof Entity)) {
 			return false;
 		}
 
-		Entity entity = (Entity)obj;
+		Entity entity = (Entity)object;
 
 		if (_name.equals(entity.getName())) {
 			return true;

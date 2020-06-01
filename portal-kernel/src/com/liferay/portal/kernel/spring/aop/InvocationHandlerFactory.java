@@ -21,6 +21,6 @@ import java.lang.reflect.InvocationHandler;
  */
 public interface InvocationHandlerFactory {
 
-	public InvocationHandler createInvocationHandler(Object obj);
+	public InvocationHandler createInvocationHandler(Object object);
 
 }

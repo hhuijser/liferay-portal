@@ -120,7 +120,7 @@ public class IndexerPostProcessorTest {
 		return new BaseIndexerPostProcessor() {
 
 			@Override
-			public void postProcessDocument(Document document, Object obj)
+			public void postProcessDocument(Document document, Object object)
 				throws Exception {
 
 				document.addText(_TEST_FIELD, _TEST_VALUE);

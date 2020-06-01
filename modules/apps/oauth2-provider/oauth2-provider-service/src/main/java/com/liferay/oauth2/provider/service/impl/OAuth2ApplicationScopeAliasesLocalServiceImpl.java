@@ -327,8 +327,8 @@ public class OAuth2ApplicationScopeAliasesLocalServiceImpl
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			ScopeNamespace scopeNamespace = (ScopeNamespace)obj;
+		public boolean equals(Object object) {
+			ScopeNamespace scopeNamespace = (ScopeNamespace)object;
 
 			if (Objects.equals(
 					_applicationName, scopeNamespace._applicationName) &&

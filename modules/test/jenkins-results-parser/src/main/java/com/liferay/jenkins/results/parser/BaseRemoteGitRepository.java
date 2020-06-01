@@ -24,17 +24,17 @@ public abstract class BaseRemoteGitRepository
 	extends BaseGitRepository implements RemoteGitRepository {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof BaseRemoteGitRepository)) {
+		if (!(object instanceof BaseRemoteGitRepository)) {
 			return false;
 		}
 
 		BaseRemoteGitRepository baseRemoteGitRepository =
-			(BaseRemoteGitRepository)obj;
+			(BaseRemoteGitRepository)object;
 
 		if (Objects.equals(
 				getHostname(), baseRemoteGitRepository.getHostname()) &&

@@ -31,16 +31,16 @@ public class TestAddress implements Address, Comparable<TestAddress> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof TestAddress)) {
+		if (!(object instanceof TestAddress)) {
 			return false;
 		}
 
-		TestAddress testAddress = (TestAddress)obj;
+		TestAddress testAddress = (TestAddress)object;
 
 		if (_address == testAddress._address) {
 			return true;

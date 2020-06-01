@@ -136,14 +136,15 @@ public class StrictXMLDescriptor implements XMLDescriptor {
 	}
 
 	private int _contains(
-		List<Attribute> list, Attribute obj, Comparator<Attribute> comparator) {
+		List<Attribute> list, Attribute object,
+		Comparator<Attribute> comparator) {
 
 		int firstValue = -1;
 
 		for (int i = 0; i < list.size(); i++) {
 			Attribute o = list.get(i);
 
-			int value = comparator.compare(obj, o);
+			int value = comparator.compare(object, o);
 
 			if (i == 0) {
 				firstValue = value;
@@ -158,14 +159,14 @@ public class StrictXMLDescriptor implements XMLDescriptor {
 	}
 
 	private int _contains(
-		List<Element> list, Element obj, Comparator<Element> comparator) {
+		List<Element> list, Element object, Comparator<Element> comparator) {
 
 		int firstValue = -1;
 
 		for (int i = 0; i < list.size(); i++) {
 			Element o = list.get(i);
 
-			int value = comparator.compare(obj, o);
+			int value = comparator.compare(object, o);
 
 			if (i == 0) {
 				firstValue = value;

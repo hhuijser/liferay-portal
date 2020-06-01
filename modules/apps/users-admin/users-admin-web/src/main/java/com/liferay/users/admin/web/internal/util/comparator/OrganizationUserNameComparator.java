@@ -70,14 +70,14 @@ public class OrganizationUserNameComparator extends OrderByComparator<Object> {
 		return _ascending;
 	}
 
-	protected String getName(Object obj) {
-		if (obj instanceof Organization) {
-			Organization organization = (Organization)obj;
+	protected String getName(Object object) {
+		if (object instanceof Organization) {
+			Organization organization = (Organization)object;
 
 			return organization.getName();
 		}
 
-		User user = (User)obj;
+		User user = (User)object;
 
 		return user.getLastName();
 	}

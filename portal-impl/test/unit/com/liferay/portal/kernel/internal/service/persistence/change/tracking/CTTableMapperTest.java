@@ -1625,8 +1625,8 @@ public class CTTableMapperTest {
 	private static class MappingKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			MappingKey mappingKey = (MappingKey)obj;
+		public boolean equals(Object object) {
+			MappingKey mappingKey = (MappingKey)object;
 
 			if ((_leftPrimaryKey == mappingKey._leftPrimaryKey) &&
 				(_rightPrimaryKey == mappingKey._rightPrimaryKey) &&

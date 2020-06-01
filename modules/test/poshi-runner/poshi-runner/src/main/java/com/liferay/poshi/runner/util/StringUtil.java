@@ -1089,8 +1089,8 @@ public class StringUtil {
 		return new String(chars);
 	}
 
-	public static String valueOf(Object obj) {
-		return String.valueOf(obj);
+	public static String valueOf(Object object) {
+		return String.valueOf(object);
 	}
 
 	private static String[] _removeDuplicates(String[] stringArray) {

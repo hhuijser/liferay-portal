@@ -34,17 +34,17 @@ public class DDMFormFieldValidationExpression {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormFieldValidationExpression)) {
+		if (!(object instanceof DDMFormFieldValidationExpression)) {
 			return false;
 		}
 
 		DDMFormFieldValidationExpression ddmFormFieldValidationExpression =
-			(DDMFormFieldValidationExpression)obj;
+			(DDMFormFieldValidationExpression)object;
 
 		if (Objects.equals(_name, ddmFormFieldValidationExpression._name)) {
 			return true;

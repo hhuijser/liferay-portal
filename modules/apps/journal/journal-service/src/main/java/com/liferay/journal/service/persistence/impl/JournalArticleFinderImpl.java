@@ -2068,8 +2068,8 @@ public class JournalArticleFinderImpl
 			return true;
 		}
 
-		for (Object obj : array) {
-			if (Validator.isNotNull(obj)) {
+		for (Object object : array) {
+			if (Validator.isNotNull(object)) {
 				return false;
 			}
 		}

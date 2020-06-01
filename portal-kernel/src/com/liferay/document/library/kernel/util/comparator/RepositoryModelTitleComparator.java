@@ -118,34 +118,34 @@ public class RepositoryModelTitleComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected String getName(Object obj) {
-		if (obj instanceof DLFileEntry) {
-			DLFileEntry dlFileEntry = (DLFileEntry)obj;
+	protected String getName(Object object) {
+		if (object instanceof DLFileEntry) {
+			DLFileEntry dlFileEntry = (DLFileEntry)object;
 
 			return dlFileEntry.getTitle();
 		}
-		else if (obj instanceof DLFileShortcut) {
-			DLFileShortcut dlFileShortcut = (DLFileShortcut)obj;
+		else if (object instanceof DLFileShortcut) {
+			DLFileShortcut dlFileShortcut = (DLFileShortcut)object;
 
 			return dlFileShortcut.getToTitle();
 		}
-		else if (obj instanceof DLFolder) {
-			DLFolder dlFolder = (DLFolder)obj;
+		else if (object instanceof DLFolder) {
+			DLFolder dlFolder = (DLFolder)object;
 
 			return dlFolder.getName();
 		}
-		else if (obj instanceof FileEntry) {
-			FileEntry fileEntry = (FileEntry)obj;
+		else if (object instanceof FileEntry) {
+			FileEntry fileEntry = (FileEntry)object;
 
 			return fileEntry.getTitle();
 		}
-		else if (obj instanceof FileShortcut) {
-			FileShortcut fileShortcut = (FileShortcut)obj;
+		else if (object instanceof FileShortcut) {
+			FileShortcut fileShortcut = (FileShortcut)object;
 
 			return fileShortcut.getToTitle();
 		}
 		else {
-			Folder folder = (Folder)obj;
+			Folder folder = (Folder)object;
 
 			return folder.getName();
 		}

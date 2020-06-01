@@ -31,16 +31,16 @@ public class Index {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Index)) {
+		if (!(object instanceof Index)) {
 			return false;
 		}
 
-		Index index = (Index)obj;
+		Index index = (Index)object;
 
 		if (Objects.equals(_indexName, index._indexName) &&
 			Objects.equals(_tableName, index._tableName) &&

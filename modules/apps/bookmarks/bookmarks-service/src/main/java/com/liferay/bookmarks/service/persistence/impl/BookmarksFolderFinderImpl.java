@@ -315,16 +315,16 @@ public class BookmarksFolderFinderImpl
 				//String name = (String)array[1];
 				long modelFolder = (Long)array[2];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelFolder == 0) {
-					obj = BookmarksFolderUtil.findByPrimaryKey(modelId);
+					object = BookmarksFolderUtil.findByPrimaryKey(modelId);
 				}
 				else {
-					obj = BookmarksEntryUtil.findByPrimaryKey(modelId);
+					object = BookmarksEntryUtil.findByPrimaryKey(modelId);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;

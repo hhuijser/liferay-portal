@@ -35,8 +35,8 @@ public class FieldSetRowChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		DDMStructure structure = (DDMStructure)obj;
+	public boolean isDisabled(Object object) {
+		DDMStructure structure = (DDMStructure)object;
 
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -52,7 +52,7 @@ public class FieldSetRowChecker extends EmptyOnClickRowChecker {
 			_log.error(exception, exception);
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

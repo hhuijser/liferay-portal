@@ -98,16 +98,16 @@ public class NodeImpl implements Node {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof NodeImpl)) {
+		if (!(object instanceof NodeImpl)) {
 			return false;
 		}
 
-		NodeImpl nodeImpl = (NodeImpl)obj;
+		NodeImpl nodeImpl = (NodeImpl)object;
 
 		org.dom4j.Node node = nodeImpl.getWrappedNode();
 
@@ -254,16 +254,16 @@ public class NodeImpl implements Node {
 
 	@Override
 	public Object selectObject(String xPathExpression) {
-		Object obj = _node.selectObject(xPathExpression);
+		Object object = _node.selectObject(xPathExpression);
 
-		if (obj == null) {
+		if (object == null) {
 			return null;
 		}
-		else if (obj instanceof List<?>) {
-			return SAXReaderImpl.toNewNodes((List<org.dom4j.Node>)obj);
+		else if (object instanceof List<?>) {
+			return SAXReaderImpl.toNewNodes((List<org.dom4j.Node>)object);
 		}
 
-		return obj;
+		return object;
 	}
 
 	@Override

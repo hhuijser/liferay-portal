@@ -42,8 +42,8 @@ public class GroupChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		Group group = (Group)obj;
+	public boolean isChecked(Object object) {
+		Group group = (Group)object;
 
 		if (StringUtil.equalsIgnoreCase(
 				_mvcRenderCommandName, "/analytics/edit_synced_sites")) {

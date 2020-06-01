@@ -36,17 +36,17 @@ public class DefaultDDMFormRuleAction implements SPIDDMFormRuleAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DefaultDDMFormRuleAction)) {
+		if (!(object instanceof DefaultDDMFormRuleAction)) {
 			return false;
 		}
 
 		DefaultDDMFormRuleAction ddmFormRuleAction =
-			(DefaultDDMFormRuleAction)obj;
+			(DefaultDDMFormRuleAction)object;
 
 		if (Objects.equals(_action, ddmFormRuleAction._action) &&
 			Objects.equals(_target, ddmFormRuleAction._target)) {

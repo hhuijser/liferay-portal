@@ -68,16 +68,16 @@ public class DDMFormFieldOptions implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormFieldOptions)) {
+		if (!(object instanceof DDMFormFieldOptions)) {
 			return false;
 		}
 
-		DDMFormFieldOptions ddmFormFieldOptions = (DDMFormFieldOptions)obj;
+		DDMFormFieldOptions ddmFormFieldOptions = (DDMFormFieldOptions)object;
 
 		if (Objects.equals(
 				_defaultLocale, ddmFormFieldOptions._defaultLocale) &&

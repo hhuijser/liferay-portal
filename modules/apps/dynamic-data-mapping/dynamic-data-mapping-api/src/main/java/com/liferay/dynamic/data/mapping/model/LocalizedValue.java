@@ -52,16 +52,16 @@ public class LocalizedValue implements Value {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LocalizedValue)) {
+		if (!(object instanceof LocalizedValue)) {
 			return false;
 		}
 
-		LocalizedValue localizedValue = (LocalizedValue)obj;
+		LocalizedValue localizedValue = (LocalizedValue)object;
 
 		if (Objects.equals(_defaultLocale, localizedValue._defaultLocale) &&
 			Objects.equals(_values, localizedValue._values)) {

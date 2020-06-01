@@ -40,8 +40,8 @@ public class BooleanType implements CompositeUserType, Serializable {
 	}
 
 	@Override
-	public Object deepCopy(Object obj) {
-		return obj;
+	public Object deepCopy(Object object) {
+		return object;
 	}
 
 	@Override

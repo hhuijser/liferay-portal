@@ -50,16 +50,16 @@ public class MethodSignature {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof MethodSignature)) {
+		if (!(object instanceof MethodSignature)) {
 			return false;
 		}
 
-		MethodSignature methodSignature = (MethodSignature)obj;
+		MethodSignature methodSignature = (MethodSignature)object;
 
 		if (_className.equals(methodSignature._className) &&
 			_methodName.equals(methodSignature._methodName) &&

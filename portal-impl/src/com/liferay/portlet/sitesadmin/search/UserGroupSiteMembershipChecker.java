@@ -37,8 +37,8 @@ public class UserGroupSiteMembershipChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		UserGroup userGroup = (UserGroup)obj;
+	public boolean isChecked(Object object) {
+		UserGroup userGroup = (UserGroup)object;
 
 		try {
 			return UserGroupLocalServiceUtil.hasGroupUserGroup(
@@ -52,8 +52,8 @@ public class UserGroupSiteMembershipChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		return isChecked(obj);
+	public boolean isDisabled(Object object) {
+		return isChecked(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

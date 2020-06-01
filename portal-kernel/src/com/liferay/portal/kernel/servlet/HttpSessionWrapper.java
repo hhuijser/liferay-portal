@@ -30,14 +30,14 @@ public class HttpSessionWrapper implements HttpSession {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof HttpSessionWrapper) {
-			HttpSessionWrapper sessionWrapper = (HttpSessionWrapper)obj;
+	public boolean equals(Object object) {
+		if (object instanceof HttpSessionWrapper) {
+			HttpSessionWrapper sessionWrapper = (HttpSessionWrapper)object;
 
-			obj = sessionWrapper.getWrappedSession();
+			object = sessionWrapper.getWrappedSession();
 		}
 
-		return _session.equals(obj);
+		return _session.equals(object);
 	}
 
 	@Override

@@ -97,8 +97,8 @@ public class SetUtil {
 
 		Set<E> set = new HashSet<>();
 
-		for (E obj : array) {
-			set.add(obj);
+		for (E object : array) {
+			set.add(object);
 		}
 
 		return set;

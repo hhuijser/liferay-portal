@@ -44,16 +44,16 @@ public class Action {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Action)) {
+		if (!(object instanceof Action)) {
 			return false;
 		}
 
-		Action action = (Action)obj;
+		Action action = (Action)object;
 
 		if (Objects.equals(_name, action._name)) {
 			return true;

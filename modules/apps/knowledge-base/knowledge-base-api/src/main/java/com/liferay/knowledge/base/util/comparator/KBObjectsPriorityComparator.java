@@ -96,9 +96,9 @@ public class KBObjectsPriorityComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected double getPriority(Object obj) {
-		if (obj instanceof KBArticle) {
-			KBArticle kbArticle = (KBArticle)obj;
+	protected double getPriority(Object object) {
+		if (object instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)object;
 
 			return kbArticle.getPriority();
 		}
@@ -106,14 +106,14 @@ public class KBObjectsPriorityComparator<T> extends OrderByComparator<T> {
 		return 0.0;
 	}
 
-	protected String getTitle(Object obj) {
-		if (obj instanceof KBArticle) {
-			KBArticle kbArticle = (KBArticle)obj;
+	protected String getTitle(Object object) {
+		if (object instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)object;
 
 			return kbArticle.getTitle();
 		}
 
-		KBFolder kbFolder = (KBFolder)obj;
+		KBFolder kbFolder = (KBFolder)object;
 
 		return kbFolder.getName();
 	}

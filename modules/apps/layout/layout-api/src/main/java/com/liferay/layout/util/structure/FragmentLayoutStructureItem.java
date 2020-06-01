@@ -31,17 +31,17 @@ public class FragmentLayoutStructureItem extends LayoutStructureItem {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof FragmentLayoutStructureItem)) {
+		if (!(object instanceof FragmentLayoutStructureItem)) {
 			return false;
 		}
 
 		FragmentLayoutStructureItem fragmentLayoutStructureItem =
-			(FragmentLayoutStructureItem)obj;
+			(FragmentLayoutStructureItem)object;
 
 		if (!Objects.equals(
 				_fragmentEntryLinkId,
@@ -50,7 +50,7 @@ public class FragmentLayoutStructureItem extends LayoutStructureItem {
 			return false;
 		}
 
-		return super.equals(obj);
+		return super.equals(object);
 	}
 
 	public long getFragmentEntryLinkId() {

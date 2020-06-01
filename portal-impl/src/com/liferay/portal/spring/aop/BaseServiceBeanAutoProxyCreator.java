@@ -128,8 +128,8 @@ public abstract class BaseServiceBeanAutoProxyCreator
 	private static class CacheKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			CacheKey cacheKey = (CacheKey)obj;
+		public boolean equals(Object object) {
+			CacheKey cacheKey = (CacheKey)object;
 
 			if (_clazz.equals(cacheKey._clazz) &&
 				Objects.equals(_beanName, cacheKey._beanName)) {

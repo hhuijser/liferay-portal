@@ -38,16 +38,16 @@ public class KeyValuePair implements Comparable<KeyValuePair>, Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof KeyValuePair)) {
+		if (!(object instanceof KeyValuePair)) {
 			return false;
 		}
 
-		KeyValuePair kvp = (KeyValuePair)obj;
+		KeyValuePair kvp = (KeyValuePair)object;
 
 		if (Objects.equals(_key, kvp._key)) {
 			return true;

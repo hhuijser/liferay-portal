@@ -27,16 +27,16 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class BaseAssetAddonEntry implements AssetAddonEntry {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AssetAddonEntry)) {
+		if (!(object instanceof AssetAddonEntry)) {
 			return false;
 		}
 
-		AssetAddonEntry assetAddonEntry = (AssetAddonEntry)obj;
+		AssetAddonEntry assetAddonEntry = (AssetAddonEntry)object;
 
 		String key = assetAddonEntry.getKey();
 

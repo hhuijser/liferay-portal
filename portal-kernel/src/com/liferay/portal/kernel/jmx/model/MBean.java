@@ -53,16 +53,16 @@ public class MBean implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof MBean)) {
+		if (!(object instanceof MBean)) {
 			return false;
 		}
 
-		MBean mBean = (MBean)obj;
+		MBean mBean = (MBean)object;
 
 		if (Objects.equals(_domainName, mBean._domainName) &&
 			Objects.equals(_mBeanName, mBean._mBeanName)) {

@@ -55,17 +55,17 @@ public class NotificationRecipient {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof NotificationRecipient)) {
+		if (!(object instanceof NotificationRecipient)) {
 			return false;
 		}
 
 		NotificationRecipient notificationRecipient =
-			(NotificationRecipient)obj;
+			(NotificationRecipient)object;
 
 		if ((_companyId == notificationRecipient._companyId) &&
 			Objects.equals(

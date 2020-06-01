@@ -134,8 +134,8 @@ public class OutputData implements Mergeable<OutputData>, Serializable {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			DataKey dataKey = (DataKey)obj;
+		public boolean equals(Object object) {
+			DataKey dataKey = (DataKey)object;
 
 			if (_outputKey.equals(dataKey._outputKey) &&
 				_webKey.equals(dataKey._webKey)) {

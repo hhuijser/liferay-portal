@@ -120,24 +120,24 @@ public class RepositoryModelCreateDateComparator<T>
 		return _ascending;
 	}
 
-	protected Date getCreateDate(Object obj) {
-		if (obj instanceof DLFileEntry) {
-			DLFileEntry dlFileEntry = (DLFileEntry)obj;
+	protected Date getCreateDate(Object object) {
+		if (object instanceof DLFileEntry) {
+			DLFileEntry dlFileEntry = (DLFileEntry)object;
 
 			return dlFileEntry.getCreateDate();
 		}
-		else if (obj instanceof DLFileShortcut) {
-			DLFileShortcut dlFileShortcut = (DLFileShortcut)obj;
+		else if (object instanceof DLFileShortcut) {
+			DLFileShortcut dlFileShortcut = (DLFileShortcut)object;
 
 			return dlFileShortcut.getCreateDate();
 		}
-		else if (obj instanceof DLFolder) {
-			DLFolder dlFolder = (DLFolder)obj;
+		else if (object instanceof DLFolder) {
+			DLFolder dlFolder = (DLFolder)object;
 
 			return dlFolder.getCreateDate();
 		}
 		else {
-			RepositoryEntry repositoryEntry = (RepositoryEntry)obj;
+			RepositoryEntry repositoryEntry = (RepositoryEntry)object;
 
 			return repositoryEntry.getCreateDate();
 		}

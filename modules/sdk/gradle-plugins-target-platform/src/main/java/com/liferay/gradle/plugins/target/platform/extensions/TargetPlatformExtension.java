@@ -149,10 +149,10 @@ public class TargetPlatformExtension {
 		Iterator<?> iterator = configurationNames.iterator();
 
 		while (iterator.hasNext()) {
-			Object obj = iterator.next();
+			Object object = iterator.next();
 
-			if (obj instanceof String) {
-				configurationNamesList.add((String)obj);
+			if (object instanceof String) {
+				configurationNamesList.add((String)object);
 			}
 		}
 

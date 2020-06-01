@@ -36,19 +36,19 @@ public class JumpToPageDDMFormRuleAction extends DefaultDDMFormRuleAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof JumpToPageDDMFormRuleAction)) {
+		if (!(object instanceof JumpToPageDDMFormRuleAction)) {
 			return false;
 		}
 
 		JumpToPageDDMFormRuleAction ddmFormRuleAction =
-			(JumpToPageDDMFormRuleAction)obj;
+			(JumpToPageDDMFormRuleAction)object;
 
-		if (super.equals(obj) &&
+		if (super.equals(object) &&
 			Objects.equals(_source, ddmFormRuleAction._source)) {
 
 			return true;

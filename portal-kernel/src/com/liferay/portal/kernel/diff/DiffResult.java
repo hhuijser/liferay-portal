@@ -52,16 +52,16 @@ public class DiffResult {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DiffResult)) {
+		if (!(object instanceof DiffResult)) {
 			return false;
 		}
 
-		DiffResult diffResult = (DiffResult)obj;
+		DiffResult diffResult = (DiffResult)object;
 
 		List<String> changedLines = diffResult.getChangedLines();
 

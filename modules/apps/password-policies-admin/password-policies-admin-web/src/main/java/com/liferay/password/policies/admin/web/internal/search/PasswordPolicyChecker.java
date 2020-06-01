@@ -32,8 +32,8 @@ public class PasswordPolicyChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		PasswordPolicy passwordPolicy = (PasswordPolicy)obj;
+	public boolean isDisabled(Object object) {
+		PasswordPolicy passwordPolicy = (PasswordPolicy)object;
 
 		if (passwordPolicy.isDefaultPolicy() ||
 			!PasswordPolicyPermissionUtil.contains(
@@ -43,7 +43,7 @@ public class PasswordPolicyChecker extends EmptyOnClickRowChecker {
 			return true;
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 }

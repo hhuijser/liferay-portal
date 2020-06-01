@@ -37,17 +37,17 @@ public class SiteMembershipChecker extends RowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
+	public boolean isChecked(Object object) {
 		User user = null;
 
-		if (obj instanceof User) {
-			user = (User)obj;
+		if (object instanceof User) {
+			user = (User)object;
 		}
-		else if (obj instanceof Object[]) {
-			user = (User)((Object[])obj)[0];
+		else if (object instanceof Object[]) {
+			user = (User)((Object[])object)[0];
 		}
 		else {
-			throw new IllegalArgumentException(obj + " is not a user");
+			throw new IllegalArgumentException(object + " is not a user");
 		}
 
 		try {
@@ -62,8 +62,8 @@ public class SiteMembershipChecker extends RowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		User user = (User)obj;
+	public boolean isDisabled(Object object) {
+		User user = (User)object;
 
 		try {
 			if (isChecked(user)) {
@@ -88,7 +88,7 @@ public class SiteMembershipChecker extends RowChecker {
 			_log.error(exception, exception);
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

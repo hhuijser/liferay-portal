@@ -65,16 +65,16 @@ public class LiferayFileShortcut extends LiferayModel implements FileShortcut {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LiferayFileShortcut)) {
+		if (!(object instanceof LiferayFileShortcut)) {
 			return false;
 		}
 
-		LiferayFileShortcut liferayFileShortcut = (LiferayFileShortcut)obj;
+		LiferayFileShortcut liferayFileShortcut = (LiferayFileShortcut)object;
 
 		if (Objects.equals(
 				_dlFileShortcut, liferayFileShortcut._dlFileShortcut)) {

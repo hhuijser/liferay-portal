@@ -375,8 +375,8 @@ public class PermissionCacheUtil {
 	private static class PermissionKey implements Serializable {
 
 		@Override
-		public boolean equals(Object obj) {
-			PermissionKey permissionKey = (PermissionKey)obj;
+		public boolean equals(Object object) {
+			PermissionKey permissionKey = (PermissionKey)object;
 
 			if ((permissionKey._groupId == _groupId) &&
 				Objects.equals(permissionKey._name, _name) &&
@@ -453,8 +453,9 @@ public class PermissionCacheUtil {
 	private static class UserGroupRoleIdsKey implements Serializable {
 
 		@Override
-		public boolean equals(Object obj) {
-			UserGroupRoleIdsKey userGroupRoleIdsKey = (UserGroupRoleIdsKey)obj;
+		public boolean equals(Object object) {
+			UserGroupRoleIdsKey userGroupRoleIdsKey =
+				(UserGroupRoleIdsKey)object;
 
 			if ((userGroupRoleIdsKey._userId == _userId) &&
 				(userGroupRoleIdsKey._groupId == _groupId)) {
@@ -507,9 +508,9 @@ public class PermissionCacheUtil {
 	private static class UserPrimaryKeyRoleKey implements Serializable {
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(Object object) {
 			UserPrimaryKeyRoleKey userPrimaryKeyRoleKey =
-				(UserPrimaryKeyRoleKey)obj;
+				(UserPrimaryKeyRoleKey)object;
 
 			if ((userPrimaryKeyRoleKey._userId == _userId) &&
 				(userPrimaryKeyRoleKey._primaryKey == _primaryKey) &&
@@ -550,8 +551,8 @@ public class PermissionCacheUtil {
 	private static class UserRoleKey implements Serializable {
 
 		@Override
-		public boolean equals(Object obj) {
-			UserRoleKey userRoleKey = (UserRoleKey)obj;
+		public boolean equals(Object object) {
+			UserRoleKey userRoleKey = (UserRoleKey)object;
 
 			if ((userRoleKey._userId == _userId) &&
 				(userRoleKey._roleId == _roleId)) {

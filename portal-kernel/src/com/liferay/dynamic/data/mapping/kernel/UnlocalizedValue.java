@@ -42,16 +42,16 @@ public class UnlocalizedValue implements Value {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof UnlocalizedValue)) {
+		if (!(object instanceof UnlocalizedValue)) {
 			return false;
 		}
 
-		UnlocalizedValue unlocalizedValue = (UnlocalizedValue)obj;
+		UnlocalizedValue unlocalizedValue = (UnlocalizedValue)object;
 
 		if (Objects.equals(_values, unlocalizedValue._values)) {
 			return true;

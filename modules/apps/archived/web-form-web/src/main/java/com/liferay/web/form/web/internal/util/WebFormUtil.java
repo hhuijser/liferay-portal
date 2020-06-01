@@ -251,11 +251,11 @@ public class WebFormUtil {
 
 			context.evaluateString(scope, script, "Validation Script", 1, null);
 
-			Object obj = ScriptableObject.getProperty(
+			Object object = ScriptableObject.getProperty(
 				scope, "internalValidationResult");
 
-			if (obj instanceof Boolean) {
-				validationResult = (Boolean)obj;
+			if (object instanceof Boolean) {
+				validationResult = (Boolean)object;
 			}
 			else {
 				throw new Exception("The script must return a boolean value");

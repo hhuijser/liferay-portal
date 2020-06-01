@@ -990,12 +990,12 @@ public class ConcurrentMapperHashMapTest {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (!(obj instanceof Key)) {
+		public boolean equals(Object object) {
+			if (!(object instanceof Key)) {
 				return false;
 			}
 
-			Key key = (Key)obj;
+			Key key = (Key)object;
 
 			return _id.equals(key._id);
 		}
@@ -1022,12 +1022,12 @@ public class ConcurrentMapperHashMapTest {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (!(obj instanceof KeyReference)) {
+		public boolean equals(Object object) {
+			if (!(object instanceof KeyReference)) {
 				return false;
 			}
 
-			KeyReference keyReference = (KeyReference)obj;
+			KeyReference keyReference = (KeyReference)object;
 
 			return _key.equals(keyReference._key);
 		}
@@ -1054,12 +1054,12 @@ public class ConcurrentMapperHashMapTest {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (!(obj instanceof Value)) {
+		public boolean equals(Object object) {
+			if (!(object instanceof Value)) {
 				return false;
 			}
 
-			Value value = (Value)obj;
+			Value value = (Value)object;
 
 			return _valueId.equals(value._valueId);
 		}
@@ -1086,12 +1086,12 @@ public class ConcurrentMapperHashMapTest {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (!(obj instanceof ValueReference)) {
+		public boolean equals(Object object) {
+			if (!(object instanceof ValueReference)) {
 				return false;
 			}
 
-			ValueReference valueReference = (ValueReference)obj;
+			ValueReference valueReference = (ValueReference)object;
 
 			return _value.equals(valueReference._value);
 		}

@@ -31,17 +31,17 @@ public class ResourceActionRowChecker extends RowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
+	public boolean isChecked(Object object) {
 		try {
-			return doIsChecked(obj);
+			return doIsChecked(object);
 		}
 		catch (Exception exception) {
 			return false;
 		}
 	}
 
-	protected boolean doIsChecked(Object obj) throws Exception {
-		Object[] objArray = (Object[])obj;
+	protected boolean doIsChecked(Object object) throws Exception {
+		Object[] objArray = (Object[])object;
 
 		Role role = (Role)objArray[0];
 		String actionId = (String)objArray[1];

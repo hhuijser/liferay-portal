@@ -64,8 +64,9 @@ public class MessagingProxyInvocationHandler implements InvocationHandler {
 		new InvocationHandlerFactory() {
 
 			@Override
-			public InvocationHandler createInvocationHandler(Object obj) {
-				return new MessagingProxyInvocationHandler((BaseProxyBean)obj);
+			public InvocationHandler createInvocationHandler(Object object) {
+				return new MessagingProxyInvocationHandler(
+					(BaseProxyBean)object);
 			}
 
 		};

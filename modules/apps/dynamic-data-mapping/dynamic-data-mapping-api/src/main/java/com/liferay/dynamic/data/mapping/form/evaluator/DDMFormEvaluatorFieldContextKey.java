@@ -31,17 +31,17 @@ public class DDMFormEvaluatorFieldContextKey {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormEvaluatorFieldContextKey)) {
+		if (!(object instanceof DDMFormEvaluatorFieldContextKey)) {
 			return false;
 		}
 
 		DDMFormEvaluatorFieldContextKey ddmFormFieldContextKey =
-			(DDMFormEvaluatorFieldContextKey)obj;
+			(DDMFormEvaluatorFieldContextKey)object;
 
 		if (Objects.equals(_fieldName, ddmFormFieldContextKey._fieldName) &&
 			Objects.equals(_instanceId, ddmFormFieldContextKey._instanceId)) {

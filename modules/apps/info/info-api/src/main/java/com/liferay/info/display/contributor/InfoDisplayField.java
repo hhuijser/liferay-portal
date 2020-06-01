@@ -36,16 +36,16 @@ public class InfoDisplayField {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof InfoDisplayField)) {
+		if (!(object instanceof InfoDisplayField)) {
 			return false;
 		}
 
-		InfoDisplayField infoDisplayField = (InfoDisplayField)obj;
+		InfoDisplayField infoDisplayField = (InfoDisplayField)object;
 
 		if (Objects.equals(_key, infoDisplayField._key) &&
 			Objects.equals(_label, infoDisplayField._label) &&

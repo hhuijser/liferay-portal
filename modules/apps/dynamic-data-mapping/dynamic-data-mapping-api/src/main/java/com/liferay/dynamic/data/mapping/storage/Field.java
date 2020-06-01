@@ -94,16 +94,16 @@ public class Field implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Field)) {
+		if (!(object instanceof Field)) {
 			return false;
 		}
 
-		Field field = (Field)obj;
+		Field field = (Field)object;
 
 		if ((_ddmStructureId == field._ddmStructureId) &&
 			Objects.equals(_name, field._name) &&

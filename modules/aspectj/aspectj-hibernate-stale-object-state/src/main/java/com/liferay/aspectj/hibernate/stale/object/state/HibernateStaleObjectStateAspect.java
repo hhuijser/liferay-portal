@@ -124,8 +124,8 @@ public class HibernateStaleObjectStateAspect {
 	private static class EventKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			EventKey eventKey = (EventKey)obj;
+		public boolean equals(Object object) {
+			EventKey eventKey = (EventKey)object;
 
 			if ((eventKey._mvccVersion == _mvccVersion) &&
 				Objects.equals(eventKey._primaryKey, _primaryKey) &&

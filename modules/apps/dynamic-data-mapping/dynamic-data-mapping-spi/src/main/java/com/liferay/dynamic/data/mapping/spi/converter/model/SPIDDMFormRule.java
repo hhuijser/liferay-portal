@@ -28,16 +28,16 @@ import java.util.Objects;
 public class SPIDDMFormRule {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SPIDDMFormRule)) {
+		if (!(object instanceof SPIDDMFormRule)) {
 			return false;
 		}
 
-		SPIDDMFormRule spiDDMFormRule = (SPIDDMFormRule)obj;
+		SPIDDMFormRule spiDDMFormRule = (SPIDDMFormRule)object;
 
 		if (Objects.equals(_logicalOperator, spiDDMFormRule._logicalOperator) &&
 			Objects.equals(_name, spiDDMFormRule._name) &&

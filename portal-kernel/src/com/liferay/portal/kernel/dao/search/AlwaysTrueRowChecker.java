@@ -26,7 +26,7 @@ public class AlwaysTrueRowChecker extends RowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
+	public boolean isChecked(Object object) {
 		return true;
 	}
 

@@ -720,29 +720,29 @@ public class PortletRequestModel implements Serializable {
 		return true;
 	}
 
-	private static boolean _isValidAttributeValue(Object obj) {
-		if (obj == null) {
+	private static boolean _isValidAttributeValue(Object object) {
+		if (object == null) {
 			return false;
 		}
-		else if (obj instanceof Collection<?>) {
-			Collection<?> col = (Collection<?>)obj;
+		else if (object instanceof Collection<?>) {
+			Collection<?> col = (Collection<?>)object;
 
 			return !col.isEmpty();
 		}
-		else if (obj instanceof Map<?, ?>) {
-			Map<?, ?> map = (Map<?, ?>)obj;
+		else if (object instanceof Map<?, ?>) {
+			Map<?, ?> map = (Map<?, ?>)object;
 
 			return !map.isEmpty();
 		}
 		else {
-			String objString = String.valueOf(obj);
+			String objString = String.valueOf(object);
 
 			if (Validator.isNull(objString)) {
 				return false;
 			}
 
 			String hashCode = StringPool.AT.concat(
-				StringUtil.toHexString(obj.hashCode()));
+				StringUtil.toHexString(object.hashCode()));
 
 			if (objString.endsWith(hashCode)) {
 				return false;

@@ -96,21 +96,21 @@ public class KBObjectsViewCountComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected String getName(Object obj) {
-		if (obj instanceof KBArticle) {
-			KBArticle kbArticle = (KBArticle)obj;
+	protected String getName(Object object) {
+		if (object instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)object;
 
 			return kbArticle.getTitle();
 		}
 
-		KBFolder kbFolder = (KBFolder)obj;
+		KBFolder kbFolder = (KBFolder)object;
 
 		return kbFolder.getName();
 	}
 
-	protected long getViewCount(Object obj) {
-		if (obj instanceof KBArticle) {
-			KBArticle kbArticle = (KBArticle)obj;
+	protected long getViewCount(Object object) {
+		if (object instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)object;
 
 			return kbArticle.getViewCount();
 		}

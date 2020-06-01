@@ -42,15 +42,15 @@ public class OrganizationUserChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
+	public boolean isDisabled(Object object) {
 		Organization organization = null;
 		User user = null;
 
-		if (obj instanceof Organization) {
-			organization = (Organization)obj;
+		if (object instanceof Organization) {
+			organization = (Organization)object;
 		}
 		else {
-			user = (User)obj;
+			user = (User)object;
 		}
 
 		try {
@@ -74,7 +74,7 @@ public class OrganizationUserChecker extends EmptyOnClickRowChecker {
 		catch (Exception exception) {
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	@Override

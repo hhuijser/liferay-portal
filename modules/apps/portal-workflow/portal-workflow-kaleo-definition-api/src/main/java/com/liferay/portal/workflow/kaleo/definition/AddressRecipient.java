@@ -28,16 +28,16 @@ public class AddressRecipient extends Recipient {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AddressRecipient)) {
+		if (!(object instanceof AddressRecipient)) {
 			return false;
 		}
 
-		AddressRecipient addressRecipient = (AddressRecipient)obj;
+		AddressRecipient addressRecipient = (AddressRecipient)object;
 
 		if (Objects.equals(_address, addressRecipient._address)) {
 			return true;

@@ -37,16 +37,16 @@ public class FileRequest implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof FileRequest)) {
+		if (!(object instanceof FileRequest)) {
 			return false;
 		}
 
-		FileRequest fileRequest = (FileRequest)obj;
+		FileRequest fileRequest = (FileRequest)object;
 
 		if ((_deleteAfterFetch == fileRequest._deleteAfterFetch) &&
 			(_lastModifiedTime == fileRequest._lastModifiedTime) &&

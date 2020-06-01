@@ -45,20 +45,20 @@ public class BulkReindexersHolderImpl implements BulkReindexersHolder {
 	protected void addBulkReindexer(
 		BulkReindexer bulkReindexer, Map<?, ?> properties) {
 
-		Object obj = properties.get("indexer.class.name");
+		Object object = properties.get("indexer.class.name");
 
-		if (obj != null) {
-			_put(obj.toString(), bulkReindexer);
+		if (object != null) {
+			_put(object.toString(), bulkReindexer);
 		}
 	}
 
 	protected void removeBulkReindexer(
 		BulkReindexer bulkReindexer, Map<?, ?> properties) {
 
-		Object obj = properties.get("indexer.class.name");
+		Object object = properties.get("indexer.class.name");
 
-		if (obj != null) {
-			_remove(obj.toString());
+		if (object != null) {
+			_remove(object.toString());
 		}
 	}
 

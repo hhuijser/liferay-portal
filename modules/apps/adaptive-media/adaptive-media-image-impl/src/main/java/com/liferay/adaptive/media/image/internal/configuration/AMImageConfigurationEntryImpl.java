@@ -45,17 +45,17 @@ public class AMImageConfigurationEntryImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AMImageConfigurationEntryImpl)) {
+		if (!(object instanceof AMImageConfigurationEntryImpl)) {
 			return false;
 		}
 
 		AMImageConfigurationEntryImpl amImageConfigurationEntryImpl =
-			(AMImageConfigurationEntryImpl)obj;
+			(AMImageConfigurationEntryImpl)object;
 
 		if (Objects.equals(_enabled, amImageConfigurationEntryImpl._enabled) &&
 			Objects.equals(_name, amImageConfigurationEntryImpl._name) &&

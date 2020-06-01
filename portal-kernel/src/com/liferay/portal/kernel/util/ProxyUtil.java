@@ -218,12 +218,12 @@ public class ProxyUtil {
 	private static class LookupKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			if (obj == this) {
+		public boolean equals(Object object) {
+			if (object == this) {
 				return true;
 			}
 
-			LookupKey lookupKey = (LookupKey)obj;
+			LookupKey lookupKey = (LookupKey)object;
 
 			Reference<?>[] references = lookupKey._references;
 

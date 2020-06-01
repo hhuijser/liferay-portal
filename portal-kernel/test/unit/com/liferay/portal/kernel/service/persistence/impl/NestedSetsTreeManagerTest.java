@@ -416,17 +416,17 @@ public class NestedSetsTreeManagerTest {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof SimpleNestedSetsTreeNode)) {
+			if (!(object instanceof SimpleNestedSetsTreeNode)) {
 				return false;
 			}
 
 			SimpleNestedSetsTreeNode simpleNestedSetsTreeNode =
-				(SimpleNestedSetsTreeNode)obj;
+				(SimpleNestedSetsTreeNode)object;
 
 			if (_primaryKey == simpleNestedSetsTreeNode._primaryKey) {
 				return true;

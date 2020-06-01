@@ -129,7 +129,7 @@ public class StringUtilTest {
 		Assert.assertEquals(
 			"5x",
 			StringUtil.merge(
-				new Object[] {5}, obj -> obj.toString() + "x", null));
+				new Object[] {5}, object -> object.toString() + "x", null));
 		Assert.assertEquals(
 			"a", StringUtil.merge(new ArrayList<>(Arrays.asList("a")), null));
 		Assert.assertEquals(
@@ -173,7 +173,7 @@ public class StringUtilTest {
 		Assert.assertEquals(
 			"5x,ax",
 			StringUtil.merge(
-				new Object[] {5, 'a'}, obj -> obj.toString() + "x",
+				new Object[] {5, 'a'}, object -> object.toString() + "x",
 				StringPool.COMMA));
 		Assert.assertEquals(
 			"a,b",

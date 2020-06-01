@@ -40,8 +40,8 @@ public class AddOrganizationPasswordPolicyChecker
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		Organization organization = (Organization)obj;
+	public boolean isChecked(Object object) {
+		Organization organization = (Organization)object;
 
 		try {
 			return OrganizationLocalServiceUtil.hasPasswordPolicyOrganization(
@@ -56,10 +56,10 @@ public class AddOrganizationPasswordPolicyChecker
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		Organization organization = (Organization)obj;
+	public boolean isDisabled(Object object) {
+		Organization organization = (Organization)object;
 
-		if (isChecked(obj)) {
+		if (isChecked(object)) {
 			return true;
 		}
 

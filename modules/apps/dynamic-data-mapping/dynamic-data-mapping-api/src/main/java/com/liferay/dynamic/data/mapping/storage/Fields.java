@@ -41,20 +41,20 @@ public class Fields implements Iterable<Field>, Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		return equals(obj, true);
+	public boolean equals(Object object) {
+		return equals(object, true);
 	}
 
-	public boolean equals(Object obj, boolean includePrivateFields) {
-		if (this == obj) {
+	public boolean equals(Object object, boolean includePrivateFields) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Fields)) {
+		if (!(object instanceof Fields)) {
 			return false;
 		}
 
-		Fields fields = (Fields)obj;
+		Fields fields = (Fields)object;
 
 		if (includePrivateFields) {
 			return Objects.equals(_fieldsMap, fields._fieldsMap);

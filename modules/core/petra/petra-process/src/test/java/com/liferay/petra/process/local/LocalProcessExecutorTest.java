@@ -1469,10 +1469,10 @@ public class LocalProcessExecutorTest {
 		public static final ProcessCallable<Serializable>
 			PIPING_BACK_WRITE_ABORTED = () -> {
 				try {
-					Object obj = new Object();
+					Object object = new Object();
 
 					LocalProcessLauncher.ProcessContext.writeProcessCallable(
-						() -> (Serializable)obj);
+						() -> (Serializable)object);
 				}
 				catch (IOException ioException) {
 					throw new ProcessException(ioException);

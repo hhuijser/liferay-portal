@@ -34,16 +34,16 @@ public class Position implements Comparable<Position> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Position)) {
+		if (!(object instanceof Position)) {
 			return false;
 		}
 
-		Position position = (Position)obj;
+		Position position = (Position)object;
 
 		if ((_lineNumber == position.getLineNumber()) &&
 			(_linePosition == position.getLinePosition())) {

@@ -156,18 +156,18 @@ public class NettyFabricAgentStubTest {
 
 				@Override
 				public void write(
-						ChannelHandlerContext channelHandlerContext, Object obj,
-						ChannelPromise channelPromise)
+						ChannelHandlerContext channelHandlerContext,
+						Object object, ChannelPromise channelPromise)
 					throws Exception {
 
-					super.write(channelHandlerContext, obj, channelPromise);
+					super.write(channelHandlerContext, object, channelPromise);
 
-					if (!(obj instanceof NettyFabricWorkerConfig)) {
+					if (!(object instanceof NettyFabricWorkerConfig)) {
 						return;
 					}
 
 					NettyFabricWorkerConfig<?> nettyFabricWorkerConfig =
-						(NettyFabricWorkerConfig<?>)obj;
+						(NettyFabricWorkerConfig<?>)object;
 
 					nettyFabricAgentStub.finishStartup(
 						nettyFabricWorkerConfig.getId());

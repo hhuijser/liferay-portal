@@ -34,17 +34,17 @@ public class DDMFormFieldEvaluationResult {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormFieldEvaluationResult)) {
+		if (!(object instanceof DDMFormFieldEvaluationResult)) {
 			return false;
 		}
 
 		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult =
-			(DDMFormFieldEvaluationResult)obj;
+			(DDMFormFieldEvaluationResult)object;
 
 		if (Objects.equals(
 				_instanceId, ddmFormFieldEvaluationResult._instanceId) &&

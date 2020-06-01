@@ -27,7 +27,7 @@ public interface IndexerPostProcessor {
 			BooleanFilter booleanFilter, SearchContext searchContext)
 		throws Exception;
 
-	public void postProcessDocument(Document document, Object obj)
+	public void postProcessDocument(Document document, Object object)
 		throws Exception;
 
 	public void postProcessFullQuery(

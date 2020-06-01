@@ -53,12 +53,12 @@ public class CentralizedThreadLocalTest {
 
 		// No copy
 
-		Object obj = new Object();
+		Object object = new Object();
 
 		CentralizedThreadLocal<Object> centralizedThreadLocal =
 			new CentralizedThreadLocal<>(false);
 
-		centralizedThreadLocal.set(obj);
+		centralizedThreadLocal.set(object);
 
 		Map<CentralizedThreadLocal<?>, Object> longLivedThreadLocals =
 			CentralizedThreadLocal.getLongLivedThreadLocals();
@@ -80,7 +80,7 @@ public class CentralizedThreadLocalTest {
 		centralizedThreadLocal = new CentralizedThreadLocal<>(
 			null, null, Function.identity(), false);
 
-		centralizedThreadLocal.set(obj);
+		centralizedThreadLocal.set(object);
 
 		longLivedThreadLocals =
 			CentralizedThreadLocal.getLongLivedThreadLocals();
@@ -93,7 +93,7 @@ public class CentralizedThreadLocalTest {
 		CentralizedThreadLocal.setThreadLocals(
 			longLivedThreadLocals, shortLivedThreadLocals);
 
-		Assert.assertSame(obj, centralizedThreadLocal.get());
+		Assert.assertSame(object, centralizedThreadLocal.get());
 
 		centralizedThreadLocal.remove();
 
@@ -207,27 +207,28 @@ public class CentralizedThreadLocalTest {
 
 		// By override
 
-		Object obj = new Object();
+		Object object = new Object();
 
 		CentralizedThreadLocal<?> centralizedThreadLocal =
 			new CentralizedThreadLocal<Object>(false) {
 
 				@Override
 				protected Object initialValue() {
-					return obj;
+					return object;
 				}
 
 			};
 
-		Assert.assertSame(obj, centralizedThreadLocal.get());
+		Assert.assertSame(object, centralizedThreadLocal.get());
 
 		centralizedThreadLocal.remove();
 
 		// By Supplier
 
-		centralizedThreadLocal = new CentralizedThreadLocal<>(null, () -> obj);
+		centralizedThreadLocal = new CentralizedThreadLocal<>(
+			null, () -> object);
 
-		Assert.assertSame(obj, centralizedThreadLocal.get());
+		Assert.assertSame(object, centralizedThreadLocal.get());
 
 		centralizedThreadLocal.remove();
 

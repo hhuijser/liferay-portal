@@ -31,7 +31,7 @@ public class BaseIndexerPostProcessor implements IndexerPostProcessor {
 	}
 
 	@Override
-	public void postProcessDocument(Document document, Object obj)
+	public void postProcessDocument(Document document, Object object)
 		throws Exception {
 	}
 

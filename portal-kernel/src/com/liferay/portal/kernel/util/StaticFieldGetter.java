@@ -29,20 +29,20 @@ public class StaticFieldGetter {
 	}
 
 	public Object getFieldValue(String className, String fieldName) {
-		Object obj = null;
+		Object object = null;
 
 		try {
 			Class<?> objClass = Class.forName(className);
 
 			Field field = objClass.getField(fieldName);
 
-			obj = field.get(objClass);
+			object = field.get(objClass);
 		}
 		catch (Exception exception) {
 			_log.error("Unable to access static field", exception);
 		}
 
-		return obj;
+		return object;
 	}
 
 	private StaticFieldGetter() {

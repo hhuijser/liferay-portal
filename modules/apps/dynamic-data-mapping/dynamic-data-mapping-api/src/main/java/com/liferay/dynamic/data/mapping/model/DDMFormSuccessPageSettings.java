@@ -47,17 +47,17 @@ public class DDMFormSuccessPageSettings implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormSuccessPageSettings)) {
+		if (!(object instanceof DDMFormSuccessPageSettings)) {
 			return false;
 		}
 
 		DDMFormSuccessPageSettings ddmFormSuccessPageSettings =
-			(DDMFormSuccessPageSettings)obj;
+			(DDMFormSuccessPageSettings)object;
 
 		if (Objects.equals(_body, ddmFormSuccessPageSettings._body) &&
 			Objects.equals(_enabled, ddmFormSuccessPageSettings._enabled) &&

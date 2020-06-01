@@ -34,16 +34,16 @@ public class UserGroupItemSelectorChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		UserGroup userGroup = (UserGroup)obj;
+	public boolean isChecked(Object object) {
+		UserGroup userGroup = (UserGroup)object;
 
 		return ArrayUtil.contains(
 			_checkedUserGroupIds, userGroup.getUserGroupId());
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		return isChecked(obj);
+	public boolean isDisabled(Object object) {
+		return isChecked(object);
 	}
 
 	private final long[] _checkedUserGroupIds;

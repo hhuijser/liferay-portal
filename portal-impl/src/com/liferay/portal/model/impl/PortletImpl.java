@@ -480,20 +480,20 @@ public class PortletImpl extends PortletBaseImpl {
 	/**
 	 * Checks whether this portlet is equal to the specified object.
 	 *
-	 * @param  obj the object to compare this portlet against
+	 * @param  object the object to compare this portlet against
 	 * @return <code>true</code> if the portlet is equal to the specified object
 	 */
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Portlet)) {
+		if (!(object instanceof Portlet)) {
 			return false;
 		}
 
-		Portlet portlet = (Portlet)obj;
+		Portlet portlet = (Portlet)object;
 
 		String portletId = getPortletId();
 

@@ -509,16 +509,16 @@ public class FriendlyURLServlet extends HttpServlet {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof Redirect)) {
+			if (!(object instanceof Redirect)) {
 				return false;
 			}
 
-			Redirect redirect = (Redirect)obj;
+			Redirect redirect = (Redirect)object;
 
 			if (Objects.equals(getPath(), redirect.getPath()) &&
 				(isForce() == redirect.isForce()) &&

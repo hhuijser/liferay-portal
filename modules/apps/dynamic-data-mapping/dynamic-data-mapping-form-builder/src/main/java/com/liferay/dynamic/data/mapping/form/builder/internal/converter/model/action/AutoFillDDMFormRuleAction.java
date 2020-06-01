@@ -43,17 +43,17 @@ public class AutoFillDDMFormRuleAction implements SPIDDMFormRuleAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AutoFillDDMFormRuleAction)) {
+		if (!(object instanceof AutoFillDDMFormRuleAction)) {
 			return false;
 		}
 
 		AutoFillDDMFormRuleAction autoFillDDMFormRuleAction =
-			(AutoFillDDMFormRuleAction)obj;
+			(AutoFillDDMFormRuleAction)object;
 
 		if (Objects.equals(
 				_ddmDataProviderInstanceUUID,

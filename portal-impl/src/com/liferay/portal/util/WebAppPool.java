@@ -37,7 +37,7 @@ public class WebAppPool {
 		return map.get(key);
 	}
 
-	public static void put(Long webAppId, String key, Object obj) {
+	public static void put(Long webAppId, String key, Object object) {
 		Map<String, Object> map = _webAppPool.get(webAppId);
 
 		if (map == null) {
@@ -51,7 +51,7 @@ public class WebAppPool {
 			}
 		}
 
-		map.put(key, obj);
+		map.put(key, object);
 	}
 
 	public static Object remove(Long webAppId, String key) {

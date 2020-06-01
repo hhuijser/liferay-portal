@@ -36,16 +36,16 @@ public class NotificationEvent implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof NotificationEvent)) {
+		if (!(object instanceof NotificationEvent)) {
 			return false;
 		}
 
-		NotificationEvent notificationEvent = (NotificationEvent)obj;
+		NotificationEvent notificationEvent = (NotificationEvent)object;
 
 		if (Objects.equals(getUuid(), notificationEvent.getUuid())) {
 			return true;

@@ -274,16 +274,16 @@ public class KBFolderFinderImpl
 				long modelId = (Long)array[0];
 				long modelFolder = (Long)array[1];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelFolder == 1) {
-					obj = _kBFolderPersistence.findByPrimaryKey(modelId);
+					object = _kBFolderPersistence.findByPrimaryKey(modelId);
 				}
 				else {
-					obj = _kBArticlePersistence.findByPrimaryKey(modelId);
+					object = _kBArticlePersistence.findByPrimaryKey(modelId);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;

@@ -175,8 +175,8 @@ public class NonceUtil {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			NonceDelayed nonceDelayed = (NonceDelayed)obj;
+		public boolean equals(Object object) {
+			NonceDelayed nonceDelayed = (NonceDelayed)object;
 
 			if (_nonce.equals(nonceDelayed._nonce)) {
 				return true;

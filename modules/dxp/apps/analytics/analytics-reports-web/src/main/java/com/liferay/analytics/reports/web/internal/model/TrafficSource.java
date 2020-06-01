@@ -46,16 +46,16 @@ public class TrafficSource {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof TrafficSource)) {
+		if (!(object instanceof TrafficSource)) {
 			return false;
 		}
 
-		TrafficSource trafficSource = (TrafficSource)obj;
+		TrafficSource trafficSource = (TrafficSource)object;
 
 		if (Objects.equals(_name, trafficSource._name) &&
 			Objects.equals(_searchKeywords, trafficSource._searchKeywords) &&

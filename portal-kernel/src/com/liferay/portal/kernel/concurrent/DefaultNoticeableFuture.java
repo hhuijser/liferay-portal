@@ -113,9 +113,9 @@ public class DefaultNoticeableFuture<T>
 		}
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(Object object) {
 			OnceFutureListener<V> onceFutureListener =
-				(OnceFutureListener<V>)obj;
+				(OnceFutureListener<V>)object;
 
 			return _futureListener.equals(onceFutureListener._futureListener);
 		}

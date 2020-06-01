@@ -63,16 +63,16 @@ public class IndexMetadata extends Index implements Comparable<IndexMetadata> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof IndexMetadata)) {
+		if (!(object instanceof IndexMetadata)) {
 			return false;
 		}
 
-		IndexMetadata indexMetadata = (IndexMetadata)obj;
+		IndexMetadata indexMetadata = (IndexMetadata)object;
 
 		if (Objects.equals(getTableName(), indexMetadata.getTableName()) &&
 			Arrays.equals(_columnNames, indexMetadata._columnNames)) {

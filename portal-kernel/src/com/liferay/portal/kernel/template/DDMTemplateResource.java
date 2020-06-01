@@ -53,16 +53,16 @@ public class DDMTemplateResource implements TemplateResource {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMTemplateResource)) {
+		if (!(object instanceof DDMTemplateResource)) {
 			return false;
 		}
 
-		DDMTemplateResource ddmTemplateResource = (DDMTemplateResource)obj;
+		DDMTemplateResource ddmTemplateResource = (DDMTemplateResource)object;
 
 		if (_ddmTemplateKey.equals(ddmTemplateResource._ddmTemplateKey) &&
 			_ddmTemplate.equals(ddmTemplateResource._ddmTemplate)) {

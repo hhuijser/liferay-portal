@@ -77,16 +77,17 @@ public class NettyFabricAgentStub implements FabricAgent {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof NettyFabricAgentStub)) {
+		if (!(object instanceof NettyFabricAgentStub)) {
 			return false;
 		}
 
-		NettyFabricAgentStub nettyFabricAgentStub = (NettyFabricAgentStub)obj;
+		NettyFabricAgentStub nettyFabricAgentStub =
+			(NettyFabricAgentStub)object;
 
 		if (_channel.equals(nettyFabricAgentStub._channel)) {
 			return true;

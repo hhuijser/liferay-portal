@@ -35,8 +35,8 @@ public class FormInstanceRowChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		DDMFormInstance formInstance = (DDMFormInstance)obj;
+	public boolean isDisabled(Object object) {
+		DDMFormInstance formInstance = (DDMFormInstance)object;
 
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -52,7 +52,7 @@ public class FormInstanceRowChecker extends EmptyOnClickRowChecker {
 			_log.error(exception, exception);
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

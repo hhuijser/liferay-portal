@@ -50,16 +50,16 @@ public class ModuleId implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ModuleId)) {
+		if (!(object instanceof ModuleId)) {
 			return false;
 		}
 
-		ModuleId moduleId = (ModuleId)obj;
+		ModuleId moduleId = (ModuleId)object;
 
 		return toString().equals(moduleId.toString());
 	}

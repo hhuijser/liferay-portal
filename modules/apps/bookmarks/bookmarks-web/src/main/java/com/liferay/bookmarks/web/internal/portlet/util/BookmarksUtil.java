@@ -209,19 +209,20 @@ public class BookmarksUtil {
 				document.get(Field.ENTRY_CLASS_PK));
 
 			try {
-				Object obj = null;
+				Object object = null;
 
 				if (entryClassName.equals(BookmarksEntry.class.getName())) {
-					obj = BookmarksEntryLocalServiceUtil.getEntry(entryClassPK);
+					object = BookmarksEntryLocalServiceUtil.getEntry(
+						entryClassPK);
 				}
 				else if (entryClassName.equals(
 							BookmarksFolder.class.getName())) {
 
-					obj = BookmarksFolderLocalServiceUtil.getFolder(
+					object = BookmarksFolderLocalServiceUtil.getFolder(
 						entryClassPK);
 				}
 
-				entries.add(obj);
+				entries.add(object);
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {

@@ -177,7 +177,7 @@ public class DummyIndexer implements Indexer<Object> {
 	}
 
 	@Override
-	public void reindex(Object obj) {
+	public void reindex(Object object) {
 	}
 
 	@Override

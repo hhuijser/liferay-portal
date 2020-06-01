@@ -112,14 +112,14 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof CMISFileEntry)) {
+	public boolean equals(Object object) {
+		if (!(object instanceof CMISFileEntry)) {
 			return false;
 		}
 
 		String versionSeriesId = _document.getVersionSeriesId();
 
-		CMISFileEntry fileEntry2 = (CMISFileEntry)obj;
+		CMISFileEntry fileEntry2 = (CMISFileEntry)object;
 
 		return versionSeriesId.equals(
 			fileEntry2._document.getVersionSeriesId());

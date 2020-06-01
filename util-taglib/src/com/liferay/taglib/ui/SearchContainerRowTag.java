@@ -57,13 +57,13 @@ public class SearchContainerRowTag<R>
 			_resultRow.setRestricted(GetterUtil.getBoolean(value));
 		}
 		else {
-			Object obj = pageContext.getAttribute(value);
+			Object object = pageContext.getAttribute(value);
 
-			if (obj == null) {
-				obj = value;
+			if (object == null) {
+				object = value;
 			}
 
-			_resultRow.setParameter(name, obj);
+			_resultRow.setParameter(name, object);
 		}
 	}
 

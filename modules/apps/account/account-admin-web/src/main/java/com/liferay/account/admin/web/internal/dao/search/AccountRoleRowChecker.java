@@ -31,8 +31,8 @@ public class AccountRoleRowChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		AccountRoleDisplay accountRoleDisplay = (AccountRoleDisplay)obj;
+	public boolean isDisabled(Object object) {
+		AccountRoleDisplay accountRoleDisplay = (AccountRoleDisplay)object;
 
 		Role role = accountRoleDisplay.getRole();
 

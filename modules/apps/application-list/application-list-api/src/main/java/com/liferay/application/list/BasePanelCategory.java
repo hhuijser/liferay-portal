@@ -52,16 +52,16 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class BasePanelCategory implements PanelCategory {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof PanelCategory)) {
+		if (!(object instanceof PanelCategory)) {
 			return false;
 		}
 
-		PanelCategory panelCategory = (PanelCategory)obj;
+		PanelCategory panelCategory = (PanelCategory)object;
 
 		if (Objects.equals(getKey(), panelCategory.getKey())) {
 			return true;

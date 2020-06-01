@@ -24,16 +24,16 @@ public class BooleanClauseOccurImpl implements BooleanClauseOccur {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof BooleanClauseOccur)) {
+		if (!(object instanceof BooleanClauseOccur)) {
 			return false;
 		}
 
-		BooleanClauseOccur booleanClauseOccur = (BooleanClauseOccur)obj;
+		BooleanClauseOccur booleanClauseOccur = (BooleanClauseOccur)object;
 
 		if (_name.equals(booleanClauseOccur.getName())) {
 			return true;

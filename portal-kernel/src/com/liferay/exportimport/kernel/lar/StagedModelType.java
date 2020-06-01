@@ -91,16 +91,16 @@ public class StagedModelType {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if ((obj == null) || !(obj instanceof StagedModelType)) {
+		if ((object == null) || !(object instanceof StagedModelType)) {
 			return false;
 		}
 
-		StagedModelType stagedModelType = (StagedModelType)obj;
+		StagedModelType stagedModelType = (StagedModelType)object;
 
 		if ((stagedModelType._classNameId != _classNameId) ||
 			(stagedModelType._referrerClassNameId != _referrerClassNameId)) {

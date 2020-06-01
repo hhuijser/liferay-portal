@@ -34,16 +34,16 @@ public class SegmentsEntryRoleChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		SegmentsEntry segmentsEntry = (SegmentsEntry)obj;
+	public boolean isChecked(Object object) {
+		SegmentsEntry segmentsEntry = (SegmentsEntry)object;
 
 		return SegmentsEntryRoleLocalServiceUtil.hasSegmentEntryRole(
 			segmentsEntry.getSegmentsEntryId(), _roleId);
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		return isChecked(obj);
+	public boolean isDisabled(Object object) {
+		return isChecked(object);
 	}
 
 	private final long _roleId;

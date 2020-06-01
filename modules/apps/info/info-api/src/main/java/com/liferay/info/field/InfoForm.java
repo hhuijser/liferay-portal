@@ -49,16 +49,16 @@ public class InfoForm {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof InfoForm)) {
+		if (!(object instanceof InfoForm)) {
 			return false;
 		}
 
-		InfoForm infoForm = (InfoForm)obj;
+		InfoForm infoForm = (InfoForm)object;
 
 		if (Objects.equals(
 				_descriptionInfoLocalizedValue,

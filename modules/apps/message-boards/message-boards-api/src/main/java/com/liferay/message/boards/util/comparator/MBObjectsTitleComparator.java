@@ -80,15 +80,15 @@ public class MBObjectsTitleComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected String getMBObjectsTitle(Object obj) {
-		if (obj instanceof MBCategory) {
-			MBCategory mbCategory = (MBCategory)obj;
+	protected String getMBObjectsTitle(Object object) {
+		if (object instanceof MBCategory) {
+			MBCategory mbCategory = (MBCategory)object;
 
 			return mbCategory.getName();
 		}
 
-		if (obj instanceof MBThread) {
-			MBThread mbThread = (MBThread)obj;
+		if (object instanceof MBThread) {
+			MBThread mbThread = (MBThread)object;
 
 			return mbThread.getTitle();
 		}

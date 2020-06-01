@@ -46,12 +46,12 @@ public class HttpRequestInterceptorWrapper
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		return _httpRequestInterceptor.equals(obj);
+		return _httpRequestInterceptor.equals(object);
 	}
 
 	public int getSortOrder() {

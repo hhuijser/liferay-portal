@@ -94,16 +94,16 @@ public class Header implements Externalizable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Header)) {
+		if (!(object instanceof Header)) {
 			return false;
 		}
 
-		Header header = (Header)obj;
+		Header header = (Header)object;
 
 		if (_type != header._type) {
 			return false;

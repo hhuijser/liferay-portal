@@ -30,16 +30,16 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 public class UserGroupRoleImpl extends UserGroupRoleBaseImpl {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof UserGroupRole)) {
+		if (!(object instanceof UserGroupRole)) {
 			return false;
 		}
 
-		UserGroupRole userGroupRole = (UserGroupRole)obj;
+		UserGroupRole userGroupRole = (UserGroupRole)object;
 
 		if ((getUserId() == userGroupRole.getUserId()) &&
 			(getGroupId() == userGroupRole.getGroupId()) &&

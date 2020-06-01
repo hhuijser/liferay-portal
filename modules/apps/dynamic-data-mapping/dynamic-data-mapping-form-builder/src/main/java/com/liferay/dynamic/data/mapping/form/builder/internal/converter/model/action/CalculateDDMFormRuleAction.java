@@ -36,19 +36,19 @@ public class CalculateDDMFormRuleAction extends DefaultDDMFormRuleAction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CalculateDDMFormRuleAction)) {
+		if (!(object instanceof CalculateDDMFormRuleAction)) {
 			return false;
 		}
 
 		CalculateDDMFormRuleAction calculateDDMFormRuleAction =
-			(CalculateDDMFormRuleAction)obj;
+			(CalculateDDMFormRuleAction)object;
 
-		if (super.equals(obj) &&
+		if (super.equals(object) &&
 			Objects.equals(
 				_expression, calculateDDMFormRuleAction._expression)) {
 

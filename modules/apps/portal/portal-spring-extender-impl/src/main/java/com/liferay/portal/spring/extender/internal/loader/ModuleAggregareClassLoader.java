@@ -52,17 +52,17 @@ public class ModuleAggregareClassLoader extends ClassLoader {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ModuleAggregareClassLoader)) {
+		if (!(object instanceof ModuleAggregareClassLoader)) {
 			return false;
 		}
 
 		ModuleAggregareClassLoader moduleAggregareClassLoader =
-			(ModuleAggregareClassLoader)obj;
+			(ModuleAggregareClassLoader)object;
 
 		if (Objects.equals(
 				_moduleClassLoader,

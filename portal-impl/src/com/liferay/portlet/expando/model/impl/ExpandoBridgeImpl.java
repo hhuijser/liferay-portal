@@ -149,12 +149,12 @@ public class ExpandoBridgeImpl implements ExpandoBridge {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof ExpandoBridgeImpl)) {
+	public boolean equals(Object object) {
+		if (!(object instanceof ExpandoBridgeImpl)) {
 			return false;
 		}
 
-		ExpandoBridgeImpl expandoBridgeImpl = (ExpandoBridgeImpl)obj;
+		ExpandoBridgeImpl expandoBridgeImpl = (ExpandoBridgeImpl)object;
 
 		try {
 			ExpandoTable table1 = getTable();

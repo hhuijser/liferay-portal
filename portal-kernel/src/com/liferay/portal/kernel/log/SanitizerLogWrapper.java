@@ -179,12 +179,12 @@ public class SanitizerLogWrapper extends LogWrapper {
 		super.warn(sanitize(t));
 	}
 
-	protected String sanitize(Object obj) {
-		if (obj == null) {
+	protected String sanitize(Object object) {
+		if (object == null) {
 			return null;
 		}
 
-		String message = obj.toString();
+		String message = object.toString();
 
 		return sanitize(message, message);
 	}

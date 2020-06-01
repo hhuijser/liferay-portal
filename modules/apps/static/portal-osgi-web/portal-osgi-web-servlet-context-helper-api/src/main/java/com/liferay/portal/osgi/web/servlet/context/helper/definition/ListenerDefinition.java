@@ -23,16 +23,16 @@ import java.util.Objects;
 public class ListenerDefinition {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ListenerDefinition)) {
+		if (!(object instanceof ListenerDefinition)) {
 			return false;
 		}
 
-		ListenerDefinition listenerDefinition = (ListenerDefinition)obj;
+		ListenerDefinition listenerDefinition = (ListenerDefinition)object;
 
 		if (Objects.equals(
 				_eventListener.getClass(),

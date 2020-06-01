@@ -37,7 +37,7 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
+	public boolean isChecked(Object object) {
 		String[] selectedTagNames = StringUtil.split(
 			ParamUtil.getString(_portletRequest, "selectedTagNames"));
 
@@ -45,7 +45,7 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 			return false;
 		}
 
-		AssetTag tag = (AssetTag)obj;
+		AssetTag tag = (AssetTag)object;
 
 		if (!ArrayUtil.contains(selectedTagNames, tag.getName())) {
 			return false;

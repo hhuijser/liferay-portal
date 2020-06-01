@@ -41,16 +41,17 @@ public class ExcludeSyntaxPattern {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ExcludeSyntaxPattern)) {
+		if (!(object instanceof ExcludeSyntaxPattern)) {
 			return false;
 		}
 
-		ExcludeSyntaxPattern excludeSyntaxPattern = (ExcludeSyntaxPattern)obj;
+		ExcludeSyntaxPattern excludeSyntaxPattern =
+			(ExcludeSyntaxPattern)object;
 
 		ExcludeSyntax excludeSyntax = excludeSyntaxPattern.getExcludeSyntax();
 

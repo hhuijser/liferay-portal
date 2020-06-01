@@ -60,17 +60,17 @@ public class SocialActivityCounterDefinition implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SocialActivityCounterDefinition)) {
+		if (!(object instanceof SocialActivityCounterDefinition)) {
 			return false;
 		}
 
 		SocialActivityCounterDefinition activityCounterDefinition =
-			(SocialActivityCounterDefinition)obj;
+			(SocialActivityCounterDefinition)object;
 
 		if ((activityCounterDefinition != null) &&
 			(_enabled == activityCounterDefinition._enabled) &&

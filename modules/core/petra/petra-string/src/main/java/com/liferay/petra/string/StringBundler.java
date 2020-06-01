@@ -124,8 +124,8 @@ public class StringBundler implements Serializable {
 		return append(String.valueOf(l));
 	}
 
-	public StringBundler append(Object obj) {
-		return append(String.valueOf(obj));
+	public StringBundler append(Object object) {
+		return append(String.valueOf(object));
 	}
 
 	public StringBundler append(String s) {

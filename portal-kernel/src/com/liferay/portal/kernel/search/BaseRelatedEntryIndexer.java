@@ -81,7 +81,7 @@ public class BaseRelatedEntryIndexer implements RelatedEntryIndexer {
 	}
 
 	@Override
-	public void addRelatedEntryFields(Document document, Object obj)
+	public void addRelatedEntryFields(Document document, Object object)
 		throws Exception {
 	}
 

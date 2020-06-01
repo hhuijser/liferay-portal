@@ -250,16 +250,16 @@ public class GroupPermissionImpl
 	private static class CacheKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof CacheKey)) {
+			if (!(object instanceof CacheKey)) {
 				return false;
 			}
 
-			CacheKey cacheKey = (CacheKey)obj;
+			CacheKey cacheKey = (CacheKey)object;
 
 			if ((_groupId == cacheKey._groupId) &&
 				(_mvccVersion == cacheKey._mvccVersion) &&

@@ -20,16 +20,16 @@ package com.liferay.gradle.plugins.dependency.checker.internal;
 public class DependencyKey {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DependencyKey)) {
+		if (!(object instanceof DependencyKey)) {
 			return false;
 		}
 
-		DependencyKey dependencyKey = (DependencyKey)obj;
+		DependencyKey dependencyKey = (DependencyKey)object;
 
 		if (_configuration.equals(dependencyKey.getConfiguration()) &&
 			_group.equals(dependencyKey.getGroup()) &&

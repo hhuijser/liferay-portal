@@ -34,17 +34,17 @@ public class LiferayOAuth2ScopeImpl implements LiferayOAuth2Scope {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LiferayOAuth2ScopeImpl)) {
+		if (!(object instanceof LiferayOAuth2ScopeImpl)) {
 			return false;
 		}
 
 		LiferayOAuth2ScopeImpl liferayOAuth2ScopeImpl =
-			(LiferayOAuth2ScopeImpl)obj;
+			(LiferayOAuth2ScopeImpl)object;
 
 		if (Objects.equals(
 				_applicationName, liferayOAuth2ScopeImpl._applicationName) &&

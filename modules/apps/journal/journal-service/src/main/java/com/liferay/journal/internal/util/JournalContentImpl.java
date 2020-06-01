@@ -556,8 +556,8 @@ public class JournalContentImpl
 	private static class JournalContentKey implements Serializable {
 
 		@Override
-		public boolean equals(Object obj) {
-			JournalContentKey journalContentKey = (JournalContentKey)obj;
+		public boolean equals(Object object) {
+			JournalContentKey journalContentKey = (JournalContentKey)object;
 
 			if ((journalContentKey._groupId == _groupId) &&
 				Objects.equals(journalContentKey._articleId, _articleId) &&

@@ -87,15 +87,15 @@ public class FilterConstraint {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
-		else if (!(obj instanceof FilterConstraint)) {
+		else if (!(object instanceof FilterConstraint)) {
 			return false;
 		}
 
-		FilterConstraint filterConstraint = (FilterConstraint)obj;
+		FilterConstraint filterConstraint = (FilterConstraint)object;
 
 		return _map.equals(filterConstraint.getMap());
 	}

@@ -154,16 +154,16 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof BaseBuild)) {
+		if (!(object instanceof BaseBuild)) {
 			return false;
 		}
 
-		BaseBuild baseBuild = (BaseBuild)obj;
+		BaseBuild baseBuild = (BaseBuild)object;
 
 		if (Objects.equals(getBuildURL(), baseBuild.getBuildURL())) {
 			return true;

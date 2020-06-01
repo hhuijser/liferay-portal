@@ -88,7 +88,7 @@ public class RowChecker {
 		return _cssClass;
 	}
 
-	public Map<String, Object> getData(Object obj) {
+	public Map<String, Object> getData(Object object) {
 		return _data;
 	}
 
@@ -134,11 +134,11 @@ public class RowChecker {
 		return _valign;
 	}
 
-	public boolean isChecked(Object obj) {
+	public boolean isChecked(Object object) {
 		return false;
 	}
 
-	public boolean isDisabled(Object obj) {
+	public boolean isDisabled(Object object) {
 		return false;
 	}
 

@@ -684,16 +684,16 @@ public class MBCategoryFinderImpl
 				long modelId = (Long)array[0];
 				long modelCategory = (Long)array[1];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelCategory == 1) {
-					obj = MBThreadUtil.findByPrimaryKey(modelId);
+					object = MBThreadUtil.findByPrimaryKey(modelId);
 				}
 				else {
-					obj = MBCategoryUtil.findByPrimaryKey(modelId);
+					object = MBCategoryUtil.findByPrimaryKey(modelId);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;

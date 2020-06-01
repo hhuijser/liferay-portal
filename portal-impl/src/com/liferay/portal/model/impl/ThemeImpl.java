@@ -89,16 +89,16 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Theme)) {
+		if (!(object instanceof Theme)) {
 			return false;
 		}
 
-		Theme theme = (Theme)obj;
+		Theme theme = (Theme)object;
 
 		if (getThemeId().equals(theme.getThemeId())) {
 			return true;

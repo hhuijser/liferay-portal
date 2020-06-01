@@ -44,16 +44,16 @@ public class PollerRequest implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof PollerRequest)) {
+		if (!(object instanceof PollerRequest)) {
 			return false;
 		}
 
-		PollerRequest portletRequest = (PollerRequest)obj;
+		PollerRequest portletRequest = (PollerRequest)object;
 
 		if (Objects.equals(_portletId, portletRequest._portletId)) {
 			return true;

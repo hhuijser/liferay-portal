@@ -75,8 +75,8 @@ public class MergeLayoutPrototypesThreadLocal {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			MethodKey methodKey = (MethodKey)obj;
+		public boolean equals(Object object) {
+			MethodKey methodKey = (MethodKey)object;
 
 			if (Objects.equals(_methodName, methodKey._methodName) &&
 				Arrays.equals(_arguments, methodKey._arguments)) {
@@ -92,12 +92,12 @@ public class MergeLayoutPrototypesThreadLocal {
 			int hashCode = _methodName.hashCode();
 
 			if (_arguments != null) {
-				for (Object obj : _arguments) {
-					if (obj == null) {
+				for (Object object : _arguments) {
+					if (object == null) {
 						hashCode = HashUtil.hash(hashCode, 0);
 					}
 					else {
-						hashCode = HashUtil.hash(hashCode, obj.hashCode());
+						hashCode = HashUtil.hash(hashCode, object.hashCode());
 					}
 				}
 			}

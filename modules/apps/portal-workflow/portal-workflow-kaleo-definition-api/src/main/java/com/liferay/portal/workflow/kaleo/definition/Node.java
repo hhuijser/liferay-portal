@@ -45,16 +45,16 @@ public abstract class Node implements ActionAware, NotificationAware {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Node)) {
+		if (!(object instanceof Node)) {
 			return false;
 		}
 
-		Node node = (Node)obj;
+		Node node = (Node)object;
 
 		if (!Objects.equals(_name, node._name)) {
 			return false;

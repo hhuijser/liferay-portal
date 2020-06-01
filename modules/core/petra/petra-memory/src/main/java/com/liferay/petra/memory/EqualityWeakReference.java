@@ -39,17 +39,17 @@ public class EqualityWeakReference<T> extends WeakReference<T> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof EqualityWeakReference<?>)) {
+		if (!(object instanceof EqualityWeakReference<?>)) {
 			return false;
 		}
 
 		EqualityWeakReference<?> equalityWeakReference =
-			(EqualityWeakReference<?>)obj;
+			(EqualityWeakReference<?>)object;
 
 		if (Objects.equals(get(), equalityWeakReference.get())) {
 			return true;

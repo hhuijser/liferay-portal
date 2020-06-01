@@ -199,16 +199,16 @@ public class GitHubRemoteGitRepository extends BaseRemoteGitRepository {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof Label)) {
+			if (!(object instanceof Label)) {
 				return false;
 			}
 
-			Label label = (Label)obj;
+			Label label = (Label)object;
 
 			if (Objects.equals(getColor(), label.getColor()) &&
 				Objects.equals(getName(), label.getName())) {

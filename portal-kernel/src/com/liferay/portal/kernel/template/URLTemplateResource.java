@@ -55,16 +55,16 @@ public class URLTemplateResource implements TemplateResource {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof URLTemplateResource)) {
+		if (!(object instanceof URLTemplateResource)) {
 			return false;
 		}
 
-		URLTemplateResource urlTemplateResource = (URLTemplateResource)obj;
+		URLTemplateResource urlTemplateResource = (URLTemplateResource)object;
 
 		if (_templateId.equals(urlTemplateResource._templateId) &&
 			_templateURLExternalForm.equals(

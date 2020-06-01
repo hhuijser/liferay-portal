@@ -145,16 +145,17 @@ public class AggregateClassLoader extends ClassLoader {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AggregateClassLoader)) {
+		if (!(object instanceof AggregateClassLoader)) {
 			return false;
 		}
 
-		AggregateClassLoader aggregateClassLoader = (AggregateClassLoader)obj;
+		AggregateClassLoader aggregateClassLoader =
+			(AggregateClassLoader)object;
 
 		if (_classLoaderReferences.equals(
 				aggregateClassLoader._classLoaderReferences) &&

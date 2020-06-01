@@ -40,17 +40,17 @@ public class DisplayContextFactoryReference<T extends DisplayContextFactory>
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DisplayContextFactoryReference)) {
+		if (!(object instanceof DisplayContextFactoryReference)) {
 			return false;
 		}
 
 		DisplayContextFactoryReference<?> displayContextFactoryReference =
-			(DisplayContextFactoryReference<?>)obj;
+			(DisplayContextFactoryReference<?>)object;
 
 		if (Objects.equals(
 				_serviceReference,

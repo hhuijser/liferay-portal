@@ -338,9 +338,9 @@ public class SoftCircularDependencyUtil {
 	private static class ComponentDescriptionKey {
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(Object object) {
 			ComponentDescriptionKey componentDescriptionKey =
-				(ComponentDescriptionKey)obj;
+				(ComponentDescriptionKey)object;
 
 			if ((_bundleId == componentDescriptionKey._bundleId) &&
 				Objects.equals(
@@ -410,8 +410,8 @@ public class SoftCircularDependencyUtil {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			Dependency dependency = (Dependency)obj;
+		public boolean equals(Object object) {
+			Dependency dependency = (Dependency)object;
 
 			if (_toComponentDescriptionDTO ==
 					dependency._toComponentDescriptionDTO) {

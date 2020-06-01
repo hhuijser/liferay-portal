@@ -70,9 +70,9 @@ public class CategoryTitleComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected String getCategoryName(Object obj) {
-		if (obj instanceof MBCategory) {
-			MBCategory mbCategory = (MBCategory)obj;
+	protected String getCategoryName(Object object) {
+		if (object instanceof MBCategory) {
+			MBCategory mbCategory = (MBCategory)object;
 
 			return mbCategory.getName();
 		}

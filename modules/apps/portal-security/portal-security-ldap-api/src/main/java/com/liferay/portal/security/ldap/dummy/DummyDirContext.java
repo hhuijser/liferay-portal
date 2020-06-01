@@ -30,14 +30,14 @@ import javax.naming.directory.SearchResult;
 public class DummyDirContext extends DummyContext implements DirContext {
 
 	@Override
-	public void bind(Name name, Object obj, Attributes attrs)
+	public void bind(Name name, Object object, Attributes attrs)
 		throws NamingException {
 
 		throw new OperationNotSupportedException();
 	}
 
 	@Override
-	public void bind(String name, Object obj, Attributes attrs)
+	public void bind(String name, Object object, Attributes attrs)
 		throws NamingException {
 
 		throw new OperationNotSupportedException();
@@ -136,14 +136,14 @@ public class DummyDirContext extends DummyContext implements DirContext {
 	}
 
 	@Override
-	public void rebind(Name name, Object obj, Attributes attrs)
+	public void rebind(Name name, Object object, Attributes attrs)
 		throws NamingException {
 
 		throw new OperationNotSupportedException();
 	}
 
 	@Override
-	public void rebind(String name, Object obj, Attributes attrs)
+	public void rebind(String name, Object object, Attributes attrs)
 		throws NamingException {
 
 		throw new OperationNotSupportedException();

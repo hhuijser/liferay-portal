@@ -326,7 +326,7 @@ public class TemplateResourceExternalizationTest {
 		}
 
 		@Override
-		public void writeObject(Object obj) {
+		public void writeObject(Object object) {
 			throw new UnsupportedOperationException();
 		}
 

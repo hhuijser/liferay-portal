@@ -39,16 +39,16 @@ public class RoleAssignment extends Assignment {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof RoleAssignment)) {
+		if (!(object instanceof RoleAssignment)) {
 			return false;
 		}
 
-		RoleAssignment roleAssignment = (RoleAssignment)obj;
+		RoleAssignment roleAssignment = (RoleAssignment)object;
 
 		if (Objects.equals(_roleName, roleAssignment._roleName) &&
 			(_roleId == roleAssignment._roleId)) {

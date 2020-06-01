@@ -188,7 +188,7 @@ public interface ResultRow {
 
 	public void setData(Map<String, Object> data);
 
-	public void setObject(Object obj);
+	public void setObject(Object object);
 
 	public void setParameter(String param, Object value);
 

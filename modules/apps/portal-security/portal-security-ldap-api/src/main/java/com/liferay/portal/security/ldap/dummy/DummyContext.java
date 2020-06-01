@@ -38,12 +38,12 @@ public class DummyContext implements Context {
 	}
 
 	@Override
-	public void bind(Name name, Object obj) throws NamingException {
+	public void bind(Name name, Object object) throws NamingException {
 		throw new OperationNotSupportedException();
 	}
 
 	@Override
-	public void bind(String name, Object obj) throws NamingException {
+	public void bind(String name, Object object) throws NamingException {
 		throw new OperationNotSupportedException();
 	}
 
@@ -153,12 +153,12 @@ public class DummyContext implements Context {
 	}
 
 	@Override
-	public void rebind(Name name, Object obj) throws NamingException {
+	public void rebind(Name name, Object object) throws NamingException {
 		throw new OperationNotSupportedException();
 	}
 
 	@Override
-	public void rebind(String name, Object obj) throws NamingException {
+	public void rebind(String name, Object object) throws NamingException {
 		throw new OperationNotSupportedException();
 	}
 

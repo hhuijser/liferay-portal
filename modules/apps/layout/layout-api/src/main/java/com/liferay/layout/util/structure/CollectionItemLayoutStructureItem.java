@@ -29,16 +29,16 @@ public class CollectionItemLayoutStructureItem extends LayoutStructureItem {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CollectionItemLayoutStructureItem)) {
+		if (!(object instanceof CollectionItemLayoutStructureItem)) {
 			return false;
 		}
 
-		return super.equals(obj);
+		return super.equals(object);
 	}
 
 	@Override

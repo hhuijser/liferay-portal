@@ -34,16 +34,16 @@ class LocalProcessLog implements ProcessLog {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ProcessLog)) {
+		if (!(object instanceof ProcessLog)) {
 			return false;
 		}
 
-		ProcessLog processLog = (ProcessLog)obj;
+		ProcessLog processLog = (ProcessLog)object;
 
 		if ((_level == processLog.getLevel()) &&
 			Objects.equals(_message, processLog.getMessage()) &&

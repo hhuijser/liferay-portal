@@ -93,16 +93,16 @@ public class AssignableScopes {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AssignableScopes)) {
+		if (!(object instanceof AssignableScopes)) {
 			return false;
 		}
 
-		AssignableScopes assignableScopes = (AssignableScopes)obj;
+		AssignableScopes assignableScopes = (AssignableScopes)object;
 
 		if (Objects.equals(
 				_liferayOAuth2Scopes,

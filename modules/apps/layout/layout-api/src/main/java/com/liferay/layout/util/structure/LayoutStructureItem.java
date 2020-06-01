@@ -80,16 +80,16 @@ public abstract class LayoutStructureItem {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LayoutStructureItem)) {
+		if (!(object instanceof LayoutStructureItem)) {
 			return false;
 		}
 
-		LayoutStructureItem layoutStructureItem = (LayoutStructureItem)obj;
+		LayoutStructureItem layoutStructureItem = (LayoutStructureItem)object;
 
 		if (Objects.equals(
 				_childrenItemIds, layoutStructureItem._childrenItemIds) &&

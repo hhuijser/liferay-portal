@@ -57,40 +57,40 @@ public class SafeLdapContextImpl implements SafeLdapContext {
 	}
 
 	@Override
-	public void bind(Name name, Object obj) throws NamingException {
+	public void bind(Name name, Object object) throws NamingException {
 		if (!(name instanceof SafeLdapName)) {
 			_logUnsafeParameter();
 		}
 
-		_ldapContext.bind(name, obj);
+		_ldapContext.bind(name, object);
 	}
 
 	@Override
-	public void bind(Name name, Object obj, Attributes attributes)
+	public void bind(Name name, Object object, Attributes attributes)
 		throws NamingException {
 
 		if (!(name instanceof SafeLdapName)) {
 			_logUnsafeParameter();
 		}
 
-		_ldapContext.bind(name, obj, attributes);
+		_ldapContext.bind(name, object, attributes);
 	}
 
 	@Override
-	public void bind(String name, Object obj) throws NamingException {
+	public void bind(String name, Object object) throws NamingException {
 		_logUnsafeMethod();
 
-		_ldapContext.bind(SafeLdapNameFactory.fromUnsafe(name), obj);
+		_ldapContext.bind(SafeLdapNameFactory.fromUnsafe(name), object);
 	}
 
 	@Override
-	public void bind(String name, Object obj, Attributes attributes)
+	public void bind(String name, Object object, Attributes attributes)
 		throws NamingException {
 
 		_logUnsafeMethod();
 
 		_ldapContext.bind(
-			SafeLdapNameFactory.fromUnsafe(name), obj, attributes);
+			SafeLdapNameFactory.fromUnsafe(name), object, attributes);
 	}
 
 	@Override
@@ -416,40 +416,40 @@ public class SafeLdapContextImpl implements SafeLdapContext {
 	}
 
 	@Override
-	public void rebind(Name name, Object obj) throws NamingException {
+	public void rebind(Name name, Object object) throws NamingException {
 		if (!(name instanceof SafeLdapName)) {
 			_logUnsafeParameter();
 		}
 
-		_ldapContext.rebind(name, obj);
+		_ldapContext.rebind(name, object);
 	}
 
 	@Override
-	public void rebind(Name name, Object obj, Attributes attributes)
+	public void rebind(Name name, Object object, Attributes attributes)
 		throws NamingException {
 
 		if (!(name instanceof SafeLdapName)) {
 			_logUnsafeParameter();
 		}
 
-		_ldapContext.rebind(name, obj, attributes);
+		_ldapContext.rebind(name, object, attributes);
 	}
 
 	@Override
-	public void rebind(String name, Object obj) throws NamingException {
+	public void rebind(String name, Object object) throws NamingException {
 		_logUnsafeMethod();
 
-		_ldapContext.rebind(SafeLdapNameFactory.fromUnsafe(name), obj);
+		_ldapContext.rebind(SafeLdapNameFactory.fromUnsafe(name), object);
 	}
 
 	@Override
-	public void rebind(String name, Object obj, Attributes attributes)
+	public void rebind(String name, Object object, Attributes attributes)
 		throws NamingException {
 
 		_logUnsafeMethod();
 
 		_ldapContext.rebind(
-			SafeLdapNameFactory.fromUnsafe(name), obj, attributes);
+			SafeLdapNameFactory.fromUnsafe(name), object, attributes);
 	}
 
 	@Override

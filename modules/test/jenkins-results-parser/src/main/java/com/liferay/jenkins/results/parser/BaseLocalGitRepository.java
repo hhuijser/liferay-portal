@@ -31,17 +31,17 @@ public abstract class BaseLocalGitRepository
 	extends BaseGitRepository implements LocalGitRepository {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof BaseLocalGitRepository)) {
+		if (!(object instanceof BaseLocalGitRepository)) {
 			return false;
 		}
 
 		BaseLocalGitRepository baseLocalGitRepository =
-			(BaseLocalGitRepository)obj;
+			(BaseLocalGitRepository)object;
 
 		if (Objects.equals(
 				getDirectory(), baseLocalGitRepository.getDirectory()) &&

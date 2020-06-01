@@ -34,17 +34,17 @@ public class ContainerLayoutStructureItem extends LayoutStructureItem {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ContainerLayoutStructureItem)) {
+		if (!(object instanceof ContainerLayoutStructureItem)) {
 			return false;
 		}
 
 		ContainerLayoutStructureItem containerLayoutStructureItem =
-			(ContainerLayoutStructureItem)obj;
+			(ContainerLayoutStructureItem)object;
 
 		if (!Objects.equals(
 				_backgroundColorCssClass,
@@ -66,7 +66,7 @@ public class ContainerLayoutStructureItem extends LayoutStructureItem {
 			return false;
 		}
 
-		return super.equals(obj);
+		return super.equals(object);
 	}
 
 	public String getBackgroundColorCssClass() {

@@ -28,17 +28,17 @@ public abstract class CoverageDataContainer
 		implements CoverageData<T>, Serializable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CoverageDataContainer)) {
+		if (!(object instanceof CoverageDataContainer)) {
 			return false;
 		}
 
 		CoverageDataContainer<K, V, T> coverageDataContainer =
-			(CoverageDataContainer<K, V, T>)obj;
+			(CoverageDataContainer<K, V, T>)object;
 
 		return children.equals(coverageDataContainer.children);
 	}

@@ -38,16 +38,16 @@ public class InfoField implements InfoFieldSetEntry {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof InfoField)) {
+		if (!(object instanceof InfoField)) {
 			return false;
 		}
 
-		InfoField infoDisplayField = (InfoField)obj;
+		InfoField infoDisplayField = (InfoField)object;
 
 		if (Objects.equals(_infoFieldType, infoDisplayField._infoFieldType) &&
 			Objects.equals(

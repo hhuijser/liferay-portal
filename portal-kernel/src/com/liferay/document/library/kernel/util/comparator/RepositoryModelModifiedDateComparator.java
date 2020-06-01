@@ -121,24 +121,24 @@ public class RepositoryModelModifiedDateComparator<T>
 		return _ascending;
 	}
 
-	protected Date getModifiedDate(Object obj) {
-		if (obj instanceof DLFileEntry) {
-			DLFileEntry dlFileEntry = (DLFileEntry)obj;
+	protected Date getModifiedDate(Object object) {
+		if (object instanceof DLFileEntry) {
+			DLFileEntry dlFileEntry = (DLFileEntry)object;
 
 			return dlFileEntry.getModifiedDate();
 		}
-		else if (obj instanceof DLFileShortcut) {
-			DLFileShortcut dlFileShortcut = (DLFileShortcut)obj;
+		else if (object instanceof DLFileShortcut) {
+			DLFileShortcut dlFileShortcut = (DLFileShortcut)object;
 
 			return dlFileShortcut.getModifiedDate();
 		}
-		else if (obj instanceof DLFolder) {
-			DLFolder dlFolder = (DLFolder)obj;
+		else if (object instanceof DLFolder) {
+			DLFolder dlFolder = (DLFolder)object;
 
 			return dlFolder.getModifiedDate();
 		}
 		else {
-			RepositoryEntry repositoryEntry = (RepositoryEntry)obj;
+			RepositoryEntry repositoryEntry = (RepositoryEntry)object;
 
 			return repositoryEntry.getModifiedDate();
 		}

@@ -45,12 +45,12 @@ public class ThreadLocalCache<T> {
 		return _lifecycle;
 	}
 
-	public void put(String key, T obj) {
+	public void put(String key, T object) {
 		if (_cache == null) {
 			_cache = new HashMap<>();
 		}
 
-		_cache.put(key, obj);
+		_cache.put(key, object);
 	}
 
 	public void remove(String key) {

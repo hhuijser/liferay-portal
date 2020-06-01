@@ -340,9 +340,9 @@ public class JournalContentSearchLocalServiceImpl
 	private static class JournalContentSearchKey implements Serializable {
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(Object object) {
 			JournalContentSearchKey journalContentSearchKey =
-				(JournalContentSearchKey)obj;
+				(JournalContentSearchKey)object;
 
 			if (Objects.equals(
 					journalContentSearchKey._articleId, _articleId) &&

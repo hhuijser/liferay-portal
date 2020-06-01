@@ -31,19 +31,19 @@ import java.util.List;
  */
 public class BeanToXMLUtil {
 
-	public static void addBean(Object obj, Element parentEl) {
-		Class<?> clazz = obj.getClass();
+	public static void addBean(Object object, Element parentEl) {
+		Class<?> clazz = object.getClass();
 
 		String classNameWithoutPackage = getClassNameWithoutPackage(
 			clazz.getName());
 
 		Element el = parentEl.addElement(classNameWithoutPackage);
 
-		addFields(obj, el);
+		addFields(object, el);
 	}
 
-	public static void addFields(Object obj, Element parentEl) {
-		Class<?> clazz = obj.getClass();
+	public static void addFields(Object object, Element parentEl) {
+		Class<?> clazz = object.getClass();
 
 		Method[] methods = clazz.getMethods();
 
@@ -60,7 +60,7 @@ public class BeanToXMLUtil {
 				memberName = TextFormatter.format(memberName, TextFormatter.K);
 
 				try {
-					Object returnValue = method.invoke(obj, new Object[0]);
+					Object returnValue = method.invoke(object, new Object[0]);
 
 					if (returnValue instanceof List<?>) {
 						List<Object> list = (List<Object>)returnValue;

@@ -62,10 +62,10 @@ public class CustomFieldChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
+	public boolean isDisabled(Object object) {
 		ExpandoColumn expandoColumn =
 			ExpandoColumnLocalServiceUtil.getDefaultTableColumn(
-				_companyId, _modelResource, (String)obj);
+				_companyId, _modelResource, (String)object);
 
 		if (!ExpandoColumnPermissionUtil.contains(
 				PermissionThreadLocal.getPermissionChecker(), expandoColumn,
@@ -74,7 +74,7 @@ public class CustomFieldChecker extends EmptyOnClickRowChecker {
 			return true;
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private final long _companyId;

@@ -47,16 +47,16 @@ public class SearchResult {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SearchResult)) {
+		if (!(object instanceof SearchResult)) {
 			return false;
 		}
 
-		SearchResult searchResult = (SearchResult)obj;
+		SearchResult searchResult = (SearchResult)object;
 
 		if ((_classPK == searchResult._classPK) &&
 			Objects.equals(_className, searchResult._className)) {

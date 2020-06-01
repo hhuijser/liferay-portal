@@ -143,25 +143,25 @@ public class DayAndPosition implements Cloneable, Serializable {
 	/**
 	 * Returns <code>true</code> if the object equals this DayAndPosition.
 	 *
-	 * @param  obj the other object
+	 * @param  object the other object
 	 * @return <code>true</code> if the object equals this DayAndPosition,
 	 *         <code>false</code> otherwise
 	 */
 	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
+	public boolean equals(Object object) {
+		if (object == null) {
 			return false;
 		}
 
-		if (this == obj) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DayAndPosition)) {
+		if (!(object instanceof DayAndPosition)) {
 			return false;
 		}
 
-		DayAndPosition that = (DayAndPosition)obj;
+		DayAndPosition that = (DayAndPosition)object;
 
 		if ((getDayOfWeek() == that.getDayOfWeek()) &&
 			(getDayPosition() == that.getDayPosition())) {

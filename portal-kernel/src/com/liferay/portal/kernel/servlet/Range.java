@@ -31,16 +31,16 @@ public class Range {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Range)) {
+		if (!(object instanceof Range)) {
 			return false;
 		}
 
-		Range range = (Range)obj;
+		Range range = (Range)object;
 
 		if ((_end == range._end) && (_length == range._length) &&
 			(_start == range._start) && (_total == range._total)) {

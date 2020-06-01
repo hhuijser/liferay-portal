@@ -33,14 +33,14 @@ public class AddAssetEntryChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		AssetEntry assetEntry = (AssetEntry)obj;
+	public boolean isDisabled(Object object) {
+		AssetEntry assetEntry = (AssetEntry)object;
 
 		if (assetEntry.getEntryId() == _assetEntryId) {
 			return true;
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private final long _assetEntryId;

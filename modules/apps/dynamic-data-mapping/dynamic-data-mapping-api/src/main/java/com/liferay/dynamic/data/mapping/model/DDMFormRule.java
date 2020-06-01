@@ -81,16 +81,16 @@ public class DDMFormRule implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormRule)) {
+		if (!(object instanceof DDMFormRule)) {
 			return false;
 		}
 
-		DDMFormRule ddmFormRule = (DDMFormRule)obj;
+		DDMFormRule ddmFormRule = (DDMFormRule)object;
 
 		if (Objects.equals(_actions, ddmFormRule._actions) &&
 			Objects.equals(_condition, ddmFormRule._condition) &&

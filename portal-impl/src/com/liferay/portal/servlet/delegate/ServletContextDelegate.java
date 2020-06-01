@@ -32,12 +32,12 @@ public class ServletContextDelegate {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof ServletContext)) {
+	public boolean equals(Object object) {
+		if (!(object instanceof ServletContext)) {
 			return false;
 		}
 
-		ServletContext servletContext = (ServletContext)obj;
+		ServletContext servletContext = (ServletContext)object;
 
 		return servletContext.equals(_servletContext);
 	}

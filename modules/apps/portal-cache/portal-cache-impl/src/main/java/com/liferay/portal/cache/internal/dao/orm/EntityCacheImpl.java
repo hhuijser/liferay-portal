@@ -447,8 +447,8 @@ public class EntityCacheImpl
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			LocalCacheKey localCacheKey = (LocalCacheKey)obj;
+		public boolean equals(Object object) {
+			LocalCacheKey localCacheKey = (LocalCacheKey)object;
 
 			if (localCacheKey._className.equals(_className) &&
 				localCacheKey._primaryKey.equals(_primaryKey)) {

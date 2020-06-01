@@ -452,16 +452,16 @@ public abstract class ConcurrentMapperHashMap<K, IK, V, IV>
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof Map.Entry)) {
+			if (!(object instanceof Map.Entry)) {
 				return false;
 			}
 
-			Map.Entry<K, V> entry = (Map.Entry<K, V>)obj;
+			Map.Entry<K, V> entry = (Map.Entry<K, V>)object;
 
 			if (Objects.equals(getKey(), entry.getKey()) &&
 				Objects.equals(getValue(), entry.getValue())) {
@@ -538,12 +538,12 @@ public abstract class ConcurrentMapperHashMap<K, IK, V, IV>
 		}
 
 		@Override
-		public boolean contains(Object obj) {
-			if (!(obj instanceof Map.Entry<?, ?>)) {
+		public boolean contains(Object object) {
+			if (!(object instanceof Map.Entry<?, ?>)) {
 				return false;
 			}
 
-			Map.Entry<K, V> entry = (Map.Entry<K, V>)obj;
+			Map.Entry<K, V> entry = (Map.Entry<K, V>)object;
 
 			V value = ConcurrentMapperHashMap.this.get(entry.getKey());
 
@@ -565,12 +565,12 @@ public abstract class ConcurrentMapperHashMap<K, IK, V, IV>
 		}
 
 		@Override
-		public boolean remove(Object obj) {
-			if (!(obj instanceof Map.Entry<?, ?>)) {
+		public boolean remove(Object object) {
+			if (!(object instanceof Map.Entry<?, ?>)) {
 				return false;
 			}
 
-			Map.Entry<K, V> entry = (Map.Entry<K, V>)obj;
+			Map.Entry<K, V> entry = (Map.Entry<K, V>)object;
 
 			return ConcurrentMapperHashMap.this.remove(
 				entry.getKey(), entry.getValue());
@@ -683,8 +683,8 @@ public abstract class ConcurrentMapperHashMap<K, IK, V, IV>
 		}
 
 		@Override
-		public boolean contains(Object obj) {
-			return ConcurrentMapperHashMap.this.containsValue(obj);
+		public boolean contains(Object object) {
+			return ConcurrentMapperHashMap.this.containsValue(object);
 		}
 
 		@Override

@@ -34,16 +34,16 @@ public class ProtectedPrincipal implements Principal, Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ProtectedPrincipal)) {
+		if (!(object instanceof ProtectedPrincipal)) {
 			return false;
 		}
 
-		ProtectedPrincipal protectedPrincipal = (ProtectedPrincipal)obj;
+		ProtectedPrincipal protectedPrincipal = (ProtectedPrincipal)object;
 
 		String name = protectedPrincipal.getName();
 

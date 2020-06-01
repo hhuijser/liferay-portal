@@ -51,17 +51,17 @@ public class ResourceBundleInfoLocalizedValue
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ResourceBundleInfoLocalizedValue)) {
+		if (!(object instanceof ResourceBundleInfoLocalizedValue)) {
 			return false;
 		}
 
 		ResourceBundleInfoLocalizedValue resourceBundleInfoLocalizedValue =
-			(ResourceBundleInfoLocalizedValue)obj;
+			(ResourceBundleInfoLocalizedValue)object;
 
 		return Objects.equals(
 			resourceBundleInfoLocalizedValue._valueKey, _valueKey);

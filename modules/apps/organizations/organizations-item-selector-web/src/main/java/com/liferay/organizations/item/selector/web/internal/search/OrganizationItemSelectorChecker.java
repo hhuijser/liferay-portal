@@ -34,16 +34,16 @@ public class OrganizationItemSelectorChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		Organization organization = (Organization)obj;
+	public boolean isChecked(Object object) {
+		Organization organization = (Organization)object;
 
 		return ArrayUtil.contains(
 			_checkedOrganizationIds, organization.getOrganizationId());
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		return isChecked(obj);
+	public boolean isDisabled(Object object) {
+		return isChecked(object);
 	}
 
 	private final long[] _checkedOrganizationIds;

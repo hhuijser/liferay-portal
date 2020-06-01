@@ -60,12 +60,12 @@ public class BackgroundTaskImpl implements BackgroundTask {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof BackgroundTaskImpl)) {
+	public boolean equals(Object object) {
+		if (!(object instanceof BackgroundTaskImpl)) {
 			return false;
 		}
 
-		BackgroundTaskImpl backgroundTaskImpl = (BackgroundTaskImpl)obj;
+		BackgroundTaskImpl backgroundTaskImpl = (BackgroundTaskImpl)object;
 
 		return _backgroundTask.equals(backgroundTaskImpl._backgroundTask);
 	}

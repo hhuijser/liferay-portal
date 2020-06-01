@@ -72,9 +72,9 @@ public class CategoryModifiedDateComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected Date getModifiedDate(Object obj) {
-		if (obj instanceof MBCategory) {
-			MBCategory mbCategory = (MBCategory)obj;
+	protected Date getModifiedDate(Object object) {
+		if (object instanceof MBCategory) {
+			MBCategory mbCategory = (MBCategory)object;
 
 			return mbCategory.getModifiedDate();
 		}

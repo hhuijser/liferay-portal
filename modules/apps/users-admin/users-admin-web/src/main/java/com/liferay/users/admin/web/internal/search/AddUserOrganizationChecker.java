@@ -43,8 +43,8 @@ public class AddUserOrganizationChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		User user = (User)obj;
+	public boolean isChecked(Object object) {
+		User user = (User)object;
 
 		try {
 			return UserLocalServiceUtil.hasOrganizationUser(
@@ -58,8 +58,8 @@ public class AddUserOrganizationChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		if (isChecked(obj)) {
+	public boolean isDisabled(Object object) {
+		if (isChecked(object)) {
 			return true;
 		}
 
@@ -67,7 +67,7 @@ public class AddUserOrganizationChecker extends EmptyOnClickRowChecker {
 			return false;
 		}
 
-		User user = (User)obj;
+		User user = (User)object;
 
 		try {
 			PermissionChecker permissionChecker =
@@ -98,7 +98,7 @@ public class AddUserOrganizationChecker extends EmptyOnClickRowChecker {
 			_log.error(exception, exception);
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

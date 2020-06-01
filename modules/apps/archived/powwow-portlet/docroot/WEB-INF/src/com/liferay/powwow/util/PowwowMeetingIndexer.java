@@ -112,16 +112,16 @@ public class PowwowMeetingIndexer extends BaseIndexer {
 	}
 
 	@Override
-	protected void doDelete(Object obj) throws Exception {
-		PowwowMeeting powwowMeeting = (PowwowMeeting)obj;
+	protected void doDelete(Object object) throws Exception {
+		PowwowMeeting powwowMeeting = (PowwowMeeting)object;
 
 		deleteDocument(
 			powwowMeeting.getCompanyId(), powwowMeeting.getPowwowMeetingId());
 	}
 
 	@Override
-	protected Document doGetDocument(Object obj) throws Exception {
-		PowwowMeeting powwowMeeting = (PowwowMeeting)obj;
+	protected Document doGetDocument(Object object) throws Exception {
+		PowwowMeeting powwowMeeting = (PowwowMeeting)object;
 
 		Document document = getBaseModelDocument(PORTLET_ID, powwowMeeting);
 
@@ -200,8 +200,8 @@ public class PowwowMeetingIndexer extends BaseIndexer {
 	}
 
 	@Override
-	protected void doReindex(Object obj) throws Exception {
-		PowwowMeeting powwowMeeting = (PowwowMeeting)obj;
+	protected void doReindex(Object object) throws Exception {
+		PowwowMeeting powwowMeeting = (PowwowMeeting)object;
 
 		IndexWriterHelperUtil.updateDocument(
 			getSearchEngineId(), powwowMeeting.getCompanyId(),

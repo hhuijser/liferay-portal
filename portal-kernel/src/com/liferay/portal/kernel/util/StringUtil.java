@@ -4139,23 +4139,23 @@ public class StringUtil {
 	 * <code>Integer</code> or <code>Long</code> object type. If the object is
 	 * not an instance of these types, the object's original value is returned.
 	 *
-	 * @param  obj the object to convert
+	 * @param  object the object to convert
 	 * @return a string representing the hexidecimal character code of the
 	 *         object
 	 */
-	public static String toHexString(Object obj) {
-		if (obj instanceof Integer) {
-			Integer integerObj = (Integer)obj;
+	public static String toHexString(Object object) {
+		if (object instanceof Integer) {
+			Integer integerObj = (Integer)object;
 
 			return toHexString(integerObj.intValue());
 		}
-		else if (obj instanceof Long) {
-			Long longObj = (Long)obj;
+		else if (object instanceof Long) {
+			Long longObj = (Long)object;
 
 			return toHexString(longObj.longValue());
 		}
 
-		return String.valueOf(obj);
+		return String.valueOf(object);
 	}
 
 	/**

@@ -73,9 +73,9 @@ public class ThreadModifiedDateComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected Date getModifiedDate(Object obj) {
-		if (obj instanceof MBThread) {
-			MBThread mbThread = (MBThread)obj;
+	protected Date getModifiedDate(Object object) {
+		if (object instanceof MBThread) {
+			MBThread mbThread = (MBThread)object;
 
 			return mbThread.getModifiedDate();
 		}

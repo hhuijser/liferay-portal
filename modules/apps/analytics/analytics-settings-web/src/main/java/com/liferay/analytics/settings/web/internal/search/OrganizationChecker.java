@@ -35,8 +35,8 @@ public class OrganizationChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		Organization organization = (Organization)obj;
+	public boolean isChecked(Object object) {
+		Organization organization = (Organization)object;
 
 		return _ids.contains(String.valueOf(organization.getOrganizationId()));
 	}

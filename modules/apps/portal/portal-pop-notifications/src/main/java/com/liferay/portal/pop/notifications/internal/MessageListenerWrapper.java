@@ -90,16 +90,16 @@ public class MessageListenerWrapper implements MessageListener {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof MessageListenerWrapper)) {
+		if (!(object instanceof MessageListenerWrapper)) {
 			return false;
 		}
 
-		MessageListenerWrapper messageListener = (MessageListenerWrapper)obj;
+		MessageListenerWrapper messageListener = (MessageListenerWrapper)object;
 
 		return getId().equals(messageListener.getId());
 	}

@@ -43,8 +43,8 @@ public class ConfigurationModelConfigurationEntry
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		ConfigurationEntry configurationEntry = (ConfigurationEntry)obj;
+	public boolean equals(Object object) {
+		ConfigurationEntry configurationEntry = (ConfigurationEntry)object;
 
 		return Objects.equals(getKey(), configurationEntry.getKey());
 	}

@@ -37,17 +37,17 @@ public abstract class BaseProductNavigationControlMenuEntry
 	implements ProductNavigationControlMenuEntry {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ProductNavigationControlMenuEntry)) {
+		if (!(object instanceof ProductNavigationControlMenuEntry)) {
 			return false;
 		}
 
 		ProductNavigationControlMenuEntry productNavigationControlMenuEntry =
-			(ProductNavigationControlMenuEntry)obj;
+			(ProductNavigationControlMenuEntry)object;
 
 		if (Objects.equals(
 				getKey(), productNavigationControlMenuEntry.getKey())) {

@@ -125,16 +125,16 @@ public class NavItem implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof NavItem)) {
+		if (!(object instanceof NavItem)) {
 			return false;
 		}
 
-		NavItem navItem = (NavItem)obj;
+		NavItem navItem = (NavItem)object;
 
 		if (getLayoutId() == navItem.getLayoutId()) {
 			return true;

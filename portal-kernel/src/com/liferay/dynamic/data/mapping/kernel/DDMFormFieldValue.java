@@ -40,16 +40,16 @@ public class DDMFormFieldValue implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormFieldValue)) {
+		if (!(object instanceof DDMFormFieldValue)) {
 			return false;
 		}
 
-		DDMFormFieldValue ddmFormFieldValue = (DDMFormFieldValue)obj;
+		DDMFormFieldValue ddmFormFieldValue = (DDMFormFieldValue)object;
 
 		if (Objects.equals(_instanceId, ddmFormFieldValue._instanceId) &&
 			Objects.equals(_name, ddmFormFieldValue._name) &&

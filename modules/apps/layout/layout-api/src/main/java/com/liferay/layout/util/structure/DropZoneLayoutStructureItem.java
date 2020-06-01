@@ -36,17 +36,17 @@ public class DropZoneLayoutStructureItem extends LayoutStructureItem {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DropZoneLayoutStructureItem)) {
+		if (!(object instanceof DropZoneLayoutStructureItem)) {
 			return false;
 		}
 
 		DropZoneLayoutStructureItem dropZoneLayoutStructureItem =
-			(DropZoneLayoutStructureItem)obj;
+			(DropZoneLayoutStructureItem)object;
 
 		if (!Objects.equals(
 				_allowNewFragmentEntries,
@@ -58,7 +58,7 @@ public class DropZoneLayoutStructureItem extends LayoutStructureItem {
 			return false;
 		}
 
-		return super.equals(obj);
+		return super.equals(object);
 	}
 
 	public List<String> getFragmentEntryKeys() {

@@ -39,16 +39,16 @@ public class Domain implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Domain)) {
+		if (!(object instanceof Domain)) {
 			return false;
 		}
 
-		Domain domain = (Domain)obj;
+		Domain domain = (Domain)object;
 
 		if (Objects.equals(_domainName, domain._domainName)) {
 			return true;

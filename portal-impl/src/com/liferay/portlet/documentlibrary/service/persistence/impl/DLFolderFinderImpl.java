@@ -738,22 +738,23 @@ public class DLFolderFinderImpl
 				long fileShortcutId = (Long)array[3];
 				long modelFolder = (Long)array[4];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelFolder == 1) {
-					obj = DLFolderUtil.findByPrimaryKey(curFolderId);
+					object = DLFolderUtil.findByPrimaryKey(curFolderId);
 				}
 				else if (fileShortcutId > 0) {
-					obj = DLFileShortcutUtil.findByPrimaryKey(fileShortcutId);
+					object = DLFileShortcutUtil.findByPrimaryKey(
+						fileShortcutId);
 				}
 				else {
 					String name = (String)array[1];
 
-					obj = DLFileEntryUtil.findByG_F_N(
+					object = DLFileEntryUtil.findByG_F_N(
 						groupId, curFolderId, name);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;
@@ -891,22 +892,23 @@ public class DLFolderFinderImpl
 				long fileShortcutId = (Long)array[3];
 				long modelFolder = (Long)array[4];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelFolder == 1) {
-					obj = DLFolderUtil.findByPrimaryKey(curFolderId);
+					object = DLFolderUtil.findByPrimaryKey(curFolderId);
 				}
 				else if (fileShortcutId > 0) {
-					obj = DLFileShortcutUtil.findByPrimaryKey(fileShortcutId);
+					object = DLFileShortcutUtil.findByPrimaryKey(
+						fileShortcutId);
 				}
 				else {
 					String name = (String)array[1];
 
-					obj = DLFileEntryUtil.findByG_F_N(
+					object = DLFileEntryUtil.findByG_F_N(
 						groupId, curFolderId, name);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;
@@ -1037,22 +1039,23 @@ public class DLFolderFinderImpl
 				long fileShortcutId = (Long)array[3];
 				long modelFolder = (Long)array[4];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelFolder == 1) {
-					obj = DLFolderUtil.findByPrimaryKey(curFolderId);
+					object = DLFolderUtil.findByPrimaryKey(curFolderId);
 				}
 				else if (fileShortcutId > 0) {
-					obj = DLFileShortcutUtil.findByPrimaryKey(fileShortcutId);
+					object = DLFileShortcutUtil.findByPrimaryKey(
+						fileShortcutId);
 				}
 				else {
 					String name = (String)array[1];
 
-					obj = DLFileEntryUtil.findByG_F_N(
+					object = DLFileEntryUtil.findByG_F_N(
 						groupId, curFolderId, name);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;
@@ -1185,22 +1188,23 @@ public class DLFolderFinderImpl
 				long fileShortcutId = (Long)array[3];
 				long modelFolder = (Long)array[4];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelFolder == 1) {
-					obj = DLFolderUtil.findByPrimaryKey(curFolderId);
+					object = DLFolderUtil.findByPrimaryKey(curFolderId);
 				}
 				else if (fileShortcutId > 0) {
-					obj = DLFileShortcutUtil.findByPrimaryKey(fileShortcutId);
+					object = DLFileShortcutUtil.findByPrimaryKey(
+						fileShortcutId);
 				}
 				else {
 					String name = (String)array[1];
 
-					obj = DLFileEntryUtil.findByG_F_N(
+					object = DLFileEntryUtil.findByG_F_N(
 						groupId, curFolderId, name);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;
@@ -1274,20 +1278,22 @@ public class DLFolderFinderImpl
 
 				long fileShortcutId = (Long)array[3];
 
-				Object obj = null;
+				Object object = null;
 
 				if (fileShortcutId > 0) {
-					obj = DLFileShortcutUtil.findByPrimaryKey(fileShortcutId);
+					object = DLFileShortcutUtil.findByPrimaryKey(
+						fileShortcutId);
 				}
 				else {
 					long folderId2 = (Long)array[0];
 					String name = (String)array[1];
 					//String title = (String)array[2];
 
-					obj = DLFileEntryUtil.findByG_F_N(groupId, folderId2, name);
+					object = DLFileEntryUtil.findByG_F_N(
+						groupId, folderId2, name);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;

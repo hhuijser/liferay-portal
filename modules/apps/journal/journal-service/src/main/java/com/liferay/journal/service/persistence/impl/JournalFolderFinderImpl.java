@@ -279,20 +279,20 @@ public class JournalFolderFinderImpl
 				long curFolderId = (Long)array[0];
 				long modelFolder = (Long)array[1];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelFolder == 1) {
-					obj = JournalFolderUtil.findByPrimaryKey(curFolderId);
+					object = JournalFolderUtil.findByPrimaryKey(curFolderId);
 				}
 				else {
 					String articleId = (String)array[2];
 					double version = (Double)array[3];
 
-					obj = JournalArticleUtil.findByG_A_V(
+					object = JournalArticleUtil.findByG_A_V(
 						groupId, articleId, version);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;
@@ -376,20 +376,20 @@ public class JournalFolderFinderImpl
 				long curFolderId = (Long)array[0];
 				long modelFolder = (Long)array[1];
 
-				Object obj = null;
+				Object object = null;
 
 				if (modelFolder == 1) {
-					obj = JournalFolderUtil.findByPrimaryKey(curFolderId);
+					object = JournalFolderUtil.findByPrimaryKey(curFolderId);
 				}
 				else {
 					String articleId = (String)array[2];
 					double version = (Double)array[3];
 
-					obj = JournalArticleUtil.findByG_A_V(
+					object = JournalArticleUtil.findByG_A_V(
 						groupId, articleId, version);
 				}
 
-				models.add(obj);
+				models.add(object);
 			}
 
 			return models;

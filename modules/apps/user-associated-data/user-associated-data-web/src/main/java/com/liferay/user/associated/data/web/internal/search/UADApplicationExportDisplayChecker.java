@@ -29,9 +29,9 @@ public class UADApplicationExportDisplayChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
+	public boolean isDisabled(Object object) {
 		UADApplicationExportDisplay uadApplicationExportDisplay =
-			(UADApplicationExportDisplay)obj;
+			(UADApplicationExportDisplay)object;
 
 		if (!uadApplicationExportDisplay.isExportSupported() ||
 			(uadApplicationExportDisplay.getDataCount() == 0)) {

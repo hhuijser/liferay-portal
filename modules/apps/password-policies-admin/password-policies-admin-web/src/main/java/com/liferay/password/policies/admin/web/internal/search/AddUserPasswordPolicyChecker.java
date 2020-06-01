@@ -39,8 +39,8 @@ public class AddUserPasswordPolicyChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		User user = (User)obj;
+	public boolean isChecked(Object object) {
+		User user = (User)object;
 
 		try {
 			return UserLocalServiceUtil.hasPasswordPolicyUser(
@@ -54,10 +54,10 @@ public class AddUserPasswordPolicyChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		User user = (User)obj;
+	public boolean isDisabled(Object object) {
+		User user = (User)object;
 
-		if (isChecked(obj)) {
+		if (isChecked(object)) {
 			return true;
 		}
 

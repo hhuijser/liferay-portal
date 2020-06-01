@@ -32,8 +32,8 @@ public class SiteChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isDisabled(Object obj) {
-		Group group = (Group)obj;
+	public boolean isDisabled(Object object) {
+		Group group = (Group)object;
 
 		try {
 			if (group.isCompany() ||
@@ -46,7 +46,7 @@ public class SiteChecker extends EmptyOnClickRowChecker {
 			_log.error(exception, exception);
 		}
 
-		return super.isDisabled(obj);
+		return super.isDisabled(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(SiteChecker.class);

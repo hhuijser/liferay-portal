@@ -193,8 +193,9 @@ public class FastDateFormatFactoryImpl implements FastDateFormatFactory {
 	private static class DateAndTimeCacheKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			DateAndTimeCacheKey dateAndTimeCacheKey = (DateAndTimeCacheKey)obj;
+		public boolean equals(Object object) {
+			DateAndTimeCacheKey dateAndTimeCacheKey =
+				(DateAndTimeCacheKey)object;
 
 			if ((dateAndTimeCacheKey._dateStyle == _dateStyle) &&
 				(dateAndTimeCacheKey._timeStyle == _timeStyle) &&
@@ -236,8 +237,8 @@ public class FastDateFormatFactoryImpl implements FastDateFormatFactory {
 	private static class DateOrTimeCacheKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			DateOrTimeCacheKey dateOrTimeCacheKey = (DateOrTimeCacheKey)obj;
+		public boolean equals(Object object) {
+			DateOrTimeCacheKey dateOrTimeCacheKey = (DateOrTimeCacheKey)object;
 
 			if ((dateOrTimeCacheKey._style == _style) &&
 				Objects.equals(dateOrTimeCacheKey._locale, _locale) &&
@@ -275,8 +276,8 @@ public class FastDateFormatFactoryImpl implements FastDateFormatFactory {
 	private static class SimpleDateCacheKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			SimpleDateCacheKey simpleDateCacheKey = (SimpleDateCacheKey)obj;
+		public boolean equals(Object object) {
+			SimpleDateCacheKey simpleDateCacheKey = (SimpleDateCacheKey)object;
 
 			if (Objects.equals(simpleDateCacheKey._pattern, _pattern) &&
 				Objects.equals(simpleDateCacheKey._locale, _locale) &&

@@ -24,13 +24,13 @@ public class ArrayUtil {
 			return false;
 		}
 
-		for (Object obj : array) {
+		for (Object object : array) {
 			if (value == null) {
-				if (obj == null) {
+				if (object == null) {
 					return true;
 				}
 			}
-			else if (value.equals(obj)) {
+			else if (value.equals(object)) {
 				return true;
 			}
 		}

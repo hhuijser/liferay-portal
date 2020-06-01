@@ -35,8 +35,8 @@ public class UserGroupChecker extends EmptyOnClickRowChecker {
 	}
 
 	@Override
-	public boolean isChecked(Object obj) {
-		UserGroup userGroup = (UserGroup)obj;
+	public boolean isChecked(Object object) {
+		UserGroup userGroup = (UserGroup)object;
 
 		return _ids.contains(String.valueOf(userGroup.getUserGroupId()));
 	}

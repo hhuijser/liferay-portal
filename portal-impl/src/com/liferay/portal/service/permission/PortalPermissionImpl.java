@@ -62,16 +62,16 @@ public class PortalPermissionImpl implements PortalPermission {
 	private static class CacheKey {
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof CacheKey)) {
+			if (!(object instanceof CacheKey)) {
 				return false;
 			}
 
-			CacheKey cacheKey = (CacheKey)obj;
+			CacheKey cacheKey = (CacheKey)object;
 
 			return Objects.equals(_actionId, cacheKey._actionId);
 		}

@@ -77,16 +77,16 @@ public class ImportPackage implements Comparable<ImportPackage> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ImportPackage)) {
+		if (!(object instanceof ImportPackage)) {
 			return false;
 		}
 
-		ImportPackage importPackage = (ImportPackage)obj;
+		ImportPackage importPackage = (ImportPackage)object;
 
 		if ((_isStatic == importPackage.isStatic()) &&
 			_importString.equals(importPackage.getImportString())) {

@@ -55,16 +55,16 @@ public class LiferayFileVersion extends LiferayModel implements FileVersion {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LiferayFileVersion)) {
+		if (!(object instanceof LiferayFileVersion)) {
 			return false;
 		}
 
-		LiferayFileVersion liferayFileVersion = (LiferayFileVersion)obj;
+		LiferayFileVersion liferayFileVersion = (LiferayFileVersion)object;
 
 		if (Objects.equals(_dlFileVersion, liferayFileVersion._dlFileVersion)) {
 			return true;

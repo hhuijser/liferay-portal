@@ -232,16 +232,16 @@ public class MaxAgeDependencyCheckerImpl extends BaseDependencyCheckerImpl {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof VersionInfo)) {
+			if (!(object instanceof VersionInfo)) {
 				return false;
 			}
 
-			VersionInfo versionInfo = (VersionInfo)obj;
+			VersionInfo versionInfo = (VersionInfo)object;
 
 			if ((timestamp == versionInfo.timestamp) &&
 				version.equals(versionInfo.version)) {

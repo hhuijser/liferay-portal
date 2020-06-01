@@ -59,8 +59,8 @@ public class SourceFormatterCheckUtil {
 
 			Properties properties = entry.getValue();
 
-			for (Object obj : properties.keySet()) {
-				String key = (String)obj;
+			for (Object object : properties.keySet()) {
+				String key = (String)object;
 
 				String attributeName = null;
 
@@ -110,8 +110,8 @@ public class SourceFormatterCheckUtil {
 
 			Properties properties = entry.getValue();
 
-			for (Object obj : properties.keySet()) {
-				String key = (String)obj;
+			for (Object object : properties.keySet()) {
+				String key = (String)object;
 
 				if (!ArrayUtil.contains(keys, key)) {
 					continue;
@@ -148,8 +148,8 @@ public class SourceFormatterCheckUtil {
 
 			Properties properties = entry.getValue();
 
-			for (Object obj : properties.keySet()) {
-				String key = (String)obj;
+			for (Object object : properties.keySet()) {
+				String key = (String)object;
 
 				if (!key.endsWith(".excludes")) {
 					continue;

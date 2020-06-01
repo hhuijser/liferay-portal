@@ -163,7 +163,7 @@ public class ServiceContextAdviceTest {
 		}
 
 		@SuppressWarnings("unused")
-		public void method(Object obj) {
+		public void method(Object object) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -182,7 +182,7 @@ public class ServiceContextAdviceTest {
 
 		@SuppressWarnings("unused")
 		public void method(
-			TestServiceContextWrapper serviceContextWrapper, Object obj) {
+			TestServiceContextWrapper serviceContextWrapper, Object object) {
 
 			Assert.assertSame(
 				serviceContextWrapper,

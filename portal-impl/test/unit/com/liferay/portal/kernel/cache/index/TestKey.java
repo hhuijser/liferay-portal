@@ -29,8 +29,8 @@ public class TestKey implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		TestKey testKey = (TestKey)obj;
+	public boolean equals(Object object) {
+		TestKey testKey = (TestKey)object;
 
 		if ((testKey._indexedLong == _indexedLong) &&
 			(testKey._unindexedLong == _unindexedLong)) {

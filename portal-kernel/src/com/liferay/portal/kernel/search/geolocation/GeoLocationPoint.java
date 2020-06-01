@@ -25,16 +25,16 @@ public class GeoLocationPoint {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof GeoLocationPoint)) {
+		if (!(object instanceof GeoLocationPoint)) {
 			return false;
 		}
 
-		GeoLocationPoint geoLocationPoint = (GeoLocationPoint)obj;
+		GeoLocationPoint geoLocationPoint = (GeoLocationPoint)object;
 
 		if (Double.compare(geoLocationPoint.getLatitude(), _latitude) != 0) {
 			return false;

@@ -40,17 +40,17 @@ public class DDMFormFieldValidation implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormFieldValidation)) {
+		if (!(object instanceof DDMFormFieldValidation)) {
 			return false;
 		}
 
 		DDMFormFieldValidation ddmFormFieldValidation =
-			(DDMFormFieldValidation)obj;
+			(DDMFormFieldValidation)object;
 
 		if (Objects.equals(
 				_ddmFormFieldValidationExpression,

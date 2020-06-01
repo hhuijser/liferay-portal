@@ -37,17 +37,17 @@ public class PortalCacheManagerEventListener
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof PortalCacheManagerEventListener)) {
+		if (!(object instanceof PortalCacheManagerEventListener)) {
 			return false;
 		}
 
 		PortalCacheManagerEventListener portalCacheManagerEventListener =
-			(PortalCacheManagerEventListener)obj;
+			(PortalCacheManagerEventListener)object;
 
 		return _portalCacheManagerListener.equals(
 			portalCacheManagerEventListener._portalCacheManagerListener);

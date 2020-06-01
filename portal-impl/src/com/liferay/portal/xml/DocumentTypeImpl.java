@@ -29,16 +29,16 @@ public class DocumentTypeImpl implements DocumentType {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DocumentTypeImpl)) {
+		if (!(object instanceof DocumentTypeImpl)) {
 			return false;
 		}
 
-		DocumentTypeImpl documentTypeImpl = (DocumentTypeImpl)obj;
+		DocumentTypeImpl documentTypeImpl = (DocumentTypeImpl)object;
 
 		if (Objects.equals(_documentType, documentTypeImpl._documentType)) {
 			return true;

@@ -273,16 +273,16 @@ public class I18nServlet extends HttpServlet {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof I18nData)) {
+			if (!(object instanceof I18nData)) {
 				return false;
 			}
 
-			I18nData i18nData = (I18nData)obj;
+			I18nData i18nData = (I18nData)object;
 
 			if (Objects.equals(getI18nPath(), i18nData.getI18nPath()) &&
 				Objects.equals(getLanguageCode(), i18nData.getLanguageCode()) &&

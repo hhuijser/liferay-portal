@@ -46,16 +46,16 @@ public class PortletDecoratorImpl implements PortletDecorator {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof PortletDecorator)) {
+		if (!(object instanceof PortletDecorator)) {
 			return false;
 		}
 
-		PortletDecorator portletDecorator = (PortletDecorator)obj;
+		PortletDecorator portletDecorator = (PortletDecorator)object;
 
 		if (getPortletDecoratorId().equals(
 				portletDecorator.getPortletDecoratorId())) {

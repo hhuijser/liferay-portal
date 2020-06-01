@@ -214,10 +214,10 @@ public class LocalProcessExecutor implements ProcessExecutor {
 				}
 
 				while (true) {
-					Object obj = null;
+					Object object = null;
 
 					try {
-						obj = objectInputStream.readObject();
+						object = objectInputStream.readObject();
 					}
 					catch (WriteAbortedException writeAbortedException) {
 						_processLogConsumer.accept(
@@ -229,19 +229,19 @@ public class LocalProcessExecutor implements ProcessExecutor {
 						continue;
 					}
 
-					if (!(obj instanceof ProcessCallable)) {
+					if (!(object instanceof ProcessCallable)) {
 						_processLogConsumer.accept(
 							new LocalProcessLog(
 								ProcessLog.Level.INFO,
 								"Received a nonprocess callable piping back " +
-									obj,
+									object,
 								null));
 
 						continue;
 					}
 
 					ProcessCallable<?> processCallable =
-						(ProcessCallable<?>)obj;
+						(ProcessCallable<?>)object;
 
 					if (processCallable instanceof ResultProcessCallable) {
 						resultProcessCallable =

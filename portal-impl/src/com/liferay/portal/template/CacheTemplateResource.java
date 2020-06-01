@@ -46,17 +46,17 @@ public class CacheTemplateResource implements TemplateResource {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CacheTemplateResource)) {
+		if (!(object instanceof CacheTemplateResource)) {
 			return false;
 		}
 
 		CacheTemplateResource cacheTemplateResource =
-			(CacheTemplateResource)obj;
+			(CacheTemplateResource)object;
 
 		if (_templateResource.equals(cacheTemplateResource._templateResource)) {
 			return true;

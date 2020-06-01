@@ -555,10 +555,10 @@ public class IncludeTag extends AttributesTagSupport {
 		extends HttpServletRequestWrapper {
 
 		@Override
-		public void setAttribute(String name, Object obj) {
+		public void setAttribute(String name, Object object) {
 			_setAttributeNames.add(name);
 
-			super.setAttribute(name, obj);
+			super.setAttribute(name, object);
 		}
 
 		private TrackedServletRequest(

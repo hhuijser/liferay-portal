@@ -261,9 +261,9 @@ public class IntrabandProxyInstallationUtilTest {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(Object object) {
 			TestGenerateTargetLocator testGenerateTargetLocator =
-				(TestGenerateTargetLocator)obj;
+				(TestGenerateTargetLocator)object;
 
 			return _clazz.equals(testGenerateTargetLocator._clazz);
 		}

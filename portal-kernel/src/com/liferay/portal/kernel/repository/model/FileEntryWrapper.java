@@ -53,16 +53,16 @@ public class FileEntryWrapper implements FileEntry, ModelWrapper<FileEntry> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof FileEntryWrapper)) {
+		if (!(object instanceof FileEntryWrapper)) {
 			return false;
 		}
 
-		FileEntryWrapper fileEntryWrapper = (FileEntryWrapper)obj;
+		FileEntryWrapper fileEntryWrapper = (FileEntryWrapper)object;
 
 		if (Objects.equals(_fileEntry, fileEntryWrapper._fileEntry)) {
 			return true;

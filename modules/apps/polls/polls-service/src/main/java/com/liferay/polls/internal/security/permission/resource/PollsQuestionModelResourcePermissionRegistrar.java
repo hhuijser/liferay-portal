@@ -47,7 +47,8 @@ public class PollsQuestionModelResourcePermissionRegistrar {
 		properties.put("model.class.name", PollsQuestion.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<PollsQuestion>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				PollsQuestion.class, PollsQuestion::getQuestionId,
 				_pollsQuestionLocalService::getQuestion,
@@ -70,7 +71,8 @@ public class PollsQuestionModelResourcePermissionRegistrar {
 	@Reference(target = "(resource.name=" + PollsConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<PollsQuestion>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

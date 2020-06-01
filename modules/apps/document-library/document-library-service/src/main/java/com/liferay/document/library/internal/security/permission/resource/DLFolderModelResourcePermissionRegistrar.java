@@ -53,7 +53,8 @@ public class DLFolderModelResourcePermissionRegistrar {
 		properties.put("model.class.name", DLFolder.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<DLFolder>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				DLFolder.class, DLFolder::getFolderId,
 				_dlFolderLocalService::getDLFolder, _portletResourcePermission,
@@ -109,7 +110,8 @@ public class DLFolderModelResourcePermissionRegistrar {
 	@Reference(target = "(resource.name=" + DLConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<DLFolder>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

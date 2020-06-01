@@ -53,7 +53,8 @@ public class KBArticleModelResourcePermissionRegistrar {
 		properties.put("model.class.name", KBArticle.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<KBArticle>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				KBArticle.class, KBArticle::getRootResourcePrimKey,
 				classPK -> {
@@ -97,7 +98,8 @@ public class KBArticleModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<KBArticle>>
+		_serviceRegistration;
 
 	private class KBArticleDynamicInheritanceModelResourcePermissionLogic
 		implements ModelResourcePermissionLogic<KBArticle> {

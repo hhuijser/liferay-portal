@@ -52,7 +52,8 @@ public class DDMFormInstanceRecordModelResourcePermissionRegistrar {
 			"model.class.name", DDMFormInstanceRecord.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<DDMFormInstanceRecord>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				DDMFormInstanceRecord.class,
 				DDMFormInstanceRecord::getFormInstanceRecordId,
@@ -85,7 +86,8 @@ public class DDMFormInstanceRecordModelResourcePermissionRegistrar {
 	@Reference(target = "(resource.name=" + DDMConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<DDMFormInstanceRecord>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

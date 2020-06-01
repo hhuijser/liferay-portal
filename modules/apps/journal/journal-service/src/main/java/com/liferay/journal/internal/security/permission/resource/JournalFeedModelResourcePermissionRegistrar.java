@@ -47,7 +47,8 @@ public class JournalFeedModelResourcePermissionRegistrar {
 		properties.put("model.class.name", JournalFeed.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<JournalFeed>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				JournalFeed.class, JournalFeed::getId,
 				_journalFeedLocalService::getJournalFeed,
@@ -72,7 +73,8 @@ public class JournalFeedModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<JournalFeed>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

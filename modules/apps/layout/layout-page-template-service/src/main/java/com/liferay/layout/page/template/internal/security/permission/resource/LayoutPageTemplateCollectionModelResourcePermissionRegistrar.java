@@ -45,7 +45,8 @@ public class LayoutPageTemplateCollectionModelResourcePermissionRegistrar {
 			"model.class.name", LayoutPageTemplateCollection.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<LayoutPageTemplateCollection>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				LayoutPageTemplateCollection.class,
 				LayoutPageTemplateCollection::getLayoutPageTemplateCollectionId,
@@ -71,6 +72,8 @@ public class LayoutPageTemplateCollectionModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration
+		<ModelResourcePermission<LayoutPageTemplateCollection>>
+			_serviceRegistration;
 
 }

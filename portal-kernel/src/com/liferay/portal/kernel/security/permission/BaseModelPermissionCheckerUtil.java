@@ -83,8 +83,10 @@ public class BaseModelPermissionCheckerUtil {
 		_baseModelPermissionCheckers =
 			ServiceTrackerCollections.openSingleValueMap(
 				BaseModelPermissionChecker.class, "model.class.name");
-	private static final ServiceTrackerMap<String, ModelResourcePermission>
+	private static final ServiceTrackerMap<String, ModelResourcePermission<?>>
 		_modelPermissions = ServiceTrackerCollections.openSingleValueMap(
-			ModelResourcePermission.class, "model.class.name");
+			(Class<ModelResourcePermission<?>>)
+				(Class<?>)ModelResourcePermission.class,
+			"model.class.name");
 
 }

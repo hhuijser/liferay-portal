@@ -47,7 +47,8 @@ public class WikiNodeModelResourcePermissionRegistrar {
 		properties.put("model.class.name", WikiNode.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<WikiNode>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				WikiNode.class, WikiNode::getNodeId,
 				_wikiNodeLocalService::getWikiNode, _portletResourcePermission,
@@ -66,7 +67,8 @@ public class WikiNodeModelResourcePermissionRegistrar {
 	@Reference(target = "(resource.name=" + WikiConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<WikiNode>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

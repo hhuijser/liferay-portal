@@ -47,7 +47,8 @@ public class AssetListEntryModelResourcePermissionRegistrar {
 		properties.put("model.class.name", AssetListEntry.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<AssetListEntry>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				AssetListEntry.class, AssetListEntry::getAssetListEntryId,
 				_assetListEntryLocalService::getAssetListEntry,
@@ -72,7 +73,8 @@ public class AssetListEntryModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<AssetListEntry>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

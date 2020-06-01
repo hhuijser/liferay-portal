@@ -48,7 +48,8 @@ public class DDLRecordSetModelResourcePermissionRegistrar {
 		properties.put("model.class.name", DDLRecordSet.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<DDLRecordSet>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				DDLRecordSet.class, DDLRecordSet::getRecordSetId,
 				_ddlRecordSetLocalService::getDDLRecordSet,
@@ -85,7 +86,8 @@ public class DDLRecordSetModelResourcePermissionRegistrar {
 	@Reference(target = "(resource.name=" + DDLConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<DDLRecordSet>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

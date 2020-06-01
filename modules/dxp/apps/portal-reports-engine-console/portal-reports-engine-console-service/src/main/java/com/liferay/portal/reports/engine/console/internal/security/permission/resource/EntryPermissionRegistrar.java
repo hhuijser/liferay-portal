@@ -38,7 +38,8 @@ public class EntryPermissionRegistrar {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<Entry>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				Entry.class, Entry::getEntryId, _entryLocalService::getEntry,
 				_portletResourcePermission,
@@ -61,6 +62,7 @@ public class EntryPermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<Entry>>
+		_serviceRegistration;
 
 }

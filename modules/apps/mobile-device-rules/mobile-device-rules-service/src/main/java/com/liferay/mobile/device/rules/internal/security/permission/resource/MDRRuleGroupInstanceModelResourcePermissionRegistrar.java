@@ -47,7 +47,8 @@ public class MDRRuleGroupInstanceModelResourcePermissionRegistrar {
 			"model.class.name", MDRRuleGroupInstance.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<MDRRuleGroupInstance>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				MDRRuleGroupInstance.class,
 				MDRRuleGroupInstance::getRuleGroupInstanceId,
@@ -71,7 +72,8 @@ public class MDRRuleGroupInstanceModelResourcePermissionRegistrar {
 	@Reference
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<MDRRuleGroupInstance>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

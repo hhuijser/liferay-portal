@@ -44,7 +44,8 @@ public class SiteNavigationMenuModelResourcePermissionRegistrar {
 		properties.put("model.class.name", SiteNavigationMenu.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<SiteNavigationMenu>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				SiteNavigationMenu.class,
 				SiteNavigationMenu::getSiteNavigationMenuId,
@@ -65,7 +66,8 @@ public class SiteNavigationMenuModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<SiteNavigationMenu>>
+		_serviceRegistration;
 
 	@Reference
 	private SiteNavigationMenuLocalService _siteNavigationMenuLocalService;

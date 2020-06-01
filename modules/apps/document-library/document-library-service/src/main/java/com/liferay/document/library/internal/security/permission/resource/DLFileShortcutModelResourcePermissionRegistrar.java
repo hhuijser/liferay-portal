@@ -47,7 +47,8 @@ public class DLFileShortcutModelResourcePermissionRegistrar {
 		properties.put("model.class.name", DLFileShortcut.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<DLFileShortcut>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				DLFileShortcut.class, DLFileShortcut::getFileShortcutId,
 				_dlFileShortcutLocalService::getFileShortcut,
@@ -70,7 +71,8 @@ public class DLFileShortcutModelResourcePermissionRegistrar {
 	@Reference(target = "(resource.name=" + DLConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<DLFileShortcut>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

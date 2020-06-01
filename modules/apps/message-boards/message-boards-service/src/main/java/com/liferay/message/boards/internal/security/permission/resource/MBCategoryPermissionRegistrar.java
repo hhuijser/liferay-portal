@@ -54,7 +54,8 @@ public class MBCategoryPermissionRegistrar {
 		properties.put("model.class.name", MBCategory.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<MBCategory>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				MBCategory.class, MBCategory::getCategoryId,
 				_mbCategoryLocalService::getCategory,
@@ -125,7 +126,8 @@ public class MBCategoryPermissionRegistrar {
 	@Reference(target = "(resource.name=" + MBConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<MBCategory>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

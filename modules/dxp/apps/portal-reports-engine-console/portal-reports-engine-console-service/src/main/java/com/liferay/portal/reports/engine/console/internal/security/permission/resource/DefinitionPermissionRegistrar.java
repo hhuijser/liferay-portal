@@ -38,7 +38,8 @@ public class DefinitionPermissionRegistrar {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<Definition>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				Definition.class, Definition::getDefinitionId,
 				_definitionLocalService::getDefinition,
@@ -62,6 +63,7 @@ public class DefinitionPermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<Definition>>
+		_serviceRegistration;
 
 }

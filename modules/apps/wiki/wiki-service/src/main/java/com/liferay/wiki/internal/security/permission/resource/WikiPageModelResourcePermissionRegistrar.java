@@ -57,7 +57,8 @@ public class WikiPageModelResourcePermissionRegistrar {
 		properties.put("model.class.name", WikiPage.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<WikiPage>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				WikiPage.class, WikiPage::getResourcePrimKey,
 				(Long resourcePrimKey) -> {
@@ -113,7 +114,8 @@ public class WikiPageModelResourcePermissionRegistrar {
 	@Reference(target = "(resource.name=" + WikiConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<WikiPage>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

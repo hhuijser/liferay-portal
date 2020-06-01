@@ -46,7 +46,8 @@ public class FragmentCollectionDLFileEntryModelResourcePermissionRegistrar {
 		properties.put("model.class.name", FragmentCollection.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<FragmentCollection>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				FragmentCollection.class,
 				FragmentCollection::getFragmentCollectionId,
@@ -83,6 +84,7 @@ public class FragmentCollectionDLFileEntryModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<FragmentCollection>>
+		_serviceRegistration;
 
 }

@@ -33,7 +33,7 @@ public class IndexerPermissionPostFilterImpl
 	implements IndexerPermissionPostFilter {
 
 	public IndexerPermissionPostFilterImpl(
-		Supplier<Optional<ModelResourcePermission>>
+		Supplier<Optional<ModelResourcePermission<?>>>
 			modelResourcePermissionSupplier,
 		Supplier<Optional<ModelVisibilityContributor>>
 			modelVisibilityContributorSupplier) {
@@ -47,7 +47,7 @@ public class IndexerPermissionPostFilterImpl
 	public boolean hasPermission(
 		PermissionChecker permissionChecker, long entryClassPK) {
 
-		Optional<ModelResourcePermission> optional =
+		Optional<ModelResourcePermission<?>> optional =
 			_modelResourcePermissionSupplier.get();
 
 		return optional.map(
@@ -60,7 +60,7 @@ public class IndexerPermissionPostFilterImpl
 
 	@Override
 	public boolean isPermissionAware() {
-		Optional<ModelResourcePermission> optional =
+		Optional<ModelResourcePermission<?>> optional =
 			_modelResourcePermissionSupplier.get();
 
 		return optional.isPresent();
@@ -99,7 +99,7 @@ public class IndexerPermissionPostFilterImpl
 	private static final Log _log = LogFactoryUtil.getLog(
 		IndexerPermissionPostFilterImpl.class);
 
-	private final Supplier<Optional<ModelResourcePermission>>
+	private final Supplier<Optional<ModelResourcePermission<?>>>
 		_modelResourcePermissionSupplier;
 	private final Supplier<Optional<ModelVisibilityContributor>>
 		_modelVisibilityContributorSupplier;

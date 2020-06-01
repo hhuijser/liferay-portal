@@ -60,7 +60,8 @@ public class MBMessagePermissionRegistrar {
 		properties.put("model.class.name", MBMessage.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<MBMessage>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				MBMessage.class, MBMessage::getMessageId,
 				(Long resourcePrimKey) -> {
@@ -157,7 +158,8 @@ public class MBMessagePermissionRegistrar {
 	@Reference(target = "(resource.name=" + MBConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<MBMessage>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

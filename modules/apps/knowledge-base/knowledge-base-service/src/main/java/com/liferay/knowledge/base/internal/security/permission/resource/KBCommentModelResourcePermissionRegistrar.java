@@ -50,7 +50,8 @@ public class KBCommentModelResourcePermissionRegistrar {
 		properties.put("model.class.name", KBComment.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<KBComment>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				KBComment.class, KBComment::getKbCommentId,
 				_kbCommentLocalService::getKBComment,
@@ -126,6 +127,7 @@ public class KBCommentModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<KBComment>>
+		_serviceRegistration;
 
 }

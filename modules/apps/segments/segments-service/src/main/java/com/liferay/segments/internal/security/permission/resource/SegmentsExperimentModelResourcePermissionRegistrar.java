@@ -51,7 +51,8 @@ public class SegmentsExperimentModelResourcePermissionRegistrar {
 		properties.put("model.class.name", SegmentsExperiment.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<SegmentsExperiment>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				SegmentsExperiment.class,
 				SegmentsExperiment::getSegmentsExperimentId,
@@ -76,7 +77,8 @@ public class SegmentsExperimentModelResourcePermissionRegistrar {
 	@Reference
 	private SegmentsExperimentLocalService _segmentsExperimentLocalService;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<SegmentsExperiment>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

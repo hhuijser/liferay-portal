@@ -45,7 +45,8 @@ public class KaleoDefinitionVersionModelResourcePermissionRegistrar {
 			"model.class.name", KaleoDefinitionVersion.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<KaleoDefinitionVersion>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				KaleoDefinitionVersion.class,
 				KaleoDefinitionVersion::getKaleoDefinitionVersionId,
@@ -70,6 +71,7 @@ public class KaleoDefinitionVersionModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<KaleoDefinitionVersion>>
+		_serviceRegistration;
 
 }

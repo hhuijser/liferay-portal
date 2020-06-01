@@ -53,7 +53,8 @@ public class JournalFolderModelResourcePermissionRegistrar {
 		properties.put("model.class.name", JournalFolder.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<JournalFolder>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				JournalFolder.class, JournalFolder::getFolderId,
 				_journalFolderLocalService::getFolder,
@@ -126,7 +127,8 @@ public class JournalFolderModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<JournalFolder>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

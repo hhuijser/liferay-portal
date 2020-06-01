@@ -67,7 +67,8 @@ public class DLFileEntryModelResourcePermissionRegistrar {
 		properties.put("model.class.name", DLFileEntry.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<DLFileEntry>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				DLFileEntry.class, DLFileEntry::getFileEntryId,
 				_dlFileEntryLocalService::getDLFileEntry,
@@ -170,7 +171,8 @@ public class DLFileEntryModelResourcePermissionRegistrar {
 	@Reference(target = "(resource.name=" + DLConstants.RESOURCE_NAME + ")")
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<DLFileEntry>>
+		_serviceRegistration;
 
 	@Reference(
 		cardinality = ReferenceCardinality.OPTIONAL,

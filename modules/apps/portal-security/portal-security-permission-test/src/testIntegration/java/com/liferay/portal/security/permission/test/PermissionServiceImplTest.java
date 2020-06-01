@@ -58,10 +58,11 @@ public class PermissionServiceImplTest {
 
 		boolean[] calledCheckBaseModel = {false};
 
-		ServiceRegistration<ModelResourcePermission> serviceRegistration =
+		ServiceRegistration<ModelResourcePermission<?>> serviceRegistration =
 			bundleContext.registerService(
-				ModelResourcePermission.class,
-				(ModelResourcePermission)ProxyUtil.newProxyInstance(
+				(Class<ModelResourcePermission<?>>)
+					(Class<?>)ModelResourcePermission.class,
+				(ModelResourcePermission<?>)ProxyUtil.newProxyInstance(
 					ModelResourcePermission.class.getClassLoader(),
 					new Class<?>[] {ModelResourcePermission.class},
 					(proxy, method, args) -> {

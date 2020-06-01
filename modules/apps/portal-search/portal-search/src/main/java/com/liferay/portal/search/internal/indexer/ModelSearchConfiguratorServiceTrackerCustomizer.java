@@ -174,7 +174,9 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 
 		_modelResourcePermissionServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, ModelResourcePermission.class,
+				bundleContext,
+				(Class<ModelResourcePermission<?>>)
+					(Class<?>)ModelResourcePermission.class,
 				"model.class.name");
 
 		_queryConfigContributors = ServiceTrackerListFactory.open(
@@ -373,7 +375,7 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 	private BundleContext _bundleContext;
 	private ServiceTrackerList<DocumentContributor, DocumentContributor>
 		_documentContributors;
-	private ServiceTrackerMap<String, ModelResourcePermission>
+	private ServiceTrackerMap<String, ModelResourcePermission<?>>
 		_modelResourcePermissionServiceTrackerMap;
 
 	@Reference(target = ModuleServiceLifecycle.PORTLETS_INITIALIZED)

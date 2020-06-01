@@ -45,7 +45,8 @@ public class FolderModelResourcePermissionRegistrar {
 		properties.put("model.class.name", Folder.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<Folder>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				Folder.class, Folder::getFolderId,
 				_dlAppLocalService::getFolder, _portletResourcePermission,
@@ -70,6 +71,7 @@ public class FolderModelResourcePermissionRegistrar {
 	@Reference
 	private RepositoryFactory _repositoryFactory;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<Folder>>
+		_serviceRegistration;
 
 }

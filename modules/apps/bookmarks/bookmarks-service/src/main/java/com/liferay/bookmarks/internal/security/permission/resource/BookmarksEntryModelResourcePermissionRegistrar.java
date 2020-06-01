@@ -54,7 +54,8 @@ public class BookmarksEntryModelResourcePermissionRegistrar {
 		properties.put("model.class.name", BookmarksEntry.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<BookmarksEntry>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				BookmarksEntry.class, BookmarksEntry::getEntryId,
 				_bookmarksEntryLocalService::getEntry,
@@ -116,7 +117,8 @@ public class BookmarksEntryModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<BookmarksEntry>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

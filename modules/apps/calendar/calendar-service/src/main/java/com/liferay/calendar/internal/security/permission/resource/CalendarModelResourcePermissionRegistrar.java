@@ -50,7 +50,8 @@ public class CalendarModelResourcePermissionRegistrar {
 		properties.put("model.class.name", Calendar.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<Calendar>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				Calendar.class, Calendar::getCalendarId,
 				_calendarLocalService::getCalendar, _portletResourcePermission,
@@ -73,7 +74,8 @@ public class CalendarModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<Calendar>>
+		_serviceRegistration;
 
 	@Reference
 	private StagingPermission _stagingPermission;

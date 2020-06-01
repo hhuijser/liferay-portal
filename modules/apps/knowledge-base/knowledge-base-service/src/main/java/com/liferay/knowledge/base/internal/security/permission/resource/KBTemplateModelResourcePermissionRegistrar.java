@@ -44,7 +44,8 @@ public class KBTemplateModelResourcePermissionRegistrar {
 		properties.put("model.class.name", KBTemplate.class.getName());
 
 		_serviceRegistration = bundleContext.registerService(
-			ModelResourcePermission.class,
+			(Class<ModelResourcePermission<KBTemplate>>)
+				(Class<?>)ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
 				KBTemplate.class, KBTemplate::getKbTemplateId,
 				_kbTemplateLocalService::getKBTemplate,
@@ -67,6 +68,7 @@ public class KBTemplateModelResourcePermissionRegistrar {
 	)
 	private PortletResourcePermission _portletResourcePermission;
 
-	private ServiceRegistration<ModelResourcePermission> _serviceRegistration;
+	private ServiceRegistration<ModelResourcePermission<KBTemplate>>
+		_serviceRegistration;
 
 }

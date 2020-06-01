@@ -34,7 +34,7 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 	<c:if test="<%= formInstancePermissionCheckerHelper.isShowCopyURLIcon(formInstance) && ddmFormAdminDisplayContext.isFormPublished(formInstance) %>">
 		<liferay-ui:icon
 			message="copy-url"
-			onClick='<%= "Liferay.fire('" + renderResponse.getNamespace() + "copyFormURL', { url:'" + ddmFormAdminDisplayContext.getPublishedFormURL(formInstance) + "' , node: this});" %>'
+			onClick="<%= "Liferay.fire('" + renderResponse.getNamespace() + "copyFormURL', { url:'" + ddmFormAdminDisplayContext.getPublishedFormURL(formInstance) + "' , node: this});" %>"
 			url="javascript:;"
 		/>
 	</c:if>

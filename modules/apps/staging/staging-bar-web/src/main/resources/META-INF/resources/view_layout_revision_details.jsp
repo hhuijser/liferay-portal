@@ -71,7 +71,7 @@ else {
 				<c:choose>
 					<c:when test="<%= !workflowEnabled && !layoutRevision.isIncomplete() %>">
 						<span class="staging-bar-control-toggle">
-							<aui:input id="readyToggle" label="<%= StringPool.BLANK %>" labelOff="ready-for-publication" labelOn="ready-for-publication" name="readyToggle" onChange='<%= liferayPortletResponse.getNamespace() + "submitLayoutRevision('" + publishURL + "')" %>' type="toggle-switch" value="<%= false %>" />
+							<aui:input id="readyToggle" label="<%= StringPool.BLANK %>" labelOff="ready-for-publication" labelOn="ready-for-publication" name="readyToggle" onChange="<%= liferayPortletResponse.getNamespace() + "submitLayoutRevision('" + publishURL + "')" %>" type="toggle-switch" value="<%= false %>" />
 						</span>
 					</c:when>
 					<c:when test="<%= !workflowEnabled || pendingLayoutRevisions.isEmpty() %>">

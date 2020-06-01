@@ -69,18 +69,18 @@ public abstract class TranslatedList<E, F> extends ListWrapper<E> {
 	}
 
 	@Override
-	public boolean remove(Object o) {
-		_oldList.remove(toOldObject((E)o));
+	public boolean remove(Object object) {
+		_oldList.remove(toOldObject((E)object));
 
-		return super.remove(o);
+		return super.remove(object);
 	}
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		List<F> tempList = new ArrayList<>();
 
-		for (Object o : c) {
-			tempList.add(toOldObject((E)o));
+		for (Object object : c) {
+			tempList.add(toOldObject((E)object));
 		}
 
 		_oldList.removeAll(tempList);
@@ -92,8 +92,8 @@ public abstract class TranslatedList<E, F> extends ListWrapper<E> {
 	public boolean retainAll(Collection<?> c) {
 		List<F> tempList = new ArrayList<>();
 
-		for (Object o : c) {
-			tempList.add(toOldObject((E)o));
+		for (Object object : c) {
+			tempList.add(toOldObject((E)object));
 		}
 
 		_oldList.retainAll(tempList);

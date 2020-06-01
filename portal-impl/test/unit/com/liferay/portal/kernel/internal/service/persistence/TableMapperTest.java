@@ -1687,7 +1687,7 @@ public class TableMapperTest {
 				new HashSet<String>() {
 
 					@Override
-					public boolean contains(Object o) {
+					public boolean contains(Object object) {
 						return true;
 					}
 

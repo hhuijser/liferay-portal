@@ -35,7 +35,7 @@ public class MockFeature {
 			}
 
 			@Override
-			public FeatureContext property(String s, Object o) {
+			public FeatureContext property(String s, Object object) {
 				return null;
 			}
 

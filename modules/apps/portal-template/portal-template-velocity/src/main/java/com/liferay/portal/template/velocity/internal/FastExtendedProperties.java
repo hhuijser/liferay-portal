@@ -94,8 +94,8 @@ public class FastExtendedProperties extends ExtendedProperties {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		return _map.equals(o);
+	public boolean equals(Object object) {
+		return _map.equals(object);
 	}
 
 	@Override

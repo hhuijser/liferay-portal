@@ -54,8 +54,8 @@ public class ListWrapper<E> implements List<E> {
 	}
 
 	@Override
-	public boolean contains(Object o) {
-		return _list.contains(o);
+	public boolean contains(Object object) {
+		return _list.contains(object);
 	}
 
 	@Override
@@ -69,8 +69,8 @@ public class ListWrapper<E> implements List<E> {
 	}
 
 	@Override
-	public int indexOf(Object o) {
-		return _list.indexOf(o);
+	public int indexOf(Object object) {
+		return _list.indexOf(object);
 	}
 
 	@Override
@@ -84,8 +84,8 @@ public class ListWrapper<E> implements List<E> {
 	}
 
 	@Override
-	public int lastIndexOf(Object o) {
-		return _list.lastIndexOf(o);
+	public int lastIndexOf(Object object) {
+		return _list.lastIndexOf(object);
 	}
 
 	@Override
@@ -104,8 +104,8 @@ public class ListWrapper<E> implements List<E> {
 	}
 
 	@Override
-	public boolean remove(Object o) {
-		return _list.remove(o);
+	public boolean remove(Object object) {
+		return _list.remove(object);
 	}
 
 	@Override

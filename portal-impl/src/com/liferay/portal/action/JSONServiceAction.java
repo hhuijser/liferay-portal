@@ -133,21 +133,21 @@ public class JSONServiceAction extends JSONAction {
 						" with args ", Arrays.toString(args)));
 			}
 
-			Object returnObj = null;
+			Object returnObject = null;
 
 			boolean remoteAccess = AccessControlThreadLocal.isRemoteAccess();
 
 			try {
 				AccessControlThreadLocal.setRemoteAccess(true);
 
-				returnObj = method.invoke(clazz, args);
+				returnObject = method.invoke(clazz, args);
 			}
 			finally {
 				AccessControlThreadLocal.setRemoteAccess(remoteAccess);
 			}
 
-			if (returnObj != null) {
-				return getReturnValue(returnObj);
+			if (returnObject != null) {
+				return getReturnValue(returnObject);
 			}
 
 			return JSONFactoryUtil.getNullJSON();
@@ -562,9 +562,9 @@ public class JSONServiceAction extends JSONAction {
 		return _REROUTE_PATH;
 	}
 
-	protected String getReturnValue(Object returnObj) throws Exception {
-		if (returnObj instanceof JSONSerializable) {
-			JSONSerializable jsonSerializable = (JSONSerializable)returnObj;
+	protected String getReturnValue(Object returnObject) throws Exception {
+		if (returnObject instanceof JSONSerializable) {
+			JSONSerializable jsonSerializable = (JSONSerializable)returnObject;
 
 			return jsonSerializable.toJSONString();
 		}
@@ -573,7 +573,7 @@ public class JSONServiceAction extends JSONAction {
 
 		jsonSerializer.exclude("*.class");
 
-		return jsonSerializer.serializeDeep(returnObj);
+		return jsonSerializer.serializeDeep(returnObject);
 	}
 
 	protected String[] getStringArrayFromJSON(

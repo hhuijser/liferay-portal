@@ -308,10 +308,10 @@ public class SearchContainerRowTag<R>
 				model, _keyProperty);
 		}
 		else {
-			Object primaryKeyObj = BeanPropertiesUtil.getObjectSilent(
+			Object primaryKeyObject = BeanPropertiesUtil.getObjectSilent(
 				model, _keyProperty);
 
-			primaryKey = String.valueOf(primaryKeyObj);
+			primaryKey = String.valueOf(primaryKeyObject);
 		}
 
 		String rowId = null;
@@ -320,16 +320,16 @@ public class SearchContainerRowTag<R>
 			rowId = String.valueOf(_rowIndex + 1);
 		}
 		else {
-			Object rowIdObj = BeanPropertiesUtil.getObjectSilent(
+			Object rowIdObject = BeanPropertiesUtil.getObjectSilent(
 				model, _rowIdProperty);
 
-			if (Validator.isNull(rowIdObj)) {
+			if (Validator.isNull(rowIdObject)) {
 				rowId = String.valueOf(_rowIndex + 1);
 			}
 			else {
 				rowId =
 					FriendlyURLNormalizerUtil.normalizeWithPeriodsAndSlashes(
-						String.valueOf(rowIdObj));
+						String.valueOf(rowIdObject));
 			}
 		}
 

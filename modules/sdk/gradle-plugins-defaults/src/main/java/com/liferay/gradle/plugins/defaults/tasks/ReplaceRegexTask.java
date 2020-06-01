@@ -124,14 +124,14 @@ public class ReplaceRegexTask extends DefaultTask {
 	public void replaceRegex() throws IOException {
 		Map<String, FileCollection> matches = getMatches();
 
-		Object replacementObj = _getReplacementObj();
+		Object replacementObject = _getReplacementObject();
 
 		for (Map.Entry<String, FileCollection> entry : matches.entrySet()) {
 			Pattern pattern = Pattern.compile(entry.getKey());
 			FileCollection fileCollection = entry.getValue();
 
 			for (File file : fileCollection) {
-				_replaceRegex(file, pattern, replacementObj);
+				_replaceRegex(file, pattern, replacementObject);
 			}
 		}
 	}
@@ -173,21 +173,21 @@ public class ReplaceRegexTask extends DefaultTask {
 		replaceOnlyIf(replaceOnlyIfClosures);
 	}
 
-	private Object _getReplacementObj() {
-		Object replacementObj = getReplacement();
+	private Object _getReplacementObject() {
+		Object replacementObject = getReplacement();
 
-		if ((replacementObj instanceof Callable<?>) &&
-			!(replacementObj instanceof Closure<?>)) {
+		if ((replacementObject instanceof Callable<?>) &&
+			!(replacementObject instanceof Closure<?>)) {
 
-			replacementObj = GradleUtil.toString(replacementObj);
+			replacementObject = GradleUtil.toString(replacementObject);
 		}
 
-		return replacementObj;
+		return replacementObject;
 	}
 
 	@SuppressWarnings("unchecked")
 	private void _replaceRegex(
-			File file, Pattern pattern, Object replacementObj)
+			File file, Pattern pattern, Object replacementObject)
 		throws IOException {
 
 		Logger logger = getLogger();
@@ -214,14 +214,14 @@ public class ReplaceRegexTask extends DefaultTask {
 
 			String replacement;
 
-			if (replacementObj instanceof Closure<?>) {
+			if (replacementObject instanceof Closure<?>) {
 				Closure<String> replacementClosure =
-					(Closure<String>)replacementObj;
+					(Closure<String>)replacementObject;
 
 				replacement = replacementClosure.call(group);
 			}
 			else {
-				replacement = GradleUtil.toString(replacementObj);
+				replacement = GradleUtil.toString(replacementObject);
 			}
 
 			for (Closure<Boolean> closure : getReplaceOnlyIf()) {

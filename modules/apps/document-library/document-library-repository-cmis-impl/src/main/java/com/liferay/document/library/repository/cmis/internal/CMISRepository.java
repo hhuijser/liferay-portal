@@ -1807,11 +1807,11 @@ public class CMISRepository extends BaseCmisRepository {
 			documents.add(document);
 
 			if (queryConfig.isScoreEnabled()) {
-				Object scoreObj = queryResult.getPropertyValueByQueryName(
+				Object scoreObject = queryResult.getPropertyValueByQueryName(
 					"HITS");
 
-				if (scoreObj != null) {
-					scores.add(Float.valueOf(scoreObj.toString()));
+				if (scoreObject != null) {
+					scores.add(Float.valueOf(scoreObject.toString()));
 				}
 				else {
 					scores.add(1.0F);

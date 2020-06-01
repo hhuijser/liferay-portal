@@ -65,10 +65,10 @@ public class JSONWebServiceServiceAction extends JSONServiceAction {
 			JSONWebServiceAction jsonWebServiceAction = getJSONWebServiceAction(
 				httpServletRequest);
 
-			Object returnObj = jsonWebServiceAction.invoke();
+			Object returnObject = jsonWebServiceAction.invoke();
 
-			if (returnObj != null) {
-				return getReturnValue(returnObj);
+			if (returnObject != null) {
+				return getReturnValue(returnObject);
 			}
 
 			return JSONFactoryUtil.getNullJSON();

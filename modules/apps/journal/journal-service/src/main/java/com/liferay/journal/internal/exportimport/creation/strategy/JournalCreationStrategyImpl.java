@@ -39,7 +39,7 @@ public class JournalCreationStrategyImpl implements JournalCreationStrategy {
 
 	@Override
 	public boolean addGroupPermissions(
-			PortletDataContext context, Object journalObj)
+			PortletDataContext context, Object journalObject)
 		throws Exception {
 
 		return false;
@@ -47,14 +47,15 @@ public class JournalCreationStrategyImpl implements JournalCreationStrategy {
 
 	@Override
 	public boolean addGuestPermissions(
-			PortletDataContext context, Object journalObj)
+			PortletDataContext context, Object journalObject)
 		throws Exception {
 
 		return false;
 	}
 
 	@Override
-	public long getAuthorUserId(PortletDataContext context, Object journalObj)
+	public long getAuthorUserId(
+			PortletDataContext context, Object journalObject)
 		throws Exception {
 
 		return JournalCreationStrategy.USE_DEFAULT_USER_ID_STRATEGY;

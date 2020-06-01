@@ -138,20 +138,20 @@ public class Validator {
 	 * Returns <code>true</code> if the objects are either equal, the same
 	 * instance, or both <code>null</code>.
 	 *
-	 * @param  obj1 the first object
-	 * @param  obj2 the second object
+	 * @param  object1 the first object
+	 * @param  object2 the second object
 	 * @return <code>true</code> if the objects are either equal, the same
 	 *         instance, or both <code>null</code>; <code>false</code> otherwise
 	 */
-	public static boolean equals(Object obj1, Object obj2) {
-		if (obj1 == obj2) {
+	public static boolean equals(Object object1, Object object2) {
+		if (object1 == object2) {
 			return true;
 		}
-		else if ((obj1 == null) || (obj2 == null)) {
+		else if ((object1 == null) || (object2 == null)) {
 			return false;
 		}
 		else {
-			return obj1.equals(obj2);
+			return object1.equals(object2);
 		}
 	}
 

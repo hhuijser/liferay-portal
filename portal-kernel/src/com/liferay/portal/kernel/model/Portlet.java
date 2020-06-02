@@ -139,11 +139,11 @@ public interface Portlet extends PersistedModel, PortletModel {
 	/**
 	 * Checks whether this portlet is equal to the specified object.
 	 *
-	 * @param obj the object to compare this portlet against
+	 * @param object the object to compare this portlet against
 	 * @return <code>true</code> if the portlet is equal to the specified object
 	 */
 	@Override
-	public boolean equals(Object obj);
+	public boolean equals(Object object);
 
 	/**
 	 * Returns the action timeout of the portlet.

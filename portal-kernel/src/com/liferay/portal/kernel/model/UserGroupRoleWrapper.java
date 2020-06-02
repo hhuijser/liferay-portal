@@ -99,8 +99,8 @@ public class UserGroupRoleWrapper
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		return model.equals(obj);
+	public boolean equals(Object object) {
+		return model.equals(object);
 	}
 
 	/**

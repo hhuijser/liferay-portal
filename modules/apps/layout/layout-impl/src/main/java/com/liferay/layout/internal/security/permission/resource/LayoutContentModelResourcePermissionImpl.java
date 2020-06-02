@@ -41,6 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 public class LayoutContentModelResourcePermissionImpl
 	implements LayoutContentModelResourcePermission {
 
+	@Override
 	public boolean contains(
 		PermissionChecker permissionChecker, long plid, String actionId) {
 
@@ -62,6 +63,7 @@ public class LayoutContentModelResourcePermissionImpl
 		return false;
 	}
 
+	@Override
 	public boolean contains(
 		PermissionChecker permissionChecker, String className, long classPK,
 		String actionId) {

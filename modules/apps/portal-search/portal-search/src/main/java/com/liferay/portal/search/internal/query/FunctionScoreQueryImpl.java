@@ -39,6 +39,7 @@ public class FunctionScoreQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public void addFilterQueryScoreFunctionHolder(
 		Query filterQuery, ScoreFunction scoreFunction) {
 
@@ -46,40 +47,49 @@ public class FunctionScoreQueryImpl
 			new FilterQueryScoreFunctionHolderImpl(filterQuery, scoreFunction));
 	}
 
+	@Override
 	public CombineFunction getCombineFunction() {
 		return _combineFunction;
 	}
 
+	@Override
 	public List<FilterQueryScoreFunctionHolder>
 		getFilterQueryScoreFunctionHolders() {
 
 		return Collections.unmodifiableList(_filterQueryScoreFunctionHolders);
 	}
 
+	@Override
 	public Float getMaxBoost() {
 		return _maxBoost;
 	}
 
+	@Override
 	public Float getMinScore() {
 		return _minScore;
 	}
 
+	@Override
 	public Query getQuery() {
 		return _query;
 	}
 
+	@Override
 	public ScoreMode getScoreMode() {
 		return _scoreMode;
 	}
 
+	@Override
 	public void setCombineFunction(CombineFunction combineFunction) {
 		_combineFunction = combineFunction;
 	}
 
+	@Override
 	public void setMaxBoost(Float maxBoost) {
 		_maxBoost = maxBoost;
 	}
 
+	@Override
 	public void setMinScore(Float minScore) {
 		_minScore = minScore;
 	}

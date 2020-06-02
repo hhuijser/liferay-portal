@@ -32,6 +32,7 @@ public class ScriptQueryImpl extends BaseQueryImpl implements ScriptQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public Script getScript() {
 		return _script;
 	}

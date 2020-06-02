@@ -27,10 +27,12 @@ public class RescoreImpl implements Rescore {
 		_windowSize = windowSize;
 	}
 
+	@Override
 	public Query getQuery() {
 		return _query;
 	}
 
+	@Override
 	public Integer getWindowSize() {
 		return _windowSize;
 	}

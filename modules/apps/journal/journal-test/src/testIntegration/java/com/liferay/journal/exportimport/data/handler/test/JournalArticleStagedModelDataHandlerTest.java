@@ -153,6 +153,7 @@ public class JournalArticleStagedModelDataHandlerTest
 		exportImportStagedModel(journalArticle);
 	}
 
+	@Override
 	@Test
 	public void testCleanAssetCategoriesAndTags() throws Exception {
 		ExportImportThreadLocal.setLayoutImportInProcess(true);

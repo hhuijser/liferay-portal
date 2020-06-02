@@ -82,6 +82,7 @@ public class MessageBoardMessageResourceImpl
 		_mbMessageService.deleteMessage(messageBoardMessageId);
 	}
 
+	@Override
 	public void deleteMessageBoardMessageMyRating(Long messageBoardMessageId)
 		throws Exception {
 

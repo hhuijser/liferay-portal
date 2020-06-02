@@ -45,52 +45,64 @@ public class GeoDistanceSortImpl extends SortImpl implements GeoDistanceSort {
 		Collections.addAll(_geoLocationPoints, geoLocationPoints);
 	}
 
+	@Override
 	public DistanceUnit getDistanceUnit() {
 		return _distanceUnit;
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public GeoDistanceType getGeoDistanceType() {
 		return _geoDistanceType;
 	}
 
+	@Override
 	public List<GeoLocationPoint> getGeoLocationPoints() {
 		return Collections.unmodifiableList(_geoLocationPoints);
 	}
 
+	@Override
 	public GeoValidationMethod getGeoValidationMethod() {
 		return _geoValidationMethod;
 	}
 
+	@Override
 	public NestedSort getNestedSort() {
 		return _nestedSort;
 	}
 
+	@Override
 	public SortMode getSortMode() {
 		return _sortMode;
 	}
 
+	@Override
 	public void setDistanceUnit(DistanceUnit distanceUnit) {
 		_distanceUnit = distanceUnit;
 	}
 
+	@Override
 	public void setGeoDistanceType(GeoDistanceType geoDistanceType) {
 		_geoDistanceType = geoDistanceType;
 	}
 
+	@Override
 	public void setGeoValidationMethod(
 		GeoValidationMethod geoValidationMethod) {
 
 		_geoValidationMethod = geoValidationMethod;
 	}
 
+	@Override
 	public void setNestedSort(NestedSort nestedSort) {
 		_nestedSort = nestedSort;
 	}
 
+	@Override
 	public void setSortMode(SortMode sortMode) {
 		_sortMode = sortMode;
 	}

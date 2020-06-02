@@ -21,14 +21,17 @@ import com.liferay.portal.search.geolocation.Coordinate;
  */
 public class CoordinateImpl implements Coordinate {
 
+	@Override
 	public double getX() {
 		return _x;
 	}
 
+	@Override
 	public double getY() {
 		return _y;
 	}
 
+	@Override
 	public double getZ() {
 		return _z;
 	}

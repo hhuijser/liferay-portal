@@ -32,6 +32,7 @@ import org.osgi.service.component.annotations.Modified;
 )
 public class DepotConfigurationImpl implements DepotConfiguration {
 
+	@Override
 	public boolean isEnabled() {
 		return _ffDepotConfiguration.enabled();
 	}

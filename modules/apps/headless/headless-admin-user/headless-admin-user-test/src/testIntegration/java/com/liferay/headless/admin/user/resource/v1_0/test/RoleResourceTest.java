@@ -111,6 +111,7 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 		assertValid(page);
 	}
 
+	@Override
 	@Test
 	public void testGraphQLGetRolesPage() throws Exception {
 		GraphQLField graphQLField = new GraphQLField(

@@ -75,30 +75,37 @@ public class BooleanQueryImpl extends BaseQueryImpl implements BooleanQuery {
 		return this;
 	}
 
+	@Override
 	public Boolean getAdjustPureNegative() {
 		return _adjustPureNegative;
 	}
 
+	@Override
 	public List<Query> getFilterQueryClauses() {
 		return Collections.unmodifiableList(_filterQueryClauses);
 	}
 
+	@Override
 	public Integer getMinimumShouldMatch() {
 		return _minimumShouldMatch;
 	}
 
+	@Override
 	public List<Query> getMustNotQueryClauses() {
 		return Collections.unmodifiableList(_mustNotQueryClauses);
 	}
 
+	@Override
 	public List<Query> getMustQueryClauses() {
 		return Collections.unmodifiableList(_mustQueryClauses);
 	}
 
+	@Override
 	public List<Query> getShouldQueryClauses() {
 		return Collections.unmodifiableList(_shouldQueryClauses);
 	}
 
+	@Override
 	public boolean hasClauses() {
 		if (!_filterQueryClauses.isEmpty()) {
 			return true;
@@ -119,10 +126,12 @@ public class BooleanQueryImpl extends BaseQueryImpl implements BooleanQuery {
 		return false;
 	}
 
+	@Override
 	public void setAdjustPureNegative(Boolean adjustPureNegative) {
 		_adjustPureNegative = adjustPureNegative;
 	}
 
+	@Override
 	public void setMinimumShouldMatch(Integer minimumShouldMatch) {
 		_minimumShouldMatch = minimumShouldMatch;
 	}

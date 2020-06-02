@@ -39,6 +39,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 @Component(immediate = true, service = SoyRenderer.class)
 public class SoyRendererImpl implements SoyRenderer {
 
+	@Override
 	public void renderSoy(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, String templateNamespace,
@@ -50,6 +51,7 @@ public class SoyRendererImpl implements SoyRenderer {
 			templateNamespace, context);
 	}
 
+	@Override
 	public void renderSoy(
 			HttpServletRequest httpServletRequest, Writer writer,
 			String templateNamespace, Map<String, ?> context)

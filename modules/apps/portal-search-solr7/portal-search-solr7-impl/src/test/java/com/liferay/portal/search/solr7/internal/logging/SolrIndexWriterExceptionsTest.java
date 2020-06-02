@@ -42,6 +42,7 @@ import org.junit.rules.ExpectedException;
 public class SolrIndexWriterExceptionsTest extends BaseIndexingTestCase {
 
 	@After
+	@Override
 	public void tearDown() throws Exception {
 	}
 

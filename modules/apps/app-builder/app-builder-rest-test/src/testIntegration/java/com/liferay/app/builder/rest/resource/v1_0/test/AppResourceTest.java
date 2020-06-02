@@ -62,6 +62,7 @@ import org.junit.runner.RunWith;
 public class AppResourceTest extends BaseAppResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 

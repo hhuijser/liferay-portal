@@ -93,10 +93,12 @@ public class RenderChildrenTag extends TreeTag {
 		throw new IllegalStateException("Unable to get node JSP fragment");
 	}
 
+	@Override
 	public void setLeafJspFragment(JspFragment leafJspFragment) {
 		this.leafJspFragment = leafJspFragment;
 	}
 
+	@Override
 	public void setNodeJspFragment(JspFragment nodeJspFragment) {
 		this.nodeJspFragment = nodeJspFragment;
 	}

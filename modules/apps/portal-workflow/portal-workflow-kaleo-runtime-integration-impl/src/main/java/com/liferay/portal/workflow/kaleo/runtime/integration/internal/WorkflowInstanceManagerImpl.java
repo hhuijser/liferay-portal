@@ -262,6 +262,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			kaleoDefinitionName, completed, serviceContext);
 	}
 
+	@Override
 	public WorkflowModelSearchResult<WorkflowInstance> searchWorkflowInstances(
 			long companyId, Long userId, String assetClassName,
 			String assetTitle, String assetDescription, String nodeName,

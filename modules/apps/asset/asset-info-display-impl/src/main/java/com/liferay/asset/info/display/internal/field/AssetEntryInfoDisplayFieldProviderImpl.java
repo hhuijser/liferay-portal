@@ -39,6 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 public class AssetEntryInfoDisplayFieldProviderImpl
 	implements AssetEntryInfoDisplayFieldProvider {
 
+	@Override
 	public Map<String, Object> getAssetEntryInfoDisplayFieldsValues(
 			String className, long classPK, Locale locale)
 		throws PortalException {

@@ -33,6 +33,7 @@ public class ConstantScoreQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public Query getQuery() {
 		return _query;
 	}

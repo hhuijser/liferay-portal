@@ -40,36 +40,44 @@ public class GeoDistanceQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public GeoDistance getGeoDistance() {
 		return _geoDistance;
 	}
 
+	@Override
 	public GeoValidationMethod getGeoValidationMethod() {
 		return _geoValidationMethod;
 	}
 
+	@Override
 	public Boolean getIgnoreUnmapped() {
 		return _ignoreUnmapped;
 	}
 
+	@Override
 	public GeoLocationPoint getPinGeoLocationPoint() {
 		return _pinGeoLocationPoint;
 	}
 
+	@Override
 	public int getSortOrder() {
 		return 100;
 	}
 
+	@Override
 	public void setGeoValidationMethod(
 		GeoValidationMethod geoValidationMethod) {
 
 		_geoValidationMethod = geoValidationMethod;
 	}
 
+	@Override
 	public void setIgnoreUnmapped(Boolean ignoreUnmapped) {
 		_ignoreUnmapped = ignoreUnmapped;
 	}

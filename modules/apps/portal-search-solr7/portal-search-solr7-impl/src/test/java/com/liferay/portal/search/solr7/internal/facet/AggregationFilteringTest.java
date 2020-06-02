@@ -37,7 +37,7 @@ public class AggregationFilteringTest extends BaseAggregationFilteringTestCase {
 			facetProcessor, Collections.singletonMap("class.name", className));
 	}
 
-	protected FacetProcessor createFacetProcessor() {
+	protected FacetProcessor<SolrQuery> createFacetProcessor() {
 		CompositeFacetProcessor compositeFacetProcessor =
 			new CompositeFacetProcessor();
 

@@ -21,12 +21,16 @@ import com.liferay.portal.search.test.util.indexing.IndexingFixture;
 
 import java.util.Collections;
 
+import org.elasticsearch.action.search.SearchRequestBuilder;
+
 /**
  * @author André de Oliveira
  */
 public class AggregationFilteringTest extends BaseAggregationFilteringTestCase {
 
-	protected static FacetProcessor createFacetProcessor() {
+	protected static FacetProcessor<SearchRequestBuilder>
+		createFacetProcessor() {
+
 		return new CompositeFacetProcessor() {
 			{
 				defaultFacetProcessor = new DefaultFacetProcessor();

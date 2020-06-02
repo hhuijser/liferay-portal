@@ -193,7 +193,7 @@ public class SolrIndexingFixture implements IndexingFixture {
 		return digester;
 	}
 
-	protected FacetProcessor createFacetProcessor() {
+	protected FacetProcessor<SolrQuery> createFacetProcessor() {
 		return new DefaultFacetProcessor() {
 			{
 				setJSONFactory(_jsonFactory);

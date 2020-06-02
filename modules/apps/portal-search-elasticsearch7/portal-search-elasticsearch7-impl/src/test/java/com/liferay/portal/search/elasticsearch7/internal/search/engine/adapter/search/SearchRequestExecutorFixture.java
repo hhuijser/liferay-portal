@@ -52,6 +52,8 @@ import com.liferay.portal.search.internal.stats.StatsResponseBuilderFactoryImpl;
 import com.liferay.portal.search.legacy.stats.StatsRequestBuilderFactory;
 import com.liferay.portal.search.query.Queries;
 
+import org.elasticsearch.action.search.SearchRequestBuilder;
+
 /**
  * @author Michael C. Han
  */
@@ -95,7 +97,7 @@ public class SearchRequestExecutorFixture {
 	protected static CommonSearchSourceBuilderAssembler
 		createCommonSearchSourceBuilderAssembler(
 			ElasticsearchQueryTranslator elasticsearchQueryTranslator,
-			FacetProcessor facetProcessor, StatsTranslator statsTranslator,
+			FacetProcessor<?> facetProcessor, StatsTranslator statsTranslator,
 			ComplexQueryBuilderFactory complexQueryBuilderFactory) {
 
 		ElasticsearchAggregationVisitorFixture
@@ -182,11 +184,12 @@ public class SearchRequestExecutorFixture {
 	}
 
 	protected static FacetTranslator createFacetTranslator(
-		FacetProcessor facetProcessor) {
+		FacetProcessor<?> facetProcessor) {
 
 		return new DefaultFacetTranslator() {
 			{
-				setFacetProcessor(facetProcessor);
+				setFacetProcessor(
+					(FacetProcessor<SearchRequestBuilder>)facetProcessor);
 
 				ElasticsearchFilterTranslatorFixture
 					elasticsearchFilterTranslatorFixture =
@@ -218,7 +221,7 @@ public class SearchRequestExecutorFixture {
 		ElasticsearchClientResolver elasticsearchClientResolver,
 		ElasticsearchQueryTranslator elasticsearchQueryTranslator,
 		ElasticsearchSortFieldTranslator elasticsearchSortFieldTranslator,
-		FacetProcessor facetProcessor, StatsTranslator statsTranslator,
+		FacetProcessor<?> facetProcessor, StatsTranslator statsTranslator,
 		StatsRequestBuilderFactory statsRequestBuilderFactory,
 		ComplexQueryBuilderFactory complexQueryBuilderFactory) {
 
@@ -357,7 +360,7 @@ public class SearchRequestExecutorFixture {
 		};
 	}
 
-	protected FacetProcessor getFacetProcessor() {
+	protected FacetProcessor<?> getFacetProcessor() {
 		if (_facetProcessor != null) {
 			return _facetProcessor;
 		}

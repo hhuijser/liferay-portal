@@ -107,7 +107,7 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 	<c:if test="<%= formInstancePermissionCheckerHelper.isShowShareIcon(formInstance) && ddmFormAdminDisplayContext.isFormPublished(formInstance) %>">
 		<liferay-ui:icon
 			message="share"
-			onClick='<%= "Liferay.fire('" + renderResponse.getNamespace() + "openShareFormModal', {  localizedName:" + ddmFormAdminDisplayContext.getFormLocalizedName(formInstance) + " , shareFormInstanceURL:'" + ddmFormAdminDisplayContext.getShareFormInstanceURL(formInstance) + "' , url:'" + ddmFormAdminDisplayContext.getPublishedFormURL(formInstance) + "' , node: this});" %>'
+			onClick="<%= "Liferay.fire('" + renderResponse.getNamespace() + "openShareFormModal', { localizedName:" + ddmFormAdminDisplayContext.getFormLocalizedName(formInstance) + " , shareFormInstanceURL:'" + ddmFormAdminDisplayContext.getShareFormInstanceURL(formInstance) + "' , url:'" + ddmFormAdminDisplayContext.getPublishedFormURL(formInstance) + "' , node: this});" %>"
 			url="javascript:;"
 		/>
 	</c:if>

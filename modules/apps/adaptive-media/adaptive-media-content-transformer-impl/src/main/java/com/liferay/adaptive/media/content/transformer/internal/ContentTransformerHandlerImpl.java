@@ -46,7 +46,7 @@ public class ContentTransformerHandlerImpl
 		ContentTransformerContentType<T> contentTransformerContentType,
 		T originalContent) {
 
-		List<ContentTransformer> contentTransformers =
+		List<ContentTransformer<?>> contentTransformers =
 			_serviceTrackerMap.getService(contentTransformerContentType);
 
 		if (contentTransformers == null) {
@@ -55,8 +55,13 @@ public class ContentTransformerHandlerImpl
 
 		T transformedContent = originalContent;
 
-		for (ContentTransformer<T> contentTransformer : contentTransformers) {
+		for (ContentTransformer<?> curContentTransformer :
+				contentTransformers) {
+
 			try {
+				ContentTransformer<T> contentTransformer =
+					(ContentTransformer<T>)curContentTransformer;
+
 				transformedContent = contentTransformer.transform(
 					transformedContent);
 			}
@@ -73,9 +78,11 @@ public class ContentTransformerHandlerImpl
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
-			bundleContext, ContentTransformer.class, null,
+			bundleContext,
+			(Class<ContentTransformer<?>>)(Class<?>)ContentTransformer.class,
+			null,
 			(serviceReference, emitter) -> {
-				ContentTransformer contentTransformer =
+				ContentTransformer<?> contentTransformer =
 					bundleContext.getService(serviceReference);
 
 				emitter.emit(
@@ -92,7 +99,7 @@ public class ContentTransformerHandlerImpl
 
 	protected final void setServiceTrackerMap(
 		ServiceTrackerMap
-			<ContentTransformerContentType, List<ContentTransformer>>
+			<ContentTransformerContentType<?>, List<ContentTransformer<?>>>
 				serviceTrackerMap) {
 
 		_serviceTrackerMap = serviceTrackerMap;
@@ -102,7 +109,7 @@ public class ContentTransformerHandlerImpl
 		ContentTransformerHandlerImpl.class);
 
 	private ServiceTrackerMap
-		<ContentTransformerContentType, List<ContentTransformer>>
+		<ContentTransformerContentType<?>, List<ContentTransformer<?>>>
 			_serviceTrackerMap;
 
 }

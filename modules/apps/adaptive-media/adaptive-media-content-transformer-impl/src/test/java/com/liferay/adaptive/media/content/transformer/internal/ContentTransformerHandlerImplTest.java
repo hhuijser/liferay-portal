@@ -226,7 +226,7 @@ public class ContentTransformerHandlerImplTest {
 
 	private final class MockServiceTrackerMap
 		implements ServiceTrackerMap
-			<ContentTransformerContentType, List<ContentTransformer>> {
+			<ContentTransformerContentType<?>, List<ContentTransformer<?>>> {
 
 		@Override
 		public void close() {
@@ -235,26 +235,26 @@ public class ContentTransformerHandlerImplTest {
 
 		@Override
 		public boolean containsKey(
-			ContentTransformerContentType contentTransformerContentType) {
+			ContentTransformerContentType<?> contentTransformerContentType) {
 
 			return _contentTransformers.containsKey(
 				contentTransformerContentType);
 		}
 
 		@Override
-		public List<ContentTransformer> getService(
-			ContentTransformerContentType contentTransformerContentType) {
+		public List<ContentTransformer<?>> getService(
+			ContentTransformerContentType<?> contentTransformerContentType) {
 
 			return _contentTransformers.get(contentTransformerContentType);
 		}
 
 		@Override
-		public Set<ContentTransformerContentType> keySet() {
+		public Set<ContentTransformerContentType<?>> keySet() {
 			return _contentTransformers.keySet();
 		}
 
-		public void register(ContentTransformer contentTransformer) {
-			List<ContentTransformer> contentTransformers =
+		public void register(ContentTransformer<?> contentTransformer) {
+			List<ContentTransformer<?>> contentTransformers =
 				_contentTransformers.computeIfAbsent(
 					contentTransformer.getContentTransformerContentType(),
 					key -> new ArrayList<>());
@@ -263,12 +263,12 @@ public class ContentTransformerHandlerImplTest {
 		}
 
 		@Override
-		public Collection<List<ContentTransformer>> values() {
+		public Collection<List<ContentTransformer<?>>> values() {
 			return _contentTransformers.values();
 		}
 
 		private final Map
-			<ContentTransformerContentType, List<ContentTransformer>>
+			<ContentTransformerContentType<?>, List<ContentTransformer<?>>>
 				_contentTransformers = new HashMap<>();
 
 	}

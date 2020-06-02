@@ -50,7 +50,7 @@ import org.osgi.framework.FrameworkUtil;
 public class SoyPortletHelper {
 
 	public SoyPortletHelper(
-			Bundle bundle, MVCCommandCache mvcRenderCommandCache,
+			Bundle bundle, MVCCommandCache<?> mvcRenderCommandCache,
 			FriendlyURLMapper friendlyURLMapper)
 		throws Exception {
 
@@ -272,7 +272,7 @@ public class SoyPortletHelper {
 	}
 
 	protected Set<String> getMVCRenderCommandNames() {
-		MVCCommandCache mvcRenderCommandCache = _mvcRenderCommandCache;
+		MVCCommandCache<?> mvcRenderCommandCache = _mvcRenderCommandCache;
 
 		return mvcRenderCommandCache.getMVCCommandNames();
 	}
@@ -315,7 +315,7 @@ public class SoyPortletHelper {
 	private final Map<String, String> _javaScriptLoaderModulesMap =
 		new HashMap<>();
 	private final JSONSerializer _jsonSerializer;
-	private final MVCCommandCache _mvcRenderCommandCache;
+	private final MVCCommandCache<?> _mvcRenderCommandCache;
 	private final String _routerJavaScriptTPL;
 
 }

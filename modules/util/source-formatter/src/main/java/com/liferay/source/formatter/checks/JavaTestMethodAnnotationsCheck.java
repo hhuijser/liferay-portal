@@ -15,6 +15,8 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaTerm;
 
@@ -47,14 +49,21 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 		}
 
 		_checkAnnotationForMethod(
-			fileName, javaTerm, "After", "\\btearDown(?!Class)", false);
+			fileName, javaTerm, "After", "\\btearDown(?!Class)", false,
+			StringPool.BLANK);
 		_checkAnnotationForMethod(
-			fileName, javaTerm, "AfterClass", "\\btearDownClass", true);
+			fileName, javaTerm, "AfterClass", "\\btearDownClass", true,
+			StringPool.BLANK);
 		_checkAnnotationForMethod(
-			fileName, javaTerm, "Before", "\\bsetUp(?!Class)", false);
+			fileName, javaTerm, "Before", "\\bsetUp(?!Class)", false,
+			StringPool.BLANK);
 		_checkAnnotationForMethod(
-			fileName, javaTerm, "BeforeClass", "\\bsetUpClass", true);
-		_checkAnnotationForMethod(fileName, javaTerm, "Test", "^.*test", false);
+			fileName, javaTerm, "BeforeClass", "\\bsetUpClass", true,
+			StringPool.BLANK);
+		_checkAnnotationForMethod(
+			fileName, javaTerm, "Test", "^.*test", false, StringPool.BLANK);
+		_checkAnnotationForMethod(
+			fileName, javaTerm, "Test", "test.*", false, ".*ResourceTest");
 
 		return javaTerm.getContent();
 	}
@@ -66,7 +75,8 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 
 	private void _checkAnnotationForMethod(
 		String fileName, JavaTerm javaTerm, String annotation,
-		String requiredMethodNameRegex, boolean staticRequired) {
+		String requiredMethodNameRegex, boolean staticRequired,
+		String classNameRegex) {
 
 		String methodName = javaTerm.getName();
 
@@ -84,12 +94,19 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 					fileName, "Incorrect method type for '" + methodName + "'");
 			}
 		}
-		else if (matcher.find() && !javaTerm.hasAnnotation("Override")) {
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"Annotation @", annotation, " required for '", methodName,
-					"'"));
+		else if (matcher.find()) {
+			String className = JavaSourceUtil.getClassName(fileName);
+
+			if (!javaTerm.hasAnnotation("Override") ||
+				(javaTerm.hasAnnotation("Override") &&
+				 className.matches(classNameRegex))) {
+
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Annotation @", annotation, " required for '",
+						methodName, "'"));
+			}
 		}
 	}
 

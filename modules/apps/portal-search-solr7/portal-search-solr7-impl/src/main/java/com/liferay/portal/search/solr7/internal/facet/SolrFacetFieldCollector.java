@@ -34,10 +34,11 @@ import org.apache.solr.common.util.NamedList;
  */
 public class SolrFacetFieldCollector implements FacetCollector {
 
-	public SolrFacetFieldCollector(Facet facet, NamedList namedList) {
+	public SolrFacetFieldCollector(Facet facet, NamedList<?> namedList) {
 		String name = FacetUtil.getAggregationName(facet);
 
-		List<NamedList> list = _getBuckets((NamedList)namedList.get(name));
+		List<NamedList<?>> list = _getBuckets(
+			(NamedList<?>)namedList.get(name));
 
 		_counts = _getCountsInSameOrder(list);
 
@@ -73,16 +74,16 @@ public class SolrFacetFieldCollector implements FacetCollector {
 		return _termCollectors;
 	}
 
-	private static List<NamedList> _getBuckets(NamedList namedList) {
+	private static List<NamedList<?>> _getBuckets(NamedList<?> namedList) {
 		if (namedList == null) {
 			return null;
 		}
 
-		return (List<NamedList>)namedList.get("buckets");
+		return (List<NamedList<?>>)namedList.get("buckets");
 	}
 
 	private static Map<String, Integer> _getCountsInSameOrder(
-		List<NamedList> list) {
+		List<NamedList<?>> list) {
 
 		if (ListUtil.isEmpty(list)) {
 			return Collections.emptyMap();
@@ -90,7 +91,7 @@ public class SolrFacetFieldCollector implements FacetCollector {
 
 		Map<String, Integer> map = new LinkedHashMap<>();
 
-		for (NamedList namedList : list) {
+		for (NamedList<?> namedList : list) {
 			map.put(
 				GetterUtil.getString(namedList.get("val")),
 				GetterUtil.getInteger(namedList.get("count")));

@@ -145,7 +145,7 @@ public class SolrSearchEngineInformation implements SearchEngineInformation {
 
 		SimpleSolrResponse response = request.process(solrClient);
 
-		NamedList namedList = response.getResponse();
+		NamedList<Object> namedList = response.getResponse();
 
 		NamedList<Object> luceneNamedList = (NamedList<Object>)namedList.get(
 			"lucene");

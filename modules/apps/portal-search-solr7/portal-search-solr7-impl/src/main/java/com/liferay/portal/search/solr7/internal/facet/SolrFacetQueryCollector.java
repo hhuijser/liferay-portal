@@ -32,7 +32,7 @@ import org.apache.solr.common.util.NamedList;
  */
 public class SolrFacetQueryCollector implements FacetCollector {
 
-	public SolrFacetQueryCollector(Facet facet, NamedList namedList) {
+	public SolrFacetQueryCollector(Facet facet, NamedList<?> namedList) {
 		String name = FacetUtil.getAggregationName(facet);
 
 		_counts = _getCountsInSameOrder(namedList.asMap(0), name);
@@ -73,15 +73,15 @@ public class SolrFacetQueryCollector implements FacetCollector {
 	}
 
 	private static Map<String, Integer> _getCountsInSameOrder(
-		Map<String, NamedList> map1, String name) {
+		Map<String, NamedList<?>> map1, String name) {
 
 		Map<String, Integer> map2 = new LinkedHashMap<>();
 
-		for (Map.Entry<String, NamedList> entry : map1.entrySet()) {
+		for (Map.Entry<String, NamedList<?>> entry : map1.entrySet()) {
 			String bucket = entry.getKey();
 
 			if (bucket.startsWith(name)) {
-				NamedList namedList = entry.getValue();
+				NamedList<?> namedList = entry.getValue();
 
 				map2.put(
 					bucket.substring(name.length() + 1),

@@ -36,6 +36,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -74,6 +75,7 @@ public class AssigneeResourceTest extends BaseAssigneeResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testPostProcessAssigneesPage() throws Exception {
 		Assignee assignee1 = randomAssignee();
 

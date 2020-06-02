@@ -16,6 +16,7 @@ package com.liferay.bulk.rest.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -25,18 +26,22 @@ import org.junit.runner.RunWith;
 public class SelectionResourceTest extends BaseSelectionResourceTestCase {
 
 	@Override
+	@Test
 	public void testClientSerDesToDTO() {
 	}
 
 	@Override
+	@Test
 	public void testClientSerDesToJSON() {
 	}
 
 	@Override
+	@Test
 	public void testEscapeRegexInStringFields() {
 	}
 
 	@Override
+	@Test
 	public void testPostBulkSelection() {
 	}
 

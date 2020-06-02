@@ -52,6 +52,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -81,6 +82,7 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testGetAppsPage() throws Exception {
 		super.testGetAppsPage();
 
@@ -181,6 +183,7 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testPutAppDeploy() throws Exception {
 		App postApp = testPutApp_addApp();
 
@@ -192,6 +195,7 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testPutAppUndeploy() throws Exception {
 		App postApp = testPutApp_addApp();
 

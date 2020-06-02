@@ -38,6 +38,7 @@ import java.util.Objects;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -57,6 +58,7 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testGetProcessRolesPage() throws Exception {
 		super.testGetProcessRolesPage();
 

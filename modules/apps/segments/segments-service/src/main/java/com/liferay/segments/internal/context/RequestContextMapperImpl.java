@@ -80,6 +80,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 @Component(immediate = true, service = RequestContextMapper.class)
 public class RequestContextMapperImpl implements RequestContextMapper {
 
+	@Override
 	public Context map(HttpServletRequest httpServletRequest) {
 		Context context = new Context();
 

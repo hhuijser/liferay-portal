@@ -33,6 +33,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 public class ContentPageEditorListenerTrackerImpl
 	implements ContentPageEditorListenerTracker {
 
+	@Override
 	public List<ContentPageEditorListener> getContentPageEditorListeners() {
 		return new ArrayList<>(_contentPageEditorListeners);
 	}

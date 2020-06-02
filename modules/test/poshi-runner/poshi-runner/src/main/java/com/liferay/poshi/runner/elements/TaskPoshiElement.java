@@ -106,6 +106,7 @@ public class TaskPoshiElement extends PoshiElement {
 		return sb.toString();
 	}
 
+	@Override
 	protected String getPoshiScriptKeyword() {
 		return getName();
 	}

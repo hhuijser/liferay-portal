@@ -939,6 +939,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			threadId, parentMessageId, null);
 	}
 
+	@Override
 	public MBMessage fetchMBMessageByUrlSubject(
 		long groupId, String urlSubject) {
 

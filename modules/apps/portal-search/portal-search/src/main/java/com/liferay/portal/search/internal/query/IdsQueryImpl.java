@@ -48,10 +48,12 @@ public class IdsQueryImpl extends BaseQueryImpl implements IdsQuery {
 		Collections.addAll(_types, types);
 	}
 
+	@Override
 	public Set<String> getIds() {
 		return Collections.unmodifiableSet(_ids);
 	}
 
+	@Override
 	public Set<String> getTypes() {
 		return Collections.unmodifiableSet(_types);
 	}

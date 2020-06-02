@@ -23,10 +23,12 @@ import java.util.List;
  */
 public class MapBuilderCheck extends BaseBuilderCheck {
 
+	@Override
 	protected boolean allowNullValues() {
 		return false;
 	}
 
+	@Override
 	protected List<BaseBuilderCheck.BuilderInformation>
 		getBuilderInformationList() {
 
@@ -42,6 +44,7 @@ public class MapBuilderCheck extends BaseBuilderCheck {
 				"TreeMap", "TreeMapBuilder", "put", "putAll"));
 	}
 
+	@Override
 	protected boolean isSupportsNestedMethodCalls() {
 		return true;
 	}

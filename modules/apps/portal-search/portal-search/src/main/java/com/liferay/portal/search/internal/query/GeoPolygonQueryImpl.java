@@ -38,36 +38,44 @@ public class GeoPolygonQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public void addGeoLocationPoint(GeoLocationPoint geoLocationPoint) {
 		_geoLocationPoints.add(geoLocationPoint);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public Set<GeoLocationPoint> getGeoLocationPoints() {
 		return Collections.unmodifiableSet(_geoLocationPoints);
 	}
 
+	@Override
 	public GeoValidationMethod getGeoValidationMethod() {
 		return _geoValidationMethod;
 	}
 
+	@Override
 	public Boolean getIgnoreUnmapped() {
 		return _ignoreUnmapped;
 	}
 
+	@Override
 	public int getSortOrder() {
 		return 140;
 	}
 
+	@Override
 	public void setGeoValidationMethod(
 		GeoValidationMethod geoValidationMethod) {
 
 		_geoValidationMethod = geoValidationMethod;
 	}
 
+	@Override
 	public void setIgnoreUnmapped(Boolean ignoreUnmapped) {
 		_ignoreUnmapped = ignoreUnmapped;
 	}

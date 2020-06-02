@@ -32,6 +32,7 @@ import javax.portlet.PortletRequest;
 public abstract class BaseUserActionContributor
 	implements UserActionContributor {
 
+	@Override
 	public String getConfirmationMessage(PortletRequest portletRequest) {
 		return null;
 	}
@@ -44,6 +45,7 @@ public abstract class BaseUserActionContributor
 			resourceBundle, PortalUtil.getResourceBundle(locale));
 	}
 
+	@Override
 	public boolean isShowConfirmationMessage(User selUser) {
 		return false;
 	}

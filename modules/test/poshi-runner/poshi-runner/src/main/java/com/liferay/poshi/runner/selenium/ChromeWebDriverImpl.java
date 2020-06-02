@@ -125,6 +125,7 @@ public class ChromeWebDriverImpl extends BaseWebDriverImpl {
 		}
 	}
 
+	@Override
 	protected WebElement getWebElement(String locator, String timeout) {
 		try {
 			return super.getWebElement(locator, timeout);
@@ -136,6 +137,7 @@ public class ChromeWebDriverImpl extends BaseWebDriverImpl {
 		}
 	}
 
+	@Override
 	protected List<WebElement> getWebElements(String locator, String timeout) {
 		List<WebElement> webElements = super.getWebElements(locator, timeout);
 

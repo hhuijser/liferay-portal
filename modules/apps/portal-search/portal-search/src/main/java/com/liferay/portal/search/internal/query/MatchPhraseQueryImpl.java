@@ -33,26 +33,32 @@ public class MatchPhraseQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getAnalyzer() {
 		return _analyzer;
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public Integer getSlop() {
 		return _slop;
 	}
 
+	@Override
 	public Object getValue() {
 		return _value;
 	}
 
+	@Override
 	public void setAnalyzer(String analyzer) {
 		_analyzer = analyzer;
 	}
 
+	@Override
 	public void setSlop(Integer slop) {
 		_slop = slop;
 	}

@@ -28,10 +28,12 @@ public class AccountEntryImpl extends AccountEntryBaseImpl {
 	public AccountEntryImpl() {
 	}
 
+	@Override
 	public Group getAccountEntryGroup() {
 		return _getAccountEntryGroup();
 	}
 
+	@Override
 	public long getAccountEntryGroupId() {
 		Group group = _getAccountEntryGroup();
 

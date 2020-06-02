@@ -34,10 +34,12 @@ public class NestedQueryImpl extends BaseQueryImpl implements NestedQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getPath() {
 		return _path;
 	}
 
+	@Override
 	public Query getQuery() {
 		return _query;
 	}

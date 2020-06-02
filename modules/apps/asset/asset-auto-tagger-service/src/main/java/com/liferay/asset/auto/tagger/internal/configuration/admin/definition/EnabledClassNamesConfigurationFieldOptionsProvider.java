@@ -43,6 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 public class EnabledClassNamesConfigurationFieldOptionsProvider
 	implements ConfigurationFieldOptionsProvider {
 
+	@Override
 	public List<Option> getOptions() {
 		List<AssetRendererFactory<?>> assetRendererFactories =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactories(

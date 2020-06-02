@@ -53,6 +53,7 @@ public class MyDashboardPersonalMenuEntry implements PersonalMenuEntry {
 		return LanguageUtil.get(locale, "my-dashboard");
 	}
 
+	@Override
 	public String getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 

@@ -34,60 +34,74 @@ public class CommonTermsQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getAnalyzer() {
 		return _analyzer;
 	}
 
+	@Override
 	public Float getCutoffFrequency() {
 		return _cutoffFrequency;
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public String getHighFreqMinimumShouldMatch() {
 		return _highFreqMinimumShouldMatch;
 	}
 
+	@Override
 	public Operator getHighFreqOperator() {
 		return _highFreqOperator;
 	}
 
+	@Override
 	public String getLowFreqMinimumShouldMatch() {
 		return _lowFreqMinimumShouldMatch;
 	}
 
+	@Override
 	public Operator getLowFreqOperator() {
 		return _lowFreqOperator;
 	}
 
+	@Override
 	public String getText() {
 		return _text;
 	}
 
+	@Override
 	public void setAnalyzer(String analyzer) {
 		_analyzer = analyzer;
 	}
 
+	@Override
 	public void setCutoffFrequency(Float cutoffFrequency) {
 		_cutoffFrequency = cutoffFrequency;
 	}
 
+	@Override
 	public void setHighFreqMinimumShouldMatch(
 		String highFreqMinimumShouldMatch) {
 
 		_highFreqMinimumShouldMatch = highFreqMinimumShouldMatch;
 	}
 
+	@Override
 	public void setHighFreqOperator(Operator highFreqOperator) {
 		_highFreqOperator = highFreqOperator;
 	}
 
+	@Override
 	public void setLowFreqMinimumShouldMatch(String lowFreqMinimumShouldMatch) {
 		_lowFreqMinimumShouldMatch = lowFreqMinimumShouldMatch;
 	}
 
+	@Override
 	public void setLowFreqOperator(Operator lowFreqOperator) {
 		_lowFreqOperator = lowFreqOperator;
 	}

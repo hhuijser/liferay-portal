@@ -35,26 +35,32 @@ public class ScriptSortImpl extends SortImpl implements ScriptSort {
 		return sortVisitor.visit(this);
 	}
 
+	@Override
 	public NestedSort getNestedSort() {
 		return _nestedSort;
 	}
 
+	@Override
 	public Script getScript() {
 		return _script;
 	}
 
+	@Override
 	public ScriptSortType getScriptSortType() {
 		return _scriptSortType;
 	}
 
+	@Override
 	public SortMode getSortMode() {
 		return _sortMode;
 	}
 
+	@Override
 	public void setNestedSort(NestedSort nestedSort) {
 		_nestedSort = nestedSort;
 	}
 
+	@Override
 	public void setSortMode(SortMode sortMode) {
 		_sortMode = sortMode;
 	}

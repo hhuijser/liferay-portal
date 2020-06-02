@@ -39,6 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 public class TextDDMFormFieldValueJSONDeserializer
 	implements DDMFormFieldValueJSONSerializer {
 
+	@Override
 	public Object serialize(DDMFormField ddmFormField, Value value) {
 		if (value.isLocalized()) {
 			return _toJSONObject(value);

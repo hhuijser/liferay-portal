@@ -39,6 +39,7 @@ public class AccountUserContactInformationScreenNavigationEntry
 		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_CONTACT;
 	}
 
+	@Override
 	public String getEntryKey() {
 		return AccountScreenNavigationEntryConstants.
 			ENTRY_KEY_CONTACT_INFORMATION;

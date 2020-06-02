@@ -33,18 +33,22 @@ public class DisMaxQueryImpl extends BaseQueryImpl implements DisMaxQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public void addQuery(Query query) {
 		_queries.add(query);
 	}
 
+	@Override
 	public Set<Query> getQueries() {
 		return Collections.unmodifiableSet(_queries);
 	}
 
+	@Override
 	public Float getTieBreaker() {
 		return _tieBreaker;
 	}
 
+	@Override
 	public void setTieBreaker(Float tieBreaker) {
 		_tieBreaker = tieBreaker;
 	}

@@ -154,6 +154,7 @@ public class JGroupsClusterChannel extends BaseClusterChannel {
 		return _localAddress;
 	}
 
+	@Override
 	protected void doSendMessage(Serializable message, Address address) {
 		if (_jChannel.isClosed()) {
 			if (_log.isWarnEnabled()) {

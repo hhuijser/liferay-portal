@@ -66,6 +66,7 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 			searchContainer);
 	}
 
+	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemList.of(
 			() -> {
@@ -197,6 +198,7 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 		return "accountEntriesManagementToolbar";
 	}
 
+	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
 			dropdownItem -> {
@@ -214,6 +216,7 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 		return "ACCOUNT_ENTRIES_MANAGEMENT_TOOLBAR_DEFAULT_EVENT_HANDLER";
 	}
 
+	@Override
 	public List<LabelItem> getFilterLabelItems() {
 		return LabelItemListBuilder.add(
 			() -> !Objects.equals(getNavigation(), "active"),

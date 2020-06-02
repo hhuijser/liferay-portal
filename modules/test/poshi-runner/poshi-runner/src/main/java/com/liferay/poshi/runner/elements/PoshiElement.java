@@ -79,6 +79,7 @@ public abstract class PoshiElement
 			PoshiElement parentPoshiElement, String poshiScript)
 		throws PoshiScriptParserException;
 
+	@Override
 	public PoshiElement clone(String poshiScript)
 		throws PoshiScriptParserException {
 
@@ -196,6 +197,7 @@ public abstract class PoshiElement
 		return sb.toString();
 	}
 
+	@Override
 	public void validatePoshiScript() throws PoshiScriptParserException {
 		if (!isValidPoshiScript() && !isValidPoshiXML()) {
 			throw new PoshiScriptParserException(

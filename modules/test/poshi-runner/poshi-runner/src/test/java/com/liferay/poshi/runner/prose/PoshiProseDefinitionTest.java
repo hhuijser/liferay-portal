@@ -43,6 +43,7 @@ import org.junit.Test;
 public class PoshiProseDefinitionTest extends TestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		_testBaseDir = new File(_TEST_BASE_DIR_NAME);
 
@@ -62,6 +63,7 @@ public class PoshiProseDefinitionTest extends TestCase {
 	}
 
 	@After
+	@Override
 	public void tearDown() throws Exception {
 		PoshiRunnerContext.clear();
 	}

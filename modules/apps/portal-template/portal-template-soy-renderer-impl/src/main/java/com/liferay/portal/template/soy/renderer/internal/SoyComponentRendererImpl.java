@@ -37,6 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = SoyComponentRenderer.class)
 public class SoyComponentRendererImpl implements SoyComponentRenderer {
 
+	@Override
 	public void renderSoyComponent(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse,
@@ -48,6 +49,7 @@ public class SoyComponentRendererImpl implements SoyComponentRenderer {
 			componentDescriptor, context);
 	}
 
+	@Override
 	public void renderSoyComponent(
 			HttpServletRequest httpServletRequest, Writer writer,
 			ComponentDescriptor componentDescriptor, Map<String, ?> context)

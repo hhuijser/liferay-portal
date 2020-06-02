@@ -194,6 +194,7 @@ public class PortletLayoutTypeController extends BaseLayoutTypeControllerImpl {
 			httpServletResponse, unsyncStringWriter);
 	}
 
+	@Override
 	protected String getEditPage() {
 		return _EDIT_PAGE;
 	}

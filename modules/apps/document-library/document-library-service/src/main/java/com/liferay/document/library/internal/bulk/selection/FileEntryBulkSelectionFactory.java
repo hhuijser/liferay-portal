@@ -41,6 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 public class FileEntryBulkSelectionFactory
 	implements BulkSelectionFactory<FileEntry> {
 
+	@Override
 	public BulkSelection<FileEntry> create(Map<String, String[]> parameterMap) {
 		if (BulkSelectionFactoryUtil.isSelectAll(parameterMap)) {
 			return new FolderFileEntryBulkSelection(

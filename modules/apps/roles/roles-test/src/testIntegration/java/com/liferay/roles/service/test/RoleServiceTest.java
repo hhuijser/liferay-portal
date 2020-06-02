@@ -58,6 +58,7 @@ public class RoleServiceTest extends BasePermissionTestCase {
 		new LiferayIntegrationTestRule();
 
 	@After
+	@Override
 	public void tearDown() throws Exception {
 		for (Role role : _roles) {
 			_roleService.deleteRole(role.getRoleId());

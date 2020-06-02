@@ -66,6 +66,7 @@ public class OracleSQLTransformerLogic extends BaseSQLTransformerLogic {
 		return matcher.replaceAll("CAST($1 AS VARCHAR(4000))");
 	}
 
+	@Override
 	protected String replaceDropTableIfExistsText(Matcher matcher) {
 		StringBundler sb = new StringBundler(9);
 

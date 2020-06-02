@@ -34,6 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 public class VulcanBatchEngineImportTaskResourceImpl
 	implements VulcanBatchEngineImportTaskResource {
 
+	@Override
 	public Object deleteImportTask(
 			String name, String callbackURL, Object object)
 		throws Exception {
@@ -44,6 +45,7 @@ public class VulcanBatchEngineImportTaskResourceImpl
 			name, callbackURL, null, object);
 	}
 
+	@Override
 	public Object postImportTask(
 			String name, String callbackURL, String fields, Object object)
 		throws Exception {
@@ -54,6 +56,7 @@ public class VulcanBatchEngineImportTaskResourceImpl
 			name, callbackURL, fields, null, object);
 	}
 
+	@Override
 	public Object putImportTask(String name, String callbackURL, Object object)
 		throws Exception {
 

@@ -49,6 +49,7 @@ public class DynamicPortalCacheManager<K extends Serializable, V>
 		_dynamicPortalCaches.clear();
 	}
 
+	@Override
 	public PortalCache<K, V> fetchPortalCache(String portalCacheName) {
 		return _dynamicPortalCaches.computeIfAbsent(
 			portalCacheName,

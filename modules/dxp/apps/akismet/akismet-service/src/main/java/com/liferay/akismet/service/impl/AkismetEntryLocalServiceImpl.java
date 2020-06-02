@@ -26,10 +26,12 @@ import java.util.Date;
 public class AkismetEntryLocalServiceImpl
 	extends AkismetEntryLocalServiceBaseImpl {
 
+	@Override
 	public void deleteAkismetEntry(Date modifiedDate) {
 		akismetEntryPersistence.removeByLtModifiedDate(modifiedDate);
 	}
 
+	@Override
 	public void deleteAkismetEntry(String className, long classPK)
 		throws PortalException {
 
@@ -37,11 +39,13 @@ public class AkismetEntryLocalServiceImpl
 			classNameLocalService.getClassNameId(className), classPK);
 	}
 
+	@Override
 	public AkismetEntry fetchAkismetEntry(String className, long classPK) {
 		return akismetEntryPersistence.fetchByC_C(
 			classNameLocalService.getClassNameId(className), classPK);
 	}
 
+	@Override
 	public AkismetEntry updateAkismetEntry(
 		String className, long classPK, String type, String permalink,
 		String referrer, String userAgent, String userIP, String userURL) {

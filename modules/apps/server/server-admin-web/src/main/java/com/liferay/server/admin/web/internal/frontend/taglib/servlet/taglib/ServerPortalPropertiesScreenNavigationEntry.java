@@ -43,24 +43,29 @@ import org.osgi.service.component.annotations.Reference;
 public class ServerPortalPropertiesScreenNavigationEntry
 	implements ScreenNavigationCategory, ScreenNavigationEntry {
 
+	@Override
 	public String getCategoryKey() {
 		return ServerAdminNavigationEntryConstants.
 			CATEGORY_KEY_PORTAL_PROPERTIES;
 	}
 
+	@Override
 	public String getEntryKey() {
 		return ServerAdminNavigationEntryConstants.ENTRY_KEY_PORTAL_PROPERTIES;
 	}
 
+	@Override
 	public String getLabel(Locale locale) {
 		return LanguageUtil.get(locale, "portal-properties");
 	}
 
+	@Override
 	public String getScreenNavigationKey() {
 		return ServerAdminNavigationEntryConstants.
 			SCREEN_NAVIGATION_KEY_PROPERTIES;
 	}
 
+	@Override
 	public void render(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)

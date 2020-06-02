@@ -48,6 +48,7 @@ public class RichTextEditableElementParser extends TextEditableElementParser {
 		return html;
 	}
 
+	@Override
 	protected String getEditableElementType() {
 		return "rich-text";
 	}

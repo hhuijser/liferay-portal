@@ -60,10 +60,12 @@ public class PercolateQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public List<String> getDocumentJSONs() {
 		return Collections.unmodifiableList(_documentJSONs);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}

@@ -262,6 +262,7 @@ public class DDMStructureLayoutLocalServiceImpl
 			groupId, classNameId, structureVersionId);
 	}
 
+	@Override
 	public List<DDMStructureLayout> search(
 			long companyId, long[] groupIds, long classNameId, String keywords,
 			int start, int end,
@@ -279,6 +280,7 @@ public class DDMStructureLayoutLocalServiceImpl
 			ddmStructureLayoutPersistence::findByPrimaryKey);
 	}
 
+	@Override
 	public int searchCount(
 			long companyId, long[] groupIds, long classNameId, String keywords)
 		throws PortalException {

@@ -80,6 +80,7 @@ public class BlockingPortalCache<K extends Serializable, V>
 		return value;
 	}
 
+	@Override
 	public boolean isBlocking() {
 		return true;
 	}

@@ -48,6 +48,7 @@ public class HTMLEditableElementParser extends TextEditableElementParser {
 		return html;
 	}
 
+	@Override
 	protected String getEditableElementType() {
 		return "html";
 	}

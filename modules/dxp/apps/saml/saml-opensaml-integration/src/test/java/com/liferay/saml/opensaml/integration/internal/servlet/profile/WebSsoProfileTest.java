@@ -32,6 +32,7 @@ import org.junit.Test;
 public class WebSsoProfileTest extends BaseSamlTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 

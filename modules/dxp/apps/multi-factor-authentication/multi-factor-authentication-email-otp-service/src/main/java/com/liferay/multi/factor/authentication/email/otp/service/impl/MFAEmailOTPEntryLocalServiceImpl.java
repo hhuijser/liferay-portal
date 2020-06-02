@@ -36,6 +36,7 @@ import org.osgi.service.component.annotations.Component;
 public class MFAEmailOTPEntryLocalServiceImpl
 	extends MFAEmailOTPEntryLocalServiceBaseImpl {
 
+	@Override
 	public MFAEmailOTPEntry addMFAEmailOTPEntry(long userId)
 		throws PortalException {
 
@@ -61,10 +62,12 @@ public class MFAEmailOTPEntryLocalServiceImpl
 		return mfaEmailOTPEntryPersistence.update(mfaEmailOTPEntry);
 	}
 
+	@Override
 	public MFAEmailOTPEntry fetchMFAEmailOTPEntryByUserId(long userId) {
 		return mfaEmailOTPEntryPersistence.fetchByUserId(userId);
 	}
 
+	@Override
 	public MFAEmailOTPEntry resetFailedAttempts(long userId)
 		throws PortalException {
 
@@ -82,6 +85,7 @@ public class MFAEmailOTPEntryLocalServiceImpl
 		return mfaEmailOTPEntryPersistence.update(mfaEmailOTPEntry);
 	}
 
+	@Override
 	public MFAEmailOTPEntry updateAttempts(
 			long userId, String ip, boolean success)
 		throws PortalException {

@@ -342,6 +342,7 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 		mbMessageLocalService.emptyMessageAttachments(messageId);
 	}
 
+	@Override
 	public MBMessage fetchMBMessageByUrlSubject(long groupId, String urlSubject)
 		throws PortalException {
 

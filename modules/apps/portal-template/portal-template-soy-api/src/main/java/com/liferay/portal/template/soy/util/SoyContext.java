@@ -25,6 +25,7 @@ public interface SoyContext extends Map<String, Object> {
 
 	public SoyContext clearInjectedData();
 
+	@Override
 	public SoyContext put(String key, Object value);
 
 	public SoyContext put(

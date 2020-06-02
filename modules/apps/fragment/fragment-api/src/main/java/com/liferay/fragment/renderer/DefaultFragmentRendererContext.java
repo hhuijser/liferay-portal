@@ -36,6 +36,7 @@ public class DefaultFragmentRendererContext implements FragmentRendererContext {
 		return Optional.ofNullable(_displayObject);
 	}
 
+	@Override
 	public Optional<Map<String, Object>> getFieldValuesOptional() {
 		return Optional.ofNullable(_fieldValues);
 	}

@@ -43,24 +43,29 @@ import org.osgi.service.component.annotations.Reference;
 public class ServerSystemPropertiesScreenNavigationEntry
 	implements ScreenNavigationCategory, ScreenNavigationEntry {
 
+	@Override
 	public String getCategoryKey() {
 		return ServerAdminNavigationEntryConstants.
 			CATEGORY_KEY_SYSTEM_PROPERTIES;
 	}
 
+	@Override
 	public String getEntryKey() {
 		return ServerAdminNavigationEntryConstants.ENTRY_KEY_SYSTEM_PROPERTIES;
 	}
 
+	@Override
 	public String getLabel(Locale locale) {
 		return LanguageUtil.get(locale, "system-properties");
 	}
 
+	@Override
 	public String getScreenNavigationKey() {
 		return ServerAdminNavigationEntryConstants.
 			SCREEN_NAVIGATION_KEY_PROPERTIES;
 	}
 
+	@Override
 	public void render(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)

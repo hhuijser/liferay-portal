@@ -33,58 +33,72 @@ public class FuzzyQueryImpl extends BaseQueryImpl implements FuzzyQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public Float getFuzziness() {
 		return _fuzziness;
 	}
 
+	@Override
 	public Integer getMaxEdits() {
 		return _maxEdits;
 	}
 
+	@Override
 	public Integer getMaxExpansions() {
 		return _maxExpansions;
 	}
 
+	@Override
 	public Integer getPrefixLength() {
 		return _prefixLength;
 	}
 
+	@Override
 	public String getRewrite() {
 		return _rewrite;
 	}
 
+	@Override
 	public Boolean getTranspositions() {
 		return _transpositions;
 	}
 
+	@Override
 	public String getValue() {
 		return _value;
 	}
 
+	@Override
 	public void setFuzziness(Float fuzziness) {
 		_fuzziness = fuzziness;
 	}
 
+	@Override
 	public void setMaxEdits(Integer maxEdits) {
 		_maxEdits = maxEdits;
 	}
 
+	@Override
 	public void setMaxExpansions(Integer maxExpansions) {
 		_maxExpansions = maxExpansions;
 	}
 
+	@Override
 	public void setPrefixLength(Integer prefixLength) {
 		_prefixLength = prefixLength;
 	}
 
+	@Override
 	public void setRewrite(String rewrite) {
 		_rewrite = rewrite;
 	}
 
+	@Override
 	public void setTranspositions(Boolean transpositions) {
 		_transpositions = transpositions;
 	}

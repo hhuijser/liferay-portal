@@ -107,6 +107,7 @@ public class SamlBottomJSPDynamicInclude extends BaseJSPDynamicInclude {
 		return _log;
 	}
 
+	@Override
 	@Reference(
 		target = "(osgi.web.symbolicname=com.liferay.saml.web)", unbind = "-"
 	)

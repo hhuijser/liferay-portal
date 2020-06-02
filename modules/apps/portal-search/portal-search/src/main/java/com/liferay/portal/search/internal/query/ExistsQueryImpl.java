@@ -32,10 +32,12 @@ public class ExistsQueryImpl extends BaseQueryImpl implements ExistsQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public int getSortOrder() {
 		return 1;
 	}

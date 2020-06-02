@@ -109,6 +109,7 @@ public class EmailOTPBrowserMFAChecker implements BrowserMFAChecker {
 			MFAEmailOTPWebKeys.MFA_EMAIL_OTP_USER_ID, userId);
 	}
 
+	@Override
 	public boolean isBrowserVerified(
 		HttpServletRequest httpServletRequest, long userId) {
 
@@ -124,6 +125,7 @@ public class EmailOTPBrowserMFAChecker implements BrowserMFAChecker {
 		return false;
 	}
 
+	@Override
 	public boolean verifyBrowserRequest(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, long userId)

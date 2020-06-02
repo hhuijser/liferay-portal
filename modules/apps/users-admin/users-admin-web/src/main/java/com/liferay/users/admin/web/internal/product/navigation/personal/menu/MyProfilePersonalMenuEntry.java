@@ -53,6 +53,7 @@ public class MyProfilePersonalMenuEntry implements PersonalMenuEntry {
 		return LanguageUtil.get(locale, "my-profile");
 	}
 
+	@Override
 	public String getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 

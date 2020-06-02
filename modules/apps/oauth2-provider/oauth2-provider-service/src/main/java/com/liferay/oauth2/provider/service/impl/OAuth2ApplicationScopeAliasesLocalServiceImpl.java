@@ -57,6 +57,7 @@ import org.osgi.service.component.annotations.Reference;
 public class OAuth2ApplicationScopeAliasesLocalServiceImpl
 	extends OAuth2ApplicationScopeAliasesLocalServiceBaseImpl {
 
+	@Override
 	public OAuth2ApplicationScopeAliases addOAuth2ApplicationScopeAliases(
 			long companyId, long userId, String userName,
 			long oAuth2ApplicationId,

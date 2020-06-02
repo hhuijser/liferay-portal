@@ -40,6 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 public class FiltersAggregationTranslatorImpl
 	implements FiltersAggregationTranslator {
 
+	@Override
 	public FiltersAggregationBuilder translate(
 		FiltersAggregation filtersAggregation,
 		AggregationTranslator<AggregationBuilder> aggregationTranslator,

@@ -51,6 +51,7 @@ public class WikiSimilarResultsContributor
 		);
 	}
 
+	@Override
 	@Reference(unbind = "-")
 	protected void setAssetEntryLocalService(
 		AssetEntryLocalService assetEntryLocalService) {
@@ -63,11 +64,13 @@ public class WikiSimilarResultsContributor
 		_httpHelper = httpHelper;
 	}
 
+	@Override
 	@Reference(unbind = "-")
 	protected void setUIDFactory(UIDFactory uidFactory) {
 		super.setUIDFactory(uidFactory);
 	}
 
+	@Override
 	@Reference(unbind = "-")
 	protected void setWikiNodeLocalService(
 		WikiNodeLocalService wikiNodeLocalService) {
@@ -75,6 +78,7 @@ public class WikiSimilarResultsContributor
 		super.setWikiNodeLocalService(wikiNodeLocalService);
 	}
 
+	@Override
 	@Reference(unbind = "-")
 	protected void setWikiPageLocalService(
 		WikiPageLocalService wikiPageLocalService) {

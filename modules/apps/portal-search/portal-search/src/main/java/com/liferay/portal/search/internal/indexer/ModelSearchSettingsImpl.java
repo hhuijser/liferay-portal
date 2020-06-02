@@ -78,6 +78,7 @@ public class ModelSearchSettingsImpl implements ModelSearchSettings {
 		return _commitImmediately;
 	}
 
+	@Override
 	public boolean isSearchResultPermissionFilterSuppressed() {
 		return _searchResultPermissionFilterSuppressed;
 	}

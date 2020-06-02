@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.upgrade.BaseUpgradeThemeId;
  */
 public class UpgradeThemeId extends BaseUpgradeThemeId {
 
+	@Override
 	protected String[][] getThemeIds() {
 		return new String[][] {
 			{

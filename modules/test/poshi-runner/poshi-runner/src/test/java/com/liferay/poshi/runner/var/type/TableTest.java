@@ -38,6 +38,7 @@ import org.junit.Test;
 public class TableTest extends PoshiRunnerTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		_rawDataList = TableUtil.getRawDataListFromString(_RAW_DATA_STRING);
 

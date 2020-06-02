@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.ProxyFactory;
 public abstract class BaseTemplateResourceCache
 	implements TemplateResourceCache {
 
+	@Override
 	public void clear() {
 		if (!isEnabled()) {
 			return;
@@ -42,6 +43,7 @@ public abstract class BaseTemplateResourceCache
 		_singleVMPortalCache.removeAll();
 	}
 
+	@Override
 	public TemplateResource getTemplateResource(String templateId) {
 		if (!isEnabled()) {
 			return null;
@@ -76,6 +78,7 @@ public abstract class BaseTemplateResourceCache
 		return templateResource;
 	}
 
+	@Override
 	public boolean isEnabled() {
 		if (_modificationCheckInterval == 0) {
 			return false;
@@ -84,6 +87,7 @@ public abstract class BaseTemplateResourceCache
 		return true;
 	}
 
+	@Override
 	public void put(String templateId, TemplateResource templateResource) {
 		if (!isEnabled()) {
 			return;
@@ -107,6 +111,7 @@ public abstract class BaseTemplateResourceCache
 		}
 	}
 
+	@Override
 	public void remove(String templateId) {
 		if (!isEnabled()) {
 			return;
@@ -116,6 +121,7 @@ public abstract class BaseTemplateResourceCache
 		_singleVMPortalCache.remove(templateId);
 	}
 
+	@Override
 	public void setSecondLevelPortalCache(
 		PortalCache<TemplateResource, ?> portalCache) {
 

@@ -44,6 +44,7 @@ public class SignOutPersonalMenuEntry implements PersonalMenuEntry {
 		return LanguageUtil.get(locale, "sign-out");
 	}
 
+	@Override
 	public String getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 

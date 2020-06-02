@@ -72,6 +72,7 @@ public class ClusterHealthStatusTranslatorImpl
 			"Unknown status: " + clusterHealthStatus);
 	}
 
+	@Override
 	public ClusterHealthStatus translate(String status) {
 		if (status.equals("green")) {
 			return ClusterHealthStatus.GREEN;

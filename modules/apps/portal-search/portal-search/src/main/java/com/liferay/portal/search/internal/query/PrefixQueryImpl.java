@@ -33,18 +33,22 @@ public class PrefixQueryImpl extends BaseQueryImpl implements PrefixQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public String getPrefix() {
 		return _prefix;
 	}
 
+	@Override
 	public String getRewrite() {
 		return _rewrite;
 	}
 
+	@Override
 	public void setRewrite(String rewrite) {
 		_rewrite = rewrite;
 	}

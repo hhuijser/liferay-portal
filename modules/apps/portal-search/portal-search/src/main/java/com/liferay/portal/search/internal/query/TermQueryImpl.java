@@ -33,10 +33,12 @@ public class TermQueryImpl extends BaseQueryImpl implements TermQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public Object getValue() {
 		return _value;
 	}

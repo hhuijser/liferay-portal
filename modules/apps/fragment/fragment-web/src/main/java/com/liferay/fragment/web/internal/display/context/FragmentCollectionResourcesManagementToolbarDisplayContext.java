@@ -71,6 +71,7 @@ public class FragmentCollectionResourcesManagementToolbarDisplayContext
 			WebKeys.THEME_DISPLAY);
 	}
 
+	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
 			() -> FragmentPermission.contains(

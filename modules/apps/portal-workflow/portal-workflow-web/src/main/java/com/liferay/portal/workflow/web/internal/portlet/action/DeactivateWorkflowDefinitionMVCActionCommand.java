@@ -42,6 +42,7 @@ import org.osgi.service.component.annotations.Component;
 public class DeactivateWorkflowDefinitionMVCActionCommand
 	extends BaseWorkflowDefinitionMVCActionCommand {
 
+	@Override
 	protected void doProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {

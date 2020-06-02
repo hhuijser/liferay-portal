@@ -125,6 +125,7 @@ public class DDMStructureStagedModelDataHandlerTest
 	}
 
 	@After
+	@Override
 	public void tearDown() throws Exception {
 		LanguageUtil.init();
 

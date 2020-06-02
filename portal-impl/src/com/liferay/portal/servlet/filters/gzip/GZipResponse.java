@@ -115,6 +115,7 @@ public class GZipResponse extends HttpServletResponseWrapper {
 		}
 	}
 
+	@Override
 	public void setContentLengthLong(long contentLengthLong) {
 		if (contentLengthLong == 0) {
 			super.setContentLengthLong(0);

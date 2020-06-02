@@ -42,152 +42,189 @@ public class StringQueryImpl extends BaseQueryImpl implements StringQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public Boolean getAllowLeadingWildcard() {
 		return _allowLeadingWildcard;
 	}
 
+	@Override
 	public String getAnalyzer() {
 		return _analyzer;
 	}
 
+	@Override
 	public Boolean getAnalyzeWildcard() {
 		return _analyzeWildcard;
 	}
 
+	@Override
 	public Boolean getAutoGenerateSynonymsPhraseQuery() {
 		return _autoGenerateSynonymsPhraseQuery;
 	}
 
+	@Override
 	public String getDefaultField() {
 		return _defaultField;
 	}
 
+	@Override
 	public Operator getDefaultOperator() {
 		return _defaultOperator;
 	}
 
+	@Override
 	public Boolean getEnablePositionIncrements() {
 		return _enablePositionIncrements;
 	}
 
+	@Override
 	public Float getFuzziness() {
 		return _fuzziness;
 	}
 
+	@Override
 	public Integer getFuzzyMaxExpansions() {
 		return _fuzzyMaxExpansions;
 	}
 
+	@Override
 	public Integer getFuzzyPrefixLength() {
 		return _fuzzyPrefixLength;
 	}
 
+	@Override
 	public Boolean getFuzzyTranspositions() {
 		return _fuzzyTranspositions;
 	}
 
+	@Override
 	public Boolean getLenient() {
 		return _lenient;
 	}
 
+	@Override
 	public Integer getMaxDeterminedStates() {
 		return _maxDeterminedStates;
 	}
 
+	@Override
 	public Integer getPhraseSlop() {
 		return _phraseSlop;
 	}
 
+	@Override
 	public String getQuery() {
 		return _query;
 	}
 
+	@Override
 	public String getQuoteAnalyzer() {
 		return _quoteAnalyzer;
 	}
 
+	@Override
 	public String getQuoteFieldSuffix() {
 		return _quoteFieldSuffix;
 	}
 
+	@Override
 	public String getRewrite() {
 		return _rewrite;
 	}
 
+	@Override
 	public String getTimeZone() {
 		return _timeZone;
 	}
 
+	@Override
 	public void setAllowLeadingWildcard(Boolean allowLeadingWildcard) {
 		_allowLeadingWildcard = allowLeadingWildcard;
 	}
 
+	@Override
 	public void setAnalyzer(String analyzer) {
 		_analyzer = analyzer;
 	}
 
+	@Override
 	public void setAnalyzeWildcard(Boolean analyzeWildcard) {
 		_analyzeWildcard = analyzeWildcard;
 	}
 
+	@Override
 	public void setAutoGenerateSynonymsPhraseQuery(
 		Boolean autoGenerateSynonymsPhraseQuery) {
 
 		_autoGenerateSynonymsPhraseQuery = autoGenerateSynonymsPhraseQuery;
 	}
 
+	@Override
 	public void setDefaultField(String defaultField) {
 		_defaultField = defaultField;
 	}
 
+	@Override
 	public void setDefaultOperator(Operator defaultOperator) {
 		_defaultOperator = defaultOperator;
 	}
 
+	@Override
 	public void setEnablePositionIncrements(Boolean enablePositionIncrements) {
 		_enablePositionIncrements = enablePositionIncrements;
 	}
 
+	@Override
 	public void setFuzziness(Float fuzziness) {
 		_fuzziness = fuzziness;
 	}
 
+	@Override
 	public void setFuzzyMaxExpansions(Integer fuzzyMaxExpansions) {
 		_fuzzyMaxExpansions = fuzzyMaxExpansions;
 	}
 
+	@Override
 	public void setFuzzyPrefixLength(Integer fuzzyPrefixLength) {
 		_fuzzyPrefixLength = fuzzyPrefixLength;
 	}
 
+	@Override
 	public void setFuzzyTranspositions(Boolean fuzzyTranspositions) {
 		_fuzzyTranspositions = fuzzyTranspositions;
 	}
 
+	@Override
 	public void setLenient(Boolean lenient) {
 		_lenient = lenient;
 	}
 
+	@Override
 	public void setMaxDeterminedStates(Integer maxDeterminedStates) {
 		_maxDeterminedStates = maxDeterminedStates;
 	}
 
+	@Override
 	public void setPhraseSlop(Integer phraseSlop) {
 		_phraseSlop = phraseSlop;
 	}
 
+	@Override
 	public void setQuoteAnalyzer(String quoteAnalyzer) {
 		_quoteAnalyzer = quoteAnalyzer;
 	}
 
+	@Override
 	public void setQuoteFieldSuffix(String quoteFieldSuffix) {
 		_quoteFieldSuffix = quoteFieldSuffix;
 	}
 
+	@Override
 	public void setRewrite(String rewrite) {
 		_rewrite = rewrite;
 	}
 
+	@Override
 	public void setTimeZone(String timeZone) {
 		_timeZone = timeZone;
 	}

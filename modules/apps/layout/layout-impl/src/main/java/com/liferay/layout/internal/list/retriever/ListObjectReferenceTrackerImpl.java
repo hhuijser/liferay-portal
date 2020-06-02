@@ -33,6 +33,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 public class ListObjectReferenceTrackerImpl
 	implements ListObjectReferenceFactoryTracker {
 
+	@Override
 	public ListObjectReferenceFactory getListObjectReference(String type) {
 		return _listObjectReferenceFactories.get(type);
 	}

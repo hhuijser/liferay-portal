@@ -24,6 +24,7 @@ public abstract class BaseTable<T> implements Iterable<T> {
 
 	public abstract Iterable<T> getTable();
 
+	@Override
 	public abstract Iterator<T> iterator();
 
 	protected BaseTable(List<List<String>> rawData) {

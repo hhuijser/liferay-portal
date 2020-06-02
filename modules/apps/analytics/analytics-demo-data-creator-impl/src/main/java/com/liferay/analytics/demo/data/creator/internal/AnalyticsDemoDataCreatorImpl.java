@@ -76,6 +76,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class AnalyticsDemoDataCreatorImpl implements AnalyticsDemoDataCreator {
 
+	@Override
 	public void create() throws Exception {
 		File file = new File(
 			_analyticsDemoDataCreatorConfiguration.pathToUsersCSV());
@@ -104,6 +105,7 @@ public class AnalyticsDemoDataCreatorImpl implements AnalyticsDemoDataCreator {
 		}
 	}
 
+	@Override
 	public void delete() throws PortalException {
 		for (Map.Entry<String, User> entry : _users.entrySet()) {
 			_userLocalService.deleteUser(entry.getValue());

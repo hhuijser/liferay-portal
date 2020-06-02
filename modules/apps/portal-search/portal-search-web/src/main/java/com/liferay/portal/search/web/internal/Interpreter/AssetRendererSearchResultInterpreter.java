@@ -261,6 +261,7 @@ public class AssetRendererSearchResultInterpreter
 		return assetRendererFactory.getType();
 	}
 
+	@Override
 	public String getAssetTypeName(Document document, Locale locale)
 		throws PortalException {
 

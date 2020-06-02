@@ -151,6 +151,7 @@ public class FragmentCollectionContributorTrackerImpl
 		return fragmentEntriesMap.get(fragmentEntryKey);
 	}
 
+	@Override
 	public ResourceBundleLoader getResourceBundleLoader() {
 		Collection<FragmentCollectionContributor>
 			fragmentCollectionContributors = _serviceTrackerMap.values();

@@ -74,6 +74,7 @@ public class GenericServletResponse extends HttpServletResponseWrapper {
 		_contentLength = length;
 	}
 
+	@Override
 	public void setContentLengthLong(long length) {
 		super.setContentLengthLong(length);
 

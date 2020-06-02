@@ -35,10 +35,12 @@ public class DefaultSiteNavigationMenuItemTypeContext
 		_group = group;
 	}
 
+	@Override
 	public Company getCompany() {
 		return _company;
 	}
 
+	@Override
 	public Optional<Group> getGroupOptional() {
 		return Optional.of(_group);
 	}

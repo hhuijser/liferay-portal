@@ -30,6 +30,7 @@ public class SAMLContextImpl<MessageType, R extends Resolver>
 		_messageContext = messageContext;
 	}
 
+	@Override
 	public <T> T resolve(Resolver.SAMLCommand<T, ? super R> samlCommand) {
 		SAMLCommandImpl<MessageType, T, R> samlCommandImpl =
 			(SAMLCommandImpl<MessageType, T, R>)samlCommand;

@@ -71,6 +71,7 @@ public abstract class BaseJob implements Job {
 		return _jobProperties.getProperty(key);
 	}
 
+	@Override
 	public String getJobURL(JenkinsMaster jenkinsMaster) {
 		return JenkinsResultsParserUtil.combine(
 			jenkinsMaster.getURL(), "/job/", _jobName);

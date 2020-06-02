@@ -175,6 +175,7 @@ public class KaleoDesignerWorkflowPortletTab extends BaseWorkflowPortletTab {
 			"portletTabServletContext", getServletContext());
 	}
 
+	@Override
 	@Reference(
 		target = "(osgi.web.symbolicname=com.liferay.portal.workflow.kaleo.designer.web)",
 		unbind = "-"

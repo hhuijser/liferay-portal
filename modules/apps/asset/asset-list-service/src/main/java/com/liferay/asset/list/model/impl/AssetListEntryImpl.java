@@ -59,6 +59,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	 *             long, int, int)}
 	 */
 	@Deprecated
+	@Override
 	public List<AssetEntry> getAssetEntries(
 		long segmentsEntryId, int start, int end) {
 
@@ -75,6 +76,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	 *             long[])}
 	 */
 	@Deprecated
+	@Override
 	public List<AssetEntry> getAssetEntries(long[] segmentsEntryIds) {
 		AssetListAssetEntryProvider assetListAssetEntryProvider =
 			_getAssetListAssetEntryProvider();
@@ -89,6 +91,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	 *             long[], int, int)}
 	 */
 	@Deprecated
+	@Override
 	public List<AssetEntry> getAssetEntries(
 		long[] segmentsEntryIds, int start, int end) {
 
@@ -105,6 +108,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	 *             AssetListEntry, long)}
 	 */
 	@Deprecated
+	@Override
 	public int getAssetEntriesCount(long segmentsEntryId) {
 		AssetListAssetEntryProvider assetListAssetEntryProvider =
 			_getAssetListAssetEntryProvider();
@@ -119,6 +123,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	 *             AssetListEntry, long[])}
 	 */
 	@Deprecated
+	@Override
 	public int getAssetEntriesCount(long[] segmentsEntryIds) {
 		AssetListAssetEntryProvider assetListAssetEntryProvider =
 			_getAssetListAssetEntryProvider();
@@ -133,6 +138,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	 *             AssetListEntry, long)}
 	 */
 	@Deprecated
+	@Override
 	public AssetEntryQuery getAssetEntryQuery(long segmentsEntryId) {
 		AssetListAssetEntryProvider assetListAssetEntryProvider =
 			_getAssetListAssetEntryProvider();
@@ -147,6 +153,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	 *             AssetListEntry, long[])}
 	 */
 	@Deprecated
+	@Override
 	public AssetEntryQuery getAssetEntryQuery(long[] segmentsEntryIds) {
 		AssetListAssetEntryProvider assetListAssetEntryProvider =
 			_getAssetListAssetEntryProvider();

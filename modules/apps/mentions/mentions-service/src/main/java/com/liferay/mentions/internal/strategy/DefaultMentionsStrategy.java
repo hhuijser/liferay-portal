@@ -36,6 +36,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class DefaultMentionsStrategy implements MentionsStrategy {
 
+	@Override
 	public List<User> getUsers(
 			long companyId, long userId, String query, JSONObject jsonObject)
 		throws PortalException {

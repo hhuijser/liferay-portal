@@ -33,26 +33,32 @@ public class RegexQueryImpl extends BaseQueryImpl implements RegexQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public Integer getMaxDeterminedStates() {
 		return _maxDeterminedStates;
 	}
 
+	@Override
 	public String getRegex() {
 		return _regex;
 	}
 
+	@Override
 	public Integer getRegexFlags() {
 		return _regexFlags;
 	}
 
+	@Override
 	public String getRewrite() {
 		return _rewrite;
 	}
 
+	@Override
 	public void setMaxDeterminedStates(Integer maxDeterminedStates) {
 		_maxDeterminedStates = maxDeterminedStates;
 	}
@@ -72,6 +78,7 @@ public class RegexQueryImpl extends BaseQueryImpl implements RegexQuery {
 		_regexFlags = value;
 	}
 
+	@Override
 	public void setRewrite(String rewrite) {
 		_rewrite = rewrite;
 	}

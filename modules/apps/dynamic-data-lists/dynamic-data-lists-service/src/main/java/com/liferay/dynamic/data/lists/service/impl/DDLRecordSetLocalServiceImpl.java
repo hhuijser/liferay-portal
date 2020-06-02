@@ -401,6 +401,7 @@ public class DDLRecordSetLocalServiceImpl
 		return ddlRecordSetPersistence.findByGroupId(groupId);
 	}
 
+	@Override
 	public List<DDLRecordSet> getRecordSets(long groupId, int start, int end) {
 		return ddlRecordSetPersistence.findByGroupId(groupId, start, end);
 	}

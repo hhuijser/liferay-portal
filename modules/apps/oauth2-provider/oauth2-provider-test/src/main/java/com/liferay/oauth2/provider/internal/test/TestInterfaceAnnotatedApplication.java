@@ -30,10 +30,12 @@ public class TestInterfaceAnnotatedApplication
 		return Collections.<Object>singleton(this);
 	}
 
+	@Override
 	public String getString() {
 		return "everything.read";
 	}
 
+	@Override
 	public String getStringNoScope() {
 		return "no-scope";
 	}

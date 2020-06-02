@@ -68,6 +68,7 @@ public class PoshiElementAttribute
 		_poshiScript = poshiScript;
 	}
 
+	@Override
 	public String toPoshiScript() {
 		StringBuilder sb = new StringBuilder();
 

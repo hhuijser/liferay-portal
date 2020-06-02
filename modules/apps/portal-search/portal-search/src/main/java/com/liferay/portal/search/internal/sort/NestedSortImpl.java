@@ -26,30 +26,37 @@ public class NestedSortImpl implements NestedSort {
 		_path = path;
 	}
 
+	@Override
 	public Query getFilterQuery() {
 		return _filterQuery;
 	}
 
+	@Override
 	public int getMaxChildren() {
 		return _maxChildren;
 	}
 
+	@Override
 	public NestedSort getNestedSort() {
 		return _nestedSort;
 	}
 
+	@Override
 	public String getPath() {
 		return _path;
 	}
 
+	@Override
 	public void setFilterQuery(Query filterQuery) {
 		_filterQuery = filterQuery;
 	}
 
+	@Override
 	public void setMaxChildren(int maxChildren) {
 		_maxChildren = maxChildren;
 	}
 
+	@Override
 	public void setNestedSort(NestedSort nestedSort) {
 		_nestedSort = nestedSort;
 	}

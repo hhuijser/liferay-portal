@@ -25,6 +25,7 @@ import org.junit.Test;
 public class HttpRequestUtilTest extends PoshiRunnerTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		setUpPoshiRunner(_TEST_BASE_DIR_NAME);
 	}

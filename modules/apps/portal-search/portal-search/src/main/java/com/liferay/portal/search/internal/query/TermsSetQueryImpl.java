@@ -37,34 +37,42 @@ public class TermsSetQueryImpl extends BaseQueryImpl implements TermsSetQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getFieldName() {
 		return _fieldName;
 	}
 
+	@Override
 	public String getMinimumShouldMatchField() {
 		return _minimumShouldMatchField;
 	}
 
+	@Override
 	public Script getMinimumShouldMatchScript() {
 		return _minimumShouldMatchScript;
 	}
 
+	@Override
 	public List<Object> getValues() {
 		return Collections.unmodifiableList(_values);
 	}
 
+	@Override
 	public Boolean isCached() {
 		return _cached;
 	}
 
+	@Override
 	public void setCached(Boolean cached) {
 		_cached = cached;
 	}
 
+	@Override
 	public String setMinimumShouldMatchField(String minimumShouldMatchField) {
 		return _minimumShouldMatchField = minimumShouldMatchField;
 	}
 
+	@Override
 	public void setMinimumShouldMatchScript(Script minimumShouldMatchScript) {
 		_minimumShouldMatchScript = minimumShouldMatchScript;
 	}

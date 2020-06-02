@@ -36,6 +36,7 @@ public class TermsQueryImpl extends BaseQueryImpl implements TermsQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public void addValue(Object value) {
 		_values.add(value);
 	}
@@ -44,14 +45,17 @@ public class TermsQueryImpl extends BaseQueryImpl implements TermsQuery {
 		Collections.addAll(_values, values);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public String[] getValues() {
 		return _values.toArray(new String[0]);
 	}
 
+	@Override
 	public boolean isEmpty() {
 		return _values.isEmpty();
 	}

@@ -23,10 +23,12 @@ import java.util.List;
  */
 public class CreationMenuBuilderCheck extends BaseBuilderCheck {
 
+	@Override
 	protected boolean allowNullValues() {
 		return true;
 	}
 
+	@Override
 	protected List<BaseBuilderCheck.BuilderInformation>
 		getBuilderInformationList() {
 
@@ -37,6 +39,7 @@ public class CreationMenuBuilderCheck extends BaseBuilderCheck {
 				"addRestDropdownItem"));
 	}
 
+	@Override
 	protected boolean isSupportsNestedMethodCalls() {
 		return false;
 	}

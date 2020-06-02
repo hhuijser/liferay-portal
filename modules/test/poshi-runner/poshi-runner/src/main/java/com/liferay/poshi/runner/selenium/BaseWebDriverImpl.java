@@ -246,6 +246,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		}
 	}
 
+	@Override
 	public void assertAttributeNotPresent(String attribute, String locator)
 		throws Exception {
 
@@ -255,6 +256,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		}
 	}
 
+	@Override
 	public void assertAttributePresent(String attribute, String locator)
 		throws Exception {
 
@@ -264,6 +266,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		}
 	}
 
+	@Override
 	public void assertAttributeValue(
 			String attribute, String locator, String pattern)
 		throws Exception {
@@ -1505,10 +1508,12 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		return alertPresent;
 	}
 
+	@Override
 	public boolean isAttributeNotPresent(String attribute, String locator) {
 		return !isAttributePresent(attribute, locator);
 	}
 
+	@Override
 	public boolean isAttributePresent(String attribute, String locator) {
 		WebElement webElement = getWebElement(locator);
 

@@ -57,6 +57,7 @@ public class OAuthJSONWebServiceClientImpl extends JSONWebServiceClientImpl {
 	}
 
 	@Activate
+	@Override
 	protected void activate(Map<String, Object> properties)
 		throws IOReactorException {
 

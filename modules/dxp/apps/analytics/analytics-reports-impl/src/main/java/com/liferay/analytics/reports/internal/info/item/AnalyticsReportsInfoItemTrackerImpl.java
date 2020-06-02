@@ -36,6 +36,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 public class AnalyticsReportsInfoItemTrackerImpl
 	implements AnalyticsReportsInfoItemTracker {
 
+	@Override
 	public AnalyticsReportsInfoItem getAnalyticsReportsInfoItem(String key) {
 		if (Validator.isNull(key)) {
 			return null;
@@ -44,6 +45,7 @@ public class AnalyticsReportsInfoItemTrackerImpl
 		return _analyticsReportsInfoItems.get(key);
 	}
 
+	@Override
 	public List<AnalyticsReportsInfoItem> getAnalyticsReportsInfoItems() {
 		return new ArrayList<>(_analyticsReportsInfoItems.values());
 	}

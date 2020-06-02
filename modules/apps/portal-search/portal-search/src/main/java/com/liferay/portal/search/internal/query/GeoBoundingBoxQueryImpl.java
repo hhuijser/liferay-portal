@@ -40,44 +40,54 @@ public class GeoBoundingBoxQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public GeoLocationPoint getBottomRightGeoLocationPoint() {
 		return _bottomRightGeoLocationPoint;
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public GeoExecType getGeoExecType() {
 		return _geoExecType;
 	}
 
+	@Override
 	public GeoValidationMethod getGeoValidationMethod() {
 		return _geoValidationMethod;
 	}
 
+	@Override
 	public Boolean getIgnoreUnmapped() {
 		return _ignoreUnmapped;
 	}
 
+	@Override
 	public int getSortOrder() {
 		return 120;
 	}
 
+	@Override
 	public GeoLocationPoint getTopLeftGeoLocationPoint() {
 		return _topLeftGeoLocationPoint;
 	}
 
+	@Override
 	public void setGeoExecType(GeoExecType geoExecType) {
 		_geoExecType = geoExecType;
 	}
 
+	@Override
 	public void setGeoValidationMethod(
 		GeoValidationMethod geoValidationMethod) {
 
 		_geoValidationMethod = geoValidationMethod;
 	}
 
+	@Override
 	public void setIgnoreUnmapped(Boolean ignoreUnmapped) {
 		_ignoreUnmapped = ignoreUnmapped;
 	}

@@ -43,14 +43,17 @@ public class GeoDistanceRangeQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public GeoDistance getLowerBoundGeoDistance() {
 		return _lowerBoundGeoDistance;
 	}
 
+	@Override
 	public GeoLocationPoint getPinGeoLocationPoint() {
 		return _pinGeoLocationPoint;
 	}
 
+	@Override
 	public ShapeRelation getShapeRelation() {
 		return _shapeRelation;
 	}
@@ -60,10 +63,12 @@ public class GeoDistanceRangeQueryImpl
 		return 110;
 	}
 
+	@Override
 	public GeoDistance getUpperBoundGeoDistance() {
 		return _upperBoundGeoDistance;
 	}
 
+	@Override
 	public void setShapeRelation(ShapeRelation shapeRelation) {
 		_shapeRelation = shapeRelation;
 	}

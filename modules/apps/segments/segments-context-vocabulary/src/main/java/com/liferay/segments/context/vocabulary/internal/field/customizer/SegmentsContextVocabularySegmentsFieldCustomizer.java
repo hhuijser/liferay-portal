@@ -66,6 +66,7 @@ public class SegmentsContextVocabularySegmentsFieldCustomizer
 		return Collections.singletonList(_entityField);
 	}
 
+	@Override
 	public String getFieldValueName(String fieldValue, Locale locale) {
 		return fieldValue;
 	}
@@ -75,6 +76,7 @@ public class SegmentsContextVocabularySegmentsFieldCustomizer
 		return KEY;
 	}
 
+	@Override
 	public String getLabel(String fieldName, Locale locale) {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
@@ -83,6 +85,7 @@ public class SegmentsContextVocabularySegmentsFieldCustomizer
 			resourceBundle, "field." + CamelCaseUtil.fromCamelCase(fieldName));
 	}
 
+	@Override
 	public List<Field.Option> getOptions(Locale locale) {
 		Long companyId = CompanyThreadLocal.getCompanyId();
 

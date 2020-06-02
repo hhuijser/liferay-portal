@@ -891,6 +891,7 @@ public abstract class BaseBuild implements Build {
 		return longestRunningTest;
 	}
 
+	@Override
 	public Map<String, String> getMetricLabels() {
 		if (_parentBuild != null) {
 			return _parentBuild.getMetricLabels();

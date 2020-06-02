@@ -44,10 +44,12 @@ public abstract class BasePortalCache<K extends Serializable, V>
 		return _portalCacheManager;
 	}
 
+	@Override
 	public boolean isBlocking() {
 		return false;
 	}
 
+	@Override
 	public boolean isMVCC() {
 		return false;
 	}

@@ -23,6 +23,7 @@ import org.osgi.service.component.annotations.Component;
 public class SynonymSetFilterNameHolderImpl
 	implements SynonymSetFilterNameHolder {
 
+	@Override
 	public String[] getFilterNames() {
 		return _FILTER_NAMES;
 	}

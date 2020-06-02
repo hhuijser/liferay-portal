@@ -49,120 +49,149 @@ public class MultiMatchQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getAnalyzer() {
 		return _analyzer;
 	}
 
+	@Override
 	public Float getCutOffFrequency() {
 		return _cutOffFrequency;
 	}
 
+	@Override
 	public Set<String> getFields() {
 		return _fields;
 	}
 
+	@Override
 	public Map<String, Float> getFieldsBoosts() {
 		return _fieldsBoosts;
 	}
 
+	@Override
 	public String getFuzziness() {
 		return _fuzziness;
 	}
 
+	@Override
 	public MatchQuery.RewriteMethod getFuzzyRewriteMethod() {
 		return _fuzzyRewriteMethod;
 	}
 
+	@Override
 	public Integer getMaxExpansions() {
 		return _maxExpansions;
 	}
 
+	@Override
 	public String getMinShouldMatch() {
 		return _minShouldMatch;
 	}
 
+	@Override
 	public Operator getOperator() {
 		return _operator;
 	}
 
+	@Override
 	public Integer getPrefixLength() {
 		return _prefixLength;
 	}
 
+	@Override
 	public Integer getSlop() {
 		return _slop;
 	}
 
+	@Override
 	public Float getTieBreaker() {
 		return _tieBreaker;
 	}
 
+	@Override
 	public Type getType() {
 		return _type;
 	}
 
+	@Override
 	public Object getValue() {
 		return _value;
 	}
 
+	@Override
 	public MatchQuery.ZeroTermsQuery getZeroTermsQuery() {
 		return _zeroTermsQuery;
 	}
 
+	@Override
 	public boolean isFieldBoostsEmpty() {
 		return _fieldsBoosts.isEmpty();
 	}
 
+	@Override
 	public boolean isFieldsEmpty() {
 		return _fields.isEmpty();
 	}
 
+	@Override
 	public Boolean isLenient() {
 		return _lenient;
 	}
 
+	@Override
 	public void setAnalyzer(String analyzer) {
 		_analyzer = analyzer;
 	}
 
+	@Override
 	public void setCutOffFrequency(Float cutOffFrequency) {
 		_cutOffFrequency = cutOffFrequency;
 	}
 
+	@Override
 	public void setFuzziness(String fuzziness) {
 		_fuzziness = fuzziness;
 	}
 
+	@Override
 	public void setFuzzyRewriteMethod(
 		MatchQuery.RewriteMethod fuzzyRewriteMethod) {
 
 		_fuzzyRewriteMethod = fuzzyRewriteMethod;
 	}
 
+	@Override
 	public void setLenient(Boolean lenient) {
 		_lenient = lenient;
 	}
 
+	@Override
 	public void setMaxExpansions(Integer maxExpansions) {
 		_maxExpansions = maxExpansions;
 	}
 
+	@Override
 	public void setMinShouldMatch(String minShouldMatch) {
 		_minShouldMatch = minShouldMatch;
 	}
 
+	@Override
 	public void setOperator(Operator operator) {
 		_operator = operator;
 	}
 
+	@Override
 	public void setPrefixLength(Integer prefixLength) {
 		_prefixLength = prefixLength;
 	}
 
+	@Override
 	public void setSlop(Integer slop) {
 		_slop = slop;
 	}
 
+	@Override
 	public void setTieBreaker(Float tieBreaker) {
 		_tieBreaker = tieBreaker;
 	}
@@ -171,6 +200,7 @@ public class MultiMatchQueryImpl
 		_type = type;
 	}
 
+	@Override
 	public void setZeroTermsQuery(MatchQuery.ZeroTermsQuery zeroTermsQuery) {
 		_zeroTermsQuery = zeroTermsQuery;
 	}

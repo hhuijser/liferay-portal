@@ -161,6 +161,7 @@ public class IfPoshiElement extends PoshiElement {
 		return getParentheticalContent(poshiScript);
 	}
 
+	@Override
 	protected String getPoshiScriptKeyword() {
 		return getName();
 	}

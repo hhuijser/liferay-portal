@@ -52,42 +52,52 @@ public class RangeTermQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public Object getLowerBound() {
 		return _lowerBound;
 	}
 
+	@Override
 	public RangeTermQuery.Operator getLowerBoundOperator() {
 		return _lowerBoundOperator;
 	}
 
+	@Override
 	public int getSortOrder() {
 		return 20;
 	}
 
+	@Override
 	public Object getUpperBound() {
 		return _upperBound;
 	}
 
+	@Override
 	public Operator getUpperBoundOperator() {
 		return _upperBoundOperator;
 	}
 
+	@Override
 	public boolean isIncludesLower() {
 		return _includesLower;
 	}
 
+	@Override
 	public boolean isIncludesUpper() {
 		return _includesUpper;
 	}
 
+	@Override
 	public void setLowerBound(Object lowerBound) {
 		_lowerBound = lowerBound;
 	}
 
+	@Override
 	public void setUpperBound(Object upperBound) {
 		_upperBound = upperBound;
 	}

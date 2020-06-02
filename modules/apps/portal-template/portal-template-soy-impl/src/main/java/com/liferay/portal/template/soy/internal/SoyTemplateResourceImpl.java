@@ -72,6 +72,7 @@ public class SoyTemplateResourceImpl implements SoyTemplateResource {
 		return templateId;
 	}
 
+	@Override
 	public List<TemplateResource> getTemplateResources() {
 		return _templateResources;
 	}

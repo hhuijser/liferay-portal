@@ -62,6 +62,7 @@ public abstract class PoshiRunnerTestCase extends TestCase {
 	}
 
 	@After
+	@Override
 	public void tearDown() {
 		SeleniumUtil.stopSelenium();
 	}

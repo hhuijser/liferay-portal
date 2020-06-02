@@ -120,6 +120,7 @@ public class DLURLHelperImpl implements DLURLHelper {
 		return portletURL.toString();
 	}
 
+	@Override
 	public String getImagePreviewURL(
 		FileEntry fileEntry, FileVersion fileVersion,
 		ThemeDisplay themeDisplay) {

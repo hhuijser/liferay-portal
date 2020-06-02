@@ -85,6 +85,7 @@ public class UADExportProcessManagementToolbarDisplayContext
 		).build();
 	}
 
+	@Override
 	public List<LabelItem> getFilterLabelItems() {
 		String navigation = getNavigation();
 
@@ -113,6 +114,7 @@ public class UADExportProcessManagementToolbarDisplayContext
 		return _searchContainer.getTotal();
 	}
 
+	@Override
 	public PortletURL getPortletURL() {
 		try {
 			return PortletURLUtil.clone(_currentURL, _liferayPortletResponse);

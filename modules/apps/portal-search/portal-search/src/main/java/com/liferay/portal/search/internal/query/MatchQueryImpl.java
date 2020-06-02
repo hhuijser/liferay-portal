@@ -34,74 +34,92 @@ public class MatchQueryImpl extends BaseQueryImpl implements MatchQuery {
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public String getAnalyzer() {
 		return _analyzer;
 	}
 
+	@Override
 	public Float getCutOffFrequency() {
 		return _cutOffFrequency;
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public Float getFuzziness() {
 		return _fuzziness;
 	}
 
+	@Override
 	public RewriteMethod getFuzzyRewriteMethod() {
 		return _fuzzyRewriteMethod;
 	}
 
+	@Override
 	public Integer getMaxExpansions() {
 		return _maxExpansions;
 	}
 
+	@Override
 	public String getMinShouldMatch() {
 		return _minShouldMatch;
 	}
 
+	@Override
 	public Operator getOperator() {
 		return _operator;
 	}
 
+	@Override
 	public Integer getPrefixLength() {
 		return _prefixLength;
 	}
 
+	@Override
 	public Integer getSlop() {
 		return _slop;
 	}
 
+	@Override
 	public Type getType() {
 		return _type;
 	}
 
+	@Override
 	public Object getValue() {
 		return _value;
 	}
 
+	@Override
 	public ZeroTermsQuery getZeroTermsQuery() {
 		return _zeroTermsQuery;
 	}
 
+	@Override
 	public Boolean isFuzzyTranspositions() {
 		return _fuzzyTranspositions;
 	}
 
+	@Override
 	public Boolean isLenient() {
 		return _lenient;
 	}
 
+	@Override
 	public void setAnalyzer(String analyzer) {
 		_analyzer = analyzer;
 	}
 
+	@Override
 	public void setCutOffFrequency(Float cutOffFrequency) {
 		_cutOffFrequency = cutOffFrequency;
 	}
 
+	@Override
 	public void setFuzziness(Float fuzziness) {
 		_fuzziness = fuzziness;
 	}
@@ -110,30 +128,37 @@ public class MatchQueryImpl extends BaseQueryImpl implements MatchQuery {
 		_fuzzyRewriteMethod = fuzzyRewriteMethod;
 	}
 
+	@Override
 	public void setFuzzyTranspositions(Boolean fuzzyTranspositions) {
 		_fuzzyTranspositions = fuzzyTranspositions;
 	}
 
+	@Override
 	public void setLenient(Boolean lenient) {
 		_lenient = lenient;
 	}
 
+	@Override
 	public void setMaxExpansions(Integer maxExpansions) {
 		_maxExpansions = maxExpansions;
 	}
 
+	@Override
 	public void setMinShouldMatch(String minShouldMatch) {
 		_minShouldMatch = minShouldMatch;
 	}
 
+	@Override
 	public void setOperator(Operator operator) {
 		_operator = operator;
 	}
 
+	@Override
 	public void setPrefixLength(Integer prefixLength) {
 		_prefixLength = prefixLength;
 	}
 
+	@Override
 	public void setSlop(Integer slop) {
 		_slop = slop;
 	}

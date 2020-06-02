@@ -206,6 +206,7 @@ public abstract class BaseDB implements DB {
 		return _minorVersion;
 	}
 
+	@Override
 	public Integer getSQLType(String templateType) {
 		return _sqlTypes.get(templateType);
 	}

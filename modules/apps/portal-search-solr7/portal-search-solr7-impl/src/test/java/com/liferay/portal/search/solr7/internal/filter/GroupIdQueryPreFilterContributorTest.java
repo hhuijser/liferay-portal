@@ -28,6 +28,7 @@ public class GroupIdQueryPreFilterContributorTest
 	extends BaseGroupIdQueryPreFilterContributorTestCase {
 
 	@Ignore
+	@Override
 	@Test
 	public void testScopeEverythingWithInactiveGroups() {
 	}

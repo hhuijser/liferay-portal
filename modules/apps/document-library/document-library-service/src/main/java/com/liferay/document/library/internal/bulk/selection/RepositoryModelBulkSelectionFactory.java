@@ -45,6 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 public class RepositoryModelBulkSelectionFactory
 	implements BulkSelectionFactory<RepositoryModel> {
 
+	@Override
 	public BulkSelection<RepositoryModel> create(
 		Map<String, String[]> parameterMap) {
 

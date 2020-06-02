@@ -256,6 +256,7 @@ public class InstanceResourceImpl extends BaseInstanceResourceImpl {
 		return Page.of(Collections.emptyList());
 	}
 
+	@Override
 	public void patchProcessInstance(
 			Long processId, Long instanceId, Instance instance)
 		throws Exception {

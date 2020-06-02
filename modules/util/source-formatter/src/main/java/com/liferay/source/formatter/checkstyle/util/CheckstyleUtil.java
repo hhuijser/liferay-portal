@@ -50,7 +50,7 @@ public class CheckstyleUtil {
 
 	public static final String BASE_DIR_NAME_KEY = "baseDirName";
 
-	public static final int BATCH_SIZE = 1000;
+	public static final int BATCH_SIZE = 20000;
 
 	public static final String MAX_LINE_LENGTH_KEY = "maxLineLength";
 

@@ -16,10 +16,13 @@ package com.liferay.source.formatter;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.java.parser.JavaParser;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleLogger;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.util.DebugUtil;
+import com.liferay.source.formatter.util.FileUtil;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -29,6 +32,7 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -104,14 +108,31 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 
 		_ungeneratedFiles.clear();
 
+		String curFileName = null;
+		List<Integer> lineNumbers = new ArrayList<>();
+
 		for (SourceFormatterMessage sourceFormatterMessage :
 				_sourceFormatterMessages) {
 
 			String fileName = sourceFormatterMessage.getFileName();
 
+			if ((curFileName != null) && !fileName.equals(curFileName)) {
+				_addMissingOverride(curFileName, lineNumbers);
+
+				lineNumbers.clear();
+			}
+
+			curFileName = fileName;
+
+			lineNumbers.add(sourceFormatterMessage.getLineNumber());
+
 			processMessage(fileName, sourceFormatterMessage);
 
 			printError(fileName, sourceFormatterMessage.toString());
+		}
+
+		if (!lineNumbers.isEmpty()) {
+			_addMissingOverride(curFileName, lineNumbers);
 		}
 	}
 
@@ -123,6 +144,50 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 			sourceFormatterArgs.getBaseDirName());
 		_checkstyleConfiguration = CheckstyleUtil.getConfiguration(
 			"checkstyle.xml", getPropertiesMap(), sourceFormatterArgs);
+	}
+
+	private void _addMissingOverride(
+		String fileName, List<Integer> lineNumbers) {
+
+		Collections.sort(lineNumbers, Collections.reverseOrder());
+
+		try {
+			File file = new File(fileName);
+
+			String content = FileUtil.read(file);
+
+			String newContent = content;
+
+			for (int lineNumber : lineNumbers) {
+				String line = StringUtil.trim(
+					SourceUtil.getLine(newContent, lineNumber));
+				String previousLine = StringUtil.trim(
+					SourceUtil.getLine(newContent, lineNumber - 1));
+
+				if (line.startsWith("protected ") ||
+					line.startsWith("public ")) {
+
+					newContent = StringUtil.insert(
+						newContent, "@Override\n",
+						SourceUtil.getLineStartPos(newContent, lineNumber));
+				}
+				else if (previousLine.startsWith("protected ") ||
+						 previousLine.startsWith("public ")) {
+
+					newContent = StringUtil.insert(
+						newContent, "@Override\n",
+						SourceUtil.getLineStartPos(newContent, lineNumber - 1));
+				}
+			}
+
+			if (!content.equals(newContent)) {
+				FileUtil.write(file, newContent);
+
+				System.out.println("Added Override to " + fileName);
+			}
+		}
+		catch (Exception exception) {
+		}
 	}
 
 	private String[] _getPluginExcludes(String pluginDirectoryName) {

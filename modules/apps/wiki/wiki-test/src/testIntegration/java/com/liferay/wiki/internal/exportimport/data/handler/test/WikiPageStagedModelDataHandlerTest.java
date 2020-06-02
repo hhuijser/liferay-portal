@@ -262,9 +262,10 @@ public class WikiPageStagedModelDataHandlerTest
 			Group group)
 		throws Exception {
 
-		StagedModelDataHandler stagedModelDataHandler =
-			StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
-				ExportImportClassedModelUtil.getClassName(stagedModel));
+		StagedModelDataHandler<StagedModel> stagedModelDataHandler =
+			(StagedModelDataHandler<StagedModel>)
+				StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
+					ExportImportClassedModelUtil.getClassName(stagedModel));
 
 		stagedModelDataHandler.deleteStagedModel(stagedModel);
 
@@ -274,10 +275,11 @@ public class WikiPageStagedModelDataHandlerTest
 			for (StagedModel dependentStagedModel : dependentStagedModels) {
 				try {
 					stagedModelDataHandler =
-						StagedModelDataHandlerRegistryUtil.
-							getStagedModelDataHandler(
-								ExportImportClassedModelUtil.getClassName(
-									dependentStagedModel));
+						(StagedModelDataHandler<StagedModel>)
+							StagedModelDataHandlerRegistryUtil.
+								getStagedModelDataHandler(
+									ExportImportClassedModelUtil.getClassName(
+										dependentStagedModel));
 
 					stagedModelDataHandler.deleteStagedModel(
 						dependentStagedModel);

@@ -240,7 +240,7 @@ public class StagingImpl implements Staging {
 			String className = ExportImportClassedModelUtil.getClassName(
 				stagedGroupedModel);
 
-			StagedModelDataHandler stagedModelDataHandler =
+			StagedModelDataHandler<?> stagedModelDataHandler =
 				StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
 					className);
 

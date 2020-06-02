@@ -69,10 +69,13 @@ public class DDMFormInstanceRecordStagingModelListener
 
 	private boolean _isSkipEvent(DDMFormInstanceRecord ddmFormInstanceRecord) {
 		try {
-			StagedModelDataHandler stagedModelDataHandler =
-				StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
-					ExportImportClassedModelUtil.getClassName(
-						ddmFormInstanceRecord));
+			StagedModelDataHandler<DDMFormInstanceRecord>
+				stagedModelDataHandler =
+					(StagedModelDataHandler<DDMFormInstanceRecord>)
+						StagedModelDataHandlerRegistryUtil.
+							getStagedModelDataHandler(
+								ExportImportClassedModelUtil.getClassName(
+									ddmFormInstanceRecord));
 
 			if (stagedModelDataHandler != null) {
 				int[] exportableStatuses =

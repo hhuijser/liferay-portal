@@ -146,9 +146,11 @@ public class JournalArticleStagingModelListener
 
 			Set<Long> classPKs = new HashSet<>();
 
-			StagedModelDataHandler stagedModelDataHandler =
-				StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
-					JournalArticle.class.getName());
+			StagedModelDataHandler<JournalArticle> stagedModelDataHandler =
+				(StagedModelDataHandler<JournalArticle>)
+					StagedModelDataHandlerRegistryUtil.
+						getStagedModelDataHandler(
+							JournalArticle.class.getName());
 
 			for (JournalArticle journalArticleResourceArticle :
 					journalArticleResourceArticles) {

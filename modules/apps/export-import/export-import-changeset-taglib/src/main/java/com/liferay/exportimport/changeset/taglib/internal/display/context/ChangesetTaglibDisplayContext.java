@@ -68,7 +68,7 @@ public class ChangesetTaglibDisplayContext {
 		Group group, String portletId, String className, String uuid) {
 
 		try {
-			StagedModelDataHandler stagedModelDataHandler =
+			StagedModelDataHandler<?> stagedModelDataHandler =
 				StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
 					className);
 

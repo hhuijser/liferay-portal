@@ -1250,7 +1250,7 @@ public class AssetPublisherExportImportTest
 	private LayoutLocalService _layoutLocalService;
 
 	@Inject(filter = "component.name=*.LayoutStagedModelDataHandler")
-	private StagedModelDataHandler _layoutStagedModelDataHandler;
+	private StagedModelDataHandler<?> _layoutStagedModelDataHandler;
 
 	private PermissionChecker _permissionChecker;
 
@@ -1258,9 +1258,9 @@ public class AssetPublisherExportImportTest
 	private Portal _portal;
 
 	@Inject(filter = "component.name=*.StagedGroupStagedModelDataHandler")
-	private StagedModelDataHandler _stagedGroupStagedModelDataHandler;
+	private StagedModelDataHandler<?> _stagedGroupStagedModelDataHandler;
 
 	@Inject(filter = "component.name=*.StagedLayoutSetStagedModelDataHandler")
-	private StagedModelDataHandler _stagedLayoutSetStagedModelDataHandler;
+	private StagedModelDataHandler<?> _stagedLayoutSetStagedModelDataHandler;
 
 }

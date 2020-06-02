@@ -58,7 +58,9 @@ public class StagedModelDataHandlerRegistryUtilTest {
 				});
 
 		_serviceRegistration = registry.registerService(
-			StagedModelDataHandler.class, _stagedModelDataHandler);
+			(Class<StagedModelDataHandler<?>>)
+				(Class<?>)StagedModelDataHandler.class,
+			_stagedModelDataHandler);
 	}
 
 	@After
@@ -88,7 +90,7 @@ public class StagedModelDataHandlerRegistryUtilTest {
 
 	private static final String _CLASS_NAME = "TestStagedModelDataHandler";
 
-	private ServiceRegistration<StagedModelDataHandler> _serviceRegistration;
+	private ServiceRegistration<StagedModelDataHandler<?>> _serviceRegistration;
 	private StagedModelDataHandler<?> _stagedModelDataHandler;
 
 }

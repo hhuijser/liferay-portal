@@ -1341,9 +1341,10 @@ public class UIItemsBuilder {
 				return false;
 			}
 
-			StagedModelDataHandler stagedModelDataHandler =
-				StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
-					FileEntry.class.getName());
+			StagedModelDataHandler<FileEntry> stagedModelDataHandler =
+				(StagedModelDataHandler<FileEntry>)
+					StagedModelDataHandlerRegistryUtil.
+						getStagedModelDataHandler(FileEntry.class.getName());
 
 			if (ArrayUtil.contains(
 					stagedModelDataHandler.getExportableStatuses(),

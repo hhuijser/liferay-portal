@@ -1113,7 +1113,7 @@ public class DataDefinitionResourceImpl
 		for (DataEngineNativeObjectField dataEngineNativeObjectField :
 				dataEngineNativeObjectFields) {
 
-			Column column = dataEngineNativeObjectField.getColumn();
+			Column<?, ?> column = dataEngineNativeObjectField.getColumn();
 
 			DataDefinitionField dataDefinitionField = Stream.of(
 				dataDefinitionFields

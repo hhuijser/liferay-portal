@@ -27,21 +27,21 @@ public class DataEngineNativeObjectField {
 	 * @param customType
 	 */
 	@Deprecated
-	public DataEngineNativeObjectField(Column column, String customType) {
+	public DataEngineNativeObjectField(Column<?, ?> column, String customType) {
 		_column = column;
 		_customName = null;
 		_customType = customType;
 	}
 
 	public DataEngineNativeObjectField(
-		Column column, String customName, String customType) {
+		Column<?, ?> column, String customName, String customType) {
 
 		_column = column;
 		_customName = customName;
 		_customType = customType;
 	}
 
-	public Column getColumn() {
+	public Column<?, ?> getColumn() {
 		return _column;
 	}
 
@@ -53,7 +53,7 @@ public class DataEngineNativeObjectField {
 		return _customType;
 	}
 
-	private final Column _column;
+	private final Column<?, ?> _column;
 	private final String _customName;
 	private final String _customType;
 

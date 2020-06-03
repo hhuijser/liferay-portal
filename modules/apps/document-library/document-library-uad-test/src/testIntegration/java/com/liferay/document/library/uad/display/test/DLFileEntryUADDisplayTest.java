@@ -97,7 +97,7 @@ public class DLFileEntryUADDisplayTest
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<DLFileEntry> getUADDisplay() {
 		return _uadDisplay;
 	}
 

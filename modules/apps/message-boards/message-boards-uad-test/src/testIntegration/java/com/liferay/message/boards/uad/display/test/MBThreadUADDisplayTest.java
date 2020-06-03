@@ -178,7 +178,7 @@ public class MBThreadUADDisplayTest extends BaseUADDisplayTestCase<MBThread> {
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<MBThread> getUADDisplay() {
 		return _uadDisplay;
 	}
 

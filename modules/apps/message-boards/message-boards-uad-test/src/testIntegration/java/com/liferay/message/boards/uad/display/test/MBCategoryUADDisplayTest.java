@@ -198,7 +198,7 @@ public class MBCategoryUADDisplayTest
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<MBCategory> getUADDisplay() {
 		return _uadDisplay;
 	}
 

@@ -96,7 +96,7 @@ public class MBMessageUADDisplayTest extends BaseUADDisplayTestCase<MBMessage> {
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<MBMessage> getUADDisplay() {
 		return _uadDisplay;
 	}
 

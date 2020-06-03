@@ -71,7 +71,7 @@ public class InfoField implements InfoFieldSetEntry {
 	}
 
 	@Override
-	public InfoLocalizedValue getLabelInfoLocalizedValue() {
+	public InfoLocalizedValue<String> getLabelInfoLocalizedValue() {
 		return _labelInfoLocalizedValue;
 	}
 

@@ -25,7 +25,7 @@ public interface InfoFieldSetEntry {
 
 	public String getLabel(Locale locale);
 
-	public InfoLocalizedValue getLabelInfoLocalizedValue();
+	public InfoLocalizedValue<String> getLabelInfoLocalizedValue();
 
 	public String getName();
 

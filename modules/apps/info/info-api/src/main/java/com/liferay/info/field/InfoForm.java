@@ -90,7 +90,7 @@ public class InfoForm {
 		return allFields;
 	}
 
-	public InfoLocalizedValue getDescriptionInfoLocalizedValue() {
+	public InfoLocalizedValue<String> getDescriptionInfoLocalizedValue() {
 		return _descriptionInfoLocalizedValue;
 	}
 
@@ -106,7 +106,7 @@ public class InfoForm {
 		return _labelInfoLocalizedValue.getValue(locale);
 	}
 
-	public InfoLocalizedValue getLabelInfoLocalizedValue() {
+	public InfoLocalizedValue<String> getLabelInfoLocalizedValue() {
 		return _labelInfoLocalizedValue;
 	}
 

@@ -135,7 +135,7 @@ public class InfoDisplayContributorWrapper
 			InfoFieldType infoFieldType = _getInfoFieldTypeType(
 				infoDisplayField.getType());
 
-			InfoLocalizedValue labelInfoLocalizedValue =
+			InfoLocalizedValue<String> labelInfoLocalizedValue =
 				InfoLocalizedValue.builder(
 				).addValue(
 					locale, infoDisplayField.getLabel()

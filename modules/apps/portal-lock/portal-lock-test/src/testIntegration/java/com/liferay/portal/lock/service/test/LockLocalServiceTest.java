@@ -217,9 +217,9 @@ public class LockLocalServiceTest {
 		final CountDownLatch createdCountDownLatch = new CountDownLatch(1);
 		final CountDownLatch continueCountDownLatch = new CountDownLatch(1);
 
-		ServiceRegistration<ModelListener> serviceRegistration =
+		ServiceRegistration<ModelListener<Lock>> serviceRegistration =
 			bundleContext.registerService(
-				ModelListener.class,
+				(Class<ModelListener<Lock>>)(Class<?>)ModelListener.class,
 				new BaseModelListener<Lock>() {
 
 					@Override

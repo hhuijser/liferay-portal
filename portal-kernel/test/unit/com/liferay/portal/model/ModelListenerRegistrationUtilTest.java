@@ -41,8 +41,10 @@ public class ModelListenerRegistrationUtilTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		ServiceRegistration<ModelListener> serviceRegistration =
-			registry.registerService(ModelListener.class, baseModelListener);
+		ServiceRegistration<ModelListener<?>> serviceRegistration =
+			registry.registerService(
+				(Class<ModelListener<?>>)(Class<?>)ModelListener.class,
+				baseModelListener);
 
 		try {
 			Assert.assertArrayEquals(

@@ -239,10 +239,10 @@
 			<property name="description" value="Checks that chaining is only applied on certain types and methods" />
 			<message key="chaining.allowed" value="Chaining is allowed on ''{0}''" />
 			<message key="chaining.avoid.method" value="Avoid chaining on method ''{0}''" />
+			<message key="chaining.avoid.new.instance" value="Avoid chaining on new class instantiation" />
 			<message key="chaining.avoid.type.cast" value="Avoid chaining on Type Cast" />
 			<message key="chaining.required" value="Chaining on ''{0}'' is preferred" />
 			<message key="concat.avoid.too.many" value="Use StringBundler instead of chaining concat when there is more than 3 parts" />
-			<message key="inline.avoid.method" value="Create a new variable for class ''{0}'' to call method ''{1}''" />
 			<message key="response.unsorted" value="Method calls between ''Response.status'' and ''Response.build'' should be sorted" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ConcatCheck">

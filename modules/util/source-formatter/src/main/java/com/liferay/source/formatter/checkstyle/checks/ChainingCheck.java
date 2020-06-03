@@ -61,7 +61,7 @@ public class ChainingCheck extends BaseCheck {
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
 		if (detailAST.getType() == TokenTypes.LITERAL_NEW) {
-			_checkInlineMethodCallOnNewInstance(detailAST);
+			_checkChainingOnNewInstance(detailAST);
 
 			return;
 		}
@@ -239,6 +239,38 @@ public class ChainingCheck extends BaseCheck {
 		}
 	}
 
+	private void _checkChainingOnNewInstance(DetailAST detailAST) {
+		DetailAST dotDetailAST = detailAST.getParent();
+
+		if (dotDetailAST.getType() != TokenTypes.DOT) {
+			return;
+		}
+
+		DetailAST methodCallDetailAST = dotDetailAST.getParent();
+
+		if (methodCallDetailAST.getType() != TokenTypes.METHOD_CALL) {
+			return;
+		}
+
+		DetailAST arrayDeclaratorDetailAST = detailAST.findFirstToken(
+			TokenTypes.ARRAY_DECLARATOR);
+
+		if (arrayDeclaratorDetailAST != null) {
+			return;
+		}
+
+		List<String> chainedMethodNames = _getChainedMethodNames(
+			methodCallDetailAST);
+
+		if (_isAllowedChainingMethodCall(
+				methodCallDetailAST, chainedMethodNames, detailAST)) {
+
+			return;
+		}
+
+		log(methodCallDetailAST, _MSG_AVOID_NEW_INSTANCE_CHAINING);
+	}
+
 	private void _checkChainingOnTypeCast(DetailAST detailAST) {
 		if (_isInsideConstructorThisCall(detailAST) ||
 			hasParentWithTokenType(detailAST, TokenTypes.SUPER_CTOR_CALL)) {
@@ -276,43 +308,6 @@ public class ChainingCheck extends BaseCheck {
 		if (!unsortedNames.equals(middleMethodNames.toString())) {
 			log(methodCallDetailAST, _MSG_UNSORTED_RESPONSE);
 		}
-	}
-
-	private void _checkInlineMethodCallOnNewInstance(DetailAST detailAST) {
-		DetailAST dotDetailAST = detailAST.getParent();
-
-		if (dotDetailAST.getType() != TokenTypes.DOT) {
-			return;
-		}
-
-		DetailAST methodCallDetailAST = dotDetailAST.getParent();
-
-		if (methodCallDetailAST.getType() != TokenTypes.METHOD_CALL) {
-			return;
-		}
-
-		DetailAST arrayDeclaratorDetailAST = detailAST.findFirstToken(
-			TokenTypes.ARRAY_DECLARATOR);
-
-		if (arrayDeclaratorDetailAST != null) {
-			return;
-		}
-
-		List<String> chainedMethodNames = _getChainedMethodNames(
-			methodCallDetailAST);
-
-		if (_isAllowedChainingMethodCall(
-				methodCallDetailAST, chainedMethodNames, detailAST)) {
-
-			return;
-		}
-
-		FullIdent fullIdent = FullIdent.createFullIdent(
-			detailAST.getFirstChild());
-
-		log(
-			methodCallDetailAST, _MSG_AVOID_INLINE_METHOD, fullIdent.getText(),
-			getMethodName(methodCallDetailAST));
 	}
 
 	private void _checkMethodName(
@@ -934,11 +929,11 @@ public class ChainingCheck extends BaseCheck {
 
 	private static final String _MSG_ALLOWED_CHAINING = "chaining.allowed";
 
-	private static final String _MSG_AVOID_INLINE_METHOD =
-		"inline.avoid.method";
-
 	private static final String _MSG_AVOID_METHOD_CHAINING =
 		"chaining.avoid.method";
+
+	private static final String _MSG_AVOID_NEW_INSTANCE_CHAINING =
+		"chaining.avoid.new.instance";
 
 	private static final String _MSG_AVOID_TOO_MANY_CONCAT =
 		"concat.avoid.too.many";

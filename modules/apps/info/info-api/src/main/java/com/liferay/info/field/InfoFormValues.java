@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class InfoFormValues {
 
-	public InfoFormValues add(InfoFieldValue infoFieldValue) {
+	public InfoFormValues add(InfoFieldValue<Object> infoFieldValue) {
 		_infoFieldValues.add(infoFieldValue);
 
 		InfoField infoField = infoFieldValue.getInfoField();
@@ -47,11 +47,11 @@ public class InfoFormValues {
 		return this;
 	}
 
-	public InfoFieldValue getInfoFieldValue(String fieldName) {
+	public InfoFieldValue<Object> getInfoFieldValue(String fieldName) {
 		return _infoFieldValuesByName.get(fieldName);
 	}
 
-	public Collection<InfoFieldValue> getInfoFieldValues() {
+	public Collection<InfoFieldValue<Object>> getInfoFieldValues() {
 		return _infoFieldValues;
 	}
 
@@ -62,7 +62,7 @@ public class InfoFormValues {
 	public Map<String, Object> getMap(Locale locale) {
 		Map<String, Object> map = new HashMap<>(_infoFieldValues.size());
 
-		for (InfoFieldValue infoFieldValue : _infoFieldValues) {
+		for (InfoFieldValue<Object> infoFieldValue : _infoFieldValues) {
 			InfoField infoField = infoFieldValue.getInfoField();
 
 			map.put(infoField.getName(), infoFieldValue.getValue(locale));
@@ -88,9 +88,9 @@ public class InfoFormValues {
 		return sb.toString();
 	}
 
-	private final Collection<InfoFieldValue> _infoFieldValues =
+	private final Collection<InfoFieldValue<Object>> _infoFieldValues =
 		new LinkedHashSet<>();
-	private final Map<String, InfoFieldValue> _infoFieldValuesByName =
+	private final Map<String, InfoFieldValue<Object>> _infoFieldValuesByName =
 		new HashMap<>();
 	private InfoItemClassPKReference _infoItemClassPKReference;
 

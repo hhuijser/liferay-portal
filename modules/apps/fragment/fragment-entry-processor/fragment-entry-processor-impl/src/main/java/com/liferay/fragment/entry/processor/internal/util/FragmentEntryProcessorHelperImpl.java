@@ -128,9 +128,10 @@ public class FragmentEntryProcessorHelperImpl
 			return null;
 		}
 
-		InfoFieldValue infoFieldValue = infoItemFormProvider.getInfoFieldValue(
-			displayObjectOptional.get(),
-			jsonObject.getString("collectionFieldId"));
+		InfoFieldValue<Object> infoFieldValue =
+			infoItemFormProvider.getInfoFieldValue(
+				displayObjectOptional.get(),
+				jsonObject.getString("collectionFieldId"));
 
 		if (infoFieldValue == null) {
 			return null;

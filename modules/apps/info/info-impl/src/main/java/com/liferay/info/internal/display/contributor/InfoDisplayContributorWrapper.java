@@ -173,7 +173,7 @@ public class InfoDisplayContributorWrapper
 				TextInfoFieldType.INSTANCE, fieldLabelLocalizedValue,
 				fieldName);
 
-			InfoFieldValue infoFormValue = new InfoFieldValue(
+			InfoFieldValue<Object> infoFormValue = new InfoFieldValue(
 				infoField, entry.getValue());
 
 			infoFormValues.add(infoFormValue);

@@ -117,8 +117,8 @@ public class GetAssetFieldValueMVCResourceCommand
 		String languageId = ParamUtil.getString(
 			resourceRequest, "languageId", themeDisplay.getLanguageId());
 
-		InfoFieldValue infoFieldValue = infoItemFormProvider.getInfoFieldValue(
-			object, fieldId);
+		InfoFieldValue<Object> infoFieldValue =
+			infoItemFormProvider.getInfoFieldValue(object, fieldId);
 
 		Object value = StringPool.BLANK;
 

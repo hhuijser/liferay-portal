@@ -145,10 +145,11 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 			GetterUtil.getString(
 				serviceReference.getProperty("osgi.jaxrs.name")));
 
-		for (Map.Entry<Long, ServiceRegistration> entry :
+		for (Map.Entry<Long, ServiceRegistration<ScopeDescriptor>> entry :
 				_scopeDescriptorServiceRegistrations.entrySet()) {
 
-			ServiceRegistration serviceRegistration = entry.getValue();
+			ServiceRegistration<ScopeDescriptor> serviceRegistration =
+				entry.getValue();
 
 			try {
 				serviceRegistration.setProperties(
@@ -164,7 +165,7 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 
 	@Deactivate
 	protected void deactivate() {
-		for (ServiceRegistration serviceRegistration :
+		for (ServiceRegistration<ScopeFinder> serviceRegistration :
 				_scopeFinderServiceRegistrations.values()) {
 
 			serviceRegistration.unregister();
@@ -172,7 +173,7 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 
 		_scopeFinderServiceRegistrations.clear();
 
-		for (ServiceRegistration serviceRegistration :
+		for (ServiceRegistration<ScopeDescriptor> serviceRegistration :
 				_scopeDescriptorServiceRegistrations.values()) {
 
 			serviceRegistration.unregister();
@@ -208,10 +209,11 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 			GetterUtil.getString(
 				serviceReference.getProperty("osgi.jaxrs.name")));
 
-		for (Map.Entry<Long, ServiceRegistration> entry :
+		for (Map.Entry<Long, ServiceRegistration<ScopeDescriptor>> entry :
 				_scopeDescriptorServiceRegistrations.entrySet()) {
 
-			ServiceRegistration serviceRegistration = entry.getValue();
+			ServiceRegistration<ScopeDescriptor> serviceRegistration =
+				entry.getValue();
 
 			try {
 				serviceRegistration.setProperties(
@@ -266,9 +268,9 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 	private SAPEntryLocalService _sapEntryLocalService;
 
 	private String _sapEntryOAuth2Prefix = "OAUTH2_";
-	private final Map<Long, ServiceRegistration>
+	private final Map<Long, ServiceRegistration<ScopeDescriptor>>
 		_scopeDescriptorServiceRegistrations = new ConcurrentHashMap<>();
-	private final Map<Long, ServiceRegistration>
+	private final Map<Long, ServiceRegistration<ScopeFinder>>
 		_scopeFinderServiceRegistrations = new ConcurrentHashMap<>();
 
 }

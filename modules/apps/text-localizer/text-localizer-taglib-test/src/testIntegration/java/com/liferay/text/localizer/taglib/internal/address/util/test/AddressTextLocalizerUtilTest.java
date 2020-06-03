@@ -180,7 +180,7 @@ public class AddressTextLocalizerUtilTest {
 	@DeleteAfterTestRun
 	private Address _address;
 
-	private ServiceRegistration _serviceRegistration;
+	private ServiceRegistration<?> _serviceRegistration;
 
 	@DeleteAfterTestRun
 	private User _user;

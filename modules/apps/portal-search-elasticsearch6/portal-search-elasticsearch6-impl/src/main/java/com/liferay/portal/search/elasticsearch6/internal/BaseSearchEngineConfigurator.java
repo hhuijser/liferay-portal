@@ -407,7 +407,9 @@ public abstract class BaseSearchEngineConfigurator
 		setSearchEngine(searchEngineId, searchEngineProxyWrapper);
 	}
 
-	protected ServiceRegistration registerDestination(Destination destination) {
+	protected ServiceRegistration<Destination> registerDestination(
+		Destination destination) {
+
 		BundleContext bundleContext = getBundleContext();
 
 		return bundleContext.registerService(
@@ -593,7 +595,7 @@ public abstract class BaseSearchEngineConfigurator
 		}
 
 		@Override
-		public ServiceRegistration registerDestination(
+		public ServiceRegistration<Destination> registerDestination(
 			Destination destination) {
 
 			return _baseSearchEngineConfigurator.registerDestination(

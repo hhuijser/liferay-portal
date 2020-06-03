@@ -278,9 +278,10 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 			updateDocumentIndexWriter, indexStatusManager, indexWriterHelper,
 			props);
 
-		ServiceRegistration<IndexerWriter> indexerWriterServiceRegistration =
+		ServiceRegistration<IndexerWriter<?>> indexerWriterServiceRegistration =
 			_bundleContext.registerService(
-				IndexerWriter.class, indexerWriter, serviceProperties);
+				(Class<IndexerWriter<?>>)(Class<?>)IndexerWriter.class,
+				indexerWriter, serviceProperties);
 
 		serviceRegistrationHolder.setIndexerWriterServiceRegistration(
 			indexerWriterServiceRegistration);
@@ -478,7 +479,7 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 		}
 
 		public void setIndexerWriterServiceRegistration(
-			ServiceRegistration<IndexerWriter>
+			ServiceRegistration<IndexerWriter<?>>
 				indexerWriterServiceRegistration) {
 
 			_indexerWriterServiceRegistration =
@@ -496,7 +497,7 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 		private ServiceRegistration<Indexer<?>> _indexerServiceRegistration;
 		private ServiceRegistration<IndexerSummaryBuilder>
 			_indexerSummaryBuilderServiceRegistration;
-		private ServiceRegistration<IndexerWriter>
+		private ServiceRegistration<IndexerWriter<?>>
 			_indexerWriterServiceRegistration;
 		private final ModelSearchConfigurator<?> _modelSearchConfigurator;
 		private final int _serviceRanking;

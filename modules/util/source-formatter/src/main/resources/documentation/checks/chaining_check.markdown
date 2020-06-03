@@ -20,6 +20,21 @@ String name = user.getFirstName();
 String lowerCaseName = name.toLowerCase();
 ```
 
+Incorrect formatting:
+
+```java
+new HtmlUtil().setHtml(html);
+
+```
+
+Correct formatting:
+
+```java
+HtmlUtil htmlUtil = new HtmlUtil();
+
+htmlUtil.setHtml(html);
+```
+
 ### Exceptions
 
 Chaining on variables is allowed as long as the variable type is one of the

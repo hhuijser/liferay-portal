@@ -167,7 +167,8 @@ public class JournalArticleInfoDisplayContributor
 	}
 
 	@Override
-	public InfoDisplayObjectProvider getInfoDisplayObjectProvider(long classPK)
+	public InfoDisplayObjectProvider<JournalArticle>
+			getInfoDisplayObjectProvider(long classPK)
 		throws PortalException {
 
 		JournalArticle article = journalArticleLocalService.fetchLatestArticle(
@@ -202,8 +203,8 @@ public class JournalArticleInfoDisplayContributor
 	}
 
 	@Override
-	public InfoDisplayObjectProvider getPreviewInfoDisplayObjectProvider(
-			long classPK, int type)
+	public InfoDisplayObjectProvider<JournalArticle>
+			getPreviewInfoDisplayObjectProvider(long classPK, int type)
 		throws PortalException {
 
 		AssetEntry assetEntry = assetEntryLocalService.fetchAssetEntry(classPK);

@@ -80,7 +80,8 @@ public interface InfoDisplayContributor<T> {
 		return 0;
 	}
 
-	public InfoDisplayObjectProvider getInfoDisplayObjectProvider(long classPK)
+	public InfoDisplayObjectProvider<T> getInfoDisplayObjectProvider(
+			long classPK)
 		throws PortalException;
 
 	public InfoDisplayObjectProvider<T> getInfoDisplayObjectProvider(
@@ -93,7 +94,7 @@ public interface InfoDisplayContributor<T> {
 		return ResourceActionsUtil.getModelResource(locale, getClassName());
 	}
 
-	public default InfoDisplayObjectProvider
+	public default InfoDisplayObjectProvider<T>
 			getPreviewInfoDisplayObjectProvider(long classPK, int type)
 		throws PortalException {
 

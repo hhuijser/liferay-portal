@@ -103,7 +103,7 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 	}
 
 	@Override
-	public InfoDisplayObjectProvider getInfoDisplayObjectProvider(
+	public InfoDisplayObjectProvider<AssetEntry> getInfoDisplayObjectProvider(
 		long classPK) {
 
 		AssetRendererFactory<?> assetRendererFactory =

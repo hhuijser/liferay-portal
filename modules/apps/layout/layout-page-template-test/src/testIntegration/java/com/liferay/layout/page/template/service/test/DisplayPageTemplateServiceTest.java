@@ -256,7 +256,7 @@ public class DisplayPageTemplateServiceTest {
 		}
 
 		@Override
-		public InfoDisplayObjectProvider getInfoDisplayObjectProvider(
+		public InfoDisplayObjectProvider<Object> getInfoDisplayObjectProvider(
 			long classPK) {
 
 			return null;

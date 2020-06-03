@@ -136,7 +136,8 @@ public class FileEntryInfoDisplayContributor
 	}
 
 	@Override
-	public InfoDisplayObjectProvider getInfoDisplayObjectProvider(long classPK)
+	public InfoDisplayObjectProvider<FileEntry> getInfoDisplayObjectProvider(
+			long classPK)
 		throws PortalException {
 
 		LocalRepository localRepository =
@@ -156,7 +157,7 @@ public class FileEntryInfoDisplayContributor
 	}
 
 	@Override
-	public InfoDisplayObjectProvider getInfoDisplayObjectProvider(
+	public InfoDisplayObjectProvider<FileEntry> getInfoDisplayObjectProvider(
 			long groupId, String urlTitle)
 		throws PortalException {
 

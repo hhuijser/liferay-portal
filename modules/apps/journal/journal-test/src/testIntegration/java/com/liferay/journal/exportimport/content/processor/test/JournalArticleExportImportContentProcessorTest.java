@@ -51,7 +51,7 @@ public class JournalArticleExportImportContentProcessorTest {
 
 	@Test
 	public void testValidateContentReferences() throws Exception {
-		ExportImportContentProcessor exportImportContentProcessor =
+		ExportImportContentProcessor<String> exportImportContentProcessor =
 			ExportImportContentProcessorRegistryUtil.
 				getExportImportContentProcessor(JournalArticle.class.getName());
 
@@ -65,7 +65,7 @@ public class JournalArticleExportImportContentProcessorTest {
 	public void testValidateContentReferencesLargeHTMLComment()
 		throws Exception {
 
-		ExportImportContentProcessor exportImportContentProcessor =
+		ExportImportContentProcessor<String> exportImportContentProcessor =
 			ExportImportContentProcessorRegistryUtil.
 				getExportImportContentProcessor(JournalArticle.class.getName());
 

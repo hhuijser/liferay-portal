@@ -182,8 +182,8 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			portletDataContext, stagedModel);
 	}
 
-	protected ExportImportContentProcessor getExportImportContentProcessor(
-		Class<T> clazz) {
+	protected ExportImportContentProcessor<String>
+		getExportImportContentProcessor(Class<T> clazz) {
 
 		return ExportImportContentProcessorRegistryUtil.
 			getExportImportContentProcessor(clazz.getName());

@@ -1300,8 +1300,8 @@ public class DefaultExportImportContentProcessorTest {
 	private static String _oldLayoutFriendlyURLPrivateUserServletMapping;
 	private static final Pattern _pattern = Pattern.compile("href=|\\{|\\[");
 	private static ServiceTracker
-		<ExportImportContentProcessor, ExportImportContentProcessor>
-			_serviceTracker;
+		<ExportImportContentProcessor<String>,
+		 ExportImportContentProcessor<String>> _serviceTracker;
 
 	private Locale _defaultLocale;
 	private ExportImportContentProcessor<String> _exportImportContentProcessor;

@@ -482,7 +482,7 @@ public class JournalArticleModelValidator
 			}
 		}
 
-		ExportImportContentProcessor exportImportContentProcessor =
+		ExportImportContentProcessor<String> exportImportContentProcessor =
 			ExportImportContentProcessorRegistryUtil.
 				getExportImportContentProcessor(JournalArticle.class.getName());
 

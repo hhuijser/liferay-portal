@@ -17,6 +17,7 @@ package com.liferay.knowledge.base.web.internal;
 import com.liferay.knowledge.base.constants.KBCommentConstants;
 import com.liferay.knowledge.base.constants.KBFolderConstants;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
+import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.model.KBComment;
 import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.model.KBTemplate;
@@ -94,7 +95,7 @@ public class KBUtil {
 		return ListUtil.sort(kbFolders, new KBFolderNameComparator(false));
 	}
 
-	public static OrderByComparator getKBArticleOrderByComparator(
+	public static OrderByComparator<KBArticle> getKBArticleOrderByComparator(
 		String orderByCol, String orderByType) {
 
 		if (Validator.isNull(orderByCol) || Validator.isNull(orderByType)) {

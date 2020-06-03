@@ -595,7 +595,7 @@ public class WabBundleProcessor {
 					portletContextLoaderListener.getServiceRegistrations();
 
 				if (exception != null) {
-					for (ServiceRegistration contextServiceRegistration :
+					for (ServiceRegistration<?> contextServiceRegistration :
 							contextServiceRegistrations) {
 
 						contextServiceRegistration.unregister();

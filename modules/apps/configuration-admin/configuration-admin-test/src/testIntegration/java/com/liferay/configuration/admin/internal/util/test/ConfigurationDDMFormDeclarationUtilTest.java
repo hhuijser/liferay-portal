@@ -120,7 +120,8 @@ public class ConfigurationDDMFormDeclarationUtilTest {
 	private BundleContext _bundleContext;
 	private Configuration _configuration;
 	private Method _method;
-	private ServiceRegistration _serviceRegistration;
+	private ServiceRegistration<ConfigurationDDMFormDeclaration>
+		_serviceRegistration;
 
 	private class TestConfigurationForm {
 	}

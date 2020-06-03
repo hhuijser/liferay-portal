@@ -43,7 +43,9 @@ public interface AppDeployer {
 			return false;
 		}
 
-		for (ServiceRegistration serviceRegistration : serviceRegistrations) {
+		for (ServiceRegistration<?> serviceRegistration :
+				serviceRegistrations) {
+
 			serviceRegistration.unregister();
 		}
 

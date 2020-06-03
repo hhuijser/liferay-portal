@@ -47,7 +47,7 @@ public class ItemSelectorViewDescriptorRendererImpl<T>
 			ServletRequest servletRequest, ServletResponse servletResponse,
 			T itemSelectorCriterion, PortletURL portletURL,
 			String itemSelectedEventName, boolean search,
-			ItemSelectorViewDescriptor itemSelectorViewDescriptor)
+			ItemSelectorViewDescriptor<Object> itemSelectorViewDescriptor)
 		throws IOException, ServletException {
 
 		PortletResponse portletResponse =

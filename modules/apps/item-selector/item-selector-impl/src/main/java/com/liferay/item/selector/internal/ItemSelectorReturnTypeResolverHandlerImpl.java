@@ -54,7 +54,7 @@ public class ItemSelectorReturnTypeResolverHandlerImpl
 	@Override
 	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
 		ItemSelectorCriterion itemSelectorCriterion,
-		ItemSelectorView itemSelectorView, Class<?> modelClass) {
+		ItemSelectorView<?> itemSelectorView, Class<?> modelClass) {
 
 		ItemSelectorReturnType itemSelectorReturnType =
 			getFirstAvailableItemSelectorReturnType(

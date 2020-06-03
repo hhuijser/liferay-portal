@@ -271,7 +271,7 @@ public class ItemSelectorCriterionSerializerImpl
 			<ItemSelectorView<?>, ItemSelectorView<?>> {
 
 		@Override
-		public ItemSelectorView addingService(
+		public ItemSelectorView<?> addingService(
 			ServiceReference<ItemSelectorView<?>> serviceReference) {
 
 			ItemSelectorView<?> itemSelectorView = _bundleContext.getService(

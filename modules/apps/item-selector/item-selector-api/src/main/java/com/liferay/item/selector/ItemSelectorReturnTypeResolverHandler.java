@@ -25,7 +25,7 @@ public interface ItemSelectorReturnTypeResolverHandler {
 
 	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
 		ItemSelectorCriterion itemSelectorCriterion,
-		ItemSelectorView itemSelectorView, Class<?> modelClass);
+		ItemSelectorView<?> itemSelectorView, Class<?> modelClass);
 
 	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
 		String itemSelectorReturnTypeClassName, String modelClassName);

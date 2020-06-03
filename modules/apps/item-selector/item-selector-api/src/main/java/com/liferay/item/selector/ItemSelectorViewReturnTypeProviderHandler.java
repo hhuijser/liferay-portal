@@ -22,7 +22,7 @@ import java.util.List;
 public interface ItemSelectorViewReturnTypeProviderHandler {
 
 	public List<ItemSelectorReturnType> getSupportedItemSelectorReturnTypes(
-		ItemSelectorView itemSelectorView);
+		ItemSelectorView<?> itemSelectorView);
 
 	public List<ItemSelectorReturnType> getSupportedItemSelectorReturnTypes(
 		List<ItemSelectorReturnType> itemSelectorReturnTypes,

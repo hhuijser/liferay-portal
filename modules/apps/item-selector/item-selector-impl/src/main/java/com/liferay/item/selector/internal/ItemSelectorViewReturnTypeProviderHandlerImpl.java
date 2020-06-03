@@ -46,7 +46,7 @@ public class ItemSelectorViewReturnTypeProviderHandlerImpl
 
 	@Override
 	public List<ItemSelectorReturnType> getSupportedItemSelectorReturnTypes(
-		ItemSelectorView itemSelectorView) {
+		ItemSelectorView<?> itemSelectorView) {
 
 		Class<? extends ItemSelectorView> itemSelectorViewClass =
 			itemSelectorView.getClass();
@@ -126,7 +126,7 @@ public class ItemSelectorViewReturnTypeProviderHandlerImpl
 			<ItemSelectorView<?>, ItemSelectorView<?>> {
 
 		@Override
-		public ItemSelectorView addingService(
+		public ItemSelectorView<?> addingService(
 			ServiceReference<ItemSelectorView<?>> serviceReference) {
 
 			ItemSelectorView<?> itemSelectorView = _bundleContext.getService(

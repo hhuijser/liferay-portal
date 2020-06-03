@@ -41,7 +41,9 @@ public class InfoItemFormProviderTrackerImpl
 	}
 
 	@Override
-	public InfoItemFormProvider getInfoItemFormProvider(String itemClassName) {
+	public InfoItemFormProvider<?> getInfoItemFormProvider(
+		String itemClassName) {
+
 		return _infoItemFormProviderServiceTrackerMap.getService(itemClassName);
 	}
 
@@ -49,11 +51,13 @@ public class InfoItemFormProviderTrackerImpl
 	protected void activate(BundleContext bundleContext) {
 		_infoItemFormProviderServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, InfoItemFormProvider.class, null,
-				new ItemClassNameServiceReferenceMapper(bundleContext));
+				bundleContext,
+				(Class<InfoItemFormProvider<?>>)
+					(Class<?>)InfoItemFormProvider.class,
+				null, new ItemClassNameServiceReferenceMapper(bundleContext));
 	}
 
-	private ServiceTrackerMap<String, InfoItemFormProvider>
+	private ServiceTrackerMap<String, InfoItemFormProvider<?>>
 		_infoItemFormProviderServiceTrackerMap;
 
 }

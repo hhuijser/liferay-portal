@@ -23,7 +23,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface InfoItemObjectProviderTracker {
 
-	public InfoItemObjectProvider getInfoItemObjectProvider(
+	public InfoItemObjectProvider<Object> getInfoItemObjectProvider(
 		String itemClassName);
 
 }

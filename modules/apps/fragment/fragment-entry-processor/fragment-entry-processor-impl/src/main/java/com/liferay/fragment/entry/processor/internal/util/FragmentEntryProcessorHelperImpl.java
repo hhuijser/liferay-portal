@@ -204,7 +204,7 @@ public class FragmentEntryProcessorHelperImpl
 			return null;
 		}
 
-		InfoItemFormProvider infoItemFormProvider =
+		InfoItemFormProvider<Object> infoItemFormProvider =
 			_infoItemFormProviderTracker.getInfoItemFormProvider(className);
 
 		if (infoItemFormProvider == null) {

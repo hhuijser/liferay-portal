@@ -27,6 +27,7 @@ public interface InfoItemFormProviderTracker {
 
 	public List<String> getInfoItemClassNames();
 
-	public InfoItemFormProvider getInfoItemFormProvider(String itemClassName);
+	public InfoItemFormProvider<?> getInfoItemFormProvider(
+		String itemClassName);
 
 }

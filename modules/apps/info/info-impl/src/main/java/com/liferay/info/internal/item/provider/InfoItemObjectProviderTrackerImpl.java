@@ -33,7 +33,7 @@ public class InfoItemObjectProviderTrackerImpl
 	implements InfoItemObjectProviderTracker {
 
 	@Override
-	public InfoItemObjectProvider getInfoItemObjectProvider(
+	public InfoItemObjectProvider<Object> getInfoItemObjectProvider(
 		String itemClassName) {
 
 		return _infoItemObjectProviderServiceTrackerMap.getService(
@@ -44,11 +44,13 @@ public class InfoItemObjectProviderTrackerImpl
 	protected void activate(BundleContext bundleContext) {
 		_infoItemObjectProviderServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, InfoItemObjectProvider.class, null,
-				new ItemClassNameServiceReferenceMapper(bundleContext));
+				bundleContext,
+				(Class<InfoItemObjectProvider<Object>>)
+					(Class<?>)InfoItemObjectProvider.class,
+				null, new ItemClassNameServiceReferenceMapper(bundleContext));
 	}
 
-	private ServiceTrackerMap<String, InfoItemObjectProvider>
+	private ServiceTrackerMap<String, InfoItemObjectProvider<Object>>
 		_infoItemObjectProviderServiceTrackerMap;
 
 }

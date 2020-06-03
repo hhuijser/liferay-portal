@@ -121,7 +121,7 @@ public class InfoDisplayContributorTrackerImpl
 							bundleContext.getService(serviceReference);
 
 					try {
-						InfoItemFormProvider infoItemFormProvider =
+						InfoItemFormProvider<?> infoItemFormProvider =
 							new InfoDisplayContributorWrapper(
 								infoDisplayContributor);
 

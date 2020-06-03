@@ -14,17 +14,13 @@
 
 package com.liferay.knowledge.base.web.internal.search;
 
-import com.liferay.knowledge.base.constants.KBFolderConstants;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
-import com.liferay.knowledge.base.web.internal.KBUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.Objects;
 
@@ -83,27 +79,8 @@ public class KBObjectsSearch extends SearchContainer<Object> {
 					"kb-articles-order-by-type", orderByType);
 			}
 
-			long kbFolderClassNameId = PortalUtil.getClassNameId(
-				KBFolderConstants.getClassName());
-
-			long parentResourceClassNameId = ParamUtil.getLong(
-				portletRequest, "parentResourceClassNameId",
-				kbFolderClassNameId);
-
-			OrderByComparator<Object> orderByComparator = null;
-
-			if (parentResourceClassNameId == kbFolderClassNameId) {
-				orderByComparator = KBUtil.getKBObjectsOrderByComparator(
-					orderByCol, orderByType);
-			}
-			else {
-				orderByComparator = KBUtil.getKBArticleOrderByComparator(
-					orderByCol, orderByType);
-			}
-
 			setOrderByCol(orderByCol);
 			setOrderByType(orderByType);
-			setOrderByComparator(orderByComparator);
 		}
 		catch (Exception exception) {
 			_log.error(

@@ -368,7 +368,7 @@ public class V10aOAuth implements IdentifiableOSGiService, OAuth {
 			(V10aOAuth)IdentifiableOSGiServiceUtil.getIdentifiableOSGiService(
 				osgiServiceIdentifier);
 
-		PortalCache portalCache = v10aOAuth._portalCache;
+		PortalCache<Serializable, Object> portalCache = v10aOAuth._portalCache;
 
 		portalCache.put(key, oAuthAccessor);
 	}

@@ -117,10 +117,10 @@ public class SoyTestHelper {
 		return templateResource;
 	}
 
-	protected PortalCache mockPortalCache() {
+	protected PortalCache<?, ?> mockPortalCache() {
 		Map<String, SoyTofuCacheBag> cache = new HashMap<>();
 
-		return (PortalCache)ProxyUtil.newProxyInstance(
+		return (PortalCache<?, ?>)ProxyUtil.newProxyInstance(
 			PortalCache.class.getClassLoader(),
 			new Class<?>[] {PortalCache.class},
 			(proxy, method, args) -> {

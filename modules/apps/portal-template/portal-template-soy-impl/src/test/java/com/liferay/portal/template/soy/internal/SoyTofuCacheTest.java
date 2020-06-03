@@ -16,6 +16,7 @@ package com.liferay.portal.template.soy.internal;
 
 import com.google.template.soy.tofu.SoyTofu;
 
+import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.util.ProxyFactory;
 import com.liferay.portal.template.soy.SoyTemplateResource;
 
@@ -36,7 +37,8 @@ public class SoyTofuCacheTest {
 		_soyTestHelper.setUp();
 
 		_soyTofuCacheHandler = new SoyTofuCacheHandler(
-			_soyTestHelper.mockPortalCache());
+			(PortalCache<String, SoyTofuCacheBag>)
+				_soyTestHelper.mockPortalCache());
 	}
 
 	@After

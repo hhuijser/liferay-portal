@@ -19,6 +19,7 @@ import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -56,7 +57,9 @@ public class ReferredSegmentsEntryProvider
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ODataRetriever.class, "model.class.name");
+			bundleContext,
+			(Class<ODataRetriever<BaseModel<?>>>)(Class<?>)ODataRetriever.class,
+			"model.class.name");
 	}
 
 	@Deactivate

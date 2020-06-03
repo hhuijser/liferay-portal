@@ -60,7 +60,7 @@ public class PreviewSegmentsUsersMVCRenderCommand implements MVCRenderCommand {
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			renderRequest);
 
-		ODataRetriever userODataRetriever = _serviceTrackerMap.getService(
+		ODataRetriever<User> userODataRetriever = _serviceTrackerMap.getService(
 			User.class.getName());
 
 		PreviewSegmentsEntryUsersDisplayContext
@@ -80,7 +80,9 @@ public class PreviewSegmentsUsersMVCRenderCommand implements MVCRenderCommand {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ODataRetriever.class, "model.class.name");
+			bundleContext,
+			(Class<ODataRetriever<User>>)(Class<?>)ODataRetriever.class,
+			"model.class.name");
 	}
 
 	@Deactivate
@@ -97,7 +99,7 @@ public class PreviewSegmentsUsersMVCRenderCommand implements MVCRenderCommand {
 	@Reference
 	private SegmentsEntryService _segmentsEntryService;
 
-	private ServiceTrackerMap<String, ODataRetriever> _serviceTrackerMap;
+	private ServiceTrackerMap<String, ODataRetriever<User>> _serviceTrackerMap;
 
 	@Reference
 	private UserLocalService _userLocalService;

@@ -80,7 +80,9 @@ public class GetSegmentsEntryClassPKsCountMVCResourceCommand
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ODataRetriever.class, "model.class.name");
+			bundleContext,
+			(Class<ODataRetriever<?>>)(Class<?>)ODataRetriever.class,
+			"model.class.name");
 	}
 
 	@Deactivate
@@ -91,7 +93,7 @@ public class GetSegmentsEntryClassPKsCountMVCResourceCommand
 	protected int getSegmentsEntryClassPKsCount(
 		long companyId, Criteria criteria, String type, Locale locale) {
 
-		ODataRetriever oDataRetriever = _serviceTrackerMap.getService(type);
+		ODataRetriever<?> oDataRetriever = _serviceTrackerMap.getService(type);
 
 		if (oDataRetriever == null) {
 			return 0;
@@ -158,6 +160,6 @@ public class GetSegmentsEntryClassPKsCountMVCResourceCommand
 	@Reference
 	private SegmentsEntryService _segmentsEntryService;
 
-	private ServiceTrackerMap<String, ODataRetriever> _serviceTrackerMap;
+	private ServiceTrackerMap<String, ODataRetriever<?>> _serviceTrackerMap;
 
 }

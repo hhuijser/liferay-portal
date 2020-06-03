@@ -645,14 +645,14 @@ public class MediaQueryProviderImplTest {
 			_amImageFinder.getAdaptiveMediaStream(Mockito.any(Function.class))
 		).thenAnswer(
 			invocation -> {
-				Function<AMImageQueryBuilder, AMQuery>
+				Function<AMImageQueryBuilder, AMQuery<?, ?>>
 					amImageQueryBuilderFunction = invocation.getArgumentAt(
 						0, Function.class);
 
 				AMImageQueryBuilderImpl amImageQueryBuilderImpl =
 					new AMImageQueryBuilderImpl();
 
-				AMQuery amQuery = amImageQueryBuilderFunction.apply(
+				AMQuery<?, ?> amQuery = amImageQueryBuilderFunction.apply(
 					amImageQueryBuilderImpl);
 
 				if (!AMImageQueryBuilderImpl.AM_QUERY.equals(amQuery)) {

@@ -38,7 +38,7 @@ public class SelectionResourceImpl extends BaseSelectionResourceImpl {
 			DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
-		BulkSelection bulkSelection = _documentBulkSelectionFactory.create(
+		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			documentBulkSelection);
 
 		return new Selection() {

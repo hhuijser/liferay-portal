@@ -48,13 +48,17 @@ public class BulkSelectionFactoryRegistryImpl
 	public <T> BulkSelectionFactory<T> getBulkSelectionFactory(
 		String className) {
 
-		return _serviceTrackerMap.getService(className);
+		return (BulkSelectionFactory<T>)_serviceTrackerMap.getService(
+			className);
 	}
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, BulkSelectionFactory.class, "model.class.name");
+			bundleContext,
+			(Class<BulkSelectionFactory<?>>)
+				(Class<?>)BulkSelectionFactory.class,
+			"model.class.name");
 	}
 
 	@Deactivate
@@ -65,6 +69,7 @@ public class BulkSelectionFactoryRegistryImpl
 	@Reference
 	private ClassNameLocalService _classNameLocalService;
 
-	private ServiceTrackerMap<String, BulkSelectionFactory> _serviceTrackerMap;
+	private ServiceTrackerMap<String, BulkSelectionFactory<?>>
+		_serviceTrackerMap;
 
 }

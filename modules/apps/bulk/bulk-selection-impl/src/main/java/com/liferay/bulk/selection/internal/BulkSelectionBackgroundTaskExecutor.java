@@ -87,15 +87,16 @@ public class BulkSelectionBackgroundTaskExecutor
 						BulkSelectionBackgroundTaskConstants.
 							BULK_SELECTION_FACTORY_CLASS_NAME);
 
-				Optional<BulkSelectionFactory> bulkSelectionFactoryOptional =
+				Optional<BulkSelectionFactory<?>> bulkSelectionFactoryOptional =
 					_getService(
-						BulkSelectionFactory.class,
+						(Class<BulkSelectionFactory<?>>)
+							(Class<?>)BulkSelectionFactory.class,
 						bulkSelectionFactoryClassName);
 
 				bulkSelectionFactoryOptional.ifPresent(
 					bulkSelectionFactory -> {
 						try {
-							BulkSelection bulkSelection =
+							BulkSelection<?> bulkSelection =
 								bulkSelectionFactory.create(parameterMap);
 
 							Map<String, Serializable> inputMap =

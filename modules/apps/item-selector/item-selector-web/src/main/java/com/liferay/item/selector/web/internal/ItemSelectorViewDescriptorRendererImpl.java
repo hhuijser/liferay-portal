@@ -47,7 +47,7 @@ public class ItemSelectorViewDescriptorRendererImpl<T>
 			ServletRequest servletRequest, ServletResponse servletResponse,
 			T itemSelectorCriterion, PortletURL portletURL,
 			String itemSelectedEventName, boolean search,
-			ItemSelectorViewDescriptor itemSelectorViewDescriptor)
+			ItemSelectorViewDescriptor<?> itemSelectorViewDescriptor)
 		throws IOException, ServletException {
 
 		PortletResponse portletResponse =
@@ -58,7 +58,7 @@ public class ItemSelectorViewDescriptorRendererImpl<T>
 			ItemSelectorViewDescriptorRendererDisplayContext.class.getName(),
 			new ItemSelectorViewDescriptorRendererDisplayContext(
 				(HttpServletRequest)servletRequest, itemSelectedEventName,
-				itemSelectorViewDescriptor,
+				(ItemSelectorViewDescriptor<Object>)itemSelectorViewDescriptor,
 				_portal.getLiferayPortletResponse(portletResponse)));
 
 		RequestDispatcher requestDispatcher =

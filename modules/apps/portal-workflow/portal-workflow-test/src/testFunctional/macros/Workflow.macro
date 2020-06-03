@@ -1131,7 +1131,7 @@ definition {
 			locator1 = "WorkflowSubmissionsTask#PREVIEW_CONTENT",
 			value1 = "${workflowAssetContent}");
 
-		Portlet.viewTitle(portletName = "${workflowDefinition}");
+		Portlet.viewTitle(portletName = "${workflowSubmissionTitle}");
 	}
 
 	macro viewNoDuplicateTaskAssignedToMyRoles {
@@ -1378,7 +1378,7 @@ definition {
 			workflowAssetContent = "${workflowAssetContent}",
 			workflowAssetTitle = "${workflowAssetTitle}",
 			workflowAssetType = "${workflowAssetType}",
-			workflowDefinition = "${workflowDefinition}");
+			workflowSubmissionTitle = "${workflowSubmissionTitle}");
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Withdraw Submission");
 
@@ -1418,7 +1418,7 @@ definition {
 			workflowAssetContent = "${workflowAssetContent}",
 			workflowAssetTitle = "${workflowAssetTitle}",
 			workflowAssetType = "${workflowAssetType}",
-			workflowDefinition = "${workflowDefinition}");
+			workflowSubmissionTitle = "${workflowSubmissionTitle}");
 
 		AssertElementNotPresent(locator1 = "WorkflowSubmissionsTask#MENU_WITHDRAW_SUBMISSION");
 

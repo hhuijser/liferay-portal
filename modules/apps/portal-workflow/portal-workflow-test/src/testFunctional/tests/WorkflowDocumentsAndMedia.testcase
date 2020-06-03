@@ -18,6 +18,10 @@ definition {
 			PortalInstances.tearDownCP();
 		}
 		else {
+			User.logoutAndLoginPG(
+				userLoginEmailAddress = "test@liferay.com",
+				userLoginFullName = "Test Test");
+
 			DMDocument.tearDownCP();
 
 			Navigator.openURL();
@@ -25,7 +29,8 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content &amp; Data",
 				panel = "Site Administration",
-				portlet = "Documents and Media");
+				portlet = "Documents and Media",
+				site = "Guest");
 
 			Workflow.configureWorkflowViaPortlet(workflowDefinition = "No Workflow");
 
@@ -123,12 +128,15 @@ definition {
 			roleTitle = "Board Member",
 			userScreenName = "usersn");
 
-		GlobalMenu.gotoSite(site = "Space Program Academy of Continuing Education");
+		GlobalMenu.gotoSite(site = "Guest");
+
+		ProductMenu.gotoSite(site = "Space Program Academy of Continuing Education");
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Documents and Media");
+			portlet = "Documents and Media",
+			site = "Guest");
 
 		DMFolder.addCP(
 			dmFolderDescription = "Financial Reports Description",
@@ -143,7 +151,8 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content &amp; Data",
 				panel = "Site Administration",
-				portlet = "Documents and Media");
+				portlet = "Documents and Media",
+				site = "Guest");
 
 			DMFolder.viewCP(dmFolderName = "Financial Reports");
 
@@ -204,13 +213,16 @@ definition {
 			userLoginEmailAddress = "test@liferay.com",
 			userLoginFullName = "Test Test");
 
-		GlobalMenu.gotoSite(site = "Space Program Academy of Continuing Education");
+		GlobalMenu.gotoSite(site = "Guest");
+
+		ProductMenu.gotoSite(site = "Space Program Academy of Continuing Education");
 
 		for (var entryCount : list "1,2,3") {
 			ProductMenu.gotoPortlet(
 				category = "Content &amp; Data",
 				panel = "Site Administration",
-				portlet = "Documents and Media");
+				portlet = "Documents and Media",
+				site = "Guest");
 
 			DMFolder.viewCP(dmFolderName = "Financial Reports");
 
@@ -227,7 +239,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Documents and Media");
+			portlet = "Documents and Media",
+			site = "Guest");
 
 		Workflow.configureDMWorkflowViaFolderInfo(workflowDefinition = "Single Approver");
 
@@ -271,7 +284,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Documents and Media");
+			portlet = "Documents and Media",
+			site = "Guest");
 
 		DMFolder.addCP(
 			dmFolderDescription = "DM Folder Description",
@@ -358,7 +372,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Categorization",
 			panel = "Site Administration",
-			portlet = "Categories");
+			portlet = "Categories",
+			site = "Guest");
 
 		Vocabulary.addCP(vocabularyName = "Vocabulary Name");
 
@@ -371,7 +386,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Categorization",
 			panel = "Site Administration",
-			portlet = "Categories");
+			portlet = "Categories",
+			site = "Guest");
 
 		Category.addCP(
 			categoryName = "Other",
@@ -382,7 +398,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Documents and Media");
+			portlet = "Documents and Media",
+			site = "Guest");
 
 		DMFolder.addCP(
 			dmFolderDescription = "DM Folder Description",
@@ -398,7 +415,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Documents and Media");
+			portlet = "Documents and Media",
+			site = "Guest");
 
 		DMFolder.viewCP(
 			dmDocumentTitle = "DM Folder Name",
@@ -436,7 +454,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Documents and Media");
+			portlet = "Documents and Media",
+			site = "Guest");
 
 		DMFolder.viewCP(
 			dmDocumentTitle = "DM Folder Name",
@@ -457,7 +476,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Documents and Media");
+			portlet = "Documents and Media",
+			site = "Guest");
 
 		DMFolder.gotoEntry(dmFolderName = "DM Folder Name");
 

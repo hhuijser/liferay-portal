@@ -308,7 +308,7 @@ public abstract class BaseSegmentsEntryProvider
 	@Reference(
 		target = "(target.class.name=com.liferay.segments.context.Context)"
 	)
-	protected ODataMatcher oDataMatcher;
+	protected ODataMatcher<Context> oDataMatcher;
 
 	@Reference
 	protected Portal portal;

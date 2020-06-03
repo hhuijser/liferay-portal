@@ -119,6 +119,6 @@ public class ReferredSegmentsEntryProvider
 	@Reference(
 		target = "(target.class.name=com.liferay.segments.model.SegmentsEntry)"
 	)
-	private ODataMatcher _segmentsEntryODataMatcher;
+	private ODataMatcher<Map<String, String>> _segmentsEntryODataMatcher;
 
 }

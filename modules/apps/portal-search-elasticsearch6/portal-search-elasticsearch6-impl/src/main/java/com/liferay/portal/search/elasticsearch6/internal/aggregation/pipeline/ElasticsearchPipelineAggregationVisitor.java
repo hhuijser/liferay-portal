@@ -368,7 +368,7 @@ public class ElasticsearchPipelineAggregationVisitor
 
 	@Reference(target = "(search.engine.impl=Elasticsearch)", unbind = "-")
 	protected void setSortFieldTranslator(
-		SortFieldTranslator sortFieldTranslator) {
+		SortFieldTranslator<?> sortFieldTranslator) {
 
 		_sortFieldTranslator = sortFieldTranslator;
 	}
@@ -379,6 +379,6 @@ public class ElasticsearchPipelineAggregationVisitor
 	private final GapPolicyTranslator _gapPolicyTranslator =
 		new GapPolicyTranslator();
 	private final ScriptTranslator _scriptTranslator = new ScriptTranslator();
-	private SortFieldTranslator _sortFieldTranslator;
+	private SortFieldTranslator<?> _sortFieldTranslator;
 
 }

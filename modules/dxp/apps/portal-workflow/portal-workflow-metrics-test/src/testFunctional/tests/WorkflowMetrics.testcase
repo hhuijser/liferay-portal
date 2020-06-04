@@ -1541,6 +1541,7 @@ definition {
 			slaBreachedValue = "0 (0%)");
 	}
 
+	@ignore
 	@description = "LRQA-53654 Automate LPS-88968: [Reports] View the summary of all pending items and what's their SLA status"
 	@priority = "5"
 	test ViewPendingItems {

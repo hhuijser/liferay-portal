@@ -295,7 +295,7 @@ public interface KBCommentLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
 		String className, long classPK, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<KBComment> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(

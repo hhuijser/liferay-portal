@@ -377,7 +377,8 @@ public class KBCommentLocalServiceUtil {
 		getKBComments(
 			String className, long classPK, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.knowledge.base.model.KBComment>
+					orderByComparator) {
 
 		return getService().getKBComments(
 			className, classPK, start, end, orderByComparator);

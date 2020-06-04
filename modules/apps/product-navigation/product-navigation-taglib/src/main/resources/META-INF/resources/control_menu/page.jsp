@@ -48,15 +48,15 @@ for (ProductNavigationControlMenuCategory productNavigationControlMenuCategory :
 				<ul class="control-menu-level-1-nav control-menu-nav" data-namespace="<portlet:namespace />" data-qa-id="header" id="<portlet:namespace />controlMenu">
 
 					<%
-					for (Map.Entry entry : productNavigationControlMenuEntriesMap.entrySet()) {
-						ProductNavigationControlMenuCategory productNavigationControlMenuCategory = (ProductNavigationControlMenuCategory)entry.getKey();
+					for (Map.Entry<ProductNavigationControlMenuCategory, List<ProductNavigationControlMenuEntry>> entry : productNavigationControlMenuEntriesMap.entrySet()) {
+						ProductNavigationControlMenuCategory productNavigationControlMenuCategory = entry.getKey();
 					%>
 
 						<li class="control-menu-nav-category <%= productNavigationControlMenuCategory.getKey() %>-control-group">
 							<ul class="control-menu-nav">
 
 								<%
-								for (ProductNavigationControlMenuEntry productNavigationControlMenuEntry : (List<ProductNavigationControlMenuEntry>)entry.getValue()) {
+								for (ProductNavigationControlMenuEntry productNavigationControlMenuEntry : entry.getValue()) {
 									if (productNavigationControlMenuEntry.includeIcon(request, PipingServletResponse.createPipingServletResponse(pageContext))) {
 										continue;
 									}

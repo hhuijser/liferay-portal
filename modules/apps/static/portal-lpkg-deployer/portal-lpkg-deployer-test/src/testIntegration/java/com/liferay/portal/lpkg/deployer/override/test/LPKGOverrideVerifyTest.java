@@ -103,11 +103,11 @@ public class LPKGOverrideVerifyTest {
 			}
 		}
 
-		List<Map.Entry> leftoverEntries = new ArrayList<>();
+		List<Map.Entry<String, String>> leftoverEntries = new ArrayList<>();
 
 		leftoverEntries.addAll(jars.entrySet());
 
-		for (Map.Entry entry : leftoverEntries) {
+		for (Map.Entry<String, String> entry : leftoverEntries) {
 			if (entry.getValue() == null) {
 				leftoverEntries.remove(entry);
 			}

@@ -473,7 +473,9 @@ public class LDAPPropertiesVerifyProcess extends VerifyProcess {
 		List<String> connectionPropertiesList = new ArrayList<>(
 			connectionProperties.size());
 
-		for (Map.Entry entry : connectionProperties.entrySet()) {
+		for (Map.Entry<Object, Object> entry :
+				connectionProperties.entrySet()) {
+
 			String connectionPropertyString =
 				entry.getKey() + StringPool.EQUAL + entry.getValue();
 

@@ -26,14 +26,17 @@ public class TaxonomyCategoryResourceTest
 	extends BaseTaxonomyCategoryResourceTestCase {
 
 	@Override
+	@Test
 	public void testClientSerDesToDTO() {
 	}
 
 	@Override
+	@Test
 	public void testClientSerDesToJSON() {
 	}
 
 	@Override
+	@Test
 	public void testEscapeRegexInStringFields() {
 	}
 

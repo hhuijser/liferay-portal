@@ -76,6 +76,7 @@ public class BatchEngineExportTaskExecutorTest
 		_objectMapper.addMixIn(BlogPosting.class, BlogPostingMixin.class);
 	}
 
+	@Before
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
@@ -85,6 +86,7 @@ public class BatchEngineExportTaskExecutorTest
 		).build();
 	}
 
+	@After
 	@Override
 	public void tearDown() throws Exception {
 		super.tearDown();

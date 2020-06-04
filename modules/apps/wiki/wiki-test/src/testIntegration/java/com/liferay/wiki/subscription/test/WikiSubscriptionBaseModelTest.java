@@ -51,6 +51,7 @@ public class WikiSubscriptionBaseModelTest
 			new LiferayIntegrationTestRule(), SynchronousMailTestRule.INSTANCE);
 
 	@Override
+	@Test
 	public void testSubscriptionBaseModelWhenInRootContainerModel() {
 	}
 

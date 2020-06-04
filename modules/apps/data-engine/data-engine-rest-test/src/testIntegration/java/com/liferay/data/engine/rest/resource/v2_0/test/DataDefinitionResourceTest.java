@@ -52,6 +52,7 @@ public class DataDefinitionResourceTest
 	extends BaseDataDefinitionResourceTestCase {
 
 	@Override
+	@Test
 	public void testGetDataDefinitionDataDefinitionFieldFieldTypes()
 		throws Exception {
 
@@ -63,6 +64,7 @@ public class DataDefinitionResourceTest
 	}
 
 	@Override
+	@Test
 	public void testGetDataDefinitionDataDefinitionFieldLinks()
 		throws Exception {
 
@@ -181,6 +183,7 @@ public class DataDefinitionResourceTest
 	}
 
 	@Override
+	@Test
 	public void testGraphQLGetSiteDataDefinitionByContentTypeByDataDefinitionKeyNotFound()
 		throws Exception {
 

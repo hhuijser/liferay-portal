@@ -90,6 +90,7 @@ public class DummyFolderExportImportTest
 	}
 
 	@Override
+	@Test
 	public void testExportImportAssetLinks() throws Exception {
 	}
 

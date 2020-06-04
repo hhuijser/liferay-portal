@@ -74,6 +74,7 @@ public class AssigneeResourceTest extends BaseAssigneeResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testPostProcessAssigneesPage() throws Exception {
 		Assignee assignee1 = randomAssignee();
 

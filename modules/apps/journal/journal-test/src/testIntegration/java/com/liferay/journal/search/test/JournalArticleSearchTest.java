@@ -359,6 +359,7 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 	}
 
 	@Override
+	@Test
 	public void testSearchAttachments() throws Exception {
 	}
 

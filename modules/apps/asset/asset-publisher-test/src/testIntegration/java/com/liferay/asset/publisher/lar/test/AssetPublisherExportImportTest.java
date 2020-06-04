@@ -449,6 +449,7 @@ public class AssetPublisherExportImportTest
 	}
 
 	@Override
+	@Test
 	public void testExportImportAssetLinks() throws Exception {
 	}
 

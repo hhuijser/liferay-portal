@@ -128,6 +128,7 @@ public class ArquillianTest {
 			new BridgeJUnitTestRunner.BridgeRunListener(ArquillianTest.class) {
 
 				@Override
+				@Test
 				public void testFailure(Failure failure) {
 					atomicBoolean.set(true);
 				}
@@ -162,6 +163,7 @@ public class ArquillianTest {
 			new BridgeJUnitTestRunner.BridgeRunListener(ArquillianTest.class) {
 
 				@Override
+				@Test
 				public void testFailure(Failure failure) {
 					throwableContainer.set(failure.getException());
 				}
@@ -191,6 +193,7 @@ public class ArquillianTest {
 			new BridgeJUnitTestRunner.BridgeRunListener(ArquillianTest.class) {
 
 				@Override
+				@Test
 				public void testFailure(Failure failure) {
 					throwableContainer.set(failure.getException());
 				}

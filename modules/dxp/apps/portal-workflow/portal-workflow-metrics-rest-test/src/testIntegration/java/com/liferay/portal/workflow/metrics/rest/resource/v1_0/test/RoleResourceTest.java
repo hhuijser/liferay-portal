@@ -57,6 +57,7 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testGetProcessRolesPage() throws Exception {
 		super.testGetProcessRolesPage();
 

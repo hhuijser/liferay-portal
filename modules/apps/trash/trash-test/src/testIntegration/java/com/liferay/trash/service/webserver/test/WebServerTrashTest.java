@@ -68,6 +68,7 @@ public class WebServerTrashTest extends BaseWebServerTestCase {
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();
 
+	@Before
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

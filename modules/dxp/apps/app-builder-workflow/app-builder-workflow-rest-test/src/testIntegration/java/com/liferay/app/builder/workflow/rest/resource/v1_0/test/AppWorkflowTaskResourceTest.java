@@ -98,6 +98,7 @@ public class AppWorkflowTaskResourceTest
 	}
 
 	@Override
+	@Test
 	public void testPostAppWorkflowTasks() throws Exception {
 		AppWorkflowTask appWorkflowTask1 = randomAppWorkflowTask();
 		AppWorkflowTask appWorkflowTask2 = randomAppWorkflowTask();

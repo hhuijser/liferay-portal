@@ -69,6 +69,7 @@ public class ProcessResourceTest extends BaseProcessResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testGetProcess() throws Exception {
 		super.testGetProcess();
 	}

@@ -46,18 +46,22 @@ public class BlogsSubscriptionRootContainerModelTest
 			new LiferayIntegrationTestRule(), SynchronousMailTestRule.INSTANCE);
 
 	@Override
+	@Test
 	public void testSubscriptionRootContainerModelWhenAddingBaseModelInContainerModel() {
 	}
 
 	@Override
+	@Test
 	public void testSubscriptionRootContainerModelWhenAddingBaseModelInSubcontainerModel() {
 	}
 
 	@Override
+	@Test
 	public void testSubscriptionRootContainerModelWhenUpdatingBaseModelInContainerModel() {
 	}
 
 	@Override
+	@Test
 	public void testSubscriptionRootContainerModelWhenUpdatingBaseModelInSubcontainerModel() {
 	}
 

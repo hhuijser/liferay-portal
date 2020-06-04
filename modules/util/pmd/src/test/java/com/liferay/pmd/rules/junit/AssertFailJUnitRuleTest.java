@@ -21,6 +21,7 @@ import net.sourceforge.pmd.testframework.SimpleAggregatorTst;
  */
 public class AssertFailJUnitRuleTest extends SimpleAggregatorTst {
 
+	@Before
 	@Override
 	public void setUp() {
 		addRule(_RULESET, "AssertFailJUnitRule");

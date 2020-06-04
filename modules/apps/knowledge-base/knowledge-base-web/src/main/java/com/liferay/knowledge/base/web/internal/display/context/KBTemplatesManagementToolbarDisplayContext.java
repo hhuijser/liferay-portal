@@ -144,7 +144,7 @@ public class KBTemplatesManagementToolbarDisplayContext {
 		return _searchContainer.getOrderByType();
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<KBTemplate> getSearchContainer() {
 		return _searchContainer;
 	}
 
@@ -263,7 +263,7 @@ public class KBTemplatesManagementToolbarDisplayContext {
 	private final HttpServletRequest _httpServletRequest;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<KBTemplate> _searchContainer;
 	private final String _templatePath;
 	private final ThemeDisplay _themeDisplay;
 

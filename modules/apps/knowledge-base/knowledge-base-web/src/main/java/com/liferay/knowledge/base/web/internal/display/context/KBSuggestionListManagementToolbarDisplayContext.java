@@ -52,7 +52,7 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 		HttpServletRequest httpServletRequest,
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
-		SearchContainer searchContainer) {
+		SearchContainer<KBComment> searchContainer) {
 
 		_httpServletRequest = httpServletRequest;
 		_liferayPortletRequest = liferayPortletRequest;
@@ -143,7 +143,7 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 		return _searchContainer.getOrderByType();
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<KBComment> getSearchContainer() {
 		return _searchContainer;
 	}
 
@@ -261,7 +261,7 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 	private final HttpServletRequest _httpServletRequest;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
-	private final SearchContainer _searchContainer;
+	private final SearchContainer<KBComment> _searchContainer;
 	private final ThemeDisplay _themeDisplay;
 
 }

@@ -230,7 +230,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public List<KBComment> getKBComments(
 		String className, long classPK, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KBComment> orderByComparator) {
 
 		return kbCommentPersistence.findByC_C(
 			classNameLocalService.getClassNameId(className), classPK, start,

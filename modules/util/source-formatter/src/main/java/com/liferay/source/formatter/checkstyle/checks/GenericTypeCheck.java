@@ -66,15 +66,22 @@ public class GenericTypeCheck extends BaseCheck {
 			return;
 		}
 
-		DetailAST identDetailAST = typeDetailAST.findFirstToken(
-			TokenTypes.IDENT);
+		DetailAST firstChildDetailAST = typeDetailAST.getFirstChild();
 
-		if (identDetailAST == null) {
+		if (firstChildDetailAST == null) {
 			return;
 		}
 
-		DetailAST typeArgumentsDetailAST = typeDetailAST.findFirstToken(
-			TokenTypes.TYPE_ARGUMENTS);
+		DetailAST typeArgumentsDetailAST = null;
+
+		if (firstChildDetailAST.getType() == TokenTypes.DOT) {
+			typeArgumentsDetailAST = firstChildDetailAST.findFirstToken(
+				TokenTypes.TYPE_ARGUMENTS);
+		}
+		else {
+			typeArgumentsDetailAST = typeDetailAST.findFirstToken(
+				TokenTypes.TYPE_ARGUMENTS);
+		}
 
 		if (typeArgumentsDetailAST != null) {
 			List<DetailAST> typeArgumentDetailASTList = getAllChildTokens(

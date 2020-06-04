@@ -66,7 +66,9 @@ public class GetAssetMappingFieldsMVCResourceCommand
 		String itemClassName = _portal.getClassName(classNameId);
 
 		InfoItemFormProvider<Object> infoItemFormProvider =
-			_infoItemFormProviderTracker.getInfoItemFormProvider(itemClassName);
+			(InfoItemFormProvider<Object>)
+				_infoItemFormProviderTracker.getInfoItemFormProvider(
+					itemClassName);
 
 		if (infoItemFormProvider == null) {
 			if (_log.isWarnEnabled()) {

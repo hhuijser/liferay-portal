@@ -116,7 +116,8 @@ public class FragmentEntryProcessorHelperImpl
 		}
 
 		InfoItemFormProvider<Object> infoItemFormProvider =
-			_infoItemFormProviderTracker.getInfoItemFormProvider(className);
+			(InfoItemFormProvider<Object>)
+				_infoItemFormProviderTracker.getInfoItemFormProvider(className);
 
 		if (infoItemFormProvider == null) {
 			if (_log.isWarnEnabled()) {
@@ -205,7 +206,8 @@ public class FragmentEntryProcessorHelperImpl
 		}
 
 		InfoItemFormProvider<Object> infoItemFormProvider =
-			_infoItemFormProviderTracker.getInfoItemFormProvider(className);
+			(InfoItemFormProvider<Object>)
+				_infoItemFormProviderTracker.getInfoItemFormProvider(className);
 
 		if (infoItemFormProvider == null) {
 			if (_log.isWarnEnabled()) {

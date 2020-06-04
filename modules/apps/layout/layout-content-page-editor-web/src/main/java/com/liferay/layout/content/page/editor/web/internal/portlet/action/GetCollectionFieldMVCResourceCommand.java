@@ -167,8 +167,9 @@ public class GetCollectionFieldMVCResourceCommand
 				}
 
 				InfoItemFormProvider<Object> infoItemFormProvider =
-					_infoItemFormProviderTracker.getInfoItemFormProvider(
-						itemType);
+					(InfoItemFormProvider<Object>)
+						_infoItemFormProviderTracker.getInfoItemFormProvider(
+							itemType);
 
 				if (infoItemFormProvider == null) {
 					if (_log.isWarnEnabled()) {

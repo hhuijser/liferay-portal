@@ -459,8 +459,8 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			registry.getServices(
 				(Class<ModelListener<ExpandoColumn>>)
 					(Class<?>)ModelListener.class,
-				"(component.name=com.liferay.segments.internal.model.listener." +
-					"OrganizationExpandoColumnModelListener)");
+				"(component.name=com.liferay.segments.internal.model." +
+					"listener.OrganizationExpandoColumnModelListener)");
 
 		Iterator<ModelListener<ExpandoColumn>> iterator = collection.iterator();
 

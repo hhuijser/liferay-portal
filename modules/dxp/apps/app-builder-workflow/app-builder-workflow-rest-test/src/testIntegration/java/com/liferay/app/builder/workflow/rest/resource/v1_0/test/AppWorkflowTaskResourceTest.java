@@ -47,6 +47,7 @@ public class AppWorkflowTaskResourceTest
 	extends BaseAppWorkflowTaskResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 
@@ -115,6 +116,7 @@ public class AppWorkflowTaskResourceTest
 		assertValid(page);
 	}
 
+	@Override
 	protected String[] getAdditionalAssertFieldNames() {
 		return new String[] {"appId", "dataLayoutIds", "name"};
 	}

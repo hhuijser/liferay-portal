@@ -28,6 +28,7 @@ import org.osgi.service.component.annotations.Reference;
 public class JournalArticleContentDashboardInfoItemFactory
 	implements ContentDashboardItemFactory<JournalArticle> {
 
+	@Override
 	public ContentDashboardItem<JournalArticle> create(long classPK)
 		throws PortalException {
 

@@ -114,6 +114,7 @@ public class JUnitTestResult extends BaseTestResult {
 		return _testName;
 	}
 
+	@Override
 	public String getTestrayLogsURL() {
 		Properties buildProperties = null;
 

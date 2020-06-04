@@ -35,6 +35,7 @@ import org.osgi.service.component.annotations.Component;
 public class AppBuilderWorkflowTaskLinkLocalServiceImpl
 	extends AppBuilderWorkflowTaskLinkLocalServiceBaseImpl {
 
+	@Override
 	public AppBuilderWorkflowTaskLink addAppBuilderWorkflowTaskLink(
 			long companyId, long appBuilderAppId, long ddmStructureLayoutId,
 			String workflowTaskName)
@@ -62,11 +63,13 @@ public class AppBuilderWorkflowTaskLinkLocalServiceImpl
 			appBuilderWorkflowTaskLink);
 	}
 
+	@Override
 	public void deleteAppBuilderWorkflowTaskLinks(long appBuilderAppId) {
 		appBuilderWorkflowTaskLinkPersistence.removeByAppBuilderAppId(
 			appBuilderAppId);
 	}
 
+	@Override
 	public List<AppBuilderWorkflowTaskLink> getAppBuilderWorkflowTaskLinks(
 		long appBuilderAppId) {
 
@@ -74,6 +77,7 @@ public class AppBuilderWorkflowTaskLinkLocalServiceImpl
 			appBuilderAppId);
 	}
 
+	@Override
 	public List<AppBuilderWorkflowTaskLink> getAppBuilderWorkflowTaskLinks(
 		long appBuilderAppId, String workflowTaskName) {
 

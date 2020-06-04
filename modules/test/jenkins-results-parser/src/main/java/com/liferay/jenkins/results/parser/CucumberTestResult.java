@@ -44,10 +44,12 @@ public class CucumberTestResult extends BaseTestResult {
 		return _cucumberScenarioResult.getDuration();
 	}
 
+	@Override
 	public String getErrorDetails() {
 		return _cucumberScenarioResult.getErrorDetails();
 	}
 
+	@Override
 	public String getErrorStackTrace() {
 		return _cucumberScenarioResult.getErrorStacktrace();
 	}
@@ -85,10 +87,12 @@ public class CucumberTestResult extends BaseTestResult {
 		return downstreamBuildListItemElement;
 	}
 
+	@Override
 	public String getPackageName() {
 		return null;
 	}
 
+	@Override
 	public String getSimpleClassName() {
 		return _cucumberFeatureResult.getName();
 	}

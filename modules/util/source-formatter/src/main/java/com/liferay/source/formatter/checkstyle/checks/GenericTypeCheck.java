@@ -49,6 +49,7 @@ public class GenericTypeCheck extends BaseCheck {
 	@Override
 	public int[] getDefaultTokens() {
 		return new int[] {
+			TokenTypes.EXTENDS_CLAUSE, TokenTypes.IMPLEMENTS_CLAUSE,
 			TokenTypes.METHOD_DEF, TokenTypes.PARAMETER_DEF,
 			TokenTypes.VARIABLE_DEF
 		};
@@ -56,32 +57,29 @@ public class GenericTypeCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		if ((detailAST.getType() == TokenTypes.EXTENDS_CLAUSE) ||
+			(detailAST.getType() == TokenTypes.IMPLEMENTS_CLAUSE)) {
+
+			List<DetailAST> childDetailASTList = getAllChildTokens(
+				detailAST, false, TokenTypes.DOT, TokenTypes.IDENT);
+
+			for (DetailAST childDetailAST : childDetailASTList) {
+				_checkType(detailAST, childDetailAST);
+			}
+		}
+
 		_checkType(detailAST, detailAST.findFirstToken(TokenTypes.TYPE));
 	}
 
-	private void _checkType(DetailAST detailAST, DetailAST typeDetailAST) {
-		if ((typeDetailAST == null) ||
+	private void _checkType(DetailAST detailAST, DetailAST childDetailAST) {
+		if ((childDetailAST == null) ||
 			(detailAST.findFirstToken(TokenTypes.ELLIPSIS) != null)) {
 
 			return;
 		}
 
-		DetailAST firstChildDetailAST = typeDetailAST.getFirstChild();
-
-		if (firstChildDetailAST == null) {
-			return;
-		}
-
-		DetailAST typeArgumentsDetailAST = null;
-
-		if (firstChildDetailAST.getType() == TokenTypes.DOT) {
-			typeArgumentsDetailAST = firstChildDetailAST.findFirstToken(
-				TokenTypes.TYPE_ARGUMENTS);
-		}
-		else {
-			typeArgumentsDetailAST = typeDetailAST.findFirstToken(
-				TokenTypes.TYPE_ARGUMENTS);
-		}
+		DetailAST typeArgumentsDetailAST = _getTypeArgumentsDetailAST(
+			childDetailAST);
 
 		if (typeArgumentsDetailAST != null) {
 			List<DetailAST> typeArgumentDetailASTList = getAllChildTokens(
@@ -89,7 +87,7 @@ public class GenericTypeCheck extends BaseCheck {
 
 			if (isAttributeValue(_POPULATE_TYPE_NAMES_KEY)) {
 				_populateGenericTypeNames(
-					typeDetailAST, typeArgumentDetailASTList);
+					childDetailAST, typeArgumentDetailASTList);
 			}
 
 			for (DetailAST typeArgumentDetailAST : typeArgumentDetailASTList) {
@@ -99,7 +97,7 @@ public class GenericTypeCheck extends BaseCheck {
 			return;
 		}
 
-		String genericTypeName = _getGenericTypeName(typeDetailAST);
+		String genericTypeName = _getGenericTypeName(childDetailAST);
 
 		if (genericTypeName == null) {
 			return;
@@ -124,7 +122,7 @@ public class GenericTypeCheck extends BaseCheck {
 			}
 		}
 
-		DetailAST parentDetailAST = typeDetailAST;
+		DetailAST parentDetailAST = childDetailAST;
 
 		while (true) {
 			if (parentDetailAST == null) {
@@ -145,26 +143,33 @@ public class GenericTypeCheck extends BaseCheck {
 
 		if (genericTypeCount == 1) {
 			log(
-				typeDetailAST, _MSG_PARAMETERIZE_GENERIC_TYPE, "type",
+				childDetailAST, _MSG_PARAMETERIZE_GENERIC_TYPE, "type",
 				genericTypeName);
 		}
 		else {
 			log(
-				typeDetailAST, _MSG_PARAMETERIZE_GENERIC_TYPE, "types",
+				childDetailAST, _MSG_PARAMETERIZE_GENERIC_TYPE, "types",
 				genericTypeName);
 		}
 	}
 
-	private String _getGenericTypeName(DetailAST typeDetailAST) {
+	private String _getGenericTypeName(DetailAST detailAST) {
 		Map<String, Integer> genericTypeNamesMap = _getGenericTypeNamesMap();
 
-		String typeName = getFullyQualifiedTypeName(typeDetailAST, false);
+		String typeName = _getTypeName(detailAST);
 
-		if ((typeName != null) && genericTypeNamesMap.containsKey(typeName)) {
-			return typeName;
+		String fullyQualifiedTypeName = getFullyQualifiedTypeName(
+			typeName, detailAST, false);
+
+		if ((fullyQualifiedTypeName != null) &&
+			genericTypeNamesMap.containsKey(fullyQualifiedTypeName)) {
+
+			return fullyQualifiedTypeName;
 		}
 
-		typeName = getTypeName(typeDetailAST, false);
+		if (typeName.equals(fullyQualifiedTypeName)) {
+			return null;
+		}
 
 		if (genericTypeNamesMap.containsKey("java.lang." + typeName)) {
 			return "java.lang." + typeName;
@@ -215,6 +220,56 @@ public class GenericTypeCheck extends BaseCheck {
 			_GENERIC_TYPE_NAMES_FILE_NAME, _GENERIC_TYPE_NAMES_CATEGORY);
 
 		return _genericTypeNamesTuple;
+	}
+
+	private DetailAST _getTypeArgumentsDetailAST(DetailAST detailAST) {
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		if ((parentDetailAST.getType() == TokenTypes.EXTENDS_CLAUSE) ||
+			(parentDetailAST.getType() == TokenTypes.IMPLEMENTS_CLAUSE)) {
+
+			if (detailAST.getType() == TokenTypes.DOT) {
+				return detailAST.findFirstToken(TokenTypes.TYPE_ARGUMENTS);
+			}
+
+			DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
+
+			if ((nextSiblingDetailAST != null) &&
+				(nextSiblingDetailAST.getType() == TokenTypes.TYPE_ARGUMENTS)) {
+
+				return nextSiblingDetailAST;
+			}
+
+			return null;
+		}
+
+		DetailAST childDetailAST = detailAST.getFirstChild();
+
+		if (childDetailAST == null) {
+			return null;
+		}
+
+		if (childDetailAST.getType() == TokenTypes.DOT) {
+			return childDetailAST.findFirstToken(TokenTypes.TYPE_ARGUMENTS);
+		}
+
+		return detailAST.findFirstToken(TokenTypes.TYPE_ARGUMENTS);
+	}
+
+	private String _getTypeName(DetailAST detailAST) {
+		if ((detailAST.getType() == TokenTypes.TYPE) ||
+			(detailAST.getType() == TokenTypes.TYPE_ARGUMENT)) {
+
+			return getTypeName(detailAST, false);
+		}
+
+		if (detailAST.getType() == TokenTypes.DOT) {
+			FullIdent fullIdent = FullIdent.createFullIdent(detailAST);
+
+			return fullIdent.getText();
+		}
+
+		return detailAST.getText();
 	}
 
 	private boolean _hasSuppressWarningsAnnotation(
@@ -314,7 +369,7 @@ public class GenericTypeCheck extends BaseCheck {
 	}
 
 	private void _populateGenericTypeNames(
-		DetailAST typeDetailAST, List<DetailAST> typeArgumentDetailASTList) {
+		DetailAST childDetailAST, List<DetailAST> typeArgumentDetailASTList) {
 
 		Tuple genericTypeNamesTuple = _getGenericTypeNamesTuple();
 
@@ -343,13 +398,19 @@ public class GenericTypeCheck extends BaseCheck {
 
 		Map<String, Integer> genericTypeNamesMap = _getGenericTypeNamesMap();
 
-		String typeName = getFullyQualifiedTypeName(typeDetailAST, false);
+		String typeName = _getTypeName(childDetailAST);
 
-		if ((typeName == null) || genericTypeNamesMap.containsKey(typeName)) {
+		String fullyQualifiedTypeName = getFullyQualifiedTypeName(
+			typeName, childDetailAST, false);
+
+		if ((fullyQualifiedTypeName == null) ||
+			genericTypeNamesMap.containsKey(fullyQualifiedTypeName)) {
+
 			return;
 		}
 
-		genericTypeNamesMap.put(typeName, typeArgumentDetailASTList.size());
+		genericTypeNamesMap.put(
+			fullyQualifiedTypeName, typeArgumentDetailASTList.size());
 
 		try {
 			JSONObject jsonObject = new JSONObjectImpl();
@@ -376,7 +437,7 @@ public class GenericTypeCheck extends BaseCheck {
 
 			System.out.println(
 				StringBundler.concat(
-					"Added '", typeName, "' to '",
+					"Added '", fullyQualifiedTypeName, "' to '",
 					_GENERIC_TYPE_NAMES_FILE_NAME, "'"));
 
 			_genericTypeNamesTuple = null;

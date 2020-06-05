@@ -168,7 +168,12 @@ public abstract class BaseCheck extends AbstractCheck {
 	protected String getFullyQualifiedTypeName(
 		DetailAST typeDetailAST, boolean checkPackage) {
 
-		String typeName = getTypeName(typeDetailAST, false);
+		return getFullyQualifiedTypeName(
+			getTypeName(typeDetailAST, false), typeDetailAST, checkPackage);
+	}
+
+	protected String getFullyQualifiedTypeName(
+		String typeName, DetailAST detailAST, boolean checkPackage) {
 
 		if (typeName.contains(StringPool.PERIOD) &&
 			Character.isLowerCase(typeName.charAt(0))) {
@@ -176,7 +181,7 @@ public abstract class BaseCheck extends AbstractCheck {
 			return typeName;
 		}
 
-		List<String> importNames = getImportNames(typeDetailAST);
+		List<String> importNames = getImportNames(detailAST);
 
 		for (String importName : importNames) {
 			int x = importName.lastIndexOf(CharPool.PERIOD);

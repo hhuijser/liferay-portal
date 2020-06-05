@@ -164,7 +164,6 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 	}
 
 	@Override
-	@Test
 	public void testGetUserAccountsPageWithSort(
 			EntityField.Type type,
 			UnsafeTriConsumer<EntityField, UserAccount, UserAccount, Exception>

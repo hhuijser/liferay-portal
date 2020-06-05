@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * @author Iván Zaera Avellón
  */
-public class Extent implements Iterable {
+public class Extent implements Iterable<List<Integer>> {
 
 	public Extent() {
 		this(0, 0, 0, 0);

@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author Carlos Lancha
  */
-public class CreationMenu extends HashMap {
+public class CreationMenu extends HashMap<String, Object> {
 
 	public CreationMenu() {
 		put("primaryItems", _primaryDropdownItems);

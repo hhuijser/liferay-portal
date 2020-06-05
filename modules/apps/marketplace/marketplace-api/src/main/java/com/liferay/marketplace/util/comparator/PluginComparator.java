@@ -36,7 +36,7 @@ import javax.servlet.ServletContext;
 /**
  * @author Ryan Park
  */
-public class PluginComparator implements Comparator, Serializable {
+public class PluginComparator implements Comparator<Object>, Serializable {
 
 	public PluginComparator() {
 		_locale = LocaleUtil.getDefault();

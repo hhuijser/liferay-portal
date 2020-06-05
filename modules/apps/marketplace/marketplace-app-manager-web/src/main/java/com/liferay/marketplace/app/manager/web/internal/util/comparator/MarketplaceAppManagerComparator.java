@@ -27,7 +27,7 @@ import org.osgi.framework.Constants;
 /**
  * @author Ryan Park
  */
-public class MarketplaceAppManagerComparator implements Comparator {
+public class MarketplaceAppManagerComparator implements Comparator<Object> {
 
 	public MarketplaceAppManagerComparator(String orderByType) {
 		_orderByType = orderByType;

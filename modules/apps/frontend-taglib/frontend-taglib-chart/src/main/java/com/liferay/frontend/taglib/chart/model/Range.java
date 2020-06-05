@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author Iván Zaera Avellón
  */
-public class Range implements Iterable {
+public class Range implements Iterable<Number> {
 
 	public Range() {
 		this(0, 0);

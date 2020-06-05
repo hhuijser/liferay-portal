@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
 public class ServerSystemPropertiesScreenNavigationEntry
-	implements ScreenNavigationCategory, ScreenNavigationEntry {
+	implements ScreenNavigationCategory, ScreenNavigationEntry<Object> {
 
 	public String getCategoryKey() {
 		return ServerAdminNavigationEntryConstants.

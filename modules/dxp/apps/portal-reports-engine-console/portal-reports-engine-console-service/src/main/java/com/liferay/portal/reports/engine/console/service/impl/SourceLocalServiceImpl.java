@@ -127,7 +127,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 	@Override
 	public List<Source> getSources(
 		long groupId, String name, String driverUrl, boolean andSearch,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Source> orderByComparator) {
 
 		return sourceFinder.findByG_N_DU(
 			groupId, name, driverUrl, andSearch, start, end, orderByComparator);

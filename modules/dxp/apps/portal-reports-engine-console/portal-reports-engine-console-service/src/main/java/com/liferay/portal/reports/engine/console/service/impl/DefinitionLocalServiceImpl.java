@@ -163,7 +163,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 	public List<Definition> getDefinitions(
 		long groupId, String definitionName, String description,
 		String sourceId, String reportName, boolean andSearch, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Definition> orderByComparator) {
 
 		return definitionFinder.findByG_S_N_D_RN(
 			groupId, definitionName, description, GetterUtil.getLong(sourceId),

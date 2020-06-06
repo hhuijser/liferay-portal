@@ -85,7 +85,7 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 	public List<Entry> getEntries(
 			long groupId, String definitionName, String userName,
 			Date createDateGT, Date createDateLT, boolean andSearch, int start,
-			int end, OrderByComparator orderByComparator)
+			int end, OrderByComparator<Entry> orderByComparator)
 		throws PortalException {
 
 		return entryFinder.filterFindByG_CD_N_SN(

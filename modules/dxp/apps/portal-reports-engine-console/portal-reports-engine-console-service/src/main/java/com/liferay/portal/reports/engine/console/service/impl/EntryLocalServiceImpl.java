@@ -318,7 +318,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	public List<Entry> getEntries(
 		long groupId, String definitionName, String userName, Date createDateGT,
 		Date createDateLT, boolean andSearch, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Entry> orderByComparator) {
 
 		return entryFinder.findByG_CD_N_SN(
 			groupId, definitionName, userName, createDateGT, createDateLT,

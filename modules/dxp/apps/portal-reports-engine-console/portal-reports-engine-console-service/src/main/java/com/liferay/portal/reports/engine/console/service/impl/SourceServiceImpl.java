@@ -81,7 +81,7 @@ public class SourceServiceImpl extends SourceServiceBaseImpl {
 	@Override
 	public List<Source> getSources(
 			long groupId, String name, String driverUrl, boolean andSearch,
-			int start, int end, OrderByComparator orderByComparator)
+			int start, int end, OrderByComparator<Source> orderByComparator)
 		throws PortalException {
 
 		return sourceFinder.filterFindByG_N_DU(

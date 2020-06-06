@@ -318,7 +318,8 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 			getSamlIdpSpConnections(
 				long companyId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.saml.persistence.model.SamlIdpSpConnection>
+						orderByComparator) {
 
 		return getService().getSamlIdpSpConnections(
 			companyId, start, end, orderByComparator);

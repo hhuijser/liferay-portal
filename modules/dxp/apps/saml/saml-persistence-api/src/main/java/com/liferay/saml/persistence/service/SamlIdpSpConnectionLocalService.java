@@ -264,7 +264,7 @@ public interface SamlIdpSpConnectionLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SamlIdpSpConnection> getSamlIdpSpConnections(
 		long companyId, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<SamlIdpSpConnection> orderByComparator);
 
 	/**
 	 * Returns the number of saml idp sp connections.

@@ -326,7 +326,8 @@ public interface KaleoProcessLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoProcess> getKaleoProcesses(
-		long groupId, int start, int end, OrderByComparator orderByComparator);
+		long groupId, int start, int end,
+		OrderByComparator<KaleoProcess> orderByComparator);
 
 	/**
 	 * Returns all the kaleo processes matching the UUID and company.

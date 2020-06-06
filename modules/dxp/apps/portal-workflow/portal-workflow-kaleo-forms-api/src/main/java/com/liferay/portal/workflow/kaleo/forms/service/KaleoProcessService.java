@@ -146,7 +146,7 @@ public interface KaleoProcessService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoProcess> search(
 		long groupId, String keywords, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<KaleoProcess> orderByComparator);
 
 	/**
 	 * Returns the number of Kaleo processes matching the parameters. The

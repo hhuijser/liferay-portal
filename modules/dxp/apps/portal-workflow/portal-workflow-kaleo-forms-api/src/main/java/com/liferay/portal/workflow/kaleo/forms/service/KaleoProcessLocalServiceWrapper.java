@@ -405,7 +405,8 @@ public class KaleoProcessLocalServiceWrapper
 			getKaleoProcesses(
 				long groupId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess>
+						orderByComparator) {
 
 		return _kaleoProcessLocalService.getKaleoProcesses(
 			groupId, start, end, orderByComparator);

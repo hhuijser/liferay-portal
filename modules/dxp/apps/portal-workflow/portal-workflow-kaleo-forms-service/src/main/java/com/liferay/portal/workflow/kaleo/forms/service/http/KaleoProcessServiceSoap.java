@@ -206,7 +206,8 @@ public class KaleoProcessServiceSoap {
 		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessSoap[] search(
 				long groupId, String keywords, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator)
+					<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess>
+						orderByComparator)
 			throws RemoteException {
 
 		try {

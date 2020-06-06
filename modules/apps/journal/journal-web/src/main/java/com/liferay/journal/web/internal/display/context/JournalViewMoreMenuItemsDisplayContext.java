@@ -187,7 +187,7 @@ public class JournalViewMoreMenuItemsDisplayContext {
 		return _keywords;
 	}
 
-	private OrderByComparator _getOrderByComparator() {
+	private OrderByComparator<DDMStructure> _getOrderByComparator() {
 		boolean orderByAsc = false;
 
 		String orderByType = getOrderByType();

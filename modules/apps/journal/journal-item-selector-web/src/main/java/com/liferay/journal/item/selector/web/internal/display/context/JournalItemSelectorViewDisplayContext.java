@@ -89,7 +89,7 @@ public class JournalItemSelectorViewDisplayContext {
 		return _journalItemSelectorCriterion;
 	}
 
-	public OrderByComparator getOrderByComparator() {
+	public OrderByComparator<?> getOrderByComparator() {
 		return DLUtil.getRepositoryModelOrderByComparator(
 			RepositoryEntryBrowserTagUtil.getOrderByCol(
 				_httpServletRequest, _portalPreferences),

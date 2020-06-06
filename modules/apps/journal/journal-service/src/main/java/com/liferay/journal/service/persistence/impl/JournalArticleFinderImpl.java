@@ -2154,7 +2154,7 @@ public class JournalArticleFinderImpl
 	}
 
 	private static boolean _isOrderByTitle(
-		OrderByComparator orderByComparator) {
+		OrderByComparator<JournalArticle> orderByComparator) {
 
 		if ((orderByComparator != null) &&
 			(StringUtil.containsIgnoreCase(

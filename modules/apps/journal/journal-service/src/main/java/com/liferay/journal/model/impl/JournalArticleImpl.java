@@ -431,7 +431,7 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 
 	@Override
 	public List<FileEntry> getImagesFileEntries(
-			int start, int end, OrderByComparator obc)
+			int start, int end, OrderByComparator<FileEntry> obc)
 		throws PortalException {
 
 		long imagesFolderId = getImagesFolderId();

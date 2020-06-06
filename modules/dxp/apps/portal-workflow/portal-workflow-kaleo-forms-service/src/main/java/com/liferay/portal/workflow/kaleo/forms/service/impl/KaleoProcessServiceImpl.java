@@ -158,7 +158,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 	@Override
 	public List<KaleoProcess> search(
 		long groupId, String keywords, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcess> orderByComparator) {
 
 		return kaleoProcessFinder.filterFindByKeywords(
 			groupId, keywords, start, end, orderByComparator);

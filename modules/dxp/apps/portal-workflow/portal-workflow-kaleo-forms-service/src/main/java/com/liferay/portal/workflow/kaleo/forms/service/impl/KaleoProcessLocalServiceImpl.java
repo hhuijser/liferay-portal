@@ -251,7 +251,8 @@ public class KaleoProcessLocalServiceImpl
 	 */
 	@Override
 	public List<KaleoProcess> getKaleoProcesses(
-		long groupId, int start, int end, OrderByComparator orderByComparator) {
+		long groupId, int start, int end,
+		OrderByComparator<KaleoProcess> orderByComparator) {
 
 		return kaleoProcessPersistence.findByGroupId(
 			groupId, start, end, orderByComparator);

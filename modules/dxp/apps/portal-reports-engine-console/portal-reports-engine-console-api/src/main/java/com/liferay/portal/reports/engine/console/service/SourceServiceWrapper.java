@@ -75,7 +75,8 @@ public class SourceServiceWrapper
 				long groupId, String name, String driverUrl, boolean andSearch,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator)
+					<com.liferay.portal.reports.engine.console.model.Source>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _sourceService.getSources(

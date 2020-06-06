@@ -274,7 +274,7 @@ public interface SourceLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Source> getSources(
 		long groupId, String name, String driverUrl, boolean andSearch,
-		int start, int end, OrderByComparator orderByComparator);
+		int start, int end, OrderByComparator<Source> orderByComparator);
 
 	/**
 	 * Returns all the sources matching the UUID and company.

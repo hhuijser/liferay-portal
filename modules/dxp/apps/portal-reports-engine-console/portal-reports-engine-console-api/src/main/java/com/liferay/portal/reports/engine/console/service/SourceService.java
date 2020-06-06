@@ -76,7 +76,7 @@ public interface SourceService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Source> getSources(
 			long groupId, String name, String driverUrl, boolean andSearch,
-			int start, int end, OrderByComparator orderByComparator)
+			int start, int end, OrderByComparator<Source> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

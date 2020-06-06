@@ -72,7 +72,7 @@ public interface EntryService extends BaseService {
 	public List<Entry> getEntries(
 			long groupId, String definitionName, String userName,
 			Date createDateGT, Date createDateLT, boolean andSearch, int start,
-			int end, OrderByComparator orderByComparator)
+			int end, OrderByComparator<Entry> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

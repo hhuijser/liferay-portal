@@ -74,7 +74,7 @@ public interface DefinitionService extends BaseService {
 	public List<Definition> getDefinitions(
 			long groupId, String definitionName, String description,
 			String sourceId, String reportName, boolean andSearch, int start,
-			int end, OrderByComparator orderByComparator)
+			int end, OrderByComparator<Definition> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -72,7 +72,8 @@ public class DefinitionServiceUtil {
 					String sourceId, String reportName, boolean andSearch,
 					int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
-						orderByComparator)
+						<com.liferay.portal.reports.engine.console.model.
+							Definition> orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getDefinitions(

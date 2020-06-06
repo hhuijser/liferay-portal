@@ -236,7 +236,7 @@ public interface EntryLocalService
 	public List<Entry> getEntries(
 		long groupId, String definitionName, String userName, Date createDateGT,
 		Date createDateLT, boolean andSearch, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<Entry> orderByComparator);
 
 	/**
 	 * Returns the number of entries.

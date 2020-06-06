@@ -313,7 +313,8 @@ public class DefinitionLocalServiceUtil {
 				String sourceId, String reportName, boolean andSearch,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					orderByComparator) {
+					<com.liferay.portal.reports.engine.console.model.Definition>
+						orderByComparator) {
 
 		return getService().getDefinitions(
 			groupId, definitionName, description, sourceId, reportName,

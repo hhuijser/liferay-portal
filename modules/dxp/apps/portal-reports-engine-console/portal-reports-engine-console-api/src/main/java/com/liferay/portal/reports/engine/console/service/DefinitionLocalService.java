@@ -263,7 +263,7 @@ public interface DefinitionLocalService
 	public List<Definition> getDefinitions(
 		long groupId, String definitionName, String description,
 		String sourceId, String reportName, boolean andSearch, int start,
-		int end, OrderByComparator orderByComparator);
+		int end, OrderByComparator<Definition> orderByComparator);
 
 	/**
 	 * Returns all the definitions matching the UUID and company.

@@ -298,7 +298,8 @@ public class EntryLocalServiceWrapper
 			java.util.Date createDateGT, java.util.Date createDateLT,
 			boolean andSearch, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.portal.reports.engine.console.model.Entry>
+					orderByComparator) {
 
 		return _entryLocalService.getEntries(
 			groupId, definitionName, userName, createDateGT, createDateLT,

@@ -153,7 +153,7 @@ public class SamlIdpSpConnectionLocalServiceImpl
 	@Override
 	public List<SamlIdpSpConnection> getSamlIdpSpConnections(
 		long companyId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSpConnection> orderByComparator) {
 
 		return samlIdpSpConnectionPersistence.findByCompanyId(
 			companyId, start, end, orderByComparator);

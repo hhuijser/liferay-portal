@@ -82,7 +82,7 @@ public interface PowwowMeetingService extends BaseService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<PowwowMeeting> getPowwowMeetings(
-		long groupId, int start, int end, OrderByComparator obc);
+		long groupId, int start, int end, OrderByComparator<PowwowMeeting> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPowwowMeetingsCount(long groupId);

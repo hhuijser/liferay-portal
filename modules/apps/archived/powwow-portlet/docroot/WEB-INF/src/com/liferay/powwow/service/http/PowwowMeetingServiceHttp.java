@@ -183,7 +183,8 @@ public class PowwowMeetingServiceHttp {
 	public static java.util.List<com.liferay.powwow.model.PowwowMeeting>
 		getPowwowMeetings(
 			HttpPrincipal httpPrincipal, long groupId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator obc) {
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.powwow.model.PowwowMeeting> obc) {
 
 		try {
 			MethodKey methodKey = new MethodKey(

@@ -77,7 +77,8 @@ public class PowwowMeetingServiceUtil {
 	public static java.util.List<com.liferay.powwow.model.PowwowMeeting>
 		getPowwowMeetings(
 			long groupId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator obc) {
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.powwow.model.PowwowMeeting> obc) {
 
 		return getService().getPowwowMeetings(groupId, start, end, obc);
 	}

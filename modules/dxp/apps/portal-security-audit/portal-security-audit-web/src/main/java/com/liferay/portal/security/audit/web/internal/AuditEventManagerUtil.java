@@ -42,7 +42,7 @@ public class AuditEventManagerUtil {
 
 	public static List<AuditEvent> getAuditEvents(
 		long companyId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<AuditEvent> orderByComparator) {
 
 		return _auditEventManager.getAuditEvents(
 			companyId, start, end, orderByComparator);
@@ -53,7 +53,7 @@ public class AuditEventManagerUtil {
 		Date createDateLT, String eventType, String className, String classPK,
 		String clientHost, String clientIP, String serverName, int serverPort,
 		String sessionID, boolean andSearch, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<AuditEvent> orderByComparator) {
 
 		return _auditEventManager.getAuditEvents(
 			companyId, userId, userName, createDateGT, createDateLT, eventType,

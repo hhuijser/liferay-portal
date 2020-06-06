@@ -253,7 +253,7 @@ public interface OAuthApplicationLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<OAuthApplication> getOAuthApplications(
 		long companyId, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<OAuthApplication> orderByComparator);
 
 	/**
 	 * Returns the number of o auth applications.
@@ -284,7 +284,8 @@ public interface OAuthApplicationLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<OAuthApplication> search(
 		long companyId, String keywords, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator orderByComparator);
+		int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(

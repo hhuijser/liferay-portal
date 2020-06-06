@@ -328,7 +328,7 @@ public class OAuthApplicationLocalServiceWrapper
 		getOAuthApplications(
 			long companyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 
 		return _oAuthApplicationLocalService.getOAuthApplications(
 			companyId, start, end, orderByComparator);
@@ -375,7 +375,8 @@ public class OAuthApplicationLocalServiceWrapper
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> search(
 		long companyId, String keywords,
 		java.util.LinkedHashMap<String, Object> params, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 
 		return _oAuthApplicationLocalService.search(
 			companyId, keywords, params, start, end, orderByComparator);

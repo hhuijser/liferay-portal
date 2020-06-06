@@ -254,7 +254,7 @@ public class OAuthUserLocalServiceUtil {
 		getOAuthApplicationOAuthUsers(
 			long oAuthApplicationId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 
 		return getService().getOAuthApplicationOAuthUsers(
 			oAuthApplicationId, start, end, orderByComparator);
@@ -344,7 +344,7 @@ public class OAuthUserLocalServiceUtil {
 		getUserOAuthUsers(
 			long userId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				orderByComparator) {
+				<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 
 		return getService().getUserOAuthUsers(
 			userId, start, end, orderByComparator);

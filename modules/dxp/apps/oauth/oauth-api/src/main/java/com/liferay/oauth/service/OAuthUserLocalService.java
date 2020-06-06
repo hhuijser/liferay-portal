@@ -209,7 +209,7 @@ public interface OAuthUserLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<OAuthUser> getOAuthApplicationOAuthUsers(
 		long oAuthApplicationId, int start, int end,
-		OrderByComparator orderByComparator);
+		OrderByComparator<OAuthUser> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId);
@@ -270,7 +270,8 @@ public interface OAuthUserLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<OAuthUser> getUserOAuthUsers(
-		long userId, int start, int end, OrderByComparator orderByComparator);
+		long userId, int start, int end,
+		OrderByComparator<OAuthUser> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserOAuthUsersCount(long userId);

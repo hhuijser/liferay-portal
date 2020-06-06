@@ -33,7 +33,7 @@ List<RepositoryEntry> portletFileEntries = new ArrayList<>();
 int portletFileEntriesCount = 0;
 
 if (journalArticle != null) {
-	portletFileEntries.addAll(journalArticle.getImagesFileEntries(start, end, journalItemSelectorViewDisplayContext.getOrderByComparator()));
+	portletFileEntries.addAll(journalArticle.getImagesFileEntries(start, end, (OrderByComparator<FileEntry>)journalItemSelectorViewDisplayContext.getOrderByComparator()));
 	portletFileEntriesCount = journalArticle.getImagesFileEntriesCount();
 }
 %>

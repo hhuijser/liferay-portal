@@ -203,7 +203,7 @@ public class OAuthApplicationLocalServiceImpl
 	@Override
 	public List<OAuthApplication> getOAuthApplications(
 		long companyId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthApplication> orderByComparator) {
 
 		return oAuthApplicationPersistence.findByCompanyId(
 			companyId, start, end, orderByComparator);
@@ -217,7 +217,8 @@ public class OAuthApplicationLocalServiceImpl
 	@Override
 	public List<OAuthApplication> search(
 		long companyId, String keywords, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 
 		keywords = _customSQL.keywords(keywords)[0];
 

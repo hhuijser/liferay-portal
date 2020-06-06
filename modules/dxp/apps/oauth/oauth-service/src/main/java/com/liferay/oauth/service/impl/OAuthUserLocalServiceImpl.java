@@ -112,7 +112,7 @@ public class OAuthUserLocalServiceImpl extends OAuthUserLocalServiceBaseImpl {
 	@Override
 	public List<OAuthUser> getOAuthApplicationOAuthUsers(
 		long oAuthApplicationId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 
 		return oAuthUserPersistence.findByOAuthApplicationId(
 			oAuthApplicationId, start, end, orderByComparator);
@@ -138,7 +138,8 @@ public class OAuthUserLocalServiceImpl extends OAuthUserLocalServiceBaseImpl {
 
 	@Override
 	public List<OAuthUser> getUserOAuthUsers(
-		long userId, int start, int end, OrderByComparator orderByComparator) {
+		long userId, int start, int end,
+		OrderByComparator<OAuthUser> orderByComparator) {
 
 		return oAuthUserPersistence.findByUserId(
 			userId, start, end, orderByComparator);

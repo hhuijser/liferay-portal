@@ -29,7 +29,7 @@
 						<c:when test="<%= (infoItemRenderer instanceof InfoItemTemplatedRenderer) && Validator.isNotNull(templateKey) %>">
 
 							<%
-							InfoItemTemplatedRenderer infoItemTemplatedRenderer = (InfoItemTemplatedRenderer)infoItemRenderer;
+							InfoItemTemplatedRenderer<Object> infoItemTemplatedRenderer = (InfoItemTemplatedRenderer)infoItemRenderer;
 
 							infoItemTemplatedRenderer.render(infoListObject, templateKey, request, response);
 							%>
@@ -63,7 +63,7 @@
 						<c:when test="<%= (infoItemRenderer instanceof InfoItemTemplatedRenderer) && Validator.isNotNull(templateKey) %>">
 
 							<%
-							InfoItemTemplatedRenderer infoItemTemplatedRenderer = (InfoItemTemplatedRenderer)infoItemRenderer;
+							InfoItemTemplatedRenderer<Object> infoItemTemplatedRenderer = (InfoItemTemplatedRenderer)infoItemRenderer;
 
 							infoItemTemplatedRenderer.render(infoListObject, templateKey, request, response);
 							%>

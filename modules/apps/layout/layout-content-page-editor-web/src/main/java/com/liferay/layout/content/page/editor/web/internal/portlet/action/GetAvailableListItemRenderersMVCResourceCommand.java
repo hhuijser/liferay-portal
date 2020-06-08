@@ -81,8 +81,8 @@ public class GetAvailableListItemRenderersMVCResourceCommand
 				JSONArray templatesJSONArray =
 					JSONFactoryUtil.createJSONArray();
 
-				InfoItemTemplatedRenderer infoItemTemplatedRenderer =
-					(InfoItemTemplatedRenderer)infoItemRenderer;
+				InfoItemTemplatedRenderer<Object> infoItemTemplatedRenderer =
+					(InfoItemTemplatedRenderer<Object>)infoItemRenderer;
 
 				List<InfoItemRendererTemplate> infoItemRendererTemplates =
 					infoItemTemplatedRenderer.getInfoItemRendererTemplates(

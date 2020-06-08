@@ -145,8 +145,8 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 		}
 
 		if (infoItemRenderer instanceof InfoItemTemplatedRenderer) {
-			InfoItemTemplatedRenderer infoItemTemplatedRenderer =
-				(InfoItemTemplatedRenderer)infoItemRenderer;
+			InfoItemTemplatedRenderer<Object> infoItemTemplatedRenderer =
+				(InfoItemTemplatedRenderer<Object>)infoItemRenderer;
 
 			infoItemTemplatedRenderer.render(
 				displayObject, (String)tuple.getObject(1), httpServletRequest,

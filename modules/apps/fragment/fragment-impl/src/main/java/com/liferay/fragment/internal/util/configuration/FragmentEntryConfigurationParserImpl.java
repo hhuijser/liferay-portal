@@ -602,7 +602,7 @@ public class FragmentEntryConfigurationParserImpl
 				return Collections.emptyList();
 			}
 
-			ListObjectReferenceFactory listObjectReferenceFactory =
+			ListObjectReferenceFactory<?> listObjectReferenceFactory =
 				_listObjectReferenceFactoryTracker.getListObjectReference(type);
 
 			if (listObjectReferenceFactory == null) {

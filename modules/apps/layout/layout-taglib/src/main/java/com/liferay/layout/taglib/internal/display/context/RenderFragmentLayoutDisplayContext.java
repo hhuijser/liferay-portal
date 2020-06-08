@@ -319,7 +319,7 @@ public class RenderFragmentLayoutDisplayContext {
 			return null;
 		}
 
-		ListObjectReferenceFactory listObjectReferenceFactory =
+		ListObjectReferenceFactory<?> listObjectReferenceFactory =
 			_listObjectReferenceFactoryTracker.getListObjectReference(type);
 
 		if (listObjectReferenceFactory == null) {

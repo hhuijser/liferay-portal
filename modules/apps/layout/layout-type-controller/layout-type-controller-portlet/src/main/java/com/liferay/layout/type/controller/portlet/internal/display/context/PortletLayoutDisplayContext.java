@@ -153,7 +153,7 @@ public class PortletLayoutDisplayContext {
 			return Collections.emptyList();
 		}
 
-		ListObjectReferenceFactory listObjectReferenceFactory =
+		ListObjectReferenceFactory<?> listObjectReferenceFactory =
 			_listObjectReferenceFactoryTracker.getListObjectReference(type);
 
 		if (listObjectReferenceFactory == null) {
@@ -324,7 +324,7 @@ public class PortletLayoutDisplayContext {
 			return null;
 		}
 
-		ListObjectReferenceFactory listObjectReferenceFactory =
+		ListObjectReferenceFactory<?> listObjectReferenceFactory =
 			_listObjectReferenceFactoryTracker.getListObjectReference(type);
 
 		if (listObjectReferenceFactory == null) {

@@ -139,7 +139,7 @@ public class GetCollectionFieldMVCResourceCommand
 				_layoutListRetrieverTracker.getLayoutListRetriever(type);
 
 		if (layoutListRetriever != null) {
-			ListObjectReferenceFactory listObjectReferenceFactory =
+			ListObjectReferenceFactory<?> listObjectReferenceFactory =
 				_listObjectReferenceFactoryTracker.getListObjectReference(type);
 
 			if (listObjectReferenceFactory != null) {

@@ -19,6 +19,6 @@ package com.liferay.layout.list.retriever;
  */
 public interface ListObjectReferenceFactoryTracker {
 
-	public ListObjectReferenceFactory getListObjectReference(String type);
+	public ListObjectReferenceFactory<?> getListObjectReference(String type);
 
 }

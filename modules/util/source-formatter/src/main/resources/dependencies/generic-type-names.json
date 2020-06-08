@@ -2,6 +2,18 @@
 	"genericTypeNames": [
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.adaptive.media.content.transformer.ContentTransformer"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.adaptive.media.content.transformer.ContentTransformerContentType"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.adaptive.media.finder.AMQuery"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.asset.kernel.model.AssetRenderer"
 		},
 		{
@@ -11,6 +23,14 @@
 		{
 			"genericTypeCount": 1,
 			"name": "com.liferay.change.tracking.display.CTDisplayRenderer"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.exportimport.content.processor.ExportImportContentProcessor"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.exportimport.kernel.lar.StagedModelDataHandler"
 		},
 		{
 			"genericTypeCount": 1,
@@ -26,6 +46,22 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.info.field.InfoFieldValue"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.info.item.provider.InfoItemObjectProvider"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.info.list.provider.InfoListProvider"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.info.localized.InfoLocalizedValue"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.item.selector.ItemSelectorView"
 		},
 		{
@@ -33,12 +69,64 @@
 			"name": "com.liferay.item.selector.ItemSelectorViewDescriptor"
 		},
 		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.petra.sql.dsl.Column"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.portal.kernel.cache.PortalCache"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.model.BaseModel"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.model.ModelListener"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.portlet.bridges.mvc.MVCCommandCache"
+		},
+		{
 			"genericTypeCount": 1,
 			"name": "com.liferay.portal.kernel.search.Indexer"
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.search.elasticsearch6.internal.facet.FacetProcessor"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.search.elasticsearch7.internal.facet.FacetProcessor"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.search.solr7.internal.facet.FacetProcessor"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.search.sort.SortFieldTranslator"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.registry.ServiceRegistration"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.segments.odata.matcher.ODataMatcher"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.segments.odata.retriever.ODataRetriever"
 		},
 		{
 			"genericTypeCount": 1,
@@ -299,6 +387,22 @@
 		{
 			"genericTypeCount": 1,
 			"name": "java.util.stream.Stream"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "org.apache.solr.common.util.NamedList"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "org.opensaml.messaging.context.InOutOperationContext"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "org.opensaml.messaging.context.MessageContext"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "org.osgi.framework.ServiceRegistration"
 		}
 	]
 }

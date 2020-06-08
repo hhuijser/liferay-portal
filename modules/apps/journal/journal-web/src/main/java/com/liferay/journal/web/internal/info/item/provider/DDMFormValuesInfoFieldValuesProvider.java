@@ -59,7 +59,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = DDMFormValuesInfoFieldValuesProvider.class)
 public class DDMFormValuesInfoFieldValuesProvider<T extends GroupedModel> {
 
-	public List<InfoFieldValue> getInfoFieldValues(
+	public List<InfoFieldValue<InfoLocalizedValue<String>>> getInfoFieldValues(
 		T t, DDMFormValues ddmFormValues) {
 
 		List<DDMFormFieldValue> ddmFormFieldValues =
@@ -69,8 +69,8 @@ public class DDMFormValuesInfoFieldValuesProvider<T extends GroupedModel> {
 
 		return stream.flatMap(
 			ddmFormFieldValue -> {
-				List<InfoFieldValue> infoFieldValues = _getInfoFieldValues(
-					t, ddmFormFieldValue);
+				List<InfoFieldValue<InfoLocalizedValue<String>>>
+					infoFieldValues = _getInfoFieldValues(t, ddmFormFieldValue);
 
 				return infoFieldValues.stream();
 			}
@@ -81,7 +81,7 @@ public class DDMFormValuesInfoFieldValuesProvider<T extends GroupedModel> {
 
 	private void _addDDMFormFieldValue(
 		T t, DDMFormFieldValue ddmFormFieldValue,
-		List<InfoFieldValue> infoFieldValues) {
+		List<InfoFieldValue<InfoLocalizedValue<String>>> infoFieldValues) {
 
 		_addNestedFields(t, ddmFormFieldValue, infoFieldValues);
 
@@ -94,7 +94,7 @@ public class DDMFormValuesInfoFieldValuesProvider<T extends GroupedModel> {
 
 	private void _addNestedFields(
 		T t, DDMFormFieldValue ddmFormFieldValue,
-		List<InfoFieldValue> infoFieldValues) {
+		List<InfoFieldValue<InfoLocalizedValue<String>>> infoFieldValues) {
 
 		Map<String, List<DDMFormFieldValue>> nestedDDMFormFieldValuesMap =
 			ddmFormFieldValue.getNestedDDMFormFieldValuesMap();
@@ -110,8 +110,8 @@ public class DDMFormValuesInfoFieldValuesProvider<T extends GroupedModel> {
 		}
 	}
 
-	private Optional<InfoFieldValue> _getInfoFieldValue(
-		T t, DDMFormFieldValue ddmFormFieldValue) {
+	private Optional<InfoFieldValue<InfoLocalizedValue<String>>>
+		_getInfoFieldValue(T t, DDMFormFieldValue ddmFormFieldValue) {
 
 		Value value = ddmFormFieldValue.getValue();
 
@@ -142,10 +142,11 @@ public class DDMFormValuesInfoFieldValuesProvider<T extends GroupedModel> {
 				).build()));
 	}
 
-	private List<InfoFieldValue> _getInfoFieldValues(
-		T t, DDMFormFieldValue ddmFormFieldValue) {
+	private List<InfoFieldValue<InfoLocalizedValue<String>>>
+		_getInfoFieldValues(T t, DDMFormFieldValue ddmFormFieldValue) {
 
-		List<InfoFieldValue> infoFieldValues = new ArrayList<>();
+		List<InfoFieldValue<InfoLocalizedValue<String>>> infoFieldValues =
+			new ArrayList<>();
 
 		_addDDMFormFieldValue(t, ddmFormFieldValue, infoFieldValues);
 

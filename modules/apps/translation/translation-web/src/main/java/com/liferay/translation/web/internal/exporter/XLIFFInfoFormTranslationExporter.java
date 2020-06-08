@@ -78,7 +78,7 @@ public class XLIFFInfoFormTranslationExporter<T>
 		Collection<InfoFieldValue<Object>> infoFieldValues =
 			infoFormValues.getInfoFieldValues();
 
-		for (InfoFieldValue infoFieldValue : infoFieldValues) {
+		for (InfoFieldValue<Object> infoFieldValue : infoFieldValues) {
 			InfoField infoField = infoFieldValue.getInfoField();
 
 			if (_blacklistedFieldNames.contains(infoField.getName())) {

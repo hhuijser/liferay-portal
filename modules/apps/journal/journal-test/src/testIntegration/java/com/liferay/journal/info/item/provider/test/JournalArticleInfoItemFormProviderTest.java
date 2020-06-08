@@ -89,15 +89,15 @@ public class JournalArticleInfoItemFormProviderTest {
 		Assert.assertEquals(
 			infoFieldValues.toString(), 9, infoFieldValues.size());
 
-		InfoFieldValue titleInfoFieldValue = infoFormValues.getInfoFieldValue(
-			"title");
+		InfoFieldValue<Object> titleInfoFieldValue =
+			infoFormValues.getInfoFieldValue("title");
 
 		Assert.assertEquals(
 			"Test Article",
 			titleInfoFieldValue.getValue(LocaleUtil.getDefault()));
 
-		InfoFieldValue ddmTextInfoFieldValue = infoFormValues.getInfoFieldValue(
-			"DDM_Text");
+		InfoFieldValue<Object> ddmTextInfoFieldValue =
+			infoFormValues.getInfoFieldValue("DDM_Text");
 
 		Assert.assertEquals(
 			"Some text",
@@ -112,7 +112,7 @@ public class JournalArticleInfoItemFormProviderTest {
 		Iterator<InfoFieldValue<Object>> ddmTextInfoFieldValuesIterator =
 			ddmTextInfoFieldValues.iterator();
 
-		InfoFieldValue firstDDMTextInfoFieldValue =
+		InfoFieldValue<Object> firstDDMTextInfoFieldValue =
 			ddmTextInfoFieldValuesIterator.next();
 
 		Assert.assertEquals(
@@ -122,7 +122,7 @@ public class JournalArticleInfoItemFormProviderTest {
 			"Un poco de texto",
 			firstDDMTextInfoFieldValue.getValue(LocaleUtil.SPAIN));
 
-		InfoFieldValue secondDDMTextInfoFieldValue =
+		InfoFieldValue<Object> secondDDMTextInfoFieldValue =
 			ddmTextInfoFieldValuesIterator.next();
 
 		Assert.assertEquals(

@@ -36,6 +36,7 @@ public class ModuleAutoDeployerTest extends BaseDeployerTestCase {
 		return new ModuleAutoDeployer();
 	}
 
+	@Before
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

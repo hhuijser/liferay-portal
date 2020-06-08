@@ -101,6 +101,7 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testDeleteAccountRoleUserAssociation() throws Exception {
 		AccountRole accountRole = _addAccountRole(_account);
 		AccountUser accountUser = _addAccountUser(_account);
@@ -124,6 +125,7 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testPostAccountRoleUserAssociation() throws Exception {
 		AccountRole accountRole = _addAccountRole(_account);
 		AccountUser accountUser = _addAccountUser(_account);

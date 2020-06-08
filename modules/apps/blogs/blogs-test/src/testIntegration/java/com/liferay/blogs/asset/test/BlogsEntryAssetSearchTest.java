@@ -55,18 +55,22 @@ public class BlogsEntryAssetSearchTest extends BaseAssetSearchTestCase {
 	}
 
 	@Override
+	@Test
 	public void testClassTypeIds1() {
 	}
 
 	@Override
+	@Test
 	public void testClassTypeIds2() {
 	}
 
 	@Override
+	@Test
 	public void testOrderByExpirationDateAsc() {
 	}
 
 	@Override
+	@Test
 	public void testOrderByExpirationDateDesc() {
 	}
 

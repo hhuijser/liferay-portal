@@ -25,18 +25,22 @@ import org.junit.runner.RunWith;
 public class KeywordResourceTest extends BaseKeywordResourceTestCase {
 
 	@Override
+	@Test
 	public void testClientSerDesToDTO() {
 	}
 
 	@Override
+	@Test
 	public void testClientSerDesToJSON() {
 	}
 
 	@Override
+	@Test
 	public void testEscapeRegexInStringFields() {
 	}
 
 	@Override
+	@Test
 	public void testPostKeywordsCommonPage() {
 	}
 

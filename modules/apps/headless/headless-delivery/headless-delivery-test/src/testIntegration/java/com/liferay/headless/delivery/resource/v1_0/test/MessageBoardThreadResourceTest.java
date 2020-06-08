@@ -64,6 +64,7 @@ public class MessageBoardThreadResourceTest
 	}
 
 	@Override
+	@Test
 	public void testGetMessageBoardThreadsRankedPageWithSortString()
 		throws Exception {
 

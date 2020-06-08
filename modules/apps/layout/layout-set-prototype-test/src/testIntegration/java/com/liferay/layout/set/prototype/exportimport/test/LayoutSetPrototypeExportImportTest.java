@@ -68,6 +68,7 @@ public class LayoutSetPrototypeExportImportTest
 	}
 
 	@Override
+	@Test
 	public void testExportImportAssetLinks() throws Exception {
 	}
 

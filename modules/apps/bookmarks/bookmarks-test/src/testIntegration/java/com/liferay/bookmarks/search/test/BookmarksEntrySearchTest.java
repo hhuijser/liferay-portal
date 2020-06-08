@@ -59,42 +59,52 @@ public class BookmarksEntrySearchTest extends BaseSearchTestCase {
 	}
 
 	@Override
+	@Test
 	public void testLocalizedSearch() {
 	}
 
 	@Override
+	@Test
 	public void testSearchAttachments() {
 	}
 
 	@Override
+	@Test
 	public void testSearchByDDMStructureField() {
 	}
 
 	@Override
+	@Test
 	public void testSearchComments() {
 	}
 
 	@Override
+	@Test
 	public void testSearchCommentsByKeywords() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchExpireAllVersions() {
 	}
 
 	@Override
+	@Test
 	public void testSearchExpireLatestVersion() {
 	}
 
 	@Override
+	@Test
 	public void testSearchStatus() {
 	}
 
 	@Override
+	@Test
 	public void testSearchVersions() {
 	}
 
 	@Override
+	@Test
 	public void testSearchWithinDDMStructure() {
 	}
 

@@ -55,10 +55,12 @@ public class JournalFolderSearchTest extends BaseSearchTestCase {
 	}
 
 	@Override
+	@Test
 	public void testLocalizedSearch() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchAttachments() throws Exception {
 	}
 
@@ -81,42 +83,52 @@ public class JournalFolderSearchTest extends BaseSearchTestCase {
 	}
 
 	@Override
+	@Test
 	public void testSearchByDDMStructureField() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchComments() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchCommentsByKeywords() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchExpireAllVersions() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchExpireLatestVersion() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchMyEntries() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchRecentEntries() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchStatus() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchVersions() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchWithinDDMStructure() throws Exception {
 	}
 

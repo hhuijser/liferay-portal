@@ -38,6 +38,7 @@ public class LayoutPrototypePortletDataHandlerTest
 		new LiferayIntegrationTestRule();
 
 	@Override
+	@Test
 	public void testPrepareManifestSummary() throws Exception {
 	}
 

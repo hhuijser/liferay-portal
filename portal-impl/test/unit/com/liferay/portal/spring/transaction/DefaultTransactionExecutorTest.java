@@ -47,6 +47,7 @@ public class DefaultTransactionExecutorTest
 	}
 
 	@Override
+	@Test
 	public void testCommit() throws Throwable {
 		super.testCommit();
 
@@ -54,6 +55,7 @@ public class DefaultTransactionExecutorTest
 	}
 
 	@Override
+	@Test
 	public void testCommitWithAppException() throws Throwable {
 		super.testCommitWithAppException();
 
@@ -61,6 +63,7 @@ public class DefaultTransactionExecutorTest
 	}
 
 	@Override
+	@Test
 	public void testCommitWithAppExceptionWithCommitException()
 		throws Throwable {
 
@@ -70,6 +73,7 @@ public class DefaultTransactionExecutorTest
 	}
 
 	@Override
+	@Test
 	public void testCommitWithCommitException() throws Throwable {
 		super.testCommitWithCommitException();
 
@@ -191,6 +195,7 @@ public class DefaultTransactionExecutorTest
 	}
 
 	@Override
+	@Test
 	public void testRollbackOnAppException() throws Throwable {
 		super.testRollbackOnAppException();
 
@@ -198,6 +203,7 @@ public class DefaultTransactionExecutorTest
 	}
 
 	@Override
+	@Test
 	public void testRollbackOnAppExceptionWithRollbackException()
 		throws Throwable {
 

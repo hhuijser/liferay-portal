@@ -57,7 +57,7 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 			fileName, javaTerm, "Before", "\\bsetUp(?!Class)", false);
 		_checkAnnotationForMethod(
 			fileName, javaTerm, "BeforeClass", "\\bsetUpClass", true);
-		_checkAnnotationForMethod(fileName, javaTerm, "Test", "^.*test", false);
+		_checkAnnotationForMethod(fileName, javaTerm, "Test", ".*test", false);
 		_checkAnnotationForMethod(fileName, javaTerm, "Test", "test.*", false);
 
 		return javaTerm.getContent();

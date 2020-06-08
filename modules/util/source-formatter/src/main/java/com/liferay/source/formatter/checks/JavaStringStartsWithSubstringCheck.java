@@ -30,30 +30,10 @@ public class JavaStringStartsWithSubstringCheck extends BaseJavaTermCheck {
 			String fileContent)
 		throws Exception {
 
-		StringBuffer sb = new StringBuffer();
+		Matcher matcher = _substringContainsPattern.matcher(
+			javaTerm.getContent());
 
-		String javaTermContent = javaTerm.getContent();
-
-		Matcher matcher = _substringContainsPattern.matcher(javaTermContent);
-
-		while (matcher.find()) {
-			String var1 = matcher.group(1);
-			String var2 = matcher.group(3);
-			String var3 = matcher.group(4);
-			String var4 = matcher.group(5);
-
-			if (!var1.equals(var3) || !var2.equals(var4)) {
-				matcher.appendReplacement(sb, "$0");
-
-				continue;
-			}
-
-			matcher.appendReplacement(sb, "$1.startsWith$2");
-		}
-
-		matcher.appendTail(sb);
-
-		return sb.toString();
+		return matcher.replaceAll("$1.startsWith$2");
 	}
 
 	@Override
@@ -62,8 +42,8 @@ public class JavaStringStartsWithSubstringCheck extends BaseJavaTermCheck {
 	}
 
 	private static final Pattern _substringContainsPattern = Pattern.compile(
-		"(\\S*)\\.contains(\\(([^))]*)\\).*?=\\s*(\\S*)\\.substring\\(" +
-			"([^\\)]*)\\.length\\(\\)\\))",
+		"(\\S*)\\.contains(\\(([^))]*)\\).*?=\\s*(\\1)\\.substring\\(" +
+			"(\\3)\\.length\\(\\)\\))",
 		Pattern.DOTALL);
 
 }

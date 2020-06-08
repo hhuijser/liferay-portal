@@ -25,11 +25,11 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface InfoItemSelectorTracker {
 
-	public InfoItemSelector getInfoItemSelector(String key);
+	public InfoItemSelector<?> getInfoItemSelector(String key);
 
-	public List<InfoItemSelector> getInfoItemSelectors();
+	public List<InfoItemSelector<?>> getInfoItemSelectors();
 
-	public List<InfoItemSelector> getInfoItemSelectors(String itemClassName);
+	public List<InfoItemSelector<?>> getInfoItemSelectors(String itemClassName);
 
 	public Set<String> getInfoItemSelectorsClassNames();
 

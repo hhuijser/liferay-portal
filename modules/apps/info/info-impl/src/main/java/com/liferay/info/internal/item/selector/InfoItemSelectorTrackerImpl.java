@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 public class InfoItemSelectorTrackerImpl implements InfoItemSelectorTracker {
 
 	@Override
-	public InfoItemSelector getInfoItemSelector(String key) {
+	public InfoItemSelector<?> getInfoItemSelector(String key) {
 		if (Validator.isNull(key)) {
 			return null;
 		}
@@ -47,13 +47,15 @@ public class InfoItemSelectorTrackerImpl implements InfoItemSelectorTracker {
 	}
 
 	@Override
-	public List<InfoItemSelector> getInfoItemSelectors() {
+	public List<InfoItemSelector<?>> getInfoItemSelectors() {
 		return new ArrayList<>(_infoItemSelectors.values());
 	}
 
 	@Override
-	public List<InfoItemSelector> getInfoItemSelectors(String itemClassName) {
-		List<InfoItemSelector> infoItemSelectors =
+	public List<InfoItemSelector<?>> getInfoItemSelectors(
+		String itemClassName) {
+
+		List<InfoItemSelector<?>> infoItemSelectors =
 			_itemClassNameInfoItemSelectors.get(itemClassName);
 
 		if (infoItemSelectors != null) {
@@ -72,10 +74,10 @@ public class InfoItemSelectorTrackerImpl implements InfoItemSelectorTracker {
 		cardinality = ReferenceCardinality.MULTIPLE,
 		policy = ReferencePolicy.DYNAMIC
 	)
-	protected void setInfoItemSelector(InfoItemSelector infoItemSelector) {
+	protected void setInfoItemSelector(InfoItemSelector<?> infoItemSelector) {
 		_infoItemSelectors.put(infoItemSelector.getKey(), infoItemSelector);
 
-		List<InfoItemSelector> itemClassInfoItemSelectors =
+		List<InfoItemSelector<?>> itemClassInfoItemSelectors =
 			_itemClassNameInfoItemSelectors.computeIfAbsent(
 				GenericUtil.getGenericClassName(infoItemSelector),
 				itemClass -> new ArrayList<>());
@@ -83,10 +85,10 @@ public class InfoItemSelectorTrackerImpl implements InfoItemSelectorTracker {
 		itemClassInfoItemSelectors.add(infoItemSelector);
 	}
 
-	protected void unsetInfoItemSelector(InfoItemSelector infoItemSelector) {
+	protected void unsetInfoItemSelector(InfoItemSelector<?> infoItemSelector) {
 		_infoItemSelectors.remove(infoItemSelector.getKey());
 
-		List<InfoItemSelector> itemClassInfoItemSelectors =
+		List<InfoItemSelector<?>> itemClassInfoItemSelectors =
 			_itemClassNameInfoItemSelectors.get(
 				GenericUtil.getGenericClassName(infoItemSelector));
 
@@ -95,9 +97,9 @@ public class InfoItemSelectorTrackerImpl implements InfoItemSelectorTracker {
 		}
 	}
 
-	private final Map<String, InfoItemSelector> _infoItemSelectors =
+	private final Map<String, InfoItemSelector<?>> _infoItemSelectors =
 		new ConcurrentHashMap<>();
-	private final Map<String, List<InfoItemSelector>>
+	private final Map<String, List<InfoItemSelector<?>>>
 		_itemClassNameInfoItemSelectors = new ConcurrentHashMap<>();
 
 }

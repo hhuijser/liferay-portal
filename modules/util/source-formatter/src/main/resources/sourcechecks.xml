@@ -379,6 +379,10 @@
 		<check name="JavaStagedModelDataHandlerCheck" />
 		<check name="JavaStringBundlerConcatCheck" />
 		<check name="JavaStringBundlerInitialCapacityCheck" />
+		<check name="JavaStringStartsWithSubstringCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks for uses of `contains` followed by `substring`, which should be `startsWith` instead" />
+		</check>
 		<check name="JavaSwitchCheck" />
 		<check name="JavaSystemEventAnnotationCheck" />
 		<check name="JavaTaglibMethodCheck" />

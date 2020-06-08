@@ -91,6 +91,7 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 		_irrelevantAccount = _accountResource.postAccount(_randomAccount());
 	}
 
+	@After
 	@Override
 	public void tearDown() throws Exception {
 		super.tearDown();

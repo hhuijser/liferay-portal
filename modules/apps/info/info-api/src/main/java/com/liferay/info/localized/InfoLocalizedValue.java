@@ -87,7 +87,7 @@ public interface InfoLocalizedValue<T> {
 	}
 
 	public static class BuilderInfoLocalizedValue<T>
-		implements InfoLocalizedValue {
+		implements InfoLocalizedValue<T> {
 
 		@Override
 		public boolean equals(Object obj) {

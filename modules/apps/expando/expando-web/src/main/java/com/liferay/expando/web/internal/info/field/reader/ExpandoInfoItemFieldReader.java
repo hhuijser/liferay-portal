@@ -62,12 +62,13 @@ public class ExpandoInfoItemFieldReader
 	public InfoField getField() {
 		InfoFieldType fieldType = TextInfoFieldType.INSTANCE;
 
-		InfoLocalizedValue labelInfoLocalizedValue = InfoLocalizedValue.builder(
-		).addValue(
-			LocaleUtil.getDefault(), _attributeName
-		).defaultLocale(
-			LocaleUtil.getDefault()
-		).build();
+		InfoLocalizedValue<String> labelInfoLocalizedValue =
+			InfoLocalizedValue.builder(
+			).addValue(
+				LocaleUtil.getDefault(), _attributeName
+			).defaultLocale(
+				LocaleUtil.getDefault()
+			).build();
 
 		return new InfoField(fieldType, labelInfoLocalizedValue, getName());
 	}

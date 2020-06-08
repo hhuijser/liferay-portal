@@ -16,8 +16,11 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaParameter;
+import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -86,6 +89,14 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 			}
 		}
 		else if (matcher.find()) {
+			JavaSignature signature = javaTerm.getSignature();
+
+			List<JavaParameter> parameters = signature.getParameters();
+
+			if (!parameters.isEmpty()) {
+				return;
+			}
+
 			addMessage(
 				fileName,
 				StringBundler.concat(

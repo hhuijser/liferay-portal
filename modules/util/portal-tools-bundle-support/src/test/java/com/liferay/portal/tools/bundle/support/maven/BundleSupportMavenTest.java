@@ -48,11 +48,13 @@ public class BundleSupportMavenTest extends BundleSupportCommandsTest {
 
 	@Ignore
 	@Override
+	@Test
 	public void testDistBundleTar() throws Exception {
 	}
 
 	@Ignore
 	@Override
+	@Test
 	public void testDistBundleZip() throws Exception {
 	}
 

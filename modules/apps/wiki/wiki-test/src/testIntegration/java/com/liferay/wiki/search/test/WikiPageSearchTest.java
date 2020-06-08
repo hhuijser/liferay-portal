@@ -68,30 +68,37 @@ public class WikiPageSearchTest extends BaseSearchTestCase {
 	}
 
 	@Override
+	@Test
 	public void testLocalizedSearch() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchByDDMStructureField() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchByKeywordsInsideParentBaseModel() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchMyEntries() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchRecentEntries() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchStatus() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchWithinDDMStructure() throws Exception {
 	}
 

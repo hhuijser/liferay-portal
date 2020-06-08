@@ -219,7 +219,7 @@ public class AccountRoleLocalServiceTest {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		ServiceRegistration<ModelListener> serviceRegistration =
+		ServiceRegistration<ModelListener<UserGroupRole>> serviceRegistration =
 			bundleContext.registerService(
 				ModelListener.class,
 				new BaseModelListener<UserGroupRole>() {

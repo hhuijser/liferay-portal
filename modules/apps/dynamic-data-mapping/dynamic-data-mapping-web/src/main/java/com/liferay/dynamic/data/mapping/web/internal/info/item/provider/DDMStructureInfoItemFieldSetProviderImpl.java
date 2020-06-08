@@ -73,7 +73,7 @@ public class DDMStructureInfoItemFieldSetProviderImpl
 
 				LocalizedValue label = ddmFormField.getLabel();
 
-				InfoLocalizedValue labelInfoLocalizedValue =
+				InfoLocalizedValue<String> labelInfoLocalizedValue =
 					InfoLocalizedValue.builder(
 					).addValues(
 						label.getValues()

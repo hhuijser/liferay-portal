@@ -54,18 +54,24 @@ public class AssetEntryInfoDisplayFieldProviderImpl
 			AssetEntry assetEntry = assetRendererFactory.getAssetEntry(
 				className, classPK);
 
-			List<InfoDisplayContributorField> infoDisplayContributorFields =
+			List<InfoDisplayContributorField<?>> infoDisplayContributorFields =
 				_infoDisplayContributorFieldTracker.
 					getInfoDisplayContributorFields(AssetEntry.class.getName());
 
-			for (InfoDisplayContributorField infoDisplayContributorField :
+			for (InfoDisplayContributorField<?> infoDisplayContributorField :
 					infoDisplayContributorFields) {
 
-				Object fieldValue = infoDisplayContributorField.getValue(
-					assetEntry, locale);
+				InfoDisplayContributorField<AssetEntry>
+					assetEntryInfoDisplayContributorField =
+						(InfoDisplayContributorField<AssetEntry>)
+							infoDisplayContributorField;
+
+				Object fieldValue =
+					assetEntryInfoDisplayContributorField.getValue(
+						assetEntry, locale);
 
 				infoDisplayFieldsValues.putIfAbsent(
-					infoDisplayContributorField.getKey(), fieldValue);
+					assetEntryInfoDisplayContributorField.getKey(), fieldValue);
 			}
 		}
 		catch (PortalException portalException) {

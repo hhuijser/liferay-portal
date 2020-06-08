@@ -37,7 +37,7 @@ public class InfoDisplayContributorFieldTrackerImpl
 	implements InfoDisplayContributorFieldTracker {
 
 	@Override
-	public List<InfoDisplayContributorField> getInfoDisplayContributorFields(
+	public List<InfoDisplayContributorField<?>> getInfoDisplayContributorFields(
 		String className) {
 
 		if (Validator.isNull(className)) {
@@ -48,10 +48,10 @@ public class InfoDisplayContributorFieldTrackerImpl
 	}
 
 	@Override
-	public List<InfoDisplayContributorField> getInfoDisplayContributorFields(
+	public List<InfoDisplayContributorField<?>> getInfoDisplayContributorFields(
 		String... classNames) {
 
-		List<InfoDisplayContributorField> infoDisplayContributorFields =
+		List<InfoDisplayContributorField<?>> infoDisplayContributorFields =
 			new ArrayList<>();
 
 		for (String className : classNames) {
@@ -67,7 +67,7 @@ public class InfoDisplayContributorFieldTrackerImpl
 		policy = ReferencePolicy.DYNAMIC
 	)
 	protected void setInfoDisplayField(
-		InfoDisplayContributorField infoDisplayContributorField,
+		InfoDisplayContributorField<?> infoDisplayContributorField,
 		Map<String, Object> properties) {
 
 		String className = (String)properties.get("model.class.name");
@@ -76,7 +76,7 @@ public class InfoDisplayContributorFieldTrackerImpl
 			return;
 		}
 
-		List<InfoDisplayContributorField> infoDisplayContributorFields =
+		List<InfoDisplayContributorField<?>> infoDisplayContributorFields =
 			_itemClassInfoDisplayContributorFields.computeIfAbsent(
 				className, itemClass -> new ArrayList<>());
 
@@ -84,7 +84,7 @@ public class InfoDisplayContributorFieldTrackerImpl
 	}
 
 	protected void unsetInfoDisplayField(
-		InfoDisplayContributorField infoDisplayContributorField,
+		InfoDisplayContributorField<?> infoDisplayContributorField,
 		Map<String, Object> properties) {
 
 		String className = (String)properties.get("model.class.name");
@@ -93,7 +93,7 @@ public class InfoDisplayContributorFieldTrackerImpl
 			return;
 		}
 
-		List<InfoDisplayContributorField> infoDisplayContributorFields =
+		List<InfoDisplayContributorField<?>> infoDisplayContributorFields =
 			_itemClassInfoDisplayContributorFields.get(className);
 
 		if (infoDisplayContributorFields != null) {
@@ -101,7 +101,7 @@ public class InfoDisplayContributorFieldTrackerImpl
 		}
 	}
 
-	private final Map<String, List<InfoDisplayContributorField>>
+	private final Map<String, List<InfoDisplayContributorField<?>>>
 		_itemClassInfoDisplayContributorFields = new ConcurrentHashMap<>();
 
 }

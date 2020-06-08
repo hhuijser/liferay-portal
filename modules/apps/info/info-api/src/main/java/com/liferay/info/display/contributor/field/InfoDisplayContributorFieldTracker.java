@@ -24,10 +24,10 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface InfoDisplayContributorFieldTracker {
 
-	public List<InfoDisplayContributorField> getInfoDisplayContributorFields(
+	public List<InfoDisplayContributorField<?>> getInfoDisplayContributorFields(
 		String className);
 
-	public List<InfoDisplayContributorField> getInfoDisplayContributorFields(
+	public List<InfoDisplayContributorField<?>> getInfoDisplayContributorFields(
 		String... classNames);
 
 }

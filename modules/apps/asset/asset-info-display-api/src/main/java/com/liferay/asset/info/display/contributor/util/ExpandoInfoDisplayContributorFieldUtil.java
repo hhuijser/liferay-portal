@@ -32,10 +32,10 @@ import java.util.List;
 @Deprecated
 public class ExpandoInfoDisplayContributorFieldUtil {
 
-	public static List<InfoDisplayContributorField>
+	public static List<InfoDisplayContributorField<?>>
 		getInfoDisplayContributorFields(String className) {
 
-		List<InfoDisplayContributorField> infoDisplayContributorFields =
+		List<InfoDisplayContributorField<?>> infoDisplayContributorFields =
 			new ArrayList<>();
 
 		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(

@@ -29,7 +29,7 @@ import java.util.Locale;
 public class ExpandoInfoDisplayContributorField
 	extends com.liferay.info.display.contributor.field.
 				ExpandoInfoDisplayContributorField
-	implements InfoDisplayContributorField {
+	implements InfoDisplayContributorField<Object> {
 
 	public ExpandoInfoDisplayContributorField(
 		String attributeName, ExpandoBridge expandoBridge) {

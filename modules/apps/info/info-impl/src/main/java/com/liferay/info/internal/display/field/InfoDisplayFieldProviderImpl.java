@@ -49,11 +49,11 @@ public class InfoDisplayFieldProviderImpl implements InfoDisplayFieldProvider {
 
 		Set<InfoDisplayField> infoDisplayFields = new LinkedHashSet<>();
 
-		List<InfoDisplayContributorField> infoDisplayContributorFields =
+		List<InfoDisplayContributorField<?>> infoDisplayContributorFields =
 			_infoDisplayContributorFieldTracker.getInfoDisplayContributorFields(
 				classNames);
 
-		for (InfoDisplayContributorField infoDisplayContributorField :
+		for (InfoDisplayContributorField<?> infoDisplayContributorField :
 				infoDisplayContributorFields) {
 
 			InfoDisplayContributorFieldType infoDisplayContributorFieldType =
@@ -76,17 +76,22 @@ public class InfoDisplayFieldProviderImpl implements InfoDisplayFieldProvider {
 
 		Map<String, Object> infoDisplayFieldsValues = new HashMap<>();
 
-		List<InfoDisplayContributorField> infoDisplayContributorFields =
+		List<InfoDisplayContributorField<?>> infoDisplayContributorFields =
 			_infoDisplayContributorFieldTracker.getInfoDisplayContributorFields(
 				className);
 
-		for (InfoDisplayContributorField infoDisplayContributorField :
+		for (InfoDisplayContributorField<?> infoDisplayContributorField :
 				infoDisplayContributorFields) {
 
-			InfoDisplayContributorFieldType infoDisplayContributorFieldType =
-				infoDisplayContributorField.getType();
+			InfoDisplayContributorField<Object>
+				objectInfoDisplayContributorField =
+					(InfoDisplayContributorField<Object>)
+						infoDisplayContributorField;
 
-			Object fieldValue = infoDisplayContributorField.getValue(
+			InfoDisplayContributorFieldType infoDisplayContributorFieldType =
+				objectInfoDisplayContributorField.getType();
+
+			Object fieldValue = objectInfoDisplayContributorField.getValue(
 				displayObject, locale);
 
 			ServiceContext serviceContext =
@@ -107,7 +112,7 @@ public class InfoDisplayFieldProviderImpl implements InfoDisplayFieldProvider {
 			}
 
 			infoDisplayFieldsValues.putIfAbsent(
-				infoDisplayContributorField.getKey(), fieldValue);
+				objectInfoDisplayContributorField.getKey(), fieldValue);
 		}
 
 		return infoDisplayFieldsValues;

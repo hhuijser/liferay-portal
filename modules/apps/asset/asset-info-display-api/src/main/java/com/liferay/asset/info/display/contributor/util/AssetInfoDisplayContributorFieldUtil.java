@@ -35,10 +35,10 @@ import org.osgi.framework.FrameworkUtil;
 @Deprecated
 public class AssetInfoDisplayContributorFieldUtil {
 
-	public static List<InfoDisplayContributorField>
+	public static List<InfoDisplayContributorField<?>>
 		getInfoDisplayContributorFields(String className) {
 
-		List<InfoDisplayContributorField> infoDisplayContributorFields =
+		List<InfoDisplayContributorField<?>> infoDisplayContributorFields =
 			Optional.ofNullable(
 				ListUtil.copy(_serviceTrackerMap.getService(className))
 			).orElse(
@@ -53,7 +53,7 @@ public class AssetInfoDisplayContributorFieldUtil {
 	}
 
 	private static final ServiceTrackerMap
-		<String, List<InfoDisplayContributorField>> _serviceTrackerMap;
+		<String, List<InfoDisplayContributorField<?>>> _serviceTrackerMap;
 
 	static {
 		Bundle bundle = FrameworkUtil.getBundle(
@@ -62,7 +62,9 @@ public class AssetInfoDisplayContributorFieldUtil {
 		BundleContext bundleContext = bundle.getBundleContext();
 
 		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
-			bundleContext, InfoDisplayContributorField.class,
+			bundleContext,
+			(Class<InfoDisplayContributorField<?>>)
+				(Class<?>)InfoDisplayContributorField.class,
 			"(model.class.name=*)",
 			(serviceReference, emitter) -> emitter.emit(
 				(String)serviceReference.getProperty("model.class.name")));

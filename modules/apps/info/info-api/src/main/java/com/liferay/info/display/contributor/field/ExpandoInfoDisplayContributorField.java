@@ -42,7 +42,7 @@ import java.util.Map;
  * @author Pavel Savinov
  */
 public class ExpandoInfoDisplayContributorField
-	implements InfoDisplayContributorField {
+	implements InfoDisplayContributorField<Object> {
 
 	public ExpandoInfoDisplayContributorField(
 		String attributeName, ExpandoBridge expandoBridge) {

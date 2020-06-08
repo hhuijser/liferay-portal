@@ -43,18 +43,20 @@ public class ItemSelectorReturnTypeResolverHandlerImpl
 	implements ItemSelectorReturnTypeResolverHandler {
 
 	@Override
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
-		Class<? extends ItemSelectorReturnType> itemSelectorReturnTypeClass,
-		Class<?> modelClass) {
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver(
+			Class<? extends ItemSelectorReturnType> itemSelectorReturnTypeClass,
+			Class<?> modelClass) {
 
 		return _serviceTrackerMap.getService(
 			_getKey(itemSelectorReturnTypeClass, modelClass));
 	}
 
 	@Override
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
-		ItemSelectorCriterion itemSelectorCriterion,
-		ItemSelectorView<?> itemSelectorView, Class<?> modelClass) {
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver(
+			ItemSelectorCriterion itemSelectorCriterion,
+			ItemSelectorView<?> itemSelectorView, Class<?> modelClass) {
 
 		ItemSelectorReturnType itemSelectorReturnType =
 			getFirstAvailableItemSelectorReturnType(
@@ -67,8 +69,9 @@ public class ItemSelectorReturnTypeResolverHandlerImpl
 	}
 
 	@Override
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
-		String itemSelectorReturnTypeClassName, String modelClassName) {
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver(
+			String itemSelectorReturnTypeClassName, String modelClassName) {
 
 		return _serviceTrackerMap.getService(
 			_getKey(itemSelectorReturnTypeClassName, modelClassName));
@@ -86,7 +89,10 @@ public class ItemSelectorReturnTypeResolverHandlerImpl
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ItemSelectorReturnTypeResolver.class, null,
+			bundleContext,
+			(Class<ItemSelectorReturnTypeResolver<?, ?>>)
+				(Class<?>)ItemSelectorReturnTypeResolver.class,
+			null,
 			new ItemSelectorReturnTypeResolverServiceReferenceMapper(
 				bundleContext));
 	}
@@ -134,12 +140,12 @@ public class ItemSelectorReturnTypeResolverHandlerImpl
 
 	private ItemSelectorViewReturnTypeProviderHandler
 		_itemSelectorViewReturnTypeProviderHandler;
-	private ServiceTrackerMap<String, ItemSelectorReturnTypeResolver>
+	private ServiceTrackerMap<String, ItemSelectorReturnTypeResolver<?, ?>>
 		_serviceTrackerMap;
 
 	private class ItemSelectorReturnTypeResolverServiceReferenceMapper
 		implements ServiceReferenceMapper
-			<String, ItemSelectorReturnTypeResolver> {
+			<String, ItemSelectorReturnTypeResolver<?, ?>> {
 
 		public ItemSelectorReturnTypeResolverServiceReferenceMapper(
 			BundleContext bundleContext) {
@@ -149,11 +155,13 @@ public class ItemSelectorReturnTypeResolverHandlerImpl
 
 		@Override
 		public void map(
-			ServiceReference<ItemSelectorReturnTypeResolver> serviceReference,
+			ServiceReference<ItemSelectorReturnTypeResolver<?, ?>>
+				serviceReference,
 			Emitter<String> emitter) {
 
-			ItemSelectorReturnTypeResolver itemSelectorReturnTypeResolver =
-				_bundleContext.getService(serviceReference);
+			ItemSelectorReturnTypeResolver<?, ?>
+				itemSelectorReturnTypeResolver = _bundleContext.getService(
+					serviceReference);
 
 			try {
 				emitter.emit(

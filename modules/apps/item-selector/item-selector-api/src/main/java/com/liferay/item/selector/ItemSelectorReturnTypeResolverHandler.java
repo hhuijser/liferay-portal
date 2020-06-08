@@ -19,15 +19,18 @@ package com.liferay.item.selector;
  */
 public interface ItemSelectorReturnTypeResolverHandler {
 
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
-		Class<? extends ItemSelectorReturnType> itemSelectorReturnTypeClass,
-		Class<?> modelClass);
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver(
+			Class<? extends ItemSelectorReturnType> itemSelectorReturnTypeClass,
+			Class<?> modelClass);
 
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
-		ItemSelectorCriterion itemSelectorCriterion,
-		ItemSelectorView<?> itemSelectorView, Class<?> modelClass);
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver(
+			ItemSelectorCriterion itemSelectorCriterion,
+			ItemSelectorView<?> itemSelectorView, Class<?> modelClass);
 
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver(
-		String itemSelectorReturnTypeClassName, String modelClassName);
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver(
+			String itemSelectorReturnTypeClassName, String modelClassName);
 
 }

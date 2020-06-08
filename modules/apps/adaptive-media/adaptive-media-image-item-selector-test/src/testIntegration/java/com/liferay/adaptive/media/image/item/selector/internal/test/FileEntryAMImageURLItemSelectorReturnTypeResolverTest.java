@@ -660,6 +660,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 	@Inject(
 		filter = "component.name=*.FileEntryAMImageURLItemSelectorReturnTypeResolver"
 	)
-	private ItemSelectorReturnTypeResolver _itemSelectorReturnTypeResolver;
+	private ItemSelectorReturnTypeResolver<?, FileEntry>
+		_itemSelectorReturnTypeResolver;
 
 }

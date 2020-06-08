@@ -73,7 +73,7 @@ public class ItemSelectorReturnTypeResolverHandlerTest {
 			itemSelectorViewServiceRegistration = registerItemSelectorView(
 				testItemSelectorView, "test-view");
 
-		ServiceRegistration<ItemSelectorReturnTypeResolver>
+		ServiceRegistration<ItemSelectorReturnTypeResolver<?, ?>>
 			itemSelectorReturnTypeResolverServiceRegistration =
 				registerItemSelectorReturnTypeResolver(
 					new TestItemSelectorReturnTypeResolver(), 50);
@@ -98,11 +98,12 @@ public class ItemSelectorReturnTypeResolverHandlerTest {
 			testItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 				new TestItemSelectorReturnType());
 
-			ItemSelectorReturnTypeResolver itemSelectorReturnTypeResolver =
-				_itemSelectorReturnTypeResolverHandler.
-					getItemSelectorReturnTypeResolver(
-						testItemSelectorCriterion, testItemSelectorView,
-						String.class);
+			ItemSelectorReturnTypeResolver<?, ?>
+				itemSelectorReturnTypeResolver =
+					_itemSelectorReturnTypeResolverHandler.
+						getItemSelectorReturnTypeResolver(
+							testItemSelectorCriterion, testItemSelectorView,
+							String.class);
 
 			Assert.assertTrue(
 				itemSelectorReturnTypeResolver instanceof
@@ -115,15 +116,15 @@ public class ItemSelectorReturnTypeResolverHandlerTest {
 
 	@Test
 	public void testItemSelectorReturnTypeResolverIsReplacedByServiceRanking() {
-		ServiceRegistration<ItemSelectorReturnTypeResolver>
+		ServiceRegistration<ItemSelectorReturnTypeResolver<?, ?>>
 			itemSelectorReturnTypeResolverServiceRegistration1 =
 				registerItemSelectorReturnTypeResolver(
 					new TestItemSelectorReturnTypeResolver1(), 100);
-		ServiceRegistration<ItemSelectorReturnTypeResolver>
+		ServiceRegistration<ItemSelectorReturnTypeResolver<?, ?>>
 			itemSelectorReturnTypeResolverServiceRegistration2 =
 				registerItemSelectorReturnTypeResolver(
 					new TestItemSelectorReturnTypeResolver2(), 200);
-		ServiceRegistration<ItemSelectorReturnTypeResolver>
+		ServiceRegistration<ItemSelectorReturnTypeResolver<?, ?>>
 			itemSelectorReturnTypeResolverServiceRegistration3 =
 				registerItemSelectorReturnTypeResolver(
 					new TestItemSelectorReturnTypeResolver3(), 50);
@@ -139,10 +140,11 @@ public class ItemSelectorReturnTypeResolverHandlerTest {
 			itemSelectorReturnTypeResolverServiceRegistration3);
 
 		try {
-			ItemSelectorReturnTypeResolver itemSelectorReturnTypeResolver =
-				_itemSelectorReturnTypeResolverHandler.
-					getItemSelectorReturnTypeResolver(
-						TestItemSelectorReturnType.class, String.class);
+			ItemSelectorReturnTypeResolver<?, ?>
+				itemSelectorReturnTypeResolver =
+					_itemSelectorReturnTypeResolverHandler.
+						getItemSelectorReturnTypeResolver(
+							TestItemSelectorReturnType.class, String.class);
 
 			Assert.assertTrue(
 				itemSelectorReturnTypeResolver instanceof
@@ -183,15 +185,15 @@ public class ItemSelectorReturnTypeResolverHandlerTest {
 
 	@Test
 	public void testItemSelectorReturnTypeResolverIsReturnedByServiceRanking() {
-		ServiceRegistration<ItemSelectorReturnTypeResolver>
+		ServiceRegistration<ItemSelectorReturnTypeResolver<?, ?>>
 			itemSelectorReturnTypeResolverServiceRegistration1 =
 				registerItemSelectorReturnTypeResolver(
 					new TestItemSelectorReturnTypeResolver1(), 100);
-		ServiceRegistration<ItemSelectorReturnTypeResolver>
+		ServiceRegistration<ItemSelectorReturnTypeResolver<?, ?>>
 			itemSelectorReturnTypeResolverServiceRegistration2 =
 				registerItemSelectorReturnTypeResolver(
 					new TestItemSelectorReturnTypeResolver2(), 200);
-		ServiceRegistration<ItemSelectorReturnTypeResolver>
+		ServiceRegistration<ItemSelectorReturnTypeResolver<?, ?>>
 			itemSelectorReturnTypeResolverServiceRegistration3 =
 				registerItemSelectorReturnTypeResolver(
 					new TestItemSelectorReturnTypeResolver3(), 50);
@@ -207,10 +209,11 @@ public class ItemSelectorReturnTypeResolverHandlerTest {
 			itemSelectorReturnTypeResolverServiceRegistration3);
 
 		try {
-			ItemSelectorReturnTypeResolver itemSelectorReturnTypeResolver =
-				_itemSelectorReturnTypeResolverHandler.
-					getItemSelectorReturnTypeResolver(
-						TestItemSelectorReturnType.class, String.class);
+			ItemSelectorReturnTypeResolver<?, ?>
+				itemSelectorReturnTypeResolver =
+					_itemSelectorReturnTypeResolverHandler.
+						getItemSelectorReturnTypeResolver(
+							TestItemSelectorReturnType.class, String.class);
 
 			Assert.assertTrue(
 				itemSelectorReturnTypeResolver instanceof
@@ -221,9 +224,9 @@ public class ItemSelectorReturnTypeResolverHandlerTest {
 		}
 	}
 
-	protected ServiceRegistration<ItemSelectorReturnTypeResolver>
+	protected ServiceRegistration<ItemSelectorReturnTypeResolver<?, ?>>
 		registerItemSelectorReturnTypeResolver(
-			ItemSelectorReturnTypeResolver itemSelectorReturnTypeResolver,
+			ItemSelectorReturnTypeResolver<?, ?> itemSelectorReturnTypeResolver,
 			int serviceRanking) {
 
 		Dictionary<String, Object> properties = new Hashtable<>();
@@ -231,7 +234,8 @@ public class ItemSelectorReturnTypeResolverHandlerTest {
 		properties.put("service.ranking", serviceRanking);
 
 		return _bundleContext.registerService(
-			ItemSelectorReturnTypeResolver.class,
+			(Class<ItemSelectorReturnTypeResolver<?, ?>>)
+				(Class<?>)ItemSelectorReturnTypeResolver.class,
 			itemSelectorReturnTypeResolver, properties);
 	}
 

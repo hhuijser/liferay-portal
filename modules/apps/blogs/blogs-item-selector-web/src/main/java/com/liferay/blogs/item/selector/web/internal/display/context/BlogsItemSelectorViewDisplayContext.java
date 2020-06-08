@@ -85,7 +85,9 @@ public class BlogsItemSelectorViewDisplayContext {
 		return _itemSelectedEventName;
 	}
 
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver() {
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver() {
+
 		return _itemSelectorReturnTypeResolverHandler.
 			getItemSelectorReturnTypeResolver(
 				_blogsItemSelectorCriterion, _blogsItemSelectorView,

@@ -52,7 +52,9 @@ public class ItemSelectorUploadViewDisplayContext {
 		return _itemSelectedEventName;
 	}
 
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver() {
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver() {
+
 		return _itemSelectorReturnTypeResolverHandler.
 			getItemSelectorReturnTypeResolver(
 				_uploadItemSelectorCriterion, _itemSelectorUploadView,

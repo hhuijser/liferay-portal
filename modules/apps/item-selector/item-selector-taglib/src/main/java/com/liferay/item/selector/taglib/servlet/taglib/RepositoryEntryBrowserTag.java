@@ -63,7 +63,9 @@ public class RepositoryEntryBrowserTag extends IncludeTag {
 		return _itemSelectedEventName;
 	}
 
-	public ItemSelectorReturnTypeResolver getItemSelectorReturnTypeResolver() {
+	public ItemSelectorReturnTypeResolver<?, ?>
+		getItemSelectorReturnTypeResolver() {
+
 		return _itemSelectorReturnTypeResolver;
 	}
 
@@ -140,7 +142,7 @@ public class RepositoryEntryBrowserTag extends IncludeTag {
 	}
 
 	public void setItemSelectorReturnTypeResolver(
-		ItemSelectorReturnTypeResolver itemSelectorReturnTypeResolver) {
+		ItemSelectorReturnTypeResolver<?, ?> itemSelectorReturnTypeResolver) {
 
 		_itemSelectorReturnTypeResolver = itemSelectorReturnTypeResolver;
 	}
@@ -336,7 +338,8 @@ public class RepositoryEntryBrowserTag extends IncludeTag {
 	private String _emptyResultsMessage;
 	private List<String> _extensions = new ArrayList<>();
 	private String _itemSelectedEventName;
-	private ItemSelectorReturnTypeResolver _itemSelectorReturnTypeResolver;
+	private ItemSelectorReturnTypeResolver<?, ?>
+		_itemSelectorReturnTypeResolver;
 	private long _maxFileSize =
 		UploadServletRequestConfigurationHelperUtil.getMaxSize();
 	private PortletURL _portletURL;

@@ -41,14 +41,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FragmentRendererUtil {
 
-	public static List<InfoItemRenderer> getInfoItemRenderers(
+	public static List<InfoItemRenderer<?>> getInfoItemRenderers(
 		Class<?> clazz, InfoItemRendererTracker infoItemRendererTracker) {
 
 		Class<?>[] interfaces = clazz.getInterfaces();
 
 		if (interfaces.length != 0) {
 			for (Class<?> anInterface : interfaces) {
-				List<InfoItemRenderer> infoItemRenderers =
+				List<InfoItemRenderer<?>> infoItemRenderers =
 					infoItemRendererTracker.getInfoItemRenderers(
 						anInterface.getName());
 

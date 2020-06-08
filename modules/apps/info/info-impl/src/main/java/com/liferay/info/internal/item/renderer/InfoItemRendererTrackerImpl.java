@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Deactivate;
 public class InfoItemRendererTrackerImpl implements InfoItemRendererTracker {
 
 	@Override
-	public InfoItemRenderer getInfoItemRenderer(String key) {
+	public InfoItemRenderer<?> getInfoItemRenderer(String key) {
 		if (Validator.isNull(key)) {
 			return null;
 		}
@@ -48,13 +48,15 @@ public class InfoItemRendererTrackerImpl implements InfoItemRendererTracker {
 	}
 
 	@Override
-	public List<InfoItemRenderer> getInfoItemRenderers() {
+	public List<InfoItemRenderer<?>> getInfoItemRenderers() {
 		return new ArrayList<>(_infoItemRenderersServiceTrackerMap.values());
 	}
 
 	@Override
-	public List<InfoItemRenderer> getInfoItemRenderers(String itemClassName) {
-		List<InfoItemRenderer> infoItemRenderers =
+	public List<InfoItemRenderer<?>> getInfoItemRenderers(
+		String itemClassName) {
+
+		List<InfoItemRenderer<?>> infoItemRenderers =
 			_itemClassNameInfoItemRendererServiceTrackerMap.getService(
 				itemClassName);
 
@@ -69,7 +71,9 @@ public class InfoItemRendererTrackerImpl implements InfoItemRendererTracker {
 	protected void activate(BundleContext bundleContext) {
 		_itemClassNameInfoItemRendererServiceTrackerMap =
 			ServiceTrackerMapFactory.openMultiValueMap(
-				bundleContext, InfoItemRenderer.class, null,
+				bundleContext,
+				(Class<InfoItemRenderer<?>>)(Class<?>)InfoItemRenderer.class,
+				null,
 				ServiceReferenceMapperFactory.create(
 					bundleContext,
 					(infoItemRenderer, emitter) -> emitter.emit(
@@ -80,7 +84,9 @@ public class InfoItemRendererTrackerImpl implements InfoItemRendererTracker {
 
 		_infoItemRenderersServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, InfoItemRenderer.class, null,
+				bundleContext,
+				(Class<InfoItemRenderer<?>>)(Class<?>)InfoItemRenderer.class,
+				null,
 				ServiceReferenceMapperFactory.createFromFunction(
 					bundleContext, InfoItemRenderer::getKey));
 	}
@@ -90,9 +96,9 @@ public class InfoItemRendererTrackerImpl implements InfoItemRendererTracker {
 		_itemClassNameInfoItemRendererServiceTrackerMap.close();
 	}
 
-	private ServiceTrackerMap<String, InfoItemRenderer>
+	private ServiceTrackerMap<String, InfoItemRenderer<?>>
 		_infoItemRenderersServiceTrackerMap;
-	private ServiceTrackerMap<String, List<InfoItemRenderer>>
+	private ServiceTrackerMap<String, List<InfoItemRenderer<?>>>
 		_itemClassNameInfoItemRendererServiceTrackerMap;
 
 }

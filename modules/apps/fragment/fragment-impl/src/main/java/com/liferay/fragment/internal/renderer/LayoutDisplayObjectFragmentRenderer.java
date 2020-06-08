@@ -88,7 +88,7 @@ public class LayoutDisplayObjectFragmentRenderer implements FragmentRenderer {
 			return;
 		}
 
-		InfoItemRenderer infoItemRenderer = _getInfoItemRenderer(
+		InfoItemRenderer<Object> infoItemRenderer = _getInfoItemRenderer(
 			displayObject.getClass());
 
 		if (infoItemRenderer == null) {
@@ -118,8 +118,10 @@ public class LayoutDisplayObjectFragmentRenderer implements FragmentRenderer {
 		return infoDisplayObjectProvider.getDisplayObject();
 	}
 
-	private InfoItemRenderer _getInfoItemRenderer(Class<?> displayObjectClass) {
-		List<InfoItemRenderer> infoItemRenderers =
+	private InfoItemRenderer<Object> _getInfoItemRenderer(
+		Class<?> displayObjectClass) {
+
+		List<InfoItemRenderer<?>> infoItemRenderers =
 			FragmentRendererUtil.getInfoItemRenderers(
 				displayObjectClass, _infoItemRendererTracker);
 
@@ -127,7 +129,7 @@ public class LayoutDisplayObjectFragmentRenderer implements FragmentRenderer {
 			return null;
 		}
 
-		return infoItemRenderers.get(0);
+		return (InfoItemRenderer<Object>)infoItemRenderers.get(0);
 	}
 
 	@Reference

@@ -41,7 +41,7 @@ public abstract class BlogsEntryBasicListInfoListRenderer
 	implements BasicInfoListRenderer<BlogsEntry> {
 
 	@Override
-	public List<InfoItemRenderer> getAvailableInfoItemRenderers() {
+	public List<InfoItemRenderer<?>> getAvailableInfoItemRenderers() {
 		return infoItemRendererTracker.getInfoItemRenderers(
 			BlogsEntry.class.getName());
 	}

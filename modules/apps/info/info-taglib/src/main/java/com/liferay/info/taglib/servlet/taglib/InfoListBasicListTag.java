@@ -110,7 +110,7 @@ public class InfoListBasicListTag extends IncludeTag {
 			"liferay-info:info-list-grid:templateKey", _templateKey);
 	}
 
-	private InfoItemRenderer _getInfoItemRenderer() {
+	private InfoItemRenderer<?> _getInfoItemRenderer() {
 		InfoItemRendererTracker infoItemRendererTracker =
 			ServletContextUtil.getInfoItemRendererTracker();
 

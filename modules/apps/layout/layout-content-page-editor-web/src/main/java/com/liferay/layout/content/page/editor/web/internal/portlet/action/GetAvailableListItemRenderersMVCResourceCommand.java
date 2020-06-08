@@ -70,13 +70,13 @@ public class GetAvailableListItemRenderersMVCResourceCommand
 		InfoListRenderer infoListRenderer =
 			_infoListRendererTracker.getInfoListRenderer(listStyle);
 
-		List<InfoItemRenderer> infoItemRenderers =
+		List<InfoItemRenderer<?>> infoItemRenderers =
 			infoListRenderer.getAvailableInfoItemRenderers();
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		for (InfoItemRenderer infoItemRenderer : infoItemRenderers) {
+		for (InfoItemRenderer<?> infoItemRenderer : infoItemRenderers) {
 			if (infoItemRenderer instanceof InfoItemTemplatedRenderer) {
 				JSONArray templatesJSONArray =
 					JSONFactoryUtil.createJSONArray();

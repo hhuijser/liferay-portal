@@ -41,7 +41,7 @@ public abstract class JournalArticleBasicListInfoListRenderer
 	implements BasicInfoListRenderer<JournalArticle> {
 
 	@Override
-	public List<InfoItemRenderer> getAvailableInfoItemRenderers() {
+	public List<InfoItemRenderer<?>> getAvailableInfoItemRenderers() {
 		return infoItemRendererTracker.getInfoItemRenderers(
 			JournalArticle.class.getName());
 	}

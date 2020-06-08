@@ -130,8 +130,8 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 		Tuple tuple = _getTuple(
 			displayObject.getClass(), fragmentRendererContext);
 
-		InfoItemRenderer infoItemRenderer = (InfoItemRenderer)tuple.getObject(
-			0);
+		InfoItemRenderer<Object> infoItemRenderer =
+			(InfoItemRenderer<Object>)tuple.getObject(0);
 
 		if (infoItemRenderer == null) {
 			if (FragmentRendererUtil.isEditMode(httpServletRequest)) {
@@ -196,7 +196,7 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 		Class<?> displayObjectClass,
 		FragmentRendererContext fragmentRendererContext) {
 
-		List<InfoItemRenderer> infoItemRenderers =
+		List<InfoItemRenderer<?>> infoItemRenderers =
 			FragmentRendererUtil.getInfoItemRenderers(
 				displayObjectClass, _infoItemRendererTracker);
 
@@ -204,7 +204,8 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 			return null;
 		}
 
-		InfoItemRenderer defaultInfoItemRenderer = infoItemRenderers.get(0);
+		InfoItemRenderer<Object> defaultInfoItemRenderer =
+			(InfoItemRenderer<Object>)infoItemRenderers.get(0);
 
 		JSONObject jsonObject = _getFieldValueJSONObject(
 			fragmentRendererContext);
@@ -224,8 +225,10 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 		String infoItemRendererKey = templateJSONObject.getString(
 			"infoItemRendererKey");
 
-		InfoItemRenderer infoItemRenderer =
-			_infoItemRendererTracker.getInfoItemRenderer(infoItemRendererKey);
+		InfoItemRenderer<Object> infoItemRenderer =
+			(InfoItemRenderer<Object>)
+				_infoItemRendererTracker.getInfoItemRenderer(
+					infoItemRendererKey);
 
 		if (infoItemRenderer != null) {
 			return new Tuple(infoItemRenderer, templateKey);

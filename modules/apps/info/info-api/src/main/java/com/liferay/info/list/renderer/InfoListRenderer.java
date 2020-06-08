@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface InfoListRenderer<T> {
 
-	public default List<InfoItemRenderer> getAvailableInfoItemRenderers() {
+	public default List<InfoItemRenderer<?>> getAvailableInfoItemRenderers() {
 		return Collections.emptyList();
 	}
 

@@ -27,7 +27,7 @@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <liferay-theme:defineObjects />
 
 <%
-InfoItemRenderer infoItemRenderer = (InfoItemRenderer)request.getAttribute("liferay-info:info-list-grid:infoItemRenderer");
+InfoItemRenderer<Object> infoItemRenderer = (InfoItemRenderer<Object>)request.getAttribute("liferay-info:info-list-grid:infoItemRenderer");
 List<Object> infoListObjects = (List<Object>)request.getAttribute("liferay-info:info-list-grid:infoListObjects");
 String templateKey = GetterUtil.getString(request.getAttribute("liferay-info:info-list-grid:templateKey"));
 %>

@@ -41,7 +41,7 @@ public abstract class FileEntryBasicListInfoListRenderer
 	implements BasicInfoListRenderer<FileEntry> {
 
 	@Override
-	public List<InfoItemRenderer> getAvailableInfoItemRenderers() {
+	public List<InfoItemRenderer<?>> getAvailableInfoItemRenderers() {
 		return infoItemRendererTracker.getInfoItemRenderers(
 			FileEntry.class.getName());
 	}

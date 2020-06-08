@@ -86,6 +86,7 @@ public class BatchEngineExportTaskExecutorTest
 		).build();
 	}
 
+	@After
 	@Override
 	public void tearDown() throws Exception {
 		super.tearDown();

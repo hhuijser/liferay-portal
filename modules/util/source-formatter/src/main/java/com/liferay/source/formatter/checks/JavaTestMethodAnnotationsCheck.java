@@ -55,6 +55,7 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 		_checkAnnotationForMethod(
 			fileName, javaTerm, "BeforeClass", "\\bsetUpClass", true);
 		_checkAnnotationForMethod(fileName, javaTerm, "Test", "^.*test", false);
+		_checkAnnotationForMethod(fileName, javaTerm, "Test", "test.*", false);
 
 		return javaTerm.getContent();
 	}
@@ -84,7 +85,7 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 					fileName, "Incorrect method type for '" + methodName + "'");
 			}
 		}
-		else if (matcher.find() && !javaTerm.hasAnnotation("Override")) {
+		else if (matcher.find()) {
 			addMessage(
 				fileName,
 				StringBundler.concat(

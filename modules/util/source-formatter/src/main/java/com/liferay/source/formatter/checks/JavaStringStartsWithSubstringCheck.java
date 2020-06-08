@@ -48,8 +48,6 @@ public class JavaStringStartsWithSubstringCheck extends BaseJavaTermCheck {
 				continue;
 			}
 
-			addMessage(fileName, "startsWith substring", matcher.start(1));
-
 			matcher.appendReplacement(sb, "$1.startsWith$2");
 		}
 

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.Digester;
 public class JavaMD5CacheKeyGeneratorTest
 	extends BaseCacheKeyGeneratorTestCase {
 
+	@Before
 	@Override
 	public void setUp() throws Exception {
 		cacheKeyGenerator = new MessageDigestCacheKeyGenerator(Digester.MD5);

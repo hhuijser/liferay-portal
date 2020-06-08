@@ -20,6 +20,7 @@ package com.liferay.portal.cache.key;
 public class HashCodeHexStringCacheKeyGeneratorTest
 	extends BaseCacheKeyGeneratorTestCase {
 
+	@Before
 	@Override
 	public void setUp() throws Exception {
 		cacheKeyGenerator = new HashCodeHexStringCacheKeyGenerator();

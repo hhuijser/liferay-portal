@@ -27,6 +27,7 @@ import org.junit.Test;
 public class RetrieverWhenNeitherACategoryNorAContextAreSpecifiedInTheConfigTest
 	extends BaseFormNavigatorEntryConfigurationRetrieverTestCase {
 
+	@Before
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

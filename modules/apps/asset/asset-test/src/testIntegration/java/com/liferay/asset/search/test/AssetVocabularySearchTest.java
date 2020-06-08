@@ -47,58 +47,72 @@ public class AssetVocabularySearchTest extends BaseSearchTestCase {
 			PermissionCheckerMethodTestRule.INSTANCE);
 
 	@Override
+	@Test
 	public void testParentBaseModelUserPermissions() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchAttachments() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchBaseModelWithTrash() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchByDDMStructureField() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchByKeywordsInsideParentBaseModel() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchComments() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchCommentsByKeywords() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchExpireAllVersions() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchExpireLatestVersion() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchMyEntries() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchRecentEntries() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchStatus() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchVersions() throws Exception {
 	}
 
 	@Override
+	@Test
 	public void testSearchWithinDDMStructure() throws Exception {
 	}
 

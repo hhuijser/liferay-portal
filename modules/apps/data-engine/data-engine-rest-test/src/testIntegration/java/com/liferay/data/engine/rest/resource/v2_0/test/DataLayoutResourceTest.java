@@ -147,6 +147,7 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testGraphQLGetSiteDataLayoutByContentTypeByDataLayoutKeyNotFound()
 		throws Exception {
 

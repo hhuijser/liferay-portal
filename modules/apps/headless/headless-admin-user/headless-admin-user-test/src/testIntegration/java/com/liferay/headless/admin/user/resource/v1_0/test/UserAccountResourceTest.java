@@ -134,6 +134,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 	}
 
 	@Override
+	@Test
 	public void testGetUserAccountsPageWithPagination() throws Exception {
 		UserAccount userAccount1 = testGetUserAccountsPage_addUserAccount(
 			randomUserAccount());

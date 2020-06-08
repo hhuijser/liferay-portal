@@ -92,6 +92,7 @@ public class DLFileEntrySearchTest extends BaseSearchTestCase {
 			SynchronousDestinationTestRule.INSTANCE);
 
 	@Override
+	@Test
 	public void testLocalizedSearch() throws Exception {
 	}
 
@@ -184,6 +185,7 @@ public class DLFileEntrySearchTest extends BaseSearchTestCase {
 	}
 
 	@Override
+	@Test
 	public void testSearchAttachments() throws Exception {
 	}
 

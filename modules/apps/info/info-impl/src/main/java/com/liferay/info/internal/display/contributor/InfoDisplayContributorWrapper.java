@@ -44,7 +44,7 @@ import java.util.Set;
  * @author Jorge Ferrer
  */
 public class InfoDisplayContributorWrapper
-	implements InfoItemFormProvider, InfoItemObjectProvider {
+	implements InfoItemFormProvider<Object>, InfoItemObjectProvider<Object> {
 
 	public InfoDisplayContributorWrapper(
 		InfoDisplayContributor<Object> infoDisplayContributor) {

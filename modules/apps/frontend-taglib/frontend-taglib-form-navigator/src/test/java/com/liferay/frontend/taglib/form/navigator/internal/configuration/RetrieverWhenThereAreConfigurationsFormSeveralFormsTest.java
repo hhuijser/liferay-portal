@@ -30,6 +30,7 @@ import org.junit.Test;
 public class RetrieverWhenThereAreConfigurationsFormSeveralFormsTest
 	extends BaseFormNavigatorEntryConfigurationRetrieverTestCase {
 
+	@Before
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

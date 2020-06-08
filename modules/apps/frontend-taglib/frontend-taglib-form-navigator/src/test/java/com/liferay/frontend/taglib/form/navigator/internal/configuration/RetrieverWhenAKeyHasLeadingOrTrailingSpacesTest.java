@@ -29,6 +29,7 @@ import org.junit.Test;
 public class RetrieverWhenAKeyHasLeadingOrTrailingSpacesTest
 	extends BaseFormNavigatorEntryConfigurationRetrieverTestCase {
 
+	@Before
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

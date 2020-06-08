@@ -22,6 +22,7 @@ import com.liferay.info.display.contributor.InfoDisplayObjectProvider;
 import com.liferay.layout.list.retriever.DefaultLayoutListRetrieverContext;
 import com.liferay.layout.list.retriever.LayoutListRetriever;
 import com.liferay.layout.list.retriever.LayoutListRetrieverTracker;
+import com.liferay.layout.list.retriever.ListObjectReference;
 import com.liferay.layout.list.retriever.ListObjectReferenceFactory;
 import com.liferay.layout.list.retriever.ListObjectReferenceFactoryTracker;
 import com.liferay.petra.string.StringPool;
@@ -593,8 +594,9 @@ public class FragmentEntryConfigurationParserImpl
 
 			String type = jsonObject.getString("type");
 
-			LayoutListRetriever layoutListRetriever =
-				_layoutListRetrieverTracker.getLayoutListRetriever(type);
+			LayoutListRetriever<?, ListObjectReference> layoutListRetriever =
+				(LayoutListRetriever<?, ListObjectReference>)
+					_layoutListRetrieverTracker.getLayoutListRetriever(type);
 
 			if (layoutListRetriever == null) {
 				return Collections.emptyList();

@@ -188,9 +188,10 @@ public class RenderFragmentLayoutDisplayContext {
 			return Collections.emptyList();
 		}
 
-		LayoutListRetriever layoutListRetriever =
-			_layoutListRetrieverTracker.getLayoutListRetriever(
-				collectionJSONObject.getString("type"));
+		LayoutListRetriever<?, ListObjectReference> layoutListRetriever =
+			(LayoutListRetriever<?, ListObjectReference>)
+				_layoutListRetrieverTracker.getLayoutListRetriever(
+					collectionJSONObject.getString("type"));
 
 		if (layoutListRetriever == null) {
 			return Collections.emptyList();
@@ -311,7 +312,7 @@ public class RenderFragmentLayoutDisplayContext {
 
 		String type = collectionJSONObject.getString("type");
 
-		LayoutListRetriever layoutListRetriever =
+		LayoutListRetriever<?, ?> layoutListRetriever =
 			_layoutListRetrieverTracker.getLayoutListRetriever(type);
 
 		if (layoutListRetriever == null) {

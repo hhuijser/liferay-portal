@@ -134,8 +134,9 @@ public class GetCollectionFieldMVCResourceCommand
 
 		String type = layoutObjectReferenceJSONObject.getString("type");
 
-		LayoutListRetriever layoutListRetriever =
-			_layoutListRetrieverTracker.getLayoutListRetriever(type);
+		LayoutListRetriever<?, ListObjectReference> layoutListRetriever =
+			(LayoutListRetriever<?, ListObjectReference>)
+				_layoutListRetrieverTracker.getLayoutListRetriever(type);
 
 		if (layoutListRetriever != null) {
 			ListObjectReferenceFactory listObjectReferenceFactory =

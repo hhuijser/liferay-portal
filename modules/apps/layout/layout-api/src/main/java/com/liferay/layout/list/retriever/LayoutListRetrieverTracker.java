@@ -19,6 +19,6 @@ package com.liferay.layout.list.retriever;
  */
 public interface LayoutListRetrieverTracker {
 
-	public LayoutListRetriever getLayoutListRetriever(String type);
+	public LayoutListRetriever<?, ?> getLayoutListRetriever(String type);
 
 }

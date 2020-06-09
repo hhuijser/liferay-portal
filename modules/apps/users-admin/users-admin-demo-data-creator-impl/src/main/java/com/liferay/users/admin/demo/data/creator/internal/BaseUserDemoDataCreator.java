@@ -78,27 +78,28 @@ public abstract class BaseUserDemoDataCreator implements UserDemoDataCreator {
 		try {
 			URL url = new URL(_RANDOM_USER_API);
 
-			InputStream is = url.openStream();
+			try (InputStream is = url.openStream()) {
+				String json = StringUtil.read(is);
 
-			String json = StringUtil.read(is);
+				JSONObject rootJSONObject = JSONFactoryUtil.createJSONObject(
+					json);
 
-			JSONObject rootJSONObject = JSONFactoryUtil.createJSONObject(json);
+				JSONArray jsonArray = rootJSONObject.getJSONArray("results");
 
-			JSONArray jsonArray = rootJSONObject.getJSONArray("results");
+				JSONObject userJSONObject = jsonArray.getJSONObject(0);
 
-			JSONObject userJSONObject = jsonArray.getJSONObject(0);
+				emailAddress = _getEmailAddress(emailAddress, userJSONObject);
+				male = StringUtil.equalsIgnoreCase(
+					userJSONObject.getString("gender"), "male");
+				birthDate = _getBirthDate(birthDate, userJSONObject);
 
-			emailAddress = _getEmailAddress(emailAddress, userJSONObject);
-			male = StringUtil.equalsIgnoreCase(
-				userJSONObject.getString("gender"), "male");
-			birthDate = _getBirthDate(birthDate, userJSONObject);
+				JSONObject pictureJSONObject = userJSONObject.getJSONObject(
+					"picture");
 
-			JSONObject pictureJSONObject = userJSONObject.getJSONObject(
-				"picture");
+				String portraitURL = pictureJSONObject.getString("large");
 
-			String portraitURL = pictureJSONObject.getString("large");
-
-			portraitBytes = _getBytes(new URL(portraitURL));
+				portraitBytes = _getBytes(new URL(portraitURL));
+			}
 		}
 		catch (IOException ioException) {
 			if (_log.isWarnEnabled()) {

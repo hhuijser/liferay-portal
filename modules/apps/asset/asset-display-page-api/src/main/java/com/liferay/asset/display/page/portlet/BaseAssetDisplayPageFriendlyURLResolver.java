@@ -84,7 +84,7 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 				AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER,
 				infoDisplayObjectProvider);
 
-			InfoEditURLProvider infoEditURLProvider =
+			InfoEditURLProvider<?> infoEditURLProvider =
 				infoEditURLProviderTracker.getInfoEditURLProvider(
 					portal.getClassName(
 						infoDisplayObjectProvider.getClassNameId()));

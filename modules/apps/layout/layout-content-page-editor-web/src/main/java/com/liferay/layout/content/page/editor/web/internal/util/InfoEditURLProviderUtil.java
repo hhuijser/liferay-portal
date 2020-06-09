@@ -33,8 +33,9 @@ public class InfoEditURLProviderUtil {
 			HttpServletRequest httpServletRequest)
 		throws Exception {
 
-		InfoEditURLProvider infoEditURLProvider =
-			_infoEditURLProviderTracker.getInfoEditURLProvider(className);
+		InfoEditURLProvider<Object> infoEditURLProvider =
+			(InfoEditURLProvider<Object>)
+				_infoEditURLProviderTracker.getInfoEditURLProvider(className);
 
 		if (infoEditURLProvider == null) {
 			return null;

@@ -51,7 +51,7 @@ public class EditDisplayPageMenuDisplayContext {
 			(InfoDisplayObjectProvider<?>)httpServletRequest.getAttribute(
 				AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
 		_infoEditURLProvider =
-			(InfoEditURLProvider)httpServletRequest.getAttribute(
+			(InfoEditURLProvider<Object>)httpServletRequest.getAttribute(
 				AssetDisplayPageWebKeys.INFO_EDIT_URL_PROVIDER);
 		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -105,7 +105,7 @@ public class EditDisplayPageMenuDisplayContext {
 
 	private final HttpServletRequest _httpServletRequest;
 	private final InfoDisplayObjectProvider<?> _infoDisplayObjectProvider;
-	private final InfoEditURLProvider _infoEditURLProvider;
+	private final InfoEditURLProvider<Object> _infoEditURLProvider;
 	private final ThemeDisplay _themeDisplay;
 
 }

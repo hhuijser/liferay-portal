@@ -78,6 +78,10 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.dao.search.SearchContainer"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.portal.kernel.model.BaseModel"
 		},
 		{
@@ -99,6 +103,10 @@
 		{
 			"genericTypeCount": 1,
 			"name": "com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.util.OrderByComparator"
 		},
 		{
 			"genericTypeCount": 1,

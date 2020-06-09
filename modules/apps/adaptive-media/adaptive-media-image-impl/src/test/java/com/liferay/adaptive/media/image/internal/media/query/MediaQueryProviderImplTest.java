@@ -739,7 +739,7 @@ public class MediaQueryProviderImplTest {
 			String.valueOf(width)
 		).put(
 			() -> {
-				AMAttribute amAttribute =
+				AMAttribute<?, ?> amAttribute =
 					AMAttribute.getConfigurationUuidAMAttribute();
 
 				return amAttribute.getName();

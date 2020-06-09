@@ -271,7 +271,8 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 					!attributeValue.contains(StringPool.QUOTE) ||
 					(attributeValue.contains("'\"") &&
 					 attributeValue.contains("\"'")) ||
-					attributeValue.matches(".*_\\w+\\(.*")) {
+					(!_name.contains(StringPool.COLON) &&
+					 attributeValue.matches(".*_\\w+\\(.*"))) {
 
 					delimeter = StringPool.QUOTE;
 				}

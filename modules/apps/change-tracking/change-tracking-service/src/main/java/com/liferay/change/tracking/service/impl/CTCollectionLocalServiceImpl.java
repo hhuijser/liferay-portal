@@ -586,7 +586,9 @@ public class CTCollectionLocalServiceImpl
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ConstraintResolver.class, null,
+			bundleContext,
+			(Class<ConstraintResolver<?>>)(Class<?>)ConstraintResolver.class,
+			null,
 			(serviceReference, emitter) -> {
 				ConstraintResolver<?> constraintResolver =
 					bundleContext.getService(serviceReference);
@@ -655,7 +657,7 @@ public class CTCollectionLocalServiceImpl
 	@Reference
 	private ResourceLocalService _resourceLocalService;
 
-	private ServiceTrackerMap<ConstraintResolverKey, ConstraintResolver>
+	private ServiceTrackerMap<ConstraintResolverKey, ConstraintResolver<?>>
 		_serviceTrackerMap;
 
 }

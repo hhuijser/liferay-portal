@@ -61,7 +61,7 @@ public class CTConflictChecker<T extends CTModel<T>> {
 	public CTConflictChecker(
 		CTEntryLocalService ctEntryLocalService, CTService<T> ctService,
 		long modelClassNameId,
-		ServiceTrackerMap<ConstraintResolverKey, ConstraintResolver>
+		ServiceTrackerMap<ConstraintResolverKey, ConstraintResolver<?>>
 			serviceTrackerMap,
 		long sourceCTCollectionId, long targetCTCollectionId) {
 
@@ -152,7 +152,7 @@ public class CTConflictChecker<T extends CTModel<T>> {
 		}
 
 		ConstraintResolver<T> constraintResolver =
-			_serviceTrackerMap.getService(
+			(ConstraintResolver<T>)_serviceTrackerMap.getService(
 				new ConstraintResolverKey(
 					ctPersistence.getModelClass(), columnNames));
 
@@ -548,8 +548,8 @@ public class CTConflictChecker<T extends CTModel<T>> {
 	private final Set<Long> _ignorablePrimaryKeys = new HashSet<>();
 	private final long _modelClassNameId;
 	private Map<Serializable, CTEntry> _modificationCTEntries;
-	private final ServiceTrackerMap<ConstraintResolverKey, ConstraintResolver>
-		_serviceTrackerMap;
+	private final ServiceTrackerMap
+		<ConstraintResolverKey, ConstraintResolver<?>> _serviceTrackerMap;
 	private final long _sourceCTCollectionId;
 	private final long _targetCTCollectionId;
 

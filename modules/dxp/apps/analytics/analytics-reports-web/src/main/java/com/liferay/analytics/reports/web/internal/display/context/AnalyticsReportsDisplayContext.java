@@ -58,7 +58,7 @@ public class AnalyticsReportsDisplayContext {
 	public AnalyticsReportsDisplayContext(
 		AnalyticsReportsConfiguration analyticsReportsConfiguration,
 		AnalyticsReportsDataProvider analyticsReportsDataProvider,
-		AnalyticsReportsInfoItem analyticsReportsInfoItem,
+		AnalyticsReportsInfoItem<Object> analyticsReportsInfoItem,
 		Object analyticsReportsInfoItemObject, String canonicalURL,
 		Portal portal, RenderResponse renderResponse,
 		ResourceBundle resourceBundle, ThemeDisplay themeDisplay) {
@@ -316,7 +316,7 @@ public class AnalyticsReportsDisplayContext {
 
 	private final AnalyticsReportsConfiguration _analyticsReportsConfiguration;
 	private final AnalyticsReportsDataProvider _analyticsReportsDataProvider;
-	private final AnalyticsReportsInfoItem _analyticsReportsInfoItem;
+	private final AnalyticsReportsInfoItem<Object> _analyticsReportsInfoItem;
 	private final Object _analyticsReportsInfoItemObject;
 	private final String _canonicalURL;
 	private Map<String, Object> _data;

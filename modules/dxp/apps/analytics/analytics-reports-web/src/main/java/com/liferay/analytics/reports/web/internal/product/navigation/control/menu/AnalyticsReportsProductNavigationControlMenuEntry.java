@@ -266,7 +266,7 @@ public class AnalyticsReportsProductNavigationControlMenuEntry
 			return false;
 		}
 
-		AnalyticsReportsInfoItem analyticsReportsInfoItem =
+		AnalyticsReportsInfoItem<?> analyticsReportsInfoItem =
 			_analyticsReportsInfoItemTracker.getAnalyticsReportsInfoItem(
 				_portal.getClassName(
 					infoDisplayObjectProvider.getClassNameId()));

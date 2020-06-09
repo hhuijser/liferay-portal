@@ -21,8 +21,8 @@ import java.util.List;
  */
 public interface AnalyticsReportsInfoItemTracker {
 
-	public AnalyticsReportsInfoItem getAnalyticsReportsInfoItem(String key);
+	public AnalyticsReportsInfoItem<?> getAnalyticsReportsInfoItem(String key);
 
-	public List<AnalyticsReportsInfoItem> getAnalyticsReportsInfoItems();
+	public List<AnalyticsReportsInfoItem<?>> getAnalyticsReportsInfoItems();
 
 }

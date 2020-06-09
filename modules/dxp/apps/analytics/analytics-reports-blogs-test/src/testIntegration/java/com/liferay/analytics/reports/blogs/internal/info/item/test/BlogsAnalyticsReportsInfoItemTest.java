@@ -150,7 +150,7 @@ public class BlogsAnalyticsReportsInfoItemTest {
 	}
 
 	@Inject(filter = "component.name=*.BlogsAnalyticsReportsInfoItem")
-	private AnalyticsReportsInfoItem _analyticsReportsInfoItem;
+	private AnalyticsReportsInfoItem<BlogsEntry> _analyticsReportsInfoItem;
 
 	@Inject
 	private AssetDisplayPageEntryLocalService

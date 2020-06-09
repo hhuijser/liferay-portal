@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<suppressions>
+	<checkstyle>
+		<suppress checks="GenericTypeCheck" files="portal-security-audit-storage-api/src/main/java/com/liferay/portal/security/audit/storage/comparator/AuditEventCreateDateComparator\.java" />
+	</checkstyle>
+</suppressions>

@@ -32,8 +32,8 @@ import org.osgi.service.component.annotations.Component;
 @Component(immediate = true, service = AssetEntryActionRegistry.class)
 public class AssetEntryActionRegistry {
 
-	public List<AssetEntryAction> getAssetEntryActions(String className) {
-		List<AssetEntryAction> assetEntryActions =
+	public List<AssetEntryAction<?>> getAssetEntryActions(String className) {
+		List<AssetEntryAction<?>> assetEntryActions =
 			_assetEntryActionsMap.getService(className);
 
 		if (assetEntryActions != null) {
@@ -47,7 +47,8 @@ public class AssetEntryActionRegistry {
 	protected void activate(BundleContext bundleContext) {
 		_assetEntryActionsMap =
 			ServiceTrackerMapBuilder.SelectorFactory.newSelector(
-				bundleContext, AssetEntryAction.class
+				bundleContext,
+				(Class<AssetEntryAction<?>>)(Class<?>)AssetEntryAction.class
 			).map(
 				"model.class.name"
 			).collectMultiValue(
@@ -57,7 +58,7 @@ public class AssetEntryActionRegistry {
 			).build();
 	}
 
-	private ServiceTrackerMap<String, List<AssetEntryAction>>
+	private ServiceTrackerMap<String, List<AssetEntryAction<?>>>
 		_assetEntryActionsMap;
 
 }

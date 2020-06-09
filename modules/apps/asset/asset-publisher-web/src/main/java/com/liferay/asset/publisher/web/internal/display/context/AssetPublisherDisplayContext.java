@@ -349,7 +349,7 @@ public class AssetPublisherDisplayContext {
 		return Collections.emptyList();
 	}
 
-	public List<AssetEntryAction> getAssetEntryActions(String className) {
+	public List<AssetEntryAction<?>> getAssetEntryActions(String className) {
 		return _assetEntryActionRegistry.getAssetEntryActions(className);
 	}
 

@@ -292,14 +292,15 @@ public class AssetAutoTaggerOSGiCommandsTest
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
 
-	private class TestAssetRendererFactory extends BaseAssetRendererFactory {
+	private class TestAssetRendererFactory
+		extends BaseAssetRendererFactory<Object> {
 
 		public TestAssetRendererFactory(String className) {
 			_className = className;
 		}
 
 		@Override
-		public AssetRenderer<?> getAssetRenderer(long classPK, int type) {
+		public AssetRenderer<Object> getAssetRenderer(long classPK, int type) {
 			return new BaseAssetRenderer() {
 
 				@Override

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.cache.key;
 
+import org.junit.Before;
+
 /**
  * @author Shuyang Zhou
  */

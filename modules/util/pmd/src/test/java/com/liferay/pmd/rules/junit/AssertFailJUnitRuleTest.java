@@ -16,6 +16,8 @@ package com.liferay.pmd.rules.junit;
 
 import net.sourceforge.pmd.testframework.SimpleAggregatorTst;
 
+import org.junit.Before;
+
 /**
  * @author Cristina González
  */

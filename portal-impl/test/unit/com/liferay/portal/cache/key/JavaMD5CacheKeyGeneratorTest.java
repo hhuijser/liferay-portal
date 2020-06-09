@@ -16,6 +16,8 @@ package com.liferay.portal.cache.key;
 
 import com.liferay.portal.kernel.util.Digester;
 
+import org.junit.Before;
+
 /**
  * @author Shuyang Zhou
  */

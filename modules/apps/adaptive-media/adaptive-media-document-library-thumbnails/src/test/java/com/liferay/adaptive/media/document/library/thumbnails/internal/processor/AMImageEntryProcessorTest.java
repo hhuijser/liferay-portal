@@ -652,7 +652,7 @@ public class AMImageEntryProcessorTest {
 		);
 	}
 
-	private final AdaptiveMedia _adaptiveMedia = Mockito.mock(
+	private final AdaptiveMedia<?> _adaptiveMedia = Mockito.mock(
 		AdaptiveMedia.class);
 	private final AMAsyncProcessor<FileVersion, ?> _amAsyncProcessor =
 		Mockito.mock(AMAsyncProcessor.class);

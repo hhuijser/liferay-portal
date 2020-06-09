@@ -101,7 +101,8 @@ public class TaglibUtil {
 		}
 
 		String[] tldDirLocations = {
-			"portal-web/docroot/WEB-INF/tld/", "util-taglib/src/META-INF/"
+			"modules/apps/frontend-taglib/", "portal-web/docroot/WEB-INF/tld/",
+			"util-taglib/src/META-INF/"
 		};
 
 		for (String tldDirLocation : tldDirLocations) {

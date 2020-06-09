@@ -146,7 +146,7 @@ public class JournalArticleAnalyticsReportsInfoItemTest {
 	}
 
 	@Inject(filter = "component.name=*.JournalArticleAnalyticsReportsInfoItem")
-	private AnalyticsReportsInfoItem _analyticsReportsInfoItem;
+	private AnalyticsReportsInfoItem<JournalArticle> _analyticsReportsInfoItem;
 
 	@Inject
 	private AssetDisplayPageEntryLocalService

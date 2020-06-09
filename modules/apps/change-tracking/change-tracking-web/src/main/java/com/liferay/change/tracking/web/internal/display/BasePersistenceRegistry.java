@@ -78,7 +78,10 @@ public class BasePersistenceRegistry {
 	protected void activate(BundleContext bundleContext) {
 		_tableReferenceDefinitionServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, TableReferenceDefinition.class, null,
+				bundleContext,
+				(Class<TableReferenceDefinition<?>>)
+					(Class<?>)TableReferenceDefinition.class,
+				null,
 				(serviceReference, emitter) -> {
 					TableReferenceDefinition<?> tableReferenceDefinition =
 						bundleContext.getService(serviceReference);
@@ -150,7 +153,7 @@ public class BasePersistenceRegistry {
 	@Reference
 	private ClassNameLocalService _classNameLocalService;
 
-	private ServiceTrackerMap<Long, TableReferenceDefinition>
+	private ServiceTrackerMap<Long, TableReferenceDefinition<?>>
 		_tableReferenceDefinitionServiceTrackerMap;
 	private final Map<Object, TransactionExecutor> _transactionExecutorMap =
 		new ConcurrentHashMap<>();

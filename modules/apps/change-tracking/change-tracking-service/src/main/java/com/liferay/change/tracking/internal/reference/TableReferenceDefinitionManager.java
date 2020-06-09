@@ -88,7 +88,9 @@ public class TableReferenceDefinitionManager {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTracker = new ServiceTracker<>(
-			bundleContext, TableReferenceDefinition.class,
+			bundleContext,
+			(Class<TableReferenceDefinition<?>>)
+				(Class<?>)TableReferenceDefinition.class,
 			new TableReferenceDefinitionServiceTrackerCustomizer(
 				bundleContext));
 
@@ -214,11 +216,11 @@ public class TableReferenceDefinitionManager {
 
 	private class TableReferenceDefinitionServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer
-			<TableReferenceDefinition, TableReferenceInfo<?>> {
+			<TableReferenceDefinition<?>, TableReferenceInfo<?>> {
 
 		@Override
 		public TableReferenceInfo<?> addingService(
-			ServiceReference<TableReferenceDefinition> serviceReference) {
+			ServiceReference<TableReferenceDefinition<?>> serviceReference) {
 
 			TableReferenceDefinition<?> tableReferenceDefinition =
 				_bundleContext.getService(serviceReference);
@@ -228,13 +230,13 @@ public class TableReferenceDefinitionManager {
 
 		@Override
 		public void modifiedService(
-			ServiceReference<TableReferenceDefinition> serviceReference,
+			ServiceReference<TableReferenceDefinition<?>> serviceReference,
 			TableReferenceInfo<?> tableReferenceInfo) {
 		}
 
 		@Override
 		public void removedService(
-			ServiceReference<TableReferenceDefinition> serviceReference,
+			ServiceReference<TableReferenceDefinition<?>> serviceReference,
 			TableReferenceInfo<?> tableReferenceInfo) {
 
 			synchronized (TableReferenceDefinitionManager.this) {

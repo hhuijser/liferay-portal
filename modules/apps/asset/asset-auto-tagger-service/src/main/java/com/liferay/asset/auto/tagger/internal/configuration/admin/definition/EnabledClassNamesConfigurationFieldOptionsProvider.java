@@ -54,7 +54,7 @@ public class EnabledClassNamesConfigurationFieldOptionsProvider
 
 		return stream.filter(
 			assetRendererFactory -> {
-				TextExtractor textExtractor =
+				TextExtractor<?> textExtractor =
 					_textExtractorTracker.getTextExtractor(
 						assetRendererFactory.getClassName());
 

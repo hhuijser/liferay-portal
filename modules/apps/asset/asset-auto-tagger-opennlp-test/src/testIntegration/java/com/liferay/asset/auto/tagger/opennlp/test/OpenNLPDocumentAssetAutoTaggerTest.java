@@ -144,17 +144,18 @@ public class OpenNLPDocumentAssetAutoTaggerTest
 			assetRendererFactory);
 	}
 
-	private void _registerTextExtractor(TextExtractor textExtractor) {
+	private void _registerTextExtractor(TextExtractor<?> textExtractor) {
 		Registry registry = RegistryUtil.getRegistry();
 
 		_textExtractorServiceRegistration = registry.registerService(
-			TextExtractor.class, textExtractor);
+			(Class<TextExtractor<?>>)(Class<?>)TextExtractor.class,
+			textExtractor);
 	}
 
 	private ServiceRegistration<AssetRendererFactory<?>>
 		_assetRendererFactoryServiceRegistration;
 	private String _className = RandomTestUtil.randomString();
-	private ServiceRegistration<TextExtractor>
+	private ServiceRegistration<TextExtractor<?>>
 		_textExtractorServiceRegistration;
 
 	private class TestAssetRendererFactory

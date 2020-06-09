@@ -67,8 +67,9 @@ public class FileEntryTextExtractorTest {
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
 			new ByteArrayInputStream(bytes), bytes.length, serviceContext);
 
-		TextExtractor textExtractor = _textExtractorTracker.getTextExtractor(
-			DLFileEntryConstants.getClassName());
+		TextExtractor<FileEntry> textExtractor =
+			(TextExtractor<FileEntry>)_textExtractorTracker.getTextExtractor(
+				DLFileEntryConstants.getClassName());
 
 		Assert.assertEquals(
 			content + StringPool.NEW_LINE,

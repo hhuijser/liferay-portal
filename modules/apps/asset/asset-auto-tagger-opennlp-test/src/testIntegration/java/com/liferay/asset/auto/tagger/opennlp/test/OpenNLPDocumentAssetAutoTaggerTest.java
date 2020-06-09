@@ -157,7 +157,8 @@ public class OpenNLPDocumentAssetAutoTaggerTest
 	private ServiceRegistration<TextExtractor>
 		_textExtractorServiceRegistration;
 
-	private class TestAssetRendererFactory extends BaseAssetRendererFactory {
+	private class TestAssetRendererFactory
+		extends BaseAssetRendererFactory<Object> {
 
 		public TestAssetRendererFactory(
 			long groupId, String className, Object assetObject) {
@@ -168,7 +169,7 @@ public class OpenNLPDocumentAssetAutoTaggerTest
 		}
 
 		@Override
-		public AssetRenderer<?> getAssetRenderer(long classPK, int type) {
+		public AssetRenderer<Object> getAssetRenderer(long classPK, int type) {
 			return new BaseAssetRenderer() {
 
 				@Override

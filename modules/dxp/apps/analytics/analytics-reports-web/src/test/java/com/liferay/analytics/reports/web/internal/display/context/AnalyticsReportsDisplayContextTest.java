@@ -148,7 +148,7 @@ public class AnalyticsReportsDisplayContextTest {
 				null, organicTrafficAmount, organicTrafficShare, null,
 				paidTrafficAmount, paidTrafficShare, false);
 
-		AnalyticsReportsInfoItem analyticsReportsInfoItem =
+		AnalyticsReportsInfoItem<Object> analyticsReportsInfoItem =
 			_getAnalyticsReportsItem();
 
 		Layout layout = _getLayout();
@@ -210,7 +210,7 @@ public class AnalyticsReportsDisplayContextTest {
 				null, organicTrafficAmount, organicTrafficShare, null,
 				paidTrafficAmount, paidTrafficShare, false);
 
-		AnalyticsReportsInfoItem analyticsReportsInfoItem =
+		AnalyticsReportsInfoItem<Object> analyticsReportsInfoItem =
 			_getAnalyticsReportsItem();
 
 		Layout layout = _getLayout();
@@ -255,7 +255,7 @@ public class AnalyticsReportsDisplayContextTest {
 				Collections.singletonList(paidSearchKeyword), paidTrafficAmount,
 				paidTrafficShare, true);
 
-		AnalyticsReportsInfoItem analyticsReportsInfoItem =
+		AnalyticsReportsInfoItem<Object> analyticsReportsInfoItem =
 			_getAnalyticsReportsItem();
 
 		Layout layout = _getLayout();
@@ -386,7 +386,7 @@ public class AnalyticsReportsDisplayContextTest {
 		};
 	}
 
-	private AnalyticsReportsInfoItem _getAnalyticsReportsItem() {
+	private AnalyticsReportsInfoItem<Object> _getAnalyticsReportsItem() {
 		String authorName = StringUtil.randomString();
 		Date publishDate = RandomTestUtil.nextDate();
 		String title = StringUtil.randomString();

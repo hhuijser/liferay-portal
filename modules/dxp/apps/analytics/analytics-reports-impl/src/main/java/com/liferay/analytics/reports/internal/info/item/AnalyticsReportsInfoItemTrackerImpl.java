@@ -37,7 +37,7 @@ public class AnalyticsReportsInfoItemTrackerImpl
 	implements AnalyticsReportsInfoItemTracker {
 
 	@Override
-	public AnalyticsReportsInfoItem getAnalyticsReportsInfoItem(String key) {
+	public AnalyticsReportsInfoItem<?> getAnalyticsReportsInfoItem(String key) {
 		if (Validator.isNull(key)) {
 			return null;
 		}
@@ -46,7 +46,7 @@ public class AnalyticsReportsInfoItemTrackerImpl
 	}
 
 	@Override
-	public List<AnalyticsReportsInfoItem> getAnalyticsReportsInfoItems() {
+	public List<AnalyticsReportsInfoItem<?>> getAnalyticsReportsInfoItems() {
 		return new ArrayList<>(_analyticsReportsInfoItems.values());
 	}
 
@@ -55,7 +55,7 @@ public class AnalyticsReportsInfoItemTrackerImpl
 		policy = ReferencePolicy.DYNAMIC
 	)
 	protected void setAnalyticsReportsInfoItem(
-		AnalyticsReportsInfoItem analyticsReportsInfo) {
+		AnalyticsReportsInfoItem<?> analyticsReportsInfo) {
 
 		_analyticsReportsInfoItems.put(
 			GenericUtil.getGenericClassName(analyticsReportsInfo),
@@ -63,13 +63,13 @@ public class AnalyticsReportsInfoItemTrackerImpl
 	}
 
 	protected void unsetAnalyticsReportsInfoItem(
-		AnalyticsReportsInfoItem analyticsReportsInfo) {
+		AnalyticsReportsInfoItem<?> analyticsReportsInfo) {
 
 		_analyticsReportsInfoItems.remove(
 			GenericUtil.getGenericClassName(analyticsReportsInfo));
 	}
 
-	private final Map<String, AnalyticsReportsInfoItem>
+	private final Map<String, AnalyticsReportsInfoItem<?>>
 		_analyticsReportsInfoItems = new ConcurrentHashMap<>();
 
 }

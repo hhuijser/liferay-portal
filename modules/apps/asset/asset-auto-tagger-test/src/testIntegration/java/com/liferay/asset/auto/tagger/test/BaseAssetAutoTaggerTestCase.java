@@ -72,7 +72,8 @@ public abstract class BaseAssetAutoTaggerTestCase {
 		).build();
 
 		_assetAutoTagProviderServiceRegistration = registry.registerService(
-			AssetAutoTagProvider.class,
+			(Class<AssetAutoTagProvider<?>>)
+				(Class<?>)AssetAutoTagProvider.class,
 			model -> Arrays.asList(ASSET_TAG_NAME_AUTO), properties);
 	}
 
@@ -172,7 +173,7 @@ public abstract class BaseAssetAutoTaggerTestCase {
 		}
 	}
 
-	private ServiceRegistration<AssetAutoTagProvider>
+	private ServiceRegistration<AssetAutoTagProvider<?>>
 		_assetAutoTagProviderServiceRegistration;
 
 }

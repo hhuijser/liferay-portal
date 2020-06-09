@@ -16,6 +16,7 @@ package com.liferay.bulk.rest.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**

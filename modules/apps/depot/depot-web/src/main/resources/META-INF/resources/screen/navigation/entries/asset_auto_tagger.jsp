@@ -22,7 +22,7 @@ AssetAutoTaggerConfiguration assetAutoTaggerConfiguration = (AssetAutoTaggerConf
 
 <c:if test="<%= assetAutoTaggerConfiguration.isAvailable() %>">
 	<liferay-frontend:fieldset
-		collapsible="true"
+		collapsible="<%= true %>"
 		cssClass="panel-group-flush"
 		label='<%= LanguageUtil.get(request, "asset-auto-tagging") %>'
 	>

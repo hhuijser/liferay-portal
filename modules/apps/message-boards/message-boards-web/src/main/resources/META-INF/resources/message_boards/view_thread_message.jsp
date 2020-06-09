@@ -39,7 +39,7 @@ User messageUser = UserLocalServiceUtil.fetchUser(message.getUserId());
 	<div class="panel-heading">
 		<clay:content-row
 			cssClass="card-body"
-			padded="true"
+			padded="<%= true %>"
 		>
 			<clay:content-col>
 				<div class="list-group-card-icon">
@@ -50,7 +50,7 @@ User messageUser = UserLocalServiceUtil.fetchUser(message.getUserId());
 			</clay:content-col>
 
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 
 				<%

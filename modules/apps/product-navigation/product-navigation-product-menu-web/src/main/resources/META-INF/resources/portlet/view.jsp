@@ -27,7 +27,7 @@ String pagesTreeState = SessionClicks.get(request, "com.liferay.product.navigati
 
 		<clay:content-row>
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 				<a href="<%= PortalUtil.addPreservedParameters(themeDisplay, themeDisplay.getURLPortal(), false, true) %>">
 					<span class="company-details text-truncate">

@@ -65,7 +65,7 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 <div class="panel-heading">
 	<clay:content-row
 		cssClass="card-body"
-		padded="true"
+		padded="<%= true %>"
 	>
 		<clay:content-col>
 			<div class="list-group-card-icon">
@@ -76,7 +76,7 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 		</clay:content-col>
 
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 
 			<%

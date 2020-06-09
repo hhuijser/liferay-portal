@@ -45,7 +45,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 				cssClass="widget-topbar"
 			>
 				<clay:content-col
-					expand="true"
+					expand="<%= true %>"
 				>
 					<h3 class="title">
 						<aui:a cssClass="title-link" href="<%= viewEntryURL %>"><%= HtmlUtil.escape(BlogsEntryUtil.getDisplayTitle(resourceBundle, entry)) %></aui:a>
@@ -92,11 +92,11 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 				</clay:content-col>
 
 				<clay:content-col
-					expand="true"
+					expand="<%= true %>"
 				>
 					<clay:content-row>
 						<clay:content-col
-							expand="true"
+							expand="<%= true %>"
 						>
 							<div class="text-truncate-inline">
 								<a class="text-truncate username" href="<%= entryUserURL %>"><%= HtmlUtil.escape(entry.getUserName()) %></a>

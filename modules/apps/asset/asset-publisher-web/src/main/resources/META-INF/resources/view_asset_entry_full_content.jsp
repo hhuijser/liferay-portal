@@ -120,7 +120,7 @@ Map<String, Object> fragmentsEditorData = HashMapBuilder.<String, Object>put(
 			</c:if>
 
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 				<c:if test="<%= assetPublisherDisplayContext.isShowAuthor() %>">
 					<div class="text-truncate-inline">

@@ -250,7 +250,7 @@ for (int i = 0; i < results.size(); i++) {
 			<clay:content-row>
 				<clay:content-col
 					cssClass="taglib-search-iterator-page-iterator-bottom"
-					expand="true"
+					expand="<%= true %>"
 				>
 					<liferay-ui:search-paginator
 						markupView="lexicon"

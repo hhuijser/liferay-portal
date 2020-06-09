@@ -45,7 +45,7 @@ if (accountEntryDisplay.getAccountEntryId() > 0) {
 	>
 		<clay:content-col
 			containerElement="span"
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-text"><liferay-ui:message key="parent-account" /></span>
 		</clay:content-col>

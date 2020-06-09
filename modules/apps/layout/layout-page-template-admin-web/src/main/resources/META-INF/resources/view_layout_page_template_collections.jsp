@@ -50,7 +50,7 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 									verticalAlign="center"
 								>
 									<clay:content-col
-										expand="true"
+										expand="<%= true %>"
 									>
 										<strong class="text-uppercase">
 											<liferay-ui:message key="collections" />
@@ -141,7 +141,7 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 							verticalAlign="center"
 						>
 							<clay:content-col
-								expand="true"
+								expand="<%= true %>"
 							>
 								<span class="text-uppercase">
 									<%= HtmlUtil.escape(layoutPageTemplateCollection.getName()) %>

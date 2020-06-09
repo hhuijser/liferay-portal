@@ -31,13 +31,13 @@ List<Address> addresses = AddressServiceUtil.getAddresses(className, classPK);
 		cssClass="sheet-title"
 	>
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-text"><liferay-ui:message key="addresses" /></span>
 		</clay:content-col>
 
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-end">
 

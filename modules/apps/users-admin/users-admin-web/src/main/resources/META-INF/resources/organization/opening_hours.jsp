@@ -30,7 +30,7 @@ List<OrgLabor> orgLabors = OrgLaborServiceUtil.getOrgLabors(organizationId);
 		cssClass="sheet-title"
 	>
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-text"><%= organizationScreenNavigationDisplayContext.getFormLabel() %></span>
 		</clay:content-col>

@@ -59,7 +59,7 @@ RankingResultContentDisplayContext rankingResultContentDisplayContext = rankingR
 			>
 				<clay:content-row>
 					<clay:content-col
-						expand="true"
+						expand="<%= true %>"
 					>
 						<div class="sheet-title">
 							<%= rankingResultContentDisplayContext.getHeaderTitle() %>

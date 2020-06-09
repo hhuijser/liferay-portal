@@ -39,7 +39,7 @@ if (mvcPath.startsWith("/edit_entry.jsp")) {
 				cssClass="app-builder-standalone-menu"
 			>
 				<clay:content-col
-					expand="true"
+					expand="<%= true %>"
 				>
 					<a class="company-link" href="<%= PortalUtil.addPreservedParameters(themeDisplay, themeDisplay.getURLPortal(), false, true) %>">
 						<span class="company-details text-truncate">

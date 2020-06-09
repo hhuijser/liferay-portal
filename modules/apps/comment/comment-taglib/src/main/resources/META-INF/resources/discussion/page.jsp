@@ -98,7 +98,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 							<clay:content-col
 								containerElement="span"
 								cssClass="text-secondary text-uppercase"
-								expand="true"
+								expand="<%= true %>"
 							>
 								<strong><liferay-ui:message arguments="<%= discussion.getDiscussionCommentsCount() %>" key='<%= (discussion.getDiscussionCommentsCount() == 1) ? "x-comment" : "x-comments" %>' /></strong>
 							</clay:content-col>
@@ -140,7 +140,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 
 											<clay:content-col
 												cssClass="lfr-discussion-editor"
-												expand="true"
+												expand="<%= true %>"
 											>
 												<liferay-editor:editor
 													configKey="commentEditor"

@@ -35,7 +35,7 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "userGr
 	cssClass="sheet-subtitle"
 >
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<span class="heading-text"><liferay-ui:message key="user-groups" /></span>
 	</clay:content-col>

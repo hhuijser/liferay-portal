@@ -58,7 +58,7 @@ ContentPanelCategoryDisplayContext contentPanelCategoryDisplayContext = new Cont
 						verticalAlign="center"
 					>
 						<clay:content-col
-							expand="true"
+							expand="<%= true %>"
 						>
 							<span class="scope-name">
 								<c:choose>

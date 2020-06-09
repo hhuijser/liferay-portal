@@ -36,7 +36,7 @@ PortalSettingsConfigurationScreenContributor portalSettingsConfigurationScreenCo
 	>
 		<clay:content-col
 			containerElement="span"
-			expand="true"
+			expand="<%= true %>"
 		>
 			<liferay-ui:message key="<%= portalSettingsConfigurationScreenContributor.getName(locale) %>" />
 		</clay:content-col>

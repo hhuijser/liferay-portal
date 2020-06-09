@@ -51,7 +51,7 @@ FileVersion fileVersion = (FileVersion)request.getAttribute("file_entry_upper_tb
 						elementClasses="btn-outline-borderless btn-outline-secondary"
 						icon="info-circle-open"
 						id='<%= liferayPortletResponse.getNamespace() + "OpenContextualSidebar" %>'
-						monospaced="true"
+						monospaced="<%= true %>"
 						size="sm"
 						style="<%= false %>"
 						title='<%= LanguageUtil.get(resourceBundle, "info") %>'

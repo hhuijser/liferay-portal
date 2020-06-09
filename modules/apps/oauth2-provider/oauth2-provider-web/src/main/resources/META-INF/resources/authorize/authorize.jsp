@@ -93,7 +93,7 @@ if (Validator.isNotNull(replyTo) && !replyTo.startsWith(PortalUtil.getPortalURL(
 									</clay:content-col>
 
 									<clay:content-col
-										expand="true"
+										expand="<%= true %>"
 									>
 										<liferay-ui:message arguments="<%= messageArguments %>" key="for-x-y" />
 									</clay:content-col>

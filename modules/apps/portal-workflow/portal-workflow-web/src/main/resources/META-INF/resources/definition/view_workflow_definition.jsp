@@ -49,13 +49,13 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 						<clay:label
 							displayType="info"
 							label="published"
-							large="true"
+							large="<%= true %>"
 						/>
 					</c:when>
 					<c:otherwise>
 						<clay:label
 							label="not-published"
-							large="true"
+							large="<%= true %>"
 						/>
 					</c:otherwise>
 				</c:choose>

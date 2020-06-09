@@ -60,11 +60,11 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				%>
 
 				<clay:content-col
-					expand="true"
+					expand="<%= true %>"
 				>
 					<clay:content-row>
 						<clay:content-col
-							expand="true"
+							expand="<%= true %>"
 						>
 							<div class="text-truncate">
 								<liferay-util:whitespace-remover>
@@ -111,7 +111,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 											</clay:content-col>
 
 											<clay:content-col
-												expand="true"
+												expand="<%= true %>"
 											>
 												<div class="username">
 													<%= HtmlUtil.escape(parentDiscussionComment.getUserName()) %>
@@ -295,7 +295,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 					</clay:content-col>
 
 					<clay:content-col
-						expand="true"
+						expand="<%= true %>"
 					>
 						<div class="editor-wrapper"></div>
 

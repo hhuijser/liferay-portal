@@ -98,11 +98,11 @@ long assetClassPK = DLAssetHelperUtil.getAssetClassPK(fileEntry, fileVersion);
 					</clay:content-col>
 
 					<clay:content-col
-						expand="true"
+						expand="<%= true %>"
 					>
 						<clay:content-row>
 							<clay:content-col
-								expand="true"
+								expand="<%= true %>"
 							>
 								<div class="component-title h4 username">
 									<c:if test="<%= owner != null %>">

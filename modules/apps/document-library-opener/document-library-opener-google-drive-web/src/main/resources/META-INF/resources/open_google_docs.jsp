@@ -38,11 +38,11 @@ String googleDocsRedirect = ParamUtil.getString(request, "googleDocsRedirect");
 	<body>
 		<clay:content-row
 			cssClass="google-docs-toolbar"
-			padded="true"
+			padded="<%= true %>"
 			verticalAlign="center"
 		>
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 				<div class="autofit-section">
 					<portlet:actionURL name="/document_library/edit_in_google_docs" var="checkInURL">

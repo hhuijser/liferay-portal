@@ -46,7 +46,7 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 									verticalAlign="center"
 								>
 									<clay:content-col
-										expand="true"
+										expand="<%= true %>"
 									>
 										<strong class="text-uppercase">
 											<liferay-ui:message key="collections" />

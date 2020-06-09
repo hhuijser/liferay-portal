@@ -94,7 +94,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-template"));
 						verticalAlign="center"
 					>
 						<clay:content-col
-							expand="true"
+							expand="<%= true %>"
 						>
 							<span class="text-uppercase">
 								<c:choose>

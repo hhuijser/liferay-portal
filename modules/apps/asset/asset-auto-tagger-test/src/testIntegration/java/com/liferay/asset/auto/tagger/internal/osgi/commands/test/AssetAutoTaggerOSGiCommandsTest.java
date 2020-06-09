@@ -175,9 +175,10 @@ public class AssetAutoTaggerOSGiCommandsTest
 			"model.class.name", AssetEntry.class.getName()
 		).build();
 
-		ServiceRegistration<AssetAutoTagProvider>
+		ServiceRegistration<AssetAutoTagProvider<?>>
 			assetAutoTagProviderServiceRegistration = registry.registerService(
-				AssetAutoTagProvider.class,
+				(Class<AssetAutoTagProvider<?>>)
+					(Class<?>)AssetAutoTagProvider.class,
 				model -> Arrays.asList(ASSET_TAG_NAME_AUTO), properties);
 
 		String className = RandomTestUtil.randomString();

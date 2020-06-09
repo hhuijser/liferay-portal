@@ -43,7 +43,7 @@ public class AssetEntryActionDropdownItemsProvider {
 
 	public AssetEntryActionDropdownItemsProvider(
 		AssetRenderer<?> assetRenderer,
-		List<AssetEntryAction> assetEntryActions, String fullContentRedirect,
+		List<AssetEntryAction<?>> assetEntryActions, String fullContentRedirect,
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
@@ -78,7 +78,7 @@ public class AssetEntryActionDropdownItemsProvider {
 				}
 
 				if (ListUtil.isNotEmpty(_assetEntryActions)) {
-					for (AssetEntryAction assetEntryAction :
+					for (AssetEntryAction<?> assetEntryAction :
 							_assetEntryActions) {
 
 						try {
@@ -154,7 +154,7 @@ public class AssetEntryActionDropdownItemsProvider {
 		return null;
 	}
 
-	private final List<AssetEntryAction> _assetEntryActions;
+	private final List<AssetEntryAction<?>> _assetEntryActions;
 	private final AssetRenderer<?> _assetRenderer;
 	private final String _fullContentRedirect;
 	private final HttpServletRequest _httpServletRequest;

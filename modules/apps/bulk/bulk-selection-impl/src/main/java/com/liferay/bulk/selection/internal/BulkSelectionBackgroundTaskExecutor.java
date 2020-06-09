@@ -72,8 +72,11 @@ public class BulkSelectionBackgroundTaskExecutor
 			BulkSelectionBackgroundTaskConstants.
 				BULK_SELECTION_ACTION_CLASS_NAME);
 
-		Optional<BulkSelectionAction> bulkSelectionActionOptional = _getService(
-			BulkSelectionAction.class, bulkSelectionActionClassName);
+		Optional<BulkSelectionAction<Object>> bulkSelectionActionOptional =
+			_getService(
+				(Class<BulkSelectionAction<Object>>)
+					(Class<?>)BulkSelectionAction.class,
+				bulkSelectionActionClassName);
 
 		bulkSelectionActionOptional.ifPresent(
 			bulkSelectionAction -> {
@@ -118,7 +121,7 @@ public class BulkSelectionBackgroundTaskExecutor
 							bulkSelectionAction.execute(
 								_userLocalService.getUser(
 									backgroundTask.getUserId()),
-								bulkSelection, inputMap);
+								(BulkSelection<Object>)bulkSelection, inputMap);
 						}
 						catch (Exception exception) {
 							_log.error(exception, exception);

@@ -33,7 +33,7 @@ public class InfoEditURLProviderTrackerImpl
 	implements InfoEditURLProviderTracker {
 
 	@Override
-	public InfoEditURLProvider getInfoEditURLProvider(String className) {
+	public InfoEditURLProvider<?> getInfoEditURLProvider(String className) {
 		return _infoEditURLProviders.get(className);
 	}
 
@@ -42,7 +42,7 @@ public class InfoEditURLProviderTrackerImpl
 		policy = ReferencePolicy.DYNAMIC
 	)
 	protected void setInfoEditURLProviders(
-		InfoEditURLProvider infoEditURLProvider,
+		InfoEditURLProvider<?> infoEditURLProvider,
 		Map<String, Object> properties) {
 
 		String className = (String)properties.get("model.class.name");
@@ -51,7 +51,7 @@ public class InfoEditURLProviderTrackerImpl
 	}
 
 	protected void unsetInfoEditURLProviders(
-		InfoEditURLProvider infoEditURLProvider,
+		InfoEditURLProvider<?> infoEditURLProvider,
 		Map<String, Object> properties) {
 
 		String className = (String)properties.get("model.class.name");
@@ -59,7 +59,7 @@ public class InfoEditURLProviderTrackerImpl
 		_infoEditURLProviders.remove(className);
 	}
 
-	private final Map<String, InfoEditURLProvider> _infoEditURLProviders =
+	private final Map<String, InfoEditURLProvider<?>> _infoEditURLProviders =
 		new ConcurrentHashMap<>();
 
 }

@@ -46,7 +46,9 @@ public class AMMessageListener extends BaseMessageListener {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
-			bundleContext, AMProcessor.class, "(model.class.name=*)",
+			bundleContext,
+			(Class<AMProcessor<Object, ?>>)(Class<?>)AMProcessor.class,
+			"(model.class.name=*)",
 			(serviceReference, emitter) -> emitter.emit(
 				(String)serviceReference.getProperty("model.class.name")));
 	}
@@ -60,8 +62,8 @@ public class AMMessageListener extends BaseMessageListener {
 	protected void doReceive(Message message) throws Exception {
 		String className = message.getString("className");
 
-		List<AMProcessor> amProcessors = _serviceTrackerMap.getService(
-			className);
+		List<AMProcessor<Object, ?>> amProcessors =
+			_serviceTrackerMap.getService(className);
 
 		if (amProcessors == null) {
 			return;
@@ -73,7 +75,7 @@ public class AMMessageListener extends BaseMessageListener {
 		Object model = message.get("model");
 		String modelId = (String)message.get("modelId");
 
-		for (AMProcessor amProcessor : amProcessors) {
+		for (AMProcessor<Object, ?> amProcessor : amProcessors) {
 			try {
 				amProcessorCommand.execute(amProcessor, model, modelId);
 			}
@@ -96,6 +98,7 @@ public class AMMessageListener extends BaseMessageListener {
 	private static final Log _log = LogFactoryUtil.getLog(
 		AMMessageListener.class);
 
-	private ServiceTrackerMap<String, List<AMProcessor>> _serviceTrackerMap;
+	private ServiceTrackerMap<String, List<AMProcessor<Object, ?>>>
+		_serviceTrackerMap;
 
 }

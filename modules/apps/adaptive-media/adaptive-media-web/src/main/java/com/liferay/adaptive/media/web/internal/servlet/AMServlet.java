@@ -62,7 +62,7 @@ public class AMServlet extends HttpServlet {
 		throws IOException, ServletException {
 
 		try {
-			AMRequestHandler amRequestHandler =
+			AMRequestHandler<?> amRequestHandler =
 				_amRequestHandlerLocator.locateForPattern(
 					_getRequestHandlerPattern(httpServletRequest));
 
@@ -75,7 +75,8 @@ public class AMServlet extends HttpServlet {
 			}
 
 			Optional<AdaptiveMedia<?>> adaptiveMediaOptional =
-				amRequestHandler.handleRequest(httpServletRequest);
+				(Optional<AdaptiveMedia<?>>)amRequestHandler.handleRequest(
+					httpServletRequest);
 
 			AdaptiveMedia<?> adaptiveMedia = adaptiveMediaOptional.orElseThrow(
 				AMException.AMNotFound::new);

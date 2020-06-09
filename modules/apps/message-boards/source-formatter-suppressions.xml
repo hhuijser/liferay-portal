@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<suppressions>
+	<checkstyle>
+		<suppress checks="GenericTypeCheck" files="message-boards-api/src/main/java/com/liferay/message/boards/display/context/BaseMBListDisplayContext\.java" />
+		<suppress checks="GenericTypeCheck" files="message-boards-api/src/main/java/com/liferay/message/boards/display/context/MBAdminListDisplayContext\.java" />
+		<suppress checks="GenericTypeCheck" files="message-boards-api/src/main/java/com/liferay/message/boards/display/context/MBListDisplayContext\.java" />
+		<suppress checks="GenericTypeCheck" files="message-boards-web/src/main/java/com/liferay/message/boards/web/internal/display/context/DefaultMBAdminListDisplayContext\.java" />
+		<suppress checks="GenericTypeCheck" files="message-boards-web/src/main/java/com/liferay/message/boards/web/internal/display/context/DefaultMBListDisplayContext\.java" />
+		<suppress checks="GenericTypeCheck" files="message-boards-web/src/main/java/com/liferay/message/boards/web/internal/display/context/MBEntriesManagementToolbarDisplayContext\.java" />
+		<suppress checks="GenericTypeCheck" files="message-boards-web/src/main/resources/META-INF/resources/message_boards/view\.jsp" />
+	</checkstyle>
+</suppressions>

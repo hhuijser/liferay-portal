@@ -19,6 +19,6 @@ package com.liferay.info.display.url.provider;
  */
 public interface InfoEditURLProviderTracker {
 
-	public InfoEditURLProvider getInfoEditURLProvider(String className);
+	public InfoEditURLProvider<?> getInfoEditURLProvider(String className);
 
 }

@@ -21,8 +21,8 @@ import java.util.List;
  */
 public interface TextExtractorTracker {
 
-	public TextExtractor getTextExtractor(String className);
+	public TextExtractor<?> getTextExtractor(String className);
 
-	public List<TextExtractor> getTextExtractors();
+	public List<TextExtractor<?>> getTextExtractors();
 
 }

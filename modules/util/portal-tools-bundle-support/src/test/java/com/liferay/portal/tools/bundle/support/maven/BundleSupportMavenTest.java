@@ -29,6 +29,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  * @author Andrea Di Giorgi

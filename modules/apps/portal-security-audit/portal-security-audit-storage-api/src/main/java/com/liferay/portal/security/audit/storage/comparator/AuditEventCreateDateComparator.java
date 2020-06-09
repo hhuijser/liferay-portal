@@ -21,7 +21,8 @@ import com.liferay.portal.security.audit.storage.model.AuditEvent;
 /**
  * @author Brian Wing Shun Chan
  */
-public class AuditEventCreateDateComparator extends OrderByComparator {
+public class AuditEventCreateDateComparator
+	extends OrderByComparator<AuditEvent> {
 
 	public static final String ORDER_BY_ASC = "createDate ASC";
 
@@ -38,10 +39,7 @@ public class AuditEventCreateDateComparator extends OrderByComparator {
 	}
 
 	@Override
-	public int compare(Object obj1, Object obj2) {
-		AuditEvent auditEvent1 = (AuditEvent)obj1;
-		AuditEvent auditEvent2 = (AuditEvent)obj2;
-
+	public int compare(AuditEvent auditEvent1, AuditEvent auditEvent2) {
 		int value = DateUtil.compareTo(
 			auditEvent1.getCreateDate(), auditEvent2.getCreateDate());
 

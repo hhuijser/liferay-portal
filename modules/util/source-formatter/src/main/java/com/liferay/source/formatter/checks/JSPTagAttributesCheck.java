@@ -348,7 +348,11 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 		throws Exception {
 
 		if (_tagSetMethodsMap != null) {
-			return _tagSetMethodsMap.get(tagName);
+			if (_tagSetMethodsMap.containsKey(tagName)) {
+				return _tagSetMethodsMap.get(tagName);
+			}
+
+			return _tagSetMethodsMap.get("liferay-" + tagName);
 		}
 
 		_tagSetMethodsMap = new HashMap<>();
@@ -405,12 +409,16 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 				}
 
 				if (srcDir == null) {
-					if (tldFileName.contains("/src/")) {
-						srcDir = SourceUtil.getAbsolutePath(tldFile);
+					String absolutePath = SourceUtil.getAbsolutePath(tldFile);
 
-						srcDir =
-							srcDir.substring(0, srcDir.lastIndexOf("/src/")) +
-								"/src/";
+					int x = absolutePath.lastIndexOf("/src/");
+
+					if (x != -1) {
+						srcDir = absolutePath.substring(0, x + 5);
+
+						if (tldFileName.contains("/modules/")) {
+							srcDir += "main/java/";
+						}
 					}
 					else {
 						srcDir = utilTaglibSrcDirName;

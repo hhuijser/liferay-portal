@@ -31,13 +31,13 @@ List<Address> addresses = AddressServiceUtil.getAddresses(className, classPK);
 		cssClass="sheet-title"
 	>
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-text"><liferay-ui:message key="addresses" /></span>
 		</clay:content-col>
 
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-end">
 
@@ -70,13 +70,13 @@ List<Address> addresses = AddressServiceUtil.getAddresses(className, classPK);
 </c:if>
 
 <div
-	class='<%=
+	class="<%=
 		CSSClassNames.builder(
 			"addresses-table-wrapper", "table-responsive"
 		).add(
 			"hide", addresses.isEmpty()
 		).build()
-	%>'
+	%>"
 >
 	<table class="table table-autofit">
 		<tbody>

@@ -30,8 +30,8 @@
 					<div class="card-body">
 						<div class="card-row">
 							<clay:content-col
-								expand="true"
-								gutters="true"
+								expand="<%= true %>"
+								gutters="<%= true %>"
 							>
 								<clay:content-section
 									containerElement="section"

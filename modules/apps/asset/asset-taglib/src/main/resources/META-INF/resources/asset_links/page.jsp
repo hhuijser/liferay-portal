@@ -38,12 +38,12 @@ List<Tuple> assetLinkEntries = (List<Tuple>)request.getAttribute("liferay-asset:
 				<clay:sticker
 					displayType="secondary"
 					icon="<%= assetRenderer.getIconCssClass() %>"
-					inline="true"
+					inline="<%= true %>"
 				/>
 			</clay:content-col>
 
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 				<clay:content-section
 					containerElement="section"

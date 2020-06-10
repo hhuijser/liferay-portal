@@ -91,7 +91,7 @@ portletDisplay.setURLBack(backURL);
 								</clay:content-col>
 
 								<clay:content-col
-									expand="true"
+									expand="<%= true %>"
 								>
 									<p class="entry-title text-muted"><%= HtmlUtil.escape(ctDisplayRendererRegistry.getEntryDescription(request, ctEntry)) %></p>
 
@@ -99,7 +99,7 @@ portletDisplay.setURLBack(backURL);
 										<div class="alert alert-success" role="alert">
 											<clay:content-row>
 												<clay:content-col
-													expand="true"
+													expand="<%= true %>"
 												>
 													<clay:content-section>
 														<span class="alert-indicator">
@@ -197,7 +197,7 @@ portletDisplay.setURLBack(backURL);
 								</clay:content-col>
 
 								<clay:content-col
-									expand="true"
+									expand="<%= true %>"
 								>
 									<p class="entry-title text-muted"><%= HtmlUtil.escape(ctDisplayRendererRegistry.getEntryDescription(request, ctEntry)) %></p>
 
@@ -205,7 +205,7 @@ portletDisplay.setURLBack(backURL);
 										<div class="alert alert-warning" role="alert">
 											<clay:content-row>
 												<clay:content-col
-													expand="true"
+													expand="<%= true %>"
 												>
 													<clay:content-section>
 														<span class="alert-indicator">

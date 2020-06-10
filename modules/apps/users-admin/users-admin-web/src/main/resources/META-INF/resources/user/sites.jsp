@@ -36,7 +36,7 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 	cssClass="sheet-subtitle"
 >
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<span class="heading-text"><liferay-ui:message key="sites" /></span>
 	</clay:content-col>

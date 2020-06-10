@@ -30,7 +30,7 @@ List<OrgLabor> orgLabors = OrgLaborServiceUtil.getOrgLabors(organizationId);
 		cssClass="sheet-title"
 	>
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-text"><%= organizationScreenNavigationDisplayContext.getFormLabel() %></span>
 		</clay:content-col>
@@ -67,13 +67,13 @@ List<OrgLabor> orgLabors = OrgLaborServiceUtil.getOrgLabors(organizationId);
 </c:if>
 
 <div
-	class='<%=
+	class="<%=
 		CSSClassNames.builder(
 			"opening-hours-wrapper"
 		).add(
 			"hide", orgLabors.isEmpty()
 		).build()
-	%>'
+	%>"
 >
 
 	<%

@@ -40,7 +40,7 @@ FileVersion fileVersion = (FileVersion)request.getAttribute("file_entry_upper_tb
 						</c:if>
 
 						<c:if test="<%= dlViewFileVersionDisplayContext.isShared() %>">
-							<span class="inline-item inline-item-after lfr-portal-tooltip state-icon" title='<%= LanguageUtil.get(request, "shared") %>'>
+							<span class="inline-item inline-item-after lfr-portal-tooltip state-icon" title="<%= LanguageUtil.get(request, "shared") %>">
 								<aui:icon image="users" markupView="lexicon" message="shared" />
 							</span>
 						</c:if>
@@ -51,7 +51,7 @@ FileVersion fileVersion = (FileVersion)request.getAttribute("file_entry_upper_tb
 						elementClasses="btn-outline-borderless btn-outline-secondary"
 						icon="info-circle-open"
 						id='<%= liferayPortletResponse.getNamespace() + "OpenContextualSidebar" %>'
-						monospaced="true"
+						monospaced="<%= true %>"
 						size="sm"
 						style="<%= false %>"
 						title='<%= LanguageUtil.get(resourceBundle, "info") %>'

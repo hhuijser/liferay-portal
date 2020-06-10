@@ -56,7 +56,7 @@
 			>
 				<clay:content-col
 					containerElement="span"
-					expand="true"
+					expand="<%= true %>"
 				>
 					<span class="heading-text">
 						<liferay-ui:message key="asset-entries" />

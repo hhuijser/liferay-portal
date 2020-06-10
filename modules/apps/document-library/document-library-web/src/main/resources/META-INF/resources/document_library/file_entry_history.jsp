@@ -35,7 +35,7 @@
 
 		<li class="list-group-item list-group-item-flex">
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 				<div class="list-group-title">
 					<liferay-ui:message arguments="<%= fileVersion.getVersion() %>" key="version-x" />

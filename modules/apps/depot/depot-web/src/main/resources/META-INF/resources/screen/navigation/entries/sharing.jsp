@@ -22,7 +22,7 @@ SharingConfiguration groupSharingConfiguration = (SharingConfiguration)request.g
 
 <c:if test="<%= groupSharingConfiguration.isAvailable() %>">
 	<liferay-frontend:fieldset
-		collapsible="true"
+		collapsible="<%= true %>"
 		cssClass="panel-group-flush"
 		label='<%= LanguageUtil.get(request, "sharing") %>'
 	>

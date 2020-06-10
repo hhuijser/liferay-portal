@@ -87,7 +87,7 @@ portletDisplay.setShowBackIcon(true);
 							<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 						</liferay-portlet:renderURL>
 
-						<a class='btn btn-primary btn-sm <%= viewChangesDisplayContext.hasChanges() ? StringPool.BLANK : "disabled" %>' href="<%= conflictsURL %>" type="button">
+						<a class="btn btn-primary btn-sm <%= viewChangesDisplayContext.hasChanges() ? StringPool.BLANK : "disabled" %>" href="<%= conflictsURL %>" type="button">
 							<liferay-ui:message key="prepare-to-publish" />
 						</a>
 					</li>

@@ -49,13 +49,13 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 						<clay:label
 							displayType="info"
 							label="published"
-							large="true"
+							large="<%= true %>"
 						/>
 					</c:when>
 					<c:otherwise>
 						<clay:label
 							label="not-published"
-							large="true"
+							large="<%= true %>"
 						/>
 					</c:otherwise>
 				</c:choose>
@@ -82,7 +82,7 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 	</clay:container-fluid>
 </liferay-frontend:info-bar>
 
-<div class='<%= previewBeforeRestore ? "" : "container-fluid-1280" %>' id="container">
+<div class="<%= previewBeforeRestore ? "" : "container-fluid-1280" %>" id="container">
 	<aui:model-context bean="<%= workflowDefinition %>" model="<%= WorkflowDefinition.class %>" />
 
 	<aui:input name="content" type="hidden" value="<%= content %>" />

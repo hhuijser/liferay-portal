@@ -20,7 +20,7 @@
 LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayContext(liferayPortletRequest);
 %>
 
-<div id='<%= renderResponse.getNamespace() + "-layout-finder" %>'>
+<div id="<%= renderResponse.getNamespace() + "-layout-finder" %>">
 	<react:component
 		data="<%= layoutsTreeDisplayContext.getLayoutFinderData() %>"
 		module="js/LayoutFinder.es"
@@ -28,8 +28,8 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 	/>
 </div>
 
-<div id='<%= renderResponse.getNamespace() + "layoutsTree" %>'>
-	<div id='<%= renderResponse.getNamespace() + "-page-type" %>'>
+<div id="<%= renderResponse.getNamespace() + "layoutsTree" %>">
+	<div id="<%= renderResponse.getNamespace() + "-page-type" %>">
 		<react:component
 			data="<%= layoutsTreeDisplayContext.getPageTypeSelectorData() %>"
 			module="js/PageTypeSelector.es"
@@ -54,7 +54,7 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 			<clay:content-col
 				containerElement="span"
 				cssClass="pages-tree-dropdown"
-				expand="true"
+				expand="<%= true %>"
 			>
 				<span class="d-sm-block dropdown text-right">
 					<button class="btn btn-unstyled dropdown-toggle ml-1 taglib-icon" data-toggle="liferay-dropdown">
@@ -75,7 +75,7 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 								>
 									<clay:content-col
 										containerElement="span"
-										expand="true"
+										expand="<%= true %>"
 									>
 										<clay:content-section
 											containerElement="span"
@@ -96,7 +96,7 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 							>
 								<clay:content-col
 									containerElement="span"
-									expand="true"
+									expand="<%= true %>"
 								>
 									<clay:content-section
 										containerElement="span"

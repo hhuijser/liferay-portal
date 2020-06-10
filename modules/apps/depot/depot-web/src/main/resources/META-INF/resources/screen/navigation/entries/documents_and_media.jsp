@@ -27,7 +27,7 @@ boolean directoryIndexingEnabled = PropertiesParamUtil.getBoolean(typeSettingsPr
 %>
 
 <liferay-frontend:fieldset
-	collapsible="true"
+	collapsible="<%= true %>"
 	cssClass="panel-group-flush"
 	label='<%= LanguageUtil.get(request, "documents-and-media") %>'
 >

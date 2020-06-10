@@ -38,7 +38,7 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "organi
 	cssClass="sheet-subtitle"
 >
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<span class="heading-text"><liferay-ui:message key="organizations" /></span>
 	</clay:content-col>

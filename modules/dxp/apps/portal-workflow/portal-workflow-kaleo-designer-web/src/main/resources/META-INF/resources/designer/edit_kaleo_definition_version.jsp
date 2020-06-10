@@ -91,13 +91,13 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 									<clay:label
 										displayType="info"
 										label="published"
-										large="true"
+										large="<%= true %>"
 									/>
 								</c:when>
 								<c:otherwise>
 									<clay:label
 										label="not-published"
-										large="true"
+										large="<%= true %>"
 									/>
 								</c:otherwise>
 							</c:choose>

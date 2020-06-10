@@ -92,7 +92,7 @@ renderResponse.setTitle(oAuth2Application.getName());
 							</clay:content-col>
 
 							<clay:content-col
-								expand="true"
+								expand="<%= true %>"
 							>
 								<h4 class="list-group-title text-truncate"><%= HtmlUtil.escape(assignableScopes.getApplicationDescription(applicationName)) %></h4>
 

@@ -66,8 +66,13 @@ public class RepositoryModelBulkSelectionFactory
 					UnsafeConsumer<RepositoryModel, E> unsafeConsumer)
 				throws PortalException {
 
-				for (BulkSelection bulkSelection : bulkSelections) {
-					bulkSelection.forEach(unsafeConsumer);
+				for (BulkSelection<? extends RepositoryModel> bulkSelection :
+						bulkSelections) {
+
+					BulkSelection<RepositoryModel> repositoryBulkSelection =
+						(BulkSelection<RepositoryModel>)bulkSelection;
+
+					repositoryBulkSelection.forEach(unsafeConsumer);
 				}
 			}
 
@@ -103,10 +108,12 @@ public class RepositoryModelBulkSelectionFactory
 
 			@Override
 			public BulkSelection<AssetEntry> toAssetEntryBulkSelection() {
-				List<BulkSelection> assetEntryBulkSelections =
+				List<BulkSelection<AssetEntry>> assetEntryBulkSelections =
 					new ArrayList<>();
 
-				for (BulkSelection bulkSelection : bulkSelections) {
+				for (BulkSelection<? extends RepositoryModel> bulkSelection :
+						bulkSelections) {
+
 					assetEntryBulkSelections.add(
 						bulkSelection.toAssetEntryBulkSelection());
 				}

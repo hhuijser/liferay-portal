@@ -63,9 +63,10 @@ public class XLIFFTranslationInfoFormValuesExporterTest {
 	public void testExportReturnsTheXLIFFRepresentationOfAJournalArticle()
 		throws Exception {
 
-		InfoItemFormProvider infoItemFormProvider =
-			_infoItemServiceTracker.getInfoItemService(
-				InfoItemFormProvider.class, JournalArticle.class.getName());
+		InfoItemFormProvider<JournalArticle> infoItemFormProvider =
+			(InfoItemFormProvider<JournalArticle>)
+				_infoItemServiceTracker.getInfoItemService(
+					InfoItemFormProvider.class, JournalArticle.class.getName());
 
 		JournalArticle journalArticle = _getJournalArticle();
 

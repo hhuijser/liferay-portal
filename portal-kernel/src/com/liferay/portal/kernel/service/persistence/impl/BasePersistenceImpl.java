@@ -918,8 +918,8 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 		}
 
 		if (expression instanceof AggregateExpression) {
-			AggregateExpression aggregateExpression =
-				(AggregateExpression)expression;
+			AggregateExpression<?> aggregateExpression =
+				(AggregateExpression<?>)expression;
 
 			if (Objects.equals(aggregateExpression.getName(), "count")) {
 				return Type.LONG;

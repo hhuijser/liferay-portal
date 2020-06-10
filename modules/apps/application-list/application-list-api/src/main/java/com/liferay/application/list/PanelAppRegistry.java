@@ -249,7 +249,9 @@ public class PanelAppRegistry {
 			<PanelApp, PanelApp, List<PanelApp>> {
 
 		@Override
-		public ServiceTrackerBucket create() {
+		public ServiceTrackerBucket<PanelApp, PanelApp, List<PanelApp>>
+			create() {
+
 			return new PanelCategoryServiceTrackerBucket();
 		}
 

@@ -41,10 +41,10 @@ public class ClayTagDataSourceProvider {
 			return null;
 		}
 
-		ServiceTrackerMap<String, ClayTagDataSource> clayTagDataSources =
+		ServiceTrackerMap<String, ClayTagDataSource<?>> clayTagDataSources =
 			_clayTagDataSourceProvider._clayTagDataSources;
 
-		return clayTagDataSources.getService(key);
+		return (ClayTagDataSource<T>)clayTagDataSources.getService(key);
 	}
 
 	public ClayTagDataSourceProvider() {
@@ -54,7 +54,8 @@ public class ClayTagDataSourceProvider {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_clayTagDataSources = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ClayTagDataSource.class,
+			bundleContext,
+			(Class<ClayTagDataSource<?>>)(Class<?>)ClayTagDataSource.class,
 			"(clay.tag.data.source.key=*)",
 			new PropertyServiceReferenceMapper<>("clay.tag.data.source.key"),
 			new PropertyServiceReferenceComparator<>("service.ranking"));
@@ -72,6 +73,6 @@ public class ClayTagDataSourceProvider {
 
 	private static ClayTagDataSourceProvider _clayTagDataSourceProvider;
 
-	private ServiceTrackerMap<String, ClayTagDataSource> _clayTagDataSources;
+	private ServiceTrackerMap<String, ClayTagDataSource<?>> _clayTagDataSources;
 
 }

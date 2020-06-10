@@ -96,6 +96,6 @@ public class DDMFormContextToDDMFormTest {
 	private DDMFormFieldTypeServicesTracker _ddmFormFieldTypeServicesTracker;
 
 	@Mock
-	private DDMFormFieldValueAccessor _ddmFormFieldValueAccessor;
+	private DDMFormFieldValueAccessor<Object> _ddmFormFieldValueAccessor;
 
 }

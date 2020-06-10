@@ -155,7 +155,8 @@ public class DDMFormFieldTypeServicesTrackerImpl
 	public <T> DDMFormFieldValueAccessor<T> getDDMFormFieldValueAccessor(
 		String name) {
 
-		return _ddmFormFieldValueAccessorServiceTrackerMap.getService(name);
+		return (DDMFormFieldValueAccessor<T>)
+			_ddmFormFieldValueAccessorServiceTrackerMap.getService(name);
 	}
 
 	@Override
@@ -198,7 +199,9 @@ public class DDMFormFieldTypeServicesTrackerImpl
 
 		_ddmFormFieldValueAccessorServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, DDMFormFieldValueAccessor.class,
+				bundleContext,
+				(Class<DDMFormFieldValueAccessor<?>>)
+					(Class<?>)DDMFormFieldValueAccessor.class,
 				"ddm.form.field.type.name");
 
 		_ddmFormFieldValueLocalizerServiceTrackerMap =
@@ -239,7 +242,7 @@ public class DDMFormFieldTypeServicesTrackerImpl
 	private final Comparator<ServiceWrapper<DDMFormFieldType>>
 		_ddmFormFieldTypeServiceWrapperDisplayOrderComparator =
 			new DDMFormFieldTypeServiceWrapperDisplayOrderComparator();
-	private ServiceTrackerMap<String, DDMFormFieldValueAccessor>
+	private ServiceTrackerMap<String, DDMFormFieldValueAccessor<?>>
 		_ddmFormFieldValueAccessorServiceTrackerMap;
 	private ServiceTrackerMap<String, DDMFormFieldValueLocalizer>
 		_ddmFormFieldValueLocalizerServiceTrackerMap;

@@ -43,7 +43,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class MBThreadUADAnonymizerTest
 	extends BaseHasAssetEntryUADAnonymizerTestCase<MBThread>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<MBThread> {
 
 	@ClassRule
 	@Rule

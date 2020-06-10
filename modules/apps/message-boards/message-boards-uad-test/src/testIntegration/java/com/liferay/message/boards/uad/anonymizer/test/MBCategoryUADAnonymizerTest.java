@@ -40,7 +40,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class MBCategoryUADAnonymizerTest
 	extends BaseUADAnonymizerTestCase<MBCategory>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<MBCategory> {
 
 	@ClassRule
 	@Rule

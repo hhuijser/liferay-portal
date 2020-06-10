@@ -44,7 +44,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class DLFileShortcutUADAnonymizerTest
 	extends BaseHasAssetEntryUADAnonymizerTestCase<DLFileShortcut>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<DLFileShortcut> {
 
 	@ClassRule
 	@Rule

@@ -40,7 +40,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class BlogsEntryUADAnonymizerTest
 	extends BaseHasAssetEntryUADAnonymizerTestCase<BlogsEntry>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<BlogsEntry> {
 
 	@ClassRule
 	@Rule

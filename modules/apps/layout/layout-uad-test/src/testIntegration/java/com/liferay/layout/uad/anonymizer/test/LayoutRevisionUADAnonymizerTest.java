@@ -43,7 +43,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class LayoutRevisionUADAnonymizerTest
 	extends BaseUADAnonymizerTestCase<LayoutRevision>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<LayoutRevision> {
 
 	@ClassRule
 	@Rule

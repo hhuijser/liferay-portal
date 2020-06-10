@@ -645,16 +645,16 @@ public class DispatchLogModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DispatchLog)) {
+		if (!(object instanceof DispatchLog)) {
 			return false;
 		}
 
-		DispatchLog dispatchLog = (DispatchLog)obj;
+		DispatchLog dispatchLog = (DispatchLog)object;
 
 		long primaryKey = dispatchLog.getPrimaryKey();
 

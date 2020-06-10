@@ -37,17 +37,17 @@ public class MDRRuleGroupInstanceCacheModel
 	implements CacheModel<MDRRuleGroupInstance>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof MDRRuleGroupInstanceCacheModel)) {
+		if (!(object instanceof MDRRuleGroupInstanceCacheModel)) {
 			return false;
 		}
 
 		MDRRuleGroupInstanceCacheModel mdrRuleGroupInstanceCacheModel =
-			(MDRRuleGroupInstanceCacheModel)obj;
+			(MDRRuleGroupInstanceCacheModel)object;
 
 		if ((ruleGroupInstanceId ==
 				mdrRuleGroupInstanceCacheModel.ruleGroupInstanceId) &&

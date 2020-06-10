@@ -492,17 +492,17 @@ public class DDMFormInstanceReportModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormInstanceReport)) {
+		if (!(object instanceof DDMFormInstanceReport)) {
 			return false;
 		}
 
 		DDMFormInstanceReport ddmFormInstanceReport =
-			(DDMFormInstanceReport)obj;
+			(DDMFormInstanceReport)object;
 
 		long primaryKey = ddmFormInstanceReport.getPrimaryKey();
 

@@ -1566,16 +1566,16 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof User)) {
+		if (!(object instanceof User)) {
 			return false;
 		}
 
-		User user = (User)obj;
+		User user = (User)object;
 
 		long primaryKey = user.getPrimaryKey();
 

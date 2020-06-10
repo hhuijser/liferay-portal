@@ -436,16 +436,16 @@ public class SamlSpAuthRequestModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SamlSpAuthRequest)) {
+		if (!(object instanceof SamlSpAuthRequest)) {
 			return false;
 		}
 
-		SamlSpAuthRequest samlSpAuthRequest = (SamlSpAuthRequest)obj;
+		SamlSpAuthRequest samlSpAuthRequest = (SamlSpAuthRequest)object;
 
 		long primaryKey = samlSpAuthRequest.getPrimaryKey();
 

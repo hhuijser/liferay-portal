@@ -595,16 +595,16 @@ public class OAuthUserModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof OAuthUser)) {
+		if (!(object instanceof OAuthUser)) {
 			return false;
 		}
 
-		OAuthUser oAuthUser = (OAuthUser)obj;
+		OAuthUser oAuthUser = (OAuthUser)object;
 
 		long primaryKey = oAuthUser.getPrimaryKey();
 

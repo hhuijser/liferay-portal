@@ -969,16 +969,16 @@ public class DefinitionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Definition)) {
+		if (!(object instanceof Definition)) {
 			return false;
 		}
 
-		Definition definition = (Definition)obj;
+		Definition definition = (Definition)object;
 
 		long primaryKey = definition.getPrimaryKey();
 

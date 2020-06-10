@@ -37,17 +37,17 @@ public class LayoutPageTemplateEntryCacheModel
 	implements CacheModel<LayoutPageTemplateEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LayoutPageTemplateEntryCacheModel)) {
+		if (!(object instanceof LayoutPageTemplateEntryCacheModel)) {
 			return false;
 		}
 
 		LayoutPageTemplateEntryCacheModel layoutPageTemplateEntryCacheModel =
-			(LayoutPageTemplateEntryCacheModel)obj;
+			(LayoutPageTemplateEntryCacheModel)object;
 
 		if ((layoutPageTemplateEntryId ==
 				layoutPageTemplateEntryCacheModel.layoutPageTemplateEntryId) &&

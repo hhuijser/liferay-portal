@@ -812,16 +812,16 @@ public class AssetListEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AssetListEntry)) {
+		if (!(object instanceof AssetListEntry)) {
 			return false;
 		}
 
-		AssetListEntry assetListEntry = (AssetListEntry)obj;
+		AssetListEntry assetListEntry = (AssetListEntry)object;
 
 		long primaryKey = assetListEntry.getPrimaryKey();
 

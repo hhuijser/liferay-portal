@@ -38,18 +38,18 @@ public class DDMFormInstanceRecordVersionCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMFormInstanceRecordVersionCacheModel)) {
+		if (!(object instanceof DDMFormInstanceRecordVersionCacheModel)) {
 			return false;
 		}
 
 		DDMFormInstanceRecordVersionCacheModel
 			ddmFormInstanceRecordVersionCacheModel =
-				(DDMFormInstanceRecordVersionCacheModel)obj;
+				(DDMFormInstanceRecordVersionCacheModel)object;
 
 		if ((formInstanceRecordVersionId ==
 				ddmFormInstanceRecordVersionCacheModel.

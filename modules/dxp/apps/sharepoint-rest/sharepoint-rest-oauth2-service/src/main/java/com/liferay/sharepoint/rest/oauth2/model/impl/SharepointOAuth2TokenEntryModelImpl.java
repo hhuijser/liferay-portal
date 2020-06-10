@@ -543,17 +543,17 @@ public class SharepointOAuth2TokenEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SharepointOAuth2TokenEntry)) {
+		if (!(object instanceof SharepointOAuth2TokenEntry)) {
 			return false;
 		}
 
 		SharepointOAuth2TokenEntry sharepointOAuth2TokenEntry =
-			(SharepointOAuth2TokenEntry)obj;
+			(SharepointOAuth2TokenEntry)object;
 
 		long primaryKey = sharepointOAuth2TokenEntry.getPrimaryKey();
 

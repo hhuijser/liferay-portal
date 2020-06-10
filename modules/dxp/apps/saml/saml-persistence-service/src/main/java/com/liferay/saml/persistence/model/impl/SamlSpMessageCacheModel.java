@@ -36,17 +36,17 @@ public class SamlSpMessageCacheModel
 	implements CacheModel<SamlSpMessage>, Externalizable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SamlSpMessageCacheModel)) {
+		if (!(object instanceof SamlSpMessageCacheModel)) {
 			return false;
 		}
 
 		SamlSpMessageCacheModel samlSpMessageCacheModel =
-			(SamlSpMessageCacheModel)obj;
+			(SamlSpMessageCacheModel)object;
 
 		if (samlSpMessageId == samlSpMessageCacheModel.samlSpMessageId) {
 			return true;

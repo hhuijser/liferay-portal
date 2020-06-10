@@ -793,16 +793,16 @@ public class DEDataListViewModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DEDataListView)) {
+		if (!(object instanceof DEDataListView)) {
 			return false;
 		}
 
-		DEDataListView deDataListView = (DEDataListView)obj;
+		DEDataListView deDataListView = (DEDataListView)object;
 
 		long primaryKey = deDataListView.getPrimaryKey();
 

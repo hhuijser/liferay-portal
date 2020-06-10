@@ -552,16 +552,16 @@ public class CTSContentModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CTSContent)) {
+		if (!(object instanceof CTSContent)) {
 			return false;
 		}
 
-		CTSContent ctsContent = (CTSContent)obj;
+		CTSContent ctsContent = (CTSContent)object;
 
 		long primaryKey = ctsContent.getPrimaryKey();
 

@@ -37,17 +37,17 @@ public class MFAEmailOTPEntryCacheModel
 	implements CacheModel<MFAEmailOTPEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof MFAEmailOTPEntryCacheModel)) {
+		if (!(object instanceof MFAEmailOTPEntryCacheModel)) {
 			return false;
 		}
 
 		MFAEmailOTPEntryCacheModel mfaEmailOTPEntryCacheModel =
-			(MFAEmailOTPEntryCacheModel)obj;
+			(MFAEmailOTPEntryCacheModel)object;
 
 		if ((mfaEmailOTPEntryId ==
 				mfaEmailOTPEntryCacheModel.mfaEmailOTPEntryId) &&

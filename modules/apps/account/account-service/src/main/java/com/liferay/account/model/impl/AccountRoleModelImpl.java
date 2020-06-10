@@ -469,16 +469,16 @@ public class AccountRoleModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AccountRole)) {
+		if (!(object instanceof AccountRole)) {
 			return false;
 		}
 
-		AccountRole accountRole = (AccountRole)obj;
+		AccountRole accountRole = (AccountRole)object;
 
 		long primaryKey = accountRole.getPrimaryKey();
 

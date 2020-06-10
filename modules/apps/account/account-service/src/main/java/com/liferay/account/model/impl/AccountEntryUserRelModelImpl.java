@@ -495,16 +495,16 @@ public class AccountEntryUserRelModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AccountEntryUserRel)) {
+		if (!(object instanceof AccountEntryUserRel)) {
 			return false;
 		}
 
-		AccountEntryUserRel accountEntryUserRel = (AccountEntryUserRel)obj;
+		AccountEntryUserRel accountEntryUserRel = (AccountEntryUserRel)object;
 
 		long primaryKey = accountEntryUserRel.getPrimaryKey();
 

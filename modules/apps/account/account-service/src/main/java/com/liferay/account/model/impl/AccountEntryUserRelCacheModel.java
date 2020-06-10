@@ -35,17 +35,17 @@ public class AccountEntryUserRelCacheModel
 	implements CacheModel<AccountEntryUserRel>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AccountEntryUserRelCacheModel)) {
+		if (!(object instanceof AccountEntryUserRelCacheModel)) {
 			return false;
 		}
 
 		AccountEntryUserRelCacheModel accountEntryUserRelCacheModel =
-			(AccountEntryUserRelCacheModel)obj;
+			(AccountEntryUserRelCacheModel)object;
 
 		if ((accountEntryUserRelId ==
 				accountEntryUserRelCacheModel.accountEntryUserRelId) &&

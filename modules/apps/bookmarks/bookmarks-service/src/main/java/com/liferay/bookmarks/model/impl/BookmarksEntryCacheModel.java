@@ -37,17 +37,17 @@ public class BookmarksEntryCacheModel
 	implements CacheModel<BookmarksEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof BookmarksEntryCacheModel)) {
+		if (!(object instanceof BookmarksEntryCacheModel)) {
 			return false;
 		}
 
 		BookmarksEntryCacheModel bookmarksEntryCacheModel =
-			(BookmarksEntryCacheModel)obj;
+			(BookmarksEntryCacheModel)object;
 
 		if ((entryId == bookmarksEntryCacheModel.entryId) &&
 			(mvccVersion == bookmarksEntryCacheModel.mvccVersion)) {

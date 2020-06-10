@@ -351,16 +351,16 @@ public class ViewCountEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ViewCountEntry)) {
+		if (!(object instanceof ViewCountEntry)) {
 			return false;
 		}
 
-		ViewCountEntry viewCountEntry = (ViewCountEntry)obj;
+		ViewCountEntry viewCountEntry = (ViewCountEntry)object;
 
 		ViewCountEntryPK primaryKey = viewCountEntry.getPrimaryKey();
 

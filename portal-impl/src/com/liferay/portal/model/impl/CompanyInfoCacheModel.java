@@ -35,17 +35,17 @@ public class CompanyInfoCacheModel
 	implements CacheModel<CompanyInfo>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CompanyInfoCacheModel)) {
+		if (!(object instanceof CompanyInfoCacheModel)) {
 			return false;
 		}
 
 		CompanyInfoCacheModel companyInfoCacheModel =
-			(CompanyInfoCacheModel)obj;
+			(CompanyInfoCacheModel)object;
 
 		if ((companyInfoId == companyInfoCacheModel.companyInfoId) &&
 			(mvccVersion == companyInfoCacheModel.mvccVersion)) {

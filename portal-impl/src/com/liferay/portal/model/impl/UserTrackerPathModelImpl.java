@@ -427,16 +427,16 @@ public class UserTrackerPathModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof UserTrackerPath)) {
+		if (!(object instanceof UserTrackerPath)) {
 			return false;
 		}
 
-		UserTrackerPath userTrackerPath = (UserTrackerPath)obj;
+		UserTrackerPath userTrackerPath = (UserTrackerPath)object;
 
 		long primaryKey = userTrackerPath.getPrimaryKey();
 

@@ -37,17 +37,17 @@ public class DDMStructureLayoutCacheModel
 	implements CacheModel<DDMStructureLayout>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMStructureLayoutCacheModel)) {
+		if (!(object instanceof DDMStructureLayoutCacheModel)) {
 			return false;
 		}
 
 		DDMStructureLayoutCacheModel ddmStructureLayoutCacheModel =
-			(DDMStructureLayoutCacheModel)obj;
+			(DDMStructureLayoutCacheModel)object;
 
 		if ((structureLayoutId ==
 				ddmStructureLayoutCacheModel.structureLayoutId) &&

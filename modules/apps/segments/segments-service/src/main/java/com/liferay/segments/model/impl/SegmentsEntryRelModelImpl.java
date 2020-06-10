@@ -663,16 +663,16 @@ public class SegmentsEntryRelModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SegmentsEntryRel)) {
+		if (!(object instanceof SegmentsEntryRel)) {
 			return false;
 		}
 
-		SegmentsEntryRel segmentsEntryRel = (SegmentsEntryRel)obj;
+		SegmentsEntryRel segmentsEntryRel = (SegmentsEntryRel)object;
 
 		long primaryKey = segmentsEntryRel.getPrimaryKey();
 

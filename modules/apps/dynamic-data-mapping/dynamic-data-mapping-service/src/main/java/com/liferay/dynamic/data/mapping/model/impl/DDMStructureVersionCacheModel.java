@@ -37,17 +37,17 @@ public class DDMStructureVersionCacheModel
 	implements CacheModel<DDMStructureVersion>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DDMStructureVersionCacheModel)) {
+		if (!(object instanceof DDMStructureVersionCacheModel)) {
 			return false;
 		}
 
 		DDMStructureVersionCacheModel ddmStructureVersionCacheModel =
-			(DDMStructureVersionCacheModel)obj;
+			(DDMStructureVersionCacheModel)object;
 
 		if ((structureVersionId ==
 				ddmStructureVersionCacheModel.structureVersionId) &&

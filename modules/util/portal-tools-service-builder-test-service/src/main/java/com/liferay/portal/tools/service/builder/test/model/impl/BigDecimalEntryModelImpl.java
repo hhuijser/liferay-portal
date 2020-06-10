@@ -393,16 +393,16 @@ public class BigDecimalEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof BigDecimalEntry)) {
+		if (!(object instanceof BigDecimalEntry)) {
 			return false;
 		}
 
-		BigDecimalEntry bigDecimalEntry = (BigDecimalEntry)obj;
+		BigDecimalEntry bigDecimalEntry = (BigDecimalEntry)object;
 
 		long primaryKey = bigDecimalEntry.getPrimaryKey();
 

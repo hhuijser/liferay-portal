@@ -1450,16 +1450,16 @@ public class LayoutSEOEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LayoutSEOEntry)) {
+		if (!(object instanceof LayoutSEOEntry)) {
 			return false;
 		}
 
-		LayoutSEOEntry layoutSEOEntry = (LayoutSEOEntry)obj;
+		LayoutSEOEntry layoutSEOEntry = (LayoutSEOEntry)object;
 
 		long primaryKey = layoutSEOEntry.getPrimaryKey();
 

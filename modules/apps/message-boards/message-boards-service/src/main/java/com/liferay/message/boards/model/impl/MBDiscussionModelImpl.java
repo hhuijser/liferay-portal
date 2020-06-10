@@ -638,16 +638,16 @@ public class MBDiscussionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof MBDiscussion)) {
+		if (!(object instanceof MBDiscussion)) {
 			return false;
 		}
 
-		MBDiscussion mbDiscussion = (MBDiscussion)obj;
+		MBDiscussion mbDiscussion = (MBDiscussion)object;
 
 		long primaryKey = mbDiscussion.getPrimaryKey();
 

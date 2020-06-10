@@ -35,17 +35,17 @@ public class SocialRequestCacheModel
 	implements CacheModel<SocialRequest>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SocialRequestCacheModel)) {
+		if (!(object instanceof SocialRequestCacheModel)) {
 			return false;
 		}
 
 		SocialRequestCacheModel socialRequestCacheModel =
-			(SocialRequestCacheModel)obj;
+			(SocialRequestCacheModel)object;
 
 		if ((requestId == socialRequestCacheModel.requestId) &&
 			(mvccVersion == socialRequestCacheModel.mvccVersion)) {

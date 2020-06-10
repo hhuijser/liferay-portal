@@ -37,17 +37,17 @@ public class CTAutoResolutionInfoCacheModel
 	implements CacheModel<CTAutoResolutionInfo>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CTAutoResolutionInfoCacheModel)) {
+		if (!(object instanceof CTAutoResolutionInfoCacheModel)) {
 			return false;
 		}
 
 		CTAutoResolutionInfoCacheModel ctAutoResolutionInfoCacheModel =
-			(CTAutoResolutionInfoCacheModel)obj;
+			(CTAutoResolutionInfoCacheModel)object;
 
 		if ((ctAutoResolutionInfoId ==
 				ctAutoResolutionInfoCacheModel.ctAutoResolutionInfoId) &&

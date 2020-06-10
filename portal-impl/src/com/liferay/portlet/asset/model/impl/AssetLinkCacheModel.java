@@ -37,16 +37,16 @@ public class AssetLinkCacheModel
 	implements CacheModel<AssetLink>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AssetLinkCacheModel)) {
+		if (!(object instanceof AssetLinkCacheModel)) {
 			return false;
 		}
 
-		AssetLinkCacheModel assetLinkCacheModel = (AssetLinkCacheModel)obj;
+		AssetLinkCacheModel assetLinkCacheModel = (AssetLinkCacheModel)object;
 
 		if ((linkId == assetLinkCacheModel.linkId) &&
 			(mvccVersion == assetLinkCacheModel.mvccVersion)) {

@@ -34,17 +34,17 @@ public class NestedSetsTreeEntryCacheModel
 	implements CacheModel<NestedSetsTreeEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof NestedSetsTreeEntryCacheModel)) {
+		if (!(object instanceof NestedSetsTreeEntryCacheModel)) {
 			return false;
 		}
 
 		NestedSetsTreeEntryCacheModel nestedSetsTreeEntryCacheModel =
-			(NestedSetsTreeEntryCacheModel)obj;
+			(NestedSetsTreeEntryCacheModel)object;
 
 		if (nestedSetsTreeEntryId ==
 				nestedSetsTreeEntryCacheModel.nestedSetsTreeEntryId) {

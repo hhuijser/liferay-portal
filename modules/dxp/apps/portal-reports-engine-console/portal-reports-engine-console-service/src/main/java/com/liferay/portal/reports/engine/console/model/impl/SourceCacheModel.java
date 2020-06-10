@@ -35,16 +35,16 @@ import java.util.Date;
 public class SourceCacheModel implements CacheModel<Source>, Externalizable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SourceCacheModel)) {
+		if (!(object instanceof SourceCacheModel)) {
 			return false;
 		}
 
-		SourceCacheModel sourceCacheModel = (SourceCacheModel)obj;
+		SourceCacheModel sourceCacheModel = (SourceCacheModel)object;
 
 		if (sourceId == sourceCacheModel.sourceId) {
 			return true;

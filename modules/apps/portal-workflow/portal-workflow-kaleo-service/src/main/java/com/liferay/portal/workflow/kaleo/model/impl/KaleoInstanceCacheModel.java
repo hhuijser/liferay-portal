@@ -37,17 +37,17 @@ public class KaleoInstanceCacheModel
 	implements CacheModel<KaleoInstance>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof KaleoInstanceCacheModel)) {
+		if (!(object instanceof KaleoInstanceCacheModel)) {
 			return false;
 		}
 
 		KaleoInstanceCacheModel kaleoInstanceCacheModel =
-			(KaleoInstanceCacheModel)obj;
+			(KaleoInstanceCacheModel)object;
 
 		if ((kaleoInstanceId == kaleoInstanceCacheModel.kaleoInstanceId) &&
 			(mvccVersion == kaleoInstanceCacheModel.mvccVersion)) {

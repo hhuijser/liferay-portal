@@ -35,17 +35,17 @@ public class CTPreferencesCacheModel
 	implements CacheModel<CTPreferences>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CTPreferencesCacheModel)) {
+		if (!(object instanceof CTPreferencesCacheModel)) {
 			return false;
 		}
 
 		CTPreferencesCacheModel ctPreferencesCacheModel =
-			(CTPreferencesCacheModel)obj;
+			(CTPreferencesCacheModel)object;
 
 		if ((ctPreferencesId == ctPreferencesCacheModel.ctPreferencesId) &&
 			(mvccVersion == ctPreferencesCacheModel.mvccVersion)) {

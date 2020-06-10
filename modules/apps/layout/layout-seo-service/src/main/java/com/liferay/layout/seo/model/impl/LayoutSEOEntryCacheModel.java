@@ -37,17 +37,17 @@ public class LayoutSEOEntryCacheModel
 	implements CacheModel<LayoutSEOEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LayoutSEOEntryCacheModel)) {
+		if (!(object instanceof LayoutSEOEntryCacheModel)) {
 			return false;
 		}
 
 		LayoutSEOEntryCacheModel layoutSEOEntryCacheModel =
-			(LayoutSEOEntryCacheModel)obj;
+			(LayoutSEOEntryCacheModel)object;
 
 		if ((layoutSEOEntryId == layoutSEOEntryCacheModel.layoutSEOEntryId) &&
 			(mvccVersion == layoutSEOEntryCacheModel.mvccVersion)) {

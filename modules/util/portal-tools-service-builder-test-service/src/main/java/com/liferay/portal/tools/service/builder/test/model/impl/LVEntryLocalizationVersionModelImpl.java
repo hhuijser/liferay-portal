@@ -583,17 +583,17 @@ public class LVEntryLocalizationVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LVEntryLocalizationVersion)) {
+		if (!(object instanceof LVEntryLocalizationVersion)) {
 			return false;
 		}
 
 		LVEntryLocalizationVersion lvEntryLocalizationVersion =
-			(LVEntryLocalizationVersion)obj;
+			(LVEntryLocalizationVersion)object;
 
 		long primaryKey = lvEntryLocalizationVersion.getPrimaryKey();
 

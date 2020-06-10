@@ -37,17 +37,17 @@ public class DispatchLogCacheModel
 	implements CacheModel<DispatchLog>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DispatchLogCacheModel)) {
+		if (!(object instanceof DispatchLogCacheModel)) {
 			return false;
 		}
 
 		DispatchLogCacheModel dispatchLogCacheModel =
-			(DispatchLogCacheModel)obj;
+			(DispatchLogCacheModel)object;
 
 		if ((dispatchLogId == dispatchLogCacheModel.dispatchLogId) &&
 			(mvccVersion == dispatchLogCacheModel.mvccVersion)) {

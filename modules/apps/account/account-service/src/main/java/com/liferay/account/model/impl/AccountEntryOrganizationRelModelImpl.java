@@ -488,17 +488,17 @@ public class AccountEntryOrganizationRelModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AccountEntryOrganizationRel)) {
+		if (!(object instanceof AccountEntryOrganizationRel)) {
 			return false;
 		}
 
 		AccountEntryOrganizationRel accountEntryOrganizationRel =
-			(AccountEntryOrganizationRel)obj;
+			(AccountEntryOrganizationRel)object;
 
 		long primaryKey = accountEntryOrganizationRel.getPrimaryKey();
 

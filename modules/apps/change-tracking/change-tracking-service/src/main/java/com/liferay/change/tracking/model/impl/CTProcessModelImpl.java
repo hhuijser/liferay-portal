@@ -511,16 +511,16 @@ public class CTProcessModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CTProcess)) {
+		if (!(object instanceof CTProcess)) {
 			return false;
 		}
 
-		CTProcess ctProcess = (CTProcess)obj;
+		CTProcess ctProcess = (CTProcess)object;
 
 		long primaryKey = ctProcess.getPrimaryKey();
 

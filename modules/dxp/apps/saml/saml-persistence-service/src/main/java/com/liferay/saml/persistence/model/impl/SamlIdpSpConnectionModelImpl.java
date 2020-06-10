@@ -766,16 +766,16 @@ public class SamlIdpSpConnectionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SamlIdpSpConnection)) {
+		if (!(object instanceof SamlIdpSpConnection)) {
 			return false;
 		}
 
-		SamlIdpSpConnection samlIdpSpConnection = (SamlIdpSpConnection)obj;
+		SamlIdpSpConnection samlIdpSpConnection = (SamlIdpSpConnection)object;
 
 		long primaryKey = samlIdpSpConnection.getPrimaryKey();
 

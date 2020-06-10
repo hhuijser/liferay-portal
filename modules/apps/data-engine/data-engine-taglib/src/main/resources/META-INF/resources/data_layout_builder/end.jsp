@@ -98,7 +98,7 @@ Map<String, Object> data = HashMapBuilder.<String, Object>put(
 	</liferay-ui:error>
 </div>
 
-<div id='<%= componentId + "container" %>'>
+<div id="<%= componentId + "container" %>">
 	<react:component
 		data="<%= data %>"
 		module="data_layout_builder/js/App.es"

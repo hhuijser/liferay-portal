@@ -71,7 +71,7 @@ else {
 				<c:choose>
 					<c:when test="<%= !workflowEnabled && !layoutRevision.isIncomplete() %>">
 						<span class="staging-bar-control-toggle">
-							<aui:input id="readyToggle" label="<%= StringPool.BLANK %>" labelOff="ready-for-publication" labelOn="ready-for-publication" name="readyToggle" onChange="<%= liferayPortletResponse.getNamespace() + "submitLayoutRevision('" + publishURL + "')" %>" type="toggle-switch" value="<%= false %>" />
+							<aui:input id="readyToggle" label="<%= StringPool.BLANK %>" labelOff="ready-for-publication" labelOn="ready-for-publication" name="readyToggle" onChange='<%= liferayPortletResponse.getNamespace() + "submitLayoutRevision('" + publishURL + "')" %>' type="toggle-switch" value="<%= false %>" />
 						</span>
 					</c:when>
 					<c:when test="<%= !workflowEnabled || pendingLayoutRevisions.isEmpty() %>">
@@ -165,14 +165,14 @@ else {
 
 			<ul class="dropdown-menu dropdown-menu-right" role="menu">
 				<li>
-					<a class="dropdown-item" href="javascript:;" id="manageLayoutSetRevisions" onclick='<%= renderResponse.getNamespace() + "openSitePagesVariationsDialog();" %>'>
+					<a class="dropdown-item" href="javascript:;" id="manageLayoutSetRevisions" onclick="<%= renderResponse.getNamespace() + "openSitePagesVariationsDialog();" %>">
 						<liferay-ui:message key="site-pages-variation" />
 					</a>
 				</li>
 
 				<c:if test="<%= !layoutRevision.isIncomplete() %>">
 					<li>
-						<a class="dropdown-item" href="javascript:;" id="manageLayoutRevisions" onclick='<%= renderResponse.getNamespace() + "openPageVariationsDialog();" %>'>
+						<a class="dropdown-item" href="javascript:;" id="manageLayoutRevisions" onclick="<%= renderResponse.getNamespace() + "openPageVariationsDialog();" %>">
 							<liferay-ui:message key="page-variations" />
 						</a>
 					</li>

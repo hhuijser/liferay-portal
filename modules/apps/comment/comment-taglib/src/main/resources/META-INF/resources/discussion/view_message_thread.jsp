@@ -41,7 +41,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 %>
 
 <c:if test="<%= commentTreeDisplayContext.isDiscussionVisible() %>">
-	<article class='lfr-discussion <%= (rootDiscussionComment.getCommentId() == discussionComment.getParentCommentId()) ? "lfr-discussion-container" : "" %>'>
+	<article class="lfr-discussion <%= (rootDiscussionComment.getCommentId() == discussionComment.getParentCommentId()) ? "lfr-discussion-container" : "" %>">
 		<div class="comment-container">
 			<clay:content-row
 				cssClass="widget-metadata"
@@ -213,7 +213,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				</div>
 
 				<div class="lfr-discussion-message">
-					<div class="lfr-discussion-message-body" id='<%= namespace + "discussionMessage" + index %>'>
+					<div class="lfr-discussion-message-body" id="<%= namespace + "discussionMessage" + index %>">
 						<%= discussionComment.getTranslatedBody(themeDisplay.getPathThemeImages()) %>
 					</div>
 
@@ -251,7 +251,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 							<c:if test="<%= !discussion.isMaxCommentsLimitExceeded() %>">
 								<c:choose>
 									<c:when test="<%= commentTreeDisplayContext.isReplyButtonVisible() %>">
-										<button class="btn btn-outline-borderless btn-outline-secondary btn-sm" onclick='<%= randomNamespace + "showPostReplyEditor(" + index + ");" %>' type="button">
+										<button class="btn btn-outline-borderless btn-outline-secondary btn-sm" onclick="<%= randomNamespace + "showPostReplyEditor(" + index + ");" %>" type="button">
 											<liferay-ui:message key="reply" />
 										</button>
 									</c:when>
@@ -280,7 +280,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 			</div>
 		</div>
 
-		<div class="lfr-discussion lfr-discussion-form-reply" id='<%= namespace + "postReplyForm" + index %>' style="display: none;">
+		<div class="lfr-discussion lfr-discussion-form-reply" id="<%= namespace + "postReplyForm" + index %>" style="display: none;">
 			<div class="lfr-discussion-reply-container">
 				<clay:content-row
 					noGutters="true"

@@ -125,9 +125,11 @@ public class AnalyticsReportsPortlet extends MVCPortlet {
 
 		if (infoDisplayObjectProvider != null) {
 			analyticsReportsInfoItem =
-				(AnalyticsReportsInfoItem<Object>)_analyticsReportsInfoItemTracker.getAnalyticsReportsInfoItem(
-					_portal.getClassName(
-						infoDisplayObjectProvider.getClassNameId()));
+				(AnalyticsReportsInfoItem<Object>)
+					_analyticsReportsInfoItemTracker.
+						getAnalyticsReportsInfoItem(
+							_portal.getClassName(
+								infoDisplayObjectProvider.getClassNameId()));
 			analyticsReportsInfoItemObject =
 				infoDisplayObjectProvider.getDisplayObject();
 		}
@@ -140,8 +142,9 @@ public class AnalyticsReportsPortlet extends MVCPortlet {
 			(analyticsReportsInfoItemObject == null)) {
 
 			analyticsReportsInfoItem =
-				(AnalyticsReportsInfoItem<Object>)_analyticsReportsInfoItemTracker.getAnalyticsReportsInfoItem(
-					Layout.class.getName());
+				(AnalyticsReportsInfoItem<Object>)
+					_analyticsReportsInfoItemTracker.
+						getAnalyticsReportsInfoItem(Layout.class.getName());
 
 			analyticsReportsInfoItemObject = themeDisplay.getLayout();
 		}

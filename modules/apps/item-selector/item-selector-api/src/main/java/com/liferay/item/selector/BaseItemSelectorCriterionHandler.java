@@ -34,7 +34,7 @@ import org.osgi.util.tracker.ServiceTracker;
  */
 public abstract class BaseItemSelectorCriterionHandler
 	<T extends ItemSelectorCriterion>
-		implements ItemSelectorCriterionHandler {
+		implements ItemSelectorCriterionHandler<T> {
 
 	@Override
 	@SuppressWarnings("unchecked")

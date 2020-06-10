@@ -252,6 +252,13 @@ public class ChainingCheck extends BaseCheck {
 			return;
 		}
 
+		DetailAST objBlockDetailAST = detailAST.findFirstToken(
+			TokenTypes.OBJBLOCK);
+
+		if (objBlockDetailAST != null) {
+			return;
+		}
+
 		DetailAST arrayDeclaratorDetailAST = detailAST.findFirstToken(
 			TokenTypes.ARRAY_DECLARATOR);
 

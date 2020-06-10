@@ -220,7 +220,9 @@ public class FileEntryStagedModelDataHandler
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerList = ServiceTrackerListFactory.open(
-			bundleContext, DLPluggableContentDataHandler.class,
+			bundleContext,
+			(Class<DLPluggableContentDataHandler<?>>)
+				(Class<?>)DLPluggableContentDataHandler.class,
 			"(model.class.name=" + FileEntry.class.getName() + ")");
 	}
 
@@ -326,10 +328,15 @@ public class FileEntryStagedModelDataHandler
 			}
 		}
 
-		for (DLPluggableContentDataHandler dlPluggableContentDataHandler :
+		for (DLPluggableContentDataHandler<?> dlPluggableContentDataHandler :
 				_serviceTrackerList) {
 
-			dlPluggableContentDataHandler.exportContent(
+			DLPluggableContentDataHandler<FileEntry>
+				fileEntryDLPluggableContentDataHandler =
+					(DLPluggableContentDataHandler<FileEntry>)
+						dlPluggableContentDataHandler;
+
+			fileEntryDLPluggableContentDataHandler.exportContent(
 				portletDataContext, fileEntryElement, fileEntry);
 		}
 
@@ -643,10 +650,15 @@ public class FileEntryStagedModelDataHandler
 					serviceContext);
 			}
 
-			for (DLPluggableContentDataHandler dlPluggableContentDataHandler :
-					_serviceTrackerList) {
+			for (DLPluggableContentDataHandler<?>
+					dlPluggableContentDataHandler : _serviceTrackerList) {
 
-				dlPluggableContentDataHandler.importContent(
+				DLPluggableContentDataHandler<FileEntry>
+					fileEntryDLPluggableContentDataHandler =
+						(DLPluggableContentDataHandler<FileEntry>)
+							dlPluggableContentDataHandler;
+
+				fileEntryDLPluggableContentDataHandler.importContent(
 					portletDataContext, fileEntryElement, fileEntry,
 					importedFileEntry);
 			}
@@ -1138,7 +1150,7 @@ public class FileEntryStagedModelDataHandler
 	private RepositoryLocalService _repositoryLocalService;
 
 	private ServiceTrackerList
-		<DLPluggableContentDataHandler, DLPluggableContentDataHandler>
+		<DLPluggableContentDataHandler<?>, DLPluggableContentDataHandler<?>>
 			_serviceTrackerList;
 
 	@Reference

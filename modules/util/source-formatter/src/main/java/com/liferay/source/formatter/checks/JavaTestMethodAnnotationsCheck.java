@@ -86,22 +86,25 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 				addMessage(
 					fileName, "Incorrect method type for '" + methodName + "'");
 			}
+
+			return;
 		}
-		else if (matcher.find()) {
-			JavaSignature signature = javaTerm.getSignature();
 
-			List<JavaParameter> parameters = signature.getParameters();
+		if (!matcher.find()) {
+			return;
+		}
 
-			if (!parameters.isEmpty()) {
-				return;
-			}
+		JavaSignature signature = javaTerm.getSignature();
 
-			JavaClass javaClass = javaTerm.getParentJavaClass();
+		List<JavaParameter> parameters = signature.getParameters();
 
-			if ((javaClass != null) && javaClass.isAnonymous()) {
-				return;
-			}
+		if (!parameters.isEmpty()) {
+			return;
+		}
 
+		JavaClass javaClass = javaTerm.getParentJavaClass();
+
+		if ((javaClass == null) || !javaClass.isAnonymous()) {
 			addMessage(
 				fileName,
 				StringBundler.concat(

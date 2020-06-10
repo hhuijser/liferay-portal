@@ -42,7 +42,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class DLFolderUADAnonymizerTest
 	extends BaseHasAssetEntryUADAnonymizerTestCase<DLFolder>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<DLFolder> {
 
 	@ClassRule
 	@Rule

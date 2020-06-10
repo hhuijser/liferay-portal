@@ -42,7 +42,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class MBMessageUADAnonymizerTest
 	extends BaseHasAssetEntryUADAnonymizerTestCase<MBMessage>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<MBMessage> {
 
 	@ClassRule
 	@Rule

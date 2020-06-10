@@ -41,7 +41,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class WikiPageUADAnonymizerTest
 	extends BaseHasAssetEntryUADAnonymizerTestCase<WikiPage>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<WikiPage> {
 
 	@ClassRule
 	@Rule

@@ -40,7 +40,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class BookmarksFolderUADAnonymizerTest
 	extends BaseHasAssetEntryUADAnonymizerTestCase<BookmarksFolder>
-	implements WhenHasStatusByUserIdField {
+	implements WhenHasStatusByUserIdField<BookmarksFolder> {
 
 	@ClassRule
 	@Rule

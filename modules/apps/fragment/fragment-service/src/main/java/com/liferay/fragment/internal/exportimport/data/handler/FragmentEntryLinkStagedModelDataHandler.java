@@ -72,7 +72,7 @@ public class FragmentEntryLinkStagedModelDataHandler
 				PortletDataContext.REFERENCE_TYPE_PARENT);
 		}
 
-		StagedModelRepository referenceStagedModelRepository =
+		StagedModelRepository<?> referenceStagedModelRepository =
 			StagedModelRepositoryRegistryUtil.getStagedModelRepository(
 				Layout.class.getName());
 

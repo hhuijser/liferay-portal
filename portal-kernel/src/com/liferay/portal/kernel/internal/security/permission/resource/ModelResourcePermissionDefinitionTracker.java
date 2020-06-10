@@ -39,7 +39,8 @@ public class ModelResourcePermissionDefinitionTracker {
 		Registry registry = RegistryUtil.getRegistry();
 
 		_serviceTracker = registry.trackServices(
-			ModelResourcePermissionDefinition.class,
+			(Class<ModelResourcePermissionDefinition<?>>)
+				(Class<?>)ModelResourcePermissionDefinition.class,
 			new ModelResourcePermissionDefinitionServiceTrackerCustomizer());
 
 		_serviceTracker.open();
@@ -68,17 +69,17 @@ public class ModelResourcePermissionDefinitionTracker {
 	}
 
 	private ServiceTracker
-		<ModelResourcePermissionDefinition, ServiceRegistration<?>>
+		<ModelResourcePermissionDefinition<?>, ServiceRegistration<?>>
 			_serviceTracker;
 
 	private static class
 		ModelResourcePermissionDefinitionServiceTrackerCustomizer
 			implements ServiceTrackerCustomizer
-				<ModelResourcePermissionDefinition, ServiceRegistration<?>> {
+				<ModelResourcePermissionDefinition<?>, ServiceRegistration<?>> {
 
 		@Override
 		public ServiceRegistration<?> addingService(
-			ServiceReference<ModelResourcePermissionDefinition>
+			ServiceReference<ModelResourcePermissionDefinition<?>>
 				serviceReference) {
 
 			Registry registry = RegistryUtil.getRegistry();
@@ -114,14 +115,14 @@ public class ModelResourcePermissionDefinitionTracker {
 
 		@Override
 		public void modifiedService(
-			ServiceReference<ModelResourcePermissionDefinition>
+			ServiceReference<ModelResourcePermissionDefinition<?>>
 				serviceReference,
 			ServiceRegistration<?> serviceRegistration) {
 		}
 
 		@Override
 		public void removedService(
-			ServiceReference<ModelResourcePermissionDefinition>
+			ServiceReference<ModelResourcePermissionDefinition<?>>
 				serviceReference,
 			ServiceRegistration<?> serviceRegistration) {
 

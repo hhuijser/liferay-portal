@@ -104,16 +104,16 @@ public class ${entity.PKClassName} implements Comparable<${entity.PKClassName}>,
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ${entity.PKClassName})) {
+		if (!(object instanceof ${entity.PKClassName})) {
 			return false;
 		}
 
-		${entity.PKClassName} pk = (${entity.PKClassName})obj;
+		${entity.PKClassName} pk = (${entity.PKClassName})object;
 
 		if (
 

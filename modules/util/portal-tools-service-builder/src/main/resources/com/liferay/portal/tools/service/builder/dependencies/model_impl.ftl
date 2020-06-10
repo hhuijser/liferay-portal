@@ -1517,16 +1517,16 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ${entity.name})) {
+		if (!(object instanceof ${entity.name})) {
 			return false;
 		}
 
-		${entity.name} ${entity.varName} = (${entity.name})obj;
+		${entity.name} ${entity.varName} = (${entity.name})object;
 
 		${entity.PKClassName} primaryKey = ${entity.varName}.getPrimaryKey();
 

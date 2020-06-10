@@ -174,16 +174,16 @@ public class ${entity.name}Wrapper
 
 	<#if serviceBuilder.isVersionLTE_7_1_0()>
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
+		public boolean equals(Object object) {
+			if (this == object) {
 				return true;
 			}
 
-			if (!(obj instanceof ${entity.name}Wrapper)) {
+			if (!(object instanceof ${entity.name}Wrapper)) {
 				return false;
 			}
 
-			${entity.name}Wrapper ${entity.varName}Wrapper = (${entity.name}Wrapper)obj;
+			${entity.name}Wrapper ${entity.varName}Wrapper = (${entity.name}Wrapper)object;
 
 			if (Objects.equals(${entityFieldName}, ${entity.varName}Wrapper.${entityFieldName})) {
 				return true;

@@ -44,16 +44,16 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 	{
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ${entity.name}CacheModel)) {
+		if (!(object instanceof ${entity.name}CacheModel)) {
 			return false;
 		}
 
-		${entity.name}CacheModel ${entity.varName}CacheModel = (${entity.name}CacheModel)obj;
+		${entity.name}CacheModel ${entity.varName}CacheModel = (${entity.name}CacheModel)object;
 
 		<#if entity.hasPrimitivePK(false)>
 			<#if entity.isMvccEnabled()>

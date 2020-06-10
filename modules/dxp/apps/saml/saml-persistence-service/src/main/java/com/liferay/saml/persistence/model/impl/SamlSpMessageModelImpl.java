@@ -444,16 +444,16 @@ public class SamlSpMessageModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SamlSpMessage)) {
+		if (!(object instanceof SamlSpMessage)) {
 			return false;
 		}
 
-		SamlSpMessage samlSpMessage = (SamlSpMessage)obj;
+		SamlSpMessage samlSpMessage = (SamlSpMessage)object;
 
 		long primaryKey = samlSpMessage.getPrimaryKey();
 

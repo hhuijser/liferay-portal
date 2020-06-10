@@ -37,16 +37,17 @@ public class TrashEntryCacheModel
 	implements CacheModel<TrashEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof TrashEntryCacheModel)) {
+		if (!(object instanceof TrashEntryCacheModel)) {
 			return false;
 		}
 
-		TrashEntryCacheModel trashEntryCacheModel = (TrashEntryCacheModel)obj;
+		TrashEntryCacheModel trashEntryCacheModel =
+			(TrashEntryCacheModel)object;
 
 		if ((entryId == trashEntryCacheModel.entryId) &&
 			(mvccVersion == trashEntryCacheModel.mvccVersion)) {

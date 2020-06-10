@@ -668,16 +668,16 @@ public class KaleoProcessModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof KaleoProcess)) {
+		if (!(object instanceof KaleoProcess)) {
 			return false;
 		}
 
-		KaleoProcess kaleoProcess = (KaleoProcess)obj;
+		KaleoProcess kaleoProcess = (KaleoProcess)object;
 
 		long primaryKey = kaleoProcess.getPrimaryKey();
 

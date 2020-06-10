@@ -1057,16 +1057,16 @@ public class SegmentsExperienceModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SegmentsExperience)) {
+		if (!(object instanceof SegmentsExperience)) {
 			return false;
 		}
 
-		SegmentsExperience segmentsExperience = (SegmentsExperience)obj;
+		SegmentsExperience segmentsExperience = (SegmentsExperience)object;
 
 		long primaryKey = segmentsExperience.getPrimaryKey();
 

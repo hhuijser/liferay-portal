@@ -563,16 +563,16 @@ public class LVEntryLocalizationModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof LVEntryLocalization)) {
+		if (!(object instanceof LVEntryLocalization)) {
 			return false;
 		}
 
-		LVEntryLocalization lvEntryLocalization = (LVEntryLocalization)obj;
+		LVEntryLocalization lvEntryLocalization = (LVEntryLocalization)object;
 
 		long primaryKey = lvEntryLocalization.getPrimaryKey();
 

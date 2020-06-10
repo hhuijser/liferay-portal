@@ -35,17 +35,17 @@ public class DepotEntryGroupRelCacheModel
 	implements CacheModel<DepotEntryGroupRel>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DepotEntryGroupRelCacheModel)) {
+		if (!(object instanceof DepotEntryGroupRelCacheModel)) {
 			return false;
 		}
 
 		DepotEntryGroupRelCacheModel depotEntryGroupRelCacheModel =
-			(DepotEntryGroupRelCacheModel)obj;
+			(DepotEntryGroupRelCacheModel)object;
 
 		if ((depotEntryGroupRelId ==
 				depotEntryGroupRelCacheModel.depotEntryGroupRelId) &&

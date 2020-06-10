@@ -796,16 +796,16 @@ public class SamlSpIdpConnectionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SamlSpIdpConnection)) {
+		if (!(object instanceof SamlSpIdpConnection)) {
 			return false;
 		}
 
-		SamlSpIdpConnection samlSpIdpConnection = (SamlSpIdpConnection)obj;
+		SamlSpIdpConnection samlSpIdpConnection = (SamlSpIdpConnection)object;
 
 		long primaryKey = samlSpIdpConnection.getPrimaryKey();
 

@@ -579,17 +579,17 @@ public class DLOpenerFileEntryReferenceModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DLOpenerFileEntryReference)) {
+		if (!(object instanceof DLOpenerFileEntryReference)) {
 			return false;
 		}
 
 		DLOpenerFileEntryReference dlOpenerFileEntryReference =
-			(DLOpenerFileEntryReference)obj;
+			(DLOpenerFileEntryReference)object;
 
 		long primaryKey = dlOpenerFileEntryReference.getPrimaryKey();
 

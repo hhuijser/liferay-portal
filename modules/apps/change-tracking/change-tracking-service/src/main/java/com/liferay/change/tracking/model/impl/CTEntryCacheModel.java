@@ -37,16 +37,16 @@ public class CTEntryCacheModel
 	implements CacheModel<CTEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof CTEntryCacheModel)) {
+		if (!(object instanceof CTEntryCacheModel)) {
 			return false;
 		}
 
-		CTEntryCacheModel ctEntryCacheModel = (CTEntryCacheModel)obj;
+		CTEntryCacheModel ctEntryCacheModel = (CTEntryCacheModel)object;
 
 		if ((ctEntryId == ctEntryCacheModel.ctEntryId) &&
 			(mvccVersion == ctEntryCacheModel.mvccVersion)) {

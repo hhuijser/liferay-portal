@@ -34,17 +34,17 @@ public class UADPartialEntryCacheModel
 	implements CacheModel<UADPartialEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof UADPartialEntryCacheModel)) {
+		if (!(object instanceof UADPartialEntryCacheModel)) {
 			return false;
 		}
 
 		UADPartialEntryCacheModel uadPartialEntryCacheModel =
-			(UADPartialEntryCacheModel)obj;
+			(UADPartialEntryCacheModel)object;
 
 		if (uadPartialEntryId == uadPartialEntryCacheModel.uadPartialEntryId) {
 			return true;

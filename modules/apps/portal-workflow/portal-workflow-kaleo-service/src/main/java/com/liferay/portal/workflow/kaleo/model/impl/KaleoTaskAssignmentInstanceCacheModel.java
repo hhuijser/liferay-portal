@@ -38,18 +38,18 @@ public class KaleoTaskAssignmentInstanceCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof KaleoTaskAssignmentInstanceCacheModel)) {
+		if (!(object instanceof KaleoTaskAssignmentInstanceCacheModel)) {
 			return false;
 		}
 
 		KaleoTaskAssignmentInstanceCacheModel
 			kaleoTaskAssignmentInstanceCacheModel =
-				(KaleoTaskAssignmentInstanceCacheModel)obj;
+				(KaleoTaskAssignmentInstanceCacheModel)object;
 
 		if ((kaleoTaskAssignmentInstanceId ==
 				kaleoTaskAssignmentInstanceCacheModel.

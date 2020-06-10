@@ -37,17 +37,17 @@ public class SegmentsExperienceCacheModel
 	implements CacheModel<SegmentsExperience>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SegmentsExperienceCacheModel)) {
+		if (!(object instanceof SegmentsExperienceCacheModel)) {
 			return false;
 		}
 
 		SegmentsExperienceCacheModel segmentsExperienceCacheModel =
-			(SegmentsExperienceCacheModel)obj;
+			(SegmentsExperienceCacheModel)object;
 
 		if ((segmentsExperienceId ==
 				segmentsExperienceCacheModel.segmentsExperienceId) &&

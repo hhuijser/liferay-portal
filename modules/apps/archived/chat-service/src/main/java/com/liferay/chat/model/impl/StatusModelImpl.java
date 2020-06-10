@@ -495,16 +495,16 @@ public class StatusModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof Status)) {
+		if (!(object instanceof Status)) {
 			return false;
 		}
 
-		Status status = (Status)obj;
+		Status status = (Status)object;
 
 		long primaryKey = status.getPrimaryKey();
 

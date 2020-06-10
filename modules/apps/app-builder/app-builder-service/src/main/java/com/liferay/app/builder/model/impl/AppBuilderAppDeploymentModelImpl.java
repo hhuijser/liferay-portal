@@ -430,17 +430,17 @@ public class AppBuilderAppDeploymentModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AppBuilderAppDeployment)) {
+		if (!(object instanceof AppBuilderAppDeployment)) {
 			return false;
 		}
 
 		AppBuilderAppDeployment appBuilderAppDeployment =
-			(AppBuilderAppDeployment)obj;
+			(AppBuilderAppDeployment)object;
 
 		long primaryKey = appBuilderAppDeployment.getPrimaryKey();
 

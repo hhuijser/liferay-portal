@@ -790,16 +790,16 @@ public class SharingEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SharingEntry)) {
+		if (!(object instanceof SharingEntry)) {
 			return false;
 		}
 
-		SharingEntry sharingEntry = (SharingEntry)obj;
+		SharingEntry sharingEntry = (SharingEntry)object;
 
 		long primaryKey = sharingEntry.getPrimaryKey();
 

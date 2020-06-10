@@ -36,18 +36,18 @@ public class SharepointOAuth2TokenEntryCacheModel
 	implements CacheModel<SharepointOAuth2TokenEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof SharepointOAuth2TokenEntryCacheModel)) {
+		if (!(object instanceof SharepointOAuth2TokenEntryCacheModel)) {
 			return false;
 		}
 
 		SharepointOAuth2TokenEntryCacheModel
 			sharepointOAuth2TokenEntryCacheModel =
-				(SharepointOAuth2TokenEntryCacheModel)obj;
+				(SharepointOAuth2TokenEntryCacheModel)object;
 
 		if (sharepointOAuth2TokenEntryId ==
 				sharepointOAuth2TokenEntryCacheModel.

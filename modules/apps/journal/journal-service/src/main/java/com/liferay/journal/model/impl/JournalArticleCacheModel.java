@@ -37,17 +37,17 @@ public class JournalArticleCacheModel
 	implements CacheModel<JournalArticle>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof JournalArticleCacheModel)) {
+		if (!(object instanceof JournalArticleCacheModel)) {
 			return false;
 		}
 
 		JournalArticleCacheModel journalArticleCacheModel =
-			(JournalArticleCacheModel)obj;
+			(JournalArticleCacheModel)object;
 
 		if ((id == journalArticleCacheModel.id) &&
 			(mvccVersion == journalArticleCacheModel.mvccVersion)) {

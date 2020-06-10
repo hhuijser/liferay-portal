@@ -37,17 +37,17 @@ public class AccountEntryCacheModel
 	implements CacheModel<AccountEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AccountEntryCacheModel)) {
+		if (!(object instanceof AccountEntryCacheModel)) {
 			return false;
 		}
 
 		AccountEntryCacheModel accountEntryCacheModel =
-			(AccountEntryCacheModel)obj;
+			(AccountEntryCacheModel)object;
 
 		if ((accountEntryId == accountEntryCacheModel.accountEntryId) &&
 			(mvccVersion == accountEntryCacheModel.mvccVersion)) {

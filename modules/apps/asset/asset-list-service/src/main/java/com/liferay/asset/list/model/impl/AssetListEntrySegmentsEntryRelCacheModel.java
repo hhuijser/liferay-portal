@@ -38,18 +38,18 @@ public class AssetListEntrySegmentsEntryRelCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AssetListEntrySegmentsEntryRelCacheModel)) {
+		if (!(object instanceof AssetListEntrySegmentsEntryRelCacheModel)) {
 			return false;
 		}
 
 		AssetListEntrySegmentsEntryRelCacheModel
 			assetListEntrySegmentsEntryRelCacheModel =
-				(AssetListEntrySegmentsEntryRelCacheModel)obj;
+				(AssetListEntrySegmentsEntryRelCacheModel)object;
 
 		if ((assetListEntrySegmentsEntryRelId ==
 				assetListEntrySegmentsEntryRelCacheModel.

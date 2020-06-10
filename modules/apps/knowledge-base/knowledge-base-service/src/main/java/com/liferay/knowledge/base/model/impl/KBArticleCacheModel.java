@@ -37,16 +37,16 @@ public class KBArticleCacheModel
 	implements CacheModel<KBArticle>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof KBArticleCacheModel)) {
+		if (!(object instanceof KBArticleCacheModel)) {
 			return false;
 		}
 
-		KBArticleCacheModel kbArticleCacheModel = (KBArticleCacheModel)obj;
+		KBArticleCacheModel kbArticleCacheModel = (KBArticleCacheModel)object;
 
 		if ((kbArticleId == kbArticleCacheModel.kbArticleId) &&
 			(mvccVersion == kbArticleCacheModel.mvccVersion)) {

@@ -36,17 +36,17 @@ public class KaleoProcessCacheModel
 	implements CacheModel<KaleoProcess>, Externalizable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof KaleoProcessCacheModel)) {
+		if (!(object instanceof KaleoProcessCacheModel)) {
 			return false;
 		}
 
 		KaleoProcessCacheModel kaleoProcessCacheModel =
-			(KaleoProcessCacheModel)obj;
+			(KaleoProcessCacheModel)object;
 
 		if (kaleoProcessId == kaleoProcessCacheModel.kaleoProcessId) {
 			return true;

@@ -37,16 +37,17 @@ public class DepotEntryCacheModel
 	implements CacheModel<DepotEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DepotEntryCacheModel)) {
+		if (!(object instanceof DepotEntryCacheModel)) {
 			return false;
 		}
 
-		DepotEntryCacheModel depotEntryCacheModel = (DepotEntryCacheModel)obj;
+		DepotEntryCacheModel depotEntryCacheModel =
+			(DepotEntryCacheModel)object;
 
 		if ((depotEntryId == depotEntryCacheModel.depotEntryId) &&
 			(mvccVersion == depotEntryCacheModel.mvccVersion)) {

@@ -1011,16 +1011,16 @@ public class FragmentCompositionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof FragmentComposition)) {
+		if (!(object instanceof FragmentComposition)) {
 			return false;
 		}
 
-		FragmentComposition fragmentComposition = (FragmentComposition)obj;
+		FragmentComposition fragmentComposition = (FragmentComposition)object;
 
 		long primaryKey = fragmentComposition.getPrimaryKey();
 

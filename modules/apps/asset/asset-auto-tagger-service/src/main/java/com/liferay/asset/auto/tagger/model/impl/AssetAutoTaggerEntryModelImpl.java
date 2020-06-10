@@ -505,16 +505,17 @@ public class AssetAutoTaggerEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AssetAutoTaggerEntry)) {
+		if (!(object instanceof AssetAutoTaggerEntry)) {
 			return false;
 		}
 
-		AssetAutoTaggerEntry assetAutoTaggerEntry = (AssetAutoTaggerEntry)obj;
+		AssetAutoTaggerEntry assetAutoTaggerEntry =
+			(AssetAutoTaggerEntry)object;
 
 		long primaryKey = assetAutoTaggerEntry.getPrimaryKey();
 

@@ -483,17 +483,17 @@ public class AppBuilderWorkflowTaskLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof AppBuilderWorkflowTaskLink)) {
+		if (!(object instanceof AppBuilderWorkflowTaskLink)) {
 			return false;
 		}
 
 		AppBuilderWorkflowTaskLink appBuilderWorkflowTaskLink =
-			(AppBuilderWorkflowTaskLink)obj;
+			(AppBuilderWorkflowTaskLink)object;
 
 		long primaryKey = appBuilderWorkflowTaskLink.getPrimaryKey();
 

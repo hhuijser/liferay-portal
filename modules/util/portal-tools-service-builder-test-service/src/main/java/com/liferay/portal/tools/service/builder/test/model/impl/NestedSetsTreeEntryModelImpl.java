@@ -435,16 +435,16 @@ public class NestedSetsTreeEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof NestedSetsTreeEntry)) {
+		if (!(object instanceof NestedSetsTreeEntry)) {
 			return false;
 		}
 
-		NestedSetsTreeEntry nestedSetsTreeEntry = (NestedSetsTreeEntry)obj;
+		NestedSetsTreeEntry nestedSetsTreeEntry = (NestedSetsTreeEntry)object;
 
 		long primaryKey = nestedSetsTreeEntry.getPrimaryKey();
 

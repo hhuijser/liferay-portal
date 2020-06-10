@@ -36,18 +36,18 @@ public class DEDataDefinitionFieldLinkCacheModel
 	implements CacheModel<DEDataDefinitionFieldLink>, Externalizable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof DEDataDefinitionFieldLinkCacheModel)) {
+		if (!(object instanceof DEDataDefinitionFieldLinkCacheModel)) {
 			return false;
 		}
 
 		DEDataDefinitionFieldLinkCacheModel
 			deDataDefinitionFieldLinkCacheModel =
-				(DEDataDefinitionFieldLinkCacheModel)obj;
+				(DEDataDefinitionFieldLinkCacheModel)object;
 
 		if (deDataDefinitionFieldLinkId ==
 				deDataDefinitionFieldLinkCacheModel.

@@ -1072,17 +1072,17 @@ public class WorkflowMetricsSLADefinitionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof WorkflowMetricsSLADefinition)) {
+		if (!(object instanceof WorkflowMetricsSLADefinition)) {
 			return false;
 		}
 
 		WorkflowMetricsSLADefinition workflowMetricsSLADefinition =
-			(WorkflowMetricsSLADefinition)obj;
+			(WorkflowMetricsSLADefinition)object;
 
 		long primaryKey = workflowMetricsSLADefinition.getPrimaryKey();
 

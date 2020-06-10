@@ -64,7 +64,7 @@ public abstract class BaseChartTag extends TemplateRendererTag {
 			"clay-charts/lib/" + _moduleBaseName);
 	}
 
-	public void setConfig(ChartConfig chartConfig) {
+	public void setConfig(ChartConfig<?> chartConfig) {
 		for (Map.Entry<String, Object> entry : chartConfig.entrySet()) {
 			putValue(entry.getKey(), entry.getValue());
 		}

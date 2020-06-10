@@ -1,6 +1,14 @@
 {
 	"genericTypeNames": [
 		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.adaptive.media.AMAttribute"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.adaptive.media.AdaptiveMedia"
+		},
+		{
 			"genericTypeCount": 1,
 			"name": "com.liferay.adaptive.media.content.transformer.ContentTransformer"
 		},
@@ -14,6 +22,30 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.adaptive.media.handler.AMRequestHandler"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.adaptive.media.processor.AMProcessor"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.analytics.reports.info.item.AnalyticsReportsInfoItem"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.asset.auto.tagger.AssetAutoTagProvider"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.asset.auto.tagger.text.extractor.TextExtractor"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.asset.kernel.action.AssetEntryAction"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.asset.kernel.model.AssetRenderer"
 		},
 		{
@@ -22,7 +54,23 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.asset.kernel.model.BaseAssetRendererFactory"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.bulk.selection.BulkSelectionAction"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.change.tracking.display.CTDisplayRenderer"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.change.tracking.reference.TableReferenceDefinition"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.change.tracking.resolver.ConstraintResolver"
 		},
 		{
 			"genericTypeCount": 1,
@@ -46,11 +94,35 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.info.display.contributor.field.InfoDisplayContributorField"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.info.display.url.provider.InfoEditURLProvider"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.info.field.InfoFieldValue"
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.info.item.provider.InfoItemFormProvider"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.info.item.provider.InfoItemObjectProvider"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.info.item.renderer.InfoItemRenderer"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.info.item.renderer.InfoItemTemplatedRenderer"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.info.item.selector.InfoItemSelector"
 		},
 		{
 			"genericTypeCount": 1,
@@ -61,12 +133,24 @@
 			"name": "com.liferay.info.localized.InfoLocalizedValue"
 		},
 		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.item.selector.ItemSelectorReturnTypeResolver"
+		},
+		{
 			"genericTypeCount": 1,
 			"name": "com.liferay.item.selector.ItemSelectorView"
 		},
 		{
 			"genericTypeCount": 1,
 			"name": "com.liferay.item.selector.ItemSelectorViewDescriptor"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.layout.list.retriever.LayoutListRetriever"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.layout.list.retriever.ListObjectReferenceFactory"
 		},
 		{
 			"genericTypeCount": 2,

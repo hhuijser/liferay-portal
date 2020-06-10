@@ -81,10 +81,13 @@ public class AssetEntryActionDropdownItemsProvider {
 					for (AssetEntryAction<?> assetEntryAction :
 							_assetEntryActions) {
 
+						AssetEntryAction<Object> objectAssetEntryAction =
+							(AssetEntryAction<Object>)assetEntryAction;
+
 						try {
-							if (!assetEntryAction.hasPermission(
+							if (!objectAssetEntryAction.hasPermission(
 									_themeDisplay.getPermissionChecker(),
-									_assetRenderer)) {
+									(AssetRenderer<Object>)_assetRenderer)) {
 
 								continue;
 							}
@@ -93,16 +96,17 @@ public class AssetEntryActionDropdownItemsProvider {
 							continue;
 						}
 
-						String title = assetEntryAction.getMessage(
+						String title = objectAssetEntryAction.getMessage(
 							_themeDisplay.getLocale());
 
 						add(
 							dropdownItem -> {
 								dropdownItem.setHref(
-									assetEntryAction.getDialogURL(
-										_httpServletRequest, _assetRenderer));
+									objectAssetEntryAction.getDialogURL(
+										_httpServletRequest,
+										(AssetRenderer<Object>)_assetRenderer));
 								dropdownItem.setIcon(
-									assetEntryAction.getIcon());
+									objectAssetEntryAction.getIcon());
 								dropdownItem.putData(
 									"destroyOnHide", Boolean.TRUE.toString());
 								dropdownItem.putData(

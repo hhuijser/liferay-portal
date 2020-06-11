@@ -169,7 +169,8 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 		_bundleContext = bundleContext;
 
 		_documentContributors = ServiceTrackerListFactory.open(
-			_bundleContext, DocumentContributor.class,
+			_bundleContext,
+			(Class<DocumentContributor<?>>)(Class<?>)DocumentContributor.class,
 			"(!(indexer.class.name=*))");
 
 		_modelResourcePermissionServiceTrackerMap =
@@ -199,7 +200,7 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 		Iterable<ModelDocumentContributor> modelDocumentContributors =
 			modelSearchConfigurator.getModelDocumentContributors();
 
-		Iterable<DocumentContributor> documentContributors =
+		Iterable<DocumentContributor<?>> documentContributors =
 			_documentContributors;
 
 		IndexerPostProcessorsHolder indexerPostProcessorsHolder =
@@ -374,7 +375,7 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 		ModelSearchConfiguratorServiceTrackerCustomizer.class);
 
 	private BundleContext _bundleContext;
-	private ServiceTrackerList<DocumentContributor, DocumentContributor>
+	private ServiceTrackerList<DocumentContributor<?>, DocumentContributor<?>>
 		_documentContributors;
 	private ServiceTrackerMap<String, ModelResourcePermission<?>>
 		_modelResourcePermissionServiceTrackerMap;

@@ -51,8 +51,8 @@ request.setAttribute("edit_site_navigation_menu.jsp-siteNavigationMenuItemId", s
 					</clay:content-col>
 
 					<clay:content-col
-						expand="true"
-						gutters="true"
+						expand="<%= true %>"
+						gutters="<%= true %>"
 					>
 						<p class="card-title">
 							<span class="text-truncate">

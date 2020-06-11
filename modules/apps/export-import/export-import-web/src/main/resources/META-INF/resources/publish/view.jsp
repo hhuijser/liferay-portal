@@ -131,7 +131,7 @@ simplePublishURL.setParameter("targetGroupId", String.valueOf(liveGroupId));
 			verticalAlign="center"
 		>
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 				<clay:navigation-bar
 					navigationItems='<%=

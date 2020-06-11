@@ -50,7 +50,7 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 									verticalAlign="center"
 								>
 									<clay:content-col
-										expand="true"
+										expand="<%= true %>"
 									>
 										<strong class="text-uppercase">
 											<liferay-ui:message key="collections" />
@@ -97,7 +97,7 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 											layoutPageTemplateCollectionURL.setParameter("tabs1", "page-templates");
 											%>
 
-											<a class='nav-link text-truncate <%= (layoutPageTemplateCollection.getLayoutPageTemplateCollectionId() == layoutPageTemplateDisplayContext.getLayoutPageTemplateCollectionId()) ? "active" : StringPool.BLANK %>' href="<%= layoutPageTemplateCollectionURL.toString() %>">
+											<a class="nav-link text-truncate <%= (layoutPageTemplateCollection.getLayoutPageTemplateCollectionId() == layoutPageTemplateDisplayContext.getLayoutPageTemplateCollectionId()) ? "active" : StringPool.BLANK %>" href="<%= layoutPageTemplateCollectionURL.toString() %>">
 												<%= HtmlUtil.escape(layoutPageTemplateCollection.getName()) %>
 											</a>
 										</li>
@@ -141,7 +141,7 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 							verticalAlign="center"
 						>
 							<clay:content-col
-								expand="true"
+								expand="<%= true %>"
 							>
 								<span class="text-uppercase">
 									<%= HtmlUtil.escape(layoutPageTemplateCollection.getName()) %>

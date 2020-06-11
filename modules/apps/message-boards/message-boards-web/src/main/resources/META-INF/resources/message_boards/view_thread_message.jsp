@@ -39,7 +39,7 @@ User messageUser = UserLocalServiceUtil.fetchUser(message.getUserId());
 	<div class="panel-heading">
 		<clay:content-row
 			cssClass="card-body"
-			padded="true"
+			padded="<%= true %>"
 		>
 			<clay:content-col>
 				<div class="list-group-card-icon">
@@ -50,7 +50,7 @@ User messageUser = UserLocalServiceUtil.fetchUser(message.getUserId());
 			</clay:content-col>
 
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 
 				<%
@@ -74,7 +74,7 @@ User messageUser = UserLocalServiceUtil.fetchUser(message.getUserId());
 				<h4 title="<%= HtmlUtil.escape(message.getSubject()) %>">
 					<c:choose>
 						<c:when test="<%= showPermanentLink %>">
-							<a href="#<portlet:namespace />message_<%= message.getMessageId() %>" title='<liferay-ui:message key="permanent-link-to-this-item" />'>
+							<a href="#<portlet:namespace />message_<%= message.getMessageId() %>" title="<liferay-ui:message key="permanent-link-to-this-item" />">
 								<%= HtmlUtil.escape(message.getSubject()) %>
 							</a>
 						</c:when>

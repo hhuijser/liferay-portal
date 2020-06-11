@@ -34,7 +34,7 @@ DepotAdminDetailsDisplayContext depotAdminDetailsDisplayContext = (DepotAdminDet
 
 <liferay-frontend:fieldset-group>
 	<liferay-frontend:fieldset
-		collapsible="false"
+		collapsible="<%= false %>"
 		label='<%= LanguageUtil.get(request, "details") %>'
 	>
 		<aui:model-context bean="<%= depotAdminDetailsDisplayContext.getGroup() %>" model="<%= Group.class %>" />
@@ -47,7 +47,7 @@ DepotAdminDetailsDisplayContext depotAdminDetailsDisplayContext = (DepotAdminDet
 	</liferay-frontend:fieldset>
 
 	<liferay-frontend:fieldset
-		collapsible="true"
+		collapsible="<%= true %>"
 		cssClass="panel-group-flush"
 		label='<%= LanguageUtil.get(request, "applications") %>'
 	>

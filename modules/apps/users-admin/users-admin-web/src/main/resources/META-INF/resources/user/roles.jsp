@@ -72,7 +72,7 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 		cssClass="sheet-subtitle"
 	>
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-text"><liferay-ui:message key="regular-roles" /></span>
 		</clay:content-col>
@@ -256,7 +256,7 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 		cssClass="sheet-subtitle"
 	>
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-text"><liferay-ui:message key="organization-roles" /></span>
 		</clay:content-col>
@@ -491,7 +491,7 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 		cssClass="sheet-subtitle"
 	>
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<span class="heading-text"><liferay-ui:message key="site-roles" /></span>
 		</clay:content-col>

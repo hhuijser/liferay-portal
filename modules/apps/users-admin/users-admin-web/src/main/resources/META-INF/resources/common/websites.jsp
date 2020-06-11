@@ -30,7 +30,7 @@ List<Website> websites = WebsiteServiceUtil.getWebsites(className, classPK);
 	cssClass="sheet-subtitle"
 >
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<span class="heading-text"><liferay-ui:message key="websites" /></span>
 	</clay:content-col>

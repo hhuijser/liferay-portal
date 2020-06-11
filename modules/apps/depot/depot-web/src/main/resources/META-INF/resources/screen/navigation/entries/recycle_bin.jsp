@@ -29,7 +29,7 @@ int trashEntriesMaxAge = PropertiesParamUtil.getInteger(typeSettingsProperties, 
 %>
 
 <liferay-frontend:fieldset
-	collapsible="true"
+	collapsible="<%= true %>"
 	cssClass="panel-group-flush"
 	label='<%= LanguageUtil.get(request, "recycle-bin") %>'
 >

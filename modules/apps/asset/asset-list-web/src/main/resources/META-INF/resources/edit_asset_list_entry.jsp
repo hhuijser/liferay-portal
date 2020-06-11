@@ -54,7 +54,7 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 									verticalAlign="center"
 								>
 									<clay:content-col
-										expand="true"
+										expand="<%= true %>"
 									>
 										<strong class="text-uppercase">
 											<liferay-ui:message key="personalized-variations" />
@@ -94,7 +94,7 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 											editAssetListEntryURL.setParameter("segmentsEntryId", String.valueOf(assetListEntrySegmentsEntryRel.getSegmentsEntryId()));
 											%>
 
-											<a class='nav-link text-truncate <%= (editAssetListDisplayContext.getSegmentsEntryId() == assetListEntrySegmentsEntryRel.getSegmentsEntryId()) ? "active" : StringPool.BLANK %>' href="<%= editAssetListEntryURL.toString() %>">
+											<a class="nav-link text-truncate <%= (editAssetListDisplayContext.getSegmentsEntryId() == assetListEntrySegmentsEntryRel.getSegmentsEntryId()) ? "active" : StringPool.BLANK %>" href="<%= editAssetListEntryURL.toString() %>">
 												<%= HtmlUtil.escape(editAssetListDisplayContext.getSegmentsEntryName(assetListEntrySegmentsEntryRel.getSegmentsEntryId(), locale)) %>
 											</a>
 										</li>

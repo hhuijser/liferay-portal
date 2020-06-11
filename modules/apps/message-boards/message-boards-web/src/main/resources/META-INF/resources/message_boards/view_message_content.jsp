@@ -62,7 +62,7 @@ if (portletTitleBasedNavigation) {
 		floatElements="end"
 	>
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 			<h3><%= HtmlUtil.escape(message.getSubject()) %></h3>
 		</clay:content-col>

@@ -98,7 +98,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 							<clay:content-col
 								containerElement="span"
 								cssClass="text-secondary text-uppercase"
-								expand="true"
+								expand="<%= true %>"
 							>
 								<strong><liferay-ui:message arguments="<%= discussion.getDiscussionCommentsCount() %>" key='<%= (discussion.getDiscussionCommentsCount() == 1) ? "x-comment" : "x-comments" %>' /></strong>
 							</clay:content-col>
@@ -107,12 +107,12 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 								<c:if test="<%= canSubscribe %>">
 									<c:choose>
 										<c:when test="<%= subscribed %>">
-											<button aria-label='<liferay-ui:message key="unsubscribe-from-comments" />' class="btn btn-outline-primary btn-sm" onclick="<%= subscriptionOnClick %>" type="button">
+											<button aria-label="<liferay-ui:message key="unsubscribe-from-comments" />" class="btn btn-outline-primary btn-sm" onclick="<%= subscriptionOnClick %>" type="button">
 												<liferay-ui:message key="unsubscribe" />
 											</button>
 										</c:when>
 										<c:otherwise>
-											<button aria-label='<liferay-ui:message key="subscribe-to-comments" />' class="btn btn-outline-primary btn-sm" onclick="<%= subscriptionOnClick %>" type="button">
+											<button aria-label="<liferay-ui:message key="subscribe-to-comments" />" class="btn btn-outline-primary btn-sm" onclick="<%= subscriptionOnClick %>" type="button">
 												<liferay-ui:message key="subscribe" />
 											</button>
 										</c:otherwise>
@@ -140,7 +140,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 
 											<clay:content-col
 												cssClass="lfr-discussion-editor"
-												expand="true"
+												expand="<%= true %>"
 											>
 												<liferay-editor:editor
 													configKey="commentEditor"

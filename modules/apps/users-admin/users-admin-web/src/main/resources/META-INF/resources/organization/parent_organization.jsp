@@ -71,7 +71,7 @@ if (parentOrganization != null) {
 	cssClass="sheet-subtitle"
 >
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<span class="heading-text"><liferay-ui:message key="parent-organization" /></span>
 	</clay:content-col>

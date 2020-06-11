@@ -84,7 +84,7 @@
 
 	<liferay-ui:icon
 		message="anonymize"
-		onClick="<%= liferayPortletResponse.getNamespace() + "confirmAction('viewUADEntitiesFm', '" + autoAnonymizeURL.toString() + "', '" + UnicodeLanguageUtil.get(request, anonymizeSingleMessage) + "')" %>"
+		onClick='<%= liferayPortletResponse.getNamespace() + "confirmAction('viewUADEntitiesFm', '" + autoAnonymizeURL.toString() + "', '" + UnicodeLanguageUtil.get(request, anonymizeSingleMessage) + "')" %>'
 		url="javascript:;"
 	/>
 
@@ -101,7 +101,7 @@
 
 	<liferay-ui:icon
 		message="delete"
-		onClick="<%= liferayPortletResponse.getNamespace() + "confirmAction('viewUADEntitiesFm', '" + deleteURL.toString() + "', '" + UnicodeLanguageUtil.get(request, deleteSingleMessage) + "')" %>"
+		onClick='<%= liferayPortletResponse.getNamespace() + "confirmAction('viewUADEntitiesFm', '" + deleteURL.toString() + "', '" + UnicodeLanguageUtil.get(request, deleteSingleMessage) + "')" %>'
 		url="javascript:;"
 	/>
 </liferay-ui:icon-menu>

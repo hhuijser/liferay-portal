@@ -30,8 +30,8 @@ boolean showStripeMessage = workflowDefinitionLinkDisplayContext.showStripeMessa
 >
 	<c:if test="<%= showStripeMessage %>">
 		<clay:alert
-			closeable="true"
-			destroyOnHide="true"
+			closeable="<%= true %>"
+			destroyOnHide="<%= true %>"
 			message='<%= LanguageUtil.get(resourceBundle, "the-assets-from-documents-and-media-and-forms-are-assigned-within-their-respective-applications") %>'
 			title="Info"
 		/>

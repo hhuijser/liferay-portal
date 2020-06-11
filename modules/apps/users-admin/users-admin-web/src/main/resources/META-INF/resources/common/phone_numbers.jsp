@@ -30,7 +30,7 @@ List<Phone> phones = PhoneServiceUtil.getPhones(className, classPK);
 	cssClass="sheet-subtitle"
 >
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<span class="heading-text"><liferay-ui:message key="phone-numbers" /></span>
 	</clay:content-col>

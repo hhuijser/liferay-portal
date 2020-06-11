@@ -25,7 +25,7 @@ String userName = workflowDefinitionDisplayContext.getUserNameOrBlank(workflowDe
 %>
 
 <clay:content-col
-	expand="true"
+	expand="<%= true %>"
 >
 	<div class="list-group-title"><%= dateFormatTime.format(workflowDefinition.getModifiedDate()) %></div>
 	<div class="list-group-subtitle"><%= HtmlUtil.escape(userName) %></div>

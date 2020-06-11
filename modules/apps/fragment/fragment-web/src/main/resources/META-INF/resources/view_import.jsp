@@ -41,8 +41,8 @@ ImportDisplayContext importDisplayContext = new ImportDisplayContext(request, re
 
 		<c:if test="<%= ListUtil.isNotEmpty(draftFragmentsImporterResultEntries) %>">
 			<clay:alert
-				closeable="true"
-				destroyOnHide="true"
+				closeable="<%= true %>"
+				destroyOnHide="<%= true %>"
 				message='<%= LanguageUtil.format(request, "the-following-fragments-have-validation-issues.-they-have-been-left-in-draft-status-x", "<strong>" + StringUtil.merge(draftFragmentsImporterResultEntries, StringPool.COMMA_AND_SPACE) + "</strong>", false) %>'
 				title='<%= LanguageUtil.get(request, "info") %>'
 			/>
@@ -54,8 +54,8 @@ ImportDisplayContext importDisplayContext = new ImportDisplayContext(request, re
 
 		<c:if test="<%= ListUtil.isNotEmpty(invalidFragmentsImporterResultEntries) %>">
 			<clay:alert
-				closeable="true"
-				destroyOnHide="true"
+				closeable="<%= true %>"
+				destroyOnHide="<%= true %>"
 				message='<%= LanguageUtil.format(request, "the-following-fragments-could-not-be-imported-x", "<strong>" + StringUtil.merge(invalidFragmentsImporterResultEntries, StringPool.COMMA_AND_SPACE) + "</strong>", false) %>'
 				style="warning"
 				title='<%= LanguageUtil.get(request, "warning") %>'

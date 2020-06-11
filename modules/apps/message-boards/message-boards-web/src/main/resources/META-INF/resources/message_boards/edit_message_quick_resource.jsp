@@ -65,7 +65,7 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 <div class="panel-heading">
 	<clay:content-row
 		cssClass="card-body"
-		padded="true"
+		padded="<%= true %>"
 	>
 		<clay:content-col>
 			<div class="list-group-card-icon">
@@ -76,7 +76,7 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 		</clay:content-col>
 
 		<clay:content-col
-			expand="true"
+			expand="<%= true %>"
 		>
 
 			<%
@@ -96,7 +96,7 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 			<h4 title="<%= HtmlUtil.escape(message.getSubject()) %>">
 				<c:choose>
 					<c:when test="<%= showPermanentLink %>">
-						<a href="#<portlet:namespace />message_<%= message.getMessageId() %>" title='<liferay-ui:message key="permanent-link-to-this-item" />'>
+						<a href="#<portlet:namespace />message_<%= message.getMessageId() %>" title="<liferay-ui:message key="permanent-link-to-this-item" />">
 							<%= HtmlUtil.escape(message.getSubject()) %>
 						</a>
 					</c:when>
@@ -128,7 +128,7 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 <div class="divider"></div>
 
 <div class="panel-body">
-	<div class="card-body message-content" id='<%= liferayPortletResponse.getNamespace() + "addQuickReply" + parentMessageId %>'>
+	<div class="card-body message-content" id="<%= liferayPortletResponse.getNamespace() + "addQuickReply" + parentMessageId %>">
 		<portlet:actionURL name="/message_boards/edit_message" var="editMessageURL" />
 
 		<aui:form action="<%= editMessageURL %>" method="post" name='<%= "addQuickReplyFm" + parentMessageId %>' onSubmit='<%= "event.preventDefault(); " %>'>

@@ -30,7 +30,7 @@ List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(cl
 	cssClass="sheet-subtitle"
 >
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<span class="heading-text"><liferay-ui:message key="additional-email-addresses" /></span>
 	</clay:content-col>

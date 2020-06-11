@@ -65,7 +65,7 @@ for (AssetVocabulary vocabulary : vocabularies) {
 								<clay:label
 									displayType="dark"
 									label="<%= HtmlUtil.escape(category.getTitle(themeDisplay.getLocale())) %>"
-									large="true"
+									large="<%= true %>"
 								/>
 
 							<%

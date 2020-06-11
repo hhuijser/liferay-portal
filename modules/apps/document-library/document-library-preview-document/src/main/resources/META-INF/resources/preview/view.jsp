@@ -49,7 +49,7 @@ Map<String, Object> data = HashMapBuilder.<String, Object>put(
 <liferay-util:html-top
 	outputKey="document_library_preview_document_css"
 >
-	<link href='<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/preview/css/main.css") %>' rel="stylesheet" type="text/css" />
+	<link href="<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/preview/css/main.css") %>" rel="stylesheet" type="text/css" />
 </liferay-util:html-top>
 
 <div id="<portlet:namespace /><%= randomNamespace %>previewDocument">

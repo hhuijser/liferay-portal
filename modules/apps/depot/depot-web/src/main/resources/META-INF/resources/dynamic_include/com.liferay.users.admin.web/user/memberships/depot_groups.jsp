@@ -36,7 +36,7 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "asset-
 	cssClass="sheet-subtitle"
 >
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<span class="heading-text"><%= depotAdminMembershipsDisplayContext.getLabel() %></span>
 	</clay:content-col>

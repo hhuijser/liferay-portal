@@ -164,8 +164,8 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 									</clay:content-col>
 
 									<clay:content-col
-										expand="true"
-										gutters="true"
+										expand="<%= true %>"
+										gutters="<%= true %>"
 									>
 										<aui:a cssClass="card-title selector-button text-truncate" data="<%= data %>" href="javascript:;" title="<%= siteVerticalCard.getSubtitle() %>">
 											<%= siteVerticalCard.getTitle() %>

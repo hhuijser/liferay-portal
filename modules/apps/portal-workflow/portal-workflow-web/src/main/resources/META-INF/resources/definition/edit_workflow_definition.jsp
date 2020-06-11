@@ -63,13 +63,13 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 						<clay:label
 							displayType="info"
 							label="published"
-							large="true"
+							large="<%= true %>"
 						/>
 					</c:when>
 					<c:otherwise>
 						<clay:label
 							label="not-published"
-							large="true"
+							large="<%= true %>"
 						/>
 					</c:otherwise>
 				</c:choose>
@@ -122,7 +122,7 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 						cssClass="sidebar-section"
 					>
 						<clay:content-col
-							expand="true"
+							expand="<%= true %>"
 						>
 							<h4 class="component-title">
 								<span class="text-truncate-inline">

@@ -59,14 +59,14 @@ if (assetCategoryId != 0) {
 		</portlet:renderURL>
 
 		<clay:label
-			dismissible="true"
+			dismissible="<%= true %>"
 			displayType="dark"
-			large="true"
+			large="<%= true %>"
 		>
 			<clay:label-item-expand><%= assetCategoryTitle %></clay:label-item-expand>
 
 			<clay:label-item-after>
-				<a href="<%= viewURLWithoutCategory %>" title='<liferay-ui:message key="remove" />'>
+				<a href="<%= viewURLWithoutCategory %>" title="<liferay-ui:message key="remove" />">
 					<clay:icon
 						symbol="times-circle"
 					/>
@@ -85,14 +85,14 @@ if (assetCategoryId != 0) {
 		</liferay-portlet:renderURL>
 
 		<clay:label
-			dismissible="true"
+			dismissible="<%= true %>"
 			displayType="dark"
-			large="true"
+			large="<%= true %>"
 		>
 			<clay:label-item-expand><%= HtmlUtil.escape(assetTagName) %></clay:label-item-expand>
 
 			<clay:label-item-after>
-				<a href="<%= viewURLWithoutTag %>" title='<liferay-ui:message key="remove" />'>
+				<a href="<%= viewURLWithoutTag %>" title="<liferay-ui:message key="remove" />">
 					<clay:icon
 						symbol="times-circle"
 					/>

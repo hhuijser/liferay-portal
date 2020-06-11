@@ -81,7 +81,7 @@ AssetEntryResult assetEntryResult = (AssetEntryResult)request.getAttribute("view
 			</c:if>
 
 			<clay:content-col
-				expand="true"
+				expand="<%= true %>"
 			>
 				<h4 class="list-group-title text-truncate">
 					<span class="asset-anchor lfr-asset-anchor" id="<%= assetEntry.getEntryId() %>"></span>

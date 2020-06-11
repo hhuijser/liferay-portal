@@ -22,7 +22,7 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 
 <clay:content-row>
 	<clay:content-col
-		expand="true"
+		expand="<%= true %>"
 	>
 		<h4 class="sheet-tertiary-title">
 			<liferay-ui:message key="custom-fields" />

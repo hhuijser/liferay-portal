@@ -56,7 +56,7 @@
 					</clay:content-col>
 
 					<clay:content-col
-						expand="true"
+						expand="<%= true %>"
 					>
 						<%= HtmlUtil.escape(connectedApp.getName(locale)) %>
 					</clay:content-col>

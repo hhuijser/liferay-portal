@@ -51,7 +51,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 					cssClass="card-title"
 				>
 					<clay:content-col
-						expand="true"
+						expand="<%= true %>"
 					>
 						<portlet:renderURL var="blogsEntryURL">
 							<portlet:param name="mvcRenderCommandName" value="/blogs/view_entry" />

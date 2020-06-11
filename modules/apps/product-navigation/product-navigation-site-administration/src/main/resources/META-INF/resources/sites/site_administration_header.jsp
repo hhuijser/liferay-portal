@@ -157,7 +157,7 @@ portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 				<clay:content-col
 					cssClass="mr-4"
-					expand="true"
+					expand="<%= true %>"
 				>
 					<div class="depot-type">
 						<liferay-ui:message key='<%= (group.getType() == GroupConstants.TYPE_DEPOT) ? "asset-library" : "site" %>' />

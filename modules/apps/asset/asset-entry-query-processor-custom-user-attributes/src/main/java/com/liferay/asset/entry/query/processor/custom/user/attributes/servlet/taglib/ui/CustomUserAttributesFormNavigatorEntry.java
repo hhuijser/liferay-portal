@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 	service = FormNavigatorEntry.class
 )
 public class CustomUserAttributesFormNavigatorEntry
-	extends BaseJSPFormNavigatorEntry {
+	extends BaseJSPFormNavigatorEntry<Object> {
 
 	@Override
 	public String getCategoryKey() {

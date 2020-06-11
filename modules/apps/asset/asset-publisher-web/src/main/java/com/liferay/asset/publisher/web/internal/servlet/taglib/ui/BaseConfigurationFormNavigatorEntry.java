@@ -33,7 +33,7 @@ import javax.portlet.PortletPreferences;
  * @author Eudaldo Alonso
  */
 public abstract class BaseConfigurationFormNavigatorEntry
-	extends BaseJSPFormNavigatorEntry {
+	extends BaseJSPFormNavigatorEntry<Object> {
 
 	@Override
 	public String getCategoryKey() {

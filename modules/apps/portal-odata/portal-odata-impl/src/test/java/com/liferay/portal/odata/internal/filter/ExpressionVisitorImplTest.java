@@ -30,7 +30,6 @@ import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.odata.entity.StringEntityField;
 import com.liferay.portal.odata.filter.expression.BinaryExpression;
 import com.liferay.portal.odata.filter.expression.ExpressionVisitException;
-import com.liferay.portal.odata.filter.expression.ExpressionVisitor;
 import com.liferay.portal.odata.filter.expression.LambdaFunctionExpression;
 import com.liferay.portal.odata.filter.expression.LiteralExpression;
 import com.liferay.portal.odata.filter.expression.MemberExpression;
@@ -434,7 +433,7 @@ public class ExpressionVisitorImplTest {
 		CollectionEntityField collectionEntityField =
 			(CollectionEntityField)entityFieldsMap.get("keywords");
 
-		ExpressionVisitor expressionVisitor = new ExpressionVisitorImpl(
+		ExpressionVisitorImpl expressionVisitorImpl = new ExpressionVisitorImpl(
 			new SimpleDateFormat("yyyyMMddHHmmss"), LocaleUtil.getDefault(),
 			new EntityModel() {
 
@@ -452,7 +451,7 @@ public class ExpressionVisitorImplTest {
 			});
 
 		TermFilter termFilter =
-			(TermFilter)expressionVisitor.visitLambdaFunctionExpression(
+			(TermFilter)expressionVisitorImpl.visitLambdaFunctionExpression(
 				lambdaFunctionExpression.getType(),
 				lambdaFunctionExpression.getVariableName(),
 				lambdaFunctionExpression.getExpression());
@@ -529,7 +528,7 @@ public class ExpressionVisitorImplTest {
 
 		EntityField entityField1 = entityFieldsMap.get("keywords");
 
-		ExpressionVisitor expressionVisitor = new ExpressionVisitorImpl(
+		ExpressionVisitorImpl expressionVisitorImpl = new ExpressionVisitorImpl(
 			new SimpleDateFormat("yyyyMMddHHmmss"), LocaleUtil.getDefault(),
 			new EntityModel() {
 
@@ -549,7 +548,7 @@ public class ExpressionVisitorImplTest {
 			new LambdaVariableExpressionImpl("k"));
 
 		EntityField entityField2 =
-			(EntityField)expressionVisitor.visitMemberExpression(
+			(EntityField)expressionVisitorImpl.visitMemberExpression(
 				memberExpression);
 
 		Assert.assertNotNull(entityField2);

@@ -112,7 +112,7 @@ public class OpenIdConnectLoginRequestMVCRenderCommand
 	private OpenIdConnect _openIdConnect;
 
 	@Reference
-	private OpenIdConnectProviderRegistry _openIdConnectProviderRegistry;
+	private OpenIdConnectProviderRegistry<?, ?> _openIdConnectProviderRegistry;
 
 	@Reference
 	private Portal _portal;

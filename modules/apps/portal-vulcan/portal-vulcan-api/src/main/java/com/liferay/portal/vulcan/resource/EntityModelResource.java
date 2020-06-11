@@ -23,7 +23,7 @@ import javax.ws.rs.core.MultivaluedMap;
  */
 public interface EntityModelResource {
 
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
+	public EntityModel getEntityModel(MultivaluedMap<?, ?> multivaluedMap)
 		throws Exception;
 
 }

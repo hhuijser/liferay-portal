@@ -33,7 +33,7 @@ public class MockResource implements EntityModelResource {
 	public static final String METHOD_NAME = "mockGet";
 
 	@Override
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
+	public EntityModel getEntityModel(MultivaluedMap<?, ?> multivaluedMap) {
 		return _ENTITY_MODEL;
 	}
 

@@ -14,10 +14,12 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
@@ -39,6 +41,8 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	protected void doVisitToken(DetailAST detailAST) {
 		if (detailAST.getType() == TokenTypes.METHOD_CALL) {
 			_checkMissingEmptyLineAfterMethodCall(detailAST);
+
+			_checkMissingEmptyLineBetweenSameMethodCall(detailAST);
 
 			return;
 		}
@@ -344,6 +348,81 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		}
 	}
 
+	private void _checkMissingEmptyLineBetweenSameMethodCall(
+		DetailAST detailAST) {
+
+		String variableName = getVariableName(detailAST);
+
+		if (variableName == null) {
+			return;
+		}
+
+		String variableTypeName = getVariableTypeName(
+			detailAST, variableName, false);
+
+		String methodName = _getMethodName(variableTypeName);
+
+		if (Validator.isNull(methodName)) {
+			return;
+		}
+
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.EXPR) {
+			return;
+		}
+
+		DetailAST nextSiblingDetailAST = parentDetailAST.getNextSibling();
+
+		if ((nextSiblingDetailAST == null) ||
+			(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+
+			return;
+		}
+
+		FullIdent fullIdent = _getFullIdent(detailAST);
+
+		if (fullIdent == null) {
+			return;
+		}
+
+		nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+		if ((nextSiblingDetailAST == null) ||
+			(nextSiblingDetailAST.getType() != TokenTypes.EXPR)) {
+
+			return;
+		}
+
+		FullIdent nextFullIdent = _getFullIdent(
+			nextSiblingDetailAST.getFirstChild());
+
+		if (nextFullIdent == null) {
+			return;
+		}
+
+		String variableTypeNameMethod =
+			variableName + StringPool.PERIOD + methodName;
+
+		if (!StringUtil.equals(variableTypeNameMethod, fullIdent.getText()) ||
+			!StringUtil.equals(
+				variableTypeNameMethod, nextFullIdent.getText())) {
+
+			return;
+		}
+
+		int endLineNumber = getEndLineNumber(detailAST);
+
+		int nextExpressionStartLineNumber = getStartLineNumber(
+			nextSiblingDetailAST);
+
+		if ((endLineNumber + 1) == nextExpressionStartLineNumber) {
+			log(
+				endLineNumber, _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL,
+				endLineNumber);
+		}
+	}
+
 	private boolean _containsVariableName(
 		DetailAST detailAST, String variableName) {
 
@@ -460,6 +539,40 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		return identDetailASTList;
 	}
 
+	private FullIdent _getFullIdent(DetailAST detailAST) {
+		if (detailAST.getType() != TokenTypes.METHOD_CALL) {
+			return null;
+		}
+
+		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
+
+		FullIdent fullIdent = null;
+
+		if (dotDetailAST != null) {
+			fullIdent = FullIdent.createFullIdent(dotDetailAST);
+		}
+
+		return fullIdent;
+	}
+
+	private String _getMethodName(String variableTypeName) {
+		for (String variableTypeNameMethod :
+				getAttributeValues(_VARIABLE_TYPE_NAME_METHODS_KEY)) {
+
+			String[] s = StringUtil.split(variableTypeNameMethod, ":");
+
+			if (s.length != 2) {
+				continue;
+			}
+
+			if (variableTypeName.equals(s[0])) {
+				return s[1];
+			}
+		}
+
+		return null;
+	}
+
 	private String _getVariableName(DetailAST assignDetailAST) {
 		DetailAST parentDetailAST = assignDetailAST.getParent();
 
@@ -524,5 +637,8 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 	private static final String _MSG_MISSING_EMPTY_LINE_BEFORE_VARIABLE_USE =
 		"empty.line.missing.before.variable.use";
+
+	private static final String _VARIABLE_TYPE_NAME_METHODS_KEY =
+		"variableTypeNameMethods";
 
 }

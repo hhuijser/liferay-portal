@@ -42,7 +42,8 @@ import javax.ws.rs.ext.Providers;
  * @author Javier Gamarra
  * @author Ivica Cardic
  */
-public abstract class BaseMessageBodyReader implements MessageBodyReader {
+public abstract class BaseMessageBodyReader
+	implements MessageBodyReader<Object> {
 
 	public BaseMessageBodyReader(
 		Class<? extends ObjectMapper> contextType, MediaType mediaType) {

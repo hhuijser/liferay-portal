@@ -62,7 +62,9 @@ public class ModelSearchConfiguratorImpl<T extends BaseModel<?>>
 			"(indexer.class.name=" + className + ")");
 
 		_modelDocumentContributors = ServiceTrackerListFactory.open(
-			bundleContext, ModelDocumentContributor.class,
+			bundleContext,
+			(Class<ModelDocumentContributor<?>>)
+				(Class<?>)ModelDocumentContributor.class,
 			"(indexer.class.name=" + modelSearchSettings.getClassName() + ")");
 	}
 
@@ -85,7 +87,9 @@ public class ModelSearchConfiguratorImpl<T extends BaseModel<?>>
 	}
 
 	@Override
-	public Iterable<ModelDocumentContributor> getModelDocumentContributors() {
+	public Iterable<ModelDocumentContributor<?>>
+		getModelDocumentContributors() {
+
 		return _modelDocumentContributors;
 	}
 
@@ -123,7 +127,7 @@ public class ModelSearchConfiguratorImpl<T extends BaseModel<?>>
 		<KeywordQueryContributor, KeywordQueryContributor>
 			_keywordQueryContributors;
 	private final ServiceTrackerList
-		<ModelDocumentContributor, ModelDocumentContributor>
+		<ModelDocumentContributor<?>, ModelDocumentContributor<?>>
 			_modelDocumentContributors;
 	private final ModelIndexerWriterContributor<T>
 		_modelIndexerWriterContributor;

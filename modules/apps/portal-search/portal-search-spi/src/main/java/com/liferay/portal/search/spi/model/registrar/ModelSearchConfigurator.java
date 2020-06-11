@@ -37,7 +37,7 @@ public interface ModelSearchConfigurator<T extends BaseModel<?>> {
 
 	public Iterable<KeywordQueryContributor> getKeywordQueryContributors();
 
-	public Iterable<ModelDocumentContributor> getModelDocumentContributors();
+	public Iterable<ModelDocumentContributor<?>> getModelDocumentContributors();
 
 	public ModelIndexerWriterContributor<T> getModelIndexerWriterContributor();
 

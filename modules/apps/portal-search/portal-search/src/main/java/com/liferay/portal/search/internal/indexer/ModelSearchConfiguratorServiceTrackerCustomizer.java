@@ -197,7 +197,7 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 		ServiceRegistrationHolder serviceRegistrationHolder,
 		Dictionary<String, ?> serviceProperties) {
 
-		Iterable<ModelDocumentContributor> modelDocumentContributors =
+		Iterable<ModelDocumentContributor<?>> modelDocumentContributors =
 			modelSearchConfigurator.getModelDocumentContributors();
 
 		Iterable<DocumentContributor<?>> documentContributors =

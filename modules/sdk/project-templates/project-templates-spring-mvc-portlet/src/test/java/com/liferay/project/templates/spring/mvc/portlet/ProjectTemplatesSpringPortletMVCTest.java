@@ -96,7 +96,8 @@ public class ProjectTemplatesSpringPortletMVCTest
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
 		File gradleProjectDir = _buildSpringMVCTemplate(
 			gradleWorkspaceModulesDir, "gradle", _framework,
@@ -221,7 +222,7 @@ public class ProjectTemplatesSpringPortletMVCTest
 			buildProjects(
 				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":wars:sampleSpringMVCPortlet" + GRADLE_TASK_PATH_BUILD);
+				":modules:sampleSpringMVCPortlet" + GRADLE_TASK_PATH_BUILD);
 		}
 	}
 

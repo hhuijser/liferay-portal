@@ -1548,7 +1548,7 @@ public class GraphQLServletExtender {
 			GraphQLFieldDefinition graphQLFieldDefinition =
 				dataFetchingEnvironment.getFieldDefinition();
 
-			DataFetcher dataFetcher = graphQLCodeRegistry.getDataFetcher(
+			DataFetcher<?> dataFetcher = graphQLCodeRegistry.getDataFetcher(
 				(GraphQLFieldsContainer)graphQLTypes.get("query"),
 				builder.name(
 					fieldName
@@ -1876,7 +1876,7 @@ public class GraphQLServletExtender {
 			String fieldName = _getFieldName(
 				dataFetchingEnvironment, graphQLSchema);
 
-			DataFetcher dataFetcher = graphQLCodeRegistry.getDataFetcher(
+			DataFetcher<?> dataFetcher = graphQLCodeRegistry.getDataFetcher(
 				(GraphQLFieldsContainer)dataFetchingEnvironment.getParentType(),
 				builder.argument(
 					graphQLFieldDefinition.getArgument("id")

@@ -51,9 +51,10 @@ public class AMServletTest {
 		);
 
 		Mockito.when(
-			_amRequestHandlerLocator.locateForPattern(Mockito.anyString())
+			(AMRequestHandler<Object>)_amRequestHandlerLocator.locateForPattern(
+				Mockito.anyString())
 		).thenReturn(
-			_amRequestHandler
+			(AMRequestHandler<Object>)_amRequestHandler
 		);
 
 		Mockito.when(
@@ -80,9 +81,10 @@ public class AMServletTest {
 		);
 
 		Mockito.when(
-			_amRequestHandlerLocator.locateForPattern(Mockito.anyString())
+			(AMRequestHandler<Object>)_amRequestHandlerLocator.locateForPattern(
+				Mockito.anyString())
 		).thenReturn(
-			_amRequestHandler
+			(AMRequestHandler<Object>)_amRequestHandler
 		);
 
 		Mockito.when(
@@ -109,9 +111,10 @@ public class AMServletTest {
 		);
 
 		Mockito.when(
-			_amRequestHandlerLocator.locateForPattern(Mockito.anyString())
+			(AMRequestHandler<Object>)_amRequestHandlerLocator.locateForPattern(
+				Mockito.anyString())
 		).thenReturn(
-			_amRequestHandler
+			(AMRequestHandler<Object>)_amRequestHandler
 		);
 
 		Mockito.when(
@@ -138,9 +141,10 @@ public class AMServletTest {
 		);
 
 		Mockito.when(
-			_amRequestHandlerLocator.locateForPattern(Mockito.anyString())
+			(AMRequestHandler<Object>)_amRequestHandlerLocator.locateForPattern(
+				Mockito.anyString())
 		).thenReturn(
-			_amRequestHandler
+			(AMRequestHandler<Object>)_amRequestHandler
 		);
 
 		Mockito.when(

@@ -27,6 +27,6 @@ public interface DTOConverterRegistry {
 		return new HashSet<>();
 	}
 
-	public DTOConverter getDTOConverter(String dtoClassName);
+	public DTOConverter<?, ?> getDTOConverter(String dtoClassName);
 
 }

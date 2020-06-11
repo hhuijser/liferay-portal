@@ -65,7 +65,7 @@ public class RelatedContentUtil {
 
 				setContentType(
 					() -> {
-						DTOConverter dtoConverter =
+						DTOConverter<?, ?> dtoConverter =
 							dtoConverterRegistry.getDTOConverter(
 								assetEntry.getClassName());
 

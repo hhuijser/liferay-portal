@@ -39,14 +39,16 @@ public class DTOConverterRegistryImpl implements DTOConverterRegistry {
 	}
 
 	@Override
-	public DTOConverter getDTOConverter(String dtoClassName) {
+	public DTOConverter<?, ?> getDTOConverter(String dtoClassName) {
 		return _serviceTrackerMap.getService(dtoClassName);
 	}
 
 	@Activate
 	protected void activate(final BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, DTOConverter.class, "(dto.class.name=*)",
+			bundleContext,
+			(Class<DTOConverter<?, ?>>)(Class<?>)DTOConverter.class,
+			"(dto.class.name=*)",
 			(serviceReference, emitter) -> {
 				String dtoClassName = (String)serviceReference.getProperty(
 					"dto.class.name");
@@ -60,6 +62,6 @@ public class DTOConverterRegistryImpl implements DTOConverterRegistry {
 		_serviceTrackerMap.close();
 	}
 
-	private ServiceTrackerMap<String, DTOConverter> _serviceTrackerMap;
+	private ServiceTrackerMap<String, DTOConverter<?, ?>> _serviceTrackerMap;
 
 }

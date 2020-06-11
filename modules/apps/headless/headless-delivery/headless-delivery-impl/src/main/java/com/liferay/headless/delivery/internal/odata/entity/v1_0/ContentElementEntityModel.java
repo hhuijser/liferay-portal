@@ -78,8 +78,8 @@ public class ContentElementEntityModel implements EntityModel {
 		DTOConverterRegistry dtoConverterRegistry, Object object) {
 
 		for (String dtoClassName : dtoConverterRegistry.getDTOClassNames()) {
-			DTOConverter dtoConverter = dtoConverterRegistry.getDTOConverter(
-				dtoClassName);
+			DTOConverter<?, ?> dtoConverter =
+				dtoConverterRegistry.getDTOConverter(dtoClassName);
 
 			Class<? extends DTOConverter> clazz = dtoConverter.getClass();
 

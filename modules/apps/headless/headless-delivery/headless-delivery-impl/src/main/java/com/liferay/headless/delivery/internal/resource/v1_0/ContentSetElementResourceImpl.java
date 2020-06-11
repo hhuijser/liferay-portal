@@ -144,7 +144,7 @@ public class ContentSetElementResourceImpl
 	}
 
 	private ContentSetElement _toContentSetElement(AssetEntry assetEntry) {
-		DTOConverter dtoConverter = _dtoConverterRegistry.getDTOConverter(
+		DTOConverter<?, ?> dtoConverter = _dtoConverterRegistry.getDTOConverter(
 			assetEntry.getClassName());
 
 		return new ContentSetElement() {

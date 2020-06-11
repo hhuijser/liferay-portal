@@ -271,7 +271,7 @@ public class BlogsEntryImageSelectorHelperTest {
 	private static final String _TEMP_FOLDER_NAME =
 		BlogsEntryImageSelectorHelperTest.class.getName();
 
-	private static Constructor _constructor;
+	private static Constructor<?> _constructor;
 	private static Method _getImageSelectorMethod;
 	private static Method _isFileEntryTempFileMethod;
 

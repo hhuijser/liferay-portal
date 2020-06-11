@@ -210,7 +210,7 @@ public class ConfigurationModelIndexerTest {
 
 	private Bundle _bundle;
 	private BundleContext _bundleContext;
-	private Constructor _configurationModelConstructor;
+	private Constructor<?> _configurationModelConstructor;
 	private final List<Document> _documents = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.ConfigurationModelIndexer")

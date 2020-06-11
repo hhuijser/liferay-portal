@@ -142,7 +142,7 @@ public class KBArticleMarkdownConverterTest {
 			"http://baseURL/some/unix/file", _method.invoke(object));
 	}
 
-	private static Constructor _constructor;
+	private static Constructor<?> _constructor;
 	private static Method _method;
 
 	@Inject

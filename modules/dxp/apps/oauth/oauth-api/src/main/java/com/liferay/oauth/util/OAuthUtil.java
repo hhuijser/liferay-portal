@@ -94,7 +94,7 @@ public class OAuthUtil {
 				Class<?> clazz = Class.forName(
 					OAuthConfigurationValues.OAUTH_CLASS_NAME);
 
-				Constructor oauthConstructor = clazz.getConstructor(
+				Constructor<?> oauthConstructor = clazz.getConstructor(
 					OAuthValidator.class);
 
 				_oAuth = (OAuth)oauthConstructor.newInstance(

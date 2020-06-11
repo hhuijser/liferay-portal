@@ -16,6 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 
 import java.io.IOException;
 
@@ -52,7 +54,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 				 taglibValue.contains(StringPool.QUOTE))) {
 
 				if (!variableName.startsWith("taglib") &&
-					(StringUtil.count(content, variableName) == 2) &&
+					(_getVariableCount(content, variableName) == 2) &&
 					nextTag.contains("=\"<%= " + variableName + " %>\"")) {
 
 					addMessage(
@@ -87,6 +89,32 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		}
 
 		return content;
+	}
+
+	private int _getVariableCount(String content, String variableName) {
+		int count = 0;
+
+		Pattern pattern = Pattern.compile("\\W" + variableName + "\\W");
+
+		Matcher matcher = pattern.matcher(content);
+
+		while (matcher.find()) {
+			int x = matcher.start() + 1;
+
+			if (JSPSourceUtil.isJavaSource(content, x)) {
+				if (!ToolsUtil.isInsideQuotes(content, x)) {
+					count++;
+				}
+
+				continue;
+			}
+
+			if (JSPSourceUtil.isJavaSource(content, x, true)) {
+				count++;
+			}
+		}
+
+		return count;
 	}
 
 	private static final Pattern _taglibVariablePattern = Pattern.compile(

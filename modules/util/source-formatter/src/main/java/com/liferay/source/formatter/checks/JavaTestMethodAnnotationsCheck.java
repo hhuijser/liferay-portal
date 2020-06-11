@@ -80,11 +80,13 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 		if (javaTerm.hasAnnotation(annotation)) {
 			if (!matcher.find()) {
 				addMessage(
-					fileName, "Incorrect method name '" + methodName + "'");
+					fileName, "Incorrect method name '" + methodName + "'",
+					javaTerm.getLineNumber());
 			}
 			else if (javaTerm.isStatic() != staticRequired) {
 				addMessage(
-					fileName, "Incorrect method type for '" + methodName + "'");
+					fileName, "Incorrect method type for '" + methodName + "'",
+					javaTerm.getLineNumber());
 			}
 
 			return;
@@ -115,7 +117,8 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 				fileName,
 				StringBundler.concat(
 					"Annotation @", annotation, " required for '", methodName,
-					"'"));
+					"'"),
+				javaTerm.getLineNumber());
 		}
 	}
 

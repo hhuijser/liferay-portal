@@ -104,7 +104,13 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 
 		JavaClass javaClass = javaTerm.getParentJavaClass();
 
-		if ((javaClass == null) || !javaClass.isAnonymous()) {
+		if (javaClass.isAnonymous()) {
+			return;
+		}
+
+		JavaClass parentJavaClass = javaClass.getParentJavaClass();
+
+		if (parentJavaClass == null) {
 			addMessage(
 				fileName,
 				StringBundler.concat(

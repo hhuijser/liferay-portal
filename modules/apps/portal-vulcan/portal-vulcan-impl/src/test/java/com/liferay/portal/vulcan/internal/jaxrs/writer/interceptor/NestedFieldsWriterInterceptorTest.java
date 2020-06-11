@@ -98,7 +98,7 @@ public class NestedFieldsWriterInterceptorTest {
 			Mockito.any(Message.class)
 		);
 
-		ServiceReference serviceReference1 = new MockServiceReference();
+		ServiceReference<Object> serviceReference1 = new MockServiceReference();
 
 		_productResource_v1_0_Impl = new ProductResource_v1_0_Impl();
 
@@ -120,7 +120,7 @@ public class NestedFieldsWriterInterceptorTest {
 
 		_nestedFieldServiceTrackerCustomizer.addingService(serviceReference1);
 
-		ServiceReference serviceReference2 = new MockServiceReference();
+		ServiceReference<Object> serviceReference2 = new MockServiceReference();
 
 		_productResource_v2_0_Impl = new ProductResource_v2_0_Impl();
 

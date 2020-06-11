@@ -235,7 +235,10 @@ public class RelationshipManagerImpl implements RelationshipManager {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
-			bundleContext, RelationshipResource.class, null,
+			bundleContext,
+			(Class<RelationshipResource<?>>)
+				(Class<?>)RelationshipResource.class,
+			null,
 			(serviceReference, emitter) -> {
 				String modelClassName = (String)serviceReference.getProperty(
 					"model.class.name");
@@ -261,16 +264,19 @@ public class RelationshipManagerImpl implements RelationshipManager {
 
 		List<Relationship<T>> relationships = new ArrayList<>();
 
-		List<RelationshipResource> relationshipResources =
+		List<RelationshipResource<?>> relationshipResources =
 			_serviceTrackerMap.getService(modelClass.getName());
 
-		for (RelationshipResource relationshipResource :
+		for (RelationshipResource<?> relationshipResource :
 				relationshipResources) {
+
+			RelationshipResource<T> typeCastRelationshipResource =
+				(RelationshipResource<T>)relationshipResource;
 
 			Relationship.Builder<T> builder = new Relationship.Builder<>();
 
-			Relationship<T> relationship = relationshipResource.relationship(
-				builder);
+			Relationship<T> relationship =
+				typeCastRelationshipResource.relationship(builder);
 
 			relationships.add(relationship);
 		}
@@ -281,7 +287,7 @@ public class RelationshipManagerImpl implements RelationshipManager {
 	private static final Log _log = LogFactoryUtil.getLog(
 		RelationshipManagerImpl.class);
 
-	private ServiceTrackerMap<String, List<RelationshipResource>>
+	private ServiceTrackerMap<String, List<RelationshipResource<?>>>
 		_serviceTrackerMap;
 
 }

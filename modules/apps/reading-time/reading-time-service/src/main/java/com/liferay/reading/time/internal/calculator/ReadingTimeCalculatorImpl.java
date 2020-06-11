@@ -46,8 +46,9 @@ public class ReadingTimeCalculatorImpl implements ReadingTimeCalculator {
 
 	@Override
 	public Optional<Duration> calculate(GroupedModel groupedModel) {
-		ReadingTimeModelInfo readingTimeModelInfo =
-			_serviceTrackerMap.getService(groupedModel.getModelClassName());
+		ReadingTimeModelInfo<GroupedModel> readingTimeModelInfo =
+			(ReadingTimeModelInfo<GroupedModel>)_serviceTrackerMap.getService(
+				groupedModel.getModelClassName());
 
 		if (readingTimeModelInfo == null) {
 			return Optional.empty();
@@ -91,7 +92,10 @@ public class ReadingTimeCalculatorImpl implements ReadingTimeCalculator {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ReadingTimeModelInfo.class, "model.class.name");
+			bundleContext,
+			(Class<ReadingTimeModelInfo<?>>)
+				(Class<?>)ReadingTimeModelInfo.class,
+			"model.class.name");
 	}
 
 	@Deactivate
@@ -103,6 +107,7 @@ public class ReadingTimeCalculatorImpl implements ReadingTimeCalculator {
 		ContentTypes.TEXT_HTML, ContentTypes.TEXT_HTML_UTF8, ContentTypes.TEXT,
 		ContentTypes.TEXT_PLAIN, ContentTypes.TEXT_PLAIN_UTF8);
 
-	private ServiceTrackerMap<String, ReadingTimeModelInfo> _serviceTrackerMap;
+	private ServiceTrackerMap<String, ReadingTimeModelInfo<?>>
+		_serviceTrackerMap;
 
 }

@@ -419,7 +419,7 @@ public class MBThreadFinderImpl
 		try {
 			session = openSession();
 
-			QueryDefinition queryDefinition = new QueryDefinition(
+			QueryDefinition<?> queryDefinition = new QueryDefinition(
 				WorkflowConstants.STATUS_ANY);
 
 			String sql = _customSQL.get(
@@ -490,7 +490,7 @@ public class MBThreadFinderImpl
 		try {
 			session = openSession();
 
-			QueryDefinition queryDefinition = new QueryDefinition(
+			QueryDefinition<?> queryDefinition = new QueryDefinition(
 				WorkflowConstants.STATUS_ANY);
 
 			String sql = _customSQL.get(

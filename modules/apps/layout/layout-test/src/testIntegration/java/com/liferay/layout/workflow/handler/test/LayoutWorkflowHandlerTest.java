@@ -39,6 +39,8 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
+import java.io.Serializable;
+
 import java.util.Collections;
 import java.util.Map;
 
@@ -87,7 +89,7 @@ public class LayoutWorkflowHandlerTest {
 
 		Assert.assertEquals(WorkflowConstants.STATUS_DRAFT, layout.getStatus());
 
-		WorkflowHandler workflowHandler =
+		WorkflowHandler<?> workflowHandler =
 			WorkflowHandlerRegistryUtil.getWorkflowHandler(
 				Layout.class.getName());
 
@@ -108,8 +110,8 @@ public class LayoutWorkflowHandlerTest {
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_PENDING, layout.getStatus());
 
-		Map<String, Object> workflowContext =
-			HashMapBuilder.<String, Object>put(
+		Map<String, Serializable> workflowContext =
+			HashMapBuilder.<String, Serializable>put(
 				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK,
 				String.valueOf(layout.getPlid())
 			).put(
@@ -133,7 +135,7 @@ public class LayoutWorkflowHandlerTest {
 		Layout layout = LayoutTestUtil.addLayout(
 			_group.getGroupId(), StringPool.BLANK);
 
-		WorkflowHandler workflowHandler =
+		WorkflowHandler<?> workflowHandler =
 			WorkflowHandlerRegistryUtil.getWorkflowHandler(
 				Layout.class.getName());
 

@@ -108,6 +108,5 @@
 	<modules>
 		<module>modules</module>
 		<module>themes</module>
-		<module>wars</module>
 	</modules>
 </project>

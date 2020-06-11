@@ -8,7 +8,6 @@
 				<include>configs/**</include>
 				<include>modules/pom.xml</include>
 				<include>themes/pom.xml</include>
-				<include>wars/pom.xml</include>
 				<include>.gitignore</include>
 				<include>build.gradle</include>
 				<include>gradle.properties</include>

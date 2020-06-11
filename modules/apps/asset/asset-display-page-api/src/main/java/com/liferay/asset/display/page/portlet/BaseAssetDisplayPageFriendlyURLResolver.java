@@ -301,7 +301,7 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 		Function<Locale, String> defaultValueFunction) {
 
 		if (infoDisplayObjectProvider != null) {
-			InfoItemFormProvider infoItemFormProvider =
+			InfoItemFormProvider<Object> infoItemFormProvider =
 				infoItemServiceTracker.getInfoItemService(
 					InfoItemFormProvider.class,
 					portal.getClassName(

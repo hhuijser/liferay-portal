@@ -70,9 +70,11 @@ public class ExportTranslationMVCResourceCommand implements MVCResourceCommand {
 				themeDisplay.getScopeGroupId(),
 				ParamUtil.getString(resourceRequest, "articleId"));
 
-			InfoItemFormProvider infoItemFormProvider =
-				_infoItemServiceTracker.getInfoItemService(
-					InfoItemFormProvider.class, JournalArticle.class.getName());
+			InfoItemFormProvider<JournalArticle> infoItemFormProvider =
+				(InfoItemFormProvider<JournalArticle>)
+					_infoItemServiceTracker.getInfoItemService(
+						InfoItemFormProvider.class,
+						JournalArticle.class.getName());
 
 			String sourceLanguageId = ParamUtil.getString(
 				resourceRequest, "sourceLanguageId");

@@ -71,9 +71,10 @@ public class JournalArticleInfoItemFormProviderTest {
 
 	@Test
 	public void testGetInfoForm() throws Exception {
-		InfoItemFormProvider infoItemFormProvider =
-			_infoItemServiceTracker.getInfoItemService(
-				InfoItemFormProvider.class, JournalArticle.class.getName());
+		InfoItemFormProvider<JournalArticle> infoItemFormProvider =
+			(InfoItemFormProvider<JournalArticle>)
+				_infoItemServiceTracker.getInfoItemService(
+					InfoItemFormProvider.class, JournalArticle.class.getName());
 
 		JournalArticle journalArticle = _getJournalArticle();
 
@@ -148,9 +149,10 @@ public class JournalArticleInfoItemFormProviderTest {
 
 	@Test
 	public void testGetInfoFormValues() throws Exception {
-		InfoItemFormProvider infoItemFormProvider =
-			_infoItemServiceTracker.getInfoItemService(
-				InfoItemFormProvider.class, JournalArticle.class.getName());
+		InfoItemFormProvider<JournalArticle> infoItemFormProvider =
+			(InfoItemFormProvider<JournalArticle>)
+				_infoItemServiceTracker.getInfoItemService(
+					InfoItemFormProvider.class, JournalArticle.class.getName());
 
 		JournalArticle journalArticle = _getJournalArticle();
 

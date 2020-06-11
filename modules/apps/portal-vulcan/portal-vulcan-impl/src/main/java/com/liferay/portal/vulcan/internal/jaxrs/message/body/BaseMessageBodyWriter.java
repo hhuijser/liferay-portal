@@ -86,7 +86,9 @@ public abstract class BaseMessageBodyWriter
 			JSONArray.class, new JSONArrayStdSerializer(JSONArray.class));
 
 		if (mediaType.equals(MediaType.APPLICATION_XML_TYPE)) {
-			simpleModule.addSerializer(Page.class, new PageJsonSerializer());
+			simpleModule.addSerializer(
+				(Class<Page<Object>>)(Class<?>)Page.class,
+				new PageJsonSerializer());
 		}
 
 		objectMapper.registerModule(simpleModule);

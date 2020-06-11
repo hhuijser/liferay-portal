@@ -51,7 +51,7 @@ import javax.portlet.PortletResponse;
 /**
  * @author Marco Calderon
  */
-public class PowwowMeetingIndexer extends BaseIndexer {
+public class PowwowMeetingIndexer extends BaseIndexer<Object> {
 
 	public static final String[] CLASS_NAMES = {PowwowMeeting.class.getName()};
 

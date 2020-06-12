@@ -1181,49 +1181,55 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 							@SuppressWarnings("unused")
 							public void doCall(CopySpec copySpec) {
-								Action action = new Action<FileCopyDetails>() {
+								Action<FileCopyDetails> action =
+									new Action<FileCopyDetails>() {
 
-									@Override
-									public void execute(
-										FileCopyDetails fileCopyDetails) {
+										@Override
+										public void execute(
+											FileCopyDetails fileCopyDetails) {
 
-										RelativePath relativePath =
-											fileCopyDetails.getRelativePath();
+											RelativePath relativePath =
+												fileCopyDetails.
+													getRelativePath();
 
-										String[] segments =
-											relativePath.getSegments();
+											String[] segments =
+												relativePath.getSegments();
 
-										if ((segments.length > 4) &&
-											segments[2].equals("META-INF") &&
-											segments[3].equals("resources")) {
+											if ((segments.length > 4) &&
+												segments[2].equals(
+													"META-INF") &&
+												segments[3].equals(
+													"resources")) {
 
-											List<String> list =
-												new ArrayList<>();
+												List<String> list =
+													new ArrayList<>();
 
-											list.add(segments[0]);
-											list.add(segments[1]);
+												list.add(segments[0]);
+												list.add(segments[1]);
 
-											for (int i = 4; i < segments.length;
-												 i++) {
+												for (int i = 4;
+													 i < segments.length; i++) {
 
-												String segment = segments[i];
+													String segment =
+														segments[i];
 
-												if (!segment.equals(
-														".sass-cache")) {
+													if (!segment.equals(
+															".sass-cache")) {
 
-													list.add(segment);
+														list.add(segment);
+													}
 												}
+
+												segments = list.toArray(
+													new String[0]);
 											}
 
-											segments = list.toArray(
-												new String[0]);
+											fileCopyDetails.setRelativePath(
+												new RelativePath(
+													true, segments));
 										}
 
-										fileCopyDetails.setRelativePath(
-											new RelativePath(true, segments));
-									}
-
-								};
+									};
 
 								copySpec.eachFile(action);
 
@@ -1245,43 +1251,48 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 							@SuppressWarnings("unused")
 							public void doCall(CopySpec copySpec) {
-								Action action = new Action<FileCopyDetails>() {
+								Action<FileCopyDetails> action =
+									new Action<FileCopyDetails>() {
 
-									@Override
-									public void execute(
-										FileCopyDetails fileCopyDetails) {
+										@Override
+										public void execute(
+											FileCopyDetails fileCopyDetails) {
 
-										RelativePath relativePath =
-											fileCopyDetails.getRelativePath();
+											RelativePath relativePath =
+												fileCopyDetails.
+													getRelativePath();
 
-										String[] segments =
-											relativePath.getSegments();
+											String[] segments =
+												relativePath.getSegments();
 
-										if ((segments.length > 4) &&
-											segments[2].equals("META-INF") &&
-											segments[3].equals("resources")) {
+											if ((segments.length > 4) &&
+												segments[2].equals(
+													"META-INF") &&
+												segments[3].equals(
+													"resources")) {
 
-											List<String> list =
-												new ArrayList<>();
+												List<String> list =
+													new ArrayList<>();
 
-											list.add(segments[0]);
-											list.add(segments[1]);
+												list.add(segments[0]);
+												list.add(segments[1]);
 
-											for (int i = 4; i < segments.length;
-												 i++) {
+												for (int i = 4;
+													 i < segments.length; i++) {
 
-												list.add(segments[i]);
+													list.add(segments[i]);
+												}
+
+												segments = list.toArray(
+													new String[0]);
 											}
 
-											segments = list.toArray(
-												new String[0]);
+											fileCopyDetails.setRelativePath(
+												new RelativePath(
+													true, segments));
 										}
 
-										fileCopyDetails.setRelativePath(
-											new RelativePath(true, segments));
-									}
-
-								};
+									};
 
 								copySpec.eachFile(action);
 

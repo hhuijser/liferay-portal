@@ -15,6 +15,7 @@
 package com.liferay.content.dashboard.web.internal.item;
 
 import com.liferay.asset.display.page.portlet.AssetDisplayPageFriendlyURLProvider;
+import com.liferay.info.display.url.provider.InfoEditURLProvider;
 import com.liferay.info.display.url.provider.InfoEditURLProviderTracker;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalService;
@@ -39,8 +40,9 @@ public class JournalArticleContentDashboardInfoItemFactory
 
 		return new JournalArticleContentDashboardItem(
 			_assetDisplayPageFriendlyURLProvider,
-			_infoEditURLProviderTracker.getInfoEditURLProvider(
-				JournalArticle.class.getName()),
+			(InfoEditURLProvider<JournalArticle>)
+				_infoEditURLProviderTracker.getInfoEditURLProvider(
+					JournalArticle.class.getName()),
 			_journalArticleLocalService.getLatestArticle(
 				classPK, WorkflowConstants.STATUS_ANY, false),
 			_language, _modelResourcePermission);

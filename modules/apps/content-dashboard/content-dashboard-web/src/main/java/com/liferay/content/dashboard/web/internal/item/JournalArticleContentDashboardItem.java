@@ -47,8 +47,8 @@ public class JournalArticleContentDashboardItem
 
 	public JournalArticleContentDashboardItem(
 		AssetDisplayPageFriendlyURLProvider assetDisplayPageFriendlyURLProvider,
-		InfoEditURLProvider infoEditURLProvider, JournalArticle journalArticle,
-		Language language,
+		InfoEditURLProvider<JournalArticle> infoEditURLProvider,
+		JournalArticle journalArticle, Language language,
 		ModelResourcePermission<JournalArticle> modelResourcePermission) {
 
 		_assetDisplayPageFriendlyURLProvider =

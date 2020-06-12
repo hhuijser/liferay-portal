@@ -41,6 +41,7 @@ public class DLContentServiceUpgrade implements UpgradeStepRegistrator {
 				}
 
 			});
+
 		registry.register("1.1.0", "1.2.0", new UpgradeCTModel("DLContent"));
 	}
 

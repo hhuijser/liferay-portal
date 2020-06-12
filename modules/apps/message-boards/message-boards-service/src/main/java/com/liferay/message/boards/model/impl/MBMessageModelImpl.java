@@ -1383,16 +1383,16 @@ public class MBMessageModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBMessage)) {
+		if (!(obj instanceof MBMessage)) {
 			return false;
 		}
 
-		MBMessage mbMessage = (MBMessage)object;
+		MBMessage mbMessage = (MBMessage)obj;
 
 		long primaryKey = mbMessage.getPrimaryKey();
 

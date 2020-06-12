@@ -581,16 +581,16 @@ public class DepotEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DepotEntry)) {
+		if (!(obj instanceof DepotEntry)) {
 			return false;
 		}
 
-		DepotEntry depotEntry = (DepotEntry)object;
+		DepotEntry depotEntry = (DepotEntry)obj;
 
 		long primaryKey = depotEntry.getPrimaryKey();
 

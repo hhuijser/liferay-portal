@@ -651,17 +651,17 @@ public class DEDataDefinitionFieldLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DEDataDefinitionFieldLink)) {
+		if (!(obj instanceof DEDataDefinitionFieldLink)) {
 			return false;
 		}
 
 		DEDataDefinitionFieldLink deDataDefinitionFieldLink =
-			(DEDataDefinitionFieldLink)object;
+			(DEDataDefinitionFieldLink)obj;
 
 		long primaryKey = deDataDefinitionFieldLink.getPrimaryKey();
 

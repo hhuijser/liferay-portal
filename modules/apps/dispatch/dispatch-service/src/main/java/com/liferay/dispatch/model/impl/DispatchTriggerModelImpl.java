@@ -731,16 +731,16 @@ public class DispatchTriggerModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DispatchTrigger)) {
+		if (!(obj instanceof DispatchTrigger)) {
 			return false;
 		}
 
-		DispatchTrigger dispatchTrigger = (DispatchTrigger)object;
+		DispatchTrigger dispatchTrigger = (DispatchTrigger)obj;
 
 		long primaryKey = dispatchTrigger.getPrimaryKey();
 

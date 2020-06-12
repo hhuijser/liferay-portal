@@ -548,16 +548,16 @@ public class AssetLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetLink)) {
+		if (!(obj instanceof AssetLink)) {
 			return false;
 		}
 
-		AssetLink assetLink = (AssetLink)object;
+		AssetLink assetLink = (AssetLink)obj;
 
 		long primaryKey = assetLink.getPrimaryKey();
 

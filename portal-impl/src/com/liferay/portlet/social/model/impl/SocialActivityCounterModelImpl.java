@@ -715,17 +715,17 @@ public class SocialActivityCounterModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SocialActivityCounter)) {
+		if (!(obj instanceof SocialActivityCounter)) {
 			return false;
 		}
 
 		SocialActivityCounter socialActivityCounter =
-			(SocialActivityCounter)object;
+			(SocialActivityCounter)obj;
 
 		long primaryKey = socialActivityCounter.getPrimaryKey();
 

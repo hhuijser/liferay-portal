@@ -295,7 +295,7 @@ public interface UserNotificationEventLocalService
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
 		long userId, int deliveryType, boolean delivered,
 		boolean actionRequired, boolean archived, int start, int end,
-		OrderByComparator<UserNotificationEvent> obc);
+		OrderByComparator<UserNotificationEvent> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
@@ -305,7 +305,8 @@ public interface UserNotificationEventLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
 		long userId, int deliveryType, boolean actionRequired, boolean archived,
-		int start, int end, OrderByComparator<UserNotificationEvent> obc);
+		int start, int end,
+		OrderByComparator<UserNotificationEvent> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
@@ -372,7 +373,7 @@ public interface UserNotificationEventLocalService
 	public List<UserNotificationEvent> getDeliveredUserNotificationEvents(
 		long userId, int deliveryType, boolean delivered,
 		boolean actionRequired, int start, int end,
-		OrderByComparator<UserNotificationEvent> obc);
+		OrderByComparator<UserNotificationEvent> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserNotificationEvent> getDeliveredUserNotificationEvents(

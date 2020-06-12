@@ -690,16 +690,16 @@ public class AssetTagModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetTag)) {
+		if (!(obj instanceof AssetTag)) {
 			return false;
 		}
 
-		AssetTag assetTag = (AssetTag)object;
+		AssetTag assetTag = (AssetTag)obj;
 
 		long primaryKey = assetTag.getPrimaryKey();
 

@@ -626,23 +626,24 @@ public class DLAppServiceSoap {
 	 * @param folderId the primary key of the file entry's folder
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the file entries (optionally
+	 * @param orderByComparator the comparator to order the file entries (optionally
 	 <code>null</code>)
 	 * @return the range of file entries in the folder ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static com.liferay.portal.kernel.repository.model.FileEntrySoap[]
 			getFileEntries(
 				long repositoryId, long folderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.FileEntry>
 				returnValue = DLAppServiceUtil.getFileEntries(
-					repositoryId, folderId, start, end, obc);
+					repositoryId, folderId, start, end, orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FileEntrySoap.
 				toSoapModels(returnValue);
@@ -725,7 +726,7 @@ public class DLAppServiceSoap {
 	 * @param fileEntryTypeId the primary key of the file entry type
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the results by (optionally
+	 * @param orderByComparator the comparator to order the results by (optionally
 	 <code>null</code>)
 	 * @return the range of file entries with the file entry type in the folder
 	 ordered by <code>null</code>
@@ -736,13 +737,15 @@ public class DLAppServiceSoap {
 				long repositoryId, long folderId, long fileEntryTypeId,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.FileEntry>
 				returnValue = DLAppServiceUtil.getFileEntries(
-					repositoryId, folderId, fileEntryTypeId, start, end, obc);
+					repositoryId, folderId, fileEntryTypeId, start, end,
+					orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FileEntrySoap.
 				toSoapModels(returnValue);
@@ -778,13 +781,15 @@ public class DLAppServiceSoap {
 				long repositoryId, long folderId, String[] mimeTypes, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.FileEntry>
 				returnValue = DLAppServiceUtil.getFileEntries(
-					repositoryId, folderId, mimeTypes, start, end, obc);
+					repositoryId, folderId, mimeTypes, start, end,
+					orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FileEntrySoap.
 				toSoapModels(returnValue);
@@ -1173,10 +1178,10 @@ public class DLAppServiceSoap {
 	 third-party repositories
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the folders (optionally
+	 * @param orderByComparator the comparator to order the folders (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 comparator <code>obc</code>
+	 comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static com.liferay.portal.kernel.repository.model.FolderSoap[]
@@ -1184,14 +1189,15 @@ public class DLAppServiceSoap {
 				long repositoryId, long parentFolderId,
 				boolean includeMountFolders, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.Folder>
 				returnValue = DLAppServiceUtil.getFolders(
 					repositoryId, parentFolderId, includeMountFolders, start,
-					end, obc);
+					end, orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FolderSoap.
 				toSoapModels(returnValue);
@@ -1223,10 +1229,10 @@ public class DLAppServiceSoap {
 	 third-party repositories
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the folders (optionally
+	 * @param orderByComparator the comparator to order the folders (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 comparator <code>obc</code>
+	 comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static com.liferay.portal.kernel.repository.model.FolderSoap[]
@@ -1234,14 +1240,15 @@ public class DLAppServiceSoap {
 				long repositoryId, long parentFolderId, int status,
 				boolean includeMountFolders, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.Folder>
 				returnValue = DLAppServiceUtil.getFolders(
 					repositoryId, parentFolderId, status, includeMountFolders,
-					start, end, obc);
+					start, end, orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FolderSoap.
 				toSoapModels(returnValue);
@@ -1311,23 +1318,25 @@ public class DLAppServiceSoap {
 	 * @param parentFolderId the primary key of the folder's parent folder
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the folders (optionally
+	 * @param orderByComparator the comparator to order the folders (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 comparator <code>obc</code>
+	 comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static com.liferay.portal.kernel.repository.model.FolderSoap[]
 			getFolders(
 				long repositoryId, long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.Folder>
 				returnValue = DLAppServiceUtil.getFolders(
-					repositoryId, parentFolderId, start, end, obc);
+					repositoryId, parentFolderId, start, end,
+					orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FolderSoap.
 				toSoapModels(returnValue);
@@ -1585,23 +1594,24 @@ public class DLAppServiceSoap {
 	 (optionally <code>0</code>)
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the file entries (optionally
+	 * @param orderByComparator the comparator to order the file entries (optionally
 	 <code>null</code>)
 	 * @return the range of matching file entries ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static com.liferay.portal.kernel.repository.model.FileEntrySoap[]
 			getGroupFileEntries(
 				long groupId, long userId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.FileEntry>
 				returnValue = DLAppServiceUtil.getGroupFileEntries(
-					groupId, userId, start, end, obc);
+					groupId, userId, start, end, orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FileEntrySoap.
 				toSoapModels(returnValue);
@@ -1681,10 +1691,10 @@ public class DLAppServiceSoap {
 	 search
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the file entries (optionally
+	 * @param orderByComparator the comparator to order the file entries (optionally
 	 <code>null</code>)
 	 * @return the range of matching file entries ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static com.liferay.portal.kernel.repository.model.FileEntrySoap[]
@@ -1692,13 +1702,15 @@ public class DLAppServiceSoap {
 				long groupId, long userId, long rootFolderId, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.FileEntry>
 				returnValue = DLAppServiceUtil.getGroupFileEntries(
-					groupId, userId, rootFolderId, start, end, obc);
+					groupId, userId, rootFolderId, start, end,
+					orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FileEntrySoap.
 				toSoapModels(returnValue);
@@ -1715,14 +1727,15 @@ public class DLAppServiceSoap {
 				long groupId, long userId, long rootFolderId,
 				String[] mimeTypes, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.FileEntry>
 				returnValue = DLAppServiceUtil.getGroupFileEntries(
 					groupId, userId, rootFolderId, mimeTypes, status, start,
-					end, obc);
+					end, orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FileEntrySoap.
 				toSoapModels(returnValue);
@@ -1901,24 +1914,26 @@ public class DLAppServiceSoap {
 	 * @param parentFolderId the primary key of the folder's parent folder
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the folders (optionally
+	 * @param orderByComparator the comparator to order the folders (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder that are
 	 used for mounting third-party repositories ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static com.liferay.portal.kernel.repository.model.FolderSoap[]
 			getMountFolders(
 				long repositoryId, long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.repository.model.Folder>
 				returnValue = DLAppServiceUtil.getMountFolders(
-					repositoryId, parentFolderId, start, end, obc);
+					repositoryId, parentFolderId, start, end,
+					orderByComparator);
 
 			return com.liferay.portal.kernel.repository.model.FolderSoap.
 				toSoapModels(returnValue);

@@ -37,17 +37,17 @@ public class LayoutClassedModelUsageCacheModel
 	implements CacheModel<LayoutClassedModelUsage>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LayoutClassedModelUsageCacheModel)) {
+		if (!(obj instanceof LayoutClassedModelUsageCacheModel)) {
 			return false;
 		}
 
 		LayoutClassedModelUsageCacheModel layoutClassedModelUsageCacheModel =
-			(LayoutClassedModelUsageCacheModel)object;
+			(LayoutClassedModelUsageCacheModel)obj;
 
 		if ((layoutClassedModelUsageId ==
 				layoutClassedModelUsageCacheModel.layoutClassedModelUsageId) &&

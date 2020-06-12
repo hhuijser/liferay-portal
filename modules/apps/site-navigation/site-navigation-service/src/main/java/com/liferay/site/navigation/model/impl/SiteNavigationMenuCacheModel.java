@@ -37,17 +37,17 @@ public class SiteNavigationMenuCacheModel
 	implements CacheModel<SiteNavigationMenu>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SiteNavigationMenuCacheModel)) {
+		if (!(obj instanceof SiteNavigationMenuCacheModel)) {
 			return false;
 		}
 
 		SiteNavigationMenuCacheModel siteNavigationMenuCacheModel =
-			(SiteNavigationMenuCacheModel)object;
+			(SiteNavigationMenuCacheModel)obj;
 
 		if ((siteNavigationMenuId ==
 				siteNavigationMenuCacheModel.siteNavigationMenuId) &&

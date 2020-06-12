@@ -546,16 +546,16 @@ public class RatingsStatsModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RatingsStats)) {
+		if (!(obj instanceof RatingsStats)) {
 			return false;
 		}
 
-		RatingsStats ratingsStats = (RatingsStats)object;
+		RatingsStats ratingsStats = (RatingsStats)obj;
 
 		long primaryKey = ratingsStats.getPrimaryKey();
 

@@ -37,16 +37,16 @@ public class KaleoNodeCacheModel
 	implements CacheModel<KaleoNode>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoNodeCacheModel)) {
+		if (!(obj instanceof KaleoNodeCacheModel)) {
 			return false;
 		}
 
-		KaleoNodeCacheModel kaleoNodeCacheModel = (KaleoNodeCacheModel)object;
+		KaleoNodeCacheModel kaleoNodeCacheModel = (KaleoNodeCacheModel)obj;
 
 		if ((kaleoNodeId == kaleoNodeCacheModel.kaleoNodeId) &&
 			(mvccVersion == kaleoNodeCacheModel.mvccVersion)) {

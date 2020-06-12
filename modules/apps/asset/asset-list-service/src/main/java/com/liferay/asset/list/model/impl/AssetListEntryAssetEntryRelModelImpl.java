@@ -722,17 +722,17 @@ public class AssetListEntryAssetEntryRelModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetListEntryAssetEntryRel)) {
+		if (!(obj instanceof AssetListEntryAssetEntryRel)) {
 			return false;
 		}
 
 		AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
-			(AssetListEntryAssetEntryRel)object;
+			(AssetListEntryAssetEntryRel)obj;
 
 		long primaryKey = assetListEntryAssetEntryRel.getPrimaryKey();
 

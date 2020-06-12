@@ -163,9 +163,10 @@ public class BlogsEntryServiceUtil {
 		getGroupEntries(
 			long groupId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsEntry> obc) {
+				<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
-		return getService().getGroupEntries(groupId, status, start, end, obc);
+		return getService().getGroupEntries(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	public static int getGroupEntriesCount(
@@ -204,20 +205,20 @@ public class BlogsEntryServiceUtil {
 		getGroupUserEntries(
 			long groupId, long userId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsEntry> obc) {
+				<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
 		return getService().getGroupUserEntries(
-			groupId, userId, status, start, end, obc);
+			groupId, userId, status, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.blogs.model.BlogsEntry>
 		getGroupUserEntries(
 			long groupId, long userId, int[] statuses, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsEntry> obc) {
+				<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
 		return getService().getGroupUserEntries(
-			groupId, userId, statuses, start, end, obc);
+			groupId, userId, statuses, start, end, orderByComparator);
 	}
 
 	public static int getGroupUserEntriesCount(

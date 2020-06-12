@@ -1135,16 +1135,16 @@ public class MBCategoryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBCategory)) {
+		if (!(obj instanceof MBCategory)) {
 			return false;
 		}
 
-		MBCategory mbCategory = (MBCategory)object;
+		MBCategory mbCategory = (MBCategory)obj;
 
 		long primaryKey = mbCategory.getPrimaryKey();
 

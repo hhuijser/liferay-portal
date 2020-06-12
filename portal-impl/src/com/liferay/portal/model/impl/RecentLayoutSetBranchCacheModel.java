@@ -35,17 +35,17 @@ public class RecentLayoutSetBranchCacheModel
 	implements CacheModel<RecentLayoutSetBranch>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RecentLayoutSetBranchCacheModel)) {
+		if (!(obj instanceof RecentLayoutSetBranchCacheModel)) {
 			return false;
 		}
 
 		RecentLayoutSetBranchCacheModel recentLayoutSetBranchCacheModel =
-			(RecentLayoutSetBranchCacheModel)object;
+			(RecentLayoutSetBranchCacheModel)obj;
 
 		if ((recentLayoutSetBranchId ==
 				recentLayoutSetBranchCacheModel.recentLayoutSetBranchId) &&

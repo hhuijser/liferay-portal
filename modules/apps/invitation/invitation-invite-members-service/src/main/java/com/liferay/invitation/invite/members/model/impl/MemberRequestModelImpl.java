@@ -603,16 +603,16 @@ public class MemberRequestModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MemberRequest)) {
+		if (!(obj instanceof MemberRequest)) {
 			return false;
 		}
 
-		MemberRequest memberRequest = (MemberRequest)object;
+		MemberRequest memberRequest = (MemberRequest)obj;
 
 		long primaryKey = memberRequest.getPrimaryKey();
 

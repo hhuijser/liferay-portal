@@ -37,16 +37,16 @@ public class PollsVoteCacheModel
 	implements CacheModel<PollsVote>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PollsVoteCacheModel)) {
+		if (!(obj instanceof PollsVoteCacheModel)) {
 			return false;
 		}
 
-		PollsVoteCacheModel pollsVoteCacheModel = (PollsVoteCacheModel)object;
+		PollsVoteCacheModel pollsVoteCacheModel = (PollsVoteCacheModel)obj;
 
 		if ((voteId == pollsVoteCacheModel.voteId) &&
 			(mvccVersion == pollsVoteCacheModel.mvccVersion)) {

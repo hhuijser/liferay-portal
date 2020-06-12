@@ -35,16 +35,16 @@ public class RegionCacheModel
 	implements CacheModel<Region>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RegionCacheModel)) {
+		if (!(obj instanceof RegionCacheModel)) {
 			return false;
 		}
 
-		RegionCacheModel regionCacheModel = (RegionCacheModel)object;
+		RegionCacheModel regionCacheModel = (RegionCacheModel)obj;
 
 		if ((regionId == regionCacheModel.regionId) &&
 			(mvccVersion == regionCacheModel.mvccVersion)) {

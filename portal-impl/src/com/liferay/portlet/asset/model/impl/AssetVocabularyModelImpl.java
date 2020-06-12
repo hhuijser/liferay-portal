@@ -1064,16 +1064,16 @@ public class AssetVocabularyModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetVocabulary)) {
+		if (!(obj instanceof AssetVocabulary)) {
 			return false;
 		}
 
-		AssetVocabulary assetVocabulary = (AssetVocabulary)object;
+		AssetVocabulary assetVocabulary = (AssetVocabulary)obj;
 
 		long primaryKey = assetVocabulary.getPrimaryKey();
 

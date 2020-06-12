@@ -35,17 +35,17 @@ public class ResourceActionCacheModel
 	implements CacheModel<ResourceAction>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ResourceActionCacheModel)) {
+		if (!(obj instanceof ResourceActionCacheModel)) {
 			return false;
 		}
 
 		ResourceActionCacheModel resourceActionCacheModel =
-			(ResourceActionCacheModel)object;
+			(ResourceActionCacheModel)obj;
 
 		if ((resourceActionId == resourceActionCacheModel.resourceActionId) &&
 			(mvccVersion == resourceActionCacheModel.mvccVersion)) {

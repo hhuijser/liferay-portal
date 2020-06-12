@@ -500,7 +500,8 @@ public class DLFolderServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long parentFolderId,
 				boolean includeMountfolders, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -510,7 +511,7 @@ public class DLFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, parentFolderId, includeMountfolders, status,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -546,7 +547,8 @@ public class DLFolderServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long parentFolderId,
 				int status, boolean includeMountfolders, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -556,7 +558,7 @@ public class DLFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, parentFolderId, status, includeMountfolders,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -592,7 +594,8 @@ public class DLFolderServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long parentFolderId,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -601,7 +604,8 @@ public class DLFolderServiceHttp {
 				_getFoldersParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, parentFolderId, start, end, obc);
+				methodKey, groupId, parentFolderId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -636,7 +640,8 @@ public class DLFolderServiceHttp {
 			getFoldersAndFileEntriesAndFileShortcuts(
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				boolean includeMountFolders, int status, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -647,7 +652,7 @@ public class DLFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, folderId, includeMountFolders, status,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -681,7 +686,8 @@ public class DLFolderServiceHttp {
 			getFoldersAndFileEntriesAndFileShortcuts(
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				int status, boolean includeMountFolders, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -692,7 +698,7 @@ public class DLFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, folderId, status, includeMountFolders,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -727,7 +733,8 @@ public class DLFolderServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				int status, String[] mimeTypes, boolean includeMountFolders,
 				int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -738,7 +745,7 @@ public class DLFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, folderId, status, mimeTypes,
-				includeMountFolders, start, end, obc);
+				includeMountFolders, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -773,7 +780,8 @@ public class DLFolderServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				String[] mimeTypes, boolean includeMountFolders, int status,
 				int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -784,7 +792,7 @@ public class DLFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, folderId, mimeTypes, includeMountFolders,
-				status, start, end, obc);
+				status, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -865,7 +873,8 @@ public class DLFolderServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				String[] mimeTypes, long fileEntryTypeId,
 				boolean includeMountFolders, int status, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -876,7 +885,7 @@ public class DLFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, folderId, mimeTypes, fileEntryTypeId,
-				includeMountFolders, status, start, end, obc);
+				includeMountFolders, status, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1252,7 +1261,8 @@ public class DLFolderServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long parentFolderId,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1261,7 +1271,8 @@ public class DLFolderServiceHttp {
 				_getMountFoldersParameterTypes28);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, parentFolderId, start, end, obc);
+				methodKey, groupId, parentFolderId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

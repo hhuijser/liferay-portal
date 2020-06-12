@@ -282,10 +282,10 @@ public class SAPEntryLocalServiceWrapper
 				long companyId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.portal.security.service.access.policy.model.
-						SAPEntry> obc) {
+						SAPEntry> orderByComparator) {
 
 		return _sapEntryLocalService.getCompanySAPEntries(
-			companyId, start, end, obc);
+			companyId, start, end, orderByComparator);
 	}
 
 	@Override

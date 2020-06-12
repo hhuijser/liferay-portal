@@ -517,17 +517,16 @@ public class CTAutoResolutionInfoModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTAutoResolutionInfo)) {
+		if (!(obj instanceof CTAutoResolutionInfo)) {
 			return false;
 		}
 
-		CTAutoResolutionInfo ctAutoResolutionInfo =
-			(CTAutoResolutionInfo)object;
+		CTAutoResolutionInfo ctAutoResolutionInfo = (CTAutoResolutionInfo)obj;
 
 		long primaryKey = ctAutoResolutionInfo.getPrimaryKey();
 

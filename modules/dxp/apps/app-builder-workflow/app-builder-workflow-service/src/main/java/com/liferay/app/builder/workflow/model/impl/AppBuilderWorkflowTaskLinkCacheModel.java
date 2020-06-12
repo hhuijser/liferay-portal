@@ -36,18 +36,18 @@ public class AppBuilderWorkflowTaskLinkCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AppBuilderWorkflowTaskLinkCacheModel)) {
+		if (!(obj instanceof AppBuilderWorkflowTaskLinkCacheModel)) {
 			return false;
 		}
 
 		AppBuilderWorkflowTaskLinkCacheModel
 			appBuilderWorkflowTaskLinkCacheModel =
-				(AppBuilderWorkflowTaskLinkCacheModel)object;
+				(AppBuilderWorkflowTaskLinkCacheModel)obj;
 
 		if ((appBuilderWorkflowTaskLinkId ==
 				appBuilderWorkflowTaskLinkCacheModel.

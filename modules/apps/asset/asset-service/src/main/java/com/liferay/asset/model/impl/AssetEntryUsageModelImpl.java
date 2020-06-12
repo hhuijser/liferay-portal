@@ -675,16 +675,16 @@ public class AssetEntryUsageModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetEntryUsage)) {
+		if (!(obj instanceof AssetEntryUsage)) {
 			return false;
 		}
 
-		AssetEntryUsage assetEntryUsage = (AssetEntryUsage)object;
+		AssetEntryUsage assetEntryUsage = (AssetEntryUsage)obj;
 
 		long primaryKey = assetEntryUsage.getPrimaryKey();
 

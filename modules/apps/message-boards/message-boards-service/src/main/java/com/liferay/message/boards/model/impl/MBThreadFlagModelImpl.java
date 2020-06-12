@@ -568,16 +568,16 @@ public class MBThreadFlagModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBThreadFlag)) {
+		if (!(obj instanceof MBThreadFlag)) {
 			return false;
 		}
 
-		MBThreadFlag mbThreadFlag = (MBThreadFlag)object;
+		MBThreadFlag mbThreadFlag = (MBThreadFlag)obj;
 
 		long primaryKey = mbThreadFlag.getPrimaryKey();
 

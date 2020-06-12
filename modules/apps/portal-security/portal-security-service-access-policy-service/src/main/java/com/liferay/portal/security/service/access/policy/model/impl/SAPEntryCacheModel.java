@@ -36,16 +36,16 @@ public class SAPEntryCacheModel
 	implements CacheModel<SAPEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SAPEntryCacheModel)) {
+		if (!(obj instanceof SAPEntryCacheModel)) {
 			return false;
 		}
 
-		SAPEntryCacheModel sapEntryCacheModel = (SAPEntryCacheModel)object;
+		SAPEntryCacheModel sapEntryCacheModel = (SAPEntryCacheModel)obj;
 
 		if (sapEntryId == sapEntryCacheModel.sapEntryId) {
 			return true;

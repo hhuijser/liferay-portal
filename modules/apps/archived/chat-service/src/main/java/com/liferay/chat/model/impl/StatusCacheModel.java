@@ -33,16 +33,16 @@ import java.io.ObjectOutput;
 public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof StatusCacheModel)) {
+		if (!(obj instanceof StatusCacheModel)) {
 			return false;
 		}
 
-		StatusCacheModel statusCacheModel = (StatusCacheModel)object;
+		StatusCacheModel statusCacheModel = (StatusCacheModel)obj;
 
 		if (statusId == statusCacheModel.statusId) {
 			return true;

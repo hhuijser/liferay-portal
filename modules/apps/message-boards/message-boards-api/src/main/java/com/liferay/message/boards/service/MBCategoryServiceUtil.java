@@ -177,10 +177,10 @@ public class MBCategoryServiceUtil {
 
 	public static java.util.List<Object> getCategoriesAndThreads(
 		long groupId, long categoryId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		return getService().getCategoriesAndThreads(
-			groupId, categoryId, status, start, end, obc);
+			groupId, categoryId, status, start, end, orderByComparator);
 	}
 
 	public static java.util.List<Object> getCategoriesAndThreads(

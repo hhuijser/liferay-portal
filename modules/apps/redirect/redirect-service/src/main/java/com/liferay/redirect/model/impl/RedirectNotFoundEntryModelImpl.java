@@ -570,17 +570,17 @@ public class RedirectNotFoundEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RedirectNotFoundEntry)) {
+		if (!(obj instanceof RedirectNotFoundEntry)) {
 			return false;
 		}
 
 		RedirectNotFoundEntry redirectNotFoundEntry =
-			(RedirectNotFoundEntry)object;
+			(RedirectNotFoundEntry)obj;
 
 		long primaryKey = redirectNotFoundEntry.getPrimaryKey();
 

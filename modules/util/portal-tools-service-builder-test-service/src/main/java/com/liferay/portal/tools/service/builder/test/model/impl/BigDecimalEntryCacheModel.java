@@ -36,17 +36,17 @@ public class BigDecimalEntryCacheModel
 	implements CacheModel<BigDecimalEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BigDecimalEntryCacheModel)) {
+		if (!(obj instanceof BigDecimalEntryCacheModel)) {
 			return false;
 		}
 
 		BigDecimalEntryCacheModel bigDecimalEntryCacheModel =
-			(BigDecimalEntryCacheModel)object;
+			(BigDecimalEntryCacheModel)obj;
 
 		if (bigDecimalEntryId == bigDecimalEntryCacheModel.bigDecimalEntryId) {
 			return true;

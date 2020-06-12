@@ -356,10 +356,10 @@ public class RedirectEntryLocalServiceWrapper
 		getRedirectEntries(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.redirect.model.RedirectEntry> obc) {
+				<com.liferay.redirect.model.RedirectEntry> orderByComparator) {
 
 		return _redirectEntryLocalService.getRedirectEntries(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override

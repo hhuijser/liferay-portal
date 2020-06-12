@@ -36,17 +36,16 @@ public class OAuthTokenCacheModel
 	implements CacheModel<OAuthToken>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof OAuthTokenCacheModel)) {
+		if (!(obj instanceof OAuthTokenCacheModel)) {
 			return false;
 		}
 
-		OAuthTokenCacheModel oAuthTokenCacheModel =
-			(OAuthTokenCacheModel)object;
+		OAuthTokenCacheModel oAuthTokenCacheModel = (OAuthTokenCacheModel)obj;
 
 		if (oAuthTokenId == oAuthTokenCacheModel.oAuthTokenId) {
 			return true;

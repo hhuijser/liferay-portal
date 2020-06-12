@@ -357,10 +357,11 @@ public class MembershipRequestLocalServiceWrapper
 		search(
 			long groupId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.MembershipRequest> obc) {
+				<com.liferay.portal.kernel.model.MembershipRequest>
+					orderByComparator) {
 
 		return _membershipRequestLocalService.search(
-			groupId, status, start, end, obc);
+			groupId, status, start, end, orderByComparator);
 	}
 
 	@Override

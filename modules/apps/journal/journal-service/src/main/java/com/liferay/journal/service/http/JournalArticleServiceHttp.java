@@ -945,7 +945,7 @@ public class JournalArticleServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, long folderId,
 			java.util.Locale locale, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -953,7 +953,8 @@ public class JournalArticleServiceHttp {
 				_getArticlesParameterTypes20);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, folderId, locale, start, end, obc);
+				methodKey, groupId, folderId, locale, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -982,7 +983,7 @@ public class JournalArticleServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String articleId,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -990,7 +991,7 @@ public class JournalArticleServiceHttp {
 				_getArticlesByArticleIdParameterTypes21);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, articleId, start, end, obc);
+				methodKey, groupId, articleId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1053,7 +1054,7 @@ public class JournalArticleServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, long classNameId,
 			String ddmStructureKey, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -1062,7 +1063,7 @@ public class JournalArticleServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, classNameId, ddmStructureKey, status, start,
-				end, obc);
+				end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1092,7 +1093,7 @@ public class JournalArticleServiceHttp {
 			String ddmStructureKey, java.util.Locale locale, int status,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -1101,7 +1102,7 @@ public class JournalArticleServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, classNameId, ddmStructureKey, locale,
-				status, start, end, obc);
+				status, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1130,7 +1131,7 @@ public class JournalArticleServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String ddmStructureKey,
 			int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -1138,7 +1139,8 @@ public class JournalArticleServiceHttp {
 				_getArticlesByStructureIdParameterTypes25);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, ddmStructureKey, status, start, end, obc);
+				methodKey, groupId, ddmStructureKey, status, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1167,7 +1169,7 @@ public class JournalArticleServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String ddmStructureKey,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -1175,7 +1177,8 @@ public class JournalArticleServiceHttp {
 				_getArticlesByStructureIdParameterTypes26);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, ddmStructureKey, start, end, obc);
+				methodKey, groupId, ddmStructureKey, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1204,7 +1207,7 @@ public class JournalArticleServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String ddmStructureKey,
 			java.util.Locale locale, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -1213,7 +1216,7 @@ public class JournalArticleServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, ddmStructureKey, locale, status, start, end,
-				obc);
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1948,7 +1951,7 @@ public class JournalArticleServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, int status, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -1956,7 +1959,7 @@ public class JournalArticleServiceHttp {
 				_getLatestArticlesParameterTypes46);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, status, start, end, obc);
+				methodKey, groupId, status, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -2405,7 +2408,7 @@ public class JournalArticleServiceHttp {
 			java.util.Date displayDateGT, java.util.Date displayDateLT,
 			int status, java.util.Date reviewDate, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -2415,7 +2418,8 @@ public class JournalArticleServiceHttp {
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId, groupId, folderIds, classNameId, keywords,
 				version, ddmStructureKey, ddmTemplateKey, displayDateGT,
-				displayDateLT, status, reviewDate, start, end, obc);
+				displayDateLT, status, reviewDate, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -2449,7 +2453,7 @@ public class JournalArticleServiceHttp {
 			int status, java.util.Date reviewDate, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -2460,7 +2464,7 @@ public class JournalArticleServiceHttp {
 				methodKey, companyId, groupId, folderIds, classNameId,
 				articleId, version, title, description, content,
 				ddmStructureKey, ddmTemplateKey, displayDateGT, displayDateLT,
-				status, reviewDate, andOperator, start, end, obc);
+				status, reviewDate, andOperator, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -2494,7 +2498,7 @@ public class JournalArticleServiceHttp {
 			int status, java.util.Date reviewDate, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.journal.model.JournalArticle> obc) {
+				<com.liferay.journal.model.JournalArticle> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -2505,7 +2509,7 @@ public class JournalArticleServiceHttp {
 				methodKey, companyId, groupId, folderIds, classNameId,
 				articleId, version, title, description, content,
 				ddmStructureKeys, ddmTemplateKeys, displayDateGT, displayDateLT,
-				status, reviewDate, andOperator, start, end, obc);
+				status, reviewDate, andOperator, start, end, orderByComparator);
 
 			Object returnObj = null;
 

@@ -55,7 +55,8 @@ public interface OrganizationFinder {
 			Long regionId, Long countryId,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Organization> obc);
+				<com.liferay.portal.kernel.model.Organization>
+					orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.Organization>
 		findO_ByNoAssets();
@@ -72,7 +73,8 @@ public interface OrganizationFinder {
 			Long countryId, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Organization> obc);
+				<com.liferay.portal.kernel.model.Organization>
+					orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.Organization>
 		findO_ByC_PO_N_T_S_C_Z_R_C(
@@ -82,7 +84,8 @@ public interface OrganizationFinder {
 			Long countryId, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Organization> obc);
+				<com.liferay.portal.kernel.model.Organization>
+					orderByComparator);
 
 	public java.util.List<Object> findO_U_ByC_P(
 		long companyId, long parentOrganizationId,

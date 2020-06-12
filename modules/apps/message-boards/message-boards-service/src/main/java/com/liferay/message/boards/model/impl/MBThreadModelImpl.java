@@ -1219,16 +1219,16 @@ public class MBThreadModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBThread)) {
+		if (!(obj instanceof MBThread)) {
 			return false;
 		}
 
-		MBThread mbThread = (MBThread)object;
+		MBThread mbThread = (MBThread)obj;
 
 		long primaryKey = mbThread.getPrimaryKey();
 

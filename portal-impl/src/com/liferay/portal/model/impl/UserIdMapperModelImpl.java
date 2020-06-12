@@ -491,16 +491,16 @@ public class UserIdMapperModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof UserIdMapper)) {
+		if (!(obj instanceof UserIdMapper)) {
 			return false;
 		}
 
-		UserIdMapper userIdMapper = (UserIdMapper)object;
+		UserIdMapper userIdMapper = (UserIdMapper)obj;
 
 		long primaryKey = userIdMapper.getPrimaryKey();
 

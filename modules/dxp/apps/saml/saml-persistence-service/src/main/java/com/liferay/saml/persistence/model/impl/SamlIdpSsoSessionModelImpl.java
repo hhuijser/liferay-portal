@@ -483,16 +483,16 @@ public class SamlIdpSsoSessionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SamlIdpSsoSession)) {
+		if (!(obj instanceof SamlIdpSsoSession)) {
 			return false;
 		}
 
-		SamlIdpSsoSession samlIdpSsoSession = (SamlIdpSsoSession)object;
+		SamlIdpSsoSession samlIdpSsoSession = (SamlIdpSsoSession)obj;
 
 		long primaryKey = samlIdpSsoSession.getPrimaryKey();
 

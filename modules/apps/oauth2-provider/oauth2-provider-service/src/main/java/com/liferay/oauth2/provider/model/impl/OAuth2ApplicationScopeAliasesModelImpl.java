@@ -475,17 +475,17 @@ public class OAuth2ApplicationScopeAliasesModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof OAuth2ApplicationScopeAliases)) {
+		if (!(obj instanceof OAuth2ApplicationScopeAliases)) {
 			return false;
 		}
 
 		OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases =
-			(OAuth2ApplicationScopeAliases)object;
+			(OAuth2ApplicationScopeAliases)obj;
 
 		long primaryKey = oAuth2ApplicationScopeAliases.getPrimaryKey();
 

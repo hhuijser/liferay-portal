@@ -37,17 +37,17 @@ public class KaleoTransitionCacheModel
 	implements CacheModel<KaleoTransition>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoTransitionCacheModel)) {
+		if (!(obj instanceof KaleoTransitionCacheModel)) {
 			return false;
 		}
 
 		KaleoTransitionCacheModel kaleoTransitionCacheModel =
-			(KaleoTransitionCacheModel)object;
+			(KaleoTransitionCacheModel)obj;
 
 		if ((kaleoTransitionId ==
 				kaleoTransitionCacheModel.kaleoTransitionId) &&

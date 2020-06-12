@@ -643,16 +643,16 @@ public class LayoutBranchModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LayoutBranch)) {
+		if (!(obj instanceof LayoutBranch)) {
 			return false;
 		}
 
-		LayoutBranch layoutBranch = (LayoutBranch)object;
+		LayoutBranch layoutBranch = (LayoutBranch)obj;
 
 		long primaryKey = layoutBranch.getPrimaryKey();
 

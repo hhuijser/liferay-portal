@@ -37,16 +37,16 @@ public class KaleoLogCacheModel
 	implements CacheModel<KaleoLog>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoLogCacheModel)) {
+		if (!(obj instanceof KaleoLogCacheModel)) {
 			return false;
 		}
 
-		KaleoLogCacheModel kaleoLogCacheModel = (KaleoLogCacheModel)object;
+		KaleoLogCacheModel kaleoLogCacheModel = (KaleoLogCacheModel)obj;
 
 		if ((kaleoLogId == kaleoLogCacheModel.kaleoLogId) &&
 			(mvccVersion == kaleoLogCacheModel.mvccVersion)) {

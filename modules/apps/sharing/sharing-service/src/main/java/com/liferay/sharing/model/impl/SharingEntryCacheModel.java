@@ -36,17 +36,17 @@ public class SharingEntryCacheModel
 	implements CacheModel<SharingEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SharingEntryCacheModel)) {
+		if (!(obj instanceof SharingEntryCacheModel)) {
 			return false;
 		}
 
 		SharingEntryCacheModel sharingEntryCacheModel =
-			(SharingEntryCacheModel)object;
+			(SharingEntryCacheModel)obj;
 
 		if (sharingEntryId == sharingEntryCacheModel.sharingEntryId) {
 			return true;

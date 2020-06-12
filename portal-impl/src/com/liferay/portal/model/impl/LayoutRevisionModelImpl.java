@@ -1797,16 +1797,16 @@ public class LayoutRevisionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LayoutRevision)) {
+		if (!(obj instanceof LayoutRevision)) {
 			return false;
 		}
 
-		LayoutRevision layoutRevision = (LayoutRevision)object;
+		LayoutRevision layoutRevision = (LayoutRevision)obj;
 
 		long primaryKey = layoutRevision.getPrimaryKey();
 

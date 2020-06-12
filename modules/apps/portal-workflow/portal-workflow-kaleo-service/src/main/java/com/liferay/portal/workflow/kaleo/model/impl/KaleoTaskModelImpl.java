@@ -595,16 +595,16 @@ public class KaleoTaskModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoTask)) {
+		if (!(obj instanceof KaleoTask)) {
 			return false;
 		}
 
-		KaleoTask kaleoTask = (KaleoTask)object;
+		KaleoTask kaleoTask = (KaleoTask)obj;
 
 		long primaryKey = kaleoTask.getPrimaryKey();
 

@@ -726,14 +726,15 @@ public class RoleServiceHttp {
 		Integer[] types, java.util.LinkedHashMap<String, Object> params,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc) {
+			<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				RoleServiceUtil.class, "search", _searchParameterTypes17);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, companyId, keywords, types, params, start, end, obc);
+				methodKey, companyId, keywords, types, params, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

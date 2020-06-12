@@ -37,17 +37,17 @@ public class RepositoryEntryCacheModel
 	implements CacheModel<RepositoryEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RepositoryEntryCacheModel)) {
+		if (!(obj instanceof RepositoryEntryCacheModel)) {
 			return false;
 		}
 
 		RepositoryEntryCacheModel repositoryEntryCacheModel =
-			(RepositoryEntryCacheModel)object;
+			(RepositoryEntryCacheModel)obj;
 
 		if ((repositoryEntryId ==
 				repositoryEntryCacheModel.repositoryEntryId) &&

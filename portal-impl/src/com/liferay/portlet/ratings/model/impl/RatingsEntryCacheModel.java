@@ -37,17 +37,17 @@ public class RatingsEntryCacheModel
 	implements CacheModel<RatingsEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RatingsEntryCacheModel)) {
+		if (!(obj instanceof RatingsEntryCacheModel)) {
 			return false;
 		}
 
 		RatingsEntryCacheModel ratingsEntryCacheModel =
-			(RatingsEntryCacheModel)object;
+			(RatingsEntryCacheModel)obj;
 
 		if ((entryId == ratingsEntryCacheModel.entryId) &&
 			(mvccVersion == ratingsEntryCacheModel.mvccVersion)) {

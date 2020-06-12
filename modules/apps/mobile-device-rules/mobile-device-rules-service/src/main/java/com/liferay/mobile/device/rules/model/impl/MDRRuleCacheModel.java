@@ -37,16 +37,16 @@ public class MDRRuleCacheModel
 	implements CacheModel<MDRRule>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MDRRuleCacheModel)) {
+		if (!(obj instanceof MDRRuleCacheModel)) {
 			return false;
 		}
 
-		MDRRuleCacheModel mdrRuleCacheModel = (MDRRuleCacheModel)object;
+		MDRRuleCacheModel mdrRuleCacheModel = (MDRRuleCacheModel)obj;
 
 		if ((ruleId == mdrRuleCacheModel.ruleId) &&
 			(mvccVersion == mdrRuleCacheModel.mvccVersion)) {

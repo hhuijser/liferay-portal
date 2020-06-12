@@ -36,17 +36,17 @@ public class MicroblogsEntryCacheModel
 	implements CacheModel<MicroblogsEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MicroblogsEntryCacheModel)) {
+		if (!(obj instanceof MicroblogsEntryCacheModel)) {
 			return false;
 		}
 
 		MicroblogsEntryCacheModel microblogsEntryCacheModel =
-			(MicroblogsEntryCacheModel)object;
+			(MicroblogsEntryCacheModel)obj;
 
 		if (microblogsEntryId == microblogsEntryCacheModel.microblogsEntryId) {
 			return true;

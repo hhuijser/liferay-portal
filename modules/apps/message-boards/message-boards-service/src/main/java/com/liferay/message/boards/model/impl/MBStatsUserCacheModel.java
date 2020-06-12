@@ -36,17 +36,17 @@ public class MBStatsUserCacheModel
 	implements CacheModel<MBStatsUser>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBStatsUserCacheModel)) {
+		if (!(obj instanceof MBStatsUserCacheModel)) {
 			return false;
 		}
 
 		MBStatsUserCacheModel mbStatsUserCacheModel =
-			(MBStatsUserCacheModel)object;
+			(MBStatsUserCacheModel)obj;
 
 		if (statsUserId == mbStatsUserCacheModel.statsUserId) {
 			return true;

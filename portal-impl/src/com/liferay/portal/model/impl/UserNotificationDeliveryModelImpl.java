@@ -600,17 +600,17 @@ public class UserNotificationDeliveryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof UserNotificationDelivery)) {
+		if (!(obj instanceof UserNotificationDelivery)) {
 			return false;
 		}
 
 		UserNotificationDelivery userNotificationDelivery =
-			(UserNotificationDelivery)object;
+			(UserNotificationDelivery)obj;
 
 		long primaryKey = userNotificationDelivery.getPrimaryKey();
 

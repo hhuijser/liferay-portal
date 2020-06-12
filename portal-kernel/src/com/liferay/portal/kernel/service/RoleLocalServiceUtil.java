@@ -1082,18 +1082,19 @@ public class RoleLocalServiceUtil {
 	 * @param start the lower bound of the range of roles to return
 	 * @param end the upper bound of the range of roles to return (not
 	 inclusive)
-	 * @param obc the comparator to order the roles (optionally
+	 * @param orderByComparator the comparator to order the roles (optionally
 	 <code>null</code>)
 	 * @return the ordered range of the matching roles, ordered by
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.RoleFinder
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.Role> search(
 		long companyId, String keywords, Integer[] types, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc) {
+			<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
-		return getService().search(companyId, keywords, types, start, end, obc);
+		return getService().search(
+			companyId, keywords, types, start, end, orderByComparator);
 	}
 
 	/**
@@ -1120,20 +1121,20 @@ public class RoleLocalServiceUtil {
 	 * @param start the lower bound of the range of roles to return
 	 * @param end the upper bound of the range of roles to return (not
 	 inclusive)
-	 * @param obc the comparator to order the roles (optionally
+	 * @param orderByComparator the comparator to order the roles (optionally
 	 <code>null</code>)
 	 * @return the ordered range of the matching roles, ordered by
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.RoleFinder
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.Role> search(
 		long companyId, String keywords, Integer[] types,
 		java.util.LinkedHashMap<String, Object> params, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc) {
+			<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getService().search(
-			companyId, keywords, types, params, start, end, obc);
+			companyId, keywords, types, params, start, end, orderByComparator);
 	}
 
 	/**
@@ -1157,20 +1158,20 @@ public class RoleLocalServiceUtil {
 	 * @param start the lower bound of the range of the roles to return
 	 * @param end the upper bound of the range of the roles to return (not
 	 inclusive)
-	 * @param obc the comparator to order the roles (optionally
+	 * @param orderByComparator the comparator to order the roles (optionally
 	 <code>null</code>)
 	 * @return the ordered range of the matching roles, ordered by
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.RoleFinder
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.Role> search(
 		long companyId, String name, String description, Integer[] types,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc) {
+			<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getService().search(
-			companyId, name, description, types, start, end, obc);
+			companyId, name, description, types, start, end, orderByComparator);
 	}
 
 	/**
@@ -1197,20 +1198,21 @@ public class RoleLocalServiceUtil {
 	 * @param start the lower bound of the range of the roles to return
 	 * @param end the upper bound of the range of the roles to return (not
 	 inclusive)
-	 * @param obc the comparator to order the roles (optionally
+	 * @param orderByComparator the comparator to order the roles (optionally
 	 <code>null</code>)
 	 * @return the ordered range of the matching roles, ordered by
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.RoleFinder
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.Role> search(
 		long companyId, String name, String description, Integer[] types,
 		java.util.LinkedHashMap<String, Object> params, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc) {
+			<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getService().search(
-			companyId, name, description, types, params, start, end, obc);
+			companyId, name, description, types, params, start, end,
+			orderByComparator);
 	}
 
 	/**

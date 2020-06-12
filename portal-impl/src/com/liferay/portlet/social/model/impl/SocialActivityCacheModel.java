@@ -35,17 +35,17 @@ public class SocialActivityCacheModel
 	implements CacheModel<SocialActivity>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SocialActivityCacheModel)) {
+		if (!(obj instanceof SocialActivityCacheModel)) {
 			return false;
 		}
 
 		SocialActivityCacheModel socialActivityCacheModel =
-			(SocialActivityCacheModel)object;
+			(SocialActivityCacheModel)obj;
 
 		if ((activityId == socialActivityCacheModel.activityId) &&
 			(mvccVersion == socialActivityCacheModel.mvccVersion)) {

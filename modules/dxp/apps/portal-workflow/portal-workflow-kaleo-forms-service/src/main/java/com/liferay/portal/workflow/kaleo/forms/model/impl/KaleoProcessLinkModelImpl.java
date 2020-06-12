@@ -415,16 +415,16 @@ public class KaleoProcessLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoProcessLink)) {
+		if (!(obj instanceof KaleoProcessLink)) {
 			return false;
 		}
 
-		KaleoProcessLink kaleoProcessLink = (KaleoProcessLink)object;
+		KaleoProcessLink kaleoProcessLink = (KaleoProcessLink)obj;
 
 		long primaryKey = kaleoProcessLink.getPrimaryKey();
 

@@ -563,16 +563,16 @@ public class HtmlPreviewEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof HtmlPreviewEntry)) {
+		if (!(obj instanceof HtmlPreviewEntry)) {
 			return false;
 		}
 
-		HtmlPreviewEntry htmlPreviewEntry = (HtmlPreviewEntry)object;
+		HtmlPreviewEntry htmlPreviewEntry = (HtmlPreviewEntry)obj;
 
 		long primaryKey = htmlPreviewEntry.getPrimaryKey();
 

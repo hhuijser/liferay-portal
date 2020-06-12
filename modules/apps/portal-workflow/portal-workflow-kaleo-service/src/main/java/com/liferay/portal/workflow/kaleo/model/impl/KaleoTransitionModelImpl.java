@@ -751,16 +751,16 @@ public class KaleoTransitionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoTransition)) {
+		if (!(obj instanceof KaleoTransition)) {
 			return false;
 		}
 
-		KaleoTransition kaleoTransition = (KaleoTransition)object;
+		KaleoTransition kaleoTransition = (KaleoTransition)obj;
 
 		long primaryKey = kaleoTransition.getPrimaryKey();
 

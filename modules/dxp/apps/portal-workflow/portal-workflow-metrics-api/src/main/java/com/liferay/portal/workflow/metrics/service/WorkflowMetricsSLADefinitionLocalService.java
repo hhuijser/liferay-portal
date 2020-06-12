@@ -288,7 +288,8 @@ public interface WorkflowMetricsSLADefinitionLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WorkflowMetricsSLADefinition> getWorkflowMetricsSLADefinitions(
 		long companyId, boolean active, long processId, int status, int start,
-		int end, OrderByComparator<WorkflowMetricsSLADefinition> obc);
+		int end,
+		OrderByComparator<WorkflowMetricsSLADefinition> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WorkflowMetricsSLADefinition> getWorkflowMetricsSLADefinitions(

@@ -832,16 +832,16 @@ public class KaleoDefinitionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoDefinition)) {
+		if (!(obj instanceof KaleoDefinition)) {
 			return false;
 		}
 
-		KaleoDefinition kaleoDefinition = (KaleoDefinition)object;
+		KaleoDefinition kaleoDefinition = (KaleoDefinition)obj;
 
 		long primaryKey = kaleoDefinition.getPrimaryKey();
 

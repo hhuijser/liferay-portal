@@ -36,17 +36,17 @@ public class SyncDLObjectCacheModel
 	implements CacheModel<SyncDLObject>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SyncDLObjectCacheModel)) {
+		if (!(obj instanceof SyncDLObjectCacheModel)) {
 			return false;
 		}
 
 		SyncDLObjectCacheModel syncDLObjectCacheModel =
-			(SyncDLObjectCacheModel)object;
+			(SyncDLObjectCacheModel)obj;
 
 		if (syncDLObjectId == syncDLObjectCacheModel.syncDLObjectId) {
 			return true;

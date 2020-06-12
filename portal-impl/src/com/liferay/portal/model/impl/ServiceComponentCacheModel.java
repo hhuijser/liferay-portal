@@ -35,17 +35,17 @@ public class ServiceComponentCacheModel
 	implements CacheModel<ServiceComponent>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ServiceComponentCacheModel)) {
+		if (!(obj instanceof ServiceComponentCacheModel)) {
 			return false;
 		}
 
 		ServiceComponentCacheModel serviceComponentCacheModel =
-			(ServiceComponentCacheModel)object;
+			(ServiceComponentCacheModel)obj;
 
 		if ((serviceComponentId ==
 				serviceComponentCacheModel.serviceComponentId) &&

@@ -37,17 +37,17 @@ public class AssetListEntryUsageCacheModel
 	implements CacheModel<AssetListEntryUsage>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetListEntryUsageCacheModel)) {
+		if (!(obj instanceof AssetListEntryUsageCacheModel)) {
 			return false;
 		}
 
 		AssetListEntryUsageCacheModel assetListEntryUsageCacheModel =
-			(AssetListEntryUsageCacheModel)object;
+			(AssetListEntryUsageCacheModel)obj;
 
 		if ((assetListEntryUsageId ==
 				assetListEntryUsageCacheModel.assetListEntryUsageId) &&

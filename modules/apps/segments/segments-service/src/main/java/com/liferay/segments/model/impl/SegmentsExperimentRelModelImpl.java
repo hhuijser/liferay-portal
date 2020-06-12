@@ -637,17 +637,17 @@ public class SegmentsExperimentRelModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SegmentsExperimentRel)) {
+		if (!(obj instanceof SegmentsExperimentRel)) {
 			return false;
 		}
 
 		SegmentsExperimentRel segmentsExperimentRel =
-			(SegmentsExperimentRel)object;
+			(SegmentsExperimentRel)obj;
 
 		long primaryKey = segmentsExperimentRel.getPrimaryKey();
 

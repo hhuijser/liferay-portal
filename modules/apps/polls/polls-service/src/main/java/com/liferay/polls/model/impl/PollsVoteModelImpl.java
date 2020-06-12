@@ -690,16 +690,16 @@ public class PollsVoteModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PollsVote)) {
+		if (!(obj instanceof PollsVote)) {
 			return false;
 		}
 
-		PollsVote pollsVote = (PollsVote)object;
+		PollsVote pollsVote = (PollsVote)obj;
 
 		long primaryKey = pollsVote.getPrimaryKey();
 

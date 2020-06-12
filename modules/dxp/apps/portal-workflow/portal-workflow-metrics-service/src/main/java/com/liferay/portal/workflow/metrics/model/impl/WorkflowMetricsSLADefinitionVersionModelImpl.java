@@ -1071,18 +1071,18 @@ public class WorkflowMetricsSLADefinitionVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WorkflowMetricsSLADefinitionVersion)) {
+		if (!(obj instanceof WorkflowMetricsSLADefinitionVersion)) {
 			return false;
 		}
 
 		WorkflowMetricsSLADefinitionVersion
 			workflowMetricsSLADefinitionVersion =
-				(WorkflowMetricsSLADefinitionVersion)object;
+				(WorkflowMetricsSLADefinitionVersion)obj;
 
 		long primaryKey = workflowMetricsSLADefinitionVersion.getPrimaryKey();
 

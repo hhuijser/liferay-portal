@@ -497,16 +497,16 @@ public class WebDAVPropsModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WebDAVProps)) {
+		if (!(obj instanceof WebDAVProps)) {
 			return false;
 		}
 
-		WebDAVProps webDAVProps = (WebDAVProps)object;
+		WebDAVProps webDAVProps = (WebDAVProps)obj;
 
 		long primaryKey = webDAVProps.getPrimaryKey();
 

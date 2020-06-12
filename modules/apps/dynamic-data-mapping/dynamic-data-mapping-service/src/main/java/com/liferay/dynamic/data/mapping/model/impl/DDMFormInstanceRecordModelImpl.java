@@ -853,17 +853,17 @@ public class DDMFormInstanceRecordModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMFormInstanceRecord)) {
+		if (!(obj instanceof DDMFormInstanceRecord)) {
 			return false;
 		}
 
 		DDMFormInstanceRecord ddmFormInstanceRecord =
-			(DDMFormInstanceRecord)object;
+			(DDMFormInstanceRecord)obj;
 
 		long primaryKey = ddmFormInstanceRecord.getPrimaryKey();
 

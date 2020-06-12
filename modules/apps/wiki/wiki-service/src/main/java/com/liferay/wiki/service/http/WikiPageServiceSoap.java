@@ -439,13 +439,14 @@ public class WikiPageServiceSoap {
 			long groupId, long nodeId, boolean head, int status, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.wiki.model.WikiPage> obc)
+				<com.liferay.wiki.model.WikiPage> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.wiki.model.WikiPage> returnValue =
 				WikiPageServiceUtil.getPages(
-					groupId, nodeId, head, status, start, end, obc);
+					groupId, nodeId, head, status, start, end,
+					orderByComparator);
 
 			return com.liferay.wiki.model.WikiPageSoap.toSoapModels(
 				returnValue);
@@ -461,14 +462,14 @@ public class WikiPageServiceSoap {
 			long groupId, long nodeId, boolean head, long userId,
 			boolean includeOwner, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.wiki.model.WikiPage> obc)
+				<com.liferay.wiki.model.WikiPage> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.wiki.model.WikiPage> returnValue =
 				WikiPageServiceUtil.getPages(
 					groupId, nodeId, head, userId, includeOwner, status, start,
-					end, obc);
+					end, orderByComparator);
 
 			return com.liferay.wiki.model.WikiPageSoap.toSoapModels(
 				returnValue);

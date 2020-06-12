@@ -38,18 +38,18 @@ public class ExportImportConfigurationCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ExportImportConfigurationCacheModel)) {
+		if (!(obj instanceof ExportImportConfigurationCacheModel)) {
 			return false;
 		}
 
 		ExportImportConfigurationCacheModel
 			exportImportConfigurationCacheModel =
-				(ExportImportConfigurationCacheModel)object;
+				(ExportImportConfigurationCacheModel)obj;
 
 		if ((exportImportConfigurationId ==
 				exportImportConfigurationCacheModel.

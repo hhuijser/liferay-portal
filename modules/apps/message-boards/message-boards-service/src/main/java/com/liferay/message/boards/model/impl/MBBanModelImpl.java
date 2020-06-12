@@ -628,16 +628,16 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBBan)) {
+		if (!(obj instanceof MBBan)) {
 			return false;
 		}
 
-		MBBan mbBan = (MBBan)object;
+		MBBan mbBan = (MBBan)obj;
 
 		long primaryKey = mbBan.getPrimaryKey();
 

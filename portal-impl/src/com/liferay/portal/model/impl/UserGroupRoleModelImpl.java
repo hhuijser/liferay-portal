@@ -538,16 +538,16 @@ public class UserGroupRoleModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof UserGroupRole)) {
+		if (!(obj instanceof UserGroupRole)) {
 			return false;
 		}
 
-		UserGroupRole userGroupRole = (UserGroupRole)object;
+		UserGroupRole userGroupRole = (UserGroupRole)obj;
 
 		long primaryKey = userGroupRole.getPrimaryKey();
 

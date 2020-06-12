@@ -34,17 +34,17 @@ public class DLFileVersionPreviewCacheModel
 	implements CacheModel<DLFileVersionPreview>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFileVersionPreviewCacheModel)) {
+		if (!(obj instanceof DLFileVersionPreviewCacheModel)) {
 			return false;
 		}
 
 		DLFileVersionPreviewCacheModel dlFileVersionPreviewCacheModel =
-			(DLFileVersionPreviewCacheModel)object;
+			(DLFileVersionPreviewCacheModel)obj;
 
 		if (dlFileVersionPreviewId ==
 				dlFileVersionPreviewCacheModel.dlFileVersionPreviewId) {

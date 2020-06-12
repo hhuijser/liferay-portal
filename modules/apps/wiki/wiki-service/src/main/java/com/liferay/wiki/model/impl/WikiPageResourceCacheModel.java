@@ -35,17 +35,17 @@ public class WikiPageResourceCacheModel
 	implements CacheModel<WikiPageResource>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WikiPageResourceCacheModel)) {
+		if (!(obj instanceof WikiPageResourceCacheModel)) {
 			return false;
 		}
 
 		WikiPageResourceCacheModel wikiPageResourceCacheModel =
-			(WikiPageResourceCacheModel)object;
+			(WikiPageResourceCacheModel)obj;
 
 		if ((resourcePrimKey == wikiPageResourceCacheModel.resourcePrimKey) &&
 			(mvccVersion == wikiPageResourceCacheModel.mvccVersion)) {

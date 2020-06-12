@@ -36,17 +36,17 @@ public class MBDiscussionCacheModel
 	implements CacheModel<MBDiscussion>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBDiscussionCacheModel)) {
+		if (!(obj instanceof MBDiscussionCacheModel)) {
 			return false;
 		}
 
 		MBDiscussionCacheModel mbDiscussionCacheModel =
-			(MBDiscussionCacheModel)object;
+			(MBDiscussionCacheModel)obj;
 
 		if (discussionId == mbDiscussionCacheModel.discussionId) {
 			return true;

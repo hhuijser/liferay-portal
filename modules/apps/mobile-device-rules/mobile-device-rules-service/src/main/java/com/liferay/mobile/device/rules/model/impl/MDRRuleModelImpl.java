@@ -991,16 +991,16 @@ public class MDRRuleModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MDRRule)) {
+		if (!(obj instanceof MDRRule)) {
 			return false;
 		}
 
-		MDRRule mdrRule = (MDRRule)object;
+		MDRRule mdrRule = (MDRRule)obj;
 
 		long primaryKey = mdrRule.getPrimaryKey();
 

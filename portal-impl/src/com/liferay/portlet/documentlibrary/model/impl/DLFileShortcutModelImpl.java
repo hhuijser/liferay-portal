@@ -1134,16 +1134,16 @@ public class DLFileShortcutModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFileShortcut)) {
+		if (!(obj instanceof DLFileShortcut)) {
 			return false;
 		}
 
-		DLFileShortcut dlFileShortcut = (DLFileShortcut)object;
+		DLFileShortcut dlFileShortcut = (DLFileShortcut)obj;
 
 		long primaryKey = dlFileShortcut.getPrimaryKey();
 

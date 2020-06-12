@@ -37,17 +37,17 @@ public class OrganizationCacheModel
 	implements CacheModel<Organization>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof OrganizationCacheModel)) {
+		if (!(obj instanceof OrganizationCacheModel)) {
 			return false;
 		}
 
 		OrganizationCacheModel organizationCacheModel =
-			(OrganizationCacheModel)object;
+			(OrganizationCacheModel)obj;
 
 		if ((organizationId == organizationCacheModel.organizationId) &&
 			(mvccVersion == organizationCacheModel.mvccVersion)) {

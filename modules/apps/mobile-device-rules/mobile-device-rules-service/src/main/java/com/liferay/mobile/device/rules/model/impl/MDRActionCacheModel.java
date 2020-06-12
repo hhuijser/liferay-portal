@@ -37,16 +37,16 @@ public class MDRActionCacheModel
 	implements CacheModel<MDRAction>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MDRActionCacheModel)) {
+		if (!(obj instanceof MDRActionCacheModel)) {
 			return false;
 		}
 
-		MDRActionCacheModel mdrActionCacheModel = (MDRActionCacheModel)object;
+		MDRActionCacheModel mdrActionCacheModel = (MDRActionCacheModel)obj;
 
 		if ((actionId == mdrActionCacheModel.actionId) &&
 			(mvccVersion == mdrActionCacheModel.mvccVersion)) {

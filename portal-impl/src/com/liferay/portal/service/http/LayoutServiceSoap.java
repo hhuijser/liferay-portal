@@ -1077,13 +1077,14 @@ public class LayoutServiceSoap {
 			long groupId, boolean privateLayout, String keywords,
 			String[] types, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Layout> obc)
+				<com.liferay.portal.kernel.model.Layout> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.model.Layout> returnValue =
 				LayoutServiceUtil.getLayouts(
-					groupId, privateLayout, keywords, types, start, end, obc);
+					groupId, privateLayout, keywords, types, start, end,
+					orderByComparator);
 
 			return com.liferay.portal.kernel.model.LayoutSoap.toSoapModels(
 				returnValue);

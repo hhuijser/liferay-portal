@@ -37,17 +37,17 @@ public class BlogsStatsUserCacheModel
 	implements CacheModel<BlogsStatsUser>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BlogsStatsUserCacheModel)) {
+		if (!(obj instanceof BlogsStatsUserCacheModel)) {
 			return false;
 		}
 
 		BlogsStatsUserCacheModel blogsStatsUserCacheModel =
-			(BlogsStatsUserCacheModel)object;
+			(BlogsStatsUserCacheModel)obj;
 
 		if ((statsUserId == blogsStatsUserCacheModel.statsUserId) &&
 			(mvccVersion == blogsStatsUserCacheModel.mvccVersion)) {

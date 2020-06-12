@@ -892,16 +892,16 @@ public class AddressModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Address)) {
+		if (!(obj instanceof Address)) {
 			return false;
 		}
 
-		Address address = (Address)object;
+		Address address = (Address)obj;
 
 		long primaryKey = address.getPrimaryKey();
 

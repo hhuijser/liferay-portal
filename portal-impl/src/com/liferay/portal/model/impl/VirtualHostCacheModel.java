@@ -35,17 +35,17 @@ public class VirtualHostCacheModel
 	implements CacheModel<VirtualHost>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof VirtualHostCacheModel)) {
+		if (!(obj instanceof VirtualHostCacheModel)) {
 			return false;
 		}
 
 		VirtualHostCacheModel virtualHostCacheModel =
-			(VirtualHostCacheModel)object;
+			(VirtualHostCacheModel)obj;
 
 		if ((virtualHostId == virtualHostCacheModel.virtualHostId) &&
 			(mvccVersion == virtualHostCacheModel.mvccVersion)) {

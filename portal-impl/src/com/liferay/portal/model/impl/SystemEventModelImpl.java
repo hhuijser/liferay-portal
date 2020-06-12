@@ -700,16 +700,16 @@ public class SystemEventModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SystemEvent)) {
+		if (!(obj instanceof SystemEvent)) {
 			return false;
 		}
 
-		SystemEvent systemEvent = (SystemEvent)object;
+		SystemEvent systemEvent = (SystemEvent)obj;
 
 		long primaryKey = systemEvent.getPrimaryKey();
 

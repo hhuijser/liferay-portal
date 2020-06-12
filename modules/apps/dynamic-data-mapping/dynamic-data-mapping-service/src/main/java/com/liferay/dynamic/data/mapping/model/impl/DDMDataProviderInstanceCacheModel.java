@@ -37,17 +37,17 @@ public class DDMDataProviderInstanceCacheModel
 	implements CacheModel<DDMDataProviderInstance>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMDataProviderInstanceCacheModel)) {
+		if (!(obj instanceof DDMDataProviderInstanceCacheModel)) {
 			return false;
 		}
 
 		DDMDataProviderInstanceCacheModel ddmDataProviderInstanceCacheModel =
-			(DDMDataProviderInstanceCacheModel)object;
+			(DDMDataProviderInstanceCacheModel)obj;
 
 		if ((dataProviderInstanceId ==
 				ddmDataProviderInstanceCacheModel.dataProviderInstanceId) &&

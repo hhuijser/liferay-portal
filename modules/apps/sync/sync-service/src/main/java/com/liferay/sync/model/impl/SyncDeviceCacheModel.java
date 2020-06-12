@@ -36,17 +36,16 @@ public class SyncDeviceCacheModel
 	implements CacheModel<SyncDevice>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SyncDeviceCacheModel)) {
+		if (!(obj instanceof SyncDeviceCacheModel)) {
 			return false;
 		}
 
-		SyncDeviceCacheModel syncDeviceCacheModel =
-			(SyncDeviceCacheModel)object;
+		SyncDeviceCacheModel syncDeviceCacheModel = (SyncDeviceCacheModel)obj;
 
 		if (syncDeviceId == syncDeviceCacheModel.syncDeviceId) {
 			return true;

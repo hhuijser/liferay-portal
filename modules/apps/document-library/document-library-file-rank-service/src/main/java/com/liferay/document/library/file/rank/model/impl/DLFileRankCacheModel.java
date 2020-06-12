@@ -37,17 +37,16 @@ public class DLFileRankCacheModel
 	implements CacheModel<DLFileRank>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFileRankCacheModel)) {
+		if (!(obj instanceof DLFileRankCacheModel)) {
 			return false;
 		}
 
-		DLFileRankCacheModel dlFileRankCacheModel =
-			(DLFileRankCacheModel)object;
+		DLFileRankCacheModel dlFileRankCacheModel = (DLFileRankCacheModel)obj;
 
 		if ((fileRankId == dlFileRankCacheModel.fileRankId) &&
 			(mvccVersion == dlFileRankCacheModel.mvccVersion)) {

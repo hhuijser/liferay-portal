@@ -293,14 +293,15 @@ public interface TrashEntryLocalService
 	 * @param start the lower bound of the range of trash entries to return
 	 * @param end the upper bound of the range of trash entries to return (not
 	 inclusive)
-	 * @param obc the comparator to order the trash entries (optionally
+	 * @param orderByComparator the comparator to order the trash entries (optionally
 	 <code>null</code>)
 	 * @return the range of matching trash entries ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<TrashEntry> getEntries(
-		long groupId, int start, int end, OrderByComparator<TrashEntry> obc);
+		long groupId, int start, int end,
+		OrderByComparator<TrashEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<TrashEntry> getEntries(long groupId, String className);

@@ -36,17 +36,17 @@ public class DEDataListViewCacheModel
 	implements CacheModel<DEDataListView>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DEDataListViewCacheModel)) {
+		if (!(obj instanceof DEDataListViewCacheModel)) {
 			return false;
 		}
 
 		DEDataListViewCacheModel deDataListViewCacheModel =
-			(DEDataListViewCacheModel)object;
+			(DEDataListViewCacheModel)obj;
 
 		if (deDataListViewId == deDataListViewCacheModel.deDataListViewId) {
 			return true;

@@ -37,17 +37,17 @@ public class DispatchTriggerCacheModel
 	implements CacheModel<DispatchTrigger>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DispatchTriggerCacheModel)) {
+		if (!(obj instanceof DispatchTriggerCacheModel)) {
 			return false;
 		}
 
 		DispatchTriggerCacheModel dispatchTriggerCacheModel =
-			(DispatchTriggerCacheModel)object;
+			(DispatchTriggerCacheModel)obj;
 
 		if ((dispatchTriggerId ==
 				dispatchTriggerCacheModel.dispatchTriggerId) &&

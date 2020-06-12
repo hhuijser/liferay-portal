@@ -905,16 +905,16 @@ public class AnnouncementsEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AnnouncementsEntry)) {
+		if (!(obj instanceof AnnouncementsEntry)) {
 			return false;
 		}
 
-		AnnouncementsEntry announcementsEntry = (AnnouncementsEntry)object;
+		AnnouncementsEntry announcementsEntry = (AnnouncementsEntry)obj;
 
 		long primaryKey = announcementsEntry.getPrimaryKey();
 

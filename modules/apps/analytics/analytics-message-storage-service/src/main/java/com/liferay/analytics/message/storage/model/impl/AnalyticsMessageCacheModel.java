@@ -37,17 +37,17 @@ public class AnalyticsMessageCacheModel
 	implements CacheModel<AnalyticsMessage>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AnalyticsMessageCacheModel)) {
+		if (!(obj instanceof AnalyticsMessageCacheModel)) {
 			return false;
 		}
 
 		AnalyticsMessageCacheModel analyticsMessageCacheModel =
-			(AnalyticsMessageCacheModel)object;
+			(AnalyticsMessageCacheModel)obj;
 
 		if ((analyticsMessageId ==
 				analyticsMessageCacheModel.analyticsMessageId) &&

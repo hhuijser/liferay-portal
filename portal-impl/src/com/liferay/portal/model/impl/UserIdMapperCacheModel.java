@@ -35,17 +35,17 @@ public class UserIdMapperCacheModel
 	implements CacheModel<UserIdMapper>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof UserIdMapperCacheModel)) {
+		if (!(obj instanceof UserIdMapperCacheModel)) {
 			return false;
 		}
 
 		UserIdMapperCacheModel userIdMapperCacheModel =
-			(UserIdMapperCacheModel)object;
+			(UserIdMapperCacheModel)obj;
 
 		if ((userIdMapperId == userIdMapperCacheModel.userIdMapperId) &&
 			(mvccVersion == userIdMapperCacheModel.mvccVersion)) {

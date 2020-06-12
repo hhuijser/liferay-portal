@@ -524,16 +524,16 @@ public class OAuth2ScopeGrantModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof OAuth2ScopeGrant)) {
+		if (!(obj instanceof OAuth2ScopeGrant)) {
 			return false;
 		}
 
-		OAuth2ScopeGrant oAuth2ScopeGrant = (OAuth2ScopeGrant)object;
+		OAuth2ScopeGrant oAuth2ScopeGrant = (OAuth2ScopeGrant)obj;
 
 		long primaryKey = oAuth2ScopeGrant.getPrimaryKey();
 

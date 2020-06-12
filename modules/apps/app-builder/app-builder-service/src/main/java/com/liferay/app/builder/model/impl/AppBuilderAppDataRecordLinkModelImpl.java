@@ -411,17 +411,17 @@ public class AppBuilderAppDataRecordLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AppBuilderAppDataRecordLink)) {
+		if (!(obj instanceof AppBuilderAppDataRecordLink)) {
 			return false;
 		}
 
 		AppBuilderAppDataRecordLink appBuilderAppDataRecordLink =
-			(AppBuilderAppDataRecordLink)object;
+			(AppBuilderAppDataRecordLink)obj;
 
 		long primaryKey = appBuilderAppDataRecordLink.getPrimaryKey();
 

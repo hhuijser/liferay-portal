@@ -37,17 +37,17 @@ public class SystemEventCacheModel
 	implements CacheModel<SystemEvent>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SystemEventCacheModel)) {
+		if (!(obj instanceof SystemEventCacheModel)) {
 			return false;
 		}
 
 		SystemEventCacheModel systemEventCacheModel =
-			(SystemEventCacheModel)object;
+			(SystemEventCacheModel)obj;
 
 		if ((systemEventId == systemEventCacheModel.systemEventId) &&
 			(mvccVersion == systemEventCacheModel.mvccVersion)) {

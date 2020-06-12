@@ -541,17 +541,16 @@ public class JournalContentSearchModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof JournalContentSearch)) {
+		if (!(obj instanceof JournalContentSearch)) {
 			return false;
 		}
 
-		JournalContentSearch journalContentSearch =
-			(JournalContentSearch)object;
+		JournalContentSearch journalContentSearch = (JournalContentSearch)obj;
 
 		long primaryKey = journalContentSearch.getPrimaryKey();
 

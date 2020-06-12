@@ -37,17 +37,17 @@ public class AnnouncementsFlagCacheModel
 	implements CacheModel<AnnouncementsFlag>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AnnouncementsFlagCacheModel)) {
+		if (!(obj instanceof AnnouncementsFlagCacheModel)) {
 			return false;
 		}
 
 		AnnouncementsFlagCacheModel announcementsFlagCacheModel =
-			(AnnouncementsFlagCacheModel)object;
+			(AnnouncementsFlagCacheModel)obj;
 
 		if ((flagId == announcementsFlagCacheModel.flagId) &&
 			(mvccVersion == announcementsFlagCacheModel.mvccVersion)) {

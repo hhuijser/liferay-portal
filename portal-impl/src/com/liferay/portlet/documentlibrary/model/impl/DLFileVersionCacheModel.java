@@ -37,17 +37,17 @@ public class DLFileVersionCacheModel
 	implements CacheModel<DLFileVersion>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFileVersionCacheModel)) {
+		if (!(obj instanceof DLFileVersionCacheModel)) {
 			return false;
 		}
 
 		DLFileVersionCacheModel dlFileVersionCacheModel =
-			(DLFileVersionCacheModel)object;
+			(DLFileVersionCacheModel)obj;
 
 		if ((fileVersionId == dlFileVersionCacheModel.fileVersionId) &&
 			(mvccVersion == dlFileVersionCacheModel.mvccVersion)) {

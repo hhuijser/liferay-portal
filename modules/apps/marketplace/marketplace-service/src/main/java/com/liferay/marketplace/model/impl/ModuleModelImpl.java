@@ -492,16 +492,16 @@ public class ModuleModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Module)) {
+		if (!(obj instanceof Module)) {
 			return false;
 		}
 
-		Module module = (Module)object;
+		Module module = (Module)obj;
 
 		long primaryKey = module.getPrimaryKey();
 

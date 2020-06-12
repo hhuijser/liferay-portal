@@ -37,17 +37,17 @@ public class PasswordPolicyCacheModel
 	implements CacheModel<PasswordPolicy>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PasswordPolicyCacheModel)) {
+		if (!(obj instanceof PasswordPolicyCacheModel)) {
 			return false;
 		}
 
 		PasswordPolicyCacheModel passwordPolicyCacheModel =
-			(PasswordPolicyCacheModel)object;
+			(PasswordPolicyCacheModel)obj;
 
 		if ((passwordPolicyId == passwordPolicyCacheModel.passwordPolicyId) &&
 			(mvccVersion == passwordPolicyCacheModel.mvccVersion)) {

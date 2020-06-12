@@ -37,17 +37,17 @@ public class KaleoDefinitionCacheModel
 	implements CacheModel<KaleoDefinition>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoDefinitionCacheModel)) {
+		if (!(obj instanceof KaleoDefinitionCacheModel)) {
 			return false;
 		}
 
 		KaleoDefinitionCacheModel kaleoDefinitionCacheModel =
-			(KaleoDefinitionCacheModel)object;
+			(KaleoDefinitionCacheModel)obj;
 
 		if ((kaleoDefinitionId ==
 				kaleoDefinitionCacheModel.kaleoDefinitionId) &&

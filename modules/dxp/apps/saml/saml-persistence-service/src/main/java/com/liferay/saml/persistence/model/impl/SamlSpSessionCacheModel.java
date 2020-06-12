@@ -36,17 +36,17 @@ public class SamlSpSessionCacheModel
 	implements CacheModel<SamlSpSession>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SamlSpSessionCacheModel)) {
+		if (!(obj instanceof SamlSpSessionCacheModel)) {
 			return false;
 		}
 
 		SamlSpSessionCacheModel samlSpSessionCacheModel =
-			(SamlSpSessionCacheModel)object;
+			(SamlSpSessionCacheModel)obj;
 
 		if (samlSpSessionId == samlSpSessionCacheModel.samlSpSessionId) {
 			return true;

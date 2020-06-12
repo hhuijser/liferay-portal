@@ -36,17 +36,17 @@ public class WeDeployAuthAppCacheModel
 	implements CacheModel<WeDeployAuthApp>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WeDeployAuthAppCacheModel)) {
+		if (!(obj instanceof WeDeployAuthAppCacheModel)) {
 			return false;
 		}
 
 		WeDeployAuthAppCacheModel weDeployAuthAppCacheModel =
-			(WeDeployAuthAppCacheModel)object;
+			(WeDeployAuthAppCacheModel)obj;
 
 		if (weDeployAuthAppId == weDeployAuthAppCacheModel.weDeployAuthAppId) {
 			return true;

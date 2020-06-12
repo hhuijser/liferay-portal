@@ -38,18 +38,18 @@ public class CalendarNotificationTemplateCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CalendarNotificationTemplateCacheModel)) {
+		if (!(obj instanceof CalendarNotificationTemplateCacheModel)) {
 			return false;
 		}
 
 		CalendarNotificationTemplateCacheModel
 			calendarNotificationTemplateCacheModel =
-				(CalendarNotificationTemplateCacheModel)object;
+				(CalendarNotificationTemplateCacheModel)obj;
 
 		if ((calendarNotificationTemplateId ==
 				calendarNotificationTemplateCacheModel.

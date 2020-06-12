@@ -754,16 +754,16 @@ public class LayoutSetModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LayoutSet)) {
+		if (!(obj instanceof LayoutSet)) {
 			return false;
 		}
 
-		LayoutSet layoutSet = (LayoutSet)object;
+		LayoutSet layoutSet = (LayoutSet)obj;
 
 		long primaryKey = layoutSet.getPrimaryKey();
 

@@ -808,16 +808,16 @@ public class KaleoTaskFormModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoTaskForm)) {
+		if (!(obj instanceof KaleoTaskForm)) {
 			return false;
 		}
 
-		KaleoTaskForm kaleoTaskForm = (KaleoTaskForm)object;
+		KaleoTaskForm kaleoTaskForm = (KaleoTaskForm)obj;
 
 		long primaryKey = kaleoTaskForm.getPrimaryKey();
 

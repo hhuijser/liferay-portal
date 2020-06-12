@@ -37,16 +37,16 @@ public class PhoneCacheModel
 	implements CacheModel<Phone>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PhoneCacheModel)) {
+		if (!(obj instanceof PhoneCacheModel)) {
 			return false;
 		}
 
-		PhoneCacheModel phoneCacheModel = (PhoneCacheModel)object;
+		PhoneCacheModel phoneCacheModel = (PhoneCacheModel)obj;
 
 		if ((phoneId == phoneCacheModel.phoneId) &&
 			(mvccVersion == phoneCacheModel.mvccVersion)) {

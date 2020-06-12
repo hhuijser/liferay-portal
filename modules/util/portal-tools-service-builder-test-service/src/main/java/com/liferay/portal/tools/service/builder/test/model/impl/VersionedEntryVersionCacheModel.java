@@ -34,17 +34,17 @@ public class VersionedEntryVersionCacheModel
 	implements CacheModel<VersionedEntryVersion>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof VersionedEntryVersionCacheModel)) {
+		if (!(obj instanceof VersionedEntryVersionCacheModel)) {
 			return false;
 		}
 
 		VersionedEntryVersionCacheModel versionedEntryVersionCacheModel =
-			(VersionedEntryVersionCacheModel)object;
+			(VersionedEntryVersionCacheModel)obj;
 
 		if (versionedEntryVersionId ==
 				versionedEntryVersionCacheModel.versionedEntryVersionId) {

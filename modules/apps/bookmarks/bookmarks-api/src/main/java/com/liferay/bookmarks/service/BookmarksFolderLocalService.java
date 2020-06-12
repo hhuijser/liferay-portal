@@ -351,7 +351,7 @@ public interface BookmarksFolderLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Object> getFoldersAndEntries(
 		long groupId, long folderId, int status, int start, int end,
-		OrderByComparator<?> obc);
+		OrderByComparator<?> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFoldersAndEntriesCount(

@@ -306,10 +306,10 @@ public class BlogsStatsUserLocalServiceWrapper
 		getCompanyStatsUsers(
 			long companyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsStatsUser> obc) {
+				<com.liferay.blogs.model.BlogsStatsUser> orderByComparator) {
 
 		return _blogsStatsUserLocalService.getCompanyStatsUsers(
-			companyId, start, end, obc);
+			companyId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -338,10 +338,10 @@ public class BlogsStatsUserLocalServiceWrapper
 		getGroupStatsUsers(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsStatsUser> obc) {
+				<com.liferay.blogs.model.BlogsStatsUser> orderByComparator) {
 
 		return _blogsStatsUserLocalService.getGroupStatsUsers(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -369,10 +369,10 @@ public class BlogsStatsUserLocalServiceWrapper
 		getOrganizationStatsUsers(
 			long organizationId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsStatsUser> obc) {
+				<com.liferay.blogs.model.BlogsStatsUser> orderByComparator) {
 
 		return _blogsStatsUserLocalService.getOrganizationStatsUsers(
-			organizationId, start, end, obc);
+			organizationId, start, end, orderByComparator);
 	}
 
 	@Override

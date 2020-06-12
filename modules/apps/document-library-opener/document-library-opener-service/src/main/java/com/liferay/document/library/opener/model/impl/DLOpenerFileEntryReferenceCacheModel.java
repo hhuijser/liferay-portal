@@ -36,18 +36,18 @@ public class DLOpenerFileEntryReferenceCacheModel
 	implements CacheModel<DLOpenerFileEntryReference>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLOpenerFileEntryReferenceCacheModel)) {
+		if (!(obj instanceof DLOpenerFileEntryReferenceCacheModel)) {
 			return false;
 		}
 
 		DLOpenerFileEntryReferenceCacheModel
 			dlOpenerFileEntryReferenceCacheModel =
-				(DLOpenerFileEntryReferenceCacheModel)object;
+				(DLOpenerFileEntryReferenceCacheModel)obj;
 
 		if (dlOpenerFileEntryReferenceId ==
 				dlOpenerFileEntryReferenceCacheModel.

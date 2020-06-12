@@ -35,16 +35,16 @@ import java.util.Date;
 public class EntryCacheModel implements CacheModel<Entry>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof EntryCacheModel)) {
+		if (!(obj instanceof EntryCacheModel)) {
 			return false;
 		}
 
-		EntryCacheModel entryCacheModel = (EntryCacheModel)object;
+		EntryCacheModel entryCacheModel = (EntryCacheModel)obj;
 
 		if (entryId == entryCacheModel.entryId) {
 			return true;

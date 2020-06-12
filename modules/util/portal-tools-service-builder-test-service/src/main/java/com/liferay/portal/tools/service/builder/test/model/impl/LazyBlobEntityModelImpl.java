@@ -521,16 +521,16 @@ public class LazyBlobEntityModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LazyBlobEntity)) {
+		if (!(obj instanceof LazyBlobEntity)) {
 			return false;
 		}
 
-		LazyBlobEntity lazyBlobEntity = (LazyBlobEntity)object;
+		LazyBlobEntity lazyBlobEntity = (LazyBlobEntity)obj;
 
 		long primaryKey = lazyBlobEntity.getPrimaryKey();
 

@@ -37,16 +37,16 @@ public class CTProcessCacheModel
 	implements CacheModel<CTProcess>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTProcessCacheModel)) {
+		if (!(obj instanceof CTProcessCacheModel)) {
 			return false;
 		}
 
-		CTProcessCacheModel ctProcessCacheModel = (CTProcessCacheModel)object;
+		CTProcessCacheModel ctProcessCacheModel = (CTProcessCacheModel)obj;
 
 		if ((ctProcessId == ctProcessCacheModel.ctProcessId) &&
 			(mvccVersion == ctProcessCacheModel.mvccVersion)) {

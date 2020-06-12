@@ -784,16 +784,16 @@ public class ReadingTimeEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ReadingTimeEntry)) {
+		if (!(obj instanceof ReadingTimeEntry)) {
 			return false;
 		}
 
-		ReadingTimeEntry readingTimeEntry = (ReadingTimeEntry)object;
+		ReadingTimeEntry readingTimeEntry = (ReadingTimeEntry)obj;
 
 		long primaryKey = readingTimeEntry.getPrimaryKey();
 

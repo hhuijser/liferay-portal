@@ -35,17 +35,17 @@ public class DepotAppCustomizationCacheModel
 	implements CacheModel<DepotAppCustomization>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DepotAppCustomizationCacheModel)) {
+		if (!(obj instanceof DepotAppCustomizationCacheModel)) {
 			return false;
 		}
 
 		DepotAppCustomizationCacheModel depotAppCustomizationCacheModel =
-			(DepotAppCustomizationCacheModel)object;
+			(DepotAppCustomizationCacheModel)obj;
 
 		if ((depotAppCustomizationId ==
 				depotAppCustomizationCacheModel.depotAppCustomizationId) &&

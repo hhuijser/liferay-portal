@@ -37,16 +37,16 @@ public class KBFolderCacheModel
 	implements CacheModel<KBFolder>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KBFolderCacheModel)) {
+		if (!(obj instanceof KBFolderCacheModel)) {
 			return false;
 		}
 
-		KBFolderCacheModel kbFolderCacheModel = (KBFolderCacheModel)object;
+		KBFolderCacheModel kbFolderCacheModel = (KBFolderCacheModel)obj;
 
 		if ((kbFolderId == kbFolderCacheModel.kbFolderId) &&
 			(mvccVersion == kbFolderCacheModel.mvccVersion)) {

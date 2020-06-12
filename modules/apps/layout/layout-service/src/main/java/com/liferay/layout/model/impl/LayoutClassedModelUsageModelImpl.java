@@ -746,17 +746,17 @@ public class LayoutClassedModelUsageModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LayoutClassedModelUsage)) {
+		if (!(obj instanceof LayoutClassedModelUsage)) {
 			return false;
 		}
 
 		LayoutClassedModelUsage layoutClassedModelUsage =
-			(LayoutClassedModelUsage)object;
+			(LayoutClassedModelUsage)obj;
 
 		long primaryKey = layoutClassedModelUsage.getPrimaryKey();
 

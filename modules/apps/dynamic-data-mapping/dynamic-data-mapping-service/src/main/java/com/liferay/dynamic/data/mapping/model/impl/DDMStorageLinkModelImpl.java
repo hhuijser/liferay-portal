@@ -542,16 +542,16 @@ public class DDMStorageLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMStorageLink)) {
+		if (!(obj instanceof DDMStorageLink)) {
 			return false;
 		}
 
-		DDMStorageLink ddmStorageLink = (DDMStorageLink)object;
+		DDMStorageLink ddmStorageLink = (DDMStorageLink)obj;
 
 		long primaryKey = ddmStorageLink.getPrimaryKey();
 

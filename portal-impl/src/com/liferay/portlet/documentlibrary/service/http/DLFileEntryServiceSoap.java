@@ -244,14 +244,16 @@ public class DLFileEntryServiceSoap {
 			getFileEntries(
 				long groupId, long folderId, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List
 				<com.liferay.document.library.kernel.model.DLFileEntry>
 					returnValue = DLFileEntryServiceUtil.getFileEntries(
-						groupId, folderId, status, start, end, obc);
+						groupId, folderId, status, start, end,
+						orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFileEntrySoap.
 				toSoapModels(returnValue);
@@ -267,14 +269,15 @@ public class DLFileEntryServiceSoap {
 			getFileEntries(
 				long groupId, long folderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List
 				<com.liferay.document.library.kernel.model.DLFileEntry>
 					returnValue = DLFileEntryServiceUtil.getFileEntries(
-						groupId, folderId, start, end, obc);
+						groupId, folderId, start, end, orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFileEntrySoap.
 				toSoapModels(returnValue);
@@ -291,14 +294,16 @@ public class DLFileEntryServiceSoap {
 				long groupId, long folderId, long fileEntryTypeId, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List
 				<com.liferay.document.library.kernel.model.DLFileEntry>
 					returnValue = DLFileEntryServiceUtil.getFileEntries(
-						groupId, folderId, fileEntryTypeId, start, end, obc);
+						groupId, folderId, fileEntryTypeId, start, end,
+						orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFileEntrySoap.
 				toSoapModels(returnValue);
@@ -315,14 +320,16 @@ public class DLFileEntryServiceSoap {
 				long groupId, long folderId, String[] mimeTypes, int status,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List
 				<com.liferay.document.library.kernel.model.DLFileEntry>
 					returnValue = DLFileEntryServiceUtil.getFileEntries(
-						groupId, folderId, mimeTypes, status, start, end, obc);
+						groupId, folderId, mimeTypes, status, start, end,
+						orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFileEntrySoap.
 				toSoapModels(returnValue);
@@ -339,14 +346,16 @@ public class DLFileEntryServiceSoap {
 				long groupId, long folderId, String[] mimeTypes, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List
 				<com.liferay.document.library.kernel.model.DLFileEntry>
 					returnValue = DLFileEntryServiceUtil.getFileEntries(
-						groupId, folderId, mimeTypes, start, end, obc);
+						groupId, folderId, mimeTypes, start, end,
+						orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFileEntrySoap.
 				toSoapModels(returnValue);
@@ -536,14 +545,16 @@ public class DLFileEntryServiceSoap {
 				long groupId, long userId, long rootFolderId, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List
 				<com.liferay.document.library.kernel.model.DLFileEntry>
 					returnValue = DLFileEntryServiceUtil.getGroupFileEntries(
-						groupId, userId, rootFolderId, start, end, obc);
+						groupId, userId, rootFolderId, start, end,
+						orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFileEntrySoap.
 				toSoapModels(returnValue);
@@ -560,7 +571,8 @@ public class DLFileEntryServiceSoap {
 				long groupId, long userId, long repositoryId, long rootFolderId,
 				String[] mimeTypes, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
@@ -568,7 +580,7 @@ public class DLFileEntryServiceSoap {
 				<com.liferay.document.library.kernel.model.DLFileEntry>
 					returnValue = DLFileEntryServiceUtil.getGroupFileEntries(
 						groupId, userId, repositoryId, rootFolderId, mimeTypes,
-						status, start, end, obc);
+						status, start, end, orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFileEntrySoap.
 				toSoapModels(returnValue);
@@ -585,7 +597,8 @@ public class DLFileEntryServiceSoap {
 				long groupId, long userId, long rootFolderId,
 				String[] mimeTypes, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
@@ -593,7 +606,7 @@ public class DLFileEntryServiceSoap {
 				<com.liferay.document.library.kernel.model.DLFileEntry>
 					returnValue = DLFileEntryServiceUtil.getGroupFileEntries(
 						groupId, userId, rootFolderId, mimeTypes, status, start,
-						end, obc);
+						end, orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFileEntrySoap.
 				toSoapModels(returnValue);

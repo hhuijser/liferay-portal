@@ -1126,16 +1126,16 @@ public class BookmarksEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BookmarksEntry)) {
+		if (!(obj instanceof BookmarksEntry)) {
 			return false;
 		}
 
-		BookmarksEntry bookmarksEntry = (BookmarksEntry)object;
+		BookmarksEntry bookmarksEntry = (BookmarksEntry)obj;
 
 		long primaryKey = bookmarksEntry.getPrimaryKey();
 

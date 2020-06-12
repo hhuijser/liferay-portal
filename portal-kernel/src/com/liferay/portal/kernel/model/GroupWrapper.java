@@ -251,9 +251,11 @@ public class GroupWrapper
 	@Override
 	public java.util.List<Group> getChildrenWithLayouts(
 		boolean site, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Group> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<Group>
+			orderByComparator) {
 
-		return model.getChildrenWithLayouts(site, start, end, obc);
+		return model.getChildrenWithLayouts(
+			site, start, end, orderByComparator);
 	}
 
 	@Override

@@ -645,17 +645,16 @@ public class WorkflowInstanceLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WorkflowInstanceLink)) {
+		if (!(obj instanceof WorkflowInstanceLink)) {
 			return false;
 		}
 
-		WorkflowInstanceLink workflowInstanceLink =
-			(WorkflowInstanceLink)object;
+		WorkflowInstanceLink workflowInstanceLink = (WorkflowInstanceLink)obj;
 
 		long primaryKey = workflowInstanceLink.getPrimaryKey();
 

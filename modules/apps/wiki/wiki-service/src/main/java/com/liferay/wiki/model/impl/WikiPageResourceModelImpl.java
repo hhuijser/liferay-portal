@@ -489,16 +489,16 @@ public class WikiPageResourceModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WikiPageResource)) {
+		if (!(obj instanceof WikiPageResource)) {
 			return false;
 		}
 
-		WikiPageResource wikiPageResource = (WikiPageResource)object;
+		WikiPageResource wikiPageResource = (WikiPageResource)obj;
 
 		long primaryKey = wikiPageResource.getPrimaryKey();
 

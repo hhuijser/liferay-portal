@@ -36,17 +36,17 @@ public class SamlIdpSpConnectionCacheModel
 	implements CacheModel<SamlIdpSpConnection>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SamlIdpSpConnectionCacheModel)) {
+		if (!(obj instanceof SamlIdpSpConnectionCacheModel)) {
 			return false;
 		}
 
 		SamlIdpSpConnectionCacheModel samlIdpSpConnectionCacheModel =
-			(SamlIdpSpConnectionCacheModel)object;
+			(SamlIdpSpConnectionCacheModel)obj;
 
 		if (samlIdpSpConnectionId ==
 				samlIdpSpConnectionCacheModel.samlIdpSpConnectionId) {

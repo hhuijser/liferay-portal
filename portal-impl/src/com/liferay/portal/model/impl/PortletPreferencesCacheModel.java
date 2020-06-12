@@ -35,17 +35,17 @@ public class PortletPreferencesCacheModel
 	implements CacheModel<PortletPreferences>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PortletPreferencesCacheModel)) {
+		if (!(obj instanceof PortletPreferencesCacheModel)) {
 			return false;
 		}
 
 		PortletPreferencesCacheModel portletPreferencesCacheModel =
-			(PortletPreferencesCacheModel)object;
+			(PortletPreferencesCacheModel)obj;
 
 		if ((portletPreferencesId ==
 				portletPreferencesCacheModel.portletPreferencesId) &&

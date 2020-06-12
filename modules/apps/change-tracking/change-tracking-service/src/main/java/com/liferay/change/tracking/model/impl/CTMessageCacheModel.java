@@ -35,16 +35,16 @@ public class CTMessageCacheModel
 	implements CacheModel<CTMessage>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTMessageCacheModel)) {
+		if (!(obj instanceof CTMessageCacheModel)) {
 			return false;
 		}
 
-		CTMessageCacheModel ctMessageCacheModel = (CTMessageCacheModel)object;
+		CTMessageCacheModel ctMessageCacheModel = (CTMessageCacheModel)obj;
 
 		if ((ctMessageId == ctMessageCacheModel.ctMessageId) &&
 			(mvccVersion == ctMessageCacheModel.mvccVersion)) {

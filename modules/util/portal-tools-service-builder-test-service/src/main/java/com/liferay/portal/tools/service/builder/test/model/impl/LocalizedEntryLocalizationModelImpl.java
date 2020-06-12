@@ -477,17 +477,17 @@ public class LocalizedEntryLocalizationModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LocalizedEntryLocalization)) {
+		if (!(obj instanceof LocalizedEntryLocalization)) {
 			return false;
 		}
 
 		LocalizedEntryLocalization localizedEntryLocalization =
-			(LocalizedEntryLocalization)object;
+			(LocalizedEntryLocalization)obj;
 
 		long primaryKey = localizedEntryLocalization.getPrimaryKey();
 

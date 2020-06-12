@@ -650,16 +650,16 @@ public class RepositoryEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RepositoryEntry)) {
+		if (!(obj instanceof RepositoryEntry)) {
 			return false;
 		}
 
-		RepositoryEntry repositoryEntry = (RepositoryEntry)object;
+		RepositoryEntry repositoryEntry = (RepositoryEntry)obj;
 
 		long primaryKey = repositoryEntry.getPrimaryKey();
 

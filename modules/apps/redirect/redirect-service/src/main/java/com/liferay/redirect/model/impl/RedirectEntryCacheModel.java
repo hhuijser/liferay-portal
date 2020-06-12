@@ -37,17 +37,17 @@ public class RedirectEntryCacheModel
 	implements CacheModel<RedirectEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RedirectEntryCacheModel)) {
+		if (!(obj instanceof RedirectEntryCacheModel)) {
 			return false;
 		}
 
 		RedirectEntryCacheModel redirectEntryCacheModel =
-			(RedirectEntryCacheModel)object;
+			(RedirectEntryCacheModel)obj;
 
 		if ((redirectEntryId == redirectEntryCacheModel.redirectEntryId) &&
 			(mvccVersion == redirectEntryCacheModel.mvccVersion)) {

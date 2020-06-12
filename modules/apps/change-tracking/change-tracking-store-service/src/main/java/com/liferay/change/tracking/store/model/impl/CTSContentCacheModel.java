@@ -35,17 +35,16 @@ public class CTSContentCacheModel
 	implements CacheModel<CTSContent>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTSContentCacheModel)) {
+		if (!(obj instanceof CTSContentCacheModel)) {
 			return false;
 		}
 
-		CTSContentCacheModel ctsContentCacheModel =
-			(CTSContentCacheModel)object;
+		CTSContentCacheModel ctsContentCacheModel = (CTSContentCacheModel)obj;
 
 		if ((ctsContentId == ctsContentCacheModel.ctsContentId) &&
 			(mvccVersion == ctsContentCacheModel.mvccVersion)) {

@@ -542,17 +542,17 @@ public class PushNotificationsDeviceModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PushNotificationsDevice)) {
+		if (!(obj instanceof PushNotificationsDevice)) {
 			return false;
 		}
 
 		PushNotificationsDevice pushNotificationsDevice =
-			(PushNotificationsDevice)object;
+			(PushNotificationsDevice)obj;
 
 		long primaryKey = pushNotificationsDevice.getPrimaryKey();
 

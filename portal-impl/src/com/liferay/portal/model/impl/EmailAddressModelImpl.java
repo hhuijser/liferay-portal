@@ -747,16 +747,16 @@ public class EmailAddressModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof EmailAddress)) {
+		if (!(obj instanceof EmailAddress)) {
 			return false;
 		}
 
-		EmailAddress emailAddress = (EmailAddress)object;
+		EmailAddress emailAddress = (EmailAddress)obj;
 
 		long primaryKey = emailAddress.getPrimaryKey();
 

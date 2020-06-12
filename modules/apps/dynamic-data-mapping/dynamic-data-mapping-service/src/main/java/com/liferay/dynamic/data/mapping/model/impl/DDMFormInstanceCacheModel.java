@@ -37,17 +37,17 @@ public class DDMFormInstanceCacheModel
 	implements CacheModel<DDMFormInstance>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMFormInstanceCacheModel)) {
+		if (!(obj instanceof DDMFormInstanceCacheModel)) {
 			return false;
 		}
 
 		DDMFormInstanceCacheModel ddmFormInstanceCacheModel =
-			(DDMFormInstanceCacheModel)object;
+			(DDMFormInstanceCacheModel)obj;
 
 		if ((formInstanceId == ddmFormInstanceCacheModel.formInstanceId) &&
 			(mvccVersion == ddmFormInstanceCacheModel.mvccVersion)) {

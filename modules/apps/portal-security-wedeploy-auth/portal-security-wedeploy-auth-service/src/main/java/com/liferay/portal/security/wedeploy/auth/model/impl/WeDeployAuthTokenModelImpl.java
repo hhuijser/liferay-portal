@@ -535,16 +535,16 @@ public class WeDeployAuthTokenModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WeDeployAuthToken)) {
+		if (!(obj instanceof WeDeployAuthToken)) {
 			return false;
 		}
 
-		WeDeployAuthToken weDeployAuthToken = (WeDeployAuthToken)object;
+		WeDeployAuthToken weDeployAuthToken = (WeDeployAuthToken)obj;
 
 		long primaryKey = weDeployAuthToken.getPrimaryKey();
 

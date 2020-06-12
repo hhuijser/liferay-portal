@@ -37,17 +37,17 @@ public class UserTrackerCacheModel
 	implements CacheModel<UserTracker>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof UserTrackerCacheModel)) {
+		if (!(obj instanceof UserTrackerCacheModel)) {
 			return false;
 		}
 
 		UserTrackerCacheModel userTrackerCacheModel =
-			(UserTrackerCacheModel)object;
+			(UserTrackerCacheModel)obj;
 
 		if ((userTrackerId == userTrackerCacheModel.userTrackerId) &&
 			(mvccVersion == userTrackerCacheModel.mvccVersion)) {

@@ -35,17 +35,17 @@ public class DLFileEntryMetadataCacheModel
 	implements CacheModel<DLFileEntryMetadata>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFileEntryMetadataCacheModel)) {
+		if (!(obj instanceof DLFileEntryMetadataCacheModel)) {
 			return false;
 		}
 
 		DLFileEntryMetadataCacheModel dlFileEntryMetadataCacheModel =
-			(DLFileEntryMetadataCacheModel)object;
+			(DLFileEntryMetadataCacheModel)obj;
 
 		if ((fileEntryMetadataId ==
 				dlFileEntryMetadataCacheModel.fileEntryMetadataId) &&

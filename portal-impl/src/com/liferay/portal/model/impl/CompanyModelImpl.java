@@ -609,16 +609,16 @@ public class CompanyModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Company)) {
+		if (!(obj instanceof Company)) {
 			return false;
 		}
 
-		Company company = (Company)object;
+		Company company = (Company)obj;
 
 		long primaryKey = company.getPrimaryKey();
 

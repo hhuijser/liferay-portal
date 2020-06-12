@@ -37,17 +37,17 @@ public class AnnouncementsEntryCacheModel
 	implements CacheModel<AnnouncementsEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AnnouncementsEntryCacheModel)) {
+		if (!(obj instanceof AnnouncementsEntryCacheModel)) {
 			return false;
 		}
 
 		AnnouncementsEntryCacheModel announcementsEntryCacheModel =
-			(AnnouncementsEntryCacheModel)object;
+			(AnnouncementsEntryCacheModel)obj;
 
 		if ((entryId == announcementsEntryCacheModel.entryId) &&
 			(mvccVersion == announcementsEntryCacheModel.mvccVersion)) {

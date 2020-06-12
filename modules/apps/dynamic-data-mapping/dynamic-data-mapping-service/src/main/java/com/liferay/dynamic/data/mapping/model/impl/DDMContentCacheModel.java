@@ -37,17 +37,16 @@ public class DDMContentCacheModel
 	implements CacheModel<DDMContent>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMContentCacheModel)) {
+		if (!(obj instanceof DDMContentCacheModel)) {
 			return false;
 		}
 
-		DDMContentCacheModel ddmContentCacheModel =
-			(DDMContentCacheModel)object;
+		DDMContentCacheModel ddmContentCacheModel = (DDMContentCacheModel)obj;
 
 		if ((contentId == ddmContentCacheModel.contentId) &&
 			(mvccVersion == ddmContentCacheModel.mvccVersion)) {

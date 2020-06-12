@@ -513,16 +513,16 @@ public class DepotEntryGroupRelModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DepotEntryGroupRel)) {
+		if (!(obj instanceof DepotEntryGroupRel)) {
 			return false;
 		}
 
-		DepotEntryGroupRel depotEntryGroupRel = (DepotEntryGroupRel)object;
+		DepotEntryGroupRel depotEntryGroupRel = (DepotEntryGroupRel)obj;
 
 		long primaryKey = depotEntryGroupRel.getPrimaryKey();
 

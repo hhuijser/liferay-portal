@@ -616,16 +616,16 @@ public class SubscriptionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Subscription)) {
+		if (!(obj instanceof Subscription)) {
 			return false;
 		}
 
-		Subscription subscription = (Subscription)object;
+		Subscription subscription = (Subscription)obj;
 
 		long primaryKey = subscription.getPrimaryKey();
 

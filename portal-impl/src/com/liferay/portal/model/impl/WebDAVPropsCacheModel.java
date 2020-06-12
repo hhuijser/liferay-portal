@@ -37,17 +37,17 @@ public class WebDAVPropsCacheModel
 	implements CacheModel<WebDAVProps>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WebDAVPropsCacheModel)) {
+		if (!(obj instanceof WebDAVPropsCacheModel)) {
 			return false;
 		}
 
 		WebDAVPropsCacheModel webDAVPropsCacheModel =
-			(WebDAVPropsCacheModel)object;
+			(WebDAVPropsCacheModel)obj;
 
 		if ((webDavPropsId == webDAVPropsCacheModel.webDavPropsId) &&
 			(mvccVersion == webDAVPropsCacheModel.mvccVersion)) {

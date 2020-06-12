@@ -34,17 +34,17 @@ public class KaleoProcessLinkCacheModel
 	implements CacheModel<KaleoProcessLink>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoProcessLinkCacheModel)) {
+		if (!(obj instanceof KaleoProcessLinkCacheModel)) {
 			return false;
 		}
 
 		KaleoProcessLinkCacheModel kaleoProcessLinkCacheModel =
-			(KaleoProcessLinkCacheModel)object;
+			(KaleoProcessLinkCacheModel)obj;
 
 		if (kaleoProcessLinkId ==
 				kaleoProcessLinkCacheModel.kaleoProcessLinkId) {

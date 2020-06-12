@@ -31,12 +31,14 @@ public interface PasswordPolicyFinder {
 		filterFindByC_N(
 			long companyId, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.PasswordPolicy> obc);
+				<com.liferay.portal.kernel.model.PasswordPolicy>
+					orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.PasswordPolicy>
 		findByC_N(
 			long companyId, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.PasswordPolicy> obc);
+				<com.liferay.portal.kernel.model.PasswordPolicy>
+					orderByComparator);
 
 }

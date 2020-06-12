@@ -810,17 +810,17 @@ public class BatchEngineImportTaskModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BatchEngineImportTask)) {
+		if (!(obj instanceof BatchEngineImportTask)) {
 			return false;
 		}
 
 		BatchEngineImportTask batchEngineImportTask =
-			(BatchEngineImportTask)object;
+			(BatchEngineImportTask)obj;
 
 		long primaryKey = batchEngineImportTask.getPrimaryKey();
 

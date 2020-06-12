@@ -1152,16 +1152,16 @@ public class AssetCategoryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetCategory)) {
+		if (!(obj instanceof AssetCategory)) {
 			return false;
 		}
 
-		AssetCategory assetCategory = (AssetCategory)object;
+		AssetCategory assetCategory = (AssetCategory)obj;
 
 		long primaryKey = assetCategory.getPrimaryKey();
 

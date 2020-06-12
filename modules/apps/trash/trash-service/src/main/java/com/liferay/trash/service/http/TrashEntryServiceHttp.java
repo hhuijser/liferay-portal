@@ -234,7 +234,7 @@ public class TrashEntryServiceHttp {
 	public static com.liferay.trash.model.TrashEntryList getEntries(
 			HttpPrincipal httpPrincipal, long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.trash.model.TrashEntry> obc)
+				<com.liferay.trash.model.TrashEntry> orderByComparator)
 		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
@@ -243,7 +243,7 @@ public class TrashEntryServiceHttp {
 				_getEntriesParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, start, end, obc);
+				methodKey, groupId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -320,7 +320,7 @@ public class TrashEntryServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String className,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.trash.model.TrashEntry> obc)
+				<com.liferay.trash.model.TrashEntry> orderByComparator)
 		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
@@ -329,7 +329,7 @@ public class TrashEntryServiceHttp {
 				_getEntriesParameterTypes7);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, className, start, end, obc);
+				methodKey, groupId, className, start, end, orderByComparator);
 
 			Object returnObj = null;
 

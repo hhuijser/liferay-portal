@@ -789,16 +789,16 @@ public class UserGroupModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof UserGroup)) {
+		if (!(obj instanceof UserGroup)) {
 			return false;
 		}
 
-		UserGroup userGroup = (UserGroup)object;
+		UserGroup userGroup = (UserGroup)obj;
 
 		long primaryKey = userGroup.getPrimaryKey();
 

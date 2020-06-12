@@ -786,16 +786,16 @@ public class BackgroundTaskModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BackgroundTask)) {
+		if (!(obj instanceof BackgroundTask)) {
 			return false;
 		}
 
-		BackgroundTask backgroundTask = (BackgroundTask)object;
+		BackgroundTask backgroundTask = (BackgroundTask)obj;
 
 		long primaryKey = backgroundTask.getPrimaryKey();
 

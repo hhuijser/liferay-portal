@@ -37,16 +37,16 @@ public class ContactCacheModel
 	implements CacheModel<Contact>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ContactCacheModel)) {
+		if (!(obj instanceof ContactCacheModel)) {
 			return false;
 		}
 
-		ContactCacheModel contactCacheModel = (ContactCacheModel)object;
+		ContactCacheModel contactCacheModel = (ContactCacheModel)obj;
 
 		if ((contactId == contactCacheModel.contactId) &&
 			(mvccVersion == contactCacheModel.mvccVersion)) {

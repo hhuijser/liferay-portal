@@ -1237,16 +1237,16 @@ public class DDMStructureModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMStructure)) {
+		if (!(obj instanceof DDMStructure)) {
 			return false;
 		}
 
-		DDMStructure ddmStructure = (DDMStructure)object;
+		DDMStructure ddmStructure = (DDMStructure)obj;
 
 		long primaryKey = ddmStructure.getPrimaryKey();
 

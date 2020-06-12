@@ -748,16 +748,16 @@ public class PowwowMeetingModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PowwowMeeting)) {
+		if (!(obj instanceof PowwowMeeting)) {
 			return false;
 		}
 
-		PowwowMeeting powwowMeeting = (PowwowMeeting)object;
+		PowwowMeeting powwowMeeting = (PowwowMeeting)obj;
 
 		long primaryKey = powwowMeeting.getPrimaryKey();
 

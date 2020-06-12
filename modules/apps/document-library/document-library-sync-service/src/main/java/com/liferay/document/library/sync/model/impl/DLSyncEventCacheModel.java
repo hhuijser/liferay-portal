@@ -34,17 +34,17 @@ public class DLSyncEventCacheModel
 	implements CacheModel<DLSyncEvent>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLSyncEventCacheModel)) {
+		if (!(obj instanceof DLSyncEventCacheModel)) {
 			return false;
 		}
 
 		DLSyncEventCacheModel dlSyncEventCacheModel =
-			(DLSyncEventCacheModel)object;
+			(DLSyncEventCacheModel)obj;
 
 		if (syncEventId == dlSyncEventCacheModel.syncEventId) {
 			return true;

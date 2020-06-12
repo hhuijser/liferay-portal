@@ -35,17 +35,17 @@ public class JournalContentSearchCacheModel
 	implements CacheModel<JournalContentSearch>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof JournalContentSearchCacheModel)) {
+		if (!(obj instanceof JournalContentSearchCacheModel)) {
 			return false;
 		}
 
 		JournalContentSearchCacheModel journalContentSearchCacheModel =
-			(JournalContentSearchCacheModel)object;
+			(JournalContentSearchCacheModel)obj;
 
 		if ((contentSearchId ==
 				journalContentSearchCacheModel.contentSearchId) &&

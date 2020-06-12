@@ -38,18 +38,18 @@ public class LayoutPageTemplateCollectionCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LayoutPageTemplateCollectionCacheModel)) {
+		if (!(obj instanceof LayoutPageTemplateCollectionCacheModel)) {
 			return false;
 		}
 
 		LayoutPageTemplateCollectionCacheModel
 			layoutPageTemplateCollectionCacheModel =
-				(LayoutPageTemplateCollectionCacheModel)object;
+				(LayoutPageTemplateCollectionCacheModel)obj;
 
 		if ((layoutPageTemplateCollectionId ==
 				layoutPageTemplateCollectionCacheModel.

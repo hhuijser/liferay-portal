@@ -597,16 +597,16 @@ public class LVEntryVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LVEntryVersion)) {
+		if (!(obj instanceof LVEntryVersion)) {
 			return false;
 		}
 
-		LVEntryVersion lvEntryVersion = (LVEntryVersion)object;
+		LVEntryVersion lvEntryVersion = (LVEntryVersion)obj;
 
 		long primaryKey = lvEntryVersion.getPrimaryKey();
 

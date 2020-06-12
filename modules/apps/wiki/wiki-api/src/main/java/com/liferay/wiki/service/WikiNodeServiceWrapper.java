@@ -94,9 +94,10 @@ public class WikiNodeServiceWrapper
 	public java.util.List<com.liferay.wiki.model.WikiNode> getNodes(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.wiki.model.WikiNode> obc) {
+			<com.liferay.wiki.model.WikiNode> orderByComparator) {
 
-		return _wikiNodeService.getNodes(groupId, status, start, end, obc);
+		return _wikiNodeService.getNodes(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	@Override

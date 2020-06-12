@@ -1246,16 +1246,16 @@ public class DLFileVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFileVersion)) {
+		if (!(obj instanceof DLFileVersion)) {
 			return false;
 		}
 
-		DLFileVersion dlFileVersion = (DLFileVersion)object;
+		DLFileVersion dlFileVersion = (DLFileVersion)obj;
 
 		long primaryKey = dlFileVersion.getPrimaryKey();
 

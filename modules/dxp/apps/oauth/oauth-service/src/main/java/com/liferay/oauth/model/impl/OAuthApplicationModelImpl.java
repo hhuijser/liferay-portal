@@ -757,16 +757,16 @@ public class OAuthApplicationModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof OAuthApplication)) {
+		if (!(obj instanceof OAuthApplication)) {
 			return false;
 		}
 
-		OAuthApplication oAuthApplication = (OAuthApplication)object;
+		OAuthApplication oAuthApplication = (OAuthApplication)obj;
 
 		long primaryKey = oAuthApplication.getPrimaryKey();
 

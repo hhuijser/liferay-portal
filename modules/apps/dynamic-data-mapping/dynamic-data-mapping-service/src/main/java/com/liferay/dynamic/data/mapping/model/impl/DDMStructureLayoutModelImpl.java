@@ -1114,16 +1114,16 @@ public class DDMStructureLayoutModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMStructureLayout)) {
+		if (!(obj instanceof DDMStructureLayout)) {
 			return false;
 		}
 
-		DDMStructureLayout ddmStructureLayout = (DDMStructureLayout)object;
+		DDMStructureLayout ddmStructureLayout = (DDMStructureLayout)obj;
 
 		long primaryKey = ddmStructureLayout.getPrimaryKey();
 

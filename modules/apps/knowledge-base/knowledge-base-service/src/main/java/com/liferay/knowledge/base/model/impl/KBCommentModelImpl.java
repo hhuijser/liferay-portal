@@ -774,16 +774,16 @@ public class KBCommentModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KBComment)) {
+		if (!(obj instanceof KBComment)) {
 			return false;
 		}
 
-		KBComment kbComment = (KBComment)object;
+		KBComment kbComment = (KBComment)obj;
 
 		long primaryKey = kbComment.getPrimaryKey();
 

@@ -35,16 +35,16 @@ import java.util.Date;
 public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof GadgetCacheModel)) {
+		if (!(obj instanceof GadgetCacheModel)) {
 			return false;
 		}
 
-		GadgetCacheModel gadgetCacheModel = (GadgetCacheModel)object;
+		GadgetCacheModel gadgetCacheModel = (GadgetCacheModel)obj;
 
 		if (gadgetId == gadgetCacheModel.gadgetId) {
 			return true;

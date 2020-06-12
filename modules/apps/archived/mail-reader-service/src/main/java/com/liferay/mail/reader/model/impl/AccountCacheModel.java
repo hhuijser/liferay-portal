@@ -35,16 +35,16 @@ import java.util.Date;
 public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AccountCacheModel)) {
+		if (!(obj instanceof AccountCacheModel)) {
 			return false;
 		}
 
-		AccountCacheModel accountCacheModel = (AccountCacheModel)object;
+		AccountCacheModel accountCacheModel = (AccountCacheModel)obj;
 
 		if (accountId == accountCacheModel.accountId) {
 			return true;

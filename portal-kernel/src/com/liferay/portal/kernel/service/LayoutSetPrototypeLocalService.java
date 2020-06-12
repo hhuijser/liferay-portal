@@ -299,7 +299,7 @@ public interface LayoutSetPrototypeLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<LayoutSetPrototype> search(
 		long companyId, Boolean active, int start, int end,
-		OrderByComparator<LayoutSetPrototype> obc);
+		OrderByComparator<LayoutSetPrototype> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long companyId, Boolean active);

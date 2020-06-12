@@ -117,16 +117,16 @@ public class ViewCountEntryPK
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ViewCountEntryPK)) {
+		if (!(obj instanceof ViewCountEntryPK)) {
 			return false;
 		}
 
-		ViewCountEntryPK pk = (ViewCountEntryPK)object;
+		ViewCountEntryPK pk = (ViewCountEntryPK)obj;
 
 		if ((companyId == pk.companyId) && (classNameId == pk.classNameId) &&
 			(classPK == pk.classPK)) {

@@ -720,16 +720,16 @@ public class KBFolderModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KBFolder)) {
+		if (!(obj instanceof KBFolder)) {
 			return false;
 		}
 
-		KBFolder kbFolder = (KBFolder)object;
+		KBFolder kbFolder = (KBFolder)obj;
 
 		long primaryKey = kbFolder.getPrimaryKey();
 

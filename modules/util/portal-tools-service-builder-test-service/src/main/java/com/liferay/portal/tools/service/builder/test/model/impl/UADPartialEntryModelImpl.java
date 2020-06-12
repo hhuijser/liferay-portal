@@ -446,16 +446,16 @@ public class UADPartialEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof UADPartialEntry)) {
+		if (!(obj instanceof UADPartialEntry)) {
 			return false;
 		}
 
-		UADPartialEntry uadPartialEntry = (UADPartialEntry)object;
+		UADPartialEntry uadPartialEntry = (UADPartialEntry)obj;
 
 		long primaryKey = uadPartialEntry.getPrimaryKey();
 

@@ -36,17 +36,17 @@ public class AkismetEntryCacheModel
 	implements CacheModel<AkismetEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AkismetEntryCacheModel)) {
+		if (!(obj instanceof AkismetEntryCacheModel)) {
 			return false;
 		}
 
 		AkismetEntryCacheModel akismetEntryCacheModel =
-			(AkismetEntryCacheModel)object;
+			(AkismetEntryCacheModel)obj;
 
 		if (akismetEntryId == akismetEntryCacheModel.akismetEntryId) {
 			return true;

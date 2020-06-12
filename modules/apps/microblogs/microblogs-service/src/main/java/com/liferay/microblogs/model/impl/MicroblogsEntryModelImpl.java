@@ -721,16 +721,16 @@ public class MicroblogsEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MicroblogsEntry)) {
+		if (!(obj instanceof MicroblogsEntry)) {
 			return false;
 		}
 
-		MicroblogsEntry microblogsEntry = (MicroblogsEntry)object;
+		MicroblogsEntry microblogsEntry = (MicroblogsEntry)obj;
 
 		long primaryKey = microblogsEntry.getPrimaryKey();
 

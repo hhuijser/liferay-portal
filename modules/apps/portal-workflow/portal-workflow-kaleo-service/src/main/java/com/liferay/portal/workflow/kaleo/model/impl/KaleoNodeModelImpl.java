@@ -646,16 +646,16 @@ public class KaleoNodeModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoNode)) {
+		if (!(obj instanceof KaleoNode)) {
 			return false;
 		}
 
-		KaleoNode kaleoNode = (KaleoNode)object;
+		KaleoNode kaleoNode = (KaleoNode)obj;
 
 		long primaryKey = kaleoNode.getPrimaryKey();
 

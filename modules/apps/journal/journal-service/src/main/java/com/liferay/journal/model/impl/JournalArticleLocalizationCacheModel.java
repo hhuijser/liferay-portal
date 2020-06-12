@@ -36,18 +36,18 @@ public class JournalArticleLocalizationCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof JournalArticleLocalizationCacheModel)) {
+		if (!(obj instanceof JournalArticleLocalizationCacheModel)) {
 			return false;
 		}
 
 		JournalArticleLocalizationCacheModel
 			journalArticleLocalizationCacheModel =
-				(JournalArticleLocalizationCacheModel)object;
+				(JournalArticleLocalizationCacheModel)obj;
 
 		if ((articleLocalizationId ==
 				journalArticleLocalizationCacheModel.articleLocalizationId) &&

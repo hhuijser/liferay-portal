@@ -35,17 +35,17 @@ public class PluginSettingCacheModel
 	implements CacheModel<PluginSetting>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PluginSettingCacheModel)) {
+		if (!(obj instanceof PluginSettingCacheModel)) {
 			return false;
 		}
 
 		PluginSettingCacheModel pluginSettingCacheModel =
-			(PluginSettingCacheModel)object;
+			(PluginSettingCacheModel)obj;
 
 		if ((pluginSettingId == pluginSettingCacheModel.pluginSettingId) &&
 			(mvccVersion == pluginSettingCacheModel.mvccVersion)) {

@@ -609,19 +609,22 @@ public class DLFileEntryLocalServiceUtil {
 		<com.liferay.document.library.kernel.model.DLFileEntry> getFileEntries(
 			long groupId, long folderId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.document.library.kernel.model.DLFileEntry> obc) {
+				<com.liferay.document.library.kernel.model.DLFileEntry>
+					orderByComparator) {
 
 		return getService().getFileEntries(
-			groupId, folderId, status, start, end, obc);
+			groupId, folderId, status, start, end, orderByComparator);
 	}
 
 	public static java.util.List
 		<com.liferay.document.library.kernel.model.DLFileEntry> getFileEntries(
 			long groupId, long folderId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.document.library.kernel.model.DLFileEntry> obc) {
+				<com.liferay.document.library.kernel.model.DLFileEntry>
+					orderByComparator) {
 
-		return getService().getFileEntries(groupId, folderId, start, end, obc);
+		return getService().getFileEntries(
+			groupId, folderId, start, end, orderByComparator);
 	}
 
 	public static java.util.List
@@ -734,9 +737,10 @@ public class DLFileEntryLocalServiceUtil {
 				long groupId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.document.library.kernel.model.DLFileEntry>
-						obc) {
+						orderByComparator) {
 
-		return getService().getGroupFileEntries(groupId, start, end, obc);
+		return getService().getGroupFileEntries(
+			groupId, start, end, orderByComparator);
 	}
 
 	public static java.util.List
@@ -752,10 +756,10 @@ public class DLFileEntryLocalServiceUtil {
 				long groupId, long userId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.document.library.kernel.model.DLFileEntry>
-						obc) {
+						orderByComparator) {
 
 		return getService().getGroupFileEntries(
-			groupId, userId, start, end, obc);
+			groupId, userId, start, end, orderByComparator);
 	}
 
 	public static java.util.List
@@ -765,10 +769,10 @@ public class DLFileEntryLocalServiceUtil {
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.document.library.kernel.model.DLFileEntry>
-						obc) {
+						orderByComparator) {
 
 		return getService().getGroupFileEntries(
-			groupId, userId, rootFolderId, start, end, obc);
+			groupId, userId, rootFolderId, start, end, orderByComparator);
 	}
 
 	public static java.util.List
@@ -778,10 +782,11 @@ public class DLFileEntryLocalServiceUtil {
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.document.library.kernel.model.DLFileEntry>
-						obc) {
+						orderByComparator) {
 
 		return getService().getGroupFileEntries(
-			groupId, userId, repositoryId, rootFolderId, start, end, obc);
+			groupId, userId, repositoryId, rootFolderId, start, end,
+			orderByComparator);
 	}
 
 	public static int getGroupFileEntriesCount(long groupId) {

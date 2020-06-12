@@ -37,17 +37,17 @@ public class FragmentEntryCacheModel
 	implements CacheModel<FragmentEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof FragmentEntryCacheModel)) {
+		if (!(obj instanceof FragmentEntryCacheModel)) {
 			return false;
 		}
 
 		FragmentEntryCacheModel fragmentEntryCacheModel =
-			(FragmentEntryCacheModel)object;
+			(FragmentEntryCacheModel)obj;
 
 		if ((fragmentEntryId == fragmentEntryCacheModel.fragmentEntryId) &&
 			(mvccVersion == fragmentEntryCacheModel.mvccVersion)) {

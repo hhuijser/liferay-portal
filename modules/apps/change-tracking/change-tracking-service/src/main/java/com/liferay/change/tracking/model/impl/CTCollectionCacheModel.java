@@ -37,17 +37,17 @@ public class CTCollectionCacheModel
 	implements CacheModel<CTCollection>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTCollectionCacheModel)) {
+		if (!(obj instanceof CTCollectionCacheModel)) {
 			return false;
 		}
 
 		CTCollectionCacheModel ctCollectionCacheModel =
-			(CTCollectionCacheModel)object;
+			(CTCollectionCacheModel)obj;
 
 		if ((ctCollectionId == ctCollectionCacheModel.ctCollectionId) &&
 			(mvccVersion == ctCollectionCacheModel.mvccVersion)) {

@@ -251,7 +251,8 @@ public class CTCollectionServiceHttp {
 			HttpPrincipal httpPrincipal, long companyId, int status,
 			String keywords, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.change.tracking.model.CTCollection> obc) {
+				<com.liferay.change.tracking.model.CTCollection>
+					orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -259,7 +260,8 @@ public class CTCollectionServiceHttp {
 				_getCTCollectionsParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, companyId, status, keywords, start, end, obc);
+				methodKey, companyId, status, keywords, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

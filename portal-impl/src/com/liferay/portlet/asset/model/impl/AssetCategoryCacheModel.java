@@ -37,17 +37,17 @@ public class AssetCategoryCacheModel
 	implements CacheModel<AssetCategory>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetCategoryCacheModel)) {
+		if (!(obj instanceof AssetCategoryCacheModel)) {
 			return false;
 		}
 
 		AssetCategoryCacheModel assetCategoryCacheModel =
-			(AssetCategoryCacheModel)object;
+			(AssetCategoryCacheModel)obj;
 
 		if ((categoryId == assetCategoryCacheModel.categoryId) &&
 			(mvccVersion == assetCategoryCacheModel.mvccVersion)) {

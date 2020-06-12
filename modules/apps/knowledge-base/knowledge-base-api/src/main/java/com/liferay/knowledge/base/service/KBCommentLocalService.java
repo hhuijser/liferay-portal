@@ -272,11 +272,12 @@ public interface KBCommentLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
 		long groupId, int status, int start, int end,
-		OrderByComparator<KBComment> obc);
+		OrderByComparator<KBComment> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
-		long groupId, int start, int end, OrderByComparator<KBComment> obc);
+		long groupId, int start, int end,
+		OrderByComparator<KBComment> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
@@ -290,7 +291,7 @@ public interface KBCommentLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
 		String className, long classPK, int status, int start, int end,
-		OrderByComparator<KBComment> obc);
+		OrderByComparator<KBComment> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(

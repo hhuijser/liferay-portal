@@ -85,7 +85,7 @@ public interface WikiNodeService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiNode> getNodes(
 		long groupId, int status, int start, int end,
-		OrderByComparator<WikiNode> obc);
+		OrderByComparator<WikiNode> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getNodesCount(long groupId);

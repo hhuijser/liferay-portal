@@ -465,17 +465,17 @@ public class VersionedEntryVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof VersionedEntryVersion)) {
+		if (!(obj instanceof VersionedEntryVersion)) {
 			return false;
 		}
 
 		VersionedEntryVersion versionedEntryVersion =
-			(VersionedEntryVersion)object;
+			(VersionedEntryVersion)obj;
 
 		long primaryKey = versionedEntryVersion.getPrimaryKey();
 

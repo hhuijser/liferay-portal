@@ -36,17 +36,16 @@ public class DefinitionCacheModel
 	implements CacheModel<Definition>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DefinitionCacheModel)) {
+		if (!(obj instanceof DefinitionCacheModel)) {
 			return false;
 		}
 
-		DefinitionCacheModel definitionCacheModel =
-			(DefinitionCacheModel)object;
+		DefinitionCacheModel definitionCacheModel = (DefinitionCacheModel)obj;
 
 		if (definitionId == definitionCacheModel.definitionId) {
 			return true;

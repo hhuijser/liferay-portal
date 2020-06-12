@@ -369,14 +369,15 @@ public class TeamServiceHttp {
 		String description, java.util.LinkedHashMap<String, Object> params,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Team> obc) {
+			<com.liferay.portal.kernel.model.Team> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				TeamServiceUtil.class, "search", _searchParameterTypes8);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, name, description, params, start, end, obc);
+				methodKey, groupId, name, description, params, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

@@ -35,17 +35,17 @@ public class ViewCountEntryCacheModel
 	implements CacheModel<ViewCountEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ViewCountEntryCacheModel)) {
+		if (!(obj instanceof ViewCountEntryCacheModel)) {
 			return false;
 		}
 
 		ViewCountEntryCacheModel viewCountEntryCacheModel =
-			(ViewCountEntryCacheModel)object;
+			(ViewCountEntryCacheModel)obj;
 
 		if (viewCountEntryPK.equals(
 				viewCountEntryCacheModel.viewCountEntryPK)) {

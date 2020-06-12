@@ -36,17 +36,17 @@ public class AMImageEntryCacheModel
 	implements CacheModel<AMImageEntry>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AMImageEntryCacheModel)) {
+		if (!(obj instanceof AMImageEntryCacheModel)) {
 			return false;
 		}
 
 		AMImageEntryCacheModel amImageEntryCacheModel =
-			(AMImageEntryCacheModel)object;
+			(AMImageEntryCacheModel)obj;
 
 		if (amImageEntryId == amImageEntryCacheModel.amImageEntryId) {
 			return true;

@@ -387,16 +387,16 @@ public class CompanyInfoModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CompanyInfo)) {
+		if (!(obj instanceof CompanyInfo)) {
 			return false;
 		}
 
-		CompanyInfo companyInfo = (CompanyInfo)object;
+		CompanyInfo companyInfo = (CompanyInfo)obj;
 
 		long primaryKey = companyInfo.getPrimaryKey();
 

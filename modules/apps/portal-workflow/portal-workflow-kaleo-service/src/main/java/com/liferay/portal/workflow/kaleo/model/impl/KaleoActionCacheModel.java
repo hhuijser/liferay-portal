@@ -37,17 +37,17 @@ public class KaleoActionCacheModel
 	implements CacheModel<KaleoAction>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoActionCacheModel)) {
+		if (!(obj instanceof KaleoActionCacheModel)) {
 			return false;
 		}
 
 		KaleoActionCacheModel kaleoActionCacheModel =
-			(KaleoActionCacheModel)object;
+			(KaleoActionCacheModel)obj;
 
 		if ((kaleoActionId == kaleoActionCacheModel.kaleoActionId) &&
 			(mvccVersion == kaleoActionCacheModel.mvccVersion)) {

@@ -36,16 +36,16 @@ public class MBThreadCacheModel
 	implements CacheModel<MBThread>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBThreadCacheModel)) {
+		if (!(obj instanceof MBThreadCacheModel)) {
 			return false;
 		}
 
-		MBThreadCacheModel mbThreadCacheModel = (MBThreadCacheModel)object;
+		MBThreadCacheModel mbThreadCacheModel = (MBThreadCacheModel)obj;
 
 		if (threadId == mbThreadCacheModel.threadId) {
 			return true;

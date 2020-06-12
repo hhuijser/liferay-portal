@@ -37,17 +37,17 @@ public class RedirectNotFoundEntryCacheModel
 	implements CacheModel<RedirectNotFoundEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RedirectNotFoundEntryCacheModel)) {
+		if (!(obj instanceof RedirectNotFoundEntryCacheModel)) {
 			return false;
 		}
 
 		RedirectNotFoundEntryCacheModel redirectNotFoundEntryCacheModel =
-			(RedirectNotFoundEntryCacheModel)object;
+			(RedirectNotFoundEntryCacheModel)obj;
 
 		if ((redirectNotFoundEntryId ==
 				redirectNotFoundEntryCacheModel.redirectNotFoundEntryId) &&

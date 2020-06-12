@@ -37,17 +37,17 @@ public class CalendarResourceCacheModel
 	implements CacheModel<CalendarResource>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CalendarResourceCacheModel)) {
+		if (!(obj instanceof CalendarResourceCacheModel)) {
 			return false;
 		}
 
 		CalendarResourceCacheModel calendarResourceCacheModel =
-			(CalendarResourceCacheModel)object;
+			(CalendarResourceCacheModel)obj;
 
 		if ((calendarResourceId ==
 				calendarResourceCacheModel.calendarResourceId) &&

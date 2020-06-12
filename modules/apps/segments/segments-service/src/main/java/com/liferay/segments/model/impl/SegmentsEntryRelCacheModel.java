@@ -37,17 +37,17 @@ public class SegmentsEntryRelCacheModel
 	implements CacheModel<SegmentsEntryRel>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SegmentsEntryRelCacheModel)) {
+		if (!(obj instanceof SegmentsEntryRelCacheModel)) {
 			return false;
 		}
 
 		SegmentsEntryRelCacheModel segmentsEntryRelCacheModel =
-			(SegmentsEntryRelCacheModel)object;
+			(SegmentsEntryRelCacheModel)obj;
 
 		if ((segmentsEntryRelId ==
 				segmentsEntryRelCacheModel.segmentsEntryRelId) &&

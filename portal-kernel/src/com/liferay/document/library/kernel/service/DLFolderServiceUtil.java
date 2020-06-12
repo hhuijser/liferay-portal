@@ -129,12 +129,13 @@ public class DLFolderServiceUtil {
 				long groupId, long parentFolderId, boolean includeMountfolders,
 				int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFolders(
 			groupId, parentFolderId, includeMountfolders, status, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	/**
@@ -148,34 +149,38 @@ public class DLFolderServiceUtil {
 				long groupId, long parentFolderId, int status,
 				boolean includeMountfolders, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFolders(
 			groupId, parentFolderId, status, includeMountfolders, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	public static java.util.List
 		<com.liferay.document.library.kernel.model.DLFolder> getFolders(
 				long groupId, long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFolders(
-			groupId, parentFolderId, start, end, obc);
+			groupId, parentFolderId, start, end, orderByComparator);
 	}
 
 	public static java.util.List<Object>
 			getFoldersAndFileEntriesAndFileShortcuts(
 				long groupId, long folderId, boolean includeMountFolders,
 				int status, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFoldersAndFileEntriesAndFileShortcuts(
-			groupId, folderId, includeMountFolders, status, start, end, obc);
+			groupId, folderId, includeMountFolders, status, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -188,11 +193,13 @@ public class DLFolderServiceUtil {
 			getFoldersAndFileEntriesAndFileShortcuts(
 				long groupId, long folderId, int status,
 				boolean includeMountFolders, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFoldersAndFileEntriesAndFileShortcuts(
-			groupId, folderId, status, includeMountFolders, start, end, obc);
+			groupId, folderId, status, includeMountFolders, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -205,24 +212,26 @@ public class DLFolderServiceUtil {
 			getFoldersAndFileEntriesAndFileShortcuts(
 				long groupId, long folderId, int status, String[] mimeTypes,
 				boolean includeMountFolders, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFoldersAndFileEntriesAndFileShortcuts(
 			groupId, folderId, status, mimeTypes, includeMountFolders, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static java.util.List<Object>
 			getFoldersAndFileEntriesAndFileShortcuts(
 				long groupId, long folderId, String[] mimeTypes,
 				boolean includeMountFolders, int status, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFoldersAndFileEntriesAndFileShortcuts(
 			groupId, folderId, mimeTypes, includeMountFolders, status, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static java.util.List<Object>
@@ -242,12 +251,13 @@ public class DLFolderServiceUtil {
 				long groupId, long folderId, String[] mimeTypes,
 				long fileEntryTypeId, boolean includeMountFolders, int status,
 				int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFoldersAndFileEntriesAndFileShortcuts(
 			groupId, folderId, mimeTypes, fileEntryTypeId, includeMountFolders,
-			status, start, end, obc);
+			status, start, end, orderByComparator);
 	}
 
 	public static int getFoldersAndFileEntriesAndFileShortcutsCount(
@@ -337,11 +347,12 @@ public class DLFolderServiceUtil {
 		<com.liferay.document.library.kernel.model.DLFolder> getMountFolders(
 				long groupId, long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getMountFolders(
-			groupId, parentFolderId, start, end, obc);
+			groupId, parentFolderId, start, end, orderByComparator);
 	}
 
 	public static int getMountFoldersCount(long groupId, long parentFolderId)

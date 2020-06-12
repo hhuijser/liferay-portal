@@ -369,9 +369,11 @@ public class LayoutPrototypeLocalServiceUtil {
 		<com.liferay.portal.kernel.model.LayoutPrototype> search(
 			long companyId, Boolean active, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.LayoutPrototype> obc) {
+				<com.liferay.portal.kernel.model.LayoutPrototype>
+					orderByComparator) {
 
-		return getService().search(companyId, active, start, end, obc);
+		return getService().search(
+			companyId, active, start, end, orderByComparator);
 	}
 
 	public static int searchCount(long companyId, Boolean active) {

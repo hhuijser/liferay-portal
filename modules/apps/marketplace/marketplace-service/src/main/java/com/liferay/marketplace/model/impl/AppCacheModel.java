@@ -35,16 +35,16 @@ import java.util.Date;
 public class AppCacheModel implements CacheModel<App>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AppCacheModel)) {
+		if (!(obj instanceof AppCacheModel)) {
 			return false;
 		}
 
-		AppCacheModel appCacheModel = (AppCacheModel)object;
+		AppCacheModel appCacheModel = (AppCacheModel)obj;
 
 		if (appId == appCacheModel.appId) {
 			return true;

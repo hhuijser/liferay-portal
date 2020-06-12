@@ -437,12 +437,12 @@ public interface DLFileEntryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getFileEntries(
 		long groupId, long folderId, int status, int start, int end,
-		OrderByComparator<DLFileEntry> obc);
+		OrderByComparator<DLFileEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getFileEntries(
 		long groupId, long folderId, int start, int end,
-		OrderByComparator<DLFileEntry> obc);
+		OrderByComparator<DLFileEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getFileEntries(
@@ -500,7 +500,8 @@ public interface DLFileEntryLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getGroupFileEntries(
-		long groupId, int start, int end, OrderByComparator<DLFileEntry> obc);
+		long groupId, int start, int end,
+		OrderByComparator<DLFileEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getGroupFileEntries(
@@ -509,17 +510,17 @@ public interface DLFileEntryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<DLFileEntry> obc);
+		OrderByComparator<DLFileEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, long rootFolderId, int start, int end,
-		OrderByComparator<DLFileEntry> obc);
+		OrderByComparator<DLFileEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, long repositoryId, long rootFolderId,
-		int start, int end, OrderByComparator<DLFileEntry> obc);
+		int start, int end, OrderByComparator<DLFileEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupFileEntriesCount(long groupId);

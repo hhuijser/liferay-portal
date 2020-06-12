@@ -465,16 +465,16 @@ public class PasswordTrackerModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PasswordTracker)) {
+		if (!(obj instanceof PasswordTracker)) {
 			return false;
 		}
 
-		PasswordTracker passwordTracker = (PasswordTracker)object;
+		PasswordTracker passwordTracker = (PasswordTracker)obj;
 
 		long primaryKey = passwordTracker.getPrimaryKey();
 

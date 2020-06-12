@@ -1094,16 +1094,16 @@ public class SyncDLObjectModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SyncDLObject)) {
+		if (!(obj instanceof SyncDLObject)) {
 			return false;
 		}
 
-		SyncDLObject syncDLObject = (SyncDLObject)object;
+		SyncDLObject syncDLObject = (SyncDLObject)obj;
 
 		long primaryKey = syncDLObject.getPrimaryKey();
 

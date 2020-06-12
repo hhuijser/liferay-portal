@@ -562,16 +562,16 @@ public class AkismetEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AkismetEntry)) {
+		if (!(obj instanceof AkismetEntry)) {
 			return false;
 		}
 
-		AkismetEntry akismetEntry = (AkismetEntry)object;
+		AkismetEntry akismetEntry = (AkismetEntry)obj;
 
 		long primaryKey = akismetEntry.getPrimaryKey();
 

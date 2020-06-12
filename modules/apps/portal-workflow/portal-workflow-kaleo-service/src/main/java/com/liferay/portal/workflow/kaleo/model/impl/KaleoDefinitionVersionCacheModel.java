@@ -37,17 +37,17 @@ public class KaleoDefinitionVersionCacheModel
 	implements CacheModel<KaleoDefinitionVersion>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoDefinitionVersionCacheModel)) {
+		if (!(obj instanceof KaleoDefinitionVersionCacheModel)) {
 			return false;
 		}
 
 		KaleoDefinitionVersionCacheModel kaleoDefinitionVersionCacheModel =
-			(KaleoDefinitionVersionCacheModel)object;
+			(KaleoDefinitionVersionCacheModel)obj;
 
 		if ((kaleoDefinitionVersionId ==
 				kaleoDefinitionVersionCacheModel.kaleoDefinitionVersionId) &&

@@ -35,17 +35,17 @@ public class LVEntryLocalizationCacheModel
 	implements CacheModel<LVEntryLocalization>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LVEntryLocalizationCacheModel)) {
+		if (!(obj instanceof LVEntryLocalizationCacheModel)) {
 			return false;
 		}
 
 		LVEntryLocalizationCacheModel lvEntryLocalizationCacheModel =
-			(LVEntryLocalizationCacheModel)object;
+			(LVEntryLocalizationCacheModel)obj;
 
 		if ((lvEntryLocalizationId ==
 				lvEntryLocalizationCacheModel.lvEntryLocalizationId) &&

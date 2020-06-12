@@ -1196,16 +1196,16 @@ public class PasswordPolicyModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PasswordPolicy)) {
+		if (!(obj instanceof PasswordPolicy)) {
 			return false;
 		}
 
-		PasswordPolicy passwordPolicy = (PasswordPolicy)object;
+		PasswordPolicy passwordPolicy = (PasswordPolicy)obj;
 
 		long primaryKey = passwordPolicy.getPrimaryKey();
 

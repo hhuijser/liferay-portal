@@ -367,18 +367,18 @@ public class JournalFolderLocalServiceUtil {
 
 	public static java.util.List<Object> getFoldersAndArticles(
 		long groupId, long folderId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		return getService().getFoldersAndArticles(
-			groupId, folderId, status, start, end, obc);
+			groupId, folderId, status, start, end, orderByComparator);
 	}
 
 	public static java.util.List<Object> getFoldersAndArticles(
 		long groupId, long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		return getService().getFoldersAndArticles(
-			groupId, folderId, start, end, obc);
+			groupId, folderId, start, end, orderByComparator);
 	}
 
 	public static int getFoldersAndArticlesCount(
@@ -609,12 +609,12 @@ public class JournalFolderLocalServiceUtil {
 					int restrictionType, String keywords, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.dynamic.data.mapping.model.DDMStructure>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().searchDDMStructures(
 			companyId, groupIds, folderId, restrictionType, keywords, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static void subscribe(long userId, long groupId, long folderId)

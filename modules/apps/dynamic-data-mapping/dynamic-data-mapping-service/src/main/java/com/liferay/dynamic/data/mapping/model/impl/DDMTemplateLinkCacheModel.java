@@ -35,17 +35,17 @@ public class DDMTemplateLinkCacheModel
 	implements CacheModel<DDMTemplateLink>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMTemplateLinkCacheModel)) {
+		if (!(obj instanceof DDMTemplateLinkCacheModel)) {
 			return false;
 		}
 
 		DDMTemplateLinkCacheModel ddmTemplateLinkCacheModel =
-			(DDMTemplateLinkCacheModel)object;
+			(DDMTemplateLinkCacheModel)obj;
 
 		if ((templateLinkId == ddmTemplateLinkCacheModel.templateLinkId) &&
 			(mvccVersion == ddmTemplateLinkCacheModel.mvccVersion)) {

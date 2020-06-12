@@ -695,16 +695,16 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof App)) {
+		if (!(obj instanceof App)) {
 			return false;
 		}
 
-		App app = (App)object;
+		App app = (App)obj;
 
 		long primaryKey = app.getPrimaryKey();
 

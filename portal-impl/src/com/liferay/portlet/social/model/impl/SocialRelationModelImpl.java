@@ -528,16 +528,16 @@ public class SocialRelationModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SocialRelation)) {
+		if (!(obj instanceof SocialRelation)) {
 			return false;
 		}
 
-		SocialRelation socialRelation = (SocialRelation)object;
+		SocialRelation socialRelation = (SocialRelation)obj;
 
 		long primaryKey = socialRelation.getPrimaryKey();
 

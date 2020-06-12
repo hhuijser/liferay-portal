@@ -743,16 +743,16 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Phone)) {
+		if (!(obj instanceof Phone)) {
 			return false;
 		}
 
-		Phone phone = (Phone)object;
+		Phone phone = (Phone)obj;
 
 		long primaryKey = phone.getPrimaryKey();
 

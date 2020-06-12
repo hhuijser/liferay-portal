@@ -725,16 +725,16 @@ public class RedirectEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RedirectEntry)) {
+		if (!(obj instanceof RedirectEntry)) {
 			return false;
 		}
 
-		RedirectEntry redirectEntry = (RedirectEntry)object;
+		RedirectEntry redirectEntry = (RedirectEntry)obj;
 
 		long primaryKey = redirectEntry.getPrimaryKey();
 

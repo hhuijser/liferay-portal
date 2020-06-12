@@ -414,12 +414,13 @@ public interface DLFolderLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFolder> getFolders(
 		long groupId, long parentFolderId, boolean includeMountfolders,
-		int status, int start, int end, OrderByComparator<DLFolder> obc);
+		int status, int start, int end,
+		OrderByComparator<DLFolder> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFolder> getFolders(
 		long groupId, long parentFolderId, boolean includeMountfolders,
-		int start, int end, OrderByComparator<DLFolder> obc);
+		int start, int end, OrderByComparator<DLFolder> orderByComparator);
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
@@ -431,12 +432,12 @@ public interface DLFolderLocalService
 	public List<DLFolder> getFolders(
 		long groupId, long parentFolderId, int status,
 		boolean includeMountfolders, int start, int end,
-		OrderByComparator<DLFolder> obc);
+		OrderByComparator<DLFolder> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFolder> getFolders(
 		long groupId, long parentFolderId, int start, int end,
-		OrderByComparator<DLFolder> obc);
+		OrderByComparator<DLFolder> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
@@ -486,7 +487,7 @@ public interface DLFolderLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFolder> getMountFolders(
 		long groupId, long parentFolderId, int start, int end,
-		OrderByComparator<DLFolder> obc);
+		OrderByComparator<DLFolder> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMountFoldersCount(long groupId, long parentFolderId);

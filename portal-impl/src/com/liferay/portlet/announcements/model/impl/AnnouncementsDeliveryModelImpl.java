@@ -600,17 +600,17 @@ public class AnnouncementsDeliveryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AnnouncementsDelivery)) {
+		if (!(obj instanceof AnnouncementsDelivery)) {
 			return false;
 		}
 
 		AnnouncementsDelivery announcementsDelivery =
-			(AnnouncementsDelivery)object;
+			(AnnouncementsDelivery)obj;
 
 		long primaryKey = announcementsDelivery.getPrimaryKey();
 

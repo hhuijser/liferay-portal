@@ -34,17 +34,16 @@ public class AttachmentCacheModel
 	implements CacheModel<Attachment>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AttachmentCacheModel)) {
+		if (!(obj instanceof AttachmentCacheModel)) {
 			return false;
 		}
 
-		AttachmentCacheModel attachmentCacheModel =
-			(AttachmentCacheModel)object;
+		AttachmentCacheModel attachmentCacheModel = (AttachmentCacheModel)obj;
 
 		if (attachmentId == attachmentCacheModel.attachmentId) {
 			return true;

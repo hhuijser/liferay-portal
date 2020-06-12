@@ -35,16 +35,16 @@ public class ClassNameCacheModel
 	implements CacheModel<ClassName>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ClassNameCacheModel)) {
+		if (!(obj instanceof ClassNameCacheModel)) {
 			return false;
 		}
 
-		ClassNameCacheModel classNameCacheModel = (ClassNameCacheModel)object;
+		ClassNameCacheModel classNameCacheModel = (ClassNameCacheModel)obj;
 
 		if ((classNameId == classNameCacheModel.classNameId) &&
 			(mvccVersion == classNameCacheModel.mvccVersion)) {

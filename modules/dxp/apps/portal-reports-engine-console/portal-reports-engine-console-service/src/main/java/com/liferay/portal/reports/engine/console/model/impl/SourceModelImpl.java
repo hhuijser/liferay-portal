@@ -848,16 +848,16 @@ public class SourceModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Source)) {
+		if (!(obj instanceof Source)) {
 			return false;
 		}
 
-		Source source = (Source)object;
+		Source source = (Source)obj;
 
 		long primaryKey = source.getPrimaryKey();
 

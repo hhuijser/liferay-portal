@@ -35,17 +35,17 @@ public class VersionedEntryCacheModel
 	implements CacheModel<VersionedEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof VersionedEntryCacheModel)) {
+		if (!(obj instanceof VersionedEntryCacheModel)) {
 			return false;
 		}
 
 		VersionedEntryCacheModel versionedEntryCacheModel =
-			(VersionedEntryCacheModel)object;
+			(VersionedEntryCacheModel)obj;
 
 		if ((versionedEntryId == versionedEntryCacheModel.versionedEntryId) &&
 			(mvccVersion == versionedEntryCacheModel.mvccVersion)) {

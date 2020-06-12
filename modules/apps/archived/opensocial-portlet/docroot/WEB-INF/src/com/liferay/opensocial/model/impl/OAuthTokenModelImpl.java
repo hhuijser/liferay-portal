@@ -658,16 +658,16 @@ public class OAuthTokenModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof OAuthToken)) {
+		if (!(obj instanceof OAuthToken)) {
 			return false;
 		}
 
-		OAuthToken oAuthToken = (OAuthToken)object;
+		OAuthToken oAuthToken = (OAuthToken)obj;
 
 		long primaryKey = oAuthToken.getPrimaryKey();
 

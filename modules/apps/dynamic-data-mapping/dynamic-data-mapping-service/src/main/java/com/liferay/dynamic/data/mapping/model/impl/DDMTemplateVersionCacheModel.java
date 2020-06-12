@@ -37,17 +37,17 @@ public class DDMTemplateVersionCacheModel
 	implements CacheModel<DDMTemplateVersion>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMTemplateVersionCacheModel)) {
+		if (!(obj instanceof DDMTemplateVersionCacheModel)) {
 			return false;
 		}
 
 		DDMTemplateVersionCacheModel ddmTemplateVersionCacheModel =
-			(DDMTemplateVersionCacheModel)object;
+			(DDMTemplateVersionCacheModel)obj;
 
 		if ((templateVersionId ==
 				ddmTemplateVersionCacheModel.templateVersionId) &&

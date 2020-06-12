@@ -35,17 +35,17 @@ public class TrashVersionCacheModel
 	implements CacheModel<TrashVersion>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof TrashVersionCacheModel)) {
+		if (!(obj instanceof TrashVersionCacheModel)) {
 			return false;
 		}
 
 		TrashVersionCacheModel trashVersionCacheModel =
-			(TrashVersionCacheModel)object;
+			(TrashVersionCacheModel)obj;
 
 		if ((versionId == trashVersionCacheModel.versionId) &&
 			(mvccVersion == trashVersionCacheModel.mvccVersion)) {

@@ -121,10 +121,10 @@ public class RoleFinderUtil {
 			long companyId, String keywords, Integer[] types,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc) {
+				<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getFinder().filterFindByKeywords(
-			companyId, keywords, types, params, start, end, obc);
+			companyId, keywords, types, params, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Role>
@@ -133,11 +133,11 @@ public class RoleFinderUtil {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc) {
+				<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getFinder().filterFindByC_N_D_T(
 			companyId, name, description, types, params, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Role>
@@ -146,11 +146,11 @@ public class RoleFinderUtil {
 			Integer[] types, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc) {
+				<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getFinder().filterFindByC_N_D_T(
 			companyId, names, descriptions, types, params, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Role>
@@ -169,10 +169,10 @@ public class RoleFinderUtil {
 			long companyId, String keywords, Integer[] types, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc) {
+				<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getFinder().findByKeywords(
-			companyId, keywords, types, start, end, obc);
+			companyId, keywords, types, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Role>
@@ -180,10 +180,10 @@ public class RoleFinderUtil {
 			long companyId, String keywords, Integer[] types,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc) {
+				<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getFinder().findByKeywords(
-			companyId, keywords, types, params, start, end, obc);
+			companyId, keywords, types, params, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Role>
@@ -251,11 +251,11 @@ public class RoleFinderUtil {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc) {
+				<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getFinder().findByC_N_D_T(
 			companyId, name, description, types, params, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Role>
@@ -264,11 +264,11 @@ public class RoleFinderUtil {
 			Integer[] types, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc) {
+				<com.liferay.portal.kernel.model.Role> orderByComparator) {
 
 		return getFinder().findByC_N_D_T(
 			companyId, names, descriptions, types, params, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static java.util.Map<String, java.util.List<String>> findByC_N_S_P(

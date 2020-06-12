@@ -37,17 +37,16 @@ public class ExpandoRowCacheModel
 	implements CacheModel<ExpandoRow>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ExpandoRowCacheModel)) {
+		if (!(obj instanceof ExpandoRowCacheModel)) {
 			return false;
 		}
 
-		ExpandoRowCacheModel expandoRowCacheModel =
-			(ExpandoRowCacheModel)object;
+		ExpandoRowCacheModel expandoRowCacheModel = (ExpandoRowCacheModel)obj;
 
 		if ((rowId == expandoRowCacheModel.rowId) &&
 			(mvccVersion == expandoRowCacheModel.mvccVersion)) {

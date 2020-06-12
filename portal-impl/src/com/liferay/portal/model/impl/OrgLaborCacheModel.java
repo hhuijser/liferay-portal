@@ -35,16 +35,16 @@ public class OrgLaborCacheModel
 	implements CacheModel<OrgLabor>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof OrgLaborCacheModel)) {
+		if (!(obj instanceof OrgLaborCacheModel)) {
 			return false;
 		}
 
-		OrgLaborCacheModel orgLaborCacheModel = (OrgLaborCacheModel)object;
+		OrgLaborCacheModel orgLaborCacheModel = (OrgLaborCacheModel)obj;
 
 		if ((orgLaborId == orgLaborCacheModel.orgLaborId) &&
 			(mvccVersion == orgLaborCacheModel.mvccVersion)) {

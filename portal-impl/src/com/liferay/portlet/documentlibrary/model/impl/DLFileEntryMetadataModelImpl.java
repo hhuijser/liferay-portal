@@ -548,16 +548,16 @@ public class DLFileEntryMetadataModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFileEntryMetadata)) {
+		if (!(obj instanceof DLFileEntryMetadata)) {
 			return false;
 		}
 
-		DLFileEntryMetadata dlFileEntryMetadata = (DLFileEntryMetadata)object;
+		DLFileEntryMetadata dlFileEntryMetadata = (DLFileEntryMetadata)obj;
 
 		long primaryKey = dlFileEntryMetadata.getPrimaryKey();
 

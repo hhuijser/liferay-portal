@@ -718,17 +718,17 @@ public class UserNotificationEventModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof UserNotificationEvent)) {
+		if (!(obj instanceof UserNotificationEvent)) {
 			return false;
 		}
 
 		UserNotificationEvent userNotificationEvent =
-			(UserNotificationEvent)object;
+			(UserNotificationEvent)obj;
 
 		long primaryKey = userNotificationEvent.getPrimaryKey();
 

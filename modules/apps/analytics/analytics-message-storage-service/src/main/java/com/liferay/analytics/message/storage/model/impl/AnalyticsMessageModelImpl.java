@@ -490,16 +490,16 @@ public class AnalyticsMessageModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AnalyticsMessage)) {
+		if (!(obj instanceof AnalyticsMessage)) {
 			return false;
 		}
 
-		AnalyticsMessage analyticsMessage = (AnalyticsMessage)object;
+		AnalyticsMessage analyticsMessage = (AnalyticsMessage)obj;
 
 		long primaryKey = analyticsMessage.getPrimaryKey();
 

@@ -580,16 +580,16 @@ public class CountryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Country)) {
+		if (!(obj instanceof Country)) {
 			return false;
 		}
 
-		Country country = (Country)object;
+		Country country = (Country)obj;
 
 		long primaryKey = country.getPrimaryKey();
 

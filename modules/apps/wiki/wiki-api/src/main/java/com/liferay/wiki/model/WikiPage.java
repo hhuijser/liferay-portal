@@ -76,14 +76,16 @@ public interface WikiPage extends PersistedModel, WikiPageModel {
 			getAttachmentsFileEntries(
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry>
 			getAttachmentsFileEntries(
 				String[] mimeTypes, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public int getAttachmentsFileEntriesCount()

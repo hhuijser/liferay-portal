@@ -35,16 +35,16 @@ import java.util.Date;
 public class FolderCacheModel implements CacheModel<Folder>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof FolderCacheModel)) {
+		if (!(obj instanceof FolderCacheModel)) {
 			return false;
 		}
 
-		FolderCacheModel folderCacheModel = (FolderCacheModel)object;
+		FolderCacheModel folderCacheModel = (FolderCacheModel)obj;
 
 		if (folderId == folderCacheModel.folderId) {
 			return true;

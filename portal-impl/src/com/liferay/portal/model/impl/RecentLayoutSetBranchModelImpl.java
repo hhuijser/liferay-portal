@@ -517,17 +517,17 @@ public class RecentLayoutSetBranchModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RecentLayoutSetBranch)) {
+		if (!(obj instanceof RecentLayoutSetBranch)) {
 			return false;
 		}
 
 		RecentLayoutSetBranch recentLayoutSetBranch =
-			(RecentLayoutSetBranch)object;
+			(RecentLayoutSetBranch)obj;
 
 		long primaryKey = recentLayoutSetBranch.getPrimaryKey();
 

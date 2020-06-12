@@ -546,17 +546,16 @@ public class RecentLayoutRevisionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RecentLayoutRevision)) {
+		if (!(obj instanceof RecentLayoutRevision)) {
 			return false;
 		}
 
-		RecentLayoutRevision recentLayoutRevision =
-			(RecentLayoutRevision)object;
+		RecentLayoutRevision recentLayoutRevision = (RecentLayoutRevision)obj;
 
 		long primaryKey = recentLayoutRevision.getPrimaryKey();
 

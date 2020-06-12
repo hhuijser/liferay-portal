@@ -564,16 +564,16 @@ public class MFAEmailOTPEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MFAEmailOTPEntry)) {
+		if (!(obj instanceof MFAEmailOTPEntry)) {
 			return false;
 		}
 
-		MFAEmailOTPEntry mfaEmailOTPEntry = (MFAEmailOTPEntry)object;
+		MFAEmailOTPEntry mfaEmailOTPEntry = (MFAEmailOTPEntry)obj;
 
 		long primaryKey = mfaEmailOTPEntry.getPrimaryKey();
 

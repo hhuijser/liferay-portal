@@ -334,7 +334,7 @@ public interface WikiPageLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getChildren(
 		long nodeId, boolean head, String parentTitle, int status, int start,
-		int end, OrderByComparator<WikiPage> obc);
+		int end, OrderByComparator<WikiPage> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getChildrenCount(long nodeId, boolean head, String parentTitle);
@@ -460,19 +460,20 @@ public interface WikiPageLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(
 		long nodeId, boolean head, int status, int start, int end,
-		OrderByComparator<WikiPage> obc);
+		OrderByComparator<WikiPage> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(
 		long nodeId, boolean head, int start, int end,
-		OrderByComparator<WikiPage> obc);
+		OrderByComparator<WikiPage> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(long nodeId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(
-		long nodeId, int start, int end, OrderByComparator<WikiPage> obc);
+		long nodeId, int start, int end,
+		OrderByComparator<WikiPage> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(
@@ -493,7 +494,7 @@ public interface WikiPageLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(
 		long nodeId, String title, int start, int end,
-		OrderByComparator<WikiPage> obc);
+		OrderByComparator<WikiPage> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(String format);

@@ -36,18 +36,18 @@ public class SocialActivityAchievementCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SocialActivityAchievementCacheModel)) {
+		if (!(obj instanceof SocialActivityAchievementCacheModel)) {
 			return false;
 		}
 
 		SocialActivityAchievementCacheModel
 			socialActivityAchievementCacheModel =
-				(SocialActivityAchievementCacheModel)object;
+				(SocialActivityAchievementCacheModel)obj;
 
 		if ((activityAchievementId ==
 				socialActivityAchievementCacheModel.activityAchievementId) &&

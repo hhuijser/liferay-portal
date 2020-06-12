@@ -34,18 +34,18 @@ public class LVEntryLocalizationVersionCacheModel
 	implements CacheModel<LVEntryLocalizationVersion>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LVEntryLocalizationVersionCacheModel)) {
+		if (!(obj instanceof LVEntryLocalizationVersionCacheModel)) {
 			return false;
 		}
 
 		LVEntryLocalizationVersionCacheModel
 			lvEntryLocalizationVersionCacheModel =
-				(LVEntryLocalizationVersionCacheModel)object;
+				(LVEntryLocalizationVersionCacheModel)obj;
 
 		if (lvEntryLocalizationVersionId ==
 				lvEntryLocalizationVersionCacheModel.

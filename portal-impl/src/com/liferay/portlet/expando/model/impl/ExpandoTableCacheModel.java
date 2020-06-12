@@ -35,17 +35,17 @@ public class ExpandoTableCacheModel
 	implements CacheModel<ExpandoTable>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ExpandoTableCacheModel)) {
+		if (!(obj instanceof ExpandoTableCacheModel)) {
 			return false;
 		}
 
 		ExpandoTableCacheModel expandoTableCacheModel =
-			(ExpandoTableCacheModel)object;
+			(ExpandoTableCacheModel)obj;
 
 		if ((tableId == expandoTableCacheModel.tableId) &&
 			(mvccVersion == expandoTableCacheModel.mvccVersion)) {

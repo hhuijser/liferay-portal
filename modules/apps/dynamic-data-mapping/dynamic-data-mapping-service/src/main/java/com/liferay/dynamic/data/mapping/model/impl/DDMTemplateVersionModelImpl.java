@@ -1231,16 +1231,16 @@ public class DDMTemplateVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMTemplateVersion)) {
+		if (!(obj instanceof DDMTemplateVersion)) {
 			return false;
 		}
 
-		DDMTemplateVersion ddmTemplateVersion = (DDMTemplateVersion)object;
+		DDMTemplateVersion ddmTemplateVersion = (DDMTemplateVersion)obj;
 
 		long primaryKey = ddmTemplateVersion.getPrimaryKey();
 

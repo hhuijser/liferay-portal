@@ -35,16 +35,16 @@ public class RSVEntryCacheModel
 	implements CacheModel<RSVEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof RSVEntryCacheModel)) {
+		if (!(obj instanceof RSVEntryCacheModel)) {
 			return false;
 		}
 
-		RSVEntryCacheModel rsvEntryCacheModel = (RSVEntryCacheModel)object;
+		RSVEntryCacheModel rsvEntryCacheModel = (RSVEntryCacheModel)obj;
 
 		if ((rsvEntryId == rsvEntryCacheModel.rsvEntryId) &&
 			(mvccVersion == rsvEntryCacheModel.mvccVersion)) {

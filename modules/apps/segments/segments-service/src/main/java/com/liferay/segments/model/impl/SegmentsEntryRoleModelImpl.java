@@ -515,16 +515,16 @@ public class SegmentsEntryRoleModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SegmentsEntryRole)) {
+		if (!(obj instanceof SegmentsEntryRole)) {
 			return false;
 		}
 
-		SegmentsEntryRole segmentsEntryRole = (SegmentsEntryRole)object;
+		SegmentsEntryRole segmentsEntryRole = (SegmentsEntryRole)obj;
 
 		long primaryKey = segmentsEntryRole.getPrimaryKey();
 

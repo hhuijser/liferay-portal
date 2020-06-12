@@ -36,17 +36,17 @@ public class SamlSpAuthRequestCacheModel
 	implements CacheModel<SamlSpAuthRequest>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SamlSpAuthRequestCacheModel)) {
+		if (!(obj instanceof SamlSpAuthRequestCacheModel)) {
 			return false;
 		}
 
 		SamlSpAuthRequestCacheModel samlSpAuthRequestCacheModel =
-			(SamlSpAuthRequestCacheModel)object;
+			(SamlSpAuthRequestCacheModel)obj;
 
 		if (samlSpAuthnRequestId ==
 				samlSpAuthRequestCacheModel.samlSpAuthnRequestId) {

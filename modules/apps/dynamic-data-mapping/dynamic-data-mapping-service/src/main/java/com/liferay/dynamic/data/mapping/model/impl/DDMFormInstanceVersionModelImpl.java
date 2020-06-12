@@ -1179,17 +1179,17 @@ public class DDMFormInstanceVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMFormInstanceVersion)) {
+		if (!(obj instanceof DDMFormInstanceVersion)) {
 			return false;
 		}
 
 		DDMFormInstanceVersion ddmFormInstanceVersion =
-			(DDMFormInstanceVersion)object;
+			(DDMFormInstanceVersion)obj;
 
 		long primaryKey = ddmFormInstanceVersion.getPrimaryKey();
 

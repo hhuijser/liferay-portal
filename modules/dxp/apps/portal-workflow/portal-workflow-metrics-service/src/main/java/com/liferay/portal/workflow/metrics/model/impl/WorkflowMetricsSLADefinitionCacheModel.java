@@ -38,18 +38,18 @@ public class WorkflowMetricsSLADefinitionCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WorkflowMetricsSLADefinitionCacheModel)) {
+		if (!(obj instanceof WorkflowMetricsSLADefinitionCacheModel)) {
 			return false;
 		}
 
 		WorkflowMetricsSLADefinitionCacheModel
 			workflowMetricsSLADefinitionCacheModel =
-				(WorkflowMetricsSLADefinitionCacheModel)object;
+				(WorkflowMetricsSLADefinitionCacheModel)obj;
 
 		if ((workflowMetricsSLADefinitionId ==
 				workflowMetricsSLADefinitionCacheModel.

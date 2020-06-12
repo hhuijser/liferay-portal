@@ -36,17 +36,17 @@ public class AppBuilderAppCacheModel
 	implements CacheModel<AppBuilderApp>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AppBuilderAppCacheModel)) {
+		if (!(obj instanceof AppBuilderAppCacheModel)) {
 			return false;
 		}
 
 		AppBuilderAppCacheModel appBuilderAppCacheModel =
-			(AppBuilderAppCacheModel)object;
+			(AppBuilderAppCacheModel)obj;
 
 		if (appBuilderAppId == appBuilderAppCacheModel.appBuilderAppId) {
 			return true;

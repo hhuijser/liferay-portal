@@ -594,16 +594,16 @@ public class AccountGroupModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AccountGroup)) {
+		if (!(obj instanceof AccountGroup)) {
 			return false;
 		}
 
-		AccountGroup accountGroup = (AccountGroup)object;
+		AccountGroup accountGroup = (AccountGroup)obj;
 
 		long primaryKey = accountGroup.getPrimaryKey();
 

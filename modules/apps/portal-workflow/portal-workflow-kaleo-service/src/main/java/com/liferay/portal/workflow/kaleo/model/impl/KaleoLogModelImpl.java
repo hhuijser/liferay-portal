@@ -1036,16 +1036,16 @@ public class KaleoLogModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoLog)) {
+		if (!(obj instanceof KaleoLog)) {
 			return false;
 		}
 
-		KaleoLog kaleoLog = (KaleoLog)object;
+		KaleoLog kaleoLog = (KaleoLog)obj;
 
 		long primaryKey = kaleoLog.getPrimaryKey();
 

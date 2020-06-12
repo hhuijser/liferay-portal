@@ -37,16 +37,16 @@ public class WikiNodeCacheModel
 	implements CacheModel<WikiNode>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WikiNodeCacheModel)) {
+		if (!(obj instanceof WikiNodeCacheModel)) {
 			return false;
 		}
 
-		WikiNodeCacheModel wikiNodeCacheModel = (WikiNodeCacheModel)object;
+		WikiNodeCacheModel wikiNodeCacheModel = (WikiNodeCacheModel)obj;
 
 		if ((nodeId == wikiNodeCacheModel.nodeId) &&
 			(mvccVersion == wikiNodeCacheModel.mvccVersion)) {

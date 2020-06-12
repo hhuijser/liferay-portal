@@ -37,17 +37,17 @@ public class KaleoTimerInstanceTokenCacheModel
 	implements CacheModel<KaleoTimerInstanceToken>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoTimerInstanceTokenCacheModel)) {
+		if (!(obj instanceof KaleoTimerInstanceTokenCacheModel)) {
 			return false;
 		}
 
 		KaleoTimerInstanceTokenCacheModel kaleoTimerInstanceTokenCacheModel =
-			(KaleoTimerInstanceTokenCacheModel)object;
+			(KaleoTimerInstanceTokenCacheModel)obj;
 
 		if ((kaleoTimerInstanceTokenId ==
 				kaleoTimerInstanceTokenCacheModel.kaleoTimerInstanceTokenId) &&

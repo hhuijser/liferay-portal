@@ -36,17 +36,17 @@ public class PowwowParticipantCacheModel
 	implements CacheModel<PowwowParticipant>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PowwowParticipantCacheModel)) {
+		if (!(obj instanceof PowwowParticipantCacheModel)) {
 			return false;
 		}
 
 		PowwowParticipantCacheModel powwowParticipantCacheModel =
-			(PowwowParticipantCacheModel)object;
+			(PowwowParticipantCacheModel)obj;
 
 		if (powwowParticipantId ==
 				powwowParticipantCacheModel.powwowParticipantId) {

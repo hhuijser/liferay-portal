@@ -37,17 +37,17 @@ public class KaleoTaskFormInstanceCacheModel
 	implements CacheModel<KaleoTaskFormInstance>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoTaskFormInstanceCacheModel)) {
+		if (!(obj instanceof KaleoTaskFormInstanceCacheModel)) {
 			return false;
 		}
 
 		KaleoTaskFormInstanceCacheModel kaleoTaskFormInstanceCacheModel =
-			(KaleoTaskFormInstanceCacheModel)object;
+			(KaleoTaskFormInstanceCacheModel)obj;
 
 		if ((kaleoTaskFormInstanceId ==
 				kaleoTaskFormInstanceCacheModel.kaleoTaskFormInstanceId) &&

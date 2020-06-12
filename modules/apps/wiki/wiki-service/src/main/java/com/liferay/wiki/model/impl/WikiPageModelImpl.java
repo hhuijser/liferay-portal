@@ -1346,16 +1346,16 @@ public class WikiPageModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WikiPage)) {
+		if (!(obj instanceof WikiPage)) {
 			return false;
 		}
 
-		WikiPage wikiPage = (WikiPage)object;
+		WikiPage wikiPage = (WikiPage)obj;
 
 		long primaryKey = wikiPage.getPrimaryKey();
 

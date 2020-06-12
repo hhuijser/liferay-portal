@@ -391,16 +391,16 @@ public class CTMessageModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTMessage)) {
+		if (!(obj instanceof CTMessage)) {
 			return false;
 		}
 
-		CTMessage ctMessage = (CTMessage)object;
+		CTMessage ctMessage = (CTMessage)obj;
 
 		long primaryKey = ctMessage.getPrimaryKey();
 

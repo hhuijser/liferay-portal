@@ -35,16 +35,16 @@ public class PortletCacheModel
 	implements CacheModel<Portlet>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PortletCacheModel)) {
+		if (!(obj instanceof PortletCacheModel)) {
 			return false;
 		}
 
-		PortletCacheModel portletCacheModel = (PortletCacheModel)object;
+		PortletCacheModel portletCacheModel = (PortletCacheModel)obj;
 
 		if ((id == portletCacheModel.id) &&
 			(mvccVersion == portletCacheModel.mvccVersion)) {

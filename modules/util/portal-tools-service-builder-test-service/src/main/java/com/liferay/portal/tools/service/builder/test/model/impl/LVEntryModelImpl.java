@@ -725,16 +725,16 @@ public class LVEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LVEntry)) {
+		if (!(obj instanceof LVEntry)) {
 			return false;
 		}
 
-		LVEntry lvEntry = (LVEntry)object;
+		LVEntry lvEntry = (LVEntry)obj;
 
 		long primaryKey = lvEntry.getPrimaryKey();
 

@@ -394,16 +394,16 @@ public class OrgGroupRoleModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof OrgGroupRole)) {
+		if (!(obj instanceof OrgGroupRole)) {
 			return false;
 		}
 
-		OrgGroupRole orgGroupRole = (OrgGroupRole)object;
+		OrgGroupRole orgGroupRole = (OrgGroupRole)obj;
 
 		OrgGroupRolePK primaryKey = orgGroupRole.getPrimaryKey();
 

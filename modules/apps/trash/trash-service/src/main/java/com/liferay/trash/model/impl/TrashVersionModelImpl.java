@@ -511,16 +511,16 @@ public class TrashVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof TrashVersion)) {
+		if (!(obj instanceof TrashVersion)) {
 			return false;
 		}
 
-		TrashVersion trashVersion = (TrashVersion)object;
+		TrashVersion trashVersion = (TrashVersion)obj;
 
 		long primaryKey = trashVersion.getPrimaryKey();
 

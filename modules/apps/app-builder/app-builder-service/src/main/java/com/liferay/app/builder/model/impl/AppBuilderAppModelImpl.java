@@ -846,16 +846,16 @@ public class AppBuilderAppModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AppBuilderApp)) {
+		if (!(obj instanceof AppBuilderApp)) {
 			return false;
 		}
 
-		AppBuilderApp appBuilderApp = (AppBuilderApp)object;
+		AppBuilderApp appBuilderApp = (AppBuilderApp)obj;
 
 		long primaryKey = appBuilderApp.getPrimaryKey();
 

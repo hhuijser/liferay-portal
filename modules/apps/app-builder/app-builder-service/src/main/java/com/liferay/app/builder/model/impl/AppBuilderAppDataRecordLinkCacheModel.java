@@ -34,18 +34,18 @@ public class AppBuilderAppDataRecordLinkCacheModel
 	implements CacheModel<AppBuilderAppDataRecordLink>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AppBuilderAppDataRecordLinkCacheModel)) {
+		if (!(obj instanceof AppBuilderAppDataRecordLinkCacheModel)) {
 			return false;
 		}
 
 		AppBuilderAppDataRecordLinkCacheModel
 			appBuilderAppDataRecordLinkCacheModel =
-				(AppBuilderAppDataRecordLinkCacheModel)object;
+				(AppBuilderAppDataRecordLinkCacheModel)obj;
 
 		if (appBuilderAppDataRecordLinkId ==
 				appBuilderAppDataRecordLinkCacheModel.

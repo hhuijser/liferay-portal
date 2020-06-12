@@ -36,18 +36,18 @@ public class AccountEntryOrganizationRelCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AccountEntryOrganizationRelCacheModel)) {
+		if (!(obj instanceof AccountEntryOrganizationRelCacheModel)) {
 			return false;
 		}
 
 		AccountEntryOrganizationRelCacheModel
 			accountEntryOrganizationRelCacheModel =
-				(AccountEntryOrganizationRelCacheModel)object;
+				(AccountEntryOrganizationRelCacheModel)obj;
 
 		if ((accountEntryOrganizationRelId ==
 				accountEntryOrganizationRelCacheModel.

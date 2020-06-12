@@ -37,16 +37,16 @@ public class TicketCacheModel
 	implements CacheModel<Ticket>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof TicketCacheModel)) {
+		if (!(obj instanceof TicketCacheModel)) {
 			return false;
 		}
 
-		TicketCacheModel ticketCacheModel = (TicketCacheModel)object;
+		TicketCacheModel ticketCacheModel = (TicketCacheModel)obj;
 
 		if ((ticketId == ticketCacheModel.ticketId) &&
 			(mvccVersion == ticketCacheModel.mvccVersion)) {

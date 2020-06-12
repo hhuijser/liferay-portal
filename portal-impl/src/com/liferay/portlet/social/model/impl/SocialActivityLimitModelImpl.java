@@ -644,16 +644,16 @@ public class SocialActivityLimitModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SocialActivityLimit)) {
+		if (!(obj instanceof SocialActivityLimit)) {
 			return false;
 		}
 
-		SocialActivityLimit socialActivityLimit = (SocialActivityLimit)object;
+		SocialActivityLimit socialActivityLimit = (SocialActivityLimit)obj;
 
 		long primaryKey = socialActivityLimit.getPrimaryKey();
 

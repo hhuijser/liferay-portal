@@ -37,17 +37,17 @@ public class DLFileEntryTypeCacheModel
 	implements CacheModel<DLFileEntryType>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFileEntryTypeCacheModel)) {
+		if (!(obj instanceof DLFileEntryTypeCacheModel)) {
 			return false;
 		}
 
 		DLFileEntryTypeCacheModel dlFileEntryTypeCacheModel =
-			(DLFileEntryTypeCacheModel)object;
+			(DLFileEntryTypeCacheModel)obj;
 
 		if ((fileEntryTypeId == dlFileEntryTypeCacheModel.fileEntryTypeId) &&
 			(mvccVersion == dlFileEntryTypeCacheModel.mvccVersion)) {

@@ -473,16 +473,16 @@ public class MBStatsUserModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof MBStatsUser)) {
+		if (!(obj instanceof MBStatsUser)) {
 			return false;
 		}
 
-		MBStatsUser mbStatsUser = (MBStatsUser)object;
+		MBStatsUser mbStatsUser = (MBStatsUser)obj;
 
 		long primaryKey = mbStatsUser.getPrimaryKey();
 

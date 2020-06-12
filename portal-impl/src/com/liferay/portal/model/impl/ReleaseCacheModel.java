@@ -37,16 +37,16 @@ public class ReleaseCacheModel
 	implements CacheModel<Release>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ReleaseCacheModel)) {
+		if (!(obj instanceof ReleaseCacheModel)) {
 			return false;
 		}
 
-		ReleaseCacheModel releaseCacheModel = (ReleaseCacheModel)object;
+		ReleaseCacheModel releaseCacheModel = (ReleaseCacheModel)obj;
 
 		if ((releaseId == releaseCacheModel.releaseId) &&
 			(mvccVersion == releaseCacheModel.mvccVersion)) {

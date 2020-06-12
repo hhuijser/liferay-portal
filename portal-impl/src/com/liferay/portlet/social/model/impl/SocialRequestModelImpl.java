@@ -827,16 +827,16 @@ public class SocialRequestModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SocialRequest)) {
+		if (!(obj instanceof SocialRequest)) {
 			return false;
 		}
 
-		SocialRequest socialRequest = (SocialRequest)object;
+		SocialRequest socialRequest = (SocialRequest)obj;
 
 		long primaryKey = socialRequest.getPrimaryKey();
 

@@ -37,16 +37,16 @@ public class KBCommentCacheModel
 	implements CacheModel<KBComment>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KBCommentCacheModel)) {
+		if (!(obj instanceof KBCommentCacheModel)) {
 			return false;
 		}
 
-		KBCommentCacheModel kbCommentCacheModel = (KBCommentCacheModel)object;
+		KBCommentCacheModel kbCommentCacheModel = (KBCommentCacheModel)obj;
 
 		if ((kbCommentId == kbCommentCacheModel.kbCommentId) &&
 			(mvccVersion == kbCommentCacheModel.mvccVersion)) {

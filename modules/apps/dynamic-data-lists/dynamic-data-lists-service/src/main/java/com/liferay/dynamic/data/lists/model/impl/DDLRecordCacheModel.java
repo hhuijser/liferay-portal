@@ -37,16 +37,16 @@ public class DDLRecordCacheModel
 	implements CacheModel<DDLRecord>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDLRecordCacheModel)) {
+		if (!(obj instanceof DDLRecordCacheModel)) {
 			return false;
 		}
 
-		DDLRecordCacheModel ddlRecordCacheModel = (DDLRecordCacheModel)object;
+		DDLRecordCacheModel ddlRecordCacheModel = (DDLRecordCacheModel)obj;
 
 		if ((recordId == ddlRecordCacheModel.recordId) &&
 			(mvccVersion == ddlRecordCacheModel.mvccVersion)) {

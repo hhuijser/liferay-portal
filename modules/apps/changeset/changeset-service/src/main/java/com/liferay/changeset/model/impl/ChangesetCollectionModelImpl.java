@@ -559,16 +559,16 @@ public class ChangesetCollectionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ChangesetCollection)) {
+		if (!(obj instanceof ChangesetCollection)) {
 			return false;
 		}
 
-		ChangesetCollection changesetCollection = (ChangesetCollection)object;
+		ChangesetCollection changesetCollection = (ChangesetCollection)obj;
 
 		long primaryKey = changesetCollection.getPrimaryKey();
 

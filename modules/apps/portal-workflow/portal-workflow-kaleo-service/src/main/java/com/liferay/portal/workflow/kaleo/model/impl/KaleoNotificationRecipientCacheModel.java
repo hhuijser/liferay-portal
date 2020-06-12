@@ -38,18 +38,18 @@ public class KaleoNotificationRecipientCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoNotificationRecipientCacheModel)) {
+		if (!(obj instanceof KaleoNotificationRecipientCacheModel)) {
 			return false;
 		}
 
 		KaleoNotificationRecipientCacheModel
 			kaleoNotificationRecipientCacheModel =
-				(KaleoNotificationRecipientCacheModel)object;
+				(KaleoNotificationRecipientCacheModel)obj;
 
 		if ((kaleoNotificationRecipientId ==
 				kaleoNotificationRecipientCacheModel.

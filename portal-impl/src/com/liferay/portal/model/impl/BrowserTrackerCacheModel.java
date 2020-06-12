@@ -35,17 +35,17 @@ public class BrowserTrackerCacheModel
 	implements CacheModel<BrowserTracker>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BrowserTrackerCacheModel)) {
+		if (!(obj instanceof BrowserTrackerCacheModel)) {
 			return false;
 		}
 
 		BrowserTrackerCacheModel browserTrackerCacheModel =
-			(BrowserTrackerCacheModel)object;
+			(BrowserTrackerCacheModel)obj;
 
 		if ((browserTrackerId == browserTrackerCacheModel.browserTrackerId) &&
 			(mvccVersion == browserTrackerCacheModel.mvccVersion)) {

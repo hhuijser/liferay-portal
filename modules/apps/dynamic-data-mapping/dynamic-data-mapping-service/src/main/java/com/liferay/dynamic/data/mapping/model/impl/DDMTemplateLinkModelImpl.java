@@ -478,16 +478,16 @@ public class DDMTemplateLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMTemplateLink)) {
+		if (!(obj instanceof DDMTemplateLink)) {
 			return false;
 		}
 
-		DDMTemplateLink ddmTemplateLink = (DDMTemplateLink)object;
+		DDMTemplateLink ddmTemplateLink = (DDMTemplateLink)obj;
 
 		long primaryKey = ddmTemplateLink.getPrimaryKey();
 

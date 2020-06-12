@@ -518,16 +518,16 @@ public class VirtualHostModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof VirtualHost)) {
+		if (!(obj instanceof VirtualHost)) {
 			return false;
 		}
 
-		VirtualHost virtualHost = (VirtualHost)object;
+		VirtualHost virtualHost = (VirtualHost)obj;
 
 		long primaryKey = virtualHost.getPrimaryKey();
 

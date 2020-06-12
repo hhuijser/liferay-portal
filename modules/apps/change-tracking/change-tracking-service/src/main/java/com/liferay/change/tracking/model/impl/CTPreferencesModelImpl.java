@@ -494,16 +494,16 @@ public class CTPreferencesModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTPreferences)) {
+		if (!(obj instanceof CTPreferences)) {
 			return false;
 		}
 
-		CTPreferences ctPreferences = (CTPreferences)object;
+		CTPreferences ctPreferences = (CTPreferences)obj;
 
 		long primaryKey = ctPreferences.getPrimaryKey();
 

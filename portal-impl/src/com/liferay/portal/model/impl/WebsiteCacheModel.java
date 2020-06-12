@@ -37,16 +37,16 @@ public class WebsiteCacheModel
 	implements CacheModel<Website>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WebsiteCacheModel)) {
+		if (!(obj instanceof WebsiteCacheModel)) {
 			return false;
 		}
 
-		WebsiteCacheModel websiteCacheModel = (WebsiteCacheModel)object;
+		WebsiteCacheModel websiteCacheModel = (WebsiteCacheModel)obj;
 
 		if ((websiteId == websiteCacheModel.websiteId) &&
 			(mvccVersion == websiteCacheModel.mvccVersion)) {

@@ -37,16 +37,16 @@ public class DLFolderCacheModel
 	implements CacheModel<DLFolder>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLFolderCacheModel)) {
+		if (!(obj instanceof DLFolderCacheModel)) {
 			return false;
 		}
 
-		DLFolderCacheModel dlFolderCacheModel = (DLFolderCacheModel)object;
+		DLFolderCacheModel dlFolderCacheModel = (DLFolderCacheModel)obj;
 
 		if ((folderId == dlFolderCacheModel.folderId) &&
 			(mvccVersion == dlFolderCacheModel.mvccVersion)) {

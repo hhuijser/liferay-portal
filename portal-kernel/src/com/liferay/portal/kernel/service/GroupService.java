@@ -429,7 +429,7 @@ public interface GroupService extends BaseService {
 	public List<Group> search(
 			long companyId, long[] classNameIds, String keywords,
 			LinkedHashMap<String, Object> params, int start, int end,
-			OrderByComparator<Group> obc)
+			OrderByComparator<Group> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -437,7 +437,7 @@ public interface GroupService extends BaseService {
 			long companyId, long[] classNameIds, String name,
 			String description, LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
-			OrderByComparator<Group> obc)
+			OrderByComparator<Group> orderByComparator)
 		throws PortalException;
 
 	/**

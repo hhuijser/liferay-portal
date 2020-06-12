@@ -39,17 +39,17 @@ public class BatchEngineExportTaskCacheModel
 	implements CacheModel<BatchEngineExportTask>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BatchEngineExportTaskCacheModel)) {
+		if (!(obj instanceof BatchEngineExportTaskCacheModel)) {
 			return false;
 		}
 
 		BatchEngineExportTaskCacheModel batchEngineExportTaskCacheModel =
-			(BatchEngineExportTaskCacheModel)object;
+			(BatchEngineExportTaskCacheModel)obj;
 
 		if ((batchEngineExportTaskId ==
 				batchEngineExportTaskCacheModel.batchEngineExportTaskId) &&

@@ -34,17 +34,17 @@ public class LazyBlobEntityCacheModel
 	implements CacheModel<LazyBlobEntity>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LazyBlobEntityCacheModel)) {
+		if (!(obj instanceof LazyBlobEntityCacheModel)) {
 			return false;
 		}
 
 		LazyBlobEntityCacheModel lazyBlobEntityCacheModel =
-			(LazyBlobEntityCacheModel)object;
+			(LazyBlobEntityCacheModel)obj;
 
 		if (lazyBlobEntityId == lazyBlobEntityCacheModel.lazyBlobEntityId) {
 			return true;

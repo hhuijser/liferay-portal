@@ -325,16 +325,16 @@ public class TestEntityModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof TestEntity)) {
+		if (!(obj instanceof TestEntity)) {
 			return false;
 		}
 
-		TestEntity testEntity = (TestEntity)object;
+		TestEntity testEntity = (TestEntity)obj;
 
 		long primaryKey = testEntity.getPrimaryKey();
 

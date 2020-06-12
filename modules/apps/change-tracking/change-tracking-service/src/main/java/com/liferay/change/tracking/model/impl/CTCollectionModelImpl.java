@@ -621,16 +621,16 @@ public class CTCollectionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTCollection)) {
+		if (!(obj instanceof CTCollection)) {
 			return false;
 		}
 
-		CTCollection ctCollection = (CTCollection)object;
+		CTCollection ctCollection = (CTCollection)obj;
 
 		long primaryKey = ctCollection.getPrimaryKey();
 

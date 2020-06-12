@@ -35,17 +35,17 @@ public class JournalArticleResourceCacheModel
 	implements CacheModel<JournalArticleResource>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof JournalArticleResourceCacheModel)) {
+		if (!(obj instanceof JournalArticleResourceCacheModel)) {
 			return false;
 		}
 
 		JournalArticleResourceCacheModel journalArticleResourceCacheModel =
-			(JournalArticleResourceCacheModel)object;
+			(JournalArticleResourceCacheModel)obj;
 
 		if ((resourcePrimKey ==
 				journalArticleResourceCacheModel.resourcePrimKey) &&

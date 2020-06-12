@@ -37,17 +37,17 @@ public class JournalFeedCacheModel
 	implements CacheModel<JournalFeed>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof JournalFeedCacheModel)) {
+		if (!(obj instanceof JournalFeedCacheModel)) {
 			return false;
 		}
 
 		JournalFeedCacheModel journalFeedCacheModel =
-			(JournalFeedCacheModel)object;
+			(JournalFeedCacheModel)obj;
 
 		if ((id == journalFeedCacheModel.id) &&
 			(mvccVersion == journalFeedCacheModel.mvccVersion)) {

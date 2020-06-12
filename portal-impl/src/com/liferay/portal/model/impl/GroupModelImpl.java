@@ -1383,16 +1383,16 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Group)) {
+		if (!(obj instanceof Group)) {
 			return false;
 		}
 
-		Group group = (Group)object;
+		Group group = (Group)obj;
 
 		long primaryKey = group.getPrimaryKey();
 

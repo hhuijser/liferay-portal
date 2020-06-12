@@ -447,17 +447,17 @@ public class DDMDataProviderInstanceLinkModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMDataProviderInstanceLink)) {
+		if (!(obj instanceof DDMDataProviderInstanceLink)) {
 			return false;
 		}
 
 		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
-			(DDMDataProviderInstanceLink)object;
+			(DDMDataProviderInstanceLink)obj;
 
 		long primaryKey = ddmDataProviderInstanceLink.getPrimaryKey();
 

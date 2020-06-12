@@ -37,17 +37,17 @@ public class DDMStructureCacheModel
 	implements CacheModel<DDMStructure>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DDMStructureCacheModel)) {
+		if (!(obj instanceof DDMStructureCacheModel)) {
 			return false;
 		}
 
 		DDMStructureCacheModel ddmStructureCacheModel =
-			(DDMStructureCacheModel)object;
+			(DDMStructureCacheModel)obj;
 
 		if ((structureId == ddmStructureCacheModel.structureId) &&
 			(mvccVersion == ddmStructureCacheModel.mvccVersion)) {

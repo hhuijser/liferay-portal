@@ -734,16 +734,16 @@ public class AccountEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AccountEntry)) {
+		if (!(obj instanceof AccountEntry)) {
 			return false;
 		}
 
-		AccountEntry accountEntry = (AccountEntry)object;
+		AccountEntry accountEntry = (AccountEntry)obj;
 
 		long primaryKey = accountEntry.getPrimaryKey();
 

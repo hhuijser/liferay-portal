@@ -430,16 +430,16 @@ public class EagerBlobEntityModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof EagerBlobEntity)) {
+		if (!(obj instanceof EagerBlobEntity)) {
 			return false;
 		}
 
-		EagerBlobEntity eagerBlobEntity = (EagerBlobEntity)object;
+		EagerBlobEntity eagerBlobEntity = (EagerBlobEntity)obj;
 
 		long primaryKey = eagerBlobEntity.getPrimaryKey();
 

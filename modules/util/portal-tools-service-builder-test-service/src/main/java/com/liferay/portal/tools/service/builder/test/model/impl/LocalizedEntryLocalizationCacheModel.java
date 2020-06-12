@@ -36,18 +36,18 @@ public class LocalizedEntryLocalizationCacheModel
 			   MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LocalizedEntryLocalizationCacheModel)) {
+		if (!(obj instanceof LocalizedEntryLocalizationCacheModel)) {
 			return false;
 		}
 
 		LocalizedEntryLocalizationCacheModel
 			localizedEntryLocalizationCacheModel =
-				(LocalizedEntryLocalizationCacheModel)object;
+				(LocalizedEntryLocalizationCacheModel)obj;
 
 		if ((localizedEntryLocalizationId ==
 				localizedEntryLocalizationCacheModel.

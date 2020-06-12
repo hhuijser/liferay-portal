@@ -37,16 +37,16 @@ public class AddressCacheModel
 	implements CacheModel<Address>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AddressCacheModel)) {
+		if (!(obj instanceof AddressCacheModel)) {
 			return false;
 		}
 
-		AddressCacheModel addressCacheModel = (AddressCacheModel)object;
+		AddressCacheModel addressCacheModel = (AddressCacheModel)obj;
 
 		if ((addressId == addressCacheModel.addressId) &&
 			(mvccVersion == addressCacheModel.mvccVersion)) {

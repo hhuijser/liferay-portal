@@ -113,18 +113,20 @@ public class TrashEntryServiceWrapper
 	 * @param start the lower bound of the range of trash entries to return
 	 * @param end the upper bound of the range of trash entries to return (not
 	 inclusive)
-	 * @param obc the comparator to order the trash entries (optionally
+	 * @param orderByComparator the comparator to order the trash entries (optionally
 	 <code>null</code>)
 	 * @return the range of matching trash entries ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 */
 	@Override
 	public com.liferay.trash.model.TrashEntryList getEntries(
 			long groupId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
+				orderByComparator)
 		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
-		return _trashEntryService.getEntries(groupId, start, end, obc);
+		return _trashEntryService.getEntries(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -142,19 +144,20 @@ public class TrashEntryServiceWrapper
 	 * @param start the lower bound of the range of trash entries to return
 	 * @param end the upper bound of the range of trash entries to return (not
 	 inclusive)
-	 * @param obc the comparator to order the trash entries (optionally
+	 * @param orderByComparator the comparator to order the trash entries (optionally
 	 <code>null</code>)
 	 * @return the range of matching trash entries ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 */
 	@Override
 	public com.liferay.trash.model.TrashEntryList getEntries(
 			long groupId, String className, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
+				orderByComparator)
 		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		return _trashEntryService.getEntries(
-			groupId, className, start, end, obc);
+			groupId, className, start, end, orderByComparator);
 	}
 
 	/**

@@ -37,17 +37,17 @@ public class AssetAutoTaggerEntryCacheModel
 	implements CacheModel<AssetAutoTaggerEntry>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetAutoTaggerEntryCacheModel)) {
+		if (!(obj instanceof AssetAutoTaggerEntryCacheModel)) {
 			return false;
 		}
 
 		AssetAutoTaggerEntryCacheModel assetAutoTaggerEntryCacheModel =
-			(AssetAutoTaggerEntryCacheModel)object;
+			(AssetAutoTaggerEntryCacheModel)obj;
 
 		if ((assetAutoTaggerEntryId ==
 				assetAutoTaggerEntryCacheModel.assetAutoTaggerEntryId) &&

@@ -36,17 +36,17 @@ public class PushNotificationsDeviceCacheModel
 	implements CacheModel<PushNotificationsDevice>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof PushNotificationsDeviceCacheModel)) {
+		if (!(obj instanceof PushNotificationsDeviceCacheModel)) {
 			return false;
 		}
 
 		PushNotificationsDeviceCacheModel pushNotificationsDeviceCacheModel =
-			(PushNotificationsDeviceCacheModel)object;
+			(PushNotificationsDeviceCacheModel)obj;
 
 		if (pushNotificationsDeviceId ==
 				pushNotificationsDeviceCacheModel.pushNotificationsDeviceId) {

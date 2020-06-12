@@ -426,16 +426,16 @@ public class ExpandoRowModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof ExpandoRow)) {
+		if (!(obj instanceof ExpandoRow)) {
 			return false;
 		}
 
-		ExpandoRow expandoRow = (ExpandoRow)object;
+		ExpandoRow expandoRow = (ExpandoRow)obj;
 
 		long primaryKey = expandoRow.getPrimaryKey();
 

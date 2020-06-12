@@ -37,17 +37,17 @@ public class LayoutRevisionCacheModel
 	implements CacheModel<LayoutRevision>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LayoutRevisionCacheModel)) {
+		if (!(obj instanceof LayoutRevisionCacheModel)) {
 			return false;
 		}
 
 		LayoutRevisionCacheModel layoutRevisionCacheModel =
-			(LayoutRevisionCacheModel)object;
+			(LayoutRevisionCacheModel)obj;
 
 		if ((layoutRevisionId == layoutRevisionCacheModel.layoutRevisionId) &&
 			(mvccVersion == layoutRevisionCacheModel.mvccVersion)) {

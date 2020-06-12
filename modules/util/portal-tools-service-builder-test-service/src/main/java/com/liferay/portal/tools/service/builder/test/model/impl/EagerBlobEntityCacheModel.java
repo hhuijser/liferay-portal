@@ -34,17 +34,17 @@ public class EagerBlobEntityCacheModel
 	implements CacheModel<EagerBlobEntity>, Externalizable {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof EagerBlobEntityCacheModel)) {
+		if (!(obj instanceof EagerBlobEntityCacheModel)) {
 			return false;
 		}
 
 		EagerBlobEntityCacheModel eagerBlobEntityCacheModel =
-			(EagerBlobEntityCacheModel)object;
+			(EagerBlobEntityCacheModel)obj;
 
 		if (eagerBlobEntityId == eagerBlobEntityCacheModel.eagerBlobEntityId) {
 			return true;

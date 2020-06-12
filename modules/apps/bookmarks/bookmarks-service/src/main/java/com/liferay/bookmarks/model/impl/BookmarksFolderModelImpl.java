@@ -1116,16 +1116,16 @@ public class BookmarksFolderModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BookmarksFolder)) {
+		if (!(obj instanceof BookmarksFolder)) {
 			return false;
 		}
 
-		BookmarksFolder bookmarksFolder = (BookmarksFolder)object;
+		BookmarksFolder bookmarksFolder = (BookmarksFolder)obj;
 
 		long primaryKey = bookmarksFolder.getPrimaryKey();
 

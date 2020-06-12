@@ -37,17 +37,17 @@ public class AccountGroupCacheModel
 	implements CacheModel<AccountGroup>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AccountGroupCacheModel)) {
+		if (!(obj instanceof AccountGroupCacheModel)) {
 			return false;
 		}
 
 		AccountGroupCacheModel accountGroupCacheModel =
-			(AccountGroupCacheModel)object;
+			(AccountGroupCacheModel)obj;
 
 		if ((accountGroupId == accountGroupCacheModel.accountGroupId) &&
 			(mvccVersion == accountGroupCacheModel.mvccVersion)) {

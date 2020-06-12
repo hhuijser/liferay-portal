@@ -463,17 +463,17 @@ public class DepotAppCustomizationModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DepotAppCustomization)) {
+		if (!(obj instanceof DepotAppCustomization)) {
 			return false;
 		}
 
 		DepotAppCustomization depotAppCustomization =
-			(DepotAppCustomization)object;
+			(DepotAppCustomization)obj;
 
 		long primaryKey = depotAppCustomization.getPrimaryKey();
 

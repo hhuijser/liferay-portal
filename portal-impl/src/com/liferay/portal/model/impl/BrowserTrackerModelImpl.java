@@ -421,16 +421,16 @@ public class BrowserTrackerModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BrowserTracker)) {
+		if (!(obj instanceof BrowserTracker)) {
 			return false;
 		}
 
-		BrowserTracker browserTracker = (BrowserTracker)object;
+		BrowserTracker browserTracker = (BrowserTracker)obj;
 
 		long primaryKey = browserTracker.getPrimaryKey();
 

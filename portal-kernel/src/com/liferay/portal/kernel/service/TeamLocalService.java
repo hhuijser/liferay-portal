@@ -415,7 +415,7 @@ public interface TeamLocalService
 	public List<Team> search(
 		long groupId, String name, String description,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Team> obc);
+		OrderByComparator<Team> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(

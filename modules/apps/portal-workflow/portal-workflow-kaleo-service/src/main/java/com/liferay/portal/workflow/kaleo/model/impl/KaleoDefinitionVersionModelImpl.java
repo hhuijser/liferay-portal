@@ -1010,17 +1010,17 @@ public class KaleoDefinitionVersionModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof KaleoDefinitionVersion)) {
+		if (!(obj instanceof KaleoDefinitionVersion)) {
 			return false;
 		}
 
 		KaleoDefinitionVersion kaleoDefinitionVersion =
-			(KaleoDefinitionVersion)object;
+			(KaleoDefinitionVersion)obj;
 
 		long primaryKey = kaleoDefinitionVersion.getPrimaryKey();
 

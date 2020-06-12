@@ -37,17 +37,17 @@ public class BookmarksFolderCacheModel
 	implements CacheModel<BookmarksFolder>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof BookmarksFolderCacheModel)) {
+		if (!(obj instanceof BookmarksFolderCacheModel)) {
 			return false;
 		}
 
 		BookmarksFolderCacheModel bookmarksFolderCacheModel =
-			(BookmarksFolderCacheModel)object;
+			(BookmarksFolderCacheModel)obj;
 
 		if ((folderId == bookmarksFolderCacheModel.folderId) &&
 			(mvccVersion == bookmarksFolderCacheModel.mvccVersion)) {

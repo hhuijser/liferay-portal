@@ -37,17 +37,17 @@ public class SiteFriendlyURLCacheModel
 	implements CacheModel<SiteFriendlyURL>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SiteFriendlyURLCacheModel)) {
+		if (!(obj instanceof SiteFriendlyURLCacheModel)) {
 			return false;
 		}
 
 		SiteFriendlyURLCacheModel siteFriendlyURLCacheModel =
-			(SiteFriendlyURLCacheModel)object;
+			(SiteFriendlyURLCacheModel)obj;
 
 		if ((siteFriendlyURLId ==
 				siteFriendlyURLCacheModel.siteFriendlyURLId) &&

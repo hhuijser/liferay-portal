@@ -531,16 +531,16 @@ public class DLContentModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof DLContent)) {
+		if (!(obj instanceof DLContent)) {
 			return false;
 		}
 
-		DLContent dlContent = (DLContent)object;
+		DLContent dlContent = (DLContent)obj;
 
 		long primaryKey = dlContent.getPrimaryKey();
 

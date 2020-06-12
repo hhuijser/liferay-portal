@@ -909,16 +909,16 @@ public class SegmentsExperimentModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof SegmentsExperiment)) {
+		if (!(obj instanceof SegmentsExperiment)) {
 			return false;
 		}
 
-		SegmentsExperiment segmentsExperiment = (SegmentsExperiment)object;
+		SegmentsExperiment segmentsExperiment = (SegmentsExperiment)obj;
 
 		long primaryKey = segmentsExperiment.getPrimaryKey();
 

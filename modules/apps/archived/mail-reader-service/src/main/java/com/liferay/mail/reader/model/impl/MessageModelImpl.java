@@ -718,16 +718,16 @@ public class MessageModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof Message)) {
+		if (!(obj instanceof Message)) {
 			return false;
 		}
 
-		Message message = (Message)object;
+		Message message = (Message)obj;
 
 		long primaryKey = message.getPrimaryKey();
 

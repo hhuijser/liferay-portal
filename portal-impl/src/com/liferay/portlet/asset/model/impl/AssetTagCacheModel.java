@@ -37,16 +37,16 @@ public class AssetTagCacheModel
 	implements CacheModel<AssetTag>, Externalizable, MVCCModel {
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof AssetTagCacheModel)) {
+		if (!(obj instanceof AssetTagCacheModel)) {
 			return false;
 		}
 
-		AssetTagCacheModel assetTagCacheModel = (AssetTagCacheModel)object;
+		AssetTagCacheModel assetTagCacheModel = (AssetTagCacheModel)obj;
 
 		if ((tagId == assetTagCacheModel.tagId) &&
 			(mvccVersion == assetTagCacheModel.mvccVersion)) {

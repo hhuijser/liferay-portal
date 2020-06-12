@@ -661,17 +661,17 @@ public class LayoutPageTemplateStructureRelModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof LayoutPageTemplateStructureRel)) {
+		if (!(obj instanceof LayoutPageTemplateStructureRel)) {
 			return false;
 		}
 
 		LayoutPageTemplateStructureRel layoutPageTemplateStructureRel =
-			(LayoutPageTemplateStructureRel)object;
+			(LayoutPageTemplateStructureRel)obj;
 
 		long primaryKey = layoutPageTemplateStructureRel.getPrimaryKey();
 

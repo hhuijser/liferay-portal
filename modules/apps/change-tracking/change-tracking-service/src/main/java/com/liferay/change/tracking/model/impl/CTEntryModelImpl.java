@@ -533,16 +533,16 @@ public class CTEntryModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof CTEntry)) {
+		if (!(obj instanceof CTEntry)) {
 			return false;
 		}
 
-		CTEntry ctEntry = (CTEntry)object;
+		CTEntry ctEntry = (CTEntry)obj;
 
 		long primaryKey = ctEntry.getPrimaryKey();
 

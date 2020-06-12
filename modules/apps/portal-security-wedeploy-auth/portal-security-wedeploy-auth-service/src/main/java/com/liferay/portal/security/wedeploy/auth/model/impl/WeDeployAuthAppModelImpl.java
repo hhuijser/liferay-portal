@@ -619,16 +619,16 @@ public class WeDeployAuthAppModelImpl
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if (!(object instanceof WeDeployAuthApp)) {
+		if (!(obj instanceof WeDeployAuthApp)) {
 			return false;
 		}
 
-		WeDeployAuthApp weDeployAuthApp = (WeDeployAuthApp)object;
+		WeDeployAuthApp weDeployAuthApp = (WeDeployAuthApp)obj;
 
 		long primaryKey = weDeployAuthApp.getPrimaryKey();
 

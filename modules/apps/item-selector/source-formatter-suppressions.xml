@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<suppressions>
+	<checkstyle>
+		<suppress checks="GenericTypeCheck" files="item-selector-api/src/main/java/com/liferay/item/selector/BaseItemSelectorCriterionHandler\.java" />
+	</checkstyle>
+</suppressions>

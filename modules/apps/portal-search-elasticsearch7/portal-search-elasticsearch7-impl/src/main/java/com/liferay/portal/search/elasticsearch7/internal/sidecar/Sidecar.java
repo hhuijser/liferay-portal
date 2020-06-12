@@ -98,7 +98,8 @@ public class Sidecar {
 			_log.info("Starting sidecar Elasticsearch");
 		}
 
-		ProcessChannel processChannel = executeSidecarMainProcess();
+		ProcessChannel<Serializable> processChannel =
+			executeSidecarMainProcess();
 
 		FutureListener<Serializable> futureListener =
 			new RestartFutureListener();
@@ -158,7 +159,7 @@ public class Sidecar {
 	}
 
 	protected static void addFutureListener(
-		ProcessChannel processChannel,
+		ProcessChannel<Serializable> processChannel,
 		FutureListener<Serializable> futureListener) {
 
 		NoticeableFuture<Serializable> noticeableFuture =
@@ -179,7 +180,7 @@ public class Sidecar {
 
 	protected static String waitForPublishedAddress(
 		NoticeableFuture<String> noticeableFuture,
-		ProcessChannel processChannel) {
+		ProcessChannel<Serializable> processChannel) {
 
 		try {
 			return noticeableFuture.get();
@@ -214,7 +215,7 @@ public class Sidecar {
 		}
 	}
 
-	protected ProcessChannel executeSidecarMainProcess() {
+	protected ProcessChannel<Serializable> executeSidecarMainProcess() {
 		String sidecarLibClassPath = _createClasspath(
 			_sidecarHomePath.resolve("lib"), path -> true);
 
@@ -303,7 +304,9 @@ public class Sidecar {
 		).build();
 	}
 
-	protected String startElasticsearch(ProcessChannel processChannel) {
+	protected String startElasticsearch(
+		ProcessChannel<Serializable> processChannel) {
+
 		NoticeableFuture<String> noticeableFuture = processChannel.write(
 			new StartSidecarProcessCallable(_getSidecarArguments()));
 

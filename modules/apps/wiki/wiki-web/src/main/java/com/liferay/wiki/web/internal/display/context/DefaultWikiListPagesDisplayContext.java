@@ -251,7 +251,7 @@ public class DefaultWikiListPagesDisplayContext
 
 			searchContainer.setTotal(total);
 
-			OrderByComparator<WikiPage> obc =
+			OrderByComparator<WikiPage> orderByComparator =
 				WikiPortletUtil.getPageOrderByComparator(
 					searchContainer.getOrderByCol(),
 					searchContainer.getOrderByType());
@@ -260,7 +260,7 @@ public class DefaultWikiListPagesDisplayContext
 				themeDisplay.getScopeGroupId(), _wikiNode.getNodeId(), true,
 				themeDisplay.getUserId(), true,
 				WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(),
-				searchContainer.getEnd(), obc);
+				searchContainer.getEnd(), orderByComparator);
 
 			PermissionChecker permissionChecker =
 				_wikiRequestHelper.getPermissionChecker();

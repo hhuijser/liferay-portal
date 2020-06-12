@@ -431,7 +431,7 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 
 	@Override
 	public List<FileEntry> getImagesFileEntries(
-			int start, int end, OrderByComparator<FileEntry> obc)
+			int start, int end, OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		long imagesFolderId = getImagesFolderId();
@@ -442,7 +442,7 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 
 		return PortletFileRepositoryUtil.getPortletFileEntries(
 			getGroupId(), imagesFolderId, WorkflowConstants.STATUS_APPROVED,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	@Override

@@ -663,12 +663,14 @@ public class CustomSQLImpl implements CustomSQL {
 	}
 
 	@Override
-	public String replaceOrderBy(String sql, OrderByComparator<?> obc) {
-		if (obc == null) {
+	public String replaceOrderBy(
+		String sql, OrderByComparator<?> orderByComparator) {
+
+		if (orderByComparator == null) {
 			return sql;
 		}
 
-		String orderBy = obc.getOrderBy();
+		String orderBy = orderByComparator.getOrderBy();
 
 		int pos = sql.indexOf(_ORDER_BY_CLAUSE);
 

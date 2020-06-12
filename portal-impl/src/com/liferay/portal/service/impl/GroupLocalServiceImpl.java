@@ -1445,17 +1445,17 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
 	 * @return the active or inactive groups
 	 */
 	@Override
 	public List<Group> getActiveGroups(
 		long companyId, boolean site, boolean active, int start, int end,
-		OrderByComparator<Group> obc) {
+		OrderByComparator<Group> orderByComparator) {
 
 		return groupPersistence.findByC_S_A(
-			companyId, site, active, start, end, obc);
+			companyId, site, active, start, end, orderByComparator);
 	}
 
 	/**
@@ -1476,16 +1476,17 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
 	 * @return the active or inactive groups
 	 */
 	@Override
 	public List<Group> getActiveGroups(
 		long companyId, boolean active, int start, int end,
-		OrderByComparator<Group> obc) {
+		OrderByComparator<Group> orderByComparator) {
 
-		return groupPersistence.findByC_A(companyId, active, start, end, obc);
+		return groupPersistence.findByC_A(
+			companyId, active, start, end, orderByComparator);
 	}
 
 	/**
@@ -1893,18 +1894,19 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
 	 * @return the range of matching groups ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> getLayoutsGroups(
 		long companyId, long parentGroupId, boolean site, boolean active,
-		int start, int end, OrderByComparator<Group> obc) {
+		int start, int end, OrderByComparator<Group> orderByComparator) {
 
 		return groupFinder.findByLayouts(
-			companyId, parentGroupId, site, active, start, end, obc);
+			companyId, parentGroupId, site, active, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -1926,18 +1928,19 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
 	 * @return the range of matching groups ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> getLayoutsGroups(
 		long companyId, long parentGroupId, boolean site, int start, int end,
-		OrderByComparator<Group> obc) {
+		OrderByComparator<Group> orderByComparator) {
 
 		return groupFinder.findByLayouts(
-			companyId, parentGroupId, site, null, start, end, obc);
+			companyId, parentGroupId, site, null, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -2595,19 +2598,19 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
-	 * @return the matching groups ordered by comparator <code>obc</code>
+	 * @return the matching groups ordered by comparator <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> search(
 		long companyId, long parentGroupId, String keywords,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Group> obc) {
+		OrderByComparator<Group> orderByComparator) {
 
 		return search(
 			companyId, getClassNameIds(), parentGroupId, keywords, params,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -2685,19 +2688,19 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
-	 * @return the matching groups ordered by comparator <code>obc</code>
+	 * @return the matching groups ordered by comparator <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> search(
 		long companyId, long parentGroupId, String name, String description,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Group> obc) {
+		int end, OrderByComparator<Group> orderByComparator) {
 
 		return search(
 			companyId, getClassNameIds(), parentGroupId, name, description,
-			params, andOperator, start, end, obc);
+			params, andOperator, start, end, orderByComparator);
 	}
 
 	/**
@@ -2775,15 +2778,15 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
-	 * @return the matching groups ordered by comparator <code>obc</code>
+	 * @return the matching groups ordered by comparator <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> search(
 		long companyId, long[] classNameIds, long parentGroupId,
 		String keywords, LinkedHashMap<String, Object> params, int start,
-		int end, OrderByComparator<Group> obc) {
+		int end, OrderByComparator<Group> orderByComparator) {
 
 		String[] keywordsArray = getSearchNames(companyId, keywords);
 
@@ -2796,14 +2799,15 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		if (isUseComplexSQL(classNameIds)) {
 			return groupFinder.findByC_C_PG_N_D(
 				companyId, classNameIds, parentGroupId, keywordsArray,
-				keywordsArray, params, andOperator, start, end, obc);
+				keywordsArray, params, andOperator, start, end,
+				orderByComparator);
 		}
 
 		Collection<Group> groups = doSearch(
 			companyId, classNameIds, parentGroupId, keywordsArray,
 			keywordsArray, params, andOperator);
 
-		return sort(groups, start, end, obc);
+		return sort(groups, start, end, orderByComparator);
 	}
 
 	/**
@@ -2887,15 +2891,16 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
-	 * @return the matching groups ordered by comparator <code>obc</code>
+	 * @return the matching groups ordered by comparator <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> search(
 		long companyId, long[] classNameIds, long parentGroupId, String name,
 		String description, LinkedHashMap<String, Object> params,
-		boolean andOperator, int start, int end, OrderByComparator<Group> obc) {
+		boolean andOperator, int start, int end,
+		OrderByComparator<Group> orderByComparator) {
 
 		String[] names = getSearchNames(companyId, name);
 		String[] descriptions = CustomSQLUtil.keywords(description);
@@ -2903,14 +2908,14 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		if (isUseComplexSQL(classNameIds)) {
 			return groupFinder.findByC_C_PG_N_D(
 				companyId, classNameIds, parentGroupId, names, descriptions,
-				params, andOperator, start, end, obc);
+				params, andOperator, start, end, orderByComparator);
 		}
 
 		Collection<Group> groups = doSearch(
 			companyId, classNameIds, parentGroupId, names, descriptions, params,
 			andOperator);
 
-		return sort(groups, start, end, obc);
+		return sort(groups, start, end, orderByComparator);
 	}
 
 	/**
@@ -2983,19 +2988,19 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
-	 * @return the matching groups ordered by comparator <code>obc</code>
+	 * @return the matching groups ordered by comparator <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> search(
 		long companyId, long[] classNameIds, String keywords,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Group> obc) {
+		OrderByComparator<Group> orderByComparator) {
 
 		return search(
 			companyId, classNameIds, GroupConstants.ANY_PARENT_GROUP_ID,
-			keywords, params, start, end, obc);
+			keywords, params, start, end, orderByComparator);
 	}
 
 	/**
@@ -3077,19 +3082,19 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
-	 * @return the matching groups ordered by comparator <code>obc</code>
+	 * @return the matching groups ordered by comparator <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> search(
 		long companyId, long[] classNameIds, String name, String description,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Group> obc) {
+		int end, OrderByComparator<Group> orderByComparator) {
 
 		return search(
 			companyId, classNameIds, GroupConstants.ANY_PARENT_GROUP_ID, name,
-			description, params, andOperator, start, end, obc);
+			description, params, andOperator, start, end, orderByComparator);
 	}
 
 	/**
@@ -3157,18 +3162,18 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
-	 * @return the matching groups ordered by comparator <code>obc</code>
+	 * @return the matching groups ordered by comparator <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> search(
 		long companyId, String keywords, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<Group> obc) {
+		int start, int end, OrderByComparator<Group> orderByComparator) {
 
 		return search(
 			companyId, getClassNameIds(), GroupConstants.ANY_PARENT_GROUP_ID,
-			keywords, params, start, end, obc);
+			keywords, params, start, end, orderByComparator);
 	}
 
 	/**
@@ -3244,19 +3249,20 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the groups (optionally
+	 * @param  orderByComparator the comparator to order the groups (optionally
 	 *         <code>null</code>)
-	 * @return the matching groups ordered by comparator <code>obc</code>
+	 * @return the matching groups ordered by comparator <code>orderByComparator</code>
 	 */
 	@Override
 	public List<Group> search(
 		long companyId, String name, String description,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Group> obc) {
+		int end, OrderByComparator<Group> orderByComparator) {
 
 		return search(
 			companyId, getClassNameIds(), GroupConstants.ANY_PARENT_GROUP_ID,
-			name, description, params, andOperator, start, end, obc);
+			name, description, params, andOperator, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -4679,10 +4685,10 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 	protected List<Group> sort(
 		Collection<Group> groups, int start, int end,
-		OrderByComparator<Group> obc) {
+		OrderByComparator<Group> orderByComparator) {
 
-		if (obc == null) {
-			obc = new GroupNameComparator(true);
+		if (orderByComparator == null) {
+			orderByComparator = new GroupNameComparator(true);
 		}
 
 		List<Group> groupList = null;
@@ -4694,7 +4700,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			groupList = new ArrayList<>(groups);
 		}
 
-		Collections.sort(groupList, obc);
+		Collections.sort(groupList, orderByComparator);
 
 		return Collections.unmodifiableList(
 			ListUtil.subList(groupList, start, end));

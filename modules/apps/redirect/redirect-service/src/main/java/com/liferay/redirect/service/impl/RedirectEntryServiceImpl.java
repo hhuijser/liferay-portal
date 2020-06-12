@@ -104,7 +104,7 @@ public class RedirectEntryServiceImpl extends RedirectEntryServiceBaseImpl {
 	@Override
 	public List<RedirectEntry> getRedirectEntries(
 			long groupId, int start, int end,
-			OrderByComparator<RedirectEntry> obc)
+			OrderByComparator<RedirectEntry> orderByComparator)
 		throws PortalException {
 
 		PermissionChecker permissionChecker = getPermissionChecker();
@@ -119,7 +119,7 @@ public class RedirectEntryServiceImpl extends RedirectEntryServiceBaseImpl {
 		}
 
 		return redirectEntryLocalService.getRedirectEntries(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override

@@ -243,7 +243,8 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 
 	@Override
 	public List<TrashedModel> getTrashModelTrashedModels(
-			long classPK, int start, int end, OrderByComparator<?> obc)
+			long classPK, int start, int end,
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		List<TrashedModel> trashedModels = new ArrayList<>();
@@ -253,7 +254,7 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 		List<WikiPage> pages = _wikiPageLocalService.getChildren(
 			page.getNodeId(), true, page.getTitle(),
 			WorkflowConstants.STATUS_IN_TRASH, start, end,
-			(OrderByComparator<WikiPage>)obc);
+			(OrderByComparator<WikiPage>)orderByComparator);
 
 		for (WikiPage curPage : pages) {
 			trashedModels.add(curPage);

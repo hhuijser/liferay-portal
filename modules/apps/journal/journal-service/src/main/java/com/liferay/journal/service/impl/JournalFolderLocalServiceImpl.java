@@ -402,10 +402,10 @@ public class JournalFolderLocalServiceImpl
 	@Override
 	public List<Object> getFoldersAndArticles(
 		long groupId, long folderId, int status, int start, int end,
-		OrderByComparator<?> obc) {
+		OrderByComparator<?> orderByComparator) {
 
 		QueryDefinition<?> queryDefinition = new QueryDefinition<>(
-			status, start, end, (OrderByComparator<Object>)obc);
+			status, start, end, (OrderByComparator<Object>)orderByComparator);
 
 		return journalFolderFinder.findF_A_ByG_F(
 			groupId, folderId, queryDefinition);
@@ -414,10 +414,11 @@ public class JournalFolderLocalServiceImpl
 	@Override
 	public List<Object> getFoldersAndArticles(
 		long groupId, long folderId, int start, int end,
-		OrderByComparator<?> obc) {
+		OrderByComparator<?> orderByComparator) {
 
 		return getFoldersAndArticles(
-			groupId, folderId, WorkflowConstants.STATUS_ANY, start, end, obc);
+			groupId, folderId, WorkflowConstants.STATUS_ANY, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -778,7 +779,7 @@ public class JournalFolderLocalServiceImpl
 	public List<DDMStructure> searchDDMStructures(
 			long companyId, long[] groupIds, long folderId, int restrictionType,
 			String keywords, int start, int end,
-			OrderByComparator<DDMStructure> obc)
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws PortalException {
 
 		if (restrictionType ==
@@ -788,7 +789,7 @@ public class JournalFolderLocalServiceImpl
 			return _ddmStructureLocalService.search(
 				companyId, groupIds,
 				classNameLocalService.getClassNameId(JournalFolder.class),
-				folderId, keywords, start, end, obc);
+				folderId, keywords, start, end, orderByComparator);
 		}
 
 		folderId = getOverridedDDMStructuresFolderId(folderId);
@@ -797,13 +798,14 @@ public class JournalFolderLocalServiceImpl
 			return _ddmStructureLocalService.search(
 				companyId, groupIds,
 				classNameLocalService.getClassNameId(JournalFolder.class),
-				folderId, keywords, start, end, obc);
+				folderId, keywords, start, end, orderByComparator);
 		}
 
 		return _ddmStructureLocalService.search(
 			companyId, groupIds,
 			classNameLocalService.getClassNameId(JournalArticle.class),
-			keywords, WorkflowConstants.STATUS_ANY, start, end, obc);
+			keywords, WorkflowConstants.STATUS_ANY, start, end,
+			orderByComparator);
 	}
 
 	@Override

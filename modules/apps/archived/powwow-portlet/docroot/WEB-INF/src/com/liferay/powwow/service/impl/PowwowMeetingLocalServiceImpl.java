@@ -213,9 +213,10 @@ public class PowwowMeetingLocalServiceImpl
 	@Override
 	public List<PowwowMeeting> getPowwowMeetings(
 		long groupId, int start, int end,
-		OrderByComparator<PowwowMeeting> obc) {
+		OrderByComparator<PowwowMeeting> orderByComparator) {
 
-		return powwowMeetingPersistence.findByGroupId(groupId, start, end, obc);
+		return powwowMeetingPersistence.findByGroupId(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override

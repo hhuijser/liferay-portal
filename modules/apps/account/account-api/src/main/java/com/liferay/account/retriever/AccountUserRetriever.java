@@ -35,7 +35,7 @@ public interface AccountUserRetriever {
 
 	public BaseModelSearchResult<User> searchAccountRoleUsers(
 			long accountEntryId, long accountRoleId, String keywords, int start,
-			int end, OrderByComparator<User> obc)
+			int end, OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	public BaseModelSearchResult<User> searchAccountUsers(

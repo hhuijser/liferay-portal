@@ -79,32 +79,32 @@ public class RedirectNotFoundEntryLocalServiceImpl
 	@Override
 	public List<RedirectNotFoundEntry> getRedirectNotFoundEntries(
 		long groupId, Boolean ignored, Date minModifiedDate, int start, int end,
-		OrderByComparator<RedirectNotFoundEntry> obc) {
+		OrderByComparator<RedirectNotFoundEntry> orderByComparator) {
 
 		return redirectNotFoundEntryLocalService.dynamicQuery(
 			_getRedirectNotFoundEntriesDynamicQuery(
-				groupId, ignored, minModifiedDate, obc),
+				groupId, ignored, minModifiedDate, orderByComparator),
 			start, end);
 	}
 
 	@Override
 	public List<RedirectNotFoundEntry> getRedirectNotFoundEntries(
 		long groupId, Date minModifiedDate, int start, int end,
-		OrderByComparator<RedirectNotFoundEntry> obc) {
+		OrderByComparator<RedirectNotFoundEntry> orderByComparator) {
 
 		return redirectNotFoundEntryLocalService.dynamicQuery(
 			_getRedirectNotFoundEntriesDynamicQuery(
-				groupId, null, minModifiedDate, obc),
+				groupId, null, minModifiedDate, orderByComparator),
 			start, end);
 	}
 
 	@Override
 	public List<RedirectNotFoundEntry> getRedirectNotFoundEntries(
 		long groupId, int start, int end,
-		OrderByComparator<RedirectNotFoundEntry> obc) {
+		OrderByComparator<RedirectNotFoundEntry> orderByComparator) {
 
 		return redirectNotFoundEntryPersistence.findByGroupId(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -171,15 +171,15 @@ public class RedirectNotFoundEntryLocalServiceImpl
 
 	private DynamicQuery _getRedirectNotFoundEntriesDynamicQuery(
 		long groupId, Boolean ignored, Date minModifiedDate,
-		OrderByComparator<RedirectNotFoundEntry> obc) {
+		OrderByComparator<RedirectNotFoundEntry> orderByComparator) {
 
 		DynamicQuery redirectNotFoundEntriesDynamicQuery =
 			_getRedirectNotFoundEntriesDynamicQuery(
 				groupId, ignored, minModifiedDate);
 
-		if (obc != null) {
+		if (orderByComparator != null) {
 			OrderFactoryUtil.addOrderByComparator(
-				redirectNotFoundEntriesDynamicQuery, obc);
+				redirectNotFoundEntriesDynamicQuery, orderByComparator);
 		}
 		else {
 			redirectNotFoundEntriesDynamicQuery.addOrder(

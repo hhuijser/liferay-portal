@@ -56,17 +56,17 @@ public class AssetVocabularyFinderImpl
 	@Override
 	public List<AssetVocabulary> filterFindByG_N(
 		long groupId, String name, int start, int end,
-		OrderByComparator<AssetVocabulary> obc) {
+		OrderByComparator<AssetVocabulary> orderByComparator) {
 
-		return doFindByG_N(groupId, name, start, end, obc, true);
+		return doFindByG_N(groupId, name, start, end, orderByComparator, true);
 	}
 
 	@Override
 	public List<AssetVocabulary> findByG_N(
 		long groupId, String name, int start, int end,
-		OrderByComparator<AssetVocabulary> obc) {
+		OrderByComparator<AssetVocabulary> orderByComparator) {
 
-		return doFindByG_N(groupId, name, start, end, obc, false);
+		return doFindByG_N(groupId, name, start, end, orderByComparator, false);
 	}
 
 	protected int doCountByG_N(
@@ -117,7 +117,8 @@ public class AssetVocabularyFinderImpl
 
 	protected List<AssetVocabulary> doFindByG_N(
 		long groupId, String name, int start, int end,
-		OrderByComparator<AssetVocabulary> obc, boolean inlineSQLHelper) {
+		OrderByComparator<AssetVocabulary> orderByComparator,
+		boolean inlineSQLHelper) {
 
 		name = StringUtil.toLowerCase(name.trim());
 
@@ -128,7 +129,7 @@ public class AssetVocabularyFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_G_N);
 
-			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			sql = CustomSQLUtil.replaceOrderBy(sql, orderByComparator);
 
 			if (inlineSQLHelper) {
 				sql = InlineSQLHelperUtil.replacePermissionCheck(

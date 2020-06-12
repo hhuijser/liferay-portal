@@ -378,10 +378,10 @@ public class AssetCategoryLocalServiceImpl
 	@Override
 	public List<AssetCategory> getChildCategories(
 		long parentCategoryId, int start, int end,
-		OrderByComparator<AssetCategory> obc) {
+		OrderByComparator<AssetCategory> orderByComparator) {
 
 		return assetCategoryPersistence.findByParentCategoryId(
-			parentCategoryId, start, end, obc);
+			parentCategoryId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -447,19 +447,19 @@ public class AssetCategoryLocalServiceImpl
 	@Override
 	public List<AssetCategory> getVocabularyCategories(
 		long vocabularyId, int start, int end,
-		OrderByComparator<AssetCategory> obc) {
+		OrderByComparator<AssetCategory> orderByComparator) {
 
 		return assetCategoryPersistence.findByVocabularyId(
-			vocabularyId, start, end, obc);
+			vocabularyId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<AssetCategory> getVocabularyCategories(
 		long parentCategoryId, long vocabularyId, int start, int end,
-		OrderByComparator<AssetCategory> obc) {
+		OrderByComparator<AssetCategory> orderByComparator) {
 
 		return assetCategoryPersistence.findByP_V(
-			parentCategoryId, vocabularyId, start, end, obc);
+			parentCategoryId, vocabularyId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -470,11 +470,11 @@ public class AssetCategoryLocalServiceImpl
 	@Override
 	public List<AssetCategory> getVocabularyRootCategories(
 		long vocabularyId, int start, int end,
-		OrderByComparator<AssetCategory> obc) {
+		OrderByComparator<AssetCategory> orderByComparator) {
 
 		return getVocabularyCategories(
 			AssetCategoryConstants.DEFAULT_PARENT_CATEGORY_ID, vocabularyId,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	@Override

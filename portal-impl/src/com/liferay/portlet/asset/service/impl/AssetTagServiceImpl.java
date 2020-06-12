@@ -100,10 +100,12 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 
 	@Override
 	public List<AssetTag> getGroupTags(
-		long groupId, int start, int end, OrderByComparator<AssetTag> obc) {
+		long groupId, int start, int end,
+		OrderByComparator<AssetTag> orderByComparator) {
 
 		return sanitize(
-			assetTagPersistence.findByGroupId(groupId, start, end, obc));
+			assetTagPersistence.findByGroupId(
+				groupId, start, end, orderByComparator));
 	}
 
 	@Override
@@ -148,11 +150,11 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 	@Override
 	public List<AssetTag> getTags(
 		long groupId, long classNameId, String name, int start, int end,
-		OrderByComparator<AssetTag> obc) {
+		OrderByComparator<AssetTag> orderByComparator) {
 
 		return sanitize(
 			assetTagFinder.findByG_C_N(
-				groupId, classNameId, name, start, end, obc));
+				groupId, classNameId, name, start, end, orderByComparator));
 	}
 
 	@Override
@@ -165,9 +167,10 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 	@Override
 	public List<AssetTag> getTags(
 		long groupId, String name, int start, int end,
-		OrderByComparator<AssetTag> obc) {
+		OrderByComparator<AssetTag> orderByComparator) {
 
-		return getTags(new long[] {groupId}, name, start, end, obc);
+		return getTags(
+			new long[] {groupId}, name, start, end, orderByComparator);
 	}
 
 	@Override
@@ -181,15 +184,17 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 	@Override
 	public List<AssetTag> getTags(
 		long[] groupIds, String name, int start, int end,
-		OrderByComparator<AssetTag> obc) {
+		OrderByComparator<AssetTag> orderByComparator) {
 
 		if (Validator.isNull(name)) {
 			return sanitize(
-				assetTagPersistence.findByGroupId(groupIds, start, end, obc));
+				assetTagPersistence.findByGroupId(
+					groupIds, start, end, orderByComparator));
 		}
 
 		return sanitize(
-			assetTagPersistence.findByG_LikeN(groupIds, name, start, end, obc));
+			assetTagPersistence.findByG_LikeN(
+				groupIds, name, start, end, orderByComparator));
 	}
 
 	@Override

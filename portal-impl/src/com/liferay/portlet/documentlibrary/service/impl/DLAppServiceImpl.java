@@ -914,21 +914,22 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 * @param  folderId the primary key of the file entry's folder
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the file entries (optionally
+	 * @param  orderByComparator the comparator to order the file entries (optionally
 	 *         <code>null</code>)
 	 * @return the range of file entries in the folder ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
 	public List<FileEntry> getFileEntries(
 			long repositoryId, long folderId, int start, int end,
-			OrderByComparator<FileEntry> obc)
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(repositoryId);
 
-		return repository.getFileEntries(folderId, start, end, obc);
+		return repository.getFileEntries(
+			folderId, start, end, orderByComparator);
 	}
 
 	/**
@@ -982,7 +983,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 * @param  fileEntryTypeId the primary key of the file entry type
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the results by (optionally
+	 * @param  orderByComparator the comparator to order the results by (optionally
 	 *         <code>null</code>)
 	 * @return the range of file entries with the file entry type in the folder
 	 *         ordered by <code>null</code>
@@ -991,13 +992,13 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	@Override
 	public List<FileEntry> getFileEntries(
 			long repositoryId, long folderId, long fileEntryTypeId, int start,
-			int end, OrderByComparator<FileEntry> obc)
+			int end, OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(repositoryId);
 
 		return repository.getFileEntries(
-			folderId, fileEntryTypeId, start, end, obc);
+			folderId, fileEntryTypeId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1014,12 +1015,13 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	@Override
 	public List<FileEntry> getFileEntries(
 			long repositoryId, long folderId, String[] mimeTypes, int start,
-			int end, OrderByComparator<FileEntry> obc)
+			int end, OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(repositoryId);
 
-		return repository.getFileEntries(folderId, mimeTypes, start, end, obc);
+		return repository.getFileEntries(
+			folderId, mimeTypes, start, end, orderByComparator);
 	}
 
 	/**
@@ -1389,22 +1391,22 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 *         third-party repositories
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the folders (optionally
+	 * @param  orderByComparator the comparator to order the folders (optionally
 	 *         <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 *         comparator <code>obc</code>
+	 *         comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
 	public List<Folder> getFolders(
 			long repositoryId, long parentFolderId, boolean includeMountFolders,
-			int start, int end, OrderByComparator<Folder> obc)
+			int start, int end, OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(repositoryId);
 
 		return repository.getFolders(
-			parentFolderId, includeMountFolders, start, end, obc);
+			parentFolderId, includeMountFolders, start, end, orderByComparator);
 	}
 
 	/**
@@ -1427,23 +1429,24 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 *         third-party repositories
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the folders (optionally
+	 * @param  orderByComparator the comparator to order the folders (optionally
 	 *         <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 *         comparator <code>obc</code>
+	 *         comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
 	public List<Folder> getFolders(
 			long repositoryId, long parentFolderId, int status,
 			boolean includeMountFolders, int start, int end,
-			OrderByComparator<Folder> obc)
+			OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(repositoryId);
 
 		return repository.getFolders(
-			parentFolderId, status, includeMountFolders, start, end, obc);
+			parentFolderId, status, includeMountFolders, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -1494,21 +1497,22 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 * @param  parentFolderId the primary key of the folder's parent folder
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the folders (optionally
+	 * @param  orderByComparator the comparator to order the folders (optionally
 	 *         <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 *         comparator <code>obc</code>
+	 *         comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
 	public List<Folder> getFolders(
 			long repositoryId, long parentFolderId, int start, int end,
-			OrderByComparator<Folder> obc)
+			OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(repositoryId);
 
-		return repository.getFolders(parentFolderId, true, start, end, obc);
+		return repository.getFolders(
+			parentFolderId, true, start, end, orderByComparator);
 	}
 
 	/**
@@ -1566,23 +1570,23 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 *         third-party repositories
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the results (optionally
+	 * @param  orderByComparator the comparator to order the results (optionally
 	 *         <code>null</code>)
 	 * @return the range of immediate subfolders, file entries, and file
 	 *         shortcuts in the parent folder ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
 			long repositoryId, long folderId, int status,
 			boolean includeMountFolders, int start, int end,
-			OrderByComparator<?> obc)
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		return getFoldersAndFileEntriesAndFileShortcuts(
 			repositoryId, folderId, status, null, includeMountFolders, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	@Override
@@ -1590,14 +1594,14 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
 			long repositoryId, long folderId, int status, String[] mimeTypes,
 			boolean includeMountFolders, boolean includeOwner, int start,
-			int end, OrderByComparator<?> obc)
+			int end, OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(repositoryId);
 
 		return (List)repository.getFoldersAndFileEntriesAndFileShortcuts(
 			folderId, status, mimeTypes, includeMountFolders, includeOwner,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	@Override
@@ -1605,12 +1609,12 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
 			long repositoryId, long folderId, int status, String[] mimeTypes,
 			boolean includeMountFolders, int start, int end,
-			OrderByComparator<?> obc)
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		return getFoldersAndFileEntriesAndFileShortcuts(
 			repositoryId, folderId, status, mimeTypes, includeMountFolders,
-			true, start, end, obc);
+			true, start, end, orderByComparator);
 	}
 
 	/**
@@ -1796,21 +1800,21 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 *         (optionally <code>0</code>)
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the file entries (optionally
+	 * @param  orderByComparator the comparator to order the file entries (optionally
 	 *         <code>null</code>)
 	 * @return the range of matching file entries ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
 	public List<FileEntry> getGroupFileEntries(
 			long groupId, long userId, int start, int end,
-			OrderByComparator<FileEntry> obc)
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		return getGroupFileEntries(
 			groupId, userId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	/**
@@ -1870,34 +1874,36 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 *         search
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the file entries (optionally
+	 * @param  orderByComparator the comparator to order the file entries (optionally
 	 *         <code>null</code>)
 	 * @return the range of matching file entries ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
 	public List<FileEntry> getGroupFileEntries(
 			long groupId, long userId, long rootFolderId, int start, int end,
-			OrderByComparator<FileEntry> obc)
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(groupId);
 
 		return repository.getRepositoryFileEntries(
-			userId, rootFolderId, start, end, obc);
+			userId, rootFolderId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<FileEntry> getGroupFileEntries(
 			long groupId, long userId, long rootFolderId, String[] mimeTypes,
-			int status, int start, int end, OrderByComparator<FileEntry> obc)
+			int status, int start, int end,
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(groupId);
 
 		return repository.getRepositoryFileEntries(
-			userId, rootFolderId, mimeTypes, status, start, end, obc);
+			userId, rootFolderId, mimeTypes, status, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -2025,22 +2031,23 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 * @param  parentFolderId the primary key of the folder's parent folder
 	 * @param  start the lower bound of the range of results
 	 * @param  end the upper bound of the range of results (not inclusive)
-	 * @param  obc the comparator to order the folders (optionally
+	 * @param  orderByComparator the comparator to order the folders (optionally
 	 *         <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder that are
 	 *         used for mounting third-party repositories ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
 	public List<Folder> getMountFolders(
 			long repositoryId, long parentFolderId, int start, int end,
-			OrderByComparator<Folder> obc)
+			OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
 		Repository repository = getRepository(repositoryId);
 
-		return repository.getMountFolders(parentFolderId, start, end, obc);
+		return repository.getMountFolders(
+			parentFolderId, start, end, orderByComparator);
 	}
 
 	/**

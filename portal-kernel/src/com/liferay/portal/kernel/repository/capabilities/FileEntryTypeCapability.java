@@ -28,7 +28,7 @@ public interface FileEntryTypeCapability extends Capability {
 	public List<RepositoryEntry> getFoldersAndFileEntriesAndFileShortcuts(
 			long repositoryId, long folderId, String[] mimeTypes,
 			long fileEntryTypeId, boolean includeMountFolders, int status,
-			int start, int end, OrderByComparator<?> obc)
+			int start, int end, OrderByComparator<?> orderByComparator)
 		throws PortalException;
 
 	public int getFoldersAndFileEntriesAndFileShortcutsCount(

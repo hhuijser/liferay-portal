@@ -468,22 +468,23 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public List<FileEntry> getFileEntries(
 		long folderId, int status, int start, int end,
-		OrderByComparator<FileEntry> obc) {
+		OrderByComparator<FileEntry> orderByComparator) {
 
-		return getFileEntries(folderId, start, end, obc);
+		return getFileEntries(folderId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<FileEntry> getFileEntries(
-		long folderId, int start, int end, OrderByComparator<FileEntry> obc) {
+		long folderId, int start, int end,
+		OrderByComparator<FileEntry> orderByComparator) {
 
-		return subList(getFileEntries(folderId), start, end, obc);
+		return subList(getFileEntries(folderId), start, end, orderByComparator);
 	}
 
 	@Override
 	public List<FileEntry> getFileEntries(
 		long folderId, long fileEntryTypeId, int start, int end,
-		OrderByComparator<FileEntry> obc) {
+		OrderByComparator<FileEntry> orderByComparator) {
 
 		return new ArrayList<>();
 	}
@@ -491,7 +492,7 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public List<FileEntry> getFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator<FileEntry> obc)
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		List<FileEntry> fileEntries = _cmisModelCache.getFileEntries(folderId);
@@ -513,7 +514,7 @@ public class CMISRepository extends BaseCmisRepository {
 			}
 		}
 
-		return subList(fileEntries, start, end, obc);
+		return subList(fileEntries, start, end, orderByComparator);
 	}
 
 	@Override
@@ -721,25 +722,27 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public List<Folder> getFolders(
 			long parentFolderId, boolean includeMountfolders, int start,
-			int end, OrderByComparator<Folder> obc)
+			int end, OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
-		return subList(getFolders(parentFolderId), start, end, obc);
+		return subList(
+			getFolders(parentFolderId), start, end, orderByComparator);
 	}
 
 	@Override
 	public List<Object> getFoldersAndFileEntries(
-		long folderId, int start, int end, OrderByComparator<?> obc) {
+		long folderId, int start, int end,
+		OrderByComparator<?> orderByComparator) {
 
 		return subList(
 			getFoldersAndFileEntries(folderId), start, end,
-			(OrderByComparator<Object>)obc);
+			(OrderByComparator<Object>)orderByComparator);
 	}
 
 	@Override
 	public List<Object> getFoldersAndFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator<?> obc)
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		List<Object> foldersAndFileEntries =
@@ -763,7 +766,8 @@ public class CMISRepository extends BaseCmisRepository {
 		}
 
 		return subList(
-			foldersAndFileEntries, start, end, (OrderByComparator<Object>)obc);
+			foldersAndFileEntries, start, end,
+			(OrderByComparator<Object>)orderByComparator);
 	}
 
 	@Override
@@ -834,7 +838,7 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public List<Folder> getMountFolders(
 		long parentFolderId, int start, int end,
-		OrderByComparator<Folder> obc) {
+		OrderByComparator<Folder> orderByComparator) {
 
 		return new ArrayList<>();
 	}
@@ -2180,15 +2184,17 @@ public class CMISRepository extends BaseCmisRepository {
 	}
 
 	protected <E> List<E> subList(
-		List<E> list, int start, int end, OrderByComparator<E> obc) {
+		List<E> list, int start, int end,
+		OrderByComparator<E> orderByComparator) {
 
-		if ((obc != null) &&
-			(obc instanceof RepositoryModelCreateDateComparator ||
-			 obc instanceof RepositoryModelModifiedDateComparator ||
-			 obc instanceof RepositoryModelSizeComparator ||
-			 obc instanceof RepositoryModelTitleComparator)) {
+		if ((orderByComparator != null) &&
+			(orderByComparator instanceof RepositoryModelCreateDateComparator ||
+			 orderByComparator instanceof
+				 RepositoryModelModifiedDateComparator ||
+			 orderByComparator instanceof RepositoryModelSizeComparator ||
+			 orderByComparator instanceof RepositoryModelTitleComparator)) {
 
-			list = ListUtil.sort(list, obc);
+			list = ListUtil.sort(list, orderByComparator);
 		}
 
 		return ListUtil.subList(list, start, end);

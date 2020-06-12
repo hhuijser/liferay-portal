@@ -198,9 +198,11 @@ public class SAPEntryLocalServiceImpl extends SAPEntryLocalServiceBaseImpl {
 
 	@Override
 	public List<SAPEntry> getCompanySAPEntries(
-		long companyId, int start, int end, OrderByComparator<SAPEntry> obc) {
+		long companyId, int start, int end,
+		OrderByComparator<SAPEntry> orderByComparator) {
 
-		return sapEntryPersistence.findByCompanyId(companyId, start, end, obc);
+		return sapEntryPersistence.findByCompanyId(
+			companyId, start, end, orderByComparator);
 	}
 
 	@Override

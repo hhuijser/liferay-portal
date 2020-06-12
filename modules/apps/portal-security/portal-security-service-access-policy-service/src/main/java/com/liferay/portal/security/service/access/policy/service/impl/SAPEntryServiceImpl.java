@@ -99,10 +99,11 @@ public class SAPEntryServiceImpl extends SAPEntryServiceBaseImpl {
 
 	@Override
 	public List<SAPEntry> getCompanySAPEntries(
-		long companyId, int start, int end, OrderByComparator<SAPEntry> obc) {
+		long companyId, int start, int end,
+		OrderByComparator<SAPEntry> orderByComparator) {
 
 		return sapEntryPersistence.filterFindByCompanyId(
-			companyId, start, end, obc);
+			companyId, start, end, orderByComparator);
 	}
 
 	@Override

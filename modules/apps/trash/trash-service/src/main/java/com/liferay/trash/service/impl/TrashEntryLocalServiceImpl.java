@@ -326,16 +326,18 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of trash entries to return
 	 * @param  end the upper bound of the range of trash entries to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the trash entries (optionally
+	 * @param  orderByComparator the comparator to order the trash entries (optionally
 	 *         <code>null</code>)
 	 * @return the range of matching trash entries ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 */
 	@Override
 	public List<TrashEntry> getEntries(
-		long groupId, int start, int end, OrderByComparator<TrashEntry> obc) {
+		long groupId, int start, int end,
+		OrderByComparator<TrashEntry> orderByComparator) {
 
-		return trashEntryPersistence.findByGroupId(groupId, start, end, obc);
+		return trashEntryPersistence.findByGroupId(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override

@@ -124,69 +124,69 @@ public class UserGroupFinderImpl
 	@Override
 	public List<UserGroup> filterFindByKeywords(
 		long companyId, String keywords, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<UserGroup> obc) {
+		int start, int end, OrderByComparator<UserGroup> orderByComparator) {
 
 		return doFindByKeywords(
-			companyId, keywords, params, start, end, obc, true);
+			companyId, keywords, params, start, end, orderByComparator, true);
 	}
 
 	@Override
 	public List<UserGroup> filterFindByC_N_D(
 		long companyId, String name, String description,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<UserGroup> obc) {
+		int end, OrderByComparator<UserGroup> orderByComparator) {
 
 		String[] names = CustomSQLUtil.keywords(name);
 		String[] descriptions = CustomSQLUtil.keywords(description);
 
 		return filterFindByC_N_D(
 			companyId, names, descriptions, params, andOperator, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	@Override
 	public List<UserGroup> filterFindByC_N_D(
 		long companyId, String[] names, String[] descriptions,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<UserGroup> obc) {
+		int end, OrderByComparator<UserGroup> orderByComparator) {
 
 		return doFindByC_N_D(
 			companyId, names, descriptions, params, andOperator, start, end,
-			obc, true);
+			orderByComparator, true);
 	}
 
 	@Override
 	public List<UserGroup> findByKeywords(
 		long companyId, String keywords, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<UserGroup> obc) {
+		int start, int end, OrderByComparator<UserGroup> orderByComparator) {
 
 		return doFindByKeywords(
-			companyId, keywords, params, start, end, obc, false);
+			companyId, keywords, params, start, end, orderByComparator, false);
 	}
 
 	@Override
 	public List<UserGroup> findByC_N_D(
 		long companyId, String name, String description,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<UserGroup> obc) {
+		int end, OrderByComparator<UserGroup> orderByComparator) {
 
 		String[] names = CustomSQLUtil.keywords(name);
 		String[] descriptions = CustomSQLUtil.keywords(description);
 
 		return findByC_N_D(
 			companyId, names, descriptions, params, andOperator, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	@Override
 	public List<UserGroup> findByC_N_D(
 		long companyId, String[] names, String[] descriptions,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<UserGroup> obc) {
+		int end, OrderByComparator<UserGroup> orderByComparator) {
 
 		return doFindByC_N_D(
 			companyId, names, descriptions, params, andOperator, start, end,
-			obc, false);
+			orderByComparator, false);
 	}
 
 	protected int doCountByKeywords(
@@ -276,7 +276,7 @@ public class UserGroupFinderImpl
 
 	protected List<UserGroup> doFindByKeywords(
 		long companyId, String keywords, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<UserGroup> obc,
+		int start, int end, OrderByComparator<UserGroup> orderByComparator,
 		boolean inlineSQLHelper) {
 
 		String[] names = null;
@@ -293,13 +293,14 @@ public class UserGroupFinderImpl
 
 		return doFindByC_N_D(
 			companyId, names, descriptions, params, andOperator, start, end,
-			obc, inlineSQLHelper);
+			orderByComparator, inlineSQLHelper);
 	}
 
 	protected List<UserGroup> doFindByC_N_D(
 		long companyId, String[] names, String[] descriptions,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<UserGroup> obc, boolean inlineSQLHelper) {
+		int end, OrderByComparator<UserGroup> orderByComparator,
+		boolean inlineSQLHelper) {
 
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions);
@@ -320,7 +321,7 @@ public class UserGroupFinderImpl
 			sql = StringUtil.replace(sql, "[$JOIN$]", getJoin(params));
 			sql = StringUtil.replace(sql, "[$WHERE$]", getWhere(params));
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
-			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			sql = CustomSQLUtil.replaceOrderBy(sql, orderByComparator);
 
 			if (inlineSQLHelper &&
 				InlineSQLHelperUtil.isEnabled(companyId, 0)) {

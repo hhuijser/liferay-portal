@@ -488,10 +488,10 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	@Override
 	public List<DDLRecord> getRecords(
 		long recordSetId, int start, int end,
-		OrderByComparator<DDLRecord> obc) {
+		OrderByComparator<DDLRecord> orderByComparator) {
 
 		return ddlRecordPersistence.findByRecordSetId(
-			recordSetId, start, end, obc);
+			recordSetId, start, end, orderByComparator);
 	}
 
 	/**
@@ -509,10 +509,10 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	@Override
 	public List<DDLRecord> getRecords(
 		long recordSetId, long userId, int start, int end,
-		OrderByComparator<DDLRecord> obc) {
+		OrderByComparator<DDLRecord> orderByComparator) {
 
 		return ddlRecordPersistence.findByR_U(
-			recordSetId, userId, start, end, obc);
+			recordSetId, userId, start, end, orderByComparator);
 	}
 
 	@Override

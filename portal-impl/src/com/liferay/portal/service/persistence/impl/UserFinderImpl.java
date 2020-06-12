@@ -618,7 +618,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 	public List<User> findByKeywords(
 		long companyId, String keywords, int status,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<User> obc) {
+		OrderByComparator<User> orderByComparator) {
 
 		String[] firstNames = null;
 		String[] middleNames = null;
@@ -647,7 +647,8 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 		return findByC_FN_MN_LN_SN_EA_S(
 			companyId, firstNames, middleNames, lastNames, screenNames,
-			emailAddresses, status, params, andOperator, start, end, obc);
+			emailAddresses, status, params, andOperator, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -704,7 +705,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 	public List<User> findBySocialUsers(
 		long companyId, long userId, int socialRelationType,
 		String socialRelationTypeComparator, int status, int start, int end,
-		OrderByComparator<User> obc) {
+		OrderByComparator<User> orderByComparator) {
 
 		Session session = null;
 
@@ -724,9 +725,11 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 					StringPool.NOT_EQUAL);
 			}
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				sql = CustomSQLUtil.replaceOrderBy(
-					sql, new TableNameOrderByComparator<>(obc, "User_"));
+					sql,
+					new TableNameOrderByComparator<>(
+						orderByComparator, "User_"));
 			}
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
@@ -816,7 +819,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 		long companyId, String firstName, String middleName, String lastName,
 		String screenName, String emailAddress, int status,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<User> obc) {
+		int end, OrderByComparator<User> orderByComparator) {
 
 		String[] firstNames = null;
 		String[] middleNames = null;
@@ -840,7 +843,8 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 		return findByC_FN_MN_LN_SN_EA_S(
 			companyId, firstNames, middleNames, lastNames, screenNames,
-			emailAddresses, status, params, andOperator, start, end, obc);
+			emailAddresses, status, params, andOperator, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -848,12 +852,13 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 		long companyId, String[] firstNames, String[] middleNames,
 		String[] lastNames, String[] screenNames, String[] emailAddresses,
 		int status, LinkedHashMap<String, Object> params, boolean andOperator,
-		int start, int end, OrderByComparator<User> obc) {
+		int start, int end, OrderByComparator<User> orderByComparator) {
 
 		try {
 			List<Long> userIds = doFindByC_FN_MN_LN_SN_EA_S(
 				companyId, firstNames, middleNames, lastNames, screenNames,
-				emailAddresses, status, params, andOperator, start, end, obc);
+				emailAddresses, status, params, andOperator, start, end,
+				orderByComparator);
 
 			List<User> users = new ArrayList<>(userIds.size());
 
@@ -874,7 +879,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 		long companyId, String[] firstNames, String[] middleNames,
 		String[] lastNames, String[] screenNames, String[] emailAddresses,
 		int status, LinkedHashMap<String, Object> params, boolean andOperator,
-		int start, int end, OrderByComparator<User> obc) {
+		int start, int end, OrderByComparator<User> orderByComparator) {
 
 		firstNames = CustomSQLUtil.keywords(firstNames);
 		middleNames = CustomSQLUtil.keywords(middleNames);
@@ -892,7 +897,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			String sql = CustomSQLUtil.get(FIND_BY_C_FN_MN_LN_SN_EA_S);
 
 			sql = StringUtil.replace(
-				sql, "[$COLUMN_NAMES$]", getColumnNames(obc));
+				sql, "[$COLUMN_NAMES$]", getColumnNames(orderByComparator));
 
 			sql = replaceKeywords(
 				sql, firstNames, middleNames, lastNames, screenNames,
@@ -916,9 +921,9 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 			}
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				sb.append(" ORDER BY ");
-				sb.append(obc.toString());
+				sb.append(orderByComparator.toString());
 			}
 
 			sql = sb.toString();
@@ -958,12 +963,12 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 		}
 	}
 
-	protected String getColumnNames(OrderByComparator<User> obc) {
-		if (obc == null) {
+	protected String getColumnNames(OrderByComparator<User> orderByComparator) {
+		if (orderByComparator == null) {
 			return "DISTINCT User_.userId AS userId";
 		}
 
-		String[] orderByFields = obc.getOrderByFields();
+		String[] orderByFields = orderByComparator.getOrderByFields();
 
 		StringBundler sb = new StringBundler(orderByFields.length * 4 + 1);
 

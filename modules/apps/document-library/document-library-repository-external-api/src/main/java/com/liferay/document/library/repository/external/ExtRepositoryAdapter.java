@@ -310,15 +310,16 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	@Override
 	public List<FileEntry> getFileEntries(
 			long folderId, int status, int start, int end,
-			OrderByComparator<FileEntry> obc)
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
-		return getFileEntries(folderId, start, end, obc);
+		return getFileEntries(folderId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<FileEntry> getFileEntries(
-			long folderId, int start, int end, OrderByComparator<FileEntry> obc)
+			long folderId, int start, int end,
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
@@ -331,19 +332,20 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_toExtRepositoryObjectAdapters(
 				ExtRepositoryObjectAdapterType.FILE, extRepositoryFileEntries);
 
-		return _sublist(extRepositoryFileEntryAdapters, start, end, obc);
+		return _sublist(
+			extRepositoryFileEntryAdapters, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<FileEntry> getFileEntries(
 			long folderId, long fileEntryTypeId, int start, int end,
-			OrderByComparator<FileEntry> obc)
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		if (fileEntryTypeId ==
 				DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT) {
 
-			return getFileEntries(folderId, start, end, obc);
+			return getFileEntries(folderId, start, end, orderByComparator);
 		}
 
 		return Collections.emptyList();
@@ -352,7 +354,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	@Override
 	public List<FileEntry> getFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator<FileEntry> obc)
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
@@ -368,7 +370,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		extRepositoryFileEntryAdapters = _filterByMimeType(
 			extRepositoryFileEntryAdapters, mimeTypes);
 
-		return _sublist(extRepositoryFileEntryAdapters, start, end, obc);
+		return _sublist(
+			extRepositoryFileEntryAdapters, start, end, orderByComparator);
 	}
 
 	@Override
@@ -528,7 +531,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	@Override
 	public List<Folder> getFolders(
 			long parentFolderId, boolean includeMountFolders, int start,
-			int end, OrderByComparator<Folder> obc)
+			int end, OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
 		String extRepositoryParentFolderKey = getExtRepositoryObjectKey(
@@ -542,12 +545,14 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_toExtRepositoryObjectAdapters(
 				ExtRepositoryObjectAdapterType.FOLDER, extRepositoryFolders);
 
-		return _sublist(extRepositoryFolderAdapters, start, end, obc);
+		return _sublist(
+			extRepositoryFolderAdapters, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<Object> getFoldersAndFileEntries(
-		long folderId, int start, int end, OrderByComparator<?> obc) {
+		long folderId, int start, int end,
+		OrderByComparator<?> orderByComparator) {
 
 		try {
 			String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
@@ -563,7 +568,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 			return _sublist(
 				extRepositoryObjectAdapters, start, end,
-				(OrderByComparator<Object>)obc);
+				(OrderByComparator<Object>)orderByComparator);
 		}
 		catch (Exception exception) {
 			throw new RepositoryException(exception);
@@ -573,7 +578,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	@Override
 	public List<Object> getFoldersAndFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator<?> obc)
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		String extRepositoryFolderKey = getExtRepositoryObjectKey(folderId);
@@ -591,7 +596,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		return _sublist(
 			extRepositoryObjectAdapters, start, end,
-			(OrderByComparator<Object>)obc);
+			(OrderByComparator<Object>)orderByComparator);
 	}
 
 	@Override
@@ -652,7 +657,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	@SuppressWarnings("unused")
 	public List<Folder> getMountFolders(
 			long parentFolderId, int start, int end,
-			OrderByComparator<Folder> obc)
+			OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
 		return Collections.emptyList();
@@ -1323,10 +1328,11 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	private <T, V extends T> List<T> _sublist(
-		List<V> list, int start, int end, OrderByComparator<T> obc) {
+		List<V> list, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
-		if (obc != null) {
-			list = ListUtil.sort(list, obc);
+		if (orderByComparator != null) {
+			list = ListUtil.sort(list, orderByComparator);
 		}
 
 		return (List<T>)ListUtil.toList(ListUtil.subList(list, start, end));

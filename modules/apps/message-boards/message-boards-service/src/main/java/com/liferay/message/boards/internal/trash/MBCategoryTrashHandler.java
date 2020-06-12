@@ -243,7 +243,8 @@ public class MBCategoryTrashHandler extends BaseTrashHandler {
 
 	@Override
 	public List<TrashedModel> getTrashModelTrashedModels(
-			long classPK, int start, int end, OrderByComparator<?> obc)
+			long classPK, int start, int end,
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		MBCategory category = _mbCategoryLocalService.getCategory(classPK);

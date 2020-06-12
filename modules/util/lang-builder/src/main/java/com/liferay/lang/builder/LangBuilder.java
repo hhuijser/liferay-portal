@@ -483,7 +483,9 @@ public class LangBuilder {
 	}
 
 	private String _fixTranslation(String value) {
-		value = StringUtil.replace(value, "\n", "\\n");
+		value = StringUtil.replace(
+			value, new String[] {"\n", CharPool.NO_BREAK_SPACE},
+			new String[] {"\\n", CharPool.SPACE});
 
 		value = StringUtil.replace(
 			value.trim(),

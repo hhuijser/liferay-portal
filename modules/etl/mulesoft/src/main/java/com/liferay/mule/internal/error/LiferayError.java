@@ -55,16 +55,16 @@ public enum LiferayError implements ErrorTypeDefinition<LiferayError> {
 	private LiferayError() {
 	}
 
-	private LiferayError(ErrorTypeDefinition parent) {
+	private LiferayError(ErrorTypeDefinition<?> parent) {
 		this.parent = parent;
 	}
 
-	private LiferayError(ErrorTypeDefinition parent, int status) {
+	private LiferayError(ErrorTypeDefinition<?> parent, int status) {
 		this.parent = parent;
 		this.status = status;
 	}
 
-	private ErrorTypeDefinition parent;
+	private ErrorTypeDefinition<?> parent;
 	private int status;
 
 }

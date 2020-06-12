@@ -82,7 +82,8 @@ public class WorkflowHandlerRegistryUtilTest {
 			});
 
 		_serviceRegistration = _bundleContext.registerService(
-			WorkflowHandler.class, _workflowHandler,
+			(Class<WorkflowHandler<?>>)(Class<?>)WorkflowHandler.class,
+			_workflowHandler,
 			MapUtil.singletonDictionary("service.ranking", Integer.MAX_VALUE));
 	}
 
@@ -131,6 +132,6 @@ public class WorkflowHandlerRegistryUtilTest {
 	private static boolean _calledWorkflowHandler;
 	private static WorkflowHandler<?> _workflowHandler;
 
-	private ServiceRegistration<WorkflowHandler> _serviceRegistration;
+	private ServiceRegistration<WorkflowHandler<?>> _serviceRegistration;
 
 }

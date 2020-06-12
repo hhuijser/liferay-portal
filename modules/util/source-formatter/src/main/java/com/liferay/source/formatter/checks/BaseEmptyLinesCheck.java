@@ -488,6 +488,15 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 			}
 		}
 
+		matcher = _missingEmptyLinePattern8.matcher(content);
+
+		while (matcher.find()) {
+			if (isJavaSource(content, matcher.start())) {
+				return StringUtil.replaceFirst(
+					content, "\n", "\n\n", matcher.end());
+			}
+		}
+
 		return content;
 	}
 
@@ -689,6 +698,8 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 		"[^%{:\\s]\n\t*(break|continue|return|throw)[ ;]");
 	private static final Pattern _missingEmptyLinePattern7 = Pattern.compile(
 		"[^%{\\s]\n\t*break;");
+	private static final Pattern _missingEmptyLinePattern8 = Pattern.compile(
+		"\n(\t+)registry\\.register\\(.+?;(?=\n\\1\\w)", Pattern.DOTALL);
 	private static final Pattern _redundantEmptyLinePattern1 = Pattern.compile(
 		"\n(.*)\n\npublic ((abstract|static) )*(class|enum|interface) ");
 	private static final Pattern _redundantEmptyLinePattern2 = Pattern.compile(

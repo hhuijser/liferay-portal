@@ -56,7 +56,7 @@ public class DefaultActionableDynamicQueryTest {
 		Assert.assertTrue(
 			expectedClassNames.toString(), expectedClassNames.size() > 1);
 
-		expectedClassNames.sort(_descClassNameIdComparator);
+		expectedClassNames.sort(_descClassNameIdOrderByComparator);
 
 		List<ClassName> actualClassNames = new ArrayList<>(
 			expectedClassNames.size());
@@ -75,7 +75,7 @@ public class DefaultActionableDynamicQueryTest {
 
 		actionableDynamicQuery.setAddOrderCriteriaMethod(
 			dynamicQuery -> OrderFactoryUtil.addOrderByComparator(
-				dynamicQuery, _descClassNameIdComparator));
+				dynamicQuery, _descClassNameIdOrderByComparator));
 
 		actionableDynamicQuery.setInterval(1);
 
@@ -89,13 +89,13 @@ public class DefaultActionableDynamicQueryTest {
 
 		List<ClassName> sortedClassNames = new ArrayList<>(actualClassNames);
 
-		sortedClassNames.sort(_descClassNameIdComparator);
+		sortedClassNames.sort(_descClassNameIdOrderByComparator);
 
 		Assert.assertEquals(sortedClassNames, actualClassNames);
 	}
 
 	private static final OrderByComparator<ClassName>
-		_descClassNameIdComparator = new OrderByComparator<ClassName>() {
+		_descClassNameIdOrderByComparator = new OrderByComparator<ClassName>() {
 
 			@Override
 			public int compare(ClassName className1, ClassName className2) {

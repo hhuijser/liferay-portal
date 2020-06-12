@@ -34,6 +34,14 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.app.builder.rest.client.pagination.Page"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.app.builder.workflow.rest.client.pagination.Page"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.asset.auto.tagger.AssetAutoTagProvider"
 		},
 		{
@@ -58,6 +66,14 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.batch.engine.pagination.Page"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.bulk.selection.BulkSelection"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.bulk.selection.BulkSelectionAction"
 		},
 		{
@@ -74,6 +90,22 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.data.engine.rest.client.pagination.Page"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.document.library.exportimport.data.handler.DLPluggableContentDataHandler"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.dynamic.data.mapping.expression.model.ExpressionVisitor"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldValueAccessor"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.exportimport.content.processor.ExportImportContentProcessor"
 		},
 		{
@@ -82,7 +114,31 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.exportimport.staged.model.repository.StagedModelRepository"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.frontend.taglib.chart.model.ChartConfig"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.frontend.taglib.clay.servlet.taglib.data.ClayTagDataSource"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.frontend.taglib.form.navigator.context.FormNavigatorContextProvider"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.headless.admin.user.client.pagination.Page"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.headless.delivery.client.pagination.Page"
 		},
 		{
 			"genericTypeCount": 1,
@@ -133,6 +189,10 @@
 			"name": "com.liferay.info.localized.InfoLocalizedValue"
 		},
 		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.item.selector.ItemSelectorCriterionHandler"
+		},
+		{
 			"genericTypeCount": 2,
 			"name": "com.liferay.item.selector.ItemSelectorReturnTypeResolver"
 		},
@@ -153,12 +213,28 @@
 			"name": "com.liferay.layout.list.retriever.ListObjectReferenceFactory"
 		},
 		{
+			"genericTypeCount": 3,
+			"name": "com.liferay.osgi.service.tracker.collections.map.ServiceTrackerBucket"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper"
+		},
+		{
 			"genericTypeCount": 2,
 			"name": "com.liferay.petra.sql.dsl.Column"
 		},
 		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.petra.sql.dsl.spi.expression.AggregateExpression"
+		},
+		{
 			"genericTypeCount": 2,
 			"name": "com.liferay.portal.kernel.cache.PortalCache"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.dao.orm.QueryDefinition"
 		},
 		{
 			"genericTypeCount": 1,
@@ -178,6 +254,18 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.search.BaseIndexer"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.search.BooleanClause"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.search.DocumentContributor"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.portal.kernel.search.Indexer"
 		},
 		{
@@ -186,11 +274,39 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionLogic"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.security.permission.resource.definition.ModelResourcePermissionDefinition"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.service.ServiceWrapper"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.servlet.taglib.ui.BaseJSPFormNavigatorEntry"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry"
 		},
 		{
 			"genericTypeCount": 1,
 			"name": "com.liferay.portal.kernel.util.OrderByComparator"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.kernel.workflow.WorkflowHandler"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.odata.filter.expression.ExpressionVisitor"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.relationship.RelationshipResource"
 		},
 		{
 			"genericTypeCount": 1,
@@ -210,7 +326,39 @@
 		},
 		{
 			"genericTypeCount": 1,
+			"name": "com.liferay.portal.search.spi.model.index.contributor.ModelDocumentContributor"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.portal.security.sso.openid.connect.OpenIdConnectProviderRegistry"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "com.liferay.portal.vulcan.dto.converter.DTOConverter"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.vulcan.pagination.Page"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.portal.workflow.metrics.rest.client.pagination.Page"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.reading.time.calculator.ReadingTimeModelInfo"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.registry.ServiceReference"
+		},
+		{
+			"genericTypeCount": 1,
 			"name": "com.liferay.registry.ServiceRegistration"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.registry.collections.ServiceTrackerCustomizers.ServiceWrapper"
 		},
 		{
 			"genericTypeCount": 1,
@@ -231,6 +379,14 @@
 		{
 			"genericTypeCount": 1,
 			"name": "com.liferay.user.associated.data.exporter.UADExporter"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "com.liferay.user.associated.data.test.util.WhenHasStatusByUserIdField"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "graphql.schema.DataFetcher"
 		},
 		{
 			"genericTypeCount": 1,
@@ -255,6 +411,10 @@
 		{
 			"genericTypeCount": 1,
 			"name": "java.lang.ThreadLocal"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.lang.reflect.Constructor"
 		},
 		{
 			"genericTypeCount": 1,
@@ -481,6 +641,18 @@
 			"name": "java.util.stream.Stream"
 		},
 		{
+			"genericTypeCount": 2,
+			"name": "javax.ws.rs.core.MultivaluedMap"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "javax.ws.rs.ext.MessageBodyReader"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitor"
+		},
+		{
 			"genericTypeCount": 1,
 			"name": "org.apache.solr.common.util.NamedList"
 		},
@@ -491,6 +663,10 @@
 		{
 			"genericTypeCount": 1,
 			"name": "org.opensaml.messaging.context.MessageContext"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "org.osgi.framework.ServiceReference"
 		},
 		{
 			"genericTypeCount": 1,

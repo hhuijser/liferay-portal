@@ -42,8 +42,8 @@ public class AggregateOrderByComparator<T> extends OrderByComparator<T> {
 
 	@Override
 	public int compare(T t1, T t2) {
-		for (OrderByComparator<T> orderByComparators : _orderByComparators) {
-			int value = orderByComparators.compare(t1, t2);
+		for (OrderByComparator<T> orderByComparator : _orderByComparators) {
+			int value = orderByComparator.compare(t1, t2);
 
 			if (value != 0) {
 				return value;

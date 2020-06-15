@@ -82,10 +82,10 @@ public class PasswordPolicyServiceImpl extends PasswordPolicyServiceBaseImpl {
 	@Override
 	public List<PasswordPolicy> search(
 		long companyId, String name, int start, int end,
-		OrderByComparator<PasswordPolicy> obc) {
+		OrderByComparator<PasswordPolicy> orderByComparator) {
 
 		return passwordPolicyFinder.filterFindByC_N(
-			companyId, name, start, end, obc);
+			companyId, name, start, end, orderByComparator);
 	}
 
 	@Override

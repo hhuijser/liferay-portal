@@ -158,11 +158,12 @@ public class WikiNodeTrashHandler extends BaseWikiTrashHandler {
 
 	@Override
 	public List<TrashedModel> getTrashModelTrashedModels(
-		long classPK, int start, int end, OrderByComparator<?> obc) {
+		long classPK, int start, int end,
+		OrderByComparator<?> orderByComparator) {
 
 		List<WikiPage> pages = _wikiPageLocalService.getPages(
 			classPK, true, WorkflowConstants.STATUS_IN_TRASH, start, end,
-			(OrderByComparator<WikiPage>)obc);
+			(OrderByComparator<WikiPage>)orderByComparator);
 
 		List<TrashedModel> trashedModels = new ArrayList<>(pages.size());
 

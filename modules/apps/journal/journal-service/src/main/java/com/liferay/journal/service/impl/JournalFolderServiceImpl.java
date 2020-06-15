@@ -172,28 +172,30 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 	@Override
 	public List<Object> getFoldersAndArticles(
 		long groupId, long folderId, int status, int start, int end,
-		OrderByComparator<?> obc) {
+		OrderByComparator<?> orderByComparator) {
 
 		return getFoldersAndArticles(
-			groupId, 0, folderId, status, start, end, obc);
+			groupId, 0, folderId, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<Object> getFoldersAndArticles(
 		long groupId, long folderId, int start, int end,
-		OrderByComparator<?> obc) {
+		OrderByComparator<?> orderByComparator) {
 
 		return getFoldersAndArticles(
-			groupId, folderId, WorkflowConstants.STATUS_ANY, start, end, obc);
+			groupId, folderId, WorkflowConstants.STATUS_ANY, start, end,
+			orderByComparator);
 	}
 
 	@Override
 	public List<Object> getFoldersAndArticles(
 		long groupId, long userId, long folderId, int status, int start,
-		int end, OrderByComparator<?> obc) {
+		int end, OrderByComparator<?> orderByComparator) {
 
 		QueryDefinition<?> queryDefinition = new QueryDefinition<>(
-			status, userId, true, start, end, (OrderByComparator<Object>)obc);
+			status, userId, true, start, end,
+			(OrderByComparator<Object>)orderByComparator);
 
 		return journalFolderFinder.filterFindF_A_ByG_F(
 			groupId, folderId, queryDefinition);
@@ -202,10 +204,11 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 	@Override
 	public List<Object> getFoldersAndArticles(
 		long groupId, long userId, long folderId, int status, Locale locale,
-		int start, int end, OrderByComparator<?> obc) {
+		int start, int end, OrderByComparator<?> orderByComparator) {
 
 		QueryDefinition<?> queryDefinition = new QueryDefinition<>(
-			status, userId, true, start, end, (OrderByComparator<Object>)obc);
+			status, userId, true, start, end,
+			(OrderByComparator<Object>)orderByComparator);
 
 		return journalFolderFinder.filterFindF_A_ByG_F_L(
 			groupId, folderId, locale, queryDefinition);
@@ -360,13 +363,13 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 	public List<DDMStructure> searchDDMStructures(
 			long companyId, long[] groupIds, long folderId, int restrictionType,
 			String keywords, int start, int end,
-			OrderByComparator<DDMStructure> obc)
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws PortalException {
 
 		return filterStructures(
 			journalFolderLocalService.searchDDMStructures(
 				companyId, groupIds, folderId, restrictionType, keywords, start,
-				end, obc));
+				end, orderByComparator));
 	}
 
 	@Override

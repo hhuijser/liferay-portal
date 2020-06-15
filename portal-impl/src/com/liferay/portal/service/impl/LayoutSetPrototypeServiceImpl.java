@@ -90,7 +90,7 @@ public class LayoutSetPrototypeServiceImpl
 	@Override
 	public List<LayoutSetPrototype> search(
 			long companyId, Boolean active,
-			OrderByComparator<LayoutSetPrototype> obc)
+			OrderByComparator<LayoutSetPrototype> orderByComparator)
 		throws PortalException {
 
 		List<LayoutSetPrototype> filteredLayoutSetPrototypes =
@@ -98,7 +98,8 @@ public class LayoutSetPrototypeServiceImpl
 
 		List<LayoutSetPrototype> layoutSetPrototypes =
 			layoutSetPrototypeLocalService.search(
-				companyId, active, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+				companyId, active, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				orderByComparator);
 
 		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
 			if (LayoutSetPrototypePermissionUtil.contains(

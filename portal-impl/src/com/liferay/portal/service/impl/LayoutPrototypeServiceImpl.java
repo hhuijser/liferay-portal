@@ -93,14 +93,15 @@ public class LayoutPrototypeServiceImpl extends LayoutPrototypeServiceBaseImpl {
 	@Override
 	public List<LayoutPrototype> search(
 			long companyId, Boolean active,
-			OrderByComparator<LayoutPrototype> obc)
+			OrderByComparator<LayoutPrototype> orderByComparator)
 		throws PortalException {
 
 		List<LayoutPrototype> filteredLayoutPrototypes = new ArrayList<>();
 
 		List<LayoutPrototype> layoutPrototypes =
 			layoutPrototypeLocalService.search(
-				companyId, active, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+				companyId, active, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				orderByComparator);
 
 		for (LayoutPrototype layoutPrototype : layoutPrototypes) {
 			if (LayoutPrototypePermissionUtil.contains(

@@ -461,7 +461,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 	@Override
 	public List<WikiPage> getPages(
 			long groupId, long nodeId, boolean head, int status, int start,
-			int end, OrderByComparator<WikiPage> obc)
+			int end, OrderByComparator<WikiPage> orderByComparator)
 		throws PortalException {
 
 		_wikiNodeModelResourcePermission.check(
@@ -469,18 +469,18 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return wikiPagePersistence.filterFindByG_N_H(
-				groupId, nodeId, head, start, end, obc);
+				groupId, nodeId, head, start, end, orderByComparator);
 		}
 
 		return wikiPagePersistence.filterFindByG_N_H_S(
-			groupId, nodeId, head, status, start, end, obc);
+			groupId, nodeId, head, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<WikiPage> getPages(
 			long groupId, long nodeId, boolean head, long userId,
 			boolean includeOwner, int status, int start, int end,
-			OrderByComparator<WikiPage> obc)
+			OrderByComparator<WikiPage> orderByComparator)
 		throws PortalException {
 
 		_wikiNodeModelResourcePermission.check(
@@ -490,7 +490,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			status, userId, includeOwner);
 
 		queryDefinition.setEnd(end);
-		queryDefinition.setOrderByComparator(obc);
+		queryDefinition.setOrderByComparator(orderByComparator);
 		queryDefinition.setStart(start);
 
 		return wikiPageFinder.filterFindByG_N_H_S(

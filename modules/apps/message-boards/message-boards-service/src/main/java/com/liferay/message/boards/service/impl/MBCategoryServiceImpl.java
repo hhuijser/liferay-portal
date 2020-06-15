@@ -242,10 +242,10 @@ public class MBCategoryServiceImpl extends MBCategoryServiceBaseImpl {
 	@Override
 	public List<Object> getCategoriesAndThreads(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<?> obc) {
+		OrderByComparator<?> orderByComparator) {
 
 		QueryDefinition<?> queryDefinition = new QueryDefinition<>(
-			status, start, end, obc);
+			status, start, end, orderByComparator);
 
 		return mbCategoryFinder.filterFindC_T_ByG_C(
 			groupId, categoryId, queryDefinition);

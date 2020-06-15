@@ -155,10 +155,10 @@ public class MDRActionLocalServiceImpl extends MDRActionLocalServiceBaseImpl {
 	@Override
 	public List<MDRAction> getActions(
 		long ruleGroupInstanceId, int start, int end,
-		OrderByComparator<MDRAction> obc) {
+		OrderByComparator<MDRAction> orderByComparator) {
 
 		return mdrActionPersistence.findByRuleGroupInstanceId(
-			ruleGroupInstanceId, start, end, obc);
+			ruleGroupInstanceId, start, end, orderByComparator);
 	}
 
 	@Override

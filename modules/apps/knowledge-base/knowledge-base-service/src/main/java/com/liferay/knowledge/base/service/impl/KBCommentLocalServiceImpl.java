@@ -186,16 +186,19 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public List<KBComment> getKBComments(
 		long groupId, int status, int start, int end,
-		OrderByComparator<KBComment> obc) {
+		OrderByComparator<KBComment> orderByComparator) {
 
-		return kbCommentPersistence.findByG_S(groupId, status, start, end, obc);
+		return kbCommentPersistence.findByG_S(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<KBComment> getKBComments(
-		long groupId, int start, int end, OrderByComparator<KBComment> obc) {
+		long groupId, int start, int end,
+		OrderByComparator<KBComment> orderByComparator) {
 
-		return kbCommentPersistence.findByGroupId(groupId, start, end, obc);
+		return kbCommentPersistence.findByGroupId(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -220,11 +223,11 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	public List<KBComment> getKBComments(
 		String className, long classPK, int status, int start, int end,
-		OrderByComparator<KBComment> obc) {
+		OrderByComparator<KBComment> orderByComparator) {
 
 		return kbCommentPersistence.findByC_C_S(
 			classNameLocalService.getClassNameId(className), classPK, status,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	@Override

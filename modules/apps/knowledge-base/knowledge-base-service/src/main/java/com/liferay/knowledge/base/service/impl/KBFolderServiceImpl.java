@@ -75,11 +75,12 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 
 	@Override
 	public KBFolder fetchFirstChildKBFolder(
-			long groupId, long kbFolderId, OrderByComparator<KBFolder> obc)
+			long groupId, long kbFolderId,
+			OrderByComparator<KBFolder> orderByComparator)
 		throws PortalException {
 
 		List<KBFolder> kbFolders = kbFolderPersistence.filterFindByG_P(
-			groupId, kbFolderId, 0, 1, obc);
+			groupId, kbFolderId, 0, 1, orderByComparator);
 
 		if (kbFolders.isEmpty()) {
 			return null;

@@ -376,7 +376,8 @@ public interface TrashHandler {
 	public int getTrashModelsCount(long classPK) throws PortalException;
 
 	public default List<TrashedModel> getTrashModelTrashedModels(
-			long classPK, int start, int end, OrderByComparator<?> obc)
+			long classPK, int start, int end,
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		return Collections.emptyList();

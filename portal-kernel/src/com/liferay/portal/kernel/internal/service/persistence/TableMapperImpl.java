@@ -269,11 +269,12 @@ public class TableMapperImpl<L extends BaseModel<L>, R extends BaseModel<R>>
 
 	@Override
 	public List<L> getLeftBaseModels(
-		long rightPrimaryKey, int start, int end, OrderByComparator<L> obc) {
+		long rightPrimaryKey, int start, int end,
+		OrderByComparator<L> orderByComparator) {
 
 		return getBaseModels(
 			rightToLeftPortalCache, getLeftPrimaryKeysSqlQuery, rightPrimaryKey,
-			leftBasePersistence, start, end, obc);
+			leftBasePersistence, start, end, orderByComparator);
 	}
 
 	@Override
@@ -290,11 +291,12 @@ public class TableMapperImpl<L extends BaseModel<L>, R extends BaseModel<R>>
 
 	@Override
 	public List<R> getRightBaseModels(
-		long leftPrimaryKey, int start, int end, OrderByComparator<R> obc) {
+		long leftPrimaryKey, int start, int end,
+		OrderByComparator<R> orderByComparator) {
 
 		return getBaseModels(
 			leftToRightPortalCache, getRightPrimaryKeysSqlQuery, leftPrimaryKey,
-			rightBasePersistence, start, end, obc);
+			rightBasePersistence, start, end, orderByComparator);
 	}
 
 	@Override
@@ -397,7 +399,7 @@ public class TableMapperImpl<L extends BaseModel<L>, R extends BaseModel<R>>
 		PortalCache<Long, long[]> portalCache,
 		MappingSqlQuery<Long> mappingSqlQuery, long masterPrimaryKey,
 		BasePersistence<T> slaveBasePersistence, int start, int end,
-		OrderByComparator<T> obc) {
+		OrderByComparator<T> orderByComparator) {
 
 		long[] slavePrimaryKeys = getPrimaryKeys(
 			portalCache, mappingSqlQuery, masterPrimaryKey, true);
@@ -418,8 +420,8 @@ public class TableMapperImpl<L extends BaseModel<L>, R extends BaseModel<R>>
 			throw new SystemException(noSuchModelException);
 		}
 
-		if (obc != null) {
-			Collections.sort(slaveBaseModels, obc);
+		if (orderByComparator != null) {
+			Collections.sort(slaveBaseModels, orderByComparator);
 		}
 
 		return ListUtil.subList(slaveBaseModels, start, end);

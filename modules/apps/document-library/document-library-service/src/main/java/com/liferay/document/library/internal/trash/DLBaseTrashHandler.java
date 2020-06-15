@@ -166,7 +166,8 @@ public abstract class DLBaseTrashHandler extends BaseTrashHandler {
 
 	@Override
 	public List<TrashedModel> getTrashModelTrashedModels(
-			long classPK, int start, int end, OrderByComparator<?> obc)
+			long classPK, int start, int end,
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		List<TrashedModel> trashedModels = new ArrayList<>();
@@ -176,7 +177,7 @@ public abstract class DLBaseTrashHandler extends BaseTrashHandler {
 		List<RepositoryEntry> repositoryEntries =
 			documentRepository.getFoldersAndFileEntriesAndFileShortcuts(
 				classPK, WorkflowConstants.STATUS_IN_TRASH, false, start, end,
-				obc);
+				orderByComparator);
 
 		for (RepositoryEntry repositoryEntry : repositoryEntries) {
 			if (repositoryEntry instanceof FileShortcut) {

@@ -322,9 +322,10 @@ public class PasswordPolicyLocalServiceImpl
 	@Override
 	public List<PasswordPolicy> search(
 		long companyId, String name, int start, int end,
-		OrderByComparator<PasswordPolicy> obc) {
+		OrderByComparator<PasswordPolicy> orderByComparator) {
 
-		return passwordPolicyFinder.findByC_N(companyId, name, start, end, obc);
+		return passwordPolicyFinder.findByC_N(
+			companyId, name, start, end, orderByComparator);
 	}
 
 	@Override

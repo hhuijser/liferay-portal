@@ -455,39 +455,40 @@ public class PortletFileRepositoryImpl implements PortletFileRepository {
 	@Override
 	public List<FileEntry> getPortletFileEntries(
 			long groupId, long folderId, int status, int start, int end,
-			OrderByComparator<FileEntry> obc)
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		LocalRepository localRepository =
 			_repositoryProvider.getLocalRepository(groupId);
 
 		return localRepository.getFileEntries(
-			folderId, status, start, end, obc);
+			folderId, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<FileEntry> getPortletFileEntries(
-			long groupId, long folderId, OrderByComparator<FileEntry> obc)
+			long groupId, long folderId,
+			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		LocalRepository localRepository =
 			_repositoryProvider.getLocalRepository(groupId);
 
 		return localRepository.getFileEntries(
-			folderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+			folderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
 	}
 
 	@Override
 	public List<FileEntry> getPortletFileEntries(
 			long groupId, long folderId, String[] mimeTypes, int status,
-			int start, int end, OrderByComparator<FileEntry> obc)
+			int start, int end, OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
 		LocalRepository localRepository =
 			_repositoryProvider.getLocalRepository(groupId);
 
 		return localRepository.getFileEntries(
-			folderId, mimeTypes, status, start, end, obc);
+			folderId, mimeTypes, status, start, end, orderByComparator);
 	}
 
 	@Override

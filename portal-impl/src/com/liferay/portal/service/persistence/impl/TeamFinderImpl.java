@@ -76,28 +76,30 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 	public List<Team> filterFindByG_N_D(
 		long groupId, String name, String description,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Team> obc) {
+		OrderByComparator<Team> orderByComparator) {
 
 		return doFindByG_N_D(
-			groupId, name, description, params, start, end, obc, true);
+			groupId, name, description, params, start, end, orderByComparator,
+			true);
 	}
 
 	@Override
 	public List<Team> findByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<Team> obc) {
+		OrderByComparator<Team> orderByComparator) {
 
-		return doFindByG_U(groupId, userId, start, end, obc);
+		return doFindByG_U(groupId, userId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<Team> findByG_N_D(
 		long groupId, String name, String description,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Team> obc) {
+		OrderByComparator<Team> orderByComparator) {
 
 		return doFindByG_N_D(
-			groupId, name, description, params, start, end, obc, false);
+			groupId, name, description, params, start, end, orderByComparator,
+			false);
 	}
 
 	protected int doCountByG_N_D(
@@ -158,7 +160,7 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 
 	protected List<Team> doFindByG_U(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<Team> obc) {
+		OrderByComparator<Team> orderByComparator) {
 
 		Session session = null;
 
@@ -167,7 +169,7 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 
 			String sql = CustomSQLUtil.get(FIND_BY_G_U);
 
-			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			sql = CustomSQLUtil.replaceOrderBy(sql, orderByComparator);
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
@@ -193,7 +195,7 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 	protected List<Team> doFindByG_N_D(
 		long groupId, String name, String description,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Team> obc, boolean inlineSQLHelper) {
+		OrderByComparator<Team> orderByComparator, boolean inlineSQLHelper) {
 
 		name = CustomSQLUtil.keywords(name)[0];
 		description = CustomSQLUtil.keywords(description)[0];
@@ -212,7 +214,7 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 
 			sql = StringUtil.replace(sql, "[$JOIN$]", getJoin(params));
 			sql = StringUtil.replace(sql, "[$WHERE$]", getWhere(params));
-			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			sql = CustomSQLUtil.replaceOrderBy(sql, orderByComparator);
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 

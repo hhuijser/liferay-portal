@@ -283,17 +283,18 @@ public class KaleoTaskInstanceTokenFinderImpl
 				sql, kaleoTaskInstanceTokenQuery.isAndOperator());
 		}
 
-		OrderByComparator<KaleoTaskInstanceToken> obc =
+		OrderByComparator<KaleoTaskInstanceToken> orderByComparator =
 			kaleoTaskInstanceTokenQuery.getOrderByComparator();
 
-		if (obc != null) {
+		if (orderByComparator != null) {
 			StringBundler sb = new StringBundler(sql);
 
-			appendOrderByComparator(sb, _ORDER_BY_ENTITY_ALIAS, obc);
+			appendOrderByComparator(
+				sb, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 			sql = sb.toString();
 
-			String[] orderByFields = obc.getOrderByFields();
+			String[] orderByFields = orderByComparator.getOrderByFields();
 
 			sb = new StringBundler(orderByFields.length * 3 + 1);
 

@@ -242,7 +242,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public List<DLFileEntry> getFileEntries(
 			long groupId, long folderId, int status, int start, int end,
-			OrderByComparator<DLFileEntry> obc)
+			OrderByComparator<DLFileEntry> orderByComparator)
 		throws PortalException {
 
 		ModelResourcePermissionUtil.check(
@@ -254,7 +254,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		folderIds.add(folderId);
 
 		QueryDefinition<DLFileEntry> queryDefinition = new QueryDefinition<>(
-			status, false, start, end, obc);
+			status, false, start, end, orderByComparator);
 
 		return dlFileEntryFinder.filterFindByG_F(
 			groupId, folderIds, queryDefinition);
@@ -263,18 +263,18 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public List<DLFileEntry> getFileEntries(
 			long groupId, long folderId, int start, int end,
-			OrderByComparator<DLFileEntry> obc)
+			OrderByComparator<DLFileEntry> orderByComparator)
 		throws PortalException {
 
 		return getFileEntries(
 			groupId, folderId, WorkflowConstants.STATUS_APPROVED, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	@Override
 	public List<DLFileEntry> getFileEntries(
 			long groupId, long folderId, long fileEntryTypeId, int start,
-			int end, OrderByComparator<DLFileEntry> obc)
+			int end, OrderByComparator<DLFileEntry> orderByComparator)
 		throws PortalException {
 
 		ModelResourcePermissionUtil.check(
@@ -282,13 +282,14 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			folderId, ActionKeys.VIEW);
 
 		return dlFileEntryPersistence.filterFindByG_F_F(
-			groupId, folderId, fileEntryTypeId, start, end, obc);
+			groupId, folderId, fileEntryTypeId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<DLFileEntry> getFileEntries(
 			long groupId, long folderId, String[] mimeTypes, int status,
-			int start, int end, OrderByComparator<DLFileEntry> obc)
+			int start, int end,
+			OrderByComparator<DLFileEntry> orderByComparator)
 		throws PortalException {
 
 		ModelResourcePermissionUtil.check(
@@ -300,7 +301,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		folderIds.add(folderId);
 
 		QueryDefinition<DLFileEntry> queryDefinition = new QueryDefinition<>(
-			status, start, end, obc);
+			status, start, end, orderByComparator);
 
 		return dlFileEntryFinder.filterFindByG_U_F_M(
 			groupId, 0, folderIds, mimeTypes, queryDefinition);
@@ -309,7 +310,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public List<DLFileEntry> getFileEntries(
 			long groupId, long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator<DLFileEntry> obc)
+			OrderByComparator<DLFileEntry> orderByComparator)
 		throws PortalException {
 
 		ModelResourcePermissionUtil.check(
@@ -321,7 +322,8 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		folderIds.add(folderId);
 
 		QueryDefinition<DLFileEntry> queryDefinition = new QueryDefinition<>(
-			WorkflowConstants.STATUS_IN_TRASH, true, start, end, obc);
+			WorkflowConstants.STATUS_IN_TRASH, true, start, end,
+			orderByComparator);
 
 		return dlFileEntryFinder.filterFindByG_U_F_M(
 			groupId, 0, folderIds, mimeTypes, queryDefinition);
@@ -440,7 +442,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public List<DLFileEntry> getGroupFileEntries(
 			long groupId, long userId, long rootFolderId, int start, int end,
-			OrderByComparator<DLFileEntry> obc)
+			OrderByComparator<DLFileEntry> orderByComparator)
 		throws PortalException {
 
 		List<Long> folderIds = dlFolderService.getFolderIds(
@@ -452,18 +454,20 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 
 		if (userId <= 0) {
 			return dlFileEntryPersistence.filterFindByG_F(
-				groupId, ArrayUtil.toLongArray(folderIds), start, end, obc);
+				groupId, ArrayUtil.toLongArray(folderIds), start, end,
+				orderByComparator);
 		}
 
 		return dlFileEntryPersistence.filterFindByG_U_F(
-			groupId, userId, ArrayUtil.toLongArray(folderIds), start, end, obc);
+			groupId, userId, ArrayUtil.toLongArray(folderIds), start, end,
+			orderByComparator);
 	}
 
 	@Override
 	public List<DLFileEntry> getGroupFileEntries(
 			long groupId, long userId, long repositoryId, long rootFolderId,
 			String[] mimeTypes, int status, int start, int end,
-			OrderByComparator<DLFileEntry> obc)
+			OrderByComparator<DLFileEntry> orderByComparator)
 		throws PortalException {
 
 		List<Long> repositoryIds = new ArrayList<>();
@@ -473,7 +477,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		}
 
 		QueryDefinition<DLFileEntry> queryDefinition = new QueryDefinition<>(
-			status, start, end, obc);
+			status, start, end, orderByComparator);
 
 		if (rootFolderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			return dlFileEntryFinder.filterFindByG_U_R_F_M(
@@ -496,12 +500,13 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public List<DLFileEntry> getGroupFileEntries(
 			long groupId, long userId, long rootFolderId, String[] mimeTypes,
-			int status, int start, int end, OrderByComparator<DLFileEntry> obc)
+			int status, int start, int end,
+			OrderByComparator<DLFileEntry> orderByComparator)
 		throws PortalException {
 
 		return getGroupFileEntries(
 			groupId, userId, 0, rootFolderId, mimeTypes, status, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	@Override

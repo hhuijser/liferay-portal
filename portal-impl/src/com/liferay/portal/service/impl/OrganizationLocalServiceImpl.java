@@ -583,7 +583,7 @@ public class OrganizationLocalServiceImpl
 	@Override
 	public List<Organization> getOrganizations(
 			long userId, int start, int end,
-			OrderByComparator<Organization> obc)
+			OrderByComparator<Organization> orderByComparator)
 		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -605,11 +605,11 @@ public class OrganizationLocalServiceImpl
 			return organizations;
 		}
 
-		if (obc == null) {
-			obc = new OrganizationNameComparator(true);
+		if (orderByComparator == null) {
+			orderByComparator = new OrganizationNameComparator(true);
 		}
 
-		Collections.sort(organizations, obc);
+		Collections.sort(organizations, orderByComparator);
 
 		return ListUtil.subList(organizations, start, end);
 	}
@@ -722,18 +722,18 @@ public class OrganizationLocalServiceImpl
 	 *         return
 	 * @param  end the upper bound of the range of organizations and users to
 	 *         return (not inclusive)
-	 * @param  obc the comparator to order the organizations and users
+	 * @param  orderByComparator the comparator to order the organizations and users
 	 *         (optionally <code>null</code>)
 	 * @return the organizations and users belonging to the parent organization
 	 */
 	@Override
 	public List<Object> getOrganizationsAndUsers(
 		long companyId, long parentOrganizationId, int status, int start,
-		int end, OrderByComparator<?> obc) {
+		int end, OrderByComparator<?> orderByComparator) {
 
 		QueryDefinition<?> queryDefinition = new QueryDefinition<>(
 			status, false, 0, false, start, end,
-			(OrderByComparator<Object>)obc);
+			(OrderByComparator<Object>)orderByComparator);
 
 		return organizationFinder.findO_U_ByC_P(
 			companyId, parentOrganizationId, queryDefinition);
@@ -1297,16 +1297,16 @@ public class OrganizationLocalServiceImpl
 	 * @param  start the lower bound of the range of organizations to return
 	 * @param  end the upper bound of the range of organizations to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the organizations (optionally
+	 * @param  orderByComparator the comparator to order the organizations (optionally
 	 *         <code>null</code>)
-	 * @return the matching organizations ordered by comparator <code>obc</code>
+	 * @return the matching organizations ordered by comparator <code>orderByComparator</code>
 	 * @see    com.liferay.portal.kernel.service.persistence.OrganizationFinder
 	 */
 	@Override
 	public List<Organization> search(
 		long companyId, long parentOrganizationId, String keywords, String type,
 		Long regionId, Long countryId, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<Organization> obc) {
+		int start, int end, OrderByComparator<Organization> orderByComparator) {
 
 		String parentOrganizationIdComparator = StringPool.EQUAL;
 
@@ -1318,7 +1318,8 @@ public class OrganizationLocalServiceImpl
 
 		return organizationFinder.findO_ByKeywords(
 			companyId, parentOrganizationId, parentOrganizationIdComparator,
-			keywords, type, regionId, countryId, params, start, end, obc);
+			keywords, type, regionId, countryId, params, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -1416,9 +1417,9 @@ public class OrganizationLocalServiceImpl
 	 * @param  start the lower bound of the range of organizations to return
 	 * @param  end the upper bound of the range of organizations to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the organizations (optionally
+	 * @param  orderByComparator the comparator to order the organizations (optionally
 	 *         <code>null</code>)
-	 * @return the matching organizations ordered by comparator <code>obc</code>
+	 * @return the matching organizations ordered by comparator <code>orderByComparator</code>
 	 * @see    com.liferay.portal.kernel.service.persistence.OrganizationFinder
 	 */
 	@Override
@@ -1426,7 +1427,7 @@ public class OrganizationLocalServiceImpl
 		long companyId, long parentOrganizationId, String name, String type,
 		String street, String city, String zip, Long regionId, Long countryId,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Organization> obc) {
+		int end, OrderByComparator<Organization> orderByComparator) {
 
 		String parentOrganizationIdComparator = StringPool.EQUAL;
 
@@ -1439,7 +1440,7 @@ public class OrganizationLocalServiceImpl
 		return organizationFinder.findO_ByC_PO_N_T_S_C_Z_R_C(
 			companyId, parentOrganizationId, parentOrganizationIdComparator,
 			name, type, street, city, zip, regionId, countryId, params,
-			andOperator, start, end, obc);
+			andOperator, start, end, orderByComparator);
 	}
 
 	/**

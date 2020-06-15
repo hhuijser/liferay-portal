@@ -1047,14 +1047,14 @@ public class DLFileEntryLocalServiceImpl
 	@Override
 	public List<DLFileEntry> getFileEntries(
 		long groupId, long folderId, int status, int start, int end,
-		OrderByComparator<DLFileEntry> obc) {
+		OrderByComparator<DLFileEntry> orderByComparator) {
 
 		List<Long> folderIds = new ArrayList<>();
 
 		folderIds.add(folderId);
 
 		QueryDefinition<DLFileEntry> queryDefinition = new QueryDefinition<>(
-			status, false, start, end, obc);
+			status, false, start, end, orderByComparator);
 
 		return dlFileEntryFinder.findByG_F(groupId, folderIds, queryDefinition);
 	}
@@ -1062,10 +1062,10 @@ public class DLFileEntryLocalServiceImpl
 	@Override
 	public List<DLFileEntry> getFileEntries(
 		long groupId, long folderId, int start, int end,
-		OrderByComparator<DLFileEntry> obc) {
+		OrderByComparator<DLFileEntry> orderByComparator) {
 
 		return dlFileEntryPersistence.findByG_F(
-			groupId, folderId, start, end, obc);
+			groupId, folderId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1194,9 +1194,11 @@ public class DLFileEntryLocalServiceImpl
 
 	@Override
 	public List<DLFileEntry> getGroupFileEntries(
-		long groupId, int start, int end, OrderByComparator<DLFileEntry> obc) {
+		long groupId, int start, int end,
+		OrderByComparator<DLFileEntry> orderByComparator) {
 
-		return dlFileEntryPersistence.findByGroupId(groupId, start, end, obc);
+		return dlFileEntryPersistence.findByGroupId(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1211,30 +1213,30 @@ public class DLFileEntryLocalServiceImpl
 	@Override
 	public List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, int start, int end,
-		OrderByComparator<DLFileEntry> obc) {
+		OrderByComparator<DLFileEntry> orderByComparator) {
 
 		if (userId <= 0) {
 			return dlFileEntryPersistence.findByGroupId(
-				groupId, start, end, obc);
+				groupId, start, end, orderByComparator);
 		}
 
 		return dlFileEntryPersistence.findByG_U(
-			groupId, userId, start, end, obc);
+			groupId, userId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, long rootFolderId, int start, int end,
-		OrderByComparator<DLFileEntry> obc) {
+		OrderByComparator<DLFileEntry> orderByComparator) {
 
 		return getGroupFileEntries(
-			groupId, userId, 0, rootFolderId, start, end, obc);
+			groupId, userId, 0, rootFolderId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, long repositoryId, long rootFolderId,
-		int start, int end, OrderByComparator<DLFileEntry> obc) {
+		int start, int end, OrderByComparator<DLFileEntry> orderByComparator) {
 
 		List<Long> folderIds;
 
@@ -1252,7 +1254,7 @@ public class DLFileEntryLocalServiceImpl
 		}
 
 		QueryDefinition<DLFileEntry> queryDefinition = new QueryDefinition<>(
-			WorkflowConstants.STATUS_ANY, start, end, obc);
+			WorkflowConstants.STATUS_ANY, start, end, orderByComparator);
 
 		if (repositoryId == 0) {
 			if (userId <= 0) {

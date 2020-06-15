@@ -395,53 +395,55 @@ public class SourceFormatter {
 			throw executionException1;
 		}
 
-		if (_sourceFormatterArgs.isFailOnAutoFix() &&
-			(!_sourceFormatterMessages.isEmpty() ||
-			 !_sourceMismatchExceptions.isEmpty())) {
+		if ((!_sourceFormatterArgs.isFailOnAutoFix() ||
+			 _sourceMismatchExceptions.isEmpty()) &&
+			(!_sourceFormatterArgs.isFailOnHasWarning() ||
+			 _sourceFormatterMessages.isEmpty())) {
 
-			int size =
-				_sourceFormatterMessages.size() +
-					_sourceMismatchExceptions.size();
+			return;
+		}
 
-			StringBundler sb = new StringBundler(size * 4);
+		int size =
+			_sourceFormatterMessages.size() + _sourceMismatchExceptions.size();
 
-			int index = 1;
+		StringBundler sb = new StringBundler(size * 4);
 
-			if (!_sourceFormatterMessages.isEmpty()) {
-				for (SourceFormatterMessage sourceFormatterMessage :
-						_sourceFormatterMessages) {
+		int index = 1;
 
+		if (_sourceFormatterArgs.isFailOnHasWarning()) {
+			for (SourceFormatterMessage sourceFormatterMessage :
+					_sourceFormatterMessages) {
+
+				sb.append(index);
+				sb.append(": ");
+				sb.append(sourceFormatterMessage.toString());
+				sb.append("\n");
+
+				index = index + 1;
+			}
+		}
+
+		if (_sourceFormatterArgs.isFailOnAutoFix()) {
+			for (SourceMismatchException sourceMismatchException :
+					_sourceMismatchExceptions) {
+
+				String message = sourceMismatchException.getMessage();
+
+				if (!Objects.isNull(message)) {
 					sb.append(index);
 					sb.append(": ");
-					sb.append(sourceFormatterMessage.toString());
+					sb.append(message);
 					sb.append("\n");
 
 					index = index + 1;
 				}
 			}
-
-			if (!_sourceMismatchExceptions.isEmpty()) {
-				for (SourceMismatchException sourceMismatchException :
-						_sourceMismatchExceptions) {
-
-					String message = sourceMismatchException.getMessage();
-
-					if (!Objects.isNull(message)) {
-						sb.append(index);
-						sb.append(": ");
-						sb.append(message);
-						sb.append("\n");
-
-						index = index + 1;
-					}
-				}
-			}
-
-			String message = StringBundler.concat(
-				"Found ", index - 1, " formatting issues:\n", sb.toString());
-
-			throw new Exception(message);
 		}
+
+		String message = StringBundler.concat(
+			"Found ", index - 1, " formatting issues:\n", sb.toString());
+
+		throw new Exception(message);
 	}
 
 	public List<String> getModifiedFileNames() {

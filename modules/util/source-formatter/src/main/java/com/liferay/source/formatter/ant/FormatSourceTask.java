@@ -76,6 +76,14 @@ public class FormatSourceTask extends Task {
 		_sourceFormatterArgs.setBaseDirName(baseDirName);
 	}
 
+	public void setFailOnAutoFix(boolean failOnAutoFix) {
+		_sourceFormatterArgs.setFailOnAutoFix(failOnAutoFix);
+	}
+
+	public void setFailOnHasWarning(boolean failOnHasWarning) {
+		_sourceFormatterArgs.setFailOnHasWarning(failOnHasWarning);
+	}
+
 	public void setFileNames(String fileNames) {
 		_sourceFormatterArgs.setFileNames(
 			Arrays.asList(StringUtil.split(fileNames)));
@@ -123,10 +131,6 @@ public class FormatSourceTask extends Task {
 
 	public void setShowStatusUpdates(boolean showStatusUpdates) {
 		_sourceFormatterArgs.setShowStatusUpdates(showStatusUpdates);
-	}
-
-	public void setThrowException(boolean throwException) {
-		_sourceFormatterArgs.setThrowException(throwException);
 	}
 
 	private void _collectFromFileSets() {

@@ -69,8 +69,9 @@ public abstract class BaseSourceProcessorTestCase {
 		SourceFormatterArgs sourceFormatterArgs = new SourceFormatterArgs();
 
 		sourceFormatterArgs.setAutoFix(true);
+		sourceFormatterArgs.setFailOnAutoFix(false);
+		sourceFormatterArgs.setFailOnHasWarning(false);
 		sourceFormatterArgs.setPrintErrors(false);
-		sourceFormatterArgs.setThrowException(false);
 
 		return sourceFormatterArgs;
 	}

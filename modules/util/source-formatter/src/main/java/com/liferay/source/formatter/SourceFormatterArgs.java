@@ -29,6 +29,10 @@ public class SourceFormatterArgs {
 
 	public static final String BASE_DIR_NAME = "./";
 
+	public static final boolean FAIL_ON_AUTO_FIX = false;
+
+	public static final boolean FAIL_ON_HAS_WARNING = true;
+
 	public static final boolean FORMAT_CURRENT_BRANCH = false;
 
 	public static final boolean FORMAT_LATEST_AUTHOR = false;
@@ -55,8 +59,6 @@ public class SourceFormatterArgs {
 	public static final boolean SHOW_DOCUMENTATION = false;
 
 	public static final boolean SHOW_STATUS_UPDATES = false;
-
-	public static final boolean THROW_EXCEPTION = false;
 
 	public void addRecentChangesFileNames(
 		Collection<String> fileNames, String baseDirName) {
@@ -111,6 +113,14 @@ public class SourceFormatterArgs {
 		return _autoFix;
 	}
 
+	public boolean isFailOnAutoFix() {
+		return _failOnAutoFix;
+	}
+
+	public boolean isFailOnHasWarning() {
+		return _failOnHasWarning;
+	}
+
 	public boolean isFormatCurrentBranch() {
 		return _formatCurrentBranch;
 	}
@@ -147,10 +157,6 @@ public class SourceFormatterArgs {
 		return _showStatusUpdates;
 	}
 
-	public boolean isThrowException() {
-		return _throwException;
-	}
-
 	public void setAutoFix(boolean autoFix) {
 		_autoFix = autoFix;
 	}
@@ -169,6 +175,14 @@ public class SourceFormatterArgs {
 
 	public void setCheckName(String checkName) {
 		_checkName = checkName;
+	}
+
+	public void setFailOnAutoFix(boolean failOnAutoFix) {
+		_failOnAutoFix = failOnAutoFix;
+	}
+
+	public void setFailOnHasWarning(boolean failOnHasWarning) {
+		_failOnHasWarning = failOnHasWarning;
 	}
 
 	public void setFileExtensions(List<String> fileExtensions) {
@@ -240,13 +254,11 @@ public class SourceFormatterArgs {
 		_skipCheckNames = skipCheckNames;
 	}
 
-	public void setThrowException(boolean throwException) {
-		_throwException = throwException;
-	}
-
 	private boolean _autoFix = AUTO_FIX;
 	private String _baseDirName = BASE_DIR_NAME;
 	private String _checkName;
+	private boolean _failOnAutoFix = FAIL_ON_AUTO_FIX;
+	private boolean _failOnHasWarning = FAIL_ON_HAS_WARNING;
 	private List<String> _fileExtensions = new ArrayList<>();
 	private List<String> _fileNames;
 	private boolean _formatCurrentBranch = FORMAT_CURRENT_BRANCH;
@@ -263,6 +275,5 @@ public class SourceFormatterArgs {
 	private boolean _showDocumentation = SHOW_DOCUMENTATION;
 	private boolean _showStatusUpdates = SHOW_STATUS_UPDATES;
 	private List<String> _skipCheckNames = new ArrayList<>();
-	private boolean _throwException = THROW_EXCEPTION;
 
 }

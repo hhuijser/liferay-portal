@@ -34,8 +34,9 @@ public class SourceFormatterTest {
 		SourceFormatterArgs sourceFormatterArgs = new SourceFormatterArgs();
 
 		sourceFormatterArgs.setAutoFix(false);
+		sourceFormatterArgs.setFailOnAutoFix(false);
+		sourceFormatterArgs.setFailOnHasWarning(false);
 		sourceFormatterArgs.setPrintErrors(false);
-		sourceFormatterArgs.setThrowException(false);
 
 		String fileName =
 			"src/test/resources/com/liferay/source/formatter/dependencies" +

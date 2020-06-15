@@ -91,10 +91,11 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		formatSourceTask.setAutoFix(false);
 		formatSourceTask.setDescription(
 			"Checks the source formatting of this project.");
+		formatSourceTask.setFailOnAutoFix(true);
+		formatSourceTask.setFailOnHasWarning(true);
 		formatSourceTask.setGroup(LifecycleBasePlugin.VERIFICATION_GROUP);
 		formatSourceTask.setPrintErrors(true);
 		formatSourceTask.setShowStatusUpdates(false);
-		formatSourceTask.setThrowException(true);
 
 		return formatSourceTask;
 	}

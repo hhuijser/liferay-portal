@@ -99,6 +99,14 @@ public class FormatSourceTask extends ExecuteJavaTask {
 		return _sourceFormatterArgs.isAutoFix();
 	}
 
+	public boolean isFailOnAutoFix() {
+		return _sourceFormatterArgs.isFailOnAutoFix();
+	}
+
+	public boolean isFailOnHasWarning() {
+		return _sourceFormatterArgs.isFailOnHasWarning();
+	}
+
 	public boolean isFormatCurrentBranch() {
 		return _sourceFormatterArgs.isFormatCurrentBranch();
 	}
@@ -131,10 +139,6 @@ public class FormatSourceTask extends ExecuteJavaTask {
 		return _sourceFormatterArgs.isShowStatusUpdates();
 	}
 
-	public boolean isThrowException() {
-		return _sourceFormatterArgs.isThrowException();
-	}
-
 	public void setAutoFix(boolean autoFix) {
 		_sourceFormatterArgs.setAutoFix(autoFix);
 	}
@@ -145,6 +149,14 @@ public class FormatSourceTask extends ExecuteJavaTask {
 
 	public void setClasspath(FileCollection classpath) {
 		_classpath = classpath;
+	}
+
+	public void setFailOnAutoFix(boolean failOnAutoFix) {
+		_sourceFormatterArgs.setFailOnAutoFix(failOnAutoFix);
+	}
+
+	public void setFailOnHasWarning(boolean failOnHasWarning) {
+		_sourceFormatterArgs.setFailOnHasWarning(failOnHasWarning);
 	}
 
 	public void setFileExtensions(Iterable<String> fileExtensions) {
@@ -210,10 +222,6 @@ public class FormatSourceTask extends ExecuteJavaTask {
 		_sourceFormatterArgs.setShowStatusUpdates(showStatusUpdates);
 	}
 
-	public void setThrowException(boolean throwException) {
-		_sourceFormatterArgs.setThrowException(throwException);
-	}
-
 	@Override
 	protected List<String> getArgs() {
 		List<String> args = new ArrayList<>();
@@ -229,11 +237,12 @@ public class FormatSourceTask extends ExecuteJavaTask {
 		args.add("show.documentation=" + isShowDocumentation());
 		args.add("show.status.updates=" + isShowStatusUpdates());
 		args.add("source.auto.fix=" + isAutoFix());
+		args.add("source.fail.on.auto.fix=" + isFailOnAutoFix());
+		args.add("source.fail.on.has.warning=" + isFailOnHasWarning());
 		args.add(
 			"source.file.extensions=" +
 				CollectionUtils.join(",", getFileExtensions()));
 		args.add("source.print.errors=" + isPrintErrors());
-		args.add("source.throw.exception=" + isThrowException());
 
 		FileCollection fileCollection = getFiles();
 

@@ -1270,20 +1270,20 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of roles to return
 	 * @param  end the upper bound of the range of roles to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the roles (optionally
+	 * @param  orderByComparator the comparator to order the roles (optionally
 	 *         <code>null</code>)
 	 * @return the ordered range of the matching roles, ordered by
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @see    com.liferay.portal.kernel.service.persistence.RoleFinder
 	 */
 	@Override
 	public List<Role> search(
 		long companyId, String keywords, Integer[] types, int start, int end,
-		OrderByComparator<Role> obc) {
+		OrderByComparator<Role> orderByComparator) {
 
 		return search(
 			companyId, keywords, types, new LinkedHashMap<String, Object>(),
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -1310,20 +1310,20 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of roles to return
 	 * @param  end the upper bound of the range of roles to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the roles (optionally
+	 * @param  orderByComparator the comparator to order the roles (optionally
 	 *         <code>null</code>)
 	 * @return the ordered range of the matching roles, ordered by
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @see    com.liferay.portal.kernel.service.persistence.RoleFinder
 	 */
 	@Override
 	public List<Role> search(
 		long companyId, String keywords, Integer[] types,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Role> obc) {
+		OrderByComparator<Role> orderByComparator) {
 
 		return roleFinder.findByKeywords(
-			companyId, keywords, types, params, start, end, obc);
+			companyId, keywords, types, params, start, end, orderByComparator);
 	}
 
 	/**
@@ -1347,20 +1347,20 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of the roles to return
 	 * @param  end the upper bound of the range of the roles to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the roles (optionally
+	 * @param  orderByComparator the comparator to order the roles (optionally
 	 *         <code>null</code>)
 	 * @return the ordered range of the matching roles, ordered by
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @see    com.liferay.portal.kernel.service.persistence.RoleFinder
 	 */
 	@Override
 	public List<Role> search(
 		long companyId, String name, String description, Integer[] types,
-		int start, int end, OrderByComparator<Role> obc) {
+		int start, int end, OrderByComparator<Role> orderByComparator) {
 
 		return search(
 			companyId, name, description, types,
-			new LinkedHashMap<String, Object>(), start, end, obc);
+			new LinkedHashMap<String, Object>(), start, end, orderByComparator);
 	}
 
 	/**
@@ -1387,20 +1387,21 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 	 * @param  start the lower bound of the range of the roles to return
 	 * @param  end the upper bound of the range of the roles to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the roles (optionally
+	 * @param  orderByComparator the comparator to order the roles (optionally
 	 *         <code>null</code>)
 	 * @return the ordered range of the matching roles, ordered by
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 * @see    com.liferay.portal.kernel.service.persistence.RoleFinder
 	 */
 	@Override
 	public List<Role> search(
 		long companyId, String name, String description, Integer[] types,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Role> obc) {
+		OrderByComparator<Role> orderByComparator) {
 
 		return roleFinder.findByC_N_D_T(
-			companyId, name, description, types, params, true, start, end, obc);
+			companyId, name, description, types, params, true, start, end,
+			orderByComparator);
 	}
 
 	/**

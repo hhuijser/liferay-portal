@@ -219,17 +219,18 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 	 * @param  start the lower bound of the range of trash entries to return
 	 * @param  end the upper bound of the range of trash entries to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the trash entries (optionally
+	 * @param  orderByComparator the comparator to order the trash entries (optionally
 	 *         <code>null</code>)
 	 * @return the range of matching trash entries ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 */
 	@Override
 	public TrashEntryList getEntries(
-			long groupId, int start, int end, OrderByComparator<TrashEntry> obc)
+			long groupId, int start, int end,
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws PrincipalException {
 
-		return getEntries(groupId, null, start, end, obc);
+		return getEntries(groupId, null, start, end, orderByComparator);
 	}
 
 	@Override
@@ -250,15 +251,15 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 	 * @param  start the lower bound of the range of trash entries to return
 	 * @param  end the upper bound of the range of trash entries to return (not
 	 *         inclusive)
-	 * @param  obc the comparator to order the trash entries (optionally
+	 * @param  orderByComparator the comparator to order the trash entries (optionally
 	 *         <code>null</code>)
 	 * @return the range of matching trash entries ordered by comparator
-	 *         <code>obc</code>
+	 *         <code>orderByComparator</code>
 	 */
 	@Override
 	public TrashEntryList getEntries(
 			long groupId, String className, int start, int end,
-			OrderByComparator<TrashEntry> obc)
+			OrderByComparator<TrashEntry> orderByComparator)
 		throws PrincipalException {
 
 		TrashEntryList trashEntriesList = new TrashEntryList();
@@ -278,11 +279,12 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 		if (Validator.isNotNull(className)) {
 			entries = trashEntryPersistence.findByG_C(
 				groupId, classNameLocalService.getClassNameId(className), 0,
-				end + PropsValues.TRASH_SEARCH_LIMIT, obc);
+				end + PropsValues.TRASH_SEARCH_LIMIT, orderByComparator);
 		}
 		else {
 			entries = trashEntryPersistence.findByGroupId(
-				groupId, 0, end + PropsValues.TRASH_SEARCH_LIMIT, obc);
+				groupId, 0, end + PropsValues.TRASH_SEARCH_LIMIT,
+				orderByComparator);
 		}
 
 		List<TrashEntry> filteredEntries = filterEntries(entries);

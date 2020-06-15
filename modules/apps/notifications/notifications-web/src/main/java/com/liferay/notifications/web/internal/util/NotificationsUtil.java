@@ -48,7 +48,7 @@ public class NotificationsUtil {
 			SearchContainer<UserNotificationEvent> searchContainer)
 		throws PortalException {
 
-		OrderByComparator<UserNotificationEvent> obc =
+		OrderByComparator<UserNotificationEvent> orderByComparator =
 			new UserNotificationEventTimestampComparator(
 				orderByType.equals("asc"));
 
@@ -63,7 +63,7 @@ public class NotificationsUtil {
 					getDeliveredUserNotificationEvents(
 						userId, _DELIVERY_TYPE, true, actionRequired,
 						searchContainer.getStart(), searchContainer.getEnd(),
-						obc));
+						orderByComparator));
 		}
 		else {
 			boolean archived = false;
@@ -83,7 +83,7 @@ public class NotificationsUtil {
 					getArchivedUserNotificationEvents(
 						userId, _DELIVERY_TYPE, true, actionRequired, archived,
 						searchContainer.getStart(), searchContainer.getEnd(),
-						obc));
+						orderByComparator));
 		}
 	}
 

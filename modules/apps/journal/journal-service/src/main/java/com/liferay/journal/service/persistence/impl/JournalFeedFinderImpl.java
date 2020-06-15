@@ -150,7 +150,7 @@ public class JournalFeedFinderImpl
 	@Override
 	public List<JournalFeed> findByKeywords(
 		long companyId, long groupId, String keywords, int start, int end,
-		OrderByComparator<JournalFeed> obc) {
+		OrderByComparator<JournalFeed> orderByComparator) {
 
 		String[] feedIds = null;
 		String[] names = null;
@@ -168,14 +168,14 @@ public class JournalFeedFinderImpl
 
 		return findByC_G_F_N_D(
 			companyId, groupId, feedIds, names, descriptions, andOperator,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	@Override
 	public List<JournalFeed> findByC_G_F_N_D(
 		long companyId, long groupId, String feedId, String name,
 		String description, boolean andOperator, int start, int end,
-		OrderByComparator<JournalFeed> obc) {
+		OrderByComparator<JournalFeed> orderByComparator) {
 
 		String[] feedIds = _customSQL.keywords(feedId, false);
 		String[] names = _customSQL.keywords(name);
@@ -183,14 +183,14 @@ public class JournalFeedFinderImpl
 
 		return findByC_G_F_N_D(
 			companyId, groupId, feedIds, names, descriptions, andOperator,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	@Override
 	public List<JournalFeed> findByC_G_F_N_D(
 		long companyId, long groupId, String[] feedIds, String[] names,
 		String[] descriptions, boolean andOperator, int start, int end,
-		OrderByComparator<JournalFeed> obc) {
+		OrderByComparator<JournalFeed> orderByComparator) {
 
 		feedIds = _customSQL.keywords(feedIds, false);
 		names = _customSQL.keywords(names);
@@ -215,7 +215,7 @@ public class JournalFeedFinderImpl
 				sql, "LOWER(description)", StringPool.LIKE, true, descriptions);
 
 			sql = _customSQL.replaceAndOperator(sql, andOperator);
-			sql = _customSQL.replaceOrderBy(sql, obc);
+			sql = _customSQL.replaceOrderBy(sql, orderByComparator);
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 

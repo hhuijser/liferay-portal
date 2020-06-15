@@ -173,7 +173,7 @@ public class AssetTagFinderImpl
 	@Override
 	public List<AssetTag> findByG_C_N(
 		long groupId, long classNameId, String name, int start, int end,
-		OrderByComparator<AssetTag> obc) {
+		OrderByComparator<AssetTag> orderByComparator) {
 
 		Session session = null;
 
@@ -217,12 +217,13 @@ public class AssetTagFinderImpl
 				}
 			).orderBy(
 				orderByStep -> {
-					if (obc == null) {
+					if (orderByComparator == null) {
 						return orderByStep.orderBy(
 							AssetTagTable.INSTANCE.name.ascending());
 					}
 
-					return orderByStep.orderBy(AssetTagTable.INSTANCE, obc);
+					return orderByStep.orderBy(
+						AssetTagTable.INSTANCE, orderByComparator);
 				}
 			);
 

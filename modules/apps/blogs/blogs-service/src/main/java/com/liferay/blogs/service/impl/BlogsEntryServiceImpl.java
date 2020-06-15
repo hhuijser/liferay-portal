@@ -310,15 +310,16 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 	@Override
 	public List<BlogsEntry> getGroupEntries(
 		long groupId, int status, int start, int end,
-		OrderByComparator<BlogsEntry> obc) {
+		OrderByComparator<BlogsEntry> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return blogsEntryPersistence.filterFindByG_NotS(
-				groupId, WorkflowConstants.STATUS_IN_TRASH, start, end, obc);
+				groupId, WorkflowConstants.STATUS_IN_TRASH, start, end,
+				orderByComparator);
 		}
 
 		return blogsEntryPersistence.filterFindByG_S(
-			groupId, status, start, end, obc);
+			groupId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -409,25 +410,25 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 	@Override
 	public List<BlogsEntry> getGroupUserEntries(
 		long groupId, long userId, int status, int start, int end,
-		OrderByComparator<BlogsEntry> obc) {
+		OrderByComparator<BlogsEntry> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return blogsEntryPersistence.filterFindByG_U_NotS(
 				groupId, userId, WorkflowConstants.STATUS_IN_TRASH, start, end,
-				obc);
+				orderByComparator);
 		}
 
 		return blogsEntryPersistence.filterFindByG_U_S(
-			groupId, userId, status, start, end, obc);
+			groupId, userId, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<BlogsEntry> getGroupUserEntries(
 		long groupId, long userId, int[] statuses, int start, int end,
-		OrderByComparator<BlogsEntry> obc) {
+		OrderByComparator<BlogsEntry> orderByComparator) {
 
 		return blogsEntryPersistence.filterFindByG_U_S(
-			groupId, userId, statuses, start, end, obc);
+			groupId, userId, statuses, start, end, orderByComparator);
 	}
 
 	@Override

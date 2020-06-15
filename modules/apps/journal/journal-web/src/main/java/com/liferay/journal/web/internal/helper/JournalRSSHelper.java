@@ -130,11 +130,11 @@ public class JournalRSSHelper {
 
 		boolean orderByAsc = orderByType.equals("asc");
 
-		OrderByComparator<JournalArticle> obc =
+		OrderByComparator<JournalArticle> orderByComparator =
 			new ArticleModifiedDateComparator(orderByAsc);
 
 		if (orderByCol.equals("display-date")) {
-			obc = new ArticleDisplayDateComparator(orderByAsc);
+			orderByComparator = new ArticleDisplayDateComparator(orderByAsc);
 		}
 
 		return _journalArticleLocalService.search(
@@ -142,7 +142,7 @@ public class JournalRSSHelper {
 			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, articleId, version,
 			title, description, content, ddmStructureKey, ddmTemplateKey,
 			displayDateGT, displayDateLT, status, reviewDate, andOperator,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	public List<SyndEnclosure> getDLEnclosures(String portalURL, String url) {

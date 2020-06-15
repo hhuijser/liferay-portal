@@ -371,7 +371,7 @@ public class GroupFinderImpl
 	@Override
 	public List<Group> findByCompanyId(
 		long companyId, LinkedHashMap<String, Object> params, int start,
-		int end, OrderByComparator<Group> obc) {
+		int end, OrderByComparator<Group> orderByComparator) {
 
 		if (params == null) {
 			params = _emptyLinkedHashMap;
@@ -407,7 +407,7 @@ public class GroupFinderImpl
 		}
 
 		String sqlKey = _buildSQLCacheKey(
-			obc, params1, params2, params3, params4);
+			orderByComparator, params1, params2, params3, params4);
 
 		String sql = _findByCompanyIdSQLCache.get(sqlKey);
 
@@ -419,7 +419,8 @@ public class GroupFinderImpl
 					findByCompanyIdSQL, "(Group_.liveGroupId = 0) AND");
 			}
 
-			findByCompanyIdSQL = replaceOrderBy(findByCompanyIdSQL, obc);
+			findByCompanyIdSQL = replaceOrderBy(
+				findByCompanyIdSQL, orderByComparator);
 
 			StringBundler sb = new StringBundler(11);
 
@@ -437,9 +438,9 @@ public class GroupFinderImpl
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
-			if (obc != null) {
+			if (orderByComparator != null) {
 				sb.append(" ORDER BY ");
-				sb.append(obc.toString());
+				sb.append(orderByComparator.toString());
 			}
 
 			sql = sb.toString();
@@ -500,7 +501,7 @@ public class GroupFinderImpl
 	@Override
 	public List<Group> findByLayouts(
 		long companyId, long parentGroupId, boolean site, Boolean active,
-		int start, int end, OrderByComparator<Group> obc) {
+		int start, int end, OrderByComparator<Group> orderByComparator) {
 
 		Session session = null;
 
@@ -509,7 +510,7 @@ public class GroupFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_LAYOUTS);
 
-			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			sql = CustomSQLUtil.replaceOrderBy(sql, orderByComparator);
 
 			if (active != null) {
 				sql = StringUtil.replace(
@@ -546,10 +547,11 @@ public class GroupFinderImpl
 	@Override
 	public List<Group> findByLayouts(
 		long companyId, long parentGroupId, boolean site, int start, int end,
-		OrderByComparator<Group> obc) {
+		OrderByComparator<Group> orderByComparator) {
 
 		return findByLayouts(
-			companyId, parentGroupId, site, null, start, end, obc);
+			companyId, parentGroupId, site, null, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -752,7 +754,8 @@ public class GroupFinderImpl
 	public List<Group> findByC_C_PG_N_D(
 		long companyId, long[] classNameIds, long parentGroupId, String[] names,
 		String[] descriptions, LinkedHashMap<String, Object> params,
-		boolean andOperator, int start, int end, OrderByComparator<Group> obc) {
+		boolean andOperator, int start, int end,
+		OrderByComparator<Group> orderByComparator) {
 
 		String parentGroupIdComparator = StringPool.EQUAL;
 
@@ -796,15 +799,16 @@ public class GroupFinderImpl
 			params1.put("classNameIds", classNameIds);
 		}
 
-		if (obc == null) {
-			obc = new GroupNameComparator(true);
+		if (orderByComparator == null) {
+			orderByComparator = new GroupNameComparator(true);
 		}
 
 		String sql = null;
 		String sqlKey = null;
 
 		if (_isCacheableSQL(classNameIds)) {
-			sqlKey = _buildSQLCacheKey(obc, params1, params2, params3, params4);
+			sqlKey = _buildSQLCacheKey(
+				orderByComparator, params1, params2, params3, params4);
 
 			sql = _findByC_C_PG_N_DSQLCache.get(sqlKey);
 		}
@@ -812,7 +816,8 @@ public class GroupFinderImpl
 		if (sql == null) {
 			String findByC_PG_N_D_SQL = CustomSQLUtil.get(FIND_BY_C_PG_N_D);
 
-			findByC_PG_N_D_SQL = replaceOrderBy(findByC_PG_N_D_SQL, obc);
+			findByC_PG_N_D_SQL = replaceOrderBy(
+				findByC_PG_N_D_SQL, orderByComparator);
 
 			StringBundler sb = new StringBundler(10);
 
@@ -837,7 +842,7 @@ public class GroupFinderImpl
 			}
 
 			sb.append(") ORDER BY ");
-			sb.append(obc.toString());
+			sb.append(orderByComparator.toString());
 
 			sql = sb.toString();
 
@@ -1136,8 +1141,10 @@ public class GroupFinderImpl
 		return resultSQL;
 	}
 
-	protected String replaceOrderBy(String sql, OrderByComparator<Group> obc) {
-		if (obc instanceof GroupNameComparator) {
+	protected String replaceOrderBy(
+		String sql, OrderByComparator<Group> orderByComparator) {
+
+		if (orderByComparator instanceof GroupNameComparator) {
 			sql = StringUtil.replace(
 				sql, "Group_.name AS groupName",
 				"REPLACE(Group_.name, '" +
@@ -1264,13 +1271,14 @@ public class GroupFinderImpl
 
 	@SafeVarargs
 	private final String _buildSQLCacheKey(
-		OrderByComparator<Group> obc, Map<String, Object>... params) {
+		OrderByComparator<Group> orderByComparator,
+		Map<String, Object>... params) {
 
-		if (obc == null) {
+		if (orderByComparator == null) {
 			return _buildSQLCacheKey(StringPool.BLANK, params);
 		}
 
-		return _buildSQLCacheKey(obc.getOrderBy(), params);
+		return _buildSQLCacheKey(orderByComparator.getOrderBy(), params);
 	}
 
 	@SafeVarargs

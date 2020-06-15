@@ -149,7 +149,7 @@ public class MDRRuleGroupFinderImpl
 	@Override
 	public List<MDRRuleGroup> findByKeywords(
 		long groupId, String keywords, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<MDRRuleGroup> obc) {
+		int start, int end, OrderByComparator<MDRRuleGroup> orderByComparator) {
 
 		String[] names = null;
 		boolean andOperator = false;
@@ -161,7 +161,8 @@ public class MDRRuleGroupFinderImpl
 			andOperator = true;
 		}
 
-		return findByG_N(groupId, names, params, andOperator, start, end, obc);
+		return findByG_N(
+			groupId, names, params, andOperator, start, end, orderByComparator);
 	}
 
 	@Override
@@ -198,7 +199,7 @@ public class MDRRuleGroupFinderImpl
 	public List<MDRRuleGroup> findByG_N(
 		long groupId, String[] names, LinkedHashMap<String, Object> params,
 		boolean andOperator, int start, int end,
-		OrderByComparator<MDRRuleGroup> obc) {
+		OrderByComparator<MDRRuleGroup> orderByComparator) {
 
 		names = _customSQL.keywords(names);
 
@@ -217,7 +218,7 @@ public class MDRRuleGroupFinderImpl
 			sql = _customSQL.replaceKeywords(
 				sql, "LOWER(name)", StringPool.LIKE, true, names);
 			sql = _customSQL.replaceAndOperator(sql, andOperator);
-			sql = _customSQL.replaceOrderBy(sql, obc);
+			sql = _customSQL.replaceOrderBy(sql, orderByComparator);
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 

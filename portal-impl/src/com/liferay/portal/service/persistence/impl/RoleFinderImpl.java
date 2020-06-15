@@ -350,7 +350,7 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 	public List<Role> filterFindByKeywords(
 		long companyId, String keywords, Integer[] types,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Role> obc) {
+		OrderByComparator<Role> orderByComparator) {
 
 		String[] names = null;
 		String[] descriptions = null;
@@ -366,32 +366,32 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 		return filterFindByC_N_D_T(
 			companyId, names, descriptions, types, params, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	@Override
 	public List<Role> filterFindByC_N_D_T(
 		long companyId, String name, String description, Integer[] types,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Role> obc) {
+		int end, OrderByComparator<Role> orderByComparator) {
 
 		String[] names = CustomSQLUtil.keywords(name);
 		String[] descriptions = CustomSQLUtil.keywords(description);
 
 		return filterFindByC_N_D_T(
 			companyId, names, descriptions, types, params, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	@Override
 	public List<Role> filterFindByC_N_D_T(
 		long companyId, String[] names, String[] descriptions, Integer[] types,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Role> obc) {
+		int end, OrderByComparator<Role> orderByComparator) {
 
 		return doFindByC_N_D_T(
 			companyId, names, descriptions, types, params, andOperator, start,
-			end, obc, true);
+			end, orderByComparator, true);
 	}
 
 	@Override
@@ -408,18 +408,18 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 	@Override
 	public List<Role> findByKeywords(
 		long companyId, String keywords, Integer[] types, int start, int end,
-		OrderByComparator<Role> obc) {
+		OrderByComparator<Role> orderByComparator) {
 
 		return findByKeywords(
 			companyId, keywords, types, new LinkedHashMap<String, Object>(),
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	@Override
 	public List<Role> findByKeywords(
 		long companyId, String keywords, Integer[] types,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<Role> obc) {
+		OrderByComparator<Role> orderByComparator) {
 
 		String[] names = null;
 		String[] descriptions = null;
@@ -435,7 +435,7 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 		return findByC_N_D_T(
 			companyId, names, descriptions, types, params, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	@Override
@@ -658,25 +658,25 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 	public List<Role> findByC_N_D_T(
 		long companyId, String name, String description, Integer[] types,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Role> obc) {
+		int end, OrderByComparator<Role> orderByComparator) {
 
 		String[] names = CustomSQLUtil.keywords(name);
 		String[] descriptions = CustomSQLUtil.keywords(description);
 
 		return findByC_N_D_T(
 			companyId, names, descriptions, types, params, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	@Override
 	public List<Role> findByC_N_D_T(
 		long companyId, String[] names, String[] descriptions, Integer[] types,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Role> obc) {
+		int end, OrderByComparator<Role> orderByComparator) {
 
 		return doFindByC_N_D_T(
 			companyId, names, descriptions, types, params, andOperator, start,
-			end, obc, false);
+			end, orderByComparator, false);
 	}
 
 	@Override
@@ -1022,7 +1022,8 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 	protected List<Role> doFindByC_N_D_T(
 		long companyId, String[] names, String[] descriptions, Integer[] types,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Role> obc, boolean inlineSQLHelper) {
+		int end, OrderByComparator<Role> orderByComparator,
+		boolean inlineSQLHelper) {
 
 		names = CustomSQLUtil.keywords(names, true);
 		descriptions = CustomSQLUtil.keywords(descriptions, true);
@@ -1058,7 +1059,7 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 			sql = StringUtil.replace(sql, "[$JOIN$]", getJoin(params));
 			sql = StringUtil.replace(sql, "[$WHERE$]", getWhere(params));
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
-			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			sql = CustomSQLUtil.replaceOrderBy(sql, orderByComparator);
 
 			if (inlineSQLHelper &&
 				InlineSQLHelperUtil.isEnabled(companyId, 0)) {

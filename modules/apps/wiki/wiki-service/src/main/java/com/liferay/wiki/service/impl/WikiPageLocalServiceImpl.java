@@ -910,10 +910,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 	@Override
 	public List<WikiPage> getChildren(
 		long nodeId, boolean head, String parentTitle, int status, int start,
-		int end, OrderByComparator<WikiPage> obc) {
+		int end, OrderByComparator<WikiPage> orderByComparator) {
 
 		return wikiPagePersistence.findByN_H_P_S(
-			nodeId, head, parentTitle, status, start, end, obc);
+			nodeId, head, parentTitle, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1305,23 +1305,25 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 	@Override
 	public List<WikiPage> getPages(
 		long nodeId, boolean head, int status, int start, int end,
-		OrderByComparator<WikiPage> obc) {
+		OrderByComparator<WikiPage> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return wikiPagePersistence.findByN_H(nodeId, head, start, end, obc);
+			return wikiPagePersistence.findByN_H(
+				nodeId, head, start, end, orderByComparator);
 		}
 
 		return wikiPagePersistence.findByN_H_S(
-			nodeId, head, status, start, end, obc);
+			nodeId, head, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<WikiPage> getPages(
 		long nodeId, boolean head, int start, int end,
-		OrderByComparator<WikiPage> obc) {
+		OrderByComparator<WikiPage> orderByComparator) {
 
 		return getPages(
-			nodeId, head, WorkflowConstants.STATUS_APPROVED, start, end, obc);
+			nodeId, head, WorkflowConstants.STATUS_APPROVED, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -1332,9 +1334,11 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 	@Override
 	public List<WikiPage> getPages(
-		long nodeId, int start, int end, OrderByComparator<WikiPage> obc) {
+		long nodeId, int start, int end,
+		OrderByComparator<WikiPage> orderByComparator) {
 
-		return wikiPagePersistence.findByNodeId(nodeId, start, end, obc);
+		return wikiPagePersistence.findByNodeId(
+			nodeId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1378,9 +1382,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 	@Override
 	public List<WikiPage> getPages(
 		long nodeId, String title, int start, int end,
-		OrderByComparator<WikiPage> obc) {
+		OrderByComparator<WikiPage> orderByComparator) {
 
-		return wikiPagePersistence.findByN_T(nodeId, title, start, end, obc);
+		return wikiPagePersistence.findByN_T(
+			nodeId, title, start, end, orderByComparator);
 	}
 
 	@Override

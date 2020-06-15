@@ -76,7 +76,7 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 	@Override
 	public BaseModelSearchResult<User> searchAccountRoleUsers(
 			long accountEntryId, long accountRoleId, String keywords, int start,
-			int end, OrderByComparator<User> obc)
+			int end, OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
@@ -95,7 +95,8 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 
 		List<User> users = _userLocalService.search(
 			accountEntry.getCompanyId(), keywords,
-			WorkflowConstants.STATUS_APPROVED, params, start, end, obc);
+			WorkflowConstants.STATUS_APPROVED, params, start, end,
+			orderByComparator);
 
 		int total = _userLocalService.searchCount(
 			accountEntry.getCompanyId(), keywords,

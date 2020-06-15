@@ -2200,14 +2200,14 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  status the workflow status
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public List<User> getGroupUsers(
 			long groupId, int status, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		Group group = groupPersistence.findByPrimaryKey(groupId);
@@ -2218,7 +2218,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			).build();
 
 		return search(
-			group.getCompanyId(), null, status, params, start, end, obc);
+			group.getCompanyId(), null, status, params, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -2226,17 +2227,18 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *
 	 * @param  groupId the primary key of the group
 	 * @param  status the workflow status
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public List<User> getGroupUsers(
-			long groupId, int status, OrderByComparator<User> obc)
+			long groupId, int status, OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		return getGroupUsers(
-			groupId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+			groupId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			orderByComparator);
 	}
 
 	/**
@@ -2262,7 +2264,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 	@Override
 	public List<User> getInheritedRoleUsers(
-			long roleId, int start, int end, OrderByComparator<User> obc)
+			long roleId, int start, int end,
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		Role role = rolePersistence.findByPrimaryKey(roleId);
@@ -2276,7 +2279,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		return search(
 			role.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, obc);
+			params, start, end, orderByComparator);
 	}
 
 	/**
@@ -2328,14 +2331,14 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  status the workflow status
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public List<User> getOrganizationUsers(
 			long organizationId, int status, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		Organization organization = organizationPersistence.findByPrimaryKey(
@@ -2347,7 +2350,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			).build();
 
 		return search(
-			organization.getCompanyId(), null, status, params, start, end, obc);
+			organization.getCompanyId(), null, status, params, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -2355,17 +2359,19 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *
 	 * @param  organizationId the primary key of the organization
 	 * @param  status the workflow status
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public List<User> getOrganizationUsers(
-			long organizationId, int status, OrderByComparator<User> obc)
+			long organizationId, int status,
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		return getOrganizationUsers(
-			organizationId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+			organizationId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			orderByComparator);
 	}
 
 	/**
@@ -2427,7 +2433,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	public List<User> getSocialUsers(
 			long userId, int socialRelationType,
 			String socialRelationTypeComparator, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		if (!socialRelationTypeComparator.equals(StringPool.EQUAL) &&
@@ -2466,8 +2472,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				}
 			}
 
-			if (obc != null) {
-				users = ListUtil.sort(users, obc);
+			if (orderByComparator != null) {
+				users = ListUtil.sort(users, orderByComparator);
 			}
 
 			return users;
@@ -2478,7 +2484,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		return userFinder.findBySocialUsers(
 			user.getCompanyId(), userId, socialRelationType,
 			socialRelationTypeComparator, WorkflowConstants.STATUS_APPROVED,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -2500,7 +2506,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         types can be found in {@link SocialRelationConstants}.
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the ordered range of users with a mutual social relation of the
 	 *         type with the user
@@ -2508,7 +2514,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@Override
 	public List<User> getSocialUsers(
 			long userId1, long userId2, int socialRelationType, int start,
-			int end, OrderByComparator<User> obc)
+			int end, OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		User user1 = userPersistence.findByPrimaryKey(userId1);
@@ -2524,7 +2530,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		return search(
 			user1.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, obc);
+			params, start, end, orderByComparator);
 	}
 
 	/**
@@ -2544,7 +2550,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  userId2 the primary key of the second user
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the ordered range of users with a mutual social relation with the
 	 *         user
@@ -2552,7 +2558,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@Override
 	public List<User> getSocialUsers(
 			long userId1, long userId2, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		User user1 = userPersistence.findByPrimaryKey(userId1);
@@ -2564,7 +2570,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		return search(
 			user1.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, obc);
+			params, start, end, orderByComparator);
 	}
 
 	/**
@@ -2862,10 +2868,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@Override
 	public List<User> getUsers(
 		long companyId, boolean defaultUser, int status, int start, int end,
-		OrderByComparator<User> obc) {
+		OrderByComparator<User> orderByComparator) {
 
 		return userPersistence.findByC_DU_S(
-			companyId, defaultUser, status, start, end, obc);
+			companyId, defaultUser, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -2982,7 +2988,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         com.liferay.portal.kernel.service.persistence.UserFinder}.
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 * @see    com.liferay.portal.kernel.service.persistence.UserFinder
@@ -2991,7 +2997,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	public List<User> search(
 		long companyId, String keywords, int status,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<User> obc) {
+		OrderByComparator<User> orderByComparator) {
 
 		Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(User.class);
 
@@ -2999,14 +3005,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			!PropsValues.USERS_SEARCH_WITH_INDEX || isUseCustomSQL(params)) {
 
 			return userFinder.findByKeywords(
-				companyId, keywords, status, params, start, end, obc);
+				companyId, keywords, status, params, start, end,
+				orderByComparator);
 		}
 
 		try {
 			return UsersAdminUtil.getUsers(
 				search(
 					companyId, keywords, status, params, start, end,
-					getSorts(obc)));
+					getSorts(orderByComparator)));
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -3137,7 +3144,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         or the last name 'smith'&quot;.
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 * @see    com.liferay.portal.kernel.service.persistence.UserFinder
@@ -3147,7 +3154,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		long companyId, String firstName, String middleName, String lastName,
 		String screenName, String emailAddress, int status,
 		LinkedHashMap<String, Object> params, boolean andSearch, int start,
-		int end, OrderByComparator<User> obc) {
+		int end, OrderByComparator<User> orderByComparator) {
 
 		Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(User.class);
 
@@ -3156,7 +3163,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			return userFinder.findByC_FN_MN_LN_SN_EA_S(
 				companyId, firstName, middleName, lastName, screenName,
-				emailAddress, status, params, andSearch, start, end, obc);
+				emailAddress, status, params, andSearch, start, end,
+				orderByComparator);
 		}
 
 		try {
@@ -3164,7 +3172,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				search(
 					companyId, firstName, middleName, lastName, screenName,
 					emailAddress, status, params, andSearch, start, end,
-					getSorts(obc)));
+					getSorts(orderByComparator)));
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -3412,7 +3420,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@Override
 	public List<User> searchSocial(
 		long companyId, long[] groupIds, String keywords, int start, int end,
-		OrderByComparator<User> obc) {
+		OrderByComparator<User> orderByComparator) {
 
 		LinkedHashMap<String, Object> params =
 			LinkedHashMapBuilder.<String, Object>put(
@@ -3423,7 +3431,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		return userFinder.findByKeywords(
 			companyId, keywords, WorkflowConstants.STATUS_APPROVED, params,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	@Override
@@ -5818,14 +5826,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		return StringUtil.lowerCase(StringUtil.trim(login));
 	}
 
-	protected Sort[] getSorts(OrderByComparator<User> obc) {
-		if (obc == null) {
+	protected Sort[] getSorts(OrderByComparator<User> orderByComparator) {
+		if (orderByComparator == null) {
 			return new Sort[0];
 		}
 
-		String[] orderByClauses = StringUtil.split(obc.getOrderBy());
+		String[] orderByClauses = StringUtil.split(
+			orderByComparator.getOrderBy());
 
-		String[] orderByFields = obc.getOrderByFields();
+		String[] orderByFields = orderByComparator.getOrderByFields();
 
 		Sort[] sorts = new Sort[orderByFields.length];
 

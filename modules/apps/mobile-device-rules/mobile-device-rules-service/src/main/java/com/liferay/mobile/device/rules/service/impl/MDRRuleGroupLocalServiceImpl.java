@@ -242,10 +242,10 @@ public class MDRRuleGroupLocalServiceImpl
 	public List<MDRRuleGroup> searchByKeywords(
 		long groupId, String keywords, LinkedHashMap<String, Object> params,
 		boolean andOperator, int start, int end,
-		OrderByComparator<MDRRuleGroup> obc) {
+		OrderByComparator<MDRRuleGroup> orderByComparator) {
 
 		return mdrRuleGroupFinder.findByKeywords(
-			groupId, keywords, params, start, end, obc);
+			groupId, keywords, params, start, end, orderByComparator);
 	}
 
 	@Override

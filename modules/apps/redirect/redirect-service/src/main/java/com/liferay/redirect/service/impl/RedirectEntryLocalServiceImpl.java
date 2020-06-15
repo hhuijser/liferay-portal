@@ -194,9 +194,10 @@ public class RedirectEntryLocalServiceImpl
 	@Override
 	public List<RedirectEntry> getRedirectEntries(
 		long groupId, int start, int end,
-		OrderByComparator<RedirectEntry> obc) {
+		OrderByComparator<RedirectEntry> orderByComparator) {
 
-		return redirectEntryPersistence.findByGroupId(groupId, start, end, obc);
+		return redirectEntryPersistence.findByGroupId(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override

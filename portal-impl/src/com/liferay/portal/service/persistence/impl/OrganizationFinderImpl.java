@@ -390,7 +390,7 @@ public class OrganizationFinderImpl
 		long companyId, long parentOrganizationId,
 		String parentOrganizationIdComparator, String keywords, String type,
 		Long regionId, Long countryId, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<Organization> obc) {
+		int start, int end, OrderByComparator<Organization> orderByComparator) {
 
 		String[] names = null;
 		String[] streets = null;
@@ -411,7 +411,7 @@ public class OrganizationFinderImpl
 		return findO_ByC_PO_N_T_S_C_Z_R_C(
 			companyId, parentOrganizationId, parentOrganizationIdComparator,
 			names, type, streets, cities, zips, regionId, countryId, params,
-			andOperator, start, end, obc);
+			andOperator, start, end, orderByComparator);
 	}
 
 	@Override
@@ -488,7 +488,7 @@ public class OrganizationFinderImpl
 		String parentOrganizationIdComparator, String name, String type,
 		String street, String city, String zip, Long regionId, Long countryId,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Organization> obc) {
+		int end, OrderByComparator<Organization> orderByComparator) {
 
 		String[] names = CustomSQLUtil.keywords(name);
 		String[] streets = CustomSQLUtil.keywords(street);
@@ -498,7 +498,7 @@ public class OrganizationFinderImpl
 		return findO_ByC_PO_N_T_S_C_Z_R_C(
 			companyId, parentOrganizationId, parentOrganizationIdComparator,
 			names, type, streets, cities, zips, regionId, countryId, params,
-			andOperator, start, end, obc);
+			andOperator, start, end, orderByComparator);
 	}
 
 	@Override
@@ -508,7 +508,7 @@ public class OrganizationFinderImpl
 		String[] streets, String[] cities, String[] zips, Long regionId,
 		Long countryId, LinkedHashMap<String, Object> params,
 		boolean andOperator, int start, int end,
-		OrderByComparator<Organization> obc) {
+		OrderByComparator<Organization> orderByComparator) {
 
 		names = CustomSQLUtil.keywords(names);
 		streets = CustomSQLUtil.keywords(streets);
@@ -576,7 +576,7 @@ public class OrganizationFinderImpl
 		}
 
 		sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
-		sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+		sql = CustomSQLUtil.replaceOrderBy(sql, orderByComparator);
 
 		Session session = null;
 

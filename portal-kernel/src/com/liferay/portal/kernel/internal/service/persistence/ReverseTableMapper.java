@@ -102,10 +102,11 @@ public class ReverseTableMapper<L extends BaseModel<L>, R extends BaseModel<R>>
 
 	@Override
 	public List<L> getLeftBaseModels(
-		long rightPrimaryKey, int start, int end, OrderByComparator<L> obc) {
+		long rightPrimaryKey, int start, int end,
+		OrderByComparator<L> orderByComparator) {
 
 		return _tableMapper.getRightBaseModels(
-			rightPrimaryKey, start, end, obc);
+			rightPrimaryKey, start, end, orderByComparator);
 	}
 
 	@Override
@@ -120,9 +121,11 @@ public class ReverseTableMapper<L extends BaseModel<L>, R extends BaseModel<R>>
 
 	@Override
 	public List<R> getRightBaseModels(
-		long leftPrimaryKey, int start, int end, OrderByComparator<R> obc) {
+		long leftPrimaryKey, int start, int end,
+		OrderByComparator<R> orderByComparator) {
 
-		return _tableMapper.getLeftBaseModels(leftPrimaryKey, start, end, obc);
+		return _tableMapper.getLeftBaseModels(
+			leftPrimaryKey, start, end, orderByComparator);
 	}
 
 	@Override

@@ -93,7 +93,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	@Override
 	public List<KBComment> getKBComments(
 			long groupId, int status, int start, int end,
-			OrderByComparator<KBComment> obc)
+			OrderByComparator<KBComment> orderByComparator)
 		throws PortalException {
 
 		if (_portletResourcePermission.contains(
@@ -101,7 +101,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 				KBActionKeys.VIEW_SUGGESTIONS)) {
 
 			return kbCommentLocalService.getKBComments(
-				groupId, status, start, end, obc);
+				groupId, status, start, end, orderByComparator);
 		}
 
 		return Collections.emptyList();
@@ -109,7 +109,8 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 
 	@Override
 	public List<KBComment> getKBComments(
-			long groupId, int start, int end, OrderByComparator<KBComment> obc)
+			long groupId, int start, int end,
+			OrderByComparator<KBComment> orderByComparator)
 		throws PortalException {
 
 		if (_portletResourcePermission.contains(
@@ -117,7 +118,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 				KBActionKeys.VIEW_SUGGESTIONS)) {
 
 			return kbCommentLocalService.getKBComments(
-				groupId, start, end, obc);
+				groupId, start, end, orderByComparator);
 		}
 
 		return Collections.emptyList();
@@ -142,14 +143,14 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	@Override
 	public List<KBComment> getKBComments(
 			long groupId, String className, long classPK, int status, int start,
-			int end, OrderByComparator<KBComment> obc)
+			int end, OrderByComparator<KBComment> orderByComparator)
 		throws PortalException {
 
 		if (_containsViewSuggestionPermission(
 				getPermissionChecker(), groupId, className, classPK)) {
 
 			return kbCommentLocalService.getKBComments(
-				className, classPK, status, start, end, obc);
+				className, classPK, status, start, end, orderByComparator);
 		}
 
 		return Collections.emptyList();
@@ -158,14 +159,14 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 	@Override
 	public List<KBComment> getKBComments(
 			long groupId, String className, long classPK, int start, int end,
-			OrderByComparator<KBComment> obc)
+			OrderByComparator<KBComment> orderByComparator)
 		throws PortalException {
 
 		if (_containsViewSuggestionPermission(
 				getPermissionChecker(), groupId, className, classPK)) {
 
 			return kbCommentLocalService.getKBComments(
-				className, classPK, start, end, obc);
+				className, classPK, start, end, orderByComparator);
 		}
 
 		return Collections.emptyList();

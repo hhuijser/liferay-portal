@@ -79,10 +79,11 @@ public class LayoutPrototypeServiceUtil {
 		<com.liferay.portal.kernel.model.LayoutPrototype> search(
 				long companyId, Boolean active,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.LayoutPrototype> obc)
+					<com.liferay.portal.kernel.model.LayoutPrototype>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().search(companyId, active, obc);
+		return getService().search(companyId, active, orderByComparator);
 	}
 
 	public static com.liferay.portal.kernel.model.LayoutPrototype

@@ -333,9 +333,10 @@ public class RedirectEntryLocalServiceUtil {
 		getRedirectEntries(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.redirect.model.RedirectEntry> obc) {
+				<com.liferay.redirect.model.RedirectEntry> orderByComparator) {
 
-		return getService().getRedirectEntries(groupId, start, end, obc);
+		return getService().getRedirectEntries(
+			groupId, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.redirect.model.RedirectEntry>

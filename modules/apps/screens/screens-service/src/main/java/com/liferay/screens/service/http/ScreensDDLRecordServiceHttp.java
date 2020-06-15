@@ -96,7 +96,8 @@ public class ScreensDDLRecordServiceHttp {
 			HttpPrincipal httpPrincipal, long ddlRecordSetId,
 			java.util.Locale locale, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.dynamic.data.lists.model.DDLRecord> obc)
+				<com.liferay.dynamic.data.lists.model.DDLRecord>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -105,7 +106,8 @@ public class ScreensDDLRecordServiceHttp {
 				_getDDLRecordsParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, ddlRecordSetId, locale, start, end, obc);
+				methodKey, ddlRecordSetId, locale, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -139,7 +141,8 @@ public class ScreensDDLRecordServiceHttp {
 			HttpPrincipal httpPrincipal, long ddlRecordSetId, long userId,
 			java.util.Locale locale, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.dynamic.data.lists.model.DDLRecord> obc)
+				<com.liferay.dynamic.data.lists.model.DDLRecord>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -148,7 +151,8 @@ public class ScreensDDLRecordServiceHttp {
 				_getDDLRecordsParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, ddlRecordSetId, userId, locale, start, end, obc);
+				methodKey, ddlRecordSetId, userId, locale, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

@@ -339,7 +339,8 @@ public interface MDRRuleLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MDRRule> getRules(
-		long ruleGroupId, int start, int end, OrderByComparator<MDRRule> obc);
+		long ruleGroupId, int start, int end,
+		OrderByComparator<MDRRule> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getRulesCount(long ruleGroupId);

@@ -1285,14 +1285,14 @@ public interface JournalArticleLocalService
 	 return
 	 * @param end the upper bound of the range of web content articles to
 	 return (not inclusive)
-	 * @param obc the comparator to order the web content articles
+	 * @param orderByComparator the comparator to order the web content articles
 	 * @return the range of matching web content articles ordered by the
 	 comparator
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticles(
 		long groupId, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns all the web content articles matching the group and folder.
@@ -1424,27 +1424,30 @@ public interface JournalArticleLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticlesByStructureId(
 		long groupId, long classNameId, String ddmStructureKey, int status,
-		int start, int end, OrderByComparator<JournalArticle> obc);
+		int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticlesByStructureId(
 		long groupId, long classNameId, String ddmStructureKey, Locale locale,
-		int status, int start, int end, OrderByComparator<JournalArticle> obc);
+		int status, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticlesByStructureId(
 		long groupId, String ddmStructureKey, int status, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticlesByStructureId(
 		long groupId, String ddmStructureKey, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticlesByStructureId(
 		long groupId, String ddmStructureKey, Locale locale, int status,
-		int start, int end, OrderByComparator<JournalArticle> obc);
+		int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the number of web content articles belonging to the group.
@@ -1977,14 +1980,14 @@ public interface JournalArticleLocalService
 	 return
 	 * @param end the upper bound of the range of web content articles to
 	 return (not inclusive)
-	 * @param obc the comparator to order the web content articles
+	 * @param orderByComparator the comparator to order the web content articles
 	 * @return the range of matching web content articles ordered by the
 	 comparator
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getStructureArticles(
 		long groupId, String ddmStructureKey, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the web content articles matching the DDM structure keys.
@@ -2040,14 +2043,14 @@ public interface JournalArticleLocalService
 	 return
 	 * @param end the upper bound of the range of web content articles to
 	 return (not inclusive)
-	 * @param obc the comparator to order the web content articles
+	 * @param orderByComparator the comparator to order the web content articles
 	 * @return the range of matching web content articles ordered by the
 	 comparator
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getTemplateArticles(
 		long groupId, String ddmTemplateKey, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns the number of web content articles matching the group and DDM
@@ -2351,7 +2354,7 @@ public interface JournalArticleLocalService
 	 return
 	 * @param end the upper bound of the range of web content articles to
 	 return (not inclusive)
-	 * @param obc the comparator to order the web content articles
+	 * @param orderByComparator the comparator to order the web content articles
 	 * @return the range of matching web content articles ordered by the
 	 comparator
 	 */
@@ -2361,7 +2364,7 @@ public interface JournalArticleLocalService
 		String keywords, Double version, String ddmStructureKey,
 		String ddmTemplateKey, Date displayDateGT, Date displayDateLT,
 		int status, Date reviewDate, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the web content articles matching the
@@ -2424,7 +2427,7 @@ public interface JournalArticleLocalService
 	 return
 	 * @param end the upper bound of the range of web content articles to
 	 return (not inclusive)
-	 * @param obc the comparator to order the web content articles
+	 * @param orderByComparator the comparator to order the web content articles
 	 * @return the range of matching web content articles ordered by the
 	 comparator
 	 */
@@ -2435,7 +2438,7 @@ public interface JournalArticleLocalService
 		String content, String ddmStructureKey, String ddmTemplateKey,
 		Date displayDateGT, Date displayDateLT, int status, Date reviewDate,
 		boolean andOperator, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the web content articles matching the
@@ -2497,7 +2500,7 @@ public interface JournalArticleLocalService
 	 return
 	 * @param end the upper bound of the range of web content articles to
 	 return (not inclusive)
-	 * @param obc the comparator to order the web content articles
+	 * @param orderByComparator the comparator to order the web content articles
 	 * @return the range of matching web content articles ordered by the
 	 comparator
 	 */
@@ -2508,7 +2511,7 @@ public interface JournalArticleLocalService
 		String content, String[] ddmStructureKeys, String[] ddmTemplateKeys,
 		Date displayDateGT, Date displayDateLT, int status, Date reviewDate,
 		boolean andOperator, int start, int end,
-		OrderByComparator<JournalArticle> obc);
+		OrderByComparator<JournalArticle> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the web content articles matching the

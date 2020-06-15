@@ -78,9 +78,10 @@ public class PowwowMeetingServiceUtil {
 		getPowwowMeetings(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.powwow.model.PowwowMeeting> obc) {
+				<com.liferay.powwow.model.PowwowMeeting> orderByComparator) {
 
-		return getService().getPowwowMeetings(groupId, start, end, obc);
+		return getService().getPowwowMeetings(
+			groupId, start, end, orderByComparator);
 	}
 
 	public static int getPowwowMeetingsCount(long groupId) {

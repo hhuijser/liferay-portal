@@ -83,10 +83,10 @@ public class UserFinderUtil {
 			long companyId, String keywords, int status,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.User> obc) {
+				<com.liferay.portal.kernel.model.User> orderByComparator) {
 
 		return getFinder().findByKeywords(
-			companyId, keywords, status, params, start, end, obc);
+			companyId, keywords, status, params, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.User>
@@ -106,11 +106,11 @@ public class UserFinderUtil {
 			long companyId, long userId, int socialRelationType,
 			String socialRelationTypeComparator, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.User> obc) {
+				<com.liferay.portal.kernel.model.User> orderByComparator) {
 
 		return getFinder().findBySocialUsers(
 			companyId, userId, socialRelationType, socialRelationTypeComparator,
-			status, start, end, obc);
+			status, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.User>
@@ -136,11 +136,12 @@ public class UserFinderUtil {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.User> obc) {
+				<com.liferay.portal.kernel.model.User> orderByComparator) {
 
 		return getFinder().findByC_FN_MN_LN_SN_EA_S(
 			companyId, firstName, middleName, lastName, screenName,
-			emailAddress, status, params, andOperator, start, end, obc);
+			emailAddress, status, params, andOperator, start, end,
+			orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.User>
@@ -150,11 +151,12 @@ public class UserFinderUtil {
 			int status, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.User> obc) {
+				<com.liferay.portal.kernel.model.User> orderByComparator) {
 
 		return getFinder().findByC_FN_MN_LN_SN_EA_S(
 			companyId, firstNames, middleNames, lastNames, screenNames,
-			emailAddresses, status, params, andOperator, start, end, obc);
+			emailAddresses, status, params, andOperator, start, end,
+			orderByComparator);
 	}
 
 	public static UserFinder getFinder() {

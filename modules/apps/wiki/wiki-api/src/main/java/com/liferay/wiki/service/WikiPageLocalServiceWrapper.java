@@ -476,10 +476,10 @@ public class WikiPageLocalServiceWrapper
 		long nodeId, boolean head, String parentTitle, int status, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.wiki.model.WikiPage> obc) {
+			<com.liferay.wiki.model.WikiPage> orderByComparator) {
 
 		return _wikiPageLocalService.getChildren(
-			nodeId, head, parentTitle, status, start, end, obc);
+			nodeId, head, parentTitle, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -724,19 +724,20 @@ public class WikiPageLocalServiceWrapper
 	public java.util.List<com.liferay.wiki.model.WikiPage> getPages(
 		long nodeId, boolean head, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.wiki.model.WikiPage> obc) {
+			<com.liferay.wiki.model.WikiPage> orderByComparator) {
 
 		return _wikiPageLocalService.getPages(
-			nodeId, head, status, start, end, obc);
+			nodeId, head, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public java.util.List<com.liferay.wiki.model.WikiPage> getPages(
 		long nodeId, boolean head, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.wiki.model.WikiPage> obc) {
+			<com.liferay.wiki.model.WikiPage> orderByComparator) {
 
-		return _wikiPageLocalService.getPages(nodeId, head, start, end, obc);
+		return _wikiPageLocalService.getPages(
+			nodeId, head, start, end, orderByComparator);
 	}
 
 	@Override
@@ -750,9 +751,10 @@ public class WikiPageLocalServiceWrapper
 	public java.util.List<com.liferay.wiki.model.WikiPage> getPages(
 		long nodeId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.wiki.model.WikiPage> obc) {
+			<com.liferay.wiki.model.WikiPage> orderByComparator) {
 
-		return _wikiPageLocalService.getPages(nodeId, start, end, obc);
+		return _wikiPageLocalService.getPages(
+			nodeId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -788,9 +790,10 @@ public class WikiPageLocalServiceWrapper
 	public java.util.List<com.liferay.wiki.model.WikiPage> getPages(
 		long nodeId, String title, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.wiki.model.WikiPage> obc) {
+			<com.liferay.wiki.model.WikiPage> orderByComparator) {
 
-		return _wikiPageLocalService.getPages(nodeId, title, start, end, obc);
+		return _wikiPageLocalService.getPages(
+			nodeId, title, start, end, orderByComparator);
 	}
 
 	@Override

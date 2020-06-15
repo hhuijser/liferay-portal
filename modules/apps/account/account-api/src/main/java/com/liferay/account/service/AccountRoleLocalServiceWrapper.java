@@ -351,20 +351,22 @@ public class AccountRoleLocalServiceWrapper
 	public com.liferay.portal.kernel.search.BaseModelSearchResult
 		<com.liferay.account.model.AccountRole> searchAccountRoles(
 			long accountEntryId, String keywords, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+			com.liferay.portal.kernel.util.OrderByComparator<?>
+				orderByComparator) {
 
 		return _accountRoleLocalService.searchAccountRoles(
-			accountEntryId, keywords, start, end, obc);
+			accountEntryId, keywords, start, end, orderByComparator);
 	}
 
 	@Override
 	public com.liferay.portal.kernel.search.BaseModelSearchResult
 		<com.liferay.account.model.AccountRole> searchAccountRoles(
 			long[] accountEntryIds, String keywords, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+			com.liferay.portal.kernel.util.OrderByComparator<?>
+				orderByComparator) {
 
 		return _accountRoleLocalService.searchAccountRoles(
-			accountEntryIds, keywords, start, end, obc);
+			accountEntryIds, keywords, start, end, orderByComparator);
 	}
 
 	@Override

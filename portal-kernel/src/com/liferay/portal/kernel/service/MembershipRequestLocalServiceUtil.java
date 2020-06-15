@@ -326,9 +326,11 @@ public class MembershipRequestLocalServiceUtil {
 		<com.liferay.portal.kernel.model.MembershipRequest> search(
 			long groupId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.MembershipRequest> obc) {
+				<com.liferay.portal.kernel.model.MembershipRequest>
+					orderByComparator) {
 
-		return getService().search(groupId, status, start, end, obc);
+		return getService().search(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	public static int searchCount(long groupId, int status) {

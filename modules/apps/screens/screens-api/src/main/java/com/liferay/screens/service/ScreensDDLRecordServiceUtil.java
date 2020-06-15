@@ -47,22 +47,24 @@ public class ScreensDDLRecordServiceUtil {
 	public static com.liferay.portal.kernel.json.JSONArray getDDLRecords(
 			long ddlRecordSetId, java.util.Locale locale, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.dynamic.data.lists.model.DDLRecord> obc)
+				<com.liferay.dynamic.data.lists.model.DDLRecord>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getDDLRecords(
-			ddlRecordSetId, locale, start, end, obc);
+			ddlRecordSetId, locale, start, end, orderByComparator);
 	}
 
 	public static com.liferay.portal.kernel.json.JSONArray getDDLRecords(
 			long ddlRecordSetId, long userId, java.util.Locale locale,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.dynamic.data.lists.model.DDLRecord> obc)
+				<com.liferay.dynamic.data.lists.model.DDLRecord>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getDDLRecords(
-			ddlRecordSetId, userId, locale, start, end, obc);
+			ddlRecordSetId, userId, locale, start, end, orderByComparator);
 	}
 
 	public static int getDDLRecordsCount(long ddlRecordSetId)

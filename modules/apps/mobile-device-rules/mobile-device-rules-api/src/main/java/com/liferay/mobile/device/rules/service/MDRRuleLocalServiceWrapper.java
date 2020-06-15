@@ -456,9 +456,11 @@ public class MDRRuleLocalServiceWrapper
 		getRules(
 			long ruleGroupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.mobile.device.rules.model.MDRRule> obc) {
+				<com.liferay.mobile.device.rules.model.MDRRule>
+					orderByComparator) {
 
-		return _mdrRuleLocalService.getRules(ruleGroupId, start, end, obc);
+		return _mdrRuleLocalService.getRules(
+			ruleGroupId, start, end, orderByComparator);
 	}
 
 	@Override

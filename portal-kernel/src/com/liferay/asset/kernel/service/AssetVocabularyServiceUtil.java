@@ -117,30 +117,34 @@ public class AssetVocabularyServiceUtil {
 				long groupId, boolean createDefaultVocabulary, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetVocabulary> obc)
+					<com.liferay.asset.kernel.model.AssetVocabulary>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getGroupVocabularies(
-			groupId, createDefaultVocabulary, start, end, obc);
+			groupId, createDefaultVocabulary, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetVocabulary>
 		getGroupVocabularies(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetVocabulary> obc) {
+				<com.liferay.asset.kernel.model.AssetVocabulary>
+					orderByComparator) {
 
-		return getService().getGroupVocabularies(groupId, start, end, obc);
+		return getService().getGroupVocabularies(
+			groupId, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetVocabulary>
 		getGroupVocabularies(
 			long groupId, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetVocabulary> obc) {
+				<com.liferay.asset.kernel.model.AssetVocabulary>
+					orderByComparator) {
 
 		return getService().getGroupVocabularies(
-			groupId, name, start, end, obc);
+			groupId, name, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetVocabulary>
@@ -166,22 +170,24 @@ public class AssetVocabularyServiceUtil {
 				long groupId, String name, int start, int end,
 				boolean addDefaultVocabulary,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetVocabulary> obc)
+					<com.liferay.asset.kernel.model.AssetVocabulary>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getGroupVocabulariesDisplay(
-			groupId, name, start, end, addDefaultVocabulary, obc);
+			groupId, name, start, end, addDefaultVocabulary, orderByComparator);
 	}
 
 	public static com.liferay.asset.kernel.model.AssetVocabularyDisplay
 			getGroupVocabulariesDisplay(
 				long groupId, String name, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetVocabulary> obc)
+					<com.liferay.asset.kernel.model.AssetVocabulary>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getGroupVocabulariesDisplay(
-			groupId, name, start, end, obc);
+			groupId, name, start, end, orderByComparator);
 	}
 
 	/**

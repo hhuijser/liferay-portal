@@ -286,10 +286,11 @@ public class RoleServiceWrapper
 	public java.util.List<Role> search(
 		long companyId, String keywords, Integer[] types,
 		java.util.LinkedHashMap<String, Object> params, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Role> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<Role>
+			orderByComparator) {
 
 		return _roleService.search(
-			companyId, keywords, types, params, start, end, obc);
+			companyId, keywords, types, params, start, end, orderByComparator);
 	}
 
 	@Override

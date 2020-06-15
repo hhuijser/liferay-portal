@@ -74,7 +74,7 @@ public interface CTCollectionService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<CTCollection> getCTCollections(
 		long companyId, int status, String keywords, int start, int end,
-		OrderByComparator<CTCollection> obc);
+		OrderByComparator<CTCollection> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCTCollectionsCount(

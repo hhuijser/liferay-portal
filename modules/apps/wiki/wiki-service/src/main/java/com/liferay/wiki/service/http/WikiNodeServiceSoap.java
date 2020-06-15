@@ -197,12 +197,13 @@ public class WikiNodeServiceSoap {
 	public static com.liferay.wiki.model.WikiNodeSoap[] getNodes(
 			long groupId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.wiki.model.WikiNode> obc)
+				<com.liferay.wiki.model.WikiNode> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.wiki.model.WikiNode> returnValue =
-				WikiNodeServiceUtil.getNodes(groupId, status, start, end, obc);
+				WikiNodeServiceUtil.getNodes(
+					groupId, status, start, end, orderByComparator);
 
 			return com.liferay.wiki.model.WikiNodeSoap.toSoapModels(
 				returnValue);

@@ -268,7 +268,7 @@ public interface AccountEntryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AccountEntry> getAccountEntries(
 		long companyId, int status, int start, int end,
-		OrderByComparator<AccountEntry> obc);
+		OrderByComparator<AccountEntry> orderByComparator);
 
 	/**
 	 * Returns the number of account entries.

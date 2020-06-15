@@ -240,7 +240,7 @@ public interface BlogsStatsUserLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<BlogsStatsUser> getCompanyStatsUsers(
 		long companyId, int start, int end,
-		OrderByComparator<BlogsStatsUser> obc);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCompanyStatsUsersCount(long companyId);
@@ -256,7 +256,7 @@ public interface BlogsStatsUserLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<BlogsStatsUser> getGroupStatsUsers(
 		long groupId, int start, int end,
-		OrderByComparator<BlogsStatsUser> obc);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupStatsUsersCount(long groupId);
@@ -271,7 +271,7 @@ public interface BlogsStatsUserLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<BlogsStatsUser> getOrganizationStatsUsers(
 		long organizationId, int start, int end,
-		OrderByComparator<BlogsStatsUser> obc);
+		OrderByComparator<BlogsStatsUser> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getOrganizationStatsUsersCount(long organizationId);

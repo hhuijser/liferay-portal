@@ -336,10 +336,10 @@ public class AccountEntryLocalServiceUtil {
 		getAccountEntries(
 			long companyId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.account.model.AccountEntry> obc) {
+				<com.liferay.account.model.AccountEntry> orderByComparator) {
 
 		return getService().getAccountEntries(
-			companyId, status, start, end, obc);
+			companyId, status, start, end, orderByComparator);
 	}
 
 	/**

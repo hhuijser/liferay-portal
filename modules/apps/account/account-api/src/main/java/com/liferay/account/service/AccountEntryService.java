@@ -89,7 +89,7 @@ public interface AccountEntryService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AccountEntry> getAccountEntries(
 			long companyId, int status, int start, int end,
-			OrderByComparator<AccountEntry> obc)
+			OrderByComparator<AccountEntry> orderByComparator)
 		throws PortalException;
 
 	/**

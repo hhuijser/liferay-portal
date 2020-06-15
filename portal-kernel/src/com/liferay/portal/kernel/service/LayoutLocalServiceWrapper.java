@@ -1069,17 +1069,18 @@ public class LayoutLocalServiceWrapper
 	 * @param privateLayout whether the layout is private to the group
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param obc the comparator to order the layouts
+	 * @param orderByComparator the comparator to order the layouts
 	 * @return the matching layouts, or <code>null</code> if no matches were
 	 found
 	 */
 	@Override
 	public java.util.List<Layout> getLayouts(
 		long groupId, boolean privateLayout, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Layout> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<Layout>
+			orderByComparator) {
 
 		return _layoutLocalService.getLayouts(
-			groupId, privateLayout, start, end, obc);
+			groupId, privateLayout, start, end, orderByComparator);
 	}
 
 	/**
@@ -1149,7 +1150,7 @@ public class LayoutLocalServiceWrapper
 	 * @param parentLayoutId the layout ID of the parent layout
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param obc the comparator to order the layouts
+	 * @param orderByComparator the comparator to order the layouts
 	 * @return the matching layouts, or <code>null</code> if no matches were
 	 found
 	 */
@@ -1157,11 +1158,12 @@ public class LayoutLocalServiceWrapper
 	public java.util.List<Layout> getLayouts(
 		long groupId, boolean privateLayout, long parentLayoutId,
 		boolean incomplete, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Layout> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<Layout>
+			orderByComparator) {
 
 		return _layoutLocalService.getLayouts(
 			groupId, privateLayout, parentLayoutId, incomplete, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	/**
@@ -1210,7 +1212,7 @@ public class LayoutLocalServiceWrapper
 	 * @param types layout types
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param obc the comparator to order the layouts
+	 * @param orderByComparator the comparator to order the layouts
 	 * @return the matching layouts, or <code>null</code> if no matches were
 	 found
 	 */
@@ -1218,11 +1220,13 @@ public class LayoutLocalServiceWrapper
 	public java.util.List<Layout> getLayouts(
 			long groupId, boolean privateLayout, String keywords,
 			String[] types, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<Layout> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<Layout>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutLocalService.getLayouts(
-			groupId, privateLayout, keywords, types, start, end, obc);
+			groupId, privateLayout, keywords, types, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -1231,16 +1235,18 @@ public class LayoutLocalServiceWrapper
 	 * @param groupId the primary key of the group
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param obc the comparator to order the layouts
+	 * @param orderByComparator the comparator to order the layouts
 	 * @return the matching layouts, or <code>null</code> if no matches were
 	 found
 	 */
 	@Override
 	public java.util.List<Layout> getLayouts(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<Layout> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<Layout>
+			orderByComparator) {
 
-		return _layoutLocalService.getLayouts(groupId, start, end, obc);
+		return _layoutLocalService.getLayouts(
+			groupId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1265,7 +1271,7 @@ public class LayoutLocalServiceWrapper
 	 * @param types layout types
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param obc the comparator to order the layouts
+	 * @param orderByComparator the comparator to order the layouts
 	 * @return the matching layouts, or <code>null</code> if no matches were
 	 found
 	 */
@@ -1273,11 +1279,13 @@ public class LayoutLocalServiceWrapper
 	public java.util.List<Layout> getLayouts(
 			long groupId, long userId, boolean privateLayout, String keywords,
 			String[] types, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<Layout> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<Layout>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutLocalService.getLayouts(
-			groupId, userId, privateLayout, keywords, types, start, end, obc);
+			groupId, userId, privateLayout, keywords, types, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -1307,18 +1315,19 @@ public class LayoutLocalServiceWrapper
 	 * @param types layout types
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param obc the comparator to order the layouts
+	 * @param orderByComparator the comparator to order the layouts
 	 * @return the matching layouts, or <code>null</code> if no matches were
 	 found
 	 */
 	@Override
 	public java.util.List<Layout> getLayouts(
 			long groupId, String keywords, String[] types, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<Layout> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<Layout>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutLocalService.getLayouts(
-			groupId, keywords, types, start, end, obc);
+			groupId, keywords, types, start, end, orderByComparator);
 	}
 
 	@Override

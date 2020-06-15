@@ -431,7 +431,7 @@ public interface AssetCategoryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AssetCategory> getChildCategories(
 		long parentCategoryId, int start, int end,
-		OrderByComparator<AssetCategory> obc);
+		OrderByComparator<AssetCategory> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getChildCategoriesCount(long parentCategoryId);
@@ -475,12 +475,12 @@ public interface AssetCategoryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AssetCategory> getVocabularyCategories(
 		long vocabularyId, int start, int end,
-		OrderByComparator<AssetCategory> obc);
+		OrderByComparator<AssetCategory> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AssetCategory> getVocabularyCategories(
 		long parentCategoryId, long vocabularyId, int start, int end,
-		OrderByComparator<AssetCategory> obc);
+		OrderByComparator<AssetCategory> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getVocabularyCategoriesCount(long vocabularyId);
@@ -488,7 +488,7 @@ public interface AssetCategoryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AssetCategory> getVocabularyRootCategories(
 		long vocabularyId, int start, int end,
-		OrderByComparator<AssetCategory> obc);
+		OrderByComparator<AssetCategory> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getVocabularyRootCategoriesCount(long vocabularyId);

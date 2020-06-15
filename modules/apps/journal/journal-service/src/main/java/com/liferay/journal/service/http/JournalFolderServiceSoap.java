@@ -488,14 +488,15 @@ public class JournalFolderServiceSoap {
 				long companyId, long[] groupIds, long folderId,
 				int restrictionType, String keywords, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.dynamic.data.mapping.model.DDMStructure> obc)
+					<com.liferay.dynamic.data.mapping.model.DDMStructure>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure>
 				returnValue = JournalFolderServiceUtil.searchDDMStructures(
 					companyId, groupIds, folderId, restrictionType, keywords,
-					start, end, obc);
+					start, end, orderByComparator);
 
 			return com.liferay.dynamic.data.mapping.model.DDMStructureSoap.
 				toSoapModels(returnValue);

@@ -584,10 +584,11 @@ public class AssetCategoryLocalServiceUtil {
 		getChildCategories(
 			long parentCategoryId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetCategory> obc) {
+				<com.liferay.asset.kernel.model.AssetCategory>
+					orderByComparator) {
 
 		return getService().getChildCategories(
-			parentCategoryId, start, end, obc);
+			parentCategoryId, start, end, orderByComparator);
 	}
 
 	public static int getChildCategoriesCount(long parentCategoryId) {
@@ -659,20 +660,22 @@ public class AssetCategoryLocalServiceUtil {
 		getVocabularyCategories(
 			long vocabularyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetCategory> obc) {
+				<com.liferay.asset.kernel.model.AssetCategory>
+					orderByComparator) {
 
 		return getService().getVocabularyCategories(
-			vocabularyId, start, end, obc);
+			vocabularyId, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetCategory>
 		getVocabularyCategories(
 			long parentCategoryId, long vocabularyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetCategory> obc) {
+				<com.liferay.asset.kernel.model.AssetCategory>
+					orderByComparator) {
 
 		return getService().getVocabularyCategories(
-			parentCategoryId, vocabularyId, start, end, obc);
+			parentCategoryId, vocabularyId, start, end, orderByComparator);
 	}
 
 	public static int getVocabularyCategoriesCount(long vocabularyId) {
@@ -683,10 +686,11 @@ public class AssetCategoryLocalServiceUtil {
 		getVocabularyRootCategories(
 			long vocabularyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetCategory> obc) {
+				<com.liferay.asset.kernel.model.AssetCategory>
+					orderByComparator) {
 
 		return getService().getVocabularyRootCategories(
-			vocabularyId, start, end, obc);
+			vocabularyId, start, end, orderByComparator);
 	}
 
 	public static int getVocabularyRootCategoriesCount(long vocabularyId) {

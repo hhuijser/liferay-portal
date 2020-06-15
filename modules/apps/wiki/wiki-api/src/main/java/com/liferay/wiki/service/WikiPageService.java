@@ -174,14 +174,14 @@ public interface WikiPageService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(
 			long groupId, long nodeId, boolean head, int status, int start,
-			int end, OrderByComparator<WikiPage> obc)
+			int end, OrderByComparator<WikiPage> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WikiPage> getPages(
 			long groupId, long nodeId, boolean head, long userId,
 			boolean includeOwner, int status, int start, int end,
-			OrderByComparator<WikiPage> obc)
+			OrderByComparator<WikiPage> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

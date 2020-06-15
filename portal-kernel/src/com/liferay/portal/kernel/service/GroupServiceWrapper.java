@@ -524,11 +524,13 @@ public class GroupServiceWrapper
 	public java.util.List<Group> search(
 			long companyId, long[] classNameIds, String keywords,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<Group> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _groupService.search(
-			companyId, classNameIds, keywords, params, start, end, obc);
+			companyId, classNameIds, keywords, params, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -536,12 +538,13 @@ public class GroupServiceWrapper
 			long companyId, long[] classNameIds, String name,
 			String description, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<Group> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<Group>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _groupService.search(
 			companyId, classNameIds, name, description, params, andOperator,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	/**

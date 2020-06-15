@@ -222,7 +222,8 @@ public class LayoutSetPrototypeServiceHttp {
 		<com.liferay.portal.kernel.model.LayoutSetPrototype> search(
 				HttpPrincipal httpPrincipal, long companyId, Boolean active,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.LayoutSetPrototype> obc)
+					<com.liferay.portal.kernel.model.LayoutSetPrototype>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -231,7 +232,7 @@ public class LayoutSetPrototypeServiceHttp {
 				_searchParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, companyId, active, obc);
+				methodKey, companyId, active, orderByComparator);
 
 			Object returnObj = null;
 

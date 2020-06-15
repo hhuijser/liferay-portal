@@ -346,17 +346,19 @@ public class TrashEntryLocalServiceWrapper
 	 * @param start the lower bound of the range of trash entries to return
 	 * @param end the upper bound of the range of trash entries to return (not
 	 inclusive)
-	 * @param obc the comparator to order the trash entries (optionally
+	 * @param orderByComparator the comparator to order the trash entries (optionally
 	 <code>null</code>)
 	 * @return the range of matching trash entries ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 */
 	@Override
 	public java.util.List<TrashEntry> getEntries(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<TrashEntry>
+			orderByComparator) {
 
-		return _trashEntryLocalService.getEntries(groupId, start, end, obc);
+		return _trashEntryLocalService.getEntries(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override

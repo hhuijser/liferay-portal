@@ -141,13 +141,14 @@ public class KBCommentServiceSoap {
 			getKBComments(
 				long groupId, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.knowledge.base.model.KBComment> obc)
+					<com.liferay.knowledge.base.model.KBComment>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.knowledge.base.model.KBComment>
 				returnValue = KBCommentServiceUtil.getKBComments(
-					groupId, status, start, end, obc);
+					groupId, status, start, end, orderByComparator);
 
 			return com.liferay.knowledge.base.model.KBCommentSoap.toSoapModels(
 				returnValue);
@@ -163,13 +164,14 @@ public class KBCommentServiceSoap {
 			getKBComments(
 				long groupId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.knowledge.base.model.KBComment> obc)
+					<com.liferay.knowledge.base.model.KBComment>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.knowledge.base.model.KBComment>
 				returnValue = KBCommentServiceUtil.getKBComments(
-					groupId, start, end, obc);
+					groupId, start, end, orderByComparator);
 
 			return com.liferay.knowledge.base.model.KBCommentSoap.toSoapModels(
 				returnValue);
@@ -207,13 +209,15 @@ public class KBCommentServiceSoap {
 				long groupId, String className, long classPK, int status,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.knowledge.base.model.KBComment> obc)
+					<com.liferay.knowledge.base.model.KBComment>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.knowledge.base.model.KBComment>
 				returnValue = KBCommentServiceUtil.getKBComments(
-					groupId, className, classPK, status, start, end, obc);
+					groupId, className, classPK, status, start, end,
+					orderByComparator);
 
 			return com.liferay.knowledge.base.model.KBCommentSoap.toSoapModels(
 				returnValue);
@@ -230,13 +234,14 @@ public class KBCommentServiceSoap {
 				long groupId, String className, long classPK, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.knowledge.base.model.KBComment> obc)
+					<com.liferay.knowledge.base.model.KBComment>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.knowledge.base.model.KBComment>
 				returnValue = KBCommentServiceUtil.getKBComments(
-					groupId, className, classPK, start, end, obc);
+					groupId, className, classPK, start, end, orderByComparator);
 
 			return com.liferay.knowledge.base.model.KBCommentSoap.toSoapModels(
 				returnValue);

@@ -479,10 +479,11 @@ public class MBMessageLocalServiceWrapper
 		getCategoryMessages(
 			long groupId, long categoryId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.message.boards.model.MBMessage> obc) {
+				<com.liferay.message.boards.model.MBMessage>
+					orderByComparator) {
 
 		return _mbMessageLocalService.getCategoryMessages(
-			groupId, categoryId, status, start, end, obc);
+			groupId, categoryId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -535,10 +536,11 @@ public class MBMessageLocalServiceWrapper
 		getCompanyMessages(
 			long companyId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.message.boards.model.MBMessage> obc) {
+				<com.liferay.message.boards.model.MBMessage>
+					orderByComparator) {
 
 		return _mbMessageLocalService.getCompanyMessages(
-			companyId, status, start, end, obc);
+			companyId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -634,10 +636,11 @@ public class MBMessageLocalServiceWrapper
 		getGroupMessages(
 			long groupId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.message.boards.model.MBMessage> obc) {
+				<com.liferay.message.boards.model.MBMessage>
+					orderByComparator) {
 
 		return _mbMessageLocalService.getGroupMessages(
-			groupId, status, start, end, obc);
+			groupId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -654,10 +657,11 @@ public class MBMessageLocalServiceWrapper
 		getGroupMessages(
 			long groupId, long userId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.message.boards.model.MBMessage> obc) {
+				<com.liferay.message.boards.model.MBMessage>
+					orderByComparator) {
 
 		return _mbMessageLocalService.getGroupMessages(
-			groupId, userId, status, start, end, obc);
+			groupId, userId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -963,10 +967,12 @@ public class MBMessageLocalServiceWrapper
 			long userId, long classNameId, long classPK, int status, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.message.boards.model.MBMessage> obc) {
+				<com.liferay.message.boards.model.MBMessage>
+					orderByComparator) {
 
 		return _mbMessageLocalService.getUserDiscussionMessages(
-			userId, classNameId, classPK, status, start, end, obc);
+			userId, classNameId, classPK, status, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -974,10 +980,11 @@ public class MBMessageLocalServiceWrapper
 		getUserDiscussionMessages(
 			long userId, long[] classNameIds, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.message.boards.model.MBMessage> obc) {
+				<com.liferay.message.boards.model.MBMessage>
+					orderByComparator) {
 
 		return _mbMessageLocalService.getUserDiscussionMessages(
-			userId, classNameIds, status, start, end, obc);
+			userId, classNameIds, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -986,10 +993,11 @@ public class MBMessageLocalServiceWrapper
 			long userId, String className, long classPK, int status, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.message.boards.model.MBMessage> obc) {
+				<com.liferay.message.boards.model.MBMessage>
+					orderByComparator) {
 
 		return _mbMessageLocalService.getUserDiscussionMessages(
-			userId, className, classPK, status, start, end, obc);
+			userId, className, classPK, status, start, end, orderByComparator);
 	}
 
 	@Override

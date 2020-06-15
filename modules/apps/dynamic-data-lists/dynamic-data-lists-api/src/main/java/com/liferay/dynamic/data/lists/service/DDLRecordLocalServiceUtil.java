@@ -610,9 +610,11 @@ public class DDLRecordLocalServiceUtil {
 		getRecords(
 			long recordSetId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.dynamic.data.lists.model.DDLRecord> obc) {
+				<com.liferay.dynamic.data.lists.model.DDLRecord>
+					orderByComparator) {
 
-		return getService().getRecords(recordSetId, start, end, obc);
+		return getService().getRecords(
+			recordSetId, start, end, orderByComparator);
 	}
 
 	/**
@@ -632,9 +634,11 @@ public class DDLRecordLocalServiceUtil {
 		getRecords(
 			long recordSetId, long userId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.dynamic.data.lists.model.DDLRecord> obc) {
+				<com.liferay.dynamic.data.lists.model.DDLRecord>
+					orderByComparator) {
 
-		return getService().getRecords(recordSetId, userId, start, end, obc);
+		return getService().getRecords(
+			recordSetId, userId, start, end, orderByComparator);
 	}
 
 	public static int getRecordsCount(long recordSetId) {

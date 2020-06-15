@@ -510,11 +510,12 @@ public class GroupServiceUtil {
 			long companyId, long[] classNameIds, String keywords,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Group> obc)
+				<com.liferay.portal.kernel.model.Group> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().search(
-			companyId, classNameIds, keywords, params, start, end, obc);
+			companyId, classNameIds, keywords, params, start, end,
+			orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Group> search(
@@ -522,12 +523,12 @@ public class GroupServiceUtil {
 			String description, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Group> obc)
+				<com.liferay.portal.kernel.model.Group> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().search(
 			companyId, classNameIds, name, description, params, andOperator,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	/**

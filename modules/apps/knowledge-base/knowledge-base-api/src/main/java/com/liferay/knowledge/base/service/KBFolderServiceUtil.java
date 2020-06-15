@@ -66,10 +66,12 @@ public class KBFolderServiceUtil {
 			fetchFirstChildKBFolder(
 				long groupId, long kbFolderId,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.knowledge.base.model.KBFolder> obc)
+					<com.liferay.knowledge.base.model.KBFolder>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().fetchFirstChildKBFolder(groupId, kbFolderId, obc);
+		return getService().fetchFirstChildKBFolder(
+			groupId, kbFolderId, orderByComparator);
 	}
 
 	public static com.liferay.knowledge.base.model.KBFolder fetchKBFolder(

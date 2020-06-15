@@ -109,7 +109,8 @@ public interface DLFolderService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFolder> getFolders(
 			long groupId, long parentFolderId, boolean includeMountfolders,
-			int status, int start, int end, OrderByComparator<DLFolder> obc)
+			int status, int start, int end,
+			OrderByComparator<DLFolder> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -122,19 +123,20 @@ public interface DLFolderService extends BaseService {
 	public List<DLFolder> getFolders(
 			long groupId, long parentFolderId, int status,
 			boolean includeMountfolders, int start, int end,
-			OrderByComparator<DLFolder> obc)
+			OrderByComparator<DLFolder> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFolder> getFolders(
 			long groupId, long parentFolderId, int start, int end,
-			OrderByComparator<DLFolder> obc)
+			OrderByComparator<DLFolder> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
 			long groupId, long folderId, boolean includeMountFolders,
-			int status, int start, int end, OrderByComparator<?> obc)
+			int status, int start, int end,
+			OrderByComparator<?> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -147,7 +149,7 @@ public interface DLFolderService extends BaseService {
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
 			long groupId, long folderId, int status,
 			boolean includeMountFolders, int start, int end,
-			OrderByComparator<?> obc)
+			OrderByComparator<?> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -160,14 +162,14 @@ public interface DLFolderService extends BaseService {
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
 			long groupId, long folderId, int status, String[] mimeTypes,
 			boolean includeMountFolders, int start, int end,
-			OrderByComparator<?> obc)
+			OrderByComparator<?> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
 			long groupId, long folderId, String[] mimeTypes,
 			boolean includeMountFolders, int status, int start, int end,
-			OrderByComparator<?> obc)
+			OrderByComparator<?> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -180,7 +182,7 @@ public interface DLFolderService extends BaseService {
 	public List<Object> getFoldersAndFileEntriesAndFileShortcuts(
 			long groupId, long folderId, String[] mimeTypes,
 			long fileEntryTypeId, boolean includeMountFolders, int status,
-			int start, int end, OrderByComparator<?> obc)
+			int start, int end, OrderByComparator<?> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -243,7 +245,7 @@ public interface DLFolderService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFolder> getMountFolders(
 			long groupId, long parentFolderId, int start, int end,
-			OrderByComparator<DLFolder> obc)
+			OrderByComparator<DLFolder> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

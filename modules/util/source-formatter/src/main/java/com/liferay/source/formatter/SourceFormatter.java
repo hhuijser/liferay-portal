@@ -118,6 +118,18 @@ public class SourceFormatter {
 
 			sourceFormatterArgs.setCheckName(checkName);
 
+			boolean failOnAutoFix = ArgumentsUtil.getBoolean(
+				arguments, "source.fail.on.auto.fix",
+				SourceFormatterArgs.FAIL_ON_AUTO_FIX);
+
+			sourceFormatterArgs.setFailOnAutoFix(failOnAutoFix);
+
+			boolean failOnHasWarning = ArgumentsUtil.getBoolean(
+				arguments, "source.fail.on.has.warning",
+				SourceFormatterArgs.FAIL_ON_HAS_WARNING);
+
+			sourceFormatterArgs.setFailOnHasWarning(failOnHasWarning);
+
 			boolean formatCurrentBranch = ArgumentsUtil.getBoolean(
 				arguments, "format.current.branch",
 				SourceFormatterArgs.FORMAT_CURRENT_BRANCH);
@@ -251,12 +263,6 @@ public class SourceFormatter {
 					Arrays.asList(skipCheckNames));
 			}
 
-			boolean throwException = ArgumentsUtil.getBoolean(
-				arguments, "source.throw.exception",
-				SourceFormatterArgs.THROW_EXCEPTION);
-
-			sourceFormatterArgs.setThrowException(throwException);
-
 			SourceFormatter sourceFormatter = new SourceFormatter(
 				sourceFormatterArgs);
 
@@ -389,7 +395,7 @@ public class SourceFormatter {
 			throw executionException1;
 		}
 
-		if (_sourceFormatterArgs.isThrowException() &&
+		if (_sourceFormatterArgs.isFailOnAutoFix() &&
 			(!_sourceFormatterMessages.isEmpty() ||
 			 !_sourceMismatchExceptions.isEmpty())) {
 

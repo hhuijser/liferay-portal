@@ -709,10 +709,11 @@ Please run the following command from ${source.formatter.modules.dir.absolute.pa
 			<arg value="source.auto.fix=${source.auto.fix}" />
 			<arg value="source.base.dir=${source.base.dir}" />
 			<arg value="source.check.name=${source.check.name}" />
+			<arg value="source.fail.on.auto.fix=${source.fail.on.auto.fix}" />
+			<arg value="source.fail.on.has.warning=${source.fail.on.has.warning}" />
 			<arg value="source.file.extensions=${source.file.extensions}" />
 			<arg value="source.files=${source.files}" />
 			<arg value="source.print.errors=${source.print.errors}" />
-			<arg value="source.throw.exception=${source.throw.exception}" />
 		</java>
 
 		<delete file="ServiceBuilder.temp" />

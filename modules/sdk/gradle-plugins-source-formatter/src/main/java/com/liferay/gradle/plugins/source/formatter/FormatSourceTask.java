@@ -99,6 +99,14 @@ public class FormatSourceTask extends ExecuteJavaTask {
 		return _sourceFormatterArgs.isAutoFix();
 	}
 
+	public boolean isFailOnAutoFix() {
+		return _sourceFormatterArgs.isFailOnAutoFix();
+	}
+
+	public boolean isFailOnHasWarning() {
+		return _sourceFormatterArgs.isFailOnHasWarning();
+	}
+
 	public boolean isFormatCurrentBranch() {
 		return _sourceFormatterArgs.isFormatCurrentBranch();
 	}
@@ -129,10 +137,6 @@ public class FormatSourceTask extends ExecuteJavaTask {
 
 	public boolean isShowStatusUpdates() {
 		return _sourceFormatterArgs.isShowStatusUpdates();
-	}
-
-	public boolean isThrowException() {
-		return _sourceFormatterArgs.isThrowException();
 	}
 
 	public void setAutoFix(boolean autoFix) {
@@ -229,11 +233,12 @@ public class FormatSourceTask extends ExecuteJavaTask {
 		args.add("show.documentation=" + isShowDocumentation());
 		args.add("show.status.updates=" + isShowStatusUpdates());
 		args.add("source.auto.fix=" + isAutoFix());
+		args.add("source.fail.on.auto.fix=" + isFailOnAutoFix());
+		args.add("source.fail.on.has.warning=" + isFailOnHasWarning());
 		args.add(
 			"source.file.extensions=" +
 				CollectionUtils.join(",", getFileExtensions()));
 		args.add("source.print.errors=" + isPrintErrors());
-		args.add("source.throw.exception=" + isThrowException());
 
 		FileCollection fileCollection = getFiles();
 

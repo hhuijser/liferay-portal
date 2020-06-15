@@ -45,13 +45,12 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			return content;
 		}
 
-		String[] ymlDefinitions = content.split("\n---\n");
+		List<String> directives = YMLSourceUtil.splitDirectives(content);
 
-		StringBundler sb = new StringBundler(ymlDefinitions.length * 2);
+		StringBundler sb = new StringBundler(directives.size() * 2);
 
-		for (String ymlDefinition : ymlDefinitions) {
-			sb.append(
-				_sortDefinitions(fileName, ymlDefinition, StringPool.BLANK));
+		for (String directive : directives) {
+			sb.append(_sortDefinitions(fileName, directive, StringPool.BLANK));
 			sb.append("\n---\n");
 		}
 

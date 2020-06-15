@@ -460,7 +460,7 @@ public interface OrganizationLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Organization> getOrganizations(
 			long userId, int start, int end,
-			OrderByComparator<Organization> obc)
+			OrderByComparator<Organization> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -532,14 +532,14 @@ public interface OrganizationLocalService
 	 return
 	 * @param end the upper bound of the range of organizations and users to
 	 return (not inclusive)
-	 * @param obc the comparator to order the organizations and users
+	 * @param orderByComparator the comparator to order the organizations and users
 	 (optionally <code>null</code>)
 	 * @return the organizations and users belonging to the parent organization
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Object> getOrganizationsAndUsers(
 		long companyId, long parentOrganizationId, int status, int start,
-		int end, OrderByComparator<?> obc);
+		int end, OrderByComparator<?> orderByComparator);
 
 	/**
 	 * Returns the number of organizations and users belonging to the parent
@@ -932,16 +932,16 @@ public interface OrganizationLocalService
 	 * @param start the lower bound of the range of organizations to return
 	 * @param end the upper bound of the range of organizations to return (not
 	 inclusive)
-	 * @param obc the comparator to order the organizations (optionally
+	 * @param orderByComparator the comparator to order the organizations (optionally
 	 <code>null</code>)
-	 * @return the matching organizations ordered by comparator <code>obc</code>
+	 * @return the matching organizations ordered by comparator <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.OrganizationFinder
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Organization> search(
 		long companyId, long parentOrganizationId, String keywords, String type,
 		Long regionId, Long countryId, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<Organization> obc);
+		int start, int end, OrderByComparator<Organization> orderByComparator);
 
 	/**
 	 * Returns a name ordered range of all the organizations with the type,
@@ -1032,9 +1032,9 @@ public interface OrganizationLocalService
 	 * @param start the lower bound of the range of organizations to return
 	 * @param end the upper bound of the range of organizations to return (not
 	 inclusive)
-	 * @param obc the comparator to order the organizations (optionally
+	 * @param orderByComparator the comparator to order the organizations (optionally
 	 <code>null</code>)
-	 * @return the matching organizations ordered by comparator <code>obc</code>
+	 * @return the matching organizations ordered by comparator <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.OrganizationFinder
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1042,7 +1042,7 @@ public interface OrganizationLocalService
 		long companyId, long parentOrganizationId, String name, String type,
 		String street, String city, String zip, Long regionId, Long countryId,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<Organization> obc);
+		int end, OrderByComparator<Organization> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the organizations whose name, type, or

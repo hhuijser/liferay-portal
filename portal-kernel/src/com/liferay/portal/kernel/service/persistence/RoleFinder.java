@@ -75,7 +75,7 @@ public interface RoleFinder {
 			long companyId, String keywords, Integer[] types,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc);
+				<com.liferay.portal.kernel.model.Role> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.Role>
 		filterFindByC_N_D_T(
@@ -83,7 +83,7 @@ public interface RoleFinder {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc);
+				<com.liferay.portal.kernel.model.Role> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.Role>
 		filterFindByC_N_D_T(
@@ -91,7 +91,7 @@ public interface RoleFinder {
 			Integer[] types, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Role> obc);
+				<com.liferay.portal.kernel.model.Role> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.Role>
 		findByGroupRoleAndTeamRole(
@@ -102,13 +102,13 @@ public interface RoleFinder {
 	public java.util.List<com.liferay.portal.kernel.model.Role> findByKeywords(
 		long companyId, String keywords, Integer[] types, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc);
+			<com.liferay.portal.kernel.model.Role> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.Role> findByKeywords(
 		long companyId, String keywords, Integer[] types,
 		java.util.LinkedHashMap<String, Object> params, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc);
+			<com.liferay.portal.kernel.model.Role> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.Role> findBySystem(
 		long companyId);
@@ -144,14 +144,14 @@ public interface RoleFinder {
 		java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc);
+			<com.liferay.portal.kernel.model.Role> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.Role> findByC_N_D_T(
 		long companyId, String[] names, String[] descriptions, Integer[] types,
 		java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.portal.kernel.model.Role> obc);
+			<com.liferay.portal.kernel.model.Role> orderByComparator);
 
 	public java.util.Map<String, java.util.List<String>> findByC_N_S_P(
 		long companyId, String name, int scope, String primKey);

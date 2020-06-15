@@ -240,7 +240,7 @@ public interface MDRActionLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MDRAction> getActions(
 		long ruleGroupInstanceId, int start, int end,
-		OrderByComparator<MDRAction> obc);
+		OrderByComparator<MDRAction> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getActionsCount(long ruleGroupInstanceId);

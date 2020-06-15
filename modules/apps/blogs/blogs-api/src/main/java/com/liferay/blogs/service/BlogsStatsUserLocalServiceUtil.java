@@ -288,9 +288,10 @@ public class BlogsStatsUserLocalServiceUtil {
 		getCompanyStatsUsers(
 			long companyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsStatsUser> obc) {
+				<com.liferay.blogs.model.BlogsStatsUser> orderByComparator) {
 
-		return getService().getCompanyStatsUsers(companyId, start, end, obc);
+		return getService().getCompanyStatsUsers(
+			companyId, start, end, orderByComparator);
 	}
 
 	public static int getCompanyStatsUsersCount(long companyId) {
@@ -313,9 +314,10 @@ public class BlogsStatsUserLocalServiceUtil {
 		getGroupStatsUsers(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsStatsUser> obc) {
+				<com.liferay.blogs.model.BlogsStatsUser> orderByComparator) {
 
-		return getService().getGroupStatsUsers(groupId, start, end, obc);
+		return getService().getGroupStatsUsers(
+			groupId, start, end, orderByComparator);
 	}
 
 	public static int getGroupStatsUsersCount(long groupId) {
@@ -340,10 +342,10 @@ public class BlogsStatsUserLocalServiceUtil {
 		getOrganizationStatsUsers(
 			long organizationId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsStatsUser> obc) {
+				<com.liferay.blogs.model.BlogsStatsUser> orderByComparator) {
 
 		return getService().getOrganizationStatsUsers(
-			organizationId, start, end, obc);
+			organizationId, start, end, orderByComparator);
 	}
 
 	public static int getOrganizationStatsUsersCount(long organizationId) {

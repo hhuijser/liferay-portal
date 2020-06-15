@@ -52,7 +52,7 @@ public interface UserGroupFinder {
 			long companyId, String keywords,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc);
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.UserGroup>
 		filterFindByC_N_D(
@@ -60,7 +60,7 @@ public interface UserGroupFinder {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc);
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.UserGroup>
 		filterFindByC_N_D(
@@ -68,14 +68,14 @@ public interface UserGroupFinder {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc);
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.UserGroup>
 		findByKeywords(
 			long companyId, String keywords,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc);
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.UserGroup>
 		findByC_N_D(
@@ -83,7 +83,7 @@ public interface UserGroupFinder {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc);
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator);
 
 	public java.util.List<com.liferay.portal.kernel.model.UserGroup>
 		findByC_N_D(
@@ -91,6 +91,6 @@ public interface UserGroupFinder {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc);
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator);
 
 }

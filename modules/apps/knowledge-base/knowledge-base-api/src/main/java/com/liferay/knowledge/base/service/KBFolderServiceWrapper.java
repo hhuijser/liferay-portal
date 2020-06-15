@@ -62,11 +62,11 @@ public class KBFolderServiceWrapper
 	public com.liferay.knowledge.base.model.KBFolder fetchFirstChildKBFolder(
 			long groupId, long kbFolderId,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.knowledge.base.model.KBFolder> obc)
+				<com.liferay.knowledge.base.model.KBFolder> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _kbFolderService.fetchFirstChildKBFolder(
-			groupId, kbFolderId, obc);
+			groupId, kbFolderId, orderByComparator);
 	}
 
 	@Override

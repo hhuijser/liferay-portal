@@ -1053,7 +1053,7 @@ public class WikiPageServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, long nodeId,
 			boolean head, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.wiki.model.WikiPage> obc)
+				<com.liferay.wiki.model.WikiPage> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1062,7 +1062,8 @@ public class WikiPageServiceHttp {
 				_getPagesParameterTypes25);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, nodeId, head, status, start, end, obc);
+				methodKey, groupId, nodeId, head, status, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1097,7 +1098,7 @@ public class WikiPageServiceHttp {
 			boolean head, long userId, boolean includeOwner, int status,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.wiki.model.WikiPage> obc)
+				<com.liferay.wiki.model.WikiPage> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1107,7 +1108,7 @@ public class WikiPageServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, nodeId, head, userId, includeOwner, status,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 

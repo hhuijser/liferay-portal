@@ -313,10 +313,11 @@ public class MicroblogsEntryLocalServiceWrapper
 			long companyId, long creatorClassNameId, int type, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.microblogs.model.MicroblogsEntry> obc) {
+				<com.liferay.microblogs.model.MicroblogsEntry>
+					orderByComparator) {
 
 		return _microblogsEntryLocalService.getMicroblogsEntries(
-			companyId, creatorClassNameId, type, start, end, obc);
+			companyId, creatorClassNameId, type, start, end, orderByComparator);
 	}
 
 	@Override

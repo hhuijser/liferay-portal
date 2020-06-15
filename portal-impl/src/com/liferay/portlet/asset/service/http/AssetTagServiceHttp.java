@@ -228,7 +228,7 @@ public class AssetTagServiceHttp {
 		getGroupTags(
 			HttpPrincipal httpPrincipal, long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetTag> obc) {
+				<com.liferay.asset.kernel.model.AssetTag> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -236,7 +236,7 @@ public class AssetTagServiceHttp {
 				_getGroupTagsParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, start, end, obc);
+				methodKey, groupId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -402,14 +402,15 @@ public class AssetTagServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, long classNameId,
 			String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetTag> obc) {
+				<com.liferay.asset.kernel.model.AssetTag> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				AssetTagServiceUtil.class, "getTags", _getTagsParameterTypes10);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, classNameId, name, start, end, obc);
+				methodKey, groupId, classNameId, name, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -472,14 +473,14 @@ public class AssetTagServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String name, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetTag> obc) {
+				<com.liferay.asset.kernel.model.AssetTag> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				AssetTagServiceUtil.class, "getTags", _getTagsParameterTypes12);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, name, start, end, obc);
+				methodKey, groupId, name, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -542,14 +543,14 @@ public class AssetTagServiceHttp {
 			HttpPrincipal httpPrincipal, long[] groupIds, String name,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetTag> obc) {
+				<com.liferay.asset.kernel.model.AssetTag> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				AssetTagServiceUtil.class, "getTags", _getTagsParameterTypes14);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupIds, name, start, end, obc);
+				methodKey, groupIds, name, start, end, orderByComparator);
 
 			Object returnObj = null;
 

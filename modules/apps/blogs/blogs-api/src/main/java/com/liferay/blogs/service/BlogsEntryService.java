@@ -123,7 +123,7 @@ public interface BlogsEntryService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<BlogsEntry> getGroupEntries(
 		long groupId, int status, int start, int end,
-		OrderByComparator<BlogsEntry> obc);
+		OrderByComparator<BlogsEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupEntriesCount(long groupId, Date displayDate, int status);
@@ -146,12 +146,12 @@ public interface BlogsEntryService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<BlogsEntry> getGroupUserEntries(
 		long groupId, long userId, int status, int start, int end,
-		OrderByComparator<BlogsEntry> obc);
+		OrderByComparator<BlogsEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<BlogsEntry> getGroupUserEntries(
 		long groupId, long userId, int[] statuses, int start, int end,
-		OrderByComparator<BlogsEntry> obc);
+		OrderByComparator<BlogsEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupUserEntriesCount(long groupId, long userId, int status);

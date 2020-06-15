@@ -350,7 +350,7 @@ public class WikiNodeServiceHttp {
 		HttpPrincipal httpPrincipal, long groupId, int status, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.wiki.model.WikiNode> obc) {
+			<com.liferay.wiki.model.WikiNode> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -358,7 +358,7 @@ public class WikiNodeServiceHttp {
 				_getNodesParameterTypes8);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, status, start, end, obc);
+				methodKey, groupId, status, start, end, orderByComparator);
 
 			Object returnObj = null;
 

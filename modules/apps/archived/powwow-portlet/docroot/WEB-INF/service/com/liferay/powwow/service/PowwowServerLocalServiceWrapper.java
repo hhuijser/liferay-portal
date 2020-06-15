@@ -295,9 +295,10 @@ public class PowwowServerLocalServiceWrapper
 		getPowwowServers(
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.powwow.model.PowwowServer> obc) {
+				<com.liferay.powwow.model.PowwowServer> orderByComparator) {
 
-		return _powwowServerLocalService.getPowwowServers(start, end, obc);
+		return _powwowServerLocalService.getPowwowServers(
+			start, end, orderByComparator);
 	}
 
 	@Override

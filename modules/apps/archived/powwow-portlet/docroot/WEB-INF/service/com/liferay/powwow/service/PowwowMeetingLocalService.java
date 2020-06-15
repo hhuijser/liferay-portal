@@ -256,7 +256,8 @@ public interface PowwowMeetingLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<PowwowMeeting> getPowwowMeetings(
-		long groupId, int start, int end, OrderByComparator<PowwowMeeting> obc);
+		long groupId, int start, int end,
+		OrderByComparator<PowwowMeeting> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<PowwowMeeting> getPowwowMeetings(

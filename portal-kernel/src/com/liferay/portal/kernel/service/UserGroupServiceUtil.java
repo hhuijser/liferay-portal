@@ -201,9 +201,9 @@ public class UserGroupServiceUtil {
 	 * @param start the lower bound of the range of user groups to return
 	 * @param end the upper bound of the range of user groups to return (not
 	 inclusive)
-	 * @param obc the comparator to order the user groups (optionally
+	 * @param orderByComparator the comparator to order the user groups (optionally
 	 <code>null</code>)
-	 * @return the matching user groups ordered by comparator <code>obc</code>
+	 * @return the matching user groups ordered by comparator <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.UserGroupFinder
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.UserGroup>
@@ -211,10 +211,10 @@ public class UserGroupServiceUtil {
 			long companyId, String keywords,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc) {
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator) {
 
 		return getService().search(
-			companyId, keywords, params, start, end, obc);
+			companyId, keywords, params, start, end, orderByComparator);
 	}
 
 	/**
@@ -242,9 +242,9 @@ public class UserGroupServiceUtil {
 	 * @param start the lower bound of the range of user groups to return
 	 * @param end the upper bound of the range of user groups to return (not
 	 inclusive)
-	 * @param obc the comparator to order the user groups (optionally
+	 * @param orderByComparator the comparator to order the user groups (optionally
 	 <code>null</code>)
-	 * @return the matching user groups ordered by comparator <code>obc</code>
+	 * @return the matching user groups ordered by comparator <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.UserGroupFinder
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.UserGroup>
@@ -253,10 +253,11 @@ public class UserGroupServiceUtil {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc) {
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator) {
 
 		return getService().search(
-			companyId, name, description, params, andOperator, start, end, obc);
+			companyId, name, description, params, andOperator, start, end,
+			orderByComparator);
 	}
 
 	/**

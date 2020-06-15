@@ -446,7 +446,8 @@ public class AssetVocabularyServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId,
 				boolean createDefaultVocabulary, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetVocabulary> obc)
+					<com.liferay.asset.kernel.model.AssetVocabulary>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -455,7 +456,8 @@ public class AssetVocabularyServiceHttp {
 				_getGroupVocabulariesParameterTypes10);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, createDefaultVocabulary, start, end, obc);
+				methodKey, groupId, createDefaultVocabulary, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -490,7 +492,8 @@ public class AssetVocabularyServiceHttp {
 		getGroupVocabularies(
 			HttpPrincipal httpPrincipal, long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetVocabulary> obc) {
+				<com.liferay.asset.kernel.model.AssetVocabulary>
+					orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -498,7 +501,7 @@ public class AssetVocabularyServiceHttp {
 				_getGroupVocabulariesParameterTypes11);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, start, end, obc);
+				methodKey, groupId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -527,7 +530,8 @@ public class AssetVocabularyServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String name, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetVocabulary> obc) {
+				<com.liferay.asset.kernel.model.AssetVocabulary>
+					orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -535,7 +539,7 @@ public class AssetVocabularyServiceHttp {
 				_getGroupVocabulariesParameterTypes12);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, name, start, end, obc);
+				methodKey, groupId, name, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -692,7 +696,8 @@ public class AssetVocabularyServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, String name,
 				int start, int end, boolean addDefaultVocabulary,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetVocabulary> obc)
+					<com.liferay.asset.kernel.model.AssetVocabulary>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -702,7 +707,7 @@ public class AssetVocabularyServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, name, start, end, addDefaultVocabulary,
-				obc);
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -738,7 +743,8 @@ public class AssetVocabularyServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, String name,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetVocabulary> obc)
+					<com.liferay.asset.kernel.model.AssetVocabulary>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -747,7 +753,7 @@ public class AssetVocabularyServiceHttp {
 				_getGroupVocabulariesDisplayParameterTypes18);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, name, start, end, obc);
+				methodKey, groupId, name, start, end, orderByComparator);
 
 			Object returnObj = null;
 

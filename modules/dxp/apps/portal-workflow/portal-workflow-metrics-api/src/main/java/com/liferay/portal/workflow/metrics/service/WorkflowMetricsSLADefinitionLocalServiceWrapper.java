@@ -406,11 +406,12 @@ public class WorkflowMetricsSLADefinitionLocalServiceWrapper
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.portal.workflow.metrics.model.
-						WorkflowMetricsSLADefinition> obc) {
+						WorkflowMetricsSLADefinition> orderByComparator) {
 
 		return _workflowMetricsSLADefinitionLocalService.
 			getWorkflowMetricsSLADefinitions(
-				companyId, active, processId, status, start, end, obc);
+				companyId, active, processId, status, start, end,
+				orderByComparator);
 	}
 
 	@Override

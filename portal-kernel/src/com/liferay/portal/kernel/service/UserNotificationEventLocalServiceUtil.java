@@ -416,11 +416,11 @@ public class UserNotificationEventLocalServiceUtil {
 				boolean actionRequired, boolean archived, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.portal.kernel.model.UserNotificationEvent>
-						obc) {
+						orderByComparator) {
 
 		return getService().getArchivedUserNotificationEvents(
 			userId, deliveryType, delivered, actionRequired, archived, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static java.util.List
@@ -440,10 +440,11 @@ public class UserNotificationEventLocalServiceUtil {
 				boolean archived, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.portal.kernel.model.UserNotificationEvent>
-						obc) {
+						orderByComparator) {
 
 		return getService().getArchivedUserNotificationEvents(
-			userId, deliveryType, actionRequired, archived, start, end, obc);
+			userId, deliveryType, actionRequired, archived, start, end,
+			orderByComparator);
 	}
 
 	public static java.util.List
@@ -572,10 +573,11 @@ public class UserNotificationEventLocalServiceUtil {
 				boolean actionRequired, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.portal.kernel.model.UserNotificationEvent>
-						obc) {
+						orderByComparator) {
 
 		return getService().getDeliveredUserNotificationEvents(
-			userId, deliveryType, delivered, actionRequired, start, end, obc);
+			userId, deliveryType, delivered, actionRequired, start, end,
+			orderByComparator);
 	}
 
 	public static java.util.List

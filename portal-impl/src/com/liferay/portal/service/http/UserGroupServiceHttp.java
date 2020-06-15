@@ -507,14 +507,15 @@ public class UserGroupServiceHttp {
 			HttpPrincipal httpPrincipal, long companyId, String keywords,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc) {
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				UserGroupServiceUtil.class, "search", _searchParameterTypes12);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, companyId, keywords, params, start, end, obc);
+				methodKey, companyId, keywords, params, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -544,7 +545,7 @@ public class UserGroupServiceHttp {
 			String description, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.UserGroup> obc) {
+				<com.liferay.portal.kernel.model.UserGroup> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -552,7 +553,7 @@ public class UserGroupServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId, name, description, params, andOperator,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 

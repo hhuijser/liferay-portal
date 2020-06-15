@@ -689,19 +689,20 @@ public class UserServiceSoap {
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	public static com.liferay.portal.kernel.model.UserSoap[] getGroupUsers(
 			long groupId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.User> obc)
+				<com.liferay.portal.kernel.model.User> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.model.User> returnValue =
-				UserServiceUtil.getGroupUsers(groupId, status, start, end, obc);
+				UserServiceUtil.getGroupUsers(
+					groupId, status, start, end, orderByComparator);
 
 			return com.liferay.portal.kernel.model.UserSoap.toSoapModels(
 				returnValue);
@@ -718,19 +719,20 @@ public class UserServiceSoap {
 	 *
 	 * @param groupId the primary key of the group
 	 * @param status the workflow status
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	public static com.liferay.portal.kernel.model.UserSoap[] getGroupUsers(
 			long groupId, int status,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.User> obc)
+				<com.liferay.portal.kernel.model.User> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.model.User> returnValue =
-				UserServiceUtil.getGroupUsers(groupId, status, obc);
+				UserServiceUtil.getGroupUsers(
+					groupId, status, orderByComparator);
 
 			return com.liferay.portal.kernel.model.UserSoap.toSoapModels(
 				returnValue);
@@ -892,7 +894,7 @@ public class UserServiceSoap {
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
@@ -900,13 +902,13 @@ public class UserServiceSoap {
 			getOrganizationUsers(
 				long organizationId, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.User> obc)
+					<com.liferay.portal.kernel.model.User> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.model.User> returnValue =
 				UserServiceUtil.getOrganizationUsers(
-					organizationId, status, start, end, obc);
+					organizationId, status, start, end, orderByComparator);
 
 			return com.liferay.portal.kernel.model.UserSoap.toSoapModels(
 				returnValue);
@@ -923,7 +925,7 @@ public class UserServiceSoap {
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param status the workflow status
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
@@ -931,13 +933,13 @@ public class UserServiceSoap {
 			getOrganizationUsers(
 				long organizationId, int status,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.User> obc)
+					<com.liferay.portal.kernel.model.User> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.model.User> returnValue =
 				UserServiceUtil.getOrganizationUsers(
-					organizationId, status, obc);
+					organizationId, status, orderByComparator);
 
 			return com.liferay.portal.kernel.model.UserSoap.toSoapModels(
 				returnValue);

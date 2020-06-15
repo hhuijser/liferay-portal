@@ -615,10 +615,12 @@ public class OrganizationLocalServiceUtil {
 			getOrganizations(
 				long userId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.Organization> obc)
+					<com.liferay.portal.kernel.model.Organization>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().getOrganizations(userId, start, end, obc);
+		return getService().getOrganizations(
+			userId, start, end, orderByComparator);
 	}
 
 	/**
@@ -706,16 +708,18 @@ public class OrganizationLocalServiceUtil {
 	 return
 	 * @param end the upper bound of the range of organizations and users to
 	 return (not inclusive)
-	 * @param obc the comparator to order the organizations and users
+	 * @param orderByComparator the comparator to order the organizations and users
 	 (optionally <code>null</code>)
 	 * @return the organizations and users belonging to the parent organization
 	 */
 	public static java.util.List<Object> getOrganizationsAndUsers(
 		long companyId, long parentOrganizationId, int status, int start,
-		int end, com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		return getService().getOrganizationsAndUsers(
-			companyId, parentOrganizationId, status, start, end, obc);
+			companyId, parentOrganizationId, status, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -1194,9 +1198,9 @@ public class OrganizationLocalServiceUtil {
 	 * @param start the lower bound of the range of organizations to return
 	 * @param end the upper bound of the range of organizations to return (not
 	 inclusive)
-	 * @param obc the comparator to order the organizations (optionally
+	 * @param orderByComparator the comparator to order the organizations (optionally
 	 <code>null</code>)
-	 * @return the matching organizations ordered by comparator <code>obc</code>
+	 * @return the matching organizations ordered by comparator <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.OrganizationFinder
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.Organization>
@@ -1205,11 +1209,12 @@ public class OrganizationLocalServiceUtil {
 			String type, Long regionId, Long countryId,
 			java.util.LinkedHashMap<String, Object> params, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Organization> obc) {
+				<com.liferay.portal.kernel.model.Organization>
+					orderByComparator) {
 
 		return getService().search(
 			companyId, parentOrganizationId, keywords, type, regionId,
-			countryId, params, start, end, obc);
+			countryId, params, start, end, orderByComparator);
 	}
 
 	/**
@@ -1306,9 +1311,9 @@ public class OrganizationLocalServiceUtil {
 	 * @param start the lower bound of the range of organizations to return
 	 * @param end the upper bound of the range of organizations to return (not
 	 inclusive)
-	 * @param obc the comparator to order the organizations (optionally
+	 * @param orderByComparator the comparator to order the organizations (optionally
 	 <code>null</code>)
-	 * @return the matching organizations ordered by comparator <code>obc</code>
+	 * @return the matching organizations ordered by comparator <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.OrganizationFinder
 	 */
 	public static java.util.List<com.liferay.portal.kernel.model.Organization>
@@ -1318,11 +1323,13 @@ public class OrganizationLocalServiceUtil {
 			Long countryId, java.util.LinkedHashMap<String, Object> params,
 			boolean andOperator, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Organization> obc) {
+				<com.liferay.portal.kernel.model.Organization>
+					orderByComparator) {
 
 		return getService().search(
 			companyId, parentOrganizationId, name, type, street, city, zip,
-			regionId, countryId, params, andOperator, start, end, obc);
+			regionId, countryId, params, andOperator, start, end,
+			orderByComparator);
 	}
 
 	/**

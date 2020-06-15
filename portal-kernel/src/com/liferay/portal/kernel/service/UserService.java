@@ -416,14 +416,14 @@ public interface UserService extends BaseService {
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getGroupUsers(
 			long groupId, int status, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -431,13 +431,13 @@ public interface UserService extends BaseService {
 	 *
 	 * @param groupId the primary key of the group
 	 * @param status the workflow status
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getGroupUsers(
-			long groupId, int status, OrderByComparator<User> obc)
+			long groupId, int status, OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -497,14 +497,14 @@ public interface UserService extends BaseService {
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getOrganizationUsers(
 			long organizationId, int status, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -512,13 +512,14 @@ public interface UserService extends BaseService {
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param status the workflow status
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getOrganizationUsers(
-			long organizationId, int status, OrderByComparator<User> obc)
+			long organizationId, int status,
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	/**

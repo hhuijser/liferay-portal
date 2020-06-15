@@ -590,7 +590,8 @@ public class DLFileEntryServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -599,7 +600,8 @@ public class DLFileEntryServiceHttp {
 				_getFileEntriesParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, folderId, status, start, end, obc);
+				methodKey, groupId, folderId, status, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -636,7 +638,8 @@ public class DLFileEntryServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -645,7 +648,7 @@ public class DLFileEntryServiceHttp {
 				_getFileEntriesParameterTypes14);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, folderId, start, end, obc);
+				methodKey, groupId, folderId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -682,7 +685,8 @@ public class DLFileEntryServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				long fileEntryTypeId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -691,7 +695,8 @@ public class DLFileEntryServiceHttp {
 				_getFileEntriesParameterTypes15);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, folderId, fileEntryTypeId, start, end, obc);
+				methodKey, groupId, folderId, fileEntryTypeId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -728,7 +733,8 @@ public class DLFileEntryServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				String[] mimeTypes, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -738,7 +744,7 @@ public class DLFileEntryServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, folderId, mimeTypes, status, start, end,
-				obc);
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -775,7 +781,8 @@ public class DLFileEntryServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, long folderId,
 				String[] mimeTypes, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFileEntry> obc)
+					<com.liferay.document.library.kernel.model.DLFileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -784,7 +791,8 @@ public class DLFileEntryServiceHttp {
 				_getFileEntriesParameterTypes17);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, folderId, mimeTypes, start, end, obc);
+				methodKey, groupId, folderId, mimeTypes, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1177,7 +1185,7 @@ public class DLFileEntryServiceHttp {
 					long rootFolderId, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.document.library.kernel.model.DLFileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1186,7 +1194,8 @@ public class DLFileEntryServiceHttp {
 				_getGroupFileEntriesParameterTypes28);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, userId, rootFolderId, start, end, obc);
+				methodKey, groupId, userId, rootFolderId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1226,7 +1235,7 @@ public class DLFileEntryServiceHttp {
 					int status, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.document.library.kernel.model.DLFileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1236,7 +1245,7 @@ public class DLFileEntryServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, userId, repositoryId, rootFolderId,
-				mimeTypes, status, start, end, obc);
+				mimeTypes, status, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1276,7 +1285,7 @@ public class DLFileEntryServiceHttp {
 					int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.document.library.kernel.model.DLFileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1286,7 +1295,7 @@ public class DLFileEntryServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, userId, rootFolderId, mimeTypes, status,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 

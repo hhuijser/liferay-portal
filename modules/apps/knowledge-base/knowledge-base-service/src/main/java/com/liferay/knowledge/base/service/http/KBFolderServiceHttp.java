@@ -180,7 +180,8 @@ public class KBFolderServiceHttp {
 			fetchFirstChildKBFolder(
 				HttpPrincipal httpPrincipal, long groupId, long kbFolderId,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.knowledge.base.model.KBFolder> obc)
+					<com.liferay.knowledge.base.model.KBFolder>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -189,7 +190,7 @@ public class KBFolderServiceHttp {
 				_fetchFirstChildKBFolderParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, kbFolderId, obc);
+				methodKey, groupId, kbFolderId, orderByComparator);
 
 			Object returnObj = null;
 

@@ -167,10 +167,10 @@ public class BlogsEntryServiceWrapper
 	public java.util.List<com.liferay.blogs.model.BlogsEntry> getGroupEntries(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.blogs.model.BlogsEntry> obc) {
+			<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
 		return _blogsEntryService.getGroupEntries(
-			groupId, status, start, end, obc);
+			groupId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -214,10 +214,10 @@ public class BlogsEntryServiceWrapper
 		getGroupUserEntries(
 			long groupId, long userId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsEntry> obc) {
+				<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
 		return _blogsEntryService.getGroupUserEntries(
-			groupId, userId, status, start, end, obc);
+			groupId, userId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -225,10 +225,10 @@ public class BlogsEntryServiceWrapper
 		getGroupUserEntries(
 			long groupId, long userId, int[] statuses, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsEntry> obc) {
+				<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
 		return _blogsEntryService.getGroupUserEntries(
-			groupId, userId, statuses, start, end, obc);
+			groupId, userId, statuses, start, end, orderByComparator);
 	}
 
 	@Override

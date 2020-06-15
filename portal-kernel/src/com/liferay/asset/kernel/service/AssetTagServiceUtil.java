@@ -71,9 +71,10 @@ public class AssetTagServiceUtil {
 		getGroupTags(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetTag> obc) {
+				<com.liferay.asset.kernel.model.AssetTag> orderByComparator) {
 
-		return getService().getGroupTags(groupId, start, end, obc);
+		return getService().getGroupTags(
+			groupId, start, end, orderByComparator);
 	}
 
 	public static int getGroupTagsCount(long groupId) {
@@ -111,10 +112,10 @@ public class AssetTagServiceUtil {
 		getTags(
 			long groupId, long classNameId, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetTag> obc) {
+				<com.liferay.asset.kernel.model.AssetTag> orderByComparator) {
 
 		return getService().getTags(
-			groupId, classNameId, name, start, end, obc);
+			groupId, classNameId, name, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetTag>
@@ -127,9 +128,10 @@ public class AssetTagServiceUtil {
 		getTags(
 			long groupId, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetTag> obc) {
+				<com.liferay.asset.kernel.model.AssetTag> orderByComparator) {
 
-		return getService().getTags(groupId, name, start, end, obc);
+		return getService().getTags(
+			groupId, name, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetTag>
@@ -142,9 +144,10 @@ public class AssetTagServiceUtil {
 		getTags(
 			long[] groupIds, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetTag> obc) {
+				<com.liferay.asset.kernel.model.AssetTag> orderByComparator) {
 
-		return getService().getTags(groupIds, name, start, end, obc);
+		return getService().getTags(
+			groupIds, name, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetTag>

@@ -270,7 +270,8 @@ public interface RedirectEntryLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<RedirectEntry> getRedirectEntries(
-		long groupId, int start, int end, OrderByComparator<RedirectEntry> obc);
+		long groupId, int start, int end,
+		OrderByComparator<RedirectEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<RedirectEntry> getRedirectEntries(

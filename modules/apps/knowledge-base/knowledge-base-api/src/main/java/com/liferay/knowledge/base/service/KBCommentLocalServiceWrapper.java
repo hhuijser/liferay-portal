@@ -350,10 +350,11 @@ public class KBCommentLocalServiceWrapper
 		getKBComments(
 			long groupId, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.knowledge.base.model.KBComment> obc) {
+				<com.liferay.knowledge.base.model.KBComment>
+					orderByComparator) {
 
 		return _kbCommentLocalService.getKBComments(
-			groupId, status, start, end, obc);
+			groupId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -361,9 +362,11 @@ public class KBCommentLocalServiceWrapper
 		getKBComments(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.knowledge.base.model.KBComment> obc) {
+				<com.liferay.knowledge.base.model.KBComment>
+					orderByComparator) {
 
-		return _kbCommentLocalService.getKBComments(groupId, start, end, obc);
+		return _kbCommentLocalService.getKBComments(
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -392,10 +395,11 @@ public class KBCommentLocalServiceWrapper
 		getKBComments(
 			String className, long classPK, int status, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.knowledge.base.model.KBComment> obc) {
+				<com.liferay.knowledge.base.model.KBComment>
+					orderByComparator) {
 
 		return _kbCommentLocalService.getKBComments(
-			className, classPK, status, start, end, obc);
+			className, classPK, status, start, end, orderByComparator);
 	}
 
 	@Override

@@ -624,19 +624,21 @@ public class DLFileEntryLocalServiceWrapper
 	@Override
 	public java.util.List<DLFileEntry> getFileEntries(
 		long groupId, long folderId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry>
+			orderByComparator) {
 
 		return _dlFileEntryLocalService.getFileEntries(
-			groupId, folderId, status, start, end, obc);
+			groupId, folderId, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public java.util.List<DLFileEntry> getFileEntries(
 		long groupId, long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry>
+			orderByComparator) {
 
 		return _dlFileEntryLocalService.getFileEntries(
-			groupId, folderId, start, end, obc);
+			groupId, folderId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -750,10 +752,11 @@ public class DLFileEntryLocalServiceWrapper
 	@Override
 	public java.util.List<DLFileEntry> getGroupFileEntries(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry>
+			orderByComparator) {
 
 		return _dlFileEntryLocalService.getGroupFileEntries(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -767,29 +770,33 @@ public class DLFileEntryLocalServiceWrapper
 	@Override
 	public java.util.List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry>
+			orderByComparator) {
 
 		return _dlFileEntryLocalService.getGroupFileEntries(
-			groupId, userId, start, end, obc);
+			groupId, userId, start, end, orderByComparator);
 	}
 
 	@Override
 	public java.util.List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, long rootFolderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry>
+			orderByComparator) {
 
 		return _dlFileEntryLocalService.getGroupFileEntries(
-			groupId, userId, rootFolderId, start, end, obc);
+			groupId, userId, rootFolderId, start, end, orderByComparator);
 	}
 
 	@Override
 	public java.util.List<DLFileEntry> getGroupFileEntries(
 		long groupId, long userId, long repositoryId, long rootFolderId,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFileEntry>
+			orderByComparator) {
 
 		return _dlFileEntryLocalService.getGroupFileEntries(
-			groupId, userId, repositoryId, rootFolderId, start, end, obc);
+			groupId, userId, repositoryId, rootFolderId, start, end,
+			orderByComparator);
 	}
 
 	@Override

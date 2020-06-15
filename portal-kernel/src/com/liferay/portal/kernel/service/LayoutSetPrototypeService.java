@@ -80,7 +80,7 @@ public interface LayoutSetPrototypeService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<LayoutSetPrototype> search(
 			long companyId, Boolean active,
-			OrderByComparator<LayoutSetPrototype> obc)
+			OrderByComparator<LayoutSetPrototype> orderByComparator)
 		throws PortalException;
 
 	public LayoutSetPrototype updateLayoutSetPrototype(

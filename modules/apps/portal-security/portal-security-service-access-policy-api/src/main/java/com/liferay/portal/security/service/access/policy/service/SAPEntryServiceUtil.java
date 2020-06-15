@@ -91,9 +91,10 @@ public class SAPEntryServiceUtil {
 				long companyId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.portal.security.service.access.policy.model.
-						SAPEntry> obc) {
+						SAPEntry> orderByComparator) {
 
-		return getService().getCompanySAPEntries(companyId, start, end, obc);
+		return getService().getCompanySAPEntries(
+			companyId, start, end, orderByComparator);
 	}
 
 	public static int getCompanySAPEntriesCount(long companyId) {

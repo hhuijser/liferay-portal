@@ -496,17 +496,19 @@ public class UserServiceWrapper
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public java.util.List<User> getGroupUsers(
 			long groupId, int status, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<User> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<User>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _userService.getGroupUsers(groupId, status, start, end, obc);
+		return _userService.getGroupUsers(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -514,17 +516,18 @@ public class UserServiceWrapper
 	 *
 	 * @param groupId the primary key of the group
 	 * @param status the workflow status
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public java.util.List<User> getGroupUsers(
 			long groupId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<User> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<User>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _userService.getGroupUsers(groupId, status, obc);
+		return _userService.getGroupUsers(groupId, status, orderByComparator);
 	}
 
 	/**
@@ -608,18 +611,19 @@ public class UserServiceWrapper
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public java.util.List<User> getOrganizationUsers(
 			long organizationId, int status, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<User> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<User>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _userService.getOrganizationUsers(
-			organizationId, status, start, end, obc);
+			organizationId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -627,17 +631,19 @@ public class UserServiceWrapper
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param status the workflow status
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public java.util.List<User> getOrganizationUsers(
 			long organizationId, int status,
-			com.liferay.portal.kernel.util.OrderByComparator<User> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<User>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _userService.getOrganizationUsers(organizationId, status, obc);
+		return _userService.getOrganizationUsers(
+			organizationId, status, orderByComparator);
 	}
 
 	/**

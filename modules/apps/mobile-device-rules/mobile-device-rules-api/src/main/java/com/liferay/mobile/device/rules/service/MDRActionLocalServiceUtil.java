@@ -297,9 +297,11 @@ public class MDRActionLocalServiceUtil {
 		<com.liferay.mobile.device.rules.model.MDRAction> getActions(
 			long ruleGroupInstanceId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.mobile.device.rules.model.MDRAction> obc) {
+				<com.liferay.mobile.device.rules.model.MDRAction>
+					orderByComparator) {
 
-		return getService().getActions(ruleGroupInstanceId, start, end, obc);
+		return getService().getActions(
+			ruleGroupInstanceId, start, end, orderByComparator);
 	}
 
 	public static int getActionsCount(long ruleGroupInstanceId) {

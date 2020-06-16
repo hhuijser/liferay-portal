@@ -57,12 +57,17 @@ public class JIRAUtil {
 		}
 	}
 
-	public static void validateJIRATicketIds(List<String> commitMessages)
+	public static void validateJIRATicketIds(
+			List<String> commitMessages, int maxNumberOfTickets)
 		throws Exception {
 
 		Set<String> validatedTicketIds = new HashSet<>();
 
 		for (String commitMessage : commitMessages) {
+			if (validatedTicketIds.size() == maxNumberOfTickets) {
+				return;
+			}
+
 			Matcher matcher = _jiraTicketIdPattern.matcher(commitMessage);
 
 			if (!matcher.find()) {

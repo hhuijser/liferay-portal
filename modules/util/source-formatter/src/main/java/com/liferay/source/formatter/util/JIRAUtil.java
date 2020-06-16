@@ -18,7 +18,17 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import java.net.URL;
+import java.net.UnknownHostException;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -46,5 +56,52 @@ public class JIRAUtil {
 					"in ci.properties in the liferay-portal repository."));
 		}
 	}
+
+	public static void validateJIRATicketIds(List<String> commitMessages)
+		throws Exception {
+
+		Set<String> validatedTicketIds = new HashSet<>();
+
+		for (String commitMessage : commitMessages) {
+			Matcher matcher = _jiraTicketIdPattern.matcher(commitMessage);
+
+			if (!matcher.find()) {
+				continue;
+			}
+
+			String ticketId = matcher.group();
+
+			if (!validatedTicketIds.add(ticketId)) {
+				continue;
+			}
+
+			try {
+				URL url = new URL(
+					"https://issues.liferay.com/rest/api/2/issue/" + ticketId);
+
+				url.openStream();
+			}
+			catch (IOException ioException) {
+				if (ioException instanceof FileNotFoundException) {
+					throw new Exception(
+						"Commit message is pointing to non-existing JIRA " +
+							"issue: " + ticketId);
+				}
+
+				if (ioException instanceof UnknownHostException) {
+
+					// No Internet connection
+
+					return;
+				}
+
+				// Ticket exists, but user has no permission to view
+
+			}
+		}
+	}
+
+	private static final Pattern _jiraTicketIdPattern = Pattern.compile(
+		"^[^-]+-[0-9]+");
 
 }

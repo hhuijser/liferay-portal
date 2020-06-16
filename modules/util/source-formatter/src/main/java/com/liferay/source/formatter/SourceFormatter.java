@@ -987,6 +987,7 @@ public class SourceFormatter {
 			_sourceFormatterArgs.getGitWorkingBranchName());
 
 		JIRAUtil.validateJIRAProjectNames(commitMessages, projectNames);
+		JIRAUtil.validateJIRATicketIds(commitMessages);
 	}
 
 	private static final String _PROPERTIES_FILE_NAME =

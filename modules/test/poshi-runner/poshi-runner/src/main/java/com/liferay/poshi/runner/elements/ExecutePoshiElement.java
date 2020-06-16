@@ -138,7 +138,7 @@ public class ExecutePoshiElement extends PoshiElement {
 			addAttribute("macro", executeCommandName);
 
 			if (poshiScript.startsWith("var ")) {
-				PoshiNode returnPoshiNode = PoshiNodeFactory.newPoshiNode(
+				PoshiNode<?, ?> returnPoshiNode = PoshiNodeFactory.newPoshiNode(
 					this, poshiScript);
 
 				if (returnPoshiNode instanceof ReturnPoshiElement) {

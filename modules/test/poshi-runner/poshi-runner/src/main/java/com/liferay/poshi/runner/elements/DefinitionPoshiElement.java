@@ -91,11 +91,12 @@ public class DefinitionPoshiElement extends PoshiElement {
 
 			URL url = getURL();
 
-			PoshiNode poshiNode = PoshiNodeFactory.newPoshiNodeFromFile(url);
+			PoshiNode<?, ?> poshiNode = PoshiNodeFactory.newPoshiNodeFromFile(
+				url);
 
 			String poshiScript = poshiNode.toPoshiScript();
 
-			PoshiNode generatedPoshiNode = PoshiNodeFactory.newPoshiNode(
+			PoshiNode<?, ?> generatedPoshiNode = PoshiNodeFactory.newPoshiNode(
 				poshiScript, url);
 
 			if (Dom4JUtil.elementsEqual(poshiNode, generatedPoshiNode)) {

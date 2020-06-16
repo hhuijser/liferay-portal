@@ -105,7 +105,7 @@ public class PoshiElementFactoryTest {
 				for (Node childNode :
 						Dom4JUtil.toNodeList(poshiElement.content())) {
 
-					PoshiNode childPoshiNode = (PoshiNode)childNode;
+					PoshiNode<?, ?> childPoshiNode = (PoshiNode<?, ?>)childNode;
 
 					Assert.assertEquals(
 						"The the expected line number does not match",

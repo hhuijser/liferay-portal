@@ -37,7 +37,7 @@ public interface PoshiNode<A extends Node, B extends PoshiNode<A, B>>
 	public B clone(String poshiScript) throws PoshiScriptParserException;
 
 	public default String getFileExtension() {
-		PoshiNode parentPoshiNode = (PoshiNode)getParent();
+		PoshiNode<?, ?> parentPoshiNode = (PoshiNode<?, ?>)getParent();
 
 		return parentPoshiNode.getFileExtension();
 	}
@@ -51,14 +51,14 @@ public interface PoshiNode<A extends Node, B extends PoshiNode<A, B>>
 			return 1;
 		}
 
-		List<PoshiNode> poshiNodes = parentPoshiElement.getPoshiNodes();
+		List<PoshiNode<?, ?>> poshiNodes = parentPoshiElement.getPoshiNodes();
 
-		PoshiNode previousPoshiNode = null;
+		PoshiNode<?, ?> previousPoshiNode = null;
 
-		for (Iterator<PoshiNode> iterator = poshiNodes.iterator();
+		for (Iterator<PoshiNode<?, ?>> iterator = poshiNodes.iterator();
 			 iterator.hasNext();) {
 
-			PoshiNode poshiNode = iterator.next();
+			PoshiNode<?, ?> poshiNode = iterator.next();
 
 			if (poshiNode instanceof DescriptionPoshiElement) {
 				continue;
@@ -121,13 +121,13 @@ public interface PoshiNode<A extends Node, B extends PoshiNode<A, B>>
 	}
 
 	public default URL getURL() {
-		PoshiNode parentPoshiNode = (PoshiNode)getParent();
+		PoshiNode<?, ?> parentPoshiNode = (PoshiNode<?, ?>)getParent();
 
 		return parentPoshiNode.getURL();
 	}
 
 	public default boolean isValidPoshiXML() throws PoshiScriptParserException {
-		PoshiNode parentPoshiNode = (PoshiNode)getParent();
+		PoshiNode<?, ?> parentPoshiNode = (PoshiNode<?, ?>)getParent();
 
 		return parentPoshiNode.isValidPoshiXML();
 	}

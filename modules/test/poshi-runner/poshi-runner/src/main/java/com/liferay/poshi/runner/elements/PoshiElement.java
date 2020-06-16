@@ -163,7 +163,7 @@ public abstract class PoshiElement
 			return super.remove(cdata);
 		}
 
-		for (PoshiNode poshiNode : toPoshiNodes(content())) {
+		for (PoshiNode<?, ?> poshiNode : toPoshiNodes(content())) {
 			if (poshiNode == cdata) {
 				return super.remove(poshiNode);
 			}
@@ -279,7 +279,7 @@ public abstract class PoshiElement
 		detach();
 	}
 
-	protected String createPoshiScriptBlock(List<PoshiNode> poshiNodes) {
+	protected String createPoshiScriptBlock(List<PoshiNode<?, ?>> poshiNodes) {
 		StringBuilder sb = new StringBuilder();
 
 		String pad = getPad();
@@ -289,12 +289,12 @@ public abstract class PoshiElement
 		sb.append(getBlockName());
 		sb.append(" {");
 
-		PoshiNode previousPoshiNode = null;
+		PoshiNode<?, ?> previousPoshiNode = null;
 
-		for (Iterator<PoshiNode> iterator = poshiNodes.iterator();
+		for (Iterator<PoshiNode<?, ?>> iterator = poshiNodes.iterator();
 			 iterator.hasNext();) {
 
-			PoshiNode poshiNode = iterator.next();
+			PoshiNode<?, ?> poshiNode = iterator.next();
 
 			if (poshiNode instanceof DescriptionPoshiElement) {
 				continue;
@@ -567,7 +567,7 @@ public abstract class PoshiElement
 		return RegexUtil.getGroup(poshiScript, ".*?\\((.*)\\)", 1);
 	}
 
-	protected List<PoshiNode> getPoshiNodes() {
+	protected List<PoshiNode<?, ?>> getPoshiNodes() {
 		return toPoshiNodes(content());
 	}
 
@@ -1036,12 +1036,12 @@ public abstract class PoshiElement
 		return poshiElements;
 	}
 
-	protected List<PoshiNode> toPoshiNodes(List<?> list) {
+	protected List<PoshiNode<?, ?>> toPoshiNodes(List<?> list) {
 		if (list == null) {
 			return null;
 		}
 
-		List<PoshiNode> poshiNodes = new ArrayList<>(list.size());
+		List<PoshiNode<?, ?>> poshiNodes = new ArrayList<>(list.size());
 
 		for (Object object : list) {
 			poshiNodes.add((PoshiNode)object);

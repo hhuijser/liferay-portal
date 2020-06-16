@@ -58,7 +58,7 @@ public class PoshiScriptParserException extends Exception {
 		_poshiScriptParserExceptions.add(this);
 	}
 
-	public PoshiScriptParserException(String msg, PoshiNode poshiNode) {
+	public PoshiScriptParserException(String msg, PoshiNode<?, ?> poshiNode) {
 		this(msg);
 
 		setErrorLineNumber(poshiNode.getPoshiScriptLineNumber());
@@ -71,7 +71,7 @@ public class PoshiScriptParserException extends Exception {
 	}
 
 	public PoshiScriptParserException(
-		String msg, String poshiScript, PoshiNode parentPoshiNode) {
+		String msg, String poshiScript, PoshiNode<?, ?> parentPoshiNode) {
 
 		this(msg);
 
@@ -178,11 +178,11 @@ public class PoshiScriptParserException extends Exception {
 		return sb.toString();
 	}
 
-	public PoshiNode getPoshiNode() {
+	public PoshiNode<?, ?> getPoshiNode() {
 		return _poshiNode;
 	}
 
-	public PoshiElement getRootPoshiElement(PoshiNode poshiNode) {
+	public PoshiElement getRootPoshiElement(PoshiNode<?, ?> poshiNode) {
 		if (Validator.isNotNull(poshiNode.getParent())) {
 			PoshiElement parentPoshiElement =
 				(PoshiElement)poshiNode.getParent();
@@ -201,7 +201,7 @@ public class PoshiScriptParserException extends Exception {
 		_filePath = filePath;
 	}
 
-	public void setPoshiNode(PoshiNode poshiNode) {
+	public void setPoshiNode(PoshiNode<?, ?> poshiNode) {
 		_poshiNode = poshiNode;
 	}
 
@@ -215,6 +215,6 @@ public class PoshiScriptParserException extends Exception {
 
 	private int _errorLineNumber;
 	private String _filePath = "Unknown file";
-	private PoshiNode _poshiNode;
+	private PoshiNode<?, ?> _poshiNode;
 
 }

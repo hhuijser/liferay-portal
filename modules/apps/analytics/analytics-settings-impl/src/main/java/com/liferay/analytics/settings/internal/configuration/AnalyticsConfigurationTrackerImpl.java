@@ -323,7 +323,7 @@ public class AnalyticsConfigurationTrackerImpl
 		for (User user : users) {
 			Map<String, long[]> memberships = new HashMap<>();
 
-			for (EntityModelListener entityModelListener :
+			for (EntityModelListener<?> entityModelListener :
 					_entityModelListenerTracker.getEntityModelListeners()) {
 
 				try {
@@ -449,10 +449,10 @@ public class AnalyticsConfigurationTrackerImpl
 		if (Validator.isNotNull(dictionary.get("token")) &&
 			Validator.isNull(dictionary.get("previousToken"))) {
 
-			Collection<EntityModelListener> entityModelListeners =
+			Collection<EntityModelListener<?>> entityModelListeners =
 				_entityModelListenerTracker.getEntityModelListeners();
 
-			for (EntityModelListener entityModelListener :
+			for (EntityModelListener<?> entityModelListener :
 					entityModelListeners) {
 
 				try {

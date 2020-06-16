@@ -114,6 +114,32 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		return -1;
 	}
 
+	private String _removeComments(String definition) {
+		int y = definition.indexOf("\n");
+
+		if (y == -1) {
+			return definition;
+		}
+
+		int x = 0;
+
+		String line = definition.substring(x, y);
+
+		while (line.matches(" *#.*")) {
+			x = y + 1;
+
+			y = definition.indexOf("\n", x);
+
+			if (y == -1) {
+				return definition;
+			}
+
+			line = definition.substring(x, y);
+		}
+
+		return definition.substring(x);
+	}
+
 	private List<String> _removeDuplicateAttribute(List<String> list) {
 		List<String> definitions = new ArrayList<>();
 		Iterator<String> iterator = list.iterator();
@@ -167,14 +193,14 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 					}
 
 					String[] definition1Lines = StringUtil.splitLines(
-						definition1);
+						_removeComments(definition1));
 					String[] definition2Lines = StringUtil.splitLines(
-						definition2);
+						_removeComments(definition2));
 
 					String trimmedDefinition1Line = definition1Lines[0];
 					String trimmedDefinition2Line = definition2Lines[0];
 
-					if (trimmedDefinition1Line.equals(StringPool.DASH) &&
+					if (trimmedDefinition1Line.equals(StringPool.DASH) ||
 						trimmedDefinition2Line.equals(StringPool.DASH)) {
 
 						if (definition1Lines[1].contains("in: ") &&

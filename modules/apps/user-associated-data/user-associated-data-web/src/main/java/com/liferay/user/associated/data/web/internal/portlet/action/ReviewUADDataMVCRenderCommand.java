@@ -195,10 +195,10 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 		return scopeDisplays;
 	}
 
-	private SearchContainer<UADEntity> _getSearchContainer(
+	private SearchContainer<UADEntity<?>> _getSearchContainer(
 			String applicationKey, RenderRequest renderRequest,
 			RenderResponse renderResponse, ScopeDisplay scopeDisplay,
-			UADDisplay<UADEntity> uadDisplay,
+			UADDisplay<UADEntity<?>> uadDisplay,
 			UADHierarchyDisplay uadHierarchyDisplay, User user)
 		throws Exception {
 
@@ -280,7 +280,8 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 		viewUADEntitiesDisplay.setSearchContainer(
 			_getSearchContainer(
 				applicationKey, renderRequest, renderResponse, scopeDisplay,
-				(UADDisplay<UADEntity>)uadDisplay, uadHierarchyDisplay, user));
+				(UADDisplay<UADEntity<?>>)uadDisplay, uadHierarchyDisplay,
+				user));
 
 		if (uadHierarchyDisplay != null) {
 			viewUADEntitiesDisplay.setHierarchy(true);

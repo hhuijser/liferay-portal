@@ -19,7 +19,7 @@
 <%
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-UADEntity uadEntity = (UADEntity)row.getObject();
+UADEntity<?> uadEntity = (UADEntity<?>)row.getObject();
 %>
 
 <%@ include file="/single_entity_action_menu.jspf" %>

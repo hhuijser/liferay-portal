@@ -69,7 +69,7 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 		}
 
 		for (String entityType : entityTypes) {
-			List<UADEntity> uadEntities = new ArrayList<>();
+			List<UADEntity<Object>> uadEntities = new ArrayList<>();
 
 			String uadRegistryKey = ParamUtil.getString(
 				resourceRequest, "uadRegistryKey__" + entityType);
@@ -83,7 +83,7 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 			for (String rowId : rowIds) {
 				Object entity = uadDisplay.get(rowId);
 
-				UADEntity uadEntity = new UADEntity(
+				UADEntity<Object> uadEntity = new UADEntity(
 					entity, uadDisplay.getPrimaryKey(entity), null, false,
 					uadDisplay.getTypeClass(), true, null);
 

@@ -45,7 +45,7 @@ public class ViewUADEntitiesDisplay {
 		return _scope;
 	}
 
-	public SearchContainer<UADEntity> getSearchContainer() {
+	public SearchContainer<UADEntity<?>> getSearchContainer() {
 		return _searchContainer;
 	}
 
@@ -78,9 +78,9 @@ public class ViewUADEntitiesDisplay {
 
 		List<String> userOwnedPKs = new ArrayList<>();
 
-		List<UADEntity> entities = _searchContainer.getResults();
+		List<UADEntity<?>> entities = _searchContainer.getResults();
 
-		for (UADEntity entity : entities) {
+		for (UADEntity<?> entity : entities) {
 			if (entity.isUserOwned()) {
 				userOwnedPKs.add(String.valueOf(entity.getPrimaryKey()));
 			}
@@ -114,7 +114,9 @@ public class ViewUADEntitiesDisplay {
 		_scope = scope;
 	}
 
-	public void setSearchContainer(SearchContainer<UADEntity> searchContainer) {
+	public void setSearchContainer(
+		SearchContainer<UADEntity<?>> searchContainer) {
+
 		_searchContainer = searchContainer;
 	}
 
@@ -135,7 +137,7 @@ public class ViewUADEntitiesDisplay {
 	private boolean _hierarchy;
 	private ResultRowSplitter _resultRowSplitter;
 	private String _scope;
-	private SearchContainer<UADEntity> _searchContainer;
+	private SearchContainer<UADEntity<?>> _searchContainer;
 	private Class<?>[] _typeClasses;
 	private String _typeName;
 	private String _uadRegistryKey = StringPool.BLANK;

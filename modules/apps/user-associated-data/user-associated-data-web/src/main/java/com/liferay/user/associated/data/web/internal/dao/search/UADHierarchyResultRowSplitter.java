@@ -51,7 +51,7 @@ public class UADHierarchyResultRowSplitter implements ResultRowSplitter {
 		}
 
 		for (ResultRow resultRow : resultRows) {
-			UADEntity uadEntity = (UADEntity)resultRow.getObject();
+			UADEntity<?> uadEntity = (UADEntity<?>)resultRow.getObject();
 
 			if (classResultRowsMap.containsKey(uadEntity.getTypeClass())) {
 				List<ResultRow> classResultRows = classResultRowsMap.get(

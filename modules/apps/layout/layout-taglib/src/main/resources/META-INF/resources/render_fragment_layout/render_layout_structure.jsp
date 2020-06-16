@@ -40,7 +40,7 @@ for (String childrenItemId : childrenItemIds) {
 
 			request.setAttribute("render_layout_structure.jsp-childrenItemIds", layoutStructureItem.getChildrenItemIds());
 
-			InfoListRenderer infoListRenderer = renderFragmentLayoutDisplayContext.getInfoListRenderer(collectionLayoutStructureItem);
+			InfoListRenderer<Object> infoListRenderer = (InfoListRenderer<Object>)renderFragmentLayoutDisplayContext.getInfoListRenderer(collectionLayoutStructureItem);
 			%>
 
 			<c:choose>

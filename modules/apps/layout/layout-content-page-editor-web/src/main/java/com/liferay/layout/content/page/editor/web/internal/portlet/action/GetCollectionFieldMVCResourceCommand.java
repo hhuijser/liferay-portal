@@ -193,8 +193,9 @@ public class GetCollectionFieldMVCResourceCommand
 							infoItemFormProvider, object, locale));
 				}
 
-				InfoListRenderer infoListRenderer =
-					_infoListRendererTracker.getInfoListRenderer(listStyle);
+				InfoListRenderer<Object> infoListRenderer =
+					(InfoListRenderer<Object>)
+						_infoListRendererTracker.getInfoListRenderer(listStyle);
 
 				if (infoListRenderer != null) {
 					UnsyncStringWriter unsyncStringWriter =

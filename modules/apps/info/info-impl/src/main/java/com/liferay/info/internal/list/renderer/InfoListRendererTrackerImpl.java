@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 public class InfoListRendererTrackerImpl implements InfoListRendererTracker {
 
 	@Override
-	public InfoListRenderer getInfoListRenderer(String key) {
+	public InfoListRenderer<?> getInfoListRenderer(String key) {
 		if (Validator.isNull(key)) {
 			return null;
 		}
@@ -46,13 +46,15 @@ public class InfoListRendererTrackerImpl implements InfoListRendererTracker {
 	}
 
 	@Override
-	public List<InfoListRenderer> getInfoListRenderers() {
+	public List<InfoListRenderer<?>> getInfoListRenderers() {
 		return new ArrayList<>(_infoListRenderers.values());
 	}
 
 	@Override
-	public List<InfoListRenderer> getInfoListRenderers(String itemClassName) {
-		List<InfoListRenderer> infoListRenderers =
+	public List<InfoListRenderer<?>> getInfoListRenderers(
+		String itemClassName) {
+
+		List<InfoListRenderer<?>> infoListRenderers =
 			_itemClassNameInfoListRenderers.get(itemClassName);
 
 		if (infoListRenderers != null) {
@@ -66,10 +68,10 @@ public class InfoListRendererTrackerImpl implements InfoListRendererTracker {
 		cardinality = ReferenceCardinality.MULTIPLE,
 		policy = ReferencePolicy.DYNAMIC
 	)
-	protected void setInfoListRenderer(InfoListRenderer infoListRenderer) {
+	protected void setInfoListRenderer(InfoListRenderer<?> infoListRenderer) {
 		_infoListRenderers.put(infoListRenderer.getKey(), infoListRenderer);
 
-		List<InfoListRenderer> itemClassInfoListRenderers =
+		List<InfoListRenderer<?>> itemClassInfoListRenderers =
 			_itemClassNameInfoListRenderers.computeIfAbsent(
 				GenericUtil.getGenericClassName(infoListRenderer),
 				itemClass -> new ArrayList<>());
@@ -77,10 +79,10 @@ public class InfoListRendererTrackerImpl implements InfoListRendererTracker {
 		itemClassInfoListRenderers.add(infoListRenderer);
 	}
 
-	protected void unsetInfoListRenderer(InfoListRenderer infoListRenderer) {
+	protected void unsetInfoListRenderer(InfoListRenderer<?> infoListRenderer) {
 		_infoListRenderers.remove(infoListRenderer.getKey());
 
-		List<InfoListRenderer> itemClassInfoListRenderers =
+		List<InfoListRenderer<?>> itemClassInfoListRenderers =
 			_itemClassNameInfoListRenderers.get(
 				GenericUtil.getGenericClassName(infoListRenderer));
 
@@ -89,9 +91,9 @@ public class InfoListRendererTrackerImpl implements InfoListRendererTracker {
 		}
 	}
 
-	private final Map<String, InfoListRenderer> _infoListRenderers =
+	private final Map<String, InfoListRenderer<?>> _infoListRenderers =
 		new ConcurrentHashMap<>();
-	private final Map<String, List<InfoListRenderer>>
+	private final Map<String, List<InfoListRenderer<?>>>
 		_itemClassNameInfoListRenderers = new ConcurrentHashMap<>();
 
 }

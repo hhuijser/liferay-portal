@@ -233,7 +233,7 @@ public class PortletLayoutDisplayContext {
 			className);
 	}
 
-	public InfoListRenderer getInfoListRenderer(
+	public InfoListRenderer<?> getInfoListRenderer(
 		CollectionLayoutStructureItem collectionLayoutStructureItem) {
 
 		if (Validator.isNull(collectionLayoutStructureItem.getListStyle())) {

@@ -67,7 +67,7 @@ public class GetAvailableListItemRenderersMVCResourceCommand
 
 		String listStyle = ParamUtil.getString(resourceRequest, "listStyle");
 
-		InfoListRenderer infoListRenderer =
+		InfoListRenderer<?> infoListRenderer =
 			_infoListRendererTracker.getInfoListRenderer(listStyle);
 
 		List<InfoItemRenderer<?>> infoItemRenderers =

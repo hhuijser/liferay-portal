@@ -14,11 +14,12 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
@@ -111,15 +112,13 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		}
 
 		if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
-			DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
-
-			FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
-
 			List<String> enforceEmptyLineAfterMethodNames = getAttributeValues(
 				_ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES);
 
 			if (enforceEmptyLineAfterMethodNames.contains(
-					fullIdent.getText())) {
+					StringBundler.concat(
+						getVariableTypeName(detailAST, variableName, false),
+						StringPool.PERIOD, getMethodName(detailAST)))) {
 
 				log(
 					endLineNumber, _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL,

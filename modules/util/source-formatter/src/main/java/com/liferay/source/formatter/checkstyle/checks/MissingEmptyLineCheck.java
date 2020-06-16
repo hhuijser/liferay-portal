@@ -115,14 +115,17 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			List<String> enforceEmptyLineAfterMethodNames = getAttributeValues(
 				_ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES);
 
+			String methodName = getMethodName(detailAST);
+
 			if (enforceEmptyLineAfterMethodNames.contains(
 					StringBundler.concat(
 						getVariableTypeName(detailAST, variableName, false),
-						StringPool.PERIOD, getMethodName(detailAST)))) {
+						StringPool.PERIOD, methodName))) {
 
 				log(
-					endLineNumber, _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL,
-					endLineNumber);
+					endLineNumber, _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_NAME,
+					StringBundler.concat(
+						variableName, StringPool.PERIOD, methodName));
 			}
 
 			DetailAST firstChildDetailAST =
@@ -528,6 +531,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 	private static final String _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL =
 		"empty.line.missing.after.method.call";
+
+	private static final String _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_NAME =
+		"empty.line.missing.after.method.name";
 
 	private static final String
 		_MSG_MISSING_EMPTY_LINE_AFTER_VARIABLE_DEFINITION =

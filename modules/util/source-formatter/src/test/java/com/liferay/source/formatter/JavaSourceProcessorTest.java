@@ -316,9 +316,9 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test(
 			"MissingEmptyLinesAfterMethodCalls.testjava",
 			new String[] {
-				"There should be an empty line after line '23'",
-				"There should be an empty line after line '24'",
-				"There should be an empty line after line '34'"
+				"There should be an empty line after 'registry.register'",
+				"There should be an empty line after 'registry.register'",
+				"There should be an empty line after 'registry.register'"
 			},
 			new Integer[] {23, 24, 34});
 	}

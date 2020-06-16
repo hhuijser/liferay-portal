@@ -191,10 +191,12 @@ paths:
 ---
 
 tasks:
+    # Install Git
     - name: Install Git
       package:
           name: git
           state: present
+    # Deploy SSH key
     - copy:
           content: "{{ id_rsa_continuous-integration }}"
           dest: /home/rancher/.ssh/id_rsa_continuous-integration@liferay.com

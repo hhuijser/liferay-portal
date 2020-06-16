@@ -113,20 +113,17 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
 			DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
 
-			if (dotDetailAST != null) {
-				FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
+			FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
 
-				List<String> enforceEmptyLineAfterMethodNames =
-					getAttributeValues(_ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES);
+			List<String> enforceEmptyLineAfterMethodNames = getAttributeValues(
+				_ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES);
 
-				if (enforceEmptyLineAfterMethodNames.contains(
-						fullIdent.getText())) {
+			if (enforceEmptyLineAfterMethodNames.contains(
+					fullIdent.getText())) {
 
-					log(
-						endLineNumber,
-						_MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL,
-						endLineNumber);
-				}
+				log(
+					endLineNumber, _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL,
+					endLineNumber);
 			}
 
 			DetailAST firstChildDetailAST =

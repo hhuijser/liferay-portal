@@ -37,11 +37,11 @@ import org.osgi.service.component.annotations.Deactivate;
 @Component(immediate = true, service = EntityModelListenerTracker.class)
 public class EntityModelListenerTracker {
 
-	public EntityModelListener getEntityModelListener(String className) {
+	public EntityModelListener<?> getEntityModelListener(String className) {
 		return _serviceTrackerMap.getService(className);
 	}
 
-	public Collection<EntityModelListener> getEntityModelListeners() {
+	public Collection<EntityModelListener<?>> getEntityModelListeners() {
 		return _serviceTrackerMap.values();
 	}
 
@@ -50,8 +50,9 @@ public class EntityModelListenerTracker {
 		_bundleContext = bundleContext;
 
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, EntityModelListener.class, null,
-			new EntityModelListenerServiceReferenceMapper());
+			bundleContext,
+			(Class<EntityModelListener<?>>)(Class<?>)EntityModelListener.class,
+			null, new EntityModelListenerServiceReferenceMapper());
 	}
 
 	@Deactivate
@@ -60,7 +61,8 @@ public class EntityModelListenerTracker {
 	}
 
 	private BundleContext _bundleContext;
-	private ServiceTrackerMap<String, EntityModelListener> _serviceTrackerMap;
+	private ServiceTrackerMap<String, EntityModelListener<?>>
+		_serviceTrackerMap;
 
 	private class EntityModelListenerServiceReferenceMapper
 		<T extends BaseModel<T>>
@@ -71,8 +73,8 @@ public class EntityModelListenerTracker {
 			ServiceReference<EntityModelListener<T>> serviceReference,
 			Emitter<String> emitter) {
 
-			EntityModelListener entityModelListener = _bundleContext.getService(
-				serviceReference);
+			EntityModelListener<?> entityModelListener =
+				_bundleContext.getService(serviceReference);
 
 			Class<?> clazz = _getParameterizedClass(
 				entityModelListener.getClass());

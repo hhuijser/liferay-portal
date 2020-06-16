@@ -111,10 +111,22 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		}
 
 		if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
-			if (_isSpecificMethodCall(detailAST)) {
-				log(
-					endLineNumber, _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL,
-					endLineNumber);
+			DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
+
+			if (dotDetailAST != null) {
+				FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
+
+				List<String> enforceEmptyLineAfterMethodNames =
+					getAttributeValues(_ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES);
+
+				if (enforceEmptyLineAfterMethodNames.contains(
+						fullIdent.getText())) {
+
+					log(
+						endLineNumber,
+						_MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL,
+						endLineNumber);
+				}
 			}
 
 			DetailAST firstChildDetailAST =
@@ -509,25 +521,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		if ((getEndLineNumber(previousSiblingDetailAST) + 1) ==
 				getStartLineNumber(variableDefinitionDetailAST)) {
 
-			return true;
-		}
-
-		return false;
-	}
-
-	private boolean _isSpecificMethodCall(DetailAST detailAST) {
-		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
-
-		if (dotDetailAST == null) {
-			return false;
-		}
-
-		FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
-
-		List<String> enforceEmptyLineAfterMethodNames = getAttributeValues(
-			_ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES);
-
-		if (enforceEmptyLineAfterMethodNames.contains(fullIdent.getText())) {
 			return true;
 		}
 

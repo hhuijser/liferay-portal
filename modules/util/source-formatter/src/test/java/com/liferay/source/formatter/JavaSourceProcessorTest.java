@@ -312,6 +312,18 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testMissingEmptyLinesAfterMethodCalls() throws Exception {
+		test(
+			"MissingEmptyLinesAfterMethodCalls.testjava",
+			new String[] {
+				"There should be an empty line after line '23'",
+				"There should be an empty line after line '24'",
+				"There should be an empty line after line '34'"
+			},
+			new Integer[] {23, 24, 34});
+	}
+
+	@Test
 	public void testMissingDiamondOperator() throws Exception {
 		test("MissingDiamondOperator.testjava",
 			new String[] {

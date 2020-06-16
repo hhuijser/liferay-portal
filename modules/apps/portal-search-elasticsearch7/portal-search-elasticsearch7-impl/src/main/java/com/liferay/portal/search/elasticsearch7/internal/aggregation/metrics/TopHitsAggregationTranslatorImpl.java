@@ -159,7 +159,7 @@ public class TopHitsAggregationTranslatorImpl
 
 	@Reference(target = "(search.engine.impl=Elasticsearch)", unbind = "-")
 	protected void setSortFieldTranslator(
-		SortFieldTranslator<SortBuilder> sortFieldTranslator) {
+		SortFieldTranslator<SortBuilder<?>> sortFieldTranslator) {
 
 		_sortFieldTranslator = sortFieldTranslator;
 	}
@@ -168,6 +168,6 @@ public class TopHitsAggregationTranslatorImpl
 		new HighlightTranslator();
 	private QueryTranslator<QueryBuilder> _queryTranslator;
 	private final ScriptTranslator _scriptTranslator = new ScriptTranslator();
-	private SortFieldTranslator<SortBuilder> _sortFieldTranslator;
+	private SortFieldTranslator<SortBuilder<?>> _sortFieldTranslator;
 
 }

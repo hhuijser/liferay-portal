@@ -217,7 +217,7 @@ public class SearchSearchRequestAssemblerImpl
 
 	@Reference(unbind = "-")
 	protected void setSortFieldTranslator(
-		SortFieldTranslator<SortBuilder> sortFieldTranslator) {
+		SortFieldTranslator<SortBuilder<?>> sortFieldTranslator) {
 
 		_sortFieldTranslator = sortFieldTranslator;
 	}
@@ -318,7 +318,7 @@ public class SearchSearchRequestAssemblerImpl
 	private final HighlightTranslator _highlightTranslator =
 		new HighlightTranslator();
 	private QueryToQueryBuilderTranslator _queryToQueryBuilderTranslator;
-	private SortFieldTranslator<SortBuilder> _sortFieldTranslator;
+	private SortFieldTranslator<SortBuilder<?>> _sortFieldTranslator;
 	private SortTranslator _sortTranslator;
 	private StatsRequestBuilderFactory _statsRequestBuilderFactory;
 	private StatsTranslator _statsTranslator;

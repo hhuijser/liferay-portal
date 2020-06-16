@@ -128,7 +128,7 @@ public class DefaultGroupByTranslator implements GroupByTranslator {
 				sortOrder = SortOrder.DESC;
 			}
 
-			SortBuilder sortBuilder = null;
+			SortBuilder<?> sortBuilder = null;
 
 			if (sortFieldName.equals(_ELASTICSEARCH_SCORE_FIELD)) {
 				sortBuilder = SortBuilders.scoreSort();

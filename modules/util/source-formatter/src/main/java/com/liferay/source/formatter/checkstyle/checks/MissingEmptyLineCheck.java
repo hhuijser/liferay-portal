@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
@@ -110,6 +111,12 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		}
 
 		if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
+			if (_isSpecificMethodCall(detailAST)) {
+				log(
+					endLineNumber, _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL,
+					endLineNumber);
+			}
+
 			DetailAST firstChildDetailAST =
 				nextSiblingDetailAST.getFirstChild();
 
@@ -507,6 +514,28 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 		return false;
 	}
+
+	private boolean _isSpecificMethodCall(DetailAST detailAST) {
+		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
+
+		if (dotDetailAST == null) {
+			return false;
+		}
+
+		FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
+
+		List<String> enforceEmptyLineAfterMethodNames = getAttributeValues(
+			_ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES);
+
+		if (enforceEmptyLineAfterMethodNames.contains(fullIdent.getText())) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private static final String _ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES =
+		"enforceEmptyLineAfterMethodNames";
 
 	private static final String _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_CALL =
 		"empty.line.missing.after.method.call";

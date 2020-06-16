@@ -184,10 +184,12 @@ paths:
 ---
 
 tasks:
+    # Install Git
     - name: Install Git
       package:
           state: present
           name: git
+    # Deploy SSH key
     - name: Deploy SSH key
       copy:
           content: "{{ id_rsa_continuous-integration }}"

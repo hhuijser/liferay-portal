@@ -64,11 +64,11 @@ public class VulcanBatchEngineTaskItemDelegateAdaptorFactory {
 	private static class
 		VulcanBatchEngineTaskItemDelegateServiceTrackerCustomizer
 			implements ServiceTrackerCustomizer
-				<VulcanBatchEngineTaskItemDelegate, ServiceRegistration<?>> {
+				<VulcanBatchEngineTaskItemDelegate<?>, ServiceRegistration<?>> {
 
 		@Override
 		public ServiceRegistration<?> addingService(
-			ServiceReference<VulcanBatchEngineTaskItemDelegate>
+			ServiceReference<VulcanBatchEngineTaskItemDelegate<?>>
 				serviceReference) {
 
 			VulcanBatchEngineTaskItemDelegate<?>
@@ -87,14 +87,14 @@ public class VulcanBatchEngineTaskItemDelegateAdaptorFactory {
 
 		@Override
 		public void modifiedService(
-			ServiceReference<VulcanBatchEngineTaskItemDelegate>
+			ServiceReference<VulcanBatchEngineTaskItemDelegate<?>>
 				serviceReference,
 			ServiceRegistration<?> serviceRegistration) {
 		}
 
 		@Override
 		public void removedService(
-			ServiceReference<VulcanBatchEngineTaskItemDelegate>
+			ServiceReference<VulcanBatchEngineTaskItemDelegate<?>>
 				serviceReference,
 			ServiceRegistration<?> serviceRegistration) {
 

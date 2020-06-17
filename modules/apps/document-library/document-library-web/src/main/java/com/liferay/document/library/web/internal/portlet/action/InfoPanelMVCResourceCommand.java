@@ -50,7 +50,7 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 		throws Exception {
 
 		if (ParamUtil.getBoolean(resourceRequest, "selectAll")) {
-			BulkSelection<RepositoryModel> repositoryModelBulkSelection =
+			BulkSelection<RepositoryModel<?>> repositoryModelBulkSelection =
 				_repositoryModelBulkSelectionFactory.create(
 					resourceRequest.getParameterMap());
 
@@ -88,7 +88,7 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 	@Reference(
 		target = "(model.class.name=com.liferay.portal.kernel.repository.model.RepositoryModel)"
 	)
-	private BulkSelectionFactory<RepositoryModel>
+	private BulkSelectionFactory<RepositoryModel<?>>
 		_repositoryModelBulkSelectionFactory;
 
 }

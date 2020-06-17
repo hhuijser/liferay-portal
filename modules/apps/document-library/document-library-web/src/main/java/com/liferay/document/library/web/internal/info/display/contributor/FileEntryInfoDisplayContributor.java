@@ -178,7 +178,7 @@ public class FileEntryInfoDisplayContributor
 		_classTypesInfoDisplayFieldProvider;
 
 	@Reference
-	private DDMFormValuesInfoDisplayFieldProvider
+	private DDMFormValuesInfoDisplayFieldProvider<DLFileEntry>
 		_ddmFormValuesInfoDisplayFieldProvider;
 
 	@Reference

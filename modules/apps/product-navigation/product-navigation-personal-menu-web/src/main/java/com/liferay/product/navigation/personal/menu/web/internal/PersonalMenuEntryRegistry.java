@@ -70,7 +70,7 @@ public class PersonalMenuEntryRegistry {
 		_serviceTrackerMap;
 
 	private class PersonalMenuEntryOrderComparator
-		extends PropertyServiceReferenceComparator {
+		extends PropertyServiceReferenceComparator<PersonalMenuEntry> {
 
 		public PersonalMenuEntryOrderComparator(String propertyKey) {
 			super(propertyKey);
@@ -78,8 +78,8 @@ public class PersonalMenuEntryRegistry {
 
 		@Override
 		public int compare(
-			ServiceReference serviceReference1,
-			ServiceReference serviceReference2) {
+			ServiceReference<PersonalMenuEntry> serviceReference1,
+			ServiceReference<PersonalMenuEntry> serviceReference2) {
 
 			return -super.compare(serviceReference1, serviceReference2);
 		}

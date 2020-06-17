@@ -34,10 +34,10 @@ public class YMLStylingCheck extends BaseFileCheck {
 			"(\\A|\n)( *#)@? ?(review)(\\Z|\n)", "$1$2 @$3$4");
 
 		content = content.replaceAll(
-			"(\\A|\n)(( *)|(.+: ))'([^']*)'(\\Z|\n)", "$1$2\"$5\"$6");
+			"(\\A|\n)(( *)|(.+: ))'([^'\"]*)'(\\Z|\n)", "$1$2\"$5\"$6");
 
 		content = content.replaceAll(
-			"(\\A|\n)( *)'([^']+)'(:.*)(\\Z|\n)", "$1$2\"$3\"$4$5");
+			"(\\A|\n)( *)'([^'\"]+)'(:.*)(\\Z|\n)", "$1$2\"$3\"$4$5");
 
 		return content;
 	}

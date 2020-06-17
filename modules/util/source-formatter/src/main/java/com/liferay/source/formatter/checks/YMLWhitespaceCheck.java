@@ -114,7 +114,22 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 			return newDefinition;
 		}
 
-		String[] lines = StringUtil.splitLines(newDefinition);
+		String[] lines = definition.split("\n");
+
+		if (lines[0].endsWith("|-")) {
+			StringBundler sb = new StringBundler();
+
+			for (String line : lines) {
+				sb.append(expectedIndent + line.substring(indent.length()));
+				sb.append("\n");
+			}
+
+			if (sb.index() > 0) {
+				sb.setIndex(sb.index() - 1);
+			}
+
+			return sb.toString();
+		}
 
 		if (lines.length <= 1) {
 			return newDefinition;
@@ -194,6 +209,16 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 			lines = StringUtil.splitLines(definition);
 
 			if ((lines.length != 0) && lines[0].endsWith("|-")) {
+				String newDefinition = _formatDefinition(
+					fileName, definition, indent, level, false);
+
+				if (!newDefinition.equals(definition)) {
+					content = StringUtil.replaceFirst(
+						content, definition, newDefinition, pos);
+				}
+
+				pos = pos + newDefinition.length();
+
 				continue;
 			}
 

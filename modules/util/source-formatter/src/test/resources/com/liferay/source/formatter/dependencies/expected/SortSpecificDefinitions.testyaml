@@ -203,3 +203,8 @@ tasks:
           mode: 384
           owner: rancher
       name: Deploy SSH key
+    - copy:
+          content: |-
+              {{ github_repos | sort | join('
+              ') }}
+          dest: "/data/slaves/{{ item.hostname }}/git/liferay/.repositories"

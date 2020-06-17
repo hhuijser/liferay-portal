@@ -196,3 +196,8 @@ tasks:
           dest: /home/rancher/.ssh/id_rsa_continuous-integration@liferay.com
           mode: 384
           owner: rancher
+    - copy:
+          content: |-
+              {{ github_repos | sort | join('
+              ') }}
+          dest: "/data/slaves/{{ item.hostname }}/git/liferay/.repositories"

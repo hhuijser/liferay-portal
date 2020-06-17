@@ -56,7 +56,9 @@ public class AtomCollectionAdapterRegistryUtilTest {
 		Registry registry = RegistryUtil.getRegistry();
 
 		_serviceRegistration = registry.registerService(
-			AtomCollectionAdapter.class, _atomCollectionAdapter);
+			(Class<AtomCollectionAdapter<?>>)
+				(Class<?>)AtomCollectionAdapter.class,
+			_atomCollectionAdapter);
 	}
 
 	@After
@@ -88,7 +90,7 @@ public class AtomCollectionAdapterRegistryUtilTest {
 	private static final String _TEST_ATOM_COLLECTION_NAME =
 		"TEST_ATOM_COLLECTION_NAME";
 
-	private AtomCollectionAdapter _atomCollectionAdapter;
-	private ServiceRegistration<AtomCollectionAdapter> _serviceRegistration;
+	private AtomCollectionAdapter<?> _atomCollectionAdapter;
+	private ServiceRegistration<AtomCollectionAdapter<?>> _serviceRegistration;
 
 }

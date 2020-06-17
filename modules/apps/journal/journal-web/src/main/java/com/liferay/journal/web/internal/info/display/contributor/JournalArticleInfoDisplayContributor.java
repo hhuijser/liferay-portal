@@ -262,7 +262,7 @@ public class JournalArticleInfoDisplayContributor
 		classTypesInfoDisplayFieldProvider;
 
 	@Reference
-	protected DDMFormValuesInfoDisplayFieldProvider
+	protected DDMFormValuesInfoDisplayFieldProvider<JournalArticle>
 		ddmFormValuesInfoDisplayFieldProvider;
 
 	@Reference

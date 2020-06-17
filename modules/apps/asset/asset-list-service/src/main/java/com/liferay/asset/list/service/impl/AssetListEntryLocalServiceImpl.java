@@ -586,8 +586,8 @@ public class AssetListEntryLocalServiceImpl
 		Class<?> clazz = assetRendererFactory.getClass();
 
 		if (assetRendererFactory instanceof AssetRendererFactoryWrapper) {
-			AssetRendererFactoryWrapper assetRendererFactoryWrapper =
-				(AssetRendererFactoryWrapper)assetRendererFactory;
+			AssetRendererFactoryWrapper<?> assetRendererFactoryWrapper =
+				(AssetRendererFactoryWrapper<?>)assetRendererFactory;
 
 			clazz = assetRendererFactoryWrapper.getWrappedClass();
 		}

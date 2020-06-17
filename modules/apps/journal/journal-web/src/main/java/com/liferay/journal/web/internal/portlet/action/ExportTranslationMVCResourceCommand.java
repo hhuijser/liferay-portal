@@ -121,7 +121,7 @@ public class ExportTranslationMVCResourceCommand implements MVCResourceCommand {
 	private JournalArticleLocalService _journalArticleLocalService;
 
 	@Reference
-	private TranslationInfoFormValuesExporter
+	private TranslationInfoFormValuesExporter<?>
 		_translationInfoFormValuesExporter;
 
 }

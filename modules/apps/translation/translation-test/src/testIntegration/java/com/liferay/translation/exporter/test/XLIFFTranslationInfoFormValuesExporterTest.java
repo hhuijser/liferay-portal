@@ -116,7 +116,7 @@ public class XLIFFTranslationInfoFormValuesExporterTest {
 	private InfoItemServiceTracker _infoItemServiceTracker;
 
 	@Inject(filter = "content.type=application/xliff+xml")
-	private TranslationInfoFormValuesExporter
+	private TranslationInfoFormValuesExporter<?>
 		_xliffTranslationInfoFormValuesExporter;
 
 }

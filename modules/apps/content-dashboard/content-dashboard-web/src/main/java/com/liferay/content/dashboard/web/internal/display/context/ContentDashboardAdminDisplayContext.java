@@ -57,7 +57,7 @@ public class ContentDashboardAdminDisplayContext {
 	}
 
 	public List<DropdownItem> getDropdownItems(
-		ContentDashboardItem contentDashboardItem) {
+		ContentDashboardItem<?> contentDashboardItem) {
 
 		Locale locale = _portal.getLocale(_liferayPortletRequest);
 

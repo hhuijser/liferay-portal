@@ -172,7 +172,7 @@ public class CTServiceRegistry {
 			bundleContext, CTEventListener.class);
 
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, CTService.class, null,
+			bundleContext, (Class<CTService<?>>)(Class<?>)CTService.class, null,
 			(serviceReference, emitter) -> {
 				CTService<?> ctService = bundleContext.getService(
 					serviceReference);
@@ -197,6 +197,6 @@ public class CTServiceRegistry {
 
 	private ServiceTrackerList<CTEventListener, CTEventListener>
 		_serviceTrackerList;
-	private ServiceTrackerMap<Long, CTService> _serviceTrackerMap;
+	private ServiceTrackerMap<Long, CTService<?>> _serviceTrackerMap;
 
 }

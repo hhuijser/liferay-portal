@@ -12,3 +12,8 @@
     "/apps/{appId}":
         "delete":
             "operationId": "deleteApp"
+tasks:
+    - name: Install Git
+      package:
+          name: git
+      update: '{{ update_git_repos | default("false") }}'

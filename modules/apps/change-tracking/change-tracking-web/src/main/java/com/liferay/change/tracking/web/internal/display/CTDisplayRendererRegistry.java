@@ -379,7 +379,8 @@ public class CTDisplayRendererRegistry {
 				});
 		_ctServiceServiceTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, CTService.class, null,
+				bundleContext, (Class<CTService<?>>)(Class<?>)CTService.class,
+				null,
 				(serviceReference, emitter) -> {
 					CTService<?> ctService = bundleContext.getService(
 						serviceReference);
@@ -407,7 +408,7 @@ public class CTDisplayRendererRegistry {
 
 	private ServiceTrackerMap<Long, CTDisplayRenderer<?>>
 		_ctDisplayServiceTrackerMap;
-	private ServiceTrackerMap<Long, CTService> _ctServiceServiceTrackerMap;
+	private ServiceTrackerMap<Long, CTService<?>> _ctServiceServiceTrackerMap;
 
 	@Reference
 	private Html _html;

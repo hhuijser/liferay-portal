@@ -80,12 +80,12 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class ModelSearchConfiguratorServiceTrackerCustomizer
 	<T extends BaseModel<?>>
 		implements ServiceTrackerCustomizer
-			<ModelSearchConfigurator, ModelSearchConfigurator> {
+			<ModelSearchConfigurator<T>, ModelSearchConfigurator<T>> {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ModelSearchConfigurator addingService(
-		ServiceReference<ModelSearchConfigurator> serviceReference) {
+	public ModelSearchConfigurator<T> addingService(
+		ServiceReference<ModelSearchConfigurator<T>> serviceReference) {
 
 		int serviceRanking = GetterUtil.getInteger(
 			serviceReference.getProperty(Constants.SERVICE_RANKING));
@@ -142,8 +142,8 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 
 	@Override
 	public void modifiedService(
-		ServiceReference<ModelSearchConfigurator> serviceReference,
-		ModelSearchConfigurator modelSearchConfigurator) {
+		ServiceReference<ModelSearchConfigurator<T>> serviceReference,
+		ModelSearchConfigurator<T> modelSearchConfigurator) {
 
 		removedService(serviceReference, modelSearchConfigurator);
 
@@ -152,8 +152,8 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 
 	@Override
 	public void removedService(
-		ServiceReference<ModelSearchConfigurator> serviceReference,
-		ModelSearchConfigurator modelSearchConfigurator) {
+		ServiceReference<ModelSearchConfigurator<T>> serviceReference,
+		ModelSearchConfigurator<T> modelSearchConfigurator) {
 
 		ServiceRegistrationHolder serviceRegistrationHolder =
 			_serviceRegistrationHolders.remove(
@@ -189,7 +189,10 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 			"(!(indexer.class.name=*))");
 
 		_serviceTracker = ServiceTrackerFactory.open(
-			bundleContext, ModelSearchConfigurator.class, this);
+			bundleContext,
+			(Class<ModelSearchConfigurator<T>>)
+				(Class<?>)ModelSearchConfigurator.class,
+			this);
 	}
 
 	protected Indexer<?> buildIndexer(
@@ -390,13 +393,14 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 			_searchContextContributors;
 	private final Map<String, ServiceRegistrationHolder>
 		_serviceRegistrationHolders = new Hashtable<>();
-	private ServiceTracker<ModelSearchConfigurator, ModelSearchConfigurator>
-		_serviceTracker;
+	private ServiceTracker
+		<ModelSearchConfigurator<T>, ModelSearchConfigurator<T>>
+			_serviceTracker;
 
 	private class ServiceRegistrationHolder {
 
 		public ServiceRegistrationHolder(
-			ModelSearchConfigurator modelSearchConfigurator,
+			ModelSearchConfigurator<?> modelSearchConfigurator,
 			int serviceRanking) {
 
 			_modelSearchConfigurator = modelSearchConfigurator;

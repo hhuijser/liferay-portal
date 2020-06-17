@@ -43,10 +43,10 @@ import org.osgi.service.component.annotations.Reference;
 	}
 )
 public class RepositoryModelBulkSelectionFactory
-	implements BulkSelectionFactory<RepositoryModel> {
+	implements BulkSelectionFactory<RepositoryModel<?>> {
 
 	@Override
-	public BulkSelection<RepositoryModel> create(
+	public BulkSelection<RepositoryModel<?>> create(
 		Map<String, String[]> parameterMap) {
 
 		return _combine(
@@ -55,22 +55,22 @@ public class RepositoryModelBulkSelectionFactory
 			_folderBulkSelectionFactory.create(parameterMap));
 	}
 
-	private BulkSelection<RepositoryModel> _combine(
+	private BulkSelection<RepositoryModel<?>> _combine(
 		Map<String, String[]> parameterMap,
-		BulkSelection<? extends RepositoryModel>... bulkSelections) {
+		BulkSelection<? extends RepositoryModel<?>>... bulkSelections) {
 
-		return new BulkSelection<RepositoryModel>() {
+		return new BulkSelection<RepositoryModel<?>>() {
 
 			@Override
 			public <E extends PortalException> void forEach(
-					UnsafeConsumer<RepositoryModel, E> unsafeConsumer)
+					UnsafeConsumer<RepositoryModel<?>, E> unsafeConsumer)
 				throws PortalException {
 
 				for (BulkSelection<? extends RepositoryModel> bulkSelection :
 						bulkSelections) {
 
-					BulkSelection<RepositoryModel> repositoryBulkSelection =
-						(BulkSelection<RepositoryModel>)bulkSelection;
+					BulkSelection<RepositoryModel<?>> repositoryBulkSelection =
+						(BulkSelection<RepositoryModel<?>>)bulkSelection;
 
 					repositoryBulkSelection.forEach(unsafeConsumer);
 				}
@@ -92,7 +92,7 @@ public class RepositoryModelBulkSelectionFactory
 			public long getSize() throws PortalException {
 				long size = 0;
 
-				for (BulkSelection<? extends RepositoryModel> bulkSelection :
+				for (BulkSelection<? extends RepositoryModel<?>> bulkSelection :
 						bulkSelections) {
 
 					size += bulkSelection.getSize();

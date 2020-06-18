@@ -34,7 +34,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "edit-property"), currentURL);
 %>
 
-<portlet:actionURL name="/analytics/edit_channel" var="editChannelURL" />
+<portlet:actionURL name="/analytics_settings/edit_channel" var="editChannelURL" />
 
 <clay:container-fluid>
 	<clay:row>

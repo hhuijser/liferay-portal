@@ -99,7 +99,7 @@ public class OrganizationDisplayContext {
 
 		portletURL.setParameter(
 			"mvcRenderCommandName",
-			"/analytics_settings/edit_synced_organizations");
+			"/analytics_settings/edit_synced_contacts_organizations");
 
 		return portletURL;
 	}

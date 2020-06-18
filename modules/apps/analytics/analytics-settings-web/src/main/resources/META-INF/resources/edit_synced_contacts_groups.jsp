@@ -31,7 +31,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "sync-by-user-groups"), currentURL);
 %>
 
-<portlet:actionURL name="/analytics/edit_synced_contacts" var="editSyncedContactsURL" />
+<portlet:actionURL name="/analytics_settings/edit_synced_contacts" var="editSyncedContactsURL" />
 
 <clay:container-fluid>
 	<clay:row>

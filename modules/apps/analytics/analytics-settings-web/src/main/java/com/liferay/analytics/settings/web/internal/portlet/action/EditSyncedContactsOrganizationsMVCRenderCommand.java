@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-		"mvc.command.name=/analytics_settings/edit_synced_organizations"
+		"mvc.command.name=/analytics_settings/edit_synced_contacts_organizations"
 	},
 	service = MVCRenderCommand.class
 )

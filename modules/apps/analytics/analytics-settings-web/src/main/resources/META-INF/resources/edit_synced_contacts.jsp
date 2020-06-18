@@ -31,7 +31,7 @@ Set<String> syncedOrganizationIds = SetUtil.fromArray(analyticsConfiguration.syn
 Set<String> syncedUserGroupIds = SetUtil.fromArray(analyticsConfiguration.syncedUserGroupIds());
 %>
 
-<portlet:actionURL name="/analytics/edit_synced_contacts" var="editSyncedContactsURL" />
+<portlet:actionURL name="/analytics_settings/edit_synced_contacts" var="editSyncedContactsURL" />
 
 <clay:sheet
 	cssClass="portlet-analytics-settings"
@@ -117,7 +117,7 @@ Set<String> syncedUserGroupIds = SetUtil.fromArray(analyticsConfiguration.synced
 			<c:choose>
 				<c:when test="<%= connected %>">
 					<portlet:renderURL var="createOrganizationsURL">
-						<portlet:param name="mvcRenderCommandName" value="/analytics_settings/edit_synced_organizations" />
+						<portlet:param name="mvcRenderCommandName" value="/analytics_settings/edit_synced_contacts_organizations" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 					</portlet:renderURL>
 

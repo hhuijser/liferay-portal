@@ -25,10 +25,10 @@ if (!Validator.isBlank(analyticsConfiguration.token())) {
 	connected = true;
 }
 
-GroupDisplayContext groupDisplayContext = new GroupDisplayContext("/analytics/edit_synced_sites", renderRequest, renderResponse);
+GroupDisplayContext groupDisplayContext = new GroupDisplayContext("/analytics_settings/edit_synced_sites", renderRequest, renderResponse);
 %>
 
-<portlet:actionURL name="/analytics/edit_synced_sites" var="editSyncedSitesURL" />
+<portlet:actionURL name="/analytics_settings/edit_synced_sites" var="editSyncedSitesURL" />
 
 <clay:sheet>
 	<h2>

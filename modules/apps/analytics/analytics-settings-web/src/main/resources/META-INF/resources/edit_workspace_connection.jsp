@@ -58,7 +58,7 @@ if (analyticsConfiguration != null) {
 }
 %>
 
-<portlet:actionURL name="/analytics/edit_workspace_connection" var="editWorkspaceConnectionURL" />
+<portlet:actionURL name="/analytics_settings/edit_workspace_connection" var="editWorkspaceConnectionURL" />
 
 <clay:sheet>
 	<c:if test="<%= AnalyticsSettingsUtil.isAnalyticsEnabledWithOAuth(themeDisplay.getCompanyId()) %>">

@@ -77,6 +77,7 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 		annotation = _formatAnnotationParameterProperties(annotation);
 		annotation = _formatConfigurationAttributes(
 			fileName, absolutePath, javaClass, annotation);
+		annotation = _formatEnabledAttribute(absolutePath, annotation);
 		annotation = _formatServiceAttribute(
 			fileName, absolutePath, javaClass.getName(), annotation,
 			javaClass.getImplementedClassNames());
@@ -266,6 +267,32 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 			annotation, "configurationPolicy", "ConfigurationPolicy.IGNORE");
 	}
 
+	private String _formatEnabledAttribute(
+		String absolutePath, String annotation) {
+
+		List<String> disabledModuleNames = getAttributeValues(
+			_DISABLED_MODULE_NAMES_KEY, absolutePath);
+
+		if (disabledModuleNames.isEmpty()) {
+			return annotation;
+		}
+
+		for (String disabledModuleName : disabledModuleNames) {
+			if (!absolutePath.contains(disabledModuleName)) {
+				continue;
+			}
+
+			String enabledAttributeValue = _getAttributeValue(
+				annotation, "enabled");
+
+			if (enabledAttributeValue == null) {
+				return _addAttribute(annotation, "enabled", "false");
+			}
+		}
+
+		return annotation;
+	}
+
 	private String _formatMVCPortletProperties(String annotation) {
 		int x = annotation.indexOf("property = {");
 
@@ -451,6 +478,9 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 
 	private static final String _CHECK_SELF_REGISTRATION_KEY =
 		"checkSelfRegistration";
+
+	private static final String _DISABLED_MODULE_NAMES_KEY =
+		"disabledModuleNames";
 
 	private static final Pattern _annotationParameterPropertyPattern =
 		Pattern.compile("\\s(\\w+) = \\{");

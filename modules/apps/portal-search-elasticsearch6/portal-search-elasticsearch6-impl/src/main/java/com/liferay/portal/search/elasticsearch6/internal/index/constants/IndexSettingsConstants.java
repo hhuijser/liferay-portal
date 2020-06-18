@@ -12,16 +12,14 @@
  * details.
  */
 
-package com.liferay.portal.search.elasticsearch6.internal.index;
+package com.liferay.portal.search.elasticsearch6.internal.index.constants;
 
 /**
  * @author André de Oliveira
  */
-public class LiferayTypeMappingsConstants {
+public class IndexSettingsConstants {
 
-	public static final String LIFERAY_DOCUMENT_TYPE = "LiferayDocumentType";
-
-	public static final String LIFERAY_DOCUMENT_TYPE_MAPPING_FILE_NAME =
-		"/META-INF/mappings/liferay-type-mappings.json";
+	public static final String INDEX_SETTINGS_FILE_NAME =
+		"/META-INF/index-settings.json";
 
 }

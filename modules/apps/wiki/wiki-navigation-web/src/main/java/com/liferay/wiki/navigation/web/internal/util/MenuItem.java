@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
+import com.liferay.wiki.navigation.web.internal.util.constants.WikiNavigationConstants;
 import com.liferay.wiki.service.WikiPageServiceUtil;
 
 import java.io.Serializable;

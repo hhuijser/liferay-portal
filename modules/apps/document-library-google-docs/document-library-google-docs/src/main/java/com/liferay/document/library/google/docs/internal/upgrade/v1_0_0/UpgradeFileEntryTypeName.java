@@ -14,7 +14,7 @@
 
 package com.liferay.document.library.google.docs.internal.upgrade.v1_0_0;
 
-import com.liferay.document.library.google.docs.internal.util.GoogleDocsConstants;
+import com.liferay.document.library.google.docs.internal.util.constants.GoogleDocsConstants;
 import com.liferay.document.library.kernel.model.DLFileEntryType;
 import com.liferay.document.library.kernel.service.DLFileEntryTypeLocalService;
 import com.liferay.petra.string.StringPool;

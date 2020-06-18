@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.search.elasticsearch6.internal.index.constants.IndexSettingsConstants;
+import com.liferay.portal.search.elasticsearch6.internal.index.constants.LiferayTypeMappingsConstants;
 import com.liferay.portal.search.elasticsearch6.internal.settings.SettingsBuilder;
 import com.liferay.portal.search.elasticsearch6.internal.util.LogUtil;
 import com.liferay.portal.search.elasticsearch6.internal.util.ResourceUtil;

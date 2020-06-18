@@ -17,7 +17,7 @@ package com.liferay.portal.search.elasticsearch6.internal.background.task;
 import com.liferay.portal.search.elasticsearch6.internal.ElasticsearchSearchEngineFixture;
 import com.liferay.portal.search.elasticsearch6.internal.connection.ElasticsearchFixture;
 import com.liferay.portal.search.elasticsearch6.internal.index.FieldMappingAssert;
-import com.liferay.portal.search.elasticsearch6.internal.index.LiferayTypeMappingsConstants;
+import com.liferay.portal.search.elasticsearch6.internal.index.constants.LiferayTypeMappingsConstants;
 import com.liferay.portal.search.test.util.background.task.BaseReindexSingleIndexerBackgroundTaskExecutorTestCase;
 import com.liferay.portal.search.test.util.search.engine.SearchEngineFixture;
 

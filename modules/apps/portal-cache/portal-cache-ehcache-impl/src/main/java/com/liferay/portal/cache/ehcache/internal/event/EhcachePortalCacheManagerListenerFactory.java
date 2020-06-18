@@ -15,8 +15,8 @@
 package com.liferay.portal.cache.ehcache.internal.event;
 
 import com.liferay.portal.cache.PortalCacheManagerListenerFactory;
-import com.liferay.portal.cache.ehcache.internal.EhcacheConstants;
 import com.liferay.portal.cache.ehcache.internal.EhcachePortalCacheManager;
+import com.liferay.portal.cache.ehcache.internal.constants.EhcacheConstants;
 import com.liferay.portal.kernel.cache.PortalCacheManagerListener;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.InstanceFactory;

@@ -16,7 +16,7 @@ package com.liferay.document.library.google.docs.internal.display.context;
 
 import com.liferay.document.library.display.context.DLFilePicker;
 import com.liferay.document.library.google.docs.internal.util.GoogleDocsConfigurationHelper;
-import com.liferay.document.library.google.docs.internal.util.GoogleDocsConstants;
+import com.liferay.document.library.google.docs.internal.util.constants.GoogleDocsConstants;
 import com.liferay.petra.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.template.Template;

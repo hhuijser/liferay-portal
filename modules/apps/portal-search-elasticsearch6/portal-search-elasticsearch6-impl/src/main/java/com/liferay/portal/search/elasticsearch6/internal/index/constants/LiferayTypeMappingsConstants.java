@@ -12,15 +12,16 @@
  * details.
  */
 
-package com.liferay.wiki.navigation.web.internal.util;
+package com.liferay.portal.search.elasticsearch6.internal.index.constants;
 
 /**
- * @author Jorge Ferrer
+ * @author André de Oliveira
  */
-public class WikiNavigationConstants {
+public class LiferayTypeMappingsConstants {
 
-	public static final int DEPTH_ALL = -1;
+	public static final String LIFERAY_DOCUMENT_TYPE = "LiferayDocumentType";
 
-	public static final int MAX_PAGES = 1000;
+	public static final String LIFERAY_DOCUMENT_TYPE_MAPPING_FILE_NAME =
+		"/META-INF/mappings/liferay-type-mappings.json";
 
 }

@@ -28,8 +28,8 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.scripting.ScriptBundleProvider;
-import com.liferay.portal.scripting.executor.internal.ScriptingExecutorMessagingConstants;
 import com.liferay.portal.scripting.executor.internal.constants.ScriptingExecutorConstants;
+import com.liferay.portal.scripting.executor.internal.constants.ScriptingExecutorMessagingConstants;
 
 import java.net.URL;
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.google.docs.internal.util;
+package com.liferay.document.library.google.docs.internal.util.constants;
 
 /**
  * @author Iván Zaera

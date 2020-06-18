@@ -14,6 +14,7 @@
 
 package com.liferay.document.library.internal.lar.xstream;
 
+import com.liferay.document.library.internal.lar.xstream.constants.FieldConstants;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.exportimport.kernel.xstream.BaseXStreamConverter;
 import com.liferay.exportimport.kernel.xstream.XStreamHierarchicalStreamReader;

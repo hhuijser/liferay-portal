@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.search.elasticsearch6.internal.connection.ElasticsearchFixture;
 import com.liferay.portal.search.elasticsearch6.internal.connection.IndexName;
 import com.liferay.portal.search.elasticsearch6.internal.document.SingleFieldFixture;
+import com.liferay.portal.search.elasticsearch6.internal.index.constants.LiferayTypeMappingsConstants;
 import com.liferay.portal.search.elasticsearch6.internal.query.QueryBuilderFactories;
 import com.liferay.portal.search.elasticsearch6.internal.settings.BaseIndexSettingsContributor;
 import com.liferay.portal.search.elasticsearch6.internal.util.ResourceUtil;

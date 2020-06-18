@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.messaging.DestinationFactory;
 import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.scripting.Scripting;
 import com.liferay.portal.kernel.util.HashMapDictionary;
-import com.liferay.portal.scripting.executor.internal.ScriptingExecutorMessagingConstants;
+import com.liferay.portal.scripting.executor.internal.constants.ScriptingExecutorMessagingConstants;
 
 import java.util.Dictionary;
 

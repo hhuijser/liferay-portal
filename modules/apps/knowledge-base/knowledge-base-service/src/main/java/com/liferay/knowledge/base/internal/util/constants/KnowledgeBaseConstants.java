@@ -12,14 +12,14 @@
  * details.
  */
 
-package com.liferay.portal.search.elasticsearch6.internal.index;
+package com.liferay.knowledge.base.internal.util.constants;
 
 /**
- * @author André de Oliveira
+ * @author Adolfo Pérez
  */
-public class IndexSettingsConstants {
+public class KnowledgeBaseConstants {
 
-	public static final String INDEX_SETTINGS_FILE_NAME =
-		"/META-INF/index-settings.json";
+	public static final String TEMP_FOLDER_NAME =
+		"com.liferay.knowledge.base.admin";
 
 }

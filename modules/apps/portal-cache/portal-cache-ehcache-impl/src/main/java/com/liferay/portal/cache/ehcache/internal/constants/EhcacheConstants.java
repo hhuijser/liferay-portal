@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.cache.ehcache.internal;
+package com.liferay.portal.cache.ehcache.internal.constants;
 
 /**
  * @author Tina Tian

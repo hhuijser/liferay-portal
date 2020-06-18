@@ -18,7 +18,7 @@ import com.liferay.portal.search.elasticsearch6.internal.connection.Elasticsearc
 import com.liferay.portal.search.elasticsearch6.internal.connection.ElasticsearchFixture;
 import com.liferay.portal.search.elasticsearch6.internal.connection.IndexName;
 import com.liferay.portal.search.elasticsearch6.internal.document.SingleFieldFixture;
-import com.liferay.portal.search.elasticsearch6.internal.index.LiferayTypeMappingsConstants;
+import com.liferay.portal.search.elasticsearch6.internal.index.constants.LiferayTypeMappingsConstants;
 import com.liferay.portal.search.elasticsearch6.internal.query.QueryBuilderFactories;
 import com.liferay.portal.search.elasticsearch6.internal.query.SearchAssert;
 import com.liferay.portal.search.elasticsearch6.internal.search.engine.adapter.ElasticsearchSearchEngineAdapterImpl;

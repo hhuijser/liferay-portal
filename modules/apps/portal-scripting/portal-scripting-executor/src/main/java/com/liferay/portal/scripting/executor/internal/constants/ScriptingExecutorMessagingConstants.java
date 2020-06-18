@@ -12,14 +12,23 @@
  * details.
  */
 
-package com.liferay.knowledge.base.internal.util;
+package com.liferay.portal.scripting.executor.internal.constants;
 
 /**
- * @author Adolfo Pérez
+ * @author Michael C. Han
  */
-public class KnowledgeBaseConstants {
+public class ScriptingExecutorMessagingConstants {
 
-	public static final String TEMP_FOLDER_NAME =
-		"com.liferay.knowledge.base.admin";
+	public static final String DESTINATION_NAME = "liferay/scripting_executor";
+
+	public static final String MESSAGE_KEY_BUNDLE_CLASS_LOADER =
+		"bundleClassLoader";
+
+	public static final String MESSAGE_KEY_SCRIPTING_LANGUAGE =
+		"scriptingLanguage";
+
+	public static final String MESSAGE_KEY_URLS = "urls";
+
+	public static final String SCRIPTING_LANGUAGE_DEFAULT = "groovy";
 
 }

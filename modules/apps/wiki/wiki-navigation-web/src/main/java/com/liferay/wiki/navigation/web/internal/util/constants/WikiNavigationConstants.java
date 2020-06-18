@@ -12,23 +12,15 @@
  * details.
  */
 
-package com.liferay.portal.scripting.executor.internal;
+package com.liferay.wiki.navigation.web.internal.util.constants;
 
 /**
- * @author Michael C. Han
+ * @author Jorge Ferrer
  */
-public class ScriptingExecutorMessagingConstants {
+public class WikiNavigationConstants {
 
-	public static final String DESTINATION_NAME = "liferay/scripting_executor";
+	public static final int DEPTH_ALL = -1;
 
-	public static final String MESSAGE_KEY_BUNDLE_CLASS_LOADER =
-		"bundleClassLoader";
-
-	public static final String MESSAGE_KEY_SCRIPTING_LANGUAGE =
-		"scriptingLanguage";
-
-	public static final String MESSAGE_KEY_URLS = "urls";
-
-	public static final String SCRIPTING_LANGUAGE_DEFAULT = "groovy";
+	public static final int MAX_PAGES = 1000;
 
 }

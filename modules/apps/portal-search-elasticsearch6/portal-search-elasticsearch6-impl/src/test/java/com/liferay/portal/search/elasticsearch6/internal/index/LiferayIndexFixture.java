@@ -18,6 +18,7 @@ import com.liferay.portal.search.elasticsearch6.internal.connection.Elasticsearc
 import com.liferay.portal.search.elasticsearch6.internal.connection.Index;
 import com.liferay.portal.search.elasticsearch6.internal.connection.IndexCreator;
 import com.liferay.portal.search.elasticsearch6.internal.connection.IndexName;
+import com.liferay.portal.search.elasticsearch6.internal.index.constants.LiferayTypeMappingsConstants;
 
 import java.util.Map;
 

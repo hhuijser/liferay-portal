@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCResourceCommand.class
 )
-public class UpdateTaskMVCActionCommand extends BaseMVCResourceCommand {
+public class UpdateTaskMVCResourceCommand extends BaseMVCResourceCommand {
 
 	@Override
 	protected void doServeResource(

@@ -55,7 +55,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCResourceCommand.class
 )
-public class RenderStructureFieldMVCRenderCommand
+public class RenderStructureFieldMVCResourceCommand
 	extends BaseMVCResourceCommand {
 
 	protected DDMFormFieldRenderingContext createDDMFormFieldRenderingContext(

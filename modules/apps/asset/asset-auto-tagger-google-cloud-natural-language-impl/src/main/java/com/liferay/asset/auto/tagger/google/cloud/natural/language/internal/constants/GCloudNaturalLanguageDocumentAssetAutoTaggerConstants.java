@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.auto.tagger.google.cloud.natural.language.internal.contants;
+package com.liferay.asset.auto.tagger.google.cloud.natural.language.internal.constants;
 
 /**
  * @author Cristina González

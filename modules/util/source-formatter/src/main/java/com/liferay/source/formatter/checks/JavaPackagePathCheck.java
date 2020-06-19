@@ -47,7 +47,7 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 
 		JavaClass javaClass = (JavaClass)javaTerm;
 
-		if (javaClass.isAnonymous()) {
+		if (javaClass.isAnonymous() || javaClass.hasAnnotation("Deprecated")) {
 			return javaTerm.getContent();
 		}
 

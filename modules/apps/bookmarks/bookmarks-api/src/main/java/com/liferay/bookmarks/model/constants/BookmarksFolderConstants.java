@@ -12,16 +12,13 @@
  * details.
  */
 
-package com.liferay.bookmarks.model;
+package com.liferay.bookmarks.model.constants;
 
 import com.liferay.petra.string.StringPool;
 
 /**
- * @author     Alexander Chow
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.bookmarks.model.constants.BookmarksFolderConstants}
+ * @author Alexander Chow
  */
-@Deprecated
 public class BookmarksFolderConstants {
 
 	public static final long DEFAULT_PARENT_FOLDER_ID = 0;

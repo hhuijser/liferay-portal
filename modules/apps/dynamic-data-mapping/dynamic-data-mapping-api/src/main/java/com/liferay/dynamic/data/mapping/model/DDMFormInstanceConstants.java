@@ -15,8 +15,11 @@
 package com.liferay.dynamic.data.mapping.model;
 
 /**
- * @author Pedro Queiroz
+ * @author     Pedro Queiroz
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.dynamic.data.mapping.model.constants.DDMFormInstanceConstants}
  */
+@Deprecated
 public class DDMFormInstanceConstants {
 
 	public static final String VERSION_DEFAULT = "1.0";

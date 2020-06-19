@@ -12,19 +12,18 @@
  * details.
  */
 
-package com.liferay.calendar.model;
+package com.liferay.calendar.workflow.constants;
 
 /**
- * @author     Brian Wing Shun Chan
- * @author     Fabio Pezzutto
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.calendar.model.constants.CalendarBookingConstants}
+ * @author Michael C. Han
+ * @author Eduardo Lundgren
  */
-@Deprecated
-public class CalendarBookingConstants {
+public class CalendarBookingWorkflowConstants {
 
-	public static final long PARENT_CALENDAR_BOOKING_ID_DEFAULT = 0;
+	public static final int STATUS_MASTER_PENDING = 10;
 
-	public static final long RECURRING_CALENDAR_BOOKING_ID_DEFAULT = 0;
+	public static final int STATUS_MASTER_STAGING = 11;
+
+	public static final int STATUS_MAYBE = 9;
 
 }

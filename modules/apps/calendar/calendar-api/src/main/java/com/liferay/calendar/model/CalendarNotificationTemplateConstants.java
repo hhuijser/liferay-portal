@@ -15,8 +15,11 @@
 package com.liferay.calendar.model;
 
 /**
- * @author Marcellus Tavares
+ * @author     Marcellus Tavares
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.calendar.model.constants.CalendarNotificationTemplateConstants}
  */
+@Deprecated
 public class CalendarNotificationTemplateConstants {
 
 	public static final String PROPERTY_FROM_ADDRESS = "from-address";

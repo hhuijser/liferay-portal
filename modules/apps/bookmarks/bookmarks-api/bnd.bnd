@@ -7,6 +7,7 @@ Export-Package:\
 	com.liferay.bookmarks.constants,\
 	com.liferay.bookmarks.exception,\
 	com.liferay.bookmarks.model,\
+	com.liferay.bookmarks.model.constants,\
 	com.liferay.bookmarks.search,\
 	com.liferay.bookmarks.service,\
 	com.liferay.bookmarks.service.persistence,\

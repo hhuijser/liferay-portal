@@ -965,15 +965,15 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	@Override
 	public List<MBMessage> getCategoryMessages(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<MBMessage> obc) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return mbMessagePersistence.findByG_C(
-				groupId, categoryId, start, end, obc);
+				groupId, categoryId, start, end, orderByComparator);
 		}
 
 		return mbMessagePersistence.findByG_C_S(
-			groupId, categoryId, status, start, end, obc);
+			groupId, categoryId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1039,15 +1039,15 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	@Override
 	public List<MBMessage> getCompanyMessages(
 		long companyId, int status, int start, int end,
-		OrderByComparator<MBMessage> obc) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return mbMessagePersistence.findByCompanyId(
-				companyId, start, end, obc);
+				companyId, start, end, orderByComparator);
 		}
 
 		return mbMessagePersistence.findByC_S(
-			companyId, status, start, end, obc);
+			companyId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1199,13 +1199,15 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	@Override
 	public List<MBMessage> getGroupMessages(
 		long groupId, int status, int start, int end,
-		OrderByComparator<MBMessage> obc) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return mbMessagePersistence.findByGroupId(groupId, start, end, obc);
+			return mbMessagePersistence.findByGroupId(
+				groupId, start, end, orderByComparator);
 		}
 
-		return mbMessagePersistence.findByG_S(groupId, status, start, end, obc);
+		return mbMessagePersistence.findByG_S(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1223,15 +1225,15 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	@Override
 	public List<MBMessage> getGroupMessages(
 		long groupId, long userId, int status, int start, int end,
-		OrderByComparator<MBMessage> obc) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return mbMessagePersistence.findByG_U(
-				groupId, userId, start, end, obc);
+				groupId, userId, start, end, orderByComparator);
 		}
 
 		return mbMessagePersistence.findByG_U_S(
-			groupId, userId, status, start, end, obc);
+			groupId, userId, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -1502,39 +1504,40 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	@Override
 	public List<MBMessage> getUserDiscussionMessages(
 		long userId, long classNameId, long classPK, int status, int start,
-		int end, OrderByComparator<MBMessage> obc) {
+		int end, OrderByComparator<MBMessage> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return mbMessagePersistence.findByU_C_C(
-				userId, classNameId, classPK, start, end, obc);
+				userId, classNameId, classPK, start, end, orderByComparator);
 		}
 
 		return mbMessagePersistence.findByU_C_C_S(
-			userId, classNameId, classPK, status, start, end, obc);
+			userId, classNameId, classPK, status, start, end,
+			orderByComparator);
 	}
 
 	@Override
 	public List<MBMessage> getUserDiscussionMessages(
 		long userId, long[] classNameIds, int status, int start, int end,
-		OrderByComparator<MBMessage> obc) {
+		OrderByComparator<MBMessage> orderByComparator) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return mbMessagePersistence.findByU_C(
-				userId, classNameIds, start, end, obc);
+				userId, classNameIds, start, end, orderByComparator);
 		}
 
 		return mbMessagePersistence.findByU_C_S(
-			userId, classNameIds, status, start, end, obc);
+			userId, classNameIds, status, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<MBMessage> getUserDiscussionMessages(
 		long userId, String className, long classPK, int status, int start,
-		int end, OrderByComparator<MBMessage> obc) {
+		int end, OrderByComparator<MBMessage> orderByComparator) {
 
 		return getUserDiscussionMessages(
 			userId, classNameLocalService.getClassNameId(className), classPK,
-			status, start, end, obc);
+			status, start, end, orderByComparator);
 	}
 
 	@Override

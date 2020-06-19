@@ -172,19 +172,20 @@ public class AccountRoleLocalServiceImpl
 	@Override
 	public BaseModelSearchResult<AccountRole> searchAccountRoles(
 		long accountEntryId, String keywords, int start, int end,
-		OrderByComparator<?> obc) {
+		OrderByComparator<?> orderByComparator) {
 
 		return searchAccountRoles(
-			new long[] {accountEntryId}, keywords, start, end, obc);
+			new long[] {accountEntryId}, keywords, start, end,
+			orderByComparator);
 	}
 
 	@Override
 	public BaseModelSearchResult<AccountRole> searchAccountRoles(
 		long[] accountEntryIds, String keywords, int start, int end,
-		OrderByComparator<?> obc) {
+		OrderByComparator<?> orderByComparator) {
 
 		DynamicQuery roleDynamicQuery = _getRoleDynamicQuery(
-			accountEntryIds, keywords, obc);
+			accountEntryIds, keywords, orderByComparator);
 
 		if (roleDynamicQuery == null) {
 			return new BaseModelSearchResult<>(
@@ -217,7 +218,8 @@ public class AccountRoleLocalServiceImpl
 	}
 
 	private DynamicQuery _getRoleDynamicQuery(
-		long[] accountEntryIds, String keywords, OrderByComparator<?> obc) {
+		long[] accountEntryIds, String keywords,
+		OrderByComparator<?> orderByComparator) {
 
 		DynamicQuery accountRoleDynamicQuery =
 			accountRoleLocalService.dynamicQuery();
@@ -253,14 +255,16 @@ public class AccountRoleLocalServiceImpl
 			roleDynamicQuery.add(disjunction);
 		}
 
-		if (obc != null) {
+		if (orderByComparator != null) {
 			Order order;
 
-			if (obc.isAscending()) {
-				order = OrderFactoryUtil.asc(obc.getOrderByFields()[0]);
+			if (orderByComparator.isAscending()) {
+				order = OrderFactoryUtil.asc(
+					orderByComparator.getOrderByFields()[0]);
 			}
 			else {
-				order = OrderFactoryUtil.desc(obc.getOrderByFields()[0]);
+				order = OrderFactoryUtil.desc(
+					orderByComparator.getOrderByFields()[0]);
 			}
 
 			roleDynamicQuery.addOrder(order);

@@ -70,6 +70,7 @@ public interface CustomSQL {
 		String sql, String field, String operator, boolean last,
 		String[] values);
 
-	public String replaceOrderBy(String sql, OrderByComparator<?> obc);
+	public String replaceOrderBy(
+		String sql, OrderByComparator<?> orderByComparator);
 
 }

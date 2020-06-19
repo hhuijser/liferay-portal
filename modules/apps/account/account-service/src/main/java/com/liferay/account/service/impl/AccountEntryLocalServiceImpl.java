@@ -292,10 +292,10 @@ public class AccountEntryLocalServiceImpl
 	@Override
 	public List<AccountEntry> getAccountEntries(
 		long companyId, int status, int start, int end,
-		OrderByComparator<AccountEntry> obc) {
+		OrderByComparator<AccountEntry> orderByComparator) {
 
 		return accountEntryPersistence.findByC_S(
-			companyId, status, start, end, obc);
+			companyId, status, start, end, orderByComparator);
 	}
 
 	@Override

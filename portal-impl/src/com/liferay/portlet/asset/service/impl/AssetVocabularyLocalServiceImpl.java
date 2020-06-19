@@ -320,9 +320,10 @@ public class AssetVocabularyLocalServiceImpl
 	@Override
 	public List<AssetVocabulary> getGroupVocabularies(
 		long groupId, String name, int start, int end,
-		OrderByComparator<AssetVocabulary> obc) {
+		OrderByComparator<AssetVocabulary> orderByComparator) {
 
-		return assetVocabularyFinder.findByG_N(groupId, name, start, end, obc);
+		return assetVocabularyFinder.findByG_N(
+			groupId, name, start, end, orderByComparator);
 	}
 
 	@Override

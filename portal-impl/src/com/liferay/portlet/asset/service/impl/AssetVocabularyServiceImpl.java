@@ -199,11 +199,11 @@ public class AssetVocabularyServiceImpl extends AssetVocabularyServiceBaseImpl {
 	@Override
 	public List<AssetVocabulary> getGroupVocabularies(
 			long groupId, boolean createDefaultVocabulary, int start, int end,
-			OrderByComparator<AssetVocabulary> obc)
+			OrderByComparator<AssetVocabulary> orderByComparator)
 		throws PortalException {
 
 		List<AssetVocabulary> vocabularies = getGroupVocabularies(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 
 		if (!vocabularies.isEmpty() || !createDefaultVocabulary) {
 			return vocabularies;
@@ -229,19 +229,19 @@ public class AssetVocabularyServiceImpl extends AssetVocabularyServiceBaseImpl {
 	@Override
 	public List<AssetVocabulary> getGroupVocabularies(
 		long groupId, int start, int end,
-		OrderByComparator<AssetVocabulary> obc) {
+		OrderByComparator<AssetVocabulary> orderByComparator) {
 
 		return assetVocabularyPersistence.filterFindByGroupId(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
 	public List<AssetVocabulary> getGroupVocabularies(
 		long groupId, String name, int start, int end,
-		OrderByComparator<AssetVocabulary> obc) {
+		OrderByComparator<AssetVocabulary> orderByComparator) {
 
 		return assetVocabularyPersistence.filterFindByG_LikeN(
-			groupId, name, start, end, obc);
+			groupId, name, start, end, orderByComparator);
 	}
 
 	@Override
@@ -268,7 +268,7 @@ public class AssetVocabularyServiceImpl extends AssetVocabularyServiceBaseImpl {
 	public AssetVocabularyDisplay getGroupVocabulariesDisplay(
 			long groupId, String name, int start, int end,
 			boolean addDefaultVocabulary,
-			OrderByComparator<AssetVocabulary> obc)
+			OrderByComparator<AssetVocabulary> orderByComparator)
 		throws PortalException {
 
 		List<AssetVocabulary> vocabularies;
@@ -277,11 +277,13 @@ public class AssetVocabularyServiceImpl extends AssetVocabularyServiceBaseImpl {
 		if (Validator.isNotNull(name)) {
 			name = CustomSQLUtil.keywords(name)[0];
 
-			vocabularies = getGroupVocabularies(groupId, name, start, end, obc);
+			vocabularies = getGroupVocabularies(
+				groupId, name, start, end, orderByComparator);
 			total = getGroupVocabulariesCount(groupId, name);
 		}
 		else {
-			vocabularies = getGroupVocabularies(groupId, start, end, obc);
+			vocabularies = getGroupVocabularies(
+				groupId, start, end, orderByComparator);
 			total = getGroupVocabulariesCount(groupId);
 		}
 
@@ -302,11 +304,11 @@ public class AssetVocabularyServiceImpl extends AssetVocabularyServiceBaseImpl {
 	@Override
 	public AssetVocabularyDisplay getGroupVocabulariesDisplay(
 			long groupId, String name, int start, int end,
-			OrderByComparator<AssetVocabulary> obc)
+			OrderByComparator<AssetVocabulary> orderByComparator)
 		throws PortalException {
 
 		return getGroupVocabulariesDisplay(
-			groupId, name, start, end, false, obc);
+			groupId, name, start, end, false, orderByComparator);
 	}
 
 	@Override

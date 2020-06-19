@@ -22,16 +22,16 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 public class OrderFactoryUtil {
 
 	public static void addOrderByComparator(
-		DynamicQuery dynamicQuery, OrderByComparator<?> obc) {
+		DynamicQuery dynamicQuery, OrderByComparator<?> orderByComparator) {
 
-		if (obc == null) {
+		if (orderByComparator == null) {
 			return;
 		}
 
-		String[] orderByFields = obc.getOrderByFields();
+		String[] orderByFields = orderByComparator.getOrderByFields();
 
 		for (String orderByField : orderByFields) {
-			if (obc.isAscending(orderByField)) {
+			if (orderByComparator.isAscending(orderByField)) {
 				dynamicQuery.addOrder(asc(orderByField));
 			}
 			else {

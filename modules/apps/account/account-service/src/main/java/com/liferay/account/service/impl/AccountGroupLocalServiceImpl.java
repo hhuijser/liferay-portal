@@ -68,22 +68,23 @@ public class AccountGroupLocalServiceImpl
 	@Override
 	public List<AccountGroup> getAccountGroups(
 		long companyId, int start, int end,
-		OrderByComparator<AccountGroup> obc) {
+		OrderByComparator<AccountGroup> orderByComparator) {
 
 		return accountGroupPersistence.findByCompanyId(
-			companyId, start, end, obc);
+			companyId, start, end, orderByComparator);
 	}
 
 	@Override
 	public BaseModelSearchResult<AccountGroup> searchAccountGroups(
 		long companyId, String keywords, int start, int end,
-		OrderByComparator<AccountGroup> obc) {
+		OrderByComparator<AccountGroup> orderByComparator) {
 
-		DynamicQuery dynamicQuery = _getDynamicQuery(companyId, keywords, obc);
+		DynamicQuery dynamicQuery = _getDynamicQuery(
+			companyId, keywords, orderByComparator);
 
 		return new BaseModelSearchResult<>(
 			accountGroupLocalService.dynamicQuery(
-				dynamicQuery, start, end, obc),
+				dynamicQuery, start, end, orderByComparator),
 			(int)accountGroupLocalService.dynamicQueryCount(dynamicQuery));
 	}
 
@@ -102,7 +103,8 @@ public class AccountGroupLocalServiceImpl
 	}
 
 	private DynamicQuery _getDynamicQuery(
-		long companyId, String keywords, OrderByComparator<AccountGroup> obc) {
+		long companyId, String keywords,
+		OrderByComparator<AccountGroup> orderByComparator) {
 
 		DynamicQuery dynamicQuery = accountGroupLocalService.dynamicQuery();
 
@@ -122,7 +124,7 @@ public class AccountGroupLocalServiceImpl
 			dynamicQuery.add(disjunction);
 		}
 
-		OrderFactoryUtil.addOrderByComparator(dynamicQuery, obc);
+		OrderFactoryUtil.addOrderByComparator(dynamicQuery, orderByComparator);
 
 		return dynamicQuery;
 	}

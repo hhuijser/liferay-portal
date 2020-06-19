@@ -284,7 +284,7 @@ public class CTCollectionServiceImpl extends CTCollectionServiceBaseImpl {
 	@Override
 	public List<CTCollection> getCTCollections(
 		long companyId, int status, String keywords, int start, int end,
-		OrderByComparator<CTCollection> obc) {
+		OrderByComparator<CTCollection> orderByComparator) {
 
 		DSLQuery dslQuery = DSLQueryFactoryUtil.select(
 			CTCollectionTable.INSTANCE
@@ -293,7 +293,7 @@ public class CTCollectionServiceImpl extends CTCollectionServiceBaseImpl {
 		).where(
 			_getPredicate(companyId, status, keywords)
 		).orderBy(
-			CTCollectionTable.INSTANCE, obc
+			CTCollectionTable.INSTANCE, orderByComparator
 		).limit(
 			start, end
 		);

@@ -185,10 +185,12 @@ public class WorkflowMetricsSLADefinitionLocalServiceImpl
 	@Override
 	public List<WorkflowMetricsSLADefinition> getWorkflowMetricsSLADefinitions(
 		long companyId, boolean active, long processId, int status, int start,
-		int end, OrderByComparator<WorkflowMetricsSLADefinition> obc) {
+		int end,
+		OrderByComparator<WorkflowMetricsSLADefinition> orderByComparator) {
 
 		return workflowMetricsSLADefinitionPersistence.findByC_A_P_S(
-			companyId, active, processId, status, start, end, obc);
+			companyId, active, processId, status, start, end,
+			orderByComparator);
 	}
 
 	@Override

@@ -196,15 +196,15 @@ public class LayoutSetPrototypeLocalServiceImpl
 	@Override
 	public List<LayoutSetPrototype> search(
 		long companyId, Boolean active, int start, int end,
-		OrderByComparator<LayoutSetPrototype> obc) {
+		OrderByComparator<LayoutSetPrototype> orderByComparator) {
 
 		if (active != null) {
 			return layoutSetPrototypePersistence.findByC_A(
-				companyId, active, start, end, obc);
+				companyId, active, start, end, orderByComparator);
 		}
 
 		return layoutSetPrototypePersistence.findByCompanyId(
-			companyId, start, end, obc);
+			companyId, start, end, orderByComparator);
 	}
 
 	@Override

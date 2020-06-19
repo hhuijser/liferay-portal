@@ -748,20 +748,21 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 	 * @param  status the workflow status
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public List<User> getGroupUsers(
 			long groupId, int status, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		GroupPermissionUtil.check(
 			getPermissionChecker(), groupId, ActionKeys.VIEW_MEMBERS);
 
-		return userLocalService.getGroupUsers(groupId, status, start, end, obc);
+		return userLocalService.getGroupUsers(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -769,17 +770,18 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 	 *
 	 * @param  groupId the primary key of the group
 	 * @param  status the workflow status
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public List<User> getGroupUsers(
-			long groupId, int status, OrderByComparator<User> obc)
+			long groupId, int status, OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		return getGroupUsers(
-			groupId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+			groupId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			orderByComparator);
 	}
 
 	/**
@@ -930,21 +932,21 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 	 * @param  status the workflow status
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public List<User> getOrganizationUsers(
 			long organizationId, int status, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		OrganizationPermissionUtil.check(
 			getPermissionChecker(), organizationId, ActionKeys.VIEW_MEMBERS);
 
 		return userLocalService.getOrganizationUsers(
-			organizationId, status, start, end, obc);
+			organizationId, status, start, end, orderByComparator);
 	}
 
 	/**
@@ -952,20 +954,21 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 	 *
 	 * @param  organizationId the primary key of the organization
 	 * @param  status the workflow status
-	 * @param  obc the comparator to order the users by (optionally
+	 * @param  orderByComparator the comparator to order the users by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 */
 	@Override
 	public List<User> getOrganizationUsers(
-			long organizationId, int status, OrderByComparator<User> obc)
+			long organizationId, int status,
+			OrderByComparator<User> orderByComparator)
 		throws PortalException {
 
 		OrganizationPermissionUtil.check(
 			getPermissionChecker(), organizationId, ActionKeys.VIEW_MEMBERS);
 
 		return userLocalService.getOrganizationUsers(
-			organizationId, status, obc);
+			organizationId, status, orderByComparator);
 	}
 
 	/**

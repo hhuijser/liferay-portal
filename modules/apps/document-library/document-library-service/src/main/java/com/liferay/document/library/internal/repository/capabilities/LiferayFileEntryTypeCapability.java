@@ -36,13 +36,13 @@ public class LiferayFileEntryTypeCapability implements FileEntryTypeCapability {
 	public List<RepositoryEntry> getFoldersAndFileEntriesAndFileShortcuts(
 			long groupId, long folderId, String[] mimeTypes,
 			long fileEntryTypeId, boolean includeMountFolders, int status,
-			int start, int end, OrderByComparator<?> obc)
+			int start, int end, OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		return RepositoryModelUtil.toRepositoryEntries(
 			_dlFolderService.getFoldersAndFileEntriesAndFileShortcuts(
 				groupId, folderId, mimeTypes, fileEntryTypeId,
-				includeMountFolders, status, start, end, obc));
+				includeMountFolders, status, start, end, orderByComparator));
 	}
 
 	@Override

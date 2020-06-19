@@ -164,11 +164,12 @@ public class AlloyServiceInvoker {
 	@SuppressWarnings("rawtypes")
 	public List executeDynamicQuery(
 			DynamicQuery dynamicQuery, int start, int end,
-			OrderByComparator<?> obc)
+			OrderByComparator<?> orderByComparator)
 		throws Exception {
 
 		return (List)dynamicQueryMethod4.invoke(
-			identifiableOSGiService, dynamicQuery, start, end, obc);
+			identifiableOSGiService, dynamicQuery, start, end,
+			orderByComparator);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -185,11 +186,12 @@ public class AlloyServiceInvoker {
 
 	@SuppressWarnings("rawtypes")
 	public List executeDynamicQuery(
-			Object[] properties, int start, int end, OrderByComparator<?> obc)
+			Object[] properties, int start, int end,
+			OrderByComparator<?> orderByComparator)
 		throws Exception {
 
 		return executeDynamicQuery(
-			buildDynamicQuery(properties), start, end, obc);
+			buildDynamicQuery(properties), start, end, orderByComparator);
 	}
 
 	public long executeDynamicQueryCount(DynamicQuery dynamicQuery)

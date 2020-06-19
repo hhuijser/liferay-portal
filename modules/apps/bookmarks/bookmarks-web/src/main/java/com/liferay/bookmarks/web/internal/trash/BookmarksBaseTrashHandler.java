@@ -155,7 +155,8 @@ public abstract class BookmarksBaseTrashHandler extends BaseTrashHandler {
 
 	@Override
 	public List<TrashedModel> getTrashModelTrashedModels(
-			long classPK, int start, int end, OrderByComparator<?> obc)
+			long classPK, int start, int end,
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		List<TrashedModel> trashedModels = new ArrayList<>();
@@ -166,7 +167,7 @@ public abstract class BookmarksBaseTrashHandler extends BaseTrashHandler {
 		List<Object> foldersAndEntries =
 			BookmarksFolderLocalServiceUtil.getFoldersAndEntries(
 				folder.getGroupId(), classPK, WorkflowConstants.STATUS_IN_TRASH,
-				start, end, obc);
+				start, end, orderByComparator);
 
 		for (Object folderOrEntry : foldersAndEntries) {
 			if (folderOrEntry instanceof BookmarksFolder) {

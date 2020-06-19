@@ -169,10 +169,11 @@ public class MDRRuleLocalServiceImpl extends MDRRuleLocalServiceBaseImpl {
 
 	@Override
 	public List<MDRRule> getRules(
-		long ruleGroupId, int start, int end, OrderByComparator<MDRRule> obc) {
+		long ruleGroupId, int start, int end,
+		OrderByComparator<MDRRule> orderByComparator) {
 
 		return mdrRulePersistence.findByRuleGroupId(
-			ruleGroupId, start, end, obc);
+			ruleGroupId, start, end, orderByComparator);
 	}
 
 	@Override

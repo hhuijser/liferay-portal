@@ -281,11 +281,11 @@ public class UserNotificationEventLocalServiceImpl
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
 		long userId, int deliveryType, boolean delivered,
 		boolean actionRequired, boolean archived, int start, int end,
-		OrderByComparator<UserNotificationEvent> obc) {
+		OrderByComparator<UserNotificationEvent> orderByComparator) {
 
 		return userNotificationEventPersistence.findByU_DT_D_AR_A(
 			userId, deliveryType, delivered, actionRequired, archived, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	@Override
@@ -300,10 +300,12 @@ public class UserNotificationEventLocalServiceImpl
 	@Override
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
 		long userId, int deliveryType, boolean actionRequired, boolean archived,
-		int start, int end, OrderByComparator<UserNotificationEvent> obc) {
+		int start, int end,
+		OrderByComparator<UserNotificationEvent> orderByComparator) {
 
 		return userNotificationEventPersistence.findByU_DT_AR_A(
-			userId, deliveryType, actionRequired, archived, start, end, obc);
+			userId, deliveryType, actionRequired, archived, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -425,10 +427,11 @@ public class UserNotificationEventLocalServiceImpl
 	public List<UserNotificationEvent> getDeliveredUserNotificationEvents(
 		long userId, int deliveryType, boolean delivered,
 		boolean actionRequired, int start, int end,
-		OrderByComparator<UserNotificationEvent> obc) {
+		OrderByComparator<UserNotificationEvent> orderByComparator) {
 
 		return userNotificationEventPersistence.findByU_DT_D_AR(
-			userId, deliveryType, delivered, actionRequired, start, end, obc);
+			userId, deliveryType, delivered, actionRequired, start, end,
+			orderByComparator);
 	}
 
 	@Override

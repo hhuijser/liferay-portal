@@ -205,13 +205,14 @@ public class ModularTrashEntryLocalServiceWrapper
 
 	@Override
 	public List<TrashEntry> getEntries(
-		long groupId, int start, int end, OrderByComparator<TrashEntry> obc) {
+		long groupId, int start, int end,
+		OrderByComparator<TrashEntry> orderByComparator) {
 
 		return ModelAdapterUtil.adapt(
 			TrashEntry.class,
 			_trashEntryLocalService.getEntries(
 				groupId, start, end,
-				new TrashEntryOrderByComparatorAdapter(obc)));
+				new TrashEntryOrderByComparatorAdapter(orderByComparator)));
 	}
 
 	@Override

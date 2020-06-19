@@ -961,17 +961,18 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 	@Override
 	public List<Layout> getLayouts(
 			long groupId, boolean privateLayout, String keywords,
-			String[] types, int start, int end, OrderByComparator<Layout> obc)
+			String[] types, int start, int end,
+			OrderByComparator<Layout> orderByComparator)
 		throws PortalException {
 
 		if (Validator.isNull(keywords)) {
 			return layoutPersistence.filterFindByG_P(
-				groupId, privateLayout, start, end, obc);
+				groupId, privateLayout, start, end, orderByComparator);
 		}
 
 		return layoutLocalService.getLayouts(
 			groupId, getUserId(), privateLayout, keywords, types, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	@Override

@@ -60,12 +60,12 @@ public class OrderByComparatorFactoryUtilTest {
 		actualList.add(emailAddress2);
 		actualList.add(emailAddress1);
 
-		OrderByComparator<EmailAddress> obc =
+		OrderByComparator<EmailAddress> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				EmailAddressModelImpl.TABLE_NAME, "address", false,
 				"createDate", true);
 
-		Collections.sort(actualList, obc);
+		Collections.sort(actualList, orderByComparator);
 
 		Assert.assertEquals(expectedList.toString(), actualList.toString());
 	}
@@ -89,12 +89,12 @@ public class OrderByComparatorFactoryUtilTest {
 		actualList.add(emailAddress1);
 		actualList.add(emailAddress2);
 
-		OrderByComparator<EmailAddress> obc =
+		OrderByComparator<EmailAddress> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				EmailAddressModelImpl.TABLE_NAME, "address", false,
 				"createDate", false);
 
-		Collections.sort(actualList, obc);
+		Collections.sort(actualList, orderByComparator);
 
 		Assert.assertEquals(expectedList.toString(), actualList.toString());
 	}
@@ -116,11 +116,11 @@ public class OrderByComparatorFactoryUtilTest {
 		actualList.add(emailAddress2);
 		actualList.add(emailAddress1);
 
-		OrderByComparator<EmailAddress> obc =
+		OrderByComparator<EmailAddress> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				EmailAddressModelImpl.TABLE_NAME, "address", true);
 
-		Collections.sort(actualList, obc);
+		Collections.sort(actualList, orderByComparator);
 
 		Assert.assertEquals(expectedList.toString(), actualList.toString());
 	}
@@ -142,11 +142,11 @@ public class OrderByComparatorFactoryUtilTest {
 		actualList.add(emailAddress1);
 		actualList.add(emailAddress2);
 
-		OrderByComparator<EmailAddress> obc =
+		OrderByComparator<EmailAddress> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				EmailAddressModelImpl.TABLE_NAME, "address", false);
 
-		Collections.sort(actualList, obc);
+		Collections.sort(actualList, orderByComparator);
 
 		Assert.assertEquals(expectedList.toString(), actualList.toString());
 	}
@@ -170,11 +170,11 @@ public class OrderByComparatorFactoryUtilTest {
 		actualList.add(emailAddress2);
 		actualList.add(emailAddress1);
 
-		OrderByComparator<EmailAddress> obc =
+		OrderByComparator<EmailAddress> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				EmailAddressModelImpl.TABLE_NAME, "companyId", true);
 
-		Collections.sort(actualList, obc);
+		Collections.sort(actualList, orderByComparator);
 
 		Assert.assertEquals(expectedList.toString(), actualList.toString());
 	}
@@ -198,47 +198,49 @@ public class OrderByComparatorFactoryUtilTest {
 		actualList.add(emailAddress1);
 		actualList.add(emailAddress2);
 
-		OrderByComparator<EmailAddress> obc =
+		OrderByComparator<EmailAddress> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				EmailAddressModelImpl.TABLE_NAME, "companyId", false);
 
-		Collections.sort(actualList, obc);
+		Collections.sort(actualList, orderByComparator);
 
 		Assert.assertEquals(expectedList.toString(), actualList.toString());
 	}
 
 	@Test
 	public void testGetOrderByMultipleColumns() throws Exception {
-		OrderByComparator<EmailAddress> obc =
+		OrderByComparator<EmailAddress> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				EmailAddressModelImpl.TABLE_NAME, "address", true, "createDate",
 				false);
 
 		Assert.assertEquals(
 			"EmailAddress.address ASC,EmailAddress.createDate DESC",
-			obc.getOrderBy());
+			orderByComparator.getOrderBy());
 
-		obc = OrderByComparatorFactoryUtil.create(
+		orderByComparator = OrderByComparatorFactoryUtil.create(
 			EmailAddressModelImpl.TABLE_NAME, "address", false, "createDate",
 			true);
 
 		Assert.assertEquals(
 			"EmailAddress.address DESC,EmailAddress.createDate ASC",
-			obc.getOrderBy());
+			orderByComparator.getOrderBy());
 	}
 
 	@Test
 	public void testGetOrderBySingleColumn() throws Exception {
-		OrderByComparator<EmailAddress> obc =
+		OrderByComparator<EmailAddress> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				EmailAddressModelImpl.TABLE_NAME, "address", true);
 
-		Assert.assertEquals("EmailAddress.address ASC", obc.getOrderBy());
+		Assert.assertEquals(
+			"EmailAddress.address ASC", orderByComparator.getOrderBy());
 
-		obc = OrderByComparatorFactoryUtil.create(
+		orderByComparator = OrderByComparatorFactoryUtil.create(
 			EmailAddressModelImpl.TABLE_NAME, "address", false);
 
-		Assert.assertEquals("EmailAddress.address DESC", obc.getOrderBy());
+		Assert.assertEquals(
+			"EmailAddress.address DESC", orderByComparator.getOrderBy());
 	}
 
 	@Test

@@ -93,9 +93,9 @@ public class PowwowServerLocalServiceImpl
 
 	@Override
 	public List<PowwowServer> getPowwowServers(
-		int start, int end, OrderByComparator<PowwowServer> obc) {
+		int start, int end, OrderByComparator<PowwowServer> orderByComparator) {
 
-		return powwowServerPersistence.findAll(start, end, obc);
+		return powwowServerPersistence.findAll(start, end, orderByComparator);
 	}
 
 	@Override

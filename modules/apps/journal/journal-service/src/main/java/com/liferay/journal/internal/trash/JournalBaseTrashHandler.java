@@ -154,7 +154,8 @@ public abstract class JournalBaseTrashHandler extends BaseTrashHandler {
 
 	@Override
 	public List<TrashedModel> getTrashModelTrashedModels(
-			long classPK, int start, int end, OrderByComparator<?> obc)
+			long classPK, int start, int end,
+			OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
 		List<TrashedModel> trashedModels = new ArrayList<>();
@@ -164,7 +165,7 @@ public abstract class JournalBaseTrashHandler extends BaseTrashHandler {
 		List<Object> foldersAndArticles =
 			JournalFolderLocalServiceUtil.getFoldersAndArticles(
 				folder.getGroupId(), classPK, WorkflowConstants.STATUS_IN_TRASH,
-				start, end, obc);
+				start, end, orderByComparator);
 
 		for (Object folderOrArticle : foldersAndArticles) {
 			if (folderOrArticle instanceof JournalFolder) {

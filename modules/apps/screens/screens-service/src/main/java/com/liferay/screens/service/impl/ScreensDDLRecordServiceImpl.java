@@ -78,14 +78,14 @@ public class ScreensDDLRecordServiceImpl
 	@Override
 	public JSONArray getDDLRecords(
 			long ddlRecordSetId, Locale locale, int start, int end,
-			OrderByComparator<DDLRecord> obc)
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws PortalException {
 
 		_ddlRecordSetModelResourcePermission.check(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
 		List<DDLRecord> ddlRecords = ddlRecordLocalService.getRecords(
-			ddlRecordSetId, start, end, obc);
+			ddlRecordSetId, start, end, orderByComparator);
 
 		return getDDLRecordsJSONArray(ddlRecords, locale);
 	}
@@ -93,14 +93,14 @@ public class ScreensDDLRecordServiceImpl
 	@Override
 	public JSONArray getDDLRecords(
 			long ddlRecordSetId, long userId, Locale locale, int start, int end,
-			OrderByComparator<DDLRecord> obc)
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws PortalException {
 
 		_ddlRecordSetModelResourcePermission.check(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
 		List<DDLRecord> ddlRecords = ddlRecordLocalService.getRecords(
-			ddlRecordSetId, userId, start, end, obc);
+			ddlRecordSetId, userId, start, end, orderByComparator);
 
 		return getDDLRecordsJSONArray(ddlRecords, locale);
 	}

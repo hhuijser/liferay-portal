@@ -7,6 +7,7 @@ Export-Package:\
 	com.liferay.calendar.exception,\
 	com.liferay.calendar.exporter,\
 	com.liferay.calendar.model,\
+	com.liferay.calendar.model.constants,\
 	com.liferay.calendar.notification,\
 	com.liferay.calendar.recurrence,\
 	com.liferay.calendar.service,\
@@ -14,7 +15,7 @@ Export-Package:\
 	com.liferay.calendar.social,\
 	com.liferay.calendar.util,\
 	com.liferay.calendar.util.comparator,\
-	com.liferay.calendar.workflow
+	com.liferay.calendar.workflow.constants
 Import-Package:\
 	!org.joda.*,\
 	\

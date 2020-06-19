@@ -184,7 +184,7 @@ public class PowwowMeetingServiceHttp {
 		getPowwowMeetings(
 			HttpPrincipal httpPrincipal, long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.powwow.model.PowwowMeeting> obc) {
+				<com.liferay.powwow.model.PowwowMeeting> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -192,7 +192,7 @@ public class PowwowMeetingServiceHttp {
 				_getPowwowMeetingsParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, start, end, obc);
+				methodKey, groupId, start, end, orderByComparator);
 
 			Object returnObj = null;
 

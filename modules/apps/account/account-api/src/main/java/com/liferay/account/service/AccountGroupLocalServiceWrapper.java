@@ -274,10 +274,10 @@ public class AccountGroupLocalServiceWrapper
 		getAccountGroups(
 			long companyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.account.model.AccountGroup> obc) {
+				<com.liferay.account.model.AccountGroup> orderByComparator) {
 
 		return _accountGroupLocalService.getAccountGroups(
-			companyId, start, end, obc);
+			companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -330,10 +330,10 @@ public class AccountGroupLocalServiceWrapper
 		<com.liferay.account.model.AccountGroup> searchAccountGroups(
 			long companyId, String keywords, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.account.model.AccountGroup> obc) {
+				<com.liferay.account.model.AccountGroup> orderByComparator) {
 
 		return _accountGroupLocalService.searchAccountGroups(
-			companyId, keywords, start, end, obc);
+			companyId, keywords, start, end, orderByComparator);
 	}
 
 	/**

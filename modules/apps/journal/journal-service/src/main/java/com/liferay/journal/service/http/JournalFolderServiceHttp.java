@@ -503,7 +503,7 @@ public class JournalFolderServiceHttp {
 	public static java.util.List<Object> getFoldersAndArticles(
 		HttpPrincipal httpPrincipal, long groupId, long folderId, int status,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -511,7 +511,8 @@ public class JournalFolderServiceHttp {
 				_getFoldersAndArticlesParameterTypes12);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, folderId, status, start, end, obc);
+				methodKey, groupId, folderId, status, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -536,7 +537,8 @@ public class JournalFolderServiceHttp {
 
 	public static java.util.List<Object> getFoldersAndArticles(
 		HttpPrincipal httpPrincipal, long groupId, long folderId, int start,
-		int end, com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -544,7 +546,7 @@ public class JournalFolderServiceHttp {
 				_getFoldersAndArticlesParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, folderId, start, end, obc);
+				methodKey, groupId, folderId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -570,7 +572,7 @@ public class JournalFolderServiceHttp {
 	public static java.util.List<Object> getFoldersAndArticles(
 		HttpPrincipal httpPrincipal, long groupId, long userId, long folderId,
 		int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -578,7 +580,8 @@ public class JournalFolderServiceHttp {
 				_getFoldersAndArticlesParameterTypes14);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, userId, folderId, status, start, end, obc);
+				methodKey, groupId, userId, folderId, status, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -604,7 +607,7 @@ public class JournalFolderServiceHttp {
 	public static java.util.List<Object> getFoldersAndArticles(
 		HttpPrincipal httpPrincipal, long groupId, long userId, long folderId,
 		int status, java.util.Locale locale, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -613,7 +616,7 @@ public class JournalFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, userId, folderId, status, locale, start,
-				end, obc);
+				end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1059,7 +1062,7 @@ public class JournalFolderServiceHttp {
 					String keywords, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.dynamic.data.mapping.model.DDMStructure>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1069,7 +1072,7 @@ public class JournalFolderServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId, groupIds, folderId, restrictionType,
-				keywords, start, end, obc);
+				keywords, start, end, orderByComparator);
 
 			Object returnObj = null;
 

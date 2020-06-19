@@ -82,7 +82,7 @@ public interface RedirectEntryService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<RedirectEntry> getRedirectEntries(
 			long groupId, int start, int end,
-			OrderByComparator<RedirectEntry> obc)
+			OrderByComparator<RedirectEntry> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

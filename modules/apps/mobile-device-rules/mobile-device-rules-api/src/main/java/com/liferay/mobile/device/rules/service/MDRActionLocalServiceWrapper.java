@@ -313,10 +313,11 @@ public class MDRActionLocalServiceWrapper
 		getActions(
 			long ruleGroupInstanceId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.mobile.device.rules.model.MDRAction> obc) {
+				<com.liferay.mobile.device.rules.model.MDRAction>
+					orderByComparator) {
 
 		return _mdrActionLocalService.getActions(
-			ruleGroupInstanceId, start, end, obc);
+			ruleGroupInstanceId, start, end, orderByComparator);
 	}
 
 	@Override

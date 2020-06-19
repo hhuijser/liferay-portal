@@ -486,7 +486,8 @@ public class AssetCategoryServiceHttp {
 				HttpPrincipal httpPrincipal, long parentCategoryId, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetCategory> obc)
+					<com.liferay.asset.kernel.model.AssetCategory>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -495,7 +496,7 @@ public class AssetCategoryServiceHttp {
 				_getChildCategoriesParameterTypes11);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, parentCategoryId, start, end, obc);
+				methodKey, parentCategoryId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -571,7 +572,8 @@ public class AssetCategoryServiceHttp {
 				HttpPrincipal httpPrincipal, long vocabularyId, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetCategory> obc)
+					<com.liferay.asset.kernel.model.AssetCategory>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -580,7 +582,7 @@ public class AssetCategoryServiceHttp {
 				_getVocabularyCategoriesParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, vocabularyId, start, end, obc);
+				methodKey, vocabularyId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -616,7 +618,8 @@ public class AssetCategoryServiceHttp {
 				HttpPrincipal httpPrincipal, long parentCategoryId,
 				long vocabularyId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetCategory> obc)
+					<com.liferay.asset.kernel.model.AssetCategory>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -625,7 +628,8 @@ public class AssetCategoryServiceHttp {
 				_getVocabularyCategoriesParameterTypes14);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, parentCategoryId, vocabularyId, start, end, obc);
+				methodKey, parentCategoryId, vocabularyId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -661,7 +665,8 @@ public class AssetCategoryServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, long parentCategoryId,
 			long vocabularyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetCategory> obc) {
+				<com.liferay.asset.kernel.model.AssetCategory>
+					orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -670,7 +675,7 @@ public class AssetCategoryServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, parentCategoryId, vocabularyId, start, end,
-				obc);
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -699,7 +704,8 @@ public class AssetCategoryServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String name,
 			long vocabularyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetCategory> obc) {
+				<com.liferay.asset.kernel.model.AssetCategory>
+					orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -707,7 +713,8 @@ public class AssetCategoryServiceHttp {
 				_getVocabularyCategoriesParameterTypes16);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, name, vocabularyId, start, end, obc);
+				methodKey, groupId, name, vocabularyId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -834,7 +841,8 @@ public class AssetCategoryServiceHttp {
 				HttpPrincipal httpPrincipal, long vocabularyId, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetCategory> obc)
+					<com.liferay.asset.kernel.model.AssetCategory>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -844,7 +852,7 @@ public class AssetCategoryServiceHttp {
 				_getVocabularyCategoriesDisplayParameterTypes20);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, vocabularyId, start, end, obc);
+				methodKey, vocabularyId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -880,7 +888,8 @@ public class AssetCategoryServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, String name,
 				long vocabularyId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.asset.kernel.model.AssetCategory> obc)
+					<com.liferay.asset.kernel.model.AssetCategory>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -890,7 +899,8 @@ public class AssetCategoryServiceHttp {
 				_getVocabularyCategoriesDisplayParameterTypes21);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, name, vocabularyId, start, end, obc);
+				methodKey, groupId, name, vocabularyId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -926,7 +936,8 @@ public class AssetCategoryServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, long vocabularyId,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetCategory> obc) {
+				<com.liferay.asset.kernel.model.AssetCategory>
+					orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -934,7 +945,8 @@ public class AssetCategoryServiceHttp {
 				_getVocabularyRootCategoriesParameterTypes22);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, vocabularyId, start, end, obc);
+				methodKey, groupId, vocabularyId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1039,7 +1051,8 @@ public class AssetCategoryServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, String keywords,
 			long vocabularyId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetCategory> obc) {
+				<com.liferay.asset.kernel.model.AssetCategory>
+					orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -1047,7 +1060,8 @@ public class AssetCategoryServiceHttp {
 				_searchParameterTypes25);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, keywords, vocabularyId, start, end, obc);
+				methodKey, groupId, keywords, vocabularyId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

@@ -83,9 +83,11 @@ public class PasswordPolicyServiceWrapper
 		search(
 			long companyId, java.lang.String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.PasswordPolicy> obc) {
+				<com.liferay.portal.kernel.model.PasswordPolicy>
+					orderByComparator) {
 
-		return _passwordPolicyService.search(companyId, name, start, end, obc);
+		return _passwordPolicyService.search(
+			companyId, name, start, end, orderByComparator);
 	}
 
 	@Override

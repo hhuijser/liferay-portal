@@ -360,7 +360,7 @@ public interface MDRRuleGroupLocalService
 	public List<MDRRuleGroup> searchByKeywords(
 		long groupId, String keywords, LinkedHashMap<String, Object> params,
 		boolean andOperator, int start, int end,
-		OrderByComparator<MDRRuleGroup> obc);
+		OrderByComparator<MDRRuleGroup> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchByKeywordsCount(

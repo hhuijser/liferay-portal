@@ -645,7 +645,7 @@ public class MBCategoryServiceHttp {
 	public static java.util.List<Object> getCategoriesAndThreads(
 		HttpPrincipal httpPrincipal, long groupId, long categoryId, int status,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<?> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -653,7 +653,8 @@ public class MBCategoryServiceHttp {
 				_getCategoriesAndThreadsParameterTypes16);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, categoryId, status, start, end, obc);
+				methodKey, groupId, categoryId, status, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

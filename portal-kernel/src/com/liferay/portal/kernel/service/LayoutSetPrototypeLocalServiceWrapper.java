@@ -392,10 +392,11 @@ public class LayoutSetPrototypeLocalServiceWrapper
 		search(
 			long companyId, java.lang.Boolean active, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.LayoutSetPrototype> obc) {
+				<com.liferay.portal.kernel.model.LayoutSetPrototype>
+					orderByComparator) {
 
 		return _layoutSetPrototypeLocalService.search(
-			companyId, active, start, end, obc);
+			companyId, active, start, end, orderByComparator);
 	}
 
 	@Override

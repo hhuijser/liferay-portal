@@ -632,21 +632,22 @@ public class DLAppServiceUtil {
 	 * @param folderId the primary key of the file entry's folder
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the file entries (optionally
+	 * @param orderByComparator the comparator to order the file entries (optionally
 	 <code>null</code>)
 	 * @return the range of file entries in the folder ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static java.util.List
 		<com.liferay.portal.kernel.repository.model.FileEntry> getFileEntries(
 				long repositoryId, long folderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFileEntries(
-			repositoryId, folderId, start, end, obc);
+			repositoryId, folderId, start, end, orderByComparator);
 	}
 
 	/**
@@ -698,7 +699,7 @@ public class DLAppServiceUtil {
 	 * @param fileEntryTypeId the primary key of the file entry type
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the results by (optionally
+	 * @param orderByComparator the comparator to order the results by (optionally
 	 <code>null</code>)
 	 * @return the range of file entries with the file entry type in the folder
 	 ordered by <code>null</code>
@@ -709,11 +710,13 @@ public class DLAppServiceUtil {
 				long repositoryId, long folderId, long fileEntryTypeId,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFileEntries(
-			repositoryId, folderId, fileEntryTypeId, start, end, obc);
+			repositoryId, folderId, fileEntryTypeId, start, end,
+			orderByComparator);
 	}
 
 	public static java.util.List
@@ -729,11 +732,12 @@ public class DLAppServiceUtil {
 				long repositoryId, long folderId, String[] mimeTypes, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFileEntries(
-			repositoryId, folderId, mimeTypes, start, end, obc);
+			repositoryId, folderId, mimeTypes, start, end, orderByComparator);
 	}
 
 	/**
@@ -1033,10 +1037,10 @@ public class DLAppServiceUtil {
 	 third-party repositories
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the folders (optionally
+	 * @param orderByComparator the comparator to order the folders (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 comparator <code>obc</code>
+	 comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static java.util.List
@@ -1044,11 +1048,13 @@ public class DLAppServiceUtil {
 				long repositoryId, long parentFolderId,
 				boolean includeMountFolders, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFolders(
-			repositoryId, parentFolderId, includeMountFolders, start, end, obc);
+			repositoryId, parentFolderId, includeMountFolders, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -1071,10 +1077,10 @@ public class DLAppServiceUtil {
 	 third-party repositories
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the folders (optionally
+	 * @param orderByComparator the comparator to order the folders (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 comparator <code>obc</code>
+	 comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static java.util.List
@@ -1082,12 +1088,13 @@ public class DLAppServiceUtil {
 				long repositoryId, long parentFolderId, int status,
 				boolean includeMountFolders, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFolders(
 			repositoryId, parentFolderId, status, includeMountFolders, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	/**
@@ -1137,21 +1144,22 @@ public class DLAppServiceUtil {
 	 * @param parentFolderId the primary key of the folder's parent folder
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the folders (optionally
+	 * @param orderByComparator the comparator to order the folders (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder ordered by
-	 comparator <code>obc</code>
+	 comparator <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static java.util.List
 		<com.liferay.portal.kernel.repository.model.Folder> getFolders(
 				long repositoryId, long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFolders(
-			repositoryId, parentFolderId, start, end, obc);
+			repositoryId, parentFolderId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1208,23 +1216,24 @@ public class DLAppServiceUtil {
 	 third-party repositories
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the results (optionally
+	 * @param orderByComparator the comparator to order the results (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders, file entries, and file
 	 shortcuts in the parent folder ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static java.util.List<Object>
 			getFoldersAndFileEntriesAndFileShortcuts(
 				long repositoryId, long folderId, int status,
 				boolean includeMountFolders, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFoldersAndFileEntriesAndFileShortcuts(
 			repositoryId, folderId, status, includeMountFolders, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	public static java.util.List<Object>
@@ -1232,12 +1241,13 @@ public class DLAppServiceUtil {
 				long repositoryId, long folderId, int status,
 				String[] mimeTypes, boolean includeMountFolders,
 				boolean includeOwner, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFoldersAndFileEntriesAndFileShortcuts(
 			repositoryId, folderId, status, mimeTypes, includeMountFolders,
-			includeOwner, start, end, obc);
+			includeOwner, start, end, orderByComparator);
 	}
 
 	public static java.util.List<Object>
@@ -1245,12 +1255,13 @@ public class DLAppServiceUtil {
 				long repositoryId, long folderId, int status,
 				String[] mimeTypes, boolean includeMountFolders, int start,
 				int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getFoldersAndFileEntriesAndFileShortcuts(
 			repositoryId, folderId, status, mimeTypes, includeMountFolders,
-			start, end, obc);
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -1421,10 +1432,10 @@ public class DLAppServiceUtil {
 	 (optionally <code>0</code>)
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the file entries (optionally
+	 * @param orderByComparator the comparator to order the file entries (optionally
 	 <code>null</code>)
 	 * @return the range of matching file entries ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static java.util.List
@@ -1433,11 +1444,11 @@ public class DLAppServiceUtil {
 					long groupId, long userId, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.portal.kernel.repository.model.FileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getGroupFileEntries(
-			groupId, userId, start, end, obc);
+			groupId, userId, start, end, orderByComparator);
 	}
 
 	/**
@@ -1498,10 +1509,10 @@ public class DLAppServiceUtil {
 	 search
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the file entries (optionally
+	 * @param orderByComparator the comparator to order the file entries (optionally
 	 <code>null</code>)
 	 * @return the range of matching file entries ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static java.util.List
@@ -1511,11 +1522,11 @@ public class DLAppServiceUtil {
 					int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.portal.kernel.repository.model.FileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getGroupFileEntries(
-			groupId, userId, rootFolderId, start, end, obc);
+			groupId, userId, rootFolderId, start, end, orderByComparator);
 	}
 
 	public static java.util.List
@@ -1525,11 +1536,12 @@ public class DLAppServiceUtil {
 					String[] mimeTypes, int status, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.portal.kernel.repository.model.FileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getGroupFileEntries(
-			groupId, userId, rootFolderId, mimeTypes, status, start, end, obc);
+			groupId, userId, rootFolderId, mimeTypes, status, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -1649,22 +1661,23 @@ public class DLAppServiceUtil {
 	 * @param parentFolderId the primary key of the folder's parent folder
 	 * @param start the lower bound of the range of results
 	 * @param end the upper bound of the range of results (not inclusive)
-	 * @param obc the comparator to order the folders (optionally
+	 * @param orderByComparator the comparator to order the folders (optionally
 	 <code>null</code>)
 	 * @return the range of immediate subfolders of the parent folder that are
 	 used for mounting third-party repositories ordered by comparator
-	 <code>obc</code>
+	 <code>orderByComparator</code>
 	 * @throws PortalException if a portal exception occurred
 	 */
 	public static java.util.List
 		<com.liferay.portal.kernel.repository.model.Folder> getMountFolders(
 				long repositoryId, long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getMountFolders(
-			repositoryId, parentFolderId, start, end, obc);
+			repositoryId, parentFolderId, start, end, orderByComparator);
 	}
 
 	/**

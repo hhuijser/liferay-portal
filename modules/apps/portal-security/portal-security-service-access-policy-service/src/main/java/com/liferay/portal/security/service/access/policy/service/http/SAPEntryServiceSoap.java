@@ -184,7 +184,7 @@ public class SAPEntryServiceSoap {
 					long companyId, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.portal.security.service.access.policy.
-							model.SAPEntry> obc)
+							model.SAPEntry> orderByComparator)
 			throws RemoteException {
 
 		try {
@@ -192,7 +192,7 @@ public class SAPEntryServiceSoap {
 				<com.liferay.portal.security.service.access.policy.model.
 					SAPEntry> returnValue =
 						SAPEntryServiceUtil.getCompanySAPEntries(
-							companyId, start, end, obc);
+							companyId, start, end, orderByComparator);
 
 			return com.liferay.portal.security.service.access.policy.model.
 				SAPEntrySoap.toSoapModels(returnValue);

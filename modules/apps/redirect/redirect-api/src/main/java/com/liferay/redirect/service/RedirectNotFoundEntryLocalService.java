@@ -238,17 +238,17 @@ public interface RedirectNotFoundEntryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<RedirectNotFoundEntry> getRedirectNotFoundEntries(
 		long groupId, Boolean ignored, Date minModifiedDate, int start, int end,
-		OrderByComparator<RedirectNotFoundEntry> obc);
+		OrderByComparator<RedirectNotFoundEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<RedirectNotFoundEntry> getRedirectNotFoundEntries(
 		long groupId, Date minModifiedDate, int start, int end,
-		OrderByComparator<RedirectNotFoundEntry> obc);
+		OrderByComparator<RedirectNotFoundEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<RedirectNotFoundEntry> getRedirectNotFoundEntries(
 		long groupId, int start, int end,
-		OrderByComparator<RedirectNotFoundEntry> obc);
+		OrderByComparator<RedirectNotFoundEntry> orderByComparator);
 
 	/**
 	 * Returns the number of redirect not found entries.

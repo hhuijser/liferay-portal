@@ -468,10 +468,11 @@ public class AssetVocabularyLocalServiceUtil {
 		getGroupVocabularies(
 			long groupId, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetVocabulary> obc) {
+				<com.liferay.asset.kernel.model.AssetVocabulary>
+					orderByComparator) {
 
 		return getService().getGroupVocabularies(
-			groupId, name, start, end, obc);
+			groupId, name, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetVocabulary>

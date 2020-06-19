@@ -960,14 +960,14 @@ public interface UserLocalService
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getGroupUsers(
 			long groupId, int status, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -980,13 +980,13 @@ public interface UserLocalService
 	 *
 	 * @param groupId the primary key of the group
 	 * @param status the workflow status
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getGroupUsers(
-			long groupId, int status, OrderByComparator<User> obc)
+			long groupId, int status, OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1008,7 +1008,8 @@ public interface UserLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getInheritedRoleUsers(
-			long roleId, int start, int end, OrderByComparator<User> obc)
+			long roleId, int start, int end,
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -1070,14 +1071,14 @@ public interface UserLocalService
 	 * @param status the workflow status
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getOrganizationUsers(
 			long organizationId, int status, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1090,13 +1091,14 @@ public interface UserLocalService
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param status the workflow status
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getOrganizationUsers(
-			long organizationId, int status, OrderByComparator<User> obc)
+			long organizationId, int status,
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -1176,7 +1178,7 @@ public interface UserLocalService
 	public List<User> getSocialUsers(
 			long userId, int socialRelationType,
 			String socialRelationTypeComparator, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -1198,7 +1200,7 @@ public interface UserLocalService
 	 types can be found in {@link SocialRelationConstants}.
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the ordered range of users with a mutual social relation of the
 	 type with the user
@@ -1206,7 +1208,7 @@ public interface UserLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getSocialUsers(
 			long userId1, long userId2, int socialRelationType, int start,
-			int end, OrderByComparator<User> obc)
+			int end, OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -1226,7 +1228,7 @@ public interface UserLocalService
 	 * @param userId2 the primary key of the second user
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the ordered range of users with a mutual social relation with the
 	 user
@@ -1234,7 +1236,7 @@ public interface UserLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getSocialUsers(
 			long userId1, long userId2, int start, int end,
-			OrderByComparator<User> obc)
+			OrderByComparator<User> orderByComparator)
 		throws PortalException;
 
 	/**
@@ -1489,7 +1491,7 @@ public interface UserLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getUsers(
 		long companyId, boolean defaultUser, int status, int start, int end,
-		OrderByComparator<User> obc);
+		OrderByComparator<User> orderByComparator);
 
 	/**
 	 * Returns the number of users.
@@ -1606,7 +1608,7 @@ public interface UserLocalService
 	 com.liferay.portal.kernel.service.persistence.UserFinder}.
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 * @see com.liferay.portal.kernel.service.persistence.UserFinder
@@ -1615,7 +1617,7 @@ public interface UserLocalService
 	public List<User> search(
 		long companyId, String keywords, int status,
 		LinkedHashMap<String, Object> params, int start, int end,
-		OrderByComparator<User> obc);
+		OrderByComparator<User> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the users who match the keywords and
@@ -1686,7 +1688,7 @@ public interface UserLocalService
 	 or the last name 'smith'&quot;.
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
-	 * @param obc the comparator to order the users by (optionally
+	 * @param orderByComparator the comparator to order the users by (optionally
 	 <code>null</code>)
 	 * @return the matching users
 	 * @see com.liferay.portal.kernel.service.persistence.UserFinder
@@ -1696,7 +1698,7 @@ public interface UserLocalService
 		long companyId, String firstName, String middleName, String lastName,
 		String screenName, String emailAddress, int status,
 		LinkedHashMap<String, Object> params, boolean andSearch, int start,
-		int end, OrderByComparator<User> obc);
+		int end, OrderByComparator<User> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the users with the status, and whose
@@ -1808,7 +1810,7 @@ public interface UserLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> searchSocial(
 		long companyId, long[] groupIds, String keywords, int start, int end,
-		OrderByComparator<User> obc);
+		OrderByComparator<User> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> searchSocial(

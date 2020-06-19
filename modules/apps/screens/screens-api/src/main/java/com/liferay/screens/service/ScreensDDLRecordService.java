@@ -61,13 +61,13 @@ public interface ScreensDDLRecordService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JSONArray getDDLRecords(
 			long ddlRecordSetId, Locale locale, int start, int end,
-			OrderByComparator<DDLRecord> obc)
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JSONArray getDDLRecords(
 			long ddlRecordSetId, long userId, Locale locale, int start, int end,
-			OrderByComparator<DDLRecord> obc)
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

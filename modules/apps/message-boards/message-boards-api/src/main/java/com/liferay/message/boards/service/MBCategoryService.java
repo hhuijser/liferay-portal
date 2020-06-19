@@ -128,7 +128,7 @@ public interface MBCategoryService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Object> getCategoriesAndThreads(
 		long groupId, long categoryId, int status, int start, int end,
-		OrderByComparator<?> obc);
+		OrderByComparator<?> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Object> getCategoriesAndThreads(

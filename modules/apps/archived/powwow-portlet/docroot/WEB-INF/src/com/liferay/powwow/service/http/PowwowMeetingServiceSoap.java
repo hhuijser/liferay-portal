@@ -101,13 +101,13 @@ public class PowwowMeetingServiceSoap {
 			getPowwowMeetings(
 				long groupId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.powwow.model.PowwowMeeting> obc)
+					<com.liferay.powwow.model.PowwowMeeting> orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.powwow.model.PowwowMeeting> returnValue =
 				PowwowMeetingServiceUtil.getPowwowMeetings(
-					groupId, start, end, obc);
+					groupId, start, end, orderByComparator);
 
 			return com.liferay.powwow.model.PowwowMeetingSoap.toSoapModels(
 				returnValue);

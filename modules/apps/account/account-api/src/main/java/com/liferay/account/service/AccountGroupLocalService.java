@@ -229,7 +229,7 @@ public interface AccountGroupLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AccountGroup> getAccountGroups(
 		long companyId, int start, int end,
-		OrderByComparator<AccountGroup> obc);
+		OrderByComparator<AccountGroup> orderByComparator);
 
 	/**
 	 * Returns the number of account groups.
@@ -263,7 +263,7 @@ public interface AccountGroupLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public BaseModelSearchResult<AccountGroup> searchAccountGroups(
 		long companyId, String keywords, int start, int end,
-		OrderByComparator<AccountGroup> obc);
+		OrderByComparator<AccountGroup> orderByComparator);
 
 	/**
 	 * Updates the account group in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

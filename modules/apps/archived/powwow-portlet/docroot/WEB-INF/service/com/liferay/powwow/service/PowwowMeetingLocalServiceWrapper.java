@@ -330,10 +330,10 @@ public class PowwowMeetingLocalServiceWrapper
 		getPowwowMeetings(
 			long groupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.powwow.model.PowwowMeeting> obc) {
+				<com.liferay.powwow.model.PowwowMeeting> orderByComparator) {
 
 		return _powwowMeetingLocalService.getPowwowMeetings(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override

@@ -465,10 +465,12 @@ public class MDRRuleGroupLocalServiceUtil {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.mobile.device.rules.model.MDRRuleGroup> obc) {
+				<com.liferay.mobile.device.rules.model.MDRRuleGroup>
+					orderByComparator) {
 
 		return getService().searchByKeywords(
-			groupId, keywords, params, andOperator, start, end, obc);
+			groupId, keywords, params, andOperator, start, end,
+			orderByComparator);
 	}
 
 	public static int searchByKeywordsCount(

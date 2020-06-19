@@ -87,10 +87,12 @@ public class RedirectEntryServiceUtil {
 			getRedirectEntries(
 				long groupId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.redirect.model.RedirectEntry> obc)
+					<com.liferay.redirect.model.RedirectEntry>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().getRedirectEntries(groupId, start, end, obc);
+		return getService().getRedirectEntries(
+			groupId, start, end, orderByComparator);
 	}
 
 	public static int getRedirectEntriesCount(long groupId)

@@ -588,21 +588,24 @@ public class DLFolderLocalServiceWrapper
 	public java.util.List<DLFolder> getFolders(
 		long groupId, long parentFolderId, boolean includeMountfolders,
 		int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFolder> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFolder>
+			orderByComparator) {
 
 		return _dlFolderLocalService.getFolders(
 			groupId, parentFolderId, includeMountfolders, status, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	@Override
 	public java.util.List<DLFolder> getFolders(
 		long groupId, long parentFolderId, boolean includeMountfolders,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFolder> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFolder>
+			orderByComparator) {
 
 		return _dlFolderLocalService.getFolders(
-			groupId, parentFolderId, includeMountfolders, start, end, obc);
+			groupId, parentFolderId, includeMountfolders, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -615,20 +618,22 @@ public class DLFolderLocalServiceWrapper
 	public java.util.List<DLFolder> getFolders(
 		long groupId, long parentFolderId, int status,
 		boolean includeMountfolders, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFolder> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFolder>
+			orderByComparator) {
 
 		return _dlFolderLocalService.getFolders(
 			groupId, parentFolderId, status, includeMountfolders, start, end,
-			obc);
+			orderByComparator);
 	}
 
 	@Override
 	public java.util.List<DLFolder> getFolders(
 		long groupId, long parentFolderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFolder> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFolder>
+			orderByComparator) {
 
 		return _dlFolderLocalService.getFolders(
-			groupId, parentFolderId, start, end, obc);
+			groupId, parentFolderId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -721,10 +726,11 @@ public class DLFolderLocalServiceWrapper
 	@Override
 	public java.util.List<DLFolder> getMountFolders(
 		long groupId, long parentFolderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<DLFolder> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<DLFolder>
+			orderByComparator) {
 
 		return _dlFolderLocalService.getMountFolders(
-			groupId, parentFolderId, start, end, obc);
+			groupId, parentFolderId, start, end, orderByComparator);
 	}
 
 	@Override

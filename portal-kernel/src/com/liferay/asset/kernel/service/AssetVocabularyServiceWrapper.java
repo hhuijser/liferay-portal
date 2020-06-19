@@ -137,29 +137,31 @@ public class AssetVocabularyServiceWrapper
 	public java.util.List<AssetVocabulary> getGroupVocabularies(
 			long groupId, boolean createDefaultVocabulary, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator<AssetVocabulary>
-				obc)
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _assetVocabularyService.getGroupVocabularies(
-			groupId, createDefaultVocabulary, start, end, obc);
+			groupId, createDefaultVocabulary, start, end, orderByComparator);
 	}
 
 	@Override
 	public java.util.List<AssetVocabulary> getGroupVocabularies(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<AssetVocabulary> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<AssetVocabulary>
+			orderByComparator) {
 
 		return _assetVocabularyService.getGroupVocabularies(
-			groupId, start, end, obc);
+			groupId, start, end, orderByComparator);
 	}
 
 	@Override
 	public java.util.List<AssetVocabulary> getGroupVocabularies(
 		long groupId, String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<AssetVocabulary> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<AssetVocabulary>
+			orderByComparator) {
 
 		return _assetVocabularyService.getGroupVocabularies(
-			groupId, name, start, end, obc);
+			groupId, name, start, end, orderByComparator);
 	}
 
 	@Override
@@ -190,11 +192,11 @@ public class AssetVocabularyServiceWrapper
 				long groupId, String name, int start, int end,
 				boolean addDefaultVocabulary,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<AssetVocabulary> obc)
+					<AssetVocabulary> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _assetVocabularyService.getGroupVocabulariesDisplay(
-			groupId, name, start, end, addDefaultVocabulary, obc);
+			groupId, name, start, end, addDefaultVocabulary, orderByComparator);
 	}
 
 	@Override
@@ -202,11 +204,11 @@ public class AssetVocabularyServiceWrapper
 			getGroupVocabulariesDisplay(
 				long groupId, String name, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<AssetVocabulary> obc)
+					<AssetVocabulary> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _assetVocabularyService.getGroupVocabulariesDisplay(
-			groupId, name, start, end, obc);
+			groupId, name, start, end, orderByComparator);
 	}
 
 	/**

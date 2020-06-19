@@ -584,7 +584,7 @@ public class BlogsEntryServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, int status, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsEntry> obc) {
+				<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -592,7 +592,7 @@ public class BlogsEntryServiceHttp {
 				_getGroupEntriesParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, status, start, end, obc);
+				methodKey, groupId, status, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -774,7 +774,7 @@ public class BlogsEntryServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, long userId, int status,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsEntry> obc) {
+				<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -782,7 +782,8 @@ public class BlogsEntryServiceHttp {
 				_getGroupUserEntriesParameterTypes18);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, userId, status, start, end, obc);
+				methodKey, groupId, userId, status, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -811,7 +812,7 @@ public class BlogsEntryServiceHttp {
 			HttpPrincipal httpPrincipal, long groupId, long userId,
 			int[] statuses, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.blogs.model.BlogsEntry> obc) {
+				<com.liferay.blogs.model.BlogsEntry> orderByComparator) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -819,7 +820,8 @@ public class BlogsEntryServiceHttp {
 				_getGroupUserEntriesParameterTypes19);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, userId, statuses, start, end, obc);
+				methodKey, groupId, userId, statuses, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

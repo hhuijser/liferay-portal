@@ -1193,7 +1193,7 @@ public class GroupServiceHttp {
 			String keywords, java.util.LinkedHashMap<String, Object> params,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Group> obc)
+				<com.liferay.portal.kernel.model.Group> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1202,7 +1202,7 @@ public class GroupServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId, classNameIds, keywords, params, start,
-				end, obc);
+				end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1239,7 +1239,7 @@ public class GroupServiceHttp {
 			java.util.LinkedHashMap<String, Object> params, boolean andOperator,
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.portal.kernel.model.Group> obc)
+				<com.liferay.portal.kernel.model.Group> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1248,7 +1248,7 @@ public class GroupServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId, classNameIds, name, description, params,
-				andOperator, start, end, obc);
+				andOperator, start, end, orderByComparator);
 
 			Object returnObj = null;
 

@@ -716,11 +716,13 @@ public class LayoutServiceWrapper
 	public java.util.List<Layout> getLayouts(
 			long groupId, boolean privateLayout, String keywords,
 			String[] types, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator<Layout> obc)
+			com.liferay.portal.kernel.util.OrderByComparator<Layout>
+				orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutService.getLayouts(
-			groupId, privateLayout, keywords, types, start, end, obc);
+			groupId, privateLayout, keywords, types, start, end,
+			orderByComparator);
 	}
 
 	@Override

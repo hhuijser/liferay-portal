@@ -1130,7 +1130,7 @@ public class LayoutServiceHttp {
 				boolean privateLayout, String keywords, String[] types,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.Layout> obc)
+					<com.liferay.portal.kernel.model.Layout> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1140,7 +1140,7 @@ public class LayoutServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, privateLayout, keywords, types, start, end,
-				obc);
+				orderByComparator);
 
 			Object returnObj = null;
 

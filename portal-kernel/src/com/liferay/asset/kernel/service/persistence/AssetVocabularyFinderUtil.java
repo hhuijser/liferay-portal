@@ -34,18 +34,22 @@ public class AssetVocabularyFinderUtil {
 		filterFindByG_N(
 			long groupId, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetVocabulary> obc) {
+				<com.liferay.asset.kernel.model.AssetVocabulary>
+					orderByComparator) {
 
-		return getFinder().filterFindByG_N(groupId, name, start, end, obc);
+		return getFinder().filterFindByG_N(
+			groupId, name, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetVocabulary>
 		findByG_N(
 			long groupId, String name, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.asset.kernel.model.AssetVocabulary> obc) {
+				<com.liferay.asset.kernel.model.AssetVocabulary>
+					orderByComparator) {
 
-		return getFinder().findByG_N(groupId, name, start, end, obc);
+		return getFinder().findByG_N(
+			groupId, name, start, end, orderByComparator);
 	}
 
 	public static AssetVocabularyFinder getFinder() {

@@ -278,9 +278,9 @@ public class PowwowServerLocalServiceUtil {
 		getPowwowServers(
 			int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.powwow.model.PowwowServer> obc) {
+				<com.liferay.powwow.model.PowwowServer> orderByComparator) {
 
-		return getService().getPowwowServers(start, end, obc);
+		return getService().getPowwowServers(start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.powwow.model.PowwowServer>

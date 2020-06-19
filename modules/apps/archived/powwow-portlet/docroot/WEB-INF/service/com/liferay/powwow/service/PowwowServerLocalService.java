@@ -236,7 +236,7 @@ public interface PowwowServerLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<PowwowServer> getPowwowServers(
-		int start, int end, OrderByComparator<PowwowServer> obc);
+		int start, int end, OrderByComparator<PowwowServer> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<PowwowServer> getPowwowServers(

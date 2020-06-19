@@ -433,9 +433,11 @@ public class MDRRuleLocalServiceUtil {
 		getRules(
 			long ruleGroupId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.mobile.device.rules.model.MDRRule> obc) {
+				<com.liferay.mobile.device.rules.model.MDRRule>
+					orderByComparator) {
 
-		return getService().getRules(ruleGroupId, start, end, obc);
+		return getService().getRules(
+			ruleGroupId, start, end, orderByComparator);
 	}
 
 	public static int getRulesCount(long ruleGroupId) {

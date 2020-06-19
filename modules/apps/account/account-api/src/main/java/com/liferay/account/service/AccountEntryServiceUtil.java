@@ -87,11 +87,11 @@ public class AccountEntryServiceUtil {
 			getAccountEntries(
 				long companyId, int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.account.model.AccountEntry> obc)
+					<com.liferay.account.model.AccountEntry> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getAccountEntries(
-			companyId, status, start, end, obc);
+			companyId, status, start, end, orderByComparator);
 	}
 
 	/**

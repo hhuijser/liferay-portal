@@ -521,15 +521,15 @@ public interface UserGroupLocalService
 	 * @param start the lower bound of the range of user groups to return
 	 * @param end the upper bound of the range of user groups to return (not
 	 inclusive)
-	 * @param obc the comparator to order the user groups (optionally
+	 * @param orderByComparator the comparator to order the user groups (optionally
 	 <code>null</code>)
-	 * @return the matching user groups ordered by comparator <code>obc</code>
+	 * @return the matching user groups ordered by comparator <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.UserGroupFinder
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserGroup> search(
 		long companyId, String keywords, LinkedHashMap<String, Object> params,
-		int start, int end, OrderByComparator<UserGroup> obc);
+		int start, int end, OrderByComparator<UserGroup> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the user groups that match the keywords,
@@ -589,16 +589,16 @@ public interface UserGroupLocalService
 	 * @param start the lower bound of the range of user groups to return
 	 * @param end the upper bound of the range of user groups to return (not
 	 inclusive)
-	 * @param obc the comparator to order the user groups (optionally
+	 * @param orderByComparator the comparator to order the user groups (optionally
 	 <code>null</code>)
-	 * @return the matching user groups ordered by comparator <code>obc</code>
+	 * @return the matching user groups ordered by comparator <code>orderByComparator</code>
 	 * @see com.liferay.portal.kernel.service.persistence.UserGroupFinder
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserGroup> search(
 		long companyId, String name, String description,
 		LinkedHashMap<String, Object> params, boolean andOperator, int start,
-		int end, OrderByComparator<UserGroup> obc);
+		int end, OrderByComparator<UserGroup> orderByComparator);
 
 	/**
 	 * Returns an ordered range of all the user groups that match the name and

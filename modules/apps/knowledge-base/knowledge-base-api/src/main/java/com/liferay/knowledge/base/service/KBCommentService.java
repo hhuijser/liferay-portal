@@ -69,12 +69,13 @@ public interface KBCommentService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
 			long groupId, int status, int start, int end,
-			OrderByComparator<KBComment> obc)
+			OrderByComparator<KBComment> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
-			long groupId, int start, int end, OrderByComparator<KBComment> obc)
+			long groupId, int start, int end,
+			OrderByComparator<KBComment> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -86,13 +87,13 @@ public interface KBCommentService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
 			long groupId, String className, long classPK, int status, int start,
-			int end, OrderByComparator<KBComment> obc)
+			int end, OrderByComparator<KBComment> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(
 			long groupId, String className, long classPK, int start, int end,
-			OrderByComparator<KBComment> obc)
+			OrderByComparator<KBComment> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

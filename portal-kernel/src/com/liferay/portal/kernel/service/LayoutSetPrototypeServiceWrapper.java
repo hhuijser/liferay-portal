@@ -86,10 +86,12 @@ public class LayoutSetPrototypeServiceWrapper
 			search(
 				long companyId, java.lang.Boolean active,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.LayoutSetPrototype> obc)
+					<com.liferay.portal.kernel.model.LayoutSetPrototype>
+						orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _layoutSetPrototypeService.search(companyId, active, obc);
+		return _layoutSetPrototypeService.search(
+			companyId, active, orderByComparator);
 	}
 
 	@Override

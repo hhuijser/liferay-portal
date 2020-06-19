@@ -987,7 +987,8 @@ public class DLAppServiceHttp {
 				HttpPrincipal httpPrincipal, long repositoryId, long folderId,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -996,7 +997,8 @@ public class DLAppServiceHttp {
 				_getFileEntriesParameterTypes23);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, repositoryId, folderId, start, end, obc);
+				methodKey, repositoryId, folderId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1121,7 +1123,8 @@ public class DLAppServiceHttp {
 				HttpPrincipal httpPrincipal, long repositoryId, long folderId,
 				long fileEntryTypeId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1131,7 +1134,7 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, repositoryId, folderId, fileEntryTypeId, start, end,
-				obc);
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1212,7 +1215,8 @@ public class DLAppServiceHttp {
 				HttpPrincipal httpPrincipal, long repositoryId, long folderId,
 				String[] mimeTypes, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.FileEntry> obc)
+					<com.liferay.portal.kernel.repository.model.FileEntry>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1221,7 +1225,8 @@ public class DLAppServiceHttp {
 				_getFileEntriesParameterTypes28);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, repositoryId, folderId, mimeTypes, start, end, obc);
+				methodKey, repositoryId, folderId, mimeTypes, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1924,7 +1929,8 @@ public class DLAppServiceHttp {
 				long parentFolderId, boolean includeMountFolders, int start,
 				int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1934,7 +1940,7 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, repositoryId, parentFolderId, includeMountFolders,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1971,7 +1977,8 @@ public class DLAppServiceHttp {
 				long parentFolderId, int status, boolean includeMountFolders,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1981,7 +1988,7 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, repositoryId, parentFolderId, status,
-				includeMountFolders, start, end, obc);
+				includeMountFolders, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -2060,7 +2067,8 @@ public class DLAppServiceHttp {
 				HttpPrincipal httpPrincipal, long repositoryId,
 				long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -2069,7 +2077,8 @@ public class DLAppServiceHttp {
 				_getFoldersParameterTypes48);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, repositoryId, parentFolderId, start, end, obc);
+				methodKey, repositoryId, parentFolderId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -2148,7 +2157,8 @@ public class DLAppServiceHttp {
 			getFoldersAndFileEntriesAndFileShortcuts(
 				HttpPrincipal httpPrincipal, long repositoryId, long folderId,
 				int status, boolean includeMountFolders, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -2159,7 +2169,7 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, repositoryId, folderId, status, includeMountFolders,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -2194,7 +2204,8 @@ public class DLAppServiceHttp {
 				HttpPrincipal httpPrincipal, long repositoryId, long folderId,
 				int status, String[] mimeTypes, boolean includeMountFolders,
 				boolean includeOwner, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -2205,7 +2216,8 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, repositoryId, folderId, status, mimeTypes,
-				includeMountFolders, includeOwner, start, end, obc);
+				includeMountFolders, includeOwner, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -2240,7 +2252,8 @@ public class DLAppServiceHttp {
 				HttpPrincipal httpPrincipal, long repositoryId, long folderId,
 				int status, String[] mimeTypes, boolean includeMountFolders,
 				int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator<?> obc)
+				com.liferay.portal.kernel.util.OrderByComparator<?>
+					orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -2251,7 +2264,7 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, repositoryId, folderId, status, mimeTypes,
-				includeMountFolders, start, end, obc);
+				includeMountFolders, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -2626,7 +2639,7 @@ public class DLAppServiceHttp {
 					int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.portal.kernel.repository.model.FileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -2635,7 +2648,7 @@ public class DLAppServiceHttp {
 				_getGroupFileEntriesParameterTypes61);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, userId, start, end, obc);
+				methodKey, groupId, userId, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -2719,7 +2732,7 @@ public class DLAppServiceHttp {
 					long rootFolderId, int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.portal.kernel.repository.model.FileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -2728,7 +2741,8 @@ public class DLAppServiceHttp {
 				_getGroupFileEntriesParameterTypes63);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, userId, rootFolderId, start, end, obc);
+				methodKey, groupId, userId, rootFolderId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -2768,7 +2782,7 @@ public class DLAppServiceHttp {
 					int start, int end,
 					com.liferay.portal.kernel.util.OrderByComparator
 						<com.liferay.portal.kernel.repository.model.FileEntry>
-							obc)
+							orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -2778,7 +2792,7 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, userId, rootFolderId, mimeTypes, status,
-				start, end, obc);
+				start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -3023,7 +3037,8 @@ public class DLAppServiceHttp {
 				HttpPrincipal httpPrincipal, long repositoryId,
 				long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.repository.model.Folder> obc)
+					<com.liferay.portal.kernel.repository.model.Folder>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -3032,7 +3047,8 @@ public class DLAppServiceHttp {
 				_getMountFoldersParameterTypes70);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, repositoryId, parentFolderId, start, end, obc);
+				methodKey, repositoryId, parentFolderId, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 

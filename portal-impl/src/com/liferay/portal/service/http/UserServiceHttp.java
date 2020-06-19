@@ -807,7 +807,7 @@ public class UserServiceHttp {
 				HttpPrincipal httpPrincipal, long groupId, int status,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.User> obc)
+					<com.liferay.portal.kernel.model.User> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -816,7 +816,7 @@ public class UserServiceHttp {
 				_getGroupUsersParameterTypes18);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, status, start, end, obc);
+				methodKey, groupId, status, start, end, orderByComparator);
 
 			Object returnObj = null;
 
@@ -851,7 +851,7 @@ public class UserServiceHttp {
 			getGroupUsers(
 				HttpPrincipal httpPrincipal, long groupId, int status,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.User> obc)
+					<com.liferay.portal.kernel.model.User> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -860,7 +860,7 @@ public class UserServiceHttp {
 				_getGroupUsersParameterTypes19);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, status, obc);
+				methodKey, groupId, status, orderByComparator);
 
 			Object returnObj = null;
 
@@ -1190,7 +1190,7 @@ public class UserServiceHttp {
 				HttpPrincipal httpPrincipal, long organizationId, int status,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.User> obc)
+					<com.liferay.portal.kernel.model.User> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1199,7 +1199,8 @@ public class UserServiceHttp {
 				_getOrganizationUsersParameterTypes27);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, organizationId, status, start, end, obc);
+				methodKey, organizationId, status, start, end,
+				orderByComparator);
 
 			Object returnObj = null;
 
@@ -1234,7 +1235,7 @@ public class UserServiceHttp {
 			getOrganizationUsers(
 				HttpPrincipal httpPrincipal, long organizationId, int status,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.portal.kernel.model.User> obc)
+					<com.liferay.portal.kernel.model.User> orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -1243,7 +1244,7 @@ public class UserServiceHttp {
 				_getOrganizationUsersParameterTypes28);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, organizationId, status, obc);
+				methodKey, organizationId, status, orderByComparator);
 
 			Object returnObj = null;
 

@@ -500,7 +500,8 @@ public interface DDLRecordLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DDLRecord> getRecords(
-		long recordSetId, int start, int end, OrderByComparator<DDLRecord> obc);
+		long recordSetId, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator);
 
 	/**
 	 * Returns all the records matching the record set ID and user ID.
@@ -515,7 +516,7 @@ public interface DDLRecordLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DDLRecord> getRecords(
 		long recordSetId, long userId, int start, int end,
-		OrderByComparator<DDLRecord> obc);
+		OrderByComparator<DDLRecord> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getRecordsCount(long recordSetId);

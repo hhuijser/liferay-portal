@@ -241,14 +241,15 @@ public class DLFolderServiceSoap {
 				long groupId, long parentFolderId, boolean includeMountfolders,
 				int status, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.document.library.kernel.model.DLFolder>
 				returnValue = DLFolderServiceUtil.getFolders(
 					groupId, parentFolderId, includeMountfolders, status, start,
-					end, obc);
+					end, orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFolderSoap.
 				toSoapModels(returnValue);
@@ -271,14 +272,15 @@ public class DLFolderServiceSoap {
 				long groupId, long parentFolderId, int status,
 				boolean includeMountfolders, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.document.library.kernel.model.DLFolder>
 				returnValue = DLFolderServiceUtil.getFolders(
 					groupId, parentFolderId, status, includeMountfolders, start,
-					end, obc);
+					end, orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFolderSoap.
 				toSoapModels(returnValue);
@@ -294,13 +296,14 @@ public class DLFolderServiceSoap {
 			getFolders(
 				long groupId, long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.document.library.kernel.model.DLFolder>
 				returnValue = DLFolderServiceUtil.getFolders(
-					groupId, parentFolderId, start, end, obc);
+					groupId, parentFolderId, start, end, orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFolderSoap.
 				toSoapModels(returnValue);
@@ -485,13 +488,14 @@ public class DLFolderServiceSoap {
 			getMountFolders(
 				long groupId, long parentFolderId, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.document.library.kernel.model.DLFolder> obc)
+					<com.liferay.document.library.kernel.model.DLFolder>
+						orderByComparator)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.document.library.kernel.model.DLFolder>
 				returnValue = DLFolderServiceUtil.getMountFolders(
-					groupId, parentFolderId, start, end, obc);
+					groupId, parentFolderId, start, end, orderByComparator);
 
 			return com.liferay.document.library.kernel.model.DLFolderSoap.
 				toSoapModels(returnValue);

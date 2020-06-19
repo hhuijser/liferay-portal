@@ -451,21 +451,21 @@ public class JournalFeedLocalServiceUtil {
 	public static java.util.List<com.liferay.journal.model.JournalFeed> search(
 		long companyId, long groupId, String keywords, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.journal.model.JournalFeed> obc) {
+			<com.liferay.journal.model.JournalFeed> orderByComparator) {
 
 		return getService().search(
-			companyId, groupId, keywords, start, end, obc);
+			companyId, groupId, keywords, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.journal.model.JournalFeed> search(
 		long companyId, long groupId, String feedId, String name,
 		String description, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.journal.model.JournalFeed> obc) {
+			<com.liferay.journal.model.JournalFeed> orderByComparator) {
 
 		return getService().search(
 			companyId, groupId, feedId, name, description, andOperator, start,
-			end, obc);
+			end, orderByComparator);
 	}
 
 	public static int searchCount(

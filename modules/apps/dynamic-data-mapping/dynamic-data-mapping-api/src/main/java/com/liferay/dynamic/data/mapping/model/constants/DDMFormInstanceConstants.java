@@ -12,27 +12,13 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.model;
+package com.liferay.dynamic.data.mapping.model.constants;
 
 /**
- * @author     Bruno Basto
- * @author     Alexander Chow
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.dynamic.data.mapping.model.constants.DDMStructureConstants}
+ * @author Pedro Queiroz
  */
-@Deprecated
-public class DDMStructureConstants {
-
-	public static final long DEFAULT_PARENT_STRUCTURE_ID = 0;
-
-	public static final int TYPE_AUTO = 1;
-
-	public static final int TYPE_DEFAULT = 0;
-
-	public static final int TYPE_FRAGMENT = 2;
+public class DDMFormInstanceConstants {
 
 	public static final String VERSION_DEFAULT = "1.0";
-
-	public static final String XSD_NAME_RESERVED = "reserved";
 
 }

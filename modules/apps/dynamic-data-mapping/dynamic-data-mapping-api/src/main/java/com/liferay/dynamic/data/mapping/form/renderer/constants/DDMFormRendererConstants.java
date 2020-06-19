@@ -12,27 +12,26 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.model;
+package com.liferay.dynamic.data.mapping.form.renderer.constants;
+
+import com.liferay.petra.string.StringPool;
 
 /**
- * @author     Bruno Basto
- * @author     Alexander Chow
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.dynamic.data.mapping.model.constants.DDMStructureConstants}
+ * @author Marcellus Tavares
  */
-@Deprecated
-public class DDMStructureConstants {
+public class DDMFormRendererConstants {
 
-	public static final long DEFAULT_PARENT_STRUCTURE_ID = 0;
+	public static final String DDM_FORM_FIELD_LANGUAGE_ID_SEPARATOR =
+		StringPool.DOUBLE_DOLLAR;
 
-	public static final int TYPE_AUTO = 1;
+	public static final String DDM_FORM_FIELD_NAME_PREFIX = "ddm$$";
 
-	public static final int TYPE_DEFAULT = 0;
+	public static final String DDM_FORM_FIELD_PARTS_SEPARATOR =
+		StringPool.DOLLAR;
 
-	public static final int TYPE_FRAGMENT = 2;
+	public static final String DDM_FORM_FIELDS_SEPARATOR = StringPool.POUND;
 
-	public static final String VERSION_DEFAULT = "1.0";
-
-	public static final String XSD_NAME_RESERVED = "reserved";
+	private DDMFormRendererConstants() {
+	}
 
 }

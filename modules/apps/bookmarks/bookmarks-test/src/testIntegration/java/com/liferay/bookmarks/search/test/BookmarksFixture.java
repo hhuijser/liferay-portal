@@ -16,7 +16,7 @@ package com.liferay.bookmarks.search.test;
 
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.model.BookmarksFolder;
-import com.liferay.bookmarks.model.BookmarksFolderConstants;
+import com.liferay.bookmarks.model.constants.BookmarksFolderConstants;
 import com.liferay.bookmarks.service.BookmarksEntryLocalService;
 import com.liferay.bookmarks.service.BookmarksFolderService;
 import com.liferay.petra.string.CharPool;

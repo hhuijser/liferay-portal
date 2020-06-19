@@ -206,7 +206,7 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 		int pos = lines[0].length();
 
 		for (String definition : definitions) {
-			lines = StringUtil.splitLines(definition);
+			lines = definition.split("\n");
 
 			if ((lines.length != 0) && lines[0].endsWith("|-")) {
 				String newDefinition = _formatDefinition(

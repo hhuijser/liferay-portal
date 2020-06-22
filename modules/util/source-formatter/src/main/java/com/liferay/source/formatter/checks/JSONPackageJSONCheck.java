@@ -74,21 +74,14 @@ public class JSONPackageJSONCheck extends BaseFileCheck {
 
 		if (absolutePath.contains("/modules/apps/frontend-theme")) {
 			_checkScript(
-				fileName, scriptsJSONObject, "build",
-				"liferay-npm-scripts theme build", false);
+				fileName, scriptsJSONObject, "build", "theme build", false);
 		}
 		else {
-			_checkScript(
-				fileName, scriptsJSONObject, "build",
-				"liferay-npm-scripts build", false);
+			_checkScript(fileName, scriptsJSONObject, "build", "build", false);
 		}
 
-		_checkScript(
-			fileName, scriptsJSONObject, "checkFormat",
-			"liferay-npm-scripts check", true);
-		_checkScript(
-			fileName, scriptsJSONObject, "format", "liferay-npm-scripts fix",
-			true);
+		_checkScript(fileName, scriptsJSONObject, "checkFormat", "check", true);
+		_checkScript(fileName, scriptsJSONObject, "format", "fix", true);
 
 		return content;
 	}
@@ -121,7 +114,7 @@ public class JSONPackageJSONCheck extends BaseFileCheck {
 				fileName,
 				StringBundler.concat(
 					"Value '", value, "' for entry '", key,
-					"' does not contain '", expectedValue, "'"));
+					"' should end with '", expectedValue, "'"));
 		}
 	}
 

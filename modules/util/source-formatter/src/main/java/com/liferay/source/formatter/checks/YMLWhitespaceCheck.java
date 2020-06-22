@@ -115,10 +115,11 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 		}
 
 		if (definitionLines[0].endsWith("|-")) {
-			StringBundler sb = new StringBundler();
+			StringBundler sb = new StringBundler(definitionLines.length * 3);
 
 			for (String line : definitionLines) {
-				sb.append(expectedIndent + line.substring(indent.length()));
+				sb.append(expectedIndent);
+				sb.append(line.substring(indent.length()));
 				sb.append("\n");
 			}
 

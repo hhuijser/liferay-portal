@@ -139,7 +139,9 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 
 <aui:script>
 	function handleDestroyPortlet() {
-		Liferay.destroyComponent('<%= liferayPortletResponse.getNamespace() %>pagesTree');
+		Liferay.destroyComponent(
+			'<%= liferayPortletResponse.getNamespace() %>pagesTree'
+		);
 		Liferay.destroyComponent(
 			'<%= ProductNavigationProductMenuWebKeys.PAGES_TREE_EVENT_HANDLER %>'
 		);

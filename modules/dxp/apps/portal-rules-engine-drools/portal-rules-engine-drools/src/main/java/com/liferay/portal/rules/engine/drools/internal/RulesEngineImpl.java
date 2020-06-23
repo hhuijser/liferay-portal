@@ -25,10 +25,10 @@ import com.liferay.portal.rules.engine.Fact;
 import com.liferay.portal.rules.engine.Query;
 import com.liferay.portal.rules.engine.QueryType;
 import com.liferay.portal.rules.engine.RulesEngine;
-import com.liferay.portal.rules.engine.RulesEngineConstants;
 import com.liferay.portal.rules.engine.RulesEngineException;
 import com.liferay.portal.rules.engine.RulesLanguage;
 import com.liferay.portal.rules.engine.RulesResourceRetriever;
+import com.liferay.portal.rules.engine.constants.RulesEngineConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.spring.aop.InvocationHandlerFactory;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.rules.engine.RulesEngine;
-import com.liferay.portal.rules.engine.RulesEngineConstants;
+import com.liferay.portal.rules.engine.constants.RulesEngineConstants;
 
 import java.lang.reflect.InvocationHandler;
 

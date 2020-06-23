@@ -1,4 +1,6 @@
 Bundle-Name: Liferay OAuth2 Provider Scope Liferay API
 Bundle-SymbolicName: com.liferay.oauth2.provider.scope.liferay.api
 Bundle-Version: 3.0.3
-Export-Package: com.liferay.oauth2.provider.scope.liferay
+Export-Package:\
+	com.liferay.oauth2.provider.scope.liferay,\
+	com.liferay.oauth2.provider.scope.liferay.constants

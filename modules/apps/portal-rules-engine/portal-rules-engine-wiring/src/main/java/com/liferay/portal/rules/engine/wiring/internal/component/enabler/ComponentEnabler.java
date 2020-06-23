@@ -16,7 +16,7 @@ package com.liferay.portal.rules.engine.wiring.internal.component.enabler;
 
 import com.liferay.osgi.util.ComponentUtil;
 import com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener;
-import com.liferay.portal.rules.engine.RulesEngineConstants;
+import com.liferay.portal.rules.engine.constants.RulesEngineConstants;
 import com.liferay.portal.rules.engine.wiring.internal.RulesEngineProxyBeanConfigurator;
 
 import org.osgi.service.component.ComponentContext;

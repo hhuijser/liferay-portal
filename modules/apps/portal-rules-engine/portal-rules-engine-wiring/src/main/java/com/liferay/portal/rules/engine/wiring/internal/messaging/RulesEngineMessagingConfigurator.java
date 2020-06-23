@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.messaging.DestinationConfiguration;
 import com.liferay.portal.kernel.messaging.DestinationFactory;
 import com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener;
 import com.liferay.portal.kernel.util.HashMapDictionary;
-import com.liferay.portal.rules.engine.RulesEngineConstants;
+import com.liferay.portal.rules.engine.constants.RulesEngineConstants;
 
 import java.util.Dictionary;
 import java.util.concurrent.RejectedExecutionHandler;

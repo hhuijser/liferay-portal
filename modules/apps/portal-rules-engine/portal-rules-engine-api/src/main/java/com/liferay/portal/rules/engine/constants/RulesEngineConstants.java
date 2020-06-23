@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.rules.engine;
+package com.liferay.portal.rules.engine.constants;
 
 /**
- * @author     Michael C. Han
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.rules.engine.constants.RulesEngineConstants}
+ * @author Michael C. Han
  */
-@Deprecated
 public class RulesEngineConstants {
 
 	public static final String DESTINATION_NAME = "liferay/rules_engine";

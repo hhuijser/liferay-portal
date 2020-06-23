@@ -18,7 +18,7 @@ import com.liferay.petra.json.web.service.client.JSONWebServiceInvocationExcepti
 import com.liferay.petra.json.web.service.client.JSONWebServiceTransportException;
 import com.liferay.petra.json.web.service.client.model.ResponseBody;
 import com.liferay.petra.json.web.service.client.server.simulator.HTTPServerSimulator;
-import com.liferay.petra.json.web.service.client.server.simulator.SimulatorConstants;
+import com.liferay.petra.json.web.service.client.server.simulator.constants.SimulatorConstants;
 
 import java.util.Collections;
 import java.util.Map;

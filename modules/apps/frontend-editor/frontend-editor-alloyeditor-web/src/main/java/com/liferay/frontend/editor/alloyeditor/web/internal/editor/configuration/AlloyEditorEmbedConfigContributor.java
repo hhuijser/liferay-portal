@@ -15,7 +15,7 @@
 package com.liferay.frontend.editor.alloyeditor.web.internal.editor.configuration;
 
 import com.liferay.frontend.editor.embed.EditorEmbedProvider;
-import com.liferay.frontend.editor.embed.EditorEmbedProviderTypeConstants;
+import com.liferay.frontend.editor.embed.constants.EditorEmbedProviderTypeConstants;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
 import com.liferay.portal.kernel.editor.configuration.BaseEditorConfigContributor;

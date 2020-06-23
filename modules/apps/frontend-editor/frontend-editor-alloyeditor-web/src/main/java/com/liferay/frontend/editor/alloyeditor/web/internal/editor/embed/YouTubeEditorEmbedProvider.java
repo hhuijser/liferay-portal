@@ -15,7 +15,7 @@
 package com.liferay.frontend.editor.alloyeditor.web.internal.editor.embed;
 
 import com.liferay.frontend.editor.embed.EditorEmbedProvider;
-import com.liferay.frontend.editor.embed.EditorEmbedProviderTypeConstants;
+import com.liferay.frontend.editor.embed.constants.EditorEmbedProviderTypeConstants;
 import com.liferay.petra.string.StringBundler;
 
 import org.osgi.service.component.annotations.Component;

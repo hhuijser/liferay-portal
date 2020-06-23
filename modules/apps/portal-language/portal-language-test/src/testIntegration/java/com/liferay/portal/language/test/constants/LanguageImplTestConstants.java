@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.language.test;
+package com.liferay.portal.language.test.constants;
 
 /**
  * @author Manuel de la Peña

@@ -224,14 +224,9 @@ public class GitUtil {
 		List<String> fileNames = new ArrayList<>();
 
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git rev-parse HEAD");
-
-		String latestCommitId = unsyncBufferedReader.readLine();
-
-		unsyncBufferedReader = getGitCommandReader(
 			StringBundler.concat(
 				"git diff --diff-filter=RD --name-status ", commitId, " ",
-				latestCommitId));
+				_getLatestCommitId()));
 
 		String line = null;
 
@@ -325,14 +320,9 @@ public class GitUtil {
 		List<String> fileNames = new ArrayList<>();
 
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git rev-parse HEAD");
-
-		String latestCommitId = unsyncBufferedReader.readLine();
-
-		unsyncBufferedReader = getGitCommandReader(
 			StringBundler.concat(
 				"git diff --diff-filter=AMR --name-only ", commitId, " ",
-				latestCommitId));
+				_getLatestCommitId()));
 
 		String line = null;
 
@@ -471,6 +461,13 @@ public class GitUtil {
 				return null;
 			}
 		}
+	}
+
+	private static String _getLatestCommitId() throws Exception {
+		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+			"git rev-parse HEAD");
+
+		return unsyncBufferedReader.readLine();
 	}
 
 }

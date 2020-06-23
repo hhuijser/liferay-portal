@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.petra.json.web.service.client.server.simulator;
+package com.liferay.petra.json.web.service.client.server.simulator.constants;
 
 /**
- * @author     Igor Beslic
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.petra.json.web.service.client.server.simulator.constants.SimulatorConstants}
+ * @author Igor Beslic
  */
-@Deprecated
 public class SimulatorConstants {
 
 	public static final String HTTP_PARAMETER_RESPOND_WITH_STATUS =

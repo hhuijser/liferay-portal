@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.frontend.editor.embed;
+package com.liferay.frontend.editor.embed.constants;
 
 /**
- * @author     Sergio González
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.frontend.editor.embed.constants.EditorEmbedProviderTypeConstants}
+ * @author Sergio González
  */
-@Deprecated
 public class EditorEmbedProviderTypeConstants {
 
 	public static final String UNKNOWN = "unknown";

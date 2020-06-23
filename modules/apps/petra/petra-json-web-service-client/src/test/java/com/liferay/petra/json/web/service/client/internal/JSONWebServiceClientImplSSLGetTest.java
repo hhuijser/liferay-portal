@@ -17,7 +17,7 @@ package com.liferay.petra.json.web.service.client.internal;
 import com.liferay.petra.json.web.service.client.JSONWebServiceException;
 import com.liferay.petra.json.web.service.client.keystore.KeyStoreLoader;
 import com.liferay.petra.json.web.service.client.server.simulator.HTTPSServerSimulator;
-import com.liferay.petra.json.web.service.client.server.simulator.SimulatorConstants;
+import com.liferay.petra.json.web.service.client.server.simulator.constants.SimulatorConstants;
 
 import java.security.KeyStore;
 

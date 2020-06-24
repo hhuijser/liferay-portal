@@ -15,9 +15,9 @@
 package com.liferay.bookmarks.web.internal.display.context;
 
 import com.liferay.bookmarks.configuration.BookmarksGroupServiceOverriddenConfiguration;
+import com.liferay.bookmarks.constants.BookmarksFolderConstants;
 import com.liferay.bookmarks.constants.BookmarksPortletKeys;
 import com.liferay.bookmarks.constants.BookmarksWebKeys;
-import com.liferay.bookmarks.model.BookmarksFolderConstants;
 import com.liferay.bookmarks.service.BookmarksFolderServiceUtil;
 import com.liferay.bookmarks.web.internal.portlet.toolbar.contributor.BookmarksPortletToolbarContributor;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;

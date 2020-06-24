@@ -270,15 +270,17 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 	private String _formatEnabledAttribute(
 		String absolutePath, String annotation) {
 
-		List<String> disabledModuleNames = getAttributeValues(
-			_DISABLED_MODULE_NAMES_KEY, absolutePath);
+		List<String> enterpriseAppModulePathNames = getAttributeValues(
+			_ENTERPRISE_APP_MODULE_PATH_NAMES_KEY, absolutePath);
 
-		if (disabledModuleNames.isEmpty()) {
+		if (enterpriseAppModulePathNames.isEmpty()) {
 			return annotation;
 		}
 
-		for (String disabledModuleName : disabledModuleNames) {
-			if (!absolutePath.contains(disabledModuleName)) {
+		for (String enterpriseAppModulePathName :
+				enterpriseAppModulePathNames) {
+
+			if (!absolutePath.contains(enterpriseAppModulePathName)) {
 				continue;
 			}
 
@@ -479,8 +481,8 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 	private static final String _CHECK_SELF_REGISTRATION_KEY =
 		"checkSelfRegistration";
 
-	private static final String _DISABLED_MODULE_NAMES_KEY =
-		"disabledModuleNames";
+	private static final String _ENTERPRISE_APP_MODULE_PATH_NAMES_KEY =
+		"enterpriseAppModulePathNames";
 
 	private static final Pattern _annotationParameterPropertyPattern =
 		Pattern.compile("\\s(\\w+) = \\{");

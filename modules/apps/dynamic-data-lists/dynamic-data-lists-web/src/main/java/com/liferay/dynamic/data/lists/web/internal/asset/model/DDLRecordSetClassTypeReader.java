@@ -16,8 +16,8 @@ package com.liferay.dynamic.data.lists.web.internal.asset.model;
 
 import com.liferay.asset.kernel.model.ClassType;
 import com.liferay.asset.kernel.model.ClassTypeReader;
+import com.liferay.dynamic.data.lists.constants.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
-import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetServiceUtil;
 import com.liferay.dynamic.data.lists.web.internal.asset.DDLRecordSetClassType;
 import com.liferay.portal.kernel.exception.PortalException;

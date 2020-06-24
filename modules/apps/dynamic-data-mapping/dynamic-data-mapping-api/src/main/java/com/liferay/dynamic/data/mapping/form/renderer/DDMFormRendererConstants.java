@@ -17,8 +17,11 @@ package com.liferay.dynamic.data.mapping.form.renderer;
 import com.liferay.petra.string.StringPool;
 
 /**
- * @author Marcellus Tavares
+ * @author     Marcellus Tavares
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.dynamic.data.mapping.form.renderer.constants.DDMFormRendererConstants}
  */
+@Deprecated
 public class DDMFormRendererConstants {
 
 	public static final String DDM_FORM_FIELD_LANGUAGE_ID_SEPARATOR =

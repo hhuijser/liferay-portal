@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.constants;
+package com.liferay.dynamic.data.mapping.model;
 
 /**
  * @author     Pedro Queiroz

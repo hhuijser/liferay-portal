@@ -14,9 +14,9 @@
 
 package com.liferay.portlet.display.template.web.internal.dynamic.data.mapping.util;
 
+import com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
-import com.liferay.dynamic.data.mapping.model.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.util.BaseDDMDisplay;
 import com.liferay.dynamic.data.mapping.util.DDMDisplay;
 import com.liferay.dynamic.data.mapping.util.DDMDisplayTabItem;

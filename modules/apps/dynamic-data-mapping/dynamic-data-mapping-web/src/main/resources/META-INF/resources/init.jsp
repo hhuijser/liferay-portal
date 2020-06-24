@@ -28,6 +28,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.dynamic.data.mapping.constants.DDMPortletKeys" %><%@
+page import="com.liferay.dynamic.data.mapping.constants.DDMStructureConstants" %><%@
+page import="com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants" %><%@
 page import="com.liferay.dynamic.data.mapping.constants.DDMWebKeys" %><%@
 page import="com.liferay.dynamic.data.mapping.exception.NoSuchStructureException" %><%@
 page import="com.liferay.dynamic.data.mapping.exception.RequiredStructureException" %><%@
@@ -43,10 +45,8 @@ page import="com.liferay.dynamic.data.mapping.exception.TemplateSmallImageNameEx
 page import="com.liferay.dynamic.data.mapping.exception.TemplateSmallImageSizeException" %><%@
 page import="com.liferay.dynamic.data.mapping.model.DDMForm" %><%@
 page import="com.liferay.dynamic.data.mapping.model.DDMStructure" %><%@
-page import="com.liferay.dynamic.data.mapping.model.DDMStructureConstants" %><%@
 page import="com.liferay.dynamic.data.mapping.model.DDMStructureVersion" %><%@
 page import="com.liferay.dynamic.data.mapping.model.DDMTemplate" %><%@
-page import="com.liferay.dynamic.data.mapping.model.DDMTemplateConstants" %><%@
 page import="com.liferay.dynamic.data.mapping.model.DDMTemplateVersion" %><%@
 page import="com.liferay.dynamic.data.mapping.service.DDMStorageLinkLocalServiceUtil" %><%@
 page import="com.liferay.dynamic.data.mapping.service.DDMStructureLocalServiceUtil" %><%@

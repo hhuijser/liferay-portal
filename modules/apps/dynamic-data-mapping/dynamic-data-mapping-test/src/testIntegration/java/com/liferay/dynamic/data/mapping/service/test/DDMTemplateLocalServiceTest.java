@@ -15,11 +15,11 @@
 package com.liferay.dynamic.data.mapping.service.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.exception.TemplateDuplicateTemplateKeyException;
 import com.liferay.dynamic.data.mapping.exception.TemplateNameException;
 import com.liferay.dynamic.data.mapping.exception.TemplateScriptException;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
-import com.liferay.dynamic.data.mapping.model.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalServiceUtil;
 import com.liferay.dynamic.data.mapping.util.comparator.TemplateIdComparator;
 import com.liferay.petra.string.StringPool;

@@ -16,8 +16,8 @@ package com.liferay.document.library.web.internal.portlet.action;
 
 import com.liferay.document.library.constants.DLPortletKeys;
 import com.liferay.document.library.kernel.model.DLFileEntryMetadata;
+import com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
-import com.liferay.dynamic.data.mapping.model.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateService;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseTransactionalMVCActionCommand;

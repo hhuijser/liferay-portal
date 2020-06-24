@@ -14,6 +14,7 @@
 
 package com.liferay.dynamic.data.mapping.service.impl;
 
+import com.liferay.dynamic.data.mapping.constants.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.exception.FormInstanceNameException;
 import com.liferay.dynamic.data.mapping.exception.FormInstanceStructureIdException;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesDeserializer;
@@ -28,7 +29,6 @@ import com.liferay.dynamic.data.mapping.model.DDMFormInstanceSettings;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersion;
 import com.liferay.dynamic.data.mapping.model.DDMFormLayout;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
-import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceRecordLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceVersionLocalService;

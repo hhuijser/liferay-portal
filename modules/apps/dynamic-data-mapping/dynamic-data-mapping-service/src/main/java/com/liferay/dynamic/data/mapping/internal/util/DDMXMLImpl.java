@@ -14,13 +14,13 @@
 
 package com.liferay.dynamic.data.mapping.internal.util;
 
+import com.liferay.dynamic.data.mapping.constants.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.exception.StructureDefinitionException;
 import com.liferay.dynamic.data.mapping.exception.StructureDuplicateElementException;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
-import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.storage.Field;
-import com.liferay.dynamic.data.mapping.storage.FieldConstants;
 import com.liferay.dynamic.data.mapping.storage.Fields;
+import com.liferay.dynamic.data.mapping.storage.constants.FieldConstants;
 import com.liferay.dynamic.data.mapping.util.DDMXML;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;

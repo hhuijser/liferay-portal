@@ -14,6 +14,8 @@
 
 package com.liferay.dynamic.data.mapping.service.impl;
 
+import com.liferay.dynamic.data.mapping.constants.DDMStructureConstants;
+import com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.exception.InvalidParentStructureException;
 import com.liferay.dynamic.data.mapping.exception.InvalidStructureVersionException;
 import com.liferay.dynamic.data.mapping.exception.NoSuchStructureException;
@@ -40,10 +42,8 @@ import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormLayout;
 import com.liferay.dynamic.data.mapping.model.DDMFormRule;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
-import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
-import com.liferay.dynamic.data.mapping.model.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.security.permission.DDMPermissionSupport;
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceLinkLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceLocalService;

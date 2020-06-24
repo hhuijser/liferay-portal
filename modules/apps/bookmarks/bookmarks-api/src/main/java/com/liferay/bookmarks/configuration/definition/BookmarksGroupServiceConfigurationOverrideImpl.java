@@ -15,7 +15,7 @@
 package com.liferay.bookmarks.configuration.definition;
 
 import com.liferay.bookmarks.configuration.BookmarksGroupServiceConfigurationOverride;
-import com.liferay.bookmarks.model.BookmarksFolderConstants;
+import com.liferay.bookmarks.constants.BookmarksFolderConstants;
 import com.liferay.portal.kernel.settings.TypedSettings;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 

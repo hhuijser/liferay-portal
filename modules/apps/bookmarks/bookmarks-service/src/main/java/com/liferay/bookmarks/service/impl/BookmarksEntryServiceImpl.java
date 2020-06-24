@@ -14,9 +14,9 @@
 
 package com.liferay.bookmarks.service.impl;
 
+import com.liferay.bookmarks.constants.BookmarksFolderConstants;
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.model.BookmarksFolder;
-import com.liferay.bookmarks.model.BookmarksFolderConstants;
 import com.liferay.bookmarks.service.BookmarksFolderService;
 import com.liferay.bookmarks.service.base.BookmarksEntryServiceBaseImpl;
 import com.liferay.bookmarks.util.comparator.EntryModifiedDateComparator;

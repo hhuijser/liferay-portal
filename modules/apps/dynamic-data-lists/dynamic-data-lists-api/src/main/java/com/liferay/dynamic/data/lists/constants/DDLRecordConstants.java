@@ -12,16 +12,12 @@
  * details.
  */
 
-package com.liferay.dynamic.data.lists.model;
+package com.liferay.dynamic.data.lists.constants;
 
 /**
- * @author     Marcellus Tavares
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.dynamic.data.lists.constants.DDLRecordConstants}
+ * @author Marcellus Tavares
  */
-@Deprecated
 public class DDLRecordConstants {
-
 
 	public static final int DISPLAY_INDEX_DEFAULT = 0;
 

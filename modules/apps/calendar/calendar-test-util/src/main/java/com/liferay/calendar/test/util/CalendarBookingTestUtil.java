@@ -14,9 +14,9 @@
 
 package com.liferay.calendar.test.util;
 
+import com.liferay.calendar.constants.CalendarBookingConstants;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
-import com.liferay.calendar.model.CalendarBookingConstants;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.recurrence.Recurrence;

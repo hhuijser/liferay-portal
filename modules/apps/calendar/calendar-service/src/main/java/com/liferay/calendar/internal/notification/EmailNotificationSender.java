@@ -14,8 +14,8 @@
 
 package com.liferay.calendar.internal.notification;
 
+import com.liferay.calendar.constants.CalendarNotificationTemplateConstants;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
-import com.liferay.calendar.model.CalendarNotificationTemplateConstants;
 import com.liferay.calendar.notification.NotificationField;
 import com.liferay.calendar.notification.NotificationRecipient;
 import com.liferay.calendar.notification.NotificationSender;

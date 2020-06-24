@@ -14,9 +14,9 @@
 
 package com.liferay.calendar.test.util;
 
+import com.liferay.calendar.constants.CalendarNotificationTemplateConstants;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
-import com.liferay.calendar.model.CalendarNotificationTemplateConstants;
 import com.liferay.calendar.notification.NotificationTemplateType;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;

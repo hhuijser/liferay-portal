@@ -12,25 +12,24 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.model;
+package com.liferay.dynamic.data.mapping.constants;
 
 /**
- * @author     Alexander Chow
- * @author     Eduardo Lundgren
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants}
+ * @author Bruno Basto
+ * @author Alexander Chow
  */
-@Deprecated
-public class DDMTemplateConstants {
+public class DDMStructureConstants {
 
-	public static final String TEMPLATE_MODE_CREATE = "create";
+	public static final long DEFAULT_PARENT_STRUCTURE_ID = 0;
 
-	public static final String TEMPLATE_MODE_EDIT = "edit";
+	public static final int TYPE_AUTO = 1;
 
-	public static final String TEMPLATE_TYPE_DISPLAY = "display";
+	public static final int TYPE_DEFAULT = 0;
 
-	public static final String TEMPLATE_TYPE_FORM = "form";
+	public static final int TYPE_FRAGMENT = 2;
 
 	public static final String VERSION_DEFAULT = "1.0";
+
+	public static final String XSD_NAME_RESERVED = "reserved";
 
 }

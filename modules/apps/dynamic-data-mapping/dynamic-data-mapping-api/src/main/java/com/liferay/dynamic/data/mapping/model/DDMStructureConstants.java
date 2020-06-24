@@ -15,9 +15,12 @@
 package com.liferay.dynamic.data.mapping.model;
 
 /**
- * @author Bruno Basto
- * @author Alexander Chow
+ * @author     Bruno Basto
+ * @author     Alexander Chow
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.dynamic.data.mapping.constants.DDMStructureConstants}
  */
+@Deprecated
 public class DDMStructureConstants {
 
 	public static final long DEFAULT_PARENT_STRUCTURE_ID = 0;

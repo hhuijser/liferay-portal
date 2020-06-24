@@ -14,9 +14,9 @@
 
 package com.liferay.bookmarks.web.internal.util;
 
+import com.liferay.bookmarks.constants.BookmarksFolderConstants;
 import com.liferay.bookmarks.constants.BookmarksPortletKeys;
 import com.liferay.bookmarks.model.BookmarksFolder;
-import com.liferay.bookmarks.model.BookmarksFolderConstants;
 import com.liferay.bookmarks.service.BookmarksFolderLocalServiceUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;

@@ -16,9 +16,9 @@ package com.liferay.bookmarks.trash.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.bookmarks.constants.BookmarksFolderConstants;
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.model.BookmarksFolder;
-import com.liferay.bookmarks.model.BookmarksFolderConstants;
 import com.liferay.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.bookmarks.service.BookmarksEntryServiceUtil;
 import com.liferay.bookmarks.service.BookmarksFolderLocalServiceUtil;

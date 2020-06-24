@@ -14,9 +14,9 @@
 
 package com.liferay.bookmarks.test.util;
 
+import com.liferay.bookmarks.constants.BookmarksFolderConstants;
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.model.BookmarksFolder;
-import com.liferay.bookmarks.model.BookmarksFolderConstants;
 import com.liferay.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.bookmarks.service.BookmarksEntryServiceUtil;
 import com.liferay.bookmarks.service.BookmarksFolderServiceUtil;

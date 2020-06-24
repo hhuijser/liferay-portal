@@ -12,18 +12,18 @@
  * details.
  */
 
-package com.liferay.calendar.model;
+package com.liferay.calendar.workflow.constants;
 
 /**
- * @author     Marcellus Tavares
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.calendar.constants.CalendarNotificationTemplateConstants}
+ * @author Michael C. Han
+ * @author Eduardo Lundgren
  */
-@Deprecated
-public class CalendarNotificationTemplateConstants {
+public class CalendarBookingWorkflowConstants {
 
-	public static final String PROPERTY_FROM_ADDRESS = "from-address";
+	public static final int STATUS_MASTER_PENDING = 10;
 
-	public static final String PROPERTY_FROM_NAME = "from-name";
+	public static final int STATUS_MASTER_STAGING = 11;
+
+	public static final int STATUS_MAYBE = 9;
 
 }

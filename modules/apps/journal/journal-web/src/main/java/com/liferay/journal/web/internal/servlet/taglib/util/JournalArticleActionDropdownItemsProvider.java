@@ -108,11 +108,18 @@ public class JournalArticleActionDropdownItemsProvider {
 			_themeDisplay.getPermissionChecker(), _article, ActionKeys.DELETE);
 		boolean hasUpdatePermission = JournalArticlePermission.contains(
 			_themeDisplay.getPermissionChecker(), _article, ActionKeys.UPDATE);
+
 		boolean hasViewPermission = JournalArticlePermission.contains(
 			_themeDisplay.getPermissionChecker(), _article, ActionKeys.VIEW);
-		boolean importExportEnabled =
-			hasViewPermission &&
-			FFImportExportTranslationConfigurationUtil.enabled();
+
+		boolean importExportEnabled = false;
+
+		if (hasViewPermission &&
+			FFImportExportTranslationConfigurationUtil.enabled()) {
+
+			importExportEnabled = true;
+		}
+
 		boolean trashEnabled = _trashHelper.isTrashEnabled(
 			_themeDisplay.getScopeGroupId());
 		UnsafeConsumer<DropdownItem, Exception> previewContentArticleAction =

@@ -14,6 +14,8 @@
 
 package com.liferay.dynamic.data.mapping.storage;
 
+import com.liferay.dynamic.data.mapping.storage.constants.FieldConstants;
+
 import java.util.Map;
 
 /**

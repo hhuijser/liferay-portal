@@ -14,8 +14,8 @@
  */
 --%>
 
-<%@ page import="com.liferay.dynamic.data.mapping.model.DDMTemplate" %><%@
-page import="com.liferay.dynamic.data.mapping.model.DDMTemplateConstants" %><%@
+<%@ page import="com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants" %><%@
+page import="com.liferay.dynamic.data.mapping.model.DDMTemplate" %><%@
 page import="com.liferay.dynamic.data.mapping.service.DDMTemplateLocalServiceUtil" %><%@
 page import="com.liferay.dynamic.data.mapping.taglib.internal.security.permission.resource.DDMTemplatePermission" %><%@
 page import="com.liferay.dynamic.data.mapping.taglib.internal.util.PortletDisplayTemplateUtil" %><%@

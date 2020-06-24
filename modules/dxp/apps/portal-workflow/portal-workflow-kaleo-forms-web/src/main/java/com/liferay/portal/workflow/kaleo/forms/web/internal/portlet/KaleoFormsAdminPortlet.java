@@ -15,12 +15,12 @@
 package com.liferay.portal.workflow.kaleo.forms.web.internal.portlet;
 
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
+import com.liferay.dynamic.data.lists.constants.DDLRecordConstants;
 import com.liferay.dynamic.data.lists.exception.RecordSetDDMStructureIdException;
 import com.liferay.dynamic.data.lists.exception.RecordSetNameException;
 import com.liferay.dynamic.data.lists.exporter.DDLExporter;
 import com.liferay.dynamic.data.lists.exporter.DDLExporterFactory;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
-import com.liferay.dynamic.data.lists.model.DDLRecordConstants;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
 import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;
 import com.liferay.dynamic.data.mapping.exception.RequiredStructureException;

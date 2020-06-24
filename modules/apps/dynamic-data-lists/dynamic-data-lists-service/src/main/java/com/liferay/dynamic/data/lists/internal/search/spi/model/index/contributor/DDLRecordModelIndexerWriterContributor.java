@@ -14,8 +14,8 @@
 
 package com.liferay.dynamic.data.lists.internal.search.spi.model.index.contributor;
 
+import com.liferay.dynamic.data.lists.constants.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
-import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.lists.service.DDLRecordVersionLocalService;

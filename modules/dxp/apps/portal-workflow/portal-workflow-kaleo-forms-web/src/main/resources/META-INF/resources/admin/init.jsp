@@ -16,9 +16,9 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.dynamic.data.lists.exception.RecordSetDDMStructureIdException" %><%@
+<%@ page import="com.liferay.dynamic.data.lists.constants.DDLRecordConstants" %><%@
+page import="com.liferay.dynamic.data.lists.exception.RecordSetDDMStructureIdException" %><%@
 page import="com.liferay.dynamic.data.lists.exception.RecordSetNameException" %><%@
-page import="com.liferay.dynamic.data.lists.model.DDLRecordConstants" %><%@
 page import="com.liferay.dynamic.data.lists.model.DDLRecordVersion" %><%@
 page import="com.liferay.dynamic.data.lists.service.DDLRecordServiceUtil" %><%@
 page import="com.liferay.dynamic.data.mapping.constants.DDMPortletKeys" %><%@

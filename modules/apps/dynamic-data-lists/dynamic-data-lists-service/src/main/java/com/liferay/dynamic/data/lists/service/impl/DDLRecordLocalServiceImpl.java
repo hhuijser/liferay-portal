@@ -15,13 +15,13 @@
 package com.liferay.dynamic.data.lists.service.impl;
 
 import com.liferay.document.library.kernel.util.DLUtil;
+import com.liferay.dynamic.data.lists.constants.DDLRecordConstants;
+import com.liferay.dynamic.data.lists.constants.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.exception.NoSuchRecordException;
 import com.liferay.dynamic.data.lists.exception.RecordGroupIdException;
 import com.liferay.dynamic.data.lists.model.DDLFormRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
-import com.liferay.dynamic.data.lists.model.DDLRecordConstants;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
-import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.model.DDLRecordVersion;
 import com.liferay.dynamic.data.lists.service.DDLRecordVersionLocalService;
 import com.liferay.dynamic.data.lists.service.base.DDLRecordLocalServiceBaseImpl;

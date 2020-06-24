@@ -14,7 +14,7 @@
 
 package com.liferay.dynamic.data.lists.internal.search.spi.model.query.contributor;
 
-import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
+import com.liferay.dynamic.data.lists.constants.DDLRecordSetConstants;
 import com.liferay.dynamic.data.mapping.util.DDMIndexer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;

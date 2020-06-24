@@ -15,7 +15,7 @@
 package com.liferay.dynamic.data.lists.internal.upgrade.v1_1_0;
 
 import com.liferay.counter.kernel.service.CounterLocalService;
-import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
+import com.liferay.dynamic.data.lists.constants.DDLRecordSetConstants;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;

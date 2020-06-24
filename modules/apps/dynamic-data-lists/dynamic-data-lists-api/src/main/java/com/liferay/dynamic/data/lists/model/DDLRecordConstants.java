@@ -22,7 +22,6 @@ package com.liferay.dynamic.data.lists.model;
 @Deprecated
 public class DDLRecordConstants {
 
-
 	public static final int DISPLAY_INDEX_DEFAULT = 0;
 
 	public static final String VERSION_DEFAULT = "1.0";

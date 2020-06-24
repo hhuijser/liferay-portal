@@ -16,10 +16,10 @@ package com.liferay.dynamic.data.lists.web.internal.display.context;
 
 import com.liferay.dynamic.data.lists.constants.DDLActionKeys;
 import com.liferay.dynamic.data.lists.constants.DDLPortletKeys;
+import com.liferay.dynamic.data.lists.constants.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.constants.DDLWebKeys;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
-import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.lists.util.DDL;
 import com.liferay.dynamic.data.lists.util.comparator.DDLRecordSetCreateDateComparator;

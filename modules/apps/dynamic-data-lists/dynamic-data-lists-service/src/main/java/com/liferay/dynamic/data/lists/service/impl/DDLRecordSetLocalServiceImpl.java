@@ -14,10 +14,10 @@
 
 package com.liferay.dynamic.data.lists.service.impl;
 
+import com.liferay.dynamic.data.lists.constants.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.exception.RecordSetDDMStructureIdException;
 import com.liferay.dynamic.data.lists.exception.RecordSetDuplicateRecordSetKeyException;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
-import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.model.DDLRecordSetSettings;
 import com.liferay.dynamic.data.lists.model.DDLRecordSetVersion;
 import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;

@@ -14,6 +14,9 @@
 
 package com.liferay.dynamic.data.lists.constants;
 
+import com.liferay.dynamic.data.lists.model.DDLFormRecord;
+import com.liferay.dynamic.data.lists.model.DDLRecord;
+
 /**
  * @author Marcellus Tavares
  */

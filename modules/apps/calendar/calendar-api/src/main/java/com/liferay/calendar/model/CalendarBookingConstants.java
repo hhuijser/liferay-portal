@@ -15,9 +15,12 @@
 package com.liferay.calendar.model;
 
 /**
- * @author Brian Wing Shun Chan
- * @author Fabio Pezzutto
+ * @author     Brian Wing Shun Chan
+ * @author     Fabio Pezzutto
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.calendar.constants.CalendarBookingConstants}
  */
+@Deprecated
 public class CalendarBookingConstants {
 
 	public static final long PARENT_CALENDAR_BOOKING_ID_DEFAULT = 0;

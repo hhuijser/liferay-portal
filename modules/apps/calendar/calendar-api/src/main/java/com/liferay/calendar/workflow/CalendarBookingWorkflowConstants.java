@@ -15,9 +15,12 @@
 package com.liferay.calendar.workflow;
 
 /**
- * @author Michael C. Han
- * @author Eduardo Lundgren
+ * @author     Michael C. Han
+ * @author     Eduardo Lundgren
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.calendar.workflow.constants.CalendarBookingConstants}
  */
+@Deprecated
 public class CalendarBookingWorkflowConstants {
 
 	public static final int STATUS_MASTER_PENDING = 10;

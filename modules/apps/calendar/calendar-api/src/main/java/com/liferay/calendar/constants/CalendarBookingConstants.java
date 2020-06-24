@@ -12,18 +12,16 @@
  * details.
  */
 
-package com.liferay.calendar.model;
+package com.liferay.calendar.constants;
 
 /**
- * @author     Marcellus Tavares
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.calendar.constants.CalendarNotificationTemplateConstants}
+ * @author Brian Wing Shun Chan
+ * @author Fabio Pezzutto
  */
-@Deprecated
-public class CalendarNotificationTemplateConstants {
+public class CalendarBookingConstants {
 
-	public static final String PROPERTY_FROM_ADDRESS = "from-address";
+	public static final long PARENT_CALENDAR_BOOKING_ID_DEFAULT = 0;
 
-	public static final String PROPERTY_FROM_NAME = "from-name";
+	public static final long RECURRING_CALENDAR_BOOKING_ID_DEFAULT = 0;
 
 }

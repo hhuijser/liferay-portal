@@ -48,7 +48,7 @@ public class GitUtil {
 		List<String> commitMessages = new ArrayList<>();
 
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git log --pretty=format:%s " + commitId + "..head");
+			"git log --pretty=format:%s " + commitId + "..HEAD");
 
 		String line = null;
 

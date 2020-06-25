@@ -959,6 +959,10 @@ public class SourceFormatter {
 	}
 
 	private void _validateCommitMessages() throws Exception {
+		if (!_sourceFormatterArgs.isFormatCurrentBranch()) {
+			return;
+		}
+
 		String parentDirName = _sourceFormatterArgs.getBaseDirName();
 
 		List<String> projectNames = new ArrayList<>();

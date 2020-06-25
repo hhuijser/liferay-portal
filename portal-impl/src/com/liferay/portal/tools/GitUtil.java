@@ -387,31 +387,29 @@ public class GitUtil {
 
 	protected static String getLatestAuthorCommitId() throws Exception {
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git log");
+			"git log --pretty=format:\"%H %an\"");
+
+		String latestAuthor = null;
 
 		String line = null;
 
-		String firstDifferentAuthorCommitId = null;
-		String latestAuthor = null;
-
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (line.startsWith("commit ")) {
-				firstDifferentAuthorCommitId = line.substring(7);
-			}
-			else if (line.startsWith("Author: ")) {
-				if (latestAuthor == null) {
-					int x = line.lastIndexOf(CharPool.LESS_THAN);
-					int y = line.lastIndexOf(CharPool.GREATER_THAN);
+			String[] parts = line.split(StringPool.SPACE, 2);
 
-					latestAuthor = line.substring(x + 1, y);
-				}
-				else if (!line.endsWith("<" + latestAuthor + ">")) {
-					break;
-				}
+			String author = parts[1];
+
+			if (latestAuthor == null) {
+				latestAuthor = author;
+
+				continue;
+			}
+
+			if (!latestAuthor.equals(author)) {
+				return parts[0];
 			}
 		}
 
-		return firstDifferentAuthorCommitId;
+		return null;
 	}
 
 	protected static List<String> getLocalChangesFileNames(

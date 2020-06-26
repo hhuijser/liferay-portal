@@ -3,4 +3,5 @@ Bundle-SymbolicName: com.liferay.petra.io
 Bundle-Version: 4.0.6
 Export-Package:\
 	com.liferay.petra.io,\
+	com.liferay.petra.io.constants,\
 	com.liferay.petra.io.unsync

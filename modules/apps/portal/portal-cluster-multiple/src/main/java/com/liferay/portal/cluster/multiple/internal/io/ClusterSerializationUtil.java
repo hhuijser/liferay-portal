@@ -15,7 +15,7 @@
 package com.liferay.portal.cluster.multiple.internal.io;
 
 import com.liferay.petra.io.ProtectedObjectInputStream;
-import com.liferay.petra.io.SerializationConstants;
+import com.liferay.petra.io.constants.SerializationConstants;
 import com.liferay.petra.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.petra.lang.ClassResolverUtil;

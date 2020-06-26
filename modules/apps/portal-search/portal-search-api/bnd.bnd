@@ -14,6 +14,7 @@ Export-Package:\
 	com.liferay.portal.search.configuration,\
 	com.liferay.portal.search.constants,\
 	com.liferay.portal.search.contributor,\
+	com.liferay.portal.search.contributor.constants,\
 	com.liferay.portal.search.contributor.sort,\
 	com.liferay.portal.search.document,\
 	com.liferay.portal.search.engine,\

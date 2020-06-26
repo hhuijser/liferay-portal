@@ -3,6 +3,7 @@ Bundle-SymbolicName: com.liferay.trash.api
 Bundle-Version: 3.3.2
 Export-Package:\
 	com.liferay.trash,\
+	com.liferay.trash.constants,\
 	com.liferay.trash.exception,\
 	com.liferay.trash.model,\
 	com.liferay.trash.service,\

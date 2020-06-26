@@ -14,8 +14,8 @@
 
 package com.liferay.microblogs.internal.upgrade.v1_0_1;
 
+import com.liferay.microblogs.constants.MicroblogsEntryConstants;
 import com.liferay.microblogs.constants.MicroblogsPortletKeys;
-import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;

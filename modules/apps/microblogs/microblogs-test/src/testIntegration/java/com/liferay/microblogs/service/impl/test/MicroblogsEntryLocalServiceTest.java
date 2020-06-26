@@ -16,8 +16,8 @@ package com.liferay.microblogs.service.impl.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
+import com.liferay.microblogs.constants.MicroblogsEntryConstants;
 import com.liferay.microblogs.model.MicroblogsEntry;
-import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalService;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;

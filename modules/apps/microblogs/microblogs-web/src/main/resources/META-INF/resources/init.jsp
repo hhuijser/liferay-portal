@@ -25,9 +25,9 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.microblogs.exception.NoSuchEntryException" %><%@
+<%@ page import="com.liferay.microblogs.constants.MicroblogsEntryConstants" %><%@
+page import="com.liferay.microblogs.exception.NoSuchEntryException" %><%@
 page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
-page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %><%@
 page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %><%@
 page import="com.liferay.microblogs.service.MicroblogsEntryServiceUtil" %><%@
 page import="com.liferay.microblogs.util.comparator.EntryCreateDateComparator" %><%@

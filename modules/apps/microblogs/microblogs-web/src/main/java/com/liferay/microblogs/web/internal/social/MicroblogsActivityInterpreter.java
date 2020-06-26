@@ -14,9 +14,9 @@
 
 package com.liferay.microblogs.web.internal.social;
 
+import com.liferay.microblogs.constants.MicroblogsEntryConstants;
 import com.liferay.microblogs.constants.MicroblogsPortletKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
-import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalService;
 import com.liferay.microblogs.web.internal.util.MicroblogsWebUtil;
 import com.liferay.petra.string.StringBundler;

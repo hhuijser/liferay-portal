@@ -14,8 +14,8 @@
 
 package com.liferay.microblogs.web.internal.notifications;
 
+import com.liferay.microblogs.constants.MicroblogsEntryConstants;
 import com.liferay.microblogs.constants.MicroblogsPortletKeys;
-import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
 import com.liferay.portal.kernel.notifications.UserNotificationDeliveryType;

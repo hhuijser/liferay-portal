@@ -14,8 +14,8 @@
 
 package com.liferay.microblogs.service.persistence.impl;
 
+import com.liferay.microblogs.constants.MicroblogsEntryConstants;
 import com.liferay.microblogs.model.MicroblogsEntry;
-import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.model.impl.MicroblogsEntryImpl;
 import com.liferay.microblogs.service.persistence.MicroblogsEntryFinder;
 import com.liferay.portal.dao.orm.custom.sql.CustomSQL;

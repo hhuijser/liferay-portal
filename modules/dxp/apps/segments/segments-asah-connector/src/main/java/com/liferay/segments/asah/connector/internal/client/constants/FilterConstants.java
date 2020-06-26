@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.segments.asah.connector.internal.client.util;
+package com.liferay.segments.asah.connector.internal.client.constants;
 
 /**
  * @author Matthew Kong

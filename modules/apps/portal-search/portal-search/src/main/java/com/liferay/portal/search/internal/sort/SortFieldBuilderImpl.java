@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.search.contributor.ContributorConstants;
+import com.liferay.portal.search.contributor.constants.ContributorConstants;
 import com.liferay.portal.search.contributor.sort.SortFieldNameTranslator;
 import com.liferay.portal.search.sort.SortFieldBuilder;
 

@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.search.contributor.ContributorConstants;
+import com.liferay.portal.search.contributor.constants.ContributorConstants;
 import com.liferay.portal.search.contributor.sort.SortFieldNameTranslator;
 
 import java.util.Map;

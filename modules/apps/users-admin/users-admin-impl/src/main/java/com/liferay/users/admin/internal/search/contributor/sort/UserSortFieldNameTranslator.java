@@ -14,7 +14,7 @@
 
 package com.liferay.users.admin.internal.search.contributor.sort;
 
-import com.liferay.portal.search.contributor.ContributorConstants;
+import com.liferay.portal.search.contributor.constants.ContributorConstants;
 import com.liferay.portal.search.contributor.sort.SortFieldNameTranslator;
 
 import org.osgi.service.component.annotations.Component;

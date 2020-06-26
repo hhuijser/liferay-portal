@@ -12,19 +12,15 @@
  * details.
  */
 
-package com.liferay.journal.model;
+package com.liferay.journal.constants;
 
 /**
- * @author     Alexander Chow
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.journal.constants.JournalFeedConstants}
+ * @author Sergio González
  */
-@Deprecated
-public class JournalFeedConstants {
+public class JournalSearchConstants {
 
-	public static final String RENDERED_WEB_CONTENT = "rendered-web-content";
+	public static final int FRAGMENT = 2;
 
-	public static final String WEB_CONTENT_DESCRIPTION =
-		"web-content-description";
+	public static final int SINGLE = 1;
 
 }

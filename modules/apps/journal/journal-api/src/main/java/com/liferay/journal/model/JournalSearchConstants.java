@@ -15,8 +15,11 @@
 package com.liferay.journal.model;
 
 /**
- * @author Sergio González
+ * @author     Sergio González
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.journal.constants.JournalSearchConstants}
  */
+@Deprecated
 public class JournalSearchConstants {
 
 	public static final int FRAGMENT = 2;

@@ -12,16 +12,13 @@
  * details.
  */
 
-package com.liferay.journal.model;
+package com.liferay.journal.constants;
 
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 /**
- * @author     Alexander Chow
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.journal.constants.JournalArticleConstants}
+ * @author Alexander Chow
  */
-@Deprecated
 public class JournalArticleConstants {
 
 	public static final int[] ASSET_ENTRY_CREATION_STATUSES = {

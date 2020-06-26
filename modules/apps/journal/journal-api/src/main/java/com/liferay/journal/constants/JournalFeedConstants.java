@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.journal.model;
+package com.liferay.journal.constants;
 
 /**
- * @author     Alexander Chow
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.journal.constants.JournalFeedConstants}
+ * @author Alexander Chow
  */
-@Deprecated
 public class JournalFeedConstants {
 
 	public static final String RENDERED_WEB_CONTENT = "rendered-web-content";

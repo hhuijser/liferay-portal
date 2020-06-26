@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.journal.model;
+package com.liferay.journal.constants;
 
 /**
- * @author     Alexander Chow
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.journal.constants.JournalStructureConstants}
+ * @author Alexander Chow
  */
-@Deprecated
 public class JournalStructureConstants {
 
 	public static final String RESERVED = "reserved";

@@ -15,10 +15,10 @@
 package com.liferay.vldap.server.internal.handler;
 
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.vldap.server.internal.constants.OIDConstants;
+import com.liferay.vldap.server.internal.constants.VLDAPConstants;
 import com.liferay.vldap.server.internal.handler.util.LdapHandlerContext;
 import com.liferay.vldap.server.internal.handler.util.LdapSslContextFactory;
-import com.liferay.vldap.server.internal.util.OIDConstants;
-import com.liferay.vldap.server.internal.util.VLDAPConstants;
 
 import java.util.List;
 import java.util.Map;

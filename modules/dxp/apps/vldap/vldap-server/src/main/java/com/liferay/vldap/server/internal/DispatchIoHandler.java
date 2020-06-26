@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.cache.thread.local.ThreadLocalCacheManager;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.vldap.server.internal.constants.VLDAPConstants;
 import com.liferay.vldap.server.internal.handler.AbandonLdapHandler;
 import com.liferay.vldap.server.internal.handler.BindLdapHandler;
 import com.liferay.vldap.server.internal.handler.CompareLdapHandler;
@@ -32,7 +33,6 @@ import com.liferay.vldap.server.internal.handler.util.LdapHandlerContext;
 import com.liferay.vldap.server.internal.handler.util.LdapHandlerThreadLocal;
 import com.liferay.vldap.server.internal.handler.util.LiferayLdapMessageContainer;
 import com.liferay.vldap.server.internal.util.PortletPropsValues;
-import com.liferay.vldap.server.internal.util.VLDAPConstants;
 
 import java.util.List;
 import java.util.Map;

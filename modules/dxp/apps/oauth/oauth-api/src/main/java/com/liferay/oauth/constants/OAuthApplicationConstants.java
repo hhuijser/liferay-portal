@@ -12,14 +12,11 @@
  *
  */
 
-package com.liferay.oauth.model;
+package com.liferay.oauth.constants;
 
 /**
- * @author     Peter Shin
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.oauth.constants.OAuthApplicationConstants}
+ * @author Peter Shin
  */
-@Deprecated
 public class OAuthApplicationConstants {
 
 	public static final int ACCESS_READ = 0;

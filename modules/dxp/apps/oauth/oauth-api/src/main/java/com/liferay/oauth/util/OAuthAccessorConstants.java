@@ -15,8 +15,11 @@
 package com.liferay.oauth.util;
 
 /**
- * @author Peter Shin
+ * @author     Peter Shin
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.oauth.constants.OAuthAccessorConstants}
  */
+@Deprecated
 public class OAuthAccessorConstants {
 
 	public static final String AUTHORIZED = "authorized";

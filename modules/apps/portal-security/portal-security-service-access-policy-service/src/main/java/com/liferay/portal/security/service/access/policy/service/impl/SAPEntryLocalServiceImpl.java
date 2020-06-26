@@ -32,12 +32,12 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.service.access.policy.configuration.SAPConfiguration;
+import com.liferay.portal.security.service.access.policy.constants.SAPEntryConstants;
 import com.liferay.portal.security.service.access.policy.exception.DuplicateSAPEntryNameException;
 import com.liferay.portal.security.service.access.policy.exception.RequiredSAPEntryException;
 import com.liferay.portal.security.service.access.policy.exception.SAPEntryNameException;
 import com.liferay.portal.security.service.access.policy.exception.SAPEntryTitleException;
 import com.liferay.portal.security.service.access.policy.model.SAPEntry;
-import com.liferay.portal.security.service.access.policy.model.SAPEntryConstants;
 import com.liferay.portal.security.service.access.policy.service.base.SAPEntryLocalServiceBaseImpl;
 
 import java.util.List;

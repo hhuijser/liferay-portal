@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.security.service.access.policy.model;
+package com.liferay.portal.security.service.access.policy.constants;
 
 /**
- * @author     Mika Koivisto
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.security.service.access.policy.constants.SAPEntryConstants}
+ * @author Mika Koivisto
  */
-@Deprecated
 public interface SAPEntryConstants {
 
 	public static String NAME_ALLOWED_CHARACTERS =

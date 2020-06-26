@@ -14,10 +14,10 @@
 
 package com.liferay.oauth.web.internal.struts;
 
+import com.liferay.oauth.constants.OAuthAccessorConstants;
 import com.liferay.oauth.constants.OAuthConstants;
 import com.liferay.oauth.util.OAuth;
 import com.liferay.oauth.util.OAuthAccessor;
-import com.liferay.oauth.util.OAuthAccessorConstants;
 import com.liferay.oauth.util.OAuthMessage;
 import com.liferay.oauth.util.WebServerUtil;
 import com.liferay.portal.kernel.service.ServiceContext;

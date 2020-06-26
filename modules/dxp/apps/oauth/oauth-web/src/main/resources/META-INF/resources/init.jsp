@@ -26,8 +26,8 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.oauth.model.OAuthApplication" %><%@
-page import="com.liferay.oauth.model.OAuthApplicationConstants" %><%@
+<%@ page import="com.liferay.oauth.constants.OAuthApplicationConstants" %><%@
+page import="com.liferay.oauth.model.OAuthApplication" %><%@
 page import="com.liferay.oauth.service.OAuthApplicationLocalServiceUtil" %><%@
 page import="com.liferay.oauth.service.OAuthUserLocalServiceUtil" %><%@
 page import="com.liferay.oauth.service.permission.OAuthApplicationPermission" %><%@

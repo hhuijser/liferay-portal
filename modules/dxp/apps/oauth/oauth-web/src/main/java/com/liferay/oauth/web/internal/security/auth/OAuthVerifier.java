@@ -14,8 +14,8 @@
 
 package com.liferay.oauth.web.internal.security.auth;
 
+import com.liferay.oauth.constants.OAuthApplicationConstants;
 import com.liferay.oauth.model.OAuthApplication;
-import com.liferay.oauth.model.OAuthApplicationConstants;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.OAuthApplicationLocalService;
 import com.liferay.oauth.service.OAuthUserLocalService;

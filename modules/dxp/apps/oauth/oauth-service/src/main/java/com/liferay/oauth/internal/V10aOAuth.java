@@ -15,6 +15,7 @@
 package com.liferay.oauth.internal;
 
 import com.liferay.oauth.configuration.OAuthConfigurationValues;
+import com.liferay.oauth.constants.OAuthAccessorConstants;
 import com.liferay.oauth.model.OAuthApplication;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.OAuthApplicationLocalService;
@@ -25,7 +26,6 @@ import com.liferay.oauth.util.DefaultOAuthMessage;
 import com.liferay.oauth.util.DefaultOAuthValidator;
 import com.liferay.oauth.util.OAuth;
 import com.liferay.oauth.util.OAuthAccessor;
-import com.liferay.oauth.util.OAuthAccessorConstants;
 import com.liferay.oauth.util.OAuthConsumer;
 import com.liferay.oauth.util.OAuthMessage;
 import com.liferay.oauth.util.OAuthValidator;

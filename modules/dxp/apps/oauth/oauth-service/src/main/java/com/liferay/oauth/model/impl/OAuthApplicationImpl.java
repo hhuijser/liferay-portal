@@ -14,7 +14,7 @@
 
 package com.liferay.oauth.model.impl;
 
-import com.liferay.oauth.model.OAuthApplicationConstants;
+import com.liferay.oauth.constants.OAuthApplicationConstants;
 
 /**
  * @author Ivica Cardic

@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.vldap.server.internal.util;
+package com.liferay.vldap.server.internal.constants;
 
 /**
  * @author Jonathan Potter

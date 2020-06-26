@@ -17,6 +17,7 @@ package com.liferay.segments.asah.connector.internal.client.util;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.segments.asah.connector.internal.client.constants.FilterConstants;
 
 import java.util.ArrayList;
 import java.util.List;

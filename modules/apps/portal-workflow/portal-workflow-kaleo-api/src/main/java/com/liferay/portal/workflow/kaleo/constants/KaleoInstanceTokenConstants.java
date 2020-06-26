@@ -12,18 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.runtime.notification.recipient.script;
+package com.liferay.portal.workflow.kaleo.constants;
 
 /**
- * @author     Michael C. Han
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.workflow.kaleo.runtime.notification.recipient.script.constants.ScriptingNotificationRecipientConstants}
+ * @author Michael C. Han
  */
-@Deprecated
-public interface ScriptingNotificationRecipientConstants {
+public class KaleoInstanceTokenConstants {
 
-	public static final String ROLES_RECIPIENT = "roles";
-
-	public static final String USER_RECIPIENT = "user";
+	public static final long PARENT_KALEO_INSTANCE_TOKEN_ID_DEFAULT = 0;
 
 }

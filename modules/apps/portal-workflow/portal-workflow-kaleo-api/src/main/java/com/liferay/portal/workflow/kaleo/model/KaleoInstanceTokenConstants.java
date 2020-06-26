@@ -15,8 +15,11 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 /**
- * @author Michael C. Han
+ * @author     Michael C. Han
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.portal.workflow.kaleo.constants.KaleoInstanceTokenConstants}
  */
+@Deprecated
 public class KaleoInstanceTokenConstants {
 
 	public static final long PARENT_KALEO_INSTANCE_TOKEN_ID_DEFAULT = 0;

@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.wiki.model;
+package com.liferay.wiki.constants;
 
 /**
- * @author     Alexander Chow
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.wiki.constants.WikiPageConstants}
+ * @author Alexander Chow
  */
-@Deprecated
 public class WikiPageConstants {
 
 	public static final String BASE_ATTACHMENTS_DIR = "wiki/";

@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.workflow.metrics.internal.background.task;
+package com.liferay.portal.workflow.metrics.internal.background.task.constants;
 
 /**
  * @author Rafael Praxedes

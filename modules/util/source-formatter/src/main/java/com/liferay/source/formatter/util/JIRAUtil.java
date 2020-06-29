@@ -41,8 +41,12 @@ public class JIRAUtil {
 
 		outerLoop:
 		for (String commitMessage : commitMessages) {
+			if (commitMessage.startsWith("Revert ")) {
+				continue;
+			}
+
 			for (String projectName : projectNames) {
-				if (commitMessage.startsWith(projectName + "-")) {
+				if (commitMessage.startsWith(projectName)) {
 					continue outerLoop;
 				}
 			}
@@ -107,6 +111,6 @@ public class JIRAUtil {
 	}
 
 	private static final Pattern _jiraTicketIdPattern = Pattern.compile(
-		"^[^-]+-[0-9]+");
+		"^[A-Z0-9]+-[0-9]+");
 
 }

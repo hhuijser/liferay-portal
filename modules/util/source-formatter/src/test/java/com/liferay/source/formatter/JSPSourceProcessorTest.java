@@ -62,6 +62,17 @@ public class JSPSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testIncorrectMethodCalls() throws Exception {
+		test(
+			"IncorrectMethodCalls.testjsp",
+			new String[] {
+				"Use tyep of 'LiferayPortletResponse' to call 'getNamespace()'",
+				"Use tyep of 'LiferayPortletResponse' to call 'getNamespace()'"
+			},
+			new Integer[] {21, 28});
+	}
+
+	@Test
 	public void testMisplacedImport() throws Exception {
 		test("MisplacedImport.testjsp", "Move imports to init.jsp");
 	}

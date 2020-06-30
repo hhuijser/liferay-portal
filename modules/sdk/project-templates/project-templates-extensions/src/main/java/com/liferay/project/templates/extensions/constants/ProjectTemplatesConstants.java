@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.project.templates.extensions;
+package com.liferay.project.templates.extensions.constants;
 
 /**
  * @author Gregory Amerson

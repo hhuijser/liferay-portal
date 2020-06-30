@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.documentum.repository.model;
+package com.liferay.documentum.repository.constants;
 
 /**
  * @author Mika Koivisto

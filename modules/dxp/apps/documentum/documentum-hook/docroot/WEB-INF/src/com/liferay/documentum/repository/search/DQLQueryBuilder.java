@@ -15,7 +15,7 @@
 package com.liferay.documentum.repository.search;
 
 import com.liferay.document.library.repository.external.search.ExtRepositoryQueryMapper;
-import com.liferay.documentum.repository.model.Constants;
+import com.liferay.documentum.repository.constants.Constants;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.BooleanClause;

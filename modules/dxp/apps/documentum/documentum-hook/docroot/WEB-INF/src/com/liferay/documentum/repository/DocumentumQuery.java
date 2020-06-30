@@ -23,7 +23,7 @@ import com.documentum.fc.common.DfException;
 import com.documentum.fc.common.IDfId;
 
 import com.liferay.document.library.repository.external.ExtRepositoryObjectType;
-import com.liferay.documentum.repository.model.Constants;
+import com.liferay.documentum.repository.constants.Constants;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.RepositoryException;

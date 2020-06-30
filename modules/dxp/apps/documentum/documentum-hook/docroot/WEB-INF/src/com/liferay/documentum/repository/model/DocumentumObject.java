@@ -21,6 +21,7 @@ import com.documentum.fc.common.IDfTime;
 
 import com.liferay.document.library.repository.external.ExtRepositoryModel;
 import com.liferay.document.library.repository.external.ExtRepositoryObject;
+import com.liferay.documentum.repository.constants.Constants;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.FileUtil;

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.sharepoint.soap.repository.connector.SharepointConnection;
 import com.liferay.sharepoint.soap.repository.connector.SharepointException;
 import com.liferay.sharepoint.soap.repository.connector.SharepointObject;
+import com.liferay.sharepoint.soap.repository.connector.operation.constants.SharepointConstants;
 import com.liferay.sharepoint.soap.repository.connector.schema.batch.Batch;
 import com.liferay.sharepoint.soap.repository.connector.schema.batch.BatchField;
 import com.liferay.sharepoint.soap.repository.connector.schema.batch.BatchMethod;

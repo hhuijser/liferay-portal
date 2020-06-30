@@ -15,6 +15,7 @@
 package com.liferay.sharepoint.soap.repository.connector.operation;
 
 import com.liferay.sharepoint.soap.repository.connector.SharepointException;
+import com.liferay.sharepoint.soap.repository.connector.operation.constants.SharepointConstants;
 import com.liferay.sharepoint.soap.repository.connector.schema.batch.Batch;
 import com.liferay.sharepoint.soap.repository.connector.schema.batch.BatchField;
 import com.liferay.sharepoint.soap.repository.connector.schema.batch.BatchMethod;

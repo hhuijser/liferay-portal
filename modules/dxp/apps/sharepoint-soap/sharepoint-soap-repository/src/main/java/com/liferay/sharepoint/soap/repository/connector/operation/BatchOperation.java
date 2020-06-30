@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.sharepoint.soap.repository.connector.SharepointException;
 import com.liferay.sharepoint.soap.repository.connector.SharepointResultException;
 import com.liferay.sharepoint.soap.repository.connector.internal.util.RemoteExceptionSharepointExceptionMapper;
+import com.liferay.sharepoint.soap.repository.connector.operation.constants.SharepointConstants;
 import com.liferay.sharepoint.soap.repository.connector.schema.XMLUtil;
 import com.liferay.sharepoint.soap.repository.connector.schema.batch.Batch;
 

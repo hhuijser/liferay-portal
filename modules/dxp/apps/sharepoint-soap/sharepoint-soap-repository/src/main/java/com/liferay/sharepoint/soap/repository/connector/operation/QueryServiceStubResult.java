@@ -16,6 +16,7 @@ package com.liferay.sharepoint.soap.repository.connector.operation;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.sharepoint.soap.repository.connector.SharepointException;
+import com.liferay.sharepoint.soap.repository.connector.operation.constants.SharepointConstants;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

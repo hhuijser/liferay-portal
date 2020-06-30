@@ -17,6 +17,7 @@ package com.liferay.portal.search.elasticsearch7.internal.connection;
 import com.liferay.portal.search.elasticsearch7.configuration.RESTClientLoggerLevel;
 import com.liferay.portal.search.elasticsearch7.internal.configuration.ElasticsearchConfigurationWrapper;
 import com.liferay.portal.search.elasticsearch7.internal.configuration.OperationModeResolver;
+import com.liferay.portal.search.elasticsearch7.internal.connection.constants.ConnectionConstants;
 
 import org.elasticsearch.client.RestHighLevelClient;
 

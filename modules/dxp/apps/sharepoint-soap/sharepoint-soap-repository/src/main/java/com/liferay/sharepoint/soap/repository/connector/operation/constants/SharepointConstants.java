@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.sharepoint.soap.repository.connector.operation;
+package com.liferay.sharepoint.soap.repository.connector.operation.constants;
 
 import com.liferay.petra.string.StringPool;
 

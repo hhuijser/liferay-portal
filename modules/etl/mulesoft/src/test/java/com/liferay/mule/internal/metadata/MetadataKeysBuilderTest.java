@@ -17,7 +17,7 @@ package com.liferay.mule.internal.metadata;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.mule.internal.oas.OASConstants;
+import com.liferay.mule.internal.oas.constants.OASConstants;
 
 import java.io.IOException;
 import java.io.InputStream;

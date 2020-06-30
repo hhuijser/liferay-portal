@@ -15,7 +15,7 @@
 package com.liferay.mule.internal.metadata.key;
 
 import com.liferay.mule.internal.metadata.MetadataKeysBuilder;
-import com.liferay.mule.internal.oas.OASConstants;
+import com.liferay.mule.internal.oas.constants.OASConstants;
 
 import java.util.Set;
 

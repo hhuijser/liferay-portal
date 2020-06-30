@@ -15,7 +15,7 @@
 package com.liferay.mule.internal.metadata.output;
 
 import com.liferay.mule.internal.metadata.MetadataTypeBuilder;
-import com.liferay.mule.internal.oas.OASConstants;
+import com.liferay.mule.internal.oas.constants.OASConstants;
 
 import org.mule.metadata.api.model.MetadataType;
 import org.mule.runtime.api.connection.ConnectionException;

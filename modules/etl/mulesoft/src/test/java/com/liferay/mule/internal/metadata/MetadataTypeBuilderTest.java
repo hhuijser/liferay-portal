@@ -20,7 +20,7 @@ import static org.mockito.Matchers.anyString;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.mule.internal.oas.OASConstants;
+import com.liferay.mule.internal.oas.constants.OASConstants;
 
 import java.io.InputStream;
 

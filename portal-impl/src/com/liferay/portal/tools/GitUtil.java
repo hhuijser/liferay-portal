@@ -261,9 +261,7 @@ public class GitUtil {
 					}
 				}
 
-				if (!refName.equals(currentBranchName) &&
-					!refName.endsWith("/" + currentBranchName)) {
-
+				if (parts[1].contains("upstream/" + gitWorkingBranchName)) {
 					return parts[0];
 				}
 			}

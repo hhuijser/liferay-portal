@@ -230,7 +230,7 @@ public class GitUtil {
 		}
 
 		unsyncBufferedReader = getGitCommandReader(
-			"git log --pretty=format:\"%H %D\"");
+			"git log --pretty=format:%H:%D");
 
 		int count = 0;
 		boolean head = false;
@@ -242,7 +242,7 @@ public class GitUtil {
 
 			line = StringUtil.trim(line);
 
-			String[] parts = line.split(StringPool.SPACE, 2);
+			String[] parts = line.split(StringPool.COLON, 2);
 
 			if (parts.length == 1) {
 				continue;

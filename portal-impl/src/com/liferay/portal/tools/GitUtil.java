@@ -242,7 +242,7 @@ public class GitUtil {
 
 			line = StringUtil.trim(line);
 
-			String[] parts = line.split(StringPool.COLON, 2);
+			String[] parts = line.split(StringPool.COLON);
 
 			if (parts.length == 1) {
 				continue;

@@ -387,14 +387,14 @@ public class GitUtil {
 
 	protected static String getLatestAuthorCommitId() throws Exception {
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git log --pretty=format:\"%H %an\"");
+			"git log --pretty=format:%H:%an");
 
 		String latestAuthor = null;
 
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			String[] parts = line.split(StringPool.SPACE, 2);
+			String[] parts = line.split(StringPool.COLON);
 
 			String author = parts[1];
 

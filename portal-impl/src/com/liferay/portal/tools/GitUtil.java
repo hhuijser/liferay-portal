@@ -28,7 +28,6 @@ import java.io.InputStreamReader;
 import java.nio.file.Path;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -45,10 +44,6 @@ public class GitUtil {
 		throws Exception {
 
 		String commitId = getCurrentBranchCommitId(gitWorkingBranchName);
-
-		if (commitId == null) {
-			return Collections.emptyList();
-		}
 
 		List<String> commitMessages = new ArrayList<>();
 
@@ -85,10 +80,6 @@ public class GitUtil {
 		throws Exception {
 
 		String commitId = getCurrentBranchCommitId(gitWorkingBranchName);
-
-		if (commitId == null) {
-			return Collections.emptyList();
-		}
 
 		List<String> fileNames = getFileNames(baseDirName, commitId);
 
@@ -221,59 +212,9 @@ public class GitUtil {
 		throws Exception {
 
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git rev-parse --abbrev-ref HEAD");
+			"git merge-base HEAD " + gitWorkingBranchName);
 
-		String currentBranchName = unsyncBufferedReader.readLine();
-
-		if (gitWorkingBranchName.equals(currentBranchName)) {
-			return null;
-		}
-
-		unsyncBufferedReader = getGitCommandReader(
-			"git log --pretty=format:\"%H %D\"");
-
-		int count = 0;
-		boolean head = false;
-
-		String line = null;
-
-		while ((line = unsyncBufferedReader.readLine()) != null) {
-			count++;
-
-			line = StringUtil.trim(line);
-
-			String[] parts = line.split(StringPool.SPACE, 2);
-
-			if (parts.length == 1) {
-				continue;
-			}
-
-			String[] refNames = StringUtil.split(
-				parts[1], StringPool.COMMA_AND_SPACE);
-
-			for (String refName : refNames) {
-				if (!head) {
-					if (refName.startsWith("HEAD ->")) {
-						head = true;
-					}
-					else {
-						break;
-					}
-				}
-
-				if (!refName.equals(currentBranchName) &&
-					!refName.endsWith("/" + currentBranchName)) {
-
-					return parts[0];
-				}
-			}
-
-			if (count > 1000) {
-				return null;
-			}
-		}
-
-		return null;
+		return unsyncBufferedReader.readLine();
 	}
 
 	protected static List<String> getDeletedFileNames(
@@ -448,9 +389,9 @@ public class GitUtil {
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
 			"git log --pretty=format:\"%H %an\"");
 
-		String line = null;
-
 		String latestAuthor = null;
+
+		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
 			String[] parts = line.split(StringPool.SPACE, 2);

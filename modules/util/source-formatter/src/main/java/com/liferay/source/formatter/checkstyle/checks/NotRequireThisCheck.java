@@ -36,9 +36,7 @@ public class NotRequireThisCheck extends BaseCheck {
 
 		outerLoop:
 		for (DetailAST thisDetailAST : thisDetailASTList) {
-			if (_isMethodCall(thisDetailAST) ||
-				(thisDetailAST.getPreviousSibling() != null)) {
-
+			if (thisDetailAST.getPreviousSibling() != null) {
 				continue;
 			}
 
@@ -67,22 +65,6 @@ public class NotRequireThisCheck extends BaseCheck {
 			}
 
 			log(thisDetailAST, _MSG_VARIABLE_THIS_NOT_REQUIRED, name);
-		}
-	}
-
-	private boolean _isMethodCall(DetailAST detailAST) {
-		DetailAST parentDetailAST = detailAST.getParent();
-
-		while (true) {
-			if (parentDetailAST.getType() == TokenTypes.METHOD_CALL) {
-				return true;
-			}
-
-			if (parentDetailAST.getType() != TokenTypes.DOT) {
-				return false;
-			}
-
-			parentDetailAST = parentDetailAST.getParent();
 		}
 	}
 

@@ -480,7 +480,8 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 			tablesSQLContent, tableName, columnName);
 
 		if ((oldType == null) || oldType.equals(newType) ||
-			(oldType.startsWith("VARCHAR") && newType.equals("TEXT"))) {
+			((oldType.startsWith("STRING") || oldType.startsWith("VARCHAR")) &&
+			 newType.equals("TEXT"))) {
 
 			return false;
 		}

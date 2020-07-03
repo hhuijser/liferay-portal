@@ -14,6 +14,7 @@
 
 package com.liferay.journal.internal.upgrade.v3_2_4;
 
+import com.liferay.journal.internal.upgrade.v1_1_4.util.JournalArticleTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
@@ -23,9 +24,9 @@ public class UpgradeJournalArticle extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL(
-			"create index IX_8868DCD0 on JournalArticle (groupId, folderId, " +
-				"classNameId, status, ctCollectionId)");
+		alter(
+			JournalArticleTable.class,
+			new AlterColumnType("smallImageURL", "TEXT null"));
 	}
 
 }

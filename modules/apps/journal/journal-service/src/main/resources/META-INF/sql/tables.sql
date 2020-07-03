@@ -28,7 +28,7 @@ create table JournalArticle (
 	indexable BOOLEAN,
 	smallImage BOOLEAN,
 	smallImageId LONG,
-	smallImageURL STRING null,
+	smallImageURL TEXT null,
 	lastPublishDate DATE null,
 	status INTEGER,
 	statusByUserId LONG,

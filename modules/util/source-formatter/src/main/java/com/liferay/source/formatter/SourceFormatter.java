@@ -300,11 +300,11 @@ public class SourceFormatter {
 	}
 
 	public void format() throws Exception {
-		_validateCommitMessages();
-
 		_printProgressStatusMessage("Scanning for files...");
 
 		_init();
+
+		_validateCommitMessages();
 
 		_printProgressStatusMessage("Initializing checks...");
 

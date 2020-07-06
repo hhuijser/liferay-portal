@@ -35,6 +35,14 @@ import java.util.regex.Pattern;
  */
 public class JIRAUtil {
 
+	private static final int _STATUS_NO_INTERNET_CONNECTION = 0;
+
+	private static final int _STATUS_NONEXISTING_TICKET = 1;
+
+	private static final int _STATUS_PRIVATE_TICKET = 2;
+
+	private static final int _STATUS_PUBLIC_TICKET = 3;
+
 	public static void validateJIRAProjectNames(
 			List<String> commitMessages, List<String> projectNames)
 		throws Exception {
@@ -65,6 +73,38 @@ public class JIRAUtil {
 		}
 	}
 
+	private static String _getJIRATicketId(String commitMessage) {
+		Matcher matcher = _jiraTicketIdPattern.matcher(commitMessage);
+
+		if (matcher.find()) {
+			return matcher.group();
+		}
+
+		return null;
+	}
+
+	private static int _getJIRATicketStatus(String jiraTicketId) {
+		try {
+			URL url = new URL(
+				"https://issues.liferay.com/rest/api/2/issue/" + jiraTicketId);
+
+			url.openStream();
+		}
+		catch (IOException ioException) {
+			if (ioException instanceof FileNotFoundException) {
+				return _STATUS_NONEXISTING_TICKET;
+			}
+
+			if (ioException instanceof UnknownHostException) {
+				return _STATUS_NO_INTERNET_CONNECTION;
+			}
+
+			return _STATUS_PRIVATE_TICKET;
+		}
+
+		return _STATUS_PUBLIC_TICKET;
+	}
+
 	public static void validateJIRATicketIds(
 			List<String> commitMessages, int maxNumberOfTickets)
 		throws Exception {
@@ -76,40 +116,22 @@ public class JIRAUtil {
 				return;
 			}
 
-			Matcher matcher = _jiraTicketIdPattern.matcher(commitMessage);
+			String jiraTicketId = _getJIRATicketId(commitMessage);
 
-			if (!matcher.find()) {
+			if (!validatedTicketIds.add(jiraTicketId)) {
 				continue;
 			}
 
-			String ticketId = matcher.group();
+			int jiraTicketStatus = _getJIRATicketStatus(jiraTicketId);
 
-			if (!validatedTicketIds.add(ticketId)) {
-				continue;
+			if (jiraTicketStatus == _STATUS_NO_INTERNET_CONNECTION) {
+				return;
 			}
 
-			try {
-				URL url = new URL(
-					"https://issues.liferay.com/rest/api/2/issue/" + ticketId);
-
-				url.openStream();
-			}
-			catch (IOException ioException) {
-				if (ioException instanceof FileNotFoundException) {
-					throw new Exception(
-						"Commit message is pointing to non-existing JIRA " +
-							"issue: " + ticketId);
-				}
-
-				if (ioException instanceof UnknownHostException) {
-
-					// No Internet connection
-
-					return;
-				}
-
-				// Ticket exists, but user has no permission to view
-
+			if (jiraTicketStatus == _STATUS_NONEXISTING_TICKET) {
+				throw new Exception(
+					"Commit message is pointing to non-existing JIRA " +
+						"issue: " + jiraTicketId);
 			}
 		}
 	}

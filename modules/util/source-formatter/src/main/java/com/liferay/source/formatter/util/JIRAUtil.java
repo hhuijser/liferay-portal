@@ -39,6 +39,10 @@ public class JIRAUtil {
 			List<String> commitMessages, List<String> projectNames)
 		throws Exception {
 
+		if (projectNames.isEmpty()) {
+			return;
+		}
+
 		outerLoop:
 		for (String commitMessage : commitMessages) {
 			if (commitMessage.startsWith("Revert ")) {

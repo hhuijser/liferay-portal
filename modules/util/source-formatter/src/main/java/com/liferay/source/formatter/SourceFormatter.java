@@ -986,6 +986,10 @@ public class SourceFormatter {
 		JIRAUtil.validateJIRAProjectNames(
 			commitMessages, _getPropertyValues("jira.project.keys"));
 		JIRAUtil.validateJIRATicketIds(commitMessages, 20);
+
+		JIRAUtil.validateJIRASecurityKeywords(
+			commitMessages,
+			_getPropertyValues("jira.security.vulnerability.keywords"), 20);
 	}
 
 	private static final String _PROPERTIES_FILE_NAME =

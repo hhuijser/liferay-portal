@@ -15,9 +15,9 @@
 package com.liferay.portal.template.soy.renderer.internal;
 
 import com.liferay.portal.kernel.template.Template;
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateException;
 import com.liferay.portal.kernel.template.TemplateManager;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 import com.liferay.portal.template.soy.renderer.SoyRenderer;
 
 import java.io.IOException;

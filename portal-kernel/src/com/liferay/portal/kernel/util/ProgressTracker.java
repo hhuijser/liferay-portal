@@ -15,6 +15,7 @@
 package com.liferay.portal.kernel.util;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.constants.ProgressStatusConstants;
 
 import java.io.Serializable;
 

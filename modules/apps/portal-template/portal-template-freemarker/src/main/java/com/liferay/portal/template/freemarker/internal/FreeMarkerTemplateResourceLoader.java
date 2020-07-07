@@ -14,8 +14,8 @@
 
 package com.liferay.portal.template.freemarker.internal;
 
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateResourceLoader;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 import com.liferay.portal.template.BaseTemplateResourceLoader;
 import com.liferay.portal.template.TemplateResourceParser;
 

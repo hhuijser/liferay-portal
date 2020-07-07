@@ -19,8 +19,8 @@ import com.liferay.journal.web.internal.portlet.action.ActionUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BaseJSPPortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import java.io.IOException;
 

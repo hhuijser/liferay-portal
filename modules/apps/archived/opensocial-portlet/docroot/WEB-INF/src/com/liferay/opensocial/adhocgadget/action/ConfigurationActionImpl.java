@@ -20,9 +20,9 @@ import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import java.util.Map;
 

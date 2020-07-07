@@ -16,7 +16,7 @@ package com.liferay.portal.template.soy.internal.util;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.template.TemplateConstants;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 
 /**
  * @author Rafael Praxedes

@@ -34,10 +34,10 @@ page import="com.liferay.portal.kernel.model.LayoutTemplate" %><%@
 page import="com.liferay.portal.kernel.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.kernel.service.permission.LayoutPermissionUtil" %><%@
 page import="com.liferay.portal.kernel.template.StringTemplateResource" %><%@
-page import="com.liferay.portal.kernel.template.TemplateConstants" %><%@
-page import="com.liferay.portal.kernel.util.Constants" %><%@
+page import="com.liferay.portal.kernel.template.constants.TemplateConstants" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %>
+page import="com.liferay.portal.kernel.util.Validator" %><%@
+page import="com.liferay.portal.kernel.util.constants.Constants" %>
 
 <liferay-theme:defineObjects />
 

@@ -17,8 +17,8 @@ package com.liferay.taglib.ui;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 import com.liferay.taglib.aui.ScriptTag;
 import com.liferay.taglib.util.IncludeTag;
 

@@ -14,8 +14,8 @@
 
 package com.liferay.frontend.css.web.internal;
 
-import com.liferay.portal.kernel.servlet.PortalWebResourceConstants;
 import com.liferay.portal.kernel.servlet.PortalWebResources;
+import com.liferay.portal.kernel.servlet.constants.PortalWebResourceConstants;
 
 import javax.servlet.ServletContext;
 

@@ -18,9 +18,9 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.servlet.ServletInputStreamAdapter;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 import com.liferay.portlet.internal.PortletRequestDispatcherImpl;
 
 import java.io.BufferedReader;

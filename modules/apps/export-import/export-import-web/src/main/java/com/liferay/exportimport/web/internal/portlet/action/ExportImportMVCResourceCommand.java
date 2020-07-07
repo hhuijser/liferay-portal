@@ -17,8 +17,8 @@ package com.liferay.exportimport.web.internal.portlet.action;
 import com.liferay.exportimport.constants.ExportImportPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.constants.Constants;
 
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.ResourceRequest;

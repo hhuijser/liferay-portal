@@ -18,7 +18,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.servlet.taglib.ui.BaseJSPFormNavigatorEntry;
-import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorConstants;
+import com.liferay.portal.kernel.servlet.taglib.ui.constants.FormNavigatorConstants;
 
 import java.util.Locale;
 

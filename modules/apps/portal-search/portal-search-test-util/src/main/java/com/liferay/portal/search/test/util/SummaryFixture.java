@@ -27,9 +27,9 @@ import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.service.ThemeLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 import com.liferay.portletmvc4spring.test.mock.web.portlet.MockPortletResponse;
 import com.liferay.portletmvc4spring.test.mock.web.portlet.MockRenderRequest;
 

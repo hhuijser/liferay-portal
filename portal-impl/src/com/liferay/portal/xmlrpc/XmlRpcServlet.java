@@ -25,9 +25,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.xmlrpc.Method;
 import com.liferay.portal.kernel.xmlrpc.Response;
-import com.liferay.portal.kernel.xmlrpc.XmlRpcConstants;
 import com.liferay.portal.kernel.xmlrpc.XmlRpcException;
 import com.liferay.portal.kernel.xmlrpc.XmlRpcUtil;
+import com.liferay.portal.kernel.xmlrpc.constants.XmlRpcConstants;
 import com.liferay.portal.util.PortalInstances;
 
 import java.io.IOException;

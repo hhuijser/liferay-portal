@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.backgroundtask.BackgroundTaskResult;
 import com.liferay.portal.kernel.backgroundtask.BaseBackgroundTaskExecutor;
 import com.liferay.portal.kernel.backgroundtask.constants.BackgroundTaskConstants;
 import com.liferay.portal.kernel.backgroundtask.display.BackgroundTaskDisplay;
-import com.liferay.portal.kernel.search.background.task.ReindexBackgroundTaskConstants;
+import com.liferay.portal.kernel.search.background.task.constants.ReindexBackgroundTaskConstants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.search.internal.background.task.display.ReindexBackgroundTaskDisplay;
 

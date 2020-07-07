@@ -18,7 +18,7 @@ import com.liferay.petra.lang.ClassLoaderPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
-import com.liferay.portal.kernel.template.TemplateConstants;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 
 import java.net.URL;
 

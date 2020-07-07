@@ -16,9 +16,9 @@ package com.liferay.layout.admin.web.internal.template;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.constants.Constants;
 
 import java.util.Map;
 

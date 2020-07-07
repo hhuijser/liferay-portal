@@ -40,8 +40,8 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.xmlrpc.Fault;
 import com.liferay.portal.kernel.xmlrpc.XmlRpc;
-import com.liferay.portal.kernel.xmlrpc.XmlRpcConstants;
 import com.liferay.portal.kernel.xmlrpc.XmlRpcUtil;
+import com.liferay.portal.kernel.xmlrpc.constants.XmlRpcConstants;
 import com.liferay.registry.collections.ServiceTrackerMap;
 
 import java.io.IOException;

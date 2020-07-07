@@ -14,8 +14,8 @@
 
 package com.liferay.portal.action;
 
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.constants.Constants;
 import com.liferay.portal.struts.JSONAction;
 import com.liferay.portlet.layoutsadmin.util.LayoutsTreeUtil;
 

@@ -16,10 +16,10 @@ package com.liferay.exportimport.internal.background.task;
 
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatus;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.constants.Constants;
 
 import java.util.HashMap;
 

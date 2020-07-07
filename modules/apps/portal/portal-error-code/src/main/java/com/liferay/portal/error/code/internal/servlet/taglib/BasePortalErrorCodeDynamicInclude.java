@@ -17,8 +17,8 @@ package com.liferay.portal.error.code.internal.servlet.taglib;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.taglib.DynamicInclude;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import java.io.IOException;
 import java.io.PrintWriter;

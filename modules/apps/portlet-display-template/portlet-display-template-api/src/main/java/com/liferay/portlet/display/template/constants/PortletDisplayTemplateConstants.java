@@ -14,7 +14,7 @@
 
 package com.liferay.portlet.display.template.constants;
 
-import com.liferay.portal.kernel.template.TemplateConstants;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 
 /**
  * @author Juan Fernández

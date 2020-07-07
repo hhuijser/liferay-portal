@@ -47,7 +47,7 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 
 		JavaClass javaClass = (JavaClass)javaTerm;
 
-		if (javaClass.isAnonymous()) {
+		if (javaClass.isAnonymous() || javaClass.hasAnnotation("Deprecated")) {
 			return javaTerm.getContent();
 		}
 
@@ -58,6 +58,8 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 
 			return javaTerm.getContent();
 		}
+
+		_checkConstantsPackageName(fileName, packageName, javaClass.getName());
 
 		_checkPackageName(
 			fileName, absolutePath, packageName, javaClass.getName());
@@ -89,6 +91,24 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 	@Override
 	protected String[] getCheckableJavaTermNames() {
 		return new String[] {JAVA_CLASS};
+	}
+
+	private void _checkConstantsPackageName(
+		String fileName, String packageName, String className) {
+
+		if (!className.endsWith("Constants")) {
+			return;
+		}
+
+		if (!packageName.endsWith(".constants") &&
+			!packageName.contains(".kernel.model")) {
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Package for class '", className,
+					"' should end with '.constants'"));
+		}
 	}
 
 	private void _checkModulePackageName(String fileName, String packageName)

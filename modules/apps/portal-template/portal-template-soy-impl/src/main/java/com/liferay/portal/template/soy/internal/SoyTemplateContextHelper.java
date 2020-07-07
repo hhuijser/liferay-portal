@@ -15,8 +15,8 @@
 package com.liferay.portal.template.soy.internal;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 import com.liferay.portal.template.TemplateContextHelper;
 
 import java.util.Collections;

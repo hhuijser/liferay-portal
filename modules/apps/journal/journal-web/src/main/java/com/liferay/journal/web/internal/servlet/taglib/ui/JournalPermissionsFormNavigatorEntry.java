@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry;
-import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import javax.portlet.PortletRequest;
 

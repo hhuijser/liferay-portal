@@ -16,7 +16,7 @@ package com.liferay.portal.template;
 
 import com.liferay.petra.lang.ClassLoaderPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.template.TemplateConstants;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;

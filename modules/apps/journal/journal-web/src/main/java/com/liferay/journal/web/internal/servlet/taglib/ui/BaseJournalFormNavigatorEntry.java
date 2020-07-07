@@ -22,8 +22,8 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.servlet.taglib.ui.BaseJSPFormNavigatorEntry;
-import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorConstants;
-import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.servlet.taglib.ui.constants.FormNavigatorConstants;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import java.util.Locale;
 

@@ -15,8 +15,11 @@
 package com.liferay.portal.kernel.util;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author     Brian Wing Shun Chan
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.portal.kernel.util.constants.FastDateFormatConstants}
  */
+@Deprecated
 public interface FastDateFormatConstants {
 
 	public static final int FULL = 0;

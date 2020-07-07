@@ -12,15 +12,12 @@
  * details.
  */
 
-package com.liferay.portal.kernel.xmlrpc;
+package com.liferay.portal.kernel.xmlrpc.constants;
 
 /**
- * @author     Alexander Chow
- * @author     Brian Wing Shun Chan
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.xmlrpc.constants.XmlRpcConstants}
+ * @author Alexander Chow
+ * @author Brian Wing Shun Chan
  */
-@Deprecated
 public interface XmlRpcConstants {
 
 	public static final int APPLICATION_ERROR = -32500;

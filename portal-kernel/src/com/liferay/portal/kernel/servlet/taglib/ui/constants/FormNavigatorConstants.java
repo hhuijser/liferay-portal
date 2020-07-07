@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.kernel.servlet.taglib.ui;
+package com.liferay.portal.kernel.servlet.taglib.ui.constants;
 
 /**
- * @author     Sergio González
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.servlet.taglib.ui.constants.FormNavigatorConstants}
+ * @author Sergio González
  */
-@Deprecated
 public class FormNavigatorConstants {
 
 	public static final String CATEGORY_KEY_COMPANY_SETTINGS_CONFIGURATION =

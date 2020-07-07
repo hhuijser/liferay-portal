@@ -14,9 +14,9 @@
 
 package com.liferay.taglib.portlet;
 
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

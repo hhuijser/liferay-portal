@@ -17,7 +17,7 @@ package com.liferay.frontend.editor.simple.web.internal;
 import com.liferay.frontend.editor.EditorRenderer;
 import com.liferay.frontend.editor.simple.web.internal.constants.SimpleEditorConstants;
 import com.liferay.portal.kernel.editor.Editor;
-import com.liferay.portal.kernel.servlet.PortalWebResourceConstants;
+import com.liferay.portal.kernel.servlet.constants.PortalWebResourceConstants;
 
 import java.util.Map;
 

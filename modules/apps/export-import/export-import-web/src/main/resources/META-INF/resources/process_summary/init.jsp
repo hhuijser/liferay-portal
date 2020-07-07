@@ -21,8 +21,8 @@ page import="com.liferay.exportimport.constants.ExportImportBackgroundTaskContex
 page import="com.liferay.exportimport.web.internal.display.context.ProcessSummaryDisplayContext" %><%@
 page import="com.liferay.portal.kernel.model.LayoutSetBranch" %><%@
 page import="com.liferay.portal.kernel.service.LayoutSetBranchLocalServiceUtil" %><%@
-page import="com.liferay.portal.kernel.util.FastDateFormatConstants" %><%@
-page import="com.liferay.portal.kernel.util.LongWrapper" %>
+page import="com.liferay.portal.kernel.util.LongWrapper" %><%@
+page import="com.liferay.portal.kernel.util.constants.FastDateFormatConstants" %>
 
 <liferay-staging:defineObjects />
 

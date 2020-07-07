@@ -30,10 +30,10 @@ page import="com.liferay.asset.kernel.service.AssetTagServiceUtil" %><%@
 page import="com.liferay.asset.util.comparator.AssetRendererFactoryTypeNameComparator" %><%@
 page import="com.liferay.asset.util.comparator.AssetTagCountComparator" %><%@
 page import="com.liferay.portal.kernel.security.permission.ResourceActionsUtil" %><%@
-page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.ListUtil" %><%@
-page import="com.liferay.portal.kernel.util.PrefsParamUtil" %>
+page import="com.liferay.portal.kernel.util.PrefsParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.constants.Constants" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.List" %><%@

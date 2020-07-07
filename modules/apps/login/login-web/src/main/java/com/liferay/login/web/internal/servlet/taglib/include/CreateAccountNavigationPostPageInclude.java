@@ -16,10 +16,10 @@ package com.liferay.login.web.internal.servlet.taglib.include;
 
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 import com.liferay.taglib.include.PageInclude;
 import com.liferay.taglib.ui.IconTag;
 

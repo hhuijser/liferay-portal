@@ -17,7 +17,7 @@ package com.liferay.frontend.editor.tinymce.web.internal;
 import com.liferay.frontend.editor.EditorRenderer;
 import com.liferay.frontend.editor.tinymce.web.internal.constants.TinyMCEEditorConstants;
 import com.liferay.portal.kernel.editor.Editor;
-import com.liferay.portal.kernel.servlet.PortalWebResourceConstants;
+import com.liferay.portal.kernel.servlet.constants.PortalWebResourceConstants;
 
 import java.util.Map;
 

@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.kernel.servlet;
+package com.liferay.portal.kernel.servlet.constants;
 
 /**
- * @author     Brian Wing Shun Chan
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.servlet.constants.ServletResponseConstants}
+ * @author Brian Wing Shun Chan
  */
-@Deprecated
 public interface ServletResponseConstants {
 
 	public static final int SC_AUDIO_PREVIEW_DISABLED_EXCEPTION = 221;

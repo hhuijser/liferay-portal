@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.kernel.servlet;
+package com.liferay.portal.kernel.servlet.constants;
 
 /**
- * @author     Peter Fellwock
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.servlet.constants.PortalWebResourceConstants}
+ * @author Peter Fellwock
  */
-@Deprecated
 public class PortalWebResourceConstants {
 
 	public static final String RESOURCE_TYPE_CSS = "css";

@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.kernel.search.background.task;
+package com.liferay.portal.kernel.search.background.task.constants;
 
 /**
- * @author     Andrew Betts
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.search.background.task.constants.ReindexBackgroundTaskConstants}
+ * @author Andrew Betts
  */
-@Deprecated
 public class ReindexBackgroundTaskConstants {
 
 	public static final String CLASS_NAME = "className";

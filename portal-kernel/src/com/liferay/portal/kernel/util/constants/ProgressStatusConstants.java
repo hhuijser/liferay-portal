@@ -12,18 +12,19 @@
  * details.
  */
 
-package com.liferay.portal.kernel.search.suggest;
+package com.liferay.portal.kernel.util.constants;
 
 /**
- * @author     Michael C. Han
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.search.suggest.constants.SuggestionConstants}
+ * @author Sergio González
  */
-@Deprecated
-public class SuggestionConstants {
+public class ProgressStatusConstants {
 
-	public static final String TYPE_QUERY_SUGGESTION = "querySuggestion";
+	public static final int COPYING = 2;
 
-	public static final String TYPE_SPELL_CHECKER = "spellChecker";
+	public static final int DOWNLOADING = 1;
+
+	public static final int ERROR = -1;
+
+	public static final int PREPARED = 0;
 
 }

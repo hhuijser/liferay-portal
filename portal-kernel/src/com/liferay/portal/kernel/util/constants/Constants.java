@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.kernel.util;
+package com.liferay.portal.kernel.util.constants;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.util.constants.Constants}
  */
-@Deprecated
 public interface Constants {
 
 	public static final String ACTION = "action";

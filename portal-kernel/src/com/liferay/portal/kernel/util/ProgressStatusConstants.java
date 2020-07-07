@@ -15,8 +15,11 @@
 package com.liferay.portal.kernel.util;
 
 /**
- * @author Sergio González
+ * @author     Sergio González
+ * @deprecated As of Athanasius (7.3.x), replaced by {@link
+ *             com.liferay.portal.kernel.util.constants.ProgressStatusConstants}
  */
+@Deprecated
 public class ProgressStatusConstants {
 
 	public static final int COPYING = 2;

@@ -12,16 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.kernel.template;
+package com.liferay.portal.kernel.template.constants;
 
 import com.liferay.petra.string.StringPool;
 
 /**
- * @author     Tina Tian
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.template.constants.TemplateConstants}
+ * @author Tina Tian
  */
-@Deprecated
 public interface TemplateConstants {
 
 	public static final String[] ALLOWED_LANG_TYPES = {

@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.kernel.search.suggest;
+package com.liferay.portal.kernel.search.suggest.constants;
 
 /**
- * @author     Michael C. Han
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.search.suggest.constants.SuggestionConstants}
+ * @author Michael C. Han
  */
-@Deprecated
 public class SuggestionConstants {
 
 	public static final String TYPE_QUERY_SUGGESTION = "querySuggestion";

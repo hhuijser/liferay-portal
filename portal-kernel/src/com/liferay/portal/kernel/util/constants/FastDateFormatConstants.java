@@ -12,18 +12,19 @@
  * details.
  */
 
-package com.liferay.portal.kernel.search.suggest;
+package com.liferay.portal.kernel.util.constants;
 
 /**
- * @author     Michael C. Han
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.search.suggest.constants.SuggestionConstants}
+ * @author Brian Wing Shun Chan
  */
-@Deprecated
-public class SuggestionConstants {
+public interface FastDateFormatConstants {
 
-	public static final String TYPE_QUERY_SUGGESTION = "querySuggestion";
+	public static final int FULL = 0;
 
-	public static final String TYPE_SPELL_CHECKER = "spellChecker";
+	public static final int LONG = 1;
+
+	public static final int MEDIUM = 2;
+
+	public static final int SHORT = 3;
 
 }

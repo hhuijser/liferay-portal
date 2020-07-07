@@ -12,15 +12,12 @@
  * details.
  */
 
-package com.liferay.portal.kernel.util;
+package com.liferay.portal.kernel.util.constants;
 
 /**
- * @author     Brian Wing Shun Chan
- * @author     Eduardo Lundgren
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.util.constants.JavaConstants}
+ * @author Brian Wing Shun Chan
+ * @author Eduardo Lundgren
  */
-@Deprecated
 public interface JavaConstants {
 
 	public static final String JAVAX_PORTLET_CONFIG = "javax.portlet.config";

@@ -17,11 +17,11 @@ package com.liferay.portal.template.soy.internal.util;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateException;
 import com.liferay.portal.kernel.template.TemplateResource;
 import com.liferay.portal.kernel.template.TemplateResourceLoaderUtil;
 import com.liferay.portal.kernel.template.URLTemplateResource;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 import com.liferay.portal.kernel.util.SetUtil;
 
 import java.net.URL;

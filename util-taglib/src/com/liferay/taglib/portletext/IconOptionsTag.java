@@ -19,9 +19,9 @@ import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfiguration
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIconTracker;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.util.comparator.PortletConfigurationIconComparator;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 import com.liferay.taglib.servlet.PipingServletResponse;
 import com.liferay.taglib.ui.IconMenuTag;
 import com.liferay.taglib.ui.IconTag;

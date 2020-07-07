@@ -3,8 +3,8 @@ package ${package}.form.field;
 
 import com.liferay.dynamic.data.mapping.form.field.type.BaseDDMFormFieldRenderer;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldRenderer;
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateResource;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 
 import java.util.Map;
 

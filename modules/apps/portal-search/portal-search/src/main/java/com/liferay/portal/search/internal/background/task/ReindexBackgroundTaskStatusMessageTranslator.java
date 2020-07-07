@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatusMessageTrans
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.background.task.ReindexBackgroundTaskConstants;
+import com.liferay.portal.kernel.search.background.task.constants.ReindexBackgroundTaskConstants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 

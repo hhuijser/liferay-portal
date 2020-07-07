@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.hits.HitsProcessor;
-import com.liferay.portal.kernel.search.suggest.SuggestionConstants;
+import com.liferay.portal.kernel.search.suggest.constants.SuggestionConstants;
 
 import java.util.Locale;
 

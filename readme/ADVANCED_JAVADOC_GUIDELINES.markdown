@@ -776,7 +776,7 @@ of the portal; therefore, refrain from using "linking" tags in these scenarios.
     - Javadoc `@code` tag (e.g., `{@code true}`)
 - With regards to class constants, be sure to reference their class either by
   including the full path of the constant (e.g.,
-  `{@link com.liferay.portal.kernel.util.Constants#TYPE_ASSET}`) or wrapping the
+  `{@link com.liferay.portal.kernel.util.constants.Constants#TYPE_ASSET}`) or wrapping the
   constant(s) in `<code></code>` tags followed by a reference to the class with
   its full path.
     - For example, `<code>TYPE_ASSET</code>` and `<code>TYPE_CREATOR</code>`

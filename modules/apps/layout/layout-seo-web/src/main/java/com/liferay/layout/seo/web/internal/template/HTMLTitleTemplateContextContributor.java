@@ -19,8 +19,8 @@ import com.liferay.layout.seo.web.internal.util.TitleProvider;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 
 import java.util.Map;
 

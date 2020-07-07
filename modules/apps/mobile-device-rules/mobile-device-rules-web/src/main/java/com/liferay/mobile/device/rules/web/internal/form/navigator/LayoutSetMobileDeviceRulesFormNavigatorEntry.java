@@ -17,8 +17,8 @@ package com.liferay.mobile.device.rules.web.internal.form.navigator;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.servlet.taglib.ui.BaseJSPFormNavigatorEntry;
-import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorConstants;
 import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry;
+import com.liferay.portal.kernel.servlet.taglib.ui.constants.FormNavigatorConstants;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;

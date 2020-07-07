@@ -35,9 +35,9 @@ page import="com.liferay.content.dashboard.web.internal.display.context.ContentD
 page import="com.liferay.content.dashboard.web.internal.display.context.ContentDashboardAdminManagementToolbarDisplayContext" %><%@
 page import="com.liferay.content.dashboard.web.internal.item.ContentDashboardItem" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
-page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
-page import="com.liferay.portal.kernel.util.StringUtil" %>
+page import="com.liferay.portal.kernel.util.StringUtil" %><%@
+page import="com.liferay.portal.kernel.util.constants.Constants" %>
 
 <%@ page import="java.util.List" %>
 

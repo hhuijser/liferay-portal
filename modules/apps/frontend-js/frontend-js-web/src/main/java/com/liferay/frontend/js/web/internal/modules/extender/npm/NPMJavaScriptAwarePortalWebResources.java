@@ -15,8 +15,8 @@
 package com.liferay.frontend.js.web.internal.modules.extender.npm;
 
 import com.liferay.frontend.js.loader.modules.extender.npm.JavaScriptAwarePortalWebResources;
-import com.liferay.portal.kernel.servlet.PortalWebResourceConstants;
 import com.liferay.portal.kernel.servlet.PortalWebResources;
+import com.liferay.portal.kernel.servlet.constants.PortalWebResourceConstants;
 
 import java.util.concurrent.atomic.AtomicLong;
 

@@ -15,8 +15,8 @@
 package com.liferay.portal.template.soy.context.contributor.internal.template;
 
 import com.liferay.portal.kernel.portlet.ThemeDisplayModel;
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 

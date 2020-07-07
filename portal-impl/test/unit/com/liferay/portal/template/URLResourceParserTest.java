@@ -15,7 +15,7 @@
 package com.liferay.portal.template;
 
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.template.TemplateConstants;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.util.FileImpl;
 

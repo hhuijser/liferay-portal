@@ -15,7 +15,7 @@
 package com.liferay.portal.workflow.kaleo.forms.web.internal.display.context.util;
 
 import com.liferay.portal.kernel.display.context.util.BaseRequestHelper;
-import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import javax.portlet.RenderRequest;
 

@@ -15,9 +15,9 @@
 package com.liferay.portal.template.freemarker.internal;
 
 import com.liferay.portal.kernel.cache.PortalCache;
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateResource;
 import com.liferay.portal.kernel.template.TemplateResourceLoader;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 import com.liferay.portal.template.TemplateResourceThreadLocal;
 
 import freemarker.cache.TemplateCache;

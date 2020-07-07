@@ -15,7 +15,7 @@
 package com.liferay.portal.servlet;
 
 import com.liferay.portal.kernel.servlet.DynamicServletRequest;
-import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 import com.liferay.portal.util.PropsValues;
 
 import java.util.ArrayList;

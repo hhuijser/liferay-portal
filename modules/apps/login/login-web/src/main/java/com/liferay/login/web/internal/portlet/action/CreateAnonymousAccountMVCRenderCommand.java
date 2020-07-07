@@ -16,7 +16,7 @@ package com.liferay.login.web.internal.portlet.action;
 
 import com.liferay.login.web.constants.LoginPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
-import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;

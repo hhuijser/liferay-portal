@@ -18,7 +18,7 @@ import com.liferay.adaptive.media.constants.AMOptimizeImagesBackgroundTaskConsta
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatus;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatusMessageTranslator;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.search.background.task.ReindexBackgroundTaskConstants;
+import com.liferay.portal.kernel.search.background.task.constants.ReindexBackgroundTaskConstants;
 import com.liferay.portal.kernel.util.Validator;
 
 /**

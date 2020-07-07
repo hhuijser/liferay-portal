@@ -20,7 +20,7 @@ import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutColumn;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutPage;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutRow;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.constants.Constants;
 
 import org.osgi.service.component.annotations.Component;
 

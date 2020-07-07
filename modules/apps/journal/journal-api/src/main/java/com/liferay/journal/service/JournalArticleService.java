@@ -454,7 +454,7 @@ public interface JournalArticleService extends BaseService {
 	 whether to add the default command update for the web content
 	 article. With respect to social activities, by setting the
 	 service context's command to {@link
-	 com.liferay.portal.kernel.util.Constants#UPDATE}, the invocation
+	 com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the invocation
 	 is considered a web content update activity; otherwise it is
 	 considered a web content add activity.
 	 * @return the web content article
@@ -479,7 +479,7 @@ public interface JournalArticleService extends BaseService {
 	 whether to add the default command update for the web content
 	 article. With respect to social activities, by setting the
 	 service context's command to {@link
-	 com.liferay.portal.kernel.util.Constants#UPDATE}, the invocation
+	 com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the invocation
 	 is considered a web content update activity; otherwise it is
 	 considered a web content add activity.
 	 * @throws PortalException if a portal exception occurred
@@ -1294,7 +1294,7 @@ public interface JournalArticleService extends BaseService {
 	 portlet response, theme display, and can set whether to add the
 	 default command update for the web content article. With respect
 	 to social activities, by setting the service context's command to
-	 {@link com.liferay.portal.kernel.util.Constants#UPDATE}, the
+	 {@link com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the
 	 invocation is considered a web content update activity; otherwise
 	 it is considered a web content add activity.
 	 * @throws PortalException if a portal exception occurred
@@ -1316,7 +1316,7 @@ public interface JournalArticleService extends BaseService {
 	 add the default command update for the web content article. With
 	 respect to social activities, by setting the service context's
 	 command to {@link
-	 com.liferay.portal.kernel.util.Constants#UPDATE}, the invocation
+	 com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the invocation
 	 is considered a web content update activity; otherwise it is
 	 considered a web content add activity.
 	 * @return the updated web content article, which was moved from the Recycle
@@ -1340,7 +1340,7 @@ public interface JournalArticleService extends BaseService {
 	 add the default command update for the web content article. With
 	 respect to social activities, by setting the service context's
 	 command to {@link
-	 com.liferay.portal.kernel.util.Constants#UPDATE}, the invocation
+	 com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the invocation
 	 is considered a web content update activity; otherwise it is
 	 considered a web content add activity.
 	 * @return the updated web content article, which was moved from the Recycle
@@ -1865,7 +1865,7 @@ public interface JournalArticleService extends BaseService {
 	 actions, URL title, and can set whether to add the default
 	 command update for the web content article. With respect to
 	 social activities, by setting the service context's command to
-	 {@link com.liferay.portal.kernel.util.Constants#UPDATE}, the
+	 {@link com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the
 	 invocation is considered a web content update activity; otherwise
 	 it is considered a web content add activity.
 	 * @return the updated web content article
@@ -1952,7 +1952,7 @@ public interface JournalArticleService extends BaseService {
 	 actions, URL title, and can set whether to add the default
 	 command update for the web content article. With respect to
 	 social activities, by setting the service context's command to
-	 {@link com.liferay.portal.kernel.util.Constants#UPDATE}, the
+	 {@link com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the
 	 invocation is considered a web content update activity; otherwise
 	 it is considered a web content add activity.
 	 * @return the updated web content article
@@ -2046,7 +2046,7 @@ public interface JournalArticleService extends BaseService {
 	 actions, URL title, and can set whether to add the default
 	 command update for the web content article. With respect to
 	 social activities, by setting the service context's command to
-	 {@link com.liferay.portal.kernel.util.Constants#UPDATE}, the
+	 {@link com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the
 	 invocation is considered a web content update activity; otherwise
 	 it is considered a web content add activity.
 	 * @return the updated web content article
@@ -2101,7 +2101,7 @@ public interface JournalArticleService extends BaseService {
 	 actions, URL title, and can set whether to add the default
 	 command update for the web content article. With respect to
 	 social activities, by setting the service context's command to
-	 {@link com.liferay.portal.kernel.util.Constants#UPDATE}, the
+	 {@link com.liferay.portal.kernel.util.constants.Constants#UPDATE}, the
 	 invocation is considered a web content update activity; otherwise
 	 it is considered a web content add activity.
 	 * @return the updated web content article

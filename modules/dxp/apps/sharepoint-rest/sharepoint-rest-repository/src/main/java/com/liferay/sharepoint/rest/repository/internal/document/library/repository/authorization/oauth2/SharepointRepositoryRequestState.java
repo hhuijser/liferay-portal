@@ -16,9 +16,9 @@ package com.liferay.sharepoint.rest.repository.internal.document.library.reposit
 
 import com.liferay.document.library.repository.authorization.capability.AuthorizationException;
 import com.liferay.document.library.repository.authorization.oauth2.OAuth2AuthorizationException;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.constants.JavaConstants;
 
 import java.io.IOException;
 import java.io.Serializable;

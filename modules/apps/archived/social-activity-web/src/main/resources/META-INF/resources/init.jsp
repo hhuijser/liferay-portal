@@ -25,8 +25,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 page import="com.liferay.portal.kernel.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.kernel.security.permission.ResourceActionsUtil" %><%@
 page import="com.liferay.portal.kernel.settings.CompanyServiceSettingsLocator" %><%@
-page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
+page import="com.liferay.portal.kernel.util.constants.Constants" %><%@
 page import="com.liferay.social.activity.configuration.SocialActivityGroupServiceConfiguration" %><%@
 page import="com.liferay.social.activity.web.internal.constants.SocialActivityWebKeys" %><%@
 page import="com.liferay.social.kernel.model.SocialActivityDefinition" %><%@

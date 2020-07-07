@@ -16,8 +16,8 @@ package com.liferay.portal.template.soy.internal;
 
 import com.liferay.petra.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.template.Template;
-import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateException;
+import com.liferay.portal.kernel.template.constants.TemplateConstants;
 
 import org.junit.After;
 import org.junit.Assert;

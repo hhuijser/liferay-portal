@@ -174,7 +174,8 @@ public class JournalArticleInfoItemFieldValuesProvider
 						JournalArticleDisplay journalArticleDisplay =
 							_journalContent.getDisplay(
 								journalArticle, ddmTemplate.getTemplateKey(),
-								com.liferay.portal.kernel.util.Constants.VIEW,
+								com.liferay.portal.kernel.util.constants.
+									Constants.VIEW,
 								languageId, 1, null, _getThemeDisplay());
 
 						if (journalArticleDisplay != null) {

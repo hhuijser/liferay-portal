@@ -24,9 +24,9 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.message.boards.model.MBCategory" %><%@
 page import="com.liferay.message.boards.web.internal.util.MBUtil" %><%@
-page import="com.liferay.portal.kernel.util.JavaConstants" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
-page import="com.liferay.portal.kernel.util.WebKeys" %>
+page import="com.liferay.portal.kernel.util.WebKeys" %><%@
+page import="com.liferay.portal.kernel.util.constants.JavaConstants" %>
 
 <%@ page import="javax.portlet.PortletResponse" %>
 

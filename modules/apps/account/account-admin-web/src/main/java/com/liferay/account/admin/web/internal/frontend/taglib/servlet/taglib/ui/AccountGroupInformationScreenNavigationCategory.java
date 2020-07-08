@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
 import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
 import com.liferay.account.admin.web.internal.display.AccountGroupDisplay;
@@ -20,7 +20,6 @@ import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.model.User;
 
 import java.io.IOException;
 
@@ -37,45 +36,34 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	property = {
-		"screen.navigation.category.order:Integer=20",
+		"screen.navigation.category.order:Integer=10",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class AccountGroupAccountEntriesScreenNavigationCategory
+public class AccountGroupInformationScreenNavigationCategory
 	implements ScreenNavigationCategory,
 			   ScreenNavigationEntry<AccountGroupDisplay> {
 
 	@Override
 	public String getCategoryKey() {
-		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_ACCOUNTS;
+		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_INFORMATION;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return AccountScreenNavigationEntryConstants.ENTRY_KEY_ACCOUNTS;
+		return AccountScreenNavigationEntryConstants.ENTRY_KEY_INFORMATION;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "accounts");
+		return LanguageUtil.get(locale, "information");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
 		return AccountScreenNavigationEntryConstants.
 			SCREEN_NAVIGATION_KEY_ACCOUNT_GROUP;
-	}
-
-	@Override
-	public boolean isVisible(
-		User user, AccountGroupDisplay accountGroupDisplay) {
-
-		if (accountGroupDisplay.getAccountGroupId() == 0) {
-			return false;
-		}
-
-		return true;
 	}
 
 	@Override
@@ -86,7 +74,7 @@ public class AccountGroupAccountEntriesScreenNavigationCategory
 
 		jspRenderer.renderJSP(
 			httpServletRequest, httpServletResponse,
-			"/account_groups_admin/account_group/view_account_entries.jsp");
+			"/account_groups_admin/account_group/information.jsp");
 	}
 
 	@Reference

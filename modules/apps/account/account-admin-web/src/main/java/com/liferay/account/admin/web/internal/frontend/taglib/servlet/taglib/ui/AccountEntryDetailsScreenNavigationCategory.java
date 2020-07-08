@@ -15,6 +15,7 @@
 package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
 import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
+import com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.BaseAccountEntryScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.portal.kernel.language.LanguageUtil;

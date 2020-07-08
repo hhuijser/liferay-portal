@@ -12,62 +12,95 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
 import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
 import com.liferay.account.admin.web.internal.display.AccountEntryDisplay;
+import com.liferay.account.admin.web.internal.security.permission.resource.AccountEntryPermission;
+import com.liferay.account.constants.AccountActionKeys;
+import com.liferay.account.constants.AccountConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUtil;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Pei-Jung Lan
+ * @author Albert Lee
  */
 @Component(
 	property = {
-		"screen.navigation.category.order:Integer=60",
+		"screen.navigation.category.order:Integer=20",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class AccountEntryRolesScreenNavigationCategory
+public class AccountEntryUsersScreenNavigationCategory
 	extends BaseAccountEntryScreenNavigationEntry
 	implements ScreenNavigationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_ROLES;
+		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_USERS;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return AccountScreenNavigationEntryConstants.ENTRY_KEY_ROLES;
+		return AccountScreenNavigationEntryConstants.ENTRY_KEY_USERS;
 	}
 
 	@Override
 	public String getJspPath() {
-		return "/account_entries_admin/account_entry/view_account_roles.jsp";
+		return "/account_entries_admin/account_entry/view_account_users.jsp";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "roles");
+		return LanguageUtil.get(locale, "users");
 	}
 
 	@Override
 	public boolean isVisible(
 		User user, AccountEntryDisplay accountEntryDisplay) {
 
-		if (accountEntryDisplay.getAccountEntryId() > 0) {
-			return true;
+		if (accountEntryDisplay.getAccountEntryId() == 0) {
+			return false;
+		}
+
+		if (Objects.equals(
+				accountEntryDisplay.getType(),
+				AccountConstants.ACCOUNT_ENTRY_TYPE_PERSON)) {
+
+			return false;
+		}
+
+		try {
+			if (AccountEntryPermission.contains(
+					PermissionCheckerFactoryUtil.create(user),
+					accountEntryDisplay.getAccountEntryId(),
+					AccountActionKeys.VIEW_USERS)) {
+
+				return true;
+			}
+		}
+		catch (PortalException portalException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(portalException, portalException);
+			}
 		}
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AccountEntryUsersScreenNavigationCategory.class);
 
 }

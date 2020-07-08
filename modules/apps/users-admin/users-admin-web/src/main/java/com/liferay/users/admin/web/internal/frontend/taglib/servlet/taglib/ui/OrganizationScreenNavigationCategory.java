@@ -12,40 +12,44 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.users.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
-import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.users.admin.constants.UserScreenNavigationEntryConstants;
 
 import java.util.Locale;
 
-import org.osgi.service.component.annotations.Component;
-
 /**
- * @author Pei-Jung Lan
+ * @author Drew Brokke
  */
-@Component(
-	property = "screen.navigation.category.order:Integer=20",
-	service = ScreenNavigationCategory.class
-)
-public class AccountUserContactScreenNavigationCategory
+public class OrganizationScreenNavigationCategory
 	implements ScreenNavigationCategory {
+
+	public OrganizationScreenNavigationCategory(String categoryKey) {
+		_categoryKey = categoryKey;
+	}
 
 	@Override
 	public String getCategoryKey() {
-		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_CONTACT;
+		return _categoryKey;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, getCategoryKey());
+		return LanguageUtil.get(
+			ResourceBundleUtil.getBundle(
+				locale, OrganizationScreenNavigationEntry.class),
+			_categoryKey);
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return AccountScreenNavigationEntryConstants.
-			SCREEN_NAVIGATION_KEY_ACCOUNT_USER;
+		return UserScreenNavigationEntryConstants.
+			SCREEN_NAVIGATION_KEY_ORGANIZATIONS;
 	}
+
+	private final String _categoryKey;
 
 }

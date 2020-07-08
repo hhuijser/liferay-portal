@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.multi.factor.authentication.web.internal.frontend.taglib.servlet.taglib.ui;
 
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;

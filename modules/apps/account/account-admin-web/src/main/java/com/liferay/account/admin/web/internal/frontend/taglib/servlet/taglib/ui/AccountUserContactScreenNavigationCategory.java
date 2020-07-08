@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
 import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
@@ -23,18 +23,18 @@ import java.util.Locale;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Albert Lee
+ * @author Pei-Jung Lan
  */
 @Component(
-	property = "screen.navigation.category.order:Integer=10",
+	property = "screen.navigation.category.order:Integer=20",
 	service = ScreenNavigationCategory.class
 )
-public class AccountUserGeneralScreenNavigationCategory
+public class AccountUserContactScreenNavigationCategory
 	implements ScreenNavigationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_GENERAL;
+		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_CONTACT;
 	}
 
 	@Override

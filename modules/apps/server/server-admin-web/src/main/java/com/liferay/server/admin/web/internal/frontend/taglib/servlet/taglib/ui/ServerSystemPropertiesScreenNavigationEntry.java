@@ -12,16 +12,23 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.server.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
-import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
+import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.server.admin.web.internal.constants.ServerAdminNavigationEntryConstants;
+
+import java.io.IOException;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Albert Lee
@@ -33,28 +40,42 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class AccountEntryDetailsScreenNavigationCategory
-	extends BaseAccountEntryScreenNavigationEntry
-	implements ScreenNavigationCategory {
+public class ServerSystemPropertiesScreenNavigationEntry
+	implements ScreenNavigationCategory, ScreenNavigationEntry<Object> {
 
 	@Override
 	public String getCategoryKey() {
-		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_DETAILS;
+		return ServerAdminNavigationEntryConstants.
+			CATEGORY_KEY_SYSTEM_PROPERTIES;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return AccountScreenNavigationEntryConstants.ENTRY_KEY_DETAILS;
-	}
-
-	@Override
-	public String getJspPath() {
-		return "/account_entries_admin/account_entry/details.jsp";
+		return ServerAdminNavigationEntryConstants.ENTRY_KEY_SYSTEM_PROPERTIES;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "details");
+		return LanguageUtil.get(locale, "system-properties");
 	}
+
+	@Override
+	public String getScreenNavigationKey() {
+		return ServerAdminNavigationEntryConstants.
+			SCREEN_NAVIGATION_KEY_PROPERTIES;
+	}
+
+	@Override
+	public void render(
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse)
+		throws IOException {
+
+		_jspRenderer.renderJSP(
+			httpServletRequest, httpServletResponse, "/system_properties.jsp");
+	}
+
+	@Reference
+	private JSPRenderer _jspRenderer;
 
 }

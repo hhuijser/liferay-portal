@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
 import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
 import com.liferay.account.admin.web.internal.helper.AccountRoleRequestHelper;

@@ -12,44 +12,39 @@
  * details.
  */
 
-package com.liferay.users.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.users.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.users.admin.constants.UserScreenNavigationEntryConstants;
 
 import java.util.Locale;
 
-/**
- * @author Drew Brokke
- */
-public class OrganizationScreenNavigationCategory
-	implements ScreenNavigationCategory {
+import org.osgi.service.component.annotations.Component;
 
-	public OrganizationScreenNavigationCategory(String categoryKey) {
-		_categoryKey = categoryKey;
-	}
+/**
+ * @author Pei-Jung Lan
+ */
+@Component(
+	property = "screen.navigation.category.order:Integer=30",
+	service = ScreenNavigationCategory.class
+)
+public class UserPreferencesScreenNavigationCategory
+	implements ScreenNavigationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return _categoryKey;
+		return UserScreenNavigationEntryConstants.CATEGORY_KEY_PREFERENCES;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(
-			ResourceBundleUtil.getBundle(
-				locale, OrganizationScreenNavigationEntry.class),
-			_categoryKey);
+		return LanguageUtil.get(locale, "preferences");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return UserScreenNavigationEntryConstants.
-			SCREEN_NAVIGATION_KEY_ORGANIZATIONS;
+		return UserScreenNavigationEntryConstants.SCREEN_NAVIGATION_KEY_USERS;
 	}
-
-	private final String _categoryKey;
 
 }

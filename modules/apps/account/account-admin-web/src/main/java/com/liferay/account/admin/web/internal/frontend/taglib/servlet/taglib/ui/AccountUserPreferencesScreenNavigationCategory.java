@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.depot.web.internal.servlet.taglib;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
-import com.liferay.depot.web.internal.constants.DepotScreenNavigationEntryConstants;
+import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
 
@@ -23,25 +23,29 @@ import java.util.Locale;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Alejandro Tardín
+ * @author Pei-Jung Lan
  */
-@Component(service = ScreenNavigationCategory.class)
-public class GeneralScreenNavigationCategory
+@Component(
+	property = "screen.navigation.category.order:Integer=30",
+	service = ScreenNavigationCategory.class
+)
+public class AccountUserPreferencesScreenNavigationCategory
 	implements ScreenNavigationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return DepotScreenNavigationEntryConstants.CATEGORY_KEY_GENERAL;
+		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_PREFERENCES;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "general");
+		return LanguageUtil.get(locale, getCategoryKey());
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return DepotScreenNavigationEntryConstants.SCREEN_NAVIGATION_KEY_DEPOT;
+		return AccountScreenNavigationEntryConstants.
+			SCREEN_NAVIGATION_KEY_ACCOUNT_USER;
 	}
 
 }

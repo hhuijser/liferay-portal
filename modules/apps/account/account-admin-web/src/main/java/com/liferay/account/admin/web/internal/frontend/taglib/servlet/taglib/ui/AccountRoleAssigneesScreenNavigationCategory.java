@@ -12,13 +12,15 @@
  * details.
  */
 
-package com.liferay.server.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
+import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
+import com.liferay.account.model.AccountRole;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.server.admin.web.internal.constants.ServerAdminNavigationEntryConstants;
+import com.liferay.portal.kernel.model.User;
 
 import java.io.IOException;
 
@@ -31,38 +33,46 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Albert Lee
+ * @author Pei-Jung Lan
  */
 @Component(
 	property = {
-		"screen.navigation.category.order:Integer=10",
+		"screen.navigation.category.order:Integer=30",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class ServerSystemPropertiesScreenNavigationEntry
-	implements ScreenNavigationCategory, ScreenNavigationEntry<Object> {
+public class AccountRoleAssigneesScreenNavigationCategory
+	implements ScreenNavigationCategory, ScreenNavigationEntry<AccountRole> {
 
 	@Override
 	public String getCategoryKey() {
-		return ServerAdminNavigationEntryConstants.
-			CATEGORY_KEY_SYSTEM_PROPERTIES;
+		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_ASSIGNEES;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return ServerAdminNavigationEntryConstants.ENTRY_KEY_SYSTEM_PROPERTIES;
+		return AccountScreenNavigationEntryConstants.ENTRY_KEY_ASSIGNEES;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "system-properties");
+		return LanguageUtil.get(locale, "assignees");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return ServerAdminNavigationEntryConstants.
-			SCREEN_NAVIGATION_KEY_PROPERTIES;
+		return AccountScreenNavigationEntryConstants.
+			SCREEN_NAVIGATION_KEY_ACCOUNT_ROLE;
+	}
+
+	@Override
+	public boolean isVisible(User user, AccountRole accountRole) {
+		if (accountRole == null) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
@@ -71,11 +81,12 @@ public class ServerSystemPropertiesScreenNavigationEntry
 			HttpServletResponse httpServletResponse)
 		throws IOException {
 
-		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse, "/system_properties.jsp");
+		jspRenderer.renderJSP(
+			httpServletRequest, httpServletResponse,
+			"/account_entries_admin/account_role/view_assignees.jsp");
 	}
 
 	@Reference
-	private JSPRenderer _jspRenderer;
+	protected JSPRenderer jspRenderer;
 
 }

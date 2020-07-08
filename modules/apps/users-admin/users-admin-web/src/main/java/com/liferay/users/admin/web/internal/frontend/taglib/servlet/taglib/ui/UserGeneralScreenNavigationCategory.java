@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.users.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.users.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -26,20 +26,20 @@ import org.osgi.service.component.annotations.Component;
  * @author Pei-Jung Lan
  */
 @Component(
-	property = "screen.navigation.category.order:Integer=30",
+	property = "screen.navigation.category.order:Integer=10",
 	service = ScreenNavigationCategory.class
 )
-public class UserPreferencesScreenNavigationCategory
+public class UserGeneralScreenNavigationCategory
 	implements ScreenNavigationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return UserScreenNavigationEntryConstants.CATEGORY_KEY_PREFERENCES;
+		return UserScreenNavigationEntryConstants.CATEGORY_KEY_GENERAL;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "preferences");
+		return LanguageUtil.get(locale, "general");
 	}
 
 	@Override

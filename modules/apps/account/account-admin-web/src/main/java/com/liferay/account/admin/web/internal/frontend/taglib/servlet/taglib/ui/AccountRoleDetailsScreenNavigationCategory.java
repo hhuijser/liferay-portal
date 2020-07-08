@@ -12,13 +12,18 @@
  * details.
  */
 
-package com.liferay.server.admin.web.internal.frontend.taglib.servlet.taglib;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
+import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
+import com.liferay.account.constants.AccountRoleConstants;
+import com.liferay.account.model.AccountRole;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.server.admin.web.internal.constants.ServerAdminNavigationEntryConstants;
+import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.RoleLocalService;
 
 import java.io.IOException;
 
@@ -31,38 +36,52 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Albert Lee
+ * @author Pei-Jung Lan
  */
 @Component(
 	property = {
-		"screen.navigation.category.order:Integer=20",
+		"screen.navigation.category.order:Integer=10",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class ServerPortalPropertiesScreenNavigationEntry
-	implements ScreenNavigationCategory, ScreenNavigationEntry<Object> {
+public class AccountRoleDetailsScreenNavigationCategory
+	implements ScreenNavigationCategory, ScreenNavigationEntry<AccountRole> {
 
 	@Override
 	public String getCategoryKey() {
-		return ServerAdminNavigationEntryConstants.
-			CATEGORY_KEY_PORTAL_PROPERTIES;
+		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_DETAILS;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return ServerAdminNavigationEntryConstants.ENTRY_KEY_PORTAL_PROPERTIES;
+		return AccountScreenNavigationEntryConstants.ENTRY_KEY_DETAILS;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "portal-properties");
+		return LanguageUtil.get(locale, "details");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return ServerAdminNavigationEntryConstants.
-			SCREEN_NAVIGATION_KEY_PROPERTIES;
+		return AccountScreenNavigationEntryConstants.
+			SCREEN_NAVIGATION_KEY_ACCOUNT_ROLE;
+	}
+
+	@Override
+	public boolean isVisible(User user, AccountRole accountRole) {
+		if (accountRole == null) {
+			return true;
+		}
+
+		Role role = _roleLocalService.fetchRole(accountRole.getRoleId());
+
+		if ((role != null) && AccountRoleConstants.isSharedRole(role)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
@@ -71,11 +90,15 @@ public class ServerPortalPropertiesScreenNavigationEntry
 			HttpServletResponse httpServletResponse)
 		throws IOException {
 
-		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse, "/portal_properties.jsp");
+		jspRenderer.renderJSP(
+			httpServletRequest, httpServletResponse,
+			"/account_entries_admin/account_role/details.jsp");
 	}
 
 	@Reference
-	private JSPRenderer _jspRenderer;
+	protected JSPRenderer jspRenderer;
+
+	@Reference
+	private RoleLocalService _roleLocalService;
 
 }

@@ -124,6 +124,10 @@ public class JIRAUtil {
 		Set<String> validatedTicketIds = new HashSet<>();
 
 		for (String commitMessage : commitMessages) {
+			if (commitMessage.startsWith("Revert ")) {
+				continue;
+			}
+
 			if (validatedTicketIds.size() == maxNumberOfTickets) {
 				return;
 			}

@@ -578,9 +578,9 @@ public class WatchTask extends DefaultTask {
 
 	private boolean _isClassLoaderFileChanged(List<File> modifiedFiles) {
 		for (File file : modifiedFiles) {
-			String extension = FileUtil.getExtension(file);
+			if (_classLoaderFileExtensions.contains(
+					FileUtil.getExtension(file))) {
 
-			if (_classLoaderFileExtensions.contains(extension)) {
 				return true;
 			}
 		}

@@ -3885,9 +3885,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 					if (logger.isLifecycleEnabled()) {
 						File file = spotBugsReport.getDestination();
 
-						String url = FileUtil.getUrl(file);
-
-						logger.lifecycle("Creating report: {}", url);
+						logger.lifecycle(
+							"Creating report: {}", FileUtil.getUrl(file));
 					}
 				}
 

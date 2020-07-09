@@ -677,12 +677,10 @@ public class LayoutImportController implements ImportController {
 		UserIdStrategy userIdStrategy = _exportImportHelper.getUserIdStrategy(
 			userId, userIdStrategyString);
 
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(file);
-
 		PortletDataContext portletDataContext =
 			_portletDataContextFactory.createImportPortletDataContext(
 				group.getCompanyId(), targetGroupId, parameterMap,
-				userIdStrategy, zipReader);
+				userIdStrategy, ZipReaderFactoryUtil.getZipReader(file));
 
 		portletDataContext.setExportImportProcessId(
 			String.valueOf(

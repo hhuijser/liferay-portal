@@ -1147,12 +1147,10 @@ public class PortletImportControllerImpl implements PortletImportController {
 		UserIdStrategy userIdStrategy = _exportImportHelper.getUserIdStrategy(
 			userId, userIdStrategyString);
 
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(file);
-
 		PortletDataContext portletDataContext =
 			_portletDataContextFactory.createImportPortletDataContext(
 				layout.getCompanyId(), targetGroupId, parameterMap,
-				userIdStrategy, zipReader);
+				userIdStrategy, ZipReaderFactoryUtil.getZipReader(file));
 
 		portletDataContext.setExportImportProcessId(
 			String.valueOf(

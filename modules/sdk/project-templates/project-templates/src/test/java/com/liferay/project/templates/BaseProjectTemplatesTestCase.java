@@ -792,9 +792,8 @@ public interface BaseProjectTemplatesTestCase {
 		String projectPath = projectDir.getPath();
 
 		if (projectPath.contains("workspace")) {
-			File workspaceDir = getWorkspaceDir(projectDir);
-
-			File workspaceBuildFile = new File(workspaceDir, "build.gradle");
+			File workspaceBuildFile = new File(
+				getWorkspaceDir(projectDir), "build.gradle");
 
 			Path buildFilePath = workspaceBuildFile.toPath();
 

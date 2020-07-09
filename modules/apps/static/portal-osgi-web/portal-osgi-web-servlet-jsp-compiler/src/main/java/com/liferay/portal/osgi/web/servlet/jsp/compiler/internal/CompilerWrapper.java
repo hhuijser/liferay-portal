@@ -135,9 +135,7 @@ public class CompilerWrapper extends Compiler {
 		URL url = null;
 
 		if (PropsValues.WORK_DIR_OVERRIDE_ENABLED) {
-			File scratchDir = options.getScratchDir();
-
-			File classFile = new File(scratchDir, classNamePath);
+			File classFile = new File(options.getScratchDir(), classNamePath);
 
 			if (classFile.exists()) {
 				URI uri = classFile.toURI();

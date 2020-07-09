@@ -126,9 +126,7 @@ public class S3FileCacheImpl implements S3FileCache {
 				throw new IOException("S3 object input stream is null");
 			}
 
-			File parentFile = cacheFile.getParentFile();
-
-			FileUtil.mkdirs(parentFile);
+			FileUtil.mkdirs(cacheFile.getParentFile());
 
 			try (OutputStream outputStream = new FileOutputStream(cacheFile)) {
 				StreamUtil.transfer(inputStream, outputStream);

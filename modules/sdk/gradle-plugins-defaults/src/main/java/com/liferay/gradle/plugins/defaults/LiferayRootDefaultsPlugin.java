@@ -60,9 +60,8 @@ public class LiferayRootDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private boolean _hasYarnScriptFile(Project project) {
-		File projectDir = project.getProjectDir();
-
-		File[] files = FileUtil.getFiles(projectDir, "yarn-", ".js");
+		File[] files = FileUtil.getFiles(
+			project.getProjectDir(), "yarn-", ".js");
 
 		if ((files != null) && (files.length > 0)) {
 			return true;

@@ -564,9 +564,7 @@ public class ImageToolImpl implements ImageTool {
 	public Image getImage(File file)
 		throws ImageResolutionException, IOException {
 
-		byte[] bytes = _fileImpl.getBytes(file);
-
-		return getImage(bytes);
+		return getImage(_fileImpl.getBytes(file));
 	}
 
 	@Override

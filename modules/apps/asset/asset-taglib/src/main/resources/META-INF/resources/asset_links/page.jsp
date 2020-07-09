@@ -54,7 +54,7 @@ List<Tuple> assetLinkEntries = (List<Tuple>)request.getAttribute("liferay-asset:
 								<%= HtmlUtil.escape(assetLinkEntry.getTitle(locale)) %>
 								<clay:label
 									cssClass="ml-2"
-									displayType="%= WorkflowConstants.getStatusStyle(assetRenderer.getStatus()) %>"
+									displayType="<%= WorkflowConstants.getStatusStyle(assetRenderer.getStatus()) %>"
 									label="<%= WorkflowConstants.getStatusLabel(assetRenderer.getStatus()) %>"
 								/>
 							</c:when>

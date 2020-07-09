@@ -88,14 +88,12 @@ public class CertificateUploadResponseHandler implements UploadResponseHandler {
 			UploadPortletRequest uploadPortletRequest, FileEntry fileEntry)
 		throws PortalException {
 
-		String fileName = uploadPortletRequest.getFileName("file");
-
 		return JSONUtil.put(
 			"groupId", fileEntry.getGroupId()
 		).put(
 			"name", fileEntry.getTitle()
 		).put(
-			"title", fileName
+			"title", uploadPortletRequest.getFileName("file")
 		).put(
 			"uuid", fileEntry.getUuid()
 		);

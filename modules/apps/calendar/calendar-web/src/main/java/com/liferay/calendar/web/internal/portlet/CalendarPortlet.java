@@ -125,7 +125,6 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.rss.util.RSSUtil;
 
-import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -222,9 +221,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long calendarId = ParamUtil.getLong(uploadPortletRequest, "calendarId");
 
-		File file = uploadPortletRequest.getFile("file");
-
-		String data = FileUtil.read(file);
+		String data = FileUtil.read(uploadPortletRequest.getFile("file"));
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

@@ -171,9 +171,8 @@ public abstract class BaseSocialActivityInterpreter
 			return null;
 		}
 
-		String body = getBody(activity, serviceContext);
-
-		return new SocialActivityFeedEntry(link, title, body);
+		return new SocialActivityFeedEntry(
+			link, title, getBody(activity, serviceContext));
 	}
 
 	protected SocialActivityFeedEntry doInterpret(
@@ -353,12 +352,9 @@ public abstract class BaseSocialActivityInterpreter
 			return null;
 		}
 
-		String link = getLink(activity, serviceContext);
-
-		String entryTitle = getEntryTitle(activity, serviceContext);
-
 		Object[] titleArguments = getTitleArguments(
-			groupName, activity, link, entryTitle, serviceContext);
+			groupName, activity, getLink(activity, serviceContext),
+			getEntryTitle(activity, serviceContext), serviceContext);
 
 		ResourceBundleLoader resourceBundleLoader = getResourceBundleLoader();
 
@@ -378,9 +374,10 @@ public abstract class BaseSocialActivityInterpreter
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		String userName = getUserName(activity.getUserId(), serviceContext);
-
-		return new Object[] {groupName, userName, wrapLink(link, title)};
+		return new Object[] {
+			groupName, getUserName(activity.getUserId(), serviceContext),
+			wrapLink(link, title)
+		};
 	}
 
 	protected String getTitlePattern(String groupName, SocialActivity activity)

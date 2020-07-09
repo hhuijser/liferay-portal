@@ -99,9 +99,8 @@ public abstract class PoshiElement
 		int poshiScriptLineNumber = PoshiNode.super.getPoshiScriptLineNumber();
 
 		if (!includeAnnotation) {
-			String blockName = getBlockName(getPoshiScript());
-
-			poshiScriptLineNumber += StringUtil.count(blockName, "\n");
+			poshiScriptLineNumber += StringUtil.count(
+				getBlockName(getPoshiScript()), "\n");
 		}
 
 		return poshiScriptLineNumber;

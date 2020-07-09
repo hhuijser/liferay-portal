@@ -93,19 +93,17 @@ public class MDRRuleGroupInstanceServiceImpl
 		String className, long classPK, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
 
-		long groupId = getGroupId(className, classPK);
-
 		return mdrRuleGroupInstancePersistence.filterFindByG_C_C(
-			groupId, classNameLocalService.getClassNameId(className), classPK,
-			start, end, orderByComparator);
+			getGroupId(className, classPK),
+			classNameLocalService.getClassNameId(className), classPK, start,
+			end, orderByComparator);
 	}
 
 	@Override
 	public int getRuleGroupInstancesCount(String className, long classPK) {
-		long groupId = getGroupId(className, classPK);
-
 		return mdrRuleGroupInstancePersistence.filterCountByG_C_C(
-			groupId, classNameLocalService.getClassNameId(className), classPK);
+			getGroupId(className, classPK),
+			classNameLocalService.getClassNameId(className), classPK);
 	}
 
 	@Override

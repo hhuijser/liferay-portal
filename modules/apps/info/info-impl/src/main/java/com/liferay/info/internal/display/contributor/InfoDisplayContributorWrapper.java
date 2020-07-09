@@ -59,10 +59,8 @@ public class InfoDisplayContributorWrapper
 		Locale locale = _getLocale();
 
 		try {
-			Set<InfoDisplayField> infoDisplayFields =
-				_infoDisplayContributor.getInfoDisplayFields(0, locale);
-
-			return _convertToInfoForm(infoDisplayFields);
+			return _convertToInfoForm(
+				_infoDisplayContributor.getInfoDisplayFields(0, locale));
 		}
 		catch (PortalException portalException) {
 			throw new RuntimeException(portalException);

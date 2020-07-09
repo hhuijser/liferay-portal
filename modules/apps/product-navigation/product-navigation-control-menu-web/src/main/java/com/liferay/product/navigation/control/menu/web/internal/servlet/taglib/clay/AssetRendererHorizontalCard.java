@@ -55,9 +55,9 @@ public class AssetRendererHorizontalCard implements HorizontalCard {
 
 	@Override
 	public String getTitle() {
-		String title = _assetRenderer.getTitle(_themeDisplay.getLocale());
-
-		return HtmlUtil.escape(StringUtil.shorten(title, 60));
+		return HtmlUtil.escape(
+			StringUtil.shorten(
+				_assetRenderer.getTitle(_themeDisplay.getLocale()), 60));
 	}
 
 	@Override

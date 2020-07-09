@@ -800,10 +800,9 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 					JobDetail jobDetail = _persistedScheduler.getJobDetail(
 						jobKey);
 
-					Message message = getMessage(jobDetail.getJobDataMap());
-
 					_schedulerEngineHelper.auditSchedulerJobs(
-						message, TriggerState.EXPIRED);
+						getMessage(jobDetail.getJobDataMap()),
+						TriggerState.EXPIRED);
 				}
 
 				_persistedScheduler.deleteJob(jobKey);

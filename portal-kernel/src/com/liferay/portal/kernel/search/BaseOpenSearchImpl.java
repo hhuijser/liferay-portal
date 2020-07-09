@@ -570,10 +570,10 @@ public abstract class BaseOpenSearchImpl implements OpenSearch {
 			long scopeGroupId)
 		throws Exception {
 
-		long plid = getPlid(httpServletRequest, portletId, scopeGroupId);
-
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, portletId, plid, PortletRequest.RENDER_PHASE);
+			httpServletRequest, portletId,
+			getPlid(httpServletRequest, portletId, scopeGroupId),
+			PortletRequest.RENDER_PHASE);
 
 		portletURL.setPortletMode(PortletMode.VIEW);
 		portletURL.setWindowState(WindowState.MAXIMIZED);

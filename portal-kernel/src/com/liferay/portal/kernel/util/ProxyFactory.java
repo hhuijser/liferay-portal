@@ -19,7 +19,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.ClassLoaderBeanHandler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceTracker;
@@ -184,9 +183,8 @@ public class ProxyFactory {
 
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 
-				Filter filter = registry.getFilter(sb.toString());
-
-				_serviceTracker = registry.trackServices(filter);
+				_serviceTracker = registry.trackServices(
+					registry.getFilter(sb.toString()));
 			}
 
 			_serviceTracker.open();

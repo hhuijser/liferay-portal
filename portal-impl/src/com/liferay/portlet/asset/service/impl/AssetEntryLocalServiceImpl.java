@@ -1142,9 +1142,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 			long companyId, String className, SearchContext searchContext)
 		throws Exception {
 
-		long[] classNameIds = getClassNameIds(companyId, className);
-
-		return doSearch(classNameIds, searchContext);
+		return doSearch(getClassNameIds(companyId, className), searchContext);
 	}
 
 	protected Hits doSearch(long[] classNameIds, SearchContext searchContext)
@@ -1179,9 +1177,8 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 			long companyId, String className, SearchContext searchContext)
 		throws Exception {
 
-		long[] classNameIds = getClassNameIds(companyId, className);
-
-		return doSearchCount(classNameIds, searchContext);
+		return doSearchCount(
+			getClassNameIds(companyId, className), searchContext);
 	}
 
 	protected long doSearchCount(

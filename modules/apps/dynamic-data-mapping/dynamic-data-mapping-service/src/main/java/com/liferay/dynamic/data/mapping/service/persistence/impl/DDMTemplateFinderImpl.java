@@ -123,10 +123,10 @@ public class DDMTemplateFinderImpl
 		long groupId, long structureClassNameId, int status) {
 
 		long[] groupIds = {groupId};
-		long classNameId = _portal.getClassNameId(DDMStructure.class);
 
 		return doCountByG_C_SC_S(
-			groupIds, classNameId, structureClassNameId, status, false);
+			groupIds, _portal.getClassNameId(DDMStructure.class),
+			structureClassNameId, status, false);
 	}
 
 	@Override
@@ -280,20 +280,19 @@ public class DDMTemplateFinderImpl
 		long groupId, long structureClassNameId, int status) {
 
 		long[] groupIds = {groupId};
-		long classNameId = _portal.getClassNameId(DDMStructure.class);
 
 		return doCountByG_C_SC_S(
-			groupIds, classNameId, structureClassNameId, status, true);
+			groupIds, _portal.getClassNameId(DDMStructure.class),
+			structureClassNameId, status, true);
 	}
 
 	@Override
 	public int filterCountByG_SC_S(
 		long[] groupIds, long structureClassNameId, int status) {
 
-		long classNameId = _portal.getClassNameId(DDMStructure.class);
-
 		return doCountByG_C_SC_S(
-			groupIds, classNameId, structureClassNameId, status, true);
+			groupIds, _portal.getClassNameId(DDMStructure.class),
+			structureClassNameId, status, true);
 	}
 
 	@Override
@@ -451,11 +450,10 @@ public class DDMTemplateFinderImpl
 		OrderByComparator<DDMTemplate> orderByComparator) {
 
 		long[] groupIds = {groupId};
-		long classNameId = _portal.getClassNameId(DDMStructure.class);
 
 		return doFindByG_C_SC_S(
-			groupIds, classNameId, structureClassNameId, status, start, end,
-			orderByComparator, true);
+			groupIds, _portal.getClassNameId(DDMStructure.class),
+			structureClassNameId, status, start, end, orderByComparator, true);
 	}
 
 	@Override
@@ -463,11 +461,9 @@ public class DDMTemplateFinderImpl
 		long[] groupIds, long structureClassNameId, int status, int start,
 		int end, OrderByComparator<DDMTemplate> orderByComparator) {
 
-		long classNameId = _portal.getClassNameId(DDMStructure.class);
-
 		return doFindByG_C_SC_S(
-			groupIds, classNameId, structureClassNameId, status, start, end,
-			orderByComparator, true);
+			groupIds, _portal.getClassNameId(DDMStructure.class),
+			structureClassNameId, status, start, end, orderByComparator, true);
 	}
 
 	@Override
@@ -636,11 +632,10 @@ public class DDMTemplateFinderImpl
 		OrderByComparator<DDMTemplate> orderByComparator) {
 
 		long[] groupIds = {groupId};
-		long classNameId = _portal.getClassNameId(DDMStructure.class);
 
 		return doFindByG_C_SC_S(
-			groupIds, classNameId, structureClassNameId, status, start, end,
-			orderByComparator, false);
+			groupIds, _portal.getClassNameId(DDMStructure.class),
+			structureClassNameId, status, start, end, orderByComparator, false);
 	}
 
 	@Override
@@ -648,11 +643,9 @@ public class DDMTemplateFinderImpl
 		long[] groupIds, long structureClassNameId, int status, int start,
 		int end, OrderByComparator<DDMTemplate> orderByComparator) {
 
-		long classNameId = _portal.getClassNameId(DDMStructure.class);
-
 		return doFindByG_C_SC_S(
-			groupIds, classNameId, structureClassNameId, status, start, end,
-			orderByComparator, false);
+			groupIds, _portal.getClassNameId(DDMStructure.class),
+			structureClassNameId, status, start, end, orderByComparator, false);
 	}
 
 	@Override

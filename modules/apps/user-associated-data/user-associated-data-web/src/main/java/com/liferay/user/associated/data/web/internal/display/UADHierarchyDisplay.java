@@ -178,9 +178,8 @@ public class UADHierarchyDisplay {
 				keyValuePair.getValue());
 		}
 
-		String name = uadDisplay.getName(container, locale);
-
-		PortalUtil.addPortletBreadcrumbEntry(httpServletRequest, name, null);
+		PortalUtil.addPortletBreadcrumbEntry(
+			httpServletRequest, uadDisplay.getName(container, locale), null);
 	}
 
 	public long countAll(long userId) {

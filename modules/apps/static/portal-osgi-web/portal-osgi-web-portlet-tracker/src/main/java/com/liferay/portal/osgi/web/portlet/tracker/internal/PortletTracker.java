@@ -1081,10 +1081,10 @@ public class PortletTracker
 				uri = parts[1];
 			}
 
-			QName qName = getQName(name, uri, portletApp.getDefaultNamespace());
-
 			PublicRenderParameter publicRenderParameter =
-				new PublicRenderParameterImpl(name, qName, portletApp);
+				new PublicRenderParameterImpl(
+					name, getQName(name, uri, portletApp.getDefaultNamespace()),
+					portletApp);
 
 			publicRenderParameters.add(publicRenderParameter);
 		}
@@ -1116,9 +1116,8 @@ public class PortletTracker
 				uri = parts[1];
 			}
 
-			QName qName = getQName(name, uri, portletApp.getDefaultNamespace());
-
-			publishingEvents.add(qName);
+			publishingEvents.add(
+				getQName(name, uri, portletApp.getDefaultNamespace()));
 		}
 
 		portletModel.setPublishingEvents(publishingEvents);

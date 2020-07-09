@@ -26,7 +26,6 @@ import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.cache.PortalCacheMapSynchronizeUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -6972,11 +6971,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				registry.callService(
 					EntityCache.class,
 					entityCache -> {
-						PortalCache<Serializable, Serializable> portalCache =
-							entityCache.getPortalCache(UserImpl.class);
-
 						PortalCacheMapSynchronizeUtil.synchronize(
-							portalCache, _defaultUsers, _synchronizer);
+							entityCache.getPortalCache(UserImpl.class),
+							_defaultUsers, _synchronizer);
 
 						return null;
 					});

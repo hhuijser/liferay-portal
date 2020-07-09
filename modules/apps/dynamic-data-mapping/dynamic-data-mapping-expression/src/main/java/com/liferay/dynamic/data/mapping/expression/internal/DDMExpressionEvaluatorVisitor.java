@@ -159,10 +159,9 @@ public class DDMExpressionEvaluatorVisitor
 	public Object visitFunctionCallExpression(
 		@NotNull FunctionCallExpressionContext context) {
 
-		String functionName = getFunctionName(context.functionName);
-
 		DDMExpressionFunctionFactory ddmExpressionFunctionFactory =
-			_ddmExpressionFunctionFactories.get(functionName);
+			_ddmExpressionFunctionFactories.get(
+				getFunctionName(context.functionName));
 
 		DDMExpressionFunction ddmExpressionFunction =
 			ddmExpressionFunctionFactory.create();

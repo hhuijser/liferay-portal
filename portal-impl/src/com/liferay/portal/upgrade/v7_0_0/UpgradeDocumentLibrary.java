@@ -201,9 +201,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 				"select companyId, groupId from Group_ where classNameId = " +
 					"?")) {
 
-			long classNameId = PortalUtil.getClassNameId(Company.class);
-
-			ps.setLong(1, classNameId);
+			ps.setLong(1, PortalUtil.getClassNameId(Company.class));
 
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {

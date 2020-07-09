@@ -372,10 +372,9 @@ public class WikiPageStagedModelDataHandler
 			WikiPage.class.getName());
 
 		if (trashHandler.isRestorable(existingPage.getResourcePrimKey())) {
-			long userId = portletDataContext.getUserId(page.getUserUuid());
-
 			trashHandler.restoreTrashEntry(
-				userId, existingPage.getResourcePrimKey());
+				portletDataContext.getUserId(page.getUserUuid()),
+				existingPage.getResourcePrimKey());
 		}
 	}
 

@@ -77,9 +77,9 @@ public class MentionsMessageServiceWrapper
 			return message;
 		}
 
-		long siteGroupId = _portal.getSiteGroupId(message.getGroupId());
+		if (!MentionsUtil.isMentionsEnabled(
+				_portal.getSiteGroupId(message.getGroupId()))) {
 
-		if (!MentionsUtil.isMentionsEnabled(siteGroupId)) {
 			return message;
 		}
 

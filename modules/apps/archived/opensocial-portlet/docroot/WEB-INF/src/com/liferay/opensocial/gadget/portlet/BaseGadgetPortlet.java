@@ -141,9 +141,8 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 
 		renderRequest.setAttribute(WebKeys.GADGET, gadget);
 
-		String view = getView(renderRequest, gadgetSpec);
-
-		renderRequest.setAttribute(WebKeys.VIEW, view);
+		renderRequest.setAttribute(
+			WebKeys.VIEW, getView(renderRequest, gadgetSpec));
 	}
 
 	protected abstract Gadget getGadget(RenderRequest renderRequest)

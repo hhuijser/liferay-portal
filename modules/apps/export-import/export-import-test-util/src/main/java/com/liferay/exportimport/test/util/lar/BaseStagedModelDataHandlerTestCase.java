@@ -101,10 +101,9 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 
 		UserTestUtil.setUser(TestPropsValues.getUser());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(stagingGroup.getGroupId());
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext(
+				stagingGroup.getGroupId()));
 	}
 
 	@After

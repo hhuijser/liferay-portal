@@ -100,11 +100,10 @@ public class PortalHookConfigurator
 
 		bundleContext.removeBundleListener(_bundleStartStopLogger);
 
-		ServiceReference<ExtendedLogReaderService> serviceReference =
-			bundleContext.getServiceReference(ExtendedLogReaderService.class);
-
 		ExtendedLogReaderService extendedLogReaderService =
-			bundleContext.getService(serviceReference);
+			bundleContext.getService(
+				bundleContext.getServiceReference(
+					ExtendedLogReaderService.class));
 
 		extendedLogReaderService.removeLogListener(
 			_portalSynchronousLogListener);

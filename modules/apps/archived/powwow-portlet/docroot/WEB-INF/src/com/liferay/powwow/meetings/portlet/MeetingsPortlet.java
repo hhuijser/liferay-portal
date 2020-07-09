@@ -443,11 +443,9 @@ public class MeetingsPortlet extends MVCPortlet {
 	protected long getCalendarId(long userId, ServiceContext serviceContext)
 		throws Exception {
 
-		long classNameId = PortalUtil.getClassNameId(User.class);
-
 		CalendarResource calendarResource =
 			CalendarResourceLocalServiceUtil.fetchCalendarResource(
-				classNameId, userId);
+				PortalUtil.getClassNameId(User.class), userId);
 
 		if (calendarResource == null) {
 			User user = UserLocalServiceUtil.getUser(userId);

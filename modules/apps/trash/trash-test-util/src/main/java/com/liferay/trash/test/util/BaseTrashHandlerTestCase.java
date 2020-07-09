@@ -135,12 +135,11 @@ public abstract class BaseTrashHandlerTestCase {
 		TrashEntry trashEntry = TrashEntryLocalServiceUtil.getEntry(
 			getBaseModelClassName(), getTrashEntryClassPK(baseModel));
 
-		TrashHandler trashHandler = getTrashHandler(getBaseModelClassName());
-
 		Assert.assertEquals(
 			1,
 			getDeletionSystemEventCount(
-				trashHandler, trashEntry.getSystemEventSetKey()));
+				getTrashHandler(getBaseModelClassName()),
+				trashEntry.getSystemEventSetKey()));
 	}
 
 	@Test
@@ -1749,10 +1748,8 @@ public abstract class BaseTrashHandlerTestCase {
 	public void testTrashIsRestorableBaseModel() throws Exception {
 		Assume.assumeTrue(this instanceof WhenIsRestorableBaseModel);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
-		baseModel = addBaseModelWithWorkflow(serviceContext);
+		baseModel = addBaseModelWithWorkflow(
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 
 		moveBaseModelToTrash((Long)baseModel.getPrimaryKeyObj());
 

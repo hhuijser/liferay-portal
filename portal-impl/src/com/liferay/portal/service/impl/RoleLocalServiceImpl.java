@@ -920,9 +920,9 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 	public Role getTeamRole(long companyId, long teamId)
 		throws PortalException {
 
-		long classNameId = classNameLocalService.getClassNameId(Team.class);
-
-		return rolePersistence.findByC_C_C(companyId, classNameId, teamId);
+		return rolePersistence.findByC_C_C(
+			companyId, classNameLocalService.getClassNameId(Team.class),
+			teamId);
 	}
 
 	/**
@@ -977,9 +977,9 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 	public List<Role> getTeamsRoles(long companyId, long[] teamIds)
 		throws PortalException {
 
-		long classNameId = classNameLocalService.getClassNameId(Team.class);
-
-		return rolePersistence.findByC_C_C(companyId, classNameId, teamIds);
+		return rolePersistence.findByC_C_C(
+			companyId, classNameLocalService.getClassNameId(Team.class),
+			teamIds);
 	}
 
 	/**

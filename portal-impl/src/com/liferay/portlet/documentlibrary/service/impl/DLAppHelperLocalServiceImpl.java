@@ -627,9 +627,8 @@ public class DLAppHelperLocalServiceImpl
 		String fileName = originalFileName;
 
 		if (!StringUtil.equals(title, originalTitle)) {
-			String extension = DLAppUtil.getExtension(title, originalFileName);
-
-			fileName = DLUtil.getSanitizedFileName(title, extension);
+			fileName = DLUtil.getSanitizedFileName(
+				title, DLAppUtil.getExtension(title, originalFileName));
 		}
 
 		dlFileEntry.setFileName(fileName);

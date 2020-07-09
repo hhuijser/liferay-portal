@@ -493,9 +493,8 @@ public class RepositoryProxyBean
 		try (ContextClassLoaderSetter contextClassLoaderSetter =
 				new ContextClassLoaderSetter(_classLoader)) {
 
-			FileEntry fileEntry = _repository.getFileEntry(folderId, title);
-
-			return newFileEntryProxyBean(fileEntry);
+			return newFileEntryProxyBean(
+				_repository.getFileEntry(folderId, title));
 		}
 	}
 
@@ -548,9 +547,8 @@ public class RepositoryProxyBean
 		try (ContextClassLoaderSetter contextClassLoaderSetter =
 				new ContextClassLoaderSetter(_classLoader)) {
 
-			Folder folder = _repository.getFolder(parentFolderId, name);
-
-			return newFolderProxyBean(folder);
+			return newFolderProxyBean(
+				_repository.getFolder(parentFolderId, name));
 		}
 	}
 

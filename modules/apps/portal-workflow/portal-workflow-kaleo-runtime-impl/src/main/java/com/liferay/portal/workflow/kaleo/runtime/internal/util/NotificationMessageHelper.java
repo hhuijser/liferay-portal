@@ -70,10 +70,9 @@ public class NotificationMessageHelper {
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
-		long userId = getUserId(executionContext, kaleoInstanceToken);
-
 		jsonObject.put(
-			WorkflowConstants.CONTEXT_USER_ID, String.valueOf(userId)
+			WorkflowConstants.CONTEXT_USER_ID,
+			String.valueOf(getUserId(executionContext, kaleoInstanceToken))
 		).put(
 			"notificationMessage", notificationMessage
 		).put(

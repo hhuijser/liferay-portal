@@ -30,9 +30,7 @@ import com.liferay.portal.kernel.util.Validator;
 public class GuestOrUserUtil {
 
 	public static User getGuestOrUser() throws PortalException {
-		User user = getUser(getUserId());
-
-		return getGuestOrUser(user);
+		return getGuestOrUser(getUser(getUserId()));
 	}
 
 	public static User getGuestOrUser(long companyId) throws PortalException {

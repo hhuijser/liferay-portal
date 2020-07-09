@@ -202,9 +202,9 @@ public class AssetCategoriesSelectorDisplayContext {
 
 		StringBundler sb = new StringBundler(5);
 
-		String title = assetVocabulary.getTitle(themeDisplay.getLocale());
-
-		sb.append(HtmlUtil.escape(title));
+		sb.append(
+			HtmlUtil.escape(
+				assetVocabulary.getTitle(themeDisplay.getLocale())));
 
 		sb.append(StringPool.SPACE);
 		sb.append(StringPool.OPEN_PARENTHESIS);

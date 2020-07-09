@@ -37,11 +37,9 @@ public class GroupModelListener extends BaseModelListener<Group> {
 	@Override
 	public void onAfterUpdate(Group group) throws ModelListenerException {
 		try {
-			long classNameId = _portal.getClassNameId(Group.class);
-
 			CalendarResource calendarResource =
 				_calendarResourceLocalService.fetchCalendarResource(
-					classNameId, group.getGroupId());
+					_portal.getClassNameId(Group.class), group.getGroupId());
 
 			if (calendarResource == null) {
 				return;
@@ -69,11 +67,9 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 			// Global calendar resource
 
-			long classNameId = _portal.getClassNameId(Group.class);
-
 			CalendarResource calendarResource =
 				_calendarResourceLocalService.fetchCalendarResource(
-					classNameId, group.getGroupId());
+					_portal.getClassNameId(Group.class), group.getGroupId());
 
 			if (calendarResource != null) {
 				_calendarResourceLocalService.deleteCalendarResource(

@@ -38,9 +38,8 @@ public class RobotsUtil {
 	 */
 	@Deprecated
 	public static String getDefaultRobots() {
-		int portalServerPort = PortalUtil.getPortalServerPort(false);
-
-		return getDefaultRobots(null, false, portalServerPort);
+		return getDefaultRobots(
+			null, false, PortalUtil.getPortalServerPort(false));
 	}
 
 	/**

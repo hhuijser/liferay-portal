@@ -39,10 +39,9 @@ public class JournalFolderFixture {
 			long userId, long groupId, long parentFolderId, String name)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(groupId, userId);
-
-		return addFolder(parentFolderId, name, serviceContext);
+		return addFolder(
+			parentFolderId, name,
+			ServiceContextTestUtil.getServiceContext(groupId, userId));
 	}
 
 	public JournalFolder addFolder(

@@ -191,9 +191,10 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 				portletPreferences.getValue(_DDM_STRUCTURE_FIELD_NAME, null));
 
 			for (DDMStructureLink ddmStructureLink : ddmStructureLinks) {
-				DDMForm ddmForm = getDDMForm(ddmStructureLink.getStructureId());
+				if (isDateField(
+						getDDMForm(ddmStructureLink.getStructureId()),
+						selectedFieldName)) {
 
-				if (isDateField(ddmForm, selectedFieldName)) {
 					transformDateFieldValue(portletPreferences);
 
 					break;

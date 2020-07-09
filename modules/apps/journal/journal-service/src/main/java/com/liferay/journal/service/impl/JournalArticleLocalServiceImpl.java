@@ -1105,10 +1105,9 @@ public class JournalArticleLocalServiceImpl
 
 		// Article localization
 
-		String urlTitle = JournalUtil.getUrlTitle(id, oldArticle.getUrlTitle());
-
 		int uniqueUrlTitleCount = _getUniqueUrlTitleCount(
-			groupId, newArticleId, urlTitle);
+			groupId, newArticleId,
+			JournalUtil.getUrlTitle(id, oldArticle.getUrlTitle()));
 
 		Map<Locale, String> newTitleMap = oldArticle.getTitleMap();
 
@@ -7754,9 +7753,8 @@ public class JournalArticleLocalServiceImpl
 			long id, long groupId, String articleId, String title)
 		throws PortalException {
 
-		String urlTitle = JournalUtil.getUrlTitle(id, title);
-
-		return getUniqueUrlTitle(groupId, articleId, urlTitle);
+		return getUniqueUrlTitle(
+			groupId, articleId, JournalUtil.getUrlTitle(id, title));
 	}
 
 	protected String getUniqueUrlTitle(

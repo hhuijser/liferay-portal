@@ -51,9 +51,8 @@ public class PasswordUtil {
 		String encryptedPassword = null;
 
 		try {
-			byte[] bytes = unencryptedPassword.getBytes(StringPool.UTF8);
-
-			encryptedPassword = Base64.encode(bytes);
+			encryptedPassword = Base64.encode(
+				unencryptedPassword.getBytes(StringPool.UTF8));
 		}
 		catch (UnsupportedEncodingException unsupportedEncodingException) {
 			_log.error(

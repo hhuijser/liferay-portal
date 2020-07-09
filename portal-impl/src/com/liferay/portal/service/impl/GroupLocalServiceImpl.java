@@ -638,10 +638,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void checkCompanyGroup(long companyId) throws PortalException {
-		long classNameId = classNameLocalService.getClassNameId(Company.class);
-
 		int count = groupPersistence.countByC_C_C(
-			companyId, classNameId, companyId);
+			companyId, classNameLocalService.getClassNameId(Company.class),
+			companyId);
 
 		if (count == 0) {
 			groupLocalService.addGroup(
@@ -1316,9 +1315,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 */
 	@Override
 	public Group fetchCompanyGroup(long companyId) {
-		long classNameId = classNameLocalService.getClassNameId(Company.class);
-
-		return groupPersistence.fetchByC_C_C(companyId, classNameId, companyId);
+		return groupPersistence.fetchByC_C_C(
+			companyId, classNameLocalService.getClassNameId(Company.class),
+			companyId);
 	}
 
 	/**
@@ -1381,9 +1380,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 	@Override
 	public Group fetchUserGroup(long companyId, long userId) {
-		long classNameId = classNameLocalService.getClassNameId(User.class);
-
-		return groupPersistence.fetchByC_C_C(companyId, classNameId, userId);
+		return groupPersistence.fetchByC_C_C(
+			companyId, classNameLocalService.getClassNameId(User.class),
+			userId);
 	}
 
 	/**
@@ -1528,9 +1527,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 */
 	@Override
 	public Group getCompanyGroup(long companyId) throws PortalException {
-		long classNameId = classNameLocalService.getClassNameId(Company.class);
-
-		return groupPersistence.findByC_C_C(companyId, classNameId, companyId);
+		return groupPersistence.findByC_C_C(
+			companyId, classNameLocalService.getClassNameId(Company.class),
+			companyId);
 	}
 
 	/**
@@ -1828,9 +1827,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	public Group getLayoutGroup(long companyId, long plid)
 		throws PortalException {
 
-		long classNameId = classNameLocalService.getClassNameId(Layout.class);
-
-		return groupPersistence.findByC_C_C(companyId, classNameId, plid);
+		return groupPersistence.findByC_C_C(
+			companyId, classNameLocalService.getClassNameId(Layout.class),
+			plid);
 	}
 
 	/**
@@ -2096,9 +2095,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	public Group getUserGroup(long companyId, long userId)
 		throws PortalException {
 
-		long classNameId = classNameLocalService.getClassNameId(User.class);
-
-		return groupPersistence.findByC_C_C(companyId, classNameId, userId);
+		return groupPersistence.findByC_C_C(
+			companyId, classNameLocalService.getClassNameId(User.class),
+			userId);
 	}
 
 	/**

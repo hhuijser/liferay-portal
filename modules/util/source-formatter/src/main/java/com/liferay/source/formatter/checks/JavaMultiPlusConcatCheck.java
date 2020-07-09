@@ -267,9 +267,7 @@ public class JavaMultiPlusConcatCheck extends BaseJavaTermCheck {
 				continue;
 			}
 
-			int lineNumber = getLineNumber(content, start);
-
-			String line = getLine(content, lineNumber);
+			String line = getLine(content, getLineNumber(content, start));
 
 			if (!line.contains(StringPool.OPEN_PARENTHESIS)) {
 				return false;

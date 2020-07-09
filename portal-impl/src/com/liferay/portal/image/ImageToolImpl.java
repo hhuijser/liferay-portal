@@ -571,18 +571,14 @@ public class ImageToolImpl implements ImageTool {
 	public Image getImage(InputStream is)
 		throws ImageResolutionException, IOException {
 
-		byte[] bytes = _fileImpl.getBytes(is, -1, true);
-
-		return getImage(bytes);
+		return getImage(_fileImpl.getBytes(is, -1, true));
 	}
 
 	@Override
 	public Image getImage(InputStream is, boolean cleanUpStream)
 		throws ImageResolutionException, IOException {
 
-		byte[] bytes = _fileImpl.getBytes(is, -1, cleanUpStream);
-
-		return getImage(bytes);
+		return getImage(_fileImpl.getBytes(is, -1, cleanUpStream));
 	}
 
 	@Override

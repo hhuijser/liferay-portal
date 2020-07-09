@@ -425,10 +425,9 @@ public class EditorPortlet extends AdminPortlet {
 			"scrolling", modulePrefs.getScrolling()
 		);
 
-		String ownerId = ShindigUtil.getOwnerId(themeDisplay.getLayout());
-
 		String secureToken = ShindigUtil.createSecurityToken(
-			ownerId, themeDisplay.getUserId(), fileEntryURL,
+			ShindigUtil.getOwnerId(themeDisplay.getLayout()),
+			themeDisplay.getUserId(), fileEntryURL,
 			PortalUtil.getPortalURL(themeDisplay), fileEntryURL, moduleId,
 			PortalUtil.getCurrentURL(resourceRequest));
 

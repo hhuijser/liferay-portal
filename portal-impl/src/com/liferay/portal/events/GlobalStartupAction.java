@@ -128,12 +128,9 @@ public class GlobalStartupAction extends SimpleAction {
 			File destDir = new File(DeployUtil.getAutoDeployDestDir());
 			long interval = PropsValues.AUTO_DEPLOY_INTERVAL;
 
-			List<AutoDeployListener> autoDeployListeners =
-				getAutoDeployListeners(false);
-
 			AutoDeployDir autoDeployDir = new AutoDeployDir(
 				AutoDeployDir.DEFAULT_NAME, deployDir, destDir, interval,
-				autoDeployListeners);
+				getAutoDeployListeners(false));
 
 			if (PropsValues.AUTO_DEPLOY_ENABLED) {
 				if (_log.isInfoEnabled()) {

@@ -115,12 +115,10 @@ public class GradleTestDependencyVersionCheck extends BaseFileCheck {
 				!line.contains("project(\"") &&
 				!allowedDependencyNames.contains(dependencyName)) {
 
-				int lineNumber = getLineNumber(content, content.indexOf(line));
-
 				addMessage(
 					fileName,
 					"Use a project dependency instead of a module dependency",
-					lineNumber);
+					getLineNumber(content, content.indexOf(line)));
 			}
 
 			sb.append(line);

@@ -219,9 +219,7 @@ public class FileSystemStore implements Store {
 	protected File getFileNameDir(
 		long companyId, long repositoryId, String fileName) {
 
-		File repositoryDir = getRepositoryDir(companyId, repositoryId);
-
-		return new File(repositoryDir, fileName);
+		return new File(getRepositoryDir(companyId, repositoryId), fileName);
 	}
 
 	protected void getFileNames(
@@ -257,9 +255,8 @@ public class FileSystemStore implements Store {
 	protected File getFileNameVersionFile(
 		long companyId, long repositoryId, String fileName, String version) {
 
-		File fileNameDir = getFileNameDir(companyId, repositoryId, fileName);
-
-		return new File(fileNameDir, version);
+		return new File(
+			getFileNameDir(companyId, repositoryId, fileName), version);
 	}
 
 	protected String getHeadVersionLabel(

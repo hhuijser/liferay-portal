@@ -133,9 +133,9 @@ public class StaticBlockCheck extends BaseCheck {
 				staticObjectNames.add(name);
 			}
 			else {
-				String typeName = getTypeName(previousSiblingDetailAST, true);
+				if (!immutableFieldTypes.contains(
+						getTypeName(previousSiblingDetailAST, true))) {
 
-				if (!immutableFieldTypes.contains(typeName)) {
 					staticObjectNames.add(name);
 				}
 			}

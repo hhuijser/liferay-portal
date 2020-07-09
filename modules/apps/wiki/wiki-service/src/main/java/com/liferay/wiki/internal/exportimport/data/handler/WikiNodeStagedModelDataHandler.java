@@ -196,9 +196,9 @@ public class WikiNodeStagedModelDataHandler
 			WikiNode.class.getName());
 
 		if (trashHandler.isRestorable(existingNode.getNodeId())) {
-			long userId = portletDataContext.getUserId(node.getUserUuid());
-
-			trashHandler.restoreTrashEntry(userId, existingNode.getNodeId());
+			trashHandler.restoreTrashEntry(
+				portletDataContext.getUserId(node.getUserUuid()),
+				existingNode.getNodeId());
 		}
 	}
 

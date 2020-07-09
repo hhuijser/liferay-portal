@@ -364,10 +364,9 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 			long companyId, long containerModelId, long resourcePrimKey)
 		throws Exception {
 
-		String dirName = getDirName(containerModelId, resourcePrimKey);
-
 		return DLStoreUtil.getFileNames(
-			companyId, CompanyConstants.SYSTEM, dirName);
+			companyId, CompanyConstants.SYSTEM,
+			getDirName(containerModelId, resourcePrimKey));
 	}
 
 	protected long getBitwiseValue(

@@ -707,10 +707,9 @@ public class FileEntryStagedModelDataHandler
 			DLFileEntry.class.getName());
 
 		if (trashHandler.isRestorable(existingFileEntry.getFileEntryId())) {
-			long userId = portletDataContext.getUserId(fileEntry.getUserUuid());
-
 			trashHandler.restoreTrashEntry(
-				userId, existingFileEntry.getFileEntryId());
+				portletDataContext.getUserId(fileEntry.getUserUuid()),
+				existingFileEntry.getFileEntryId());
 		}
 	}
 

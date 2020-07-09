@@ -133,13 +133,11 @@ public class DDMFormInstanceTestHelper {
 		DDMFormValues settingsDDMFormValues =
 			DDMFormValuesTestUtil.createDDMFormValues(settingsDDMForm);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		return DDMFormInstanceLocalServiceUtil.addFormInstance(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			ddmStructure.getStructureId(), nameMap, descriptionMap,
-			settingsDDMFormValues, serviceContext);
+			settingsDDMFormValues,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	public DDMFormInstance addDDMFormInstance(
@@ -195,13 +193,10 @@ public class DDMFormInstanceTestHelper {
 		DDMFormLayout ddmFormLayout = DDMUtil.getDefaultDDMFormLayout(
 			fileEntryDDMForm);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		return DDMFormInstanceLocalServiceUtil.addFormInstance(
 			TestPropsValues.getUserId(), _group.getGroupId(), nameMap,
 			descriptionMap, fileEntryDDMForm, ddmFormLayout, ddmFormValues,
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	public DDMFormInstance updateFormInstance(

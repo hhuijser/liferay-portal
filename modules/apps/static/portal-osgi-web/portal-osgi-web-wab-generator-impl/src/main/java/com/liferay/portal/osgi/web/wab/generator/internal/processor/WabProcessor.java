@@ -243,11 +243,9 @@ public class WabProcessor {
 		try {
 			DependencyManagementThreadLocal.setEnabled(false);
 
-			List<AutoDeployListener> autoDeployListeners =
-				GlobalStartupAction.getAutoDeployListeners(false);
-
 			AutoDeployListener autoDeployListener = getAutoDeployListener(
-				autoDeploymentContext, autoDeployListeners);
+				autoDeploymentContext,
+				GlobalStartupAction.getAutoDeployListeners(false));
 
 			autoDeployListener.deploy(autoDeploymentContext);
 		}

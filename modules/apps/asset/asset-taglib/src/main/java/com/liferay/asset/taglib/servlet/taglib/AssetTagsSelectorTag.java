@@ -303,8 +303,7 @@ public class AssetTagsSelectorTag extends IncludeTag {
 
 				for (String tagName : getTagNames()) {
 					selectedItems.add(
-						Map < String,
-						String > selectedItem = HashMapBuilder.put(
+						HashMapBuilder.put(
 							"label", tagName
 						).put(
 							"value", tagName

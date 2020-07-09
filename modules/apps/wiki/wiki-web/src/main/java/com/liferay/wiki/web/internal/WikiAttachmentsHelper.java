@@ -69,10 +69,10 @@ public class WikiAttachmentsHelper {
 					"file");
 
 				if (inputStream != null) {
-					String fileName = uploadPortletRequest.getFileName("file");
-
 					ObjectValuePair<String, InputStream> inputStreamOVP =
-						new ObjectValuePair<>(fileName, inputStream);
+						new ObjectValuePair<>(
+							uploadPortletRequest.getFileName("file"),
+							inputStream);
 
 					inputStreamOVPs.add(inputStreamOVP);
 				}

@@ -47,9 +47,8 @@ public class SpringDependencyAnalyzerPlugin implements AnalyzerPlugin {
 
 	@Override
 	public boolean analyzeJar(Analyzer analyzer) throws Exception {
-		String property = analyzer.getProperty("-liferay-spring-dependency");
-
-		Parameters parameters = analyzer.parseHeader(property);
+		Parameters parameters = analyzer.parseHeader(
+			analyzer.getProperty("-liferay-spring-dependency"));
 
 		if (parameters.isEmpty()) {
 			return false;

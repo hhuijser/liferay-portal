@@ -65,11 +65,10 @@ public class DLFileEntryTypeUADTestUtil {
 			LocaleUtil.US, "Test Structure Description"
 		).build();
 
-		long classNameId = portal.getClassNameId(
-			"com.liferay.dynamic.data.lists.model.DDLRecordSet");
-
 		DDMStructure ddmStructure = DDMStructureManagerUtil.addStructure(
-			TestPropsValues.getUserId(), groupId, null, classNameId,
+			TestPropsValues.getUserId(), groupId, null,
+			portal.getClassNameId(
+				"com.liferay.dynamic.data.lists.model.DDLRecordSet"),
 			RandomTestUtil.randomString(), nameMap, descriptionMap, ddmForm,
 			StorageEngineManager.STORAGE_TYPE_DEFAULT,
 			DDMStructureManager.STRUCTURE_TYPE_DEFAULT, serviceContext);

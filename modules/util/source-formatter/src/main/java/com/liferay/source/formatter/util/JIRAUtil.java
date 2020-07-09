@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -180,7 +181,9 @@ public class JIRAUtil {
 				return _STATUS_NONEXISTING_TICKET;
 			}
 
-			if (ioException instanceof UnknownHostException) {
+			if (ioException instanceof ConnectException |
+				ioException instanceof UnknownHostException) {
+
 				return _STATUS_NO_INTERNET_CONNECTION;
 			}
 

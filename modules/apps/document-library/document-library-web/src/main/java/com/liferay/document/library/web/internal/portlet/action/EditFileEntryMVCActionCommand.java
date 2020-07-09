@@ -633,12 +633,12 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		fileEntry = _dlTrashService.moveFileEntryToTrash(fileEntryId);
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"trashedModels",
-			ListUtil.fromArray((TrashedModel)fileEntry.getModel())
-		).build();
-
-		addDeleteSuccessData(actionRequest, data);
+		addDeleteSuccessData(
+			actionRequest,
+			HashMapBuilder.<String, Object>put(
+				"trashedModels",
+				ListUtil.fromArray((TrashedModel)fileEntry.getModel())
+			).build());
 	}
 
 	private void _deleteTempFileEntry(

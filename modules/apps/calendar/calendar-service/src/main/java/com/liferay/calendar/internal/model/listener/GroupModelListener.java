@@ -25,9 +25,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.Portal;
 
-import java.util.Locale;
-import java.util.Map;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -50,13 +47,11 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				return;
 			}
 
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				LocaleUtil.getSiteDefault(), group.getDescriptiveName()
-			).build();
-
 			calendarResource.setNameMap(
 				LocalizationUtil.populateLocalizationMap(
-					nameMap,
+					HashMapBuilder.put(
+						LocaleUtil.getSiteDefault(), group.getDescriptiveName()
+					).build(),
 					LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
 					group.getGroupId()));
 

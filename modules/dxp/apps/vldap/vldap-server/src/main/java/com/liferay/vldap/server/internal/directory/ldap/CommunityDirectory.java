@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
-import java.util.LinkedHashMap;
 import java.util.Locale;
 
 /**
@@ -40,12 +39,11 @@ public class CommunityDirectory extends Directory {
 		addAttribute("objectclass", "top");
 		addAttribute("ou", community.getName(locale));
 
-		LinkedHashMap<String, Object> params =
+		addMemberAttributes(
+			top, company,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersGroups", community.getGroupId()
-			).build();
-
-		addMemberAttributes(top, company, params);
+			).build());
 
 		setName(top, company, "Communities", community.getName(locale));
 	}

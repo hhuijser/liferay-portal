@@ -89,17 +89,15 @@ public class DLFileEntryTypeServiceImpl extends DLFileEntryTypeServiceBaseImpl {
 			long[] ddmStructureIds, ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), description
-		).build();
-
 		return addFileEntryType(
-			groupId, null, nameMap, descriptionMap, ddmStructureIds,
-			serviceContext);
+			groupId, null,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), description
+			).build(),
+			ddmStructureIds, serviceContext);
 	}
 
 	@Override
@@ -236,17 +234,15 @@ public class DLFileEntryTypeServiceImpl extends DLFileEntryTypeServiceBaseImpl {
 			long[] ddmStructureIds, ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), description
-		).build();
-
 		updateFileEntryType(
-			fileEntryTypeId, nameMap, descriptionMap, ddmStructureIds,
-			serviceContext);
+			fileEntryTypeId,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), description
+			).build(),
+			ddmStructureIds, serviceContext);
 	}
 
 	protected List<DLFileEntryType> filterFileEntryTypes(

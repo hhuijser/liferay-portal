@@ -23,8 +23,6 @@ import com.liferay.staging.bar.web.internal.portlet.constants.StagingBarPortletK
 
 import java.io.IOException;
 
-import java.util.Map;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
@@ -44,15 +42,13 @@ public class ActionUtil {
 					SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
 				StagingBarPortletKeys.STAGING_BAR);
 
-			Map<String, String> data = HashMapBuilder.put(
-				"preventNotification", Boolean.TRUE.toString()
-			).build();
-
 			SessionMessages.add(
 				actionRequest,
 				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA,
-				data);
+				HashMapBuilder.put(
+					"preventNotification", Boolean.TRUE.toString()
+				).build());
 		}
 
 		String redirect = PortalUtil.escapeRedirect(

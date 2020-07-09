@@ -117,13 +117,12 @@ public class EventsProcessorUtil {
 	public static void registerEvent(String key, Object event) {
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"key", key
-		).build();
-
 		ServiceRegistration<LifecycleAction> serviceRegistration =
 			registry.registerService(
-				LifecycleAction.class, (LifecycleAction)event, properties);
+				LifecycleAction.class, (LifecycleAction)event,
+				HashMapBuilder.<String, Object>put(
+					"key", key
+				).build());
 
 		Map<Object, ServiceRegistration<LifecycleAction>>
 			serviceRegistrationMap = _serviceRegistrationMaps.get(key);

@@ -74,11 +74,8 @@ public class CertAuthPoolingHttpClientFactory
 			createPoolingHttpClientConnectionManager()
 		throws Exception {
 
-		SSLConnectionSocketFactory sslConnectionSocketFactory =
-			_sslSocketFactoryBuilder.build();
-
 		Registry<ConnectionSocketFactory> schemeRegistry = createSchemeRegistry(
-			sslConnectionSocketFactory);
+			_sslSocketFactoryBuilder.build());
 
 		return new PoolingHttpClientConnectionManager(schemeRegistry);
 	}

@@ -214,13 +214,11 @@ public class SendMFAEmailOTPMVCResourceCommand implements MVCResourceCommand {
 		mailTemplateContextBuilder.put(
 			"[$TO_NAME$]", HtmlUtil.escape(user.getFullName()));
 
-		MailTemplateContext mailTemplateContext =
-			mailTemplateContextBuilder.build();
-
 		_sendNotificationEmail(
 			mfaEmailOTPConfiguration.emailFromAddress(),
 			mfaEmailOTPConfiguration.emailFromName(), user.getEmailAddress(),
-			user, emailOTPSubject, emailOTPBody, mailTemplateContext);
+			user, emailOTPSubject, emailOTPBody,
+			mailTemplateContextBuilder.build());
 
 		return true;
 	}

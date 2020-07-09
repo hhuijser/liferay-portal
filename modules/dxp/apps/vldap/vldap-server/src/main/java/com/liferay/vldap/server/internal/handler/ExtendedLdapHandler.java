@@ -21,7 +21,6 @@ import com.liferay.vldap.server.internal.handler.util.LdapHandlerContext;
 import com.liferay.vldap.server.internal.handler.util.LdapSslContextFactory;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
@@ -71,13 +70,11 @@ public class ExtendedLdapHandler extends BaseLdapHandler {
 
 		extendedResponse.setResponseName(OIDConstants.START_TLS);
 
-		Map<Object, Object> sessionAttributes =
+		extendedResponse.put(
+			VLDAPConstants.SESSION_ATTRIBUTES,
 			HashMapBuilder.<Object, Object>put(
 				SslFilter.DISABLE_ENCRYPTION_ONCE, true
-			).build();
-
-		extendedResponse.put(
-			VLDAPConstants.SESSION_ATTRIBUTES, sessionAttributes);
+			).build());
 
 		return toList(extendedResponse);
 	}

@@ -488,15 +488,14 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 
 		fileSystemKeyStoreManagerImpl = new FileSystemKeyStoreManagerImpl();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"saml.keystore.path",
-			"classpath:/com/liferay/saml/opensaml/integration/internal" +
-				"/credential/dependencies/keystore.jks"
-		).build();
-
 		ReflectionTestUtil.invoke(
 			fileSystemKeyStoreManagerImpl, "activate",
-			new Class<?>[] {Map.class}, properties);
+			new Class<?>[] {Map.class},
+			HashMapBuilder.<String, Object>put(
+				"saml.keystore.path",
+				"classpath:/com/liferay/saml/opensaml/integration/internal" +
+					"/credential/dependencies/keystore.jks"
+			).build());
 
 		credentialResolver = new KeyStoreCredentialResolver();
 

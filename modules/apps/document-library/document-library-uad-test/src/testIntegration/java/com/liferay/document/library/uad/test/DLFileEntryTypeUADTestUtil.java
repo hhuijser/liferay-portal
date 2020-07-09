@@ -32,8 +32,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author William Newbury
@@ -57,20 +55,18 @@ public class DLFileEntryTypeUADTestUtil {
 
 		ddmForm.addDDMFormField(ddmFormField);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, "Test Structure Name"
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.US, "Test Structure Description"
-		).build();
-
 		DDMStructure ddmStructure = DDMStructureManagerUtil.addStructure(
 			TestPropsValues.getUserId(), groupId, null,
 			portal.getClassNameId(
 				"com.liferay.dynamic.data.lists.model.DDLRecordSet"),
-			RandomTestUtil.randomString(), nameMap, descriptionMap, ddmForm,
-			StorageEngineManager.STORAGE_TYPE_DEFAULT,
+			RandomTestUtil.randomString(),
+			HashMapBuilder.put(
+				LocaleUtil.US, "Test Structure Name"
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.US, "Test Structure Description"
+			).build(),
+			ddmForm, StorageEngineManager.STORAGE_TYPE_DEFAULT,
 			DDMStructureManager.STRUCTURE_TYPE_DEFAULT, serviceContext);
 
 		return dlFileEntryTypeLocalService.addFileEntryType(

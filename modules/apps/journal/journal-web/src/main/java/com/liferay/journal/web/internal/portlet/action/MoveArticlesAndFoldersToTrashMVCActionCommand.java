@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -89,15 +88,13 @@ public class MoveArticlesAndFoldersToTrashMVCActionCommand
 			return;
 		}
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"trashedModels", trashedModels
-		).build();
-
 		SessionMessages.add(
 			actionRequest,
 			_portal.getPortletId(actionRequest) +
 				SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA,
-			data);
+			HashMapBuilder.<String, Object>put(
+				"trashedModels", trashedModels
+			).build());
 
 		hideDefaultSuccessMessage(actionRequest);
 	}

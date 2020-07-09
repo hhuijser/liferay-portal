@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -46,13 +45,12 @@ public class Autocomplete {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (int i = 0; (i < array.length) && (i < max); i++) {
-			Map<String, String> map = HashMapBuilder.put(
-				"text", array[i][0]
-			).put(
-				"value", array[i][1]
-			).build();
-
-			jsonArray.put(map);
+			jsonArray.put(
+				HashMapBuilder.put(
+					"text", array[i][0]
+				).put(
+					"value", array[i][1]
+				).build());
 		}
 
 		return jsonArray;

@@ -39,7 +39,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author Igor Fabiano Nazar
@@ -98,15 +97,13 @@ public class DLFileEntryMetadataDDMStructureFixture {
 		try (InputStream inputStream = clazz.getResourceAsStream(
 				"dependencies/" + fileName)) {
 
-			Map<String, Serializable> fileAttributes =
-				HashMapBuilder.<String, Serializable>put(
-					"fileEntryTypeId", fileEntryTypeId
-				).build();
-
 			return _fileEntrySearchFixture.addFileEntry(
 				new FileEntryBlueprint() {
 					{
-						addAttributes(fileAttributes);
+						addAttributes(
+							HashMapBuilder.<String, Serializable>put(
+								"fileEntryTypeId", fileEntryTypeId
+							).build());
 						setFileName(fileName);
 						setGroupId(_dlFixture.getGroupId());
 						setInputStream(inputStream);

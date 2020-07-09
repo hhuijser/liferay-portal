@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.PortletURL;
 
@@ -64,14 +63,13 @@ public class OAuth2ConnectedApplicationsManagementToolbarDisplayContext
 	public List<DropdownItem> getFilterDropdownItems() {
 		return DropdownItemListBuilder.addGroup(
 			dropdownGroupItem -> {
-				Map<String, String> orderColumnsMap = HashMapBuilder.put(
-					"createDate", "authorization"
-				).put(
-					"oAuth2ApplicationId", "application-id"
-				).build();
-
 				dropdownGroupItem.setDropdownItems(
-					getOrderByDropdownItems(orderColumnsMap));
+					getOrderByDropdownItems(
+						HashMapBuilder.put(
+							"createDate", "authorization"
+						).put(
+							"oAuth2ApplicationId", "application-id"
+						).build()));
 
 				dropdownGroupItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "order-by"));

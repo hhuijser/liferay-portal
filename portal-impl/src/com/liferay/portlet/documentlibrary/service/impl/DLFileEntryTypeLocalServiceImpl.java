@@ -240,17 +240,15 @@ public class DLFileEntryTypeLocalServiceImpl
 			long[] ddmStructureIds, ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), description
-		).build();
-
 		return addFileEntryType(
-			userId, groupId, null, nameMap, descriptionMap, ddmStructureIds,
-			serviceContext);
+			userId, groupId, null,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), description
+			).build(),
+			ddmStructureIds, serviceContext);
 	}
 
 	@Override
@@ -617,17 +615,15 @@ public class DLFileEntryTypeLocalServiceImpl
 			long[] ddmStructureIds, ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), description
-		).build();
-
 		updateFileEntryType(
-			userId, fileEntryTypeId, nameMap, descriptionMap, ddmStructureIds,
-			serviceContext);
+			userId, fileEntryTypeId,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), description
+			).build(),
+			ddmStructureIds, serviceContext);
 	}
 
 	@Override

@@ -27,9 +27,7 @@ public class CreateTag extends TagSupport {
 
 	@Override
 	public int doEndTag() throws JspException {
-		Changeset changeset = _rawBuilder.build();
-
-		pageContext.setAttribute(_var, changeset);
+		pageContext.setAttribute(_var, _rawBuilder.build());
 
 		return EVAL_PAGE;
 	}

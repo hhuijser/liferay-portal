@@ -42,10 +42,8 @@ import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
-import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.X509v1CertificateBuilder;
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
-import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
 import org.osgi.service.component.annotations.Component;
@@ -88,14 +86,9 @@ public class CertificateToolImpl implements CertificateTool {
 			JcaContentSignerBuilder jcaContentSignerBuilder =
 				new JcaContentSignerBuilder(signatureAlgorithm);
 
-			ContentSigner contentSigner = jcaContentSignerBuilder.build(
-				keyPair.getPrivate());
-
-			X509CertificateHolder x509CertificateHolder =
-				x509v1CertificateBuilder.build(contentSigner);
-
 			return jcaX509CertificateConverter.getCertificate(
-				x509CertificateHolder);
+				x509v1CertificateBuilder.build(
+					jcaContentSignerBuilder.build(keyPair.getPrivate())));
 		}
 		catch (Exception exception) {
 			throw new CertificateException(exception);

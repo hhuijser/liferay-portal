@@ -267,13 +267,12 @@ public class DirectoryTree {
 				_communityBuilder, top, company, community);
 		}
 
-		LinkedHashMap<String, Object> params =
+		return getSearchBase(
+			top, sizeLimit,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersGroups", community.getGroupId()
-			).build();
-
-		return getSearchBase(
-			top, sizeLimit, params, identifiers, null, company);
+			).build(),
+			identifiers, null, company);
 	}
 
 	protected List<Identifier> getIdentifiers(Dn dn) {
@@ -328,13 +327,12 @@ public class DirectoryTree {
 				_organizationBuilder, top, company, organization);
 		}
 
-		LinkedHashMap<String, Object> params =
+		return getSearchBase(
+			top, sizeLimit,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersOrgs", organization.getOrganizationId()
-			).build();
-
-		return getSearchBase(
-			top, sizeLimit, params, identifiers, organization, company);
+			).build(),
+			identifiers, organization, company);
 	}
 
 	protected SearchBase getRolesSearchBase(
@@ -367,13 +365,12 @@ public class DirectoryTree {
 				company, role);
 		}
 
-		LinkedHashMap<String, Object> params =
+		return getSearchBase(
+			top, sizeLimit,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersRoles", role.getRoleId()
-			).build();
-
-		return getSearchBase(
-			top, sizeLimit, params, identifiers, null, company);
+			).build(),
+			identifiers, null, company);
 	}
 
 	protected SearchBase getSambaMachinesSearchBase(
@@ -466,13 +463,12 @@ public class DirectoryTree {
 				_userGroupBuilder, top, company, userGroup);
 		}
 
-		LinkedHashMap<String, Object> params =
+		return getSearchBase(
+			top, sizeLimit,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersUserGroups", userGroup.getUserGroupId()
-			).build();
-
-		return getSearchBase(
-			top, sizeLimit, params, identifiers, null, company);
+			).build(),
+			identifiers, null, company);
 	}
 
 	protected SearchBase getUsersSearchBase(

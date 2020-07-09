@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.struts.Definition;
 import com.liferay.portal.struts.TilesUtil;
 
-import java.util.Map;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,16 +50,17 @@ public class JspUtil {
 			boolean popUp)
 		throws Exception {
 
-		Map<String, String> attributes = HashMapBuilder.put(
-			"content", path
-		).put(
-			"pop_up", String.valueOf(popUp)
-		).put(
-			"title", title
-		).build();
-
 		httpServletRequest.setAttribute(
-			TilesUtil.DEFINITION, new Definition(StringPool.BLANK, attributes));
+			TilesUtil.DEFINITION,
+			new Definition(
+				StringPool.BLANK,
+				HashMapBuilder.put(
+					"content", path
+				).put(
+					"pop_up", String.valueOf(popUp)
+				).put(
+					"title", title
+				).build()));
 
 		RequestDispatcher requestDispatcher =
 			httpServletRequest.getRequestDispatcher(

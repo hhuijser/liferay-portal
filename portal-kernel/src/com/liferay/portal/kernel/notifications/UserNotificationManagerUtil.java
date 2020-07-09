@@ -149,14 +149,12 @@ public class UserNotificationManagerUtil {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"javax.portlet.name", portletId
-		).build();
-
 		ServiceRegistration<UserNotificationDefinition> serviceRegistration =
 			registry.registerService(
 				UserNotificationDefinition.class, userNotificationDefinition,
-				properties);
+				HashMapBuilder.<String, Object>put(
+					"javax.portlet.name", portletId
+				).build());
 
 		List<ServiceRegistration<UserNotificationDefinition>>
 			serviceRegistrations = new ArrayList<>();

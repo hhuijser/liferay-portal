@@ -149,19 +149,18 @@ public class SelectDDMFormFieldTemplateContextContributor
 				continue;
 			}
 
-			Map<String, String> optionMap = HashMapBuilder.put(
-				"label",
-				() -> HtmlUtil.escape(
-					ddmFormFieldOptions.getOptionLabels(
-						optionValue
-					).getString(
-						locale
-					))
-			).put(
-				"value", optionValue
-			).build();
-
-			options.add(optionMap);
+			options.add(
+				HashMapBuilder.put(
+					"label",
+					() -> HtmlUtil.escape(
+						ddmFormFieldOptions.getOptionLabels(
+							optionValue
+						).getString(
+							locale
+						))
+				).put(
+					"value", optionValue
+				).build());
 		}
 
 		return options;

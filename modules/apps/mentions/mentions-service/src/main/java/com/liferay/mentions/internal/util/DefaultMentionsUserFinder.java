@@ -26,7 +26,6 @@ import com.liferay.social.kernel.model.SocialRelationConstants;
 import com.liferay.social.kernel.util.SocialInteractionsConfiguration;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -47,14 +46,12 @@ public class DefaultMentionsUserFinder implements MentionsUserFinder {
 		if (socialInteractionsConfiguration.
 				isSocialInteractionsAnyUserEnabled()) {
 
-			LinkedHashMap<String, Object> params =
+			return _userLocalService.search(
+				companyId, query, WorkflowConstants.STATUS_APPROVED,
 				LinkedHashMapBuilder.<String, Object>put(
 					"wildcardMode", WildcardMode.TRAILING
-				).build();
-
-			return _userLocalService.search(
-				companyId, query, WorkflowConstants.STATUS_APPROVED, params, 0,
-				_MAX_USERS, new UserScreenNameComparator());
+				).build(),
+				0, _MAX_USERS, new UserScreenNameComparator());
 		}
 
 		User user = _userLocalService.getUser(userId);

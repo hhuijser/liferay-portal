@@ -142,16 +142,14 @@ public class SoyPortletHelper {
 			List<Route> routes = router.getRoutes();
 
 			for (Route route : routes) {
-				Map<String, Object> mapping =
+				routesMapping.add(
 					HashMapBuilder.<String, Object>put(
 						"implicitParameters", route.getImplicitParameters()
 					).put(
 						"overriddenParameters", route.getOverriddenParameters()
 					).put(
 						"pattern", route.getPattern()
-					).build();
-
-				routesMapping.add(mapping);
+					).build());
 			}
 		}
 

@@ -299,11 +299,11 @@ public class SAXReaderImpl implements SAXReader {
 	public XPath createXPath(
 		String xPathExpression, String prefix, String namespace) {
 
-		Map<String, String> namespaceContextMap = HashMapBuilder.put(
-			prefix, namespace
-		).build();
-
-		return createXPath(xPathExpression, namespaceContextMap);
+		return createXPath(
+			xPathExpression,
+			HashMapBuilder.put(
+				prefix, namespace
+			).build());
 	}
 
 	@Override

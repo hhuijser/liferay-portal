@@ -284,12 +284,13 @@ public class DDMStructureTestUtil {
 	public static String getSampleStructuredContent(
 		String name, String keywords) {
 
-		Map<Locale, String> contents = HashMapBuilder.put(
-			LocaleUtil.US, keywords
-		).build();
-
 		return getSampleStructuredContent(
-			name, Collections.singletonList(contents), "en_US");
+			name,
+			Collections.singletonList(
+				HashMapBuilder.put(
+					LocaleUtil.US, keywords
+				).build()),
+			"en_US");
 	}
 
 	public static Map<String, Map<String, String>> getXSDMap(String xsd)

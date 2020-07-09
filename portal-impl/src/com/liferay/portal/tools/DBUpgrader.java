@@ -57,8 +57,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import java.util.Map;
-
 import org.apache.commons.lang.time.StopWatch;
 
 /**
@@ -365,19 +363,17 @@ public class DBUpgrader {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"module.service.lifecycle", moduleServiceLifecycle
-		).put(
-			"service.vendor", ReleaseInfo.getVendor()
-		).put(
-			"service.version", ReleaseInfo.getVersion()
-		).build();
-
 		registry.registerService(
 			ModuleServiceLifecycle.class,
 			new ModuleServiceLifecycle() {
 			},
-			properties);
+			HashMapBuilder.<String, Object>put(
+				"module.service.lifecycle", moduleServiceLifecycle
+			).put(
+				"service.vendor", ReleaseInfo.getVendor()
+			).put(
+				"service.version", ReleaseInfo.getVersion()
+			).build());
 	}
 
 	private static void _registerReleaseService() {
@@ -389,15 +385,15 @@ public class DBUpgrader {
 		Release release = ReleaseLocalServiceUtil.fetchRelease(
 			ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"build.date", release.getBuildDate()
-		).put(
-			"build.number", release.getBuildNumber()
-		).put(
-			"servlet.context.name", release.getServletContextName()
-		).build();
-
-		serviceRegistrar.registerService(Release.class, release, properties);
+		serviceRegistrar.registerService(
+			Release.class, release,
+			HashMapBuilder.<String, Object>put(
+				"build.date", release.getBuildDate()
+			).put(
+				"build.number", release.getBuildNumber()
+			).put(
+				"servlet.context.name", release.getServletContextName()
+			).build());
 	}
 
 	private static void _updateCompanyKey() throws Exception {

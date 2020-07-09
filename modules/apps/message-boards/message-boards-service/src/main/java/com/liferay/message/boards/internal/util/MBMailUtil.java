@@ -34,8 +34,6 @@ import com.liferay.portal.util.PropsValues;
 
 import java.io.InputStream;
 
-import java.util.Map;
-
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Part;
@@ -89,14 +87,12 @@ public class MBMailUtil {
 				}
 			}
 			else if (partContent instanceof String) {
-				Map<String, Object> options =
-					HashMapBuilder.<String, Object>put(
-						"emailPartToMBMessageBody", Boolean.TRUE
-					).build();
-
 				String messageBody = SanitizerUtil.sanitize(
 					0, 0, 0, MBMessage.class.getName(), 0, contentType,
-					Sanitizer.MODE_ALL, (String)partContent, options);
+					Sanitizer.MODE_ALL, (String)partContent,
+					HashMapBuilder.<String, Object>put(
+						"emailPartToMBMessageBody", Boolean.TRUE
+					).build());
 
 				if (contentType.startsWith(ContentTypes.TEXT_HTML)) {
 					mbMailMessage.setHtmlBody(messageBody);

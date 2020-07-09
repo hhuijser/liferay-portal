@@ -63,7 +63,7 @@ public class DropdownsDisplayContext {
 
 		_groupDropdownItems = DropdownItemListBuilder.addGroup(
 			dropdownGroupItem -> {
-				List<DropdownItem> group1DropdownItems =
+				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						dropdownItem -> {
 							dropdownItem.setHref("#1");
@@ -74,16 +74,14 @@ public class DropdownsDisplayContext {
 							dropdownItem.setHref("#2");
 							dropdownItem.setLabel("Group 1 - Option 2");
 						}
-					).build();
-
-				dropdownGroupItem.setDropdownItems(group1DropdownItems);
+					).build());
 
 				dropdownGroupItem.setLabel("Group 1");
 				dropdownGroupItem.setSeparator(true);
 			}
 		).addGroup(
 			dropdownGroupItem -> {
-				List<DropdownItem> group2DropdownItems =
+				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						dropdownItem -> {
 							dropdownItem.setHref("#3");
@@ -94,9 +92,7 @@ public class DropdownsDisplayContext {
 							dropdownItem.setHref("#4");
 							dropdownItem.setLabel("Group 2 - Option 2");
 						}
-					).build();
-
-				dropdownGroupItem.setDropdownItems(group2DropdownItems);
+					).build());
 
 				dropdownGroupItem.setLabel("Group 2");
 			}
@@ -158,7 +154,7 @@ public class DropdownsDisplayContext {
 
 		_inputDropdownItems = DropdownItemListBuilder.addGroup(
 			dropdownGroupItem -> {
-				List<DropdownItem> group1DropdownItems =
+				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.addCheckbox(
 						dropdownCheckboxItem -> {
 							dropdownCheckboxItem.setInputName("checkbox1");
@@ -173,9 +169,7 @@ public class DropdownsDisplayContext {
 								"checkboxvalue2");
 							dropdownCheckboxItem.setLabel("Group 1 - Option 2");
 						}
-					).build();
-
-				dropdownGroupItem.setDropdownItems(group1DropdownItems);
+					).build());
 
 				dropdownGroupItem.setLabel("Group 1");
 				dropdownGroupItem.setSeparator(true);
@@ -184,7 +178,7 @@ public class DropdownsDisplayContext {
 			dropdownRadioGroupItem -> {
 				dropdownRadioGroupItem.setInputName("radiogroup");
 
-				List<DropdownItem> group2DropdownItems =
+				dropdownRadioGroupItem.setDropdownItems(
 					DropdownItemListBuilder.addRadio(
 						dropdownRadioItem -> {
 							dropdownRadioItem.setHref("#3");
@@ -197,9 +191,7 @@ public class DropdownsDisplayContext {
 							dropdownRadioItem.setInputValue("radiovalue2");
 							dropdownRadioItem.setLabel("Group 2 - Option 2");
 						}
-					).build();
-
-				dropdownRadioGroupItem.setDropdownItems(group2DropdownItems);
+					).build());
 
 				dropdownRadioGroupItem.setLabel("Group 2");
 			}

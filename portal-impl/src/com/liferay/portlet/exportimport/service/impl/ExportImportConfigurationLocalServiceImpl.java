@@ -465,7 +465,7 @@ public class ExportImportConfigurationLocalServiceImpl
 
 		searchContext.setAndSearch(andSearch);
 
-		Map<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.STATUS, WorkflowConstants.STATUS_APPROVED
 			).put(
@@ -476,9 +476,7 @@ public class ExportImportConfigurationLocalServiceImpl
 				"name", name
 			).put(
 				"type", type
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);

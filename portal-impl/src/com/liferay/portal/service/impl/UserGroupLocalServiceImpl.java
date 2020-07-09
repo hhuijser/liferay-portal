@@ -267,14 +267,12 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		throws PortalException {
 
 		if (!CompanyThreadLocal.isDeleteInProcess()) {
-			LinkedHashMap<String, Object> params =
-				LinkedHashMapBuilder.<String, Object>put(
-					"usersUserGroups", Long.valueOf(userGroup.getUserGroupId())
-				).build();
-
 			int count = userFinder.countByKeywords(
 				userGroup.getCompanyId(), null,
-				WorkflowConstants.STATUS_APPROVED, params);
+				WorkflowConstants.STATUS_APPROVED,
+				LinkedHashMapBuilder.<String, Object>put(
+					"usersUserGroups", Long.valueOf(userGroup.getUserGroupId())
+				).build());
 
 			if (count > 0) {
 				throw new RequiredUserGroupException();

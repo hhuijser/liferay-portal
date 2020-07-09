@@ -191,15 +191,14 @@ public class DLBreadcrumbUtil {
 			portletURL.setParameter(
 				"folderId", String.valueOf(ancestorFolder.getFolderId()));
 
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"direction-right", Boolean.TRUE.toString()
-			).put(
-				"folder-id", ancestorFolder.getFolderId()
-			).build();
-
 			PortalUtil.addPortletBreadcrumbEntry(
 				httpServletRequest, ancestorFolder.getName(),
-				portletURL.toString(), data);
+				portletURL.toString(),
+				HashMapBuilder.<String, Object>put(
+					"direction-right", Boolean.TRUE.toString()
+				).put(
+					"folder-id", ancestorFolder.getFolderId()
+				).build());
 		}
 
 		long folderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
@@ -215,15 +214,14 @@ public class DLBreadcrumbUtil {
 
 			Folder unescapedFolder = folder.toUnescapedModel();
 
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"direction-right", Boolean.TRUE.toString()
-			).put(
-				"folder-id", folderId
-			).build();
-
 			PortalUtil.addPortletBreadcrumbEntry(
 				httpServletRequest, unescapedFolder.getName(),
-				portletURL.toString(), data);
+				portletURL.toString(),
+				HashMapBuilder.<String, Object>put(
+					"direction-right", Boolean.TRUE.toString()
+				).put(
+					"folder-id", folderId
+				).build());
 		}
 	}
 

@@ -63,7 +63,6 @@ import com.sun.syndication.io.XmlReader;
 import java.lang.reflect.Field;
 
 import java.util.List;
-import java.util.Map;
 import java.util.zip.ZipFile;
 
 import org.apache.commons.lang.time.StopWatch;
@@ -299,21 +298,19 @@ public class InitUtil {
 	public static void registerSpringInitialized() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"module.service.lifecycle", "spring.initialized"
-		).put(
-			"service.vendor", ReleaseInfo.getVendor()
-		).put(
-			"service.version", ReleaseInfo.getVersion()
-		).build();
-
 		final ServiceRegistration<ModuleServiceLifecycle>
 			moduleServiceLifecycleServiceRegistration =
 				registry.registerService(
 					ModuleServiceLifecycle.class,
 					new ModuleServiceLifecycle() {
 					},
-					properties);
+					HashMapBuilder.<String, Object>put(
+						"module.service.lifecycle", "spring.initialized"
+					).put(
+						"service.vendor", ReleaseInfo.getVendor()
+					).put(
+						"service.version", ReleaseInfo.getVersion()
+					).build());
 
 		PortalLifecycleUtil.register(
 			new BasePortalLifecycle() {

@@ -362,15 +362,14 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 			long parentLayoutId, String name, String type, String dataPath)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
-
 		Layout layout = _layoutLocalService.addLayout(
 			_serviceContext.getUserId(), _serviceContext.getScopeGroupId(),
-			false, parentLayoutId, nameMap, new HashMap<>(), new HashMap<>(),
-			new HashMap<>(), new HashMap<>(), type, null, false, false,
-			new HashMap<>(), _serviceContext);
+			false, parentLayoutId,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), name
+			).build(),
+			new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(),
+			type, null, false, false, new HashMap<>(), _serviceContext);
 
 		if (Validator.isNotNull(dataPath)) {
 			Layout draftLayout = layout.fetchDraftLayout();

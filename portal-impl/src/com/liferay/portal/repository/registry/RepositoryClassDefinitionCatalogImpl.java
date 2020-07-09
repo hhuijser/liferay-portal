@@ -195,12 +195,11 @@ public class RepositoryClassDefinitionCatalogImpl
 			_repositoryClassDefinitions.put(
 				className, repositoryClassDefinition);
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"class.name", className
-			).build();
-
 			return registry.registerService(
-				RepositoryFactory.class, repositoryClassDefinition, properties);
+				RepositoryFactory.class, repositoryClassDefinition,
+				HashMapBuilder.<String, Object>put(
+					"class.name", className
+				).build());
 		}
 
 		@Override

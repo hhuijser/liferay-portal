@@ -22,8 +22,6 @@ import com.liferay.portal.search.analysis.FieldQueryBuilder;
 import com.liferay.portal.search.internal.analysis.SimpleKeywordTokenizer;
 import com.liferay.portal.search.internal.analysis.TitleFieldQueryBuilder;
 
-import java.util.Map;
-
 import org.junit.Test;
 
 /**
@@ -101,12 +99,10 @@ public abstract class BaseMaxExpansionsTestCase
 			{
 				keywordTokenizer = new SimpleKeywordTokenizer();
 
-				Map<String, Object> properties =
+				activate(
 					HashMapBuilder.<String, Object>put(
 						"maxExpansions", _MAX_EXPANSIONS
-					).build();
-
-				activate(properties);
+					).build());
 			}
 		};
 	}

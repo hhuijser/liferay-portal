@@ -67,12 +67,11 @@ public class LayoutTypeControllerTracker {
 			_defaultLayoutTypeControllers.entrySet();
 
 		for (Map.Entry<String, LayoutTypeController> entry : entries) {
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"layout.type", entry.getKey()
-			).build();
-
 			registry.registerService(
-				LayoutTypeController.class, entry.getValue(), properties);
+				LayoutTypeController.class, entry.getValue(),
+				HashMapBuilder.<String, Object>put(
+					"layout.type", entry.getKey()
+				).build());
 		}
 	}
 

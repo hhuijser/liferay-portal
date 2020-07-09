@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.wiki.constants.WikiPortletKeys;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -100,16 +99,15 @@ public class AddLayoutSetPrototypePortalInstanceLifecycleListener
 		portletId = DefaultLayoutPrototypesUtil.addPortletId(
 			homeLayout, AssetPublisherPortletKeys.ASSET_PUBLISHER, "column-2");
 
-		Map<String, String> preferences = HashMapBuilder.put(
-			"anyAssetType", Boolean.FALSE.toString()
-		).put(
-			"portletSetupTitle_" + LocaleUtil.getDefault(), "Recent Content"
-		).put(
-			"portletSetupUseCustomTitle", Boolean.TRUE.toString()
-		).build();
-
 		DefaultLayoutPrototypesUtil.updatePortletSetup(
-			homeLayout, portletId, preferences);
+			homeLayout, portletId,
+			HashMapBuilder.put(
+				"anyAssetType", Boolean.FALSE.toString()
+			).put(
+				"portletSetupTitle_" + LocaleUtil.getDefault(), "Recent Content"
+			).put(
+				"portletSetupUseCustomTitle", Boolean.TRUE.toString()
+			).build());
 
 		// Wiki layout
 

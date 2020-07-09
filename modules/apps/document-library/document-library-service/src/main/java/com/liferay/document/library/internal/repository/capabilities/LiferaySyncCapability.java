@@ -39,7 +39,6 @@ import com.liferay.portal.repository.capabilities.util.GroupServiceAdapter;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFolder;
 
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
@@ -164,7 +163,7 @@ public class LiferaySyncCapability
 				public Void call() throws Exception {
 					Message message = new Message();
 
-					Map<String, Object> values =
+					message.setValues(
 						HashMapBuilder.<String, Object>put(
 							"event", event
 						).put(
@@ -173,9 +172,7 @@ public class LiferaySyncCapability
 							"type", type
 						).put(
 							"typePK", typePK
-						).build();
-
-					message.setValues(values);
+						).build());
 
 					_messageBus.sendMessage(
 						DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,

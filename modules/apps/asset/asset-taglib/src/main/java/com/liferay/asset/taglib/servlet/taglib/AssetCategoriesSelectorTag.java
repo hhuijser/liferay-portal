@@ -334,14 +334,12 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 					AssetCategoryUtil.CATEGORY_SEPARATOR);
 
 				for (int j = 0; j < categoryIds.length; j++) {
-					Map<String, Object> category =
+					selectedItems.add(
 						HashMapBuilder.<String, Object>put(
 							"label", categoryTitles[j]
 						).put(
 							"value", categoryIds[j]
-						).build();
-
-					selectedItems.add(category);
+						).build());
 				}
 
 				vocabularyMap.put("selectedItems", selectedItems);
@@ -358,22 +356,21 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 	@Override
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 		try {
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"eventName", getEventName()
-			).put(
-				"groupIds", ListUtil.fromArray(getGroupIds())
-			).put(
-				"id", _getNamespace() + _getId() + "assetCategoriesSelector"
-			).put(
-				"inputName", _getInputName()
-			).put(
-				"portletURL", getPortletURL().toString()
-			).put(
-				"vocabularies", getVocabularies()
-			).build();
-
 			httpServletRequest.setAttribute(
-				"liferay-asset:asset-categories-selector:data", data);
+				"liferay-asset:asset-categories-selector:data",
+				HashMapBuilder.<String, Object>put(
+					"eventName", getEventName()
+				).put(
+					"groupIds", ListUtil.fromArray(getGroupIds())
+				).put(
+					"id", _getNamespace() + _getId() + "assetCategoriesSelector"
+				).put(
+					"inputName", _getInputName()
+				).put(
+					"portletURL", getPortletURL().toString()
+				).put(
+					"vocabularies", getVocabularies()
+				).build());
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);

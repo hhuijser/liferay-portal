@@ -223,12 +223,12 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 
 		Key key = Encryptor.generateKey();
 
-		Map<String, Object> stateMap = HashMapBuilder.<String, Object>put(
-			"requestParameters", actionRequest.getParameterMap()
-		).build();
-
 		String encryptedStateMapJSON = Encryptor.encrypt(
-			key, _jsonFactory.looseSerializeDeep(stateMap));
+			key,
+			_jsonFactory.looseSerializeDeep(
+				HashMapBuilder.<String, Object>put(
+					"requestParameters", actionRequest.getParameterMap()
+				).build()));
 
 		actionURL.setParameter("state", encryptedStateMapJSON);
 

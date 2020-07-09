@@ -44,7 +44,6 @@ import com.liferay.registry.ServiceRegistration;
 import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -67,14 +66,13 @@ public abstract class BaseAssetAutoTaggerTestCase {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"model.class.name", DLFileEntryConstants.getClassName()
-		).build();
-
 		_assetAutoTagProviderServiceRegistration = registry.registerService(
 			(Class<AssetAutoTagProvider<?>>)
 				(Class<?>)AssetAutoTagProvider.class,
-			model -> Arrays.asList(ASSET_TAG_NAME_AUTO), properties);
+			model -> Arrays.asList(ASSET_TAG_NAME_AUTO),
+			HashMapBuilder.<String, Object>put(
+				"model.class.name", DLFileEntryConstants.getClassName()
+			).build());
 	}
 
 	@After

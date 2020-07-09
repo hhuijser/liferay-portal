@@ -205,13 +205,12 @@ public class EditRankingDisplayBuilder {
 	}
 
 	private void _setData(EditRankingDisplayContext editRankingDisplayContext) {
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"context", _getContext()
-		).put(
-			"props", _getProps()
-		).build();
-
-		editRankingDisplayContext.setData(data);
+		editRankingDisplayContext.setData(
+			HashMapBuilder.<String, Object>put(
+				"context", _getContext()
+			).put(
+				"props", _getProps()
+			).build());
 	}
 
 	private void _setFormName(

@@ -86,14 +86,11 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 			return false;
 		}
 
-		Map<Class<?>, Integer> contracts =
-			HashMapBuilder.<Class<?>, Integer>put(
-				ContainerRequestFilter.class, Priorities.AUTHORIZATION - 8
-			).build();
-
 		context.register(
 			new ConfigurableContainerScopeCheckerContainerRequestFilter(),
-			contracts);
+			HashMapBuilder.<Class<?>, Integer>put(
+				ContainerRequestFilter.class, Priorities.AUTHORIZATION - 8
+			).build());
 
 		Configuration configuration = context.getConfiguration();
 

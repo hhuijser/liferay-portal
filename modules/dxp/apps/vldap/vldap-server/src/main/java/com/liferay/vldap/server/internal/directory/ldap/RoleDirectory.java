@@ -18,8 +18,6 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 
-import java.util.LinkedHashMap;
-
 /**
  * @author Brian Wing Shun Chan
  * @author Jonathan Potter
@@ -35,12 +33,11 @@ public class RoleDirectory extends Directory {
 	}
 
 	public void addRoleMembers(String top, Company company, long roleId) {
-		LinkedHashMap<String, Object> params =
+		addMemberAttributes(
+			top, company,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersRoles", roleId
-			).build();
-
-		addMemberAttributes(top, company, params);
+			).build());
 	}
 
 	protected RoleDirectory(String name) {

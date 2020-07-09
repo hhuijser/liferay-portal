@@ -34,7 +34,6 @@ import com.liferay.registry.ServiceTrackerCustomizer;
 import com.liferay.registry.collections.StringServiceRegistrationMap;
 import com.liferay.registry.collections.StringServiceRegistrationMapImpl;
 
-import java.util.Map;
 import java.util.concurrent.Future;
 
 /**
@@ -74,13 +73,12 @@ public class PollerProcessorUtil {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"javax.portlet.name", portletId
-		).build();
-
 		ServiceRegistration<PollerProcessor> serviceRegistration =
 			registry.registerService(
-				PollerProcessor.class, pollerProcessor, properties);
+				PollerProcessor.class, pollerProcessor,
+				HashMapBuilder.<String, Object>put(
+					"javax.portlet.name", portletId
+				).build());
 
 		_serviceRegistrations.put(portletId, serviceRegistration);
 	}

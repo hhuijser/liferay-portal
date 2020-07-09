@@ -130,18 +130,16 @@ public abstract class BasePortletExportImportTestCase
 
 		Assert.assertNotNull(importedStagedModel);
 
-		Map<String, String[]> exportParameterMap = LinkedHashMapBuilder.put(
-			PortletDataHandlerKeys.DELETIONS,
-			new String[] {Boolean.TRUE.toString()}
-		).build();
-
-		Map<String, String[]> importParameterMap = LinkedHashMapBuilder.put(
-			PortletDataHandlerKeys.DELETIONS,
-			new String[] {Boolean.TRUE.toString()}
-		).build();
-
 		exportImportPortlet(
-			getPortletId(), exportParameterMap, importParameterMap);
+			getPortletId(),
+			LinkedHashMapBuilder.put(
+				PortletDataHandlerKeys.DELETIONS,
+				new String[] {Boolean.TRUE.toString()}
+			).build(),
+			LinkedHashMapBuilder.put(
+				PortletDataHandlerKeys.DELETIONS,
+				new String[] {Boolean.TRUE.toString()}
+			).build());
 
 		try {
 			importedStagedModel = getStagedModel(

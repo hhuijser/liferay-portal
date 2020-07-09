@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import java.util.Map;
-
 import net.shibboleth.utilities.java.support.xml.BasicParserPool;
 import net.shibboleth.utilities.java.support.xml.ParserPool;
 
@@ -78,23 +76,23 @@ public class OpenSamlBootstrap {
 
 		BasicParserPool parserPool = new BasicParserPool();
 
-		Map<String, Boolean> builderFeatures = HashMapBuilder.put(
-			"http://apache.org/xml/features/disallow-doctype-decl", Boolean.TRUE
-		).put(
-			"http://apache.org/xml/features/dom/defer-node-expansion",
-			Boolean.FALSE
-		).put(
-			"http://javax.xml.XMLConstants/feature/secure-processing",
-			Boolean.TRUE
-		).put(
-			"http://xml.org/sax/features/external-general-entities",
-			Boolean.FALSE
-		).put(
-			"http://xml.org/sax/features/external-parameter-entities",
-			Boolean.FALSE
-		).build();
-
-		parserPool.setBuilderFeatures(builderFeatures);
+		parserPool.setBuilderFeatures(
+			HashMapBuilder.put(
+				"http://apache.org/xml/features/disallow-doctype-decl",
+				Boolean.TRUE
+			).put(
+				"http://apache.org/xml/features/dom/defer-node-expansion",
+				Boolean.FALSE
+			).put(
+				"http://javax.xml.XMLConstants/feature/secure-processing",
+				Boolean.TRUE
+			).put(
+				"http://xml.org/sax/features/external-general-entities",
+				Boolean.FALSE
+			).put(
+				"http://xml.org/sax/features/external-parameter-entities",
+				Boolean.FALSE
+			).build());
 
 		parserPool.setDTDValidating(false);
 		parserPool.setExpandEntityReferences(false);

@@ -28,7 +28,6 @@ import com.liferay.wiki.service.WikiPageLocalService;
 import java.io.Serializable;
 
 import java.util.List;
-import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -64,14 +63,12 @@ public class WikiPageUADTestHelper {
 			ServiceContextTestUtil.getServiceContext(
 				TestPropsValues.getGroupId());
 
-		Map<String, Serializable> workflowContext =
-			HashMapBuilder.<String, Serializable>put(
-				WorkflowConstants.CONTEXT_URL, "http://localhost"
-			).build();
-
 		return _wikiPageLocalService.updateStatus(
 			statusByUserId, wikiPage, WorkflowConstants.STATUS_APPROVED,
-			serviceContext, workflowContext);
+			serviceContext,
+			HashMapBuilder.<String, Serializable>put(
+				WorkflowConstants.CONTEXT_URL, "http://localhost"
+			).build());
 	}
 
 	public void cleanUpDependencies(List<WikiPage> wikiPages) throws Exception {

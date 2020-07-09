@@ -30,8 +30,6 @@ import com.liferay.portal.search.web.internal.type.facet.constants.TypeFacetPort
 import com.liferay.portal.search.web.internal.user.facet.constants.UserFacetPortletKeys;
 import com.liferay.portal.search.web.layout.prototype.SearchLayoutPrototypeCustomizer;
 
-import java.util.Map;
-
 /**
  * @author André de Oliveira
  * @author Lino Alves
@@ -86,12 +84,11 @@ public class DefaultSearchLayoutPrototypeCustomizer
 		String portletId = DefaultLayoutPrototypesUtil.addPortletId(
 			layout, portletKey, columnId);
 
-		Map<String, String> preferences = HashMapBuilder.put(
-			"portletSetupPortletDecoratorId", "barebone"
-		).build();
-
 		DefaultLayoutPrototypesUtil.updatePortletSetup(
-			layout, portletId, preferences);
+			layout, portletId,
+			HashMapBuilder.put(
+				"portletSetupPortletDecoratorId", "barebone"
+			).build());
 	}
 
 }

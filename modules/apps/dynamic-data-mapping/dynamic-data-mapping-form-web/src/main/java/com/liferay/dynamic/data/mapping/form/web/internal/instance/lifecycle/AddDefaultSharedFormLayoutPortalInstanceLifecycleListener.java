@@ -41,9 +41,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
-import java.util.Locale;
-import java.util.Map;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -115,16 +112,14 @@ public class AddDefaultSharedFormLayoutPortalInstanceLifecycleListener
 	}
 
 	protected Group addFormsGroup(long companyId) throws PortalException {
-		long defaultUserId = _userLocalService.getDefaultUserId(companyId);
-
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), GroupConstants.FORMS
-		).build();
-
 		return _groupLocalService.addGroup(
-			defaultUserId, GroupConstants.DEFAULT_PARENT_GROUP_ID, null, 0,
-			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap, null,
-			GroupConstants.TYPE_SITE_PRIVATE, true,
+			_userLocalService.getDefaultUserId(companyId),
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, null, 0,
+			GroupConstants.DEFAULT_LIVE_GROUP_ID,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), GroupConstants.FORMS
+			).build(),
+			null, GroupConstants.TYPE_SITE_PRIVATE, true,
 			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION,
 			GroupConstants.FORMS_FRIENDLY_URL, false, false, true, null);
 	}

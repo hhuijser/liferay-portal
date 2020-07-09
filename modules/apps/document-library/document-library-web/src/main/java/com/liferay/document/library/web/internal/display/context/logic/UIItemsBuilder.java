@@ -483,13 +483,12 @@ public class UIItemsBuilder {
 		URLMenuItem urlMenuItem = _addURLUIItem(
 			new URLMenuItem(), menuItems, DLUIItemKeys.DOWNLOAD, label, url);
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"analytics-file-entry-id", _fileEntry.getFileEntryId()
-		).put(
-			"senna-off", "true"
-		).build();
-
-		urlMenuItem.setData(data);
+		urlMenuItem.setData(
+			HashMapBuilder.<String, Object>put(
+				"analytics-file-entry-id", _fileEntry.getFileEntryId()
+			).put(
+				"senna-off", "true"
+			).build());
 
 		urlMenuItem.setMethod("get");
 	}

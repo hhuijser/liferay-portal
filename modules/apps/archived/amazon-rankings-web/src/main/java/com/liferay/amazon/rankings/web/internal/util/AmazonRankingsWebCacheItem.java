@@ -36,7 +36,6 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -72,29 +71,30 @@ public class AmazonRankingsWebCacheItem implements WebCacheItem {
 	}
 
 	protected AmazonRankings doConvert(String key) throws Exception {
-		Map<String, String> parameters = HashMapBuilder.put(
-			"AssociateTag", _amazonRankingsConfiguration.amazonAssociateTag()
-		).put(
-			"AWSAccessKeyId", _amazonRankingsConfiguration.amazonAccessKeyId()
-		).put(
-			"IdType", "ISBN"
-		).put(
-			"ItemId", _isbn
-		).put(
-			"Operation", "ItemLookup"
-		).put(
-			"ResponseGroup", "Images,ItemAttributes,Offers,SalesRank"
-		).put(
-			"SearchIndex", "Books"
-		).put(
-			"Service", "AWSECommerceService"
-		).put(
-			"Timestamp", AmazonRankingsUtil.getTimestamp()
-		).build();
-
 		String urlWithSignature =
 			AmazonSignedRequestsUtil.generateUrlWithSignature(
-				_amazonRankingsConfiguration, parameters);
+				_amazonRankingsConfiguration,
+				HashMapBuilder.put(
+					"AssociateTag",
+					_amazonRankingsConfiguration.amazonAssociateTag()
+				).put(
+					"AWSAccessKeyId",
+					_amazonRankingsConfiguration.amazonAccessKeyId()
+				).put(
+					"IdType", "ISBN"
+				).put(
+					"ItemId", _isbn
+				).put(
+					"Operation", "ItemLookup"
+				).put(
+					"ResponseGroup", "Images,ItemAttributes,Offers,SalesRank"
+				).put(
+					"SearchIndex", "Books"
+				).put(
+					"Service", "AWSECommerceService"
+				).put(
+					"Timestamp", AmazonRankingsUtil.getTimestamp()
+				).build());
 
 		String xml = HttpUtil.URLtoString(urlWithSignature);
 

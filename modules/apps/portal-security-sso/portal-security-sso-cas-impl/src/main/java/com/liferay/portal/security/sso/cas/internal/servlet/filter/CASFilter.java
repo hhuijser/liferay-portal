@@ -147,17 +147,16 @@ public class CASFilter extends BaseFilter {
 		Cas20ProxyTicketValidator cas20ProxyTicketValidator =
 			new Cas20ProxyTicketValidator(serverUrl);
 
-		Map<String, String> parameters = HashMapBuilder.put(
-			"casServerLoginUrl", casConfiguration.loginURL()
-		).put(
-			"casServerUrlPrefix", serverUrl
-		).put(
-			"redirectAfterValidation", "false"
-		).put(
-			"serverName", casConfiguration.serverName()
-		).build();
-
-		cas20ProxyTicketValidator.setCustomParameters(parameters);
+		cas20ProxyTicketValidator.setCustomParameters(
+			HashMapBuilder.put(
+				"casServerLoginUrl", casConfiguration.loginURL()
+			).put(
+				"casServerUrlPrefix", serverUrl
+			).put(
+				"redirectAfterValidation", "false"
+			).put(
+				"serverName", casConfiguration.serverName()
+			).build());
 
 		_ticketValidators.put(companyId, cas20ProxyTicketValidator);
 

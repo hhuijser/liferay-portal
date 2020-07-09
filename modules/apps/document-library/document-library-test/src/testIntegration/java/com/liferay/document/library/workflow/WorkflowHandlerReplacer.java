@@ -20,8 +20,6 @@ import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceRegistration;
 
-import java.util.Map;
-
 /**
  * @author Adolfo Pérez
  */
@@ -32,13 +30,12 @@ public class WorkflowHandlerReplacer<T> implements AutoCloseable {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"service.ranking", Integer.MAX_VALUE
-		).build();
-
 		_serviceRegistration = registry.registerService(
 			(Class<WorkflowHandler<?>>)(Class<?>)WorkflowHandler.class,
-			replacementWorkflowHandler, properties);
+			replacementWorkflowHandler,
+			HashMapBuilder.<String, Object>put(
+				"service.ranking", Integer.MAX_VALUE
+			).build());
 	}
 
 	@Override

@@ -37,7 +37,6 @@ import com.liferay.segments.service.SegmentsEntryLocalService;
 import com.liferay.segments.web.internal.util.comparator.SegmentsEntryModifiedDateComparator;
 import com.liferay.segments.web.internal.util.comparator.SegmentsEntryNameComparator;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -156,18 +155,17 @@ public class SelectSegmentsEntryDisplayContext {
 		searchContainer.setOrderByComparator(_getOrderByComparator());
 		searchContainer.setOrderByType(getOrderByType());
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"excludedSegmentsEntryIds", _getExcludedSegmentsEntryIds()
-			).put(
-				"excludedSources", _getExcludedSources()
-			).build();
-
 		BaseModelSearchResult<SegmentsEntry> baseModelSearchResult =
 			_segmentsEntryLocalService.searchSegmentsEntries(
 				_themeDisplay.getCompanyId(), _themeDisplay.getScopeGroupId(),
-				_getKeywords(), true, params, searchContainer.getStart(),
-				searchContainer.getEnd(), _getSort());
+				_getKeywords(), true,
+				LinkedHashMapBuilder.<String, Object>put(
+					"excludedSegmentsEntryIds", _getExcludedSegmentsEntryIds()
+				).put(
+					"excludedSources", _getExcludedSources()
+				).build(),
+				searchContainer.getStart(), searchContainer.getEnd(),
+				_getSort());
 
 		searchContainer.setResults(baseModelSearchResult.getBaseModels());
 		searchContainer.setTotal(baseModelSearchResult.getLength());

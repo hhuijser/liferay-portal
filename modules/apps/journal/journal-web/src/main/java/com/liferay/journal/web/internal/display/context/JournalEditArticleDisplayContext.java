@@ -128,16 +128,14 @@ public class JournalEditArticleDisplayContext {
 				}
 
 				for (String languageId : uniqueLanguageIds) {
-					Map<String, Object> language =
+					languages.add(
 						HashMapBuilder.<String, Object>put(
 							"icon",
 							StringUtil.toLowerCase(
 								StringUtil.replace(languageId, '_', '-'))
 						).put(
 							"label", languageId
-						).build();
-
-					languages.add(language);
+						).build());
 				}
 
 				return languages;

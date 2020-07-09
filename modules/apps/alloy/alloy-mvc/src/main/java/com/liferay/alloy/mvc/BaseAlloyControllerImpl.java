@@ -1500,15 +1500,13 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			portlet.getPortletId() + SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
 			portlet.getPortletId());
 
-		Map<String, String> data = HashMapBuilder.put(
-			"addSuccessMessage", StringPool.TRUE
-		).build();
-
 		SessionMessages.add(
 			request,
 			portlet.getPortletId() +
 				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA,
-			data);
+			HashMapBuilder.put(
+				"addSuccessMessage", StringPool.TRUE
+			).build());
 	}
 
 	protected void setPermissioned(boolean permissioned) {

@@ -41,7 +41,6 @@ import com.liferay.sync.service.SyncDLFileVersionDiffLocalService;
 import com.liferay.sync.service.SyncDLObjectLocalService;
 
 import java.util.Date;
-import java.util.Map;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -125,7 +124,7 @@ public class SyncMaintenanceMessageListener extends BaseMessageListener {
 									_syncDLObjectLocalService.
 										getLatestModifiedTime();
 
-								Map<String, Object> values =
+								dlSyncEventMessage.setValues(
 									HashMapBuilder.<String, Object>put(
 										"event", dlSyncEvent.getEvent()
 									).put(
@@ -134,9 +133,7 @@ public class SyncMaintenanceMessageListener extends BaseMessageListener {
 										"type", dlSyncEvent.getType()
 									).put(
 										"typePK", dlSyncEvent.getTypePK()
-									).build();
-
-								dlSyncEventMessage.setValues(values);
+									).build());
 
 								MessageBusUtil.sendMessage(
 									DestinationNames.

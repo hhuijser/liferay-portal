@@ -24,7 +24,6 @@ import com.liferay.portal.search.tuning.synonyms.web.internal.index.SynonymSetIn
 import com.liferay.portal.search.tuning.synonyms.web.internal.index.name.SynonymSetIndexName;
 import com.liferay.portal.search.tuning.synonyms.web.internal.index.name.SynonymSetIndexNameBuilder;
 
-import java.util.Map;
 import java.util.Optional;
 
 import javax.portlet.RenderRequest;
@@ -116,15 +115,14 @@ public class EditSynonymSetsDisplayBuilder {
 	private void _setData(
 		EditSynonymSetsDisplayContext editSynonymSetsDisplayContext) {
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"formName", _renderResponse.getNamespace() + _getFormName()
-		).put(
-			"inputName", _renderResponse.getNamespace() + _getInputName()
-		).put(
-			"synonymSets", _getSynonymSets()
-		).build();
-
-		editSynonymSetsDisplayContext.setData(data);
+		editSynonymSetsDisplayContext.setData(
+			HashMapBuilder.<String, Object>put(
+				"formName", _renderResponse.getNamespace() + _getFormName()
+			).put(
+				"inputName", _renderResponse.getNamespace() + _getInputName()
+			).put(
+				"synonymSets", _getSynonymSets()
+			).build());
 	}
 
 	private void _setFormName(

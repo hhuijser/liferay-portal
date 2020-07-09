@@ -86,7 +86,7 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 
 	@Override
 	public Object invoke() throws Exception {
-		Map<String, Object> resultsMap =
+		return new DiscoveryContent(
 			LinkedHashMapBuilder.<String, Object>put(
 				"contextName", _contextName
 			).put(
@@ -99,9 +99,7 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 				"types", _buildTypes()
 			).put(
 				"version", ReleaseInfo.getVersion()
-			).build();
-
-		return new DiscoveryContent(resultsMap);
+			).build());
 	}
 
 	public static class DiscoveryContent implements JSONSerializable {

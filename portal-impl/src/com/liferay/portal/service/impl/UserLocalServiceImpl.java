@@ -2214,14 +2214,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		Group group = groupPersistence.findByPrimaryKey(groupId);
 
-		LinkedHashMap<String, Object> params =
+		return search(
+			group.getCompanyId(), null, status,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersGroups", Long.valueOf(groupId)
-			).build();
-
-		return search(
-			group.getCompanyId(), null, status, params, start, end,
-			orderByComparator);
+			).build(),
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -2256,12 +2254,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		Group group = groupPersistence.findByPrimaryKey(groupId);
 
-		LinkedHashMap<String, Object> params =
+		return searchCount(
+			group.getCompanyId(), null, status,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersGroups", Long.valueOf(groupId)
-			).build();
-
-		return searchCount(group.getCompanyId(), null, status, params);
+			).build());
 	}
 
 	@Override
@@ -2272,16 +2269,14 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		Role role = rolePersistence.findByPrimaryKey(roleId);
 
-		LinkedHashMap<String, Object> params =
+		return search(
+			role.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
 			LinkedHashMapBuilder.<String, Object>put(
 				"inherit", Boolean.TRUE
 			).put(
 				"usersRoles", roleId
-			).build();
-
-		return search(
-			role.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, orderByComparator);
+			).build(),
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -2346,14 +2341,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		Organization organization = organizationPersistence.findByPrimaryKey(
 			organizationId);
 
-		LinkedHashMap<String, Object> params =
+		return search(
+			organization.getCompanyId(), null, status,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersOrgs", Long.valueOf(organizationId)
-			).build();
-
-		return search(
-			organization.getCompanyId(), null, status, params, start, end,
-			orderByComparator);
+			).build(),
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -2391,12 +2384,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		Organization organization = organizationPersistence.findByPrimaryKey(
 			organizationId);
 
-		LinkedHashMap<String, Object> params =
+		return searchCount(
+			organization.getCompanyId(), null, status,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersOrgs", Long.valueOf(organizationId)
-			).build();
-
-		return searchCount(organization.getCompanyId(), null, status, params);
+			).build());
 	}
 
 	/**
@@ -2423,12 +2415,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		Role role = rolePersistence.findByPrimaryKey(roleId);
 
-		LinkedHashMap<String, Object> params =
+		return searchCount(
+			role.getCompanyId(), null, status,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersRoles", Long.valueOf(roleId)
-			).build();
-
-		return searchCount(role.getCompanyId(), null, status, params);
+			).build());
 	}
 
 	@Override
@@ -2521,18 +2512,16 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		User user1 = userPersistence.findByPrimaryKey(userId1);
 
-		LinkedHashMap<String, Object> params =
+		return search(
+			user1.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
 			LinkedHashMapBuilder.<String, Object>put(
 				"socialMutualRelationType",
 				new Long[] {
 					userId1, Long.valueOf(socialRelationType), userId2,
 					Long.valueOf(socialRelationType)
 				}
-			).build();
-
-		return search(
-			user1.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, orderByComparator);
+			).build(),
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -2565,14 +2554,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		User user1 = userPersistence.findByPrimaryKey(userId1);
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"socialMutualRelation", new Long[] {userId1, userId2}
-			).build();
-
 		return search(
 			user1.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, orderByComparator);
+			LinkedHashMapBuilder.<String, Object>put(
+				"socialMutualRelation", new Long[] {userId1, userId2}
+			).build(),
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -2618,14 +2605,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		User user1 = userPersistence.findByPrimaryKey(userId1);
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"socialMutualRelation", new Long[] {userId1, userId2}
-			).build();
-
 		return searchCount(
 			user1.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			params);
+			LinkedHashMapBuilder.<String, Object>put(
+				"socialMutualRelation", new Long[] {userId1, userId2}
+			).build());
 	}
 
 	/**
@@ -2646,18 +2630,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		User user1 = userPersistence.findByPrimaryKey(userId1);
 
-		LinkedHashMap<String, Object> params =
+		return searchCount(
+			user1.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
 			LinkedHashMapBuilder.<String, Object>put(
 				"socialMutualRelationType",
 				new Long[] {
 					userId1, Long.valueOf(socialRelationType), userId2,
 					Long.valueOf(socialRelationType)
 				}
-			).build();
-
-		return searchCount(
-			user1.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-			params);
+			).build());
 	}
 
 	/**
@@ -2823,12 +2804,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		UserGroup userGroup = userGroupPersistence.findByPrimaryKey(
 			userGroupId);
 
-		LinkedHashMap<String, Object> params =
+		return searchCount(
+			userGroup.getCompanyId(), null, status,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersUserGroups", Long.valueOf(userGroupId)
-			).build();
-
-		return searchCount(userGroup.getCompanyId(), null, status, params);
+			).build());
 	}
 
 	/**
@@ -3397,7 +3377,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
-		LinkedHashMap<String, Object> params =
+		return userFinder.findByKeywords(
+			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
 			LinkedHashMapBuilder.<String, Object>put(
 				"socialRelationType",
 				new Long[][] {
@@ -3405,11 +3386,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				}
 			).put(
 				"wildcardMode", WildcardMode.TRAILING
-			).build();
-
-		return userFinder.findByKeywords(
-			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, null);
+			).build(),
+			start, end, null);
 	}
 
 	@Override
@@ -3424,15 +3402,13 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		long companyId, long[] groupIds, String keywords, int start, int end,
 		OrderByComparator<User> orderByComparator) {
 
-		LinkedHashMap<String, Object> params =
+		return userFinder.findByKeywords(
+			companyId, keywords, WorkflowConstants.STATUS_APPROVED,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersGroups", ArrayUtil.toLongArray(groupIds)
 			).put(
 				"wildcardMode", WildcardMode.TRAILING
-			).build();
-
-		return userFinder.findByKeywords(
-			companyId, keywords, WorkflowConstants.STATUS_APPROVED, params,
+			).build(),
 			start, end, orderByComparator);
 	}
 
@@ -3444,7 +3420,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
-		LinkedHashMap<String, Object> params =
+		return userFinder.findByKeywords(
+			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
 			LinkedHashMapBuilder.<String, Object>put(
 				"socialRelationType",
 				new Long[][] {
@@ -3456,11 +3433,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				"usersGroups", ArrayUtil.toLongArray(groupIds)
 			).put(
 				"wildcardMode", WildcardMode.TRAILING
-			).build();
-
-		return userFinder.findByKeywords(
-			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, null);
+			).build(),
+			start, end, null);
 	}
 
 	@Override
@@ -3650,12 +3624,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		mailTemplateContextBuilder.put(
 			"[$USER_SCREENNAME$]", HtmlUtil.escape(user.getScreenName()));
 
-		MailTemplateContext mailTemplateContext =
-			mailTemplateContextBuilder.build();
-
 		_sendNotificationEmail(
 			fromAddress, fromName, emailAddress, user, subject, body,
-			mailTemplateContext);
+			mailTemplateContextBuilder.build());
 	}
 
 	/**

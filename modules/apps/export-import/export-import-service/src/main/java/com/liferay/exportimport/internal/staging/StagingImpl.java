@@ -2289,22 +2289,20 @@ public class StagingImpl implements Staging {
 		String backgroundTaskName = MapUtil.getString(
 			parameterMap, "name", exportImportConfiguration.getName());
 
-		Map<String, Serializable> taskContextMap =
-			HashMapBuilder.<String, Serializable>put(
-				"exportImportConfigurationId",
-				exportImportConfiguration.getExportImportConfigurationId()
-			).put(
-				"privateLayout",
-				MapUtil.getBoolean(settingsMap, "privateLayout")
-			).build();
-
 		BackgroundTask backgroundTask =
 			_backgroundTaskManager.addBackgroundTask(
 				userId, exportImportConfiguration.getGroupId(),
 				backgroundTaskName,
 				BackgroundTaskExecutorNames.
 					LAYOUT_STAGING_BACKGROUND_TASK_EXECUTOR,
-				taskContextMap, new ServiceContext());
+				HashMapBuilder.<String, Serializable>put(
+					"exportImportConfigurationId",
+					exportImportConfiguration.getExportImportConfigurationId()
+				).put(
+					"privateLayout",
+					MapUtil.getBoolean(settingsMap, "privateLayout")
+				).build(),
+				new ServiceContext());
 
 		return backgroundTask.getBackgroundTaskId();
 	}
@@ -3431,29 +3429,27 @@ public class StagingImpl implements Staging {
 
 		User user = permissionChecker.getUser();
 
-		Map<String, Serializable> taskContextMap =
-			HashMapBuilder.<String, Serializable>put(
-				"exportImportConfigurationId",
-				exportImportConfiguration.getExportImportConfigurationId()
-			).put(
-				"httpPrincipal",
-				new HttpPrincipal(
-					_stagingURLHelper.buildRemoteURL(
-						remoteAddress, remotePort, remotePathContext,
-						secureConnection),
-					user.getLogin(), user.getPassword(),
-					user.isPasswordEncrypted())
-			).put(
-				"privateLayout", remotePrivateLayout
-			).build();
-
 		BackgroundTask backgroundTask =
 			_backgroundTaskManager.addBackgroundTask(
 				user.getUserId(), exportImportConfiguration.getGroupId(),
 				backgroundTaskName,
 				BackgroundTaskExecutorNames.
 					LAYOUT_REMOTE_STAGING_BACKGROUND_TASK_EXECUTOR,
-				taskContextMap, new ServiceContext());
+				HashMapBuilder.<String, Serializable>put(
+					"exportImportConfigurationId",
+					exportImportConfiguration.getExportImportConfigurationId()
+				).put(
+					"httpPrincipal",
+					new HttpPrincipal(
+						_stagingURLHelper.buildRemoteURL(
+							remoteAddress, remotePort, remotePathContext,
+							secureConnection),
+						user.getLogin(), user.getPassword(),
+						user.isPasswordEncrypted())
+				).put(
+					"privateLayout", remotePrivateLayout
+				).build(),
+				new ServiceContext());
 
 		return backgroundTask.getBackgroundTaskId();
 	}

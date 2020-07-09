@@ -102,7 +102,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -796,16 +795,14 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			List<Group> groups = new ArrayList<>();
 
-			LinkedHashMap<String, Object> groupParams =
+			List<Group> userSiteGroups = groupLocalService.search(
+				user.getCompanyId(), null,
 				LinkedHashMapBuilder.<String, Object>put(
 					"active", true
 				).put(
 					"usersGroups", user.getUserId()
-				).build();
-
-			List<Group> userSiteGroups = groupLocalService.search(
-				user.getCompanyId(), null, groupParams, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS);
+				).build(),
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			for (Group userSiteGroup : userSiteGroups) {
 				if (_syncHelper.isSyncEnabled(userSiteGroup)) {

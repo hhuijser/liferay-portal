@@ -96,15 +96,14 @@ public class AddLayoutPrototypePortalInstanceLifecycleListener
 			layout, AssetTagsNavigationPortletKeys.ASSET_TAGS_CLOUD,
 			"column-2");
 
-		Map<String, String> preferences = HashMapBuilder.put(
-			"classNameId",
-			String.valueOf(_portal.getClassNameId(BlogsEntry.class))
-		).put(
-			"showAssetCount", Boolean.TRUE.toString()
-		).build();
-
 		DefaultLayoutPrototypesUtil.updatePortletSetup(
-			layout, portletId, preferences);
+			layout, portletId,
+			HashMapBuilder.put(
+				"classNameId",
+				String.valueOf(_portal.getClassNameId(BlogsEntry.class))
+			).put(
+				"showAssetCount", Boolean.TRUE.toString()
+			).build());
 
 		DefaultLayoutPrototypesUtil.addPortletId(
 			layout, RecentBloggersPortletKeys.RECENT_BLOGGERS, "column-2");

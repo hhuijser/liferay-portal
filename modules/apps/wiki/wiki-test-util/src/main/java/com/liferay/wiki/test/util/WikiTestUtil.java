@@ -35,8 +35,6 @@ import com.liferay.wiki.service.WikiPageLocalServiceUtil;
 import java.io.File;
 import java.io.Serializable;
 
-import java.util.Map;
-
 /**
  * @author Julio Camarero
  * @author Roberto Díaz
@@ -513,14 +511,12 @@ public class WikiTestUtil {
 			WikiPage page, ServiceContext serviceContext)
 		throws Exception {
 
-		Map<String, Serializable> workflowContext =
-			HashMapBuilder.<String, Serializable>put(
-				WorkflowConstants.CONTEXT_URL, "http://localhost"
-			).build();
-
 		return WikiPageLocalServiceUtil.updateStatus(
 			page.getUserId(), page, WorkflowConstants.STATUS_APPROVED,
-			serviceContext, workflowContext);
+			serviceContext,
+			HashMapBuilder.<String, Serializable>put(
+				WorkflowConstants.CONTEXT_URL, "http://localhost"
+			).build());
 	}
 
 }

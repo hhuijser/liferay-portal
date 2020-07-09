@@ -193,15 +193,15 @@ public class AssetPublisherPortletToolbarContributor
 
 		String message = assetPublisherAddItemHolder.getModelResource();
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"id", HtmlUtil.escape(portletDisplay.getNamespace()) + "editAsset"
-		).put(
-			"title",
-			LanguageUtil.format(
-				themeDisplay.getLocale(), "new-x", message, false)
-		).build();
-
-		urlMenuItem.setData(data);
+		urlMenuItem.setData(
+			HashMapBuilder.<String, Object>put(
+				"id",
+				HtmlUtil.escape(portletDisplay.getNamespace()) + "editAsset"
+			).put(
+				"title",
+				LanguageUtil.format(
+					themeDisplay.getLocale(), "new-x", message, false)
+			).build());
 
 		urlMenuItem.setLabel(message);
 

@@ -80,6 +80,10 @@ public class JSPLineBreakCheck extends BaseLineBreakCheck {
 			}
 		}
 
+		Matcher matcher = _missingLineBreakPattern.matcher(content);
+
+		content = matcher.replaceAll("$1\n$3");
+
 		content = _fixRedundantLineBreaks(content);
 
 		return _fixRedundantCommaInsideArray(content);
@@ -155,6 +159,8 @@ public class JSPLineBreakCheck extends BaseLineBreakCheck {
 		return content;
 	}
 
+	private static final Pattern _missingLineBreakPattern = Pattern.compile(
+		"([\n\t]((?!<%)[^\n\t])+?) *(%>[\"']\n)");
 	private static final Pattern _redundantCommaPattern = Pattern.compile(
 		",\n\t*\\}");
 	private static final Pattern _redundantLineBreakPattern1 = Pattern.compile(

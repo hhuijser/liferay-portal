@@ -176,7 +176,7 @@ public class JSPWhitespaceCheck extends WhitespaceCheck {
 					continue;
 				}
 
-				if (!trimmedLine.equals("%>") && line.contains("%>") &&
+				if (!trimmedLine.startsWith("%>") && line.contains("%>") &&
 					!line.contains("--%>") && !line.contains(" %>")) {
 
 					line = StringUtil.replace(line, "%>", " %>");

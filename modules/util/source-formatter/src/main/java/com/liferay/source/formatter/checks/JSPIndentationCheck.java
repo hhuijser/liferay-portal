@@ -121,7 +121,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 		for (int i = startLine; i <= endLine; i++) {
 			String line = getLine(content, i);
 
-			if (Validator.isNull(line)) {
+			if (Validator.isNull(line) || (getLeadingTabCount(line) < diff)) {
 				continue;
 			}
 

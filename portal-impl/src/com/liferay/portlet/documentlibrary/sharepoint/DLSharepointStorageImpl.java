@@ -322,9 +322,7 @@ public class DLSharepointStorageImpl extends BaseSharepointStorageImpl {
 					folderId, newName, description, serviceContext);
 			}
 
-			Tree folderTree = getFolderTree(folder, newParentFolderPath);
-
-			movedDirsTree.addChild(folderTree);
+			movedDirsTree.addChild(getFolderTree(folder, newParentFolderPath));
 		}
 
 		return new Tree[] {movedDocsTree, movedDirsTree};

@@ -1361,9 +1361,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 				(Validator.isNull(portletDataContext.getScopeLayoutUuid()) &&
 				 scopeType.equals("company"))) {
 
-				String[] values = jxPortletPreferences.getValues(name, null);
-
-				portletPreferences.setValues(name, values);
+				portletPreferences.setValues(
+					name, jxPortletPreferences.getValues(name, null));
 			}
 		}
 

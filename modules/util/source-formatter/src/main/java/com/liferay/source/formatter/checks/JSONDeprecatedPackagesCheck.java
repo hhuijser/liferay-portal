@@ -50,13 +50,11 @@ public class JSONDeprecatedPackagesCheck extends BaseFileCheck {
 					break;
 				}
 
-				int lineNumber = SourceUtil.getLineNumber(content, x);
-
 				addMessage(
 					fileName,
 					"Do not use deprecated package '" + deprecatedPackageName +
 						"'",
-					lineNumber);
+					SourceUtil.getLineNumber(content, x));
 			}
 		}
 

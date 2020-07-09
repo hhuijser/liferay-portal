@@ -753,10 +753,10 @@ public class ResourcePermissionLocalServiceImpl
 		List<String> availableActionIds = new ArrayList<>(actionIds.size());
 
 		for (String actionId : actionIds) {
-			ResourceAction resourceAction =
-				resourceActionLocalService.getResourceAction(name, actionId);
+			if (resourcePermission.hasAction(
+					resourceActionLocalService.getResourceAction(
+						name, actionId))) {
 
-			if (resourcePermission.hasAction(resourceAction)) {
 				availableActionIds.add(actionId);
 			}
 		}
@@ -1077,10 +1077,9 @@ public class ResourcePermissionLocalServiceImpl
 			return false;
 		}
 
-		ResourceAction resourceAction =
-			resourceActionLocalService.getResourceAction(name, actionId);
+		if (resourcePermission.hasAction(
+				resourceActionLocalService.getResourceAction(name, actionId))) {
 
-		if (resourcePermission.hasAction(resourceAction)) {
 			return true;
 		}
 

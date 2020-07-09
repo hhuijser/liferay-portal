@@ -137,12 +137,11 @@ public class SingleLogoutProfileImpl
 			EntityDescriptor entityDescriptor = metadataResolver.resolveSingle(
 				new CriteriaSet(new EntityIdCriterion(entityId)));
 
-			IDPSSODescriptor idpSSODescriptor =
-				entityDescriptor.getIDPSSODescriptor(SAMLConstants.SAML20P_NS);
-
 			SingleLogoutService singleLogoutService =
 				SamlUtil.resolveSingleLogoutService(
-					idpSSODescriptor, SAMLConstants.SAML2_REDIRECT_BINDING_URI);
+					entityDescriptor.getIDPSSODescriptor(
+						SAMLConstants.SAML20P_NS),
+					SAMLConstants.SAML2_REDIRECT_BINDING_URI);
 
 			if (singleLogoutService != null) {
 				String binding = singleLogoutService.getBinding();

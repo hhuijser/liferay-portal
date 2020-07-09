@@ -42,9 +42,8 @@ public class JSTranspilerPluginUtil {
 		Project project, File file, File destinationDir, String taskNamePrefix,
 		RenameDependencyClosure renameDependencyClosure) {
 
-		String taskName = GradleUtil.getTaskName(taskNamePrefix, file);
-
-		Copy copy = GradleUtil.addTask(project, taskName, Copy.class);
+		Copy copy = GradleUtil.addTask(
+			project, GradleUtil.getTaskName(taskNamePrefix, file), Copy.class);
 
 		copy.doFirst(
 			new Action<Task>() {

@@ -41,9 +41,6 @@ public class DLTestUtil {
 
 		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(dlFolder.getGroupId());
-
 		return DLFileEntryLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), dlFolder.getGroupId(),
 			dlFolder.getRepositoryId(), dlFolder.getFolderId(),
@@ -51,7 +48,7 @@ public class DLTestUtil {
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT, null,
 			null, new ByteArrayInputStream(bytes), bytes.length,
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(dlFolder.getGroupId()));
 	}
 
 	public static DLFolder addDLFolder(long groupId) throws Exception {

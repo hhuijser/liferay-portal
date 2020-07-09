@@ -46,10 +46,9 @@ public class DLHook extends BaseHook {
 
 	@Override
 	public byte[] getImageAsBytes(Image image) throws PortalException {
-		String fileName = getFileName(image.getImageId(), image.getType());
-
 		InputStream is = DLStoreUtil.getFileAsStream(
-			_COMPANY_ID, _REPOSITORY_ID, fileName);
+			_COMPANY_ID, _REPOSITORY_ID,
+			getFileName(image.getImageId(), image.getType()));
 
 		byte[] bytes = null;
 
@@ -65,10 +64,9 @@ public class DLHook extends BaseHook {
 
 	@Override
 	public InputStream getImageAsStream(Image image) throws PortalException {
-		String fileName = getFileName(image.getImageId(), image.getType());
-
 		return DLStoreUtil.getFileAsStream(
-			_COMPANY_ID, _REPOSITORY_ID, fileName);
+			_COMPANY_ID, _REPOSITORY_ID,
+			getFileName(image.getImageId(), image.getType()));
 	}
 
 	@Override

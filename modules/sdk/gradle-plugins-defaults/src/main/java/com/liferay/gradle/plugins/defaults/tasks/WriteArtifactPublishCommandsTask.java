@@ -357,9 +357,8 @@ public class WriteArtifactPublishCommandsTask extends DefaultTask {
 	}
 
 	private String _getGradleCommand(String taskName, String... arguments) {
-		Task task = GradleUtil.getTask(getProject(), taskName);
-
-		return _getGradleCommand(task, arguments);
+		return _getGradleCommand(
+			GradleUtil.getTask(getProject(), taskName), arguments);
 	}
 
 	private String _getGradleCommand(Task task, String... arguments) {

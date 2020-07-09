@@ -135,9 +135,8 @@ public class CodeCoverageAssertor implements TestRule {
 			className = className.substring(0, className.length() - 4);
 		}
 
-		String jvmClassPath = ClassPathUtil.getJVMClassPath(false);
-
-		URL[] urls = ClassPathUtil.getClassPathURLs(jvmClassPath);
+		URL[] urls = ClassPathUtil.getClassPathURLs(
+			ClassPathUtil.getJVMClassPath(false));
 
 		ClassLoader classLoader = new URLClassLoader(urls, null);
 

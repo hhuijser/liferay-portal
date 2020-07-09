@@ -40,11 +40,9 @@ public class UserModelListener extends BaseModelListener<User> {
 	@Override
 	public void onAfterUpdate(User user) throws ModelListenerException {
 		try {
-			long classNameId = _portal.getClassNameId(User.class);
-
 			CalendarResource calendarResource =
 				_calendarResourceLocalService.fetchCalendarResource(
-					classNameId, user.getUserId());
+					_portal.getClassNameId(User.class), user.getUserId());
 
 			if (calendarResource == null) {
 				return;

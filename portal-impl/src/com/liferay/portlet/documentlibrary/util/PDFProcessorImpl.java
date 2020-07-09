@@ -327,10 +327,9 @@ public class PDFProcessorImpl
 	protected boolean hasPreview(FileVersion fileVersion, String type)
 		throws Exception {
 
-		String previewFilePath = getPreviewFilePath(fileVersion, 1);
-
 		return DLStoreUtil.hasFile(
-			fileVersion.getCompanyId(), REPOSITORY_ID, previewFilePath);
+			fileVersion.getCompanyId(), REPOSITORY_ID,
+			getPreviewFilePath(fileVersion, 1));
 	}
 
 	protected void importPreviews(

@@ -647,10 +647,10 @@ public class DefaultPortalLDAP implements PortalLDAP {
 
 		Properties contactMappings = _ldapSettings.getContactMappings(
 			ldapServerId, companyId);
-		Properties contactExpandoMappings =
-			_ldapSettings.getContactExpandoMappings(ldapServerId, companyId);
 
-		PropertiesUtil.merge(contactMappings, contactExpandoMappings);
+		PropertiesUtil.merge(
+			contactMappings,
+			_ldapSettings.getContactExpandoMappings(ldapServerId, companyId));
 
 		PropertiesUtil.merge(userMappings, contactMappings);
 

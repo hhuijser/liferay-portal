@@ -252,10 +252,9 @@ public class CapabilityRepository
 
 		Repository repository = getRepository();
 
-		FileEntry fileEntry = repository.getFileEntry(folderId, title);
-
 		_repositoryEventTrigger.trigger(
-			RepositoryEventType.Delete.class, FileEntry.class, fileEntry);
+			RepositoryEventType.Delete.class, FileEntry.class,
+			repository.getFileEntry(folderId, title));
 
 		repository.deleteFileEntry(folderId, title);
 	}
@@ -334,10 +333,9 @@ public class CapabilityRepository
 
 		Repository repository = getRepository();
 
-		Folder folder = repository.getFolder(parentFolderId, name);
-
 		_repositoryEventTrigger.trigger(
-			RepositoryEventType.Delete.class, Folder.class, folder);
+			RepositoryEventType.Delete.class, Folder.class,
+			repository.getFolder(parentFolderId, name));
 
 		repository.deleteFolder(parentFolderId, name);
 	}

@@ -28,7 +28,6 @@ import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,12 +69,9 @@ public class AcceptLanguageImpl implements AcceptLanguage {
 		try {
 			Company company = _portal.getCompany(_httpServletRequest);
 
-			Set<Locale> companyAvailableLocales =
-				_language.getCompanyAvailableLocales(company.getCompanyId());
-
 			List<Locale> locales = Locale.filter(
 				Locale.LanguageRange.parse(acceptLanguage),
-				companyAvailableLocales);
+				_language.getCompanyAvailableLocales(company.getCompanyId()));
 
 			if (ListUtil.isEmpty(locales)) {
 				throw new NotAcceptableException(

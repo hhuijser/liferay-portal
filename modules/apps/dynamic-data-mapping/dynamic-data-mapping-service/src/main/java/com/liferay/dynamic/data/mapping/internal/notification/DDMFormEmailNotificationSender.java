@@ -318,9 +318,7 @@ public class DDMFormEmailNotificationSender {
 				continue;
 			}
 
-			Map<String, Object> field = getField(ddmFormFieldValues, locale);
-
-			fields.add(field);
+			fields.add(getField(ddmFormFieldValues, locale));
 		}
 
 		return fields;

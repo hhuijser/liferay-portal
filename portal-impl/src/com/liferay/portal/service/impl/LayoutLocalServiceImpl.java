@@ -1703,9 +1703,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		List<Layout> layouts = new ArrayList<>();
 
 		for (long layoutId : layoutIds) {
-			Layout layout = getLayout(groupId, privateLayout, layoutId);
-
-			layouts.add(layout);
+			layouts.add(getLayout(groupId, privateLayout, layoutId));
 		}
 
 		return layouts;
@@ -2147,10 +2145,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			User user, boolean privateLayout, boolean includeUserGroups)
 		throws PortalException {
 
-		long classNameId = classNameLocalService.getClassNameId(User.class);
-
 		Group group = groupPersistence.findByC_C_C(
-			user.getCompanyId(), classNameId, user.getUserId());
+			user.getCompanyId(),
+			classNameLocalService.getClassNameId(User.class), user.getUserId());
 
 		return getLayoutsCount(group, privateLayout, includeUserGroups);
 	}
@@ -2452,10 +2449,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			User user, boolean privateLayout, boolean includeUserGroups)
 		throws PortalException {
 
-		long classNameId = classNameLocalService.getClassNameId(User.class);
-
 		Group group = groupPersistence.findByC_C_C(
-			user.getCompanyId(), classNameId, user.getUserId());
+			user.getCompanyId(),
+			classNameLocalService.getClassNameId(User.class), user.getUserId());
 
 		return hasLayouts(group, privateLayout, includeUserGroups);
 	}

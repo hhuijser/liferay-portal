@@ -1093,9 +1093,8 @@ public class LanguageImpl implements Language, Serializable {
 			}
 		}
 
-		Locale locale = PortalUtil.getLocale(httpServletRequest, null, false);
-
-		return getLanguageId(locale);
+		return getLanguageId(
+			PortalUtil.getLocale(httpServletRequest, null, false));
 	}
 
 	/**

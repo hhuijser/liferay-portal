@@ -39,13 +39,11 @@ public class JavaTermStylingCheck extends BaseJavaTermCheck {
 
 			int pos = fileContent.indexOf(matcher.group()) + 1;
 
-			int lineNumber = getLineNumber(fileContent, pos);
-
 			addMessage(
 				fileName,
 				"Create a new var for '" + StringUtil.trim(matcher.group(1)) +
 					"' for better readability",
-				lineNumber);
+				getLineNumber(fileContent, pos));
 		}
 
 		return javaTerm.getContent();

@@ -712,9 +712,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 	}
 
 	protected File getPreviewTempFile(String id, int index, String type) {
-		String previewTempFilePath = getPreviewTempFilePath(id, index, type);
-
-		return new File(previewTempFilePath);
+		return new File(getPreviewTempFilePath(id, index, type));
 	}
 
 	protected File getPreviewTempFile(String id, String type) {
@@ -867,9 +865,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 	}
 
 	protected File getThumbnailTempFile(String id, String type) {
-		String thumbnailTempFilePath = getThumbnailTempFilePath(id, type);
-
-		return new File(thumbnailTempFilePath);
+		return new File(getThumbnailTempFilePath(id, type));
 	}
 
 	protected String getThumbnailTempFilePath(String id) {
@@ -899,10 +895,9 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 	protected boolean hasPreview(FileVersion fileVersion, String type)
 		throws Exception {
 
-		String previewFilePath = getPreviewFilePath(fileVersion, type);
-
 		if (DLStoreUtil.hasFile(
-				fileVersion.getCompanyId(), REPOSITORY_ID, previewFilePath)) {
+				fileVersion.getCompanyId(), REPOSITORY_ID,
+				getPreviewFilePath(fileVersion, type))) {
 
 			return true;
 		}

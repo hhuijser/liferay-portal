@@ -92,9 +92,10 @@ public class QueryServiceStubResult {
 			XMLReader xmlReader, String queryServiceSoapResultString)
 		throws IOException, SAXException {
 
-		byte[] bytes = queryServiceSoapResultString.getBytes(StringPool.UTF8);
-
-		xmlReader.parse(new InputSource(new ByteArrayInputStream(bytes)));
+		xmlReader.parse(
+			new InputSource(
+				new ByteArrayInputStream(
+					queryServiceSoapResultString.getBytes(StringPool.UTF8))));
 	}
 
 	private void _setDebugErrorMessage(String debugErrorMessage) {

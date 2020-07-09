@@ -119,9 +119,8 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 		modifiedFacetDisplayBuilder.setCurrentURL(
 			portal.getCurrentURL(renderRequest));
 
-		Facet facet = portletSharedSearchResponse.getFacet(getFieldName());
-
-		modifiedFacetDisplayBuilder.setFacet(facet);
+		modifiedFacetDisplayBuilder.setFacet(
+			portletSharedSearchResponse.getFacet(getFieldName()));
 
 		ThemeDisplay themeDisplay = getThemeDisplay(renderRequest);
 

@@ -22,8 +22,6 @@ import com.liferay.vldap.server.internal.handler.util.LdapSslContextFactory;
 
 import java.util.List;
 
-import javax.net.ssl.SSLContext;
-
 import org.apache.directory.api.ldap.model.message.ExtendedRequest;
 import org.apache.directory.api.ldap.model.message.ExtendedResponse;
 import org.apache.directory.api.ldap.model.message.Request;
@@ -57,9 +55,8 @@ public class ExtendedLdapHandler extends BaseLdapHandler {
 	protected List<Response> handleStartTLS(
 		ExtendedRequest extendedRequest, IoSession ioSession) {
 
-		SSLContext sslContext = LdapSslContextFactory.getSSLContext(true);
-
-		SslFilter sslFilter = new SslFilter(sslContext);
+		SslFilter sslFilter = new SslFilter(
+			LdapSslContextFactory.getSSLContext(true));
 
 		IoFilterChain ioFilterChain = ioSession.getFilterChain();
 

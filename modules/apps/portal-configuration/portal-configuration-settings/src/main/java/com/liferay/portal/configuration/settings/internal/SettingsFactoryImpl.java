@@ -67,9 +67,8 @@ public class SettingsFactoryImpl implements SettingsFactory {
 		throws SettingsException {
 
 		try {
-			PortletItem portletItem = getPortletItem(groupId, portletId, name);
-
-			return new ArchivedSettingsImpl(portletItem);
+			return new ArchivedSettingsImpl(
+				getPortletItem(groupId, portletId, name));
 		}
 		catch (PortalException portalException) {
 			throw new SettingsException(portalException);

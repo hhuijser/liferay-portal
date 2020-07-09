@@ -355,9 +355,9 @@ public class BlogsEntryStagedModelDataHandler
 			BlogsEntry.class.getName());
 
 		if (trashHandler.isRestorable(existingEntry.getEntryId())) {
-			long userId = portletDataContext.getUserId(entry.getUserUuid());
-
-			trashHandler.restoreTrashEntry(userId, existingEntry.getEntryId());
+			trashHandler.restoreTrashEntry(
+				portletDataContext.getUserId(entry.getUserUuid()),
+				existingEntry.getEntryId());
 		}
 	}
 
@@ -386,11 +386,11 @@ public class BlogsEntryStagedModelDataHandler
 			PortletDataContext portletDataContext, BlogsEntry blogsEntry)
 		throws Exception {
 
-		long classNameId = _portal.getClassNameId(BlogsEntry.class);
-
 		List<FriendlyURLEntry> friendlyURLEntries =
 			_friendlyURLEntryLocalService.getFriendlyURLEntries(
-				blogsEntry.getGroupId(), classNameId, blogsEntry.getEntryId());
+				blogsEntry.getGroupId(),
+				_portal.getClassNameId(BlogsEntry.class),
+				blogsEntry.getEntryId());
 
 		for (FriendlyURLEntry friendlyURLEntry : friendlyURLEntries) {
 			StagedModelDataHandlerUtil.exportStagedModel(

@@ -104,11 +104,10 @@ public class BlogsInfoDisplayObjectProvider
 	private AssetEntry _getAssetEntry(BlogsEntry blogsEntry)
 		throws PortalException {
 
-		long classNameId = PortalUtil.getClassNameId(BlogsEntry.class);
-
 		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
-				getAssetRendererFactoryByClassNameId(classNameId);
+				getAssetRendererFactoryByClassNameId(
+					PortalUtil.getClassNameId(BlogsEntry.class));
 
 		return assetRendererFactory.getAssetEntry(
 			BlogsEntry.class.getName(), blogsEntry.getEntryId());

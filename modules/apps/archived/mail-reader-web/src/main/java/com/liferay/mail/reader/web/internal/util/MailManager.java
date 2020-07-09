@@ -523,11 +523,10 @@ public class MailManager {
 
 		Message message = messages.get(0);
 
-		List<Attachment> attachments =
-			AttachmentLocalServiceUtil.getAttachments(message.getMessageId());
-
 		return new MessageDisplay(
-			message, attachments, messagesDisplay.getMessageCount());
+			message,
+			AttachmentLocalServiceUtil.getAttachments(message.getMessageId()),
+			messagesDisplay.getMessageCount());
 	}
 
 	public MessagesDisplay getMessagesDisplay(

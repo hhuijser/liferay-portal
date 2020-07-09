@@ -24,7 +24,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -68,10 +67,9 @@ public class ActionHandlerManagerUtil {
 	}
 
 	private ActionHandlerManagerUtil() {
-		Bundle bundle = FrameworkUtil.getBundle(ActionHandlerManagerUtil.class);
-
 		_serviceTracker = ServiceTrackerFactory.open(
-			bundle, ActionHandlerManager.class);
+			FrameworkUtil.getBundle(ActionHandlerManagerUtil.class),
+			ActionHandlerManager.class);
 	}
 
 	private ActionHandlerManager _getActionHandlerManager() {

@@ -184,9 +184,8 @@ public class LiferayDocumentTypeFactory implements TypeMappingsHelper {
 			return sourceJSONObject.toString();
 		}
 
-		String mappings = getMappings(indexName, typeName);
-
-		JSONObject mappingsJSONObject = createJSONObject(mappings);
+		JSONObject mappingsJSONObject = createJSONObject(
+			getMappings(indexName, typeName));
 
 		JSONObject mappingsTypeJSONObject = mappingsJSONObject;
 

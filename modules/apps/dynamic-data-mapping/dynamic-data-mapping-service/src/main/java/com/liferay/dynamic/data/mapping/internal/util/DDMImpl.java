@@ -85,7 +85,6 @@ import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.UnicodeFormatter;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.io.File;
 import java.io.Serializable;
 
 import java.text.DateFormat;
@@ -1116,9 +1115,8 @@ public class DDMImpl implements DDM {
 			UploadRequest uploadRequest, String fieldNameValue)
 		throws Exception {
 
-		File file = uploadRequest.getFile(fieldNameValue + "File");
-
-		byte[] bytes = FileUtil.getBytes(file);
+		byte[] bytes = FileUtil.getBytes(
+			uploadRequest.getFile(fieldNameValue + "File"));
 
 		if (ArrayUtil.isNotEmpty(bytes)) {
 			return bytes;

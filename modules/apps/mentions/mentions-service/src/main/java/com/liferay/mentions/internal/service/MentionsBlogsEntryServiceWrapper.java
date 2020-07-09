@@ -72,9 +72,9 @@ public class MentionsBlogsEntryServiceWrapper
 			return entry;
 		}
 
-		long siteGroupId = _portal.getSiteGroupId(entry.getGroupId());
+		if (!MentionsUtil.isMentionsEnabled(
+				_portal.getSiteGroupId(entry.getGroupId()))) {
 
-		if (!MentionsUtil.isMentionsEnabled(siteGroupId)) {
 			return entry;
 		}
 

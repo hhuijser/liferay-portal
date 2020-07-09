@@ -123,9 +123,8 @@ public class ExpandoPortlet extends MVCPortlet {
 
 		expandoBridge.addAttribute(name, type);
 
-		Serializable defaultValue = getDefaultValue(actionRequest, type);
-
-		expandoBridge.setAttributeDefault(name, defaultValue);
+		expandoBridge.setAttributeDefault(
+			name, getDefaultValue(actionRequest, type));
 
 		updateProperties(actionRequest, expandoBridge, name);
 	}

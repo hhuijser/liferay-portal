@@ -103,10 +103,9 @@ public class SearchPortlet extends MVCPortlet {
 				_portal.getHttpServletResponse(resourceResponse);
 
 			try {
-				byte[] xml = getXML(resourceRequest, resourceResponse);
-
 				ServletResponseUtil.sendFile(
-					httpServletRequest, httpServletResponse, null, xml,
+					httpServletRequest, httpServletResponse, null,
+					getXML(resourceRequest, resourceResponse),
 					ContentTypes.TEXT_XML_UTF8);
 			}
 			catch (Exception exception) {

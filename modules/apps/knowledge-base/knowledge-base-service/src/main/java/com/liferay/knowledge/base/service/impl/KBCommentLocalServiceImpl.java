@@ -124,10 +124,9 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		int userRating = getUserRating(userId, classNameId, classPK);
-
 		return addKBComment(
-			userId, classNameId, classPK, content, userRating, serviceContext);
+			userId, classNameId, classPK, content,
+			getUserRating(userId, classNameId, classPK), serviceContext);
 	}
 
 	@Override

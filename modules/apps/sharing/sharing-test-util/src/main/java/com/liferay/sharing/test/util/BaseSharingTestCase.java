@@ -99,10 +99,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_user, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.ADD_DISCUSSION);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.ADD_DISCUSSION);
 		}
 	}
 
@@ -114,10 +113,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_user, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.UPDATE);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.UPDATE);
 		}
 	}
 
@@ -129,10 +127,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_user, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.VIEW);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.VIEW);
 		}
 	}
 
@@ -239,14 +236,11 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 				model.getModelClassName());
 			long classPK = (long)model.getPrimaryKeyObj();
 
-			ServiceContext serviceContext =
-				ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 			_sharingEntryLocalService.addSharingEntry(
 				TestPropsValues.getUserId(), _groupUser.getUserId(),
 				classNameId, classPK, _group.getGroupId(), true,
 				Collections.singletonList(SharingEntryAction.VIEW), null,
-				serviceContext);
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 			Assert.assertEquals(1, getModelCount(_group));
 		}
@@ -397,10 +391,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.UPDATE);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.UPDATE);
 		}
 	}
 
@@ -417,10 +410,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.VIEW);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.VIEW);
 		}
 	}
 
@@ -437,10 +429,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.ADD_DISCUSSION);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.ADD_DISCUSSION);
 		}
 	}
 
@@ -454,10 +445,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.ADD_DISCUSSION);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.ADD_DISCUSSION);
 		}
 	}
 
@@ -471,10 +461,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsPermission(
-				permissionChecker, model, ActionKeys.ADD_DISCUSSION);
+				permissionChecker, getModel(_user, _group),
+				ActionKeys.ADD_DISCUSSION);
 		}
 	}
 
@@ -488,10 +477,8 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsPermission(
-				permissionChecker, model, ActionKeys.VIEW);
+				permissionChecker, getModel(_user, _group), ActionKeys.VIEW);
 		}
 	}
 
@@ -505,10 +492,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.UPDATE);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.UPDATE);
 		}
 	}
 
@@ -522,10 +508,8 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsPermission(
-				permissionChecker, model, ActionKeys.UPDATE);
+				permissionChecker, getModel(_user, _group), ActionKeys.UPDATE);
 		}
 	}
 
@@ -539,10 +523,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.VIEW);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.VIEW);
 		}
 	}
 
@@ -556,10 +539,8 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsPermission(
-				permissionChecker, model, ActionKeys.VIEW);
+				permissionChecker, getModel(_user, _group), ActionKeys.VIEW);
 		}
 	}
 
@@ -638,10 +619,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.ADD_DISCUSSION);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.ADD_DISCUSSION);
 		}
 	}
 
@@ -658,10 +638,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.VIEW);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.VIEW);
 		}
 	}
 
@@ -678,10 +657,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.UPDATE);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.UPDATE);
 		}
 	}
 
@@ -697,10 +675,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.ADD_DISCUSSION);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.ADD_DISCUSSION);
 		}
 	}
 
@@ -716,10 +693,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertNotContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.UPDATE);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.UPDATE);
 		}
 	}
 
@@ -733,10 +709,9 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 			ContextUserReplace contextUserReplace = new ContextUserReplace(
 				_groupUser, permissionChecker)) {
 
-			T model = getModel(_user, _group);
-
 			_assertContainsSharingPermission(
-				permissionChecker, model, SharingEntryAction.VIEW);
+				permissionChecker, getModel(_user, _group),
+				SharingEntryAction.VIEW);
 		}
 	}
 

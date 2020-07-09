@@ -110,10 +110,9 @@ public class PortletLogic extends RuntimeLogic {
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		Portlet portlet = getPortlet(themeDisplay, portletId);
-
 		PortletContainerUtil.render(
-			httpServletRequest, bufferCacheServletResponse, portlet);
+			httpServletRequest, bufferCacheServletResponse,
+			getPortlet(themeDisplay, portletId));
 
 		return bufferCacheServletResponse.getString();
 	}

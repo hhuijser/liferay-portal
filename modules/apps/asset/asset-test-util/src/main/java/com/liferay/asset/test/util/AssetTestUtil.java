@@ -113,21 +113,17 @@ public class AssetTestUtil {
 
 		long userId = TestPropsValues.getUserId();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(groupId, userId);
-
 		return AssetTagLocalServiceUtil.addTag(
-			userId, groupId, assetTagName, serviceContext);
+			userId, groupId, assetTagName,
+			ServiceContextTestUtil.getServiceContext(groupId, userId));
 	}
 
 	public static AssetVocabulary addVocabulary(long groupId) throws Exception {
 		long userId = TestPropsValues.getUserId();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(groupId, userId);
-
 		return AssetVocabularyLocalServiceUtil.addVocabulary(
-			userId, groupId, RandomTestUtil.randomString(), serviceContext);
+			userId, groupId, RandomTestUtil.randomString(),
+			ServiceContextTestUtil.getServiceContext(groupId, userId));
 	}
 
 	public static AssetVocabulary addVocabulary(

@@ -214,10 +214,9 @@ public class MBCategoryStagedModelDataHandler
 			MBCategory.class.getName());
 
 		if (trashHandler.isRestorable(existingCategory.getCategoryId())) {
-			long userId = portletDataContext.getUserId(category.getUserUuid());
-
 			trashHandler.restoreTrashEntry(
-				userId, existingCategory.getCategoryId());
+				portletDataContext.getUserId(category.getUserUuid()),
+				existingCategory.getCategoryId());
 		}
 	}
 

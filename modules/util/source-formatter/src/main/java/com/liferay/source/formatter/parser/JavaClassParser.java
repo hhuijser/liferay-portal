@@ -53,11 +53,10 @@ public class JavaClassParser {
 				continue;
 			}
 
-			int lineNumber = SourceUtil.getLineNumber(content, matcher.start());
-
 			anonymousClasses.add(
 				_parseJavaClass(
-					StringPool.BLANK, anonymousClassContent, lineNumber,
+					StringPool.BLANK, anonymousClassContent,
+					SourceUtil.getLineNumber(content, matcher.start()),
 					JavaTerm.ACCESS_MODIFIER_PRIVATE, false, false, false,
 					false, false, true));
 		}
@@ -380,10 +379,9 @@ public class JavaClassParser {
 		int level = 0;
 
 		while (true) {
-			String line = SourceUtil.getLine(classContent, lineNumber);
-
 			level += ToolsUtil.getLevel(
-				line, increaseLevelString, decreaseLevelString);
+				SourceUtil.getLine(classContent, lineNumber),
+				increaseLevelString, decreaseLevelString);
 
 			if (level == 0) {
 				return lineNumber;

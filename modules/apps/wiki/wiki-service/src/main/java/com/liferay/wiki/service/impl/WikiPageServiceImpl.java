@@ -177,10 +177,10 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		WikiPage page = wikiPageLocalService.getPage(nodeId, title, null);
-
 		_wikiPageModelResourcePermission.check(
-			getPermissionChecker(), page, ActionKeys.UPDATE);
+			getPermissionChecker(),
+			wikiPageLocalService.getPage(nodeId, title, null),
+			ActionKeys.UPDATE);
 
 		_wikiNodeModelResourcePermission.check(
 			getPermissionChecker(), nodeId, ActionKeys.ADD_PAGE);
@@ -635,10 +635,9 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			long nodeId, String title, String fileName)
 		throws PortalException {
 
-		WikiPage page = wikiPageLocalService.getPage(nodeId, title);
-
 		_wikiPageModelResourcePermission.check(
-			getPermissionChecker(), page, ActionKeys.DELETE);
+			getPermissionChecker(), wikiPageLocalService.getPage(nodeId, title),
+			ActionKeys.DELETE);
 
 		return wikiPageLocalService.movePageAttachmentToTrash(
 			getUserId(), nodeId, title, fileName);
@@ -721,10 +720,10 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		WikiPage page = wikiPageLocalService.getPage(nodeId, title, version);
-
 		_wikiPageModelResourcePermission.check(
-			getPermissionChecker(), page, ActionKeys.UPDATE);
+			getPermissionChecker(),
+			wikiPageLocalService.getPage(nodeId, title, version),
+			ActionKeys.UPDATE);
 
 		return wikiPageLocalService.revertPage(
 			getUserId(), nodeId, title, version, serviceContext);

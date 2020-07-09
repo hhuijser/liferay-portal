@@ -546,9 +546,8 @@ public class PortletConfigurationPortlet extends MVCPortlet {
 		Map<Long, String[]> roleIdsToActionIds = new HashMap<>();
 
 		for (long roleId : roleIds) {
-			String[] actionIds = getActionIds(actionRequest, roleId, false);
-
-			roleIdsToActionIds.put(roleId, actionIds);
+			roleIdsToActionIds.put(
+				roleId, getActionIds(actionRequest, roleId, false));
 		}
 
 		_resourcePermissionService.setIndividualResourcePermissions(

@@ -555,9 +555,7 @@ public class CMISRepository extends BaseCmisRepository {
 			FileEntry fileEntry = _cmisModelCache.getFileEntry(fileEntryId);
 
 			if (fileEntry == null) {
-				Document document = getDocument(getSession(), fileEntryId);
-
-				fileEntry = toFileEntry(document);
+				fileEntry = toFileEntry(getDocument(getSession(), fileEntryId));
 
 				_cmisModelCache.putFileEntry(fileEntry);
 			}

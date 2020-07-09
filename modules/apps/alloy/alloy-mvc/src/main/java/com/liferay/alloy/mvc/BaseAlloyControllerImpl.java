@@ -477,9 +477,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			if (data instanceof Exception) {
-				String stackTrace = getStackTrace((Exception)data);
-
-				jsonObject.put("data", stackTrace);
+				jsonObject.put("data", getStackTrace((Exception)data));
 			}
 			else if (data instanceof JSONArray) {
 				jsonObject.put("data", (JSONArray)data);
@@ -624,9 +622,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected Method getMethod(String methodName, Class<?>... parameterTypes) {
-		String methodKey = getMethodKey(methodName, parameterTypes);
-
-		return methodsMap.get(methodKey);
+		return methodsMap.get(getMethodKey(methodName, parameterTypes));
 	}
 
 	protected String getMethodKey(
@@ -1170,9 +1166,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		portletRequest.setAttribute("arguments", arguments);
 
-		String stackTrace = getStackTrace((Exception)rootCause);
-
-		portletRequest.setAttribute("data", stackTrace);
+		portletRequest.setAttribute(
+			"data", getStackTrace((Exception)rootCause));
 
 		portletRequest.setAttribute("pattern", pattern);
 		portletRequest.setAttribute("status", status);

@@ -128,9 +128,7 @@ public abstract class JSONAction implements Action {
 			try (OutputStream outputStream =
 					httpServletResponse.getOutputStream()) {
 
-				byte[] bytes = json.getBytes(StringPool.UTF8);
-
-				outputStream.write(bytes);
+				outputStream.write(json.getBytes(StringPool.UTF8));
 			}
 		}
 

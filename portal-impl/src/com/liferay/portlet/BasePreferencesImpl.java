@@ -60,9 +60,7 @@ public abstract class BasePreferencesImpl implements Serializable {
 
 			Preference preference = entry.getValue();
 
-			String[] actualValues = getActualValues(preference.getValues());
-
-			map.put(key, actualValues);
+			map.put(key, getActualValues(preference.getValues()));
 		}
 
 		return map;

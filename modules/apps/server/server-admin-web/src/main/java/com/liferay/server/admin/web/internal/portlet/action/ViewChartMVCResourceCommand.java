@@ -102,9 +102,8 @@ public class ViewChartMVCResourceCommand extends BaseMVCResourceCommand {
 				ResourceBundleUtil.getString(resourceBundle, "maximum-memory"));
 		}
 
-		MeterPlot meterPlot = getMeterPlot(themeDisplay, valueDataset);
-
-		JFreeChart jFreeChart = getJFreeChart(sb.toString(), meterPlot);
+		JFreeChart jFreeChart = getJFreeChart(
+			sb.toString(), getMeterPlot(themeDisplay, valueDataset));
 
 		resourceResponse.setContentType(ContentTypes.IMAGE_PNG);
 

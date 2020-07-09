@@ -54,9 +54,9 @@ public interface DTOConverter<E, D> {
 	public default D toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 
-		E object = getObject(String.valueOf(dtoConverterContext.getId()));
-
-		return toDTO(dtoConverterContext, object);
+		return toDTO(
+			dtoConverterContext,
+			getObject(String.valueOf(dtoConverterContext.getId())));
 	}
 
 	public default D toDTO(DTOConverterContext dtoConverterContext, E object)

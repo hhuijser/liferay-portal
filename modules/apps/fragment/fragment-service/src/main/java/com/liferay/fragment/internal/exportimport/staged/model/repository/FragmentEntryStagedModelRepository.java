@@ -139,10 +139,9 @@ public class FragmentEntryStagedModelRepository
 			PortletDataContext portletDataContext, FragmentEntry fragmentEntry)
 		throws PortalException {
 
-		long userId = portletDataContext.getUserId(fragmentEntry.getUserUuid());
-
 		return _fragmentEntryLocalService.updateFragmentEntry(
-			userId, fragmentEntry.getFragmentEntryId(), fragmentEntry.getName(),
+			portletDataContext.getUserId(fragmentEntry.getUserUuid()),
+			fragmentEntry.getFragmentEntryId(), fragmentEntry.getName(),
 			fragmentEntry.getCss(), fragmentEntry.getHtml(),
 			fragmentEntry.getJs(), fragmentEntry.getConfiguration(),
 			fragmentEntry.getStatus());

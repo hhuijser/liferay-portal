@@ -62,9 +62,8 @@ public class ExternalMethod {
 
 		Class<?> clazz = object.getClass();
 
-		Method method = getMethod(clazz, methodName, parameters);
-
-		return execute(method, object, parameters);
+		return execute(
+			getMethod(clazz, methodName, parameters), object, parameters);
 	}
 
 	public static Object execute(String className, String methodName)

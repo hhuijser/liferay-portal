@@ -20,7 +20,6 @@ import com.liferay.dynamic.data.mapping.model.DDMFormLayoutRow;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayout;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLayoutLocalServiceUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 
@@ -40,12 +39,10 @@ public class DDMStructureLayoutTestHelper {
 			long structureId, DDMFormLayout ddmFormLayout)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		return DDMStructureLayoutLocalServiceUtil.addStructureLayout(
 			TestPropsValues.getUserId(), _group.getGroupId(), structureId,
-			ddmFormLayout, serviceContext);
+			ddmFormLayout,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	public List<DDMFormLayoutColumn> createDDMFormLayoutColumns(

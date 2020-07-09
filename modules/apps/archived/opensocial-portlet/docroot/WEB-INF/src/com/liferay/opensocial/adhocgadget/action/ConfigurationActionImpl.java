@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
-import java.util.Map;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
@@ -34,8 +32,6 @@ import javax.portlet.RenderRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.shindig.gadgets.spec.OAuthService;
 
 /**
  * @author Michael Young
@@ -61,11 +57,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		try {
 			Gadget gadget = getGadget(portletConfig, httpServletRequest);
 
-			Map<String, OAuthService> oAuthServices =
-				ShindigUtil.getOAuthServices(gadget.getUrl());
-
 			httpServletRequest.setAttribute(
-				WebKeys.OAUTH_SERVICES, oAuthServices);
+				WebKeys.OAUTH_SERVICES,
+				ShindigUtil.getOAuthServices(gadget.getUrl()));
 		}
 		catch (Exception exception) {
 		}

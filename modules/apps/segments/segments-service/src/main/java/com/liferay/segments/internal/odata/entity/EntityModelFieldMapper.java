@@ -259,11 +259,10 @@ public class EntityModelFieldMapper {
 				String label = expandoColumn.getDisplayName(
 					resourceBundle.getLocale());
 
-				String type = getType(entityField.getType());
-
 				customFields.add(
 					new Field(
-						"customField/" + entityFieldName, label, type,
+						"customField/" + entityFieldName, label,
+						getType(entityField.getType()),
 						_getExpandoColumnFieldOptions(expandoColumn), null));
 			});
 

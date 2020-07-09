@@ -304,10 +304,8 @@ public abstract class TestOrderHelper {
 		for (int i = 0; i < assetEntries.size(); i++) {
 			AssetEntry assetEntry = assetEntries.get(i);
 
-			AssetRenderer<?> assetRenderer =
-				assetRendererFactory.getAssetRenderer(assetEntry.getClassPK());
-
-			values[i] = getValue(assetRenderer);
+			values[i] = getValue(
+				assetRendererFactory.getAssetRenderer(assetEntry.getClassPK()));
 		}
 
 		return values;

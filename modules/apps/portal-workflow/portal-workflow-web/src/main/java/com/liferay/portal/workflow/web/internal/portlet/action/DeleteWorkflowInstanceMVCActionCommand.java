@@ -155,10 +155,9 @@ public class DeleteWorkflowInstanceMVCActionCommand
 		long userId = GetterUtil.getLong(
 			workflowContext.get(WorkflowConstants.CONTEXT_USER_ID));
 
-		long validUserId = _portal.getValidUserId(companyId, userId);
-
 		workflowContext.put(
-			WorkflowConstants.CONTEXT_USER_ID, String.valueOf(validUserId));
+			WorkflowConstants.CONTEXT_USER_ID,
+			String.valueOf(_portal.getValidUserId(companyId, userId)));
 	}
 
 	@Reference

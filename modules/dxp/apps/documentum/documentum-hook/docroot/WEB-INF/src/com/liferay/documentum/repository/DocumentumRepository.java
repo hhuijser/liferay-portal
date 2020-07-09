@@ -1275,9 +1275,8 @@ public class DocumentumRepository
 			String extRepositoryObjectKey)
 		throws DfException {
 
-		IDfId idfId = getIDfId(idfSession, extRepositoryObjectKey);
-
-		return (T)idfSession.getObject(idfId);
+		return (T)idfSession.getObject(
+			getIDfId(idfSession, extRepositoryObjectKey));
 	}
 
 	protected IDfDocument getLatestIDfDocument(

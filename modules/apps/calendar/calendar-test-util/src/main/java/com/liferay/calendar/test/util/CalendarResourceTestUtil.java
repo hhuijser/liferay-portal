@@ -32,10 +32,9 @@ public class CalendarResourceTestUtil {
 	public static CalendarResource addCalendarResource(Group group)
 		throws PortalException {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
-		return addCalendarResource(group, serviceContext);
+		return addCalendarResource(
+			group,
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
 	public static CalendarResource addCalendarResource(

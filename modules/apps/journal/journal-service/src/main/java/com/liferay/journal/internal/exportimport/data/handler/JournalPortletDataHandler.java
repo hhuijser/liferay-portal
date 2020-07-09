@@ -535,9 +535,9 @@ public class JournalPortletDataHandler extends BasePortletDataHandler {
 				Property classNameIdProperty = PropertyFactoryUtil.forName(
 					"classNameId");
 
-				long classNameId = _portal.getClassNameId(JournalArticle.class);
-
-				dynamicQuery.add(classNameIdProperty.eq(classNameId));
+				dynamicQuery.add(
+					classNameIdProperty.eq(
+						_portal.getClassNameId(JournalArticle.class)));
 			});
 
 		exportActionableDynamicQuery.setStagedModelType(

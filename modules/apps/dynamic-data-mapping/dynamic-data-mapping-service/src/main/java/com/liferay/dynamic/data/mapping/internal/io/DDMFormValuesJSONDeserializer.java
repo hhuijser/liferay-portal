@@ -286,9 +286,7 @@ public class DDMFormValuesJSONDeserializer
 			return;
 		}
 
-		Value value = getValue(ddmFormField, jsonObject);
-
-		ddmFormFieldValue.setValue(value);
+		ddmFormFieldValue.setValue(getValue(ddmFormField, jsonObject));
 	}
 
 	protected void setDDMFormLocalizedValuesDefaultLocale(

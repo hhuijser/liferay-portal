@@ -129,11 +129,9 @@ public class CopyStructureMVCActionCommand extends DDMBaseMVCActionCommand {
 
 		portletURL.setParameter("mvcPath", "/copy_structure");
 
-		long classNameId = _portal.getClassNameId(DDMStructure.class);
-
 		portletURL.setParameter(
-			"classNameId", String.valueOf(classNameId), false);
-
+			"classNameId",
+			String.valueOf(_portal.getClassNameId(DDMStructure.class)), false);
 		portletURL.setParameter(
 			"classPK", String.valueOf(structure.getStructureId()), false);
 		portletURL.setParameter(

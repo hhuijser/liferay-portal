@@ -168,9 +168,7 @@ public class FileUtil {
 			pattern = pattern.replace("/", "\\\\");
 		}
 
-		PathMatcher pathMatcher = fileSystem.getPathMatcher("glob:" + pattern);
-
-		pathMatchers.add(pathMatcher);
+		pathMatchers.add(fileSystem.getPathMatcher("glob:" + pattern));
 	}
 
 	private static List<PathMatcher> _getPathMatchers(

@@ -43,10 +43,8 @@ public class ClassTypesInfoDisplayFieldProviderUtil {
 
 		ClassTypeReader classTypeReader = _getClassTypeReader(className);
 
-		ClassType classType = classTypeReader.getClassType(classTypeId, locale);
-
 		return classTypesInfoDisplayFieldProvider.getClassTypeInfoDisplayFields(
-			classType, locale);
+			classTypeReader.getClassType(classTypeId, locale), locale);
 	}
 
 	public static List<ClassType> getClassTypes(

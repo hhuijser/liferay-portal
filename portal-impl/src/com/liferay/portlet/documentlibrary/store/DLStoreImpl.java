@@ -99,10 +99,9 @@ public class DLStoreImpl implements DLStore {
 			ByteArrayFileInputStream byteArrayFileInputStream =
 				(ByteArrayFileInputStream)is;
 
-			File file = byteArrayFileInputStream.getFile();
-
 			addFile(
-				companyId, repositoryId, fileName, validateFileExtension, file);
+				companyId, repositoryId, fileName, validateFileExtension,
+				byteArrayFileInputStream.getFile());
 
 			return;
 		}

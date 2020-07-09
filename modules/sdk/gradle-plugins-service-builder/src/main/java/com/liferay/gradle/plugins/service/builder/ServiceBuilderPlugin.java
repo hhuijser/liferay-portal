@@ -145,10 +145,9 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 
 				@Override
 				public File call() throws Exception {
-					File resourcesDir = getResourcesDir(project);
-
 					return new File(
-						resourcesDir, "META-INF/portlet-model-hints.xml");
+						getResourcesDir(project),
+						"META-INF/portlet-model-hints.xml");
 				}
 
 			});
@@ -217,9 +216,7 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 
 				@Override
 				public File call() throws Exception {
-					File resourcesDir = getResourcesDir(project);
-
-					return new File(resourcesDir, "META-INF/sql");
+					return new File(getResourcesDir(project), "META-INF/sql");
 				}
 
 			});

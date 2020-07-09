@@ -159,14 +159,13 @@ public class NodeExtension {
 				}
 
 				if (isUseNpm()) {
-					File npmDir = NodePluginUtil.getNpmDir(nodeDir);
-
-					return new File(npmDir, "bin/npm-cli.js");
+					return new File(
+						NodePluginUtil.getNpmDir(nodeDir), "bin/npm-cli.js");
 				}
 
-				File yarnDir = NodePluginUtil.getYarnDir(nodeDir);
-
-				return new File(yarnDir, "yarn-" + getYarnVersion() + ".js");
+				return new File(
+					NodePluginUtil.getYarnDir(nodeDir),
+					"yarn-" + getYarnVersion() + ".js");
 			}
 
 		};

@@ -119,10 +119,8 @@ public class LangMergerPlugin implements Plugin<Project> {
 
 					@Override
 					public File call() throws Exception {
-						File contentDir = getContentDir(sourceSet);
-
 						return langProject.file(
-							project.relativePath(contentDir));
+							project.relativePath(getContentDir(sourceSet)));
 					}
 
 				},

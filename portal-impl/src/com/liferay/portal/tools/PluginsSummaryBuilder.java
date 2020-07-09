@@ -557,9 +557,9 @@ public class PluginsSummaryBuilder {
 		File relengChangeLogMD5File = new File(
 			webInfDir, "liferay-releng.changelog.md5");
 
-		String md5Checksum = FileUtil.getMD5Checksum(relengChangeLogFile);
-
-		FileUtil.write(relengChangeLogMD5File, md5Checksum);
+		FileUtil.write(
+			relengChangeLogMD5File,
+			FileUtil.getMD5Checksum(relengChangeLogFile));
 	}
 
 	private String _updateRelengPropertiesFile(

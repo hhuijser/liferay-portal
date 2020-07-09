@@ -160,9 +160,7 @@ public class MarketplaceAppManagerPortlet extends MVCPortlet {
 
 		File file = uploadPortletRequest.getFile("file");
 
-		byte[] bytes = FileUtil.getBytes(file);
-
-		if (ArrayUtil.isEmpty(bytes)) {
+		if (ArrayUtil.isEmpty(FileUtil.getBytes(file))) {
 			SessionErrors.add(actionRequest, UploadException.class.getName());
 		}
 		else if (!fileName.endsWith(".jar") && !fileName.endsWith(".lpkg") &&

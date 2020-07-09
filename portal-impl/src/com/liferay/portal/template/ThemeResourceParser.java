@@ -75,9 +75,7 @@ public class ThemeResourceParser extends URLResourceParser {
 					servletContextName, " ", themeLoader));
 		}
 
-		File fileStorage = themeLoader.getFileStorage();
-
-		File file = new File(fileStorage, templateId);
+		File file = new File(themeLoader.getFileStorage(), templateId);
 
 		URI uri = file.toURI();
 

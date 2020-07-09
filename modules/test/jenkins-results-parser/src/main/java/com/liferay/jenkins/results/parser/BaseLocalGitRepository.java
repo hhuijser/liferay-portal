@@ -123,11 +123,9 @@ public abstract class BaseLocalGitRepository
 
 	@Override
 	public int hashCode() {
-		File directory = getDirectory();
-
 		String hash = JenkinsResultsParserUtil.combine(
-			JenkinsResultsParserUtil.getCanonicalPath(directory), getName(),
-			getUpstreamBranchName());
+			JenkinsResultsParserUtil.getCanonicalPath(getDirectory()),
+			getName(), getUpstreamBranchName());
 
 		return hash.hashCode();
 	}

@@ -134,13 +134,13 @@ public class XSLTBuilder {
 		File xslFile = new File(xsl);
 
 		if (xslFile.exists()) {
-			Map<String, String> args = HashMapBuilder.put(
-				"href", xslFile.getName()
-			).put(
-				"type", "text/xsl"
-			).build();
-
-			document.addProcessingInstruction("xml-stylesheet", args);
+			document.addProcessingInstruction(
+				"xml-stylesheet",
+				HashMapBuilder.put(
+					"href", xslFile.getName()
+				).put(
+					"type", "text/xsl"
+				).build());
 		}
 
 		Element versionsElement = document.addElement("versions");

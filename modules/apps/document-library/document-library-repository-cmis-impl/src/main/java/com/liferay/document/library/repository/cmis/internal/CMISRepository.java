@@ -220,13 +220,14 @@ public class CMISRepository extends BaseCmisRepository {
 			org.apache.chemistry.opencmis.client.api.Folder cmisFolder =
 				getCmisFolder(session, parentFolderId);
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				PropertyIds.NAME, name
-			).put(
-				PropertyIds.OBJECT_TYPE_ID, BaseTypeId.CMIS_FOLDER.value()
-			).build();
-
-			return toFolder(cmisFolder.createFolder(properties));
+			return toFolder(
+				cmisFolder.createFolder(
+					HashMapBuilder.<String, Object>put(
+						PropertyIds.NAME, name
+					).put(
+						PropertyIds.OBJECT_TYPE_ID,
+						BaseTypeId.CMIS_FOLDER.value()
+					).build()));
 		}
 		catch (PortalException | SystemException exception) {
 			throw exception;

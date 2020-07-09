@@ -1844,15 +1844,13 @@ public class DDMStructureLocalServiceImpl
 			DDMStructureIndexerBackgroundTaskExecutor.getBackgroundTaskName(
 				structure.getStructureId());
 
-		Map<String, Serializable> taskContextMap =
-			HashMapBuilder.<String, Serializable>put(
-				"structureId", structure.getStructureId()
-			).build();
-
 		_backgroundTaskManager.addBackgroundTask(
 			structure.getUserId(), structure.getGroupId(), backgroundTaskName,
 			DDMStructureIndexerBackgroundTaskExecutor.class.getName(),
-			taskContextMap, serviceContext);
+			HashMapBuilder.<String, Serializable>put(
+				"structureId", structure.getStructureId()
+			).build(),
+			serviceContext);
 	}
 
 	protected String serializeJSONDDMForm(DDMForm ddmForm) {

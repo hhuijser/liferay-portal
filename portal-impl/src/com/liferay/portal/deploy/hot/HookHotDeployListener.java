@@ -1145,14 +1145,12 @@ public class HookHotDeployListener
 				ResourceBundle resourceBundle = new LiferayResourceBundle(
 					inputStream, StringPool.UTF8);
 
-				Map<String, Object> properties =
-					HashMapBuilder.<String, Object>put(
-						"language.id", LocaleUtil.toLanguageId(locale)
-					).build();
-
 				registerService(
 					servletContextName, languagePropertiesLocation,
-					ResourceBundle.class, resourceBundle, properties);
+					ResourceBundle.class, resourceBundle,
+					HashMapBuilder.<String, Object>put(
+						"language.id", LocaleUtil.toLanguageId(locale)
+					).build());
 			}
 		}
 	}

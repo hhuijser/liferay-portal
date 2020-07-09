@@ -52,13 +52,12 @@ public class AccountEntryDisplaySearchContainerFactory {
 		long userId, LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
-		LinkedHashMap<String, Object> params =
+		return _create(
+			liferayPortletRequest, liferayPortletResponse,
 			LinkedHashMapBuilder.<String, Object>put(
 				"accountUserIds", new long[] {userId}
-			).build();
-
-		return _create(
-			liferayPortletRequest, liferayPortletResponse, params, false);
+			).build(),
+			false);
 	}
 
 	private static SearchContainer<AccountEntryDisplay> _create(

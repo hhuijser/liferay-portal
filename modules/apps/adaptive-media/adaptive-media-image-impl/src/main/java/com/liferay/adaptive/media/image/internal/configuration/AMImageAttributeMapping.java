@@ -47,7 +47,7 @@ public class AMImageAttributeMapping {
 			throw new IllegalArgumentException("Properties map is null");
 		}
 
-		Map<AMAttribute<AMImageProcessor, ?>, Optional<?>> optionals =
+		return new AMImageAttributeMapping(
 			HashMapBuilder.<AMAttribute<AMImageProcessor, ?>, Optional<?>>put(
 				AMAttribute.getConfigurationUuidAMAttribute(),
 				_getValueOptional(
@@ -72,9 +72,7 @@ public class AMImageAttributeMapping {
 				AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH,
 				_getValueOptional(
 					properties, AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH)
-			).build();
-
-		return new AMImageAttributeMapping(optionals);
+			).build());
 	}
 
 	/**

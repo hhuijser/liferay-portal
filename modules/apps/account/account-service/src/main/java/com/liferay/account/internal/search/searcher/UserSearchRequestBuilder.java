@@ -137,7 +137,7 @@ public class UserSearchRequestBuilder {
 
 		searchContext.setAndSearch(andSearch);
 
-		Map<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.STATUS, _status
 			).put(
@@ -166,9 +166,7 @@ public class UserSearchRequestBuilder {
 				"zip", _keywords
 			).putAll(
 				_attributes
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(CompanyThreadLocal.getCompanyId());
 	}

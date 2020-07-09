@@ -102,15 +102,14 @@ public class AddLayoutPrototypePortalInstanceLifecycleListener
 			layout, AssetTagsNavigationPortletKeys.ASSET_TAGS_NAVIGATION,
 			"column-2");
 
-		Map<String, String> preferences = HashMapBuilder.put(
-			"classNameId",
-			String.valueOf(_portal.getClassNameId(WikiPage.class))
-		).put(
-			"showAssetCount", Boolean.TRUE.toString()
-		).build();
-
 		DefaultLayoutPrototypesUtil.updatePortletSetup(
-			layout, portletId, preferences);
+			layout, portletId,
+			HashMapBuilder.put(
+				"classNameId",
+				String.valueOf(_portal.getClassNameId(WikiPage.class))
+			).put(
+				"showAssetCount", Boolean.TRUE.toString()
+			).build());
 	}
 
 	@Reference(

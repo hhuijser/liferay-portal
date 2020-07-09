@@ -39,8 +39,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.io.IOException;
 
-import java.util.Map;
-
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -104,18 +102,16 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 			Role userRole = RoleLocalServiceUtil.getRole(
 				expandoColumn.getCompanyId(), RoleConstants.USER);
 
-			Map<Long, String[]> roleIdsToActionIds = HashMapBuilder.put(
-				guestRole.getRoleId(), new String[] {ActionKeys.VIEW}
-			).put(
-				userRole.getRoleId(),
-				new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
-			).build();
-
 			ResourcePermissionLocalServiceUtil.setResourcePermissions(
 				expandoColumn.getCompanyId(), ExpandoColumn.class.getName(),
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				String.valueOf(expandoColumn.getColumnId()),
-				roleIdsToActionIds);
+				HashMapBuilder.put(
+					guestRole.getRoleId(), new String[] {ActionKeys.VIEW}
+				).put(
+					userRole.getRoleId(),
+					new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
+				).build());
 		}
 	}
 

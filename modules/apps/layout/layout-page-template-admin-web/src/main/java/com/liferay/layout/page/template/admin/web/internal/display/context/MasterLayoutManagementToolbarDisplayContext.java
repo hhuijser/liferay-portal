@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
@@ -139,14 +138,12 @@ public class MasterLayoutManagementToolbarDisplayContext
 
 		return CreationMenuBuilder.addDropdownItem(
 			dropdownItem -> {
-				Map<String, Object> dropDownItemData =
+				dropdownItem.setData(
 					HashMapBuilder.<String, Object>put(
 						"action", "addMasterLayout"
 					).put(
 						"addMasterLayoutURL", addMasterLayoutURL.toString()
-					).build();
-
-				dropdownItem.setData(dropDownItemData);
+					).build());
 
 				dropdownItem.setLabel(LanguageUtil.get(request, "add"));
 			}

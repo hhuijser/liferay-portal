@@ -156,16 +156,15 @@ public class LanguageFilterTracker {
 				filterSB.append(")");
 			}
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"service.ranking", Integer.MIN_VALUE
-			).put(
-				"servlet.context.name", contextName
-			).build();
-
 			return ServiceTrackerFactory.open(
 				bundle.getBundleContext(), filterSB.toString(),
 				new ResourceBundleLoaderServiceTrackerCustomizer(
-					properties, filterSB.toString(), contextName));
+					HashMapBuilder.<String, Object>put(
+						"service.ranking", Integer.MIN_VALUE
+					).put(
+						"servlet.context.name", contextName
+					).build(),
+					filterSB.toString(), contextName));
 		}
 
 		@Override

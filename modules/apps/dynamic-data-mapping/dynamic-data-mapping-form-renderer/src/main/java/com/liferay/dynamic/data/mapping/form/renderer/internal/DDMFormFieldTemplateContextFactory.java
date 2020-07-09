@@ -285,13 +285,12 @@ public class DDMFormFieldTemplateContextFactory {
 		List<Map<String, String>> list = new ArrayList<>();
 
 		for (KeyValuePair keyValuePair : keyValuePairs) {
-			Map<String, String> option = HashMapBuilder.put(
-				"label", keyValuePair.getValue()
-			).put(
-				"value", keyValuePair.getKey()
-			).build();
-
-			list.add(option);
+			list.add(
+				HashMapBuilder.put(
+					"label", keyValuePair.getValue()
+				).put(
+					"value", keyValuePair.getKey()
+				).build());
 		}
 
 		return list;

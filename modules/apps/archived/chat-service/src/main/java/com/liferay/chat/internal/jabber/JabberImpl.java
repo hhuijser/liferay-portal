@@ -467,18 +467,17 @@ public class JabberImpl implements Jabber {
 
 		User user = _userLocalService.getUserById(userId);
 
-		Map<String, String> attributes = HashMapBuilder.put(
-			"email", user.getEmailAddress()
-		).put(
-			"first", user.getFirstName()
-		).put(
-			"last", user.getLastName()
-		).put(
-			"name", user.getFullName()
-		).build();
-
 		accountManager.createAccount(
-			user.getScreenName(), password, attributes);
+			user.getScreenName(), password,
+			HashMapBuilder.put(
+				"email", user.getEmailAddress()
+			).put(
+				"first", user.getFirstName()
+			).put(
+				"last", user.getLastName()
+			).put(
+				"name", user.getFullName()
+			).build());
 	}
 
 	protected void updateStatus(

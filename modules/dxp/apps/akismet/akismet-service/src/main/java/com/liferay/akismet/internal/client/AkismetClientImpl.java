@@ -235,13 +235,13 @@ public class AkismetClientImpl implements AkismetClient {
 			Http.HTTP_WITH_SLASH + AkismetConstants.URL_REST +
 				AkismetConstants.PATH_VERIFY;
 
-		Map<String, String> parts = HashMapBuilder.put(
-			"blog", _getPortalURL(companyId)
-		).put(
-			"key", apiKey
-		).build();
-
-		String response = _sendRequest(location, parts);
+		String response = _sendRequest(
+			location,
+			HashMapBuilder.put(
+				"blog", _getPortalURL(companyId)
+			).put(
+				"key", apiKey
+			).build());
 
 		if (response.equals("valid")) {
 			return true;
@@ -271,27 +271,27 @@ public class AkismetClientImpl implements AkismetClient {
 			String userName, String emailAddress, String content)
 		throws PortalException {
 
-		Map<String, String> parts = HashMapBuilder.put(
-			"blog", _getPortalURL(companyId)
-		).put(
-			"comment_author", userName
-		).put(
-			"comment_author_email", emailAddress
-		).put(
-			"comment_content", content
-		).put(
-			"comment_type", commentType
-		).put(
-			"permalink", permalink
-		).put(
-			"referrer", referrer
-		).put(
-			"user_agent", userAgent
-		).put(
-			"user_ip", ipAddress
-		).build();
-
-		return _sendRequest(location, parts);
+		return _sendRequest(
+			location,
+			HashMapBuilder.put(
+				"blog", _getPortalURL(companyId)
+			).put(
+				"comment_author", userName
+			).put(
+				"comment_author_email", emailAddress
+			).put(
+				"comment_content", content
+			).put(
+				"comment_type", commentType
+			).put(
+				"permalink", permalink
+			).put(
+				"referrer", referrer
+			).put(
+				"user_agent", userAgent
+			).put(
+				"user_ip", ipAddress
+			).build());
 	}
 
 	private String _sendRequest(String location, Map<String, String> parts) {

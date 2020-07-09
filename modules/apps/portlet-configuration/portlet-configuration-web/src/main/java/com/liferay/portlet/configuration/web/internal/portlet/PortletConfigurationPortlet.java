@@ -779,18 +779,18 @@ public class PortletConfigurationPortlet extends MVCPortlet {
 				scopeLayoutUuid, layout.getGroupId(), layout.isPrivateLayout());
 
 			if (!scopeLayout.hasScopeGroup()) {
-				Map<Locale, String> nameMap = HashMapBuilder.put(
-					LocaleUtil.getDefault(),
-					String.valueOf(scopeLayout.getPlid())
-				).build();
-
 				_groupLocalService.addGroup(
 					themeDisplay.getUserId(),
 					GroupConstants.DEFAULT_PARENT_GROUP_ID,
 					Layout.class.getName(), scopeLayout.getPlid(),
-					GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap, null, 0,
-					true, GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null,
-					false, true, null);
+					GroupConstants.DEFAULT_LIVE_GROUP_ID,
+					HashMapBuilder.put(
+						LocaleUtil.getDefault(),
+						String.valueOf(scopeLayout.getPlid())
+					).build(),
+					null, 0, true,
+					GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, false,
+					true, null);
 			}
 
 			scopeGroupId = scopeLayout.getGroupId();

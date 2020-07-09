@@ -132,13 +132,13 @@ public class EditPageAttachmentsMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, moveToTrash);
 
 		if (moveToTrash && (trashedModel != null)) {
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				Constants.CMD, Constants.REMOVE
-			).put(
-				"trashedModels", ListUtil.fromArray(trashedModel)
-			).build();
-
-			addDeleteSuccessData(actionRequest, data);
+			addDeleteSuccessData(
+				actionRequest,
+				HashMapBuilder.<String, Object>put(
+					Constants.CMD, Constants.REMOVE
+				).put(
+					"trashedModels", ListUtil.fromArray(trashedModel)
+				).build());
 		}
 	}
 

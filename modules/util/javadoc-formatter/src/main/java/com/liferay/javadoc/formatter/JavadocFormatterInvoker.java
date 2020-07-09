@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
 
-import java.util.Map;
-
 /**
  * @author Andrea Di Giorgi
  */
@@ -31,28 +29,30 @@ public class JavadocFormatterInvoker {
 			File baseDir, JavadocFormatterArgs javadocFormatterArgs)
 		throws Exception {
 
-		Map<String, String> arguments = HashMapBuilder.put(
-			"javadoc.author", javadocFormatterArgs.getAuthor()
-		).put(
-			"javadoc.generate.xml",
-			String.valueOf(javadocFormatterArgs.isGenerateXml())
-		).put(
-			"javadoc.init",
-			String.valueOf(javadocFormatterArgs.isInitializeMissingJavadocs())
-		).put(
-			"javadoc.input.dir",
-			_getCanonicalPath(baseDir, javadocFormatterArgs.getInputDirName())
-		).put(
-			"javadoc.limit", StringUtil.merge(javadocFormatterArgs.getLimits())
-		).put(
-			"javadoc.output.file.prefix",
-			javadocFormatterArgs.getOutputFilePrefix()
-		).put(
-			"javadoc.update",
-			String.valueOf(javadocFormatterArgs.isUpdateJavadocs())
-		).build();
-
-		return new JavadocFormatter(arguments);
+		return new JavadocFormatter(
+			HashMapBuilder.put(
+				"javadoc.author", javadocFormatterArgs.getAuthor()
+			).put(
+				"javadoc.generate.xml",
+				String.valueOf(javadocFormatterArgs.isGenerateXml())
+			).put(
+				"javadoc.init",
+				String.valueOf(
+					javadocFormatterArgs.isInitializeMissingJavadocs())
+			).put(
+				"javadoc.input.dir",
+				_getCanonicalPath(
+					baseDir, javadocFormatterArgs.getInputDirName())
+			).put(
+				"javadoc.limit",
+				StringUtil.merge(javadocFormatterArgs.getLimits())
+			).put(
+				"javadoc.output.file.prefix",
+				javadocFormatterArgs.getOutputFilePrefix()
+			).put(
+				"javadoc.update",
+				String.valueOf(javadocFormatterArgs.isUpdateJavadocs())
+			).build());
 	}
 
 	private static String _getCanonicalPath(File baseDir, String fileName)

@@ -80,13 +80,11 @@ public class GroupItemSelectorProviderImpl
 
 	@Override
 	public int getGroupsCount(long companyId, long groupId, String keywords) {
-		LinkedHashMap<String, Object> groupParams =
+		return _groupService.searchCount(
+			companyId, _classNameIds, keywords,
 			LinkedHashMapBuilder.<String, Object>put(
 				"site", Boolean.TRUE
-			).build();
-
-		return _groupService.searchCount(
-			companyId, _classNameIds, keywords, groupParams);
+			).build());
 	}
 
 	@Override

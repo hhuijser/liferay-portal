@@ -3859,13 +3859,11 @@ public class PortletImpl extends PortletBaseImpl {
 					readiness._serviceRegistrar = serviceRegistrar;
 				}
 
-				Map<String, Object> properties =
+				serviceRegistrar.registerService(
+					Portlet.class, this,
 					HashMapBuilder.<String, Object>put(
 						"javax.portlet.name", getPortletName()
-					).build();
-
-				serviceRegistrar.registerService(
-					Portlet.class, this, properties);
+					).build());
 			}
 			else {
 				serviceRegistrar.destroy();

@@ -38,7 +38,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -109,14 +108,13 @@ public class WabDirURLStreamHandlerService
 				contextName = StringPool.SLASH.concat(contextName);
 			}
 
-			Map<String, String[]> parameters = HashMapBuilder.put(
-				"Bundle-SymbolicName", new String[] {bundleSymbolicName}
-			).put(
-				"Web-ContextPath", new String[] {contextName}
-			).build();
-
 			File generatedJarFile = _wabGenerator.generate(
-				_classLoader, warDir, parameters);
+				_classLoader, warDir,
+				HashMapBuilder.put(
+					"Bundle-SymbolicName", new String[] {bundleSymbolicName}
+				).put(
+					"Web-ContextPath", new String[] {contextName}
+				).build());
 
 			if (generatedJarFile != null) {
 				_file.unzip(generatedJarFile, warDir);

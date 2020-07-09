@@ -25,7 +25,6 @@ import com.liferay.registry.ServiceRegistration;
 import com.liferay.registry.ServiceTracker;
 import com.liferay.registry.ServiceTrackerCustomizer;
 
-import java.util.Map;
 import java.util.function.BiFunction;
 
 /**
@@ -54,13 +53,11 @@ public class RepositoryDefinerRegister {
 						_repositoryDefinerFactoryBiFunction.apply(
 							portalCapabilityLocator, _repositoryFactory);
 
-					Map<String, Object> properties =
+					return registry.registerService(
+						RepositoryDefiner.class, repositoryDefiner,
 						HashMapBuilder.<String, Object>put(
 							"class.name", repositoryDefiner.getClassName()
-						).build();
-
-					return registry.registerService(
-						RepositoryDefiner.class, repositoryDefiner, properties);
+						).build());
 				}
 
 				@Override

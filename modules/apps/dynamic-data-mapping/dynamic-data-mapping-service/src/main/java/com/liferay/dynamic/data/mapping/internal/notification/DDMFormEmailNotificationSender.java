@@ -429,17 +429,17 @@ public class DDMFormEmailNotificationSender {
 		String portletNamespace = _portal.getPortletNamespace(
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
 
-		Map<String, String[]> params = HashMapBuilder.put(
-			portletNamespace.concat("mvcPath"),
-			new String[] {"/admin/view_form_instance_records.jsp"}
-		).put(
-			portletNamespace.concat("formInstanceId"),
-			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())}
-		).build();
-
 		return _portal.getSiteAdminURL(
 			themeDisplay, DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
-			params);
+			HashMapBuilder.put(
+				portletNamespace.concat("mvcPath"),
+				new String[] {"/admin/view_form_instance_records.jsp"}
+			).put(
+				portletNamespace.concat("formInstanceId"),
+				new String[] {
+					String.valueOf(ddmFormInstance.getFormInstanceId())
+				}
+			).build());
 	}
 
 	protected String getViewFormURL(
@@ -451,22 +451,23 @@ public class DDMFormEmailNotificationSender {
 		String portletNamespace = _portal.getPortletNamespace(
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
 
-		Map<String, String[]> params = HashMapBuilder.put(
-			portletNamespace.concat("mvcPath"),
-			new String[] {"/admin/view_form_instance_record.jsp"}
-		).put(
-			portletNamespace.concat("formInstanceRecordId"),
-			new String[] {
-				String.valueOf(ddmFormInstanceRecord.getFormInstanceRecordId())
-			}
-		).put(
-			portletNamespace.concat("formInstanceId"),
-			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())}
-		).build();
-
 		return _portal.getSiteAdminURL(
 			themeDisplay, DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
-			params);
+			HashMapBuilder.put(
+				portletNamespace.concat("mvcPath"),
+				new String[] {"/admin/view_form_instance_record.jsp"}
+			).put(
+				portletNamespace.concat("formInstanceRecordId"),
+				new String[] {
+					String.valueOf(
+						ddmFormInstanceRecord.getFormInstanceRecordId())
+				}
+			).put(
+				portletNamespace.concat("formInstanceId"),
+				new String[] {
+					String.valueOf(ddmFormInstance.getFormInstanceId())
+				}
+			).build());
 	}
 
 	protected void populateParameters(

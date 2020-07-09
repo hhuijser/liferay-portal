@@ -117,7 +117,11 @@ public class SegmentsEntryRelIndexerMessageListener
 					return;
 				}
 
-				Map<String, Serializable> taskContextMap =
+				_backgroundTaskManager.addBackgroundTask(
+					segmentsEntry.getUserId(), segmentsEntry.getGroupId(),
+					backgroundTaskName,
+					SegmentsEntryRelIndexerBackgroundTaskExecutor.class.
+						getName(),
 					HashMapBuilder.<String, Serializable>put(
 						BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS,
 						true
@@ -125,14 +129,8 @@ public class SegmentsEntryRelIndexerMessageListener
 						"segmentsEntryId", segmentsEntry.getSegmentsEntryId()
 					).put(
 						"type", segmentsEntry.getType()
-					).build();
-
-				_backgroundTaskManager.addBackgroundTask(
-					segmentsEntry.getUserId(), segmentsEntry.getGroupId(),
-					backgroundTaskName,
-					SegmentsEntryRelIndexerBackgroundTaskExecutor.class.
-						getName(),
-					taskContextMap, new ServiceContext());
+					).build(),
+					new ServiceContext());
 			});
 
 		actionableDynamicQuery.performActions();

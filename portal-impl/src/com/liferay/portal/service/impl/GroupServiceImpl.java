@@ -452,14 +452,12 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 		PermissionChecker permissionChecker = getPermissionChecker();
 
 		if (permissionChecker.isCompanyAdmin()) {
-			LinkedHashMap<String, Object> params =
-				LinkedHashMapBuilder.<String, Object>put(
-					"site", Boolean.TRUE
-				).build();
-
 			return ListUtil.unique(
 				groupLocalService.search(
-					permissionChecker.getCompanyId(), null, null, null, params,
+					permissionChecker.getCompanyId(), null, null, null,
+					LinkedHashMapBuilder.<String, Object>put(
+						"site", Boolean.TRUE
+					).build(),
 					true, 0, max));
 		}
 

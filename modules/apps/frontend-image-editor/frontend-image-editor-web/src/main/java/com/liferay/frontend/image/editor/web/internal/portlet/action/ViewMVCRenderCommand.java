@@ -63,12 +63,11 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 		Template template = _getTemplate(renderRequest);
 
-		Map<String, Object> imageEditorCapabilitiesContext =
+		template.put(
+			"imageEditorCapabilities",
 			HashMapBuilder.<String, Object>put(
 				"tools", _getImageEditorToolsContexts(renderRequest)
-			).build();
-
-		template.put("imageEditorCapabilities", imageEditorCapabilitiesContext);
+			).build());
 
 		String entityURL = ParamUtil.getString(renderRequest, "entityURL");
 
@@ -211,15 +210,14 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 						"com.liferay.frontend.image.editor.capability.icon"));
 			}
 
-			Map<String, Object> context = HashMapBuilder.<String, Object>put(
-				"controls", controlContexts
-			).put(
-				"icon", icon
-			).put(
-				"title", LanguageUtil.get(resourceBundle, entry.getKey())
-			).build();
-
-			imageEditorToolsContexts.add(context);
+			imageEditorToolsContexts.add(
+				HashMapBuilder.<String, Object>put(
+					"controls", controlContexts
+				).put(
+					"icon", icon
+				).put(
+					"title", LanguageUtil.get(resourceBundle, entry.getKey())
+				).build());
 		}
 
 		return imageEditorToolsContexts;

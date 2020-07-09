@@ -159,17 +159,15 @@ public class AssetCategoryLocalServiceImpl
 
 		Locale locale = LocaleUtil.getSiteDefault();
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			locale, title
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			locale, StringPool.BLANK
-		).build();
-
 		return assetCategoryLocalService.addCategory(
 			userId, groupId, AssetCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
-			titleMap, descriptionMap, vocabularyId, null, serviceContext);
+			HashMapBuilder.put(
+				locale, title
+			).build(),
+			HashMapBuilder.put(
+				locale, StringPool.BLANK
+			).build(),
+			vocabularyId, null, serviceContext);
 	}
 
 	@Override
@@ -661,16 +659,14 @@ public class AssetCategoryLocalServiceImpl
 
 		SearchContext searchContext = new SearchContext();
 
-		Map<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.ASSET_PARENT_CATEGORY_IDS, parentCategoryIds
 			).put(
 				Field.ASSET_VOCABULARY_IDS, vocabularyIds
 			).put(
 				Field.TITLE, title
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);

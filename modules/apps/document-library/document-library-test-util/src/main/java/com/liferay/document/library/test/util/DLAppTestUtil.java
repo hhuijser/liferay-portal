@@ -31,8 +31,6 @@ import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 
 import java.io.Serializable;
 
-import java.util.Map;
-
 /**
  * @author Alexander Chow
  */
@@ -100,16 +98,14 @@ public abstract class DLAppTestUtil {
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
-		Map<String, Serializable> workflowContext =
+		DLFileEntryLocalServiceUtil.updateStatus(
+			TestPropsValues.getUserId(), fileVersion.getFileVersionId(),
+			WorkflowConstants.STATUS_APPROVED, serviceContext,
 			HashMapBuilder.<String, Serializable>put(
 				WorkflowConstants.CONTEXT_URL, "http://localhost"
 			).put(
 				"event", "add"
-			).build();
-
-		DLFileEntryLocalServiceUtil.updateStatus(
-			TestPropsValues.getUserId(), fileVersion.getFileVersionId(),
-			WorkflowConstants.STATUS_APPROVED, serviceContext, workflowContext);
+			).build());
 
 		return DLAppLocalServiceUtil.getFileEntry(fileEntry.getFileEntryId());
 	}

@@ -18,8 +18,6 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 
-import java.util.LinkedHashMap;
-
 /**
  * @author Brian Wing Shun Chan
  * @author Jonathan Potter
@@ -36,12 +34,11 @@ public class OrganizationDirectory extends Directory {
 		addAttribute("objectclass", "top");
 		addAttribute("ou", organization.getName());
 
-		LinkedHashMap<String, Object> params =
+		addMemberAttributes(
+			top, company,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersOrgs", organization.getOrganizationId()
-			).build();
-
-		addMemberAttributes(top, company, params);
+			).build());
 
 		setName(top, company, "Organizations", organization.getName());
 	}

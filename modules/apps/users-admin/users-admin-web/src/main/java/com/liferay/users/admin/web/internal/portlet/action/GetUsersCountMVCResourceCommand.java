@@ -26,8 +26,6 @@ import com.liferay.users.admin.constants.UsersAdminPortletKeys;
 
 import java.io.PrintWriter;
 
-import java.util.LinkedHashMap;
-
 import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
@@ -75,13 +73,11 @@ public class GetUsersCountMVCResourceCommand implements MVCResourceCommand {
 		int count = 0;
 
 		for (long organizationId : organizationIds) {
-			LinkedHashMap<String, Object> params =
+			count += _userLocalService.searchCount(
+				companyId, null, status,
 				LinkedHashMapBuilder.<String, Object>put(
 					"usersOrgs", organizationId
-				).build();
-
-			count += _userLocalService.searchCount(
-				companyId, null, status, params);
+				).build());
 		}
 
 		return count;
@@ -121,13 +117,11 @@ public class GetUsersCountMVCResourceCommand implements MVCResourceCommand {
 		int count = 0;
 
 		for (long userGroupId : userGroupIds) {
-			LinkedHashMap<String, Object> params =
+			count += _userLocalService.searchCount(
+				companyId, null, status,
 				LinkedHashMapBuilder.<String, Object>put(
 					"usersUserGroups", userGroupId
-				).build();
-
-			count += _userLocalService.searchCount(
-				companyId, null, status, params);
+				).build());
 		}
 
 		return count;

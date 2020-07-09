@@ -392,12 +392,9 @@ public class MembershipRequestLocalServiceImpl
 		mailTemplateContextBuilder.put(
 			"[$USER_NAME$]", HtmlUtil.escape(user.getFullName()));
 
-		MailTemplateContext mailTemplateContext =
-			mailTemplateContextBuilder.build();
-
 		_sendNotificationEmail(
 			fromAddress, fromName, toAddress, user, subject, body,
-			membershipRequest, mailTemplateContext);
+			membershipRequest, mailTemplateContextBuilder.build());
 	}
 
 	protected void notifyGroupAdministrators(

@@ -598,21 +598,19 @@ public class SegmentsEntryLocalServiceImpl
 	private void _reindexSegmentsEntryRels(SegmentsEntry segmentsEntry)
 		throws PortalException {
 
-		Map<String, Serializable> taskContextMap =
+		_backgroundTaskManager.addBackgroundTask(
+			segmentsEntry.getUserId(), segmentsEntry.getGroupId(),
+			SegmentsEntryRelIndexerBackgroundTaskExecutor.getBackgroundTaskName(
+				segmentsEntry.getSegmentsEntryId()),
+			SegmentsEntryRelIndexerBackgroundTaskExecutor.class.getName(),
 			HashMapBuilder.<String, Serializable>put(
 				BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS, true
 			).put(
 				"segmentsEntryId", segmentsEntry.getSegmentsEntryId()
 			).put(
 				"type", segmentsEntry.getType()
-			).build();
-
-		_backgroundTaskManager.addBackgroundTask(
-			segmentsEntry.getUserId(), segmentsEntry.getGroupId(),
-			SegmentsEntryRelIndexerBackgroundTaskExecutor.getBackgroundTaskName(
-				segmentsEntry.getSegmentsEntryId()),
-			SegmentsEntryRelIndexerBackgroundTaskExecutor.class.getName(),
-			taskContextMap, new ServiceContext());
+			).build(),
+			new ServiceContext());
 	}
 
 	@Reference

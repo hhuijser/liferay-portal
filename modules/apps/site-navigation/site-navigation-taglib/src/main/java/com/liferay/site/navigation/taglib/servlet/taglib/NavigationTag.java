@@ -33,7 +33,6 @@ import com.liferay.site.navigation.taglib.internal.util.NavItemUtil;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -115,23 +114,21 @@ public class NavigationTag extends IncludeTag {
 		HttpServletResponse httpServletResponse =
 			(HttpServletResponse)pageContext.getResponse();
 
-		Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-			"branchNavItems", branchNavItems
-		).put(
-			"displayDepth", _displayDepth
-		).put(
-			"includedLayouts", _includedLayouts
-		).put(
-			"preview", _preview
-		).put(
-			"rootLayoutLevel", _rootLayoutLevel
-		).put(
-			"rootLayoutType", _rootLayoutType
-		).build();
-
 		String result = portletDisplayTemplate.renderDDMTemplate(
 			request, httpServletResponse, portletDisplayDDMTemplate, navItems,
-			contextObjects);
+			HashMapBuilder.<String, Object>put(
+				"branchNavItems", branchNavItems
+			).put(
+				"displayDepth", _displayDepth
+			).put(
+				"includedLayouts", _includedLayouts
+			).put(
+				"preview", _preview
+			).put(
+				"rootLayoutLevel", _rootLayoutLevel
+			).put(
+				"rootLayoutType", _rootLayoutType
+			).build());
 
 		JspWriter jspWriter = pageContext.getOut();
 

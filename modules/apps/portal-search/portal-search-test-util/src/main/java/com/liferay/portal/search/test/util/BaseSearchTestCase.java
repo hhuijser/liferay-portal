@@ -87,14 +87,14 @@ public abstract class BaseSearchTestCase {
 		BaseModel<?> parentBaseModel = getParentBaseModel(
 			group, serviceContext);
 
-		Map<Locale, String> keywordsMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), "entity title"
-		).put(
-			LocaleUtil.HUNGARY, "entitas neve"
-		).build();
-
 		baseModel = addBaseModelWithWorkflow(
-			parentBaseModel, true, keywordsMap, serviceContext);
+			parentBaseModel, true,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), "entity title"
+			).put(
+				LocaleUtil.HUNGARY, "entitas neve"
+			).build(),
+			serviceContext);
 
 		assertBaseModelsCount(initialBaseModelsSearchCount + 1, searchContext);
 

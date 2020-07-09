@@ -149,11 +149,10 @@ public class DefaultLicenseManagerImpl implements LicenseManager {
 
 	@Override
 	public int getLicenseState(String productId) {
-		Map<String, String> licenseProperties = HashMapBuilder.put(
-			"productId", productId
-		).build();
-
-		return getLicenseState(licenseProperties);
+		return getLicenseState(
+			HashMapBuilder.put(
+				"productId", productId
+			).build());
 	}
 
 	@Override

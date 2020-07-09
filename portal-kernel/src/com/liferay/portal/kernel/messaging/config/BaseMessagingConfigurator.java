@@ -356,12 +356,11 @@ public abstract class BaseMessagingConfigurator
 			Destination.class);
 
 		for (Destination destination : _destinations) {
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"destination.name", destination.getName()
-			).build();
-
 			_destinationServiceRegistrar.registerService(
-				Destination.class, destination, properties);
+				Destination.class, destination,
+				HashMapBuilder.<String, Object>put(
+					"destination.name", destination.getName()
+				).build());
 		}
 	}
 

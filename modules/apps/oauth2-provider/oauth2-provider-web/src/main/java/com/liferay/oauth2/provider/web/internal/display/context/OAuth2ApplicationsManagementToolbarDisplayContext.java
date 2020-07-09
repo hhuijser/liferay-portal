@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.PortletURL;
 
@@ -112,16 +111,15 @@ public class OAuth2ApplicationsManagementToolbarDisplayContext
 	public List<DropdownItem> getFilterDropdownItems() {
 		return DropdownItemListBuilder.addGroup(
 			dropdownGroupItem -> {
-				Map<String, String> orderColumnsMap = HashMapBuilder.put(
-					"clientId", "client-id"
-				).put(
-					"createDate", "createDate"
-				).put(
-					"name", "name"
-				).build();
-
 				dropdownGroupItem.setDropdownItems(
-					getOrderByDropdownItems(orderColumnsMap));
+					getOrderByDropdownItems(
+						HashMapBuilder.put(
+							"clientId", "client-id"
+						).put(
+							"createDate", "createDate"
+						).put(
+							"name", "name"
+						).build()));
 
 				dropdownGroupItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "order-by"));

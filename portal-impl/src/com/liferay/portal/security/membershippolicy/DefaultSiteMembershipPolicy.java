@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import java.io.Serializable;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -157,7 +156,8 @@ public class DefaultSiteMembershipPolicy extends BaseSiteMembershipPolicy {
 	protected List<Group> getLimitedChildrenGroups(Group group)
 		throws PortalException {
 
-		LinkedHashMap<String, Object> groupParams =
+		List<Group> childrenGroups = GroupLocalServiceUtil.search(
+			group.getCompanyId(), null, StringPool.BLANK,
 			LinkedHashMapBuilder.<String, Object>put(
 				"groupsTree", ListUtil.fromArray(group)
 			).put(
@@ -165,10 +165,7 @@ public class DefaultSiteMembershipPolicy extends BaseSiteMembershipPolicy {
 				GroupConstants.MEMBERSHIP_RESTRICTION_TO_PARENT_SITE_MEMBERS
 			).put(
 				"site", Boolean.TRUE
-			).build();
-
-		List<Group> childrenGroups = GroupLocalServiceUtil.search(
-			group.getCompanyId(), null, StringPool.BLANK, groupParams,
+			).build(),
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		List<Group> filteredChildrenGroups = ListUtil.copy(childrenGroups);

@@ -601,13 +601,12 @@ public class AssetPublisherDisplayContext {
 				List<Map<String, String>> selectedItems = new ArrayList<>();
 
 				for (String tagName : tagNames) {
-					Map<String, String> item = HashMapBuilder.put(
-						"label", tagName
-					).put(
-						"value", tagName
-					).build();
-
-					selectedItems.add(item);
+					selectedItems.add(
+						HashMapBuilder.put(
+							"label", tagName
+						).put(
+							"value", tagName
+						).build());
 				}
 
 				ruleJSONObject.put("selectedItems", selectedItems);
@@ -655,15 +654,13 @@ public class AssetPublisherDisplayContext {
 				List<Map<String, Object>> selectedItems = new ArrayList<>();
 
 				for (AssetCategory category : categories) {
-					Map<String, Object> selectedCategory =
+					selectedItems.add(
 						HashMapBuilder.<String, Object>put(
 							"label",
 							category.getTitle(_themeDisplay.getLocale())
 						).put(
 							"value", category.getCategoryId()
-						).build();
-
-					selectedItems.add(selectedCategory);
+						).build());
 				}
 
 				ruleJSONObject.put("selectedItems", selectedItems);

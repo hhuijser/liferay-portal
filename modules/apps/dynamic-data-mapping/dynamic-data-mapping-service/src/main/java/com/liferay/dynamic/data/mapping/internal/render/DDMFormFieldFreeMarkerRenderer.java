@@ -120,19 +120,19 @@ public class DDMFormFieldFreeMarkerRenderer implements DDMFormFieldRenderer {
 			String label, String value)
 		throws Exception {
 
-		Map<String, Object> fieldStructure = HashMapBuilder.<String, Object>put(
-			"children", StringPool.BLANK
-		).put(
-			"fieldNamespace", StringUtil.randomId()
-		).put(
-			"label", label
-		).put(
-			"name", StringUtil.randomId()
-		).put(
-			"value", value
-		).build();
-
-		freeMarkerContext.put("fieldStructure", fieldStructure);
+		freeMarkerContext.put(
+			"fieldStructure",
+			HashMapBuilder.<String, Object>put(
+				"children", StringPool.BLANK
+			).put(
+				"fieldNamespace", StringUtil.randomId()
+			).put(
+				"label", label
+			).put(
+				"name", StringUtil.randomId()
+			).put(
+				"value", value
+			).build());
 
 		sb.append(
 			processFTL(

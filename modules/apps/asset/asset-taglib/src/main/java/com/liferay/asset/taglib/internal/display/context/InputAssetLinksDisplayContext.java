@@ -224,7 +224,7 @@ public class InputAssetLinksDisplayContext {
 					_getSelectorEntries(assetRendererFactory));
 			}
 			else {
-				Map<String, Object> selectorEntry =
+				selectorEntries.add(
 					HashMapBuilder.<String, Object>put(
 						"data", _getSelectorEntryData(assetRendererFactory)
 					).put(
@@ -235,9 +235,7 @@ public class InputAssetLinksDisplayContext {
 					).put(
 						"message",
 						_getSelectorEntryMessage(assetRendererFactory)
-					).build();
-
-				selectorEntries.add(selectorEntry);
+					).build());
 			}
 		}
 
@@ -378,7 +376,7 @@ public class InputAssetLinksDisplayContext {
 		List<Map<String, Object>> selectorEntries = new ArrayList<>();
 
 		for (ClassType classType : classTypes) {
-			Map<String, Object> selectorEntry =
+			selectorEntries.add(
 				HashMapBuilder.<String, Object>put(
 					"data",
 					_getSelectorEntryData(assetRendererFactory, classType)
@@ -389,9 +387,7 @@ public class InputAssetLinksDisplayContext {
 					"id", _getSelectorEntryId(assetRendererFactory, classType)
 				).put(
 					"message", _getSelectorEntryMessage(classType)
-				).build();
-
-			selectorEntries.add(selectorEntry);
+				).build());
 		}
 
 		return selectorEntries;

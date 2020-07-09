@@ -150,21 +150,21 @@ public class AnnotationsExtendedAttributeDefinition
 				method.getAnnotation(ExtendedAttributeDefinition.class);
 
 			if (extendedAttributeDefinition != null) {
-				Map<String, String> map = HashMapBuilder.put(
-					"description-arguments",
-					StringUtil.merge(
-						extendedAttributeDefinition.descriptionArguments())
-				).put(
-					"name-arguments",
-					StringUtil.merge(
-						extendedAttributeDefinition.nameArguments())
-				).put(
-					"required-input",
-					String.valueOf(extendedAttributeDefinition.requiredInput())
-				).build();
-
 				_extensionAttributes.put(
-					ExtendedAttributeDefinition.XML_NAMESPACE, map);
+					ExtendedAttributeDefinition.XML_NAMESPACE,
+					HashMapBuilder.put(
+						"description-arguments",
+						StringUtil.merge(
+							extendedAttributeDefinition.descriptionArguments())
+					).put(
+						"name-arguments",
+						StringUtil.merge(
+							extendedAttributeDefinition.nameArguments())
+					).put(
+						"required-input",
+						String.valueOf(
+							extendedAttributeDefinition.requiredInput())
+					).build());
 			}
 		}
 		catch (NoSuchMethodException noSuchMethodException) {

@@ -28,9 +28,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.security.service.access.policy.model.SAPEntry;
 import com.liferay.portal.security.service.access.policy.service.SAPEntryLocalService;
 
-import java.util.Locale;
-import java.util.Map;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -75,13 +72,12 @@ public class SyncSAPEntryActivator {
 			boolean defaultSAPEntry = GetterUtil.getBoolean(
 				sapEntryObjectArray[2]);
 
-			Map<Locale, String> map = HashMapBuilder.put(
-				LocaleUtil.getDefault(), name
-			).build();
-
 			_sapEntryLocalService.addSAPEntry(
 				_userLocalService.getDefaultUserId(companyId),
-				allowedServiceSignatures, defaultSAPEntry, true, name, map,
+				allowedServiceSignatures, defaultSAPEntry, true, name,
+				HashMapBuilder.put(
+					LocaleUtil.getDefault(), name
+				).build(),
 				new ServiceContext());
 		}
 	}

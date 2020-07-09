@@ -33,7 +33,6 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Eudaldo Alonso
@@ -141,14 +140,12 @@ public class MBTestUtil {
 			MBMessage message, ServiceContext serviceContext)
 		throws Exception {
 
-		Map<String, Serializable> workflowContext =
-			HashMapBuilder.<String, Serializable>put(
-				WorkflowConstants.CONTEXT_URL, "http://localhost"
-			).build();
-
 		return MBMessageLocalServiceUtil.updateStatus(
 			message.getUserId(), message.getMessageId(),
-			WorkflowConstants.STATUS_APPROVED, serviceContext, workflowContext);
+			WorkflowConstants.STATUS_APPROVED, serviceContext,
+			HashMapBuilder.<String, Serializable>put(
+				WorkflowConstants.CONTEXT_URL, "http://localhost"
+			).build());
 	}
 
 }

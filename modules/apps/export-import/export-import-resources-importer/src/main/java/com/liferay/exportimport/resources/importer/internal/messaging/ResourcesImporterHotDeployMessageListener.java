@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Dictionary;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -258,12 +257,10 @@ public class ResourcesImporterHotDeployMessageListener
 			message.put("targetClassPK", importer.getTargetClassPK());
 
 			if (Validator.isNotNull(messageResponseId)) {
-				Map<String, Object> responseMap =
+				message.setPayload(
 					HashMapBuilder.<String, Object>put(
 						"groupId", importer.getTargetClassPK()
-					).build();
-
-				message.setPayload(responseMap);
+					).build());
 
 				message.setResponseId(messageResponseId);
 			}

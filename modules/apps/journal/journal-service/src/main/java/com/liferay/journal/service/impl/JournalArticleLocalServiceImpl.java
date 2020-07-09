@@ -6865,7 +6865,7 @@ public class JournalArticleLocalServiceImpl
 
 		searchContext.setAndSearch(andSearch);
 
-		Map<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.ARTICLE_ID, articleId
 			).put(
@@ -6884,9 +6884,7 @@ public class JournalArticleLocalServiceImpl
 				"ddmTemplateKey", ddmTemplateKey
 			).put(
 				"params", params
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);

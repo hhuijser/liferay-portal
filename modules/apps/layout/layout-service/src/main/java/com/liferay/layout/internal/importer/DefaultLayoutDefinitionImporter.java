@@ -36,8 +36,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
 
-import java.util.Map;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -70,24 +68,23 @@ public class DefaultLayoutDefinitionImporter {
 				releaseInfo = ReleaseInfo.getReleaseInfo();
 			}
 
-			Map<String, String> values = HashMapBuilder.put(
-				"RELEASE_INFO",
-				"Welcome to ".concat(
-					StringUtil.replace(
-						releaseInfo, CharPool.OPEN_PARENTHESIS,
-						"<br>" + StringPool.OPEN_PARENTHESIS)
-				).concat(
-					"."
-				)
-			).put(
-				"WELCOME_IMAGE_URL",
-				_getWelcomeImageURL(
-					layout.getGroupId(), layout.getUserId(), layout.getPlid(),
-					serviceContext)
-			).build();
-
 			String layoutDefinitionJSON = StringUtil.replace(
-				_DEFAULT_LAYOUT_DEFINITION, "${", "}", values);
+				_DEFAULT_LAYOUT_DEFINITION, "${", "}",
+				HashMapBuilder.put(
+					"RELEASE_INFO",
+					"Welcome to ".concat(
+						StringUtil.replace(
+							releaseInfo, CharPool.OPEN_PARENTHESIS,
+							"<br>" + StringPool.OPEN_PARENTHESIS)
+					).concat(
+						"."
+					)
+				).put(
+					"WELCOME_IMAGE_URL",
+					_getWelcomeImageURL(
+						layout.getGroupId(), layout.getUserId(),
+						layout.getPlid(), serviceContext)
+				).build());
 
 			_layoutPageTemplatesImporter.importPageElement(
 				layout, layoutStructure, layoutStructure.getMainItemId(),

@@ -32,9 +32,6 @@ import com.liferay.segments.service.SegmentsEntryLocalServiceUtil;
 import com.liferay.segments.service.SegmentsExperienceLocalServiceUtil;
 import com.liferay.segments.service.SegmentsExperimentLocalServiceUtil;
 
-import java.util.Locale;
-import java.util.Map;
-
 /**
  * @author Eduardo García
  */
@@ -107,17 +104,15 @@ public class SegmentsTestUtil {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), name
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), description
-		).build();
-
 		return SegmentsEntryLocalServiceUtil.addSegmentsEntry(
-			segmentsEntryKey, nameMap, descriptionMap, true, criteria, source,
-			type, serviceContext);
+			segmentsEntryKey,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), description
+			).build(),
+			true, criteria, source, type, serviceContext);
 	}
 
 	public static SegmentsExperience addSegmentsExperience(

@@ -276,12 +276,10 @@ public class CalendarResourceStagedModelDataHandler
 		Group scopeGroup = _groupLocalService.getGroup(
 			portletDataContext.getScopeGroupId());
 
-		Map<Locale, String> calendarResourceNameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), scopeGroup.getDescriptiveName()
-		).build();
-
 		return LocalizationUtil.populateLocalizationMap(
-			calendarResourceNameMap,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), scopeGroup.getDescriptiveName()
+			).build(),
 			LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
 			scopeGroup.getGroupId());
 	}

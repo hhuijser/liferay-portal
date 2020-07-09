@@ -297,10 +297,8 @@ public abstract class BaseMoreLikeThisQueryTestCase
 
 		documentBuilder.setString(_FIELD_TITLE, title);
 
-		Document document = documentBuilder.build();
-
 		IndexDocumentRequest indexDocumentRequest = new IndexDocumentRequest(
-			String.valueOf(getCompanyId()), document);
+			String.valueOf(getCompanyId()), documentBuilder.build());
 
 		indexDocumentRequest.setType("LiferayDocumentType");
 

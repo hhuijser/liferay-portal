@@ -69,15 +69,14 @@ public class GroupTestUtil {
 			return scopeGroup;
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), String.valueOf(layout.getPlid())
-		).build();
-
 		return GroupLocalServiceUtil.addGroup(
 			userId, parentGroupId, Layout.class.getName(), layout.getPlid(),
-			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap, null, 0, true,
-			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, false, true,
-			null);
+			GroupConstants.DEFAULT_LIVE_GROUP_ID,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), String.valueOf(layout.getPlid())
+			).build(),
+			null, 0, true, GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null,
+			false, true, null);
 	}
 
 	public static Group addGroup(

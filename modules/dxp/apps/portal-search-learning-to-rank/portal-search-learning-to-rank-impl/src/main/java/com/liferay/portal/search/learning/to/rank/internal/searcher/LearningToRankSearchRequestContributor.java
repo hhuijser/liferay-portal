@@ -92,13 +92,12 @@ public class LearningToRankSearchRequestContributor
 	protected List<Rescore> getRescores(
 		SearchRequest searchRequest, RescoreBuilder rescoreBuilder) {
 
-		Rescore rescore = rescoreBuilder.query(
-			getRescoreQuery(_model, searchRequest.getQueryString())
-		).windowSize(
-			1000
-		).build();
-
-		return Arrays.asList(rescore);
+		return Arrays.asList(
+			rescoreBuilder.query(
+				getRescoreQuery(_model, searchRequest.getQueryString())
+			).windowSize(
+				1000
+			).build());
 	}
 
 	@Reference

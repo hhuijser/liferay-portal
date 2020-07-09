@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.search.document.Document;
 import com.liferay.portal.search.hits.SearchHits;
-import com.liferay.portal.search.searcher.SearchRequest;
 import com.liferay.portal.search.searcher.SearchResponse;
 import com.liferay.portal.search.searcher.Searcher;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -122,16 +121,14 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 			int status, int cur, int delta, String sortField, boolean reverse)
 		throws PortalException {
 
-		Map<String, Serializable> attributes =
-			HashMapBuilder.<String, Serializable>put(
-				"accountEntryIds", new long[] {accountEntryId}
-			).put(
-				"emailAddressDomains", emailAddressDomains
-			).build();
-
 		return _getUserBaseModelSearchResult(
 			_getSearchResponse(
-				attributes, cur, delta, keywords, reverse, sortField, status));
+				HashMapBuilder.<String, Serializable>put(
+					"accountEntryIds", new long[] {accountEntryId}
+				).put(
+					"emailAddressDomains", emailAddressDomains
+				).build(),
+				cur, delta, keywords, reverse, sortField, status));
 	}
 
 	@Override
@@ -148,37 +145,34 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 			}
 		}
 
-		Map<String, Serializable> attributes =
-			HashMapBuilder.<String, Serializable>put(
-				"accountEntryIds", accountEntryIds
-			).build();
-
 		return _getUserBaseModelSearchResult(
 			_getSearchResponse(
-				attributes, cur, delta, keywords, reverse, sortField, status));
+				HashMapBuilder.<String, Serializable>put(
+					"accountEntryIds", accountEntryIds
+				).build(),
+				cur, delta, keywords, reverse, sortField, status));
 	}
 
 	private SearchResponse _getSearchResponse(
 		Map<String, Serializable> attributes, int cur, int delta,
 		String keywords, boolean reverse, String sortField, int status) {
 
-		SearchRequest searchRequest = _userSearchRequestBuilder.attributes(
-			attributes
-		).cur(
-			cur
-		).delta(
-			delta
-		).keywords(
-			keywords
-		).reverse(
-			reverse
-		).sortField(
-			sortField
-		).status(
-			status
-		).build();
-
-		return _searcher.search(searchRequest);
+		return _searcher.search(
+			_userSearchRequestBuilder.attributes(
+				attributes
+			).cur(
+				cur
+			).delta(
+				delta
+			).keywords(
+				keywords
+			).reverse(
+				reverse
+			).sortField(
+				sortField
+			).status(
+				status
+			).build());
 	}
 
 	private BaseModelSearchResult<User> _getUserBaseModelSearchResult(

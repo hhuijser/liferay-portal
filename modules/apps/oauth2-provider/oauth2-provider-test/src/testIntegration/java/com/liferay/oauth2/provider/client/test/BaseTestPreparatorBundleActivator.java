@@ -48,8 +48,6 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -308,13 +306,13 @@ public abstract class BaseTestPreparatorBundleActivator
 			autoCloseables.add(
 				() -> bundleContext.ungetService(serviceReference));
 
-			Map<Locale, String> titleMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), name
-			).build();
-
 			SAPEntry sapEntry = sapEntryLocalService.addSAPEntry(
 				userId, allowedServiceSignatures, defaultSAPEntry, enabled,
-				name, titleMap, new ServiceContext());
+				name,
+				HashMapBuilder.put(
+					LocaleUtil.getDefault(), name
+				).build(),
+				new ServiceContext());
 
 			autoCloseables.add(
 				() -> sapEntryLocalService.deleteSAPEntry(

@@ -146,21 +146,18 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 				User user = userLocalService.getUser(
 					permissionChecker.getUserId());
 
-				LinkedHashMap<String, Object> organizationParams =
-					LinkedHashMapBuilder.<String, Object>put(
-						"accountsOrgsTree",
-						ListUtil.filter(
-							user.getOrganizations(true),
-							organization -> _hasManageAccountsPermission(
-								permissionChecker, organization))
-					).build();
-
 				BaseModelSearchResult<Organization> baseModelSearchResult =
 					_organizationLocalService.searchOrganizations(
 						user.getCompanyId(),
 						OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, null,
-						organizationParams, QueryUtil.ALL_POS,
-						QueryUtil.ALL_POS, null);
+						LinkedHashMapBuilder.<String, Object>put(
+							"accountsOrgsTree",
+							ListUtil.filter(
+								user.getOrganizations(true),
+								organization -> _hasManageAccountsPermission(
+									permissionChecker, organization))
+						).build(),
+						QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 				if (baseModelSearchResult.getLength() == 0) {
 					return new BaseModelSearchResult<>(

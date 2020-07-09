@@ -67,7 +67,6 @@ import com.liferay.taglib.security.PermissionsURLTag;
 import com.liferay.trash.TrashHelper;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
@@ -579,17 +578,16 @@ public class JournalArticleActionDropdownItemsProvider {
 			JournalUtil.getPreviewPlid(_article, _themeDisplay),
 			JournalPortletKeys.JOURNAL, PortletRequest.RENDER_PHASE);
 
-		Map<String, String[]> parameters = HashMapBuilder.put(
-			"articleId", new String[] {_article.getArticleId()}
-		).put(
-			"groupId", new String[] {String.valueOf(_article.getGroupId())}
-		).put(
-			"mvcPath", new String[] {"/preview_article_content.jsp"}
-		).put(
-			"version", new String[] {String.valueOf(_article.getVersion())}
-		).build();
-
-		portletURL.setParameters(parameters);
+		portletURL.setParameters(
+			HashMapBuilder.put(
+				"articleId", new String[] {_article.getArticleId()}
+			).put(
+				"groupId", new String[] {String.valueOf(_article.getGroupId())}
+			).put(
+				"mvcPath", new String[] {"/preview_article_content.jsp"}
+			).put(
+				"version", new String[] {String.valueOf(_article.getVersion())}
+			).build());
 
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 

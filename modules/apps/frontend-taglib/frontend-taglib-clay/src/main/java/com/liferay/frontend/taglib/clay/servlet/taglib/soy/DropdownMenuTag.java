@@ -54,15 +54,15 @@ public class DropdownMenuTag extends BaseClayTag {
 		Map<String, Object> context = getContext();
 
 		if (Validator.isNotNull(context.get("buttonLabel"))) {
-			Map<String, String> button = HashMapBuilder.put(
-				"label", (String)context.get("buttonLabel")
-			).put(
-				"style", (String)context.get("buttonStyle")
-			).put(
-				"type", (String)context.get("buttonType")
-			).build();
-
-			putValue("button", button);
+			putValue(
+				"button",
+				HashMapBuilder.put(
+					"label", (String)context.get("buttonLabel")
+				).put(
+					"style", (String)context.get("buttonStyle")
+				).put(
+					"type", (String)context.get("buttonType")
+				).build());
 		}
 
 		if (PortalUtil.isRightToLeft(request)) {

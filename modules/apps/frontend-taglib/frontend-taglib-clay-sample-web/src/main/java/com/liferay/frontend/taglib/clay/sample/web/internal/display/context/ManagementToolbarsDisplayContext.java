@@ -96,7 +96,7 @@ public class ManagementToolbarsDisplayContext {
 
 		_filterDropdownItems = DropdownItemListBuilder.addGroup(
 			dropdownGroupItem -> {
-				List<DropdownItem> filterByDropdownItems =
+				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						dropdownItem -> {
 							dropdownItem.setHref("#1");
@@ -107,15 +107,13 @@ public class ManagementToolbarsDisplayContext {
 							dropdownItem.setHref("#2");
 							dropdownItem.setLabel("Filter 2");
 						}
-					).build();
-
-				dropdownGroupItem.setDropdownItems(filterByDropdownItems);
+					).build());
 
 				dropdownGroupItem.setLabel("Filter By");
 			}
 		).addGroup(
 			dropdownGroupItem -> {
-				List<DropdownItem> orderByDropdownItems =
+				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						dropdownItem -> {
 							dropdownItem.setHref("#3");
@@ -126,9 +124,7 @@ public class ManagementToolbarsDisplayContext {
 							dropdownItem.setHref("#4");
 							dropdownItem.setLabel("Order 2");
 						}
-					).build();
-
-				dropdownGroupItem.setDropdownItems(orderByDropdownItems);
+					).build());
 
 				dropdownGroupItem.setLabel("Order By");
 			}

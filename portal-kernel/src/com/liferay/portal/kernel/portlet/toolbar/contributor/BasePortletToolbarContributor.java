@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -63,11 +62,10 @@ public abstract class BasePortletToolbarContributor
 
 		Menu menu = new Menu();
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"qa-id", "addButton"
-		).build();
-
-		menu.setData(data);
+		menu.setData(
+			HashMapBuilder.<String, Object>put(
+				"qa-id", "addButton"
+			).build());
 
 		menu.setDirection("right");
 		menu.setExtended(false);

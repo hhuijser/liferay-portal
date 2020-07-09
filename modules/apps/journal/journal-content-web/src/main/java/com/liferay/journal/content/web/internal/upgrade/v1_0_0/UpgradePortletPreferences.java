@@ -133,19 +133,17 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 		userToolAssetAddonEntryKeys = upgradeBooleanAssetAddonEntry(
 			userToolAssetAddonEntryKeys, portletPreferences, "enablePrint");
 
-		Map<String, String> extensions = HashMapBuilder.put(
-			"doc", "enableDOC"
-		).put(
-			"odt", "enableODT"
-		).put(
-			"pdf", "enablePDF"
-		).put(
-			"txt", "enableTXT"
-		).build();
-
 		userToolAssetAddonEntryKeys = upgradeMultiValueAssetAddonEntryKeys(
 			userToolAssetAddonEntryKeys, portletPreferences, "extensions",
-			extensions);
+			HashMapBuilder.put(
+				"doc", "enableDOC"
+			).put(
+				"odt", "enableODT"
+			).put(
+				"pdf", "enablePDF"
+			).put(
+				"txt", "enableTXT"
+			).build());
 
 		userToolAssetAddonEntryKeys = upgradeBooleanAssetAddonEntry(
 			userToolAssetAddonEntryKeys, portletPreferences,

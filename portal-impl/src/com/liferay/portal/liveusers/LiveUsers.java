@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -443,14 +442,12 @@ public class LiveUsers {
 
 		Map<Long, Set<Long>> liveUsers = _getLiveUsers(companyId);
 
-		LinkedHashMap<String, Object> groupParams =
+		List<Group> groups = GroupLocalServiceUtil.search(
+			companyId, null, null,
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersGroups", userId
-			).build();
-
-		List<Group> groups = GroupLocalServiceUtil.search(
-			companyId, null, null, groupParams, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS);
+			).build(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
 			Set<Long> groupUsers = _getGroupUsers(

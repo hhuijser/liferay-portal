@@ -967,7 +967,7 @@ public class DDMFormInstanceRecordLocalServiceImpl
 
 		searchContext.setAndSearch(true);
 
-		Map<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.CLASS_NAME_ID,
 				_classNameLocalService.getClassNameId(DDMFormInstance.class)
@@ -981,9 +981,7 @@ public class DDMFormInstanceRecordLocalServiceImpl
 				"notEmptyFields", notEmptyFields
 			).put(
 				"structureId", ddmFormInstance.getStructureId()
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(ddmFormInstance.getCompanyId());
 		searchContext.setEnd(end);

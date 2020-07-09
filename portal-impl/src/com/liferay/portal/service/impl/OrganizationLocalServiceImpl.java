@@ -1094,11 +1094,12 @@ public class OrganizationLocalServiceImpl
 		}
 
 		if (!ListUtil.isEmpty(organizationsTree)) {
-			if (userFinder.countByUser(
-					userId,
-					LinkedHashMapBuilder.<String, Object>put(
-						"usersOrgsTree", organizationsTree).build()) > 0) {
+			LinkedHashMap<String, Object> params =
+				LinkedHashMapBuilder.<String, Object>put(
+					"usersOrgsTree", organizationsTree
+				).build();
 
+			if (userFinder.countByUser(userId, params) > 0) {
 				return true;
 			}
 		}

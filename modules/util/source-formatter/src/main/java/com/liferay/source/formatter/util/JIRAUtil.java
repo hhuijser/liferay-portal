@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
 
@@ -167,7 +168,12 @@ public class JIRAUtil {
 			URL url = new URL(
 				"https://issues.liferay.com/rest/api/2/issue/" + jiraTicketId);
 
-			url.openStream();
+			HttpURLConnection urlc = (HttpURLConnection)url.openConnection();
+
+			urlc.setConnectTimeout(10000);
+			urlc.setReadTimeout(10000);
+
+			urlc.getInputStream();
 		}
 		catch (IOException ioException) {
 			if (ioException instanceof FileNotFoundException) {

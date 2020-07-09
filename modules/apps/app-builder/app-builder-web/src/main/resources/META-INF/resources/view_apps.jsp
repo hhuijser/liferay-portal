@@ -41,7 +41,8 @@
 				"pathFriendlyURLPublic", PortalUtil.getPathFriendlyURLPublic()
 			).put(
 				"userId", themeDisplay.getUserId()
-			).build() %>'
+			).build()
+		%>'
 		module="js/pages/apps/index.es"
 	/>
 </div>

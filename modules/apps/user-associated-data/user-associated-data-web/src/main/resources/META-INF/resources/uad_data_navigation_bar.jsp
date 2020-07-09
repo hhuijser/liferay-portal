@@ -69,5 +69,6 @@ baseURL.setParameter("p_u_i_d", String.valueOf(selectedUser.getUserId()));
 						navigationItem.setLabel(LanguageUtil.get(request, "auto-anonymize-data"));
 					});
 			}
-		} %>'
+		}
+	%>'
 />

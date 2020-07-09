@@ -33,7 +33,8 @@
 				"pathFriendlyURLPublic", PortalUtil.getPathFriendlyURLPublic()
 			).put(
 				"showNativeObjectsTab", request.getAttribute(AppBuilderWebKeys.SHOW_NATIVE_OBJECTS_TAB)
-			).build() %>'
+			).build()
+		%>'
 		module="js/index.es"
 	/>
 </div>

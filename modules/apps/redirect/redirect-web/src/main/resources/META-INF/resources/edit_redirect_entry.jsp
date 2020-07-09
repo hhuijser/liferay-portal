@@ -166,7 +166,8 @@ else {
 		data='<%=
 			HashMapBuilder.<String, Object>put(
 				"saveButtonLabel", LanguageUtil.get(request, (redirectEntry == null) ? "create" : "save")
-			).build() %>'
+			).build()
+		%>'
 		module="js/ChainedRedirections"
 	/>
 </div>

@@ -101,25 +101,26 @@ String friendlyURLBase = StringPool.BLANK;
 					<portlet:param name="plid" value="<%= String.valueOf(selLayout.getPlid()) %>" />
 				</portlet:actionURL>
 
-					<div class="btn-url-history-wrapper">
-						<react:component
-							data='<%=
-								HashMapBuilder.<String, Object>put(
-									"defaultLanguageId",
-									LocaleUtil.toLanguageId(company.getDefaultUser().getLocale())
-								).put(
-									"deleteFriendlyURLEntryLocalizationURL",
-									deleteFriendlyURLEntryLocalizationURL
-								).put(
-									"friendlyURLEntryLocalizationsURL",
-									friendlyURLEntryLocalizationsURL
-								).put(
-									"restoreFriendlyURLEntryLocalizationURL",
-									restoreFriendlyURLEntryLocalizationURL
-								).build() %>'
-							module="js/friendly_url_history/FriendlyURLHistory"
-						/>
-					</div>
+				<div class="btn-url-history-wrapper">
+					<react:component
+						data='<%=
+							HashMapBuilder.<String, Object>put(
+								"defaultLanguageId",
+								LocaleUtil.toLanguageId(company.getDefaultUser().getLocale())
+							).put(
+								"deleteFriendlyURLEntryLocalizationURL",
+								deleteFriendlyURLEntryLocalizationURL
+							).put(
+								"friendlyURLEntryLocalizationsURL",
+								friendlyURLEntryLocalizationsURL
+							).put(
+								"restoreFriendlyURLEntryLocalizationURL",
+								restoreFriendlyURLEntryLocalizationURL
+							).build()
+						%>'
+						module="js/friendly_url_history/FriendlyURLHistory"
+					/>
+				</div>
 
 				<div class="form-group friendly-url">
 					<label for="<portlet:namespace />friendlyURL"><liferay-ui:message key="friendly-url" /> <liferay-ui:icon-help message='<%= LanguageUtil.format(request, "for-example-x", "<em>/news</em>", false) %>' /></label>

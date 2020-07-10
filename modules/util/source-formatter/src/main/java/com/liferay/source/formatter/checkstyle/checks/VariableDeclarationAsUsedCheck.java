@@ -57,15 +57,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 		if (hasParentWithTokenType(
 				variableDefinitionDetailAST, TokenTypes.FOR_EACH_CLAUSE,
-				TokenTypes.FOR_INIT) ||
-			_containsMethodName(
-				variableDefinitionDetailAST,
-				"_?(add|channel|close|create|delete|execute|open|post|put|" +
-					"register|resolve|send|transform|unzip|update|zip)" +
-						"([A-Z].*)?",
-				"currentTimeMillis", "nextVersion", "toString") ||
-			_containsVariableType(
-				variableDefinitionDetailAST, identValues, "File")) {
+				TokenTypes.FOR_INIT)) {
 
 			return;
 		}
@@ -86,19 +78,29 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 			return;
 		}
 
-		int endLineNumber = getEndLineNumber(variableDefinitionDetailAST);
+		if (!_containsMethodName(
+				variableDefinitionDetailAST,
+				"_?(add|channel|close|create|delete|execute|open|post|put|" +
+					"register|resolve|send|transform|unzip|update|zip)" +
+						"([A-Z].*)?",
+				"currentTimeMillis", "nextVersion", "toString") &&
+			!_containsVariableType(
+				variableDefinitionDetailAST, identValues, "File")) {
 
-		DetailAST lastBranchingStatementDetailAST =
-			_getLastBranchingStatementDetailAST(
-				detailAST, endLineNumber,
-				_getClosestParentLineNumber(
-					firstDependentIdentDetailAST, endLineNumber));
+			int endLineNumber = getEndLineNumber(variableDefinitionDetailAST);
 
-		if (lastBranchingStatementDetailAST != null) {
-			log(
-				variableDefinitionDetailAST, _MSG_DECLARE_VARIABLE_AS_USED,
-				variableName, lastBranchingStatementDetailAST.getText(),
-				lastBranchingStatementDetailAST.getLineNo());
+			DetailAST lastBranchingStatementDetailAST =
+				_getLastBranchingStatementDetailAST(
+					detailAST, endLineNumber,
+					_getClosestParentLineNumber(
+						firstDependentIdentDetailAST, endLineNumber));
+
+			if (lastBranchingStatementDetailAST != null) {
+				log(
+					variableDefinitionDetailAST, _MSG_DECLARE_VARIABLE_AS_USED,
+					variableName, lastBranchingStatementDetailAST.getText(),
+					lastBranchingStatementDetailAST.getLineNo());
+			}
 		}
 
 		String absolutePath = getAbsolutePath();

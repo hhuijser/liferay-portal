@@ -20,13 +20,10 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.UnknownHostException;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,6 +33,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Hugo Huijser
@@ -183,23 +182,24 @@ public class JIRAUtil {
 			httpURLConnection.setConnectTimeout(10000);
 			httpURLConnection.setReadTimeout(10000);
 
-			httpURLConnection.getInputStream();
-		}
-		catch (IOException ioException) {
-			if (ioException instanceof FileNotFoundException) {
+			int responseCode = httpURLConnection.getResponseCode();
+
+			if (responseCode == HttpServletResponse.SC_NOT_FOUND) {
 				return _STATUS_NONEXISTING_TICKET;
 			}
 
-			if (ioException instanceof ConnectException |
-				ioException instanceof UnknownHostException) {
-
-				return _STATUS_NO_INTERNET_CONNECTION;
+			if (responseCode == HttpServletResponse.SC_OK) {
+				return _STATUS_PUBLIC_TICKET;
 			}
 
-			return _STATUS_PRIVATE_TICKET;
+			if (responseCode == HttpServletResponse.SC_UNAUTHORIZED) {
+				return _STATUS_PRIVATE_TICKET;
+			}
+		}
+		catch (IOException ioException) {
 		}
 
-		return _STATUS_PUBLIC_TICKET;
+		return _STATUS_NO_INTERNET_CONNECTION;
 	}
 
 	private static void _printBorder(String delimeter, int lineLength) {

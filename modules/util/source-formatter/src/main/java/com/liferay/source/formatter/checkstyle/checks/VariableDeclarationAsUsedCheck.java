@@ -117,26 +117,6 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 			return;
 		}
 
-		if (!_isBuildMethodCall(assignMethodCallDetailAST)) {
-			if (getStartLineNumber(assignMethodCallDetailAST) !=
-					getEndLineNumber(assignMethodCallDetailAST)) {
-
-				return;
-			}
-
-			DetailAST firstChildDetailAST =
-				assignMethodCallDetailAST.getFirstChild();
-
-			FullIdent fullIdent = FullIdent.createFullIdent(
-				firstChildDetailAST);
-
-			String methodName = fullIdent.getText();
-
-			if (!methodName.matches("(?i)([\\w.]*\\.)?get" + variableName)) {
-				return;
-			}
-		}
-
 		DetailAST identDetailAST = null;
 
 		for (DetailAST curIdentDetailAST : identDetailASTList) {
@@ -164,6 +144,34 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 				identDetailAST.getLineNo())) {
 
 			return;
+		}
+
+		if (_isBuildMethodCall(assignMethodCallDetailAST)) {
+			if (_isInsideStatementClause(identDetailAST)) {
+				return;
+			}
+		}
+		else {
+			if ((getStartLineNumber(assignMethodCallDetailAST) !=
+					getEndLineNumber(assignMethodCallDetailAST)) ||
+				(_isInsideStatementClause(identDetailAST) &&
+				 hasParentWithTokenType(
+					 identDetailAST, RELATIONAL_OPERATOR_TOKEN_TYPES))) {
+
+				return;
+			}
+
+			DetailAST firstChildDetailAST =
+				assignMethodCallDetailAST.getFirstChild();
+
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST);
+
+			String methodName = fullIdent.getText();
+
+			if (!methodName.matches("(?i)([\\w.]*\\.)?get" + variableName)) {
+				return;
+			}
 		}
 
 		DetailAST parentDetailAST = getParentWithTokenType(
@@ -456,6 +464,52 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 			}
 
 			return false;
+		}
+	}
+
+	private boolean _isInsideStatementClause(DetailAST detailAST) {
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		while (true) {
+			DetailAST grandParentDetailAST = parentDetailAST.getParent();
+
+			if (grandParentDetailAST == null) {
+				return false;
+			}
+
+			if (grandParentDetailAST.getType() == TokenTypes.LITERAL_FOR) {
+				if ((parentDetailAST.getType() == TokenTypes.FOR_CONDITION) ||
+					(parentDetailAST.getType() == TokenTypes.FOR_EACH_CLAUSE) ||
+					(parentDetailAST.getType() == TokenTypes.FOR_INIT) ||
+					(parentDetailAST.getType() == TokenTypes.FOR_ITERATOR)) {
+
+					return true;
+				}
+
+				return false;
+			}
+
+			if ((grandParentDetailAST.getType() == TokenTypes.LITERAL_IF) ||
+				(grandParentDetailAST.getType() == TokenTypes.LITERAL_WHILE)) {
+
+				if (parentDetailAST.getType() == TokenTypes.EXPR) {
+					return true;
+				}
+
+				return false;
+			}
+
+			if (grandParentDetailAST.getType() == TokenTypes.LITERAL_TRY) {
+				if (parentDetailAST.getType() ==
+						TokenTypes.RESOURCE_SPECIFICATION) {
+
+					return true;
+				}
+
+				return false;
+			}
+
+			parentDetailAST = grandParentDetailAST;
 		}
 	}
 

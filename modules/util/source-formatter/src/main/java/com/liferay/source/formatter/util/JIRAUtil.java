@@ -51,11 +51,9 @@ public class JIRAUtil {
 
 		outerLoop:
 		for (String commitMessage : commitMessages) {
-			if (commitMessage.startsWith("Revert ")) {
-				continue;
-			}
+			if (commitMessage.startsWith("Revert ") ||
+				commitMessage.endsWith("/ci-merge.")) {
 
-			if (commitMessage.endsWith("/ci-merge.")) {
 				continue;
 			}
 
@@ -135,11 +133,9 @@ public class JIRAUtil {
 		Set<String> validatedTicketIds = new HashSet<>();
 
 		for (String commitMessage : commitMessages) {
-			if (commitMessage.startsWith("Revert ")) {
-				continue;
-			}
+			if (commitMessage.startsWith("Revert ") ||
+				commitMessage.endsWith("/ci-merge.")) {
 
-			if (commitMessage.endsWith("/ci-merge.")) {
 				continue;
 			}
 

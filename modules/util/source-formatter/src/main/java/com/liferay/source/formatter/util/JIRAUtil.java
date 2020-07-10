@@ -79,27 +79,33 @@ public class JIRAUtil {
 		List<String> commitMessages, List<String> keywords,
 		int maxNumberOfTickets) {
 
-		Map<String, Integer> ticketStatusMap = new HashMap<>();
+		Map<String, Integer> responseCodeMap = new HashMap<>();
 
 		Set<String> violatingCommitMessages = new TreeSet<>();
 		Set<String> violatingWords = new TreeSet<>();
 
 		for (String commitMessage : commitMessages) {
-			if (ticketStatusMap.size() == maxNumberOfTickets) {
+			if (responseCodeMap.size() == maxNumberOfTickets) {
 				return;
 			}
 
 			String jiraTicketId = _getJIRATicketId(commitMessage);
 
-			Integer jiraTicketStatus = ticketStatusMap.get(jiraTicketId);
+			Integer jiraTicketResponseCode = responseCodeMap.get(jiraTicketId);
 
-			if (jiraTicketStatus == null) {
-				jiraTicketStatus = _getJIRATicketStatus(jiraTicketId);
+			if (jiraTicketResponseCode == null) {
+				try {
+					jiraTicketResponseCode = _getJIRATicketResponseCode(
+						jiraTicketId);
 
-				ticketStatusMap.put(jiraTicketId, jiraTicketStatus);
+					responseCodeMap.put(jiraTicketId, jiraTicketResponseCode);
+				}
+				catch (IOException ioException) {
+					return;
+				}
 			}
 
-			if (jiraTicketStatus.intValue() != _STATUS_PRIVATE_TICKET) {
+			if (jiraTicketResponseCode != HttpServletResponse.SC_UNAUTHORIZED) {
 				continue;
 			}
 
@@ -147,16 +153,18 @@ public class JIRAUtil {
 				continue;
 			}
 
-			int jiraTicketStatus = _getJIRATicketStatus(jiraTicketId);
+			try {
+				if (_getJIRATicketResponseCode(jiraTicketId) ==
+						HttpServletResponse.SC_NOT_FOUND) {
 
-			if (jiraTicketStatus == _STATUS_NO_INTERNET_CONNECTION) {
-				return;
+					throw new Exception(
+						StringBundler.concat(
+							"Commit message is pointing to non-existing JIRA ",
+							"issue: ", jiraTicketId));
+				}
 			}
-
-			if (jiraTicketStatus == _STATUS_NONEXISTING_TICKET) {
-				throw new Exception(
-					"Commit message is pointing to non-existing JIRA issue: " +
-						jiraTicketId);
+			catch (IOException ioException) {
+				return;
 			}
 		}
 	}
@@ -171,35 +179,19 @@ public class JIRAUtil {
 		return null;
 	}
 
-	private static int _getJIRATicketStatus(String jiraTicketId) {
-		try {
-			URL url = new URL(
-				"https://issues.liferay.com/rest/api/2/issue/" + jiraTicketId);
+	private static int _getJIRATicketResponseCode(String jiraTicketId)
+		throws IOException {
 
-			HttpURLConnection httpURLConnection =
-				(HttpURLConnection)url.openConnection();
+		URL url = new URL(
+			"https://issues.liferay.com/rest/api/2/issue/" + jiraTicketId);
 
-			httpURLConnection.setConnectTimeout(10000);
-			httpURLConnection.setReadTimeout(10000);
+		HttpURLConnection httpURLConnection =
+			(HttpURLConnection)url.openConnection();
 
-			int responseCode = httpURLConnection.getResponseCode();
+		httpURLConnection.setConnectTimeout(10000);
+		httpURLConnection.setReadTimeout(10000);
 
-			if (responseCode == HttpServletResponse.SC_NOT_FOUND) {
-				return _STATUS_NONEXISTING_TICKET;
-			}
-
-			if (responseCode == HttpServletResponse.SC_OK) {
-				return _STATUS_PUBLIC_TICKET;
-			}
-
-			if (responseCode == HttpServletResponse.SC_UNAUTHORIZED) {
-				return _STATUS_PRIVATE_TICKET;
-			}
-		}
-		catch (IOException ioException) {
-		}
-
-		return _STATUS_NO_INTERNET_CONNECTION;
+		return httpURLConnection.getResponseCode();
 	}
 
 	private static void _printBorder(String delimeter, int lineLength) {
@@ -311,14 +303,6 @@ public class JIRAUtil {
 
 		System.out.println();
 	}
-
-	private static final int _STATUS_NO_INTERNET_CONNECTION = 0;
-
-	private static final int _STATUS_NONEXISTING_TICKET = 1;
-
-	private static final int _STATUS_PRIVATE_TICKET = 2;
-
-	private static final int _STATUS_PUBLIC_TICKET = 3;
 
 	private static final Pattern _jiraTicketIdPattern = Pattern.compile(
 		"^[A-Z0-9]+-[0-9]+");

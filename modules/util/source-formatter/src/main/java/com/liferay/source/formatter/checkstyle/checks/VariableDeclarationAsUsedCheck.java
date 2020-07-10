@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -112,22 +113,28 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		DetailAST assignMethodCallDetailAST = _getAssignMethodCallDetailAST(
 			variableDefinitionDetailAST);
 
-		if ((assignMethodCallDetailAST == null) ||
-			(getStartLineNumber(assignMethodCallDetailAST) !=
-				getEndLineNumber(assignMethodCallDetailAST))) {
-
+		if (assignMethodCallDetailAST == null) {
 			return;
 		}
 
-		DetailAST firstChildDetailAST =
-			assignMethodCallDetailAST.getFirstChild();
+		if (!_isBuildMethodCall(assignMethodCallDetailAST)) {
+			if (getStartLineNumber(assignMethodCallDetailAST) !=
+					getEndLineNumber(assignMethodCallDetailAST)) {
 
-		FullIdent fullIdent = FullIdent.createFullIdent(firstChildDetailAST);
+				return;
+			}
 
-		String methodName = fullIdent.getText();
+			DetailAST firstChildDetailAST =
+				assignMethodCallDetailAST.getFirstChild();
 
-		if (!methodName.matches("(?i)([\\w.]*\\.)?get" + variableName)) {
-			return;
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST);
+
+			String methodName = fullIdent.getText();
+
+			if (!methodName.matches("(?i)([\\w.]*\\.)?get" + variableName)) {
+				return;
+			}
 		}
 
 		DetailAST identDetailAST = null;
@@ -178,15 +185,16 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 			if (Validator.isNull(getLine(i - 1))) {
 				emptyLineCount++;
+
+				if (emptyLineCount > 1) {
+					return;
+				}
 			}
 		}
 
-		if (emptyLineCount < 2) {
-			log(
-				variableDefinitionDetailAST,
-				_MSG_VARIABLE_DECLARTION_NOT_NEEDED, variableName,
-				identDetailAST.getLineNo());
-		}
+		log(
+			variableDefinitionDetailAST, _MSG_VARIABLE_DECLARTION_NOT_NEEDED,
+			variableName, identDetailAST.getLineNo());
 	}
 
 	private boolean _containsMethodName(
@@ -408,6 +416,47 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		}
 
 		return lastBranchingStatementDetailAST;
+	}
+
+	private boolean _isBuildMethodCall(DetailAST methodCallDetailAST) {
+		DetailAST firstChildDetailAST = methodCallDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+			return false;
+		}
+
+		DetailAST lastChildDetailAST = firstChildDetailAST.getLastChild();
+
+		if ((lastChildDetailAST.getType() != TokenTypes.IDENT) ||
+			!Objects.equals(lastChildDetailAST.getText(), "build")) {
+
+			return false;
+		}
+
+		while (true) {
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+			if (firstChildDetailAST == null) {
+				return false;
+			}
+
+			if ((firstChildDetailAST.getType() == TokenTypes.DOT) ||
+				(firstChildDetailAST.getType() == TokenTypes.METHOD_CALL)) {
+
+				continue;
+			}
+
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST.getParent());
+
+			String methodName = fullIdent.getText();
+
+			if (methodName.matches(".*Builder\\..*")) {
+				return true;
+			}
+
+			return false;
+		}
 	}
 
 	private static final String _MSG_DECLARE_VARIABLE_AS_USED =

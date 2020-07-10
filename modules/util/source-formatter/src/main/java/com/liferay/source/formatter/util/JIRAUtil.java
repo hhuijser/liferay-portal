@@ -177,12 +177,13 @@ public class JIRAUtil {
 			URL url = new URL(
 				"https://issues.liferay.com/rest/api/2/issue/" + jiraTicketId);
 
-			HttpURLConnection urlc = (HttpURLConnection)url.openConnection();
+			HttpURLConnection httpURLConnection =
+				(HttpURLConnection)url.openConnection();
 
-			urlc.setConnectTimeout(10000);
-			urlc.setReadTimeout(10000);
+			httpURLConnection.setConnectTimeout(10000);
+			httpURLConnection.setReadTimeout(10000);
 
-			urlc.getInputStream();
+			httpURLConnection.getInputStream();
 		}
 		catch (IOException ioException) {
 			if (ioException instanceof FileNotFoundException) {

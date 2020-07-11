@@ -89,6 +89,10 @@ public class JIRAUtil {
 
 			String jiraTicketId = _getJIRATicketId(commitMessage);
 
+			if (jiraTicketId == null) {
+				continue;
+			}
+
 			Integer jiraTicketResponseCode = responseCodeMap.get(jiraTicketId);
 
 			if (jiraTicketResponseCode == null) {
@@ -133,19 +137,15 @@ public class JIRAUtil {
 		Set<String> validatedTicketIds = new HashSet<>();
 
 		for (String commitMessage : commitMessages) {
-			if (commitMessage.startsWith("Revert ") ||
-				commitMessage.endsWith("/ci-merge.")) {
-
-				continue;
-			}
-
 			if (validatedTicketIds.size() == maxNumberOfTickets) {
 				return;
 			}
 
 			String jiraTicketId = _getJIRATicketId(commitMessage);
 
-			if (!validatedTicketIds.add(jiraTicketId)) {
+			if ((jiraTicketId == null) ||
+				!validatedTicketIds.add(jiraTicketId)) {
+
 				continue;
 			}
 

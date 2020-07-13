@@ -197,7 +197,8 @@ public class ImageToolImpl implements ImageTool {
 	}
 
 	@Override
-	public void encodeGIF(RenderedImage renderedImage, OutputStream os)
+	public void encodeGIF(
+			RenderedImage renderedImage, OutputStream outputStream)
 		throws IOException {
 
 		BufferedImage bufferedImage = getBufferedImage(renderedImage);
@@ -209,11 +210,12 @@ public class ImageToolImpl implements ImageTool {
 
 		Gif89Encoder encoder = new Gif89Encoder(bufferedImage);
 
-		encoder.encode(os);
+		encoder.encode(outputStream);
 	}
 
 	@Override
-	public void encodeWBMP(RenderedImage renderedImage, OutputStream os)
+	public void encodeWBMP(
+			RenderedImage renderedImage, OutputStream outputStream)
 		throws IOException {
 
 		BufferedImage bufferedImage = getBufferedImage(renderedImage);
@@ -238,14 +240,14 @@ public class ImageToolImpl implements ImageTool {
 			renderedImage = binaryImage;
 		}
 
-		if (!ImageIO.write(renderedImage, "wbmp", os)) {
+		if (!ImageIO.write(renderedImage, "wbmp", outputStream)) {
 
 			// See http://www.jguru.com/faq/view.jsp?EID=127723
 
-			os.write(0);
-			os.write(0);
-			os.write(toMultiByte(bufferedImage.getWidth()));
-			os.write(toMultiByte(bufferedImage.getHeight()));
+			outputStream.write(0);
+			outputStream.write(0);
+			outputStream.write(toMultiByte(bufferedImage.getWidth()));
+			outputStream.write(toMultiByte(bufferedImage.getHeight()));
 
 			Raster data = bufferedImage.getData();
 
@@ -254,7 +256,7 @@ public class ImageToolImpl implements ImageTool {
 			int size = dataBuffer.getSize();
 
 			for (int i = 0; i < size; i++) {
-				os.write((byte)dataBuffer.getElem(i));
+				outputStream.write((byte)dataBuffer.getElem(i));
 			}
 		}
 	}
@@ -796,27 +798,28 @@ public class ImageToolImpl implements ImageTool {
 
 	@Override
 	public void write(
-			RenderedImage renderedImage, String contentType, OutputStream os)
+			RenderedImage renderedImage, String contentType,
+			OutputStream outputStream)
 		throws IOException {
 
 		if (contentType.contains(TYPE_BMP)) {
-			ImageIO.write(renderedImage, "bmp", os);
+			ImageIO.write(renderedImage, "bmp", outputStream);
 		}
 		else if (contentType.contains(TYPE_GIF)) {
-			encodeGIF(renderedImage, os);
+			encodeGIF(renderedImage, outputStream);
 		}
 		else if (contentType.contains(TYPE_JPEG) ||
 				 contentType.contains("jpeg")) {
 
-			ImageIO.write(renderedImage, "jpeg", os);
+			ImageIO.write(renderedImage, "jpeg", outputStream);
 		}
 		else if (contentType.contains(TYPE_PNG)) {
-			ImageIO.write(renderedImage, TYPE_PNG, os);
+			ImageIO.write(renderedImage, TYPE_PNG, outputStream);
 		}
 		else if (contentType.contains(TYPE_TIFF) ||
 				 contentType.contains("tif")) {
 
-			ImageIO.write(renderedImage, "tiff", os);
+			ImageIO.write(renderedImage, "tiff", outputStream);
 		}
 	}
 

@@ -23,7 +23,8 @@ import java.io.ObjectInputStream;
 public class DeserializationSecurity {
 
 	public DeserializationSecurity(InputStream inputStream) {
-		ObjectInputStream oos = new ObjectInputStream(inputStream);
+		ObjectInputStream objectInputStream = new ObjectInputStream(
+			inputStream);
 	}
 
 }

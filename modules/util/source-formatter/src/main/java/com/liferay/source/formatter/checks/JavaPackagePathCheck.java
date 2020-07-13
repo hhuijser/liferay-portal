@@ -76,7 +76,7 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 				expectedInternalImplementsDataEntry, CharPool.COLON);
 
 			if (array.length == 2) {
-				_checkPackageName(
+				_checkInternalPackageNameByImplementedClassNames(
 					fileName, javaClass.getName(),
 					javaClass.getImplementedClassNames(), array[0], packageName,
 					array[1]);
@@ -129,7 +129,7 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		}
 	}
 
-	private void _checkPackageName(
+	private void _checkInternalPackageNameByImplementedClassNames(
 			String fileName, String className,
 			List<String> implementedClassNames, String implementedClassName,
 			String packageName, String expectedPackageName)

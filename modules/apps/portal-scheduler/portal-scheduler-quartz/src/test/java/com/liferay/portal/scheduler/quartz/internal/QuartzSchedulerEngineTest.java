@@ -609,11 +609,13 @@ public class QuartzSchedulerEngineTest {
 
 					byte[] bytes = Base64.decode(base64);
 
-					ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+					ByteArrayInputStream byteArrayInputStream =
+						new ByteArrayInputStream(bytes);
 
-					ObjectInputStream ois = new ObjectInputStream(bais);
+					ObjectInputStream objectInputStream = new ObjectInputStream(
+						byteArrayInputStream);
 
-					return ois.readObject();
+					return objectInputStream.readObject();
 				}
 
 			}
@@ -630,15 +632,17 @@ public class QuartzSchedulerEngineTest {
 
 					Object object = invocationOnMock.getArguments()[0];
 
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					ByteArrayOutputStream byteArrayOutputStream =
+						new ByteArrayOutputStream();
 
-					ObjectOutputStream oos = new ObjectOutputStream(baos);
+					ObjectOutputStream objectOutputStream =
+						new ObjectOutputStream(byteArrayOutputStream);
 
-					oos.writeObject(object);
+					objectOutputStream.writeObject(object);
 
-					byte[] bytes = baos.toByteArray();
+					byte[] bytes = byteArrayOutputStream.toByteArray();
 
-					oos.close();
+					objectOutputStream.close();
 
 					return Base64.encode(bytes);
 				}

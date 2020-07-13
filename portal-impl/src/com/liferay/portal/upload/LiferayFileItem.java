@@ -194,10 +194,10 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 		}
 
 		try {
-			DeferredFileOutputStream dfos =
+			DeferredFileOutputStream deferredFileOutputStream =
 				(DeferredFileOutputStream)getOutputStream();
 
-			return dfos.getFile();
+			return deferredFileOutputStream.getFile();
 		}
 		catch (IOException ioException) {
 			_log.error(ioException, ioException);

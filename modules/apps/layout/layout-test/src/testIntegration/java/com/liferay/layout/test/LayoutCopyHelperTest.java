@@ -197,14 +197,15 @@ public class LayoutCopyHelperTest {
 		BufferedImage bufferedImage = new BufferedImage(
 			1, 1, BufferedImage.TYPE_INT_RGB);
 
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		ByteArrayOutputStream byteArrayOutputStream =
+			new ByteArrayOutputStream();
 
-		ImageIO.write(bufferedImage, "jpg", outputStream);
+		ImageIO.write(bufferedImage, "jpg", byteArrayOutputStream);
 
-		outputStream.flush();
+		byteArrayOutputStream.flush();
 
 		sourceLayout = LayoutLocalServiceUtil.updateIconImage(
-			sourceLayout.getPlid(), outputStream.toByteArray());
+			sourceLayout.getPlid(), byteArrayOutputStream.toByteArray());
 
 		Layout targetLayout = LayoutTestUtil.addLayout(
 			_group.getGroupId(), StringPool.BLANK);

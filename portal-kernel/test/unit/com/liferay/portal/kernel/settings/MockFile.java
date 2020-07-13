@@ -314,7 +314,7 @@ public class MockFile implements com.liferay.portal.kernel.util.File {
 	}
 
 	@Override
-	public Properties toProperties(FileInputStream fis) {
+	public Properties toProperties(FileInputStream fileInputStream) {
 		return null;
 	}
 

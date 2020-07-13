@@ -962,12 +962,13 @@ public class KBArticleLocalServiceTest {
 
 		String fileName = "markdown-articles.zip";
 
-		InputStream zipFileStream = classLoader.getResourceAsStream(fileName);
+		InputStream zipFileInputStream = classLoader.getResourceAsStream(
+			fileName);
 
 		KBArticleLocalServiceUtil.addKBArticlesMarkdown(
 			_user.getUserId(), _group.getGroupId(),
 			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, fileName, true,
-			zipFileStream, _serviceContext);
+			zipFileInputStream, _serviceContext);
 	}
 
 	protected void updateWorkflowDefinitionForKBArticle(

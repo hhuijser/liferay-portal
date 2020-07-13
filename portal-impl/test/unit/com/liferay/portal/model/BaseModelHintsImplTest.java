@@ -431,17 +431,17 @@ public class BaseModelHintsImplTest {
 		}
 
 		@Override
-		public Document read(InputSource in) {
+		public Document read(InputSource inputSource) {
 			return _document;
 		}
 
 		@Override
-		public Document read(InputStream in) {
+		public Document read(InputStream inputStream) {
 			return _document;
 		}
 
 		@Override
-		public Document read(InputStream in, String systemId) {
+		public Document read(InputStream inputStream, String systemId) {
 			return _document;
 		}
 

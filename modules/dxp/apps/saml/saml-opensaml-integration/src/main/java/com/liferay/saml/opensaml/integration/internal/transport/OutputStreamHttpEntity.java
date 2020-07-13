@@ -62,7 +62,7 @@ public class OutputStreamHttpEntity extends AbstractHttpEntity {
 	}
 
 	@Override
-	public void writeTo(OutputStream outstream) throws IOException {
+	public void writeTo(OutputStream outputStream) throws IOException {
 	}
 
 	private final ByteArrayOutputStream _byteArrayOutputStream;

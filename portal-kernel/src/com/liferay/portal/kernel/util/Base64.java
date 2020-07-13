@@ -265,18 +265,18 @@ public class Base64 {
 			new UnsyncByteArrayInputStream(bytes);
 
 		try {
-			ObjectInputStream inputStream = null;
+			ObjectInputStream objectInputStream = null;
 
 			if (classLoader == null) {
-				inputStream = new ProtectedObjectInputStream(
+				objectInputStream = new ProtectedObjectInputStream(
 					unsyncByteArrayInputStream);
 			}
 			else {
-				inputStream = new ProtectedClassLoaderObjectInputStream(
+				objectInputStream = new ProtectedClassLoaderObjectInputStream(
 					unsyncByteArrayInputStream, classLoader);
 			}
 
-			return inputStream.readObject();
+			return objectInputStream.readObject();
 		}
 		catch (Exception exception) {
 			if (!silent) {

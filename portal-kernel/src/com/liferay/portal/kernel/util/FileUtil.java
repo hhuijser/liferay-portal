@@ -304,8 +304,8 @@ public class FileUtil {
 		return getFile().toList(fileName);
 	}
 
-	public static Properties toProperties(FileInputStream fis) {
-		return getFile().toProperties(fis);
+	public static Properties toProperties(FileInputStream fileInputStream) {
+		return getFile().toProperties(fileInputStream);
 	}
 
 	public static Properties toProperties(String fileName) {

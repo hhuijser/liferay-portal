@@ -33,15 +33,15 @@ public class LiferayServletRequest extends HttpServletRequestWrapper {
 	}
 
 	public void cleanUp() {
-		if (_lis != null) {
-			_lis.cleanUp();
+		if (_liferayInputStream != null) {
+			_liferayInputStream.cleanUp();
 		}
 	}
 
 	@Override
 	public ServletInputStream getInputStream() throws IOException {
-		if (_lis == null) {
-			_lis = new LiferayInputStream(_httpServletRequest);
+		if (_liferayInputStream == null) {
+			_liferayInputStream = new LiferayInputStream(_httpServletRequest);
 		}
 
 		if (_finishedReadingOriginalStream) {
@@ -50,14 +50,15 @@ public class LiferayServletRequest extends HttpServletRequestWrapper {
 			// the input stream, otherwise, it will return an empty input stream
 			// because it has already been parsed
 
-			if (_cachedInputStream == null) {
-				_cachedInputStream = _lis.getCachedInputStream();
+			if (_cachedServletInputStream == null) {
+				_cachedServletInputStream =
+					_liferayInputStream.getCachedInputStream();
 			}
 
-			return _cachedInputStream;
+			return _cachedServletInputStream;
 		}
 
-		return _lis;
+		return _liferayInputStream;
 	}
 
 	public void setFinishedReadingOriginalStream(
@@ -66,9 +67,9 @@ public class LiferayServletRequest extends HttpServletRequestWrapper {
 		_finishedReadingOriginalStream = finishedReadingOriginalStream;
 	}
 
-	private ServletInputStream _cachedInputStream;
+	private ServletInputStream _cachedServletInputStream;
 	private boolean _finishedReadingOriginalStream;
 	private final HttpServletRequest _httpServletRequest;
-	private LiferayInputStream _lis;
+	private LiferayInputStream _liferayInputStream;
 
 }

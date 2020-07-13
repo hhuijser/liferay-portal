@@ -1303,17 +1303,19 @@ public interface BaseProjectTemplatesTestCase {
 	public default void testBundlesDiff(File bundleFile1, File bundleFile2)
 		throws Exception {
 
-		PrintStream originalErrorStream = System.err;
-		PrintStream originalOutputStream = System.out;
+		PrintStream originalErrorPrintStream = System.err;
+		PrintStream originalOutputPrintStream = System.out;
 
-		originalErrorStream.flush();
-		originalOutputStream.flush();
+		originalErrorPrintStream.flush();
+		originalOutputPrintStream.flush();
 
-		ByteArrayOutputStream newErrorStream = new ByteArrayOutputStream();
-		ByteArrayOutputStream newOutputStream = new ByteArrayOutputStream();
+		ByteArrayOutputStream newErrorByteArrayOutputStream =
+			new ByteArrayOutputStream();
+		ByteArrayOutputStream newOutByteArrayOutputStream =
+			new ByteArrayOutputStream();
 
-		System.setErr(new PrintStream(newErrorStream, true));
-		System.setOut(new PrintStream(newOutputStream, true));
+		System.setErr(new PrintStream(newErrorByteArrayOutputStream, true));
+		System.setOut(new PrintStream(newOutByteArrayOutputStream, true));
 
 		try (bnd bnd = new bnd()) {
 			String[] args = {
@@ -1324,14 +1326,14 @@ public interface BaseProjectTemplatesTestCase {
 			bnd.start(args);
 		}
 		finally {
-			System.setErr(originalErrorStream);
-			System.setOut(originalOutputStream);
+			System.setErr(originalErrorPrintStream);
+			System.setOut(originalOutputPrintStream);
 		}
 
-		String output = newErrorStream.toString();
+		String output = newErrorByteArrayOutputStream.toString();
 
 		if (Validator.isNull(output)) {
-			output = newOutputStream.toString();
+			output = newOutByteArrayOutputStream.toString();
 		}
 
 		Assert.assertEquals(

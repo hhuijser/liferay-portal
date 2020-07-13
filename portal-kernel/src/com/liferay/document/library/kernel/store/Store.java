@@ -41,11 +41,11 @@ public interface Store {
 	 *        {@link com.liferay.portal.kernel.model.CompanyConstants#SYSTEM})
 	 * @param fileName the file name
 	 * @param versionLabel the file's version label
-	 * @param is the files's data
+	 * @param inputStream the files's data
 	 */
 	public void addFile(
 			long companyId, long repositoryId, String fileName,
-			String versionLabel, InputStream is)
+			String versionLabel, InputStream inputStream)
 		throws PortalException;
 
 	/**

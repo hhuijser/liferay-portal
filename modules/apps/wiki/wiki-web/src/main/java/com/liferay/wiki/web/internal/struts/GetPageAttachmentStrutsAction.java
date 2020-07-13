@@ -121,19 +121,19 @@ public class GetPageAttachmentStrutsAction implements StrutsAction {
 			fileName = _trashHelper.getOriginalTitle(fileEntry.getTitle());
 		}
 
-		InputStream is = fileEntry.getContentStream();
+		InputStream inputStream = fileEntry.getContentStream();
 
 		FlashMagicBytesUtil.Result flashMagicBytesUtilResult =
-			FlashMagicBytesUtil.check(is);
+			FlashMagicBytesUtil.check(inputStream);
 
 		if (flashMagicBytesUtilResult.isFlash()) {
 			fileName = FileUtil.stripExtension(fileName) + ".swf";
 		}
 
-		is = flashMagicBytesUtilResult.getInputStream();
+		inputStream = flashMagicBytesUtilResult.getInputStream();
 
 		ServletResponseUtil.sendFile(
-			httpServletRequest, httpServletResponse, fileName, is,
+			httpServletRequest, httpServletResponse, fileName, inputStream,
 			fileEntry.getSize(), fileEntry.getMimeType());
 	}
 

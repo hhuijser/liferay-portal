@@ -36,9 +36,9 @@ public class JavaMailUtil {
 	public static byte[] getBytes(Part part)
 		throws IOException, MessagingException {
 
-		InputStream is = part.getInputStream();
+		InputStream inputStream = part.getInputStream();
 
-		return FileUtil.getBytes(is);
+		return FileUtil.getBytes(inputStream);
 	}
 
 	public static String toUnicodeString(Address[] addresses) {

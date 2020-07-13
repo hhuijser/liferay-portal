@@ -98,22 +98,22 @@ public abstract class BaseDBProcess implements DBProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer(path)) {
 			ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
 
-			InputStream is = classLoader.getResourceAsStream(
+			InputStream inputStream = classLoader.getResourceAsStream(
 				"com/liferay/portal/tools/sql/dependencies/" + path);
 
-			if (is == null) {
-				is = classLoader.getResourceAsStream(path);
+			if (inputStream == null) {
+				inputStream = classLoader.getResourceAsStream(path);
 			}
 
-			if (is == null) {
+			if (inputStream == null) {
 				Thread currentThread = Thread.currentThread();
 
 				classLoader = currentThread.getContextClassLoader();
 
-				is = classLoader.getResourceAsStream(path);
+				inputStream = classLoader.getResourceAsStream(path);
 			}
 
-			if (is == null) {
+			if (inputStream == null) {
 				_log.error("Invalid path " + path);
 
 				if (failOnError) {
@@ -123,7 +123,7 @@ public abstract class BaseDBProcess implements DBProcess {
 				return;
 			}
 
-			String template = StringUtil.read(is);
+			String template = StringUtil.read(inputStream);
 
 			runSQLTemplateString(template, failOnError);
 		}

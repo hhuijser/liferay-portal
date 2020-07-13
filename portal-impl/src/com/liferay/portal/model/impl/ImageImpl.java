@@ -47,21 +47,21 @@ public class ImageImpl extends ImageBaseImpl {
 						imageId);
 			}
 
-			InputStream is = null;
+			InputStream inputStream = null;
 
 			if ((dlFileEntry != null) &&
 				(dlFileEntry.getLargeImageId() == imageId)) {
 
-				is = DLStoreUtil.getFileAsStream(
+				inputStream = DLStoreUtil.getFileAsStream(
 					dlFileEntry.getCompanyId(),
 					dlFileEntry.getDataRepositoryId(), dlFileEntry.getName());
 			}
 			else {
-				is = DLStoreUtil.getFileAsStream(
+				inputStream = DLStoreUtil.getFileAsStream(
 					_DEFAULT_COMPANY_ID, _DEFAULT_REPOSITORY_ID, getFileName());
 			}
 
-			byte[] bytes = FileUtil.getBytes(is);
+			byte[] bytes = FileUtil.getBytes(inputStream);
 
 			_textObj = bytes;
 		}

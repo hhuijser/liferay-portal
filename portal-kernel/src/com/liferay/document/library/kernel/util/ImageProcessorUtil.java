@@ -181,7 +181,7 @@ public class ImageProcessorUtil {
 
 	public static void storeThumbnail(
 			long companyId, long groupId, long fileEntryId, long fileVersionId,
-			long custom1ImageId, long custom2ImageId, InputStream is,
+			long custom1ImageId, long custom2ImageId, InputStream inputStream,
 			String type)
 		throws Exception {
 
@@ -190,7 +190,7 @@ public class ImageProcessorUtil {
 		if (imageProcessor != null) {
 			imageProcessor.storeThumbnail(
 				companyId, groupId, fileEntryId, fileVersionId, custom1ImageId,
-				custom2ImageId, is, type);
+				custom2ImageId, inputStream, type);
 		}
 	}
 

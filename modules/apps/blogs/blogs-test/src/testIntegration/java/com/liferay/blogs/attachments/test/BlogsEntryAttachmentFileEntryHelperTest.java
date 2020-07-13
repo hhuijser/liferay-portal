@@ -264,15 +264,15 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 
 	private FileEntry _addBlogsEntryAttachmentFileEntry(
 			long groupId, long userId, long blogsEntryId, long folderId,
-			String fileName, String mimeType, InputStream is)
+			String fileName, String mimeType, InputStream inputStream)
 		throws Exception {
 
 		String uniqueFileName = _getUniqueFileName(groupId, fileName, folderId);
 
 		return PortletFileRepositoryUtil.addPortletFileEntry(
 			groupId, userId, BlogsEntry.class.getName(), blogsEntryId,
-			BlogsConstants.SERVICE_NAME, folderId, is, uniqueFileName, mimeType,
-			true);
+			BlogsConstants.SERVICE_NAME, folderId, inputStream, uniqueFileName,
+			mimeType, true);
 	}
 
 	private List<FileEntry> _getTempBlogsEntryAttachmentFileEntries(

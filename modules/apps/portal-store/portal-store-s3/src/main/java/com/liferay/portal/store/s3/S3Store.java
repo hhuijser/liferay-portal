@@ -99,7 +99,7 @@ public class S3Store implements Store {
 	@Override
 	public void addFile(
 			long companyId, long repositoryId, String fileName,
-			String versionLabel, InputStream is)
+			String versionLabel, InputStream inputStream)
 		throws PortalException {
 
 		if (hasFile(companyId, repositoryId, fileName, versionLabel)) {
@@ -109,7 +109,7 @@ public class S3Store implements Store {
 		File file = null;
 
 		try {
-			file = FileUtil.createTempFile(is);
+			file = FileUtil.createTempFile(inputStream);
 
 			putObject(companyId, repositoryId, fileName, versionLabel, file);
 		}

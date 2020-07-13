@@ -106,10 +106,10 @@ public interface ImageTool {
 	public Image getImage(File file)
 		throws ImageResolutionException, IOException;
 
-	public Image getImage(InputStream is)
+	public Image getImage(InputStream inputStream)
 		throws ImageResolutionException, IOException;
 
-	public Image getImage(InputStream is, boolean cleanUpStream)
+	public Image getImage(InputStream inputStream, boolean cleanUpStream)
 		throws ImageResolutionException, IOException;
 
 	public boolean isNullOrDefaultSpacer(byte[] bytes);

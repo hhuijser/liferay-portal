@@ -54,7 +54,8 @@ public interface File {
 
 	public java.io.File createTempFile(byte[] bytes) throws IOException;
 
-	public java.io.File createTempFile(InputStream is) throws IOException;
+	public java.io.File createTempFile(InputStream inputStream)
+		throws IOException;
 
 	public java.io.File createTempFile(String extension);
 
@@ -84,10 +85,10 @@ public interface File {
 
 	public boolean exists(String fileName);
 
-	public String extractText(InputStream is, String fileName);
+	public String extractText(InputStream inputStream, String fileName);
 
 	public String extractText(
-		InputStream is, String fileName, int maxStringLength);
+		InputStream inputStream, String fileName, int maxStringLength);
 
 	public String[] find(String directory, String includes, String excludes);
 
@@ -95,9 +96,10 @@ public interface File {
 
 	public byte[] getBytes(Class<?> clazz, String fileName) throws IOException;
 
-	public byte[] getBytes(InputStream is) throws IOException;
+	public byte[] getBytes(InputStream inputStream) throws IOException;
 
-	public byte[] getBytes(InputStream is, int bufferSize) throws IOException;
+	public byte[] getBytes(InputStream inputStream, int bufferSize)
+		throws IOException;
 
 	public byte[] getBytes(
 			InputStream inputStream, int bufferSize, boolean cleanUpStream)
@@ -176,7 +178,8 @@ public interface File {
 			boolean append)
 		throws IOException;
 
-	public void write(java.io.File file, InputStream is) throws IOException;
+	public void write(java.io.File file, InputStream inputStream)
+		throws IOException;
 
 	public void write(java.io.File file, String s) throws IOException;
 
@@ -188,7 +191,8 @@ public interface File {
 
 	public void write(String fileName, byte[] bytes) throws IOException;
 
-	public void write(String fileName, InputStream is) throws IOException;
+	public void write(String fileName, InputStream inputStream)
+		throws IOException;
 
 	public void write(String fileName, String s) throws IOException;
 

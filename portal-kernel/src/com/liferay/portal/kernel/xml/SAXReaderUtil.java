@@ -135,14 +135,16 @@ public class SAXReaderUtil {
 		return getSAXReader().read(file, validate);
 	}
 
-	public static Document read(InputStream is) throws DocumentException {
-		return getSAXReader().read(is);
-	}
-
-	public static Document read(InputStream is, boolean validate)
+	public static Document read(InputStream inputStream)
 		throws DocumentException {
 
-		return getSAXReader().read(is, validate);
+		return getSAXReader().read(inputStream);
+	}
+
+	public static Document read(InputStream inputStream, boolean validate)
+		throws DocumentException {
+
+		return getSAXReader().read(inputStream, validate);
 	}
 
 	public static Document read(Reader reader) throws DocumentException {

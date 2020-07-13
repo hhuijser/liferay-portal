@@ -84,8 +84,10 @@ public class FileUtil {
 		return getFile().createTempFile(bytes);
 	}
 
-	public static File createTempFile(InputStream is) throws IOException {
-		return getFile().createTempFile(is);
+	public static File createTempFile(InputStream inputStream)
+		throws IOException {
+
+		return getFile().createTempFile(inputStream);
 	}
 
 	public static File createTempFile(String extension) {
@@ -147,20 +149,20 @@ public class FileUtil {
 	/**
 	 * Extracts the text from the input stream and file name.
 	 *
-	 * @param  is the file's input stream
+	 * @param  inputStream the file's input stream
 	 * @param  fileName the file's full name or extension (e.g., "Test.doc" or
 	 *         ".doc")
 	 * @return the extracted text if it is a supported format or an empty string
 	 *         if it is an unsupported format
 	 */
-	public static String extractText(InputStream is, String fileName) {
-		return getFile().extractText(is, fileName);
+	public static String extractText(InputStream inputStream, String fileName) {
+		return getFile().extractText(inputStream, fileName);
 	}
 
 	public static String extractText(
-		InputStream is, String fileName, int maxStringLength) {
+		InputStream inputStream, String fileName, int maxStringLength) {
 
-		return getFile().extractText(is, fileName, maxStringLength);
+		return getFile().extractText(inputStream, fileName, maxStringLength);
 	}
 
 	public static String[] find(
@@ -183,21 +185,21 @@ public class FileUtil {
 		return getFile().getBytes(file);
 	}
 
-	public static byte[] getBytes(InputStream is) throws IOException {
-		return getFile().getBytes(is);
+	public static byte[] getBytes(InputStream inputStream) throws IOException {
+		return getFile().getBytes(inputStream);
 	}
 
-	public static byte[] getBytes(InputStream is, int bufferSize)
+	public static byte[] getBytes(InputStream inputStream, int bufferSize)
 		throws IOException {
 
-		return getFile().getBytes(is);
+		return getFile().getBytes(inputStream);
 	}
 
 	public static byte[] getBytes(
-			InputStream is, int bufferSize, boolean cleanUpStream)
+			InputStream inputStream, int bufferSize, boolean cleanUpStream)
 		throws IOException {
 
-		return getFile().getBytes(is, bufferSize, cleanUpStream);
+		return getFile().getBytes(inputStream, bufferSize, cleanUpStream);
 	}
 
 	public static String getExtension(String fileName) {
@@ -345,8 +347,10 @@ public class FileUtil {
 		getFile().write(file, bytes, offset, length, append);
 	}
 
-	public static void write(File file, InputStream is) throws IOException {
-		getFile().write(file, is);
+	public static void write(File file, InputStream inputStream)
+		throws IOException {
+
+		getFile().write(file, inputStream);
 	}
 
 	public static void write(File file, String s) throws IOException {
@@ -369,10 +373,10 @@ public class FileUtil {
 		getFile().write(fileName, bytes);
 	}
 
-	public static void write(String fileName, InputStream is)
+	public static void write(String fileName, InputStream inputStream)
 		throws IOException {
 
-		getFile().write(fileName, is);
+		getFile().write(fileName, inputStream);
 	}
 
 	public static void write(String fileName, String s) throws IOException {

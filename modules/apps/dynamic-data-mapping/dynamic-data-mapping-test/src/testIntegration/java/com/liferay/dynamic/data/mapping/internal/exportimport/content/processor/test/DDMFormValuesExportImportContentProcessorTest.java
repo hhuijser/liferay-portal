@@ -456,9 +456,9 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			TestPropsValues.getUserId(), _stagingGroup.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		InputStream is = new UnsyncByteArrayInputStream(new byte[0]);
+		InputStream inputStream = new UnsyncByteArrayInputStream(new byte[0]);
 		long size = 0;
-		File file = FileUtil.createTempFile(is);
+		File file = FileUtil.createTempFile(inputStream);
 
 		_createDDMFormWithJournalField(_stagingGroup, _journalArticle);
 
@@ -485,7 +485,7 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			MimeTypesUtil.getExtensionContentType("txt"),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			StringPool.BLANK, dlFileEntryType.getFileEntryTypeId(),
-			ddmFormValuesMap, file, is, size, serviceContext);
+			ddmFormValuesMap, file, inputStream, size, serviceContext);
 
 		_fileEntry = _dlAppLocalService.getFileEntry(
 			dlFileEntry.getFileEntryId());

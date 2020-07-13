@@ -1687,7 +1687,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			return null;
 		}
 
-		InputStream is = null;
+		InputStream inputStream = null;
 		ZipFile zipFile = null;
 
 		try {
@@ -1702,14 +1702,14 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 						"/WEB-INF/liferay-plugin-package.xml"));
 
 				if (pluginPackageXmlFile.exists()) {
-					is = new FileInputStream(pluginPackageXmlFile);
+					inputStream = new FileInputStream(pluginPackageXmlFile);
 				}
 				else {
 					pluginPackageXmlFile = new File(
 						path + "/WEB-INF/liferay-plugin-package.xml");
 
 					if (pluginPackageXmlFile.exists()) {
-						is = new FileInputStream(pluginPackageXmlFile);
+						inputStream = new FileInputStream(pluginPackageXmlFile);
 					}
 				}
 
@@ -1718,8 +1718,11 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 						file.getParent(), "/merge/", file.getName(),
 						"/WEB-INF/liferay-plugin-package.properties"));
 
-				if ((is == null) && pluginPackagePropertiesFile.exists()) {
-					is = new FileInputStream(pluginPackagePropertiesFile);
+				if ((inputStream == null) &&
+					pluginPackagePropertiesFile.exists()) {
+
+					inputStream = new FileInputStream(
+						pluginPackagePropertiesFile);
 
 					parseProps = true;
 				}
@@ -1727,8 +1730,11 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 					pluginPackagePropertiesFile = new File(
 						path + "/WEB-INF/liferay-plugin-package.properties");
 
-					if ((is == null) && pluginPackagePropertiesFile.exists()) {
-						is = new FileInputStream(pluginPackagePropertiesFile);
+					if ((inputStream == null) &&
+						pluginPackagePropertiesFile.exists()) {
+
+						inputStream = new FileInputStream(
+							pluginPackagePropertiesFile);
 
 						parseProps = true;
 					}
@@ -1743,14 +1749,14 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 						"/WEB-INF/liferay-plugin-package.xml"));
 
 				if (pluginPackageXmlFile.exists()) {
-					is = new FileInputStream(pluginPackageXmlFile);
+					inputStream = new FileInputStream(pluginPackageXmlFile);
 				}
 				else {
 					ZipEntry zipEntry = zipFile.getEntry(
 						"WEB-INF/liferay-plugin-package.xml");
 
 					if (zipEntry != null) {
-						is = zipFile.getInputStream(zipEntry);
+						inputStream = zipFile.getInputStream(zipEntry);
 					}
 				}
 
@@ -1759,8 +1765,11 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 						file.getParent(), "/merge/", file.getName(),
 						"/WEB-INF/liferay-plugin-package.properties"));
 
-				if ((is == null) && pluginPackagePropertiesFile.exists()) {
-					is = new FileInputStream(pluginPackagePropertiesFile);
+				if ((inputStream == null) &&
+					pluginPackagePropertiesFile.exists()) {
+
+					inputStream = new FileInputStream(
+						pluginPackagePropertiesFile);
 
 					parseProps = true;
 				}
@@ -1768,15 +1777,15 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 					ZipEntry zipEntry = zipFile.getEntry(
 						"WEB-INF/liferay-plugin-package.properties");
 
-					if ((is == null) && (zipEntry != null)) {
-						is = zipFile.getInputStream(zipEntry);
+					if ((inputStream == null) && (zipEntry != null)) {
+						inputStream = zipFile.getInputStream(zipEntry);
 
 						parseProps = true;
 					}
 				}
 			}
 
-			if (is == null) {
+			if (inputStream == null) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						StringBundler.concat(
@@ -1791,7 +1800,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			if (parseProps) {
 				String displayName = getDisplayName(file);
 
-				String propertiesString = StringUtil.read(is);
+				String propertiesString = StringUtil.read(inputStream);
 
 				Properties properties = PropertiesUtil.load(propertiesString);
 
@@ -1799,7 +1808,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 					displayName, properties);
 			}
 
-			String xml = StringUtil.read(is);
+			String xml = StringUtil.read(inputStream);
 
 			xml = XMLUtil.fixProlog(xml);
 
@@ -1809,9 +1818,9 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			_log.error(file.getPath() + ": " + exception.toString(), exception);
 		}
 		finally {
-			if (is != null) {
+			if (inputStream != null) {
 				try {
-					is.close();
+					inputStream.close();
 				}
 				catch (IOException ioException) {
 				}

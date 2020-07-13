@@ -2465,11 +2465,11 @@ public class IntrabandProxyUtilTest {
 			classLoader.getResourceAsStream(name.concat(".class")));
 	}
 
-	private ClassNode _loadClass(InputStream is) {
+	private ClassNode _loadClass(InputStream inputStream) {
 		ClassReader classReader = null;
 
 		try {
-			classReader = new ClassReader(is);
+			classReader = new ClassReader(inputStream);
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);

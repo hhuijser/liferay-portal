@@ -116,7 +116,9 @@ public class ExtResourceSet extends AbstractFileResourceSet {
 	}
 
 	@Override
-	public boolean write(String path, InputStream is, boolean overwrite) {
+	public boolean write(
+		String path, InputStream inputStream, boolean overwrite) {
+
 		return false;
 	}
 

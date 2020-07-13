@@ -93,14 +93,14 @@ public class PluginsGitSvnSyncer {
 		return _getExecOutput(process.getInputStream());
 	}
 
-	private String[] _getExecOutput(InputStream is) throws Exception {
+	private String[] _getExecOutput(InputStream inputStream) throws Exception {
 		List<String> list = new ArrayList<>();
 
 		UnsyncBufferedReader unsyncBufferedReader = null;
 
 		try {
 			unsyncBufferedReader = new UnsyncBufferedReader(
-				new InputStreamReader(is));
+				new InputStreamReader(inputStream));
 
 			String line = unsyncBufferedReader.readLine();
 

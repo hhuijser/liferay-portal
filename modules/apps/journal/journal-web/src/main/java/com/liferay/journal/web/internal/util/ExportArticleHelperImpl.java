@@ -120,7 +120,7 @@ public class ExportArticleHelperImpl implements ExportArticleHelper {
 
 		String s = sb.toString();
 
-		InputStream is = new UnsyncByteArrayInputStream(
+		InputStream inputStream = new UnsyncByteArrayInputStream(
 			s.getBytes(StringPool.UTF8));
 
 		String title = articleDisplay.getTitle();
@@ -146,7 +146,7 @@ public class ExportArticleHelperImpl implements ExportArticleHelper {
 		sb.append(tempFileId);
 
 		File convertedFile = DocumentConversionUtil.convert(
-			sb.toString(), is, sourceExtension, targetExtension);
+			sb.toString(), inputStream, sourceExtension, targetExtension);
 
 		if (convertedFile != null) {
 			targetExtension = StringUtil.toLowerCase(targetExtension);
@@ -159,11 +159,12 @@ public class ExportArticleHelperImpl implements ExportArticleHelper {
 
 			contentType = MimeTypesUtil.getContentType(fileName);
 
-			is = new FileInputStream(convertedFile);
+			inputStream = new FileInputStream(convertedFile);
 		}
 
 		ServletResponseUtil.sendFile(
-			httpServletRequest, httpServletResponse, fileName, is, contentType);
+			httpServletRequest, httpServletResponse, fileName, inputStream,
+			contentType);
 	}
 
 	@Reference

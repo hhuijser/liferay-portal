@@ -38,7 +38,7 @@ public class SafeFileNameStore implements Store {
 	@Override
 	public void addFile(
 			long companyId, long repositoryId, String fileName,
-			String versionLabel, InputStream is)
+			String versionLabel, InputStream inputStream)
 		throws PortalException {
 
 		String safeFileName = FileUtil.encodeSafeFileName(fileName);
@@ -47,7 +47,8 @@ public class SafeFileNameStore implements Store {
 			_store.deleteFile(companyId, repositoryId, fileName, versionLabel);
 		}
 
-		_store.addFile(companyId, repositoryId, safeFileName, versionLabel, is);
+		_store.addFile(
+			companyId, repositoryId, safeFileName, versionLabel, inputStream);
 	}
 
 	@Override

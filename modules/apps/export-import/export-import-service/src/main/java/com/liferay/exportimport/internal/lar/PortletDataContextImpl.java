@@ -487,7 +487,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	}
 
 	@Override
-	public void addZipEntry(String path, InputStream is) {
+	public void addZipEntry(String path, InputStream inputStream) {
 		if (isPathProcessed(path)) {
 			return;
 		}
@@ -495,7 +495,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		try {
 			ZipWriter zipWriter = getZipWriter();
 
-			zipWriter.addEntry(path, is);
+			zipWriter.addEntry(path, inputStream);
 		}
 		catch (IOException ioException) {
 			ExportImportIOException exportImportIOException =

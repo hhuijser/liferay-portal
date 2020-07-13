@@ -73,7 +73,7 @@ public interface ImageProcessor {
 
 	public void storeThumbnail(
 			long companyId, long groupId, long fileEntryId, long fileVersionId,
-			long custom1ImageId, long custom2ImageId, InputStream is,
+			long custom1ImageId, long custom2ImageId, InputStream inputStream,
 			String type)
 		throws Exception;
 

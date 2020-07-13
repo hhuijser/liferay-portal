@@ -74,7 +74,7 @@ public class MockFile implements com.liferay.portal.kernel.util.File {
 	}
 
 	@Override
-	public File createTempFile(InputStream is) {
+	public File createTempFile(InputStream inputStream) {
 		return null;
 	}
 
@@ -147,13 +147,13 @@ public class MockFile implements com.liferay.portal.kernel.util.File {
 	}
 
 	@Override
-	public String extractText(InputStream is, String fileName) {
+	public String extractText(InputStream inputStream, String fileName) {
 		return null;
 	}
 
 	@Override
 	public String extractText(
-		InputStream is, String fileName, int maxStringLength) {
+		InputStream inputStream, String fileName, int maxStringLength) {
 
 		return null;
 	}
@@ -179,12 +179,12 @@ public class MockFile implements com.liferay.portal.kernel.util.File {
 	}
 
 	@Override
-	public byte[] getBytes(InputStream is) {
+	public byte[] getBytes(InputStream inputStream) {
 		return new byte[0];
 	}
 
 	@Override
-	public byte[] getBytes(InputStream is, int bufferSize) {
+	public byte[] getBytes(InputStream inputStream, int bufferSize) {
 		return new byte[0];
 	}
 
@@ -364,7 +364,7 @@ public class MockFile implements com.liferay.portal.kernel.util.File {
 	}
 
 	@Override
-	public void write(File file, InputStream is) {
+	public void write(File file, InputStream inputStream) {
 	}
 
 	@Override
@@ -384,7 +384,7 @@ public class MockFile implements com.liferay.portal.kernel.util.File {
 	}
 
 	@Override
-	public void write(String fileName, InputStream is) {
+	public void write(String fileName, InputStream inputStream) {
 	}
 
 	@Override

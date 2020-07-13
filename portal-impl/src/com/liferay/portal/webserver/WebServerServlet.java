@@ -369,17 +369,17 @@ public class WebServerServlet extends HttpServlet {
 
 			image.setModifiedDate(fileEntry.getModifiedDate());
 
-			InputStream is = null;
+			InputStream inputStream = null;
 
 			if (smallImage) {
-				is = ImageProcessorUtil.getThumbnailAsStream(
+				inputStream = ImageProcessorUtil.getThumbnailAsStream(
 					fileEntry.getFileVersion(), 0);
 			}
 			else {
-				is = fileEntry.getContentStream();
+				inputStream = fileEntry.getContentStream();
 			}
 
-			image.setTextObj(FileUtil.getBytes(is));
+			image.setTextObj(FileUtil.getBytes(inputStream));
 
 			image.setType(fileEntry.getExtension());
 
@@ -1285,19 +1285,19 @@ public class WebServerServlet extends HttpServlet {
 				HttpHeaders.CONTENT_DISPOSITION_ATTACHMENT);
 		}
 		else {
-			InputStream is = fileEntry.getContentStream();
+			InputStream inputStream = fileEntry.getContentStream();
 
 			FlashMagicBytesUtil.Result flashMagicBytesUtilResult =
-				FlashMagicBytesUtil.check(is);
+				FlashMagicBytesUtil.check(inputStream);
 
-			is = flashMagicBytesUtilResult.getInputStream();
+			inputStream = flashMagicBytesUtilResult.getInputStream();
 
 			if (flashMagicBytesUtilResult.isFlash()) {
 				fileName = FileUtil.stripExtension(fileName) + ".swf";
 			}
 
 			ServletResponseUtil.sendFile(
-				httpServletRequest, httpServletResponse, fileName, is,
+				httpServletRequest, httpServletResponse, fileName, inputStream,
 				fileEntry.getSize(), fileEntry.getMimeType());
 		}
 	}

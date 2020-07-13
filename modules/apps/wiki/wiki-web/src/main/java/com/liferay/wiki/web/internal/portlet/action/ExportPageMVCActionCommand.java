@@ -180,7 +180,7 @@ public class ExportPageMVCActionCommand extends BaseMVCActionCommand {
 
 		String s = sb.toString();
 
-		InputStream is = new UnsyncByteArrayInputStream(
+		InputStream inputStream = new UnsyncByteArrayInputStream(
 			s.getBytes(StringPool.UTF8));
 
 		String sourceExtension = "html";
@@ -197,7 +197,7 @@ public class ExportPageMVCActionCommand extends BaseMVCActionCommand {
 					page.getUuid();
 
 			File convertedFile = DocumentConversionUtil.convert(
-				id, is, sourceExtension, targetExtension);
+				id, inputStream, sourceExtension, targetExtension);
 
 			if (convertedFile != null) {
 				fileName = title.concat(
@@ -206,12 +206,12 @@ public class ExportPageMVCActionCommand extends BaseMVCActionCommand {
 					targetExtension
 				);
 
-				is = new FileInputStream(convertedFile);
+				inputStream = new FileInputStream(convertedFile);
 			}
 		}
 
 		ServletResponseUtil.sendFile(
-			httpServletRequest, httpServletResponse, fileName, is,
+			httpServletRequest, httpServletResponse, fileName, inputStream,
 			MimeTypesUtil.getContentType(fileName));
 	}
 

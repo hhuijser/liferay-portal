@@ -459,9 +459,9 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 				FileEntry fileEntry = DLAppServiceUtil.getFileEntry(
 					_fileEntryIds[_index]);
 
-				InputStream is = fileEntry.getContentStream();
+				InputStream inputStream = fileEntry.getContentStream();
 
-				String content = StringUtil.read(is);
+				String content = StringUtil.read(inputStream);
 
 				if (CONTENT.equals(content)) {
 					if (_log.isDebugEnabled()) {

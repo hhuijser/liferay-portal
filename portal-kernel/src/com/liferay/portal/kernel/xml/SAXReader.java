@@ -78,9 +78,9 @@ public interface SAXReader {
 
 	public Document read(File file, boolean validate) throws DocumentException;
 
-	public Document read(InputStream is) throws DocumentException;
+	public Document read(InputStream inputStream) throws DocumentException;
 
-	public Document read(InputStream is, boolean validate)
+	public Document read(InputStream inputStream, boolean validate)
 		throws DocumentException;
 
 	public Document read(Reader reader) throws DocumentException;

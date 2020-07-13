@@ -278,9 +278,9 @@ public class DLSharepointStorageImpl extends BaseSharepointStorageImpl {
 				String description = fileEntry.getDescription();
 				String changeLog = StringPool.BLANK;
 
-				InputStream is = fileEntry.getContentStream();
+				InputStream inputStream = fileEntry.getContentStream();
 
-				file = FileUtil.createTempFile(is);
+				file = FileUtil.createTempFile(inputStream);
 
 				String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
 					DLFileEntryConstants.getClassName(),

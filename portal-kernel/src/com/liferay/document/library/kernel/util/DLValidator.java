@@ -52,7 +52,7 @@ public interface DLValidator {
 	public void validateFileSize(String fileName, File file)
 		throws FileSizeException;
 
-	public void validateFileSize(String fileName, InputStream is)
+	public void validateFileSize(String fileName, InputStream inputStream)
 		throws FileSizeException;
 
 	public void validateFileSize(String fileName, long size)

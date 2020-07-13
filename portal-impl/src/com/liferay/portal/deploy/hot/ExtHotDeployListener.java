@@ -88,16 +88,18 @@ public class ExtHotDeployListener extends BaseHotDeployListener {
 		String jarFullName = StringBundler.concat(
 			"/WEB-INF/", jarName, "/", jarName, ".jar");
 
-		InputStream is = servletContext.getResourceAsStream(jarFullName);
+		InputStream inputStream = servletContext.getResourceAsStream(
+			jarFullName);
 
-		if (is == null) {
+		if (inputStream == null) {
 			throw new HotDeployException(jarFullName + " does not exist");
 		}
 
 		String newJarFullName = StringBundler.concat(
 			dir, "ext-", servletContextName, jarName.substring(3), ".jar");
 
-		StreamUtil.transfer(is, new FileOutputStream(new File(newJarFullName)));
+		StreamUtil.transfer(
+			inputStream, new FileOutputStream(new File(newJarFullName)));
 	}
 
 	protected void doInvokeDeploy(HotDeployEvent hotDeployEvent)

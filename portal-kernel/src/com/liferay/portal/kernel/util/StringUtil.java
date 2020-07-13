@@ -2227,8 +2227,8 @@ public class StringUtil {
 		}
 	}
 
-	public static String read(InputStream is) throws IOException {
-		String s = _read(is);
+	public static String read(InputStream inputStream) throws IOException {
+		String s = _read(inputStream);
 
 		s = replace(s, "\r\n", StringPool.NEW_LINE);
 
@@ -2237,10 +2237,11 @@ public class StringUtil {
 		return s.trim();
 	}
 
-	public static void readLines(InputStream is, Collection<String> lines)
+	public static void readLines(
+			InputStream inputStream, Collection<String> lines)
 		throws IOException {
 
-		_splitLines(_read(is), lines);
+		_splitLines(_read(inputStream), lines);
 	}
 
 	public static String removeChar(String s, char oldSub) {

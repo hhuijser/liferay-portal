@@ -204,11 +204,11 @@ public class ElasticsearchConnection {
 		try {
 			Path path = Paths.get(_truststorePath);
 
-			InputStream is = Files.newInputStream(path);
+			InputStream inputStream = Files.newInputStream(path);
 
 			KeyStore keyStore = KeyStore.getInstance(_truststoreType);
 
-			keyStore.load(is, _truststorePassword.toCharArray());
+			keyStore.load(inputStream, _truststorePassword.toCharArray());
 
 			SSLContextBuilder sslContextBuilder = SSLContexts.custom();
 

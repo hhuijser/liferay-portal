@@ -67,7 +67,7 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		}
 
 		_checkPackageNameByClassName(
-			fileName, javaClass.getName(), packageName);
+			fileName, absolutePath, javaClass.getName(), packageName);
 
 		List<String> expectedInternalImplementsDataEntries = getAttributeValues(
 			_EXPECTED_INTERNAL_IMPLEMENTS_DATA_KEY, absolutePath);
@@ -280,15 +280,28 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 	}
 
 	private void _checkPackageNameByClassName(
-		String fileName, String className, String packageName) {
+		String fileName, String absolutePath, String className,
+		String packageName) {
 
-		if (className.endsWith("OSGiCommands") &&
-			!packageName.endsWith(".osgi.commands")) {
+		List<String> expectedPackagePathDataEntries = getAttributeValues(
+			_EXPECTED_PACKAGE_PATH_DATA_KEY, absolutePath);
 
-			addMessage(
-				fileName,
-				"Class '" + className +
-					"' should be in package ending with '.osgi.commands'");
+		for (String expectedPackagePathDataEntry :
+				expectedPackagePathDataEntries) {
+
+			String[] array = StringUtil.split(
+				expectedPackagePathDataEntry, CharPool.COLON);
+
+			if ((array.length == 2) && className.matches(array[0]) &&
+				!packageName.endsWith("." + array[1])) {
+
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Class '", className,
+						"' should be in package ending with '.", array[1],
+						"'"));
+			}
 		}
 	}
 
@@ -297,6 +310,9 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 
 	private static final String _EXPECTED_INTERNAL_IMPLEMENTS_DATA_KEY =
 		"expectedInternalImplementsData";
+
+	private static final String _EXPECTED_PACKAGE_PATH_DATA_KEY =
+		"expectedPackagePathData";
 
 	private static final Pattern _apiOrServiceBundleSymbolicNamePattern =
 		Pattern.compile("\\.(api|service)$");

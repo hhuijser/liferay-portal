@@ -212,9 +212,59 @@ public class GitUtil {
 		throws Exception {
 
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git merge-base HEAD " + gitWorkingBranchName);
+			"git rev-parse --abbrev-ref HEAD");
 
-		return unsyncBufferedReader.readLine();
+		String currentBranchName = unsyncBufferedReader.readLine();
+
+		if (gitWorkingBranchName.equals(currentBranchName)) {
+			return null;
+		}
+
+		unsyncBufferedReader = getGitCommandReader(
+			"git log --pretty=format:%H:%D");
+
+		int count = 0;
+		boolean head = false;
+
+		String line = null;
+
+		while ((line = unsyncBufferedReader.readLine()) != null) {
+			count++;
+
+			line = StringUtil.trim(line);
+
+			String[] parts = line.split(StringPool.COLON, 2);
+
+			if (parts.length == 1) {
+				continue;
+			}
+
+			String[] refNames = StringUtil.split(
+				parts[1], StringPool.COMMA_AND_SPACE);
+
+			for (String refName : refNames) {
+				if (!head) {
+					if (refName.startsWith("HEAD ->")) {
+						head = true;
+					}
+					else {
+						break;
+					}
+				}
+
+				if (!refName.equals(currentBranchName) &&
+					!refName.endsWith("/" + currentBranchName)) {
+
+					return parts[0];
+				}
+			}
+
+			if (count > 1000) {
+				return null;
+			}
+		}
+
+		return null;
 	}
 
 	protected static List<String> getDeletedFileNames(

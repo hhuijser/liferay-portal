@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.xmlrpc.XmlRpcUtil;
 import com.liferay.portal.util.PortalInstances;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -68,9 +67,7 @@ public class XmlRpcServlet extends HttpServlet {
 
 			String token = getToken(httpServletRequest);
 
-			InputStream inputStream = httpServletRequest.getInputStream();
-
-			String xml = StringUtil.read(inputStream);
+			String xml = StringUtil.read(httpServletRequest.getInputStream());
 
 			Tuple methodTuple = XmlRpcParser.parseMethod(xml);
 

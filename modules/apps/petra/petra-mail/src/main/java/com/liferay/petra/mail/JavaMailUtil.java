@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.mail.Address;
 import javax.mail.MessagingException;
@@ -36,9 +35,7 @@ public class JavaMailUtil {
 	public static byte[] getBytes(Part part)
 		throws IOException, MessagingException {
 
-		InputStream inputStream = part.getInputStream();
-
-		return FileUtil.getBytes(inputStream);
+		return FileUtil.getBytes(part.getInputStream());
 	}
 
 	public static String toUnicodeString(Address[] addresses) {

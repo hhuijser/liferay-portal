@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.kernel.test.util;
+package com.liferay.portal.kernel.test.constants;
 
 /**
- * @author     Matthew Tambara
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.test.constants.TestDataConstants}
+ * @author Matthew Tambara
  */
-@Deprecated
 public class TestDataConstants {
 
 	public static final byte[] TEST_BYTE_ARRAY = {

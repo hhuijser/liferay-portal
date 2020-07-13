@@ -924,7 +924,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	 * Update the company's logo.
 	 *
 	 * @param  companyId the primary key of the company
-	 * @param  is the input stream of the company's logo image
+	 * @param  inputStream the input stream of the company's logo image
 	 * @return the company with the primary key
 	 */
 	@Override

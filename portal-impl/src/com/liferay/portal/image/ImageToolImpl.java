@@ -403,14 +403,14 @@ public class ImageToolImpl implements ImageTool {
 		ClassLoader classLoader = ImageToolImpl.class.getClassLoader();
 
 		try {
-			InputStream is = classLoader.getResourceAsStream(
+			InputStream inputStream = classLoader.getResourceAsStream(
 				PropsUtil.get(PropsKeys.IMAGE_DEFAULT_ORGANIZATION_LOGO));
 
-			if (is == null) {
+			if (inputStream == null) {
 				_log.error("Default organization logo is not available");
 			}
 
-			_defaultOrganizationLogo = getImage(is);
+			_defaultOrganizationLogo = getImage(inputStream);
 		}
 		catch (Exception exception) {
 			_log.error(
@@ -457,14 +457,14 @@ public class ImageToolImpl implements ImageTool {
 		ClassLoader classLoader = ImageToolImpl.class.getClassLoader();
 
 		try {
-			InputStream is = classLoader.getResourceAsStream(
+			InputStream inputStream = classLoader.getResourceAsStream(
 				PropsUtil.get(PropsKeys.IMAGE_DEFAULT_USER_FEMALE_PORTRAIT));
 
-			if (is == null) {
+			if (inputStream == null) {
 				_log.error("Default user female portrait is not available");
 			}
 
-			_defaultUserFemalePortrait = getImage(is);
+			_defaultUserFemalePortrait = getImage(inputStream);
 		}
 		catch (Exception exception) {
 			_log.error(
@@ -484,14 +484,14 @@ public class ImageToolImpl implements ImageTool {
 		ClassLoader classLoader = ImageToolImpl.class.getClassLoader();
 
 		try {
-			InputStream is = classLoader.getResourceAsStream(
+			InputStream inputStream = classLoader.getResourceAsStream(
 				PropsUtil.get(PropsKeys.IMAGE_DEFAULT_USER_MALE_PORTRAIT));
 
-			if (is == null) {
+			if (inputStream == null) {
 				_log.error("Default user male portrait is not available");
 			}
 
-			_defaultUserMalePortrait = getImage(is);
+			_defaultUserMalePortrait = getImage(inputStream);
 		}
 		catch (Exception exception) {
 			_log.error(
@@ -511,14 +511,14 @@ public class ImageToolImpl implements ImageTool {
 		ClassLoader classLoader = ImageToolImpl.class.getClassLoader();
 
 		try {
-			InputStream is = classLoader.getResourceAsStream(
+			InputStream inputStream = classLoader.getResourceAsStream(
 				PropsUtil.get(PropsKeys.IMAGE_DEFAULT_USER_PORTRAIT));
 
-			if (is == null) {
+			if (inputStream == null) {
 				_log.error("Default user portrait is not available");
 			}
 
-			_defaultUserPortrait = getImage(is);
+			_defaultUserPortrait = getImage(inputStream);
 		}
 		catch (Exception exception) {
 			_log.error(
@@ -570,17 +570,17 @@ public class ImageToolImpl implements ImageTool {
 	}
 
 	@Override
-	public Image getImage(InputStream is)
+	public Image getImage(InputStream inputStream)
 		throws ImageResolutionException, IOException {
 
-		return getImage(_fileImpl.getBytes(is, -1, true));
+		return getImage(_fileImpl.getBytes(inputStream, -1, true));
 	}
 
 	@Override
-	public Image getImage(InputStream is, boolean cleanUpStream)
+	public Image getImage(InputStream inputStream, boolean cleanUpStream)
 		throws ImageResolutionException, IOException {
 
-		return getImage(_fileImpl.getBytes(is, -1, cleanUpStream));
+		return getImage(_fileImpl.getBytes(inputStream, -1, cleanUpStream));
 	}
 
 	@Override

@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.kernel.test.util;
+package com.liferay.portal.kernel.test.constants;
 
 /**
- * @author     Leon Chi
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             com.liferay.portal.kernel.test.constants.ServiceTestConstants}
+ * @author Leon Chi
  */
-@Deprecated
 public class ServiceTestConstants {
 
 	public static final int RETRY_COUNT = 10;

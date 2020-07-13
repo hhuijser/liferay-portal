@@ -68,9 +68,10 @@ public class UploadPortletRequestWhenGettingInputStreamTest {
 					(HttpServletRequest)liferayServletRequest.getRequest()),
 				null, _portletNamespace);
 
-		ServletInputStream inputStream = uploadPortletRequest.getInputStream();
+		ServletInputStream servletInputStream =
+			uploadPortletRequest.getInputStream();
 
-		Assert.assertFalse(inputStream instanceof LiferayInputStream);
+		Assert.assertFalse(servletInputStream instanceof LiferayInputStream);
 
 		uploadPortletRequest = new UploadPortletRequestImpl(
 			new UploadServletRequestImpl(
@@ -79,9 +80,9 @@ public class UploadPortletRequestWhenGettingInputStreamTest {
 				new HashMap<String, List<String>>()),
 			null, _portletNamespace);
 
-		inputStream = uploadPortletRequest.getInputStream();
+		servletInputStream = uploadPortletRequest.getInputStream();
 
-		Assert.assertFalse(inputStream instanceof LiferayInputStream);
+		Assert.assertFalse(servletInputStream instanceof LiferayInputStream);
 	}
 
 	@Test
@@ -96,9 +97,11 @@ public class UploadPortletRequestWhenGettingInputStreamTest {
 					(HttpServletRequest)liferayServletRequest.getRequest()),
 				null, _portletNamespace);
 
-		ServletInputStream inputStream = uploadPortletRequest.getInputStream();
+		ServletInputStream servletInputStream =
+			uploadPortletRequest.getInputStream();
 
-		Assert.assertTrue(inputStream instanceof ServletInputStreamAdapter);
+		Assert.assertTrue(
+			servletInputStream instanceof ServletInputStreamAdapter);
 	}
 
 	private static final byte[] _BYTES =

@@ -935,11 +935,11 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 	}
 
 	@Override
-	public Properties toProperties(FileInputStream fis) {
+	public Properties toProperties(FileInputStream fileInputStream) {
 		Properties properties = new Properties();
 
 		try {
-			properties.load(fis);
+			properties.load(fileInputStream);
 		}
 		catch (IOException ioException) {
 		}
@@ -1159,18 +1159,19 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 
 					@Override
 					public void parseEmbedded(
-							InputStream stream, ContentHandler contentHandler,
-							Metadata metadata, boolean outputHtml)
+							InputStream inputStream,
+							ContentHandler contentHandler, Metadata metadata,
+							boolean outputHtml)
 						throws IOException, SAXException {
 
-						String mimeType = tika.detect(stream);
+						String mimeType = tika.detect(inputStream);
 
 						if (mimeType.equals(ContentTypes.IMAGE_PNG)) {
 							return;
 						}
 
 						super.parseEmbedded(
-							stream, contentHandler, metadata, outputHtml);
+							inputStream, contentHandler, metadata, outputHtml);
 					}
 
 				});

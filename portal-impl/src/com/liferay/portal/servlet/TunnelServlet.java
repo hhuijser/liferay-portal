@@ -64,12 +64,12 @@ public class TunnelServlet extends HttpServlet {
 			return;
 		}
 
-		ObjectInputStream ois = null;
+		ObjectInputStream objectInputStream = null;
 
 		Thread thread = Thread.currentThread();
 
 		try {
-			ois = new ProtectedClassLoaderObjectInputStream(
+			objectInputStream = new ProtectedClassLoaderObjectInputStream(
 				httpServletRequest.getInputStream(),
 				thread.getContextClassLoader());
 		}
@@ -89,7 +89,8 @@ public class TunnelServlet extends HttpServlet {
 			AccessControlThreadLocal.setRemoteAccess(true);
 
 			ObjectValuePair<HttpPrincipal, MethodHandler> ovp =
-				(ObjectValuePair<HttpPrincipal, MethodHandler>)ois.readObject();
+				(ObjectValuePair<HttpPrincipal, MethodHandler>)
+					objectInputStream.readObject();
 
 			MethodHandler methodHandler = ovp.getValue();
 

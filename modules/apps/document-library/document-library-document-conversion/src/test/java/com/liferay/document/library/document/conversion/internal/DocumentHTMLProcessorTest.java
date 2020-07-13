@@ -76,12 +76,13 @@ public class DocumentHTMLProcessorTest {
 			"/documents/29543/100903188/how-long/4e69-b2cc-e6ef21c10?t=1513212",
 			"&imageThumbnail=1\"/></body></html>");
 
-		InputStream originalIS = new ByteArrayInputStream(
+		InputStream originalInputStream = new ByteArrayInputStream(
 			originalHTML.getBytes());
 
-		InputStream processedIS = documentHTMLProcessor.process(originalIS);
+		InputStream processedInputStream = documentHTMLProcessor.process(
+			originalInputStream);
 
-		String processedHTML = IOUtils.toString(processedIS, "UTF-8");
+		String processedHTML = IOUtils.toString(processedInputStream, "UTF-8");
 
 		String expectedHTML = StringBundler.concat(
 			"<html><head><title>test-title</title></head><body><img src=\"",
@@ -101,12 +102,13 @@ public class DocumentHTMLProcessorTest {
 			"/image/image_gallery?uuid=f17b2a6b-70ee-4121-ae6e-61c22ff47",
 			"&groupId=807138&t=12798459506&imageThumbnail=1\"/></body></html>");
 
-		InputStream originalIS = new ByteArrayInputStream(
+		InputStream originalInputStream = new ByteArrayInputStream(
 			originalHTML.getBytes());
 
-		InputStream processedIS = documentHTMLProcessor.process(originalIS);
+		InputStream processedInputStream = documentHTMLProcessor.process(
+			originalInputStream);
 
-		String processedHTML = IOUtils.toString(processedIS, "UTF-8");
+		String processedHTML = IOUtils.toString(processedInputStream, "UTF-8");
 
 		String expectedHTML = StringBundler.concat(
 			"<html><head><title>test-title</title></head><body><img src=\"",
@@ -129,12 +131,13 @@ public class DocumentHTMLProcessorTest {
 			"<img class=\"test\" src=\"/documents/29543/100903188/how-long",
 			"/4e69-b2cc-e6ef21c10?t=1513212\"/></body></html>");
 
-		InputStream originalIS = new ByteArrayInputStream(
+		InputStream originalInputStream = new ByteArrayInputStream(
 			originalHTML.getBytes());
 
-		InputStream processedIS = documentHTMLProcessor.process(originalIS);
+		InputStream processedInputStream = documentHTMLProcessor.process(
+			originalInputStream);
 
-		String processedHTML = IOUtils.toString(processedIS, "UTF-8");
+		String processedHTML = IOUtils.toString(processedInputStream, "UTF-8");
 
 		String expectedHTML = StringBundler.concat(
 			"<html><head><title>test-title</title></head><body>",
@@ -158,12 +161,13 @@ public class DocumentHTMLProcessorTest {
 			"/image_gallery?uuid=f17b2a6b-70ee-4121-ae6e-61c22ff47",
 			"&groupId=807138&t=12798459506\"/></body></html>");
 
-		InputStream originalIS = new ByteArrayInputStream(
+		InputStream originalInputStream = new ByteArrayInputStream(
 			originalHTML.getBytes());
 
-		InputStream processedIS = documentHTMLProcessor.process(originalIS);
+		InputStream processedInputStream = documentHTMLProcessor.process(
+			originalInputStream);
 
-		String processedHTML = IOUtils.toString(processedIS, "UTF-8");
+		String processedHTML = IOUtils.toString(processedInputStream, "UTF-8");
 
 		String expectedHTML = StringBundler.concat(
 			"<html><head><title>test-title</title></head><body>",
@@ -187,12 +191,13 @@ public class DocumentHTMLProcessorTest {
 			"<img class=\"test\" src=\"/documents/portlet_file_entry/10766",
 			"/test-title/f17b2a6b-ae6e-61cf\"/></body></html>");
 
-		InputStream originalIS = new ByteArrayInputStream(
+		InputStream originalInputStream = new ByteArrayInputStream(
 			originalHTML.getBytes());
 
-		InputStream processedIS = documentHTMLProcessor.process(originalIS);
+		InputStream processedInputStream = documentHTMLProcessor.process(
+			originalInputStream);
 
-		String processedHTML = IOUtils.toString(processedIS, "UTF-8");
+		String processedHTML = IOUtils.toString(processedInputStream, "UTF-8");
 
 		String expectedHTML = StringBundler.concat(
 			"<html><head><title>test-title</title></head><body>",
@@ -213,12 +218,13 @@ public class DocumentHTMLProcessorTest {
 			"/documents/29543/100903188/how-long/4e69-b2cc-e6ef21c10?t=1513212",
 			"\"/></body></html>");
 
-		InputStream originalIS = new ByteArrayInputStream(
+		InputStream originalInputStream = new ByteArrayInputStream(
 			originalHTML.getBytes());
 
-		InputStream processedIS = documentHTMLProcessor.process(originalIS);
+		InputStream processedInputStream = documentHTMLProcessor.process(
+			originalInputStream);
 
-		String processedHTML = IOUtils.toString(processedIS, "UTF-8");
+		String processedHTML = IOUtils.toString(processedInputStream, "UTF-8");
 
 		String expectedHTML = StringBundler.concat(
 			"<html><head><title>test-title</title></head><body><img src=\"",
@@ -238,12 +244,13 @@ public class DocumentHTMLProcessorTest {
 			"/image/image_gallery?uuid=f17b2a6b-70ee-4121-ae6e-61c22ff47",
 			"&groupId=807138&t=12798459506\"/></body></html>");
 
-		InputStream originalIS = new ByteArrayInputStream(
+		InputStream originalInputStream = new ByteArrayInputStream(
 			originalHTML.getBytes());
 
-		InputStream processedIS = documentHTMLProcessor.process(originalIS);
+		InputStream processedInputStream = documentHTMLProcessor.process(
+			originalInputStream);
 
-		String processedHTML = IOUtils.toString(processedIS, "UTF-8");
+		String processedHTML = IOUtils.toString(processedInputStream, "UTF-8");
 
 		String expectedHTML = StringBundler.concat(
 			"<html><head><title>test-title</title></head><body><img src=\"",
@@ -264,12 +271,13 @@ public class DocumentHTMLProcessorTest {
 			"/documents/portlet_file_entry/10766/test-title/f17b2a6b-ae6e-61cf",
 			"\"/></body></html>");
 
-		InputStream originalIS = new ByteArrayInputStream(
+		InputStream originalInputStream = new ByteArrayInputStream(
 			originalHTML.getBytes());
 
-		InputStream processedIS = documentHTMLProcessor.process(originalIS);
+		InputStream processedInputStream = documentHTMLProcessor.process(
+			originalInputStream);
 
-		String processedHTML = IOUtils.toString(processedIS, "UTF-8");
+		String processedHTML = IOUtils.toString(processedInputStream, "UTF-8");
 
 		String expectedHTML = StringBundler.concat(
 			"<html><head><title>test-title</title></head><body><img src=\"",

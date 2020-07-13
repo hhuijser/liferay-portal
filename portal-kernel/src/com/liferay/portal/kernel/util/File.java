@@ -155,7 +155,7 @@ public interface File {
 
 	public List<String> toList(String fileName);
 
-	public Properties toProperties(FileInputStream fis);
+	public Properties toProperties(FileInputStream fileInputStream);
 
 	public Properties toProperties(String fileName);
 

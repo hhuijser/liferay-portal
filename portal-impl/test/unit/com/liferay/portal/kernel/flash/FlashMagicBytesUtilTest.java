@@ -51,10 +51,11 @@ public class FlashMagicBytesUtilTest {
 	}
 
 	protected void test(byte[] bytes, boolean expectFlash) throws IOException {
-		ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
+		ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
+			bytes);
 
 		FlashMagicBytesUtil.Result result = FlashMagicBytesUtil.check(
-			inputStream);
+			byteArrayInputStream);
 
 		Assert.assertEquals(expectFlash, result.isFlash());
 

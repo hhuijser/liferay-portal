@@ -244,7 +244,7 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 	}
 
 	protected void read(
-			InputStream stream, Map<String, Set<String>> extensionsMap)
+			InputStream inputStream, Map<String, Set<String>> extensionsMap)
 		throws Exception {
 
 		DocumentBuilderFactory documentBuilderFactory =
@@ -253,7 +253,7 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 		DocumentBuilder documentBuilder =
 			documentBuilderFactory.newDocumentBuilder();
 
-		Document document = documentBuilder.parse(new InputSource(stream));
+		Document document = documentBuilder.parse(new InputSource(inputStream));
 
 		Element element = document.getDocumentElement();
 

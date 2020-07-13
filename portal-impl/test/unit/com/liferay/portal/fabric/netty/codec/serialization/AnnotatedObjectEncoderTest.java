@@ -54,11 +54,13 @@ public class AnnotatedObjectEncoderTest {
 
 		Assert.assertEquals(byteBuf.readInt(), byteBuf.readableBytes());
 
-		ProtectedAnnotatedObjectInputStream annotatedObjectInputStream =
-			new ProtectedAnnotatedObjectInputStream(
-				new ByteBufInputStream(byteBuf));
+		ProtectedAnnotatedObjectInputStream
+			protectedAnnotatedObjectInputStream =
+				new ProtectedAnnotatedObjectInputStream(
+					new ByteBufInputStream(byteBuf));
 
-		Assert.assertEquals(date, annotatedObjectInputStream.readObject());
+		Assert.assertEquals(
+			date, protectedAnnotatedObjectInputStream.readObject());
 
 		Assert.assertFalse(byteBuf.isReadable());
 	}

@@ -246,10 +246,11 @@ public class GitUtil {
 				if (!head) {
 					if (refName.startsWith("HEAD ->")) {
 						head = true;
+
+						continue;
 					}
-					else {
-						break;
-					}
+
+					break;
 				}
 
 				if (!refName.equals(currentBranchName) &&

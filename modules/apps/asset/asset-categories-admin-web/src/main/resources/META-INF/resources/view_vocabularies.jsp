@@ -16,12 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-AssetVocabulariesManagementToolbarDisplayContext assetVocabulariesManagementToolbarDisplayContext = new AssetVocabulariesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, assetCategoriesDisplayContext);
-%>
-
 <clay:management-toolbar
-	displayContext="<%= assetVocabulariesManagementToolbarDisplayContext %>"
+	displayContext="<%= new AssetVocabulariesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, assetCategoriesDisplayContext) %>"
 />
 
 <aui:form cssClass="container-fluid-1280" name="fm">

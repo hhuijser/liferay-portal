@@ -51,13 +51,8 @@ if (stagingType == StagingConstants.TYPE_REMOTE_STAGING) {
 		<aui:input label='<%= LanguageUtil.get(request, "remote-site-id") %>' name="remoteGroupId" size="10" type="text" value='<%= liveGroupTypeSettings.getProperty("remoteGroupId") %>' />
 
 		<div class="form-group">
-
-			<%
-			boolean secureConnection = GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("secureConnection"));
-			%>
-
 			<liferay-staging:checkbox
-				checked="<%= secureConnection %>"
+				checked='<%= GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("secureConnection")) %>'
 				label="use-a-secure-network-connection"
 				name="secureConnection"
 			/>

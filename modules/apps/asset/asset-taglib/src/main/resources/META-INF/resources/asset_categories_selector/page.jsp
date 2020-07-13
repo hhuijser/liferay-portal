@@ -38,11 +38,7 @@ List<Map<String, Object>> vocabularies = (List<Map<String, Object>>)data.get("vo
 						<label>
 							<%= vocabulary.get("title") %>
 
-							<%
-							boolean required = GetterUtil.getBoolean(vocabulary.get("required"));
-							%>
-
-							<c:if test="<%= required %>">
+							<c:if test='<%= GetterUtil.getBoolean(vocabulary.get("required")) %>'>
 								<span class="reference-mark">
 									<clay:icon
 										symbol="asterisk"

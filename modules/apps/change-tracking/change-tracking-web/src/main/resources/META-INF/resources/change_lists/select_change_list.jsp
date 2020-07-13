@@ -20,12 +20,10 @@
 SearchContainer<CTCollection> searchContainer = changeListsDisplayContext.getSearchContainer();
 
 searchContainer.setId("selectChangeList");
-
-SelectChangeListManagementToolbarDisplayContext selectChangeListManagementToolbarDisplayContext = new SelectChangeListManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, searchContainer);
 %>
 
 <clay:management-toolbar
-	displayContext="<%= selectChangeListManagementToolbarDisplayContext %>"
+	displayContext="<%= new SelectChangeListManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, searchContainer) %>"
 />
 
 <c:if test="<%= !searchContainer.hasResults() %>">

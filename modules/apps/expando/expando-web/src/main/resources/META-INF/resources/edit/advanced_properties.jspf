@@ -113,11 +113,7 @@
 		</div>
 	</aui:field-wrapper>
 
-	<%
-	boolean textInputType = (propertyDisplayType.equals(ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_INPUT_FIELD) || propertyDisplayType.equals(ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_TEXT_BOX)) && ((type == ExpandoColumnConstants.STRING) || (type == ExpandoColumnConstants.STRING_LOCALIZED));
-	%>
-
-	<c:if test="<%= textInputType %>">
+	<c:if test="<%= (propertyDisplayType.equals(ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_INPUT_FIELD) || propertyDisplayType.equals(ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_TEXT_BOX)) && ((type == ExpandoColumnConstants.STRING) || (type == ExpandoColumnConstants.STRING_LOCALIZED)) %>">
 		<div id="<portlet:namespace />widthAdvancedSetting">
 			<aui:field-wrapper cssClass="form-group lfr-input-text-container">
 				<aui:input label="width" name="Property--width--" type="text" value="<%= propertyWidth %>">

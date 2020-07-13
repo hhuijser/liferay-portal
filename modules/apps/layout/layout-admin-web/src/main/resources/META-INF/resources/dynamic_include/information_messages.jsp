@@ -38,12 +38,7 @@ Map<String, Object> data = HashMapBuilder.<String, Object>put(
 
 	<div class="hide">
 		<div id="<%= portletNamespace %>infoContainer">
-
-			<%
-			boolean modifiedLayout = GetterUtil.getBoolean(request.getAttribute(InformationMessagesProductNavigationControlMenuEntry.INFORMATION_MESSAGES_MODIFIED_LAYOUT));
-			%>
-
-			<c:if test="<%= modifiedLayout %>">
+			<c:if test="<%= GetterUtil.getBoolean(request.getAttribute(InformationMessagesProductNavigationControlMenuEntry.INFORMATION_MESSAGES_MODIFIED_LAYOUT)) %>">
 				<div class="modified-layout">
 					<aui:icon image="information-live" markupView="lexicon" />
 
@@ -69,11 +64,7 @@ Map<String, Object> data = HashMapBuilder.<String, Object>put(
 				</div>
 			</c:if>
 
-			<%
-			boolean linkedLayout = GetterUtil.getBoolean(request.getAttribute(InformationMessagesProductNavigationControlMenuEntry.INFORMATION_MESSAGES_LINKED_LAYOUT));
-			%>
-
-			<c:if test="<%= linkedLayout %>">
+			<c:if test="<%= GetterUtil.getBoolean(request.getAttribute(InformationMessagesProductNavigationControlMenuEntry.INFORMATION_MESSAGES_LINKED_LAYOUT)) %>">
 				<div class="linked-layout">
 					<aui:icon image="information-live" markupView="lexicon" />
 

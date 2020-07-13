@@ -123,12 +123,8 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 					</c:choose>
 				</h3>
 
-				<%
-				AssetListEntryUsagesManagementToolbarDisplayContext assetListEntryUsagesManagementToolbarDisplayContext = new AssetListEntryUsagesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, assetListEntryUsagesDisplayContext.getSearchContainer());
-				%>
-
 				<clay:management-toolbar
-					displayContext="<%= assetListEntryUsagesManagementToolbarDisplayContext %>"
+					displayContext="<%= new AssetListEntryUsagesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, assetListEntryUsagesDisplayContext.getSearchContainer()) %>"
 				/>
 
 				<liferay-ui:search-container

@@ -51,11 +51,7 @@ OpenGraphSettingsDisplayContext openGraphSettingsDisplayContext = (OpenGraphSett
 			<aui:button name="openGraphClearImageButton" value="clear" />
 		</aui:button-row>
 
-		<%
-		LayoutSEOSite layoutSEOSite = openGraphSettingsDisplayContext.getLayoutSEOSite();
-		%>
-
-		<aui:model-context bean="<%= layoutSEOSite %>" model="<%= LayoutSEOSite.class %>" />
+		<aui:model-context bean="<%= openGraphSettingsDisplayContext.getLayoutSEOSite() %>" model="<%= LayoutSEOSite.class %>" />
 
 		<aui:input disabled="<%= !openGraphSettingsDisplayContext.isOpenGraphEnabled() || Validator.isNull(openGraphSettingsDisplayContext.getOpenGraphImageURL()) %>" helpMessage="open-graph-image-alt-description-help" label="open-graph-image-alt-description" name="openGraphImageAlt" placeholder="open-graph-alt-description" />
 	</div>

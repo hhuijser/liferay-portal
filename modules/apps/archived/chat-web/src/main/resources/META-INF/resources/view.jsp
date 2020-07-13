@@ -176,11 +176,9 @@
 			Set<String> servletContextNames = extensions.keySet();
 
 			for (String servletContextName : servletContextNames) {
-				String extensionPath = extensions.get(servletContextName);
-				ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
 			%>
 
-				<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
+				<liferay-util:include page="<%= extensions.get(servletContextName) %>" servletContext="<%= ServletContextPool.get(servletContextName) %>" />
 
 			<%
 			}

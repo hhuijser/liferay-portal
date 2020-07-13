@@ -101,11 +101,9 @@ renderResponse.setTitle(category.getTitle(locale));
 					<%
 					for (int i = 0; i < categoryPropertiesIndexes.length; i++) {
 						int categoryPropertiesIndex = categoryPropertiesIndexes[i];
-
-						AssetCategoryProperty categoryProperty = categoryProperties.get(i);
 					%>
 
-						<aui:model-context bean="<%= categoryProperty %>" model="<%= AssetCategoryProperty.class %>" />
+						<aui:model-context bean="<%= categoryProperties.get(i) %>" model="<%= AssetCategoryProperty.class %>" />
 
 						<div class="lfr-form-row lfr-form-row-inline">
 							<div class="row-fields">

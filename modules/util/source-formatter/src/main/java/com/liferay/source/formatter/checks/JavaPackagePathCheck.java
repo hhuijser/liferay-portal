@@ -66,6 +66,9 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			_checkModulePackageName(fileName, packageName);
 		}
 
+		_checkPackageNameByClassName(
+			fileName, javaClass.getName(), packageName);
+
 		List<String> expectedInternalImplementsDataEntries = getAttributeValues(
 			_EXPECTED_INTERNAL_IMPLEMENTS_DATA_KEY, absolutePath);
 
@@ -257,15 +260,6 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			}
 		}
 
-		if (className.endsWith("OSGiCommands") &&
-			!packageName.endsWith(".osgi.commands")) {
-
-			addMessage(
-				fileName,
-				"Class '" + className +
-					"' should be in package ending with '.osgi.commands'");
-		}
-
 		if (className.matches(".*(?<!Display)Context") &&
 			packageName.endsWith(".display.context")) {
 
@@ -282,6 +276,19 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			addMessage(
 				fileName,
 				"Class '" + className + "' should be in 'internal' package");
+		}
+	}
+
+	private void _checkPackageNameByClassName(
+		String fileName, String className, String packageName) {
+
+		if (className.endsWith("OSGiCommands") &&
+			!packageName.endsWith(".osgi.commands")) {
+
+			addMessage(
+				fileName,
+				"Class '" + className +
+					"' should be in package ending with '.osgi.commands'");
 		}
 	}
 

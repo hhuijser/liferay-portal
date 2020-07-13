@@ -283,6 +283,12 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		String fileName, String absolutePath, String className,
 		String packageName) {
 
+		if (className.endsWith("Constants") &&
+			absolutePath.contains("/portal-kernel/")) {
+
+			return;
+		}
+
 		List<String> expectedPackagePathDataEntries = getAttributeValues(
 			_EXPECTED_PACKAGE_PATH_DATA_KEY, absolutePath);
 

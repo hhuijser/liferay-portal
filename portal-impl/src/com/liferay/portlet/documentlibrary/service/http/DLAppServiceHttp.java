@@ -147,8 +147,8 @@ public class DLAppServiceHttp {
 			addFileEntry(
 				HttpPrincipal httpPrincipal, long repositoryId, long folderId,
 				String sourceFileName, String mimeType, String title,
-				String description, String changeLog, java.io.InputStream is,
-				long size,
+				String description, String changeLog,
+				java.io.InputStream inputStream, long size,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -159,7 +159,8 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, repositoryId, folderId, sourceFileName, mimeType,
-				title, description, changeLog, is, size, serviceContext);
+				title, description, changeLog, inputStream, size,
+				serviceContext);
 
 			Object returnObj = null;
 
@@ -4050,7 +4051,7 @@ public class DLAppServiceHttp {
 				String description, String changeLog,
 				com.liferay.document.library.kernel.model.
 					DLVersionNumberIncrease dlVersionNumberIncrease,
-				java.io.InputStream is, long size,
+				java.io.InputStream inputStream, long size,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -4061,8 +4062,8 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, fileEntryId, sourceFileName, mimeType, title,
-				description, changeLog, dlVersionNumberIncrease, is, size,
-				serviceContext);
+				description, changeLog, dlVersionNumberIncrease, inputStream,
+				size, serviceContext);
 
 			Object returnObj = null;
 
@@ -4150,7 +4151,7 @@ public class DLAppServiceHttp {
 				String description, String changeLog,
 				com.liferay.document.library.kernel.model.
 					DLVersionNumberIncrease dlVersionNumberIncrease,
-				java.io.InputStream is, long size,
+				java.io.InputStream inputStream, long size,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -4161,8 +4162,8 @@ public class DLAppServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, fileEntryId, sourceFileName, mimeType, title,
-				description, changeLog, dlVersionNumberIncrease, is, size,
-				serviceContext);
+				description, changeLog, dlVersionNumberIncrease, inputStream,
+				size, serviceContext);
 
 			Object returnObj = null;
 

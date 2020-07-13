@@ -757,15 +757,15 @@ public class CompanyLocalServiceWrapper
 	 * Update the company's logo.
 	 *
 	 * @param companyId the primary key of the company
-	 * @param is the input stream of the company's logo image
+	 * @param inputStream the input stream of the company's logo image
 	 * @return the company with the primary key
 	 */
 	@Override
 	public com.liferay.portal.kernel.model.Company updateLogo(
-			long companyId, java.io.InputStream is)
+			long companyId, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _companyLocalService.updateLogo(companyId, is);
+		return _companyLocalService.updateLogo(companyId, inputStream);
 	}
 
 	/**

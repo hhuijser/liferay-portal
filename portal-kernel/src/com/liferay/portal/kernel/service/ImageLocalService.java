@@ -274,11 +274,11 @@ public interface ImageLocalService
 
 	public Image updateImage(long imageId, File file) throws PortalException;
 
-	public Image updateImage(long imageId, InputStream is)
+	public Image updateImage(long imageId, InputStream inputStream)
 		throws PortalException;
 
 	public Image updateImage(
-			long imageId, InputStream is, boolean cleanUpStream)
+			long imageId, InputStream inputStream, boolean cleanUpStream)
 		throws PortalException;
 
 	@Override

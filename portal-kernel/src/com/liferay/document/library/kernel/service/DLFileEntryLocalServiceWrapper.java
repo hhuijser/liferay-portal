@@ -55,14 +55,14 @@ public class DLFileEntryLocalServiceWrapper
 			java.util.Map
 				<String, com.liferay.dynamic.data.mapping.kernel.DDMFormValues>
 					ddmFormValuesMap,
-			java.io.File file, java.io.InputStream is, long size,
+			java.io.File file, java.io.InputStream inputStream, long size,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _dlFileEntryLocalService.addFileEntry(
 			userId, groupId, repositoryId, folderId, sourceFileName, mimeType,
 			title, description, changeLog, fileEntryTypeId, ddmFormValuesMap,
-			file, is, size, serviceContext);
+			file, inputStream, size, serviceContext);
 	}
 
 	@Override
@@ -986,14 +986,14 @@ public class DLFileEntryLocalServiceWrapper
 			java.util.Map
 				<String, com.liferay.dynamic.data.mapping.kernel.DDMFormValues>
 					ddmFormValuesMap,
-			java.io.File file, java.io.InputStream is, long size,
+			java.io.File file, java.io.InputStream inputStream, long size,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _dlFileEntryLocalService.updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
 			changeLog, dlVersionNumberIncrease, fileEntryTypeId,
-			ddmFormValuesMap, file, is, size, serviceContext);
+			ddmFormValuesMap, file, inputStream, size, serviceContext);
 	}
 
 	@Override

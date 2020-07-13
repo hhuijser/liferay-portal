@@ -384,19 +384,20 @@ public class LayoutSetLocalServiceUtil {
 
 	public static com.liferay.portal.kernel.model.LayoutSet updateLogo(
 			long groupId, boolean privateLayout, boolean hasLogo,
-			java.io.InputStream is)
+			java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().updateLogo(groupId, privateLayout, hasLogo, is);
+		return getService().updateLogo(
+			groupId, privateLayout, hasLogo, inputStream);
 	}
 
 	public static com.liferay.portal.kernel.model.LayoutSet updateLogo(
 			long groupId, boolean privateLayout, boolean hasLogo,
-			java.io.InputStream is, boolean cleanUpStream)
+			java.io.InputStream inputStream, boolean cleanUpStream)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().updateLogo(
-			groupId, privateLayout, hasLogo, is, cleanUpStream);
+			groupId, privateLayout, hasLogo, inputStream, cleanUpStream);
 	}
 
 	public static com.liferay.portal.kernel.model.LayoutSet updateLookAndFeel(

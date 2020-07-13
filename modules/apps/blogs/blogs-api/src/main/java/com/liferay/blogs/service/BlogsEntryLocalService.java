@@ -76,7 +76,7 @@ public interface BlogsEntryLocalService
 	 */
 	public FileEntry addAttachmentFileEntry(
 			BlogsEntry blogsEntry, long userId, String fileName,
-			String mimeType, InputStream is)
+			String mimeType, InputStream inputStream)
 		throws PortalException;
 
 	public Folder addAttachmentsFolder(long userId, long groupId)

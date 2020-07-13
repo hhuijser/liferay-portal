@@ -244,7 +244,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 *         </code>)
 	 * @param  description the file's description
 	 * @param  changeLog the file's version change log
-	 * @param  is the file's data (optionally <code>null</code>)
+	 * @param  inputStream the file's data (optionally <code>null</code>)
 	 * @param  size the file's size (optionally <code>0</code>)
 	 * @param  serviceContext the service context to be applied. Can set the
 	 *         asset category IDs, asset tag names, and expando bridge
@@ -259,11 +259,11 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	public FileEntry addFileEntry(
 			long repositoryId, long folderId, String sourceFileName,
 			String mimeType, String title, String description, String changeLog,
-			InputStream is, long size, ServiceContext serviceContext)
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
-		if (is == null) {
-			is = new UnsyncByteArrayInputStream(new byte[0]);
+		if (inputStream == null) {
+			inputStream = new UnsyncByteArrayInputStream(new byte[0]);
 			size = 0;
 		}
 
@@ -280,7 +280,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 				File file = null;
 
 				try {
-					file = FileUtil.createTempFile(is);
+					file = FileUtil.createTempFile(inputStream);
 
 					return addFileEntry(
 						repositoryId, folderId, sourceFileName, mimeType, title,
@@ -300,7 +300,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		return repository.addFileEntry(
 			getUserId(), folderId, sourceFileName, mimeType, title, description,
-			changeLog, is, size, serviceContext);
+			changeLog, inputStream, size, serviceContext);
 	}
 
 	/**
@@ -2685,7 +2685,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 *         <code>null</code>)
 	 * @param  dlVersionNumberIncrease the kind of version number increase to
 	 *         apply for these changes.
-	 * @param  is the file's data (optionally <code>null</code>)
+	 * @param  inputStream the file's data (optionally <code>null</code>)
 	 * @param  size the file's size (optionally <code>0</code>)
 	 * @param  serviceContext the service context to be applied. Can set the
 	 *         asset category IDs, asset tag names, and expando bridge
@@ -2700,8 +2700,8 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	public FileEntry updateFileEntry(
 			long fileEntryId, String sourceFileName, String mimeType,
 			String title, String description, String changeLog,
-			DLVersionNumberIncrease dlVersionNumberIncrease, InputStream is,
-			long size, ServiceContext serviceContext)
+			DLVersionNumberIncrease dlVersionNumberIncrease,
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
 		if (Validator.isNull(mimeType) ||
@@ -2717,7 +2717,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 				File file = null;
 
 				try {
-					file = FileUtil.createTempFile(is);
+					file = FileUtil.createTempFile(inputStream);
 
 					return updateFileEntry(
 						fileEntryId, sourceFileName, mimeType, title,
@@ -2739,7 +2739,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		FileEntry fileEntry = repository.updateFileEntry(
 			getUserId(), fileEntryId, sourceFileName, mimeType, title,
-			description, changeLog, dlVersionNumberIncrease, is, size,
+			description, changeLog, dlVersionNumberIncrease, inputStream, size,
 			serviceContext);
 
 		dlAppHelperLocalService.updateFileEntry(
@@ -2788,8 +2788,8 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	public FileEntry updateFileEntryAndCheckIn(
 			long fileEntryId, String sourceFileName, String mimeType,
 			String title, String description, String changeLog,
-			DLVersionNumberIncrease dlVersionNumberIncrease, InputStream is,
-			long size, ServiceContext serviceContext)
+			DLVersionNumberIncrease dlVersionNumberIncrease,
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
 		Repository repository = repositoryProvider.getFileEntryRepository(
@@ -2797,7 +2797,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		repository.updateFileEntry(
 			getUserId(), fileEntryId, sourceFileName, mimeType, title,
-			description, changeLog, dlVersionNumberIncrease, is, size,
+			description, changeLog, dlVersionNumberIncrease, inputStream, size,
 			serviceContext);
 
 		repository.checkInFileEntry(

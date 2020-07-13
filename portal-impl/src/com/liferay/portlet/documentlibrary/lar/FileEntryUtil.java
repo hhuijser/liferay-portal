@@ -87,15 +87,15 @@ public class FileEntryUtil {
 
 		DLFileEntry dlFileEntry = (DLFileEntry)fileEntry.getModel();
 
-		InputStream is = DLStoreUtil.getFileAsStream(
+		InputStream inputStream = DLStoreUtil.getFileAsStream(
 			fileEntry.getCompanyId(), repositoryId, dlFileEntry.getName(),
 			fileEntry.getVersion());
 
-		if (is == null) {
-			is = new UnsyncByteArrayInputStream(new byte[0]);
+		if (inputStream == null) {
+			inputStream = new UnsyncByteArrayInputStream(new byte[0]);
 		}
 
-		return is;
+		return inputStream;
 	}
 
 }

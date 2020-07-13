@@ -63,8 +63,8 @@ public class DefaultLocalRepositoryImpl implements LocalRepository {
 	@Override
 	public FileEntry addFileEntry(
 		long userId, long folderId, String sourceFileName, String mimeType,
-		String title, String description, String changeLog, InputStream is,
-		long size, ServiceContext serviceContext) {
+		String title, String description, String changeLog,
+		InputStream inputStream, long size, ServiceContext serviceContext) {
 
 		throw new UnsupportedOperationException();
 	}
@@ -379,8 +379,8 @@ public class DefaultLocalRepositoryImpl implements LocalRepository {
 	public FileEntry updateFileEntry(
 		long userId, long fileEntryId, String sourceFileName, String mimeType,
 		String title, String description, String changeLog,
-		DLVersionNumberIncrease dlVersionNumberIncrease, InputStream is,
-		long size, ServiceContext serviceContext) {
+		DLVersionNumberIncrease dlVersionNumberIncrease,
+		InputStream inputStream, long size, ServiceContext serviceContext) {
 
 		throw new UnsupportedOperationException();
 	}

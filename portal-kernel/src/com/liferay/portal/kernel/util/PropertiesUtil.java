@@ -129,10 +129,10 @@ public class PropertiesUtil {
 		return unsyncByteArrayOutputStream.toString();
 	}
 
-	public static Properties load(InputStream is, String charsetName)
+	public static Properties load(InputStream inputStream, String charsetName)
 		throws IOException {
 
-		return load(new InputStreamReader(is, charsetName));
+		return load(new InputStreamReader(inputStream, charsetName));
 	}
 
 	public static void load(Properties properties, String s)

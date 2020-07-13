@@ -359,10 +359,10 @@ public abstract class BaseFragmentCollectionContributor
 			sb.append(defaultFileName);
 		}
 
-		InputStream is = clazz.getResourceAsStream(sb.toString());
+		InputStream inputStream = clazz.getResourceAsStream(sb.toString());
 
-		if (is != null) {
-			return StringUtil.read(is);
+		if (inputStream != null) {
+			return StringUtil.read(inputStream);
 		}
 
 		return StringPool.BLANK;

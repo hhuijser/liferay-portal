@@ -130,30 +130,32 @@ public class DocumentImpl implements Document {
 
 	@Override
 	public void addFile(String name, byte[] bytes, String fileExt) {
-		InputStream is = new UnsyncByteArrayInputStream(bytes);
+		InputStream inputStream = new UnsyncByteArrayInputStream(bytes);
 
-		addFile(name, is, fileExt);
+		addFile(name, inputStream, fileExt);
 	}
 
 	@Override
 	public void addFile(String name, File file, String fileExt)
 		throws IOException {
 
-		InputStream is = new FileInputStream(file);
+		InputStream inputStream = new FileInputStream(file);
 
-		addFile(name, is, fileExt);
+		addFile(name, inputStream, fileExt);
 	}
 
 	@Override
-	public void addFile(String name, InputStream is, String fileExt) {
-		addText(name, FileUtil.extractText(is, fileExt));
+	public void addFile(String name, InputStream inputStream, String fileExt) {
+		addText(name, FileUtil.extractText(inputStream, fileExt));
 	}
 
 	@Override
 	public void addFile(
-		String name, InputStream is, String fileExt, int maxStringLength) {
+		String name, InputStream inputStream, String fileExt,
+		int maxStringLength) {
 
-		addText(name, FileUtil.extractText(is, fileExt, maxStringLength));
+		addText(
+			name, FileUtil.extractText(inputStream, fileExt, maxStringLength));
 	}
 
 	@Override

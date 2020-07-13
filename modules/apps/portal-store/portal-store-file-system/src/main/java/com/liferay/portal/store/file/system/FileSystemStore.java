@@ -70,13 +70,13 @@ public class FileSystemStore implements Store {
 	@Override
 	public void addFile(
 		long companyId, long repositoryId, String fileName, String versionLabel,
-		InputStream is) {
+		InputStream inputStream) {
 
 		try {
 			File fileNameVersionFile = getFileNameVersionFile(
 				companyId, repositoryId, fileName, versionLabel);
 
-			FileUtil.write(fileNameVersionFile, is);
+			FileUtil.write(fileNameVersionFile, inputStream);
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);

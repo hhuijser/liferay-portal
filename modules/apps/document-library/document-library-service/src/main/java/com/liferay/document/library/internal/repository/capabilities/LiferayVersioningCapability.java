@@ -102,15 +102,16 @@ public class LiferayVersioningCapability
 					String mimeType, String title, String description,
 					String changeLog,
 					DLVersionNumberIncrease dlVersionNumberIncrease,
-					InputStream is, long size, ServiceContext serviceContext)
+					InputStream inputStream, long size,
+					ServiceContext serviceContext)
 				throws PortalException {
 
 				return _purgeVersions(
 					dlAppServiceAdapter,
 					super.updateFileEntry(
 						userId, fileEntryId, sourceFileName, mimeType, title,
-						description, changeLog, dlVersionNumberIncrease, is,
-						size, serviceContext));
+						description, changeLog, dlVersionNumberIncrease,
+						inputStream, size, serviceContext));
 			}
 
 		};
@@ -161,15 +162,16 @@ public class LiferayVersioningCapability
 					String mimeType, String title, String description,
 					String changeLog,
 					DLVersionNumberIncrease dlVersionNumberIncrease,
-					InputStream is, long size, ServiceContext serviceContext)
+					InputStream inputStream, long size,
+					ServiceContext serviceContext)
 				throws PortalException {
 
 				return _purgeVersions(
 					dlAppServiceAdapter,
 					super.updateFileEntry(
 						userId, fileEntryId, sourceFileName, mimeType, title,
-						description, changeLog, dlVersionNumberIncrease, is,
-						size, serviceContext));
+						description, changeLog, dlVersionNumberIncrease,
+						inputStream, size, serviceContext));
 			}
 
 		};

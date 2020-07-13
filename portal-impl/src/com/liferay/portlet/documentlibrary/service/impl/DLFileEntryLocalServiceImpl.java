@@ -160,7 +160,7 @@ public class DLFileEntryLocalServiceImpl
 			String sourceFileName, String mimeType, String title,
 			String description, String changeLog, long fileEntryTypeId,
 			Map<String, DDMFormValues> ddmFormValuesMap, File file,
-			InputStream is, long size, ServiceContext serviceContext)
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
 		if (Validator.isNull(title)) {
@@ -271,7 +271,7 @@ public class DLFileEntryLocalServiceImpl
 		else {
 			DLStoreUtil.addFile(
 				user.getCompanyId(), dlFileEntry.getDataRepositoryId(), name,
-				false, is);
+				false, inputStream);
 		}
 
 		return dlFileEntry;
@@ -1486,7 +1486,7 @@ public class DLFileEntryLocalServiceImpl
 			DLVersionNumberIncrease.MAJOR;
 		String extraSettings = dlFileVersion.getExtraSettings();
 		Map<String, DDMFormValues> ddmFormValuesMap = null;
-		InputStream is = getFileAsStream(fileEntryId, version, false);
+		InputStream inputStream = getFileAsStream(fileEntryId, version, false);
 		long size = dlFileVersion.getSize();
 
 		serviceContext.setCommand(Constants.REVERT);
@@ -1500,7 +1500,8 @@ public class DLFileEntryLocalServiceImpl
 		updateFileEntry(
 			userId, fileEntryId, sourceFileName, extension, mimeType, title,
 			description, changeLog, dlVersionNumberIncrease, extraSettings,
-			fileEntryTypeId, ddmFormValuesMap, null, is, size, serviceContext);
+			fileEntryTypeId, ddmFormValuesMap, null, inputStream, size,
+			serviceContext);
 
 		DLFileVersion newDLFileVersion =
 			dlFileVersionLocalService.getLatestFileVersion(fileEntryId, false);
@@ -1620,7 +1621,8 @@ public class DLFileEntryLocalServiceImpl
 			String mimeType, String title, String description, String changeLog,
 			DLVersionNumberIncrease dlVersionNumberIncrease,
 			long fileEntryTypeId, Map<String, DDMFormValues> ddmFormValuesMap,
-			File file, InputStream is, long size, ServiceContext serviceContext)
+			File file, InputStream inputStream, long size,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		DLFileEntry dlFileEntry = dlFileEntryPersistence.findByPrimaryKey(
@@ -1628,7 +1630,7 @@ public class DLFileEntryLocalServiceImpl
 
 		String extension = DLAppUtil.getExtension(title, sourceFileName);
 
-		if ((file == null) && (is == null)) {
+		if ((file == null) && (inputStream == null)) {
 			extension = dlFileEntry.getExtension();
 			mimeType = dlFileEntry.getMimeType();
 		}
@@ -1647,7 +1649,8 @@ public class DLFileEntryLocalServiceImpl
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, extension, mimeType, title,
 			description, changeLog, dlVersionNumberIncrease, extraSettings,
-			fileEntryTypeId, ddmFormValuesMap, file, is, size, serviceContext);
+			fileEntryTypeId, ddmFormValuesMap, file, inputStream, size,
+			serviceContext);
 	}
 
 	@Override
@@ -2305,7 +2308,7 @@ public class DLFileEntryLocalServiceImpl
 			String changeLog, DLVersionNumberIncrease dlVersionNumberIncrease,
 			String extraSettings, long fileEntryTypeId,
 			Map<String, DDMFormValues> ddmFormValuesMap, File file,
-			InputStream is, long size, ServiceContext serviceContext)
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -2330,7 +2333,7 @@ public class DLFileEntryLocalServiceImpl
 		}
 
 		if (autoCheckIn) {
-			if ((file != null) || (is != null)) {
+			if ((file != null) || (inputStream != null)) {
 				dlFileEntry = _checkOutDLFileEntryModel(
 					userId, fileEntryId, fileEntryTypeId, serviceContext);
 			}
@@ -2403,7 +2406,7 @@ public class DLFileEntryLocalServiceImpl
 
 			// File
 
-			if ((file != null) || (is != null)) {
+			if ((file != null) || (inputStream != null)) {
 				DLStoreUtil.deleteFile(
 					user.getCompanyId(), dlFileEntry.getDataRepositoryId(),
 					dlFileEntry.getName(), version);
@@ -2418,7 +2421,7 @@ public class DLFileEntryLocalServiceImpl
 					DLStoreUtil.updateFile(
 						user.getCompanyId(), dlFileEntry.getDataRepositoryId(),
 						dlFileEntry.getName(), dlFileEntry.getExtension(),
-						false, version, sourceFileName, is);
+						false, version, sourceFileName, inputStream);
 				}
 			}
 

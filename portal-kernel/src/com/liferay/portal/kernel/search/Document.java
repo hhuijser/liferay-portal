@@ -52,11 +52,12 @@ public interface Document extends Cloneable, Serializable {
 	public void addFile(String name, File file, String fileExt)
 		throws IOException;
 
-	public void addFile(String name, InputStream is, String fileExt)
+	public void addFile(String name, InputStream inputStream, String fileExt)
 		throws IOException;
 
 	public void addFile(
-			String name, InputStream is, String fileExt, int maxStringLength)
+			String name, InputStream inputStream, String fileExt,
+			int maxStringLength)
 		throws IOException;
 
 	public void addGeoLocation(double latitude, double longitude);

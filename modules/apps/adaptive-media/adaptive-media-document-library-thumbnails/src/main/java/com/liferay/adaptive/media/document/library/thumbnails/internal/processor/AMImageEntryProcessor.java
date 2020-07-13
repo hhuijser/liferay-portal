@@ -276,7 +276,8 @@ public class AMImageEntryProcessor implements DLProcessor, ImageProcessor {
 	@Override
 	public void storeThumbnail(
 		long companyId, long groupId, long fileEntryId, long fileVersionId,
-		long custom1ImageId, long custom2ImageId, InputStream is, String type) {
+		long custom1ImageId, long custom2ImageId, InputStream inputStream,
+		String type) {
 	}
 
 	@Override

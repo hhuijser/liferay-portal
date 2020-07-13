@@ -170,16 +170,16 @@ public class ImageToolUtil {
 		return getImageTool().getImage(file);
 	}
 
-	public static Image getImage(InputStream is)
+	public static Image getImage(InputStream inputStream)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().getImage(is);
+		return getImageTool().getImage(inputStream);
 	}
 
-	public static Image getImage(InputStream is, boolean cleanUpStream)
+	public static Image getImage(InputStream inputStream, boolean cleanUpStream)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().getImage(is, cleanUpStream);
+		return getImageTool().getImage(inputStream, cleanUpStream);
 	}
 
 	public static ImageTool getImageTool() {

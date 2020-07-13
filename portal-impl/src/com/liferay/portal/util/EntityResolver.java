@@ -46,36 +46,38 @@ public class EntityResolver implements org.xml.sax.EntityResolver {
 		if (publicId != null) {
 			for (KeyValuePair kvp : _PUBLIC_IDS) {
 				if (publicId.equals(kvp.getKey())) {
-					InputStream is = classLoader.getResourceAsStream(
+					InputStream inputStream = classLoader.getResourceAsStream(
 						_DEFINITIONS_PATH + kvp.getValue());
 
-					if (is == null) {
-						is = classLoader.getResourceAsStream(kvp.getValue());
+					if (inputStream == null) {
+						inputStream = classLoader.getResourceAsStream(
+							kvp.getValue());
 					}
 
 					if (_log.isDebugEnabled()) {
 						_log.debug("Entity found for public id " + publicId);
 					}
 
-					return new InputSource(is);
+					return new InputSource(inputStream);
 				}
 			}
 		}
 		else if (systemId != null) {
 			for (KeyValuePair kvp : _SYSTEM_IDS) {
 				if (systemId.equals(kvp.getKey())) {
-					InputStream is = classLoader.getResourceAsStream(
+					InputStream inputStream = classLoader.getResourceAsStream(
 						_DEFINITIONS_PATH + kvp.getValue());
 
-					if (is == null) {
-						is = classLoader.getResourceAsStream(kvp.getValue());
+					if (inputStream == null) {
+						inputStream = classLoader.getResourceAsStream(
+							kvp.getValue());
 					}
 
 					if (_log.isDebugEnabled()) {
 						_log.debug("Entity found for system id " + systemId);
 					}
 
-					InputSource inputSource = new InputSource(is);
+					InputSource inputSource = new InputSource(inputStream);
 
 					inputSource.setSystemId(kvp.getKey());
 

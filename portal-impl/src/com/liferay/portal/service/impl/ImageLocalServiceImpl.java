@@ -212,13 +212,13 @@ public class ImageLocalServiceImpl extends ImageLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Image updateImage(long imageId, InputStream is)
+	public Image updateImage(long imageId, InputStream inputStream)
 		throws PortalException {
 
 		Image image = null;
 
 		try {
-			image = ImageToolUtil.getImage(is);
+			image = ImageToolUtil.getImage(inputStream);
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);
@@ -231,13 +231,13 @@ public class ImageLocalServiceImpl extends ImageLocalServiceBaseImpl {
 
 	@Override
 	public Image updateImage(
-			long imageId, InputStream is, boolean cleanUpStream)
+			long imageId, InputStream inputStream, boolean cleanUpStream)
 		throws PortalException {
 
 		Image image = null;
 
 		try {
-			image = ImageToolUtil.getImage(is, cleanUpStream);
+			image = ImageToolUtil.getImage(inputStream, cleanUpStream);
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);

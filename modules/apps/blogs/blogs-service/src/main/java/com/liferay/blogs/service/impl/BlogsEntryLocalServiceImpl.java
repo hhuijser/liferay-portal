@@ -156,7 +156,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	@Override
 	public FileEntry addAttachmentFileEntry(
 			BlogsEntry blogsEntry, long userId, String fileName,
-			String mimeType, InputStream is)
+			String mimeType, InputStream inputStream)
 		throws PortalException {
 
 		Folder folder = addAttachmentsFolder(userId, blogsEntry.getGroupId());
@@ -168,7 +168,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 
 		return _portletFileRepository.addPortletFileEntry(
 			blogsEntry.getGroupId(), userId, null, 0,
-			BlogsConstants.SERVICE_NAME, folder.getFolderId(), is,
+			BlogsConstants.SERVICE_NAME, folder.getFolderId(), inputStream,
 			uniqueFileName, mimeType, true);
 	}
 

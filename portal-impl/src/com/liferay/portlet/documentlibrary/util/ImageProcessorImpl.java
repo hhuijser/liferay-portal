@@ -190,13 +190,13 @@ public class ImageProcessorImpl
 	@Override
 	public void storeThumbnail(
 			long companyId, long groupId, long fileEntryId, long fileVersionId,
-			long custom1ImageId, long custom2ImageId, InputStream is,
+			long custom1ImageId, long custom2ImageId, InputStream inputStream,
 			String type)
 		throws Exception {
 
 		_storeThumbnail(
 			companyId, groupId, fileEntryId, fileVersionId, custom1ImageId,
-			custom2ImageId, is, type);
+			custom2ImageId, inputStream, type);
 	}
 
 	@Override
@@ -450,7 +450,7 @@ public class ImageProcessorImpl
 
 	private void _storeThumbnail(
 			long companyId, long groupId, long fileEntryId, long fileVersionId,
-			long custom1ImageId, long custom2ImageId, InputStream is,
+			long custom1ImageId, long custom2ImageId, InputStream inputStream,
 			String type)
 		throws Exception {
 
@@ -477,7 +477,7 @@ public class ImageProcessorImpl
 		File file = null;
 
 		try {
-			file = FileUtil.createTempFile(is);
+			file = FileUtil.createTempFile(inputStream);
 
 			addFileToStore(companyId, THUMBNAIL_PATH, filePath, file);
 		}

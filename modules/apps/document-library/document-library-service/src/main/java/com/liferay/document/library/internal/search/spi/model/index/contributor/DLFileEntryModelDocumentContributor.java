@@ -83,13 +83,13 @@ public class DLFileEntryModelDocumentContributor
 			indexContent = false;
 		}
 
-		InputStream is = null;
+		InputStream inputStream = null;
 
 		if (indexContent) {
 			try {
 				DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
 
-				is = _inputStreamSanitizer.sanitize(
+				inputStream = _inputStreamSanitizer.sanitize(
 					dlFileVersion.getContentStream(false));
 			}
 			catch (Exception exception) {
@@ -103,7 +103,7 @@ public class DLFileEntryModelDocumentContributor
 			DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
 
 			if (indexContent) {
-				if (is != null) {
+				if (inputStream != null) {
 					try {
 						Locale defaultLocale = portal.getSiteDefaultLocale(
 							dlFileEntry.getGroupId());
@@ -112,7 +112,7 @@ public class DLFileEntryModelDocumentContributor
 							defaultLocale.toString(), Field.CONTENT);
 
 						document.addFile(
-							localizedField, is, dlFileEntry.getTitle(),
+							localizedField, inputStream, dlFileEntry.getTitle(),
 							PropsValues.DL_FILE_INDEXING_MAX_SIZE);
 					}
 					catch (IOException ioException) {
@@ -151,7 +151,7 @@ public class DLFileEntryModelDocumentContributor
 
 			document.addKeyword(
 				"dataRepositoryId", dlFileEntry.getDataRepositoryId());
-			//todo is this necessary?
+			//todo inputStream this necessary?
 			document.addText(
 				"ddmContent",
 				extractDDMContent(dlFileVersion, LocaleUtil.getSiteDefault()));
@@ -201,9 +201,9 @@ public class DLFileEntryModelDocumentContributor
 			throw new SystemException(exception);
 		}
 		finally {
-			if (is != null) {
+			if (inputStream != null) {
 				try {
-					is.close();
+					inputStream.close();
 				}
 				catch (IOException ioException) {
 				}

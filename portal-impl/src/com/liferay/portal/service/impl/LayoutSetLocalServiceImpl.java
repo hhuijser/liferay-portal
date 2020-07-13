@@ -338,22 +338,22 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 	@Override
 	public LayoutSet updateLogo(
 			long groupId, boolean privateLayout, boolean hasLogo,
-			InputStream is)
+			InputStream inputStream)
 		throws PortalException {
 
-		return updateLogo(groupId, privateLayout, hasLogo, is, true);
+		return updateLogo(groupId, privateLayout, hasLogo, inputStream, true);
 	}
 
 	@Override
 	public LayoutSet updateLogo(
 			long groupId, boolean privateLayout, boolean hasLogo,
-			InputStream is, boolean cleanUpStream)
+			InputStream inputStream, boolean cleanUpStream)
 		throws PortalException {
 
 		byte[] bytes = null;
 
 		try {
-			bytes = FileUtil.getBytes(is, -1, cleanUpStream);
+			bytes = FileUtil.getBytes(inputStream, -1, cleanUpStream);
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);

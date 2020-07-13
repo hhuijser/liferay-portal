@@ -64,20 +64,20 @@ public class ModelValidatorLocalRepositoryWrapper
 	@Override
 	public FileEntry addFileEntry(
 			long userId, long folderId, String sourceFileName, String mimeType,
-			String title, String description, String changeLog, InputStream is,
-			long size, ServiceContext serviceContext)
+			String title, String description, String changeLog,
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
 		FileContentReference fileContentReference =
 			FileContentReference.fromInputStream(
 				sourceFileName, DLAppUtil.getExtension(title, sourceFileName),
-				mimeType, is, size);
+				mimeType, inputStream, size);
 
 		_modelValidator.validate(fileContentReference);
 
 		return super.addFileEntry(
 			userId, folderId, sourceFileName, mimeType, title, description,
-			changeLog, is, size, serviceContext);
+			changeLog, inputStream, size, serviceContext);
 	}
 
 	@Override
@@ -104,21 +104,22 @@ public class ModelValidatorLocalRepositoryWrapper
 	public FileEntry updateFileEntry(
 			long userId, long fileEntryId, String sourceFileName,
 			String mimeType, String title, String description, String changeLog,
-			DLVersionNumberIncrease dlVersionNumberIncrease, InputStream is,
-			long size, ServiceContext serviceContext)
+			DLVersionNumberIncrease dlVersionNumberIncrease,
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
 		FileContentReference fileContentReference =
 			FileContentReference.fromInputStream(
 				fileEntryId, sourceFileName,
-				DLAppUtil.getExtension(title, sourceFileName), mimeType, is,
-				size);
+				DLAppUtil.getExtension(title, sourceFileName), mimeType,
+				inputStream, size);
 
 		_modelValidator.validate(fileContentReference);
 
 		return super.updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, dlVersionNumberIncrease, is, size, serviceContext);
+			changeLog, dlVersionNumberIncrease, inputStream, size,
+			serviceContext);
 	}
 
 	private final ModelValidator<FileContentReference> _modelValidator;

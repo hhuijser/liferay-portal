@@ -48,13 +48,13 @@ public class DLHook extends BaseHook {
 	public byte[] getImageAsBytes(Image image) throws PortalException {
 		String fileName = getFileName(image.getImageId(), image.getType());
 
-		InputStream is = DLStoreUtil.getFileAsStream(
+		InputStream inputStream = DLStoreUtil.getFileAsStream(
 			_COMPANY_ID, _REPOSITORY_ID, fileName);
 
 		byte[] bytes = null;
 
 		try {
-			bytes = FileUtil.getBytes(is);
+			bytes = FileUtil.getBytes(inputStream);
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);

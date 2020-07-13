@@ -928,12 +928,12 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	 * @return the company with the primary key
 	 */
 	@Override
-	public Company updateLogo(long companyId, InputStream is)
+	public Company updateLogo(long companyId, InputStream inputStream)
 		throws PortalException {
 
 		Company company = checkLogo(companyId);
 
-		imageLocalService.updateImage(company.getLogoId(), is);
+		imageLocalService.updateImage(company.getLogoId(), inputStream);
 
 		return company;
 	}

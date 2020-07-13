@@ -37,9 +37,10 @@ public class StripDoctypeXMLReaderTest {
 
 		byte[] bytes = new byte[prologue.length() + 1];
 
-		InputStream is = new ByteArrayInputStream(xml.getBytes());
+		InputStream inputStream = new ByteArrayInputStream(xml.getBytes());
 
-		StripDoctypeFilter stripDoctypeFilter = new StripDoctypeFilter(is);
+		StripDoctypeFilter stripDoctypeFilter = new StripDoctypeFilter(
+			inputStream);
 
 		StringBundler sb = new StringBundler();
 		int length;
@@ -84,9 +85,10 @@ public class StripDoctypeXMLReaderTest {
 		for (int i = 0; i < _ORIGINAL_XML.length; i++) {
 			String xml = _ORIGINAL_XML[i];
 
-			InputStream is = new ByteArrayInputStream(xml.getBytes());
+			InputStream inputStream = new ByteArrayInputStream(xml.getBytes());
 
-			StripDoctypeFilter stripDoctypeFilter = new StripDoctypeFilter(is);
+			StripDoctypeFilter stripDoctypeFilter = new StripDoctypeFilter(
+				inputStream);
 
 			int length = stripDoctypeFilter.read(buff, 0, buff.length);
 

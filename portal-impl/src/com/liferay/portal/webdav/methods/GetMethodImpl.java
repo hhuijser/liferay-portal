@@ -37,7 +37,7 @@ public class GetMethodImpl implements Method {
 
 	@Override
 	public int process(WebDAVRequest webDAVRequest) throws WebDAVException {
-		InputStream is = null;
+		InputStream inputStream = null;
 
 		try {
 			WebDAVStorage storage = webDAVRequest.getWebDAVStorage();
@@ -49,29 +49,30 @@ public class GetMethodImpl implements Method {
 			}
 
 			try {
-				is = resource.getContentAsStream();
+				inputStream = resource.getContentAsStream();
 			}
 			catch (Exception exception) {
 				_log.error(exception.getMessage());
 			}
 
-			if (is != null) {
+			if (inputStream != null) {
 				String fileName = resource.getDisplayName();
 
 				FlashMagicBytesUtil.Result flashMagicBytesUtilResult =
-					FlashMagicBytesUtil.check(is);
+					FlashMagicBytesUtil.check(inputStream);
 
 				if (flashMagicBytesUtilResult.isFlash()) {
 					fileName = FileUtil.stripExtension(fileName) + ".swf";
 				}
 
-				is = flashMagicBytesUtilResult.getInputStream();
+				inputStream = flashMagicBytesUtilResult.getInputStream();
 
 				try {
 					ServletResponseUtil.sendFileWithRangeHeader(
 						webDAVRequest.getHttpServletRequest(),
-						webDAVRequest.getHttpServletResponse(), fileName, is,
-						resource.getSize(), resource.getContentType());
+						webDAVRequest.getHttpServletResponse(), fileName,
+						inputStream, resource.getSize(),
+						resource.getContentType());
 				}
 				catch (Exception exception) {
 					if (_log.isWarnEnabled()) {

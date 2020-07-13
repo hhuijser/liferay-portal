@@ -332,10 +332,10 @@ public class FileUtil {
 						pathMap.putAll(_getFilesFromClasspath(pathString));
 					}
 					else {
-						InputStream is = FileUtil.class.getResourceAsStream(
-							pathString);
+						InputStream inputStream =
+							FileUtil.class.getResourceAsStream(pathString);
 
-						pathMap.put(pathString, is);
+						pathMap.put(pathString, inputStream);
 					}
 				}
 			}

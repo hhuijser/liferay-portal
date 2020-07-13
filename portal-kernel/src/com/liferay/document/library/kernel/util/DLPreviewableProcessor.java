@@ -231,10 +231,12 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 	}
 
 	protected void addFileToStore(
-			long companyId, String dirName, String filePath, InputStream is)
+			long companyId, String dirName, String filePath,
+			InputStream inputStream)
 		throws PortalException {
 
-		DLStoreUtil.addFile(companyId, REPOSITORY_ID, filePath, false, is);
+		DLStoreUtil.addFile(
+			companyId, REPOSITORY_ID, filePath, false, inputStream);
 	}
 
 	protected void copyPreviews(
@@ -250,12 +252,12 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 					String previewFilePath = getPreviewFilePath(
 						destinationFileVersion, previewType);
 
-					InputStream is = doGetPreviewAsStream(
+					InputStream inputStream = doGetPreviewAsStream(
 						sourceFileVersion, previewType);
 
 					addFileToStore(
 						destinationFileVersion.getCompanyId(), PREVIEW_PATH,
-						previewFilePath, is);
+						previewFilePath, inputStream);
 				}
 			}
 		}
@@ -273,7 +275,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 				hasThumbnail(sourceFileVersion, index) &&
 				!hasThumbnail(destinationFileVersion, index)) {
 
-				InputStream is = doGetThumbnailAsStream(
+				InputStream inputStream = doGetThumbnailAsStream(
 					sourceFileVersion, index);
 
 				String thumbnailFilePath = getThumbnailFilePath(
@@ -282,7 +284,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 
 				addFileToStore(
 					destinationFileVersion.getCompanyId(), THUMBNAIL_PATH,
-					thumbnailFilePath, is);
+					thumbnailFilePath, inputStream);
 			}
 		}
 		catch (Exception exception) {
@@ -451,12 +453,12 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 
 	protected void exportBinary(
 		PortletDataContext portletDataContext, Element fileEntryElement,
-		FileVersion fileVersion, InputStream is, String binPath,
+		FileVersion fileVersion, InputStream inputStream, String binPath,
 		String binPathName) {
 
 		fileEntryElement.addAttribute(binPathName, binPath);
 
-		if (is == null) {
+		if (inputStream == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"No input stream found for file entry " +
@@ -468,7 +470,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 			return;
 		}
 
-		portletDataContext.addZipEntry(binPath, is);
+		portletDataContext.addZipEntry(binPath, inputStream);
 	}
 
 	protected void exportPreview(

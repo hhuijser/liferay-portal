@@ -204,9 +204,9 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			FileEntry fileEntry = (FileEntry)resource.getModel();
 
-			InputStream is = fileEntry.getContentStream();
+			InputStream inputStream = fileEntry.getContentStream();
 
-			file = FileUtil.createTempFile(is);
+			file = FileUtil.createTempFile(inputStream);
 
 			ServiceContext serviceContext = _getServiceContext(
 				DLFileEntry.class.getName(), webDAVRequest);
@@ -690,9 +690,9 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 					FileEntry destFileEntry = _dlAppService.getFileEntry(
 						groupId, newParentFolderId, title);
 
-					InputStream is = fileEntry.getContentStream();
+					InputStream inputStream = fileEntry.getContentStream();
 
-					file = FileUtil.createTempFile(is);
+					file = FileUtil.createTempFile(inputStream);
 
 					populateServiceContext(serviceContext, destFileEntry);
 

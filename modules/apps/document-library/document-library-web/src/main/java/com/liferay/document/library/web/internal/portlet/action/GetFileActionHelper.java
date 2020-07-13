@@ -191,7 +191,7 @@ public class GetFileActionHelper {
 
 		FileVersion fileVersion = fileEntry.getFileVersion(version);
 
-		InputStream is = fileVersion.getContentStream(true);
+		InputStream inputStream = fileVersion.getContentStream(true);
 
 		String fileName = fileVersion.getTitle();
 
@@ -211,7 +211,7 @@ public class GetFileActionHelper {
 				fileEntry.getFileEntryId(), version);
 
 			File convertedFile = DocumentConversionUtil.convert(
-				id, is, sourceExtension, targetExtension);
+				id, inputStream, sourceExtension, targetExtension);
 
 			if (convertedFile != null) {
 				fileName = FileUtil.stripExtension(
@@ -221,23 +221,23 @@ public class GetFileActionHelper {
 				).concat(
 					targetExtension
 				);
-				is = new FileInputStream(convertedFile);
+				inputStream = new FileInputStream(convertedFile);
 				contentLength = convertedFile.length();
 				contentType = MimeTypesUtil.getContentType(fileName);
 			}
 		}
 
 		FlashMagicBytesUtil.Result flashMagicBytesUtilResult =
-			FlashMagicBytesUtil.check(is);
+			FlashMagicBytesUtil.check(inputStream);
 
 		if (flashMagicBytesUtilResult.isFlash()) {
 			fileName = FileUtil.stripExtension(fileName) + ".swf";
 		}
 
-		is = flashMagicBytesUtilResult.getInputStream();
+		inputStream = flashMagicBytesUtilResult.getInputStream();
 
 		ServletResponseUtil.sendFile(
-			httpServletRequest, httpServletResponse, fileName, is,
+			httpServletRequest, httpServletResponse, fileName, inputStream,
 			contentLength, contentType);
 	}
 

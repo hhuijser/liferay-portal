@@ -201,16 +201,16 @@ public final class DLValidatorImpl implements DLValidator {
 	}
 
 	@Override
-	public void validateFileSize(String fileName, InputStream is)
+	public void validateFileSize(String fileName, InputStream inputStream)
 		throws FileSizeException {
 
 		try {
-			if (is == null) {
+			if (inputStream == null) {
 				throw new FileSizeException(
 					"Input stream is null for " + fileName);
 			}
 
-			validateFileSize(fileName, is.available());
+			validateFileSize(fileName, inputStream.available());
 		}
 		catch (IOException ioException) {
 			throw new FileSizeException(ioException);

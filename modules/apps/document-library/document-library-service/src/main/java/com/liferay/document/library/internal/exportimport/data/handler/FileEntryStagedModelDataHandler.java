@@ -290,10 +290,10 @@ public class FileEntryStagedModelDataHandler
 		liferayFileEntry.setCachedFileVersion(fileEntry.getFileVersion());
 
 		if (!portletDataContext.isPerformDirectBinaryImport()) {
-			InputStream is = null;
+			InputStream inputStream = null;
 
 			try {
-				is = FileEntryUtil.getContentStream(fileEntry);
+				inputStream = FileEntryUtil.getContentStream(fileEntry);
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
@@ -304,7 +304,7 @@ public class FileEntryStagedModelDataHandler
 				}
 			}
 
-			if (is == null) {
+			if (inputStream == null) {
 				fileEntryElement.detach();
 
 				return;
@@ -314,13 +314,13 @@ public class FileEntryStagedModelDataHandler
 				String binPath = ExportImportPathUtil.getModelPath(
 					fileEntry, fileEntry.getVersion());
 
-				portletDataContext.addZipEntry(binPath, is);
+				portletDataContext.addZipEntry(binPath, inputStream);
 
 				fileEntryElement.addAttribute("bin-path", binPath);
 			}
 			finally {
 				try {
-					is.close();
+					inputStream.close();
 				}
 				catch (IOException ioException) {
 					_log.error(ioException, ioException);
@@ -428,14 +428,14 @@ public class FileEntryStagedModelDataHandler
 
 		serviceContext.setAttribute("validateDDMFormValues", Boolean.FALSE);
 
-		InputStream is = null;
+		InputStream inputStream = null;
 
 		try {
 			if (Validator.isNull(binPath) &&
 				portletDataContext.isPerformDirectBinaryImport()) {
 
 				try {
-					is = FileEntryUtil.getContentStream(fileEntry);
+					inputStream = FileEntryUtil.getContentStream(fileEntry);
 				}
 				catch (Exception exception) {
 					if (_log.isWarnEnabled()) {
@@ -449,10 +449,11 @@ public class FileEntryStagedModelDataHandler
 				}
 			}
 			else {
-				is = portletDataContext.getZipEntryAsInputStream(binPath);
+				inputStream = portletDataContext.getZipEntryAsInputStream(
+					binPath);
 			}
 
-			if (is == null) {
+			if (inputStream == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"No file found for file entry " +
@@ -505,7 +506,7 @@ public class FileEntryStagedModelDataHandler
 					importedFileEntry = _dlAppLocalService.addFileEntry(
 						userId, repositoryId, folderId, fileEntry.getFileName(),
 						fileEntry.getMimeType(), fileEntryTitle,
-						fileEntry.getDescription(), null, is,
+						fileEntry.getDescription(), null, inputStream,
 						fileEntry.getSize(), serviceContext);
 
 					if (fileEntry.isInTrash()) {
@@ -579,7 +580,7 @@ public class FileEntryStagedModelDataHandler
 									fileEntry.getFileName(),
 									fileEntry.getMimeType(), fileEntryTitle,
 									fileEntry.getDescription(), null,
-									DLVersionNumberIncrease.MINOR, is,
+									DLVersionNumberIncrease.MINOR, inputStream,
 									fileEntry.getSize(), serviceContext);
 						}
 						else {
@@ -646,8 +647,8 @@ public class FileEntryStagedModelDataHandler
 				importedFileEntry = _dlAppLocalService.addFileEntry(
 					userId, repositoryId, folderId, fileEntry.getFileName(),
 					fileEntry.getMimeType(), fileEntryTitle,
-					fileEntry.getDescription(), null, is, fileEntry.getSize(),
-					serviceContext);
+					fileEntry.getDescription(), null, inputStream,
+					fileEntry.getSize(), serviceContext);
 			}
 
 			for (DLPluggableContentDataHandler<?>
@@ -681,8 +682,8 @@ public class FileEntryStagedModelDataHandler
 				"validateDDMFormValues", validateDDMFormValues);
 
 			try {
-				if (is != null) {
-					is.close();
+				if (inputStream != null) {
+					inputStream.close();
 				}
 			}
 			catch (IOException ioException) {

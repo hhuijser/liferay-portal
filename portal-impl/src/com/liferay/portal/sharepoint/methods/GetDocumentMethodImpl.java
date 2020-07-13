@@ -51,9 +51,11 @@ public class GetDocumentMethodImpl extends BaseMethodImpl {
 
 		String html = getResponse(sharepointRequest, true);
 
-		InputStream is = storage.getDocumentInputStream(sharepointRequest);
+		InputStream inputStream = storage.getDocumentInputStream(
+			sharepointRequest);
 
-		byte[] bytes = ArrayUtil.append(html.getBytes(), FileUtil.getBytes(is));
+		byte[] bytes = ArrayUtil.append(
+			html.getBytes(), FileUtil.getBytes(inputStream));
 
 		ServletResponseUtil.write(
 			sharepointRequest.getHttpServletResponse(), bytes);

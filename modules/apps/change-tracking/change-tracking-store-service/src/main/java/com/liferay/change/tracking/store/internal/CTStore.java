@@ -56,11 +56,12 @@ public class CTStore implements Store {
 	@Override
 	public void addFile(
 			long companyId, long repositoryId, String fileName,
-			String versionLabel, InputStream is)
+			String versionLabel, InputStream inputStream)
 		throws PortalException {
 
 		if (CTCollectionThreadLocal.isProductionMode()) {
-			_store.addFile(companyId, repositoryId, fileName, versionLabel, is);
+			_store.addFile(
+				companyId, repositoryId, fileName, versionLabel, inputStream);
 		}
 		else {
 			_ensureCTSContentIsLoaded(
@@ -68,7 +69,7 @@ public class CTStore implements Store {
 
 			_ctsContentLocalService.addCTSContent(
 				companyId, repositoryId, fileName, versionLabel, _storeType,
-				is);
+				inputStream);
 		}
 	}
 

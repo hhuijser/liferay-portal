@@ -142,8 +142,8 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public FileEntry addFileEntry(
 			long userId, long folderId, String sourceFileName, String mimeType,
-			String title, String description, String changeLog, InputStream is,
-			long size, ServiceContext serviceContext)
+			String title, String description, String changeLog,
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
 		if (Validator.isNull(title)) {
@@ -169,7 +169,7 @@ public class CMISRepository extends BaseCmisRepository {
 			).build();
 
 			ContentStream contentStream = new ContentStreamImpl(
-				title, BigInteger.valueOf(size), mimeType, is);
+				title, BigInteger.valueOf(size), mimeType, inputStream);
 
 			Document document = null;
 
@@ -1296,8 +1296,8 @@ public class CMISRepository extends BaseCmisRepository {
 	public FileEntry updateFileEntry(
 			long userId, long fileEntryId, String sourceFileName,
 			String mimeType, String title, String description, String changeLog,
-			DLVersionNumberIncrease dlVersionNumberIncrease, InputStream is,
-			long size, ServiceContext serviceContext)
+			DLVersionNumberIncrease dlVersionNumberIncrease,
+			InputStream inputStream, long size, ServiceContext serviceContext)
 		throws PortalException {
 
 		Document document = null;
@@ -1343,9 +1343,10 @@ public class CMISRepository extends BaseCmisRepository {
 				).build();
 			}
 
-			if (is != null) {
+			if (inputStream != null) {
 				contentStream = new ContentStreamImpl(
-					sourceFileName, BigInteger.valueOf(size), mimeType, is);
+					sourceFileName, BigInteger.valueOf(size), mimeType,
+					inputStream);
 			}
 
 			checkUpdatable(allowableActionsSet, properties, contentStream);
@@ -1399,7 +1400,7 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public FileEntry updateFileEntry(
 			String objectId, String mimeType, Map<String, Object> properties,
-			InputStream is, String sourceFileName, long size,
+			InputStream inputStream, String sourceFileName, long size,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -1415,11 +1416,13 @@ public class CMISRepository extends BaseCmisRepository {
 
 			ContentStream contentStream = null;
 
-			if (is != null) {
-				is = new Base64.InputStream(is, Base64.ENCODE);
+			if (inputStream != null) {
+				inputStream = new Base64.InputStream(
+					inputStream, Base64.ENCODE);
 
 				contentStream = new ContentStreamImpl(
-					sourceFileName, BigInteger.valueOf(size), mimeType, is);
+					sourceFileName, BigInteger.valueOf(size), mimeType,
+					inputStream);
 			}
 
 			checkUpdatable(allowableActionsSet, properties, contentStream);

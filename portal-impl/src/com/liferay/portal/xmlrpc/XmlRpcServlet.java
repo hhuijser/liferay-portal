@@ -68,9 +68,9 @@ public class XmlRpcServlet extends HttpServlet {
 
 			String token = getToken(httpServletRequest);
 
-			InputStream is = httpServletRequest.getInputStream();
+			InputStream inputStream = httpServletRequest.getInputStream();
 
-			String xml = StringUtil.read(is);
+			String xml = StringUtil.read(inputStream);
 
 			Tuple methodTuple = XmlRpcParser.parseMethod(xml);
 

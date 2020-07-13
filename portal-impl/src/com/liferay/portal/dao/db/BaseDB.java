@@ -397,14 +397,14 @@ public abstract class BaseDB implements DB {
 
 		ClassLoader classLoader = currentThread.getContextClassLoader();
 
-		InputStream is = classLoader.getResourceAsStream(
+		InputStream inputStream = classLoader.getResourceAsStream(
 			"com/liferay/portal/tools/sql/dependencies/" + path);
 
-		if (is == null) {
-			is = classLoader.getResourceAsStream(path);
+		if (inputStream == null) {
+			inputStream = classLoader.getResourceAsStream(path);
 		}
 
-		if (is == null) {
+		if (inputStream == null) {
 			_log.error("Invalid path " + path);
 
 			if (failOnError) {
@@ -414,7 +414,7 @@ public abstract class BaseDB implements DB {
 			return;
 		}
 
-		String template = StringUtil.read(is);
+		String template = StringUtil.read(inputStream);
 
 		runSQLTemplateString(template, failOnError);
 	}
@@ -461,15 +461,16 @@ public abstract class BaseDB implements DB {
 
 					String includeFileName = line.substring(pos + 1, end);
 
-					InputStream is = classLoader.getResourceAsStream(
+					InputStream inputStream = classLoader.getResourceAsStream(
 						"com/liferay/portal/tools/sql/dependencies/" +
 							includeFileName);
 
-					if (is == null) {
-						is = classLoader.getResourceAsStream(includeFileName);
+					if (inputStream == null) {
+						inputStream = classLoader.getResourceAsStream(
+							includeFileName);
 					}
 
-					String include = StringUtil.read(is);
+					String include = StringUtil.read(inputStream);
 
 					include = replaceTemplate(include);
 

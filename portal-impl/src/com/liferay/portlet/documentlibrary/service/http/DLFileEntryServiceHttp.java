@@ -61,7 +61,7 @@ public class DLFileEntryServiceHttp {
 					<String,
 					 com.liferay.dynamic.data.mapping.kernel.DDMFormValues>
 						ddmFormValuesMap,
-				java.io.File file, java.io.InputStream is, long size,
+				java.io.File file, java.io.InputStream inputStream, long size,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -73,7 +73,7 @@ public class DLFileEntryServiceHttp {
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, repositoryId, folderId, sourceFileName,
 				mimeType, title, description, changeLog, fileEntryTypeId,
-				ddmFormValuesMap, file, is, size, serviceContext);
+				ddmFormValuesMap, file, inputStream, size, serviceContext);
 
 			Object returnObj = null;
 
@@ -1748,7 +1748,7 @@ public class DLFileEntryServiceHttp {
 					<String,
 					 com.liferay.dynamic.data.mapping.kernel.DDMFormValues>
 						ddmFormValuesMap,
-				java.io.File file, java.io.InputStream is, long size,
+				java.io.File file, java.io.InputStream inputStream, long size,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -1760,7 +1760,7 @@ public class DLFileEntryServiceHttp {
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, fileEntryId, sourceFileName, mimeType, title,
 				description, changeLog, dlVersionNumberIncrease,
-				fileEntryTypeId, ddmFormValuesMap, file, is, size,
+				fileEntryTypeId, ddmFormValuesMap, file, inputStream, size,
 				serviceContext);
 
 			Object returnObj = null;

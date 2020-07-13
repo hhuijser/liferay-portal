@@ -338,18 +338,20 @@ public class ImageLocalServiceWrapper
 	}
 
 	@Override
-	public Image updateImage(long imageId, java.io.InputStream is)
+	public Image updateImage(long imageId, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _imageLocalService.updateImage(imageId, is);
+		return _imageLocalService.updateImage(imageId, inputStream);
 	}
 
 	@Override
 	public Image updateImage(
-			long imageId, java.io.InputStream is, boolean cleanUpStream)
+			long imageId, java.io.InputStream inputStream,
+			boolean cleanUpStream)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _imageLocalService.updateImage(imageId, is, cleanUpStream);
+		return _imageLocalService.updateImage(
+			imageId, inputStream, cleanUpStream);
 	}
 
 	@Override

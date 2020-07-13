@@ -36,11 +36,12 @@ public class BlogsEntryLocalServiceWrapper
 	public com.liferay.portal.kernel.repository.model.FileEntry
 			addAttachmentFileEntry(
 				com.liferay.blogs.model.BlogsEntry blogsEntry, long userId,
-				String fileName, String mimeType, java.io.InputStream is)
+				String fileName, String mimeType,
+				java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _blogsEntryLocalService.addAttachmentFileEntry(
-			blogsEntry, userId, fileName, mimeType, is);
+			blogsEntry, userId, fileName, mimeType, inputStream);
 	}
 
 	@Override

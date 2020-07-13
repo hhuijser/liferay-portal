@@ -308,12 +308,12 @@ public interface LayoutSetLocalService
 
 	public LayoutSet updateLogo(
 			long groupId, boolean privateLayout, boolean hasLogo,
-			InputStream is)
+			InputStream inputStream)
 		throws PortalException;
 
 	public LayoutSet updateLogo(
 			long groupId, boolean privateLayout, boolean hasLogo,
-			InputStream is, boolean cleanUpStream)
+			InputStream inputStream, boolean cleanUpStream)
 		throws PortalException;
 
 	public LayoutSet updateLookAndFeel(

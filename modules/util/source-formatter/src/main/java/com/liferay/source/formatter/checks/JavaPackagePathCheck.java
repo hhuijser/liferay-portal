@@ -91,44 +91,6 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		return new String[] {JAVA_CLASS};
 	}
 
-	private void _checkModulePackageName(String fileName, String packageName)
-		throws IOException {
-
-		if (!packageName.startsWith("com.liferay")) {
-			return;
-		}
-
-		BNDSettings bndSettings = getBNDSettings(fileName);
-
-		if (bndSettings == null) {
-			return;
-		}
-
-		String bundleSymbolicName = BNDSourceUtil.getDefinitionValue(
-			bndSettings.getContent(), "Bundle-SymbolicName");
-
-		if (!bundleSymbolicName.startsWith("com.liferay")) {
-			return;
-		}
-
-		bundleSymbolicName = bundleSymbolicName.replaceAll(
-			"\\.(api|service|test)$", StringPool.BLANK);
-
-		if (packageName.contains(bundleSymbolicName)) {
-			return;
-		}
-
-		bundleSymbolicName = bundleSymbolicName.replaceAll(
-			"\\.impl$", ".internal");
-
-		if (!packageName.contains(bundleSymbolicName)) {
-			addMessage(
-				fileName,
-				"Package should follow Bundle-SymbolicName specified in " +
-					bndSettings.getFileName());
-		}
-	}
-
 	private void _checkInternalPackageNameByImplementedClassNames(
 			String fileName, String className,
 			List<String> implementedClassNames, String implementedClassName,
@@ -199,6 +161,44 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 				StringBundler.concat(
 					"Package for class implementing '", implementedClassName,
 					"' should end with '", expectedPackageName, "'"));
+		}
+	}
+
+	private void _checkModulePackageName(String fileName, String packageName)
+		throws IOException {
+
+		if (!packageName.startsWith("com.liferay")) {
+			return;
+		}
+
+		BNDSettings bndSettings = getBNDSettings(fileName);
+
+		if (bndSettings == null) {
+			return;
+		}
+
+		String bundleSymbolicName = BNDSourceUtil.getDefinitionValue(
+			bndSettings.getContent(), "Bundle-SymbolicName");
+
+		if (!bundleSymbolicName.startsWith("com.liferay")) {
+			return;
+		}
+
+		bundleSymbolicName = bundleSymbolicName.replaceAll(
+			"\\.(api|service|test)$", StringPool.BLANK);
+
+		if (packageName.contains(bundleSymbolicName)) {
+			return;
+		}
+
+		bundleSymbolicName = bundleSymbolicName.replaceAll(
+			"\\.impl$", ".internal");
+
+		if (!packageName.contains(bundleSymbolicName)) {
+			addMessage(
+				fileName,
+				"Package should follow Bundle-SymbolicName specified in " +
+					bndSettings.getFileName());
 		}
 	}
 

@@ -585,6 +585,8 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 				</not>
 			</or>
 			<then>
+				<echo>No modified files found in the current branch. Running SourceFormatter on all files.</echo>
+
 				<antcall target="format-source-files" />
 			</then>
 			<else>

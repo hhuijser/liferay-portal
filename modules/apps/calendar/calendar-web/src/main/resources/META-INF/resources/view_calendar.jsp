@@ -115,7 +115,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 							<div class="calendar-portlet-list-header toggler-header-expanded">
 								<span class="calendar-portlet-list-arrow"></span>
 
-								<span class="calendar-portlet-list-text"><liferay-ui:message arguments="<%= new String[] {HtmlUtil.escape(groupCalendarResource.getName(locale))} %>" key="x-calendars" /></span>
+								<span class="calendar-portlet-list-text"><liferay-ui:message arguments="<%= HtmlUtil.escape(groupCalendarResource.getName(locale)) %>" key="x-calendars" /></span>
 							</div>
 
 							<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, CalendarActionKeys.ADD_CALENDAR) %>">

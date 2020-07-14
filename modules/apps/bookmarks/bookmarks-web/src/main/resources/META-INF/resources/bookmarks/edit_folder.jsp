@@ -69,11 +69,11 @@ renderResponse.setTitle(headerTitle);
 
 		<liferay-ui:error exception="<%= FolderNameException.class %>">
 			<p>
-				<liferay-ui:message arguments="<%= new String[] {BookmarksFolderConstants.NAME_RESERVED_WORDS} %>" key="the-folder-name-cannot-be-blank-or-a-reserved-word-such-as-x" />
+				<liferay-ui:message arguments="<%= BookmarksFolderConstants.NAME_RESERVED_WORDS %>" key="the-folder-name-cannot-be-blank-or-a-reserved-word-such-as-x" />
 			</p>
 
 			<p>
-				<liferay-ui:message arguments="<%= new String[] {BookmarksFolderConstants.NAME_INVALID_CHARACTERS} %>" key="the-folder-name-cannot-contain-the-following-invalid-characters-x" />
+				<liferay-ui:message arguments="<%= BookmarksFolderConstants.NAME_INVALID_CHARACTERS %>" key="the-folder-name-cannot-contain-the-following-invalid-characters-x" />
 			</p>
 		</liferay-ui:error>
 

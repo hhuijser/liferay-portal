@@ -92,15 +92,15 @@ renderResponse.setTitle(headerTitle);
 
 		<liferay-ui:error exception="<%= FolderNameException.class %>">
 			<p>
-				<liferay-ui:message arguments="<%= new String[] {DLFolderConstants.getNameReservedWords(PropsValues.DL_NAME_BLACKLIST)} %>" key="the-folder-name-cannot-be-blank-or-a-reserved-word-such-as-x" />
+				<liferay-ui:message arguments="<%= DLFolderConstants.getNameReservedWords(PropsValues.DL_NAME_BLACKLIST) %>" key="the-folder-name-cannot-be-blank-or-a-reserved-word-such-as-x" />
 			</p>
 
 			<p>
-				<liferay-ui:message arguments="<%= new String[] {DLFolderConstants.getNameInvalidEndCharacters(PropsValues.DL_CHAR_LAST_BLACKLIST)} %>" key="the-folder-name-cannot-end-with-the-following-characters-x" />
+				<liferay-ui:message arguments="<%= DLFolderConstants.getNameInvalidEndCharacters(PropsValues.DL_CHAR_LAST_BLACKLIST) %>" key="the-folder-name-cannot-end-with-the-following-characters-x" />
 			</p>
 
 			<p>
-				<liferay-ui:message arguments="<%= new String[] {DLFolderConstants.getNameInvalidCharacters(PropsValues.DL_CHAR_BLACKLIST)} %>" key="the-folder-name-cannot-contain-the-following-invalid-characters-x" />
+				<liferay-ui:message arguments="<%= DLFolderConstants.getNameInvalidCharacters(PropsValues.DL_CHAR_BLACKLIST) %>" key="the-folder-name-cannot-contain-the-following-invalid-characters-x" />
 			</p>
 		</liferay-ui:error>
 

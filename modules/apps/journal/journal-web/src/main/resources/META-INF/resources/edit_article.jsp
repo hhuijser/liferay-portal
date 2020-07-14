@@ -179,10 +179,10 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 							<liferay-ui:message arguments="<%= new String[] {eicve.getLayoutURL(), eicve.getGroupFriendlyURL()} %>" key="unable-to-validate-referenced-page-with-url-x-because-the-page-group-with-url-x-cannot-be-found" />
 						</c:when>
 						<c:when test="<%= eicve.getType() == ExportImportContentValidationException.LAYOUT_NOT_FOUND %>">
-							<liferay-ui:message arguments="<%= new String[] {MapUtil.toString(eicve.getLayoutReferenceParameters())} %>" key="unable-to-validate-referenced-page-because-it-cannot-be-found-with-the-following-parameters-x" />
+							<liferay-ui:message arguments="<%= MapUtil.toString(eicve.getLayoutReferenceParameters()) %>" key="unable-to-validate-referenced-page-because-it-cannot-be-found-with-the-following-parameters-x" />
 						</c:when>
 						<c:when test="<%= eicve.getType() == ExportImportContentValidationException.LAYOUT_WITH_URL_NOT_FOUND %>">
-							<liferay-ui:message arguments="<%= new String[] {eicve.getLayoutURL()} %>" key="unable-to-validate-referenced-page-because-it-cannot-be-found-with-url-x" />
+							<liferay-ui:message arguments="<%= eicve.getLayoutURL() %>" key="unable-to-validate-referenced-page-because-it-cannot-be-found-with-url-x" />
 						</c:when>
 						<c:otherwise>
 							<liferay-ui:message key="an-unexpected-error-occurred" />

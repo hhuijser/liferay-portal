@@ -210,7 +210,7 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 														<liferay-ui:message key="total-modifications" />
 													</dt>
 													<dd class="sidebar-dd">
-														<liferay-ui:message arguments='<%= new String[] {kaleoDesignerDisplayContext.getKaleoDefinitionVersionCount(kaleoDefinitionVersion) + ""} %>' key="x-revisions" translateArguments="<%= false %>" />
+														<liferay-ui:message arguments='<%= kaleoDesignerDisplayContext.getKaleoDefinitionVersionCount(kaleoDefinitionVersion) + "" %>' key="x-revisions" translateArguments="<%= false %>" />
 													</dd>
 													<dt class="sidebar-dt"></dt>
 													<dd class="sidebar-dd"></dd>

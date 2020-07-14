@@ -127,7 +127,7 @@ SearchEngineDisplayContext
 													</div>
 
 													<div class="connection-health-indicator-text indicator-item">
-														<liferay-ui:message arguments="<%= new String[] {connectionInformation.getHealth()} %>" key="health-x" />
+														<liferay-ui:message arguments="<%= connectionInformation.getHealth() %>" key="health-x" />
 													</div>
 												</div>
 											</div>

@@ -181,7 +181,7 @@ WikiNodesManagementToolbarDisplayContext wikiNodesManagementToolbarDisplayContex
 
 								<c:if test="<%= lastPostDate != null %>">
 									<span class="text-default">
-										<liferay-ui:message arguments="<%= new String[] {LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - lastPostDate.getTime(), true)} %>" key="last-post-x-ago" />
+										<liferay-ui:message arguments="<%= LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - lastPostDate.getTime(), true) %>" key="last-post-x-ago" />
 									</span>
 								</c:if>
 

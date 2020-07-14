@@ -65,7 +65,7 @@ previewURL.setParameter("membershipRequestId", String.valueOf(membershipRequest.
 				</c:when>
 				<c:otherwise>
 					<h5 class="text-default">
-						<liferay-ui:message arguments="<%= new String[] {modifiedDateDescription} %>" key="replied-x-ago" />
+						<liferay-ui:message arguments="<%= modifiedDateDescription %>" key="replied-x-ago" />
 					</h5>
 				</c:otherwise>
 			</c:choose>

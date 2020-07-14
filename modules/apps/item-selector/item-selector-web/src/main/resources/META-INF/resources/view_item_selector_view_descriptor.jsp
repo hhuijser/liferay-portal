@@ -115,7 +115,7 @@ SearchContainer<Object> searchContainer = itemSelectorViewDescriptor.getSearchCo
 								</c:when>
 								<c:otherwise>
 									<span class="text-default">
-										<liferay-ui:message arguments="<%= new String[] {modifiedDateDescription} %>" key="modified-x-ago" />
+										<liferay-ui:message arguments="<%= modifiedDateDescription %>" key="modified-x-ago" />
 									</span>
 								</c:otherwise>
 							</c:choose>

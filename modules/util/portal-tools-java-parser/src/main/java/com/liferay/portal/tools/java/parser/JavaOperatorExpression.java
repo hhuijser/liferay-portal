@@ -221,6 +221,17 @@ public class JavaOperatorExpression extends BaseJavaExpression {
 
 		JavaOperator javaOperator = javaOperatorExpression.getJavaOperator();
 
+		if ((_javaOperator.equals(JavaOperator.ADDITION_OPERATOR) ||
+			 _javaOperator.equals(JavaOperator.SUBTRACTION_OPERATOR)) &&
+			(javaOperator.equals(JavaOperator.DIVISION_OPERATOR) ||
+			 javaOperator.equals(JavaOperator.MODULUS_OPERATOR) ||
+			 javaOperator.equals(JavaOperator.MULTIPLICATION_OPERATOR))) {
+
+			javaExpression.setHasSurroundingParentheses(true);
+
+			return;
+		}
+
 		JavaOperator.Category javaExpressionCategory =
 			javaOperator.getCategory();
 

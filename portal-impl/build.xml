@@ -585,7 +585,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 				</not>
 			</or>
 			<then>
-				<antcall target="format-source-all" />
+				<antcall target="format-source-files" />
 			</then>
 			<else>
 				<echo>
@@ -600,6 +600,10 @@ ant format-source-all
 	</target>
 
 	<target name="format-source-all">
+		<antcall target="format-source-files" />
+	</target>
+
+	<target name="format-source-files">
 		<property location="${project.dir}/modules" name="source.formatter.modules.dir.absolute.path" />
 
 		<if>
@@ -757,13 +761,13 @@ Please run the following command from ${source.formatter.modules.dir.absolute.pa
 	</target>
 
 	<target name="format-source-bnd">
-		<antcall target="format-source-all">
+		<antcall target="format-source-files">
 			<param name="source.file.extensions" value="bnd,gradle,json" />
 		</antcall>
 	</target>
 
 	<target name="format-source-current-branch">
-		<antcall target="format-source-all">
+		<antcall target="format-source-files">
 			<param name="format.current.branch" value="true" />
 		</antcall>
 	</target>
@@ -775,13 +779,13 @@ Please run the following command from ${source.formatter.modules.dir.absolute.pa
 	</target>
 
 	<target name="format-source-debug">
-		<antcall target="format-source-all">
+		<antcall target="format-source-files">
 			<param name="source.formatter.show.debug.information" value="true" />
 		</antcall>
 	</target>
 
 	<target name="format-source-latest-author">
-		<antcall target="format-source-all">
+		<antcall target="format-source-files">
 			<param name="format.latest.author" value="true" />
 		</antcall>
 	</target>
@@ -793,7 +797,7 @@ Please run the following command from ${source.formatter.modules.dir.absolute.pa
 	</target>
 
 	<target name="format-source-local-changes">
-		<antcall target="format-source-all">
+		<antcall target="format-source-files">
 			<param name="format.local.changes" value="true" />
 		</antcall>
 	</target>

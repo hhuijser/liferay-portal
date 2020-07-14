@@ -694,12 +694,6 @@ ant format-source-all
 						<var name="source.formatter.gradle.task" value="formatSourceLocalChanges" />
 					</then>
 				</if>
-
-				<echo>
-Please run the following command from ${source.formatter.modules.dir.absolute.path} to show status updates during the Source Formatter execution:
-
-../gradlew -b util.gradle ${source.formatter.gradle.task}${source.formatter.gradle.args}
-				</echo>
 			</then>
 		</if>
 

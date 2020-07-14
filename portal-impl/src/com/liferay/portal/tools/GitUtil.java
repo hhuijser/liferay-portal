@@ -211,16 +211,11 @@ public class GitUtil {
 			String gitWorkingBranchName)
 		throws Exception {
 
-		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git rev-parse --abbrev-ref HEAD");
-
-		String currentBranchName = unsyncBufferedReader.readLine();
-
-		if (gitWorkingBranchName.equals(currentBranchName)) {
+		if (gitWorkingBranchName.equals(getCurrentBranchName())) {
 			return null;
 		}
 
-		unsyncBufferedReader = getGitCommandReader(
+		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
 			"git log --pretty=format:%H:%D");
 
 		int count = 0;
@@ -266,6 +261,13 @@ public class GitUtil {
 		}
 
 		return null;
+	}
+
+	protected static String getCurrentBranchName() throws Exception {
+		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+			"git rev-parse --abbrev-ref HEAD");
+
+		return unsyncBufferedReader.readLine();
 	}
 
 	protected static List<String> getDeletedFileNames(

@@ -161,10 +161,6 @@
 
 							String title = HtmlUtil.escapeAttribute(curLocale.getDisplayName(LocaleUtil.fromLanguageId(LanguageUtil.getLanguageId(request)))) + " " + LanguageUtil.get(LocaleUtil.getDefault(), "translation");
 
-							Map<String, Object> data = HashMapBuilder.<String, Object>put(
-								"languageid", curLanguageId
-							).build();
-
 							Map<String, Object> iconData = HashMapBuilder.<String, Object>put(
 								"index", index++
 							).put(

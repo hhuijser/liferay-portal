@@ -52,8 +52,8 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 			if (!taglibValue.contains("\n") &&
 				(taglibValue.contains("\\\"") ||
-				(taglibValue.contains(StringPool.APOSTROPHE) &&
-				 taglibValue.contains(StringPool.QUOTE)))) {
+				 (taglibValue.contains(StringPool.APOSTROPHE) &&
+				  taglibValue.contains(StringPool.QUOTE)))) {
 
 				if (!variableName.startsWith("taglib") &&
 					(_getVariableCount(content, variableName) == 2) &&

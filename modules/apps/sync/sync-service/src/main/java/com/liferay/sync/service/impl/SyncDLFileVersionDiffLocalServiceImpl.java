@@ -85,10 +85,11 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 
 		Date expirationDate = new Date();
 
-		expirationDate.setTime(
-			expirationDate.getTime() +
-				(SyncServiceConfigurationValues.
-					SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME * 3600000));
+		long cacheExpirationTime =
+			SyncServiceConfigurationValues.
+				SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME * 3600000;
+
+		expirationDate.setTime(expirationDate.getTime() + cacheExpirationTime);
 
 		syncDLFileVersionDiff.setExpirationDate(expirationDate);
 
@@ -159,10 +160,11 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 
 		Date expirationDate = new Date();
 
-		expirationDate.setTime(
-			expirationDate.getTime() +
-				(SyncServiceConfigurationValues.
-					SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME * 3600000));
+		long cacheExpirationTime =
+			SyncServiceConfigurationValues.
+				SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME * 3600000;
+
+		expirationDate.setTime(expirationDate.getTime() + cacheExpirationTime);
 
 		syncDLFileVersionDiff.setExpirationDate(expirationDate);
 

@@ -128,17 +128,15 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 										</clay:content-row>
 									</liferay-util:buffer>
 
-									<%
-									Map<String, String> dataInReply = HashMapBuilder.put(
-										"inreply-content", parentDiscussionComment.getBody()
-									).put(
-										"inreply-title", parentCommentUserBuffer
-									).build();
-									%>
-
 									<clay:link
 										ariaLabel='<%= LanguageUtil.format(request, "in-reply-to-x", HtmlUtil.escape(parentDiscussionComment.getUserName()), false) %>'
-										data="<%= dataInReply %>"
+										data='<%=
+											HashMapBuilder.put(
+												"inreply-content", parentDiscussionComment.getBody()
+											).put(
+												"inreply-title", parentCommentUserBuffer
+											).build()
+										%>'
 										elementClasses="lfr-discussion-parent-link"
 										href='<%= "#" + randomNamespace + "message_" + parentDiscussionComment.getCommentId() %>'
 										icon="redo"

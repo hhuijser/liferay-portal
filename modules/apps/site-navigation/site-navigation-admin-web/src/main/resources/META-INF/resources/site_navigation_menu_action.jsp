@@ -50,19 +50,17 @@ PortletURL portletURL = renderResponse.createRenderURL();
 			<portlet:param name="siteNavigationMenuId" value="<%= String.valueOf(siteNavigationMenu.getSiteNavigationMenuId()) %>" />
 		</portlet:actionURL>
 
-		<%
-		Map<String, Object> updateSiteNavigationMenuData = HashMapBuilder.<String, Object>put(
-			"form-submit-url", updateSiteNavigationMenuURL.toString()
-		).put(
-			"id-field-value", siteNavigationMenu.getSiteNavigationMenuId()
-		).put(
-			"main-field-value", siteNavigationMenu.getName()
-		).build();
-		%>
-
 		<liferay-ui:icon
 			cssClass='<%= liferayPortletResponse.getNamespace() + "update-site-navigation-menu-action-option" %>'
-			data="<%= updateSiteNavigationMenuData %>"
+			data='<%=
+				HashMapBuilder.<String, Object>put(
+					"form-submit-url", updateSiteNavigationMenuURL.toString()
+				).put(
+					"id-field-value", siteNavigationMenu.getSiteNavigationMenuId()
+				).put(
+					"main-field-value", siteNavigationMenu.getName()
+				).build()
+			%>'
 			message="rename"
 			url="javascript:;"
 		/>

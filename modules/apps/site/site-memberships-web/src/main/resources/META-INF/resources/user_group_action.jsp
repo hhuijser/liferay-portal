@@ -36,17 +36,15 @@ UserGroup userGroup = (UserGroup)row.getObject();
 			<portlet:param name="groupId" value="<%= String.valueOf(siteMembershipsDisplayContext.getGroupId()) %>" />
 		</portlet:renderURL>
 
-		<%
-		Map<String, Object> assignData = HashMapBuilder.<String, Object>put(
-			"href", assignURL.toString()
-		).put(
-			"usergroupid", userGroup.getUserGroupId()
-		).build();
-		%>
-
 		<liferay-ui:icon
 			cssClass="assign-roles"
-			data="<%= assignData %>"
+			data='<%=
+				HashMapBuilder.<String, Object>put(
+					"href", assignURL.toString()
+				).put(
+					"usergroupid", userGroup.getUserGroupId()
+				).build()
+			%>'
 			id='<%= row.getRowId() + "assignRoles" %>'
 			message="assign-roles"
 			url="javascript:;"
@@ -59,17 +57,15 @@ UserGroup userGroup = (UserGroup)row.getObject();
 			<portlet:param name="assignRoles" value="<%= Boolean.FALSE.toString() %>" />
 		</portlet:renderURL>
 
-		<%
-		Map<String, Object> unassignData = HashMapBuilder.<String, Object>put(
-			"href", unassignURL.toString()
-		).put(
-			"usergroupid", userGroup.getUserGroupId()
-		).build();
-		%>
-
 		<liferay-ui:icon
 			cssClass="unassign-roles"
-			data="<%= unassignData %>"
+			data='<%=
+				HashMapBuilder.<String, Object>put(
+					"href", unassignURL.toString()
+				).put(
+					"usergroupid", userGroup.getUserGroupId()
+				).build()
+			%>'
 			id='<%= row.getRowId() + "unassignRoles" %>'
 			message="unassign-roles"
 			url="javascript:;"

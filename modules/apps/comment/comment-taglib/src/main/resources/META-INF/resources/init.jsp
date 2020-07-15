@@ -58,7 +58,6 @@ page import="com.liferay.taglib.util.TagResourceBundleUtil" %>
 <%@ page import="java.text.Format" %>
 
 <%@ page import="java.util.Date" %><%@
-page import="java.util.Map" %><%@
 page import="java.util.ResourceBundle" %>
 
 <%@ page import="javax.portlet.PortletMode" %><%@

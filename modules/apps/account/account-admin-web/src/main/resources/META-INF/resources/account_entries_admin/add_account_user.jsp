@@ -133,19 +133,19 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 	viewValidDomainsURL.setParameter("mvcPath", "/account_users_admin/account_user/view_valid_domains.jsp");
 	viewValidDomainsURL.setParameter("validDomains", StringUtil.merge(accountEntryDisplay.getDomains(), StringPool.COMMA));
 	viewValidDomainsURL.setWindowState(LiferayWindowState.POP_UP);
-
-	Map<String, Object> componentContext = HashMapBuilder.<String, Object>put(
-			"accountEntryNames", accountEntryDisplay.getName()
-	).put(
-			"validDomains", StringUtil.merge(accountEntryDisplay.getDomains(), StringPool.COMMA)
-	).put(
-			"viewValidDomainsURL", viewValidDomainsURL.toString()
-	).build();
 	%>
 
 	<liferay-frontend:component
 		componentId="AccountUserEmailDomainValidator"
-		context="<%= componentContext %>"
+		context='<%=
+			HashMapBuilder.<String, Object>put(
+				"accountEntryNames", accountEntryDisplay.getName()
+			).put(
+				"validDomains", StringUtil.merge(accountEntryDisplay.getDomains(), StringPool.COMMA)
+			).put(
+				"viewValidDomainsURL", viewValidDomainsURL.toString()
+			).build()
+		%>'
 		module="account_users_admin/js/AccountUserEmailDomainValidator.es"
 	/>
 </c:if>

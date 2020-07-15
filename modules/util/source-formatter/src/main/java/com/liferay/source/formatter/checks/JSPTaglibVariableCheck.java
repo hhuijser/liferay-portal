@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
@@ -45,13 +46,14 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		Matcher matcher = _taglibVariablePattern.matcher(content);
 
 		while (matcher.find()) {
-			String nextTag = matcher.group(4);
+			String nextTag = matcher.group(5);
 			String taglibValue = matcher.group(3);
 			String variableName = matcher.group(2);
 
-			if (taglibValue.contains("\\\"") ||
+			if (!taglibValue.contains("\n") &&
+				(taglibValue.contains("\\\"") ||
 				(taglibValue.contains(StringPool.APOSTROPHE) &&
-				 taglibValue.contains(StringPool.QUOTE))) {
+				 taglibValue.contains(StringPool.QUOTE)))) {
 
 				if (!variableName.startsWith("taglib") &&
 					(_getVariableCount(content, variableName) == 2) &&
@@ -71,7 +73,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 				populateContentsMap(fileName, content);
 
 				String newContent = StringUtil.replaceFirst(
-					content, variableName, taglibValue, matcher.start(4));
+					content, variableName, taglibValue, matcher.start(5));
 
 				Set<String> checkedFileNames = new HashSet<>();
 				Set<String> includeFileNames = new HashSet<>();
@@ -81,9 +83,18 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 						"variable", checkedFileNames, includeFileNames,
 						getContentsMap())) {
 
-					return StringUtil.replaceFirst(
-						newContent, matcher.group(1), StringPool.BLANK,
-						matcher.start());
+					if (!taglibValue.contains("\n")) {
+						return StringUtil.replaceFirst(
+							newContent, matcher.group(1), StringPool.BLANK,
+							matcher.start());
+					}
+
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"No need to declare variable '", variableName,
+							"', inline inside the tag."),
+						getLineNumber(content, matcher.start(2)));
 				}
 			}
 		}
@@ -118,7 +129,8 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 	}
 
 	private static final Pattern _taglibVariablePattern = Pattern.compile(
-		"(\t*[\\w<>\\[\\], ]+ (\\w+) = ([^{].*);)\n\\s*%>\\s+(<[\\S\\s]*?>)" +
-			"(\n|\\Z)");
+		"(\t*[\\w<>\\[\\], ]+ (\\w+) = ([^{]((?!;\n).)*);)\n\\s*%>\\s+" +
+			"(<[\\S\\s]*?>)(\n|\\Z)",
+		Pattern.DOTALL);
 
 }

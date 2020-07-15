@@ -90,6 +90,13 @@ public class GitUtil {
 		return fileNames;
 	}
 
+	public static String getCurrentBranchName() throws Exception {
+		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+			"git rev-parse --abbrev-ref HEAD");
+
+		return unsyncBufferedReader.readLine();
+	}
+
 	public static String getLatestAuthorFileContent(String fileName)
 		throws Exception {
 
@@ -161,6 +168,22 @@ public class GitUtil {
 		}
 
 		return fileNames;
+	}
+
+	public static boolean isCurrentBranchSameAsWorkingBranch(
+			String gitWorkingBranchName)
+		throws Exception {
+
+		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+			StringBundler.concat(
+				"git log -1 ", gitWorkingBranchName, "...",
+				getCurrentBranchName()));
+
+		if (Validator.isNotNull(unsyncBufferedReader.readLine())) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -261,13 +284,6 @@ public class GitUtil {
 		}
 
 		return null;
-	}
-
-	protected static String getCurrentBranchName() throws Exception {
-		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git rev-parse --abbrev-ref HEAD");
-
-		return unsyncBufferedReader.readLine();
 	}
 
 	protected static List<String> getDeletedFileNames(

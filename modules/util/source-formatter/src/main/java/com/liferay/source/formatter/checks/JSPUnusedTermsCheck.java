@@ -188,7 +188,9 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 	}
 
 	private String _getVariableName(String line) {
-		if (!line.endsWith(";") || line.startsWith("//")) {
+		if ((!line.endsWith(";") && !line.endsWith("(")) ||
+			line.startsWith("//")) {
+
 			return null;
 		}
 
@@ -544,6 +546,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 			String line = null;
 
 			boolean javaSource = false;
+			boolean unusedVariable = false;
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				lineNumber++;
@@ -557,16 +560,26 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 					javaSource = false;
 				}
 
-				if (!javaSource ||
-					isExcludedPath(
-						_UNUSED_VARIABLES_EXCLUDES, absolutePath, lineNumber) ||
-					!_hasUnusedVariable(
+				if (javaSource &&
+					!isExcludedPath(
+						_UNUSED_VARIABLES_EXCLUDES, absolutePath, lineNumber) &&
+					_hasUnusedVariable(
 						fileName, trimmedLine, checkedFileNames,
 						includeFileNames)) {
 
-					sb.append(line);
-					sb.append("\n");
+					unusedVariable = true;
 				}
+
+				if (unusedVariable) {
+					if (trimmedLine.endsWith(";")) {
+						unusedVariable = false;
+					}
+
+					continue;
+				}
+
+				sb.append(line);
+				sb.append("\n");
 			}
 		}
 

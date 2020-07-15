@@ -178,7 +178,7 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 			includeFileNames.addAll(
 				JSPSourceUtil.getJSPReferenceFileNames(
 					fileName, includeFileNames, contentsMap,
-					".*init(-ext)?\\.(jsp|jspf|tag)"));
+					".*\\.(jsp|jspf|tag)"));
 		}
 
 		checkedForIncludesFileNames.add(fileName);

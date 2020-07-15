@@ -156,6 +156,19 @@ public class SourceFormatter {
 			sourceFormatterArgs.setGitWorkingBranchName(gitWorkingBranchName);
 
 			if (formatCurrentBranch) {
+				if (!gitWorkingBranchName.equals(
+						GitUtil.getCurrentBranchName()) &&
+					GitUtil.isCurrentBranchSameAsWorkingBranch(
+						gitWorkingBranchName)) {
+
+					System.out.println(
+						StringBundler.concat(
+							"The current branch is same as '",
+							gitWorkingBranchName, "'"));
+
+					return;
+				}
+
 				sourceFormatterArgs.addRecentChangesFileNames(
 					GitUtil.getCurrentBranchFileNames(
 						baseDirName, gitWorkingBranchName, false),

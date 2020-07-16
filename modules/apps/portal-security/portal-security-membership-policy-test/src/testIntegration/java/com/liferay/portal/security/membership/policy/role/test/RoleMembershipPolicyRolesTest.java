@@ -81,10 +81,9 @@ public class RoleMembershipPolicyRolesTest
 		long[] userIds = addUsers();
 		long[] forbiddenRoleIds = addForbiddenRoles();
 
-		User user = UserLocalServiceUtil.getUser(userIds[0]);
-
 		MembershipPolicyTestUtil.updateUser(
-			user, null, new long[] {forbiddenRoleIds[0]}, null, null,
+			UserLocalServiceUtil.getUser(userIds[0]), null,
+			new long[] {forbiddenRoleIds[0]}, null, null,
 			Collections.<UserGroupRole>emptyList());
 	}
 
@@ -99,11 +98,9 @@ public class RoleMembershipPolicyRolesTest
 	public void testPropagateWhenAssigningRolesToUser() throws Exception {
 		long[] userIds = addUsers();
 
-		User user = UserLocalServiceUtil.getUser(userIds[0]);
-
 		MembershipPolicyTestUtil.updateUser(
-			user, null, addStandardRoles(), null, null,
-			Collections.<UserGroupRole>emptyList());
+			UserLocalServiceUtil.getUser(userIds[0]), null, addStandardRoles(),
+			null, null, Collections.<UserGroupRole>emptyList());
 
 		Assert.assertTrue(isPropagateRoles());
 	}

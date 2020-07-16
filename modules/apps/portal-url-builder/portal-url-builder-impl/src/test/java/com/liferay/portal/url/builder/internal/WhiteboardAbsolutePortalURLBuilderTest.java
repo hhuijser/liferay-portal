@@ -59,18 +59,17 @@ public class WhiteboardAbsolutePortalURLBuilderTest
 
 	@Test
 	public void test() {
-		String url = _whiteboardAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS[index], url);
+		Assert.assertEquals(
+			_RESULTS[index], _whiteboardAbsolutePortalURLBuilder.build());
 	}
 
 	@Test
 	public void testIgnoreProxy() {
 		_absolutePortalURLBuilder.ignorePathProxy();
 
-		String url = _whiteboardAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS_IGNORE_PROXY[index], url);
+		Assert.assertEquals(
+			_RESULTS_IGNORE_PROXY[index],
+			_whiteboardAbsolutePortalURLBuilder.build());
 	}
 
 	@Parameterized.Parameter(3)

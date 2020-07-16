@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ProxyFactory;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Assert;
@@ -42,11 +40,10 @@ public class ServiceContextTest {
 
 		serviceContext.setAttribute("TestName", "TestValue");
 
-		Map<String, String> headers = HashMapBuilder.put(
-			"TestHeaderName", "TestHeaderValue"
-		).build();
-
-		serviceContext.setHeaders(headers);
+		serviceContext.setHeaders(
+			HashMapBuilder.put(
+				"TestHeaderName", "TestHeaderValue"
+			).build());
 
 		serviceContext.setRequest(
 			ProxyFactory.newDummyInstance(HttpServletRequest.class));

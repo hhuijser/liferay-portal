@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.net.URL;
 
 import java.util.List;
-import java.util.Map;
 
 import org.elasticsearch.action.admin.cluster.node.info.NodeInfo;
 import org.elasticsearch.action.admin.cluster.node.info.NodesInfoRequestBuilder;
@@ -54,15 +53,13 @@ public class EmbeddedElasticsearchConnectionHttpTest {
 
 		_clusterName = RandomTestUtil.randomString();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"clusterName", _clusterName
-		).put(
-			"networkHost", "_site_"
-		).build();
-
 		_elasticsearchFixture = new ElasticsearchFixture(
 			EmbeddedElasticsearchConnectionHttpTest.class.getSimpleName(),
-			properties);
+			HashMapBuilder.<String, Object>put(
+				"clusterName", _clusterName
+			).put(
+				"networkHost", "_site_"
+			).build());
 
 		_elasticsearchFixture.setUp();
 	}

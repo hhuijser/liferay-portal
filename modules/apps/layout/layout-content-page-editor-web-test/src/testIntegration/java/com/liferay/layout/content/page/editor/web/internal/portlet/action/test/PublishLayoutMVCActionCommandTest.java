@@ -43,8 +43,6 @@ import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -82,15 +80,14 @@ public class PublishLayoutMVCActionCommandTest {
 	public void testDeletedItemsAreRemovedWhenLayoutIsPublished()
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		Layout layout = _layoutLocalService.addLayout(
 			TestPropsValues.getUserId(), _group.getGroupId(), false, 0, 0, 0,
-			nameMap, new HashMap<>(), new HashMap<>(), new HashMap<>(),
-			new HashMap<>(), LayoutConstants.TYPE_CONTENT, StringPool.BLANK,
-			false, false, 0, new HashMap<>(), _serviceContext);
+			HashMapBuilder.put(
+				LocaleUtil.US, RandomTestUtil.randomString()
+			).build(),
+			new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(),
+			LayoutConstants.TYPE_CONTENT, StringPool.BLANK, false, false, 0,
+			new HashMap<>(), _serviceContext);
 
 		Layout draftLayout = layout.fetchDraftLayout();
 

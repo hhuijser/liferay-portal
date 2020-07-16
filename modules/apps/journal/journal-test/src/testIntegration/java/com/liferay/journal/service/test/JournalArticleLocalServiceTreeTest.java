@@ -22,7 +22,6 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.service.JournalFolderLocalServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -71,12 +70,10 @@ public class JournalArticleLocalServiceTreeTest {
 		JournalArticle article = JournalTestUtil.addArticle(
 			_group.getGroupId(), folderAA.getFolderId());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		JournalFolderLocalServiceUtil.moveFolder(
 			folderAA.getFolderId(),
-			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, serviceContext);
+			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		article = JournalArticleLocalServiceUtil.getArticle(
 			_group.getGroupId(), article.getArticleId());

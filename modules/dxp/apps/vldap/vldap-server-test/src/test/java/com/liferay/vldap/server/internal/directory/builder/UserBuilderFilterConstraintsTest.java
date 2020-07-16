@@ -29,7 +29,6 @@ import com.liferay.vldap.server.internal.directory.FilterConstraint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.commons.lang3.time.FastDateFormat;
@@ -364,32 +363,30 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 			_users
 		);
 
-		LinkedHashMap<String, Object> usersRolesParams =
-			LinkedHashMapBuilder.<String, Object>put(
-				"usersRoles", PRIMARY_KEY
-			).build();
-
 		when(
 			userLocalService.search(
 				Mockito.anyLong(), Mockito.anyString(), Mockito.anyString(),
 				Mockito.anyString(), Mockito.anyString(), Mockito.anyString(),
-				Mockito.anyInt(), Mockito.eq(usersRolesParams),
+				Mockito.anyInt(),
+				Mockito.eq(
+					LinkedHashMapBuilder.<String, Object>put(
+						"usersRoles", PRIMARY_KEY
+					).build()),
 				Mockito.anyBoolean(), Mockito.anyInt(), Mockito.anyInt(),
 				Mockito.any(UserScreenNameComparator.class))
 		).thenReturn(
 			Arrays.asList(_hasRoleUser)
 		);
 
-		LinkedHashMap<String, Object> usersOrgsParams =
-			LinkedHashMapBuilder.<String, Object>put(
-				"usersOrgs", PRIMARY_KEY
-			).build();
-
 		when(
 			userLocalService.search(
 				Mockito.anyLong(), Mockito.anyString(), Mockito.anyString(),
 				Mockito.anyString(), Mockito.anyString(), Mockito.anyString(),
-				Mockito.anyInt(), Mockito.eq(usersOrgsParams),
+				Mockito.anyInt(),
+				Mockito.eq(
+					LinkedHashMapBuilder.<String, Object>put(
+						"usersOrgs", PRIMARY_KEY
+					).build()),
 				Mockito.anyBoolean(), Mockito.anyInt(), Mockito.anyInt(),
 				Mockito.any(UserScreenNameComparator.class))
 		).thenReturn(

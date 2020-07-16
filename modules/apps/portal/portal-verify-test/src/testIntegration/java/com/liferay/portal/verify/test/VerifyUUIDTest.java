@@ -203,9 +203,7 @@ public class VerifyUUIDTest extends BaseVerifyProcessTestCase {
 
 		DB db = DBManagerUtil.getDB();
 
-		DBType dbType = db.getDBType();
-
-		String expectedMessagePrefix = expectedMessages.get(dbType);
+		String expectedMessagePrefix = expectedMessages.get(db.getDBType());
 
 		if (expectedMessagePrefix == null) {
 			throw exception;

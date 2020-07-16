@@ -34,7 +34,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
@@ -114,15 +113,12 @@ public class UpgradePortletPreferencesTest {
 				DDMStructure ddmStructure = addDDMStructure(
 					DLFileEntryMetadata.class.getName());
 
-				ServiceContext serviceContext =
-					ServiceContextTestUtil.getServiceContext();
-
 				DLFileEntryType dlFileEntryType =
 					DLFileEntryTypeLocalServiceUtil.addFileEntryType(
 						TestPropsValues.getUserId(), _group.getGroupId(),
 						"New File Entry Type", StringPool.BLANK,
 						new long[] {ddmStructure.getStructureId()},
-						serviceContext);
+						ServiceContextTestUtil.getServiceContext());
 
 				return String.valueOf(dlFileEntryType.getFileEntryTypeId());
 			}
@@ -168,15 +164,12 @@ public class UpgradePortletPreferencesTest {
 				DDMStructure ddmStructure = addDDMStructure(
 					DLFileEntryMetadata.class.getName());
 
-				ServiceContext serviceContext =
-					ServiceContextTestUtil.getServiceContext();
-
 				DLFileEntryType dlFileEntryType =
 					DLFileEntryTypeLocalServiceUtil.addFileEntryType(
 						TestPropsValues.getUserId(), _group.getGroupId(),
 						"New File Entry Type", StringPool.BLANK,
 						new long[] {ddmStructure.getStructureId()},
-						serviceContext);
+						ServiceContextTestUtil.getServiceContext());
 
 				return String.valueOf(dlFileEntryType.getFileEntryTypeId());
 			}

@@ -64,19 +64,16 @@ public class BulkSelectionRunnerTest {
 
 	@Test
 	public void testRunsABulkSelectionAction() throws Exception {
-		HashMap<String, String[]> parameterMap = HashMapBuilder.put(
-			"integers", new String[] {"1", "2", "3", "4"}
-		).build();
-
-		HashMap<String, Serializable> inputMap =
-			HashMapBuilder.<String, Serializable>put(
-				"integer", 10
-			).build();
-
 		_bulkSelectionRunner.run(
 			TestPropsValues.getUser(),
-			_testBulkSelectionFactory.create(parameterMap),
-			_testBulkSelectionAction, inputMap);
+			_testBulkSelectionFactory.create(
+				HashMapBuilder.put(
+					"integers", new String[] {"1", "2", "3", "4"}
+				).build()),
+			_testBulkSelectionAction,
+			HashMapBuilder.<String, Serializable>put(
+				"integer", 10
+			).build());
 
 		Assert.assertEquals(
 			(Integer)100, TestBulkSelectionAction.getLastResult());

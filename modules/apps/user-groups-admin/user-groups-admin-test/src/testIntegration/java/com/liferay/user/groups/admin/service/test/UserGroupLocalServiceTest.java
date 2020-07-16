@@ -96,13 +96,12 @@ public class UserGroupLocalServiceTest {
 			PermissionThreadLocal.setPermissionChecker(
 				_permissionCheckerFactory.create(user));
 
-			LinkedHashMap<String, Object> userGroupParams =
+			List<UserGroup> userGroups = _search(
+				null,
 				LinkedHashMapBuilder.<String, Object>put(
 					UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_USERS,
 					Long.valueOf(user.getUserId())
-				).build();
-
-			List<UserGroup> userGroups = _search(null, userGroupParams);
+				).build());
 
 			Assert.assertEquals(userGroups.toString(), 1, userGroups.size());
 		}
@@ -115,15 +114,14 @@ public class UserGroupLocalServiceTest {
 	public void testDatabaseSearchWithInvalidParamKey() {
 		String keywords = null;
 
-		LinkedHashMap<String, Object> userGroupParams =
+		List<UserGroup> userGroups = _search(
+			keywords,
 			LinkedHashMapBuilder.<String, Object>put(
 				UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
 				Long.valueOf(_role.getRoleId())
 			).put(
 				"invalidParamKey", "invalidParamValue"
-			).build();
-
-		List<UserGroup> userGroups = _search(keywords, userGroupParams);
+			).build());
 
 		Assert.assertEquals(userGroups.toString(), 1, userGroups.size());
 	}
@@ -132,13 +130,12 @@ public class UserGroupLocalServiceTest {
 	public void testSearchRoleUserGroups() {
 		String keywords = null;
 
-		LinkedHashMap<String, Object> userGroupParams =
+		List<UserGroup> userGroups = _search(
+			keywords,
 			LinkedHashMapBuilder.<String, Object>put(
 				UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
 				Long.valueOf(_role.getRoleId())
-			).build();
-
-		List<UserGroup> userGroups = _search(keywords, userGroupParams);
+			).build());
 
 		Assert.assertEquals(userGroups.toString(), 1, userGroups.size());
 	}
@@ -147,13 +144,12 @@ public class UserGroupLocalServiceTest {
 	public void testSearchRoleUserGroupsWithKeywords() {
 		String keywords = _userGroup2.getName();
 
-		LinkedHashMap<String, Object> userGroupParams =
+		List<UserGroup> userGroups = _search(
+			keywords,
 			LinkedHashMapBuilder.<String, Object>put(
 				UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
 				Long.valueOf(_role.getRoleId())
-			).build();
-
-		List<UserGroup> userGroups = _search(keywords, userGroupParams);
+			).build());
 
 		Assert.assertEquals(userGroups.toString(), 0, userGroups.size());
 	}

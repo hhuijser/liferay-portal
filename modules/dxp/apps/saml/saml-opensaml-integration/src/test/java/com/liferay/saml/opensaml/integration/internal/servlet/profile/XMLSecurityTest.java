@@ -104,9 +104,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 	public void testXMLBombBillionLaughs() throws Exception {
 		String redirectURL = getAuthnRequestRedirectURL();
 
-		AuthnRequest authnRequest = getAuthnRequest(redirectURL);
-
-		String authnRequestXML = OpenSamlUtil.marshall(authnRequest);
+		String authnRequestXML = OpenSamlUtil.marshall(
+			getAuthnRequest(redirectURL));
 
 		String samlMessageXML = authnRequestXML.substring(38);
 
@@ -138,9 +137,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 	public void testXMLBombQuadraticBlowup() throws Exception {
 		String redirectURL = getAuthnRequestRedirectURL();
 
-		AuthnRequest authnRequest = getAuthnRequest(redirectURL);
-
-		String authnRequestXML = OpenSamlUtil.marshall(authnRequest);
+		String authnRequestXML = OpenSamlUtil.marshall(
+			getAuthnRequest(redirectURL));
 
 		String samlMessageXML = authnRequestXML.substring(38);
 
@@ -173,9 +171,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 	public void testXXEGeneralEntities1() throws Exception {
 		String redirectURL = getAuthnRequestRedirectURL();
 
-		AuthnRequest authnRequest = getAuthnRequest(redirectURL);
-
-		String authnRequestXML = OpenSamlUtil.marshall(authnRequest);
+		String authnRequestXML = OpenSamlUtil.marshall(
+			getAuthnRequest(redirectURL));
 
 		StringBundler sb = new StringBundler(4);
 
@@ -197,9 +194,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 	public void testXXEGeneralEntities2() throws Exception {
 		String redirectURL = getAuthnRequestRedirectURL();
 
-		AuthnRequest authnRequest = getAuthnRequest(redirectURL);
-
-		String authnRequestXML = OpenSamlUtil.marshall(authnRequest);
+		String authnRequestXML = OpenSamlUtil.marshall(
+			getAuthnRequest(redirectURL));
 
 		StringBundler sb = new StringBundler(5);
 
@@ -222,9 +218,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 	public void testXXEParameterEntities() throws Exception {
 		String redirectURL = getAuthnRequestRedirectURL();
 
-		AuthnRequest authnRequest = getAuthnRequest(redirectURL);
-
-		String authnRequestXML = OpenSamlUtil.marshall(authnRequest);
+		String authnRequestXML = OpenSamlUtil.marshall(
+			getAuthnRequest(redirectURL));
 
 		StringBundler sb = new StringBundler(4);
 

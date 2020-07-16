@@ -41,7 +41,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portlet.expando.util.test.ExpandoTestUtil;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -127,13 +126,13 @@ public class ExpandoInfoDisplayFieldProviderTest {
 			_expandoTable, "test-localized-string-array",
 			ExpandoColumnConstants.STRING_ARRAY_LOCALIZED);
 
-		Map<Locale, String[]> values = HashMapBuilder.put(
-			LocaleUtil.ENGLISH, new String[] {"en-value-1", "en-value-2"}
-		).put(
-			LocaleUtil.FRENCH, new String[] {"fr-value-1", "fr-value-2"}
-		).build();
-
-		ExpandoValue expandoValue = _addExpandoValue(expandoColumn, values);
+		ExpandoValue expandoValue = _addExpandoValue(
+			expandoColumn,
+			HashMapBuilder.put(
+				LocaleUtil.ENGLISH, new String[] {"en-value-1", "en-value-2"}
+			).put(
+				LocaleUtil.FRENCH, new String[] {"fr-value-1", "fr-value-2"}
+			).build());
 
 		List<InfoDisplayField> infoDisplayFields = _getInfoDisplayFields(
 			expandoColumn.getName());
@@ -174,13 +173,13 @@ public class ExpandoInfoDisplayFieldProviderTest {
 			_expandoTable, "test-localized-string",
 			ExpandoColumnConstants.STRING_LOCALIZED);
 
-		Map<Locale, String> values = HashMapBuilder.put(
-			LocaleUtil.ENGLISH, "en-value-1"
-		).put(
-			LocaleUtil.FRENCH, "fr-value-1"
-		).build();
-
-		ExpandoValue expandoValue = _addExpandoValue(expandoColumn, values);
+		ExpandoValue expandoValue = _addExpandoValue(
+			expandoColumn,
+			HashMapBuilder.put(
+				LocaleUtil.ENGLISH, "en-value-1"
+			).put(
+				LocaleUtil.FRENCH, "fr-value-1"
+			).build());
 
 		List<InfoDisplayField> infoDisplayFields = _getInfoDisplayFields(
 			expandoColumn.getName());

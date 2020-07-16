@@ -117,9 +117,7 @@ public class ServletContextUtilTest {
 	protected void testGetRootURI(String path, URI uri) throws Exception {
 		ServletContext servletContext = getServletContext(path);
 
-		URI rootURI = ServletContextUtil.getRootURI(servletContext);
-
-		Assert.assertEquals(uri, rootURI);
+		Assert.assertEquals(uri, ServletContextUtil.getRootURI(servletContext));
 
 		Assert.assertEquals(
 			uri, servletContext.getAttribute(ServletContextUtil.URI_ATTRIBUTE));

@@ -1302,12 +1302,11 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 	protected NettyFabricWorkerStub<Serializable>
 		installNettyFabricWorkerStub() {
 
-		NettyFabricAgentStub nettyFabricAgentStub =
-			NettyChannelAttributes.getNettyFabricAgentStub(_embeddedChannel);
-
 		Map<Long, NettyFabricWorkerStub<?>> nettyFabricWorkerStubs =
 			ReflectionTestUtil.getFieldValue(
-				nettyFabricAgentStub, "_nettyFabricWorkerStubs");
+				NettyChannelAttributes.getNettyFabricAgentStub(
+					_embeddedChannel),
+				"_nettyFabricWorkerStubs");
 
 		NettyFabricWorkerStub<Serializable> nettyFabricWorkerStub =
 			new NettyFabricWorkerStub<>(

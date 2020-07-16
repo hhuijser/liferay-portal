@@ -23,7 +23,6 @@ import com.liferay.adaptive.media.image.processor.AMImageProcessor;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.util.Collections;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,20 +35,16 @@ public class AMAttributeDistanceComparatorTest {
 
 	@Before
 	public void setUp() {
-		Map<AMAttribute<AMImageProcessor, ?>, AMImageQueryBuilder.SortOrder>
-			amAttributes =
-				HashMapBuilder.
-					<AMAttribute<AMImageProcessor, ?>,
-					 AMImageQueryBuilder.SortOrder>put(
-						AMAttribute.getContentLengthAMAttribute(),
-						AMImageQueryBuilder.SortOrder.ASC
-					).put(
-						AMAttribute.getFileNameAMAttribute(),
-						AMImageQueryBuilder.SortOrder.DESC
-					).build();
-
 		_multiAMAttributeDistanceComparator = new AMAttributeDistanceComparator(
-			amAttributes);
+			HashMapBuilder.
+				<AMAttribute<AMImageProcessor, ?>,
+				 AMImageQueryBuilder.SortOrder>put(
+					AMAttribute.getContentLengthAMAttribute(),
+					AMImageQueryBuilder.SortOrder.ASC
+				).put(
+					AMAttribute.getFileNameAMAttribute(),
+					AMImageQueryBuilder.SortOrder.DESC
+				).build());
 	}
 
 	@Test
@@ -140,14 +135,13 @@ public class AMAttributeDistanceComparatorTest {
 		AMAttribute<AMImageProcessor, S> amAttribute1, S value1,
 		AMAttribute<AMImageProcessor, T> amAttribute2, T value2) {
 
-		Map<String, String> properties = HashMapBuilder.put(
-			amAttribute1.getName(), String.valueOf(value1)
-		).put(
-			amAttribute2.getName(), String.valueOf(value2)
-		).build();
-
 		AMImageAttributeMapping amImageAttributeMapping =
-			AMImageAttributeMapping.fromProperties(properties);
+			AMImageAttributeMapping.fromProperties(
+				HashMapBuilder.put(
+					amAttribute1.getName(), String.valueOf(value1)
+				).put(
+					amAttribute2.getName(), String.valueOf(value2)
+				).build());
 
 		return new AMImage(() -> null, amImageAttributeMapping, null);
 	}

@@ -348,14 +348,12 @@ public class WorkflowTaskManagerImplTest {
 
 		Folder folder = _addFolder();
 
-		Map<String, String> dlFileEntryTypeMap = HashMapBuilder.put(
-			String.valueOf(DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_ALL),
-			"Single Approver@1"
-		).build();
-
 		folder = _updateFolder(
 			folder, DLFolderConstants.RESTRICTION_TYPE_WORKFLOW,
-			dlFileEntryTypeMap);
+			HashMapBuilder.put(
+				String.valueOf(DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_ALL),
+				"Single Approver@1"
+			).build());
 
 		FileVersion fileVersion1 = _addFileVersion(
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -847,14 +845,12 @@ public class WorkflowTaskManagerImplTest {
 
 		Folder folder = _addFolder();
 
-		Map<String, String> dlFileEntryTypeMap = HashMapBuilder.put(
-			String.valueOf(DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_ALL),
-			"Single Approver@1"
-		).build();
-
 		folder = _updateFolder(
 			folder, DLFolderConstants.RESTRICTION_TYPE_WORKFLOW,
-			dlFileEntryTypeMap);
+			HashMapBuilder.put(
+				String.valueOf(DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_ALL),
+				"Single Approver@1"
+			).build());
 
 		FileVersion fileVersion = _addFileVersion(folder.getFolderId());
 
@@ -1262,14 +1258,13 @@ public class WorkflowTaskManagerImplTest {
 		DDMStructure ddmStructure = ddmStructureTestHelper.addStructure(
 			ddmForm, StorageType.JSON.toString());
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		return _ddlRecordSetLocalService.addRecordSet(
 			_adminUser.getUserId(), _group.getGroupId(),
-			ddmStructure.getStructureId(), null, nameMap, null,
-			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT,
+			ddmStructure.getStructureId(), null,
+			HashMapBuilder.put(
+				LocaleUtil.US, RandomTestUtil.randomString()
+			).build(),
+			null, DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT,
 			DDLRecordSetConstants.SCOPE_DYNAMIC_DATA_LISTS, _serviceContext);
 	}
 

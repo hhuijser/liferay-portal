@@ -237,15 +237,13 @@ public class FragmentEntryProcessorFreemarkerTest {
 			_fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
 				fragmentEntryLink, defaultFragmentEntryProcessorContext));
 
-		Map<String, String> expectedValues = HashMapBuilder.put(
-			"title", journalArticle.getTitle()
-		).build();
-
 		String expectedProcessedHTML = _getProcessedHTML(
 			_getFileAsString(
 				"expected_processed_fragment_entry_with_configuration_" +
 					"collectionselector_dynamic_collection.html",
-				expectedValues));
+				HashMapBuilder.put(
+					"title", journalArticle.getTitle()
+				).build()));
 
 		Assert.assertEquals(expectedProcessedHTML, actualProcessedHTML);
 	}
@@ -265,20 +263,19 @@ public class FragmentEntryProcessorFreemarkerTest {
 				"dependencies/image.jpg"),
 			new ServiceContext());
 
-		Map<String, String> configurationDefaultValues = HashMapBuilder.put(
-			"className", FileEntry.class.getName()
-		).put(
-			"classNameId",
-			String.valueOf(
-				_classNameLocalService.getClassNameId(
-					fileEntry.getModelClassName()))
-		).put(
-			"classPK", String.valueOf(fileEntry.getPrimaryKey())
-		).build();
-
 		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry_with_configuration_itemselector_file_entry.html",
-			"configuration_itemselector.json", configurationDefaultValues);
+			"configuration_itemselector.json",
+			HashMapBuilder.put(
+				"className", FileEntry.class.getName()
+			).put(
+				"classNameId",
+				String.valueOf(
+					_classNameLocalService.getClassNameId(
+						fileEntry.getModelClassName()))
+			).put(
+				"classPK", String.valueOf(fileEntry.getPrimaryKey())
+			).build());
 
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkLocalService.createFragmentEntryLink(0);
@@ -300,24 +297,22 @@ public class FragmentEntryProcessorFreemarkerTest {
 			_fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
 				fragmentEntryLink, defaultFragmentEntryProcessorContext));
 
-		Map<String, String> expectedValues = HashMapBuilder.put(
-			"className", FileEntry.class.getName()
-		).put(
-			"classNameId",
-			String.valueOf(
-				_classNameLocalService.getClassNameId(
-					fileEntry.getModelClassName()))
-		).put(
-			"classPK", String.valueOf(fileEntry.getPrimaryKey())
-		).put(
-			"fileName", fileName
-		).build();
-
 		String expectedProcessedHTML = _getProcessedHTML(
 			_getFileAsString(
 				"expected_processed_fragment_entry_with_configuration_" +
 					"itemselector_file_entry.html",
-				expectedValues));
+				HashMapBuilder.put(
+					"className", FileEntry.class.getName()
+				).put(
+					"classNameId",
+					String.valueOf(
+						_classNameLocalService.getClassNameId(
+							fileEntry.getModelClassName()))
+				).put(
+					"classPK", String.valueOf(fileEntry.getPrimaryKey())
+				).put(
+					"fileName", fileName
+				).build()));
 
 		Assert.assertEquals(expectedProcessedHTML, actualProcessedHTML);
 	}
@@ -348,18 +343,17 @@ public class FragmentEntryProcessorFreemarkerTest {
 			contentMap, LocaleUtil.getSiteDefault(), false, true,
 			serviceContext);
 
-		Map<String, String> configurationDefaultValues = HashMapBuilder.put(
-			"className", journalArticle.getModelClassName()
-		).put(
-			"classNameId", String.valueOf(journalArticle.getClassNameId())
-		).put(
-			"classPK", String.valueOf(journalArticle.getResourcePrimKey())
-		).build();
-
 		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry_with_configuration_itemselector_journal_article." +
 				"html",
-			"configuration_itemselector.json", configurationDefaultValues);
+			"configuration_itemselector.json",
+			HashMapBuilder.put(
+				"className", journalArticle.getModelClassName()
+			).put(
+				"classNameId", String.valueOf(journalArticle.getClassNameId())
+			).put(
+				"classPK", String.valueOf(journalArticle.getResourcePrimKey())
+			).build());
 
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkLocalService.createFragmentEntryLink(0);
@@ -381,25 +375,25 @@ public class FragmentEntryProcessorFreemarkerTest {
 			_fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
 				fragmentEntryLink, defaultFragmentEntryProcessorContext));
 
-		Map<String, String> expectedValues = HashMapBuilder.put(
-			"classNameId", String.valueOf(journalArticle.getClassNameId())
-		).put(
-			"classPK", String.valueOf(journalArticle.getResourcePrimKey())
-		).put(
-			"contentES", "c1-es"
-		).put(
-			"contentUS", "c1"
-		).put(
-			"titleES", "t1-es"
-		).put(
-			"titleUS", "t1"
-		).build();
-
 		String expectedProcessedHTML = _getProcessedHTML(
 			_getFileAsString(
 				"expected_processed_fragment_entry_with_configuration_" +
 					"itemselector_journal_article.html",
-				expectedValues));
+				HashMapBuilder.put(
+					"classNameId",
+					String.valueOf(journalArticle.getClassNameId())
+				).put(
+					"classPK",
+					String.valueOf(journalArticle.getResourcePrimKey())
+				).put(
+					"contentES", "c1-es"
+				).put(
+					"contentUS", "c1"
+				).put(
+					"titleES", "t1-es"
+				).put(
+					"titleUS", "t1"
+				).build()));
 
 		Assert.assertEquals(expectedProcessedHTML, actualProcessedHTML);
 	}

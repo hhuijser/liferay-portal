@@ -185,10 +185,8 @@ public class CustomFacetDisplayContextTest {
 			String parameterValue)
 		throws ConfigurationException {
 
-		HttpServletRequest httpServletRequest = getHttpServletRequest();
-
 		CustomFacetDisplayBuilder customFacetDisplayBuilder =
-			new CustomFacetDisplayBuilder(httpServletRequest);
+			new CustomFacetDisplayBuilder(getHttpServletRequest());
 
 		customFacetDisplayBuilder.setFacet(_facet);
 		customFacetDisplayBuilder.setParameterName("custom");

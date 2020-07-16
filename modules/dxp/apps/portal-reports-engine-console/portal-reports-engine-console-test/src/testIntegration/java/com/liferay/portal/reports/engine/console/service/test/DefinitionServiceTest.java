@@ -101,16 +101,12 @@ public class DefinitionServiceTest {
 
 	@Test
 	public void testGetDefinitionsCountAsAdminUser() throws Exception {
-		int definitionsCount = getDefinitionsCount(_adminPermissionChecker);
-
-		Assert.assertEquals(10, definitionsCount);
+		Assert.assertEquals(10, getDefinitionsCount(_adminPermissionChecker));
 	}
 
 	@Test
 	public void testGetDefinitionsCountAsGuestUser() throws Exception {
-		int definitionsCount = getDefinitionsCount(_guestPermissionChecker);
-
-		Assert.assertEquals(5, definitionsCount);
+		Assert.assertEquals(5, getDefinitionsCount(_guestPermissionChecker));
 	}
 
 	@Test

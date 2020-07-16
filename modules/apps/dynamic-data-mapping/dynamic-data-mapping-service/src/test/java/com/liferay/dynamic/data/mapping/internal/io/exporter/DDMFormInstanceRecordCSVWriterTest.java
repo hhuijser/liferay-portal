@@ -47,29 +47,27 @@ public class DDMFormInstanceRecordCSVWriterTest {
 		List<Map<String, String>> ddmFormFieldValues =
 			new ArrayList<Map<String, String>>() {
 				{
-					Map<String, String> map1 = LinkedHashMapBuilder.put(
-						"field1", "2"
-					).put(
-						"field2", "esta é uma 'string'"
-					).put(
-						"field3", "false"
-					).put(
-						"field4", "11.7"
-					).build();
+					add(
+						LinkedHashMapBuilder.put(
+							"field1", "2"
+						).put(
+							"field2", "esta é uma 'string'"
+						).put(
+							"field3", "false"
+						).put(
+							"field4", "11.7"
+						).build());
 
-					add(map1);
-
-					Map<String, String> map2 = LinkedHashMapBuilder.put(
-						"field1", "1"
-					).put(
-						"field2", "esta é uma 'string'"
-					).put(
-						"field3", ""
-					).put(
-						"field4", "10"
-					).build();
-
-					add(map2);
+					add(
+						LinkedHashMapBuilder.put(
+							"field1", "1"
+						).put(
+							"field2", "esta é uma 'string'"
+						).put(
+							"field3", ""
+						).put(
+							"field4", "10"
+						).build());
 				}
 			};
 
@@ -110,25 +108,23 @@ public class DDMFormInstanceRecordCSVWriterTest {
 		List<Map<String, String>> ddmFormFieldValues =
 			new ArrayList<Map<String, String>>() {
 				{
-					Map<String, String> map1 = HashMapBuilder.put(
-						"field1", "1"
-					).put(
-						"field1AfterChangeName", ""
-					).put(
-						"field2", "esta é uma 'string'"
-					).build();
+					add(
+						HashMapBuilder.put(
+							"field1", "1"
+						).put(
+							"field1AfterChangeName", ""
+						).put(
+							"field2", "esta é uma 'string'"
+						).build());
 
-					add(map1);
-
-					Map<String, String> map2 = HashMapBuilder.put(
-						"field1", ""
-					).put(
-						"field1AfterChangeName", "2"
-					).put(
-						"field2", "esta é uma 'string'"
-					).build();
-
-					add(map2);
+					add(
+						HashMapBuilder.put(
+							"field1", ""
+						).put(
+							"field1AfterChangeName", "2"
+						).put(
+							"field2", "esta é uma 'string'"
+						).build());
 				}
 			};
 
@@ -164,25 +160,23 @@ public class DDMFormInstanceRecordCSVWriterTest {
 		List<Map<String, String>> ddmFormFieldValues =
 			new ArrayList<Map<String, String>>() {
 				{
-					Map<String, String> map1 = LinkedHashMapBuilder.put(
-						"field1", "value1"
-					).put(
-						"field2", "false"
-					).put(
-						"field3", "134.5"
-					).build();
+					add(
+						LinkedHashMapBuilder.put(
+							"field1", "value1"
+						).put(
+							"field2", "false"
+						).put(
+							"field3", "134.5"
+						).build());
 
-					add(map1);
-
-					Map<String, String> map2 = LinkedHashMapBuilder.put(
-						"field1", ""
-					).put(
-						"field2", "true"
-					).put(
-						"field3", "45"
-					).build();
-
-					add(map2);
+					add(
+						LinkedHashMapBuilder.put(
+							"field1", ""
+						).put(
+							"field2", "true"
+						).put(
+							"field3", "45"
+						).build());
 				}
 			};
 

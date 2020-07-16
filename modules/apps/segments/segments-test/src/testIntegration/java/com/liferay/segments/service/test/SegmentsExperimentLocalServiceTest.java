@@ -571,13 +571,11 @@ public class SegmentsExperimentLocalServiceTest {
 	public void testRunSegmentsExperimentWithControlVariant() throws Exception {
 		SegmentsExperiment segmentsExperiment = _addSegmentsExperiment();
 
-		Map<Long, Double> segmentsExperienceIdSplitMap = HashMapBuilder.put(
-			segmentsExperiment.getSegmentsExperienceId(), 1.00
-		).build();
-
 		_segmentsExperimentLocalService.runSegmentsExperiment(
 			segmentsExperiment.getSegmentsExperimentId(), 0.95,
-			segmentsExperienceIdSplitMap);
+			HashMapBuilder.put(
+				segmentsExperiment.getSegmentsExperienceId(), 1.00
+			).build());
 	}
 
 	@Test(expected = SegmentsExperimentConfidenceLevelException.class)
@@ -597,15 +595,13 @@ public class SegmentsExperimentLocalServiceTest {
 			variantSegmentsExperience.getSegmentsExperienceId(),
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
-		Map<Long, Double> segmentsExperienceIdSplitMap = HashMapBuilder.put(
-			segmentsExperiment.getSegmentsExperienceId(), 0.70
-		).put(
-			variantSegmentsExperience.getSegmentsExperienceId(), 0.30
-		).build();
-
 		_segmentsExperimentLocalService.runSegmentsExperiment(
 			segmentsExperiment.getSegmentsExperimentId(), 1.2,
-			segmentsExperienceIdSplitMap);
+			HashMapBuilder.put(
+				segmentsExperiment.getSegmentsExperienceId(), 0.70
+			).put(
+				variantSegmentsExperience.getSegmentsExperienceId(), 0.30
+			).build());
 	}
 
 	@Test(expected = SegmentsExperimentRelSplitException.class)
@@ -625,15 +621,13 @@ public class SegmentsExperimentLocalServiceTest {
 
 		double confidenceLevel = 0.95;
 
-		Map<Long, Double> segmentsExperienceIdSplitMap = HashMapBuilder.put(
-			segmentsExperiment.getSegmentsExperienceId(), 0.70
-		).put(
-			variantSegmentsExperience.getSegmentsExperienceId(), 0.40
-		).build();
-
 		_segmentsExperimentLocalService.runSegmentsExperiment(
 			segmentsExperiment.getSegmentsExperimentId(), confidenceLevel,
-			segmentsExperienceIdSplitMap);
+			HashMapBuilder.put(
+				segmentsExperiment.getSegmentsExperienceId(), 0.70
+			).put(
+				variantSegmentsExperience.getSegmentsExperienceId(), 0.40
+			).build());
 	}
 
 	@Test(expected = LockedSegmentsExperimentException.class)
@@ -657,15 +651,13 @@ public class SegmentsExperimentLocalServiceTest {
 
 		double confidenceLevel = 0.95;
 
-		Map<Long, Double> segmentsExperienceIdSplitMap = HashMapBuilder.put(
-			segmentsExperiment.getSegmentsExperienceId(), 0.70
-		).put(
-			variantSegmentsExperience.getSegmentsExperienceId(), 0.30
-		).build();
-
 		_segmentsExperimentLocalService.runSegmentsExperiment(
 			segmentsExperiment.getSegmentsExperimentId(), confidenceLevel,
-			segmentsExperienceIdSplitMap);
+			HashMapBuilder.put(
+				segmentsExperiment.getSegmentsExperienceId(), 0.70
+			).put(
+				variantSegmentsExperience.getSegmentsExperienceId(), 0.30
+			).build());
 	}
 
 	@Test(expected = LockedSegmentsExperimentException.class)

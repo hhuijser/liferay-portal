@@ -132,16 +132,12 @@ public class EntryServiceTest {
 
 	@Test
 	public void testGetEntriesCountAsAdminUser() throws Exception {
-		int entriesCount = getEntriesCount(_adminPermissionChecker);
-
-		Assert.assertEquals(10, entriesCount);
+		Assert.assertEquals(10, getEntriesCount(_adminPermissionChecker));
 	}
 
 	@Test
 	public void testGetEntriesCountAsGuestUser() throws Exception {
-		int entriesCount = getEntriesCount(_guestPermissionChecker);
-
-		Assert.assertEquals(5, entriesCount);
+		Assert.assertEquals(5, getEntriesCount(_guestPermissionChecker));
 	}
 
 	@Test

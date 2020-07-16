@@ -133,14 +133,14 @@ public class AMImageSerializerImplTest {
 
 	@Test
 	public void testSerialize() throws Exception {
-		Map<String, String> properties = HashMapBuilder.put(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(), "200"
-		).put(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(), "300"
-		).build();
-
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia = new AMImage(
-			() -> null, AMImageAttributeMapping.fromProperties(properties),
+			() -> null,
+			AMImageAttributeMapping.fromProperties(
+				HashMapBuilder.put(
+					AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(), "200"
+				).put(
+					AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(), "300"
+				).build()),
 			new URI("http://localhost"));
 
 		AMImageSerializer amImageSerializer = new AMImageSerializerImpl();

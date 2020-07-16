@@ -52,7 +52,6 @@ import java.io.File;
 
 import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.Map;
 import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -419,13 +418,12 @@ public class ExportLayoutPageTemplateEntriesMVCResourceCommandTest {
 		boolean equals = false;
 
 		for (String expectedPageTemplateName : expectedPageTemplateNames) {
-			Map<String, String> valuesMap = HashMapBuilder.put(
-				"PAGE_TEMPLATE_NAME", expectedPageTemplateName
-			).build();
-
 			JSONObject expectedJSONObject = JSONFactoryUtil.createJSONObject(
 				StringUtil.replace(
-					_read(expectedFileName), "${", "}", valuesMap));
+					_read(expectedFileName), "${", "}",
+					HashMapBuilder.put(
+						"PAGE_TEMPLATE_NAME", expectedPageTemplateName
+					).build()));
 
 			String expectedJSON1 = expectedJSONObject.toJSONString();
 

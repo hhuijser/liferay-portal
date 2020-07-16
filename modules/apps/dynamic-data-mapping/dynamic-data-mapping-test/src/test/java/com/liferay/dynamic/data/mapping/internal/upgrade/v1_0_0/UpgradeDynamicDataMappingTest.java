@@ -609,14 +609,13 @@ public class UpgradeDynamicDataMappingTest extends PowerMockito {
 	public void testToXMLWithoutLocalizedData() throws Exception {
 		String fieldsDisplay = "Text_INSTANCE_hcxo";
 
-		Map<String, String> expandoValuesMap = HashMapBuilder.put(
-			"_fieldsDisplay",
-			createLocalizationXML(new String[] {fieldsDisplay})
-		).put(
-			"Text", createLocalizationXML(new String[] {"Joe Bloggs"})
-		).build();
-
-		String xml = _upgradeDynamicDataMapping.toXML(expandoValuesMap);
+		String xml = _upgradeDynamicDataMapping.toXML(
+			HashMapBuilder.put(
+				"_fieldsDisplay",
+				createLocalizationXML(new String[] {fieldsDisplay})
+			).put(
+				"Text", createLocalizationXML(new String[] {"Joe Bloggs"})
+			).build());
 
 		Document document = SAXReaderUtil.read(xml);
 
@@ -640,16 +639,15 @@ public class UpgradeDynamicDataMappingTest extends PowerMockito {
 		String fieldsDisplay =
 			"Text_INSTANCE_hcxo,Text_INSTANCE_vfqd,Text_INSTANCE_ycey";
 
-		Map<String, String> expandoValuesMap = HashMapBuilder.put(
-			"_fieldsDisplay",
-			createLocalizationXML(new String[] {fieldsDisplay})
-		).put(
-			"Text",
-			createLocalizationXML(
-				new String[] {"A", "B", "C"}, new String[] {"D", "E", "F"})
-		).build();
-
-		String xml = _upgradeDynamicDataMapping.toXML(expandoValuesMap);
+		String xml = _upgradeDynamicDataMapping.toXML(
+			HashMapBuilder.put(
+				"_fieldsDisplay",
+				createLocalizationXML(new String[] {fieldsDisplay})
+			).put(
+				"Text",
+				createLocalizationXML(
+					new String[] {"A", "B", "C"}, new String[] {"D", "E", "F"})
+			).build());
 
 		Document document = SAXReaderUtil.read(xml);
 

@@ -628,11 +628,10 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 				fieldValues.length);
 
 			for (String fieldValue : fieldValues) {
-				Map<Locale, String> map = HashMapBuilder.put(
-					LocaleUtil.US, fieldValue
-				).build();
-
-				contents.add(map);
+				contents.add(
+					HashMapBuilder.put(
+						LocaleUtil.US, fieldValue
+					).build());
 			}
 
 			String content = DDMStructureTestUtil.getSampleStructuredContent(

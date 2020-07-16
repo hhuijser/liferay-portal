@@ -78,9 +78,8 @@ public class ModuleNameUtilTest {
 
 	@Test
 	public void testGetPackageNameNoModule() throws Exception {
-		String packageName = ModuleNameUtil.getPackageName("mypackage");
-
-		Assert.assertEquals("mypackage", packageName);
+		Assert.assertEquals(
+			"mypackage", ModuleNameUtil.getPackageName("mypackage"));
 	}
 
 	@Test
@@ -123,9 +122,7 @@ public class ModuleNameUtilTest {
 
 	@Test
 	public void testGetPackagePathNoModule() throws Exception {
-		String packagePath = ModuleNameUtil.getPackagePath("mypackage");
-
-		Assert.assertNull(packagePath);
+		Assert.assertNull(ModuleNameUtil.getPackagePath("mypackage"));
 	}
 
 	@Test

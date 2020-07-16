@@ -42,9 +42,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
-import java.util.Locale;
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.Before;
@@ -224,17 +221,15 @@ public class CalendarSearcherTest {
 			CalendarResourceUtil.getGroupCalendarResource(
 				_group.getGroupId(), serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), description
-		).build();
-
 		_calendarLocalService.addCalendar(
 			_user.getUserId(), _group.getGroupId(),
-			calendarResource.getCalendarResourceId(), nameMap, descriptionMap,
+			calendarResource.getCalendarResourceId(),
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), description
+			).build(),
 			StringPool.UTC, RandomTestUtil.randomInt(0, 255), false, false,
 			false, serviceContext);
 	}

@@ -127,12 +127,11 @@ public class DDMStorageAdapterTest {
 	private static void _setUpDDMTestStorageAdapter() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"ddm.storage.adapter.type", _STORAGE_TYPE_TEST
-		).build();
-
 		_serviceRegistration = registry.registerService(
-			DDMStorageAdapter.class, new DDMTestStorageAdapter(), properties);
+			DDMStorageAdapter.class, new DDMTestStorageAdapter(),
+			HashMapBuilder.<String, Object>put(
+				"ddm.storage.adapter.type", _STORAGE_TYPE_TEST
+			).build());
 	}
 
 	private boolean _containsValue(DDMFormValues ddmFormValues, String value) {

@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration;
 import com.liferay.portal.search.elasticsearch7.internal.configuration.ElasticsearchConfigurationWrapper;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -66,18 +64,17 @@ public class HttpPortRangeTest {
 	}
 
 	protected void assertSidecarHttpPort(String expected) {
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"embeddedHttpPort", _embeddedHttpPort
-		).put(
-			"sidecarHttpPort", _sidecarHttpPort
-		).build();
-
 		ElasticsearchConfigurationWrapper elasticsearchConfigurationWrapper =
 			new ElasticsearchConfigurationWrapper() {
 				{
 					elasticsearchConfiguration =
 						ConfigurableUtil.createConfigurable(
-							ElasticsearchConfiguration.class, properties);
+							ElasticsearchConfiguration.class,
+							HashMapBuilder.<String, Object>put(
+								"embeddedHttpPort", _embeddedHttpPort
+							).put(
+								"sidecarHttpPort", _sidecarHttpPort
+							).build());
 				}
 			};
 

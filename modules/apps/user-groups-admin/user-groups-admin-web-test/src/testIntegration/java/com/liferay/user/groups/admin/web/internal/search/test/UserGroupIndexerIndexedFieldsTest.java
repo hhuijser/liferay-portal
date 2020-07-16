@@ -109,14 +109,12 @@ public class UserGroupIndexerIndexedFieldsTest {
 			UserGroup.class, ExpandoColumnConstants.INDEX_TYPE_KEYWORD,
 			expandoColumnObs, expandoColumnName);
 
-		Map<String, Serializable> expandoValues =
+		UserGroup userGroup = userGroupFixture.createUserGroup(
 			HashMapBuilder.<String, Serializable>put(
 				expandoColumnName, "Software Developer"
 			).put(
 				expandoColumnObs, "Software Engineer"
-			).build();
-
-		UserGroup userGroup = userGroupFixture.createUserGroup(expandoValues);
+			).build());
 
 		String searchTerm = userGroup.getName();
 

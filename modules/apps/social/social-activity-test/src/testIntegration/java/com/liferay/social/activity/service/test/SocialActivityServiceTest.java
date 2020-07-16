@@ -168,9 +168,7 @@ public class SocialActivityServiceTest {
 			}
 		}
 		finally {
-			User user = UserLocalServiceUtil.getUser(userId);
-
-			UserTestUtil.setUser(user);
+			UserTestUtil.setUser(UserLocalServiceUtil.getUser(userId));
 		}
 	}
 

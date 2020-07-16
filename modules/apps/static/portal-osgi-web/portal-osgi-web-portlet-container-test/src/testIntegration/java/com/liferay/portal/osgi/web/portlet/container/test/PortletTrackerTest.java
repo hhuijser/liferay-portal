@@ -36,8 +36,6 @@ import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import javax.servlet.http.HttpServletRequest;
-
 import junit.framework.Assert;
 
 import org.junit.ClassRule;
@@ -112,12 +110,9 @@ public class PortletTrackerTest extends BasePortletContainerTestCase {
 			TestPropsValues.getUserId(), layout, expectedPortletId, "column-1",
 			new HashMap<String, String[]>());
 
-		HttpServletRequest httpServletRequest =
-			PortletContainerTestUtil.getHttpServletRequest(group, layout);
-
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, expectedPortletId, layout.getPlid(),
-			PortletRequest.RENDER_PHASE);
+			PortletContainerTestUtil.getHttpServletRequest(group, layout),
+			expectedPortletId, layout.getPlid(), PortletRequest.RENDER_PHASE);
 
 		PortletContainerTestUtil.Response response =
 			PortletContainerTestUtil.request(portletURL.toString());

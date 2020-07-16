@@ -58,10 +58,8 @@ public class MetadataGeneratorTest extends BaseSamlTestCase {
 			getMockHttpServletRequest(
 				"http://localhost:8080/c/portal/saml/metadata");
 
-		EntityDescriptor entityDescriptor =
-			metadataManagerImpl.getEntityDescriptor(mockHttpServletRequest);
-
-		Assert.assertNotNull(entityDescriptor);
+		Assert.assertNotNull(
+			metadataManagerImpl.getEntityDescriptor(mockHttpServletRequest));
 	}
 
 	@Test

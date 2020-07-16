@@ -87,14 +87,13 @@ public class FragmentEntryLinkServicePermissionTest {
 
 		UserTestUtil.setUser(_user);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		_fragmentEntryLinkService.addFragmentEntryLink(
 			_group.getGroupId(), 0, _fragmentEntry.getFragmentEntryId(), 0,
 			_layout.getPlid(), StringPool.BLANK, "<div>test</div>",
 			StringPool.BLANK, "{fieldSets: []}", StringPool.BLANK,
-			StringPool.BLANK, 0, null, serviceContext);
+			StringPool.BLANK, 0, null,
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)
@@ -171,12 +170,11 @@ public class FragmentEntryLinkServicePermissionTest {
 			fragmentEntry.getFragmentEntryId()
 		};
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		_fragmentEntryLinkService.updateFragmentEntryLinks(
 			_group.getGroupId(), _layout.getPlid(), fragmentEntryIds,
-			_createEditableValues(), serviceContext);
+			_createEditableValues(),
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)
@@ -195,12 +193,11 @@ public class FragmentEntryLinkServicePermissionTest {
 			fragmentEntry.getFragmentEntryId()
 		};
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		_fragmentEntryLinkService.updateFragmentEntryLinks(
 			_group.getGroupId(), _layout.getPlid(), fragmentEntryIds,
-			_createEditableValues(), serviceContext);
+			_createEditableValues(),
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)

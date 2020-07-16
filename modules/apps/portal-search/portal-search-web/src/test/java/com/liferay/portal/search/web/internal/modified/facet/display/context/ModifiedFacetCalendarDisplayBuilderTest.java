@@ -43,11 +43,7 @@ public class ModifiedFacetCalendarDisplayBuilderTest {
 		ModifiedFacetCalendarDisplayBuilder
 			modifiedFacetCalendarDisplayBuilder = createDisplayBuilder();
 
-		ModifiedFacetCalendarDisplayContext
-			modifiedFacetCalendarDisplayContext =
-				modifiedFacetCalendarDisplayBuilder.build();
-
-		Assert.assertNotNull(modifiedFacetCalendarDisplayContext);
+		Assert.assertNotNull(modifiedFacetCalendarDisplayBuilder.build());
 	}
 
 	@Test

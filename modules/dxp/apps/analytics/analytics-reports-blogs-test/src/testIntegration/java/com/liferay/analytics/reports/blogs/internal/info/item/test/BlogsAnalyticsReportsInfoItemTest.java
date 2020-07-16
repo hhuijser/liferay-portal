@@ -27,7 +27,6 @@ import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalServ
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -102,16 +101,14 @@ public class BlogsAnalyticsReportsInfoItemTest {
 	public void testGetPublishDateWithDisplayPage() throws Exception {
 		BlogsEntry blogsEntry = _addBlogEntry();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 				_group.getCreatorUserId(), _group.getGroupId(), 0,
 				_portal.getClassNameId(BlogsEntry.class.getName()), 0,
 				RandomTestUtil.randomString(),
 				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, true,
-				0, 0, 0, 0, serviceContext);
+				0, 0, 0, 0,
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		AssetDisplayPageEntry assetDisplayPageEntry =
 			_assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(
@@ -141,12 +138,10 @@ public class BlogsAnalyticsReportsInfoItemTest {
 	}
 
 	private BlogsEntry _addBlogEntry(User user) throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, user.getUserId());
-
 		return _blogsEntryLocalService.addEntry(
 			user.getUserId(), RandomTestUtil.randomString(),
-			RandomTestUtil.randomString(), new Date(), serviceContext);
+			RandomTestUtil.randomString(), new Date(),
+			ServiceContextTestUtil.getServiceContext(_group, user.getUserId()));
 	}
 
 	@Inject(filter = "component.name=*.BlogsAnalyticsReportsInfoItem")

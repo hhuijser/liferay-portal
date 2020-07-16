@@ -76,18 +76,17 @@ public class ModuleAbsolutePortalURLBuilderTest
 
 	@Test
 	public void test() {
-		String url = _moduleAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS[index], url);
+		Assert.assertEquals(
+			_RESULTS[index], _moduleAbsolutePortalURLBuilder.build());
 	}
 
 	@Test
 	public void testIgnoreCDN() {
 		_absolutePortalURLBuilder.ignoreCDNHost();
 
-		String url = _moduleAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS_IGNORE_CDN[index], url);
+		Assert.assertEquals(
+			_RESULTS_IGNORE_CDN[index],
+			_moduleAbsolutePortalURLBuilder.build());
 	}
 
 	@Test
@@ -95,18 +94,18 @@ public class ModuleAbsolutePortalURLBuilderTest
 		_absolutePortalURLBuilder.ignoreCDNHost();
 		_absolutePortalURLBuilder.ignorePathProxy();
 
-		String url = _moduleAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS_IGNORE_CDN_AND_PROXY[index], url);
+		Assert.assertEquals(
+			_RESULTS_IGNORE_CDN_AND_PROXY[index],
+			_moduleAbsolutePortalURLBuilder.build());
 	}
 
 	@Test
 	public void testIgnoreProxy() {
 		_absolutePortalURLBuilder.ignorePathProxy();
 
-		String url = _moduleAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS_IGNORE_PROXY[index], url);
+		Assert.assertEquals(
+			_RESULTS_IGNORE_PROXY[index],
+			_moduleAbsolutePortalURLBuilder.build());
 	}
 
 	@Parameterized.Parameter(3)

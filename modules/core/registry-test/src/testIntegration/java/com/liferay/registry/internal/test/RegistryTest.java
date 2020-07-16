@@ -719,9 +719,8 @@ public class RegistryTest {
 			public ServiceTracker<InterfaceOne, InterfaceOne>
 				getServiceTracker() {
 
-				Filter filter = _registry.getFilter("(a.property=G)");
-
-				return _registry.trackServices(filter);
+				return _registry.trackServices(
+					_registry.getFilter("(a.property=G)"));
 			}
 
 		};

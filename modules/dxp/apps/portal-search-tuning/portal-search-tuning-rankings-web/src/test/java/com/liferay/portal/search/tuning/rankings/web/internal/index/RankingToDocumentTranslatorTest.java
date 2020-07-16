@@ -46,9 +46,7 @@ public class RankingToDocumentTranslatorTest {
 
 		rankingBuilder.blocks(Arrays.asList("142857", "285714", "428571"));
 
-		Ranking ranking1 = rankingBuilder.build();
-
-		Document document = translate(ranking1);
+		Document document = translate(rankingBuilder.build());
 
 		Map<String, Field> fieldsMap = document.getFields();
 
@@ -66,9 +64,7 @@ public class RankingToDocumentTranslatorTest {
 	public void testDefaults() {
 		Ranking.RankingBuilder rankingBuilder = new Ranking.RankingBuilder();
 
-		Ranking ranking1 = rankingBuilder.build();
-
-		Document document = translate(ranking1);
+		Document document = translate(rankingBuilder.build());
 
 		Map<String, Field> fieldsMap = document.getFields();
 
@@ -90,9 +86,7 @@ public class RankingToDocumentTranslatorTest {
 		rankingBuilder.pins(
 			Collections.singletonList(new Ranking.Pin(142857, "uid")));
 
-		Ranking ranking1 = rankingBuilder.build();
-
-		Document document = translate(ranking1);
+		Document document = translate(rankingBuilder.build());
 
 		Map<String, Field> fieldsMap = document.getFields();
 
@@ -111,9 +105,7 @@ public class RankingToDocumentTranslatorTest {
 
 		rankingBuilder.aliases(Arrays.asList("142857", "285714", "428571"));
 
-		Ranking ranking1 = rankingBuilder.build();
-
-		Document document = translate(ranking1);
+		Document document = translate(rankingBuilder.build());
 
 		Map<String, Field> fieldsMap = document.getFields();
 

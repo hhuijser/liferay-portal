@@ -17,8 +17,6 @@ package com.liferay.portal.configuration.metatype.util;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,21 +28,18 @@ public class ParameterMapUtilWhenSettingAParameterMapTest {
 
 	@Before
 	public void setUp() throws ConfigurationException {
-		ParameterMapUtilTestUtil.TestBean testBean =
-			ParameterMapUtilTestUtil.getTestBean();
-
-		Map<String, String[]> parameterMap = HashMapBuilder.put(
-			"testBoolean1", new String[] {"false"}
-		).put(
-			"testString1",
-			new String[] {ParameterMapUtilTestUtil.PARAMETER_MAP_STRING}
-		).put(
-			"testStringArray1",
-			ParameterMapUtilTestUtil.PARAMETER_MAP_STRING_ARRAY
-		).build();
-
 		_testBean = ParameterMapUtil.setParameterMap(
-			ParameterMapUtilTestUtil.TestBean.class, testBean, parameterMap);
+			ParameterMapUtilTestUtil.TestBean.class,
+			ParameterMapUtilTestUtil.getTestBean(),
+			HashMapBuilder.put(
+				"testBoolean1", new String[] {"false"}
+			).put(
+				"testString1",
+				new String[] {ParameterMapUtilTestUtil.PARAMETER_MAP_STRING}
+			).put(
+				"testStringArray1",
+				ParameterMapUtilTestUtil.PARAMETER_MAP_STRING_ARRAY
+			).build());
 	}
 
 	@Test

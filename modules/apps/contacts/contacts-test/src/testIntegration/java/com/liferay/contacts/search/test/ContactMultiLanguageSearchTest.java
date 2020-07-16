@@ -105,11 +105,12 @@ public class ContactMultiLanguageSearchTest {
 
 		String keywords = contact.getFullName();
 
-		Map<String, String> map = HashMapBuilder.put(
-			_PREFIX, keywords
-		).build();
-
-		assertFieldValues(_PREFIX, locale, map, keywords);
+		assertFieldValues(
+			_PREFIX, locale,
+			HashMapBuilder.put(
+				_PREFIX, keywords
+			).build(),
+			keywords);
 	}
 
 	@Test

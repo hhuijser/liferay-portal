@@ -228,10 +228,9 @@ public class UserSegmentsCriteriaContributorTest {
 
 		Assert.assertEquals("id", field.getType());
 
-		Field.SelectEntity selectEntity = field.getSelectEntity();
-
 		Assert.assertNotNull(
-			"ID type fields must contain a select entity,", selectEntity);
+			"ID type fields must contain a select entity,",
+			field.getSelectEntity());
 	}
 
 	private ExpandoColumn _addExpandoColumn(

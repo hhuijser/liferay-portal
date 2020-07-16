@@ -114,13 +114,14 @@ public class BookmarksEntryMultiLanguageSearchTest {
 
 		_bookmarksFixture.createBookmarksEntry(keyWords);
 
-		Map<String, String> map = HashMapBuilder.put(
-			_PREFIX, keyWords
-		).put(
-			_PREFIX + "_sortable", keyWords
-		).build();
-
-		assertFieldValues(_PREFIX, locale, map, keyWords);
+		assertFieldValues(
+			_PREFIX, locale,
+			HashMapBuilder.put(
+				_PREFIX, keyWords
+			).put(
+				_PREFIX + "_sortable", keyWords
+			).build(),
+			keyWords);
 	}
 
 	@Test
@@ -133,13 +134,14 @@ public class BookmarksEntryMultiLanguageSearchTest {
 
 		_bookmarksFixture.createBookmarksEntry(keyWords);
 
-		Map<String, String> map = HashMapBuilder.put(
-			_PREFIX, keyWords
-		).put(
-			_PREFIX + "_sortable", keyWords
-		).build();
-
-		assertFieldValues(_PREFIX, locale, map, keyWords);
+		assertFieldValues(
+			_PREFIX, locale,
+			HashMapBuilder.put(
+				_PREFIX, keyWords
+			).put(
+				_PREFIX + "_sortable", keyWords
+			).build(),
+			keyWords);
 	}
 
 	@Test
@@ -152,13 +154,14 @@ public class BookmarksEntryMultiLanguageSearchTest {
 
 		_bookmarksFixture.createBookmarksEntry(keyWords);
 
-		Map<String, String> map = HashMapBuilder.put(
-			_PREFIX, keyWords
-		).put(
-			_PREFIX + "_sortable", keyWords
-		).build();
-
-		assertFieldValues(_PREFIX, locale, map, keyWords);
+		assertFieldValues(
+			_PREFIX, locale,
+			HashMapBuilder.put(
+				_PREFIX, keyWords
+			).put(
+				_PREFIX + "_sortable", keyWords
+			).build(),
+			keyWords);
 	}
 
 	@Rule

@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.search.contributor.constants.ContributorConstants;
 import com.liferay.portal.search.contributor.sort.SortFieldNameTranslator;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -121,12 +119,12 @@ public class SortFieldBuilderImplTest {
 			}
 		);
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			ContributorConstants.ENTRY_CLASS_NAME_PROPERTY_KEY, "modelClassName"
-		).build();
-
 		_sortFieldBuilderImpl.addSortFieldNameTranslator(
-			sortFieldNameTranslator, properties);
+			sortFieldNameTranslator,
+			HashMapBuilder.<String, Object>put(
+				ContributorConstants.ENTRY_CLASS_NAME_PROPERTY_KEY,
+				"modelClassName"
+			).build());
 
 		Mockito.when(
 			_indexer.getSortField(Mockito.anyString())

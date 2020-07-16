@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.math.BigDecimal;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,16 +47,13 @@ public class DDMExpressionFactoryImplTest extends PowerMockito {
 		ddmExpressionFactoryImpl.ddmExpressionFunctionTracker =
 			_ddmExpressionFunctionTracker;
 
-		Map<String, DDMExpressionFunctionFactory> factories =
-			HashMapBuilder.<String, DDMExpressionFunctionFactory>put(
-				"pow", () -> new PowFunction()
-			).build();
-
 		when(
 			_ddmExpressionFunctionTracker.getDDMExpressionFunctionFactories(
 				Matchers.any())
 		).thenReturn(
-			factories
+			HashMapBuilder.<String, DDMExpressionFunctionFactory>put(
+				"pow", () -> new PowFunction()
+			).build()
 		);
 
 		CreateExpressionRequest.Builder builder =

@@ -127,17 +127,17 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertOneColumnMultiplePortlets() throws Exception {
-		Map<String, String[]> portletIdsMap = HashMapBuilder.put(
-			"column-1",
-			new String[] {
-				_testPortletName1, _testPortletName2, _testPortletName3
-			}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap);
+					add(
+						HashMapBuilder.put(
+							"column-1",
+							new String[] {
+								_testPortletName1, _testPortletName2,
+								_testPortletName3
+							}
+						).build());
 				}
 			};
 
@@ -151,14 +151,13 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertOneColumnSinglePortlet() throws Exception {
-		Map<String, String[]> portletIdsMap = HashMapBuilder.put(
-			"column-1", new String[] {_testPortletName2}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap);
+					add(
+						HashMapBuilder.put(
+							"column-1", new String[] {_testPortletName2}
+						).build());
 				}
 			};
 
@@ -169,26 +168,30 @@ public class LayoutConverterTest {
 	public void testConvertOneThreeOneColumnsMultiplePortlets()
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-2", new String[] {_testPortletName1, _testPortletName4}
-		).put(
-			"column-3", new String[] {_testPortletName2, _testPortletName4}
-		).put(
-			"column-4", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-5", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-2",
+							new String[] {_testPortletName1, _testPortletName4}
+						).put(
+							"column-3",
+							new String[] {_testPortletName2, _testPortletName4}
+						).put(
+							"column-4",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-5",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
 				}
 			};
 
@@ -202,26 +205,25 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertOneThreeOneColumnsSinglePortlet() throws Exception {
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-2", new String[] {_testPortletName1}
-		).put(
-			"column-3", new String[] {_testPortletName2}
-		).put(
-			"column-4", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-5", new String[] {_testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-2", new String[] {_testPortletName1}
+						).put(
+							"column-3", new String[] {_testPortletName2}
+						).put(
+							"column-4", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-5", new String[] {_testPortletName4}
+						).build());
 				}
 			};
 
@@ -232,28 +234,33 @@ public class LayoutConverterTest {
 	public void testConvertOneThreeTwoColumnsMultiplePortlets()
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-2", new String[] {_testPortletName1, _testPortletName4}
-		).put(
-			"column-3", new String[] {_testPortletName2, _testPortletName4}
-		).put(
-			"column-4", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-5", new String[] {_testPortletName4, _testPortletName4}
-		).put(
-			"column-6", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-2",
+							new String[] {_testPortletName1, _testPortletName4}
+						).put(
+							"column-3",
+							new String[] {_testPortletName2, _testPortletName4}
+						).put(
+							"column-4",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-5",
+							new String[] {_testPortletName4, _testPortletName4}
+						).put(
+							"column-6",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
 				}
 			};
 
@@ -267,28 +274,27 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertOneThreeTwoColumnsSinglePortlet() throws Exception {
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-2", new String[] {_testPortletName1}
-		).put(
-			"column-3", new String[] {_testPortletName2}
-		).put(
-			"column-4", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-5", new String[] {_testPortletName4}
-		).put(
-			"column-6", new String[] {_testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-2", new String[] {_testPortletName1}
+						).put(
+							"column-3", new String[] {_testPortletName2}
+						).put(
+							"column-4", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-5", new String[] {_testPortletName4}
+						).put(
+							"column-6", new String[] {_testPortletName4}
+						).build());
 				}
 			};
 
@@ -361,16 +367,20 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertThreeColumnsMultiplePortlets() throws Exception {
-		Map<String, String[]> portletIdsMap = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName1, _testPortletName4}
-		).put(
-			"column-2", new String[] {_testPortletName2, _testPortletName3}
-		).put(
-			"column-3", new String[] {_testPortletName5, _testPortletName5}
-		).build();
-
 		_testConvert(
-			"3_columns", Collections.singletonList(portletIdsMap), false);
+			"3_columns",
+			Collections.singletonList(
+				TreeMapBuilder.put(
+					"column-1",
+					new String[] {_testPortletName1, _testPortletName4}
+				).put(
+					"column-2",
+					new String[] {_testPortletName2, _testPortletName3}
+				).put(
+					"column-3",
+					new String[] {_testPortletName5, _testPortletName5}
+				).build()),
+			false);
 	}
 
 	@Test
@@ -380,48 +390,56 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertThreeColumnsSinglePortlet() throws Exception {
-		Map<String, String[]> portletIdsMap = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName1}
-		).put(
-			"column-2", new String[] {_testPortletName2}
-		).put(
-			"column-3", new String[] {_testPortletName3}
-		).build();
-
 		_testConvert(
-			"3_columns", Collections.singletonList(portletIdsMap), true);
+			"3_columns",
+			Collections.singletonList(
+				TreeMapBuilder.put(
+					"column-1", new String[] {_testPortletName1}
+				).put(
+					"column-2", new String[] {_testPortletName2}
+				).put(
+					"column-3", new String[] {_testPortletName3}
+				).build()),
+			true);
 	}
 
 	@Test
 	public void testConvertThreeTwoThreeColumnsMultiplePortlets()
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4, _testPortletName4}
-		).put(
-			"column-2", new String[] {_testPortletName4, _testPortletName4}
-		).put(
-			"column-3", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-4", new String[] {_testPortletName1, _testPortletName4}
-		).put(
-			"column-5", new String[] {_testPortletName2, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-6", new String[] {_testPortletName4, _testPortletName4}
-		).put(
-			"column-7", new String[] {_testPortletName4, _testPortletName4}
-		).put(
-			"column-8", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1",
+							new String[] {_testPortletName4, _testPortletName4}
+						).put(
+							"column-2",
+							new String[] {_testPortletName4, _testPortletName4}
+						).put(
+							"column-3",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-4",
+							new String[] {_testPortletName1, _testPortletName4}
+						).put(
+							"column-5",
+							new String[] {_testPortletName2, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-6",
+							new String[] {_testPortletName4, _testPortletName4}
+						).put(
+							"column-7",
+							new String[] {_testPortletName4, _testPortletName4}
+						).put(
+							"column-8",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
 				}
 			};
 
@@ -437,32 +455,31 @@ public class LayoutConverterTest {
 	public void testConvertThreeTwoThreeColumnsSinglePortlet()
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4}
-		).put(
-			"column-2", new String[] {_testPortletName4}
-		).put(
-			"column-3", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-4", new String[] {_testPortletName1}
-		).put(
-			"column-5", new String[] {_testPortletName2}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-6", new String[] {_testPortletName4}
-		).put(
-			"column-7", new String[] {_testPortletName4}
-		).put(
-			"column-8", new String[] {_testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1", new String[] {_testPortletName4}
+						).put(
+							"column-2", new String[] {_testPortletName4}
+						).put(
+							"column-3", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-4", new String[] {_testPortletName1}
+						).put(
+							"column-5", new String[] {_testPortletName2}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-6", new String[] {_testPortletName4}
+						).put(
+							"column-7", new String[] {_testPortletName4}
+						).put(
+							"column-8", new String[] {_testPortletName4}
+						).build());
 				}
 			};
 
@@ -516,26 +533,30 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertTwoOneTwoColumnsMultiplePortlets() throws Exception {
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4, _testPortletName4}
-		).put(
-			"column-2", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-3", new String[] {_testPortletName1, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-4", new String[] {_testPortletName2, _testPortletName4}
-		).put(
-			"column-5", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1",
+							new String[] {_testPortletName4, _testPortletName4}
+						).put(
+							"column-2",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-3",
+							new String[] {_testPortletName1, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-4",
+							new String[] {_testPortletName2, _testPortletName4}
+						).put(
+							"column-5",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
 				}
 			};
 
@@ -549,26 +570,25 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertTwoOneTwoColumnsSinglePortlet() throws Exception {
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4}
-		).put(
-			"column-2", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-3", new String[] {_testPortletName1}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-4", new String[] {_testPortletName2}
-		).put(
-			"column-5", new String[] {_testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1", new String[] {_testPortletName4}
+						).put(
+							"column-2", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-3", new String[] {_testPortletName1}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-4", new String[] {_testPortletName2}
+						).put(
+							"column-5", new String[] {_testPortletName4}
+						).build());
 				}
 			};
 
@@ -577,22 +597,25 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertTwoTwoColumnsMultiplePortlets() throws Exception {
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4, _testPortletName4}
-		).put(
-			"column-2", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-3", new String[] {_testPortletName1, _testPortletName4}
-		).put(
-			"column-4", new String[] {_testPortletName2, _testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
+					add(
+						TreeMapBuilder.put(
+							"column-1",
+							new String[] {_testPortletName4, _testPortletName4}
+						).put(
+							"column-2",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-3",
+							new String[] {_testPortletName1, _testPortletName4}
+						).put(
+							"column-4",
+							new String[] {_testPortletName2, _testPortletName4}
+						).build());
 				}
 			};
 
@@ -606,22 +629,21 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertTwoTwoColumnsSinglePortlet() throws Exception {
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4}
-		).put(
-			"column-2", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-3", new String[] {_testPortletName1}
-		).put(
-			"column-4", new String[] {_testPortletName2}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
+					add(
+						TreeMapBuilder.put(
+							"column-1", new String[] {_testPortletName4}
+						).put(
+							"column-2", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-3", new String[] {_testPortletName1}
+						).put(
+							"column-4", new String[] {_testPortletName2}
+						).build());
 				}
 			};
 
@@ -812,19 +834,19 @@ public class LayoutConverterTest {
 		String content = new String(
 			FileUtil.getBytes(getClass(), "dependencies/" + fileName));
 
-		Map<String, String> valuesMap = HashMapBuilder.put(
-			"TEST_PORTLET_NAME_1", _testPortletName1
-		).put(
-			"TEST_PORTLET_NAME_2", _testPortletName2
-		).put(
-			"TEST_PORTLET_NAME_3", _testPortletName3
-		).put(
-			"TEST_PORTLET_NAME_4", _testPortletName4
-		).put(
-			"TEST_PORTLET_NAME_5", _testPortletName5
-		).build();
-
-		return StringUtil.replace(content, "${", "}", valuesMap);
+		return StringUtil.replace(
+			content, "${", "}",
+			HashMapBuilder.put(
+				"TEST_PORTLET_NAME_1", _testPortletName1
+			).put(
+				"TEST_PORTLET_NAME_2", _testPortletName2
+			).put(
+				"TEST_PORTLET_NAME_3", _testPortletName3
+			).put(
+				"TEST_PORTLET_NAME_4", _testPortletName4
+			).put(
+				"TEST_PORTLET_NAME_5", _testPortletName5
+			).build());
 	}
 
 	private void _registerTestPortlet(String portletName) {
@@ -1018,20 +1040,22 @@ public class LayoutConverterTest {
 			String layoutTemplateId)
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-2", new String[] {_testPortletName1, _testPortletName4}
-		).put(
-			"column-3", new String[] {_testPortletName2, _testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
+					add(
+						TreeMapBuilder.put(
+							"column-1",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-2",
+							new String[] {_testPortletName1, _testPortletName4}
+						).put(
+							"column-3",
+							new String[] {_testPortletName2, _testPortletName4}
+						).build());
 				}
 			};
 
@@ -1041,20 +1065,19 @@ public class LayoutConverterTest {
 	private void _testConvertOneTwoColumnsSinglePortlet(String layoutTemplateId)
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-2", new String[] {_testPortletName1}
-		).put(
-			"column-3", new String[] {_testPortletName2}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
+					add(
+						TreeMapBuilder.put(
+							"column-1", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-2", new String[] {_testPortletName1}
+						).put(
+							"column-3", new String[] {_testPortletName2}
+						).build());
 				}
 			};
 
@@ -1065,24 +1088,27 @@ public class LayoutConverterTest {
 			String layoutTemplateId)
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-2", new String[] {_testPortletName1, _testPortletName4}
-		).put(
-			"column-3", new String[] {_testPortletName2, _testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-4", new String[] {_testPortletName4, _testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-2",
+							new String[] {_testPortletName1, _testPortletName4}
+						).put(
+							"column-3",
+							new String[] {_testPortletName2, _testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-4",
+							new String[] {_testPortletName4, _testPortletName4}
+						).build());
 				}
 			};
 
@@ -1093,24 +1119,23 @@ public class LayoutConverterTest {
 			String layoutTemplateId)
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap1 = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName4}
-		).build();
-		Map<String, String[]> portletIdsMap2 = TreeMapBuilder.put(
-			"column-2", new String[] {_testPortletName1}
-		).put(
-			"column-3", new String[] {_testPortletName2}
-		).build();
-		Map<String, String[]> portletIdsMap3 = TreeMapBuilder.put(
-			"column-4", new String[] {_testPortletName4}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap1);
-					add(portletIdsMap2);
-					add(portletIdsMap3);
+					add(
+						TreeMapBuilder.put(
+							"column-1", new String[] {_testPortletName4}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-2", new String[] {_testPortletName1}
+						).put(
+							"column-3", new String[] {_testPortletName2}
+						).build());
+					add(
+						TreeMapBuilder.put(
+							"column-4", new String[] {_testPortletName4}
+						).build());
 				}
 			};
 
@@ -1120,16 +1145,17 @@ public class LayoutConverterTest {
 	private void _testConvertTwoColumnsMultiplePortlets(String layoutTemplateId)
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName1, _testPortletName4}
-		).put(
-			"column-2", new String[] {_testPortletName2, _testPortletName3}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap);
+					add(
+						TreeMapBuilder.put(
+							"column-1",
+							new String[] {_testPortletName1, _testPortletName4}
+						).put(
+							"column-2",
+							new String[] {_testPortletName2, _testPortletName3}
+						).build());
 				}
 			};
 
@@ -1139,16 +1165,15 @@ public class LayoutConverterTest {
 	private void _testConvertTwoColumnsSinglePortlet(String layoutTemplateId)
 		throws Exception {
 
-		Map<String, String[]> portletIdsMap = TreeMapBuilder.put(
-			"column-1", new String[] {_testPortletName1}
-		).put(
-			"column-2", new String[] {_testPortletName2}
-		).build();
-
 		List<Map<String, String[]>> portletIdsMaps =
 			new ArrayList<Map<String, String[]>>() {
 				{
-					add(portletIdsMap);
+					add(
+						TreeMapBuilder.put(
+							"column-1", new String[] {_testPortletName1}
+						).put(
+							"column-2", new String[] {_testPortletName2}
+						).build());
 				}
 			};
 

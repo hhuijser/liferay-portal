@@ -238,9 +238,8 @@ public class SQLDSLTest {
 			Assert.fail();
 		}
 		catch (RuntimeException runtimeException) {
-			Throwable cause = runtimeException.getCause();
-
-			Assert.assertSame(cloneNotSupportedException, cause);
+			Assert.assertSame(
+				cloneNotSupportedException, runtimeException.getCause());
 		}
 	}
 
@@ -1150,11 +1149,9 @@ public class SQLDSLTest {
 				"MainExample.mainExampleId desc"),
 			orderBy.toSQL(defaultASTNodeListener));
 
-		String[] tableNames = defaultASTNodeListener.getTableNames();
-
 		Assert.assertArrayEquals(
 			new String[] {MainExampleTable.INSTANCE.getTableName()},
-			tableNames);
+			defaultASTNodeListener.getTableNames());
 
 		Assert.assertEquals(
 			Arrays.asList("test", 0L),

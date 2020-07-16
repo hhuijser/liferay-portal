@@ -418,9 +418,7 @@ public class NestedFieldsWriterInterceptorTest {
 
 		_nestedFieldsWriterInterceptor.aroundWriteTo(_writerInterceptorContext);
 
-		String externalCode = product.getExternalCode();
-
-		Assert.assertEquals("codigoExterno", externalCode);
+		Assert.assertEquals("codigoExterno", product.getExternalCode());
 	}
 
 	@Test

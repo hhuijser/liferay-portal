@@ -19,7 +19,6 @@ import com.liferay.asset.auto.tagger.text.extractor.TextExtractor;
 import com.liferay.asset.auto.tagger.text.extractor.TextExtractorTracker;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryLocalServiceUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -49,12 +48,10 @@ public class BlogsEntryTextExtractorTest {
 
 	@Test
 	public void testExtract() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		BlogsEntry blogsEntry = BlogsEntryLocalServiceUtil.addEntry(
 			TestPropsValues.getUserId(), StringUtil.randomString(),
-			StringUtil.randomString(), new Date(), serviceContext);
+			StringUtil.randomString(), new Date(),
+			ServiceContextTestUtil.getServiceContext());
 
 		TextExtractor<BlogsEntry> textExtractor =
 			(TextExtractor<BlogsEntry>)_textExtractorTracker.getTextExtractor(

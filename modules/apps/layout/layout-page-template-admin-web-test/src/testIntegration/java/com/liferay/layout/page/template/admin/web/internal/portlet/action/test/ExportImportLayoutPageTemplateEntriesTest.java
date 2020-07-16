@@ -66,7 +66,6 @@ import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.io.File;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Assert;
@@ -137,16 +136,15 @@ public class ExportImportLayoutPageTemplateEntriesTest {
 				_read("export_import_fragment_field_text_editable_values.json"),
 				StringPool.BLANK, 0, null, _serviceContext1);
 
-		HashMap<String, String> valuesMap = HashMapBuilder.put(
-			"FRAGMENT_ENTRY_LINK1_ID",
-			String.valueOf(fragmentEntryLink.getFragmentEntryLinkId())
-		).build();
-
 		_layoutPageTemplateStructureLocalService.addLayoutPageTemplateStructure(
 			TestPropsValues.getUserId(), _group1.getGroupId(),
 			layoutPageTemplateEntry1.getPlid(),
 			StringUtil.replace(
-				_read("export_import_layout_data.json"), "${", "}", valuesMap),
+				_read("export_import_layout_data.json"), "${", "}",
+				HashMapBuilder.put(
+					"FRAGMENT_ENTRY_LINK1_ID",
+					String.valueOf(fragmentEntryLink.getFragmentEntryLinkId())
+				).build()),
 			_serviceContext1);
 
 		Repository repository = PortletFileRepositoryUtil.addPortletRepository(

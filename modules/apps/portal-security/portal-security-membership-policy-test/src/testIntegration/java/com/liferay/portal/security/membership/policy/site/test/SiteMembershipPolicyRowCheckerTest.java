@@ -77,10 +77,10 @@ public class SiteMembershipPolicyRowCheckerTest
 
 		long forbiddenRoleId = addForbiddenRoles()[0];
 
-		Role role = RoleLocalServiceUtil.getRole(forbiddenRoleId);
-
 		UserGroupRoleUserChecker userGroupRoleUserChecker =
-			new UserGroupRoleUserChecker(_renderResponse, group, role);
+			new UserGroupRoleUserChecker(
+				_renderResponse, group,
+				RoleLocalServiceUtil.getRole(forbiddenRoleId));
 
 		User user = UserTestUtil.addUser();
 
@@ -109,10 +109,10 @@ public class SiteMembershipPolicyRowCheckerTest
 
 		long requiredRoleId = addRequiredRoles()[0];
 
-		Role role = RoleLocalServiceUtil.getRole(requiredRoleId);
-
 		UserGroupRoleUserChecker userGroupRoleUserChecker =
-			new UserGroupRoleUserChecker(_renderResponse, group, role);
+			new UserGroupRoleUserChecker(
+				_renderResponse, group,
+				RoleLocalServiceUtil.getRole(requiredRoleId));
 
 		User user = UserTestUtil.addUser();
 
@@ -128,9 +128,9 @@ public class SiteMembershipPolicyRowCheckerTest
 		UserGroupRoleRoleChecker userGroupRoleRoleChecker =
 			new UserGroupRoleRoleChecker(_renderResponse, user, group);
 
-		Role role = RoleLocalServiceUtil.getRole(addForbiddenRoles()[0]);
-
-		Assert.assertTrue(userGroupRoleRoleChecker.isDisabled(role));
+		Assert.assertTrue(
+			userGroupRoleRoleChecker.isDisabled(
+				RoleLocalServiceUtil.getRole(addForbiddenRoles()[0])));
 	}
 
 	@Test
@@ -142,9 +142,9 @@ public class SiteMembershipPolicyRowCheckerTest
 		UserGroupRoleRoleChecker userGroupRoleRoleChecker =
 			new UserGroupRoleRoleChecker(_renderResponse, user, group);
 
-		Role role = RoleLocalServiceUtil.getRole(addRequiredRoles()[0]);
-
-		Assert.assertFalse(userGroupRoleRoleChecker.isDisabled(role));
+		Assert.assertFalse(
+			userGroupRoleRoleChecker.isDisabled(
+				RoleLocalServiceUtil.getRole(addRequiredRoles()[0])));
 	}
 
 	@Test
@@ -169,10 +169,10 @@ public class SiteMembershipPolicyRowCheckerTest
 
 		long forbiddenRoleId = addForbiddenRoles()[0];
 
-		Role role = RoleLocalServiceUtil.getRole(forbiddenRoleId);
-
 		UserGroupRoleUserChecker userGroupRoleUserChecker =
-			new UserGroupRoleUserChecker(_renderResponse, group, role);
+			new UserGroupRoleUserChecker(
+				_renderResponse, group,
+				RoleLocalServiceUtil.getRole(forbiddenRoleId));
 
 		User user = UserTestUtil.addUser();
 
@@ -204,10 +204,10 @@ public class SiteMembershipPolicyRowCheckerTest
 
 		long requiredRoleId = addRequiredRoles()[0];
 
-		Role role = RoleLocalServiceUtil.getRole(requiredRoleId);
-
 		UserGroupRoleUserChecker userGroupRoleUserChecker =
-			new UserGroupRoleUserChecker(_renderResponse, group, role);
+			new UserGroupRoleUserChecker(
+				_renderResponse, group,
+				RoleLocalServiceUtil.getRole(requiredRoleId));
 
 		User user = UserTestUtil.addUser();
 

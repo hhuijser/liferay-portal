@@ -187,9 +187,7 @@ public class WikiPageTrashHandlerTest
 	protected String getUniqueTitle(BaseModel<?> baseModel) {
 		WikiPage page = (WikiPage)baseModel;
 
-		String title = page.getTitle();
-
-		return _trashHelper.getOriginalTitle(title);
+		return _trashHelper.getOriginalTitle(page.getTitle());
 	}
 
 	@Override

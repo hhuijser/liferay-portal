@@ -232,45 +232,39 @@ public class UserFinderTest {
 
 	@Test
 	public void testFindByKeywordsGroupUsers() throws Exception {
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"usersGroups", _group.getGroupId()
-			).build();
-
 		List<User> users = _userFinder.findByKeywords(
 			TestPropsValues.getCompanyId(), null,
-			WorkflowConstants.STATUS_APPROVED, params, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+			WorkflowConstants.STATUS_APPROVED,
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersGroups", _group.getGroupId()
+			).build(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Assert.assertTrue(users.toString(), users.contains(_groupUser));
 	}
 
 	@Test
 	public void testFindByKeywordsOrganizationUsers() throws Exception {
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"usersOrgs", _organization.getOrganizationId()
-			).build();
-
 		List<User> users = _userFinder.findByKeywords(
 			TestPropsValues.getCompanyId(), null,
-			WorkflowConstants.STATUS_APPROVED, params, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+			WorkflowConstants.STATUS_APPROVED,
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersOrgs", _organization.getOrganizationId()
+			).build(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Assert.assertTrue(users.toString(), users.contains(_organizationUser));
 	}
 
 	@Test
 	public void testFindByKeywordsUserGroupUsers() throws Exception {
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"usersUserGroups", _userGroup.getUserGroupId()
-			).build();
-
 		List<User> users = _userFinder.findByKeywords(
 			TestPropsValues.getCompanyId(), null,
-			WorkflowConstants.STATUS_APPROVED, params, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+			WorkflowConstants.STATUS_APPROVED,
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersUserGroups", _userGroup.getUserGroupId()
+			).build(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Assert.assertTrue(users.toString(), users.contains(_userGroupUser));
 	}

@@ -120,9 +120,7 @@ public class AssetSearcherStagingTest {
 
 		queryConfig.addSelectedFieldNames(Field.GROUP_ID, Field.STAGING_GROUP);
 
-		AssetEntryQuery assetEntryQuery = getAssetEntryQuery(className);
-
-		Hits hits = search(assetEntryQuery, searchContext);
+		Hits hits = search(getAssetEntryQuery(className), searchContext);
 
 		Document[] documents = hits.getDocs();
 

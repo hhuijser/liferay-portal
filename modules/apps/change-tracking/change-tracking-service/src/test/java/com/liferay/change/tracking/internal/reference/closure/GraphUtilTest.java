@@ -52,7 +52,8 @@ public class GraphUtilTest {
 		Set<Node> nodes = new HashSet<>(
 			Arrays.asList(node1, node2, node3, node4));
 
-		Map<Node, Collection<Edge>> edgeMap =
+		Map<Node, Collection<Node>> nodeMap = GraphUtil.getNodeMap(
+			nodes,
 			HashMapBuilder.<Node, Collection<Edge>>put(
 				node1, Collections.singletonList(new Edge(node1, node2))
 			).put(
@@ -64,10 +65,7 @@ public class GraphUtilTest {
 					new Edge(node3, node4))
 			).put(
 				node4, Collections.singletonList(new Edge(node4, node2))
-			).build();
-
-		Map<Node, Collection<Node>> nodeMap = GraphUtil.getNodeMap(
-			nodes, edgeMap);
+			).build());
 
 		Assert.assertEquals(
 			Collections.singleton(node3), nodeMap.remove(new Node(0, 0)));
@@ -119,15 +117,13 @@ public class GraphUtilTest {
 
 		Set<Node> nodes = new HashSet<>(Arrays.asList(node1, node2));
 
-		Map<Node, Collection<Edge>> edgeMap =
+		Map<Node, Collection<Node>> nodeMap = GraphUtil.getNodeMap(
+			nodes,
 			HashMapBuilder.<Node, Collection<Edge>>put(
 				node1, Collections.singletonList(new Edge(node1, node2))
 			).put(
 				node2, Collections.singletonList(new Edge(node2, node1))
-			).build();
-
-		Map<Node, Collection<Node>> nodeMap = GraphUtil.getNodeMap(
-			nodes, edgeMap);
+			).build());
 
 		Assert.assertEquals(
 			Collections.singleton(node2), nodeMap.remove(new Node(0, 0)));
@@ -149,7 +145,8 @@ public class GraphUtilTest {
 		Set<Node> nodes = new HashSet<>(
 			Arrays.asList(node1, node2, node3, node4, node5));
 
-		Map<Node, Collection<Edge>> edgeMap =
+		Map<Node, Collection<Node>> nodeMap = GraphUtil.getNodeMap(
+			nodes,
 			HashMapBuilder.<Node, Collection<Edge>>put(
 				node1, Collections.singletonList(new Edge(node1, node2))
 			).put(
@@ -159,10 +156,7 @@ public class GraphUtilTest {
 				node3, Collections.singletonList(new Edge(node3, node4))
 			).put(
 				node4, Collections.singletonList(new Edge(node4, node5))
-			).build();
-
-		Map<Node, Collection<Node>> nodeMap = GraphUtil.getNodeMap(
-			nodes, edgeMap);
+			).build());
 
 		Assert.assertEquals(
 			Collections.singleton(node1), nodeMap.remove(new Node(0, 0)));

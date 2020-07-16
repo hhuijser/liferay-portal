@@ -52,7 +52,6 @@ import java.io.InputStream;
 
 import java.lang.reflect.Field;
 
-import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -485,14 +484,13 @@ public class PDFProcessorTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		HashMap<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"service.ranking", 1000
-		).put(
-			"type", DLProcessorConstants.PDF_PROCESSOR
-		).build();
-
 		_dlProcessorServiceRegistration = registry.registerService(
-			DLProcessor.class, cleanUpDLProcessor, properties);
+			DLProcessor.class, cleanUpDLProcessor,
+			HashMapBuilder.<String, Object>put(
+				"service.ranking", 1000
+			).put(
+				"type", DLProcessorConstants.PDF_PROCESSOR
+			).build());
 
 		return cleanUp;
 	}

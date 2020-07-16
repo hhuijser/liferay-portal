@@ -50,7 +50,6 @@ import java.lang.reflect.Method;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -103,14 +102,13 @@ public class JournalTransformerTest {
 	public void testLocaleTransformerListener() throws Exception {
 		Map<String, String> tokens = getTokens();
 
-		Map<Locale, String> contents = HashMapBuilder.put(
-			LocaleUtil.BRAZIL, "Joao da Silva"
-		).put(
-			LocaleUtil.US, "Joe Bloggs"
-		).build();
-
 		String xml = DDMStructureTestUtil.getSampleStructuredContent(
-			contents, LanguageUtil.getLanguageId(LocaleUtil.US));
+			HashMapBuilder.put(
+				LocaleUtil.BRAZIL, "Joao da Silva"
+			).put(
+				LocaleUtil.US, "Joe Bloggs"
+			).build(),
+			LanguageUtil.getLanguageId(LocaleUtil.US));
 
 		String script = "$name.getData()";
 
@@ -142,12 +140,11 @@ public class JournalTransformerTest {
 
 		Map<String, String> tokens = getTokens();
 
-		Map<Locale, String> contents = HashMapBuilder.put(
-			LocaleUtil.US, "Joe Bloggs"
-		).build();
-
 		String xml = DDMStructureTestUtil.getSampleStructuredContent(
-			contents, LanguageUtil.getLanguageId(LocaleUtil.US));
+			HashMapBuilder.put(
+				LocaleUtil.US, "Joe Bloggs"
+			).build(),
+			LanguageUtil.getLanguageId(LocaleUtil.US));
 
 		Document document = UnsecureSAXReaderUtil.read(xml);
 

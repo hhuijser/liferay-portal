@@ -27,7 +27,6 @@ import com.liferay.portal.search.test.util.indexing.DocumentCreationHelpers;
 import com.liferay.portal.search.test.util.indexing.IndexingFixture;
 
 import java.util.Collections;
-import java.util.Map;
 
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 
@@ -202,12 +201,10 @@ public class SolrIndexWriterExceptionsTest extends BaseIndexingTestCase {
 
 	@Override
 	protected IndexingFixture createIndexingFixture() throws Exception {
-		Map<String, Object> solrConfigurationProperties =
+		return new SolrIndexingFixture(
 			HashMapBuilder.<String, Object>put(
 				"defaultCollection", _COLLECTION_NAME
-			).build();
-
-		return new SolrIndexingFixture(solrConfigurationProperties);
+			).build());
 	}
 
 	protected Document getTestDocument() {

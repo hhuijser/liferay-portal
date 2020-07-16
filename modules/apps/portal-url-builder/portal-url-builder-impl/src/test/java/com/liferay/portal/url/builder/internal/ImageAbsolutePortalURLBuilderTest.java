@@ -59,18 +59,16 @@ public class ImageAbsolutePortalURLBuilderTest
 
 	@Test
 	public void test() {
-		String url = _imageAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS[index], url);
+		Assert.assertEquals(
+			_RESULTS[index], _imageAbsolutePortalURLBuilder.build());
 	}
 
 	@Test
 	public void testIgnoreCDN() {
 		_absolutePortalURLBuilder.ignoreCDNHost();
 
-		String url = _imageAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS_IGNORE_CDN[index], url);
+		Assert.assertEquals(
+			_RESULTS_IGNORE_CDN[index], _imageAbsolutePortalURLBuilder.build());
 	}
 
 	@Test
@@ -78,18 +76,18 @@ public class ImageAbsolutePortalURLBuilderTest
 		_absolutePortalURLBuilder.ignoreCDNHost();
 		_absolutePortalURLBuilder.ignorePathProxy();
 
-		String url = _imageAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS_IGNORE_CDN_AND_PROXY[index], url);
+		Assert.assertEquals(
+			_RESULTS_IGNORE_CDN_AND_PROXY[index],
+			_imageAbsolutePortalURLBuilder.build());
 	}
 
 	@Test
 	public void testIgnoreProxy() {
 		_absolutePortalURLBuilder.ignorePathProxy();
 
-		String url = _imageAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS_IGNORE_PROXY[index], url);
+		Assert.assertEquals(
+			_RESULTS_IGNORE_PROXY[index],
+			_imageAbsolutePortalURLBuilder.build());
 	}
 
 	@Parameterized.Parameter(3)

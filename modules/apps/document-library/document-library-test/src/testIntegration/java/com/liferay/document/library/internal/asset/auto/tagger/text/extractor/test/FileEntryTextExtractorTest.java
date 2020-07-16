@@ -22,7 +22,6 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
@@ -57,15 +56,13 @@ public class FileEntryTextExtractorTest {
 
 		byte[] bytes = content.getBytes();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), TestPropsValues.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString(), ContentTypes.TEXT_PLAIN,
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
-			new ByteArrayInputStream(bytes), bytes.length, serviceContext);
+			new ByteArrayInputStream(bytes), bytes.length,
+			ServiceContextTestUtil.getServiceContext());
 
 		TextExtractor<FileEntry> textExtractor =
 			(TextExtractor<FileEntry>)_textExtractorTracker.getTextExtractor(

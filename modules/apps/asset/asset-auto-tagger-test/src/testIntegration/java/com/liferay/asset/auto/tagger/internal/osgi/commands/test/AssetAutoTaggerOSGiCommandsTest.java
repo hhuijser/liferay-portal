@@ -46,7 +46,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -173,15 +172,14 @@ public class AssetAutoTaggerOSGiCommandsTest
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"model.class.name", AssetEntry.class.getName()
-		).build();
-
 		ServiceRegistration<AssetAutoTagProvider<?>>
 			assetAutoTagProviderServiceRegistration = registry.registerService(
 				(Class<AssetAutoTagProvider<?>>)
 					(Class<?>)AssetAutoTagProvider.class,
-				model -> Arrays.asList(ASSET_TAG_NAME_AUTO), properties);
+				model -> Arrays.asList(ASSET_TAG_NAME_AUTO),
+				HashMapBuilder.<String, Object>put(
+					"model.class.name", AssetEntry.class.getName()
+				).build());
 
 		String className = RandomTestUtil.randomString();
 

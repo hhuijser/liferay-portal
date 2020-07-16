@@ -352,12 +352,10 @@ public class NpmAnalyzerPluginTest {
 			"/liferay-0.0.0.1word-cha_rs",
 			analyzer.getProperty(NpmAnalyzerPlugin.WEB_CONTEXT_PATH));
 
-		String property = analyzer.getProperty(Constants.PROVIDE_CAPABILITY);
-
 		Assert.assertEquals(
 			"osgi.webresource;osgi.webresource=liferay;" +
 				"version:Version=\"0.0.0.1word-cha_rs\"",
-			property);
+			analyzer.getProperty(Constants.PROVIDE_CAPABILITY));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

@@ -287,12 +287,11 @@ public class WikiAttachmentImageCreoleEditorConfigContributorTest
 	}
 
 	protected void setWikiPageResourcePrimKey(long primKey) {
-		Map<String, String> fileBrowserParamsMap = HashMapBuilder.put(
-			"wikiPageResourcePrimKey", String.valueOf(primKey)
-		).build();
-
 		_inputEditorTaglibAttributes.put(
-			"liferay-ui:input-editor:fileBrowserParams", fileBrowserParamsMap);
+			"liferay-ui:input-editor:fileBrowserParams",
+			HashMapBuilder.put(
+				"wikiPageResourcePrimKey", String.valueOf(primKey)
+			).build());
 	}
 
 	private final Map<String, Object> _inputEditorTaglibAttributes =

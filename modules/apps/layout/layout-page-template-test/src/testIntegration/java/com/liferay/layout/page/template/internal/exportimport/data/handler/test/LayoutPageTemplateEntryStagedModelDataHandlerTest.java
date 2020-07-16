@@ -70,9 +70,8 @@ public class LayoutPageTemplateEntryStagedModelDataHandlerTest
 	public void testImportLayoutPageTemplateEntryByDefaultUser()
 		throws Exception {
 
-		long companyId = stagingGroup.getCompanyId();
-
-		Company company = CompanyLocalServiceUtil.getCompany(companyId);
+		Company company = CompanyLocalServiceUtil.getCompany(
+			stagingGroup.getCompanyId());
 
 		Group companyGroup = company.getGroup();
 
@@ -132,12 +131,12 @@ public class LayoutPageTemplateEntryStagedModelDataHandlerTest
 			long companyId, long groupId, String name, long userId)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), name
-		).build();
-
 		return LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
-			userId, companyId, nameMap, (Map<Locale, String>)null, true,
+			userId, companyId,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), name
+			).build(),
+			(Map<Locale, String>)null, true,
 			ServiceContextTestUtil.getServiceContext(
 				companyId, groupId, userId));
 	}

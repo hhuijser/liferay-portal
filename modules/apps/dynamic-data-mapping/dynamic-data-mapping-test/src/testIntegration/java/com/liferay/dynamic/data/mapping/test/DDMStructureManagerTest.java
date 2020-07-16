@@ -309,17 +309,15 @@ public class DDMStructureManagerTest {
 	}
 
 	protected DDMStructure addStructure() throws Exception {
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, "Test Structure Name"
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.US, "Test Structure Description"
-		).build();
-
 		return _ddmStructureManager.addStructure(
 			TestPropsValues.getUserId(), _group.getGroupId(), null,
-			_classNameId, StringUtil.randomString(), nameMap, descriptionMap,
+			_classNameId, StringUtil.randomString(),
+			HashMapBuilder.put(
+				LocaleUtil.US, "Test Structure Name"
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.US, "Test Structure Description"
+			).build(),
 			createDDMForm(), StorageEngineManager.STORAGE_TYPE_DEFAULT,
 			DDMStructureManager.STRUCTURE_TYPE_DEFAULT, _serviceContext);
 	}

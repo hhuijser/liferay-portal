@@ -51,8 +51,6 @@ import com.liferay.portletmvc4spring.test.mock.web.portlet.MockRenderRequest;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import javax.portlet.RenderRequest;
 
@@ -114,12 +112,12 @@ public class JournalContentTest {
 	}
 
 	protected static String getXML() {
-		Map<Locale, String> content = HashMapBuilder.put(
-			LocaleUtil.US, "example"
-		).build();
-
 		return DDMStructureTestUtil.getSampleStructuredContent(
-			"content", Collections.singletonList(content),
+			"content",
+			Collections.singletonList(
+				HashMapBuilder.put(
+					LocaleUtil.US, "example"
+				).build()),
 			LocaleUtil.toLanguageId(LocaleUtil.US));
 	}
 
@@ -197,10 +195,8 @@ public class JournalContentTest {
 			MockHttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		ThemeDisplay themeDisplay = getThemeDisplay(httpServletRequest);
-
 		RenderRequest renderRequest = getRenderRequest(
-			httpServletRequest, themeDisplay);
+			httpServletRequest, getThemeDisplay(httpServletRequest));
 
 		_portletRequestModel = new PortletRequestModel(
 			renderRequest, new MockPortletResponse());
@@ -210,9 +206,8 @@ public class JournalContentTest {
 			MockHttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		ServiceContext serviceContext = getServiceContext(httpServletRequest);
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			getServiceContext(httpServletRequest));
 	}
 
 	protected void tearDownServiceContext() {

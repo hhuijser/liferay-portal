@@ -135,12 +135,9 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 		SuggestSearchResponse suggestSearchResponse =
 			_searchEngineAdapter.execute(suggestSearchRequest);
 
-		Map<String, SuggestSearchResult> suggestSearchResultMap =
-			suggestSearchResponse.getSuggestSearchResultMap();
-
 		assertSuggestion(
-			suggestSearchResultMap, "completion|[search]",
-			"completion2|[message]");
+			suggestSearchResponse.getSuggestSearchResultMap(),
+			"completion|[search]", "completion2|[message]");
 	}
 
 	@Test
@@ -164,11 +161,9 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 		SuggestSearchResponse suggestSearchResponse =
 			_searchEngineAdapter.execute(suggestSearchRequest);
 
-		Map<String, SuggestSearchResult> suggestSearchResultMap =
-			suggestSearchResponse.getSuggestSearchResultMap();
-
 		assertSuggestion(
-			suggestSearchResultMap, "completion|[search]", "term|[search]");
+			suggestSearchResponse.getSuggestSearchResultMap(),
+			"completion|[search]", "term|[search]");
 	}
 
 	@Test
@@ -193,11 +188,9 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 		SuggestSearchResponse suggestSearchResponse =
 			_searchEngineAdapter.execute(suggestSearchRequest);
 
-		Map<String, SuggestSearchResult> suggestSearchResultMap =
-			suggestSearchResponse.getSuggestSearchResultMap();
-
 		assertSuggestion(
-			suggestSearchResultMap, "completion|[message]", "term|[search]");
+			suggestSearchResponse.getSuggestSearchResultMap(),
+			"completion|[message]", "term|[search]");
 	}
 
 	@Test
@@ -217,11 +210,9 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 		SuggestSearchResponse suggestSearchResponse =
 			_searchEngineAdapter.execute(suggestSearchRequest);
 
-		Map<String, SuggestSearchResult> suggestSearchResultMap =
-			suggestSearchResponse.getSuggestSearchResultMap();
-
 		assertSuggestion(
-			suggestSearchResultMap, 2, "phrase|[indexef phrase, index phrasd]");
+			suggestSearchResponse.getSuggestSearchResultMap(), 2,
+			"phrase|[indexef phrase, index phrasd]");
 	}
 
 	@Test
@@ -240,10 +231,9 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 		SuggestSearchResponse suggestSearchResponse =
 			_searchEngineAdapter.execute(suggestSearchRequest);
 
-		Map<String, SuggestSearchResult> suggestSearchResultMap =
-			suggestSearchResponse.getSuggestSearchResultMap();
-
-		assertSuggestion(suggestSearchResultMap, "termSuggestion|[search]");
+		assertSuggestion(
+			suggestSearchResponse.getSuggestSearchResultMap(),
+			"termSuggestion|[search]");
 	}
 
 	protected void assertSuggestion(
@@ -381,10 +371,9 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 		ElasticsearchDocumentFactory elasticsearchDocumentFactory =
 			new DefaultElasticsearchDocumentFactory();
 
-		String elasticsearchDocument =
-			elasticsearchDocumentFactory.getElasticsearchDocument(document);
-
-		indexRequestBuilder.setSource(elasticsearchDocument, XContentType.JSON);
+		indexRequestBuilder.setSource(
+			elasticsearchDocumentFactory.getElasticsearchDocument(document),
+			XContentType.JSON);
 
 		indexRequestBuilder.get();
 

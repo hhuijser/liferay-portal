@@ -32,7 +32,6 @@ import com.liferay.portal.search.test.util.logging.ExpectedLogTestRule;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 
 import org.hamcrest.CoreMatchers;
@@ -373,14 +372,11 @@ public class ElasticsearchIndexWriterLogExceptionsOnlyTest
 		ElasticsearchIndexWriter.class, Level.WARNING);
 
 	protected ElasticsearchFixture createElasticsearchFixture() {
-		Map<String, Object> elasticsearchConfigurationProperties =
-			HashMapBuilder.<String, Object>put(
-				"logExceptionsOnly", true
-			).build();
-
 		return new ElasticsearchFixture(
 			ElasticsearchIndexWriterLogExceptionsOnlyTest.class.getSimpleName(),
-			elasticsearchConfigurationProperties);
+			HashMapBuilder.<String, Object>put(
+				"logExceptionsOnly", true
+			).build());
 	}
 
 	@Override

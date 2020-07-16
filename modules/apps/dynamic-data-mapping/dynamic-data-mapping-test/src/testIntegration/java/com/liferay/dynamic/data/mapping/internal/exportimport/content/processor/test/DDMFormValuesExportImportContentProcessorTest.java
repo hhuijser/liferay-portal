@@ -403,9 +403,7 @@ public class DDMFormValuesExportImportContentProcessorTest {
 		long classNameId = ClassNameLocalServiceUtil.getClassNameId(
 			JournalArticle.class);
 
-		DDMForm ddmForm = _formInstance.getDDMForm();
-
-		structure.setDDMForm(ddmForm);
+		structure.setDDMForm(_formInstance.getDDMForm());
 
 		structure.setClassNameId(classNameId);
 

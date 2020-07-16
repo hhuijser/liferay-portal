@@ -50,7 +50,8 @@ public class CTClosureImplTest {
 		Set<Node> nodes = new HashSet<>(
 			Arrays.asList(node1, node2, node3, node4, node5));
 
-		Map<Node, Collection<Edge>> edgeMap =
+		Map<Node, Collection<Node>> nodeMap = GraphUtil.getNodeMap(
+			nodes,
 			HashMapBuilder.<Node, Collection<Edge>>put(
 				node1,
 				Arrays.asList(
@@ -61,10 +62,7 @@ public class CTClosureImplTest {
 				Arrays.asList(new Edge(node2, node3), new Edge(node2, node4))
 			).put(
 				node3, Collections.singleton(new Edge(node3, node4))
-			).build();
-
-		Map<Node, Collection<Node>> nodeMap = GraphUtil.getNodeMap(
-			nodes, edgeMap);
+			).build());
 
 		long ctCollectionId = 1;
 
@@ -72,15 +70,15 @@ public class CTClosureImplTest {
 
 		Assert.assertEquals(ctCollectionId, ctClosure.getCTCollectionId());
 
-		Map<Long, List<Long>> roots = HashMapBuilder.<Long, List<Long>>put(
-			node1.getClassNameId(),
-			Collections.singletonList(node1.getPrimaryKey())
-		).put(
-			node5.getClassNameId(),
-			Collections.singletonList(node5.getPrimaryKey())
-		).build();
-
-		Assert.assertEquals(roots, ctClosure.getRootPKsMap());
+		Assert.assertEquals(
+			HashMapBuilder.<Long, List<Long>>put(
+				node1.getClassNameId(),
+				Collections.singletonList(node1.getPrimaryKey())
+			).put(
+				node5.getClassNameId(),
+				Collections.singletonList(node5.getPrimaryKey())
+			).build(),
+			ctClosure.getRootPKsMap());
 
 		Assert.assertEquals(
 			Collections.singletonMap(

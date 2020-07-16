@@ -17,7 +17,6 @@ package com.liferay.message.boards.search.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.test.util.MBTestUtil;
-import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -58,10 +57,10 @@ public class MBMessageIndexerSummaryTest {
 	public void setUp() throws Exception {
 		indexerFixture = new IndexerFixture<>(MBMessage.class);
 
-		Group group = _groupLocalService.getGroup(TestPropsValues.getGroupId());
-
 		summaryFixture = new SummaryFixture<>(
-			MBMessage.class, group, LocaleUtil.US, TestPropsValues.getUser());
+			MBMessage.class,
+			_groupLocalService.getGroup(TestPropsValues.getGroupId()),
+			LocaleUtil.US, TestPropsValues.getUser());
 	}
 
 	@Test

@@ -31,14 +31,11 @@ public class BackgroundTaskThreadLocalManagerImplTest
 
 	@Test
 	public void testDeserializeThreadLocals() {
-		Map<String, Serializable> taskContextMap =
+		backgroundTaskThreadLocalManagerImpl.deserializeThreadLocals(
 			HashMapBuilder.<String, Serializable>put(
 				BackgroundTaskThreadLocalManagerImpl.KEY_THREAD_LOCAL_VALUES,
 				initializeThreadLocalValues()
-			).build();
-
-		backgroundTaskThreadLocalManagerImpl.deserializeThreadLocals(
-			taskContextMap);
+			).build());
 
 		assertThreadLocalValues();
 	}
@@ -47,10 +44,8 @@ public class BackgroundTaskThreadLocalManagerImplTest
 	public void testGetThreadLocalValues() {
 		initalizeThreadLocals();
 
-		Map<String, Serializable> threadLocalValues =
-			backgroundTaskThreadLocalManagerImpl.getThreadLocalValues();
-
-		assertThreadLocalValues(threadLocalValues);
+		assertThreadLocalValues(
+			backgroundTaskThreadLocalManagerImpl.getThreadLocalValues());
 	}
 
 	@Test

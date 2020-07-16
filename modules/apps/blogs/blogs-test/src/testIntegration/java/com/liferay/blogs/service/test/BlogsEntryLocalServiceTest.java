@@ -346,12 +346,10 @@ public class BlogsEntryLocalServiceTest {
 
 		String content = _repeat("0", maxLength + 1);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntryLocalServiceUtil.addEntry(
 			_user.getUserId(), RandomTestUtil.randomString(), content,
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@Test(expected = EntryTitleException.class)
@@ -361,12 +359,10 @@ public class BlogsEntryLocalServiceTest {
 
 		String title = _repeat("0", maxLength + 1);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntryLocalServiceUtil.addEntry(
 			_user.getUserId(), title, RandomTestUtil.randomString(),
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@Test
@@ -718,16 +714,15 @@ public class BlogsEntryLocalServiceTest {
 
 		String urlTitle = "new-friendly-url";
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntryLocalServiceUtil.updateEntry(
 			expectedEntry.getUserId(), expectedEntry.getEntryId(),
 			expectedEntry.getTitle(), expectedEntry.getSubtitle(), urlTitle,
 			expectedEntry.getDescription(), expectedEntry.getContent(),
 			expectedEntry.getDisplayDate(), expectedEntry.isAllowPingbacks(),
 			expectedEntry.isAllowTrackbacks(), new String[0],
-			expectedEntry.getCoverImageCaption(), null, null, serviceContext);
+			expectedEntry.getCoverImageCaption(), null, null,
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 
 		BlogsEntry actualEntry = BlogsEntryLocalServiceUtil.getEntry(
 			expectedEntry.getGroupId(), oldUrlTitle);
@@ -879,32 +874,26 @@ public class BlogsEntryLocalServiceTest {
 
 	@Test(expected = EntryTitleException.class)
 	public void testPublishWithBlankTitle() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntryLocalServiceUtil.addEntry(
 			_user.getUserId(), StringPool.BLANK, RandomTestUtil.randomString(),
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@Test(expected = EntryTitleException.class)
 	public void testPublishWithNullTitle() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntryLocalServiceUtil.addEntry(
 			_user.getUserId(), null, RandomTestUtil.randomString(),
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@Test(expected = EntryTitleException.class)
 	public void testPublishWithoutTitle() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntryLocalServiceUtil.addEntry(
 			_user.getUserId(), StringPool.BLANK, RandomTestUtil.randomString(),
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@Test
@@ -998,12 +987,10 @@ public class BlogsEntryLocalServiceTest {
 	public void testURLTitleIsSavedWhenAddingApprovedEntry() throws Exception {
 		String title = RandomTestUtil.randomString();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntry entry = BlogsEntryLocalServiceUtil.addEntry(
 			_user.getUserId(), title, RandomTestUtil.randomString(),
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 
 		Assert.assertEquals(
 			_getUrlTitleMethod.invoke(null, entry.getEntryId(), title),
@@ -1016,11 +1003,10 @@ public class BlogsEntryLocalServiceTest {
 
 		String title = RandomTestUtil.randomString();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntry entry = BlogsTestUtil.addEntryWithWorkflow(
-			_user.getUserId(), title, true, serviceContext);
+			_user.getUserId(), title, true,
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 
 		Assert.assertEquals(
 			_getUrlTitleMethod.invoke(null, entry.getEntryId(), title),
@@ -1045,12 +1031,10 @@ public class BlogsEntryLocalServiceTest {
 	public void testURLTitleIsSavedWhenAddingDraftEntryWithWorkflow()
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		BlogsEntry entry = BlogsTestUtil.addEntryWithWorkflow(
 			_user.getUserId(), RandomTestUtil.randomString(), false,
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 
 		Assert.assertTrue(Validator.isNotNull(entry.getUrlTitle()));
 	}

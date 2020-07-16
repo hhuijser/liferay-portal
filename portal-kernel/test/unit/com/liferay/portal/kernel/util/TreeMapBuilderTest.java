@@ -86,15 +86,15 @@ public class TreeMapBuilderTest {
 		map1.put("Three", 3);
 		map1.put("Two", 2);
 
-		Map<String, Integer> map2 = TreeMapBuilder.put(
-			"One", 1
-		).put(
-			"Three", 3
-		).put(
-			"Two", 2
-		).build();
-
-		Assert.assertEquals(map1, map2);
+		Assert.assertEquals(
+			map1,
+			TreeMapBuilder.put(
+				"One", 1
+			).put(
+				"Three", 3
+			).put(
+				"Two", 2
+			).build());
 	}
 
 	@Test
@@ -107,11 +107,11 @@ public class TreeMapBuilderTest {
 			map1.put(s, StringUtil.trim(s.toLowerCase()));
 		}
 
-		Map<String, String> map2 = TreeMapBuilder.put(
-			list, s -> StringUtil.trim(s.toLowerCase())
-		).build();
-
-		Assert.assertEquals(map1, map2);
+		Assert.assertEquals(
+			map1,
+			TreeMapBuilder.put(
+				list, s -> StringUtil.trim(s.toLowerCase())
+			).build());
 	}
 
 	@Test

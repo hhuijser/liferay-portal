@@ -29,8 +29,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.upgrade.v7_0_0.UpgradeLookAndFeel;
 
-import java.util.Map;
-
 import javax.portlet.PortletPreferences;
 
 import org.junit.Assert;
@@ -81,12 +79,11 @@ public class UpgradeLookAndFeelTest extends UpgradeLookAndFeel {
 	protected void setPortletShowBorders(String portletId, boolean showBorders)
 		throws Exception {
 
-		Map<String, String> portletPreferencesMap = HashMapBuilder.put(
-			"portletSetupShowBorders", String.valueOf(showBorders)
-		).build();
-
 		LayoutTestUtil.updateLayoutPortletPreferences(
-			_layout, portletId, portletPreferencesMap);
+			_layout, portletId,
+			HashMapBuilder.put(
+				"portletSetupShowBorders", String.valueOf(showBorders)
+			).build());
 	}
 
 	@DeleteAfterTestRun

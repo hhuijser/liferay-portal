@@ -513,21 +513,20 @@ public class DLCheckInCheckOutTest {
 
 	protected FileEntry createFileEntry(String fileName) throws Exception {
 		long repositoryId = _group.getGroupId();
-		long folderId = _folder.getFolderId();
+
 		InputStream inputStream = new UnsyncByteArrayInputStream(
 			_TEST_CONTENT.getBytes());
 
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
-			repositoryId, folderId, fileName, ContentTypes.TEXT_PLAIN, fileName,
-			null, null, inputStream, _TEST_CONTENT.length(), _serviceContext);
+			repositoryId, _folder.getFolderId(), fileName,
+			ContentTypes.TEXT_PLAIN, fileName, null, null, inputStream,
+			_TEST_CONTENT.length(), _serviceContext);
 
 		Assert.assertNotNull(fileEntry);
 
 		Assert.assertEquals("1.0", fileEntry.getVersion());
 
-		AssetEntry assetEntry = getAssetEntry(fileEntry.getFileEntryId(), true);
-
-		Assert.assertNotNull(assetEntry);
+		Assert.assertNotNull(getAssetEntry(fileEntry.getFileEntryId(), true));
 
 		return fileEntry;
 	}

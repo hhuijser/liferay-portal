@@ -18,7 +18,6 @@ import com.liferay.petra.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.template.soy.constants.SoyTemplateConstants;
 
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.After;
@@ -64,11 +63,11 @@ public class SoyTemplateTest {
 
 		soyTemplate.put("namespace", "soy.test.ijdata");
 
-		Map<String, Object> injectedData = HashMapBuilder.<String, Object>put(
-			"hasData", true
-		).build();
-
-		soyTemplate.put(SoyTemplateConstants.INJECTED_DATA, injectedData);
+		soyTemplate.put(
+			SoyTemplateConstants.INJECTED_DATA,
+			HashMapBuilder.<String, Object>put(
+				"hasData", true
+			).build());
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 

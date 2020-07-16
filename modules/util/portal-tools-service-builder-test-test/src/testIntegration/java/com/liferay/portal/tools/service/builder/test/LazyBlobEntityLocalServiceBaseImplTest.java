@@ -17,7 +17,6 @@ package com.liferay.portal.tools.service.builder.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -55,12 +54,10 @@ public class LazyBlobEntityLocalServiceBaseImplTest {
 
 	@Test
 	public void testEmptyBlobReturnsEmptyInputStream() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		LazyBlobEntity lazyBlobEntity =
 			_lazyBlobEntityLocalService.addLazyBlobEntity(
-				_group.getGroupId(), new byte[0], serviceContext);
+				_group.getGroupId(), new byte[0],
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		InputStream inputStream =
 			_lazyBlobEntityLocalService.openBlob1InputStream(
@@ -71,12 +68,10 @@ public class LazyBlobEntityLocalServiceBaseImplTest {
 
 	@Test
 	public void testOpenBlobInputStream() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		LazyBlobEntity lazyBlobEntity =
 			_lazyBlobEntityLocalService.addLazyBlobEntity(
-				_group.getGroupId(), _BYTES, serviceContext);
+				_group.getGroupId(), _BYTES,
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		InputStream inputStream =
 			_lazyBlobEntityLocalService.openBlob1InputStream(

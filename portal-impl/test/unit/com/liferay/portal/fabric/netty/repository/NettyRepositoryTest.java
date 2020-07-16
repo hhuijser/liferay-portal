@@ -489,14 +489,15 @@ public class NettyRepositoryTest {
 		Path localFilePath = FileServerTestUtil.registerForCleanUp(
 			Paths.get("localFile1"));
 
-		Map<Path, Path> pathMap = HashMapBuilder.<Path, Path>put(
-			remoteFilePath1, localFilePath
-		).put(
-			remoteFilePath2, Paths.get("localFile2")
-		).build();
-
 		NoticeableFuture<Map<Path, Path>> noticeableFuture =
-			_nettyRepository.getFiles(_embeddedChannel, pathMap, true);
+			_nettyRepository.getFiles(
+				_embeddedChannel,
+				HashMapBuilder.<Path, Path>put(
+					remoteFilePath1, localFilePath
+				).put(
+					remoteFilePath2, Paths.get("localFile2")
+				).build(),
+				true);
 
 		Path tempFilePath = FileServerTestUtil.createFileWithData(
 			Paths.get("tempFile"));
@@ -541,14 +542,15 @@ public class NettyRepositoryTest {
 	public void testGetFilesCancelled() {
 		Path remoteFilePath1 = Paths.get("remoteFile1");
 
-		Map<Path, Path> pathMap = HashMapBuilder.<Path, Path>put(
-			remoteFilePath1, Paths.get("localFile1")
-		).put(
-			Paths.get("remoteFile2"), Paths.get("requestFile2")
-		).build();
-
 		NoticeableFuture<Map<Path, Path>> noticeableFuture =
-			_nettyRepository.getFiles(_embeddedChannel, pathMap, true);
+			_nettyRepository.getFiles(
+				_embeddedChannel,
+				HashMapBuilder.<Path, Path>put(
+					remoteFilePath1, Paths.get("localFile1")
+				).put(
+					Paths.get("remoteFile2"), Paths.get("requestFile2")
+				).build(),
+				true);
 
 		Map<Path, NoticeableFuture<FileResponse>> openBids =
 			_asyncBroker.getOpenBids();
@@ -572,12 +574,13 @@ public class NettyRepositoryTest {
 	public void testGetFilesCovertCausedException() throws Exception {
 		Path remoteFilePath = Paths.get("remoteFile");
 
-		Map<Path, Path> pathMap = HashMapBuilder.<Path, Path>put(
-			remoteFilePath, Paths.get("localFile")
-		).build();
-
 		NoticeableFuture<Map<Path, Path>> noticeableFuture =
-			_nettyRepository.getFiles(_embeddedChannel, pathMap, true);
+			_nettyRepository.getFiles(
+				_embeddedChannel,
+				HashMapBuilder.<Path, Path>put(
+					remoteFilePath, Paths.get("localFile")
+				).build(),
+				true);
 
 		Exception exception = new Exception();
 
@@ -630,14 +633,15 @@ public class NettyRepositoryTest {
 	public void testGetFilesExecutionException() throws Exception {
 		Path remoteFilePath1 = Paths.get("remoteFile1");
 
-		Map<Path, Path> pathMap = HashMapBuilder.<Path, Path>put(
-			remoteFilePath1, Paths.get("requestFile1")
-		).put(
-			Paths.get("remoteFile2"), Paths.get("requestFile2")
-		).build();
-
 		NoticeableFuture<Map<Path, Path>> noticeableFuture =
-			_nettyRepository.getFiles(_embeddedChannel, pathMap, true);
+			_nettyRepository.getFiles(
+				_embeddedChannel,
+				HashMapBuilder.<Path, Path>put(
+					remoteFilePath1, Paths.get("requestFile1")
+				).put(
+					Paths.get("remoteFile2"), Paths.get("requestFile2")
+				).build(),
+				true);
 
 		Exception exception = new Exception();
 

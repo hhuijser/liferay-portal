@@ -47,9 +47,8 @@ public class OAuth2CachedConnectionProviderTest
 
 	@Test
 	public void testValidOAuth2CachedConnectionProvider() throws Exception {
-		String payload = getPayload("valid-oauth2-connection-flow");
-
-		Matcher matcher = productPattern.matcher(payload);
+		Matcher matcher = productPattern.matcher(
+			getPayload("valid-oauth2-connection-flow"));
 
 		Assert.assertTrue(matcher.matches());
 	}

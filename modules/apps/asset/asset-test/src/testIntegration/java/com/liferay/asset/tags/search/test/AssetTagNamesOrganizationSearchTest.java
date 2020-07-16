@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
-import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -36,7 +35,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.users.admin.test.util.search.OrganizationBlueprint.OrganizationBlueprintBuilder;
 import com.liferay.users.admin.test.util.search.OrganizationSearchFixture;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.junit.Assert;
@@ -95,18 +93,15 @@ public class AssetTagNamesOrganizationSearchTest {
 			long companyId, int expectedCount, String keywords)
 		throws Exception {
 
-		LinkedHashMap<String, Object> organizationParams =
-			LinkedHashMapBuilder.<String, Object>put(
-				"expandoAttributes", keywords
-			).build();
-
-		Sort sort = SortFactoryUtil.getSort(Organization.class, "name", "desc");
-
 		BaseModelSearchResult<Organization> baseModelSearchResult =
 			organizationLocalService.searchOrganizations(
 				companyId, OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,
-				keywords, organizationParams, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, sort);
+				keywords,
+				LinkedHashMapBuilder.<String, Object>put(
+					"expandoAttributes", keywords
+				).build(),
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				SortFactoryUtil.getSort(Organization.class, "name", "desc"));
 
 		Assert.assertEquals(
 			baseModelSearchResult.toString(), expectedCount,

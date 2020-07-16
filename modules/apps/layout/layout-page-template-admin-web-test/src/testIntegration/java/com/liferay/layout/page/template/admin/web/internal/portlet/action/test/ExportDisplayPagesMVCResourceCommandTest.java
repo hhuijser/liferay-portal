@@ -57,7 +57,6 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -460,17 +459,16 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 		for (String expectedDisplayPageTemplateName :
 				expectedDisplayPageTemplateNames) {
 
-			Map<String, String> valuesMap = HashMapBuilder.putAll(
-				inputValuesMap
-			).put(
-				"DISPLAY_PAGE_TEMPLATE_NAME",
-				StringPool.QUOTE + expectedDisplayPageTemplateName +
-					StringPool.QUOTE
-			).build();
-
 			JSONObject expectedJSONObject = JSONFactoryUtil.createJSONObject(
 				StringUtil.replace(
-					_read(expectedFileName), "\"${", "}\"", valuesMap));
+					_read(expectedFileName), "\"${", "}\"",
+					HashMapBuilder.putAll(
+						inputValuesMap
+					).put(
+						"DISPLAY_PAGE_TEMPLATE_NAME",
+						StringPool.QUOTE + expectedDisplayPageTemplateName +
+							StringPool.QUOTE
+					).build()));
 
 			String expectedJSON = expectedJSONObject.toJSONString();
 
@@ -511,14 +509,13 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 				}
 			}
 
-			HashMap<String, String> valuesMap = HashMapBuilder.put(
-				"CONTENT_SUBTYPE_SUBTYPE_ID", String.valueOf(classTypeId)
-			).build();
-
 			_validateContent(
 				StringUtil.read(zipFile.getInputStream(zipEntry)),
 				"expected_display_page_template.json",
-				expectedDisplayPageTemplateNames, valuesMap);
+				expectedDisplayPageTemplateNames,
+				HashMapBuilder.put(
+					"CONTENT_SUBTYPE_SUBTYPE_ID", String.valueOf(classTypeId)
+				).build());
 		}
 
 		if (_isDisplayPageThumbnailFile(zipEntry.getName())) {

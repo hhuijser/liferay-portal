@@ -21,7 +21,6 @@ import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.bookmarks.service.BookmarksFolderLocalServiceUtil;
 import com.liferay.bookmarks.test.util.BookmarksTestUtil;
 import com.liferay.portal.kernel.model.BaseModel;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
@@ -60,11 +59,9 @@ public class BookmarksUserNotificationTest
 
 	@Override
 	protected BaseModel<?> addBaseModel() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		return BookmarksTestUtil.addEntry(
-			_folder.getFolderId(), true, serviceContext);
+			_folder.getFolderId(), true,
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
 	@Override

@@ -262,15 +262,13 @@ public class DDMFormInstanceRecordSearchTest {
 	protected void addDDMFormInstanceRecord(String name, String description)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, name
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.US, description
-		).build();
-
-		addDDMFormInstanceRecord(nameMap, descriptionMap);
+		addDDMFormInstanceRecord(
+			HashMapBuilder.put(
+				LocaleUtil.US, name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.US, description
+			).build());
 	}
 
 	protected void assertSearch(String keywords, int length) throws Exception {

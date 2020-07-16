@@ -33,7 +33,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.DELETE;
@@ -66,20 +65,19 @@ public class TransactionContainerRequestFilterTest {
 	public void setUp() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"liferay.auth.verifier", true
-		).put(
-			"liferay.oauth2", false
-		).put(
-			"osgi.jaxrs.application.base", "/test-vulcan"
-		).put(
-			"osgi.jaxrs.extension.select", "(osgi.jaxrs.name=Liferay.Vulcan)"
-		).build();
-
 		_serviceRegistration = registry.registerService(
 			Application.class,
 			new TransactionContainerRequestFilterTest.TestApplication(),
-			properties);
+			HashMapBuilder.<String, Object>put(
+				"liferay.auth.verifier", true
+			).put(
+				"liferay.oauth2", false
+			).put(
+				"osgi.jaxrs.application.base", "/test-vulcan"
+			).put(
+				"osgi.jaxrs.extension.select",
+				"(osgi.jaxrs.name=Liferay.Vulcan)"
+			).build());
 	}
 
 	@After

@@ -186,9 +186,7 @@ public class FinderCacheImplTest {
 		finderCache.putResult(
 			_finderPath, _KEY1, Collections.emptyList(), true);
 
-		Object result = finderCache.getResult(_finderPath, _KEY2, null);
-
-		Assert.assertNull(result);
+		Assert.assertNull(finderCache.getResult(_finderPath, _KEY2, null));
 	}
 
 	private void _assertPutEmptyListValid(MultiVMPool multiVMPool) {
@@ -197,9 +195,9 @@ public class FinderCacheImplTest {
 		finderCache.putResult(
 			_finderPath, _KEY1, Collections.emptyList(), true);
 
-		Object result = finderCache.getResult(_finderPath, _KEY1, null);
-
-		Assert.assertSame(Collections.emptyList(), result);
+		Assert.assertSame(
+			Collections.emptyList(),
+			finderCache.getResult(_finderPath, _KEY1, null));
 	}
 
 	private static final String[] _KEY1 = {"home"};

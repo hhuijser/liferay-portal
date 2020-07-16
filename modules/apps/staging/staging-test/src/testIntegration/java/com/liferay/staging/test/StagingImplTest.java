@@ -66,7 +66,6 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
@@ -272,12 +271,10 @@ public class StagingImplTest {
 
 		File larFile = new File(larFileNames[larFileNames.length - 1]);
 
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(larFile);
-
 		PortletDataContext portletDataContext =
 			PortletDataContextFactoryUtil.createImportPortletDataContext(
 				_group.getCompanyId(), _group.getGroupId(), parameterMap,
-				userIdStrategy, zipReader);
+				userIdStrategy, ZipReaderFactoryUtil.getZipReader(larFile));
 
 		String journalPortletPath = ExportImportPathUtil.getPortletPath(
 			portletDataContext, JournalPortletKeys.JOURNAL);

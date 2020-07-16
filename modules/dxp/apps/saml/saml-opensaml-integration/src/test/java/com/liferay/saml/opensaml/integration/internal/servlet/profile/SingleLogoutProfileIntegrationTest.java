@@ -256,13 +256,11 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 
 	@Test
 	public void testSendSpLogoutRequestInvalidSpSession() throws Exception {
-		MockHttpServletRequest mockHttpServletRequest =
-			getMockHttpServletRequest(LOGOUT_URL);
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
 		_singleLogoutProfileImpl.sendSpLogoutRequest(
-			mockHttpServletRequest, mockHttpServletResponse);
+			getMockHttpServletRequest(LOGOUT_URL), mockHttpServletResponse);
 
 		String redirect = mockHttpServletResponse.getRedirectedUrl();
 

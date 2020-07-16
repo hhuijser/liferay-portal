@@ -83,12 +83,12 @@ public class KBArticleMarkdownConverterTest {
 		String markdown = "Title [](id=1234)\n=============";
 		String fileEntryName = "some/unix/file";
 
-		Map<String, String> metadata = HashMapBuilder.put(
-			"base.source.url", "http://baseURL"
-		).build();
-
 		Object object = _constructor.newInstance(
-			markdown, fileEntryName, metadata, _dlURLHelper);
+			markdown, fileEntryName,
+			HashMapBuilder.put(
+				"base.source.url", "http://baseURL"
+			).build(),
+			_dlURLHelper);
 
 		Assert.assertEquals(
 			"http://baseURL/some/unix/file", _method.invoke(object));
@@ -101,12 +101,12 @@ public class KBArticleMarkdownConverterTest {
 		String markdown = "Title [](id=1234)\n=============";
 		String fileEntryName = "some\\windows\\file";
 
-		Map<String, String> metadata = HashMapBuilder.put(
-			"base.source.url", "http://baseURL"
-		).build();
-
 		Object object = _constructor.newInstance(
-			markdown, fileEntryName, metadata, _dlURLHelper);
+			markdown, fileEntryName,
+			HashMapBuilder.put(
+				"base.source.url", "http://baseURL"
+			).build(),
+			_dlURLHelper);
 
 		Assert.assertEquals(
 			"http://baseURL/some/windows/file", _method.invoke(object));
@@ -131,12 +131,12 @@ public class KBArticleMarkdownConverterTest {
 		String markdown = "Title [](id=1234)\n=============";
 		String fileEntryName = "some/unix/file";
 
-		Map<String, String> metadata = HashMapBuilder.put(
-			"base.source.url", "http://baseURL/"
-		).build();
-
 		Object object = _constructor.newInstance(
-			markdown, fileEntryName, metadata, _dlURLHelper);
+			markdown, fileEntryName,
+			HashMapBuilder.put(
+				"base.source.url", "http://baseURL/"
+			).build(),
+			_dlURLHelper);
 
 		Assert.assertEquals(
 			"http://baseURL/some/unix/file", _method.invoke(object));

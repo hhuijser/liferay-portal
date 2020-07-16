@@ -721,9 +721,7 @@ public class DirectoryTreeTest extends BaseVLDAPTestCase {
 
 		Dn dn = new Dn("ou=test,ou=liferay.com,o=Liferay");
 
-		SearchBase searchBase = directoryTree.getSearchBase(dn, 0);
-
-		Assert.assertNull(searchBase);
+		Assert.assertNull(directoryTree.getSearchBase(dn, 0));
 	}
 
 	@Test
@@ -756,9 +754,7 @@ public class DirectoryTreeTest extends BaseVLDAPTestCase {
 
 		Dn dn = new Dn("o=test");
 
-		SearchBase searchBase = directoryTree.getSearchBase(dn, 0);
-
-		Assert.assertNull(searchBase);
+		Assert.assertNull(directoryTree.getSearchBase(dn, 0));
 	}
 
 	@Test
@@ -776,9 +772,7 @@ public class DirectoryTreeTest extends BaseVLDAPTestCase {
 
 		Dn dn = new Dn("ou=test,o=Liferay");
 
-		SearchBase searchBase = directoryTree.getSearchBase(dn, 0);
-
-		Assert.assertNull(searchBase);
+		Assert.assertNull(directoryTree.getSearchBase(dn, 0));
 	}
 
 	@Test
@@ -806,9 +800,7 @@ public class DirectoryTreeTest extends BaseVLDAPTestCase {
 	public void testGetSearchBaseWithNullDn() throws Exception {
 		DirectoryTree directoryTree = new DirectoryTree();
 
-		SearchBase searchBase = directoryTree.getSearchBase(null, 0);
-
-		Assert.assertNull(searchBase);
+		Assert.assertNull(directoryTree.getSearchBase(null, 0));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -939,9 +931,7 @@ public class DirectoryTreeTest extends BaseVLDAPTestCase {
 
 		Dn dn = new Dn("ou=Users,ou=liferay.com,o=Liferay");
 
-		SearchBase searchBase = directoryTree.getSearchBase(dn, 0);
-
-		assertUsersSearchBase(searchBase);
+		assertUsersSearchBase(directoryTree.getSearchBase(dn, 0));
 	}
 
 	@Test

@@ -99,15 +99,13 @@ public class EntryAttachmentContentUpdaterTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			_getInputStream(), ContentTypes.IMAGE_JPEG);
 
-		Map<String, String> attributes = HashMapBuilder.put(
-			"alt", "A big image"
-		).put(
-			"class", "image-big"
-		).build();
-
 		String tempFileEntryImgTag = _getTempEntryAttachmentFileEntryImgTag(
 			tempFileEntry.getFileEntryId(), _TEMP_FILE_ENTRY_IMAGE_URL,
-			attributes);
+			HashMapBuilder.put(
+				"alt", "A big image"
+			).put(
+				"class", "image-big"
+			).build());
 
 		String originalContent =
 			"<p>Sample Text</p><a href=\"www.liferay.com\">" +

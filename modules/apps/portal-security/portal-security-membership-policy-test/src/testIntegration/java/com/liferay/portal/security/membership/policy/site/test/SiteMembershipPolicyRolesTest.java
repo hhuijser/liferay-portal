@@ -94,10 +94,9 @@ public class SiteMembershipPolicyRolesTest
 
 		userGroupRoles.add(userGroupRole);
 
-		User user = UserLocalServiceUtil.getUser(userIds[0]);
-
 		MembershipPolicyTestUtil.updateUser(
-			user, null, null, null, null, userGroupRoles);
+			UserLocalServiceUtil.getUser(userIds[0]), null, null, null, null,
+			userGroupRoles);
 	}
 
 	@Test(expected = MembershipPolicyException.class)
@@ -124,10 +123,9 @@ public class SiteMembershipPolicyRolesTest
 
 		userGroupRoles.add(userGroupRole);
 
-		User user = UserLocalServiceUtil.getUser(userIds[0]);
-
 		MembershipPolicyTestUtil.updateUser(
-			user, null, null, null, null, userGroupRoles);
+			UserLocalServiceUtil.getUser(userIds[0]), null, null, null, null,
+			userGroupRoles);
 
 		Assert.assertTrue(isPropagateRoles());
 	}

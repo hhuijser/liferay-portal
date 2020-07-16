@@ -352,9 +352,7 @@ public class JournalArticleLocalServiceTest {
 				_group.getGroupId(), article.getArticleId(), Constants.VIEW,
 				defaultLanguageId, _themeDisplay);
 
-		String content = articleDisplay.getContent();
-
-		Assert.assertEquals("no-friendly-url", content);
+		Assert.assertEquals("no-friendly-url", articleDisplay.getContent());
 	}
 
 	@Test
@@ -480,33 +478,32 @@ public class JournalArticleLocalServiceTest {
 			TemplateConstants.LANG_TYPE_VM,
 			JournalTestUtil.getSampleTemplateXSL(), LocaleUtil.US);
 
-		Map<Locale, String> values = HashMapBuilder.put(
-			LocaleUtil.BRAZIL, "Valor Predefinido"
-		).put(
-			LocaleUtil.FRENCH, "Valeur Prédéfinie"
-		).put(
-			LocaleUtil.ITALY, "Valore Predefinito"
-		).put(
-			LocaleUtil.US, "Predefined Value"
-		).build();
-
 		String content = DDMStructureTestUtil.getSampleStructuredContent(
-			values, LocaleUtil.US.toString());
+			HashMapBuilder.put(
+				LocaleUtil.BRAZIL, "Valor Predefinido"
+			).put(
+				LocaleUtil.FRENCH, "Valeur Prédéfinie"
+			).put(
+				LocaleUtil.ITALY, "Valore Predefinito"
+			).put(
+				LocaleUtil.US, "Predefined Value"
+			).build(),
+			LocaleUtil.US.toString());
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, title
-		).build();
 
 		JournalArticle article =
 			_journalArticleLocalService.addArticleDefaultValues(
 				serviceContext.getUserId(), serviceContext.getScopeGroupId(),
 				_classNameLocalService.getClassNameId(DDMStructure.class),
-				ddmStructure.getStructureId(), titleMap, null, content,
-				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
-				null, true, false, null, null, serviceContext);
+				ddmStructure.getStructureId(),
+				HashMapBuilder.put(
+					LocaleUtil.US, title
+				).build(),
+				null, content, ddmStructure.getStructureKey(),
+				ddmTemplate.getTemplateKey(), null, true, false, null, null,
+				serviceContext);
 
 		return new Tuple(article, ddmStructure);
 	}

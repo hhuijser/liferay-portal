@@ -46,8 +46,6 @@ import com.liferay.portal.test.log.Log4JLoggerTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import org.apache.log4j.Level;
 
@@ -104,16 +102,12 @@ public class SourceServiceTest {
 
 	@Test
 	public void testGetSourcesCountAsAdminUser() throws Exception {
-		int sourcesCount = getSourcesCount(_adminPermissionChecker);
-
-		Assert.assertEquals(10, sourcesCount);
+		Assert.assertEquals(10, getSourcesCount(_adminPermissionChecker));
 	}
 
 	@Test
 	public void testGetSourcesCountAsGuestUser() throws Exception {
-		int sourcesCount = getSourcesCount(_guestPermissionChecker);
-
-		Assert.assertEquals(5, sourcesCount);
+		Assert.assertEquals(5, getSourcesCount(_guestPermissionChecker));
 	}
 
 	@Test
@@ -186,12 +180,11 @@ public class SourceServiceTest {
 			serviceContext.setModelPermissions(modelPermissions);
 
 			for (int i = 0; i < 5; i++) {
-				Map<Locale, String> nameMap = HashMapBuilder.put(
-					LocaleUtil.US, RandomTestUtil.randomString()
-				).build();
-
 				SourceLocalServiceUtil.addSource(
-					TestPropsValues.getUserId(), _group.getGroupId(), nameMap,
+					TestPropsValues.getUserId(), _group.getGroupId(),
+					HashMapBuilder.put(
+						LocaleUtil.US, RandomTestUtil.randomString()
+					).build(),
 					_DRIVER_CLASS_NAME, _URL, _USER_NAME, _PASSWORD,
 					serviceContext);
 			}
@@ -202,12 +195,11 @@ public class SourceServiceTest {
 			serviceContext.setModelPermissions(modelPermissions);
 
 			for (int i = 0; i < 5; i++) {
-				Map<Locale, String> nameMap = HashMapBuilder.put(
-					LocaleUtil.US, RandomTestUtil.randomString()
-				).build();
-
 				SourceLocalServiceUtil.addSource(
-					TestPropsValues.getUserId(), _group.getGroupId(), nameMap,
+					TestPropsValues.getUserId(), _group.getGroupId(),
+					HashMapBuilder.put(
+						LocaleUtil.US, RandomTestUtil.randomString()
+					).build(),
 					_DRIVER_CLASS_NAME, _URL, _USER_NAME, _PASSWORD,
 					serviceContext);
 			}

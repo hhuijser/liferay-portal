@@ -32,8 +32,6 @@ import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Map;
-
 import javax.portlet.PortletPreferences;
 
 import org.junit.Assert;
@@ -84,13 +82,12 @@ public class DDLDisplayExportImportTest
 
 		DDLRecordSet recordSet = record.getRecordSet();
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
-			"recordSetId",
-			new String[] {String.valueOf(recordSet.getRecordSetId())}
-		).build();
-
 		PortletPreferences importedPortletPreferences =
-			getImportedPortletPreferences(preferenceMap);
+			getImportedPortletPreferences(
+				HashMapBuilder.put(
+					"recordSetId",
+					new String[] {String.valueOf(recordSet.getRecordSetId())}
+				).build());
 
 		DDLRecord importedRecord =
 			DDLRecordLocalServiceUtil.fetchDDLRecordByUuidAndGroupId(

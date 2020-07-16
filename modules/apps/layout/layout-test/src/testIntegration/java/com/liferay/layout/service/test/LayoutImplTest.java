@@ -32,8 +32,6 @@ import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceRegistration;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -130,14 +128,12 @@ public class LayoutImplTest {
 
 			_layout.setType(type);
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"layout.type", type
-			).build();
-
 			ServiceRegistration<LayoutTypeController> serviceRegistration =
 				registry.registerService(
 					LayoutTypeController.class, layoutTypeController,
-					properties);
+					HashMapBuilder.<String, Object>put(
+						"layout.type", type
+					).build());
 
 			try {
 				Assert.assertTrue(_layout.isTypeEmbedded());
@@ -182,14 +178,12 @@ public class LayoutImplTest {
 
 			_layout.setType(layoutTypeValue);
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"layout.type", layoutTypeValue
-			).build();
-
 			ServiceRegistration<LayoutTypeController> serviceRegistration =
 				registry.registerService(
 					LayoutTypeController.class, layoutTypeController,
-					properties);
+					HashMapBuilder.<String, Object>put(
+						"layout.type", layoutTypeValue
+					).build());
 
 			try {
 				Assert.assertTrue(_layout.isTypePanel());
@@ -212,14 +206,12 @@ public class LayoutImplTest {
 			LayoutTypeController layoutTypeController =
 				new LayoutTypeControllerImpl(type);
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"layout.type", type
-			).build();
-
 			ServiceRegistration<LayoutTypeController> serviceRegistration =
 				registry.registerService(
 					LayoutTypeController.class, layoutTypeController,
-					properties);
+					HashMapBuilder.<String, Object>put(
+						"layout.type", type
+					).build());
 
 			try {
 				_layout.setType(type);
@@ -253,14 +245,12 @@ public class LayoutImplTest {
 
 			_layout.setType(type);
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"layout.type", type
-			).build();
-
 			ServiceRegistration<LayoutTypeController> serviceRegistration =
 				registry.registerService(
 					LayoutTypeController.class, layoutTypeController,
-					properties);
+					HashMapBuilder.<String, Object>put(
+						"layout.type", type
+					).build());
 
 			try {
 				Assert.assertTrue(_layout.isTypePortlet());

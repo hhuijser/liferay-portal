@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUti
 import com.liferay.portal.kernel.service.IdentityServiceContextFunction;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
@@ -79,14 +78,13 @@ public class MBDiscussionPermissionImplTest {
 		_siteUser1 = UserTestUtil.addUser(_group.getGroupId());
 		_siteUser2 = UserTestUtil.addUser(_group.getGroupId());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		_fileEntry = DLAppLocalServiceUtil.addFileEntry(
 			_user.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			StringUtil.randomString(), ContentTypes.APPLICATION_OCTET_STREAM,
-			null, serviceContext);
+			null,
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 
 		_initializeCommentManager();
 	}
@@ -127,11 +125,10 @@ public class MBDiscussionPermissionImplTest {
 
 	@Test
 	public void testBannedSiteMemberCannotAddComment() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		_mbBanLocalService.addBan(
-			_user.getUserId(), _siteUser1.getUserId(), serviceContext);
+			_user.getUserId(), _siteUser1.getUserId(),
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(_siteUser1);
@@ -233,11 +230,10 @@ public class MBDiscussionPermissionImplTest {
 	}
 
 	private long _addComment(User user) throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, user.getUserId());
-
 		IdentityServiceContextFunction serviceContextFunction =
-			new IdentityServiceContextFunction(serviceContext);
+			new IdentityServiceContextFunction(
+				ServiceContextTestUtil.getServiceContext(
+					_group, user.getUserId()));
 
 		return _commentManager.addComment(
 			user.getUserId(), _group.getGroupId(),

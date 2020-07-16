@@ -96,9 +96,8 @@ public class JournalArticleIndexerSummaryTest {
 		String content = "test content";
 		String title = "test title";
 
-		Document document = getDocument(title, content);
-
-		_summaryFixture.assertSummary(title, content, document);
+		_summaryFixture.assertSummary(
+			title, content, getDocument(title, content));
 	}
 
 	@Test

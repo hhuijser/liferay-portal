@@ -82,11 +82,10 @@ public class JSONFactoryTest {
 
 	@Test
 	public void testDeserializeLongArrayToIntegerArray() {
-		Map<String, long[]> map = HashMapBuilder.<String, long[]>put(
-			"key", new long[] {1L, 2L, 3L, 4L, 5L}
-		).build();
-
-		String json = JSONFactoryUtil.serialize(map);
+		String json = JSONFactoryUtil.serialize(
+			HashMapBuilder.<String, long[]>put(
+				"key", new long[] {1L, 2L, 3L, 4L, 5L}
+			).build());
 
 		Object object = JSONFactoryUtil.deserialize(json);
 

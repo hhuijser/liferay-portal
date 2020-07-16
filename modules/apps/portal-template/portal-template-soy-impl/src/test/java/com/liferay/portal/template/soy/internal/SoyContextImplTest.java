@@ -128,11 +128,11 @@ public class SoyContextImplTest {
 
 		soyContextImpl.putInjectedData("injectedKey", "injectedValue");
 
-		Map<String, Object> injectedData = HashMapBuilder.<String, Object>put(
-			"injectedKey", "overrideValue"
-		).build();
-
-		soyContextImpl.put(SoyTemplateConstants.INJECTED_DATA, injectedData);
+		soyContextImpl.put(
+			SoyTemplateConstants.INJECTED_DATA,
+			HashMapBuilder.<String, Object>put(
+				"injectedKey", "overrideValue"
+			).build());
 
 		Assert.assertEquals(
 			"overrideValue", soyContextImpl.getInjectedData("injectedKey"));
@@ -142,11 +142,10 @@ public class SoyContextImplTest {
 	public void testPutAllThrowsWithInvalidInjectedData() {
 		SoyContextImpl soyContextImpl = new SoyContextImpl();
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			SoyTemplateConstants.INJECTED_DATA, new Object()
-		).build();
-
-		soyContextImpl.putAll(data);
+		soyContextImpl.putAll(
+			HashMapBuilder.<String, Object>put(
+				SoyTemplateConstants.INJECTED_DATA, new Object()
+			).build());
 	}
 
 	@Test

@@ -133,15 +133,13 @@ public class OrganizationIndexerIndexedFieldsTest {
 			Organization.class, ExpandoColumnConstants.INDEX_TYPE_KEYWORD,
 			expandoColumnObs, expandoColumnName);
 
-		Map<String, Serializable> expandoValues =
+		Organization organization = _organizationFixture.createOrganization(
+			"My Organization",
 			HashMapBuilder.<String, Serializable>put(
 				expandoColumnName, "Software Developer"
 			).put(
 				expandoColumnObs, "Software Engineer"
-			).build();
-
-		Organization organization = _organizationFixture.createOrganization(
-			"My Organization", expandoValues);
+			).build());
 
 		String searchTerm = "Developer";
 

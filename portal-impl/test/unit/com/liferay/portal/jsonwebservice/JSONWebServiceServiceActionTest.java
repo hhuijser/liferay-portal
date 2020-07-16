@@ -179,7 +179,8 @@ public class JSONWebServiceServiceActionTest
 	public void testMultipartRequestFilesUpload() throws Exception {
 		registerActionClass(FooService.class);
 
-		Map<String, FileItem[]> fileParams =
+		HttpServletRequest httpServletRequest = new UploadServletRequestImpl(
+			createHttpRequest("/foo/upload-files"),
 			HashMapBuilder.<String, FileItem[]>put(
 				"firstFile", new FileItem[] {createLiferayFileItem("aaa")}
 			).put(
@@ -187,10 +188,8 @@ public class JSONWebServiceServiceActionTest
 				new FileItem[] {
 					createLiferayFileItem("bbb"), createLiferayFileItem("ccc")
 				}
-			).build();
-
-		HttpServletRequest httpServletRequest = new UploadServletRequestImpl(
-			createHttpRequest("/foo/upload-files"), fileParams, null);
+			).build(),
+			null);
 
 		JSONWebServiceAction jsonWebServiceAction = lookupJSONWebServiceAction(
 			httpServletRequest);

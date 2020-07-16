@@ -240,13 +240,13 @@ public class DDMFormTemplateContextFactoryTest {
 			_ddmFormTemplateContextFactory.create(
 				DDMFormTestUtil.createDDMForm(), ddmFormRenderingContext);
 
-		Map<String, String> expectedStringsMap = HashMapBuilder.put(
-			"next", "Next"
-		).put(
-			"previous", "Previous"
-		).build();
-
-		Assert.assertEquals(expectedStringsMap, templateContext.get("strings"));
+		Assert.assertEquals(
+			HashMapBuilder.put(
+				"next", "Next"
+			).put(
+				"previous", "Previous"
+			).build(),
+			templateContext.get("strings"));
 	}
 
 	@Test

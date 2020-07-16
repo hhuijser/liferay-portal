@@ -17,7 +17,6 @@ package com.liferay.portal.search.sort.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.search.sort.Sort;
 import com.liferay.portal.search.sort.SortBuilder;
 import com.liferay.portal.search.sort.SortBuilderFactory;
 import com.liferay.portal.search.test.util.SearchTestRule;
@@ -45,11 +44,10 @@ public class SortBuilderInstantiationTest {
 	public void testSortBuilderFactory() {
 		SortBuilder sortBuilder = _sortBuilderFactory.getSortBuilder();
 
-		Sort sort = sortBuilder.field(
-			RandomTestUtil.randomString()
-		).build();
-
-		Assert.assertNotNull(sort);
+		Assert.assertNotNull(
+			sortBuilder.field(
+				RandomTestUtil.randomString()
+			).build());
 	}
 
 	@Rule

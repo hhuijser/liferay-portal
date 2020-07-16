@@ -122,13 +122,11 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext =
 			new DDMFormFieldRenderingContext();
 
-		Map<String, Object> changedProperties =
+		ddmFormFieldRenderingContext.setProperty(
+			"changedProperties",
 			HashMapBuilder.<String, Object>put(
 				"multiple", true
-			).build();
-
-		ddmFormFieldRenderingContext.setProperty(
-			"changedProperties", changedProperties);
+			).build());
 
 		Assert.assertEquals(
 			true,

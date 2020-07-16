@@ -35,8 +35,6 @@ import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Map;
-
 import javax.portlet.PortletPreferences;
 
 import org.junit.Assert;
@@ -108,16 +106,17 @@ public class DDMFormDisplayExportImportTest
 		DDMFormInstance ddmFormInstance =
 			ddmFormInstanceRecord.getFormInstance();
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
-			"formInstanceId",
-			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())}
-		).put(
-			"groupId",
-			new String[] {String.valueOf(ddmFormInstance.getGroupId())}
-		).build();
-
 		PortletPreferences importedPortletPreferences =
-			getImportedPortletPreferences(preferenceMap);
+			getImportedPortletPreferences(
+				HashMapBuilder.put(
+					"formInstanceId",
+					new String[] {
+						String.valueOf(ddmFormInstance.getFormInstanceId())
+					}
+				).put(
+					"groupId",
+					new String[] {String.valueOf(ddmFormInstance.getGroupId())}
+				).build());
 
 		DDMFormInstance importedDDMFormInstance =
 			DDMFormInstanceLocalServiceUtil.

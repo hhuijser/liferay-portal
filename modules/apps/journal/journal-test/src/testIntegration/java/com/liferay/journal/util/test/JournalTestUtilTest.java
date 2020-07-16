@@ -196,14 +196,13 @@ public class JournalTestUtilTest {
 
 	@Test
 	public void testAddDynamicContent() throws Exception {
-		Map<Locale, String> contents = HashMapBuilder.put(
-			LocaleUtil.BRAZIL, "Joe Bloggs"
-		).put(
-			LocaleUtil.US, "Joe Bloggs"
-		).build();
-
 		String xml = DDMStructureTestUtil.getSampleStructuredContent(
-			contents, LanguageUtil.getLanguageId(LocaleUtil.US));
+			HashMapBuilder.put(
+				LocaleUtil.BRAZIL, "Joe Bloggs"
+			).put(
+				LocaleUtil.US, "Joe Bloggs"
+			).build(),
+			LanguageUtil.getLanguageId(LocaleUtil.US));
 
 		String content = (String)_transformMethod.invoke(
 			null, null, getTokens(), Constants.VIEW, "en_US",

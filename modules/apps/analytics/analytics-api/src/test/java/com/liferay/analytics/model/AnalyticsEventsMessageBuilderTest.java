@@ -69,13 +69,12 @@ public class AnalyticsEventsMessageBuilderTest {
 		String expectedApplicationId = randomString();
 		String expectedEventId = randomString();
 
-		Map<String, String> expectedProperties = HashMapBuilder.put(
-			randomString(), randomString()
-		).build();
-
 		expectedEvents.add(
 			createEvent(
-				expectedApplicationId, expectedEventId, expectedProperties));
+				expectedApplicationId, expectedEventId,
+				HashMapBuilder.put(
+					randomString(), randomString()
+				).build()));
 
 		// Message
 

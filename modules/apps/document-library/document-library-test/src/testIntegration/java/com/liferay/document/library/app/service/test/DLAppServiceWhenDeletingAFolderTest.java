@@ -81,13 +81,10 @@ public class DLAppServiceWhenDeletingAFolderTest extends BaseDLAppTestCase {
 			DLAppServiceTestUtil.registerDLSyncEventProcessorMessageListener(
 				DLSyncConstants.EVENT_DELETE);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		Folder folder = DLAppServiceUtil.addFolder(
 			group.getGroupId(), parentFolder.getFolderId(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 
 		DLAppServiceUtil.deleteFolder(folder.getFolderId());
 

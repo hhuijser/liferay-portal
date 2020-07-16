@@ -119,9 +119,7 @@ public class WikiNodeLocalServiceTest {
 		Company company = CompanyLocalServiceUtil.getCompany(
 			_node.getCompanyId());
 
-		String portalURL = company.getPortalURL(_node.getGroupId());
-
-		themeDisplay.setPortalURL(portalURL);
+		themeDisplay.setPortalURL(company.getPortalURL(_node.getGroupId()));
 
 		WikiPage sharedImagesPage = WikiPageLocalServiceUtil.fetchPage(
 			_node.getNodeId(), "SharedImages");

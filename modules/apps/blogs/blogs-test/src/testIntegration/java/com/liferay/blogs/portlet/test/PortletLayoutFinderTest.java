@@ -20,7 +20,6 @@ import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.impl.VirtualLayout;
 import com.liferay.portal.kernel.portlet.BasePortletLayoutFinder;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
@@ -86,10 +85,8 @@ public class PortletLayoutFinderTest {
 
 		};
 
-		User user = TestPropsValues.getUser();
-
 		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(user);
+			PermissionCheckerFactoryUtil.create(TestPropsValues.getUser());
 
 		_originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -198,9 +195,8 @@ public class PortletLayoutFinderTest {
 	protected HttpServletRequest getHttpServletRequest() throws Exception {
 		HttpServletRequest httpServletRequest = new MockHttpServletRequest();
 
-		ThemeDisplay themeDisplay = getThemeDisplay();
-
-		httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
+		httpServletRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, getThemeDisplay());
 
 		return httpServletRequest;
 	}

@@ -47,8 +47,6 @@ import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -133,12 +131,9 @@ public class PublicRenderParameterTest extends BasePortletContainerTestCase {
 
 		LayoutLocalServiceUtil.updateLayout(layout);
 
-		HttpServletRequest httpServletRequest =
-			PortletContainerTestUtil.getHttpServletRequest(group, layout);
-
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, TEST_PORTLET_ID, layout.getPlid(),
-			PortletRequest.RENDER_PHASE);
+			PortletContainerTestUtil.getHttpServletRequest(group, layout),
+			TEST_PORTLET_ID, layout.getPlid(), PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(prpName, prpValue);
 
@@ -193,12 +188,9 @@ public class PublicRenderParameterTest extends BasePortletContainerTestCase {
 
 		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID);
 
-		HttpServletRequest httpServletRequest =
-			PortletContainerTestUtil.getHttpServletRequest(group, layout);
-
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, TEST_PORTLET_ID, layout.getPlid(),
-			PortletRequest.RENDER_PHASE);
+			PortletContainerTestUtil.getHttpServletRequest(group, layout),
+			TEST_PORTLET_ID, layout.getPlid(), PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(prpName, prpValue);
 

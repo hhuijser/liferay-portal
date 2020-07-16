@@ -558,13 +558,13 @@ public class PingbackMethodImplTest {
 	}
 
 	protected void setUpPropsTestUtil() {
-		Map<String, Object> propertiesMap = HashMapBuilder.<String, Object>put(
-			PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS, String.valueOf(2)
-		).put(
-			PropsKeys.DNS_SECURITY_THREAD_LIMIT, String.valueOf(10)
-		).build();
-
-		PropsTestUtil.setProps(propertiesMap);
+		PropsTestUtil.setProps(
+			HashMapBuilder.<String, Object>put(
+				PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS,
+				String.valueOf(2)
+			).put(
+				PropsKeys.DNS_SECURITY_THREAD_LIMIT, String.valueOf(10)
+			).build());
 	}
 
 	protected void setUpUserLocalService() throws Exception {

@@ -77,14 +77,13 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_ARRAY_LOCALIZED);
 
-		Map<Locale, String[]> dataMap = HashMapBuilder.put(
-			_enLocale, new String[] {"one", "two", "three"}
-		).put(
-			_ptLocale, new String[] {"um", "dois", "tres"}
-		).build();
-
 		ExpandoValue value = ExpandoTestUtil.addValue(
-			_expandoTable, column, dataMap);
+			_expandoTable, column,
+			HashMapBuilder.put(
+				_enLocale, new String[] {"one", "two", "three"}
+			).put(
+				_ptLocale, new String[] {"um", "dois", "tres"}
+			).build());
 
 		value = ExpandoValueLocalServiceUtil.getExpandoValue(
 			value.getValueId());
@@ -108,14 +107,13 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_LOCALIZED);
 
-		Map<Locale, String> dataMap = HashMapBuilder.put(
-			_enLocale, "Test"
-		).put(
-			_ptLocale, "Teste"
-		).build();
-
 		ExpandoValue value = ExpandoTestUtil.addValue(
-			_expandoTable, column, dataMap);
+			_expandoTable, column,
+			HashMapBuilder.put(
+				_enLocale, "Test"
+			).put(
+				_ptLocale, "Teste"
+			).build());
 
 		value = ExpandoValueLocalServiceUtil.getExpandoValue(
 			value.getValueId());
@@ -204,13 +202,12 @@ public class ExpandoValueLocalServiceTest {
 
 	@Test
 	public void testGetDefaultColumnValue() throws Exception {
-		Map<Locale, String> defaultData = HashMapBuilder.put(
-			_enLocale, "Test"
-		).build();
-
 		ExpandoColumn column = ExpandoTestUtil.addColumn(
 			_expandoTable, "Test Column",
-			ExpandoColumnConstants.STRING_LOCALIZED, defaultData);
+			ExpandoColumnConstants.STRING_LOCALIZED,
+			HashMapBuilder.put(
+				_enLocale, "Test"
+			).build());
 
 		column = ExpandoColumnLocalServiceUtil.getColumn(column.getColumnId());
 
@@ -226,14 +223,14 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_LOCALIZED);
 
-		Map<Locale, String> dataMap = HashMapBuilder.put(
-			_enLocale, "one"
-		).put(
-			_ptLocale, "um"
-		).build();
-
 		ExpandoValue value = ExpandoTestUtil.addValue(
-			_expandoTable, column, dataMap, _ptLocale);
+			_expandoTable, column,
+			HashMapBuilder.put(
+				_enLocale, "one"
+			).put(
+				_ptLocale, "um"
+			).build(),
+			_ptLocale);
 
 		value = ExpandoValueLocalServiceUtil.getExpandoValue(
 			value.getValueId());

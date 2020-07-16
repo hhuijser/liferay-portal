@@ -38,7 +38,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Collection;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Assume;
@@ -108,15 +107,13 @@ public class AMGIFImageScalerTest {
 	}
 
 	private AMImageConfigurationEntry _addTestVariant() throws Exception {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "100"
-		).build();
-
 		return _amImageConfigurationHelper.addAMImageConfigurationEntry(
 			TestPropsValues.getCompanyId(), "small", StringPool.BLANK, "0",
-			properties);
+			HashMapBuilder.put(
+				"max-height", "100"
+			).put(
+				"max-width", "100"
+			).build());
 	}
 
 	private AMImageConfigurationEntry _amImageConfigurationEntry;

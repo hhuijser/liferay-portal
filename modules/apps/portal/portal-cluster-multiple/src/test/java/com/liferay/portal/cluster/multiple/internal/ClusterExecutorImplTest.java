@@ -39,7 +39,6 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 import org.junit.Assert;
@@ -374,15 +373,15 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 	protected ClusterExecutorImpl getClusterExecutorImpl() {
 		ClusterExecutorImpl clusterExecutorImpl = new ClusterExecutorImpl();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			PropsKeys.CLUSTER_LINK_CHANNEL_NAME_CONTROL,
-			"test-channel-name-control"
-		).put(
-			PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_CONTROL,
-			"test-channel-properties-control"
-		).build();
-
-		clusterExecutorImpl.setProps(PropsTestUtil.setProps(properties));
+		clusterExecutorImpl.setProps(
+			PropsTestUtil.setProps(
+				HashMapBuilder.<String, Object>put(
+					PropsKeys.CLUSTER_LINK_CHANNEL_NAME_CONTROL,
+					"test-channel-name-control"
+				).put(
+					PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_CONTROL,
+					"test-channel-properties-control"
+				).build()));
 
 		clusterExecutorImpl.setClusterChannelFactory(
 			new TestClusterChannelFactory());

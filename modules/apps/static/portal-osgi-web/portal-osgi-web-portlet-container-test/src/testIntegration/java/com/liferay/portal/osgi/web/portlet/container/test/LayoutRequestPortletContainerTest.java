@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.osgi.web.portlet.container.test.util.PortletContainerTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -46,12 +44,11 @@ public class LayoutRequestPortletContainerTest
 			testPortlet, new HashMapDictionary<String, Object>(),
 			TEST_PORTLET_ID);
 
-		HttpServletRequest httpServletRequest =
-			PortletContainerTestUtil.getHttpServletRequest(group, layout);
-
 		PortletContainerTestUtil.Response response =
 			PortletContainerTestUtil.request(
-				layout.getRegularURL(httpServletRequest));
+				layout.getRegularURL(
+					PortletContainerTestUtil.getHttpServletRequest(
+						group, layout)));
 
 		Assert.assertEquals(200, response.getCode());
 

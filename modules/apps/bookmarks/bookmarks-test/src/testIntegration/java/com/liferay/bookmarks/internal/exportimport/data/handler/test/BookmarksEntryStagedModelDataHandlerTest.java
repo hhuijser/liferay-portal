@@ -24,7 +24,6 @@ import com.liferay.exportimport.test.util.lar.BaseWorkflowedStagedModelDataHandl
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.StagedModel;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
@@ -80,11 +79,9 @@ public class BookmarksEntryStagedModelDataHandlerTest
 
 		BookmarksFolder folder = (BookmarksFolder)dependentStagedModels.get(0);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		return BookmarksTestUtil.addEntry(
-			folder.getFolderId(), true, serviceContext);
+			folder.getFolderId(), true,
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
 	@Override

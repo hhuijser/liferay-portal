@@ -33,7 +33,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -68,24 +67,22 @@ public class LayoutFriendlyURLServiceTest {
 
 		String name = RandomTestUtil.randomString();
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.GERMANY, name
-		).put(
-			LocaleUtil.SPAIN, name
-		).put(
-			LocaleUtil.US, name
-		).build();
-
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
-			LocaleUtil.GERMANY, "/germanurl"
-		).put(
-			LocaleUtil.SPAIN, "/spanishurl"
-		).put(
-			LocaleUtil.US, "/englishurl"
-		).build();
-
 		Layout layout = LayoutTestUtil.addLayout(
-			_group.getGroupId(), false, nameMap, friendlyURLMap);
+			_group.getGroupId(), false,
+			HashMapBuilder.put(
+				LocaleUtil.GERMANY, name
+			).put(
+				LocaleUtil.SPAIN, name
+			).put(
+				LocaleUtil.US, name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.GERMANY, "/germanurl"
+			).put(
+				LocaleUtil.SPAIN, "/spanishurl"
+			).put(
+				LocaleUtil.US, "/englishurl"
+			).build());
 
 		List<LayoutFriendlyURL> layoutFriendlyURLs =
 			LayoutFriendlyURLLocalServiceUtil.getLayoutFriendlyURLs(
@@ -117,20 +114,18 @@ public class LayoutFriendlyURLServiceTest {
 
 		String name = RandomTestUtil.randomString();
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.SPAIN, name
-		).put(
-			LocaleUtil.US, name
-		).build();
-
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
-			LocaleUtil.SPAIN, "/spanishurl"
-		).put(
-			LocaleUtil.US, "/englishurl"
-		).build();
-
 		Layout layout = LayoutTestUtil.addLayout(
-			_group.getGroupId(), false, nameMap, friendlyURLMap);
+			_group.getGroupId(), false,
+			HashMapBuilder.put(
+				LocaleUtil.SPAIN, name
+			).put(
+				LocaleUtil.US, name
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.SPAIN, "/spanishurl"
+			).put(
+				LocaleUtil.US, "/englishurl"
+			).build());
 
 		Locale locale = LocaleThreadLocal.getSiteDefaultLocale();
 

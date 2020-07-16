@@ -32,7 +32,6 @@ import java.io.OutputStreamWriter;
 import java.net.URLConnection;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.POST;
@@ -57,18 +56,18 @@ public class XMLMessageBodyReaderTest {
 	public void setUp() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"liferay.auth.verifier", true
-		).put(
-			"liferay.oauth2", false
-		).put(
-			"osgi.jaxrs.application.base", "/test-vulcan"
-		).put(
-			"osgi.jaxrs.extension.select", "(osgi.jaxrs.name=Liferay.Vulcan)"
-		).build();
-
 		_serviceRegistration = registry.registerService(
-			Application.class, new TestApplication(), properties);
+			Application.class, new TestApplication(),
+			HashMapBuilder.<String, Object>put(
+				"liferay.auth.verifier", true
+			).put(
+				"liferay.oauth2", false
+			).put(
+				"osgi.jaxrs.application.base", "/test-vulcan"
+			).put(
+				"osgi.jaxrs.extension.select",
+				"(osgi.jaxrs.name=Liferay.Vulcan)"
+			).build());
 	}
 
 	@After

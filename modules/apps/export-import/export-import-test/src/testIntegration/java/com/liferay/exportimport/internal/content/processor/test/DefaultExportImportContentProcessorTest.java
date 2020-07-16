@@ -80,7 +80,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.portal.util.PortalImpl;
 import com.liferay.portal.util.PropsValues;
-import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceTracker;
@@ -137,9 +136,8 @@ public class DefaultExportImportContentProcessorTest {
 		sb.append(ExportImportContentProcessor.class.getName());
 		sb.append("))");
 
-		Filter filter = registry.getFilter(sb.toString());
-
-		_serviceTracker = registry.trackServices(filter);
+		_serviceTracker = registry.trackServices(
+			registry.getFilter(sb.toString()));
 
 		_serviceTracker.open();
 	}
@@ -311,17 +309,13 @@ public class DefaultExportImportContentProcessorTest {
 		TestReaderWriter testReaderWriter =
 			(TestReaderWriter)_portletDataContextExport.getZipWriter();
 
-		List<String> entries = testReaderWriter.getEntries();
-
 		_assertContainsReference(
-			entries, DLFileEntryConstants.getClassName(),
+			testReaderWriter.getEntries(), DLFileEntryConstants.getClassName(),
 			_fileEntry.getFileEntryId());
-
-		List<String> binaryEntries = testReaderWriter.getBinaryEntries();
 
 		_assertContainsBinary(
-			binaryEntries, DLFileEntryConstants.getClassName(),
-			_fileEntry.getFileEntryId());
+			testReaderWriter.getBinaryEntries(),
+			DLFileEntryConstants.getClassName(), _fileEntry.getFileEntryId());
 
 		int count = 0;
 

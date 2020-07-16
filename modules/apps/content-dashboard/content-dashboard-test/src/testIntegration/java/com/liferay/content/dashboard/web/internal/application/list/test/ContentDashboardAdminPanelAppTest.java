@@ -55,12 +55,10 @@ public class ContentDashboardAdminPanelAppTest {
 		mockHttpServletRequest.setAttribute(
 			WebKeys.USER_ID, TestPropsValues.getUserId());
 
-		PortletURL portletURL = _panelApp.getPortletURL(mockHttpServletRequest);
-
 		Assert.assertEquals(
 			String.valueOf(TestPropsValues.getUserId()),
 			_http.getParameter(
-				String.valueOf(portletURL),
+				String.valueOf(_panelApp.getPortletURL(mockHttpServletRequest)),
 				"_com_liferay_content_dashboard_web_portlet_" +
 					"ContentDashboardAdminPortlet_authorIds",
 				false));

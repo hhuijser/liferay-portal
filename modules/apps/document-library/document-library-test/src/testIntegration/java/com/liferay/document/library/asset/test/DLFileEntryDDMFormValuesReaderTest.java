@@ -82,10 +82,8 @@ public class DLFileEntryDDMFormValuesReaderTest {
 			new DLFileEntryDDMFormValuesReader(
 				_fileEntry, _fileEntry.getFileVersion());
 
-		DDMFormValues expectedDDMFormValues = getExpectedDDMFormValues();
-
 		Assert.assertEquals(
-			expectedDDMFormValues, ddmFormValuesReader.getDDMFormValues());
+			getExpectedDDMFormValues(), ddmFormValuesReader.getDDMFormValues());
 	}
 
 	protected DLFileEntryType addDLFileEntryType(ServiceContext serviceContext)

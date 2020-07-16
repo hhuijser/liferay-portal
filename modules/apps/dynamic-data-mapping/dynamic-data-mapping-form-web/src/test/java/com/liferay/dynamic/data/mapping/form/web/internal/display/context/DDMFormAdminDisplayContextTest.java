@@ -115,9 +115,8 @@ public class DDMFormAdminDisplayContextTest extends PowerMockito {
 		setRenderRequestParamenter(
 			"formInstanceId", String.valueOf(_RESTRICTED_FORM_INSTANCE_ID));
 
-		String formURL = _ddmFormAdminDisplayContext.getFormURL();
-
-		Assert.assertEquals(getRestrictedFormURL(), formURL);
+		Assert.assertEquals(
+			getRestrictedFormURL(), _ddmFormAdminDisplayContext.getFormURL());
 	}
 
 	@Test
@@ -125,9 +124,8 @@ public class DDMFormAdminDisplayContextTest extends PowerMockito {
 		setRenderRequestParamenter(
 			"formInstanceId", String.valueOf(_SHARED_FORM_INSTANCE_ID));
 
-		String formURL = _ddmFormAdminDisplayContext.getFormURL();
-
-		Assert.assertEquals(getSharedFormURL(), formURL);
+		Assert.assertEquals(
+			getSharedFormURL(), _ddmFormAdminDisplayContext.getFormURL());
 	}
 
 	@Test
@@ -144,17 +142,15 @@ public class DDMFormAdminDisplayContextTest extends PowerMockito {
 
 	@Test
 	public void testGetRestrictedFormURL() throws Exception {
-		String restrictedFormURL =
-			_ddmFormAdminDisplayContext.getRestrictedFormURL();
-
-		Assert.assertEquals(getRestrictedFormURL(), restrictedFormURL);
+		Assert.assertEquals(
+			getRestrictedFormURL(),
+			_ddmFormAdminDisplayContext.getRestrictedFormURL());
 	}
 
 	@Test
 	public void testGetSharedFormURL() throws Exception {
-		String sharedFormURL = _ddmFormAdminDisplayContext.getSharedFormURL();
-
-		Assert.assertEquals(getSharedFormURL(), sharedFormURL);
+		Assert.assertEquals(
+			getSharedFormURL(), _ddmFormAdminDisplayContext.getSharedFormURL());
 	}
 
 	protected String getFormURL(

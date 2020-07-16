@@ -94,12 +94,9 @@ public class SoyPortletHelperTest {
 		SoyPortletHelper soyPortletHelper = new SoyPortletHelper(
 			bundle, mvcCommandCache, friendlyURLMapper);
 
-		String javaScriptLoaderModule =
-			soyPortletHelper.getJavaScriptLoaderModule("JavaScriptCommand");
-
 		Assert.assertEquals(
 			"package-with-version@1.0.0/JavaScriptCommand",
-			javaScriptLoaderModule);
+			soyPortletHelper.getJavaScriptLoaderModule("JavaScriptCommand"));
 	}
 
 	@Test
@@ -112,11 +109,9 @@ public class SoyPortletHelperTest {
 		SoyPortletHelper soyPortletHelper = new SoyPortletHelper(
 			bundle, mvcCommandCache, friendlyURLMapper);
 
-		String javaScriptLoaderModule =
-			soyPortletHelper.getJavaScriptLoaderModule("ES6Command");
-
 		Assert.assertEquals(
-			"package-with-version@1.0.0/ES6Command.es", javaScriptLoaderModule);
+			"package-with-version@1.0.0/ES6Command.es",
+			soyPortletHelper.getJavaScriptLoaderModule("ES6Command"));
 	}
 
 	@Test
@@ -129,12 +124,9 @@ public class SoyPortletHelperTest {
 		SoyPortletHelper soyPortletHelper = new SoyPortletHelper(
 			bundle, mvcCommandCache, friendlyURLMapper);
 
-		String javaScriptLoaderModule =
-			soyPortletHelper.getJavaScriptLoaderModule("SoyCommand");
-
 		Assert.assertEquals(
 			"package-with-version@1.0.0/SoyCommand.soy",
-			javaScriptLoaderModule);
+			soyPortletHelper.getJavaScriptLoaderModule("SoyCommand"));
 	}
 
 	private Bundle _mockBundleWithoutPackage() {

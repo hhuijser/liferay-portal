@@ -43,11 +43,10 @@ public class ElasticsearchConnectionManagerTest {
 
 	@Test
 	public void testActivateMustNotOpenAnyConnection() {
-		HashMap<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"operationMode", OperationMode.EMBEDDED.name()
-		).build();
-
-		_elasticsearchConnectionManager.activate(properties);
+		_elasticsearchConnectionManager.activate(
+			HashMapBuilder.<String, Object>put(
+				"operationMode", OperationMode.EMBEDDED.name()
+			).build());
 
 		verifyNeverCloseNeverConnect(_embeddedElasticsearchConnection);
 		verifyNeverCloseNeverConnect(_remoteElasticsearchConnection);
@@ -55,11 +54,10 @@ public class ElasticsearchConnectionManagerTest {
 
 	@Test
 	public void testActivateThenConnect() {
-		HashMap<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"operationMode", OperationMode.EMBEDDED.name()
-		).build();
-
-		_elasticsearchConnectionManager.activate(properties);
+		_elasticsearchConnectionManager.activate(
+			HashMapBuilder.<String, Object>put(
+				"operationMode", OperationMode.EMBEDDED.name()
+			).build());
 
 		_elasticsearchConnectionManager.connect();
 

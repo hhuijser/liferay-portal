@@ -282,12 +282,11 @@ public class FreeMarkerTemplateTest {
 
 	@Test
 	public void testProcessTemplate8() throws Exception {
-		Map<String, Object> context = HashMapBuilder.<String, Object>put(
-			_TEST_KEY, _TEST_VALUE
-		).build();
-
 		Template template = new FreeMarkerTemplate(
-			new MockTemplateResource(_TEMPLATE_FILE_NAME), context,
+			new MockTemplateResource(_TEMPLATE_FILE_NAME),
+			HashMapBuilder.<String, Object>put(
+				_TEST_KEY, _TEST_VALUE
+			).build(),
 			_configuration, _templateContextHelper, _templateResourceCache,
 			false, (BeansWrapper)_configuration.getObjectWrapper(), null);
 

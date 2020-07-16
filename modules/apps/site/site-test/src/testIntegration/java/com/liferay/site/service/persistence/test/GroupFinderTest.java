@@ -46,7 +46,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.TransactionalTestRule;
 
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -93,7 +92,11 @@ public class GroupFinderTest {
 			_arbitraryResourceAction.getName(),
 			String.valueOf(_group.getGroupId()), ResourceConstants.SCOPE_GROUP);
 
-		LinkedHashMap<String, Object> groupParams =
+		List<Group> groups = _groupFinder.findByC_C_PG_N_D(
+			TestPropsValues.getCompanyId(),
+			new long[] {_portal.getClassNameId(Group.class)},
+			GroupConstants.ANY_PARENT_GROUP_ID, new String[] {null},
+			new String[] {null},
 			LinkedHashMapBuilder.<String, Object>put(
 				"rolePermissions",
 				new RolePermissions(
@@ -101,14 +104,8 @@ public class GroupFinderTest {
 					ResourceConstants.SCOPE_GROUP,
 					_arbitraryResourceAction.getActionId(),
 					_resourcePermission.getRoleId())
-			).build();
-
-		List<Group> groups = _groupFinder.findByC_C_PG_N_D(
-			TestPropsValues.getCompanyId(),
-			new long[] {_portal.getClassNameId(Group.class)},
-			GroupConstants.ANY_PARENT_GROUP_ID, new String[] {null},
-			new String[] {null}, groupParams, true, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+			).build(),
+			true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Assert.assertTrue(
 			"The method findByC_C_N_D should have returned the group " +
@@ -131,35 +128,32 @@ public class GroupFinderTest {
 		_groupLocalService.addUserGroupGroup(
 			_userGroup.getUserGroupId(), group.getGroupId());
 
-		LinkedHashMap<String, Object> params =
+		List<Group> groups = _groupFinder.findByC_C_PG_N_D(
+			_organization.getCompanyId(), null,
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, null, null,
 			LinkedHashMapBuilder.<String, Object>put(
 				"inherit", true
 			).put(
 				"usersGroups", _user.getUserId()
-			).build();
-
-		List<Group> groups = _groupFinder.findByC_C_PG_N_D(
-			_organization.getCompanyId(), null,
-			GroupConstants.DEFAULT_PARENT_GROUP_ID, null, null, params, true,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			).build(),
+			true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Assert.assertTrue(groups.toString(), groups.contains(group));
 	}
 
 	@Test
 	public void testFindByCompanyId() throws Exception {
-		LinkedHashMap<String, Object> groupParams =
+		List<Group> groups = _groupFinder.findByCompanyId(
+			TestPropsValues.getCompanyId(),
 			LinkedHashMapBuilder.<String, Object>put(
 				"inherit", Boolean.TRUE
 			).put(
 				"site", Boolean.TRUE
 			).put(
 				"usersGroups", TestPropsValues.getUserId()
-			).build();
-
-		List<Group> groups = _groupFinder.findByCompanyId(
-			TestPropsValues.getCompanyId(), groupParams, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new GroupNameComparator(true));
+			).build(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new GroupNameComparator(true));
 
 		Assert.assertFalse(groups.toString(), groups.isEmpty());
 	}
@@ -175,18 +169,17 @@ public class GroupFinderTest {
 
 		_userGroupLocalService.addUserUserGroup(_user.getUserId(), _userGroup);
 
-		LinkedHashMap<String, Object> groupParams =
+		List<Group> groups = _groupFinder.findByCompanyId(
+			TestPropsValues.getCompanyId(),
 			LinkedHashMapBuilder.<String, Object>put(
 				"inherit", Boolean.TRUE
 			).put(
 				"site", Boolean.TRUE
 			).put(
 				"usersGroups", _user.getUserId()
-			).build();
-
-		List<Group> groups = _groupFinder.findByCompanyId(
-			TestPropsValues.getCompanyId(), groupParams, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new GroupNameComparator(true));
+			).build(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new GroupNameComparator(true));
 
 		boolean exists = false;
 

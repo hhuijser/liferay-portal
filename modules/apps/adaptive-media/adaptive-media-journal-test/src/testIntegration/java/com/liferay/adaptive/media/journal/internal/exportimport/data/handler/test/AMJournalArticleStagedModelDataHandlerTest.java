@@ -88,15 +88,14 @@ public class AMJournalArticleStagedModelDataHandlerTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "600"
-		).put(
-			"max-width", "800"
-		).build();
-
 		_amImageConfigurationHelper.addAMImageConfigurationEntry(
 			stagingGroup.getCompanyId(), StringUtil.randomString(),
-			StringUtil.randomString(), _AM_JOURNAL_CONFIG_UUID, properties);
+			StringUtil.randomString(), _AM_JOURNAL_CONFIG_UUID,
+			HashMapBuilder.put(
+				"max-height", "600"
+			).put(
+				"max-width", "800"
+			).build());
 	}
 
 	@After
@@ -271,15 +270,15 @@ public class AMJournalArticleStagedModelDataHandlerTest
 			RandomTestUtil.randomString(), "This is a test folder.",
 			serviceContext);
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "Test Article"
-		).build();
-
 		return _journalArticleLocalService.addArticle(
 			serviceContext.getUserId(), serviceContext.getScopeGroupId(),
 			journalFolder.getFolderId(),
 			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, 0, StringPool.BLANK,
-			true, 0, titleMap, null, content, ddmStructure.getStructureKey(),
+			true, 0,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), "Test Article"
+			).build(),
+			null, content, ddmStructure.getStructureKey(),
 			ddmTemplate.getTemplateKey(), null, 1, 1, 1965, 0, 0, 0, 0, 0, 0, 0,
 			true, 0, 0, 0, 0, 0, true, true, false, null, null, null, null,
 			serviceContext);

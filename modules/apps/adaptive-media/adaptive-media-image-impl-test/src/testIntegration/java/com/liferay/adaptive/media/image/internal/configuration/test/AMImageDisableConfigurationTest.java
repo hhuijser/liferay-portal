@@ -130,14 +130,13 @@ public class AMImageDisableConfigurationTest
 
 	@Test
 	public void testDisableDisabledConfigurationEntry() throws Exception {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "100"
-		).build();
-
 		_amImageConfigurationHelper.addAMImageConfigurationEntry(
-			TestPropsValues.getCompanyId(), "one", "desc", "1", properties);
+			TestPropsValues.getCompanyId(), "one", "desc", "1",
+			HashMapBuilder.put(
+				"max-height", "100"
+			).put(
+				"max-width", "100"
+			).build());
 
 		_amImageConfigurationHelper.disableAMImageConfigurationEntry(
 			TestPropsValues.getCompanyId(), "1");
@@ -250,14 +249,13 @@ public class AMImageDisableConfigurationTest
 
 	@Test
 	public void testDisableUniqueConfigurationEntry() throws Exception {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "100"
-		).build();
-
 		_amImageConfigurationHelper.addAMImageConfigurationEntry(
-			TestPropsValues.getCompanyId(), "one", "desc", "1", properties);
+			TestPropsValues.getCompanyId(), "one", "desc", "1",
+			HashMapBuilder.put(
+				"max-height", "100"
+			).put(
+				"max-width", "100"
+			).build());
 
 		Optional<AMImageConfigurationEntry> amImageConfigurationEntryOptional =
 			_amImageConfigurationHelper.getAMImageConfigurationEntry(

@@ -43,7 +43,6 @@ import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.users.admin.kernel.util.UsersAdminUtil;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.junit.Assert;
@@ -192,15 +191,13 @@ public class UserGroupServiceTest {
 	}
 
 	private void _assertSearch(User user, int expected) throws Exception {
-		LinkedHashMap<String, Object> userGroupParams =
+		List<UserGroup> userGroups = _userGroupService.search(
+			user.getCompanyId(), null,
 			LinkedHashMapBuilder.<String, Object>put(
 				UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_USERS,
 				Long.valueOf(user.getUserId())
-			).build();
-
-		List<UserGroup> userGroups = _userGroupService.search(
-			user.getCompanyId(), null, userGroupParams, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS,
+			).build(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			UsersAdminUtil.getUserGroupOrderByComparator("name", "asc"));
 
 		Assert.assertEquals(userGroups.toString(), expected, userGroups.size());

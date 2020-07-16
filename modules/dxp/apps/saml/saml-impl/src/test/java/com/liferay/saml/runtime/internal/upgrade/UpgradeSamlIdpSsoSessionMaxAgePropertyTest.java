@@ -24,7 +24,6 @@ import com.liferay.saml.runtime.internal.upgrade.v1_0_0.UpgradeSamlIdpSsoSession
 
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -49,14 +48,13 @@ public class UpgradeSamlIdpSsoSessionMaxAgePropertyTest extends PowerMockito {
 	public void testSamlProviderPropertyMapping() throws Exception {
 		long samlIdpSsoSessionMaxAge = RandomTestUtil.randomLong();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			LegacySamlPropsKeys.SAML_IDP_SESSION_MAXIMUM_AGE,
-			samlIdpSsoSessionMaxAge
-		).build();
-
 		SamlProviderConfiguration samlProviderConfiguration =
 			ConfigurableUtil.createConfigurable(
-				SamlProviderConfiguration.class, properties);
+				SamlProviderConfiguration.class,
+				HashMapBuilder.<String, Object>put(
+					LegacySamlPropsKeys.SAML_IDP_SESSION_MAXIMUM_AGE,
+					samlIdpSsoSessionMaxAge
+				).build());
 
 		Assert.assertEquals(
 			samlIdpSsoSessionMaxAge,

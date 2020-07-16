@@ -51,9 +51,8 @@ public class FallbackSettingsTest extends PowerMockito {
 			mockValues
 		);
 
-		String[] values = _fallbackSettings.getValues("key1", defaultValues);
-
-		Assert.assertArrayEquals(mockValues, values);
+		Assert.assertArrayEquals(
+			mockValues, _fallbackSettings.getValues("key1", defaultValues));
 
 		verifyGetValues("key1", "key2");
 	}
@@ -62,9 +61,8 @@ public class FallbackSettingsTest extends PowerMockito {
 	public void testGetValuesWhenUnconfigured() {
 		String[] defaultValues = {"default"};
 
-		String[] values = _fallbackSettings.getValues("key1", defaultValues);
-
-		Assert.assertArrayEquals(defaultValues, values);
+		Assert.assertArrayEquals(
+			defaultValues, _fallbackSettings.getValues("key1", defaultValues));
 
 		verifyGetValues("key1", "key2", "key3");
 	}
@@ -77,18 +75,16 @@ public class FallbackSettingsTest extends PowerMockito {
 			"value"
 		);
 
-		String value = _fallbackSettings.getValue("key1", "default");
-
-		Assert.assertEquals("value", value);
+		Assert.assertEquals(
+			"value", _fallbackSettings.getValue("key1", "default"));
 
 		verifyGetValue("key1", "key2");
 	}
 
 	@Test
 	public void testGetValueWhenUnconfigured() {
-		String value = _fallbackSettings.getValue("key1", "default");
-
-		Assert.assertEquals("default", value);
+		Assert.assertEquals(
+			"default", _fallbackSettings.getValue("key1", "default"));
 
 		verifyGetValue("key1", "key2", "key3");
 	}

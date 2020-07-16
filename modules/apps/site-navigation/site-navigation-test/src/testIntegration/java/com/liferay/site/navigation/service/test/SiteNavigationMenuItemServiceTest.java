@@ -18,7 +18,6 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -69,15 +68,12 @@ public class SiteNavigationMenuItemServiceTest {
 
 	@Test
 	public void testAddSiteNavigationMenuItem() throws PortalException {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		SiteNavigationMenuItem siteNavigationMenuItem =
 			_siteNavigationMenuItemService.addSiteNavigationMenuItem(
 				_group.getGroupId(),
 				_siteNavigationMenu.getSiteNavigationMenuId(), 0,
 				SiteNavigationMenuItemTypeConstants.LAYOUT, StringPool.BLANK,
-				serviceContext);
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		SiteNavigationMenuItem persistedSiteNavigationMenuItem =
 			_siteNavigationMenuItemPersistence.fetchByPrimaryKey(

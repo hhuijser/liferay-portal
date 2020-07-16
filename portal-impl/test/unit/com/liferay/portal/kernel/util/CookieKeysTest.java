@@ -38,9 +38,8 @@ public class CookieKeysTest {
 
 	@Test
 	public void testDomain1() throws Exception {
-		String domain = CookieKeys.getDomain("www.liferay.com");
-
-		Assert.assertEquals(".liferay.com", domain);
+		Assert.assertEquals(
+			".liferay.com", CookieKeys.getDomain("www.liferay.com"));
 	}
 
 	@Test
@@ -50,9 +49,8 @@ public class CookieKeysTest {
 
 		mockHttpServletRequest.setServerName("www.liferay.com");
 
-		String domain = CookieKeys.getDomain(mockHttpServletRequest);
-
-		Assert.assertEquals(StringPool.BLANK, domain);
+		Assert.assertEquals(
+			StringPool.BLANK, CookieKeys.getDomain(mockHttpServletRequest));
 	}
 
 	@Test
@@ -70,9 +68,9 @@ public class CookieKeysTest {
 		try {
 			field.set(null, "www.example.com");
 
-			String domain = CookieKeys.getDomain(mockHttpServletRequest);
-
-			Assert.assertEquals("www.example.com", domain);
+			Assert.assertEquals(
+				"www.example.com",
+				CookieKeys.getDomain(mockHttpServletRequest));
 		}
 		finally {
 			field.set(null, value);
@@ -94,9 +92,8 @@ public class CookieKeysTest {
 		try {
 			field.set(null, Boolean.FALSE);
 
-			String domain = CookieKeys.getDomain(mockHttpServletRequest);
-
-			Assert.assertEquals(".liferay.com", domain);
+			Assert.assertEquals(
+				".liferay.com", CookieKeys.getDomain(mockHttpServletRequest));
 		}
 		finally {
 			field.set(null, value);
@@ -118,9 +115,8 @@ public class CookieKeysTest {
 		try {
 			field.set(null, Boolean.TRUE);
 
-			String domain = CookieKeys.getDomain(mockHttpServletRequest);
-
-			Assert.assertEquals(StringPool.BLANK, domain);
+			Assert.assertEquals(
+				StringPool.BLANK, CookieKeys.getDomain(mockHttpServletRequest));
 		}
 		finally {
 			field.set(null, value);

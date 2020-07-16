@@ -230,19 +230,17 @@ public class RadioDDMFormFieldTemplateContextContributorTest
 	}
 
 	protected List<Map<String, String>> createDDMFormOptions() {
-		Map<String, String> keyValuePair0 = HashMapBuilder.put(
-			"label", "Label 0"
-		).put(
-			"value", "Value 0"
-		).build();
-
-		Map<String, String> keyValuePair1 = HashMapBuilder.put(
-			"label", "Label 1"
-		).put(
-			"value", "Value 1"
-		).build();
-
-		return Arrays.asList(keyValuePair0, keyValuePair1);
+		return Arrays.asList(
+			HashMapBuilder.put(
+				"label", "Label 0"
+			).put(
+				"value", "Value 0"
+			).build(),
+			HashMapBuilder.put(
+				"label", "Label 1"
+			).put(
+				"value", "Value 1"
+			).build());
 	}
 
 	protected void setUpJSONFactory() throws Exception {

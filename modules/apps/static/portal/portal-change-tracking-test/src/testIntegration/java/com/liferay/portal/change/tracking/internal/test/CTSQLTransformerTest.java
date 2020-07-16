@@ -53,7 +53,6 @@ import java.sql.ResultSet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.spi.LoggingEvent;
@@ -164,11 +163,9 @@ public class CTSQLTransformerTest {
 
 	@AfterClass
 	public static void tearDownClass() throws Exception {
-		long companyId = TestPropsValues.getCompanyId();
-		long userId = TestPropsValues.getUserId();
-
 		CTPreferences ctPreferences =
-			_ctPreferencesLocalService.getCTPreferences(companyId, userId);
+			_ctPreferencesLocalService.getCTPreferences(
+				TestPropsValues.getCompanyId(), TestPropsValues.getUserId());
 
 		_ctPreferencesLocalService.deleteCTPreferences(ctPreferences);
 
@@ -1250,20 +1247,19 @@ public class CTSQLTransformerTest {
 				CTSQLTransformerTest.class.getResourceAsStream(
 					"dependencies/" + expectedOutputSQLFile)));
 
-		Map<String, String> replaceMap = HashMapBuilder.put(
-			"CT_COLLECTION_ID", String.valueOf(ctCollectionId)
-		).put(
-			"MAIN_TABLE_CT_ENTRY_MODEL_CLASS_PKS",
-			_getModifiedAndRemovedModelClassPKSQL(
-				ctCollectionId, MainTable.class)
-		).put(
-			"REFERENCE_TABLE_CT_ENTRY_MODEL_CLASS_PKS",
-			_getModifiedAndRemovedModelClassPKSQL(
-				ctCollectionId, ReferenceTable.class)
-		).build();
-
 		expectedOutputSQL = StringUtil.replace(
-			expectedOutputSQL, "[$", "$]", replaceMap);
+			expectedOutputSQL, "[$", "$]",
+			HashMapBuilder.put(
+				"CT_COLLECTION_ID", String.valueOf(ctCollectionId)
+			).put(
+				"MAIN_TABLE_CT_ENTRY_MODEL_CLASS_PKS",
+				_getModifiedAndRemovedModelClassPKSQL(
+					ctCollectionId, MainTable.class)
+			).put(
+				"REFERENCE_TABLE_CT_ENTRY_MODEL_CLASS_PKS",
+				_getModifiedAndRemovedModelClassPKSQL(
+					ctCollectionId, ReferenceTable.class)
+			).build());
 
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(

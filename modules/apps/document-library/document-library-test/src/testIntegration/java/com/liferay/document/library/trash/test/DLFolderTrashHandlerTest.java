@@ -282,9 +282,7 @@ public class DLFolderTrashHandlerTest
 	protected String getUniqueTitle(BaseModel<?> baseModel) {
 		DLFolder dlFolder = (DLFolder)baseModel;
 
-		String name = dlFolder.getName();
-
-		return _trashHelper.getOriginalTitle(name);
+		return _trashHelper.getOriginalTitle(dlFolder.getName());
 	}
 
 	@Override

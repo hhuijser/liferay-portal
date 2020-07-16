@@ -47,10 +47,8 @@ public class PortletPreferencesFactoryImplTest
 		String name = RandomTestUtil.randomString(20);
 		String[] values = {RandomTestUtil.randomString(20)};
 
-		String portletPreferencesXML = getPortletPreferencesXML(name, values);
-
 		addLayoutPortletPreferences(
-			testLayout, testPortlet, portletPreferencesXML);
+			testLayout, testPortlet, getPortletPreferencesXML(name, values));
 
 		PortletPreferences layoutPortletSetup =
 			portletPreferencesFactory.getLayoutPortletSetup(
@@ -73,12 +71,10 @@ public class PortletPreferencesFactoryImplTest
 		String name = RandomTestUtil.randomString(20);
 		String[] values = {RandomTestUtil.randomString(20)};
 
-		String portletPreferencesXML = getPortletPreferencesXML(name, values);
-
 		portletPreferencesLocalService.addPortletPreferences(
 			TestPropsValues.getCompanyId(), ownerId, ownerType,
 			testLayout.getPlid(), customizableColumnPortletId, testPortlet,
-			portletPreferencesXML);
+			getPortletPreferencesXML(name, values));
 
 		PortletPreferences layoutPortletSetup =
 			portletPreferencesFactory.getLayoutPortletSetup(

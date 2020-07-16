@@ -421,11 +421,10 @@ public class DLServiceVerifyProcessTest extends BaseVerifyProcessTestCase {
 			ddmFormDeserializerDeserializeResponse =
 				_ddmFormDeserializer.deserialize(builder.build());
 
-		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm =
-			ddmFormDeserializerDeserializeResponse.getDDMForm();
-
 		serviceContext.setAttribute(
-			"ddmForm", DDMBeanTranslatorUtil.translate(ddmForm));
+			"ddmForm",
+			DDMBeanTranslatorUtil.translate(
+				ddmFormDeserializerDeserializeResponse.getDDMForm()));
 
 		User user = TestPropsValues.getUser();
 

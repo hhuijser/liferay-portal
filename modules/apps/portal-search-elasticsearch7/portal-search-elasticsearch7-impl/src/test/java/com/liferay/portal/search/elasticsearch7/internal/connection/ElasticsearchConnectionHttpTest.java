@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.net.URL;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.HttpHost;
 
@@ -50,18 +49,16 @@ public class ElasticsearchConnectionHttpTest {
 	public static void setUpClass() {
 		String clusterName = RandomTestUtil.randomString();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"clusterName", clusterName
-		).put(
-			"networkHost", "_site_"
-		).build();
-
 		ElasticsearchConnectionFixture elasticsearchConnectionFixture =
 			ElasticsearchConnectionFixture.builder(
 			).clusterName(
 				ElasticsearchConnectionHttpTest.class.getSimpleName()
 			).elasticsearchConfigurationProperties(
-				properties
+				HashMapBuilder.<String, Object>put(
+					"clusterName", clusterName
+				).put(
+					"networkHost", "_site_"
+				).build()
 			).build();
 
 		elasticsearchConnectionFixture.createNode();

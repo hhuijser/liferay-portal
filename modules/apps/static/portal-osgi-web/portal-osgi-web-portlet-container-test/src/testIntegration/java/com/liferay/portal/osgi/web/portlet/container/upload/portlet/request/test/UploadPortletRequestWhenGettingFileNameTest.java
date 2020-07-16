@@ -79,9 +79,7 @@ public class UploadPortletRequestWhenGettingFileNameTest {
 		Assert.assertEquals(map.toString(), 1, map.size());
 
 		for (Map.Entry<String, FileItem[]> entry : map.entrySet()) {
-			String key = entry.getKey();
-
-			String fileName = uploadPortletRequest.getFileName(key);
+			String fileName = uploadPortletRequest.getFileName(entry.getKey());
 
 			FileItem[] fileItems = entry.getValue();
 

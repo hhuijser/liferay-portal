@@ -27,9 +27,8 @@ public class LiferayGetOperationTest extends BaseLiferayOperationTestCase {
 
 	@Test
 	public void testGetOperation() throws Exception {
-		String payload = getPayload("test-get-products-flow");
-
-		Matcher matcher = productPagePattern.matcher(payload);
+		Matcher matcher = productPagePattern.matcher(
+			getPayload("test-get-products-flow"));
 
 		Assert.assertTrue(matcher.matches());
 	}

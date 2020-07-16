@@ -248,11 +248,11 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 
 		params.clear();
 
-		Map<String, Object> fooObj = HashMapBuilder.<String, Object>put(
-			"name", "Jane Doe"
-		).build();
-
-		params.put("fooData", fooObj);
+		params.put(
+			"fooData",
+			HashMapBuilder.<String, Object>put(
+				"name", "Jane Doe"
+			).build());
 
 		map.put("/foo/use1", params);
 
@@ -636,11 +636,11 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 		params.put("longs", new long[] {1, 2, 3});
 		params.put("ints", new int[] {1, 2});
 
-		Map<String, Integer> map2 = HashMapBuilder.put(
-			"key", Integer.valueOf(122)
-		).build();
-
-		params.put("map", map2);
+		params.put(
+			"map",
+			HashMapBuilder.put(
+				"key", Integer.valueOf(122)
+			).build());
 
 		String json = toJSON(map, "*.ints", "*.longs", "*.map");
 
@@ -666,11 +666,11 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 			"longArrays",
 			new long[][] {new long[] {1, 2, 3}, new long[] {8, 9}});
 
-		Map<String, String[]> names = HashMapBuilder.put(
-			"p1", new String[] {"one", "two"}
-		).build();
-
-		params.put("mapNames", names);
+		params.put(
+			"mapNames",
+			HashMapBuilder.put(
+				"p1", new String[] {"one", "two"}
+			).build());
 
 		String json = toJSON(map, "*.longArrays", "*.mapNames.*");
 

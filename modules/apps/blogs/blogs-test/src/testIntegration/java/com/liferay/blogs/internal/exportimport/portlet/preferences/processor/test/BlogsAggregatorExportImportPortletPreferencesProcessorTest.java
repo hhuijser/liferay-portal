@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceTracker;
@@ -75,9 +74,8 @@ public class BlogsAggregatorExportImportPortletPreferencesProcessorTest {
 		sb.append(BlogsPortletKeys.BLOGS_AGGREGATOR);
 		sb.append("))");
 
-		Filter filter = registry.getFilter(sb.toString());
-
-		_serviceTracker = registry.trackServices(filter);
+		_serviceTracker = registry.trackServices(
+			registry.getFilter(sb.toString()));
 
 		_serviceTracker.open();
 	}
@@ -123,10 +121,9 @@ public class BlogsAggregatorExportImportPortletPreferencesProcessorTest {
 			PortletPreferencesFactoryUtil.getStrictPortletSetup(
 				_layout, BlogsPortletKeys.BLOGS_AGGREGATOR);
 
-		long organizationId = _organization.getOrganizationId();
-
 		portletPreferences.setValue(
-			"organizationId", String.valueOf(organizationId));
+			"organizationId",
+			String.valueOf(_organization.getOrganizationId()));
 
 		portletPreferences.store();
 

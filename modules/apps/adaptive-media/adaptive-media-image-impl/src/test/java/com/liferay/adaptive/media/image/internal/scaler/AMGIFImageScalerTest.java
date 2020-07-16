@@ -19,8 +19,6 @@ import com.liferay.adaptive.media.image.internal.configuration.AMImageConfigurat
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,15 +31,15 @@ public class AMGIFImageScalerTest {
 	public void testGetResizeFitArgumentWithBlankMaxHeight() {
 		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", ""
-		).put(
-			"max-width", "100"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", ""
+				).put(
+					"max-width", "100"
+				).build(),
+				true);
 
 		Assert.assertEquals(
 			"100x_",
@@ -52,15 +50,15 @@ public class AMGIFImageScalerTest {
 	public void testGetResizeFitArgumentWithBlankMaxWidth() {
 		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", ""
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "100"
+				).put(
+					"max-width", ""
+				).build(),
+				true);
 
 		Assert.assertEquals(
 			"_x100",
@@ -71,15 +69,15 @@ public class AMGIFImageScalerTest {
 	public void testGetResizeFitArgumentWithMaxWidthAndMaxHeight() {
 		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "200"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "100"
+				).put(
+					"max-width", "200"
+				).build(),
+				true);
 
 		Assert.assertEquals(
 			"200x100",
@@ -90,13 +88,13 @@ public class AMGIFImageScalerTest {
 	public void testGetResizeFitArgumentWithOnlyMaxHeight() {
 		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "100"
+				).build(),
+				true);
 
 		Assert.assertEquals(
 			"_x100",
@@ -107,15 +105,15 @@ public class AMGIFImageScalerTest {
 	public void testGetResizeFitArgumentWithZeroMaxHeight() {
 		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "0"
-		).put(
-			"max-width", "100"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "0"
+				).put(
+					"max-width", "100"
+				).build(),
+				true);
 
 		Assert.assertEquals(
 			"100x_",
@@ -126,15 +124,15 @@ public class AMGIFImageScalerTest {
 	public void testGetResizeFitArgumentWithZeroMaxWidth() {
 		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "0"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "100"
+				).put(
+					"max-width", "0"
+				).build(),
+				true);
 
 		Assert.assertEquals(
 			"_x100",

@@ -26,9 +26,8 @@ public class LiferayCreateOperationTest extends BaseLiferayOperationTestCase {
 
 	@Test
 	public void testCreateOperation() throws Exception {
-		String payload = getPayload("test-create-product-flow");
-
-		Matcher matcher = productPattern.matcher(payload);
+		Matcher matcher = productPattern.matcher(
+			getPayload("test-create-product-flow"));
 
 		Assert.assertTrue(matcher.matches());
 	}

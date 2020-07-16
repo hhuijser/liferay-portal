@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
-import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceTracker;
@@ -80,9 +79,8 @@ public class EditEntryMVCActionCommandTest {
 		sb.append("com.liferay.blogs.web.internal.portlet.action.");
 		sb.append("EditEntryMVCActionCommand)");
 
-		Filter filter = registry.getFilter(sb.toString());
-
-		_serviceTracker = registry.trackServices(filter);
+		_serviceTracker = registry.trackServices(
+			registry.getFilter(sb.toString()));
 
 		_serviceTracker.open();
 	}

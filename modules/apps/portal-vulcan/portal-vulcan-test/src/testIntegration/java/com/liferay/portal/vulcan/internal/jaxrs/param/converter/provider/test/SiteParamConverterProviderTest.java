@@ -36,7 +36,6 @@ import com.liferay.registry.ServiceRegistration;
 import java.io.FileNotFoundException;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.GET;
@@ -69,19 +68,19 @@ public class SiteParamConverterProviderTest {
 	public void setUp() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"liferay.auth.verifier", true
-		).put(
-			"liferay.oauth2", false
-		).put(
-			"osgi.jaxrs.application.base", "/test-vulcan"
-		).put(
-			"osgi.jaxrs.extension.select", "(osgi.jaxrs.name=Liferay.Vulcan)"
-		).build();
-
 		_serviceRegistration = registry.registerService(
 			Application.class,
-			new SiteParamConverterProviderTest.TestApplication(), properties);
+			new SiteParamConverterProviderTest.TestApplication(),
+			HashMapBuilder.<String, Object>put(
+				"liferay.auth.verifier", true
+			).put(
+				"liferay.oauth2", false
+			).put(
+				"osgi.jaxrs.application.base", "/test-vulcan"
+			).put(
+				"osgi.jaxrs.extension.select",
+				"(osgi.jaxrs.name=Liferay.Vulcan)"
+			).build());
 	}
 
 	@After

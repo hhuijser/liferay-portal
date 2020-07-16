@@ -713,15 +713,14 @@ public class KBFolderLocalServiceTest {
 	protected KBArticle addChildKBArticle(KBArticle kbArticle, String title)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		return KBArticleLocalServiceUtil.addKBArticle(
 			_user.getUserId(),
 			PortalUtil.getClassNameId(KBArticleConstants.getClassName()),
 			kbArticle.getResourcePrimKey(), title, title,
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(), null,
-			new String[0], new String[0], serviceContext);
+			new String[0], new String[0],
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	protected KBArticle addKBArticle(long parentKbFolderId, Date createDate)
@@ -746,41 +745,36 @@ public class KBFolderLocalServiceTest {
 	protected KBArticle addKBArticle(long parentKbFolderId, String title)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		return KBArticleLocalServiceUtil.addKBArticle(
 			_user.getUserId(),
 			PortalUtil.getClassNameId(KBFolderConstants.getClassName()),
 			parentKbFolderId, title, title, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), null, new String[0], new String[0],
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	protected KBFolder addKBFolder(long parentResourcePrimKey)
 		throws PortalException {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		return KBFolderLocalServiceUtil.addKBFolder(
 			_user.getUserId(), _group.getGroupId(),
 			PortalUtil.getClassNameId(KBFolderConstants.getClassName()),
 			parentResourcePrimKey, RandomTestUtil.randomString(),
-			RandomTestUtil.randomString(), serviceContext);
+			RandomTestUtil.randomString(),
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	protected KBArticle updateKBArticle(KBArticle kbArticle, String title)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group, _user.getUserId());
-
 		return KBArticleLocalServiceUtil.updateKBArticle(
 			kbArticle.getUserId(), kbArticle.getResourcePrimKey(), title,
 			kbArticle.getContent(), kbArticle.getDescription(),
 			kbArticle.getSourceURL(), null, new String[0], new long[0],
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				_group, _user.getUserId()));
 	}
 
 	@DeleteAfterTestRun

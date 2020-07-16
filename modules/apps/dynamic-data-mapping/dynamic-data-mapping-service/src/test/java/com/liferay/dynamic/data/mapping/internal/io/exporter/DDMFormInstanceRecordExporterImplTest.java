@@ -587,18 +587,15 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 		DDMFormField ddmFormField1 = new DDMFormField("field1", "text");
 		DDMFormField ddmFormField2 = new DDMFormField("field2", "text");
 
-		Map<String, DDMFormField> ddmFormFields =
-			LinkedHashMapBuilder.<String, DDMFormField>put(
-				"field1", ddmFormField1
-			).put(
-				"field2", ddmFormField2
-			).build();
-
 		when(
 			ddmFormInstanceRecordExporterImpl.getNontransientDDMFormFieldsMap(
 				ddmStructureVersion)
 		).thenReturn(
-			ddmFormFields
+			LinkedHashMapBuilder.<String, DDMFormField>put(
+				"field1", ddmFormField1
+			).put(
+				"field2", ddmFormField2
+			).build()
 		);
 
 		when(

@@ -154,15 +154,14 @@ public class WidgetInstanceDefinitionDTOConverterTest {
 		String configProperty1Value = RandomTestUtil.randomString();
 		String configProperty2Value = RandomTestUtil.randomString();
 
-		Map<String, Object> portletConfig = HashMapBuilder.<String, Object>put(
-			"config-property-1", configProperty1Value
-		).put(
-			"config-property-2", configProperty2Value
-		).build();
-
 		_portletPreferencesPortletConfigurationImporter.
 			importPortletConfiguration(
-				layout.getPlid(), testPortletId, portletConfig);
+				layout.getPlid(), testPortletId,
+				HashMapBuilder.<String, Object>put(
+					"config-property-1", configProperty1Value
+				).put(
+					"config-property-2", configProperty2Value
+				).build());
 
 		ResourceAction resourceAction =
 			_resourceActionLocalService.addResourceAction(

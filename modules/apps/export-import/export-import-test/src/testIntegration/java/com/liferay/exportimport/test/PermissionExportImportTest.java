@@ -53,7 +53,6 @@ import java.lang.reflect.Method;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -128,13 +127,12 @@ public class PermissionExportImportTest {
 			Group exportGroup, Role role, String exportResourcePrimKey)
 		throws Exception {
 
-		Map<Long, String[]> roleIdsToActionIds = HashMapBuilder.put(
-			role.getRoleId(), _ACTION_IDS
-		).build();
-
 		ResourcePermissionServiceUtil.setIndividualResourcePermissions(
 			exportGroup.getGroupId(), TestPropsValues.getCompanyId(),
-			_PORTLET_ID, exportResourcePrimKey, roleIdsToActionIds);
+			_PORTLET_ID, exportResourcePrimKey,
+			HashMapBuilder.put(
+				role.getRoleId(), _ACTION_IDS
+			).build());
 	}
 
 	protected Element exportPortletPermissions(

@@ -55,7 +55,6 @@ import com.liferay.segments.service.SegmentsExperienceLocalService;
 import com.liferay.segments.test.util.SegmentsTestUtil;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -402,16 +401,15 @@ public class SegmentsEntryLocalServiceTest {
 		SegmentsEntry segmentsEntry2 = SegmentsTestUtil.addSegmentsEntry(
 			_group.getGroupId());
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"excludedSegmentsEntryIds",
-				new long[] {segmentsEntry1.getSegmentsEntryId()}
-			).build();
-
 		BaseModelSearchResult<SegmentsEntry> baseModelSearchResult =
 			_segmentsEntryLocalService.searchSegmentsEntries(
 				segmentsEntry1.getCompanyId(), segmentsEntry1.getGroupId(),
-				null, true, params, 0, 1, null);
+				null, true,
+				LinkedHashMapBuilder.<String, Object>put(
+					"excludedSegmentsEntryIds",
+					new long[] {segmentsEntry1.getSegmentsEntryId()}
+				).build(),
+				0, 1, null);
 
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
@@ -435,16 +433,17 @@ public class SegmentsEntryLocalServiceTest {
 			RandomTestUtil.randomString(),
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"excludedSources",
-				new String[] {SegmentsEntryConstants.SOURCE_ASAH_FARO_BACKEND}
-			).build();
-
 		BaseModelSearchResult<SegmentsEntry> baseModelSearchResult =
 			_segmentsEntryLocalService.searchSegmentsEntries(
 				segmentsEntry.getCompanyId(), segmentsEntry.getGroupId(), null,
-				true, params, 0, 1, null);
+				true,
+				LinkedHashMapBuilder.<String, Object>put(
+					"excludedSources",
+					new String[] {
+						SegmentsEntryConstants.SOURCE_ASAH_FARO_BACKEND
+					}
+				).build(),
+				0, 1, null);
 
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
@@ -463,15 +462,14 @@ public class SegmentsEntryLocalServiceTest {
 			segmentsEntry.getSegmentsEntryId(), _role.getRoleId(),
 			ServiceContextTestUtil.getServiceContext());
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"roleIds", new long[] {_role.getRoleId()}
-			).build();
-
 		BaseModelSearchResult<SegmentsEntry> baseModelSearchResult =
 			_segmentsEntryLocalService.searchSegmentsEntries(
 				segmentsEntry.getCompanyId(), segmentsEntry.getGroupId(), null,
-				true, params, 0, 1, null);
+				true,
+				LinkedHashMapBuilder.<String, Object>put(
+					"roleIds", new long[] {_role.getRoleId()}
+				).build(),
+				0, 1, null);
 
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();

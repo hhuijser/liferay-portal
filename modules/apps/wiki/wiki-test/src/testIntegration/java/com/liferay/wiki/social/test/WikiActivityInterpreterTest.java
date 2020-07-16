@@ -103,9 +103,7 @@ public class WikiActivityInterpreterTest
 		TrashEntry trashEntry = TrashEntryLocalServiceUtil.getEntry(
 			WikiPage.class.getName(), _page.getResourcePrimKey());
 
-		String trashTitle = trashHelper.getTrashTitle(trashEntry.getEntryId());
-
-		_page.setTitle(trashTitle);
+		_page.setTitle(trashHelper.getTrashTitle(trashEntry.getEntryId()));
 
 		WikiPageLocalServiceUtil.restorePageAttachmentFromTrash(
 			TestPropsValues.getUserId(), _page.getNodeId(), _page.getTitle(),

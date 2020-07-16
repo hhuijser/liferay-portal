@@ -128,13 +128,13 @@ public class FriendlyURLEntryLocalServiceTest {
 
 	@Test
 	public void testGetUniqueUrlTitleNormalizesUrlTitle() throws Exception {
-		long classNameId = ClassNameLocalServiceUtil.getClassNameId(User.class);
 		String urlTitle = "url title with spaces";
 
 		String uniqueUrlTitle =
 			FriendlyURLEntryLocalServiceUtil.getUniqueUrlTitle(
-				_group.getGroupId(), classNameId, TestPropsValues.getUserId(),
-				urlTitle);
+				_group.getGroupId(),
+				ClassNameLocalServiceUtil.getClassNameId(User.class),
+				TestPropsValues.getUserId(), urlTitle);
 
 		Assert.assertEquals("url-title-with-spaces", uniqueUrlTitle);
 	}

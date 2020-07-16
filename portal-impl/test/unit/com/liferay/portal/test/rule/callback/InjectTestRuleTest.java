@@ -25,7 +25,6 @@ import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceReference;
 
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Assert;
@@ -191,11 +190,11 @@ public class InjectTestRuleTest {
 
 		Service3 service3b = new Service3();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"inject.test.rule.test", true
-		).build();
-
-		registry.registerService(Service3.class, service3b, properties);
+		registry.registerService(
+			Service3.class, service3b,
+			HashMapBuilder.<String, Object>put(
+				"inject.test.rule.test", true
+			).build());
 
 		injectTestBag.injectFields();
 

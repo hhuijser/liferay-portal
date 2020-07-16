@@ -282,9 +282,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 			assetRenderer
 		).getAssetObject();
 
-		AssetEntry assetEntry = getAssetEntry(className, 12345);
-
-		setUpAssetEntryLocalServiceFetchUUID(assetEntry);
+		setUpAssetEntryLocalServiceFetchUUID(getAssetEntry(className, 12345));
 
 		setUpDestinationAssetRenderer(assetRenderer);
 		setUpDestinationClassName(className);
@@ -329,9 +327,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 			assetRenderer
 		).getAssetObject();
 
-		AssetEntry assetEntry = getAssetEntry(className, 12345);
-
-		setUpAssetEntryLocalServiceFetchUUID(assetEntry);
+		setUpAssetEntryLocalServiceFetchUUID(getAssetEntry(className, 12345));
 
 		setUpDestinationAssetRenderer(assetRenderer);
 		setUpDestinationClassName(className);
@@ -414,9 +410,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 			destinationHelper
 		).getClassPK();
 
-		AssetEntry assetEntry = getAssetEntry(className, 12345);
-
-		setUpAssetEntryLocalServiceFetchUUID(assetEntry);
+		setUpAssetEntryLocalServiceFetchUUID(getAssetEntry(className, 12345));
 
 		setUpInputGroupId(groupId);
 		setUpMBMessageLocalService(messageId);
@@ -448,9 +442,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 			"http://localhost:8080/web/guest/blabal?className=", className,
 			"&classPK=", classPK);
 
-		AssetEntry assetEntry = getAssetEntry(className, classPK);
-
-		setUpDestinationAssetEntry(assetEntry);
+		setUpDestinationAssetEntry(getAssetEntry(className, classPK));
 
 		assertSimilarResultsContributor(
 			urlString, expectedUID, expectedDestination);
@@ -653,9 +645,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 			assetRenderer
 		).getAssetObject();
 
-		AssetEntry assetEntry = getAssetEntry(className, classPK);
-
-		setUpAssetEntryLocalServiceFetchUUID(assetEntry);
+		setUpAssetEntryLocalServiceFetchUUID(getAssetEntry(className, classPK));
 
 		setUpDestinationAssetRenderer(assetRenderer);
 		setUpInputGroupId(groupId);

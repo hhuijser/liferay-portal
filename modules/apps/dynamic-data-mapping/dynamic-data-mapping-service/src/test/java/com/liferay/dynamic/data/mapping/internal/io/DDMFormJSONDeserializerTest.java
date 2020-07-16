@@ -40,7 +40,6 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.junit.Assert;
@@ -109,19 +108,17 @@ public class DDMFormJSONDeserializerTest
 			_defaultDDMFormFieldType
 		);
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"ddm.form.field.type.icon", "my-icon"
-		).put(
-			"ddm.form.field.type.js.class.name", "myJavaScriptClass"
-		).put(
-			"ddm.form.field.type.js.module", "myJavaScriptModule"
-		).build();
-
 		when(
 			ddmFormFieldTypeServicesTracker.getDDMFormFieldTypeProperties(
 				Matchers.anyString())
 		).thenReturn(
-			properties
+			HashMapBuilder.<String, Object>put(
+				"ddm.form.field.type.icon", "my-icon"
+			).put(
+				"ddm.form.field.type.js.class.name", "myJavaScriptClass"
+			).put(
+				"ddm.form.field.type.js.module", "myJavaScriptModule"
+			).build()
 		);
 
 		return ddmFormFieldTypeServicesTracker;

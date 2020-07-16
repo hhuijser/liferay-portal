@@ -37,15 +37,15 @@ public class ConcurrentHashMapBuilderTest {
 		map1.put("Three", 3);
 		map1.put("Two", 2);
 
-		Map<String, Integer> map2 = ConcurrentHashMapBuilder.put(
-			"One", 1
-		).put(
-			"Three", 3
-		).put(
-			"Two", 2
-		).build();
-
-		Assert.assertEquals(map1, map2);
+		Assert.assertEquals(
+			map1,
+			ConcurrentHashMapBuilder.put(
+				"One", 1
+			).put(
+				"Three", 3
+			).put(
+				"Two", 2
+			).build());
 	}
 
 	@Test(expected = NullPointerException.class)
@@ -108,11 +108,11 @@ public class ConcurrentHashMapBuilderTest {
 			map1.put(s, StringUtil.trim(s.toLowerCase()));
 		}
 
-		Map<String, String> map2 = ConcurrentHashMapBuilder.put(
-			list, s -> StringUtil.trim(s.toLowerCase())
-		).build();
-
-		Assert.assertEquals(map1, map2);
+		Assert.assertEquals(
+			map1,
+			ConcurrentHashMapBuilder.put(
+				list, s -> StringUtil.trim(s.toLowerCase())
+			).build());
 	}
 
 	@Test

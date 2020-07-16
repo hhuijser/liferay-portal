@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
@@ -113,10 +112,8 @@ public class FragmentsImporterTest {
 		Assert.assertEquals(
 			fragmentCollections.toString(), 0, fragmentCollections.size());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		try {
 			_fragmentsImporter.importFile(
@@ -144,10 +141,8 @@ public class FragmentsImporterTest {
 
 	@Test
 	public void testImportFragmentsWithReservedNames() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		try {
 			_fragmentsImporter.importFile(
@@ -180,10 +175,8 @@ public class FragmentsImporterTest {
 
 	@Test
 	public void testImportFragmentWithInvalidConfiguration() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		try {
 			_fragmentsImporter.importFile(
@@ -223,10 +216,8 @@ public class FragmentsImporterTest {
 
 	@Test
 	public void testImportFragmentWithInvalidHTML() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		try {
 			_fragmentsImporter.importFile(
@@ -324,10 +315,8 @@ public class FragmentsImporterTest {
 	}
 
 	private void _importFragmentsByType(int type) throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		try {
 			_fragmentsImporter.importFile(

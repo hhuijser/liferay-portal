@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.proxy.ProxyModeThreadLocal;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.AssertUtils;
 import com.liferay.portal.kernel.test.constants.ServiceTestConstants;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -276,13 +275,11 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 	public void testShouldInferValidMimeType() throws Exception {
 		String fileName = RandomTestUtil.randomString();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName,
 			ContentTypes.APPLICATION_OCTET_STREAM, fileName, StringPool.BLANK,
-			StringPool.BLANK, CONTENT.getBytes(), serviceContext);
+			StringPool.BLANK, CONTENT.getBytes(),
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 
 		Assert.assertEquals(ContentTypes.TEXT_PLAIN, fileEntry.getMimeType());
 	}
@@ -357,39 +354,33 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 	public void testShouldSucceedWithNullBytes() throws Exception {
 		String fileName = RandomTestUtil.randomString();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		DLAppServiceUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName,
 			ContentTypes.TEXT_PLAIN, fileName, StringPool.BLANK,
-			StringPool.BLANK, (byte[])null, serviceContext);
+			StringPool.BLANK, (byte[])null,
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
 	@Test
 	public void testShouldSucceedWithNullFile() throws Exception {
 		String fileName = RandomTestUtil.randomString();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		DLAppServiceUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName,
 			ContentTypes.TEXT_PLAIN, fileName, StringPool.BLANK,
-			StringPool.BLANK, (File)null, serviceContext);
+			StringPool.BLANK, (File)null,
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
 	@Test
 	public void testShouldSucceedWithNullInputStream() throws Exception {
 		String fileName = RandomTestUtil.randomString();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		DLAppServiceUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName,
 			ContentTypes.TEXT_PLAIN, fileName, StringPool.BLANK,
-			StringPool.BLANK, null, 0, serviceContext);
+			StringPool.BLANK, null, 0,
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

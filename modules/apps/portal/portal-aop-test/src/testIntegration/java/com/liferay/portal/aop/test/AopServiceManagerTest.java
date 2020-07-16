@@ -214,11 +214,9 @@ public class AopServiceManagerTest {
 				AopService.class.getName(), new TestPrototypeServiceFactory(),
 				null);
 
-		ServiceReference<TestService> serviceReference =
-			_bundleContext.getServiceReference(TestService.class);
-
 		Object serviceObjects = _getServiceObjectsMethod.invoke(
-			_bundleContext, serviceReference);
+			_bundleContext,
+			_bundleContext.getServiceReference(TestService.class));
 
 		DefaultNoticeableFuture<Throwable> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<>();

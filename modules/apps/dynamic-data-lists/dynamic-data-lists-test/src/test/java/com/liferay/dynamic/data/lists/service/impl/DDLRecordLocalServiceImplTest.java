@@ -28,7 +28,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -197,13 +196,12 @@ public class DDLRecordLocalServiceImplTest {
 
 		String fieldName = StringUtil.randomString();
 
-		Map<String, Serializable> fieldsMap =
+		Fields fields = _ddlRecordLocalServiceImpl.toFields(
+			0,
 			HashMapBuilder.<String, Serializable>put(
 				fieldName, (Serializable)fieldValues
-			).build();
-
-		Fields fields = _ddlRecordLocalServiceImpl.toFields(
-			0, fieldsMap, LocaleUtil.US, LocaleUtil.US);
+			).build(),
+			LocaleUtil.US, LocaleUtil.US);
 
 		Field field = fields.get(fieldName);
 
@@ -213,13 +211,12 @@ public class DDLRecordLocalServiceImplTest {
 	protected void assertToFields(Serializable[] fieldValues) throws Exception {
 		String fieldName = StringUtil.randomString();
 
-		Map<String, Serializable> fieldsMap =
+		Fields fields = _ddlRecordLocalServiceImpl.toFields(
+			0,
 			HashMapBuilder.<String, Serializable>put(
 				fieldName, (Serializable)fieldValues
-			).build();
-
-		Fields fields = _ddlRecordLocalServiceImpl.toFields(
-			0, fieldsMap, LocaleUtil.US, LocaleUtil.US);
+			).build(),
+			LocaleUtil.US, LocaleUtil.US);
 
 		Field field = fields.get(fieldName);
 
@@ -230,13 +227,12 @@ public class DDLRecordLocalServiceImplTest {
 	protected Field toField(Serializable fieldValue) throws Exception {
 		String fieldName = StringUtil.randomString();
 
-		Map<String, Serializable> fieldsMap =
+		Fields fields = _ddlRecordLocalServiceImpl.toFields(
+			0,
 			HashMapBuilder.<String, Serializable>put(
 				fieldName, fieldValue
-			).build();
-
-		Fields fields = _ddlRecordLocalServiceImpl.toFields(
-			0, fieldsMap, LocaleUtil.US, LocaleUtil.US);
+			).build(),
+			LocaleUtil.US, LocaleUtil.US);
 
 		return fields.get(fieldName);
 	}

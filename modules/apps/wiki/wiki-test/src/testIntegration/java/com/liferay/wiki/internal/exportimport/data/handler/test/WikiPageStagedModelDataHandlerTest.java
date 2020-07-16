@@ -196,12 +196,10 @@ public class WikiPageStagedModelDataHandlerTest
 
 		WikiNode node = (WikiNode)dependentStagedModels.get(0);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		WikiPage page = WikiTestUtil.addPage(
 			TestPropsValues.getUserId(), node.getNodeId(), name,
-			RandomTestUtil.randomString(), true, serviceContext);
+			RandomTestUtil.randomString(), true,
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 
 		WikiTestUtil.addWikiAttachment(
 			TestPropsValues.getUserId(), node.getNodeId(), page.getTitle(),

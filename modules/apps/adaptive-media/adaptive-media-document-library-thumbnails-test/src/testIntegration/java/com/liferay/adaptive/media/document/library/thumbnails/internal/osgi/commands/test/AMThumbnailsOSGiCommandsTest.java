@@ -242,11 +242,10 @@ public class AMThumbnailsOSGiCommandsTest {
 		Object service = registry.getService(
 			registry.getServiceReference(_CLASS_NAME_PROCESSOR));
 
-		Bundle bundle = FrameworkUtil.getBundle(service.getClass());
-
 		ComponentDescriptionDTO componentDescriptionDTO =
 			serviceComponentRuntime.getComponentDescriptionDTO(
-				bundle, _CLASS_NAME_PROCESSOR);
+				FrameworkUtil.getBundle(service.getClass()),
+				_CLASS_NAME_PROCESSOR);
 
 		if (componentDescriptionDTO == null) {
 			return;
@@ -284,11 +283,10 @@ public class AMThumbnailsOSGiCommandsTest {
 		Object service = registry.getService(
 			registry.getServiceReference(_CLASS_NAME_OSGI_COMMAND));
 
-		Bundle bundle = FrameworkUtil.getBundle(service.getClass());
-
 		ComponentDescriptionDTO componentDescriptionDTO =
 			serviceComponentRuntime.getComponentDescriptionDTO(
-				bundle, _CLASS_NAME_PROCESSOR);
+				FrameworkUtil.getBundle(service.getClass()),
+				_CLASS_NAME_PROCESSOR);
 
 		if (componentDescriptionDTO == null) {
 			return;

@@ -17,7 +17,6 @@ package com.liferay.wiki.web.internal.exportimport.data.handler.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.exportimport.kernel.lar.DataLevel;
 import com.liferay.exportimport.test.util.lar.BasePortletDataHandlerTestCase;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -55,13 +54,11 @@ public class WikiPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 	protected void addStagedModels() throws Exception {
 		WikiNode node = WikiTestUtil.addNode(stagingGroup.getGroupId());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(stagingGroup.getGroupId());
-
 		WikiTestUtil.addPage(
 			TestPropsValues.getUserId(), node.getNodeId(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(), true,
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				stagingGroup.getGroupId()));
 	}
 
 	@Override

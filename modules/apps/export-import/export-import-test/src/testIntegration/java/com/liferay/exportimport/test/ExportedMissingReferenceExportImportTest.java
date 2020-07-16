@@ -44,7 +44,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.registry.collections.ServiceTrackerCollections;
@@ -195,8 +194,6 @@ public class ExportedMissingReferenceExportImportTest
 	}
 
 	protected void assertMissingReferences() throws Exception {
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(larFile);
-
 		PortletDataContext portletDataContext =
 			PortletDataContextFactoryUtil.createImportPortletDataContext(
 				TestPropsValues.getCompanyId(), group.getGroupId(),
@@ -204,7 +201,7 @@ public class ExportedMissingReferenceExportImportTest
 				ExportImportHelperUtil.getUserIdStrategy(
 					TestPropsValues.getUserId(),
 					TestUserIdStrategy.CURRENT_USER_ID),
-				zipReader);
+				ZipReaderFactoryUtil.getZipReader(larFile));
 
 		Element missingReferencesElement =
 			portletDataContext.getMissingReferencesElement();

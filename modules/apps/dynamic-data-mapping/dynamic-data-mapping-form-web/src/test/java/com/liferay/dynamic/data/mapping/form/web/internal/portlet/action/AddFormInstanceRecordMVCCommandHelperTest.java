@@ -83,12 +83,10 @@ public class AddFormInstanceRecordMVCCommandHelperTest extends PowerMockito {
 
 	@Test
 	public void testNotRequiredAndInvisibleField() throws Exception {
-		Map<String, Object> changedProperties =
+		mockDDMFormEvaluator(
 			HashMapBuilder.<String, Object>put(
 				"visible", false
-			).build();
-
-		mockDDMFormEvaluator(changedProperties);
+			).build());
 
 		_ddmFormField.setRequired(false);
 
@@ -100,12 +98,10 @@ public class AddFormInstanceRecordMVCCommandHelperTest extends PowerMockito {
 
 	@Test
 	public void testNotRequiredAndVisibleField() throws Exception {
-		Map<String, Object> changedProperties =
+		mockDDMFormEvaluator(
 			HashMapBuilder.<String, Object>put(
 				"visible", true
-			).build();
-
-		mockDDMFormEvaluator(changedProperties);
+			).build());
 
 		_ddmFormField.setRequired(false);
 
@@ -117,12 +113,10 @@ public class AddFormInstanceRecordMVCCommandHelperTest extends PowerMockito {
 
 	@Test
 	public void testRequiredAndInvisibleField() throws Exception {
-		Map<String, Object> changedProperties =
+		mockDDMFormEvaluator(
 			HashMapBuilder.<String, Object>put(
 				"visible", false
-			).build();
-
-		mockDDMFormEvaluator(changedProperties);
+			).build());
 
 		_addRecordMVCCommandHelper.updateRequiredFieldsAccordingToVisibility(
 			_actionRequest, _ddmForm, _ddmFormValues, LocaleUtil.US);
@@ -132,12 +126,10 @@ public class AddFormInstanceRecordMVCCommandHelperTest extends PowerMockito {
 
 	@Test
 	public void testRequiredAndVisibleField() throws Exception {
-		Map<String, Object> changedProperties =
+		mockDDMFormEvaluator(
 			HashMapBuilder.<String, Object>put(
 				"visible", true
-			).build();
-
-		mockDDMFormEvaluator(changedProperties);
+			).build());
 
 		_addRecordMVCCommandHelper.updateRequiredFieldsAccordingToVisibility(
 			_actionRequest, _ddmForm, _ddmFormValues, LocaleUtil.US);
@@ -166,18 +158,14 @@ public class AddFormInstanceRecordMVCCommandHelperTest extends PowerMockito {
 
 		_ddmFormValues.addDDMFormFieldValue(ddmFormFieldValue);
 
-		Map<DDMFormEvaluatorFieldContextKey, Map<String, Object>>
-			ddmFormFieldsPropertyChanges =
+		DDMFormEvaluatorEvaluateResponse.Builder builder =
+			DDMFormEvaluatorEvaluateResponse.Builder.newBuilder(
 				HashMapBuilder.
 					<DDMFormEvaluatorFieldContextKey, Map<String, Object>>put(
 						new DDMFormEvaluatorFieldContextKey(
 							"field0", ddmFormFieldValue.getInstanceId()),
 						fieldChangesProperties
-					).build();
-
-		DDMFormEvaluatorEvaluateResponse.Builder builder =
-			DDMFormEvaluatorEvaluateResponse.Builder.newBuilder(
-				ddmFormFieldsPropertyChanges);
+					).build());
 
 		builder.withDisabledPagesIndexes(Collections.emptySet());
 

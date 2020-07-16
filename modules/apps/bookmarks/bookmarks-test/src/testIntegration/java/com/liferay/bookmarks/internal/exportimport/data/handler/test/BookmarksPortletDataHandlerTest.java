@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.StagedModel;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -100,10 +99,10 @@ public class BookmarksPortletDataHandlerTest
 		BookmarksTestUtil.addFolder(
 			stagingGroup.getGroupId(), RandomTestUtil.randomString());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(stagingGroup.getGroupId());
-
-		BookmarksTestUtil.addEntry(folder1.getFolderId(), true, serviceContext);
+		BookmarksTestUtil.addEntry(
+			folder1.getFolderId(), true,
+			ServiceContextTestUtil.getServiceContext(
+				stagingGroup.getGroupId()));
 	}
 
 	@Override

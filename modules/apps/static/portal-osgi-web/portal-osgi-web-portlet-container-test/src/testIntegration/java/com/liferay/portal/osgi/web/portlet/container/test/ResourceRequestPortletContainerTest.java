@@ -70,10 +70,8 @@ public class ResourceRequestPortletContainerTest
 
 	@Test
 	public void testInvalidPortletId() throws Exception {
-		HttpServletRequest httpServletRequest =
-			PortletContainerTestUtil.getHttpServletRequest(group, layout);
-
-		String layoutURL = layout.getRegularURL(httpServletRequest);
+		String layoutURL = layout.getRegularURL(
+			PortletContainerTestUtil.getHttpServletRequest(group, layout));
 
 		String url = StringBundler.concat(
 			layoutURL, "?p_p_id=",
@@ -202,12 +200,9 @@ public class ResourceRequestPortletContainerTest
 			testPortlet, new HashMapDictionary<String, Object>(),
 			TEST_PORTLET_ID);
 
-		HttpServletRequest httpServletRequest =
-			PortletContainerTestUtil.getHttpServletRequest(group, layout);
-
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, TEST_PORTLET_ID, layout.getPlid(),
-			PortletRequest.RESOURCE_PHASE);
+			PortletContainerTestUtil.getHttpServletRequest(group, layout),
+			TEST_PORTLET_ID, layout.getPlid(), PortletRequest.RESOURCE_PHASE);
 
 		PortletContainerTestUtil.Response response =
 			PortletContainerTestUtil.request(portletURL.toString());
@@ -242,12 +237,9 @@ public class ResourceRequestPortletContainerTest
 			testPortlet, new HashMapDictionary<String, Object>(),
 			TEST_PORTLET_ID);
 
-		HttpServletRequest httpServletRequest =
-			PortletContainerTestUtil.getHttpServletRequest(group, layout);
-
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, TEST_PORTLET_ID, layout.getPlid(),
-			PortletRequest.RESOURCE_PHASE);
+			PortletContainerTestUtil.getHttpServletRequest(group, layout),
+			TEST_PORTLET_ID, layout.getPlid(), PortletRequest.RESOURCE_PHASE);
 
 		TestPortlet testRuntimePortlet = new TestPortlet();
 		String testRuntimePortletId = "testRuntimePortletId";

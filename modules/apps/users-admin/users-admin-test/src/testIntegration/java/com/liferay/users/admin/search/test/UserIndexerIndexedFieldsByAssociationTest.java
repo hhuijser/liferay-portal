@@ -202,15 +202,15 @@ public class UserIndexerIndexedFieldsByAssociationTest {
 
 		_userGroupLocalService.addGroupUserGroup(groupId, userGroup);
 
-		final Map<String, String> map4 = HashMapBuilder.putAll(
-			map3
-		).put(
-			Field.GROUP_ID, String.valueOf(groupId)
-		).put(
-			Field.SCOPE_GROUP_ID, String.valueOf(groupId)
-		).build();
-
-		assertFieldValues(user, fieldNames, map4);
+		assertFieldValues(
+			user, fieldNames,
+			HashMapBuilder.putAll(
+				map3
+			).put(
+				Field.GROUP_ID, String.valueOf(groupId)
+			).put(
+				Field.SCOPE_GROUP_ID, String.valueOf(groupId)
+			).build());
 	}
 
 	@Test
@@ -225,11 +225,9 @@ public class UserIndexerIndexedFieldsByAssociationTest {
 			User.class
 		);
 
-		long userId = TestPropsValues.getUserId();
-
 		SearchResponse searchResponse1 = _searcher.search(
 			searchRequestBuilder.query(
-				_queries.term(Field.USER_ID, userId)
+				_queries.term(Field.USER_ID, TestPropsValues.getUserId())
 			).build());
 
 		Stream<Document> stream = searchResponse1.getDocumentsStream();

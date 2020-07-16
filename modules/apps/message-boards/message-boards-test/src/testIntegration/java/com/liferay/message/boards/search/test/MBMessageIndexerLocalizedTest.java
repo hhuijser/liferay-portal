@@ -48,7 +48,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -101,12 +100,11 @@ public class MBMessageIndexerLocalizedTest {
 
 		Document document = _search(searchTerm, LocaleUtil.JAPAN);
 
-		Map<String, String> titleStrings = HashMapBuilder.put(
-			Field.CONTENT + "_ja_JP", "諸行無常"
-		).build();
-
 		FieldValuesAssert.assertFieldValues(
-			titleStrings, Field.CONTENT + "_ja_JP", document, searchTerm);
+			HashMapBuilder.put(
+				Field.CONTENT + "_ja_JP", "諸行無常"
+			).build(),
+			Field.CONTENT + "_ja_JP", document, searchTerm);
 	}
 
 	@Test
@@ -127,12 +125,11 @@ public class MBMessageIndexerLocalizedTest {
 
 		Document document = _search(searchTerm, LocaleUtil.JAPAN);
 
-		Map<String, String> titleStrings = HashMapBuilder.put(
-			Field.TITLE + "_ja_JP", "東京都"
-		).build();
-
 		FieldValuesAssert.assertFieldValues(
-			titleStrings, Field.TITLE + "_ja_JP", document, searchTerm);
+			HashMapBuilder.put(
+				Field.TITLE + "_ja_JP", "東京都"
+			).build(),
+			Field.TITLE + "_ja_JP", document, searchTerm);
 	}
 
 	@Rule

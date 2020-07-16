@@ -120,15 +120,14 @@ public class DisplayPageFriendlyURLResolverTest {
 			LocaleUtil.US, "Test Journal Article"
 		).build();
 
-		Map<Locale, String> contentMap = HashMapBuilder.put(
-			LocaleUtil.US, "This test content is in English."
-		).build();
-
 		_article = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, titleMap, titleMap,
-			contentMap, layout.getUuid(), LocaleUtil.US, null, false, false,
+			HashMapBuilder.put(
+				LocaleUtil.US, "This test content is in English."
+			).build(),
+			layout.getUuid(), LocaleUtil.US, null, false, false,
 			serviceContext);
 	}
 

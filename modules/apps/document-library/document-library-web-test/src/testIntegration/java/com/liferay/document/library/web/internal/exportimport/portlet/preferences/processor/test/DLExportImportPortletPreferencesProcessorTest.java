@@ -51,7 +51,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.ratings.kernel.model.RatingsEntry;
 import com.liferay.ratings.test.util.RatingsTestUtil;
-import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceTracker;
@@ -94,9 +93,8 @@ public class DLExportImportPortletPreferencesProcessorTest {
 		sb.append(ExportImportPortletPreferencesProcessor.class.getName());
 		sb.append("))");
 
-		Filter filter = registry.getFilter(sb.toString());
-
-		_serviceTracker = registry.trackServices(filter);
+		_serviceTracker = registry.trackServices(
+			registry.getFilter(sb.toString()));
 
 		_serviceTracker.open();
 	}

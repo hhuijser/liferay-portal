@@ -146,14 +146,14 @@ public class WebDAVLitmusBasicTest extends BaseWebDAVTestCase {
 
 	@Test
 	public void test10MkcolWithBody() {
-		Map<String, String> headers = HashMapBuilder.put(
-			HttpHeaders.CONTENT_TYPE, "xyz-foo/bar-512"
-		).build();
-
 		assertCode(
 			HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,
 			service(
-				Method.MKCOL, "mkcolbody", headers, _TEST_CONTENT.getBytes()));
+				Method.MKCOL, "mkcolbody",
+				HashMapBuilder.put(
+					HttpHeaders.CONTENT_TYPE, "xyz-foo/bar-512"
+				).build(),
+				_TEST_CONTENT.getBytes()));
 	}
 
 	protected void putGet(String fileName) {

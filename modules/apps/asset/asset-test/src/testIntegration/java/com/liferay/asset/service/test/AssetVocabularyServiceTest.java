@@ -370,14 +370,11 @@ public class AssetVocabularyServiceTest {
 			LocaleUtil.US, description + "_US"
 		).build();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		AssetVocabulary vocabulary =
 			AssetVocabularyLocalServiceUtil.addVocabulary(
 				TestPropsValues.getUserId(), _group.getGroupId(),
 				StringPool.BLANK, titleMap, descriptionMap, StringPool.BLANK,
-				serviceContext);
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		Assert.assertEquals(
 			StringUtil.toLowerCase(titleMap.get(LocaleUtil.SPAIN)),
@@ -428,13 +425,11 @@ public class AssetVocabularyServiceTest {
 
 		AssetTestUtil.addVocabulary(_group.getGroupId(), "test2");
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		_assetVocabularyLocalService.updateVocabulary(
 			vocabulary.getVocabularyId(), "test2", vocabulary.getTitle(),
 			vocabulary.getTitleMap(), vocabulary.getDescriptionMap(),
-			vocabulary.getSettings(), serviceContext);
+			vocabulary.getSettings(),
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	@Test(expected = VocabularyNameException.class)
@@ -442,14 +437,11 @@ public class AssetVocabularyServiceTest {
 		AssetVocabulary vocabulary = AssetTestUtil.addVocabulary(
 			_group.getGroupId(), "test");
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		_assetVocabularyLocalService.updateVocabulary(
 			vocabulary.getVocabularyId(), StringPool.BLANK,
 			vocabulary.getTitle(), vocabulary.getTitleMap(),
 			vocabulary.getDescriptionMap(), vocabulary.getSettings(),
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	@Rule

@@ -120,11 +120,8 @@ public class NettyChannelAttributesTest {
 
 	@Test
 	public void testGetAsyncBroker() {
-		AsyncBroker<Long, Serializable> asyncBroker =
-			NettyChannelAttributes.getAsyncBroker(_embeddedChannel);
-
 		Assert.assertSame(
-			asyncBroker,
+			NettyChannelAttributes.getAsyncBroker(_embeddedChannel),
 			NettyChannelAttributes.getAsyncBroker(_embeddedChannel));
 	}
 

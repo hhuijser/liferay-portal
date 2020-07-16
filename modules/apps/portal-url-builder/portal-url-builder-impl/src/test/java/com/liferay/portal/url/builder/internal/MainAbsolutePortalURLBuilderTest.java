@@ -59,18 +59,17 @@ public class MainAbsolutePortalURLBuilderTest
 
 	@Test
 	public void test() {
-		String url = _mainAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS[index], url);
+		Assert.assertEquals(
+			_RESULTS[index], _mainAbsolutePortalURLBuilder.build());
 	}
 
 	@Test
 	public void testIgnoreProxy() {
 		_absolutePortalURLBuilder.ignorePathProxy();
 
-		String url = _mainAbsolutePortalURLBuilder.build();
-
-		Assert.assertEquals(_RESULTS_IGNORE_PROXY[index], url);
+		Assert.assertEquals(
+			_RESULTS_IGNORE_PROXY[index],
+			_mainAbsolutePortalURLBuilder.build());
 	}
 
 	@Parameterized.Parameter(3)

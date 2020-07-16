@@ -36,7 +36,6 @@ import java.lang.reflect.Constructor;
 import java.nio.ByteBuffer;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
@@ -70,14 +69,13 @@ public class MailboxUtilTest {
 
 	@Test
 	public void testDepositMailWithReaperThreadDisabled() {
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
-			Boolean.FALSE.toString()
-		).put(
-			PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE, String.valueOf(0)
-		).build();
-
-		PropsTestUtil.setProps(properties);
+		PropsTestUtil.setProps(
+			HashMapBuilder.<String, Object>put(
+				PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
+				Boolean.FALSE.toString()
+			).put(
+				PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE, String.valueOf(0)
+			).build());
 
 		Assert.assertEquals(0, MailboxUtil.depositMail(ByteBuffer.allocate(0)));
 		Assert.assertEquals(1, MailboxUtil.depositMail(ByteBuffer.allocate(0)));
@@ -106,14 +104,13 @@ public class MailboxUtilTest {
 	@AdviseWith(adviceClasses = ReceiptStubAdvice.class)
 	@Test
 	public void testDepositMailWithReaperThreadEnabled() throws Exception {
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
-			Boolean.TRUE.toString()
-		).put(
-			PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE, String.valueOf(0)
-		).build();
-
-		PropsTestUtil.setProps(properties);
+		PropsTestUtil.setProps(
+			HashMapBuilder.<String, Object>put(
+				PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
+				Boolean.TRUE.toString()
+			).put(
+				PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE, String.valueOf(0)
+			).build());
 
 		Assert.assertEquals(0, MailboxUtil.depositMail(ByteBuffer.allocate(0)));
 		Assert.assertEquals(1, MailboxUtil.depositMail(ByteBuffer.allocate(0)));
@@ -170,14 +167,13 @@ public class MailboxUtilTest {
 
 	@Test
 	public void testReceiveMailWithReaperThreadDisabled() {
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
-			Boolean.FALSE.toString()
-		).put(
-			PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE, String.valueOf(10000)
-		).build();
-
-		PropsTestUtil.setProps(properties);
+		PropsTestUtil.setProps(
+			HashMapBuilder.<String, Object>put(
+				PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
+				Boolean.FALSE.toString()
+			).put(
+				PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE, String.valueOf(10000)
+			).build());
 
 		Assert.assertNull(MailboxUtil.receiveMail(0));
 
@@ -196,14 +192,13 @@ public class MailboxUtilTest {
 
 	@Test
 	public void testReceiveMailWithReaperThreadEnabled() {
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
-			Boolean.TRUE.toString()
-		).put(
-			PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE, String.valueOf(10000)
-		).build();
-
-		PropsTestUtil.setProps(properties);
+		PropsTestUtil.setProps(
+			HashMapBuilder.<String, Object>put(
+				PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
+				Boolean.TRUE.toString()
+			).put(
+				PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE, String.valueOf(10000)
+			).build());
 
 		Assert.assertNull(MailboxUtil.receiveMail(0));
 

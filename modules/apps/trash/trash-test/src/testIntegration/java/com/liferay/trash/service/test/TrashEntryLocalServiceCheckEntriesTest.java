@@ -189,11 +189,9 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 		Group group = updateTrashEntriesMaxAge(createGroup(companyId), 2);
 		User user = UserTestUtil.getAdminUser(companyId);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group, user.getUserId());
-
 		StagingLocalServiceUtil.enableLocalStaging(
-			user.getUserId(), group, false, false, serviceContext);
+			user.getUserId(), group, false, false,
+			ServiceContextTestUtil.getServiceContext(group, user.getUserId()));
 
 		group = createLayoutGroup(group.getStagingGroup());
 
@@ -207,15 +205,11 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 		Group group = TrashTestUtil.disableTrash(createGroup(companyId));
 		User user = UserTestUtil.getAdminUser(companyId);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group, user.getUserId());
-
 		StagingLocalServiceUtil.enableLocalStaging(
-			user.getUserId(), group, false, false, serviceContext);
+			user.getUserId(), group, false, false,
+			ServiceContextTestUtil.getServiceContext(group, user.getUserId()));
 
-		Group stagingGroup = group.getStagingGroup();
-
-		createFileEntryTrashEntry(stagingGroup, false);
+		createFileEntryTrashEntry(group.getStagingGroup(), false);
 
 		TrashEntryLocalServiceUtil.checkEntries();
 
@@ -284,14 +278,13 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 
 		Layout layout = LayoutTestUtil.addLayout(group);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), String.valueOf(layout.getPlid())
-		).build();
-
 		return GroupLocalServiceUtil.addGroup(
 			user.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
 			Layout.class.getName(), layout.getPlid(),
-			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap,
+			GroupConstants.DEFAULT_LIVE_GROUP_ID,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), String.valueOf(layout.getPlid())
+			).build(),
 			(Map<Locale, String>)null, 0, true,
 			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, false, true,
 			null);

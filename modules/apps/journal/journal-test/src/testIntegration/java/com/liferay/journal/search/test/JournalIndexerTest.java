@@ -352,16 +352,16 @@ public class JournalIndexerTest {
 			LocaleUtil.US, "Title"
 		).build();
 
-		Map<Locale, String> contentMap = HashMapBuilder.put(
-			LocaleUtil.GERMANY, "Liferay Architektur Ansatz"
-		).put(
-			LocaleUtil.SPAIN, "Liferay Arquitectura Aproximacion"
-		).put(
-			LocaleUtil.US, "Liferay Architectural Approach"
-		).build();
-
 		JournalArticle article = JournalTestUtil.addArticleWithWorkflow(
-			_group.getGroupId(), titleMap, titleMap, contentMap, true);
+			_group.getGroupId(), titleMap, titleMap,
+			HashMapBuilder.put(
+				LocaleUtil.GERMANY, "Liferay Architektur Ansatz"
+			).put(
+				LocaleUtil.SPAIN, "Liferay Arquitectura Aproximacion"
+			).put(
+				LocaleUtil.US, "Liferay Architectural Approach"
+			).build(),
+			true);
 
 		assertSearchCount(1, _group.getGroupId(), searchContext1);
 

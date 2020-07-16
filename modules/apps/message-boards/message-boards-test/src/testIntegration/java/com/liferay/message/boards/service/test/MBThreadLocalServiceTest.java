@@ -51,7 +51,6 @@ import java.io.Serializable;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -298,12 +297,10 @@ public class MBThreadLocalServiceTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
-		Map<String, Serializable> expandoBridgeAttributes =
+		serviceContext.setExpandoBridgeAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				name, value
-			).build();
-
-		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
+			).build());
 
 		return MBMessageLocalServiceUtil.addMessage(
 			TestPropsValues.getUserId(), RandomTestUtil.randomString(),

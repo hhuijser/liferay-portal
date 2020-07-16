@@ -129,12 +129,11 @@ public class OrganizationIndexerTest {
 	public SearchTestRule searchTestRule = new SearchTestRule();
 
 	protected Organization addOrganization(String name) throws Exception {
-		long userId = TestPropsValues.getUserId();
 		long parentOrganizationId = 0;
 		boolean site = false;
 
 		Organization organization = organizationLocalService.addOrganization(
-			userId, parentOrganizationId, name, site);
+			TestPropsValues.getUserId(), parentOrganizationId, name, site);
 
 		_organizations.add(organization);
 

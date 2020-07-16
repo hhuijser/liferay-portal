@@ -43,7 +43,6 @@ import java.security.Principal;
 
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import javax.security.auth.Subject;
@@ -401,13 +400,12 @@ public class JAASTest {
 			AppConfigurationEntry[] appConfigurationEntries =
 				new AppConfigurationEntry[1];
 
-			Map<String, Object> options = HashMapBuilder.<String, Object>put(
-				"debug", Boolean.TRUE
-			).build();
-
 			appConfigurationEntries[0] = new AppConfigurationEntry(
 				"com.liferay.portal.kernel.security.jaas.PortalLoginModule",
-				LoginModuleControlFlag.REQUIRED, options);
+				LoginModuleControlFlag.REQUIRED,
+				HashMapBuilder.<String, Object>put(
+					"debug", Boolean.TRUE
+				).build());
 
 			return appConfigurationEntries;
 		}

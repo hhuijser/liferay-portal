@@ -188,10 +188,9 @@ public class DDMFormInstanceReportLocalServiceTest
 
 		DDMFormValues ddmFormValues = ddmFormInstanceRecord.getDDMFormValues();
 
-		DDMForm ddmForm = ddmFormValues.getDDMForm();
-
 		DDMFormValues newDDMFormValues =
-			DDMFormValuesTestUtil.createDDMFormValues(ddmForm);
+			DDMFormValuesTestUtil.createDDMFormValues(
+				ddmFormValues.getDDMForm());
 
 		DDMFormFieldValue ddmFormFieldValue =
 			DDMFormValuesTestUtil.createDDMFormFieldValue(

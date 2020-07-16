@@ -273,15 +273,12 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 		DDMDataProviderResponse.Builder responseBuilder =
 			DDMDataProviderResponse.Builder.newBuilder();
 
-		DDMDataProviderResponse expectedDataProviderResponse =
-			responseBuilder.withOutput(
-				"output", "test"
-			).build();
-
 		when(
 			portalCache.get(Matchers.any(Serializable.class))
 		).thenReturn(
-			expectedDataProviderResponse
+			responseBuilder.withOutput(
+				"output", "test"
+			).build()
 		);
 
 		_ddmRESTDataProvider.setMultiVMPool(multiVMPool);

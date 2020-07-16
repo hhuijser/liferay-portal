@@ -21,7 +21,6 @@ import com.liferay.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.bookmarks.service.BookmarksFolderLocalServiceUtil;
 import com.liferay.bookmarks.test.util.BookmarksTestUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -94,11 +93,9 @@ public class BookmarksServiceVerifyProcessTest
 		BookmarksFolder parentFolder = BookmarksTestUtil.addFolder(
 			_group.getGroupId(), RandomTestUtil.randomString());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		BookmarksEntry entry = BookmarksTestUtil.addEntry(
-			parentFolder.getFolderId(), true, serviceContext);
+			parentFolder.getFolderId(), true,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		BookmarksEntryLocalServiceUtil.moveEntryToTrash(
 			TestPropsValues.getUserId(), entry.getEntryId());
@@ -120,11 +117,9 @@ public class BookmarksServiceVerifyProcessTest
 			_group.getGroupId(), grandparentFolder.getFolderId(),
 			RandomTestUtil.randomString());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		BookmarksTestUtil.addEntry(
-			parentFolder.getFolderId(), true, serviceContext);
+			parentFolder.getFolderId(), true,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		BookmarksFolderLocalServiceUtil.moveFolderToTrash(
 			TestPropsValues.getUserId(), parentFolder.getFolderId());

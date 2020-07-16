@@ -162,12 +162,10 @@ public class DLFileEntryLocalServiceTest {
 			long fileEntryTypeId = populateServiceContextFileEntryType(
 				serviceContext);
 
-			Map<String, Serializable> expandoBridgeAttributes =
+			serviceContext.setExpandoBridgeAttributes(
 				HashMapBuilder.<String, Serializable>put(
 					"ExpandoAttributeName", "ExpandoAttributeValue"
-				).build();
-
-			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
+				).build());
 
 			FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
 				TestPropsValues.getUserId(), _group.getGroupId(),

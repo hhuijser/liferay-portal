@@ -19,7 +19,6 @@ import com.liferay.document.library.kernel.service.DLAppServiceUtil;
 import com.liferay.document.library.sync.constants.DLSyncConstants;
 import com.liferay.document.library.test.util.BaseDLAppTestCase;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -53,11 +52,9 @@ public class DLAppServiceWhenCheckingOutAFileEntryTest
 		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		DLAppServiceUtil.checkOutFileEntry(
-			fileEntry.getFileEntryId(), serviceContext);
+			fileEntry.getFileEntryId(),
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 
 		Assert.assertEquals(1, counter.get());
 	}

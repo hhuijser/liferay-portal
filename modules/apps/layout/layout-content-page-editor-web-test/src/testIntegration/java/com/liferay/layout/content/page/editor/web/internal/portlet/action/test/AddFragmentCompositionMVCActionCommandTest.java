@@ -70,8 +70,6 @@ import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
 
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -435,19 +433,17 @@ public class AddFragmentCompositionMVCActionCommandTest {
 	}
 
 	private JournalArticle _addJournalArticle(String title) throws Exception {
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, title
-		).build();
-
-		Map<Locale, String> contentMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		return JournalTestUtil.addArticle(
 			_group.getGroupId(), 0,
-			PortalUtil.getClassNameId(JournalArticle.class), titleMap, null,
-			contentMap, LocaleUtil.getSiteDefault(), false, true,
-			_serviceContext);
+			PortalUtil.getClassNameId(JournalArticle.class),
+			HashMapBuilder.put(
+				LocaleUtil.US, title
+			).build(),
+			null,
+			HashMapBuilder.put(
+				LocaleUtil.US, RandomTestUtil.randomString()
+			).build(),
+			LocaleUtil.getSiteDefault(), false, true, _serviceContext);
 	}
 
 	private Layout _addLayout() throws Exception {

@@ -117,13 +117,13 @@ public class WabProcessorTest {
 			Assert.assertEquals(resources.toString(), 1244, resources.size());
 		}
 
-		Map<String, String[]> parameters = HashMapBuilder.put(
-			"Bundle-Version", new String[] {"7.0.0.8"}
-		).put(
-			"Web-ContextPath", new String[] {"/classic-theme"}
-		).build();
-
-		WabProcessor wabProcessor = new TestWabProcessor(file, parameters);
+		WabProcessor wabProcessor = new TestWabProcessor(
+			file,
+			HashMapBuilder.put(
+				"Bundle-Version", new String[] {"7.0.0.8"}
+			).put(
+				"Web-ContextPath", new String[] {"/classic-theme"}
+			).build());
 
 		File processedFile = wabProcessor.getProcessedFile();
 
@@ -221,10 +221,8 @@ public class WabProcessorTest {
 
 	@Test
 	public void testFatCDIWabOptsOutOfOSGiCDIIntegration() throws Exception {
-		File file = getFile("/jsf.cdi.applicant.portlet.war");
-
 		WabProcessor wabProcessor = new TestWabProcessor(
-			file,
+			getFile("/jsf.cdi.applicant.portlet.war"),
 			Collections.singletonMap(
 				"Web-ContextPath",
 				new String[] {"/jsf-cdi-applicant-portlet"}));
@@ -308,10 +306,8 @@ public class WabProcessorTest {
 
 	@Test
 	public void testSkinnyCDIWabGainsOSGiCDIIntegration() throws Exception {
-		File file = getFile("/PortletV3AnnotatedDemo.war");
-
 		WabProcessor wabProcessor = new TestWabProcessor(
-			file,
+			getFile("/PortletV3AnnotatedDemo.war"),
 			Collections.singletonMap(
 				"Web-ContextPath",
 				new String[] {"/portlet-V3-annotated-demo"}));
@@ -373,14 +369,13 @@ public class WabProcessorTest {
 
 			Parameters requirements = domain.getRequireCapability();
 
-			Map<String, Object> arguments = HashMapBuilder.<String, Object>put(
-				"osgi.extender", "osgi.cdi"
-			).put(
-				"version", new Version(1)
-			).build();
-
 			Map.Entry<String, Attrs> entry = findRequirement(
-				requirements, "osgi.extender", arguments);
+				requirements, "osgi.extender",
+				HashMapBuilder.<String, Object>put(
+					"osgi.extender", "osgi.cdi"
+				).put(
+					"version", new Version(1)
+				).build());
 
 			Assert.assertNotNull(entry);
 
@@ -423,10 +418,8 @@ public class WabProcessorTest {
 
 	@Test
 	public void testThatEmbeddedLibsAreHandledProperly() throws Exception {
-		File file = getFile("/tck-V3URLTests.wab.war");
-
 		WabProcessor wabProcessor = new TestWabProcessor(
-			file,
+			getFile("/tck-V3URLTests.wab.war"),
 			Collections.singletonMap(
 				"Web-ContextPath",
 				new String[] {"/portlet-V3-annotated-demo"}));
@@ -469,14 +462,13 @@ public class WabProcessorTest {
 
 			Parameters requirements = domain.getRequireCapability();
 
-			Map<String, Object> arguments = HashMapBuilder.<String, Object>put(
-				"osgi.extender", "osgi.cdi"
-			).put(
-				"version", new Version(1)
-			).build();
-
 			Map.Entry<String, Attrs> entry = findRequirement(
-				requirements, "osgi.extender", arguments);
+				requirements, "osgi.extender",
+				HashMapBuilder.<String, Object>put(
+					"osgi.extender", "osgi.cdi"
+				).put(
+					"version", new Version(1)
+				).build());
 
 			Assert.assertNotNull(entry);
 

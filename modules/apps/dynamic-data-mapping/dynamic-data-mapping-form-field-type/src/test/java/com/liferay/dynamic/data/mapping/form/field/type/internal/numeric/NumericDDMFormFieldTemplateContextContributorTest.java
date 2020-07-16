@@ -86,13 +86,11 @@ public class NumericDDMFormFieldTemplateContextContributorTest
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext =
 			new DDMFormFieldRenderingContext();
 
-		Map<String, Object> changedProperties =
+		ddmFormFieldRenderingContext.setProperty(
+			"changedProperties",
 			HashMapBuilder.<String, Object>put(
 				"dataType", "double"
-			).build();
-
-		ddmFormFieldRenderingContext.setProperty(
-			"changedProperties", changedProperties);
+			).build());
 
 		Assert.assertEquals(
 			"double",

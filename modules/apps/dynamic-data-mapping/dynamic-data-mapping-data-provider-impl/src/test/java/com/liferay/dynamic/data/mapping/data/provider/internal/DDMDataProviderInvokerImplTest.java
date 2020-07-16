@@ -53,15 +53,12 @@ public class DDMDataProviderInvokerImplTest extends PowerMockito {
 		DDMDataProviderResponse.Builder responseBuilder =
 			DDMDataProviderResponse.Builder.newBuilder();
 
-		DDMDataProviderResponse expectedDDMDataProviderResponse =
-			responseBuilder.withOutput(
-				"output", "value"
-			).build();
-
 		when(
 			ddmDataProvider.getData(ddmDataProviderRequest)
 		).thenReturn(
-			expectedDDMDataProviderResponse
+			responseBuilder.withOutput(
+				"output", "value"
+			).build()
 		);
 
 		DDMDataProviderInvokeCommand command = new DDMDataProviderInvokeCommand(
@@ -108,15 +105,12 @@ public class DDMDataProviderInvokerImplTest extends PowerMockito {
 		DDMDataProviderResponse.Builder responseBuilder =
 			DDMDataProviderResponse.Builder.newBuilder();
 
-		DDMDataProviderResponse expectedDDMDataProviderResponse =
-			responseBuilder.withOutput(
-				"output", 2
-			).build();
-
 		when(
 			ddmDataProvider.getData(ddmDataProviderRequest)
 		).thenReturn(
-			expectedDDMDataProviderResponse
+			responseBuilder.withOutput(
+				"output", 2
+			).build()
 		);
 
 		when(
@@ -168,17 +162,14 @@ public class DDMDataProviderInvokerImplTest extends PowerMockito {
 		DDMDataProviderResponse.Builder responseBuilder =
 			DDMDataProviderResponse.Builder.newBuilder();
 
-		DDMDataProviderResponse expectedDDMDataProviderResponse =
-			responseBuilder.withOutput(
-				"test", "value"
-			).build();
-
 		when(
 			ddmDataProviderInvokerImpl.doInvokeExternal(
 				ddmDataProviderInstance, ddmDataProvider,
 				ddmDataProviderRequest)
 		).thenReturn(
-			expectedDDMDataProviderResponse
+			responseBuilder.withOutput(
+				"test", "value"
+			).build()
 		);
 
 		when(

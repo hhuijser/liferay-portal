@@ -715,9 +715,7 @@ public class AntlrCreoleParserTest {
 	public void testParseSimpleTextWithItalicTextInMultipleLines()
 		throws Exception {
 
-		WikiPageNode wikiPageNode = getWikiPageNode("text-8.creole");
-
-		Assert.assertNotNull(wikiPageNode);
+		Assert.assertNotNull(getWikiPageNode("text-8.creole"));
 	}
 
 	@Test

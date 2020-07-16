@@ -428,12 +428,10 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext();
 
-		Map<String, Serializable> expandoBridgeAttributes =
+		serviceContext.setExpandoBridgeAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				columnName, columnValue
-			).build();
-
-		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
+			).build());
 
 		return OrganizationLocalServiceUtil.addOrganization(
 			TestPropsValues.getUserId(),

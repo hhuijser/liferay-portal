@@ -184,13 +184,13 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetConfigurationStringWithMaxHeight() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "100"
+				).build(),
+				true);
 
 		String configurationString =
 			_amImageConfigurationEntryParser.getConfigurationString(
@@ -202,15 +202,15 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetConfigurationStringWithMaxHeightAndMaxWidth() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "200"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "100"
+				).put(
+					"max-width", "200"
+				).build(),
+				true);
 
 		String configurationString =
 			_amImageConfigurationEntryParser.getConfigurationString(
@@ -223,13 +223,13 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetConfigurationStringWithMaxWidth() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-width", "200"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, true);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-width", "200"
+				).build(),
+				true);
 
 		String configurationString =
 			_amImageConfigurationEntryParser.getConfigurationString(
@@ -255,13 +255,13 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetDisabledConfigurationStringWithMaxHeight() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, false);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "100"
+				).build(),
+				false);
 
 		String configurationString =
 			_amImageConfigurationEntryParser.getConfigurationString(
@@ -274,15 +274,15 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetDisabledConfigurationStringWithMaxHeightAndMaxWidth() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "200"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, false);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-height", "100"
+				).put(
+					"max-width", "200"
+				).build(),
+				false);
 
 		String configurationString =
 			_amImageConfigurationEntryParser.getConfigurationString(
@@ -295,13 +295,13 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetDisabledConfigurationStringWithMaxWidth() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-width", "200"
-		).build();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
-				"test", "desc", "12345", properties, false);
+				"test", "desc", "12345",
+				HashMapBuilder.put(
+					"max-width", "200"
+				).build(),
+				false);
 
 		String configurationString =
 			_amImageConfigurationEntryParser.getConfigurationString(

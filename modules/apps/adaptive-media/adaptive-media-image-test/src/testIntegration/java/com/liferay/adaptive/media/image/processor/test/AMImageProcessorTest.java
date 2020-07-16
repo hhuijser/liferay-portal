@@ -40,7 +40,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.Assert;
@@ -211,15 +210,13 @@ public class AMImageProcessorTest {
 	}
 
 	private void _addTestVariant() throws Exception {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "100"
-		).build();
-
 		_amImageConfigurationHelper.addAMImageConfigurationEntry(
 			TestPropsValues.getCompanyId(), "small", StringPool.BLANK, "0",
-			properties);
+			HashMapBuilder.put(
+				"max-height", "100"
+			).put(
+				"max-width", "100"
+			).build());
 	}
 
 	private byte[] _getImageBytes() throws Exception {

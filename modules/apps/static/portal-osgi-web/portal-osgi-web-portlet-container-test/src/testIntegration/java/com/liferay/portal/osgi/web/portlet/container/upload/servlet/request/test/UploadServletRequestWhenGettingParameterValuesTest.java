@@ -82,13 +82,8 @@ public class UploadServletRequestWhenGettingParameterValuesTest {
 		for (Map.Entry<String, List<String>> entry :
 				regularParameters.entrySet()) {
 
-			String key = entry.getKey();
-
-			String[] parameterValues =
-				uploadServletRequestImpl.getParameterValues(key);
-
 			List<String> parameterValuesList = ListUtil.fromArray(
-				parameterValues);
+				uploadServletRequestImpl.getParameterValues(entry.getKey()));
 
 			Assert.assertTrue(
 				parameterValuesList.containsAll(entry.getValue()));
@@ -102,11 +97,8 @@ public class UploadServletRequestWhenGettingParameterValuesTest {
 		for (Map.Entry<String, FileItem[]> entry : fileParameters.entrySet()) {
 			String key = entry.getKey();
 
-			String[] parameterValues =
-				uploadServletRequestImpl.getParameterValues(key);
-
 			List<String> parameterValuesList = ListUtil.fromArray(
-				parameterValues);
+				uploadServletRequestImpl.getParameterValues(key));
 
 			Assert.assertFalse(
 				parameterValuesList.toString(),

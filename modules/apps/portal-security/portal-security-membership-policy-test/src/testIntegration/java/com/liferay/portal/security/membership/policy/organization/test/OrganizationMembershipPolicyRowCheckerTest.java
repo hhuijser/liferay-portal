@@ -16,7 +16,6 @@ package com.liferay.portal.security.membership.policy.organization.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.model.Organization;
-import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
@@ -78,11 +77,10 @@ public class OrganizationMembershipPolicyRowCheckerTest
 
 		long forbiddenRoleId = addForbiddenRoles()[0];
 
-		Role role = RoleLocalServiceUtil.getRole(forbiddenRoleId);
-
 		OrganizationRoleUserChecker organizationRoleUserChecker =
 			new OrganizationRoleUserChecker(
-				_renderResponse, organization, role);
+				_renderResponse, organization,
+				RoleLocalServiceUtil.getRole(forbiddenRoleId));
 
 		User user = UserTestUtil.addUser();
 
@@ -113,11 +111,10 @@ public class OrganizationMembershipPolicyRowCheckerTest
 
 		long requiredRoleId = addRequiredRoles()[0];
 
-		Role role = RoleLocalServiceUtil.getRole(requiredRoleId);
-
 		OrganizationRoleUserChecker organizationRoleUserChecker =
 			new OrganizationRoleUserChecker(
-				_renderResponse, organization, role);
+				_renderResponse, organization,
+				RoleLocalServiceUtil.getRole(requiredRoleId));
 
 		User user = UserTestUtil.addUser();
 
@@ -151,11 +148,10 @@ public class OrganizationMembershipPolicyRowCheckerTest
 
 		long forbiddenRoleId = addForbiddenRoles()[0];
 
-		Role role = RoleLocalServiceUtil.getRole(forbiddenRoleId);
-
 		OrganizationRoleUserChecker organizationRoleUserChecker =
 			new OrganizationRoleUserChecker(
-				_renderResponse, organization, role);
+				_renderResponse, organization,
+				RoleLocalServiceUtil.getRole(forbiddenRoleId));
 
 		User user = UserTestUtil.addUser();
 
@@ -193,11 +189,10 @@ public class OrganizationMembershipPolicyRowCheckerTest
 
 		long requiredRoleId = addRequiredRoles()[0];
 
-		Role role = RoleLocalServiceUtil.getRole(requiredRoleId);
-
 		OrganizationRoleUserChecker organizationRoleUserChecker =
 			new OrganizationRoleUserChecker(
-				_renderResponse, organization, role);
+				_renderResponse, organization,
+				RoleLocalServiceUtil.getRole(requiredRoleId));
 
 		User user = UserTestUtil.addUser();
 

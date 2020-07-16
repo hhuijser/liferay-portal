@@ -323,11 +323,8 @@ public class AutoBatchPreparedStatementUtilTest {
 								supportBatchUpdates))),
 					StringPool.BLANK)) {
 
-			InvocationHandler invocationHandler =
-				ProxyUtil.getInvocationHandler(preparedStatement);
-
 			Set<Future<Void>> futures = ReflectionTestUtil.getFieldValue(
-				invocationHandler, "_futures");
+				ProxyUtil.getInvocationHandler(preparedStatement), "_futures");
 
 			futures.add(testNoticeableFuture);
 		}

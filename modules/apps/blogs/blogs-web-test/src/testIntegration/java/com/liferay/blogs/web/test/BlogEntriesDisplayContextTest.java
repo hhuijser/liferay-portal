@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.IdentityServiceContextFunction;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.portlet.MockLiferayPortletRenderRequest;
 import com.liferay.portal.kernel.test.portlet.MockLiferayPortletRenderResponse;
@@ -45,7 +44,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
-import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceTracker;
@@ -88,9 +86,8 @@ public class BlogEntriesDisplayContextTest {
 		sb.append("com.liferay.blogs.web.internal.portlet.action.");
 		sb.append("BlogsAdminViewMVCRenderCommand)");
 
-		Filter filter = registry.getFilter(sb.toString());
-
-		_serviceTracker = registry.trackServices(filter);
+		_serviceTracker = registry.trackServices(
+			registry.getFilter(sb.toString()));
 
 		_serviceTracker.open();
 	}
@@ -169,14 +166,11 @@ public class BlogEntriesDisplayContextTest {
 	}
 
 	private BlogsEntry _addBlogEntry(String title) throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		return _blogsEntryService.addEntry(
 			title, RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), 1, 1, 1990, 1, 1, true, false,
 			new String[0], RandomTestUtil.randomString(), null, null,
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	private MockHttpServletRequest _getMockHttpServletRequest()

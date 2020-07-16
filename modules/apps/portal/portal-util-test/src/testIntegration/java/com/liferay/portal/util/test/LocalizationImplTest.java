@@ -417,14 +417,13 @@ public class LocalizationImplTest {
 		String englishValue = "foo&bar";
 		String spanishValue = "bar&foo";
 
-		Map<Locale, String> localizationMap = HashMapBuilder.put(
-			LocaleUtil.SPAIN, spanishValue
-		).put(
-			LocaleUtil.US, englishValue
-		).build();
-
 		String xml = LocalizationUtil.updateLocalization(
-			localizationMap, _xml, "static-content", "en_US");
+			HashMapBuilder.put(
+				LocaleUtil.SPAIN, spanishValue
+			).put(
+				LocaleUtil.US, englishValue
+			).build(),
+			_xml, "static-content", "en_US");
 
 		Assert.assertEquals(
 			spanishValue,

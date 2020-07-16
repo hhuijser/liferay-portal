@@ -43,7 +43,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -537,15 +536,13 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 			String name, String uuid, int height, int width)
 		throws Exception {
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", String.valueOf(height)
-		).put(
-			"max-width", String.valueOf(width)
-		).build();
-
 		_amImageConfigurationHelper.addAMImageConfigurationEntry(
 			TestPropsValues.getCompanyId(), name, StringPool.BLANK, uuid,
-			properties);
+			HashMapBuilder.put(
+				"max-height", String.valueOf(height)
+			).put(
+				"max-width", String.valueOf(width)
+			).build());
 	}
 
 	private void _assertAttibutes(

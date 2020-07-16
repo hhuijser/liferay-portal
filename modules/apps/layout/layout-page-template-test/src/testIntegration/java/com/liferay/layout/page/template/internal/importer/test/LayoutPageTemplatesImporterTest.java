@@ -288,18 +288,18 @@ public class LayoutPageTemplatesImporterTest {
 
 		Role role = _roleLocalService.getDefaultGroupRole(_group.getGroupId());
 
-		Map<String, String> valuesMap = HashMapBuilder.put(
-			"CONFIG_PROPERTY_1", configProperty1
-		).put(
-			"CONFIG_PROPERTY_2", configProperty2
-		).put(
-			"ROLE_KEY", role.getName()
-		).put(
-			"WIDGET_NAME", _testPortletName
-		).build();
-
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
-			_getImportLayoutPageTemplateEntry("widget", valuesMap);
+			_getImportLayoutPageTemplateEntry(
+				"widget",
+				HashMapBuilder.put(
+					"CONFIG_PROPERTY_1", configProperty1
+				).put(
+					"CONFIG_PROPERTY_2", configProperty2
+				).put(
+					"ROLE_KEY", role.getName()
+				).put(
+					"WIDGET_NAME", _testPortletName
+				).build());
 
 		LayoutPageTemplateStructure layoutPageTemplateStructure =
 			_layoutPageTemplateStructureLocalService.
@@ -559,15 +559,13 @@ public class LayoutPageTemplatesImporterTest {
 
 	@Test
 	public void testImportLayoutPageTemplateWithMasterPage() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		LayoutPageTemplateEntry masterLayoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 				TestPropsValues.getUserId(), _group.getGroupId(), 0,
 				"Test Master Page",
 				LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT,
-				WorkflowConstants.STATUS_DRAFT, serviceContext);
+				WorkflowConstants.STATUS_DRAFT,
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		List<LayoutPageTemplatesImporterResultEntry>
 			layoutPageTemplatesImporterResultEntries =
@@ -699,12 +697,9 @@ public class LayoutPageTemplatesImporterTest {
 		FragmentLayoutStructureItem fragmentLayoutStructureItem =
 			(FragmentLayoutStructureItem)layoutStructureItem;
 
-		long fragmentEntryLinkId =
-			fragmentLayoutStructureItem.getFragmentEntryLinkId();
-
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkLocalService.fetchFragmentEntryLink(
-				fragmentEntryLinkId);
+				fragmentLayoutStructureItem.getFragmentEntryLinkId());
 
 		Assert.assertNotNull(fragmentEntryLink);
 
@@ -720,10 +715,8 @@ public class LayoutPageTemplatesImporterTest {
 		List<LayoutPageTemplatesImporterResultEntry>
 			layoutPageTemplatesImporterResultEntries = null;
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		try {
 			layoutPageTemplatesImporterResultEntries =
@@ -800,10 +793,8 @@ public class LayoutPageTemplatesImporterTest {
 		List<LayoutPageTemplatesImporterResultEntry>
 			layoutPageTemplatesImporterResultEntries = null;
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		try {
 			layoutPageTemplatesImporterResultEntries =

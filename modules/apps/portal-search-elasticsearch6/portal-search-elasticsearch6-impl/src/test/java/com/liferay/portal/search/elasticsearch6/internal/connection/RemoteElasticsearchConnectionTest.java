@@ -114,11 +114,10 @@ public class RemoteElasticsearchConnectionTest {
 	public void testModifyUnconnected() {
 		Assert.assertFalse(_remoteElasticsearchConnection.isConnected());
 
-		HashMap<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"operationMode", OperationMode.REMOTE.name()
-		).build();
-
-		_remoteElasticsearchConnection.modified(properties);
+		_remoteElasticsearchConnection.modified(
+			HashMapBuilder.<String, Object>put(
+				"operationMode", OperationMode.REMOTE.name()
+			).build());
 
 		Assert.assertTrue(_remoteElasticsearchConnection.isConnected());
 	}

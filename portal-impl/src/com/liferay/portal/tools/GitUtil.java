@@ -271,8 +271,8 @@ public class GitUtil {
 					break;
 				}
 
-				if (parts[1].equals(gitWorkingBranchName) ||
-					parts[1].endsWith("/" + gitWorkingBranchName)) {
+				if (refName.equals(gitWorkingBranchName) ||
+					refName.endsWith("/" + gitWorkingBranchName)) {
 
 					return parts[0];
 				}

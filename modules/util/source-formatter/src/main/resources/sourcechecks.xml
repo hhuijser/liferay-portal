@@ -621,6 +621,7 @@
 
 		<!-- Liferay Source Checks -->
 
+		<check name="PropertiesArchivedMoudlesCheck" />
 		<check name="PropertiesBuildIncludeDirsCheck" />
 		<check name="PropertiesLanguageKeysCheck">
 			<category name="Bug Prevention" />

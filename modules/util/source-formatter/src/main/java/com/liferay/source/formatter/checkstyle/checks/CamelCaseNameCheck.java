@@ -89,6 +89,13 @@ public class CamelCaseNameCheck extends BaseCheck {
 				return;
 			}
 
+			matcher = pattern.matcher(
+				getVariableTypeName(detailAST, name, false));
+
+			if (matcher.find()) {
+				return;
+			}
+
 			if (detailAST.getType() == TokenTypes.METHOD_DEF) {
 				log(
 					nameDetailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s,
@@ -142,6 +149,13 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 		if (matcher.find()) {
 			if (_containsNameInAssignStatement(detailAST, matcher.group(1))) {
+				return;
+			}
+
+			matcher = pattern.matcher(
+				getVariableTypeName(detailAST, name, false));
+
+			if (matcher.find()) {
 				return;
 			}
 

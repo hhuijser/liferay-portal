@@ -539,6 +539,14 @@ public class SourceFormatter {
 				buildPropertiesAdded = true;
 			}
 
+			if (recentChangesFileName.contains("/modules/apps/archived/")) {
+				dependentFileNames.addAll(
+					SourceFormatterUtil.filterFileNames(
+						_allFileNames, new String[0],
+						new String[] {"**/test.properties"},
+						_sourceFormatterExcludes, false));
+			}
+
 			if (recentChangesFileName.endsWith(".java") &&
 				recentChangesFileName.contains("/upgrade/")) {
 

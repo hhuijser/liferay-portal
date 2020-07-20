@@ -11,4 +11,4 @@ Check | File Extensions | Description
 [ParameterNameCheck](https://checkstyle.sourceforge.io/config_naming.html#ParameterName) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that method parameter names conform to a specified pattern. |
 [StaticVariableNameCheck](https://checkstyle.sourceforge.io/config_naming.html#StaticVariableName) | .java, .java, .jsp, .jsp, .jspf, .jspf, .tag, .tag, .tpl, .tpl, .vm or .vm | Checks that static, non-final variable names conform to a specified pattern. |
 StringBundlerNamingCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks for consistent naming on variables of type 'StringBundler' |
-[TypeNameCheck](https://checkstyle.sourceforge.io/config_naming.html#TypeName) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that type names conform to a specified pattern. |
+[TypeNameCheck](https://checkstyle.sourceforge.io/config_naming.html#TypeName) | .java | Checks that type names conform to a specified pattern. |

@@ -16,12 +16,12 @@ ContractionsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-
 EmptyCollectionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [ExceptionMessageCheck](checks/message_check.markdown#messagecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 FactoryCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+[GenericTypeCheck](checks/generic_type_check.markdown#generictypecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [GetterUtilCheck](checks/getter_util_check.markdown#getterutilcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 InstanceofOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSONNamingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSONUtilCheck](checks/json_util_check.markdown#jsonutilcheck) | [Styling](styling_checks.markdown#styling-checks) | Checks for utilization of class `JSONUtil` |
 [JSPArrowFunctionCheck](checks/jsp_arrow_function_check.markdown#jsparrowfunctioncheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that there are no array functions |
-JSPButtonTagCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPDefineObjectsCheck](checks/jsp_define_objects_check.markdown#jspdefineobjectscheck) | [Performance](performance_checks.markdown#performance-checks) | Checks for unnesecarry duplication of code that already exists in `defineObjects` |
 JSPEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPExceptionOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -35,6 +35,7 @@ JSPLanguageUtilCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneo
 JSPLineBreakCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPLogFileNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPLogParametersCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+JSPMethodCallsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPMissingTaglibsCheck](checks/jsp_missing_taglibs_check.markdown#jspmissingtaglibscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPModuleIllegalImportsCheck](checks/jsp_module_illegal_imports_check.markdown#jspmoduleillegalimportscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPParenthesesCheck](checks/if_statement_check.markdown#ifstatementcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -42,10 +43,8 @@ JSPRedirectBackURLCheck | [Miscellaneous](miscellaneous_checks.markdown#miscella
 [JSPSendRedirectCheck](checks/jsp_send_redirect_check.markdown#jspsendredirectcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that there are no calls to `HttpServletResponse.sendRedirect` from `jsp` files |
 [JSPServiceUtilCheck](checks/jsp_service_util_check.markdown#jspserviceutilcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPSessionKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-JSPStringBundlerCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPStringMethodsCheck](checks/string_methods_check.markdown#stringmethodscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-JSPSubnameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPTagAttributesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPTaglibVariableCheck](checks/jsp_taglib_variable_check.markdown#jsptaglibvariablecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPUnusedJSPF | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -61,6 +60,7 @@ LiteralStringEqualsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscell
 [LocalFinalVariableNameCheck](https://checkstyle.sourceforge.io/config_naming.html#LocalFinalVariableName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that local final variable names conform to a specified pattern. |
 [LocalVariableNameCheck](https://checkstyle.sourceforge.io/config_naming.html#LocalVariableName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that local, non-final variable names conform to a specified pattern. |
 LocaleUtilCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+[MapBuilderCheck](checks/builder_check.markdown#buildercheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [MapIterationCheck](checks/map_iteration_check.markdown#mapiterationcheck) | [Performance](performance_checks.markdown#performance-checks) | Checks that there are no unnecessary map iterations |
 [MemberNameCheck](https://checkstyle.sourceforge.io/config_naming.html#MemberName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that instance variable names conform to a specified pattern. |
 MethodCallsOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -93,8 +93,8 @@ StringCastCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-ch
 [StringLiteralEqualityCheck](https://checkstyle.sourceforge.io/config_coding.html#StringLiteralEquality) | [Styling](styling_checks.markdown#styling-checks) | Checks that string literals are not used with == or !=. |
 SubstringCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 TernaryOperatorCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-[TypeNameCheck](https://checkstyle.sourceforge.io/config_naming.html#TypeName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that type names conform to a specified pattern. |
 [UnnecessaryParenthesesCheck](https://checkstyle.sourceforge.io/config_coding.html#UnnecessaryParentheses) | [Styling](styling_checks.markdown#styling-checks) | Checks if unnecessary parentheses are used in a statement or expression. |
+UnnecessaryTypeCastCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 UnparameterizedClassCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [ValidatorEqualsCheck](checks/validator_equals_check.markdown#validatorequalscheck) | [Performance](performance_checks.markdown#performance-checks) | Checks that there are no calls to `Validator.equals(Object, Object)` |
 ValidatorIsNullCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

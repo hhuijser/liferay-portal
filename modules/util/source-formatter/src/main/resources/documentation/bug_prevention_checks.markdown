@@ -35,6 +35,7 @@ Check | File Extensions | Description
 [JavaSeeAnnotationCheck](checks/java_see_annotation_check.markdown#javaseeannotationcheck) | .java | Checks for nested annotations inside `@see` |
 [JavaServiceUtilCheck](checks/java_service_util_check.markdown#javaserviceutilcheck) | .java | Checks that there are no calls to `*ServiceImpl` from a `*ServiceUtil` class |
 [JavaStopWatchCheck](checks/java_stop_watch_check.markdown#javastopwatchcheck) | .java | Checks for potential NullPointerException when using `StopWatch` |
+JavaStringStartsWithSubstringCheck | .java | Checks for uses of `contains` followed by `substring`, which should be `startsWith` instead |
 [JavaUnsafeCastingCheck](checks/java_unsafe_casting_check.markdown#javaunsafecastingcheck) | .java | Checks for potential ClassCastException |
 [JavaUpgradeClassCheck](checks/java_upgrade_class_check.markdown#javaupgradeclasscheck) | .java | Performs several checks on Upgrade classes |
 [PersistenceUpdateCheck](checks/persistence_update_check.markdown#persistenceupdatecheck) | .java | Checks that there are no stale references in service code from persistence updates |

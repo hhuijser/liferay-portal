@@ -27,12 +27,14 @@ DeprecatedUsageCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneo
 EmptyCollectionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 EnumConstantDividerCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 EnumConstantOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+[ExceptionCheck](checks/exception_check.markdown#exceptioncheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [ExceptionMessageCheck](checks/message_check.markdown#messagecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 ExceptionVariableNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 FactoryCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 FilterStringWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [FrameworkBundleCheck](checks/framework_bundle_check.markdown#frameworkbundlecheck) | [Performance](performance_checks.markdown#performance-checks) | Checks that `org.osgi.framework.Bundle.getHeaders()` is not used |
 FullyQualifiedNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+[GenericTypeCheck](checks/generic_type_check.markdown#generictypecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [GetterUtilCheck](checks/getter_util_check.markdown#getterutilcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 InstanceofOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [ItemListBuilderCheck](checks/builder_check.markdown#buildercheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -62,6 +64,7 @@ JavaDeprecatedJavadocCheck | [Miscellaneous](miscellaneous_checks.markdown#misce
 JavaDeprecatedKernelClassesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaDeserializationSecurityCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaDiamondOperatorCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+JavaDuplicateVariableCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JavaElseStatementCheck](checks/java_else_statement_check.markdown#javaelsestatementcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaEmptyLineAfterSuperCallCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -72,6 +75,7 @@ JavaFinderImplCustomSQLCheck | [Miscellaneous](miscellaneous_checks.markdown#mis
 [JavaHelperUtilCheck](checks/java_helper_util_check.markdown#javahelperutilcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaHibernateSQLCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaIOExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+JavaIgnoreAnnotationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaIllegalImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JavaIndexableCheck](checks/java_indexable_check.markdown#javaindexablecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that the type gets returned when using annotation `@Indexable` |
@@ -89,7 +93,6 @@ JavaMapBuilderGenericsCheck | [Miscellaneous](miscellaneous_checks.markdown#misc
 JavaModifiedServiceMethodCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JavaModuleComponentCheck](checks/java_module_component_check.markdown#javamodulecomponentcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks for use of `@Component` in `-api` or `-spi` modules |
 [JavaModuleExposureCheck](checks/java_module_exposure_check.markdown#javamoduleexposurecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks for exposure of SPI types in API |
-JavaModuleExtendedObjectClassDefinitionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaModuleIllegalImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaModuleInternalImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaModuleJavaxPortletInitParamTemplatePathCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -121,6 +124,7 @@ JavaStaticVariableDependencyCheck | [Miscellaneous](miscellaneous_checks.markdow
 [JavaStopWatchCheck](checks/java_stop_watch_check.markdown#javastopwatchcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks for potential NullPointerException when using `StopWatch` |
 [JavaStringBundlerConcatCheck](checks/java_string_bundler_concat_check.markdown#javastringbundlerconcatcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaStringBundlerInitialCapacityCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+JavaStringStartsWithSubstringCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks for uses of `contains` followed by `substring`, which should be `startsWith` instead |
 JavaStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JavaSwitchCheck](checks/java_switch_check.markdown#javaswitchcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaSystemEventAnnotationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -189,7 +193,6 @@ PlusStatementCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous
 PrimitiveWrapperInstantiationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PrincipalExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 RedundantBranchingStatementCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-RedundantVariableDeclarationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 ReferenceAnnotationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [RequireThisCheck](https://checkstyle.sourceforge.io/config_coding.html#RequireThis) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that references to instance variables and methods of the present object are explicitly of the form 'this.varName' or 'this.methodName(args)' and that those references don't rely on the default behavior when 'this.' is absent. |
 [ResourceBundleCheck](checks/resource_bundle_check.markdown#resourcebundlecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that there are no calls to `java.util.ResourceBundle.getBundle` |
@@ -214,6 +217,8 @@ TryWithResourcesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellane
 [TypeNameCheck](https://checkstyle.sourceforge.io/config_naming.html#TypeName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that type names conform to a specified pattern. |
 UnnecessaryAssignCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [UnnecessaryParenthesesCheck](https://checkstyle.sourceforge.io/config_coding.html#UnnecessaryParentheses) | [Styling](styling_checks.markdown#styling-checks) | Checks if unnecessary parentheses are used in a statement or expression. |
+UnnecessaryTypeCastCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+UnnecessaryVariableDeclarationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 UnparameterizedClassCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 UnprocessedExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 UnusedMethodCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

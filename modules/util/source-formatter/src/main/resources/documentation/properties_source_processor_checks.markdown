@@ -2,6 +2,7 @@
 
 Check | Category | Description
 ----- | -------- | -----------
+PropertiesArchivedMoudlesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesBuildIncludeDirsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesCommentsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesDefinitionKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -13,9 +14,11 @@ PropertiesLanguageKeysOrderCheck | [Miscellaneous](miscellaneous_checks.markdown
 PropertiesLiferayPluginPackageFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesLiferayPluginPackageLiferayVersionsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesLongLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+PropertiesMultiLineValuesOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesPortalEnvironmentVariablesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesPortalFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesPortletFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+PropertiesReleaseBuildCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesServiceKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesSourceFormatterContentCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesSourceFormatterFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

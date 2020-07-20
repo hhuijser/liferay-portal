@@ -100,6 +100,7 @@ Checks are configured in the following files:
    - [.cql](src/main/resources/documentation/cql_source_processor_checks.markdown#checks-for-cql)
    - [.css or .scss](src/main/resources/documentation/css_source_processor_checks.markdown#checks-for-css-or-scss)
    - [.dtd](src/main/resources/documentation/dtd_source_processor_checks.markdown#checks-for-dtd)
+   - [.expect or .sh](src/main/resources/documentation/sh_source_processor_checks.markdown#checks-for-expect-or-sh)
    - [.ftl](src/main/resources/documentation/ftl_source_processor_checks.markdown#checks-for-ftl)
    - [.function, .macro or .testcase](src/main/resources/documentation/poshi_source_processor_checks.markdown#checks-for-function-macro-or-testcase)
    - [.gradle](src/main/resources/documentation/gradle_source_processor_checks.markdown#checks-for-gradle)

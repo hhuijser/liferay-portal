@@ -23,6 +23,7 @@ BNDCapabilityCheck | [Styling](styling_checks.markdown#styling-checks) | .bnd | 
 [BNDExportsCheck](checks/bnd_exports_check.markdown#bndexportscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks that modules not ending with `-api`, `-client`, `-spi`, `-tablig`, `-test-util` do not export packages |
 [BNDImportsCheck](checks/bnd_imports_check.markdown#bndimportscheck) | [Styling](styling_checks.markdown#styling-checks) | .bnd | Sorts class names and checks for use of wildcards in property values for `-conditionalpackage`, `-exportcontents` and `Export-Package` |
 [BNDIncludeResourceCheck](checks/bnd_include_resource_check.markdown#bndincluderesourcecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks for unnesecarry including of `test-classes/integration` |
+BNDLiferayEnterpriseAppCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .bnd | |
 BNDLineBreaksCheck | [Styling](styling_checks.markdown#styling-checks) | .bnd | Checks for incorrect/missing line breaks |
 [BNDMultipleAppBNDsCheck](checks/bnd_multiple_app_bnds_check.markdown#bndmultipleappbndscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks for duplicate `app.bnd` (when both `/apps/` and `/apps/dxp/` contain the same module) |
 [BNDRangeCheck](checks/bnd_range_check.markdown#bndrangecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks for use or range expressions |
@@ -58,6 +59,7 @@ DockerfileInstructionCheck | [Miscellaneous](miscellaneous_checks.markdown#misce
 EmptyCollectionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 EnumConstantDividerCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 EnumConstantOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+[ExceptionCheck](checks/exception_check.markdown#exceptioncheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [ExceptionMessageCheck](checks/message_check.markdown#messagecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 ExceptionVariableNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 FTLEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .ftl | |
@@ -73,6 +75,7 @@ FactoryCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-check
 FilterStringWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [FrameworkBundleCheck](checks/framework_bundle_check.markdown#frameworkbundlecheck) | [Performance](performance_checks.markdown#performance-checks) | .java | Checks that `org.osgi.framework.Bundle.getHeaders()` is not used |
 FullyQualifiedNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+[GenericTypeCheck](checks/generic_type_check.markdown#generictypecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 [GetterUtilCheck](checks/getter_util_check.markdown#getterutilcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 GradleBlockOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .gradle | |
 GradleBodyCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .gradle | |
@@ -97,18 +100,14 @@ InstanceofOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneo
 [ItemListBuilderCheck](checks/builder_check.markdown#buildercheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JSLodashDependencyCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .js or .jsx | |
 [JSONDeprecatedPackagesCheck](checks/json_deprecated_packages_check.markdown#jsondeprecatedpackagescheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
-JSONIndentationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
-JSONLineBreakCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
 JSONNamingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 JSONPackageJSONBNDVersionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
 JSONPackageJSONCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
 JSONPackageJSONDependencyVersionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
-JSONPropertyOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
+JSONStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
 [JSONUtilCheck](checks/json_util_check.markdown#jsonutilcheck) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks for utilization of class `JSONUtil` |
 [JSONValidationCheck](checks/json_validation_check.markdown#jsonvalidationcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
-JSONWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .json or .npmbridgerc | |
 [JSPArrowFunctionCheck](checks/jsp_arrow_function_check.markdown#jsparrowfunctioncheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks that there are no array functions |
-JSPButtonTagCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPDefineObjectsCheck](checks/jsp_define_objects_check.markdown#jspdefineobjectscheck) | [Performance](performance_checks.markdown#performance-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks for unnesecarry duplication of code that already exists in `defineObjects` |
 JSPEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPExceptionOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
@@ -122,6 +121,7 @@ JSPLanguageUtilCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneo
 JSPLineBreakCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLogFileNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLogParametersCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
+JSPMethodCallsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPMissingTaglibsCheck](checks/jsp_missing_taglibs_check.markdown#jspmissingtaglibscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPModuleIllegalImportsCheck](checks/jsp_module_illegal_imports_check.markdown#jspmoduleillegalimportscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPParenthesesCheck](checks/if_statement_check.markdown#ifstatementcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
@@ -129,10 +129,8 @@ JSPRedirectBackURLCheck | [Miscellaneous](miscellaneous_checks.markdown#miscella
 [JSPSendRedirectCheck](checks/jsp_send_redirect_check.markdown#jspsendredirectcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks that there are no calls to `HttpServletResponse.sendRedirect` from `jsp` files |
 [JSPServiceUtilCheck](checks/jsp_service_util_check.markdown#jspserviceutilcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPSessionKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
-JSPStringBundlerCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPStringMethodsCheck](checks/string_methods_check.markdown#stringmethodscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
-JSPSubnameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPTagAttributesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPTaglibVariableCheck](checks/jsp_taglib_variable_check.markdown#jsptaglibvariablecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPUnusedJSPF | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
@@ -165,6 +163,7 @@ JavaDeprecatedJavadocCheck | [Miscellaneous](miscellaneous_checks.markdown#misce
 JavaDeprecatedKernelClassesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaDeserializationSecurityCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaDiamondOperatorCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+JavaDuplicateVariableCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [JavaElseStatementCheck](checks/java_else_statement_check.markdown#javaelsestatementcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaEmptyLineAfterSuperCallCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
@@ -175,6 +174,7 @@ JavaFinderImplCustomSQLCheck | [Miscellaneous](miscellaneous_checks.markdown#mis
 [JavaHelperUtilCheck](checks/java_helper_util_check.markdown#javahelperutilcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaHibernateSQLCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaIOExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+JavaIgnoreAnnotationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaIllegalImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [JavaIndexableCheck](checks/java_indexable_check.markdown#javaindexablecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks that the type gets returned when using annotation `@Indexable` |
@@ -192,7 +192,6 @@ JavaMapBuilderGenericsCheck | [Miscellaneous](miscellaneous_checks.markdown#misc
 JavaModifiedServiceMethodCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [JavaModuleComponentCheck](checks/java_module_component_check.markdown#javamodulecomponentcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for use of `@Component` in `-api` or `-spi` modules |
 [JavaModuleExposureCheck](checks/java_module_exposure_check.markdown#javamoduleexposurecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for exposure of SPI types in API |
-JavaModuleExtendedObjectClassDefinitionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaModuleIllegalImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaModuleInternalImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaModuleJavaxPortletInitParamTemplatePathCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
@@ -224,6 +223,7 @@ JavaStaticVariableDependencyCheck | [Miscellaneous](miscellaneous_checks.markdow
 [JavaStopWatchCheck](checks/java_stop_watch_check.markdown#javastopwatchcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for potential NullPointerException when using `StopWatch` |
 [JavaStringBundlerConcatCheck](checks/java_string_bundler_concat_check.markdown#javastringbundlerconcatcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaStringBundlerInitialCapacityCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+JavaStringStartsWithSubstringCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for uses of `contains` followed by `substring`, which should be `startsWith` instead |
 JavaStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [JavaSwitchCheck](checks/java_switch_check.markdown#javaswitchcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaSystemEventAnnotationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
@@ -258,7 +258,7 @@ LocalPatternCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-
 [LocalVariableNameCheck](https://checkstyle.sourceforge.io/config_naming.html#LocalVariableName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that local, non-final variable names conform to a specified pattern. |
 LocaleUtilCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 [LogMessageCheck](checks/message_check.markdown#messagecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
-[MapBuilderCheck](checks/builder_check.markdown#buildercheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+[MapBuilderCheck](checks/builder_check.markdown#buildercheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 [MapIterationCheck](checks/map_iteration_check.markdown#mapiterationcheck) | [Performance](performance_checks.markdown#performance-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that there are no unnecessary map iterations |
 MarkdownFileExtensionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .markdown or .md | |
 MarkdownSourceFormatterDocumentationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .markdown or .md | |
@@ -308,6 +308,7 @@ PoshiStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-
 PoshiWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .function, .macro or .testcase | |
 PrimitiveWrapperInstantiationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 PrincipalExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
+PropertiesArchivedMoudlesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesBuildIncludeDirsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesCommentsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesDefinitionKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
@@ -319,9 +320,11 @@ PropertiesLanguageKeysOrderCheck | [Miscellaneous](miscellaneous_checks.markdown
 PropertiesLiferayPluginPackageFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesLiferayPluginPackageLiferayVersionsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesLongLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
+PropertiesMultiLineValuesOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesPortalEnvironmentVariablesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesPortalFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesPortletFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
+PropertiesReleaseBuildCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesServiceKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesSourceFormatterContentCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesSourceFormatterFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
@@ -329,7 +332,6 @@ PropertiesStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellan
 PropertiesVerifyPropertiesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 PropertiesWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .prettierignore or .properties | |
 RedundantBranchingStatementCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
-RedundantVariableDeclarationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 ReferenceAnnotationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [RequireThisCheck](https://checkstyle.sourceforge.io/config_coding.html#RequireThis) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks that references to instance variables and methods of the present object are explicitly of the form 'this.varName' or 'this.methodName(args)' and that those references don't rely on the default behavior when 'this.' is absent. |
 [ResourceBundleCheck](checks/resource_bundle_check.markdown#resourcebundlecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that there are no calls to `java.util.ResourceBundle.getBundle` |
@@ -358,9 +360,11 @@ ThreadLocalUtilCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneo
 ThreadNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 TransactionalTestRuleCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 TryWithResourcesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
-[TypeNameCheck](https://checkstyle.sourceforge.io/config_naming.html#TypeName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that type names conform to a specified pattern. |
+[TypeNameCheck](https://checkstyle.sourceforge.io/config_naming.html#TypeName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java | Checks that type names conform to a specified pattern. |
 UnnecessaryAssignCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [UnnecessaryParenthesesCheck](https://checkstyle.sourceforge.io/config_coding.html#UnnecessaryParentheses) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks if unnecessary parentheses are used in a statement or expression. |
+UnnecessaryTypeCastCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
+UnnecessaryVariableDeclarationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 UnparameterizedClassCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 UnprocessedExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 UnusedMethodCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
@@ -375,7 +379,7 @@ VariableNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-
 WhitespaceAfterParameterAnnotationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [WhitespaceAroundCheck](https://checkstyle.sourceforge.io/config_whitespace.html#WhitespaceAround) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that a token is surrounded by whitespace. |
 WhitespaceAroundGenericsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
-WhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .cfg, .config, .cql, .css, .dtd, .gradle, .groovy, .scss, .soy, .sql, .tld, .ts, Dockerfile or packageinfo | |
+WhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .cfg, .config, .cql, .css, .dtd, .expect, .gradle, .groovy, .scss, .sh, .soy, .sql, .tld, .ts, Dockerfile or packageinfo | |
 XMLBuildFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
 XMLCheckstyleFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
 XMLCustomSQLOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |

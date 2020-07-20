@@ -9,6 +9,7 @@ ArquillianCheck | .java | |
 AssertEqualsCheck | .java | |
 AttributeOrderCheck | .java | |
 [BNDDeprecatedAppBNDsCheck](checks/bnd_deprecated_app_bnds_check.markdown#bnddeprecatedappbndscheck) | .bnd | Checks for redundant `app.bnd` in deprecated or archived modules |
+BNDLiferayEnterpriseAppCheck | .bnd | |
 [BNDSuiteCheck](checks/bnd_suite_check.markdown#bndsuitecheck) | .bnd | Checks that deprecated apps are moved to the `archived` folder |
 CDNCheck | | |
 CQLKeywordCheck | .cql | |
@@ -34,6 +35,7 @@ DockerfileInstructionCheck | Dockerfile | |
 EmptyCollectionCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 EnumConstantDividerCheck | .java | |
 EnumConstantOrderCheck | .java | |
+[ExceptionCheck](checks/exception_check.markdown#exceptioncheck) | .java | |
 [ExceptionMessageCheck](checks/message_check.markdown#messagecheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 ExceptionVariableNameCheck | .java | |
 FTLEmptyLinesCheck | .ftl | |
@@ -48,6 +50,7 @@ FTLWhitespaceCheck | .ftl | |
 FactoryCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 FilterStringWhitespaceCheck | .java | |
 FullyQualifiedNameCheck | .java | |
+[GenericTypeCheck](checks/generic_type_check.markdown#generictypecheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 [GetterUtilCheck](checks/getter_util_check.markdown#getterutilcheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 GradleBlockOrderCheck | .gradle | |
 GradleBodyCheck | .gradle | |
@@ -70,16 +73,12 @@ InstanceofOrderCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 [ItemListBuilderCheck](checks/builder_check.markdown#buildercheck) | .java | |
 JSLodashDependencyCheck | .js or .jsx | |
 [JSONDeprecatedPackagesCheck](checks/json_deprecated_packages_check.markdown#jsondeprecatedpackagescheck) | .json or .npmbridgerc | |
-JSONIndentationCheck | .json or .npmbridgerc | |
-JSONLineBreakCheck | .json or .npmbridgerc | |
 JSONNamingCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 JSONPackageJSONBNDVersionCheck | .json or .npmbridgerc | |
 JSONPackageJSONCheck | .json or .npmbridgerc | |
 JSONPackageJSONDependencyVersionCheck | .json or .npmbridgerc | |
-JSONPropertyOrderCheck | .json or .npmbridgerc | |
+JSONStylingCheck | .json or .npmbridgerc | |
 [JSONValidationCheck](checks/json_validation_check.markdown#jsonvalidationcheck) | .json or .npmbridgerc | |
-JSONWhitespaceCheck | .json or .npmbridgerc | |
-JSPButtonTagCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPEmptyLinesCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPExceptionOrderCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPFunctionNameCheck](checks/jsp_function_name_check.markdown#jspfunctionnamecheck) | .jsp, .jspf, .tag, .tpl or .vm | |
@@ -92,16 +91,15 @@ JSPLanguageUtilCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLineBreakCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLogFileNameCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLogParametersCheck | .jsp, .jspf, .tag, .tpl or .vm | |
+JSPMethodCallsCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPMissingTaglibsCheck](checks/jsp_missing_taglibs_check.markdown#jspmissingtaglibscheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPModuleIllegalImportsCheck](checks/jsp_module_illegal_imports_check.markdown#jspmoduleillegalimportscheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPParenthesesCheck](checks/if_statement_check.markdown#ifstatementcheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPRedirectBackURLCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPServiceUtilCheck](checks/jsp_service_util_check.markdown#jspserviceutilcheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPSessionKeysCheck | .jsp, .jspf, .tag, .tpl or .vm | |
-JSPStringBundlerCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPStringMethodsCheck](checks/string_methods_check.markdown#stringmethodscheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPStylingCheck | .jsp, .jspf, .tag, .tpl or .vm | |
-JSPSubnameCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPTagAttributesCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPTaglibVariableCheck](checks/jsp_taglib_variable_check.markdown#jsptaglibvariablecheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPUnusedJSPF | .jsp, .jspf, .tag, .tpl or .vm | |
@@ -128,6 +126,7 @@ JavaDeprecatedJavadocCheck | .java | |
 JavaDeprecatedKernelClassesCheck | .java | |
 JavaDeserializationSecurityCheck | .java | |
 JavaDiamondOperatorCheck | .java | |
+JavaDuplicateVariableCheck | .java | |
 [JavaElseStatementCheck](checks/java_else_statement_check.markdown#javaelsestatementcheck) | .java | |
 JavaEmptyLineAfterSuperCallCheck | .java | |
 JavaEmptyLinesCheck | .java | |
@@ -136,6 +135,7 @@ JavaFinderImplCustomSQLCheck | .java | |
 [JavaHelperUtilCheck](checks/java_helper_util_check.markdown#javahelperutilcheck) | .java | |
 JavaHibernateSQLCheck | .java | |
 JavaIOExceptionCheck | .java | |
+JavaIgnoreAnnotationCheck | .java | |
 JavaIllegalImportsCheck | .java | |
 JavaImportsCheck | .java | |
 JavaInnerClassImportsCheck | .java | |
@@ -148,7 +148,6 @@ JavaLogParametersCheck | .java | |
 JavaLongLinesCheck | .java | |
 JavaMapBuilderGenericsCheck | .java | |
 JavaModifiedServiceMethodCheck | .java | |
-JavaModuleExtendedObjectClassDefinitionCheck | .java | |
 JavaModuleIllegalImportsCheck | .java | |
 JavaModuleInternalImportsCheck | .java | |
 JavaModuleJavaxPortletInitParamTemplatePathCheck | .java | |
@@ -197,7 +196,7 @@ LiteralStringEqualsCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 LocalPatternCheck | .java | |
 LocaleUtilCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 [LogMessageCheck](checks/message_check.markdown#messagecheck) | .java | |
-[MapBuilderCheck](checks/builder_check.markdown#buildercheck) | .java | |
+[MapBuilderCheck](checks/builder_check.markdown#buildercheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 MarkdownFileExtensionCheck | .markdown or .md | |
 MarkdownSourceFormatterDocumentationCheck | .markdown or .md | |
 MarkdownSourceFormatterReadmeCheck | .markdown or .md | |
@@ -231,6 +230,7 @@ PoshiStylingCheck | .function, .macro or .testcase | |
 PoshiWhitespaceCheck | .function, .macro or .testcase | |
 PrimitiveWrapperInstantiationCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 PrincipalExceptionCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
+PropertiesArchivedMoudlesCheck | .prettierignore or .properties | |
 PropertiesBuildIncludeDirsCheck | .prettierignore or .properties | |
 PropertiesCommentsCheck | .prettierignore or .properties | |
 PropertiesDefinitionKeysCheck | .prettierignore or .properties | |
@@ -241,9 +241,11 @@ PropertiesLanguageKeysOrderCheck | .prettierignore or .properties | |
 PropertiesLiferayPluginPackageFileCheck | .prettierignore or .properties | |
 PropertiesLiferayPluginPackageLiferayVersionsCheck | .prettierignore or .properties | |
 PropertiesLongLinesCheck | .prettierignore or .properties | |
+PropertiesMultiLineValuesOrderCheck | .prettierignore or .properties | |
 PropertiesPortalEnvironmentVariablesCheck | .prettierignore or .properties | |
 PropertiesPortalFileCheck | .prettierignore or .properties | |
 PropertiesPortletFileCheck | .prettierignore or .properties | |
+PropertiesReleaseBuildCheck | .prettierignore or .properties | |
 PropertiesServiceKeysCheck | .prettierignore or .properties | |
 PropertiesSourceFormatterContentCheck | .prettierignore or .properties | |
 PropertiesSourceFormatterFileCheck | .prettierignore or .properties | |
@@ -251,7 +253,6 @@ PropertiesStylingCheck | .prettierignore or .properties | |
 PropertiesVerifyPropertiesCheck | .prettierignore or .properties | |
 PropertiesWhitespaceCheck | .prettierignore or .properties | |
 RedundantBranchingStatementCheck | .java | |
-RedundantVariableDeclarationCheck | .java | |
 ReferenceAnnotationCheck | .java | |
 SQLEmptyLinesCheck | .sql | |
 SQLStylingCheck | .sql | |
@@ -274,6 +275,8 @@ ThreadNameCheck | .java | |
 TransactionalTestRuleCheck | .java | |
 TryWithResourcesCheck | .java | |
 UnnecessaryAssignCheck | .java | |
+UnnecessaryTypeCastCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
+UnnecessaryVariableDeclarationCheck | .java | |
 UnparameterizedClassCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 UnprocessedExceptionCheck | .java | |
 UnusedMethodCheck | .java | |
@@ -285,7 +288,7 @@ VariableDeclarationAsUsedCheck | .java | |
 VariableNameCheck | .java | |
 WhitespaceAfterParameterAnnotationCheck | .java | |
 WhitespaceAroundGenericsCheck | .java | |
-WhitespaceCheck | .cfg, .config, .cql, .css, .dtd, .gradle, .groovy, .scss, .soy, .sql, .tld, .ts, Dockerfile or packageinfo | |
+WhitespaceCheck | .cfg, .config, .cql, .css, .dtd, .expect, .gradle, .groovy, .scss, .sh, .soy, .sql, .tld, .ts, Dockerfile or packageinfo | |
 XMLBuildFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
 XMLCheckstyleFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
 XMLCustomSQLOrderCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |

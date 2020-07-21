@@ -41,7 +41,7 @@ import java.util.Properties;
 /**
  * @author Alan Huang
  */
-public class PropertiesArchivedModulesCheck extends WhitespaceCheck {
+public class PropertiesArchivedModulesCheck extends BaseFileCheck {
 
 	@Override
 	public boolean isLiferaySourceCheck() {

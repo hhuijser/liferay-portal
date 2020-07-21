@@ -834,9 +834,7 @@ public class StagedLayoutSetStagedModelDataHandler
 					hasSiblingLayoutWithSamePriority(layout, siblingLayouts)) {
 
 					do {
-						int priority = layout.getPriority();
-
-						layout.setPriority(++priority);
+						layout.setPriority(++layout.getPriority());
 					}
 					while (hasSiblingLayoutWithSamePriority(
 								layout, siblingLayouts));

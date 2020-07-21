@@ -110,10 +110,16 @@ public class PropertiesArchivedModulesCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private List<String> _getArchivedModuleDirectoryNames() throws IOException {
-		File modulesDir = new File(getPortalDir(), "modules");
+	private synchronized List<String> _getArchivedModuleDirectoryNames()
+		throws IOException {
 
-		List<String> archivedModuleDirectoryNames = new ArrayList<>();
+		if (_archivedModuleDirectoryNames != null) {
+			return _archivedModuleDirectoryNames;
+		}
+
+		_archivedModuleDirectoryNames = new ArrayList<>();
+
+		File modulesDir = new File(getPortalDir(), "modules");
 
 		Files.walkFileTree(
 			modulesDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 15,
@@ -130,14 +136,14 @@ public class PropertiesArchivedModulesCheck extends BaseFileCheck {
 						return FileVisitResult.CONTINUE;
 					}
 
-					archivedModuleDirectoryNames.add(moduleDirectoryName);
+					_archivedModuleDirectoryNames.add(moduleDirectoryName);
 
 					return FileVisitResult.SKIP_SUBTREE;
 				}
 
 			});
 
-		return archivedModuleDirectoryNames;
+		return _archivedModuleDirectoryNames;
 	}
 
 	private String _getModuleDirectoryName(Path dirPath) {
@@ -157,5 +163,7 @@ public class PropertiesArchivedModulesCheck extends BaseFileCheck {
 
 		return null;
 	}
+
+	private List<String> _archivedModuleDirectoryNames;
 
 }

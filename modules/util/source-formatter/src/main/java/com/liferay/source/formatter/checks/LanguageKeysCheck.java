@@ -412,6 +412,12 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 		moduleLangDirNames.add(moduleLangDirName);
 
+		if (moduleLangDirName.contains("/modules/dxp/apps/")) {
+			moduleLangDirNames.add(
+				StringUtil.replace(
+					moduleLangDirName, "/modules/dxp/apps/", "/modules/apps/"));
+		}
+
 		String projectName = getProjectName();
 
 		if (Validator.isNotNull(projectName)) {

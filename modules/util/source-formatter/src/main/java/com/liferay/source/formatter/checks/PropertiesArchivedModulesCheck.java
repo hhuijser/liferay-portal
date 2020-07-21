@@ -57,7 +57,8 @@ public class PropertiesArchivedModulesCheck extends WhitespaceCheck {
 			return content;
 		}
 
-		List<String> archivedDirs = _getArchivedDirs();
+		List<String> archivedModuleDirectoryNames =
+			_getArchivedModuleDirectoryNames();
 
 		Properties properties = new Properties();
 
@@ -95,13 +96,13 @@ public class PropertiesArchivedModulesCheck extends WhitespaceCheck {
 
 				String moduleName = propertyValue.substring(3, x);
 
-				if (archivedDirs.contains(moduleName)) {
+				if (archivedModuleDirectoryNames.contains(moduleName)) {
 					addMessage(
 						fileName,
 						StringBundler.concat(
 							"Remove dependency '", moduleName,
 							"' in property '", key,
-							"', since it is in 'archived' directory"));
+							"', since it points to an archived module"));
 				}
 			}
 		}
@@ -109,10 +110,10 @@ public class PropertiesArchivedModulesCheck extends WhitespaceCheck {
 		return content;
 	}
 
-	private List<String> _getArchivedDirs() throws IOException {
+	private List<String> _getArchivedModuleDirectoryNames() throws IOException {
 		File modulesDir = new File(getPortalDir(), "modules");
 
-		final List<String> archivedDirs = new ArrayList<>();
+		List<String> archivedModuleDirectoryNames = new ArrayList<>();
 
 		Files.walkFileTree(
 			modulesDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 15,
@@ -122,23 +123,24 @@ public class PropertiesArchivedModulesCheck extends WhitespaceCheck {
 				public FileVisitResult preVisitDirectory(
 					Path dirPath, BasicFileAttributes basicFileAttributes) {
 
-					String moduleDirName = _getModuleDirName(dirPath);
+					String moduleDirectoryName = _getModuleDirectoryName(
+						dirPath);
 
-					if (moduleDirName == null) {
+					if (moduleDirectoryName == null) {
 						return FileVisitResult.CONTINUE;
 					}
 
-					archivedDirs.add(moduleDirName);
+					archivedModuleDirectoryNames.add(moduleDirectoryName);
 
 					return FileVisitResult.SKIP_SUBTREE;
 				}
 
 			});
 
-		return archivedDirs;
+		return archivedModuleDirectoryNames;
 	}
 
-	private String _getModuleDirName(Path dirPath) {
+	private String _getModuleDirectoryName(Path dirPath) {
 		String absolutePath = SourceUtil.getAbsolutePath(dirPath);
 
 		int x = absolutePath.indexOf("/modules/apps/archived/");

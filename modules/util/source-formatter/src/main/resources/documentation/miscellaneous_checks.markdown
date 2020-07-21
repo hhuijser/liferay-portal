@@ -230,7 +230,7 @@ PoshiStylingCheck | .function, .macro or .testcase | |
 PoshiWhitespaceCheck | .function, .macro or .testcase | |
 PrimitiveWrapperInstantiationCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 PrincipalExceptionCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
-PropertiesArchivedMoudlesCheck | .prettierignore or .properties | |
+PropertiesArchivedModulesCheck | .prettierignore or .properties | |
 PropertiesBuildIncludeDirsCheck | .prettierignore or .properties | |
 PropertiesCommentsCheck | .prettierignore or .properties | |
 PropertiesDefinitionKeysCheck | .prettierignore or .properties | |

@@ -2,7 +2,7 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-PropertiesArchivedMoudlesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+PropertiesArchivedModulesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesBuildIncludeDirsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesCommentsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 PropertiesDefinitionKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

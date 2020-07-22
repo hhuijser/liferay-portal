@@ -17,6 +17,7 @@ package com.liferay.portal.kernel.util;
 import com.liferay.petra.concurrent.ConcurrentReferenceValueHashMap;
 import com.liferay.petra.memory.FinalizeManager;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 
 import java.util.Map;
@@ -110,11 +111,8 @@ public class StringParserFragment {
 
 		_name = name;
 
-		_token = StringPool.OPEN_CURLY_BRACE.concat(
-			_name
-		).concat(
-			StringPool.CLOSE_CURLY_BRACE
-		);
+		_token = StringBundler.concat(
+			StringPool.OPEN_CURLY_BRACE, _name, StringPool.CLOSE_CURLY_BRACE);
 	}
 
 	private Matcher _getMatcher(String pattern) {

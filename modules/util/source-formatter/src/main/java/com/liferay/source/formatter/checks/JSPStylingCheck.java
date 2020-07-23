@@ -17,8 +17,11 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.java.parser.JavaParser;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,9 +30,37 @@ import java.util.regex.Pattern;
  */
 public class JSPStylingCheck extends BaseStylingCheck {
 
+	private String _check(String content) throws Exception {
+		Pattern pattern = Pattern.compile(
+			"<%=?\n(((?!%>).)*)\n\t*%>", Pattern.DOTALL);
+
+		Matcher matcher = pattern.matcher(content);
+
+		while (matcher.find()) {
+			try {
+				String match = matcher.group(1);
+
+				String replacement = JavaParser.parseSnippet(match);
+
+				if (!match.equals(replacement)) {
+					return StringUtil.replaceFirst(
+						content, match, replacement, matcher.start());
+				}
+			}
+			catch (Exception exception) {
+				//System.out.println("--------------------------------");
+				//System.out.println(matcher.group(1));
+			}
+		}
+
+		return content;
+	}
+
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+		String fileName, String absolutePath, String content) throws Exception {
+
+		content = _check(content);
 
 		content = _formatLineBreak(fileName, content);
 

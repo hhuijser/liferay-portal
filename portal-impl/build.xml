@@ -580,12 +580,6 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 		<if>
 			<or>
 				<equals arg1="${baseline.current.branch.file.names}" arg2="" />
-				<and>
-					<contains string="${baseline.current.branch.file.names}" substring="Loading file" />
-					<not>
-						<contains string="${baseline.current.branch.file.names}" substring="${line.separator}" />
-					</not>
-				</and>
 				<not>
 					<equals arg1="${baseline.current.branch.result}" arg2="0" />
 				</not>

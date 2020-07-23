@@ -19,6 +19,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.File;
@@ -164,6 +165,12 @@ public class GitUtil {
 	}
 
 	public static void main(String[] args) throws Exception {
+		String quiet = System.getProperty(
+			SystemProperties.SYSTEM_PROPERTIES_QUIET);
+
+		System.setProperty(
+			SystemProperties.SYSTEM_PROPERTIES_QUIET, StringPool.TRUE);
+
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
 
 		String baseDirName = ArgumentsUtil.getString(
@@ -204,6 +211,15 @@ public class GitUtil {
 		}
 		catch (Exception exception) {
 			ArgumentsUtil.processMainException(arguments, exception);
+		}
+		finally {
+			if (quiet == null) {
+				System.clearProperty(SystemProperties.SYSTEM_PROPERTIES_QUIET);
+			}
+			else {
+				System.setProperty(
+					SystemProperties.SYSTEM_PROPERTIES_QUIET, quiet);
+			}
 		}
 	}
 

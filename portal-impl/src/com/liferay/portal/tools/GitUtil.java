@@ -18,6 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.Validator;
@@ -44,12 +45,15 @@ public class GitUtil {
 			String baseDirName, String gitWorkingBranchName)
 		throws Exception {
 
-		String commitId = getCurrentBranchCommitId(gitWorkingBranchName);
+		String gitWorkingBranchLatestCommitId = _getLatestCommitId(
+			gitWorkingBranchName, "origin/" + gitWorkingBranchName,
+			"upstream/" + gitWorkingBranchName);
 
 		List<String> commitMessages = new ArrayList<>();
 
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git log --pretty=format:%s " + commitId + "..HEAD");
+			"git log --pretty=format:%s " + gitWorkingBranchLatestCommitId +
+				"..HEAD");
 
 		String line = null;
 
@@ -80,12 +84,17 @@ public class GitUtil {
 			boolean includeDeletedFileNames)
 		throws Exception {
 
-		String commitId = getCurrentBranchCommitId(gitWorkingBranchName);
+		String gitWorkingBranchLatestCommitId = _getLatestCommitId(
+			gitWorkingBranchName, "origin/" + gitWorkingBranchName,
+			"upstream/" + gitWorkingBranchName);
 
-		List<String> fileNames = getFileNames(baseDirName, commitId);
+		List<String> fileNames = getFileNames(
+			baseDirName, gitWorkingBranchLatestCommitId);
 
 		if (includeDeletedFileNames) {
-			fileNames.addAll(getDeletedFileNames(baseDirName, commitId));
+			fileNames.addAll(
+				getDeletedFileNames(
+					baseDirName, gitWorkingBranchLatestCommitId));
 		}
 
 		return fileNames;
@@ -478,10 +487,44 @@ public class GitUtil {
 	}
 
 	private static String _getLatestCommitId() throws Exception {
-		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-			"git rev-parse HEAD");
+		return _getLatestCommitId("HEAD");
+	}
 
-		return unsyncBufferedReader.readLine();
+	private static String _getLatestCommitId(String... branchNames)
+		throws Exception {
+
+		if (branchNames.length == 1) {
+			UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+				"git rev-parse " + branchNames[0]);
+
+			return unsyncBufferedReader.readLine();
+		}
+
+		String latestCommitId = null;
+		long latestTimestamp = 0;
+
+		for (String branchName : branchNames) {
+			UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+				"git log -n 1 " + branchName +
+					" --pretty=format:%H:%cd --date=unix");
+
+			String line = unsyncBufferedReader.readLine();
+
+			String[] parts = line.split(StringPool.COLON);
+
+			if (parts.length != 2) {
+				continue;
+			}
+
+			long timestamp = GetterUtil.getLong(parts[1]);
+
+			if (timestamp > latestTimestamp) {
+				latestCommitId = parts[0];
+				latestTimestamp = timestamp;
+			}
+		}
+
+		return latestCommitId;
 	}
 
 }

@@ -5335,7 +5335,7 @@ public class PortalImpl implements Portal {
 				}
 				else {
 					uniqueElementId = StringBundler.concat(
-						elementId, StringPool.UNDERLINE, String.valueOf(i));
+						elementId, StringPool.UNDERLINE, i);
 				}
 
 				i++;

@@ -76,24 +76,22 @@ public class DDMFormReportDisplayContext {
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
 
 		ddmFormFields.forEach(
-			ddmFormField -> {
-				fieldsJSONArray.put(
-					JSONUtil.put(
-						"columns", _getPropertyLabels(ddmFormField, "columns")
-					).put(
-						"label", _getValue(ddmFormField.getLabel())
-					).put(
-						"name", ddmFormField.getName()
-					).put(
-						"options",
-						_getDDMFormFieldOptionLabels(
-							ddmFormField.getDDMFormFieldOptions())
-					).put(
-						"rows", _getPropertyLabels(ddmFormField, "rows")
-					).put(
-						"type", ddmFormField.getType()
-					));
-			});
+			ddmFormField -> fieldsJSONArray.put(
+				JSONUtil.put(
+					"columns", _getPropertyLabels(ddmFormField, "columns")
+				).put(
+					"label", _getValue(ddmFormField.getLabel())
+				).put(
+					"name", ddmFormField.getName()
+				).put(
+					"options",
+					_getDDMFormFieldOptionLabels(
+						ddmFormField.getDDMFormFieldOptions())
+				).put(
+					"rows", _getPropertyLabels(ddmFormField, "rows")
+				).put(
+					"type", ddmFormField.getType()
+				)));
 
 		return fieldsJSONArray;
 	}

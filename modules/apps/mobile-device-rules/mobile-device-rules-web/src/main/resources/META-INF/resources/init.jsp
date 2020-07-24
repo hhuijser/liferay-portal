@@ -102,6 +102,7 @@ page import="com.liferay.portal.util.PropsValues" %>
 
 <%@ page import="java.util.Collection" %><%@
 page import="java.util.Collections" %><%@
+page import="java.util.Iterator" %><%@
 page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %><%@
 page import="java.util.Map" %><%@

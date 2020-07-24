@@ -23,8 +23,11 @@ MBMessage message = (MBMessage)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_CATEGORY);
 MBThread thread = (MBThread)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD);
 MBThreadFlag threadFlag = (MBThreadFlag)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD_FLAG);
-boolean lastNode = ((Boolean)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_LAST_NODE)).booleanValue();
-int depth = ((Integer)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DEPTH)).intValue();
+Boolean lastNodeBoolean = (Boolean)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_LAST_NODE);
+
+boolean lastNode = lastNodeBoolean.booleanValue();
+
+int depth = (Integer)request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_DEPTH);
 
 long threadFlagModifiedTime = 0;
 

@@ -30,7 +30,7 @@ double priority = message.getPriority();
 if (threadId > 0) {
 	try {
 		if (Validator.isNull(subject)) {
-			if (message.getSubject().startsWith(MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE)) {
+			if (StringUtil.startsWith(message.getSubject(), MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE)) {
 				subject = message.getSubject();
 			}
 			else {

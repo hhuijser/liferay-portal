@@ -38,7 +38,7 @@ if (threadId > 0) {
 		curParentMessage = MBMessageServiceUtil.getMessage(parentMessageId);
 
 		if (Validator.isNull(subject)) {
-			if (curParentMessage.getSubject().startsWith(MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE)) {
+			if (StringUtil.startsWith(curParentMessage.getSubject(), MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE)) {
 				subject = curParentMessage.getSubject();
 			}
 			else {
@@ -333,12 +333,12 @@ if (portletTitleBasedNavigation) {
 						if (thread.isQuestion() || message.isAnswer()) {
 							question = true;
 
-							if ((category != null) && category.getDisplayStyle().equals("question")) {
+							if ((category != null) && StringUtil.equals(category.getDisplayStyle(), "question")) {
 								disabled = true;
 							}
 						}
 					}
-					else if ((category != null) && category.getDisplayStyle().equals("question")) {
+					else if ((category != null) && StringUtil.equals(category.getDisplayStyle(), "question")) {
 						disabled = true;
 						question = true;
 					}

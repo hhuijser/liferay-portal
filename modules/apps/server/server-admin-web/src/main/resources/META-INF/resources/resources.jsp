@@ -19,7 +19,9 @@
 <%
 String[] installedPatches = PatcherUtil.getInstalledPatches();
 
-long uptimeDiff = System.currentTimeMillis() - PortalUtil.getUptime().getTime();
+Date modifiedDate = PortalUtil.getUptime();
+
+long uptimeDiff = System.currentTimeMillis() - modifiedDate.getTime();
 long days = uptimeDiff / Time.DAY;
 long hours = (uptimeDiff / Time.HOUR) % 24;
 long minutes = (uptimeDiff / Time.MINUTE) % 60;

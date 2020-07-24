@@ -51,7 +51,9 @@ if (step == 1) {
 	if (Validator.isNull(keywords) && (groups.size() == 1)) {
 		step = 2;
 
-		uniqueGroupId = groups.get(0).getGroupId();
+		Group group = groups.get(0);
+
+		uniqueGroupId = group.getGroupId();
 	}
 }
 
@@ -219,7 +221,9 @@ SearchContainer<Role> roleSearchContainer = selectRoleManagementToolbarDisplayCo
 								}
 							}
 							else {
-								long[] defaultSiteRoleIds = StringUtil.split(group.getTypeSettingsProperties().getProperty("defaultSiteRoleIds"), 0L);
+								UnicodeProperties typeSettingsUnicodeProperties = group.getTypeSettingsProperties();
+
+								long[] defaultSiteRoleIds = StringUtil.split(typeSettingsUnicodeProperties.getProperty("defaultSiteRoleIds"), 0L);
 
 								long[] siteRolesIds = ParamUtil.getLongValues(request, "roleIds", defaultSiteRoleIds);
 

@@ -24,6 +24,8 @@ page import="com.liferay.dynamic.data.mapping.service.DDMTemplateLocalServiceUti
 page import="com.liferay.dynamic.data.mapping.util.DDMUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %>
 
+<portlet:defineObjects />
+
 <%
 String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_ddm_init-ext");
 

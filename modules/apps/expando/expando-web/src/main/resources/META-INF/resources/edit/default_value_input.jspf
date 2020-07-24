@@ -21,7 +21,9 @@
 		boolean curValue = true;
 
 		if (defaultValue != null) {
-			curValue = ((Boolean)defaultValue).booleanValue();
+			Boolean defaultValueBoolean = (Boolean)defaultValue;
+
+			curValue = defaultValueBoolean.booleanValue();
 		}
 		%>
 

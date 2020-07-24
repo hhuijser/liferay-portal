@@ -50,7 +50,9 @@ if (!layout.isTypeControlPanel()) {
 		if (targetLayout != null) {
 			LayoutType layoutType = targetLayout.getLayoutType();
 
-			if (!(layoutType instanceof LayoutTypePortlet) || !((LayoutTypePortlet)layoutType).hasPortletId(selPortlet.getPortletId())) {
+			LayoutTypePortlet targetLayoutTypePortlet = (LayoutTypePortlet)layoutType;
+
+			if (!(layoutType instanceof LayoutTypePortlet) || !targetLayoutTypePortlet.hasPortletId(selPortlet.getPortletId())) {
 				errorMessageKey = "this-widget-has-not-been-added-to-the-live-page-publish-the-page-first";
 			}
 		}

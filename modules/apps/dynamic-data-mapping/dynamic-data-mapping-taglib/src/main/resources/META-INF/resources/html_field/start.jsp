@@ -34,7 +34,7 @@
 		ddmFormFieldRenderingContext.setLocale(requestedLocale);
 		ddmFormFieldRenderingContext.setMode(mode);
 		ddmFormFieldRenderingContext.setNamespace(fieldsNamespace);
-		ddmFormFieldRenderingContext.setPortletNamespace((PortalUtil.getLiferayPortletResponse(portletResponse)).getNamespace());
+		ddmFormFieldRenderingContext.setPortletNamespace(liferayPortletResponse.getNamespace());
 		ddmFormFieldRenderingContext.setReadOnly(readOnly);
 		ddmFormFieldRenderingContext.setShowEmptyFieldLabel(showEmptyFieldLabel);
 		%>

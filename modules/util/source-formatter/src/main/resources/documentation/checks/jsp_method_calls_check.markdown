@@ -1,13 +1,14 @@
 ## JSPMethodCallsCheck
 
-Use type `LiferayPortletResponse` to call `getNamespace()`.
+Use type `LiferayPortletResponse` to call `getNamespace()` instead of type
+`RenderResponse` or `PortletResponse`.
 
 #### Example
 
 Incorrect:
 
-`renderResponse.getNamespace()` or `portletResponse.getNamespace()`
+`<portlet:param name="scroll" value='<%= renderResponse.getNamespace() + "discussionContainer" %>' />`
 
 Correct:
 
-`liferayPortletResponse.getNamespace()`
+`<portlet:param name="scroll" value='<%= liferayPortletResponse.getNamespace() + "discussionContainer" %>' />`

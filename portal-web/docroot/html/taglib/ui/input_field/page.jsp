@@ -54,7 +54,9 @@ if (hints != null) {
 			boolean defaultBoolean = GetterUtil.DEFAULT_BOOLEAN;
 
 			if (defaultValue != null) {
-				defaultBoolean = ((Boolean)defaultValue).booleanValue();
+				Boolean defaultValueBoolean = (Boolean)defaultValue;
+
+				defaultBoolean = defaultValueBoolean.booleanValue();
 			}
 			else {
 				if (hints != null) {

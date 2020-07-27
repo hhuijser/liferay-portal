@@ -72,7 +72,9 @@ Group group = layout.getGroup();
 				<c:otherwise>
 
 					<%
-					pageContext.getOut().print(renderRequest.getAttribute(WebKeys.PORTLET_CONTENT));
+					JspWriter jspWriter = pageContext.getOut();
+
+					jspWriter.print(renderRequest.getAttribute(WebKeys.PORTLET_CONTENT));
 					%>
 
 				</c:otherwise>

@@ -604,6 +604,11 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 			<arg value="HEAD" />
 		</exec>
 
+		<echo>current.branch.name</echo>
+		<echo>${current.branch.name}</echo>
+		<echo>git.working.branch.name</echo>
+		<echo>${git.working.branch.name}</echo>
+
 		<if>
 			<equals arg1="${current.branch.name}" arg2="${git.working.branch.name}" />
 			<then>
@@ -628,6 +633,37 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 					<arg value="git.type=current-branch" />
 					<arg value="git.working.branch.name=${git.working.branch.name}" />
 				</java>
+
+				<echo>baseline.current.branch.file.names</echo>
+				<echo>${baseline.current.branch.file.names}</echo>
+				<echo>baseline.current.branch.result</echo>
+				<echo>${baseline.current.branch.result}</echo>
+
+				<echo>format.source.default.task</echo>
+				<echo>${format.source.default.task}</echo>
+				<echo>format.current.branch</echo>
+				<echo>${format.current.branch}</echo>
+
+				<exec executable="git" outputproperty="prop.1">
+					<arg line="log -n 1 master --pretty=format:%H:%cd --date=unix" />
+				</exec>
+
+				<exec executable="git" outputproperty="prop.2">
+					<arg line="log -n 1 origin/master --pretty=format:%H:%cd --date=unix" />
+				</exec>
+
+				<exec executable="git" outputproperty="prop.3">
+					<arg line="log -n 1 upstream/master --pretty=format:%H:%cd --date=unix" />
+				</exec>
+
+				<echo>prop.1</echo>
+				<echo>${prop.1}</echo>
+
+				<echo>prop.2</echo>
+				<echo>${prop.2}</echo>
+
+				<echo>prop.3</echo>
+				<echo>${prop.3}</echo>
 
 				<if>
 					<and>

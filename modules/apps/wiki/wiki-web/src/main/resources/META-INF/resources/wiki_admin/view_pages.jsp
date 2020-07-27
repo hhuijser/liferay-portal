@@ -186,7 +186,10 @@ WikiPagesManagementToolbarDisplayContext wikiPagesManagementToolbarDisplayContex
 					if (!navigation.equals("draft-pages") || Validator.isNotNull(keywords)) {
 						rowURL.setParameter("mvcRenderCommandName", "/wiki/view");
 						rowURL.setParameter("redirect", currentURL);
-						rowURL.setParameter("nodeName", curPage.getNode().getName());
+
+						WikiNode wikiNode = curPage.getNode();
+
+						rowURL.setParameter("nodeName", wikiNode.getName());
 					}
 					else {
 						rowURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");

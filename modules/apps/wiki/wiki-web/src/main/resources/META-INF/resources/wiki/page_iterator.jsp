@@ -161,7 +161,10 @@ for (int i = 0; i < pages.size(); i++) {
 		}
 
 		rowURL.setParameter("redirect", currentURL);
-		rowURL.setParameter("nodeName", curWikiPage.getNode().getName());
+
+		WikiNode wikiNode = curWikiPage.getNode();
+
+		rowURL.setParameter("nodeName", wikiNode.getName());
 	}
 	else {
 		rowURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");

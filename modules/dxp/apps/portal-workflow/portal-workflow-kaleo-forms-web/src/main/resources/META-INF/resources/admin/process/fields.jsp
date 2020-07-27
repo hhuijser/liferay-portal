@@ -120,11 +120,13 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 			<%
 			JSONArray definitionFieldsJSONArray = DDMUtil.getDDMFormFieldsJSONArray(structure, structure.getDefinition());
 
-			JSONObject definitionJSONObject = JSONFactoryUtil.createJSONObject();
-
-			definitionJSONObject.put("definitionFields", definitionFieldsJSONArray);
-			definitionJSONObject.put("definitionId", structure.getStructureId());
-			definitionJSONObject.put("definitionName", structure.getName(locale));
+			JSONObject definitionJSONObject = JSONUtil.put(
+				"definitionFields", definitionFieldsJSONArray
+			).put(
+				"definitionId", structure.getStructureId()
+			).put(
+				"definitionName", structure.getName(locale)
+			);
 
 			availableDefinitionsJSONArray.put(definitionJSONObject);
 			%>

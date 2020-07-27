@@ -53,7 +53,9 @@ if (lastImportLayoutRevisionId > 0) {
 	try {
 		LayoutRevision lastImportLayoutRevision = LayoutRevisionLocalServiceUtil.getLayoutRevision(lastImportLayoutRevisionId);
 
-		lastImportLayoutBranchName = lastImportLayoutRevision.getLayoutBranch().getName();
+		LayoutBranch layoutBranch = lastImportLayoutRevision.getLayoutBranch();
+
+		lastImportLayoutBranchName = layoutBranch.getName();
 
 		layoutRevisions = LayoutRevisionLocalServiceUtil.getChildLayoutRevisions(lastImportLayoutRevision.getLayoutSetBranchId(), LayoutRevisionConstants.DEFAULT_PARENT_LAYOUT_REVISION_ID, lastImportLayoutRevision.getPlid());
 	}

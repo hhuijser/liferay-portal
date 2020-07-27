@@ -6551,7 +6551,7 @@ information. Make sure to commit in all build services results.
 					</else>
 				</if>
 
-				<ant dir="portal-impl" target="format-source">
+				<ant dir="portal-impl" target="format-source-all">
 					<property name="format.current.branch" value="${format.current.branch}" />
 					<property name="show.documentation" value="false" />
 					<property name="source.auto.fix" value="false" />

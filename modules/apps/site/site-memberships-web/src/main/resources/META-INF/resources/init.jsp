@@ -34,6 +34,7 @@ page import="com.liferay.portal.kernel.exception.MembershipRequestCommentsExcept
 page import="com.liferay.portal.kernel.exception.RequiredGroupException" %><%@
 page import="com.liferay.portal.kernel.exception.RequiredUserException" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.model.Address" %><%@
 page import="com.liferay.portal.kernel.model.Company" %><%@
 page import="com.liferay.portal.kernel.model.Group" %><%@
 page import="com.liferay.portal.kernel.model.GroupConstants" %><%@

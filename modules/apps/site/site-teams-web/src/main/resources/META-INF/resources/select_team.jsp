@@ -46,7 +46,9 @@ SelectTeamDisplayContext selectTeamDisplayContext = new SelectTeamDisplayContext
 
 			Group group = themeDisplay.getScopeGroup();
 
-			long[] defaultTeamIds = StringUtil.split(group.getTypeSettingsProperties().getProperty("defaultTeamIds"), 0L);
+			UnicodeProperties typeSettingsUnicodeProperties = group.getTypeSettingsProperties();
+
+			long[] defaultTeamIds = StringUtil.split(typeSettingsUnicodeProperties.getProperty("defaultTeamIds"), 0L);
 
 			long[] teamIds = ParamUtil.getLongValues(request, "teamIds", defaultTeamIds);
 

@@ -90,7 +90,9 @@ List<Organization> organizations = (List<Organization>)request.getAttribute(Site
 			</p>
 
 			<%
-			String city = organization.getAddress().getCity();
+			Address address = organization.getAddress();
+
+			String city = address.getCity();
 			%>
 
 			<c:if test="<%= Validator.isNotNull(city) %>">

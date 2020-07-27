@@ -17,7 +17,9 @@
 <div aria-orientation="vertical" class="panel-group" id="<portlet:namespace />globalAccordion" role="tablist">
 
 	<%
-	for (Map.Entry<AssignableScopes, AssignScopesDisplayContext.Relations> scopeAliasAssignableScopesEntry : assignScopesDisplayContext.getGlobalAssignableScopesRelations().entrySet()) {
+	Map<AssignableScopes, AssignScopesDisplayContext.Relations> globalAssignableScopesRelations = assignScopesDisplayContext.getGlobalAssignableScopesRelations();
+
+	for (Map.Entry<AssignableScopes, AssignScopesDisplayContext.Relations> scopeAliasAssignableScopesEntry : globalAssignableScopesRelations.entrySet()) {
 		AssignScopesDisplayContext.Relations relations = scopeAliasAssignableScopesEntry.getValue();
 
 		Set<String> assignedScopeAliases = relations.getAssignedScopeAliases();

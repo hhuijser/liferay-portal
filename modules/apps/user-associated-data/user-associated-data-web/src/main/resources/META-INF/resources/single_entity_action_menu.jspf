@@ -64,10 +64,13 @@
 	}
 	else {
 		autoAnonymizeURL.setParameter(ActionRequest.ACTION_NAME, "/anonymize_uad_entities");
-		autoAnonymizeURL.setParameter("primaryKey__" + uadEntity.getTypeClass().getSimpleName(), String.valueOf(uadEntity.getPrimaryKey()));
+
+		Class<?> typeClass = uadEntity.getTypeClass();
+
+		autoAnonymizeURL.setParameter("primaryKey__" + typeClass.getSimpleName(), String.valueOf(uadEntity.getPrimaryKey()));
 
 		deleteURL.setParameter(ActionRequest.ACTION_NAME, "/delete_uad_entities");
-		deleteURL.setParameter("primaryKey__" + uadEntity.getTypeClass().getSimpleName(), String.valueOf(uadEntity.getPrimaryKey()));
+		deleteURL.setParameter("primaryKey__" + typeClass.getSimpleName(), String.valueOf(uadEntity.getPrimaryKey()));
 	}
 	%>
 

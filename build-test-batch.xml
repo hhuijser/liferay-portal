@@ -6551,9 +6551,16 @@ information. Make sure to commit in all build services results.
 						</if>
 					</then>
 					<else>
-						<antcall target="setup-sdk" />
+						<antcall target="compile" />
 
-						<antcall target="setup-yarn" />
+						<antcall target="install-portal-snapshots" />
+
+						<if>
+							<available file="modules/util/source-formatter" />
+							<then>
+								<gradle-execute dir="modules/util/source-formatter" task="deploy" />
+							</then>
+						</if>
 					</else>
 				</if>
 

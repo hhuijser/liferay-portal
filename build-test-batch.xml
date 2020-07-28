@@ -6523,6 +6523,9 @@ information. Make sure to commit in all build services results.
 					<arg value="${liferay.portal.branch}..HEAD" />
 				</exec>
 
+				<echo>liferay.portal.branch</echo>
+				<echo>${liferay.portal.branch}</echo>
+
 				<var name="format.current.branch" value="true" />
 
 				<if>

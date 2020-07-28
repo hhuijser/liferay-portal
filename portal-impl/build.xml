@@ -609,6 +609,9 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 		<echo>git.working.branch.name</echo>
 		<echo>${git.working.branch.name}</echo>
 
+		<echo>project.dir</echo>
+		<echo>${project.dir}</echo>
+
 		<if>
 			<equals arg1="${current.branch.name}" arg2="${git.working.branch.name}" />
 			<then>

@@ -84,7 +84,7 @@ definition {
 			Alert.viewSuccessMessage();
 		}
 
-		task("Assert mapped URL work in view mode") {
+		task ("Assert mapped URL work in view mode") {
 			ContentPagesNavigator.openViewContentPage(
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");

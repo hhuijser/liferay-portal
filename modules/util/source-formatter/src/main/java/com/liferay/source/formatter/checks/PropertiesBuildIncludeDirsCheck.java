@@ -151,19 +151,31 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			return null;
 		}
 
+		List<String> buildExcludeModuleDirectoryNames = getAttributeValues(
+			_BUILD_EXCLUDE_MODULE_DIRECTORY_NAMES, absolutePath);
+
 		List<String> buildIncludeCategoryNames = getAttributeValues(
 			_BUILD_INCLUDE_CATEGORY_NAMES, absolutePath);
 
+		String moduleDirName = null;
+
 		for (int i = 0; i < (directoryNames.length - 1); i++) {
 			if (buildIncludeCategoryNames.contains(directoryNames[i])) {
-				return StringUtil.merge(
+				moduleDirName = StringUtil.merge(
 					ArrayUtil.subset(directoryNames, 0, i + 2),
 					StringPool.SLASH);
+
+				if (!buildExcludeModuleDirectoryNames.contains(moduleDirName)) {
+					return moduleDirName;
+				}
 			}
 		}
 
 		return null;
 	}
+
+	private static final String _BUILD_EXCLUDE_MODULE_DIRECTORY_NAMES =
+		"buildExcludeModuleDirectoryNames";
 
 	private static final String _BUILD_INCLUDE_CATEGORY_NAMES =
 		"buildIncludeCategoryNames";

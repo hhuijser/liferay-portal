@@ -497,6 +497,8 @@ public class GitUtil {
 	private static String _getLatestCommitId(String... branchNames)
 		throws Exception {
 
+		System.out.println("============_getLatestCommitId============");
+
 		if (branchNames.length == 1) {
 			UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
 				"git rev-parse " + branchNames[0]);
@@ -508,11 +510,20 @@ public class GitUtil {
 		long latestTimestamp = 0;
 
 		for (String branchName : branchNames) {
+			System.out.println("------------------------");
+			System.out.println("branchName: " + branchName);
+
 			UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
 				"git log -n 1 " + branchName +
 					" --pretty=format:%H:%cd --date=unix");
 
 			String line = unsyncBufferedReader.readLine();
+
+			System.out.println("line: " + line);
+
+			if (line == null) {
+				continue;
+			}
 
 			String[] parts = line.split(StringPool.COLON);
 

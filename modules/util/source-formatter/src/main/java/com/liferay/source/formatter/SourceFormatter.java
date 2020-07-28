@@ -64,7 +64,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * @author Hugo Huijser
+ * @author Hugo Huijserr
  */
 public class SourceFormatter {
 

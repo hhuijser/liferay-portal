@@ -6526,6 +6526,9 @@ information. Make sure to commit in all build services results.
 				<echo>liferay.portal.branch</echo>
 				<echo>${liferay.portal.branch}</echo>
 
+				<echo>git.diff</echo>
+				<echo>${git.diff}</echo>
+
 				<var name="format.current.branch" value="true" />
 
 				<if>

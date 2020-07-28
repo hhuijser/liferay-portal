@@ -629,6 +629,13 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 					<arg value="git.working.branch.name=${git.working.branch.name}" />
 				</java>
 
+				<echo>================================================</echo>
+				<echo>===================project.dir==================</echo>
+				<echo>${project.dir}</echo>
+				<echo>=======baseline.current.branch.file.names=======</echo>
+				<echo>${baseline.current.branch.file.names}</echo>
+				<echo>================================================</echo>
+
 				<if>
 					<and>
 						<not>

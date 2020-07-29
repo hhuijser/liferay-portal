@@ -728,7 +728,7 @@ definition {
 		AssertElementPresent(
 			key_activity = "Last Access",
 			locator1 = "OAuth2#USER_CONNECTED_APP_ACTIVITY");
-		
+
 		Pause(locator1 = "20000");
 
 		Refresh();

@@ -135,6 +135,10 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 			DetailAST parentDetailAST = identDetailAST.getParent();
 
+			if (parentDetailAST.getType() == TokenTypes.LNOT) {
+				parentDetailAST = parentDetailAST.getParent();
+			}
+
 			if (parentDetailAST.getType() != TokenTypes.EXPR) {
 				return;
 			}

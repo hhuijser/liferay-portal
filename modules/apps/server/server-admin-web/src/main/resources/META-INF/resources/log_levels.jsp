@@ -40,8 +40,10 @@ Enumeration<Logger> enu = LogManager.getCurrentLoggers();
 while (enu.hasMoreElements()) {
 	Logger logger = enu.nextElement();
 
-	if (Validator.isNull(keywords) || StringUtil.contains(logger.getName(), keywords)) {
-		currentLoggerNames.put(logger.getName(), logger);
+	String loggerName = logger.getName();
+
+	if (Validator.isNull(keywords) || loggerName.contains(keywords)) {
+		currentLoggerNames.put(loggerName, logger);
 	}
 }
 

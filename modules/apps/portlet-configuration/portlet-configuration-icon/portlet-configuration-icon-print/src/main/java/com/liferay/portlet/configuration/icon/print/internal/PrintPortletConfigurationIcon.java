@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.configuration.icon.print.internal;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
@@ -53,11 +54,9 @@ public class PrintPortletConfigurationIcon
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		return "location.href = '".concat(
-			portletDisplay.getURLPrint()
-		).concat(
-			"'; return false;"
-		);
+		return StringBundler.concat(
+			"location.href = '", portletDisplay.getURLPrint(),
+			"'; return false;");
 	}
 
 	@Override

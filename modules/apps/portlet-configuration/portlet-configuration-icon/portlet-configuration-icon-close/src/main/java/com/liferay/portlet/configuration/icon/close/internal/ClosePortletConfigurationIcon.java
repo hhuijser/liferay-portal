@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.configuration.icon.close.internal;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
@@ -53,11 +54,9 @@ public class ClosePortletConfigurationIcon
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		return "Liferay.Portlet.close('#p_p_id_".concat(
-			portletDisplay.getId()
-		).concat(
-			"_'); return false;"
-		);
+		return StringBundler.concat(
+			"Liferay.Portlet.close('#p_p_id_", portletDisplay.getId(),
+			"_'); return false;");
 	}
 
 	@Override

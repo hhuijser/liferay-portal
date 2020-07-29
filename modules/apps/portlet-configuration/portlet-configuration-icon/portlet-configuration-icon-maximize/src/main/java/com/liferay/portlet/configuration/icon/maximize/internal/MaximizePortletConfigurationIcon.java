@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.configuration.icon.maximize.internal;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -72,11 +73,9 @@ public class MaximizePortletConfigurationIcon
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		return "submitForm(document.hrefFm, '".concat(
-			HtmlUtil.escapeJS(portletDisplay.getURLMax())
-		).concat(
-			"'); return false;"
-		);
+		return StringBundler.concat(
+			"submitForm(document.hrefFm, '",
+			HtmlUtil.escapeJS(portletDisplay.getURLMax()), "'); return false;");
 	}
 
 	@Override

@@ -110,7 +110,7 @@ ColorScheme selColorScheme = ThemeLocalServiceUtil.getColorScheme(company.getCom
 
 									String cssClass = StringPool.BLANK;
 
-									if (StringUtil.equals(selColorScheme.getColorSchemeId(), curColorScheme.getColorSchemeId())) {
+									if (Objects.equals(selColorScheme.getColorSchemeId(), curColorScheme.getColorSchemeId())) {
 										cssClass = "selected-color-scheme";
 									}
 								%>
@@ -152,7 +152,7 @@ ColorScheme selColorScheme = ThemeLocalServiceUtil.getColorScheme(company.getCom
 				for (int i = 0; i < themes.size(); i++) {
 					Theme curTheme = themes.get(i);
 
-					if (!StringUtil.equals(selTheme.getThemeId(), curTheme.getThemeId())) {
+					if (!Objects.equals(selTheme.getThemeId(), curTheme.getThemeId())) {
 				%>
 
 						<li>

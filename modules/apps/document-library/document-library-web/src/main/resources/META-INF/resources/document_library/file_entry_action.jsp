@@ -28,7 +28,7 @@ if (row != null) {
 	if (result instanceof AssetEntry) {
 		AssetEntry assetEntry = (AssetEntry)result;
 
-		if (StringUtil.equals(assetEntry.getClassName(), DLFileEntryConstants.getClassName())) {
+		if (Objects.equals(assetEntry.getClassName(), DLFileEntryConstants.getClassName())) {
 			fileEntry = DLAppLocalServiceUtil.getFileEntry(assetEntry.getClassPK());
 		}
 		else {

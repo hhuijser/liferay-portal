@@ -39,8 +39,7 @@ page import="com.liferay.portal.kernel.util.LinkedHashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.LocaleUtil" %><%@
 page import="com.liferay.portal.util.RepositoryUtil" %>
 
-<%@ page import="java.util.Collections" %><%@
-page import="java.util.Objects" %>
+<%@ page import="java.util.Collections" %>
 
 <%
 DLRequestHelper dlRequestHelper = new DLRequestHelper(request);

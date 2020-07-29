@@ -221,7 +221,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 	};
 
 	private static final Pattern _ignoredModulePattern = Pattern.compile(
-		"/modules/.+");
+		"^/modules/.+", Pattern.MULTILINE);
 	private static final Pattern _pattern = Pattern.compile(
 		"([^\\S\\n]*)#build\\.include\\.dirs=\\\\(\\s*#.*)*");
 

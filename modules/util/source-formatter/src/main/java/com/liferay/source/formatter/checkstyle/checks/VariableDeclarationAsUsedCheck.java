@@ -15,8 +15,9 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-
+import com.liferay.portal.tools.ToolsUtil;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -146,7 +147,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 			return;
 		}
 
-		if (_isBuildMethodCall(assignMethodCallDetailAST)) {
+		if (_hasChainStyle(assignMethodCallDetailAST, "build", "map", "put")) {
 			if (_isInsideStatementClause(identDetailAST)) {
 				return;
 			}
@@ -426,45 +427,38 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		return lastBranchingStatementDetailAST;
 	}
 
-	private boolean _isBuildMethodCall(DetailAST methodCallDetailAST) {
-		DetailAST firstChildDetailAST = methodCallDetailAST.getFirstChild();
+	private boolean _hasChainStyle(
+		DetailAST methodCallDetailAST, String... methodNames) {
 
-		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+		int startLineNumber = getStartLineNumber(methodCallDetailAST);
+
+		String line = getLine(startLineNumber - 1);
+
+		if (!line.endsWith("(") || (ToolsUtil.getLevel(line) != 1)) {
 			return false;
 		}
 
-		DetailAST lastChildDetailAST = firstChildDetailAST.getLastChild();
-
-		if ((lastChildDetailAST.getType() != TokenTypes.IDENT) ||
-			!Objects.equals(lastChildDetailAST.getText(), "build")) {
-
-			return false;
-		}
-
-		while (true) {
-			firstChildDetailAST = firstChildDetailAST.getFirstChild();
-
-			if (firstChildDetailAST == null) {
-				return false;
-			}
-
-			if ((firstChildDetailAST.getType() == TokenTypes.DOT) ||
-				(firstChildDetailAST.getType() == TokenTypes.METHOD_CALL)) {
-
+		for (String methodName : methodNames) {
+			if (!line.endsWith("." + methodName + "(")) {
 				continue;
 			}
 
-			FullIdent fullIdent = FullIdent.createFullIdent(
-				firstChildDetailAST.getParent());
+			int level = 1;
 
-			String methodName = fullIdent.getText();
+			for (int i = (startLineNumber + 1);
+				 i <= getEndLineNumber(methodCallDetailAST); i++) {
 
-			if (methodName.matches(".*Builder\\..*")) {
-				return true;
+				line = StringUtil.trim(getLine(i - 1));
+
+				if (line.startsWith(").") && (level == 1)) {
+					return true;
+				}
+
+				level += ToolsUtil.getLevel(line);
 			}
-
-			return false;
 		}
+
+		return false;
 	}
 
 	private boolean _isInsideStatementClause(DetailAST detailAST) {

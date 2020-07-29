@@ -20,6 +20,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
+import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +32,7 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -98,7 +100,8 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 
 				@Override
 				public FileVisitResult preVisitDirectory(
-					Path dirPath, BasicFileAttributes basicFileAttributes) {
+						Path dirPath, BasicFileAttributes basicFileAttributes)
+					throws IOException {
 
 					if (ArrayUtil.contains(
 							_SKIP_DIR_NAMES,
@@ -133,7 +136,41 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		return buildIncludeDirs;
 	}
 
-	private String _getModuleDirName(Path dirPath) {
+	private synchronized List<String> _getIgnoredModules(String absolutePath)
+		throws IOException {
+
+		if (_ignoredModules != null) {
+			return _ignoredModules;
+		}
+
+		String rootDirName = SourceUtil.getRootDirName(absolutePath);
+
+		File file = new File(rootDirName + "/.gitignore");
+
+		if (!file.exists()) {
+			return null;
+		}
+
+		String content = FileUtil.read(file);
+
+		if (content == null) {
+			return null;
+		}
+
+		final List<String> ignoredModules = new ArrayList<>();
+
+		Matcher matcher = _ignoredModulePattern.matcher(content);
+
+		while (matcher.find()) {
+			ignoredModules.add(matcher.group());
+		}
+
+		_ignoredModules = ignoredModules;
+
+		return _ignoredModules;
+	}
+
+	private String _getModuleDirName(Path dirPath) throws IOException {
 		String absolutePath = SourceUtil.getAbsolutePath(dirPath);
 
 		int x = absolutePath.indexOf("/modules/");
@@ -143,6 +180,14 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		}
 
 		String directoryPath = absolutePath.substring(x + 9);
+
+		for (String ignoredModule : _getIgnoredModules(absolutePath)) {
+			if (StringUtil.startsWith(
+					"/modules/" + directoryPath + "/", ignoredModule + "/")) {
+
+				return null;
+			}
+		}
 
 		String[] directoryNames = StringUtil.split(
 			directoryPath, CharPool.SLASH);
@@ -175,7 +220,11 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		"test-coverage", "test-results", "tmp"
 	};
 
+	private static final Pattern _ignoredModulePattern = Pattern.compile(
+		"/modules/.+");
 	private static final Pattern _pattern = Pattern.compile(
 		"([^\\S\\n]*)#build\\.include\\.dirs=\\\\(\\s*#.*)*");
+
+	private List<String> _ignoredModules;
 
 }

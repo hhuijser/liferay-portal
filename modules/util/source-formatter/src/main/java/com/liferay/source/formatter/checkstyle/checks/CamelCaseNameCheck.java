@@ -84,15 +84,9 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 		if (matcher.find()) {
 			if (_containsNameInAssignStatement(
-					detailAST, s + matcher.group(2))) {
+					detailAST, s + matcher.group(2)) ||
+				_containsMatchingTypeName(detailAST, name, pattern)) {
 
-				return;
-			}
-
-			matcher = pattern.matcher(
-				getVariableTypeName(detailAST, name, false));
-
-			if (matcher.find()) {
 				return;
 			}
 
@@ -148,14 +142,9 @@ public class CamelCaseNameCheck extends BaseCheck {
 		Matcher matcher = pattern.matcher(name);
 
 		if (matcher.find()) {
-			if (_containsNameInAssignStatement(detailAST, matcher.group(1))) {
-				return;
-			}
+			if (_containsNameInAssignStatement(detailAST, matcher.group(1)) ||
+				_containsMatchingTypeName(detailAST, name, pattern)) {
 
-			matcher = pattern.matcher(
-				getVariableTypeName(detailAST, name, false));
-
-			if (matcher.find()) {
 				return;
 			}
 
@@ -193,6 +182,46 @@ public class CamelCaseNameCheck extends BaseCheck {
 				nameDetailAST, _MSG_REQUIRED_PRECEDING_UNDERSCORE,
 				StringUtil.toUpperCase(s), name);
 		}
+	}
+
+	private boolean _containsMatchingTypeName(
+		DetailAST detailAST, String name, Pattern pattern) {
+
+		if ((detailAST.getType() == TokenTypes.PARAMETER_DEF) ||
+			(detailAST.getType() == TokenTypes.VARIABLE_DEF)) {
+
+			Matcher matcher = pattern.matcher(
+				getVariableTypeName(detailAST, name, false));
+
+			return matcher.find();
+		}
+
+		String returnTypeName = getTypeName(detailAST, false);
+
+		if (!returnTypeName.equals("void")) {
+			Matcher matcher = pattern.matcher(returnTypeName);
+
+			if (matcher.find()) {
+				return true;
+			}
+		}
+
+		DetailAST parametersDetailAST = detailAST.findFirstToken(
+			TokenTypes.PARAMETERS);
+
+		List<DetailAST> parameterDetailASTList = getAllChildTokens(
+			parametersDetailAST, false, TokenTypes.PARAMETER_DEF);
+
+		for (DetailAST parameterDetailAST : parameterDetailASTList) {
+			Matcher matcher = pattern.matcher(
+				getTypeName(parameterDetailAST, false));
+
+			if (matcher.find()) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private boolean _containsNameInAssignStatement(

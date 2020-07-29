@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -448,7 +449,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 			int level = 1;
 
-			for (int i = (startLineNumber + 1);
+			for (int i = startLineNumber + 1;
 				 i <= getEndLineNumber(methodCallDetailAST); i++) {
 
 				line = StringUtil.trim(getLine(i - 1));

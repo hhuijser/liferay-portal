@@ -19,7 +19,7 @@
 <%
 boolean invokingSession = false;
 
-if (StringUtil.equals(session.getId(), MaintenanceUtil.getSessionId())) {
+if (Objects.equals(session.getId(), MaintenanceUtil.getSessionId())) {
 	invokingSession = true;
 }
 %>

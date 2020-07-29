@@ -59,6 +59,8 @@ page import="com.liferay.wiki.web.internal.util.WikiPageAttachmentsUtil" %><%@
 page import="com.liferay.wiki.web.internal.util.WikiUtil" %><%@
 page import="com.liferay.wiki.web.internal.util.WikiWebComponentProvider" %>
 
+<%@ page import="java.util.Objects" %>
+
 <%
 AssetHelper assetHelper = (AssetHelper)request.getAttribute(AssetWebKeys.ASSET_HELPER);
 

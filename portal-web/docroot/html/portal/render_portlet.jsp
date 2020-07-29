@@ -851,7 +851,7 @@ if (portlet.isActive() && portlet.isInclude() && portlet.isReady() && supportsMi
 
 String portalProductMenuApplicationTypePortletId = PortletProviderUtil.getPortletId(PortalProductMenuApplicationType.ProductMenu.CLASS_NAME, PortletProvider.Action.VIEW);
 
-if ((layout.isTypePanel() || layout.isTypeControlPanel()) && !StringUtil.equals(portletDisplay.getId(), portalProductMenuApplicationTypePortletId) && !portlet.isStatic()) {
+if ((layout.isTypePanel() || layout.isTypeControlPanel()) && !Objects.equals(portletDisplay.getId(), portalProductMenuApplicationTypePortletId) && !portlet.isStatic()) {
 	PortalUtil.setPageTitle(portletDisplay.getTitle(), request);
 }
 

@@ -118,7 +118,7 @@ if (iteratorURL != null) {
 					if (orderCurrentHeader) {
 						cssClass += " table-sorted";
 
-						if (StringUtil.equals(HtmlUtil.escapeAttribute(orderByType), "desc")) {
+						if (Objects.equals(HtmlUtil.escapeAttribute(orderByType), "desc")) {
 							cssClass += " table-sorted-desc";
 						}
 					}

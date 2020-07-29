@@ -165,13 +165,12 @@ public class SingleIndexToMultipleIndexImporterImpl
 
 		Stream<Map.Entry<String, List<Document>>> stream = entrySet.stream();
 
-		boolean success = stream.map(
-			entry -> addDocuments(entry.getKey(), entry.getValue())
-		).reduce(
-			true, Boolean::logicalAnd
-		);
+		if (stream.map(
+				entry -> addDocuments(entry.getKey(), entry.getValue())
+			).reduce(
+				true, Boolean::logicalAnd
+			)) {
 
-		if (success) {
 			_rankingIndexCreator.delete(SINGLE_INDEX_NAME);
 		}
 	}

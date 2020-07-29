@@ -72,11 +72,9 @@ public class UserRecipient extends Recipient {
 
 	@Override
 	public int hashCode() {
-		return _emailAddress.concat(
-			_screenName
-		).concat(
-			String.valueOf(_userId)
-		).hashCode();
+		String s = StringBundler.concat(_emailAddress, _screenName, _userId);
+
+		return s.hashCode();
 	}
 
 	@Override

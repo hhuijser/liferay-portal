@@ -486,18 +486,18 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 				return false;
 			}
 
-			if (grandParentDetailAST.getType() == TokenTypes.LITERAL_WHILE) {
-				if (parentDetailAST.getType() == TokenTypes.EXPR) {
+			if (grandParentDetailAST.getType() == TokenTypes.LITERAL_TRY) {
+				if (parentDetailAST.getType() ==
+						TokenTypes.RESOURCE_SPECIFICATION) {
+
 					return true;
 				}
 
 				return false;
 			}
 
-			if (grandParentDetailAST.getType() == TokenTypes.LITERAL_TRY) {
-				if (parentDetailAST.getType() ==
-						TokenTypes.RESOURCE_SPECIFICATION) {
-
+			if (grandParentDetailAST.getType() == TokenTypes.LITERAL_WHILE) {
+				if (parentDetailAST.getType() == TokenTypes.EXPR) {
 					return true;
 				}
 

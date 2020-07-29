@@ -20,6 +20,7 @@ import com.liferay.opensocial.shindig.util.HttpServletRequestThreadLocal;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.petra.encryptor.Encryptor;
 import com.liferay.petra.encryptor.EncryptorException;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -83,13 +84,9 @@ public class ShindigFilter extends InjectedFilter {
 
 		ShindigUtil.setScheme(servletRequest.getScheme());
 
-		String serverName = servletRequest.getServerName();
-
-		String host = serverName.concat(
-			StringPool.COLON
-		).concat(
-			String.valueOf(servletRequest.getServerPort())
-		);
+		String host = StringBundler.concat(
+			servletRequest.getServerName(), StringPool.COLON,
+			servletRequest.getServerPort());
 
 		ShindigUtil.setHost(host);
 

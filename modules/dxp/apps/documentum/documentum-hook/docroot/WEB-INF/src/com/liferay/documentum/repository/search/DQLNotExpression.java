@@ -14,6 +14,8 @@
 
 package com.liferay.documentum.repository.search;
 
+import com.liferay.petra.string.StringBundler;
+
 /**
  * @author Mika Koivisto
  */
@@ -25,11 +27,8 @@ public class DQLNotExpression implements DQLCriterion {
 
 	@Override
 	public String toQueryFragment() {
-		return "NOT(".concat(
-			_dqlCriterion.toQueryFragment()
-		).concat(
-			")"
-		);
+		return StringBundler.concat(
+			"NOT(", _dqlCriterion.toQueryFragment(), ")");
 	}
 
 	private final DQLCriterion _dqlCriterion;

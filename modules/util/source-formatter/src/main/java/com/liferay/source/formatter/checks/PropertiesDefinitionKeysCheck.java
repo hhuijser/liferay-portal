@@ -30,7 +30,7 @@ public class PropertiesDefinitionKeysCheck extends BaseDefinitionKeysCheck {
 
 			content = sortDefinitionKeys(
 				content, getDefinitions(content),
-				new NaturalOrderStringComparator());
+				new NaturalOrderStringComparator(true, true));
 		}
 
 		return content;

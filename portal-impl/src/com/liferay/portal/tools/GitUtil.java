@@ -45,8 +45,9 @@ public class GitUtil {
 			String baseDirName, String gitWorkingBranchName)
 		throws Exception {
 
-		String gitWorkingBranchLatestCommitId = getCurrentBranchCommitId(
-			gitWorkingBranchName);
+		String gitWorkingBranchLatestCommitId = _getLatestCommitId(
+			gitWorkingBranchName, "origin/" + gitWorkingBranchName,
+			"upstream/" + gitWorkingBranchName);
 
 		List<String> commitMessages = new ArrayList<>();
 
@@ -83,8 +84,9 @@ public class GitUtil {
 			boolean includeDeletedFileNames)
 		throws Exception {
 
-		String gitWorkingBranchLatestCommitId = getCurrentBranchCommitId(
-			gitWorkingBranchName);
+		String gitWorkingBranchLatestCommitId = _getLatestCommitId(
+			gitWorkingBranchName, "origin/" + gitWorkingBranchName,
+			"upstream/" + gitWorkingBranchName);
 
 		List<String> fileNames = getFileNames(
 			baseDirName, gitWorkingBranchLatestCommitId);

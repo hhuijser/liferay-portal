@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -487,9 +486,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 				return false;
 			}
 
-			if ((grandParentDetailAST.getType() == TokenTypes.LITERAL_IF) ||
-				(grandParentDetailAST.getType() == TokenTypes.LITERAL_WHILE)) {
-
+			if (grandParentDetailAST.getType() == TokenTypes.LITERAL_WHILE) {
 				if (parentDetailAST.getType() == TokenTypes.EXPR) {
 					return true;
 				}

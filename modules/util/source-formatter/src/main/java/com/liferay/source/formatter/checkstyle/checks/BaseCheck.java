@@ -886,6 +886,9 @@ public abstract class BaseCheck extends AbstractCheck {
 		TokenTypes.LT, TokenTypes.NOT_EQUAL
 	};
 
+	protected static final String RUN_OUTSIDE_PORTAL_EXCLUDES =
+		"run.outside.portal.excludes";
+
 	protected static final int[] UNARY_OPERATOR_TOKEN_TYPES = {
 		TokenTypes.DEC, TokenTypes.INC, TokenTypes.LNOT, TokenTypes.POST_DEC,
 		TokenTypes.POST_INC, TokenTypes.UNARY_MINUS, TokenTypes.UNARY_PLUS

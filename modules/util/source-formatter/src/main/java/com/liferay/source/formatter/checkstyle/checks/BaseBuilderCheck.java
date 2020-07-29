@@ -39,7 +39,7 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		if (isExcludedPath(_RUN_OUTSIDE_PORTAL_EXCLUDES)) {
+		if (isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
 			return;
 		}
 
@@ -834,8 +834,5 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	private static final String _MSG_USE_BUILDER_INSTEAD =
 		"builder.use.instead";
-
-	private static final String _RUN_OUTSIDE_PORTAL_EXCLUDES =
-		"run.outside.portal.excludes";
 
 }

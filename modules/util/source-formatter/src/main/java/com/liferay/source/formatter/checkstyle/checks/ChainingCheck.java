@@ -202,10 +202,11 @@ public class ChainingCheck extends BaseCheck {
 				_checkMethodName(
 					chainedMethodNames, "getClass", methodCallDetailAST);
 
-				String name1 = chainedMethodNames.get(0);
-				String name2 = chainedMethodNames.get(1);
+				if ((isAttributeValue(_ALLOW_CONCAT_CHAIN_KEY) ||
+					 isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) &&
+					Objects.equals(chainedMethodNames.get(0), "concat") &&
+					Objects.equals(chainedMethodNames.get(1), "concat")) {
 
-				if (name1.equals("concat") && name2.equals("concat")) {
 					continue;
 				}
 			}
@@ -223,19 +224,22 @@ public class ChainingCheck extends BaseCheck {
 			int concatsCount = Collections.frequency(
 				chainedMethodNames, "concat");
 
-			if (concatsCount > 2) {
+			if ((chainSize == 3) && (concatsCount == 2) &&
+				isAttributeValue(_ALLOW_CONCAT_CHAIN_KEY)) {
+
+				continue;
+			}
+
+			if ((concatsCount > 1) &&
+				!isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
+
 				log(methodCallDetailAST, _MSG_AVOID_TOO_MANY_CONCAT);
-
-				continue;
 			}
-
-			if ((chainSize == 3) && (concatsCount == 2)) {
-				continue;
+			else {
+				log(
+					methodCallDetailAST, _MSG_AVOID_METHOD_CHAINING,
+					getMethodName(methodCallDetailAST));
 			}
-
-			log(
-				methodCallDetailAST, _MSG_AVOID_METHOD_CHAINING,
-				getMethodName(methodCallDetailAST));
 		}
 	}
 
@@ -912,6 +916,8 @@ public class ChainingCheck extends BaseCheck {
 
 		return false;
 	}
+
+	private static final String _ALLOW_CONCAT_CHAIN_KEY = "allowConcatChain";
 
 	private static final String _ALLOWED_CLASS_NAMES_KEY = "allowedClassNames";
 

@@ -151,15 +151,10 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			return null;
 		}
 
-		String content = FileUtil.read(file);
-
-		if (content == null) {
-			return null;
-		}
-
 		List<String> ignoredModuleNames = new ArrayList<>();
 
-		Matcher matcher = _ignoredModuleNamePattern.matcher(content);
+		Matcher matcher = _ignoredModuleNamePattern.matcher(
+			FileUtil.read(file));
 
 		while (matcher.find()) {
 			ignoredModuleNames.add(matcher.group());

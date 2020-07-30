@@ -51,6 +51,8 @@ public class JIRAUtil {
 
 		outerLoop:
 		for (String commitMessage : commitMessages) {
+			commitMessage = commitMessage.trim();
+
 			if (commitMessage.startsWith("Revert ") ||
 				commitMessage.endsWith("/ci-merge.")) {
 

@@ -178,9 +178,9 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		String directoryPath = absolutePath.substring(x + 9);
 
 		for (String ignoredModuleName : ignoredModuleNames) {
-			if (("/modules/" + directoryPath + "/").startsWith(
-					ignoredModuleName + "/")) {
+			String modulePath = "/modules/" + directoryPath + "/";
 
+			if (modulePath.startsWith(ignoredModuleName + "/")) {
 				return null;
 			}
 		}

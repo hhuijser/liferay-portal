@@ -145,13 +145,13 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 	private List<String> _getIgnoredModuleNames(String rootDirName)
 		throws IOException {
 
+		List<String> ignoredModuleNames = new ArrayList<>();
+
 		File file = new File(rootDirName + "/.gitignore");
 
 		if (!file.exists()) {
-			return null;
+			return ignoredModuleNames;
 		}
-
-		List<String> ignoredModuleNames = new ArrayList<>();
 
 		Matcher matcher = _ignoredModuleNamePattern.matcher(
 			FileUtil.read(file));

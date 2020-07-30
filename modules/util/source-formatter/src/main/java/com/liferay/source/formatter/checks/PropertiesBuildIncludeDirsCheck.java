@@ -71,7 +71,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		sb.append("#build.include.dirs=\\");
 		sb.append(StringPool.NEW_LINE);
 
-		Set<String> buildIncludeDirs = _getBuildIncludeDirs();
+		Set<String> buildIncludeDirs = _getBuildIncludeDirs(absolutePath);
 
 		for (String buildIncludeDir : buildIncludeDirs) {
 			sb.append(matcher.group(1));
@@ -89,10 +89,15 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		return StringUtil.replaceFirst(content, matcher.group(), sb.toString());
 	}
 
-	private Set<String> _getBuildIncludeDirs() throws IOException {
+	private Set<String> _getBuildIncludeDirs(String absolutePath)
+		throws IOException {
+
 		File modulesDir = new File(getPortalDir(), "modules");
 
-		final Set<String> buildIncludeDirs = new TreeSet<>();
+		List<String> ignoredModules = _getIgnoredModules(
+			SourceUtil.getRootDirName(absolutePath));
+
+		Set<String> buildIncludeDirs = new TreeSet<>();
 
 		Files.walkFileTree(
 			modulesDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 15,
@@ -110,7 +115,8 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 						return FileVisitResult.SKIP_SUBTREE;
 					}
 
-					String moduleDirName = _getModuleDirName(dirPath);
+					String moduleDirName = _getModuleDirName(
+						dirPath, ignoredModules);
 
 					if (moduleDirName == null) {
 						return FileVisitResult.CONTINUE;
@@ -136,14 +142,8 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		return buildIncludeDirs;
 	}
 
-	private synchronized List<String> _getIgnoredModules(String absolutePath)
+	private List<String> _getIgnoredModules(String rootDirName)
 		throws IOException {
-
-		if (_ignoredModules != null) {
-			return _ignoredModules;
-		}
-
-		String rootDirName = SourceUtil.getRootDirName(absolutePath);
 
 		File file = new File(rootDirName + "/.gitignore");
 
@@ -157,7 +157,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			return null;
 		}
 
-		final List<String> ignoredModules = new ArrayList<>();
+		List<String> ignoredModules = new ArrayList<>();
 
 		Matcher matcher = _ignoredModulePattern.matcher(content);
 
@@ -165,12 +165,12 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			ignoredModules.add(matcher.group());
 		}
 
-		_ignoredModules = ignoredModules;
-
-		return _ignoredModules;
+		return ignoredModules;
 	}
 
-	private String _getModuleDirName(Path dirPath) throws IOException {
+	private String _getModuleDirName(Path dirPath, List<String> ignoredModules)
+		throws IOException {
+
 		String absolutePath = SourceUtil.getAbsolutePath(dirPath);
 
 		int x = absolutePath.indexOf("/modules/");
@@ -181,7 +181,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 
 		String directoryPath = absolutePath.substring(x + 9);
 
-		for (String ignoredModule : _getIgnoredModules(absolutePath)) {
+		for (String ignoredModule : ignoredModules) {
 			if (("/modules/" + directoryPath + "/").startsWith(
 					ignoredModule + "/")) {
 
@@ -224,7 +224,5 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		"^/modules/.+", Pattern.MULTILINE);
 	private static final Pattern _pattern = Pattern.compile(
 		"([^\\S\\n]*)#build\\.include\\.dirs=\\\\(\\s*#.*)*");
-
-	private List<String> _ignoredModules;
 
 }

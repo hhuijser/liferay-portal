@@ -182,8 +182,8 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		String directoryPath = absolutePath.substring(x + 9);
 
 		for (String ignoredModule : _getIgnoredModules(absolutePath)) {
-			if (StringUtil.startsWith(
-					"/modules/" + directoryPath + "/", ignoredModule + "/")) {
+			if (("/modules/" + directoryPath + "/").startsWith(
+					ignoredModule + "/")) {
 
 				return null;
 			}

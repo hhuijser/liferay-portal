@@ -206,7 +206,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		}
 
 		log(
-			variableDefinitionDetailAST, _MSG_VARIABLE_DECLARTION_NOT_NEEDED,
+			variableDefinitionDetailAST, _MSG_VARIABLE_DECLARATION_NOT_NEEDED,
 			variableName, identDetailAST.getLineNo());
 	}
 
@@ -512,7 +512,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 	private static final String _MSG_DECLARE_VARIABLE_AS_USED =
 		"variable.declare.as.used";
 
-	private static final String _MSG_VARIABLE_DECLARTION_NOT_NEEDED =
+	private static final String _MSG_VARIABLE_DECLARATION_NOT_NEEDED =
 		"variable.declaration.not.needed";
 
 }

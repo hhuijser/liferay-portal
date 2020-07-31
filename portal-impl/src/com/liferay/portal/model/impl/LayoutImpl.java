@@ -190,6 +190,7 @@ public class LayoutImpl extends LayoutBaseImpl {
 		}
 	}
 
+	@Override
 	public Layout fetchDraftLayout() {
 		return LayoutLocalServiceUtil.fetchLayout(
 			PortalUtil.getClassNameId(Layout.class), getPlid());

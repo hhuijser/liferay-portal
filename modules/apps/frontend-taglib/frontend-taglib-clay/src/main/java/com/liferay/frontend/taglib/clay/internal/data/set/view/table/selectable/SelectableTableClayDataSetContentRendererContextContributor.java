@@ -37,6 +37,7 @@ import org.osgi.service.component.annotations.Component;
 public class SelectableTableClayDataSetContentRendererContextContributor
 	implements ClayDataSetContentRendererContextContributor {
 
+	@Override
 	public Map<String, Object> getContentRendererContext(
 		ClayDataSetDisplayView clayDataSetDisplayView, Locale locale) {
 

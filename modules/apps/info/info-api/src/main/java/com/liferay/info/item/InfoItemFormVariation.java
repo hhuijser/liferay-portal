@@ -32,6 +32,7 @@ public class InfoItemFormVariation {
 		_labelInfoLocalizedValue = labelInfoLocalizedValue;
 	}
 
+	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
 			return true;

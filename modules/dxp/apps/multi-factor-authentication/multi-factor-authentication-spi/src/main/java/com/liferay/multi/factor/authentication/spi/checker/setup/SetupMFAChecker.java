@@ -30,6 +30,7 @@ public interface SetupMFAChecker extends MFAChecker {
 			HttpServletResponse httpServletResponse, long userId)
 		throws Exception;
 
+	@Override
 	public boolean isAvailable(long userId);
 
 	public void removeExistingSetup(long userId);

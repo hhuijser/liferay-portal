@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.Component;
 public class ClayTableSchemaBuilderFactoryImpl
 	implements ClayTableSchemaBuilderFactory {
 
+	@Override
 	public ClayTableSchemaBuilder create() {
 		return new ClayTableSchemaBuilderImpl();
 	}

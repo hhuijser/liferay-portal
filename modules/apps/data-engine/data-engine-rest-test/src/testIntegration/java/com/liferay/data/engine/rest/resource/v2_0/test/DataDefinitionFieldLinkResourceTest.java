@@ -89,6 +89,7 @@ public class DataDefinitionFieldLinkResourceTest
 		return dataDefinitionFieldLink;
 	}
 
+	@Override
 	protected DataDefinitionFieldLink
 			testGetDataDefinitionDataDefinitionFieldLinkPage_addDataDefinitionFieldLink(
 				Long dataDefinitionId,

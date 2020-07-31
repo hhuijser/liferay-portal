@@ -66,6 +66,7 @@ public class AppBuilderAppAssetRendererFactory
 		setSelectable(false);
 	}
 
+	@Override
 	public AssetEntry getAssetEntry(String className, long classPK)
 		throws PortalException {
 

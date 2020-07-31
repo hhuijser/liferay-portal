@@ -37,6 +37,7 @@ public class Category implements Keyed, Labeled {
 		return _key;
 	}
 
+	@Override
 	public String getLabel(Locale locale) {
 		return _labelInfoLocalizedValue.getValue(locale);
 	}

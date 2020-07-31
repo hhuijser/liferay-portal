@@ -340,6 +340,7 @@ public class DirectoryWatcher extends Thread implements BundleListener {
 		}
 	}
 
+	@Override
 	public void start() {
 		if (_noInitialDelay) {
 			_initializeCurrentManagedBundles();

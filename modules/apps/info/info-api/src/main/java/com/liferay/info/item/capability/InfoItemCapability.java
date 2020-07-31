@@ -24,6 +24,7 @@ import java.util.Locale;
  */
 public interface InfoItemCapability extends Keyed, Labeled {
 
+	@Override
 	public String getLabel(Locale locale);
 
 	public Class<?>[] getRequiredServiceClasses();

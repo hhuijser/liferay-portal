@@ -36,6 +36,7 @@ import org.osgi.service.component.annotations.Component;
 public class MFATimeBasedOTPEntryLocalServiceImpl
 	extends MFATimeBasedOTPEntryLocalServiceBaseImpl {
 
+	@Override
 	public MFATimeBasedOTPEntry addTimeBasedOTPEntry(
 			long userId, String sharedSecret)
 		throws PortalException {
@@ -64,10 +65,12 @@ public class MFATimeBasedOTPEntryLocalServiceImpl
 		return mfaTimeBasedOTPEntryPersistence.update(mfaTimeBasedOTPEntry);
 	}
 
+	@Override
 	public MFATimeBasedOTPEntry fetchMFATimeBasedOTPEntryByUserId(long userId) {
 		return mfaTimeBasedOTPEntryPersistence.fetchByUserId(userId);
 	}
 
+	@Override
 	public MFATimeBasedOTPEntry resetFailedAttempts(long userId)
 		throws PortalException {
 
@@ -85,6 +88,7 @@ public class MFATimeBasedOTPEntryLocalServiceImpl
 		return mfaTimeBasedOTPEntryPersistence.update(mfaTimeBasedOTPEntry);
 	}
 
+	@Override
 	public MFATimeBasedOTPEntry updateAttempts(
 			long userId, String ipAddress, boolean success)
 		throws PortalException {

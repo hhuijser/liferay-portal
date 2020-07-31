@@ -38,6 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 public class CardsClayDataSetContentRendererContextContributor
 	implements ClayDataSetContentRendererContextContributor {
 
+	@Override
 	public Map<String, Object> getContentRendererContext(
 		ClayDataSetDisplayView clayDataSetDisplayView, Locale locale) {
 

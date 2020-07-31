@@ -185,6 +185,7 @@ public class AccountEntryUserRelLocalServiceImpl
 		}
 	}
 
+	@Override
 	public void deleteAccountEntryUserRelsByAccountEntryId(
 		long accountEntryId) {
 

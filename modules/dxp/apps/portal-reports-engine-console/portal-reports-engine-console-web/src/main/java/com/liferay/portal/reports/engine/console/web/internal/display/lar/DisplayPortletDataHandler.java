@@ -33,6 +33,7 @@ import org.osgi.service.component.annotations.Component;
 public class DisplayPortletDataHandler extends AdminPortletDataHandler {
 
 	@Activate
+	@Override
 	protected void activate() {
 		super.activate();
 

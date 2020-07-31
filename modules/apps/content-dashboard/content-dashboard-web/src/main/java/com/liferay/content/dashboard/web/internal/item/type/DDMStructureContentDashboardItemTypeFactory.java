@@ -29,6 +29,7 @@ import org.osgi.service.component.annotations.Reference;
 public class DDMStructureContentDashboardItemTypeFactory
 	implements ContentDashboardItemTypeFactory<DDMStructure> {
 
+	@Override
 	public ContentDashboardItemType<DDMStructure> create(long classPK)
 		throws PortalException {
 

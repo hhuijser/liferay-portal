@@ -32,6 +32,7 @@ public class CalendarPortletDataHandler
 	extends CalendarAdminPortletDataHandler {
 
 	@Activate
+	@Override
 	protected void activate() {
 		super.activate();
 

@@ -229,6 +229,7 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 		return filterDropdownItems;
 	}
 
+	@Override
 	public List<LabelItem> getFilterLabelItems() {
 		return LabelItemListBuilder.add(
 			() -> !Objects.equals(getNavigation(), "active"),

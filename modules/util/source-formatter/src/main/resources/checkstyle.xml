@@ -241,6 +241,7 @@
 			<message key="chaining.allowed" value="Chaining is allowed on ''{0}''" />
 			<message key="chaining.avoid.method" value="Avoid chaining on method ''{0}''" />
 			<message key="chaining.avoid.new.instance" value="Avoid chaining on new class instantiation" />
+			<message key="chaining.avoid.parentheses" value="Avoid chaining on expressions with parentheses" />
 			<message key="chaining.avoid.type.cast" value="Avoid chaining on Type Cast" />
 			<message key="chaining.required" value="Chaining on ''{0}'' is preferred" />
 			<message key="concat.avoid.too.many" value="Avoid chaingin on method 'concat'. Use StringBundler when there are more than 3 parts" />

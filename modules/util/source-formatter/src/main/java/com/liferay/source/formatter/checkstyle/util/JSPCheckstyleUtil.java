@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.util;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -76,7 +77,9 @@ public class JSPCheckstyleUtil {
 		boolean javaSource = false;
 
 		sb.append("public class ");
-		sb.append(JavaSourceUtil.getClassName(fileName));
+		sb.append(
+			StringUtil.removeChar(
+				JavaSourceUtil.getClassName(fileName), CharPool.DASH));
 		sb.append(" {\n");
 
 		for (int i = 1; i < lines.size(); i++) {

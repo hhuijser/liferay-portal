@@ -27,7 +27,7 @@ FileShortcut fileShortcut = null;
 if (result instanceof AssetEntry) {
 	AssetEntry assetEntry = (AssetEntry)result;
 
-	if (assetEntry.getClassName().equals(DLFileEntryConstants.getClassName())) {
+	if (Objects.equals(assetEntry.getClassName(), DLFileEntryConstants.getClassName())) {
 		fileEntry = DLAppLocalServiceUtil.getFileEntry(assetEntry.getClassPK());
 	}
 	else {

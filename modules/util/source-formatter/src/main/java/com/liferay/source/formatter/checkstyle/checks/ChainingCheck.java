@@ -54,7 +54,7 @@ public class ChainingCheck extends BaseCheck {
 	public int[] getDefaultTokens() {
 		return new int[] {
 			TokenTypes.CLASS_DEF, TokenTypes.ENUM_DEF, TokenTypes.INTERFACE_DEF,
-			TokenTypes.LITERAL_NEW, TokenTypes.TYPECAST
+			TokenTypes.LITERAL_NEW, TokenTypes.RPAREN
 		};
 	}
 
@@ -66,12 +66,8 @@ public class ChainingCheck extends BaseCheck {
 			return;
 		}
 
-		if ((detailAST.getType() == TokenTypes.TYPECAST) &&
-			isAttributeValue(_APPLY_TO_TYPE_CAST_KEY)) {
-
-			_checkChainingOnTypeCast(detailAST);
-
-			return;
+		if (detailAST.getType() == TokenTypes.RPAREN) {
+			_checkChainingOnParentheses(detailAST);
 		}
 
 		DetailAST parentDetailAST = detailAST.getParent();
@@ -274,7 +270,7 @@ public class ChainingCheck extends BaseCheck {
 		log(methodCallDetailAST, _MSG_AVOID_NEW_INSTANCE_CHAINING);
 	}
 
-	private void _checkChainingOnTypeCast(DetailAST detailAST) {
+	private void _checkChainingOnParentheses(DetailAST detailAST) {
 		if (_isInsideConstructorThisCall(detailAST) ||
 			hasParentWithTokenType(detailAST, TokenTypes.SUPER_CTOR_CALL)) {
 
@@ -283,7 +279,16 @@ public class ChainingCheck extends BaseCheck {
 
 		DetailAST parentDetailAST = detailAST.getParent();
 
-		if (parentDetailAST.getType() == TokenTypes.DOT) {
+		if (parentDetailAST.getType() != TokenTypes.DOT) {
+			return;
+		}
+
+		DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
+
+		if (previousSiblingDetailAST.getType() != TokenTypes.TYPECAST) {
+			log(detailAST, _MSG_AVOID_PARENTHESES_CHAINING);
+		}
+		else if (isAttributeValue(_APPLY_TO_TYPE_CAST_KEY)) {
 			log(detailAST, _MSG_AVOID_TYPE_CAST_CHAINING);
 		}
 	}
@@ -939,6 +944,9 @@ public class ChainingCheck extends BaseCheck {
 
 	private static final String _MSG_AVOID_NEW_INSTANCE_CHAINING =
 		"chaining.avoid.new.instance";
+
+	private static final String _MSG_AVOID_PARENTHESES_CHAINING =
+		"chaining.avoid.parentheses";
 
 	private static final String _MSG_AVOID_TOO_MANY_CONCAT =
 		"concat.avoid.too.many";

@@ -15,7 +15,15 @@
 function onLocaleChange(layoutRendererInstance, event) {
 	const selectedLanguageId = event.item.getAttribute('data-value');
 
-	layoutRendererInstance.setState({editingLanguageId: selectedLanguageId});
+	const {
+		reactComponentRef: {current},
+	} = layoutRendererInstance;
+
+	if (current) {
+		current.updateEditingLanguageId({
+			editingLanguageId: selectedLanguageId,
+		});
+	}
 }
 
 export default function dataEngineLayoutRendererLanguageProxy(props) {

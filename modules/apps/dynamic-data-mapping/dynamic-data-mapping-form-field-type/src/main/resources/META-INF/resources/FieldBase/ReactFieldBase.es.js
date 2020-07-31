@@ -58,7 +58,7 @@ function FieldBase({
 	valid,
 	visible,
 }) {
-	const {editingLanguageId = {}} = usePage();
+	const {editingLanguageId = themeDisplay.getLanguageId()} = usePage();
 	const dispatch = useForm();
 
 	const localizedValueArray = useMemo(() => {

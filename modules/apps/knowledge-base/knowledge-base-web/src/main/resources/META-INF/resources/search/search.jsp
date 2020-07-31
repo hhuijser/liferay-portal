@@ -54,7 +54,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	List<Tuple> tuples = new ArrayList<Tuple>();
 
-	for (int i = 0; i < hits.getDocs().length; i++) {
+	Document[] documents = hits.getDocs();
+
+	for (int i = 0; i < documents.length; i++) {
 		Object[] array = new Object[5];
 
 		Document document = hits.doc(i);

@@ -34,7 +34,6 @@ const BtnAction = ({angle = 'left', className, onClick}) => (
 	<Button
 		className={className}
 		displayType="secondary"
-		monospaced={false}
 		onClick={onClick}
 		symbol={`angle-${angle}`}
 	/>
@@ -84,7 +83,7 @@ const FiltersSidebarHeader = () => {
 const FieldsTabContent = ({keywords, onAddFieldName}) => {
 	const [
 		{
-			dataDefinition: {dataDefinitionFields = []},
+			dataDefinition: {dataDefinitionFields = [], defaultLanguageId},
 			dataListView: {fieldNames},
 			editingLanguageId,
 			fieldTypes,
@@ -93,15 +92,11 @@ const FieldsTabContent = ({keywords, onAddFieldName}) => {
 
 	const fieldTypesItems = [];
 
-	const fieldTypeModel = ({
-		fieldType,
-		label: {[editingLanguageId]: label},
-		name,
-	}) => ({
+	const fieldTypeModel = ({fieldType, label, name}) => ({
 		description: getFieldTypeLabel(fieldTypes, fieldType),
 		disabled: fieldNames.some((fieldName) => fieldName === name),
 		icon: fieldType,
-		label,
+		label: label[editingLanguageId] || label[defaultLanguageId],
 		name,
 	});
 

@@ -80,7 +80,9 @@ renderResponse.setTitle(title);
 				<c:when test="<%= ruleHandlerTypes.size() == 1 %>">
 
 					<%
-					String ruleHandlerType = ruleHandlerTypes.iterator().next();
+					Iterator<String> iterator = ruleHandlerTypes.iterator();
+
+					String ruleHandlerType = iterator.next();
 					%>
 
 					<aui:input name="type" type="hidden" value="<%= ruleHandlerType %>" />

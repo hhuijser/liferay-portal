@@ -58,7 +58,7 @@ public class GitUtil {
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			commitMessages.add(line);
+			commitMessages.add(StringUtil.trim(line));
 		}
 
 		return commitMessages;

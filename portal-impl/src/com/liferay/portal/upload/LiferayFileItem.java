@@ -262,7 +262,7 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 		String id = String.valueOf(current);
 
 		if (current < 100000000) {
-			id = ("00000000" + id).substring(id.length());
+			return "00000000".substring(id.length()) + id;
 		}
 
 		return id;

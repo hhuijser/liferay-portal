@@ -14,7 +14,7 @@
 
 import ClayDropDown from '@clayui/drop-down';
 import {ClayCheckbox} from '@clayui/form';
-import React, {forwardRef, useMemo, useRef, useState} from 'react';
+import React, {forwardRef, useEffect, useMemo, useRef, useState} from 'react';
 
 import {FieldBase} from '../FieldBase/ReactFieldBase.es';
 import {useSyncValue} from '../hooks/useSyncValue.es';
@@ -33,6 +33,11 @@ const KEYCODES = {
 	SPACE: 32,
 	TAB: 9,
 };
+
+/**
+ * Maximum number of items to be shown without the Search bar
+ */
+const MAX_ITEMS = 11;
 
 /**
  * Appends a new value on the current value state
@@ -217,6 +222,78 @@ const DropdownItem = ({
 		{option && option.separator && <ClayDropDown.Divider />}
 	</>
 );
+
+const DropdownList = ({
+	currentValue,
+	expand,
+	handleSelect,
+	multiple,
+	options,
+}) => (
+	<ClayDropDown.ItemList>
+		{options.map((option, index) => (
+			<DropdownItem
+				currentValue={currentValue}
+				expand={expand}
+				index={index}
+				key={`${option.value}-${index}`}
+				multiple={multiple}
+				onSelect={handleSelect}
+				option={option}
+				options={options}
+			/>
+		))}
+	</ClayDropDown.ItemList>
+);
+
+const DropdownListWithSearch = ({
+	currentValue,
+	expand,
+	handleSelect,
+	multiple,
+	options,
+}) => {
+	const [query, setQuery] = useState('');
+	const [filteredOptions, setFilteredOptions] = useState([]);
+
+	const emptyOption = {
+		label: Liferay.Language.get('choose-an-option'),
+		value: null,
+	};
+
+	useEffect(() => {
+		const result = options.filter(
+			(option) =>
+				option.value &&
+				option.label.toLowerCase().includes(query.toLowerCase())
+		);
+
+		setFilteredOptions([emptyOption, ...result]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [query]);
+
+	return (
+		<>
+			<ClayDropDown.Search
+				onChange={(event) => setQuery(event.target.value)}
+				value={query}
+			/>
+			{filteredOptions.length > 1 ? (
+				<DropdownList
+					currentValue={currentValue}
+					expand={expand}
+					handleSelect={handleSelect}
+					multiple={multiple}
+					options={filteredOptions}
+				/>
+			) : (
+				<div className="dropdown-section text-muted">
+					{Liferay.Language.get('empty-list')}
+				</div>
+			)}
+		</>
+	);
+};
 
 const Trigger = forwardRef(
 	(
@@ -404,20 +481,23 @@ const Select = ({
 				onSetActive={setExpand}
 				ref={menuElementRef}
 			>
-				<ClayDropDown.ItemList>
-					{options.map((option, index) => (
-						<DropdownItem
-							currentValue={currentValue}
-							expand={expand}
-							index={index}
-							key={`${option.value}-${index}`}
-							multiple={multiple}
-							onSelect={handleSelect}
-							option={option}
-							options={options}
-						/>
-					))}
-				</ClayDropDown.ItemList>
+				{options.length > MAX_ITEMS ? (
+					<DropdownListWithSearch
+						currentValue={currentValue}
+						expand={expand}
+						handleSelect={handleSelect}
+						multiple={multiple}
+						options={options}
+					/>
+				) : (
+					<DropdownList
+						currentValue={currentValue}
+						expand={expand}
+						handleSelect={handleSelect}
+						multiple={multiple}
+						options={options}
+					/>
+				)}
 			</ClayDropDown.Menu>
 		</>
 	);

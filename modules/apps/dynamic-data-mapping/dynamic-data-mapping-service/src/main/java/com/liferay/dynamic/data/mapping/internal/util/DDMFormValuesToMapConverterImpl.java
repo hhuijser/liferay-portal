@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -85,7 +86,10 @@ public class DDMFormValuesToMapConverterImpl
 			ddmFormValues.getDDMFormFieldValuesMap(false);
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
-			if (!ddmFormFieldValues.containsKey(ddmFormField.getName())) {
+			if (!ddmFormFieldValues.containsKey(ddmFormField.getName()) &&
+				!GetterUtil.getBoolean(
+					ddmFormField.getProperty("upgradedStructure"))) {
+
 				DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue() {
 					{
 						setInstanceId(StringUtil.randomString());

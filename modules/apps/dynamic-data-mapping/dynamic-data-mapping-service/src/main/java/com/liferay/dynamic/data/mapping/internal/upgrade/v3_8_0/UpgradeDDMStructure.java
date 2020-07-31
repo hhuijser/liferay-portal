@@ -105,6 +105,7 @@ public class UpgradeDDMStructure extends UpgradeProcess {
 					});
 				setProperty("ddmStructureId", parentStructureId);
 				setProperty("ddmStructureLayoutId", parentStructureLayoutId);
+				setProperty("upgradedStructure", true);
 				setRepeatable(false);
 				setRequired(false);
 				setShowLabel(false);

@@ -125,6 +125,7 @@ public class DDMFormTemplateContextProcessor {
 		setDDMFormFieldPropertyDDMStructureLayoutId(jsonObject, ddmFormField);
 		setDDMFormFieldPropertyOptions(jsonObject, ddmFormField, "columns");
 		setDDMFormFieldPropertyRows(jsonObject, ddmFormField);
+		setDDMFormFieldPropertyUpgradedStructure(jsonObject, ddmFormField);
 		setDDMFormFieldReadOnly(
 			jsonObject.getBoolean("readOnly", false), ddmFormField);
 		setDDMFormFieldRepeatable(
@@ -377,6 +378,17 @@ public class DDMFormTemplateContextProcessor {
 		else if (type.equals("fieldset")) {
 			setDDMFormFieldPropertyFieldSetRows(jsonObject, ddmFormField);
 		}
+	}
+
+	protected void setDDMFormFieldPropertyUpgradedStructure(
+		JSONObject jsonObject, DDMFormField ddmFormField) {
+
+		if (!Objects.equals(ddmFormField.getType(), "fieldset")) {
+			return;
+		}
+
+		ddmFormField.setProperty(
+			"upgradedStructure", jsonObject.getBoolean("upgradedStructure"));
 	}
 
 	protected void setDDMFormFieldReadOnly(

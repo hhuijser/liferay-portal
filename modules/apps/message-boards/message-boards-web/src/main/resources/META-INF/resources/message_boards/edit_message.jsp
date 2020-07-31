@@ -38,11 +38,13 @@ if (threadId > 0) {
 		curParentMessage = MBMessageServiceUtil.getMessage(parentMessageId);
 
 		if (Validator.isNull(subject)) {
-			if (curParentMessage.getSubject().startsWith(MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE)) {
-				subject = curParentMessage.getSubject();
+			String curParentMessageSubject = curParentMessage.getSubject();
+
+			if (curParentMessageSubject.startsWith(MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE)) {
+				subject = curParentMessageSubject;
 			}
 			else {
-				subject = MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE + curParentMessage.getSubject();
+				subject = MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE + curParentMessageSubject;
 			}
 		}
 	}
@@ -327,18 +329,20 @@ if (portletTitleBasedNavigation) {
 					boolean disabled = false;
 					boolean question = threadAsQuestionByDefault;
 
+					String displayStyle = category.getDisplayStyle();
+
 					if (message != null) {
 						thread = MBThreadLocalServiceUtil.getThread(threadId);
 
 						if (thread.isQuestion() || message.isAnswer()) {
 							question = true;
 
-							if ((category != null) && category.getDisplayStyle().equals("question")) {
+							if ((category != null) && Objects.equals(displayStyle, "question")) {
 								disabled = true;
 							}
 						}
 					}
-					else if ((category != null) && category.getDisplayStyle().equals("question")) {
+					else if ((category != null) && Objects.equals(displayStyle, "question")) {
 						disabled = true;
 						question = true;
 					}

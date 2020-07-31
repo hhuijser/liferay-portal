@@ -25,7 +25,7 @@ export default (state, action) => {
 				editingLanguageId &&
 				state.editingLanguageId !== editingLanguageId
 			) {
-				const visitor = new PagesVisitor(pages ?? action.pages);
+				const visitor = new PagesVisitor(pages ?? state.pages);
 
 				return {
 					...action.payload,

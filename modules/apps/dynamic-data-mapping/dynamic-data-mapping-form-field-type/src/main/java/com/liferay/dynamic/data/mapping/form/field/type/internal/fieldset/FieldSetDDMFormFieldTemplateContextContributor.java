@@ -102,6 +102,9 @@ public class FieldSetDDMFormFieldTemplateContextContributor
 			"nestedFields", nestedFields
 		).put(
 			"rows", rowsJSONArray
+		).put(
+			"upgradedStructure",
+			GetterUtil.getBoolean(ddmFormField.getProperty("upgradedStructure"))
 		).build();
 	}
 

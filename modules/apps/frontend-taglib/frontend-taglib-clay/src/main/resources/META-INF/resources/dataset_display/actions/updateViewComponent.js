@@ -12,31 +12,11 @@
  * details.
  */
 
-import {useIsMounted} from 'frontend-js-react-web';
-import {useRef} from 'react';
+export const ACTION_UPDATE_VIEW_COMPONENT = 'ACTION_UPDATE_VIEW_COMPONENT';
 
-export const useThunkDispatch = (dispatch) => {
-	const isMounted = useIsMounted();
-
-	const thunkDispatch = useRef((action) => {
-		if (isMounted()) {
-			if (typeof action === 'function') {
-				return action((payload) => {
-					if (isMounted()) {
-						dispatch(payload);
-					}
-				});
-			}
-			else {
-				dispatch(action);
-			}
-		}
-	});
-
-	return thunkDispatch.current;
+export const updateViewComponent = (name, component) => {
+	return {
+		type: ACTION_UPDATE_VIEW_COMPONENT,
+		value: {component, name},
+	};
 };
-
-export const useThunk = ([state, dispatch]) => [
-	state,
-	useThunkDispatch(dispatch),
-];

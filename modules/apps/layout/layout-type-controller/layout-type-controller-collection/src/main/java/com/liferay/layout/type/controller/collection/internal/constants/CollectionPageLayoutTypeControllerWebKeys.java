@@ -22,4 +22,7 @@ public class CollectionPageLayoutTypeControllerWebKeys {
 	public static final String ASSET_PUBLISHER_ADD_ITEM_HOLDERS =
 		"ASSET_PUBLISHER_ADD_ITEM_HOLDERS";
 
+	public static final String COLLECTION_ITEMS_DETAIL_DISPLAY_CONTEXT =
+		"COLLECTION_ITEMS_DETAIL_DISPLAY_CONTEXT";
+
 }

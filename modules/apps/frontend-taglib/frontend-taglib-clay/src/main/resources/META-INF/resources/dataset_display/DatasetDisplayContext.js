@@ -18,6 +18,7 @@ const DatasetDisplayContext = React.createContext({
 	actionParameterName: null,
 	formId: null,
 	formRef: null,
+	id: null,
 	loadData: () => {},
 	modalId: null,
 	namespace: null,

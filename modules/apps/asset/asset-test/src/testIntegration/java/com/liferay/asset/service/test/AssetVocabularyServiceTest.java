@@ -27,6 +27,7 @@ import com.liferay.asset.test.util.AssetTestUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Hits;
@@ -35,6 +36,7 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUtil;
+import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
@@ -139,6 +141,26 @@ public class AssetVocabularyServiceTest {
 		Assert.assertNull(
 			AssetVocabularyLocalServiceUtil.fetchAssetVocabulary(
 				vocabulary.getVocabularyId()));
+	}
+
+	@Test
+	public void testFetchGroupVocabulary() throws Exception {
+		Company company = _companyLocalService.getCompany(
+			_group.getCompanyId());
+
+		Assert.assertNotNull(
+			_assetVocabularyLocalService.fetchGroupVocabulary(
+				company.getGroupId(), "audience"));
+		Assert.assertNotNull(
+			_assetVocabularyLocalService.fetchGroupVocabulary(
+				company.getGroupId(), "stage"));
+		Assert.assertNotNull(
+			_assetVocabularyLocalService.fetchGroupVocabulary(
+				company.getGroupId(), "topic"));
+
+		Assert.assertNull(
+			_assetVocabularyLocalService.fetchGroupVocabulary(
+				_group.getGroupId(), "topic"));
 	}
 
 	@Test
@@ -462,6 +484,9 @@ public class AssetVocabularyServiceTest {
 
 	@Inject
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
+
+	@Inject
+	private CompanyLocalService _companyLocalService;
 
 	@DeleteAfterTestRun
 	private Group _group;

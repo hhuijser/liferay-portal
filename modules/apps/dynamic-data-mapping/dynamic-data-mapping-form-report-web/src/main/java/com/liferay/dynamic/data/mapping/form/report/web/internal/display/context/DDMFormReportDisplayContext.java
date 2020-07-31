@@ -76,8 +76,8 @@ public class DDMFormReportDisplayContext {
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
 
 		ddmFormFields.forEach(
-			ddmFormField -> {
-				JSONObject fieldJSONObject = JSONUtil.put(
+			ddmFormField -> fieldsJSONArray.put(
+				JSONUtil.put(
 					"columns", _getPropertyLabels(ddmFormField, "columns")
 				).put(
 					"label", _getValue(ddmFormField.getLabel())
@@ -91,10 +91,7 @@ public class DDMFormReportDisplayContext {
 					"rows", _getPropertyLabels(ddmFormField, "rows")
 				).put(
 					"type", ddmFormField.getType()
-				);
-
-				fieldsJSONArray.put(fieldJSONObject);
-			});
+				)));
 
 		return fieldsJSONArray;
 	}

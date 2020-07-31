@@ -95,7 +95,10 @@
 					if (assignedAssignableScopes != null) {
 						newAssignableScopes = assignableScopes.subtract(assignedAssignableScopes);
 						removedAssignableScopes = assignedAssignableScopes.subtract(assignableScopes);
-						unchangedAssignableScopes = assignableScopes.subtract(newAssignableScopes).subtract(removedAssignableScopes);
+
+						AssignableScopes subtractAssignableScopes = assignableScopes.subtract(newAssignableScopes);
+
+						unchangedAssignableScopes = subtractAssignableScopes.subtract(removedAssignableScopes);
 						assignableScopes = assignableScopes.add(assignedAssignableScopes);
 					}
 

@@ -349,22 +349,22 @@ public class TestExecutorRunnable implements Runnable {
 
 	private static void _processThrowable(
 			ObjectOutputStream objectOutputStream, Description description,
-			Throwable t)
+			Throwable throwable)
 		throws IOException {
 
 		try {
 			objectOutputStream.writeObject(
-				RunNotifierCommand.testFailure(description, t));
+				RunNotifierCommand.testFailure(description, throwable));
 		}
 		catch (NotSerializableException notSerializableException) {
 			objectOutputStream.reset();
 
-			Class<? extends Throwable> clazz = t.getClass();
+			Class<? extends Throwable> clazz = throwable.getClass();
 
 			Exception exception = new Exception(
-				clazz.getName() + ": " + t.getMessage());
+				clazz.getName() + ": " + throwable.getMessage());
 
-			exception.setStackTrace(t.getStackTrace());
+			exception.setStackTrace(throwable.getStackTrace());
 
 			notSerializableException.initCause(exception);
 

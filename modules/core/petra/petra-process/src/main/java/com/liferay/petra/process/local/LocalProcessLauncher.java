@@ -238,7 +238,7 @@ public class LocalProcessLauncher {
 
 		public static final int UNKNOWN_CODE = 3;
 
-		public boolean shutdown(int shutdownCode, Throwable shutdownThrowable);
+		public boolean shutdown(int shutdownCode, Throwable throwable);
 
 	}
 

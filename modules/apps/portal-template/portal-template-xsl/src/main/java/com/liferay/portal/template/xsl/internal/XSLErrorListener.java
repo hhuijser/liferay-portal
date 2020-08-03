@@ -77,9 +77,9 @@ public class XSLErrorListener implements ErrorListener {
 		return _message + " " + _location;
 	}
 
-	public void setLocation(Throwable exception) {
+	public void setLocation(Throwable throwable) {
 		SourceLocator locator = null;
-		Throwable cause = exception;
+		Throwable cause = throwable;
 		Throwable rootCause = null;
 
 		while (cause != null) {

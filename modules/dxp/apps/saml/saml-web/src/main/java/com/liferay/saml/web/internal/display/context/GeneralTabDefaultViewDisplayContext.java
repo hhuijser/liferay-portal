@@ -171,12 +171,12 @@ public class GeneralTabDefaultViewDisplayContext {
 
 	}
 
-	private Throwable _getCause(Throwable e, Class<?> exceptionType) {
-		if (e == null) {
+	private Throwable _getCause(Throwable throwable, Class<?> exceptionType) {
+		if (throwable == null) {
 			return null;
 		}
 
-		Throwable cause = e.getCause();
+		Throwable cause = throwable.getCause();
 
 		while (cause != null) {
 			if (exceptionType.isInstance(cause)) {

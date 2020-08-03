@@ -646,20 +646,20 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 	}
 
 	@Override
-	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof AssetCategoryException ||
-			cause instanceof AssetTagException ||
-			cause instanceof FileNameException ||
-			cause instanceof FileSizeException ||
-			cause instanceof KBArticleContentException ||
-			cause instanceof KBArticlePriorityException ||
-			cause instanceof KBArticleTitleException ||
-			cause instanceof KBCommentContentException ||
-			cause instanceof NoSuchArticleException ||
-			cause instanceof NoSuchCommentException ||
-			cause instanceof NoSuchFileException ||
-			cause instanceof PrincipalException ||
-			super.isSessionErrorException(cause)) {
+	protected boolean isSessionErrorException(Throwable throwable) {
+		if (throwable instanceof AssetCategoryException ||
+			throwable instanceof AssetTagException ||
+			throwable instanceof FileNameException ||
+			throwable instanceof FileSizeException ||
+			throwable instanceof KBArticleContentException ||
+			throwable instanceof KBArticlePriorityException ||
+			throwable instanceof KBArticleTitleException ||
+			throwable instanceof KBCommentContentException ||
+			throwable instanceof NoSuchArticleException ||
+			throwable instanceof NoSuchCommentException ||
+			throwable instanceof NoSuchFileException ||
+			throwable instanceof PrincipalException ||
+			super.isSessionErrorException(throwable)) {
 
 			return true;
 		}

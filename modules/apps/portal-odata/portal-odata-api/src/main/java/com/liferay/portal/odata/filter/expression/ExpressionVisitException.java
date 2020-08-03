@@ -35,14 +35,14 @@ public class ExpressionVisitException extends Exception {
 
 	/**
 	 * Creates a new {@code ExpressionVisitException} with a message and the
-	 * cause of the exception.
+	 * throwable of the exception.
 	 *
 	 * @param  msg the exception's message
-	 * @param  cause the exception's cause
+	 * @param  throwable the exception's throwable
 	 * @review
 	 */
-	public ExpressionVisitException(String msg, Throwable cause) {
-		super(msg, cause);
+	public ExpressionVisitException(String msg, Throwable throwable) {
+		super(msg, throwable);
 	}
 
 }

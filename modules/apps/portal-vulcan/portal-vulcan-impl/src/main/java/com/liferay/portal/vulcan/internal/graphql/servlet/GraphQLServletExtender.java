@@ -561,27 +561,32 @@ public class GraphQLServletExtender {
 	private GraphQLFieldDefinition _createNodeGraphQLFieldDefinition(
 		GraphQLOutputType graphQLOutputType) {
 
-		GraphQLFieldDefinition.Builder builder =
+		GraphQLFieldDefinition.Builder graphQLFieldDefinitionbuilder =
 			GraphQLFieldDefinition.newFieldDefinition();
 
-		builder.argument(
-			GraphQLArgument.newArgument(
-			).name(
+		GraphQLArgument.Builder graphQLArgumentBuilder =
+			GraphQLArgument.newArgument();
+
+		graphQLFieldDefinitionbuilder.argument(
+			graphQLArgumentBuilder.name(
 				"dataType"
 			).type(
 				Scalars.GraphQLString
 			).build());
-		builder.argument(
-			GraphQLArgument.newArgument(
-			).name(
+
+		graphQLArgumentBuilder = GraphQLArgument.newArgument();
+
+		graphQLFieldDefinitionbuilder.argument(
+			graphQLArgumentBuilder.name(
 				"id"
 			).type(
 				Scalars.GraphQLLong
 			).build());
-		builder.name("graphQLNode");
-		builder.type(graphQLOutputType);
 
-		return builder.build();
+		graphQLFieldDefinitionbuilder.name("graphQLNode");
+		graphQLFieldDefinitionbuilder.type(graphQLOutputType);
+
+		return graphQLFieldDefinitionbuilder.build();
 	}
 
 	private GraphQLInterfaceType _createNodeGraphQLInterfaceType() {

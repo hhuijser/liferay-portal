@@ -824,11 +824,12 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 										sourceDirectorySet.getOutputDir(),
 										sourceSetOutput.getResourcesDir());
 
+									Set<File> buildDirsFiles =
+										buildDirs.getFiles();
+
 									builder.setClasspath(
-										buildDirs.getFiles(
-										).toArray(
-											new File[0]
-										));
+										buildDirsFiles.toArray(new File[0]));
+
 									builder.setProperty(
 										"project.buildpath",
 										buildDirs.getAsPath());
@@ -856,11 +857,12 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 									builder.setProperty(
 										"project.sourcepath",
 										sourceDirs.getAsPath());
+
+									Set<File> sourceDirsFiles =
+										sourceDirs.getFiles();
+
 									builder.setSourcepath(
-										sourceDirs.getFiles(
-										).toArray(
-											new File[0]
-										));
+										sourceDirsFiles.toArray(new File[0]));
 
 									if (logger.isDebugEnabled()) {
 										logger.debug(

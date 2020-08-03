@@ -279,16 +279,16 @@ public class StagingBarPortlet extends MVCPortlet {
 					SessionErrors.add(renderRequest, AuthException.class);
 				}
 				catch (SystemException systemException) {
-					Throwable cause = systemException.getCause();
+					Throwable throwable = systemException.getCause();
 
-					if (!(cause instanceof ConnectException)) {
+					if (!(throwable instanceof ConnectException)) {
 						throw systemException;
 					}
 
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Unable to connect to remote live: " +
-								cause.getMessage());
+								throwable.getMessage());
 					}
 
 					SessionErrors.add(

@@ -1058,13 +1058,14 @@ public class LocalProcessExecutorTest {
 			Assert.fail();
 		}
 		catch (ExecutionException executionException) {
-			Throwable cause = executionException.getCause();
+			Throwable throwable = executionException.getCause();
 
-			Assert.assertSame(ProcessException.class, cause.getClass());
+			Assert.assertSame(ProcessException.class, throwable.getClass());
 
-			cause = cause.getCause();
+			throwable = throwable.getCause();
 
-			Assert.assertSame(NotSerializableException.class, cause.getClass());
+			Assert.assertSame(
+				NotSerializableException.class, throwable.getClass());
 
 			Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
 
@@ -1073,13 +1074,15 @@ public class LocalProcessExecutorTest {
 			Assert.assertEquals(
 				"Caught a write aborted exception", processLog.getMessage());
 
-			cause = processLog.getThrowable();
+			throwable = processLog.getThrowable();
 
-			Assert.assertSame(WriteAbortedException.class, cause.getClass());
+			Assert.assertSame(
+				WriteAbortedException.class, throwable.getClass());
 
-			cause = cause.getCause();
+			throwable = throwable.getCause();
 
-			Assert.assertSame(NotSerializableException.class, cause.getClass());
+			Assert.assertSame(
+				NotSerializableException.class, throwable.getClass());
 		}
 	}
 

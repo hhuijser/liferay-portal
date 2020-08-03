@@ -117,19 +117,19 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 				WebKeys.UPLOAD_EXCEPTION);
 
 		if (uploadException != null) {
-			Throwable cause = uploadException.getCause();
+			Throwable throwable = uploadException.getCause();
 
 			if (uploadException.isExceededLiferayFileItemSizeLimit()) {
-				throw new LiferayFileItemException(cause);
+				throw new LiferayFileItemException(throwable);
 			}
 
 			if (uploadException.isExceededFileSizeLimit() ||
 				uploadException.isExceededUploadRequestSizeLimit()) {
 
-				throw new ArticleContentSizeException(cause);
+				throw new ArticleContentSizeException(throwable);
 			}
 
-			throw new PortalException(cause);
+			throw new PortalException(throwable);
 		}
 
 		UploadPortletRequest uploadPortletRequest =

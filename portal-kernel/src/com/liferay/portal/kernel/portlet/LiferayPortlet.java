@@ -110,10 +110,11 @@ public class LiferayPortlet extends GenericPortlet {
 			}
 		}
 		catch (PortletException portletException) {
-			Throwable cause = portletException.getCause();
+			Throwable throwable = portletException.getCause();
 
-			if (isSessionErrorException(cause)) {
-				SessionErrors.add(actionRequest, cause.getClass(), cause);
+			if (isSessionErrorException(throwable)) {
+				SessionErrors.add(
+					actionRequest, throwable.getClass(), throwable);
 			}
 			else {
 				throw portletException;
@@ -186,10 +187,10 @@ public class LiferayPortlet extends GenericPortlet {
 			}
 		}
 		catch (InvocationTargetException invocationTargetException) {
-			Throwable cause = invocationTargetException.getCause();
+			Throwable throwable = invocationTargetException.getCause();
 
-			if (cause != null) {
-				throw new PortletException(cause);
+			if (throwable != null) {
+				throw new PortletException(throwable);
 			}
 
 			throw new PortletException(invocationTargetException);
@@ -231,10 +232,10 @@ public class LiferayPortlet extends GenericPortlet {
 			}
 		}
 		catch (InvocationTargetException invocationTargetException) {
-			Throwable cause = invocationTargetException.getCause();
+			Throwable throwable = invocationTargetException.getCause();
 
-			if (cause != null) {
-				throw new PortletException(cause);
+			if (throwable != null) {
+				throw new PortletException(throwable);
 			}
 
 			throw new PortletException(invocationTargetException);

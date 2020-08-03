@@ -19,10 +19,7 @@
 <%
 assetPublisherDisplayContext.setPageKeywords();
 
-long[] allAssetCategoryIds = assetPublisherDisplayContext.getAllAssetCategoryIds();
-String[] allAssetTagNames = assetPublisherDisplayContext.getAllAssetTagNames();
-
-if (assetPublisherDisplayContext.isEnableTagBasedNavigation() && !assetPublisherDisplayContext.isSelectionStyleAssetList() && assetPublisherDisplayContext.isSelectionStyleManual() && ((allAssetCategoryIds.length > 0) || (allAssetTagNames.length > 0))) {
+if (assetPublisherDisplayContext.isEnableTagBasedNavigation() && !assetPublisherDisplayContext.isSelectionStyleAssetList() && assetPublisherDisplayContext.isSelectionStyleManual() && (ArrayUtil.isNotEmpty(assetPublisherDisplayContext.getAllAssetCategoryIds()) || ArrayUtil.isNotEmpty(assetPublisherDisplayContext.getAllAssetTagNames()))) {
 	assetPublisherDisplayContext.setSelectionStyle("dynamic");
 }
 %>

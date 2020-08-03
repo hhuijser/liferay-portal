@@ -37,9 +37,7 @@
 			String changesetPortletName = StringBundler.concat(PortletDataHandlerKeys.PORTLET_DATA, StringPool.UNDERLINE, ChangesetPortletKeys.CHANGESET);
 
 			if (key.startsWith(PortletDataHandlerKeys.PORTLET_DATA + "_com") && MapUtil.getBoolean(parameterMap, key) && !key.equals(changesetPortletName)) {
-				String s = PortletDataHandlerKeys.PORTLET_DATA + "_";
-
-				portletIds.add(key.substring(s.length()));
+				portletIds.add(key.substring(PortletDataHandlerKeys.PORTLET_DATA.length() + 1));
 			}
 		}
 

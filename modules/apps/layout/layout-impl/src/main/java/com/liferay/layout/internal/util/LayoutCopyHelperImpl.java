@@ -96,8 +96,8 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 		try {
 			return TransactionInvokerUtil.invoke(_transactionConfig, callable);
 		}
-		catch (Throwable t) {
-			throw new Exception(t);
+		catch (Throwable throwable) {
+			throw new Exception(throwable);
 		}
 		finally {
 			ServiceContextThreadLocal.pushServiceContext(currentServiceContext);

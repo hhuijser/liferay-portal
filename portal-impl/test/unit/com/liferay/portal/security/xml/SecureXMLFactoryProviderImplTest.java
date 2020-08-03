@@ -262,12 +262,12 @@ public class SecureXMLFactoryProviderImplTest {
 				Assert.fail(failMessage);
 			}
 		}
-		catch (Throwable t) {
+		catch (Throwable throwable) {
 			if (expectedException == null) {
-				throw t;
+				throw throwable;
 			}
 
-			Throwable cause = t;
+			Throwable cause = throwable;
 
 			while (cause.getCause() != null) {
 				cause = cause.getCause();
@@ -276,7 +276,7 @@ public class SecureXMLFactoryProviderImplTest {
 			Class<?> causeClass = cause.getClass();
 
 			if (!causeClass.isAssignableFrom(expectedException)) {
-				throw t;
+				throw throwable;
 			}
 		}
 	}

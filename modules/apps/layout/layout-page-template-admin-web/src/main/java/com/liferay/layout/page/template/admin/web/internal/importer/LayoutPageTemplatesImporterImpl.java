@@ -858,9 +858,9 @@ public class LayoutPageTemplatesImporterImpl
 			try {
 				TransactionInvokerUtil.invoke(_transactionConfig, callable);
 			}
-			catch (Throwable t) {
+			catch (Throwable throwable) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(t, t);
+					_log.warn(throwable, throwable);
 				}
 
 				DisplayPageTemplate displayPageTemplate =
@@ -993,9 +993,9 @@ public class LayoutPageTemplatesImporterImpl
 			try {
 				TransactionInvokerUtil.invoke(_transactionConfig, callable);
 			}
-			catch (Throwable t) {
+			catch (Throwable throwable) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(t, t);
+					_log.warn(throwable, throwable);
 				}
 
 				MasterPage masterPage = masterPageEntry.getMasterPage();
@@ -1131,9 +1131,9 @@ public class LayoutPageTemplatesImporterImpl
 			try {
 				TransactionInvokerUtil.invoke(_transactionConfig, callable);
 			}
-			catch (Throwable t) {
+			catch (Throwable throwable) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(t, t);
+					_log.warn(throwable, throwable);
 				}
 
 				PageTemplate pageTemplate = pageTemplateEntry.getPageTemplate();

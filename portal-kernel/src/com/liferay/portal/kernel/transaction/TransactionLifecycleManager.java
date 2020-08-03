@@ -34,8 +34,8 @@ public class TransactionLifecycleManager {
 				transactionLifecycleListener.committed(
 					transactionAttribute, transactionStatus);
 			}
-			catch (Throwable t) {
-				transactionStatus.suppressLifecycleListenerThrowable(t);
+			catch (Throwable throwable) {
+				transactionStatus.suppressLifecycleListenerThrowable(throwable);
 			}
 		}
 	}
@@ -51,8 +51,8 @@ public class TransactionLifecycleManager {
 				transactionLifecycleListener.created(
 					transactionAttribute, transactionStatus);
 			}
-			catch (Throwable t) {
-				transactionStatus.suppressLifecycleListenerThrowable(t);
+			catch (Throwable throwable) {
+				transactionStatus.suppressLifecycleListenerThrowable(throwable);
 			}
 		}
 	}

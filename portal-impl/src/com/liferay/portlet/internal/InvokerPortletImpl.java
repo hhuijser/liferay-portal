@@ -247,10 +247,10 @@ public class InvokerPortletImpl
 
 			_portlet.init(portletConfig);
 		}
-		catch (Throwable t) {
+		catch (Throwable throwable) {
 			cleanUp();
 
-			throw t;
+			throw throwable;
 		}
 		finally {
 			if (_portletClassLoader != null) {

@@ -1281,16 +1281,16 @@ public class PortalImpl implements Portal {
 			return (BaseModel<?>)method.invoke(null, primKey);
 		}
 		catch (Exception exception) {
-			Throwable cause = exception.getCause();
+			Throwable throwable = exception.getCause();
 
-			if (cause instanceof PortalException) {
-				throw (PortalException)cause;
+			if (throwable instanceof PortalException) {
+				throw (PortalException)throwable;
 			}
-			else if (cause instanceof SystemException) {
-				throw (SystemException)cause;
+			else if (throwable instanceof SystemException) {
+				throw (SystemException)throwable;
 			}
 			else {
-				throw new SystemException(cause);
+				throw new SystemException(throwable);
 			}
 		}
 	}

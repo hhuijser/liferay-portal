@@ -149,10 +149,10 @@ public class PortalPreferencesImplTest {
 			Assert.fail();
 		}
 		catch (Exception exception) {
-			Throwable cause = exception.getCause();
+			Throwable throwable = exception.getCause();
 
 			Assert.assertSame(
-				ConcurrentModificationException.class, cause.getClass());
+				ConcurrentModificationException.class, throwable.getClass());
 		}
 	}
 
@@ -187,10 +187,10 @@ public class PortalPreferencesImplTest {
 			Assert.fail();
 		}
 		catch (Exception exception) {
-			Throwable cause = exception.getCause();
+			Throwable throwable = exception.getCause();
 
 			Assert.assertSame(
-				ConcurrentModificationException.class, cause.getClass());
+				ConcurrentModificationException.class, throwable.getClass());
 		}
 	}
 
@@ -259,10 +259,10 @@ public class PortalPreferencesImplTest {
 			Assert.fail();
 		}
 		catch (Exception exception) {
-			Throwable cause = exception.getCause();
+			Throwable throwable = exception.getCause();
 
 			Assert.assertSame(
-				ConcurrentModificationException.class, cause.getClass());
+				ConcurrentModificationException.class, throwable.getClass());
 		}
 	}
 
@@ -331,10 +331,10 @@ public class PortalPreferencesImplTest {
 			Assert.fail();
 		}
 		catch (Exception exception) {
-			Throwable cause = exception.getCause();
+			Throwable throwable = exception.getCause();
 
 			Assert.assertSame(
-				ConcurrentModificationException.class, cause.getClass());
+				ConcurrentModificationException.class, throwable.getClass());
 		}
 	}
 

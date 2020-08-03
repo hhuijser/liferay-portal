@@ -375,10 +375,10 @@ public class PermissionCheckerTest {
 
 			Assert.fail();
 		}
-		catch (Throwable t) {
+		catch (Throwable throwable) {
 			boolean found = false;
 
-			Throwable cause = t;
+			Throwable cause = throwable;
 
 			while (!found && (cause != null)) {
 				if (cause instanceof NoSuchResourcePermissionException) {
@@ -389,7 +389,7 @@ public class PermissionCheckerTest {
 			}
 
 			if (!found) {
-				throw t;
+				throw throwable;
 			}
 		}
 		finally {
@@ -574,10 +574,10 @@ public class PermissionCheckerTest {
 
 			Assert.fail();
 		}
-		catch (Throwable t) {
+		catch (Throwable throwable) {
 			boolean found = false;
 
-			Throwable cause = t;
+			Throwable cause = throwable;
 
 			while (!found && (cause != null)) {
 				if (cause instanceof NoSuchResourcePermissionException) {
@@ -588,7 +588,7 @@ public class PermissionCheckerTest {
 			}
 
 			if (!found) {
-				throw t;
+				throw throwable;
 			}
 		}
 	}

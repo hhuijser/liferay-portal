@@ -439,8 +439,8 @@ public class BasicRegistryImpl implements Registry {
 			try {
 				serviceTracker.addingService(basicServiceReference);
 			}
-			catch (Throwable t) {
-				t.printStackTrace();
+			catch (Throwable throwable) {
+				throwable.printStackTrace();
 			}
 		}
 	}
@@ -469,8 +469,8 @@ public class BasicRegistryImpl implements Registry {
 			try {
 				serviceTracker.modifiedService(basicServiceReference, service);
 			}
-			catch (Throwable t) {
-				t.printStackTrace();
+			catch (Throwable throwable) {
+				throwable.printStackTrace();
 			}
 		}
 	}
@@ -493,8 +493,8 @@ public class BasicRegistryImpl implements Registry {
 			try {
 				serviceTracker.remove(basicServiceReference);
 			}
-			catch (Throwable t) {
-				t.printStackTrace();
+			catch (Throwable throwable) {
+				throwable.printStackTrace();
 			}
 		}
 	}

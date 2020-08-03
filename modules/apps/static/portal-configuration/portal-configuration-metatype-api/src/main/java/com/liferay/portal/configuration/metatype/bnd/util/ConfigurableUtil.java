@@ -85,9 +85,10 @@ public class ConfigurableUtil {
 
 			return snapshotClassConstructor.newInstance(configurable);
 		}
-		catch (Throwable t) {
+		catch (Throwable throwable) {
 			throw new RuntimeException(
-				"Unable to create snapshot class for " + interfaceClass, t);
+				"Unable to create snapshot class for " + interfaceClass,
+				throwable);
 		}
 	}
 

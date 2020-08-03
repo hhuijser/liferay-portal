@@ -41,10 +41,10 @@ public class DefaultTransactionExecutor extends BaseTransactionExecutor {
 			_platformTransactionManager.commit(
 				transactionStatusAdapter.getTransactionStatus());
 		}
-		catch (Throwable t) {
-			transactionManagerThrowable = t;
+		catch (Throwable throwable) {
+			transactionManagerThrowable = throwable;
 
-			throw t;
+			throw throwable;
 		}
 		finally {
 			if (transactionManagerThrowable == null) {

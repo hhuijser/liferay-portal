@@ -439,12 +439,12 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 			return;
 		}
-		catch (Throwable t) {
+		catch (Throwable throwable) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Skipping LDAP import for company " + companyId +
 						" because unable to lock the lock",
-					t);
+					throwable);
 			}
 
 			return;

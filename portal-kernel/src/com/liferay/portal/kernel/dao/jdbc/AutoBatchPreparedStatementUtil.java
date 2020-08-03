@@ -240,7 +240,7 @@ public class AutoBatchPreparedStatementUtil {
 
 							_futures.remove(future);
 						}
-						catch (Throwable t) {
+						catch (Throwable throwable) {
 						}
 					}
 
@@ -345,7 +345,7 @@ public class AutoBatchPreparedStatementUtil {
 
 							_futures.remove(future);
 						}
-						catch (Throwable t) {
+						catch (Throwable throwable) {
 						}
 					}
 

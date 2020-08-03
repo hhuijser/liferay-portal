@@ -553,14 +553,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 					_transactionConfig, () -> method.invoke(this));
 			}
 		}
-		catch (Throwable t) {
+		catch (Throwable throwable) {
 			Exception exception = null;
 
-			if (t instanceof Exception) {
-				exception = (Exception)t;
+			if (throwable instanceof Exception) {
+				exception = (Exception)throwable;
 			}
 			else {
-				exception = new Exception(t);
+				exception = new Exception(throwable);
 			}
 
 			Object[] arguments = null;

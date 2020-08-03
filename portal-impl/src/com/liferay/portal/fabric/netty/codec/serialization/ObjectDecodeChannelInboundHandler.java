@@ -46,8 +46,8 @@ public abstract class ObjectDecodeChannelInboundHandler<T>
 			try {
 				return channelRead0(channelHandlerContext, (T)object, byteBuf);
 			}
-			catch (Throwable t) {
-				exceptionCaught(channelHandlerContext, t);
+			catch (Throwable throwable) {
+				exceptionCaught(channelHandlerContext, throwable);
 			}
 		}
 

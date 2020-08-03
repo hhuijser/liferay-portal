@@ -205,9 +205,9 @@ public class NettyFabricClient implements FabricClient {
 						TimeUnit.MILLISECONDS);
 				}
 			}
-			catch (Throwable t) {
-				if (t instanceof ExecutionException) {
-					Throwable cause = t.getCause();
+			catch (Throwable throwable) {
+				if (throwable instanceof ExecutionException) {
+					Throwable cause = throwable.getCause();
 
 					if (cause instanceof TerminationProcessException) {
 						if (_log.isWarnEnabled()) {
@@ -227,7 +227,8 @@ public class NettyFabricClient implements FabricClient {
 				}
 
 				_log.error(
-					"Unable to terminate fabric worker " + entry.getKey(), t);
+					"Unable to terminate fabric worker " + entry.getKey(),
+					throwable);
 			}
 		}
 	}

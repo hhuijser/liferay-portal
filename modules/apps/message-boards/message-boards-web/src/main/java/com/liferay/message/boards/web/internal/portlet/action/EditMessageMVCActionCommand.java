@@ -246,8 +246,8 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 				throw exception;
 			}
 		}
-		catch (Throwable t) {
-			_log.error("Unable to process action", t);
+		catch (Throwable throwable) {
+			_log.error("Unable to process action", throwable);
 
 			actionResponse.setRenderParameter(
 				"mvcPath", "/message_boards/error.jsp");

@@ -252,8 +252,8 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 
 			hideDefaultSuccessMessage(actionRequest);
 		}
-		catch (Throwable t) {
-			_log.error(t, t);
+		catch (Throwable throwable) {
+			_log.error(throwable, throwable);
 
 			actionResponse.setRenderParameter("mvcPath", "/blogs/error.jsp");
 

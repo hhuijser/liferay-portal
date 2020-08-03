@@ -142,9 +142,9 @@ public class TestExecutorRunnable implements Runnable {
 
 						statement.evaluate();
 					}
-					catch (Throwable t) {
+					catch (Throwable throwable) {
 						_processThrowable(
-							false, t, objectOutputStream, description);
+							false, throwable, objectOutputStream, description);
 					}
 					finally {
 						objectOutputStream.writeObject(
@@ -180,8 +180,8 @@ public class TestExecutorRunnable implements Runnable {
 
 			statement.evaluate();
 		}
-		catch (Throwable t) {
-			_processThrowable(true, t, objectOutputStream, description);
+		catch (Throwable throwable) {
+			_processThrowable(true, throwable, objectOutputStream, description);
 		}
 	}
 

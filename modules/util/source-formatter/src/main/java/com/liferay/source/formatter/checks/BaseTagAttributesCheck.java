@@ -408,7 +408,7 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 					return null;
 				}
 
-				String attributeValue = s.substring(0, x);
+				String attributeValue = StringUtil.trim(s.substring(0, x));
 
 				if ((attributeValue.startsWith("<%") &&
 					 (getLevel(attributeValue, "<%", "%>") == 0)) ||

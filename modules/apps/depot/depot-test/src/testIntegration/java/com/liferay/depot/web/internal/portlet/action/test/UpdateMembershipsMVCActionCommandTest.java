@@ -237,33 +237,39 @@ public class UpdateMembershipsMVCActionCommandTest {
 
 			_parameters = HashMapBuilder.put(
 				"addDepotGroupIds",
-				new String[] {
-					Arrays.stream(
+				() -> {
+					LongStream addDepotGroupIdStream = Arrays.stream(
 						Optional.ofNullable(
 							addDepotGroupIds
 						).orElse(
 							new long[0]
+						));
+
+					return new String[] {
+						addDepotGroupIdStream.mapToObj(
+							String::valueOf
+						).collect(
+							Collectors.joining()
 						)
-					).mapToObj(
-						String::valueOf
-					).collect(
-						Collectors.joining()
-					)
+					};
 				}
 			).put(
 				"deleteDepotGroupIds",
-				new String[] {
-					Arrays.stream(
+				() -> {
+					LongStream deleteDepotGroupIdStream = Arrays.stream(
 						Optional.ofNullable(
 							deleteGroupIds
 						).orElse(
 							new long[0]
+						));
+
+					return new String[] {
+						deleteDepotGroupIdStream.mapToObj(
+							String::valueOf
+						).collect(
+							Collectors.joining()
 						)
-					).mapToObj(
-						String::valueOf
-					).collect(
-						Collectors.joining()
-					)
+					};
 				}
 			).put(
 				"p_u_i_d", new String[] {String.valueOf(_user.getUserId())}

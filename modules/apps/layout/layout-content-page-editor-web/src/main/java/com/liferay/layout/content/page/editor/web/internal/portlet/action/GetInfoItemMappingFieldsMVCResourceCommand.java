@@ -16,6 +16,7 @@ package com.liferay.layout.content.page.editor.web.internal.portlet.action;
 
 import com.liferay.info.field.InfoField;
 import com.liferay.info.field.type.ImageInfoFieldType;
+import com.liferay.info.field.type.InfoFieldType;
 import com.liferay.info.form.InfoForm;
 import com.liferay.info.item.InfoItemReference;
 import com.liferay.info.item.InfoItemServiceTracker;
@@ -129,15 +130,15 @@ public class GetInfoItemMappingFieldsMVCResourceCommand
 			infoForm.getAllInfoFields(), _infoFieldTypePredicate(fieldType));
 
 		for (InfoField infoField : infoFields) {
+			InfoFieldType infoFieldType = infoField.getInfoFieldType();
+
 			jsonArray.put(
 				JSONUtil.put(
 					"key", infoField.getName()
 				).put(
 					"label", infoField.getLabel(themeDisplay.getLocale())
 				).put(
-					"type",
-					infoField.getInfoFieldType(
-					).getName()
+					"type", infoFieldType.getName()
 				));
 		}
 

@@ -22,6 +22,7 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLocalServiceUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
+import com.liferay.info.localized.InfoLocalizedValue;
 import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.constants.JournalArticleConstants;
 import com.liferay.journal.constants.JournalFolderConstants;
@@ -108,6 +109,7 @@ import com.liferay.trash.TrashHelper;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -115,6 +117,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.portlet.PortletURL;
 import javax.portlet.ResourceURL;
@@ -562,14 +565,22 @@ public class JournalDisplayContext {
 			"props",
 			HashMapBuilder.<String, Object>put(
 				"availableExportFileFormats",
-				TranslationInfoItemFieldValuesExporterTrackerUtil.
-					getTranslationInfoItemFieldValuesExporters(
-					).stream(
-					).map(
+				() -> {
+					Collection<TranslationInfoItemFieldValuesExporter>
+						translationInfoItemFieldValuesExporters =
+							TranslationInfoItemFieldValuesExporterTrackerUtil.
+								getTranslationInfoItemFieldValuesExporters();
+
+					Stream<TranslationInfoItemFieldValuesExporter>
+						translationInfoItemFieldValuesExporterStream =
+							translationInfoItemFieldValuesExporters.stream();
+
+					return translationInfoItemFieldValuesExporterStream.map(
 						this::_getExportFileFormatJSONObject
 					).collect(
 						Collectors.toList()
-					)
+					);
+				}
 			).put(
 				"availableTargetLocales",
 				ExportTranslationUtil.getLocalesJSONJArray(
@@ -1424,12 +1435,12 @@ public class JournalDisplayContext {
 		TranslationInfoItemFieldValuesExporter
 			translationInfoItemFieldValuesExporter) {
 
+		InfoLocalizedValue<String> labelInfoLocalizedValue =
+			translationInfoItemFieldValuesExporter.getLabelInfoLocalizedValue();
+
 		return JSONUtil.put(
 			"displayName",
-			translationInfoItemFieldValuesExporter.getLabelInfoLocalizedValue(
-			).getValue(
-				_themeDisplay.getLocale()
-			)
+			labelInfoLocalizedValue.getValue(_themeDisplay.getLocale())
 		).put(
 			"mimeType", translationInfoItemFieldValuesExporter.getMimeType()
 		);

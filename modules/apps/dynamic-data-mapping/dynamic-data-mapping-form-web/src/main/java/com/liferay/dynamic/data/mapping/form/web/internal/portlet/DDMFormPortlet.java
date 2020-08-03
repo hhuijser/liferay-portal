@@ -104,17 +104,18 @@ public class DDMFormPortlet extends MVCPortlet {
 		catch (Exception exception) {
 			_portal.copyRequestParameters(actionRequest, actionResponse);
 
-			Throwable cause = getRootCause(exception);
+			Throwable throwable = getRootCause(exception);
 
 			hideDefaultErrorMessage(actionRequest);
 
-			if (cause instanceof DDMFormValuesValidationException) {
-				if (cause instanceof
+			if (throwable instanceof DDMFormValuesValidationException) {
+				if (throwable instanceof
 						DDMFormValuesValidationException.MustSetValidValue ||
-					cause instanceof
+					throwable instanceof
 						DDMFormValuesValidationException.RequiredValue) {
 
-					SessionErrors.add(actionRequest, cause.getClass(), cause);
+					SessionErrors.add(
+						actionRequest, throwable.getClass(), throwable);
 				}
 				else {
 					SessionErrors.add(
@@ -122,7 +123,8 @@ public class DDMFormPortlet extends MVCPortlet {
 				}
 			}
 			else {
-				SessionErrors.add(actionRequest, cause.getClass(), cause);
+				SessionErrors.add(
+					actionRequest, throwable.getClass(), throwable);
 			}
 
 			ThemeDisplay themeDisplay =

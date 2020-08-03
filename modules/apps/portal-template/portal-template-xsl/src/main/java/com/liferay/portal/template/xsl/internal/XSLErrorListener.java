@@ -79,45 +79,45 @@ public class XSLErrorListener implements ErrorListener {
 
 	public void setLocation(Throwable exception) {
 		SourceLocator locator = null;
-		Throwable cause = exception;
+		Throwable throwable = exception;
 		Throwable rootCause = null;
 
-		while (cause != null) {
-			if (cause instanceof SAXParseException) {
-				locator = new SAXSourceLocator((SAXParseException)cause);
-				rootCause = cause;
+		while (throwable != null) {
+			if (throwable instanceof SAXParseException) {
+				locator = new SAXSourceLocator((SAXParseException)throwable);
+				rootCause = throwable;
 			}
-			else if (cause instanceof TransformerException) {
+			else if (throwable instanceof TransformerException) {
 				TransformerException transformerException =
-					(TransformerException)cause;
+					(TransformerException)throwable;
 
 				SourceLocator causeLocator = transformerException.getLocator();
 
 				if (causeLocator != null) {
 					locator = causeLocator;
-					rootCause = cause;
+					rootCause = throwable;
 				}
 			}
 
-			if (cause instanceof TransformerException) {
+			if (throwable instanceof TransformerException) {
 				TransformerException transformerException =
-					(TransformerException)cause;
+					(TransformerException)throwable;
 
-				cause = transformerException.getCause();
+				throwable = transformerException.getCause();
 			}
-			else if (cause instanceof WrappedRuntimeException) {
+			else if (throwable instanceof WrappedRuntimeException) {
 				WrappedRuntimeException wrappedRuntimeException =
-					(WrappedRuntimeException)cause;
+					(WrappedRuntimeException)throwable;
 
-				cause = wrappedRuntimeException.getException();
+				throwable = wrappedRuntimeException.getException();
 			}
-			else if (cause instanceof SAXException) {
-				SAXException saxException = (SAXException)cause;
+			else if (throwable instanceof SAXException) {
+				SAXException saxException = (SAXException)throwable;
 
-				cause = saxException.getException();
+				throwable = saxException.getException();
 			}
 			else {
-				cause = null;
+				throwable = null;
 			}
 		}
 

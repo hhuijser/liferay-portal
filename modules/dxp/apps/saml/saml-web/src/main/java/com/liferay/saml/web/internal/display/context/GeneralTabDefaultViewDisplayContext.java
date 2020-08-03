@@ -68,19 +68,19 @@ public class GeneralTabDefaultViewDisplayContext {
 			}
 		}
 		catch (Exception exception) {
-			Throwable cause = _getCause(exception, KeyStoreException.class);
+			Throwable throwable = _getCause(exception, KeyStoreException.class);
 			X509CertificateStatus.Status status;
 
-			if (cause != null) {
+			if (throwable != null) {
 				Throwable unrecoverableKeyException = _getCause(
-					cause, UnrecoverableKeyException.class);
+					throwable, UnrecoverableKeyException.class);
 
 				if (unrecoverableKeyException != null) {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							"Unable to get local entity certificate because " +
 								"of incorrect keystore password",
-							cause);
+							throwable);
 					}
 
 					status =
@@ -92,7 +92,7 @@ public class GeneralTabDefaultViewDisplayContext {
 						_log.debug(
 							"Unable to get local entity certificate because " +
 								"of keystore loading issue",
-							cause);
+							throwable);
 					}
 
 					status =
@@ -100,14 +100,15 @@ public class GeneralTabDefaultViewDisplayContext {
 				}
 			}
 			else {
-				cause = _getCause(exception, UnrecoverableKeyException.class);
+				throwable = _getCause(
+					exception, UnrecoverableKeyException.class);
 
-				if (cause != null) {
+				if (throwable != null) {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							"Unable to get local entity certificate because " +
 								"of incorrect key credential password",
-							cause);
+							throwable);
 					}
 
 					status =
@@ -176,14 +177,14 @@ public class GeneralTabDefaultViewDisplayContext {
 			return null;
 		}
 
-		Throwable cause = e.getCause();
+		Throwable throwable = e.getCause();
 
-		while (cause != null) {
-			if (exceptionType.isInstance(cause)) {
-				return cause;
+		while (throwable != null) {
+			if (exceptionType.isInstance(throwable)) {
+				return throwable;
 			}
 
-			cause = cause.getCause();
+			throwable = throwable.getCause();
 		}
 
 		return null;

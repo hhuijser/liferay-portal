@@ -29,7 +29,7 @@ portletDisplay.setURLBack(viewChangesDisplayContext.getBackURL());
 portletDisplay.setShowBackIcon(true);
 %>
 
-<nav class="change-lists-tbar component-tbar subnav-tbar-light tbar ">
+<nav class="change-lists-tbar component-tbar subnav-tbar-light tbar">
 	<clay:container-fluid>
 		<ul class="tbar-nav">
 			<c:choose>

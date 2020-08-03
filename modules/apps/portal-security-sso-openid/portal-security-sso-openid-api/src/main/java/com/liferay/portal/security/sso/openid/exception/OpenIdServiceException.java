@@ -25,8 +25,8 @@ public class OpenIdServiceException extends PortalException {
 		super(msg);
 	}
 
-	public OpenIdServiceException(String msg, Throwable cause) {
-		super(msg, cause);
+	public OpenIdServiceException(String msg, Throwable throwable) {
+		super(msg, throwable);
 	}
 
 	public static class AssociationException extends OpenIdServiceException {
@@ -35,8 +35,8 @@ public class OpenIdServiceException extends PortalException {
 			super(msg);
 		}
 
-		public AssociationException(String msg, Throwable cause) {
-			super(msg, cause);
+		public AssociationException(String msg, Throwable throwable) {
+			super(msg, throwable);
 		}
 
 	}
@@ -47,8 +47,8 @@ public class OpenIdServiceException extends PortalException {
 			super(msg);
 		}
 
-		public ConsumerException(String msg, Throwable cause) {
-			super(msg, cause);
+		public ConsumerException(String msg, Throwable throwable) {
+			super(msg, throwable);
 		}
 
 	}
@@ -59,8 +59,8 @@ public class OpenIdServiceException extends PortalException {
 			super(msg);
 		}
 
-		public DiscoveryException(String msg, Throwable cause) {
-			super(msg, cause);
+		public DiscoveryException(String msg, Throwable throwable) {
+			super(msg, throwable);
 		}
 
 	}
@@ -71,8 +71,8 @@ public class OpenIdServiceException extends PortalException {
 			super(msg);
 		}
 
-		public MessageException(String msg, Throwable cause) {
-			super(msg, cause);
+		public MessageException(String msg, Throwable throwable) {
+			super(msg, throwable);
 		}
 
 	}

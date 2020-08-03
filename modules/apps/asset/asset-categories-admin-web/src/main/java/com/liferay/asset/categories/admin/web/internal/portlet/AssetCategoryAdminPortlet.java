@@ -447,20 +447,20 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 	}
 
 	@Override
-	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof AssetCategoryNameException ||
-			cause instanceof CategoryPropertyKeyException ||
-			cause instanceof CategoryPropertyValueException ||
-			cause instanceof DuplicateCategoryException ||
-			cause instanceof DuplicateCategoryPropertyException ||
-			cause instanceof DuplicateVocabularyException ||
-			cause instanceof InvalidAssetCategoryException ||
-			cause instanceof NoSuchCategoryException ||
-			cause instanceof NoSuchClassTypeException ||
-			cause instanceof NoSuchEntryException ||
-			cause instanceof NoSuchVocabularyException ||
-			cause instanceof PrincipalException ||
-			cause instanceof VocabularyNameException) {
+	protected boolean isSessionErrorException(Throwable throwable) {
+		if (throwable instanceof AssetCategoryNameException ||
+			throwable instanceof CategoryPropertyKeyException ||
+			throwable instanceof CategoryPropertyValueException ||
+			throwable instanceof DuplicateCategoryException ||
+			throwable instanceof DuplicateCategoryPropertyException ||
+			throwable instanceof DuplicateVocabularyException ||
+			throwable instanceof InvalidAssetCategoryException ||
+			throwable instanceof NoSuchCategoryException ||
+			throwable instanceof NoSuchClassTypeException ||
+			throwable instanceof NoSuchEntryException ||
+			throwable instanceof NoSuchVocabularyException ||
+			throwable instanceof PrincipalException ||
+			throwable instanceof VocabularyNameException) {
 
 			return true;
 		}

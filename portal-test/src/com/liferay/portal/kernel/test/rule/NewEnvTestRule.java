@@ -106,9 +106,7 @@ public class NewEnvTestRule implements TestRule {
 			new LocalProcessLauncher.ShutdownHook() {
 
 				@Override
-				public boolean shutdown(
-					int shutdownCode, Throwable shutdownThrowable) {
-
+				public boolean shutdown(int shutdownCode, Throwable throwable) {
 					System.exit(shutdownCode);
 
 					return true;

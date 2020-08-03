@@ -438,10 +438,10 @@ public class StagingBarPortlet extends MVCPortlet {
 	}
 
 	@Override
-	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof LayoutBranchNameException ||
-			cause instanceof LayoutSetBranchNameException ||
-			super.isSessionErrorException(cause)) {
+	protected boolean isSessionErrorException(Throwable throwable) {
+		if (throwable instanceof LayoutBranchNameException ||
+			throwable instanceof LayoutSetBranchNameException ||
+			super.isSessionErrorException(throwable)) {
 
 			return true;
 		}

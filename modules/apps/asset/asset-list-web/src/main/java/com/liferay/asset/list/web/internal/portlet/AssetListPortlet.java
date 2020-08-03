@@ -122,14 +122,14 @@ public class AssetListPortlet extends MVCPortlet {
 	}
 
 	@Override
-	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof AssetListEntryTitleException ||
-			cause instanceof DuplicateAssetListEntryTitleException) {
+	protected boolean isSessionErrorException(Throwable throwable) {
+		if (throwable instanceof AssetListEntryTitleException ||
+			throwable instanceof DuplicateAssetListEntryTitleException) {
 
 			return true;
 		}
 
-		return super.isSessionErrorException(cause);
+		return super.isSessionErrorException(throwable);
 	}
 
 	private UnicodeProperties _getUnicodeProperties(

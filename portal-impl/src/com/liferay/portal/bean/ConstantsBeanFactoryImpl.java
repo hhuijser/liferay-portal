@@ -78,8 +78,8 @@ public class ConstantsBeanFactoryImpl implements ConstantsBeanFactory {
 
 				return constantsBeanClass.newInstance();
 			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
+			catch (Throwable throwable) {
+				throw new RuntimeException(throwable);
 			}
 		}
 	}

@@ -288,10 +288,11 @@ public class AutoBatchPreparedStatementUtilTest {
 
 			preparedStatement.executeBatch();
 		}
-		catch (Throwable t) {
-			Assert.assertTrue(throwables.toString(), throwables.contains(t));
+		catch (Throwable throwable) {
+			Assert.assertTrue(
+				throwables.toString(), throwables.contains(throwable));
 
-			Throwable[] suppressedThrowables = t.getSuppressed();
+			Throwable[] suppressedThrowables = throwable.getSuppressed();
 
 			Assert.assertEquals(
 				Arrays.toString(suppressedThrowables), 1,

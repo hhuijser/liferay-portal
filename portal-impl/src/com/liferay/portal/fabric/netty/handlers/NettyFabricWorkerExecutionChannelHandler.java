@@ -518,12 +518,14 @@ public class NettyFabricWorkerExecutionChannelHandler
 					_channel, _nettyFabricWorkerConfig.getId(), future.get(),
 					null);
 			}
-			catch (Throwable t) {
-				if (t instanceof ExecutionException) {
-					t = t.getCause();
+			catch (Throwable throwable) {
+				if (throwable instanceof ExecutionException) {
+					throwable = throwable.getCause();
 				}
 
-				sendResult(_channel, _nettyFabricWorkerConfig.getId(), null, t);
+				sendResult(
+					_channel, _nettyFabricWorkerConfig.getId(), null,
+					throwable);
 			}
 		}
 

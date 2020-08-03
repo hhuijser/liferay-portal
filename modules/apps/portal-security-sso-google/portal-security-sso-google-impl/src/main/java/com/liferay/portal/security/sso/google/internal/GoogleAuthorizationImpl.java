@@ -109,12 +109,12 @@ public class GoogleAuthorizationImpl implements GoogleAuthorization {
 				_transactionConfig,
 				() -> doAddOrUpdateUser(session, companyId, userinfoplus));
 		}
-		catch (Throwable t) {
-			if (t instanceof PortalException) {
-				throw (PortalException)t;
+		catch (Throwable throwable) {
+			if (throwable instanceof PortalException) {
+				throw (PortalException)throwable;
 			}
 
-			throw new Exception(t);
+			throw new Exception(throwable);
 		}
 	}
 

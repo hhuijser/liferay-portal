@@ -325,9 +325,10 @@ public class WebServerServlet extends HttpServlet {
 			PortalUtil.sendError(
 				exception, httpServletRequest, httpServletResponse);
 		}
-		catch (Throwable t) {
+		catch (Throwable throwable) {
 			PortalUtil.sendError(
-				new Exception(t), httpServletRequest, httpServletResponse);
+				new Exception(throwable), httpServletRequest,
+				httpServletResponse);
 		}
 	}
 

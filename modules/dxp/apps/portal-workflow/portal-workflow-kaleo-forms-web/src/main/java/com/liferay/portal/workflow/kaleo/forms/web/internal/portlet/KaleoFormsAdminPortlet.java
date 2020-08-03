@@ -265,12 +265,12 @@ public class KaleoFormsAdminPortlet extends MVCPortlet {
 
 				TransactionInvokerUtil.invoke(_transactionConfig, callable);
 			}
-			catch (Throwable t) {
-				if (t instanceof PortalException) {
-					throw (PortalException)t;
+			catch (Throwable throwable) {
+				if (throwable instanceof PortalException) {
+					throw (PortalException)throwable;
 				}
 
-				throw new SystemException(t);
+				throw new SystemException(throwable);
 			}
 		}
 	}

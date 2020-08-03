@@ -368,8 +368,8 @@ public class ServiceBuilder {
 		try {
 			ClearThreadLocalUtil.clearThreadLocal();
 		}
-		catch (Throwable t) {
-			t.printStackTrace();
+		catch (Throwable throwable) {
+			throwable.printStackTrace();
 		}
 
 		Introspector.flushCaches();

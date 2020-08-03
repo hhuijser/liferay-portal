@@ -400,8 +400,8 @@ public class PortalPreferencesImplTest {
 				_originalTransactionExecutor.commit(
 					transactionAttributeAdapter, transactionStatusAdapter);
 			}
-			catch (Throwable t) {
-				ReflectionUtil.throwException(t);
+			catch (Throwable throwable) {
+				ReflectionUtil.throwException(throwable);
 			}
 			finally {
 				PortalPreferencesWrapperCacheUtil.remove(

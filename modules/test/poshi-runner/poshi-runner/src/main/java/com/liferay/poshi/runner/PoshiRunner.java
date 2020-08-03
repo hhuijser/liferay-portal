@@ -343,15 +343,15 @@ public class PoshiRunner {
 
 						return;
 					}
-					catch (Throwable t) {
-						_testResultMessages.add(t.getMessage());
+					catch (Throwable throwable) {
+						_testResultMessages.add(throwable.getMessage());
 
-						if (!_isRetryable(t)) {
+						if (!_isRetryable(throwable)) {
 							_testResults.put(
 								_testNamespacedClassCommandName,
 								_testResultMessages);
 
-							throw t;
+							throw throwable;
 						}
 
 						_jvmRetryCount++;

@@ -82,7 +82,7 @@ public class JSPCheckstyleUtil {
 			String trimmedLine = StringUtil.trimLeading(line);
 
 			if (javaSource) {
-				if (trimmedLine.matches("%>")) {
+				if (trimmedLine.startsWith("%>")) {
 					sb.append("\t\t// PLACEHOLDER");
 
 					javaSource = false;
@@ -106,7 +106,7 @@ public class JSPCheckstyleUtil {
 
 			sb.append("\n");
 
-			if (trimmedLine.matches("<%")) {
+			if (trimmedLine.equals("<%") || trimmedLine.endsWith("<%=")) {
 				javaSource = true;
 			}
 		}

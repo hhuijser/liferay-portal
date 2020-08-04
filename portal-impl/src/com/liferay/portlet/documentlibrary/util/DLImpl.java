@@ -48,6 +48,7 @@ import com.liferay.portal.kernel.portlet.PortletLayoutFinderRegistryUtil;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -262,19 +263,21 @@ public class DLImpl implements DL {
 		String portletId = PortletProviderUtil.getPortletId(
 			Folder.class.getName(), PortletProvider.Action.MANAGE);
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			portletRequest, portletId, PortletRequest.RENDER_PHASE);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				portletRequest, portletId, PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName",
+			() -> {
+				if (folderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+					return "/document_library/view";
+				}
 
-		if (folderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			portletURL.setParameter(
-				"mvcRenderCommandName", "/document_library/view");
-		}
-		else {
-			portletURL.setParameter(
-				"mvcRenderCommandName", "/document_library/view_folder");
-		}
-
-		portletURL.setParameter("folderId", String.valueOf(folderId));
+				return "/document_library/view_folder";
+			}
+		).setParameter(
+			"folderId", String.valueOf(folderId)
+		).build();
 
 		return portletURL.toString();
 	}

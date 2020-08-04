@@ -44,7 +44,7 @@ public class JSPCheckstyleUtil {
 		Matcher matcher = _javaSourceTag.matcher(content);
 
 		if (matcher.find()) {
-			return _getJavaContent(absolutePath, content);
+			return _getJavaContent(content);
 		}
 
 		return null;
@@ -65,9 +65,7 @@ public class JSPCheckstyleUtil {
 		return StringUtil.replaceLast(javaContent, "\n%>", "");
 	}
 
-	private static String _getJavaContent(String fileName, String content)
-		throws IOException {
-
+	private static String _getJavaContent(String content) throws IOException {
 		StringBundler sb = new StringBundler();
 
 		List<String> lines = CheckstyleUtil.getLines(content);

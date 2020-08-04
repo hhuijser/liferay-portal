@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.multi.factor.authentication.email.otp.configuration.MFAEmailOTPConfiguration;
 import com.liferay.multi.factor.authentication.spi.checker.setup.SetupMFAChecker;
 import com.liferay.osgi.util.ServiceTrackerFactory;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -60,9 +61,9 @@ public class MFAUserAccountSetupCheckerTracker {
 		if (mfaEmailOTPConfiguration.enabled()) {
 			long companyId = GetterUtil.getLong(properties.get("companyId"));
 
-			String filterString =
-				"(&(companyId=" + companyId + ")(objectClass=" +
-					SetupMFAChecker.class.getName() + "))";
+			String filterString = StringBundler.concat(
+				"(&(companyId=", companyId, ")(objectClass=",
+				SetupMFAChecker.class.getName(), "))");
 
 			_serviceTracker = ServiceTrackerFactory.open(
 				bundleContext, filterString,

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.metrics.service.util;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -184,8 +185,9 @@ public abstract class BaseWorkflowMetricsTestCase {
 			countSearchRequest);
 
 		Assert.assertEquals(
-			indexName + " " + indexType + " " +
-				countSearchResponse.getSearchRequestString(),
+			StringBundler.concat(
+				indexName, " ", indexType, " ",
+				countSearchResponse.getSearchRequestString()),
 			expectedCount, countSearchResponse.getCount());
 	}
 

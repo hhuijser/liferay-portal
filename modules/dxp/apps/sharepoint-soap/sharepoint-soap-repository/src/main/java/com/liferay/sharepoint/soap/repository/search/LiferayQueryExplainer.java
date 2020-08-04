@@ -68,11 +68,10 @@ public class LiferayQueryExplainer {
 	}
 
 	private void _explain(StringBundler sb, QueryTerm queryTerm) {
-		String field = queryTerm.getField();
-
-		String value = queryTerm.getValue();
-
-		_print(sb, StringBundler.concat(field, " == \"", value, "\""));
+		_print(
+			sb,
+			StringBundler.concat(
+				queryTerm.getField(), " == \"", queryTerm.getValue(), "\""));
 	}
 
 	private void _explain(StringBundler sb, TermQuery termQuery) {

@@ -14,11 +14,9 @@
 
 package com.liferay.source.formatter.checkstyle.util;
 
-import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
 import java.io.IOException;
 
@@ -76,11 +74,7 @@ public class JSPCheckstyleUtil {
 
 		boolean javaSource = false;
 
-		sb.append("public class ");
-		sb.append(
-			StringUtil.removeChar(
-				JavaSourceUtil.getClassName(fileName), CharPool.DASH));
-		sb.append(" {\n");
+		sb.append("public class TempClass {\n");
 
 		for (int i = 1; i < lines.size(); i++) {
 			String line = lines.get(i);

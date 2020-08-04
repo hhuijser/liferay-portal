@@ -207,13 +207,13 @@ public class NettyFabricClient implements FabricClient {
 			}
 			catch (Throwable throwable) {
 				if (throwable instanceof ExecutionException) {
-					Throwable cause = throwable.getCause();
+					Throwable causeThrowable = throwable.getCause();
 
-					if (cause instanceof TerminationProcessException) {
+					if (causeThrowable instanceof TerminationProcessException) {
 						if (_log.isWarnEnabled()) {
 							TerminationProcessException
 								terminationProcessException =
-									(TerminationProcessException)cause;
+									(TerminationProcessException)causeThrowable;
 
 							_log.warn(
 								StringBundler.concat(

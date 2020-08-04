@@ -378,14 +378,16 @@ public class PermissionCheckerTest {
 		catch (Throwable throwable) {
 			boolean found = false;
 
-			Throwable cause = throwable;
+			Throwable causeThrowable = throwable;
 
-			while (!found && (cause != null)) {
-				if (cause instanceof NoSuchResourcePermissionException) {
+			while (!found && (causeThrowable != null)) {
+				if (causeThrowable instanceof
+						NoSuchResourcePermissionException) {
+
 					found = true;
 				}
 
-				cause = cause.getCause();
+				causeThrowable = causeThrowable.getCause();
 			}
 
 			if (!found) {
@@ -577,14 +579,16 @@ public class PermissionCheckerTest {
 		catch (Throwable throwable) {
 			boolean found = false;
 
-			Throwable cause = throwable;
+			Throwable causeThrowable = throwable;
 
-			while (!found && (cause != null)) {
-				if (cause instanceof NoSuchResourcePermissionException) {
+			while (!found && (causeThrowable != null)) {
+				if (causeThrowable instanceof
+						NoSuchResourcePermissionException) {
+
 					found = true;
 				}
 
-				cause = cause.getCause();
+				causeThrowable = causeThrowable.getCause();
 			}
 
 			if (!found) {

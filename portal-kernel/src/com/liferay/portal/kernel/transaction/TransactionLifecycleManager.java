@@ -59,17 +59,18 @@ public class TransactionLifecycleManager {
 
 	public static void fireTransactionRollbackedEvent(
 		TransactionAttribute transactionAttribute,
-		TransactionStatus transactionStatus, Throwable throwable) {
+		TransactionStatus transactionStatus, Throwable throwable1) {
 
 		for (TransactionLifecycleListener transactionLifecycleListener :
 				_transactionLifecycleListenersReference.get()) {
 
 			try {
 				transactionLifecycleListener.rollbacked(
-					transactionAttribute, transactionStatus, throwable);
+					transactionAttribute, transactionStatus, throwable1);
 			}
-			catch (Throwable t) {
-				transactionStatus.suppressLifecycleListenerThrowable(t);
+			catch (Throwable throwable2) {
+				transactionStatus.suppressLifecycleListenerThrowable(
+					throwable2);
 			}
 		}
 	}

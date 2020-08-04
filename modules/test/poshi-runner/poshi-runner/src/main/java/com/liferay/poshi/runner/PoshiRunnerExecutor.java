@@ -1370,10 +1370,10 @@ public class PoshiRunnerExecutor {
 			return throwable.getMessage();
 		}
 
-		Throwable cause = throwable.getCause();
+		Throwable causeThrowable = throwable.getCause();
 
-		if (cause != null) {
-			return _getWarningFromThrowable(cause);
+		if (causeThrowable != null) {
+			return _getWarningFromThrowable(causeThrowable);
 		}
 
 		return null;

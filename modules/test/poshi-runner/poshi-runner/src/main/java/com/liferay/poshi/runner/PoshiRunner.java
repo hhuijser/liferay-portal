@@ -378,17 +378,17 @@ public class PoshiRunner {
 				return message;
 			}
 
-			private boolean _isKnownFlakyIssue(Throwable throwable) {
+			private boolean _isKnownFlakyIssue(Throwable throwable1) {
 				List<Throwable> throwables = null;
 
-				if (throwable instanceof MultipleFailureException) {
+				if (throwable1 instanceof MultipleFailureException) {
 					MultipleFailureException multipleFailureException =
-						(MultipleFailureException)throwable;
+						(MultipleFailureException)throwable1;
 
 					throwables = multipleFailureException.getFailures();
 				}
 				else {
-					throwables = Arrays.asList(throwable);
+					throwables = Arrays.asList(throwable1);
 				}
 
 				for (Throwable validRetryThrowable : _validRetryThrowables) {
@@ -397,8 +397,10 @@ public class PoshiRunner {
 					String validRetryThrowableShortMessage = _getShortMessage(
 						validRetryThrowable);
 
-					for (Throwable t : throwables) {
-						if (validRetryThrowableClass.equals(t.getClass())) {
+					for (Throwable throwable2 : throwables) {
+						if (validRetryThrowableClass.equals(
+								throwable2.getClass())) {
+
 							if ((validRetryThrowableShortMessage == null) ||
 								validRetryThrowableShortMessage.isEmpty()) {
 
@@ -406,7 +408,7 @@ public class PoshiRunner {
 							}
 
 							if (validRetryThrowableShortMessage.equals(
-									_getShortMessage(t))) {
+									_getShortMessage(throwable2))) {
 
 								return true;
 							}

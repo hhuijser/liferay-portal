@@ -1866,10 +1866,10 @@ public class GraphQLServletExtender {
 			ExceptionWhileDataFetching exceptionWhileDataFetching =
 				(ExceptionWhileDataFetching)graphQLError;
 
-			Throwable exception = exceptionWhileDataFetching.getException();
+			Throwable throwable = exceptionWhileDataFetching.getException();
 
-			if ((exception != null) &&
-				(exception.getCause() instanceof NoSuchModelException)) {
+			if ((throwable != null) &&
+				(throwable.getCause() instanceof NoSuchModelException)) {
 
 				return true;
 			}

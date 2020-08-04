@@ -571,9 +571,10 @@ public class LocalProcessExecutorTest {
 			Assert.fail();
 		}
 		catch (ExecutionException executionException) {
-			Throwable cause = executionException.getCause();
+			Throwable throwable = executionException.getCause();
 
-			Assert.assertSame(ClassNotFoundException.class, cause.getClass());
+			Assert.assertSame(
+				ClassNotFoundException.class, throwable.getClass());
 		}
 
 		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
@@ -611,16 +612,17 @@ public class LocalProcessExecutorTest {
 			Assert.fail();
 		}
 		catch (ExecutionException executionException) {
-			Throwable cause = executionException.getCause();
+			Throwable throwable = executionException.getCause();
 
-			Assert.assertTrue(cause instanceof ProcessException);
+			Assert.assertTrue(throwable instanceof ProcessException);
 
 			Assert.assertEquals(
-				"Corrupted object input stream", cause.getMessage());
+				"Corrupted object input stream", throwable.getMessage());
 
-			cause = cause.getCause();
+			throwable = throwable.getCause();
 
-			Assert.assertSame(StreamCorruptedException.class, cause.getClass());
+			Assert.assertSame(
+				StreamCorruptedException.class, throwable.getClass());
 		}
 
 		Assert.assertFalse(future.isCancelled());

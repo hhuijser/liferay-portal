@@ -192,10 +192,10 @@ public class TestExecutorRunnable implements Runnable {
 			return throwable;
 		}
 
-		Throwable[] suppressions = throwable.getSuppressed();
+		Throwable[] suppressionThrowables = throwable.getSuppressed();
 
-		for (Throwable suppression : suppressions) {
-			return _findAssumptionViolatedException(suppression);
+		for (Throwable suppressionThrowable : suppressionThrowables) {
+			return _findAssumptionViolatedException(suppressionThrowable);
 		}
 
 		return null;
@@ -228,19 +228,19 @@ public class TestExecutorRunnable implements Runnable {
 
 				currentThread.setContextClassLoader(clazz.getClassLoader());
 
-				Throwable throwable = null;
+				Throwable throwable1 = null;
 
 				try {
 					method.invoke(target);
 				}
-				catch (Throwable t) {
-					throwable = t;
+				catch (Throwable throwable2) {
+					throwable1 = throwable2;
 				}
 				finally {
 					currentThread.setContextClassLoader(classLoader);
 				}
 
-				if (throwable == null) {
+				if (throwable1 == null) {
 					Class<?> throwableClass = _getExpectedExceptionClass(
 						method);
 
@@ -250,15 +250,15 @@ public class TestExecutorRunnable implements Runnable {
 					}
 				}
 				else {
-					if (throwable instanceof InvocationTargetException) {
-						throwable = throwable.getCause();
+					if (throwable1 instanceof InvocationTargetException) {
+						throwable1 = throwable1.getCause();
 					}
 
-					if (throwable instanceof AssumptionViolatedException) {
-						throw throwable;
+					if (throwable1 instanceof AssumptionViolatedException) {
+						throw throwable1;
 					}
 
-					_processExpectedException(throwable, method);
+					_processExpectedException(throwable1, method);
 				}
 			}
 
@@ -336,8 +336,11 @@ public class TestExecutorRunnable implements Runnable {
 			MultipleFailureException multipleFailureException =
 				(MultipleFailureException)throwable;
 
-			for (Throwable t : multipleFailureException.getFailures()) {
-				_processThrowable(objectOutputStream, description, t);
+			for (Throwable curThrowable :
+					multipleFailureException.getFailures()) {
+
+				_processThrowable(
+					objectOutputStream, description, curThrowable);
 			}
 		}
 		else {

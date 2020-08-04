@@ -53,13 +53,13 @@ public class ExceptionRetryAcceptor implements RetryAcceptor {
 			catch (ClassNotFoundException classNotFoundException) {
 			}
 
-			Throwable cause = throwable.getCause();
+			Throwable causeThrowable = throwable.getCause();
 
-			if ((throwable == cause) || (cause == null)) {
+			if ((throwable == causeThrowable) || (causeThrowable == null)) {
 				break;
 			}
 
-			throwable = cause;
+			throwable = causeThrowable;
 		}
 
 		return false;

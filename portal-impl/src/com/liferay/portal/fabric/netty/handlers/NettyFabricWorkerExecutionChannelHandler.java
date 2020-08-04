@@ -242,12 +242,12 @@ public class NettyFabricWorkerExecutionChannelHandler
 
 	protected void sendResult(
 		Channel channel, long fabricWorkerId, Serializable result,
-		Throwable t) {
+		Throwable throwable) {
 
 		final FabricWorkerResultProcessCallable
 			fabricWorkerResultProcessCallable =
 				new FabricWorkerResultProcessCallable(
-					fabricWorkerId, result, t);
+					fabricWorkerId, result, throwable);
 
 		NoticeableFuture<Serializable> noticeableFuture = RPCUtil.execute(
 			channel,

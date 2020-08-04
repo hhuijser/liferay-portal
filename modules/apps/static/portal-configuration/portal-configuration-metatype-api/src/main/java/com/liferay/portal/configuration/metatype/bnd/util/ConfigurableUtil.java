@@ -213,8 +213,8 @@ public class ConfigurableUtil {
 			_findLoadedClassMethod = ReflectionUtil.getDeclaredMethod(
 				ClassLoader.class, "findLoadedClass", String.class);
 		}
-		catch (Throwable t) {
-			throw new ExceptionInInitializerError(t);
+		catch (Throwable throwable) {
+			throw new ExceptionInInitializerError(throwable);
 		}
 	}
 

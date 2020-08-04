@@ -314,14 +314,14 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 					});
 			}
 			catch (Throwable throwable) {
-				Throwable cause = throwable;
+				Throwable causeThrowable = throwable;
 
 				if (throwable instanceof ORMException) {
-					cause = throwable.getCause();
+					causeThrowable = throwable.getCause();
 				}
 
-				if (cause instanceof ConstraintViolationException ||
-					cause instanceof LockAcquisitionException) {
+				if (causeThrowable instanceof ConstraintViolationException ||
+					causeThrowable instanceof LockAcquisitionException) {
 
 					continue;
 				}
@@ -427,14 +427,14 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 				return;
 			}
 			catch (Throwable throwable) {
-				Throwable cause = throwable;
+				Throwable causeThrowable = throwable;
 
 				if (throwable instanceof ORMException) {
-					cause = throwable.getCause();
+					causeThrowable = throwable.getCause();
 				}
 
-				if (cause instanceof ConstraintViolationException ||
-					cause instanceof LockAcquisitionException) {
+				if (causeThrowable instanceof ConstraintViolationException ||
+					causeThrowable instanceof LockAcquisitionException) {
 
 					continue;
 				}

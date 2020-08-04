@@ -267,13 +267,13 @@ public class SecureXMLFactoryProviderImplTest {
 				throw throwable;
 			}
 
-			Throwable cause = throwable;
+			Throwable causeThrowable = throwable;
 
-			while (cause.getCause() != null) {
-				cause = cause.getCause();
+			while (causeThrowable.getCause() != null) {
+				causeThrowable = causeThrowable.getCause();
 			}
 
-			Class<?> causeClass = cause.getClass();
+			Class<?> causeClass = causeThrowable.getClass();
 
 			if (!causeClass.isAssignableFrom(expectedException)) {
 				throw throwable;

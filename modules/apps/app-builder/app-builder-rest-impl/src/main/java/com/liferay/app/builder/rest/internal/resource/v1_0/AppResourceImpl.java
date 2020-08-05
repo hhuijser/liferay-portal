@@ -271,10 +271,10 @@ public class AppResourceImpl
 		return SearchUtil.search(
 			Collections.emptyMap(),
 			booleanQuery -> {
-				BooleanFilter booleanFilter =
-					booleanQuery.getPreBooleanFilter();
-
 				if (Validator.isNotNull(scope)) {
+					BooleanFilter booleanFilter =
+						booleanQuery.getPreBooleanFilter();
+
 					BooleanQuery scopeBooleanQuery = new BooleanQueryImpl();
 
 					scopeBooleanQuery.addTerm("scope", scope);
@@ -346,10 +346,10 @@ public class AppResourceImpl
 		return SearchUtil.search(
 			Collections.emptyMap(),
 			booleanQuery -> {
-				BooleanFilter booleanFilter =
-					booleanQuery.getPreBooleanFilter();
-
 				if (Validator.isNotNull(scope)) {
+					BooleanFilter booleanFilter =
+						booleanQuery.getPreBooleanFilter();
+
 					BooleanQuery scopeBooleanQuery = new BooleanQueryImpl();
 
 					scopeBooleanQuery.addTerm("scope", scope);

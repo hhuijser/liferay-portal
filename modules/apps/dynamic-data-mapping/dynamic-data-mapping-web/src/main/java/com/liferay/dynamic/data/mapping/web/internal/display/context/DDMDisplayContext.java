@@ -679,7 +679,6 @@ public class DDMDisplayContext {
 	public boolean isShowAddTemplateButton() throws PortalException {
 		DDMDisplay ddmDisplay = getDDMDisplay();
 
-		long classNameId = getClassNameId();
 		long resourceClassNameId = PortalUtil.getClassNameId(
 			ddmDisplay.getStructureType());
 
@@ -687,6 +686,8 @@ public class DDMDisplayContext {
 
 		if (_isEnableTemplateCreation() &&
 			ddmDisplay.isShowAddButton(themeDisplay.getScopeGroup())) {
+
+			long classNameId = getClassNameId();
 
 			if ((classNameId != 0) && (resourceClassNameId != 0)) {
 				return DDMTemplatePermission.containsAddTemplatePermission(

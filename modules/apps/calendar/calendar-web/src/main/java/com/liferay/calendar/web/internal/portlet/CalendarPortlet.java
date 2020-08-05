@@ -218,13 +218,14 @@ public class CalendarPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long calendarId = ParamUtil.getLong(uploadPortletRequest, "calendarId");
-
 		String data = FileUtil.read(uploadPortletRequest.getFile("file"));
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		if (Validator.isNotNull(data)) {
+			long calendarId = ParamUtil.getLong(
+				uploadPortletRequest, "calendarId");
+
 			try {
 				CalendarDataHandler calendarDataHandler =
 					CalendarDataHandlerFactory.getCalendarDataHandler(

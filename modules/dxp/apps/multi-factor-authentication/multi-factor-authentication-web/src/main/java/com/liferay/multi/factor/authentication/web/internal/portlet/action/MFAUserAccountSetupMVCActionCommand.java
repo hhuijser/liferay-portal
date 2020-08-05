@@ -102,8 +102,7 @@ public class MFAUserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
 
 		if (Validator.isBlank(redirect)) {
 			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 			redirect = themeDisplay.getPortalURL();
 		}

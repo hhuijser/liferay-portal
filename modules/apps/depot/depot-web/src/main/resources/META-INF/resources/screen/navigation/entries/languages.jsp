@@ -55,25 +55,25 @@ boolean inheritLocales = GetterUtil.getBoolean(typeSettingsProperties.getPropert
 </liferay-ui:error>
 
 <div class="site-languages">
-
-	<%
-	HashMap<String, Object> props = HashMapBuilder.<String, Object>put(
-		"availableLocales", DepotLanguageUtil.getAvailableLocalesJSONArray(locale)
-	).put(
-		"defaultLocaleId", LocaleUtil.toLanguageId(company.getDefaultUser().getLocale())
-	).put(
-		"inheritLocales", inheritLocales
-	).put(
-		"siteAvailableLocales", DepotLanguageUtil.getDepotAvailableLocalesJSONArray(group, locale)
-	).put(
-		"siteDefaultLocaleId", LocaleUtil.toLanguageId(PortalUtil.getSiteDefaultLocale(group.getGroupId()))
-	).put(
-		"translatedLanguages", group.getNameMap()
-	).build();
-	%>
-
 	<react:component
 		module="js/Languages.es"
-		props="<%= props %>"
+		props='<%=
+			HashMapBuilder.<String, Object>put(
+				"availableLocales", DepotLanguageUtil.getAvailableLocalesJSONArray(locale)
+			).put(
+				"defaultLocaleId",
+				LocaleUtil.toLanguageId(
+					company.getDefaultUser(
+					).getLocale())
+			).put(
+				"inheritLocales", inheritLocales
+			).put(
+				"siteAvailableLocales", DepotLanguageUtil.getDepotAvailableLocalesJSONArray(group, locale)
+			).put(
+				"siteDefaultLocaleId", LocaleUtil.toLanguageId(PortalUtil.getSiteDefaultLocale(group.getGroupId()))
+			).put(
+				"translatedLanguages", group.getNameMap()
+			).build()
+		%>'
 	/>
 </div>

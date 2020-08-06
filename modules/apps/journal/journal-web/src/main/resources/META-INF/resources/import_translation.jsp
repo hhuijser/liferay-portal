@@ -81,20 +81,17 @@ renderResponse.setTitle(LanguageUtil.get(resourceBundle, "import-translation"));
 			<liferay-ui:error exception="<%= XLIFFFileException.MustNotHaveMoreThanOne.class %>" message="xliff-file-is-invalid" />
 
 			<div>
-
-				<%
-				Map<String, Object> props = HashMapBuilder.<String, Object>put(
-					"saveDraftBtnId", liferayPortletResponse.getNamespace() + "saveDraftBtn"
-				).put(
-					"submitBtnId", liferayPortletResponse.getNamespace() + "submitBtnId"
-				).put(
-					"worflowPending", journalEditArticleDisplayContext.isPending()
-				).build();
-				%>
-
 				<react:component
 					module="js/ImportTranslation.es"
-					props="<%= props %>"
+					props='<%=
+						HashMapBuilder.<String, Object>put(
+							"saveDraftBtnId", liferayPortletResponse.getNamespace() + "saveDraftBtn"
+						).put(
+							"submitBtnId", liferayPortletResponse.getNamespace() + "submitBtnId"
+						).put(
+							"worflowPending", journalEditArticleDisplayContext.isPending()
+						).build()
+					%>'
 				/>
 			</div>
 		</clay:sheet>

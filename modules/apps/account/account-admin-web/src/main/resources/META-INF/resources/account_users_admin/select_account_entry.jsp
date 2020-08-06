@@ -75,18 +75,20 @@ if (selectAccountEntryManagementToolbarDisplayContext.isSingleSelect()) {
 
 			<c:if test="<%= selectAccountEntryManagementToolbarDisplayContext.isSingleSelect() %>">
 				<liferay-ui:search-container-column-text>
-
-					<%
-					Map<String, Object> data = HashMapBuilder.<String, Object>put(
-						"accountentryid", accountEntryDisplay.getAccountEntryId()
-					).put(
-						"entityid", accountEntryDisplay.getAccountEntryId()
-					).put(
-						"entityname", accountEntryDisplay.getName()
-					).build();
-					%>
-
-					<aui:button cssClass="choose-account selector-button" data="<%= data %>" disabled="<%= disabled %>" value="choose" />
+					<aui:button
+						cssClass="choose-account selector-button"
+						data='<%=
+							HashMapBuilder.<String, Object>put(
+								"accountentryid", accountEntryDisplay.getAccountEntryId()
+							).put(
+								"entityid", accountEntryDisplay.getAccountEntryId()
+							).put(
+								"entityname", accountEntryDisplay.getName()
+							).build()
+						%>'
+						disabled="<%= disabled %>"
+						value="choose"
+					/>
 				</liferay-ui:search-container-column-text>
 			</c:if>
 		</liferay-ui:search-container-row>

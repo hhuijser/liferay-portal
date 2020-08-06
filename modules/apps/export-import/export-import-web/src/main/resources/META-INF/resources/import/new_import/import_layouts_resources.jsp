@@ -314,15 +314,20 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 															<li>
 																<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= portlet.getRootPortletId() %>"></span>
 
-																<%
-																Map<String, Object> data = HashMapBuilder.<String, Object>put(
-																	"portletid", portlet.getRootPortletId()
-																).put(
-																	"portlettitle", portletTitle
-																).build();
-																%>
-
-																<aui:a cssClass="content-link modify-link" data="<%= data %>" href="javascript:;" id='<%= "contentLink_" + portlet.getRootPortletId() %>' label="change" method="get" />
+																<aui:a
+																	cssClass="content-link modify-link"
+																	data='<%=
+																		HashMapBuilder.<String, Object>put(
+																			"portletid", portlet.getRootPortletId()
+																		).put(
+																			"portlettitle", portletTitle
+																		).build()
+																	%>'
+																	href="javascript:;"
+																	id='<%= "contentLink_" + portlet.getRootPortletId() %>'
+																	label="change"
+																	method="get"
+																/>
 															</li>
 														</ul>
 

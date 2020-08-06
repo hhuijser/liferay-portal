@@ -77,7 +77,6 @@ page import="com.liferay.sharing.configuration.SharingConfiguration" %>
 
 <%@ page import="java.util.Collection" %><%@
 page import="java.util.Collections" %><%@
-page import="java.util.HashMap" %><%@
 page import="java.util.List" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>

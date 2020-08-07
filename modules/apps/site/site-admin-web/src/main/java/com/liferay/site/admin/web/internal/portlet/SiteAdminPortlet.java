@@ -778,14 +778,14 @@ public class SiteAdminPortlet extends MVCPortlet {
 			active = ParamUtil.getBoolean(
 				actionRequest, "active", liveGroup.isActive());
 
-			UnicodeProperties unicodeProperties =
-				PropertiesParamUtil.getProperties(
-					actionRequest, "TypeSettingsProperties--");
-
-			Locale defaultLocale = LocaleUtil.fromLanguageId(
-				unicodeProperties.getProperty("languageId"));
-
 			if (!liveGroup.isGuest() && !liveGroup.isOrganization()) {
+				UnicodeProperties unicodeProperties =
+					PropertiesParamUtil.getProperties(
+						actionRequest, "TypeSettingsProperties--");
+
+				Locale defaultLocale = LocaleUtil.fromLanguageId(
+					unicodeProperties.getProperty("languageId"));
+
 				validateDefaultLocaleGroupName(nameMap, defaultLocale);
 			}
 

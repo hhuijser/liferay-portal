@@ -712,11 +712,11 @@ public class GraphQLServletExtender {
 			}
 
 			if (_isMultipartBody(parameter)) {
-				Map<String, BinaryFile> binaryFiles = new HashMap<>();
-
 				List<Part> parts = (List<Part>)argument;
 
 				if ((parts != null) && !parts.isEmpty()) {
+					Map<String, BinaryFile> binaryFiles = new HashMap<>();
+
 					Part part = parts.get(0);
 
 					binaryFiles.put(

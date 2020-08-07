@@ -699,7 +699,6 @@ public class BasicRegistryImpl implements Registry {
 			}
 
 			for (Map.Entry<String, Object> entry : entrySet) {
-				String key = entry.getKey();
 				Object value = entry.getValue();
 
 				Object[] array = null;
@@ -719,6 +718,8 @@ public class BasicRegistryImpl implements Registry {
 				}
 
 				if (array.length > 0) {
+					String key = entry.getKey();
+
 					for (Object object : array) {
 						stringBuilder.append('(');
 						stringBuilder.append(key);

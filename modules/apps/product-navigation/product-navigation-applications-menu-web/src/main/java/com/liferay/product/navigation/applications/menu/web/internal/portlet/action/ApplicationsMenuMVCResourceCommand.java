@@ -285,9 +285,9 @@ public class ApplicationsMenuMVCResourceCommand extends BaseMVCResourceCommand {
 			max -= recentGroups.size();
 		}
 
-		List<Group> filteredGroups = new ArrayList<>();
-
 		if (max > 0) {
+			List<Group> filteredGroups = new ArrayList<>();
+
 			User user = themeDisplay.getUser();
 
 			List<Group> mySiteGroups = user.getMySiteGroups(

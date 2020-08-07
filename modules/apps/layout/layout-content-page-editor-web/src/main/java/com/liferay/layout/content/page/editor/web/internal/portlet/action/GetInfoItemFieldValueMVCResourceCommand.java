@@ -122,15 +122,15 @@ public class GetInfoItemFieldValueMVCResourceCommand
 			"fieldId", fieldId
 		);
 
-		String languageId = ParamUtil.getString(
-			resourceRequest, "languageId", themeDisplay.getLanguageId());
-
 		InfoFieldValue<Object> infoFieldValue =
 			infoItemFieldValuesProvider.getInfoItemFieldValue(object, fieldId);
 
 		Object value = StringPool.BLANK;
 
 		if (infoFieldValue != null) {
+			String languageId = ParamUtil.getString(
+				resourceRequest, "languageId", themeDisplay.getLanguageId());
+
 			value = infoFieldValue.getValue(
 				LocaleUtil.fromLanguageId(languageId));
 		}

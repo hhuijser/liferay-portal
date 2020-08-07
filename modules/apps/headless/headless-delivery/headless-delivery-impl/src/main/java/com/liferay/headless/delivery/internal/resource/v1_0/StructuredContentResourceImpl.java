@@ -259,10 +259,10 @@ public class StructuredContentResourceImpl
 					"com.liferay.journal", siteId)
 			).build(),
 			booleanQuery -> {
-				BooleanFilter booleanFilter =
-					booleanQuery.getPreBooleanFilter();
-
 				if (!GetterUtil.getBoolean(flatten)) {
+					BooleanFilter booleanFilter =
+						booleanQuery.getPreBooleanFilter();
+
 					booleanFilter.add(
 						new TermFilter(
 							com.liferay.portal.kernel.search.Field.FOLDER_ID,

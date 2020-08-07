@@ -1266,9 +1266,9 @@ public class LayoutsAdminDisplayContext {
 			return _privateLayout;
 		}
 
-		Layout selLayout = getSelLayout();
-
 		if (getSelLayout() != null) {
+			Layout selLayout = getSelLayout();
+
 			_privateLayout = selLayout.isPrivateLayout();
 
 			return _privateLayout;

@@ -477,9 +477,9 @@ public class JournalDisplayContext {
 				_themeDisplay.getScopeGroupId(), true),
 			getFolderId(), restrictionType);
 
-		Locale locale = _themeDisplay.getLocale();
-
 		if (_journalWebConfiguration.journalBrowseByStructuresSortedByName()) {
+			Locale locale = _themeDisplay.getLocale();
+
 			_ddmStructures.sort(
 				(ddmStructure1, ddmStructure2) -> {
 					String name1 = ddmStructure1.getName(locale);

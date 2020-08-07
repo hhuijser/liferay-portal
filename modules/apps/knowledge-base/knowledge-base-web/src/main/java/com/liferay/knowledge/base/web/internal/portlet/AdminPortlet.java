@@ -249,10 +249,10 @@ public class AdminPortlet extends BaseKBPortlet {
 		String resourceID = GetterUtil.getString(
 			resourceRequest.getResourceID());
 
-		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
-			resourceRequest);
-
 		if (resourceID.equals("infoPanel")) {
+			HttpServletRequest httpServletRequest =
+				_portal.getHttpServletRequest(resourceRequest);
+
 			try {
 				resourceRequest.setAttribute(
 					KBWebKeys.KNOWLEDGE_BASE_KB_ARTICLES,

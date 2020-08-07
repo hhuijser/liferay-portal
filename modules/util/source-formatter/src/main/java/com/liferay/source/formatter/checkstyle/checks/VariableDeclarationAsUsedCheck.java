@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -24,10 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Hugo Huijser
@@ -58,8 +56,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 	private void _checkAsUsed(
 		DetailAST detailAST, DetailAST variableDefinitionDetailAST) {
 
-		Map<String, Boolean> identValuesMap = _getIdentValuesMap(
-			variableDefinitionDetailAST);
+		List<Variable> variables = _getVariables(variableDefinitionDetailAST);
 
 		if (hasParentWithTokenType(
 				variableDefinitionDetailAST, TokenTypes.FOR_EACH_CLAUSE,
@@ -71,22 +68,38 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		DetailAST nameDetailAST = variableDefinitionDetailAST.findFirstToken(
 			TokenTypes.IDENT);
 
-		String variableName = nameDetailAST.getText();
-
 		List<DetailAST> identDetailASTList = _getIdentDetailASTList(
 			variableDefinitionDetailAST);
 
-		DetailAST firstDependentIdentDetailAST =
-			_getFirstDependentIdentDetailAST(
-				variableName, identValuesMap, identDetailASTList);
+		List<DetailAST> dependentIdentDetailASTList =
+			_getDependentIdentDetailASTList(variables, identDetailASTList);
 
-		if (firstDependentIdentDetailAST == null) {
+		if (dependentIdentDetailASTList.isEmpty()) {
 			return;
 		}
 
-		_checkMoveAfterBranchingStatement(
-			detailAST, variableDefinitionDetailAST, variableName,
-			identValuesMap.keySet(), firstDependentIdentDetailAST);
+		String variableName = nameDetailAST.getText();
+
+		DetailAST firstDependentIdentDetailAST =
+			dependentIdentDetailASTList.get(0);
+
+		if (!_containsMethodName(
+				variableDefinitionDetailAST,
+				StringBundler.concat(
+					"_?(add|channel|close|copy|create|delete|execute|import|",
+					"manage|next|open|post|put|read|register|resolve|run|send|",
+					"test|transform|unzip|update|zip)([A-Z].*)?"),
+				"currentTimeMillis", "nextVersion", "toString") &&
+			!_containsVariableType(variables, "ActionQueue", "File")) {
+
+			_checkMoveAfterBranchingStatement(
+				detailAST, variableDefinitionDetailAST, variableName,
+				firstDependentIdentDetailAST);
+
+			_checkMoveInsideIfStatement(
+				variableDefinitionDetailAST, nameDetailAST, variableName,
+				dependentIdentDetailASTList);
+		}
 
 		String absolutePath = getAbsolutePath();
 
@@ -173,9 +186,10 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		}
 
 		DetailAST parentDetailAST = getParentWithTokenType(
-			identDetailAST, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE,
-			TokenTypes.LITERAL_TRY, TokenTypes.LITERAL_SYNCHRONIZED,
-			TokenTypes.LAMBDA);
+			identDetailAST, TokenTypes.LAMBDA, TokenTypes.LITERAL_DO,
+			TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_NEW,
+			TokenTypes.LITERAL_SYNCHRONIZED, TokenTypes.LITERAL_TRY,
+			TokenTypes.LITERAL_WHILE);
 
 		if ((parentDetailAST != null) &&
 			(parentDetailAST.getLineNo() >=
@@ -205,20 +219,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 	private void _checkMoveAfterBranchingStatement(
 		DetailAST detailAST, DetailAST variableDefinitionDetailAST,
-		String variableName, Set<String> identValues,
-		DetailAST firstDependentIdentDetailAST) {
-
-		if (_containsMethodName(
-				variableDefinitionDetailAST,
-				"_?(add|channel|close|create|delete|execute|open|post|put|" +
-					"register|resolve|send|transform|unzip|update|zip)" +
-						"([A-Z].*)?",
-				"currentTimeMillis", "nextVersion", "toString") ||
-			_containsVariableType(
-				variableDefinitionDetailAST, identValues, "File")) {
-
-			return;
-		}
+		String variableName, DetailAST firstDependentIdentDetailAST) {
 
 		int endLineNumber = getEndLineNumber(variableDefinitionDetailAST);
 
@@ -230,9 +231,51 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 		if (lastBranchingStatementDetailAST != null) {
 			log(
-				variableDefinitionDetailAST, _MSG_DECLARE_VARIABLE_AS_USED,
+				variableDefinitionDetailAST,
+				_MSG_VARIABLE_DECLARATION_MOVE_AFTER_BRANCHING_STATEMENT,
 				variableName, lastBranchingStatementDetailAST.getText(),
 				lastBranchingStatementDetailAST.getLineNo());
+		}
+	}
+
+	private void _checkMoveInsideIfStatement(
+		DetailAST variableDefinitionDetailAST, DetailAST nameDetailAST,
+		String variableName, List<DetailAST> dependentIdentDetailASTList) {
+
+		DetailAST ifStatementDetailAST = _getIfStatementDetailAST(
+			dependentIdentDetailASTList.get(0),
+			getEndLineNumber(variableDefinitionDetailAST));
+
+		if (ifStatementDetailAST == null) {
+			return;
+		}
+
+		DetailAST parentDetailAST = getParentWithTokenType(
+			ifStatementDetailAST, TokenTypes.LAMBDA, TokenTypes.LITERAL_DO,
+			TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_NEW,
+			TokenTypes.LITERAL_SYNCHRONIZED, TokenTypes.LITERAL_TRY,
+			TokenTypes.LITERAL_WHILE);
+
+		if ((parentDetailAST != null) &&
+			(parentDetailAST.getLineNo() >=
+				variableDefinitionDetailAST.getLineNo())) {
+
+			return;
+		}
+
+		DetailAST slistDetailAST = ifStatementDetailAST.findFirstToken(
+			TokenTypes.SLIST);
+
+		DetailAST lastDependentIdentDetailAST = dependentIdentDetailASTList.get(
+			dependentIdentDetailASTList.size() - 1);
+
+		if (getEndLineNumber(slistDetailAST) >
+				lastDependentIdentDetailAST.getLineNo()) {
+
+			log(
+				nameDetailAST,
+				_MSG_VARIABLE_DECLARATION_MOVE_INSIDE_IF_STATEMENT,
+				variableName, ifStatementDetailAST.getLineNo());
 		}
 	}
 
@@ -256,15 +299,10 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 	}
 
 	private boolean _containsVariableType(
-		DetailAST variableDefinitionDetailAST, Set<String> identValues,
-		String... variableTypeNames) {
+		List<Variable> variables, String... variableTypeNames) {
 
-		for (String name : identValues) {
-			if (ArrayUtil.contains(
-					variableTypeNames,
-					getVariableTypeName(
-						variableDefinitionDetailAST, name, false))) {
-
+		for (Variable variable : variables) {
+			if (ArrayUtil.contains(variableTypeNames, variable.getTypeName())) {
 				return true;
 			}
 		}
@@ -319,31 +357,29 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		}
 	}
 
-	private DetailAST _getFirstDependentIdentDetailAST(
-		String variableName, Map<String, Boolean> identValuesMap,
-		List<DetailAST> identDetailASTList) {
+	private List<DetailAST> _getDependentIdentDetailASTList(
+		List<Variable> variables, List<DetailAST> identDetailASTList) {
+
+		List<DetailAST> dependentIdentDetailASTList = new ArrayList<>();
 
 		for (DetailAST identDetailAST : identDetailASTList) {
-			String name = identDetailAST.getText();
-
-			if ((!variableName.equals(name) &&
-				 (name.equals("actionRequest") ||
-				  name.equals("portletRequest") ||
-				  name.equals("resourceRequest"))) ||
-				!identValuesMap.containsKey(name) ||
-				_isMethodNameDetailAST(identDetailAST)) {
-
+			if (_isMethodNameDetailAST(identDetailAST)) {
 				continue;
 			}
 
-			if (identValuesMap.get(name) ||
-				_hasPossibleValueChangeOperation(identDetailAST)) {
+			String name = identDetailAST.getText();
 
-				return identDetailAST;
+			for (Variable variable : variables) {
+				if (name.equals(variable.getName()) &&
+					(variable.hasPossibleValueChangeOperation() ||
+					 _hasPossibleValueChangeOperation(identDetailAST))) {
+
+					dependentIdentDetailASTList.add(identDetailAST);
+				}
 			}
 		}
 
-		return null;
+		return dependentIdentDetailASTList;
 	}
 
 	private List<DetailAST> _getIdentDetailASTList(
@@ -367,30 +403,30 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		}
 	}
 
-	private Map<String, Boolean> _getIdentValuesMap(
-		DetailAST variableDefinitionDetailAST) {
+	private DetailAST _getIfStatementDetailAST(
+		DetailAST detailAST, int lineNumber) {
 
-		Map<String, Boolean> identValuesMap = new HashMap<>();
+		DetailAST ifStatementDetailAST = null;
 
-		List<DetailAST> identDetailASTList = getAllChildTokens(
-			variableDefinitionDetailAST, true, TokenTypes.IDENT);
+		DetailAST slistDetailAST = getParentWithTokenType(
+			detailAST, TokenTypes.SLIST);
 
-		for (DetailAST identDetailAST : identDetailASTList) {
-			if (_isMethodNameDetailAST(identDetailAST)) {
-				continue;
+		while (true) {
+			if ((slistDetailAST == null) ||
+				(slistDetailAST.getLineNo() < lineNumber)) {
+
+				return ifStatementDetailAST;
 			}
 
-			String identValue = identDetailAST.getText();
+			DetailAST parentDetailAST = slistDetailAST.getParent();
 
-			if (Character.isUpperCase(identValue.charAt(0))) {
-				continue;
+			if (parentDetailAST.getType() == TokenTypes.LITERAL_IF) {
+				ifStatementDetailAST = parentDetailAST;
 			}
 
-			identValuesMap.put(
-				identValue, _hasPossibleValueChangeOperation(identDetailAST));
+			slistDetailAST = getParentWithTokenType(
+				slistDetailAST, TokenTypes.SLIST);
 		}
-
-		return identValuesMap;
 	}
 
 	private DetailAST _getLastBranchingStatementDetailAST(
@@ -439,6 +475,43 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		}
 
 		return lastBranchingStatementDetailAST;
+	}
+
+	private List<Variable> _getVariables(
+		DetailAST variableDefinitionDetailAST) {
+
+		List<Variable> variables = new ArrayList<>();
+
+		List<DetailAST> identDetailASTList = getAllChildTokens(
+			variableDefinitionDetailAST, true, TokenTypes.IDENT);
+
+		for (DetailAST identDetailAST : identDetailASTList) {
+			if (_isMethodNameDetailAST(identDetailAST)) {
+				continue;
+			}
+
+			String name = identDetailAST.getText();
+
+			if (Character.isUpperCase(name.charAt(0))) {
+				continue;
+			}
+
+			String typeName = getVariableTypeName(identDetailAST, name, false);
+
+			if (equals(
+					variableDefinitionDetailAST, identDetailAST.getParent()) ||
+				(!typeName.equals("ActionRequest") &&
+				 !typeName.equals("PortletRequest") &&
+				 !typeName.equals("ResourceRequest"))) {
+
+				variables.add(
+					new Variable(
+						name, typeName,
+						_hasPossibleValueChangeOperation(identDetailAST)));
+			}
+		}
+
+		return variables;
 	}
 
 	private boolean _hasChainStyle(
@@ -589,10 +662,44 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		return false;
 	}
 
-	private static final String _MSG_DECLARE_VARIABLE_AS_USED =
-		"variable.declare.as.used";
+	private static final String
+		_MSG_VARIABLE_DECLARATION_MOVE_AFTER_BRANCHING_STATEMENT =
+			"variable.declaration.move.after.branching.statement";
+
+	private static final String
+		_MSG_VARIABLE_DECLARATION_MOVE_INSIDE_IF_STATEMENT =
+			"variable.declaration.move.inside.if.statement";
 
 	private static final String _MSG_VARIABLE_DECLARATION_NOT_NEEDED =
 		"variable.declaration.not.needed";
+
+	private class Variable {
+
+		public Variable(
+			String name, String typeName,
+			boolean hasPossibleValueChangeOperation) {
+
+			_name = name;
+			_typeName = typeName;
+			_hasPossibleValueChangeOperation = hasPossibleValueChangeOperation;
+		}
+
+		public String getName() {
+			return _name;
+		}
+
+		public String getTypeName() {
+			return _typeName;
+		}
+
+		public boolean hasPossibleValueChangeOperation() {
+			return _hasPossibleValueChangeOperation;
+		}
+
+		private final boolean _hasPossibleValueChangeOperation;
+		private final String _name;
+		private final String _typeName;
+
+	}
 
 }

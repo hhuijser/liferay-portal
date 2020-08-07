@@ -102,7 +102,7 @@ public class PortalPreferencesImpl
 
 		if (_portalPreferences == null) {
 			return new PortalPreferencesImpl(
-				getOwnerId(), getOwnerType(), getOriginalXML(),
+				getOwnerId(), getOwnerType(), originalXML,
 				new HashMap<>(getOriginalPreferences()), isSignedIn());
 		}
 

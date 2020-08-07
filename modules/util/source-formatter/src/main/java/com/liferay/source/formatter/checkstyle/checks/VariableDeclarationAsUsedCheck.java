@@ -84,36 +84,25 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 			return;
 		}
 
-		if (!_containsMethodName(
-				variableDefinitionDetailAST,
-				"_?(add|channel|close|create|delete|execute|open|post|put|" +
-					"register|resolve|send|transform|unzip|update|zip)" +
-						"([A-Z].*)?",
-				"currentTimeMillis", "nextVersion", "toString") &&
-			!_containsVariableType(
-				variableDefinitionDetailAST, identValuesMap.keySet(), "File")) {
-
-			int endLineNumber = getEndLineNumber(variableDefinitionDetailAST);
-
-			DetailAST lastBranchingStatementDetailAST =
-				_getLastBranchingStatementDetailAST(
-					detailAST, endLineNumber,
-					_getClosestParentLineNumber(
-						firstDependentIdentDetailAST, endLineNumber));
-
-			if (lastBranchingStatementDetailAST != null) {
-				log(
-					variableDefinitionDetailAST, _MSG_DECLARE_VARIABLE_AS_USED,
-					variableName, lastBranchingStatementDetailAST.getText(),
-					lastBranchingStatementDetailAST.getLineNo());
-			}
-		}
+		_checkMoveAfterBranchingStatement(
+			detailAST, variableDefinitionDetailAST, variableName,
+			identValuesMap.keySet(), firstDependentIdentDetailAST);
 
 		String absolutePath = getAbsolutePath();
 
 		if (absolutePath.endsWith("Test.java")) {
 			return;
 		}
+
+		_checkInline(
+			variableDefinitionDetailAST, nameDetailAST, variableName,
+			identDetailASTList, firstDependentIdentDetailAST);
+	}
+
+	private void _checkInline(
+		DetailAST variableDefinitionDetailAST, DetailAST nameDetailAST,
+		String variableName, List<DetailAST> identDetailASTList,
+		DetailAST firstDependentIdentDetailAST) {
 
 		DetailAST assignMethodCallDetailAST = _getAssignMethodCallDetailAST(
 			variableDefinitionDetailAST);
@@ -212,6 +201,39 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		log(
 			variableDefinitionDetailAST, _MSG_VARIABLE_DECLARATION_NOT_NEEDED,
 			variableName, identDetailAST.getLineNo());
+	}
+
+	private void _checkMoveAfterBranchingStatement(
+		DetailAST detailAST, DetailAST variableDefinitionDetailAST,
+		String variableName, Set<String> identValues,
+		DetailAST firstDependentIdentDetailAST) {
+
+		if (_containsMethodName(
+				variableDefinitionDetailAST,
+				"_?(add|channel|close|create|delete|execute|open|post|put|" +
+					"register|resolve|send|transform|unzip|update|zip)" +
+						"([A-Z].*)?",
+				"currentTimeMillis", "nextVersion", "toString") ||
+			_containsVariableType(
+				variableDefinitionDetailAST, identValues, "File")) {
+
+			return;
+		}
+
+		int endLineNumber = getEndLineNumber(variableDefinitionDetailAST);
+
+		DetailAST lastBranchingStatementDetailAST =
+			_getLastBranchingStatementDetailAST(
+				detailAST, endLineNumber,
+				_getClosestParentLineNumber(
+					firstDependentIdentDetailAST, endLineNumber));
+
+		if (lastBranchingStatementDetailAST != null) {
+			log(
+				variableDefinitionDetailAST, _MSG_DECLARE_VARIABLE_AS_USED,
+				variableName, lastBranchingStatementDetailAST.getText(),
+				lastBranchingStatementDetailAST.getLineNo());
+		}
 	}
 
 	private boolean _containsMethodName(

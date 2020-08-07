@@ -358,8 +358,6 @@ public class JournalArticleModelValidator
 
 	@Override
 	public ModelValidationResults validateModel(JournalArticle article) {
-		long groupId = article.getGroupId();
-		String content = article.getContent();
 		String ddmStructureKey = article.getDDMStructureKey();
 		String ddmTemplateKey = article.getDDMTemplateKey();
 		boolean smallImage = article.isSmallImage();
@@ -411,9 +409,10 @@ public class JournalArticleModelValidator
 
 		try {
 			validateReferences(
-				groupId, ddmStructureKey, ddmTemplateKey,
+				article.getGroupId(), ddmStructureKey, ddmTemplateKey,
 				article.getLayoutUuid(), smallImage, smallImageURL,
-				smallImageBytes, article.getSmallImageId(), content);
+				smallImageBytes, article.getSmallImageId(),
+				article.getContent());
 		}
 		catch (ExportImportContentValidationException
 					exportImportContentValidationException) {

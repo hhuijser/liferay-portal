@@ -715,16 +715,17 @@ public class GraphQLServletExtender {
 				List<Part> parts = (List<Part>)argument;
 
 				if ((parts != null) && !parts.isEmpty()) {
-					Map<String, BinaryFile> binaryFiles = new HashMap<>();
-
-					Part part = parts.get(0);
-
-					binaryFiles.put(
+					Map<String, BinaryFile> binaryFiles = HashMapBuilder.put(
 						"file",
-						new BinaryFile(
-							part.getContentType(),
-							MultipartUtil.getFileName(part),
-							part.getInputStream(), part.getSize()));
+						() -> {
+							Part part = parts.get(0);
+
+							return new BinaryFile(
+								part.getContentType(),
+								MultipartUtil.getFileName(part),
+								part.getInputStream(), part.getSize());
+						}
+					).build();
 
 					Map<String, String> values = new HashMap<>();
 

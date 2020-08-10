@@ -2330,12 +2330,13 @@ public class CTTableMapperTest {
 			Assert.assertSame(Long.class, params[2].getClass());
 			Assert.assertSame(Long.class, params[3].getClass());
 
-			Boolean ctChangeType = (Boolean)params[0];
 			Long leftPrimaryKey = (Long)params[1];
 			Long rightPrimaryKey = (Long)params[2];
 			Long ctCollectionId = (Long)params[3];
 
 			if (_containsKey(leftPrimaryKey, rightPrimaryKey, ctCollectionId)) {
+				Boolean ctChangeType = (Boolean)params[0];
+
 				Boolean currentChangeType = _get(
 					leftPrimaryKey, rightPrimaryKey, ctCollectionId);
 

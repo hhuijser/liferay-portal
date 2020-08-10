@@ -554,12 +554,12 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 		final Configuration compileIncludeConfiguration,
 		Convention convention) {
 
-		ApplicationPluginConvention applicationPluginConvention =
-			convention.getPlugin(ApplicationPluginConvention.class);
-
 		String mainClassName = bundleExtension.getInstruction("Main-Class");
 
 		if (Validator.isNotNull(mainClassName)) {
+			ApplicationPluginConvention applicationPluginConvention =
+				convention.getPlugin(ApplicationPluginConvention.class);
+
 			applicationPluginConvention.setMainClassName(mainClassName);
 		}
 

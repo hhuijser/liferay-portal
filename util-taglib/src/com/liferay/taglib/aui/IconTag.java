@@ -133,14 +133,14 @@ public class IconTag extends BaseIconTag {
 
 				String src = getSrc();
 
-				HttpServletRequest httpServletRequest =
-					(HttpServletRequest)pageContext.getRequest();
-
-				ThemeDisplay themeDisplay =
-					(ThemeDisplay)httpServletRequest.getAttribute(
-						WebKeys.THEME_DISPLAY);
-
 				if (src == null) {
+					HttpServletRequest httpServletRequest =
+						(HttpServletRequest)pageContext.getRequest();
+
+					ThemeDisplay themeDisplay =
+						(ThemeDisplay)httpServletRequest.getAttribute(
+							WebKeys.THEME_DISPLAY);
+
 					src =
 						themeDisplay.getPathThemeImages() +
 							"/lexicon/icons.svg";

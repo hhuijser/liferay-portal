@@ -152,13 +152,13 @@ public class ATag extends BaseATag {
 		}
 
 		if (Validator.isNotNull(title)) {
-			ResourceBundle resourceBundle =
-				TagResourceBundleUtil.getResourceBundle(pageContext);
-
 			jspWriter.write("title=\"");
 
 			if (Validator.isNotNull(title)) {
-				jspWriter.write(LanguageUtil.get(resourceBundle, title));
+				jspWriter.write(
+					LanguageUtil.get(
+						TagResourceBundleUtil.getResourceBundle(pageContext),
+						title));
 			}
 
 			jspWriter.write("\" ");

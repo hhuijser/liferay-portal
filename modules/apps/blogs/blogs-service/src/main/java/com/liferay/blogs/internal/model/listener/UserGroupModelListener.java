@@ -17,8 +17,6 @@ package com.liferay.blogs.internal.model.listener;
 import com.liferay.blogs.service.BlogsEntryLocalService;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.ModelListener;
@@ -92,9 +90,6 @@ public class UserGroupModelListener extends BaseModelListener<UserGroup> {
 			}
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UserGroupModelListener.class);
 
 	@Reference
 	private BlogsEntryLocalService _blogsEntryLocalService;

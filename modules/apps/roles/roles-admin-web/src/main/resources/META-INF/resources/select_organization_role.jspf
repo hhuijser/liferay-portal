@@ -224,7 +224,12 @@ else {
 							).put(
 								"entityname", role.getTitle(locale)
 							).put(
-								"groupdescriptivename", selectedOrganization.getGroup().getDescriptiveName(locale)
+								"groupdescriptivename",
+								() -> {
+									Group selectedOrganizationGroup = selectedOrganization.getGroup();
+
+									return selectedOrganizationGroup.getDescriptiveName(locale);
+								}
 							).put(
 								"groupid", selectedOrganization.getGroupId()
 							).put(

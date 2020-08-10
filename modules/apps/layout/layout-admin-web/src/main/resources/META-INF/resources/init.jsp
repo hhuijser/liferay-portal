@@ -102,6 +102,7 @@ page import="com.liferay.portal.kernel.model.LayoutTypePortlet" %><%@
 page import="com.liferay.portal.kernel.model.Portlet" %><%@
 page import="com.liferay.portal.kernel.model.Theme" %><%@
 page import="com.liferay.portal.kernel.model.ThemeSetting" %><%@
+page import="com.liferay.portal.kernel.model.User" %><%@
 page import="com.liferay.portal.kernel.model.UserGroup" %><%@
 page import="com.liferay.portal.kernel.plugin.PluginPackage" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@

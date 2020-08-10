@@ -107,7 +107,11 @@ String friendlyURLBase = StringPool.BLANK;
 						props='<%=
 							HashMapBuilder.<String, Object>put(
 								"defaultLanguageId",
-								LocaleUtil.toLanguageId(company.getDefaultUser().getLocale())
+								() -> {
+									User defaultUser = company.getDefaultUser();
+
+									return LocaleUtil.toLanguageId(defaultUser.getLocale());
+								}
 							).put(
 								"deleteFriendlyURLEntryLocalizationURL",
 								deleteFriendlyURLEntryLocalizationURL

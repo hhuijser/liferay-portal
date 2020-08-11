@@ -27,9 +27,9 @@ import java.util.Map;
  * @author Carlos Sierra Andrés
  * @author Brian Wing Shun Chan
  */
-public class URLtoCORSSupportMapper {
+public class URLToCORSSupportMapper {
 
-	public URLtoCORSSupportMapper(Map<String, CORSSupport> corsSupports) {
+	public URLToCORSSupportMapper(Map<String, CORSSupport> corsSupports) {
 		for (Map.Entry<String, CORSSupport> entry : corsSupports.entrySet()) {
 			_put(entry.getKey(), entry.getValue());
 		}

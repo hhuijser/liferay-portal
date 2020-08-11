@@ -55,16 +55,18 @@ boolean inheritLocales = GetterUtil.getBoolean(typeSettingsProperties.getPropert
 </liferay-ui:error>
 
 <div class="site-languages">
+
+	<%
+	User defaultUser = company.getDefaultUser();
+	%>
+
 	<react:component
 		module="js/Languages.es"
 		props='<%=
 			HashMapBuilder.<String, Object>put(
 				"availableLocales", DepotLanguageUtil.getAvailableLocalesJSONArray(locale)
 			).put(
-				"defaultLocaleId",
-				LocaleUtil.toLanguageId(
-					company.getDefaultUser(
-					).getLocale())
+				"defaultLocaleId", LocaleUtil.toLanguageId(defaultUser.getLocale())
 			).put(
 				"inheritLocales", inheritLocales
 			).put(

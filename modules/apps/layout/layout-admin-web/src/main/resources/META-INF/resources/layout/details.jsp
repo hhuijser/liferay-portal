@@ -102,14 +102,16 @@ String friendlyURLBase = StringPool.BLANK;
 				</portlet:actionURL>
 
 				<div class="btn-url-history-wrapper">
+
+					<%
+					User defaultUser = company.getDefaultUser();
+					%>
+
 					<react:component
 						module="js/friendly_url_history/FriendlyURLHistory"
 						props='<%=
 							HashMapBuilder.<String, Object>put(
-								"defaultLanguageId",
-								LocaleUtil.toLanguageId(
-									company.getDefaultUser(
-									).getLocale())
+								"defaultLanguageId", LocaleUtil.toLanguageId(defaultUser.getLocale())
 							).put(
 								"deleteFriendlyURLEntryLocalizationURL", deleteFriendlyURLEntryLocalizationURL
 							).put(

@@ -114,6 +114,8 @@ public class MappingContentUtil {
 					infoField -> _isFieldMappable(infoField, fieldType));
 
 				for (InfoField infoField : infoFields) {
+					InfoFieldType infoFieldType = infoField.getInfoFieldType();
+
 					fieldSetFieldsJSONArray.put(
 						JSONUtil.put(
 							"key", infoField.getName()
@@ -121,9 +123,7 @@ public class MappingContentUtil {
 							"label",
 							infoField.getLabel(themeDisplay.getLocale())
 						).put(
-							"type",
-							infoField.getInfoFieldType(
-							).getName()
+							"type", infoFieldType.getName()
 						));
 				}
 

@@ -159,8 +159,7 @@ public class ElasticsearchConnectionManager
 			String hostName = localClusterConnectionConfigurationParts.get(0);
 
 			if (hostName.equals(localClusterNodeHostName)) {
-				String
-				localClusterConnectionConfigurationParts.get(1);
+				return localClusterConnectionConfigurationParts.get(1);
 			}
 		}
 

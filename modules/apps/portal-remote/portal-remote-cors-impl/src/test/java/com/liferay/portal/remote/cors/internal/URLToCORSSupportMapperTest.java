@@ -27,7 +27,7 @@ import org.junit.Test;
 /**
  * @author Arthur Chan
  */
-public class URLtoCORSSupportMapperTest {
+public class URLToCORSSupportMapperTest {
 
 	@Test
 	public void testGet() throws Exception {
@@ -90,8 +90,8 @@ public class URLtoCORSSupportMapperTest {
 			corsSupports.put(keyValuePair.getValue(), corsSupport);
 		}
 
-		URLtoCORSSupportMapper urlToCORSSupportMapper =
-			new URLtoCORSSupportMapper(corsSupports);
+		URLToCORSSupportMapper urlToCORSSupportMapper =
+			new URLToCORSSupportMapper(corsSupports);
 
 		for (KeyValuePair keyValuePair : keyValuePairs) {
 			CORSSupport corsSupport = urlToCORSSupportMapper.get(

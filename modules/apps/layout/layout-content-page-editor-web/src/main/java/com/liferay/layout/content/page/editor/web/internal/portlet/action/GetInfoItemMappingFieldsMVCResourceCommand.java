@@ -164,6 +164,8 @@ public class GetInfoItemMappingFieldsMVCResourceCommand
 					infoField -> _isFieldMappable(infoField, fieldType));
 
 				for (InfoField infoField : infoFields) {
+					InfoFieldType infoFieldType = infoField.getInfoFieldType();
+
 					fieldSetFieldsJSONArray.put(
 						JSONUtil.put(
 							"key", infoField.getName()
@@ -171,9 +173,7 @@ public class GetInfoItemMappingFieldsMVCResourceCommand
 							"label",
 							infoField.getLabel(themeDisplay.getLocale())
 						).put(
-							"type",
-							infoField.getInfoFieldType(
-							).getName()
+							"type", infoFieldType.getName()
 						));
 				}
 

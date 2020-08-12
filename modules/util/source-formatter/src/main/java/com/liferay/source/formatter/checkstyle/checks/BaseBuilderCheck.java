@@ -83,6 +83,45 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	protected abstract List<BuilderInformation> getBuilderInformationList();
 
+	protected String getNewInstanceTypeName(DetailAST assignDetailAST) {
+		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
+
+		DetailAST assignValueDetailAST = null;
+
+		DetailAST parentDetailAST = assignDetailAST.getParent();
+
+		if (parentDetailAST.getType() == TokenTypes.EXPR) {
+			assignValueDetailAST = firstChildDetailAST.getNextSibling();
+		}
+		else {
+			assignValueDetailAST = firstChildDetailAST.getFirstChild();
+		}
+
+		if ((assignValueDetailAST == null) ||
+			(assignValueDetailAST.getType() != TokenTypes.LITERAL_NEW)) {
+
+			return null;
+		}
+
+		DetailAST identDetailAST = assignValueDetailAST.findFirstToken(
+			TokenTypes.IDENT);
+
+		if (identDetailAST == null) {
+			return null;
+		}
+
+		DetailAST elistDetailAST = assignValueDetailAST.findFirstToken(
+			TokenTypes.ELIST);
+
+		if ((elistDetailAST == null) ||
+			(elistDetailAST.getFirstChild() != null)) {
+
+			return null;
+		}
+
+		return identDetailAST.getText();
+	}
+
 	protected abstract boolean isSupportsNestedMethodCalls();
 
 	protected static class BuilderInformation {
@@ -607,45 +646,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 			methodCallDetailAST = parentDetailAST.getParent();
 		}
-	}
-
-	protected String getNewInstanceTypeName(DetailAST assignDetailAST) {
-		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
-
-		DetailAST assignValueDetailAST = null;
-
-		DetailAST parentDetailAST = assignDetailAST.getParent();
-
-		if (parentDetailAST.getType() == TokenTypes.EXPR) {
-			assignValueDetailAST = firstChildDetailAST.getNextSibling();
-		}
-		else {
-			assignValueDetailAST = firstChildDetailAST.getFirstChild();
-		}
-
-		if ((assignValueDetailAST == null) ||
-			(assignValueDetailAST.getType() != TokenTypes.LITERAL_NEW)) {
-
-			return null;
-		}
-
-		DetailAST identDetailAST = assignValueDetailAST.findFirstToken(
-			TokenTypes.IDENT);
-
-		if (identDetailAST == null) {
-			return null;
-		}
-
-		DetailAST elistDetailAST = assignValueDetailAST.findFirstToken(
-			TokenTypes.ELIST);
-
-		if ((elistDetailAST == null) ||
-			(elistDetailAST.getFirstChild() != null)) {
-
-			return null;
-		}
-
-		return identDetailAST.getText();
 	}
 
 	private List<String> _getVariableNames(DetailAST detailAST) {

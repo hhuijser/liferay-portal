@@ -79,6 +79,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 	}
 
+	protected abstract String getAssignClassName(DetailAST assignDetailAST);
+
 	protected abstract List<BuilderInformation> getBuilderInformationList();
 
 	protected abstract boolean isSupportsNestedMethodCalls();
@@ -238,10 +240,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		DetailAST assignDetailAST, String variableName,
 		DetailAST nextSiblingDetailAST) {
 
-		String newInstanceTypeName = _getNewInstanceTypeName(assignDetailAST);
-
 		BuilderInformation builderInformation =
-			_findBuilderInformationByClassName(newInstanceTypeName);
+			_findBuilderInformationByClassName(
+				getAssignClassName(assignDetailAST));
 
 		if (builderInformation == null) {
 			return;
@@ -608,7 +609,7 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 	}
 
-	private String _getNewInstanceTypeName(DetailAST assignDetailAST) {
+	protected String getNewInstanceTypeName(DetailAST assignDetailAST) {
 		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
 
 		DetailAST assignValueDetailAST = null;

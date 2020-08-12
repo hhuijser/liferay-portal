@@ -234,6 +234,65 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			builderInformation.getBuilderClassName(), className);
 	}
 
+	private void _checkAssignVariableStatement(
+		DetailAST assignDetailAST, String variableName,
+		DetailAST nextSiblingDetailAST) {
+
+		String newInstanceTypeName = _getNewInstanceTypeName(assignDetailAST);
+
+		BuilderInformation builderInformation =
+			_findBuilderInformationByClassName(newInstanceTypeName);
+
+		if (builderInformation == null) {
+			return;
+		}
+
+		while (true) {
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+			if (nextSiblingDetailAST == null) {
+				return;
+			}
+
+			FullIdent fullIdent = getMethodCallFullIdent(
+				nextSiblingDetailAST, variableName,
+				builderInformation.getMethodNames());
+
+			if (fullIdent != null) {
+				DetailAST methodCallDetailAST =
+					nextSiblingDetailAST.findFirstToken(TokenTypes.METHOD_CALL);
+
+				DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
+					TokenTypes.ELIST);
+
+				DetailAST childDetailAST = elistDetailAST.getFirstChild();
+
+				while (true) {
+					if (childDetailAST == null) {
+						log(
+							assignDetailAST, _MSG_USE_BUILDER,
+							builderInformation.getBuilderClassName(),
+							assignDetailAST.getLineNo(), fullIdent.getLineNo());
+
+						return;
+					}
+
+					if (!allowNullValues() &&
+						_isNullValueExpression(childDetailAST)) {
+
+						return;
+					}
+
+					childDetailAST = childDetailAST.getNextSibling();
+				}
+			}
+
+			if (containsVariableName(nextSiblingDetailAST, variableName)) {
+				return;
+			}
+		}
+	}
+
 	private void _checkBuilder(DetailAST methodCallDetailAST) {
 		DetailAST firstChildDetailAST = methodCallDetailAST.getFirstChild();
 
@@ -447,65 +506,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 			previousSiblingDetailAST =
 				previousSiblingDetailAST.getPreviousSibling();
-		}
-	}
-
-	private void _checkAssignVariableStatement(
-		DetailAST assignDetailAST, String variableName,
-		DetailAST nextSiblingDetailAST) {
-
-		String newInstanceTypeName = _getNewInstanceTypeName(assignDetailAST);
-
-		BuilderInformation builderInformation =
-			_findBuilderInformationByClassName(newInstanceTypeName);
-
-		if (builderInformation == null) {
-			return;
-		}
-
-		while (true) {
-			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
-
-			if (nextSiblingDetailAST == null) {
-				return;
-			}
-
-			FullIdent fullIdent = getMethodCallFullIdent(
-				nextSiblingDetailAST, variableName,
-				builderInformation.getMethodNames());
-
-			if (fullIdent != null) {
-				DetailAST methodCallDetailAST =
-					nextSiblingDetailAST.findFirstToken(TokenTypes.METHOD_CALL);
-
-				DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
-					TokenTypes.ELIST);
-
-				DetailAST childDetailAST = elistDetailAST.getFirstChild();
-
-				while (true) {
-					if (childDetailAST == null) {
-						log(
-							assignDetailAST, _MSG_USE_BUILDER,
-							builderInformation.getBuilderClassName(),
-							assignDetailAST.getLineNo(), fullIdent.getLineNo());
-
-						return;
-					}
-
-					if (!allowNullValues() &&
-						_isNullValueExpression(childDetailAST)) {
-
-						return;
-					}
-
-					childDetailAST = childDetailAST.getNextSibling();
-				}
-			}
-
-			if (containsVariableName(nextSiblingDetailAST, variableName)) {
-				return;
-			}
 		}
 	}
 

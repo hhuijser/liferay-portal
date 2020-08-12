@@ -135,9 +135,10 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 		String className = identDetailAST.getText();
 
-		List<String> typeNames = _getTypeNames();
+		BuilderInformation builderInformation =
+			_findBuilderInformationByClassName(className);
 
-		if (!typeNames.contains(className)) {
+		if (builderInformation == null) {
 			return;
 		}
 
@@ -148,13 +149,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			if (getHiddenBefore(childDetailAST) != null) {
 				return;
 			}
-		}
-
-		BuilderInformation builderInformation =
-			_findBuilderInformationByClassName(className);
-
-		if (builderInformation == null) {
-			return;
 		}
 
 		List<DetailAST> methodCallDetailASTList = getAllChildTokens(
@@ -465,16 +459,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		String newInstanceTypeName = _getNewInstanceTypeName(
 			detailAST, parentDetailAST);
 
-		if (newInstanceTypeName == null) {
-			return;
-		}
-
-		List<String> typeNames = _getTypeNames();
-
-		if (!typeNames.contains(newInstanceTypeName)) {
-			return;
-		}
-
 		BuilderInformation builderInformation =
 			_findBuilderInformationByClassName(newInstanceTypeName);
 
@@ -558,6 +542,10 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	private BuilderInformation _findBuilderInformationByClassName(
 		String className) {
+
+		if (className == null) {
+			return null;
+		}
 
 		for (BuilderInformation builderInformation :
 				getBuilderInformationList()) {
@@ -660,18 +648,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 
 		return identDetailAST.getText();
-	}
-
-	private List<String> _getTypeNames() {
-		List<String> typeNames = new ArrayList<>();
-
-		for (BuilderInformation builderInformation :
-				getBuilderInformationList()) {
-
-			typeNames.add(builderInformation.getClassName());
-		}
-
-		return typeNames;
 	}
 
 	private List<String> _getVariableNames(DetailAST detailAST) {

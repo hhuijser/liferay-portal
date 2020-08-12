@@ -73,12 +73,10 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 		String variableName = getVariableName(detailAST, parentDetailAST);
 
-		if (variableName == null) {
-			return;
+		if (variableName != null) {
+			_checkAssignVariableStatement(
+				detailAST, variableName, nextSiblingDetailAST);
 		}
-
-		_checkNewInstance(
-			detailAST, variableName, parentDetailAST, nextSiblingDetailAST);
 	}
 
 	protected abstract List<BuilderInformation> getBuilderInformationList();
@@ -452,12 +450,11 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 	}
 
-	private void _checkNewInstance(
-		DetailAST detailAST, String variableName, DetailAST parentDetailAST,
+	private void _checkAssignVariableStatement(
+		DetailAST assignDetailAST, String variableName,
 		DetailAST nextSiblingDetailAST) {
 
-		String newInstanceTypeName = _getNewInstanceTypeName(
-			detailAST, parentDetailAST);
+		String newInstanceTypeName = _getNewInstanceTypeName(assignDetailAST);
 
 		BuilderInformation builderInformation =
 			_findBuilderInformationByClassName(newInstanceTypeName);
@@ -489,9 +486,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 				while (true) {
 					if (childDetailAST == null) {
 						log(
-							detailAST, _MSG_USE_BUILDER,
+							assignDetailAST, _MSG_USE_BUILDER,
 							builderInformation.getBuilderClassName(),
-							detailAST.getLineNo(), fullIdent.getLineNo());
+							assignDetailAST.getLineNo(), fullIdent.getLineNo());
 
 						return;
 					}
@@ -611,12 +608,12 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 	}
 
-	private String _getNewInstanceTypeName(
-		DetailAST assignDetailAST, DetailAST parentDetailAST) {
-
+	private String _getNewInstanceTypeName(DetailAST assignDetailAST) {
 		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
 
 		DetailAST assignValueDetailAST = null;
+
+		DetailAST parentDetailAST = assignDetailAST.getParent();
 
 		if (parentDetailAST.getType() == TokenTypes.EXPR) {
 			assignValueDetailAST = firstChildDetailAST.getNextSibling();

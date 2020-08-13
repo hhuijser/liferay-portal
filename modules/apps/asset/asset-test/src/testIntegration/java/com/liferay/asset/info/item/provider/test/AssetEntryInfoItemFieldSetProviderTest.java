@@ -46,9 +46,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
-import java.util.Locale;
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -143,7 +140,8 @@ public class AssetEntryInfoItemFieldSetProviderTest {
 			HashMapBuilder.put(
 				LocaleUtil.US, RandomTestUtil.randomString()
 			).build(),
-			null, null, AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL, serviceContext);
+			null, null, AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL,
+			serviceContext);
 
 		AssetEntry assetEntry = AssetTestUtil.addAssetEntry(
 			_group.getGroupId());

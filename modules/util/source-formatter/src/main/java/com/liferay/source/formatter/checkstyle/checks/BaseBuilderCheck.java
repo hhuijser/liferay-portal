@@ -21,7 +21,9 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Hugo Huijser
@@ -121,6 +123,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 		return identDetailAST.getText();
 	}
+
+	protected abstract List<String> getSupportsFunctionMethodNames();
 
 	protected abstract boolean isSupportsNestedMethodCalls();
 
@@ -355,11 +359,11 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			return;
 		}
 
-		List<DetailAST> methodVariableDetailASTList =
-			_getMethodVariableDetailASTList(methodCallDetailAST);
+		Map<String, List<DetailAST>> expressionDetailASTMap =
+			_getExpressionDetailASTMap(methodCallDetailAST);
 
 		if (!allowNullValues()) {
-			_checkNullValues(methodVariableDetailASTList, builderClassName);
+			_checkNullValues(expressionDetailASTMap, builderClassName);
 		}
 
 		DetailAST parentDetailAST = methodCallDetailAST.getParent();
@@ -373,7 +377,7 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 		if (parentDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
 			_checkInline(
-				parentDetailAST, methodVariableDetailASTList, builderClassName);
+				parentDetailAST, expressionDetailASTMap, builderClassName);
 		}
 
 		if (parentDetailAST.getType() != TokenTypes.ASSIGN) {
@@ -395,8 +399,7 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			}
 		}
 
-		_checkInline(
-			parentDetailAST, methodVariableDetailASTList, builderClassName);
+		_checkInline(parentDetailAST, expressionDetailASTMap, builderClassName);
 
 		if (isJSPFile()) {
 			return;
@@ -460,7 +463,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	}
 
 	private void _checkInline(
-		DetailAST parentDetailAST, List<DetailAST> methodVariableDetailASTList,
+		DetailAST parentDetailAST,
+		Map<String, List<DetailAST>> expressionDetailASTMap,
 		String builderClassName) {
 
 		if (!isAttributeValue(_CHECK_INLINE)) {
@@ -510,11 +514,14 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 			String name = identDetailAST.getText();
 
-			DetailAST matchingMethodVariableDetailAST = _getExprDetailAST(
-				methodVariableDetailASTList, name);
+			List<String> supportsFunctionMethodNames =
+				getSupportsFunctionMethodNames();
+
+			String matchingMethodName = _getInlineExpressionMethodName(
+				expressionDetailASTMap, name);
 
 			if (!followingVariableNames.contains(name) &&
-				(matchingMethodVariableDetailAST != null) &&
+				supportsFunctionMethodNames.contains(matchingMethodName) &&
 				!_referencesNonfinalVariable(previousSiblingDetailAST)) {
 
 				List<String> variableNames = _getVariableNames(
@@ -550,13 +557,18 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	}
 
 	private void _checkNullValues(
-		List<DetailAST> methodVariableDetailASTList, String builderClassName) {
+		Map<String, List<DetailAST>> expressionDetailASTMap,
+		String builderClassName) {
 
-		for (DetailAST methodVariableDetailAST : methodVariableDetailASTList) {
-			if (_isNullValueExpression(methodVariableDetailAST)) {
-				log(
-					methodVariableDetailAST, _MSG_INCORRECT_NULL_VALUE,
-					builderClassName);
+		for (Map.Entry<String, List<DetailAST>> entry :
+				expressionDetailASTMap.entrySet()) {
+
+			for (DetailAST expressionDetailAST : entry.getValue()) {
+				if (_isNullValueExpression(expressionDetailAST)) {
+					log(
+						expressionDetailAST, _MSG_INCORRECT_NULL_VALUE,
+						builderClassName);
+				}
 			}
 		}
 	}
@@ -595,32 +607,21 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		return null;
 	}
 
-	private DetailAST _getExprDetailAST(
-		List<DetailAST> exprDetailASTList, String name) {
-
-		DetailAST exprDetailAST = null;
-
-		for (DetailAST curExprDetailAST : exprDetailASTList) {
-			List<String> variableNames = _getVariableNames(curExprDetailAST);
-
-			if (variableNames.contains(name)) {
-				if (exprDetailAST != null) {
-					return null;
-				}
-
-				exprDetailAST = curExprDetailAST;
-			}
-		}
-
-		return exprDetailAST;
-	}
-
-	private List<DetailAST> _getMethodVariableDetailASTList(
+	private Map<String, List<DetailAST>> _getExpressionDetailASTMap(
 		DetailAST methodCallDetailAST) {
 
-		List<DetailAST> exprDetailASTList = new ArrayList<>();
+		Map<String, List<DetailAST>> expressionDetailASTMap = new HashMap<>();
 
 		while (true) {
+			String methodName = getMethodName(methodCallDetailAST);
+
+			List<DetailAST> expressionDetailASTList =
+				expressionDetailASTMap.get(methodName);
+
+			if (expressionDetailASTList == null) {
+				expressionDetailASTList = new ArrayList<>();
+			}
+
 			DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
 				TokenTypes.ELIST);
 
@@ -632,20 +633,49 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 				}
 
 				if (childDetailAST.getType() != TokenTypes.COMMA) {
-					exprDetailASTList.add(childDetailAST);
+					expressionDetailASTList.add(childDetailAST);
 				}
 
 				childDetailAST = childDetailAST.getNextSibling();
 			}
 
+			if (!expressionDetailASTList.isEmpty()) {
+				expressionDetailASTMap.put(methodName, expressionDetailASTList);
+			}
+
 			DetailAST parentDetailAST = methodCallDetailAST.getParent();
 
 			if (parentDetailAST.getType() != TokenTypes.DOT) {
-				return exprDetailASTList;
+				return expressionDetailASTMap;
 			}
 
 			methodCallDetailAST = parentDetailAST.getParent();
 		}
+	}
+
+	private String _getInlineExpressionMethodName(
+		Map<String, List<DetailAST>> expressionDetailASTMap, String name) {
+
+		String methodName = null;
+
+		for (Map.Entry<String, List<DetailAST>> entry :
+				expressionDetailASTMap.entrySet()) {
+
+			for (DetailAST expressionDetailAST : entry.getValue()) {
+				List<String> variableNames = _getVariableNames(
+					expressionDetailAST);
+
+				if (variableNames.contains(name)) {
+					if (methodName != null) {
+						return null;
+					}
+
+					methodName = entry.getKey();
+				}
+			}
+		}
+
+		return methodName;
 	}
 
 	private List<String> _getVariableNames(DetailAST detailAST) {

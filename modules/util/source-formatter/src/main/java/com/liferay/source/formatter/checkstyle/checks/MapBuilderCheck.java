@@ -52,6 +52,11 @@ public class MapBuilderCheck extends BaseBuilderCheck {
 	}
 
 	@Override
+	protected List<String> getSupportsFunctionMethodNames() {
+		return ListUtil.fromArray("put");
+	}
+
+	@Override
 	protected boolean isSupportsNestedMethodCalls() {
 		return true;
 	}

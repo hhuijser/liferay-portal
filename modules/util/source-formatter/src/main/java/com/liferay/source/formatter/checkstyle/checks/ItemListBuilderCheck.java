@@ -50,6 +50,12 @@ public class ItemListBuilderCheck extends BaseBuilderCheck {
 	}
 
 	@Override
+	protected List<String> getSupportsFunctionMethodNames() {
+		return ListUtil.fromArray(
+			"add", "addCheckbox", "addGroup", "addRadio", "addRadioGroup");
+	}
+
+	@Override
 	protected boolean isSupportsNestedMethodCalls() {
 		return false;
 	}

@@ -47,6 +47,13 @@ public class CreationMenuBuilderCheck extends BaseBuilderCheck {
 	}
 
 	@Override
+	protected List<String> getSupportsFunctionMethodNames() {
+		return ListUtil.fromArray(
+			"addDropdownItem", "addFavoriteDropdownItem",
+			"addPrimaryDropdownItem", "addRestDropdownItem");
+	}
+
+	@Override
 	protected boolean isSupportsNestedMethodCalls() {
 		return false;
 	}

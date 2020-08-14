@@ -231,7 +231,7 @@ public class SiteAdminDisplayContext {
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
 		).build();

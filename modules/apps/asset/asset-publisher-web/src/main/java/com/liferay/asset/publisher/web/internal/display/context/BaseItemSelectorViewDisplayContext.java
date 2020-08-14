@@ -106,7 +106,7 @@ public abstract class BaseItemSelectorViewDisplayContext
 				this.portletURL,
 				PortalUtil.getLiferayPortletResponse(getPortletResponse()))
 		).setParameter(
-			"plid", String.valueOf(plid)
+			"plid", plid
 		).build();
 
 		long plid = ParamUtil.getLong(httpServletRequest, "plid");

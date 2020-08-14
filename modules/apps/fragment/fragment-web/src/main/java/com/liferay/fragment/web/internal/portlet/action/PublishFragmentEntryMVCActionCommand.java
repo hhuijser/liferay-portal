@@ -110,8 +110,7 @@ public class PublishFragmentEntryMVCActionCommand
 		).setParameter(
 			"mvcRenderCommandName", "/fragment/view_fragment_entries"
 		).setParameter(
-			"fragmentCollectionId",
-			String.valueOf(fragmentEntry.getFragmentCollectionId())
+			"fragmentCollectionId", fragmentEntry.getFragmentCollectionId()
 		).build();
 
 		return portletURL.toString();

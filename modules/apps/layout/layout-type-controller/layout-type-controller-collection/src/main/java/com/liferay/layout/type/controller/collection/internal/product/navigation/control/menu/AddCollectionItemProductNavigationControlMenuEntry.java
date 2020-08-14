@@ -260,7 +260,7 @@ public class AddCollectionItemProductNavigationControlMenuEntry
 		).setParameter(
 			"redirect", currentURL
 		).setParameter(
-			"assetListEntryId", String.valueOf(assetListEntryId)
+			"assetListEntryId", assetListEntryId
 		).build();
 
 		return _http.addParameter(

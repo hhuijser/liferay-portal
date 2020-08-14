@@ -123,7 +123,7 @@ public class UpdateDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 			).setParameter(
 				"redirect", redirect
 			).setParameter(
-				"ddmTemplateId", String.valueOf(ddmTemplate.getTemplateId())
+				"ddmTemplateId", ddmTemplate.getTemplateId()
 			).build();
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());

@@ -226,11 +226,11 @@ public class JournalTranslateDisplayContext {
 		).setParameter(
 			ActionRequest.ACTION_NAME, "/journal/update_translation"
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", _article.getArticleId()
 		).setParameter(
-			"version", String.valueOf(_article.getVersion())
+			"version", _article.getVersion()
 		).build();
 
 		return portletURL;

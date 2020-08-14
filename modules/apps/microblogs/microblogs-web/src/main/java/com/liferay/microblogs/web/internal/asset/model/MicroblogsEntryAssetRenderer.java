@@ -135,7 +135,7 @@ public class MicroblogsEntryAssetRenderer
 			).setParameter(
 				"mvcPath", "/microblogs/view.jsp"
 			).setParameter(
-				"parentMicroblogsEntryId", String.valueOf(microblogsEntryId)
+				"parentMicroblogsEntryId", microblogsEntryId
 			).build();
 
 			return portletURL.toString();

@@ -460,15 +460,15 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 		).setParameter(
 			"referringPortletResource", referringPortletResource
 		).setParameter(
-			"resourcePrimKey", String.valueOf(article.getResourcePrimKey())
+			"resourcePrimKey", article.getResourcePrimKey()
 		).setParameter(
-			"groupId", String.valueOf(article.getGroupId())
+			"groupId", article.getGroupId()
 		).setParameter(
-			"folderId", String.valueOf(article.getFolderId())
+			"folderId", article.getFolderId()
 		).setParameter(
 			"articleId", article.getArticleId()
 		).setParameter(
-			"version", String.valueOf(article.getVersion())
+			"version", article.getVersion()
 		).build();
 
 		if (Validator.isNotNull(languageId)) {

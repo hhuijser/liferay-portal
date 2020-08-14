@@ -105,7 +105,7 @@ public class DepotEntryURLUtil {
 		).setParameter(
 			"redirect", redirect
 		).setParameter(
-			"depotEntryId", String.valueOf(depotEntry.getDepotEntryId())
+			"depotEntryId", depotEntry.getDepotEntryId()
 		).build();
 
 		return editDepotEntryURL;

@@ -49,7 +49,7 @@ public class WikiNodeUADDisplay extends BaseWikiNodeUADDisplay {
 		).setParameter(
 			"redirect", portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"nodeId", String.valueOf(wikiNode.getNodeId())
+			"nodeId", wikiNode.getNodeId()
 		).build();
 
 		return portletURL.toString();

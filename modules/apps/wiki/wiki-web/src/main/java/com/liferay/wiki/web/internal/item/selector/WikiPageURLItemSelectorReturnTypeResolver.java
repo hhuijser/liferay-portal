@@ -83,7 +83,7 @@ public class WikiPageURLItemSelectorReturnTypeResolver
 		).setParameter(
 			"mvcRenderCommandName", "/wiki/view"
 		).setParameter(
-			"nodeId", String.valueOf(page.getNodeId())
+			"nodeId", page.getNodeId()
 		).setParameter(
 			"title", page.getTitle()
 		).build();

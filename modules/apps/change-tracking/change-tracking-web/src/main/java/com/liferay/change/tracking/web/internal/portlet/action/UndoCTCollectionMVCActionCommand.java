@@ -83,7 +83,7 @@ public class UndoCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 		).setParameter(
 			"mvcRenderCommandName", "/change_lists/view_changes"
 		).setParameter(
-			"ctCollectionId", String.valueOf(ctCollection.getCtCollectionId())
+			"ctCollectionId", ctCollection.getCtCollectionId()
 		).build();
 
 		sendRedirect(actionRequest, actionResponse, redirectURL.toString());

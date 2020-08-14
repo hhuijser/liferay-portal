@@ -73,7 +73,7 @@ public class EditPagePortletConfigurationIcon
 			).setParameter(
 				"redirect", themeDisplay.getURLCurrent()
 			).setParameter(
-				"nodeId", String.valueOf(page.getNodeId())
+				"nodeId", page.getNodeId()
 			).setParameter(
 				"title", page.getTitle()
 			).build();

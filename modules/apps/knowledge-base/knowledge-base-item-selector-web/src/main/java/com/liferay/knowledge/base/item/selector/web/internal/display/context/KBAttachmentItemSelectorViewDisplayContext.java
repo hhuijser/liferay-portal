@@ -110,8 +110,7 @@ public class KBAttachmentItemSelectorViewDisplayContext {
 		PortletURL portletURL = PortletURLBuilder.create(
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
-			"selectedTab",
-			String.valueOf(getTitle(httpServletRequest.getLocale()))
+			"selectedTab", getTitle(httpServletRequest.getLocale())
 		).build();
 
 		return portletURL;
@@ -130,8 +129,7 @@ public class KBAttachmentItemSelectorViewDisplayContext {
 			ActionRequest.ACTION_NAME, "uploadKBArticleAttachments"
 		).setParameter(
 			"resourcePrimKey",
-			String.valueOf(
-				_kbAttachmentItemSelectorCriterion.getResourcePrimKey())
+			_kbAttachmentItemSelectorCriterion.getResourcePrimKey()
 		).build();
 
 		return portletURL;

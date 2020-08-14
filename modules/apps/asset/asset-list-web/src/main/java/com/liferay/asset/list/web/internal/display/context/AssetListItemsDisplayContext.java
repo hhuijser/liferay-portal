@@ -138,9 +138,9 @@ public class AssetListItemsDisplayContext {
 		).setParameter(
 			"redirect", _getRedirect()
 		).setParameter(
-			"assetListEntryId", String.valueOf(getAssetListEntryId())
+			"assetListEntryId", getAssetListEntryId()
 		).setParameter(
-			"segmentsEntryId", String.valueOf(getSegmentsEntryId())
+			"segmentsEntryId", getSegmentsEntryId()
 		).build();
 
 		return portletURL;

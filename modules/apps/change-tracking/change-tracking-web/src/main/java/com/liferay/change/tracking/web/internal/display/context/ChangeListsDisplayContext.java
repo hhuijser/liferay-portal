@@ -106,7 +106,7 @@ public class ChangeListsDisplayContext {
 		).setParameter(
 			"backURL", _portal.getCurrentURL(_renderRequest)
 		).setParameter(
-			"ctCollectionId", String.valueOf(ctCollectionId)
+			"ctCollectionId", ctCollectionId
 		).build();
 
 		return reviewURL.toString();

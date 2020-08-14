@@ -127,7 +127,7 @@ public class SelectUserGroupsDisplayContext {
 		).setParameter(
 			"mvcPath", "/select_user_groups.jsp"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
 			"eventName", getEventName()
 		).build();

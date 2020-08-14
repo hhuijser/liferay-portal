@@ -393,7 +393,7 @@ public class UADHierarchyDisplay {
 		PortletURL renderURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setParameter(
-			"p_u_i_d", String.valueOf(selectedUserId)
+			"p_u_i_d", selectedUserId
 		).setParameter(
 			"mvcRenderCommandName", "/view_uad_hierarchy"
 		).setParameter(
@@ -401,8 +401,7 @@ public class UADHierarchyDisplay {
 		).setParameter(
 			"parentContainerClass", typeClass.getName()
 		).setParameter(
-			"parentContainerId",
-			String.valueOf(uadDisplay.getPrimaryKey(unwrappedObject))
+			"parentContainerId", uadDisplay.getPrimaryKey(unwrappedObject)
 		).setParameter(
 			"scope", scope
 		).build();

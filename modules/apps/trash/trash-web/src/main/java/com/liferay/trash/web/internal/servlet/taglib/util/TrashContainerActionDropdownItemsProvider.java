@@ -104,7 +104,7 @@ public class TrashContainerActionDropdownItemsProvider {
 		).setParameter(
 			"className", _trashRenderer.getClassName()
 		).setParameter(
-			"classPK", String.valueOf(_trashRenderer.getClassPK())
+			"classPK", _trashRenderer.getClassPK()
 		).build();
 
 		return new DropdownItem() {
@@ -126,7 +126,7 @@ public class TrashContainerActionDropdownItemsProvider {
 		).setParameter(
 			"redirect", _trashDisplayContext.getViewContentRedirectURL()
 		).setParameter(
-			"trashEntryId", String.valueOf(_trashEntry.getEntryId())
+			"trashEntryId", _trashEntry.getEntryId()
 		).build();
 
 		return new DropdownItem() {
@@ -151,12 +151,12 @@ public class TrashContainerActionDropdownItemsProvider {
 		).setParameter(
 			"mvcPath", "/view_container_model.jsp"
 		).setParameter(
-			"classNameId", String.valueOf(trashRendererClassNameId)
+			"classNameId", trashRendererClassNameId
 		).setParameter(
-			"classPK", String.valueOf(_trashRenderer.getClassPK())
+			"classPK", _trashRenderer.getClassPK()
 		).setParameter(
 			"containerModelClassNameId",
-			String.valueOf(PortalUtil.getClassNameId(containerModelClassName))
+			PortalUtil.getClassNameId(containerModelClassName)
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();
@@ -182,14 +182,12 @@ public class TrashContainerActionDropdownItemsProvider {
 		).setParameter(
 			"mvcPath", "/view_container_model.jsp"
 		).setParameter(
-			"classNameId", String.valueOf(_trashEntry.getClassNameId())
+			"classNameId", _trashEntry.getClassNameId()
 		).setParameter(
-			"classPK", String.valueOf(_trashEntry.getClassPK())
+			"classPK", _trashEntry.getClassPK()
 		).setParameter(
 			"containerModelClassNameId",
-			String.valueOf(
-				PortalUtil.getClassNameId(
-					trashHandlerEntryContainerModelClassName))
+			PortalUtil.getClassNameId(trashHandlerEntryContainerModelClassName)
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();
@@ -212,7 +210,7 @@ public class TrashContainerActionDropdownItemsProvider {
 		).setParameter(
 			"redirect", _trashDisplayContext.getViewContentRedirectURL()
 		).setParameter(
-			"trashEntryId", String.valueOf(_trashEntry.getEntryId())
+			"trashEntryId", _trashEntry.getEntryId()
 		).build();
 
 		return new DropdownItem() {

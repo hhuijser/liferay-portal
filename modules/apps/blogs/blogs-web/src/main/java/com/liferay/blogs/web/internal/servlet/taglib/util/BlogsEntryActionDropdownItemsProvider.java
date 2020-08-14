@@ -265,7 +265,7 @@ public class BlogsEntryActionDropdownItemsProvider {
 		).setParameter(
 			"backURL", _getRedirectURL()
 		).setParameter(
-			"entryId", String.valueOf(_blogsEntry.getEntryId())
+			"entryId", _blogsEntry.getEntryId()
 		).build();
 
 		return dropdownItem -> {

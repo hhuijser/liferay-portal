@@ -66,8 +66,7 @@ public class EditPasswordPolicyPortletConfigurationIcon
 		).setParameter(
 			"mvcPath", "/edit_password_policy.jsp"
 		).setParameter(
-			"passwordPolicyId",
-			String.valueOf(_getPasswordPolicyId(portletRequest))
+			"passwordPolicyId", _getPasswordPolicyId(portletRequest)
 		).setParameter(
 			"tabs1", "details"
 		).build();

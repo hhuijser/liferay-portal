@@ -193,7 +193,7 @@ public class JournalViewMoreMenuItemsDisplayContext {
 		).setParameter(
 			"mvcPath", "/view_more_menu_items.jsp"
 		).setParameter(
-			"folderId", String.valueOf(_folderId)
+			"folderId", _folderId
 		).setParameter(
 			"eventName", getEventName()
 		).build();

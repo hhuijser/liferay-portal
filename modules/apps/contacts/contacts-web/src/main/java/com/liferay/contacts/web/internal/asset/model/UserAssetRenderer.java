@@ -115,7 +115,7 @@ public class UserAssetRenderer extends BaseJSPAssetRenderer<User> {
 			liferayPortletResponse, getControlPanelPlid(liferayPortletRequest),
 			portletId, PortletRequest.RENDER_PHASE
 		).setParameter(
-			"p_u_i_d", String.valueOf(_user.getUserId())
+			"p_u_i_d", _user.getUserId()
 		).setParameter(
 			"mvcRenderCommandName", "/users_admin/edit_user"
 		).build();

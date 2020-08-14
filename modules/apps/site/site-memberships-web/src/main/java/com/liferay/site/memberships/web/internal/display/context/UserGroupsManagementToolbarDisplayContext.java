@@ -324,8 +324,7 @@ public class UserGroupsManagementToolbarDisplayContext
 				).setParameter(
 					"redirect", themeDisplay.getURLCurrent()
 				).setParameter(
-					"groupId",
-					String.valueOf(_userGroupsDisplayContext.getGroupId())
+					"groupId", _userGroupsDisplayContext.getGroupId()
 				).build();
 
 				dropdownItem.putData("viewRoleURL", viewRoleURL.toString());
@@ -346,7 +345,7 @@ public class UserGroupsManagementToolbarDisplayContext
 		).setParameter(
 			"mvcPath", mvcPath
 		).setParameter(
-			"groupId", String.valueOf(_userGroupsDisplayContext.getGroupId())
+			"groupId", _userGroupsDisplayContext.getGroupId()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

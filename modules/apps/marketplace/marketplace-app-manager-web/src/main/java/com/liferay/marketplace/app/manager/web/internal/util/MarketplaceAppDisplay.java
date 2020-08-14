@@ -58,7 +58,7 @@ public class MarketplaceAppDisplay extends BaseAppDisplay {
 		).setParameter(
 			"mvcPath", "/view_modules.jsp"
 		).setParameter(
-			"app", String.valueOf(_app.getAppId())
+			"app", _app.getAppId()
 		).build();
 
 		return portletURL.toString();
@@ -82,7 +82,7 @@ public class MarketplaceAppDisplay extends BaseAppDisplay {
 					MarketplaceStorePortletKeys.MARKETPLACE_STORE,
 					themeDisplay.getPlid(), PortletRequest.RENDER_PHASE)
 			).setParameter(
-				"appEntryId", String.valueOf(_app.getRemoteAppId())
+				"appEntryId", _app.getRemoteAppId()
 			).setWindowState(
 				LiferayWindowState.MAXIMIZED
 			).build();

@@ -74,9 +74,9 @@ public class DLFolderUADDisplay extends BaseDLFolderUADDisplay {
 		).setParameter(
 			"redirect", portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"folderId", String.valueOf(dlFolder.getFolderId())
+			"folderId", dlFolder.getFolderId()
 		).setParameter(
-			"repositoryId", String.valueOf(dlFolder.getRepositoryId())
+			"repositoryId", dlFolder.getRepositoryId()
 		).build();
 
 		return portletURL.toString();

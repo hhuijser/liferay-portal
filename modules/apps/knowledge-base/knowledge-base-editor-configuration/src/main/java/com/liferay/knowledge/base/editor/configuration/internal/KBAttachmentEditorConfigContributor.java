@@ -160,7 +160,7 @@ public class KBAttachmentEditorConfigContributor
 		).setParameter(
 			ActionRequest.ACTION_NAME, "uploadKBArticleAttachments"
 		).setParameter(
-			"resourcePrimKey", String.valueOf(resourcePrimKey)
+			"resourcePrimKey", resourcePrimKey
 		).build();
 
 		ResourceBundleLoader resourceBundleLoader =

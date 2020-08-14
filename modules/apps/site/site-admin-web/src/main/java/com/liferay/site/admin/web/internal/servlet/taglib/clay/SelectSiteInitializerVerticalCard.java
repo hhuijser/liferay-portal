@@ -64,7 +64,7 @@ public class SelectSiteInitializerVerticalCard implements VerticalCard {
 				).setParameter(
 					"mvcPath", "/select_layout_set_prototype_entry.jsp"
 				).setParameter(
-					"parentGroupId", String.valueOf(parentGroupId)
+					"parentGroupId", parentGroupId
 				).setParameter(
 					"creationType", _siteInitializerItem.getType()
 				).setParameter(

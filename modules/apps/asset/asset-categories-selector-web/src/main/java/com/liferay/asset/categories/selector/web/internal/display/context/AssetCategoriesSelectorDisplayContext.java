@@ -102,9 +102,9 @@ public class AssetCategoriesSelectorDisplayContext {
 		).setParameter(
 			"redirect", themeDisplay.getURLCurrent()
 		).setParameter(
-			"groupId", String.valueOf(assetVocabulary.getGroupId())
+			"groupId", assetVocabulary.getGroupId()
 		).setParameter(
-			"vocabularyId", String.valueOf(vocabularyIds[0])
+			"vocabularyId", vocabularyIds[0]
 		).setParameter(
 			"itemSelectorEventName", getEventName()
 		).setWindowState(

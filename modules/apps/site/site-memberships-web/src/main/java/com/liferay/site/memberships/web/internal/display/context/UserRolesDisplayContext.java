@@ -217,7 +217,7 @@ public class UserRolesDisplayContext {
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
-			"p_u_i_d", String.valueOf(_getUserId())
+			"p_u_i_d", _getUserId()
 		).setParameter(
 			"mvcPath", "/users_roles.jsp"
 		).build();

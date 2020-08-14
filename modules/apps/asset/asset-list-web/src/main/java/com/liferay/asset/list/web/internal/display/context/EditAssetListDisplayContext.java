@@ -743,9 +743,9 @@ public class EditAssetListDisplayContext {
 		).setParameter(
 			"mvcPath", "/edit_asset_list_entry.jsp"
 		).setParameter(
-			"assetListEntryId", String.valueOf(getAssetListEntryId())
+			"assetListEntryId", getAssetListEntryId()
 		).setParameter(
-			"segmentsEntryId", String.valueOf(getSegmentsEntryId())
+			"segmentsEntryId", getSegmentsEntryId()
 		).build();
 
 		return portletURL;

@@ -91,9 +91,9 @@ public class JournalContentPortletToolbarContributor
 		).setParameter(
 			"portletResource", portletDisplay.getId()
 		).setParameter(
-			"refererPlid", String.valueOf(plid)
+			"refererPlid", plid
 		).setParameter(
-			"groupId", String.valueOf(scopeGroupId)
+			"groupId", scopeGroupId
 		).build();
 
 		List<DDMStructure> ddmStructures =

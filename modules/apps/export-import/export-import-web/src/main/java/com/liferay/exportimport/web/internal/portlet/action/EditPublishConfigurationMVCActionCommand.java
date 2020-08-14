@@ -234,7 +234,7 @@ public class EditPublishConfigurationMVCActionCommand
 		).setParameter(
 			"mvcPath", "/view_export_import.jsp"
 		).setParameter(
-			"backgroundTaskId", String.valueOf(backgroundTaskId)
+			"backgroundTaskId", backgroundTaskId
 		).build();
 
 		actionRequest.setAttribute(WebKeys.REDIRECT, renderURL.toString());

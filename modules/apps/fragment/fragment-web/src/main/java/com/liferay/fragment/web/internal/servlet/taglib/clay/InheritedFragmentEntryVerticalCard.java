@@ -83,11 +83,9 @@ public class InheritedFragmentEntryVerticalCard
 		).setParameter(
 			"redirect", themeDisplay.getURLCurrent()
 		).setParameter(
-			"fragmentCollectionId",
-			String.valueOf(fragmentEntry.getFragmentCollectionId())
+			"fragmentCollectionId", fragmentEntry.getFragmentCollectionId()
 		).setParameter(
-			"fragmentEntryId",
-			String.valueOf(fragmentEntry.getFragmentEntryId())
+			"fragmentEntryId", fragmentEntry.getFragmentEntryId()
 		).build();
 
 		return editFragmentEntryURL.toString();

@@ -370,11 +370,11 @@ public class JournalEditArticleDisplayContext {
 		).setParameter(
 			"mvcPath", "/edit_article.jsp"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
 			"articleId", getArticleId()
 		).setParameter(
-			"version", String.valueOf(getVersion())
+			"version", getVersion()
 		).build();
 
 		return editArticleURL.toString();
@@ -765,9 +765,9 @@ public class JournalEditArticleDisplayContext {
 			PortletURL backURL = PortletURLBuilder.createRenderURL(
 				_liferayPortletResponse
 			).setParameter(
-				"groupId", String.valueOf(_article.getGroupId())
+				"groupId", _article.getGroupId()
 			).setParameter(
-				"folderId", String.valueOf(_article.getFolderId())
+				"folderId", _article.getFolderId()
 			).build();
 
 			portletDisplay.setURLBack(backURL.toString());

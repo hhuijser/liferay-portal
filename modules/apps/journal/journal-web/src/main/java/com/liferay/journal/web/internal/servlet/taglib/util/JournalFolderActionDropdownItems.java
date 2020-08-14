@@ -212,9 +212,9 @@ public class JournalFolderActionDropdownItems {
 			PortletURL redirectURL = PortletURLBuilder.createRenderURL(
 				_liferayPortletResponse
 			).setParameter(
-				"groupId", String.valueOf(_folder.getGroupId())
+				"groupId", _folder.getGroupId()
 			).setParameter(
-				"folderId", String.valueOf(_folder.getParentFolderId())
+				"folderId", _folder.getParentFolderId()
 			).build();
 
 			redirect = redirectURL.toString();

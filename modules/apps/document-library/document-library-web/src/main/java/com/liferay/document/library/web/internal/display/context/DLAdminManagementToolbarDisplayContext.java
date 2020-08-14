@@ -302,7 +302,7 @@ public class DLAdminManagementToolbarDisplayContext {
 		).setParameter(
 			"mvcRenderCommandName", "/document_library/view"
 		).setParameter(
-			"folderId", String.valueOf(_getFolderId())
+			"folderId", _getFolderId()
 		).build();
 
 		return clearResultsURL.toString();
@@ -448,7 +448,7 @@ public class DLAdminManagementToolbarDisplayContext {
 		).setParameter(
 			"mvcRenderCommandName", "/document_library/search"
 		).setParameter(
-			"repositoryId", String.valueOf(repositoryId)
+			"repositoryId", repositoryId
 		).build();
 
 		long searchRepositoryId = ParamUtil.getLong(

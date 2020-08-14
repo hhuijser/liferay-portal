@@ -162,12 +162,10 @@ public class MasterLayoutActionDropdownItemsProvider {
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
 			"layoutPageTemplateCollectionId",
-			String.valueOf(
-				_layoutPageTemplateEntry.getLayoutPageTemplateCollectionId())
+			_layoutPageTemplateEntry.getLayoutPageTemplateCollectionId()
 		).setParameter(
 			"layoutPageTemplateEntryId",
-			String.valueOf(
-				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+			_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 		).build();
 
 		return dropdownItem -> {
@@ -191,8 +189,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
 			"layoutPageTemplateEntryId",
-			String.valueOf(
-				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+			_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 		).build();
 
 		return dropdownItem -> {
@@ -217,8 +214,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
 				"layoutPageTemplateEntryId",
-				String.valueOf(
-					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 			).build();
 
 		return dropdownItem -> {
@@ -251,7 +247,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 		).setParameter(
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
-			"selPlid", String.valueOf(_draftLayout.getPlid())
+			"selPlid", _draftLayout.getPlid()
 		).build();
 
 		return dropdownItem -> {
@@ -313,8 +309,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 			"/layout_page_template/upload_layout_page_template_entry_preview"
 		).setParameter(
 			"layoutPageTemplateEntryId",
-			String.valueOf(
-				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+			_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 		).build();
 
 		ItemSelectorCriterion itemSelectorCriterion =
@@ -353,9 +348,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
 				"layoutPageTemplateEntryId",
-				String.valueOf(
-					defaultLayoutPageTemplateEntry.
-						getLayoutPageTemplateEntryId())
+				defaultLayoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 			).setParameter(
 				"defaultTemplate", Boolean.FALSE.toString()
 			).build();
@@ -393,8 +386,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
 				"layoutPageTemplateEntryId",
-				String.valueOf(
-					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 			).setParameter(
 				"defaultTemplate", Boolean.TRUE.toString()
 			).build();
@@ -463,12 +455,10 @@ public class MasterLayoutActionDropdownItemsProvider {
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
 			"layoutPageTemplateCollectionId",
-			String.valueOf(
-				_layoutPageTemplateEntry.getLayoutPageTemplateCollectionId())
+			_layoutPageTemplateEntry.getLayoutPageTemplateCollectionId()
 		).setParameter(
 			"layoutPageTemplateEntryId",
-			String.valueOf(
-				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+			_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 		).build();
 
 		return dropdownItem -> {

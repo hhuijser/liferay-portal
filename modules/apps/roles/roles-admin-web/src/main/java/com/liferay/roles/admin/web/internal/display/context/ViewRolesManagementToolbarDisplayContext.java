@@ -159,7 +159,7 @@ public class ViewRolesManagementToolbarDisplayContext {
 		).setParameter(
 			"mvcPath", "/view.jsp"
 		).setParameter(
-			"roleType", String.valueOf(_currentRoleTypeContributor.getType())
+			"roleType", _currentRoleTypeContributor.getType()
 		).setParameter(
 			"displayStyle", _displayStyle
 		).build();

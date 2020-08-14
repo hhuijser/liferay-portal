@@ -104,9 +104,8 @@ public class EditSiteTeamAssignmentsUsersManagementToolbarDisplayContext
 							"redirect", themeDisplay.getURLCurrent()
 						).setParameter(
 							"teamId",
-							String.valueOf(
-								_editSiteTeamAssignmentsUsersDisplayContext.
-									getTeamId())
+							_editSiteTeamAssignmentsUsersDisplayContext.
+								getTeamId()
 						).setWindowState(
 							LiferayWindowState.POP_UP
 						).build();

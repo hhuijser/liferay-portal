@@ -74,7 +74,7 @@ public class ImportPagesPortletConfigurationIcon
 			).setParameter(
 				"redirect", themeDisplay.getURLCurrent()
 			).setParameter(
-				"nodeId", String.valueOf(node.getNodeId())
+				"nodeId", node.getNodeId()
 			).build();
 
 			return portletURL.toString();

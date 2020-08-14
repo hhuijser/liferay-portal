@@ -111,8 +111,7 @@ public class TrashDisplayContext {
 			"mvcPath", "/view_content.jsp"
 		).setParameter(
 			"classNameId",
-			String.valueOf(
-				PortalUtil.getClassNameId(trashHandlerContainerModelClassName))
+			PortalUtil.getClassNameId(trashHandlerContainerModelClassName)
 		).build();
 
 		breadcrumbEntries.addAll(
@@ -442,9 +441,9 @@ public class TrashDisplayContext {
 		).setParameter(
 			"mvcPath", "/view_content.jsp"
 		).setParameter(
-			"classNameId", String.valueOf(getClassNameId())
+			"classNameId", getClassNameId()
 		).setParameter(
-			"classPK", String.valueOf(getClassPK())
+			"classPK", getClassPK()
 		).build();
 
 		SearchContainer<TrashedModel> searchContainer = new SearchContainer(

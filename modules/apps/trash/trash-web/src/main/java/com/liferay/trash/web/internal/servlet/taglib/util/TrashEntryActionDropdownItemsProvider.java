@@ -87,7 +87,7 @@ public class TrashEntryActionDropdownItemsProvider {
 				).setParameter(
 					"redirect", _themeDisplay.getURLCurrent()
 				).setParameter(
-					"trashEntryId", String.valueOf(_trashEntry.getEntryId())
+					"trashEntryId", _trashEntry.getEntryId()
 				).build();
 
 				putData("deleteEntryURL", deleteEntryURL.toString());
@@ -107,15 +107,14 @@ public class TrashEntryActionDropdownItemsProvider {
 				).setParameter(
 					"mvcPath", "/view_container_model.jsp"
 				).setParameter(
-					"classNameId", String.valueOf(_trashEntry.getClassNameId())
+					"classNameId", _trashEntry.getClassNameId()
 				).setParameter(
-					"classPK", String.valueOf(_trashEntry.getClassPK())
+					"classPK", _trashEntry.getClassPK()
 				).setParameter(
 					"containerModelClassNameId",
-					String.valueOf(
-						PortalUtil.getClassNameId(
-							_trashHandler.getContainerModelClassName(
-								_trashEntry.getClassPK())))
+					PortalUtil.getClassNameId(
+						_trashHandler.getContainerModelClassName(
+							_trashEntry.getClassPK()))
 				).setWindowState(
 					LiferayWindowState.POP_UP
 				).build();
@@ -140,7 +139,7 @@ public class TrashEntryActionDropdownItemsProvider {
 				).setParameter(
 					"redirect", _themeDisplay.getURLCurrent()
 				).setParameter(
-					"trashEntryId", String.valueOf(_trashEntry.getEntryId())
+					"trashEntryId", _trashEntry.getEntryId()
 				).build();
 
 				putData("restoreEntryURL", restoreEntryURL.toString());

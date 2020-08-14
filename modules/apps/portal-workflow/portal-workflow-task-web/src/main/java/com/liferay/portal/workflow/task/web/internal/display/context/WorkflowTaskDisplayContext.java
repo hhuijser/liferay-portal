@@ -369,7 +369,7 @@ public class WorkflowTaskDisplayContext {
 		PortletURL portletURL = PortletURLBuilder.create(
 			_getPortletURL()
 		).setParameter(
-			"groupId", String.valueOf(themeDisplay.getScopeGroupId())
+			"groupId", themeDisplay.getScopeGroupId()
 		).build();
 
 		ThemeDisplay themeDisplay =
@@ -426,9 +426,9 @@ public class WorkflowTaskDisplayContext {
 		).setParameter(
 			"portletResource", getPortletResource()
 		).setParameter(
-			"refererPlid", String.valueOf(themeDisplay.getPlid())
+			"refererPlid", themeDisplay.getPlid()
 		).setParameter(
-			"workflowTaskId", String.valueOf(workflowTask.getWorkflowTaskId())
+			"workflowTaskId", workflowTask.getWorkflowTaskId()
 		).setPortletMode(
 			PortletMode.VIEW
 		).setWindowState(

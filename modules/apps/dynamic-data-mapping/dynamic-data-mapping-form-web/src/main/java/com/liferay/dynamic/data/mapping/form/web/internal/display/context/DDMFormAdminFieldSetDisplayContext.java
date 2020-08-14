@@ -278,7 +278,7 @@ public class DDMFormAdminFieldSetDisplayContext
 		).setParameter(
 			"mvcPath", "/admin/view.jsp"
 		).setParameter(
-			"groupId", String.valueOf(getScopeGroupId())
+			"groupId", getScopeGroupId()
 		).setParameter(
 			"currentTab", "element-set"
 		).build();
@@ -359,7 +359,7 @@ public class DDMFormAdminFieldSetDisplayContext
 		).setParameter(
 			"mvcPath", "/admin/view.jsp"
 		).setParameter(
-			"groupId", String.valueOf(getScopeGroupId())
+			"groupId", getScopeGroupId()
 		).setParameter(
 			"currentTab", "element-set"
 		).build();

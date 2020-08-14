@@ -120,13 +120,13 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 			).setParameter(
 				"referringPortletResource", referringPortletResource
 			).setParameter(
-				"groupId", String.valueOf(_article.getGroupId())
+				"groupId", _article.getGroupId()
 			).setParameter(
-				"folderId", String.valueOf(_article.getFolderId())
+				"folderId", _article.getFolderId()
 			).setParameter(
 				"articleId", _article.getArticleId()
 			).setParameter(
-				"version", String.valueOf(_article.getVersion())
+				"version", _article.getVersion()
 			).build();
 
 			return editArticleURL.toString();

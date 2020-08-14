@@ -66,8 +66,7 @@ public class AssignMembersPortletConfigurationIcon
 		).setParameter(
 			"mvcPath", "/edit_password_policy_assignments.jsp"
 		).setParameter(
-			"passwordPolicyId",
-			String.valueOf(_getPasswordPolicyId(portletRequest))
+			"passwordPolicyId", _getPasswordPolicyId(portletRequest)
 		).setParameter(
 			"tabs1", "assignees"
 		).build();

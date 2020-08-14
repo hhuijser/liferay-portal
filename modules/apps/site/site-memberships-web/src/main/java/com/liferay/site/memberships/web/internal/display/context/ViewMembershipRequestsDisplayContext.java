@@ -136,8 +136,7 @@ public class ViewMembershipRequestsDisplayContext {
 		).setParameter(
 			"tabs1", getTabs1()
 		).setParameter(
-			"groupId",
-			String.valueOf(themeDisplay.getSiteGroupIdOrLiveGroupId())
+			"groupId", themeDisplay.getSiteGroupIdOrLiveGroupId()
 		).build();
 
 		String displayStyle = getDisplayStyle();

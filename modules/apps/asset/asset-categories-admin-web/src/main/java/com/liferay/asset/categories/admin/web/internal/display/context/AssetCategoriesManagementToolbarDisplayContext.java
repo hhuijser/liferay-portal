@@ -244,8 +244,7 @@ public class AssetCategoriesManagementToolbarDisplayContext
 				request, AssetCategory.class.getName(),
 				PortletProvider.Action.BROWSE)
 		).setParameter(
-			"vocabularyIds",
-			String.valueOf(_assetCategoriesDisplayContext.getVocabularyId())
+			"vocabularyIds", _assetCategoriesDisplayContext.getVocabularyId()
 		).setParameter(
 			"eventName",
 			liferayPortletResponse.getNamespace() + "selectCategory"
@@ -266,8 +265,7 @@ public class AssetCategoriesManagementToolbarDisplayContext
 		).setParameter(
 			"navigation", "category"
 		).setParameter(
-			"vocabularyId",
-			String.valueOf(_assetCategoriesDisplayContext.getVocabularyId())
+			"vocabularyId", _assetCategoriesDisplayContext.getVocabularyId()
 		).build();
 
 		return portletURL.toString();

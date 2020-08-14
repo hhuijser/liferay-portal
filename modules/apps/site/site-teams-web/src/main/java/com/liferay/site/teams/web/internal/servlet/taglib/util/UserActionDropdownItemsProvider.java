@@ -68,9 +68,9 @@ public class UserActionDropdownItemsProvider {
 		).setParameter(
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
-			"teamId", String.valueOf(_teamId)
+			"teamId", _teamId
 		).setParameter(
-			"removeUserId", String.valueOf(_user.getUserId())
+			"removeUserId", _user.getUserId()
 		).build();
 
 		return dropdownItem -> {

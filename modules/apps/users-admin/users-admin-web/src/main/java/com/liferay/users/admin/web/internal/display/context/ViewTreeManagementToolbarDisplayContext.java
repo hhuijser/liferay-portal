@@ -230,8 +230,7 @@ public class ViewTreeManagementToolbarDisplayContext {
 								"redirect", currentURL.toString()
 							).setParameter(
 								"parentOrganizationSearchContainerPrimaryKeys",
-								String.valueOf(
-									_organization.getOrganizationId())
+								_organization.getOrganizationId()
 							).setParameter(
 								"type", organizationType
 							).build();
@@ -358,7 +357,7 @@ public class ViewTreeManagementToolbarDisplayContext {
 		).setParameter(
 			"mvcRenderCommandName", "/users_admin/view"
 		).setParameter(
-			"organizationId", String.valueOf(_organization.getOrganizationId())
+			"organizationId", _organization.getOrganizationId()
 		).setParameter(
 			"toolbarItem", toolbarItem
 		).setParameter(

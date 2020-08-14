@@ -196,8 +196,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		PortletURL portletURL = PortletURLBuilder.create(
 			getPortletURL()
 		).setParameter(
-			"folderId",
-			String.valueOf(JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID)
+			"folderId", JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID
 		).build();
 
 		for (JournalFolder ancestorFolder : ancestorFolders) {
@@ -241,8 +240,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		).setParameter(
 			"displayStyle", getDisplayStyle()
 		).setParameter(
-			"selectedTab",
-			String.valueOf(_getTitle(_httpServletRequest.getLocale()))
+			"selectedTab", _getTitle(_httpServletRequest.getLocale())
 		).build();
 
 		return portletURL;
@@ -548,8 +546,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		PortletURL portletURL = PortletURLBuilder.create(
 			getPortletURL()
 		).setParameter(
-			"folderId",
-			String.valueOf(JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID)
+			"folderId", JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID
 		).build();
 
 		breadcrumbEntry.setURL(portletURL.toString());

@@ -278,7 +278,7 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 		).setParameter(
 			"redirect", ParamUtil.getString(httpServletRequest, "redirect")
 		).setParameter(
-			"userId", String.valueOf(user.getUserId())
+			"userId", user.getUserId()
 		).setParameter(
 			"emailAddress", user.getEmailAddress()
 		).setParameter(

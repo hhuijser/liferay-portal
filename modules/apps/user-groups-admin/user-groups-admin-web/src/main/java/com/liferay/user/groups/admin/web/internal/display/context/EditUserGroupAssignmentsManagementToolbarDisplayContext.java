@@ -145,7 +145,7 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 		).setParameter(
 			"mvcPath", _mvcPath
 		).setParameter(
-			"userGroupId", String.valueOf(_userGroup.getUserGroupId())
+			"userGroupId", _userGroup.getUserGroupId()
 		).setParameter(
 			"redirect", redirect
 		).setParameter(

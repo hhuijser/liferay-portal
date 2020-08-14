@@ -122,8 +122,7 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 				).setParameter(
 					"redirect", PortalUtil.getCurrentURL(_httpServletRequest)
 				).setParameter(
-					"alert",
-					String.valueOf(String.valueOf(navigation.equals("alerts")))
+					"alert", navigation.equals("alerts")
 				).setParameter(
 					"distributionScope", _getDistributionScope()
 				).build();

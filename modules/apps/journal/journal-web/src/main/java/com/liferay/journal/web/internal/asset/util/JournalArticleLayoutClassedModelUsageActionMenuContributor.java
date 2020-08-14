@@ -183,13 +183,11 @@ public class JournalArticleLayoutClassedModelUsageActionMenuContributor
 					layoutClassedModelUsage.getPlid(),
 					PortletRequest.RENDER_PHASE)
 			).setParameter(
-				"previewClassNameId",
-				String.valueOf(layoutClassedModelUsage.getClassNameId())
+				"previewClassNameId", layoutClassedModelUsage.getClassNameId()
 			).setParameter(
-				"previewClassPK",
-				String.valueOf(layoutClassedModelUsage.getClassPK())
+				"previewClassPK", layoutClassedModelUsage.getClassPK()
 			).setParameter(
-				"previewType", String.valueOf(previewType)
+				"previewType", previewType
 			).setParameter(
 				"previewVersion", previewVersion
 			).build();

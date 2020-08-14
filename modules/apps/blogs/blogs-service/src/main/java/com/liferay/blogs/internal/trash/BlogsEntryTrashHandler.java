@@ -67,7 +67,7 @@ public class BlogsEntryTrashHandler extends BaseTrashHandler {
 		PortletURL portletURL = PortletURLBuilder.create(
 			getRestoreURL(portletRequest, classPK, false)
 		).setParameter(
-			"entryId", String.valueOf(entry.getEntryId())
+			"entryId", entry.getEntryId()
 		).build();
 
 		BlogsEntry entry = _blogsEntryLocalService.getEntry(classPK);

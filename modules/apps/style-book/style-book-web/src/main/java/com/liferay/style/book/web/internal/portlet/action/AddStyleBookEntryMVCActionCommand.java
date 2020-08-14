@@ -100,8 +100,7 @@ public class AddStyleBookEntryMVCActionCommand extends BaseMVCActionCommand {
 		).setParameter(
 			"mvcRenderCommandName", "/style_book/edit_style_book_entry"
 		).setParameter(
-			"styleBookEntryId",
-			String.valueOf(styleBookEntry.getStyleBookEntryId())
+			"styleBookEntryId", styleBookEntry.getStyleBookEntryId()
 		).build();
 
 		return portletURL.toString();

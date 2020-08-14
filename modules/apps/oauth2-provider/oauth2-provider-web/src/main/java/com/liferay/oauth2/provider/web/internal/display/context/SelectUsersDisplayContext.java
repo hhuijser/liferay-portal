@@ -139,7 +139,7 @@ public class SelectUsersDisplayContext {
 		).setParameter(
 			"mvcPath", "/admin/select_users.jsp"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).build();
 
 		String displayStyle = getDisplayStyle();

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Team;
 import com.liferay.portal.kernel.model.UserGroup;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.TeamLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserGroupLocalServiceUtil;
@@ -113,12 +114,17 @@ public class SelectUserGroupsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/select_user_groups.jsp");
-		portletURL.setParameter("redirect", getRedirect());
-		portletURL.setParameter("teamId", String.valueOf(getTeamId()));
-		portletURL.setParameter("eventName", getEventName());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/select_user_groups.jsp"
+		).setParameter(
+			"redirect", getRedirect()
+		).setParameter(
+			"teamId", String.valueOf(getTeamId())
+		).setParameter(
+			"eventName", getEventName()
+		).build();
 
 		String keywords = getKeywords();
 

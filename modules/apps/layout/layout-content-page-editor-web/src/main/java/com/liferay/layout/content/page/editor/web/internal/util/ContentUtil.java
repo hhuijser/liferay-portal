@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -202,18 +203,20 @@ public class ContentUtil {
 			}
 		}
 
-		PortletURL viewUsagesURL = PortletURLFactoryUtil.create(
-			httpServletRequest,
-			ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
-			PortletRequest.RENDER_PHASE);
-
-		viewUsagesURL.setParameter(
-			"mvcPath", "/view_layout_classed_model_usages.jsp");
-		viewUsagesURL.setParameter(
-			"className", layoutClassedModelUsage.getClassName());
-		viewUsagesURL.setParameter(
-			"classPK", String.valueOf(layoutClassedModelUsage.getClassPK()));
-		viewUsagesURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL viewUsagesURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				httpServletRequest,
+				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/view_layout_classed_model_usages.jsp"
+		).setParameter(
+			"className", layoutClassedModelUsage.getClassName()
+		).setParameter(
+			"classPK", String.valueOf(layoutClassedModelUsage.getClassPK())
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return jsonObject.put("viewUsagesURL", viewUsagesURL.toString());
 	}

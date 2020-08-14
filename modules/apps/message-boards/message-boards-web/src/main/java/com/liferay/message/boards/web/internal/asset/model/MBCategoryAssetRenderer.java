@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
@@ -122,14 +123,15 @@ public class MBCategoryAssetRenderer extends BaseJSPAssetRenderer<MBCategory> {
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, group, MBPortletKeys.MESSAGE_BOARDS, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/edit_category");
-		portletURL.setParameter(
-			"mbCategoryId", String.valueOf(_category.getCategoryId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, group, MBPortletKeys.MESSAGE_BOARDS, 0,
+				0, PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/edit_category"
+		).setParameter(
+			"mbCategoryId", String.valueOf(_category.getCategoryId())
+		).build();
 
 		return portletURL;
 	}
@@ -143,14 +145,15 @@ public class MBCategoryAssetRenderer extends BaseJSPAssetRenderer<MBCategory> {
 		AssetRendererFactory<MBCategory> assetRendererFactory =
 			getAssetRendererFactory();
 
-		PortletURL portletURL = assetRendererFactory.getURLView(
-			liferayPortletResponse, windowState);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_category");
-		portletURL.setParameter(
-			"mbCategoryId", String.valueOf(_category.getCategoryId()));
-		portletURL.setWindowState(windowState);
+		PortletURL portletURL = PortletURLBuilder.create(
+			assetRendererFactory.getURLView(liferayPortletResponse, windowState)
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/view_category"
+		).setParameter(
+			"mbCategoryId", String.valueOf(_category.getCategoryId())
+		).setWindowState(
+			windowState
+		).build();
 
 		return portletURL.toString();
 	}

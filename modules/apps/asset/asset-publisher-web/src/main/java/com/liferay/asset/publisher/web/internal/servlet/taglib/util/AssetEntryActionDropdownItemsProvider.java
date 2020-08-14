@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -141,14 +142,15 @@ public class AssetEntryActionDropdownItemsProvider {
 				redirect = _fullContentRedirect;
 			}
 
-			PortletURL portletURL = _assetRenderer.getURLEdit(
-				_liferayPortletRequest, _liferayPortletResponse,
-				LiferayWindowState.NORMAL, redirect);
+			PortletURL portletURL = PortletURLBuilder.create(
+				_assetRenderer.getURLEdit(
+					_liferayPortletRequest, _liferayPortletResponse,
+					LiferayWindowState.NORMAL, redirect)
+			).setParameter(
+				"portletResource", portletDisplay.getPortletName()
+			).build();
 
 			PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
-
-			portletURL.setParameter(
-				"portletResource", portletDisplay.getPortletName());
 
 			return portletURL;
 		}

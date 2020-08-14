@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -197,22 +198,24 @@ public class StagingConfigurationPortlet extends MVCPortlet {
 			PortletURL portletURL = null;
 
 			if (stagingType == StagingConstants.TYPE_LOCAL_STAGING) {
-				portletURL = _portal.getControlPanelPortletURL(
-					actionRequest, liveGroup.getStagingGroup(),
-					StagingProcessesPortletKeys.STAGING_PROCESSES, 0, 0,
-					PortletRequest.RENDER_PHASE);
-
-				portletURL.setParameter(
-					"localStagingEnabled", Boolean.TRUE.toString());
+				portletURL = PortletURLBuilder.create(
+					_portal.getControlPanelPortletURL(
+						actionRequest, liveGroup.getStagingGroup(),
+						StagingProcessesPortletKeys.STAGING_PROCESSES, 0, 0,
+						PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"localStagingEnabled", Boolean.TRUE.toString()
+				).build();
 			}
 			else if (stagingType == StagingConstants.TYPE_REMOTE_STAGING) {
-				portletURL = _portal.getControlPanelPortletURL(
-					actionRequest, liveGroup,
-					StagingProcessesPortletKeys.STAGING_PROCESSES, 0, 0,
-					PortletRequest.RENDER_PHASE);
-
-				portletURL.setParameter(
-					"remoteStagingEnabled", Boolean.TRUE.toString());
+				portletURL = PortletURLBuilder.create(
+					_portal.getControlPanelPortletURL(
+						actionRequest, liveGroup,
+						StagingProcessesPortletKeys.STAGING_PROCESSES, 0, 0,
+						PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"remoteStagingEnabled", Boolean.TRUE.toString()
+				).build();
 			}
 
 			if (portletURL != null) {
@@ -225,13 +228,14 @@ public class StagingConfigurationPortlet extends MVCPortlet {
 			// Staging was turned off or remote staging configuration was
 			// modified
 
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				actionRequest, liveGroup,
-				StagingProcessesPortletKeys.STAGING_PROCESSES, 0, 0,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"showStagingConfiguration", Boolean.TRUE.toString());
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					actionRequest, liveGroup,
+					StagingProcessesPortletKeys.STAGING_PROCESSES, 0, 0,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"showStagingConfiguration", Boolean.TRUE.toString()
+			).build();
 
 			if (portletURL != null) {
 				redirect = portletURL.toString();
@@ -248,13 +252,14 @@ public class StagingConfigurationPortlet extends MVCPortlet {
 
 			// Local staging configuration was modified
 
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				actionRequest, liveGroup.getStagingGroup(),
-				StagingProcessesPortletKeys.STAGING_PROCESSES, 0, 0,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"showStagingConfiguration", Boolean.TRUE.toString());
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					actionRequest, liveGroup.getStagingGroup(),
+					StagingProcessesPortletKeys.STAGING_PROCESSES, 0, 0,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"showStagingConfiguration", Boolean.TRUE.toString()
+			).build();
 
 			if (portletURL != null) {
 				redirect = portletURL.toString();

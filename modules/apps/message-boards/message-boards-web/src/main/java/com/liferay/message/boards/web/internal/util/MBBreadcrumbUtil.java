@@ -19,6 +19,7 @@ import com.liferay.message.boards.model.MBCategory;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBCategoryLocalServiceUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -137,12 +138,13 @@ public class MBBreadcrumbUtil {
 		addPortletBreadcrumbEntries(
 			category, httpServletRequest, renderResponse);
 
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
-		portletURL.setParameter(
-			"messageId", String.valueOf(message.getMessageId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/view_message"
+		).setParameter(
+			"messageId", String.valueOf(message.getMessageId())
+		).build();
 
 		PortalUtil.addPortletBreadcrumbEntry(
 			httpServletRequest, message.getSubject(), portletURL.toString());

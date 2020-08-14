@@ -21,6 +21,7 @@ import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.social.CalendarActivityKeys;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -68,15 +69,19 @@ public class CalendarActivityInterpreter extends BaseSocialActivityInterpreter {
 		long plid = _portal.getPlidFromPortletId(
 			calendarBooking.getGroupId(), CalendarPortletKeys.CALENDAR);
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			serviceContext.getRequest(), CalendarPortletKeys.CALENDAR, plid,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/view_calendar_booking.jsp");
-		portletURL.setParameter("backURL", serviceContext.getCurrentURL());
-		portletURL.setParameter(
-			"calendarBookingId", String.valueOf(activity.getClassPK()));
-		portletURL.setWindowState(WindowState.MAXIMIZED);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				serviceContext.getRequest(), CalendarPortletKeys.CALENDAR, plid,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/view_calendar_booking.jsp"
+		).setParameter(
+			"backURL", serviceContext.getCurrentURL()
+		).setParameter(
+			"calendarBookingId", String.valueOf(activity.getClassPK())
+		).setWindowState(
+			WindowState.MAXIMIZED
+		).build();
 
 		return portletURL.toString();
 	}

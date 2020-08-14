@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
@@ -117,10 +118,11 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 	}
 
 	public String getClearResultsURL() throws PortletException {
-		PortletURL clearResultsURL = PortletURLUtil.clone(
-			getPortletURL(), _renderResponse);
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(getPortletURL(), _renderResponse)
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -322,9 +324,11 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 	public SearchContainer<?> getSearch() {
 		String displayStyle = getDisplayStyle();
 
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter("displayStyle", displayStyle);
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"displayStyle", displayStyle
+		).build();
 
 		DDMFormInstanceRecordSearch ddmFormInstanceRecordSearch =
 			new DDMFormInstanceRecordSearch(
@@ -380,13 +384,13 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 	}
 
 	public String getSortingURL() throws Exception {
-		PortletURL sortingURL = PortletURLUtil.clone(
-			getPortletURL(), _renderResponse);
+		PortletURL sortingURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(getPortletURL(), _renderResponse)
+		).setParameter(
+			"orderByType", orderByType.equals("asc") ? "desc" : "asc"
+		).build();
 
 		String orderByType = ParamUtil.getString(_renderRequest, "orderByType");
-
-		sortingURL.setParameter(
-			"orderByType", orderByType.equals("asc") ? "desc" : "asc");
 
 		return sortingURL.toString();
 	}

@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Team;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.TeamLocalServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 
@@ -45,11 +46,15 @@ public class EditSiteTeamAssignmentsDisplayContext {
 	}
 
 	public PortletURL getEditTeamAssignmentsURL() {
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/edit_team_assignments.jsp");
-		portletURL.setParameter("tabs1", getTabs1());
-		portletURL.setParameter("teamId", String.valueOf(getTeamId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"mvcPath", "/edit_team_assignments.jsp"
+		).setParameter(
+			"tabs1", getTabs1()
+		).setParameter(
+			"teamId", String.valueOf(getTeamId())
+		).build();
 
 		return portletURL;
 	}

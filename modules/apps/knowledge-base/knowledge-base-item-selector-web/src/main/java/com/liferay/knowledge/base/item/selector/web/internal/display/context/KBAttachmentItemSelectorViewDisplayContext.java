@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -106,12 +107,12 @@ public class KBAttachmentItemSelectorViewDisplayContext {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortletException {
 
-		PortletURL portletURL = PortletURLUtil.clone(
-			_portletURL, liferayPortletResponse);
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
+		).setParameter(
 			"selectedTab",
-			String.valueOf(getTitle(httpServletRequest.getLocale())));
+			String.valueOf(getTitle(httpServletRequest.getLocale()))
+		).build();
 
 		return portletURL;
 	}
@@ -123,15 +124,15 @@ public class KBAttachmentItemSelectorViewDisplayContext {
 	public PortletURL getUploadURL(
 		LiferayPortletResponse liferayPortletResponse) {
 
-		PortletURL portletURL = liferayPortletResponse.createActionURL(
-			KBPortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "uploadKBArticleAttachments");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, KBPortletKeys.KNOWLEDGE_BASE_ADMIN
+		).setParameter(
+			ActionRequest.ACTION_NAME, "uploadKBArticleAttachments"
+		).setParameter(
 			"resourcePrimKey",
 			String.valueOf(
-				_kbAttachmentItemSelectorCriterion.getResourcePrimKey()));
+				_kbAttachmentItemSelectorCriterion.getResourcePrimKey())
+		).build();
 
 		return portletURL;
 	}

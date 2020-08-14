@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Portal;
@@ -58,17 +59,18 @@ public class EditEntryPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, AnnouncementsPortletKeys.ANNOUNCEMENTS_ADMIN,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/announcements/edit_entry");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, AnnouncementsPortletKeys.ANNOUNCEMENTS_ADMIN,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/announcements/edit_entry"
+		).setParameter(
+			"redirect", themeDisplay.getURLCurrent()
+		).build();
 
 		try {
 			AnnouncementsEntry entry = ActionUtil.getEntry(portletRequest);

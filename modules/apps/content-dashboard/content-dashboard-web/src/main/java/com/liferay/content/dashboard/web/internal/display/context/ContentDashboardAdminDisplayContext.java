@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -182,15 +183,16 @@ public class ContentDashboardAdminDisplayContext {
 		userItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			Collections.singletonList(new UUIDItemSelectorReturnType()));
 
-		PortletURL portletURL = _itemSelector.getItemSelectorURL(
-			requestBackedPortletURLFactory,
-			_liferayPortletResponse.getNamespace() + "selectedAuthorItem",
-			userItemSelectorCriterion);
-
-		portletURL.setParameter(
-			"checkedUserIds", StringUtil.merge(getAuthorIds()));
-		portletURL.setParameter(
-			"checkedUserIdsEnabled", String.valueOf(Boolean.TRUE));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_itemSelector.getItemSelectorURL(
+				requestBackedPortletURLFactory,
+				_liferayPortletResponse.getNamespace() + "selectedAuthorItem",
+				userItemSelectorCriterion)
+		).setParameter(
+			"checkedUserIds", StringUtil.merge(getAuthorIds())
+		).setParameter(
+			"checkedUserIdsEnabled", String.valueOf(Boolean.TRUE)
+		).build();
 
 		return portletURL.toString();
 	}
@@ -207,19 +209,13 @@ public class ContentDashboardAdminDisplayContext {
 			setDesiredItemSelectorReturnTypes(
 				Collections.singletonList(new UUIDItemSelectorReturnType()));
 
-		PortletURL portletURL = _itemSelector.getItemSelectorURL(
-			requestBackedPortletURLFactory,
-			_liferayPortletResponse.getNamespace() +
-				"selectedContentDashboardItemTypeItem",
-			contentDashboardItemTypeItemSelectorCriterion);
-
-		List<? extends ContentDashboardItemType> contentDashboardItemTypes =
-			getContentDashboardItemTypes();
-
-		Stream<? extends ContentDashboardItemType> stream =
-			contentDashboardItemTypes.stream();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			_itemSelector.getItemSelectorURL(
+				requestBackedPortletURLFactory,
+				_liferayPortletResponse.getNamespace() +
+					"selectedContentDashboardItemTypeItem",
+				contentDashboardItemTypeItemSelectorCriterion)
+		).setParameter(
 			"checkedContentDashboardItemTypes",
 			stream.map(
 				contentDashboardItemType ->
@@ -227,7 +223,14 @@ public class ContentDashboardAdminDisplayContext {
 						_portal.getLocale(_liferayPortletRequest))
 			).toArray(
 				String[]::new
-			));
+			)
+		).build();
+
+		List<? extends ContentDashboardItemType> contentDashboardItemTypes =
+			getContentDashboardItemTypes();
+
+		Stream<? extends ContentDashboardItemType> stream =
+			contentDashboardItemTypes.stream();
 
 		return String.valueOf(portletURL);
 	}

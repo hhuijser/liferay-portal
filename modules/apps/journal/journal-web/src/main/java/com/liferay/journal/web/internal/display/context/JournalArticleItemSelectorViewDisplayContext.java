@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
@@ -192,11 +193,12 @@ public class JournalArticleItemSelectorViewDisplayContext {
 
 		Collections.reverse(ancestorFolders);
 
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
 			"folderId",
-			String.valueOf(JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID));
+			String.valueOf(JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID)
+		).build();
 
 		for (JournalFolder ancestorFolder : ancestorFolders) {
 			BreadcrumbEntry folderBreadcrumbEntry = new BreadcrumbEntry();
@@ -232,14 +234,16 @@ public class JournalArticleItemSelectorViewDisplayContext {
 	}
 
 	public PortletURL getPortletURL() throws PortletException {
-		PortletURL portletURL = PortletURLUtil.clone(
-			_portletURL,
-			PortalUtil.getLiferayPortletResponse(_portletResponse));
-
-		portletURL.setParameter("displayStyle", getDisplayStyle());
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(
+				_portletURL,
+				PortalUtil.getLiferayPortletResponse(_portletResponse))
+		).setParameter(
+			"displayStyle", getDisplayStyle()
+		).setParameter(
 			"selectedTab",
-			String.valueOf(_getTitle(_httpServletRequest.getLocale())));
+			String.valueOf(_getTitle(_httpServletRequest.getLocale()))
+		).build();
 
 		return portletURL;
 	}
@@ -541,11 +545,12 @@ public class JournalArticleItemSelectorViewDisplayContext {
 
 		breadcrumbEntry.setTitle(_themeDisplay.getSiteGroupName());
 
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
 			"folderId",
-			String.valueOf(JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID));
+			String.valueOf(JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID)
+		).build();
 
 		breadcrumbEntry.setURL(portletURL.toString());
 
@@ -590,10 +595,13 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		breadcrumbEntry.setTitle(
 			LanguageUtil.get(_httpServletRequest, "sites-and-libraries"));
 
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter("groupType", "site");
-		portletURL.setParameter("showGroupSelector", Boolean.TRUE.toString());
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"groupType", "site"
+		).setParameter(
+			"showGroupSelector", Boolean.TRUE.toString()
+		).build();
 
 		breadcrumbEntry.setURL(portletURL.toString());
 

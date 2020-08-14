@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -361,13 +362,15 @@ public class EditSegmentsEntryDisplayContext {
 	}
 
 	private String _getPreviewMembersURL() throws Exception {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "previewSegmentsEntryUsers");
-		portletURL.setParameter(
-			"segmentsEntryId", String.valueOf(getSegmentsEntryId()));
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "previewSegmentsEntryUsers"
+		).setParameter(
+			"segmentsEntryId", String.valueOf(getSegmentsEntryId())
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return portletURL.toString();
 	}

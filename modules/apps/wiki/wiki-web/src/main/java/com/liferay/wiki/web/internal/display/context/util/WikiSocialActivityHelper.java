@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
@@ -305,11 +306,15 @@ public class WikiSocialActivityHelper {
 		LiferayPortletResponse liferayPortletResponse =
 			_wikiRequestHelper.getLiferayPortletResponse();
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/wiki/view");
-		portletURL.setParameter("nodeName", node.getName());
-		portletURL.setParameter("title", page.getTitle());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/wiki/view"
+		).setParameter(
+			"nodeName", node.getName()
+		).setParameter(
+			"title", page.getTitle()
+		).build();
 
 		return portletURL.toString();
 	}
@@ -324,12 +329,17 @@ public class WikiSocialActivityHelper {
 		LiferayPortletResponse liferayPortletResponse =
 			_wikiRequestHelper.getLiferayPortletResponse();
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/wiki/view");
-		portletURL.setParameter("nodeName", node.getName());
-		portletURL.setParameter("title", page.getTitle());
-		portletURL.setParameter("version", String.valueOf(version));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/wiki/view"
+		).setParameter(
+			"nodeName", node.getName()
+		).setParameter(
+			"title", page.getTitle()
+		).setParameter(
+			"version", String.valueOf(version)
+		).build();
 
 		return portletURL.toString();
 	}

@@ -17,6 +17,7 @@ package com.liferay.sharing.web.internal.portlet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.BasePortletProvider;
 import com.liferay.portal.kernel.portlet.ManagePortletProvider;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.sharing.web.internal.constants.SharingPortletKeys;
 
 import javax.portlet.PortletURL;
@@ -45,10 +46,11 @@ public class ManageCollaboratorsPortletProvider
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/sharing/manage_collaborators");
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest)
+		).setParameter(
+			"mvcRenderCommandName", "/sharing/manage_collaborators"
+		).build();
 
 		return portletURL;
 	}

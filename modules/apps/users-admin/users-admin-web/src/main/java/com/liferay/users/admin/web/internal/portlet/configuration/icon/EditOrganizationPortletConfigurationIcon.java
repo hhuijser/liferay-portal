@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.OrganizationPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -60,14 +61,15 @@ public class EditOrganizationPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				portletRequest, UsersAdminPortletKeys.USERS_ADMIN,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"mvcRenderCommandName", "/users_admin/edit_organization");
-			portletURL.setParameter(
-				"redirect", _portal.getCurrentURL(portletRequest));
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					portletRequest, UsersAdminPortletKeys.USERS_ADMIN,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcRenderCommandName", "/users_admin/edit_organization"
+			).setParameter(
+				"redirect", _portal.getCurrentURL(portletRequest)
+			).build();
 
 			Organization organization = ActionUtil.getOrganization(
 				portletRequest);

@@ -20,6 +20,7 @@ import com.liferay.marketplace.app.manager.web.internal.util.comparator.Marketpl
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -51,12 +52,17 @@ public class AppManagerSearchResultsManagementToolbarDisplayContext
 
 	@Override
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view_search_results.jsp");
-		portletURL.setParameter("category", getCategory());
-		portletURL.setParameter("state", getState());
-		portletURL.setParameter("orderByType", getOrderByType());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view_search_results.jsp"
+		).setParameter(
+			"category", getCategory()
+		).setParameter(
+			"state", getState()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		if (Validator.isNotNull(getKeywords())) {
 			portletURL.setParameter("keywords", getKeywords());

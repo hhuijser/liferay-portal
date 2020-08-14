@@ -17,6 +17,7 @@ package com.liferay.segments.web.internal.portlet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.BasePortletProvider;
 import com.liferay.portal.kernel.portlet.BrowsePortletProvider;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.segments.constants.SegmentsPortletKeys;
 
 import javax.portlet.PortletURL;
@@ -45,9 +46,11 @@ public class SegmentsEntryBrowsePortletProvider
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest);
-
-		portletURL.setParameter("mvcRenderCommandName", "selectSegmentsEntry");
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest)
+		).setParameter(
+			"mvcRenderCommandName", "selectSegmentsEntry"
+		).build();
 
 		return portletURL;
 	}

@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -89,12 +90,12 @@ public class BlogsContentEditorConfigContributor
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		if (Validator.isNotNull(portletDisplay.getId())) {
-			PortletURL portletURL =
+			PortletURL portletURL = PortletURLBuilder.create(
 				requestBackedPortletURLFactory.createActionURL(
-					portletDisplay.getId());
-
-			portletURL.setParameter(
-				ActionRequest.ACTION_NAME, "/blogs/upload_temp_image");
+					portletDisplay.getId())
+			).setParameter(
+				ActionRequest.ACTION_NAME, "/blogs/upload_temp_image"
+			).build();
 
 			jsonObject.put("uploadUrl", portletURL.toString());
 		}

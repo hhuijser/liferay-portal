@@ -18,6 +18,7 @@ import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.portal.kernel.editor.configuration.EditorOptions;
 import com.liferay.portal.kernel.editor.configuration.EditorOptionsContributor;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Validator;
@@ -52,11 +53,12 @@ public class JournalArticleContentEditorOptionsContributor
 			return;
 		}
 
-		PortletURL portletURL = requestBackedPortletURLFactory.createActionURL(
-			portletDisplay.getId());
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/journal/upload_image");
+		PortletURL portletURL = PortletURLBuilder.create(
+			requestBackedPortletURLFactory.createActionURL(
+				portletDisplay.getId())
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/journal/upload_image"
+		).build();
 
 		editorOptions.setUploadURL(portletURL.toString());
 	}

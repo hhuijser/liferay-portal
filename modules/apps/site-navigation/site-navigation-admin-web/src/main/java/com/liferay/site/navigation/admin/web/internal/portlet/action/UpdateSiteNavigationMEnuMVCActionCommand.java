@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -85,9 +86,11 @@ public class UpdateSiteNavigationMEnuMVCActionCommand
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).build();
 
 		return portletURL.toString();
 	}

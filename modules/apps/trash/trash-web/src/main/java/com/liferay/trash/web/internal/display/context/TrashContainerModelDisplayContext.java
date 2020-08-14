@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.ContainerModel;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil;
@@ -196,14 +197,19 @@ public class TrashContainerModelDisplayContext {
 		String currentURL = (String)_httpServletRequest.getAttribute(
 			WebKeys.CURRENT_URL);
 
-		PortletURL containerURL = _liferayPortletResponse.createRenderURL();
-
-		containerURL.setParameter("mvcPath", "/view_container_model.jsp");
-		containerURL.setParameter("redirect", getRedirect());
-		containerURL.setParameter("backURL", currentURL);
-		containerURL.setParameter(
-			"classNameId", String.valueOf(getClassNameId()));
-		containerURL.setParameter("classPK", String.valueOf(getClassPK()));
+		PortletURL containerURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view_container_model.jsp"
+		).setParameter(
+			"redirect", getRedirect()
+		).setParameter(
+			"backURL", currentURL
+		).setParameter(
+			"classNameId", String.valueOf(getClassNameId())
+		).setParameter(
+			"classPK", String.valueOf(getClassPK())
+		).build();
 
 		return containerURL;
 	}
@@ -263,10 +269,11 @@ public class TrashContainerModelDisplayContext {
 			return _searchContainer;
 		}
 
-		PortletURL containerURL = getContainerURL();
-
-		containerURL.setParameter(
-			"containerModelId", String.valueOf(getContainerModelId()));
+		PortletURL containerURL = PortletURLBuilder.create(
+			getContainerURL()
+		).setParameter(
+			"containerModelId", String.valueOf(getContainerModelId())
+		).build();
 
 		_searchContainer = new SearchContainer(
 			_liferayPortletRequest, null, null,

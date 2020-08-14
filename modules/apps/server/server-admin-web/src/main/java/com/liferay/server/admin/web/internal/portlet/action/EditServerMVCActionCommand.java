@@ -56,6 +56,7 @@ import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.portlet.LiferayActionResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.scripting.Scripting;
 import com.liferay.portal.kernel.scripting.ScriptingException;
 import com.liferay.portal.kernel.scripting.ScriptingHelperUtil;
@@ -462,10 +463,13 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 			LiferayActionResponse liferayActionResponse =
 				(LiferayActionResponse)actionResponse;
 
-			PortletURL portletURL = liferayActionResponse.createRenderURL();
-
-			portletURL.setParameter("mvcRenderCommandName", path);
-			portletURL.setWindowState(WindowState.MAXIMIZED);
+			PortletURL portletURL = PortletURLBuilder.createRenderURL(
+				liferayActionResponse
+			).setParameter(
+				"mvcRenderCommandName", path
+			).setWindowState(
+				WindowState.MAXIMIZED
+			).build();
 
 			return portletURL.toString();
 		}

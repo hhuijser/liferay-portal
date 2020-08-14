@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.Portal;
 
@@ -62,20 +63,22 @@ public class PrintKBTemplatePorletConfigurationIcon
 
 			sb.append("window.open('");
 
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, KBPortletKeys.KNOWLEDGE_BASE_ADMIN,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/admin/print_template.jsp");
-
 			KBTemplate kbTemplate = (KBTemplate)portletRequest.getAttribute(
 				KBWebKeys.KNOWLEDGE_BASE_KB_TEMPLATE);
 
-			portletURL.setParameter(
-				"kbTemplateId", String.valueOf(kbTemplate.getKbTemplateId()));
-
-			portletURL.setParameter("viewMode", Constants.PRINT);
-			portletURL.setWindowState(LiferayWindowState.POP_UP);
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest, KBPortletKeys.KNOWLEDGE_BASE_ADMIN,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcPath", "/admin/print_template.jsp"
+			).setParameter(
+				"kbTemplateId", String.valueOf(kbTemplate.getKbTemplateId())
+			).setParameter(
+				"viewMode", Constants.PRINT
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 			sb.append(portletURL.toString());
 

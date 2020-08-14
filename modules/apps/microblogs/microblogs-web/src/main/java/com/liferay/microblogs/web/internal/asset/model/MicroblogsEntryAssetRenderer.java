@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
@@ -121,20 +122,21 @@ public class MicroblogsEntryAssetRenderer
 			long portletPlid = PortalUtil.getPlidFromPortletId(
 				user.getGroupId(), MicroblogsPortletKeys.MICROBLOGS);
 
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				liferayPortletRequest, MicroblogsPortletKeys.MICROBLOGS,
-				portletPlid, PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/microblogs/view.jsp");
-
 			long microblogsEntryId = _entry.getMicroblogsEntryId();
 
 			if (_entry.getParentMicroblogsEntryId() > 0) {
 				microblogsEntryId = _entry.getParentMicroblogsEntryId();
 			}
 
-			portletURL.setParameter(
-				"parentMicroblogsEntryId", String.valueOf(microblogsEntryId));
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					liferayPortletRequest, MicroblogsPortletKeys.MICROBLOGS,
+					portletPlid, PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcPath", "/microblogs/view.jsp"
+			).setParameter(
+				"parentMicroblogsEntryId", String.valueOf(microblogsEntryId)
+			).build();
 
 			return portletURL.toString();
 		}

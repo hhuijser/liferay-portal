@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.model.LayoutType;
 import com.liferay.portal.kernel.model.LayoutTypeController;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.LayoutServiceUtil;
 import com.liferay.portal.kernel.service.LayoutSetBranchLocalServiceUtil;
@@ -78,10 +79,11 @@ public class MillerColumnsDisplayContext {
 	}
 
 	public String getLayoutChildrenURL() {
-		PortletURL itemChildrenURL = _liferayPortletResponse.createActionURL();
-
-		itemChildrenURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/get_layout_children");
+		PortletURL itemChildrenURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/layout/get_layout_children"
+		).build();
 
 		return itemChildrenURL.toString();
 	}
@@ -227,16 +229,17 @@ public class MillerColumnsDisplayContext {
 				"title", layout.getName(_themeDisplay.getLocale())
 			);
 
-			PortletURL portletURL = _layoutsAdminDisplayContext.getPortletURL();
-
-			portletURL.setParameter(
-				"selPlid", String.valueOf(layout.getPlid()));
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				_layoutsAdminDisplayContext.getPortletURL()
+			).setParameter(
+				"selPlid", String.valueOf(layout.getPlid())
+			).setParameter(
 				"layoutSetBranchId",
 				String.valueOf(
-					_layoutsAdminDisplayContext.getActiveLayoutSetBranchId()));
-			portletURL.setParameter(
-				"privateLayout", String.valueOf(layout.isPrivateLayout()));
+					_layoutsAdminDisplayContext.getActiveLayoutSetBranchId())
+			).setParameter(
+				"privateLayout", String.valueOf(layout.isPrivateLayout())
+			).build();
 
 			layoutJSONObject.put(
 				"url", portletURL.toString()
@@ -348,11 +351,13 @@ public class MillerColumnsDisplayContext {
 			"title", _layoutsAdminDisplayContext.getTitle(privatePages)
 		);
 
-		PortletURL pagesURL = _layoutsAdminDisplayContext.getPortletURL();
-
-		pagesURL.setParameter(
-			"selPlid", String.valueOf(LayoutConstants.DEFAULT_PLID));
-		pagesURL.setParameter("privateLayout", String.valueOf(privatePages));
+		PortletURL pagesURL = PortletURLBuilder.create(
+			_layoutsAdminDisplayContext.getPortletURL()
+		).setParameter(
+			"selPlid", String.valueOf(LayoutConstants.DEFAULT_PLID)
+		).setParameter(
+			"privateLayout", String.valueOf(privatePages)
+		).build();
 
 		pagesJSONObject.put("url", pagesURL.toString());
 
@@ -704,14 +709,15 @@ public class MillerColumnsDisplayContext {
 				LanguageUtil.get(_httpServletRequest, layoutSetBranch.getName())
 			);
 
-			PortletURL portletURL = _layoutsAdminDisplayContext.getPortletURL();
-
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				_layoutsAdminDisplayContext.getPortletURL()
+			).setParameter(
 				"layoutSetBranchId",
-				String.valueOf(layoutSetBranch.getLayoutSetBranchId()));
-			portletURL.setParameter(
+				String.valueOf(layoutSetBranch.getLayoutSetBranchId())
+			).setParameter(
 				"privateLayout",
-				String.valueOf(layoutSetBranch.isPrivateLayout()));
+				String.valueOf(layoutSetBranch.isPrivateLayout())
+			).build();
 
 			jsonObject.put("url", portletURL.toString());
 

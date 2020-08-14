@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.UserPermissionUtil;
@@ -110,13 +111,14 @@ public class UserAssetRenderer extends BaseJSPAssetRenderer<User> {
 		String portletId = PortletProviderUtil.getPortletId(
 			User.class.getName(), PortletProvider.Action.VIEW);
 
-		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
-			getControlPanelPlid(liferayPortletRequest), portletId,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("p_u_i_d", String.valueOf(_user.getUserId()));
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/users_admin/edit_user");
+		PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
+			liferayPortletResponse, getControlPanelPlid(liferayPortletRequest),
+			portletId, PortletRequest.RENDER_PHASE
+		).setParameter(
+			"p_u_i_d", String.valueOf(_user.getUserId())
+		).setParameter(
+			"mvcRenderCommandName", "/users_admin/edit_user"
+		).build();
 
 		return portletURL;
 	}

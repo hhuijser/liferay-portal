@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
@@ -120,10 +121,13 @@ public class JournalContentSearchDisplayContext {
 
 		Layout layout = themeDisplay.getLayout();
 
-		PortletURL renderURL = _liferayPortletResponse.createRenderURL();
-
-		renderURL.setParameter("mvcPath", "/search.jsp");
-		renderURL.setParameter("keywords", getKeywords());
+		PortletURL renderURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/search.jsp"
+		).setParameter(
+			"keywords", getKeywords()
+		).build();
 
 		String originalKeywords = ParamUtil.getString(
 			_httpServletRequest, "keywords", getKeywords());

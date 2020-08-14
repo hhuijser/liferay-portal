@@ -20,6 +20,7 @@ import com.liferay.journal.web.internal.search.FeedSearch;
 import com.liferay.journal.web.internal.search.FeedSearchTerms;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -106,13 +107,19 @@ public class JournalFeedsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view_feeds.jsp");
-		portletURL.setParameter("redirect", getRedirect());
-		portletURL.setParameter("displayStyle", getDisplayStyle());
-		portletURL.setParameter("orderByCol", getOrderByCol());
-		portletURL.setParameter("orderByType", getOrderByType());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/view_feeds.jsp"
+		).setParameter(
+			"redirect", getRedirect()
+		).setParameter(
+			"displayStyle", getDisplayStyle()
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return portletURL;
 	}

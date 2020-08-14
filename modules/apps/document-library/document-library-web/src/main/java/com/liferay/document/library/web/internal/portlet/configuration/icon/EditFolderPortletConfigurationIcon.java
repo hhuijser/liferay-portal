@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
@@ -69,15 +70,17 @@ public class EditFolderPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, DLPortletKeys.DOCUMENT_LIBRARY_ADMIN,
-				PortletRequest.RENDER_PHASE);
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest, DLPortletKeys.DOCUMENT_LIBRARY_ADMIN,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"redirect", themeDisplay.getURLCurrent()
+			).build();
 
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)portletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
-
-			portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
 
 			Folder folder = ActionUtil.getFolder(portletRequest);
 

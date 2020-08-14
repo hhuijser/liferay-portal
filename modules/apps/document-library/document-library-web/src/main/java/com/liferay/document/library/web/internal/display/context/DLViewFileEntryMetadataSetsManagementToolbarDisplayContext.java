@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -60,9 +61,11 @@ public class DLViewFileEntryMetadataSetsManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return portletURL.toString();
 	}
@@ -90,14 +93,16 @@ public class DLViewFileEntryMetadataSetsManagementToolbarDisplayContext
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).setParameter(
 			"tabs1",
-			ParamUtil.getString(liferayPortletRequest, "tabs1", "structures"));
-		portletURL.setParameter(
-			"groupId", String.valueOf(_dlRequestHelper.getScopeGroupId()));
+			ParamUtil.getString(liferayPortletRequest, "tabs1", "structures")
+		).setParameter(
+			"groupId", String.valueOf(_dlRequestHelper.getScopeGroupId())
+		).build();
 
 		return portletURL.toString();
 	}

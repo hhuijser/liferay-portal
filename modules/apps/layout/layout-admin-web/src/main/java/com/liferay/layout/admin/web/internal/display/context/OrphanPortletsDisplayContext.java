@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.PortletPreferences;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
@@ -192,11 +193,15 @@ public class OrphanPortletsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/orphan_portlets.jsp");
-		portletURL.setParameter("backURL", getBackURL());
-		portletURL.setParameter("displayStyle", getDisplayStyle());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/orphan_portlets.jsp"
+		).setParameter(
+			"backURL", getBackURL()
+		).setParameter(
+			"displayStyle", getDisplayStyle()
+		).build();
 
 		return portletURL;
 	}

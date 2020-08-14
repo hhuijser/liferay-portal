@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.notifications.UserNotificationHandler;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
@@ -107,34 +108,35 @@ public class InviteMembersUserNotificationHandler
 		LiferayPortletResponse liferayPortletResponse =
 			serviceContext.getLiferayPortletResponse();
 
-		PortletURL confirmURL = liferayPortletResponse.createActionURL(
-			InviteMembersPortletKeys.INVITE_MEMBERS);
-
-		confirmURL.setParameter(
-			ActionRequest.ACTION_NAME, "updateMemberRequest");
-		confirmURL.setParameter(
-			"memberRequestId", String.valueOf(memberRequestId));
-		confirmURL.setParameter(
-			"status",
-			String.valueOf(MembershipRequestConstants.STATUS_APPROVED));
-		confirmURL.setParameter(
+		PortletURL confirmURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, InviteMembersPortletKeys.INVITE_MEMBERS
+		).setParameter(
+			ActionRequest.ACTION_NAME, "updateMemberRequest"
+		).setParameter(
+			"memberRequestId", String.valueOf(memberRequestId)
+		).setParameter(
+			"status", String.valueOf(MembershipRequestConstants.STATUS_APPROVED)
+		).setParameter(
 			"userNotificationEventId",
-			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
-		confirmURL.setWindowState(WindowState.NORMAL);
+			String.valueOf(userNotificationEvent.getUserNotificationEventId())
+		).setWindowState(
+			WindowState.NORMAL
+		).build();
 
-		PortletURL ignoreURL = liferayPortletResponse.createActionURL(
-			InviteMembersPortletKeys.INVITE_MEMBERS);
-
-		ignoreURL.setParameter(
-			ActionRequest.ACTION_NAME, "updateMemberRequest");
-		ignoreURL.setParameter(
-			"memberRequestId", String.valueOf(memberRequestId));
-		ignoreURL.setParameter(
-			"status", String.valueOf(MembershipRequestConstants.STATUS_DENIED));
-		ignoreURL.setParameter(
+		PortletURL ignoreURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, InviteMembersPortletKeys.INVITE_MEMBERS
+		).setParameter(
+			ActionRequest.ACTION_NAME, "updateMemberRequest"
+		).setParameter(
+			"memberRequestId", String.valueOf(memberRequestId)
+		).setParameter(
+			"status", String.valueOf(MembershipRequestConstants.STATUS_DENIED)
+		).setParameter(
 			"userNotificationEventId",
-			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
-		ignoreURL.setWindowState(WindowState.NORMAL);
+			String.valueOf(userNotificationEvent.getUserNotificationEventId())
+		).setWindowState(
+			WindowState.NORMAL
+		).build();
 
 		return StringUtil.replace(
 			getBodyTemplate(),

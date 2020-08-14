@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -86,12 +87,14 @@ public class DLURLHelperImpl implements DLURLHelper {
 		String portletId = PortletProviderUtil.getPortletId(
 			FileEntry.class.getName(), PortletProvider.Action.MANAGE);
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, portletId, PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/view_file_entry");
-		portletURL.setParameter("fileEntryId", String.valueOf(fileEntryId));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, portletId, PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/view_file_entry"
+		).setParameter(
+			"fileEntryId", String.valueOf(fileEntryId)
+		).build();
 
 		return portletURL.toString();
 	}

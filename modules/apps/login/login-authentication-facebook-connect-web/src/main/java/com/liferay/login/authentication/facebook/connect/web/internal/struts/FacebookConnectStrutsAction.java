@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -266,20 +267,29 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 			HttpServletResponse httpServletResponse, User user)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, PortletKeys.LOGIN, PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("saveLastPath", Boolean.FALSE.toString());
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/login/associate_facebook_user");
-		portletURL.setParameter(
-			"redirect", ParamUtil.getString(httpServletRequest, "redirect"));
-		portletURL.setParameter("userId", String.valueOf(user.getUserId()));
-		portletURL.setParameter("emailAddress", user.getEmailAddress());
-		portletURL.setParameter("firstName", user.getFirstName());
-		portletURL.setParameter("lastName", user.getLastName());
-		portletURL.setPortletMode(PortletMode.VIEW);
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				httpServletRequest, PortletKeys.LOGIN,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"saveLastPath", Boolean.FALSE.toString()
+		).setParameter(
+			"mvcRenderCommandName", "/login/associate_facebook_user"
+		).setParameter(
+			"redirect", ParamUtil.getString(httpServletRequest, "redirect")
+		).setParameter(
+			"userId", String.valueOf(user.getUserId())
+		).setParameter(
+			"emailAddress", user.getEmailAddress()
+		).setParameter(
+			"firstName", user.getFirstName()
+		).setParameter(
+			"lastName", user.getLastName()
+		).setPortletMode(
+			PortletMode.VIEW
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		httpServletResponse.sendRedirect(portletURL.toString());
 	}

@@ -20,6 +20,7 @@ import com.liferay.asset.list.service.AssetListEntryService;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -94,13 +95,15 @@ public class AddAssetListEntryVariationMVCActionCommand
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/edit_asset_list_entry.jsp");
-		portletURL.setParameter(
-			"assetListEntryId", String.valueOf(assetListEntryId));
-		portletURL.setParameter(
-			"segmentsEntryId", String.valueOf(segmentsEntryId));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/edit_asset_list_entry.jsp"
+		).setParameter(
+			"assetListEntryId", String.valueOf(assetListEntryId)
+		).setParameter(
+			"segmentsEntryId", String.valueOf(segmentsEntryId)
+		).build();
 
 		return portletURL.toString();
 	}

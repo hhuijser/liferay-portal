@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.wedeploy.auth.constants.WeDeployAuthActionKeys;
@@ -53,14 +54,14 @@ public class WeDeployAuthAppsManagementToolbarDisplayContext
 
 	@Override
 	public CreationMenu getCreationMenu() {
-		PortletURL editWeDeployAuthAppURL =
-			liferayPortletResponse.createRenderURL();
-
-		editWeDeployAuthAppURL.setParameter(
+		PortletURL editWeDeployAuthAppURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
 			"mvcRenderCommandName",
-			"/wedeploy_auth_admin/edit_wedeploy_auth_app");
-		editWeDeployAuthAppURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
+			"/wedeploy_auth_admin/edit_wedeploy_auth_app"
+		).setParameter(
+			"redirect", _themeDisplay.getURLCurrent()
+		).build();
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
 			dropdownItem -> {

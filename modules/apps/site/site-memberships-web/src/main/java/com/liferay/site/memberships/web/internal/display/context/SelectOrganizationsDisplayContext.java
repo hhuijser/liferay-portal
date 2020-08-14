@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
@@ -206,11 +207,15 @@ public class SelectOrganizationsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/select_organizations.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
-		portletURL.setParameter("eventName", getEventName());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/select_organizations.jsp"
+		).setParameter(
+			"groupId", String.valueOf(getGroupId())
+		).setParameter(
+			"eventName", getEventName()
+		).build();
 
 		String displayStyle = getDisplayStyle();
 

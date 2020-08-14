@@ -24,6 +24,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.PortletDisplay;
@@ -160,13 +161,15 @@ public class MBUtil {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, portletDisplay.getId(),
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
-		portletURL.setParameter("messageId", String.valueOf(messageId));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				httpServletRequest, portletDisplay.getId(),
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/view_message"
+		).setParameter(
+			"messageId", String.valueOf(messageId)
+		).build();
 
 		return StringBundler.concat(
 			portletURL.toString(), StringPool.POUND,
@@ -176,11 +179,13 @@ public class MBUtil {
 	public static String getMBMessageURL(
 		long messageId, RenderResponse renderResponse) {
 
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
-		portletURL.setParameter("messageId", String.valueOf(messageId));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/view_message"
+		).setParameter(
+			"messageId", String.valueOf(messageId)
+		).build();
 
 		return StringBundler.concat(
 			portletURL.toString(), StringPool.POUND,

@@ -21,6 +21,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -61,9 +62,11 @@ public class GroupManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}

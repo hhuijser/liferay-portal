@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
@@ -318,19 +319,20 @@ public class LayoutClassedModelUsagesDisplayContext {
 				String.valueOf(AssetRendererFactory.TYPE_LATEST));
 		}
 		else {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				_renderRequest, layoutClassedModelUsage.getContainerKey(),
-				layoutClassedModelUsage.getPlid(), PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					_renderRequest, layoutClassedModelUsage.getContainerKey(),
+					layoutClassedModelUsage.getPlid(),
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
 				"previewClassNameId",
-				String.valueOf(layoutClassedModelUsage.getClassNameId()));
-			portletURL.setParameter(
+				String.valueOf(layoutClassedModelUsage.getClassNameId())
+			).setParameter(
 				"previewClassPK",
-				String.valueOf(layoutClassedModelUsage.getClassPK()));
-			portletURL.setParameter(
-				"previewType",
-				String.valueOf(AssetRendererFactory.TYPE_LATEST));
+				String.valueOf(layoutClassedModelUsage.getClassPK())
+			).setParameter(
+				"previewType", String.valueOf(AssetRendererFactory.TYPE_LATEST)
+			).build();
 
 			layoutURL = portletURL.toString();
 		}

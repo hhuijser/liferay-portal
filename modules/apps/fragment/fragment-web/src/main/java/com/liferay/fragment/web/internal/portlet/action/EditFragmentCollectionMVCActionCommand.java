@@ -20,6 +20,7 @@ import com.liferay.fragment.service.FragmentCollectionService;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -91,12 +92,14 @@ public class EditFragmentCollectionMVCActionCommand
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/fragment/view");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/fragment/view"
+		).setParameter(
 			"fragmentCollectionId",
-			String.valueOf(fragmentCollection.getFragmentCollectionId()));
+			String.valueOf(fragmentCollection.getFragmentCollectionId())
+		).build();
 
 		return portletURL.toString();
 	}

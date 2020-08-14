@@ -17,6 +17,7 @@ package com.liferay.segments.web.internal.portlet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.BasePortletProvider;
 import com.liferay.portal.kernel.portlet.EditPortletProvider;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.segments.constants.SegmentsActionKeys;
@@ -61,9 +62,11 @@ public class SegmentsEntryEditPortletProvider
 			return null;
 		}
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest);
-
-		portletURL.setParameter("mvcRenderCommandName", "editSegmentsEntry");
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest)
+		).setParameter(
+			"mvcRenderCommandName", "editSegmentsEntry"
+		).build();
 
 		return portletURL;
 	}

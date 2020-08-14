@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -239,19 +240,25 @@ public class ActionUtil {
 		LiferayPortletResponse liferayPortletResponse =
 			PortalUtil.getLiferayPortletResponse(portletResponse);
 
-		PortletURL viewPageURL = liferayPortletResponse.createRenderURL();
-
-		viewPageURL.setParameter("mvcRenderCommandName", "wiki/view");
-
 		WikiNode sourceNode = sourcePage.getNode();
 
-		viewPageURL.setParameter("nodeName", sourceNode.getName());
+		PortletURL viewPageURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "wiki/view"
+		).setParameter(
+			"nodeName", sourceNode.getName()
+		).build();
 
-		PortletURL editPageURL = liferayPortletResponse.createRenderURL();
-
-		editPageURL.setParameter("mvcRenderCommandName", "wiki/edit_page");
-		editPageURL.setParameter("nodeId", String.valueOf(nodeId));
-		editPageURL.setParameter("title", title);
+		PortletURL editPageURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "wiki/edit_page"
+		).setParameter(
+			"nodeId", String.valueOf(nodeId)
+		).setParameter(
+			"title", title
+		).build();
 
 		String attachmentURLPrefix = WikiUtil.getAttachmentURLPrefix(
 			themeDisplay.getPathMain(), themeDisplay.getPlid(), nodeId, title);

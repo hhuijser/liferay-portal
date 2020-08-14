@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.LayoutService;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -139,14 +140,15 @@ public class CopyLayoutMVCActionCommand extends BaseMVCActionCommand {
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(actionResponse);
 
-			PortletURL redirectURL = liferayPortletResponse.createRenderURL();
-
-			redirectURL.setParameter(
-				"navigation", privateLayout ? "private-pages" : "public-pages");
-			redirectURL.setParameter(
-				"selPlid", String.valueOf(sourceLayout.getParentPlid()));
-			redirectURL.setParameter(
-				"privateLayout", String.valueOf(privateLayout));
+			PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+				liferayPortletResponse
+			).setParameter(
+				"navigation", privateLayout ? "private-pages" : "public-pages"
+			).setParameter(
+				"selPlid", String.valueOf(sourceLayout.getParentPlid())
+			).setParameter(
+				"privateLayout", String.valueOf(privateLayout)
+			).build();
 
 			JSONPortletResponseUtil.writeJSON(
 				actionRequest, actionResponse,

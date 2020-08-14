@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.PortletRequestModel;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -283,16 +284,19 @@ public class JournalArticleAssetRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			httpServletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_article.jsp");
-		portletURL.setParameter(
-			"groupId", String.valueOf(_article.getGroupId()));
-		portletURL.setParameter("articleId", _article.getArticleId());
-		portletURL.setParameter(
-			"version", String.valueOf(_article.getVersion()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				httpServletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_article.jsp"
+		).setParameter(
+			"groupId", String.valueOf(_article.getGroupId())
+		).setParameter(
+			"articleId", _article.getArticleId()
+		).setParameter(
+			"version", String.valueOf(_article.getVersion())
+		).build();
 
 		return portletURL;
 	}
@@ -364,20 +368,22 @@ public class JournalArticleAssetRenderer
 			return null;
 		}
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, JournalPortletKeys.JOURNAL,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/journal/compare_versions");
-		portletURL.setParameter(
-			"groupId", String.valueOf(_article.getGroupId()));
-		portletURL.setParameter("articleId", _article.getArticleId());
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, JournalPortletKeys.JOURNAL,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/journal/compare_versions"
+		).setParameter(
+			"groupId", String.valueOf(_article.getGroupId())
+		).setParameter(
+			"articleId", _article.getArticleId()
+		).setParameter(
 			"sourceVersion",
-			String.valueOf(previousApprovedArticle.getVersion()));
-		portletURL.setParameter(
-			"targetVersion", String.valueOf(_article.getVersion()));
+			String.valueOf(previousApprovedArticle.getVersion())
+		).setParameter(
+			"targetVersion", String.valueOf(_article.getVersion())
+		).build();
 
 		return portletURL;
 	}

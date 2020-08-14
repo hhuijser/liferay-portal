@@ -21,6 +21,7 @@ import com.liferay.marketplace.app.manager.web.internal.util.comparator.ModuleSe
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -92,18 +93,23 @@ public class ViewModuleManagementToolbarDisplayContext
 
 	@Override
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view_module.jsp");
-		portletURL.setParameter("app", getApp());
-
 		Bundle bundle = getBundle();
 
-		portletURL.setParameter("symbolicName", bundle.getSymbolicName());
-		portletURL.setParameter("version", String.valueOf(bundle.getVersion()));
-
-		portletURL.setParameter("pluginType", getPluginType());
-		portletURL.setParameter("orderByType", getOrderByType());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view_module.jsp"
+		).setParameter(
+			"app", getApp()
+		).setParameter(
+			"symbolicName", bundle.getSymbolicName()
+		).setParameter(
+			"version", String.valueOf(bundle.getVersion())
+		).setParameter(
+			"pluginType", getPluginType()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		if (_searchContainer != null) {
 			portletURL.setParameter(

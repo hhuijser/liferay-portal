@@ -15,6 +15,7 @@
 package com.liferay.segments.context.vocabulary.internal.display.context;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -52,39 +53,47 @@ public class SegmentsContextVocabularyConfigurationFactoryDisplayContext {
 	}
 
 	public PortletURL getAddConfigurationURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
 			"mvcRenderCommandName",
-			"/edit_segments_context_vocabulary_configuration");
-		portletURL.setParameter(
+			"/edit_segments_context_vocabulary_configuration"
+		).setParameter(
 			"factoryPid",
-			SegmentsContextVocabularyConfiguration.class.getCanonicalName());
+			SegmentsContextVocabularyConfiguration.class.getCanonicalName()
+		).build();
 
 		return portletURL;
 	}
 
 	public PortletURL getDeleteConfigurationURL(Configuration configuration) {
-		PortletURL portletURL = _renderResponse.createActionURL();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setParameter(
 			ActionRequest.ACTION_NAME,
-			"/delete_segments_context_vocabulary_configuration");
-		portletURL.setParameter("factoryPid", configuration.getFactoryPid());
-		portletURL.setParameter("pid", configuration.getPid());
-		portletURL.setParameter("redirect", String.valueOf(_getRedirect()));
+			"/delete_segments_context_vocabulary_configuration"
+		).setParameter(
+			"factoryPid", configuration.getFactoryPid()
+		).setParameter(
+			"pid", configuration.getPid()
+		).setParameter(
+			"redirect", String.valueOf(_getRedirect())
+		).build();
 
 		return portletURL;
 	}
 
 	public PortletURL getEditConfigurationURL(Configuration configuration) {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
 			"mvcRenderCommandName",
-			"/edit_segments_context_vocabulary_configuration");
-		portletURL.setParameter("factoryPid", configuration.getFactoryPid());
-		portletURL.setParameter("pid", configuration.getPid());
+			"/edit_segments_context_vocabulary_configuration"
+		).setParameter(
+			"factoryPid", configuration.getFactoryPid()
+		).setParameter(
+			"pid", configuration.getPid()
+		).build();
 
 		return portletURL;
 	}
@@ -100,13 +109,14 @@ public class SegmentsContextVocabularyConfigurationFactoryDisplayContext {
 	}
 
 	public PortletURL getIteratorURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/view_configuration_screen");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/view_configuration_screen"
+		).setParameter(
 			"configurationScreenKey",
-			"segments-context-vocabulary-configuration-name");
+			"segments-context-vocabulary-configuration-name"
+		).build();
 
 		return portletURL;
 	}
@@ -129,13 +139,14 @@ public class SegmentsContextVocabularyConfigurationFactoryDisplayContext {
 	}
 
 	private PortletURL _getRedirect() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/view_configuration_screen");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/view_configuration_screen"
+		).setParameter(
 			"configurationScreenKey",
-			"segments-context-vocabulary-configuration-name");
+			"segments-context-vocabulary-configuration-name"
+		).build();
 
 		return portletURL;
 	}

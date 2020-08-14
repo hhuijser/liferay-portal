@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
@@ -67,14 +68,15 @@ public class ConfigurationTemplatesPortletConfigurationIcon
 			String returnToFullPageURL = ParamUtil.getString(
 				portletRequest, "returnToFullPageURL");
 
-			PortletURL portletURL = PortletProviderUtil.getPortletURL(
-				portletRequest,
-				PortletConfigurationApplicationType.PortletConfiguration.
-					CLASS_NAME,
-				PortletProvider.Action.VIEW);
-
-			portletURL.setParameter(
-				"mvcPath", "/edit_configuration_templates.jsp");
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(
+					portletRequest,
+					PortletConfigurationApplicationType.PortletConfiguration.
+						CLASS_NAME,
+					PortletProvider.Action.VIEW)
+			).setParameter(
+				"mvcPath", "/edit_configuration_templates.jsp"
+			).build();
 
 			if (Validator.isNotNull(redirect)) {
 				portletURL.setParameter("redirect", redirect);

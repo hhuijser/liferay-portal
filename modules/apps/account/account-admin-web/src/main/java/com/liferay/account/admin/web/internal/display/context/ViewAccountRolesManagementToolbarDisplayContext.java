@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.List;
@@ -63,13 +64,14 @@ public class ViewAccountRolesManagementToolbarDisplayContext
 				dropdownItem.putData("action", "deleteAccountRoles");
 
 				PortletURL deleteAccountRolesURL =
-					liferayPortletResponse.createActionURL();
-
-				deleteAccountRolesURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/delete_account_roles");
-				deleteAccountRolesURL.setParameter(
-					"redirect", currentURLObj.toString());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/account_admin/delete_account_roles"
+					).setParameter(
+						"redirect", currentURLObj.toString()
+					).build();
 
 				dropdownItem.putData(
 					"deleteAccountRolesURL", deleteAccountRolesURL.toString());
@@ -84,9 +86,11 @@ public class ViewAccountRolesManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}

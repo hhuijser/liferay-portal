@@ -16,6 +16,7 @@ package com.liferay.login.web.internal.servlet.taglib.include;
 
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.PortletKeys;
@@ -77,12 +78,15 @@ public class SignInNavigationPrePageInclude implements PageInclude {
 		String portletName = portletConfig.getPortletName();
 
 		if (portletName.equals(PortletKeys.FAST_LOGIN)) {
-			PortletURL fastLoginURL = PortletURLFactoryUtil.create(
-				httpServletRequest, PortletKeys.FAST_LOGIN,
-				PortletRequest.RENDER_PHASE);
-
-			fastLoginURL.setParameter("saveLastPath", Boolean.FALSE.toString());
-			fastLoginURL.setParameter("mvcRenderCommandName", "/login/login");
+			PortletURL fastLoginURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					httpServletRequest, PortletKeys.FAST_LOGIN,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"saveLastPath", Boolean.FALSE.toString()
+			).setParameter(
+				"mvcRenderCommandName", "/login/login"
+			).build();
 
 			try {
 				fastLoginURL.setPortletMode(PortletMode.VIEW);

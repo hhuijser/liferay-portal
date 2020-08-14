@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.toolbar.contributor.BasePortletToolbarContributor;
 import com.liferay.portal.kernel.portlet.toolbar.contributor.PortletToolbarContributor;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
@@ -79,16 +80,21 @@ public class JournalContentPortletToolbarContributor
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 		long scopeGroupId = themeDisplay.getScopeGroupId();
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, JournalPortletKeys.JOURNAL,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_article.jsp");
-		portletURL.setParameter(
-			"redirect", _portal.getLayoutFullURL(themeDisplay));
-		portletURL.setParameter("portletResource", portletDisplay.getId());
-		portletURL.setParameter("refererPlid", String.valueOf(plid));
-		portletURL.setParameter("groupId", String.valueOf(scopeGroupId));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, JournalPortletKeys.JOURNAL,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_article.jsp"
+		).setParameter(
+			"redirect", _portal.getLayoutFullURL(themeDisplay)
+		).setParameter(
+			"portletResource", portletDisplay.getId()
+		).setParameter(
+			"refererPlid", String.valueOf(plid)
+		).setParameter(
+			"groupId", String.valueOf(scopeGroupId)
+		).build();
 
 		List<DDMStructure> ddmStructures =
 			_journalFolderService.getDDMStructures(

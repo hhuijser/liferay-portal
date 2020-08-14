@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.TicketLocalService;
@@ -71,15 +72,19 @@ public class UnsubscribeMVCActionCommand extends BaseMVCActionCommand {
 		String key = ParamUtil.getString(actionRequest, "key");
 		long userId = ParamUtil.getLong(actionRequest, "userId");
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			actionRequest, SubscriptionPortletKeys.UNSUBSCRIBE,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setWindowState(WindowState.MAXIMIZED);
-
-		portletURL.setParameter("mvcPath", "/unsubscribe/unsubscribed.jsp");
-		portletURL.setParameter("key", key);
-		portletURL.setParameter("userId", String.valueOf(userId));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest, SubscriptionPortletKeys.UNSUBSCRIBE,
+				PortletRequest.RENDER_PHASE)
+		).setWindowState(
+			WindowState.MAXIMIZED
+		).setParameter(
+			"mvcPath", "/unsubscribe/unsubscribed.jsp"
+		).setParameter(
+			"key", key
+		).setParameter(
+			"userId", String.valueOf(userId)
+		).build();
 
 		try {
 			_checkUser(userId, actionRequest);

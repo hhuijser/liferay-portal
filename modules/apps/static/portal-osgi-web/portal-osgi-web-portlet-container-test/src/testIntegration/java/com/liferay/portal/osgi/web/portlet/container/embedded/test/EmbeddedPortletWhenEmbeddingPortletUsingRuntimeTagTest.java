@@ -17,6 +17,7 @@ package com.liferay.portal.osgi.web.portlet.container.embedded.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.model.LayoutTypePortlet;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -101,17 +102,20 @@ public class EmbeddedPortletWhenEmbeddingPortletUsingRuntimeTagTest
 			PortletKeys.PREFS_OWNER_TYPE_LAYOUT, layout.getPlid(),
 			TEST_PORTLET_ID, null, null);
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			PortletContainerTestUtil.getHttpServletRequest(group, layout),
-			TEST_PORTLET_ID, layout.getPlid(), PortletRequest.RESOURCE_PHASE);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				PortletContainerTestUtil.getHttpServletRequest(group, layout),
+				TEST_PORTLET_ID, layout.getPlid(),
+				PortletRequest.RESOURCE_PHASE)
+		).setParameter(
+			"testRuntimePortletId", testRuntimePortletId
+		).build();
 
 		TestRuntimePortlet testRuntimePortlet = new TestRuntimePortlet();
 		String testRuntimePortletId = "testRuntimePortletId";
 
 		setUpPortlet(
 			testRuntimePortlet, properties, testRuntimePortletId, false);
-
-		portletURL.setParameter("testRuntimePortletId", testRuntimePortletId);
 
 		PortletContainerTestUtil.Response response =
 			PortletContainerTestUtil.request(portletURL.toString());

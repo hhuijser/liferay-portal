@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
@@ -187,15 +188,19 @@ public class CreateAnonymousAccountMVCActionCommand
 		String emailAddress = ParamUtil.getString(
 			actionRequest, "emailAddress");
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			actionRequest, LoginPortletKeys.FAST_LOGIN,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/login/login_redirect");
-		portletURL.setParameter("emailAddress", emailAddress);
-		portletURL.setParameter("anonymousUser", Boolean.TRUE.toString());
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest, LoginPortletKeys.FAST_LOGIN,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/login/login_redirect"
+		).setParameter(
+			"emailAddress", emailAddress
+		).setParameter(
+			"anonymousUser", Boolean.TRUE.toString()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

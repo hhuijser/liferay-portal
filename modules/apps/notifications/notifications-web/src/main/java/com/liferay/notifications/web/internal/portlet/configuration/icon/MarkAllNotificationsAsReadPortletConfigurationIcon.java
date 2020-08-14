@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -60,17 +61,18 @@ public class MarkAllNotificationsAsReadPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			portletRequest, NotificationsPortletKeys.NOTIFICATIONS,
-			PortletRequest.ACTION_PHASE);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "markAllNotificationsAsRead");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				portletRequest, NotificationsPortletKeys.NOTIFICATIONS,
+				PortletRequest.ACTION_PHASE)
+		).setParameter(
+			ActionRequest.ACTION_NAME, "markAllNotificationsAsRead"
+		).setParameter(
+			"redirect", themeDisplay.getURLCurrent()
+		).build();
 
 		return portletURL.toString();
 	}

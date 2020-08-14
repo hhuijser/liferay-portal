@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.soy.HorizontalCard;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.LayoutTypeController;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -61,24 +62,26 @@ public class SelectBasicTemplatesHorizontalCard implements HorizontalCard {
 		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
 
 		try {
-			PortletURL addLayoutURL = _renderResponse.createRenderURL();
-
-			addLayoutURL.setParameter(
-				"mvcRenderCommandName", "/layout/add_layout");
-			addLayoutURL.setParameter("backURL", redirect);
-
 			long selPlid = ParamUtil.getLong(_httpServletRequest, "selPlid");
-
-			addLayoutURL.setParameter("selPlid", String.valueOf(selPlid));
 
 			boolean privateLayout = ParamUtil.getBoolean(
 				_httpServletRequest, "privateLayout");
 
-			addLayoutURL.setParameter(
-				"privateLayout", String.valueOf(privateLayout));
-
-			addLayoutURL.setParameter("type", _type);
-			addLayoutURL.setWindowState(LiferayWindowState.POP_UP);
+			PortletURL addLayoutURL = PortletURLBuilder.createRenderURL(
+				_renderResponse
+			).setParameter(
+				"mvcRenderCommandName", "/layout/add_layout"
+			).setParameter(
+				"backURL", redirect
+			).setParameter(
+				"selPlid", String.valueOf(selPlid)
+			).setParameter(
+				"privateLayout", String.valueOf(privateLayout)
+			).setParameter(
+				"type", _type
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 			data.put("add-layout-url", addLayoutURL.toString());
 		}

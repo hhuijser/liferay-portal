@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -250,22 +251,31 @@ public class PortletExtenderConfigurationAction
 			PortletDisplay portletDisplay)
 		throws Exception {
 
-		PortletURL actionURL = PortletURLFactoryUtil.create(
-			httpServletRequest, portletDisplay.getPortletName(),
-			PortletRequest.ACTION_PHASE);
-
-		actionURL.setParameter(ActionRequest.ACTION_NAME, "editConfiguration");
-		actionURL.setParameter("mvcPath", "/edit_configuration.jsp");
-		actionURL.setParameter(
-			"p_auth", AuthTokenUtil.getToken(httpServletRequest));
-		actionURL.setParameter("p_p_mode", PortletMode.VIEW.toString());
-		actionURL.setParameter("portletConfiguration", Boolean.TRUE.toString());
-		actionURL.setParameter(
-			"portletResource", portletDisplay.getPortletResource());
-		actionURL.setParameter("previewWidth", StringPool.BLANK);
-		actionURL.setParameter("returnToFullPageURL", "/");
-		actionURL.setParameter("settingsScope", "portletInstance");
-		actionURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL actionURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				httpServletRequest, portletDisplay.getPortletName(),
+				PortletRequest.ACTION_PHASE)
+		).setParameter(
+			ActionRequest.ACTION_NAME, "editConfiguration"
+		).setParameter(
+			"mvcPath", "/edit_configuration.jsp"
+		).setParameter(
+			"p_auth", AuthTokenUtil.getToken(httpServletRequest)
+		).setParameter(
+			"p_p_mode", PortletMode.VIEW.toString()
+		).setParameter(
+			"portletConfiguration", Boolean.TRUE.toString()
+		).setParameter(
+			"portletResource", portletDisplay.getPortletResource()
+		).setParameter(
+			"previewWidth", StringPool.BLANK
+		).setParameter(
+			"returnToFullPageURL", "/"
+		).setParameter(
+			"settingsScope", "portletInstance"
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return actionURL.toString();
 	}

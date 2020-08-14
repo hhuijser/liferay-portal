@@ -20,6 +20,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.definitions.ExtendedObjectClassDefinition;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -189,13 +190,14 @@ public class SegmentsContextVocabularyConfigurationDisplayContext {
 	}
 
 	public PortletURL getRedirect() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/view_configuration_screen");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/view_configuration_screen"
+		).setParameter(
 			"configurationScreenKey",
-			"segments-context-vocabulary-configuration-name");
+			"segments-context-vocabulary-configuration-name"
+		).build();
 
 		return portletURL;
 	}

@@ -19,6 +19,7 @@ import com.liferay.mobile.device.rules.service.MDRActionLocalServiceUtil;
 import com.liferay.mobile.device.rules.util.comparator.ActionCreateDateComparator;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 
@@ -123,12 +124,15 @@ public class MDRActionDisplayContext {
 
 		String redirect = ParamUtil.getString(_renderRequest, "redirect");
 
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view_actions.jsp");
-		portletURL.setParameter("redirect", redirect);
-		portletURL.setParameter(
-			"ruleGroupInstanceId", String.valueOf(getRuleGroupInstanceId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/view_actions.jsp"
+		).setParameter(
+			"redirect", redirect
+		).setParameter(
+			"ruleGroupInstanceId", String.valueOf(getRuleGroupInstanceId())
+		).build();
 
 		_portletURL = portletURL;
 

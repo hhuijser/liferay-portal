@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -139,13 +140,15 @@ public class JournalFolderAssetRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_folder.jsp");
-		portletURL.setParameter(
-			"folderId", String.valueOf(_folder.getFolderId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_folder.jsp"
+		).setParameter(
+			"folderId", String.valueOf(_folder.getFolderId())
+		).build();
 
 		return portletURL;
 	}
@@ -159,13 +162,15 @@ public class JournalFolderAssetRenderer
 		AssetRendererFactory<JournalFolder> assetRendererFactory =
 			getAssetRendererFactory();
 
-		PortletURL portletURL = assetRendererFactory.getURLView(
-			liferayPortletResponse, windowState);
-
-		portletURL.setParameter("mvcPath", "/asset/folder_full_content.jsp");
-		portletURL.setParameter(
-			"folderId", String.valueOf(_folder.getFolderId()));
-		portletURL.setWindowState(windowState);
+		PortletURL portletURL = PortletURLBuilder.create(
+			assetRendererFactory.getURLView(liferayPortletResponse, windowState)
+		).setParameter(
+			"mvcPath", "/asset/folder_full_content.jsp"
+		).setParameter(
+			"folderId", String.valueOf(_folder.getFolderId())
+		).setWindowState(
+			windowState
+		).build();
 
 		return portletURL.toString();
 	}

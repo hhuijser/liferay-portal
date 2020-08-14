@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.portlet.PortletURL;
@@ -45,9 +46,11 @@ public class SelectAccountOrganizationsManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}

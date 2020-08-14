@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.UserGroupPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -60,13 +61,16 @@ public class EditUserGroupPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				portletRequest, UserGroupsAdminPortletKeys.USER_GROUPS_ADMIN,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/edit_user_group.jsp");
-			portletURL.setParameter(
-				"redirect", _portal.getCurrentURL(portletRequest));
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					portletRequest,
+					UserGroupsAdminPortletKeys.USER_GROUPS_ADMIN,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcPath", "/edit_user_group.jsp"
+			).setParameter(
+				"redirect", _portal.getCurrentURL(portletRequest)
+			).build();
 
 			UserGroup userGroup = ActionUtil.getUserGroup(portletRequest);
 

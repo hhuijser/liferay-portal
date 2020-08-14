@@ -44,6 +44,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
@@ -148,12 +149,15 @@ public class SelectAssetDisplayPageDisplayContext {
 			itemSelectorCriteria.add(layoutItemSelectorCriterion);
 		}
 
-		PortletURL itemSelectorURL = itemSelector.getItemSelectorURL(
-			RequestBackedPortletURLFactoryUtil.create(_liferayPortletRequest),
-			_eventName,
-			itemSelectorCriteria.toArray(new ItemSelectorCriterion[0]));
-
-		itemSelectorURL.setParameter("layoutUuid", getLayoutUuid());
+		PortletURL itemSelectorURL = PortletURLBuilder.create(
+			itemSelector.getItemSelectorURL(
+				RequestBackedPortletURLFactoryUtil.create(
+					_liferayPortletRequest),
+				_eventName,
+				itemSelectorCriteria.toArray(new ItemSelectorCriterion[0]))
+		).setParameter(
+			"layoutUuid", getLayoutUuid()
+		).build();
 
 		return itemSelectorURL.toString();
 	}

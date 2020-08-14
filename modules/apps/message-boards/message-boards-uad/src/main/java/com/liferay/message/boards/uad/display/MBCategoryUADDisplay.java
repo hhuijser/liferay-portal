@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.user.associated.data.display.UADDisplay;
 
@@ -54,16 +55,17 @@ public class MBCategoryUADDisplay extends BaseMBCategoryUADDisplay {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
+		PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
+			liferayPortletResponse,
 			portal.getControlPanelPlid(liferayPortletRequest),
-			MBPortletKeys.MESSAGE_BOARDS_ADMIN, PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/edit_category");
-		portletURL.setParameter(
-			"redirect", portal.getCurrentURL(liferayPortletRequest));
-		portletURL.setParameter(
-			"mbCategoryId", String.valueOf(mbCategory.getCategoryId()));
+			MBPortletKeys.MESSAGE_BOARDS_ADMIN, PortletRequest.RENDER_PHASE
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/edit_category"
+		).setParameter(
+			"redirect", portal.getCurrentURL(liferayPortletRequest)
+		).setParameter(
+			"mbCategoryId", String.valueOf(mbCategory.getCategoryId())
+		).build();
 
 		return portletURL.toString();
 	}

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.user.associated.data.display.UADDisplay;
 
@@ -53,15 +54,17 @@ public class BlogsEntryUADDisplay extends BaseBlogsEntryUADDisplay {
 		String portletId = PortletProviderUtil.getPortletId(
 			BlogsEntry.class.getName(), PortletProvider.Action.VIEW);
 
-		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
+		PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
+			liferayPortletResponse,
 			portal.getControlPanelPlid(liferayPortletRequest), portletId,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcRenderCommandName", "/blogs/edit_entry");
-		portletURL.setParameter(
-			"redirect", portal.getCurrentURL(liferayPortletRequest));
-		portletURL.setParameter(
-			"entryId", String.valueOf(blogsEntry.getEntryId()));
+			PortletRequest.RENDER_PHASE
+		).setParameter(
+			"mvcRenderCommandName", "/blogs/edit_entry"
+		).setParameter(
+			"redirect", portal.getCurrentURL(liferayPortletRequest)
+		).setParameter(
+			"entryId", String.valueOf(blogsEntry.getEntryId())
+		).build();
 
 		return portletURL.toString();
 	}

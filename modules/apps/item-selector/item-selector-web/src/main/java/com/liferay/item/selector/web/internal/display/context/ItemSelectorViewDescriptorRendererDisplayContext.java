@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.servlet.taglib.ui.BreadcrumbEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -120,12 +121,13 @@ public class ItemSelectorViewDescriptorRendererDisplayContext {
 			PortletURL currentURL)
 		throws PortletException {
 
-		PortletURL viewGroupSelectorURL = PortletURLUtil.clone(
-			currentURL, _liferayPortletResponse);
-
-		viewGroupSelectorURL.setParameter("groupType", "site");
-		viewGroupSelectorURL.setParameter(
-			"showGroupSelector", Boolean.TRUE.toString());
+		PortletURL viewGroupSelectorURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(currentURL, _liferayPortletResponse)
+		).setParameter(
+			"groupType", "site"
+		).setParameter(
+			"showGroupSelector", Boolean.TRUE.toString()
+		).build();
 
 		BreadcrumbEntry breadcrumbEntry = new BreadcrumbEntry();
 

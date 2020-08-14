@@ -23,6 +23,7 @@ import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.permission.LayoutPermission;
@@ -101,11 +102,13 @@ public class ManageLayoutProductNavigationControlMenuEntry
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", themeDisplay.getLocale(), getClass());
 
-		PortletURL editPageURL = _portal.getControlPanelPortletURL(
-			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
-			PortletRequest.RENDER_PHASE);
-
-		editPageURL.setParameter("mvcRenderCommandName", "/layout/edit_layout");
+		PortletURL editPageURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/layout/edit_layout"
+		).build();
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 

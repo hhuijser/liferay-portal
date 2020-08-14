@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
@@ -66,9 +67,11 @@ public class SelectSegmentsEntryDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = _getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			_getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -187,11 +190,12 @@ public class SelectSegmentsEntryDisplayContext {
 	}
 
 	public String getSortingURL() {
-		PortletURL sortingURL = _getPortletURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getPortletURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL.toString();
 	}
@@ -314,9 +318,11 @@ public class SelectSegmentsEntryDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "selectSegmentsEntry");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "selectSegmentsEntry"
+		).build();
 
 		String keywords = _getKeywords();
 

@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -104,15 +105,15 @@ public class JournalItemSelectorViewDisplayContext {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortletException {
 
-		PortletURL portletURL = PortletURLUtil.clone(
-			_portletURL, liferayPortletResponse);
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
+		).setParameter(
 			"resourcePrimKey",
-			String.valueOf(_journalItemSelectorCriterion.getResourcePrimKey()));
-		portletURL.setParameter(
+			String.valueOf(_journalItemSelectorCriterion.getResourcePrimKey())
+		).setParameter(
 			"selectedTab",
-			String.valueOf(getTitle(httpServletRequest.getLocale())));
+			String.valueOf(getTitle(httpServletRequest.getLocale()))
+		).build();
 
 		return portletURL;
 	}
@@ -124,17 +125,17 @@ public class JournalItemSelectorViewDisplayContext {
 	public PortletURL getUploadURL(
 		LiferayPortletResponse liferayPortletResponse) {
 
-		PortletURL portletURL = liferayPortletResponse.createActionURL(
-			JournalPortletKeys.JOURNAL);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/journal/upload_image");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, JournalPortletKeys.JOURNAL
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/journal/upload_image"
+		).setParameter(
 			"folderId",
-			String.valueOf(_journalItemSelectorCriterion.getFolderId()));
-		portletURL.setParameter(
+			String.valueOf(_journalItemSelectorCriterion.getFolderId())
+		).setParameter(
 			"resourcePrimKey",
-			String.valueOf(_journalItemSelectorCriterion.getResourcePrimKey()));
+			String.valueOf(_journalItemSelectorCriterion.getResourcePrimKey())
+		).build();
 
 		return portletURL;
 	}

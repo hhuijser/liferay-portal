@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -110,20 +111,23 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 			String referringPortletResource = ParamUtil.getString(
 				_httpServletRequest, "referringPortletResource");
 
-			PortletURL editArticleURL = _renderResponse.createRenderURL();
-
-			editArticleURL.setParameter("mvcPath", "/edit_article.jsp");
-			editArticleURL.setParameter(
-				"redirect", themeDisplay.getURLCurrent());
-			editArticleURL.setParameter(
-				"referringPortletResource", referringPortletResource);
-			editArticleURL.setParameter(
-				"groupId", String.valueOf(_article.getGroupId()));
-			editArticleURL.setParameter(
-				"folderId", String.valueOf(_article.getFolderId()));
-			editArticleURL.setParameter("articleId", _article.getArticleId());
-			editArticleURL.setParameter(
-				"version", String.valueOf(_article.getVersion()));
+			PortletURL editArticleURL = PortletURLBuilder.createRenderURL(
+				_renderResponse
+			).setParameter(
+				"mvcPath", "/edit_article.jsp"
+			).setParameter(
+				"redirect", themeDisplay.getURLCurrent()
+			).setParameter(
+				"referringPortletResource", referringPortletResource
+			).setParameter(
+				"groupId", String.valueOf(_article.getGroupId())
+			).setParameter(
+				"folderId", String.valueOf(_article.getFolderId())
+			).setParameter(
+				"articleId", _article.getArticleId()
+			).setParameter(
+				"version", String.valueOf(_article.getVersion())
+			).build();
 
 			return editArticleURL.toString();
 		}

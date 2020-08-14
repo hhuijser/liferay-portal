@@ -19,6 +19,7 @@ import com.liferay.fragment.service.FragmentCollectionLocalServiceUtil;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -59,15 +60,18 @@ public class FragmentCollectionResourcesDisplayContext {
 			return _searchContainer;
 		}
 
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/fragment/view");
-		portletURL.setParameter("tabs1", "resources");
-		portletURL.setParameter(
-			"redirect", _fragmentDisplayContext.getRedirect());
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/fragment/view"
+		).setParameter(
+			"tabs1", "resources"
+		).setParameter(
+			"redirect", _fragmentDisplayContext.getRedirect()
+		).setParameter(
 			"fragmentCollectionId",
-			String.valueOf(_fragmentDisplayContext.getFragmentCollectionId()));
+			String.valueOf(_fragmentDisplayContext.getFragmentCollectionId())
+		).build();
 
 		SearchContainer<FileEntry> searchContainer = new SearchContainer(
 			_renderRequest, portletURL, null, "there-are-no-resources");

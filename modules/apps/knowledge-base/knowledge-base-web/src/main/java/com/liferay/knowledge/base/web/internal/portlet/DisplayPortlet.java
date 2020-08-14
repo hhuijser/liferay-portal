@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
@@ -161,13 +162,15 @@ public class DisplayPortlet extends BaseKBPortlet {
 			kbArticle = null;
 		}
 
-		PortletURL redirectURL = PortletURLFactoryUtil.create(
-			actionRequest, KBPortletKeys.KNOWLEDGE_BASE_DISPLAY,
-			PortletRequest.RENDER_PHASE);
-
-		redirectURL.setParameter("kbFolderId", String.valueOf(kbFolderId));
-
-		redirectURL.setParameter("kbFolderUrlTitle", kbFolderURLTitle);
+		PortletURL redirectURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest, KBPortletKeys.KNOWLEDGE_BASE_DISPLAY,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"kbFolderId", String.valueOf(kbFolderId)
+		).setParameter(
+			"kbFolderUrlTitle", kbFolderURLTitle
+		).build();
 
 		if (kbArticle != null) {
 			redirectURL.setParameter("urlTitle", kbArticle.getUrlTitle());

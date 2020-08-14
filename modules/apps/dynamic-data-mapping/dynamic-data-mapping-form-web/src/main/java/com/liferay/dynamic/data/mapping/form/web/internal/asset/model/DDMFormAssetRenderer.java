@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
@@ -168,19 +169,21 @@ public class DDMFormAssetRenderer
 
 		String portletNamespace = DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM;
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			httpServletRequest, portletNamespace, PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcPath", "/display/edit_form_instance_record.jsp");
-		portletURL.setParameter(
-			"redirect", _portal.getCurrentURL(httpServletRequest));
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, portletNamespace,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/display/edit_form_instance_record.jsp"
+		).setParameter(
+			"redirect", _portal.getCurrentURL(httpServletRequest)
+		).setParameter(
 			"formInstanceRecordId",
-			String.valueOf(_ddmFormInstanceRecord.getFormInstanceRecordId()));
-		portletURL.setParameter(
+			String.valueOf(_ddmFormInstanceRecord.getFormInstanceRecordId())
+		).setParameter(
 			"formInstanceId",
-			String.valueOf(_ddmFormInstanceRecord.getFormInstanceId()));
+			String.valueOf(_ddmFormInstanceRecord.getFormInstanceId())
+		).build();
 
 		return portletURL;
 	}

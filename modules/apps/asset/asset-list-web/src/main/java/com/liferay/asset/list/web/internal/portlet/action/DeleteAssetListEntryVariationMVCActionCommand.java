@@ -19,6 +19,7 @@ import com.liferay.asset.list.service.AssetListEntryService;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 
@@ -68,11 +69,13 @@ public class DeleteAssetListEntryVariationMVCActionCommand
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/edit_asset_list_entry.jsp");
-		portletURL.setParameter(
-			"assetListEntryId", String.valueOf(assetListEntryId));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/edit_asset_list_entry.jsp"
+		).setParameter(
+			"assetListEntryId", String.valueOf(assetListEntryId)
+		).build();
 
 		return portletURL.toString();
 	}

@@ -58,6 +58,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -272,11 +273,15 @@ public class DDMFormAdminFieldSetDisplayContext
 
 	@Override
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/admin/view.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getScopeGroupId()));
-		portletURL.setParameter("currentTab", "element-set");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"mvcPath", "/admin/view.jsp"
+		).setParameter(
+			"groupId", String.valueOf(getScopeGroupId())
+		).setParameter(
+			"currentTab", "element-set"
+		).build();
 
 		String delta = ParamUtil.getString(renderRequest, "delta");
 
@@ -313,9 +318,11 @@ public class DDMFormAdminFieldSetDisplayContext
 
 	@Override
 	public SearchContainer<?> getSearch() {
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter("displayStyle", getDisplayStyle());
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"displayStyle", getDisplayStyle()
+		).build();
 
 		FieldSetSearch fieldSetSearch = new FieldSetSearch(
 			renderRequest, portletURL);
@@ -347,11 +354,15 @@ public class DDMFormAdminFieldSetDisplayContext
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/admin/view.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getScopeGroupId()));
-		portletURL.setParameter("currentTab", "element-set");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"mvcPath", "/admin/view.jsp"
+		).setParameter(
+			"groupId", String.valueOf(getScopeGroupId())
+		).setParameter(
+			"currentTab", "element-set"
+		).build();
 
 		return portletURL.toString();
 	}

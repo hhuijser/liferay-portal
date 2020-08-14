@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -64,12 +65,13 @@ public class ManagePagesPortletConfigurationIcon
 		try {
 			UserGroup userGroup = ActionUtil.getUserGroup(portletRequest);
 
-			PortletURL portletURL = PortletProviderUtil.getPortletURL(
-				portletRequest, userGroup.getGroup(), Layout.class.getName(),
-				PortletProvider.Action.EDIT);
-
-			portletURL.setParameter(
-				"redirect", _portal.getCurrentURL(portletRequest));
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(
+					portletRequest, userGroup.getGroup(),
+					Layout.class.getName(), PortletProvider.Action.EDIT)
+			).setParameter(
+				"redirect", _portal.getCurrentURL(portletRequest)
+			).build();
 
 			return portletURL.toString();
 		}

@@ -18,6 +18,7 @@ import com.liferay.asset.list.constants.AssetListPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.BasePortletProvider;
 import com.liferay.portal.kernel.portlet.EditPortletProvider;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 
 import javax.portlet.PortletURL;
 
@@ -45,9 +46,11 @@ public class AssetListEditPortletProvider
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest);
-
-		portletURL.setParameter("mvcPath", "/edit_asset_list_entry.jsp");
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest)
+		).setParameter(
+			"mvcPath", "/edit_asset_list_entry.jsp"
+		).build();
 
 		return portletURL;
 	}

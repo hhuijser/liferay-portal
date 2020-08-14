@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactory;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.PasswordPolicyPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -57,17 +58,19 @@ public class AssignMembersPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = _portletURLFactory.create(
-			portletRequest,
-			PasswordPoliciesAdminPortletKeys.PASSWORD_POLICIES_ADMIN,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcPath", "/edit_password_policy_assignments.jsp");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portletURLFactory.create(
+				portletRequest,
+				PasswordPoliciesAdminPortletKeys.PASSWORD_POLICIES_ADMIN,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_password_policy_assignments.jsp"
+		).setParameter(
 			"passwordPolicyId",
-			String.valueOf(_getPasswordPolicyId(portletRequest)));
-		portletURL.setParameter("tabs1", "assignees");
+			String.valueOf(_getPasswordPolicyId(portletRequest))
+		).setParameter(
+			"tabs1", "assignees"
+		).build();
 
 		return portletURL.toString();
 	}

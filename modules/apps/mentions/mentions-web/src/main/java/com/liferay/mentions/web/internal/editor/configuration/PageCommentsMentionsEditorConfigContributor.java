@@ -18,6 +18,7 @@ import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortlet
 import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 
 import javax.portlet.PortletURL;
@@ -43,16 +44,16 @@ public class PageCommentsMentionsEditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		PortletURL portletURL = super.getPortletURL(
-			themeDisplay, requestBackedPortletURLFactory);
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL(themeDisplay, requestBackedPortletURLFactory)
+		).setParameter(
 			"strategy",
 			JSONUtil.put(
 				"plid", themeDisplay.getPlid()
 			).put(
 				"strategy", "pageEditorCommentStrategy"
-			).toJSONString());
+			).toJSONString()
+		).build();
 
 		return portletURL;
 	}

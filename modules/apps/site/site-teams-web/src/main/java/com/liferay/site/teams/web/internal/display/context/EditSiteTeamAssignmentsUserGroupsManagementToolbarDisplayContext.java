@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -69,9 +70,11 @@ public class EditSiteTeamAssignmentsUserGroupsManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -93,19 +96,20 @@ public class EditSiteTeamAssignmentsUserGroupsManagementToolbarDisplayContext
 							WebKeys.THEME_DISPLAY);
 
 					PortletURL selectUserGroupURL =
-						liferayPortletResponse.createRenderURL();
-
-					selectUserGroupURL.setParameter(
-						"mvcPath", "/select_user_groups.jsp");
-					selectUserGroupURL.setParameter(
-						"redirect", themeDisplay.getURLCurrent());
-					selectUserGroupURL.setParameter(
-						"teamId",
-						String.valueOf(
-							_editSiteTeamAssignmentsUserGroupsDisplayContext.
-								getTeamId()));
-					selectUserGroupURL.setWindowState(
-						LiferayWindowState.POP_UP);
+						PortletURLBuilder.createRenderURL(
+							liferayPortletResponse
+						).setParameter(
+							"mvcPath", "/select_user_groups.jsp"
+						).setParameter(
+							"redirect", themeDisplay.getURLCurrent()
+						).setParameter(
+							"teamId",
+							String.valueOf(
+								_editSiteTeamAssignmentsUserGroupsDisplayContext.
+									getTeamId())
+						).setWindowState(
+							LiferayWindowState.POP_UP
+						).build();
 
 					dropdownItem.putData(
 						"selectUserGroupURL", selectUserGroupURL.toString());

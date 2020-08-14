@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -277,13 +278,15 @@ public class UploadPortletTest extends BasePortletContainerTestCase {
 		MockMultipartHttpServletRequest mockServletRequest =
 			(MockMultipartHttpServletRequest)servletRequest;
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			mockServletRequest, TestUploadPortlet.PORTLET_NAME,
-			layout.getPlid(), PortletRequest.ACTION_PHASE);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, TestUploadPortlet.MVC_COMMAND_NAME);
-		portletURL.setParameter("randomId", RandomTestUtil.randomString());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				mockServletRequest, TestUploadPortlet.PORTLET_NAME,
+				layout.getPlid(), PortletRequest.ACTION_PHASE)
+		).setParameter(
+			ActionRequest.ACTION_NAME, TestUploadPortlet.MVC_COMMAND_NAME
+		).setParameter(
+			"randomId", RandomTestUtil.randomString()
+		).build();
 
 		String url = portletURL.toString();
 

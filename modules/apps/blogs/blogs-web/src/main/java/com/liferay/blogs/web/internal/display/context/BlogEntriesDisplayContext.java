@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
@@ -138,14 +139,16 @@ public class BlogEntriesDisplayContext {
 	public SearchContainer<BlogsEntry> getSearchContainer()
 		throws PortalException, PortletException {
 
-		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/blogs/view");
-
 		String entriesNavigation = ParamUtil.getString(
 			_httpServletRequest, "entriesNavigation");
 
-		portletURL.setParameter("entriesNavigation", entriesNavigation);
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/blogs/view"
+		).setParameter(
+			"entriesNavigation", entriesNavigation
+		).build();
 
 		SearchContainer<BlogsEntry> entriesSearchContainer =
 			new SearchContainer<>(

@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -85,16 +86,16 @@ public class AssetEntryListActionDropdownItems {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getDeleteAssetListEntryActionUnsafeConsumer() {
 
-		PortletURL deleteAssetListEntryURL =
-			_liferayPortletResponse.createActionURL();
-
-		deleteAssetListEntryURL.setParameter(
-			ActionRequest.ACTION_NAME, "/asset_list/delete_asset_list_entry");
-		deleteAssetListEntryURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
-		deleteAssetListEntryURL.setParameter(
+		PortletURL deleteAssetListEntryURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/asset_list/delete_asset_list_entry"
+		).setParameter(
+			"redirect", _themeDisplay.getURLCurrent()
+		).setParameter(
 			"assetListEntryId",
-			String.valueOf(_assetListEntry.getAssetListEntryId()));
+			String.valueOf(_assetListEntry.getAssetListEntryId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deleteAssetListEntry");
@@ -141,14 +142,14 @@ public class AssetEntryListActionDropdownItems {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getRenameAssetListEntryActionUnsafeConsumer() {
 
-		PortletURL renameAssetListEntryURL =
-			_liferayPortletResponse.createActionURL();
-
-		renameAssetListEntryURL.setParameter(
-			ActionRequest.ACTION_NAME, "/asset_list/update_asset_list_entry");
-		renameAssetListEntryURL.setParameter(
+		PortletURL renameAssetListEntryURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/asset_list/update_asset_list_entry"
+		).setParameter(
 			"assetListEntryId",
-			String.valueOf(_assetListEntry.getAssetListEntryId()));
+			String.valueOf(_assetListEntry.getAssetListEntryId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "renameAssetListEntry");

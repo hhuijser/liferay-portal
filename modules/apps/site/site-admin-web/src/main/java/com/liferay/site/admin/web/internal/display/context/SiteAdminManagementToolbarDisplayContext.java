@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
@@ -80,11 +81,15 @@ public class SiteAdminManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
-		clearResultsURL.setParameter("orderByCol", getOrderByCol());
-		clearResultsURL.setParameter("orderByType", getOrderByType());
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -107,11 +112,13 @@ public class SiteAdminManagementToolbarDisplayContext
 		}
 
 		try {
-			PortletURL addSiteURL = liferayPortletResponse.createRenderURL();
-
-			addSiteURL.setParameter(
-				"mvcRenderCommandName", "/site/select_site_initializer");
-			addSiteURL.setParameter("redirect", themeDisplay.getURLCurrent());
+			PortletURL addSiteURL = PortletURLBuilder.createRenderURL(
+				liferayPortletResponse
+			).setParameter(
+				"mvcRenderCommandName", "/site/select_site_initializer"
+			).setParameter(
+				"redirect", themeDisplay.getURLCurrent()
+			).build();
 
 			Group group = _siteAdminDisplayContext.getGroup();
 
@@ -147,10 +154,13 @@ public class SiteAdminManagementToolbarDisplayContext
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL searchTagURL = getPortletURL();
-
-		searchTagURL.setParameter("orderByCol", getOrderByCol());
-		searchTagURL.setParameter("orderByType", getOrderByType());
+		PortletURL searchTagURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return searchTagURL.toString();
 	}

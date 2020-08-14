@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
@@ -83,15 +84,17 @@ public class DeleteDefinitionPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW,
-			PortletRequest.ACTION_PHASE);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "deleteWorkflowDefinition");
-		portletURL.setParameter("name", portletRequest.getParameter("name"));
-		portletURL.setParameter(
-			"version", portletRequest.getParameter("version"));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW,
+				PortletRequest.ACTION_PHASE)
+		).setParameter(
+			ActionRequest.ACTION_NAME, "deleteWorkflowDefinition"
+		).setParameter(
+			"name", portletRequest.getParameter("name")
+		).setParameter(
+			"version", portletRequest.getParameter("version")
+		).build();
 
 		return portletURL.toString();
 	}

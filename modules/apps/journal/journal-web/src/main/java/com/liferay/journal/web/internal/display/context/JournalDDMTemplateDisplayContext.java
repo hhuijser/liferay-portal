@@ -27,6 +27,7 @@ import com.liferay.journal.web.internal.util.SiteConnectedGroupUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -248,9 +249,11 @@ public class JournalDDMTemplateDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view_ddm_templates.jsp");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/view_ddm_templates.jsp"
+		).build();
 
 		String keywords = _getKeywords();
 

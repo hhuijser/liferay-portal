@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -112,16 +113,17 @@ public class AddFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/fragment/edit_fragment_entry");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/fragment/edit_fragment_entry"
+		).setParameter(
 			"fragmentCollectionId",
-			String.valueOf(fragmentEntry.getFragmentCollectionId()));
-		portletURL.setParameter(
+			String.valueOf(fragmentEntry.getFragmentCollectionId())
+		).setParameter(
 			"fragmentEntryId",
-			String.valueOf(fragmentEntry.getFragmentEntryId()));
+			String.valueOf(fragmentEntry.getFragmentEntryId())
+		).build();
 
 		return portletURL.toString();
 	}

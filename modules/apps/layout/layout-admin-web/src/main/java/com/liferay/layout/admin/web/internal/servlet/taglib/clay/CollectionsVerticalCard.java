@@ -26,6 +26,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -69,39 +70,36 @@ public class CollectionsVerticalCard extends BaseVerticalCard {
 		Map<String, String> data = new HashMap<>();
 
 		try {
-			PortletURL selectLayoutMasterLayoutURL =
-				_renderResponse.createRenderURL();
-
-			selectLayoutMasterLayoutURL.setParameter(
-				"mvcPath", "/select_layout_master_layout.jsp");
-
 			String redirect = ParamUtil.getString(
 				_httpServletRequest, "redirect");
 
-			selectLayoutMasterLayoutURL.setParameter("redirect", redirect);
-
-			selectLayoutMasterLayoutURL.setParameter(
-				"backURL", themeDisplay.getURLCurrent());
-			selectLayoutMasterLayoutURL.setParameter(
-				"groupId", String.valueOf(_groupId));
-
 			long selPlid = ParamUtil.getLong(_httpServletRequest, "selPlid");
-
-			selectLayoutMasterLayoutURL.setParameter(
-				"selPlid", String.valueOf(selPlid));
 
 			boolean privateLayout = ParamUtil.getBoolean(
 				_httpServletRequest, "privateLayout");
 
-			selectLayoutMasterLayoutURL.setParameter(
-				"privateLayout", String.valueOf(privateLayout));
-
-			selectLayoutMasterLayoutURL.setParameter(
-				"collectionPK",
-				String.valueOf(_assetListEntry.getAssetListEntryId()));
-			selectLayoutMasterLayoutURL.setParameter(
-				"collectionType",
-				InfoListItemSelectorReturnType.class.getName());
+			PortletURL selectLayoutMasterLayoutURL =
+				PortletURLBuilder.createRenderURL(
+					_renderResponse
+				).setParameter(
+					"mvcPath", "/select_layout_master_layout.jsp"
+				).setParameter(
+					"redirect", redirect
+				).setParameter(
+					"backURL", themeDisplay.getURLCurrent()
+				).setParameter(
+					"groupId", String.valueOf(_groupId)
+				).setParameter(
+					"selPlid", String.valueOf(selPlid)
+				).setParameter(
+					"privateLayout", String.valueOf(privateLayout)
+				).setParameter(
+					"collectionPK",
+					String.valueOf(_assetListEntry.getAssetListEntryId())
+				).setParameter(
+					"collectionType",
+					InfoListItemSelectorReturnType.class.getName()
+				).build();
 
 			data.put(
 				"select-layout-master-layout-url",

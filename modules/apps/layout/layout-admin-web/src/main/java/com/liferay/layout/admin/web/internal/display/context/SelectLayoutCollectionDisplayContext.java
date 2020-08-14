@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -167,9 +168,11 @@ public class SelectLayoutCollectionDisplayContext {
 			return PortletURLUtil.clone(currentURLObj, _liferayPortletResponse);
 		}
 		catch (PortletException portletException) {
-			PortletURL portletURL = _liferayPortletResponse.createRenderURL();
-
-			portletURL.setParameters(currentURLObj.getParameterMap());
+			PortletURL portletURL = PortletURLBuilder.createRenderURL(
+				_liferayPortletResponse
+			).setParameters(
+				currentURLObj.getParameterMap()
+			).build();
 
 			return portletURL;
 		}
@@ -271,9 +274,11 @@ public class SelectLayoutCollectionDisplayContext {
 			navigationItem.setActive(true);
 		}
 
-		PortletURL collectionsPortletURL = getPortletURL();
-
-		collectionsPortletURL.setParameter("selectedTab", tabName);
+		PortletURL collectionsPortletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"selectedTab", tabName
+		).build();
 
 		navigationItem.setHref(collectionsPortletURL.toString());
 

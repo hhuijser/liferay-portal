@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -139,14 +140,15 @@ public class ExportImportChangesetMVCActionCommandImpl
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
-		PortletURL renderURL = liferayPortletResponse.createRenderURL(
-			ExportImportPortletKeys.EXPORT_IMPORT);
-
-		renderURL.setParameter("mvcPath", "/view_export_import.jsp");
-		renderURL.setParameter(
-			"backURL", actionRequest.getParameter("backURL"));
-		renderURL.setParameter(
-			"backgroundTaskId", String.valueOf(backgroundTaskId));
+		PortletURL renderURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse, ExportImportPortletKeys.EXPORT_IMPORT
+		).setParameter(
+			"mvcPath", "/view_export_import.jsp"
+		).setParameter(
+			"backURL", actionRequest.getParameter("backURL")
+		).setParameter(
+			"backgroundTaskId", String.valueOf(backgroundTaskId)
+		).build();
 
 		actionRequest.setAttribute(WebKeys.REDIRECT, renderURL.toString());
 

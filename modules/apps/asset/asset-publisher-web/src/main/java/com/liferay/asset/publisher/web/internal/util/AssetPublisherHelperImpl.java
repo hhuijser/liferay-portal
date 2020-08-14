@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
@@ -545,18 +546,24 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		AssetRenderer<?> assetRenderer, AssetEntry assetEntry,
 		boolean viewInContext) {
 
-		PortletURL viewFullContentURL = getBaseAssetViewURL(
-			liferayPortletRequest, liferayPortletResponse, assetRenderer,
-			assetEntry);
+		PortletURL viewFullContentURL = PortletURLBuilder.create(
+			getBaseAssetViewURL(
+				liferayPortletRequest, liferayPortletResponse, assetRenderer,
+				assetEntry)
+		).setParameter(
+			"redirect", redirectURL.toString()
+		).build();
 
-		PortletURL redirectURL = liferayPortletResponse.createRenderURL();
+		PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"cur", String.valueOf(cur)
+		).build();
 
 		int cur = ParamUtil.getInteger(liferayPortletRequest, "cur");
 		int delta = ParamUtil.getInteger(liferayPortletRequest, "delta");
 		boolean resetCur = ParamUtil.getBoolean(
 			liferayPortletRequest, "resetCur");
-
-		redirectURL.setParameter("cur", String.valueOf(cur));
 
 		if (delta > 0) {
 			redirectURL.setParameter("delta", String.valueOf(delta));
@@ -565,8 +572,6 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		redirectURL.setParameter("resetCur", String.valueOf(resetCur));
 		redirectURL.setParameter(
 			"assetEntryId", String.valueOf(assetEntry.getEntryId()));
-
-		viewFullContentURL.setParameter("redirect", redirectURL.toString());
 
 		String viewURL = null;
 
@@ -603,16 +608,18 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		LiferayPortletResponse liferayPortletResponse,
 		AssetRenderer<?> assetRenderer, AssetEntry assetEntry) {
 
-		PortletURL baseAssetViewURL = liferayPortletResponse.createRenderURL();
-
-		baseAssetViewURL.setParameter("mvcPath", "/view_content.jsp");
-		baseAssetViewURL.setParameter(
-			"assetEntryId", String.valueOf(assetEntry.getEntryId()));
-
 		AssetRendererFactory<?> assetRendererFactory =
 			assetRenderer.getAssetRendererFactory();
 
-		baseAssetViewURL.setParameter("type", assetRendererFactory.getType());
+		PortletURL baseAssetViewURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view_content.jsp"
+		).setParameter(
+			"assetEntryId", String.valueOf(assetEntry.getEntryId())
+		).setParameter(
+			"type", assetRendererFactory.getType()
+		).build();
 
 		String urlTitle = assetRenderer.getUrlTitle(
 			liferayPortletRequest.getLocale());

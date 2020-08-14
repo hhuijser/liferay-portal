@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinderRegistryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
@@ -157,14 +158,15 @@ public class MBMessageAssetRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, group, MBPortletKeys.MESSAGE_BOARDS, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/edit_message");
-		portletURL.setParameter(
-			"messageId", String.valueOf(_message.getMessageId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, group, MBPortletKeys.MESSAGE_BOARDS, 0,
+				0, PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/edit_message"
+		).setParameter(
+			"messageId", String.valueOf(_message.getMessageId())
+		).build();
 
 		return portletURL;
 	}
@@ -178,14 +180,15 @@ public class MBMessageAssetRenderer
 		AssetRendererFactory<MBMessage> assetRendererFactory =
 			getAssetRendererFactory();
 
-		PortletURL portletURL = assetRendererFactory.getURLView(
-			liferayPortletResponse, windowState);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
-		portletURL.setParameter(
-			"messageId", String.valueOf(_message.getMessageId()));
-		portletURL.setWindowState(windowState);
+		PortletURL portletURL = PortletURLBuilder.create(
+			assetRendererFactory.getURLView(liferayPortletResponse, windowState)
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/view_message"
+		).setParameter(
+			"messageId", String.valueOf(_message.getMessageId())
+		).setWindowState(
+			windowState
+		).build();
 
 		return portletURL.toString();
 	}

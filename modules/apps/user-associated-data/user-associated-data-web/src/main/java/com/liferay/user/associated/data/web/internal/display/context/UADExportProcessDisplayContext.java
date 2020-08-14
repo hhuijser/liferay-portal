@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -141,20 +142,23 @@ public class UADExportProcessDisplayContext {
 			(PortletResponse)_httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_RESPONSE);
 
-		PortletURL portletURL = PortletURLUtil.getCurrent(
-			PortalUtil.getLiferayPortletRequest(portletRequest),
-			PortalUtil.getLiferayPortletResponse(portletResponse));
-
 		User selectedUser = PortalUtil.getSelectedUser(_httpServletRequest);
 
-		portletURL.setParameter(
-			"p_u_i_d", String.valueOf(selectedUser.getUserId()));
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/view_uad_export_processes");
-		portletURL.setParameter("navigation", getNavigation());
-		portletURL.setParameter("orderByCol", getOrderByCol());
-		portletURL.setParameter("orderByType", getOrderByType());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.getCurrent(
+				PortalUtil.getLiferayPortletRequest(portletRequest),
+				PortalUtil.getLiferayPortletResponse(portletResponse))
+		).setParameter(
+			"p_u_i_d", String.valueOf(selectedUser.getUserId())
+		).setParameter(
+			"mvcRenderCommandName", "/view_uad_export_processes"
+		).setParameter(
+			"navigation", getNavigation()
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return portletURL;
 	}

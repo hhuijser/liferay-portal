@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -75,14 +76,15 @@ public class UndoCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 		CTCollection ctCollection = _ctCollectionService.undoCTCollection(
 			ctCollectionId, themeDisplay.getUserId(), name, description);
 
-		PortletURL redirectURL = PortletURLFactoryUtil.create(
-			actionRequest, CTPortletKeys.CHANGE_LISTS,
-			PortletRequest.RENDER_PHASE);
-
-		redirectURL.setParameter(
-			"mvcRenderCommandName", "/change_lists/view_changes");
-		redirectURL.setParameter(
-			"ctCollectionId", String.valueOf(ctCollection.getCtCollectionId()));
+		PortletURL redirectURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest, CTPortletKeys.CHANGE_LISTS,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/change_lists/view_changes"
+		).setParameter(
+			"ctCollectionId", String.valueOf(ctCollection.getCtCollectionId())
+		).build();
 
 		sendRedirect(actionRequest, actionResponse, redirectURL.toString());
 	}

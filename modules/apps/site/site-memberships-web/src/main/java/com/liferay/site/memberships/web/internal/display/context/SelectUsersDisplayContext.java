@@ -17,6 +17,7 @@ package com.liferay.site.memberships.web.internal.display.context;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
@@ -123,11 +124,15 @@ public class SelectUsersDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/select_users.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
-		portletURL.setParameter("eventName", getEventName());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/select_users.jsp"
+		).setParameter(
+			"groupId", String.valueOf(getGroupId())
+		).setParameter(
+			"eventName", getEventName()
+		).build();
 
 		String displayStyle = getDisplayStyle();
 

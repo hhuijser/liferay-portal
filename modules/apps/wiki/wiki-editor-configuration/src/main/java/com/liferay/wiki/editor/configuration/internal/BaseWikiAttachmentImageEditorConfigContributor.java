@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.editor.configuration.BaseEditorConfigContributo
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -134,14 +135,15 @@ public abstract class BaseWikiAttachmentImageEditorConfigContributor
 		long wikiPageResourcePrimKey, ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		PortletURL uploadURL = requestBackedPortletURLFactory.createActionURL(
-			WikiPortletKeys.WIKI);
-
-		uploadURL.setParameter(
-			ActionRequest.ACTION_NAME, "/wiki/upload_page_attachment");
-		uploadURL.setParameter("mimeTypes", _getMimeTypes());
-		uploadURL.setParameter(
-			"resourcePrimKey", String.valueOf(wikiPageResourcePrimKey));
+		PortletURL uploadURL = PortletURLBuilder.create(
+			requestBackedPortletURLFactory.createActionURL(WikiPortletKeys.WIKI)
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/wiki/upload_page_attachment"
+		).setParameter(
+			"mimeTypes", _getMimeTypes()
+		).setParameter(
+			"resourcePrimKey", String.valueOf(wikiPageResourcePrimKey)
+		).build();
 
 		ItemSelectorCriterion itemSelectorCriterion =
 			new UploadItemSelectorCriterion(

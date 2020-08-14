@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -82,15 +83,16 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 				dropdownItem.putData("action", "deactivateAccountEntries");
 
 				PortletURL deactivateAccountEntriesURL =
-					liferayPortletResponse.createActionURL();
-
-				deactivateAccountEntriesURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/update_account_entry_status");
-				deactivateAccountEntriesURL.setParameter(
-					Constants.CMD, Constants.DEACTIVATE);
-				deactivateAccountEntriesURL.setParameter(
-					"navigation", getNavigation());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/account_admin/update_account_entry_status"
+					).setParameter(
+						Constants.CMD, Constants.DEACTIVATE
+					).setParameter(
+						"navigation", getNavigation()
+					).build();
 
 				dropdownItem.putData(
 					"deactivateAccountEntriesURL",
@@ -112,15 +114,16 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 				dropdownItem.putData("action", "activateAccountEntries");
 
 				PortletURL activateAccountEntriesURL =
-					liferayPortletResponse.createActionURL();
-
-				activateAccountEntriesURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/update_account_entry_status");
-				activateAccountEntriesURL.setParameter(
-					Constants.CMD, Constants.RESTORE);
-				activateAccountEntriesURL.setParameter(
-					"navigation", getNavigation());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/account_admin/update_account_entry_status"
+					).setParameter(
+						Constants.CMD, Constants.RESTORE
+					).setParameter(
+						"navigation", getNavigation()
+					).build();
 
 				dropdownItem.putData(
 					"activateAccountEntriesURL",
@@ -138,13 +141,14 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 				dropdownItem.putData("action", "deleteAccountEntries");
 
 				PortletURL deleteAccountEntriesURL =
-					liferayPortletResponse.createActionURL();
-
-				deleteAccountEntriesURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/delete_account_entry");
-				deleteAccountEntriesURL.setParameter(
-					"navigation", getNavigation());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/account_admin/delete_account_entry"
+					).setParameter(
+						"navigation", getNavigation()
+					).build();
 
 				dropdownItem.putData(
 					"deleteAccountEntriesURL",
@@ -188,11 +192,15 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
-		clearResultsURL.setParameter("navigation", (String)null);
-		clearResultsURL.setParameter("type", (String)null);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).setParameter(
+			"navigation", (String)null
+		).setParameter(
+			"type", (String)null
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -234,9 +242,11 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 		return LabelItemListBuilder.add(
 			() -> !Objects.equals(getNavigation(), "active"),
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -251,9 +261,11 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 		).add(
 			() -> !Objects.equals(getType(), "all"),
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter("type", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"type", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 

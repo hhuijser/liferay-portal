@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.model.TrashedModel;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -155,10 +156,11 @@ public class MBCategoryTrashHandler extends BaseTrashHandler {
 
 		MBCategory category = _mbCategoryLocalService.getCategory(classPK);
 
-		PortletURL portletURL = getRestoreURL(portletRequest, classPK);
-
-		portletURL.setParameter(
-			"mbCategoryId", String.valueOf(category.getCategoryId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			getRestoreURL(portletRequest, classPK)
+		).setParameter(
+			"mbCategoryId", String.valueOf(category.getCategoryId())
+		).build();
 
 		return portletURL.toString();
 	}
@@ -168,12 +170,13 @@ public class MBCategoryTrashHandler extends BaseTrashHandler {
 			PortletRequest portletRequest, long classPK)
 		throws PortalException {
 
-		PortletURL portletURL = getRestoreURL(portletRequest, classPK);
+		PortletURL portletURL = PortletURLBuilder.create(
+			getRestoreURL(portletRequest, classPK)
+		).setParameter(
+			"mbCategoryId", String.valueOf(category.getParentCategoryId())
+		).build();
 
 		MBCategory category = _mbCategoryLocalService.getCategory(classPK);
-
-		portletURL.setParameter(
-			"mbCategoryId", String.valueOf(category.getParentCategoryId()));
 
 		return portletURL.toString();
 	}

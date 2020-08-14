@@ -16,6 +16,7 @@ package com.liferay.wiki.uad.display;
 
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.user.associated.data.display.UADDisplay;
 import com.liferay.wiki.constants.WikiPortletKeys;
@@ -39,14 +40,17 @@ public class WikiNodeUADDisplay extends BaseWikiNodeUADDisplay {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
+		PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
+			liferayPortletResponse,
 			portal.getControlPanelPlid(liferayPortletRequest),
-			WikiPortletKeys.WIKI_ADMIN, PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcRenderCommandName", "/wiki/edit_node");
-		portletURL.setParameter(
-			"redirect", portal.getCurrentURL(liferayPortletRequest));
-		portletURL.setParameter("nodeId", String.valueOf(wikiNode.getNodeId()));
+			WikiPortletKeys.WIKI_ADMIN, PortletRequest.RENDER_PHASE
+		).setParameter(
+			"mvcRenderCommandName", "/wiki/edit_node"
+		).setParameter(
+			"redirect", portal.getCurrentURL(liferayPortletRequest)
+		).setParameter(
+			"nodeId", String.valueOf(wikiNode.getNodeId())
+		).build();
 
 		return portletURL.toString();
 	}

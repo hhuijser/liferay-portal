@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.lock.DuplicateLockException;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.AuthException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.auth.RemoteAuthException;
@@ -185,11 +186,13 @@ public class PublishLayoutsMVCActionCommand extends BaseMVCActionCommand {
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
-		PortletURL renderURL = liferayPortletResponse.createRenderURL();
-
-		renderURL.setParameter("mvcPath", "/view_export_import.jsp");
-		renderURL.setParameter(
-			"backgroundTaskId", String.valueOf(backgroundTaskId));
+		PortletURL renderURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view_export_import.jsp"
+		).setParameter(
+			"backgroundTaskId", String.valueOf(backgroundTaskId)
+		).build();
 
 		actionRequest.setAttribute(WebKeys.REDIRECT, renderURL.toString());
 	}

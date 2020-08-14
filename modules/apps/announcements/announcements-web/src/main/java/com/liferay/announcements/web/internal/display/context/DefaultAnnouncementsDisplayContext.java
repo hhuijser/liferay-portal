@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
@@ -243,10 +244,13 @@ public class DefaultAnnouncementsDisplayContext
 		LiferayPortletResponse liferayPortletResponse =
 			_announcementsRequestHelper.getLiferayPortletResponse();
 
-		PortletURL tabs1URL = liferayPortletResponse.createRenderURL();
-
-		tabs1URL.setParameter("mvcRenderCommandName", "/announcements/view");
-		tabs1URL.setParameter("tabs1", _announcementsRequestHelper.getTabs1());
+		PortletURL tabs1URL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/announcements/view"
+		).setParameter(
+			"tabs1", _announcementsRequestHelper.getTabs1()
+		).build();
 
 		return tabs1URL.toString();
 	}

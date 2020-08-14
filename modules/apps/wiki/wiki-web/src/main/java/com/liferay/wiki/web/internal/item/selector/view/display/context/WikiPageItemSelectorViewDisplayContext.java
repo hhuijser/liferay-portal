@@ -18,6 +18,7 @@ import com.liferay.item.selector.ItemSelectorReturnTypeResolverHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.wiki.item.selector.criterion.WikiPageItemSelectorCriterion;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
@@ -69,11 +70,11 @@ public class WikiPageItemSelectorViewDisplayContext {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortletException {
 
-		PortletURL portletURL = PortletURLUtil.clone(
-			_portletURL, liferayPortletResponse);
-
-		portletURL.setParameter(
-			"selectedTab", getTitle(httpServletRequest.getLocale()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
+		).setParameter(
+			"selectedTab", getTitle(httpServletRequest.getLocale())
+		).build();
 
 		return portletURL;
 	}

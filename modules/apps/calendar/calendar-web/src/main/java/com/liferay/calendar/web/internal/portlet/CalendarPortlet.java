@@ -83,6 +83,7 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseSearcher;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
@@ -1208,16 +1209,20 @@ public class CalendarPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PortletURL redirectURL = PortletURLFactoryUtil.create(
-			actionRequest, themeDisplay.getPpid(), themeDisplay.getPlid(),
-			PortletRequest.RENDER_PHASE);
-
-		redirectURL.setParameter("mvcPath", "/view_calendar_booking.jsp");
-		redirectURL.setParameter(
+		PortletURL redirectURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest, themeDisplay.getPpid(), themeDisplay.getPlid(),
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/view_calendar_booking.jsp"
+		).setParameter(
 			"calendarBookingId",
-			String.valueOf(calendarBooking.getCalendarBookingId()));
-		redirectURL.setParameter("instanceIndex", "0");
-		redirectURL.setWindowState(LiferayWindowState.POP_UP);
+			String.valueOf(calendarBooking.getCalendarBookingId())
+		).setParameter(
+			"instanceIndex", "0"
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return redirectURL.toString();
 	}

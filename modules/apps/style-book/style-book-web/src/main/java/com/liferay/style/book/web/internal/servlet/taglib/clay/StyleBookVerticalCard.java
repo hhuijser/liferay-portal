@@ -21,6 +21,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.model.BaseModel;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -92,15 +93,16 @@ public class StyleBookVerticalCard
 			return null;
 		}
 
-		PortletURL editStyleBookEntryURL = _renderResponse.createRenderURL();
-
-		editStyleBookEntryURL.setParameter(
-			"mvcRenderCommandName", "/style_book/edit_style_book_entry");
-		editStyleBookEntryURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
-		editStyleBookEntryURL.setParameter(
+		PortletURL editStyleBookEntryURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/style_book/edit_style_book_entry"
+		).setParameter(
+			"redirect", _themeDisplay.getURLCurrent()
+		).setParameter(
 			"styleBookEntryId",
-			String.valueOf(_styleBookEntry.getStyleBookEntryId()));
+			String.valueOf(_styleBookEntry.getStyleBookEntryId())
+		).build();
 
 		return editStyleBookEntryURL.toString();
 	}

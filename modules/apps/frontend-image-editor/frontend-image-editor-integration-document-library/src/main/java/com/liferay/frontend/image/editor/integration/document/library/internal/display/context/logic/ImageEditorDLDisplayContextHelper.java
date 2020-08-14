@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -209,12 +210,13 @@ public class ImageEditorDLDisplayContextHelper {
 		String imageEditorPortletId = PortletProviderUtil.getPortletId(
 			Image.class.getName(), PortletProvider.Action.EDIT);
 
-		PortletURL imageEditorURL = PortletURLFactoryUtil.create(
-			_httpServletRequest, imageEditorPortletId,
-			PortletRequest.RENDER_PHASE);
-
-		imageEditorURL.setParameter(
-			"mvcRenderCommandName", "/image_editor/view");
+		PortletURL imageEditorURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				_httpServletRequest, imageEditorPortletId,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/image_editor/view"
+		).build();
 
 		try {
 			imageEditorURL.setWindowState(LiferayWindowState.POP_UP);
@@ -226,14 +228,14 @@ public class ImageEditorDLDisplayContextHelper {
 		LiferayPortletResponse liferayPortletResponse =
 			_getLiferayPortletResponse();
 
-		PortletURL editURL = liferayPortletResponse.createActionURL();
-
-		editURL.setParameter(
+		PortletURL editURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse
+		).setParameter(
 			ActionRequest.ACTION_NAME,
-			"/document_library/edit_file_entry_with_image_editor");
-
-		editURL.setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId()));
+			"/document_library/edit_file_entry_with_image_editor"
+		).setParameter(
+			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+		).build();
 
 		String fileEntryPreviewURL = _dlURLHelper.getPreviewURL(
 			_fileEntry, _fileVersion, _themeDisplay, StringPool.BLANK);

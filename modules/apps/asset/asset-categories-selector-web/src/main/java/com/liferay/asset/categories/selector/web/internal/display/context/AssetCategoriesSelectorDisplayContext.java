@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -91,20 +92,24 @@ public class AssetCategoriesSelectorDisplayContext {
 			return null;
 		}
 
-		PortletURL addCategoryURL = PortletURLFactoryUtil.create(
-			_renderRequest,
-			AssetCategoriesAdminPortletKeys.ASSET_CATEGORIES_ADMIN,
-			PortletRequest.RENDER_PHASE);
-
-		addCategoryURL.setParameter("mvcPath", "/edit_category.jsp");
-		addCategoryURL.setParameter("redirect", themeDisplay.getURLCurrent());
-		addCategoryURL.setParameter(
-			"groupId", String.valueOf(assetVocabulary.getGroupId()));
-		addCategoryURL.setParameter(
-			"vocabularyId", String.valueOf(vocabularyIds[0]));
-		addCategoryURL.setParameter("itemSelectorEventName", getEventName());
-
-		addCategoryURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL addCategoryURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				_renderRequest,
+				AssetCategoriesAdminPortletKeys.ASSET_CATEGORIES_ADMIN,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_category.jsp"
+		).setParameter(
+			"redirect", themeDisplay.getURLCurrent()
+		).setParameter(
+			"groupId", String.valueOf(assetVocabulary.getGroupId())
+		).setParameter(
+			"vocabularyId", String.valueOf(vocabularyIds[0])
+		).setParameter(
+			"itemSelectorEventName", getEventName()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return addCategoryURL.toString();
 	}

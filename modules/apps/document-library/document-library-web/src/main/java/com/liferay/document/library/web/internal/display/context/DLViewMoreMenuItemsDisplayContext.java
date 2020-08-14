@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -82,12 +83,15 @@ public class DLViewMoreMenuItemsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcPath", "/document_library/view_more_menu_items.jsp");
-		portletURL.setParameter("folderId", String.valueOf(_folderId));
-		portletURL.setParameter("eventName", getEventName());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/document_library/view_more_menu_items.jsp"
+		).setParameter(
+			"folderId", String.valueOf(_folderId)
+		).setParameter(
+			"eventName", getEventName()
+		).build();
 
 		return portletURL;
 	}

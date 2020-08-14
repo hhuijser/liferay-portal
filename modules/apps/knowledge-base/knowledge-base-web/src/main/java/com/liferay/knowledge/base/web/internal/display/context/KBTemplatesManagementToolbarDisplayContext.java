@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -114,13 +115,13 @@ public class KBTemplatesManagementToolbarDisplayContext {
 
 		return CreationMenuBuilder.addDropdownItem(
 			dropdownItem -> {
-				PortletURL addKBTemplateURL =
-					_liferayPortletResponse.createRenderURL();
-
-				addKBTemplateURL.setParameter(
-					"mvcPath", _templatePath + "edit_template.jsp");
-				addKBTemplateURL.setParameter(
-					"redirect", PortalUtil.getCurrentURL(_httpServletRequest));
+				PortletURL addKBTemplateURL = PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setParameter(
+					"mvcPath", _templatePath + "edit_template.jsp"
+				).setParameter(
+					"redirect", PortalUtil.getCurrentURL(_httpServletRequest)
+				).build();
 
 				dropdownItem.setHref(addKBTemplateURL);
 
@@ -149,19 +150,22 @@ public class KBTemplatesManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getSearchURL() {
-		PortletURL searchURL = _liferayPortletResponse.createRenderURL();
-
-		searchURL.setParameter("mvcPath", "/admin/view_templates.jsp");
+		PortletURL searchURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/admin/view_templates.jsp"
+		).build();
 
 		return searchURL;
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
-		PortletURL sortingURL = _getCurrentSortingURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getCurrentSortingURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL;
 	}
@@ -175,9 +179,11 @@ public class KBTemplatesManagementToolbarDisplayContext {
 	}
 
 	private void _createSearchContainer() throws PortalException {
-		PortletURL iteratorURL = _liferayPortletResponse.createRenderURL();
-
-		iteratorURL.setParameter("mvcPath", "/admin/view_templates.jsp");
+		PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/admin/view_templates.jsp"
+		).build();
 
 		_searchContainer = new KBTemplateSearch(
 			_liferayPortletRequest, iteratorURL);
@@ -208,10 +214,11 @@ public class KBTemplatesManagementToolbarDisplayContext {
 	}
 
 	private PortletURL _getCurrentSortingURL() throws PortletException {
-		PortletURL sortingURL = PortletURLUtil.clone(
-			_currentURLObj, _liferayPortletResponse);
-
-		sortingURL.setParameter("mvcPath", "/admin/view_templates.jsp");
+		PortletURL sortingURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse)
+		).setParameter(
+			"mvcPath", "/admin/view_templates.jsp"
+		).build();
 
 		return sortingURL;
 	}

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -109,14 +110,17 @@ public class ProductMenuProductNavigationControlMenuEntry
 
 			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				httpServletRequest,
-				ProductNavigationProductMenuPortletKeys.
-					PRODUCT_NAVIGATION_PRODUCT_MENU,
-				RenderRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/portlet/product_menu.jsp");
-			portletURL.setParameter("selPpid", portletDisplay.getId());
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					httpServletRequest,
+					ProductNavigationProductMenuPortletKeys.
+						PRODUCT_NAVIGATION_PRODUCT_MENU,
+					RenderRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcPath", "/portlet/product_menu.jsp"
+			).setParameter(
+				"selPpid", portletDisplay.getId()
+			).build();
 
 			try {
 				portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);

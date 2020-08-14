@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.SearchResult;
 import com.liferay.portal.kernel.search.SearchResultUtil;
@@ -181,10 +182,13 @@ public class ViewTreeManagementToolbarDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
-		clearResultsURL.setParameter("navigation", (String)null);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).setParameter(
+			"navigation", (String)null
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -217,18 +221,20 @@ public class ViewTreeManagementToolbarDisplayContext {
 							OrganizationLocalServiceUtil.getTypes()) {
 
 						PortletURL addOrganizationTypeURL =
-							_renderResponse.createRenderURL();
-
-						addOrganizationTypeURL.setParameter(
-							"mvcRenderCommandName",
-							"/users_admin/edit_organization");
-						addOrganizationTypeURL.setParameter(
-							"redirect", currentURL.toString());
-						addOrganizationTypeURL.setParameter(
-							"parentOrganizationSearchContainerPrimaryKeys",
-							String.valueOf(_organization.getOrganizationId()));
-						addOrganizationTypeURL.setParameter(
-							"type", organizationType);
+							PortletURLBuilder.createRenderURL(
+								_renderResponse
+							).setParameter(
+								"mvcRenderCommandName",
+								"/users_admin/edit_organization"
+							).setParameter(
+								"redirect", currentURL.toString()
+							).setParameter(
+								"parentOrganizationSearchContainerPrimaryKeys",
+								String.valueOf(
+									_organization.getOrganizationId())
+							).setParameter(
+								"type", organizationType
+							).build();
 
 						addDropdownItem(
 							dropdownItem -> {
@@ -286,9 +292,11 @@ public class ViewTreeManagementToolbarDisplayContext {
 		return LabelItemListBuilder.add(
 			() -> !navigation.equals("all"),
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -339,24 +347,25 @@ public class ViewTreeManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/users_admin/view");
-		portletURL.setParameter(
-			"organizationId",
-			String.valueOf(_organization.getOrganizationId()));
-
 		String toolbarItem = GetterUtil.getString(
 			_httpServletRequest.getAttribute("view.jsp-toolbarItem"));
-
-		portletURL.setParameter("toolbarItem", toolbarItem);
 
 		String usersListView = GetterUtil.getString(
 			_httpServletRequest.getAttribute("view.jsp-usersListView"));
 
-		portletURL.setParameter("usersListView", usersListView);
-
-		portletURL.setParameter("displayStyle", _displayStyle);
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/users_admin/view"
+		).setParameter(
+			"organizationId", String.valueOf(_organization.getOrganizationId())
+		).setParameter(
+			"toolbarItem", toolbarItem
+		).setParameter(
+			"usersListView", usersListView
+		).setParameter(
+			"displayStyle", _displayStyle
+		).build();
 
 		String[] keywords = ParamUtil.getStringValues(
 			_httpServletRequest, "keywords");
@@ -478,11 +487,12 @@ public class ViewTreeManagementToolbarDisplayContext {
 	}
 
 	public String getSortingURL() {
-		PortletURL sortingURL = getPortletURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL.toString();
 	}

@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -113,9 +114,11 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -184,17 +187,18 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 	}
 
 	private String _getAddLayoutPrototypeURL() {
-		PortletURL actionURL = liferayPortletResponse.createActionURL();
-
-		actionURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/layout_prototype/add_layout_prototype");
-		actionURL.setParameter("backURL", _themeDisplay.getURLCurrent());
-		actionURL.setParameter(
+		PortletURL actionURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/layout_prototype/add_layout_prototype"
+		).setParameter(
+			"backURL", _themeDisplay.getURLCurrent()
+		).setParameter(
 			"layoutPageTemplateCollectionId",
 			String.valueOf(
 				_layoutPageTemplateDisplayContext.
-					getLayoutPageTemplateCollectionId()));
+					getLayoutPageTemplateCollectionId())
+		).build();
 
 		return actionURL.toString();
 	}
@@ -219,18 +223,18 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 	}
 
 	private String _getSelectMasterLayoutURL() {
-		PortletURL selectMasterLayoutURL =
-			liferayPortletResponse.createRenderURL();
-
-		selectMasterLayoutURL.setParameter(
-			"mvcPath", "/select_layout_page_template_entry_master_layout.jsp");
-		selectMasterLayoutURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
-		selectMasterLayoutURL.setParameter(
+		PortletURL selectMasterLayoutURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/select_layout_page_template_entry_master_layout.jsp"
+		).setParameter(
+			"redirect", _themeDisplay.getURLCurrent()
+		).setParameter(
 			"layoutPageTemplateCollectionId",
 			String.valueOf(
 				_layoutPageTemplateDisplayContext.
-					getLayoutPageTemplateCollectionId()));
+					getLayoutPageTemplateCollectionId())
+		).build();
 
 		return selectMasterLayoutURL.toString();
 	}

@@ -20,6 +20,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBu
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -204,10 +205,13 @@ public class SiteMySitesDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("tabs1", getTabs1());
-		portletURL.setParameter("displayStyle", getDisplayStyle());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"tabs1", getTabs1()
+		).setParameter(
+			"displayStyle", getDisplayStyle()
+		).build();
 
 		return portletURL;
 	}

@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -81,12 +82,13 @@ public class NodeSubscriptionPortletConfigurationIcon
 		try {
 			WikiNode node = ActionUtil.getNode(portletRequest);
 
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, WikiPortletKeys.WIKI_ADMIN,
-				PortletRequest.ACTION_PHASE);
-
-			portletURL.setParameter(
-				ActionRequest.ACTION_NAME, "/wiki/edit_node");
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest, WikiPortletKeys.WIKI_ADMIN,
+					PortletRequest.ACTION_PHASE)
+			).setParameter(
+				ActionRequest.ACTION_NAME, "/wiki/edit_node"
+			).build();
 
 			if (isSubscribed(portletRequest, node)) {
 				portletURL.setParameter(Constants.CMD, Constants.UNSUBSCRIBE);

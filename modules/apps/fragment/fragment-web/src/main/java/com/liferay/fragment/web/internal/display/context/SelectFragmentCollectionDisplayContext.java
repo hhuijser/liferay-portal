@@ -21,6 +21,7 @@ import com.liferay.fragment.util.comparator.FragmentCollectionNameComparator;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -142,11 +143,13 @@ public class SelectFragmentCollectionDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/fragment/select_fragment_collection");
-		portletURL.setParameter("eventName", getEventName());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/fragment/select_fragment_collection"
+		).setParameter(
+			"eventName", getEventName()
+		).build();
 
 		String keywords = _getKeywords();
 

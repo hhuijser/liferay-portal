@@ -19,6 +19,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 
 import java.util.Map;
 
@@ -48,9 +49,11 @@ public abstract class FragmentManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -70,11 +73,12 @@ public abstract class FragmentManagementToolbarDisplayContext
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL searchActionURL = getPortletURL();
-
-		searchActionURL.setParameter(
+		PortletURL searchActionURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
 			"fragmentCollectionId",
-			String.valueOf(fragmentDisplayContext.getFragmentCollectionId()));
+			String.valueOf(fragmentDisplayContext.getFragmentCollectionId())
+		).build();
 
 		return searchActionURL.toString();
 	}

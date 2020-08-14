@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -99,9 +100,11 @@ public class StyleBookManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -114,13 +117,14 @@ public class StyleBookManagementToolbarDisplayContext
 			"copyStyleBookEntryURL",
 			() -> {
 				PortletURL copyStyleBookEntryURL =
-					liferayPortletResponse.createActionURL();
-
-				copyStyleBookEntryURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/style_book/copy_style_book_entry");
-				copyStyleBookEntryURL.setParameter(
-					"redirect", themeDisplay.getURLCurrent());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/style_book/copy_style_book_entry"
+					).setParameter(
+						"redirect", themeDisplay.getURLCurrent()
+					).build();
 
 				return copyStyleBookEntryURL.toString();
 			}
@@ -150,10 +154,12 @@ public class StyleBookManagementToolbarDisplayContext
 				dropdownItem.putData("action", "addStyleBookEntry");
 
 				PortletURL addStyleBookEntryURL =
-					liferayPortletResponse.createActionURL();
-
-				addStyleBookEntryURL.setParameter(
-					ActionRequest.ACTION_NAME, "/style_book/style_book_entry");
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/style_book/style_book_entry"
+					).build();
 
 				dropdownItem.putData(
 					"addStyleBookEntryURL", addStyleBookEntryURL.toString());

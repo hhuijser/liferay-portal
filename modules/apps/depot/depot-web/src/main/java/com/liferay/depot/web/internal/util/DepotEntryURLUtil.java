@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.taglib.security.PermissionsURLTag;
 
@@ -95,15 +96,17 @@ public class DepotEntryURLUtil {
 		DepotEntry depotEntry, String redirect,
 		LiferayPortletRequest liferayPortletRequest) {
 
-		PortletURL editDepotEntryURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, DepotPortletKeys.DEPOT_ADMIN,
-			PortletRequest.RENDER_PHASE);
-
-		editDepotEntryURL.setParameter(
-			"mvcRenderCommandName", "/depot/edit_depot_entry");
-		editDepotEntryURL.setParameter("redirect", redirect);
-		editDepotEntryURL.setParameter(
-			"depotEntryId", String.valueOf(depotEntry.getDepotEntryId()));
+		PortletURL editDepotEntryURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, DepotPortletKeys.DEPOT_ADMIN,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/depot/edit_depot_entry"
+		).setParameter(
+			"redirect", redirect
+		).setParameter(
+			"depotEntryId", String.valueOf(depotEntry.getDepotEntryId())
+		).build();
 
 		return editDepotEntryURL;
 	}

@@ -21,6 +21,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.Portal;
 
@@ -60,11 +61,13 @@ public class PrintKBArticlePortletConfigurationIcon
 
 			sb.append("window.open('");
 
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, KBPortletKeys.KNOWLEDGE_BASE_ADMIN,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/admin/print_article.jsp");
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest, KBPortletKeys.KNOWLEDGE_BASE_ADMIN,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcPath", "/admin/print_article.jsp"
+			).build();
 
 			KBArticle kbArticle = getKBArticle(portletRequest);
 

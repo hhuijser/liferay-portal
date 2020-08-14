@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import com.liferay.portal.kernel.service.permission.UserPermissionUtil;
@@ -85,20 +86,22 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 				dropdownItem.putData("action", "deactivateAccountUsers");
 
 				PortletURL deactivateAccountUsersURL =
-					liferayPortletResponse.createActionURL();
-
-				deactivateAccountUsersURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/edit_account_users");
-				deactivateAccountUsersURL.setParameter(
-					Constants.CMD, Constants.DEACTIVATE);
-				deactivateAccountUsersURL.setParameter(
-					"navigation", getNavigation());
-				deactivateAccountUsersURL.setParameter(
-					"accountEntriesNavigation", _getAccountEntriesNavigation());
-				deactivateAccountUsersURL.setParameter(
-					"accountEntryIds",
-					ParamUtil.getString(request, "accountEntryIds"));
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/account_admin/edit_account_users"
+					).setParameter(
+						Constants.CMD, Constants.DEACTIVATE
+					).setParameter(
+						"navigation", getNavigation()
+					).setParameter(
+						"accountEntriesNavigation",
+						_getAccountEntriesNavigation()
+					).setParameter(
+						"accountEntryIds",
+						ParamUtil.getString(request, "accountEntryIds")
+					).build();
 
 				dropdownItem.putData(
 					"deactivateAccountUsersURL",
@@ -120,20 +123,22 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 				dropdownItem.putData("action", "activateAccountUsers");
 
 				PortletURL activateAccountUsersURL =
-					liferayPortletResponse.createActionURL();
-
-				activateAccountUsersURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/edit_account_users");
-				activateAccountUsersURL.setParameter(
-					Constants.CMD, Constants.RESTORE);
-				activateAccountUsersURL.setParameter(
-					"navigation", getNavigation());
-				activateAccountUsersURL.setParameter(
-					"accountEntriesNavigation", _getAccountEntriesNavigation());
-				activateAccountUsersURL.setParameter(
-					"accountEntryIds",
-					ParamUtil.getString(request, "accountEntryIds"));
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/account_admin/edit_account_users"
+					).setParameter(
+						Constants.CMD, Constants.RESTORE
+					).setParameter(
+						"navigation", getNavigation()
+					).setParameter(
+						"accountEntriesNavigation",
+						_getAccountEntriesNavigation()
+					).setParameter(
+						"accountEntryIds",
+						ParamUtil.getString(request, "accountEntryIds")
+					).build();
 
 				dropdownItem.putData(
 					"activateAccountUsersURL",
@@ -155,20 +160,22 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 				dropdownItem.putData("action", "deleteAccountUsers");
 
 				PortletURL deleteAccountUsersURL =
-					liferayPortletResponse.createActionURL();
-
-				deleteAccountUsersURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/edit_account_users");
-				deleteAccountUsersURL.setParameter(
-					Constants.CMD, Constants.DELETE);
-				deleteAccountUsersURL.setParameter(
-					"navigation", getNavigation());
-				deleteAccountUsersURL.setParameter(
-					"accountEntriesNavigation", _getAccountEntriesNavigation());
-				deleteAccountUsersURL.setParameter(
-					"accountEntryIds",
-					ParamUtil.getString(request, "accountEntryIds"));
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/account_admin/edit_account_users"
+					).setParameter(
+						Constants.CMD, Constants.DELETE
+					).setParameter(
+						"navigation", getNavigation()
+					).setParameter(
+						"accountEntriesNavigation",
+						_getAccountEntriesNavigation()
+					).setParameter(
+						"accountEntryIds",
+						ParamUtil.getString(request, "accountEntryIds")
+					).build();
 
 				dropdownItem.putData(
 					"deleteAccountUsersURL", deleteAccountUsersURL.toString());
@@ -213,12 +220,17 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("navigation", (String)null);
-		clearResultsURL.setParameter("accountEntriesNavigation", "all");
-		clearResultsURL.setParameter("accountEntryIds", StringPool.BLANK);
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"navigation", (String)null
+		).setParameter(
+			"accountEntriesNavigation", "all"
+		).setParameter(
+			"accountEntryIds", StringPool.BLANK
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -230,26 +242,31 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 				dropdownItem.putData("action", "addAccountUser");
 
 				PortletURL accountEntrySelectorURL =
-					liferayPortletResponse.createRenderURL();
-
-				accountEntrySelectorURL.setParameter(
-					"mvcPath", "/account_users_admin/select_account_entry.jsp");
-				accountEntrySelectorURL.setParameter("singleSelect", "true");
-				accountEntrySelectorURL.setWindowState(
-					LiferayWindowState.POP_UP);
+					PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setParameter(
+						"mvcPath",
+						"/account_users_admin/select_account_entry.jsp"
+					).setParameter(
+						"singleSelect", "true"
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).build();
 
 				dropdownItem.putData(
 					"accountEntrySelectorURL",
 					accountEntrySelectorURL.toString());
 
 				PortletURL addAccountUserURL =
-					liferayPortletResponse.createRenderURL();
-
-				addAccountUserURL.setParameter(
-					"mvcRenderCommandName", "/account_admin/add_account_user");
-				addAccountUserURL.setParameter(
-					"backURL",
-					String.valueOf(liferayPortletResponse.createRenderURL()));
+					PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setParameter(
+						"mvcRenderCommandName",
+						"/account_admin/add_account_user"
+					).setParameter(
+						"backURL",
+						String.valueOf(liferayPortletResponse.createRenderURL())
+					).build();
 
 				dropdownItem.putData(
 					"addAccountUserURL", addAccountUserURL.toString());
@@ -344,10 +361,12 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 
 					add(
 						labelItem -> {
-							PortletURL removeLabelURL = getPortletURL();
-
-							removeLabelURL.setParameter(
-								"accountEntriesNavigation", (String)null);
+							PortletURL removeLabelURL =
+								PortletURLBuilder.create(
+									getPortletURL()
+								).setParameter(
+									"accountEntriesNavigation", (String)null
+								).build();
 
 							labelItem.putData(
 								"removeLabelURL", removeLabelURL.toString());
@@ -363,10 +382,12 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 				if (!Objects.equals(getNavigation(), "active")) {
 					add(
 						labelItem -> {
-							PortletURL removeLabelURL = getPortletURL();
-
-							removeLabelURL.setParameter(
-								"navigation", (String)null);
+							PortletURL removeLabelURL =
+								PortletURLBuilder.create(
+									getPortletURL()
+								).setParameter(
+									"navigation", (String)null
+								).build();
 
 							labelItem.putData(
 								"removeLabelURL", removeLabelURL.toString());
@@ -466,15 +487,16 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 				dropdownItem.putData("action", "selectAccountEntries");
 
 				PortletURL accountEntriesSelectorURL =
-					liferayPortletResponse.createRenderURL();
-
-				accountEntriesSelectorURL.setParameter(
-					"mvcPath",
-					"/account_users_admin/select_account_entries.jsp");
-				accountEntriesSelectorURL.setParameter(
-					"accountEntriesNavigation", "accounts");
-				accountEntriesSelectorURL.setWindowState(
-					LiferayWindowState.POP_UP);
+					PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setParameter(
+						"mvcPath",
+						"/account_users_admin/select_account_entries.jsp"
+					).setParameter(
+						"accountEntriesNavigation", "accounts"
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).build();
 
 				dropdownItem.putData(
 					"accountEntriesSelectorURL",

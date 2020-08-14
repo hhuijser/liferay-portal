@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -69,21 +70,25 @@ public class DDMStructuresPortletConfigurationIcon
 		Portlet portlet = _portletLocalService.getPortletById(
 			portletDisplay.getId());
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			portletRequest,
-			PortletProviderUtil.getPortletId(
-				DDMStructure.class.getName(), PortletProvider.Action.VIEW),
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
-		portletURL.setParameter("backURL", themeDisplay.getURLCurrent());
-		portletURL.setParameter(
-			"groupId", String.valueOf(themeDisplay.getScopeGroupId()));
-		portletURL.setParameter(
-			"refererPortletName", DDLPortletKeys.DYNAMIC_DATA_LISTS);
-		portletURL.setParameter(
-			"refererWebDAVToken", WebDAVUtil.getStorageToken(portlet));
-		portletURL.setParameter("showAncestorScopes", Boolean.TRUE.toString());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				portletRequest,
+				PortletProviderUtil.getPortletId(
+					DDMStructure.class.getName(), PortletProvider.Action.VIEW),
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).setParameter(
+			"backURL", themeDisplay.getURLCurrent()
+		).setParameter(
+			"groupId", String.valueOf(themeDisplay.getScopeGroupId())
+		).setParameter(
+			"refererPortletName", DDLPortletKeys.DYNAMIC_DATA_LISTS
+		).setParameter(
+			"refererWebDAVToken", WebDAVUtil.getStorageToken(portlet)
+		).setParameter(
+			"showAncestorScopes", Boolean.TRUE.toString()
+		).build();
 
 		return portletURL.toString();
 	}

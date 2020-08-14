@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -152,14 +153,15 @@ public class CommentAssetRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, group, CommentPortletKeys.COMMENT, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/discussion/edit_discussion");
-		portletURL.setParameter(
-			"commentId", String.valueOf(_workflowableComment.getCommentId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, group, CommentPortletKeys.COMMENT, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/discussion/edit_discussion"
+		).setParameter(
+			"commentId", String.valueOf(_workflowableComment.getCommentId())
+		).build();
 
 		return portletURL;
 	}
@@ -173,13 +175,15 @@ public class CommentAssetRenderer
 		AssetRendererFactory<WorkflowableComment> assetRendererFactory =
 			getAssetRendererFactory();
 
-		PortletURL portletURL = assetRendererFactory.getURLView(
-			liferayPortletResponse, windowState);
-
-		portletURL.setParameter("mvcPath", "/view_comment.jsp");
-		portletURL.setParameter(
-			"commentId", String.valueOf(_workflowableComment.getCommentId()));
-		portletURL.setWindowState(windowState);
+		PortletURL portletURL = PortletURLBuilder.create(
+			assetRendererFactory.getURLView(liferayPortletResponse, windowState)
+		).setParameter(
+			"mvcPath", "/view_comment.jsp"
+		).setParameter(
+			"commentId", String.valueOf(_workflowableComment.getCommentId())
+		).setWindowState(
+			windowState
+		).build();
 
 		return portletURL.toString();
 	}

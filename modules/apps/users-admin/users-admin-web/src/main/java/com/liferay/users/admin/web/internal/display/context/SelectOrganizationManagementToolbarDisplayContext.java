@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
@@ -66,9 +67,11 @@ public class SelectOrganizationManagementToolbarDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -124,9 +127,11 @@ public class SelectOrganizationManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/select_organization.jsp");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/select_organization.jsp"
+		).build();
 
 		User selUser = _getSelectedUser();
 
@@ -242,11 +247,12 @@ public class SelectOrganizationManagementToolbarDisplayContext {
 	}
 
 	public String getSortingURL() {
-		PortletURL sortingURL = getPortletURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL.toString();
 	}

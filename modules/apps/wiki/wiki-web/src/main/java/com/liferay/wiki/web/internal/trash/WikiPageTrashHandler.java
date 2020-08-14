@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.model.SystemEvent;
 import com.liferay.portal.kernel.model.TrashedModel;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -165,14 +166,16 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 			PortletRequest portletRequest, long classPK)
 		throws PortalException {
 
-		PortletURL portletURL = getRestoreURL(portletRequest, classPK, false);
+		PortletURL portletURL = PortletURLBuilder.create(
+			getRestoreURL(portletRequest, classPK, false)
+		).setParameter(
+			"nodeName", node.getName()
+		).build();
 
 		WikiPage page = _wikiPageLocalService.getLatestPage(
 			classPK, WorkflowConstants.STATUS_ANY, false);
 
 		WikiNode node = page.getNode();
-
-		portletURL.setParameter("nodeName", node.getName());
 
 		portletURL.setParameter("title", HtmlUtil.unescape(page.getTitle()));
 
@@ -189,9 +192,11 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 
 		WikiNode node = page.getNode();
 
-		PortletURL portletURL = getRestoreURL(portletRequest, classPK, true);
-
-		portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			getRestoreURL(portletRequest, classPK, true)
+		).setParameter(
+			"nodeId", String.valueOf(node.getNodeId())
+		).build();
 
 		return portletURL.toString();
 	}

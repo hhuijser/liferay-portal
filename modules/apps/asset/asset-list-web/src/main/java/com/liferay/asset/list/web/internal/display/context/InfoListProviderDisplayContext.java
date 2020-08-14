@@ -21,6 +21,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -121,9 +122,11 @@ public class InfoListProviderDisplayContext {
 			return PortletURLUtil.clone(currentURLObj, _renderResponse);
 		}
 		catch (PortletException portletException) {
-			PortletURL portletURL = _renderResponse.createRenderURL();
-
-			portletURL.setParameters(currentURLObj.getParameterMap());
+			PortletURL portletURL = PortletURLBuilder.createRenderURL(
+				_renderResponse
+			).setParameters(
+				currentURLObj.getParameterMap()
+			).build();
 
 			return portletURL;
 		}

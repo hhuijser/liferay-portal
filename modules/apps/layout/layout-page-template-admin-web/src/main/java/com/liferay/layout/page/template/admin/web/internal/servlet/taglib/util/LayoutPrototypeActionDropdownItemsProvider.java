@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutPrototype;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.service.permission.LayoutPrototypePermissionUtil;
@@ -111,17 +112,17 @@ public class LayoutPrototypeActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getDeleteLayoutPrototypeActionUnsafeConsumer() {
 
-		PortletURL deleteLayoutPrototypeURL = _renderResponse.createActionURL();
-
-		deleteLayoutPrototypeURL.setParameter(
+		PortletURL deleteLayoutPrototypeURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_prototype/delete_layout_prototype");
-
-		deleteLayoutPrototypeURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
-		deleteLayoutPrototypeURL.setParameter(
+			"/layout_prototype/delete_layout_prototype"
+		).setParameter(
+			"redirect", _themeDisplay.getURLCurrent()
+		).setParameter(
 			"layoutPrototypeId",
-			String.valueOf(_layoutPrototype.getLayoutPrototypeId()));
+			String.valueOf(_layoutPrototype.getLayoutPrototypeId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deleteLayoutPrototype");
@@ -151,24 +152,25 @@ public class LayoutPrototypeActionDropdownItemsProvider {
 			_getExportLayoutPrototypeActionUnsafeConsumer()
 		throws Exception {
 
-		PortletURL exportLayoutPrototypeURL =
+		PortletURL exportLayoutPrototypeURL = PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				_httpServletRequest, ExportImportPortletKeys.EXPORT,
-				PortletRequest.RENDER_PHASE);
-
-		exportLayoutPrototypeURL.setParameter(
-			"mvcRenderCommandName", "exportLayouts");
-		exportLayoutPrototypeURL.setParameter(Constants.CMD, Constants.EXPORT);
-		exportLayoutPrototypeURL.setParameter(
-			"groupId", String.valueOf(_layoutPrototype.getGroupId()));
-		exportLayoutPrototypeURL.setParameter(
-			"privateLayout", Boolean.TRUE.toString());
-		exportLayoutPrototypeURL.setParameter(
-			"rootNodeName",
-			_layoutPrototype.getName(_themeDisplay.getLocale()));
-		exportLayoutPrototypeURL.setParameter(
-			"showHeader", Boolean.FALSE.toString());
-		exportLayoutPrototypeURL.setWindowState(LiferayWindowState.POP_UP);
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "exportLayouts"
+		).setParameter(
+			Constants.CMD, Constants.EXPORT
+		).setParameter(
+			"groupId", String.valueOf(_layoutPrototype.getGroupId())
+		).setParameter(
+			"privateLayout", Boolean.TRUE.toString()
+		).setParameter(
+			"rootNodeName", _layoutPrototype.getName(_themeDisplay.getLocale())
+		).setParameter(
+			"showHeader", Boolean.FALSE.toString()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "exportLayoutPrototype");
@@ -184,24 +186,25 @@ public class LayoutPrototypeActionDropdownItemsProvider {
 			_getImportLayoutPrototypeActionUnsafeConsumer()
 		throws Exception {
 
-		PortletURL importLayoutPrototypeURL =
+		PortletURL importLayoutPrototypeURL = PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				_httpServletRequest, ExportImportPortletKeys.IMPORT,
-				PortletRequest.RENDER_PHASE);
-
-		importLayoutPrototypeURL.setParameter(
-			"mvcRenderCommandName", "importLayouts");
-		importLayoutPrototypeURL.setParameter(Constants.CMD, Constants.IMPORT);
-		importLayoutPrototypeURL.setParameter(
-			"groupId", String.valueOf(_layoutPrototype.getGroupId()));
-		importLayoutPrototypeURL.setParameter(
-			"privateLayout", Boolean.TRUE.toString());
-		importLayoutPrototypeURL.setParameter(
-			"rootNodeName",
-			_layoutPrototype.getName(_themeDisplay.getLocale()));
-		importLayoutPrototypeURL.setParameter(
-			"showHeader", Boolean.FALSE.toString());
-		importLayoutPrototypeURL.setWindowState(LiferayWindowState.POP_UP);
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "importLayouts"
+		).setParameter(
+			Constants.CMD, Constants.IMPORT
+		).setParameter(
+			"groupId", String.valueOf(_layoutPrototype.getGroupId())
+		).setParameter(
+			"privateLayout", Boolean.TRUE.toString()
+		).setParameter(
+			"rootNodeName", _layoutPrototype.getName(_themeDisplay.getLocale())
+		).setParameter(
+			"showHeader", Boolean.FALSE.toString()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "importLayoutPrototype");

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
@@ -200,10 +201,11 @@ public class ManageCollaboratorsViewMVCRenderCommand
 	private String _getManageCollaboratorsActionURL(
 		RenderResponse renderResponse) {
 
-		PortletURL manageCollaboratorURL = renderResponse.createActionURL();
-
-		manageCollaboratorURL.setParameter(
-			ActionRequest.ACTION_NAME, "/sharing/manage_collaborators");
+		PortletURL manageCollaboratorURL = PortletURLBuilder.createActionURL(
+			renderResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/sharing/manage_collaborators"
+		).build();
 
 		return manageCollaboratorURL.toString();
 	}

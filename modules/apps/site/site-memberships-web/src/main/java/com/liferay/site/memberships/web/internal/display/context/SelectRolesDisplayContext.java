@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.role.RoleConstants;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -123,12 +124,17 @@ public class SelectRolesDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/select_site_role.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
-		portletURL.setParameter("roleType", String.valueOf(getRoleType()));
-		portletURL.setParameter("eventName", getEventName());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/select_site_role.jsp"
+		).setParameter(
+			"groupId", String.valueOf(getGroupId())
+		).setParameter(
+			"roleType", String.valueOf(getRoleType())
+		).setParameter(
+			"eventName", getEventName()
+		).build();
 
 		String displayStyle = getDisplayStyle();
 

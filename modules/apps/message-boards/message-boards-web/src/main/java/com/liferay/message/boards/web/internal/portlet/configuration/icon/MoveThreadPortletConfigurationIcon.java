@@ -22,6 +22,7 @@ import com.liferay.message.boards.web.internal.portlet.action.ActionUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionUtil;
@@ -60,14 +61,15 @@ public class MoveThreadPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, MBPortletKeys.MESSAGE_BOARDS_ADMIN,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/move_thread");
-		portletURL.setParameter(
-			"redirect", _portal.getCurrentURL(portletRequest));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, MBPortletKeys.MESSAGE_BOARDS_ADMIN,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/move_thread"
+		).setParameter(
+			"redirect", _portal.getCurrentURL(portletRequest)
+		).build();
 
 		try {
 			portletURL.setParameter(

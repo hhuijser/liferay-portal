@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -94,12 +95,13 @@ public class DLEditFileEntryTypeDisplayContext {
 				"url",
 				() -> {
 					PortletURL editBasicInfoURL =
-						_liferayPortletResponse.createRenderURL();
-
-					editBasicInfoURL.setParameter(
-						"mvcPath", "/document_library/ddm/details.jsp");
-					editBasicInfoURL.setWindowState(
-						LiferayWindowState.EXCLUSIVE);
+						PortletURLBuilder.createRenderURL(
+							_liferayPortletResponse
+						).setParameter(
+							"mvcPath", "/document_library/ddm/details.jsp"
+						).setWindowState(
+							LiferayWindowState.EXCLUSIVE
+						).build();
 
 					return editBasicInfoURL.toString();
 				}
@@ -122,13 +124,14 @@ public class DLEditFileEntryTypeDisplayContext {
 				"url",
 				() -> {
 					PortletURL editAdditionalMetadataFieldsURL =
-						_liferayPortletResponse.createRenderURL();
-
-					editAdditionalMetadataFieldsURL.setParameter(
-						"mvcPath",
-						"/document_library/ddm/additional_metadata_fields.jsp");
-					editAdditionalMetadataFieldsURL.setWindowState(
-						LiferayWindowState.EXCLUSIVE);
+						PortletURLBuilder.createRenderURL(
+							_liferayPortletResponse
+						).setParameter(
+							"mvcPath",
+							"/document_library/ddm/additional_metadata_fields.jsp"
+						).setWindowState(
+							LiferayWindowState.EXCLUSIVE
+						).build();
 
 					return editAdditionalMetadataFieldsURL.toString();
 				}
@@ -155,12 +158,14 @@ public class DLEditFileEntryTypeDisplayContext {
 					"url",
 					() -> {
 						PortletURL editPermissionsURL =
-							_liferayPortletResponse.createRenderURL();
-
-						editPermissionsURL.setParameter(
-							"mvcPath", "/document_library/ddm/permissions.jsp");
-						editPermissionsURL.setWindowState(
-							LiferayWindowState.EXCLUSIVE);
+							PortletURLBuilder.createRenderURL(
+								_liferayPortletResponse
+							).setParameter(
+								"mvcPath",
+								"/document_library/ddm/permissions.jsp"
+							).setWindowState(
+								LiferayWindowState.EXCLUSIVE
+							).build();
 
 						return editPermissionsURL.toString();
 					}

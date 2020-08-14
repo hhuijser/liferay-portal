@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.trash.TrashHandler;
@@ -94,20 +95,23 @@ public class TrashManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("navigation", StringPool.BLANK);
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"navigation", StringPool.BLANK
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
 
 	public Map<String, Object> getComponentContext() {
-		PortletURL restoreEntriesURL = liferayPortletResponse.createActionURL(
-			TrashPortletKeys.TRASH);
-
-		restoreEntriesURL.setParameter(
-			ActionRequest.ACTION_NAME, "restoreEntries");
+		PortletURL restoreEntriesURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, TrashPortletKeys.TRASH
+		).setParameter(
+			ActionRequest.ACTION_NAME, "restoreEntries"
+		).build();
 
 		return HashMapBuilder.<String, Object>put(
 			"restoreEntriesURL", restoreEntriesURL.toString()
@@ -134,10 +138,11 @@ public class TrashManagementToolbarDisplayContext
 				Validator.isNotNull(getNavigation()) &&
 				!Objects.equals(getNavigation(), "all"),
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					currentURLObj, liferayPortletResponse);
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 

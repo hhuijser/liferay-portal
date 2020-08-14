@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Portal;
@@ -61,13 +62,16 @@ public class ImportPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest,
-				LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/view_import.jsp");
-			portletURL.setWindowState(LiferayWindowState.POP_UP);
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest,
+					LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcPath", "/view_import.jsp"
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 			StringBundler sb = new StringBundler(6);
 

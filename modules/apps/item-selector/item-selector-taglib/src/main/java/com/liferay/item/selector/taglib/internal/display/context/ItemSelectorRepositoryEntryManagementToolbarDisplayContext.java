@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -120,9 +121,11 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 
 		return LabelItemListBuilder.add(
 			labelItem -> {
-				PortletURL removeLabelURL = _getCurrentSortingURL();
-
-				removeLabelURL.setParameter("scope", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					_getCurrentSortingURL()
+				).setParameter(
+					"scope", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -149,21 +152,24 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getSearchURL() throws PortletException {
-		PortletURL searchURL = PortletURLUtil.clone(
-			_currentURLObj, _liferayPortletResponse);
-
-		searchURL.setParameter("keywords", (String)null);
-		searchURL.setParameter("resetCur", Boolean.TRUE.toString());
+		PortletURL searchURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse)
+		).setParameter(
+			"keywords", (String)null
+		).setParameter(
+			"resetCur", Boolean.TRUE.toString()
+		).build();
 
 		return searchURL;
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
-		PortletURL sortingURL = _getCurrentSortingURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getCurrentSortingURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL;
 	}
@@ -218,11 +224,13 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 	}
 
 	private PortletURL _getCurrentSortingURL() throws PortletException {
-		PortletURL currentSortingURL = PortletURLUtil.clone(
-			_getPortletURL(), _liferayPortletResponse);
-
-		currentSortingURL.setParameter("orderByType", getOrderByType());
-		currentSortingURL.setParameter("orderByCol", _getOrderByCol());
+		PortletURL currentSortingURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_getPortletURL(), _liferayPortletResponse)
+		).setParameter(
+			"orderByType", getOrderByType()
+		).setParameter(
+			"orderByCol", _getOrderByCol()
+		).build();
 
 		if (_repositoryEntryBrowserDisplayContext.isSearchEverywhere()) {
 			currentSortingURL.setParameter("scope", "everywhere");

@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
@@ -362,13 +363,19 @@ public class JournalEditArticleDisplayContext {
 	}
 
 	public String getEditArticleURL() {
-		PortletURL editArticleURL = _liferayPortletResponse.createRenderURL();
-
-		editArticleURL.setParameter("redirect", getRedirect());
-		editArticleURL.setParameter("mvcPath", "/edit_article.jsp");
-		editArticleURL.setParameter("groupId", String.valueOf(getGroupId()));
-		editArticleURL.setParameter("articleId", getArticleId());
-		editArticleURL.setParameter("version", String.valueOf(getVersion()));
+		PortletURL editArticleURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"redirect", getRedirect()
+		).setParameter(
+			"mvcPath", "/edit_article.jsp"
+		).setParameter(
+			"groupId", String.valueOf(getGroupId())
+		).setParameter(
+			"articleId", getArticleId()
+		).setParameter(
+			"version", String.valueOf(getVersion())
+		).build();
 
 		return editArticleURL.toString();
 	}
@@ -755,12 +762,13 @@ public class JournalEditArticleDisplayContext {
 					JournalArticleConstants.CLASS_NAME_ID_DEFAULT) &&
 				 (_article != null)) {
 
-			PortletURL backURL = _liferayPortletResponse.createRenderURL();
-
-			backURL.setParameter(
-				"groupId", String.valueOf(_article.getGroupId()));
-			backURL.setParameter(
-				"folderId", String.valueOf(_article.getFolderId()));
+			PortletURL backURL = PortletURLBuilder.createRenderURL(
+				_liferayPortletResponse
+			).setParameter(
+				"groupId", String.valueOf(_article.getGroupId())
+			).setParameter(
+				"folderId", String.valueOf(_article.getFolderId())
+			).build();
 
 			portletDisplay.setURLBack(backURL.toString());
 		}

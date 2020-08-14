@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.taglib.util.IncludeTag;
@@ -118,10 +119,11 @@ public class ManagementBarSortTag extends IncludeTag implements BodyTag {
 			new ArrayList<>();
 
 		try {
-			PortletURL orderByColURL = PortletURLUtil.clone(
-				_portletURL, liferayPortletResponse);
-
-			orderByColURL.setParameter("orderByType", _orderByType);
+			PortletURL orderByColURL = PortletURLBuilder.create(
+				PortletURLUtil.clone(_portletURL, liferayPortletResponse)
+			).setParameter(
+				"orderByType", _orderByType
+			).build();
 
 			for (Map.Entry<String, String> entry : _orderColumns.entrySet()) {
 				String orderColumn = entry.getKey();

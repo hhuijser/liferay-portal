@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.MembershipRequestConstants;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.membershippolicy.SiteMembershipPolicyUtil;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.LayoutServiceUtil;
@@ -111,15 +112,17 @@ public class SiteActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getJoinSiteActionUnsafeConsumer() {
 
-		PortletURL joinSiteURL = _renderResponse.createActionURL();
-
-		joinSiteURL.setParameter(ActionRequest.ACTION_NAME, "updateGroupUsers");
-
-		joinSiteURL.setParameter("redirect", _themeDisplay.getURLCurrent());
-		joinSiteURL.setParameter(
-			"groupId", String.valueOf(_group.getGroupId()));
-		joinSiteURL.setParameter(
-			"addUserIds", String.valueOf(_themeDisplay.getUserId()));
+		PortletURL joinSiteURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "updateGroupUsers"
+		).setParameter(
+			"redirect", _themeDisplay.getURLCurrent()
+		).setParameter(
+			"groupId", String.valueOf(_group.getGroupId())
+		).setParameter(
+			"addUserIds", String.valueOf(_themeDisplay.getUserId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "joinSite");
@@ -132,16 +135,17 @@ public class SiteActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getLeaveSiteActionUnsafeConsumer() {
 
-		PortletURL leaveSiteURL = _renderResponse.createActionURL();
-
-		leaveSiteURL.setParameter(
-			ActionRequest.ACTION_NAME, "updateGroupUsers");
-
-		leaveSiteURL.setParameter("redirect", _themeDisplay.getURLCurrent());
-		leaveSiteURL.setParameter(
-			"groupId", String.valueOf(_group.getGroupId()));
-		leaveSiteURL.setParameter(
-			"removeUserIds", String.valueOf(_themeDisplay.getUserId()));
+		PortletURL leaveSiteURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "updateGroupUsers"
+		).setParameter(
+			"redirect", _themeDisplay.getURLCurrent()
+		).setParameter(
+			"groupId", String.valueOf(_group.getGroupId())
+		).setParameter(
+			"removeUserIds", String.valueOf(_themeDisplay.getUserId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "leaveSite");

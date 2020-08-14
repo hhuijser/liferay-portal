@@ -21,6 +21,7 @@ import com.liferay.knowledge.base.service.KBArticleServiceUtil;
 import com.liferay.knowledge.base.service.KBFolderServiceUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -58,14 +59,14 @@ public class KBSelectParentDisplayContext {
 			PortletURL portletURL)
 		throws Exception {
 
-		PortletURL currentURL = PortletURLUtil.clone(
-			portletURL, _liferayPortletResponse);
-
-		currentURL.setParameter(
+		PortletURL currentURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(portletURL, _liferayPortletResponse)
+		).setParameter(
 			"parentResourceClassNameId",
-			String.valueOf(parentResourceClassNameId));
-		currentURL.setParameter(
-			"parentResourcePrimKey", String.valueOf(parentResourcePrimKey));
+			String.valueOf(parentResourceClassNameId)
+		).setParameter(
+			"parentResourcePrimKey", String.valueOf(parentResourcePrimKey)
+		).build();
 
 		long kbFolderClassNameId = PortalUtil.getClassNameId(
 			KBFolderConstants.getClassName());

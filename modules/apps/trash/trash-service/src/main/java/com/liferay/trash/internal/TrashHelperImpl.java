@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.trash.TrashHandler;
@@ -150,12 +151,15 @@ public class TrashHelperImpl implements TrashHelper {
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		PortletURL portletURL = PortletProviderUtil.getPortletURL(
-			httpServletRequest, TrashEntry.class.getName(),
-			PortletProvider.Action.VIEW);
-
-		portletURL.setParameter("mvcPath", "/view_content.jsp");
-		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				httpServletRequest, TrashEntry.class.getName(),
+				PortletProvider.Action.VIEW)
+		).setParameter(
+			"mvcPath", "/view_content.jsp"
+		).setParameter(
+			"redirect", themeDisplay.getURLCurrent()
+		).build();
 
 		TrashEntry trashEntry = _trashEntryLocalService.getEntry(
 			className, classPK);

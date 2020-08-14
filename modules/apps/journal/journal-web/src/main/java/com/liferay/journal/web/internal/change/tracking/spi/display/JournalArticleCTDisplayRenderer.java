@@ -22,6 +22,7 @@ import com.liferay.journal.util.JournalContent;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Portal;
@@ -64,18 +65,21 @@ public class JournalArticleCTDisplayRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			httpServletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_article.jsp");
-		portletURL.setParameter(
-			"redirect", _portal.getCurrentURL(httpServletRequest));
-		portletURL.setParameter(
-			"groupId", String.valueOf(journalArticle.getGroupId()));
-		portletURL.setParameter("articleId", journalArticle.getArticleId());
-		portletURL.setParameter(
-			"version", String.valueOf(journalArticle.getVersion()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_article.jsp"
+		).setParameter(
+			"redirect", _portal.getCurrentURL(httpServletRequest)
+		).setParameter(
+			"groupId", String.valueOf(journalArticle.getGroupId())
+		).setParameter(
+			"articleId", journalArticle.getArticleId()
+		).setParameter(
+			"version", String.valueOf(journalArticle.getVersion())
+		).build();
 
 		return portletURL.toString();
 	}

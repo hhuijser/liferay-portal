@@ -49,6 +49,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.portlet.toolbar.contributor.PortletToolbarContributor;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -296,12 +297,13 @@ public class DLAdminManagementToolbarDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = _liferayPortletResponse.createRenderURL();
-
-		clearResultsURL.setParameter(
-			"mvcRenderCommandName", "/document_library/view");
-		clearResultsURL.setParameter(
-			"folderId", String.valueOf(_getFolderId()));
+		PortletURL clearResultsURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/view"
+		).setParameter(
+			"folderId", String.valueOf(_getFolderId())
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -380,10 +382,12 @@ public class DLAdminManagementToolbarDisplayContext {
 		return LabelItemListBuilder.add(
 			() -> fileEntryTypeId != -1,
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					_currentURLObj, _liferayPortletResponse);
-
-				removeLabelURL.setParameter("fileEntryTypeId", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setParameter(
+					"fileEntryTypeId", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -414,10 +418,12 @@ public class DLAdminManagementToolbarDisplayContext {
 		).add(
 			() -> Objects.equals(_getNavigation(), "mine"),
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					_currentURLObj, _liferayPortletResponse);
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -435,14 +441,15 @@ public class DLAdminManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getSearchURL() {
-		PortletURL searchURL = _liferayPortletResponse.createRenderURL();
-
-		searchURL.setParameter(
-			"mvcRenderCommandName", "/document_library/search");
-
 		long repositoryId = _getRepositoryId();
 
-		searchURL.setParameter("repositoryId", String.valueOf(repositoryId));
+		PortletURL searchURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/search"
+		).setParameter(
+			"repositoryId", String.valueOf(repositoryId)
+		).build();
 
 		long searchRepositoryId = ParamUtil.getLong(
 			_httpServletRequest, "searchRepositoryId", repositoryId);
@@ -478,11 +485,12 @@ public class DLAdminManagementToolbarDisplayContext {
 			return null;
 		}
 
-		PortletURL sortingURL = _getCurrentSortingURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getCurrentSortingURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(_getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(_getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL;
 	}
@@ -512,7 +520,11 @@ public class DLAdminManagementToolbarDisplayContext {
 
 		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
 
-		PortletURL displayStyleURL = _liferayPortletResponse.createRenderURL();
+		PortletURL displayStyleURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", mvcRenderCommandName
+		).build();
 
 		String mvcRenderCommandName = "/document_library/search";
 
@@ -524,9 +536,6 @@ public class DLAdminManagementToolbarDisplayContext {
 				mvcRenderCommandName = "/document_library/view_folder";
 			}
 		}
-
-		displayStyleURL.setParameter(
-			"mvcRenderCommandName", mvcRenderCommandName);
 
 		displayStyleURL.setParameter(
 			"navigation", HtmlUtil.escapeJS(navigation));
@@ -648,15 +657,18 @@ public class DLAdminManagementToolbarDisplayContext {
 				dropdownItem.setActive(
 					navigation.equals("home") && (fileEntryTypeId == -1));
 
-				PortletURL viewAllDocumentsURL = PortletURLUtil.clone(
-					_currentURLObj, _liferayPortletResponse);
-
-				viewAllDocumentsURL.setParameter(
-					"mvcRenderCommandName", "/document_library/view");
-				viewAllDocumentsURL.setParameter("navigation", "home");
-				viewAllDocumentsURL.setParameter("browseBy", (String)null);
-				viewAllDocumentsURL.setParameter(
-					"fileEntryTypeId", (String)null);
+				PortletURL viewAllDocumentsURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setParameter(
+					"mvcRenderCommandName", "/document_library/view"
+				).setParameter(
+					"navigation", "home"
+				).setParameter(
+					"browseBy", (String)null
+				).setParameter(
+					"fileEntryTypeId", (String)null
+				).build();
 
 				dropdownItem.setHref(viewAllDocumentsURL);
 
@@ -668,12 +680,14 @@ public class DLAdminManagementToolbarDisplayContext {
 			dropdownItem -> {
 				dropdownItem.setActive(navigation.equals("mine"));
 
-				PortletURL viewMyDocumentsURL = PortletURLUtil.clone(
-					_currentURLObj, _liferayPortletResponse);
-
-				viewMyDocumentsURL.setParameter(
-					"mvcRenderCommandName", "/document_library/view");
-				viewMyDocumentsURL.setParameter("navigation", "mine");
+				PortletURL viewMyDocumentsURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setParameter(
+					"mvcRenderCommandName", "/document_library/view"
+				).setParameter(
+					"navigation", "mine"
+				).build();
 
 				dropdownItem.setHref(viewMyDocumentsURL);
 

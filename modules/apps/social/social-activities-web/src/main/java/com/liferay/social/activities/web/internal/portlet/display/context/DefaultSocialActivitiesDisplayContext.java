@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.AggregateResourceBundleLoader;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ResourceBundleLoader;
@@ -57,15 +58,17 @@ public class DefaultSocialActivitiesDisplayContext
 		LiferayPortletResponse liferayPortletResponse =
 			_socialActivitiesRequestHelper.getLiferayPortletResponse();
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("tabs1", getSelectedTabName());
-
 		int end =
 			_socialActivitiesRequestHelper.getEnd() +
 				_socialActivitiesRequestHelper.getMax();
 
-		portletURL.setParameter("end", String.valueOf(end));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"tabs1", getSelectedTabName()
+		).setParameter(
+			"end", String.valueOf(end)
+		).build();
 
 		return portletURL.toString();
 	}
@@ -143,9 +146,11 @@ public class DefaultSocialActivitiesDisplayContext
 		LiferayPortletResponse liferayPortletResponse =
 			_socialActivitiesRequestHelper.getLiferayPortletResponse();
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("tabs1", getSelectedTabName());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"tabs1", getSelectedTabName()
+		).build();
 
 		return portletURL.toString();
 	}

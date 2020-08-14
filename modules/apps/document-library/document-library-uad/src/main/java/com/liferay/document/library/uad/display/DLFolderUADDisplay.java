@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Repository;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.RepositoryLocalService;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -64,18 +65,19 @@ public class DLFolderUADDisplay extends BaseDLFolderUADDisplay {
 			return StringPool.BLANK;
 		}
 
-		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
+		PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
+			liferayPortletResponse,
 			portal.getControlPanelPlid(liferayPortletRequest),
-			DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_folder");
-		portletURL.setParameter(
-			"redirect", portal.getCurrentURL(liferayPortletRequest));
-		portletURL.setParameter(
-			"folderId", String.valueOf(dlFolder.getFolderId()));
-		portletURL.setParameter(
-			"repositoryId", String.valueOf(dlFolder.getRepositoryId()));
+			DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, PortletRequest.RENDER_PHASE
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/edit_folder"
+		).setParameter(
+			"redirect", portal.getCurrentURL(liferayPortletRequest)
+		).setParameter(
+			"folderId", String.valueOf(dlFolder.getFolderId())
+		).setParameter(
+			"repositoryId", String.valueOf(dlFolder.getRepositoryId())
+		).build();
 
 		return portletURL.toString();
 	}

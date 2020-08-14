@@ -20,6 +20,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -66,15 +67,16 @@ public class FragmentCollectionResourceActionDropdownItemsProvider {
 		_getDeleteFragmentCollectionResourceActionUnsafeConsumer() {
 
 		PortletURL deleteFragmentCollectionResourceURL =
-			_renderResponse.createActionURL();
-
-		deleteFragmentCollectionResourceURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/fragment/delete_fragment_collection_resources");
-		deleteFragmentCollectionResourceURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
-		deleteFragmentCollectionResourceURL.setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId()));
+			PortletURLBuilder.createActionURL(
+				_renderResponse
+			).setParameter(
+				ActionRequest.ACTION_NAME,
+				"/fragment/delete_fragment_collection_resources"
+			).setParameter(
+				"redirect", _themeDisplay.getURLCurrent()
+			).setParameter(
+				"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+			).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deleteFragmentCollectionResource");

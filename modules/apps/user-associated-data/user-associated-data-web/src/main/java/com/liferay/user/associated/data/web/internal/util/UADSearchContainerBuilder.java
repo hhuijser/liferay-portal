@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
@@ -373,11 +374,11 @@ public class UADSearchContainerBuilder {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PortletURL viewURL = PortletURLUtil.clone(
-			currentURL, liferayPortletResponse);
-
-		viewURL.setParameter(
-			"applicationKey", uadApplicationSummaryDisplay.getApplicationKey());
+		PortletURL viewURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(currentURL, liferayPortletResponse)
+		).setParameter(
+			"applicationKey", uadApplicationSummaryDisplay.getApplicationKey()
+		).build();
 
 		UADEntity<T> uadEntity = new UADEntity(
 			null, uadApplicationSummaryDisplay.getApplicationKey(), null, false,

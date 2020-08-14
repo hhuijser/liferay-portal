@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -249,16 +250,19 @@ public class FragmentEntryLinkDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/fragment/view_fragment_entry_usages");
-		portletURL.setParameter("navigation", getNavigation());
-		portletURL.setParameter("redirect", getRedirect());
-		portletURL.setParameter(
-			"fragmentCollectionId", String.valueOf(getFragmentCollectionId()));
-		portletURL.setParameter(
-			"fragmentEntryId", String.valueOf(getFragmentEntryId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/fragment/view_fragment_entry_usages"
+		).setParameter(
+			"navigation", getNavigation()
+		).setParameter(
+			"redirect", getRedirect()
+		).setParameter(
+			"fragmentCollectionId", String.valueOf(getFragmentCollectionId())
+		).setParameter(
+			"fragmentEntryId", String.valueOf(getFragmentEntryId())
+		).build();
 
 		return portletURL;
 	}

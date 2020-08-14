@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.List;
@@ -62,20 +63,20 @@ public class ViewAccountRoleAssigneesManagementToolbarDisplayContext
 
 				dropdownItem.putData("action", "removeUsers");
 
-				PortletURL removeUsersURL =
-					liferayPortletResponse.createActionURL();
-
-				removeUsersURL.setParameter(
+				PortletURL removeUsersURL = PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setParameter(
 					ActionRequest.ACTION_NAME,
-					"/account_admin/remove_account_role_users");
-				removeUsersURL.setParameter(
-					"redirect", currentURLObj.toString());
-				removeUsersURL.setParameter(
+					"/account_admin/remove_account_role_users"
+				).setParameter(
+					"redirect", currentURLObj.toString()
+				).setParameter(
 					"accountEntryId",
-					ParamUtil.getString(request, "accountEntryId"));
-				removeUsersURL.setParameter(
+					ParamUtil.getString(request, "accountEntryId")
+				).setParameter(
 					"accountRoleId",
-					ParamUtil.getString(request, "accountRoleId"));
+					ParamUtil.getString(request, "accountRoleId")
+				).build();
 
 				dropdownItem.putData(
 					"removeUsersURL", removeUsersURL.toString());
@@ -90,10 +91,13 @@ public class ViewAccountRoleAssigneesManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("navigation", (String)null);
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"navigation", (String)null
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}

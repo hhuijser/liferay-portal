@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -64,19 +65,20 @@ public class StagingConfigurationPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, StagingProcessesPortletKeys.STAGING_PROCESSES,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
-
-		portletURL.setParameter(
-			"showStagingConfiguration", Boolean.TRUE.toString());
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, StagingProcessesPortletKeys.STAGING_PROCESSES,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).setParameter(
+			"redirect", themeDisplay.getURLCurrent()
+		).setParameter(
+			"showStagingConfiguration", Boolean.TRUE.toString()
+		).build();
 
 		return portletURL.toString();
 	}

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -54,22 +55,25 @@ public class PortletConfigurationCSSPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			PortletURL renderURL = PortletURLFactoryUtil.create(
-				portletRequest,
-				PortletConfigurationCSSPortletKeys.PORTLET_CONFIGURATION_CSS,
-				PortletRequest.RENDER_PHASE);
-
-			renderURL.setParameter("mvcPath", "/view.jsp");
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)portletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
 
 			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-			renderURL.setParameter("portletResource", portletDisplay.getId());
-
-			renderURL.setWindowState(LiferayWindowState.POP_UP);
+			PortletURL renderURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					portletRequest,
+					PortletConfigurationCSSPortletKeys.
+						PORTLET_CONFIGURATION_CSS,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcPath", "/view.jsp"
+			).setParameter(
+				"portletResource", portletDisplay.getId()
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 			return renderURL.toString();
 		}

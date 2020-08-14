@@ -76,6 +76,7 @@ import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -1876,14 +1877,15 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		portletId = PortletProviderUtil.getPortletId(
 			MBMessage.class.getName(), PortletProvider.Action.MANAGE);
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			httpServletRequest, group, portletId, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
-		portletURL.setParameter(
-			"messageId", String.valueOf(message.getMessageId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, group, portletId, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/view_message"
+		).setParameter(
+			"messageId", String.valueOf(message.getMessageId())
+		).build();
 
 		return portletURL.toString();
 	}

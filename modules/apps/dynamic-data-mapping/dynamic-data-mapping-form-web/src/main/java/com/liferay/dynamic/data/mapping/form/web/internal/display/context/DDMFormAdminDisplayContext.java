@@ -90,6 +90,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -235,10 +236,11 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public String getClearResultsURL() throws PortletException {
-		PortletURL clearResultsURL = PortletURLUtil.clone(
-			getPortletURL(), renderResponse);
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(getPortletURL(), renderResponse)
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -782,11 +784,15 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/admin/view.jsp");
-		portletURL.setParameter("currentTab", "forms");
-		portletURL.setParameter("groupId", String.valueOf(getScopeGroupId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"mvcPath", "/admin/view.jsp"
+		).setParameter(
+			"currentTab", "forms"
+		).setParameter(
+			"groupId", String.valueOf(getScopeGroupId())
+		).build();
 
 		String delta = ParamUtil.getString(renderRequest, "delta");
 
@@ -857,9 +863,11 @@ public class DDMFormAdminDisplayContext {
 	public SearchContainer<?> getSearch() {
 		String displayStyle = getDisplayStyle();
 
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter("displayStyle", displayStyle);
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"displayStyle", displayStyle
+		).build();
 
 		DDMFormInstanceSearch ddmFormInstanceSearch = new DDMFormInstanceSearch(
 			renderRequest, portletURL);
@@ -891,11 +899,15 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public String getSearchActionURL() {
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/admin/view.jsp");
-		portletURL.setParameter("currentTab", "forms");
-		portletURL.setParameter("groupId", String.valueOf(getScopeGroupId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"mvcPath", "/admin/view.jsp"
+		).setParameter(
+			"currentTab", "forms"
+		).setParameter(
+			"groupId", String.valueOf(getScopeGroupId())
+		).build();
 
 		return portletURL.toString();
 	}
@@ -964,10 +976,11 @@ public class DDMFormAdminDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		PortletURL shareFormInstanceURL = renderResponse.createActionURL();
-
-		shareFormInstanceURL.setParameter(
-			ActionRequest.ACTION_NAME, "/admin/share_form_instance");
+		PortletURL shareFormInstanceURL = PortletURLBuilder.createActionURL(
+			renderResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/admin/share_form_instance"
+		).build();
 
 		if (formInstance != null) {
 			shareFormInstanceURL.setParameter(
@@ -979,13 +992,13 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public String getSortingURL() throws Exception {
-		PortletURL sortingURL = PortletURLUtil.clone(
-			getPortletURL(), renderResponse);
+		PortletURL sortingURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(getPortletURL(), renderResponse)
+		).setParameter(
+			"orderByType", orderByType.equals("asc") ? "desc" : "asc"
+		).build();
 
 		String orderByType = ParamUtil.getString(renderRequest, "orderByType");
-
-		sortingURL.setParameter(
-			"orderByType", orderByType.equals("asc") ? "desc" : "asc");
 
 		return sortingURL.toString();
 	}
@@ -1516,23 +1529,24 @@ public class DDMFormAdminDisplayContext {
 
 		navigationItem.setActive(false);
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			formAdminRequestHelper.getLiferayPortletRequest(),
-			PortletProviderUtil.getPortletId(
-				DDMDataProviderInstance.class.getName(),
-				PortletProvider.Action.EDIT),
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
-		portletURL.setParameter(
-			"backURL", formAdminRequestHelper.getCurrentURL());
-		portletURL.setParameter(
-			"refererPortletName",
-			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
-		portletURL.setParameter(
-			"groupId",
-			String.valueOf(formAdminRequestHelper.getScopeGroupId()));
-		portletURL.setParameter("showBackIcon", Boolean.FALSE.toString());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				formAdminRequestHelper.getLiferayPortletRequest(),
+				PortletProviderUtil.getPortletId(
+					DDMDataProviderInstance.class.getName(),
+					PortletProvider.Action.EDIT),
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).setParameter(
+			"backURL", formAdminRequestHelper.getCurrentURL()
+		).setParameter(
+			"refererPortletName", DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN
+		).setParameter(
+			"groupId", String.valueOf(formAdminRequestHelper.getScopeGroupId())
+		).setParameter(
+			"showBackIcon", Boolean.FALSE.toString()
+		).build();
 
 		navigationItem.setHref(portletURL.toString());
 

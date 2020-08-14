@@ -50,6 +50,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
@@ -128,10 +129,11 @@ public class DDLViewRecordsDisplayContext {
 	}
 
 	public String getClearResultsURL() throws PortletException {
-		PortletURL clearResultsURL = PortletURLUtil.clone(
-			getPortletURL(), _liferayPortletResponse);
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(getPortletURL(), _liferayPortletResponse)
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -274,15 +276,16 @@ public class DDLViewRecordsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLUtil.getCurrent(
-			_liferayPortletRequest, _liferayPortletResponse);
-
-		portletURL.setParameter("mvcPath", getMVCPath());
-		portletURL.setParameter(
-			"redirect",
-			ParamUtil.getString(_liferayPortletRequest, "redirect"));
-		portletURL.setParameter(
-			"recordSetId", String.valueOf(_ddlRecordSet.getRecordSetId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.getCurrent(
+				_liferayPortletRequest, _liferayPortletResponse)
+		).setParameter(
+			"mvcPath", getMVCPath()
+		).setParameter(
+			"redirect", ParamUtil.getString(_liferayPortletRequest, "redirect")
+		).setParameter(
+			"recordSetId", String.valueOf(_ddlRecordSet.getRecordSetId())
+		).build();
 
 		String delta = ParamUtil.getString(_liferayPortletRequest, "delta");
 
@@ -320,9 +323,11 @@ public class DDLViewRecordsDisplayContext {
 	public SearchContainer<?> getSearch() throws PortalException {
 		String displayStyle = getDisplayStyle();
 
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter("displayStyle", displayStyle);
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"displayStyle", displayStyle
+		).build();
 
 		List<String> headerNames = new ArrayList<>();
 
@@ -374,13 +379,15 @@ public class DDLViewRecordsDisplayContext {
 	}
 
 	public String getSearchActionURL() {
-		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", getMVCPath());
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(_liferayPortletRequest));
-		portletURL.setParameter(
-			"recordSetId", String.valueOf(_ddlRecordSet.getRecordSetId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", getMVCPath()
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(_liferayPortletRequest)
+		).setParameter(
+			"recordSetId", String.valueOf(_ddlRecordSet.getRecordSetId())
+		).build();
 
 		return portletURL.toString();
 	}
@@ -390,14 +397,14 @@ public class DDLViewRecordsDisplayContext {
 	}
 
 	public String getSortingURL() throws Exception {
-		PortletURL sortingURL = PortletURLUtil.clone(
-			getPortletURL(), _liferayPortletResponse);
+		PortletURL sortingURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(getPortletURL(), _liferayPortletResponse)
+		).setParameter(
+			"orderByType", orderByType.equals("asc") ? "desc" : "asc"
+		).build();
 
 		String orderByType = ParamUtil.getString(
 			_liferayPortletRequest, "orderByType");
-
-		sortingURL.setParameter(
-			"orderByType", orderByType.equals("asc") ? "desc" : "asc");
 
 		return sortingURL.toString();
 	}

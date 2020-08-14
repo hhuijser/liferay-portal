@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.notifications.UserNotificationHandler;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -139,12 +140,6 @@ public class ExportImportUserNotificationHandler
 			ServiceContext serviceContext)
 		throws Exception {
 
-		PortletURL renderURL = PortletURLFactoryUtil.create(
-			serviceContext.getRequest(), ExportImportPortletKeys.EXPORT_IMPORT,
-			PortletRequest.RENDER_PHASE);
-
-		renderURL.setParameter("mvcPath", "/view_export_import.jsp");
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
@@ -157,10 +152,18 @@ public class ExportImportUserNotificationHandler
 			return StringPool.BLANK;
 		}
 
-		renderURL.setParameter(
-			"backgroundTaskId", String.valueOf(backgroundTaskId));
-
-		renderURL.setParameter("backURL", serviceContext.getCurrentURL());
+		PortletURL renderURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				serviceContext.getRequest(),
+				ExportImportPortletKeys.EXPORT_IMPORT,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/view_export_import.jsp"
+		).setParameter(
+			"backgroundTaskId", String.valueOf(backgroundTaskId)
+		).setParameter(
+			"backURL", serviceContext.getCurrentURL()
+		).build();
 
 		return renderURL.toString();
 	}

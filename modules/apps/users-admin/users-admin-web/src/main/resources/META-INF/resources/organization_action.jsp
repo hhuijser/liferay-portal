@@ -22,9 +22,7 @@ SearchContainer<?> searchContainer = (SearchContainer<?>)request.getAttribute("l
 String redirect = currentURL;
 
 if ((searchContainer != null) && (searchContainer instanceof OrganizationSearch)) {
-	PortletURL iteratorURL = searchContainer.getIteratorURL();
-
-	redirect = iteratorURL.toString();
+	redirect = String.valueOf(searchContainer.getIteratorURL());
 }
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);

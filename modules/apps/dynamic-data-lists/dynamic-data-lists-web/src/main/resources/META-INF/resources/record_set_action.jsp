@@ -19,9 +19,7 @@
 <%
 SearchContainer<?> searchContainer = (SearchContainer)request.getAttribute(WebKeys.SEARCH_CONTAINER);
 
-PortletURL iteratorURL = searchContainer.getIteratorURL();
-
-String redirect = iteratorURL.toString();
+String redirect = String.valueOf(searchContainer.getIteratorURL());
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 

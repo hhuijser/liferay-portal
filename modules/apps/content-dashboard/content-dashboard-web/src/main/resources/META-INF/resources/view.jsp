@@ -74,9 +74,10 @@ ContentDashboardAdminManagementToolbarDisplayContext contentDashboardAdminManage
 						>
 
 							<%
-							row.setData(HashMapBuilder.<String, Object>put(
-								"rowId", row.getRowId()
-							).build());
+							row.setData(
+								HashMapBuilder.<String, Object>put(
+									"rowId", row.getRowId()
+								).build());
 							%>
 
 							<liferay-ui:search-container-column-text

@@ -22,7 +22,25 @@ if (movie.equals(StringPool.BLANK)) {
 }
 
 if (flashAttributes.equals(StringPool.BLANK)) {
-	flashAttributes = "align=left\n" + "allowScriptAccess=sameDomain\n" + "base=.\n" + "bgcolor=#FFFFFF\n" + "devicefont=true\n" + "height=200\n" + "loop=true\n" + "menu=false\n" + "play=false\n" + "quality=best\n" + "salign=\n" + "scale=showall\n" + "swliveconnect=false\n" + "width=100%\n" + "wmode=opaque";
+	StringBundler sb = new StringBundler(15);
+
+	sb.append("align=left\n");
+	sb.append("allowScriptAccess=sameDomain\n");
+	sb.append("base=.\n");
+	sb.append("bgcolor=#FFFFFF\n");
+	sb.append("devicefont=true\n");
+	sb.append("height=200\n");
+	sb.append("loop=true\n");
+	sb.append("menu=false\n");
+	sb.append("play=false\n");
+	sb.append("quality=best\n");
+	sb.append("salign=\n");
+	sb.append("scale=showall\n");
+	sb.append("swliveconnect=false\n");
+	sb.append("width=100%\n");
+	sb.append("wmode=opaque");
+
+	flashAttributes = sb.toString();
 }
 
 if (flashVariables.equals(StringPool.BLANK)) {

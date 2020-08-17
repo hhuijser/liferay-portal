@@ -33,7 +33,7 @@ the following exceptions are allowed:
 
 4. The name of the package contains any of the following:
 
-   `alloy.mvc`, `auth`, `axis`, `display.context`, `http`, `jsp`,
+   `alloy.mvc`, `auth`, `axis`, `display.context`, `http`, `jaxrs`, `jsp`,
 `layoutconfiguration.util`, `portal.action`, `portal.events`, `portlet`,
 `server.manager`, `servlet`, `spi.agent`, `sso`, `struts`
 

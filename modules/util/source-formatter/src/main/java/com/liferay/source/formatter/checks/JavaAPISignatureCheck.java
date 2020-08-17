@@ -207,7 +207,8 @@ public class JavaAPISignatureCheck extends BaseJavaTermCheck {
 	private static final String[] _PACKAGE_NAME_WHITELIST = {
 		".*\\.alloy\\.mvc(\\..*)?", ".*\\.auth(\\..*)?", ".*\\.axis(\\..*)?",
 		".*\\.display\\.context(\\..*)?", ".*\\.http(\\..*)?",
-		".*\\.jsp(\\..*)?", ".*\\.layoutconfiguration\\.util(\\..*)?",
+		".*\\.jaxrs(\\..*)?", ".*\\.jsp(\\..*)?",
+		".*\\.layoutconfiguration\\.util(\\..*)?",
 		".*\\.portal\\.action(\\..*)?", ".*\\.portal\\.events(\\..*)?",
 		".*\\.portlet(\\..*)?", ".*\\.server\\.manager(\\..*)?",
 		".*\\.servlet(\\..*)?", ".*\\.spi\\.agent(\\..*)?", ".*\\.sso(\\..*)?",

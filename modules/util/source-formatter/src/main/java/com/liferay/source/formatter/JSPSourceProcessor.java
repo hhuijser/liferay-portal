@@ -49,7 +49,7 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 	@Override
 	protected List<String> doGetFileNames() throws Exception {
-		String[] excludes = {"**/null.jsp", "**/tools/**"};
+		String[] excludes = {"**/null.jsp", "**/tools/**", "*/*.xml.tpl"};
 
 		List<String> fileNames = getFileNames(excludes, getIncludes());
 

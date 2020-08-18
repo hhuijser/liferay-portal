@@ -284,6 +284,12 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.TernaryOperatorCheck">
 			<message key="ternary.operator.avoid" value="Use if-else-statement instead of ternary conditional operator for better readability" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryAssignCheck">
+			<message key="assign.unnecessary.before.reassign" value="No need to assign call to variable ''{0}'', because ''{0}'' is reassigned another value without being used" />
+			<message key="assign.unnecessary.before.return" value="No need to assign call to variable ''{0}'', because ''{0}'' is returned right after" />
+			<message key="assign.unnecessary.combine" value="Use String.valueOf() to combine line ''{0}'' and ''{1}''" />
+			<message key="assign.unnecessary.unused" value="No need to assign call to variable ''{0}'', because ''{0}'' is not used after the call" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryTypeCastCheck">
 			<message key="type.cast.unnecessary" value="No need to apply Type Cast to method ''{0}''" />
 		</module>

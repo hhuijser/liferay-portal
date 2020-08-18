@@ -49,12 +49,6 @@ public class AutocompleteClayDataSetFilterContextContributor
 	private Map<String, Object> _serialize(
 		BaseAutocompleteClayDataSetFilter baseAutocompleteClayDataSetFilter) {
 
-		String selectionType = "single";
-
-		if (baseAutocompleteClayDataSetFilter.isMultipleSelection()) {
-			selectionType = "multiple";
-		}
-
 		return HashMapBuilder.<String, Object>put(
 			"apiURL", baseAutocompleteClayDataSetFilter.getAPIURL()
 		).put(
@@ -65,7 +59,14 @@ public class AutocompleteClayDataSetFilterContextContributor
 		).put(
 			"itemLabel", baseAutocompleteClayDataSetFilter.getItemLabel()
 		).put(
-			"selectionType", selectionType
+			"selectionType",
+			() -> {
+				if (baseAutocompleteClayDataSetFilter.isMultipleSelection()) {
+					return "multiple";
+				}
+
+				return "single";
+			}
 		).build();
 	}
 

@@ -259,58 +259,70 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 	public Map<String, TemplateVariableGroup> getTemplateVariableGroups(
 		String language) {
 
-		TemplateVariableGroup fieldsTemplateVariableGroup =
-			new TemplateVariableGroup("fields");
-
-		fieldsTemplateVariableGroup.addCollectionVariable(
-			"entries", List.class, PortletDisplayTemplateConstants.ENTRIES,
-			"entries-item", null, "curEntry", null);
-		fieldsTemplateVariableGroup.addVariable(
-			"entry", null, PortletDisplayTemplateConstants.ENTRY);
-
-		TemplateVariableGroup generalVariablesTemplateVariableGroup =
-			new TemplateVariableGroup("general-variables");
-
-		generalVariablesTemplateVariableGroup.addVariable(
-			"current-url", String.class,
-			PortletDisplayTemplateConstants.CURRENT_URL);
-		generalVariablesTemplateVariableGroup.addVariable(
-			"locale", Locale.class, PortletDisplayTemplateConstants.LOCALE);
-		generalVariablesTemplateVariableGroup.addVariable(
-			"portlet-preferences", Map.class,
-			PortletDisplayTemplateConstants.PORTLET_PREFERENCES);
-		generalVariablesTemplateVariableGroup.addVariable(
-			"template-id", null, PortletDisplayTemplateConstants.TEMPLATE_ID);
-		generalVariablesTemplateVariableGroup.addVariable(
-			"theme-display", ThemeDisplay.class,
-			PortletDisplayTemplateConstants.THEME_DISPLAY);
-
-		TemplateVariableGroup utilTemplateVariableGroup =
-			new TemplateVariableGroup("util");
-
-		utilTemplateVariableGroup.addVariable(
-			"http-request", HttpServletRequest.class,
-			PortletDisplayTemplateConstants.REQUEST);
-
-		if (language.equals(TemplateConstants.LANG_TYPE_VM)) {
-			utilTemplateVariableGroup.addVariable(
-				"liferay-taglib", VelocityTaglib.class,
-				PortletDisplayTemplateConstants.TAGLIB_LIFERAY);
-		}
-
-		utilTemplateVariableGroup.addVariable(
-			"render-request", RenderRequest.class,
-			PortletDisplayTemplateConstants.RENDER_REQUEST);
-		utilTemplateVariableGroup.addVariable(
-			"render-response", RenderResponse.class,
-			PortletDisplayTemplateConstants.RENDER_RESPONSE);
-
 		return LinkedHashMapBuilder.<String, TemplateVariableGroup>put(
-			"fields", fieldsTemplateVariableGroup
+			"fields",
+			() -> {
+				TemplateVariableGroup fieldsTemplateVariableGroup =
+					new TemplateVariableGroup("fields");
+
+				fieldsTemplateVariableGroup.addCollectionVariable(
+					"entries", List.class,
+					PortletDisplayTemplateConstants.ENTRIES, "entries-item",
+					null, "curEntry", null);
+				fieldsTemplateVariableGroup.addVariable(
+					"entry", null, PortletDisplayTemplateConstants.ENTRY);
+
+				return fieldsTemplateVariableGroup;
+			}
 		).put(
-			"general-variables", generalVariablesTemplateVariableGroup
+			"general-variables",
+			() -> {
+				TemplateVariableGroup generalVariablesTemplateVariableGroup =
+					new TemplateVariableGroup("general-variables");
+
+				generalVariablesTemplateVariableGroup.addVariable(
+					"current-url", String.class,
+					PortletDisplayTemplateConstants.CURRENT_URL);
+				generalVariablesTemplateVariableGroup.addVariable(
+					"locale", Locale.class,
+					PortletDisplayTemplateConstants.LOCALE);
+				generalVariablesTemplateVariableGroup.addVariable(
+					"portlet-preferences", Map.class,
+					PortletDisplayTemplateConstants.PORTLET_PREFERENCES);
+				generalVariablesTemplateVariableGroup.addVariable(
+					"template-id", null,
+					PortletDisplayTemplateConstants.TEMPLATE_ID);
+				generalVariablesTemplateVariableGroup.addVariable(
+					"theme-display", ThemeDisplay.class,
+					PortletDisplayTemplateConstants.THEME_DISPLAY);
+
+				return generalVariablesTemplateVariableGroup;
+			}
 		).put(
-			"util", utilTemplateVariableGroup
+			"util",
+			() -> {
+				TemplateVariableGroup utilTemplateVariableGroup =
+					new TemplateVariableGroup("util");
+
+				utilTemplateVariableGroup.addVariable(
+					"http-request", HttpServletRequest.class,
+					PortletDisplayTemplateConstants.REQUEST);
+
+				if (language.equals(TemplateConstants.LANG_TYPE_VM)) {
+					utilTemplateVariableGroup.addVariable(
+						"liferay-taglib", VelocityTaglib.class,
+						PortletDisplayTemplateConstants.TAGLIB_LIFERAY);
+				}
+
+				utilTemplateVariableGroup.addVariable(
+					"render-request", RenderRequest.class,
+					PortletDisplayTemplateConstants.RENDER_REQUEST);
+				utilTemplateVariableGroup.addVariable(
+					"render-response", RenderResponse.class,
+					PortletDisplayTemplateConstants.RENDER_RESPONSE);
+
+				return utilTemplateVariableGroup;
+			}
 		).build();
 	}
 

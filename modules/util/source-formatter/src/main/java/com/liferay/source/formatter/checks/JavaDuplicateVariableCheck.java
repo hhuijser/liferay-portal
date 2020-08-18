@@ -175,18 +175,21 @@ public class JavaDuplicateVariableCheck extends BaseJavaTermCheck {
 			String absolutePath, String fullyQualifiedName, JavaClass javaClass)
 		throws IOException {
 
-		List<JavaVariable> javaVariables = new ArrayList<>();
-
-		for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
-			if ((javaTerm instanceof JavaVariable) &&
-				(javaTerm.isProtected() || javaTerm.isPublic())) {
-
-				javaVariables.add((JavaVariable)javaTerm);
-			}
-		}
-
 		Map<String, List<JavaVariable>> javaVariablesMap = HashMapBuilder.put(
-			fullyQualifiedName, javaVariables
+			fullyQualifiedName,
+			() -> {
+				List<JavaVariable> javaVariables = new ArrayList<>();
+
+				for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
+					if ((javaTerm instanceof JavaVariable) &&
+						(javaTerm.isProtected() || javaTerm.isPublic())) {
+
+						javaVariables.add((JavaVariable)javaTerm);
+					}
+				}
+
+				return javaVariables;
+			}
 		).build();
 
 		List<String> extendedClassNames = javaClass.getExtendedClassNames(true);

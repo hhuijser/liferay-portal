@@ -170,12 +170,15 @@ public class WidgetInstanceDefinitionDTOConverterTest {
 
 		Role role = _roleLocalService.getDefaultGroupRole(_group.getGroupId());
 
-		List<String> actionIds = new ArrayList<>();
-
-		actionIds.add(resourceAction.getActionId());
-
 		Map<Long, String[]> roleIdsToActionIds = HashMapBuilder.put(
-			role.getRoleId(), actionIds.toArray(new String[0])
+			role.getRoleId(),
+			() -> {
+				List<String> actionIds = new ArrayList<>();
+
+				actionIds.add(resourceAction.getActionId());
+
+				return actionIds.toArray(new String[0]);
+			}
 		).build();
 
 		String resourcePrimKey = _portletPermission.getPrimaryKey(

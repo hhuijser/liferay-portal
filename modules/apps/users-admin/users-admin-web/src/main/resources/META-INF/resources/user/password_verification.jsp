@@ -74,21 +74,23 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 				body: new FormData(form),
 				method: 'POST',
 			}
-		)
-			.then(function (response) {
+		).then(
+			function (response) {
 				if (!response.ok) {
 					throw new Error();
 				}
 
 				return response.text();
-			})
-			.then(function (response) {
+			}
+		).then(
+			function (response) {
 				var openingLiferay = Liferay.Util.getOpener().Liferay;
 
 				openingLiferay.fire('<%= HtmlUtil.escapeJS(eventName) %>');
 				openingLiferay.fire('closeModal');
-			})
-			.catch(function (error) {
+			}
+		).catch(
+			function (error) {
 				var verificationAlert = document.getElementById(
 					'<portlet:namespace />verificationAlert'
 				);
@@ -96,6 +98,7 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 				verificationAlert.classList.remove('hide');
 
 				document.getElementById('<portlet:namespace/>password').focus();
-			});
+			}
+		);
 	}
 </aui:script>

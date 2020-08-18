@@ -227,21 +227,24 @@ public class LayoutsTreeDisplayContext {
 	}
 
 	public Map<String, Object> getLayoutFinderData() {
-		LiferayPortletURL findLayoutsURL = PortletURLFactoryUtil.create(
-			_liferayPortletRequest,
-			ProductNavigationProductMenuPortletKeys.
-				PRODUCT_NAVIGATION_PRODUCT_MENU,
-			PortletRequest.RESOURCE_PHASE);
-
-		findLayoutsURL.setResourceID("/product_menu/find_layouts");
-
 		return HashMapBuilder.<String, Object>put(
 			"administrationPortletNamespace",
 			PortalUtil.getPortletNamespace(LayoutAdminPortletKeys.GROUP_PAGES)
 		).put(
 			"administrationPortletURL", getAdministrationPortletURL()
 		).put(
-			"findLayoutsURL", findLayoutsURL.toString()
+			"findLayoutsURL",
+			() -> {
+				LiferayPortletURL findLayoutsURL = PortletURLFactoryUtil.create(
+					_liferayPortletRequest,
+					ProductNavigationProductMenuPortletKeys.
+						PRODUCT_NAVIGATION_PRODUCT_MENU,
+					PortletRequest.RESOURCE_PHASE);
+
+				findLayoutsURL.setResourceID("/product_menu/find_layouts");
+
+				return findLayoutsURL.toString();
+			}
 		).put(
 			"namespace", getNamespace()
 		).put(

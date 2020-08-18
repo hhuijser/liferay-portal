@@ -285,32 +285,35 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 			"theme-display", ThemeDisplay.class,
 			PortletDisplayTemplateConstants.THEME_DISPLAY);
 
-		TemplateVariableGroup utilTemplateVariableGroup =
-			new TemplateVariableGroup("util");
-
-		utilTemplateVariableGroup.addVariable(
-			"http-request", HttpServletRequest.class,
-			PortletDisplayTemplateConstants.REQUEST);
-
-		if (language.equals(TemplateConstants.LANG_TYPE_VM)) {
-			utilTemplateVariableGroup.addVariable(
-				"liferay-taglib", VelocityTaglib.class,
-				PortletDisplayTemplateConstants.TAGLIB_LIFERAY);
-		}
-
-		utilTemplateVariableGroup.addVariable(
-			"render-request", RenderRequest.class,
-			PortletDisplayTemplateConstants.RENDER_REQUEST);
-		utilTemplateVariableGroup.addVariable(
-			"render-response", RenderResponse.class,
-			PortletDisplayTemplateConstants.RENDER_RESPONSE);
-
 		return LinkedHashMapBuilder.<String, TemplateVariableGroup>put(
 			"fields", fieldsTemplateVariableGroup
 		).put(
 			"general-variables", generalVariablesTemplateVariableGroup
 		).put(
-			"util", utilTemplateVariableGroup
+			"util",
+			() -> {
+				TemplateVariableGroup utilTemplateVariableGroup =
+					new TemplateVariableGroup("util");
+
+				utilTemplateVariableGroup.addVariable(
+					"http-request", HttpServletRequest.class,
+					PortletDisplayTemplateConstants.REQUEST);
+
+				if (language.equals(TemplateConstants.LANG_TYPE_VM)) {
+					utilTemplateVariableGroup.addVariable(
+						"liferay-taglib", VelocityTaglib.class,
+						PortletDisplayTemplateConstants.TAGLIB_LIFERAY);
+				}
+
+				utilTemplateVariableGroup.addVariable(
+					"render-request", RenderRequest.class,
+					PortletDisplayTemplateConstants.RENDER_REQUEST);
+				utilTemplateVariableGroup.addVariable(
+					"render-response", RenderResponse.class,
+					PortletDisplayTemplateConstants.RENDER_RESPONSE);
+
+				return utilTemplateVariableGroup;
+			}
 		).build();
 	}
 

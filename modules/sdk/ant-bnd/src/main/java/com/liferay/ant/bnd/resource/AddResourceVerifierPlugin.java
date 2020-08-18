@@ -62,9 +62,8 @@ public class AddResourceVerifierPlugin implements VerifierPlugin {
 							Path path, BasicFileAttributes basicFileAttributes)
 						throws IOException {
 
-						Path relativePath = jspClassesDir.relativize(path);
-
-						String relativePathString = relativePath.toString();
+						String relativePathString = String.valueOf(
+							jspClassesDir.relativize(path));
 
 						jar.putResource(
 							relativePathString.replace('\\', '/'),

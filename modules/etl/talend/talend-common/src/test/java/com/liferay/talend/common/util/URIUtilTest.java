@@ -16,8 +16,6 @@ package com.liferay.talend.common.util;
 
 import com.liferay.talend.common.exception.MalformedURLException;
 
-import java.net.URI;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,9 +37,8 @@ public class URIUtilTest {
 		parameters.put("key", "197797");
 		parameters.put("subscription", "true");
 
-		URI uri = URIUtil.updateWithQueryParameters(url, parameters);
-
-		String uriString = uri.toString();
+		String uriString = String.valueOf(
+			URIUtil.updateWithQueryParameters(url, parameters));
 
 		Assert.assertTrue(
 			"URI has archive query parameter",

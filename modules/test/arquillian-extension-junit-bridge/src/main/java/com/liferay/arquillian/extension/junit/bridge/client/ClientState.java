@@ -174,9 +174,8 @@ public class ClientState {
 							Path filePath,
 							BasicFileAttributes basicFileAttributes) {
 
-							Path relativePath = startPath.relativize(filePath);
-
-							String relativePathString = relativePath.toString();
+							String relativePathString = String.valueOf(
+								startPath.relativize(filePath));
 
 							if (!relativePathString.endsWith("Test.class")) {
 								return FileVisitResult.CONTINUE;

@@ -73,9 +73,7 @@ public abstract class BaseGitCommit implements GitCommit {
 
 	@Override
 	public int hashCode() {
-		JSONObject jsonObject = toJSONObject();
-
-		String json = jsonObject.toString();
+		String json = String.valueOf(toJSONObject());
 
 		return json.hashCode();
 	}

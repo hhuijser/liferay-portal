@@ -1125,9 +1125,8 @@ public class PoshiRunnerContext {
 				resourceName);
 
 			while (enumeration.hasMoreElements()) {
-				URL resourceURL = enumeration.nextElement();
-
-				String resourceURLString = resourceURL.toString();
+				String resourceURLString = String.valueOf(
+					enumeration.nextElement());
 
 				int x = resourceURLString.indexOf("!");
 

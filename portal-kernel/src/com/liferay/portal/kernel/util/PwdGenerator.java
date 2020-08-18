@@ -45,9 +45,7 @@ public class PwdGenerator {
 			throw new IllegalArgumentException("Keys are null");
 		}
 
-		StringBundler fullKeySB = new StringBundler(keys);
-
-		String fullKey = fullKeySB.toString();
+		String fullKey = String.valueOf(new StringBundler(keys));
 
 		int fullKeyLength = fullKey.length();
 

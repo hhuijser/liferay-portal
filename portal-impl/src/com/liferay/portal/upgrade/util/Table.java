@@ -44,7 +44,6 @@ import java.io.Reader;
 import java.math.BigDecimal;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.sql.Clob;
@@ -148,11 +147,10 @@ public class Table {
 	public void generateTempFile(Connection con) throws Exception {
 		boolean empty = true;
 
-		Path tempFilePath = Files.createTempFile(
-			Paths.get(SystemProperties.get(SystemProperties.TMP_DIR)),
-			"temp-db-" + _tableName + "-", null);
-
-		String tempFileName = tempFilePath.toString();
+		String tempFileName = String.valueOf(
+			Files.createTempFile(
+				Paths.get(SystemProperties.get(SystemProperties.TMP_DIR)),
+				"temp-db-" + _tableName + "-", null));
 
 		StopWatch stopWatch = new StopWatch();
 

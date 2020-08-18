@@ -104,10 +104,9 @@ public class DefaultLicenseManagerImpl implements LicenseManager {
 
 			jsonObject.put("productVersion", productVersion);
 
-			UUID uuid = new UUID(
-				SecureRandomUtil.nextLong(), SecureRandomUtil.nextLong());
-
-			String randomUuid = uuid.toString();
+			String randomUuid = String.valueOf(
+				new UUID(
+					SecureRandomUtil.nextLong(), SecureRandomUtil.nextLong()));
 
 			jsonObject.put(
 				"randomUuid", randomUuid

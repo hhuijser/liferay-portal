@@ -41,7 +41,6 @@ import com.liferay.portal.util.PropsValues;
 
 import java.io.Writer;
 
-import java.nio.Buffer;
 import java.nio.CharBuffer;
 
 import java.util.HashSet;
@@ -111,9 +110,7 @@ public class StripFilter extends BasePortalFilter {
 
 		int position = duplicateCharBuffer.position() + length;
 
-		Buffer buffer = duplicateCharBuffer.limit(position);
-
-		String content = buffer.toString();
+		String content = String.valueOf(duplicateCharBuffer.limit(position));
 
 		charBuffer.position(position);
 

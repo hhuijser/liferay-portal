@@ -30,9 +30,7 @@ public class RepositoryHelperUtil {
 	public static Path getRepositoryFilePath(
 		Path repositoryPath, Path remoteFilePath) {
 
-		Path fileNamePath = remoteFilePath.getFileName();
-
-		String name = fileNamePath.toString();
+		String name = String.valueOf(remoteFilePath.getFileName());
 
 		int index = name.lastIndexOf(CharPool.PERIOD);
 

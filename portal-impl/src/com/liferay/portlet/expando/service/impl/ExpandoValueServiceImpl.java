@@ -144,10 +144,9 @@ public class ExpandoValueServiceImpl extends ExpandoValueServiceBaseImpl {
 			return null;
 		}
 
-		Serializable dataSerializable = expandoValueLocalService.getData(
-			companyId, className, tableName, columnName, classPK);
-
-		String data = dataSerializable.toString();
+		String data = String.valueOf(
+			expandoValueLocalService.getData(
+				companyId, className, tableName, columnName, classPK));
 
 		if (Validator.isNull(data)) {
 			return null;

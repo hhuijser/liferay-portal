@@ -1322,9 +1322,7 @@ public class GraphQLServletExtender {
 	private Integer _getVersion(Method method) {
 		Class<?> clazz = method.getDeclaringClass();
 
-		Package pkg = clazz.getPackage();
-
-		String packageString = pkg.toString();
+		String packageString = String.valueOf(clazz.getPackage());
 
 		String[] packageNames = packageString.split("\\.");
 

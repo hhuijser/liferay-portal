@@ -293,9 +293,7 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 
 				file = file.getAbsoluteFile();
 
-				URI uri = file.toURI();
-
-				String fileName = uri.toString();
+				String fileName = String.valueOf(file.toURI());
 
 				String oldFileName = (String)configuredProperties.put(
 					"felix.fileinstall.filename", fileName);

@@ -172,10 +172,9 @@ public class ResponsiveLayoutStructureUtilTest {
 
 		_layout.includeLayoutContent(httpServletRequest, httpServletResponse);
 
-		StringBundler sb = (StringBundler)httpServletRequest.getAttribute(
-			WebKeys.LAYOUT_CONTENT);
-
-		String content = sb.toString();
+		String content = String.valueOf(
+			(StringBundler)httpServletRequest.getAttribute(
+				WebKeys.LAYOUT_CONTENT));
 
 		for (ViewportSize viewportSize : ViewportSize.values()) {
 			if (viewportSize.equals(ViewportSize.DESKTOP)) {

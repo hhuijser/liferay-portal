@@ -116,9 +116,7 @@ public class LPKGTestUtil {
 			sb.append("restart-required=false\n");
 			sb.append("title=");
 
-			Path namePath = path.getFileName();
-
-			String name = namePath.toString();
+			String name = String.valueOf(path.getFileName());
 
 			sb.append(name.substring(0, name.indexOf(".lpkg")));
 

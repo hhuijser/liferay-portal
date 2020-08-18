@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
 
-import java.net.URI;
-
 import org.osgi.framework.Bundle;
 
 /**
@@ -37,9 +35,7 @@ public class LPKGLocationUtil {
 	}
 
 	public static String getLPKGLocation(File lpkgFile) {
-		URI uri = lpkgFile.toURI();
-
-		String uriString = uri.toString();
+		String uriString = String.valueOf(lpkgFile.toURI());
 
 		return StringUtil.replace(
 			uriString, CharPool.BACK_SLASH, CharPool.FORWARD_SLASH);

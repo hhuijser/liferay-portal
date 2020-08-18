@@ -620,9 +620,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 	}
 
 	private static String _getLPKGLocation(File lpkgFile) {
-		URI uri = lpkgFile.toURI();
-
-		String uriString = uri.toString();
+		String uriString = String.valueOf(lpkgFile.toURI());
 
 		return StringUtil.replace(
 			uriString, CharPool.BACK_SLASH, CharPool.FORWARD_SLASH);
@@ -1700,9 +1698,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 				file = file.getCanonicalFile();
 
-				URI uri = file.toURI();
-
-				String uriString = uri.toString();
+				String uriString = String.valueOf(file.toURI());
 
 				String location = uriString.concat("?protocol=jar&static=true");
 

@@ -60,9 +60,8 @@ public class PathUtil {
 
 		path = path.toAbsolutePath();
 
-		Path relativePath = projectPath.relativize(path);
-
-		String relativePathString = relativePath.toString();
+		String relativePathString = String.valueOf(
+			projectPath.relativize(path));
 
 		if (File.separatorChar == '\\') {
 			relativePathString = relativePathString.replace('\\', '/');

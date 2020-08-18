@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -48,9 +49,7 @@ public class CreationMenuBuilderCheck extends BaseBuilderCheck {
 
 	@Override
 	protected List<String> getSupportsFunctionMethodNames() {
-		return ListUtil.fromArray(
-			"addDropdownItem", "addFavoriteDropdownItem",
-			"addPrimaryDropdownItem", "addRestDropdownItem");
+		return Collections.emptyList();
 	}
 
 	@Override

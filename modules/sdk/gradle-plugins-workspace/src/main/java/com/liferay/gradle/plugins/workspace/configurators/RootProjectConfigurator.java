@@ -1327,9 +1327,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	}
 
 	private File _getDownloadFile(Download download) {
-		URL url = (URL)download.getSrc();
-
-		String fileName = url.toString();
+		String fileName = String.valueOf((URL)download.getSrc());
 
 		return new File(
 			download.getDest(),

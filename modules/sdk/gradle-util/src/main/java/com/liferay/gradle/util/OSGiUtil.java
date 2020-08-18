@@ -29,9 +29,7 @@ public class OSGiUtil {
 
 		String archivesBaseName = basePluginConvention.getArchivesBaseName();
 
-		Object group = project.getGroup();
-
-		String groupId = group.toString();
+		String groupId = String.valueOf(project.getGroup());
 
 		if (archivesBaseName.startsWith(groupId)) {
 			return archivesBaseName;

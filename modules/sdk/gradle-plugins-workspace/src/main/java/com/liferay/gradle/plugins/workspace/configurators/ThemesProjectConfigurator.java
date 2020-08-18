@@ -141,9 +141,7 @@ public class ThemesProjectConfigurator extends BaseProjectConfigurator {
 						Path dirPath, BasicFileAttributes basicFileAttributes)
 					throws IOException {
 
-					Path dirNamePath = dirPath.getFileName();
-
-					String dirName = dirNamePath.toString();
+					String dirName = String.valueOf(dirPath.getFileName());
 
 					if (isExcludedDirName(dirName)) {
 						return FileVisitResult.SKIP_SUBTREE;

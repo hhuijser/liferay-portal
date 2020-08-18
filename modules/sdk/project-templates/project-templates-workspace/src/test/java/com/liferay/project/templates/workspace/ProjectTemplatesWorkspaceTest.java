@@ -409,11 +409,10 @@ public class ProjectTemplatesWorkspaceTest
 		File nativeSassProjectDir = buildTemplateWithGradle(
 			nativeSassModulesDir, "mvc-portlet", "foo-portlet");
 
-		Optional<String> nativeSassResult = executeGradle(
-			nativeSassWorkspaceDir, true, _gradleDistribution,
-			":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
-
-		String nativeSassOutput = nativeSassResult.toString();
+		String nativeSassOutput = String.valueOf(
+			executeGradle(
+				nativeSassWorkspaceDir, true, _gradleDistribution,
+				":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD));
 
 		Assert.assertTrue(
 			nativeSassOutput,
@@ -430,11 +429,10 @@ public class ProjectTemplatesWorkspaceTest
 		File rubySassProjectDir = buildTemplateWithGradle(
 			rubySassModulesDir, "mvc-portlet", "foo-portlet");
 
-		Optional<String> rubySassResult = executeGradle(
-			rubySassWorkspaceDir, true, _gradleDistribution,
-			":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
-
-		String rubySassOutput = rubySassResult.toString();
+		String rubySassOutput = String.valueOf(
+			executeGradle(
+				rubySassWorkspaceDir, true, _gradleDistribution,
+				":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD));
 
 		Assert.assertTrue(
 			rubySassOutput,

@@ -109,9 +109,7 @@ public class LiferaySettingsPlugin implements Plugin<Settings> {
 		Iterator<T> iterator = flags.iterator();
 
 		while (iterator.hasNext()) {
-			T flag = iterator.next();
-
-			String flagName = flag.toString();
+			String flagName = String.valueOf(iterator.next());
 
 			flagName = flagName.replace('_', '.');
 			flagName = flagName.toLowerCase();
@@ -176,9 +174,8 @@ public class LiferaySettingsPlugin implements Plugin<Settings> {
 		Settings settings, Path projectDirPath, Path projectPathRootDirPath,
 		String projectPathPrefix) {
 
-		Path relativePath = projectPathRootDirPath.relativize(projectDirPath);
-
-		String projectPath = relativePath.toString();
+		String projectPath = String.valueOf(
+			projectPathRootDirPath.relativize(projectDirPath));
 
 		projectPath =
 			projectPathPrefix + ":" +

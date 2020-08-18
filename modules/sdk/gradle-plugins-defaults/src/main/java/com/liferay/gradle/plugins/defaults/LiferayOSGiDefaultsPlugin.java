@@ -4538,10 +4538,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 						return FileVisitResult.CONTINUE;
 					}
 
-					Path relativePath = packageInfoRootDirPath.relativize(
-						dirPath);
-
-					String packagePath = relativePath.toString();
+					String packagePath = String.valueOf(
+						packageInfoRootDirPath.relativize(dirPath));
 
 					packagePath = packagePath.replace(File.separatorChar, '.');
 

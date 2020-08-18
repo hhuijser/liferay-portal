@@ -145,9 +145,7 @@ public class FileUtil {
 						Path path, BasicFileAttributes basicFileAttributes)
 					throws IOException {
 
-					Path fileNamePath = path.getFileName();
-
-					String fileName = fileNamePath.toString();
+					String fileName = String.valueOf(path.getFileName());
 
 					Matcher matcher = pattern.matcher(fileName);
 
@@ -221,9 +219,7 @@ public class FileUtil {
 			while (iterator.hasNext()) {
 				Path path = iterator.next();
 
-				Path fileNamePath = path.getFileName();
-
-				String fileName = fileNamePath.toString();
+				String fileName = String.valueOf(path.getFileName());
 
 				if (fileName.matches(regex)) {
 					return path;
@@ -350,10 +346,8 @@ public class FileUtil {
 					Path folderNamePath = Paths.get(dirPathString);
 					Path relativeDirPath = path.relativize(dirPath);
 
-					Path pathToResolve = folderNamePath.resolve(
-						relativeDirPath);
-
-					String pathToResolveString = pathToResolve.toString();
+					String pathToResolveString = String.valueOf(
+						folderNamePath.resolve(relativeDirPath));
 
 					if (Files.isDirectory(dirPath)) {
 						pathMap.put(pathToResolveString + File.separator, null);

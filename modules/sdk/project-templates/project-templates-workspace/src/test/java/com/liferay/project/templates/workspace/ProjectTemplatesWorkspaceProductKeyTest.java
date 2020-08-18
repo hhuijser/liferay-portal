@@ -24,7 +24,6 @@ import java.io.File;
 import java.net.URI;
 
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -105,11 +104,10 @@ public class ProjectTemplatesWorkspaceProductKeyTest
 				new File(workspaceProjectDir, "modules"), "mvc-portlet", name,
 				"--liferay-version", _liferayVersion);
 
-			Optional<String> gradleResult = executeGradle(
-				workspaceProjectDir, true, _gradleDistribution,
-				":modules:" + name + GRADLE_TASK_PATH_BUILD);
-
-			String gradleOutput = gradleResult.toString();
+			String gradleOutput = String.valueOf(
+				executeGradle(
+					workspaceProjectDir, true, _gradleDistribution,
+					":modules:" + name + GRADLE_TASK_PATH_BUILD));
 
 			if (_liferayVersion.startsWith("7.0")) {
 				Assert.assertTrue(

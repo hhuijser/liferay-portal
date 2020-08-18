@@ -122,9 +122,7 @@ public class FileTestUtil {
 						return false;
 					}
 
-					Path fileNamePath = path.getFileName();
-
-					String fileName = fileNamePath.toString();
+					String fileName = String.valueOf(path.getFileName());
 
 					if (fileName.startsWith(PROJECT_TEMPLATE_DIR_PREFIX) &&
 						!fileName.endsWith("-extensions")) {

@@ -15,6 +15,8 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -471,88 +473,108 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			return;
 		}
 
-		List<String> followingVariableNames = new ArrayList<>();
+		List<String> supportsFunctionMethodNames =
+			getSupportsFunctionMethodNames();
 
-		DetailAST nextSiblingDetailAST = parentDetailAST.getNextSibling();
+		if (supportsFunctionMethodNames.isEmpty()) {
+			return;
+		}
 
-		while (true) {
-			if (nextSiblingDetailAST == null) {
+		int builderLineNumber = getStartLineNumber(parentDetailAST);
+
+		int branchStatementLineNumber = -1;
+
+		List<DetailAST> branchingStatementDetailASTList = getAllChildTokens(
+			parentDetailAST.getParent(), true, TokenTypes.LITERAL_BREAK,
+			TokenTypes.LITERAL_CONTINUE, TokenTypes.LITERAL_RETURN);
+
+		for (DetailAST branchingStatementDetailAST :
+				branchingStatementDetailASTList) {
+
+			int lineNumber = branchingStatementDetailAST.getLineNo();
+
+			if (lineNumber >= builderLineNumber) {
 				break;
 			}
 
-			followingVariableNames.addAll(
-				_getVariableNames(nextSiblingDetailAST));
-
-			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+			branchStatementLineNumber = lineNumber;
 		}
 
-		List<String> inBetweenVariableNames = new ArrayList<>();
+		List<DetailAST> variableDefinitionDetailASTList = getAllChildTokens(
+			parentDetailAST.getParent(), false, TokenTypes.VARIABLE_DEF);
 
-		DetailAST previousSiblingDetailAST =
-			parentDetailAST.getPreviousSibling();
+		for (DetailAST variableDefinitionDetailAST :
+				variableDefinitionDetailASTList) {
 
-		while (true) {
-			if (previousSiblingDetailAST == null) {
+			int lineNumber = variableDefinitionDetailAST.getLineNo();
+
+			if (lineNumber >= builderLineNumber) {
 				return;
 			}
 
-			if (previousSiblingDetailAST.getType() != TokenTypes.VARIABLE_DEF) {
-				followingVariableNames.addAll(
-					_getVariableNames(previousSiblingDetailAST));
-
-				inBetweenVariableNames.addAll(
-					_getVariableNames(previousSiblingDetailAST, "get.*"));
-
-				previousSiblingDetailAST =
-					previousSiblingDetailAST.getPreviousSibling();
-
-				continue;
+			if (branchStatementLineNumber < lineNumber) {
+				_checkInline(
+					variableDefinitionDetailAST, builderClassName,
+					supportsFunctionMethodNames, expressionDetailASTMap,
+					builderLineNumber, getEndLineNumber(parentDetailAST));
 			}
+		}
+	}
 
-			DetailAST identDetailAST = previousSiblingDetailAST.findFirstToken(
-				TokenTypes.IDENT);
+	private void _checkInline(
+		DetailAST variableDefinitionDetailAST, String builderClassName,
+		List<String> supportsFunctionMethodNames,
+		Map<String, List<DetailAST>> expressionDetailASTMap,
+		int startLineNumber, int endlineNumber) {
 
-			String name = identDetailAST.getText();
+		DetailAST identDetailAST = variableDefinitionDetailAST.findFirstToken(
+			TokenTypes.IDENT);
 
-			List<String> supportsFunctionMethodNames =
-				getSupportsFunctionMethodNames();
+		String matchingMethodName = _getInlineExpressionMethodName(
+			expressionDetailASTMap, ListUtil.fromArray(identDetailAST));
 
-			String matchingMethodName = _getInlineExpressionMethodName(
-				expressionDetailASTMap, name);
+		if (!supportsFunctionMethodNames.contains(matchingMethodName) ||
+			_referencesNonfinalVariable(variableDefinitionDetailAST)) {
 
-			if (!followingVariableNames.contains(name) &&
-				supportsFunctionMethodNames.contains(matchingMethodName) &&
-				!_referencesNonfinalVariable(previousSiblingDetailAST)) {
+			return;
+		}
 
-				List<String> variableNames = _getVariableNames(
-					previousSiblingDetailAST);
+		List<DetailAST> dependentIdentDetailASTList =
+			getDependentIdentDetailASTList(
+				variableDefinitionDetailAST, startLineNumber);
 
-				boolean contains = false;
+		if (dependentIdentDetailASTList.isEmpty()) {
+			return;
+		}
 
-				for (String variableName : variableNames) {
-					if (inBetweenVariableNames.contains(variableName)) {
-						contains = true;
+		DetailAST lastDependentIdentDetailAST = dependentIdentDetailASTList.get(
+			dependentIdentDetailASTList.size() - 1);
 
-						break;
-					}
-				}
+		if (lastDependentIdentDetailAST.getLineNo() > endlineNumber) {
+			return;
+		}
 
-				if (!contains) {
-					log(
-						identDetailAST, _MSG_INLINE_BUILDER, name,
-						identDetailAST.getLineNo(), builderClassName,
-						parentDetailAST.getLineNo());
-				}
+		matchingMethodName = _getInlineExpressionMethodName(
+			expressionDetailASTMap, dependentIdentDetailASTList);
+
+		if (matchingMethodName != null) {
+			List<Integer> dependentLineNumbers = _getDependentLineNumbers(
+				dependentIdentDetailASTList,
+				variableDefinitionDetailAST.getLineNo(), startLineNumber);
+
+			if (dependentLineNumbers.isEmpty()) {
+				log(
+					identDetailAST, _MSG_INLINE_BUILDER_1,
+					identDetailAST.getText(), identDetailAST.getLineNo(),
+					builderClassName, startLineNumber);
 			}
-
-			followingVariableNames.addAll(
-				_getVariableNames(previousSiblingDetailAST));
-
-			inBetweenVariableNames.addAll(
-				_getVariableNames(previousSiblingDetailAST, "get.*"));
-
-			previousSiblingDetailAST =
-				previousSiblingDetailAST.getPreviousSibling();
+			else {
+				log(
+					identDetailAST, _MSG_INLINE_BUILDER_2,
+					identDetailAST.getText(), identDetailAST.getLineNo(),
+					StringUtil.merge(dependentLineNumbers), builderClassName,
+					startLineNumber);
+			}
 		}
 	}
 
@@ -607,6 +629,37 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		return null;
 	}
 
+	private List<Integer> _getDependentLineNumbers(
+		List<DetailAST> dependentIdentDetailASTList, int startLineNumber,
+		int endLineNumber) {
+
+		List<Integer> dependentLineNumbers = new ArrayList<>();
+
+		for (DetailAST dependentIdentDetailAST : dependentIdentDetailASTList) {
+			if (dependentIdentDetailAST.getLineNo() >= endLineNumber) {
+				return dependentLineNumbers;
+			}
+
+			DetailAST detailAST = dependentIdentDetailAST;
+
+			while (true) {
+				DetailAST parentDetailAST = detailAST.getParent();
+
+				if (parentDetailAST.getLineNo() < startLineNumber) {
+					if (!dependentLineNumbers.contains(detailAST.getLineNo())) {
+						dependentLineNumbers.add(detailAST.getLineNo());
+					}
+
+					break;
+				}
+
+				detailAST = parentDetailAST;
+			}
+		}
+
+		return dependentLineNumbers;
+	}
+
 	private Map<String, List<DetailAST>> _getExpressionDetailASTMap(
 		DetailAST methodCallDetailAST) {
 
@@ -654,7 +707,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	}
 
 	private String _getInlineExpressionMethodName(
-		Map<String, List<DetailAST>> expressionDetailASTMap, String name) {
+		Map<String, List<DetailAST>> expressionDetailASTMap,
+		List<DetailAST> dependentIdentDetailASTList) {
 
 		String methodName = null;
 
@@ -665,12 +719,20 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 				List<String> variableNames = _getVariableNames(
 					expressionDetailAST);
 
-				if (variableNames.contains(name)) {
-					if (methodName != null) {
-						return null;
-					}
+				for (DetailAST dependentIdentDetailAST :
+						dependentIdentDetailASTList) {
 
-					methodName = entry.getKey();
+					if (variableNames.contains(
+							dependentIdentDetailAST.getText())) {
+
+						if (methodName != null) {
+							return null;
+						}
+
+						methodName = entry.getKey();
+
+						break;
+					}
 				}
 			}
 		}
@@ -832,7 +894,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	private static final String _MSG_INCORRECT_NULL_VALUE =
 		"null.value.incorrect";
 
-	private static final String _MSG_INLINE_BUILDER = "builder.inline";
+	private static final String _MSG_INLINE_BUILDER_1 = "builder.inline.1";
+
+	private static final String _MSG_INLINE_BUILDER_2 = "builder.inline.2";
 
 	private static final String _MSG_USE_BUILDER = "builder.use";
 

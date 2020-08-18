@@ -57,9 +57,8 @@ public class ArchiveUtil {
 					public FileVisitResult visitFile(
 						Path file, BasicFileAttributes attributes) {
 
-						Path targetFilePath = sourceFilePath.relativize(file);
-
-						String targetFilePathString = targetFilePath.toString();
+						String targetFilePathString = String.valueOf(
+							sourceFilePath.relativize(file));
 
 						targetFilePathString = StringUtil.replace(
 							targetFilePathString, "\\", "/");

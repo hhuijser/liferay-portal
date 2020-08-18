@@ -302,9 +302,8 @@ public class JavadocFormatterUtil {
 				JavaExecutable javaExecutable =
 					(JavaExecutable)javaAnnotatedElement;
 
-				List<JavaType> javaTypes = javaExecutable.getParameterTypes();
-
-				String signature = javaTypes.toString();
+				String signature = String.valueOf(
+					javaExecutable.getParameterTypes());
 
 				if (!signature.equals(
 						deprecatedElement.attributeValue("signature"))) {

@@ -73,9 +73,7 @@ public class TLDFormatter {
 						Path file, BasicFileAttributes basicFileAttributes)
 					throws IOException {
 
-					Path fileNamePath = file.getFileName();
-
-					String fileName = fileNamePath.toString();
+					String fileName = String.valueOf(file.getFileName());
 
 					if (!fileName.endsWith(".tld") ||
 						(!_plugin &&

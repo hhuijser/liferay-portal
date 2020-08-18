@@ -489,9 +489,7 @@ public class StringUtil {
 		StringBuilder sb = new StringBuilder();
 
 		while (sb.length() < lengthInt) {
-			UUID randomUUID = UUID.randomUUID();
-
-			String uuidString = randomUUID.toString();
+			String uuidString = String.valueOf(UUID.randomUUID());
 
 			sb.append(replace(uuidString, "-", ""));
 		}

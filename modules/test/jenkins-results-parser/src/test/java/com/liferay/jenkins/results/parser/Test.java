@@ -341,9 +341,7 @@ public class Test {
 	protected String toURLString(File file) throws Exception {
 		URI uri = file.toURI();
 
-		URL url = uri.toURL();
-
-		String urlString = url.toString();
+		String urlString = String.valueOf(uri.toURL());
 
 		File dependenciesDir = dependenciesDirs.get(0);
 

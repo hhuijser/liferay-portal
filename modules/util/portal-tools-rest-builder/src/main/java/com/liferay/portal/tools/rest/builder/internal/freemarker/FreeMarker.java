@@ -59,9 +59,7 @@ public class FreeMarker {
 
 		template.process(context, stringWriter);
 
-		StringBuffer stringBuffer = stringWriter.getBuffer();
-
-		String content = stringBuffer.toString();
+		String content = String.valueOf(stringWriter.getBuffer());
 
 		if ((copyrightFile != null) && copyrightFile.exists()) {
 			content = FileUtil.read(copyrightFile) + "\n\n" + content;

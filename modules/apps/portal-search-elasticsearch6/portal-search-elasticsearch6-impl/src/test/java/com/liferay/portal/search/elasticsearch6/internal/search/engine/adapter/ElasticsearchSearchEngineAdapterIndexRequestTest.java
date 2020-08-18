@@ -274,10 +274,8 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 		GetMappingIndexResponse getMappingIndexResponse =
 			_searchEngineAdapter.execute(getMappingIndexRequest);
 
-		Map<String, String> indexMappings =
-			getMappingIndexResponse.getIndexMappings();
-
-		String string = indexMappings.toString();
+		String string = String.valueOf(
+			getMappingIndexResponse.getIndexMappings());
 
 		Assert.assertTrue(string.contains(mappingSource));
 	}

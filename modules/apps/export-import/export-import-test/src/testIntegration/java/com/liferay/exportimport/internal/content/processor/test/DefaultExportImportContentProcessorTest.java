@@ -636,9 +636,7 @@ public class DefaultExportImportContentProcessorTest {
 			_portletDataContextExport, _referrerStagedModel, content, true,
 			false);
 
-		UUID randomUUID = UUID.randomUUID();
-
-		String uuidString = randomUUID.toString();
+		String uuidString = String.valueOf(UUID.randomUUID());
 
 		content = StringUtil.replace(
 			content, _externalGroup.getUuid(), uuidString);

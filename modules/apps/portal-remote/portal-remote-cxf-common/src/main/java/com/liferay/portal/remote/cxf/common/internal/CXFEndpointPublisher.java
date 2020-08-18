@@ -143,9 +143,7 @@ public class CXFEndpointPublisher {
 		protected void start() {
 			Dictionary<String, Object> properties = new Hashtable<>();
 
-			Object contextPathObject = _properties.get("contextPath");
-
-			String contextPath = contextPathObject.toString();
+			String contextPath = String.valueOf(_properties.get("contextPath"));
 
 			String contextName = contextPath.substring(1);
 

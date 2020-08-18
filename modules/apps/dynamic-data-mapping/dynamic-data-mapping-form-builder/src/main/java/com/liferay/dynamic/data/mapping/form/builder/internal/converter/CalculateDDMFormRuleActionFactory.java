@@ -34,9 +34,7 @@ public class CalculateDDMFormRuleActionFactory {
 
 		String target = actionExpressionVisitor.doVisit(expressions.get(0));
 
-		Expression expression = expressions.get(1);
-
-		String expressionString = expression.toString();
+		String expressionString = String.valueOf(expressions.get(1));
 
 		expressionString = expressionString.replaceAll(
 			"(getValue\\(\\'([^\\(]+)\\'\\))", "[$2]");

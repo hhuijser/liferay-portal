@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import java.net.URI;
 import java.net.URL;
 
 import java.util.ArrayList;
@@ -205,9 +204,7 @@ public class HeadlessDiscoveryAPIApplication extends Application {
 
 		Map<String, List<ResourceMethodInfoDTO>> resourcesMap = new TreeMap<>();
 
-		URI uri = _uriInfo.getAbsolutePath();
-
-		String absolutePath = uri.toString();
+		String absolutePath = String.valueOf(_uriInfo.getAbsolutePath());
 
 		String serverURL = StringUtil.removeSubstring(absolutePath, "/api/");
 

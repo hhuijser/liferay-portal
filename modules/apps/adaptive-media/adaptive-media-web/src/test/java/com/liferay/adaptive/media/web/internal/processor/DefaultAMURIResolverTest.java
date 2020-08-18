@@ -56,9 +56,8 @@ public class DefaultAMURIResolverTest {
 
 		URI relativeURI = URI.create(RandomTestUtil.randomString());
 
-		URI uri = _amURIResolver.resolveURI(relativeURI);
-
-		String uriString = uri.toString();
+		String uriString = String.valueOf(
+			_amURIResolver.resolveURI(relativeURI));
 
 		Assert.assertTrue(uriString, uriString.contains(pathModule));
 		Assert.assertTrue(
@@ -80,9 +79,8 @@ public class DefaultAMURIResolverTest {
 
 		URI relativeURI = URI.create(RandomTestUtil.randomString());
 
-		URI uri = _amURIResolver.resolveURI(relativeURI);
-
-		String uriString = uri.toString();
+		String uriString = String.valueOf(
+			_amURIResolver.resolveURI(relativeURI));
 
 		Assert.assertTrue(uriString, uriString.contains(pathModule));
 		Assert.assertTrue(

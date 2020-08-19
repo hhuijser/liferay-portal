@@ -119,7 +119,7 @@ public class JournalDDMTemplateActionDropdownItemsProvider {
 		).setParameter(
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
-			"ddmTemplateId", String.valueOf(_ddmTemplate.getTemplateId())
+			"ddmTemplateId", _ddmTemplate.getTemplateId()
 		).build();
 
 		return dropdownItem -> {

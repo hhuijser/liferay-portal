@@ -74,11 +74,11 @@ public class JournalArticleCTDisplayRenderer
 		).setParameter(
 			"redirect", _portal.getCurrentURL(httpServletRequest)
 		).setParameter(
-			"groupId", String.valueOf(journalArticle.getGroupId())
+			"groupId", journalArticle.getGroupId()
 		).setParameter(
 			"articleId", journalArticle.getArticleId()
 		).setParameter(
-			"version", String.valueOf(journalArticle.getVersion())
+			"version", journalArticle.getVersion()
 		).build();
 
 		return portletURL.toString();

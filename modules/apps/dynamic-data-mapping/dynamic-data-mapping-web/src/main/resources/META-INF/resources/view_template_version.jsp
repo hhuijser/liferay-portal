@@ -73,9 +73,7 @@ backURL.setParameter("templateId", String.valueOf(template.getTemplateId()));
 
 			String script = templateVersion.getScript();
 
-			JSONArray fieldsJSONArray = _getFormTemplateFieldsJSONArray(structure, script);
-
-			String fieldsJSONArrayString = fieldsJSONArray.toString();
+			String fieldsJSONArrayString = String.valueOf(_getFormTemplateFieldsJSONArray(structure, script));
 			%>
 
 			<%@ include file="/form_builder.jspf" %>

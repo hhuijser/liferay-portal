@@ -122,14 +122,12 @@ public class MDRActionDisplayContext {
 			return _portletURL;
 		}
 
-		String redirect = ParamUtil.getString(_renderRequest, "redirect");
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
 			"mvcPath", "/view_actions.jsp"
 		).setParameter(
-			"redirect", redirect
+			"redirect", ParamUtil.getString(_renderRequest, "redirect")
 		).setParameter(
 			"ruleGroupInstanceId", getRuleGroupInstanceId()
 		).build();

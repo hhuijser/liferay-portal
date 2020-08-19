@@ -608,9 +608,6 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		LiferayPortletResponse liferayPortletResponse,
 		AssetRenderer<?> assetRenderer, AssetEntry assetEntry) {
 
-		AssetRendererFactory<?> assetRendererFactory =
-			assetRenderer.getAssetRendererFactory();
-
 		PortletURL baseAssetViewURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setParameter(
@@ -618,7 +615,13 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		).setParameter(
 			"assetEntryId", assetEntry.getEntryId()
 		).setParameter(
-			"type", assetRendererFactory.getType()
+			"type",
+			() -> {
+				AssetRendererFactory<?> assetRendererFactory =
+					assetRenderer.getAssetRendererFactory();
+
+				return assetRendererFactory.getType();
+			}
 		).build();
 
 		String urlTitle = assetRenderer.getUrlTitle(

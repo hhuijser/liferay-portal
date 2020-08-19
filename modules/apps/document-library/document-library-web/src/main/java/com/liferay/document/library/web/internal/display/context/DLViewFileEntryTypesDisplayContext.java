@@ -66,19 +66,22 @@ public class DLViewFileEntryTypesDisplayContext {
 
 			return CreationMenuBuilder.addPrimaryDropdownItem(
 				dropdownItem -> {
-					String mvcRenderCommandName =
-						"/document_library/edit_file_entry_type";
-
-					if (useDataEngineEditor()) {
-						mvcRenderCommandName =
-							"/document_library" +
-								"/edit_file_entry_type_data_definition";
-					}
-
 					PortletURL creationURL = PortletURLBuilder.createRenderURL(
 						renderResponse
 					).setParameter(
-						"mvcRenderCommandName", mvcRenderCommandName
+						"mvcRenderCommandName",
+						() -> {
+							String mvcRenderCommandName =
+								"/document_library/edit_file_entry_type";
+
+							if (useDataEngineEditor()) {
+								mvcRenderCommandName =
+									"/document_library" +
+										"/edit_file_entry_type_data_definition";
+							}
+
+							return mvcRenderCommandName;
+						}
 					).setParameter(
 						"redirect",
 						PortalUtil.getCurrentURL(_httpServletRequest)

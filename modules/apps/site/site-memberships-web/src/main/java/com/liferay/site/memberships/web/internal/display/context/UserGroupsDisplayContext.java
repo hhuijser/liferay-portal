@@ -127,10 +127,6 @@ public class UserGroupsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
@@ -138,7 +134,14 @@ public class UserGroupsDisplayContext {
 		).setParameter(
 			"tabs1", "user-groups"
 		).setParameter(
-			"redirect", themeDisplay.getURLCurrent()
+			"redirect",
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)_httpServletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				return themeDisplay.getURLCurrent();
+			}
 		).setParameter(
 			"groupId", getGroupId()
 		).build();

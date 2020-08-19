@@ -108,9 +108,6 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 				return StringPool.BLANK;
 			}
 
-			String referringPortletResource = ParamUtil.getString(
-				_httpServletRequest, "referringPortletResource");
-
 			PortletURL editArticleURL = PortletURLBuilder.createRenderURL(
 				_renderResponse
 			).setParameter(
@@ -118,7 +115,9 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 			).setParameter(
 				"redirect", themeDisplay.getURLCurrent()
 			).setParameter(
-				"referringPortletResource", referringPortletResource
+				"referringPortletResource",
+				ParamUtil.getString(
+					_httpServletRequest, "referringPortletResource")
 			).setParameter(
 				"groupId", _article.getGroupId()
 			).setParameter(

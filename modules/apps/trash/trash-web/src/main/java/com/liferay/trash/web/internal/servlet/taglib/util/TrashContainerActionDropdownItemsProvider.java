@@ -139,24 +139,24 @@ public class TrashContainerActionDropdownItemsProvider {
 	}
 
 	private DropdownItem _getMoveActionDropdownItem() throws Exception {
-		long trashRendererClassNameId = PortalUtil.getClassNameId(
-			_trashRenderer.getClassName());
-
-		String containerModelClassName =
-			_trashHandler.getContainerModelClassName(
-				_trashDisplayContext.getClassPK());
-
 		PortletURL moveEntryURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setParameter(
 			"mvcPath", "/view_container_model.jsp"
 		).setParameter(
-			"classNameId", trashRendererClassNameId
+			"classNameId",
+			PortalUtil.getClassNameId(_trashRenderer.getClassName())
 		).setParameter(
 			"classPK", _trashRenderer.getClassPK()
 		).setParameter(
 			"containerModelClassNameId",
-			PortalUtil.getClassNameId(containerModelClassName)
+			() -> {
+				String containerModelClassName =
+					_trashHandler.getContainerModelClassName(
+						_trashDisplayContext.getClassPK());
+
+				return PortalUtil.getClassNameId(containerModelClassName);
+			}
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();
@@ -174,9 +174,6 @@ public class TrashContainerActionDropdownItemsProvider {
 	private DropdownItem _getMoveTrashEntryActionDropdownItem()
 		throws Exception {
 
-		String trashHandlerEntryContainerModelClassName =
-			_trashHandler.getContainerModelClassName(_trashEntry.getClassPK());
-
 		PortletURL moveEntryURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setParameter(
@@ -187,7 +184,14 @@ public class TrashContainerActionDropdownItemsProvider {
 			"classPK", _trashEntry.getClassPK()
 		).setParameter(
 			"containerModelClassNameId",
-			PortalUtil.getClassNameId(trashHandlerEntryContainerModelClassName)
+			() -> {
+				String trashHandlerEntryContainerModelClassName =
+					_trashHandler.getContainerModelClassName(
+						_trashEntry.getClassPK());
+
+				return PortalUtil.getClassNameId(
+					trashHandlerEntryContainerModelClassName);
+			}
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

@@ -142,14 +142,18 @@ public class UADExportProcessDisplayContext {
 			(PortletResponse)_httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_RESPONSE);
 
-		User selectedUser = PortalUtil.getSelectedUser(_httpServletRequest);
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			PortletURLUtil.getCurrent(
 				PortalUtil.getLiferayPortletRequest(portletRequest),
 				PortalUtil.getLiferayPortletResponse(portletResponse))
 		).setParameter(
-			"p_u_i_d", selectedUser.getUserId()
+			"p_u_i_d",
+			() -> {
+				User selectedUser = PortalUtil.getSelectedUser(
+					_httpServletRequest);
+
+				return selectedUser.getUserId();
+			}
 		).setParameter(
 			"mvcRenderCommandName", "/view_uad_export_processes"
 		).setParameter(

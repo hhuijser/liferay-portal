@@ -130,14 +130,12 @@ public class EditRuleGroupMVCActionCommand extends BaseMVCActionCommand {
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setParameter(
 			"mvcRenderCommandName", "/mobile_device_rules/edit_rule_group"
 		).setParameter(
-			"redirect", redirect
+			"redirect", ParamUtil.getString(actionRequest, "redirect")
 		).setParameter(
 			"ruleGroupId", ruleGroup.getRuleGroupId()
 		).build();

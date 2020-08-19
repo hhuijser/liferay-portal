@@ -63,9 +63,6 @@ public class PrintKBTemplatePorletConfigurationIcon
 
 			sb.append("window.open('");
 
-			KBTemplate kbTemplate = (KBTemplate)portletRequest.getAttribute(
-				KBWebKeys.KNOWLEDGE_BASE_KB_TEMPLATE);
-
 			PortletURL portletURL = PortletURLBuilder.create(
 				_portal.getControlPanelPortletURL(
 					portletRequest, KBPortletKeys.KNOWLEDGE_BASE_ADMIN,
@@ -73,7 +70,14 @@ public class PrintKBTemplatePorletConfigurationIcon
 			).setParameter(
 				"mvcPath", "/admin/print_template.jsp"
 			).setParameter(
-				"kbTemplateId", kbTemplate.getKbTemplateId()
+				"kbTemplateId",
+				() -> {
+					KBTemplate kbTemplate =
+						(KBTemplate)portletRequest.getAttribute(
+							KBWebKeys.KNOWLEDGE_BASE_KB_TEMPLATE);
+
+					return kbTemplate.getKbTemplateId();
+				}
 			).setParameter(
 				"viewMode", Constants.PRINT
 			).setWindowState(

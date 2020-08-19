@@ -212,9 +212,6 @@ public class ContentDashboardAdminDisplayContext {
 		List<? extends ContentDashboardItemType> contentDashboardItemTypes =
 			getContentDashboardItemTypes();
 
-		Stream<? extends ContentDashboardItemType> stream =
-			contentDashboardItemTypes.stream();
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			_itemSelector.getItemSelectorURL(
 				requestBackedPortletURLFactory,

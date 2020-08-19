@@ -57,9 +57,6 @@ public class ExportTemplatesConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
 				portletRequest, ExportImportPortletKeys.EXPORT,
@@ -67,7 +64,14 @@ public class ExportTemplatesConfigurationIcon
 		).setParameter(
 			"mvcPath", "/export/export_templates/view.jsp"
 		).setParameter(
-			"redirect", themeDisplay.getURLCurrent()
+			"redirect",
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)portletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				return themeDisplay.getURLCurrent();
+			}
 		).build();
 
 		return portletURL.toString();

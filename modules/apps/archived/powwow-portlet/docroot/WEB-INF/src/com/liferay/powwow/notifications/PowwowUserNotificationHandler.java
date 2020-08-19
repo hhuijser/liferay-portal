@@ -102,11 +102,6 @@ public class PowwowUserNotificationHandler extends BaseUserNotificationHandler {
 		long portletPlid = PortalUtil.getPlidFromPortletId(
 			user.getGroupId(), true, PowwowPortletKeys.POWWOW_MEETINGS);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			userNotificationEvent.getPayload());
-
-		long powwowMeetingId = jsonObject.getLong("classPK");
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(
 				serviceContext.getLiferayPortletRequest(),
@@ -115,7 +110,13 @@ public class PowwowUserNotificationHandler extends BaseUserNotificationHandler {
 		).setParameter(
 			"mvcPath", "/meetings/view_meeting.jsp"
 		).setParameter(
-			"powwowMeetingId", powwowMeetingId
+			"powwowMeetingId",
+			() -> {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					userNotificationEvent.getPayload());
+
+				return jsonObject.getLong("classPK");
+			}
 		).build();
 
 		return portletURL.toString();

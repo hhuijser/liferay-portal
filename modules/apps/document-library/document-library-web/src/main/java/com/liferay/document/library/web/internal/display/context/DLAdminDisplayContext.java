@@ -257,23 +257,17 @@ public class DLAdminDisplayContext {
 	}
 
 	public PortletURL getSearchSearchContainerURL() {
-		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
-
-		long searchFolderId = ParamUtil.getLong(
-			_httpServletRequest, "searchFolderId");
-
-		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setParameter(
 			"mvcRenderCommandName", "/document_library/search"
 		).setParameter(
-			"redirect", redirect
+			"redirect", ParamUtil.getString(_httpServletRequest, "redirect")
 		).setParameter(
-			"searchFolderId", searchFolderId
+			"searchFolderId",
+			ParamUtil.getLong(_httpServletRequest, "searchFolderId")
 		).setParameter(
-			"keywords", keywords
+			"keywords", ParamUtil.getString(_httpServletRequest, "keywords")
 		).build();
 
 		return portletURL;

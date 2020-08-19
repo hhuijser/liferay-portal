@@ -55,9 +55,6 @@ public class HistoryKBArticlePortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
 				portletRequest, KBPortletKeys.KNOWLEDGE_BASE_ADMIN,
@@ -65,7 +62,14 @@ public class HistoryKBArticlePortletConfigurationIcon
 		).setParameter(
 			"mvcPath", "/admin/history.jsp"
 		).setParameter(
-			"redirect", themeDisplay.getURLCurrent()
+			"redirect",
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)portletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				return themeDisplay.getURLCurrent();
+			}
 		).build();
 
 		KBArticle kbArticle = getKBArticle(portletRequest);

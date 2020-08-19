@@ -194,9 +194,6 @@ public class TrashContainerModelDisplayContext {
 	}
 
 	public PortletURL getContainerURL() {
-		String currentURL = (String)_httpServletRequest.getAttribute(
-			WebKeys.CURRENT_URL);
-
 		PortletURL containerURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setParameter(
@@ -204,7 +201,8 @@ public class TrashContainerModelDisplayContext {
 		).setParameter(
 			"redirect", getRedirect()
 		).setParameter(
-			"backURL", currentURL
+			"backURL",
+			(String)_httpServletRequest.getAttribute(WebKeys.CURRENT_URL)
 		).setParameter(
 			"classNameId", getClassNameId()
 		).setParameter(

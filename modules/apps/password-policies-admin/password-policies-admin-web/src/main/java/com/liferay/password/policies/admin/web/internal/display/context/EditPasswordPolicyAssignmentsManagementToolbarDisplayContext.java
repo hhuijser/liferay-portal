@@ -207,8 +207,6 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
@@ -220,7 +218,7 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 		).setParameter(
 			"passwordPolicyId", _passwordPolicy.getPasswordPolicyId()
 		).setParameter(
-			"redirect", redirect
+			"redirect", ParamUtil.getString(_httpServletRequest, "redirect")
 		).setParameter(
 			"displayStyle", _displayStyle
 		).build();

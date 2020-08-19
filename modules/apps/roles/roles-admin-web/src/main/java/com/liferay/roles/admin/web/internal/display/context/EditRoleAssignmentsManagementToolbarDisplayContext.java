@@ -148,10 +148,6 @@ public class EditRoleAssignmentsManagementToolbarDisplayContext {
 			dropdownItem -> {
 				dropdownItem.putData("action", "addSegmentEntry");
 
-				ThemeDisplay themeDisplay =
-					(ThemeDisplay)_httpServletRequest.getAttribute(
-						WebKeys.THEME_DISPLAY);
-
 				PortletURL addSegmentEntryURL = PortletURLBuilder.create(
 					PortletProviderUtil.getPortletURL(
 						_renderRequest, SegmentsEntry.class.getName(),
@@ -160,7 +156,14 @@ public class EditRoleAssignmentsManagementToolbarDisplayContext {
 					"redirect",
 					ParamUtil.getString(_httpServletRequest, "redirect")
 				).setParameter(
-					"groupId", themeDisplay.getCompanyGroupId()
+					"groupId",
+					() -> {
+						ThemeDisplay themeDisplay =
+							(ThemeDisplay)_httpServletRequest.getAttribute(
+								WebKeys.THEME_DISPLAY);
+
+						return themeDisplay.getCompanyGroupId();
+					}
 				).build();
 
 				dropdownItem.putData(
@@ -415,13 +418,16 @@ public class EditRoleAssignmentsManagementToolbarDisplayContext {
 	}
 
 	public String getSearchActionURL() {
-		PortletURL currentURL = PortletURLUtil.getCurrent(
-			_renderRequest, _renderResponse);
-
 		PortletURL searchActionURL = PortletURLBuilder.create(
 			getPortletURL()
 		).setParameter(
-			"redirect", currentURL.toString()
+			"redirect",
+			() -> {
+				PortletURL currentURL = PortletURLUtil.getCurrent(
+					_renderRequest, _renderResponse);
+
+				return currentURL.toString();
+			}
 		).build();
 
 		return searchActionURL.toString();

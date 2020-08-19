@@ -138,8 +138,6 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
@@ -147,7 +145,7 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 		).setParameter(
 			"userGroupId", _userGroup.getUserGroupId()
 		).setParameter(
-			"redirect", redirect
+			"redirect", ParamUtil.getString(_httpServletRequest, "redirect")
 		).setParameter(
 			"displayStyle", _displayStyle
 		).build();

@@ -71,10 +71,6 @@ public class DeleteExpiredTemporaryFileEntriesPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)portletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
-
 			PortletURL portletURL = PortletURLBuilder.create(
 				_portal.getControlPanelPortletURL(
 					portletRequest, DLPortletKeys.DOCUMENT_LIBRARY_ADMIN,
@@ -84,7 +80,14 @@ public class DeleteExpiredTemporaryFileEntriesPortletConfigurationIcon
 			).setParameter(
 				Constants.CMD, "deleteExpiredTemporaryFileEntries"
 			).setParameter(
-				"redirect", themeDisplay.getURLCurrent()
+				"redirect",
+				() -> {
+					ThemeDisplay themeDisplay =
+						(ThemeDisplay)portletRequest.getAttribute(
+							WebKeys.THEME_DISPLAY);
+
+					return themeDisplay.getURLCurrent();
+				}
 			).build();
 
 			Folder folder = ActionUtil.getFolder(portletRequest);

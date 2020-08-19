@@ -637,11 +637,6 @@ public class PortletConfigurationPermissionsDisplayContext {
 	public PortletURL getUpdateRolePermissionsURL()
 		throws ResourcePrimKeyException, WindowStateException {
 
-		int cur = ParamUtil.getInteger(
-			_httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM);
-		int delta = ParamUtil.getInteger(
-			_httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM);
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(
 				_httpServletRequest,
@@ -652,9 +647,13 @@ public class PortletConfigurationPermissionsDisplayContext {
 		).setParameter(
 			"mvcPath", "/edit_permissions.jsp"
 		).setParameter(
-			"cur", cur
+			"cur",
+			ParamUtil.getInteger(
+				_httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM)
 		).setParameter(
-			"delta", delta
+			"delta",
+			ParamUtil.getInteger(
+				_httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM)
 		).setParameter(
 			"returnToFullPageURL", _getReturnToFullPageURL()
 		).setParameter(

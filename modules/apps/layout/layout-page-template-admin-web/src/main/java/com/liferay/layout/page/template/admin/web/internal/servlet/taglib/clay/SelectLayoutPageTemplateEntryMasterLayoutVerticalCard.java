@@ -55,9 +55,6 @@ public class SelectLayoutPageTemplateEntryMasterLayoutVerticalCard
 		return HashMapBuilder.put(
 			"add-layout-page-template-entry-url",
 			() -> {
-				long layoutPageTemplateCollectionId = ParamUtil.getLong(
-					_httpServletRequest, "layoutPageTemplateCollectionId");
-
 				PortletURL addLayoutPageTemplateEntryURL =
 					PortletURLBuilder.createActionURL(
 						_renderResponse
@@ -68,7 +65,9 @@ public class SelectLayoutPageTemplateEntryMasterLayoutVerticalCard
 						"redirect", _themeDisplay.getURLCurrent()
 					).setParameter(
 						"layoutPageTemplateCollectionId",
-						layoutPageTemplateCollectionId
+						ParamUtil.getLong(
+							_httpServletRequest,
+							"layoutPageTemplateCollectionId")
 					).setParameter(
 						"masterLayoutPlid", _layoutPageTemplateEntry.getPlid()
 					).build();

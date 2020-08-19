@@ -262,8 +262,6 @@ public class LayoutsAdminDisplayContext {
 	}
 
 	public String getConfigureLayoutURL(Layout layout) {
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		PortletURL configureLayoutURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setParameter(
@@ -273,7 +271,13 @@ public class LayoutsAdminDisplayContext {
 		).setParameter(
 			"backURL", themeDisplay.getURLCurrent()
 		).setParameter(
-			"portletResource", portletDisplay.getId()
+			"portletResource",
+			() -> {
+				PortletDisplay portletDisplay =
+					themeDisplay.getPortletDisplay();
+
+				return portletDisplay.getId();
+			}
 		).setParameter(
 			"groupId", layout.getGroupId()
 		).setParameter(
@@ -363,8 +367,6 @@ public class LayoutsAdminDisplayContext {
 	}
 
 	public String getDiscardDraftURL(Layout layout) {
-		Layout draftLayout = layout.fetchDraftLayout();
-
 		PortletURL discardDraftURL = PortletURLBuilder.createActionURL(
 			_liferayPortletResponse
 		).setParameter(
@@ -372,7 +374,12 @@ public class LayoutsAdminDisplayContext {
 		).setParameter(
 			"redirect", themeDisplay.getURLCurrent()
 		).setParameter(
-			"selPlid", draftLayout.getPlid()
+			"selPlid",
+			() -> {
+				Layout draftLayout = layout.fetchDraftLayout();
+
+				return draftLayout.getPlid();
+			}
 		).build();
 
 		return discardDraftURL.toString();

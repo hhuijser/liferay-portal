@@ -43,13 +43,17 @@ public abstract class BaseWorkflowPortletTab
 	public PortletURL getSearchURL(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		PortletURL searchURL = PortletURLBuilder.createRenderURL(
 			renderResponse
 		).setParameter(
-			"groupId", themeDisplay.getScopeGroupId()
+			"groupId",
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)renderRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				return themeDisplay.getScopeGroupId();
+			}
 		).setParameter(
 			"mvcPath", "/view.jsp"
 		).setParameter(

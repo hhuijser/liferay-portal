@@ -163,8 +163,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 		for (Long assetCategoryId : assetCategoryIds) {
 			labelItemListWrapper.add(
 				labelItem -> {
-					Stream<Long> stream = assetCategoryIds.stream();
-
 					PortletURL portletURL = PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
@@ -226,11 +224,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 
 			labelItemListWrapper.add(
 				labelItem -> {
-					InfoItemReference infoItemReference =
-						contentDashboardItemType.getInfoItemReference();
-					Stream<? extends ContentDashboardItemType> stream =
-						contentDashboardItemTypes.stream();
-
 					PortletURL portletURL = PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
@@ -273,8 +266,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 		for (Long authorId : authorIds) {
 			labelItemListWrapper.add(
 				labelItem -> {
-					Stream<Long> stream = authorIds.stream();
-
 					PortletURL portletURL = PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
@@ -335,8 +326,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 		for (String assetTagId : assetTagIds) {
 			labelItemListWrapper.add(
 				labelItem -> {
-					Stream<String> stream = assetTagIds.stream();
-
 					PortletURL portletURL = PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
@@ -437,8 +426,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 		List<Long> assetCategoryIds =
 			_contentDashboardAdminDisplayContext.getAssetCategoryIds();
 
-		Stream<Long> assetCategoryIdsStream = assetCategoryIds.stream();
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -446,9 +433,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 		List<AssetVocabulary> assetVocabularies =
 			_assetVocabularyLocalService.getCompanyVocabularies(
 				themeDisplay.getCompanyId());
-
-		Stream<AssetVocabulary> assetVocabularyStream =
-			assetVocabularies.stream();
 
 		PortletURL portletURL = PortletURLBuilder.create(
 			PortletProviderUtil.getPortletURL(
@@ -492,13 +476,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 		List<Long> groupIds = _groupLocalService.getGroupIds(
 			themeDisplay.getCompanyId(), true);
 
-		Stream<Long> groupIdsStream = groupIds.stream();
-
-		Set<String> assetTagIds =
-			_contentDashboardAdminDisplayContext.getAssetTagIds();
-
-		Stream<String> assetTagIdsStream = assetTagIds.stream();
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			PortletProviderUtil.getPortletURL(
 				_liferayPortletRequest, AssetTag.class.getName(),
@@ -515,7 +492,15 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 			)
 		).setParameter(
 			"selectedTagNames",
-			assetTagIdsStream.collect(Collectors.joining(StringPool.COMMA))
+			() -> {
+				Set<String> assetTagIds =
+					_contentDashboardAdminDisplayContext.getAssetTagIds();
+
+				Stream<String> assetTagIdsStream = assetTagIds.stream();
+
+				return assetTagIdsStream.collect(
+					Collectors.joining(StringPool.COMMA));
+			}
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

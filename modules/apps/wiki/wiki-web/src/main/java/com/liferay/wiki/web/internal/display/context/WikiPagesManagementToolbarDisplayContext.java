@@ -121,9 +121,6 @@ public class WikiPagesManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getClearResultsURL() {
-		WikiNode node = (WikiNode)_httpServletRequest.getAttribute(
-			WikiWebKeys.WIKI_NODE);
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setParameter(
@@ -131,7 +128,13 @@ public class WikiPagesManagementToolbarDisplayContext {
 		).setParameter(
 			"redirect", _currentURLObj.toString()
 		).setParameter(
-			"nodeId", node.getNodeId()
+			"nodeId",
+			() -> {
+				WikiNode node = (WikiNode)_httpServletRequest.getAttribute(
+					WikiWebKeys.WIKI_NODE);
+
+				return node.getNodeId();
+			}
 		).build();
 
 		return portletURL;
@@ -217,15 +220,18 @@ public class WikiPagesManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getSearchActionURL() {
-		WikiNode node = (WikiNode)_httpServletRequest.getAttribute(
-			WikiWebKeys.WIKI_NODE);
-
 		PortletURL searchActionURL = PortletURLBuilder.create(
 			_wikiURLHelper.getSearchURL()
 		).setParameter(
 			"redirect", _currentURLObj.toString()
 		).setParameter(
-			"nodeId", node.getNodeId()
+			"nodeId",
+			() -> {
+				WikiNode node = (WikiNode)_httpServletRequest.getAttribute(
+					WikiWebKeys.WIKI_NODE);
+
+				return node.getNodeId();
+			}
 		).build();
 
 		return searchActionURL;

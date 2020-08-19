@@ -252,12 +252,15 @@ public class SharedAssetsViewDisplayContext {
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
-		String orderByType = getSortingOrder();
-
 		PortletURL sortingURL = PortletURLBuilder.create(
 			_getCurrentSortingURL()
 		).setParameter(
-			"orderByType", Objects.equals(orderByType, "asc") ? "desc" : "asc"
+			"orderByType",
+			() -> {
+				String orderByType = getSortingOrder();
+
+				return Objects.equals(orderByType, "asc") ? "desc" : "asc";
+			}
 		).build();
 
 		return sortingURL;

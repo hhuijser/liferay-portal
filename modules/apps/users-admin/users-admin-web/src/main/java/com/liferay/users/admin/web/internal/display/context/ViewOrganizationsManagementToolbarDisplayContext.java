@@ -327,17 +327,15 @@ public class ViewOrganizationsManagementToolbarDisplayContext {
 	}
 
 	private String _getViewUsersURL() {
-		String toolbarItem = ParamUtil.getString(
-			_httpServletRequest, "toolbarItem", "view-all-organizations");
-		String usersListView = (String)_httpServletRequest.getAttribute(
-			"view.jsp-usersListView");
-
 		PortletURL viewUsersURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
-			"toolbarItem", toolbarItem
+			"toolbarItem",
+			ParamUtil.getString(
+				_httpServletRequest, "toolbarItem", "view-all-organizations")
 		).setParameter(
-			"usersListView", usersListView
+			"usersListView",
+			(String)_httpServletRequest.getAttribute("view.jsp-usersListView")
 		).build();
 
 		return viewUsersURL.toString();

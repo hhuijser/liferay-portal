@@ -73,16 +73,6 @@ public class DeleteCategoryPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			String cmd = Constants.DELETE;
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)portletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
-
-			if (isTrashEnabled(themeDisplay.getScopeGroupId())) {
-				cmd = Constants.MOVE_TO_TRASH;
-			}
-
 			PortletURL deleteURL = PortletURLBuilder.create(
 				_portal.getControlPanelPortletURL(
 					portletRequest, MBPortletKeys.MESSAGE_BOARDS_ADMIN,
@@ -90,7 +80,20 @@ public class DeleteCategoryPortletConfigurationIcon
 			).setParameter(
 				ActionRequest.ACTION_NAME, "/message_boards/edit_category"
 			).setParameter(
-				Constants.CMD, cmd
+				Constants.CMD,
+				() -> {
+					ThemeDisplay themeDisplay =
+						(ThemeDisplay)portletRequest.getAttribute(
+							WebKeys.THEME_DISPLAY);
+
+					String cmd = Constants.DELETE;
+
+					if (isTrashEnabled(themeDisplay.getScopeGroupId())) {
+						cmd = Constants.MOVE_TO_TRASH;
+					}
+
+					return cmd;
+				}
 			).build();
 
 			PortletURL parentCategoryURL = _portal.getControlPanelPortletURL(

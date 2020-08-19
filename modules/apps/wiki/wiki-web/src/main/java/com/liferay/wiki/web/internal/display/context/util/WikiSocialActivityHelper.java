@@ -301,8 +301,6 @@ public class WikiSocialActivityHelper {
 			return StringPool.BLANK;
 		}
 
-		WikiNode node = page.getNode();
-
 		LiferayPortletResponse liferayPortletResponse =
 			_wikiRequestHelper.getLiferayPortletResponse();
 
@@ -311,7 +309,12 @@ public class WikiSocialActivityHelper {
 		).setParameter(
 			"mvcRenderCommandName", "/wiki/view"
 		).setParameter(
-			"nodeName", node.getName()
+			"nodeName",
+			() -> {
+				WikiNode node = page.getNode();
+
+				return node.getName();
+			}
 		).setParameter(
 			"title", page.getTitle()
 		).build();
@@ -324,8 +327,6 @@ public class WikiSocialActivityHelper {
 			return null;
 		}
 
-		WikiNode node = page.getNode();
-
 		LiferayPortletResponse liferayPortletResponse =
 			_wikiRequestHelper.getLiferayPortletResponse();
 
@@ -334,7 +335,12 @@ public class WikiSocialActivityHelper {
 		).setParameter(
 			"mvcRenderCommandName", "/wiki/view"
 		).setParameter(
-			"nodeName", node.getName()
+			"nodeName",
+			() -> {
+				WikiNode node = page.getNode();
+
+				return node.getName();
+			}
 		).setParameter(
 			"title", page.getTitle()
 		).setParameter(

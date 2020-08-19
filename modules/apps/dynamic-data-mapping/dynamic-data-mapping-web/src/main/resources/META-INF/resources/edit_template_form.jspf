@@ -25,9 +25,7 @@ if (Validator.isNull(script)) {
 	script = structure.getDefinition();
 }
 
-JSONArray fieldsJSONArray = _getFormTemplateFieldsJSONArray(structure, script);
-
-String fieldsJSONArrayString = fieldsJSONArray.toString();
+String fieldsJSONArrayString = String.valueOf(_getFormTemplateFieldsJSONArray(structure, script));
 %>
 
 <aui:input name="language" type="hidden" value="json" />

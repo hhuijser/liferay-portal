@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.role.RoleConstants;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -213,10 +214,13 @@ public class UserRolesDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() throws PortalException {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("p_u_i_d", String.valueOf(_getUserId()));
-		portletURL.setParameter("mvcPath", "/users_roles.jsp");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"p_u_i_d", String.valueOf(_getUserId())
+		).setParameter(
+			"mvcPath", "/users_roles.jsp"
+		).build();
 
 		String displayStyle = getDisplayStyle();
 

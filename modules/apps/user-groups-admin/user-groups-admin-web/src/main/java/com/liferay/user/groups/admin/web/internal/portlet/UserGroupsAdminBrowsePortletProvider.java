@@ -17,6 +17,7 @@ package com.liferay.user.groups.admin.web.internal.portlet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.BasePortletProvider;
 import com.liferay.portal.kernel.portlet.BrowsePortletProvider;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.user.groups.admin.constants.UserGroupsAdminPortletKeys;
 
 import javax.portlet.PortletURL;
@@ -45,9 +46,11 @@ public class UserGroupsAdminBrowsePortletProvider
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest);
-
-		portletURL.setParameter("mvcPath", "/select_user_group.jsp");
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest)
+		).setParameter(
+			"mvcPath", "/select_user_group.jsp"
+		).build();
 
 		return portletURL;
 	}

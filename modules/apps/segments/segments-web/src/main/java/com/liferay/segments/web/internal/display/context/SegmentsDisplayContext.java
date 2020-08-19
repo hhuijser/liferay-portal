@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
@@ -98,9 +99,11 @@ public class SegmentsDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = _getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			_getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -234,15 +237,18 @@ public class SegmentsDisplayContext {
 				segmentsEntry.getSegmentsEntryKey();
 		}
 
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "editSegmentsEntry");
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(_renderRequest));
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "editSegmentsEntry"
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(_renderRequest)
+		).setParameter(
 			"segmentsEntryId",
-			String.valueOf(segmentsEntry.getSegmentsEntryId()));
-		portletURL.setParameter("showInEditMode", Boolean.FALSE.toString());
+			String.valueOf(segmentsEntry.getSegmentsEntryId())
+		).setParameter(
+			"showInEditMode", Boolean.FALSE.toString()
+		).build();
 
 		return portletURL.toString();
 	}
@@ -259,11 +265,12 @@ public class SegmentsDisplayContext {
 	}
 
 	public String getSortingURL() {
-		PortletURL sortingURL = _getPortletURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getPortletURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL.toString();
 	}
@@ -387,9 +394,11 @@ public class SegmentsDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).build();
 
 		String keywords = _getKeywords();
 

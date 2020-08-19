@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -92,25 +93,37 @@ public class ExportPageMVCActionCommand extends BaseMVCActionCommand {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-			PortletURL viewPageURL = PortletURLFactoryUtil.create(
-				actionRequest, portletConfig.getPortletName(),
-				PortletRequest.RENDER_PHASE);
+			PortletURL viewPageURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					actionRequest, portletConfig.getPortletName(),
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcRenderCommandName", "/wiki/view"
+			).setParameter(
+				"nodeName", nodeName
+			).setParameter(
+				"title", title
+			).setPortletMode(
+				PortletMode.VIEW
+			).setWindowState(
+				WindowState.MAXIMIZED
+			).build();
 
-			viewPageURL.setParameter("mvcRenderCommandName", "/wiki/view");
-			viewPageURL.setParameter("nodeName", nodeName);
-			viewPageURL.setParameter("title", title);
-			viewPageURL.setPortletMode(PortletMode.VIEW);
-			viewPageURL.setWindowState(WindowState.MAXIMIZED);
-
-			PortletURL editPageURL = PortletURLFactoryUtil.create(
-				actionRequest, portletConfig.getPortletName(),
-				PortletRequest.RENDER_PHASE);
-
-			editPageURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");
-			editPageURL.setParameter("nodeId", String.valueOf(nodeId));
-			editPageURL.setParameter("title", title);
-			editPageURL.setPortletMode(PortletMode.VIEW);
-			editPageURL.setWindowState(WindowState.MAXIMIZED);
+			PortletURL editPageURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					actionRequest, portletConfig.getPortletName(),
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcRenderCommandName", "/wiki/edit_page"
+			).setParameter(
+				"nodeId", String.valueOf(nodeId)
+			).setParameter(
+				"title", title
+			).setPortletMode(
+				PortletMode.VIEW
+			).setWindowState(
+				WindowState.MAXIMIZED
+			).build();
 
 			getFile(
 				nodeId, title, version, targetExtension, viewPageURL,

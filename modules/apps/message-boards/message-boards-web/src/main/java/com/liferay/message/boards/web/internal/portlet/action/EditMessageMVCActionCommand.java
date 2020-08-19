@@ -54,6 +54,7 @@ import com.liferay.portal.kernel.portlet.LiferayActionResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -287,12 +288,13 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 		LiferayActionResponse liferayActionResponse =
 			(LiferayActionResponse)actionResponse;
 
-		PortletURL portletURL = liferayActionResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
-		portletURL.setParameter(
-			"messageId", String.valueOf(message.getMessageId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayActionResponse
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/view_message"
+		).setParameter(
+			"messageId", String.valueOf(message.getMessageId())
+		).build();
 
 		return portletURL.toString();
 	}
@@ -308,14 +310,17 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 		LiferayActionResponse liferayActionResponse =
 			(LiferayActionResponse)actionResponse;
 
-		PortletURL portletURL = liferayActionResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/edit_message");
-		portletURL.setParameter("redirect", redirect);
-		portletURL.setParameter(
-			"messageId", String.valueOf(message.getMessageId()));
-		portletURL.setParameter("preview", String.valueOf(preview));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayActionResponse
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/edit_message"
+		).setParameter(
+			"redirect", redirect
+		).setParameter(
+			"messageId", String.valueOf(message.getMessageId())
+		).setParameter(
+			"preview", String.valueOf(preview)
+		).build();
 
 		return portletURL.toString();
 	}

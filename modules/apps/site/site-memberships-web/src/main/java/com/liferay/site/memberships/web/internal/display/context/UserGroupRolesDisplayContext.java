@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.UserGroupGroupRole;
 import com.liferay.portal.kernel.model.role.RoleConstants;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -131,14 +132,15 @@ public class UserGroupRolesDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/user_groups_roles.jsp");
-		portletURL.setParameter(
-			"userGroupId", String.valueOf(getUserGroupId()));
-
-		portletURL.setParameter(
-			"assignRoles", String.valueOf(_isAssignRoles()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/user_groups_roles.jsp"
+		).setParameter(
+			"userGroupId", String.valueOf(getUserGroupId())
+		).setParameter(
+			"assignRoles", String.valueOf(_isAssignRoles())
+		).build();
 
 		String displayStyle = getDisplayStyle();
 

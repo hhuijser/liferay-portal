@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.toolbar.contributor.PortletToolbarContributor;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.LayoutPermissionUtil;
 import com.liferay.portal.kernel.servlet.taglib.ui.Menu;
@@ -121,26 +122,25 @@ public class SiteNavigationMenuAddPortletToolbarContributor
 			LanguageUtil.get(
 				_portal.getHttpServletRequest(portletRequest), "add-page"));
 
-		PortletURL portletURL = PortletProviderUtil.getPortletURL(
-			portletRequest, Layout.class.getName(),
-			PortletProvider.Action.EDIT);
-
-		portletURL.setParameter(
-			"mvcPath", "/select_layout_page_template_entry.jsp");
-		portletURL.setParameter(
-			"redirect", _portal.getLayoutFullURL(themeDisplay));
-		portletURL.setParameter(
-			"groupId", String.valueOf(themeDisplay.getScopeGroupId()));
-
 		Layout layout = themeDisplay.getLayout();
-
-		portletURL.setParameter(
-			"privateLayout", String.valueOf(layout.isPrivateLayout()));
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		portletURL.setParameter(
-			"portletResource", portletDisplay.getPortletName());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				portletRequest, Layout.class.getName(),
+				PortletProvider.Action.EDIT)
+		).setParameter(
+			"mvcPath", "/select_layout_page_template_entry.jsp"
+		).setParameter(
+			"redirect", _portal.getLayoutFullURL(themeDisplay)
+		).setParameter(
+			"groupId", String.valueOf(themeDisplay.getScopeGroupId())
+		).setParameter(
+			"privateLayout", String.valueOf(layout.isPrivateLayout())
+		).setParameter(
+			"portletResource", portletDisplay.getPortletName()
+		).build();
 
 		urlMenuItem.setURL(portletURL.toString());
 

@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -114,25 +115,25 @@ public class GoogleDriveBackgroundTaskStatusMVCResourceCommand
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(resourceResponse);
 
-			PortletURL portletURL = liferayPortletResponse.createRenderURL(
-				_portal.getPortletId(resourceRequest));
-
-			portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-			portletURL.setParameter(
-				"mvcRenderCommandName", "/document_library/open_google_docs");
-			portletURL.setParameter("fileEntryId", String.valueOf(fileEntryId));
-
 			String googleDocsEditURL = _getGoogleDocsEditURL(
 				dlOpenerFileEntryReference.getReferenceKey(),
 				DLOpenerGoogleDriveMimeTypes.getGoogleDocsMimeType(
 					fileEntry.getMimeType()));
 
-			portletURL.setParameter("googleDocsEditURL", googleDocsEditURL);
-
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.createRenderURL(
+				liferayPortletResponse, _portal.getPortletId(resourceRequest)
+			).setWindowState(
+				LiferayWindowState.EXCLUSIVE
+			).setParameter(
+				"mvcRenderCommandName", "/document_library/open_google_docs"
+			).setParameter(
+				"fileEntryId", String.valueOf(fileEntryId)
+			).setParameter(
+				"googleDocsEditURL", googleDocsEditURL
+			).setParameter(
 				"googleDocsRedirect",
-				ParamUtil.getString(resourceRequest, "googleDocsRedirect"));
+				ParamUtil.getString(resourceRequest, "googleDocsRedirect")
+			).build();
 
 			jsonObject.put("googleDocsEditURL", portletURL.toString());
 		}

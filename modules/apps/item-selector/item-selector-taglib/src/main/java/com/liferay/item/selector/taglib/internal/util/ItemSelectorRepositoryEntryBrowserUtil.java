@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -190,12 +191,13 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 			PortletURL portletURL)
 		throws Exception {
 
-		PortletURL viewGroupSelectorURL = PortletURLUtil.clone(
-			portletURL, liferayPortletResponse);
-
-		viewGroupSelectorURL.setParameter("groupType", "site");
-		viewGroupSelectorURL.setParameter(
-			"showGroupSelector", Boolean.TRUE.toString());
+		PortletURL viewGroupSelectorURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(portletURL, liferayPortletResponse)
+		).setParameter(
+			"groupType", "site"
+		).setParameter(
+			"showGroupSelector", Boolean.TRUE.toString()
+		).build();
 
 		PortalUtil.addPortletBreadcrumbEntry(
 			httpServletRequest,

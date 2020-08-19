@@ -19,6 +19,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuil
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Organization;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -66,18 +67,19 @@ public class OrganizationActionDropdownItemsProvider {
 		_getDeleteGroupOrganizationsActionUnsafeConsumer() {
 
 		PortletURL deleteGroupOrganizationsURL =
-			_renderResponse.createActionURL();
-
-		deleteGroupOrganizationsURL.setParameter(
-			ActionRequest.ACTION_NAME, "deleteGroupOrganizations");
-		deleteGroupOrganizationsURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
-		deleteGroupOrganizationsURL.setParameter(
-			"groupId",
-			String.valueOf(_themeDisplay.getSiteGroupIdOrLiveGroupId()));
-		deleteGroupOrganizationsURL.setParameter(
-			"removeOrganizationId",
-			String.valueOf(_organization.getOrganizationId()));
+			PortletURLBuilder.createActionURL(
+				_renderResponse
+			).setParameter(
+				ActionRequest.ACTION_NAME, "deleteGroupOrganizations"
+			).setParameter(
+				"redirect", _themeDisplay.getURLCurrent()
+			).setParameter(
+				"groupId",
+				String.valueOf(_themeDisplay.getSiteGroupIdOrLiveGroupId())
+			).setParameter(
+				"removeOrganizationId",
+				String.valueOf(_organization.getOrganizationId())
+			).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deleteGroupOrganizations");

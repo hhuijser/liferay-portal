@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -161,14 +162,17 @@ public class DDLRecordAssetRenderer extends BaseJSPAssetRenderer<DDLRecord> {
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, group, DDLPortletKeys.DYNAMIC_DATA_LISTS, 0,
-			0, PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_record.jsp");
-		portletURL.setParameter(
-			"recordId", String.valueOf(_record.getRecordId()));
-		portletURL.setParameter("version", _recordVersion.getVersion());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, group, DDLPortletKeys.DYNAMIC_DATA_LISTS,
+				0, 0, PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_record.jsp"
+		).setParameter(
+			"recordId", String.valueOf(_record.getRecordId())
+		).setParameter(
+			"version", _recordVersion.getVersion()
+		).build();
 
 		return portletURL;
 	}

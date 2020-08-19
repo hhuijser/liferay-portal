@@ -21,6 +21,7 @@ import com.liferay.account.service.AccountRoleLocalService;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
@@ -102,25 +103,26 @@ public class AccountEntriesAdminPortletFilter
 			if (mvcPath.equals("/edit_role_permissions.jsp")) {
 				renderRequest.removeAttribute("mvcPath");
 
-				PortletURL portletURL = _portal.getControlPanelPortletURL(
-					renderRequest, AccountPortletKeys.ACCOUNT_ENTRIES_ADMIN,
-					PortletRequest.RENDER_PHASE);
-
-				portletURL.setParameter(
+				PortletURL portletURL = PortletURLBuilder.create(
+					_portal.getControlPanelPortletURL(
+						renderRequest, AccountPortletKeys.ACCOUNT_ENTRIES_ADMIN,
+						PortletRequest.RENDER_PHASE)
+				).setParameter(
 					"mvcRenderCommandName",
-					"/account_admin/edit_account_role_permissions");
-				portletURL.setParameter(
+					"/account_admin/edit_account_role_permissions"
+				).setParameter(
 					"screenNavigationCategoryKey",
 					AccountScreenNavigationEntryConstants.
-						CATEGORY_KEY_DEFINE_PERMISSIONS);
-				portletURL.setParameter(
-					"cur", ParamUtil.getString(renderRequest, "cur"));
-				portletURL.setParameter(
-					"delta", ParamUtil.getString(renderRequest, "delta"));
-				portletURL.setParameter(
-					"resetCur", ParamUtil.getString(renderRequest, "resetCur"));
-				portletURL.setParameter(
-					"backURL", ParamUtil.getString(renderRequest, "backURL"));
+						CATEGORY_KEY_DEFINE_PERMISSIONS
+				).setParameter(
+					"cur", ParamUtil.getString(renderRequest, "cur")
+				).setParameter(
+					"delta", ParamUtil.getString(renderRequest, "delta")
+				).setParameter(
+					"resetCur", ParamUtil.getString(renderRequest, "resetCur")
+				).setParameter(
+					"backURL", ParamUtil.getString(renderRequest, "backURL")
+				).build();
 
 				long roleId = ParamUtil.getLong(renderRequest, "roleId");
 

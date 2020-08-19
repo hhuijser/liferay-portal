@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -56,16 +57,18 @@ public class ExportTemplatesConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, ExportImportPortletKeys.EXPORT,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/export/export_templates/view.jsp");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, ExportImportPortletKeys.EXPORT,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/export/export_templates/view.jsp"
+		).setParameter(
+			"redirect", themeDisplay.getURLCurrent()
+		).build();
 
 		return portletURL.toString();
 	}

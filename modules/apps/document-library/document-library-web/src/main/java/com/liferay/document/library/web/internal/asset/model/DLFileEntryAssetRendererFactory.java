@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -173,18 +174,6 @@ public class DLFileEntryAssetRendererFactory
 
 		Group group = getGroup(liferayPortletRequest);
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			liferayPortletRequest, group, DLPortletKeys.DOCUMENT_LIBRARY, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_file_entry");
-		portletURL.setParameter(Constants.CMD, Constants.ADD);
-		portletURL.setParameter("groupId", String.valueOf(group.getGroupId()));
-		portletURL.setParameter(
-			"folderId",
-			String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
-
 		long fileEntryTypeId =
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT;
 
@@ -192,11 +181,26 @@ public class DLFileEntryAssetRendererFactory
 			fileEntryTypeId = classTypeId;
 		}
 
-		portletURL.setParameter(
-			"fileEntryTypeId", String.valueOf(fileEntryTypeId));
-
-		portletURL.setParameter("showMountFolder", Boolean.FALSE.toString());
-		portletURL.setParameter("showSelectFolder", Boolean.TRUE.toString());
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				liferayPortletRequest, group, DLPortletKeys.DOCUMENT_LIBRARY, 0,
+				0, PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/edit_file_entry"
+		).setParameter(
+			Constants.CMD, Constants.ADD
+		).setParameter(
+			"groupId", String.valueOf(group.getGroupId())
+		).setParameter(
+			"folderId",
+			String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID)
+		).setParameter(
+			"fileEntryTypeId", String.valueOf(fileEntryTypeId)
+		).setParameter(
+			"showMountFolder", Boolean.FALSE.toString()
+		).setParameter(
+			"showSelectFolder", Boolean.TRUE.toString()
+		).build();
 
 		return portletURL;
 	}

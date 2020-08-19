@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
@@ -60,13 +61,15 @@ public class DeleteEntryPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, AnnouncementsPortletKeys.ANNOUNCEMENTS_ADMIN,
-			PortletRequest.ACTION_PHASE);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/announcements/edit_entry");
-		portletURL.setParameter(Constants.CMD, Constants.DELETE);
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, AnnouncementsPortletKeys.ANNOUNCEMENTS_ADMIN,
+				PortletRequest.ACTION_PHASE)
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/announcements/edit_entry"
+		).setParameter(
+			Constants.CMD, Constants.DELETE
+		).build();
 
 		PortletURL redirectURL = _portal.getControlPanelPortletURL(
 			portletRequest, AnnouncementsPortletKeys.ANNOUNCEMENTS_ADMIN,

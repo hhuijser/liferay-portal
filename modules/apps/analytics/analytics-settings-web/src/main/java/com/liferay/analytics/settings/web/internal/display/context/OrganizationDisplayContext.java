@@ -20,6 +20,7 @@ import com.liferay.analytics.settings.web.internal.search.OrganizationChecker;
 import com.liferay.analytics.settings.web.internal.search.OrganizationSearch;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
@@ -95,11 +96,12 @@ public class OrganizationDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
 			"mvcRenderCommandName",
-			"/analytics_settings/edit_synced_contacts_organizations");
+			"/analytics_settings/edit_synced_contacts_organizations"
+		).build();
 
 		return portletURL;
 	}

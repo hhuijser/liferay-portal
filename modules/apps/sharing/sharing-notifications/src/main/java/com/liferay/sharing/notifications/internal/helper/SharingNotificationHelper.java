@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.template.TemplateConstants;
@@ -107,17 +108,18 @@ public class SharingNotificationHelper {
 		throws PortalException {
 
 		if (portletRequest != null) {
-			PortletURL portletURL = PortletProviderUtil.getPortletURL(
-				portletRequest, SharingEntry.class.getName(),
-				PortletProvider.Action.PREVIEW);
-
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(
+					portletRequest, SharingEntry.class.getName(),
+					PortletProvider.Action.PREVIEW)
+			).setParameter(
 				"sharingEntryId",
-				String.valueOf(sharingEntry.getSharingEntryId()));
-			portletURL.setParameter(
-				"classNameId", String.valueOf(sharingEntry.getClassNameId()));
-			portletURL.setParameter(
-				"classPK", String.valueOf(sharingEntry.getClassPK()));
+				String.valueOf(sharingEntry.getSharingEntryId())
+			).setParameter(
+				"classNameId", String.valueOf(sharingEntry.getClassNameId())
+			).setParameter(
+				"classPK", String.valueOf(sharingEntry.getClassPK())
+			).build();
 
 			return portletURL.toString();
 		}

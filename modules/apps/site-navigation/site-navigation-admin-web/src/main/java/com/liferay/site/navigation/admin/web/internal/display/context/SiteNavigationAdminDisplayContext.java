@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -327,17 +328,20 @@ public class SiteNavigationAdminDisplayContext {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletURL addURL = _liferayPortletResponse.createRenderURL();
-
-		addURL.setParameter("mvcPath", "/add_site_navigation_menu_item.jsp");
+		PortletURL addURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/add_site_navigation_menu_item.jsp"
+		).build();
 
 		PortletURL addSiteNavigationMenuItemRedirectURL =
-			_liferayPortletResponse.createRenderURL();
-
-		addSiteNavigationMenuItemRedirectURL.setParameter(
-			"mvcPath", "/add_site_navigation_menu_item_redirect.jsp");
-		addSiteNavigationMenuItemRedirectURL.setParameter(
-			"portletResource", portletDisplay.getId());
+			PortletURLBuilder.createRenderURL(
+				_liferayPortletResponse
+			).setParameter(
+				"mvcPath", "/add_site_navigation_menu_item_redirect.jsp"
+			).setParameter(
+				"portletResource", portletDisplay.getId()
+			).build();
 
 		addURL.setParameter(
 			"redirect", addSiteNavigationMenuItemRedirectURL.toString());

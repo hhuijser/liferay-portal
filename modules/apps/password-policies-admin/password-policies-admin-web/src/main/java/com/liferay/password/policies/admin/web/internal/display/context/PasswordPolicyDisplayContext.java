@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.PasswordPolicyPermissionUtil;
@@ -85,22 +86,26 @@ public class PasswordPolicyDisplayContext {
 			_httpServletRequest, "tabs1", "details");
 		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
 
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("redirect", redirect);
-		portletURL.setParameter(
-			"passwordPolicyId", String.valueOf(_passwordPolicyId));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"redirect", redirect
+		).setParameter(
+			"passwordPolicyId", String.valueOf(_passwordPolicyId)
+		).build();
 
 		List<NavigationItem> navigationItems = NavigationItemListBuilder.add(
 			() -> (_passwordPolicyId == 0) || _hasPermission(ActionKeys.UPDATE),
 			navigationItem -> {
 				navigationItem.setActive(tabs1.equals("details"));
 
-				PortletURL detailsURL = PortletURLUtil.clone(
-					portletURL, _renderResponse);
-
-				detailsURL.setParameter("mvcPath", "/edit_password_policy.jsp");
-				detailsURL.setParameter("tabs1", "details");
+				PortletURL detailsURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(portletURL, _renderResponse)
+				).setParameter(
+					"mvcPath", "/edit_password_policy.jsp"
+				).setParameter(
+					"tabs1", "details"
+				).build();
 
 				navigationItem.setHref(detailsURL.toString());
 
@@ -112,12 +117,13 @@ public class PasswordPolicyDisplayContext {
 			navigationItem -> {
 				navigationItem.setActive(tabs1.equals("assignees"));
 
-				PortletURL assigneesURL = PortletURLUtil.clone(
-					portletURL, _renderResponse);
-
-				assigneesURL.setParameter(
-					"mvcPath", "/edit_password_policy_assignments.jsp");
-				assigneesURL.setParameter("tabs1", "assignees");
+				PortletURL assigneesURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(portletURL, _renderResponse)
+				).setParameter(
+					"mvcPath", "/edit_password_policy_assignments.jsp"
+				).setParameter(
+					"tabs1", "assignees"
+				).build();
 
 				navigationItem.setHref(assigneesURL.toString());
 

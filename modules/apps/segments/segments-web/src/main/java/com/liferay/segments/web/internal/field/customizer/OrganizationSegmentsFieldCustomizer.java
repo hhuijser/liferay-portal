@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ClassedModel;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -87,14 +88,17 @@ public class OrganizationSegmentsFieldCustomizer
 	@Override
 	public Field.SelectEntity getSelectEntity(PortletRequest portletRequest) {
 		try {
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, SegmentsPortletKeys.SEGMENTS,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"mvcRenderCommandName", "selectOrganizations");
-			portletURL.setParameter("eventName", "selectEntity");
-			portletURL.setWindowState(LiferayWindowState.POP_UP);
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest, SegmentsPortletKeys.SEGMENTS,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcRenderCommandName", "selectOrganizations"
+			).setParameter(
+				"eventName", "selectEntity"
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 			return new Field.SelectEntity(
 				"selectEntity",

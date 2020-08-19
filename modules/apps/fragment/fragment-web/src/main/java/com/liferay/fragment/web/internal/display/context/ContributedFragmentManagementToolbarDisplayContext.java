@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -90,13 +91,14 @@ public class ContributedFragmentManagementToolbarDisplayContext
 					WebKeys.THEME_DISPLAY);
 
 				PortletURL copyContributedFragmentEntryURL =
-					liferayPortletResponse.createActionURL();
-
-				copyContributedFragmentEntryURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/fragment/copy_contributed_fragment_entry");
-				copyContributedFragmentEntryURL.setParameter(
-					"redirect", themeDisplay.getURLCurrent());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/fragment/copy_contributed_fragment_entry"
+					).setParameter(
+						"redirect", themeDisplay.getURLCurrent()
+					).build();
 
 				return copyContributedFragmentEntryURL.toString();
 			}
@@ -104,13 +106,14 @@ public class ContributedFragmentManagementToolbarDisplayContext
 			"selectFragmentCollectionURL",
 			() -> {
 				PortletURL selectFragmentCollectionURL =
-					liferayPortletResponse.createActionURL();
-
-				selectFragmentCollectionURL.setParameter(
-					"mvcRenderCommandName",
-					"/fragment/select_fragment_collection");
-				selectFragmentCollectionURL.setWindowState(
-					LiferayWindowState.POP_UP);
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setParameter(
+						"mvcRenderCommandName",
+						"/fragment/select_fragment_collection"
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).build();
 
 				return selectFragmentCollectionURL.toString();
 			}

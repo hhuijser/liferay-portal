@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -67,12 +68,15 @@ public class ManageCustomFieldsPortletConfigurationIcon
 			WebKeys.THEME_DISPLAY);
 
 		try {
-			PortletURL portletURL = PortletProviderUtil.getPortletURL(
-				portletRequest, ExpandoColumn.class.getName(),
-				PortletProvider.Action.MANAGE);
-
-			portletURL.setParameter("modelResource", User.class.getName());
-			portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(
+					portletRequest, ExpandoColumn.class.getName(),
+					PortletProvider.Action.MANAGE)
+			).setParameter(
+				"modelResource", User.class.getName()
+			).setParameter(
+				"redirect", themeDisplay.getURLCurrent()
+			).build();
 
 			return portletURL.toString();
 		}

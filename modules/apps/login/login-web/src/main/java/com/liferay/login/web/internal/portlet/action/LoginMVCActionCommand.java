@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.AuthException;
 import com.liferay.portal.kernel.security.auth.session.AuthenticatedSessionManager;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -106,10 +107,11 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 				LiferayPortletResponse liferayPortletResponse =
 					_portal.getLiferayPortletResponse(actionResponse);
 
-				PortletURL renderURL = liferayPortletResponse.createRenderURL();
-
-				renderURL.setParameter(
-					"mvcRenderCommandName", "/login/login_redirect");
+				PortletURL renderURL = PortletURLBuilder.createRenderURL(
+					liferayPortletResponse
+				).setParameter(
+					"mvcRenderCommandName", "/login/login_redirect"
+				).build();
 
 				actionRequest.setAttribute(
 					WebKeys.REDIRECT, renderURL.toString());
@@ -240,14 +242,15 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 				LiferayPortletResponse liferayPortletResponse =
 					_portal.getLiferayPortletResponse(actionResponse);
 
-				PortletURL actionURL = liferayPortletResponse.createActionURL(
-					_portal.getPortletId(actionRequest));
-
-				actionURL.setParameter(
-					ActionRequest.ACTION_NAME, "/login/login");
-				actionURL.setParameter(
-					"saveLastPath", Boolean.FALSE.toString());
-				actionURL.setParameter("redirect", redirect);
+				PortletURL actionURL = PortletURLBuilder.createActionURL(
+					liferayPortletResponse, _portal.getPortletId(actionRequest)
+				).setParameter(
+					ActionRequest.ACTION_NAME, "/login/login"
+				).setParameter(
+					"saveLastPath", Boolean.FALSE.toString()
+				).setParameter(
+					"redirect", redirect
+				).build();
 
 				actionRequest.setAttribute(
 					WebKeys.REDIRECT, actionURL.toString());
@@ -290,11 +293,13 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 
 		Layout layout = (Layout)actionRequest.getAttribute(WebKeys.LAYOUT);
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			actionRequest, liferayPortletRequest.getPortlet(), layout,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("saveLastPath", Boolean.FALSE.toString());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest, liferayPortletRequest.getPortlet(), layout,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"saveLastPath", Boolean.FALSE.toString()
+		).build();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 

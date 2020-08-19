@@ -57,6 +57,7 @@ import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.portlet.DynamicActionRequest;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.auth.session.AuthenticatedSessionManager;
 import com.liferay.portal.kernel.service.LayoutLocalService;
@@ -386,10 +387,12 @@ public class CreateAccountMVCActionCommand extends BaseMVCActionCommand {
 				false, null);
 		}
 		else {
-			PortletURL loginURL = LoginUtil.getLoginURL(
-				httpServletRequest, themeDisplay.getPlid());
-
-			loginURL.setParameter("login", login);
+			PortletURL loginURL = PortletURLBuilder.create(
+				LoginUtil.getLoginURL(
+					httpServletRequest, themeDisplay.getPlid())
+			).setParameter(
+				"login", login
+			).build();
 
 			redirect = loginURL.toString();
 		}

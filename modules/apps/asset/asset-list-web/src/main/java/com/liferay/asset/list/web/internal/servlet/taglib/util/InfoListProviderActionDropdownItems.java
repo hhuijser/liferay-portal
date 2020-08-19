@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -62,16 +63,18 @@ public class InfoListProviderActionDropdownItems {
 		throws Exception {
 
 		PortletURL viewInfoListProviderItemsURL =
-			_liferayPortletResponse.createRenderURL();
-
-		viewInfoListProviderItemsURL.setParameter(
-			"mvcPath", "/view_info_list_provider_items.jsp");
-		viewInfoListProviderItemsURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
-		viewInfoListProviderItemsURL.setParameter(
-			"infoListProviderKey", String.valueOf(_infoListProvider.getKey()));
-
-		viewInfoListProviderItemsURL.setWindowState(LiferayWindowState.POP_UP);
+			PortletURLBuilder.createRenderURL(
+				_liferayPortletResponse
+			).setParameter(
+				"mvcPath", "/view_info_list_provider_items.jsp"
+			).setParameter(
+				"redirect", _themeDisplay.getURLCurrent()
+			).setParameter(
+				"infoListProviderKey",
+				String.valueOf(_infoListProvider.getKey())
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "viewInfoListProviderItems");

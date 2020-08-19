@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.BasePortletProvider;
 import com.liferay.portal.kernel.portlet.PreviewPortletProvider;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.sharing.web.internal.constants.SharingPortletKeys;
 
 import javax.portlet.PortletURL;
@@ -47,10 +48,11 @@ public class SharedAssetsPreviewPortletProvider
 			HttpServletRequest httpServletRequest, Group group)
 		throws PortalException {
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest, group);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/shared_assets/view_sharing_entry");
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest, group)
+		).setParameter(
+			"mvcRenderCommandName", "/shared_assets/view_sharing_entry"
+		).build();
 
 		return portletURL;
 	}

@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -45,9 +46,11 @@ public class LayoutPageTemplateCollectionsManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -57,12 +60,14 @@ public class LayoutPageTemplateCollectionsManagementToolbarDisplayContext
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PortletURL searchActionURL = liferayPortletResponse.createRenderURL();
-
-		searchActionURL.setParameter(
+		PortletURL searchActionURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
 			"mvcRenderCommandName",
-			"/layout_page_template/select_layout_page_template_collections");
-		searchActionURL.setParameter("redirect", themeDisplay.getURLCurrent());
+			"/layout_page_template/select_layout_page_template_collections"
+		).setParameter(
+			"redirect", themeDisplay.getURLCurrent()
+		).build();
 
 		return searchActionURL.toString();
 	}

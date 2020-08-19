@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -119,9 +120,11 @@ public class IFramePortlet extends MVCPortlet {
 		String authType = iFrameDisplayContext.getAuthType();
 
 		if (authType.equals("form")) {
-			PortletURL proxyURL = renderResponse.createRenderURL();
-
-			proxyURL.setParameter("mvcPath", "/proxy.jsp");
+			PortletURL proxyURL = PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setParameter(
+				"mvcPath", "/proxy.jsp"
+			).build();
 
 			src = proxyURL.toString();
 		}

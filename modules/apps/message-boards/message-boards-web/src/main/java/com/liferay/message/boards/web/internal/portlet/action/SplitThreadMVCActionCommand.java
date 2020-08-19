@@ -30,6 +30,7 @@ import com.liferay.message.boards.settings.MBGroupServiceSettings;
 import com.liferay.portal.kernel.portlet.LiferayActionResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
@@ -141,12 +142,13 @@ public class SplitThreadMVCActionCommand extends BaseMVCActionCommand {
 		LiferayActionResponse liferayActionResponse =
 			(LiferayActionResponse)actionResponse;
 
-		PortletURL portletURL = liferayActionResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
-		portletURL.setParameter(
-			"messageId", String.valueOf(newThread.getRootMessageId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayActionResponse
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards/view_message"
+		).setParameter(
+			"messageId", String.valueOf(newThread.getRootMessageId())
+		).build();
 
 		actionResponse.sendRedirect(portletURL.toString());
 	}

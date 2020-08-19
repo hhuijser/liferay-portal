@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.WorkflowDefinitionLink;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
@@ -106,9 +107,11 @@ public class WorkflowDefinitionDisplayContext {
 	}
 
 	public String getClearResultsURL(HttpServletRequest httpServletRequest) {
-		PortletURL clearResultsURL = _getPortletURL(httpServletRequest);
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			_getPortletURL(httpServletRequest)
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -400,15 +403,18 @@ public class WorkflowDefinitionDisplayContext {
 	}
 
 	public String getSearchURL(HttpServletRequest httpServletRequest) {
-		PortletURL portletURL = _getPortletURL(null);
-
 		ThemeDisplay themeDisplay =
 			_workflowDefinitionRequestHelper.getThemeDisplay();
 
-		portletURL.setParameter("mvcPath", "/view.jsp");
-		portletURL.setParameter(
-			"groupId", String.valueOf(themeDisplay.getScopeGroupId()));
-		portletURL.setParameter("tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION);
+		PortletURL portletURL = PortletURLBuilder.create(
+			_getPortletURL(null)
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).setParameter(
+			"groupId", String.valueOf(themeDisplay.getScopeGroupId())
+		).setParameter(
+			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION
+		).build();
 
 		return portletURL.toString();
 	}
@@ -422,10 +428,11 @@ public class WorkflowDefinitionDisplayContext {
 		LiferayPortletResponse liferayPortletResponse =
 			_workflowDefinitionRequestHelper.getLiferayPortletResponse();
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"orderByType", Objects.equals(orderByType, "asc") ? "desc" : "asc");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"orderByType", Objects.equals(orderByType, "asc") ? "desc" : "asc"
+		).build();
 
 		String definitionsNavigation = ParamUtil.getString(
 			httpServletRequest, "definitionsNavigation");
@@ -588,13 +595,14 @@ public class WorkflowDefinitionDisplayContext {
 		LiferayPortletResponse liferayPortletResponse =
 			_workflowDefinitionRequestHelper.getLiferayPortletResponse();
 
-		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
-			WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
-		portletURL.setParameter(
-			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK);
+		PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
+			liferayPortletResponse, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW,
+			PortletRequest.RENDER_PHASE
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).setParameter(
+			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
+		).build();
 
 		return portletURL;
 	}
@@ -616,11 +624,13 @@ public class WorkflowDefinitionDisplayContext {
 		LiferayPortletResponse liferayPortletResponse =
 			_workflowDefinitionRequestHelper.getLiferayPortletResponse();
 
-		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
+		PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
+			liferayPortletResponse,
 			WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW_INSTANCE,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
+			PortletRequest.RENDER_PHASE
+		).setParameter(
+			"mvcPath", "/view.jsp"
+		).build();
 
 		return portletURL;
 	}

@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -93,15 +94,17 @@ public class JournalEditDDMStructuresDisplayContext {
 				"url",
 				() -> {
 					PortletURL editBasicInfoURL =
-						_liferayPortletResponse.createRenderURL();
-
-					editBasicInfoURL.setParameter(
-						"mvcPath",
-						"/ddm_structure/basic_info_data_engine_editor.jsp");
-					editBasicInfoURL.setParameter(
-						"ddmStructureId", String.valueOf(getDDMStructureId()));
-					editBasicInfoURL.setWindowState(
-						LiferayWindowState.EXCLUSIVE);
+						PortletURLBuilder.createRenderURL(
+							_liferayPortletResponse
+						).setParameter(
+							"mvcPath",
+							"/ddm_structure/basic_info_data_engine_editor.jsp"
+						).setParameter(
+							"ddmStructureId",
+							String.valueOf(getDDMStructureId())
+						).setWindowState(
+							LiferayWindowState.EXCLUSIVE
+						).build();
 
 					return editBasicInfoURL.toString();
 				}

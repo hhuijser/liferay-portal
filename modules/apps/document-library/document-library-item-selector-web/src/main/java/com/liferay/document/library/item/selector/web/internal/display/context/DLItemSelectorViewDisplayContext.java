@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.Repository;
 import com.liferay.portal.kernel.repository.RepositoryProviderUtil;
 import com.liferay.portal.kernel.repository.capabilities.FileEntryTypeCapability;
@@ -136,11 +137,13 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortletException {
 
-		PortletURL portletURL = PortletURLUtil.clone(
-			_portletURL, liferayPortletResponse);
-
-		portletURL.setParameter("folderId", String.valueOf(_getFolderId()));
-		portletURL.setParameter("selectedTab", String.valueOf(getTitle()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
+		).setParameter(
+			"folderId", String.valueOf(_getFolderId())
+		).setParameter(
+			"selectedTab", String.valueOf(getTitle())
+		).build();
 
 		return portletURL;
 	}
@@ -283,12 +286,13 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 			}
 		}
 
-		PortletURL portletURL = liferayPortletResponse.createActionURL(
-			PortletKeys.DOCUMENT_LIBRARY);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/document_library/upload_file_entry");
-		portletURL.setParameter("folderId", String.valueOf(_getFolderId()));
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, PortletKeys.DOCUMENT_LIBRARY
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/document_library/upload_file_entry"
+		).setParameter(
+			"folderId", String.valueOf(_getFolderId())
+		).build();
 
 		return portletURL;
 	}

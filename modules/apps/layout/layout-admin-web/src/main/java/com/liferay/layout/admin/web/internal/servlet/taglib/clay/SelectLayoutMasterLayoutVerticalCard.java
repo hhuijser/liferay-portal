@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -54,46 +55,46 @@ public class SelectLayoutMasterLayoutVerticalCard implements VerticalCard {
 		Map<String, String> data = new HashMap<>();
 
 		try {
-			PortletURL addLayoutURL = _renderResponse.createRenderURL();
-
-			addLayoutURL.setParameter(
-				"mvcRenderCommandName", "/layout/add_layout");
-
 			String redirect = ParamUtil.getString(
 				_httpServletRequest, "redirect");
 
-			addLayoutURL.setParameter("redirect", redirect);
-
 			long groupId = ParamUtil.getLong(_httpServletRequest, "groupId");
 
-			addLayoutURL.setParameter("groupId", String.valueOf(groupId));
-
 			long selPlid = ParamUtil.getLong(_httpServletRequest, "selPlid");
-
-			addLayoutURL.setParameter("selPlid", String.valueOf(selPlid));
 
 			boolean privateLayout = ParamUtil.getBoolean(
 				_httpServletRequest, "privateLayout");
 
-			addLayoutURL.setParameter(
-				"privateLayout", String.valueOf(privateLayout));
-
-			addLayoutURL.setParameter("type", LayoutConstants.TYPE_COLLECTION);
-
 			String collectionPK = ParamUtil.getString(
 				_httpServletRequest, "collectionPK");
-
-			addLayoutURL.setParameter("collectionPK", collectionPK);
 
 			String collectionType = ParamUtil.getString(
 				_httpServletRequest, "collectionType");
 
-			addLayoutURL.setParameter("collectionType", collectionType);
-
-			addLayoutURL.setParameter(
+			PortletURL addLayoutURL = PortletURLBuilder.createRenderURL(
+				_renderResponse
+			).setParameter(
+				"mvcRenderCommandName", "/layout/add_layout"
+			).setParameter(
+				"redirect", redirect
+			).setParameter(
+				"groupId", String.valueOf(groupId)
+			).setParameter(
+				"selPlid", String.valueOf(selPlid)
+			).setParameter(
+				"privateLayout", String.valueOf(privateLayout)
+			).setParameter(
+				"type", LayoutConstants.TYPE_COLLECTION
+			).setParameter(
+				"collectionPK", collectionPK
+			).setParameter(
+				"collectionType", collectionType
+			).setParameter(
 				"masterLayoutPlid",
-				String.valueOf(_layoutPageTemplateEntry.getPlid()));
-			addLayoutURL.setWindowState(LiferayWindowState.POP_UP);
+				String.valueOf(_layoutPageTemplateEntry.getPlid())
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 			data.put("add-layout-url", addLayoutURL.toString());
 		}

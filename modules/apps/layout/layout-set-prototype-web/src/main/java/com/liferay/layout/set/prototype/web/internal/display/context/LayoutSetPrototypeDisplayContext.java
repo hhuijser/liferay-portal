@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.LayoutSetPrototype;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
@@ -89,22 +90,26 @@ public class LayoutSetPrototypeDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("orderByCol", getOrderByCol());
-		clearResultsURL.setParameter("orderByType", getOrderByType());
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return clearResultsURL.toString();
 	}
 
 	public CreationMenu getCreationMenu() throws PortalException {
 		PortletURL addLayoutSetPrototypeRenderURL =
-			_renderResponse.createRenderURL();
-
-		addLayoutSetPrototypeRenderURL.setParameter(
-			"mvcPath", "/edit_layout_set_prototype.jsp");
-		addLayoutSetPrototypeRenderURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(_httpServletRequest));
+			PortletURLBuilder.createRenderURL(
+				_renderResponse
+			).setParameter(
+				"mvcPath", "/edit_layout_set_prototype.jsp"
+			).setParameter(
+				"redirect", PortalUtil.getCurrentURL(_httpServletRequest)
+			).build();
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
 			dropdownItem -> {
@@ -175,10 +180,13 @@ public class LayoutSetPrototypeDisplayContext {
 	}
 
 	public String getSearchActionURL() {
-		PortletURL searchURL = getPortletURL();
-
-		searchURL.setParameter("orderByCol", getOrderByCol());
-		searchURL.setParameter("orderByType", getOrderByType());
+		PortletURL searchURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return searchURL.toString();
 	}
@@ -224,13 +232,16 @@ public class LayoutSetPrototypeDisplayContext {
 	}
 
 	public String getSortingURL() {
-		PortletURL sortingURL = getPortletURL();
-
-		sortingURL.setParameter("keywords", _getKeywords());
-		sortingURL.setParameter("orderByCol", getOrderByCol());
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", _getKeywords()
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL.toString();
 	}
@@ -243,12 +254,13 @@ public class LayoutSetPrototypeDisplayContext {
 	}
 
 	public List<ViewTypeItem> getViewTypeItems() {
-		PortletURL portletURL = _renderResponse.createActionURL();
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "changeDisplayStyle");
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(_httpServletRequest));
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "changeDisplayStyle"
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(_httpServletRequest)
+		).build();
 
 		return new ViewTypeItemList(portletURL, getDisplayStyle()) {
 			{

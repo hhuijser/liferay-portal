@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -101,14 +102,18 @@ public class AddSiteNavigationMenuMVCActionCommand
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
-		PortletURL redirectURL = PortletURLFactoryUtil.create(
-			actionRequest, SiteNavigationAdminPortletKeys.SITE_NAVIGATION_ADMIN,
-			themeDisplay.getPlid(), ActionRequest.RENDER_PHASE);
-
-		redirectURL.setParameter("mvcPath", "/edit_site_navigation_menu.jsp");
-		redirectURL.setParameter("redirect", redirect);
-		redirectURL.setParameter(
-			"siteNavigationMenuId", String.valueOf(siteNavigationMenuId));
+		PortletURL redirectURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest,
+				SiteNavigationAdminPortletKeys.SITE_NAVIGATION_ADMIN,
+				themeDisplay.getPlid(), ActionRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_site_navigation_menu.jsp"
+		).setParameter(
+			"redirect", redirect
+		).setParameter(
+			"siteNavigationMenuId", String.valueOf(siteNavigationMenuId)
+		).build();
 
 		return redirectURL.toString();
 	}

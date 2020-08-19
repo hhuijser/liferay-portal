@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
@@ -63,12 +64,15 @@ public class BlogsEntryTrashHandler extends BaseTrashHandler {
 			PortletRequest portletRequest, long classPK)
 		throws PortalException {
 
-		PortletURL portletURL = getRestoreURL(portletRequest, classPK, false);
-
 		BlogsEntry entry = _blogsEntryLocalService.getEntry(classPK);
 
-		portletURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
-		portletURL.setParameter("urlTitle", entry.getUrlTitle());
+		PortletURL portletURL = PortletURLBuilder.create(
+			getRestoreURL(portletRequest, classPK, false)
+		).setParameter(
+			"entryId", String.valueOf(entry.getEntryId())
+		).setParameter(
+			"urlTitle", entry.getUrlTitle()
+		).build();
 
 		return portletURL.toString();
 	}

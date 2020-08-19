@@ -25,6 +25,7 @@ import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -91,12 +92,13 @@ public class AddDataRecordMVCResourceCommand
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(resourceResponse);
 
-		PortletURL portletURL = liferayPortletResponse.createRenderURL(
-			_portal.getPortletId(resourceRequest));
-
-		portletURL.setParameter("mvcPath", "/edit_entry.jsp");
-		portletURL.setParameter(
-			"dataRecordId", String.valueOf(dataRecord.getId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse, _portal.getPortletId(resourceRequest)
+		).setParameter(
+			"mvcPath", "/edit_entry.jsp"
+		).setParameter(
+			"dataRecordId", String.valueOf(dataRecord.getId())
+		).build();
 
 		WorkflowHandlerRegistryUtil.startWorkflowInstance(
 			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),

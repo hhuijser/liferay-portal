@@ -16,6 +16,7 @@ package com.liferay.layout.page.template.admin.web.internal.servlet.taglib.clay;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -58,19 +59,20 @@ public class SelectLayoutPageTemplateEntryMasterLayoutVerticalCard
 					_httpServletRequest, "layoutPageTemplateCollectionId");
 
 				PortletURL addLayoutPageTemplateEntryURL =
-					_renderResponse.createActionURL();
-
-				addLayoutPageTemplateEntryURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/layout_page_template/add_layout_page_template_entry");
-				addLayoutPageTemplateEntryURL.setParameter(
-					"redirect", _themeDisplay.getURLCurrent());
-				addLayoutPageTemplateEntryURL.setParameter(
-					"layoutPageTemplateCollectionId",
-					String.valueOf(layoutPageTemplateCollectionId));
-				addLayoutPageTemplateEntryURL.setParameter(
-					"masterLayoutPlid",
-					String.valueOf(_layoutPageTemplateEntry.getPlid()));
+					PortletURLBuilder.createActionURL(
+						_renderResponse
+					).setParameter(
+						ActionRequest.ACTION_NAME,
+						"/layout_page_template/add_layout_page_template_entry"
+					).setParameter(
+						"redirect", _themeDisplay.getURLCurrent()
+					).setParameter(
+						"layoutPageTemplateCollectionId",
+						String.valueOf(layoutPageTemplateCollectionId)
+					).setParameter(
+						"masterLayoutPlid",
+						String.valueOf(_layoutPageTemplateEntry.getPlid())
+					).build();
 
 				return addLayoutPageTemplateEntryURL.toString();
 			}

@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -69,9 +70,11 @@ public class EditSiteTeamAssignmentsUsersManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -93,17 +96,20 @@ public class EditSiteTeamAssignmentsUsersManagementToolbarDisplayContext
 							WebKeys.THEME_DISPLAY);
 
 					PortletURL selectUserURL =
-						liferayPortletResponse.createRenderURL();
-
-					selectUserURL.setParameter("mvcPath", "/select_users.jsp");
-					selectUserURL.setParameter(
-						"redirect", themeDisplay.getURLCurrent());
-					selectUserURL.setParameter(
-						"teamId",
-						String.valueOf(
-							_editSiteTeamAssignmentsUsersDisplayContext.
-								getTeamId()));
-					selectUserURL.setWindowState(LiferayWindowState.POP_UP);
+						PortletURLBuilder.createRenderURL(
+							liferayPortletResponse
+						).setParameter(
+							"mvcPath", "/select_users.jsp"
+						).setParameter(
+							"redirect", themeDisplay.getURLCurrent()
+						).setParameter(
+							"teamId",
+							String.valueOf(
+								_editSiteTeamAssignmentsUsersDisplayContext.
+									getTeamId())
+						).setWindowState(
+							LiferayWindowState.POP_UP
+						).build();
 
 					dropdownItem.putData(
 						"selectUserURL", selectUserURL.toString());

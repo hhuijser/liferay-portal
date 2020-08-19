@@ -22,6 +22,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -72,13 +73,6 @@ public class DeleteCategoryPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			PortletURL deleteURL = _portal.getControlPanelPortletURL(
-				portletRequest, MBPortletKeys.MESSAGE_BOARDS_ADMIN,
-				PortletRequest.ACTION_PHASE);
-
-			deleteURL.setParameter(
-				ActionRequest.ACTION_NAME, "/message_boards/edit_category");
-
 			String cmd = Constants.DELETE;
 
 			ThemeDisplay themeDisplay =
@@ -89,7 +83,15 @@ public class DeleteCategoryPortletConfigurationIcon
 				cmd = Constants.MOVE_TO_TRASH;
 			}
 
-			deleteURL.setParameter(Constants.CMD, cmd);
+			PortletURL deleteURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest, MBPortletKeys.MESSAGE_BOARDS_ADMIN,
+					PortletRequest.ACTION_PHASE)
+			).setParameter(
+				ActionRequest.ACTION_NAME, "/message_boards/edit_category"
+			).setParameter(
+				Constants.CMD, cmd
+			).build();
 
 			PortletURL parentCategoryURL = _portal.getControlPanelPortletURL(
 				portletRequest, MBPortletKeys.MESSAGE_BOARDS_ADMIN,

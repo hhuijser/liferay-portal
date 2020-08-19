@@ -22,6 +22,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuil
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -71,19 +72,21 @@ public class InheritedFragmentEntryActionDropdownItemsProvider {
 		throws Exception {
 
 		PortletURL selectFragmentCollectionURL =
-			_renderResponse.createRenderURL();
+			PortletURLBuilder.createRenderURL(
+				_renderResponse
+			).setParameter(
+				"mvcRenderCommandName", "/fragment/select_fragment_collection"
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
-		selectFragmentCollectionURL.setParameter(
-			"mvcRenderCommandName", "/fragment/select_fragment_collection");
-
-		selectFragmentCollectionURL.setWindowState(LiferayWindowState.POP_UP);
-
-		PortletURL copyFragmentEntryURL = _renderResponse.createActionURL();
-
-		copyFragmentEntryURL.setParameter(
-			ActionRequest.ACTION_NAME, "/fragment/copy_fragment_entry");
-		copyFragmentEntryURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
+		PortletURL copyFragmentEntryURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/fragment/copy_fragment_entry"
+		).setParameter(
+			"redirect", _themeDisplay.getURLCurrent()
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "copyToFragmentEntry");

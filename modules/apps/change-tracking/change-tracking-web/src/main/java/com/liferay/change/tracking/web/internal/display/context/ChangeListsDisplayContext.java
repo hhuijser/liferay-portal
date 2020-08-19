@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
@@ -98,14 +99,15 @@ public class ChangeListsDisplayContext {
 	}
 
 	public String getReviewChangesURL(long ctCollectionId) {
-		PortletURL reviewURL = _renderResponse.createRenderURL();
-
-		reviewURL.setParameter(
-			"mvcRenderCommandName", "/change_lists/view_changes");
-		reviewURL.setParameter(
-			"backURL", _portal.getCurrentURL(_renderRequest));
-		reviewURL.setParameter(
-			"ctCollectionId", String.valueOf(ctCollectionId));
+		PortletURL reviewURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/change_lists/view_changes"
+		).setParameter(
+			"backURL", _portal.getCurrentURL(_renderRequest)
+		).setParameter(
+			"ctCollectionId", String.valueOf(ctCollectionId)
+		).build();
 
 		return reviewURL.toString();
 	}

@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -258,10 +259,12 @@ public class MBEntriesManagementToolbarDisplayContext {
 				entriesNavigation.equals("threads") ||
 				entriesNavigation.equals("categories"),
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					_currentURLObj, _liferayPortletResponse);
-
-				removeLabelURL.setParameter("entriesNavigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setParameter(
+					"entriesNavigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -358,30 +361,33 @@ public class MBEntriesManagementToolbarDisplayContext {
 	}
 
 	public String getSearchActionURL() {
-		PortletURL searchURL = _liferayPortletResponse.createRenderURL();
-
-		searchURL.setParameter(
-			"mvcRenderCommandName", "/message_boards_admin/search");
-		searchURL.setParameter("redirect", _currentURLObj.toString());
-
 		MBCategory category = (MBCategory)_httpServletRequest.getAttribute(
 			WebKeys.MESSAGE_BOARDS_CATEGORY);
 
 		long categoryId = MBUtil.getCategoryId(_httpServletRequest, category);
 
-		searchURL.setParameter(
-			"breadcrumbsCategoryId", String.valueOf(categoryId));
-		searchURL.setParameter("searchCategoryId", String.valueOf(categoryId));
+		PortletURL searchURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/message_boards_admin/search"
+		).setParameter(
+			"redirect", _currentURLObj.toString()
+		).setParameter(
+			"breadcrumbsCategoryId", String.valueOf(categoryId)
+		).setParameter(
+			"searchCategoryId", String.valueOf(categoryId)
+		).build();
 
 		return searchURL.toString();
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
-		PortletURL sortingURL = _getCurrentSortingURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getCurrentSortingURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL;
 	}

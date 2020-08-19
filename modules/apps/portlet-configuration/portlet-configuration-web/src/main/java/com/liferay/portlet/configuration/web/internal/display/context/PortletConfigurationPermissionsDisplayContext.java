@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -173,9 +174,11 @@ public class PortletConfigurationPermissionsDisplayContext {
 	}
 
 	public String getClearResultsURL() throws Exception {
-		PortletURL clearResultsURL = getIteratorURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getIteratorURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -239,24 +242,30 @@ public class PortletConfigurationPermissionsDisplayContext {
 	}
 
 	public PortletURL getIteratorURL() throws Exception {
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			_httpServletRequest,
-			PortletConfigurationPortletKeys.PORTLET_CONFIGURATION,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_permissions.jsp");
-		portletURL.setParameter(
-			"returnToFullPageURL", _getReturnToFullPageURL());
-		portletURL.setParameter(
-			"portletConfiguration", Boolean.TRUE.toString());
-		portletURL.setParameter("portletResource", _getPortletResource());
-		portletURL.setParameter("modelResource", getModelResource());
-		portletURL.setParameter(
-			"resourceGroupId", String.valueOf(_getResourceGroupId()));
-		portletURL.setParameter("resourcePrimKey", getResourcePrimKey());
-		portletURL.setParameter("roleTypes", _getRoleTypesParam());
-
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				_httpServletRequest,
+				PortletConfigurationPortletKeys.PORTLET_CONFIGURATION,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcPath", "/edit_permissions.jsp"
+		).setParameter(
+			"returnToFullPageURL", _getReturnToFullPageURL()
+		).setParameter(
+			"portletConfiguration", Boolean.TRUE.toString()
+		).setParameter(
+			"portletResource", _getPortletResource()
+		).setParameter(
+			"modelResource", getModelResource()
+		).setParameter(
+			"resourceGroupId", String.valueOf(_getResourceGroupId())
+		).setParameter(
+			"resourcePrimKey", getResourcePrimKey()
+		).setParameter(
+			"roleTypes", _getRoleTypesParam()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return portletURL;
 	}
@@ -633,30 +642,38 @@ public class PortletConfigurationPermissionsDisplayContext {
 		int delta = ParamUtil.getInteger(
 			_httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM);
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			_httpServletRequest,
-			PortletConfigurationPortletKeys.PORTLET_CONFIGURATION,
-			PortletRequest.ACTION_PHASE);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "updateRolePermissions");
-		portletURL.setParameter("mvcPath", "/edit_permissions.jsp");
-		portletURL.setParameter("cur", String.valueOf(cur));
-		portletURL.setParameter("delta", String.valueOf(delta));
-		portletURL.setParameter(
-			"returnToFullPageURL", _getReturnToFullPageURL());
-		portletURL.setParameter(
-			"portletConfiguration", Boolean.TRUE.toString());
-		portletURL.setParameter("portletResource", _getPortletResource());
-		portletURL.setParameter("modelResource", getModelResource());
-		portletURL.setParameter(
-			"modelResourceDescription", getModelResourceDescription());
-		portletURL.setParameter(
-			"resourceGroupId", String.valueOf(_getResourceGroupId()));
-		portletURL.setParameter("resourcePrimKey", getResourcePrimKey());
-		portletURL.setParameter("roleTypes", _getRoleTypesParam());
-
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				_httpServletRequest,
+				PortletConfigurationPortletKeys.PORTLET_CONFIGURATION,
+				PortletRequest.ACTION_PHASE)
+		).setParameter(
+			ActionRequest.ACTION_NAME, "updateRolePermissions"
+		).setParameter(
+			"mvcPath", "/edit_permissions.jsp"
+		).setParameter(
+			"cur", String.valueOf(cur)
+		).setParameter(
+			"delta", String.valueOf(delta)
+		).setParameter(
+			"returnToFullPageURL", _getReturnToFullPageURL()
+		).setParameter(
+			"portletConfiguration", Boolean.TRUE.toString()
+		).setParameter(
+			"portletResource", _getPortletResource()
+		).setParameter(
+			"modelResource", getModelResource()
+		).setParameter(
+			"modelResourceDescription", getModelResourceDescription()
+		).setParameter(
+			"resourceGroupId", String.valueOf(_getResourceGroupId())
+		).setParameter(
+			"resourcePrimKey", getResourcePrimKey()
+		).setParameter(
+			"roleTypes", _getRoleTypesParam()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return portletURL;
 	}

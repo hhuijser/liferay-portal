@@ -19,6 +19,7 @@ import com.liferay.analytics.settings.web.internal.constants.AnalyticsSettingsWe
 import com.liferay.analytics.settings.web.internal.search.UserGroupChecker;
 import com.liferay.analytics.settings.web.internal.search.UserGroupSearch;
 import com.liferay.portal.kernel.model.UserGroup;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.UserGroupServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
@@ -64,11 +65,12 @@ public class UserGroupDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
 			"mvcRenderCommandName",
-			"/analytics_settings/edit_synced_contacts_groups");
+			"/analytics_settings/edit_synced_contacts_groups"
+		).build();
 
 		return portletURL;
 	}

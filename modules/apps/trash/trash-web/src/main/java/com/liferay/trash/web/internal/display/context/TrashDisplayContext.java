@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.model.TrashedModel;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
@@ -99,20 +100,20 @@ public class TrashDisplayContext {
 
 		breadcrumbEntries.add(breadcrumbEntry);
 
-		PortletURL containerModelURL =
-			_liferayPortletResponse.createRenderURL();
-
 		TrashHandler trashHandler = getTrashHandler();
 
 		String trashHandlerContainerModelClassName =
 			trashHandler.getContainerModelClassName(getClassPK());
 
-		containerModelURL.setParameter("mvcPath", "/view_content.jsp");
-		containerModelURL.setParameter(
+		PortletURL containerModelURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view_content.jsp"
+		).setParameter(
 			"classNameId",
 			String.valueOf(
-				PortalUtil.getClassNameId(
-					trashHandlerContainerModelClassName)));
+				PortalUtil.getClassNameId(trashHandlerContainerModelClassName))
+		).build();
 
 		breadcrumbEntries.addAll(
 			getBreadcrumbEntries(
@@ -436,12 +437,15 @@ public class TrashDisplayContext {
 				themeDisplay.getLocale(), getClassName()),
 			false);
 
-		PortletURL iteratorURL = _liferayPortletResponse.createRenderURL();
-
-		iteratorURL.setParameter("mvcPath", "/view_content.jsp");
-		iteratorURL.setParameter(
-			"classNameId", String.valueOf(getClassNameId()));
-		iteratorURL.setParameter("classPK", String.valueOf(getClassPK()));
+		PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/view_content.jsp"
+		).setParameter(
+			"classNameId", String.valueOf(getClassNameId())
+		).setParameter(
+			"classPK", String.valueOf(getClassPK())
+		).build();
 
 		SearchContainer<TrashedModel> searchContainer = new SearchContainer(
 			_liferayPortletRequest, iteratorURL, null, emptyResultsMessage);

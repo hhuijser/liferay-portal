@@ -30,6 +30,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -220,15 +221,17 @@ public class JournalTranslateDisplayContext {
 	}
 
 	public PortletURL getUpdateTranslationPortletURL() {
-		PortletURL portletURL = _liferayPortletResponse.createActionURL();
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/journal/update_translation");
-		portletURL.setParameter(
-			"groupId", String.valueOf(_article.getGroupId()));
-		portletURL.setParameter("articleId", _article.getArticleId());
-		portletURL.setParameter(
-			"version", String.valueOf(_article.getVersion()));
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/journal/update_translation"
+		).setParameter(
+			"groupId", String.valueOf(_article.getGroupId())
+		).setParameter(
+			"articleId", _article.getArticleId()
+		).setParameter(
+			"version", String.valueOf(_article.getVersion())
+		).build();
 
 		return portletURL;
 	}

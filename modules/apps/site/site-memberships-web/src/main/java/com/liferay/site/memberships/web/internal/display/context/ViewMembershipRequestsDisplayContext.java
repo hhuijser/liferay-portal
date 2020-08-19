@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.MembershipRequest;
 import com.liferay.portal.kernel.model.MembershipRequestConstants;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.MembershipRequestLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -128,13 +129,16 @@ public class ViewMembershipRequestsDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view_membership_requests.jsp");
-		portletURL.setParameter("tabs1", getTabs1());
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcPath", "/view_membership_requests.jsp"
+		).setParameter(
+			"tabs1", getTabs1()
+		).setParameter(
 			"groupId",
-			String.valueOf(themeDisplay.getSiteGroupIdOrLiveGroupId()));
+			String.valueOf(themeDisplay.getSiteGroupIdOrLiveGroupId())
+		).build();
 
 		String displayStyle = getDisplayStyle();
 

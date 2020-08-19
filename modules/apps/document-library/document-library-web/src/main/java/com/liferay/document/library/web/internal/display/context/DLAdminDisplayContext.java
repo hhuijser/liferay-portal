@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.Document;
@@ -256,24 +257,24 @@ public class DLAdminDisplayContext {
 	}
 
 	public PortletURL getSearchSearchContainerURL() {
-		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/search");
-
 		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
-
-		portletURL.setParameter("redirect", redirect);
 
 		long searchFolderId = ParamUtil.getLong(
 			_httpServletRequest, "searchFolderId");
 
-		portletURL.setParameter(
-			"searchFolderId", String.valueOf(searchFolderId));
-
 		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
 
-		portletURL.setParameter("keywords", keywords);
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/search"
+		).setParameter(
+			"redirect", redirect
+		).setParameter(
+			"searchFolderId", String.valueOf(searchFolderId)
+		).setParameter(
+			"keywords", keywords
+		).build();
 
 		return portletURL;
 	}

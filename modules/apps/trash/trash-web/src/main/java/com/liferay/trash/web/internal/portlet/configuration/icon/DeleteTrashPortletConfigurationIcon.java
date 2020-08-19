@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.trash.constants.TrashPortletKeys;
@@ -61,18 +62,19 @@ public class DeleteTrashPortletConfigurationIcon
 				_portal.getLiferayPortletRequest(portletRequest),
 				_portal.getLiferayPortletResponse(portletResponse));
 
-			PortletURL deleteURL = _portal.getControlPanelPortletURL(
-				portletRequest, TrashPortletKeys.TRASH,
-				PortletRequest.ACTION_PHASE);
-
-			deleteURL.setParameter(ActionRequest.ACTION_NAME, "deleteEntries");
-
-			deleteURL.setParameter(
-				"redirect", trashDisplayContext.getViewContentRedirectURL());
-			deleteURL.setParameter(
-				"className", trashDisplayContext.getClassName());
-			deleteURL.setParameter(
-				"classPK", String.valueOf(trashDisplayContext.getClassPK()));
+			PortletURL deleteURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest, TrashPortletKeys.TRASH,
+					PortletRequest.ACTION_PHASE)
+			).setParameter(
+				ActionRequest.ACTION_NAME, "deleteEntries"
+			).setParameter(
+				"redirect", trashDisplayContext.getViewContentRedirectURL()
+			).setParameter(
+				"className", trashDisplayContext.getClassName()
+			).setParameter(
+				"classPK", String.valueOf(trashDisplayContext.getClassPK())
+			).build();
 
 			return deleteURL.toString();
 		}

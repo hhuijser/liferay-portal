@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.servlet.taglib.ui.Menu;
 import com.liferay.portal.kernel.servlet.taglib.ui.URLMenuItem;
@@ -120,15 +121,18 @@ public class WikiPagesManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getClearResultsURL() {
-		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/wiki/view_pages");
-		portletURL.setParameter("redirect", _currentURLObj.toString());
-
 		WikiNode node = (WikiNode)_httpServletRequest.getAttribute(
 			WikiWebKeys.WIKI_NODE);
 
-		portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/wiki/view_pages"
+		).setParameter(
+			"redirect", _currentURLObj.toString()
+		).setParameter(
+			"nodeId", String.valueOf(node.getNodeId())
+		).build();
 
 		return portletURL;
 	}
@@ -195,10 +199,12 @@ public class WikiPagesManagementToolbarDisplayContext {
 		return LabelItemListBuilder.add(
 			() -> !navigation.equals("all-pages"),
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					_getPortletURL(), _liferayPortletResponse);
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_getPortletURL(), _liferayPortletResponse)
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -211,15 +217,16 @@ public class WikiPagesManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getSearchActionURL() {
-		PortletURL searchActionURL = _wikiURLHelper.getSearchURL();
-
-		searchActionURL.setParameter("redirect", _currentURLObj.toString());
-
 		WikiNode node = (WikiNode)_httpServletRequest.getAttribute(
 			WikiWebKeys.WIKI_NODE);
 
-		searchActionURL.setParameter(
-			"nodeId", String.valueOf(node.getNodeId()));
+		PortletURL searchActionURL = PortletURLBuilder.create(
+			_wikiURLHelper.getSearchURL()
+		).setParameter(
+			"redirect", _currentURLObj.toString()
+		).setParameter(
+			"nodeId", String.valueOf(node.getNodeId())
+		).build();
 
 		return searchActionURL;
 	}
@@ -229,13 +236,14 @@ public class WikiPagesManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
-		PortletURL sortingURL = _getPortletURL();
-
-		sortingURL.setParameter("orderByCol", _getOrderByCol());
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getPortletURL()
+		).setParameter(
+			"orderByCol", _getOrderByCol()
+		).setParameter(
 			"orderByType",
-			Objects.equals(_getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(_getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL;
 	}
@@ -377,11 +385,13 @@ public class WikiPagesManagementToolbarDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() throws PortletException {
-		PortletURL portletURL = PortletURLUtil.clone(
-			_currentURLObj, _liferayPortletResponse);
-
-		portletURL.setParameter("mvcRenderCommandName", "/wiki/view_pages");
-		portletURL.setParameter("redirect", _currentURLObj.toString());
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse)
+		).setParameter(
+			"mvcRenderCommandName", "/wiki/view_pages"
+		).setParameter(
+			"redirect", _currentURLObj.toString()
+		).build();
 
 		return portletURL;
 	}

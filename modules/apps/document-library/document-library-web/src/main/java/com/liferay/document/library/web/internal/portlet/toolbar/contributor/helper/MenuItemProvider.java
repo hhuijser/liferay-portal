@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -102,28 +103,30 @@ public class MenuItemProvider {
 				PortalUtil.getHttpServletRequest(portletRequest),
 				"file-upload"));
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			portletRequest, themeDisplay.getScopeGroup(),
-			DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_file_entry");
-		portletURL.setParameter(Constants.CMD, Constants.ADD);
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(portletRequest));
-
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		portletURL.setParameter("portletResource", portletDisplay.getId());
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				portletRequest, themeDisplay.getScopeGroup(),
+				DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/edit_file_entry"
+		).setParameter(
+			Constants.CMD, Constants.ADD
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(portletRequest)
+		).setParameter(
+			"portletResource", portletDisplay.getId()
+		).setParameter(
 			"repositoryId",
-			String.valueOf(_getRepositoryId(folder, themeDisplay)));
-		portletURL.setParameter("folderId", String.valueOf(folderId));
-		portletURL.setParameter(
+			String.valueOf(_getRepositoryId(folder, themeDisplay))
+		).setParameter(
+			"folderId", String.valueOf(folderId)
+		).setParameter(
 			"fileEntryTypeId",
-			String.valueOf(DLFileEntryTypeConstants.COMPANY_ID_BASIC_DOCUMENT));
+			String.valueOf(DLFileEntryTypeConstants.COMPANY_ID_BASIC_DOCUMENT)
+		).build();
 
 		urlMenuItem.setURL(portletURL.toString());
 
@@ -151,25 +154,27 @@ public class MenuItemProvider {
 			LanguageUtil.get(
 				PortalUtil.getHttpServletRequest(portletRequest), "folder"));
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			portletRequest, themeDisplay.getScopeGroup(),
-			DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_folder");
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(portletRequest));
-
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		portletURL.setParameter("portletResource", portletDisplay.getId());
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				portletRequest, themeDisplay.getScopeGroup(),
+				DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/edit_folder"
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(portletRequest)
+		).setParameter(
+			"portletResource", portletDisplay.getId()
+		).setParameter(
 			"repositoryId",
-			String.valueOf(_getRepositoryId(folder, themeDisplay)));
-		portletURL.setParameter("parentFolderId", String.valueOf(folderId));
-		portletURL.setParameter("ignoreRootFolder", Boolean.TRUE.toString());
+			String.valueOf(_getRepositoryId(folder, themeDisplay))
+		).setParameter(
+			"parentFolderId", String.valueOf(folderId)
+		).setParameter(
+			"ignoreRootFolder", Boolean.TRUE.toString()
+		).build();
 
 		urlMenuItem.setURL(portletURL.toString());
 
@@ -202,25 +207,26 @@ public class MenuItemProvider {
 				PortalUtil.getHttpServletRequest(portletRequest),
 				"multiple-files-upload"));
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			portletRequest, themeDisplay.getScopeGroup(),
-			DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName",
-			"/document_library/upload_multiple_file_entries");
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(portletRequest));
-
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		portletURL.setParameter("portletResource", portletDisplay.getId());
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				portletRequest, themeDisplay.getScopeGroup(),
+				DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName",
+			"/document_library/upload_multiple_file_entries"
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(portletRequest)
+		).setParameter(
+			"portletResource", portletDisplay.getId()
+		).setParameter(
 			"repositoryId",
-			String.valueOf(_getRepositoryId(folder, themeDisplay)));
-		portletURL.setParameter("folderId", String.valueOf(folderId));
+			String.valueOf(_getRepositoryId(folder, themeDisplay))
+		).setParameter(
+			"folderId", String.valueOf(folderId)
+		).build();
 
 		urlMenuItem.setURL(portletURL.toString());
 
@@ -252,15 +258,16 @@ public class MenuItemProvider {
 				PortalUtil.getHttpServletRequest(portletRequest),
 				"repository"));
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			portletRequest, themeDisplay.getScopeGroup(),
-			DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_repository");
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(portletRequest));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				portletRequest, themeDisplay.getScopeGroup(),
+				DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/edit_repository"
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(portletRequest)
+		).build();
 
 		urlMenuItem.setURL(portletURL.toString());
 
@@ -292,19 +299,21 @@ public class MenuItemProvider {
 			LanguageUtil.get(
 				PortalUtil.getHttpServletRequest(portletRequest), "shortcut"));
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			portletRequest, themeDisplay.getScopeGroup(),
-			DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_file_shortcut");
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(portletRequest));
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				portletRequest, themeDisplay.getScopeGroup(),
+				DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/edit_file_shortcut"
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(portletRequest)
+		).setParameter(
 			"repositoryId",
-			String.valueOf(_getRepositoryId(folder, themeDisplay)));
-		portletURL.setParameter("folderId", String.valueOf(folderId));
+			String.valueOf(_getRepositoryId(folder, themeDisplay))
+		).setParameter(
+			"folderId", String.valueOf(folderId)
+		).build();
 
 		urlMenuItem.setURL(portletURL.toString());
 
@@ -338,24 +347,26 @@ public class MenuItemProvider {
 
 		urlMenuItem.setLabel(label);
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			portletRequest, themeDisplay.getScopeGroup(),
-			DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_file_entry");
-		portletURL.setParameter(Constants.CMD, Constants.ADD);
-		portletURL.setParameter(
-			"redirect", PortalUtil.getCurrentURL(portletRequest));
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				portletRequest, themeDisplay.getScopeGroup(),
+				DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/edit_file_entry"
+		).setParameter(
+			Constants.CMD, Constants.ADD
+		).setParameter(
+			"redirect", PortalUtil.getCurrentURL(portletRequest)
+		).setParameter(
 			"repositoryId",
-			String.valueOf(_getRepositoryId(folder, themeDisplay)));
-		portletURL.setParameter(
-			"folderId", String.valueOf(_getFolderId(folder)));
-		portletURL.setParameter(
+			String.valueOf(_getRepositoryId(folder, themeDisplay))
+		).setParameter(
+			"folderId", String.valueOf(_getFolderId(folder))
+		).setParameter(
 			"fileEntryTypeId",
-			String.valueOf(fileEntryType.getFileEntryTypeId()));
+			String.valueOf(fileEntryType.getFileEntryTypeId())
+		).build();
 
 		urlMenuItem.setURL(portletURL.toString());
 

@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -286,12 +287,15 @@ public class AssetLinksTag extends IncludeTag {
 				_portletURL, liferayPortletResponse);
 		}
 		else {
-			viewAssetURL = PortletProviderUtil.getPortletURL(
-				request, assetRenderer.getClassName(),
-				PortletProvider.Action.VIEW);
-
-			viewAssetURL.setParameter("redirect", themeDisplay.getURLCurrent());
-			viewAssetURL.setWindowState(WindowState.MAXIMIZED);
+			viewAssetURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(
+					request, assetRenderer.getClassName(),
+					PortletProvider.Action.VIEW)
+			).setParameter(
+				"redirect", themeDisplay.getURLCurrent()
+			).setWindowState(
+				WindowState.MAXIMIZED
+			).build();
 		}
 
 		viewAssetURL.setParameter(

@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.editor.configuration.BaseEditorConfigContributo
 import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ResourceBundleLoader;
@@ -153,13 +154,14 @@ public class KBAttachmentEditorConfigContributor
 		long resourcePrimKey, ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		PortletURL portletURL = requestBackedPortletURLFactory.createActionURL(
-			KBPortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "uploadKBArticleAttachments");
-		portletURL.setParameter(
-			"resourcePrimKey", String.valueOf(resourcePrimKey));
+		PortletURL portletURL = PortletURLBuilder.create(
+			requestBackedPortletURLFactory.createActionURL(
+				KBPortletKeys.KNOWLEDGE_BASE_ADMIN)
+		).setParameter(
+			ActionRequest.ACTION_NAME, "uploadKBArticleAttachments"
+		).setParameter(
+			"resourcePrimKey", String.valueOf(resourcePrimKey)
+		).build();
 
 		ResourceBundleLoader resourceBundleLoader =
 			ResourceBundleLoaderUtil.

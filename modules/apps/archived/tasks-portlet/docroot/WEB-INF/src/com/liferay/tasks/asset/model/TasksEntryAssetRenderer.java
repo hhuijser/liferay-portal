@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -115,11 +116,13 @@ public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer<TasksEntry> {
 			long portletPlid = PortalUtil.getPlidFromPortletId(
 				user.getGroupId(), true, PortletKeys.TASKS);
 
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				liferayPortletRequest, PortletKeys.TASKS, portletPlid,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/tasks/view.jsp");
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					liferayPortletRequest, PortletKeys.TASKS, portletPlid,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"mvcPath", "/tasks/view.jsp"
+			).build();
 
 			return portletURL.toString();
 		}

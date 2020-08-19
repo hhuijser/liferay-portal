@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.UserGroupRolePermissionUtil;
@@ -107,11 +108,12 @@ public class DepotAdminRolesDisplayContext {
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
 			RequestBackedPortletURLFactoryUtil.create(_liferayPortletRequest);
 
-		PortletURL portletURL = requestBackedPortletURLFactory.createRenderURL(
-			DepotPortletKeys.DEPOT_ADMIN);
-
-		portletURL.setParameter("mvcRenderCommandName", "/depot/select_role");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			requestBackedPortletURLFactory.createRenderURL(
+				DepotPortletKeys.DEPOT_ADMIN)
+		).setParameter(
+			"mvcRenderCommandName", "/depot/select_role"
+		).setParameter(
 			"p_u_i_d",
 			Optional.ofNullable(
 				_user
@@ -121,9 +123,12 @@ public class DepotAdminRolesDisplayContext {
 				String::valueOf
 			).orElse(
 				"0"
-			));
-		portletURL.setParameter("step", "1");
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+			)
+		).setParameter(
+			"step", "1"
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return portletURL;
 	}

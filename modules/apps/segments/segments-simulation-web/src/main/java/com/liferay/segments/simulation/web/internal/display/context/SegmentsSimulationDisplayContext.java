@@ -16,6 +16,7 @@ package com.liferay.segments.simulation.web.internal.display.context;
 
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -49,11 +50,11 @@ public class SegmentsSimulationDisplayContext {
 	}
 
 	public PortletURL getDeactivateSimulationURL() {
-		PortletURL portletURL = _liferayPortletResponse.createActionURL(
-			SegmentsPortletKeys.SEGMENTS_SIMULATION);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "deactivateSimulation");
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse, SegmentsPortletKeys.SEGMENTS_SIMULATION
+		).setParameter(
+			ActionRequest.ACTION_NAME, "deactivateSimulation"
+		).build();
 
 		return portletURL;
 	}
@@ -75,11 +76,11 @@ public class SegmentsSimulationDisplayContext {
 	}
 
 	public PortletURL getSimulateSegmentsEntriesURL() {
-		PortletURL portletURL = _liferayPortletResponse.createActionURL(
-			SegmentsPortletKeys.SEGMENTS_SIMULATION);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "simulateSegmentsEntries");
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse, SegmentsPortletKeys.SEGMENTS_SIMULATION
+		).setParameter(
+			ActionRequest.ACTION_NAME, "simulateSegmentsEntries"
+		).build();
 
 		return portletURL;
 	}

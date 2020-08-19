@@ -15,6 +15,7 @@
 package com.liferay.sharing.web.internal.portlet.action;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -96,10 +97,11 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 	}
 
 	private String _getShareActionURL(RenderResponse renderResponse) {
-		PortletURL shareActionURL = renderResponse.createActionURL();
-
-		shareActionURL.setParameter(
-			ActionRequest.ACTION_NAME, "/sharing/share");
+		PortletURL shareActionURL = PortletURLBuilder.createActionURL(
+			renderResponse
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/sharing/share"
+		).build();
 
 		return shareActionURL.toString();
 	}

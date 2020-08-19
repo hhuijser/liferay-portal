@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.notifications.UserNotificationHandler;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalService;
@@ -117,35 +118,39 @@ public class ContactsCenterUserNotificationHandler
 		LiferayPortletResponse liferayPortletResponse =
 			serviceContext.getLiferayPortletResponse();
 
-		PortletURL confirmURL = liferayPortletResponse.createActionURL(
-			ContactsPortletKeys.CONTACTS_CENTER);
-
-		confirmURL.setParameter(
-			ActionRequest.ACTION_NAME, "updateSocialRequest");
-		confirmURL.setParameter("redirect", serviceContext.getLayoutFullURL());
-		confirmURL.setParameter(
-			"socialRequestId", String.valueOf(socialRequestId));
-		confirmURL.setParameter(
-			"status", String.valueOf(SocialRequestConstants.STATUS_CONFIRM));
-		confirmURL.setParameter(
+		PortletURL confirmURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, ContactsPortletKeys.CONTACTS_CENTER
+		).setParameter(
+			ActionRequest.ACTION_NAME, "updateSocialRequest"
+		).setParameter(
+			"redirect", serviceContext.getLayoutFullURL()
+		).setParameter(
+			"socialRequestId", String.valueOf(socialRequestId)
+		).setParameter(
+			"status", String.valueOf(SocialRequestConstants.STATUS_CONFIRM)
+		).setParameter(
 			"userNotificationEventId",
-			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
-		confirmURL.setWindowState(WindowState.NORMAL);
+			String.valueOf(userNotificationEvent.getUserNotificationEventId())
+		).setWindowState(
+			WindowState.NORMAL
+		).build();
 
-		PortletURL ignoreURL = liferayPortletResponse.createActionURL(
-			ContactsPortletKeys.CONTACTS_CENTER);
-
-		ignoreURL.setParameter(
-			ActionRequest.ACTION_NAME, "updateSocialRequest");
-		ignoreURL.setParameter("redirect", serviceContext.getLayoutFullURL());
-		ignoreURL.setParameter(
-			"socialRequestId", String.valueOf(socialRequestId));
-		ignoreURL.setParameter(
-			"status", String.valueOf(SocialRequestConstants.STATUS_IGNORE));
-		ignoreURL.setParameter(
+		PortletURL ignoreURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, ContactsPortletKeys.CONTACTS_CENTER
+		).setParameter(
+			ActionRequest.ACTION_NAME, "updateSocialRequest"
+		).setParameter(
+			"redirect", serviceContext.getLayoutFullURL()
+		).setParameter(
+			"socialRequestId", String.valueOf(socialRequestId)
+		).setParameter(
+			"status", String.valueOf(SocialRequestConstants.STATUS_IGNORE)
+		).setParameter(
 			"userNotificationEventId",
-			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
-		ignoreURL.setWindowState(WindowState.NORMAL);
+			String.valueOf(userNotificationEvent.getUserNotificationEventId())
+		).setWindowState(
+			WindowState.NORMAL
+		).build();
 
 		return StringUtil.replace(
 			getBodyTemplate(),

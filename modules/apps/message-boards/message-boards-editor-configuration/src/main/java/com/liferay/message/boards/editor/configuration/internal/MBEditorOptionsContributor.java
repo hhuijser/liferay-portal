@@ -18,6 +18,7 @@ import com.liferay.message.boards.constants.MBPortletKeys;
 import com.liferay.portal.kernel.editor.configuration.EditorOptions;
 import com.liferay.portal.kernel.editor.configuration.EditorOptionsContributor;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
@@ -50,12 +51,6 @@ public class MBEditorOptionsContributor implements EditorOptionsContributor {
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		PortletURL portletURL = requestBackedPortletURLFactory.createActionURL(
-			PortletKeys.MESSAGE_BOARDS);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/message_boards/upload_temp_image");
-
 		Map<String, String> fileBrowserParamsMap =
 			(Map<String, String>)inputEditorTaglibAttributes.get(
 				"liferay-ui:input-editor:fileBrowserParams");
@@ -67,7 +62,14 @@ public class MBEditorOptionsContributor implements EditorOptionsContributor {
 				fileBrowserParamsMap.get("categoryId"));
 		}
 
-		portletURL.setParameter("categoryId", String.valueOf(categoryId));
+		PortletURL portletURL = PortletURLBuilder.create(
+			requestBackedPortletURLFactory.createActionURL(
+				PortletKeys.MESSAGE_BOARDS)
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/message_boards/upload_temp_image"
+		).setParameter(
+			"categoryId", String.valueOf(categoryId)
+		).build();
 
 		editorOptions.setUploadURL(portletURL.toString());
 	}

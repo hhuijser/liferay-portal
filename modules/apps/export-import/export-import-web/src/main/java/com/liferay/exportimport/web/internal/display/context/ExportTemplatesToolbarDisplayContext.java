@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portlet.layoutsadmin.display.context.GroupDisplayContextHelper;
 
@@ -60,10 +61,11 @@ public class ExportTemplatesToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getRenderURL();
-
-		clearResultsURL.setParameter(
-			"mvcPath", "/export/export_templates/view.jsp");
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getRenderURL()
+		).setParameter(
+			"mvcPath", "/export/export_templates/view.jsp"
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -94,10 +96,11 @@ public class ExportTemplatesToolbarDisplayContext
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL searchActionURL = getRenderURL();
-
-		searchActionURL.setParameter(
-			"mvcRenderCommandName", "viewExportConfigurations");
+		PortletURL searchActionURL = PortletURLBuilder.create(
+			getRenderURL()
+		).setParameter(
+			"mvcRenderCommandName", "viewExportConfigurations"
+		).build();
 
 		return searchActionURL.toString();
 	}

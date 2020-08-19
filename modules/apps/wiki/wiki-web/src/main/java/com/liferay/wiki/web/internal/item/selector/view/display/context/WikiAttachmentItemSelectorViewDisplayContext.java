@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.wiki.configuration.WikiFileUploadConfiguration;
@@ -109,12 +110,12 @@ public class WikiAttachmentItemSelectorViewDisplayContext {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortletException {
 
-		PortletURL portletURL = PortletURLUtil.clone(
-			_portletURL, liferayPortletResponse);
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
+		).setParameter(
 			"selectedTab",
-			String.valueOf(getTitle(httpServletRequest.getLocale())));
+			String.valueOf(getTitle(httpServletRequest.getLocale()))
+		).build();
 
 		return portletURL;
 	}
@@ -126,17 +127,17 @@ public class WikiAttachmentItemSelectorViewDisplayContext {
 	public PortletURL getUploadURL(
 		LiferayPortletResponse liferayPortletResponse) {
 
-		PortletURL portletURL = liferayPortletResponse.createActionURL(
-			WikiPortletKeys.WIKI);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/wiki/upload_page_attachment");
-		portletURL.setParameter(
-			"mimeTypes", _wikiAttachmentItemSelectorCriterion.getMimeTypes());
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse, WikiPortletKeys.WIKI
+		).setParameter(
+			ActionRequest.ACTION_NAME, "/wiki/upload_page_attachment"
+		).setParameter(
+			"mimeTypes", _wikiAttachmentItemSelectorCriterion.getMimeTypes()
+		).setParameter(
 			"resourcePrimKey",
 			String.valueOf(
-				_wikiAttachmentItemSelectorCriterion.getWikiPageResourceId()));
+				_wikiAttachmentItemSelectorCriterion.getWikiPageResourceId())
+		).build();
 
 		return portletURL;
 	}

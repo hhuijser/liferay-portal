@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.toolbar.contributor.BasePortletToolbarContributor;
 import com.liferay.portal.kernel.portlet.toolbar.contributor.PortletToolbarContributor;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.servlet.taglib.ui.MenuItem;
@@ -90,16 +91,21 @@ public class WikiPortletToolbarContributor
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			portletRequest, portletDisplay.getId(),
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");
-		portletURL.setParameter(
-			"redirect", _portal.getCurrentURL(portletRequest));
-		portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-		portletURL.setParameter("title", StringPool.BLANK);
-		portletURL.setParameter("editTitle", "1");
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				portletRequest, portletDisplay.getId(),
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"mvcRenderCommandName", "/wiki/edit_page"
+		).setParameter(
+			"redirect", _portal.getCurrentURL(portletRequest)
+		).setParameter(
+			"nodeId", String.valueOf(node.getNodeId())
+		).setParameter(
+			"title", StringPool.BLANK
+		).setParameter(
+			"editTitle", "1"
+		).build();
 
 		urlMenuItem.setURL(portletURL.toString());
 

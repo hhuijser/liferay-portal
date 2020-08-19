@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -69,16 +70,18 @@ public class DLEditDDMStructureDisplayContext {
 				"url",
 				() -> {
 					PortletURL editBasicInfoURL =
-						_liferayPortletResponse.createRenderURL();
-
-					editBasicInfoURL.setParameter(
-						"mvcPath",
-						"/document_library/ddm" +
-							"/basic_info_data_engine_editor.jsp");
-					editBasicInfoURL.setParameter(
-						"ddmStructureId", String.valueOf(getDDMStructureId()));
-					editBasicInfoURL.setWindowState(
-						LiferayWindowState.EXCLUSIVE);
+						PortletURLBuilder.createRenderURL(
+							_liferayPortletResponse
+						).setParameter(
+							"mvcPath",
+							"/document_library/ddm" +
+								"/basic_info_data_engine_editor.jsp"
+						).setParameter(
+							"ddmStructureId",
+							String.valueOf(getDDMStructureId())
+						).setWindowState(
+							LiferayWindowState.EXCLUSIVE
+						).build();
 
 					return editBasicInfoURL.toString();
 				}

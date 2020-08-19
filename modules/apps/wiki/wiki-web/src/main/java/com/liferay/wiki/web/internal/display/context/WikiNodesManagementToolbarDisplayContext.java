@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -119,11 +120,11 @@ public class WikiNodesManagementToolbarDisplayContext {
 
 		return CreationMenuBuilder.addDropdownItem(
 			dropdownItem -> {
-				PortletURL viewNodesURL =
-					_liferayPortletResponse.createRenderURL();
-
-				viewNodesURL.setParameter(
-					"mvcRenderCommandName", "/wiki_admin/view");
+				PortletURL viewNodesURL = PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setParameter(
+					"mvcRenderCommandName", "/wiki_admin/view"
+				).build();
 
 				dropdownItem.setHref(
 					_liferayPortletResponse.createRenderURL(),
@@ -151,13 +152,14 @@ public class WikiNodesManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
-		PortletURL sortingURL = _getPortletURL();
-
-		sortingURL.setParameter("orderByCol", _getOrderByCol());
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getPortletURL()
+		).setParameter(
+			"orderByCol", _getOrderByCol()
+		).setParameter(
 			"orderByType",
-			Objects.equals(_getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(_getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL;
 	}
@@ -226,10 +228,11 @@ public class WikiNodesManagementToolbarDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() throws PortletException {
-		PortletURL portletURL = PortletURLUtil.clone(
-			_currentURLObj, _liferayPortletResponse);
-
-		portletURL.setParameter("mvcRenderCommandName", "/wiki_admin/view");
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse)
+		).setParameter(
+			"mvcRenderCommandName", "/wiki_admin/view"
+		).build();
 
 		return portletURL;
 	}

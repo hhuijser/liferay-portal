@@ -55,7 +55,7 @@ public class AnnouncementsEntryUADDisplay
 		).setParameter(
 			"redirect", portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"entryId", String.valueOf(announcementsEntry.getEntryId())
+			"entryId", announcementsEntry.getEntryId()
 		).build();
 
 		return portletURL.toString();

@@ -149,7 +149,7 @@ public class UADExportProcessDisplayContext {
 				PortalUtil.getLiferayPortletRequest(portletRequest),
 				PortalUtil.getLiferayPortletResponse(portletResponse))
 		).setParameter(
-			"p_u_i_d", String.valueOf(selectedUser.getUserId())
+			"p_u_i_d", selectedUser.getUserId()
 		).setParameter(
 			"mvcRenderCommandName", "/view_uad_export_processes"
 		).setParameter(

@@ -100,8 +100,7 @@ public class StyleBookVerticalCard
 		).setParameter(
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
-			"styleBookEntryId",
-			String.valueOf(_styleBookEntry.getStyleBookEntryId())
+			"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
 		).build();
 
 		return editStyleBookEntryURL.toString();

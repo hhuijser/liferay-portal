@@ -258,7 +258,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 		).setParameter(
 			"modelResource", getModelResource()
 		).setParameter(
-			"resourceGroupId", String.valueOf(_getResourceGroupId())
+			"resourceGroupId", _getResourceGroupId()
 		).setParameter(
 			"resourcePrimKey", getResourcePrimKey()
 		).setParameter(
@@ -652,9 +652,9 @@ public class PortletConfigurationPermissionsDisplayContext {
 		).setParameter(
 			"mvcPath", "/edit_permissions.jsp"
 		).setParameter(
-			"cur", String.valueOf(cur)
+			"cur", cur
 		).setParameter(
-			"delta", String.valueOf(delta)
+			"delta", delta
 		).setParameter(
 			"returnToFullPageURL", _getReturnToFullPageURL()
 		).setParameter(
@@ -666,7 +666,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 		).setParameter(
 			"modelResourceDescription", getModelResourceDescription()
 		).setParameter(
-			"resourceGroupId", String.valueOf(_getResourceGroupId())
+			"resourceGroupId", _getResourceGroupId()
 		).setParameter(
 			"resourcePrimKey", getResourcePrimKey()
 		).setParameter(

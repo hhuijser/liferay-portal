@@ -373,9 +373,9 @@ public class MBEntriesManagementToolbarDisplayContext {
 		).setParameter(
 			"redirect", _currentURLObj.toString()
 		).setParameter(
-			"breadcrumbsCategoryId", String.valueOf(categoryId)
+			"breadcrumbsCategoryId", categoryId
 		).setParameter(
-			"searchCategoryId", String.valueOf(categoryId)
+			"searchCategoryId", categoryId
 		).build();
 
 		return searchURL.toString();

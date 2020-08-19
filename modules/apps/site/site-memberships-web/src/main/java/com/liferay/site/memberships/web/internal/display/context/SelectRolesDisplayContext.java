@@ -129,9 +129,9 @@ public class SelectRolesDisplayContext {
 		).setParameter(
 			"mvcPath", "/select_site_role.jsp"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
-			"roleType", String.valueOf(getRoleType())
+			"roleType", getRoleType()
 		).setParameter(
 			"eventName", getEventName()
 		).build();

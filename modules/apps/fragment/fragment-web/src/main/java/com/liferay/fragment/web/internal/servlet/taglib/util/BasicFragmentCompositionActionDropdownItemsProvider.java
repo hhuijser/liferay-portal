@@ -112,7 +112,7 @@ public class BasicFragmentCompositionActionDropdownItemsProvider {
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
 				"fragmentCompositionId",
-				String.valueOf(_fragmentComposition.getFragmentCompositionId())
+				_fragmentComposition.getFragmentCompositionId()
 			).build();
 
 		return dropdownItem -> {
@@ -136,7 +136,7 @@ public class BasicFragmentCompositionActionDropdownItemsProvider {
 				"/fragment/delete_fragment_composition_preview"
 			).setParameter(
 				"fragmentCompositionId",
-				String.valueOf(_fragmentComposition.getFragmentCompositionId())
+				_fragmentComposition.getFragmentCompositionId()
 			).build();
 
 		return dropdownItem -> {
@@ -197,7 +197,7 @@ public class BasicFragmentCompositionActionDropdownItemsProvider {
 				itemSelectorCriterion)
 		).setParameter(
 			"fragmentCompositionId",
-			String.valueOf(_fragmentComposition.getFragmentCompositionId())
+			_fragmentComposition.getFragmentCompositionId()
 		).build();
 
 		return itemSelectorURL.toString();
@@ -253,7 +253,7 @@ public class BasicFragmentCompositionActionDropdownItemsProvider {
 				"/fragment/rename_fragment_composition"
 			).setParameter(
 				"fragmentCompositionId",
-				String.valueOf(_fragmentComposition.getFragmentCompositionId())
+				_fragmentComposition.getFragmentCompositionId()
 			).build();
 
 		return dropdownItem -> {

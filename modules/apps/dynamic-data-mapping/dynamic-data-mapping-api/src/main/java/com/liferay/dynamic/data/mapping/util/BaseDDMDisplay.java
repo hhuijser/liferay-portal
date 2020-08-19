@@ -484,11 +484,11 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 		).setParameter(
 			"mvcPath", "/view_template.jsp"
 		).setParameter(
-			"classNameId", String.valueOf(classNameId)
+			"classNameId", classNameId
 		).setParameter(
-			"classPK", String.valueOf(classPK)
+			"classPK", classPK
 		).setParameter(
-			"resourceClassNameId", String.valueOf(resourceClassNameId)
+			"resourceClassNameId", resourceClassNameId
 		).build();
 
 		return portletURL.toString();

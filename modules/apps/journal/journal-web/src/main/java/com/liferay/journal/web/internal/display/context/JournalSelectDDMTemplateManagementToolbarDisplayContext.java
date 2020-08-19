@@ -65,12 +65,10 @@ public class JournalSelectDDMTemplateManagementToolbarDisplayContext
 			"mvcPath", "/select_ddm_template.jsp"
 		).setParameter(
 			"ddmTemplateId",
-			String.valueOf(
-				_journalSelectDDMTemplateDisplayContext.getDDMTemplateId())
+			_journalSelectDDMTemplateDisplayContext.getDDMTemplateId()
 		).setParameter(
 			"ddmStructureId",
-			String.valueOf(
-				_journalSelectDDMTemplateDisplayContext.getDDMStructureId())
+			_journalSelectDDMTemplateDisplayContext.getDDMStructureId()
 		).setParameter(
 			"eventName", _journalSelectDDMTemplateDisplayContext.getEventName()
 		).build();

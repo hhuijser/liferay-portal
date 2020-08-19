@@ -70,8 +70,7 @@ public class InfoListProviderActionDropdownItems {
 			).setParameter(
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
-				"infoListProviderKey",
-				String.valueOf(_infoListProvider.getKey())
+				"infoListProviderKey", _infoListProvider.getKey()
 			).setWindowState(
 				LiferayWindowState.POP_UP
 			).build();

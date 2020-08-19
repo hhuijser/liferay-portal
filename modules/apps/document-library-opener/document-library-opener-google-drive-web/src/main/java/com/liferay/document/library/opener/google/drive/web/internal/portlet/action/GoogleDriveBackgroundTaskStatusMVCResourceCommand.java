@@ -127,7 +127,7 @@ public class GoogleDriveBackgroundTaskStatusMVCResourceCommand
 			).setParameter(
 				"mvcRenderCommandName", "/document_library/open_google_docs"
 			).setParameter(
-				"fileEntryId", String.valueOf(fileEntryId)
+				"fileEntryId", fileEntryId
 			).setParameter(
 				"googleDocsEditURL", googleDocsEditURL
 			).setParameter(

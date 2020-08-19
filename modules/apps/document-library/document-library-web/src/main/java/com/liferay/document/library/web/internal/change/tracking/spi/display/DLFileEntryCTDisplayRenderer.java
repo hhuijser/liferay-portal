@@ -91,7 +91,7 @@ public class DLFileEntryCTDisplayRenderer
 		).setParameter(
 			"redirect", _portal.getCurrentURL(httpServletRequest)
 		).setParameter(
-			"fileEntryId", String.valueOf(dlFileEntry.getFileEntryId())
+			"fileEntryId", dlFileEntry.getFileEntryId()
 		).build();
 
 		return portletURL.toString();

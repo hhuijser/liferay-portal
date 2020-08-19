@@ -128,7 +128,7 @@ public class MoveThreadMVCActionCommand extends BaseMVCActionCommand {
 		).setParameter(
 			"mvcRenderCommandName", "/message_boards/view_message"
 		).setParameter(
-			"messageId", String.valueOf(thread.getRootMessageId())
+			"messageId", thread.getRootMessageId()
 		).build();
 
 		actionResponse.sendRedirect(portletURL.toString());

@@ -84,7 +84,7 @@ public class MBMessageUADDisplay extends BaseMBMessageUADDisplay {
 		).setParameter(
 			"redirect", portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"messageId", String.valueOf(mbMessage.getMessageId())
+			"messageId", mbMessage.getMessageId()
 		).build();
 
 		return portletURL.toString();

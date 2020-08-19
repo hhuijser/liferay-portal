@@ -162,7 +162,7 @@ public class TasksPortlet extends MVCPortlet {
 			).setParameter(
 				"mvcPath", "/tasks/view_task.jsp"
 			).setParameter(
-				"tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId())
+				"tasksEntryId", tasksEntry.getTasksEntryId()
 			).setWindowState(
 				LiferayWindowState.POP_UP
 			).build();
@@ -208,7 +208,7 @@ public class TasksPortlet extends MVCPortlet {
 		).setParameter(
 			"mvcPath", "/tasks/view_task.jsp"
 		).setParameter(
-			"tasksEntryId", String.valueOf(tasksEntryId)
+			"tasksEntryId", tasksEntryId
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

@@ -68,10 +68,9 @@ public class SelectLayoutPageTemplateEntryMasterLayoutVerticalCard
 						"redirect", _themeDisplay.getURLCurrent()
 					).setParameter(
 						"layoutPageTemplateCollectionId",
-						String.valueOf(layoutPageTemplateCollectionId)
+						layoutPageTemplateCollectionId
 					).setParameter(
-						"masterLayoutPlid",
-						String.valueOf(_layoutPageTemplateEntry.getPlid())
+						"masterLayoutPlid", _layoutPageTemplateEntry.getPlid()
 					).build();
 
 				return addLayoutPageTemplateEntryURL.toString();

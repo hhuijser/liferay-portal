@@ -111,8 +111,7 @@ public class BlogsItemSelectorViewDisplayContext {
 		PortletURL portletURL = PortletURLBuilder.create(
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
-			"selectedTab",
-			String.valueOf(getTitle(httpServletRequest.getLocale()))
+			"selectedTab", getTitle(httpServletRequest.getLocale())
 		).build();
 
 		return portletURL;

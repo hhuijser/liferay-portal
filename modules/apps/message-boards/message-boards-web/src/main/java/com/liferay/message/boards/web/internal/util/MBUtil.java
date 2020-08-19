@@ -168,7 +168,7 @@ public class MBUtil {
 		).setParameter(
 			"mvcRenderCommandName", "/message_boards/view_message"
 		).setParameter(
-			"messageId", String.valueOf(messageId)
+			"messageId", messageId
 		).build();
 
 		return StringBundler.concat(
@@ -184,7 +184,7 @@ public class MBUtil {
 		).setParameter(
 			"mvcRenderCommandName", "/message_boards/view_message"
 		).setParameter(
-			"messageId", String.valueOf(messageId)
+			"messageId", messageId
 		).build();
 
 		return StringBundler.concat(

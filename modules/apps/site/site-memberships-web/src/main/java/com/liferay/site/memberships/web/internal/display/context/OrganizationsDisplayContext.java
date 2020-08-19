@@ -187,7 +187,7 @@ public class OrganizationsDisplayContext {
 		).setParameter(
 			"redirect", themeDisplay.getURLCurrent()
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).build();
 
 		String displayStyle = getDisplayStyle();

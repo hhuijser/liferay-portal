@@ -140,7 +140,7 @@ public class JournalManagementToolbarDisplayContext
 		).setParameter(
 			"keywords", StringPool.BLANK
 		).setParameter(
-			"status", String.valueOf(WorkflowConstants.STATUS_ANY)
+			"status", WorkflowConstants.STATUS_ANY
 		).build();
 
 		return clearResultsURL.toString();
@@ -157,10 +157,9 @@ public class JournalManagementToolbarDisplayContext
 				).setParameter(
 					"redirect", _themeDisplay.getURLCurrent()
 				).setParameter(
-					"groupId", String.valueOf(_themeDisplay.getScopeGroupId())
+					"groupId", _themeDisplay.getScopeGroupId()
 				).setParameter(
-					"folderId",
-					String.valueOf(_journalDisplayContext.getFolderId())
+					"folderId", _journalDisplayContext.getFolderId()
 				).build();
 
 				return addArticleURL.toString();
@@ -200,8 +199,7 @@ public class JournalManagementToolbarDisplayContext
 					).setParameter(
 						"mvcPath", "/view_more_menu_items.jsp"
 					).setParameter(
-						"folderId",
-						String.valueOf(_journalDisplayContext.getFolderId())
+						"folderId", _journalDisplayContext.getFolderId()
 					).setParameter(
 						"eventName",
 						liferayPortletResponse.getNamespace() +
@@ -238,8 +236,7 @@ public class JournalManagementToolbarDisplayContext
 						"navigation", "structure"
 					).setParameter(
 						"folderId",
-						String.valueOf(
-							JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID)
+						JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID
 					).build();
 
 				return viewDDMStructureArticlesURL.toString();
@@ -387,13 +384,13 @@ public class JournalManagementToolbarDisplayContext
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setParameter(
-			"folderId", String.valueOf(_journalDisplayContext.getFolderId())
+			"folderId", _journalDisplayContext.getFolderId()
 		).setParameter(
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
 		).setParameter(
-			"status", String.valueOf(_journalDisplayContext.getStatus())
+			"status", _journalDisplayContext.getStatus()
 		).build();
 
 		return portletURL.toString();
@@ -554,12 +551,9 @@ public class JournalManagementToolbarDisplayContext
 							).setParameter(
 								"redirect", PortalUtil.getCurrentURL(request)
 							).setParameter(
-								"groupId",
-								String.valueOf(_themeDisplay.getScopeGroupId())
+								"groupId", _themeDisplay.getScopeGroupId()
 							).setParameter(
-								"folderId",
-								String.valueOf(
-									_journalDisplayContext.getFolderId())
+								"folderId", _journalDisplayContext.getFolderId()
 							).setParameter(
 								"ddmStructureKey",
 								ddmStructure.getStructureKey()

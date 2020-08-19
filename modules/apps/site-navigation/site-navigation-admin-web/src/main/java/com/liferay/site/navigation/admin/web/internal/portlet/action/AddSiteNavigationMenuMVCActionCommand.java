@@ -112,7 +112,7 @@ public class AddSiteNavigationMenuMVCActionCommand
 		).setParameter(
 			"redirect", redirect
 		).setParameter(
-			"siteNavigationMenuId", String.valueOf(siteNavigationMenuId)
+			"siteNavigationMenuId", siteNavigationMenuId
 		).build();
 
 		return redirectURL.toString();

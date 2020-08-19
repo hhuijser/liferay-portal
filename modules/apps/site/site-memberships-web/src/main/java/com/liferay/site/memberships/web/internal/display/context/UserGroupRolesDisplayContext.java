@@ -137,9 +137,9 @@ public class UserGroupRolesDisplayContext {
 		).setParameter(
 			"mvcPath", "/user_groups_roles.jsp"
 		).setParameter(
-			"userGroupId", String.valueOf(getUserGroupId())
+			"userGroupId", getUserGroupId()
 		).setParameter(
-			"assignRoles", String.valueOf(_isAssignRoles())
+			"assignRoles", _isAssignRoles()
 		).build();
 
 		String displayStyle = getDisplayStyle();

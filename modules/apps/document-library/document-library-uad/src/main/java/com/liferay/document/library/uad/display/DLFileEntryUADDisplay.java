@@ -70,7 +70,7 @@ public class DLFileEntryUADDisplay extends BaseDLFileEntryUADDisplay {
 		).setParameter(
 			"redirect", portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"fileEntryId", String.valueOf(dlFileEntry.getFileEntryId())
+			"fileEntryId", dlFileEntry.getFileEntryId()
 		).build();
 
 		return portletURL.toString();

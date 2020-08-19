@@ -78,7 +78,7 @@ public class DeleteRolePortletConfigurationIcon
 			).setParameter(
 				"mvcPath", "/view.jsp"
 			).setParameter(
-				"roleId", String.valueOf(_getRoleId(portletRequest))
+				"roleId", _getRoleId(portletRequest)
 			).build();
 
 			return portletURL.toString();

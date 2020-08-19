@@ -216,7 +216,7 @@ public class SelectOrganizationsDisplayContext {
 		).setParameter(
 			"mvcRenderCommandName", "selectOrganizations"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
 			"eventName", getEventName()
 		).build();

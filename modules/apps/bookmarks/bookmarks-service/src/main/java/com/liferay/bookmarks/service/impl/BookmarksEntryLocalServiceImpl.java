@@ -734,7 +734,7 @@ public class BookmarksEntryLocalServiceImpl
 		).setParameter(
 			"mvcRenderCommandName", "/bookmarks/view"
 		).setParameter(
-			"folderId", String.valueOf(entry.getFolderId())
+			"folderId", entry.getFolderId()
 		).build();
 
 		return portletURL.toString();

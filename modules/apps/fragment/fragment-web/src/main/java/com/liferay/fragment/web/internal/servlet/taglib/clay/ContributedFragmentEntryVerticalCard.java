@@ -89,11 +89,9 @@ public class ContributedFragmentEntryVerticalCard
 		).setParameter(
 			"redirect", themeDisplay.getURLCurrent()
 		).setParameter(
-			"fragmentCollectionId",
-			String.valueOf(fragmentEntry.getFragmentCollectionId())
+			"fragmentCollectionId", fragmentEntry.getFragmentCollectionId()
 		).setParameter(
-			"fragmentEntryKey",
-			String.valueOf(fragmentEntry.getFragmentEntryKey())
+			"fragmentEntryKey", fragmentEntry.getFragmentEntryKey()
 		).build();
 
 		return editFragmentEntryURL.toString();

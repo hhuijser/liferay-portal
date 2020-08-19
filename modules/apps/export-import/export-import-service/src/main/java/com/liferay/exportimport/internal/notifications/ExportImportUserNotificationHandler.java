@@ -160,7 +160,7 @@ public class ExportImportUserNotificationHandler
 		).setParameter(
 			"mvcPath", "/view_export_import.jsp"
 		).setParameter(
-			"backgroundTaskId", String.valueOf(backgroundTaskId)
+			"backgroundTaskId", backgroundTaskId
 		).setParameter(
 			"backURL", serviceContext.getCurrentURL()
 		).build();

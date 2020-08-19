@@ -106,8 +106,7 @@ public class StyleBookEntryActionDropdownItemsProvider {
 		).setParameter(
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
-			"styleBookEntryIds",
-			String.valueOf(_styleBookEntry.getStyleBookEntryId())
+			"styleBookEntryIds", _styleBookEntry.getStyleBookEntryId()
 		).build();
 
 		return dropdownItem -> {
@@ -129,8 +128,7 @@ public class StyleBookEntryActionDropdownItemsProvider {
 		).setParameter(
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
-			"styleBookEntryId",
-			String.valueOf(_styleBookEntry.getStyleBookEntryId())
+			"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
 		).build();
 
 		return dropdownItem -> {
@@ -154,8 +152,7 @@ public class StyleBookEntryActionDropdownItemsProvider {
 			).setParameter(
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
-				"styleBookEntryId",
-				String.valueOf(_styleBookEntry.getStyleBookEntryId())
+				"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
 			).build();
 
 		return dropdownItem -> {
@@ -183,8 +180,7 @@ public class StyleBookEntryActionDropdownItemsProvider {
 			).setParameter(
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
-				"styleBookEntryId",
-				String.valueOf(_styleBookEntry.getStyleBookEntryId())
+				"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
 			).build();
 
 		return dropdownItem -> {
@@ -237,8 +233,7 @@ public class StyleBookEntryActionDropdownItemsProvider {
 			ActionRequest.ACTION_NAME,
 			"/style_book/upload_style_book_entry_preview"
 		).setParameter(
-			"styleBookEntryId",
-			String.valueOf(_styleBookEntry.getStyleBookEntryId())
+			"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
 		).build();
 
 		ItemSelectorCriterion itemSelectorCriterion =
@@ -270,11 +265,10 @@ public class StyleBookEntryActionDropdownItemsProvider {
 			).setParameter(
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
-				"styleBookEntryId",
-				String.valueOf(_styleBookEntry.getStyleBookEntryId())
+				"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
 			).setParameter(
 				"defaultStyleBookEntry",
-				String.valueOf(!_styleBookEntry.isDefaultStyleBookEntry())
+				!_styleBookEntry.isDefaultStyleBookEntry()
 			).build();
 
 		return dropdownItem -> {
@@ -329,8 +323,7 @@ public class StyleBookEntryActionDropdownItemsProvider {
 		).setParameter(
 			"redirect", _themeDisplay.getURLCurrent()
 		).setParameter(
-			"styleBookEntryId",
-			String.valueOf(_styleBookEntry.getStyleBookEntryId())
+			"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
 		).build();
 
 		return dropdownItem -> {

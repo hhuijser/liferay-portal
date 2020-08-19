@@ -139,7 +139,7 @@ public class EditRuleGroupMVCActionCommand extends BaseMVCActionCommand {
 		).setParameter(
 			"redirect", redirect
 		).setParameter(
-			"ruleGroupId", String.valueOf(ruleGroup.getRuleGroupId())
+			"ruleGroupId", ruleGroup.getRuleGroupId()
 		).build();
 
 		return portletURL.toString();

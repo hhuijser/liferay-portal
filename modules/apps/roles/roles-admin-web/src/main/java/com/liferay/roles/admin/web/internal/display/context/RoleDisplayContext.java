@@ -234,7 +234,7 @@ public class RoleDisplayContext {
 		).setParameter(
 			"backURL", backURL
 		).setParameter(
-			"roleId", String.valueOf(role.getRoleId())
+			"roleId", role.getRoleId()
 		).build();
 
 		PortletURL definePermissionsURL = PortletURLBuilder.createRenderURL(
@@ -250,7 +250,7 @@ public class RoleDisplayContext {
 		).setParameter(
 			Constants.CMD, Constants.VIEW
 		).setParameter(
-			"roleId", String.valueOf(role.getRoleId())
+			"roleId", role.getRoleId()
 		).build();
 
 		PortletURL editRoleURL = PortletURLBuilder.createRenderURL(
@@ -264,7 +264,7 @@ public class RoleDisplayContext {
 		).setParameter(
 			"backURL", backURL
 		).setParameter(
-			"roleId", String.valueOf(role.getRoleId())
+			"roleId", role.getRoleId()
 		).build();
 
 		return HashMapBuilder.put(

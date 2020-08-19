@@ -64,7 +64,7 @@ public class MBCategoryUADDisplay extends BaseMBCategoryUADDisplay {
 		).setParameter(
 			"redirect", portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"mbCategoryId", String.valueOf(mbCategory.getCategoryId())
+			"mbCategoryId", mbCategory.getCategoryId()
 		).build();
 
 		return portletURL.toString();

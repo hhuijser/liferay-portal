@@ -234,7 +234,7 @@ public class ImageEditorDLDisplayContextHelper {
 			ActionRequest.ACTION_NAME,
 			"/document_library/edit_file_entry_with_image_editor"
 		).setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+			"fileEntryId", _fileEntry.getFileEntryId()
 		).build();
 
 		String fileEntryPreviewURL = _dlURLHelper.getPreviewURL(

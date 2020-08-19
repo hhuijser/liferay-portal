@@ -115,7 +115,7 @@ public class PowwowUserNotificationHandler extends BaseUserNotificationHandler {
 		).setParameter(
 			"mvcPath", "/meetings/view_meeting.jsp"
 		).setParameter(
-			"powwowMeetingId", String.valueOf(powwowMeetingId)
+			"powwowMeetingId", powwowMeetingId
 		).build();
 
 		return portletURL.toString();

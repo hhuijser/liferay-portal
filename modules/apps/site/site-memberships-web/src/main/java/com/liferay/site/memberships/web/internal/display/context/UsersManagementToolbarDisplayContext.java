@@ -362,7 +362,7 @@ public class UsersManagementToolbarDisplayContext
 				).setParameter(
 					"redirect", themeDisplay.getURLCurrent()
 				).setParameter(
-					"groupId", String.valueOf(_usersDisplayContext.getGroupId())
+					"groupId", _usersDisplayContext.getGroupId()
 				).build();
 
 				dropdownItem.putData("viewRoleURL", viewRoleURL.toString());
@@ -385,7 +385,7 @@ public class UsersManagementToolbarDisplayContext
 		).setParameter(
 			"mvcPath", mvcPath
 		).setParameter(
-			"groupId", String.valueOf(_usersDisplayContext.getGroupId())
+			"groupId", _usersDisplayContext.getGroupId()
 		).build();
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(

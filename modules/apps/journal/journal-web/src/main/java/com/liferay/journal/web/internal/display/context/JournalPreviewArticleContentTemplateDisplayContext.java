@@ -171,13 +171,13 @@ public class JournalPreviewArticleContentTemplateDisplayContext {
 		).setParameter(
 			"mvcPath", "/preview_article_content_template.jsp"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
 			"articleId", getArticleId()
 		).setParameter(
-			"version", String.valueOf(getVersion())
+			"version", getVersion()
 		).setParameter(
-			"ddmTemplateId", String.valueOf(getDDMTemplateId())
+			"ddmTemplateId", getDDMTemplateId()
 		).setParameter(
 			"eventName", getEventName()
 		).setWindowState(
@@ -193,11 +193,11 @@ public class JournalPreviewArticleContentTemplateDisplayContext {
 		).setParameter(
 			"mvcPath", "/preview_article_content_template.jsp"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
 			"articleId", getArticleId()
 		).setParameter(
-			"version", String.valueOf(getVersion())
+			"version", getVersion()
 		).setParameter(
 			"eventName", getEventName()
 		).setWindowState(

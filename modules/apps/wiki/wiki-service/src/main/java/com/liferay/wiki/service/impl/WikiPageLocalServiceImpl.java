@@ -2378,7 +2378,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		).setParameter(
 			"mvcRenderCommandName", "/wiki/view_page_activities"
 		).setParameter(
-			"nodeId", String.valueOf(page.getNodeId())
+			"nodeId", page.getNodeId()
 		).setParameter(
 			"title", page.getTitle()
 		).build();

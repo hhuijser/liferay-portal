@@ -160,7 +160,7 @@ public class CommentAssetRenderer
 		).setParameter(
 			"mvcRenderCommandName", "/discussion/edit_discussion"
 		).setParameter(
-			"commentId", String.valueOf(_workflowableComment.getCommentId())
+			"commentId", _workflowableComment.getCommentId()
 		).build();
 
 		return portletURL;
@@ -180,7 +180,7 @@ public class CommentAssetRenderer
 		).setParameter(
 			"mvcPath", "/view_comment.jsp"
 		).setParameter(
-			"commentId", String.valueOf(_workflowableComment.getCommentId())
+			"commentId", _workflowableComment.getCommentId()
 		).setWindowState(
 			windowState
 		).build();

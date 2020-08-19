@@ -411,7 +411,7 @@ public class WorkflowDefinitionDisplayContext {
 		).setParameter(
 			"mvcPath", "/view.jsp"
 		).setParameter(
-			"groupId", String.valueOf(themeDisplay.getScopeGroupId())
+			"groupId", themeDisplay.getScopeGroupId()
 		).setParameter(
 			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION
 		).build();

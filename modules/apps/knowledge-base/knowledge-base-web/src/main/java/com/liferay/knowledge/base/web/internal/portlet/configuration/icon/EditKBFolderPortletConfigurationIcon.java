@@ -74,7 +74,7 @@ public class EditKBFolderPortletConfigurationIcon
 		).setParameter(
 			"redirect", _portal.getCurrentURL(portletRequest)
 		).setParameter(
-			"kbFolderId", String.valueOf(kbFolder.getKbFolderId())
+			"kbFolderId", kbFolder.getKbFolderId()
 		).build();
 
 		return portletURL.toString();

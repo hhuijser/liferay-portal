@@ -77,7 +77,7 @@ public class SegmentsContextVocabularyConfigurationFactoryDisplayContext {
 		).setParameter(
 			"pid", configuration.getPid()
 		).setParameter(
-			"redirect", String.valueOf(_getRedirect())
+			"redirect", _getRedirect()
 		).build();
 
 		return portletURL;

@@ -61,8 +61,7 @@ public class ViewMembershipRequestsUserCard extends BaseUserCard {
 		).setParameter(
 			"redirect", themeDisplay.getURLCurrent()
 		).setParameter(
-			"membershipRequestId",
-			String.valueOf(_membershipRequest.getMembershipRequestId())
+			"membershipRequestId", _membershipRequest.getMembershipRequestId()
 		).build();
 
 		return previewURL.toString();

@@ -93,7 +93,7 @@ public class DLURLHelperImpl implements DLURLHelper {
 		).setParameter(
 			"mvcRenderCommandName", "/document_library/view_file_entry"
 		).setParameter(
-			"fileEntryId", String.valueOf(fileEntryId)
+			"fileEntryId", fileEntryId
 		).build();
 
 		return portletURL.toString();

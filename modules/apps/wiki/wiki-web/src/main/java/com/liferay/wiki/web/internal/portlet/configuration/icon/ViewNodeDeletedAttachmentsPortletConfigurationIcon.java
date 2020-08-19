@@ -75,7 +75,7 @@ public class ViewNodeDeletedAttachmentsPortletConfigurationIcon
 			).setParameter(
 				"redirect", themeDisplay.getURLCurrent()
 			).setParameter(
-				"nodeId", String.valueOf(node.getNodeId())
+				"nodeId", node.getNodeId()
 			).setParameter(
 				"viewTrashAttachments", Boolean.TRUE.toString()
 			).build();

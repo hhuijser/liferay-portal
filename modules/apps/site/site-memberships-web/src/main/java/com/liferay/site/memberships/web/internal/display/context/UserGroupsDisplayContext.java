@@ -140,7 +140,7 @@ public class UserGroupsDisplayContext {
 		).setParameter(
 			"redirect", themeDisplay.getURLCurrent()
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).build();
 
 		Role role = getRole();

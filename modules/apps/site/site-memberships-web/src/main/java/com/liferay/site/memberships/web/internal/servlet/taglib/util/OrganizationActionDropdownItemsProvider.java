@@ -74,11 +74,9 @@ public class OrganizationActionDropdownItemsProvider {
 			).setParameter(
 				"redirect", _themeDisplay.getURLCurrent()
 			).setParameter(
-				"groupId",
-				String.valueOf(_themeDisplay.getSiteGroupIdOrLiveGroupId())
+				"groupId", _themeDisplay.getSiteGroupIdOrLiveGroupId()
 			).setParameter(
-				"removeOrganizationId",
-				String.valueOf(_organization.getOrganizationId())
+				"removeOrganizationId", _organization.getOrganizationId()
 			).build();
 
 		return dropdownItem -> {

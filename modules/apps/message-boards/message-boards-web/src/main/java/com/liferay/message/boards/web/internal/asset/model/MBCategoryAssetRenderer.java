@@ -130,7 +130,7 @@ public class MBCategoryAssetRenderer extends BaseJSPAssetRenderer<MBCategory> {
 		).setParameter(
 			"mvcRenderCommandName", "/message_boards/edit_category"
 		).setParameter(
-			"mbCategoryId", String.valueOf(_category.getCategoryId())
+			"mbCategoryId", _category.getCategoryId()
 		).build();
 
 		return portletURL;
@@ -150,7 +150,7 @@ public class MBCategoryAssetRenderer extends BaseJSPAssetRenderer<MBCategory> {
 		).setParameter(
 			"mvcRenderCommandName", "/message_boards/view_category"
 		).setParameter(
-			"mbCategoryId", String.valueOf(_category.getCategoryId())
+			"mbCategoryId", _category.getCategoryId()
 		).setWindowState(
 			windowState
 		).build();

@@ -291,11 +291,11 @@ public class JournalArticleAssetRenderer
 		).setParameter(
 			"mvcPath", "/edit_article.jsp"
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", _article.getArticleId()
 		).setParameter(
-			"version", String.valueOf(_article.getVersion())
+			"version", _article.getVersion()
 		).build();
 
 		return portletURL;
@@ -375,14 +375,13 @@ public class JournalArticleAssetRenderer
 		).setParameter(
 			"mvcRenderCommandName", "/journal/compare_versions"
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", _article.getArticleId()
 		).setParameter(
-			"sourceVersion",
-			String.valueOf(previousApprovedArticle.getVersion())
+			"sourceVersion", previousApprovedArticle.getVersion()
 		).setParameter(
-			"targetVersion", String.valueOf(_article.getVersion())
+			"targetVersion", _article.getVersion()
 		).build();
 
 		return portletURL;

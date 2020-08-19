@@ -216,6 +216,14 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			return;
 		}
 
+		DetailAST nextSiblingDetailAST = parentDetailAST.getNextSibling();
+
+		if ((nextSiblingDetailAST == null) ||
+			(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+
+			return;
+		}
+
 		int endLineNumber = getEndLineNumber(parentDetailAST);
 		int startLineNumber = getStartLineNumber(detailAST);
 

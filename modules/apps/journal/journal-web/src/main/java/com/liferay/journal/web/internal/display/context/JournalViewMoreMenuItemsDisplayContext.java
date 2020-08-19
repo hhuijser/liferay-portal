@@ -188,7 +188,7 @@ public class JournalViewMoreMenuItemsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
 			"mvcPath", "/view_more_menu_items.jsp"
@@ -197,8 +197,6 @@ public class JournalViewMoreMenuItemsDisplayContext {
 		).setParameter(
 			"eventName", getEventName()
 		).build();
-
-		return portletURL;
 	}
 
 	public String getRedirect() {

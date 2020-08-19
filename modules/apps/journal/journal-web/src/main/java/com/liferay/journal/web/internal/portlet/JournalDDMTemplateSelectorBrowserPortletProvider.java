@@ -46,13 +46,11 @@ public class JournalDDMTemplateSelectorBrowserPortletProvider
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			super.getPortletURL(httpServletRequest)
 		).setParameter(
 			"mvcPath", "/select_ddm_template.jsp"
 		).build();
-
-		return portletURL;
 	}
 
 }

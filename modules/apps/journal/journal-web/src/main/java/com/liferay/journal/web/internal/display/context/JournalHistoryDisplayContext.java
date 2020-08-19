@@ -139,7 +139,7 @@ public class JournalHistoryDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
 			"mvcPath", "/view_article_history.jsp"
@@ -160,8 +160,6 @@ public class JournalHistoryDisplayContext {
 		).setParameter(
 			"orderByType", getOrderByType()
 		).build();
-
-		return portletURL;
 	}
 
 	public String getReferringPortletResource() {

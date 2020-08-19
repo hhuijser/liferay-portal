@@ -143,13 +143,13 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 		}
 
 		if (firstNextVariableCallerDetailAST == null) {
-			DetailAST ancestorDetailAST = getParentWithTokenType(
-				detailAST, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE,
-				TokenTypes.OBJBLOCK);
-
 			if (isJSPFile()) {
 				return;
 			}
+
+			DetailAST ancestorDetailAST = getParentWithTokenType(
+				detailAST, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE,
+				TokenTypes.OBJBLOCK);
 
 			if (ancestorDetailAST.getLineNo() <=
 					variableDefinitionDetailAST.getLineNo()) {

@@ -14,8 +14,6 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
-import com.liferay.portal.kernel.util.Validator;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -199,10 +197,6 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			methodCallDetailAST, variableName);
 
 		if (typeDetailAST == null) {
-			return;
-		}
-
-		if (!Validator.isVariableName(variableName)) {
 			return;
 		}
 

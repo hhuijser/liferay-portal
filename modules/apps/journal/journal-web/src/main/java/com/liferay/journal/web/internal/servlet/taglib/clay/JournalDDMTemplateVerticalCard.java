@@ -24,6 +24,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.BaseModel;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -87,14 +88,15 @@ public class JournalDDMTemplateVerticalCard extends BaseVerticalCard {
 				return StringPool.BLANK;
 			}
 
-			PortletURL editDDMTemplateURL = _renderResponse.createRenderURL();
-
-			editDDMTemplateURL.setParameter(
-				"mvcPath", "/edit_ddm_template.jsp");
-			editDDMTemplateURL.setParameter(
-				"redirect", themeDisplay.getURLCurrent());
-			editDDMTemplateURL.setParameter(
-				"ddmTemplateId", String.valueOf(_ddmTemplate.getTemplateId()));
+			PortletURL editDDMTemplateURL = PortletURLBuilder.createRenderURL(
+				_renderResponse
+			).setParameter(
+				"mvcPath", "/edit_ddm_template.jsp"
+			).setParameter(
+				"redirect", themeDisplay.getURLCurrent()
+			).setParameter(
+				"ddmTemplateId", String.valueOf(_ddmTemplate.getTemplateId())
+			).build();
 
 			return editDDMTemplateURL.toString();
 		}

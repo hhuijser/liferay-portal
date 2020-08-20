@@ -78,9 +78,9 @@ public class JournalFolderHorizontalCard extends BaseHorizontalCard {
 		PortletURL rowURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
-			"groupId", String.valueOf(_folder.getGroupId())
+			"groupId", _folder.getGroupId()
 		).setParameter(
-			"folderId", String.valueOf(_folder.getFolderId())
+			"folderId", _folder.getFolderId()
 		).setParameter(
 			"displayStyle", _displayStyle
 		).build();

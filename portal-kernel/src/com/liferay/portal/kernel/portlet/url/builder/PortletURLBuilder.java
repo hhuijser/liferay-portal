@@ -423,7 +423,8 @@ public class PortletURLBuilder {
 	}
 
 	public interface AfterParameterStep
-		extends BuildStep, PortletModeStep, SecureStep, WindowStateStep {
+		extends BuildStep, ParameterStep, PortletModeStep, SecureStep,
+				WindowStateStep {
 	}
 
 	public interface AfterPortletModeStep

@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.model.Image;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.PortletRequestModel;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ImageLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
@@ -513,11 +514,14 @@ public class JournalRSSHelper {
 		long plid = _portal.getPlidFromFriendlyURL(
 			feed.getCompanyId(), feed.getTargetLayoutFriendlyUrl());
 
-		PortletURL entryURL = PortletURLFactoryUtil.create(
-			resourceRequest, portletId, plid, PortletRequest.RENDER_PHASE);
-
-		entryURL.setParameter("groupId", String.valueOf(article.getGroupId()));
-		entryURL.setParameter("articleId", article.getArticleId());
+		PortletURL entryURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				resourceRequest, portletId, plid, PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"groupId", String.valueOf(article.getGroupId())
+		).setParameter(
+			"articleId", article.getArticleId()
+		).build();
 
 		return entryURL.toString();
 	}

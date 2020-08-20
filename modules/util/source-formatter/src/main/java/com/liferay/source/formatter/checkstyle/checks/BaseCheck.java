@@ -355,6 +355,20 @@ public abstract class BaseCheck extends AbstractCheck {
 			parametersDetailAST, false, TokenTypes.PARAMETER_DEF);
 	}
 
+	protected DetailAST getParameterDetailAST(DetailAST methodCallDetailAST) {
+		DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
+			TokenTypes.ELIST);
+
+		DetailAST exprDetailAST = elistDetailAST.findFirstToken(
+			TokenTypes.EXPR);
+
+		if (exprDetailAST == null) {
+			return null;
+		}
+
+		return exprDetailAST.getFirstChild();
+	}
+
 	protected List<String> getParameterNames(DetailAST detailAST) {
 		List<String> parameterNames = new ArrayList<>();
 

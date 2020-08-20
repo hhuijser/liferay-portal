@@ -30,6 +30,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -49,7 +50,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -238,17 +238,17 @@ public class JournalTranslateDisplayContext {
 	}
 
 	public PortletURL getUpdateTranslationPortletURL() {
-		PortletURL portletURL = _liferayPortletResponse.createActionURL();
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/journal/update_translation");
-		portletURL.setParameter(
-			"groupId", String.valueOf(_article.getGroupId()));
-		portletURL.setParameter("articleId", _article.getArticleId());
-		portletURL.setParameter(
-			"version", String.valueOf(_article.getVersion()));
-
-		return portletURL;
+		return PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setActionName(
+			"/journal/update_translation"
+		).setParameter(
+			"groupId", _article.getGroupId()
+		).setParameter(
+			"articleId", _article.getArticleId()
+		).setParameter(
+			"version", _article.getVersion()
+		).build();
 	}
 
 	public boolean isPublishButtonDisabled() throws PortalException {

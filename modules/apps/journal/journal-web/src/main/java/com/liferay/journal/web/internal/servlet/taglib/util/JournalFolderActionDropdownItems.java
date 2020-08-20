@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
@@ -49,7 +50,6 @@ import com.liferay.trash.TrashHelper;
 
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -208,17 +208,16 @@ public class JournalFolderActionDropdownItems {
 			_httpServletRequest, "folderId");
 
 		if (currentFolderId == _folder.getFolderId()) {
-			PortletURL redirectURL = _liferayPortletResponse.createRenderURL();
-
-			redirectURL.setParameter(
-				"groupId", String.valueOf(_folder.getGroupId()));
-			redirectURL.setParameter(
-				"folderId", String.valueOf(_folder.getParentFolderId()));
+			PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+				_liferayPortletResponse
+			).setParameter(
+				"groupId", _folder.getGroupId()
+			).setParameter(
+				"folderId", _folder.getParentFolderId()
+			).build();
 
 			redirect = redirectURL.toString();
 		}
-
-		PortletURL deleteURL = _liferayPortletResponse.createActionURL();
 
 		String actionName = "/journal/delete_folder";
 		String key = "delete";
@@ -228,12 +227,17 @@ public class JournalFolderActionDropdownItems {
 			key = "move-to-recycle-bin";
 		}
 
-		deleteURL.setParameter(ActionRequest.ACTION_NAME, actionName);
-
-		deleteURL.setParameter("redirect", redirect);
-		deleteURL.setParameter("groupId", String.valueOf(_folder.getGroupId()));
-		deleteURL.setParameter(
-			"folderId", String.valueOf(_folder.getFolderId()));
+		PortletURL deleteURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setActionName(
+			actionName
+		).setRedirect(
+			redirect
+		).setParameter(
+			"groupId", _folder.getGroupId()
+		).setParameter(
+			"folderId", _folder.getFolderId()
+		).build();
 
 		String label = LanguageUtil.get(_httpServletRequest, key);
 
@@ -323,12 +327,13 @@ public class JournalFolderActionDropdownItems {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getPublishToLiveFolderActionUnsafeConsumer() {
 
-		PortletURL publishFolderURL = _liferayPortletResponse.createActionURL();
-
-		publishFolderURL.setParameter(
-			ActionRequest.ACTION_NAME, "/journal/publish_folder");
-
-		publishFolderURL.setParameter("backURL", _getRedirect());
+		PortletURL publishFolderURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setActionName(
+			"/journal/publish_folder"
+		).setParameter(
+			"backURL", _getRedirect()
+		).build();
 
 		if (_folder != null) {
 			publishFolderURL.setParameter(

@@ -27,13 +27,13 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.util.Locale;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletException;
 import javax.portlet.PortletURL;
 
@@ -104,17 +104,14 @@ public class JournalItemSelectorViewDisplayContext {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortletException {
 
-		PortletURL portletURL = PortletURLUtil.clone(
-			_portletURL, liferayPortletResponse);
-
-		portletURL.setParameter(
+		return PortletURLBuilder.create(
+			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
+		).setParameter(
 			"resourcePrimKey",
-			String.valueOf(_journalItemSelectorCriterion.getResourcePrimKey()));
-		portletURL.setParameter(
-			"selectedTab",
-			String.valueOf(getTitle(httpServletRequest.getLocale())));
-
-		return portletURL;
+			_journalItemSelectorCriterion.getResourcePrimKey()
+		).setParameter(
+			"selectedTab", getTitle(httpServletRequest.getLocale())
+		).build();
 	}
 
 	public String getTitle(Locale locale) {
@@ -124,19 +121,16 @@ public class JournalItemSelectorViewDisplayContext {
 	public PortletURL getUploadURL(
 		LiferayPortletResponse liferayPortletResponse) {
 
-		PortletURL portletURL = liferayPortletResponse.createActionURL(
-			JournalPortletKeys.JOURNAL);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/journal/upload_image");
-		portletURL.setParameter(
-			"folderId",
-			String.valueOf(_journalItemSelectorCriterion.getFolderId()));
-		portletURL.setParameter(
+		return PortletURLBuilder.createActionURL(
+			liferayPortletResponse, JournalPortletKeys.JOURNAL
+		).setActionName(
+			"/journal/upload_image"
+		).setParameter(
+			"folderId", _journalItemSelectorCriterion.getFolderId()
+		).setParameter(
 			"resourcePrimKey",
-			String.valueOf(_journalItemSelectorCriterion.getResourcePrimKey()));
-
-		return portletURL;
+			_journalItemSelectorCriterion.getResourcePrimKey()
+		).build();
 	}
 
 	public boolean isSearch() {

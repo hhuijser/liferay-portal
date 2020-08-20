@@ -191,6 +191,10 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			return;
 		}
 
+		if (getParameterDetailAST(methodCallDetailAST) != null) {
+			return;
+		}
+
 		parentDetailAST = typeDetailAST.getParent();
 
 		if (parentDetailAST.getType() != TokenTypes.VARIABLE_DEF) {

@@ -46,9 +46,9 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		Matcher matcher = _taglibVariablePattern.matcher(content);
 
 		while (matcher.find()) {
-			String nextTag = matcher.group(5);
-			String taglibValue = matcher.group(3);
-			String variableName = matcher.group(2);
+			String nextTag = matcher.group(6);
+			String taglibValue = matcher.group(4);
+			String variableName = matcher.group(3);
 
 			if (!taglibValue.contains("\n") &&
 				(taglibValue.contains("\\\"") ||
@@ -72,9 +72,26 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 			if (nextTag.contains("=\"<%= " + variableName + " %>\"")) {
 				populateContentsMap(fileName, content);
 
-				String newContent = StringUtil.replaceFirst(
-					content, "<%= " + variableName + " %>\"",
-					"<%= " + taglibValue + " %>\"", matcher.start(5));
+				String newContent = null;
+
+				if (taglibValue.startsWith("{")) {
+					String typeName = matcher.group(2);
+
+					if (typeName.endsWith("[][]") || !typeName.endsWith("[]")) {
+						continue;
+					}
+
+					newContent = StringUtil.replaceFirst(
+						content, "<%= " + variableName + " %>\"",
+						StringBundler.concat(
+							"<%= new ", typeName, " ", taglibValue, " %>\""),
+						matcher.start(6));
+				}
+				else {
+					newContent = StringUtil.replaceFirst(
+						content, "<%= " + variableName + " %>\"",
+						"<%= " + taglibValue + " %>\"", matcher.start(6));
+				}
 
 				Set<String> checkedFileNames = new HashSet<>();
 				Set<String> includeFileNames = new HashSet<>();
@@ -95,7 +112,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 						StringBundler.concat(
 							"No need to declare variable '", variableName,
 							"', inline inside the tag."),
-						getLineNumber(content, matcher.start(2)));
+						getLineNumber(content, matcher.start(3)));
 				}
 			}
 		}
@@ -130,7 +147,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 	}
 
 	private static final Pattern _taglibVariablePattern = Pattern.compile(
-		"\n(\t*[\\w<>\\[\\],\\? ]+ (\\w+) = ([^{]((?!;\n).)*);)\n\\s*%>\\s+" +
+		"\n(\t*([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);)\n\\s*%>\\s+" +
 			"(<[\\S\\s]*?>)(\n|\\Z)",
 		Pattern.DOTALL);
 

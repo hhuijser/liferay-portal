@@ -225,7 +225,7 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 		}
 
 		List<DetailAST> variableCallerDetailASTList =
-			getVariableCallerDetailASTList(detailAST, variableName);
+			getVariableCallerDetailASTList(parentDetailAST, variableName);
 
 		if (variableCallerDetailASTList.size() != 1) {
 			return;

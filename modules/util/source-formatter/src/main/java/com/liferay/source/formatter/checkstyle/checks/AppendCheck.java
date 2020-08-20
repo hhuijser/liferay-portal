@@ -49,7 +49,7 @@ public class AppendCheck extends BaseStringConcatenationCheck {
 				continue;
 			}
 
-			DetailAST parameterDetailAST = _getParameterDetailAST(
+			DetailAST parameterDetailAST = getParameterDetailAST(
 				methodCallDetailAST);
 
 			if (parameterDetailAST == null) {
@@ -84,7 +84,7 @@ public class AppendCheck extends BaseStringConcatenationCheck {
 				continue;
 			}
 
-			DetailAST previousParameterDetailAST = _getParameterDetailAST(
+			DetailAST previousParameterDetailAST = getParameterDetailAST(
 				previousMethodCallDetailAST);
 
 			if ((previousParameterDetailAST != null) &&
@@ -189,20 +189,6 @@ public class AppendCheck extends BaseStringConcatenationCheck {
 		}
 
 		return false;
-	}
-
-	private DetailAST _getParameterDetailAST(DetailAST methodCallDetailAST) {
-		DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
-			TokenTypes.ELIST);
-
-		DetailAST exprDetailAST = elistDetailAST.findFirstToken(
-			TokenTypes.EXPR);
-
-		if (exprDetailAST == null) {
-			return null;
-		}
-
-		return exprDetailAST.getFirstChild();
 	}
 
 	private boolean _hasIncorrectLineBreaks(DetailAST methodCallDetailAST) {

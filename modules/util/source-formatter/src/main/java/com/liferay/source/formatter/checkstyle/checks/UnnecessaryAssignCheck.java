@@ -18,7 +18,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -177,21 +176,7 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			return;
 		}
 
-		DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
-			TokenTypes.DOT);
-
-		if (dotDetailAST == null) {
-			return;
-		}
-
-		DetailAST identDetailAST = dotDetailAST.findFirstToken(
-			TokenTypes.IDENT);
-
-		if (identDetailAST == null) {
-			return;
-		}
-
-		String variableName = identDetailAST.getText();
+		String variableName = getVariableName(methodCallDetailAST);
 
 		DetailAST typeDetailAST = getVariableTypeDetailAST(
 			methodCallDetailAST, variableName);
@@ -200,13 +185,9 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			return;
 		}
 
-		identDetailAST = identDetailAST.getNextSibling();
+		String methodName = getMethodName(methodCallDetailAST);
 
-		if (identDetailAST == null) {
-			return;
-		}
-
-		if (!Objects.equals(identDetailAST.getText(), "toString")) {
+		if (!methodName.equals("toString")) {
 			return;
 		}
 

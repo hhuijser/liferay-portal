@@ -224,13 +224,6 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			return;
 		}
 
-		int endLineNumber = getEndLineNumber(parentDetailAST);
-		int startLineNumber = getStartLineNumber(detailAST);
-
-		if (endLineNumber != (startLineNumber - 2)) {
-			return;
-		}
-
 		List<DetailAST> variableCallerDetailASTList =
 			getVariableCallerDetailASTList(detailAST, variableName);
 
@@ -239,8 +232,8 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 		}
 
 		log(
-			detailAST, _MSG_UNNECESSARY_ASSIGN_COMBINE, endLineNumber,
-			startLineNumber);
+			detailAST, _MSG_UNNECESSARY_ASSIGN_COMBINE,
+			getEndLineNumber(parentDetailAST), getStartLineNumber(detailAST));
 	}
 
 	private boolean _hasPrecedingAssignStatement(

@@ -166,7 +166,7 @@ public class JournalPreviewArticleContentTemplateDisplayContext {
 	}
 
 	public PortletURL getPageIteratorPortletURL() throws Exception {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/preview_article_content_template.jsp"
@@ -183,12 +183,10 @@ public class JournalPreviewArticleContentTemplateDisplayContext {
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();
-
-		return portletURL;
 	}
 
 	public PortletURL getPortletURL() throws Exception {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/preview_article_content_template.jsp"
@@ -203,8 +201,6 @@ public class JournalPreviewArticleContentTemplateDisplayContext {
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();
-
-		return portletURL;
 	}
 
 	public Double getVersion() {

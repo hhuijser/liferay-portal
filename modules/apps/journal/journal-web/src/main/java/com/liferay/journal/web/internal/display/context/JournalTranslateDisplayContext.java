@@ -238,7 +238,7 @@ public class JournalTranslateDisplayContext {
 	}
 
 	public PortletURL getUpdateTranslationPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createActionURL(
+		return PortletURLBuilder.createActionURL(
 			_liferayPortletResponse
 		).setActionName(
 			"/journal/update_translation"
@@ -249,8 +249,6 @@ public class JournalTranslateDisplayContext {
 		).setParameter(
 			"version", _article.getVersion()
 		).build();
-
-		return portletURL;
 	}
 
 	public boolean isPending() throws PortalException {

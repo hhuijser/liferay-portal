@@ -19,10 +19,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
-import javax.portlet.ActionURL;
 import javax.portlet.MimeResponse;
-import javax.portlet.MutableActionParameters;
-import javax.portlet.MutableRenderParameters;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletModeException;
 import javax.portlet.PortletSecurityException;
@@ -251,40 +248,14 @@ public class PortletURLBuilder {
 
 		@Override
 		public AfterParameterStep setParameter(String name, String value) {
-			if (_portletURL instanceof ActionURL) {
-				ActionURL actionURL = (ActionURL)_portletURL;
-
-				MutableActionParameters mutableActionParameters =
-					actionURL.getActionParameters();
-
-				mutableActionParameters.setValue(name, value);
-			}
-			else {
-				MutableRenderParameters mutableRenderParameters =
-					_portletURL.getRenderParameters();
-
-				mutableRenderParameters.setValue(name, value);
-			}
+			_portletURL.setParameter(name, value);
 
 			return this;
 		}
 
 		@Override
 		public AfterParameterStep setParameter(String name, String... values) {
-			if (_portletURL instanceof ActionURL) {
-				ActionURL actionURL = (ActionURL)_portletURL;
-
-				MutableActionParameters mutableActionParameters =
-					actionURL.getActionParameters();
-
-				mutableActionParameters.setValues(name, values);
-			}
-			else {
-				MutableRenderParameters mutableRenderParameters =
-					_portletURL.getRenderParameters();
-
-				mutableRenderParameters.setValues(name, values);
-			}
+			_portletURL.setParameter(name, values);
 
 			return this;
 		}
@@ -318,34 +289,7 @@ public class PortletURLBuilder {
 		public AfterParameterStep setParameters(
 			Map<String, String[]> parameters) {
 
-			if (_portletURL instanceof ActionURL) {
-				ActionURL actionURL = (ActionURL)_portletURL;
-
-				MutableActionParameters mutableActionParameters =
-					actionURL.getActionParameters();
-
-				mutableActionParameters.clear();
-
-				for (Map.Entry<String, String[]> entry :
-						parameters.entrySet()) {
-
-					mutableActionParameters.setValues(
-						entry.getKey(), entry.getValue());
-				}
-			}
-			else {
-				MutableRenderParameters mutableRenderParameters =
-					_portletURL.getRenderParameters();
-
-				mutableRenderParameters.clear();
-
-				for (Map.Entry<String, String[]> entry :
-						parameters.entrySet()) {
-
-					mutableRenderParameters.setValues(
-						entry.getKey(), entry.getValue());
-				}
-			}
+			_portletURL.setParameters(parameters);
 
 			return this;
 		}

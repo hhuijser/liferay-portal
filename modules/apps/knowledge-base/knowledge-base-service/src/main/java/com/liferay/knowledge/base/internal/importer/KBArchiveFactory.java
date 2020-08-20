@@ -81,12 +81,10 @@ public class KBArchiveFactory {
 
 			kbArchiveState.setCurrentFolder(entryParentPath);
 
-			Path entryFileNamePath = entryPath.getFileName();
-
 			String markdownImporterArticleIntro =
 				kbGroupServiceConfiguration.markdownImporterArticleIntro();
 
-			String entryFileName = entryFileNamePath.toString();
+			String entryFileName = String.valueOf(entryPath.getFileName());
 
 			if (entryFileName.endsWith(markdownImporterArticleIntro)) {
 				kbArchiveState.setCurrentFolderIntroFile(entryPath);

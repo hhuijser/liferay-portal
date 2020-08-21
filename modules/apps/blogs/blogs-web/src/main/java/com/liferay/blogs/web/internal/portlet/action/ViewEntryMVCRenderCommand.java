@@ -70,9 +70,6 @@ public class ViewEntryMVCRenderCommand implements MVCRenderCommand {
 		}
 
 		try {
-			boolean redirectToLastFriendlyURL = ParamUtil.getBoolean(
-				renderRequest, "redirectToLastFriendlyURL", true);
-
 			BlogsEntry entry = ActionUtil.getEntry(renderRequest);
 
 			ThemeDisplay themeDisplay =
@@ -96,6 +93,8 @@ public class ViewEntryMVCRenderCommand implements MVCRenderCommand {
 				_friendlyURLEntryLocalService.getMainFriendlyURLEntry(
 					BlogsEntry.class, entry.getEntryId());
 
+			boolean redirectToLastFriendlyURL = ParamUtil.getBoolean(
+				renderRequest, "redirectToLastFriendlyURL", true);
 			String urlTitle = ParamUtil.getString(renderRequest, "urlTitle");
 
 			if (redirectToLastFriendlyURL && Validator.isNotNull(urlTitle) &&

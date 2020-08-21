@@ -159,9 +159,6 @@ public class ArticlePortlet extends BaseKBPortlet {
 	protected long getResourcePrimKey(RenderRequest renderRequest)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			KBWebKeys.THEME_DISPLAY);
-
 		PortletPreferences preferences = renderRequest.getPreferences();
 
 		long defaultValue = GetterUtil.getLong(
@@ -190,6 +187,9 @@ public class ArticlePortlet extends BaseKBPortlet {
 		if ((resourcePrimKey == 0) || (resourcePrimKey != defaultValue)) {
 			return resourcePrimKey;
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			KBWebKeys.THEME_DISPLAY);
 
 		if (!_kbArticleModelResourcePermission.contains(
 				themeDisplay.getPermissionChecker(), defaultValue,

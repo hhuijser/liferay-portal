@@ -142,14 +142,14 @@ public class WorkflowDefinitionPortletTab extends BaseWorkflowPortletTab {
 			RenderRequest renderRequest)
 		throws PortalException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String name = ParamUtil.getString(renderRequest, "name");
 
 		if (Validator.isNull(name)) {
 			return;
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		int version = ParamUtil.getInteger(renderRequest, "version");
 

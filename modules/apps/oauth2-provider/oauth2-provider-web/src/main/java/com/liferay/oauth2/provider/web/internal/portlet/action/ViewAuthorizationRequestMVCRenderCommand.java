@@ -83,9 +83,6 @@ public class ViewAuthorizationRequestMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		HttpServletRequest httpServletRequest =
 			_portal.getOriginalServletRequest(
 				_portal.getHttpServletRequest(renderRequest));
@@ -108,6 +105,9 @@ public class ViewAuthorizationRequestMVCRenderCommand
 
 			return "/authorize/error.jsp";
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		String clientId = oAuth2Parameters.get("client_id");
 

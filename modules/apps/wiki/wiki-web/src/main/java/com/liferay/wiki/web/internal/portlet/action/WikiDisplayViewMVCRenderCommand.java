@@ -120,8 +120,6 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 	protected WikiNode getNode(RenderRequest renderRequest)
 		throws PortalException {
 
-		PortletPreferences portletPreferences = renderRequest.getPreferences();
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -131,6 +129,8 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 			return _wikiNodeService.getNode(
 				themeDisplay.getScopeGroupId(), nodeName);
 		}
+
+		PortletPreferences portletPreferences = renderRequest.getPreferences();
 
 		long nodeId = GetterUtil.getLong(
 			portletPreferences.getValue("nodeId", StringPool.BLANK));

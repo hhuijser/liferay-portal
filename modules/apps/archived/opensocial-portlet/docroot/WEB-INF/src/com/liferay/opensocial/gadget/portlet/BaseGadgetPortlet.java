@@ -121,9 +121,6 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 
 		checkExpando(renderRequest, renderResponse);
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		Gadget gadget = getGadget(renderRequest);
 
 		if (gadget == null) {
@@ -131,6 +128,9 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 		}
 
 		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
@@ -168,13 +168,13 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 	protected String getView(
 		RenderRequest renderRequest, GadgetSpec gadgetSpec) {
 
-		WindowState windowState = renderRequest.getWindowState();
-
 		String view = ParamUtil.getString(renderRequest, "view");
 
 		if (gadgetSpec.getView(view) != null) {
 			return view;
 		}
+
+		WindowState windowState = renderRequest.getWindowState();
 
 		if (windowState.equals(WindowState.NORMAL)) {
 			if (gadgetSpec.getView("default") != null) {

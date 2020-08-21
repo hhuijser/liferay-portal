@@ -120,12 +120,12 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 	protected WikiNode getNode(RenderRequest renderRequest)
 		throws PortalException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String nodeName = ParamUtil.getString(renderRequest, "nodeName");
 
 		if (Validator.isNotNull(nodeName)) {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 			return _wikiNodeService.getNode(
 				themeDisplay.getScopeGroupId(), nodeName);
 		}

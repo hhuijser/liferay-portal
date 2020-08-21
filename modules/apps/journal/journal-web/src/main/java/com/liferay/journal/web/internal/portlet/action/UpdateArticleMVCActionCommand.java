@@ -146,13 +146,8 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 
 		long groupId = ParamUtil.getLong(uploadPortletRequest, "groupId");
 		long folderId = ParamUtil.getLong(uploadPortletRequest, "folderId");
-		long classNameId = ParamUtil.getLong(
-			uploadPortletRequest, "classNameId");
-		long classPK = ParamUtil.getLong(uploadPortletRequest, "classPK");
 		String articleId = ParamUtil.getString(
 			uploadPortletRequest, "articleId");
-		boolean autoArticleId = ParamUtil.getBoolean(
-			uploadPortletRequest, "autoArticleId");
 		double version = ParamUtil.getDouble(uploadPortletRequest, "version");
 		Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "titleMapAsXML");
@@ -320,6 +315,12 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 		if (actionName.equals("/journal/add_article")) {
 
 			// Add article
+
+			long classNameId = ParamUtil.getLong(
+				uploadPortletRequest, "classNameId");
+			long classPK = ParamUtil.getLong(uploadPortletRequest, "classPK");
+			boolean autoArticleId = ParamUtil.getBoolean(
+				uploadPortletRequest, "autoArticleId");
 
 			article = _journalArticleService.addArticle(
 				groupId, folderId, classNameId, classPK, articleId,

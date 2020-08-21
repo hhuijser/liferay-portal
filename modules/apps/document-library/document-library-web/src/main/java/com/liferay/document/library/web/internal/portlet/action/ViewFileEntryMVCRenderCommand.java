@@ -88,12 +88,13 @@ public class ViewFileEntryMVCRenderCommand
 				}
 			}
 
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
 			if (!StringUtil.equals(
 					DLPortletKeys.DOCUMENT_LIBRARY_ADMIN,
 					_portal.getPortletId(renderRequest))) {
+
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)renderRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
 
 				String assetDisplayPageFriendlyURL =
 					_assetDisplayPageFriendlyURLProvider.getFriendlyURL(

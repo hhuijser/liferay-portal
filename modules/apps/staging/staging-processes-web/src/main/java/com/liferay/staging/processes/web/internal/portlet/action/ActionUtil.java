@@ -121,9 +121,6 @@ public class ActionUtil {
 	public static String getTitle(Portlet portlet, RenderRequest renderRequest)
 		throws Exception {
 
-		ServletContext servletContext =
-			(ServletContext)renderRequest.getAttribute(WebKeys.CTX);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -140,6 +137,9 @@ public class ActionUtil {
 			portletSetup, themeDisplay.getLanguageId());
 
 		if (Validator.isNull(title)) {
+			ServletContext servletContext =
+				(ServletContext)renderRequest.getAttribute(WebKeys.CTX);
+
 			title = PortalUtil.getPortletTitle(
 				portlet, servletContext, themeDisplay.getLocale());
 		}

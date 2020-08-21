@@ -364,8 +364,8 @@ public class JournalEditArticleDisplayContext {
 	public String getEditArticleURL() {
 		PortletURL editArticleURL = _liferayPortletResponse.createRenderURL();
 
-		editArticleURL.setParameter("redirect", getRedirect());
 		editArticleURL.setParameter("mvcPath", "/edit_article.jsp");
+		editArticleURL.setParameter("redirect", getRedirect());
 		editArticleURL.setParameter("groupId", String.valueOf(getGroupId()));
 		editArticleURL.setParameter("articleId", getArticleId());
 		editArticleURL.setParameter("version", String.valueOf(getVersion()));

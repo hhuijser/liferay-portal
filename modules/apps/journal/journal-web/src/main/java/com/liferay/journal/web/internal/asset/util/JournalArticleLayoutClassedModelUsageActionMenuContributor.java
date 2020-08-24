@@ -175,20 +175,21 @@ public class JournalArticleLayoutClassedModelUsageActionMenuContributor
 				layoutURL, "previewVersion", previewVersion);
 		}
 		else {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
+			PortletURL newPortletURL = PortletURLFactoryUtil.create(
 				httpServletRequest, layoutClassedModelUsage.getContainerKey(),
 				layoutClassedModelUsage.getPlid(), PortletRequest.RENDER_PHASE);
 
-			portletURL.setParameter(
+			newPortletURL.setParameter(
 				"previewClassNameId",
 				String.valueOf(layoutClassedModelUsage.getClassNameId()));
-			portletURL.setParameter(
+			newPortletURL.setParameter(
 				"previewClassPK",
 				String.valueOf(layoutClassedModelUsage.getClassPK()));
-			portletURL.setParameter("previewType", String.valueOf(previewType));
-			portletURL.setParameter("previewVersion", previewVersion);
+			newPortletURL.setParameter(
+				"previewType", String.valueOf(previewType));
+			newPortletURL.setParameter("previewVersion", previewVersion);
 
-			layoutURL = portletURL.toString();
+			layoutURL = newPortletURL.toString();
 		}
 
 		String portletURLString = _http.setParameter(

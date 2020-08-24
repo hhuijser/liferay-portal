@@ -51,16 +51,16 @@ import org.powermock.api.mockito.PowerMockito;
  * @author Leonardo Barros
  */
 @RunWith(MockitoJUnitRunner.class)
-public class DDMJSONStorageAdapterTest extends PowerMockito {
+public class JSONDDMStorageAdapterTest extends PowerMockito {
 
 	@Before
 	public void setUp() {
-		_ddmJSONStorageAdapter = new DDMJSONStorageAdapter();
+		_jsonDDMStorageAdapter = new JSONDDMStorageAdapter();
 
-		_ddmJSONStorageAdapter.ddmContentLocalService = _ddmContentLocalService;
-		_ddmJSONStorageAdapter.jsonDDMFormValuesDeserializer =
+		_jsonDDMStorageAdapter.ddmContentLocalService = _ddmContentLocalService;
+		_jsonDDMStorageAdapter.jsonDDMFormValuesDeserializer =
 			_ddmFormValuesDeserializer;
-		_ddmJSONStorageAdapter.jsonDDMFormValuesSerializer =
+		_jsonDDMStorageAdapter.jsonDDMFormValuesSerializer =
 			_ddmFormValuesSerializer;
 	}
 
@@ -70,7 +70,7 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 			DDMStorageAdapterDeleteRequest.Builder.newBuilder(1);
 
 		DDMStorageAdapterDeleteResponse expectedResponse =
-			_ddmJSONStorageAdapter.delete(builder.build());
+			_jsonDDMStorageAdapter.delete(builder.build());
 
 		Assert.assertTrue(expectedResponse.isDeleted());
 
@@ -92,7 +92,7 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 		DDMStorageAdapterDeleteRequest.Builder builder =
 			DDMStorageAdapterDeleteRequest.Builder.newBuilder(2);
 
-		_ddmJSONStorageAdapter.delete(builder.build());
+		_jsonDDMStorageAdapter.delete(builder.build());
 	}
 
 	@Test
@@ -134,7 +134,7 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 			DDMStorageAdapterGetRequest.Builder.newBuilder(1, ddmForm);
 
 		DDMStorageAdapterGetResponse ddmStorageAdapterGetResponse =
-			_ddmJSONStorageAdapter.get(builder.build());
+			_jsonDDMStorageAdapter.get(builder.build());
 
 		Assert.assertNotNull(ddmStorageAdapterGetResponse.getDDMFormValues());
 
@@ -164,7 +164,7 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 		DDMStorageAdapterGetRequest.Builder builder =
 			DDMStorageAdapterGetRequest.Builder.newBuilder(1, ddmForm);
 
-		_ddmJSONStorageAdapter.get(builder.build());
+		_jsonDDMStorageAdapter.get(builder.build());
 	}
 
 	@Test
@@ -209,7 +209,7 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 			builder.build();
 
 		DDMStorageAdapterSaveResponse ddmStorageAdapterSaveResponse =
-			_ddmJSONStorageAdapter.save(ddmStorageAdapterSaveRequest);
+			_jsonDDMStorageAdapter.save(ddmStorageAdapterSaveRequest);
 
 		Assert.assertEquals(1L, ddmStorageAdapterSaveResponse.getPrimaryKey());
 
@@ -244,7 +244,7 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 		DDMStorageAdapterSaveRequest ddmStorageAdapterSaveRequest =
 			builder.build();
 
-		_ddmJSONStorageAdapter.save(ddmStorageAdapterSaveRequest);
+		_jsonDDMStorageAdapter.save(ddmStorageAdapterSaveRequest);
 	}
 
 	@Test
@@ -288,7 +288,7 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 			).build();
 
 		DDMStorageAdapterSaveResponse ddmStorageAdapterSaveResponse =
-			_ddmJSONStorageAdapter.save(ddmStorageAdapterSaveRequest);
+			_jsonDDMStorageAdapter.save(ddmStorageAdapterSaveRequest);
 
 		Assert.assertEquals(1L, ddmStorageAdapterSaveResponse.getPrimaryKey());
 
@@ -336,7 +336,7 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 				1
 			).build();
 
-		_ddmJSONStorageAdapter.save(ddmStorageAdapterSaveRequest);
+		_jsonDDMStorageAdapter.save(ddmStorageAdapterSaveRequest);
 	}
 
 	@Mock
@@ -348,6 +348,6 @@ public class DDMJSONStorageAdapterTest extends PowerMockito {
 	@Mock
 	private DDMFormValuesSerializer _ddmFormValuesSerializer;
 
-	private DDMJSONStorageAdapter _ddmJSONStorageAdapter;
+	private JSONDDMStorageAdapter _jsonDDMStorageAdapter;
 
 }

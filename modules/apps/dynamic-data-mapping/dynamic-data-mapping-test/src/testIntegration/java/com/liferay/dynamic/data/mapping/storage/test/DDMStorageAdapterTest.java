@@ -76,10 +76,10 @@ public class DDMStorageAdapterTest {
 
 	@Test
 	public void testGetDDMStorageAdapter() throws Exception {
-		DDMStorageAdapter ddmJSONStorageAdapter =
+		DDMStorageAdapter jsonDDMStorageAdapter =
 			_ddmStorageAdapterTracker.getDDMStorageAdapter(_STORAGE_TYPE_JSON);
 
-		Assert.assertNotNull(ddmJSONStorageAdapter);
+		Assert.assertNotNull(jsonDDMStorageAdapter);
 
 		DDMStorageAdapter ddmTestStorageAdapter =
 			_ddmStorageAdapterTracker.getDDMStorageAdapter(_STORAGE_TYPE_TEST);

@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "ddm.storage.adapter.type=json",
 	service = DDMStorageAdapter.class
 )
-public class DDMJSONStorageAdapter implements DDMStorageAdapter {
+public class JSONDDMStorageAdapter implements DDMStorageAdapter {
 
 	@Override
 	public DDMStorageAdapterDeleteResponse delete(

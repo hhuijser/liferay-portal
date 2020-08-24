@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.asset.categories.internal.search.spi.model.index.contributor;
+package com.liferay.organizations.internal.search.spi.model.index.contributor;
 
-import com.liferay.asset.kernel.model.AssetCategory;
-import com.liferay.asset.kernel.service.AssetCategoryLocalService;
+import com.liferay.portal.kernel.model.Organization;
+import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.search.batch.BatchIndexingActionable;
 import com.liferay.portal.search.batch.DynamicQueryBatchIndexingActionableFactory;
 import com.liferay.portal.search.spi.model.index.contributor.ModelIndexerWriterContributor;
@@ -25,16 +25,15 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Luan Maoski
- * @author Lucas Marques
+ * @author Igor Fabiano Nazar
  */
 @Component(
 	immediate = true,
-	property = "indexer.class.name=com.liferay.asset.kernel.model.AssetCategory",
+	property = "indexer.class.name=com.liferay.portal.kernel.model.Organization",
 	service = ModelIndexerWriterContributor.class
 )
-public class AssetCategoryModelIndexWriterContributor
-	implements ModelIndexerWriterContributor<AssetCategory> {
+public class OrganizationModelIndexerWriterContributor
+	implements ModelIndexerWriterContributor<Organization> {
 
 	@Override
 	public void customize(
@@ -42,29 +41,27 @@ public class AssetCategoryModelIndexWriterContributor
 		ModelIndexerWriterDocumentHelper modelIndexerWriterDocumentHelper) {
 
 		batchIndexingActionable.setPerformActionMethod(
-			(AssetCategory assetCategory) ->
-				batchIndexingActionable.addDocuments(
-					modelIndexerWriterDocumentHelper.getDocument(
-						assetCategory)));
+			(Organization organization) -> batchIndexingActionable.addDocuments(
+				modelIndexerWriterDocumentHelper.getDocument(organization)));
 	}
 
 	@Override
 	public BatchIndexingActionable getBatchIndexingActionable() {
 		return dynamicQueryBatchIndexingActionableFactory.
 			getBatchIndexingActionable(
-				assetCategoryLocalService.getIndexableActionableDynamicQuery());
+				organizationLocalService.getIndexableActionableDynamicQuery());
 	}
 
 	@Override
-	public long getCompanyId(AssetCategory assetCategory) {
-		return assetCategory.getCompanyId();
+	public long getCompanyId(Organization organization) {
+		return organization.getCompanyId();
 	}
-
-	@Reference
-	protected AssetCategoryLocalService assetCategoryLocalService;
 
 	@Reference
 	protected DynamicQueryBatchIndexingActionableFactory
 		dynamicQueryBatchIndexingActionableFactory;
+
+	@Reference
+	protected OrganizationLocalService organizationLocalService;
 
 }

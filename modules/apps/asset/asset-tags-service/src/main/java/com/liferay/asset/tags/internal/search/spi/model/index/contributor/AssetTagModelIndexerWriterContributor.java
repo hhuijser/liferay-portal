@@ -12,29 +12,29 @@
  * details.
  */
 
-package com.liferay.users.admin.internal.search.spi.model.index.contributor;
+package com.liferay.asset.tags.internal.search.spi.model.index.contributor;
 
-import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.asset.kernel.model.AssetTag;
+import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.portal.search.batch.BatchIndexingActionable;
 import com.liferay.portal.search.batch.DynamicQueryBatchIndexingActionableFactory;
 import com.liferay.portal.search.spi.model.index.contributor.ModelIndexerWriterContributor;
 import com.liferay.portal.search.spi.model.index.contributor.helper.ModelIndexerWriterDocumentHelper;
-import com.liferay.users.admin.internal.search.ContactBatchReindexer;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Luan Maoski
+ * @author Lucas Marques
  */
 @Component(
 	immediate = true,
-	property = "indexer.class.name=com.liferay.portal.kernel.model.User",
+	property = "indexer.class.name=com.liferay.asset.kernel.model.AssetTag",
 	service = ModelIndexerWriterContributor.class
 )
-public class UserModelIndexWriterContributor
-	implements ModelIndexerWriterContributor<User> {
+public class AssetTagModelIndexerWriterContributor
+	implements ModelIndexerWriterContributor<AssetTag> {
 
 	@Override
 	public void customize(
@@ -42,39 +42,27 @@ public class UserModelIndexWriterContributor
 		ModelIndexerWriterDocumentHelper modelIndexerWriterDocumentHelper) {
 
 		batchIndexingActionable.setPerformActionMethod(
-			(User user) -> {
-				if (!user.isDefaultUser()) {
-					batchIndexingActionable.addDocuments(
-						modelIndexerWriterDocumentHelper.getDocument(user));
-				}
-			});
+			(AssetTag assetTag) -> batchIndexingActionable.addDocuments(
+				modelIndexerWriterDocumentHelper.getDocument(assetTag)));
 	}
 
 	@Override
 	public BatchIndexingActionable getBatchIndexingActionable() {
 		return dynamicQueryBatchIndexingActionableFactory.
 			getBatchIndexingActionable(
-				userLocalService.getIndexableActionableDynamicQuery());
+				assetTagLocalService.getIndexableActionableDynamicQuery());
 	}
 
 	@Override
-	public long getCompanyId(User user) {
-		return user.getCompanyId();
-	}
-
-	@Override
-	public void modelIndexed(User user) {
-		contactBatchReindexer.reindex(user.getUserId(), user.getCompanyId());
+	public long getCompanyId(AssetTag assetTag) {
+		return assetTag.getCompanyId();
 	}
 
 	@Reference
-	protected ContactBatchReindexer contactBatchReindexer;
+	protected AssetTagLocalService assetTagLocalService;
 
 	@Reference
 	protected DynamicQueryBatchIndexingActionableFactory
 		dynamicQueryBatchIndexingActionableFactory;
-
-	@Reference
-	protected UserLocalService userLocalService;
 
 }

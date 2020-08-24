@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.organizations.internal.search.spi.model.index.contributor;
+package com.liferay.asset.categories.internal.search.spi.model.index.contributor;
 
-import com.liferay.portal.kernel.model.Organization;
-import com.liferay.portal.kernel.service.OrganizationLocalService;
+import com.liferay.asset.kernel.model.AssetVocabulary;
+import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
 import com.liferay.portal.search.batch.BatchIndexingActionable;
 import com.liferay.portal.search.batch.DynamicQueryBatchIndexingActionableFactory;
 import com.liferay.portal.search.spi.model.index.contributor.ModelIndexerWriterContributor;
@@ -25,15 +25,16 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Igor Fabiano Nazar
+ * @author Luan Maoski
+ * @author Lucas Marques
  */
 @Component(
 	immediate = true,
-	property = "indexer.class.name=com.liferay.portal.kernel.model.Organization",
+	property = "indexer.class.name=com.liferay.asset.kernel.model.AssetVocabulary",
 	service = ModelIndexerWriterContributor.class
 )
-public class OrganizationModelIndexWriterContributor
-	implements ModelIndexerWriterContributor<Organization> {
+public class AssetVocabularyModelIndexerWriterContributor
+	implements ModelIndexerWriterContributor<AssetVocabulary> {
 
 	@Override
 	public void customize(
@@ -41,27 +42,30 @@ public class OrganizationModelIndexWriterContributor
 		ModelIndexerWriterDocumentHelper modelIndexerWriterDocumentHelper) {
 
 		batchIndexingActionable.setPerformActionMethod(
-			(Organization organization) -> batchIndexingActionable.addDocuments(
-				modelIndexerWriterDocumentHelper.getDocument(organization)));
+			(AssetVocabulary assetVocabulary) ->
+				batchIndexingActionable.addDocuments(
+					modelIndexerWriterDocumentHelper.getDocument(
+						assetVocabulary)));
 	}
 
 	@Override
 	public BatchIndexingActionable getBatchIndexingActionable() {
 		return dynamicQueryBatchIndexingActionableFactory.
 			getBatchIndexingActionable(
-				organizationLocalService.getIndexableActionableDynamicQuery());
+				assetVocabularyLocalService.
+					getIndexableActionableDynamicQuery());
 	}
 
 	@Override
-	public long getCompanyId(Organization organization) {
-		return organization.getCompanyId();
+	public long getCompanyId(AssetVocabulary assetVocabulary) {
+		return assetVocabulary.getCompanyId();
 	}
+
+	@Reference
+	protected AssetVocabularyLocalService assetVocabularyLocalService;
 
 	@Reference
 	protected DynamicQueryBatchIndexingActionableFactory
 		dynamicQueryBatchIndexingActionableFactory;
-
-	@Reference
-	protected OrganizationLocalService organizationLocalService;
 
 }

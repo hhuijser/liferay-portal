@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.asset.tags.internal.search.spi.model.index.contributor;
+package com.liferay.asset.categories.internal.search.spi.model.index.contributor;
 
-import com.liferay.asset.kernel.model.AssetTag;
-import com.liferay.asset.kernel.service.AssetTagLocalService;
+import com.liferay.asset.kernel.model.AssetCategory;
+import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.portal.search.batch.BatchIndexingActionable;
 import com.liferay.portal.search.batch.DynamicQueryBatchIndexingActionableFactory;
 import com.liferay.portal.search.spi.model.index.contributor.ModelIndexerWriterContributor;
@@ -30,11 +30,11 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = "indexer.class.name=com.liferay.asset.kernel.model.AssetTag",
+	property = "indexer.class.name=com.liferay.asset.kernel.model.AssetCategory",
 	service = ModelIndexerWriterContributor.class
 )
-public class AssetTagModelIndexWriterContributor
-	implements ModelIndexerWriterContributor<AssetTag> {
+public class AssetCategoryModelIndexerWriterContributor
+	implements ModelIndexerWriterContributor<AssetCategory> {
 
 	@Override
 	public void customize(
@@ -42,24 +42,26 @@ public class AssetTagModelIndexWriterContributor
 		ModelIndexerWriterDocumentHelper modelIndexerWriterDocumentHelper) {
 
 		batchIndexingActionable.setPerformActionMethod(
-			(AssetTag assetTag) -> batchIndexingActionable.addDocuments(
-				modelIndexerWriterDocumentHelper.getDocument(assetTag)));
+			(AssetCategory assetCategory) ->
+				batchIndexingActionable.addDocuments(
+					modelIndexerWriterDocumentHelper.getDocument(
+						assetCategory)));
 	}
 
 	@Override
 	public BatchIndexingActionable getBatchIndexingActionable() {
 		return dynamicQueryBatchIndexingActionableFactory.
 			getBatchIndexingActionable(
-				assetTagLocalService.getIndexableActionableDynamicQuery());
+				assetCategoryLocalService.getIndexableActionableDynamicQuery());
 	}
 
 	@Override
-	public long getCompanyId(AssetTag assetTag) {
-		return assetTag.getCompanyId();
+	public long getCompanyId(AssetCategory assetCategory) {
+		return assetCategory.getCompanyId();
 	}
 
 	@Reference
-	protected AssetTagLocalService assetTagLocalService;
+	protected AssetCategoryLocalService assetCategoryLocalService;
 
 	@Reference
 	protected DynamicQueryBatchIndexingActionableFactory

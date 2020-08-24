@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Mika Koivisto
  */
 @Component(immediate = true, service = ConfigurationBeanDeclaration.class)
-public class SamlProviderCompanyServiceBeanDeclaration
+public class SamlProviderCompanyServiceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override

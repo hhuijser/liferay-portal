@@ -79,16 +79,16 @@ public class JournalContentPortletToolbarContributor
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 		long scopeGroupId = themeDisplay.getScopeGroupId();
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
+		PortletURL newPortletURL = _portal.getControlPanelPortletURL(
 			portletRequest, JournalPortletKeys.JOURNAL,
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcPath", "/edit_article.jsp");
-		portletURL.setParameter(
+		newPortletURL.setParameter("mvcPath", "/edit_article.jsp");
+		newPortletURL.setParameter(
 			"redirect", _portal.getLayoutFullURL(themeDisplay));
-		portletURL.setParameter("portletResource", portletDisplay.getId());
-		portletURL.setParameter("refererPlid", String.valueOf(plid));
-		portletURL.setParameter("groupId", String.valueOf(scopeGroupId));
+		newPortletURL.setParameter("portletResource", portletDisplay.getId());
+		newPortletURL.setParameter("refererPlid", String.valueOf(plid));
+		newPortletURL.setParameter("groupId", String.valueOf(scopeGroupId));
 
 		List<DDMStructure> ddmStructures =
 			_journalFolderService.getDDMStructures(
@@ -116,7 +116,7 @@ public class JournalContentPortletToolbarContributor
 		}
 
 		for (DDMStructure ddmStructure : ddmStructures) {
-			portletURL.setParameter(
+			newPortletURL.setParameter(
 				"ddmStructureId",
 				String.valueOf(ddmStructure.getStructureId()));
 
@@ -141,7 +141,7 @@ public class JournalContentPortletToolbarContributor
 			urlMenuItem.setLabel(label);
 
 			String url = _http.addParameter(
-				portletURL.toString(), "refererPlid", plid);
+				newPortletURL.toString(), "refererPlid", plid);
 
 			urlMenuItem.setURL(url);
 

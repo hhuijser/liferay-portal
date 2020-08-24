@@ -241,7 +241,7 @@ public class PortletURLBuilder {
 
 		@Override
 		public AfterParameterStep setParameter(String name, Object value) {
-			setParameter(String.valueOf(value));
+			setParameter(name, String.valueOf(value));
 
 			return this;
 		}

@@ -55,7 +55,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "path=/portal/saml/keep_alive",
 	service = StrutsAction.class
 )
-public class KeepAliveAction implements StrutsAction {
+public class KeepAliveStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

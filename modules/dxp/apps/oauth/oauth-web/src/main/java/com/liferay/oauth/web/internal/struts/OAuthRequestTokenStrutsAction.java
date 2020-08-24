@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = "path=" + OAuthConstants.PUBLIC_PATH_REQUEST_TOKEN,
 	service = StrutsAction.class
 )
-public class OAuthRequestTokenAction implements StrutsAction {
+public class OAuthRequestTokenStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

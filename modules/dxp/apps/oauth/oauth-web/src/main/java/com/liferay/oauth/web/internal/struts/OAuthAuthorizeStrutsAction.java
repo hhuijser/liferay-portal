@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true, property = "path=" + OAuthConstants.PUBLIC_PATH_AUTHORIZE,
 	service = StrutsAction.class
 )
-public class OAuthAuthorizeAction implements StrutsAction {
+public class OAuthAuthorizeStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

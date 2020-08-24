@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = "model.class.name=com.liferay.multi.factor.authentication.email.otp.configuration.MFAEmailOTPConfiguration",
 	service = ConfigurationModelListener.class
 )
-public class MFAEmailOTPConfigurationListener
+public class MFAEmailOTPConfigurationModelListener
 	implements ConfigurationModelListener {
 
 	@Override
@@ -82,7 +82,7 @@ public class MFAEmailOTPConfigurationListener
 			throw new ConfigurationModelListenerException(
 				configurationException.getMessage(),
 				ConfigurationException.class,
-				MFASystemConfigurationListener.class, properties);
+				MFASystemConfigurationModelListener.class, properties);
 		}
 		catch (PortalException portalException) {
 			_log.error(
@@ -90,12 +90,12 @@ public class MFAEmailOTPConfigurationListener
 
 			throw new ConfigurationModelListenerException(
 				portalException.getMessage(), PortalException.class,
-				MFASystemConfigurationListener.class, properties);
+				MFASystemConfigurationModelListener.class, properties);
 		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		MFAEmailOTPConfigurationListener.class);
+		MFAEmailOTPConfigurationModelListener.class);
 
 	@Reference
 	private ConfigurationProvider _configurationProvider;

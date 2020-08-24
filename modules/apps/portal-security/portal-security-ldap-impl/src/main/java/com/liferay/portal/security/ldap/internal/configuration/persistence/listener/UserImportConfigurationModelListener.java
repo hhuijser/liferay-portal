@@ -55,10 +55,11 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 	immediate = true,
 	property = "model.class.name=com.liferay.portal.security.ldap.exportimport.configuration.LDAPImportConfiguration",
 	service = {
-		ConfigurationModelListener.class, UserImportMessageListener.class
+		ConfigurationModelListener.class,
+		UserImportConfigurationModelListener.class
 	}
 )
-public class UserImportMessageListener
+public class UserImportConfigurationModelListener
 	extends BaseMessageListener implements ConfigurationModelListener {
 
 	@Override
@@ -216,7 +217,7 @@ public class UserImportMessageListener
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		UserImportMessageListener.class);
+		UserImportConfigurationModelListener.class);
 
 	private CompanyLocalService _companyLocalService;
 	private ConfigurationProvider<LDAPImportConfiguration>

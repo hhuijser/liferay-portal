@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
 	property = "model.class.name=com.liferay.journal.configuration.JournalServiceConfiguration",
 	service = ConfigurationModelListener.class
 )
-public class JournalServiceConfigurationListener
+public class JournalServiceConfigurationModelListener
 	implements ConfigurationModelListener {
 
 	@Override

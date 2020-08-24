@@ -50,7 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = "model.class.name=com.liferay.multi.factor.authentication.web.internal.system.configuration.MFASystemConfiguration",
 	service = ConfigurationModelListener.class
 )
-public class MFASystemConfigurationListener
+public class MFASystemConfigurationModelListener
 	implements ConfigurationModelListener {
 
 	@Override
@@ -124,7 +124,7 @@ public class MFASystemConfigurationListener
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		MFASystemConfigurationListener.class);
+		MFASystemConfigurationModelListener.class);
 
 	@Reference
 	private CompanyLocalService _companyLocalService;

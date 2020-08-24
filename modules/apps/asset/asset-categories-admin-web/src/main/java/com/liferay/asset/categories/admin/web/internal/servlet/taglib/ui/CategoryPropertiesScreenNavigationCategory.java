@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class CategoryPropertiesScreenNavigationEntry
+public class CategoryPropertiesScreenNavigationCategory
 	implements ScreenNavigationCategory, ScreenNavigationEntry<AssetCategory> {
 
 	@Override

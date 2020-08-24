@@ -12,14 +12,13 @@
  * details.
  */
 
-package com.liferay.asset.categories.admin.web.internal.servlet.taglib.ui;
+package com.liferay.server.admin.web.internal.frontend.taglib.servlet.taglib.ui;
 
-import com.liferay.asset.categories.admin.web.internal.constants.AssetCategoriesConstants;
-import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.server.admin.web.internal.constants.ServerAdminNavigationEntryConstants;
 
 import java.io.IOException;
 
@@ -32,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Jürgen Kappler
+ * @author Albert Lee
  */
 @Component(
 	property = {
@@ -41,27 +40,29 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class CategoryDetailsScreenNavigationEntry
-	implements ScreenNavigationCategory, ScreenNavigationEntry<AssetCategory> {
+public class ServerSystemPropertiesScreenNavigationCategory
+	implements ScreenNavigationCategory, ScreenNavigationEntry<Object> {
 
 	@Override
 	public String getCategoryKey() {
-		return "details";
+		return ServerAdminNavigationEntryConstants.
+			CATEGORY_KEY_SYSTEM_PROPERTIES;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return "details";
+		return ServerAdminNavigationEntryConstants.ENTRY_KEY_SYSTEM_PROPERTIES;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "details");
+		return LanguageUtil.get(locale, "system-properties");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return AssetCategoriesConstants.CATEGORY_KEY_GENERAL;
+		return ServerAdminNavigationEntryConstants.
+			SCREEN_NAVIGATION_KEY_PROPERTIES;
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class CategoryDetailsScreenNavigationEntry
 		throws IOException {
 
 		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse, "/category/details.jsp");
+			httpServletRequest, httpServletResponse, "/system_properties.jsp");
 	}
 
 	@Reference

@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.CompanyConstants;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
@@ -37,7 +38,6 @@ import java.util.Collection;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
@@ -101,12 +101,13 @@ public class OptimizeImagesPortletConfigurationIcon
 			return "javascript:;";
 		}
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, AMPortletKeys.ADAPTIVE_MEDIA,
-			PortletRequest.ACTION_PHASE);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/adaptive_media/optimize_images");
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, AMPortletKeys.ADAPTIVE_MEDIA,
+				PortletRequest.ACTION_PHASE)
+		).setActionName(
+			"/adaptive_media/optimize_images"
+		).build();
 
 		return portletURL.toString();
 	}

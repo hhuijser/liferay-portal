@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.model.LayoutSetBranch;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -301,9 +302,11 @@ public class LayoutsTreeTag extends IncludeTag {
 		for (Map.Entry<String, PortletURL> entry : portletURLs.entrySet()) {
 			JSONObject jsonObject = JSONUtil.put("name", entry.getKey());
 
-			PortletURL portletURL = entry.getValue();
-
-			portletURL.setParameter("selPlid", "{selPlid}");
+			PortletURL portletURL = PortletURLBuilder.create(
+				entry.getValue()
+			).setParameter(
+				"selPlid", "{selPlid}"
+			).build();
 
 			jsonObject.put(
 				"value",

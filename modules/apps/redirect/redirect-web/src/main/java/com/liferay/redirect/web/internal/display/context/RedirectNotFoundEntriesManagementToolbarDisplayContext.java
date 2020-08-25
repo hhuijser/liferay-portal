@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -96,9 +97,11 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = liferayPortletResponse.createRenderURL();
-
-		clearResultsURL.setParameter("navigation", "404-urls");
+		PortletURL clearResultsURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"navigation", "404-urls"
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -171,9 +174,11 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 		return LabelItemListBuilder.add(
 			() -> !StringUtil.equals(getNavigation(), "active-urls"),
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter(getNavigationParam(), (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					getNavigationParam(), (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -188,9 +193,11 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 		).add(
 			() -> _getFilterDate() != 0,
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter("filterDate", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"filterDate", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -207,10 +214,13 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL searchActionURL = getPortletURL();
-
-		searchActionURL.setParameter("orderByCol", getOrderByCol());
-		searchActionURL.setParameter("orderByType", getOrderByType());
+		PortletURL searchActionURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return searchActionURL.toString();
 	}
@@ -275,9 +285,11 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 		return dropdownItem -> {
 			dropdownItem.setActive(days == _getFilterDate());
 
-			PortletURL portletURL = getPortletURL();
-
-			portletURL.setParameter("filterDate", String.valueOf(days));
+			PortletURL portletURL = PortletURLBuilder.create(
+				getPortletURL()
+			).setParameter(
+				"filterDate", String.valueOf(days)
+			).build();
 
 			dropdownItem.setHref(portletURL);
 

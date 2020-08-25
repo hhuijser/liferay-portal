@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
@@ -91,9 +92,11 @@ public class ViewOrganizationsManagementToolbarDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -148,11 +151,13 @@ public class ViewOrganizationsManagementToolbarDisplayContext {
 
 	public PortletURL getPortletURL() {
 		try {
-			PortletURL portletURL = PortletURLUtil.clone(
-				_currentURL, _renderResponse);
-
-			portletURL.setParameter("orderByCol", getOrderByCol());
-			portletURL.setParameter("orderByType", getOrderByType());
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLUtil.clone(_currentURL, _renderResponse)
+			).setParameter(
+				"orderByCol", getOrderByCol()
+			).setParameter(
+				"orderByType", getOrderByType()
+			).build();
 
 			return portletURL;
 		}
@@ -263,11 +268,12 @@ public class ViewOrganizationsManagementToolbarDisplayContext {
 	}
 
 	public String getSortingURL() {
-		PortletURL sortingURL = getPortletURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL.toString();
 	}
@@ -326,10 +332,13 @@ public class ViewOrganizationsManagementToolbarDisplayContext {
 		String usersListView = (String)_httpServletRequest.getAttribute(
 			"view.jsp-usersListView");
 
-		PortletURL viewUsersURL = _renderResponse.createRenderURL();
-
-		viewUsersURL.setParameter("toolbarItem", toolbarItem);
-		viewUsersURL.setParameter("usersListView", usersListView);
+		PortletURL viewUsersURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"toolbarItem", toolbarItem
+		).setParameter(
+			"usersListView", usersListView
+		).build();
 
 		return viewUsersURL.toString();
 	}

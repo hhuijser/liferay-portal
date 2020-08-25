@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
@@ -303,16 +304,17 @@ public class AssetEntryUsagesDisplayContext {
 				String.valueOf(AssetRendererFactory.TYPE_LATEST));
 		}
 		else {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				_renderRequest, assetEntryUsage.getContainerKey(),
-				assetEntryUsage.getPlid(), PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					_renderRequest, assetEntryUsage.getContainerKey(),
+					assetEntryUsage.getPlid(), PortletRequest.RENDER_PHASE)
+			).setParameter(
 				"previewAssetEntryId",
-				String.valueOf(assetEntryUsage.getAssetEntryId()));
-			portletURL.setParameter(
+				String.valueOf(assetEntryUsage.getAssetEntryId())
+			).setParameter(
 				"previewAssetEntryType",
-				String.valueOf(AssetRendererFactory.TYPE_LATEST));
+				String.valueOf(AssetRendererFactory.TYPE_LATEST)
+			).build();
 
 			layoutURL = portletURL.toString();
 		}

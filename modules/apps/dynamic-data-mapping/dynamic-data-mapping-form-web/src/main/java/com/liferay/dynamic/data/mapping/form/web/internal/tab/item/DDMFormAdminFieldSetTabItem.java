@@ -19,6 +19,7 @@ import com.liferay.dynamic.data.mapping.util.DDMDisplayTabItem;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 
 import javax.portlet.PortletURL;
 
@@ -48,10 +49,11 @@ public class DDMFormAdminFieldSetTabItem extends DDMFormAdminTabItem {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL portletURL = getPortletURL(
-			liferayPortletRequest, liferayPortletResponse);
-
-		portletURL.setParameter("currentTab", "element-set");
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL(liferayPortletRequest, liferayPortletResponse)
+		).setParameter(
+			"currentTab", "element-set"
+		).build();
 
 		return portletURL.toString();
 	}

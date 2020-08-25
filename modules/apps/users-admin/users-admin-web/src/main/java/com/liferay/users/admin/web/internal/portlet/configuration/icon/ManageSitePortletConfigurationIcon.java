@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
@@ -74,13 +75,14 @@ public class ManageSitePortletConfigurationIcon
 
 			Group organizationGroup = organization.getGroup();
 
-			PortletURL portletURL = PortletProviderUtil.getPortletURL(
-				portletRequest, organizationGroup, Group.class.getName(),
-				PortletProvider.Action.EDIT);
-
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(
+					portletRequest, organizationGroup, Group.class.getName(),
+					PortletProvider.Action.EDIT)
+			).setParameter(
 				"viewOrganizationsRedirect",
-				_portal.getCurrentURL(portletRequest));
+				_portal.getCurrentURL(portletRequest)
+			).build();
 
 			return portletURL.toString();
 		}

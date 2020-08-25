@@ -54,6 +54,7 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
@@ -358,9 +359,11 @@ public class AssetCategoriesDisplayContext {
 	}
 
 	public String getDefaultRedirect() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCPath(
+			"/view.jsp"
+		).build();
 
 		return portletURL.toString();
 	}
@@ -381,12 +384,14 @@ public class AssetCategoriesDisplayContext {
 	}
 
 	public String getEditCategoryRedirect() throws PortalException {
-		PortletURL backURL = _renderResponse.createRenderURL();
-
 		long parentCategoryId = BeanParamUtil.getLong(
 			getCategory(), _httpServletRequest, "parentCategoryId");
 
-		backURL.setParameter("mvcPath", "/view.jsp");
+		PortletURL backURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCPath(
+			"/view.jsp"
+		).build();
 
 		if (parentCategoryId > 0) {
 			backURL.setParameter(
@@ -402,9 +407,11 @@ public class AssetCategoriesDisplayContext {
 	}
 
 	public PortletURL getEditVocabularyURL() {
-		PortletURL editVocabularyURL = _renderResponse.createRenderURL();
-
-		editVocabularyURL.setParameter("mvcPath", "/edit_vocabulary.jsp");
+		PortletURL editVocabularyURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCPath(
+			"/edit_vocabulary.jsp"
+		).build();
 
 		return editVocabularyURL;
 	}
@@ -500,21 +507,25 @@ public class AssetCategoriesDisplayContext {
 				_themeDisplay.getScopeGroupId(),
 				vocabulary.getVisibilityType());
 
-		PortletURL selectCategoryURL = PortletProviderUtil.getPortletURL(
-			_httpServletRequest, AssetCategory.class.getName(),
-			PortletProvider.Action.BROWSE);
-
-		selectCategoryURL.setParameter(
-			"allowedSelectVocabularies", Boolean.TRUE.toString());
-		selectCategoryURL.setParameter(
-			"eventName", _renderResponse.getNamespace() + "selectCategory");
-		selectCategoryURL.setParameter("moveCategory", Boolean.TRUE.toString());
-		selectCategoryURL.setParameter("singleSelect", Boolean.TRUE.toString());
-		selectCategoryURL.setParameter(
+		PortletURL selectCategoryURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				_httpServletRequest, AssetCategory.class.getName(),
+				PortletProvider.Action.BROWSE)
+		).setParameter(
+			"allowedSelectVocabularies", Boolean.TRUE.toString()
+		).setParameter(
+			"eventName", _renderResponse.getNamespace() + "selectCategory"
+		).setParameter(
+			"moveCategory", Boolean.TRUE.toString()
+		).setParameter(
+			"singleSelect", Boolean.TRUE.toString()
+		).setParameter(
 			"vocabularyIds",
 			ListUtil.toString(
-				vocabularies, AssetVocabulary.VOCABULARY_ID_ACCESSOR));
-		selectCategoryURL.setWindowState(LiferayWindowState.POP_UP);
+				vocabularies, AssetVocabulary.VOCABULARY_ID_ACCESSOR)
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		_selectCategoryURL = selectCategoryURL.toString();
 
@@ -784,11 +795,15 @@ public class AssetCategoriesDisplayContext {
 		PortletURL currentURL = PortletURLUtil.getCurrent(
 			_renderRequest, _renderResponse);
 
-		PortletURL iteratorURL = _renderResponse.createRenderURL();
-
-		iteratorURL.setParameter("mvcPath", "/view.jsp");
-		iteratorURL.setParameter("redirect", currentURL.toString());
-		iteratorURL.setParameter("navigation", getNavigation());
+		PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCPath(
+			"/view.jsp"
+		).setRedirect(
+			currentURL.toString()
+		).setParameter(
+			"navigation", getNavigation()
+		).build();
 
 		if (!isFlattenedNavigationAllowed()) {
 			iteratorURL.setParameter(

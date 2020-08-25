@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -74,13 +75,16 @@ public class GroupSelectorDisplayContext {
 	}
 
 	public PortletURL getGroupItemSelectorURL(String groupType) {
-		PortletURL portletURL = _getItemSelectorURL();
-
-		portletURL.setParameter("groupType", groupType);
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			_getItemSelectorURL()
+		).setParameter(
+			"groupType", groupType
+		).setParameter(
 			"selectedTab",
-			ParamUtil.getString(_liferayPortletRequest, "selectedTab"));
-		portletURL.setParameter("showGroupSelector", Boolean.TRUE.toString());
+			ParamUtil.getString(_liferayPortletRequest, "selectedTab")
+		).setParameter(
+			"showGroupSelector", Boolean.TRUE.toString()
+		).build();
 
 		return portletURL;
 	}
@@ -180,13 +184,16 @@ public class GroupSelectorDisplayContext {
 	}
 
 	private PortletURL _getIteratorURL() {
-		PortletURL portletURL = _getItemSelectorURL();
-
-		portletURL.setParameter("groupType", _getGroupType());
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			_getItemSelectorURL()
+		).setParameter(
+			"groupType", _getGroupType()
+		).setParameter(
 			"selectedTab",
-			ParamUtil.getString(_liferayPortletRequest, "selectedTab"));
-		portletURL.setParameter("showGroupSelector", Boolean.TRUE.toString());
+			ParamUtil.getString(_liferayPortletRequest, "selectedTab")
+		).setParameter(
+			"showGroupSelector", Boolean.TRUE.toString()
+		).build();
 
 		return portletURL;
 	}

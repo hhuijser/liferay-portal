@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.OrganizationPermissionUtil;
@@ -73,14 +74,17 @@ public class AssignOrganizationRolesPortletConfigurationIcon
 
 			long organizationGroupId = organization.getGroupId();
 
-			PortletURL portletURL = PortletProviderUtil.getPortletURL(
-				portletRequest, UserGroupRole.class.getName(),
-				PortletProvider.Action.EDIT);
-
-			portletURL.setParameter("className", User.class.getName());
-			portletURL.setParameter(
-				"groupId", String.valueOf(organizationGroupId));
-			portletURL.setWindowState(LiferayWindowState.POP_UP);
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(
+					portletRequest, UserGroupRole.class.getName(),
+					PortletProvider.Action.EDIT)
+			).setParameter(
+				"className", User.class.getName()
+			).setParameter(
+				"groupId", String.valueOf(organizationGroupId)
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 			return portletURL.toString();
 		}

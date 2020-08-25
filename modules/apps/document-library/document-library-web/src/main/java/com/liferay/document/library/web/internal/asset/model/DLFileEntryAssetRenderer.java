@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinderRegistryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.capabilities.CommentCapability;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -55,7 +56,6 @@ import com.liferay.trash.TrashHelper;
 
 import java.util.Locale;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
@@ -237,12 +237,13 @@ public class DLFileEntryAssetRenderer
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
-		PortletURL portletURL = _getPortletURL(liferayPortletRequest);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_file_entry");
-		portletURL.setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_getPortletURL(liferayPortletRequest)
+		).setMVCRenderCommandName(
+			"/document_library/edit_file_entry"
+		).setParameter(
+			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+		).build();
 
 		return portletURL;
 	}
@@ -252,15 +253,17 @@ public class DLFileEntryAssetRenderer
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
-		PortletURL portletURL = _getPortletURL(liferayPortletRequest);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/document_library/get_file");
-		portletURL.setParameter(
-			"groupId", String.valueOf(_fileEntry.getRepositoryId()));
-		portletURL.setParameter(
-			"folderId", String.valueOf(_fileEntry.getFolderId()));
-		portletURL.setParameter("title", String.valueOf(_fileEntry.getTitle()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_getPortletURL(liferayPortletRequest)
+		).setActionName(
+			"/document_library/get_file"
+		).setParameter(
+			"groupId", String.valueOf(_fileEntry.getRepositoryId())
+		).setParameter(
+			"folderId", String.valueOf(_fileEntry.getFolderId())
+		).setParameter(
+			"title", String.valueOf(_fileEntry.getTitle())
+		).build();
 
 		return portletURL;
 	}
@@ -285,14 +288,15 @@ public class DLFileEntryAssetRenderer
 		AssetRendererFactory<FileEntry> assetRendererFactory =
 			getAssetRendererFactory();
 
-		PortletURL portletURL = assetRendererFactory.getURLView(
-			liferayPortletResponse, windowState);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/view_file_entry");
-		portletURL.setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId()));
-		portletURL.setWindowState(windowState);
+		PortletURL portletURL = PortletURLBuilder.create(
+			assetRendererFactory.getURLView(liferayPortletResponse, windowState)
+		).setMVCRenderCommandName(
+			"/document_library/view_file_entry"
+		).setParameter(
+			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+		).setWindowState(
+			windowState
+		).build();
 
 		return portletURL.toString();
 	}

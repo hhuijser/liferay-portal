@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -105,11 +106,12 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 		renderURL.setParameter(
 			"mvcRenderCommandName", "/document_library/ddm/edit_ddm_structure");
 
-		PortletURL currentPortletURL = PortletURLUtil.getCurrent(
-			_liferayPortletRequest, _liferayPortletResponse);
-
-		currentPortletURL.setParameter(
-			"navigation", "file_entry_metadata_sets");
+		PortletURL currentPortletURL = PortletURLBuilder.create(
+			PortletURLUtil.getCurrent(
+				_liferayPortletRequest, _liferayPortletResponse)
+		).setParameter(
+			"navigation", "file_entry_metadata_sets"
+		).build();
 
 		renderURL.setParameter("redirect", String.valueOf(currentPortletURL));
 

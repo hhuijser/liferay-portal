@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -80,11 +81,14 @@ public class LinkToPageLayoutTypeControllerDisplayContext {
 		layoutItemSelectorCriterion.setShowPrivatePages(privateLayout);
 		layoutItemSelectorCriterion.setShowPublicPages(!privateLayout);
 
-		PortletURL itemSelectorURL = itemSelector.getItemSelectorURL(
-			RequestBackedPortletURLFactoryUtil.create(_liferayPortletRequest),
-			getEventName(), layoutItemSelectorCriterion);
-
-		itemSelectorURL.setParameter("layoutUuid", getLinkToLayoutUuid());
+		PortletURL itemSelectorURL = PortletURLBuilder.create(
+			itemSelector.getItemSelectorURL(
+				RequestBackedPortletURLFactoryUtil.create(
+					_liferayPortletRequest),
+				getEventName(), layoutItemSelectorCriterion)
+		).setParameter(
+			"layoutUuid", getLinkToLayoutUuid()
+		).build();
 
 		long selPlid = ParamUtil.getLong(_liferayPortletRequest, "selPlid");
 

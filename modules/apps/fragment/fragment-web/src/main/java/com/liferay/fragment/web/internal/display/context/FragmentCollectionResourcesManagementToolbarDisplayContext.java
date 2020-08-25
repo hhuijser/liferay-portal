@@ -33,13 +33,13 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadServletRequestConfigurationHelperUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -83,13 +83,13 @@ public class FragmentCollectionResourcesManagementToolbarDisplayContext
 					"action", "deleteSelectedFragmentCollectionResources");
 
 				PortletURL deleteFragmentCollectionResourcesURL =
-					liferayPortletResponse.createActionURL();
-
-				deleteFragmentCollectionResourcesURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/fragment/delete_fragment_collection_resources");
-				deleteFragmentCollectionResourcesURL.setParameter(
-					"redirect", _themeDisplay.getURLCurrent());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setActionName(
+						"/fragment/delete_fragment_collection_resources"
+					).setRedirect(
+						_themeDisplay.getURLCurrent()
+					).build();
 
 				dropdownItem.putData(
 					"deleteFragmentCollectionResourcesURL",
@@ -138,11 +138,11 @@ public class FragmentCollectionResourcesManagementToolbarDisplayContext
 	}
 
 	private String _getItemSelectorURL() {
-		PortletURL uploadURL = liferayPortletResponse.createActionURL();
-
-		uploadURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/fragment/upload_fragment_collection_resource");
+		PortletURL uploadURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse
+		).setActionName(
+			"/fragment/upload_fragment_collection_resource"
+		).build();
 
 		ItemSelectorCriterion itemSelectorCriterion =
 			new UploadItemSelectorCriterion(

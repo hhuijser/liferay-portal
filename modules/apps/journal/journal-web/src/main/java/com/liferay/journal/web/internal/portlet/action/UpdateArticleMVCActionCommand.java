@@ -441,12 +441,6 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 			String redirect)
 		throws Exception {
 
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
-
-		String referringPortletResource = ParamUtil.getString(
-			actionRequest, "referringPortletResource");
-
 		String languageId = ParamUtil.getString(actionRequest, "languageId");
 
 		PortletURL portletURL = PortletURLBuilder.create(
@@ -458,9 +452,11 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 		).setRedirect(
 			redirect
 		).setParameter(
-			"portletResource", portletResource
+			"portletResource",
+			ParamUtil.getString(actionRequest, "portletResource")
 		).setParameter(
-			"referringPortletResource", referringPortletResource
+			"referringPortletResource",
+			ParamUtil.getString(actionRequest, "referringPortletResource")
 		).setParameter(
 			"resourcePrimKey", article.getResourcePrimKey()
 		).setParameter(

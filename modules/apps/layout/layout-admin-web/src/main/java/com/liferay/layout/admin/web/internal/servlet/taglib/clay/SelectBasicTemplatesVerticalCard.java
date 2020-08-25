@@ -57,11 +57,6 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
 
 		try {
-			long selPlid = ParamUtil.getLong(_httpServletRequest, "selPlid");
-
-			boolean privateLayout = ParamUtil.getBoolean(
-				_httpServletRequest, "privateLayout");
-
 			PortletURL addLayoutURL = PortletURLBuilder.createRenderURL(
 				_renderResponse
 			).setMVCRenderCommandName(
@@ -69,9 +64,10 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 			).setParameter(
 				"backURL", redirect
 			).setParameter(
-				"selPlid", selPlid
+				"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
 			).setParameter(
-				"privateLayout", privateLayout
+				"privateLayout",
+				ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
 			).setParameter(
 				"type", LayoutConstants.TYPE_CONTENT
 			).setParameter(

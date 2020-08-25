@@ -344,12 +344,6 @@ public class ViewTreeManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		String toolbarItem = GetterUtil.getString(
-			_httpServletRequest.getAttribute("view.jsp-toolbarItem"));
-
-		String usersListView = GetterUtil.getString(
-			_httpServletRequest.getAttribute("view.jsp-usersListView"));
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCRenderCommandName(
@@ -357,9 +351,13 @@ public class ViewTreeManagementToolbarDisplayContext {
 		).setParameter(
 			"organizationId", _organization.getOrganizationId()
 		).setParameter(
-			"toolbarItem", toolbarItem
+			"toolbarItem",
+			GetterUtil.getString(
+				_httpServletRequest.getAttribute("view.jsp-toolbarItem"))
 		).setParameter(
-			"usersListView", usersListView
+			"usersListView",
+			GetterUtil.getString(
+				_httpServletRequest.getAttribute("view.jsp-usersListView"))
 		).setParameter(
 			"displayStyle", _displayStyle
 		).build();

@@ -376,18 +376,21 @@ public class FolderActionDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
-
-		if (Validator.isNull(redirect)) {
-			redirect = themeDisplay.getURLCurrent();
-		}
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/document_library/view_folder"
 		).setRedirect(
-			redirect
+			() -> {
+				String redirect = ParamUtil.getString(
+					_httpServletRequest, "redirect");
+
+				if (Validator.isNull(redirect)) {
+					redirect = themeDisplay.getURLCurrent();
+				}
+
+				return redirect;
+			}
 		).setParameter(
 			"folderId", folder.getFolderId()
 		).build();

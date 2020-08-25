@@ -403,15 +403,18 @@ public class WorkflowDefinitionDisplayContext {
 	}
 
 	public String getSearchURL(HttpServletRequest httpServletRequest) {
-		ThemeDisplay themeDisplay =
-			_workflowDefinitionRequestHelper.getThemeDisplay();
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			_getPortletURL(null)
 		).setMVCPath(
 			"/view.jsp"
 		).setParameter(
-			"groupId", themeDisplay.getScopeGroupId()
+			"groupId",
+			() -> {
+				ThemeDisplay themeDisplay =
+					_workflowDefinitionRequestHelper.getThemeDisplay();
+
+				return themeDisplay.getScopeGroupId();
+			}
 		).setParameter(
 			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION
 		).build();
@@ -422,16 +425,19 @@ public class WorkflowDefinitionDisplayContext {
 	public String getSortingURL(HttpServletRequest httpServletRequest)
 		throws PortletException {
 
-		String orderByType = ParamUtil.getString(
-			httpServletRequest, "orderByType", "asc");
-
 		LiferayPortletResponse liferayPortletResponse =
 			_workflowDefinitionRequestHelper.getLiferayPortletResponse();
 
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setParameter(
-			"orderByType", Objects.equals(orderByType, "asc") ? "desc" : "asc"
+			"orderByType",
+			() -> {
+				String orderByType = ParamUtil.getString(
+					httpServletRequest, "orderByType", "asc");
+
+				return Objects.equals(orderByType, "asc") ? "desc" : "asc";
+			}
 		).build();
 
 		String definitionsNavigation = ParamUtil.getString(

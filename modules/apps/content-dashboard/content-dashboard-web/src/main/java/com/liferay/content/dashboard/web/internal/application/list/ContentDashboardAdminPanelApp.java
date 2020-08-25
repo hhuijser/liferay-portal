@@ -55,7 +55,7 @@ public class ContentDashboardAdminPanelApp extends BasePanelApp {
 		PortletURL portletURL = PortletURLBuilder.create(
 			super.getPortletURL(httpServletRequest)
 		).setParameter(
-			"authorIds", String.valueOf(_portal.getUserId(httpServletRequest))
+			"authorIds", _portal.getUserId(httpServletRequest)
 		).build();
 
 		return portletURL;

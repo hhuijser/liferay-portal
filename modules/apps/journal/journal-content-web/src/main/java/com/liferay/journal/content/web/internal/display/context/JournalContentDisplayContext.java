@@ -736,7 +736,7 @@ public class JournalContentDisplayContext {
 		).setRedirect(
 			_themeDisplay.getURLCurrent()
 		).setParameter(
-			"ddmTemplateId", String.valueOf(ddmTemplate.getTemplateId())
+			"ddmTemplateId", ddmTemplate.getTemplateId()
 		).setPortletMode(
 			PortletMode.VIEW
 		).build();

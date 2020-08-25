@@ -93,7 +93,7 @@ public class DLURLHelperImpl implements DLURLHelper {
 		).setMVCRenderCommandName(
 			"/document_library/view_file_entry"
 		).setParameter(
-			"fileEntryId", String.valueOf(fileEntryId)
+			"fileEntryId", fileEntryId
 		).build();
 
 		return portletURL.toString();

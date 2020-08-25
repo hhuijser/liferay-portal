@@ -1216,8 +1216,7 @@ public class CalendarPortlet extends MVCPortlet {
 		).setMVCPath(
 			"/view_calendar_booking.jsp"
 		).setParameter(
-			"calendarBookingId",
-			String.valueOf(calendarBooking.getCalendarBookingId())
+			"calendarBookingId", calendarBooking.getCalendarBookingId()
 		).setParameter(
 			"instanceIndex", "0"
 		).setWindowState(

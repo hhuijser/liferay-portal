@@ -94,7 +94,7 @@ public class SiteVerticalCard extends BaseBaseClayCard implements VerticalCard {
 		).setParameter(
 			"backURL", _themeDisplay.getURLCurrent()
 		).setParameter(
-			"groupId", String.valueOf(_group.getGroupId())
+			"groupId", _group.getGroupId()
 		).build();
 
 		return portletURL.toString();

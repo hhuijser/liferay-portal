@@ -101,7 +101,7 @@ public class DLViewFileEntryMetadataSetsManagementToolbarDisplayContext
 			"tabs1",
 			ParamUtil.getString(liferayPortletRequest, "tabs1", "structures")
 		).setParameter(
-			"groupId", String.valueOf(_dlRequestHelper.getScopeGroupId())
+			"groupId", _dlRequestHelper.getScopeGroupId()
 		).build();
 
 		return portletURL.toString();

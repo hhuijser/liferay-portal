@@ -215,7 +215,7 @@ public class SelectOrganizationsDisplayContext {
 		).setMVCRenderCommandName(
 			"selectOrganizations"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
 			"eventName", getEventName()
 		).build();

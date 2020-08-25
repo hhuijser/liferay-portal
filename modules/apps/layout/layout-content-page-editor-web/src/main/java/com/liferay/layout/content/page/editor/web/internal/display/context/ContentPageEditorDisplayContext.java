@@ -901,7 +901,7 @@ public class ContentPageEditorDisplayContext {
 			).setRedirect(
 				themeDisplay.getURLCurrent()
 			).setParameter(
-				"selPlid", String.valueOf(themeDisplay.getPlid())
+				"selPlid", themeDisplay.getPlid()
 			).build();
 
 			return discardDraftURL.toString();
@@ -920,7 +920,7 @@ public class ContentPageEditorDisplayContext {
 				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 				PortletRequest.RENDER_PHASE)
 		).setParameter(
-			"selPlid", String.valueOf(publishedLayout.getPlid())
+			"selPlid", publishedLayout.getPlid()
 		).build();
 
 		deleteLayoutURL.setParameter("redirect", redirectURL.toString());
@@ -1709,11 +1709,11 @@ public class ContentPageEditorDisplayContext {
 		).setParameter(
 			"backURL", themeDisplay.getURLCurrent()
 		).setParameter(
-			"groupId", String.valueOf(layout.getGroupId())
+			"groupId", layout.getGroupId()
 		).setParameter(
-			"selPlid", String.valueOf(layout.getPlid())
+			"selPlid", layout.getPlid()
 		).setParameter(
-			"privateLayout", String.valueOf(layout.isPrivateLayout())
+			"privateLayout", layout.isPrivateLayout()
 		).build();
 
 		return lookAndFeelURL.toString();

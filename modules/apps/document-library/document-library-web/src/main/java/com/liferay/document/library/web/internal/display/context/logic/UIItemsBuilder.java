@@ -137,7 +137,7 @@ public class UIItemsBuilder {
 			_getActionURL(
 				"/document_library/edit_file_entry", Constants.CANCEL_CHECKOUT)
 		).setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+			"fileEntryId", _fileEntry.getFileEntryId()
 		).build();
 
 		_addURLUIItem(
@@ -184,7 +184,7 @@ public class UIItemsBuilder {
 			_getActionURL(
 				"/document_library/edit_file_entry", Constants.CHECKIN)
 		).setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+			"fileEntryId", _fileEntry.getFileEntryId()
 		).build();
 
 		JavaScriptToolbarItem javaScriptToolbarItem = _addJavaScriptUIItem(
@@ -229,7 +229,7 @@ public class UIItemsBuilder {
 			_getActionURL(
 				"/document_library/edit_file_entry", Constants.CHECKOUT)
 		).setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+			"fileEntryId", _fileEntry.getFileEntryId()
 		).build();
 
 		_addURLUIItem(
@@ -448,7 +448,7 @@ public class UIItemsBuilder {
 				"/document_library/edit_file_entry", Constants.DELETE,
 				viewFileEntryURL.toString())
 		).setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+			"fileEntryId", _fileEntry.getFileEntryId()
 		).setParameter(
 			"version", _fileVersion.getVersion()
 		).build();
@@ -839,15 +839,14 @@ public class UIItemsBuilder {
 			portletURL = PortletURLBuilder.create(
 				_getActionURL("/document_library/publish_file_entry")
 			).setParameter(
-				"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+				"fileEntryId", _fileEntry.getFileEntryId()
 			).build();
 		}
 		else {
 			portletURL = PortletURLBuilder.create(
 				_getActionURL("/document_library/publish_file_shortcut")
 			).setParameter(
-				"fileShortcutId",
-				String.valueOf(_fileShortcut.getFileShortcutId())
+				"fileShortcutId", _fileShortcut.getFileShortcutId()
 			).build();
 		}
 
@@ -888,7 +887,7 @@ public class UIItemsBuilder {
 				"/document_library/edit_file_entry", Constants.REVERT,
 				viewFileEntryURL.toString())
 		).setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+			"fileEntryId", _fileEntry.getFileEntryId()
 		).setParameter(
 			"version", _fileVersion.getVersion()
 		).build();
@@ -906,7 +905,7 @@ public class UIItemsBuilder {
 		PortletURL portletURL = PortletURLBuilder.create(
 			_getRenderURL("/document_library/view_file_entry")
 		).setParameter(
-			"fileEntryId", String.valueOf(_fileShortcut.getToFileEntryId())
+			"fileEntryId", _fileShortcut.getToFileEntryId()
 		).build();
 
 		_addURLUIItem(
@@ -935,7 +934,7 @@ public class UIItemsBuilder {
 			_getActionURL(
 				"/document_library/edit_file_entry", Constants.CHECKIN)
 		).setParameter(
-			"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+			"fileEntryId", _fileEntry.getFileEntryId()
 		).build();
 
 		if (!_versioningStrategy.isOverridable()) {

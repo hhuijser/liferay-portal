@@ -131,7 +131,7 @@ public class MDRActionDisplayContext {
 		).setRedirect(
 			redirect
 		).setParameter(
-			"ruleGroupInstanceId", String.valueOf(getRuleGroupInstanceId())
+			"ruleGroupInstanceId", getRuleGroupInstanceId()
 		).build();
 
 		_portletURL = portletURL;

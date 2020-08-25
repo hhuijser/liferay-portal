@@ -89,10 +89,9 @@ public class UserActionDropdownItemsProvider {
 		).setMVCPath(
 			"/users_roles.jsp"
 		).setParameter(
-			"p_u_i_d", String.valueOf(_user.getUserId())
+			"p_u_i_d", _user.getUserId()
 		).setParameter(
-			"groupId",
-			String.valueOf(_themeDisplay.getSiteGroupIdOrLiveGroupId())
+			"groupId", _themeDisplay.getSiteGroupIdOrLiveGroupId()
 		).build();
 
 		Group group = _themeDisplay.getScopeGroup();
@@ -111,7 +110,7 @@ public class UserActionDropdownItemsProvider {
 		).setActionName(
 			"editUserGroupRole"
 		).setParameter(
-			"p_u_i_d", String.valueOf(_user.getUserId())
+			"p_u_i_d", _user.getUserId()
 		).build();
 
 		return dropdownItem -> {
@@ -134,10 +133,9 @@ public class UserActionDropdownItemsProvider {
 		).setRedirect(
 			_themeDisplay.getURLCurrent()
 		).setParameter(
-			"groupId",
-			String.valueOf(_themeDisplay.getSiteGroupIdOrLiveGroupId())
+			"groupId", _themeDisplay.getSiteGroupIdOrLiveGroupId()
 		).setParameter(
-			"removeUserId", String.valueOf(_user.getUserId())
+			"removeUserId", _user.getUserId()
 		).build();
 
 		return dropdownItem -> {

@@ -188,8 +188,7 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 			).setRedirect(
 				_themeDisplay.getURLCurrent()
 			).setParameter(
-				"fragmentEntryId",
-				String.valueOf(_fragmentEntry.getFragmentEntryId())
+				"fragmentEntryId", _fragmentEntry.getFragmentEntryId()
 			).build();
 
 		return dropdownItem -> {
@@ -212,8 +211,7 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 		).setRedirect(
 			_themeDisplay.getURLCurrent()
 		).setParameter(
-			"fragmentEntryId",
-			String.valueOf(_fragmentEntry.getFragmentEntryId())
+			"fragmentEntryId", _fragmentEntry.getFragmentEntryId()
 		).build();
 
 		return dropdownItem -> {
@@ -234,8 +232,7 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 			).setActionName(
 				"/fragment/delete_fragment_entry_preview"
 			).setParameter(
-				"fragmentEntryId",
-				String.valueOf(_fragmentEntry.getFragmentEntryId())
+				"fragmentEntryId", _fragmentEntry.getFragmentEntryId()
 			).build();
 
 		return dropdownItem -> {
@@ -324,8 +321,7 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 				_renderResponse.getNamespace() + "changePreview",
 				itemSelectorCriterion)
 		).setParameter(
-			"fragmentEntryId",
-			String.valueOf(_fragmentEntry.getFragmentEntryId())
+			"fragmentEntryId", _fragmentEntry.getFragmentEntryId()
 		).build();
 
 		return itemSelectorURL.toString();
@@ -375,11 +371,9 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 		).setActionName(
 			"/fragment/update_fragment_entry"
 		).setParameter(
-			"fragmentCollectionId",
-			String.valueOf(_fragmentEntry.getFragmentCollectionId())
+			"fragmentCollectionId", _fragmentEntry.getFragmentCollectionId()
 		).setParameter(
-			"fragmentEntryId",
-			String.valueOf(_fragmentEntry.getFragmentEntryId())
+			"fragmentEntryId", _fragmentEntry.getFragmentEntryId()
 		).build();
 
 		return dropdownItem -> {

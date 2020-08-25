@@ -194,10 +194,10 @@ public class SiteAdminPortlet extends MVCPortlet {
 
 			PortletURL siteAdministrationURL = PortletURLBuilder.create(
 				getSiteAdministrationURL(actionRequest, group)
-			).setParameter(
-				"historyKey", getHistoryKey(actionRequest, actionResponse)
 			).setRedirect(
 				siteAdministrationURL.toString()
+			).setParameter(
+				"historyKey", getHistoryKey(actionRequest, actionResponse)
 			).build();
 
 			jsonObject.put("redirectURL", siteAdministrationURL.toString());
@@ -287,10 +287,10 @@ public class SiteAdminPortlet extends MVCPortlet {
 
 		PortletURL siteAdministrationURL = PortletURLBuilder.create(
 			getSiteAdministrationURL(actionRequest, group)
-		).setParameter(
-			"historyKey", getHistoryKey(actionRequest, actionResponse)
 		).setRedirect(
 			siteAdministrationURL.toString()
+		).setParameter(
+			"historyKey", getHistoryKey(actionRequest, actionResponse)
 		).build();
 
 		actionRequest.setAttribute(

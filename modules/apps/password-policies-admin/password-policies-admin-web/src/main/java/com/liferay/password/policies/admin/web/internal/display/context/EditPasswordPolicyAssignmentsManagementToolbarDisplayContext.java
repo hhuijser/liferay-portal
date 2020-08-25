@@ -213,6 +213,8 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			_mvcPath
+		).setRedirect(
+			redirect
 		).setParameter(
 			"tabs1", "assignees"
 		).setParameter(
@@ -220,8 +222,6 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 		).setParameter(
 			"passwordPolicyId",
 			String.valueOf(_passwordPolicy.getPasswordPolicyId())
-		).setRedirect(
-			redirect
 		).setParameter(
 			"displayStyle", _displayStyle
 		).build();

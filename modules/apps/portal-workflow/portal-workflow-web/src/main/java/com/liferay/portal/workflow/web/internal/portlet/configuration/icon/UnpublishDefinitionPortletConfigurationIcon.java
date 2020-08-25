@@ -75,10 +75,10 @@ public class UnpublishDefinitionPortletConfigurationIcon
 			_portal.getControlPanelPortletURL(
 				portletRequest, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW,
 				PortletRequest.ACTION_PHASE)
-		).setActionName(
-			"deactivateWorkflowDefinition"
 		).setMVCPath(
 			portletRequest.getParameter("mvcPath")
+		).setActionName(
+			"deactivateWorkflowDefinition"
 		).setParameter(
 			"name", portletRequest.getParameter("name")
 		).setParameter(

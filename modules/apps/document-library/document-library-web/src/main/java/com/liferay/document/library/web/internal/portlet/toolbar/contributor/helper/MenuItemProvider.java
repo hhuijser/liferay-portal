@@ -112,10 +112,10 @@ public class MenuItemProvider {
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/document_library/edit_file_entry"
-		).setParameter(
-			Constants.CMD, Constants.ADD
 		).setRedirect(
 			PortalUtil.getCurrentURL(portletRequest)
+		).setParameter(
+			Constants.CMD, Constants.ADD
 		).setParameter(
 			"portletResource", portletDisplay.getId()
 		).setParameter(
@@ -353,10 +353,10 @@ public class MenuItemProvider {
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/document_library/edit_file_entry"
-		).setParameter(
-			Constants.CMD, Constants.ADD
 		).setRedirect(
 			PortalUtil.getCurrentURL(portletRequest)
+		).setParameter(
+			Constants.CMD, Constants.ADD
 		).setParameter(
 			"repositoryId",
 			String.valueOf(_getRepositoryId(folder, themeDisplay))

@@ -246,10 +246,10 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 					liferayPortletResponse, _portal.getPortletId(actionRequest)
 				).setActionName(
 					"/login/login"
-				).setParameter(
-					"saveLastPath", Boolean.FALSE.toString()
 				).setRedirect(
 					redirect
+				).setParameter(
+					"saveLastPath", Boolean.FALSE.toString()
 				).build();
 
 				actionRequest.setAttribute(

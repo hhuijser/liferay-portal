@@ -58,7 +58,6 @@ import com.liferay.portal.kernel.model.MembershipRequestConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.auth.AuthException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.auth.RemoteAuthException;
@@ -192,13 +191,13 @@ public class SiteAdminPortlet extends MVCPortlet {
 					SiteAdminPortletKeys.SITE_SETTINGS + "requestProcessed");
 			}
 
-			PortletURL siteAdministrationURL = PortletURLBuilder.create(
-				getSiteAdministrationURL(actionRequest, group)
-			).setRedirect(
-				siteAdministrationURL.toString()
-			).setParameter(
-				"historyKey", getHistoryKey(actionRequest, actionResponse)
-			).build();
+			PortletURL siteAdministrationURL = getSiteAdministrationURL(
+				actionRequest, group);
+
+			siteAdministrationURL.setParameter(
+				"historyKey", getHistoryKey(actionRequest, actionResponse));
+			siteAdministrationURL.setParameter(
+				"redirect", siteAdministrationURL.toString());
 
 			jsonObject.put("redirectURL", siteAdministrationURL.toString());
 
@@ -285,13 +284,13 @@ public class SiteAdminPortlet extends MVCPortlet {
 				SiteAdminPortletKeys.SITE_SETTINGS + "requestProcessed");
 		}
 
-		PortletURL siteAdministrationURL = PortletURLBuilder.create(
-			getSiteAdministrationURL(actionRequest, group)
-		).setRedirect(
-			siteAdministrationURL.toString()
-		).setParameter(
-			"historyKey", getHistoryKey(actionRequest, actionResponse)
-		).build();
+		PortletURL siteAdministrationURL = getSiteAdministrationURL(
+			actionRequest, group);
+
+		siteAdministrationURL.setParameter(
+			"historyKey", getHistoryKey(actionRequest, actionResponse));
+		siteAdministrationURL.setParameter(
+			"redirect", siteAdministrationURL.toString());
 
 		actionRequest.setAttribute(
 			WebKeys.REDIRECT, siteAdministrationURL.toString());

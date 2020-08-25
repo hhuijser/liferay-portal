@@ -395,14 +395,13 @@ public class UADHierarchyDisplay {
 		).setMVCRenderCommandName(
 			"/view_uad_hierarchy"
 		).setParameter(
-			"p_u_i_d", String.valueOf(selectedUserId)
+			"p_u_i_d", selectedUserId
 		).setParameter(
 			"applicationKey", applicationKey
 		).setParameter(
 			"parentContainerClass", typeClass.getName()
 		).setParameter(
-			"parentContainerId",
-			String.valueOf(uadDisplay.getPrimaryKey(unwrappedObject))
+			"parentContainerId", uadDisplay.getPrimaryKey(unwrappedObject)
 		).setParameter(
 			"scope", scope
 		).build();

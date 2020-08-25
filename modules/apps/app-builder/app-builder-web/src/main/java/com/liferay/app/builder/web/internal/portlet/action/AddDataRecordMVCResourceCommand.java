@@ -97,7 +97,7 @@ public class AddDataRecordMVCResourceCommand
 		).setMVCPath(
 			"/edit_entry.jsp"
 		).setParameter(
-			"dataRecordId", String.valueOf(dataRecord.getId())
+			"dataRecordId", dataRecord.getId()
 		).build();
 
 		WorkflowHandlerRegistryUtil.startWorkflowInstance(

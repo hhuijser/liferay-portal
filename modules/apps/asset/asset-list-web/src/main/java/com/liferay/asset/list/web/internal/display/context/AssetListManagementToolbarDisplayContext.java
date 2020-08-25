@@ -112,8 +112,7 @@ public class AssetListManagementToolbarDisplayContext
 					).setActionName(
 						"/asset_list/add_asset_list_entry"
 					).setParameter(
-						"type",
-						String.valueOf(AssetListEntryTypeConstants.TYPE_MANUAL)
+						"type", AssetListEntryTypeConstants.TYPE_MANUAL
 					).build();
 
 				dropdownItem.putData("action", "addAssetListEntry");
@@ -137,8 +136,7 @@ public class AssetListManagementToolbarDisplayContext
 					).setActionName(
 						"/asset_list/add_asset_list_entry"
 					).setParameter(
-						"type",
-						String.valueOf(AssetListEntryTypeConstants.TYPE_DYNAMIC)
+						"type", AssetListEntryTypeConstants.TYPE_DYNAMIC
 					).build();
 
 				dropdownItem.putData("action", "addAssetListEntry");

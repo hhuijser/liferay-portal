@@ -169,7 +169,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 				_themeDisplay.getURLCurrent()
 			).setParameter(
 				"layoutPrototypeId",
-				String.valueOf(_layoutPageTemplateEntry.getLayoutPrototypeId())
+				_layoutPageTemplateEntry.getLayoutPrototypeId()
 			).build();
 
 		return dropdownItem -> {
@@ -191,8 +191,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 				_themeDisplay.getURLCurrent()
 			).setParameter(
 				"layoutPageTemplateEntryId",
-				String.valueOf(
-					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 			).build();
 
 		return dropdownItem -> {
@@ -217,8 +216,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 				_themeDisplay.getURLCurrent()
 			).setParameter(
 				"layoutPageTemplateEntryId",
-				String.valueOf(
-					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 			).build();
 
 		return dropdownItem -> {
@@ -252,7 +250,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 		).setRedirect(
 			_themeDisplay.getURLCurrent()
 		).setParameter(
-			"selPlid", String.valueOf(_draftLayout.getPlid())
+			"selPlid", _draftLayout.getPlid()
 		).build();
 
 		return dropdownItem -> {
@@ -344,8 +342,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 			"/layout_page_template/upload_layout_page_template_entry_preview"
 		).setParameter(
 			"layoutPageTemplateEntryId",
-			String.valueOf(
-				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+			_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 		).build();
 
 		ItemSelectorCriterion itemSelectorCriterion =
@@ -462,13 +459,10 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 				_themeDisplay.getURLCurrent()
 			).setParameter(
 				"layoutPageTemplateCollectionId",
-				String.valueOf(
-					_layoutPageTemplateEntry.
-						getLayoutPageTemplateCollectionId())
+				_layoutPageTemplateEntry.getLayoutPageTemplateCollectionId()
 			).setParameter(
 				"layoutPageTemplateEntryId",
-				String.valueOf(
-					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
+				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 			).build();
 
 		return updateLayoutPageTemplateEntryURL.toString();
@@ -484,8 +478,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 		).setRedirect(
 			_themeDisplay.getURLCurrent()
 		).setParameter(
-			"layoutPrototypeId",
-			String.valueOf(layoutPrototype.getLayoutPrototypeId())
+			"layoutPrototypeId", layoutPrototype.getLayoutPrototypeId()
 		).build();
 
 		return updateLayoutPrototypeURL.toString();

@@ -74,7 +74,7 @@ public class EditNodePortletConfigurationIcon
 			).setRedirect(
 				themeDisplay.getURLCurrent()
 			).setParameter(
-				"nodeId", String.valueOf(node.getNodeId())
+				"nodeId", node.getNodeId()
 			).build();
 
 			return portletURL.toString();

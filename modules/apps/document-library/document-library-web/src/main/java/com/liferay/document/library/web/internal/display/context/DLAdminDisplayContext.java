@@ -271,7 +271,7 @@ public class DLAdminDisplayContext {
 		).setRedirect(
 			redirect
 		).setParameter(
-			"searchFolderId", String.valueOf(searchFolderId)
+			"searchFolderId", searchFolderId
 		).setParameter(
 			"keywords", keywords
 		).build();

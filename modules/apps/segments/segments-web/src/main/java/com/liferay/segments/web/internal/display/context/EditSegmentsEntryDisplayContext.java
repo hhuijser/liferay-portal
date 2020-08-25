@@ -367,7 +367,7 @@ public class EditSegmentsEntryDisplayContext {
 		).setMVCRenderCommandName(
 			"previewSegmentsEntryUsers"
 		).setParameter(
-			"segmentsEntryId", String.valueOf(getSegmentsEntryId())
+			"segmentsEntryId", getSegmentsEntryId()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

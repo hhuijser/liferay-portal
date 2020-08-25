@@ -333,7 +333,7 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 			).setParameter(
 				"backURL", backURL.toString()
 			).setParameter(
-				"ctCollectionId", String.valueOf(ctCollectionId)
+				"ctCollectionId", ctCollectionId
 			).build();
 
 			jsonArray.put(
@@ -362,8 +362,7 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 				).setMVCRenderCommandName(
 					"/change_lists/view_conflicts"
 				).setParameter(
-					"ctCollectionId",
-					String.valueOf(ctCollection.getCtCollectionId())
+					"ctCollectionId", ctCollection.getCtCollectionId()
 				).build();
 
 				jsonArray.put(

@@ -1724,7 +1724,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		).setMVCRenderCommandName(
 			"/blogs/view_entry"
 		).setParameter(
-			"entryId", String.valueOf(entry.getEntryId())
+			"entryId", entry.getEntryId()
 		).build();
 
 		return portletURL.toString();

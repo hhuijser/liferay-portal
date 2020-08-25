@@ -159,7 +159,7 @@ public class EditRoleAssignmentsManagementToolbarDisplayContext {
 				).setRedirect(
 					ParamUtil.getString(_httpServletRequest, "redirect")
 				).setParameter(
-					"groupId", String.valueOf(themeDisplay.getCompanyGroupId())
+					"groupId", themeDisplay.getCompanyGroupId()
 				).build();
 
 				dropdownItem.putData(

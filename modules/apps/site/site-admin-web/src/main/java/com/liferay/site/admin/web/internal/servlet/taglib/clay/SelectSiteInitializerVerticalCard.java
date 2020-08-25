@@ -63,7 +63,7 @@ public class SelectSiteInitializerVerticalCard implements VerticalCard {
 				).setActionName(
 					"addGroup"
 				).setParameter(
-					"parentGroupId", String.valueOf(parentGroupId)
+					"parentGroupId", parentGroupId
 				).setParameter(
 					"creationType", _siteInitializerItem.getType()
 				).setParameter(

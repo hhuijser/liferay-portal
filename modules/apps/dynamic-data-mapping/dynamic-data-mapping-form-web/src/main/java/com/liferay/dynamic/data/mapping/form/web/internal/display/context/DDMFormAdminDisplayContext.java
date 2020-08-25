@@ -790,7 +790,7 @@ public class DDMFormAdminDisplayContext {
 		).setParameter(
 			"currentTab", "forms"
 		).setParameter(
-			"groupId", String.valueOf(getScopeGroupId())
+			"groupId", getScopeGroupId()
 		).build();
 
 		String delta = ParamUtil.getString(renderRequest, "delta");
@@ -905,7 +905,7 @@ public class DDMFormAdminDisplayContext {
 		).setParameter(
 			"currentTab", "forms"
 		).setParameter(
-			"groupId", String.valueOf(getScopeGroupId())
+			"groupId", getScopeGroupId()
 		).build();
 
 		return portletURL.toString();
@@ -1542,7 +1542,7 @@ public class DDMFormAdminDisplayContext {
 		).setParameter(
 			"refererPortletName", DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN
 		).setParameter(
-			"groupId", String.valueOf(formAdminRequestHelper.getScopeGroupId())
+			"groupId", formAdminRequestHelper.getScopeGroupId()
 		).setParameter(
 			"showBackIcon", Boolean.FALSE.toString()
 		).build();

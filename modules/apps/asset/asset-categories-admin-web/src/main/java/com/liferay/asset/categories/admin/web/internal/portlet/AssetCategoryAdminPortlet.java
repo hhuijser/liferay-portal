@@ -478,7 +478,7 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 		).setMVCPath(
 			"/view.jsp"
 		).setParameter(
-			"vocabularyId", String.valueOf(vocabulary.getVocabularyId())
+			"vocabularyId", vocabulary.getVocabularyId()
 		).build();
 
 		return portletURL.toString();

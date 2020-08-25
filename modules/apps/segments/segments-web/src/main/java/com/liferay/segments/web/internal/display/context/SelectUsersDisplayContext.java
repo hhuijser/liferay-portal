@@ -166,7 +166,7 @@ public class SelectUsersDisplayContext {
 		).setMVCRenderCommandName(
 			"selectUsers"
 		).setParameter(
-			"groupId", String.valueOf(getGroupId())
+			"groupId", getGroupId()
 		).setParameter(
 			"eventName", getEventName()
 		).build();

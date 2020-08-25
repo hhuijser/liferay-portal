@@ -192,10 +192,10 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 			PortletURLFactoryUtil.create(
 				httpServletRequest, PortletKeys.LOGIN,
 				PortletRequest.RENDER_PHASE)
-		).setParameter(
-			"saveLastPath", Boolean.FALSE.toString()
 		).setMVCRenderCommandName(
 			"/login/associate_google_user"
+		).setParameter(
+			"saveLastPath", Boolean.FALSE.toString()
 		).build();
 
 		PortletURL redirectURL = PortletURLBuilder.create(

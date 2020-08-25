@@ -392,10 +392,10 @@ public class UADHierarchyDisplay {
 
 		PortletURL renderURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
-		).setParameter(
-			"p_u_i_d", String.valueOf(selectedUserId)
 		).setMVCRenderCommandName(
 			"/view_uad_hierarchy"
+		).setParameter(
+			"p_u_i_d", String.valueOf(selectedUserId)
 		).setParameter(
 			"applicationKey", applicationKey
 		).setParameter(

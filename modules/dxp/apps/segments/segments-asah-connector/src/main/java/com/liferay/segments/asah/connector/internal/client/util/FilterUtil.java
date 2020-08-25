@@ -19,8 +19,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.time.Instant;
-
 import java.util.Date;
 
 /**
@@ -39,9 +37,7 @@ public class FilterUtil {
 		if (value instanceof Date) {
 			Date date = (Date)value;
 
-			Instant instant = date.toInstant();
-
-			value = instant.toString();
+			value = String.valueOf(date.toInstant());
 		}
 		else {
 			String valueString = String.valueOf(value);

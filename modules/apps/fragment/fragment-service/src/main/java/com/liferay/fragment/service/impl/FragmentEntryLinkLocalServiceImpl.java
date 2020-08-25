@@ -162,12 +162,10 @@ public class FragmentEntryLinkLocalServiceImpl
 		}
 
 		if (Validator.isNull(editableValues)) {
-			JSONObject jsonObject =
+			editableValues = String.valueOf(
 				_fragmentEntryProcessorRegistry.
 					getDefaultEditableValuesJSONObject(
-						processedHTML, configuration);
-
-			editableValues = jsonObject.toString();
+						processedHTML, configuration));
 		}
 
 		fragmentEntryLink.setEditableValues(editableValues);

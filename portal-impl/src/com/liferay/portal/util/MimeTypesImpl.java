@@ -46,7 +46,6 @@ import org.apache.tika.detect.Detector;
 import org.apache.tika.io.CloseShieldInputStream;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
-import org.apache.tika.mime.MediaType;
 import org.apache.tika.mime.MimeTypesReaderMetKeys;
 
 import org.w3c.dom.Document;
@@ -133,10 +132,8 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 				metadata.set(
 					Metadata.RESOURCE_NAME_KEY, HtmlUtil.escapeURL(fileName));
 
-				MediaType mediaType = _detector.detect(
-					tikaInputStream, metadata);
-
-				contentType = mediaType.toString();
+				contentType = String.valueOf(
+					_detector.detect(tikaInputStream, metadata));
 			}
 
 			if (contentType.contains("tika")) {
@@ -181,9 +178,7 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 				metadata.set(
 					Metadata.RESOURCE_NAME_KEY, HtmlUtil.escapeURL(fileName));
 
-				MediaType mediaType = _detector.detect(null, metadata);
-
-				contentType = mediaType.toString();
+				contentType = String.valueOf(_detector.detect(null, metadata));
 			}
 
 			if (!contentType.contains("tika")) {

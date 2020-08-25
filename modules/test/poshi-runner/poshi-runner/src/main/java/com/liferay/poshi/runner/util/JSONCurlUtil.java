@@ -319,9 +319,7 @@ public class JSONCurlUtil {
 
 			if (OSDetector.isWindows()) {
 				if (_isValidJSON(optionValue)) {
-					JSONObject jsonObject = new JSONObject(optionValue);
-
-					optionValue = jsonObject.toString();
+					optionValue = String.valueOf(new JSONObject(optionValue));
 				}
 
 				sb.append("\"");
@@ -360,9 +358,7 @@ public class JSONCurlUtil {
 
 			if (optionType.equals("--json-data")) {
 				try {
-					JSONObject jsonObject = new JSONObject(optionValue);
-
-					optionValue = jsonObject.toString();
+					optionValue = String.valueOf(new JSONObject(optionValue));
 				}
 				catch (JSONException jsonException) {
 					throw new RuntimeException(

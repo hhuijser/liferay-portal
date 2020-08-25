@@ -446,9 +446,7 @@ public class ConfigurationImplTest {
 		public void addPropertiesResource(String name, String content)
 			throws IOException {
 
-			UUID uuid = UUID.randomUUID();
-
-			URL url = new URL("test://" + uuid.toString());
+			URL url = new URL("test://" + String.valueOf(UUID.randomUUID()));
 
 			_testURLResources.put(url, content.getBytes(StringPool.UTF8));
 

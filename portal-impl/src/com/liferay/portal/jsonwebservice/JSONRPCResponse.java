@@ -48,9 +48,7 @@ public class JSONRPCResponse implements JSONSerializable {
 			if (exception instanceof InvocationTargetException) {
 				code = -32602;
 
-				Throwable throwable = exception.getCause();
-
-				message = throwable.toString();
+				message = String.valueOf(exception.getCause());
 			}
 			else {
 				message = exception.toString();

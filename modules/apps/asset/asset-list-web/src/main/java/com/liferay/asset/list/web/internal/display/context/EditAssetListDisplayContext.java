@@ -758,9 +758,7 @@ public class EditAssetListDisplayContext {
 			LiferayPortletResponse liferayPortletResponse =
 				PortalUtil.getLiferayPortletResponse(_portletResponse);
 
-			PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-			redirect = portletURL.toString();
+			redirect = String.valueOf(liferayPortletResponse.createRenderURL());
 		}
 
 		_redirect = redirect;

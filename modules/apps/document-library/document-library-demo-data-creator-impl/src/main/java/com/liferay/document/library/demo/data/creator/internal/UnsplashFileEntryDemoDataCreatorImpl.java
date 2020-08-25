@@ -54,9 +54,7 @@ public class UnsplashFileEntryDemoDataCreatorImpl
 	public FileEntry create(long userId, long folderId)
 		throws IOException, PortalException {
 
-		UUID uuid = UUID.randomUUID();
-
-		String sourceFileName = uuid.toString() + ".jpeg";
+		String sourceFileName = String.valueOf(UUID.randomUUID()) + ".jpeg";
 
 		return create(userId, folderId, sourceFileName);
 	}

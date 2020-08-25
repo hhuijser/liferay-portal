@@ -93,9 +93,7 @@ public interface MapToDDMFormValuesConverterStrategy {
 		DDMFormField ddmFormField, Locale locale, Object value) {
 
 		if (value instanceof Object[]) {
-			JSONArray jsonArray = JSONUtil.putAll((Object[])value);
-
-			value = jsonArray.toString();
+			value = String.valueOf(JSONUtil.putAll((Object[])value));
 		}
 
 		if (ddmFormField.isLocalizable()) {

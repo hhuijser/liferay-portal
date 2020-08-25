@@ -440,10 +440,8 @@ public class DataDefinitionUtil {
 			defaultValue.forEach(
 				(key, value) -> {
 					if (value instanceof ArrayList) {
-						JSONArray jsonArray = JSONFactoryUtil.createJSONArray(
-							(ArrayList)value);
-
-						value = jsonArray.toString();
+						value = String.valueOf(
+							JSONFactoryUtil.createJSONArray((ArrayList)value));
 					}
 
 					defaultValue.put(key, value);

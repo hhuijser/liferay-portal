@@ -152,10 +152,7 @@ public class BackgroundImageFragmentEntryProcessor
 					else if (fieldValue instanceof WebImage) {
 						WebImage webImage = (WebImage)fieldValue;
 
-						JSONObject fieldValueJSONObject =
-							webImage.toJSONObject();
-
-						value = fieldValueJSONObject.toString();
+						value = String.valueOf(webImage.toJSONObject());
 					}
 					else {
 						value = String.valueOf(fieldValue);

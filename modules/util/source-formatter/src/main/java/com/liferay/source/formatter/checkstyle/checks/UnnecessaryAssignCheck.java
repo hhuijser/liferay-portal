@@ -33,10 +33,6 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 	protected void doVisitToken(DetailAST detailAST) {
 		DetailAST parentDetailAST = detailAST.getParent();
 
-		if (parentDetailAST.getType() == TokenTypes.VARIABLE_DEF) {
-			_checkCombineToString(parentDetailAST);
-		}
-
 		if (parentDetailAST.getType() != TokenTypes.EXPR) {
 			return;
 		}
@@ -92,6 +88,8 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 		if (variableCallerDetailASTList.isEmpty()) {
 			return;
 		}
+
+		checkUnnecessaryToString(detailAST, _MSG_UNNECESSARY_TO_STRING);
 
 		DetailAST firstNextVariableCallerDetailAST = null;
 		DetailAST secondNextVariableCallerDetailAST = null;
@@ -154,71 +152,6 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 				log(detailAST, _MSG_UNNECESSARY_ASSIGN_UNUSED, variableName);
 			}
 		}
-	}
-
-	private void _checkCombineToString(DetailAST detailAST) {
-		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
-
-		List<DetailAST> methodCallDetailASTList = getMethodCalls(
-			assignDetailAST, "toString");
-
-		if (methodCallDetailASTList.size() != 1) {
-			return;
-		}
-
-		DetailAST methodCallDetailAST = methodCallDetailASTList.get(0);
-
-		DetailAST parentDetailAST = methodCallDetailAST.getParent();
-
-		parentDetailAST = parentDetailAST.getParent();
-
-		if (parentDetailAST.getType() != TokenTypes.ASSIGN) {
-			return;
-		}
-
-		String variableName = getVariableName(methodCallDetailAST);
-
-		DetailAST typeDetailAST = getVariableTypeDetailAST(
-			methodCallDetailAST, variableName);
-
-		if (typeDetailAST == null) {
-			return;
-		}
-
-		String methodName = getMethodName(methodCallDetailAST);
-
-		if (!methodName.equals("toString")) {
-			return;
-		}
-
-		if (getParameterDetailAST(methodCallDetailAST) != null) {
-			return;
-		}
-
-		parentDetailAST = typeDetailAST.getParent();
-
-		if (parentDetailAST.getType() != TokenTypes.VARIABLE_DEF) {
-			return;
-		}
-
-		DetailAST nextSiblingDetailAST = parentDetailAST.getNextSibling();
-
-		if ((nextSiblingDetailAST == null) ||
-			(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
-
-			return;
-		}
-
-		List<DetailAST> variableCallerDetailASTList =
-			getVariableCallerDetailASTList(parentDetailAST, variableName);
-
-		if (variableCallerDetailASTList.size() != 1) {
-			return;
-		}
-
-		log(
-			detailAST, _MSG_UNNECESSARY_ASSIGN_COMBINE,
-			getEndLineNumber(parentDetailAST), getStartLineNumber(detailAST));
 	}
 
 	private boolean _hasPrecedingAssignStatement(
@@ -290,10 +223,10 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 	private static final String _MSG_UNNECESSARY_ASSIGN_BEFORE_RETURN =
 		"assign.unnecessary.before.return";
 
-	private static final String _MSG_UNNECESSARY_ASSIGN_COMBINE =
-		"assign.unnecessary.combine";
-
 	private static final String _MSG_UNNECESSARY_ASSIGN_UNUSED =
 		"assign.unnecessary.unused";
+
+	private static final String _MSG_UNNECESSARY_TO_STRING =
+		"assign.unnecessary.to.string";
 
 }

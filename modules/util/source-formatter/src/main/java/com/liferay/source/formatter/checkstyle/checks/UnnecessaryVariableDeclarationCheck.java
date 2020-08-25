@@ -61,6 +61,10 @@ public class UnnecessaryVariableDeclarationCheck
 			return;
 		}
 
+		checkUnnecessaryToString(
+			detailAST.findFirstToken(TokenTypes.ASSIGN),
+			_MSG_UNNECESSARY_VARIABLE_DECLARATION_TO_STRING);
+
 		List<DetailAST> variableCallerDetailASTList =
 			getVariableCallerDetailASTList(detailAST, variableName);
 
@@ -90,5 +94,9 @@ public class UnnecessaryVariableDeclarationCheck
 	private static final String
 		_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_RETURN =
 			"variable.declaration.unnecessary.before.return";
+
+	private static final String
+		_MSG_UNNECESSARY_VARIABLE_DECLARATION_TO_STRING =
+			"variable.declaration.unnecessary.to.string";
 
 }

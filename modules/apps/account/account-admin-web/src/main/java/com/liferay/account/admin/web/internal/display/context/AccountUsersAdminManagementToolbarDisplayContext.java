@@ -258,7 +258,8 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 					).setMVCRenderCommandName(
 						"/account_admin/add_account_user"
 					).setParameter(
-						"backURL", liferayPortletResponse.createRenderURL()
+						"backURL",
+						String.valueOf(liferayPortletResponse.createRenderURL())
 					).build();
 
 				dropdownItem.putData(

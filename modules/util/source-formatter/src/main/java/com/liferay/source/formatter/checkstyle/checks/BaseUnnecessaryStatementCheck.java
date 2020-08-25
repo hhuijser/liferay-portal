@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import java.util.List;
+
 /**
  * @author Hugo Huijser
  */
@@ -80,6 +82,80 @@ public abstract class BaseUnnecessaryStatementCheck extends BaseCheck {
 
 			log(detailAST, messageKey, variableName);
 		}
+	}
+
+	protected void checkUnnecessaryToString(
+		DetailAST assignDetailAST, String messageKey) {
+
+		if ((assignDetailAST == null) ||
+			(assignDetailAST.getType() != TokenTypes.ASSIGN)) {
+
+			return;
+		}
+
+		List<DetailAST> methodCallDetailASTList = getMethodCalls(
+			assignDetailAST, "toString");
+
+		if (methodCallDetailASTList.size() != 1) {
+			return;
+		}
+
+		DetailAST methodCallDetailAST = methodCallDetailASTList.get(0);
+
+		DetailAST parentDetailAST = methodCallDetailAST.getParent();
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if ((parentDetailAST.getType() != TokenTypes.ASSIGN) &&
+			(parentDetailAST.getType() != TokenTypes.EXPR)) {
+
+			return;
+		}
+
+		String variableName = getVariableName(methodCallDetailAST);
+
+		DetailAST typeDetailAST = getVariableTypeDetailAST(
+			methodCallDetailAST, variableName);
+
+		if (typeDetailAST == null) {
+			return;
+		}
+
+		String methodName = getMethodName(methodCallDetailAST);
+
+		if (!methodName.equals("toString")) {
+			return;
+		}
+
+		if (getParameterDetailAST(methodCallDetailAST) != null) {
+			return;
+		}
+
+		parentDetailAST = typeDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.VARIABLE_DEF) {
+			return;
+		}
+
+		DetailAST nextSiblingDetailAST = parentDetailAST.getNextSibling();
+
+		if ((nextSiblingDetailAST == null) ||
+			(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+
+			return;
+		}
+
+		List<DetailAST> variableCallerDetailASTList =
+			getVariableCallerDetailASTList(parentDetailAST, variableName);
+
+		if (variableCallerDetailASTList.size() != 1) {
+			return;
+		}
+
+		log(
+			assignDetailAST, messageKey, variableName,
+			getEndLineNumber(parentDetailAST),
+			getStartLineNumber(assignDetailAST));
 	}
 
 }

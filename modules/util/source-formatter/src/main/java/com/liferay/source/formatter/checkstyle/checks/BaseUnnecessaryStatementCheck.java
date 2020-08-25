@@ -154,7 +154,7 @@ public abstract class BaseUnnecessaryStatementCheck extends BaseCheck {
 
 		log(
 			assignDetailAST, messageKey, variableName,
-			getEndLineNumber(parentDetailAST),
+			getStartLineNumber(parentDetailAST),
 			getStartLineNumber(assignDetailAST));
 	}
 

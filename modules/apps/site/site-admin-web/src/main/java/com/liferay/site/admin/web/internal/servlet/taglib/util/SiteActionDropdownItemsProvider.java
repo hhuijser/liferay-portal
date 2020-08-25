@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.membershippolicy.SiteMembershipPolicyUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -37,7 +38,6 @@ import com.liferay.sites.kernel.util.SitesUtil;
 
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
@@ -110,13 +110,15 @@ public class SiteActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getActivateSiteActionUnsafeConsumer() {
 
-		PortletURL activateSiteURL = _liferayPortletResponse.createActionURL();
-
-		activateSiteURL.setParameter(ActionRequest.ACTION_NAME, "activate");
-
-		activateSiteURL.setParameter("redirect", _getRedirect());
-		activateSiteURL.setParameter(
-			"groupId", String.valueOf(_group.getGroupId()));
+		PortletURL activateSiteURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setActionName(
+			"activate"
+		).setRedirect(
+			_getRedirect()
+		).setParameter(
+			"groupId", String.valueOf(_group.getGroupId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "activateSite");
@@ -143,14 +145,15 @@ public class SiteActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getDeactivateSiteActionUnsafeConsumer() {
 
-		PortletURL deactivateSiteURL =
-			_liferayPortletResponse.createActionURL();
-
-		deactivateSiteURL.setParameter(ActionRequest.ACTION_NAME, "deactivate");
-
-		deactivateSiteURL.setParameter("redirect", _getRedirect());
-		deactivateSiteURL.setParameter(
-			"groupId", String.valueOf(_group.getGroupId()));
+		PortletURL deactivateSiteURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setActionName(
+			"deactivate"
+		).setRedirect(
+			_getRedirect()
+		).setParameter(
+			"groupId", String.valueOf(_group.getGroupId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deactivateSite");
@@ -164,13 +167,15 @@ public class SiteActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getDeleteSiteActionUnsafeConsumer() {
 
-		PortletURL deleteSiteURL = _liferayPortletResponse.createActionURL();
-
-		deleteSiteURL.setParameter(ActionRequest.ACTION_NAME, "deleteGroups");
-
-		deleteSiteURL.setParameter("redirect", _getRedirect());
-		deleteSiteURL.setParameter(
-			"groupId", String.valueOf(_group.getGroupId()));
+		PortletURL deleteSiteURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setActionName(
+			"deleteGroups"
+		).setRedirect(
+			_getRedirect()
+		).setParameter(
+			"groupId", String.valueOf(_group.getGroupId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deleteSite");
@@ -183,16 +188,17 @@ public class SiteActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getLeaveSiteActionUnsafeConsumer() {
 
-		PortletURL leaveSiteURL = _liferayPortletResponse.createActionURL();
-
-		leaveSiteURL.setParameter(
-			ActionRequest.ACTION_NAME, "editGroupAssignments");
-
-		leaveSiteURL.setParameter("redirect", _getRedirect());
-		leaveSiteURL.setParameter(
-			"groupId", String.valueOf(_group.getGroupId()));
-		leaveSiteURL.setParameter(
-			"removeUserIds", String.valueOf(_themeDisplay.getUserId()));
+		PortletURL leaveSiteURL = PortletURLBuilder.createActionURL(
+			_liferayPortletResponse
+		).setActionName(
+			"editGroupAssignments"
+		).setRedirect(
+			_getRedirect()
+		).setParameter(
+			"groupId", String.valueOf(_group.getGroupId())
+		).setParameter(
+			"removeUserIds", String.valueOf(_themeDisplay.getUserId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "leaveSite");

@@ -18,6 +18,7 @@ import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.web.internal.constants.DepotAdminWebKeys;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
@@ -96,13 +97,15 @@ public class DepotApplicationDisplayContext {
 	}
 
 	private String _getViewGroupSelectorURL() throws PortletException {
-		PortletURL viewGroupSelectorURL = PortletURLUtil.clone(
-			getPortletURL(),
-			_portal.getLiferayPortletResponse(_portletResponse));
-
-		viewGroupSelectorURL.setParameter("groupType", "site");
-		viewGroupSelectorURL.setParameter(
-			"showGroupSelector", Boolean.TRUE.toString());
+		PortletURL viewGroupSelectorURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(
+				getPortletURL(),
+				_portal.getLiferayPortletResponse(_portletResponse))
+		).setParameter(
+			"groupType", "site"
+		).setParameter(
+			"showGroupSelector", Boolean.TRUE.toString()
+		).build();
 
 		return viewGroupSelectorURL.toString();
 	}

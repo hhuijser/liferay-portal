@@ -20,6 +20,7 @@ import com.liferay.application.list.constants.PanelCategoryKeys;
 import com.liferay.content.dashboard.web.internal.constants.ContentDashboardPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Portlet;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Portal;
 
 import javax.portlet.PortletURL;
@@ -51,10 +52,11 @@ public class ContentDashboardAdminPanelApp extends BasePanelApp {
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest);
-
-		portletURL.setParameter(
-			"authorIds", String.valueOf(_portal.getUserId(httpServletRequest)));
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest)
+		).setParameter(
+			"authorIds", String.valueOf(_portal.getUserId(httpServletRequest))
+		).build();
 
 		return portletURL;
 	}

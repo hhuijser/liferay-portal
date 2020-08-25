@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -88,10 +89,13 @@ public class SiteVerticalCard extends BaseBaseClayCard implements VerticalCard {
 			return null;
 		}
 
-		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("backURL", _themeDisplay.getURLCurrent());
-		portletURL.setParameter("groupId", String.valueOf(_group.getGroupId()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"backURL", _themeDisplay.getURLCurrent()
+		).setParameter(
+			"groupId", String.valueOf(_group.getGroupId())
+		).build();
 
 		return portletURL.toString();
 	}

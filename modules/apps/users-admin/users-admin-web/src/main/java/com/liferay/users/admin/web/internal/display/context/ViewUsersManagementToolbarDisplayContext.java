@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
@@ -118,11 +119,15 @@ public class ViewUsersManagementToolbarDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("domain", (String)null);
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
-		clearResultsURL.setParameter("navigation", (String)null);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"domain", (String)null
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).setParameter(
+			"navigation", (String)null
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -167,9 +172,11 @@ public class ViewUsersManagementToolbarDisplayContext {
 		return LabelItemListBuilder.add(
 			() -> _domain.equals("account-users"),
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter("domain", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"domain", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -184,9 +191,11 @@ public class ViewUsersManagementToolbarDisplayContext {
 		).add(
 			() -> _domain.equals("all"),
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter("domain", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"domain", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -201,9 +210,11 @@ public class ViewUsersManagementToolbarDisplayContext {
 		).add(
 			() -> !_navigation.equals("active"),
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -228,11 +239,13 @@ public class ViewUsersManagementToolbarDisplayContext {
 
 	public PortletURL getPortletURL() {
 		try {
-			PortletURL portletURL = PortletURLUtil.clone(
-				_currentURL, _renderResponse);
-
-			portletURL.setParameter("orderByCol", getOrderByCol());
-			portletURL.setParameter("orderByType", getOrderByType());
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLUtil.clone(_currentURL, _renderResponse)
+			).setParameter(
+				"orderByCol", getOrderByCol()
+			).setParameter(
+				"orderByType", getOrderByType()
+			).build();
 
 			return portletURL;
 		}
@@ -256,10 +269,11 @@ public class ViewUsersManagementToolbarDisplayContext {
 			return _userSearch;
 		}
 
-		PortletURL portletURL = (PortletURL)_httpServletRequest.getAttribute(
-			"view.jsp-portletURL");
-
-		portletURL.setParameter("navigation", _navigation);
+		PortletURL portletURL = PortletURLBuilder.create(
+			(PortletURL)_httpServletRequest.getAttribute("view.jsp-portletURL")
+		).setParameter(
+			"navigation", _navigation
+		).build();
 
 		UserSearch userSearch = new UserSearch(
 			_renderRequest, "cur2", portletURL);
@@ -314,11 +328,12 @@ public class ViewUsersManagementToolbarDisplayContext {
 	}
 
 	public String getSortingURL() {
-		PortletURL sortingURL = getPortletURL();
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL.toString();
 	}

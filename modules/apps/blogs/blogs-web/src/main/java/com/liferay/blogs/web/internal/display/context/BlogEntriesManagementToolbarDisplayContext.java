@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
@@ -44,7 +45,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -117,11 +117,11 @@ public class BlogEntriesManagementToolbarDisplayContext
 		).put(
 			"deleteEntriesURL",
 			() -> {
-				PortletURL deleteEntriesURL =
-					liferayPortletResponse.createActionURL();
-
-				deleteEntriesURL.setParameter(
-					ActionRequest.ACTION_NAME, "/blogs/edit_entry");
+				PortletURL deleteEntriesURL = PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/blogs/edit_entry"
+				).build();
 
 				return deleteEntriesURL.toString();
 			}
@@ -165,9 +165,11 @@ public class BlogEntriesManagementToolbarDisplayContext
 
 		return LabelItemListBuilder.add(
 			labelItem -> {
-				PortletURL removeLabelURL = getPortletURL();
-
-				removeLabelURL.setParameter("entriesNavigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"entriesNavigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -186,26 +188,31 @@ public class BlogEntriesManagementToolbarDisplayContext
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL searchURL = liferayPortletResponse.createRenderURL();
-
-		searchURL.setParameter("mvcRenderCommandName", "/blogs/view");
-
 		String navigation = ParamUtil.getString(
 			request, "navigation", "entries");
 
-		searchURL.setParameter("navigation", navigation);
-
-		searchURL.setParameter("orderByCol", getOrderByCol());
-		searchURL.setParameter("orderByType", getOrderByType());
+		PortletURL searchURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setMVCRenderCommandName(
+			"/blogs/view"
+		).setParameter(
+			"navigation", navigation
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return searchURL.toString();
 	}
 
 	@Override
 	public List<ViewTypeItem> getViewTypeItems() {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/blogs/view");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setMVCRenderCommandName(
+			"/blogs/view"
+		).build();
 
 		if (searchContainer.getDelta() > 0) {
 			portletURL.setParameter(
@@ -267,11 +274,13 @@ public class BlogEntriesManagementToolbarDisplayContext
 	}
 
 	private PortletURL _getCurrentSortingURL() {
-		PortletURL sortingURL = getPortletURL();
-
-		sortingURL.setParameter("mvcRenderCommandName", "/blogs/view");
-
-		sortingURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
+		PortletURL sortingURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setMVCRenderCommandName(
+			"/blogs/view"
+		).setParameter(
+			SearchContainer.DEFAULT_CUR_PARAM, "0"
+		).build();
 
 		String keywords = ParamUtil.getString(request, "keywords");
 

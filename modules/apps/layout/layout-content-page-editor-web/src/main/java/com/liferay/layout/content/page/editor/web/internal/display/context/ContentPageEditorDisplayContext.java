@@ -106,6 +106,7 @@ import com.liferay.portal.kernel.portlet.PortletConfigFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
@@ -165,7 +166,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
@@ -583,9 +583,11 @@ public class ContentPageEditorDisplayContext {
 	}
 
 	protected String getFragmentEntryActionURL(String action, String command) {
-		PortletURL actionURL = _renderResponse.createActionURL();
-
-		actionURL.setParameter(ActionRequest.ACTION_NAME, action);
+		PortletURL actionURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			action
+		).build();
 
 		if (Validator.isNotNull(command)) {
 			actionURL.setParameter(Constants.CMD, command);
@@ -890,33 +892,36 @@ public class ContentPageEditorDisplayContext {
 		if (!Objects.equals(
 				publishedLayout.getType(), LayoutConstants.TYPE_PORTLET)) {
 
-			PortletURL discardDraftURL = PortletURLFactoryUtil.create(
-				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
-				PortletRequest.ACTION_PHASE);
-
-			discardDraftURL.setParameter(
-				ActionRequest.ACTION_NAME, "/layout/discard_draft_layout");
-			discardDraftURL.setParameter(
-				"redirect", themeDisplay.getURLCurrent());
-			discardDraftURL.setParameter(
-				"selPlid", String.valueOf(themeDisplay.getPlid()));
+			PortletURL discardDraftURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+					PortletRequest.ACTION_PHASE)
+			).setActionName(
+				"/layout/discard_draft_layout"
+			).setRedirect(
+				themeDisplay.getURLCurrent()
+			).setParameter(
+				"selPlid", String.valueOf(themeDisplay.getPlid())
+			).build();
 
 			return discardDraftURL.toString();
 		}
 
-		PortletURL deleteLayoutURL = PortalUtil.getControlPanelPortletURL(
-			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
-			PortletRequest.ACTION_PHASE);
+		PortletURL deleteLayoutURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+				PortletRequest.ACTION_PHASE)
+		).setActionName(
+			"/layout/delete_layout"
+		).build();
 
-		deleteLayoutURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/delete_layout");
-
-		PortletURL redirectURL = PortalUtil.getControlPanelPortletURL(
-			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
-			PortletRequest.RENDER_PHASE);
-
-		redirectURL.setParameter(
-			"selPlid", String.valueOf(publishedLayout.getPlid()));
+		PortletURL redirectURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+				PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"selPlid", String.valueOf(publishedLayout.getPlid())
+		).build();
 
 		deleteLayoutURL.setParameter("redirect", redirectURL.toString());
 
@@ -1686,33 +1691,31 @@ public class ContentPageEditorDisplayContext {
 	}
 
 	private Object _getLookAndFeelURL() {
-		PortletURL lookAndFeelURL = PortalUtil.getControlPanelPortletURL(
-			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
-			PortletRequest.RENDER_PHASE);
-
-		lookAndFeelURL.setParameter(
-			"mvcRenderCommandName", "/layout/edit_layout");
-
-		lookAndFeelURL.setParameter(
-			"redirect",
-			ParamUtil.getString(
-				PortalUtil.getOriginalServletRequest(httpServletRequest),
-				"p_l_back_url"));
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		lookAndFeelURL.setParameter("backURL", themeDisplay.getURLCurrent());
-
 		Layout layout = themeDisplay.getLayout();
 
-		lookAndFeelURL.setParameter(
-			"groupId", String.valueOf(layout.getGroupId()));
-		lookAndFeelURL.setParameter(
-			"selPlid", String.valueOf(layout.getPlid()));
-		lookAndFeelURL.setParameter(
-			"privateLayout", String.valueOf(layout.isPrivateLayout()));
+		PortletURL lookAndFeelURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+				PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/layout/edit_layout"
+		).setRedirect(
+			ParamUtil.getString(
+				PortalUtil.getOriginalServletRequest(httpServletRequest),
+				"p_l_back_url")
+		).setParameter(
+			"backURL", themeDisplay.getURLCurrent()
+		).setParameter(
+			"groupId", String.valueOf(layout.getGroupId())
+		).setParameter(
+			"selPlid", String.valueOf(layout.getPlid())
+		).setParameter(
+			"privateLayout", String.valueOf(layout.isPrivateLayout())
+		).build();
 
 		return lookAndFeelURL.toString();
 	}

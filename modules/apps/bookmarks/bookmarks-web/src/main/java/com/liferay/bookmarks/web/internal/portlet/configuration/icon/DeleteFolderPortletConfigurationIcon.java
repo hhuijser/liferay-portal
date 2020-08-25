@@ -21,6 +21,7 @@ import com.liferay.bookmarks.web.internal.portlet.action.ActionUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -29,7 +30,6 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.trash.TrashHelper;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
@@ -70,13 +70,6 @@ public class DeleteFolderPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL deleteURL = _portal.getControlPanelPortletURL(
-			portletRequest, BookmarksPortletKeys.BOOKMARKS_ADMIN,
-			PortletRequest.ACTION_PHASE);
-
-		deleteURL.setParameter(
-			ActionRequest.ACTION_NAME, "/bookmarks/edit_folder");
-
 		String cmd = Constants.DELETE;
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
@@ -86,7 +79,15 @@ public class DeleteFolderPortletConfigurationIcon
 			cmd = Constants.MOVE_TO_TRASH;
 		}
 
-		deleteURL.setParameter(Constants.CMD, cmd);
+		PortletURL deleteURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, BookmarksPortletKeys.BOOKMARKS_ADMIN,
+				PortletRequest.ACTION_PHASE)
+		).setActionName(
+			"/bookmarks/edit_folder"
+		).setParameter(
+			Constants.CMD, cmd
+		).build();
 
 		BookmarksFolder folder = null;
 

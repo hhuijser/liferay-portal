@@ -53,6 +53,7 @@ import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.portlet.PortletConfigFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.TimeUnit;
@@ -671,14 +672,18 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			String lifecycle, WindowState windowState, Object... parameters)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			request, portlet, themeDisplay.getLayout(), lifecycle);
-
-		portletURL.setParameter("action", action);
-		portletURL.setParameter("controller", controller);
-
-		portletURL.setPortletMode(portletMode);
-		portletURL.setWindowState(windowState);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				request, portlet, themeDisplay.getLayout(), lifecycle)
+		).setParameter(
+			"action", action
+		).setParameter(
+			"controller", controller
+		).setPortletMode(
+			portletMode
+		).setWindowState(
+			windowState
+		).build();
 
 		if (parameters == null) {
 			return portletURL;
@@ -1006,10 +1011,13 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		if (mimeResponse != null) {
-			portletURL = mimeResponse.createRenderURL();
-
-			portletURL.setParameter("action", actionPath);
-			portletURL.setParameter("controller", controllerPath);
+			portletURL = PortletURLBuilder.createRenderURL(
+				mimeResponse
+			).setParameter(
+				"action", actionPath
+			).setParameter(
+				"controller", controllerPath
+			).build();
 
 			if (Validator.isNotNull(format)) {
 				portletURL.setParameter("format", format);

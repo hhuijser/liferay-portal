@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -34,7 +35,6 @@ import com.liferay.site.navigation.model.SiteNavigationMenu;
 
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -89,9 +89,11 @@ public class SiteNavigationAdminManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -106,16 +108,15 @@ public class SiteNavigationAdminManagementToolbarDisplayContext
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PortletURL addSiteNavigationMenuURL =
-			liferayPortletResponse.createActionURL();
-
-		addSiteNavigationMenuURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/navigation_menu/add_site_navigation_menu");
-		addSiteNavigationMenuURL.setParameter(
-			"mvcPath", "/edit_site_navigation_menu.jsp");
-		addSiteNavigationMenuURL.setParameter(
-			"redirect", themeDisplay.getURLCurrent());
+		PortletURL addSiteNavigationMenuURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse
+		).setActionName(
+			"/navigation_menu/add_site_navigation_menu"
+		).setMVCPath(
+			"/edit_site_navigation_menu.jsp"
+		).setRedirect(
+			themeDisplay.getURLCurrent()
+		).build();
 
 		return CreationMenuBuilder.addDropdownItem(
 			dropdownItem -> {

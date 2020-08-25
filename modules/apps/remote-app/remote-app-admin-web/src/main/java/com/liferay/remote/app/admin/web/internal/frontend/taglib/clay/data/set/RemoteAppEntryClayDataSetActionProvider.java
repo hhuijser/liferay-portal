@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -33,7 +34,6 @@ import com.liferay.remote.app.admin.web.internal.constants.RemoteAppAdminConstan
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,13 +73,14 @@ public class RemoteAppEntryClayDataSetActionProvider
 		DropdownItem dropdownItem, HttpServletRequest httpServletRequest,
 		RemoteAppClayDataSetEntry remoteAppClayDataSetEntry) {
 
-		PortletURL deleteRemoteAppEntryURL = _getActionURL(httpServletRequest);
-
-		deleteRemoteAppEntryURL.setParameter(
-			ActionRequest.ACTION_NAME, "/delete_remote_app_entry");
-		deleteRemoteAppEntryURL.setParameter(
+		PortletURL deleteRemoteAppEntryURL = PortletURLBuilder.create(
+			_getActionURL(httpServletRequest)
+		).setActionName(
+			"/delete_remote_app_entry"
+		).setParameter(
 			"remoteAppEntryId",
-			String.valueOf(remoteAppClayDataSetEntry.getRemoteAppEntryId()));
+			String.valueOf(remoteAppClayDataSetEntry.getRemoteAppEntryId())
+		).build();
 
 		dropdownItem.setHref(deleteRemoteAppEntryURL.toString());
 
@@ -91,13 +92,14 @@ public class RemoteAppEntryClayDataSetActionProvider
 		DropdownItem dropdownItem, HttpServletRequest httpServletRequest,
 		RemoteAppClayDataSetEntry remoteAppClayDataSetEntry) {
 
-		PortletURL editRemoteAppEntryURL = _getRenderURL(httpServletRequest);
-
-		editRemoteAppEntryURL.setParameter(
-			"mvcRenderCommandName", "/edit_remote_app_entry");
-		editRemoteAppEntryURL.setParameter(
+		PortletURL editRemoteAppEntryURL = PortletURLBuilder.create(
+			_getRenderURL(httpServletRequest)
+		).setMVCRenderCommandName(
+			"/edit_remote_app_entry"
+		).setParameter(
 			"remoteAppEntryId",
-			String.valueOf(remoteAppClayDataSetEntry.getRemoteAppEntryId()));
+			String.valueOf(remoteAppClayDataSetEntry.getRemoteAppEntryId())
+		).build();
 
 		String currentURL = ParamUtil.getString(
 			httpServletRequest, "currentURL",

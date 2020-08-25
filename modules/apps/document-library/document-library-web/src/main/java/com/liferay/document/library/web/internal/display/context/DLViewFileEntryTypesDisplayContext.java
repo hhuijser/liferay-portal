@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -65,8 +66,6 @@ public class DLViewFileEntryTypesDisplayContext {
 
 			return CreationMenuBuilder.addPrimaryDropdownItem(
 				dropdownItem -> {
-					PortletURL creationURL = renderResponse.createRenderURL();
-
 					String mvcRenderCommandName =
 						"/document_library/edit_file_entry_type";
 
@@ -76,12 +75,13 @@ public class DLViewFileEntryTypesDisplayContext {
 								"/edit_file_entry_type_data_definition";
 					}
 
-					creationURL.setParameter(
-						"mvcRenderCommandName", mvcRenderCommandName);
-
-					creationURL.setParameter(
-						"redirect",
-						PortalUtil.getCurrentURL(_httpServletRequest));
+					PortletURL creationURL = PortletURLBuilder.createRenderURL(
+						renderResponse
+					).setMVCRenderCommandName(
+						mvcRenderCommandName
+					).setRedirect(
+						PortalUtil.getCurrentURL(_httpServletRequest)
+					).build();
 
 					dropdownItem.setHref(creationURL.toString());
 				}
@@ -152,9 +152,11 @@ public class DLViewFileEntryTypesDisplayContext {
 	}
 
 	protected PortletURL getPortletURL() {
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("navigation", "file_entry_types");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"navigation", "file_entry_types"
+		).build();
 
 		return portletURL;
 	}

@@ -34,13 +34,13 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,13 +75,13 @@ public class ViewAccountOrganizationsManagementToolbarDisplayContext
 				dropdownItem.putData("action", "removeOrganizations");
 
 				PortletURL removeOrganizationsURL =
-					liferayPortletResponse.createActionURL();
-
-				removeOrganizationsURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/remove_account_organizations");
-				removeOrganizationsURL.setParameter(
-					"redirect", currentURLObj.toString());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setActionName(
+						"/account_admin/remove_account_organizations"
+					).setRedirect(
+						currentURLObj.toString()
+					).build();
 
 				dropdownItem.putData(
 					"removeOrganizationsURL",
@@ -97,9 +97,11 @@ public class ViewAccountOrganizationsManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -120,29 +122,29 @@ public class ViewAccountOrganizationsManagementToolbarDisplayContext
 				}
 
 				PortletURL assignAccountOrganizationsURL =
-					liferayPortletResponse.createActionURL();
-
-				assignAccountOrganizationsURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/account_admin/assign_account_organizations");
-				assignAccountOrganizationsURL.setParameter(
-					"redirect", currentURLObj.toString());
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setActionName(
+						"/account_admin/assign_account_organizations"
+					).setRedirect(
+						currentURLObj.toString()
+					).build();
 
 				dropdownItem.putData(
 					"assignAccountOrganizationsURL",
 					assignAccountOrganizationsURL.toString());
 
 				PortletURL selectAccountOrganizationsURL =
-					liferayPortletResponse.createRenderURL();
-
-				selectAccountOrganizationsURL.setParameter(
-					"mvcPath",
-					"/account_entries_admin/select_account_organizations.jsp");
-				selectAccountOrganizationsURL.setParameter(
-					"accountEntryId",
-					String.valueOf(accountEntry.getAccountEntryId()));
-				selectAccountOrganizationsURL.setWindowState(
-					LiferayWindowState.POP_UP);
+					PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setMVCPath(
+						"/account_entries_admin/select_account_organizations.jsp"
+					).setParameter(
+						"accountEntryId",
+						String.valueOf(accountEntry.getAccountEntryId())
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).build();
 
 				dropdownItem.putData(
 					"selectAccountOrganizationsURL",

@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -45,7 +46,6 @@ import com.liferay.segments.constants.SegmentsEntryConstants;
 
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -366,11 +366,13 @@ public class AssetListDisplayContext {
 	}
 
 	private String _getAddAssetListEntryURL(int type) {
-		PortletURL addAssetListEntryURL = _renderResponse.createActionURL();
-
-		addAssetListEntryURL.setParameter(
-			ActionRequest.ACTION_NAME, "/asset_list/add_asset_list_entry");
-		addAssetListEntryURL.setParameter("type", String.valueOf(type));
+		PortletURL addAssetListEntryURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			"/asset_list/add_asset_list_entry"
+		).setParameter(
+			"type", String.valueOf(type)
+		).build();
 
 		return addAssetListEntryURL.toString();
 	}

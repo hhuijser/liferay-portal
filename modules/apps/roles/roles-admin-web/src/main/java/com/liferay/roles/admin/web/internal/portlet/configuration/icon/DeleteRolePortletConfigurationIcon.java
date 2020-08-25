@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.RoleService;
 import com.liferay.portal.kernel.service.permission.RolePermissionUtil;
@@ -34,7 +35,6 @@ import com.liferay.roles.admin.constants.RolesAdminPortletKeys;
 import com.liferay.roles.admin.role.type.contributor.RoleTypeContributor;
 import com.liferay.roles.admin.web.internal.role.type.contributor.util.RoleTypeContributorRetrieverUtil;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
@@ -68,14 +68,17 @@ public class DeleteRolePortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				portletRequest, RolesAdminPortletKeys.ROLES_ADMIN,
-				PortletRequest.ACTION_PHASE);
-
-			portletURL.setParameter(ActionRequest.ACTION_NAME, "deleteRole");
-			portletURL.setParameter("mvcPath", "/view.jsp");
-			portletURL.setParameter(
-				"roleId", String.valueOf(_getRoleId(portletRequest)));
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					portletRequest, RolesAdminPortletKeys.ROLES_ADMIN,
+					PortletRequest.ACTION_PHASE)
+			).setActionName(
+				"deleteRole"
+			).setMVCPath(
+				"/view.jsp"
+			).setParameter(
+				"roleId", String.valueOf(_getRoleId(portletRequest))
+			).build();
 
 			return portletURL.toString();
 		}

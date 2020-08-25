@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.permission.PortletPermission;
 import com.liferay.portal.kernel.servlet.taglib.BaseDynamicInclude;
@@ -52,7 +53,6 @@ import java.io.Writer;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.WindowStateException;
@@ -186,21 +186,23 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 		HttpServletRequest httpServletRequest, CTCollection ctCollection,
 		CTPreferences ctPreferences, ThemeDisplay themeDisplay) {
 
-		PortletURL checkoutURL = _portal.getControlPanelPortletURL(
-			httpServletRequest, themeDisplay.getScopeGroup(),
-			CTPortletKeys.CHANGE_LISTS, 0, 0, PortletRequest.ACTION_PHASE);
+		PortletURL checkoutURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, themeDisplay.getScopeGroup(),
+				CTPortletKeys.CHANGE_LISTS, 0, 0, PortletRequest.ACTION_PHASE)
+		).setActionName(
+			"/change_lists/checkout_ct_collection"
+		).setRedirect(
+			_portal.getCurrentURL(httpServletRequest)
+		).build();
 
-		checkoutURL.setParameter(
-			ActionRequest.ACTION_NAME, "/change_lists/checkout_ct_collection");
-		checkoutURL.setParameter(
-			"redirect", _portal.getCurrentURL(httpServletRequest));
-
-		PortletURL selectURL = _portal.getControlPanelPortletURL(
-			httpServletRequest, themeDisplay.getScopeGroup(),
-			CTPortletKeys.CHANGE_LISTS, 0, 0, PortletRequest.RENDER_PHASE);
-
-		selectURL.setParameter(
-			"mvcPath", "/change_lists/select_change_list.jsp");
+		PortletURL selectURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, themeDisplay.getScopeGroup(),
+				CTPortletKeys.CHANGE_LISTS, 0, 0, PortletRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/change_lists/select_change_list.jsp"
+		).build();
 
 		try {
 			selectURL.setWindowState(LiferayWindowState.POP_UP);
@@ -297,12 +299,13 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 				"symbolLeft", "cards2"
 			));
 
-		PortletURL addURL = _portal.getControlPanelPortletURL(
-			httpServletRequest, themeDisplay.getScopeGroup(),
-			CTPortletKeys.CHANGE_LISTS, 0, 0, PortletRequest.RENDER_PHASE);
-
-		addURL.setParameter(
-			"mvcRenderCommandName", "/change_lists/add_ct_collection");
+		PortletURL addURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, themeDisplay.getScopeGroup(),
+				CTPortletKeys.CHANGE_LISTS, 0, 0, PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/change_lists/add_ct_collection"
+		).build();
 
 		PortletURL backURL = _portal.getControlPanelPortletURL(
 			httpServletRequest, themeDisplay.getScopeGroup(),
@@ -320,15 +323,18 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 			));
 
 		if (ctCollection != null) {
-			PortletURL reviewURL = _portal.getControlPanelPortletURL(
-				httpServletRequest, themeDisplay.getScopeGroup(),
-				CTPortletKeys.CHANGE_LISTS, 0, 0, PortletRequest.RENDER_PHASE);
-
-			reviewURL.setParameter(
-				"mvcRenderCommandName", "/change_lists/view_changes");
-			reviewURL.setParameter("backURL", backURL.toString());
-			reviewURL.setParameter(
-				"ctCollectionId", String.valueOf(ctCollectionId));
+			PortletURL reviewURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					httpServletRequest, themeDisplay.getScopeGroup(),
+					CTPortletKeys.CHANGE_LISTS, 0, 0,
+					PortletRequest.RENDER_PHASE)
+			).setMVCRenderCommandName(
+				"/change_lists/view_changes"
+			).setParameter(
+				"backURL", backURL.toString()
+			).setParameter(
+				"ctCollectionId", String.valueOf(ctCollectionId)
+			).build();
 
 			jsonArray.put(
 				JSONUtil.put("type", "divider")
@@ -348,16 +354,17 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 			if (count > 0) {
 				jsonArray.put(JSONUtil.put("type", "divider"));
 
-				PortletURL conflictsURL = _portal.getControlPanelPortletURL(
-					httpServletRequest, themeDisplay.getScopeGroup(),
-					CTPortletKeys.CHANGE_LISTS, 0, 0,
-					PortletRequest.RENDER_PHASE);
-
-				conflictsURL.setParameter(
-					"mvcRenderCommandName", "/change_lists/view_conflicts");
-				conflictsURL.setParameter(
+				PortletURL conflictsURL = PortletURLBuilder.create(
+					_portal.getControlPanelPortletURL(
+						httpServletRequest, themeDisplay.getScopeGroup(),
+						CTPortletKeys.CHANGE_LISTS, 0, 0,
+						PortletRequest.RENDER_PHASE)
+				).setMVCRenderCommandName(
+					"/change_lists/view_conflicts"
+				).setParameter(
 					"ctCollectionId",
-					String.valueOf(ctCollection.getCtCollectionId()));
+					String.valueOf(ctCollection.getCtCollectionId())
+				).build();
 
 				jsonArray.put(
 					JSONUtil.put(

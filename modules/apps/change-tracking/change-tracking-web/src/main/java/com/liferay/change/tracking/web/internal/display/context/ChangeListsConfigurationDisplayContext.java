@@ -17,11 +17,11 @@ package com.liferay.change.tracking.web.internal.display.context;
 import com.liferay.change.tracking.model.CTPreferences;
 import com.liferay.change.tracking.service.CTPreferencesLocalService;
 import com.liferay.portal.kernel.language.Language;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
 
@@ -60,11 +60,11 @@ public class ChangeListsConfigurationDisplayContext {
 	}
 
 	public String getActionURL() {
-		PortletURL actionURL = _renderResponse.createActionURL();
-
-		actionURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/change_lists/update_global_change_lists_configuration");
+		PortletURL actionURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			"/change_lists/update_global_change_lists_configuration"
+		).build();
 
 		return actionURL.toString();
 	}

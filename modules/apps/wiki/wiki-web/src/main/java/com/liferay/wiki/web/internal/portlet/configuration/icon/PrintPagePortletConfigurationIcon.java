@@ -59,9 +59,6 @@ public class PrintPagePortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			WikiNode node = ActionUtil.getNode(portletRequest);
-			WikiPage page = ActionUtil.getPage(portletRequest);
-
 			StringBundler sb = new StringBundler(5);
 
 			sb.append("window.open('");
@@ -73,9 +70,19 @@ public class PrintPagePortletConfigurationIcon
 			).setMVCRenderCommandName(
 				"/wiki/view"
 			).setParameter(
-				"nodeName", node.getName()
+				"nodeName",
+				() -> {
+					WikiNode node = ActionUtil.getNode(portletRequest);
+
+					return node.getName();
+				}
 			).setParameter(
-				"title", page.getTitle()
+				"title",
+				() -> {
+					WikiPage page = ActionUtil.getPage(portletRequest);
+
+					return page.getTitle();
+				}
 			).setParameter(
 				"viewMode", Constants.PRINT
 			).setWindowState(

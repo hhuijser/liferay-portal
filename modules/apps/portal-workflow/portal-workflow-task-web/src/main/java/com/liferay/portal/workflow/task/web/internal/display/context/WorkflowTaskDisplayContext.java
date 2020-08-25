@@ -366,13 +366,16 @@ public class WorkflowTaskDisplayContext {
 	}
 
 	public String getSearchURL() {
-		ThemeDisplay themeDisplay =
-			_workflowTaskRequestHelper.getThemeDisplay();
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			_getPortletURL()
 		).setParameter(
-			"groupId", themeDisplay.getScopeGroupId()
+			"groupId",
+			() -> {
+				ThemeDisplay themeDisplay =
+					_workflowTaskRequestHelper.getThemeDisplay();
+
+				return themeDisplay.getScopeGroupId();
+			}
 		).build();
 
 		return portletURL.toString();

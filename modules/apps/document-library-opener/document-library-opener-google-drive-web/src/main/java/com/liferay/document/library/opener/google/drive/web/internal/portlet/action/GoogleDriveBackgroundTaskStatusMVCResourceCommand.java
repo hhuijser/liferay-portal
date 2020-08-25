@@ -115,11 +115,6 @@ public class GoogleDriveBackgroundTaskStatusMVCResourceCommand
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(resourceResponse);
 
-			String googleDocsEditURL = _getGoogleDocsEditURL(
-				dlOpenerFileEntryReference.getReferenceKey(),
-				DLOpenerGoogleDriveMimeTypes.getGoogleDocsMimeType(
-					fileEntry.getMimeType()));
-
 			PortletURL portletURL = PortletURLBuilder.createRenderURL(
 				liferayPortletResponse, _portal.getPortletId(resourceRequest)
 			).setMVCRenderCommandName(
@@ -127,7 +122,11 @@ public class GoogleDriveBackgroundTaskStatusMVCResourceCommand
 			).setParameter(
 				"fileEntryId", fileEntryId
 			).setParameter(
-				"googleDocsEditURL", googleDocsEditURL
+				"googleDocsEditURL",
+				_getGoogleDocsEditURL(
+					dlOpenerFileEntryReference.getReferenceKey(),
+					DLOpenerGoogleDriveMimeTypes.getGoogleDocsMimeType(
+						fileEntry.getMimeType()))
 			).setParameter(
 				"googleDocsRedirect",
 				ParamUtil.getString(resourceRequest, "googleDocsRedirect")

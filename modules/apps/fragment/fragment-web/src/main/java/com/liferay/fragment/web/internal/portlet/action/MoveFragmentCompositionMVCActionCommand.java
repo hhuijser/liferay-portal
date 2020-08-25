@@ -49,22 +49,25 @@ public class MoveFragmentCompositionMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long fragmentCompositionId = ParamUtil.getLong(
-			actionRequest, "fragmentCompositionId");
-
-		long fragmentCollectionId = ParamUtil.getLong(
-			actionRequest, "fragmentCollectionId");
-
-		_fragmentCompositionService.moveFragmentComposition(
-			fragmentCompositionId, fragmentCollectionId);
-
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(actionResponse);
 
 		PortletURL redirectURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setParameter(
-			"fragmentCollectionId", fragmentCollectionId
+			"fragmentCollectionId",
+			() -> {
+				long fragmentCompositionId = ParamUtil.getLong(
+					actionRequest, "fragmentCompositionId");
+
+				long fragmentCollectionId = ParamUtil.getLong(
+					actionRequest, "fragmentCollectionId");
+
+				_fragmentCompositionService.moveFragmentComposition(
+					fragmentCompositionId, fragmentCollectionId);
+
+				return fragmentCollectionId;
+			}
 		).build();
 
 		sendRedirect(actionRequest, actionResponse, redirectURL.toString());

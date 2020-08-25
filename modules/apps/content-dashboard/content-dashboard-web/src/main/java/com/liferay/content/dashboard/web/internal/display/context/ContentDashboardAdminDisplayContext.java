@@ -209,12 +209,6 @@ public class ContentDashboardAdminDisplayContext {
 			setDesiredItemSelectorReturnTypes(
 				Collections.singletonList(new UUIDItemSelectorReturnType()));
 
-		List<? extends ContentDashboardItemType> contentDashboardItemTypes =
-			getContentDashboardItemTypes();
-
-		Stream<? extends ContentDashboardItemType> stream =
-			contentDashboardItemTypes.stream();
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			_itemSelector.getItemSelectorURL(
 				requestBackedPortletURLFactory,
@@ -223,13 +217,21 @@ public class ContentDashboardAdminDisplayContext {
 				contentDashboardItemTypeItemSelectorCriterion)
 		).setParameter(
 			"checkedContentDashboardItemTypes",
-			stream.map(
-				contentDashboardItemType ->
-					contentDashboardItemType.toJSONString(
-						_portal.getLocale(_liferayPortletRequest))
-			).toArray(
-				String[]::new
-			)
+			() -> {
+				List<? extends ContentDashboardItemType>
+					contentDashboardItemTypes = getContentDashboardItemTypes();
+
+				Stream<? extends ContentDashboardItemType> stream =
+					contentDashboardItemTypes.stream();
+
+				return stream.map(
+					contentDashboardItemType ->
+						contentDashboardItemType.toJSONString(
+							_portal.getLocale(_liferayPortletRequest))
+				).toArray(
+					String[]::new
+				);
+			}
 		).build();
 
 		return String.valueOf(portletURL);

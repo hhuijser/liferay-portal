@@ -207,14 +207,12 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			_mvcPath
 		).setRedirect(
-			redirect
+			ParamUtil.getString(_httpServletRequest, "redirect")
 		).setParameter(
 			"tabs1", "assignees"
 		).setParameter(

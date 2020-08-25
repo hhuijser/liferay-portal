@@ -532,14 +532,6 @@ public class DefaultWikiListPagesDisplayContext
 			LiferayPortletResponse liferayPortletResponse =
 				_wikiRequestHelper.getLiferayPortletResponse();
 
-			String cmd = Constants.DELETE;
-
-			if (_trashHelper.isTrashEnabled(
-					_wikiRequestHelper.getScopeGroupId())) {
-
-				cmd = Constants.MOVE_TO_TRASH;
-			}
-
 			PortletURL portletURL = PortletURLBuilder.createActionURL(
 				liferayPortletResponse
 			).setActionName(
@@ -547,7 +539,18 @@ public class DefaultWikiListPagesDisplayContext
 			).setRedirect(
 				_wikiRequestHelper.getCurrentURL()
 			).setParameter(
-				Constants.CMD, cmd
+				Constants.CMD,
+				() -> {
+					String cmd = Constants.DELETE;
+
+					if (_trashHelper.isTrashEnabled(
+							_wikiRequestHelper.getScopeGroupId())) {
+
+						cmd = Constants.MOVE_TO_TRASH;
+					}
+
+					return cmd;
+				}
 			).setParameter(
 				"nodeId", wikiPage.getNodeId()
 			).setParameter(
@@ -713,14 +716,17 @@ public class DefaultWikiListPagesDisplayContext
 			LiferayPortletResponse liferayPortletResponse =
 				_wikiRequestHelper.getLiferayPortletResponse();
 
-			WikiNode wikiNode = wikiPage.getNode();
-
 			PortletURL portletURL = PortletURLBuilder.createRenderURL(
 				liferayPortletResponse
 			).setMVCRenderCommandName(
 				"/wiki/view"
 			).setParameter(
-				"nodeName", wikiNode.getName()
+				"nodeName",
+				() -> {
+					WikiNode wikiNode = wikiPage.getNode();
+
+					return wikiNode.getName();
+				}
 			).setParameter(
 				"title", wikiPage.getTitle()
 			).setParameter(

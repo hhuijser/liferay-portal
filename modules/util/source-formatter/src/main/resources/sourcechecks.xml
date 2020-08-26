@@ -213,6 +213,7 @@
 		<check name="JavaAssertEqualsCheck" />
 		<check name="JavaBooleanStatementCheck" />
 		<check name="JavaBooleanUsageCheck" />
+		<check name="JavaClassNameCheck" />
 		<check name="JavaCollatorUtilCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks for correct use of `Collator`" />

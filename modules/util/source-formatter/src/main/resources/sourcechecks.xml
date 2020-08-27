@@ -664,6 +664,7 @@
 	</source-processor>
 	<source-processor name="XMLSourceProcessor">
 		<check name="XMLBuildFileCheck" />
+		<check name="XMLCDATACheck" />
 		<check name="XMLCustomSQLOrderCheck" />
 		<check name="XMLCustomSQLStylingCheck" />
 		<check name="XMLDDLStructuresFileCheck" />

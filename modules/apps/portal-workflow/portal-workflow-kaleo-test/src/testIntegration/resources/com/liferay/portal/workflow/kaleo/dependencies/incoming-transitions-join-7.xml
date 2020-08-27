@@ -9,7 +9,22 @@
 	<version>1</version>
 	<state>
 		<name>created</name>
-		<metadata><![CDATA[{"transitions":{"review":{"bendpoints":[]}},"xy":[60,141]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"review": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						60,
+						141
+					]
+				}
+			]]>
+		</metadata>
 		<initial>true</initial>
 		<transitions>
 			<transition>
@@ -20,7 +35,22 @@
 	</state>
 	<task>
 		<name>review</name>
-		<metadata><![CDATA[{"transitions":{"fork":{"bendpoints":[]}},"xy":[180,126]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"fork": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						180,
+						126
+					]
+				}
+			]]>
+		</metadata>
 		<assignments>
 			<user/>
 		</assignments>
@@ -33,7 +63,17 @@
 	</task>
 	<state>
 		<name>approved</name>
-		<metadata><![CDATA[{"terminal":true,"xy":[970,141]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"terminal": true,
+					"xy": [
+						970,
+						141
+					]
+				}
+			]]>
+		</metadata>
 		<actions>
 			<action>
 				<name>approve</name>
@@ -52,7 +92,26 @@
 	</state>
 	<fork>
 		<name>fork</name>
-		<metadata><![CDATA[{"transitions":{"cond2":{"bendpoints":[]},"cond1":{"bendpoints":[]}},"xy":[320,128]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"cond1": {
+							"bendpoints": [
+							]
+						},
+						"cond2": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						320,
+						128
+					]
+				}
+			]]>
+		</metadata>
 		<transitions>
 			<transition>
 				<name>cond1</name>
@@ -66,7 +125,22 @@
 	</fork>
 	<join>
 		<name>fork Join</name>
-		<metadata><![CDATA[{"transitions":{"approved":{"bendpoints":[]}},"xy":[860,128]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"approved": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						860,
+						128
+					]
+				}
+			]]>
+		</metadata>
 		<transitions>
 			<transition>
 				<name>approved</name>
@@ -76,7 +150,26 @@
 	</join>
 	<condition>
 		<name>cond1</name>
-		<metadata><![CDATA[{"transitions":{"state1":{"bendpoints":[]},"task1":{"bendpoints":[]}},"xy":[470,70]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"state1": {
+							"bendpoints": [
+							]
+						},
+						"task1": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						470,
+						70
+					]
+				}
+			]]>
+		</metadata>
 		<script><![CDATA[returnValue = "task1"
 
 return;]]></script>
@@ -94,7 +187,26 @@ return;]]></script>
 	</condition>
 	<condition>
 		<name>cond2</name>
-		<metadata><![CDATA[{"transitions":{"state2":{"bendpoints":[]},"task2":{"bendpoints":[]}},"xy":[470,200]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"state2": {
+							"bendpoints": [
+							]
+						},
+						"task2": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						470,
+						200
+					]
+				}
+			]]>
+		</metadata>
 		<script><![CDATA[returnValue = "task2"
 
 return;]]></script>
@@ -112,7 +224,22 @@ return;]]></script>
 	</condition>
 	<task>
 		<name>task1</name>
-		<metadata><![CDATA[{"transitions":{"state1":{"bendpoints":[]}},"xy":[620,21]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"state1": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						620,
+						21
+					]
+				}
+			]]>
+		</metadata>
 		<assignments>
 			<roles>
 				<role>
@@ -130,7 +257,22 @@ return;]]></script>
 	</task>
 	<state>
 		<name>state1</name>
-		<metadata><![CDATA[{"transitions":{"fork Join":{"bendpoints":[]}},"xy":[760,83]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"fork Join": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						760,
+						83
+					]
+				}
+			]]>
+		</metadata>
 		<transitions>
 			<transition>
 				<name>fork Join</name>
@@ -140,7 +282,22 @@ return;]]></script>
 	</state>
 	<task>
 		<name>task2</name>
-		<metadata><![CDATA[{"transitions":{"state2":{"bendpoints":[]}},"xy":[620,260]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"state2": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						620,
+						260
+					]
+				}
+			]]>
+		</metadata>
 		<assignments>
 			<roles>
 				<role>
@@ -158,7 +315,22 @@ return;]]></script>
 	</task>
 	<state>
 		<name>state2</name>
-		<metadata><![CDATA[{"transitions":{"fork Join":{"bendpoints":[]}},"xy":[760,213]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"fork Join": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						760,
+						213
+					]
+				}
+			]]>
+		</metadata>
 		<transitions>
 			<transition>
 				<name>fork Join</name>

@@ -7,8 +7,10 @@
 		<definition>
 			<![CDATA[
 				{
+					"availableLanguageIds": [
+						"[$LOCALE_DEFAULT$]"
+					],
 					"defaultLanguageId": "[$LOCALE_DEFAULT$]",
-					"availableLanguageIds": ["[$LOCALE_DEFAULT$]"],
 					"fields": [
 						{
 							"dataType": "string",
@@ -24,7 +26,7 @@
 							"repeatable": false,
 							"required": false,
 							"showLabel": true,
-							"type": "text",
+							"type": "text"
 						},
 						{
 							"dataType": "string",
@@ -40,7 +42,7 @@
 							"repeatable": false,
 							"required": false,
 							"showLabel": true,
-							"type": "text",
+							"type": "text"
 						},
 						{
 							"dataType": "string",
@@ -56,7 +58,7 @@
 							"repeatable": false,
 							"required": false,
 							"showLabel": true,
-							"type": "text",
+							"type": "text"
 						},
 						{
 							"dataType": "string",
@@ -72,7 +74,7 @@
 							"repeatable": false,
 							"required": false,
 							"showLabel": true,
-							"type": "text",
+							"type": "text"
 						},
 						{
 							"dataType": "string",
@@ -88,7 +90,7 @@
 							"repeatable": false,
 							"required": false,
 							"showLabel": true,
-							"type": "text",
+							"type": "text"
 						},
 						{
 							"dataType": "string",
@@ -104,8 +106,8 @@
 							"repeatable": false,
 							"required": false,
 							"showLabel": true,
-							"type": "text",
-						},
+							"type": "text"
+						}
 					]
 				}
 			]]>
@@ -120,7 +122,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["DESCRIPTION"],
+											"fieldNames": [
+												"DESCRIPTION"
+											],
 											"size": 12
 										}
 									]
@@ -128,7 +132,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["EMBEDDABLE_URL"],
+											"fieldNames": [
+												"EMBEDDABLE_URL"
+											],
 											"size": 12
 										}
 									]
@@ -136,7 +142,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["ICON_URL"],
+											"fieldNames": [
+												"ICON_URL"
+											],
 											"size": 12
 										}
 									]
@@ -144,7 +152,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["ID"],
+											"fieldNames": [
+												"ID"
+											],
 											"size": 12
 										}
 									]
@@ -152,7 +162,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["NAME"],
+											"fieldNames": [
+												"NAME"
+											],
 											"size": 12
 										}
 									]
@@ -160,7 +172,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["URL"],
+											"fieldNames": [
+												"URL"
+											],
 											"size": 12
 										}
 									]

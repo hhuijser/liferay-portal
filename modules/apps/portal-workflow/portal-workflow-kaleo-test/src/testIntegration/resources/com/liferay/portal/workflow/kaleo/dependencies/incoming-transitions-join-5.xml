@@ -9,7 +9,22 @@
 	<version>1</version>
 	<state>
 		<name>created</name>
-		<metadata><![CDATA[{"transitions":{"review":{"bendpoints":[]}},"xy":[60,123]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"review": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						60,
+						123
+					]
+				}
+			]]>
+		</metadata>
 		<initial>true</initial>
 		<transitions>
 			<transition>
@@ -20,7 +35,26 @@
 	</state>
 	<task>
 		<name>review</name>
-		<metadata><![CDATA[{"transitions":{"fork":{"bendpoints":[]},"cond":{"bendpoints":[]}},"xy":[160,108]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"cond": {
+							"bendpoints": [
+							]
+						},
+						"fork": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						160,
+						108
+					]
+				}
+			]]>
+		</metadata>
 		<assignments>
 			<user/>
 		</assignments>
@@ -33,7 +67,17 @@
 	</task>
 	<state>
 		<name>approved</name>
-		<metadata><![CDATA[{"terminal":true,"xy":[950,123]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"terminal": true,
+					"xy": [
+						950,
+						123
+					]
+				}
+			]]>
+		</metadata>
 		<actions>
 			<action>
 				<name>approve</name>
@@ -52,7 +96,26 @@
 	</state>
 	<fork>
 		<name>fork</name>
-		<metadata><![CDATA[{"transitions":{"task":{"bendpoints":[]},"state":{"bendpoints":[]}},"xy":[420,110]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"state": {
+							"bendpoints": [
+							]
+						},
+						"task": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						420,
+						110
+					]
+				}
+			]]>
+		</metadata>
 		<transitions>
 			<transition>
 				<name>task</name>
@@ -66,7 +129,22 @@
 	</fork>
 	<join>
 		<name>fork Join</name>
-		<metadata><![CDATA[{"transitions":{"approved":{"bendpoints":[]}},"xy":[830,110]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"approved": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						830,
+						110
+					]
+				}
+			]]>
+		</metadata>
 		<transitions>
 			<transition>
 				<name>approved</name>
@@ -76,7 +154,22 @@
 	</join>
 	<task>
 		<name>task</name>
-		<metadata><![CDATA[{"transitions":{"fork Join":{"bendpoints":[]}},"xy":[580,21]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"fork Join": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						580,
+						21
+					]
+				}
+			]]>
+		</metadata>
 		<assignments>
 			<user></user>
 		</assignments>
@@ -89,7 +182,22 @@
 	</task>
 	<state>
 		<name>state</name>
-		<metadata><![CDATA[{"transitions":{"state2":{"bendpoints":[]}},"xy":[570,138]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"state2": {
+							"bendpoints": [
+							]
+						}
+					},
+					"xy": [
+						570,
+						138
+					]
+				}
+			]]>
+		</metadata>
 		<transitions>
 			<transition>
 				<name>state2</name>
@@ -99,7 +207,26 @@
 	</state>
 	<state>
 		<name>state2</name>
-		<metadata><![CDATA[{"transitions":{"state":{"bendpoints":[[675,208]]}},"xy":[710,138]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"state": {
+							"bendpoints": [
+								[
+									675,
+									208
+								]
+							]
+						}
+					},
+					"xy": [
+						710,
+						138
+					]
+				}
+			]]>
+		</metadata>
 		<transitions>
 			<transition>
 				<name>state</name>
@@ -109,7 +236,34 @@
 	</state>
 	<condition>
 		<name>cond</name>
-		<metadata><![CDATA[{"transitions":{"fork":{"bendpoints":[]},"fork Join":{"bendpoints":[[432,263],[767,265]]}},"xy":[270,110]}]]></metadata>
+		<metadata>
+			<![CDATA[
+				{
+					"transitions": {
+						"fork": {
+							"bendpoints": [
+							]
+						},
+						"fork Join": {
+							"bendpoints": [
+								[
+									432,
+									263
+								],
+								[
+									767,
+									265
+								]
+							]
+						}
+					},
+					"xy": [
+						270,
+						110
+					]
+				}
+			]]>
+		</metadata>
 		<script><![CDATA[returnValue = "fork"
 
 return;]]></script>

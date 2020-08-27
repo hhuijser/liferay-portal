@@ -158,9 +158,11 @@
 						}
 					],
 					"successPage": {
-						"body": {},
+						"body": {
+						},
 						"enabled": false,
-						"title": {}
+						"title": {
+						}
 					}
 				}
 			]]>
@@ -175,7 +177,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["content"],
+											"fieldNames": [
+												"content"
+											],
 											"size": 12
 										}
 									]

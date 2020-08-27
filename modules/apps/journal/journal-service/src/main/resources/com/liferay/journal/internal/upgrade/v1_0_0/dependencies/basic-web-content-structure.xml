@@ -7,8 +7,10 @@
 		<definition>
 			<![CDATA[
 				{
+					"availableLanguageIds": [
+						"[$LOCALE_DEFAULT$]"
+					],
 					"defaultLanguageId": "[$LOCALE_DEFAULT$]",
-					"availableLanguageIds": ["[$LOCALE_DEFAULT$]"],
 					"fields": [
 						{
 							"dataType": "html",
@@ -37,7 +39,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["content"],
+											"fieldNames": [
+												"content"
+											],
 											"size": 12
 										}
 									]

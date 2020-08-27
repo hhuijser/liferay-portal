@@ -13,169 +13,169 @@
 					"defaultLanguageId": "en_US",
 					"fields": [
 						{
+							"dataType": "image",
+							"fieldNamespace": "ddm",
+							"indexType": "text",
 							"label": {
 								"en_US": "Case Image"
 							},
+							"localizable": true,
+							"name": "CaseImage",
 							"predefinedValue": {
 								"en_US": ""
 							},
+							"readOnly": false,
+							"repeatable": false,
+							"required": false,
+							"showLabel": true,
 							"style": {
 								"en_US": ""
 							},
 							"tip": {
 								"en_US": ""
 							},
-							"dataType": "image",
-							"fieldNamespace": "ddm",
-							"indexType": "text",
-							"localizable": true,
-							"name": "CaseImage",
-							"readOnly": false,
-							"repeatable": false,
-							"required": false,
-							"showLabel": true,
 							"type": "ddm-image"
 						},
 						{
+							"dataType": "string",
+							"indexType": "keyword",
 							"label": {
 								"en_US": "Case Title"
 							},
+							"localizable": true,
+							"name": "CaseTitle",
 							"predefinedValue": {
 								"en_US": ""
 							},
+							"readOnly": false,
+							"repeatable": false,
+							"required": false,
+							"showLabel": true,
 							"style": {
 								"en_US": ""
 							},
 							"tip": {
 								"en_US": ""
 							},
-							"dataType": "string",
-							"indexType": "keyword",
-							"localizable": true,
-							"name": "CaseTitle",
-							"readOnly": false,
-							"repeatable": false,
-							"required": false,
-							"showLabel": true,
 							"type": "text"
 						},
 						{
+							"dataType": "string",
+							"indexType": "keyword",
 							"label": {
 								"en_US": "Case Intro"
 							},
+							"localizable": true,
+							"name": "CaseIntro",
 							"predefinedValue": {
 								"en_US": ""
 							},
+							"readOnly": false,
+							"repeatable": false,
+							"required": false,
+							"showLabel": true,
 							"style": {
 								"en_US": ""
 							},
 							"tip": {
 								"en_US": ""
 							},
-							"dataType": "string",
-							"indexType": "keyword",
-							"localizable": true,
-							"name": "CaseIntro",
-							"readOnly": false,
-							"repeatable": false,
-							"required": false,
-							"showLabel": true,
 							"type": "text"
 						},
 						{
+							"dataType": "html",
+							"fieldNamespace": "ddm",
+							"indexType": "text",
 							"label": {
 								"en_US": "Case Body"
 							},
+							"localizable": true,
+							"name": "CaseBody",
 							"predefinedValue": {
 								"en_US": ""
 							},
+							"readOnly": false,
+							"repeatable": false,
+							"required": false,
+							"showLabel": true,
 							"style": {
 								"en_US": ""
 							},
 							"tip": {
 								"en_US": ""
 							},
-							"dataType": "html",
-							"fieldNamespace": "ddm",
-							"indexType": "text",
-							"localizable": true,
-							"name": "CaseBody",
-							"readOnly": false,
-							"repeatable": false,
-							"required": false,
-							"showLabel": true,
 							"type": "ddm-text-html"
 						},
 						{
+							"dataType": "html",
+							"fieldNamespace": "ddm",
+							"indexType": "text",
 							"label": {
 								"en_US": "Case Side Details"
 							},
+							"localizable": true,
+							"name": "CaseSideDetails",
 							"predefinedValue": {
 								"en_US": ""
 							},
+							"readOnly": false,
+							"repeatable": false,
+							"required": false,
+							"showLabel": true,
 							"style": {
 								"en_US": ""
 							},
 							"tip": {
 								"en_US": ""
 							},
-							"dataType": "html",
-							"fieldNamespace": "ddm",
-							"indexType": "text",
-							"localizable": true,
-							"name": "CaseSideDetails",
-							"readOnly": false,
-							"repeatable": false,
-							"required": false,
-							"showLabel": true,
 							"type": "ddm-text-html"
 						},
 						{
+							"dataType": "html",
+							"fieldNamespace": "ddm",
+							"indexType": "text",
 							"label": {
 								"en_US": "Case Side Info"
 							},
+							"localizable": true,
+							"name": "CaseSideInfo",
 							"predefinedValue": {
 								"en_US": ""
 							},
+							"readOnly": false,
+							"repeatable": false,
+							"required": false,
+							"showLabel": true,
 							"style": {
 								"en_US": ""
 							},
 							"tip": {
 								"en_US": ""
 							},
-							"dataType": "html",
-							"fieldNamespace": "ddm",
-							"indexType": "text",
-							"localizable": true,
-							"name": "CaseSideInfo",
-							"readOnly": false,
-							"repeatable": false,
-							"required": false,
-							"showLabel": true,
 							"type": "ddm-text-html"
 						},
 						{
+							"dataType": "image",
+							"fieldNamespace": "ddm",
+							"indexType": "text",
 							"label": {
 								"en_US": "Case Logo"
 							},
+							"localizable": true,
+							"name": "CaseLogo",
 							"predefinedValue": {
 								"en_US": ""
 							},
+							"readOnly": false,
+							"repeatable": false,
+							"required": false,
+							"showLabel": true,
 							"style": {
 								"en_US": ""
 							},
 							"tip": {
 								"en_US": ""
 							},
-							"dataType": "image",
-							"fieldNamespace": "ddm",
-							"indexType": "text",
-							"localizable": true,
-							"name": "CaseLogo",
-							"readOnly": false,
-							"repeatable": false,
-							"required": false,
-							"showLabel": true,
 							"type": "ddm-image"
 						}
 					]
@@ -192,7 +192,9 @@
 								{
 									"columns": [
 										{
-											"fieldNames": ["content"],
+											"fieldNames": [
+												"content"
+											],
 											"size": 12
 										}
 									]

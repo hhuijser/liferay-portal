@@ -67,8 +67,7 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 		}
 
 		if (!_hasPrecedingAssignStatement(parentDetailAST, variableName) &&
-			!_isUsedInFinallyStatement(detailAST, variableName) &&
-			!isJSPFile()) {
+			!_isUsedInFinallyStatement(detailAST, variableName)) {
 
 			checkUnnecessaryStatementBeforeReturn(
 				detailAST, semiDetailAST, variableName,
@@ -134,7 +133,7 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			return;
 		}
 
-		if ((firstNextVariableCallerDetailAST == null) && !isJSPFile()) {
+		if (firstNextVariableCallerDetailAST == null) {
 			DetailAST ancestorDetailAST = getParentWithTokenType(
 				detailAST, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE,
 				TokenTypes.OBJBLOCK);

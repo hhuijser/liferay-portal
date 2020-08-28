@@ -97,24 +97,24 @@ public class Entity implements Comparable<Entity> {
 	public Entity(ServiceBuilder serviceBuilder, String name) {
 		this(
 			serviceBuilder, null, null, null, name, null, null, null, null,
-			false, false, false, false, true, true, null, null, null, null,
-			null, true, false, false, false, false, false, null, false, null,
-			null, false, null, null, null, null, null, null, null, null, null,
-			null, false);
+			null, false, false, false, false, true, true, null, null, null,
+			null, null, true, false, false, false, false, false, null, false,
+			null, null, false, null, null, null, null, null, null, null, null,
+			null, null, false);
 	}
 
 	public Entity(
 		ServiceBuilder serviceBuilder, String packagePath,
 		String apiPackagePath, String portletShortName, String name,
-		String pluralName, String humanName, String table, String alias,
-		boolean uuid, boolean uuidAccessor, boolean externalReferenceCode,
-		boolean localService, boolean remoteService, boolean persistence,
-		String persistenceClassName, String finderClassName, String dataSource,
-		String sessionFactory, String txManager, boolean cacheEnabled,
-		boolean changeTrackingEnabled, boolean dynamicUpdateEnabled,
-		boolean jsonEnabled, boolean mvccEnabled, boolean trashEnabled,
-		String uadApplicationName, boolean uadAutoDelete, String uadOutputPath,
-		String uadPackagePath, boolean deprecated,
+		String variableName, String pluralName, String humanName, String table,
+		String alias, boolean uuid, boolean uuidAccessor,
+		boolean externalReferenceCode, boolean localService,
+		boolean remoteService, boolean persistence, String persistenceClassName,
+		String finderClassName, String dataSource, String sessionFactory,
+		String txManager, boolean cacheEnabled, boolean changeTrackingEnabled,
+		boolean dynamicUpdateEnabled, boolean jsonEnabled, boolean mvccEnabled,
+		boolean trashEnabled, String uadApplicationName, boolean uadAutoDelete,
+		String uadOutputPath, String uadPackagePath, boolean deprecated,
 		List<EntityColumn> pkEntityColumns,
 		List<EntityColumn> regularEntityColumns,
 		List<EntityColumn> blobEntityColumns,
@@ -129,6 +129,8 @@ public class Entity implements Comparable<Entity> {
 		_apiPackagePath = apiPackagePath;
 		_portletShortName = portletShortName;
 		_name = name;
+		_variableName = GetterUtil.getString(
+			variableName, TextFormatter.format(name, TextFormatter.I));
 		_pluralName = GetterUtil.getString(
 			pluralName, serviceBuilder.formatPlural(name));
 		_humanName = GetterUtil.getString(
@@ -774,7 +776,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public String getVarName() {
-		return TextFormatter.format(_name, TextFormatter.I);
+		return _variableName;
 	}
 
 	public Entity getVersionedEntity() {
@@ -1328,6 +1330,7 @@ public class Entity implements Comparable<Entity> {
 	private List<String> _unresolvedReferenceEntityNames;
 	private final boolean _uuid;
 	private final boolean _uuidAccessor;
+	private final String _variableName;
 	private Entity _versionedEntity;
 	private Entity _versionEntity;
 

@@ -530,7 +530,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryVariableDeclarationCheck">
 			<message key="variable.declaration.unnecessary.before.reassign" value="No need to declare variable ''{0}'' because ''{0}'' is reassigned another value without being used" />
 			<message key="variable.declaration.unnecessary.before.return" value="No need to declare variable ''{0}'' because it is returned right after" />
-			<message key="variable.declaration.unnecessary.to.string" value="No need to declare variable ''{0}''，use String.valueOf() to combine line ''{1}'' and ''{2}''" />
+			<message key="variable.declaration.unnecessary.to.string" value="No need to declare variable ''{0}'', use String.valueOf() to combine line ''{1}'' and ''{2}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnprocessedExceptionCheck">
 			<message key="exception.unprocessed" value="Unprocessed exception ''{0}'', see LPS-36174" />

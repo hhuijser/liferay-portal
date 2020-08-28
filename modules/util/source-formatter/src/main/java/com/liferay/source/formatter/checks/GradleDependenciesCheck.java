@@ -47,6 +47,13 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		List<String> dependenciesBlocks =
 			GradleSourceUtil.getDependenciesBlocks(content);
 
+		if (dependenciesBlocks.isEmpty()) {
+			return content;
+		}
+
+		String releasePortalAPIVersion = getAttributeValue(
+			_RELEASE_PORTAL_API_VERSION_KEY, absolutePath);
+
 		for (String dependenciesBlock : dependenciesBlocks) {
 			int x = dependenciesBlock.indexOf("\n");
 			int y = dependenciesBlock.lastIndexOf("\n");
@@ -58,7 +65,8 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			String dependencies = dependenciesBlock.substring(x, y + 1);
 
 			content = _formatDependencies(
-				content, SourceUtil.getIndent(dependenciesBlock), dependencies);
+				content, SourceUtil.getIndent(dependenciesBlock), dependencies,
+				releasePortalAPIVersion);
 
 			if (isAttributeValue(_CHECK_PETRA_DEPENDENCIES_KEY, absolutePath) &&
 				absolutePath.contains("/modules/core/petra/")) {
@@ -84,7 +92,8 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 	}
 
 	private String _formatDependencies(
-		String content, String indent, String dependencies) {
+		String content, String indent, String dependencies,
+		String releasePortalAPIVersion) {
 
 		Matcher matcher = _incorrectWhitespacePattern.matcher(dependencies);
 
@@ -112,6 +121,18 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			dependency = dependency.trim();
 
 			if (Validator.isNull(dependency)) {
+				continue;
+			}
+
+			if (dependency.startsWith("compileOnly ") &&
+				Validator.isNotNull(releasePortalAPIVersion)) {
+
+				uniqueDependencies.add(
+					StringBundler.concat(
+						"compileOnly group: \"com.liferay.portal\", name: ",
+						"\"release.portal.api\", version: \"",
+						releasePortalAPIVersion, "\""));
+
 				continue;
 			}
 
@@ -196,6 +217,9 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 	private static final String _CHECK_PETRA_DEPENDENCIES_KEY =
 		"checkPetraDependencies";
+
+	private static final String _RELEASE_PORTAL_API_VERSION_KEY =
+		"releasePortalAPIVersion";
 
 	private static final Pattern _dependencyAttributesPattern = Pattern.compile(
 		"(\\w+): \"([\\w.-]+)\"");

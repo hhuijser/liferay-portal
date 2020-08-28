@@ -1,6 +1,7 @@
 ## UnnecessaryAssignCheck
 
-No need to assign call to variable that is reassigned another value without being used.
+No need to assign call to variable that is reassigned another value without
+being used.
 
 ### Example
 
@@ -10,12 +11,15 @@ Incorrect:
 ...
 
 s = "";
+
 s = "example";
 ```
 
 Correct:
 
 ```java
+...
+
 s = "example";
 ```
 
@@ -77,7 +81,7 @@ public String method(String a, String b) {
 
 ---
 
-Use String.valueOf() to combine lines.
+Use `String.valueOf()` to combine lines.
 
 ### Example
 
@@ -94,5 +98,3 @@ Correct:
 ```java
 sourceFileName = String.valueOf(UUID.randomUUID());
 ```
-
----

@@ -10,12 +10,15 @@ Incorrect:
 ...
 
 String s = "";
+
 s = "example";
 ```
 
 Correct:
 
 ```java
+...
+
 String s = "example";
 ```
 
@@ -45,7 +48,7 @@ public String method(String a, String b) {
 
 ---
 
-Use String.valueOf() to combine lines.
+Use `String.valueOf()` to combine lines.
 
 ### Example
 

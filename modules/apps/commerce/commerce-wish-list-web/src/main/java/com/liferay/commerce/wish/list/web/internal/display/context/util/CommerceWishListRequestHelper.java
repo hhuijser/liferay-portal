@@ -40,7 +40,7 @@ public class CommerceWishListRequestHelper extends BaseRequestHelper {
 			CommerceWebKeys.COMMERCE_CONTEXT);
 	}
 
-	public HttpServletResponse getResponse() {
+	public HttpServletResponse getResponseHttpServletResponse() {
 		return PortalUtil.getHttpServletResponse(getLiferayPortletResponse());
 	}
 

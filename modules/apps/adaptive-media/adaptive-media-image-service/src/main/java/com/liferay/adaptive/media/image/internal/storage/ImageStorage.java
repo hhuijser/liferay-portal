@@ -42,7 +42,7 @@ public class ImageStorage {
 			getConfigurationEntryPath(configurationUuid));
 	}
 
-	public InputStream getContentStream(
+	public InputStream getContentInputStream(
 		FileVersion fileVersion, String configurationUuid) {
 
 		try {

@@ -51,7 +51,9 @@ public abstract class BaseMBUploadFileEntryHandler
 
 		long categoryId = ParamUtil.getLong(uploadPortletRequest, "categoryId");
 
-		try (InputStream inputStream = getFileAsStream(uploadPortletRequest)) {
+		try (InputStream inputStream = getFileAsInputStream(
+				uploadPortletRequest)) {
+
 			String tempFileName = TempFileEntryUtil.getTempFileName(
 				getFileName(uploadPortletRequest));
 
@@ -66,7 +68,7 @@ public abstract class BaseMBUploadFileEntryHandler
 		return uploadPortletRequest.getContentType(getParameterName());
 	}
 
-	protected InputStream getFileAsStream(
+	protected InputStream getFileAsInputStream(
 			UploadPortletRequest uploadPortletRequest)
 		throws IOException {
 

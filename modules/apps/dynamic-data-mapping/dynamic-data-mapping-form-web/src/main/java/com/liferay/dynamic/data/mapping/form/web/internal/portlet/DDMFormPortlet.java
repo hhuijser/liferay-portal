@@ -104,7 +104,7 @@ public class DDMFormPortlet extends MVCPortlet {
 		catch (Exception exception) {
 			_portal.copyRequestParameters(actionRequest, actionResponse);
 
-			Throwable throwable = getRootCause(exception);
+			Throwable throwable = getRootCauseThrowable(exception);
 
 			hideDefaultErrorMessage(actionRequest);
 
@@ -173,7 +173,7 @@ public class DDMFormPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
-	protected Throwable getRootCause(Throwable throwable) {
+	protected Throwable getRootCauseThrowable(Throwable throwable) {
 		while (throwable.getCause() != null) {
 			throwable = throwable.getCause();
 		}

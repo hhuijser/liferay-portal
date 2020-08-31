@@ -112,7 +112,8 @@ public class CommerceWishListDisplayContext {
 			_commerceWishList =
 				_commerceWishListHttpHelper.getCurrentCommerceWishList(
 					httpServletRequest,
-					_commerceWishListRequestHelper.getResponse());
+					_commerceWishListRequestHelper.
+						getResponseHttpServletResponse());
 		}
 
 		return _commerceWishList;

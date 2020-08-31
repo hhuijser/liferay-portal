@@ -82,7 +82,7 @@ public class SalesforceTalendJobDeployer {
 							if (commerceDataIntegrationProcess == null) {
 								UnicodeProperties
 									typeSettingsUnicodeProperties =
-										_getDefaultTypeSettingsProperties(
+										_getDefaultTypeSettingsUnicodeProperties(
 											zipFile.getInputStream(zipEntry));
 
 								commerceDataIntegrationProcess =
@@ -118,7 +118,7 @@ public class SalesforceTalendJobDeployer {
 		}
 	}
 
-	private UnicodeProperties _getDefaultTypeSettingsProperties(
+	private UnicodeProperties _getDefaultTypeSettingsUnicodeProperties(
 			InputStream inputStream)
 		throws Exception {
 

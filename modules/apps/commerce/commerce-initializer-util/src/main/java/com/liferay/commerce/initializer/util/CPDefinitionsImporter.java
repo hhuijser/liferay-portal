@@ -308,7 +308,7 @@ public class CPDefinitionsImporter {
 		return cpTaxCategory.getCPTaxCategoryId();
 	}
 
-	private UnicodeProperties _getSubscriptionTypeSettingsProperties(
+	private UnicodeProperties _getSubscriptionTypeSettingsUnicodeProperties(
 		JSONObject subscriptionInfoJSONObject) {
 
 		if (subscriptionInfoJSONObject == null) {
@@ -434,7 +434,8 @@ public class CPDefinitionsImporter {
 			externalReferenceCode, shippable, sku, taxCategory, width, height,
 			length, weight, subscriptionEnabled, subscriptionLength,
 			subscriptionType,
-			_getSubscriptionTypeSettingsProperties(subscriptionInfoJSONObject),
+			_getSubscriptionTypeSettingsUnicodeProperties(
+				subscriptionInfoJSONObject),
 			maxSubscriptionCycles, assetCategoryIds, assetTagNames,
 			serviceContext);
 
@@ -909,7 +910,8 @@ public class CPDefinitionsImporter {
 			calendar.get(Calendar.MINUTE), 0, 0, 0, 0, 0, true,
 			overrideSubscriptionInfo, subscriptionEnabled, subscriptionLength,
 			subscriptionType,
-			_getSubscriptionTypeSettingsProperties(subscriptionInfoJSONObject),
+			_getSubscriptionTypeSettingsUnicodeProperties(
+				subscriptionInfoJSONObject),
 			maxSubscriptionCycles, serviceContext);
 
 		_addWarehouseQuantities(

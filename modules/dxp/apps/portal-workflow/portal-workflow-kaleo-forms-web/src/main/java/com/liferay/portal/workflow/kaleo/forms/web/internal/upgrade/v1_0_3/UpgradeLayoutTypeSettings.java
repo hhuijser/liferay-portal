@@ -66,7 +66,8 @@ public class UpgradeLayoutTypeSettings extends BaseUpgradePortletId {
 					UnicodeProperties oldtypeSettingsUnicodeProperties =
 						layout.getTypeSettingsProperties();
 					UnicodeProperties newTypeSettingsUnicodeProperties =
-						getNewTypeSettings(layout.getTypeSettingsProperties());
+						getNewTypeSettingsUnicodeProperties(
+							layout.getTypeSettingsProperties());
 
 					if (!oldtypeSettingsUnicodeProperties.equals(
 							newTypeSettingsUnicodeProperties)) {
@@ -93,7 +94,7 @@ public class UpgradeLayoutTypeSettings extends BaseUpgradePortletId {
 		deleteLayoutTypeSettingsColumnKeyWithoutValue();
 	}
 
-	protected UnicodeProperties getNewTypeSettings(
+	protected UnicodeProperties getNewTypeSettingsUnicodeProperties(
 		UnicodeProperties oldtypeSettingsUnicodeProperties) {
 
 		UnicodeProperties newtypeSettingsUnicodeProperties =

@@ -585,7 +585,7 @@ public class FreeMarkerManager extends BaseTemplateManager {
 				return _getResource((String)args[0]);
 			}
 			else if (methodName.equals("getResourceAsStream")) {
-				return _getResourceAsStream((String)args[0]);
+				return _getResourceAsInputStream((String)args[0]);
 			}
 			else if (methodName.equals("getResourcePaths")) {
 				return _getResourcePaths((String)args[0]);
@@ -648,7 +648,7 @@ public class FreeMarkerManager extends BaseTemplateManager {
 			return url;
 		}
 
-		private InputStream _getResourceAsStream(String path) {
+		private InputStream _getResourceAsInputStream(String path) {
 			URL url = _getResource(path);
 
 			if (url == null) {

@@ -59,7 +59,7 @@ public class ActionUtil {
 		return ruleHandler.getEditorJSP();
 	}
 
-	public static UnicodeProperties getTypeSettingsProperties(
+	public static UnicodeProperties getTypeSettingsUnicodeProperties(
 		ActionRequest actionRequest, Collection<String> propertyNames) {
 
 		UnicodeProperties typeSettingsUnicodeProperties =

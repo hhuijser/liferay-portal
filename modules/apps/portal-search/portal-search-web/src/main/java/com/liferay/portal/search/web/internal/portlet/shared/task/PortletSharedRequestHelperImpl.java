@@ -39,7 +39,7 @@ public class PortletSharedRequestHelperImpl
 		String name, RenderRequest renderRequest) {
 
 		return Optional.ofNullable(
-			getAttribute(name, getSharedRequest(renderRequest)));
+			getAttribute(name, getSharedHttpServletRequest(renderRequest)));
 	}
 
 	@Override
@@ -52,7 +52,8 @@ public class PortletSharedRequestHelperImpl
 	public Optional<String> getParameter(
 		String name, RenderRequest renderRequest) {
 
-		HttpServletRequest httpServletRequest = getSharedRequest(renderRequest);
+		HttpServletRequest httpServletRequest = getSharedHttpServletRequest(
+			renderRequest);
 
 		return SearchStringUtil.maybe(httpServletRequest.getParameter(name));
 	}
@@ -61,7 +62,8 @@ public class PortletSharedRequestHelperImpl
 	public Optional<String[]> getParameterValues(
 		String name, RenderRequest renderRequest) {
 
-		HttpServletRequest httpServletRequest = getSharedRequest(renderRequest);
+		HttpServletRequest httpServletRequest = getSharedHttpServletRequest(
+			renderRequest);
 
 		return SearchArrayUtil.maybe(
 			httpServletRequest.getParameterValues(name));
@@ -71,7 +73,8 @@ public class PortletSharedRequestHelperImpl
 	public void setAttribute(
 		String name, Object attributeValue, RenderRequest renderRequest) {
 
-		HttpServletRequest httpServletRequest = getSharedRequest(renderRequest);
+		HttpServletRequest httpServletRequest = getSharedHttpServletRequest(
+			renderRequest);
 
 		httpServletRequest.setAttribute(name, attributeValue);
 	}
@@ -83,7 +86,9 @@ public class PortletSharedRequestHelperImpl
 		return (T)httpServletRequest.getAttribute(name);
 	}
 
-	protected HttpServletRequest getSharedRequest(RenderRequest renderRequest) {
+	protected HttpServletRequest getSharedHttpServletRequest(
+		RenderRequest renderRequest) {
+
 		return portal.getOriginalServletRequest(
 			portal.getHttpServletRequest(renderRequest));
 	}

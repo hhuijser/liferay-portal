@@ -500,7 +500,7 @@ public class LayoutsAdminDisplayContext {
 		return _groupDisplayContextHelper.getGroupId();
 	}
 
-	public UnicodeProperties getGroupTypeSettings() {
+	public UnicodeProperties getGroupTypeSettingsUnicodeProperties() {
 		return _groupDisplayContextHelper.getGroupTypeSettings();
 	}
 

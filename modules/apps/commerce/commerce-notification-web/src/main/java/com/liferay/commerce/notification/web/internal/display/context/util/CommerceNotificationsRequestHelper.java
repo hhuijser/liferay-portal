@@ -31,7 +31,7 @@ public class CommerceNotificationsRequestHelper extends BaseRequestHelper {
 		super(httpServletRequest);
 	}
 
-	public HttpServletResponse getResponse() {
+	public HttpServletResponse getHttpServletResponse() {
 		return PortalUtil.getHttpServletResponse(getLiferayPortletResponse());
 	}
 

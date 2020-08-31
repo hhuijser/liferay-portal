@@ -128,7 +128,7 @@ public class EditActionMVCActionCommand extends BaseMVCActionCommand {
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			ActionUtil.getTypeSettingsProperties(
+			ActionUtil.getTypeSettingsUnicodeProperties(
 				actionRequest, actionHandler.getPropertyNames());
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(

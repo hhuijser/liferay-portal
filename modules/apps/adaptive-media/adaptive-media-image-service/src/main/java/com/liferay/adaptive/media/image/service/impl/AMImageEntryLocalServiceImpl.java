@@ -241,7 +241,7 @@ public class AMImageEntryLocalServiceImpl
 		AMImageConfigurationEntry amImageConfigurationEntry,
 		FileVersion fileVersion) {
 
-		return _imageStorage.getContentStream(
+		return _imageStorage.getContentInputStream(
 			fileVersion, amImageConfigurationEntry.getUUID());
 	}
 

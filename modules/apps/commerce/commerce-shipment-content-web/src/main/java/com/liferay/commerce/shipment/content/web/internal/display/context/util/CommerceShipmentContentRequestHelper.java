@@ -43,7 +43,7 @@ public class CommerceShipmentContentRequestHelper extends BaseRequestHelper {
 			CommerceWebKeys.COMMERCE_CONTEXT);
 	}
 
-	public HttpServletResponse getResponse() {
+	public HttpServletResponse getHttpServletResponse() {
 		return _httpServletResponse;
 	}
 

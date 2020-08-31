@@ -68,11 +68,12 @@ public class GeneralTabDefaultViewDisplayContext {
 			}
 		}
 		catch (Exception exception) {
-			Throwable throwable = _getCause(exception, KeyStoreException.class);
+			Throwable throwable = _getCauseThrowable(
+				exception, KeyStoreException.class);
 			X509CertificateStatus.Status status;
 
 			if (throwable != null) {
-				Throwable unrecoverableKeyThrowable = _getCause(
+				Throwable unrecoverableKeyThrowable = _getCauseThrowable(
 					throwable, UnrecoverableKeyException.class);
 
 				if (unrecoverableKeyThrowable != null) {
@@ -100,7 +101,7 @@ public class GeneralTabDefaultViewDisplayContext {
 				}
 			}
 			else {
-				throwable = _getCause(
+				throwable = _getCauseThrowable(
 					exception, UnrecoverableKeyException.class);
 
 				if (throwable != null) {
@@ -172,7 +173,9 @@ public class GeneralTabDefaultViewDisplayContext {
 
 	}
 
-	private Throwable _getCause(Throwable throwable, Class<?> exceptionType) {
+	private Throwable _getCauseThrowable(
+		Throwable throwable, Class<?> exceptionType) {
+
 		if (throwable == null) {
 			return null;
 		}

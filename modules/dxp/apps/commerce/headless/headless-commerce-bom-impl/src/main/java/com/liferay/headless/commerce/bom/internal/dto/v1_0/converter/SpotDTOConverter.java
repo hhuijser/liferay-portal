@@ -40,6 +40,7 @@ public class SpotDTOConverter implements DTOConverter<CommerceBOMEntry, Spot> {
 		return Spot.class.getSimpleName();
 	}
 
+	@Override
 	public Spot toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

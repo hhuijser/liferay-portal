@@ -50,6 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class CommerceBOMAdminNavigationItem implements CPNavigationItem {
 
+	@Override
 	public NavigationItem getNavigationItem(PortletRequest portletRequest)
 		throws PortalException {
 

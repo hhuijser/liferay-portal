@@ -139,6 +139,7 @@ public class BatchCommerceMLScheduledTaskExecutorService
 				commerceDataIntegrationProcessLog);
 	}
 
+	@Override
 	protected void uploadExport(
 			BatchEngineExportTask batchEngineExportTask,
 			CommerceDataIntegrationProcess commerceDataIntegrationProcess)

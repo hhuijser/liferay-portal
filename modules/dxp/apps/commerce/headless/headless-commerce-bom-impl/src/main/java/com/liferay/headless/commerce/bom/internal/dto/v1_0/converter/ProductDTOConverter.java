@@ -41,6 +41,7 @@ public class ProductDTOConverter implements DTOConverter<CPInstance, Product> {
 		return Product.class.getSimpleName();
 	}
 
+	@Override
 	public Product toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

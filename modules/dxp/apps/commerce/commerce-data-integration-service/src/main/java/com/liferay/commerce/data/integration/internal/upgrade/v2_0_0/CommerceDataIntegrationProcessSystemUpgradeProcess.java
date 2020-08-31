@@ -24,6 +24,7 @@ import com.liferay.commerce.data.integration.model.impl.CommerceDataIntegrationP
 public class CommerceDataIntegrationProcessSystemUpgradeProcess
 	extends BaseCommerceDataIntegrationServiceUpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		renameColumn(
 			CommerceDataIntegrationProcessImpl.class,

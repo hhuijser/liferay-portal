@@ -108,6 +108,7 @@ public class CommerceMLForecastAlertEntryLocalServiceImpl
 	}
 
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CommerceMLForecastAlertEntry upsertCommerceMLForecastAlertEntry(
 			long companyId, long userId, long commerceAccountId, Date timestamp,
 			float actual, float forecast, float relativeChange)

@@ -270,6 +270,12 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 	private String _formatEnabledAttribute(
 		String absolutePath, String annotation) {
 
+		if (absolutePath.contains("-test/") ||
+			absolutePath.contains("-test-util/")) {
+
+			return annotation;
+		}
+
 		List<String> enterpriseAppModulePathNames = getAttributeValues(
 			_ENTERPRISE_APP_MODULE_PATH_NAMES_KEY, absolutePath);
 

@@ -32,7 +32,9 @@ public class BNDLiferayEnterpriseAppCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (!fileName.endsWith("/bnd.bnd")) {
+		if (!fileName.endsWith("/bnd.bnd") || absolutePath.contains("-test/") ||
+			absolutePath.contains("-test-util/")) {
+
 			return content;
 		}
 

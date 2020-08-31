@@ -267,9 +267,9 @@ public class JSONObjectImpl implements JSONObject {
 	}
 
 	@Override
-	public JSONObject put(String key, JSONArray value) {
+	public JSONObject put(String key, JSONArray jsonArray) {
 		try {
-			JSONArrayImpl jsonArrayImpl = (JSONArrayImpl)value;
+			JSONArrayImpl jsonArrayImpl = (JSONArrayImpl)jsonArray;
 
 			_jsonObject.put(key, jsonArrayImpl.getJSONArray());
 		}

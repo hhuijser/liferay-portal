@@ -70,14 +70,14 @@ public class DefaultPollerResponse implements PollerResponse {
 	}
 
 	@Override
-	public void setParameter(String name, JSONArray value)
+	public void setParameter(String name, JSONArray jsonArray)
 		throws PollerResponseClosedException {
 
 		if (_closed) {
 			throw new PollerResponseClosedException();
 		}
 
-		_parameterMap.put(name, value);
+		_parameterMap.put(name, jsonArray);
 	}
 
 	@Override

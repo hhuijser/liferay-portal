@@ -69,6 +69,7 @@ public class WidgetAppDeployer extends BaseAppDeployer {
 	}
 
 	@Deactivate
+	@Override
 	protected void deactivate() {
 		super.deactivate();
 

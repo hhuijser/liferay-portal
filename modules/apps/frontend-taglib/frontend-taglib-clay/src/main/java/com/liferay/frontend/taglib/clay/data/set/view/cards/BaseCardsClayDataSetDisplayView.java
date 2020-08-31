@@ -44,6 +44,7 @@ public abstract class BaseCardsClayDataSetDisplayView
 		return StringPool.BLANK;
 	}
 
+	@Override
 	public String getName() {
 		return ClayDataSetConstants.CARDS;
 	}

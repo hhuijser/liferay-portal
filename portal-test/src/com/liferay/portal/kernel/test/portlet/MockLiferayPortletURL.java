@@ -278,6 +278,7 @@ public class MockLiferayPortletURL implements LiferayPortletURL {
 		boolean windowStateRestoreCurrentView) {
 	}
 
+	@Override
 	public String toString() {
 		Set<Map.Entry<String, String[]>> entries = _parameters.entrySet();
 

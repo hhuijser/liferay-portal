@@ -35,6 +35,7 @@ import org.osgi.service.component.annotations.Component;
 public class AutocompleteClayDataSetFilterContextContributor
 	implements ClayDataSetFilterContextContributor {
 
+	@Override
 	public Map<String, Object> getClayDataSetFilterContext(
 		ClayDataSetFilter clayDataSetFilter, Locale locale) {
 

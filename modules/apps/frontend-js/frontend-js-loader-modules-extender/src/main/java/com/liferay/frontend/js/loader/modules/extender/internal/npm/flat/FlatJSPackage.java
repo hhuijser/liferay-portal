@@ -147,6 +147,7 @@ public class FlatJSPackage implements ModifiableJSPackage {
 		return StringBundler.concat(_name, StringPool.AT, _version);
 	}
 
+	@Override
 	public URL getResourceURL(String location) {
 		String path = "META-INF/resources/";
 

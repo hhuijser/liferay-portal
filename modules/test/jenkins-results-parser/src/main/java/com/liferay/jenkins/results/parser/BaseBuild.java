@@ -1127,6 +1127,7 @@ public abstract class BaseBuild implements Build {
 		return getTempMap("stop.properties");
 	}
 
+	@Override
 	public List<TestClassResult> getTestClassResults() {
 		if (_testClassResults != null) {
 			return _testClassResults;

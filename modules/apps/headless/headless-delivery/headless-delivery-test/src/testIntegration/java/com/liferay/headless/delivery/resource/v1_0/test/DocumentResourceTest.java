@@ -46,6 +46,7 @@ import org.junit.runner.RunWith;
 public class DocumentResourceTest extends BaseDocumentResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 

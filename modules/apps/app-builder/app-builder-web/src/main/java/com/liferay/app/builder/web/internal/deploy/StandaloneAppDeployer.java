@@ -116,6 +116,7 @@ public class StandaloneAppDeployer extends BaseAppDeployer {
 	}
 
 	@Deactivate
+	@Override
 	protected void deactivate() {
 		super.deactivate();
 

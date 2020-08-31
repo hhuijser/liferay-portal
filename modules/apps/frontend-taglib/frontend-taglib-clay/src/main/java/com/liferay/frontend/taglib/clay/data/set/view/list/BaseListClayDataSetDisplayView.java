@@ -40,6 +40,7 @@ public abstract class BaseListClayDataSetDisplayView
 		return ClayDataSetConstants.LIST;
 	}
 
+	@Override
 	public String getName() {
 		return ClayDataSetConstants.LIST;
 	}

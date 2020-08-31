@@ -37,6 +37,7 @@ public abstract class BaseTimelineClayDataSetDisplayView
 		return ClayDataSetConstants.TIMELINE;
 	}
 
+	@Override
 	public String getName() {
 		return ClayDataSetConstants.TIMELINE;
 	}

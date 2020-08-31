@@ -40,6 +40,7 @@ public abstract class BaseSelectableTableClayDataSetDisplayView
 		return ClayDataSetConstants.SELECTABLE_TABLE;
 	}
 
+	@Override
 	public String getName() {
 		return ClayDataSetConstants.SELECTABLE_TABLE;
 	}

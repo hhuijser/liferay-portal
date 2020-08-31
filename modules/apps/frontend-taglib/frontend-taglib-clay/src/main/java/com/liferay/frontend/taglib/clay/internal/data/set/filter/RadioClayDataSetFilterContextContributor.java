@@ -44,6 +44,7 @@ import org.osgi.service.component.annotations.Reference;
 public class RadioClayDataSetFilterContextContributor
 	implements ClayDataSetFilterContextContributor {
 
+	@Override
 	public Map<String, Object> getClayDataSetFilterContext(
 		ClayDataSetFilter clayDataSetFilter, Locale locale) {
 

@@ -127,6 +127,7 @@ public class CompanyIndexFactory
 		createCompanyIndexes();
 	}
 
+	@Override
 	public synchronized void registerCompanyId(long companyId) {
 		_companyIds.add(companyId);
 	}
@@ -136,6 +137,7 @@ public class CompanyIndexFactory
 		_indexContributors.remove(indexContributor);
 	}
 
+	@Override
 	public synchronized void unregisterCompanyId(long companyId) {
 		_companyIds.remove(companyId);
 	}

@@ -33,6 +33,7 @@ import org.osgi.service.component.annotations.Component;
 public class LayoutDisplayPageProviderTrackerImpl
 	implements LayoutDisplayPageProviderTracker {
 
+	@Override
 	public LayoutDisplayPageProvider<?> getLayoutDisplayPageProviderByClassName(
 		String className) {
 
@@ -40,6 +41,7 @@ public class LayoutDisplayPageProviderTrackerImpl
 			getService(className);
 	}
 
+	@Override
 	public LayoutDisplayPageProvider<?>
 		getLayoutDisplayPageProviderByURLSeparator(String urlSeparator) {
 
@@ -47,6 +49,7 @@ public class LayoutDisplayPageProviderTrackerImpl
 			getService(urlSeparator);
 	}
 
+	@Override
 	public List<LayoutDisplayPageProvider<?>> getLayoutDisplayPageProviders() {
 		return new ArrayList(
 			_layoutDisplayPageProviderByClassNameServiceTrackerMap.values());

@@ -39,6 +39,7 @@ public abstract class BaseTableClayDataSetDisplayView
 		return ClayDataSetConstants.TABLE;
 	}
 
+	@Override
 	public String getName() {
 		return ClayDataSetConstants.TABLE;
 	}

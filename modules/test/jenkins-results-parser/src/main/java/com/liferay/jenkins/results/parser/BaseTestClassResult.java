@@ -21,6 +21,7 @@ import java.util.List;
  */
 public abstract class BaseTestClassResult implements TestClassResult {
 
+	@Override
 	public Build getBuild() {
 		TestResult firstTestResult = _getFirstTestResult();
 

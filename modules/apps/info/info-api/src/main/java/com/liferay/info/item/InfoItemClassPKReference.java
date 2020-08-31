@@ -25,6 +25,7 @@ public class InfoItemClassPKReference extends InfoItemReference {
 		super(className, classPK);
 	}
 
+	@Override
 	public long getClassPK() {
 		ClassPKInfoItemIdentifier infoItemIdentifier =
 			(ClassPKInfoItemIdentifier)getInfoItemIdentifier();

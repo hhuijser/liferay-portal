@@ -30,6 +30,7 @@ public class StructuredContentFolderResourceTest
 	extends BaseStructuredContentFolderResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 

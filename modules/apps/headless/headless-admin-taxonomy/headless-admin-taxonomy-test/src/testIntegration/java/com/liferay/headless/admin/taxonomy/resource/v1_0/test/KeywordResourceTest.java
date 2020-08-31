@@ -31,6 +31,7 @@ import org.junit.runner.RunWith;
 public class KeywordResourceTest extends BaseKeywordResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 

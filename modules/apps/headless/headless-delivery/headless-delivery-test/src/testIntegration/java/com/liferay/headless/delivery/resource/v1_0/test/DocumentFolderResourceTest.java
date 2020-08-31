@@ -34,6 +34,7 @@ public class DocumentFolderResourceTest
 	extends BaseDocumentFolderResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 

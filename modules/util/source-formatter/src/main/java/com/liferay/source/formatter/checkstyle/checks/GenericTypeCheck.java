@@ -190,11 +190,7 @@ public class GenericTypeCheck extends BaseCheck {
 		return null;
 	}
 
-	private synchronized Map<String, Integer> _getGenericTypeNamesMap() {
-		if (_genericTypeNamesMap != null) {
-			return _genericTypeNamesMap;
-		}
-
+	private Map<String, Integer> _getGenericTypeNamesMap() {
 		Tuple genericTypeNamesTuple = _getGenericTypeNamesTuple();
 
 		JSONObject jsonObject = (JSONObject)genericTypeNamesTuple.getObject(0);
@@ -202,17 +198,17 @@ public class GenericTypeCheck extends BaseCheck {
 		JSONArray jsonArray = (JSONArray)jsonObject.get(
 			_GENERIC_TYPE_NAMES_CATEGORY);
 
-		_genericTypeNamesMap = new TreeMap<>();
+		Map<String, Integer> genericTypeNamesMap = new TreeMap<>();
 
 		for (Object object : JSONUtil.toObjectList(jsonArray)) {
 			jsonObject = (JSONObject)object;
 
-			_genericTypeNamesMap.put(
+			genericTypeNamesMap.put(
 				jsonObject.getString("name"),
 				jsonObject.getInt("genericTypeCount"));
 		}
 
-		return _genericTypeNamesMap;
+		return genericTypeNamesMap;
 	}
 
 	private synchronized Tuple _getGenericTypeNamesTuple() {
@@ -444,7 +440,6 @@ public class GenericTypeCheck extends BaseCheck {
 					"Added '", fullyQualifiedTypeName, "' to '",
 					_GENERIC_TYPE_NAMES_FILE_NAME, "'"));
 
-			_genericTypeNamesMap = null;
 			_genericTypeNamesTuple = null;
 		}
 		catch (IOException ioException) {
@@ -467,7 +462,6 @@ public class GenericTypeCheck extends BaseCheck {
 
 	private static final String _POPULATE_TYPE_NAMES_KEY = "populateTypeNames";
 
-	private Map<String, Integer> _genericTypeNamesMap;
 	private Tuple _genericTypeNamesTuple;
 
 }

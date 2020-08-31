@@ -91,8 +91,8 @@ public class MultiValueFacet extends BaseFacet {
 
 		JSONArray valuesJSONArray = JSONFactoryUtil.createJSONArray();
 
-		for (JSONObject value : values) {
-			valuesJSONArray.put(value);
+		for (JSONObject valueJSONObject : values) {
+			valuesJSONArray.put(valueJSONObject);
 		}
 
 		doSetValues(valuesJSONArray);

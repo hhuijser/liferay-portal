@@ -145,7 +145,7 @@ public class AddCommerceOrderItemMVCActionCommand extends BaseMVCActionCommand {
 				commerceOrderValidatorException.
 					getCommerceOrderValidatorResults();
 
-			JSONArray errorArray = _jsonFactory.createJSONArray();
+			JSONArray errorJSONArray = _jsonFactory.createJSONArray();
 
 			for (CommerceOrderValidatorResult commerceOrderValidatorResult :
 					commerceOrderValidatorResults) {
@@ -156,13 +156,13 @@ public class AddCommerceOrderItemMVCActionCommand extends BaseMVCActionCommand {
 					"message",
 					commerceOrderValidatorResult.getLocalizedMessage());
 
-				errorArray.put(errorJSONObject);
+				errorJSONArray.put(errorJSONObject);
 			}
 
 			jsonObject.put(
 				"success", false
 			).put(
-				"validatorErrors", errorArray
+				"validatorErrors", errorJSONArray
 			);
 		}
 		catch (Exception exception) {

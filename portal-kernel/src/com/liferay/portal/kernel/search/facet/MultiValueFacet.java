@@ -80,8 +80,8 @@ public class MultiValueFacet extends BaseFacet {
 		doSetValues(valuesJSONArray);
 	}
 
-	public void setValues(JSONArray values) {
-		doSetValues(values);
+	public void setValues(JSONArray valuesJSONArray) {
+		doSetValues(valuesJSONArray);
 	}
 
 	public void setValues(JSONObject[] values) {

@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.util.List;
 import java.util.Objects;
@@ -36,9 +37,14 @@ public class MethodNamingCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		if (AnnotationUtil.containsAnnotation(detailAST, "Override")) {
+			return;
+		}
+
 		String methodName = _getMethodName(detailAST);
 
 		_checkDoMethodName(detailAST, methodName);
+		_checkTypeName(detailAST, methodName);
 	}
 
 	private void _checkDoMethodName(DetailAST detailAST, String methodName) {
@@ -75,11 +81,47 @@ public class MethodNamingCheck extends BaseCheck {
 		log(detailAST, _MSG_RENAME_METHOD, methodName, noDoName);
 	}
 
+	private void _checkTypeName(DetailAST detailAST, String methodName) {
+		String absolutePath = getAbsolutePath();
+
+		if ((!methodName.matches("get[A-Z].*") ||
+			 !absolutePath.contains("/internal/")) &&
+			!methodName.matches("_get[A-Z].*")) {
+
+			return;
+		}
+
+		String returnTypeName = getTypeName(detailAST, true);
+
+		if (returnTypeName.contains("[]") ||
+			methodName.matches(".*" + returnTypeName + "[0-9]*") ||
+			methodName.matches("_?get" + returnTypeName + ".*")) {
+
+			return;
+		}
+
+		List<String> enforceTypeNames = getAttributeValues(
+			_ENFORCE_TYPE_NAMES_KEY);
+
+		for (String enforceTypeName : enforceTypeNames) {
+			if (returnTypeName.matches(enforceTypeName)) {
+				log(detailAST, _MSG_INCORRECT_ENDING_METHOD, returnTypeName);
+
+				return;
+			}
+		}
+	}
+
 	private String _getMethodName(DetailAST detailAST) {
 		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
 
 		return nameDetailAST.getText();
 	}
+
+	private static final String _ENFORCE_TYPE_NAMES_KEY = "enforceTypeNames";
+
+	private static final String _MSG_INCORRECT_ENDING_METHOD =
+		"method.incorrect.ending";
 
 	private static final String _MSG_RENAME_METHOD = "method.rename";
 

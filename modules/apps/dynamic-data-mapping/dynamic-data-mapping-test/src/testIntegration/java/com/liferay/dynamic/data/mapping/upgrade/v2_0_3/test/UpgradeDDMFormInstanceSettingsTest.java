@@ -109,9 +109,9 @@ public class UpgradeDDMFormInstanceSettingsTest {
 
 	protected boolean containsField(JSONArray fieldValues, String field) {
 		for (int i = 0; i < fieldValues.length(); i++) {
-			JSONObject fieldValue = fieldValues.getJSONObject(i);
+			JSONObject fieldValueJSONObject = fieldValues.getJSONObject(i);
 
-			String fieldName = fieldValue.getString("name");
+			String fieldName = fieldValueJSONObject.getString("name");
 
 			if (fieldName.equals(field)) {
 				return true;
@@ -174,12 +174,12 @@ public class UpgradeDDMFormInstanceSettingsTest {
 	}
 
 	protected String createSettings(boolean hasSetting) {
-		JSONObject object = _jsonFactory.createJSONObject();
+		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
 		JSONArray availableLanguagesJSONArray = getAvailableLanguagesJSONArray(
 			"en_US");
 
-		object.put(
+		jsonObject.put(
 			"availableLanguageIdss", availableLanguagesJSONArray
 		).put(
 			"defaultLanguageId", "en_US"
@@ -187,9 +187,9 @@ public class UpgradeDDMFormInstanceSettingsTest {
 
 		JSONArray fieldValues = createFieldValues(hasSetting);
 
-		object.put("fieldValues", fieldValues);
+		jsonObject.put("fieldValues", fieldValues);
 
-		return object.toJSONString();
+		return jsonObject.toJSONString();
 	}
 
 	protected JSONArray getAvailableLanguagesJSONArray(String languageId) {

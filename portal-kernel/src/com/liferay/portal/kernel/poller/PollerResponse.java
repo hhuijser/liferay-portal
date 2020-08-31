@@ -42,7 +42,7 @@ public interface PollerResponse extends Serializable {
 	public void setParameter(String name, JSONArray value)
 		throws PollerResponseClosedException;
 
-	public void setParameter(String name, JSONObject value)
+	public void setParameter(String name, JSONObject jsonObject)
 		throws PollerResponseClosedException;
 
 	public void setParameter(String name, String value)

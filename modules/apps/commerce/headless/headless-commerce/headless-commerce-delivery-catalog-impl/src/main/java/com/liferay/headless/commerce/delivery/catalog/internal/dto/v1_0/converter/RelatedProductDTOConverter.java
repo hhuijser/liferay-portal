@@ -39,6 +39,7 @@ public class RelatedProductDTOConverter
 		return RelatedProduct.class.getSimpleName();
 	}
 
+	@Override
 	public RelatedProduct toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

@@ -37,6 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = HeaderHelper.class)
 public class HeaderHelperImpl implements HeaderHelper {
 
+	@Override
 	public WorkflowTask getReviewWorkflowTask(
 			long companyId, long userId, long beanId, String className)
 		throws PortalException {
@@ -53,6 +54,7 @@ public class HeaderHelperImpl implements HeaderHelper {
 		return null;
 	}
 
+	@Override
 	public List<HeaderActionModel> getWorkflowTransitionHeaderActionModels(
 			long userId, long companyId, String className, long beanId,
 			PortletURL transitionPortletURL)

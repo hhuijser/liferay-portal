@@ -108,6 +108,7 @@ public class CommerceAccountOrganizationRelAdminDisplayContext
 		return itemSelectorURL.toString();
 	}
 
+	@Override
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = super.getPortletURL();
 
@@ -116,6 +117,7 @@ public class CommerceAccountOrganizationRelAdminDisplayContext
 		return portletURL;
 	}
 
+	@Override
 	public SearchContainer<CommerceAccountOrganizationRel> getSearchContainer()
 		throws PortalException {
 

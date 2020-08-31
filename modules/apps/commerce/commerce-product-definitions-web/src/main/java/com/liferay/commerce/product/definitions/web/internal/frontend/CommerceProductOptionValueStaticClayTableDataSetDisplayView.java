@@ -30,6 +30,7 @@ import org.osgi.service.component.annotations.Component;
 public class CommerceProductOptionValueStaticClayTableDataSetDisplayView
 	extends BaseCommerceProductOptionValueClayTableDataSetDisplayView {
 
+	@Override
 	protected void addFields(ClayTableSchemaBuilder clayTableSchemaBuilder) {
 		clayTableSchemaBuilder.addClayTableSchemaField("key", "key");
 		clayTableSchemaBuilder.addClayTableSchemaField("position", "position");

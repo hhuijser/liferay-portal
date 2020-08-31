@@ -42,6 +42,7 @@ public class ProductShippingConfigurationDTOConverter
 		return ProductShippingConfiguration.class.getSimpleName();
 	}
 
+	@Override
 	public ProductShippingConfiguration toDTO(
 			DTOConverterContext dtoConverterContext)
 		throws Exception {

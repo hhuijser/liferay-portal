@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.StringUtil;
  */
 public class CommerceAccountGroupSystemUpgradeProcess extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		renameColumn(
 			CommerceAccountGroupImpl.class, CommerceAccountGroupImpl.TABLE_NAME,

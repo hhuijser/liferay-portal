@@ -39,6 +39,7 @@ public class AccountGroupDTOConverter
 		return AccountGroup.class.getSimpleName();
 	}
 
+	@Override
 	public AccountGroup toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

@@ -1157,6 +1157,7 @@ public class CommerceOrderLocalServiceImpl
 	}
 
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CommerceOrder updateCommerceOrderExternalReferenceCode(
 			long commerceOrderId, String externalReferenceCode)
 		throws PortalException {

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
  */
 public class CommerceAddressUpgradeProcess extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		alter(
 			CommerceAddressModelImpl.class,

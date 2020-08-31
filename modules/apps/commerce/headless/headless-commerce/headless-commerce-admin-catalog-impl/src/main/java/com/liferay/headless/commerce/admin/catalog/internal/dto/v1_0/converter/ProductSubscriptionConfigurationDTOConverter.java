@@ -40,6 +40,7 @@ public class ProductSubscriptionConfigurationDTOConverter
 		return ProductSubscriptionConfiguration.class.getSimpleName();
 	}
 
+	@Override
 	public ProductSubscriptionConfiguration toDTO(
 			DTOConverterContext dtoConverterContext)
 		throws Exception {

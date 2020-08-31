@@ -23,6 +23,7 @@ import com.liferay.commerce.product.model.impl.CommerceCatalogImpl;
 public class CommerceCatalogSystemUpgradeProcess
 	extends BaseCommerceProductServiceUpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		renameColumn(
 			CommerceCatalogImpl.class, CommerceCatalogImpl.TABLE_NAME, "system",

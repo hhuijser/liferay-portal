@@ -51,6 +51,7 @@ public class CommercePricingClassItemSelectorViewDisplayContext
 		setDefaultOrderByType("desc");
 	}
 
+	@Override
 	public SearchContainer<CommercePricingClass> getSearchContainer()
 		throws PortalException {
 

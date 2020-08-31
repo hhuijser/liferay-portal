@@ -88,15 +88,18 @@ public class PendingCommerceOrderStatusImpl implements CommerceOrderStatus {
 		return _commerceOrderLocalService.updateCommerceOrder(commerceOrder);
 	}
 
+	@Override
 	public int getKey() {
 		return KEY;
 	}
 
+	@Override
 	public String getLabel(Locale locale) {
 		return LanguageUtil.get(
 			locale, CommerceOrderConstants.getOrderStatusLabel(KEY));
 	}
 
+	@Override
 	public int getPriority() {
 		return PRIORITY;
 	}

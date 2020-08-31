@@ -186,6 +186,7 @@ public class CommerceAccountAddressAdminDisplayContext
 		return portletURL.toString();
 	}
 
+	@Override
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = super.getPortletURL();
 
@@ -194,6 +195,7 @@ public class CommerceAccountAddressAdminDisplayContext
 		return portletURL;
 	}
 
+	@Override
 	public SearchContainer<CommerceAddress> getSearchContainer()
 		throws PortalException {
 

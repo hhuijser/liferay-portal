@@ -97,6 +97,7 @@ public class ChannelResourceTest extends BaseChannelResourceTestCase {
 		return new String[] {"currencyCode", "name", "type"};
 	}
 
+	@Override
 	protected Channel randomPatchChannel() throws Exception {
 		return new Channel() {
 			{

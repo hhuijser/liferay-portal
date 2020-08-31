@@ -152,6 +152,7 @@ public class CPOptionValueLocalServiceImpl
 		}
 	}
 
+	@Override
 	public CPOptionValue fetchByExternalReferenceCode(
 		long companyId, String externalReferenceCode) {
 

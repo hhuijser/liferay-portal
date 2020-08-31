@@ -39,6 +39,7 @@ public class ProductConfigurationDTOConverter
 		return ProductConfiguration.class.getSimpleName();
 	}
 
+	@Override
 	public ProductConfiguration toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

@@ -207,6 +207,7 @@ public class CommerceOrderNoteServiceImpl
 			commerceOrderNote.getCommerceOrderNoteId(), content, restricted);
 	}
 
+	@Override
 	public CommerceOrderNote upsertCommerceOrderNote(
 			long commerceOrderNoteId, long commerceOrderId, String content,
 			boolean restricted, String externalReferenceCode,

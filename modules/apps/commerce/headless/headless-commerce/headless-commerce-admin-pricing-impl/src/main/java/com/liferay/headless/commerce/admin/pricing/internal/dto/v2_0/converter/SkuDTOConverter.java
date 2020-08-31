@@ -48,6 +48,7 @@ public class SkuDTOConverter implements DTOConverter<CPInstance, Sku> {
 		return Sku.class.getSimpleName();
 	}
 
+	@Override
 	public Sku toDTO(DTOConverterContext dtoConverterContext) throws Exception {
 		CPInstance cpInstance = _cpInstanceService.fetchCPInstance(
 			(Long)dtoConverterContext.getId());

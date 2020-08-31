@@ -37,6 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = CPCompareHelper.class)
 public class CPCompareHelperImpl implements CPCompareHelper {
 
+	@Override
 	public void addCompareProduct(
 			long groupId, long commerceAccountId, long cpDefinitionId,
 			HttpSession httpSession)
@@ -52,6 +53,7 @@ public class CPCompareHelperImpl implements CPCompareHelper {
 		setCPDefinitionIds(groupId, cpDefinitionIds, httpSession);
 	}
 
+	@Override
 	public List<Long> getCPDefinitionIds(
 		long groupId, long commerceAccountId, HttpSession httpSession) {
 
@@ -90,6 +92,7 @@ public class CPCompareHelperImpl implements CPCompareHelper {
 		return activeCPDefinitionIds;
 	}
 
+	@Override
 	public void removeCompareProduct(
 			long groupId, long commerceAccountId, long cpDefinitionId,
 			HttpSession httpSession)
@@ -105,6 +108,7 @@ public class CPCompareHelperImpl implements CPCompareHelper {
 		setCPDefinitionIds(groupId, cpDefinitionIds, httpSession);
 	}
 
+	@Override
 	public void setCPDefinitionIds(
 		long groupId, List<Long> cpDefinitionIds, HttpSession httpSession) {
 

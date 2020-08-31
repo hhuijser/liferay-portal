@@ -41,6 +41,7 @@ import org.osgi.service.component.annotations.Deactivate;
 public class CPVersionContributorRegistryImpl
 	implements CPVersionContributorRegistry {
 
+	@Override
 	public CPVersionContributor getCPVersionContributor(String key) {
 		if (Validator.isNull(key)) {
 			return null;
@@ -63,6 +64,7 @@ public class CPVersionContributorRegistryImpl
 		return cpVersionContributorServiceWrapper.getService();
 	}
 
+	@Override
 	public List<CPVersionContributor> getCPVersionContributors() {
 		Collection<ServiceWrapper<CPVersionContributor>>
 			cpVersionContributorServiceWrappers = _serviceTrackerMap.values();

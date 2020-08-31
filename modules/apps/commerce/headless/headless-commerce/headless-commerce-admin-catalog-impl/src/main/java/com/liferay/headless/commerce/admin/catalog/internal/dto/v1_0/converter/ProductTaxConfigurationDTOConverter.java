@@ -41,6 +41,7 @@ public class ProductTaxConfigurationDTOConverter
 		return ProductTaxConfiguration.class.getSimpleName();
 	}
 
+	@Override
 	public ProductTaxConfiguration toDTO(
 			DTOConverterContext dtoConverterContext)
 		throws Exception {

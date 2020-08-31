@@ -53,6 +53,7 @@ public class CommerceAccountDefaultAddressesUpgradeProcess
 		}
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		addColumn(
 			CommerceAccountImpl.class, CommerceAccountImpl.TABLE_NAME,

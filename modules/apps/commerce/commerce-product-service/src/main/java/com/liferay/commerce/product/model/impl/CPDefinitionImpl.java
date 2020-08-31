@@ -164,6 +164,7 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 		return availableLanguageIds.toArray(new String[0]);
 	}
 
+	@Override
 	public CommerceCatalog getCommerceCatalog() {
 		return CommerceCatalogLocalServiceUtil.fetchCommerceCatalogByGroupId(
 			getGroupId());

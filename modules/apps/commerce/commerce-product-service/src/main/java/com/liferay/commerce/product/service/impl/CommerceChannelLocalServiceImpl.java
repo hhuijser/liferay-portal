@@ -315,6 +315,7 @@ public class CommerceChannelLocalServiceImpl
 	}
 
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CommerceChannel updateCommerceChannelExternalReferenceCode(
 			long commerceChannelId, String externalReferenceCode)
 		throws PortalException {

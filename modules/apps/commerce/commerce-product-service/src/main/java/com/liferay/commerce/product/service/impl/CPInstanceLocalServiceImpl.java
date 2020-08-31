@@ -946,6 +946,7 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 			cProduct.getPublishedCPDefinitionId(), cpInstanceUuid);
 	}
 
+	@Override
 	public List<CPInstance> getCPDefinitionApprovedCPInstances(
 		long cpDefinitionId) {
 

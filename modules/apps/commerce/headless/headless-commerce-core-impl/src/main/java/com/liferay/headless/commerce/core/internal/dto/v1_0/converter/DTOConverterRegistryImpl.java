@@ -32,6 +32,7 @@ import org.osgi.service.component.annotations.Deactivate;
 @Component(immediate = true, service = DTOConverterRegistry.class)
 public class DTOConverterRegistryImpl implements DTOConverterRegistry {
 
+	@Override
 	public DTOConverter getDTOConverter(String modelClassName) {
 		return _serviceTrackerMap.getService(modelClassName);
 	}

@@ -122,6 +122,7 @@ public class CommerceOrderImpl extends CommerceOrderBaseImpl {
 		return null;
 	}
 
+	@Override
 	public long getScopeGroupId() throws PortalException {
 		CommerceAccount commerceAccount = getCommerceAccount();
 

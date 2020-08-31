@@ -83,6 +83,7 @@ public class CommerceRegionsDisplayContext
 		return portletURL;
 	}
 
+	@Override
 	public String getScreenNavigationCategoryKey() {
 		return ParamUtil.getString(
 			renderRequest, "screenNavigationCategoryKey",

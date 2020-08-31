@@ -59,6 +59,7 @@ public class CPOptionValueServiceImpl extends CPOptionValueServiceBaseImpl {
 		cpOptionValueLocalService.deleteCPOptionValue(cpOptionValue);
 	}
 
+	@Override
 	public CPOptionValue fetchByExternalReferenceCode(
 			long companyId, String externalReferenceCode)
 		throws PortalException {

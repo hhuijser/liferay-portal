@@ -39,6 +39,7 @@ public class WarehouseItemDTOConverter
 		return WarehouseItem.class.getSimpleName();
 	}
 
+	@Override
 	public WarehouseItem toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

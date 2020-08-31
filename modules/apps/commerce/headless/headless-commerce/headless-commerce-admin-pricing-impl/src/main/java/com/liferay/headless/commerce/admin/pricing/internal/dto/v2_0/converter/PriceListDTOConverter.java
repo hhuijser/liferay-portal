@@ -50,6 +50,7 @@ public class PriceListDTOConverter
 		return PriceList.class.getSimpleName();
 	}
 
+	@Override
 	public PriceList toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

@@ -246,6 +246,7 @@ public class CommerceInventoryWarehouseItemServiceImpl
 			getCommerceInventoryWarehouseItemsCountByCompanyId(companyId);
 	}
 
+	@Override
 	public int getCommerceInventoryWarehouseItemsCountByModifiedDate(
 			long companyId, Date startDate, Date endDate)
 		throws PrincipalException {
@@ -259,6 +260,7 @@ public class CommerceInventoryWarehouseItemServiceImpl
 				companyId, startDate, endDate);
 	}
 
+	@Override
 	public List<CommerceInventoryWarehouseItem>
 			getCommerceInventoryWarehouseItemsCountByModifiedDate(
 				long companyId, Date startDate, Date endDate, int start,

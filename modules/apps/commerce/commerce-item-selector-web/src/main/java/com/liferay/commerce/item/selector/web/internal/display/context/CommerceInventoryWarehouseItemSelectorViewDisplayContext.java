@@ -89,6 +89,7 @@ public class CommerceInventoryWarehouseItemSelectorViewDisplayContext
 		return managementBarFilterItems;
 	}
 
+	@Override
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = super.getPortletURL();
 
@@ -98,6 +99,7 @@ public class CommerceInventoryWarehouseItemSelectorViewDisplayContext
 		return portletURL;
 	}
 
+	@Override
 	public SearchContainer<CommerceInventoryWarehouse> getSearchContainer()
 		throws PortalException {
 

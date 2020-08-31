@@ -69,6 +69,7 @@ public class CommerceAccountAdminDisplayContext
 			commerceAccount.getCommerceAccountId());
 	}
 
+	@Override
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = super.getPortletURL();
 
@@ -78,6 +79,7 @@ public class CommerceAccountAdminDisplayContext
 		return portletURL;
 	}
 
+	@Override
 	public SearchContainer<CommerceAccount> getSearchContainer()
 		throws PortalException {
 

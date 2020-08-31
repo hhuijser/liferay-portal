@@ -25,6 +25,7 @@ import com.liferay.commerce.product.model.impl.CPDefinitionOptionValueRelImpl;
 public class CPDefinitionOptionValueRelUpgradeProcess
 	extends BaseCommerceProductServiceUpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		addColumn(
 			CPDefinitionOptionValueRelImpl.class,

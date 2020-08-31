@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
  */
 public class PrintedNoteUpgradeProcess extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		alter(
 			CommerceOrderModelImpl.class,

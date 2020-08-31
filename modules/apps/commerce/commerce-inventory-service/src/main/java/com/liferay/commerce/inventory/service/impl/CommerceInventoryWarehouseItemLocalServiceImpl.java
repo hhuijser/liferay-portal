@@ -183,6 +183,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 			companyId, sku, start, end);
 	}
 
+	@Override
 	public List<CommerceInventoryWarehouseItem>
 		getCommerceInventoryWarehouseItemsByModifiedDate(
 			long companyId, Date startDate, Date endDate, int start, int end) {

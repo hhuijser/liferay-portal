@@ -42,6 +42,7 @@ public class PriceModifierProductGroupDTOConverter
 		return PriceModifierProductGroup.class.getSimpleName();
 	}
 
+	@Override
 	public PriceModifierProductGroup toDTO(
 			DTOConverterContext dtoConverterContext)
 		throws Exception {

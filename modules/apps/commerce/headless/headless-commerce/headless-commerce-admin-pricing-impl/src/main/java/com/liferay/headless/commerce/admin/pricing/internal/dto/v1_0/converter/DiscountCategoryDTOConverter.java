@@ -41,6 +41,7 @@ public class DiscountCategoryDTOConverter
 		return DiscountCategory.class.getSimpleName();
 	}
 
+	@Override
 	public DiscountCategory toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

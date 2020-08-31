@@ -52,22 +52,26 @@ public class CommerceChannelItemSelectorViewDisplayContext
 		_itemSelectedEventName = itemSelectedEventName;
 	}
 
+	@Override
 	public String getItemSelectedEventName() {
 		return _itemSelectedEventName;
 	}
 
+	@Override
 	public String getOrderByCol() {
 		return ParamUtil.getString(
 			cpRequestHelper.getRenderRequest(),
 			SearchContainer.DEFAULT_ORDER_BY_COL_PARAM, "createDate_sortable");
 	}
 
+	@Override
 	public String getOrderByType() {
 		return ParamUtil.getString(
 			cpRequestHelper.getRenderRequest(),
 			SearchContainer.DEFAULT_ORDER_BY_TYPE_PARAM, "desc");
 	}
 
+	@Override
 	public PortletURL getPortletURL() {
 		_portletURL.setParameter("className", getClassName());
 		_portletURL.setParameter("classPK", String.valueOf(getClassPK()));
@@ -75,6 +79,7 @@ public class CommerceChannelItemSelectorViewDisplayContext
 		return _portletURL;
 	}
 
+	@Override
 	public SearchContainer<CommerceChannel> getSearchContainer()
 		throws PortalException {
 

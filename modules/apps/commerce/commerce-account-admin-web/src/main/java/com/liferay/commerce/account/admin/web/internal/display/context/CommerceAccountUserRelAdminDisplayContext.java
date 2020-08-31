@@ -106,6 +106,7 @@ public class CommerceAccountUserRelAdminDisplayContext
 		return itemSelectorURL.toString();
 	}
 
+	@Override
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = super.getPortletURL();
 
@@ -114,6 +115,7 @@ public class CommerceAccountUserRelAdminDisplayContext
 		return portletURL;
 	}
 
+	@Override
 	public SearchContainer<CommerceAccountUserRel> getSearchContainer()
 		throws PortalException {
 

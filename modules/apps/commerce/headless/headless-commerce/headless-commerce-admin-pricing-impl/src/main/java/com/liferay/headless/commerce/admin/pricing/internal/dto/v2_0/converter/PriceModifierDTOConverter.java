@@ -40,6 +40,7 @@ public class PriceModifierDTOConverter
 		return PriceModifier.class.getSimpleName();
 	}
 
+	@Override
 	public PriceModifier toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

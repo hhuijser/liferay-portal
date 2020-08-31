@@ -194,6 +194,7 @@ public class CategoryCPDisplayLayoutDisplayContext
 		return sb.toString();
 	}
 
+	@Override
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 

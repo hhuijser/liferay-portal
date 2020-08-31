@@ -42,6 +42,7 @@ public class DiscountProductDTOConverter
 		return DiscountProduct.class.getSimpleName();
 	}
 
+	@Override
 	public DiscountProduct toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

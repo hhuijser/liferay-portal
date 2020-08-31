@@ -41,6 +41,7 @@ public class DiscountChannelDTOConverter
 		return DiscountChannel.class.getSimpleName();
 	}
 
+	@Override
 	public DiscountChannel toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

@@ -40,6 +40,7 @@ public class PriceListAccountDTOConverter
 		return PriceListAccount.class.getSimpleName();
 	}
 
+	@Override
 	public PriceListAccount toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 

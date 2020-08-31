@@ -160,6 +160,7 @@ public class CommerceOrderNoteLocalServiceImpl
 		return commerceOrderNotePersistence.update(commerceOrderNote);
 	}
 
+	@Override
 	public CommerceOrderNote upsertCommerceOrderNote(
 			long commerceOrderNoteId, long commerceOrderId, String content,
 			boolean restricted, String externalReferenceCode,

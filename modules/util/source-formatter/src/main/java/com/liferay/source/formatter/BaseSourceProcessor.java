@@ -320,26 +320,52 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			int count)
 		throws Exception {
 
+		long l1 = System.currentTimeMillis();
+
 		_sourceFormatterMessagesMap.remove(fileName);
+
+		long l2 = System.currentTimeMillis();
 
 		_checkUTF8(file, fileName);
 
+		long l3 = System.currentTimeMillis();
+
 		String newContent = StringUtil.replace(
 			content, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
+
+		long l4 = System.currentTimeMillis();
 
 		if (!content.equals(newContent)) {
 			modifiedMessages.add(file.toString() + " (ReturnCharacter)");
 		}
 
+		long l5 = System.currentTimeMillis();
+
 		newContent = parse(file, fileName, newContent, modifiedMessages);
+
+		long l6 = System.currentTimeMillis();
 
 		SourceChecksResult sourceChecksResult = _processSourceChecks(
 			file, fileName, absolutePath, newContent, sourceChecks,
 			modifiedMessages);
 
+		long l7 = System.currentTimeMillis();
+
 		newContent = sourceChecksResult.getContent();
 
+		long l8 = System.currentTimeMillis();
+
 		if ((newContent == null) || content.equals(newContent)) {
+			if (fileName.endsWith("JournalArticleLocalServiceImpl.java")) {
+				System.out.println("1-2: " + (l2 - l1));
+				System.out.println("2-3: " + (l3 - l2));
+				System.out.println("3-4: " + (l4 - l3));
+				System.out.println("4-5: " + (l5 - l4));
+				System.out.println("5-6: " + (l6 - l5));
+				System.out.println("6-7: " + (l7 - l6));
+				System.out.println("7-8: " + (l8 - l7));
+			}
+
 			return newContent;
 		}
 

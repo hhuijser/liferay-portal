@@ -757,7 +757,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 			long diff = end - start;
 
-			if (diff > 1000) {
+			if (diff > 30000) {
 				System.out.println(
 					"RUNTIME FOR FILE " + fileName + ": " + diff);
 			}

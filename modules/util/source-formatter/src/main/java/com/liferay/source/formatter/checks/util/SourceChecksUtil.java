@@ -160,6 +160,12 @@ public class SourceChecksUtil {
 					clazz.getSimpleName(), endTime - startTime);
 			}
 
+			long l = System.currentTimeMillis();
+
+			if (fileName.endsWith("JournalArticleLocalServiceImpl.java")) {
+				System.out.println(clazz.getSimpleName() + ": " + (l - start));
+			}
+
 			if (content.equals(sourceChecksResult.getContent())) {
 				continue;
 			}

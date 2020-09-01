@@ -30,28 +30,28 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		//Matcher matcher = _javaSourcePattern.matcher(content);
+		Matcher matcher = _javaSourcePattern.matcher(content);
 
-		//while (matcher.find()) {
-		//	try {
-		//		String indent = matcher.group(1);
+		while (matcher.find()) {
+			try {
+				String indent = matcher.group(1);
 
-		//		if (Validator.isNotNull(matcher.group(2))) {
-		//			indent += "\t";
-		//		}
+				if (Validator.isNotNull(matcher.group(2))) {
+					indent += "\t";
+				}
 
-		//		String match = matcher.group(3);
+				String match = matcher.group(3);
 
-		//		String replacement = JavaParser.parseSnippet(match, indent);
+				String replacement = JavaParser.parseSnippet(match, indent);
 
-		//		if (!match.equals(replacement)) {
-		//			return StringUtil.replaceFirst(
-		//				content, match, replacement, matcher.start());
-		//		}
-		//	}
-		//	catch (Exception exception) {
-		//	}
-		//}
+				if (!match.equals(replacement)) {
+					return StringUtil.replaceFirst(
+						content, match, replacement, matcher.start());
+				}
+			}
+			catch (Exception exception) {
+			}
+		}
 
 		return content;
 	}

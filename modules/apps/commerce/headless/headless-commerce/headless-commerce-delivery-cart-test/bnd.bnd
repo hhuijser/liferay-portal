@@ -1,4 +1,0 @@
-Bundle-Name: Liferay Headless Commerce Delivery Cart Test
-Bundle-SymbolicName: com.liferay.headless.commerce.delivery.cart.test
-Bundle-Version: 1.0.0
--includeresource: com.liferay.headless.commerce.delivery.cart.client.jar=com.liferay.headless.commerce.delivery.cart.client-[0-9.]*.jar;lib:=true

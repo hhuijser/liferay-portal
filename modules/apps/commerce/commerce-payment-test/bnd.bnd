@@ -1,4 +1,0 @@
-Bundle-Name: Liferay Commerce Payment Test
-Bundle-SymbolicName: com.liferay.commerce.payment.test
-Bundle-Version: 1.0.0
--includeresource: @frutilla-[0-9.]*.jar

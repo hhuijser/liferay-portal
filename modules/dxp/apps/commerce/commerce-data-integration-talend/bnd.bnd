@@ -1,4 +1,0 @@
-Bundle-Name: Liferay Commerce Data Integration Talend
-Bundle-SymbolicName: com.liferay.commerce.data.integration.talend
-Bundle-Version: 4.0.1
-Web-ContextPath: /commerce-data-integration-talend

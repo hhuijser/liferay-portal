@@ -1,4 +1,0 @@
-Bundle-Name: Liferay Commerce BOM Web
-Bundle-SymbolicName: com.liferay.commerce.bom.web
-Bundle-Version: 4.0.1
-Web-ContextPath: /commerce-bom-web

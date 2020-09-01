@@ -1,4 +1,0 @@
-Bundle-Name: Liferay Commerce Payment Test Utilities
-Bundle-SymbolicName: com.liferay.commerce.payment.test.util
-Bundle-Version: 3.0.1
-Export-Package: com.liferay.commerce.payment.test.util

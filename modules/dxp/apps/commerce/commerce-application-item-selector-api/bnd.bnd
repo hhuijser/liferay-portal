@@ -1,4 +1,0 @@
-Bundle-Name: Liferay Commerce Application Item Selector API
-Bundle-SymbolicName: com.liferay.commerce.application.item.selector.api
-Bundle-Version: 4.0.1
-Export-Package: com.liferay.commerce.application.item.selector.criterion

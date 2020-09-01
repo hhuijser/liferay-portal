@@ -741,15 +741,32 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 	private void _performTask(String fileName) {
 		try {
+			if (!fileName.endsWith("/impl/JournalArticleLocalServiceImpl.java") &&
+				!fileName.endsWith("/v1_0/CatalogResourceImpl.java")) {
+
+				return;
+			}
+
 			if (!_sourceFormatterArgs.isShowDebugInformation()) {
 				_format(fileName);
 
 				return;
 			}
 
+			long start = System.currentTimeMillis();
+
 			DebugUtil.startTask();
 
 			_format(fileName);
+
+			long end = System.currentTimeMillis();
+
+			long diff = end - start;
+
+			//if (diff > 1000) {
+				System.out.println(
+					"RUNTIME FOR FILE " + fileName + ": " + diff);
+			//}
 
 			DebugUtil.finishTask();
 		}

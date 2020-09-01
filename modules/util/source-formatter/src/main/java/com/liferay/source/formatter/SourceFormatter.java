@@ -291,6 +291,8 @@ public class SourceFormatter {
 	public SourceFormatter(SourceFormatterArgs sourceFormatterArgs) {
 		_sourceFormatterArgs = sourceFormatterArgs;
 
+		_sourceFormatterArgs.setShowDebugInformation(true);
+
 		if (sourceFormatterArgs.isShowDocumentation()) {
 			System.setProperty("java.awt.headless", "false");
 		}

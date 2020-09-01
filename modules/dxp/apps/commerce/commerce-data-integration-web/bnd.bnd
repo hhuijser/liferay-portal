@@ -1,4 +1,0 @@
-Bundle-Name: Liferay Commerce Data Integration Web
-Bundle-SymbolicName: com.liferay.commerce.data.integration.web
-Bundle-Version: 4.0.2
-Web-ContextPath: /commerce-data-integration-web

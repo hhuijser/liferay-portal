@@ -1,8 +1,0 @@
-Bundle-Name: Liferay Commerce Application List
-Bundle-SymbolicName: com.liferay.commerce.application.list
-Bundle-Version: 4.0.2
-Export-Package: com.liferay.commerce.application.list.constants
-Provide-Capability:\
-	liferay.resource.bundle;\
-		resource.bundle.aggregate:String="(bundle.symbolic.name=com.liferay.commerce.lang)";\
-		resource.bundle.base.name="content.Language"

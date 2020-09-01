@@ -1,4 +1,0 @@
-Bundle-Name: Liferay Commerce Currency Test Utilities
-Bundle-SymbolicName: com.liferay.commerce.currency.test.util
-Bundle-Version: 4.0.2
-Export-Package: com.liferay.commerce.currency.test.util

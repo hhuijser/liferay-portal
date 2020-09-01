@@ -83,6 +83,8 @@ public class SourceChecksUtil {
 			boolean showDebugInformation)
 		throws Exception {
 
+		long l1 = System.currentTimeMillis();
+
 		SourceChecksResult sourceChecksResult = new SourceChecksResult(content);
 
 		if (ListUtil.isEmpty(sourceChecks)) {
@@ -161,9 +163,9 @@ public class SourceChecksUtil {
 			}
 
 			if (fileName.endsWith("JournalArticleLocalServiceImpl.java")) {
-				System.out.println(
-					clazz.getSimpleName() + ": " +
-						(System.currentTimeMillis() - startTime));
+				//System.out.println(
+				//	clazz.getSimpleName() + ": " +
+				//		(System.currentTimeMillis() - startTime));
 			}
 
 			if (content.equals(sourceChecksResult.getContent())) {
@@ -193,6 +195,13 @@ public class SourceChecksUtil {
 			}
 
 			return sourceChecksResult;
+		}
+
+		long l2 = System.currentTimeMillis();
+
+		if (fileName.endsWith("JournalArticleLocalServiceImpl.java")) {
+			//System.out.println(
+			//	"SourceChecksUtil.processSourceChecks: " + (l2 - l1));
 		}
 
 		return sourceChecksResult;

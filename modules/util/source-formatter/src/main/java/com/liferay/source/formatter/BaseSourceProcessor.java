@@ -747,9 +747,20 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 				return;
 			}
 
+			long start = System.currentTimeMillis();
+
 			DebugUtil.startTask();
 
 			_format(fileName);
+
+			long end = System.currentTimeMillis();
+
+			long diff = end - start;
+
+			if (diff > 1000) {
+				System.out.println(
+					"RUNTIME FOR FILE " + fileName + ": " + diff);
+			}
 
 			DebugUtil.finishTask();
 		}

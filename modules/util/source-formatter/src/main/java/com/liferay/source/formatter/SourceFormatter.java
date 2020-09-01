@@ -354,7 +354,17 @@ public class SourceFormatter {
 
 					@Override
 					public Void call() throws Exception {
+						String s = sourceProcessor.getClass().getSimpleName();
+
+						System.out.println("Starting processor: " + s);
+
+						long l1 = System.currentTimeMillis();
+
 						_runSourceProcessor(sourceProcessor);
+
+						long l2 = System.currentTimeMillis();
+
+						System.out.println("RunTime " + s + ": " + (l2 - l1));
 
 						return null;
 					}

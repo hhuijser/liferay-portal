@@ -741,6 +741,10 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 	private void _performTask(String fileName) {
 		try {
+			if (!fileName.contains("/commerce/")) {
+				return;
+			}
+
 			if (!_sourceFormatterArgs.isShowDebugInformation()) {
 				_format(fileName);
 

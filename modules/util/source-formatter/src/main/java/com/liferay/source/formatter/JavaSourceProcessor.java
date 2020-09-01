@@ -68,9 +68,23 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 			File file, String fileName, String absolutePath, String content)
 		throws Exception {
 
+		long l1 = System.currentTimeMillis();
+
 		file = super.format(file, fileName, absolutePath, content);
 
-		_processCheckstyle(file);
+		long l2 = System.currentTimeMillis();
+
+		if (fileName.endsWith("JournalArticleLocalServiceImpl.java")) {
+			System.out.println("JavaSourceProcessor.format_A: " + (l2 - l1));
+		}
+
+		_processCheckstyle(file, fileName);
+
+		long l3 = System.currentTimeMillis();
+
+		if (fileName.endsWith("JournalArticleLocalServiceImpl.java")) {
+			System.out.println("JavaSourceProcessor.format_b: " + (l3 - l2));
+		}
 
 		return file;
 	}
@@ -210,15 +224,29 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		return fileNames;
 	}
 
-	private synchronized void _processCheckstyle(File file)
+	private synchronized void _processCheckstyle(File file, String fileName)
 		throws CheckstyleException, IOException {
 
+		long l1 = System.currentTimeMillis();
+
 		_ungeneratedFiles.add(file);
+
+		if (fileName.endsWith("JournalArticleLocalServiceImpl.java")) {
+			System.out.println(
+				"_ungeneratedFiles.size(): " + _ungeneratedFiles.size());
+		}
 
 		if (_ungeneratedFiles.size() == CheckstyleUtil.BATCH_SIZE) {
 			_processCheckstyle(_ungeneratedFiles.toArray(new File[0]));
 
 			_ungeneratedFiles.clear();
+		}
+
+		long l2 = System.currentTimeMillis();
+
+		if (fileName.endsWith("JournalArticleLocalServiceImpl.java")) {
+			System.out.println(
+				"JavaSourceProcessor._processCheckstyle: " + (l2 - l1));
 		}
 	}
 

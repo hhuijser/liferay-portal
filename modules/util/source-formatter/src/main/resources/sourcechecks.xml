@@ -443,18 +443,6 @@
 			<category name="Bug Prevention" />
 			<description name="Checks package names in tests" />
 		</check>
-		<check name="JavaOSGiReferenceCheck">
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.exportimport.kernel.lar.ExportImportHelperUtil" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.exportimport.kernel.lar.ExportImportProcessCallbackRegistryUtil" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.exportimport.kernel.lar.PortletDataContextFactoryUtil" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.exportimport.kernel.lar.PortletDataHandlerStatusMessageSenderUtill" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.exportimport.kernel.staging.StagingUtil" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.portal.kernel.backgroundtask.BackgroundTaskManagerUtil" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.portal.kernel.backgroundtask.display.BackgroundTaskDisplayFactoryUtil" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.portal.kernel.comment.CommentManagerUtil" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.portal.kernel.util.HttpUtil" />
-			<property name="serviceReferenceUtilClassNames" value="com.liferay.portal.kernel.util.PortalUtil" />
-		</check>
 
 		<!-- Plugin Source Checks -->
 

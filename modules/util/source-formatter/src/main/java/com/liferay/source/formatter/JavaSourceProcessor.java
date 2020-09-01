@@ -249,6 +249,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 
 	private Configuration _checkstyleConfiguration;
 	private CheckstyleLogger _checkstyleLogger;
+	private int _count = 0;
 	private final Set<SourceFormatterMessage> _sourceFormatterMessages =
 		new TreeSet<>();
 	private final List<File> _ungeneratedFiles = new ArrayList<>();

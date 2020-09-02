@@ -316,10 +316,6 @@ public class SourceFormatter {
 
 		_progressStatusThread.start();
 
-		/*
-		_sourceProcessors.add(new XMLSourceProcessor());
-		*/
-
 		_sourceProcessors.add(new BNDRunSourceProcessor());
 		_sourceProcessors.add(new BNDSourceProcessor());
 		_sourceProcessors.add(new CodeownersSourceProcessor());
@@ -346,6 +342,7 @@ public class SourceFormatter {
 		_sourceProcessors.add(new SQLSourceProcessor());
 		_sourceProcessors.add(new TLDSourceProcessor());
 		_sourceProcessors.add(new TSSourceProcessor());
+		_sourceProcessors.add(new XMLSourceProcessor());
 		_sourceProcessors.add(new YMLSourceProcessor());
 
 		ExecutorService executorService = Executors.newFixedThreadPool(

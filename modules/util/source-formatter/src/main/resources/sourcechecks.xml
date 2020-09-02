@@ -546,13 +546,9 @@
 		<!-- Module Source Checks -->
 
 		<check name="JSPModuleIllegalImportsCheck" />
-		<check name="JSPServiceUtilCheck">
-			<property name="enabled" value="false" />
-		</check>
 
 		<!-- Plugin Source Checks -->
 
-		<check name="CompatClassImportsCheck" />
 	</source-processor>
 	<source-processor name="JSSourceProcessor">
 		<check name="JSLodashDependencyCheck">

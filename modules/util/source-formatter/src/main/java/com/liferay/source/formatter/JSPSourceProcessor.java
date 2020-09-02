@@ -99,6 +99,10 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 			File file, String fileName, String absolutePath, String content)
 		throws Exception {
 
+		if (true) {
+			return file;
+		}
+
 		// When executing 'format-source-current-branch',
 		// 'format-source-latest-author', or 'format-source-local-changes', we
 		// add included and referenced file names in order to detect unused

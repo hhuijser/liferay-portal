@@ -317,7 +317,6 @@ public class SourceFormatter {
 		_progressStatusThread.start();
 
 		/*
-		_sourceProcessors.add(new PropertiesSourceProcessor());
 		_sourceProcessors.add(new XMLSourceProcessor());
 		*/
 
@@ -341,6 +340,7 @@ public class SourceFormatter {
 		_sourceProcessors.add(new MarkdownSourceProcessor());
 		_sourceProcessors.add(new PackageinfoSourceProcessor());
 		_sourceProcessors.add(new PoshiSourceProcessor());
+		_sourceProcessors.add(new PropertiesSourceProcessor());
 		_sourceProcessors.add(new SHSourceProcessor());
 		_sourceProcessors.add(new SoySourceProcessor());
 		_sourceProcessors.add(new SQLSourceProcessor());

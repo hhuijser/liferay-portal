@@ -485,6 +485,8 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		throws CheckstyleException, IOException {
 
 		synchronized (BaseSourceProcessor.class) {
+			long start = System.currentTimeMillis();
+
 			Checker checker = new Checker(
 				configuration, checkstyleLogger, checkstyleLogger,
 				getSourceFormatterSuppressions());
@@ -494,6 +496,17 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			}
 			else if (object instanceof List<?>) {
 				checker.processFileContents((List<String[]>)object);
+			}
+
+			long end = System.currentTimeMillis();
+
+			if (object instanceof File[]) {
+				System.out.println(
+					"JAVA_CHECKSTYLE_RUN: " + (end - start) + ": " + start);
+			}
+			else if (object instanceof List<?>) {
+				System.out.println(
+					"JSP_CHECKSTYLE_RUN: " + (end - start) + ": " + start);
 			}
 
 			return checker.getSourceFormatterMessages();

@@ -227,7 +227,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 
 			long end = System.currentTimeMillis();
 
-			System.out.println("Checkstyle: " + String.valueOf(start - end));
+			System.out.println("Checkstyle: " + String.valueOf(end - start));
 
 			_ungeneratedFiles.clear();
 		}

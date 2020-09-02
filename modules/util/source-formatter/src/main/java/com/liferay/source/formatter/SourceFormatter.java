@@ -348,7 +348,6 @@ public class SourceFormatter {
 		*/
 
 		_sourceProcessors.add(new JavaSourceProcessor());
-		_sourceProcessors.add(new JSPSourceProcessor());
 
 		ExecutorService executorService = Executors.newFixedThreadPool(
 			_sourceProcessors.size());

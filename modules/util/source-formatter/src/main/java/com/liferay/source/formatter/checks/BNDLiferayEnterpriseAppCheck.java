@@ -20,6 +20,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.BNDSourceUtil;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -62,12 +65,39 @@ public class BNDLiferayEnterpriseAppCheck extends BaseFileCheck {
 				addMessage(fileName, "Missing Liferay-Enterprise-App");
 			}
 
+			_checkProperties(
+				fileName, enterpriseAppModulePathName, liferayEnterpriseApp);
+
 			return BNDSourceUtil.updateInstruction(
 				content, "Liferay-Enterprise-App",
 				_sortProperties(liferayEnterpriseApp));
 		}
 
 		return content;
+	}
+
+	private void _checkProperties(
+		String fileName, String absolutePath, String liferayEnterpriseApp) {
+
+		Matcher matcher = _dxpOnlyPattern.matcher(liferayEnterpriseApp);
+
+		if (absolutePath.contains("modules/dxp/apps/")) {
+			if (!matcher.find() || !Objects.equals(matcher.group(1), "true")) {
+				addMessage(
+					fileName,
+					"Enterprise apps that in dxp/apps/ directory should " +
+						"always set 'dxp.only=true' in " +
+							"'Liferay-Enterprise-App'");
+			}
+		}
+		else {
+			if (matcher.find()) {
+				addMessage(
+					fileName,
+					"Enterprise apps that not in dxp/apps/ directory should " +
+						"not set 'dxp.only' in 'Liferay-Enterprise-App'");
+			}
+		}
 	}
 
 	private String _sortProperties(String liferayEnterpriseApp) {
@@ -95,6 +125,9 @@ public class BNDLiferayEnterpriseAppCheck extends BaseFileCheck {
 
 	private static final String _ENTERPRISE_APP_MODULE_PATH_NAMES_KEY =
 		"enterpriseAppModulePathNames";
+
+	private static final Pattern _dxpOnlyPattern = Pattern.compile(
+		"dxp.only=([^;]*)");
 
 	private class PropertyComparator extends NaturalOrderStringComparator {
 

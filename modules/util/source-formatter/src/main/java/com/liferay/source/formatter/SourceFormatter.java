@@ -347,6 +347,11 @@ public class SourceFormatter {
 		_sourceProcessors.add(new YMLSourceProcessor());
 		*/
 
+		_sourceProcessors.add(new BNDRunSourceProcessor());
+		_sourceProcessors.add(new BNDSourceProcessor());
+		_sourceProcessors.add(new CodeownersSourceProcessor());
+		_sourceProcessors.add(new ConfigSourceProcessor());
+		_sourceProcessors.add(new CQLSourceProcessor());
 		_sourceProcessors.add(new JavaSourceProcessor());
 
 		ExecutorService executorService = Executors.newFixedThreadPool(

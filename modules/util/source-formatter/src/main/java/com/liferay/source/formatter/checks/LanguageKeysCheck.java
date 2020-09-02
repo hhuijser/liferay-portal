@@ -41,7 +41,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Hugo Huijser
+ * @author Hugo Huijserr
  */
 public class LanguageKeysCheck extends BaseFileCheck {
 

@@ -317,17 +317,8 @@ public class SourceFormatter {
 		_progressStatusThread.start();
 
 		/*
-		_sourceProcessors.add(new MarkdownSourceProcessor());
-		_sourceProcessors.add(new PackageinfoSourceProcessor());
-		_sourceProcessors.add(new PoshiSourceProcessor());
 		_sourceProcessors.add(new PropertiesSourceProcessor());
-		_sourceProcessors.add(new SHSourceProcessor());
-		_sourceProcessors.add(new SoySourceProcessor());
-		_sourceProcessors.add(new SQLSourceProcessor());
-		_sourceProcessors.add(new TLDSourceProcessor());
-		_sourceProcessors.add(new TSSourceProcessor());
 		_sourceProcessors.add(new XMLSourceProcessor());
-		_sourceProcessors.add(new YMLSourceProcessor());
 		*/
 
 		_sourceProcessors.add(new BNDRunSourceProcessor());
@@ -347,6 +338,15 @@ public class SourceFormatter {
 		_sourceProcessors.add(new JSONSourceProcessor());
 		_sourceProcessors.add(new JSPSourceProcessor());
 		_sourceProcessors.add(new JSSourceProcessor());
+		_sourceProcessors.add(new MarkdownSourceProcessor());
+		_sourceProcessors.add(new PackageinfoSourceProcessor());
+		_sourceProcessors.add(new PoshiSourceProcessor());
+		_sourceProcessors.add(new SHSourceProcessor());
+		_sourceProcessors.add(new SoySourceProcessor());
+		_sourceProcessors.add(new SQLSourceProcessor());
+		_sourceProcessors.add(new TLDSourceProcessor());
+		_sourceProcessors.add(new TSSourceProcessor());
+		_sourceProcessors.add(new YMLSourceProcessor());
 
 		ExecutorService executorService = Executors.newFixedThreadPool(
 			_sourceProcessors.size());

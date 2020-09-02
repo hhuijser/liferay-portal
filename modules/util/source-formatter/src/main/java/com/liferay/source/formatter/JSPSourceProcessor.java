@@ -124,7 +124,7 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 		file = super.format(file, fileName, absolutePath, content);
 
-		_processCheckstyle(absolutePath, FileUtil.read(file));
+		//_processCheckstyle(absolutePath, FileUtil.read(file));
 
 		return file;
 	}

@@ -541,11 +541,9 @@
 			<category name="Bug Prevention" />
 			<description name="Checks that there are no calls to `java.util.ResourceBundle.getBundle`" />
 		</check>
-		<check name="SubstringCheck" />
 
 		<!-- Module Source Checks -->
 
-		<check name="JSPModuleIllegalImportsCheck" />
 		<check name="JSPServiceUtilCheck">
 			<property name="enabled" value="false" />
 		</check>

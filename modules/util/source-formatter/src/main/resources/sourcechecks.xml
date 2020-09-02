@@ -523,36 +523,6 @@
 			<category name="Performance" />
 			<description name="Checks that there are no calls to `Validator.equals(Object, Object)`" />
 		</check>
-
-		<!-- Liferay Source Checks -->
-
-		<check name="JSPFunctionNameCheck" />
-		<check name="JSPLanguageKeysCheck" />
-		<check name="JSPLogParametersCheck" />
-		<check name="JSPMissingTaglibsCheck" />
-		<check name="JSPSendRedirectCheck">
-			<category name="Bug Prevention" />
-			<description name="Checks that there are no calls to `HttpServletResponse.sendRedirect` from `jsp` files" />
-		</check>
-		<check name="JSPStringMethodsCheck" />
-		<check name="JSPUnusedJSPF" />
-		<check name="LocaleUtilCheck" />
-		<check name="ResourceBundleCheck">
-			<category name="Bug Prevention" />
-			<description name="Checks that there are no calls to `java.util.ResourceBundle.getBundle`" />
-		</check>
-		<check name="SubstringCheck" />
-
-		<!-- Module Source Checks -->
-
-		<check name="JSPModuleIllegalImportsCheck" />
-		<check name="JSPServiceUtilCheck">
-			<property name="enabled" value="false" />
-		</check>
-
-		<!-- Plugin Source Checks -->
-
-		<check name="CompatClassImportsCheck" />
 	</source-processor>
 	<source-processor name="JSSourceProcessor">
 		<check name="JSLodashDependencyCheck">

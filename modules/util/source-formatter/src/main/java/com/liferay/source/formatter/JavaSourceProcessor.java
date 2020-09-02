@@ -220,14 +220,14 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 
 			long start = System.currentTimeMillis();
 
-			System.out.println(
-				String.valueOf(_count) + ": " + String.valueOf(start));
+			//System.out.println(
+			//	String.valueOf(_count) + ": " + String.valueOf(start));
 
 			_processCheckstyle(_ungeneratedFiles.toArray(new File[0]));
 
 			long end = System.currentTimeMillis();
 
-			System.out.println("Checkstyle: " + String.valueOf(end - start));
+			//System.out.println("Checkstyle: " + String.valueOf(end - start));
 
 			_ungeneratedFiles.clear();
 		}

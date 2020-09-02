@@ -131,7 +131,7 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 	@Override
 	protected void postFormat() throws CheckstyleException, IOException {
-		_processCheckstyle();
+		//_processCheckstyle();
 
 		for (SourceFormatterMessage sourceFormatterMessage :
 				_sourceFormatterMessages) {

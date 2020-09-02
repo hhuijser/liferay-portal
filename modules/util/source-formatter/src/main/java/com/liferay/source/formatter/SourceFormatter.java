@@ -317,11 +317,6 @@ public class SourceFormatter {
 		_progressStatusThread.start();
 
 		/*
-		_sourceProcessors.add(new GradleSourceProcessor());
-		_sourceProcessors.add(new GroovySourceProcessor());
-		_sourceProcessors.add(new HTMLSourceProcessor());
-		_sourceProcessors.add(new JavaSourceProcessor());
-		_sourceProcessors.add(new JSONSourceProcessor());
 		_sourceProcessors.add(new JSPSourceProcessor());
 		_sourceProcessors.add(new JSSourceProcessor());
 		_sourceProcessors.add(new MarkdownSourceProcessor());
@@ -347,7 +342,11 @@ public class SourceFormatter {
 		_sourceProcessors.add(new DTDSourceProcessor());
 		_sourceProcessors.add(new LFRBuildSourceProcessor());
 		_sourceProcessors.add(new FTLSourceProcessor());
+		_sourceProcessors.add(new GradleSourceProcessor());
+		_sourceProcessors.add(new GroovySourceProcessor());
+		_sourceProcessors.add(new HTMLSourceProcessor());
 		_sourceProcessors.add(new JavaSourceProcessor());
+		_sourceProcessors.add(new JSONSourceProcessor());
 
 		ExecutorService executorService = Executors.newFixedThreadPool(
 			_sourceProcessors.size());

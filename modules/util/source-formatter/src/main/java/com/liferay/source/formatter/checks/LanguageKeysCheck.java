@@ -33,9 +33,7 @@ import java.io.StringReader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -99,6 +97,10 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 		Matcher matcher = pattern.matcher(content);
 
+		Properties buildGradleLanguageProperties = null;
+		Properties langModuleLanguageProperties = null;
+		Properties moduleLanguageProperties = null;
+
 		while (matcher.find()) {
 			String[] languageKeys = _getLanguageKeys(matcher);
 
@@ -120,30 +122,30 @@ public class LanguageKeysCheck extends BaseFileCheck {
 					continue;
 				}
 
-				Properties moduleLanguageProperties =
-					_getModuleLanguageProperties(fileName);
+				if (moduleLanguageProperties == null) {
+					moduleLanguageProperties = _getModuleLanguageProperties(
+						fileName);
+				}
 
-				if ((moduleLanguageProperties != null) &&
-					moduleLanguageProperties.containsKey(languageKey)) {
-
+				if (moduleLanguageProperties.containsKey(languageKey)) {
 					continue;
 				}
 
-				Properties buildGradleLanguageProperties =
-					_getBuildGradleLanguageProperties(absolutePath);
+				if (buildGradleLanguageProperties == null) {
+					buildGradleLanguageProperties =
+						_getBuildGradleLanguageProperties(absolutePath);
+				}
 
-				if ((buildGradleLanguageProperties != null) &&
-					buildGradleLanguageProperties.containsKey(languageKey)) {
-
+				if (buildGradleLanguageProperties.containsKey(languageKey)) {
 					continue;
 				}
 
-				Properties langModuleLanguageProperties =
-					_getLangModuleLanguageProperties(absolutePath);
+				if (langModuleLanguageProperties == null) {
+					langModuleLanguageProperties =
+						_getLangModuleLanguageProperties(absolutePath);
+				}
 
-				if ((langModuleLanguageProperties != null) &&
-					langModuleLanguageProperties.containsKey(languageKey)) {
-
+				if (langModuleLanguageProperties.containsKey(languageKey)) {
 					continue;
 				}
 
@@ -169,12 +171,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 	private Properties _getBuildGradleLanguageProperties(String absolutePath)
 		throws IOException {
 
-		Properties properties = _buildGradleLanguagePropertiesMap.get(
-			absolutePath);
-
-		if (properties != null) {
-			return properties;
-		}
+		Properties properties = new Properties();
 
 		String buildGradleContent = null;
 		String buildGradleFileLocation = absolutePath;
@@ -183,7 +180,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			int pos = buildGradleFileLocation.lastIndexOf(StringPool.SLASH);
 
 			if (pos == -1) {
-				return null;
+				return properties;
 			}
 
 			buildGradleFileLocation = buildGradleFileLocation.substring(
@@ -205,7 +202,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			buildGradleContent);
 
 		if (!matcher.find()) {
-			return null;
+			return properties;
 		}
 
 		String moduleLocation = StringUtil.replaceLast(
@@ -213,8 +210,6 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 		List<String> moduleLangDirNames = _getModuleLangDirNames(
 			moduleLocation, buildGradleContent);
-
-		properties = new Properties();
 
 		for (String moduleLangDirName : moduleLangDirNames) {
 			String moduleLangLanguagePropertiesFileName =
@@ -231,22 +226,15 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			properties.load(inputStream);
 		}
 
-		_buildGradleLanguagePropertiesMap.put(absolutePath, properties);
-
 		return properties;
 	}
 
 	private Properties _getLangModuleLanguageProperties(String absolutePath)
 		throws IOException {
 
+		Properties properties = new Properties();
+
 		if (!isModulesFile(absolutePath)) {
-			return null;
-		}
-
-		Properties properties = _langModuleLanguagePropertiesMap.get(
-			absolutePath);
-
-		if (properties != null) {
 			return properties;
 		}
 
@@ -261,13 +249,13 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			x = fileLocation.lastIndexOf(CharPool.SLASH, x - 1);
 
 			if (x == -1) {
-				return null;
+				return properties;
 			}
 
 			fileLocation = fileLocation.substring(0, x);
 
 			if (fileLocation.endsWith("/modules")) {
-				return null;
+				return properties;
 			}
 
 			File directory = new File(fileLocation);
@@ -285,7 +273,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			if (isSubrepository() &&
 				FileUtil.exists(fileLocation + "/gradle.properties")) {
 
-				return null;
+				return properties;
 			}
 		}
 
@@ -296,15 +284,13 @@ public class LanguageKeysCheck extends BaseFileCheck {
 				new SourceFormatterExcludes(), true);
 
 		if (languagePropertyFileNames.isEmpty()) {
-			return null;
+			return properties;
 		}
 
 		properties = new Properties();
 
 		properties.load(
 			new FileInputStream(new File(languagePropertyFileNames.get(0))));
-
-		_langModuleLanguagePropertiesMap.put(absolutePath, properties);
 
 		return properties;
 	}
@@ -436,11 +422,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 	}
 
 	private Properties _getModuleLanguageProperties(String fileName) {
-		Properties properties = _moduleLanguagePropertiesMap.get(fileName);
-
-		if (properties != null) {
-			return properties;
-		}
+		Properties properties = new Properties();
 
 		StringBundler sb = new StringBundler(3);
 
@@ -454,7 +436,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			pos = fileName.indexOf("src/");
 
 			if (pos == -1) {
-				return null;
+				return properties;
 			}
 
 			sb.append(fileName.substring(0, pos + 4));
@@ -473,14 +455,12 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 			properties.load(inputStream);
 
-			_moduleLanguagePropertiesMap.put(fileName, properties);
-
 			return properties;
 		}
 		catch (Exception exception) {
 		}
 
-		return null;
+		return properties;
 	}
 
 	private synchronized Properties _getPortalLanguageProperties(
@@ -518,12 +498,6 @@ public class LanguageKeysCheck extends BaseFileCheck {
 	private static final Pattern _metaAnnotationNameParameterPattern =
 		Pattern.compile("@Meta\\.(?:AD|OCD)\\([^\\{]*?name\\s*=\\s*\"(.+?)\"");
 
-	private final Map<String, Properties> _buildGradleLanguagePropertiesMap =
-		new HashMap<>();
-	private final Map<String, Properties> _langModuleLanguagePropertiesMap =
-		new HashMap<>();
-	private final Map<String, Properties> _moduleLanguagePropertiesMap =
-		new HashMap<>();
 	private Properties _portalLanguageProperties;
 
 }

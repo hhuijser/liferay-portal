@@ -529,12 +529,6 @@
 		<check name="JSPFunctionNameCheck" />
 		<check name="JSPLanguageKeysCheck" />
 		<check name="JSPLogParametersCheck" />
-		<check name="JSPMissingTaglibsCheck" />
-		<check name="JSPSendRedirectCheck">
-			<category name="Bug Prevention" />
-			<description name="Checks that there are no calls to `HttpServletResponse.sendRedirect` from `jsp` files" />
-		</check>
-		<check name="JSPStringMethodsCheck" />
 		<check name="JSPUnusedJSPF" />
 		<check name="LocaleUtilCheck" />
 		<check name="ResourceBundleCheck">

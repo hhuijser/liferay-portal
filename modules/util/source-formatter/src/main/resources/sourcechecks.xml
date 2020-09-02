@@ -535,12 +535,6 @@
 			<description name="Checks that there are no calls to `HttpServletResponse.sendRedirect` from `jsp` files" />
 		</check>
 		<check name="JSPStringMethodsCheck" />
-		<check name="JSPUnusedJSPF" />
-		<check name="LocaleUtilCheck" />
-		<check name="ResourceBundleCheck">
-			<category name="Bug Prevention" />
-			<description name="Checks that there are no calls to `java.util.ResourceBundle.getBundle`" />
-		</check>
 		<check name="SubstringCheck" />
 
 		<!-- Module Source Checks -->

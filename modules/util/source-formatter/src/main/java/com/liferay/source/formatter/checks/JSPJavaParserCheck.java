@@ -30,6 +30,10 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		if (true) {
+			return content;
+		}
+
 		Matcher matcher = _javaSourcePattern.matcher(content);
 
 		while (matcher.find()) {

@@ -425,7 +425,9 @@ public class LayoutSiteNavigationMenuItemType
 		for (SiteNavigationMenuItem curSiteNavigationMenuItem :
 				siteNavigationMenuItems) {
 
-			if (_isAncestor(siteNavigationMenuItem, curSiteNavigationMenuItem)) {
+			if (_isAncestor(
+					siteNavigationMenuItem, curSiteNavigationMenuItem)) {
+
 				return true;
 			}
 		}

@@ -253,7 +253,7 @@ public class GroupFinderImpl
 	@Override
 	public int countByC_C_PG_N_D(
 		long companyId, long[] classNameIds, long parentGroupId, String[] names,
-		String[] descriptions, LinkedHashMap<String, Object> params,
+		String[] descriptions, LinkedHashMap<String, Object> params1,
 		boolean andOperator) {
 
 		String parentGroupIdComparator = StringPool.EQUAL;
@@ -265,32 +265,32 @@ public class GroupFinderImpl
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions);
 
-		if (params == null) {
-			params = _emptyLinkedHashMap;
+		if (params1 == null) {
+			params1 = _emptyLinkedHashMap;
 		}
 
-		LinkedHashMap<String, Object> params1 = params;
-
-		LinkedHashMap<String, Object> params2 = null;
+		LinkedHashMap<String, Object> params2 = params1;
 
 		LinkedHashMap<String, Object> params3 = null;
 
 		LinkedHashMap<String, Object> params4 = null;
 
-		Long userId = (Long)params.get("usersGroups");
+		LinkedHashMap<String, Object> params5 = null;
+
+		Long userId = (Long)params1.get("usersGroups");
 
 		boolean doUnion = Validator.isNotNull(userId);
 
 		if (doUnion) {
-			params2 = new LinkedHashMap<>(params1);
-			params3 = new LinkedHashMap<>(params1);
-			params4 = new LinkedHashMap<>(params1);
+			params3 = new LinkedHashMap<>(params2);
+			params4 = new LinkedHashMap<>(params2);
+			params5 = new LinkedHashMap<>(params2);
 
 			_populateUnionParams(
-				userId, classNameIds, params1, params2, params3, params4);
+				userId, classNameIds, params2, params3, params4, params5);
 		}
 		else if (classNameIds != null) {
-			params1.put("classNameIds", classNameIds);
+			params2.put("classNameIds", classNameIds);
 		}
 
 		Session session = null;
@@ -303,17 +303,9 @@ public class GroupFinderImpl
 			groupIds.addAll(
 				countByC_PG_N_D(
 					session, companyId, parentGroupId, parentGroupIdComparator,
-					names, descriptions, params1, andOperator));
+					names, descriptions, params2, andOperator));
 
 			if (doUnion) {
-				if (params2.containsKey("classNameIds")) {
-					groupIds.addAll(
-						countByC_PG_N_D(
-							session, companyId, parentGroupId,
-							parentGroupIdComparator, names, descriptions,
-							params2, andOperator));
-				}
-
 				if (params3.containsKey("classNameIds")) {
 					groupIds.addAll(
 						countByC_PG_N_D(
@@ -328,6 +320,14 @@ public class GroupFinderImpl
 							session, companyId, parentGroupId,
 							parentGroupIdComparator, names, descriptions,
 							params4, andOperator));
+				}
+
+				if (params5.containsKey("classNameIds")) {
+					groupIds.addAll(
+						countByC_PG_N_D(
+							session, companyId, parentGroupId,
+							parentGroupIdComparator, names, descriptions,
+							params5, andOperator));
 				}
 			}
 
@@ -370,23 +370,23 @@ public class GroupFinderImpl
 
 	@Override
 	public List<Group> findByCompanyId(
-		long companyId, LinkedHashMap<String, Object> params, int start,
+		long companyId, LinkedHashMap<String, Object> params1, int start,
 		int end, OrderByComparator<Group> orderByComparator) {
 
-		if (params == null) {
-			params = _emptyLinkedHashMap;
+		if (params1 == null) {
+			params1 = _emptyLinkedHashMap;
 		}
 
-		LinkedHashMap<String, Object> params1 = params;
-
-		LinkedHashMap<String, Object> params2 = null;
+		LinkedHashMap<String, Object> params2 = params1;
 
 		LinkedHashMap<String, Object> params3 = null;
 
 		LinkedHashMap<String, Object> params4 = null;
 
-		Long userId = (Long)params.get("usersGroups");
-		boolean inherit = GetterUtil.getBoolean(params.get("inherit"), true);
+		LinkedHashMap<String, Object> params5 = null;
+
+		Long userId = (Long)params1.get("usersGroups");
+		boolean inherit = GetterUtil.getBoolean(params1.get("inherit"), true);
 
 		boolean doUnion = false;
 
@@ -395,26 +395,26 @@ public class GroupFinderImpl
 		}
 
 		if (doUnion) {
-			params2 = new LinkedHashMap<>(params1);
-			params3 = new LinkedHashMap<>(params1);
-			params4 = new LinkedHashMap<>(params1);
+			params3 = new LinkedHashMap<>(params2);
+			params4 = new LinkedHashMap<>(params2);
+			params5 = new LinkedHashMap<>(params2);
 
 			_populateUnionParams(
-				userId, null, params1, params2, params3, params4);
+				userId, null, params2, params3, params4, params5);
 		}
 		else {
-			params1.put("classNameIds", _getGroupOrganizationClassNameIds());
+			params2.put("classNameIds", _getGroupOrganizationClassNameIds());
 		}
 
 		String sqlKey = _buildSQLCacheKey(
-			orderByComparator, params1, params2, params3, params4);
+			orderByComparator, params2, params3, params4, params5);
 
 		String sql = _findByCompanyIdSQLCache.get(sqlKey);
 
 		if (sql == null) {
 			String findByCompanyIdSQL = CustomSQLUtil.get(FIND_BY_COMPANY_ID);
 
-			if (params.get("active") == Boolean.TRUE) {
+			if (params1.get("active") == Boolean.TRUE) {
 				findByCompanyIdSQL = StringUtil.removeSubstring(
 					findByCompanyIdSQL, "(Group_.liveGroupId = 0) AND");
 			}
@@ -425,15 +425,15 @@ public class GroupFinderImpl
 			StringBundler sb = new StringBundler(11);
 
 			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(replaceJoinAndWhere(findByCompanyIdSQL, params1));
+			sb.append(replaceJoinAndWhere(findByCompanyIdSQL, params2));
 
 			if (doUnion) {
-				sb.append(") UNION (");
-				sb.append(replaceJoinAndWhere(findByCompanyIdSQL, params2));
 				sb.append(") UNION (");
 				sb.append(replaceJoinAndWhere(findByCompanyIdSQL, params3));
 				sb.append(") UNION (");
 				sb.append(replaceJoinAndWhere(findByCompanyIdSQL, params4));
+				sb.append(") UNION (");
+				sb.append(replaceJoinAndWhere(findByCompanyIdSQL, params5));
 			}
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -459,20 +459,20 @@ public class GroupFinderImpl
 
 			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(queryPos, params1);
+			setJoin(queryPos, params2);
 
 			queryPos.add(companyId);
 
 			if (doUnion) {
-				setJoin(queryPos, params2);
-
-				queryPos.add(companyId);
-
 				setJoin(queryPos, params3);
 
 				queryPos.add(companyId);
 
 				setJoin(queryPos, params4);
+
+				queryPos.add(companyId);
+
+				setJoin(queryPos, params5);
 
 				queryPos.add(companyId);
 			}
@@ -753,7 +753,7 @@ public class GroupFinderImpl
 	@Override
 	public List<Group> findByC_C_PG_N_D(
 		long companyId, long[] classNameIds, long parentGroupId, String[] names,
-		String[] descriptions, LinkedHashMap<String, Object> params,
+		String[] descriptions, LinkedHashMap<String, Object> params1,
 		boolean andOperator, int start, int end,
 		OrderByComparator<Group> orderByComparator) {
 
@@ -766,20 +766,20 @@ public class GroupFinderImpl
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions);
 
-		if (params == null) {
-			params = _emptyLinkedHashMap;
+		if (params1 == null) {
+			params1 = _emptyLinkedHashMap;
 		}
 
-		LinkedHashMap<String, Object> params1 = params;
-
-		LinkedHashMap<String, Object> params2 = null;
+		LinkedHashMap<String, Object> params2 = params1;
 
 		LinkedHashMap<String, Object> params3 = null;
 
 		LinkedHashMap<String, Object> params4 = null;
 
-		Long userId = (Long)params.get("usersGroups");
-		boolean inherit = GetterUtil.getBoolean(params.get("inherit"), true);
+		LinkedHashMap<String, Object> params5 = null;
+
+		Long userId = (Long)params1.get("usersGroups");
+		boolean inherit = GetterUtil.getBoolean(params1.get("inherit"), true);
 
 		boolean doUnion = false;
 
@@ -788,15 +788,15 @@ public class GroupFinderImpl
 		}
 
 		if (doUnion) {
-			params2 = new LinkedHashMap<>(params1);
-			params3 = new LinkedHashMap<>(params1);
-			params4 = new LinkedHashMap<>(params1);
+			params3 = new LinkedHashMap<>(params2);
+			params4 = new LinkedHashMap<>(params2);
+			params5 = new LinkedHashMap<>(params2);
 
 			_populateUnionParams(
-				userId, classNameIds, params1, params2, params3, params4);
+				userId, classNameIds, params2, params3, params4, params5);
 		}
 		else if (classNameIds != null) {
-			params1.put("classNameIds", classNameIds);
+			params2.put("classNameIds", classNameIds);
 		}
 
 		if (orderByComparator == null) {
@@ -808,7 +808,7 @@ public class GroupFinderImpl
 
 		if (_isCacheableSQL(classNameIds)) {
 			sqlKey = _buildSQLCacheKey(
-				orderByComparator, params1, params2, params3, params4);
+				orderByComparator, params2, params3, params4, params5);
 
 			sql = _findByC_C_PG_N_DSQLCache.get(sqlKey);
 		}
@@ -822,14 +822,9 @@ public class GroupFinderImpl
 			StringBundler sb = new StringBundler(10);
 
 			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(replaceJoinAndWhere(findByC_PG_N_D_SQL, params1));
+			sb.append(replaceJoinAndWhere(findByC_PG_N_D_SQL, params2));
 
 			if (doUnion) {
-				if (params2.containsKey("classNameIds")) {
-					sb.append(") UNION (");
-					sb.append(replaceJoinAndWhere(findByC_PG_N_D_SQL, params2));
-				}
-
 				if (params3.containsKey("classNameIds")) {
 					sb.append(") UNION (");
 					sb.append(replaceJoinAndWhere(findByC_PG_N_D_SQL, params3));
@@ -838,6 +833,11 @@ public class GroupFinderImpl
 				if (params4.containsKey("classNameIds")) {
 					sb.append(") UNION (");
 					sb.append(replaceJoinAndWhere(findByC_PG_N_D_SQL, params4));
+				}
+
+				if (params5.containsKey("classNameIds")) {
+					sb.append(") UNION (");
+					sb.append(replaceJoinAndWhere(findByC_PG_N_D_SQL, params5));
 				}
 			}
 
@@ -878,7 +878,7 @@ public class GroupFinderImpl
 
 			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(queryPos, params1);
+			setJoin(queryPos, params2);
 
 			queryPos.add(companyId);
 			queryPos.add(parentGroupId);
@@ -886,13 +886,6 @@ public class GroupFinderImpl
 			queryPos.add(descriptions, 2);
 
 			if (doUnion) {
-				setJoin(queryPos, params2);
-
-				queryPos.add(companyId);
-				queryPos.add(parentGroupId);
-				queryPos.add(names, 2);
-				queryPos.add(descriptions, 2);
-
 				setJoin(queryPos, params3);
 
 				queryPos.add(companyId);
@@ -901,6 +894,13 @@ public class GroupFinderImpl
 				queryPos.add(descriptions, 2);
 
 				setJoin(queryPos, params4);
+
+				queryPos.add(companyId);
+				queryPos.add(parentGroupId);
+				queryPos.add(names, 2);
+				queryPos.add(descriptions, 2);
+
+				setJoin(queryPos, params5);
 
 				queryPos.add(companyId);
 				queryPos.add(parentGroupId);

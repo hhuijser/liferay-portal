@@ -1082,17 +1082,15 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 	}
 
 	protected List<LinkedHashMap<String, Object>> getParamsList(
-		LinkedHashMap<String, Object> params) {
+		LinkedHashMap<String, Object> params1) {
 
-		if (params == null) {
-			params = _emptyLinkedHashMap;
+		if (params1 == null) {
+			params1 = _emptyLinkedHashMap;
 		}
 
-		params.remove(Field.GROUP_ID);
+		params1.remove(Field.GROUP_ID);
 
-		LinkedHashMap<String, Object> params1 = params;
-
-		LinkedHashMap<String, Object> params2 = null;
+		LinkedHashMap<String, Object> params2 = params1;
 
 		LinkedHashMap<String, Object> params3 = null;
 
@@ -1102,35 +1100,37 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 		LinkedHashMap<String, Object> params6 = null;
 
+		LinkedHashMap<String, Object> params7 = null;
+
 		Long[] groupIds = null;
 
-		if (params.get("usersGroups") instanceof Long) {
-			Long groupId = (Long)params.get("usersGroups");
+		if (params1.get("usersGroups") instanceof Long) {
+			Long groupId = (Long)params1.get("usersGroups");
 
 			if (groupId > 0) {
 				groupIds = new Long[] {groupId};
 			}
 		}
 		else {
-			groupIds = (Long[])params.get("usersGroups");
+			groupIds = (Long[])params1.get("usersGroups");
 		}
 
 		Long[] roleIds = null;
 
-		if (params.get("usersRoles") instanceof Long) {
-			Long roleId = (Long)params.get("usersRoles");
+		if (params1.get("usersRoles") instanceof Long) {
+			Long roleId = (Long)params1.get("usersRoles");
 
 			if (roleId > 0) {
 				roleIds = new Long[] {roleId};
 			}
 		}
 		else {
-			roleIds = (Long[])params.get("usersRoles");
+			roleIds = (Long[])params1.get("usersRoles");
 		}
 
-		boolean inherit = GetterUtil.getBoolean(params.get("inherit"));
+		boolean inherit = GetterUtil.getBoolean(params1.get("inherit"));
 		boolean socialRelationTypeUnionUserGroups = GetterUtil.getBoolean(
-			params.get("socialRelationTypeUnionUserGroups"));
+			params1.get("socialRelationTypeUnionUserGroups"));
 
 		if (ArrayUtil.isNotEmpty(groupIds) && inherit &&
 			!socialRelationTypeUnionUserGroups) {
@@ -1158,19 +1158,19 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			}
 
 			if (!organizationIds.isEmpty()) {
-				params2 = new LinkedHashMap<>(params1);
+				params3 = new LinkedHashMap<>(params2);
 
-				params2.remove("usersGroups");
+				params3.remove("usersGroups");
 
 				if (PropsValues.ORGANIZATIONS_MEMBERSHIP_STRICT) {
-					params2.put("usersOrgs", organizationIds);
+					params3.put("usersOrgs", organizationIds);
 				}
 				else {
 					Map<Serializable, Organization> organizations =
 						OrganizationUtil.fetchByPrimaryKeys(
 							new HashSet<Serializable>(organizationIds));
 
-					params2.put(
+					params3.put(
 						"usersOrgsTree",
 						new ArrayList<Organization>(organizations.values()));
 				}
@@ -1179,25 +1179,25 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			if (!siteGroupIds.isEmpty()) {
 				Long[] siteGroupIdsArray = siteGroupIds.toArray(new Long[0]);
 
-				params3 = new LinkedHashMap<>(params1);
-
-				params3.remove("usersGroups");
-
-				params3.put("groupsOrgs", siteGroupIdsArray);
-
-				params4 = new LinkedHashMap<>(params1);
+				params4 = new LinkedHashMap<>(params2);
 
 				params4.remove("usersGroups");
 
-				params4.put("groupsUserGroups", siteGroupIdsArray);
-			}
+				params4.put("groupsOrgs", siteGroupIdsArray);
 
-			if (!userGroupIds.isEmpty()) {
-				params5 = new LinkedHashMap<>(params1);
+				params5 = new LinkedHashMap<>(params2);
 
 				params5.remove("usersGroups");
 
-				params5.put(
+				params5.put("groupsUserGroups", siteGroupIdsArray);
+			}
+
+			if (!userGroupIds.isEmpty()) {
+				params6 = new LinkedHashMap<>(params2);
+
+				params6.remove("usersGroups");
+
+				params6.put(
 					"usersUserGroups", userGroupIds.toArray(new Long[0]));
 			}
 		}
@@ -1226,12 +1226,12 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			}
 
 			if (!organizationIds.isEmpty()) {
-				params2 = new LinkedHashMap<>(params1);
+				params3 = new LinkedHashMap<>(params2);
 
-				params2.remove("usersRoles");
+				params3.remove("usersRoles");
 
 				if (PropsValues.ORGANIZATIONS_MEMBERSHIP_STRICT) {
-					params2.put(
+					params3.put(
 						"usersOrgs", organizationIds.toArray(new Long[0]));
 				}
 				else {
@@ -1239,7 +1239,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 						OrganizationUtil.fetchByPrimaryKeys(
 							new HashSet<Serializable>(organizationIds));
 
-					params2.put(
+					params3.put(
 						"usersOrgsTree",
 						new ArrayList<Organization>(organizations.values()));
 				}
@@ -1248,55 +1248,51 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			if (!siteGroupIds.isEmpty()) {
 				Long[] siteGroupIdsArray = siteGroupIds.toArray(new Long[0]);
 
-				params3 = new LinkedHashMap<>(params1);
-
-				params3.remove("usersRoles");
-
-				params3.put("usersGroups", siteGroupIdsArray);
-
-				params4 = new LinkedHashMap<>(params1);
+				params4 = new LinkedHashMap<>(params2);
 
 				params4.remove("usersRoles");
 
-				params4.put("groupsOrgs", siteGroupIdsArray);
+				params4.put("usersGroups", siteGroupIdsArray);
 
-				params5 = new LinkedHashMap<>(params1);
+				params5 = new LinkedHashMap<>(params2);
 
 				params5.remove("usersRoles");
 
-				params5.put("groupsUserGroups", siteGroupIdsArray);
-			}
+				params5.put("groupsOrgs", siteGroupIdsArray);
 
-			if (!userGroupIds.isEmpty()) {
-				params6 = new LinkedHashMap<>(params1);
+				params6 = new LinkedHashMap<>(params2);
 
 				params6.remove("usersRoles");
 
-				params6.put(
+				params6.put("groupsUserGroups", siteGroupIdsArray);
+			}
+
+			if (!userGroupIds.isEmpty()) {
+				params7 = new LinkedHashMap<>(params2);
+
+				params7.remove("usersRoles");
+
+				params7.put(
 					"usersUserGroups", userGroupIds.toArray(new Long[0]));
 			}
 		}
 
 		if (socialRelationTypeUnionUserGroups) {
 			boolean hasSocialRelationTypes = Validator.isNotNull(
-				params.get("socialRelationType"));
+				params1.get("socialRelationType"));
 
 			if (hasSocialRelationTypes && ArrayUtil.isNotEmpty(groupIds)) {
-				params2 = new LinkedHashMap<>(params1);
+				params3 = new LinkedHashMap<>(params2);
 
-				params1.remove("socialRelationType");
+				params2.remove("socialRelationType");
 
-				params2.remove("usersGroups");
+				params3.remove("usersGroups");
 			}
 		}
 
 		List<LinkedHashMap<String, Object>> paramsList = new ArrayList<>();
 
-		paramsList.add(params1);
-
-		if (params2 != null) {
-			paramsList.add(params2);
-		}
+		paramsList.add(params2);
 
 		if (params3 != null) {
 			paramsList.add(params3);
@@ -1312,6 +1308,10 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 		if (params6 != null) {
 			paramsList.add(params6);
+		}
+
+		if (params7 != null) {
+			paramsList.add(params7);
 		}
 
 		return paramsList;

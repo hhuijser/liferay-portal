@@ -153,6 +153,10 @@ public class TagResourceHandler {
 
 	}
 
+	private HttpServletRequest _getHttpServletRequest() {
+		return _tagAccessor.getRequest();
+	}
+
 	private OutputData _getOutputData() {
 		HttpServletRequest httpServletRequest = _getHttpServletRequest();
 
@@ -166,10 +170,6 @@ public class TagResourceHandler {
 		}
 
 		return outputData;
-	}
-
-	private HttpServletRequest _getHttpServletRequest() {
-		return _tagAccessor.getRequest();
 	}
 
 	private ThemeDisplay _getThemeDisplay() {

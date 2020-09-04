@@ -291,9 +291,9 @@ public class AnnouncementsEntryLocalServiceTest {
 		Assert.assertEquals(
 			notHiddenEntries.toString(), 1, notHiddenEntries.size());
 
-		AnnouncementsEntry entry = notHiddenEntries.get(0);
+		AnnouncementsEntry entry4 = notHiddenEntries.get(0);
 
-		Assert.assertEquals(entry.getEntryId(), entry3.getEntryId());
+		Assert.assertEquals(entry4.getEntryId(), entry3.getEntryId());
 	}
 
 	@Test

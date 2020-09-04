@@ -463,15 +463,15 @@ public class AccountEntryLocalServiceTest {
 	public void testSearchIndexerDocument() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry();
 
-		User user = UserTestUtil.addUser();
-
-		_accountEntryUserRelLocalService.addAccountEntryUserRel(
-			accountEntry.getAccountEntryId(), user.getUserId());
-
 		User user1 = UserTestUtil.addUser();
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRel(
 			accountEntry.getAccountEntryId(), user1.getUserId());
+
+		User user2 = UserTestUtil.addUser();
+
+		_accountEntryUserRelLocalService.addAccountEntryUserRel(
+			accountEntry.getAccountEntryId(), user2.getUserId());
 
 		accountEntry.setDomains("one,two,three");
 

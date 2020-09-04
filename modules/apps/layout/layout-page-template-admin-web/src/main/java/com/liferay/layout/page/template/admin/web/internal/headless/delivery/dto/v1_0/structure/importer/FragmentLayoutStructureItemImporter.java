@@ -388,7 +388,7 @@ public class FragmentLayoutStructureItemImporter
 			return JSONFactoryUtil.createJSONObject(jsonObject1.toString());
 		}
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+		JSONObject jsonObject3 = JSONFactoryUtil.createJSONObject(
 			jsonObject1.toString());
 
 		Iterator<String> iterator = jsonObject2.keys();
@@ -396,8 +396,8 @@ public class FragmentLayoutStructureItemImporter
 		while (iterator.hasNext()) {
 			String key = iterator.next();
 
-			if (!jsonObject.has(key)) {
-				jsonObject.put(key, jsonObject2.get(key));
+			if (!jsonObject3.has(key)) {
+				jsonObject3.put(key, jsonObject2.get(key));
 			}
 			else {
 				Object value1 = jsonObject1.get(key);
@@ -406,19 +406,19 @@ public class FragmentLayoutStructureItemImporter
 				if ((value1 instanceof JSONObject) &&
 					(value2 instanceof JSONObject)) {
 
-					jsonObject.put(
+					jsonObject3.put(
 						key,
 						_deepMerge(
 							(JSONObject)value1,
 							jsonObject2.getJSONObject(key)));
 				}
 				else {
-					jsonObject.put(key, value2);
+					jsonObject3.put(key, value2);
 				}
 			}
 		}
 
-		return jsonObject;
+		return jsonObject3;
 	}
 
 	private Map<String, String> _getConfigurationTypes(String configuration)

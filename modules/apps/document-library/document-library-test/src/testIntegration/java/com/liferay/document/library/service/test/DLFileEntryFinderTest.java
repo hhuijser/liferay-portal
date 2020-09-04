@@ -1501,7 +1501,7 @@ public class DLFileEntryFinderTest {
 		dlFileEntry = DLFileEntryLocalServiceUtil.updateDLFileEntry(
 			dlFileEntry);
 
-		DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
+		DLFileVersion dlFileVersion1 = dlFileEntry.getFileVersion();
 
 		addFileEntry(
 			TestPropsValues.getUserId(), repositoryId, folder.getFolderId(),
@@ -1526,15 +1526,15 @@ public class DLFileEntryFinderTest {
 
 		DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
 
-		DLFileVersion dlFileVersion3 = dlFileEntry.getFileVersion();
+		DLFileVersion dlFileVersion2 = dlFileEntry.getFileVersion();
 
-		dlFileVersion3.setExtraSettings("hello=world");
+		dlFileVersion2.setExtraSettings("hello=world");
 
-		DLFileVersionLocalServiceUtil.updateDLFileVersion(dlFileVersion3);
+		DLFileVersionLocalServiceUtil.updateDLFileVersion(dlFileVersion2);
 
 		DLTrashServiceUtil.moveFileEntryToTrash(fileEntry.getFileEntryId());
 
-		return new Object[] {folder, dlFileVersion};
+		return new Object[] {folder, dlFileVersion1};
 	}
 
 	private static final long _SMALL_IMAGE_ID = 1234L;

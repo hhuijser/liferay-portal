@@ -47,21 +47,21 @@ public class DDMExpressionModelTest {
 
 		AndExpression andExpression = (AndExpression)expressionModel;
 
-		Expression leftOperandExpression =
+		Expression leftOperandExpression1 =
 			andExpression.getLeftOperandExpression();
-		Expression rightOperandExpression =
+		Expression rightOperandExpression1 =
 			andExpression.getRightOperandExpression();
 
-		Assert.assertEquals(Term.class, leftOperandExpression.getClass());
+		Assert.assertEquals(Term.class, leftOperandExpression1.getClass());
 		Assert.assertEquals(
-			ComparisonExpression.class, rightOperandExpression.getClass());
+			ComparisonExpression.class, rightOperandExpression1.getClass());
 
-		Term term = (Term)leftOperandExpression;
+		Term term = (Term)leftOperandExpression1;
 
 		Assert.assertEquals("true", term.getValue());
 
 		ComparisonExpression comparisonExpression =
-			(ComparisonExpression)rightOperandExpression;
+			(ComparisonExpression)rightOperandExpression1;
 
 		Expression leftOperandExpression2 =
 			comparisonExpression.getLeftOperandExpression();
@@ -94,25 +94,25 @@ public class DDMExpressionModelTest {
 		Assert.assertEquals(
 			ArithmeticExpression.class, expressionModel.getClass());
 
-		ArithmeticExpression arithmeticExpression =
+		ArithmeticExpression arithmeticExpression1 =
 			(ArithmeticExpression)expressionModel;
 
-		Expression leftOperandExpression =
-			arithmeticExpression.getLeftOperandExpression();
-		Expression rightOperandExpression =
-			arithmeticExpression.getRightOperandExpression();
+		Expression leftOperandExpression1 =
+			arithmeticExpression1.getLeftOperandExpression();
+		Expression rightOperandExpression1 =
+			arithmeticExpression1.getRightOperandExpression();
 
 		Assert.assertEquals(
-			ArithmeticExpression.class, leftOperandExpression.getClass());
-		Assert.assertEquals(Term.class, rightOperandExpression.getClass());
-		Assert.assertEquals("-", arithmeticExpression.getOperator());
+			ArithmeticExpression.class, leftOperandExpression1.getClass());
+		Assert.assertEquals(Term.class, rightOperandExpression1.getClass());
+		Assert.assertEquals("-", arithmeticExpression1.getOperator());
 
-		Term term = (Term)rightOperandExpression;
+		Term term = (Term)rightOperandExpression1;
 
 		Assert.assertEquals("d", term.getValue());
 
 		ArithmeticExpression arithmeticExpression2 =
-			(ArithmeticExpression)leftOperandExpression;
+			(ArithmeticExpression)leftOperandExpression1;
 
 		Expression leftOperandExpression2 =
 			arithmeticExpression2.getLeftOperandExpression();
@@ -252,26 +252,27 @@ public class DDMExpressionModelTest {
 
 		Parenthesis parenthesis0 = (Parenthesis)comparisonLeftOperandExpression;
 
-		ArithmeticExpression arithmeticExpression =
+		ArithmeticExpression arithmeticExpression1 =
 			(ArithmeticExpression)parenthesis0.getOperandExpression();
 
-		Expression arithmeticLeftOperandExpression =
-			arithmeticExpression.getLeftOperandExpression();
+		Expression arithmeticLeftOperandExpression1 =
+			arithmeticExpression1.getLeftOperandExpression();
 
-		Expression arithmeticRightOperandExpression =
-			arithmeticExpression.getRightOperandExpression();
+		Expression arithmeticRightOperandExpression1 =
+			arithmeticExpression1.getRightOperandExpression();
 
-		Assert.assertEquals("/", arithmeticExpression.getOperator());
+		Assert.assertEquals("/", arithmeticExpression1.getOperator());
 
 		Assert.assertEquals(
-			Parenthesis.class, arithmeticLeftOperandExpression.getClass());
+			Parenthesis.class, arithmeticLeftOperandExpression1.getClass());
 		Assert.assertEquals(
-			Parenthesis.class, arithmeticRightOperandExpression.getClass());
+			Parenthesis.class, arithmeticRightOperandExpression1.getClass());
 
-		Parenthesis parenthesis1 = (Parenthesis)arithmeticLeftOperandExpression;
+		Parenthesis parenthesis1 =
+			(Parenthesis)arithmeticLeftOperandExpression1;
 
 		Parenthesis parenthesis2 =
-			(Parenthesis)arithmeticRightOperandExpression;
+			(Parenthesis)arithmeticRightOperandExpression1;
 
 		ArithmeticExpression arithmeticExpression2 =
 			(ArithmeticExpression)parenthesis1.getOperandExpression();
@@ -382,18 +383,18 @@ public class DDMExpressionModelTest {
 
 		OrExpression orExpression = (OrExpression)expressionModel;
 
-		Expression leftOperandExpression =
+		Expression leftOperandExpression1 =
 			orExpression.getLeftOperandExpression();
-		Expression rightOperandExpression =
+		Expression rightOperandExpression1 =
 			orExpression.getRightOperandExpression();
 
 		Assert.assertEquals(
-			ComparisonExpression.class, leftOperandExpression.getClass());
+			ComparisonExpression.class, leftOperandExpression1.getClass());
 		Assert.assertEquals(
-			NotExpression.class, rightOperandExpression.getClass());
+			NotExpression.class, rightOperandExpression1.getClass());
 
 		ComparisonExpression comparisonExpression =
-			(ComparisonExpression)leftOperandExpression;
+			(ComparisonExpression)leftOperandExpression1;
 
 		Expression leftOperandExpression2 =
 			comparisonExpression.getLeftOperandExpression();
@@ -423,26 +424,27 @@ public class DDMExpressionModelTest {
 
 		Assert.assertEquals("Var1", term.getValue());
 
-		NotExpression notExpression = (NotExpression)rightOperandExpression;
+		NotExpression notExpression = (NotExpression)rightOperandExpression1;
 
 		Expression notOperandExpression = notExpression.getOperandExpression();
 
 		Assert.assertEquals(
 			FunctionCallExpression.class, notOperandExpression.getClass());
 
-		FunctionCallExpression functionCallExpression =
+		FunctionCallExpression functionCallExpression1 =
 			(FunctionCallExpression)notOperandExpression;
 
-		Assert.assertEquals("equals", functionCallExpression.getFunctionName());
-		Assert.assertEquals(2, functionCallExpression.getArity());
+		Assert.assertEquals(
+			"equals", functionCallExpression1.getFunctionName());
+		Assert.assertEquals(2, functionCallExpression1.getArity());
 
-		List<Expression> parameterExpressions =
-			functionCallExpression.getParameterExpressions();
+		List<Expression> parameterExpressions1 =
+			functionCallExpression1.getParameterExpressions();
 
 		Assert.assertEquals(
-			parameterExpressions.toString(), 2, parameterExpressions.size());
+			parameterExpressions1.toString(), 2, parameterExpressions1.size());
 
-		Expression parameterExpression1 = parameterExpressions.get(0);
+		Expression parameterExpression1 = parameterExpressions1.get(0);
 
 		Assert.assertEquals(Term.class, parameterExpression1.getClass());
 
@@ -450,7 +452,7 @@ public class DDMExpressionModelTest {
 
 		Assert.assertEquals("Var2", term.getValue());
 
-		Expression parameterExpression2 = parameterExpressions.get(1);
+		Expression parameterExpression2 = parameterExpressions1.get(1);
 
 		Assert.assertEquals(
 			FunctionCallExpression.class, parameterExpression2.getClass());

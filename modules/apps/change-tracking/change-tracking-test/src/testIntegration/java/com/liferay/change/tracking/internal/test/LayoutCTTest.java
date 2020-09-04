@@ -590,18 +590,18 @@ public class LayoutCTTest {
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection.getCtCollectionId())) {
 
-			Layout layout = _layoutLocalService.fetchLayout(layout1.getPlid());
+			Layout layout3 = _layoutLocalService.fetchLayout(layout1.getPlid());
 
-			Assert.assertNotNull(layout);
+			Assert.assertNotNull(layout3);
 
-			Assert.assertEquals(layout.getFriendlyURL(), friendlyURL);
+			Assert.assertEquals(layout3.getFriendlyURL(), friendlyURL);
 		}
 
-		Layout layout = _layoutLocalService.fetchLayout(layout2.getPlid());
+		Layout layout4 = _layoutLocalService.fetchLayout(layout2.getPlid());
 
-		Assert.assertNotNull(layout);
+		Assert.assertNotNull(layout4);
 
-		Assert.assertEquals(layout.getFriendlyURL(), friendlyURL);
+		Assert.assertEquals(layout4.getFriendlyURL(), friendlyURL);
 	}
 
 	@Test

@@ -48,22 +48,22 @@ public class UpgradeDDMFormInstanceRecordVersion extends UpgradeProcess {
 		sb1.append("DDMFormInstance on DDLRecordVersion.recordSetId = ");
 		sb1.append("DDMFormInstance.formInstanceId");
 
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb2 = new StringBundler(7);
 
-		sb.append("insert into DDMFormInstanceRecordVersion(");
-		sb.append("formInstanceRecordVersionId, groupId, companyId, userId, ");
-		sb.append("userName, createDate, formInstanceId, ");
-		sb.append("formInstanceVersion, formInstanceRecordId, version, ");
-		sb.append("status, statusByUserId, statusByUserName, statusDate, ");
-		sb.append("storageId) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?)");
+		sb2.append("insert into DDMFormInstanceRecordVersion(");
+		sb2.append("formInstanceRecordVersionId, groupId, companyId, userId, ");
+		sb2.append("userName, createDate, formInstanceId, ");
+		sb2.append("formInstanceVersion, formInstanceRecordId, version, ");
+		sb2.append("status, statusByUserId, statusByUserName, statusDate, ");
+		sb2.append("storageId) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
+		sb2.append("?, ?)");
 
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				sb1.toString());
 			ResultSet rs = ps1.executeQuery();
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb.toString())) {
+					connection, sb2.toString())) {
 
 			while (rs.next()) {
 				long recordVersionId = rs.getLong("recordVersionId");

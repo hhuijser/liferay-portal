@@ -147,11 +147,11 @@ public class AMImageUpdateConfigurationTest
 
 		Assert.assertTrue(amImageConfigurationEntryOptional.isPresent());
 
-		AMImageConfigurationEntry amImageConfigurationEntry =
+		AMImageConfigurationEntry amImageConfigurationEntry2 =
 			amImageConfigurationEntryOptional.get();
 
 		Assert.assertEquals(
-			StringPool.BLANK, amImageConfigurationEntry.getDescription());
+			StringPool.BLANK, amImageConfigurationEntry2.getDescription());
 	}
 
 	@Test

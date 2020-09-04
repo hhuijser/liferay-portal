@@ -85,17 +85,16 @@ public class BNDLiferayEnterpriseAppCheck extends BaseFileCheck {
 			if (!matcher.find() || !Objects.equals(matcher.group(1), "true")) {
 				addMessage(
 					fileName,
-					"Enterprise apps that in dxp/apps/ directory should " +
-						"always set 'dxp.only=true' in " +
-							"'Liferay-Enterprise-App'");
+					"Enterprise apps in 'dxp/apps/' directory should always " +
+						"set 'dxp.only=true' in 'Liferay-Enterprise-App'");
 			}
 		}
 		else {
 			if (matcher.find()) {
 				addMessage(
 					fileName,
-					"Enterprise apps that not in dxp/apps/ directory should " +
-						"not set 'dxp.only' in 'Liferay-Enterprise-App'");
+					"Enterprise apps not in 'dxp/apps/' directory should not " +
+						"set 'dxp.only' in 'Liferay-Enterprise-App'");
 			}
 		}
 	}
@@ -104,15 +103,13 @@ public class BNDLiferayEnterpriseAppCheck extends BaseFileCheck {
 		String[] propertiesArray = StringUtil.split(
 			liferayEnterpriseApp, StringPool.SEMICOLON);
 
-		PropertyComparator comparator = new PropertyComparator();
+		PropertyComparator propertyComparator = new PropertyComparator();
 
 		for (int i = 1; i < propertiesArray.length; i++) {
-			String property = propertiesArray[i];
 			String previousProperty = propertiesArray[i - 1];
+			String property = propertiesArray[i];
 
-			int compare = comparator.compare(previousProperty, property);
-
-			if (compare > 0) {
+			if (propertyComparator.compare(previousProperty, property) > 0) {
 				liferayEnterpriseApp = StringUtil.replaceFirst(
 					liferayEnterpriseApp, previousProperty, property);
 				liferayEnterpriseApp = StringUtil.replaceLast(

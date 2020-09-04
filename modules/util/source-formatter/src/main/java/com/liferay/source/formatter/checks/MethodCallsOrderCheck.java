@@ -40,6 +40,24 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 		return _sortMethodCalls(fileName, content);
 	}
 
+	private String _getMethodCall(String content, int start) {
+		int end = start;
+
+		while (true) {
+			end = content.indexOf(");\n", end + 1) + 3;
+
+			if (end == -1) {
+				return null;
+			}
+
+			String methodCall = content.substring(start, end);
+
+			if (getLevel(methodCall) == 0) {
+				return methodCall;
+			}
+		}
+	}
+
 	private String _getSortedCodeBlock(String codeBlock, String methodCall) {
 		String previousParameterName = null;
 		String previousParameters = null;
@@ -301,6 +319,8 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			content, "put", 2, "ConcurrentHashMapBuilder", "HashMapBuilder",
 			"JSONObject", "JSONUtil", "SoyContext", "TreeMapBuilder");
 
+		content = _sortMethodCallsByMethodName(content, "DropdownItem");
+
 		content = _sortMethodCallsByParameter(
 			fileName, content, "add", "ConcurrentSkipListSet", "HashSet",
 			"TreeSet");
@@ -309,6 +329,51 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			"JSONObject", "SortedMap", "TreeMap");
 		content = _sortMethodCallsByParameter(
 			fileName, content, "setAttribute");
+
+		return content;
+	}
+
+	private String _sortMethodCallsByMethodName(
+		String content, String... variableTypeNames) {
+
+		MethodCallComparator methodCallComparator = new MethodCallComparator();
+
+		for (String variableTypeName : variableTypeNames) {
+			Pattern pattern = Pattern.compile(
+				"\n(\t+\\w*" + variableTypeName + "\\.)(\\w+)\\(",
+				Pattern.CASE_INSENSITIVE);
+
+			Matcher matcher = pattern.matcher(content);
+
+			while (matcher.find()) {
+				String methodCall1 = _getMethodCall(content, matcher.start(1));
+
+				if (methodCall1 == null) {
+					continue;
+				}
+
+				int x = matcher.start(1) + methodCall1.length();
+
+				String followingContent = content.substring(x);
+
+				if (!followingContent.startsWith(matcher.group(1))) {
+					continue;
+				}
+
+				String methodCall2 = _getMethodCall(content, x);
+
+				if ((methodCall2 != null) &&
+					(methodCallComparator.compare(methodCall1, methodCall2) >
+						0)) {
+
+					content = StringUtil.replaceFirst(
+						content, methodCall2, methodCall1, matcher.start());
+
+					return StringUtil.replaceFirst(
+						content, methodCall1, methodCall2, matcher.start());
+				}
+			}
+		}
 
 		return content;
 	}
@@ -356,6 +421,34 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 		}
 
 		return content;
+	}
+
+	private class MethodCallComparator extends ParameterNameComparator {
+
+		@Override
+		public int compare(String methodCall1, String methodCall2) {
+			String methodName1 = _getMethodName(methodCall1);
+			String methodName2 = _getMethodName(methodCall2);
+
+			if (!methodName1.equals(methodName2)) {
+				return methodName1.compareTo(methodName2);
+			}
+
+			List<String> parameterList1 = JavaSourceUtil.getParameterList(
+				methodCall1);
+			List<String> parameterList2 = JavaSourceUtil.getParameterList(
+				methodCall2);
+
+			return super.compare(parameterList1.get(0), parameterList2.get(0));
+		}
+
+		private String _getMethodName(String methodCall) {
+			int x = methodCall.indexOf(CharPool.PERIOD);
+			int y = methodCall.indexOf(CharPool.OPEN_PARENTHESIS);
+
+			return methodCall.substring(x + 1, y);
+		}
+
 	}
 
 	private class ParameterNameComparator extends NaturalOrderStringComparator {

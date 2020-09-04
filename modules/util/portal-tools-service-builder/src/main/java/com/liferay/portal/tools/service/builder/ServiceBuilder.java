@@ -5935,6 +5935,8 @@ public class ServiceBuilder {
 		String humanName = entityElement.attributeValue("human-name");
 		String variableName = entityElement.attributeValue("variable-name");
 		String pluralName = entityElement.attributeValue("plural-name");
+		String pluralVariableName = entityElement.attributeValue(
+			"plural-variable-name");
 
 		String tableName = entityElement.attributeValue("table");
 
@@ -6673,15 +6675,15 @@ public class ServiceBuilder {
 
 		Entity entity = new Entity(
 			this, _packagePath, _apiPackagePath, _portletShortName, entityName,
-			variableName, pluralName, humanName, tableName, alias, uuid,
-			uuidAccessor, externalReferenceCode, localService, remoteService,
-			persistence, persistenceClassName, finderClassName, dataSource,
-			sessionFactory, txManager, cacheEnabled, changeTrackingEnabled,
-			dynamicUpdateEnabled, jsonEnabled, mvccEnabled, trashEnabled,
-			uadApplicationName, uadAutoDelete, uadOutputPath, uadPackagePath,
-			deprecated, pkEntityColumns, regularEntityColumns,
-			blobEntityColumns, collectionEntityColumns, entityColumns,
-			entityOrder, entityFinders, referenceEntities,
+			variableName, pluralName, pluralVariableName, humanName, tableName,
+			alias, uuid, uuidAccessor, externalReferenceCode, localService,
+			remoteService, persistence, persistenceClassName, finderClassName,
+			dataSource, sessionFactory, txManager, cacheEnabled,
+			changeTrackingEnabled, dynamicUpdateEnabled, jsonEnabled,
+			mvccEnabled, trashEnabled, uadApplicationName, uadAutoDelete,
+			uadOutputPath, uadPackagePath, deprecated, pkEntityColumns,
+			regularEntityColumns, blobEntityColumns, collectionEntityColumns,
+			entityColumns, entityOrder, entityFinders, referenceEntities,
 			unresolvedReferenceEntityNames, txRequiredMethodNames,
 			resourceActionModel);
 

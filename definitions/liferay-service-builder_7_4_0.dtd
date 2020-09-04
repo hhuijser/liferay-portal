@@ -118,6 +118,14 @@ specified, one will be generated from the name.
 >
 
 <!--
+The plural-variable-name value specifies the plural form of variable-name. If
+none is specified, one will be generated from variable-name.
+-->
+<!ATTLIST entity
+	plural-variable-name CDATA #IMPLIED
+>
+
+<!--
 The human-name value specifies the readable name to use when generating
 documentation for this entity. If none is specified, one will be generated from
 the name.

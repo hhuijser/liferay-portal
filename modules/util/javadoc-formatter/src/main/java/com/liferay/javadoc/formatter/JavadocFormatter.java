@@ -533,9 +533,6 @@ public class JavadocFormatter {
 			return null;
 		}
 
-		comment = ToolsUtil.stripFullyQualifiedClassNames(
-			comment, _imports, _packagePath);
-
 		if (!comment.contains("* @deprecated ") ||
 			_hasAnnotation(javaAnnotatedElement, "Deprecated")) {
 
@@ -554,9 +551,6 @@ public class JavadocFormatter {
 
 		for (DocletTag docletTag : docletTags) {
 			String value = docletTag.getValue();
-
-			value = ToolsUtil.stripFullyQualifiedClassNames(
-				value, _imports, _packagePath);
 
 			if (name.equals("deprecated") &&
 				(_deprecationSyncDirName != null)) {
@@ -864,9 +858,6 @@ public class JavadocFormatter {
 			Dom4jDocUtil.add(paramElement, "required", true);
 		}
 
-		value = ToolsUtil.stripFullyQualifiedClassNames(
-			value, _imports, _packagePath);
-
 		value = _trimMultilineText(value);
 
 		Element commentElement = paramElement.addElement("comment");
@@ -931,9 +922,6 @@ public class JavadocFormatter {
 			Dom4jDocUtil.add(returnElement, "required", true);
 		}
 
-		comment = ToolsUtil.stripFullyQualifiedClassNames(
-			comment, _imports, _packagePath);
-
 		comment = _trimMultilineText(comment);
 
 		Element commentElement = returnElement.addElement("comment");
@@ -978,9 +966,6 @@ public class JavadocFormatter {
 
 			Dom4jDocUtil.add(throwsElement, "required", true);
 		}
-
-		value = ToolsUtil.stripFullyQualifiedClassNames(
-			value, _imports, _packagePath);
 
 		value = _trimMultilineText(value);
 
@@ -1464,9 +1449,6 @@ public class JavadocFormatter {
 		String comment = rootElement.elementText("comment");
 
 		if (Validator.isNotNull(comment)) {
-			comment = ToolsUtil.stripFullyQualifiedClassNames(
-				comment, _imports, _packagePath);
-
 			sb.append(_wrapText(comment, indent + " * "));
 		}
 
@@ -1640,9 +1622,6 @@ public class JavadocFormatter {
 		String comment = executableElement.elementText("comment");
 
 		if (Validator.isNotNull(comment)) {
-			comment = ToolsUtil.stripFullyQualifiedClassNames(
-				comment, _imports, _packagePath);
-
 			sb.append(_wrapText(comment, indent + " * "));
 		}
 
@@ -1713,9 +1692,6 @@ public class JavadocFormatter {
 		String comment = fieldElement.elementText("comment");
 
 		if (Validator.isNotNull(comment)) {
-			comment = ToolsUtil.stripFullyQualifiedClassNames(
-				comment, _imports, _packagePath);
-
 			sb.append(_wrapText(comment, indent + " * "));
 		}
 

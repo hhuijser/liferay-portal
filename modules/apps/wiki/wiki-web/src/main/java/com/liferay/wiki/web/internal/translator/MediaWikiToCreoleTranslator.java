@@ -153,9 +153,9 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 
 		// LEP-6118
 
-		Matcher matcher = _titlePattern.matcher(content);
+		Matcher matcher1 = _titlePattern.matcher(content);
 
-		if (matcher.find()) {
+		if (matcher1.find()) {
 			content = runRegexp(content, "^===([^=]+)===", "====$1====");
 			content = runRegexp(content, "^==([^=]+)==", "===$1===");
 			content = runRegexp(content, "^=([^=]+)=", "==$1==");
@@ -164,9 +164,9 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 		// Remove HTML tags
 
 		for (Pattern pattern : _htmlTagPatterns) {
-			matcher = pattern.matcher(content);
+			matcher1 = pattern.matcher(content);
 
-			content = matcher.replaceAll(StringPool.BLANK);
+			content = matcher1.replaceAll(StringPool.BLANK);
 		}
 
 		for (String htmlTag : _HTML_TAGS) {
@@ -175,7 +175,7 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 
 		// Images
 
-		matcher = _imagePattern.matcher(content);
+		matcher1 = _imagePattern.matcher(content);
 
 		StringBuffer sb = new StringBuffer(content);
 
@@ -184,11 +184,11 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 		int originalLength = 0;
 		int prefixLength = 0;
 
-		while (matcher.find()) {
+		while (matcher1.find()) {
 			level = 0;
-			prefixLength = matcher.end(2) - matcher.start(2);
+			prefixLength = matcher1.end(2) - matcher1.start(2);
 
-			for (int i = matcher.start(0) + offset; i < (sb.length() - 1);
+			for (int i = matcher1.start(0) + offset; i < (sb.length() - 1);
 				 i++) {
 
 				if ((sb.charAt(i) == '[') && (sb.charAt(i + 1) == '[')) {
@@ -198,15 +198,15 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 					level--;
 
 					if (level == 0) {
-						originalLength = (i + 2) - (matcher.start(0) + offset);
+						originalLength = (i + 2) - (matcher1.start(0) + offset);
 
 						break;
 					}
 				}
 			}
 
-			int imageStartPos = matcher.end(3) + offset;
-			int imageEndPos = matcher.start(2) + offset + originalLength - 4;
+			int imageStartPos = matcher1.end(3) + offset;
+			int imageEndPos = matcher1.start(2) + offset + originalLength - 4;
 
 			String image = StringBundler.concat(
 				"{{", MediaWikiImporter.SHARED_IMAGES_TITLE, "/",
@@ -220,8 +220,8 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 			image = StringUtil.removeSubstring(image, "]]");
 
 			sb.replace(
-				matcher.start(0) + offset,
-				matcher.start(0) + originalLength + offset, image);
+				matcher1.start(0) + offset,
+				matcher1.start(0) + originalLength + offset, image);
 
 			offset +=
 				MediaWikiImporter.SHARED_IMAGES_TITLE.length() - prefixLength -
@@ -232,7 +232,7 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 
 		// Tables
 
-		matcher = _tablePattern.matcher(content);
+		matcher1 = _tablePattern.matcher(content);
 
 		sb = new StringBuffer(content);
 
@@ -241,27 +241,27 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 		offset = 0;
 		originalLength = 0;
 
-		while (matcher.find()) {
+		while (matcher1.find()) {
 			mediaWikiTable = sb.substring(
-				matcher.start(1) + offset, matcher.end(1) + offset);
+				matcher1.start(1) + offset, matcher1.end(1) + offset);
 
 			originalLength = mediaWikiTable.length() + 4;
 
-			Matcher matcher1 = _mediaWikiTablePattern1.matcher(mediaWikiTable);
+			Matcher matcher2 = _mediaWikiTablePattern1.matcher(mediaWikiTable);
 
-			mediaWikiTable = matcher1.replaceAll(StringPool.BLANK);
+			mediaWikiTable = matcher2.replaceAll(StringPool.BLANK);
 
-			Matcher matcher2 = _mediaWikiTablePattern2.matcher(mediaWikiTable);
+			Matcher matcher3 = _mediaWikiTablePattern2.matcher(mediaWikiTable);
 
-			mediaWikiTable = matcher2.replaceAll("$1");
+			mediaWikiTable = matcher3.replaceAll("$1");
 
-			Matcher matcher3 = _mediaWikiTablePattern3.matcher(mediaWikiTable);
+			Matcher matcher4 = _mediaWikiTablePattern3.matcher(mediaWikiTable);
 
-			mediaWikiTable = matcher3.replaceAll("===$1===");
+			mediaWikiTable = matcher4.replaceAll("===$1===");
 
-			Matcher matcher4 = _mediaWikiTablePattern4.matcher(mediaWikiTable);
+			Matcher matcher5 = _mediaWikiTablePattern4.matcher(mediaWikiTable);
 
-			mediaWikiTable = matcher4.replaceAll("|=$1|");
+			mediaWikiTable = matcher5.replaceAll("|=$1|");
 
 			mediaWikiTable = StringUtil.replace(
 				mediaWikiTable, CharPool.NEW_LINE, StringPool.BLANK);
@@ -272,8 +272,8 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 			mediaWikiTable = StringUtil.removeSubstring(mediaWikiTable, "////");
 
 			sb.replace(
-				matcher.start(0) + offset,
-				matcher.start(0) + originalLength + offset, mediaWikiTable);
+				matcher1.start(0) + offset,
+				matcher1.start(0) + originalLength + offset, mediaWikiTable);
 
 			offset += mediaWikiTable.length() - originalLength;
 		}
@@ -285,16 +285,16 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 
 		// Remove underscores from links
 
-		matcher = _linkPattern.matcher(content);
+		matcher1 = _linkPattern.matcher(content);
 
 		sb = new StringBuffer(content);
 
-		while (matcher.find()) {
-			String link = matcher.group(1);
+		while (matcher1.find()) {
+			String link = matcher1.group(1);
 
 			link = StringUtil.replace(link, CharPool.UNDERLINE, CharPool.SPACE);
 
-			sb.replace(matcher.start(1), matcher.end(1), link);
+			sb.replace(matcher1.start(1), matcher1.end(1), link);
 		}
 
 		return TABLE_OF_CONTENTS + super.postProcess(sb.toString());

@@ -125,10 +125,10 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 		SuggestSearchRequest suggestSearchRequest = new SuggestSearchRequest(
 			_INDEX_NAME);
 
-		Suggester suggester = new CompletionSuggester(
+		Suggester suggester1 = new CompletionSuggester(
 			"completion", "keywordSuggestion", "sear");
 
-		suggestSearchRequest.addSuggester(suggester);
+		suggestSearchRequest.addSuggester(suggester1);
 
 		Suggester suggester2 = new CompletionSuggester(
 			"completion2", "keywordSuggestion", "messa");

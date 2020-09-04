@@ -73,11 +73,11 @@ public class UADAnonymizerHelper {
 	private User _createAnonymousUser(long companyId) throws Exception {
 		long creatorUserId = 0;
 
-		String password = StringUtil.randomString();
+		String randomString = StringUtil.randomString();
 
 		boolean autoPassword = false;
-		String password1 = password;
-		String password2 = password;
+		String password1 = randomString;
+		String password2 = randomString;
 		boolean autoScreenName = false;
 
 		long counter = _counterLocalService.increment(

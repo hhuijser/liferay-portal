@@ -292,12 +292,12 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 
 		try {
 			while (enumeration.hasMoreElements()) {
-				String name2 = enumeration.nextElement();
+				String curName = enumeration.nextElement();
 
 				for (String discardLegacyKey : discardLegacyKeys) {
-					if (name2.startsWith(discardLegacyKey + "_")) {
-						portletPreferences.reset(name2);
-						unicodeProperties.remove(name2);
+					if (curName.startsWith(discardLegacyKey + "_")) {
+						portletPreferences.reset(curName);
+						unicodeProperties.remove(curName);
 					}
 				}
 			}

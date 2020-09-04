@@ -54,14 +54,14 @@ public class FacetCollectorTest {
 
 		fieldNamedList.add("buckets", bucketNamedList);
 
-		NamedList<Object> namedList = new NamedList();
+		NamedList<Object> namedList3 = new NamedList();
 
-		namedList.add("field", fieldNamedList);
+		namedList3.add("field", fieldNamedList);
 
 		Facet facet = new FacetImpl("field", new SearchContext());
 
 		SolrFacetFieldCollector solrFacetFieldCollector =
-			new SolrFacetFieldCollector(facet, namedList);
+			new SolrFacetFieldCollector(facet, namedList3);
 
 		TermCollector termCollector = solrFacetFieldCollector.getTermCollector(
 			"alpha");

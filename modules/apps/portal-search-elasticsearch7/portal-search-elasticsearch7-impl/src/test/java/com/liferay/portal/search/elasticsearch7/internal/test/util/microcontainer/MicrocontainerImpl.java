@@ -156,19 +156,20 @@ public class MicrocontainerImpl implements Microcontainer {
 	protected static boolean hasMethodPortalInitialized(Object component) {
 		Class<?> clazz = component.getClass();
 
-		ClassNode classNode = ASMUtil.getClassNode(clazz);
+		ClassNode classNode1 = ASMUtil.getClassNode(clazz);
 
-		Optional<MethodNode> optional = findMethodPortalInitialized(classNode);
+		Optional<MethodNode> optional1 = findMethodPortalInitialized(
+			classNode1);
 
-		if (optional.isPresent()) {
+		if (optional1.isPresent()) {
 			return true;
 		}
 
-		if (classNode.superName == null) {
+		if (classNode1.superName == null) {
 			return false;
 		}
 
-		ClassNode classNode2 = ASMUtil.getClassNode(classNode.superName);
+		ClassNode classNode2 = ASMUtil.getClassNode(classNode1.superName);
 
 		Optional<MethodNode> optional2 = findMethodPortalInitialized(
 			classNode2);

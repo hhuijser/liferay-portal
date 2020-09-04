@@ -768,7 +768,7 @@ public class WikiPageLocalServiceTest {
 		AssetVocabulary assetVocabulary = AssetTestUtil.addVocabulary(
 			_group.getGroupId());
 
-		AssetCategory defaultVersionPageAssetCategory =
+		AssetCategory defaultVersionPageAssetCategory1 =
 			AssetTestUtil.addCategory(
 				_group.getGroupId(), assetVocabulary.getVocabularyId());
 		AssetCategory defaultVersionPageAssetCategory2 =
@@ -778,7 +778,7 @@ public class WikiPageLocalServiceTest {
 		long[] defaultVersionPageAssetCategoryIds = new long[2];
 
 		defaultVersionPageAssetCategoryIds[0] =
-			defaultVersionPageAssetCategory.getCategoryId();
+			defaultVersionPageAssetCategory1.getCategoryId();
 		defaultVersionPageAssetCategoryIds[1] =
 			defaultVersionPageAssetCategory2.getCategoryId();
 

@@ -287,13 +287,13 @@ public class SortParserImplTest {
 			"Two sort fields should be obtained: " + sortFields, 2,
 			sortFields.size());
 
-		SortField sortField = sortFields.get(0);
+		SortField sortField1 = sortFields.get(0);
 
 		Assert.assertEquals(
 			"fieldInternal1",
-			sortField.getSortableFieldName(LocaleUtil.getDefault()));
+			sortField1.getSortableFieldName(LocaleUtil.getDefault()));
 
-		Assert.assertTrue(sortField.isAscending());
+		Assert.assertTrue(sortField1.isAscending());
 
 		SortField sortField2 = sortFields.get(1);
 
@@ -313,13 +313,13 @@ public class SortParserImplTest {
 			"Two sort fields should be obtained: " + sortFields, 2,
 			sortFields.size());
 
-		SortField sortField = sortFields.get(0);
+		SortField sortField1 = sortFields.get(0);
 
 		Assert.assertEquals(
 			"fieldInternal1",
-			sortField.getSortableFieldName(LocaleUtil.getDefault()));
+			sortField1.getSortableFieldName(LocaleUtil.getDefault()));
 
-		Assert.assertTrue(sortField.isAscending());
+		Assert.assertTrue(sortField1.isAscending());
 
 		SortField sortField2 = sortFields.get(1);
 
@@ -339,13 +339,13 @@ public class SortParserImplTest {
 			"Two sort fields should be obtained: " + sortFields, 2,
 			sortFields.size());
 
-		SortField sortField = sortFields.get(0);
+		SortField sortField1 = sortFields.get(0);
 
 		Assert.assertEquals(
 			"fieldInternal1",
-			sortField.getSortableFieldName(LocaleUtil.getDefault()));
+			sortField1.getSortableFieldName(LocaleUtil.getDefault()));
 
-		Assert.assertTrue(sortField.isAscending());
+		Assert.assertTrue(sortField1.isAscending());
 
 		SortField sortField2 = sortFields.get(1);
 

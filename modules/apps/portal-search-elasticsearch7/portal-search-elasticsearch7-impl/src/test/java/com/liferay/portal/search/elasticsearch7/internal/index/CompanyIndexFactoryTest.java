@@ -470,11 +470,11 @@ public class CompanyIndexFactoryTest {
 
 		createIndices();
 
-		String field = "title";
+		String field1 = "title";
 
-		indexOneDocument(field);
+		indexOneDocument(field1);
 
-		assertAnalyzer(field, "kuromoji_liferay_custom");
+		assertAnalyzer(field1, "kuromoji_liferay_custom");
 
 		String field2 = "description";
 

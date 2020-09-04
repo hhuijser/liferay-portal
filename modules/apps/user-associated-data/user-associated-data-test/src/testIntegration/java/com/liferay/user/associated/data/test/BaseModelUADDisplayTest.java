@@ -164,15 +164,15 @@ public class BaseModelUADDisplayTest {
 
 	@Test
 	public void testSearchByKeywords() throws Exception {
-		String searchTerm = RandomTestUtil.randomString(30);
+		String searchTerm1 = RandomTestUtil.randomString(30);
 		String searchTerm2 = RandomTestUtil.randomString(30);
 
 		Layout layout1 = _addLayout(
-			searchTerm, StringPool.BLANK, StringPool.BLANK);
+			searchTerm1, StringPool.BLANK, StringPool.BLANK);
 		Layout layout2 = _addLayout(
-			StringPool.BLANK, searchTerm, StringPool.BLANK);
+			StringPool.BLANK, searchTerm1, StringPool.BLANK);
 		Layout layout3 = _addLayout(
-			StringPool.BLANK, StringPool.BLANK, searchTerm);
+			StringPool.BLANK, StringPool.BLANK, searchTerm1);
 		Layout layout4 = _addLayout(
 			searchTerm2, StringPool.BLANK, StringPool.BLANK);
 		Layout layout5 = _addLayout(
@@ -180,7 +180,7 @@ public class BaseModelUADDisplayTest {
 		Layout layout6 = _addLayout(
 			StringPool.BLANK, StringPool.BLANK, searchTerm2);
 
-		List<Layout> layouts = _searchLayouts(searchTerm);
+		List<Layout> layouts = _searchLayouts(searchTerm1);
 
 		Assert.assertTrue(layouts.contains(layout1));
 		Assert.assertTrue(layouts.contains(layout2));
@@ -189,7 +189,7 @@ public class BaseModelUADDisplayTest {
 		Assert.assertFalse(layouts.contains(layout5));
 		Assert.assertFalse(layouts.contains(layout6));
 
-		Assert.assertEquals(3, _searchCountLayouts(searchTerm));
+		Assert.assertEquals(3, _searchCountLayouts(searchTerm1));
 
 		layouts = _searchLayouts(searchTerm2);
 
@@ -215,27 +215,27 @@ public class BaseModelUADDisplayTest {
 
 		_uadDisplay.setSearchableFields("name", "title");
 
-		layouts = _searchLayouts(searchTerm);
+		layouts = _searchLayouts(searchTerm1);
 
 		Assert.assertTrue(layouts.contains(layout1));
 		Assert.assertTrue(layouts.contains(layout2));
 		Assert.assertFalse(layouts.contains(layout3));
 
-		Assert.assertEquals(2, _searchCountLayouts(searchTerm));
+		Assert.assertEquals(2, _searchCountLayouts(searchTerm1));
 
 		_uadDisplay.setSearchableFields("name");
 
-		layouts = _searchLayouts(searchTerm);
+		layouts = _searchLayouts(searchTerm1);
 
 		Assert.assertTrue(layouts.contains(layout1));
 		Assert.assertFalse(layouts.contains(layout2));
 		Assert.assertFalse(layouts.contains(layout3));
 
-		Assert.assertEquals(1, _searchCountLayouts(searchTerm));
+		Assert.assertEquals(1, _searchCountLayouts(searchTerm1));
 
 		_uadDisplay.setSearchableFields();
 
-		layouts = _searchLayouts(searchTerm);
+		layouts = _searchLayouts(searchTerm1);
 
 		Assert.assertTrue(layouts.contains(layout1));
 		Assert.assertTrue(layouts.contains(layout2));
@@ -244,13 +244,13 @@ public class BaseModelUADDisplayTest {
 		Assert.assertTrue(layouts.contains(layout5));
 		Assert.assertTrue(layouts.contains(layout6));
 
-		Assert.assertEquals(6, _searchCountLayouts(searchTerm));
+		Assert.assertEquals(6, _searchCountLayouts(searchTerm1));
 
 		_uadDisplay.setSearchableFields("privateLayout");
 
 		// Checks to make sure the DyanmicQuery skips checking boolean fields
 
-		_searchLayouts(searchTerm);
+		_searchLayouts(searchTerm1);
 	}
 
 	/**

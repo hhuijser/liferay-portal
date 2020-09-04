@@ -132,11 +132,11 @@ public class UserSetDigestTest {
 
 		long companyId = _company.getCompanyId();
 
-		String password = RandomTestUtil.randomString();
+		String randomString = RandomTestUtil.randomString();
 
 		boolean autoPassword = false;
-		String password1 = password;
-		String password2 = password;
+		String password1 = randomString;
+		String password2 = randomString;
 
 		boolean autoScreenName = false;
 		Locale locale = LocaleUtil.getDefault();

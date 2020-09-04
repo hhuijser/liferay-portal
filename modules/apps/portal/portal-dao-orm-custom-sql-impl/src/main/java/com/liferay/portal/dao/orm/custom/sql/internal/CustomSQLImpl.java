@@ -984,10 +984,10 @@ public class CustomSQLImpl implements CustomSQL {
 				_objectValuePair = objectValuePair;
 			}
 
-			Exception exception = objectValuePair.getValue();
+			Exception exception3 = objectValuePair.getValue();
 
-			if (exception != null) {
-				_log.error(exception, exception);
+			if (exception3 != null) {
+				_log.error(exception3, exception3);
 			}
 
 			Map<String, String> sqlPool = objectValuePair.getKey();

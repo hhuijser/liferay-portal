@@ -124,11 +124,11 @@ public abstract class BaseNestedFieldsTestCase extends BaseIndexingTestCase {
 
 		String fieldMapping = fieldMappings.get(String.valueOf(getCompanyId()));
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(fieldMapping);
+		JSONObject jsonObject1 = JSONFactoryUtil.createJSONObject(fieldMapping);
 
-		Assert.assertEquals(fieldMapping, 2, jsonObject.length());
+		Assert.assertEquals(fieldMapping, 2, jsonObject1.length());
 
-		JSONObject jsonObject2 = jsonObject.getJSONObject(
+		JSONObject jsonObject2 = jsonObject1.getJSONObject(
 			"ddmFieldArray.ddmFieldValueText_en_US");
 
 		JSONObject jsonObject3 = jsonObject2.getJSONObject(

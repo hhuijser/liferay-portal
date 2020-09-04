@@ -54,12 +54,12 @@ public class UsersTemplateContextContributor
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		User user = themeDisplay.getUser();
+		User user1 = themeDisplay.getUser();
 
-		contextObjects.put("is_default_user", user.isDefaultUser());
+		contextObjects.put("is_default_user", user1.isDefaultUser());
 
 		try {
-			Contact contact = user.getContact();
+			Contact contact = user1.getContact();
 
 			contextObjects.put("is_female", !contact.isMale());
 			contextObjects.put("is_male", contact.isMale());
@@ -69,21 +69,21 @@ public class UsersTemplateContextContributor
 			_log.error(portalException, portalException);
 		}
 
-		contextObjects.put("is_setup_complete", user.isSetupComplete());
+		contextObjects.put("is_setup_complete", user1.isSetupComplete());
 		contextObjects.put("language", themeDisplay.getLanguageId());
-		contextObjects.put("language_id", user.getLanguageId());
-		contextObjects.put("user_comments", user.getComments());
-		contextObjects.put("user_email_address", user.getEmailAddress());
-		contextObjects.put("user_first_name", user.getFirstName());
+		contextObjects.put("language_id", user1.getLanguageId());
+		contextObjects.put("user_comments", user1.getComments());
+		contextObjects.put("user_email_address", user1.getEmailAddress());
+		contextObjects.put("user_first_name", user1.getFirstName());
 		contextObjects.put(
-			"user_greeting", HtmlUtil.escape(user.getGreeting()));
-		contextObjects.put("user_id", user.getUserId());
+			"user_greeting", HtmlUtil.escape(user1.getGreeting()));
+		contextObjects.put("user_id", user1.getUserId());
 		contextObjects.put("user_initialized", true);
-		contextObjects.put("user_last_login_ip", user.getLastLoginIP());
-		contextObjects.put("user_last_name", user.getLastName());
-		contextObjects.put("user_login_ip", user.getLoginIP());
-		contextObjects.put("user_middle_name", user.getMiddleName());
-		contextObjects.put("user_name", user.getFullName());
+		contextObjects.put("user_last_login_ip", user1.getLastLoginIP());
+		contextObjects.put("user_last_name", user1.getLastName());
+		contextObjects.put("user_login_ip", user1.getLoginIP());
+		contextObjects.put("user_middle_name", user1.getMiddleName());
+		contextObjects.put("user_name", user1.getFullName());
 
 		Group group = themeDisplay.getSiteGroup();
 

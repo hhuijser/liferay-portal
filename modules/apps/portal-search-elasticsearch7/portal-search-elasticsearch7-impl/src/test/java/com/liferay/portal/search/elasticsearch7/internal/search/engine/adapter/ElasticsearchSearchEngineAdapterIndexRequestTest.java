@@ -459,13 +459,13 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 
 	@Test
 	public void testExecuteIndicesExistsIndexRequest() {
-		IndicesExistsIndexRequest indicesExistsIndexRequest =
+		IndicesExistsIndexRequest indicesExistsIndexRequest1 =
 			new IndicesExistsIndexRequest(_INDEX_NAME);
 
-		IndicesExistsIndexResponse indicesExistsIndexResponse =
-			_searchEngineAdapter.execute(indicesExistsIndexRequest);
+		IndicesExistsIndexResponse indicesExistsIndexResponse1 =
+			_searchEngineAdapter.execute(indicesExistsIndexRequest1);
 
-		Assert.assertTrue(indicesExistsIndexResponse.isExists());
+		Assert.assertTrue(indicesExistsIndexResponse1.isExists());
 
 		IndicesExistsIndexRequest indicesExistsIndexRequest2 =
 			new IndicesExistsIndexRequest("test_index_2");

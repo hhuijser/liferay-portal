@@ -44,13 +44,13 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 		int end = start;
 
 		while (true) {
-			end = content.indexOf(");\n", end + 1) + 3;
+			end = content.indexOf(");\n", end + 1);
 
 			if (end == -1) {
 				return null;
 			}
 
-			String methodCall = content.substring(start, end);
+			String methodCall = content.substring(start, end + 3);
 
 			if (getLevel(methodCall) == 0) {
 				return methodCall;

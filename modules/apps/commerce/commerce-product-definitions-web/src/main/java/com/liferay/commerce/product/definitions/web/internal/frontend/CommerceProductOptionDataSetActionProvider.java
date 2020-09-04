@@ -82,13 +82,13 @@ public class CommerceProductOptionDataSetActionProvider
 				PermissionThreadLocal.getPermissionChecker(),
 				cpDefinitionOptionRel.getCPDefinition(), ActionKeys.UPDATE),
 			dropdownItem -> {
+				dropdownItem.putData("method", "delete");
 				dropdownItem.setHref(
 					_getProductOptionDeleteURL(
 						cpDefinitionOptionRel.getCPDefinitionOptionRelId()));
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "delete"));
 				dropdownItem.setTarget("async");
-				dropdownItem.putData("method", "delete");
 			}
 		).build();
 	}

@@ -380,11 +380,11 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 		return dropdownItem -> {
 			dropdownItem.putData("action", "renameFragmentEntry");
 			dropdownItem.putData(
-				"updateFragmentEntryURL", updateFragmentEntryURL.toString());
-			dropdownItem.putData(
 				"fragmentEntryId",
 				String.valueOf(_fragmentEntry.getFragmentEntryId()));
 			dropdownItem.putData("fragmentEntryName", _fragmentEntry.getName());
+			dropdownItem.putData(
+				"updateFragmentEntryURL", updateFragmentEntryURL.toString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "rename"));
 		};

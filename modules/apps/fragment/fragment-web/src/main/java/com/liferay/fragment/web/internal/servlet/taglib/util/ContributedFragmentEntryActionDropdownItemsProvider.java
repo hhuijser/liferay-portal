@@ -87,11 +87,11 @@ public class ContributedFragmentEntryActionDropdownItemsProvider {
 		return dropdownItem -> {
 			dropdownItem.putData("action", "copyToContributedFragmentEntry");
 			dropdownItem.putData(
-				"fragmentEntryKey",
-				String.valueOf(_fragmentEntry.getFragmentEntryKey()));
-			dropdownItem.putData(
 				"copyContributedFragmentEntryURL",
 				copyContributedFragmentEntryURL.toString());
+			dropdownItem.putData(
+				"fragmentEntryKey",
+				String.valueOf(_fragmentEntry.getFragmentEntryKey()));
 			dropdownItem.putData(
 				"selectFragmentCollectionURL",
 				selectFragmentCollectionURL.toString());

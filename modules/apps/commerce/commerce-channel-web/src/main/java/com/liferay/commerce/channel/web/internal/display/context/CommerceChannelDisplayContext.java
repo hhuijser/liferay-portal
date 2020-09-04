@@ -258,9 +258,9 @@ public class CommerceChannelDisplayContext
 		if (hasAddChannelPermission()) {
 			creationMenu.addDropdownItem(
 				dropdownItem -> {
+					dropdownItem.setHref(getAddChannelURL());
 					dropdownItem.setLabel(
 						LanguageUtil.get(httpServletRequest, "add-channel"));
-					dropdownItem.setHref(getAddChannelURL());
 					dropdownItem.setTarget("modal-lg");
 				});
 		}

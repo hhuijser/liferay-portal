@@ -181,34 +181,34 @@ public class NotificationsManagementToolbarDisplayContext {
 
 		return DropdownItemListBuilder.add(
 			dropdownItem -> {
+				dropdownItem.setActive(navigation.equals("all"));
 				dropdownItem.setHref(
 					PortletURLUtil.clone(
 						_currentURLObj, _liferayPortletResponse),
 					SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation",
 					"all");
-				dropdownItem.setActive(navigation.equals("all"));
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "all"));
 			}
 		).add(
 			dropdownItem -> {
+				dropdownItem.setActive(navigation.equals("unread"));
 				dropdownItem.setHref(
 					PortletURLUtil.clone(
 						_currentURLObj, _liferayPortletResponse),
 					SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation",
 					"unread");
-				dropdownItem.setActive(navigation.equals("unread"));
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "unread"));
 			}
 		).add(
 			dropdownItem -> {
+				dropdownItem.setActive(navigation.equals("read"));
 				dropdownItem.setHref(
 					PortletURLUtil.clone(
 						_currentURLObj, _liferayPortletResponse),
 					SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation",
 					"read");
-				dropdownItem.setActive(navigation.equals("read"));
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "read"));
 			}

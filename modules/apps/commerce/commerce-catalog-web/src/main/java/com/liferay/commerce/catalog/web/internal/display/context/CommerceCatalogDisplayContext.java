@@ -169,10 +169,10 @@ public class CommerceCatalogDisplayContext {
 		if (hasAddCatalogPermission()) {
 			creationMenu.addDropdownItem(
 				dropdownItem -> {
+					dropdownItem.setHref(getAddCommerceCatalogRenderURL());
 					dropdownItem.setLabel(
 						LanguageUtil.get(
 							cpRequestHelper.getRequest(), "add-catalog"));
-					dropdownItem.setHref(getAddCommerceCatalogRenderURL());
 					dropdownItem.setTarget("modal-lg");
 				});
 		}

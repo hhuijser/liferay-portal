@@ -90,13 +90,13 @@ public class CommercePricingClassDataSetActionProvider
 				PermissionThreadLocal.getPermissionChecker(),
 				pricingClass.getPricingClassId(), ActionKeys.DELETE),
 			dropdownItem -> {
+				dropdownItem.putData("method", "delete");
 				dropdownItem.setHref(
 					_getPricingClassDeleteURL(
 						pricingClass.getPricingClassId()));
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "delete"));
 				dropdownItem.setTarget("async");
-				dropdownItem.putData("method", "delete");
 			}
 		).build();
 	}

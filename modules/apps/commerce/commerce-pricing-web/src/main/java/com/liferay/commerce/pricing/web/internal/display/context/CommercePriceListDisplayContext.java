@@ -294,10 +294,10 @@ public class CommercePriceListDisplayContext
 
 			creationMenu.addDropdownItem(
 				dropdownItem -> {
+					dropdownItem.setHref(getAddCommercePriceListRenderURL());
 					dropdownItem.setLabel(
 						LanguageUtil.get(
 							httpServletRequest, "create-new-price-list"));
-					dropdownItem.setHref(getAddCommercePriceListRenderURL());
 					dropdownItem.setTarget("modal-lg");
 				});
 		}
@@ -399,11 +399,11 @@ public class CommercePriceListDisplayContext
 		if (hasPermission(getCommercePriceListId(), ActionKeys.UPDATE)) {
 			creationMenu.addDropdownItem(
 				dropdownItem -> {
+					dropdownItem.setHref(
+						getAddCommercePriceModifierRenderURL());
 					dropdownItem.setLabel(
 						LanguageUtil.get(
 							httpServletRequest, "add-price-modifier"));
-					dropdownItem.setHref(
-						getAddCommercePriceModifierRenderURL());
 					dropdownItem.setTarget("modal-lg");
 				});
 		}

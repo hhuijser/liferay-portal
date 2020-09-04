@@ -80,6 +80,7 @@ public class CommerceProductPricingClassDataSetActionProvider
 				PermissionThreadLocal.getPermissionChecker(),
 				productPricingClass.getPricingClassId(), ActionKeys.DELETE),
 			dropdownItem -> {
+				dropdownItem.putData("method", "delete");
 				dropdownItem.setHref(
 					_getProductPricingClassDeleteURL(
 						productPricingClass.getPricingClassId(),
@@ -87,7 +88,6 @@ public class CommerceProductPricingClassDataSetActionProvider
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "delete"));
 				dropdownItem.setTarget("async");
-				dropdownItem.putData("method", "delete");
 			}
 		).build();
 	}

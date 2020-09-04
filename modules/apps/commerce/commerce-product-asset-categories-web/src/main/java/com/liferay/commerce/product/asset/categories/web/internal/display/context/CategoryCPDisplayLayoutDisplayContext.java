@@ -122,10 +122,10 @@ public class CategoryCPDisplayLayoutDisplayContext
 	public CreationMenu getCreationMenu() throws Exception {
 		return CreationMenuBuilder.addDropdownItem(
 			dropdownItem -> {
-				dropdownItem.setTarget("sidePanel");
+				dropdownItem.setHref(getAddCategoryDisplayPageURL());
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "add-display-layout"));
-				dropdownItem.setHref(getAddCategoryDisplayPageURL());
+				dropdownItem.setTarget("sidePanel");
 			}
 		).build();
 	}

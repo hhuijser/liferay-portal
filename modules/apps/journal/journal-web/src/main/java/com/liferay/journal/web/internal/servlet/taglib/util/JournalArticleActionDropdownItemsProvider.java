@@ -535,10 +535,10 @@ public class JournalArticleActionDropdownItemsProvider {
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "preview");
+			dropdownItem.putData("previewURL", previewURL);
 			dropdownItem.putData(
 				"title",
 				HtmlUtil.escape(_article.getTitle(_themeDisplay.getLocale())));
-			dropdownItem.putData("previewURL", previewURL);
 
 			String status = "preview";
 

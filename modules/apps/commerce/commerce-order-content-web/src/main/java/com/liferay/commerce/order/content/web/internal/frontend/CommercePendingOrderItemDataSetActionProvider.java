@@ -66,12 +66,12 @@ public class CommercePendingOrderItemDataSetActionProvider
 					ActionKeys.UPDATE) &&
 				commerceOrder.isOpen(),
 			dropdownItem -> {
+				dropdownItem.putData("method", "delete");
 				dropdownItem.setHref(
 					_getDeleteCommerceOrderItemURL(orderItem.getOrderItemId()));
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "delete"));
 				dropdownItem.setTarget("async");
-				dropdownItem.putData("method", "delete");
 			}
 		).build();
 	}

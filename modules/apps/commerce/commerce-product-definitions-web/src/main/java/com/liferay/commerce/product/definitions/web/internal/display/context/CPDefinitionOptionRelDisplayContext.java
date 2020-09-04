@@ -117,11 +117,11 @@ public class CPDefinitionOptionRelDisplayContext
 
 		return CreationMenuBuilder.addDropdownItem(
 			dropdownItem -> {
-				dropdownItem.setTarget("modal-lg");
+				dropdownItem.setHref(portletURL.toString());
 				dropdownItem.setLabel(
 					LanguageUtil.get(
 						cpRequestHelper.getRequest(), "add-value"));
-				dropdownItem.setHref(portletURL.toString());
+				dropdownItem.setTarget("modal-lg");
 			}
 		).build();
 	}

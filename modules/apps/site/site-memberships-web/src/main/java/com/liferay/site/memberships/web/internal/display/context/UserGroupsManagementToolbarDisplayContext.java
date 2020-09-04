@@ -295,11 +295,11 @@ public class UserGroupsManagementToolbarDisplayContext
 			}
 		).add(
 			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getNavigation(), "roles"));
 				dropdownItem.putData("action", "selectRoles");
 				dropdownItem.putData(
 					"selectRolesURL", _getSelectorURL("/select_site_role.jsp"));
+				dropdownItem.setActive(
+					Objects.equals(getNavigation(), "roles"));
 
 				PortletURL viewRoleURL =
 					liferayPortletResponse.createRenderURL();

@@ -107,6 +107,7 @@ public class CommerceProductOptionValueDataSetActionProvider
 				PermissionThreadLocal.getPermissionChecker(),
 				cpDefinitionOptionRel.getCPDefinition(), ActionKeys.UPDATE),
 			dropdownItem -> {
+				dropdownItem.put("id", "updatePreselected");
 				dropdownItem.setHref(
 					_getProductOptionValueUpdatePreselectedURL(
 						cpDefinitionOptionValueRel.
@@ -114,7 +115,6 @@ public class CommerceProductOptionValueDataSetActionProvider
 						httpServletRequest));
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "toggle-default"));
-				dropdownItem.put("id", "updatePreselected");
 			}
 		).build();
 	}

@@ -86,6 +86,7 @@ public class CommercePricingClassCPDefinitionRelDataSetActionProvider
 				commercePricingClassCPDefinitionRel.getCommercePricingClassId(),
 				ActionKeys.DELETE),
 			dropdownItem -> {
+				dropdownItem.putData("method", "delete");
 				dropdownItem.setHref(
 					_getPricingClassCPDefinitionRelDeleteURL(
 						commercePricingClassCPDefinitionRel.
@@ -93,7 +94,6 @@ public class CommercePricingClassCPDefinitionRelDataSetActionProvider
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "delete"));
 				dropdownItem.setTarget("async");
-				dropdownItem.putData("method", "delete");
 			}
 		).build();
 	}

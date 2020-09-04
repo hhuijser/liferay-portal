@@ -468,8 +468,8 @@ public class JournalManagementToolbarDisplayContext
 
 		DropdownItem dropdownItem = new DropdownItem();
 
-		dropdownItem.setActive(_journalDisplayContext.isNavigationStructure());
 		dropdownItem.putData("action", "openDDMStructuresSelector");
+		dropdownItem.setActive(_journalDisplayContext.isNavigationStructure());
 		dropdownItem.setLabel(LanguageUtil.get(request, "structures"));
 
 		filterNavigationDropdownItems.add(dropdownItem);

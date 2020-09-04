@@ -68,10 +68,10 @@ public class AssetEntryActionDropdownItemsProvider {
 				if (editAssetEntryURL != null) {
 					add(
 						dropdownItem -> {
-							dropdownItem.setIcon("pencil");
 							dropdownItem.putData(
 								"useDialog", Boolean.FALSE.toString());
 							dropdownItem.setHref(editAssetEntryURL.toString());
+							dropdownItem.setIcon("pencil");
 							dropdownItem.setLabel(
 								LanguageUtil.get(_httpServletRequest, "edit"));
 						});
@@ -101,17 +101,17 @@ public class AssetEntryActionDropdownItemsProvider {
 
 						add(
 							dropdownItem -> {
+								dropdownItem.putData(
+									"destroyOnHide", Boolean.TRUE.toString());
+								dropdownItem.putData("title", title);
+								dropdownItem.putData(
+									"useDialog", Boolean.TRUE.toString());
 								dropdownItem.setHref(
 									objectAssetEntryAction.getDialogURL(
 										_httpServletRequest,
 										(AssetRenderer<Object>)_assetRenderer));
 								dropdownItem.setIcon(
 									objectAssetEntryAction.getIcon());
-								dropdownItem.putData(
-									"destroyOnHide", Boolean.TRUE.toString());
-								dropdownItem.putData(
-									"useDialog", Boolean.TRUE.toString());
-								dropdownItem.putData("title", title);
 								dropdownItem.setLabel(title);
 							});
 					}

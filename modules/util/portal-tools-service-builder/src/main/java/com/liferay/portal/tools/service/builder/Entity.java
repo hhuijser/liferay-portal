@@ -132,10 +132,21 @@ public class Entity implements Comparable<Entity> {
 		_name = name;
 		_variableName = GetterUtil.getString(
 			variableName, TextFormatter.format(name, TextFormatter.I));
+
 		_pluralName = GetterUtil.getString(
 			pluralName, serviceBuilder.formatPlural(name));
-		_pluralVariableName = GetterUtil.getString(
-			pluralVariableName, serviceBuilder.formatPlural(_variableName));
+
+		if (Validator.isNotNull(pluralVariableName)) {
+			_pluralVariableName = pluralVariableName;
+		}
+		else if (Validator.isNotNull(pluralName)) {
+			_pluralVariableName = TextFormatter.format(
+				pluralName, TextFormatter.I);
+		}
+		else {
+			_pluralVariableName = serviceBuilder.formatPlural(_variableName);
+		}
+
 		_humanName = GetterUtil.getString(
 			humanName, ServiceBuilder.toHumanName(name));
 		_table = table;

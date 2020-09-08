@@ -398,7 +398,7 @@
 			<message key="method.incorrect.ending" value="Name of method returning type ''{0}'' should end with ''{0}''" />
 			<message key="method.rename" value="Rename method ''{0}'' to ''{1}''" />
 			<property name="enabled" value="false" />
-			<property name="enforceTypeNames" value=".*(In|Out)putStream,DetailAST,(Double|Int|Long)Stream,Enumeration,HttpServlet(Request|Response),Iterator,LiferayPortlet(Request|Response),NamedList,OrderByComparator,Query,QueryPos,RenderRequest,RenderResponse,ServletRequest,ServletResponse,SQLQuery,Throwable,UnicodeProperties,Unsync.*" />
+			<property name="enforceTypeNames" value=".*(In|Out)putStream,DetailAST,(Double|Int|Long)Stream,Enumeration,HttpServlet(Request|Response),Iterator,JSONArray,JSONObject,LiferayPortlet(Request|Response),NamedList,OrderByComparator,Query,QueryPos,RenderRequest,RenderResponse,ServletRequest,ServletResponse,SQLQuery,Throwable,UnicodeProperties,Unsync.*" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingAuthorCheck">
 			<message key="author.missing" value="Missing author" />

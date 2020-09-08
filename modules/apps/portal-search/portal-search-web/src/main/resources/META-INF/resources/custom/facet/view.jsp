@@ -45,8 +45,6 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 ).put(
 	"namespace", liferayPortletResponse.getNamespace()
 ).build();
-
-List<CustomFacetTermDisplayContext> customFacetTermDisplayContexts = customFacetDisplayContext.getTermDisplayContexts();
 %>
 
 <c:choose>
@@ -64,7 +62,7 @@ List<CustomFacetTermDisplayContext> customFacetTermDisplayContexts = customFacet
 				contextObjects="<%= contextObjects %>"
 				displayStyle="<%= customFacetPortletInstanceConfiguration.displayStyle() %>"
 				displayStyleGroupId="<%= customFacetDisplayContext.getDisplayStyleGroupId() %>"
-				entries="<%= customFacetTermDisplayContexts %>"
+				entries="<%= customFacetDisplayContext.getTermDisplayContexts() %>"
 			>
 				<liferay-ui:panel-container
 					extended="<%= true %>"

@@ -71,6 +71,25 @@ public class MicroblogsWebUtil {
 		return hashtags;
 	}
 
+	public static String getProcessedContent(
+			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
+		throws PortalException {
+
+		return getProcessedContent(
+			microblogsEntry.getContent(), serviceContext);
+	}
+
+	public static String getProcessedContent(
+			String content, ServiceContext serviceContext)
+		throws PortalException {
+
+		content = replaceHashtags(content, serviceContext);
+
+		content = replaceUserTags(content, serviceContext);
+
+		return content;
+	}
+
 	public static JSONArray getRecipientsJSONArray(
 			long userId, ThemeDisplay themeDisplay)
 		throws PortalException {
@@ -104,25 +123,6 @@ public class MicroblogsWebUtil {
 		}
 
 		return jsonArray;
-	}
-
-	public static String getProcessedContent(
-			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
-		throws PortalException {
-
-		return getProcessedContent(
-			microblogsEntry.getContent(), serviceContext);
-	}
-
-	public static String getProcessedContent(
-			String content, ServiceContext serviceContext)
-		throws PortalException {
-
-		content = replaceHashtags(content, serviceContext);
-
-		content = replaceUserTags(content, serviceContext);
-
-		return content;
 	}
 
 	public static List<String> getScreenNames(String content) {

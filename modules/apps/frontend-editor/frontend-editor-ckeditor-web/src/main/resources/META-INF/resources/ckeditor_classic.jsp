@@ -33,25 +33,25 @@ JSONObject editorConfigJSONObject = null;
 if (editorData != null) {
 	editorConfigJSONObject = (JSONObject)editorData.get("editorConfig");
 }
-
-Map<String, Object> props = HashMapBuilder.<String, Object>put(
-	"contents", contents
-).put(
-	"editorConfig", editorConfigJSONObject
-).put(
-	"initialToolbarSet", toolbarSet
-).put(
-	"name", HtmlUtil.escapeAttribute(name)
-).put(
-	"onChangeMethodName", HtmlUtil.escapeJS(onChangeMethod)
-).put(
-	"title", LanguageUtil.get(request, placeholder)
-).build();
 %>
 
 <div>
 	<react:component
 		module="editor/ClassicEditor"
-		props="<%= props %>"
+		props='<%=
+			HashMapBuilder.<String, Object>put(
+				"contents", contents
+			).put(
+				"editorConfig", editorConfigJSONObject
+			).put(
+				"initialToolbarSet", toolbarSet
+			).put(
+				"name", HtmlUtil.escapeAttribute(name)
+			).put(
+				"onChangeMethodName", HtmlUtil.escapeJS(onChangeMethod)
+			).put(
+				"title", LanguageUtil.get(request, placeholder)
+			).build()
+		%>'
 	/>
 </div>

@@ -18,15 +18,15 @@
 
 <%
 String portletNamespace = PortalUtil.getPortletNamespace(LayoutAdminPortletKeys.GROUP_PAGES);
-
-Map<String, Object> data = HashMapBuilder.<String, Object>put(
-	"qa-id", "customizations"
-).build();
 %>
 
 <div class="active control-menu-link customization-link d-block d-md-none">
 	<liferay-ui:icon
-		data="<%= data %>"
+		data='<%=
+			HashMapBuilder.<String, Object>put(
+				"qa-id", "customizations"
+			).build()
+		%>'
 		icon="pencil"
 		id='<%= portletNamespace + "customizationButton" %>'
 		label="<%= false %>"

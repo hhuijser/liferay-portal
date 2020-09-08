@@ -53,17 +53,18 @@ JournalViewMoreMenuItemsDisplayContext journalViewMoreMenuItemsDisplayContext = 
 			escapedModel="<%= true %>"
 			modelVar="ddmStructure"
 		>
-
-			<%
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"ddmStructureKey", ddmStructure.getStructureKey()
-			).build();
-			%>
-
 			<liferay-ui:search-container-column-text
 				name="menu-item-name"
 			>
-				<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+				<aui:a
+					cssClass="selector-button"
+					data='<%=
+						HashMapBuilder.<String, Object>put(
+							"ddmStructureKey", ddmStructure.getStructureKey()
+						).build()
+					%>'
+					href="javascript:;"
+				>
 					<%= ddmStructure.getUnambiguousName(journalViewMoreMenuItemsDisplayContext.getDDMStructures(), themeDisplay.getScopeGroupId(), locale) %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>

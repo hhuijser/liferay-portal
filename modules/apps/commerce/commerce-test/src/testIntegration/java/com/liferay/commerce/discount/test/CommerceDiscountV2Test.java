@@ -1312,28 +1312,28 @@ public class CommerceDiscountV2Test {
 
 		CPDefinition cpDefinition = cpInstance.getCPDefinition();
 
-		BigDecimal price = BigDecimal.valueOf(25);
+		BigDecimal price1 = BigDecimal.valueOf(25);
 
 		CommercePriceEntry commercePriceEntry =
 			CommercePriceEntryTestUtil.addCommercePriceEntry(
 				cpDefinition.getCProductId(), cpInstance.getCPInstanceUuid(),
 				commercePriceList.getCommercePriceListId(), StringPool.BLANK,
-				price, true, BigDecimal.valueOf(10), BigDecimal.valueOf(5),
+				price1, true, BigDecimal.valueOf(10), BigDecimal.valueOf(5),
 				BigDecimal.valueOf(0), BigDecimal.valueOf(10), true, true);
 
-		BigDecimal price5 = BigDecimal.valueOf(20);
+		BigDecimal price2 = BigDecimal.valueOf(20);
 
 		CommercePriceEntryTestUtil.addCommerceTierPriceEntry(
 			commercePriceEntry.getCommercePriceEntryId(), StringPool.BLANK,
-			price5, 5, false, true, BigDecimal.valueOf(10),
+			price2, 5, false, true, BigDecimal.valueOf(10),
 			BigDecimal.valueOf(10), BigDecimal.valueOf(0),
 			BigDecimal.valueOf(0), true, true);
 
-		BigDecimal price10 = BigDecimal.valueOf(10);
+		BigDecimal price3 = BigDecimal.valueOf(10);
 
 		CommercePriceEntryTestUtil.addCommerceTierPriceEntry(
 			commercePriceEntry.getCommercePriceEntryId(), StringPool.BLANK,
-			price10, 10, false, false, BigDecimal.valueOf(5),
+			price3, 10, false, false, BigDecimal.valueOf(5),
 			BigDecimal.valueOf(5), BigDecimal.valueOf(20),
 			BigDecimal.valueOf(0), true, true);
 
@@ -1368,15 +1368,15 @@ public class CommerceDiscountV2Test {
 
 		BigDecimal tier1Price = BigDecimal.valueOf(4);
 
-		tier1Price = price.multiply(tier1Price);
+		tier1Price = price1.multiply(tier1Price);
 
 		BigDecimal tier2Price = BigDecimal.valueOf(5);
 
-		tier2Price = price5.multiply(tier2Price);
+		tier2Price = price2.multiply(tier2Price);
 
 		BigDecimal tier3Price = BigDecimal.valueOf(91);
 
-		tier3Price = price10.multiply(tier3Price);
+		tier3Price = price3.multiply(tier3Price);
 
 		expectedPrice = tier1Price.add(tier2Price);
 

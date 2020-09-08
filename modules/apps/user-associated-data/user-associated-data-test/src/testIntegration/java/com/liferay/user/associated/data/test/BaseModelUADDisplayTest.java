@@ -100,7 +100,7 @@ public class BaseModelUADDisplayTest {
 	@Test
 	public void testSearchByGroupId() throws Exception {
 		long userId = _user.getUserId();
-		long groupId = _group.getGroupId();
+		long groupId1 = _group.getGroupId();
 
 		Group group2 = GroupTestUtil.addGroup();
 
@@ -109,17 +109,17 @@ public class BaseModelUADDisplayTest {
 		_groups.add(group2);
 
 		Layout excludedGroup1Layout1 = _addLayout(
-			TestPropsValues.getUserId(), groupId);
+			TestPropsValues.getUserId(), groupId1);
 		Layout excludedGroup2Layout2 = _addLayout(
 			TestPropsValues.getUserId(), group2.getGroupId());
-		Layout group1Layout1 = _addLayout(userId, groupId);
-		Layout group1Layout2 = _addLayout(userId, groupId);
+		Layout group1Layout1 = _addLayout(userId, groupId1);
+		Layout group1Layout2 = _addLayout(userId, groupId1);
 		Layout group2Layout1 = _addLayout(userId, groupId2);
 		Layout group2Layout2 = _addLayout(userId, groupId2);
 
-		Assert.assertEquals(2, _searchCountGroupLayouts(groupId));
+		Assert.assertEquals(2, _searchCountGroupLayouts(groupId1));
 
-		List<Layout> group1Layouts = _searchGroupLayouts(groupId);
+		List<Layout> group1Layouts = _searchGroupLayouts(groupId1);
 
 		Assert.assertFalse(group1Layouts.contains(excludedGroup1Layout1));
 		Assert.assertFalse(group1Layouts.contains(excludedGroup2Layout2));
@@ -139,9 +139,10 @@ public class BaseModelUADDisplayTest {
 		Assert.assertTrue(group2Layouts.contains(group2Layout1));
 		Assert.assertTrue(group2Layouts.contains(group2Layout2));
 
-		Assert.assertEquals(4, _searchCountGroupLayouts(groupId, groupId2));
+		Assert.assertEquals(4, _searchCountGroupLayouts(groupId1, groupId2));
 
-		List<Layout> group1And2Layouts = _searchGroupLayouts(groupId, groupId2);
+		List<Layout> group1And2Layouts = _searchGroupLayouts(
+			groupId1, groupId2);
 
 		Assert.assertFalse(group1And2Layouts.contains(excludedGroup1Layout1));
 		Assert.assertFalse(group1And2Layouts.contains(excludedGroup2Layout2));

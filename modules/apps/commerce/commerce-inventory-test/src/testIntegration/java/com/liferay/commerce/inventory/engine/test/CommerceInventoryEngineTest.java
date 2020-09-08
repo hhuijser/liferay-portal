@@ -797,18 +797,18 @@ public class CommerceInventoryEngineTest {
 			"The correct warehouses are retrieved"
 		);
 
-		CommerceInventoryWarehouse commerceInventoryWarehouse =
+		CommerceInventoryWarehouse commerceInventoryWarehouse1 =
 			CommerceInventoryTestUtil.addCommerceInventoryWarehouse(true);
 
 		CommerceChannelRelLocalServiceUtil.addCommerceChannelRel(
 			CommerceInventoryWarehouse.class.getName(),
-			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
+			commerceInventoryWarehouse1.getCommerceInventoryWarehouseId(),
 			_commerceChannel.getCommerceChannelId(), _serviceContext);
 
 		_commerceInventoryWarehouseItemLocalService.
 			addCommerceInventoryWarehouseItem(
 				_user.getUserId(),
-				commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
+				commerceInventoryWarehouse1.getCommerceInventoryWarehouseId(),
 				_cpInstance1.getSku(), 1);
 
 		List<CommerceInventoryWarehouse> expectedWarehouses =
@@ -822,20 +822,20 @@ public class CommerceInventoryEngineTest {
 		CommerceInventoryWarehouse retrievedWarehouse = expectedWarehouses.get(
 			0);
 
-		Assert.assertEquals(commerceInventoryWarehouse, retrievedWarehouse);
+		Assert.assertEquals(commerceInventoryWarehouse1, retrievedWarehouse);
 
-		CommerceInventoryWarehouse commerceInventoryWarehouse1 =
+		CommerceInventoryWarehouse commerceInventoryWarehouse2 =
 			CommerceInventoryTestUtil.addCommerceInventoryWarehouse(false);
 
 		CommerceChannelRelLocalServiceUtil.addCommerceChannelRel(
 			CommerceInventoryWarehouse.class.getName(),
-			commerceInventoryWarehouse1.getCommerceInventoryWarehouseId(),
+			commerceInventoryWarehouse2.getCommerceInventoryWarehouseId(),
 			_commerceChannel.getCommerceChannelId(), _serviceContext);
 
 		_commerceInventoryWarehouseItemLocalService.
 			addCommerceInventoryWarehouseItem(
 				_user.getUserId(),
-				commerceInventoryWarehouse1.getCommerceInventoryWarehouseId(),
+				commerceInventoryWarehouse2.getCommerceInventoryWarehouseId(),
 				_cpInstance1.getSku(), 1);
 
 		expectedWarehouses =
@@ -848,20 +848,20 @@ public class CommerceInventoryEngineTest {
 
 		retrievedWarehouse = expectedWarehouses.get(0);
 
-		Assert.assertEquals(commerceInventoryWarehouse, retrievedWarehouse);
+		Assert.assertEquals(commerceInventoryWarehouse1, retrievedWarehouse);
 
-		CommerceInventoryWarehouse commerceInventoryWarehouse2 =
+		CommerceInventoryWarehouse commerceInventoryWarehouse3 =
 			CommerceInventoryTestUtil.addCommerceInventoryWarehouse(true);
 
 		CommerceChannelRelLocalServiceUtil.addCommerceChannelRel(
 			CommerceInventoryWarehouse.class.getName(),
-			commerceInventoryWarehouse2.getCommerceInventoryWarehouseId(),
+			commerceInventoryWarehouse3.getCommerceInventoryWarehouseId(),
 			_commerceChannel.getCommerceChannelId(), _serviceContext);
 
 		_commerceInventoryWarehouseItemLocalService.
 			addCommerceInventoryWarehouseItem(
 				_user.getUserId(),
-				commerceInventoryWarehouse2.getCommerceInventoryWarehouseId(),
+				commerceInventoryWarehouse3.getCommerceInventoryWarehouseId(),
 				_cpInstance2.getSku(), 1);
 
 		expectedWarehouses =
@@ -882,7 +882,7 @@ public class CommerceInventoryEngineTest {
 
 		retrievedWarehouse = expectedWarehouses.get(0);
 
-		Assert.assertEquals(commerceInventoryWarehouse2, retrievedWarehouse);
+		Assert.assertEquals(commerceInventoryWarehouse3, retrievedWarehouse);
 	}
 
 	@Test

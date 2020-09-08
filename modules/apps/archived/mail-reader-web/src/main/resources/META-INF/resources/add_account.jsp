@@ -58,8 +58,6 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 		boolean incomingSecure = accountJSONObject.getBoolean("incomingSecure");
 		String outgoingHostName = accountJSONObject.getString("outgoingHostName");
 		String outgoingPort = accountJSONObject.getString("outgoingPort");
-		boolean outgoingSecure = accountJSONObject.getBoolean("outgoingSecure");
-		String folderPrefix = accountJSONObject.getString("folderPrefix");
 	%>
 
 		<liferay-ui:section>
@@ -70,7 +68,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 				<aui:input name="protocol" type="hidden" value="<%= protocol %>" />
 				<aui:input name="signature" type="hidden" />
 				<aui:input name="useSignature" type="hidden" value="false" />
-				<aui:input name="folderPrefix" type="hidden" value="<%= folderPrefix %>" />
+				<aui:input name="folderPrefix" type="hidden" value='<%= accountJSONObject.getString("folderPrefix") %>' />
 				<aui:input name="defaultSender" type="hidden" value="false" />
 				<aui:input name="useLocalPartAsLogin" type="hidden" value="<%= useLocalPartAsLogin %>" />
 
@@ -80,7 +78,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 					<aui:input name="incomingSecure" type="hidden" value="<%= incomingSecure %>" />
 					<aui:input name="outgoingHostName" type="hidden" value="<%= outgoingHostName %>" />
 					<aui:input name="outgoingPort" type="hidden" value="<%= outgoingPort %>" />
-					<aui:input name="outgoingSecure" type="hidden" value="<%= outgoingSecure %>" />
+					<aui:input name="outgoingSecure" type="hidden" value='<%= accountJSONObject.getBoolean("outgoingSecure") %>' />
 				</c:if>
 
 				<c:if test="<%= useLocalPartAsLogin %>">

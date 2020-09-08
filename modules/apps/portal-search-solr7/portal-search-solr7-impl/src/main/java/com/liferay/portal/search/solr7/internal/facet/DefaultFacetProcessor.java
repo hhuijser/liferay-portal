@@ -39,7 +39,8 @@ public class DefaultFacetProcessor implements FacetProcessor<SolrQuery> {
 	@Override
 	public Map<String, JSONObject> processFacet(Facet facet) {
 		return LinkedHashMapBuilder.<String, JSONObject>put(
-			FacetUtil.getAggregationName(facet), getFacetParameters(facet)
+			FacetUtil.getAggregationName(facet),
+			getFacetParametersJSONObject(facet)
 		).build();
 	}
 
@@ -83,7 +84,7 @@ public class DefaultFacetProcessor implements FacetProcessor<SolrQuery> {
 		jsonObject.put("sort", sortJSONObject);
 	}
 
-	protected JSONObject getFacetParameters(Facet facet) {
+	protected JSONObject getFacetParametersJSONObject(Facet facet) {
 		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
 		jsonObject.put(

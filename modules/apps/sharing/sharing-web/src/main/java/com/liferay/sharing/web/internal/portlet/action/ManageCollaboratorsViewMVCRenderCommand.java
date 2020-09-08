@@ -179,7 +179,7 @@ public class ManageCollaboratorsViewMVCRenderCommand
 					userSharingEntryPermissionDisplayActionKey.getActionId()
 				).put(
 					"sharingEntryPermissionDisplaySelectOptions",
-					_getSharingEntryPermissionDisplaySelectOptions(
+					_getSharingEntryPermissionDisplaySelectOptionsJSONArray(
 						renderRequest)
 				).put(
 					"sharingEntryShareable", sharingEntry.isShareable()
@@ -208,7 +208,7 @@ public class ManageCollaboratorsViewMVCRenderCommand
 		return manageCollaboratorURL.toString();
 	}
 
-	private JSONArray _getSharingEntryPermissionDisplaySelectOptions(
+	private JSONArray _getSharingEntryPermissionDisplaySelectOptionsJSONArray(
 		RenderRequest renderRequest) {
 
 		long classNameId = ParamUtil.getLong(renderRequest, "classNameId");

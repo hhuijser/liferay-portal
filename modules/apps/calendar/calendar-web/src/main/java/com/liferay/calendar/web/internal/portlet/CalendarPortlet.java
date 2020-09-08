@@ -1435,9 +1435,10 @@ public class CalendarPortlet extends MVCPortlet {
 		long endTime = ParamUtil.getLong(resourceRequest, "endTime");
 		String ruleName = ParamUtil.getString(resourceRequest, "ruleName");
 
-		JSONObject jsonObject = CalendarUtil.getCalendarRenderingRules(
-			themeDisplay, calendarIds, statuses, startTime, endTime, ruleName,
-			getTimeZone(resourceRequest));
+		JSONObject jsonObject =
+			CalendarUtil.getCalendarRenderingRulesJSONObject(
+				themeDisplay, calendarIds, statuses, startTime, endTime,
+				ruleName, getTimeZone(resourceRequest));
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}

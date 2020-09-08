@@ -28,7 +28,7 @@ import java.util.Locale;
  */
 public class ExportTranslationUtil {
 
-	public static JSONArray getLocalesJSONJArray(
+	public static JSONArray getLocalesJSONArray(
 		Locale currentLocale, Collection<Locale> locales) {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();

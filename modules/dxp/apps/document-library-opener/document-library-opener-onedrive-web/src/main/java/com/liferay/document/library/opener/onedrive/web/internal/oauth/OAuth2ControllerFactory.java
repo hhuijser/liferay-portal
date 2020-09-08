@@ -175,7 +175,7 @@ public class OAuth2ControllerFactory {
 			return _redirectURL;
 		}
 
-		public JSONObject getResponse() {
+		public JSONObject getResponseJSONObject() {
 			if (_redirectURL != null) {
 				return JSONUtil.put("redirectURL", _redirectURL);
 			}
@@ -227,7 +227,7 @@ public class OAuth2ControllerFactory {
 				else {
 					JSONPortletResponseUtil.writeJSON(
 						portletRequest, portletResponse,
-						oAuth2Result.getResponse());
+						oAuth2Result.getResponseJSONObject());
 				}
 			}
 			catch (IOException ioException) {
@@ -264,7 +264,7 @@ public class OAuth2ControllerFactory {
 				throw portalException;
 			}
 
-			JSONObject jsonObject = oAuth2Result.getResponse();
+			JSONObject jsonObject = oAuth2Result.getResponseJSONObject();
 
 			for (String fieldName : jsonObject.keySet()) {
 				portletRequest.setAttribute(

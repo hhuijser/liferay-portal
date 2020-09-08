@@ -64,7 +64,7 @@ public class GetExportTranslationAvailableLocalesMVCResourceCommand
 			resourceRequest, resourceResponse,
 			JSONUtil.put(
 				"availableLocales",
-				ExportTranslationUtil.getLocalesJSONJArray(
+				ExportTranslationUtil.getLocalesJSONArray(
 					themeDisplay.getLocale(), _getAvailableLocales(article))
 			).put(
 				"defaultLanguageId", article.getDefaultLanguageId()

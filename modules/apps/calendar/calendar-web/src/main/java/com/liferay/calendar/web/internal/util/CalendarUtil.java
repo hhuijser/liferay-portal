@@ -61,7 +61,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = {})
 public class CalendarUtil {
 
-	public static JSONObject getCalendarRenderingRules(
+	public static JSONObject getCalendarRenderingRulesJSONObject(
 			ThemeDisplay themeDisplay, long[] calendarIds, int[] statuses,
 			long startTime, long endTime, String ruleName, TimeZone timeZone)
 		throws PortalException {

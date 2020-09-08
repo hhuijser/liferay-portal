@@ -71,7 +71,7 @@ public class MicroblogsWebUtil {
 		return hashtags;
 	}
 
-	public static JSONArray getJSONRecipients(
+	public static JSONArray getRecipientsJSONArray(
 			long userId, ThemeDisplay themeDisplay)
 		throws PortalException {
 

@@ -324,7 +324,7 @@ public class MillerColumnsDisplayContext {
 		return breadcrumbEntriesJSONArray;
 	}
 
-	private JSONObject _getFirstLayoutColumn(
+	private JSONObject _getFirstLayoutColumnJSONObject(
 			boolean privatePages, boolean active)
 		throws Exception {
 
@@ -413,7 +413,8 @@ public class MillerColumnsDisplayContext {
 				active = false;
 			}
 
-			firstColumnJSONArray.put(_getFirstLayoutColumn(false, active));
+			firstColumnJSONArray.put(
+				_getFirstLayoutColumnJSONObject(false, active));
 		}
 
 		if (LayoutLocalServiceUtil.hasLayouts(
@@ -429,7 +430,8 @@ public class MillerColumnsDisplayContext {
 				active = false;
 			}
 
-			firstColumnJSONArray.put(_getFirstLayoutColumn(true, active));
+			firstColumnJSONArray.put(
+				_getFirstLayoutColumnJSONObject(true, active));
 		}
 
 		return firstColumnJSONArray;

@@ -86,7 +86,7 @@ public class RankingMVCResourceCommand implements MVCResourceCommand {
 		);
 	}
 
-	protected JSONObject getHiddenResults(
+	protected JSONObject getHiddenResultsJSONObject(
 		ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 
 		RankingGetHiddenResultsBuilder rankingGetHiddenResultsBuilder =
@@ -113,16 +113,19 @@ public class RankingMVCResourceCommand implements MVCResourceCommand {
 
 		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
 
-		if (cmd.equals("getHiddenResults")) {
-			return getHiddenResults(resourceRequest, resourceResponse);
+		if (cmd.equals("getHiddenResultsJSONObject")) {
+			return getHiddenResultsJSONObject(
+				resourceRequest, resourceResponse);
 		}
 
-		if (cmd.equals("getSearchResults")) {
-			return getSearchResults(resourceRequest, resourceResponse);
+		if (cmd.equals("getSearchResultsJSONObject")) {
+			return getSearchResultsJSONObject(
+				resourceRequest, resourceResponse);
 		}
 
-		if (cmd.equals("getVisibleResults")) {
-			return getVisibleResults(resourceRequest, resourceResponse);
+		if (cmd.equals("getVisibleResultsJSONObject")) {
+			return getVisibleResultsJSONObject(
+				resourceRequest, resourceResponse);
 		}
 
 		return null;
@@ -135,7 +138,7 @@ public class RankingMVCResourceCommand implements MVCResourceCommand {
 			portal.getCompanyId(resourceRequest));
 	}
 
-	protected JSONObject getSearchResults(
+	protected JSONObject getSearchResultsJSONObject(
 		ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 
 		RankingGetSearchResultsBuilder rankingGetSearchResultsBuilder =
@@ -159,7 +162,7 @@ public class RankingMVCResourceCommand implements MVCResourceCommand {
 		).build();
 	}
 
-	protected JSONObject getVisibleResults(
+	protected JSONObject getVisibleResultsJSONObject(
 		ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 
 		RankingGetVisibleResultsBuilder rankingGetVisibleResultsBuilder =

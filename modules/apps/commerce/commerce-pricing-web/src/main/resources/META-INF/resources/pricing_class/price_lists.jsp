@@ -22,16 +22,16 @@ CommercePricingClassPriceListDisplayContext commercePricingClassPriceListDisplay
 boolean hasPermission = commercePricingClassPriceListDisplayContext.hasPermission();
 
 CommercePricingClass commercePricingClass = commercePricingClassPriceListDisplayContext.getCommercePricingClass();
-
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"commercePricingClassId", String.valueOf(commercePricingClass.getCommercePricingClassId())
-).build();
 %>
 
 <c:if test="<%= hasPermission %>">
 	<div class="col-12 pt-4">
 		<clay:data-set-display
-			contextParams="<%= contextParams %>"
+			contextParams='<%=
+				HashMapBuilder.<String, String>put(
+					"commercePricingClassId", String.valueOf(commercePricingClass.getCommercePricingClassId())
+				).build()
+			%>'
 			dataProviderKey="<%= CommercePricingDataSetConstants.COMMERCE_DATA_SET_KEY_PRICING_CLASSES_PRICE_LISTS %>"
 			id="<%= CommercePricingDataSetConstants.COMMERCE_DATA_SET_KEY_PRICING_CLASSES_PRICE_LISTS %>"
 			itemsPerPage="<%= 10 %>"

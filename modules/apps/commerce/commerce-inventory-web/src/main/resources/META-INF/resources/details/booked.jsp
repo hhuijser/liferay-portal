@@ -18,10 +18,6 @@
 
 <%
 CommerceInventoryDisplayContext commerceInventoryDisplayContext = (CommerceInventoryDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"sku", commerceInventoryDisplayContext.getSku()
-).build();
 %>
 
 <commerce-ui:panel
@@ -29,7 +25,11 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 	title='<%= LanguageUtil.get(request, "details") %>'
 >
 	<clay:data-set-display
-		contextParams="<%= contextParams %>"
+		contextParams='<%=
+			HashMapBuilder.<String, String>put(
+				"sku", commerceInventoryDisplayContext.getSku()
+			).build()
+		%>'
 		dataProviderKey="<%= CommerceInventoryDataSetConstants.COMMERCE_DATA_SET_KEY_INVENTORY_BOOKED %>"
 		id="<%= CommerceInventoryDataSetConstants.COMMERCE_DATA_SET_KEY_INVENTORY_BOOKED %>"
 		itemsPerPage="<%= 10 %>"

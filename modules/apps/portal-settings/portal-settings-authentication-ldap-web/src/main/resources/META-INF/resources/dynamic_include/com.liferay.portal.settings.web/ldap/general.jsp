@@ -20,12 +20,6 @@
 ConfigurationProvider<LDAPAuthConfiguration> ldapAuthConfigurationProvider = ConfigurationProviderUtil.getLDAPAuthConfigurationProvider();
 
 LDAPAuthConfiguration ldapAuthConfiguration = ldapAuthConfigurationProvider.getConfiguration(themeDisplay.getCompanyId());
-
-boolean ldapAuthEnabled = ldapAuthConfiguration.enabled();
-String ldapAuthMethod = ldapAuthConfiguration.method();
-boolean ldapAuthRequired = ldapAuthConfiguration.required();
-String ldapPasswordEncryptionAlgorithm = ldapAuthConfiguration.passwordEncryptionAlgorithm();
-boolean ldapPasswordPolicyEnabled = ldapAuthConfiguration.passwordPolicyEnabled();
 %>
 
 <aui:fieldset>
@@ -33,18 +27,18 @@ boolean ldapPasswordPolicyEnabled = ldapAuthConfiguration.passwordPolicyEnabled(
 
 	<liferay-ui:error key="ldapExportAndImportOnPasswordAutogeneration" message="ldap-export-must-not-be-enabled-when-autogeneration-of-user-passwords-is-enabled-for-ldap-import" />
 
-	<aui:input label="enabled" name='<%= "ldap--" + LDAPConstants.AUTH_ENABLED + "--" %>' type="checkbox" value="<%= ldapAuthEnabled %>" />
+	<aui:input label="enabled" name='<%= "ldap--" + LDAPConstants.AUTH_ENABLED + "--" %>' type="checkbox" value="<%= ldapAuthConfiguration.enabled() %>" />
 
-	<aui:input label="required" name='<%= "ldap--" + LDAPConstants.AUTH_REQUIRED + "--" %>' type="checkbox" value="<%= ldapAuthRequired %>" />
+	<aui:input label="required" name='<%= "ldap--" + LDAPConstants.AUTH_REQUIRED + "--" %>' type="checkbox" value="<%= ldapAuthConfiguration.required() %>" />
 
-	<aui:input helpMessage="ldap-password-policy-help" label="use-ldap-password-policy" name='<%= "ldap--" + LDAPConstants.PASSWORD_POLICY_ENABLED + "--" %>' type="checkbox" value="<%= ldapPasswordPolicyEnabled %>" />
+	<aui:input helpMessage="ldap-password-policy-help" label="use-ldap-password-policy" name='<%= "ldap--" + LDAPConstants.PASSWORD_POLICY_ENABLED + "--" %>' type="checkbox" value="<%= ldapAuthConfiguration.passwordPolicyEnabled() %>" />
 
-	<aui:select label="method" name='<%= "ldap--" + LDAPConstants.AUTH_METHOD + "--" %>' value="<%= ldapAuthMethod %>">
+	<aui:select label="method" name='<%= "ldap--" + LDAPConstants.AUTH_METHOD + "--" %>' value="<%= ldapAuthConfiguration.method() %>">
 		<aui:option label="bind" value="<%= LDAPConstants.AUTH_METHOD_BIND %>" />
 		<aui:option label="password-compare" value="<%= LDAPConstants.AUTH_METHOD_PASSWORD_COMPARE %>" />
 	</aui:select>
 
-	<aui:select label="password-encryption-algorithm" name='<%= "ldap--" + LDAPConstants.PASSWORD_ENCRYPTION_ALGORITHM + "--" %>' value="<%= ldapPasswordEncryptionAlgorithm %>">
+	<aui:select label="password-encryption-algorithm" name='<%= "ldap--" + LDAPConstants.PASSWORD_ENCRYPTION_ALGORITHM + "--" %>' value="<%= ldapAuthConfiguration.passwordEncryptionAlgorithm() %>">
 		<aui:option label="bcrypt" value="<%= LDAPSettingsConstants.BCRYPT %>" />
 		<aui:option label="md2" value="<%= LDAPSettingsConstants.MD2 %>" />
 		<aui:option label="md5" value="<%= LDAPSettingsConstants.MD5 %>" />

@@ -31,8 +31,7 @@ page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.search.web.internal.custom.filter.configuration.CustomFilterPortletInstanceConfiguration" %><%@
 page import="com.liferay.portal.search.web.internal.custom.filter.display.context.CustomFilterDisplayContext" %>
 
-<%@ page import="java.util.ArrayList" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.ArrayList" %>
 
 <portlet:defineObjects />
 
@@ -40,19 +39,19 @@ page import="java.util.Map" %>
 CustomFilterDisplayContext customFilterDisplayContext = (CustomFilterDisplayContext)java.util.Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
 
 CustomFilterPortletInstanceConfiguration customFilterPortletInstanceConfiguration = customFilterDisplayContext.getCustomFilterPortletInstanceConfiguration();
-
-Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"customFilterDisplayContext", customFilterDisplayContext
-).put(
-	"namespace", liferayPortletResponse.getNamespace()
-).build();
 %>
 
 <c:if test="<%= !customFilterDisplayContext.isRenderNothing() %>">
 	<aui:form action="<%= customFilterDisplayContext.getSearchURL() %>" method="get" name="fm">
 		<liferay-ddm:template-renderer
 			className="<%= CustomFilterDisplayContext.class.getName() %>"
-			contextObjects="<%= contextObjects %>"
+			contextObjects='<%=
+				HashMapBuilder.<String, Object>put(
+					"customFilterDisplayContext", customFilterDisplayContext
+				).put(
+					"namespace", liferayPortletResponse.getNamespace()
+				).build()
+			%>'
 			displayStyle="<%= customFilterPortletInstanceConfiguration.displayStyle() %>"
 			displayStyleGroupId="<%= customFilterDisplayContext.getDisplayStyleGroupId() %>"
 			entries="<%= new ArrayList<CustomFilterDisplayContext>() %>"

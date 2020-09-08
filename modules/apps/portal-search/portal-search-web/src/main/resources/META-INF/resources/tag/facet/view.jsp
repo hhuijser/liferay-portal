@@ -30,8 +30,7 @@ page import="com.liferay.portal.search.web.internal.facet.display.context.AssetT
 page import="com.liferay.portal.search.web.internal.facet.display.context.AssetTagsSearchFacetTermDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.tag.facet.configuration.TagFacetPortletInstanceConfiguration" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
 
 <portlet:defineObjects />
 
@@ -43,12 +42,6 @@ if (assetTagsSearchFacetDisplayContext.isRenderNothing()) {
 }
 
 TagFacetPortletInstanceConfiguration tagFacetPortletInstanceConfiguration = assetTagsSearchFacetDisplayContext.getTagFacetPortletInstanceConfiguration();
-
-Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"assetTagsSearchFacetDisplayContext", assetTagsSearchFacetDisplayContext
-).put(
-	"namespace", liferayPortletResponse.getNamespace()
-).build();
 
 List<AssetTagsSearchFacetTermDisplayContext> assetTagsSearchFacetTermDisplayContexts = assetTagsSearchFacetDisplayContext.getTermDisplayContexts();
 %>
@@ -65,7 +58,13 @@ List<AssetTagsSearchFacetTermDisplayContext> assetTagsSearchFacetTermDisplayCont
 
 			<liferay-ddm:template-renderer
 				className="<%= AssetTagsSearchFacetTermDisplayContext.class.getName() %>"
-				contextObjects="<%= contextObjects %>"
+				contextObjects='<%=
+					HashMapBuilder.<String, Object>put(
+						"assetTagsSearchFacetDisplayContext", assetTagsSearchFacetDisplayContext
+					).put(
+						"namespace", liferayPortletResponse.getNamespace()
+					).build()
+				%>'
 				displayStyle="<%= tagFacetPortletInstanceConfiguration.displayStyle() %>"
 				displayStyleGroupId="<%= assetTagsSearchFacetDisplayContext.getDisplayStyleGroupId() %>"
 				entries="<%= assetTagsSearchFacetTermDisplayContexts %>"

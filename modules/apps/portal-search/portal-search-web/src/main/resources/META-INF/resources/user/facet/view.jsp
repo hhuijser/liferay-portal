@@ -30,8 +30,7 @@ page import="com.liferay.portal.search.web.internal.facet.display.context.UserSe
 page import="com.liferay.portal.search.web.internal.facet.display.context.UserSearchFacetTermDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.user.facet.configuration.UserFacetPortletInstanceConfiguration" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
 
 <portlet:defineObjects />
 
@@ -43,12 +42,6 @@ if (userSearchFacetDisplayContext.isRenderNothing()) {
 }
 
 UserFacetPortletInstanceConfiguration userFacetPortletInstanceConfiguration = userSearchFacetDisplayContext.getUserFacetPortletInstanceConfiguration();
-
-Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"namespace", liferayPortletResponse.getNamespace()
-).put(
-	"userSearchFacetDisplayContext", userSearchFacetDisplayContext
-).build();
 
 List<UserSearchFacetTermDisplayContext> userSearchFacetTermDisplayContexts = userSearchFacetDisplayContext.getTermDisplayContexts();
 %>
@@ -65,7 +58,13 @@ List<UserSearchFacetTermDisplayContext> userSearchFacetTermDisplayContexts = use
 
 			<liferay-ddm:template-renderer
 				className="<%= UserSearchFacetTermDisplayContext.class.getName() %>"
-				contextObjects="<%= contextObjects %>"
+				contextObjects='<%=
+					HashMapBuilder.<String, Object>put(
+						"namespace", liferayPortletResponse.getNamespace()
+					).put(
+						"userSearchFacetDisplayContext", userSearchFacetDisplayContext
+					).build()
+				%>'
 				displayStyle="<%= userFacetPortletInstanceConfiguration.displayStyle() %>"
 				displayStyleGroupId="<%= userSearchFacetDisplayContext.getDisplayStyleGroupId() %>"
 				entries="<%= userSearchFacetTermDisplayContexts %>"

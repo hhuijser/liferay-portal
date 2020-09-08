@@ -88,7 +88,7 @@ public class MillerColumnsDisplayContext {
 
 	public JSONArray getLayoutColumnsJSONArray() throws Exception {
 		JSONArray layoutColumnsJSONArray = JSONUtil.put(
-			_getFirstLayoutColumnJSONArray());
+			_getFirstLayoutColumnJSONObjectJSONArray());
 
 		if (_layoutsAdminDisplayContext.isFirstColumn()) {
 			return layoutColumnsJSONArray;
@@ -324,7 +324,7 @@ public class MillerColumnsDisplayContext {
 		return breadcrumbEntriesJSONArray;
 	}
 
-	private JSONObject _getFirstLayoutColumn(
+	private JSONObject _getFirstLayoutColumnJSONObject(
 			boolean privatePages, boolean active)
 		throws Exception {
 
@@ -335,7 +335,8 @@ public class MillerColumnsDisplayContext {
 		}
 
 		JSONObject pagesJSONObject = JSONUtil.put(
-			"actions", _getFirstLayoutColumnActionsJSONArray(privatePages)
+			"actions",
+			_getFirstLayoutColumnJSONObjectActionsJSONArray(privatePages)
 		).put(
 			"active", active
 		).put(
@@ -359,7 +360,7 @@ public class MillerColumnsDisplayContext {
 		return pagesJSONObject;
 	}
 
-	private JSONArray _getFirstLayoutColumnActionsJSONArray(
+	private JSONArray _getFirstLayoutColumnJSONObjectActionsJSONArray(
 			boolean privatePages)
 		throws Exception {
 
@@ -394,7 +395,9 @@ public class MillerColumnsDisplayContext {
 		return jsonArray;
 	}
 
-	private JSONArray _getFirstLayoutColumnJSONArray() throws Exception {
+	private JSONArray _getFirstLayoutColumnJSONObjectJSONArray()
+		throws Exception {
+
 		JSONArray firstColumnJSONArray = JSONFactoryUtil.createJSONArray();
 
 		Layout selLayout = _layoutsAdminDisplayContext.getSelLayout();
@@ -413,7 +416,8 @@ public class MillerColumnsDisplayContext {
 				active = false;
 			}
 
-			firstColumnJSONArray.put(_getFirstLayoutColumn(false, active));
+			firstColumnJSONArray.put(
+				_getFirstLayoutColumnJSONObject(false, active));
 		}
 
 		if (LayoutLocalServiceUtil.hasLayouts(
@@ -429,7 +433,8 @@ public class MillerColumnsDisplayContext {
 				active = false;
 			}
 
-			firstColumnJSONArray.put(_getFirstLayoutColumn(true, active));
+			firstColumnJSONArray.put(
+				_getFirstLayoutColumnJSONObject(true, active));
 		}
 
 		return firstColumnJSONArray;

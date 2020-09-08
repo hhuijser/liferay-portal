@@ -68,7 +68,7 @@ public class AutocompleteUserMentionsMVCResourceCommand
 				(ThemeDisplay)resourceRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
 
-			JSONArray jsonArray = MicroblogsWebUtil.getJSONRecipients(
+			JSONArray jsonArray = MicroblogsWebUtil.getRecipientsJSONArray(
 				userId, themeDisplay);
 
 			HttpServletResponse httpServletResponse =

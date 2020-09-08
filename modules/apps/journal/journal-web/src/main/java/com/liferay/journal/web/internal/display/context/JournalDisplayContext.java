@@ -583,7 +583,7 @@ public class JournalDisplayContext {
 				}
 			).put(
 				"availableTargetLocales",
-				ExportTranslationUtil.getLocalesJSONJArray(
+				ExportTranslationUtil.getLocalesJSONArray(
 					_themeDisplay.getLocale(),
 					LanguageUtil.getAvailableLocales(
 						_themeDisplay.getSiteGroupId()))

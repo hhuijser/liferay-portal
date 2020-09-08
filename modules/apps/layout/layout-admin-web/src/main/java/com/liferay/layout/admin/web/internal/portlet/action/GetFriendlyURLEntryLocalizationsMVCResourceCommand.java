@@ -109,7 +109,7 @@ public class GetFriendlyURLEntryLocalizationsMVCResourceCommand
 					JSONUtil.put("urlTitle", _http.decodeURL(mainUrlTitle))
 				).put(
 					"history",
-					_getJSONJArray(
+					_getJSONArray(
 						ListUtil.filter(
 							friendlyURLEntryLocalizations,
 							friendlyURLEntryLocalization -> !Objects.equals(
@@ -122,7 +122,7 @@ public class GetFriendlyURLEntryLocalizationsMVCResourceCommand
 		return friendlyURLEntryLocalizationsJSONObject;
 	}
 
-	private <T> JSONArray _getJSONJArray(
+	private <T> JSONArray _getJSONArray(
 		List<T> list, Function<T, JSONSerializable> serialize) {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();

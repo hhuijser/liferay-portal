@@ -205,7 +205,7 @@ public class DuplicateItemMVCActionCommand
 
 		JSONObject jsonObject = JSONUtil.put(
 			"duplicatedFragmentEntryLinks",
-			_getDuplicatedFragmentEntryLinks(
+			_getDuplicatedFragmentEntryLinksJSONArray(
 				actionRequest, actionResponse, duplicatedFragmentEntryLinkIds));
 
 		if (!duplicatedLayoutStructureItemIds.isEmpty()) {
@@ -323,7 +323,7 @@ public class DuplicateItemMVCActionCommand
 		return duplicatedFragmentEntryLink.getFragmentEntryLinkId();
 	}
 
-	private JSONArray _getDuplicatedFragmentEntryLinks(
+	private JSONArray _getDuplicatedFragmentEntryLinksJSONArray(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			Set<Long> duplicatedFragmentEntryLinkIds)
 		throws Exception {

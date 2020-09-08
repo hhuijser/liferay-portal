@@ -87,7 +87,8 @@ public class LocalizableTextDDMFormFieldTemplateContextContributor
 			parameters.put("predefinedValue", predefinedValue);
 		}
 
-		parameters.put("value", getValue(ddmFormFieldRenderingContext));
+		parameters.put(
+			"value", getValueJSONObject(ddmFormFieldRenderingContext));
 
 		return parameters;
 	}
@@ -174,7 +175,7 @@ public class LocalizableTextDDMFormFieldTemplateContextContributor
 			ddmFormFieldRenderingContext.getLocale());
 	}
 
-	protected JSONObject getValue(
+	protected JSONObject getValueJSONObject(
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
 
 		try {

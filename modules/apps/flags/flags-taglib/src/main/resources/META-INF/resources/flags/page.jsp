@@ -19,14 +19,11 @@
 <%
 Map<String, Object> data = (Map<String, Object>)request.getAttribute("liferay-flags:flags:data");
 String elementClasses = (String)request.getAttribute("liferay-flags:flags:elementClasses");
-String id = StringUtil.randomId() + StringPool.UNDERLINE + "id";
-String message = (String)request.getAttribute("liferay-flags:flags:message");
-boolean onlyIcon = GetterUtil.getBoolean(request.getAttribute("liferay-flags:flags:onlyIcon"));
 %>
 
-<div class="taglib-flags <%= Validator.isNotNull(elementClasses) ? elementClasses : "" %>" id="<%= id %>">
+<div class="taglib-flags <%= Validator.isNotNull(elementClasses) ? elementClasses : "" %>" id="<%= StringUtil.randomId() + StringPool.UNDERLINE + "id" %>">
 	<c:choose>
-		<c:when test="<%= onlyIcon %>">
+		<c:when test='<%= GetterUtil.getBoolean(request.getAttribute("liferay-flags:flags:onlyIcon")) %>'>
 			<clay:button
 				borderless="<%= true %>"
 				cssClass="lfr-portal-tooltip"
@@ -34,7 +31,7 @@ boolean onlyIcon = GetterUtil.getBoolean(request.getAttribute("liferay-flags:fla
 				displayType="secondary"
 				icon="flag-empty"
 				small="<%= true %>"
-				title="<%= message %>"
+				title='<%= (String)request.getAttribute("liferay-flags:flags:message") %>'
 			/>
 		</c:when>
 		<c:otherwise>

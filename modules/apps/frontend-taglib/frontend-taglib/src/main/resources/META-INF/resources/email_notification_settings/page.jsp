@@ -25,17 +25,14 @@ String emailParam = (String)request.getAttribute("liferay-frontend:email-notific
 String emailSubject = (String)request.getAttribute("liferay-frontend:email-notification-settings:emailSubject");
 String fieldPrefix = (String)request.getAttribute("liferay-frontend:email-notification-settings:fieldPrefix");
 String fieldPrefixSeparator = (String)request.getAttribute("liferay-frontend:email-notification-settings:fieldPrefixSeparator");
-String helpMessage = (String)request.getAttribute("liferay-frontend:email-notification-settings:helpMessage");
-boolean showEmailEnabled = GetterUtil.getBoolean(request.getAttribute("liferay-frontend:email-notification-settings:showEmailEnabled"));
-boolean showSubject = GetterUtil.getBoolean(request.getAttribute("liferay-frontend:email-notification-settings:showSubject"));
 %>
 
 <aui:fieldset markupView="lexicon">
-	<c:if test="<%= showEmailEnabled %>">
+	<c:if test='<%= GetterUtil.getBoolean(request.getAttribute("liferay-frontend:email-notification-settings:showEmailEnabled")) %>'>
 		<aui:input label="enabled" name='<%= fieldPrefix + fieldPrefixSeparator + emailParam + "Enabled" + fieldPrefixSeparator %>' type="checkbox" value="<%= emailEnabled %>" />
 	</c:if>
 
-	<c:if test="<%= showSubject %>">
+	<c:if test='<%= GetterUtil.getBoolean(request.getAttribute("liferay-frontend:email-notification-settings:showSubject")) %>'>
 		<c:choose>
 			<c:when test="<%= Validator.isNotNull(emailSubject) && Validator.isXml(emailSubject) %>">
 				<aui:field-wrapper label="subject">
@@ -53,7 +50,7 @@ boolean showSubject = GetterUtil.getBoolean(request.getAttribute("liferay-fronte
 		</c:choose>
 	</c:if>
 
-	<aui:field-wrapper helpMessage="<%= helpMessage %>" label="<%= bodyLabel %>">
+	<aui:field-wrapper helpMessage='<%= (String)request.getAttribute("liferay-frontend:email-notification-settings:helpMessage") %>' label="<%= bodyLabel %>">
 		<c:choose>
 			<c:when test="<%= Validator.isNotNull(emailBody) && Validator.isXml(emailBody) %>">
 				<liferay-ui:input-localized

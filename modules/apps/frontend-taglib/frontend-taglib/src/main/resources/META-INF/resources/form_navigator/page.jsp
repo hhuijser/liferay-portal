@@ -20,7 +20,6 @@
 String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_ui_form_navigator_init") + StringPool.UNDERLINE;
 
 String tabs1Param = randomNamespace + "tabs1";
-String tabs1Value = GetterUtil.getString(SessionClicks.get(request, namespace + id, null));
 %>
 
 <c:choose>
@@ -29,7 +28,7 @@ String tabs1Value = GetterUtil.getString(SessionClicks.get(request, namespace + 
 			names="<%= StringUtil.merge(categoryKeys, StringPool.COMMA) %>"
 			param="<%= tabs1Param %>"
 			refresh="<%= false %>"
-			value="<%= tabs1Value %>"
+			value="<%= GetterUtil.getString(SessionClicks.get(request, namespace + id, null)) %>"
 		>
 
 			<%

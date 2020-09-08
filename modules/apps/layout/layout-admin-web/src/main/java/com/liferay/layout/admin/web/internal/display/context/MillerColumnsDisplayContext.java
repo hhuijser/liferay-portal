@@ -324,41 +324,6 @@ public class MillerColumnsDisplayContext {
 		return breadcrumbEntriesJSONArray;
 	}
 
-	private JSONObject _getFirstLayoutColumnJSONObject(
-			boolean privatePages, boolean active)
-		throws Exception {
-
-		String key = "public-pages";
-
-		if (privatePages) {
-			key = "private-pages";
-		}
-
-		JSONObject pagesJSONObject = JSONUtil.put(
-			"actions", _getFirstLayoutColumnActionsJSONArray(privatePages)
-		).put(
-			"active", active
-		).put(
-			"hasChild", true
-		).put(
-			"id", LayoutConstants.DEFAULT_PLID
-		).put(
-			"key", key
-		).put(
-			"title", _layoutsAdminDisplayContext.getTitle(privatePages)
-		);
-
-		PortletURL pagesURL = _layoutsAdminDisplayContext.getPortletURL();
-
-		pagesURL.setParameter(
-			"selPlid", String.valueOf(LayoutConstants.DEFAULT_PLID));
-		pagesURL.setParameter("privateLayout", String.valueOf(privatePages));
-
-		pagesJSONObject.put("url", pagesURL.toString());
-
-		return pagesJSONObject;
-	}
-
 	private JSONArray _getFirstLayoutColumnActionsJSONArray(
 			boolean privatePages)
 		throws Exception {
@@ -435,6 +400,41 @@ public class MillerColumnsDisplayContext {
 		}
 
 		return firstColumnJSONArray;
+	}
+
+	private JSONObject _getFirstLayoutColumnJSONObject(
+			boolean privatePages, boolean active)
+		throws Exception {
+
+		String key = "public-pages";
+
+		if (privatePages) {
+			key = "private-pages";
+		}
+
+		JSONObject pagesJSONObject = JSONUtil.put(
+			"actions", _getFirstLayoutColumnActionsJSONArray(privatePages)
+		).put(
+			"active", active
+		).put(
+			"hasChild", true
+		).put(
+			"id", LayoutConstants.DEFAULT_PLID
+		).put(
+			"key", key
+		).put(
+			"title", _layoutsAdminDisplayContext.getTitle(privatePages)
+		);
+
+		PortletURL pagesURL = _layoutsAdminDisplayContext.getPortletURL();
+
+		pagesURL.setParameter(
+			"selPlid", String.valueOf(LayoutConstants.DEFAULT_PLID));
+		pagesURL.setParameter("privateLayout", String.valueOf(privatePages));
+
+		pagesJSONObject.put("url", pagesURL.toString());
+
+		return pagesJSONObject;
 	}
 
 	private Map<String, String> _getLanguageDirection() {

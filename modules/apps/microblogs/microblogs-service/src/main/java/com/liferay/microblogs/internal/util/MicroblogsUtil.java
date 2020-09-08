@@ -76,41 +76,6 @@ public class MicroblogsUtil {
 		return hashtags;
 	}
 
-	public static JSONArray getRecipientsJSONArray(
-			long userId, ThemeDisplay themeDisplay)
-		throws PortalException {
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		List<User> users = UserLocalServiceUtil.getSocialUsers(
-			userId, SocialRelationConstants.TYPE_BI_CONNECTION,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new UserFirstNameComparator(true));
-
-		for (User user : users) {
-			if (user.isDefaultUser() || (userId == user.getUserId())) {
-				continue;
-			}
-
-			jsonArray.put(
-				JSONUtil.put(
-					"emailAddress", user.getEmailAddress()
-				).put(
-					"fullName", user.getFullName()
-				).put(
-					"jobTitle", user.getJobTitle()
-				).put(
-					"portraitURL", user.getPortraitURL(themeDisplay)
-				).put(
-					"screenName", user.getScreenName()
-				).put(
-					"userId", user.getUserId()
-				));
-		}
-
-		return jsonArray;
-	}
-
 	public static int getNotificationType(
 			MicroblogsEntry microblogsEntry, long userId, int deliveryType)
 		throws PortalException {
@@ -179,6 +144,41 @@ public class MicroblogsUtil {
 		content = replaceUserTags(content, serviceContext);
 
 		return content;
+	}
+
+	public static JSONArray getRecipientsJSONArray(
+			long userId, ThemeDisplay themeDisplay)
+		throws PortalException {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		List<User> users = UserLocalServiceUtil.getSocialUsers(
+			userId, SocialRelationConstants.TYPE_BI_CONNECTION,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new UserFirstNameComparator(true));
+
+		for (User user : users) {
+			if (user.isDefaultUser() || (userId == user.getUserId())) {
+				continue;
+			}
+
+			jsonArray.put(
+				JSONUtil.put(
+					"emailAddress", user.getEmailAddress()
+				).put(
+					"fullName", user.getFullName()
+				).put(
+					"jobTitle", user.getJobTitle()
+				).put(
+					"portraitURL", user.getPortraitURL(themeDisplay)
+				).put(
+					"screenName", user.getScreenName()
+				).put(
+					"userId", user.getUserId()
+				));
+		}
+
+		return jsonArray;
 	}
 
 	public static long getRootMicroblogsEntryId(

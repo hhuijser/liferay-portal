@@ -25,8 +25,6 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 page import="com.liferay.item.selector.url.web.internal.display.context.ItemSelectorURLViewDisplayContext" %><%@
 page import="com.liferay.portal.kernel.util.HashMapBuilder" %>
 
-<%@ page import="java.util.Map" %>
-
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />

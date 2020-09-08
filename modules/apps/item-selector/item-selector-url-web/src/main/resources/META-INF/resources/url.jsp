@@ -18,10 +18,6 @@
 
 <%
 ItemSelectorURLViewDisplayContext itemSelectorURLViewDisplayContext = (ItemSelectorURLViewDisplayContext)request.getAttribute(ItemSelectorURLView.ITEM_SELECTOR_URL_VIEW_DISPLAY_CONTEXT);
-
-Map<String, Object> props = HashMapBuilder.<String, Object>put(
-	"eventName", itemSelectorURLViewDisplayContext.getItemSelectedEventName()
-).build();
 %>
 
 <div class="lfr-form-content">
@@ -29,7 +25,11 @@ Map<String, Object> props = HashMapBuilder.<String, Object>put(
 		<div class="panel-group panel-group-flush">
 			<react:component
 				module="js/ItemSelectorUrl.es"
-				props="<%= props %>"
+				props='<%=
+					HashMapBuilder.<String, Object>put(
+						"eventName", itemSelectorURLViewDisplayContext.getItemSelectedEventName()
+					).build()
+				%>'
 			/>
 		</div>
 	</clay:sheet>

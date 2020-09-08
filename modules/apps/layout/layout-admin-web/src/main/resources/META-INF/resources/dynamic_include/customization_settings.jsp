@@ -20,10 +20,6 @@
 String portletNamespace = PortalUtil.getPortletNamespace(LayoutAdminPortletKeys.GROUP_PAGES);
 
 boolean hasUpdateLayoutPermission = GetterUtil.getBoolean(request.getAttribute(CustomizationSettingsControlMenuJSPDynamicInclude.CUSTOMIZATION_SETTINGS_LAYOUT_UPDATE_PERMISSION));
-
-Map<String, Object> data = HashMapBuilder.<String, Object>put(
-	"qa-id", "customizations"
-).build();
 %>
 
 <div id="<%= portletNamespace %>customizationBar">
@@ -41,7 +37,11 @@ Map<String, Object> data = HashMapBuilder.<String, Object>put(
 				<li class="control-menu-nav-item mb-0">
 					<span class="text-info">
 						<liferay-ui:icon
-							data="<%= data %>"
+							data='<%=
+								HashMapBuilder.<String, Object>put(
+									"qa-id", "customizations"
+								).build()
+							%>'
 							icon="info-circle"
 							label="<%= false %>"
 							markupView="lexicon"

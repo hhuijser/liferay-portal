@@ -37,8 +37,6 @@ page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
 page import="com.liferay.sites.kernel.util.SitesUtil" %>
 
-<%@ page import="java.util.Map" %>
-
 <%@ page import="javax.portlet.ActionRequest" %><%@
 page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletURL" %>

@@ -71,9 +71,9 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 		User user = userLocalService.getUser(userId);
 		Date now = new Date();
 
-		long linkId = counterLocalService.increment();
+		long linkId1 = counterLocalService.increment();
 
-		AssetLink link1 = assetLinkPersistence.create(linkId);
+		AssetLink link1 = assetLinkPersistence.create(linkId1);
 
 		link1.setCompanyId(user.getCompanyId());
 		link1.setUserId(user.getUserId());

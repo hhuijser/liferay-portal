@@ -152,12 +152,12 @@ public class CommercePricingTest {
 
 		CPDefinition cpDefinition = cpInstance.getCPDefinition();
 
-		BigDecimal price = BigDecimal.valueOf(20);
+		BigDecimal price1 = BigDecimal.valueOf(20);
 
 		CommercePriceEntry commercePriceEntry =
 			CommercePriceEntryTestUtil.addCommercePriceEntry(
 				cpDefinition.getCProductId(), cpInstance.getCPInstanceUuid(),
-				commercePriceList.getCommercePriceListId(), "", price, false,
+				commercePriceList.getCommercePriceListId(), "", price1, false,
 				null, null, null, null, true, true);
 
 		BigDecimal price5 = BigDecimal.valueOf(15);
@@ -186,7 +186,7 @@ public class CommercePricingTest {
 		BigDecimal finalPrice = finalPriceMoney.getPrice();
 
 		Assert.assertEquals(
-			price.stripTrailingZeros(), finalPrice.stripTrailingZeros());
+			price1.stripTrailingZeros(), finalPrice.stripTrailingZeros());
 
 		quantity = 100;
 
@@ -440,20 +440,21 @@ public class CommercePricingTest {
 			cpDefinition.getCProductId(), cpInstance.getCPInstanceUuid(),
 			basePriceList.getCommercePriceListId(), "", price1);
 
-		CommercePriceModifier commercePriceModifier = _addCommercePriceModifier(
-			commercePriceList1.getGroupId(),
-			CommercePriceModifierConstants.TARGET_PRODUCT_GROUPS,
-			commercePriceList1.getCommercePriceListId(),
-			CommercePriceModifierConstants.MODIFIER_TYPE_PERCENTAGE,
-			BigDecimal.valueOf(-10), true);
+		CommercePriceModifier commercePriceModifier1 =
+			_addCommercePriceModifier(
+				commercePriceList1.getGroupId(),
+				CommercePriceModifierConstants.TARGET_PRODUCT_GROUPS,
+				commercePriceList1.getCommercePriceListId(),
+				CommercePriceModifierConstants.MODIFIER_TYPE_PERCENTAGE,
+				BigDecimal.valueOf(-10), true);
 
 		_commercePriceModifierRelLocalService.addCommercePriceModifierRel(
-			commercePriceModifier.getCommercePriceModifierId(),
+			commercePriceModifier1.getCommercePriceModifierId(),
 			CommercePricingClass.class.getName(),
 			commercePricingClass.getCommercePricingClassId(),
 			ServiceContextTestUtil.getServiceContext());
 
-		CommercePriceModifier commercePriceModifier1 =
+		CommercePriceModifier commercePriceModifier2 =
 			_addCommercePriceModifier(
 				commercePriceList1.getGroupId(),
 				CommercePriceModifierConstants.TARGET_CATEGORIES,
@@ -462,7 +463,7 @@ public class CommercePricingTest {
 				BigDecimal.valueOf(19), true);
 
 		_commercePriceModifierRelLocalService.addCommercePriceModifierRel(
-			commercePriceModifier1.getCommercePriceModifierId(),
+			commercePriceModifier2.getCommercePriceModifierId(),
 			AssetCategory.class.getName(), assetCategory.getCategoryId(),
 			ServiceContextTestUtil.getServiceContext());
 
@@ -589,12 +590,12 @@ public class CommercePricingTest {
 
 		CPDefinition cpDefinition = cpInstance.getCPDefinition();
 
-		BigDecimal price = BigDecimal.valueOf(50);
+		BigDecimal price1 = BigDecimal.valueOf(50);
 
 		CommercePriceEntry commercePriceEntry =
 			CommercePriceEntryTestUtil.addCommercePriceEntry(
 				cpDefinition.getCProductId(), cpInstance.getCPInstanceUuid(),
-				commercePriceList.getCommercePriceListId(), "", price, false,
+				commercePriceList.getCommercePriceListId(), "", price1, false,
 				null, null, null, null, true, true);
 
 		BigDecimal price5 = BigDecimal.valueOf(40);
@@ -621,7 +622,7 @@ public class CommercePricingTest {
 		BigDecimal finalPrice = finalPriceMoney.getPrice();
 
 		Assert.assertEquals(
-			price.setScale(_SCALE, RoundingMode.FLOOR),
+			price1.setScale(_SCALE, RoundingMode.FLOOR),
 			finalPrice.setScale(_SCALE, RoundingMode.FLOOR));
 
 		commerceProductPrice =
@@ -670,12 +671,12 @@ public class CommercePricingTest {
 
 		CPDefinition cpDefinition = cpInstance.getCPDefinition();
 
-		BigDecimal price = BigDecimal.valueOf(20);
+		BigDecimal price1 = BigDecimal.valueOf(20);
 		BigDecimal promoPrice = BigDecimal.valueOf(15);
 
 		CommercePriceEntryTestUtil.addCommercePriceEntry(
 			cpDefinition.getCProductId(), cpInstance.getCPInstanceUuid(),
-			commercePriceList.getCommercePriceListId(), "", price, false, null,
+			commercePriceList.getCommercePriceListId(), "", price1, false, null,
 			null, null, null, true, true);
 
 		CommercePriceEntry commercePromoEntry =

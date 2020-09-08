@@ -1429,9 +1429,9 @@ public class CommerceDiscountTargetGrossV2Test {
 
 		expectedPrice = expectedPrice.subtract(discount1);
 
-		BigDecimal percentage = _ONE_HUNDRED.subtract(percentage3);
+		BigDecimal percentage4 = _ONE_HUNDRED.subtract(percentage3);
 
-		expectedPrice = expectedPrice.multiply(percentage);
+		expectedPrice = expectedPrice.multiply(percentage4);
 
 		expectedPrice = expectedPrice.divide(_ONE_HUNDRED);
 

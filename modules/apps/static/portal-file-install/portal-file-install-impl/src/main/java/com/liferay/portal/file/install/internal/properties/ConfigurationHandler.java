@@ -96,19 +96,19 @@ public class ConfigurationHandler {
 	}
 
 	private static int _read(PushbackReader pushbackReader) throws IOException {
-		int c = pushbackReader.read();
+		int c1 = pushbackReader.read();
 
-		if (c == CharPool.RETURN) {
-			int c1 = pushbackReader.read();
+		if (c1 == CharPool.RETURN) {
+			int c2 = pushbackReader.read();
 
-			if (c1 != CharPool.NEW_LINE) {
-				pushbackReader.unread(c1);
+			if (c2 != CharPool.NEW_LINE) {
+				pushbackReader.unread(c2);
 			}
 
-			c = CharPool.NEW_LINE;
+			c1 = CharPool.NEW_LINE;
 		}
 
-		return c;
+		return c1;
 	}
 
 	private static int _read(PushbackReader pushbackReader, char[] buffer)

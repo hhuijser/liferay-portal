@@ -650,11 +650,10 @@ public class CommerceOrderItemLocalServiceTest {
 			commerceOrder.getCommerceOrderId(), cpInstance.getCPInstanceId(), 1,
 			0, null, _commerceContext, _serviceContext);
 
-		List<CommerceOrderItem> commerceOrderItems1 =
-			commerceOrder.getCommerceOrderItems();
+		commerceOrderItems = commerceOrder.getCommerceOrderItems();
 
 		Assert.assertEquals(
-			commerceOrderItems1.size(), 3, commerceOrderItems1.size());
+			commerceOrderItems.size(), 3, commerceOrderItems.size());
 
 		CommerceOrderItem commerceOrderItem3 =
 			_commerceOrderItemLocalService.upsertCommerceOrderItem(
@@ -662,10 +661,10 @@ public class CommerceOrderItemLocalServiceTest {
 				cpInstance.getCPInstanceId(), 1, 0, "[]", _commerceContext,
 				_serviceContext);
 
-		commerceOrderItems1 = commerceOrder.getCommerceOrderItems();
+		commerceOrderItems = commerceOrder.getCommerceOrderItems();
 
 		Assert.assertEquals(
-			commerceOrderItems1.size(), 3, commerceOrderItems1.size());
+			commerceOrderItems.size(), 3, commerceOrderItems.size());
 
 		Assert.assertEquals(
 			originalQuantity1, commerceOrderItem1.getQuantity());
@@ -677,10 +676,10 @@ public class CommerceOrderItemLocalServiceTest {
 		_commerceOrderItemLocalService.deleteCommerceOrderItem(
 			commerceOrderItem3.getCommerceOrderItemId());
 
-		commerceOrderItems1 = commerceOrder.getCommerceOrderItems();
+		commerceOrderItems = commerceOrder.getCommerceOrderItems();
 
 		Assert.assertEquals(
-			commerceOrderItems1.size(), 2, commerceOrderItems1.size());
+			commerceOrderItems.size(), 2, commerceOrderItems.size());
 
 		Assert.assertEquals(
 			originalQuantity1, commerceOrderItem1.getQuantity());

@@ -428,13 +428,13 @@ public class CommerceOrderContentDisplayContext {
 	public List<DropdownItem> getDropdownItems() {
 		List<DropdownItem> headerDropdownItems = new ArrayList<>();
 
-		DropdownItem headerDropdownItem = new DropdownItem();
+		DropdownItem headerDropdownItem1 = new DropdownItem();
 
-		headerDropdownItem.setHref("/first-link");
-		headerDropdownItem.setIcon("home");
-		headerDropdownItem.setLabel("First link");
+		headerDropdownItem1.setHref("/first-link");
+		headerDropdownItem1.setIcon("home");
+		headerDropdownItem1.setLabel("First link");
 
-		headerDropdownItems.add(headerDropdownItem);
+		headerDropdownItems.add(headerDropdownItem1);
 
 		DropdownItem headerDropdownItem2 = new DropdownItem();
 

@@ -180,12 +180,12 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 
 		T model1 = getModel(_user, _group);
 
-		long classNameId = _classNameLocalService.getClassNameId(
+		long classNameId1 = _classNameLocalService.getClassNameId(
 			model1.getModelClassName());
-		long classPK = (Long)model1.getPrimaryKeyObj();
+		long classPK1 = (Long)model1.getPrimaryKeyObj();
 
 		_sharingEntryLocalService.addSharingEntry(
-			_user.getUserId(), _groupUser.getUserId(), classNameId, classPK,
+			_user.getUserId(), _groupUser.getUserId(), classNameId1, classPK1,
 			_group.getGroupId(), true,
 			Arrays.asList(SharingEntryAction.UPDATE, SharingEntryAction.VIEW),
 			null, serviceContext);

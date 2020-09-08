@@ -24,9 +24,6 @@ String referer = ParamUtil.getString(request, WebKeys.REFERER, currentURL);
 if (referer.equals(themeDisplay.getPathMain() + "/portal/update_email_address")) {
 	referer = themeDisplay.getPathMain() + "?doAsUserId=" + themeDisplay.getDoAsUserId();
 }
-
-String emailAddress1 = ParamUtil.getString(request, "emailAddress1");
-String emailAddress2 = ParamUtil.getString(request, "emailAddress2");
 %>
 
 <div class="sheet sheet-lg">
@@ -77,9 +74,9 @@ String emailAddress2 = ParamUtil.getString(request, "emailAddress2");
 			</c:if>
 
 			<aui:fieldset label="email-address">
-				<aui:input autoFocus="<%= true %>" class="lfr-input-text-container" label="email-address" name="emailAddress1" type="text" value="<%= emailAddress1 %>" />
+				<aui:input autoFocus="<%= true %>" class="lfr-input-text-container" label="email-address" name="emailAddress1" type="text" value='<%= ParamUtil.getString(request, "emailAddress1") %>' />
 
-				<aui:input class="lfr-input-text-container" label="enter-again" name="emailAddress2" type="text" value="<%= emailAddress2 %>" />
+				<aui:input class="lfr-input-text-container" label="enter-again" name="emailAddress2" type="text" value='<%= ParamUtil.getString(request, "emailAddress2") %>' />
 			</aui:fieldset>
 
 			<aui:button-row>

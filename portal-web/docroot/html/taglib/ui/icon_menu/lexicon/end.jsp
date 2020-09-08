@@ -18,11 +18,10 @@
 
 <%
 String id = GetterUtil.getString((String)request.getAttribute("liferay-ui:icon-menu:id"));
-boolean scroll = GetterUtil.getBoolean(request.getAttribute("liferay-ui:icon-menu:scroll"));
 %>
 
 		</ul>
-	<c:if test="<%= scroll %>">
+	<c:if test='<%= GetterUtil.getBoolean(request.getAttribute("liferay-ui:icon-menu:scroll")) %>'>
 		</div>
 	</c:if>
 </div>

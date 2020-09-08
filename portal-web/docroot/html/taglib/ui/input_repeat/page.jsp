@@ -38,15 +38,6 @@ int yearlyInterval0 = ParamUtil.getInteger(request, "yearlyInterval0", 1);
 int yearlyPos = ParamUtil.getInteger(request, "yearlyPos", 1);
 int yearlyDay1 = ParamUtil.getInteger(request, "yearlyDay1", Calendar.SUNDAY);
 int yearlyMonth1 = ParamUtil.getInteger(request, "yearlyMonth1", Calendar.JANUARY);
-int yearlyInterval1 = ParamUtil.getInteger(request, "yearlyInterval1", 1);
-
-boolean weeklyPosSu = _getWeeklyDayPos(request, Calendar.SUNDAY, recurrence);
-boolean weeklyPosMo = _getWeeklyDayPos(request, Calendar.MONDAY, recurrence);
-boolean weeklyPosTu = _getWeeklyDayPos(request, Calendar.TUESDAY, recurrence);
-boolean weeklyPosWe = _getWeeklyDayPos(request, Calendar.WEDNESDAY, recurrence);
-boolean weeklyPosTh = _getWeeklyDayPos(request, Calendar.THURSDAY, recurrence);
-boolean weeklyPosFr = _getWeeklyDayPos(request, Calendar.FRIDAY, recurrence);
-boolean weeklyPosSa = _getWeeklyDayPos(request, Calendar.SATURDAY, recurrence);
 %>
 
 <aui:fieldset cssClass='<%= "taglib-input-repeat " + cssClass %>'>
@@ -86,25 +77,25 @@ boolean weeklyPosSa = _getWeeklyDayPos(request, Calendar.SATURDAY, recurrence);
 
 			<aui:row cssClass="weekdays">
 				<aui:col width="<%= 25 %>">
-					<aui:input inlineLabel="right" label="<%= days[0] %>" name='<%= "weeklyDayPos" + Calendar.SUNDAY %>' type="checkbox" value="<%= weeklyPosSu %>" />
+					<aui:input inlineLabel="right" label="<%= days[0] %>" name='<%= "weeklyDayPos" + Calendar.SUNDAY %>' type="checkbox" value="<%= _getWeeklyDayPos(request, Calendar.SUNDAY, recurrence) %>" />
 
-					<aui:input inlineLabel="right" label="<%= days[4] %>" name='<%= "weeklyDayPos" + Calendar.THURSDAY %>' type="checkbox" value="<%= weeklyPosTh %>" />
+					<aui:input inlineLabel="right" label="<%= days[4] %>" name='<%= "weeklyDayPos" + Calendar.THURSDAY %>' type="checkbox" value="<%= _getWeeklyDayPos(request, Calendar.THURSDAY, recurrence) %>" />
 				</aui:col>
 
 				<aui:col width="<%= 25 %>">
-					<aui:input inlineLabel="right" label="<%= days[1] %>" name='<%= "weeklyDayPos" + Calendar.MONDAY %>' type="checkbox" value="<%= weeklyPosMo %>" />
+					<aui:input inlineLabel="right" label="<%= days[1] %>" name='<%= "weeklyDayPos" + Calendar.MONDAY %>' type="checkbox" value="<%= _getWeeklyDayPos(request, Calendar.MONDAY, recurrence) %>" />
 
-					<aui:input inlineLabel="right" label="<%= days[5] %>" name='<%= "weeklyDayPos" + Calendar.FRIDAY %>' type="checkbox" value="<%= weeklyPosFr %>" />
+					<aui:input inlineLabel="right" label="<%= days[5] %>" name='<%= "weeklyDayPos" + Calendar.FRIDAY %>' type="checkbox" value="<%= _getWeeklyDayPos(request, Calendar.FRIDAY, recurrence) %>" />
 				</aui:col>
 
 				<aui:col width="<%= 25 %>">
-					<aui:input inlineLabel="right" label="<%= days[2] %>" name='<%= "weeklyDayPos" + Calendar.TUESDAY %>' type="checkbox" value="<%= weeklyPosTu %>" />
+					<aui:input inlineLabel="right" label="<%= days[2] %>" name='<%= "weeklyDayPos" + Calendar.TUESDAY %>' type="checkbox" value="<%= _getWeeklyDayPos(request, Calendar.TUESDAY, recurrence) %>" />
 
-					<aui:input inlineLabel="right" label="<%= days[6] %>" name='<%= "weeklyDayPos" + Calendar.SATURDAY %>' type="checkbox" value="<%= weeklyPosSa %>" />
+					<aui:input inlineLabel="right" label="<%= days[6] %>" name='<%= "weeklyDayPos" + Calendar.SATURDAY %>' type="checkbox" value="<%= _getWeeklyDayPos(request, Calendar.SATURDAY, recurrence) %>" />
 				</aui:col>
 
 				<aui:col width="<%= 25 %>">
-					<aui:input inlineLabel="right" label="<%= days[3] %>" name='<%= "weeklyDayPos" + Calendar.WEDNESDAY %>' type="checkbox" value="<%= weeklyPosWe %>" />
+					<aui:input inlineLabel="right" label="<%= days[3] %>" name='<%= "weeklyDayPos" + Calendar.WEDNESDAY %>' type="checkbox" value="<%= _getWeeklyDayPos(request, Calendar.WEDNESDAY, recurrence) %>" />
 				</aui:col>
 			</aui:row>
 		</div>
@@ -204,7 +195,7 @@ boolean weeklyPosSa = _getWeeklyDayPos(request, Calendar.SATURDAY, recurrence);
 
 				</aui:select>
 
-				<aui:input inlineField="<%= true %>" inlineLabel="right" label="year-s" maxlength="2" name="yearlyInterval1" size="2" type="text" value="<%= yearlyInterval1 %>" />
+				<aui:input inlineField="<%= true %>" inlineLabel="right" label="year-s" maxlength="2" name="yearlyInterval1" size="2" type="text" value='<%= ParamUtil.getInteger(request, "yearlyInterval1", 1) %>' />
 			</span>
 		</div>
 	</aui:col>

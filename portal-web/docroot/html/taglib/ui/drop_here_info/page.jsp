@@ -16,10 +16,6 @@
 
 <%@ include file="/html/taglib/ui/drop_here_info/init.jsp" %>
 
-<%
-String message = GetterUtil.getString((String)request.getAttribute("liferay-ui:drop-here-info:message"));
-%>
-
 <div class="drop-here-info">
 	<div class="drop-here-indicator">
 		<div class="drop-icons">
@@ -31,7 +27,7 @@ String message = GetterUtil.getString((String)request.getAttribute("liferay-ui:d
 		</div>
 
 		<div class="drop-text">
-			<liferay-ui:message key="<%= message %>" />
+			<liferay-ui:message key='<%= GetterUtil.getString((String)request.getAttribute("liferay-ui:drop-here-info:message")) %>' />
 		</div>
 	</div>
 </div>

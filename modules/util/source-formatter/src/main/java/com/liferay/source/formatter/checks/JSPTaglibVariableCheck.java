@@ -147,8 +147,8 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 	}
 
 	private static final Pattern _taglibVariablePattern = Pattern.compile(
-		"\n(\t*([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);)\n\\s*%>\\s+" +
-			"(<[\\S\\s]*?>)(\n|\\Z)",
+		"\n(\t*([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);)\n\\s*%>\n+" +
+			"((\n\t*)<(([^\n]+/>)|([\\S\\s]*?\\7((</)|(/>))\\S*)))(\n|\\Z)",
 		Pattern.DOTALL);
 
 }

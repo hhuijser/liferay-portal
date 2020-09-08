@@ -69,6 +69,10 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		_checkPackageNameByClassName(
 			fileName, absolutePath, javaClass.getName(), packageName);
 
+		if (absolutePath.contains("-api/")) {
+			return javaTerm.getContent();
+		}
+
 		List<String> expectedInternalImplementsDataEntries = getAttributeValues(
 			_EXPECTED_INTERNAL_IMPLEMENTS_DATA_KEY, absolutePath);
 
@@ -79,10 +83,8 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 				expectedInternalImplementsDataEntry, CharPool.COLON);
 
 			if (array.length == 2) {
-				_checkInternalPackageNameByImplementedClassNames(
-					fileName, javaClass.getName(),
-					javaClass.getImplementedClassNames(), array[0], packageName,
-					array[1]);
+				_checkInternalPackageName(
+					fileName, javaClass, array[0], packageName, array[1]);
 			}
 		}
 
@@ -94,32 +96,42 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		return new String[] {JAVA_CLASS};
 	}
 
-	private void _checkInternalPackageNameByImplementedClassNames(
-			String fileName, String className,
-			List<String> implementedClassNames, String implementedClassName,
+	private void _checkInternalPackageName(
+			String fileName, JavaClass javaClass, String implementedClassName,
 			String packageName, String expectedPackageName)
 		throws IOException {
 
-		if (!implementedClassNames.contains(implementedClassName)) {
-			return;
-		}
+		List<String> implementedClassNames =
+			javaClass.getImplementedClassNames();
 
 		if (!packageName.contains(".internal.") &&
 			!packageName.endsWith(".internal")) {
 
-			if (className.startsWith("Base")) {
-				return;
+			String className = javaClass.getName();
+
+			if (implementedClassNames.contains(implementedClassName) &&
+				!className.startsWith("Base")) {
+
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Class implementing '", implementedClassName,
+						"' should be in 'internal' package"));
 			}
 
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"Class implementing '", implementedClassName,
-					"' should be in 'internal' package"));
+			return;
 		}
 
 		if (packageName.endsWith(expectedPackageName)) {
 			return;
+		}
+
+		if (!implementedClassNames.contains(implementedClassName)) {
+			List<String> extendedClassNames = javaClass.getExtendedClassNames();
+
+			if (!extendedClassNames.contains("Base" + implementedClassName)) {
+				return;
+			}
 		}
 
 		BNDSettings bndSettings = getBNDSettings(fileName);
@@ -158,11 +170,22 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			}
 		}
 
-		if (!packageName.endsWith(expectedPackageName)) {
+		if (packageName.endsWith(expectedPackageName)) {
+			return;
+		}
+
+		if (implementedClassNames.contains(implementedClassName)) {
 			addMessage(
 				fileName,
 				StringBundler.concat(
 					"Package for class implementing '", implementedClassName,
+					"' should end with '", expectedPackageName, "'"));
+		}
+		else {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Package for class extending 'Base", implementedClassName,
 					"' should end with '", expectedPackageName, "'"));
 		}
 	}

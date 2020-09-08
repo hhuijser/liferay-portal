@@ -60,8 +60,6 @@ if (quote) {
 }
 
 String redirect = ParamUtil.getString(request, "redirect");
-
-boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-message.jsp-showPermanentLink"));
 %>
 
 <div class="panel-heading">
@@ -97,7 +95,7 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 
 			<h4 title="<%= HtmlUtil.escape(message.getSubject()) %>">
 				<c:choose>
-					<c:when test="<%= showPermanentLink %>">
+					<c:when test='<%= GetterUtil.getBoolean(request.getAttribute("edit-message.jsp-showPermanentLink")) %>'>
 						<a href="#<portlet:namespace />message_<%= message.getMessageId() %>" title="<liferay-ui:message key="permanent-link-to-this-item" />">
 							<%= HtmlUtil.escape(message.getSubject()) %>
 						</a>

@@ -42,8 +42,6 @@ if (ListUtil.isEmpty(kbFolders) && ListUtil.isEmpty(kbArticles)) {
 		kbArticles.add(KBArticleServiceUtil.getLatestKBArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY));
 	}
 }
-
-boolean showSidebarHeader = ParamUtil.getBoolean(request, "showSidebarHeader", GetterUtil.getBoolean(request.getAttribute(KBWebKeys.SHOW_SIDEBAR_HEADER)));
 %>
 
 <c:choose>
@@ -115,7 +113,7 @@ boolean showSidebarHeader = ParamUtil.getBoolean(request, "showSidebarHeader", G
 		%>
 
 		<div class="sidebar-header">
-			<c:if test="<%= showSidebarHeader %>">
+			<c:if test='<%= ParamUtil.getBoolean(request, "showSidebarHeader", GetterUtil.getBoolean(request.getAttribute(KBWebKeys.SHOW_SIDEBAR_HEADER))) %>'>
 				<ul class="sidebar-actions">
 					<li>
 						<liferay-util:include page="/admin/subscribe.jsp" servletContext="<%= application %>" />

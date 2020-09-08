@@ -29,7 +29,6 @@ KBArticleURLHelper kbArticleURLHelper = (KBArticleURLHelper)request.getAttribute
 List<KBArticle> childKBArticles = kbNavigationDisplayContext.getChildKBArticles(themeDisplay.getScopeGroupId(), parentResourcePrimKey, level);
 
 for (KBArticle childKBArticle : childKBArticles) {
-	PortletURL viewChildURL = kbArticleURLHelper.createViewURL(childKBArticle);
 %>
 
 	<ul>
@@ -48,7 +47,7 @@ for (KBArticle childKBArticle : childKBArticles) {
 			}
 			%>
 
-			<a class="<%= childKBArticleClass %>" href="<%= viewChildURL %>"><%= HtmlUtil.escape(childKBArticle.getTitle()) %></a>
+			<a class="<%= childKBArticleClass %>" href="<%= kbArticleURLHelper.createViewURL(childKBArticle) %>"><%= HtmlUtil.escape(childKBArticle.getTitle()) %></a>
 
 			<c:if test="<%= kbNavigationDisplayContext.isFurtherExpansionRequired(parentResourcePrimKey, childKBArticle, level) %>">
 

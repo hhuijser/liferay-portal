@@ -77,15 +77,10 @@ renderResponse.setTitle(ruleGroup.getName(locale));
 <liferay-frontend:management-bar
 	disabled="<%= rulesCount <= 0 %>"
 >
-
-	<%
-	PortletURL displayStyleURL = PortletURLUtil.clone(portletURL, renderResponse);
-	%>
-
 	<liferay-frontend:management-bar-buttons>
 		<liferay-frontend:management-bar-display-buttons
 			displayViews='<%= new String[] {"icon", "descriptive", "list"} %>'
-			portletURL="<%= displayStyleURL %>"
+			portletURL="<%= PortletURLUtil.clone(portletURL, renderResponse) %>"
 			selectedDisplayStyle="<%= displayStyle %>"
 		/>
 

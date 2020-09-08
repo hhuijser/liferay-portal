@@ -60,7 +60,6 @@ else if (selUser != null) {
 }
 
 boolean male = BeanParamUtil.getBoolean(selUser, request, "male", true);
-String jobTitle = BeanParamUtil.getString(selUser, request, "jobTitle");
 %>
 
 <div class="anonymous-account">
@@ -88,7 +87,7 @@ String jobTitle = BeanParamUtil.getString(selUser, request, "jobTitle");
 		<aui:input name="birthdayDay" type="hidden" value="<%= String.valueOf(birthdayCalendar.get(Calendar.DAY_OF_MONTH)) %>" />
 		<aui:input name="birthdayMonth" type="hidden" value="<%= String.valueOf(birthdayCalendar.get(Calendar.MONTH)) %>" />
 		<aui:input name="birthdayYear" type="hidden" value="<%= String.valueOf(birthdayCalendar.get(Calendar.YEAR)) %>" />
-		<aui:input name="jobTitle" type="hidden" value="<%= jobTitle %>" />
+		<aui:input name="jobTitle" type="hidden" value='<%= BeanParamUtil.getString(selUser, request, "jobTitle") %>' />
 	</aui:form>
 
 	<div class="alert alert-warning">

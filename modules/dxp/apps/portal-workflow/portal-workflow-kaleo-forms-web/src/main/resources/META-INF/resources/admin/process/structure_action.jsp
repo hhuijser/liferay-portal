@@ -20,8 +20,6 @@
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 DDMStructure ddmStructure = (DDMStructure)row.getObject();
-
-String backURL = (String)row.getParameter("backURL");
 %>
 
 <liferay-ui:icon-menu
@@ -34,7 +32,7 @@ String backURL = (String)row.getParameter("backURL");
 	<liferay-portlet:renderURL portletName="<%= PortletProviderUtil.getPortletId(DDMStructure.class.getName(), PortletProvider.Action.EDIT) %>" var="editURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 		<portlet:param name="mvcPath" value="/edit_structure.jsp" />
 		<portlet:param name="navigationStartsOn" value="<%= DDMNavigationHelper.EDIT_STRUCTURE %>" />
-		<portlet:param name="closeRedirect" value="<%= backURL %>" />
+		<portlet:param name="closeRedirect" value='<%= (String)row.getParameter("backURL") %>' />
 		<portlet:param name="showBackURL" value="<%= Boolean.FALSE.toString() %>" />
 		<portlet:param name="refererPortletName" value="<%= KaleoFormsPortletKeys.KALEO_FORMS_ADMIN %>" />
 		<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />

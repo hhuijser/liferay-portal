@@ -76,12 +76,11 @@ JSONArray samlSloRequestInfosJSONArray = samlSloContextJSONObject.getJSONArray("
 		JSONObject samlSloRequestInfoJSONObject = samlSloRequestInfosJSONArray.getJSONObject(i);
 
 		String entityId = samlSloRequestInfoJSONObject.getString("entityId");
-		String name = samlSloRequestInfoJSONObject.getString("name");
 	%>
 
 		<div class="saml-sp">
 			<a class="saml-sp-label" href="?cmd=logout&entityId=<%= entityId %>" target="_blank">
-				<liferay-ui:message arguments="<%= name %>" key="sign-out-from-x" />
+				<liferay-ui:message arguments='<%= samlSloRequestInfoJSONObject.getString("name") %>' key="sign-out-from-x" />
 			</a>
 		</div>
 

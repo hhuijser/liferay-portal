@@ -147,7 +147,7 @@ com.liferay.layouts.admin.kernel.util.SitemapUtil#getSitemap(long,boolean,ThemeD
 com.liferay.layouts.admin.kernel.util.SitemapUtil#getSitemap(String,long,boolean,ThemeDisplay)
 com.liferay.mentions.util.MentionsNotifier#notify(long,long,String,String,String,long,LocalizedValuesMap,LocalizedValuesMap,ServiceContext)
 com.liferay.message.boards.internal.util.MBUtil#replaceMessageBodyPaths(ThemeDisplay,String)
-com.liferay.microblogs.internal.util.MicroblogsUtil#getJSONRecipients(long,ThemeDisplay)
+com.liferay.microblogs.internal.util.MicroblogsUtil#getRecipientsJSONArray(long,ThemeDisplay)
 com.liferay.microblogs.web.internal.util.MicroblogsWebUtil#getProcessedContent(MicroblogsEntry,ServiceContext)
 com.liferay.microblogs.web.internal.util.MicroblogsWebUtil#getProcessedContent(String,ServiceContext)
 com.liferay.mobile.device.rules.rule.RuleGroupProcessor#evaluateRuleGroups(ThemeDisplay)

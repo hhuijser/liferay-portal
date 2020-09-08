@@ -564,6 +564,7 @@
 			<property name="allowedVariableNames" value="bitMode,metadata,superClass,userName" />
 			<property name="enabled" value="false" />
 			<property name="enforceTypeNames" value=".*(In|Out)putStream,BaseUpgradeServiceModuleRelease,DetailAST,(Double|Int|Long)Stream,Enumeration,HttpServlet(Request|Response),Iterator,JSONArray,JSONObject,LiferayPortlet(Request|Response),NamedList,Object,OrderByComparator,Page,Query,QueryPos,RenderRequest,RenderResponse,ServletRequest,ServletResponse,SQLQuery,Throwable,UnicodeProperties,Unsync.*" />
+			<message key="variable.incorrect.count" value="Rename variable ''{0}'' to ''{1}'' (and increment counts for other variables ''{0}*'')" />
 			<message key="variable.incorrect.ending" value="Name of variable with type ''{0}'' should end with ''{1}''" />
 			<message key="variable.rename" value="Rename variable ''{0}'' to ''{1}''" />
 			<message key="variable.typo" value="Typo in variable ''{0}'', expected variable name ''{1}''" />

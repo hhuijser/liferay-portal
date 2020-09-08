@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checkstyle.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
@@ -58,7 +59,6 @@ public class VariableNameCheck extends BaseCheck {
 		String name = _getVariableName(detailAST);
 
 		_checkCaps(detailAST, name);
-		_checkCountVariableName(detailAST, name);
 		_checkIsVariableName(detailAST, name);
 
 		DetailAST typeDetailAST = detailAST.findFirstToken(TokenTypes.TYPE);
@@ -69,13 +69,16 @@ public class VariableNameCheck extends BaseCheck {
 			return;
 		}
 
-		if (firstChildDetailAST.getType() == TokenTypes.IDENT) {
-			String typeName = firstChildDetailAST.getText();
+		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+			String typeName = getTypeName(typeDetailAST, false);
 
-			_checkExceptionVariableName(detailAST, name, typeName);
-			_checkInstanceVariableName(detailAST, name, typeName);
-			_checkTypeName(detailAST, name, typeName);
-			_checkTypo(detailAST, name, typeName);
+			if (!typeName.contains("[")) {
+				_checkCountVariableName(detailAST, name, typeName);
+				_checkExceptionVariableName(detailAST, name, typeName);
+				_checkInstanceVariableName(detailAST, name, typeName);
+				_checkTypeName(detailAST, name, typeName);
+				_checkTypo(detailAST, name, typeName);
+			}
 		}
 
 		DetailAST parentDetailAST = getParentWithTokenType(
@@ -193,32 +196,114 @@ public class VariableNameCheck extends BaseCheck {
 		}
 	}
 
-	private void _checkCountVariableName(DetailAST detailAST, String name) {
+	private void _checkCountVariableName(
+		DetailAST detailAST, String name, String typeName) {
+
 		Matcher matcher = _countVariableNamePattern.matcher(name);
 
 		if (!matcher.find()) {
 			return;
 		}
 
-		DetailAST parentDetailAST = detailAST.getParent();
+		String countlessVariableName = matcher.group(1);
 
-		if (parentDetailAST.getType() != TokenTypes.OBJBLOCK) {
+		matcher = _countVariableNamePattern.matcher(typeName);
+
+		if (matcher.find()) {
 			return;
 		}
 
-		List<DetailAST> variableDefinitionDetailASTList = getAllChildTokens(
-			parentDetailAST, false, TokenTypes.VARIABLE_DEF);
+		List<DetailAST> detailASTList = new ArrayList<>();
 
-		String match = matcher.group(1);
+		DetailAST parentDetailAST = detailAST.getParent();
 
-		for (DetailAST variableDefinitionDetailAST :
-				variableDefinitionDetailASTList) {
+		if (parentDetailAST.getType() == TokenTypes.OBJBLOCK) {
+			detailASTList.addAll(
+				getAllChildTokens(
+					parentDetailAST, false, TokenTypes.VARIABLE_DEF));
+		}
+		else {
+			parentDetailAST = getParentWithTokenType(
+				detailAST, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF);
 
-			if (match.equals(_getVariableName(variableDefinitionDetailAST))) {
-				log(detailAST, MSG_RENAME_VARIABLE, match, match + "1");
+			if (parentDetailAST != null) {
+				DetailAST parametersDetailAST = parentDetailAST.findFirstToken(
+					TokenTypes.PARAMETERS);
 
-				return;
+				detailASTList.addAll(
+					getAllChildTokens(
+						parametersDetailAST, false, TokenTypes.PARAMETER_DEF));
+
+				DetailAST slistDetailAST = parentDetailAST.findFirstToken(
+					TokenTypes.SLIST);
+
+				if (slistDetailAST != null) {
+					detailASTList.addAll(
+						getAllChildTokens(
+							slistDetailAST, false, TokenTypes.VARIABLE_DEF));
+				}
 			}
+		}
+
+		int endLineNumber = -1;
+
+		DetailAST slistDetailAST = getParentWithTokenType(
+			detailAST, TokenTypes.SLIST);
+
+		if (slistDetailAST != null) {
+			endLineNumber = getEndLineNumber(slistDetailAST);
+		}
+
+		int lineNumber = -1;
+
+		String expectedVariableName = countlessVariableName + "1";
+
+		for (DetailAST curDetailAST : detailASTList) {
+			if ((endLineNumber != -1) &&
+				(curDetailAST.getLineNo() > endLineNumber)) {
+
+				break;
+			}
+
+			DetailAST nameDetailAST = curDetailAST.findFirstToken(
+				TokenTypes.IDENT);
+
+			if (nameDetailAST == null) {
+				continue;
+			}
+
+			String variableName = nameDetailAST.getText();
+
+			if (lineNumber != -1) {
+				if (variableName.equals(expectedVariableName)) {
+					log(
+						lineNumber, _MSG_INCORRECT_COUNT_VARIABLE,
+						countlessVariableName, expectedVariableName);
+
+					return;
+				}
+			}
+			else if (variableName.equals(countlessVariableName)) {
+				if (curDetailAST.getType() == TokenTypes.VARIABLE_DEF) {
+					lineNumber = nameDetailAST.getLineNo();
+				}
+				else {
+					return;
+				}
+			}
+			else if (variableName.matches(countlessVariableName + "[0-9]+")) {
+				int count = GetterUtil.getInteger(
+					StringUtil.removeSubstring(
+						variableName, countlessVariableName));
+
+				expectedVariableName = countlessVariableName + (count + 1);
+			}
+		}
+
+		if (lineNumber != -1) {
+			log(
+				lineNumber, MSG_RENAME_VARIABLE, countlessVariableName,
+				expectedVariableName);
 		}
 	}
 
@@ -577,13 +662,16 @@ public class VariableNameCheck extends BaseCheck {
 
 	private static final String _ENFORCE_TYPE_NAMES_KEY = "enforceTypeNames";
 
+	private static final String _MSG_INCORRECT_COUNT_VARIABLE =
+		"variable.incorrect.count";
+
 	private static final String _MSG_INCORRECT_ENDING_VARIABLE =
 		"variable.incorrect.ending";
 
 	private static final String _MSG_TYPO_VARIABLE = "variable.typo";
 
 	private static final Pattern _countVariableNamePattern = Pattern.compile(
-		"^(\\w+?)[0-9]+$");
+		"^(\\w+?)([1-9][0-9]*)$");
 	private static final Pattern _isVariableNamePattern = Pattern.compile(
 		"(_?)(is|IS_)([A-Z])(.*)");
 

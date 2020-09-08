@@ -20,15 +20,15 @@
 CommerceOrganizationDisplayContext commerceOrganizationDisplayContext = (CommerceOrganizationDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 request.setAttribute("view.jsp-filterPerOrganization", false);
-
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"organizationId", String.valueOf(commerceOrganizationDisplayContext.getOrganizationId())
-).build();
 %>
 
 <div class="commerce-organization-container" id="<portlet:namespace />entriesContainer">
 	<clay:data-set-display
-		contextParams="<%= contextParams %>"
+		contextParams='<%=
+			HashMapBuilder.<String, String>put(
+				"organizationId", String.valueOf(commerceOrganizationDisplayContext.getOrganizationId())
+			).build()
+		%>'
 		dataProviderKey="<%= CommerceOrganizationClayTableDataSetDisplayView.NAME %>"
 		id="<%= CommerceOrganizationClayTableDataSetDisplayView.NAME %>"
 		itemsPerPage="<%= 10 %>"

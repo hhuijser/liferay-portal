@@ -114,14 +114,6 @@ else {
 
 		<%
 		boolean autoFocusDestination = Validator.isNotNull(sourceURL) && Validator.isNull(destinationURL);
-
-		Map<String, Object> props = HashMapBuilder.<String, Object>put(
-			"autofocus", autoFocusDestination
-		).put(
-			"initialDestinationUrl", (redirectEntry != null) ? redirectEntry.getDestinationURL() : ParamUtil.getString(request, "destinationURL")
-		).put(
-			"namespace", liferayPortletResponse.getNamespace()
-		).build();
 		%>
 
 		<div class="destination-url">
@@ -129,7 +121,15 @@ else {
 
 			<react:component
 				module="js/DestinationUrlInput"
-				props="<%= props %>"
+				props='<%=
+					HashMapBuilder.<String, Object>put(
+						"autofocus", autoFocusDestination
+					).put(
+						"initialDestinationUrl", (redirectEntry != null) ? redirectEntry.getDestinationURL() : ParamUtil.getString(request, "destinationURL")
+					).put(
+						"namespace", liferayPortletResponse.getNamespace()
+					).build()
+				%>'
 			/>
 		</div>
 

@@ -25,8 +25,6 @@ page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PropsValues" %>
 
-<%@ page import="java.util.Map" %>
-
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />

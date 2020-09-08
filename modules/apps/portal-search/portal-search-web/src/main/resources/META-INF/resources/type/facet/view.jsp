@@ -30,8 +30,7 @@ page import="com.liferay.portal.search.web.internal.facet.display.context.AssetE
 page import="com.liferay.portal.search.web.internal.facet.display.context.AssetEntriesSearchFacetTermDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.type.facet.configuration.TypeFacetPortletInstanceConfiguration" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.Map" %>
 
 <portlet:defineObjects />
 

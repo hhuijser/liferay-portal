@@ -29,8 +29,7 @@ page import="com.liferay.portal.search.web.internal.sort.configuration.SortPortl
 page import="com.liferay.portal.search.web.internal.sort.display.context.SortDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.sort.display.context.SortTermDisplayContext" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.Map" %>
 
 <liferay-theme:defineObjects />
 

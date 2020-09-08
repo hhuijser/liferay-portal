@@ -32,8 +32,7 @@ page import="com.liferay.portal.search.web.internal.result.display.context.Searc
 page import="com.liferay.portal.search.web.internal.search.results.configuration.SearchResultsPortletInstanceConfiguration" %><%@
 page import="com.liferay.portal.search.web.internal.search.results.portlet.SearchResultsPortletDisplayContext" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
 
 <portlet:defineObjects />
 
@@ -49,14 +48,6 @@ SearchResultsPortletInstanceConfiguration searchResultsPortletInstanceConfigurat
 List<SearchResultSummaryDisplayContext> searchResultSummaryDisplayContexts = searchResultsPortletDisplayContext.getSearchResultSummaryDisplayContexts();
 
 SearchContainer<Document> searchContainer = searchResultsPortletDisplayContext.getSearchContainer();
-
-Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"namespace", liferayPortletResponse.getNamespace()
-).put(
-	"searchContainer", searchContainer
-).put(
-	"searchResultsPortletDisplayContext", searchResultsPortletDisplayContext
-).build();
 %>
 
 <c:choose>
@@ -72,7 +63,15 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 	<c:otherwise>
 		<liferay-ddm:template-renderer
 			className="<%= SearchResultSummaryDisplayContext.class.getName() %>"
-			contextObjects="<%= contextObjects %>"
+			contextObjects='<%=
+				HashMapBuilder.<String, Object>put(
+					"namespace", liferayPortletResponse.getNamespace()
+				).put(
+					"searchContainer", searchContainer
+				).put(
+					"searchResultsPortletDisplayContext", searchResultsPortletDisplayContext
+				).build()
+			%>'
 			displayStyle="<%= searchResultsPortletInstanceConfiguration.displayStyle() %>"
 			displayStyleGroupId="<%= searchResultsPortletDisplayContext.getDisplayStyleGroupId() %>"
 			entries="<%= searchResultSummaryDisplayContexts %>"

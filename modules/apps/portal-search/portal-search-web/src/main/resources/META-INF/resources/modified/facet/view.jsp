@@ -32,8 +32,7 @@ page import="com.liferay.portal.search.web.internal.modified.facet.display.conte
 page import="com.liferay.portal.search.web.internal.modified.facet.display.context.ModifiedFacetDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.modified.facet.display.context.ModifiedFacetTermDisplayContext" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
 
 <portlet:defineObjects />
 
@@ -48,16 +47,6 @@ ModifiedFacetTermDisplayContext customRangeModifiedFacetTermDisplayContext = mod
 ModifiedFacetCalendarDisplayContext modifiedFacetCalendarDisplayContext = modifiedFacetDisplayContext.getModifiedFacetCalendarDisplayContext();
 ModifiedFacetPortletInstanceConfiguration modifiedFacetPortletInstanceConfiguration = modifiedFacetDisplayContext.getModifiedFacetPortletInstanceConfiguration();
 List<ModifiedFacetTermDisplayContext> modifiedFacetTermDisplayContexts = modifiedFacetDisplayContext.getModifiedFacetTermDisplayContexts();
-
-Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"customRangeModifiedFacetTermDisplayContext", customRangeModifiedFacetTermDisplayContext
-).put(
-	"modifiedFacetCalendarDisplayContext", modifiedFacetCalendarDisplayContext
-).put(
-	"modifiedFacetDisplayContext", modifiedFacetDisplayContext
-).put(
-	"namespace", liferayPortletResponse.getNamespace()
-).build();
 %>
 
 <c:if test="<%= !modifiedFacetDisplayContext.isRenderNothing() %>">
@@ -68,7 +57,17 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 
 		<liferay-ddm:template-renderer
 			className="<%= ModifiedFacetTermDisplayContext.class.getName() %>"
-			contextObjects="<%= contextObjects %>"
+			contextObjects='<%=
+				HashMapBuilder.<String, Object>put(
+					"customRangeModifiedFacetTermDisplayContext", customRangeModifiedFacetTermDisplayContext
+				).put(
+					"modifiedFacetCalendarDisplayContext", modifiedFacetCalendarDisplayContext
+				).put(
+					"modifiedFacetDisplayContext", modifiedFacetDisplayContext
+				).put(
+					"namespace", liferayPortletResponse.getNamespace()
+				).build()
+			%>'
 			displayStyle="<%= modifiedFacetPortletInstanceConfiguration.displayStyle() %>"
 			displayStyleGroupId="<%= modifiedFacetDisplayContext.getDisplayStyleGroupId() %>"
 			entries="<%= modifiedFacetTermDisplayContexts %>"

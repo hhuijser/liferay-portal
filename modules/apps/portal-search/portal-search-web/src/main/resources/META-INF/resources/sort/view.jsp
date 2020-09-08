@@ -29,9 +29,6 @@ page import="com.liferay.portal.search.web.internal.sort.configuration.SortPortl
 page import="com.liferay.portal.search.web.internal.sort.display.context.SortDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.sort.display.context.SortTermDisplayContext" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.Map" %>
-
 <liferay-theme:defineObjects />
 
 <%
@@ -42,10 +39,6 @@ if (sortDisplayContext.isRenderNothing()) {
 }
 
 SortPortletInstanceConfiguration sortPortletInstanceConfiguration = sortDisplayContext.getSortPortletInstanceConfiguration();
-
-Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"sortDisplayContext", sortDisplayContext
-).build();
 %>
 
 <c:choose>
@@ -62,7 +55,11 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 
 			<liferay-ddm:template-renderer
 				className="<%= SortDisplayContext.class.getName() %>"
-				contextObjects="<%= contextObjects %>"
+				contextObjects='<%=
+					HashMapBuilder.<String, Object>put(
+						"sortDisplayContext", sortDisplayContext
+					).build()
+				%>'
 				displayStyle="<%= sortPortletInstanceConfiguration.displayStyle() %>"
 				displayStyleGroupId="<%= sortDisplayContext.getDisplayStyleGroupId() %>"
 				entries="<%= sortDisplayContext.getSortTermDisplayContexts() %>"

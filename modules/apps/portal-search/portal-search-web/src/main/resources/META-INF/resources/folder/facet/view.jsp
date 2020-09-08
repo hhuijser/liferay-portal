@@ -30,9 +30,6 @@ page import="com.liferay.portal.search.web.internal.facet.display.context.Folder
 page import="com.liferay.portal.search.web.internal.facet.display.context.FolderSearchFacetTermDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.folder.facet.configuration.FolderFacetPortletInstanceConfiguration" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.Map" %>
-
 <portlet:defineObjects />
 
 <%
@@ -43,12 +40,6 @@ if (folderSearchFacetDisplayContext.isRenderNothing()) {
 }
 
 FolderFacetPortletInstanceConfiguration folderFacetPortletInstanceConfiguration = folderSearchFacetDisplayContext.getFolderFacetPortletInstanceConfiguration();
-
-Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"folderSearchFacetDisplayContext", folderSearchFacetDisplayContext
-).put(
-	"namespace", liferayPortletResponse.getNamespace()
-).build();
 %>
 
 <c:choose>
@@ -63,7 +54,13 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 
 			<liferay-ddm:template-renderer
 				className="<%= FolderSearchFacetTermDisplayContext.class.getName() %>"
-				contextObjects="<%= contextObjects %>"
+				contextObjects='<%=
+					HashMapBuilder.<String, Object>put(
+						"folderSearchFacetDisplayContext", folderSearchFacetDisplayContext
+					).put(
+						"namespace", liferayPortletResponse.getNamespace()
+					).build()
+				%>'
 				displayStyle="<%= folderFacetPortletInstanceConfiguration.displayStyle() %>"
 				displayStyleGroupId="<%= folderSearchFacetDisplayContext.getDisplayStyleGroupId() %>"
 				entries="<%= folderSearchFacetDisplayContext.getFolderSearchFacetTermDisplayContexts() %>"

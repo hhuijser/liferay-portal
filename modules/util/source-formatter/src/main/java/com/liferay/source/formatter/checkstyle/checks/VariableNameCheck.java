@@ -254,8 +254,6 @@ public class VariableNameCheck extends BaseCheck {
 			endLineNumber = getEndLineNumber(slistDetailAST);
 		}
 
-		int lineNumber = -1;
-
 		String expectedVariableName = countlessVariableName + "1";
 
 		for (DetailAST curDetailAST : detailASTList) {
@@ -265,30 +263,36 @@ public class VariableNameCheck extends BaseCheck {
 				break;
 			}
 
-			DetailAST nameDetailAST = curDetailAST.findFirstToken(
-				TokenTypes.IDENT);
+			String variableName = _getVariableName(curDetailAST);
 
-			if (nameDetailAST == null) {
-				continue;
-			}
+			if (variableName.equals(countlessVariableName)) {
+				parentDetailAST = detailAST.getParent();
 
-			String variableName = nameDetailAST.getText();
+				if (parentDetailAST.getType() == TokenTypes.FOR_EACH_CLAUSE) {
+					DetailAST curNameDetailAST = _getDetailAST(
+						detailASTList, "cur" + countlessVariableName);
 
-			if (lineNumber != -1) {
-				if (variableName.equals(expectedVariableName)) {
-					log(
-						lineNumber, _MSG_INCORRECT_COUNT_VARIABLE,
-						countlessVariableName, expectedVariableName);
-
-					return;
+					if (curNameDetailAST == null) {
+						log(detailAST, _MSG_INCORRECT_NAME_FOR_STATEMENT, name);
+					}
 				}
-			}
-			else if (variableName.equals(countlessVariableName)) {
-				if (curDetailAST.getType() == TokenTypes.VARIABLE_DEF) {
-					lineNumber = nameDetailAST.getLineNo();
+				else if (curDetailAST.getType() == TokenTypes.PARAMETER_DEF) {
+					return;
 				}
 				else {
-					return;
+					DetailAST expectedVariableNameDetailAST = _getDetailAST(
+						detailASTList, expectedVariableName);
+
+					if (expectedVariableNameDetailAST == null) {
+						log(
+							curDetailAST, MSG_RENAME_VARIABLE,
+							countlessVariableName, expectedVariableName);
+					}
+					else {
+						log(
+							curDetailAST, _MSG_INCORRECT_COUNT_VARIABLE,
+							countlessVariableName, expectedVariableName);
+					}
 				}
 			}
 			else if (variableName.matches(countlessVariableName + "[0-9]+")) {
@@ -298,12 +302,6 @@ public class VariableNameCheck extends BaseCheck {
 
 				expectedVariableName = countlessVariableName + (count + 1);
 			}
-		}
-
-		if (lineNumber != -1) {
-			log(
-				lineNumber, MSG_RENAME_VARIABLE, countlessVariableName,
-				expectedVariableName);
 		}
 	}
 
@@ -601,6 +599,20 @@ public class VariableNameCheck extends BaseCheck {
 		return false;
 	}
 
+	private DetailAST _getDetailAST(
+		List<DetailAST> detailASTList, String name) {
+
+		for (DetailAST detailAST : detailASTList) {
+			if (StringUtil.equalsIgnoreCase(
+					name, _getVariableName(detailAST))) {
+
+				return detailAST;
+			}
+		}
+
+		return null;
+	}
+
 	private String _getExpectedVariableName(
 		String typeName, String leadingUnderline, String trailingDigits) {
 
@@ -667,6 +679,9 @@ public class VariableNameCheck extends BaseCheck {
 
 	private static final String _MSG_INCORRECT_ENDING_VARIABLE =
 		"variable.incorrect.ending";
+
+	private static final String _MSG_INCORRECT_NAME_FOR_STATEMENT =
+		"variable.name.incorrect.for.statement";
 
 	private static final String _MSG_TYPO_VARIABLE = "variable.typo";
 

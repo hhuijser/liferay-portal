@@ -20,16 +20,16 @@
 CommerceCatalogDisplayContext commerceCatalogDisplayContext = (CommerceCatalogDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceCatalog commerceCatalog = commerceCatalogDisplayContext.getCommerceCatalog();
-
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"commerceCatalogId", String.valueOf(commerceCatalog.getCommerceCatalogId())
-).build();
 %>
 
 <div class="row">
 	<div class="col-12">
 		<clay:data-set-display
-			contextParams="<%= contextParams %>"
+			contextParams='<%=
+				HashMapBuilder.<String, String>put(
+					"commerceCatalogId", String.valueOf(commerceCatalog.getCommerceCatalogId())
+				).build()
+			%>'
 			dataProviderKey="<%= CommerceCatalogDataSetConstants.COMMERCE_DATA_SET_KEY_CATALOG_CHANNELS %>"
 			id="<%= CommerceCatalogDataSetConstants.COMMERCE_DATA_SET_KEY_CATALOG_CHANNELS %>"
 			itemsPerPage="<%= 10 %>"

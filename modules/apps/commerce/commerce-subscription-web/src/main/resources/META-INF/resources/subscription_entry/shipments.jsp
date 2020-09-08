@@ -18,10 +18,6 @@
 
 <%
 CommerceSubscriptionEntryDisplayContext commerceSubscriptionEntryDisplayContext = (CommerceSubscriptionEntryDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"commerceSubscriptionEntryId", String.valueOf(commerceSubscriptionEntryDisplayContext.getCommerceSubscriptionEntryId())
-).build();
 %>
 
 <div class="row">
@@ -31,7 +27,11 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 			title='<%= LanguageUtil.get(request, "items") %>'
 		>
 			<clay:data-set-display
-				contextParams="<%= contextParams %>"
+				contextParams='<%=
+					HashMapBuilder.<String, String>put(
+						"commerceSubscriptionEntryId", String.valueOf(commerceSubscriptionEntryDisplayContext.getCommerceSubscriptionEntryId())
+					).build()
+				%>'
 				dataProviderKey="<%= CommerceSubscriptionDataSetConstants.COMMERCE_DATA_SET_KEY_SUBSCRIPTION_SHIPMENTS %>"
 				id="<%= CommerceSubscriptionDataSetConstants.COMMERCE_DATA_SET_KEY_SUBSCRIPTION_SHIPMENTS %>"
 				itemsPerPage="<%= 10 %>"

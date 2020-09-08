@@ -36,20 +36,21 @@ assetTagsSelectorDisplayContext = new AssetTagsSelectorDisplayContext(request, r
 			rowIdProperty="friendlyURL"
 			rowVar="row"
 		>
-
-			<%
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"entityid", tag.getTagId()
-			).put(
-				"entityname", tag.getName()
-			).build();
-			%>
-
 			<liferay-ui:search-container-column-text
 				name="name"
 				truncate="<%= true %>"
 			>
-				<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+				<aui:a
+					cssClass="selector-button"
+					data='<%=
+						HashMapBuilder.<String, Object>put(
+							"entityid", tag.getTagId()
+						).put(
+							"entityname", tag.getName()
+						).build()
+					%>'
+					href="javascript:;"
+				>
 					<%= HtmlUtil.escape(tag.getName()) %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>

@@ -47,17 +47,14 @@ String previewURL = DLURLHelperUtil.getPreviewURL(fileVersion.getFileEntry(), fi
 		</div>
 	</c:when>
 	<c:otherwise>
-
-		<%
-		Map<String, Object> props = HashMapBuilder.<String, Object>put(
-			"imageURL", previewURL
-		).build();
-		%>
-
 		<div id="<portlet:namespace /><%= randomNamespace %>previewImage">
 			<react:component
 				module="preview/js/ImagePreviewer.es"
-				props="<%= props %>"
+				props='<%=
+					HashMapBuilder.<String, Object>put(
+						"imageURL", previewURL
+					).build()
+				%>'
 			/>
 		</div>
 	</c:otherwise>

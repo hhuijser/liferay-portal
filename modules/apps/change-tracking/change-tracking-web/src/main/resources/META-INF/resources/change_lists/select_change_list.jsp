@@ -43,9 +43,6 @@ searchContainer.setId("selectChangeList");
 
 				<%
 				for (CTCollection ctCollection : searchContainer.getResults()) {
-					Map<String, Object> data = HashMapBuilder.<String, Object>put(
-						"ctcollectionid", ctCollection.getCtCollectionId()
-					).build();
 				%>
 
 					<tr>
@@ -68,7 +65,15 @@ searchContainer.setId("selectChangeList");
 									</div>
 								</c:when>
 								<c:otherwise>
-									<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+									<aui:a
+										cssClass="selector-button"
+										data='<%=
+											HashMapBuilder.<String, Object>put(
+												"ctcollectionid", ctCollection.getCtCollectionId()
+											).build()
+										%>'
+										href="javascript:;"
+									>
 										<div class="change-list-name">
 											<%= HtmlUtil.escape(ctCollection.getName()) %>
 										</div>

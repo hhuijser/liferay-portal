@@ -28,8 +28,6 @@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 
-<%@ page import="java.util.Map" %>
-
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />

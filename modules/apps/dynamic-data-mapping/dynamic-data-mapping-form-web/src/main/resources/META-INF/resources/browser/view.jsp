@@ -48,21 +48,22 @@
 				keyProperty="formInstanceId"
 				modelVar="formInstance"
 			>
-
-				<%
-				Map<String, Object> data = HashMapBuilder.<String, Object>put(
-					"forminstanceid", formInstance.getFormInstanceId()
-				).put(
-					"forminstancename", formInstance.getName(locale)
-				).build();
-				%>
-
 				<liferay-ui:search-container-column-text
 					cssClass="content-column title-column"
 					name="name"
 					truncate="<%= true %>"
 				>
-					<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+					<aui:a
+						cssClass="selector-button"
+						data='<%=
+							HashMapBuilder.<String, Object>put(
+								"forminstanceid", formInstance.getFormInstanceId()
+							).put(
+								"forminstancename", formInstance.getName(locale)
+							).build()
+						%>'
+						href="javascript:;"
+					>
 						<%= HtmlUtil.escape(formInstance.getName(locale)) %>
 					</aui:a>
 				</liferay-ui:search-container-column-text>

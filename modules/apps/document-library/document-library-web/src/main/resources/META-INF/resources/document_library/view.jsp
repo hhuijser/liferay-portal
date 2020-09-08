@@ -72,20 +72,20 @@ String navigation = ParamUtil.getString(request, "navigation");
 
 		<%
 		BulkSelectionRunner bulkSelectionRunner = BulkSelectionRunnerUtil.getBulkSelectionRunner();
-
-		Map<String, Object> context = HashMapBuilder.<String, Object>put(
-			"bulkComponentId", liferayPortletResponse.getNamespace() + "BulkStatus"
-		).put(
-			"bulkInProgress", bulkSelectionRunner.isBusy(user)
-		).put(
-			"pathModule", PortalUtil.getPathModule()
-		).build();
 		%>
 
 		<div>
 			<react:component
 				module="document_library/js/bulk/BulkStatus.es"
-				props="<%= context %>"
+				props='<%=
+					HashMapBuilder.<String, Object>put(
+						"bulkComponentId", liferayPortletResponse.getNamespace() + "BulkStatus"
+					).put(
+						"bulkInProgress", bulkSelectionRunner.isBusy(user)
+					).put(
+						"pathModule", PortalUtil.getPathModule()
+					).build()
+				%>'
 			/>
 		</div>
 
@@ -327,18 +327,18 @@ String navigation = ParamUtil.getString(request, "navigation");
 		).put(
 			"repositoryId", String.valueOf(repositoryId)
 		).build();
-
-		Map<String, Object> editTagsData = HashMapBuilder.<String, Object>put(
-			"context", Collections.singletonMap("namespace", liferayPortletResponse.getNamespace())
-		).put(
-			"props", editTagsProps
-		).build();
 		%>
 
 		<div>
 			<react:component
 				module="document_library/js/categorization/tags/EditTags.es"
-				props="<%= editTagsData %>"
+				props='<%=
+					HashMapBuilder.<String, Object>put(
+						"context", Collections.singletonMap("namespace", liferayPortletResponse.getNamespace())
+					).put(
+						"props", editTagsProps
+					).build()
+				%>'
 			/>
 		</div>
 
@@ -352,18 +352,18 @@ String navigation = ParamUtil.getString(request, "navigation");
 		).put(
 			"selectCategoriesUrl", selectCategoriesURL.toString()
 		).build();
-
-		Map<String, Object> editCategoriesData = HashMapBuilder.<String, Object>put(
-			"context", Collections.singletonMap("namespace", liferayPortletResponse.getNamespace())
-		).put(
-			"props", editCategoriesProps
-		).build();
 		%>
 
 		<div>
 			<react:component
 				module="document_library/js/categorization/categories/EditCategories.es"
-				props="<%= editCategoriesData %>"
+				props='<%=
+					HashMapBuilder.<String, Object>put(
+						"context", Collections.singletonMap("namespace", liferayPortletResponse.getNamespace())
+					).put(
+						"props", editCategoriesProps
+					).build()
+				%>'
 			/>
 		</div>
 

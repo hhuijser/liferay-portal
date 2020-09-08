@@ -46,17 +46,18 @@ DLViewMoreMenuItemsDisplayContext dlViewMoreMenuItemsDisplayContext = new DLView
 			keyProperty="fileEntryTypeId"
 			modelVar="fileEntryType"
 		>
-
-			<%
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"fileEntryTypeId", String.valueOf(fileEntryType.getFileEntryTypeId())
-			).build();
-			%>
-
 			<liferay-ui:search-container-column-text
 				name="name"
 			>
-				<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+				<aui:a
+					cssClass="selector-button"
+					data='<%=
+						HashMapBuilder.<String, Object>put(
+							"fileEntryTypeId", String.valueOf(fileEntryType.getFileEntryTypeId())
+						).build()
+					%>'
+					href="javascript:;"
+				>
 					<%= HtmlUtil.escape(fileEntryType.getName(locale)) %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>

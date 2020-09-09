@@ -433,8 +433,8 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
-		searchContext.setKeywords(keywords);
 		searchContext.setGroupIds(new long[] {groupId});
+		searchContext.setKeywords(keywords);
 
 		if (sort != null) {
 			searchContext.setSorts(sort);

@@ -125,9 +125,9 @@ public class SegmentsEntryReindexMessageListener extends BaseMessageListener {
 
 		SearchContext searchContext = new SearchContext();
 
-		searchContext.setCompanyId(companyId);
 		searchContext.setAttribute(
 			"segmentsEntryIds", new long[] {segmentsEntryId});
+		searchContext.setCompanyId(companyId);
 
 		Hits hits = indexer.search(searchContext);
 

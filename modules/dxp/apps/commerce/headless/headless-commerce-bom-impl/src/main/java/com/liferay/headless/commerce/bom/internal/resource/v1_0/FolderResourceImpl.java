@@ -118,8 +118,8 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 			).build());
 
 		searchContext.setCompanyId(companyId);
-		searchContext.setStart(start);
 		searchContext.setEnd(end);
+		searchContext.setStart(start);
 
 		searchContext.setKeywords(keywords);
 

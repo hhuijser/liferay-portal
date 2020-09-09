@@ -232,9 +232,9 @@ public class CPDisplayLayoutLocalServiceImpl
 		searchContext.setAttributes(attributes);
 
 		searchContext.setCompanyId(companyId);
+		searchContext.setEnd(end);
 		searchContext.setGroupIds(new long[] {groupId});
 		searchContext.setStart(start);
-		searchContext.setEnd(end);
 
 		if (Validator.isNotNull(keywords)) {
 			searchContext.setKeywords(keywords);

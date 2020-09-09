@@ -527,8 +527,8 @@ public class CommerceBOMAdminDisplayContext {
 			).build());
 
 		searchContext.setCompanyId(companyId);
-		searchContext.setStart(start);
 		searchContext.setEnd(end);
+		searchContext.setStart(start);
 
 		searchContext.setKeywords(keywords);
 

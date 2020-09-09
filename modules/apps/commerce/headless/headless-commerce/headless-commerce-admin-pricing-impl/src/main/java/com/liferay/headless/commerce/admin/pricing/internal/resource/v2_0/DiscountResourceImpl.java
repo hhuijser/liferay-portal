@@ -160,11 +160,11 @@ public class DiscountResourceImpl extends BaseDiscountResourceImpl {
 				public void accept(Object object) throws Exception {
 					SearchContext searchContext = (SearchContext)object;
 
-					searchContext.setCompanyId(contextCompany.getCompanyId());
-					searchContext.setAttribute(
-						"status", WorkflowConstants.STATUS_ANY);
 					searchContext.setAttribute(
 						"skipCommerceAccountGroupValidation", Boolean.TRUE);
+					searchContext.setAttribute(
+						"status", WorkflowConstants.STATUS_ANY);
+					searchContext.setCompanyId(contextCompany.getCompanyId());
 				}
 
 			},

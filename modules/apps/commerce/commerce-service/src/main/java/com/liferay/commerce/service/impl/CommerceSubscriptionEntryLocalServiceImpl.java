@@ -707,8 +707,8 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 		searchContext.setAttributes(attributes);
 
 		searchContext.setCompanyId(companyId);
-		searchContext.setStart(start);
 		searchContext.setEnd(end);
+		searchContext.setStart(start);
 
 		if ((groupIds != null) && (groupIds.length > 0)) {
 			searchContext.setGroupIds(groupIds);

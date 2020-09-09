@@ -400,8 +400,8 @@ public class CommerceShipmentDisplayContext
 			Field.STATUS, WorkflowConstants.STATUS_APPROVED);
 
 		searchContext.setCompanyId(cpRequestHelper.getCompanyId());
-		searchContext.setStart(QueryUtil.ALL_POS);
 		searchContext.setEnd(QueryUtil.ALL_POS);
+		searchContext.setStart(QueryUtil.ALL_POS);
 
 		long[] commerceChannelGroupIds = _getCommerceChannelGroupIds();
 

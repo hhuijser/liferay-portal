@@ -280,9 +280,9 @@ public class IndexWriterHelperImpl implements IndexWriterHelper {
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setCompanyId(companyId);
-		searchContext.setSearchEngineId(searchEngineId);
 		searchContext.setKeywords(querySuggestion);
 		searchContext.setLocale(locale);
+		searchContext.setSearchEngineId(searchEngineId);
 
 		indexWriter.indexKeyword(searchContext, weight, keywordType);
 	}
@@ -338,8 +338,8 @@ public class IndexWriterHelperImpl implements IndexWriterHelper {
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setCompanyId(companyId);
-		searchContext.setSearchEngineId(searchEngineId);
 		searchContext.setLocale(locale);
+		searchContext.setSearchEngineId(searchEngineId);
 
 		indexWriter.indexQuerySuggestionDictionary(searchContext);
 	}
@@ -393,8 +393,8 @@ public class IndexWriterHelperImpl implements IndexWriterHelper {
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setCompanyId(companyId);
-		searchContext.setSearchEngineId(searchEngineId);
 		searchContext.setLocale(locale);
+		searchContext.setSearchEngineId(searchEngineId);
 
 		indexWriter.indexSpellCheckerDictionary(searchContext);
 	}

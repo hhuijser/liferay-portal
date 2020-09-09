@@ -172,9 +172,9 @@ public class PriceListResourceImpl extends BasePriceListResourceImpl {
 				public void accept(Object object) throws Exception {
 					SearchContext searchContext = (SearchContext)object;
 
-					searchContext.setCompanyId(contextCompany.getCompanyId());
 					searchContext.setAttribute(
 						"status", WorkflowConstants.STATUS_ANY);
+					searchContext.setCompanyId(contextCompany.getCompanyId());
 				}
 
 			},

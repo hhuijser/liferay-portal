@@ -2004,8 +2004,8 @@ public class CPDefinitionLocalServiceImpl
 		searchContext.setCompanyId(companyId);
 		searchContext.setGroupIds(groupIds);
 
-		searchContext.setStart(start);
 		searchContext.setEnd(end);
+		searchContext.setStart(start);
 
 		if (Validator.isNotNull(keywords)) {
 			searchContext.setKeywords(keywords);

@@ -49,7 +49,7 @@ Group group = layoutSetPrototype.getGroup();
 		}
 		%>
 
-		<c:if test="<%= Validator.isNotNull(siteAdministrationURL) %>">
+		<c:if test="<%= siteAdministrationURL != null %>">
 			<liferay-ui:icon
 				message="manage"
 				method="get"

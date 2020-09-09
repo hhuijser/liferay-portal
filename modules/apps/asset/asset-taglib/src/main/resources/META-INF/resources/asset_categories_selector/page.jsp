@@ -61,7 +61,7 @@ List<Map<String, Object>> vocabularies = (List<Map<String, Object>>)data.get("vo
 									List<Map<String, Object>> selectedItems = (List<Map<String, Object>>)vocabulary.get("selectedItems");
 									%>
 
-									<c:if test="<%= Validator.isNotNull(selectedItems) %>">
+									<c:if test="<%= selectedItems != null %>">
 
 										<%
 										for (Map<String, Object> selectedItem : selectedItems) {

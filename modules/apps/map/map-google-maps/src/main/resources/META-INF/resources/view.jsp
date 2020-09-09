@@ -82,7 +82,7 @@ name = namespace + name;
 
 		geolocation: <%= geolocation %>,
 
-		<c:if test="<%= Validator.isNotNull(latitude) && Validator.isNotNull(longitude) %>">
+		<c:if test="<%= (latitude != 0) && (longitude != 0) %>">
 			position: {
 				location: {
 					lat: <%= latitude %>,

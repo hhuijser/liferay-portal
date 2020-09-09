@@ -86,7 +86,7 @@ PluginPackage selPluginPackage = selTheme.getPluginPackage();
 		List<ColorScheme> colorSchemes = selTheme.getColorSchemes();
 		%>
 
-		<c:if test="<%= !colorSchemes.isEmpty() && Validator.isNotNull(selColorScheme) %>">
+		<c:if test="<%= !colorSchemes.isEmpty() && (selColorScheme != null) %>">
 			<h2 class="h4"><liferay-ui:message key="color-scheme" /></h2>
 
 			<clay:row>

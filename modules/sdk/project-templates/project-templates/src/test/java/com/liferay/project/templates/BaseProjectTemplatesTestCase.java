@@ -889,7 +889,7 @@ public interface BaseProjectTemplatesTestCase {
 
 		GradleRunner gradleRunner = GradleRunner.create();
 
-		List<String> arguments = new ArrayList<>(taskPaths.length + 5);
+		List<String> arguments = new ArrayList<>(taskPaths.length + 6);
 
 		String httpProxyHost =
 			ProjectTemplatesTest.mavenExecutor.getHttpProxyHost();
@@ -900,6 +900,8 @@ public interface BaseProjectTemplatesTestCase {
 			arguments.add("-Dhttp.proxyHost=" + httpProxyHost);
 			arguments.add("-Dhttp.proxyPort=" + httpProxyPort);
 		}
+
+		arguments.add("clean");
 
 		if (debug) {
 			arguments.add("--debug");

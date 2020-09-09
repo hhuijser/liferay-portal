@@ -46,7 +46,6 @@ if (modifiedFacetDisplayContext.isRenderNothing()) {
 ModifiedFacetTermDisplayContext customRangeModifiedFacetTermDisplayContext = modifiedFacetDisplayContext.getCustomRangeModifiedFacetTermDisplayContext();
 ModifiedFacetCalendarDisplayContext modifiedFacetCalendarDisplayContext = modifiedFacetDisplayContext.getModifiedFacetCalendarDisplayContext();
 ModifiedFacetPortletInstanceConfiguration modifiedFacetPortletInstanceConfiguration = modifiedFacetDisplayContext.getModifiedFacetPortletInstanceConfiguration();
-List<ModifiedFacetTermDisplayContext> modifiedFacetTermDisplayContexts = modifiedFacetDisplayContext.getModifiedFacetTermDisplayContexts();
 %>
 
 <c:if test="<%= !modifiedFacetDisplayContext.isRenderNothing() %>">
@@ -70,7 +69,7 @@ List<ModifiedFacetTermDisplayContext> modifiedFacetTermDisplayContexts = modifie
 			%>'
 			displayStyle="<%= modifiedFacetPortletInstanceConfiguration.displayStyle() %>"
 			displayStyleGroupId="<%= modifiedFacetDisplayContext.getDisplayStyleGroupId() %>"
-			entries="<%= modifiedFacetTermDisplayContexts %>"
+			entries="<%= modifiedFacetDisplayContext.getModifiedFacetTermDisplayContexts() %>"
 		>
 			<liferay-ui:panel-container
 				extended="<%= true %>"

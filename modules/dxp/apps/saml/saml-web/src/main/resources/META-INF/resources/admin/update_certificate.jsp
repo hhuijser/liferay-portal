@@ -80,15 +80,8 @@ X509Certificate x509Certificate = (X509Certificate)request.getAttribute(SamlWebK
 		<c:when test="<%= x509Certificate == null %>">
 
 			<%
-			String certificateCommonName = ParamUtil.getString(request, "certificateCommonName");
-			String certificateCountry = ParamUtil.getString(request, "certificateCountry");
 			String certificateKeyAlgorithm = ParamUtil.getString(request, "certificateKeyAlgorithm", "RSA");
 			String certificateKeyLength = ParamUtil.getString(request, "certificateKeyLength", "2048");
-			String certificateLocality = ParamUtil.getString(request, "certificateLocality");
-			String certificateOrganization = ParamUtil.getString(request, "certificateOrganization");
-			String certificateOrganizationUnit = ParamUtil.getString(request, "certificateOrganizationUnit");
-			String certificateState = ParamUtil.getString(request, "certificateState");
-			String certificateValidityDays = ParamUtil.getString(request, "certificateValidityDays", "356");
 			%>
 
 			<div class="lfr-form-content" id="<portlet:namespace />certificateForm">
@@ -101,19 +94,19 @@ X509Certificate x509Certificate = (X509Certificate)request.getAttribute(SamlWebK
 
 				<c:choose>
 					<c:when test='<%= cmd.equals("replace") %>'>
-						<aui:input label="common-name" name="certificateCommonName" required="<%= true %>" value="<%= certificateCommonName %>" />
+						<aui:input label="common-name" name="certificateCommonName" required="<%= true %>" value='<%= ParamUtil.getString(request, "certificateCommonName") %>' />
 
-						<aui:input label="organization" name="certificateOrganization" value="<%= certificateOrganization %>" />
+						<aui:input label="organization" name="certificateOrganization" value='<%= ParamUtil.getString(request, "certificateOrganization") %>' />
 
-						<aui:input label="organization-unit" name="certificateOrganizationUnit" value="<%= certificateOrganizationUnit %>" />
+						<aui:input label="organization-unit" name="certificateOrganizationUnit" value='<%= ParamUtil.getString(request, "certificateOrganizationUnit") %>' />
 
-						<aui:input label="locality" name="certificateLocality" value="<%= certificateLocality %>" />
+						<aui:input label="locality" name="certificateLocality" value='<%= ParamUtil.getString(request, "certificateLocality") %>' />
 
-						<aui:input label="state" name="certificateState" value="<%= certificateState %>" />
+						<aui:input label="state" name="certificateState" value='<%= ParamUtil.getString(request, "certificateState") %>' />
 
-						<aui:input label="country" name="certificateCountry" value="<%= certificateCountry %>" />
+						<aui:input label="country" name="certificateCountry" value='<%= ParamUtil.getString(request, "certificateCountry") %>' />
 
-						<aui:input label="validity-days" name="certificateValidityDays" value="<%= certificateValidityDays %>" />
+						<aui:input label="validity-days" name="certificateValidityDays" value='<%= ParamUtil.getString(request, "certificateValidityDays", "356") %>' />
 
 						<c:choose>
 							<c:when test="<%= certificateUsage == LocalEntityManager.CertificateUsage.SIGNING %>">

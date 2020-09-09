@@ -24,7 +24,6 @@ String redirect = String.valueOf(searchContainer.getIteratorURL());
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 ExpandoColumn expandoColumn = (ExpandoColumn)row.getParameter("expandoColumn");
-String modelResource = (String)row.getParameter("modelResource");
 %>
 
 <liferay-ui:icon-menu
@@ -39,7 +38,7 @@ String modelResource = (String)row.getParameter("modelResource");
 			<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="columnId" value="<%= String.valueOf(expandoColumn.getColumnId()) %>" />
-			<portlet:param name="modelResource" value="<%= modelResource %>" />
+			<portlet:param name="modelResource" value='<%= (String)row.getParameter("modelResource") %>' />
 		</portlet:renderURL>
 
 		<liferay-ui:icon

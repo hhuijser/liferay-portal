@@ -49,8 +49,6 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 ).put(
 	"scopeSearchFacetDisplayContext", scopeSearchFacetDisplayContext
 ).build();
-
-List<ScopeSearchFacetTermDisplayContext> scopeSearchFacetTermDisplayContexts = scopeSearchFacetDisplayContext.getTermDisplayContexts();
 %>
 
 <c:choose>
@@ -68,7 +66,7 @@ List<ScopeSearchFacetTermDisplayContext> scopeSearchFacetTermDisplayContexts = s
 				contextObjects="<%= contextObjects %>"
 				displayStyle="<%= siteFacetPortletInstanceConfiguration.displayStyle() %>"
 				displayStyleGroupId="<%= scopeSearchFacetDisplayContext.getDisplayStyleGroupId() %>"
-				entries="<%= scopeSearchFacetTermDisplayContexts %>"
+				entries="<%= scopeSearchFacetDisplayContext.getTermDisplayContexts() %>"
 			>
 				<liferay-ui:panel-container
 					extended="<%= true %>"

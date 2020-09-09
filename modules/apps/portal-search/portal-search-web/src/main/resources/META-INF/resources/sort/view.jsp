@@ -46,8 +46,6 @@ SortPortletInstanceConfiguration sortPortletInstanceConfiguration = sortDisplayC
 Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 	"sortDisplayContext", sortDisplayContext
 ).build();
-
-List<SortTermDisplayContext> sortTermDisplayContexts = sortDisplayContext.getSortTermDisplayContexts();
 %>
 
 <c:choose>
@@ -67,7 +65,7 @@ List<SortTermDisplayContext> sortTermDisplayContexts = sortDisplayContext.getSor
 				contextObjects="<%= contextObjects %>"
 				displayStyle="<%= sortPortletInstanceConfiguration.displayStyle() %>"
 				displayStyleGroupId="<%= sortDisplayContext.getDisplayStyleGroupId() %>"
-				entries="<%= sortTermDisplayContexts %>"
+				entries="<%= sortDisplayContext.getSortTermDisplayContexts() %>"
 			>
 				<aui:fieldset>
 					<aui:select class="sort-term" label="sort-by" name="sortSelection">

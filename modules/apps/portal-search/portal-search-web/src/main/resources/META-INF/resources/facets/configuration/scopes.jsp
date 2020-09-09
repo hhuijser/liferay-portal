@@ -21,12 +21,11 @@ SearchFacet searchFacet = (SearchFacet)request.getAttribute("facet_configuration
 
 JSONObject dataJSONObject = searchFacet.getData();
 
-int frequencyThreshold = dataJSONObject.getInt("frequencyThreshold");
 int maxTerms = dataJSONObject.getInt("maxTerms", 10);
 boolean showAssetCount = dataJSONObject.getBoolean("showAssetCount", true);
 %>
 
-<aui:input label="frequency-threshold" name='<%= searchFacet.getClassName() + "frequencyThreshold" %>' value="<%= frequencyThreshold %>" />
+<aui:input label="frequency-threshold" name='<%= searchFacet.getClassName() + "frequencyThreshold" %>' value='<%= dataJSONObject.getInt("frequencyThreshold") %>' />
 
 <aui:input label="max-terms" name='<%= searchFacet.getClassName() + "maxTerms" %>' value="<%= maxTerms %>" />
 

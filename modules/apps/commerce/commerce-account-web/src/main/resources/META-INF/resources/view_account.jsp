@@ -96,7 +96,7 @@ portletURL.setParameter("mvcRenderCommandName", "viewCommerceAccount");
 			String taxId = commerceAccount.getTaxId();
 			%>
 
-			<c:if test='<%= taxId != "" %>'>
+			<c:if test='<%= !taxId.equals("") %>'>
 				<div class="account-management__info-wrapper">
 					<span class="account-management__label">
 						<liferay-ui:message key="vat-number" />

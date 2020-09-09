@@ -24,7 +24,6 @@ String showMessage = (String)request.getAttribute("liferay-ui:toggle:showMessage
 String hideMessage = (String)request.getAttribute("liferay-ui:toggle:hideMessage");
 String stateVar = (String)request.getAttribute("liferay-ui:toggle:stateVar");
 String defaultStateValue = (String)request.getAttribute("liferay-ui:toggle:defaultStateValue");
-String defaultImage = (String)request.getAttribute("liferay-ui:toggle:defaultImage");
 String defaultMessage = (String)request.getAttribute("liferay-ui:toggle:defaultMessage");
 %>
 
@@ -33,7 +32,7 @@ String defaultMessage = (String)request.getAttribute("liferay-ui:toggle:defaultM
 		<a href="javascript:<%= stateVar %>Toggle();" id="<%= id %>_message"><%= defaultMessage %></a>
 	</c:when>
 	<c:otherwise>
-		<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="toggle" />" id="<%= id %>_image" onclick="<%= stateVar %>Toggle();" src="<%= defaultImage %>" style="margin: 0px;" />
+		<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="toggle" />" id="<%= id %>_image" onclick="<%= stateVar %>Toggle();" src="<%= (String)request.getAttribute("liferay-ui:toggle:defaultImage") %>" style="margin: 0px;" />
 	</c:otherwise>
 </c:choose>
 

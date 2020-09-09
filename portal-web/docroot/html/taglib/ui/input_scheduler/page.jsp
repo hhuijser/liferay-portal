@@ -18,20 +18,6 @@
 
 <%
 Calendar cal = CalendarFactoryUtil.getCalendar(timeZone, locale);
-
-int endAmPm = ParamUtil.get(request, "schedulerEndDateAmPm", cal.get(Calendar.AM_PM));
-int endDay = ParamUtil.get(request, "schedulerEndDateDay", cal.get(Calendar.DATE));
-int endHour = ParamUtil.get(request, "schedulerEndDateHour", cal.get(Calendar.HOUR));
-int endMinute = ParamUtil.get(request, "schedulerEndDateMinute", cal.get(Calendar.MINUTE));
-int endMonth = ParamUtil.get(request, "schedulerEndDateMonth", cal.get(Calendar.MONTH));
-int endYear = ParamUtil.get(request, "schedulerEndDateYear", cal.get(Calendar.YEAR));
-
-int startAmPm = ParamUtil.get(request, "schedulerStartDateAmPm", cal.get(Calendar.AM_PM));
-int startDay = ParamUtil.get(request, "schedulerStartDateDay", cal.get(Calendar.DATE));
-int startHour = ParamUtil.get(request, "schedulerStartDateHour", cal.get(Calendar.HOUR));
-int startMinute = ParamUtil.get(request, "schedulerStartDateMinute", cal.get(Calendar.MINUTE));
-int startMonth = ParamUtil.get(request, "schedulerStartDateMonth", cal.get(Calendar.MONTH));
-int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calendar.YEAR));
 %>
 
 <aui:fieldset>
@@ -40,14 +26,14 @@ int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calenda
 			<liferay-ui:input-date
 				cssClass="form-group form-group-inline"
 				dayParam="schedulerStartDateDay"
-				dayValue="<%= startDay %>"
+				dayValue='<%= ParamUtil.get(request, "schedulerStartDateDay", cal.get(Calendar.DATE)) %>'
 				disabled="<%= false %>"
 				firstDayOfWeek="<%= cal.getFirstDayOfWeek() - 1 %>"
 				monthParam="schedulerStartDateMonth"
-				monthValue="<%= startMonth %>"
+				monthValue='<%= ParamUtil.get(request, "schedulerStartDateMonth", cal.get(Calendar.MONTH)) %>'
 				name="schedulerStartDate"
 				yearParam="schedulerStartDateYear"
-				yearValue="<%= startYear %>"
+				yearValue='<%= ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calendar.YEAR)) %>'
 			/>
 
 			<liferay-ui:icon
@@ -57,13 +43,13 @@ int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calenda
 
 			<liferay-ui:input-time
 				amPmParam="schedulerStartDateAmPm"
-				amPmValue="<%= startAmPm %>"
+				amPmValue='<%= ParamUtil.get(request, "schedulerStartDateAmPm", cal.get(Calendar.AM_PM)) %>'
 				cssClass="form-group form-group-inline"
 				dateParam="schedulerStartTimeDate"
 				hourParam="schedulerStartDateHour"
-				hourValue="<%= startHour %>"
+				hourValue='<%= ParamUtil.get(request, "schedulerStartDateHour", cal.get(Calendar.HOUR)) %>'
 				minuteParam="schedulerStartDateMinute"
-				minuteValue="<%= startMinute %>"
+				minuteValue='<%= ParamUtil.get(request, "schedulerStartDateMinute", cal.get(Calendar.MINUTE)) %>'
 				name="schedulerStartTime"
 			/>
 		</div>
@@ -77,14 +63,14 @@ int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calenda
 			<liferay-ui:input-date
 				cssClass="form-group form-group-inline"
 				dayParam="schedulerEndDateDay"
-				dayValue="<%= endDay %>"
+				dayValue='<%= ParamUtil.get(request, "schedulerEndDateDay", cal.get(Calendar.DATE)) %>'
 				disabled="<%= false %>"
 				firstDayOfWeek="<%= cal.getFirstDayOfWeek() - 1 %>"
 				monthParam="schedulerEndDateMonth"
-				monthValue="<%= endMonth %>"
+				monthValue='<%= ParamUtil.get(request, "schedulerEndDateMonth", cal.get(Calendar.MONTH)) %>'
 				name="schedulerEndDate"
 				yearParam="schedulerEndDateYear"
-				yearValue="<%= endYear %>"
+				yearValue='<%= ParamUtil.get(request, "schedulerEndDateYear", cal.get(Calendar.YEAR)) %>'
 			/>
 
 			<liferay-ui:icon
@@ -94,13 +80,13 @@ int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calenda
 
 			<liferay-ui:input-time
 				amPmParam="schedulerEndDateAmPm"
-				amPmValue="<%= endAmPm %>"
+				amPmValue='<%= ParamUtil.get(request, "schedulerEndDateAmPm", cal.get(Calendar.AM_PM)) %>'
 				cssClass="form-group form-group-inline"
 				dateParam="schedulerEndTimeDate"
 				hourParam="schedulerEndDateHour"
-				hourValue="<%= endHour %>"
+				hourValue='<%= ParamUtil.get(request, "schedulerEndDateHour", cal.get(Calendar.HOUR)) %>'
 				minuteParam="schedulerEndDateMinute"
-				minuteValue="<%= endMinute %>"
+				minuteValue='<%= ParamUtil.get(request, "schedulerEndDateMinute", cal.get(Calendar.MINUTE)) %>'
 				name="schedulerEndTime"
 			/>
 		</div>

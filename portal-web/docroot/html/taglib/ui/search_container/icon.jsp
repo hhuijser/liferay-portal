@@ -17,11 +17,9 @@
 <%@ include file="/html/taglib/ui/search_container/init.jsp" %>
 
 <%
-String href = (String)request.getAttribute("liferay-ui:search-container-column-icon:href");
-String icon = (String)request.getAttribute("liferay-ui:search-container-column-icon:icon");
 boolean toggleRowChecker = GetterUtil.getBoolean(request.getAttribute("liferay-ui:search-container-column-icon:toggleRowChecker"));
 %>
 
 <div class="<%= toggleRowChecker ? "click-selector" : StringPool.BLANK %> sticker sticker-secondary sticker-static">
-	<aui:icon image="<%= icon %>" markupView="lexicon" url="<%= href %>" />
+	<aui:icon image='<%= (String)request.getAttribute("liferay-ui:search-container-column-icon:icon") %>' markupView="lexicon" url='<%= (String)request.getAttribute("liferay-ui:search-container-column-icon:href") %>' />
 </div>

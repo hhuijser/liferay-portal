@@ -31,7 +31,6 @@ if (!uniqueNamespace.endsWith(StringPool.UNDERLINE)) {
 }
 
 String modelName = (String)request.getAttribute("liferay-ui:input-permissions:modelName");
-boolean reverse = GetterUtil.getBoolean(request.getAttribute("liferay-ui:input-permissions:reverse"));
 %>
 
 <c:choose>
@@ -129,7 +128,7 @@ boolean reverse = GetterUtil.getBoolean(request.getAttribute("liferay-ui:input-p
 		</c:if>
 
 		<c:choose>
-			<c:when test="<%= reverse %>">
+			<c:when test='<%= GetterUtil.getBoolean(request.getAttribute("liferay-ui:input-permissions:reverse")) %>'>
 				<%@ include file="/html/taglib/ui/input_permissions/vertical.jspf" %>
 			</c:when>
 			<c:otherwise>

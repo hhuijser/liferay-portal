@@ -21,12 +21,11 @@ String alertMessage = (String)request.getAttribute("liferay-ui:error:alertMessag
 String alertIcon = (String)request.getAttribute("liferay-ui:error:alertIcon");
 String alertStyle = (String)request.getAttribute("liferay-ui:error:alertStyle");
 String alertTitle = (String)request.getAttribute("liferay-ui:error:alertTitle");
-boolean embed = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:error:embed"));
 String rowBreak = (String)request.getAttribute("liferay-ui:error:rowBreak");
 %>
 
 <c:choose>
-	<c:when test="<%= embed %>">
+	<c:when test='<%= GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:error:embed")) %>'>
 		<div class="alert alert-dismissible alert-<%= alertStyle %>" role="alert">
 			<button aria-label="<%= LanguageUtil.get(request, "close") %>" class="close" data-dismiss="liferay-alert" type="button">
 				<aui:icon image="times" markupView="lexicon" />

@@ -47,14 +47,12 @@ Set<String> allPortletModes = selPortlet.getAllPortletModes();
 					for (String curPortletMode : allPortletModes) {
 						String mobileDevicesParam = "portletSetupSupportedClientsMobileDevices_" + curPortletMode;
 						boolean mobileDevicesDefault = selPortlet.hasPortletMode(ContentTypes.XHTML_MP, PortletModeFactory.getPortletMode(curPortletMode));
-
-						boolean mobileDevices = GetterUtil.getBoolean(portletPreferences.getValue(mobileDevicesParam, String.valueOf(mobileDevicesDefault)));
 					%>
 
 						<aui:fieldset collapsed="<%= !first %>" collapsible="<%= true %>" label='<%= LanguageUtil.get(request, "portlet-mode") + ": " + LanguageUtil.get(request, curPortletMode) %>'>
 							<aui:input disabled="<%= true %>" label="regular-browsers" name='<%= "regularBrowsersEnabled" + curPortletMode %>' type="toggle-switch" value="<%= true %>" />
 
-							<aui:input label="mobile-devices" name="<%= mobileDevicesParam %>" type="toggle-switch" value="<%= mobileDevices %>" />
+							<aui:input label="mobile-devices" name="<%= mobileDevicesParam %>" type="toggle-switch" value="<%= GetterUtil.getBoolean(portletPreferences.getValue(mobileDevicesParam, String.valueOf(mobileDevicesDefault))) %>" />
 						</aui:fieldset>
 
 					<%

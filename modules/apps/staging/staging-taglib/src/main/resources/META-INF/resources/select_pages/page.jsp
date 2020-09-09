@@ -81,11 +81,6 @@
 
 			<li class="layout-selector-options">
 				<aui:fieldset helpMessage="child-page-publication-warning" label='<%= "pages-to-" + action %>'>
-
-					<%
-					long selPlid = ParamUtil.getLong(request, "selPlid", LayoutConstants.DEFAULT_PLID);
-					%>
-
 					<c:choose>
 						<c:when test="<%= disableInputs %>">
 							<liferay-util:buffer
@@ -130,7 +125,7 @@
 									rootNodeName="<%= selectPagesGroup.getLayoutRootNodeName(selectPagesPrivateLayout, locale) %>"
 									selectableTree="<%= true %>"
 									selectedLayoutIds="<%= selectedLayoutIds %>"
-									selPlid="<%= selPlid %>"
+									selPlid='<%= ParamUtil.getLong(request, "selPlid", LayoutConstants.DEFAULT_PLID) %>'
 									treeId="<%= treeId %>"
 								/>
 							</div>
@@ -198,14 +193,12 @@
 						}
 
 						PortletDataContext portletDataContext = PortletDataContextFactoryUtil.createPreparePortletDataContext(company.getCompanyId(), selectPagesGroupId, (range != null) ? range : ExportImportDateUtil.RANGE_FROM_LAST_PUBLISH_DATE, dateRange.getStartDate(), dateRange.getEndDate());
-
-						long layoutModelDeletionCount = ExportImportHelperUtil.getLayoutModelDeletionCount(portletDataContext, selectPagesPrivateLayout);
 						%>
 
 						<span>
 							<liferay-staging:checkbox
 								checked="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.DELETE_LAYOUTS, false) %>"
-								deletions="<%= layoutModelDeletionCount %>"
+								deletions="<%= ExportImportHelperUtil.getLayoutModelDeletionCount(portletDataContext, selectPagesPrivateLayout) %>"
 								disabled="<%= disableInputs %>"
 								label="publish-page-deletions"
 								name="<%= PortletDataHandlerKeys.DELETE_LAYOUTS %>"

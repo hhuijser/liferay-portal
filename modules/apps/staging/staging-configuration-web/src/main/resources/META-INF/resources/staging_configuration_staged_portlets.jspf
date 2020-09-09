@@ -26,13 +26,12 @@
 			</div>
 
 			<%
-			boolean branchingPublic = GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("branchingPublic"));
 			boolean branchingPrivate = GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("branchingPrivate"));
 			%>
 
 			<div class="custom-distance">
 				<liferay-staging:checkbox
-					checked="<%= branchingPublic %>"
+					checked='<%= GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("branchingPublic")) %>'
 					label="enabled-on-public-pages"
 					name="branchingPublic"
 				/>

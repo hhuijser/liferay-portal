@@ -16,12 +16,8 @@
 
 <%@ include file="/process_in_progress/init.jsp" %>
 
-<%
-boolean processInProgress = (allProgressBarCountersTotal > 0) && (!Objects.equals(cmd, Constants.PUBLISH_TO_REMOTE) || (percentage < 100));
-%>
-
 <c:if test="<%= backgroundTaskStatus != null %>">
-	<c:if test="<%= processInProgress %>">
+	<c:if test="<%= (allProgressBarCountersTotal > 0) && (!Objects.equals(cmd, Constants.PUBLISH_TO_REMOTE) || (percentage < 100)) %>">
 		<div class="progress-group">
 			<div class="progress">
 				<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="<%= percentage %>" class="progress-bar" role="progressbar" style="width: <%= percentage %>%;"></div>

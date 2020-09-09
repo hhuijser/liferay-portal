@@ -18,9 +18,7 @@
 
 <%
 String confirmMessage = (String)request.getAttribute("liferay-trash:empty:confirmMessage");
-String emptyMessage = (String)request.getAttribute("liferay-trash:empty:emptyMessage");
 String infoMessage = (String)request.getAttribute("liferay-trash:empty:infoMessage");
-String portletURL = (String)request.getAttribute("liferay-trash:empty:portletURL");
 int totalEntries = GetterUtil.getInteger(request.getAttribute("liferay-trash:empty:totalEntries"));
 %>
 
@@ -28,7 +26,7 @@ int totalEntries = GetterUtil.getInteger(request.getAttribute("liferay-trash:emp
 	<liferay-util:buffer
 		var="stripeMessage"
 	>
-		<aui:form action="<%= portletURL %>" cssClass="d-inline" name="emptyForm">
+		<aui:form action='<%= (String)request.getAttribute("liferay-trash:empty:portletURL") %>' cssClass="d-inline" name="emptyForm">
 			<c:if test="<%= Validator.isNotNull(infoMessage) %>">
 				<liferay-ui:message key="<%= infoMessage %>" />
 			</c:if>
@@ -40,7 +38,7 @@ int totalEntries = GetterUtil.getInteger(request.getAttribute("liferay-trash:emp
 				cssClass="trash-empty-button"
 				displayType="link"
 				id='<%= liferayPortletResponse.getNamespace() + "empty" %>'
-				label="<%= emptyMessage %>"
+				label='<%= (String)request.getAttribute("liferay-trash:empty:emptyMessage") %>'
 				small="<%= true %>"
 				type="submit"
 			/>

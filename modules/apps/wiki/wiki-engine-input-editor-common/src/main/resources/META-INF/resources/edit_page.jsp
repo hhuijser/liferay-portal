@@ -21,8 +21,6 @@ BaseWikiEngine baseWikiEngine = BaseWikiEngine.getBaseWikiEngine(request);
 
 WikiNode node = BaseWikiEngine.getWikiNode(request);
 WikiPage wikiPage = BaseWikiEngine.getWikiPage(request);
-
-String content = BeanParamUtil.getString(wikiPage, request, "content");
 %>
 
 <div class="wiki-page-editor">
@@ -30,7 +28,7 @@ String content = BeanParamUtil.getString(wikiPage, request, "content");
 
 	<liferay-editor:editor
 		configParams="<%= configParams %>"
-		contents="<%= content %>"
+		contents='<%= BeanParamUtil.getString(wikiPage, request, "content") %>'
 		editorName="<%= baseWikiEngine.getEditorName() %>"
 		fileBrowserParams="<%= fileBrowserParams %>"
 		name="contentEditor"

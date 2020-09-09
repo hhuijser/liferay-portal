@@ -32,8 +32,6 @@ page import="com.liferay.portal.search.web.internal.modified.facet.display.conte
 page import="com.liferay.portal.search.web.internal.modified.facet.display.context.ModifiedFacetDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.modified.facet.display.context.ModifiedFacetTermDisplayContext" %>
 
-<%@ page import="java.util.List" %>
-
 <portlet:defineObjects />
 
 <%

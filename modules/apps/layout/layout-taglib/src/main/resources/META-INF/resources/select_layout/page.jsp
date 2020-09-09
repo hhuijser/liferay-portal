@@ -16,13 +16,9 @@
 
 <%@ include file="/select_layout/init.jsp" %>
 
-<%
-Map<String, Object> data = (Map<String, Object>)request.getAttribute("liferay-layout:select-layout:data");
-%>
-
 <div>
 	<react:component
 		module="select_layout/js/SelectLayout.es"
-		props="<%= data %>"
+		props='<%= (Map<String, Object>)request.getAttribute("liferay-layout:select-layout:data") %>'
 	/>
 </div>

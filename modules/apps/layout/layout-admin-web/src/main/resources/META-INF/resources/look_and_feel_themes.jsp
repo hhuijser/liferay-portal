@@ -16,12 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-boolean editable = ParamUtil.getBoolean(request, "editable", true);
-%>
-
 <c:choose>
-	<c:when test="<%= editable %>">
+	<c:when test='<%= ParamUtil.getBoolean(request, "editable", true) %>'>
 		<liferay-util:include page="/look_and_feel_themes_edit.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:otherwise>

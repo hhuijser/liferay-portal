@@ -18,9 +18,7 @@
 
 <%
 boolean disabled = GetterUtil.getBoolean(request.getAttribute("liferay-frontend:management-bar-sort:disabled"));
-List<ManagementBarFilterItem> managementBarFilterItems = (List<ManagementBarFilterItem>)request.getAttribute("liferay-frontend:management-bar-sort:managementBarFilterItems");
 String orderByCol = (String)request.getAttribute("liferay-frontend:management-bar-sort:orderByCol");
-String orderByColLabel = (String)request.getAttribute("liferay-frontend:management-bar-sort:orderByColLabel");
 String orderByType = (String)request.getAttribute("liferay-frontend:management-bar-sort:orderByType");
 PortletURL portletURL = (PortletURL)request.getAttribute("liferay-frontend:management-bar-sort:portletURL");
 %>
@@ -28,8 +26,8 @@ PortletURL portletURL = (PortletURL)request.getAttribute("liferay-frontend:manag
 <liferay-frontend:management-bar-filter
 	disabled="<%= disabled %>"
 	label="order-by"
-	managementBarFilterItems="<%= managementBarFilterItems %>"
-	value="<%= orderByColLabel %>"
+	managementBarFilterItems='<%= (List<ManagementBarFilterItem>)request.getAttribute("liferay-frontend:management-bar-sort:managementBarFilterItems") %>'
+	value='<%= (String)request.getAttribute("liferay-frontend:management-bar-sort:orderByColLabel") %>'
 />
 
 <%

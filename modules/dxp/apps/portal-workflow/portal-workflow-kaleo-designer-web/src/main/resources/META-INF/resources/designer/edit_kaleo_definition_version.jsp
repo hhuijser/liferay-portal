@@ -492,7 +492,7 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 											srcNode: '#<portlet:namespace />propertyBuilderContent',
 										}).render();
 
-										<c:if test='<%= kaleoDesignerDisplayContext.isDefinitionInputDisabled((Objects.equals(state, WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_STATE) || Objects.equals(state, "view")), kaleoDefinitionVersion, permissionChecker) %>'>
+										<c:if test='<%= kaleoDesignerDisplayContext.isDefinitionInputDisabled(Objects.equals(state, WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_STATE) || Objects.equals(state, "view"), kaleoDefinitionVersion, permissionChecker) %>'>
 											<portlet:namespace />kaleoDesigner.after('render', function () {
 												var diagramBuilderControlElements = document.querySelectorAll(
 													'#<portlet:namespace />propertyBuilder .diagram-builder-controls'

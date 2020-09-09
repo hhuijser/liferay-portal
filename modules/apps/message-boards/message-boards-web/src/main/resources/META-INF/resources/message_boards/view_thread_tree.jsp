@@ -38,6 +38,8 @@ List<MBMessage> messages = treeWalker.getMessages();
 int[] range = treeWalker.getChildrenRange(message);
 
 MBMessageIterator mbMessageIterator = new MBMessageIterator(messages, range[0], range[1]);
+
+MBMessage rootMessage = treeWalker.getRoot();
 %>
 
 <c:choose>
@@ -63,7 +65,7 @@ MBMessageIterator mbMessageIterator = new MBMessageIterator(messages, range[0], 
 	</c:otherwise>
 </c:choose>
 
-<c:if test="<%= message.getMessageId() != treeWalker.getRoot().getMessageId() %>">
+<c:if test="<%= message.getMessageId() != rootMessage.getMessageId() %>">
 
 	<%
 	depth++;

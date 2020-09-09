@@ -50,6 +50,7 @@ page import="com.liferay.portal.util.PropsValues" %>
 page import="java.util.Enumeration" %><%@
 page import="java.util.List" %><%@
 page import="java.util.Map" %><%@
+page import="java.util.Objects" %><%@
 page import="java.util.Set" %><%@
 page import="java.util.TreeSet" %>
 

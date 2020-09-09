@@ -30,6 +30,7 @@ page import="com.liferay.commerce.constants.CommerceSubscriptionEntryConstants" 
 page import="com.liferay.commerce.exception.CommerceSubscriptionEntryNextIterationDateException" %><%@
 page import="com.liferay.commerce.exception.CommerceSubscriptionEntrySubscriptionStatusException" %><%@
 page import="com.liferay.commerce.exception.NoSuchSubscriptionEntryException" %><%@
+page import="com.liferay.commerce.model.CommerceOrder" %><%@
 page import="com.liferay.commerce.model.CommerceOrderItem" %><%@
 page import="com.liferay.commerce.model.CommerceSubscriptionEntry" %><%@
 page import="com.liferay.commerce.product.model.CPDefinition" %><%@

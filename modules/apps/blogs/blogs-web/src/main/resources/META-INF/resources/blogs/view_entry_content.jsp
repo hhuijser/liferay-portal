@@ -55,7 +55,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 					String subtitle = entry.getSubtitle();
 					%>
 
-					<c:if test="<%= blogsPortletInstanceConfiguration.displayStyle().equals(BlogsUtil.DISPLAY_STYLE_FULL_CONTENT) && Validator.isNotNull(subtitle) %>">
+					<c:if test="<%= Objects.equals(blogsPortletInstanceConfiguration.displayStyle(), BlogsUtil.DISPLAY_STYLE_FULL_CONTENT) && Validator.isNotNull(subtitle) %>">
 						<h4 class="sub-title"><%= HtmlUtil.escape(subtitle) %></h4>
 					</c:if>
 				</clay:content-col>
@@ -167,7 +167,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 				<liferay-util:include page="/blogs/entry_toolbar.jsp" servletContext="<%= application %>" />
 			</div>
 
-			<c:if test="<%= blogsPortletInstanceConfiguration.displayStyle().equals(BlogsUtil.DISPLAY_STYLE_FULL_CONTENT) %>">
+			<c:if test="<%= Objects.equals(blogsPortletInstanceConfiguration.displayStyle(), BlogsUtil.DISPLAY_STYLE_FULL_CONTENT) %>">
 				<liferay-asset:asset-tags-available
 					className="<%= BlogsEntry.class.getName() %>"
 					classPK="<%= entry.getEntryId() %>"

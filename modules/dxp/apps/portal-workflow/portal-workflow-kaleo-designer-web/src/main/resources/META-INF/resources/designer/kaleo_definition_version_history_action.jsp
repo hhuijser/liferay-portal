@@ -40,7 +40,7 @@ KaleoDefinitionVersion kaleoDefinitionVersion = (KaleoDefinitionVersion)row.getO
 	<portlet:param name="draftVersion" value="<%= kaleoDefinitionVersion.getVersion() %>" />
 </liferay-portlet:actionURL>
 
-<c:if test="<%= !kaleoDefinitionVersion.getVersion().equals(currentKaleoDefinitionVersion.getVersion()) %>">
+<c:if test="<%= !Objects.equals(kaleoDefinitionVersion.getVersion(), currentKaleoDefinitionVersion.getVersion()) %>">
 	<liferay-ui:icon-menu
 		direction="left-side"
 		icon="<%= StringPool.BLANK %>"

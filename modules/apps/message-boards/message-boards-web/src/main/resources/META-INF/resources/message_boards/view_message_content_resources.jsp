@@ -60,6 +60,8 @@ if (mbMessageIterator != null) {
 		index = GetterUtil.getInteger(request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_INDEX));
 	}
 }
+
+List<MBMessage> messages = treeWalker.getMessages();
 %>
 
 <script>
@@ -77,7 +79,7 @@ if (mbMessageIterator != null) {
 		rootIndexPage.value = '<%= String.valueOf(rootIndexPage) %>';
 	}
 
-	<c:if test="<%= treeWalker.getMessages().size() <= (index + 1) %>">
+	<c:if test="<%= messages.size() <= (index + 1) %>">
 		var moreMessagesLink = document.getElementById(
 			'<portlet:namespace />moreMessages'
 		);

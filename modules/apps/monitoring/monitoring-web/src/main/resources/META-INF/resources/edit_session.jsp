@@ -207,7 +207,7 @@ renderResponse.setTitle(LanguageUtil.format(request, "session-id-x", sessionId, 
 			</aui:fieldset-group>
 
 			<aui:button-row>
-				<c:if test="<%= userSessionAlive && !session.getId().equals(sessionId) %>">
+				<c:if test="<%= userSessionAlive && !Objects.equals(session.getId(), sessionId) %>">
 					<aui:button type="submit" value="kill-session" />
 				</c:if>
 			</aui:button-row>

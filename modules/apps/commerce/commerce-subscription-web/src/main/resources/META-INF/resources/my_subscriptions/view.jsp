@@ -95,7 +95,11 @@ CommerceSubscriptionContentDisplayContext commerceSubscriptionContentDisplayCont
 							property="nextIterationDate"
 						/>
 
-						<c:if test="<%= commerceSubscriptionContentDisplayContext.isPaymentMethodActive(commerceOrderItem.getCommerceOrder().getCommercePaymentMethodKey()) %>">
+						<%
+						CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
+						%>
+
+						<c:if test="<%= commerceSubscriptionContentDisplayContext.isPaymentMethodActive(commerceOrder.getCommercePaymentMethodKey()) %>">
 							<liferay-ui:search-container-column-text>
 
 								<%

@@ -30,6 +30,10 @@ public class XMLWhitespaceCheck extends WhitespaceCheck {
 
 		content = StringUtil.replace(content, "\"/>\n", "\" />\n");
 
+		content = content.replaceAll("([\n\t]<\\!--) (<)", "$1$2");
+
+		content = StringUtil.replace(content, "> -->\n", ">-->\n");
+
 		return super.doProcess(fileName, absolutePath, content);
 	}
 

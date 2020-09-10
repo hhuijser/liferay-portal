@@ -66,12 +66,17 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+#if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")})
 		<dependency>
-			<groupId>com.liferay.portal</groupId>
-			<artifactId>release.portal.api</artifactId>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.product.navigation.control.menu.api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-#if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")})
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>com.liferay.portal.kernel</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -80,6 +85,12 @@
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.service.component.annotations</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#else
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>release.portal.api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 #end

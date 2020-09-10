@@ -22,9 +22,49 @@
 			<scope>provided</scope>
 		</dependency>
 #end
+#if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")})
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.petra.io</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#if (${liferayVersion.startsWith("7.2")})
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.petra.lang</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#end
+#if (${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")})
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.petra.string</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#end
+#if (${liferayVersion.startsWith("7.2")})
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.portal.aop.api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#end
+#if (${liferayVersion.startsWith("7.0")})
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.portal.spring.extender</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#elseif (${liferayVersion.startsWith("7.1")} || (${dependencyInjector} != "ds"))
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.portal.spring.extender.api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#end
 		<dependency>
 			<groupId>com.liferay.portal</groupId>
-			<artifactId>release.portal.api</artifactId>
+			<artifactId>com.liferay.portal.kernel</artifactId>
 			<scope>provided</scope>
 		</dependency>
 #if (${liferayVersion.startsWith("7.2")})
@@ -34,7 +74,6 @@
 			<scope>provided</scope>
 		</dependency>
 #end
-#if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")})
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.core</artifactId>
@@ -43,6 +82,12 @@
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.service.component.annotations</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#else
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>release.portal.api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 #end

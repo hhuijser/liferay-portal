@@ -43,7 +43,7 @@ public class KnowledgeBaseServiceUpgrade implements UpgradeStepRegistrator {
 	@Override
 	public void register(Registry registry) {
 		try {
-			BaseUpgradeServiceModuleRelease upgradeServiceModuleRelease =
+			BaseUpgradeServiceModuleRelease baseUpgradeServiceModuleRelease =
 				new BaseUpgradeServiceModuleRelease() {
 
 					@Override
@@ -63,7 +63,7 @@ public class KnowledgeBaseServiceUpgrade implements UpgradeStepRegistrator {
 
 				};
 
-			upgradeServiceModuleRelease.upgrade();
+			baseUpgradeServiceModuleRelease.upgrade();
 		}
 		catch (UpgradeException upgradeException) {
 			throw new RuntimeException(upgradeException);

@@ -33,5 +33,7 @@
 		</requiredProperty>
 		<requiredProperty key="liferayVersion">
 		</requiredProperty>
+		<requiredProperty key="product">
+		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

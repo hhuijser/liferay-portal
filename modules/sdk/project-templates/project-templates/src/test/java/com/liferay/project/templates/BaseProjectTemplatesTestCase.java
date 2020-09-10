@@ -1204,8 +1204,19 @@ public interface BaseProjectTemplatesTestCase {
 			testExists(gradleProjectDir, "src/main/" + resourceFileName);
 		}
 
-		testContains(
-			gradleProjectDir, "build.gradle", DEPENDENCY_RELEASE_PORTAL_API);
+		if (liferayVersion.startsWith("7.0") ||
+			liferayVersion.startsWith("7.1") ||
+			liferayVersion.startsWith("7.2")) {
+
+			testContains(
+				gradleProjectDir, "build.gradle",
+				DEPENDENCY_PORTAL_KERNEL);
+		}
+		else {
+			testContains(
+				gradleProjectDir, "build.gradle",
+				DEPENDENCY_RELEASE_PORTAL_API);
+		}
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 

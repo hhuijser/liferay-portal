@@ -99,8 +99,19 @@ public class ProjectTemplatesPanelAppTest
 		testContains(
 			gradleProjectDir, "bnd.bnd",
 			"Export-Package: gradle.test.constants");
-		testContains(
-			gradleProjectDir, "build.gradle", DEPENDENCY_RELEASE_PORTAL_API);
+		if (liferayVersion.startsWith("7.0") ||
+			liferayVersion.startsWith("7.1") ||
+			liferayVersion.startsWith("7.2")) {
+
+			testContains(
+				gradleProjectDir, "build.gradle",
+				DEPENDENCY_PORTAL_KERNEL);
+		}
+		else {
+			testContains(
+				gradleProjectDir, "build.gradle",
+				DEPENDENCY_RELEASE_PORTAL_API);
+		}
 
 		Version version = Version.parseVersion(_liferayVersion);
 

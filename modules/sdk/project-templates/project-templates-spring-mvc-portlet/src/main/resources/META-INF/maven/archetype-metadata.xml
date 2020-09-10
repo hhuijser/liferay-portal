@@ -50,6 +50,9 @@
 		</requiredProperty>
 		<requiredProperty key="liferayVersion">
 		</requiredProperty>
+		<requiredProperty key="product">
+			<defaultValue>portal</defaultValue>
+		</requiredProperty>
 		<requiredProperty key="viewType">
 			<validationRegex>(jsp)|(thymeleaf)</validationRegex>
 		</requiredProperty>

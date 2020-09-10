@@ -40,5 +40,8 @@
 		<requiredProperty key="packageJsonVersion">
 			<defaultValue>1.0.0</defaultValue>
 		</requiredProperty>
+		<requiredProperty key="product">
+			<defaultValue>portal</defaultValue>
+		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

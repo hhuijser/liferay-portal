@@ -34,6 +34,7 @@
 		<requiredProperty key="liferayVersion">
 		</requiredProperty>
 		<requiredProperty key="product">
+			<defaultValue>portal</defaultValue>
 		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

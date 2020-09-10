@@ -889,7 +889,7 @@ public interface BaseProjectTemplatesTestCase {
 
 		GradleRunner gradleRunner = GradleRunner.create();
 
-		List<String> arguments = new ArrayList<>(taskPaths.length + 6);
+		List<String> arguments = new ArrayList<>(taskPaths.length + 4);
 
 		String httpProxyHost =
 			ProjectTemplatesTest.mavenExecutor.getHttpProxyHost();

@@ -666,11 +666,6 @@ public class ProjectTemplateFilesTest {
 			dependencyElements = Collections.emptyList();
 		}
 
-		Assert.assertEquals(
-			"Number of dependencies in " + pomXmlPath + " must match " +
-				buildGradlePath,
-			buildGradleDependencies.size(), dependencyElements.size());
-
 		for (int i = 0; i < buildGradleDependencies.size(); i++) {
 			BuildGradleDependency buildGradleDependency =
 				buildGradleDependencies.get(i);

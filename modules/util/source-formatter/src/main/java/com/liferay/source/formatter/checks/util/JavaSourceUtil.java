@@ -148,7 +148,7 @@ public class JavaSourceUtil extends SourceUtil {
 
 		parameters = StringUtil.trim(parameters);
 
-		if (Validator.isNull(parameters)) {
+		if (parameters.equals(StringPool.BLANK)) {
 			return parametersList;
 		}
 

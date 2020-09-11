@@ -80,18 +80,42 @@ public class ProjectTemplatesWorkspaceTest
 		testNotExists(workspaceProjectDir, "modules/pom.xml");
 		testNotExists(workspaceProjectDir, "themes/pom.xml");
 
-		File moduleProjectDir = buildTemplateWithGradle(
+		File modulesProjectDir = buildTemplateWithGradle(
 			new File(workspaceProjectDir, "modules"), "", "foo-portlet");
 
 		testNotContains(
-			moduleProjectDir, "build.gradle", "buildscript", "repositories");
+			modulesProjectDir, "build.gradle", "buildscript", "repositories");
 
 		if (isBuildProjects()) {
 			executeGradle(
 				workspaceProjectDir, _gradleDistribution,
 				":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
 
-			testExists(moduleProjectDir, "build/libs/foo.portlet-1.0.0.jar");
+			testExists(modulesProjectDir, "build/libs/foo.portlet-1.0.0.jar");
+		}
+	}
+
+	@Test
+	public void testBuildTemplateWorkspaceDXPProductKey() throws Exception {
+		File workspaceProjectDir = buildWorkspace(
+			temporaryFolder, "gradle", "foows", getDefaultLiferayVersion(),
+			mavenExecutor);
+
+		writeGradlePropertiesInWorkspace(
+			workspaceProjectDir, "liferay.workspace.product=dxp-7.3-ep5");
+
+		File modulesProjectDir = buildTemplateWithGradle(
+			new File(workspaceProjectDir, "modules"), "mvc-portlet",
+			"foo-portlet", "--product", "dxp");
+
+		testContains(modulesProjectDir, "build.gradle", "release.dxp.api");
+
+		if (isBuildProjects()) {
+			executeGradle(
+				workspaceProjectDir, _gradleDistribution,
+				":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
+
+			testExists(modulesProjectDir, "build/libs/foo.portlet-1.0.0.jar");
 		}
 	}
 

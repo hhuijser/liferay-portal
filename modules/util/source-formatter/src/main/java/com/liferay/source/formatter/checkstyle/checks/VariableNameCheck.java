@@ -20,12 +20,12 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -462,53 +462,15 @@ public class VariableNameCheck extends BaseCheck {
 			return;
 		}
 
-		trimmedName = StringUtil.toLowerCase(trimmedName);
-		trimmedTypeName = StringUtil.toLowerCase(trimmedTypeName);
+		if (SourceUtil.hasTypo(
+				StringUtil.toLowerCase(trimmedName),
+				StringUtil.toLowerCase(trimmedTypeName))) {
 
-		if ((trimmedName.charAt(0) != trimmedTypeName.charAt(0)) ||
-			(trimmedName.charAt(trimmedName.length() - 1) !=
-				trimmedTypeName.charAt(trimmedTypeName.length() - 1))) {
-
-			return;
+			log(
+				detailAST, _MSG_TYPO_VARIABLE, variableName,
+				_getExpectedVariableName(
+					typeName, leadingUnderline, nameTrailingDigits));
 		}
-
-		int min = Math.min(trimmedName.length(), trimmedTypeName.length());
-		int diff = Math.abs(trimmedName.length() - trimmedTypeName.length());
-
-		if ((min < 5) || (diff > 1)) {
-			return;
-		}
-
-		int i = StringUtil.startsWithWeight(trimmedName, trimmedTypeName);
-
-		trimmedName = trimmedName.substring(i);
-
-		if (trimmedName.startsWith(StringPool.UNDERLINE)) {
-			return;
-		}
-
-		trimmedTypeName = trimmedTypeName.substring(i);
-
-		for (int j = 1;; j++) {
-			if ((j > trimmedName.length()) || (j > trimmedTypeName.length())) {
-				break;
-			}
-
-			if (trimmedName.charAt(trimmedName.length() - j) !=
-					trimmedTypeName.charAt(trimmedTypeName.length() - j)) {
-
-				if (!_containSameCharacters(trimmedName, trimmedTypeName)) {
-					return;
-				}
-
-				break;
-			}
-		}
-
-		log(
-			detailAST, _MSG_TYPO_VARIABLE, variableName,
-			_getExpectedVariableName(
-				typeName, leadingUnderline, nameTrailingDigits));
 	}
 
 	private boolean _classHasVariableWithName(
@@ -552,16 +514,6 @@ public class VariableNameCheck extends BaseCheck {
 		}
 
 		return false;
-	}
-
-	private boolean _containSameCharacters(String s1, String s2) {
-		char[] chars1 = s1.toCharArray();
-		char[] chars2 = s2.toCharArray();
-
-		Arrays.sort(chars1);
-		Arrays.sort(chars2);
-
-		return Arrays.equals(chars1, chars2);
 	}
 
 	private String _getExpectedVariableName(

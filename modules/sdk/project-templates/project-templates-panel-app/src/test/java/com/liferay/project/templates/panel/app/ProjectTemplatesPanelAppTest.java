@@ -100,27 +100,20 @@ public class ProjectTemplatesPanelAppTest
 			gradleProjectDir, "bnd.bnd",
 			"Export-Package: gradle.test.constants");
 
-		if (_liferayVersion.startsWith("7.0") ||
-			_liferayVersion.startsWith("7.1") ||
-			_liferayVersion.startsWith("7.2")) {
-
-			testContains(
-				gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
-		}
-		else {
-			testContains(
-				gradleProjectDir, "build.gradle",
-				DEPENDENCY_RELEASE_PORTAL_API);
-		}
-
 		Version version = Version.parseVersion(_liferayVersion);
 
 		VersionRange versionRange = new VersionRange("[7.0,7.3)");
 
 		if (versionRange.includes(version)) {
 			testContains(
-				gradleProjectDir, "build.gradle", DEPENDENCY_JAVAX_PORTLET_API,
-				DEPENDENCY_JAVAX_SERVLET_API, DEPENDENCY_ORG_OSGI_ANNOTATIONS);
+				gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL,
+				DEPENDENCY_JAVAX_PORTLET_API, DEPENDENCY_JAVAX_SERVLET_API,
+				DEPENDENCY_ORG_OSGI_ANNOTATIONS);
+		}
+		else {
+			testContains(
+				gradleProjectDir, "build.gradle",
+				DEPENDENCY_RELEASE_PORTAL_API);
 		}
 
 		testContains(

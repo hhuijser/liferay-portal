@@ -100,7 +100,8 @@ public class ReadingTimeEntryLocalServiceImpl
 			return readingTimeEntry;
 		}
 
-		return updateReadingTimeEntry(groupedModel);
+		return readingTimeEntryLocalService.updateReadingTimeEntry(
+			groupedModel);
 	}
 
 	@Override

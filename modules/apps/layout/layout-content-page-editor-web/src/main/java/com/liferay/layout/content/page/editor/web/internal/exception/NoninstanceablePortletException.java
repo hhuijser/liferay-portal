@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.content.page.editor.web.internal.excecption;
+package com.liferay.layout.content.page.editor.web.internal.exception;
 
 import com.liferay.portal.kernel.exception.PortalException;
 

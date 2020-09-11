@@ -259,7 +259,7 @@ public class ProjectTemplatesArgs {
 		description = "The option for Liferay Platform product. (portal)|(dxp)",
 		names = "--product"
 	)
-	private String _product;
+	private String _product = "portal";
 
 	private ProjectTemplatesArgsExt _projectTemplatesArgsExt;
 

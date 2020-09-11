@@ -14,7 +14,9 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaTerm;
 
@@ -43,6 +45,36 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
+		String className = javaClass.getName();
+
+		List<String> expectedPackagePathDataEntries = getAttributeValues(
+			_EXPECTED_PACKAGE_PATH_DATA_KEY, absolutePath);
+
+		for (String expectedPackagePathDataEntry :
+				expectedPackagePathDataEntries) {
+
+			String[] array = StringUtil.split(
+				expectedPackagePathDataEntry, CharPool.COLON);
+
+			if (array.length != 2) {
+				continue;
+			}
+
+			String packageName = javaClass.getPackageName();
+
+			String expectedClassNameEnding = array[1];
+
+			if (packageName.endsWith("." + array[0]) &&
+				!className.endsWith(expectedClassNameEnding)) {
+
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Name of class in package '", packageName,
+						"' should end with '", expectedClassNameEnding, "'"));
+			}
+		}
+
 		List<String> implementedClassNames =
 			javaClass.getImplementedClassNames();
 
@@ -57,8 +89,6 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 			if (!implementedClassNames.contains(implementedClassName)) {
 				continue;
 			}
-
-			String className = javaClass.getName();
 
 			if (!className.endsWith(implementedClassName)) {
 				addMessage(
@@ -79,5 +109,8 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 
 	private static final String _ENFORCE_IMPLEMENTED_CLASS_NAMES_KEY =
 		"enforceImplementedClassNames";
+
+	private static final String _EXPECTED_PACKAGE_PATH_DATA_KEY =
+		"expectedPackagePathData";
 
 }

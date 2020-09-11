@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = PortletConfigurationIcon.class
 )
-public class PrintKBTemplatePorletConfigurationIcon
+public class PrintKBTemplatePortletConfigurationIcon
 	extends BasePortletConfigurationIcon {
 
 	@Override

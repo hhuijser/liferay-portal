@@ -94,9 +94,9 @@ public class ProjectTemplatesTemplateContextContributorTest
 
 		testExists(gradleProjectDir, "bnd.bnd");
 
-		if (liferayVersion.startsWith("7.0") ||
-			liferayVersion.startsWith("7.1") ||
-			liferayVersion.startsWith("7.2")) {
+		if (_liferayVersion.startsWith("7.0") ||
+			_liferayVersion.startsWith("7.1") ||
+			_liferayVersion.startsWith("7.2")) {
 
 			testContains(
 				gradleProjectDir, "build.gradle",

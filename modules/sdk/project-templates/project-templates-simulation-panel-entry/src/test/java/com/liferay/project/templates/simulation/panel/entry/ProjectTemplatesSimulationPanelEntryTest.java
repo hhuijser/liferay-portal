@@ -98,8 +98,7 @@ public class ProjectTemplatesSimulationPanelEntryTest
 			_liferayVersion.startsWith("7.2")) {
 
 			testContains(
-				gradleProjectDir, "build.gradle",
-				DEPENDENCY_PORTAL_KERNEL);
+				gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 		}
 		else {
 			testContains(

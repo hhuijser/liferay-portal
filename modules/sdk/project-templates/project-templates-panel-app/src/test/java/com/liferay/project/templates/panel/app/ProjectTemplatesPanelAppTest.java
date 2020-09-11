@@ -99,13 +99,13 @@ public class ProjectTemplatesPanelAppTest
 		testContains(
 			gradleProjectDir, "bnd.bnd",
 			"Export-Package: gradle.test.constants");
+
 		if (_liferayVersion.startsWith("7.0") ||
 			_liferayVersion.startsWith("7.1") ||
 			_liferayVersion.startsWith("7.2")) {
 
 			testContains(
-				gradleProjectDir, "build.gradle",
-				DEPENDENCY_PORTAL_KERNEL);
+				gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 		}
 		else {
 			testContains(

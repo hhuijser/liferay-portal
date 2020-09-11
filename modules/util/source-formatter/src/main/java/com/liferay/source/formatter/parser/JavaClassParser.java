@@ -472,6 +472,16 @@ public class JavaClassParser {
 		int annotationLevel = 0;
 		int level = 0;
 
+		if (classContent.startsWith("/*")) {
+			while (true) {
+				String line = SourceUtil.getLine(classContent, ++lineNumber);
+
+				if (line.endsWith("*/")) {
+					break;
+				}
+			}
+		}
+
 		while (true) {
 			String line = SourceUtil.getLine(classContent, ++lineNumber);
 

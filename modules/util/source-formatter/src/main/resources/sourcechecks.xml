@@ -393,6 +393,7 @@
 			<description name="Checks if methods with test annotations follow the naming conventions" />
 			<property name="enabled" value="false" />
 		</check>
+		<check name="JavaTransactionBoundaryCheck" />
 		<check name="JavaUnsafeCastingCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks for potential ClassCastException" />

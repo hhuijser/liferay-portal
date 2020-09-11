@@ -17,12 +17,15 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.io.IOException;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -46,6 +49,9 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 		}
 
 		String className = javaClass.getName();
+		String packageName = javaClass.getPackageName();
+
+		_checkTypo(fileName, className, packageName, 1);
 
 		List<String> expectedPackagePathDataEntries = getAttributeValues(
 			_EXPECTED_PACKAGE_PATH_DATA_KEY, absolutePath);
@@ -59,8 +65,6 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 			if (array.length != 2) {
 				continue;
 			}
-
-			String packageName = javaClass.getPackageName();
 
 			String expectedClassNameEnding = array[1];
 
@@ -105,6 +109,47 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 	@Override
 	protected String[] getCheckableJavaTermNames() {
 		return new String[] {JAVA_CLASS};
+	}
+
+	private void _checkTypo(
+		String fileName, String className, String packageName, int level) {
+
+		StringBundler sb = new StringBundler(level + 2);
+
+		sb.append("(.*[a-z0-9]|\\A)");
+
+		for (int i = 0; i < level; i++) {
+			sb.append("([A-Z][a-z0-9]+)");
+		}
+
+		sb.append("$");
+
+		Pattern pattern = Pattern.compile(sb.toString());
+
+		Matcher matcher = pattern.matcher(className);
+
+		if (!matcher.find()) {
+			return;
+		}
+
+		String classNamePart = StringUtil.toLowerCase(matcher.group(2));
+
+		String[] packageNameParts = StringUtil.split(
+			packageName, CharPool.PERIOD);
+
+		String packageNamePart =
+			packageNameParts[packageNameParts.length - level];
+
+		if (classNamePart.equals(packageNamePart)) {
+			_checkTypo(fileName, className, packageName, level + 1);
+		}
+		else if (SourceUtil.hasTypo(classNamePart, packageNamePart)) {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Typo in either class name '", className, "' or package '",
+					packageName, "'"));
+		}
 	}
 
 	private static final String _ENFORCE_IMPLEMENTED_CLASS_NAMES_KEY =

@@ -14,6 +14,7 @@
 
 package com.liferay.adaptive.media.document.library.thumbnails.internal.osgi.commands;
 
+import com.liferay.adaptive.media.document.library.thumbnails.internal.osgi.commands.configuration.ThumbnailConfiguration;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper;
 import com.liferay.adaptive.media.image.mime.type.AMImageMimeTypeProvider;

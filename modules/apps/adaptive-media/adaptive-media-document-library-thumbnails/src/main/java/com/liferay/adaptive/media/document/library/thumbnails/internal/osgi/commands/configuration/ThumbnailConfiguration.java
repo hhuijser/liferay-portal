@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.document.library.thumbnails.internal.osgi.commands;
+package com.liferay.adaptive.media.document.library.thumbnails.internal.osgi.commands.configuration;
 
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.portal.kernel.util.GetterUtil;

@@ -113,7 +113,6 @@ public class ProjectGenerator {
 		archetypeGenerationRequest.setInteractiveMode(false);
 		archetypeGenerationRequest.setOutputDirectory(destinationDir.getPath());
 		archetypeGenerationRequest.setPackage(packageName);
-		archetypeGenerationRequest.setProduct(product);
 
 		String buildType = "gradle";
 

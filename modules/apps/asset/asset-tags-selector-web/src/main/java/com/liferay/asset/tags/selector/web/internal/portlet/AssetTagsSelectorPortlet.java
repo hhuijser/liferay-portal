@@ -14,7 +14,7 @@
 
 package com.liferay.asset.tags.selector.web.internal.portlet;
 
-import com.liferay.asset.tags.selector.web.internal.contants.AssetTagsSelectorPortletKeys;
+import com.liferay.asset.tags.selector.web.internal.constants.AssetTagsSelectorPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import javax.portlet.Portlet;

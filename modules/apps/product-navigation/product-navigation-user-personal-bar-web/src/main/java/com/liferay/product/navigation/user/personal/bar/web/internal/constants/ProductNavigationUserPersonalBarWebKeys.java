@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.product.navigation.user.personal.bar.web.internal.contants;
+package com.liferay.product.navigation.user.personal.bar.web.internal.constants;
 
 /**
  * @author Julio Camarero

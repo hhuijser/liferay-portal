@@ -12,14 +12,15 @@
  * details.
  */
 
-package com.liferay.asset.tags.selector.web.internal.contants;
+package com.liferay.product.navigation.user.personal.bar.web.internal.constants;
 
 /**
  * @author Eudaldo Alonso
  */
-public class AssetTagsSelectorPortletKeys {
+public class ProductNavigationUserPersonalBarPortletKeys {
 
-	public static final String ASSET_TAGS_SELECTOR =
-		"com_liferay_asset_tags_selector_web_portlet_AssetTagsSelectorPortlet";
+	public static final String PRODUCT_NAVIGATION_USER_PERSONAL_BAR =
+		"com_liferay_product_navigation_user_personal_bar_web_portlet_" +
+			"ProductNavigationUserPersonalBarPortlet";
 
 }

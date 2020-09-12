@@ -14,7 +14,7 @@
 
 package com.liferay.asset.categories.selector.web.internal.portlet;
 
-import com.liferay.asset.categories.selector.web.internal.contants.AssetCategoriesSelectorPortletKeys;
+import com.liferay.asset.categories.selector.web.internal.constants.AssetCategoriesSelectorPortletKeys;
 import com.liferay.portal.kernel.portlet.BasePortletProvider;
 import com.liferay.portal.kernel.portlet.BrowsePortletProvider;
 

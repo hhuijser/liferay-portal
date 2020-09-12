@@ -12,15 +12,15 @@
  * details.
  */
 
-package com.liferay.product.navigation.user.personal.bar.web.internal.contants;
+package com.liferay.asset.categories.selector.web.internal.constants;
 
 /**
  * @author Eudaldo Alonso
  */
-public class ProductNavigationUserPersonalBarPortletKeys {
+public class AssetCategoriesSelectorPortletKeys {
 
-	public static final String PRODUCT_NAVIGATION_USER_PERSONAL_BAR =
-		"com_liferay_product_navigation_user_personal_bar_web_portlet_" +
-			"ProductNavigationUserPersonalBarPortlet";
+	public static final String ASSET_CATEGORIES_SELECTOR =
+		"com_liferay_asset_categories_selector_web_portlet_" +
+			"AssetCategoriesSelectorPortlet";
 
 }

@@ -12,15 +12,14 @@
  * details.
  */
 
-package com.liferay.asset.categories.selector.web.internal.contants;
+package com.liferay.asset.tags.selector.web.internal.constants;
 
 /**
  * @author Eudaldo Alonso
  */
-public class AssetCategoriesSelectorPortletKeys {
+public class AssetTagsSelectorPortletKeys {
 
-	public static final String ASSET_CATEGORIES_SELECTOR =
-		"com_liferay_asset_categories_selector_web_portlet_" +
-			"AssetCategoriesSelectorPortlet";
+	public static final String ASSET_TAGS_SELECTOR =
+		"com_liferay_asset_tags_selector_web_portlet_AssetTagsSelectorPortlet";
 
 }

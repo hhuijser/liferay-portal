@@ -194,7 +194,7 @@ public class LiferayOSGiPortalCompatDefaultsPlugin
 				"Portal Compat Bytecode Transformer.");
 		javaExec.setMain(
 			"com.liferay.portal.tools.portal.compat.bytecode.transformer." +
-				"PortalCompactBytecodeTransformer");
+				"PortalCompatBytecodeTransformer");
 
 		javaExec.systemProperty(
 			"classes.dir",

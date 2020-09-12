@@ -26,9 +26,9 @@ import org.objectweb.asm.Type;
 /**
  * @author Tong Wang
  */
-public class PortalCompactClassVisitor extends ClassVisitor {
+public class PortalCompatClassVisitor extends ClassVisitor {
 
-	public PortalCompactClassVisitor(ClassVisitor classVisitor) {
+	public PortalCompatClassVisitor(ClassVisitor classVisitor) {
 		super(Opcodes.ASM5, classVisitor);
 	}
 

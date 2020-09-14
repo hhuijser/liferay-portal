@@ -6807,6 +6807,8 @@ information. Make sure to commit in all build services results.
 						<contains string="${git.diff}" substring="modules${file.separator}util${file.separator}source-formatter" />
 					</or>
 					<then>
+						<echo>AA: compile</echo>
+
 						<antcall target="compile" />
 
 						<antcall target="install-portal-snapshots" />
@@ -6819,6 +6821,8 @@ information. Make sure to commit in all build services results.
 						</if>
 					</then>
 					<else>
+						<echo>BB: setup-sdk</echo>
+
 						<antcall target="setup-sdk" />
 
 						<antcall target="setup-yarn" />
@@ -6831,6 +6835,8 @@ information. Make sure to commit in all build services results.
 						<contains string="${git.diff}" substring="source-formatter.properties" />
 					</or>
 					<then>
+						<echo>CC: format-source-current-branch</echo>
+
 						<ant dir="portal-impl" target="format-source-current-branch">
 							<property name="show.documentation" value="false" />
 							<property name="source.auto.fix" value="false" />
@@ -6842,6 +6848,8 @@ information. Make sure to commit in all build services results.
 						</ant>
 					</then>
 					<else>
+						<echo>DD: format-source-all</echo>
+
 						<ant dir="portal-impl" target="format-source-all">
 							<property name="show.documentation" value="false" />
 							<property name="source.auto.fix" value="false" />

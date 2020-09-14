@@ -6802,16 +6802,12 @@ information. Make sure to commit in all build services results.
 					<arg value="${liferay.portal.branch}..HEAD" />
 				</exec>
 
-				<var name="format.current.branch" value="true" />
-
 				<if>
 					<or>
 						<contains string="${git.diff}" substring="modules${file.separator}util${file.separator}source-formatter" />
 						<contains string="${git.diff}" substring="source-formatter.properties" />
 					</or>
 					<then>
-						<var name="format.current.branch" value="false" />
-
 						<antcall target="compile" />
 
 						<antcall target="install-portal-snapshots" />
@@ -6824,6 +6820,8 @@ information. Make sure to commit in all build services results.
 						</if>
 					</then>
 					<else>
+						<var name="format.current.branch" value="true" />
+
 						<antcall target="setup-sdk" />
 
 						<antcall target="setup-yarn" />
@@ -6838,6 +6836,7 @@ information. Make sure to commit in all build services results.
 					<property name="source.fail.on.has.warning" value="true" />
 					<property name="source.print.errors" value="false" />
 					<property name="source.use.properties" value="false" />
+					<property name="validate.commit.messages" value="true" />
 				</ant>
 			</test-action>
 		</run-batch-test>

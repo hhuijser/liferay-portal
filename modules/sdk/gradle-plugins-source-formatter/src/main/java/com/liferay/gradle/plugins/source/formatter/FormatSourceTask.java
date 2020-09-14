@@ -134,6 +134,10 @@ public class FormatSourceTask extends JavaExec {
 		return _sourceFormatterArgs.isShowStatusUpdates();
 	}
 
+	public boolean isValidateCommitMessages() {
+		return _sourceFormatterArgs.isValidateCommitMessages();
+	}
+
 	public void setAutoFix(boolean autoFix) {
 		_sourceFormatterArgs.setAutoFix(autoFix);
 	}
@@ -213,6 +217,10 @@ public class FormatSourceTask extends JavaExec {
 		_sourceFormatterArgs.setShowStatusUpdates(showStatusUpdates);
 	}
 
+	public void setValidateCommitMessages(boolean validateCommitMessages) {
+		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
+	}
+
 	private List<String> _getCompleteArgs() {
 		List<String> args = new ArrayList<>(getArgs());
 
@@ -233,6 +241,7 @@ public class FormatSourceTask extends JavaExec {
 			"source.file.extensions=" +
 				CollectionUtils.join(",", getFileExtensions()));
 		args.add("source.print.errors=" + isPrintErrors());
+		args.add("validate.commit.messages=" + isValidateCommitMessages());
 
 		FileCollection fileCollection = getFiles();
 

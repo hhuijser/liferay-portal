@@ -99,12 +99,6 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 				dependentIdentDetailASTList);
 		}
 
-		String absolutePath = getAbsolutePath();
-
-		if (absolutePath.endsWith("Test.java")) {
-			return;
-		}
-
 		_checkInline(
 			variableDefinitionDetailAST, nameDetailAST, variableName,
 			firstDependentIdentDetailAST);

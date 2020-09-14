@@ -133,6 +133,10 @@ public class FormatSourceTask extends Task {
 		_sourceFormatterArgs.setShowStatusUpdates(showStatusUpdates);
 	}
 
+	public void setValidateCommitMessages(boolean validateCommitMessages) {
+		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
+	}
+
 	private void _collectFromFileSets() {
 		List<String> fileNames = new ArrayList<>();
 

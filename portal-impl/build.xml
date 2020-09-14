@@ -608,6 +608,9 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 			</else>
 		</if>
 
+		<echo>11: format.current.branch</echo>
+		<echo>${format.current.branch}</echo>
+
 		<exec executable="git" failonerror="true" outputproperty="current.branch.name">
 			<arg value="rev-parse" />
 			<arg value="--abbrev-ref" />
@@ -693,6 +696,9 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 			</else>
 		</if>
 
+		<echo>22: format.current.branch</echo>
+		<echo>${format.current.branch}</echo>
+
 		<if>
 			<isset property="format.current.branch" />
 			<then>
@@ -712,7 +718,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 			</then>
 		</if>
 
-		<echo>format.current.branch</echo>
+		<echo>33: format.current.branch</echo>
 		<echo>${format.current.branch}</echo>
 
 		<if>

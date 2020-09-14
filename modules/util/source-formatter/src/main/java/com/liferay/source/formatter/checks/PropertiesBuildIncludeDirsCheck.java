@@ -18,6 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
@@ -94,6 +95,9 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 
 		File modulesDir = new File(getPortalDir(), "modules");
 
+		List<String> buildExcludeModuleNames = getAttributeValues(
+			_BUILD_EXCLUDE_MODULE_NAMES, absolutePath);
+
 		List<String> ignoredModuleNames = _getIgnoredModuleNames(
 			SourceUtil.getRootDirName(absolutePath));
 
@@ -116,7 +120,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 					}
 
 					String moduleDirName = _getModuleDirName(
-						dirPath, ignoredModuleNames);
+						dirPath, buildExcludeModuleNames, ignoredModuleNames);
 
 					if (moduleDirName == null) {
 						return FileVisitResult.CONTINUE;
@@ -164,7 +168,8 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 	}
 
 	private String _getModuleDirName(
-			Path dirPath, List<String> ignoredModuleNames)
+			Path dirPath, List<String> buildExcludeModuleNames,
+			List<String> ignoredModuleNames)
 		throws IOException {
 
 		String absolutePath = SourceUtil.getAbsolutePath(dirPath);
@@ -177,10 +182,12 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 
 		String directoryPath = absolutePath.substring(x + 9);
 
-		for (String ignoredModuleName : ignoredModuleNames) {
+		for (String excludeModuleName :
+				ListUtil.concat(buildExcludeModuleNames, ignoredModuleNames)) {
+
 			String modulePath = "/modules/" + directoryPath + "/";
 
-			if (modulePath.startsWith(ignoredModuleName + "/")) {
+			if (modulePath.startsWith(excludeModuleName + "/")) {
 				return null;
 			}
 		}
@@ -205,6 +212,9 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 
 		return null;
 	}
+
+	private static final String _BUILD_EXCLUDE_MODULE_NAMES =
+		"buildExcludeModuleNames";
 
 	private static final String _BUILD_INCLUDE_CATEGORY_NAMES =
 		"buildIncludeCategoryNames";

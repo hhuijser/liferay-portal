@@ -598,6 +598,16 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 	</target>
 
 	<target name="format-source-files">
+		<if>
+			<isset property="format.current.branch" />
+			<then>
+				<echo>AA: format.current.branch IS SET</echo>
+			</then>
+			<else>
+				<echo>AA: format.current.branch IS NOT SET</echo>
+			</else>
+		</if>
+
 		<exec executable="git" failonerror="true" outputproperty="current.branch.name">
 			<arg value="rev-parse" />
 			<arg value="--abbrev-ref" />
@@ -680,6 +690,16 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 						</if>
 					</else>
 				</if>
+			</else>
+		</if>
+
+		<if>
+			<isset property="format.current.branch" />
+			<then>
+				<echo>BB: format.current.branch IS SET</echo>
+			</then>
+			<else>
+				<echo>BB: format.current.branch IS NOT SET</echo>
 			</else>
 		</if>
 

@@ -6805,7 +6805,6 @@ information. Make sure to commit in all build services results.
 				<if>
 					<or>
 						<contains string="${git.diff}" substring="modules${file.separator}util${file.separator}source-formatter" />
-						<contains string="${git.diff}" substring="source-formatter.properties" />
 					</or>
 					<then>
 						<antcall target="compile" />
@@ -6820,24 +6819,40 @@ information. Make sure to commit in all build services results.
 						</if>
 					</then>
 					<else>
-						<var name="format.current.branch" value="true" />
-
 						<antcall target="setup-sdk" />
 
 						<antcall target="setup-yarn" />
 					</else>
 				</if>
 
-				<ant dir="portal-impl" target="format-source-all">
-					<property name="format.current.branch" value="${format.current.branch}" />
-					<property name="show.documentation" value="false" />
-					<property name="source.auto.fix" value="false" />
-					<property name="source.fail.on.auto.fix" value="true" />
-					<property name="source.fail.on.has.warning" value="true" />
-					<property name="source.print.errors" value="false" />
-					<property name="source.use.properties" value="false" />
-					<property name="validate.commit.messages" value="true" />
-				</ant>
+				<if>
+					<or>
+						<contains string="${git.diff}" substring="modules${file.separator}util${file.separator}source-formatter" />
+						<contains string="${git.diff}" substring="source-formatter.properties" />
+					</or>
+					<then>
+						<ant dir="portal-impl" target="format-source-current-branch">
+							<property name="show.documentation" value="false" />
+							<property name="source.auto.fix" value="false" />
+							<property name="source.fail.on.auto.fix" value="true" />
+							<property name="source.fail.on.has.warning" value="true" />
+							<property name="source.print.errors" value="false" />
+							<property name="source.use.properties" value="false" />
+							<property name="validate.commit.messages" value="true" />
+						</ant>
+					</then>
+					<else>
+						<ant dir="portal-impl" target="format-source-all">
+							<property name="show.documentation" value="false" />
+							<property name="source.auto.fix" value="false" />
+							<property name="source.fail.on.auto.fix" value="true" />
+							<property name="source.fail.on.has.warning" value="true" />
+							<property name="source.print.errors" value="false" />
+							<property name="source.use.properties" value="false" />
+							<property name="validate.commit.messages" value="true" />
+						</ant>
+					</else>
+				</if>
 			</test-action>
 		</run-batch-test>
 	</target>

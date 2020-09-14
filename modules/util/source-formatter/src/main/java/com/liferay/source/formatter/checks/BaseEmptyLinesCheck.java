@@ -342,24 +342,24 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 	}
 
 	protected String fixMissingEmptyLineAfterSettingVariable(String content) {
-		Matcher matcher = _setVariablePattern.matcher(content);
+		Matcher matcher1 = _setVariablePattern.matcher(content);
 
-		while (matcher.find()) {
-			if (!isJavaSource(content, matcher.start())) {
+		while (matcher1.find()) {
+			if (!isJavaSource(content, matcher1.start())) {
 				continue;
 			}
 
-			if (content.charAt(matcher.end()) == CharPool.NEW_LINE) {
+			if (content.charAt(matcher1.end()) == CharPool.NEW_LINE) {
 				continue;
 			}
 
-			int x = content.indexOf(";\n", matcher.end());
+			int x = content.indexOf(";\n", matcher1.end());
 
 			if (x == -1) {
 				return content;
 			}
 
-			String nextCommand = content.substring(matcher.end(), x + 1);
+			String nextCommand = content.substring(matcher1.end(), x + 1);
 
 			if (nextCommand.contains("{\n") ||
 				nextCommand.matches("\t*%>[\\S\\s]*")) {
@@ -367,7 +367,7 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String variableName = matcher.group(2);
+			String variableName = matcher1.group(2);
 
 			Pattern pattern2 = Pattern.compile("\\W(" + variableName + ")\\W");
 
@@ -383,7 +383,7 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 				continue;
 			}
 
-			x += matcher.end();
+			x += matcher1.end();
 
 			int y = content.lastIndexOf("\ttry (", x);
 
@@ -396,7 +396,7 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 			}
 
 			return StringUtil.replaceFirst(
-				content, "\n", "\n\n", matcher.end(3));
+				content, "\n", "\n\n", matcher1.end(3));
 		}
 
 		return content;

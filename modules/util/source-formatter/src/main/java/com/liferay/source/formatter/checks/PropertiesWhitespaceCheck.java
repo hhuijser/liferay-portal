@@ -75,24 +75,20 @@ public class PropertiesWhitespaceCheck extends WhitespaceCheck {
 				}
 
 				if (leadingSpaceCount != expectedLeadingSpaceCount) {
-					StringBundler sb2 = new StringBundler(5);
-
-					sb2.append("Line starts with '");
-					sb2.append(leadingSpaceCount);
-					sb2.append("' spaces, but '");
-					sb2.append(expectedLeadingSpaceCount);
-					sb2.append("' spaces are expected");
-
-					addMessage(fileName, sb2.toString(), lineNumber);
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Line starts with '", leadingSpaceCount,
+							"' spaces, but '", expectedLeadingSpaceCount,
+							"' spaces are expected"),
+						lineNumber);
 				}
 
 				previousLine = line;
 			}
 		}
 
-		content = sb.toString();
-
-		return super.doProcess(fileName, absolutePath, content);
+		return super.doProcess(fileName, absolutePath, sb.toString());
 	}
 
 	@Override

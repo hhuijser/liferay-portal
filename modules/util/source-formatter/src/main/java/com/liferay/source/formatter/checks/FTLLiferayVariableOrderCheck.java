@@ -33,10 +33,10 @@ public class FTLLiferayVariableOrderCheck extends BaseFileCheck {
 	}
 
 	private String _sortLiferayVariables(String content) {
-		Matcher matcher = _liferayVariablesPattern.matcher(content);
+		Matcher matcher1 = _liferayVariablesPattern.matcher(content);
 
-		while (matcher.find()) {
-			String match = matcher.group();
+		while (matcher1.find()) {
+			String match = matcher1.group();
 
 			Matcher matcher2 = _liferayVariablePattern.matcher(match);
 

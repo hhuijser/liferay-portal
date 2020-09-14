@@ -79,19 +79,19 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			}
 		}
 
-		Matcher matcher = _includeResourcePattern.matcher(content);
+		Matcher matcher1 = _includeResourcePattern.matcher(content);
 
-		if (!matcher.find()) {
+		if (!matcher1.find()) {
 			return content;
 		}
 
-		String includeResources = matcher.group();
+		String includeResources = matcher1.group();
 
-		matcher = _includeResourceJarPattern.matcher(includeResources);
+		matcher1 = _includeResourceJarPattern.matcher(includeResources);
 
-		if (matcher.find()) {
+		if (matcher1.find()) {
 			String replacement = StringUtil.replace(
-				includeResources, matcher.group(), "-[0-9]*.jar");
+				includeResources, matcher1.group(), "-[0-9]*.jar");
 
 			return StringUtil.replace(content, includeResources, replacement);
 		}

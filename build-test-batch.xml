@@ -6810,6 +6810,8 @@ information. Make sure to commit in all build services results.
 						<contains string="${git.diff}" substring="source-formatter.properties" />
 					</or>
 					<then>
+						<echo>CC: YES CHANGES IN SF</echo>
+
 						<var name="format.current.branch" value="false" />
 
 						<antcall target="compile" />
@@ -6824,6 +6826,8 @@ information. Make sure to commit in all build services results.
 						</if>
 					</then>
 					<else>
+						<echo>CC: NO CHANGES IN SF</echo>
+
 						<antcall target="setup-sdk" />
 
 						<antcall target="setup-yarn" />

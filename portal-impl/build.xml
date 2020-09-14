@@ -712,6 +712,9 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 			</then>
 		</if>
 
+		<echo>format.current.branch</echo>
+		<echo>${format.current.branch}</echo>
+
 		<if>
 			<not>
 				<isset property="source.formatter.skip" />

@@ -650,6 +650,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 							<then>
 								<property name="format.current.branch" value="true" />
 								<property name="source.formatter.message" value="Running SourceFormatter on added/modified files in the current branch (${current.branch.name}) only. Please run the following command to run SourceFormatter on all files:${line.separator}${line.separator}ant format-source-all" />
+								<property name="validate.commit.messages" value="true" />
 							</then>
 						</if>
 
@@ -736,6 +737,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 					<arg value="source.file.extensions=${source.file.extensions}" />
 					<arg value="source.files=${source.files}" />
 					<arg value="source.print.errors=${source.print.errors}" />
+					<arg value="validate.commit.messages=${source.formatter.validate.commit.messages}" />
 				</java>
 
 				<delete file="ServiceBuilder.temp" />

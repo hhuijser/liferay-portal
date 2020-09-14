@@ -267,7 +267,8 @@ public class SourceFormatter {
 				arguments, "validate.commit.messages",
 				SourceFormatterArgs.VALIDATE_COMMIT_MESSAGES);
 
-			sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
+			sourceFormatterArgs.setValidateCommitMessages(
+				validateCommitMessages);
 
 			SourceFormatter sourceFormatter = new SourceFormatter(
 				sourceFormatterArgs);

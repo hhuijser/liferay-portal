@@ -93,16 +93,14 @@ public class JSONUtilTest {
 
 		Stream<String> stringStream = strings.stream();
 
-		JSONArray jsonArray = stringStream.map(
-			String::toUpperCase
-		).collect(
-			JSONUtil.createCollector()
-		);
-
 		Assert.assertTrue(
 			JSONUtil.equals(
 				JSONUtil.concat(JSONUtil.putAll("FOO", "BAR", "BAZ")),
-				jsonArray));
+				stringStream.map(
+					String::toUpperCase
+				).collect(
+					JSONUtil.createCollector()
+				)));
 	}
 
 	@Test

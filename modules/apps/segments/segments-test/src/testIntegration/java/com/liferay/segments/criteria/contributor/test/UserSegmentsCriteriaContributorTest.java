@@ -199,13 +199,13 @@ public class UserSegmentsCriteriaContributorTest {
 
 		Stream<Field.Option> optionStream = options.stream();
 
-		List<String> optionValues = optionStream.map(
-			Field.Option::getValue
-		).collect(
-			Collectors.toList()
-		);
-
-		Assert.assertEquals(Arrays.asList(defaultValue), optionValues);
+		Assert.assertEquals(
+			Arrays.asList(defaultValue),
+			optionStream.map(
+				Field.Option::getValue
+			).collect(
+				Collectors.toList()
+			));
 	}
 
 	@Test

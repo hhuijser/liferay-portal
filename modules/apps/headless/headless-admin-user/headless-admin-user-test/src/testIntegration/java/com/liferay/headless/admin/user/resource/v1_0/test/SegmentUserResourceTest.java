@@ -127,19 +127,19 @@ public class SegmentUserResourceTest extends BaseSegmentUserResourceTestCase {
 	protected Long testGetSegmentUserAccountsPage_getSegmentId()
 		throws Exception {
 
-		String criteria = JSONUtil.put(
-			"criteria",
-			JSONUtil.put(
-				"user",
-				JSONUtil.put(
-					"conjunction", "and"
-				).put(
-					"filterString", _filterString
-				))
-		).toString();
-
 		SegmentsEntry segmentsEntry = SegmentsTestUtil.addSegmentsEntry(
-			testGroup.getGroupId(), criteria, User.class.getName());
+			testGroup.getGroupId(),
+			JSONUtil.put(
+				"criteria",
+				JSONUtil.put(
+					"user",
+					JSONUtil.put(
+						"conjunction", "and"
+					).put(
+						"filterString", _filterString
+					))
+			).toString(),
+			User.class.getName());
 
 		return segmentsEntry.getSegmentsEntryId();
 	}

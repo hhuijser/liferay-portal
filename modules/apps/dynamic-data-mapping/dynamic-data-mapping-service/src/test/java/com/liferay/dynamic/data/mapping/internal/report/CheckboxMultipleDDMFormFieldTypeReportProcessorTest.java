@@ -79,16 +79,15 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessorTest
 			value
 		);
 
-		JSONObject fieldJSONObject = JSONUtil.put(
-			"type", DDMFormFieldType.CHECKBOX_MULTIPLE
-		).put(
-			"values", JSONUtil.put("option1", 1)
-		);
-
 		JSONObject processedFieldJSONObject =
 			_checkboxMultipleDDMFormFieldTypeReportProcessor.process(
-				ddmFormFieldValue, fieldJSONObject, 0,
-				DDMFormInstanceReportConstants.EVENT_DELETE_RECORD_VERSION);
+				ddmFormFieldValue,
+				JSONUtil.put(
+					"type", DDMFormFieldType.CHECKBOX_MULTIPLE
+				).put(
+					"values", JSONUtil.put("option1", 1)
+				),
+				0, DDMFormInstanceReportConstants.EVENT_DELETE_RECORD_VERSION);
 
 		JSONObject valuesJSONObject = processedFieldJSONObject.getJSONObject(
 			"values");

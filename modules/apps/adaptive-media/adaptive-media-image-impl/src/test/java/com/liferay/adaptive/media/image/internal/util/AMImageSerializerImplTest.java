@@ -60,13 +60,13 @@ public class AMImageSerializerImplTest {
 	public void testDeserialize() throws Exception {
 		JSONObject jsonObject = JSONUtil.put("uri", "http://localhost");
 
-		JSONObject attributesJSONObject = JSONUtil.put(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(), "200"
-		).put(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(), "300"
-		);
-
-		jsonObject.put("attributes", attributesJSONObject);
+		jsonObject.put(
+			"attributes",
+			JSONUtil.put(
+				AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(), "200"
+			).put(
+				AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(), "300"
+			));
 
 		AMImageSerializer amImageSerializer = new AMImageSerializerImpl();
 

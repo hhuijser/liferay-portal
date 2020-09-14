@@ -143,9 +143,6 @@ public class AssetEntryInfoItemFieldSetProviderTest {
 	public void testGetInfoFieldSetInternalAssetEntryEmptyAssetVocabulary()
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyLocalService.addVocabulary(
 				TestPropsValues.getUserId(), _group.getGroupId(),
@@ -154,7 +151,7 @@ public class AssetEntryInfoItemFieldSetProviderTest {
 					LocaleUtil.US, RandomTestUtil.randomString()
 				).build(),
 				null, null, AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL,
-				serviceContext);
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		AssetEntry assetEntry = AssetTestUtil.addAssetEntry(
 			_group.getGroupId());
@@ -343,11 +340,8 @@ public class AssetEntryInfoItemFieldSetProviderTest {
 	private List<InfoFieldValue<Object>> _getInfoFieldValues(
 		AssetEntry assetEntry, String fieldName) {
 
-		List<InfoFieldValue<Object>> infoFieldValues =
-			_assetEntryInfoItemFieldSetProvider.getInfoFieldValues(assetEntry);
-
 		return ListUtil.filter(
-			infoFieldValues,
+			_assetEntryInfoItemFieldSetProvider.getInfoFieldValues(assetEntry),
 			infoFieldValue -> {
 				InfoField infoField = infoFieldValue.getInfoField();
 

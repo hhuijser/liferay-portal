@@ -796,10 +796,10 @@ public class CommerceProductPriceCalculationV2Impl
 
 		totalTierCounter = quantity - totalTierCounter;
 
-		CommerceTierPriceEntry commerceTierPriceEntry =
+		CommerceTierPriceEntry commerceTierPriceEntry2 =
 			commerceTierPriceEntries.get(commerceTierPriceEntries.size() - 1);
 
-		currentPrice = commerceTierPriceEntry.getPrice();
+		currentPrice = commerceTierPriceEntry2.getPrice();
 
 		currentPrice = currentPrice.multiply(
 			BigDecimal.valueOf(totalTierCounter));

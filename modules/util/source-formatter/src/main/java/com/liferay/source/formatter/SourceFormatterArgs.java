@@ -60,6 +60,8 @@ public class SourceFormatterArgs {
 
 	public static final boolean SHOW_STATUS_UPDATES = false;
 
+	public static final boolean VALIDATE_COMMIT_MESSAGES = false;
+
 	public void addRecentChangesFileNames(
 		Collection<String> fileNames, String baseDirName) {
 
@@ -155,6 +157,10 @@ public class SourceFormatterArgs {
 
 	public boolean isShowStatusUpdates() {
 		return _showStatusUpdates;
+	}
+
+	public boolean isValidateCommitMessages() {
+		return _validateCommitMessages;
 	}
 
 	public void setAutoFix(boolean autoFix) {
@@ -254,6 +260,10 @@ public class SourceFormatterArgs {
 		_skipCheckNames = skipCheckNames;
 	}
 
+	public void setValidateCommitMessages(boolean validateCommitMessages) {
+		_validateCommitMessages = validateCommitMessages;
+	}
+
 	private boolean _autoFix = AUTO_FIX;
 	private String _baseDirName = BASE_DIR_NAME;
 	private String _checkName;
@@ -275,5 +285,6 @@ public class SourceFormatterArgs {
 	private boolean _showDocumentation = SHOW_DOCUMENTATION;
 	private boolean _showStatusUpdates = SHOW_STATUS_UPDATES;
 	private List<String> _skipCheckNames = new ArrayList<>();
+	private boolean _validateCommitMessages = VALIDATE_COMMIT_MESSAGES;
 
 }

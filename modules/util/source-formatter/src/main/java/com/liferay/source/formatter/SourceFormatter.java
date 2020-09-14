@@ -263,6 +263,12 @@ public class SourceFormatter {
 					Arrays.asList(skipCheckNames));
 			}
 
+			boolean validateCommitMessages = ArgumentsUtil.getBoolean(
+				arguments, "validate.commit.messages",
+				SourceFormatterArgs.VALIDATE_COMMIT_MESSAGES);
+
+			sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
+
 			SourceFormatter sourceFormatter = new SourceFormatter(
 				sourceFormatterArgs);
 
@@ -304,7 +310,9 @@ public class SourceFormatter {
 
 		_init();
 
-		_validateCommitMessages();
+		if (_sourceFormatterArgs.isValidateCommitMessages()) {
+			_validateCommitMessages();
+		}
 
 		_printProgressStatusMessage("Initializing checks...");
 
@@ -986,10 +994,6 @@ public class SourceFormatter {
 	}
 
 	private void _validateCommitMessages() throws Exception {
-		if (!_sourceFormatterArgs.isFormatCurrentBranch()) {
-			return;
-		}
-
 		List<String> commitMessages = GitUtil.getCurrentBranchCommitMessages(
 			_sourceFormatterArgs.getBaseDirName(),
 			_sourceFormatterArgs.getGitWorkingBranchName());

@@ -163,6 +163,13 @@ public class FormatSourceMojo extends AbstractMojo {
 		_sourceFormatterArgs.setShowStatusUpdates(showStatusUpdates);
 	}
 
+	/**
+	 * @parameter
+	 */
+	public void setValidateCommitMessages(boolean validateCommitMessages) {
+		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
+	}
+
 	private final SourceFormatterArgs _sourceFormatterArgs =
 		new SourceFormatterArgs();
 

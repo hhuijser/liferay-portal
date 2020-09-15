@@ -87,6 +87,6 @@ CustomFilterPortletInstanceConfiguration customFilterPortletInstanceConfiguratio
 	</aui:form>
 
 	<aui:script use="liferay-search-custom-filter">
-		new Liferay.Search.CustomFilter(A.one('#<portlet:namespace/>fm'));
+		new Liferay.Search.CustomFilter(A.one('#<portlet:namespace />fm'));
 	</aui:script>
 </c:if>

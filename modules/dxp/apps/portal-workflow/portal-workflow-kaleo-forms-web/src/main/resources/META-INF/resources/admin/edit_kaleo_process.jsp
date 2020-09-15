@@ -113,7 +113,7 @@ renderResponse.setTitle(title);
 			var form = Liferay.Form.get('<portlet:namespace />fm');
 
 			if (form === event.form) {
-				Liferay.component('<portlet:namespace/>KaleoFormsAdmin', function () {
+				Liferay.component('<portlet:namespace />KaleoFormsAdmin', function () {
 					return new Liferay.KaleoFormsAdmin({
 						currentURL: '<%= currentURL %>',
 						form: form,
@@ -126,7 +126,7 @@ renderResponse.setTitle(title);
 					});
 				});
 
-				Liferay.component('<portlet:namespace/>KaleoFormsAdmin').syncUI();
+				Liferay.component('<portlet:namespace />KaleoFormsAdmin').syncUI();
 			}
 		};
 

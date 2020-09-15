@@ -370,7 +370,7 @@ JournalArticleItemSelectorViewDisplayContext journalArticleItemSelectorViewDispl
 
 <aui:script require="metal-dom/src/all/dom as dom">
 	var selectArticleHandler = dom.delegate(
-		document.querySelector('#<portlet:namespace/>articlesContainer'),
+		document.querySelector('#<portlet:namespace />articlesContainer'),
 		'click',
 		'.articles',
 		function (event) {

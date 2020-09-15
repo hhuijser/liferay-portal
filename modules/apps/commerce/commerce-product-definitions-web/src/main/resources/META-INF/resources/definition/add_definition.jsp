@@ -32,8 +32,8 @@
 	</portlet:renderURL>
 
 	<aui:script require="commerce-frontend-js/components/autocomplete/entry as autocomplete, commerce-frontend-js/utilities/eventsDefinitions as events, commerce-frontend-js/utilities/modals/index as ModalUtils, commerce-frontend-js/ServiceProvider/index as ServiceProvider">
-		var <portlet:namespace/>defaultLanguageId = null;
-		var <portlet:namespace/>productData = {
+		var <portlet:namespace />defaultLanguageId = null;
+		var <portlet:namespace />productData = {
 			active: true,
 			productType: '<%= ParamUtil.getString(request, "productTypeName") %>',
 		};
@@ -42,18 +42,18 @@
 
 		Liferay.provide(
 			window,
-			'<portlet:namespace/>apiSubmit',
+			'<portlet:namespace />apiSubmit',
 			function () {
 				ModalUtils.isSubmitting();
 
-				var formattedData = Object.assign({}, <portlet:namespace/>productData, {
+				var formattedData = Object.assign({}, <portlet:namespace />productData, {
 					defaultSku: '<%= CPInstanceConstants.DEFAULT_SKU %>',
 					name: {},
 				});
 
 				formattedData.name[
-					<portlet:namespace/>defaultLanguageId
-				] = document.getElementById('<portlet:namespace/>name').value;
+					<portlet:namespace />defaultLanguageId
+				] = document.getElementById('<portlet:namespace />name').value;
 
 				AdminCatalogResource.createProduct(formattedData)
 					.then(function (cpDefinition) {
@@ -83,8 +83,8 @@
 			itemsLabel: 'name',
 			onValueUpdated: function (value, catalogData) {
 				if (value) {
-					<portlet:namespace/>productData.catalogId = catalogData.id;
-					<portlet:namespace/>defaultLanguageId =
+					<portlet:namespace />productData.catalogId = catalogData.id;
+					<portlet:namespace />defaultLanguageId =
 						catalogData.defaultLanguageId;
 				}
 			},

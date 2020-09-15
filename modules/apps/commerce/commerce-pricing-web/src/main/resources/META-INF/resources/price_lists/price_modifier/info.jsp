@@ -128,11 +128,11 @@ if (modifierType.equals(CommercePriceModifierConstants.MODIFIER_TYPE_PERCENTAGE)
 <aui:script>
 	Liferay.provide(
 		window,
-		'<portlet:namespace/>selectType',
+		'<portlet:namespace />selectType',
 		function () {
 			var A = AUI();
 
-			var type = A.one('#<portlet:namespace/>modifierType').val();
+			var type = A.one('#<portlet:namespace />modifierType').val();
 
 			var portletURL = new Liferay.PortletURL.createURL(
 				'<%= currentURLObj %>'

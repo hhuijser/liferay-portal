@@ -157,7 +157,7 @@ if (amImageConfigurationEntry != null) {
 		<aui:input cssClass="input-medium" disabled="<%= automaticUuid || !configurationEntryEditable %>" label="id" name="newUuid" type="text" value="<%= configurationEntryUuid %>">
 			<aui:validator errorMessage="please-enter-only-alphanumeric-characters-dashes-or-underscores" name="custom">
 				function(value) {
-					var radioButtons = document.getElementsByName('<portlet:namespace/>automaticUuid');
+					var radioButtons = document.getElementsByName('<portlet:namespace />automaticUuid');
 
 					for (var i = 0; i < radioButtons.length; i++) {
 						var radioButton = radioButtons[i];

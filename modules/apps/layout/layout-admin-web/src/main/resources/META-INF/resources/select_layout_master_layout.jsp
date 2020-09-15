@@ -40,7 +40,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-master-page"));
 	<clay:row>
 		<clay:col>
 			<clay:sheet>
-				<div class="lfr-search-container-wrapper" id="<portlet:namespace/>layoutTypes">
+				<div class="lfr-search-container-wrapper" id="<portlet:namespace />layoutTypes">
 					<ul class="card-page card-page-equal-height">
 
 						<%

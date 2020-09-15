@@ -159,7 +159,7 @@ renderResponse.setTitle(oAuth2Application.getName());
 					'<%= UnicodeLanguageUtil.format(request, "x-will-no-longer-have-access-to-your-account-removed-access-cannot-be-recovered", new String[] {oAuth2Application.getName()}) %>'
 				)
 			) {
-				submitForm(document.<portlet:namespace/>fm);
+				submitForm(document.<portlet:namespace />fm);
 			}
 		});
 	}

@@ -54,14 +54,14 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace/>onClick() {
-		var form = Liferay.Form.get('<portlet:namespace/>fm');
+	function <portlet:namespace />onClick() {
+		var form = Liferay.Form.get('<portlet:namespace />fm');
 		var formValidator = form.formValidator;
 
 		formValidator.validate();
 
 		if (!formValidator.hasErrors()) {
-			<portlet:namespace/>verifyPassword();
+			<portlet:namespace />verifyPassword();
 		}
 	}
 
@@ -95,7 +95,7 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 
 				verificationAlert.classList.remove('hide');
 
-				document.getElementById('<portlet:namespace/>password').focus();
+				document.getElementById('<portlet:namespace />password').focus();
 			});
 	}
 </aui:script>

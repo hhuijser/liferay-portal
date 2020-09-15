@@ -74,9 +74,9 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 </div>
 
 <aui:script require="metal-dom/src/all/dom as dom">
-	if (document.querySelector('#<portlet:namespace/>assetEntryUsagesList')) {
+	if (document.querySelector('#<portlet:namespace />assetEntryUsagesList')) {
 		var previewAssetEntryUsagesList = dom.delegate(
-			document.querySelector('#<portlet:namespace/>assetEntryUsagesList'),
+			document.querySelector('#<portlet:namespace />assetEntryUsagesList'),
 			'click',
 			'.preview-asset-entry-usage',
 			function (event) {

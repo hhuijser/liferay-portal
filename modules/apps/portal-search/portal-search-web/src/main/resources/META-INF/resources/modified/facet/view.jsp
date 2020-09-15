@@ -172,7 +172,7 @@ ModifiedFacetPortletInstanceConfiguration modifiedFacetPortletInstanceConfigurat
 
 	<aui:script use="liferay-search-modified-facet">
 		new Liferay.Search.ModifiedFacetFilter({
-			form: A.one('#<portlet:namespace/>fm'),
+			form: A.one('#<portlet:namespace />fm'),
 			fromInputDatePicker: Liferay.component(
 				'<portlet:namespace />fromInputDatePicker'
 			),

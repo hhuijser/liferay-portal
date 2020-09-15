@@ -47,6 +47,8 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		Matcher matcher = _taglibVariablePattern.matcher(content);
 
 		while (matcher.find()) {
+			int position = matcher.start(1);
+
 			String s = matcher.group(1);
 
 			String[] variableDefiniations = s.split(";\n");
@@ -54,6 +56,8 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 			String nextTag = matcher.group(7);
 
 			for (String variableDefiniation : variableDefiniations) {
+				position = position + variableDefiniation.length() + 2;
+
 				String[] array = variableDefiniation.split(" = ", 2);
 
 				String taglibValue = array[1];
@@ -61,6 +65,13 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 				int i = array[0].lastIndexOf(CharPool.SPACE);
 
 				String variableName = array[0].substring(i + 1);
+
+				if (_hasVariableReference(
+						content.substring(position), variableName,
+						taglibValue)) {
+
+					continue;
+				}
 
 				if (!taglibValue.contains("\n") &&
 					(taglibValue.contains("\\\"") ||
@@ -163,6 +174,53 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		return count;
 	}
 
+	private boolean _hasVariableReference(
+		String content, String variableName, String taglibValue) {
+
+		int endPosition = content.lastIndexOf(
+			"=\"<%= " + variableName + " %>\"");
+
+		if (endPosition == -1) {
+			return false;
+		}
+
+		boolean hasVariableReference = false;
+
+		endPosition = content.indexOf("\n", endPosition);
+
+		Matcher matcher1 = _methodCallPattern.matcher(taglibValue);
+
+		outerLoop:
+		while (matcher1.find()) {
+			Pattern pattern = Pattern.compile(
+				"\\b(?<!['\"])" + matcher1.group(1) + "\\.(\\w+)?\\(");
+
+			Matcher matcher2 = pattern.matcher(content);
+
+			while (matcher2.find()) {
+				if (matcher2.start() > endPosition) {
+					hasVariableReference = false;
+
+					continue outerLoop;
+				}
+
+				String methodName = matcher2.group(1);
+
+				if (!methodName.startsWith("get") &&
+					!methodName.startsWith("is")) {
+
+					return true;
+				}
+
+				hasVariableReference = false;
+			}
+		}
+
+		return hasVariableReference;
+	}
+
+	private static final Pattern _methodCallPattern = Pattern.compile(
+		"\\b(?<!['\"])([a-z]\\w+)\\.(\\w+)?\\(");
 	private static final Pattern _taglibVariablePattern = Pattern.compile(
 		"\n((\t*([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);\n)+)\\s*%>\n+" +
 			"((\n\t*)<(([^\n]+/>)|([\\S\\s]*?\\8((</)|(/>))\\S*)))(\n|\\Z)",

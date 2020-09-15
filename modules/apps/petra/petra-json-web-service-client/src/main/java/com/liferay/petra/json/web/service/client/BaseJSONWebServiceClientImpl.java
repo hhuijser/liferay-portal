@@ -910,13 +910,13 @@ public abstract class BaseJSONWebServiceClientImpl
 			throw new RuntimeException(exception);
 		}
 
-		String[] httpProtocols = _split(System.getProperty("https.protocols"));
+		String[] httpsProtocols = _split(System.getProperty("https.protocols"));
 
 		String[] cipherSuites = _split(
 			System.getProperty("https.cipherSuites"));
 
 		return new SSLIOSessionStrategy(
-			sslContext, httpProtocols, cipherSuites,
+			sslContext, httpsProtocols, cipherSuites,
 			SSLIOSessionStrategy.getDefaultHostnameVerifier());
 	}
 

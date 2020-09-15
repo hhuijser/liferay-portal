@@ -439,9 +439,9 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path bootstrapPath3 = Paths.get("bootstrapPath3");
 		Path mappedBootstrapPath3 = Paths.get("mappedBootstrapPath3");
 
-		Path inputPath1 = Paths.get("inputPaths1");
+		Path inputPaths1 = Paths.get("inputPaths1");
 		Path mappedInputPath1 = Paths.get("mappedInputPath1");
-		Path inputPath2 = Paths.get("inputPaths2");
+		Path inputPaths2 = Paths.get("inputPaths2");
 		Path mappedInputPath2 = Paths.get("mappedInputPath2");
 
 		Path runtimePath1 = Paths.get("runtimePath1");
@@ -458,9 +458,9 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		).put(
 			bootstrapPath3, mappedBootstrapPath3
 		).put(
-			inputPath1, mappedInputPath1
+			inputPaths1, mappedInputPath1
 		).put(
-			inputPath2, mappedInputPath2
+			inputPaths2, mappedInputPath2
 		).put(
 			runtimePath1, mappedRuntimePath1
 		).put(
@@ -506,7 +506,7 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 
 		ProcessCallable<Serializable> processCallable =
 			new LoadPathProcessCallable(
-				inputPath1.toFile(), inputPath2.toFile());
+				inputPaths1.toFile(), inputPaths2.toFile());
 
 		FabricPathMappingVisitor fabricPathMappingVisitor =
 			new FabricPathMappingVisitor(
@@ -528,8 +528,10 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 
 		Assert.assertEquals(
 			loadedInputPaths.toString(), 2, loadedInputPaths.size());
-		Assert.assertEquals(mappedInputPath1, loadedInputPaths.get(inputPath1));
-		Assert.assertEquals(mappedInputPath2, loadedInputPaths.get(inputPath2));
+		Assert.assertEquals(
+			mappedInputPath1, loadedInputPaths.get(inputPaths1));
+		Assert.assertEquals(
+			mappedInputPath2, loadedInputPaths.get(inputPaths2));
 
 		processConfig = loadedPaths.toProcessConfig(processConfig);
 
@@ -679,10 +681,10 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 
 	@Test
 	public void testLoadPathsMissedInputPaths() throws InterruptedException {
-		Path inputPath1 = Paths.get("inputPaths1");
+		Path inputPaths1 = Paths.get("inputPaths1");
 
 		final Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
-			inputPath1, Paths.get("mappedInputPath1")
+			inputPaths1, Paths.get("mappedInputPath1")
 		).build();
 
 		NettyFabricWorkerExecutionChannelHandler
@@ -714,11 +716,11 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 
 		ProcessConfig processConfig = builder.build();
 
-		Path inputPath2 = Paths.get("inputPaths2");
+		Path inputPaths2 = Paths.get("inputPaths2");
 
 		ProcessCallable<Serializable> processCallable =
 			new LoadPathProcessCallable(
-				inputPath1.toFile(), inputPath2.toFile());
+				inputPaths1.toFile(), inputPaths2.toFile());
 
 		FabricPathMappingVisitor fabricPathMappingVisitor =
 			new FabricPathMappingVisitor(
@@ -742,7 +744,7 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 
 			Assert.assertSame(IOException.class, throwable.getClass());
 			Assert.assertEquals(
-				"Unable to get input paths: " + Arrays.asList(inputPath2),
+				"Unable to get input paths: " + Arrays.asList(inputPaths2),
 				throwable.getMessage());
 		}
 	}

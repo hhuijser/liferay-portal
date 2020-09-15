@@ -62,14 +62,14 @@ public class UpdateFolderMVCActionCommand extends BaseMVCActionCommand {
 			ParamUtil.getString(
 				actionRequest, "ddmStructuresSearchContainerPrimaryKeys"),
 			0L);
-		int restrinctionType = ParamUtil.getInteger(
+		int restrictionType = ParamUtil.getInteger(
 			actionRequest, "restrictionType");
 		boolean mergeWithParentFolder = ParamUtil.getBoolean(
 			actionRequest, "mergeWithParentFolder");
 
 		_journalFolderService.updateFolder(
 			serviceContext.getScopeGroupId(), folderId, parentFolderId, name,
-			description, ddmStructureIds, restrinctionType,
+			description, ddmStructureIds, restrictionType,
 			mergeWithParentFolder, serviceContext);
 	}
 

@@ -43,12 +43,12 @@ import org.xml.sax.SAXException;
 public class DDMUADUtil {
 
 	public static void formatCreateDate(Map<String, Object> fieldValues) {
-		Date createdDate = (Date)fieldValues.get("createDate");
+		Date createDate = (Date)fieldValues.get("createDate");
 
-		if (createdDate != null) {
+		if (createDate != null) {
 			fieldValues.put(
 				"createDate",
-				Time.getSimpleDate(createdDate, "MMM dd yyyy 'at' HH:mm"));
+				Time.getSimpleDate(createDate, "MMM dd yyyy 'at' HH:mm"));
 		}
 	}
 

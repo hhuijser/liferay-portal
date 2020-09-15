@@ -197,7 +197,7 @@ public class AkismetMBMessageLocalServiceWrapper
 
 		Map<String, String> headers = serviceContext.getHeaders();
 
-		String referrer = headers.get("referer");
+		String referer = headers.get("referer");
 		String userAgent = headers.get(
 			StringUtil.toLowerCase(HttpHeaders.USER_AGENT));
 
@@ -205,7 +205,7 @@ public class AkismetMBMessageLocalServiceWrapper
 
 		return _akismetEntryLocalService.updateAkismetEntry(
 			MBMessage.class.getName(), message.getMessageId(),
-			AkismetConstants.TYPE_COMMENT, permalink, referrer, userAgent,
+			AkismetConstants.TYPE_COMMENT, permalink, referer, userAgent,
 			userIP, StringPool.BLANK);
 	}
 

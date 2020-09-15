@@ -54,7 +54,7 @@ public class UpdateWorkflowDefinitionsMVCActionCommand
 			ParamUtil.getString(
 				actionRequest, "ddmStructuresSearchContainerPrimaryKeys"),
 			0L);
-		int restrinctionType = ParamUtil.getInteger(
+		int restrictionType = ParamUtil.getInteger(
 			actionRequest, "restrictionType");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
@@ -64,7 +64,7 @@ public class UpdateWorkflowDefinitionsMVCActionCommand
 			serviceContext.getScopeGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, null, null,
-			ddmStructureIds, restrinctionType, false, serviceContext);
+			ddmStructureIds, restrictionType, false, serviceContext);
 	}
 
 	@Reference

@@ -49,12 +49,10 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 	}
 
 	protected String getInvocationCohortName() {
-		String invocationCorhortName = System.getenv("INVOCATION_COHORT_NAME");
+		String invocationCohortName = System.getenv("INVOCATION_COHORT_NAME");
 
-		if ((invocationCorhortName != null) &&
-			!invocationCorhortName.isEmpty()) {
-
-			return invocationCorhortName;
+		if ((invocationCohortName != null) && !invocationCohortName.isEmpty()) {
+			return invocationCohortName;
 		}
 
 		BuildData buildData = getBuildData();

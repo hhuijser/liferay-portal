@@ -62,13 +62,13 @@ public class UpgradeKaleoProcess extends UpgradeProcess {
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
 					long kaleoProcessId = rs.getLong("classPK");
-					String workflowDefinitioName = rs.getString(
+					String workflowDefinitionName = rs.getString(
 						"workflowDefinitionName");
 					int workflowDefinitionVersion = rs.getInt(
 						"workflowDefinitionVersion");
 
 					updateKaleoProcess(
-						kaleoProcessId, workflowDefinitioName,
+						kaleoProcessId, workflowDefinitionName,
 						workflowDefinitionVersion);
 				}
 			}

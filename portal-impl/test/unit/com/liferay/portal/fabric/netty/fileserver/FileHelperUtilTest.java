@@ -589,14 +589,14 @@ public class FileHelperUtilTest {
 
 		};
 
-		Path impossiableSourceFilePath = Paths.get("ImpossibleSourceFilePath");
+		Path impossibleSourceFilePath = Paths.get("ImpossibleSourceFilePath");
 
-		impossiableSourceFilePath = fileSystemProvider.getPath(
-			impossiableSourceFilePath.toUri());
+		impossibleSourceFilePath = fileSystemProvider.getPath(
+			impossibleSourceFilePath.toUri());
 
 		try {
 			FileHelperUtil.unzip(
-				impossiableSourceFilePath, FileHelperUtil.TEMP_DIR_PATH);
+				impossibleSourceFilePath, FileHelperUtil.TEMP_DIR_PATH);
 
 			Assert.fail();
 		}

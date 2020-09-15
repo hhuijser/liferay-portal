@@ -252,7 +252,7 @@ public class ExportSamlSaasMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private JSONArray _getSpIdpConnectionsJSONArray(long companyId) {
-		JSONArray samlSpIdpConnectionsJsonArray =
+		JSONArray samlSpIdpConnectionsJSONArray =
 			JSONFactoryUtil.createJSONArray();
 
 		List<SamlSpIdpConnection> samlSpIdpConnectionsList =
@@ -261,7 +261,7 @@ public class ExportSamlSaasMVCActionCommand extends BaseMVCActionCommand {
 		for (SamlSpIdpConnection samlSpIdpConnection :
 				samlSpIdpConnectionsList) {
 
-			samlSpIdpConnectionsJsonArray.put(
+			samlSpIdpConnectionsJSONArray.put(
 				JSONUtil.put(
 					"assertionSignatureRequired",
 					samlSpIdpConnection.isAssertionSignatureRequired()
@@ -302,7 +302,7 @@ public class ExportSamlSaasMVCActionCommand extends BaseMVCActionCommand {
 				));
 		}
 
-		return samlSpIdpConnectionsJsonArray;
+		return samlSpIdpConnectionsJSONArray;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

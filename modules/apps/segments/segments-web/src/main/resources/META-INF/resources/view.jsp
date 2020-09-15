@@ -174,7 +174,7 @@ request.setAttribute("view.jsp-eventName", eventName);
 
 <aui:script require="metal-dom/src/all/dom as dom">
 	var form = document.getElementById(
-		'<portlet:namespace/>updateSegmentsEntrySiteRolesFm'
+		'<portlet:namespace />updateSegmentsEntrySiteRolesFm'
 	);
 
 	dom.delegate(document, 'click', '.assign-site-roles-link', function (event) {

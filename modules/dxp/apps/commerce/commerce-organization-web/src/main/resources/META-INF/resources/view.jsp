@@ -101,7 +101,7 @@ wrapperCssClass = viewMode + " " + wrapperCssClass;
 				'<%= segmentEditRootElementId %>',
 				{
 					assetsPath: '<%= PortalUtil.getPathContext(request) + "/assets" %>',
-					namespace: '<portlet:namespace/>',
+					namespace: '<portlet:namespace />',
 					spritemap:
 						'<%= themeDisplay.getPathThemeImages() + "/lexicon/icons.svg" %>',
 					imagesPath: '<%= themeDisplay.getPathThemeImages() %>',

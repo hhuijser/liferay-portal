@@ -253,10 +253,10 @@ else {
 <aui:script require="metal-dom/src/dom as dom">
 	var form = document.<portlet:namespace />fm;
 
-	form.addEventListener('change', <portlet:namespace/>resetPreview);
-	form.addEventListener('select', <portlet:namespace/>resetPreview);
+	form.addEventListener('change', <portlet:namespace />resetPreview);
+	form.addEventListener('select', <portlet:namespace />resetPreview);
 
-	function <portlet:namespace/>resetPreview() {
+	function <portlet:namespace />resetPreview() {
 		var displayDepthSelect = Liferay.Util.getFormElement(form, 'displayDepth');
 		var displayStyleSelect = Liferay.Util.getFormElement(form, 'displayStyle');
 		var expandedLevelsSelect = Liferay.Util.getFormElement(
@@ -364,7 +364,7 @@ else {
 						rootMenuItemNameSpan.innerText =
 							selectedItem.selectSiteNavigationMenuItemName;
 
-						<portlet:namespace/>resetPreview();
+						<portlet:namespace />resetPreview();
 					}
 				},
 				selectEventName:
@@ -406,7 +406,7 @@ else {
 
 						dom.toggleClasses(removeSiteNavigationMenu, 'hide');
 
-						<portlet:namespace/>resetPreview();
+						<portlet:namespace />resetPreview();
 					}
 				},
 				selectEventName:
@@ -438,7 +438,7 @@ else {
 
 			dom.toggleClasses(removeSiteNavigationMenu, 'hide');
 
-			<portlet:namespace/>resetPreview();
+			<portlet:namespace />resetPreview();
 		});
 	}
 
@@ -513,7 +513,7 @@ else {
 
 				removeSiteNavigationMenu.classList.add('hide');
 
-				<portlet:namespace/>resetPreview();
+				<portlet:namespace />resetPreview();
 			}
 		);
 	}

@@ -34,7 +34,7 @@ String fixIssueButton = "fixIssueButton" + row.getRowId();
 			event
 		) {
 			var data = {
-				<portlet:namespace/>key: '<%= commerceHealthHttpStatus.getKey() %>',
+				<portlet:namespace />key: '<%= commerceHealthHttpStatus.getKey() %>',
 			};
 
 			this.attr('disabled', true);

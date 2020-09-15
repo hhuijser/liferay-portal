@@ -182,17 +182,17 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 
 <c:if test="<%= selUser != null %>">
 	<aui:script use="liferay-form">
-		Liferay.once('<portlet:namespace/>formReady', function () {
-			var form = Liferay.Form.get('<portlet:namespace/>fm');
+		Liferay.once('<portlet:namespace />formReady', function () {
+			var form = Liferay.Form.get('<portlet:namespace />fm');
 
 			form.set('onSubmit', function (event) {
 				event.preventDefault();
 
 				var emailAddressInput = document.getElementById(
-					'<portlet:namespace/>emailAddress'
+					'<portlet:namespace />emailAddress'
 				);
 				var screenNameInput = document.getElementById(
-					'<portlet:namespace/>screenName'
+					'<portlet:namespace />screenName'
 				);
 
 				if (

@@ -145,7 +145,7 @@ MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 		}
 
 		Liferay.Util.toggleDisabled(
-			'#<portlet:namespace/>replyMessageButton' + messageId,
+			'#<portlet:namespace />replyMessageButton' + messageId,
 			false
 		);
 	}

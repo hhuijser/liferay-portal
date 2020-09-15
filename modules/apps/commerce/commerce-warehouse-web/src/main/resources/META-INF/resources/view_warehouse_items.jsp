@@ -103,7 +103,7 @@ if (Validator.isNotNull(backURL)) {
 	</c:choose>
 
 	<aui:script>
-		function <portlet:namespace/>updateCommerceInventoryWarehouseItem(
+		function <portlet:namespace />updateCommerceInventoryWarehouseItem(
 			commerceInventoryWarehouseId,
 			commerceInventoryWarehouseItemId,
 			mvccVersion,
@@ -159,7 +159,7 @@ if (Validator.isNotNull(backURL)) {
 						.split(quantityPrefix)[1];
 
 					window.document
-						.querySelector('#<portlet:namespace/>saveButton' + curIndex)
+						.querySelector('#<portlet:namespace />saveButton' + curIndex)
 						.click();
 				}
 			});

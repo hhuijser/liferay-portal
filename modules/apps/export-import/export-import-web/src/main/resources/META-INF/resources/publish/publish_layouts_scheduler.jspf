@@ -55,7 +55,7 @@
 		var rangeEndsLater = false;
 
 		var schedulerEndBy = document.getElementById(
-			'<portlet:namespace/>schedulerEndBy'
+			'<portlet:namespace />schedulerEndBy'
 		);
 
 		if (schedulerEndBy && schedulerEndBy.checked) {

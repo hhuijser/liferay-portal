@@ -142,7 +142,7 @@ SearchContainer<Object> searchContainer = itemSelectorViewDescriptor.getSearchCo
 
 <aui:script require="metal-dom/src/all/dom as dom">
 	var selectItemHandler = dom.delegate(
-		document.querySelector('#<portlet:namespace/>entriesContainer'),
+		document.querySelector('#<portlet:namespace />entriesContainer'),
 		'click',
 		'.entry',
 		function (event) {

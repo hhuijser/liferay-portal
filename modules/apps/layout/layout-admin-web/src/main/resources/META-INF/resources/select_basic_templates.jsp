@@ -20,7 +20,7 @@
 SelectLayoutPageTemplateEntryDisplayContext selectLayoutPageTemplateEntryDisplayContext = new SelectLayoutPageTemplateEntryDisplayContext(request);
 %>
 
-<div class="lfr-search-container-wrapper" id="<portlet:namespace/>layoutTypes">
+<div class="lfr-search-container-wrapper" id="<portlet:namespace />layoutTypes">
 	<ul class="card-page card-page-equal-height">
 
 		<%

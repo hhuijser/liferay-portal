@@ -83,7 +83,7 @@ PortletURL editCommerceChannelRenderURL = commerceChannelDisplayContext.getEditC
 	<aui:script require="commerce-frontend-js/utilities/eventsDefinitions as events, commerce-frontend-js/utilities/forms/index as FormUtils">
 		Liferay.provide(
 			window,
-			'<portlet:namespace/>apiSubmit',
+			'<portlet:namespace />apiSubmit',
 			function (form) {
 				var API_URL = '/o/headless-commerce-admin-channel/v1.0/channels';
 

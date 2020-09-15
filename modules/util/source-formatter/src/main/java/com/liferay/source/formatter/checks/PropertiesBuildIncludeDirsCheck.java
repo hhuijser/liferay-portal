@@ -101,6 +101,9 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		List<String> ignoredModuleNames = _getIgnoredModuleNames(
 			SourceUtil.getRootDirName(absolutePath));
 
+		List<String> skipModuleNames = ListUtil.concat(
+			buildExcludeModuleNames, ignoredModuleNames);
+
 		Set<String> buildIncludeDirs = new TreeSet<>();
 
 		Files.walkFileTree(
@@ -120,7 +123,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 					}
 
 					String moduleDirName = _getModuleDirName(
-						dirPath, buildExcludeModuleNames, ignoredModuleNames);
+						dirPath, skipModuleNames);
 
 					if (moduleDirName == null) {
 						return FileVisitResult.CONTINUE;
@@ -167,9 +170,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 		return ignoredModuleNames;
 	}
 
-	private String _getModuleDirName(
-			Path dirPath, List<String> buildExcludeModuleNames,
-			List<String> ignoredModuleNames)
+	private String _getModuleDirName(Path dirPath, List<String> skipModuleNames)
 		throws IOException {
 
 		String absolutePath = SourceUtil.getAbsolutePath(dirPath);
@@ -182,12 +183,10 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 
 		String directoryPath = absolutePath.substring(x + 9);
 
-		for (String excludeModuleName :
-				ListUtil.concat(buildExcludeModuleNames, ignoredModuleNames)) {
-
+		for (String skipModuleName : skipModuleNames) {
 			String modulePath = "/modules/" + directoryPath + "/";
 
-			if (modulePath.startsWith(excludeModuleName + "/")) {
+			if (modulePath.startsWith(skipModuleName + "/")) {
 				return null;
 			}
 		}

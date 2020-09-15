@@ -155,9 +155,10 @@ public class ExportSamlSaasMVCActionCommand extends BaseMVCActionCommand {
 		}
 
 		jsonObject.put(
-			"samlProviderConfiguration", _getSamlProviderConfiguration()
+			"samlProviderConfiguration",
+			_getSamlProviderConfigurationJSONObject()
 		).put(
-			"samlSpIdpConnections", _getSpIdpConnections(companyId)
+			"samlSpIdpConnections", _getSpIdpConnectionsJSONArray(companyId)
 		);
 
 		try {
@@ -185,7 +186,7 @@ public class ExportSamlSaasMVCActionCommand extends BaseMVCActionCommand {
 		return Base64.encode(byteArrayOutputStream.toByteArray());
 	}
 
-	private JSONObject _getSamlProviderConfiguration() {
+	private JSONObject _getSamlProviderConfigurationJSONObject() {
 		SamlProviderConfiguration samlProviderConfiguration =
 			_samlProviderConfigurationHelper.getSamlProviderConfiguration();
 
@@ -232,7 +233,7 @@ public class ExportSamlSaasMVCActionCommand extends BaseMVCActionCommand {
 		);
 	}
 
-	private JSONObject _getSpIdpConnectionExpandoValues(
+	private JSONObject _getSpIdpConnectionExpandoValuesJSONObject(
 		SamlSpIdpConnection samlSpIdpConnection) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -250,7 +251,7 @@ public class ExportSamlSaasMVCActionCommand extends BaseMVCActionCommand {
 		return jsonObject;
 	}
 
-	private JSONArray _getSpIdpConnections(long companyId) {
+	private JSONArray _getSpIdpConnectionsJSONArray(long companyId) {
 		JSONArray samlSpIdpConnectionsJsonArray =
 			JSONFactoryUtil.createJSONArray();
 
@@ -270,7 +271,8 @@ public class ExportSamlSaasMVCActionCommand extends BaseMVCActionCommand {
 					"enabled", samlSpIdpConnection.isEnabled()
 				).put(
 					"expandoValues",
-					_getSpIdpConnectionExpandoValues(samlSpIdpConnection)
+					_getSpIdpConnectionExpandoValuesJSONObject(
+						samlSpIdpConnection)
 				).put(
 					"forceAuthn", samlSpIdpConnection.isForceAuthn()
 				).put(

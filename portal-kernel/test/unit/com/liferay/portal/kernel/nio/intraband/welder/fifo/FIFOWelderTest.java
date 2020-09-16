@@ -113,7 +113,7 @@ public class FIFOWelderTest {
 		final FIFOWelder serverFIFOWelder = new FIFOWelder();
 
 		final FIFOWelder clientFIFOWelder = WelderTestUtil.transform(
-				serverFIFOWelder);
+			serverFIFOWelder);
 
 		FutureTask<MockRegistrationReference> serverWeldingTask =
 			new FutureTask<MockRegistrationReference>(

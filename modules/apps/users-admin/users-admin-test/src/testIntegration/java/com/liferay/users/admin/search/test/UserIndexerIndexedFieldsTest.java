@@ -194,7 +194,7 @@ public class UserIndexerIndexedFieldsTest {
 
 	protected User addUser() throws Exception {
 		return userSearchFixture.addUser(
-			RandomTestUtil.randomString(), group, new String[] {});
+			RandomTestUtil.randomString(), group, new String[0]);
 	}
 
 	protected void setUpIndexedFieldsFixture() {

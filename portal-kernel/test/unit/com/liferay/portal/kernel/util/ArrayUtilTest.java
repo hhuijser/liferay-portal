@@ -293,7 +293,7 @@ public class ArrayUtilTest {
 
 	@Test
 	public void testCountStringEmptyArray() {
-		Assert.assertEquals(0, ArrayUtil.count(new String[] {}, s -> true));
+		Assert.assertEquals(0, ArrayUtil.count(new String[0], s -> true));
 	}
 
 	@Test

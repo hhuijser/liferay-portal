@@ -69,7 +69,7 @@ public class ExternalMethod {
 	public static Object execute(String className, String methodName)
 		throws Exception {
 
-		return execute(className, methodName, new Object[] {});
+		return execute(className, methodName, new Object[0]);
 	}
 
 	public static Object execute(

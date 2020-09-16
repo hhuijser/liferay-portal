@@ -89,7 +89,7 @@ public class ModelPermissionsFactoryTest extends PowerMockito {
 	@Test
 	public void testCreateWithEmptyPermissions() throws Exception {
 		ModelPermissions modelPermissions = ModelPermissionsFactory.create(
-			new String[] {}, new String[] {});
+			new String[0], new String[0]);
 
 		Collection<String> roleNames = modelPermissions.getRoleNames();
 
@@ -101,7 +101,7 @@ public class ModelPermissionsFactoryTest extends PowerMockito {
 		String[] groupPermissions = {ActionKeys.VIEW};
 
 		ModelPermissions modelPermissions = ModelPermissionsFactory.create(
-			groupPermissions, new String[] {});
+			groupPermissions, new String[0]);
 
 		Collection<String> roleNames = modelPermissions.getRoleNames();
 
@@ -135,7 +135,7 @@ public class ModelPermissionsFactoryTest extends PowerMockito {
 		String[] guestPermissions = {ActionKeys.VIEW};
 
 		ModelPermissions modelPermissions = ModelPermissionsFactory.create(
-			new String[] {}, guestPermissions);
+			new String[0], guestPermissions);
 
 		Collection<String> roleNames = modelPermissions.getRoleNames();
 

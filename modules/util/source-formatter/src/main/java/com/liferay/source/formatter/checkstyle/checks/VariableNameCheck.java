@@ -77,7 +77,7 @@ public class VariableNameCheck extends BaseCheck {
 				_checkExceptionVariableName(detailAST, name, typeName);
 				_checkInstanceVariableName(detailAST, name, typeName);
 				_checkTypeName(detailAST, name, typeName);
-				_checkTypo(detailAST, name, typeName);
+				_checkTypo(detailAST, name, typeName, true);
 			}
 		}
 
@@ -124,7 +124,7 @@ public class VariableNameCheck extends BaseCheck {
 			}
 
 			if (methodName.matches("get[A-Z].*")) {
-				_checkTypo(detailAST, name, methodName.substring(3));
+				_checkTypo(detailAST, name, methodName.substring(3), false);
 			}
 		}
 	}
@@ -479,12 +479,31 @@ public class VariableNameCheck extends BaseCheck {
 	}
 
 	private void _checkTypo(
-		DetailAST detailAST, String variableName, String typeName) {
+		DetailAST detailAST, String variableName, String typeName,
+		boolean checkCaseSensitive) {
 
 		if (StringUtil.isUpperCase(variableName) ||
 			typeName.contains(StringPool.UNDERLINE)) {
 
 			return;
+		}
+
+		if (checkCaseSensitive && StringUtil.endsWith(variableName, typeName) &&
+			!variableName.endsWith(typeName)) {
+
+			String variableEnding = variableName.substring(
+				variableName.length() - typeName.length());
+
+			if (Character.isUpperCase(typeName.charAt(0)) &&
+				Character.isUpperCase(variableEnding.charAt(0))) {
+
+				log(
+					detailAST, _MSG_TYPO_VARIABLE, variableName,
+					StringUtil.replaceLast(
+						variableName, variableEnding, typeName));
+
+				return;
+			}
 		}
 
 		List<String> allowedVariableNames = getAttributeValues(

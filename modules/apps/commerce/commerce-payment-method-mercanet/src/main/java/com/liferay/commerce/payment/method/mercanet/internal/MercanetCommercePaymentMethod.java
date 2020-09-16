@@ -178,45 +178,45 @@ public class MercanetCommercePaymentMethod implements CommercePaymentMethod {
 
 		paymentRequest.setAmount(normalizedOrderTotal.intValue());
 
-		URL returnUrl = new URL(mercanetCommercePaymentRequest.getReturnUrl());
+		URL returnURL = new URL(mercanetCommercePaymentRequest.getReturnUrl());
 
 		Map<String, String[]> parameters = _http.getParameterMap(
-			returnUrl.getQuery());
+			returnURL.getQuery());
 
-		URL baseUrl = new URL(
-			returnUrl.getProtocol(), returnUrl.getHost(), returnUrl.getPort(),
-			returnUrl.getPath());
+		URL baseURL = new URL(
+			returnURL.getProtocol(), returnURL.getHost(), returnURL.getPort(),
+			returnURL.getPath());
 
-		StringBundler automaticUrlSB = new StringBundler(5);
+		StringBundler automaticURLSB = new StringBundler(5);
 
-		automaticUrlSB.append(baseUrl.toString());
-		automaticUrlSB.append("?groupId=");
-		automaticUrlSB.append(parameters.get("groupId")[0]);
-		automaticUrlSB.append("&type=automatic&uuid=");
-		automaticUrlSB.append(parameters.get("uuid")[0]);
+		automaticURLSB.append(baseURL.toString());
+		automaticURLSB.append("?groupId=");
+		automaticURLSB.append(parameters.get("groupId")[0]);
+		automaticURLSB.append("&type=automatic&uuid=");
+		automaticURLSB.append(parameters.get("uuid")[0]);
 
-		URL automaticUrl = new URL(automaticUrlSB.toString());
+		URL automaticURL = new URL(automaticURLSB.toString());
 
-		paymentRequest.setAutomaticResponseUrl(automaticUrl);
+		paymentRequest.setAutomaticResponseUrl(automaticURL);
 
 		paymentRequest.setCaptureMode(CaptureMode.IMMEDIATE);
 		paymentRequest.setCurrencyCode(Currency.EUR);
 		paymentRequest.setCustomerId(String.valueOf(commerceOrder.getUserId()));
 
-		StringBundler normalUrlSB = new StringBundler(4);
+		StringBundler normalURLSB = new StringBundler(4);
 
-		normalUrlSB.append(baseUrl.toString());
-		normalUrlSB.append("?redirect=");
+		normalURLSB.append(baseURL.toString());
+		normalURLSB.append("?redirect=");
 
 		String encodeURL = URLCodec.encodeURL(parameters.get("redirect")[0]);
 
-		normalUrlSB.append(encodeURL);
+		normalURLSB.append(encodeURL);
 
-		normalUrlSB.append("&type=normal");
+		normalURLSB.append("&type=normal");
 
-		URL normalUrl = new URL(normalUrlSB.toString());
+		URL normalURL = new URL(normalURLSB.toString());
 
-		paymentRequest.setNormalReturnUrl(normalUrl);
+		paymentRequest.setNormalReturnUrl(normalURL);
 
 		paymentRequest.setOrderChannel(OrderChannel.INTERNET);
 		paymentRequest.setOrderId(
@@ -259,11 +259,11 @@ public class MercanetCommercePaymentMethod implements CommercePaymentMethod {
 				resultMessage, false);
 		}
 
-		URL redirectionUrl = initializationResponse.getRedirectionUrl();
+		URL redirectionURL = initializationResponse.getRedirectionUrl();
 
 		String url = StringBundler.concat(
 			_getServletUrl(mercanetCommercePaymentRequest), "?redirectUrl=",
-			URLCodec.encodeURL(redirectionUrl.toString()), "&redirectionData=",
+			URLCodec.encodeURL(redirectionURL.toString()), "&redirectionData=",
 			URLEncoder.encode(
 				initializationResponse.getRedirectionData(), "UTF-8"),
 			"&seal=",

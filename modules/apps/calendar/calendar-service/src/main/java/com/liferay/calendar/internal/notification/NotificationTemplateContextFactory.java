@@ -253,20 +253,20 @@ public class NotificationTemplateContextFactory {
 	private static Format _getUserDateTimeFormat(
 		CalendarBooking calendarBooking, User user) {
 
-		TimeZone userTimezone = user.getTimeZone();
+		TimeZone userTimeZone = user.getTimeZone();
 
 		if ((calendarBooking != null) && calendarBooking.isAllDay()) {
-			userTimezone = TimeZone.getTimeZone(StringPool.UTC);
+			userTimeZone = TimeZone.getTimeZone(StringPool.UTC);
 		}
 
 		return FastDateFormatFactoryUtil.getDateTime(
-			user.getLocale(), userTimezone);
+			user.getLocale(), userTimeZone);
 	}
 
 	private static String _getUserTimezoneDisplayName(User user) {
-		TimeZone userTimezone = user.getTimeZone();
+		TimeZone userTimeZone = user.getTimeZone();
 
-		return userTimezone.getDisplayName(
+		return userTimeZone.getDisplayName(
 			false, TimeZone.SHORT, user.getLocale());
 	}
 

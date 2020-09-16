@@ -93,11 +93,11 @@ public class CoalescedPipe<E> {
 				_notEmptyCondition.await();
 			}
 
-			ElementLink<E> garbageELementLink = _headElementLink;
+			ElementLink<E> garbageElementLink = _headElementLink;
 
 			_headElementLink = _headElementLink._nextElementLink;
 
-			garbageELementLink._nextElementLink = null;
+			garbageElementLink._nextElementLink = null;
 
 			element = _headElementLink._element;
 

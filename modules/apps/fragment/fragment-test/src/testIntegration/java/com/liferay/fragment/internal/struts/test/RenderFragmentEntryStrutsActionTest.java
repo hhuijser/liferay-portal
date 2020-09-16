@@ -94,36 +94,36 @@ public class RenderFragmentEntryStrutsActionTest {
 		mockHttpServletRequest.setParameter(
 			"groupId", String.valueOf(_group.getGroupId()));
 
-		URL htmlUrl = _bundle.getEntry(
+		URL htmlURL = _bundle.getEntry(
 			_RESOURCES_PATH + "fragments/card/index.html");
 
 		mockHttpServletRequest.setParameter(
-			"html", StringUtil.read(htmlUrl.openStream()));
+			"html", StringUtil.read(htmlURL.openStream()));
 
-		URL cssUrl = _bundle.getEntry(
+		URL cssURL = _bundle.getEntry(
 			_RESOURCES_PATH + "fragments/card/index.css");
 
 		mockHttpServletRequest.setParameter(
-			"css", StringUtil.read(cssUrl.openStream()));
+			"css", StringUtil.read(cssURL.openStream()));
 
-		URL jsUrl = _bundle.getEntry(
+		URL jsURL = _bundle.getEntry(
 			_RESOURCES_PATH + "fragments/card/index.js");
 
 		mockHttpServletRequest.setParameter(
-			"js", StringUtil.read(jsUrl.openStream()));
+			"js", StringUtil.read(jsURL.openStream()));
 
 		_processEvents(mockHttpServletRequest, mockHttpServletResponse, _user);
 
 		_renderFragmentEntryStrutsAction.execute(
 			mockHttpServletRequest, pipingServletResponse);
 
-		URL renderedUrl = _bundle.getEntry(
+		URL renderedURL = _bundle.getEntry(
 			_RESOURCES_PATH + "render/simple.html");
 
 		String actualHTML = _getHTML(unsyncStringWriter.toString());
 
 		String expectedHTML = _getHTML(
-			StringUtil.read(renderedUrl.openStream()));
+			StringUtil.read(renderedURL.openStream()));
 
 		Assert.assertEquals(expectedHTML, actualHTML);
 	}

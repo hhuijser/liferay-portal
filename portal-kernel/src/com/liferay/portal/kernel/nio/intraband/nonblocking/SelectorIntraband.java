@@ -209,11 +209,11 @@ public class SelectorIntraband extends BaseIntraband {
 	}
 
 	protected void registerChannels() {
-		FutureTask<RegistrationReference> registerFuturetask = null;
+		FutureTask<RegistrationReference> registerFutureTask = null;
 
 		synchronized (selector) {
-			while ((registerFuturetask = registerQueue.poll()) != null) {
-				registerFuturetask.run();
+			while ((registerFutureTask = registerQueue.poll()) != null) {
+				registerFutureTask.run();
 			}
 		}
 	}

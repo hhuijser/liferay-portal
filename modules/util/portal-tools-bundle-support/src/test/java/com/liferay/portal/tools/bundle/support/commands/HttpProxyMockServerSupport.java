@@ -138,7 +138,7 @@ public class HttpProxyMockServerSupport {
 
 	protected void createToken(
 			String emailAddress, boolean force, String password,
-			File passwordFile, File tokenFile, URL tokenUrl)
+			File passwordFile, File tokenFile, URL tokenURL)
 		throws Exception {
 
 		CreateTokenCommand createTokenCommand = new CreateTokenCommand();
@@ -148,7 +148,7 @@ public class HttpProxyMockServerSupport {
 		createTokenCommand.setPassword(password);
 		createTokenCommand.setPasswordFile(passwordFile);
 		createTokenCommand.setTokenFile(tokenFile);
-		createTokenCommand.setTokenUrl(tokenUrl);
+		createTokenCommand.setTokenUrl(tokenURL);
 
 		createTokenCommand.execute();
 	}

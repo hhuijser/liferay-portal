@@ -135,14 +135,14 @@ public class ConfigurationTestUtil {
 			Configuration configuration, Dictionary<String, Object> dictionary)
 		throws Exception {
 
-		CountDownLatch eventCountdownLatch = new CountDownLatch(1);
+		CountDownLatch eventCountDownLatch = new CountDownLatch(1);
 		CountDownLatch updateCountDownLatch = new CountDownLatch(2);
 
 		String markerPID = ConfigurationTestUtil.class.getName();
 
 		ConfigurationListener configurationListener = configurationEvent -> {
 			if (markerPID.equals(configurationEvent.getPid())) {
-				eventCountdownLatch.countDown();
+				eventCountDownLatch.countDown();
 			}
 		};
 
@@ -153,7 +153,7 @@ public class ConfigurationTestUtil {
 
 		ManagedService managedService = properties -> {
 			try {
-				eventCountdownLatch.await();
+				eventCountDownLatch.await();
 			}
 			catch (InterruptedException interruptedException) {
 				ReflectionUtil.throwException(interruptedException);

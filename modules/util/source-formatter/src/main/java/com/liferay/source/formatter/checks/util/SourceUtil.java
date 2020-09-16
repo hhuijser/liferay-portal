@@ -229,7 +229,8 @@ public class SourceUtil {
 	}
 
 	public static boolean hasTypo(String s1, String s2) {
-		if ((s1.charAt(0) != s2.charAt(0)) ||
+		if (Validator.isNull(s1) || Validator.isNull(s2) || s1.equals(s2) ||
+			(s1.charAt(0) != s2.charAt(0)) ||
 			(s1.charAt(s1.length() - 1) != s2.charAt(s2.length() - 1))) {
 
 			return false;

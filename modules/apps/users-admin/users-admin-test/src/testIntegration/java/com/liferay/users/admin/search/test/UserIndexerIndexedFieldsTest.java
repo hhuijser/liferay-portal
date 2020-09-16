@@ -193,10 +193,8 @@ public class UserIndexerIndexedFieldsTest {
 	}
 
 	protected User addUser() throws Exception {
-		String[] assetTagNames = {};
-
 		return userSearchFixture.addUser(
-			RandomTestUtil.randomString(), group, assetTagNames);
+			RandomTestUtil.randomString(), group, new String[] {});
 	}
 
 	protected void setUpIndexedFieldsFixture() {

@@ -181,18 +181,16 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			return null;
 		}
 
-		String directoryPath = absolutePath.substring(x + 9);
-
 		for (String skipModuleName : skipModuleNames) {
-			String modulePath = "/modules/" + directoryPath + "/";
+			if (absolutePath.contains(skipModuleName + "/") ||
+				absolutePath.endsWith(skipModuleName)) {
 
-			if (modulePath.startsWith(skipModuleName + "/")) {
 				return null;
 			}
 		}
 
 		String[] directoryNames = StringUtil.split(
-			directoryPath, CharPool.SLASH);
+			absolutePath.substring(x + 9), CharPool.SLASH);
 
 		if (directoryNames.length < 2) {
 			return null;

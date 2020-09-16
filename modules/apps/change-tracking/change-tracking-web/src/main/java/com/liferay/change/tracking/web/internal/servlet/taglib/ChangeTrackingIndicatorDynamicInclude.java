@@ -248,11 +248,11 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 				long previousCtCollectionId =
 					ctPreferences.getPreviousCtCollectionId();
 
-				CTCollection previousCtCollection =
+				CTCollection previousCTCollection =
 					_ctCollectionLocalService.fetchCTCollection(
 						previousCtCollectionId);
 
-				if (previousCtCollection != null) {
+				if (previousCTCollection != null) {
 					checkoutURL.setParameter(
 						"ctCollectionId",
 						String.valueOf(previousCtCollectionId));
@@ -264,7 +264,7 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 							"label",
 							_language.format(
 								resourceBundle, "work-on-x",
-								previousCtCollection.getName(), false)
+								previousCTCollection.getName(), false)
 						).put(
 							"symbolLeft", "radio-button"
 						));

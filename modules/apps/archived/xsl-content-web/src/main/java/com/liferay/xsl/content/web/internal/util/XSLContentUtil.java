@@ -57,8 +57,8 @@ public class XSLContentUtil {
 	}
 
 	public static String transform(
-			XSLContentConfiguration xslContentConfiguration, URL xmlUrl,
-			URL xslUrl)
+			XSLContentConfiguration xslContentConfiguration, URL xmlURL,
+			URL xslURL)
 		throws Exception {
 
 		TransformerFactory transformerFactory = getTransformerFactory(
@@ -68,13 +68,13 @@ public class XSLContentUtil {
 			xslContentConfiguration);
 
 		Transformer transformer = transformerFactory.newTransformer(
-			getXslSource(documentBuilder, xslUrl));
+			getXslSource(documentBuilder, xslURL));
 
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream();
 
 		transformer.transform(
-			getXmlSource(documentBuilder, xmlUrl),
+			getXmlSource(documentBuilder, xmlURL),
 			new StreamResult(unsyncByteArrayOutputStream));
 
 		return unsyncByteArrayOutputStream.toString();
@@ -117,10 +117,10 @@ public class XSLContentUtil {
 	}
 
 	protected static Source getXmlSource(
-			DocumentBuilder documentBuilder, URL xmlUrl)
+			DocumentBuilder documentBuilder, URL xmlURL)
 		throws Exception {
 
-		String xml = HttpUtil.URLtoString(xmlUrl);
+		String xml = HttpUtil.URLtoString(xmlURL);
 
 		Document xmlDocument = documentBuilder.parse(
 			new ByteArrayInputStream(xml.getBytes()));
@@ -129,10 +129,10 @@ public class XSLContentUtil {
 	}
 
 	protected static Source getXslSource(
-			DocumentBuilder documentBuilder, URL xslUrl)
+			DocumentBuilder documentBuilder, URL xslURL)
 		throws Exception {
 
-		String xsl = HttpUtil.URLtoString(xslUrl);
+		String xsl = HttpUtil.URLtoString(xslURL);
 
 		Document xslDocument = documentBuilder.parse(
 			new ByteArrayInputStream(xsl.getBytes()));

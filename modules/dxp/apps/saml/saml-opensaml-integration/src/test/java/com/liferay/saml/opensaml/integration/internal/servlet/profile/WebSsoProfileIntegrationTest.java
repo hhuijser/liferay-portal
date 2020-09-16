@@ -1199,12 +1199,12 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			messageContext.getSubcontext(
 				SAMLSubjectNameIdentifierContext.class);
 
-		NameID resolvedNameId =
+		NameID resolvedNameID =
 			samlSubjectNameIdentifierContext.getSAML2SubjectNameID();
 
-		Assert.assertNotNull(resolvedNameId);
-		Assert.assertEquals(nameID.getFormat(), resolvedNameId.getFormat());
-		Assert.assertEquals(nameID.getValue(), resolvedNameId.getValue());
+		Assert.assertNotNull(resolvedNameID);
+		Assert.assertEquals(nameID.getFormat(), resolvedNameID.getFormat());
+		Assert.assertEquals(nameID.getValue(), resolvedNameID.getValue());
 	}
 
 	protected Subject getSubject(

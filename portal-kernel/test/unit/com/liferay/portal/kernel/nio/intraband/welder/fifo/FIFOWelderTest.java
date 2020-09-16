@@ -110,10 +110,10 @@ public class FIFOWelderTest {
 
 	@Test
 	public void testWeld() throws Exception {
-		final FIFOWelder serverFifoWelder = new FIFOWelder();
+		final FIFOWelder serverFIFOWelder = new FIFOWelder();
 
 		final FIFOWelder clientFIFOWelder = WelderTestUtil.transform(
-			serverFifoWelder);
+			serverFIFOWelder);
 
 		FutureTask<MockRegistrationReference> serverWeldingTask =
 			new FutureTask<MockRegistrationReference>(
@@ -121,7 +121,7 @@ public class FIFOWelderTest {
 
 					@Override
 					public MockRegistrationReference call() throws Exception {
-						return (MockRegistrationReference)serverFifoWelder.weld(
+						return (MockRegistrationReference)serverFIFOWelder.weld(
 							new MockIntraband());
 					}
 
@@ -160,11 +160,11 @@ public class FIFOWelderTest {
 			clientMockRegistrationReference.getScatteringByteChannel(),
 			serverMockRegistrationReference.getGatheringByteChannel());
 
-		serverFifoWelder.destroy();
+		serverFIFOWelder.destroy();
 		clientFIFOWelder.destroy();
 
 		try {
-			serverFifoWelder.weld(new MockIntraband());
+			serverFIFOWelder.weld(new MockIntraband());
 
 			Assert.fail();
 		}
@@ -174,8 +174,8 @@ public class FIFOWelderTest {
 				illegalStateException.getMessage());
 		}
 		finally {
-			serverFifoWelder.inputFIFOFile.delete();
-			serverFifoWelder.outputFIFOFile.delete();
+			serverFIFOWelder.inputFIFOFile.delete();
+			serverFIFOWelder.outputFIFOFile.delete();
 		}
 
 		try {
@@ -189,8 +189,8 @@ public class FIFOWelderTest {
 				illegalStateException.getMessage());
 		}
 		finally {
-			serverFifoWelder.inputFIFOFile.delete();
-			serverFifoWelder.outputFIFOFile.delete();
+			serverFIFOWelder.inputFIFOFile.delete();
+			serverFIFOWelder.outputFIFOFile.delete();
 		}
 	}
 

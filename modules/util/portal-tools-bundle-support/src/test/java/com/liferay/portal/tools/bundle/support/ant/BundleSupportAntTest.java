@@ -67,7 +67,7 @@ public class BundleSupportAntTest extends BundleSupportCommandsTest {
 	@Override
 	protected void createToken(
 			String emailAddress, boolean force, String password,
-			File passwordFile, File tokenFile, URL tokenUrl)
+			File passwordFile, File tokenFile, URL tokenURL)
 		throws Exception {
 
 		Project project = buildFileRule.getProject();
@@ -79,7 +79,7 @@ public class BundleSupportAntTest extends BundleSupportCommandsTest {
 			"bundle.support.password.file", _getAbsolutePath(passwordFile));
 		project.setProperty(
 			"bundle.support.token.file", _getAbsolutePath(tokenFile));
-		project.setProperty("bundle.support.token.url", tokenUrl.toString());
+		project.setProperty("bundle.support.token.url", tokenURL.toString());
 
 		project.executeTarget("create-token");
 	}

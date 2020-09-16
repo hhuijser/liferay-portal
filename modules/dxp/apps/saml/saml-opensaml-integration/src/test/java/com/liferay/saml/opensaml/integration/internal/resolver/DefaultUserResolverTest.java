@@ -179,10 +179,10 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 	private void _initMessageContext() {
 		Assertion assertion = OpenSamlUtil.buildAssertion();
 
-		NameID subjectNameId = OpenSamlUtil.buildNameId(
+		NameID subjectNameID = OpenSamlUtil.buildNameId(
 			NameIDType.ENTITY, null, "urn:liferay", "value");
 
-		Subject subject = OpenSamlUtil.buildSubject(subjectNameId);
+		Subject subject = OpenSamlUtil.buildSubject(subjectNameID);
 
 		SubjectConfirmation subjectConfirmation =
 			OpenSamlUtil.buildSubjectConfirmation();

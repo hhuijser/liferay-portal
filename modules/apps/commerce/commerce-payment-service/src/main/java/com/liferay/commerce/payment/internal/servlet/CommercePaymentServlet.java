@@ -108,14 +108,14 @@ public class CommercePaymentServlet extends HttpServlet {
 				URL portalURL = new URL(
 					_portal.getPortalURL(httpServletRequest));
 
-				URL redirectUrl = new URL(
+				URL redirectURL = new URL(
 					commercePaymentResult.getRedirectUrl());
 
 				if (Objects.equals(
-						portalURL.getHost(), redirectUrl.getHost())) {
+						portalURL.getHost(), redirectURL.getHost())) {
 
 					Map<String, String> paramsMap = _getQueryMap(
-						redirectUrl.getQuery());
+						redirectURL.getQuery());
 
 					Set<Map.Entry<String, String>> entries =
 						paramsMap.entrySet();
@@ -127,13 +127,13 @@ public class CommercePaymentServlet extends HttpServlet {
 
 					RequestDispatcher requestDispatcher =
 						httpServletRequest.getRequestDispatcher(
-							redirectUrl.getPath());
+							redirectURL.getPath());
 
 					requestDispatcher.forward(
 						httpServletRequest, httpServletResponse);
 				}
 				else {
-					httpServletResponse.sendRedirect(redirectUrl.toString());
+					httpServletResponse.sendRedirect(redirectURL.toString());
 				}
 			}
 

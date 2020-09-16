@@ -447,14 +447,14 @@ public class PingbackMethodImplTest {
 		InetAddress publicIpAddress = InetAddress.getByAddress(
 			new byte[] {1, 2, 3, 4});
 
-		URI sourceUri = new URI(_SOURCE_URI);
+		URI sourceURI = new URI(_SOURCE_URI);
 
 		Mockito.doReturn(
 			publicIpAddress
 		).when(
 			_inetAddressLookup
 		).getInetAddressByName(
-			Mockito.eq(sourceUri.getHost())
+			Mockito.eq(sourceURI.getHost())
 		);
 
 		for (InetAddress localAddress : _localAddresses) {

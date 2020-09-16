@@ -231,9 +231,9 @@ public class FileUtil {
 	}
 
 	public static Path getJarPath() throws URISyntaxException {
-		URI jarUri = _getJarUri();
+		URI jarURI = _getJarURI();
 
-		return Paths.get(jarUri);
+		return Paths.get(jarURI);
 	}
 
 	public static String getManifestProperty(File file, String name)
@@ -368,22 +368,22 @@ public class FileUtil {
 	}
 
 	private static FileSystem _getJarFileSystem() throws Exception {
-		URI jarUri = _getJarUri();
+		URI jarURI = _getJarURI();
 
-		Path jarPath = Paths.get(jarUri);
+		Path jarPath = Paths.get(jarURI);
 
 		return FileSystems.newFileSystem(jarPath, null);
 	}
 
-	private static URI _getJarUri() throws URISyntaxException {
+	private static URI _getJarURI() throws URISyntaxException {
 		ProtectionDomain protectionDomain =
 			FileUtil.class.getProtectionDomain();
 
 		CodeSource codeSource = protectionDomain.getCodeSource();
 
-		URL jarUrl = codeSource.getLocation();
+		URL jarURL = codeSource.getLocation();
 
-		return jarUrl.toURI();
+		return jarURL.toURI();
 	}
 
 }

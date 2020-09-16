@@ -22,15 +22,15 @@ import java.util.UUID;
 public class TemporaryFileEntriesScope {
 
 	public TemporaryFileEntriesScope(
-		UUID callerUuid, long userId, String folderPath) {
+		UUID callerUUID, long userId, String folderPath) {
 
-		_callerUuid = callerUuid;
+		_callerUUID = callerUUID;
 		_userId = userId;
 		_folderPath = folderPath;
 	}
 
 	public UUID getCallerUuid() {
-		return _callerUuid;
+		return _callerUUID;
 	}
 
 	public String getFolderPath() {
@@ -41,7 +41,7 @@ public class TemporaryFileEntriesScope {
 		return _userId;
 	}
 
-	private final UUID _callerUuid;
+	private final UUID _callerUUID;
 	private final String _folderPath;
 	private final long _userId;
 

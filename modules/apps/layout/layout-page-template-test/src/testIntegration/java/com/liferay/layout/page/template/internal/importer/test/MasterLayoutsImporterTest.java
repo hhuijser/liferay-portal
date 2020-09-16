@@ -365,9 +365,9 @@ public class MasterLayoutsImporterTest {
 			true);
 
 		while (enumeration.hasMoreElements()) {
-			URL elementUrl = enumeration.nextElement();
+			URL elementURL = enumeration.nextElement();
 
-			_addZipWriterEntry(zipWriter, elementUrl);
+			_addZipWriterEntry(zipWriter, elementURL);
 		}
 
 		enumeration = _bundle.findEntries(
@@ -376,9 +376,9 @@ public class MasterLayoutsImporterTest {
 			true);
 
 		while (enumeration.hasMoreElements()) {
-			URL elementUrl = enumeration.nextElement();
+			URL elementURL = enumeration.nextElement();
 
-			_addZipWriterEntry(zipWriter, elementUrl);
+			_addZipWriterEntry(zipWriter, elementURL);
 		}
 	}
 

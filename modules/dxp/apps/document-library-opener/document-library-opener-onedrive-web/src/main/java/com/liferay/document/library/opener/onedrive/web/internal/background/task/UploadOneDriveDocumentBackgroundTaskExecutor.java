@@ -241,9 +241,9 @@ public class UploadOneDriveDocumentBackgroundTaskExecutor
 		jsonObject.add("file", new JsonObject());
 		jsonObject.add("name", new JsonPrimitive(fileEntry.getFileName()));
 
-		JsonObject responseJSONObject = customRequest.post(jsonObject);
+		JsonObject responseJsonObject = customRequest.post(jsonObject);
 
-		JsonPrimitive jsonPrimitive = responseJSONObject.getAsJsonPrimitive(
+		JsonPrimitive jsonPrimitive = responseJsonObject.getAsJsonPrimitive(
 			"id");
 
 		if (fileEntry.getSize() > 0) {

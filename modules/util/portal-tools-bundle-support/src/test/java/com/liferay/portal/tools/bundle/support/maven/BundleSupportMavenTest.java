@@ -71,12 +71,12 @@ public class BundleSupportMavenTest extends BundleSupportCommandsTest {
 	@Override
 	protected void createToken(
 			String emailAddress, boolean force, String password,
-			File passwordFile, File tokenFile, URL tokenUrl)
+			File passwordFile, File tokenFile, URL tokenURL)
 		throws Exception {
 
 		_execute(
 			"create-token", null, null, null, emailAddress, null, null, force,
-			null, null, password, passwordFile, 0, tokenFile, tokenUrl, null,
+			null, null, password, passwordFile, 0, tokenFile, tokenURL, null,
 			null);
 	}
 
@@ -125,7 +125,7 @@ public class BundleSupportMavenTest extends BundleSupportCommandsTest {
 			String emailAddress, String environment, String fileName,
 			boolean force, File liferayHomeDir, String outputFileName,
 			String password, File passwordFile, int stripComponents,
-			File tokenFile, URL tokenUrl, URL url, String userName)
+			File tokenFile, URL tokenURL, URL url, String userName)
 		throws Exception {
 
 		File projectDir = new File(temporaryFolder.getRoot(), "maven");
@@ -163,7 +163,7 @@ public class BundleSupportMavenTest extends BundleSupportCommandsTest {
 		pomXml = _replace(
 			pomXml, "[$BUNDLE_SUPPORT_STRIP_COMPONENTS$]", stripComponents);
 		pomXml = _replace(pomXml, "[$BUNDLE_SUPPORT_TOKEN_FILE$]", tokenFile);
-		pomXml = _replace(pomXml, "[$BUNDLE_SUPPORT_TOKEN_URL$]", tokenUrl);
+		pomXml = _replace(pomXml, "[$BUNDLE_SUPPORT_TOKEN_URL$]", tokenURL);
 		pomXml = _replace(pomXml, "[$BUNDLE_SUPPORT_URL$]", url);
 		pomXml = _replace(pomXml, "[$BUNDLE_SUPPORT_USER_NAME$]", userName);
 

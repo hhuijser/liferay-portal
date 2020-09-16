@@ -107,16 +107,16 @@ public class DBMetadataResolver extends AbstractMetadataResolver {
 			return null;
 		}
 
-		XMLObject metadataXmlObject = XMLObjectSupport.unmarshallFromReader(
+		XMLObject metadataXMLObject = XMLObjectSupport.unmarshallFromReader(
 			_parserPool, new StringReader(metadataXml));
 
 		MetadataFilter metadataFilter = getMetadataFilter();
 
 		if (metadataFilter != null) {
-			metadataXmlObject = metadataFilter.filter(metadataXmlObject);
+			metadataXMLObject = metadataFilter.filter(metadataXMLObject);
 		}
 
-		return metadataXmlObject;
+		return metadataXMLObject;
 	}
 
 	protected String getMetadataXml(String entityId) throws Exception {

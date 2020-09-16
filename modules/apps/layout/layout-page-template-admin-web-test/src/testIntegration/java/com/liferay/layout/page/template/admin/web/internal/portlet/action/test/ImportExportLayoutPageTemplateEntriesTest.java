@@ -721,9 +721,9 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 			true);
 
 		while (enumeration.hasMoreElements()) {
-			URL elementUrl = enumeration.nextElement();
+			URL elementURL = enumeration.nextElement();
 
-			_addZipWriterEntry(zipWriter, elementUrl, valuesMap);
+			_addZipWriterEntry(zipWriter, elementURL, valuesMap);
 		}
 
 		enumeration = _bundle.findEntries(
@@ -732,9 +732,9 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 			true);
 
 		while (enumeration.hasMoreElements()) {
-			URL elementUrl = enumeration.nextElement();
+			URL elementURL = enumeration.nextElement();
 
-			_addZipWriterEntry(zipWriter, elementUrl, valuesMap);
+			_addZipWriterEntry(zipWriter, elementURL, valuesMap);
 		}
 
 		enumeration = _bundle.findEntries(path, "thumbnail.png", true);
@@ -744,9 +744,9 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 		}
 
 		while (enumeration.hasMoreElements()) {
-			URL elementUrl = enumeration.nextElement();
+			URL elementURL = enumeration.nextElement();
 
-			_addZipWriterEntry(zipWriter, elementUrl, valuesMap);
+			_addZipWriterEntry(zipWriter, elementURL, valuesMap);
 		}
 	}
 

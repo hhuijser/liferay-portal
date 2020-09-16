@@ -174,7 +174,7 @@ public abstract class BaseUserNotificationTestCase {
 
 		subscribeToContainer();
 
-		BaseModel<?> updatedBasemodel = updateBaseModel(baseModel);
+		BaseModel<?> updatedBaseModel = updateBaseModel(baseModel);
 
 		Assert.assertEquals(1, MailServiceTestUtil.getInboxSize());
 
@@ -190,7 +190,7 @@ public abstract class BaseUserNotificationTestCase {
 
 			Assert.assertTrue(
 				isValidUserNotificationEventObject(
-					(Long)updatedBasemodel.getPrimaryKeyObj(),
+					(Long)updatedBaseModel.getPrimaryKeyObj(),
 					userNotificationEventsJSONObject));
 
 			Assert.assertEquals(
@@ -214,7 +214,7 @@ public abstract class BaseUserNotificationTestCase {
 
 		subscribeToContainer();
 
-		BaseModel<?> updatedBasemodel = updateBaseModel(baseModel);
+		BaseModel<?> updatedBaseModel = updateBaseModel(baseModel);
 
 		Assert.assertEquals(0, MailServiceTestUtil.getInboxSize());
 
@@ -230,7 +230,7 @@ public abstract class BaseUserNotificationTestCase {
 
 			Assert.assertTrue(
 				isValidUserNotificationEventObject(
-					(Long)updatedBasemodel.getPrimaryKeyObj(),
+					(Long)updatedBaseModel.getPrimaryKeyObj(),
 					userNotificationEventsJSONObject));
 
 			Assert.assertEquals(

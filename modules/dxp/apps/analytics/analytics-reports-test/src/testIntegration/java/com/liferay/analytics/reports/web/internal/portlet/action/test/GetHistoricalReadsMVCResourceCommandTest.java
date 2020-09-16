@@ -135,13 +135,13 @@ public class GetHistoricalReadsMVCResourceCommandTest {
 					JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 						new String(byteArrayOutputStream.toByteArray()));
 
-					JSONObject analyticsReportsHistoricalReadsJsonObject =
+					JSONObject analyticsReportsHistoricalReadsJSONObject =
 						jsonObject.getJSONObject(
 							"analyticsReportsHistoricalReads");
 
 					Assert.assertEquals(
 						5L,
-						analyticsReportsHistoricalReadsJsonObject.getLong(
+						analyticsReportsHistoricalReadsJSONObject.getLong(
 							"value"));
 				});
 		}

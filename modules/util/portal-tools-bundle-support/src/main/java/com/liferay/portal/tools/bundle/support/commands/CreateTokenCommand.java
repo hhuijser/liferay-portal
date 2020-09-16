@@ -70,7 +70,7 @@ public class CreateTokenCommand implements Command {
 		}
 
 		String token = HttpUtil.createToken(
-			_tokenUrl.toURI(), _emailAddress, _password);
+			_tokenURL.toURI(), _emailAddress, _password);
 
 		Path tokenPath = _tokenFile.toPath();
 
@@ -100,7 +100,7 @@ public class CreateTokenCommand implements Command {
 	}
 
 	public URL getTokenUrl() {
-		return _tokenUrl;
+		return _tokenURL;
 	}
 
 	public boolean isForce() {
@@ -127,8 +127,8 @@ public class CreateTokenCommand implements Command {
 		_tokenFile = tokenFile;
 	}
 
-	public void setTokenUrl(URL tokenUrl) {
-		_tokenUrl = tokenUrl;
+	public void setTokenUrl(URL tokenURL) {
+		_tokenURL = tokenURL;
 	}
 
 	private static final URL _DEFAULT_TOKEN_URL;
@@ -172,6 +172,6 @@ public class CreateTokenCommand implements Command {
 	)
 	private File _tokenFile = BundleSupportConstants.DEFAULT_TOKEN_FILE;
 
-	private URL _tokenUrl = _DEFAULT_TOKEN_URL;
+	private URL _tokenURL = _DEFAULT_TOKEN_URL;
 
 }

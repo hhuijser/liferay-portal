@@ -548,11 +548,11 @@ public class BundleSupportCommandsTest extends HttpProxyMockServerSupport {
 			password = HTTP_SERVER_PASSWORD;
 		}
 
-		URL tokenUrl = getHttpServerUrl(contextPath);
+		URL tokenURL = getHttpServerUrl(contextPath);
 
 		createToken(
 			HTTP_SERVER_USER_NAME, force, password, passwordFile, tokenFile,
-			tokenUrl);
+			tokenURL);
 
 		Assert.assertEquals("hello-world", FileUtil.read(tokenFile));
 	}

@@ -706,11 +706,11 @@ public class CommercePriceEntryLocalServiceTest {
 			CommercePriceEntry commercePriceEntry)
 		throws Exception {
 
-		CPInstance actualCpInstance = commercePriceEntry.getCPInstance();
+		CPInstance actualCPInstance = commercePriceEntry.getCPInstance();
 
 		Assert.assertThat(
 			cpInstance.getCPInstanceId(),
-			equalTo(actualCpInstance.getCPInstanceId()));
+			equalTo(actualCPInstance.getCPInstanceId()));
 
 		BigDecimal actualPrice = commercePriceEntry.getPrice();
 		BigDecimal actualPromoPrice = commercePriceEntry.getPromoPrice();

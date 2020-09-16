@@ -185,7 +185,7 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected void configureTasksBuildWSDD(
-		Project project, final Configuration wsddBuilderCOnfiguration) {
+		Project project, final Configuration wsddBuilderConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 
@@ -196,7 +196,7 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 				@Override
 				public void execute(BuildWSDDTask buildWSDDTask) {
 					configureTaskBuildWSDDClasspath(
-						buildWSDDTask, wsddBuilderCOnfiguration);
+						buildWSDDTask, wsddBuilderConfiguration);
 				}
 
 			});

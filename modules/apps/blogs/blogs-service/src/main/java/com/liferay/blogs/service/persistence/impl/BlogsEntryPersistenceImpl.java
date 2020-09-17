@@ -3170,8 +3170,8 @@ public class BlogsEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (BlogsEntry blogsEntry : list) {
 					if ((groupId != blogsEntry.getGroupId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime())) {
 
 						list = null;
 
@@ -6535,8 +6535,8 @@ public class BlogsEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (BlogsEntry blogsEntry : list) {
 					if ((companyId != blogsEntry.getCompanyId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime())) {
 
 						list = null;
 
@@ -8164,9 +8164,8 @@ public class BlogsEntryPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BlogsEntry blogsEntry : list) {
-					if ((displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime()) ||
-						(status != blogsEntry.getStatus())) {
+					if ((displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime()) || (status != blogsEntry.getStatus())) {
 
 						list = null;
 
@@ -8738,8 +8737,8 @@ public class BlogsEntryPersistenceImpl
 				for (BlogsEntry blogsEntry : list) {
 					if ((groupId != blogsEntry.getGroupId()) ||
 						(userId != blogsEntry.getUserId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime())) {
 
 						list = null;
 
@@ -13338,9 +13337,8 @@ public class BlogsEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (BlogsEntry blogsEntry : list) {
 					if ((groupId != blogsEntry.getGroupId()) ||
-						(displayDate.getTime() >=
-							blogsEntry.getDisplayDate().getTime()) ||
-						(status != blogsEntry.getStatus())) {
+						(displayDate.getTime() >= blogsEntry.getDisplayDate(
+						).getTime()) || (status != blogsEntry.getStatus())) {
 
 						list = null;
 
@@ -14391,9 +14389,8 @@ public class BlogsEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (BlogsEntry blogsEntry : list) {
 					if ((groupId != blogsEntry.getGroupId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime()) ||
-						(status != blogsEntry.getStatus())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime()) || (status != blogsEntry.getStatus())) {
 
 						list = null;
 
@@ -15444,9 +15441,8 @@ public class BlogsEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (BlogsEntry blogsEntry : list) {
 					if ((groupId != blogsEntry.getGroupId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime()) ||
-						(status == blogsEntry.getStatus())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime()) || (status == blogsEntry.getStatus())) {
 
 						list = null;
 
@@ -17637,9 +17633,8 @@ public class BlogsEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (BlogsEntry blogsEntry : list) {
 					if ((companyId != blogsEntry.getCompanyId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime()) ||
-						(status != blogsEntry.getStatus())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime()) || (status != blogsEntry.getStatus())) {
 
 						list = null;
 
@@ -18244,9 +18239,8 @@ public class BlogsEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (BlogsEntry blogsEntry : list) {
 					if ((companyId != blogsEntry.getCompanyId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime()) ||
-						(status == blogsEntry.getStatus())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime()) || (status == blogsEntry.getStatus())) {
 
 						list = null;
 
@@ -18859,9 +18853,8 @@ public class BlogsEntryPersistenceImpl
 				for (BlogsEntry blogsEntry : list) {
 					if ((groupId != blogsEntry.getGroupId()) ||
 						(userId != blogsEntry.getUserId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime()) ||
-						(status != blogsEntry.getStatus())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime()) || (status != blogsEntry.getStatus())) {
 
 						list = null;
 
@@ -19973,9 +19966,8 @@ public class BlogsEntryPersistenceImpl
 				for (BlogsEntry blogsEntry : list) {
 					if ((groupId != blogsEntry.getGroupId()) ||
 						(userId != blogsEntry.getUserId()) ||
-						(displayDate.getTime() <=
-							blogsEntry.getDisplayDate().getTime()) ||
-						(status == blogsEntry.getStatus())) {
+						(displayDate.getTime() <= blogsEntry.getDisplayDate(
+						).getTime()) || (status == blogsEntry.getStatus())) {
 
 						list = null;
 

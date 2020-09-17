@@ -3183,7 +3183,8 @@ public class CommercePriceModifierPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CommercePriceModifier commercePriceModifier : list) {
 					if ((displayDate.getTime() <=
-							commercePriceModifier.getDisplayDate().getTime()) ||
+							commercePriceModifier.getDisplayDate(
+							).getTime()) ||
 						(status != commercePriceModifier.getStatus())) {
 
 						list = null;
@@ -3753,8 +3754,8 @@ public class CommercePriceModifierPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CommercePriceModifier commercePriceModifier : list) {
 					if ((expirationDate.getTime() <=
-							commercePriceModifier.
-								getExpirationDate().getTime()) ||
+							commercePriceModifier.getExpirationDate(
+							).getTime()) ||
 						(status != commercePriceModifier.getStatus())) {
 
 						list = null;

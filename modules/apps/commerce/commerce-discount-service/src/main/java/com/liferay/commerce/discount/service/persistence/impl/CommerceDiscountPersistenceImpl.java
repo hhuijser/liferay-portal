@@ -4103,7 +4103,8 @@ public class CommerceDiscountPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CommerceDiscount commerceDiscount : list) {
 					if ((displayDate.getTime() <=
-							commerceDiscount.getDisplayDate().getTime()) ||
+							commerceDiscount.getDisplayDate(
+							).getTime()) ||
 						(status != commerceDiscount.getStatus())) {
 
 						list = null;
@@ -5108,7 +5109,8 @@ public class CommerceDiscountPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CommerceDiscount commerceDiscount : list) {
 					if ((expirationDate.getTime() <=
-							commerceDiscount.getExpirationDate().getTime()) ||
+							commerceDiscount.getExpirationDate(
+							).getTime()) ||
 						(status != commerceDiscount.getStatus())) {
 
 						list = null;

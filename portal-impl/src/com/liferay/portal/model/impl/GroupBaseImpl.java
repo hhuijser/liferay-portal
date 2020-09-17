@@ -64,7 +64,7 @@ public abstract class GroupBaseImpl extends GroupModelImpl implements Group {
 			group = GroupLocalServiceUtil.fetchGroup(group.getParentGroupId());
 		}
 
-		StringBundler sb = new StringBundler(groups.size() * 2 + 1);
+		StringBundler sb = new StringBundler((groups.size() * 2) + 1);
 
 		sb.append("/");
 

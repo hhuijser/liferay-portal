@@ -3028,7 +3028,8 @@ public class SharingEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (SharingEntry sharingEntry : list) {
 					if (expirationDate.getTime() <=
-							sharingEntry.getExpirationDate().getTime()) {
+							sharingEntry.getExpirationDate(
+							).getTime()) {
 
 						list = null;
 

@@ -68,7 +68,7 @@ public abstract class BookmarksFolderBaseImpl
 					bookmarksFolder.getParentFolderId());
 		}
 
-		StringBundler sb = new StringBundler(bookmarksFolders.size() * 2 + 1);
+		StringBundler sb = new StringBundler((bookmarksFolders.size() * 2) + 1);
 
 		sb.append("/");
 

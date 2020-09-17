@@ -2119,7 +2119,8 @@ public class CPAttachmentFileEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CPAttachmentFileEntry cpAttachmentFileEntry : list) {
 					if ((displayDate.getTime() <=
-							cpAttachmentFileEntry.getDisplayDate().getTime()) ||
+							cpAttachmentFileEntry.getDisplayDate(
+							).getTime()) ||
 						(status != cpAttachmentFileEntry.getStatus())) {
 
 						list = null;
@@ -2952,7 +2953,8 @@ public class CPAttachmentFileEntryPersistenceImpl
 							cpAttachmentFileEntry.getClassNameId()) ||
 						(classPK != cpAttachmentFileEntry.getClassPK()) ||
 						(displayDate.getTime() <=
-							cpAttachmentFileEntry.getDisplayDate().getTime()) ||
+							cpAttachmentFileEntry.getDisplayDate(
+							).getTime()) ||
 						(status != cpAttachmentFileEntry.getStatus())) {
 
 						list = null;

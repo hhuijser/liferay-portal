@@ -66,7 +66,7 @@ public abstract class DLFolderBaseImpl
 				dlFolder.getParentFolderId());
 		}
 
-		StringBundler sb = new StringBundler(dlFolders.size() * 2 + 1);
+		StringBundler sb = new StringBundler((dlFolders.size() * 2) + 1);
 
 		sb.append("/");
 

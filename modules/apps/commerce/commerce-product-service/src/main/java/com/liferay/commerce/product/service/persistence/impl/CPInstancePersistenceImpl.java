@@ -5148,9 +5148,8 @@ public class CPInstancePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CPInstance cpInstance : list) {
-					if ((displayDate.getTime() <=
-							cpInstance.getDisplayDate().getTime()) ||
-						(status != cpInstance.getStatus())) {
+					if ((displayDate.getTime() <= cpInstance.getDisplayDate(
+						).getTime()) || (status != cpInstance.getStatus())) {
 
 						list = null;
 
@@ -5723,9 +5722,8 @@ public class CPInstancePersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CPInstance cpInstance : list) {
 					if ((CPDefinitionId != cpInstance.getCPDefinitionId()) ||
-						(displayDate.getTime() <=
-							cpInstance.getDisplayDate().getTime()) ||
-						(status != cpInstance.getStatus())) {
+						(displayDate.getTime() <= cpInstance.getDisplayDate(
+						).getTime()) || (status != cpInstance.getStatus())) {
 
 						list = null;
 

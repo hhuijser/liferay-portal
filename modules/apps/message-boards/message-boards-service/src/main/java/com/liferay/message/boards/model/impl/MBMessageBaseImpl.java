@@ -66,7 +66,7 @@ public abstract class MBMessageBaseImpl
 				mbMessage.getParentMessageId());
 		}
 
-		StringBundler sb = new StringBundler(mbMessages.size() * 2 + 1);
+		StringBundler sb = new StringBundler((mbMessages.size() * 2) + 1);
 
 		sb.append("/");
 

@@ -4895,9 +4895,8 @@ public class CPDefinitionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CPDefinition cpDefinition : list) {
-					if ((displayDate.getTime() <=
-							cpDefinition.getDisplayDate().getTime()) ||
-						(status != cpDefinition.getStatus())) {
+					if ((displayDate.getTime() <= cpDefinition.getDisplayDate(
+						).getTime()) || (status != cpDefinition.getStatus())) {
 
 						list = null;
 

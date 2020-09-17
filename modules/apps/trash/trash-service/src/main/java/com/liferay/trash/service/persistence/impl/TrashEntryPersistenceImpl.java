@@ -1217,8 +1217,8 @@ public class TrashEntryPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (TrashEntry trashEntry : list) {
 					if ((groupId != trashEntry.getGroupId()) ||
-						(createDate.getTime() <=
-							trashEntry.getCreateDate().getTime())) {
+						(createDate.getTime() <= trashEntry.getCreateDate(
+						).getTime())) {
 
 						list = null;
 
@@ -2881,7 +2881,7 @@ public class TrashEntryPersistenceImpl
 			return map;
 		}
 
-		StringBundler sb = new StringBundler(primaryKeys.size() * 2 + 1);
+		StringBundler sb = new StringBundler((primaryKeys.size() * 2) + 1);
 
 		sb.append(getSelectSQL());
 		sb.append(" WHERE ");

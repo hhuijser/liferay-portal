@@ -66,7 +66,7 @@ public abstract class OrganizationBaseImpl
 				organization.getParentOrganizationId());
 		}
 
-		StringBundler sb = new StringBundler(organizations.size() * 2 + 1);
+		StringBundler sb = new StringBundler((organizations.size() * 2) + 1);
 
 		sb.append("/");
 

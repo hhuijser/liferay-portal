@@ -73,7 +73,7 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 			long searchFolderId = ParamUtil.getLong(request, "searchFolderId");
 			%>
 
-			<c:if test="<%= (mountFolders.size() == 0) && (folder != null) %>">
+			<c:if test="<%= mountFolders.isEmpty() && (folder != null) %>">
 				<clay:link
 					cssClass='<%= (searchFolderId == rootFolderId) ? "active" : "" %>'
 					displayType="secondary"
@@ -98,7 +98,7 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 				/>
 			</c:if>
 
-			<c:if test="<%= mountFolders.size() > 0 %>">
+			<c:if test="<%= !mountFolders.isEmpty() %>">
 
 				<%
 				PortletURL searchRepositoryURL = PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse);

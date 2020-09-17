@@ -166,7 +166,7 @@ renderResponse.setTitle((role == null) ? LanguageUtil.get(request, "new-role") :
 			Map<String, Serializable> roleCustomAttributes = roleExpandoBridge.getAttributes();
 			%>
 
-			<c:if test="<%= roleCustomAttributes.size() > 0 %>">
+			<c:if test="<%= !roleCustomAttributes.isEmpty() %>">
 				<aui:fieldset-group markupView="lexicon">
 					<aui:fieldset>
 						<liferay-expando:custom-attribute-list

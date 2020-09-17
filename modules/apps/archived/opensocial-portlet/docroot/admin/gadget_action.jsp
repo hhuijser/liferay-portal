@@ -48,7 +48,7 @@ catch (Exception e) {
 			url="<%= updateGadgetURL %>"
 		/>
 
-		<c:if test="<%= (oAuthServices != null) && (oAuthServices.size() > 0) %>">
+		<c:if test="<%= (oAuthServices != null) && !oAuthServices.isEmpty() %>">
 			<portlet:renderURL var="configureOAuthURL">
 				<portlet:param name="mvcPath" value="/admin/edit_oauth_consumers.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />

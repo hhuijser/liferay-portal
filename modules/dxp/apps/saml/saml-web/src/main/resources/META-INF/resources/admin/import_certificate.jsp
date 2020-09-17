@@ -157,7 +157,7 @@ if (Validator.isNotNull(tempFileName)) {
 				</div>
 			</div>
 
-			<c:if test="<%= aliases.size() > 0 %>">
+			<c:if test="<%= !aliases.isEmpty() %>">
 				<div class="row">
 					<div class="col-lg-3 col-sm-12">
 						<aui:fieldset label="keystore-entry-to-import">
@@ -196,7 +196,7 @@ if (Validator.isNotNull(tempFileName)) {
 		<aui:button-row>
 			<aui:button href="<%= backURL %>" name="back" value="back" />
 
-			<c:if test="<%= aliases.size() > 0 %>">
+			<c:if test="<%= !aliases.isEmpty() %>">
 				<aui:button type="submit" value="import" />
 			</c:if>
 		</aui:button-row>

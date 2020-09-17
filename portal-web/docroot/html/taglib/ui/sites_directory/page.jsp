@@ -29,7 +29,7 @@
 
 	if (sites.equals(SitesDirectoryTag.SITES_TOP_LEVEL)) {
 	}
-	else if (sites.equals(SitesDirectoryTag.SITES_CHILDREN) && (branchGroups.size() > 0)) {
+	else if (sites.equals(SitesDirectoryTag.SITES_CHILDREN) && !branchGroups.isEmpty()) {
 		rootGroup = branchGroups.get(0);
 	}
 	else if (sites.equals(SitesDirectoryTag.SITES_SIBLINGS) && (branchGroups.size() > 1)) {

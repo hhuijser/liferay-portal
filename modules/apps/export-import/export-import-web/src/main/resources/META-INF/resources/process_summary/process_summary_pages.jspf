@@ -63,7 +63,7 @@ if (modelDeletionCounters.containsKey(Layout.class.getName())) {
 		</div>
 	</c:if>
 
-	<c:if test="<%= pageNames.size() != 0 %>">
+	<c:if test="<%= !pageNames.isEmpty() %>">
 		<div class="process-summary-subsection">
 			<div>
 				<label class="process-summary-label">

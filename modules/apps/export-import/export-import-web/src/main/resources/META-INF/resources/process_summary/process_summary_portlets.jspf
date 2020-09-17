@@ -128,7 +128,7 @@
 		}
 		%>
 
-		<c:if test="<%= portletIds.size() > 0 %>">
+		<c:if test="<%= !portletIds.isEmpty() %>">
 			<div class="process-summary-section">
 				<div>
 					<label class="process-summary-label">

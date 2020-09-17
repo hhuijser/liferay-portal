@@ -22,7 +22,7 @@ LayoutSetBranch layoutSetBranch = (LayoutSetBranch)request.getAttribute(StagingP
 List<LayoutSetBranch> layoutSetBranches = (List<LayoutSetBranch>)request.getAttribute(StagingProcessesWebKeys.LAYOUT_SET_BRANCHES);
 %>
 
-<c:if test="<%= (layoutSetBranches != null) && (layoutSetBranches.size() >= 1) %>">
+<c:if test="<%= (layoutSetBranches != null) && !layoutSetBranches.isEmpty() %>">
 	<div class="control-menu-label staging-variation-label">
 		<liferay-ui:message key="site-pages-variation" />
 	</div>

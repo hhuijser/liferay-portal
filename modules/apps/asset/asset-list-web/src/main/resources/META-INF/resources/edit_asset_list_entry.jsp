@@ -70,7 +70,7 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 										<clay:content-col>
 											<ul class="navbar-nav">
 												<li>
-													<c:if test="<%= availableSegmentsEntries.size() > 0 %>">
+													<c:if test="<%= !availableSegmentsEntries.isEmpty() %>">
 														<liferay-ui:icon
 															icon="plus"
 															iconCssClass="btn btn-monospaced btn-outline-borderless btn-outline-secondary btn-sm"

@@ -33,10 +33,10 @@ boolean panelsShown = false;
 	for (PanelCategory panelCategory : depotAdminViewDepotDashboardDisplayContext.getPanelCategories()) {
 		Collection<PanelApp> panelApps = depotAdminViewDepotDashboardDisplayContext.getPanelApps(panelCategory);
 
-		panelsShown = panelsShown || (panelApps.size() > 0);
+		panelsShown = panelsShown || !panelApps.isEmpty();
 	%>
 
-		<c:if test="<%= panelApps.size() > 0 %>">
+		<c:if test="<%= !panelApps.isEmpty() %>">
 			<div class="spliter-spaced splitter">
 				<%= panelCategory.getLabel(locale) %>
 			</div>

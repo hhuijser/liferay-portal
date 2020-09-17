@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.BNDSettings;
 import com.liferay.source.formatter.SourceFormatterExcludes;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -238,59 +239,67 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			return properties;
 		}
 
-		String langModulePath = null;
+		List<String> langModulePaths = new ArrayList<>();
 
 		String fileLocation = absolutePath;
 
 		int x = fileLocation.length();
 
-		outerLoop:
 		while (true) {
 			x = fileLocation.lastIndexOf(CharPool.SLASH, x - 1);
 
 			if (x == -1) {
-				return properties;
+				break;
 			}
 
 			fileLocation = fileLocation.substring(0, x);
 
 			if (fileLocation.endsWith("/modules")) {
-				return properties;
+				break;
 			}
 
 			File directory = new File(fileLocation);
 
+			if (!directory.exists()) {
+				continue;
+			}
+
 			for (File subdirectory : directory.listFiles(File::isDirectory)) {
-				String subdirectoryPath = subdirectory.getAbsolutePath();
+				String subdirectoryPath = SourceUtil.getAbsolutePath(
+					subdirectory);
 
 				if (subdirectoryPath.endsWith("-lang")) {
-					langModulePath = subdirectoryPath;
-
-					break outerLoop;
+					langModulePaths.add(subdirectoryPath);
 				}
 			}
 
 			if (isSubrepository() &&
 				FileUtil.exists(fileLocation + "/gradle.properties")) {
 
-				return properties;
+				break;
 			}
 		}
 
-		List<String> languagePropertyFileNames =
-			SourceFormatterUtil.scanForFiles(
-				langModulePath, new String[0],
-				new String[] {"**/resources/content/Language.properties"},
-				new SourceFormatterExcludes(), true);
+		for (String langModulePath : langModulePaths) {
+			List<String> languagePropertyFileNames =
+				SourceFormatterUtil.scanForFiles(
+					langModulePath, new String[0],
+					new String[] {"**/resources/content/Language.properties"},
+					new SourceFormatterExcludes(), true);
 
-		if (languagePropertyFileNames.isEmpty()) {
-			return properties;
+			if (!languagePropertyFileNames.isEmpty()) {
+				properties.load(
+					new FileInputStream(
+						new File(languagePropertyFileNames.get(0))));
+			}
 		}
 
-		properties = new Properties();
-
-		properties.load(
-			new FileInputStream(new File(languagePropertyFileNames.get(0))));
+		if (absolutePath.contains("/modules/dxp/apps/")) {
+			properties.putAll(
+				_getLangModuleLanguageProperties(
+					StringUtil.replace(
+						absolutePath, "/modules/dxp/apps/", "/modules/apps/")));
+		}
 
 		return properties;
 	}

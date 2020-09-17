@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.BNDSettings;
 import com.liferay.source.formatter.SourceFormatterExcludes;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -249,21 +250,30 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			x = fileLocation.lastIndexOf(CharPool.SLASH, x - 1);
 
 			if (x == -1) {
-				return properties;
+				break;
 			}
 
 			fileLocation = fileLocation.substring(0, x);
 
 			if (fileLocation.endsWith("/modules")) {
-				return properties;
+				break;
 			}
 
 			File directory = new File(fileLocation);
 
-			for (File subdirectory : directory.listFiles(File::isDirectory)) {
-				String subdirectoryPath = subdirectory.getAbsolutePath();
+			if (!directory.exists()) {
+				continue;
+			}
 
-				if (subdirectoryPath.endsWith("-lang")) {
+			for (File subdirectory : directory.listFiles(File::isDirectory)) {
+				String subdirectoryPath = SourceUtil.getAbsolutePath(
+					subdirectory);
+
+				if (subdirectoryPath.endsWith("-lang") &&
+					absolutePath.startsWith(
+						StringUtil.replaceLast(
+							subdirectoryPath, "-lang", StringPool.BLANK))) {
+
 					langModulePath = subdirectoryPath;
 
 					break outerLoop;
@@ -273,8 +283,18 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			if (isSubrepository() &&
 				FileUtil.exists(fileLocation + "/gradle.properties")) {
 
-				return properties;
+				break;
 			}
+		}
+
+		if (langModulePath == null) {
+			if (absolutePath.contains("/modules/dxp/apps/")) {
+				return _getLangModuleLanguageProperties(
+					StringUtil.replace(
+						absolutePath, "/modules/dxp/apps/", "/modules/apps/"));
+			}
+
+			return properties;
 		}
 
 		List<String> languagePropertyFileNames =

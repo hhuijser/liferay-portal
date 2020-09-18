@@ -260,7 +260,7 @@
 	<c:otherwise>
 		<aui:script require="metal-dom/src/all/dom as dom">
 			var delegateHandler = dom.delegate(
-				document.querySelector('#<portlet:namespace/>selectAssetFm'),
+				document.querySelector('#<portlet:namespace />selectAssetFm'),
 				'click',
 				'.selector-button',
 				function (event) {

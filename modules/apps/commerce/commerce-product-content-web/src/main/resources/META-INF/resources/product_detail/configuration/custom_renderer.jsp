@@ -20,7 +20,7 @@
 CPContentHelper cpContentHelper = (CPContentHelper)request.getAttribute(CPContentWebKeys.CP_CONTENT_HELPER);
 %>
 
-<div id="<portlet:namespace/>configuration-tabs">
+<div id="<portlet:namespace />configuration-tabs">
 	<ul class="nav nav-tabs">
 
 		<%
@@ -73,6 +73,6 @@ CPContentHelper cpContentHelper = (CPContentHelper)request.getAttribute(CPConten
 
 <aui:script use="aui-tabview">
 	new A.TabView({
-		srcNode: '#<portlet:namespace/>configuration-tabs',
+		srcNode: '#<portlet:namespace />configuration-tabs',
 	}).render();
 </aui:script>

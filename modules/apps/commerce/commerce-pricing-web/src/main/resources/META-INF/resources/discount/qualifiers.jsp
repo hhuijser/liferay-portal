@@ -96,7 +96,7 @@ boolean hasPermission = commerceDiscountQualifiersDisplayContext.hasPermission(A
 <aui:script>
 	Liferay.provide(
 		window,
-		'<portlet:namespace/>chooseAccountQualifiers',
+		'<portlet:namespace />chooseAccountQualifiers',
 		function (value) {
 			var portletURL = new Liferay.PortletURL.createURL(
 				'<%= currentURLObj %>'
@@ -111,7 +111,7 @@ boolean hasPermission = commerceDiscountQualifiersDisplayContext.hasPermission(A
 
 	Liferay.provide(
 		window,
-		'<portlet:namespace/>chooseChannelQualifiers',
+		'<portlet:namespace />chooseChannelQualifiers',
 		function (value) {
 			var portletURL = new Liferay.PortletURL.createURL(
 				'<%= currentURLObj %>'

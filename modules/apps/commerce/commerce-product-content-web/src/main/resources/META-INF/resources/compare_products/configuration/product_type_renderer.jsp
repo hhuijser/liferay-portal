@@ -20,7 +20,7 @@
 CPCompareContentDisplayContext cpCompareContentDisplayContext = (CPCompareContentDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 %>
 
-<div id="<portlet:namespace/>configuration-tabs">
+<div id="<portlet:namespace />configuration-tabs">
 	<ul class="nav nav-tabs">
 
 		<%
@@ -73,6 +73,6 @@ CPCompareContentDisplayContext cpCompareContentDisplayContext = (CPCompareConten
 
 <aui:script use="aui-tabview">
 	new A.TabView({
-		srcNode: '#<portlet:namespace/>configuration-tabs',
+		srcNode: '#<portlet:namespace />configuration-tabs',
 	}).render();
 </aui:script>

@@ -292,7 +292,7 @@ if (commerceOrder != null) {
 </div>
 
 <aui:script>
-	function <portlet:namespace/>viewCommerceOrderShipments(uri) {
+	function <portlet:namespace />viewCommerceOrderShipments(uri) {
 		Liferay.Util.openWindow({
 			dialog: {
 				centered: true,

@@ -20,7 +20,7 @@
 SelectLayoutCollectionDisplayContext selectLayoutCollectionDisplayContext = (SelectLayoutCollectionDisplayContext)request.getAttribute(LayoutAdminWebKeys.SELECT_LAYOUT_COLLECTION_DISPLAY_CONTEXT);
 %>
 
-<div class="lfr-search-container-wrapper" id="<portlet:namespace/>collections">
+<div class="lfr-search-container-wrapper" id="<portlet:namespace />collections">
 	<liferay-ui:search-container
 		id="entries"
 		searchContainer="<%= selectLayoutCollectionDisplayContext.getCollectionsSearchContainer() %>"

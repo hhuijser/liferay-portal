@@ -99,6 +99,23 @@ public class JSPCheckstyleUtil {
 				sb.append("\tpublic void method() {");
 			}
 			else {
+				Matcher matcher = _ifTagPattern.matcher(trimmedLine);
+
+				if (matcher.find()) {
+					String nextLine = StringUtil.trimLeading(lines.get(i + 1));
+
+					if (!nextLine.equals("<%")) {
+						sb.append("\t\tif (");
+						sb.append(matcher.group(1));
+						sb.append(") {\n");
+						sb.append("\t\t}\n");
+
+						i++;
+
+						continue;
+					}
+				}
+
 				sb.append("\t\t// PLACEHOLDER");
 			}
 
@@ -115,6 +132,8 @@ public class JSPCheckstyleUtil {
 		return sb.toString();
 	}
 
+	private static final Pattern _ifTagPattern = Pattern.compile(
+		"^<c:if test=[\"']<%= (.*) %>[\"']>$");
 	private static final Pattern _javaSourceTag = Pattern.compile("\n\t*<%\n");
 
 }

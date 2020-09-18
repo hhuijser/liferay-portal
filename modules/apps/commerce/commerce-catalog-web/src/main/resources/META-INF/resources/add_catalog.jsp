@@ -74,7 +74,7 @@ List<CommerceCurrency> commerceCurrencies = commerceCatalogDisplayContext.getCom
 		<aui:script require="commerce-frontend-js/utilities/eventsDefinitions as events, commerce-frontend-js/utilities/forms/index as FormUtils">
 			Liferay.provide(
 				window,
-				'<portlet:namespace/>apiSubmit',
+				'<portlet:namespace />apiSubmit',
 				function (form) {
 					var API_URL = '/o/headless-commerce-admin-catalog/v1.0/catalogs';
 

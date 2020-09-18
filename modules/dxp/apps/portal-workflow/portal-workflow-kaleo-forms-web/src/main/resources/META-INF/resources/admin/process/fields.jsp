@@ -177,7 +177,7 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 			A.one('#<portlet:namespace />ddmStructureName').val(ddmStructureName);
 
 			var kaleoFormsAdmin = Liferay.component(
-				'<portlet:namespace/>KaleoFormsAdmin'
+				'<portlet:namespace />KaleoFormsAdmin'
 			);
 
 			kaleoFormsAdmin.saveInPortletSession(

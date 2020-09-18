@@ -33,8 +33,8 @@ String runNowButton = "runNowButton" + row.getRowId();
 		event
 	) {
 		var data = {
-			<portlet:namespace/><%= Constants.CMD %>: 'runProcess',
-			<portlet:namespace/>commerceDataIntegrationProcessId:
+			<portlet:namespace /><%= Constants.CMD %>: 'runProcess',
+			<portlet:namespace />commerceDataIntegrationProcessId:
 				'<%= commerceDataIntegrationProcess.getCommerceDataIntegrationProcessId() %>',
 		};
 

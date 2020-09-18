@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="sheet sheet-lg" id="<portlet:namespace/>connectedApp">
+<div class="sheet sheet-lg" id="<portlet:namespace />connectedApp">
 	<div class="sheet-header">
 		<h2 class="sheet-title">
 			<liferay-ui:message key="apps" />
@@ -87,11 +87,11 @@
 
 <aui:script require="metal-dom/src/dom as dom">
 	var connectedAppKeyInput = document.querySelector(
-		'[name=<portlet:namespace/>connectedAppKey]'
+		'[name=<portlet:namespace />connectedAppKey]'
 	);
 
 	dom.delegate(
-		document.getElementById('<portlet:namespace/>connectedApp'),
+		document.getElementById('<portlet:namespace />connectedApp'),
 		'click',
 		'[data-key]',
 		function (event) {

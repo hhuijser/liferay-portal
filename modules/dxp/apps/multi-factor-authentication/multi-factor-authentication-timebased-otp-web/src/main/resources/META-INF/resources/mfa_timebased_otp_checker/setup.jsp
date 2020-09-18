@@ -34,7 +34,7 @@ User selectedUser = PortalUtil.getSelectedUser(request);
 
 	<aui:input label="shared-secret" name="sharedSecret" readOnly="<%= true %>" type="text" value="<%= mfaTimeBasedOTPSharedSecret %>" />
 
-	<div class="qrcode-setup" id="<portlet:namespace/>qrcode"></div>
+	<div class="qrcode-setup" id="<portlet:namespace />qrcode"></div>
 </div>
 
 <div class="sheet-footer">
@@ -49,7 +49,7 @@ User selectedUser = PortalUtil.getSelectedUser(request);
 	var issuer = '<%= HtmlUtil.escapeJS(mfaTimeBasedOTPCompanyName) %>';
 	var secret = '<%= HtmlUtil.escapeJS(mfaTimeBasedOTPSharedSecret) %>';
 
-	generateQRCode.default('<portlet:namespace/>qrcode', {
+	generateQRCode.default('<portlet:namespace />qrcode', {
 		account: account,
 		algorithm: algorithm,
 		counter: counter,

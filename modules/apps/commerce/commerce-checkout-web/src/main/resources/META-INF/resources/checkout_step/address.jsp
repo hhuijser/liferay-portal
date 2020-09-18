@@ -228,18 +228,18 @@ long commerceRegionId = BeanParamUtil.getLong(currentCommerceAddress, request, "
 			Liferay.Util.toggleDisabled(A.all('.address-fields select'), state);
 
 			var commerceRegionIdSelect = A.one(
-				'#<portlet:namespace/>commerceRegionId'
+				'#<portlet:namespace />commerceRegionId'
 			).getDOMNode();
 			var commerceRegionIdInput = A.one(
-				'#<portlet:namespace/>commerceRegionIdInput'
+				'#<portlet:namespace />commerceRegionIdInput'
 			).getDOMNode();
 			var commerceRegionIdName = A.one(
-				'#<portlet:namespace/>commerceRegionIdName'
+				'#<portlet:namespace />commerceRegionIdName'
 			).getDOMNode();
 
 			commerceRegionIdSelect.setAttribute(
 				'name',
-				'<portlet:namespace/>commerceRegionId'
+				'<portlet:namespace />commerceRegionId'
 			);
 			commerceRegionIdSelect.parentElement.classList.remove('d-none');
 
@@ -281,10 +281,10 @@ long commerceRegionId = BeanParamUtil.getLong(currentCommerceAddress, request, "
 					'#<portlet:namespace />commerceRegionIdInput'
 				).getDOMNode();
 				var commerceRegionIdName = A.one(
-					'#<portlet:namespace/>commerceRegionIdName'
+					'#<portlet:namespace />commerceRegionIdName'
 				).getDOMNode();
 				var commerceRegionIdSelect = A.one(
-					'#<portlet:namespace/>commerceRegionId'
+					'#<portlet:namespace />commerceRegionId'
 				).getDOMNode();
 				var name = A.one('#<portlet:namespace />name');
 				var phoneNumber = A.one('#<portlet:namespace />phoneNumber');
@@ -328,7 +328,7 @@ long commerceRegionId = BeanParamUtil.getLong(currentCommerceAddress, request, "
 					commerceRegionIdInput.value = selectedOption.getData('region');
 					commerceRegionIdInput.setAttribute(
 						'name',
-						'<portlet:namespace/>commerceRegionId'
+						'<portlet:namespace />commerceRegionId'
 					);
 					commerceRegionIdInput.parentElement.classList.add('d-none');
 

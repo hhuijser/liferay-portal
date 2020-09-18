@@ -30,13 +30,13 @@ String typeSettings = unicodeProperties.getProperty(commerceDiscountRule.getType
 			'v2'
 		);
 
-		var form = document.getElementById('<portlet:namespace/>fm');
+		var form = document.getElementById('<portlet:namespace />fm');
 
-		var name = form.querySelector('#<portlet:namespace/>name').value;
+		var name = form.querySelector('#<portlet:namespace />name').value;
 
-		var commerceDiscountRuleType = form.querySelector('#<portlet:namespace/>type')
+		var commerceDiscountRuleType = form.querySelector('#<portlet:namespace />type')
 			.value;
-		var typeSettings = form.querySelector('#<portlet:namespace/>typeSettings')
+		var typeSettings = form.querySelector('#<portlet:namespace />typeSettings')
 			.value;
 
 		function addProductDefinition(productId) {
@@ -68,7 +68,7 @@ String typeSettings = unicodeProperties.getProperty(commerceDiscountRule.getType
 						.split('=')[1];
 
 					document.getElementById(
-						'<portlet:namespace/>typeSettings'
+						'<portlet:namespace />typeSettings'
 					).value = typeSettings;
 				})
 				.catch(function (error) {

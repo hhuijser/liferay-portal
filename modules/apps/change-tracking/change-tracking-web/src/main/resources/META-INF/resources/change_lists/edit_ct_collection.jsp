@@ -92,11 +92,11 @@ portletDisplay.setShowBackIcon(true);
 							<div class="col-5">
 								<div class="autofit-row">
 									<div class="autofit-col">
-										<input class="field" id="<portlet:namespace/>publishTimeNow" name="<portlet:namespace/>publishTime" onchange="<portlet:namespace/>onPublishTimeChange(event)" type="radio" value="now" />
+										<input class="field" id="<portlet:namespace />publishTimeNow" name="<portlet:namespace />publishTime" onchange="<portlet:namespace />onPublishTimeChange(event)" type="radio" value="now" />
 									</div>
 
 									<div class="autofit-col autofit-col-expand">
-										<label class="radio-inline" for="<portlet:namespace/>publishTimeNow">
+										<label class="radio-inline" for="<portlet:namespace />publishTimeNow">
 											<div class="change-lists-radio-label">
 												<liferay-ui:message key="now" />
 											</div>
@@ -112,11 +112,11 @@ portletDisplay.setShowBackIcon(true);
 							<div class="col-6">
 								<div class="autofit-row">
 									<div class="autofit-col">
-										<input class="field" id="<portlet:namespace/>publishTimeLater" name="<portlet:namespace/>publishTime" onchange="<portlet:namespace/>onPublishTimeChange(event)" type="radio" value="later" />
+										<input class="field" id="<portlet:namespace />publishTimeLater" name="<portlet:namespace />publishTime" onchange="<portlet:namespace />onPublishTimeChange(event)" type="radio" value="later" />
 									</div>
 
 									<div class="autofit-col autofit-col-expand">
-										<label class="radio-inline" for="<portlet:namespace/>publishTimeLater">
+										<label class="radio-inline" for="<portlet:namespace />publishTimeLater">
 											<div class="change-lists-radio-label">
 												<liferay-ui:message key="later" />
 											</div>
@@ -133,13 +133,13 @@ portletDisplay.setShowBackIcon(true);
 				</div>
 
 				<aui:script>
-					function <portlet:namespace/>onPublishTimeChange(event) {
+					function <portlet:namespace />onPublishTimeChange(event) {
 						var form = event.currentTarget.form;
 
 						var elements = form.getElementsByTagName('button');
 
 						Liferay.Util.toggleDisabled(
-							elements['<portlet:namespace/>saveButton'],
+							elements['<portlet:namespace />saveButton'],
 							false
 						);
 					}

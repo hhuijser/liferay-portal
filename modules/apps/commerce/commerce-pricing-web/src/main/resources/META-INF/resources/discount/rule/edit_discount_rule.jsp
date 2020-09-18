@@ -93,13 +93,13 @@ String type = BeanParamUtil.getString(commerceDiscountRule, request, "type");
 
 	Liferay.provide(
 		window,
-		'<portlet:namespace/>apiSubmit',
+		'<portlet:namespace />apiSubmit',
 		function () {
-			var form = document.getElementById('<portlet:namespace/>fm');
-			var name = form.querySelector('#<portlet:namespace/>name').value;
+			var form = document.getElementById('<portlet:namespace />fm');
+			var name = form.querySelector('#<portlet:namespace />name').value;
 
 			var typeSettings = form.querySelector(
-				'#<portlet:namespace/>typeSettings'
+				'#<portlet:namespace />typeSettings'
 			).value;
 
 			var discountRuleData = {

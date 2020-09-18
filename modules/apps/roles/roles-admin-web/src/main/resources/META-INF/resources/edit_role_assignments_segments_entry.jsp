@@ -108,7 +108,7 @@
 </liferay-ui:search-container>
 
 <aui:script>
-	function <portlet:namespace/>openViewMembersDialog(event) {
+	function <portlet:namespace />openViewMembersDialog(event) {
 		Liferay.Util.openInDialog(event, {
 			dialog: {
 				constrain: true,

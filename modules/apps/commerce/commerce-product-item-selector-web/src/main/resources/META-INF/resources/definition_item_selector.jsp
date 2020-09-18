@@ -157,7 +157,7 @@ PortletURL portletURL = cpDefinitionItemSelectorViewDisplayContext.getPortletURL
 <c:choose>
 	<c:when test="<%= cpDefinitionItemSelectorViewDisplayContext.isSingleSelection() %>">
 		<aui:script use="aui-base">
-			A.one('#<portlet:namespace/>cpDefinitions').delegate(
+			A.one('#<portlet:namespace />cpDefinitions').delegate(
 				'click',
 				function (event) {
 					var row = this.ancestor('tr');

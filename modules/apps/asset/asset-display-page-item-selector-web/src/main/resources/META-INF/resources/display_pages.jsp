@@ -55,7 +55,7 @@ AssetDisplayPagesItemSelectorViewDisplayContext assetDisplayPagesItemSelectorVie
 
 <aui:script require="metal-dom/src/all/dom as dom">
 	var selectFragmentEntryHandler = dom.delegate(
-		document.querySelector('#<portlet:namespace/>fm'),
+		document.querySelector('#<portlet:namespace />fm'),
 		'click',
 		'.layout-page-template-entry',
 		function (event) {

@@ -28,7 +28,7 @@ SearchContainer<CPCatalogEntry> cpCatalogEntrySearchContainer = cpSearchResultsD
 			<liferay-ui:message arguments="<%= cpCatalogEntrySearchContainer.getTotal() %>" key="x-products-available" />
 		</p>
 
-		<button aria-expanded="false" aria-haspopup="true" class="btn btn-default commerce-order-by dropdown-toggle" data-toggle="dropdown" onclick="<portlet:namespace/>toggleDropdown()" type="button">
+		<button aria-expanded="false" aria-haspopup="true" class="btn btn-default commerce-order-by dropdown-toggle" data-toggle="dropdown" onclick="<portlet:namespace />toggleDropdown()" type="button">
 			<c:set var="orderByColArgument">
 				<span class="ml-1">
 					<liferay-ui:message key="<%= cpSearchResultsDisplayContext.getOrderByCol() %>" />
@@ -40,7 +40,7 @@ SearchContainer<CPCatalogEntry> cpCatalogEntrySearchContainer = cpSearchResultsD
 			<aui:icon image="caret-double-l" markupView="lexicon" />
 		</button>
 
-		<div class="dropdown-menu dropdown-menu-right" id="<portlet:namespace/>commerce-dropdown-order-by">
+		<div class="dropdown-menu dropdown-menu-right" id="<portlet:namespace />commerce-dropdown-order-by">
 
 			<%
 			String[] sortOptions = {"relevance", "price-low-to-high", "price-high-to-low", "new-items", "name-ascending", "name-descending"};
@@ -92,7 +92,7 @@ SearchContainer<CPCatalogEntry> cpCatalogEntrySearchContainer = cpSearchResultsD
 
 	Liferay.provide(window, '<portlet:namespace />toggleDropdown', function () {
 		var dropdownElement = window.document.querySelector(
-			'#<portlet:namespace/>commerce-dropdown-order-by'
+			'#<portlet:namespace />commerce-dropdown-order-by'
 		);
 
 		if (dropdownElement) {

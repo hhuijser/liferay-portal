@@ -88,7 +88,7 @@ CommerceRegionsStarter commerceRegionsStarter = commerceCountriesDisplayContext.
 			'click',
 			function (event) {
 				var data = {
-					<portlet:namespace/>key: '<%= commerceRegionsStarter.getKey() %>',
+					<portlet:namespace />key: '<%= commerceRegionsStarter.getKey() %>',
 				};
 
 				this.attr('disabled', true);

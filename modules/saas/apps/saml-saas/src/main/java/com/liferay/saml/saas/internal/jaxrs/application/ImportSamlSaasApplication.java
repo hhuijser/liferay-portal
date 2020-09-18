@@ -172,7 +172,7 @@ public class ImportSamlSaasApplication extends Application {
 
 	private void _generateSamlSpIdpConnections(
 			HttpServletRequest httpServletRequest,
-			JSONArray samlSpIdConnectionsJsonArray)
+			JSONArray samlSpIdConnectionsJSONArray)
 		throws PortalException {
 
 		List<SamlSpIdpConnection> samlSpIdpConnections =
@@ -185,7 +185,7 @@ public class ImportSamlSaasApplication extends Application {
 		}
 
 		for (JSONObject samlSpIdpConnectionJSONObject :
-				(Iterable<JSONObject>)samlSpIdConnectionsJsonArray) {
+				(Iterable<JSONObject>)samlSpIdConnectionsJSONArray) {
 
 			long samlSpIdpConnectionId = _counterLocalService.increment(
 				SamlSpIdpConnection.class.getName());

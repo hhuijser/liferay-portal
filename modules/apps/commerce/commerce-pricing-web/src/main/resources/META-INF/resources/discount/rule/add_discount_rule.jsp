@@ -52,7 +52,7 @@ List<CommerceDiscountRuleType> commerceDiscountRuleTypes = commerceDiscountDispl
 
 			Liferay.provide(
 				window,
-				'<portlet:namespace/>apiSubmit',
+				'<portlet:namespace />apiSubmit',
 				function (form) {
 					var name = form.querySelector('#name').value;
 

@@ -40,7 +40,7 @@ CPDefinition cpDefinition = cpDefinitionsDisplayContext.getCPDefinition();
 	</portlet:renderURL>
 
 	<aui:script require="commerce-frontend-js/components/autocomplete/entry as autocomplete, commerce-frontend-js/utilities/eventsDefinitions as events, commerce-frontend-js/utilities/forms/index as FormUtils, commerce-frontend-js/ServiceProvider/index as ServiceProvider">
-		var <portlet:namespace/>defaultLanguageId = null;
+		var <portlet:namespace />defaultLanguageId = null;
 		var <portlet:namespace />product = {
 			active: true,
 			productType: '<%= cpDefinition.getProductTypeName() %>',
@@ -48,11 +48,11 @@ CPDefinition cpDefinition = cpDefinitionsDisplayContext.getCPDefinition();
 
 		Liferay.provide(
 			window,
-			'<portlet:namespace/>apiSubmit',
+			'<portlet:namespace />apiSubmit',
 			function (form) {
 				var API_URL =
 					'/o/headless-commerce-admin-catalog/v1.0/products/<%= cpDefinition.getCProductId() %>/clone?catalogId=' +
-					<portlet:namespace/>product.catalogId;
+					<portlet:namespace />product.catalogId;
 
 				FormUtils.apiSubmit(form, API_URL)
 					.then(function (payload) {
@@ -63,14 +63,14 @@ CPDefinition cpDefinition = cpDefinitionsDisplayContext.getCPDefinition();
 
 						var formattedData = {
 							active: false,
-							catalogId: <portlet:namespace/>product.catalogId,
+							catalogId: <portlet:namespace />product.catalogId,
 							name: {},
-							productType: <portlet:namespace/>product.productType,
+							productType: <portlet:namespace />product.productType,
 						};
 
 						formattedData.name[
-							<portlet:namespace/>defaultLanguageId
-						] = document.getElementById('<portlet:namespace/>name').value;
+							<portlet:namespace />defaultLanguageId
+						] = document.getElementById('<portlet:namespace />name').value;
 
 						Liferay.Util.fetch(
 							'/o/headless-commerce-admin-catalog/v1.0/products/' +
@@ -132,8 +132,8 @@ CPDefinition cpDefinition = cpDefinitionsDisplayContext.getCPDefinition();
 			itemsLabel: 'name',
 			onValueUpdated: function (value, catalogData) {
 				if (value) {
-					<portlet:namespace/>product.catalogId = catalogData.id;
-					<portlet:namespace/>defaultLanguageId =
+					<portlet:namespace />product.catalogId = catalogData.id;
+					<portlet:namespace />defaultLanguageId =
 						catalogData.defaultLanguageId;
 				}
 			},

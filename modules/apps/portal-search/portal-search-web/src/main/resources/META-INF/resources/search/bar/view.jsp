@@ -125,7 +125,7 @@ SearchBarPortletDisplayContext searchBarPortletDisplayContext = (SearchBarPortle
 		</aui:form>
 
 		<aui:script use="liferay-search-bar">
-			new Liferay.Search.SearchBar(A.one('#<portlet:namespace/>fm'));
+			new Liferay.Search.SearchBar(A.one('#<portlet:namespace />fm'));
 		</aui:script>
 	</c:otherwise>
 </c:choose>

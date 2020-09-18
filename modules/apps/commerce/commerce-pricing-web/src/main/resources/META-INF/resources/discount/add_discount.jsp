@@ -67,7 +67,7 @@ CommerceDiscount commerceDiscount = commerceDiscountDisplayContext.getCommerceDi
 
 			Liferay.provide(
 				window,
-				'<portlet:namespace/>apiSubmit',
+				'<portlet:namespace />apiSubmit',
 				function (form) {
 					var commerceDiscountTarget = form.querySelector(
 						'#commerceDiscountTarget'

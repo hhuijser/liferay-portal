@@ -45,7 +45,7 @@ String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 			Liferay.provide(
 				window,
-				'<portlet:namespace/>apiSubmit',
+				'<portlet:namespace />apiSubmit',
 				function (form) {
 					var description = form.querySelector('#description').value;
 					var title = form.querySelector('#title').value;

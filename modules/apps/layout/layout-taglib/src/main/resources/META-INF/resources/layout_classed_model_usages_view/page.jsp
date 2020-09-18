@@ -75,11 +75,11 @@ LayoutClassedModelUsagesDisplayContext layoutClassedModelUsagesDisplayContext = 
 
 <aui:script require="metal-dom/src/all/dom as dom">
 	if (
-		document.querySelector('#<portlet:namespace/>layoutClassedModelUsagesList')
+		document.querySelector('#<portlet:namespace />layoutClassedModelUsagesList')
 	) {
 		var previewLayoutClassedModelUsagesList = dom.delegate(
 			document.querySelector(
-				'#<portlet:namespace/>layoutClassedModelUsagesList'
+				'#<portlet:namespace />layoutClassedModelUsagesList'
 			),
 			'click',
 			'.preview-layout-classed-model-usage',

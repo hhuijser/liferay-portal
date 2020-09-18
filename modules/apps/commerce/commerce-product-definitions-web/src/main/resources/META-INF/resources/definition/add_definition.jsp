@@ -46,10 +46,14 @@
 			function () {
 				ModalUtils.isSubmitting();
 
-				var formattedData = Object.assign({}, <portlet:namespace />productData, {
-					defaultSku: '<%= CPInstanceConstants.DEFAULT_SKU %>',
-					name: {},
-				});
+				var formattedData = Object.assign(
+					{},
+					<portlet:namespace />productData,
+					{
+						defaultSku: '<%= CPInstanceConstants.DEFAULT_SKU %>',
+						name: {},
+					}
+				);
 
 				formattedData.name[
 					<portlet:namespace />defaultLanguageId

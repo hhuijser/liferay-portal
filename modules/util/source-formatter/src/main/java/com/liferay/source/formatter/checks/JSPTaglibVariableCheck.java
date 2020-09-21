@@ -51,14 +51,14 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 			String s = matcher.group(1);
 
-			String[] variableDefiniations = s.split(";\n");
+			String[] variableDefinitions = s.split(";\n");
 
 			String nextTag = matcher.group(7);
 
-			for (String variableDefiniation : variableDefiniations) {
-				position = position + variableDefiniation.length() + 2;
+			for (String variableDefinition : variableDefinitions) {
+				position = position + variableDefinition.length() + 2;
 
-				String[] array = variableDefiniation.split(" = ", 2);
+				String[] array = variableDefinition.split(" = ", 2);
 
 				String taglibValue = array[1];
 
@@ -130,7 +130,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 						if (!taglibValue.contains("\n")) {
 							return StringUtil.replaceFirst(
-								newContent, variableDefiniation + ";\n",
+								newContent, variableDefinition + ";\n",
 								StringPool.BLANK, matcher.start());
 						}
 

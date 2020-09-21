@@ -184,8 +184,6 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 			return false;
 		}
 
-		boolean hasVariableReference = false;
-
 		endPosition = content.indexOf("\n", endPosition);
 
 		Matcher matcher1 = _methodCallPattern.matcher(taglibValue);
@@ -198,8 +196,6 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 			while (matcher2.find()) {
 				if (matcher2.start() > endPosition) {
-					hasVariableReference = false;
-
 					break;
 				}
 
@@ -210,12 +206,10 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 					return true;
 				}
-
-				hasVariableReference = false;
 			}
 		}
 
-		return hasVariableReference;
+		return false;
 	}
 
 	private static final Pattern _methodCallPattern = Pattern.compile(

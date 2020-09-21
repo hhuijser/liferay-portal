@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
+ * @author Alan Huang
  */
 public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
@@ -47,7 +48,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		Matcher matcher = _taglibVariablePattern.matcher(content);
 
 		while (matcher.find()) {
-			int position = matcher.start(1);
+			int x = matcher.start(1);
 
 			String s = matcher.group(1);
 
@@ -56,19 +57,20 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 			String nextTag = matcher.group(7);
 
 			for (String variableDefinition : variableDefinitions) {
-				position = position + variableDefinition.length() + 2;
+				x = x + variableDefinition.length() + 2;
 
 				String[] array = variableDefinition.split(" = ", 2);
 
+				String variableTypeAndName = array[0];
+
+				int y = variableTypeAndName.lastIndexOf(CharPool.SPACE);
+
+				String variableName = variableTypeAndName.substring(y + 1);
+
 				String taglibValue = array[1];
 
-				int i = array[0].lastIndexOf(CharPool.SPACE);
-
-				String variableName = array[0].substring(i + 1);
-
 				if (_hasVariableReference(
-						content.substring(position), variableName,
-						taglibValue)) {
+						content.substring(x), variableName, taglibValue)) {
 
 					continue;
 				}
@@ -99,7 +101,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 					if (taglibValue.startsWith("{")) {
 						String typeName = StringUtil.trimLeading(
-							array[0].substring(0, i));
+							variableTypeAndName.substring(0, y));
 
 						if (typeName.endsWith("[][]") ||
 							!typeName.endsWith("[]")) {

@@ -190,7 +190,6 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 		Matcher matcher1 = _methodCallPattern.matcher(taglibValue);
 
-		outerLoop:
 		while (matcher1.find()) {
 			Pattern pattern = Pattern.compile(
 				"\\b(?<!['\"])" + matcher1.group(1) + "\\.(\\w+)?\\(");
@@ -201,7 +200,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 				if (matcher2.start() > endPosition) {
 					hasVariableReference = false;
 
-					continue outerLoop;
+					break;
 				}
 
 				String methodName = matcher2.group(1);

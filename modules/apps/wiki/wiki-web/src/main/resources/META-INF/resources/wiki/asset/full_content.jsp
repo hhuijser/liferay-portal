@@ -79,7 +79,6 @@ WikiPageDisplay pageDisplay = WikiPageLocalServiceUtil.getPageDisplay(
 			List<FileEntry> attachmentsFileEntries = wikiPage.getAttachmentsFileEntries();
 
 			for (FileEntry fileEntry : attachmentsFileEntries) {
-				String rowURL = PortletFileRepositoryUtil.getDownloadPortletFileEntryURL(themeDisplay, fileEntry, "status=" + WorkflowConstants.STATUS_APPROVED);
 			%>
 
 				<clay:col
@@ -87,7 +86,7 @@ WikiPageDisplay pageDisplay = WikiPageLocalServiceUtil.getPageDisplay(
 				>
 					<liferay-frontend:horizontal-card
 						text="<%= fileEntry.getTitle() %>"
-						url="<%= rowURL %>"
+						url="<%= PortletFileRepositoryUtil.getDownloadPortletFileEntryURL(themeDisplay, fileEntry, "status=" + WorkflowConstants.STATUS_APPROVED) %>"
 					>
 						<liferay-frontend:horizontal-card-col>
 							<liferay-document-library:mime-type-sticker

@@ -102,12 +102,8 @@ public class FacetDiscounterTest {
 		_assertFrequencies(facet, "[public=1000]");
 	}
 
-	private static void _assertFrequencies(Facet facet, String expected) {
+	private void _assertFrequencies(Facet facet, String expected) {
 		FacetsAssert.assertFrequencies(_FIELD_NAME, facet, expected);
-	}
-
-	private static TermCollector _toTerm(String term, int frequency) {
-		return new DefaultTermCollector(term, frequency);
 	}
 
 	private Document _createDocument(String term) {
@@ -171,6 +167,10 @@ public class FacetDiscounterTest {
 		facet.setFieldName(_FIELD_NAME);
 
 		facet.setFacetCollector(_createFacetCollector(termCollectors));
+	}
+
+	private TermCollector _toTerm(String term, int frequency) {
+		return new DefaultTermCollector(term, frequency);
 	}
 
 	private static final String _FIELD_NAME = RandomTestUtil.randomString();

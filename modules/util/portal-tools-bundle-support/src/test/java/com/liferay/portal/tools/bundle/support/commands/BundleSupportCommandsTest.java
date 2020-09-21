@@ -365,58 +365,6 @@ public class BundleSupportCommandsTest extends HttpProxyMockServerSupport {
 	@Rule
 	public final ExpectedException expectedException = ExpectedException.none();
 
-	private static File _assertExists(File dir, String fileName) {
-		File file = new File(dir, fileName);
-
-		Assert.assertTrue(file.exists());
-
-		return file;
-	}
-
-	private static void _assertNotExists(File dir, String fileName) {
-		File file = new File(dir, fileName);
-
-		Assert.assertFalse(file.exists());
-	}
-
-	private static void _assertPosixFilePermissions(
-			File dir, String fileName,
-			Set<PosixFilePermission> expectedPosixFilePermissions)
-		throws IOException {
-
-		File file = _assertExists(dir, fileName);
-
-		Path path = file.toPath();
-
-		if (!FileUtil.isPosixSupported(path)) {
-			return;
-		}
-
-		Set<PosixFilePermission> actualPosixFilePermissions =
-			Files.getPosixFilePermissions(path);
-
-		Assert.assertEquals(
-			expectedPosixFilePermissions, actualPosixFilePermissions);
-	}
-
-	private static File _createDirectory(File parentDir, String dirName) {
-		File dir = new File(parentDir, dirName);
-
-		Assert.assertTrue(dir.mkdirs());
-
-		return dir;
-	}
-
-	private static File _createFile(File dir, String fileName)
-		throws Exception {
-
-		File file = new File(dir, fileName);
-
-		Assert.assertTrue(file.createNewFile());
-
-		return file;
-	}
-
 	private static HttpContext _createHttpContext(
 		HttpServer httpServer, final String contextPath,
 		final String contentType, Authenticator authenticator) {
@@ -507,6 +455,56 @@ public class BundleSupportCommandsTest extends HttpProxyMockServerSupport {
 		httpServer.start();
 
 		return httpServer;
+	}
+
+	private File _assertExists(File dir, String fileName) {
+		File file = new File(dir, fileName);
+
+		Assert.assertTrue(file.exists());
+
+		return file;
+	}
+
+	private void _assertNotExists(File dir, String fileName) {
+		File file = new File(dir, fileName);
+
+		Assert.assertFalse(file.exists());
+	}
+
+	private void _assertPosixFilePermissions(
+			File dir, String fileName,
+			Set<PosixFilePermission> expectedPosixFilePermissions)
+		throws IOException {
+
+		File file = _assertExists(dir, fileName);
+
+		Path path = file.toPath();
+
+		if (!FileUtil.isPosixSupported(path)) {
+			return;
+		}
+
+		Set<PosixFilePermission> actualPosixFilePermissions =
+			Files.getPosixFilePermissions(path);
+
+		Assert.assertEquals(
+			expectedPosixFilePermissions, actualPosixFilePermissions);
+	}
+
+	private File _createDirectory(File parentDir, String dirName) {
+		File dir = new File(parentDir, dirName);
+
+		Assert.assertTrue(dir.mkdirs());
+
+		return dir;
+	}
+
+	private File _createFile(File dir, String fileName) throws Exception {
+		File file = new File(dir, fileName);
+
+		Assert.assertTrue(file.createNewFile());
+
+		return file;
 	}
 
 	private void _initBundle(

@@ -161,14 +161,6 @@ public class ProjectTemplatesBomTest implements BaseProjectTemplatesTestCase {
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private static boolean _isBomTest() {
-		if (Validator.isNotNull(_BOM_VERSION)) {
-			return true;
-		}
-
-		return false;
-	}
-
 	private void _buildTemplateTestOutput(
 			File modulesDir, String template, File workspaceDir)
 		throws Exception {
@@ -181,6 +173,14 @@ public class ProjectTemplatesBomTest implements BaseProjectTemplatesTestCase {
 		if (!template.contains("war")) {
 			_resolveProject(template, workspaceDir);
 		}
+	}
+
+	private boolean _isBomTest() {
+		if (Validator.isNotNull(_BOM_VERSION)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private void _resolveProject(String projectName, File workspaceDir)

@@ -177,7 +177,7 @@ public class AopCacheManager {
 			registry.ungetService(serviceReference);
 		}
 
-		private static void _reset() {
+		private void _reset() {
 			ChainableMethodAdvice[] chainableMethodAdvices =
 				_chainableMethodAdvices.toArray(new ChainableMethodAdvice[0]);
 

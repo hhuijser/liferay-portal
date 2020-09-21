@@ -635,21 +635,21 @@ public class NestedFieldsWriterInterceptorTest {
 		return sku;
 	}
 
-	private static Subproduct _toSubproduct(long id, String externalCode) {
-		Subproduct subproduct = new Subproduct();
-
-		subproduct.setExternalCode(externalCode);
-		subproduct.setId(id);
-
-		return subproduct;
-	}
-
 	private MultivaluedHashMap<String, String> _getPathParameters() {
 		return new MultivaluedHashMap<String, String>() {
 			{
 				putSingle("id", "1");
 			}
 		};
+	}
+
+	private Subproduct _toSubproduct(long id, String externalCode) {
+		Subproduct subproduct = new Subproduct();
+
+		subproduct.setExternalCode(externalCode);
+		subproduct.setId(id);
+
+		return subproduct;
 	}
 
 	private NestedFieldsWriterInterceptor.NestedFieldServiceTrackerCustomizer

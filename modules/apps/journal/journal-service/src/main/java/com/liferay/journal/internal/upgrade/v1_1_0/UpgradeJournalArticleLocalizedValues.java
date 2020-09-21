@@ -168,7 +168,7 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 		runSQLTemplateString(template, false);
 	}
 
-	private static Map<Locale, String> _getLocalizationMap(
+	private Map<Locale, String> _getLocalizationMap(
 		String value, String defaultLanguageId) {
 
 		if (Validator.isXml(value)) {

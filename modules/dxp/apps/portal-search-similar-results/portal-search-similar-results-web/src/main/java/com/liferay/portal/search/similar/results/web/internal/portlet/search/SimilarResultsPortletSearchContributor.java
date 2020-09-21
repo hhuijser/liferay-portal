@@ -209,7 +209,7 @@ public class SimilarResultsPortletSearchContributor
 	protected SimilarResultsContributorsRegistry
 		similarResultsContributorsRegistry;
 
-	private static void _populate(
+	private void _populate(
 		MoreLikeThisQuery moreLikeThisQuery,
 		SimilarResultsPortletPreferences similarResultsPortletPreferences) {
 

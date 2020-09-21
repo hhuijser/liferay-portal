@@ -118,7 +118,23 @@ public class SchemaBuilder {
 		return _getSchema(endpoint, operation, apiSpecJsonObject);
 	}
 
-	private static JsonObject _extractSchemaJsonObject(
+	private Set<String> _asSet(JsonArray jsonArray) {
+		if ((jsonArray == null) || jsonArray.isEmpty()) {
+			return Collections.emptySet();
+		}
+
+		List<JsonString> jsonStrings = jsonArray.getValuesAs(JsonString.class);
+
+		Set<String> strings = new HashSet<>();
+
+		for (JsonString jsonString : jsonStrings) {
+			strings.add(jsonString.getString());
+		}
+
+		return strings;
+	}
+
+	private JsonObject _extractSchemaJsonObject(
 		String schemaName, JsonObject oasJsonObject) {
 
 		String jsonFinderPath = StringUtil.replace(
@@ -129,7 +145,7 @@ public class SchemaBuilder {
 			jsonFinderPath, oasJsonObject);
 	}
 
-	private static Schema _getDeleteSchema() {
+	private Schema _getDeleteSchema() {
 		List<Schema.Field> schemaFields = new ArrayList<>(1);
 
 		Schema.Field designField = new Schema.Field(
@@ -142,7 +158,7 @@ public class SchemaBuilder {
 		return Schema.createRecord("Runtime", null, null, false, schemaFields);
 	}
 
-	private static Schema.Field _getDesignField(
+	private Schema.Field _getDesignField(
 		String fieldName, JsonObject propertyJsonObject) {
 
 		Schema.Field designField = new Schema.Field(
@@ -247,26 +263,6 @@ public class SchemaBuilder {
 		}
 
 		return designField;
-	}
-
-	private static String _stripSchemaName(String reference) {
-		return reference.replaceAll(OASConstants.PATH_SCHEMA_REFERENCE, "");
-	}
-
-	private Set<String> _asSet(JsonArray jsonArray) {
-		if ((jsonArray == null) || jsonArray.isEmpty()) {
-			return Collections.emptySet();
-		}
-
-		List<JsonString> jsonStrings = jsonArray.getValuesAs(JsonString.class);
-
-		Set<String> strings = new HashSet<>();
-
-		for (JsonString jsonString : jsonStrings) {
-			strings.add(jsonString.getString());
-		}
-
-		return strings;
 	}
 
 	private Schema _getSchema(String schemaName, JsonObject oasJsonObject) {
@@ -381,6 +377,10 @@ public class SchemaBuilder {
 
 			schemaFields.add(designField);
 		}
+	}
+
+	private String _stripSchemaName(String reference) {
+		return reference.replaceAll(OASConstants.PATH_SCHEMA_REFERENCE, "");
 	}
 
 	private static final String _COMPLEX_TYPE_ARRAY = "complex: Array";

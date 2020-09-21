@@ -26,7 +26,7 @@ public class XMLSafeReader extends UnsyncStringReader {
 		super(_fixProlog(xml));
 	}
 
-	private static String _fixProlog(String xml) {
+	private String _fixProlog(String xml) {
 
 		// LEP-1921
 

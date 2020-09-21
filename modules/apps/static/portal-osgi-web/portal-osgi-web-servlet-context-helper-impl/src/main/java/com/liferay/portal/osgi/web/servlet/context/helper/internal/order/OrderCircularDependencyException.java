@@ -34,7 +34,7 @@ public class OrderCircularDependencyException extends Exception {
 		super(_getMessage(path, webXMLDefinitions));
 	}
 
-	private static String _getMessage(
+	private String _getMessage(
 		Order.Path path, List<WebXMLDefinition> webXMLDefinitions) {
 
 		StringBundler sb = new StringBundler();

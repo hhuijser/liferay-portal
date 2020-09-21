@@ -858,7 +858,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			AssetPublisherWebConfiguration.class, properties);
 	}
 
-	private static List<AssetEntry> _filterAssetCategoriesAssetEntries(
+	private List<AssetEntry> _filterAssetCategoriesAssetEntries(
 		List<AssetEntry> assetEntries, long[] assetCategoryIds) {
 
 		List<AssetEntry> filteredAssetEntries = new ArrayList<>();
@@ -872,42 +872,6 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		}
 
 		return filteredAssetEntries;
-	}
-
-	private static List<AssetEntry> _filterAssetTagNamesAssetEntries(
-		List<AssetEntry> assetEntries, String[] assetTagNames) {
-
-		List<AssetEntry> filteredAssetEntries = new ArrayList<>();
-
-		for (AssetEntry assetEntry : assetEntries) {
-			List<AssetTag> assetTags = assetEntry.getTags();
-
-			String[] assetEntryAssetTagNames = new String[assetTags.size()];
-
-			for (int i = 0; i < assetTags.size(); i++) {
-				AssetTag assetTag = assetTags.get(i);
-
-				assetEntryAssetTagNames[i] = assetTag.getName();
-			}
-
-			if (ArrayUtil.containsAll(assetEntryAssetTagNames, assetTagNames)) {
-				filteredAssetEntries.add(assetEntry);
-			}
-		}
-
-		return filteredAssetEntries;
-	}
-
-	private static boolean _isShowAssetEntryResults(
-		String portletName, AssetEntryQuery assetEntryQuery) {
-
-		if (!portletName.equals(AssetPublisherPortletKeys.RELATED_ASSETS) ||
-			(assetEntryQuery.getLinkedAssetEntryId() > 0)) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 	private long[] _filterAssetCategoryIds(
@@ -937,6 +901,30 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		}
 
 		return ArrayUtil.toArray(assetCategoryIdsList.toArray(new Long[0]));
+	}
+
+	private List<AssetEntry> _filterAssetTagNamesAssetEntries(
+		List<AssetEntry> assetEntries, String[] assetTagNames) {
+
+		List<AssetEntry> filteredAssetEntries = new ArrayList<>();
+
+		for (AssetEntry assetEntry : assetEntries) {
+			List<AssetTag> assetTags = assetEntry.getTags();
+
+			String[] assetEntryAssetTagNames = new String[assetTags.size()];
+
+			for (int i = 0; i < assetTags.size(); i++) {
+				AssetTag assetTag = assetTags.get(i);
+
+				assetEntryAssetTagNames[i] = assetTag.getName();
+			}
+
+			if (ArrayUtil.containsAll(assetEntryAssetTagNames, assetTagNames)) {
+				filteredAssetEntries.add(assetEntry);
+			}
+		}
+
+		return filteredAssetEntries;
 	}
 
 	private List<AssetEntryResult> _getAssetEntryResultsByClassName(
@@ -1138,6 +1126,18 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			!portletName.equals(
 				AssetPublisherPortletKeys.HIGHEST_RATED_ASSETS) &&
 			!portletName.equals(AssetPublisherPortletKeys.MOST_VIEWED_ASSETS)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean _isShowAssetEntryResults(
+		String portletName, AssetEntryQuery assetEntryQuery) {
+
+		if (!portletName.equals(AssetPublisherPortletKeys.RELATED_ASSETS) ||
+			(assetEntryQuery.getLinkedAssetEntryId() > 0)) {
 
 			return true;
 		}

@@ -1779,7 +1779,7 @@ public class PoshiRunnerValidation {
 			super(_join((Object[])messageParts));
 		}
 
-		private static String _join(Object... objects) {
+		private String _join(Object... objects) {
 			StringBuilder sb = new StringBuilder();
 
 			for (Object object : objects) {

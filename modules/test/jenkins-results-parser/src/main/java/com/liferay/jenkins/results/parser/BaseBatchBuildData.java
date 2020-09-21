@@ -109,7 +109,7 @@ public abstract class BaseBatchBuildData
 		validateKeys(_KEYS_REQUIRED);
 	}
 
-	private static String _getDefaultRunID(String runID) {
+	private String _getDefaultRunID(String runID) {
 		if (runID != null) {
 			return runID;
 		}

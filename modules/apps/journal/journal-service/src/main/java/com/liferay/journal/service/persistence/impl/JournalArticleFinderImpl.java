@@ -2153,7 +2153,7 @@ public class JournalArticleFinderImpl
 		return StringUtil.replace(sql, "[$STRUCTURE_TEMPLATE$]", sb.toString());
 	}
 
-	private static boolean _isOrderByTitle(
+	private boolean _isOrderByTitle(
 		OrderByComparator<JournalArticle> orderByComparator) {
 
 		if ((orderByComparator != null) &&

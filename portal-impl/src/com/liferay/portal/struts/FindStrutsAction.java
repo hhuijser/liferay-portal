@@ -195,7 +195,7 @@ public abstract class FindStrutsAction implements StrutsAction {
 			getPrimaryKeyParameterName(), String.valueOf(primaryKey));
 	}
 
-	private static Layout _setTargetLayout(
+	private Layout _setTargetLayout(
 			HttpServletRequest httpServletRequest, long groupId, long plid)
 		throws Exception {
 

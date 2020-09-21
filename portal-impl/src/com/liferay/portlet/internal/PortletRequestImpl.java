@@ -1365,30 +1365,6 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 			_values = values;
 		}
 
-		private static String _getName(String name) {
-			if (name != null) {
-				int pos = name.indexOf(
-					PortletQName.PRIVATE_RENDER_PARAMETER_NAMESPACE);
-
-				if (pos >= 0) {
-					int privateRenderParameterNamespaceLength =
-						PortletQName.PRIVATE_RENDER_PARAMETER_NAMESPACE.
-							length();
-
-					String privateRenderParameterName = name.substring(0, pos);
-
-					privateRenderParameterName =
-						privateRenderParameterName.concat(
-							name.substring(
-								pos + privateRenderParameterNamespaceLength));
-
-					name = privateRenderParameterName;
-				}
-			}
-
-			return name;
-		}
-
 		private RequestParameter(
 			String name, String[] values, String portletNamespace,
 			int portletSpecMajorVersion) {
@@ -1414,6 +1390,30 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 			}
 
 			_values = values;
+		}
+
+		private String _getName(String name) {
+			if (name != null) {
+				int pos = name.indexOf(
+					PortletQName.PRIVATE_RENDER_PARAMETER_NAMESPACE);
+
+				if (pos >= 0) {
+					int privateRenderParameterNamespaceLength =
+						PortletQName.PRIVATE_RENDER_PARAMETER_NAMESPACE.
+							length();
+
+					String privateRenderParameterName = name.substring(0, pos);
+
+					privateRenderParameterName =
+						privateRenderParameterName.concat(
+							name.substring(
+								pos + privateRenderParameterNamespaceLength));
+
+					name = privateRenderParameterName;
+				}
+			}
+
+			return name;
 		}
 
 		private final boolean _privateRenderNamespaced;

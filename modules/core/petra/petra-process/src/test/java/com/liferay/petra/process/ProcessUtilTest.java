@@ -340,9 +340,7 @@ public class ProcessUtilTest {
 		}
 	}
 
-	private static String[] _buildArguments(
-		Class<?> clazz, String... arguments) {
-
+	private String[] _buildArguments(Class<?> clazz, String... arguments) {
 		List<String> argumentsList = new ArrayList<>();
 
 		argumentsList.add("java");

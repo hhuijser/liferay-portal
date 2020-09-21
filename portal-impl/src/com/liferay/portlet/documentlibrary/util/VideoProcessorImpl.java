@@ -651,7 +651,7 @@ public class VideoProcessorImpl
 
 	private static class DestroyHangingThreadHelper {
 
-		private static void _destroyHangingThread() {
+		private void _destroyHangingThread() {
 			for (Thread thread : ThreadUtil.getThreads()) {
 				if ((thread != null) && !thread.isDaemon() &&
 					!StringUtil.equalsIgnoreCase(thread.getName(), "main")) {

@@ -281,18 +281,6 @@ public @interface OSGiBeanProperties {
 
 		BOOLEAN, BYTE, CHARACTER, DOUBLE, FLOAT, INTEGER, LONG, SHORT, STRING;
 
-		private static Type _getType(String name) {
-			name = StringUtil.toUpperCase(name);
-
-			for (Type type : values()) {
-				if (name.equals(type.name())) {
-					return type;
-				}
-			}
-
-			return Type.STRING;
-		}
-
 		private Object _convert(String value, Object previousValue) {
 			if (previousValue == null) {
 				return _getTypedValue(value);
@@ -320,6 +308,18 @@ public @interface OSGiBeanProperties {
 				array, Array.getLength(previousValue), _getTypedValue(value));
 
 			return array;
+		}
+
+		private Type _getType(String name) {
+			name = StringUtil.toUpperCase(name);
+
+			for (Type type : values()) {
+				if (name.equals(type.name())) {
+					return type;
+				}
+			}
+
+			return Type.STRING;
 		}
 
 		private Class<?> _getTypeClass() {

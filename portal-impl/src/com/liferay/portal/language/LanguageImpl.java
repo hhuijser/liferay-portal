@@ -1719,10 +1719,6 @@ public class LanguageImpl implements Language, Serializable {
 		return companyLocalesBag;
 	}
 
-	private static void _updateLastModified() {
-		_lastModified = System.currentTimeMillis();
-	}
-
 	private ObjectValuePair<HashMap<String, Locale>, HashMap<String, Locale>>
 		_createGroupLocales(long groupId) {
 
@@ -1978,6 +1974,10 @@ public class LanguageImpl implements Language, Serializable {
 		_companyLocalesPortalCache.remove(companyId);
 
 		_updateLastModified();
+	}
+
+	private void _updateLastModified() {
+		_lastModified = System.currentTimeMillis();
 	}
 
 	private static final String _COMPANY_LOCALES_PORTAL_CACHE_NAME =

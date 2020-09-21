@@ -75,7 +75,7 @@ public class PQLValue extends PQLEntity {
 		return objectValue;
 	}
 
-	private static void _validateValue(String value) throws Exception {
+	private void _validateValue(String value) throws Exception {
 		if (value == null) {
 			return;
 		}

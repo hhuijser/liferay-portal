@@ -175,7 +175,7 @@ public class BenchmarksPropsValues {
 
 	private static class PropertiesHolder {
 
-		private static String _get(String key) {
+		private String _get(String key) {
 			return _properties.getProperty(key);
 		}
 

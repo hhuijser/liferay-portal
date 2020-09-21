@@ -198,20 +198,6 @@ public class LangBuilder {
 		_createProperties(content, "vi"); // Vietnamese
 	}
 
-	private static String _getSpecialPropertyValue(String key) {
-		if (key.equals(LanguageConstants.KEY_DIR)) {
-			return LanguageConstants.VALUE_LTR;
-		}
-		else if (key.equals(LanguageConstants.KEY_LINE_BEGIN)) {
-			return LanguageConstants.VALUE_LEFT;
-		}
-		else if (key.equals(LanguageConstants.KEY_LINE_END)) {
-			return LanguageConstants.VALUE_RIGHT;
-		}
-
-		return StringPool.BLANK;
-	}
-
 	private static void _processCurrentBranch(
 			String[] excludedLanguageIds, String langFileName,
 			boolean titleCapitalization, boolean translate,
@@ -555,6 +541,20 @@ public class LangBuilder {
 		}
 
 		return languageId;
+	}
+
+	private String _getSpecialPropertyValue(String key) {
+		if (key.equals(LanguageConstants.KEY_DIR)) {
+			return LanguageConstants.VALUE_LTR;
+		}
+		else if (key.equals(LanguageConstants.KEY_LINE_BEGIN)) {
+			return LanguageConstants.VALUE_LEFT;
+		}
+		else if (key.equals(LanguageConstants.KEY_LINE_END)) {
+			return LanguageConstants.VALUE_RIGHT;
+		}
+
+		return StringPool.BLANK;
 	}
 
 	private void _initKeysWithUpdatedValues() throws Exception {

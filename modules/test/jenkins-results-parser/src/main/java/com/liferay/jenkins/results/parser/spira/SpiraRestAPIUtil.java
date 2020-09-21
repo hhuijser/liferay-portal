@@ -379,7 +379,7 @@ public class SpiraRestAPIUtil {
 			return _responseByteCount;
 		}
 
-		private static long _getByteCount(String data) {
+		private long _getByteCount(String data) {
 			if (data == null) {
 				return 0;
 			}

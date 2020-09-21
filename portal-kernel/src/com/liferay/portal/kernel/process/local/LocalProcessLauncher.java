@@ -211,13 +211,13 @@ public class LocalProcessLauncher {
 			_processOutputStream.writeProcessCallable(processCallable);
 		}
 
-		private static void _setProcessOutputStream(
+		private ProcessContext() {
+		}
+
+		private void _setProcessOutputStream(
 			ProcessOutputStream processOutputStream) {
 
 			_processOutputStream = processOutputStream;
-		}
-
-		private ProcessContext() {
 		}
 
 		private static final ConcurrentMap<String, Object> _attributes =

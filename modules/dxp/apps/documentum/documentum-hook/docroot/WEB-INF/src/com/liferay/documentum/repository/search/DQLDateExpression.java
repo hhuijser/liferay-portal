@@ -51,7 +51,7 @@ public class DQLDateExpression extends DQLSimpleExpression {
 		return sb.toString();
 	}
 
-	private static String _format(Date value) {
+	private String _format(Date value) {
 		DateFormat dateFormat = new SimpleDateFormat(_DATE_FORMAT_PATTERN);
 
 		return dateFormat.format(value);

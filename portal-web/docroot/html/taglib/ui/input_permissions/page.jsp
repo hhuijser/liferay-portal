@@ -85,7 +85,7 @@ String modelName = (String)request.getAttribute("liferay-ui:input-permissions:mo
 					<liferay-ui:message key="viewable-by" />
 				</label>
 
-				<select class="form-control" id="<%= uniqueNamespace %>inputPermissionsViewRole" name="<%= namespace %>inputPermissionsViewRole" onChange="<%= uniqueNamespace + "updatePermissionsView();" %>">
+				<select class="form-control" id="<%= uniqueNamespace %>inputPermissionsViewRole" name="<%= namespace %>inputPermissionsViewRole" onChange="<%= uniqueNamespace %>updatePermissionsView();">
 
 					<%
 					String guestRoleLabel = LanguageUtil.format(request, "x-role", guestRole.getTitle(themeDisplay.getLocale()), false);

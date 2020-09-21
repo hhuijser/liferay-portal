@@ -41,7 +41,7 @@ public class PluginsGitWorkingDirectory extends GitWorkingDirectory {
 			workingDirectoryPath, gitRepositoryName);
 	}
 
-	private static String _getPluginsUpstreamBranchName(
+	private String _getPluginsUpstreamBranchName(
 		String portalUpstreamBranchName) {
 
 		if (portalUpstreamBranchName.contains("7.0.x") ||

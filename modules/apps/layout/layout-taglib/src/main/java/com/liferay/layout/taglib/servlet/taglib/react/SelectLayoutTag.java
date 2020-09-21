@@ -180,27 +180,6 @@ public class SelectLayoutTag extends IncludeTag {
 		}
 	}
 
-	private static boolean _isContentLayoutDraft(Layout layout) {
-		if (!layout.isTypeContent()) {
-			return false;
-		}
-
-		Layout draftLayout = layout.fetchDraftLayout();
-
-		if (draftLayout != null) {
-			boolean published = GetterUtil.getBoolean(
-				draftLayout.getTypeSettingsProperty("published"));
-
-			return !published;
-		}
-
-		if (layout.isApproved() && !layout.isHidden() && !layout.isSystem()) {
-			return false;
-		}
-
-		return true;
-	}
-
 	private Map<String, Object> _getData() throws Exception {
 		return HashMapBuilder.<String, Object>put(
 			"followURLOnTitleClick", _followURLOnTitleClick
@@ -347,6 +326,27 @@ public class SelectLayoutTag extends IncludeTag {
 	private long _getSelPlid() {
 		return ParamUtil.getLong(
 			request, "selPlid", LayoutConstants.DEFAULT_PLID);
+	}
+
+	private boolean _isContentLayoutDraft(Layout layout) {
+		if (!layout.isTypeContent()) {
+			return false;
+		}
+
+		Layout draftLayout = layout.fetchDraftLayout();
+
+		if (draftLayout != null) {
+			boolean published = GetterUtil.getBoolean(
+				draftLayout.getTypeSettingsProperty("published"));
+
+			return !published;
+		}
+
+		if (layout.isApproved() && !layout.isHidden() && !layout.isSystem()) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private static final String _PAGE = "/select_layout/page.jsp";

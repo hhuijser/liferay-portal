@@ -269,12 +269,6 @@ public class RedirectEntryLocalServiceImpl
 		return redirectEntry;
 	}
 
-	private static Instant _getDayInstant(Date date) {
-		Instant instant = date.toInstant();
-
-		return instant.truncatedTo(ChronoUnit.DAYS);
-	}
-
 	private void _checkChainedRedirectEntries(
 			String groupBaseURL, RedirectEntry redirectEntry)
 		throws PortalException {
@@ -329,6 +323,12 @@ public class RedirectEntryLocalServiceImpl
 			throw new CircularRedirectEntryException.
 				MustNotFormALoopWithAnotherRedirectEntry();
 		}
+	}
+
+	private Instant _getDayInstant(Date date) {
+		Instant instant = date.toInstant();
+
+		return instant.truncatedTo(ChronoUnit.DAYS);
 	}
 
 	private boolean _isExpired(RedirectEntry redirectEntry) {

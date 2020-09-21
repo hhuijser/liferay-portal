@@ -72,7 +72,7 @@ public class SolrFacetQueryCollector implements FacetCollector {
 		return _termCollectors;
 	}
 
-	private static Map<String, Integer> _getCountsInSameOrder(
+	private Map<String, Integer> _getCountsInSameOrder(
 		Map<String, NamedList<?>> map1, String name) {
 
 		Map<String, Integer> map2 = new LinkedHashMap<>();

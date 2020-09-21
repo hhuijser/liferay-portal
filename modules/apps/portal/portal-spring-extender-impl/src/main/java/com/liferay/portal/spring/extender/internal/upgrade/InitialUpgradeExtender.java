@@ -104,7 +104,7 @@ public class InitialUpgradeExtender
 		_bundleTracker.close();
 	}
 
-	private static ServiceRegistration<UpgradeStep> _processInitialUpgrade(
+	private ServiceRegistration<UpgradeStep> _processInitialUpgrade(
 		BundleContext bundleContext, Bundle bundle, DataSource dataSource) {
 
 		Dictionary<String, Object> properties = new HashMapDictionary<>();

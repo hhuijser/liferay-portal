@@ -32,7 +32,7 @@ public class InvalidYAMLException extends IllegalArgumentException {
 		super(_getProblem(exception), exception);
 	}
 
-	private static String _getProblem(Throwable throwable) {
+	private String _getProblem(Throwable throwable) {
 		if (throwable.getCause() instanceof MarkedYAMLException) {
 			return _getProblem(throwable.getCause());
 		}

@@ -534,23 +534,6 @@ public class RegistryImpl implements Registry {
 		}
 	}
 
-	private static <T> ServiceReference<T>[] _toServiceReferences(
-		org.osgi.framework.ServiceReference<T>[] osgiServiceReferences) {
-
-		ServiceReference<T>[] serviceReferences =
-			new ServiceReference[osgiServiceReferences.length];
-
-		for (int i = 0; i < osgiServiceReferences.length; i++) {
-			org.osgi.framework.ServiceReference<T> osgiServiceReference =
-				osgiServiceReferences[i];
-
-			serviceReferences[i] = new ServiceReferenceWrapper<>(
-				osgiServiceReference);
-		}
-
-		return serviceReferences;
-	}
-
 	private Map<String, Object> _addBundleContextProperties(
 		Map<String, Object> properties) {
 
@@ -565,6 +548,23 @@ public class RegistryImpl implements Registry {
 		properties.put("bundle.version", bundle.getVersion());
 
 		return properties;
+	}
+
+	private <T> ServiceReference<T>[] _toServiceReferences(
+		org.osgi.framework.ServiceReference<T>[] osgiServiceReferences) {
+
+		ServiceReference<T>[] serviceReferences =
+			new ServiceReference[osgiServiceReferences.length];
+
+		for (int i = 0; i < osgiServiceReferences.length; i++) {
+			org.osgi.framework.ServiceReference<T> osgiServiceReference =
+				osgiServiceReferences[i];
+
+			serviceReferences[i] = new ServiceReferenceWrapper<>(
+				osgiServiceReference);
+		}
+
+		return serviceReferences;
 	}
 
 	private final BundleContext _bundleContext;

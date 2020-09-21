@@ -111,7 +111,7 @@ public class MethodNodeGenerator extends GeneratorAdapter {
 			Type.getMethodDescriptor(returnType, argumentTypes), false);
 	}
 
-	private static MethodNode _createMethodNode(Method method) {
+	private MethodNode _createMethodNode(Method method) {
 		MethodNode methodNode = new MethodNode();
 
 		methodNode.access = method.getModifiers() & ~Modifier.ABSTRACT;

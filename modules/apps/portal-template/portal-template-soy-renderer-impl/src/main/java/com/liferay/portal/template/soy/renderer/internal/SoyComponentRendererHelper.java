@@ -74,7 +74,7 @@ public class SoyComponentRendererHelper {
 		}
 	}
 
-	private static String _generateWrapperId(String id, String componentId) {
+	private String _generateWrapperId(String id, String componentId) {
 		String wrapperId = id;
 
 		if (Validator.isNull(wrapperId)) {
@@ -88,9 +88,7 @@ public class SoyComponentRendererHelper {
 		return wrapperId;
 	}
 
-	private static String _getElementSelector(
-		String wrapperId, boolean wrapper) {
-
+	private String _getElementSelector(String wrapperId, boolean wrapper) {
 		String selector = StringPool.POUND.concat(wrapperId);
 
 		if (wrapper) {
@@ -100,7 +98,7 @@ public class SoyComponentRendererHelper {
 		return selector;
 	}
 
-	private static String _getModuleName(String module) {
+	private String _getModuleName(String module) {
 		String moduleName = StringUtil.extractLast(
 			module, CharPool.FORWARD_SLASH);
 

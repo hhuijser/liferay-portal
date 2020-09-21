@@ -84,7 +84,7 @@ public abstract class BaseFabricStatusTestCase {
 			fabricStatus.getThreadMXBean());
 	}
 
-	private static ObjectName[] _toObjectNames(
+	private ObjectName[] _toObjectNames(
 		List<? extends PlatformManagedObject> platformManagedObjects) {
 
 		ObjectName[] objectNames =

@@ -159,7 +159,7 @@ public class CallFunctionTest extends PowerMockito {
 			return fieldProperties.get(property);
 		}
 
-		private static Map<DDMFormEvaluatorFieldContextKey, Map<String, Object>>
+		private Map<DDMFormEvaluatorFieldContextKey, Map<String, Object>>
 			_createFieldsPropertiesMap() {
 
 			_fieldsPropertiesMap = new HashMap<>();

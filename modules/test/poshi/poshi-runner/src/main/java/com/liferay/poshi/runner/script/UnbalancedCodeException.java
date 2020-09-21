@@ -34,7 +34,7 @@ public class UnbalancedCodeException extends PoshiScriptParserException {
 		_errorSnippet = errorSnippet;
 	}
 
-	private static String _getLine(int lineNumber, String code) {
+	private String _getLine(int lineNumber, String code) {
 		String[] lines = code.split("\n");
 
 		return lines[lineNumber - 1].replace("\t", "    ");

@@ -48,7 +48,16 @@ public class LoggingTimer implements Closeable {
 		}
 	}
 
-	private static String _getInvokerName(Class<?> clazz, String name) {
+	private LoggingTimer(String name, long startTime) {
+		_name = name;
+		_startTime = startTime;
+
+		if (_log.isInfoEnabled()) {
+			_log.info("Starting " + name);
+		}
+	}
+
+	private String _getInvokerName(Class<?> clazz, String name) {
 		Thread thread = Thread.currentThread();
 
 		StackTraceElement[] stackTraceElements = thread.getStackTrace();
@@ -73,15 +82,6 @@ public class LoggingTimer implements Closeable {
 		}
 
 		return sb.toString();
-	}
-
-	private LoggingTimer(String name, long startTime) {
-		_name = name;
-		_startTime = startTime;
-
-		if (_log.isInfoEnabled()) {
-			_log.info("Starting " + name);
-		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(LoggingTimer.class);

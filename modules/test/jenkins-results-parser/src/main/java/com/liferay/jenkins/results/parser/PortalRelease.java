@@ -191,7 +191,7 @@ public class PortalRelease {
 		return _getURL(_wildFlyFileNamePattern);
 	}
 
-	private static String _getMirrorsURLString(String urlString) {
+	private String _getMirrorsURLString(String urlString) {
 		if (urlString == null) {
 			throw new NullPointerException();
 		}
@@ -202,7 +202,7 @@ public class PortalRelease {
 			"https?:\\/\\/", "http://mirrors.lax.liferay.com/");
 	}
 
-	private static String _getNonMirrorsURLString(String urlString) {
+	private String _getNonMirrorsURLString(String urlString) {
 		urlString = urlString.replace("http://mirrors/", "https://");
 		urlString = urlString.replace(
 			"http://mirrors.lax.liferay.com/", "https://");

@@ -168,7 +168,7 @@ public class ConfigurationFileInstaller implements FileInstaller {
 		configuration.delete();
 	}
 
-	private static boolean _equals(
+	private boolean _equals(
 		Dictionary<String, Object> newDictionary,
 		Dictionary<String, Object> oldDictionary) {
 

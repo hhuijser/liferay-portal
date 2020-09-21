@@ -49,7 +49,7 @@ public class RenderParametersImpl
 		return _publicRenderParameterNames.contains(name);
 	}
 
-	private static Set<String> _nullSafe(Set<String> set) {
+	private Set<String> _nullSafe(Set<String> set) {
 		if (set == null) {
 			return Collections.emptySet();
 		}

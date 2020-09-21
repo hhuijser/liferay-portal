@@ -77,7 +77,7 @@ public class AopInvocationHandler implements InvocationHandler {
 		_aopMethodInvocations.clear();
 	}
 
-	private static AopMethodInvocation _createAopMethodInvocation(
+	private AopMethodInvocation _createAopMethodInvocation(
 		Object target, Method method,
 		ChainableMethodAdvice[] chainableMethodAdvices,
 		TransactionInterceptor transactionInterceptor) {

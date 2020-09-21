@@ -227,9 +227,7 @@ public class CommerceShippingHelperTest {
 	@Rule
 	public FrutillaRule frutillaRule = new FrutillaRule();
 
-	private static void _addAvailability(CPInstance cpInstance)
-		throws Exception {
-
+	private void _addAvailability(CPInstance cpInstance) throws Exception {
 		BigDecimal price = BigDecimal.valueOf(RandomTestUtil.randomDouble());
 
 		cpInstance.setPrice(price);
@@ -239,7 +237,7 @@ public class CommerceShippingHelperTest {
 			cpInstance.getSku(), 10);
 	}
 
-	private static void _addCPDefinitionProperties(CPInstance cpInstance)
+	private void _addCPDefinitionProperties(CPInstance cpInstance)
 		throws Exception {
 
 		CPDefinition cpDefinition = cpInstance.getCPDefinition();
@@ -250,9 +248,7 @@ public class CommerceShippingHelperTest {
 		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
 	}
 
-	private static void _addDimensions(
-		CPInstance cpInstance, double dimension) {
-
+	private void _addDimensions(CPInstance cpInstance, double dimension) {
 		cpInstance.setWidth(dimension);
 		cpInstance.setHeight(dimension);
 		cpInstance.setDepth(dimension);
@@ -260,7 +256,7 @@ public class CommerceShippingHelperTest {
 		_cpInstanceLocalService.updateCPInstance(cpInstance);
 	}
 
-	private static void _addWeight(CPInstance cpInstance) {
+	private void _addWeight(CPInstance cpInstance) {
 		cpInstance.setWeight(RandomTestUtil.randomDouble());
 
 		_cpInstanceLocalService.updateCPInstance(cpInstance);

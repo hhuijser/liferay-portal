@@ -150,7 +150,7 @@ public class ClientState {
 
 	}
 
-	private static Set<Class<?>> _getTestClasses(Class<?> testClass) {
+	private Set<Class<?>> _getTestClasses(Class<?> testClass) {
 		if (_testClasses == null) {
 			Set<Class<?>> testClasses = new HashSet<>();
 
@@ -235,7 +235,7 @@ public class ClientState {
 		return _testClasses;
 	}
 
-	private static long _installBundle(
+	private long _installBundle(
 			Map<String, List<String>> filteredMethodNamesMap,
 			InetAddress inetAddress, int port, long passCode)
 		throws Throwable {

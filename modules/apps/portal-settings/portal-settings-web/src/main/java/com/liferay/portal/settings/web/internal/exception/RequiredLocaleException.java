@@ -65,8 +65,7 @@ public class RequiredLocaleException extends PortalException {
 		_messageKey = messageKey;
 	}
 
-	private static String[] _getRequiredLocaleMessageArguments(
-			List<Group> groups)
+	private String[] _getRequiredLocaleMessageArguments(List<Group> groups)
 		throws PortalException {
 
 		if (groups.isEmpty()) {
@@ -96,7 +95,7 @@ public class RequiredLocaleException extends PortalException {
 		}
 	}
 
-	private static String _getRequiredLocaleMessageKey(List<Group> groups) {
+	private String _getRequiredLocaleMessageKey(List<Group> groups) {
 		if (groups.isEmpty()) {
 			return StringPool.BLANK;
 		}

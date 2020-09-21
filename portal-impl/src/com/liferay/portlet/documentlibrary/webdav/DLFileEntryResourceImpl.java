@@ -116,7 +116,7 @@ public class DLFileEntryResourceImpl extends BaseResourceImpl {
 		return false;
 	}
 
-	private static String _getName(FileEntry fileEntry, boolean appendPath) {
+	private String _getName(FileEntry fileEntry, boolean appendPath) {
 		if (appendPath) {
 			String name = fileEntry.getTitle();
 

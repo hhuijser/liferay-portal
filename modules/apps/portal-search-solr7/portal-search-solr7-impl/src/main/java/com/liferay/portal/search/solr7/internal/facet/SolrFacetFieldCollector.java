@@ -74,7 +74,7 @@ public class SolrFacetFieldCollector implements FacetCollector {
 		return _termCollectors;
 	}
 
-	private static List<NamedList<?>> _getBuckets(NamedList<?> namedList) {
+	private List<NamedList<?>> _getBuckets(NamedList<?> namedList) {
 		if (namedList == null) {
 			return null;
 		}
@@ -82,7 +82,7 @@ public class SolrFacetFieldCollector implements FacetCollector {
 		return (List<NamedList<?>>)namedList.get("buckets");
 	}
 
-	private static Map<String, Integer> _getCountsInSameOrder(
+	private Map<String, Integer> _getCountsInSameOrder(
 		List<NamedList<?>> list) {
 
 		if (ListUtil.isEmpty(list)) {

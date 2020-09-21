@@ -35,7 +35,7 @@ public class PortletURLImplWrapper extends LiferayPortletURLWrapper {
 		setPlid(plid);
 	}
 
-	private static LiferayPortletURL _createLiferayPortletURL(
+	private LiferayPortletURL _createLiferayPortletURL(
 		PortletResponse portletResponse, String lifecycle) {
 
 		LiferayPortletResponse liferayPortletResponse =

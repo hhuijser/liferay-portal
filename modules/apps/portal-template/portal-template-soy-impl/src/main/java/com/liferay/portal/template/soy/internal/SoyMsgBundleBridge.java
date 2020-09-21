@@ -95,7 +95,7 @@ public class SoyMsgBundleBridge extends SoyMsgBundle {
 		return values.iterator();
 	}
 
-	private static List<SoyMsgPart> _getLocalizedMessageParts(
+	private List<SoyMsgPart> _getLocalizedMessageParts(
 		ResourceBundle resourceBundle, SoyMsg soyMsg) {
 
 		List<SoyMsgPart> soyMsgParts = soyMsg.getParts();

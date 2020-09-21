@@ -35,7 +35,7 @@ public class LiferayIntegrationTestRule extends AggregateTestRule {
 		super(false, _getTestRules());
 	}
 
-	private static TestRule[] _getTestRules() {
+	private TestRule[] _getTestRules() {
 		List<TestRule> testRules = new ArrayList<>();
 
 		if (System.getenv("JENKINS_HOME") != null) {

@@ -44,11 +44,11 @@ public class IndexDefinitionData {
 		return _source;
 	}
 
-	private static String _getIndexName(Object property) {
+	private String _getIndexName(Object property) {
 		return String.valueOf(Objects.requireNonNull(property));
 	}
 
-	private static String _getSource(
+	private String _getSource(
 		IndexDefinition indexDefinition, Object property) {
 
 		String resourceName = String.valueOf(Objects.requireNonNull(property));

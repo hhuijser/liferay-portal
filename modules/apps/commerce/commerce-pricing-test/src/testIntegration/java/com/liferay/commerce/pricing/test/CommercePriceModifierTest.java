@@ -404,7 +404,7 @@ public class CommercePriceModifierTest {
 	@Rule
 	public FrutillaRule frutillaRule = new FrutillaRule();
 
-	private static CommercePriceEntry _addCommercePriceEntry(
+	private CommercePriceEntry _addCommercePriceEntry(
 			long cpProductId, String cpInstanceUuid, long commercePriceListId,
 			String externalReferenceCode, BigDecimal price)
 		throws Exception {

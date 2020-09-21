@@ -27,7 +27,7 @@ String randomNamespace = StringUtil.randomId() + StringPool.UNDERLINE;
 %>
 
 <c:if test="<%= (commerceTierPriceEntries != null) && !commerceTierPriceEntries.isEmpty() %>">
-	<div class="commerce-tier-price" id="<%= randomNamespace + "tierPrice" %>">
+	<div class="commerce-tier-price" id="<%= randomNamespace %>tierPrice">
 		<div class="table-responsive">
 			<table class="table table-hover table-nowrap">
 				<thead>

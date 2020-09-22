@@ -42,23 +42,23 @@ public class ResourceResponseImpl
 
 	@Override
 	public void addDateHeader(String name, long date) {
-		response.addDateHeader(name, date);
+		httpServletResponse.addDateHeader(name, date);
 	}
 
 	@Override
 	public void addHeader(String name, String value) {
-		response.addHeader(name, value);
+		httpServletResponse.addHeader(name, value);
 	}
 
 	@Override
 	public void addIntHeader(String name, int value) {
-		response.addIntHeader(name, value);
+		httpServletResponse.addIntHeader(name, value);
 	}
 
 	@Override
 	public void addProperty(Cookie cookie) {
 		if (!(isCalledFlushBuffer() || isCommitted())) {
-			response.addCookie(cookie);
+			httpServletResponse.addCookie(cookie);
 		}
 	}
 
@@ -95,46 +95,46 @@ public class ResourceResponseImpl
 
 	@Override
 	public int getStatus() {
-		return response.getStatus();
+		return httpServletResponse.getStatus();
 	}
 
 	@Override
 	public void setCharacterEncoding(String charset) {
-		response.setCharacterEncoding(charset);
+		httpServletResponse.setCharacterEncoding(charset);
 
 		_canSetLocaleEncoding = false;
 	}
 
 	@Override
 	public void setContentLength(int length) {
-		response.setContentLength(length);
+		httpServletResponse.setContentLength(length);
 	}
 
 	@Override
 	public void setContentLengthLong(long length) {
-		response.setContentLengthLong(length);
+		httpServletResponse.setContentLengthLong(length);
 	}
 
 	@Override
 	public void setDateHeader(String name, long date) {
-		response.setDateHeader(name, date);
+		httpServletResponse.setDateHeader(name, date);
 	}
 
 	@Override
 	public void setHeader(String name, String value) {
-		response.setHeader(name, value);
+		httpServletResponse.setHeader(name, value);
 
 		if (name.equals(ResourceResponse.HTTP_STATUS_CODE)) {
 			int status = GetterUtil.getInteger(
 				value, HttpServletResponse.SC_OK);
 
-			response.setStatus(status);
+			httpServletResponse.setStatus(status);
 		}
 	}
 
 	@Override
 	public void setIntHeader(String name, int value) {
-		response.setIntHeader(name, value);
+		httpServletResponse.setIntHeader(name, value);
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class ResourceResponseImpl
 			return;
 		}
 
-		response.setLocale(locale);
+		httpServletResponse.setLocale(locale);
 
 		if (_canSetLocaleEncoding) {
 			Portlet portlet = getPortlet();
@@ -167,7 +167,7 @@ public class ResourceResponseImpl
 
 	@Override
 	public void setStatus(int statusCode) {
-		response.setStatus(statusCode);
+		httpServletResponse.setStatus(statusCode);
 	}
 
 	private boolean _canSetLocaleEncoding = true;

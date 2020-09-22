@@ -27,10 +27,17 @@ public class JSPViewTypeItemList extends ViewTypeItemList {
 	public JSPViewTypeItemList(PageContext pageContext) {
 		renderResponse = (RenderResponse)pageContext.findAttribute(
 			"renderResponse");
-		request = (HttpServletRequest)pageContext.getRequest();
+		httpServletRequest = (HttpServletRequest)pageContext.getRequest();
 	}
 
+	protected HttpServletRequest httpServletRequest;
 	protected RenderResponse renderResponse;
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #httpServletRequest}
+	 */
+	@Deprecated
 	protected HttpServletRequest request;
 
 }

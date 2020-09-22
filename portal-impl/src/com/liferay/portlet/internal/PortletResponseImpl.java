@@ -382,7 +382,7 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 		}
 
 		if (_urlEncoder != null) {
-			return _urlEncoder.encodeURL(response, path);
+			return _urlEncoder.encodeURL(httpServletResponse, path);
 		}
 
 		return path;
@@ -398,7 +398,7 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 
 	@Override
 	public HttpServletResponse getHttpServletResponse() {
-		return response;
+		return httpServletResponse;
 	}
 
 	@Override
@@ -501,7 +501,7 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 		HttpServletResponse httpServletResponse) {
 
 		this.portletRequestImpl = portletRequestImpl;
-		response = httpServletResponse;
+		this.httpServletResponse = httpServletResponse;
 
 		_portlet = portletRequestImpl.getPortlet();
 
@@ -657,9 +657,9 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 		return themeDisplay.getStrictLayoutPortletSetup(layout, portletName);
 	}
 
+	protected HttpServletResponse httpServletResponse;
 	protected String portletName;
 	protected PortletRequestImpl portletRequestImpl;
-	protected HttpServletResponse response;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortletResponseImpl.class);

@@ -258,7 +258,7 @@ public class ReflectionUtilTest {
 		}
 
 		@SuppressWarnings("unused")
-		private static Object _getPrivateStaticObject() {
+		private Object _getPrivateStaticObject() {
 			return _privateStaticObject;
 		}
 

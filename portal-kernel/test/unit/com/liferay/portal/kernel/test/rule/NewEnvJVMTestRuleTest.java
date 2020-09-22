@@ -218,7 +218,7 @@ public class NewEnvJVMTestRuleTest {
 		return pid;
 	}
 
-	private static Map<String, String> _fromString(String s) {
+	private Map<String, String> _fromString(String s) {
 		Map<String, String> map = new HashMap<>();
 
 		for (String entry : StringUtil.split(s, _SEPARATOR_VARIABLE)) {

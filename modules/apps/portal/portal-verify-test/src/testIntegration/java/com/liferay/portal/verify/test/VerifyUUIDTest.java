@@ -197,7 +197,7 @@ public class VerifyUUIDTest extends BaseVerifyProcessTestCase {
 		return _verifyUUID;
 	}
 
-	private static void _verifyException(
+	private void _verifyException(
 			Exception exception, Map<DBType, String> expectedMessages)
 		throws Exception {
 

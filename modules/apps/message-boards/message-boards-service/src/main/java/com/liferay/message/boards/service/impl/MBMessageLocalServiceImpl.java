@@ -2472,9 +2472,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		}
 	}
 
-	private static String _getLocalizedRootCategoryName(
-		Group group, Locale locale) {
-
+	private String _getLocalizedRootCategoryName(Group group, Locale locale) {
 		try {
 			return LanguageUtil.get(locale, "home") + " - " +
 				group.getDescriptiveName(locale);

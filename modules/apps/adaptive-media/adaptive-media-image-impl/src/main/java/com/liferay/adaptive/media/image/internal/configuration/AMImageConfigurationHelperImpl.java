@@ -382,7 +382,7 @@ public class AMImageConfigurationHelperImpl
 		_destinationServiceRegistration.unregister();
 	}
 
-	private static final boolean _isPositiveNumber(String s) {
+	private final boolean _isPositiveNumber(String s) {
 		Matcher matcher = _positiveNumberPattern.matcher(s);
 
 		return matcher.matches();

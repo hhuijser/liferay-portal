@@ -184,7 +184,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		return results;
 	}
 
-	private static List<String> _addMargins(
+	private List<String> _addMargins(
 		List<String> stringList, int startPos, int margin) {
 
 		List<String> changedLines = new ArrayList<>();
@@ -208,7 +208,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		return changedLines;
 	}
 
-	private static void _addResults(
+	private void _addResults(
 		List<DiffResult> results, List<String> stringList,
 		List<String> changedLines, int start, int end) {
 
@@ -219,7 +219,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		results.add(diffResult);
 	}
 
-	private static int _calculateMargin(
+	private int _calculateMargin(
 		List<DiffResult> sourceResults, List<DiffResult> targetResults,
 		int sourceBeginPos, int targetBeginPos, int margin) {
 
@@ -235,7 +235,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		return targetMargin;
 	}
 
-	private static void _checkCharDiffs(
+	private void _checkCharDiffs(
 		List<DiffResult> sourceResults, List<DiffResult> targetResults,
 		List<String> sourceStringList, List<String> targetStringList,
 		String addedMarkerStart, String addedMarkerEnd,
@@ -362,7 +362,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		}
 	}
 
-	private static int _checkOverlapping(
+	private int _checkOverlapping(
 		List<DiffResult> results, int startPos, int margin) {
 
 		if (results.isEmpty() || ((startPos - margin) < 0)) {
@@ -397,7 +397,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		return margin;
 	}
 
-	private static void _highlightChars(
+	private void _highlightChars(
 		List<String> stringList, String markerStart, String markerEnd,
 		int startPos, int endPos) {
 
@@ -410,7 +410,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		stringList.set(endPos, end);
 	}
 
-	private static void _highlightLines(
+	private void _highlightLines(
 		List<String> stringList, String markerStart, String markerEnd,
 		int startPos, int endPos) {
 
@@ -419,7 +419,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		}
 	}
 
-	private static boolean _isMaxLineLengthExceeded(
+	private boolean _isMaxLineLengthExceeded(
 		String sourceString, String targetString) {
 
 		if ((sourceString.length() > _DIFF_MAX_LINE_LENGTH) ||
@@ -431,7 +431,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		return false;
 	}
 
-	private static boolean _lineDiff(
+	private boolean _lineDiff(
 		List<DiffResult> sourceResults, List<DiffResult> targetResults,
 		List<String> sourceStringList, List<String> targetStringList,
 		String addedMarkerStart, String addedMarkerEnd,
@@ -556,7 +556,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		return true;
 	}
 
-	private static List<String> _toList(String line) {
+	private List<String> _toList(String line) {
 		List<String> result = new ArrayList<>(line.length());
 
 		for (int i = 0; i < line.length(); i++) {
@@ -566,7 +566,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 		return result;
 	}
 
-	private static String _toString(List<String> line) {
+	private String _toString(List<String> line) {
 		if (line.isEmpty()) {
 			return StringPool.BLANK;
 		}

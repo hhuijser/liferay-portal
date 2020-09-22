@@ -413,7 +413,7 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 	@Reference
 	protected RankingIndexWriter rankingIndexWriter;
 
-	private static List<String> _update(
+	private List<String> _update(
 		List<String> strings, String[] addStrings, String[] removeStrings) {
 
 		List<String> newStrings;

@@ -66,7 +66,7 @@ public class RenameDependencyAction implements Action<FileCopyDetails> {
 		}
 	}
 
-	private static int _getVersionStart(String name) {
+	private int _getVersionStart(String name) {
 		Matcher matcher = _versionStartPattern.matcher(name);
 
 		if (!matcher.find()) {

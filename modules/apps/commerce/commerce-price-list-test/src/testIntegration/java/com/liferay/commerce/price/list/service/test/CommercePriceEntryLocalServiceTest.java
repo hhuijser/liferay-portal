@@ -701,7 +701,7 @@ public class CommercePriceEntryLocalServiceTest {
 	@Rule
 	public final FrutillaRule frutillaRule = new FrutillaRule();
 
-	private static void _assertPriceEntryAttributes(
+	private void _assertPriceEntryAttributes(
 			CPInstance cpInstance, double price, double promoPrice,
 			CommercePriceEntry commercePriceEntry)
 		throws Exception {

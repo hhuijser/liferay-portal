@@ -7177,7 +7177,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@BeanReference(type = MailService.class)
 	protected MailService mailService;
 
-	private static boolean _isPasswordUnchanged(
+	private boolean _isPasswordUnchanged(
 			User user, String newPlaintextPwd, String newEncPwd)
 		throws PwdEncryptorException {
 

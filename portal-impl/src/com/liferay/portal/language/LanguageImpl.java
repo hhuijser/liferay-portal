@@ -1719,7 +1719,7 @@ public class LanguageImpl implements Language, Serializable {
 		return companyLocalesBag;
 	}
 
-	private static void _updateLastModified() {
+	private void _updateLastModified() {
 		_lastModified = System.currentTimeMillis();
 	}
 

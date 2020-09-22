@@ -76,13 +76,13 @@ public class GogoShellClient implements AutoCloseable {
 		return _readUntilNextGogoPrompt();
 	}
 
-	private static void _assertCondition(boolean condition) {
+	private void _assertCondition(boolean condition) {
 		if (!condition) {
 			throw new AssertionError();
 		}
 	}
 
-	private static int[] _toIntArray(List<Integer> list) {
+	private int[] _toIntArray(List<Integer> list) {
 		int[] array = new int[list.size()];
 
 		int i = 0;

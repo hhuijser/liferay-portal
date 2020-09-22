@@ -104,7 +104,7 @@ public class OSGiBundleBuilderCommandTest {
 	@Rule
 	public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private static void _compareJarDirs(File expectedDir, File actualDir)
+	private void _compareJarDirs(File expectedDir, File actualDir)
 		throws Exception {
 
 		final Path expectedDirPath = expectedDir.toPath();
@@ -145,8 +145,7 @@ public class OSGiBundleBuilderCommandTest {
 			});
 	}
 
-	private static void _compareManifestFiles(
-			File expectedFile, File actualFile)
+	private void _compareManifestFiles(File expectedFile, File actualFile)
 		throws Exception {
 
 		Attributes expectedAttributes = _getManifestAttributes(expectedFile);
@@ -163,9 +162,7 @@ public class OSGiBundleBuilderCommandTest {
 		}
 	}
 
-	private static Attributes _getManifestAttributes(File file)
-		throws Exception {
-
+	private Attributes _getManifestAttributes(File file) throws Exception {
 		try (InputStream inputStream = new FileInputStream(file)) {
 			Manifest manifest = new Manifest(inputStream);
 
@@ -173,7 +170,7 @@ public class OSGiBundleBuilderCommandTest {
 		}
 	}
 
-	private static void _unzip(File file, File outputDir) throws Exception {
+	private void _unzip(File file, File outputDir) throws Exception {
 		Path outputDirPath = outputDir.toPath();
 
 		try (ZipFile zipFile = new ZipFile(file)) {

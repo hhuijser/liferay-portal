@@ -228,7 +228,7 @@ public class JenkinsCohort {
 		JenkinsResultsParserUtil.write(filePath, sb.toString());
 	}
 
-	private static JSONArray _createJSONArray(Object... items) {
+	private JSONArray _createJSONArray(Object... items) {
 		JSONArray jsonArray = new JSONArray();
 
 		for (Object item : items) {
@@ -238,7 +238,7 @@ public class JenkinsCohort {
 		return jsonArray;
 	}
 
-	private static String _getPercentage(Integer dividend, Integer divisor) {
+	private String _getPercentage(Integer dividend, Integer divisor) {
 		double quotient = (double)dividend / (double)divisor;
 
 		DecimalFormat decimalFormat = new DecimalFormat("###.##%");

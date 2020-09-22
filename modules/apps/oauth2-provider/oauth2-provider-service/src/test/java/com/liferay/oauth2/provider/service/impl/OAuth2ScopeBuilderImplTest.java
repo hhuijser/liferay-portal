@@ -257,7 +257,7 @@ public class OAuth2ScopeBuilderImplTest extends PowerMockito {
 				Collections.singleton(key.getValue()), value));
 	}
 
-	private static String _getApplicationScopeAlias(
+	private String _getApplicationScopeAlias(
 		String applicationName, String scope) {
 
 		return applicationName + StringPool.PERIOD + scope;

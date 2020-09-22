@@ -130,7 +130,7 @@ public class Arquillian extends Runner implements Filterable {
 		}
 	}
 
-	private static List<String> _filter(
+	private List<String> _filter(
 		Class<?> clazz, List<Method> testMethods, Filter filter) {
 
 		List<String> filteredMethodNames = new ArrayList<>();

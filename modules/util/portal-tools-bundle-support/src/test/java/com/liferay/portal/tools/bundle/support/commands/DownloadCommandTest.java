@@ -101,7 +101,7 @@ public class DownloadCommandTest extends HttpProxyMockServerSupport {
 		_assertExists(temp, fileName);
 	}
 
-	private static File _assertExists(File dir, String fileName) {
+	private File _assertExists(File dir, String fileName) {
 		File file = new File(dir, fileName);
 
 		Assert.assertTrue(file.exists());

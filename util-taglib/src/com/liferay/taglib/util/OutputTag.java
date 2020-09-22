@@ -109,7 +109,7 @@ public class OutputTag extends PositionTagSupport {
 		_outputKey = outputKey;
 	}
 
-	private static OutputData _getOutputData(ServletRequest servletRequest) {
+	private OutputData _getOutputData(ServletRequest servletRequest) {
 		OutputData outputData = (OutputData)servletRequest.getAttribute(
 			WebKeys.OUTPUT_DATA);
 

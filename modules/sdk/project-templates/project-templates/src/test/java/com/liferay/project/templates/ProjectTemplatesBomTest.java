@@ -161,7 +161,7 @@ public class ProjectTemplatesBomTest implements BaseProjectTemplatesTestCase {
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private static boolean _isBomTest() {
+	private boolean _isBomTest() {
 		if (Validator.isNotNull(_BOM_VERSION)) {
 			return true;
 		}

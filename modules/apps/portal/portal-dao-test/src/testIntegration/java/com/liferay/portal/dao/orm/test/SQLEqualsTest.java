@@ -132,8 +132,7 @@ public class SQLEqualsTest {
 		_assert("typeVarchar", 3, " != ");
 	}
 
-	private static void _assert(
-			String columnName, long expectedPK, String compare)
+	private void _assert(String columnName, long expectedPK, String compare)
 		throws Exception {
 
 		DB db = DBManagerUtil.getDB();

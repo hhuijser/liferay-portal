@@ -172,7 +172,7 @@ public class DataGuardTestRule
 			null);
 	}
 
-	private static Map<String, List<BaseModel<?>>> _captureDataMap() {
+	private Map<String, List<BaseModel<?>>> _captureDataMap() {
 		Map<String, PersistedModelLocalService> persistedModelLocalServices =
 			_getPersistedModelLocalServices();
 
@@ -222,7 +222,7 @@ public class DataGuardTestRule
 		return dataMap;
 	}
 
-	private static BasePersistence<?> _getBasePersistence(
+	private BasePersistence<?> _getBasePersistence(
 		PersistedModelLocalService persistedModelLocalService) {
 
 		while (true) {
@@ -288,7 +288,7 @@ public class DataGuardTestRule
 		return persistedModelLocalService.getBasePersistence();
 	}
 
-	private static Map<String, PersistedModelLocalService>
+	private Map<String, PersistedModelLocalService>
 		_getPersistedModelLocalServices() {
 
 		return ReflectionTestUtil.getFieldValue(
@@ -297,7 +297,7 @@ public class DataGuardTestRule
 			"_persistedModelLocalServices");
 	}
 
-	private static Closeable _installTransactionExecutor(
+	private Closeable _installTransactionExecutor(
 			String originBundleSymbolicName)
 		throws Exception {
 

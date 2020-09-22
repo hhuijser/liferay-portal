@@ -110,7 +110,7 @@ public class AutoUpgradeProcessTest {
 			"2.0.0", _registerNewUpgradeProcess().getSchemaVersion());
 	}
 
-	private static void _setAutoUpgrade(boolean value) throws Exception {
+	private void _setAutoUpgrade(boolean value) throws Exception {
 		_upgradeDatabaseAutoRunField.set(null, value);
 	}
 

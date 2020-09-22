@@ -198,7 +198,7 @@ public class LangBuilder {
 		_createProperties(content, "vi"); // Vietnamese
 	}
 
-	private static String _getSpecialPropertyValue(String key) {
+	private String _getSpecialPropertyValue(String key) {
 		if (key.equals(LanguageConstants.KEY_DIR)) {
 			return LanguageConstants.VALUE_LTR;
 		}

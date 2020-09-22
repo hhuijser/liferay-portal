@@ -812,7 +812,7 @@ public class CTStoreTest {
 			this::_assertFile, _GET_FILE_AS_STREAM_METHOD);
 	}
 
-	private static String _toVersion(byte[] data) {
+	private String _toVersion(byte[] data) {
 		String version = _VERSION_1;
 
 		if (data == _DATA_3) {

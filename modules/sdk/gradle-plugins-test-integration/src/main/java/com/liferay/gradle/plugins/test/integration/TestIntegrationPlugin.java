@@ -145,7 +145,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 			testIntegrationTomcatExtension, startTestableTomcatTask);
 	}
 
-	private static int _updateStartedAppServerStopCounters(
+	private int _updateStartedAppServerStopCounters(
 		File binDir, boolean increment) {
 
 		int originalCounter = 0;

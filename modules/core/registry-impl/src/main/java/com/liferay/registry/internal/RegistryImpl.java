@@ -534,7 +534,7 @@ public class RegistryImpl implements Registry {
 		}
 	}
 
-	private static <T> ServiceReference<T>[] _toServiceReferences(
+	private <T> ServiceReference<T>[] _toServiceReferences(
 		org.osgi.framework.ServiceReference<T>[] osgiServiceReferences) {
 
 		ServiceReference<T>[] serviceReferences =

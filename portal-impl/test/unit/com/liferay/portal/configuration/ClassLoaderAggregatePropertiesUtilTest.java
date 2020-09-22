@@ -92,7 +92,7 @@ public class ClassLoaderAggregatePropertiesUtilTest {
 		}
 	}
 
-	private static String _decode(String s) {
+	private String _decode(String s) {
 		return ReflectionTestUtil.invoke(
 			ClassLoaderAggregatePropertiesUtil.class, "_decode",
 			new Class<?>[] {String.class}, s);

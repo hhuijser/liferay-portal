@@ -244,9 +244,7 @@ public class FinalizeManagerTest {
 		_checkThreadState();
 	}
 
-	private static Object _newIdentityKey(Reference<?> reference)
-		throws Exception {
-
+	private Object _newIdentityKey(Reference<?> reference) throws Exception {
 		ClassLoader classLoader = FinalizeManager.class.getClassLoader();
 
 		Class<?> identityKeyClass = classLoader.loadClass(

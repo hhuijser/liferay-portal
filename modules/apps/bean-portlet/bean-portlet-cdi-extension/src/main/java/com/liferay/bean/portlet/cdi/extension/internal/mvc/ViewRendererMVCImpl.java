@@ -166,7 +166,7 @@ public class ViewRendererMVCImpl implements ViewRenderer {
 		}
 	}
 
-	private static Configuration _getConfiguration(BeanManager beanManager) {
+	private Configuration _getConfiguration(BeanManager beanManager) {
 		Bean<?> bean = beanManager.resolve(
 			beanManager.getBeans(Configuration.class));
 
@@ -175,14 +175,14 @@ public class ViewRendererMVCImpl implements ViewRenderer {
 			beanManager.createCreationalContext(bean));
 	}
 
-	private static Models _getModels(BeanManager beanManager) {
+	private Models _getModels(BeanManager beanManager) {
 		Bean<?> bean = beanManager.resolve(beanManager.getBeans(Models.class));
 
 		return (Models)beanManager.getReference(
 			bean, Models.class, beanManager.createCreationalContext(bean));
 	}
 
-	private static List<ViewEngine> _getViewEngines(BeanManager beanManager) {
+	private List<ViewEngine> _getViewEngines(BeanManager beanManager) {
 		Set<Bean<?>> beans = beanManager.getBeans(
 			_viewEnginesTypeLiteral.getType(), _viewEngines);
 

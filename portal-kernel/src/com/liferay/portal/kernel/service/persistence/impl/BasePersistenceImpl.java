@@ -921,7 +921,7 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 	@Deprecated
 	protected boolean finderCacheEnabled = true;
 
-	private static Type _getType(Expression<?> expression) {
+	private Type _getType(Expression<?> expression) {
 		if (expression instanceof Column) {
 			Column<?, ?> column = (Column<?, ?>)expression;
 

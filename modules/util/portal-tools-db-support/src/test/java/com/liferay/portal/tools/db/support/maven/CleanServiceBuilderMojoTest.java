@@ -55,7 +55,7 @@ public class CleanServiceBuilderMojoTest
 		Assert.assertEquals(result.output, 0, result.exitCode);
 	}
 
-	private static void _preparePomXml(
+	private void _preparePomXml(
 			File projectDir, File serviceXmlFile, String servletContextName,
 			String url)
 		throws Exception {

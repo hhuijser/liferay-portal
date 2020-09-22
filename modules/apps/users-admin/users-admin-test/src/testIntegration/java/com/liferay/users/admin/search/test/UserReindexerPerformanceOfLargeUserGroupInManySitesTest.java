@@ -337,15 +337,13 @@ public class UserReindexerPerformanceOfLargeUserGroupInManySitesTest {
 	protected UserGroupSearchFixture userGroupSearchFixture;
 	protected UserSearchFixture userSearchFixture;
 
-	private static Stream<Long> _getUserIdsStream(List<User> users) {
+	private Stream<Long> _getUserIdsStream(List<User> users) {
 		Stream<User> stream = users.stream();
 
 		return stream.map(User::getUserId);
 	}
 
-	private static Dictionary<String, Object> _toDictionary(
-		Map<String, String> map) {
-
+	private Dictionary<String, Object> _toDictionary(Map<String, String> map) {
 		return new HashMapDictionary<>(new HashMap<String, Object>(map));
 	}
 

@@ -162,7 +162,7 @@ public class ImportFragmentEntriesStrutsActionTest {
 				_group.getGroupId(), "page-template"));
 	}
 
-	private static Map<String, FileItem[]> _getFileParameters(
+	private Map<String, FileItem[]> _getFileParameters(
 			byte[] bytes, String namespace)
 		throws Exception {
 
@@ -189,7 +189,7 @@ public class ImportFragmentEntriesStrutsActionTest {
 		).build();
 	}
 
-	private static HttpServletRequest _getMultipartHttpServletRequest(
+	private HttpServletRequest _getMultipartHttpServletRequest(
 		byte[] bytes, String fileNameParameter) {
 
 		MockMultipartHttpServletRequest mockMultipartHttpServletRequest =

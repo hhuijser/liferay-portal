@@ -159,7 +159,7 @@ public class SafePNGInputStreamTest {
 		Assert.assertEquals(-1, inputStream.read());
 	}
 
-	private static InputStream _createInputStream(byte[]... bytes) {
+	private InputStream _createInputStream(byte[]... bytes) {
 		return new SafePNGInputStream(
 			InputStreamUtil.toBufferedInputStream(
 				new UnsyncByteArrayInputStream(ArrayUtil.append(bytes))));

@@ -54,7 +54,7 @@ public class ModuleConfig {
 		return _actionMappings.get(path);
 	}
 
-	private static ActionAdapter _getActionAdaptor(String path) {
+	private ActionAdapter _getActionAdaptor(String path) {
 		ActionAdapter actionAdapter = _actionAdaptors.getService(path);
 
 		if (actionAdapter != null) {

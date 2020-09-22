@@ -269,7 +269,7 @@ public class RedirectEntryLocalServiceImpl
 		return redirectEntry;
 	}
 
-	private static Instant _getDayInstant(Date date) {
+	private Instant _getDayInstant(Date date) {
 		Instant instant = date.toInstant();
 
 		return instant.truncatedTo(ChronoUnit.DAYS);

@@ -365,7 +365,7 @@ public class BundleSupportCommandsTest extends HttpProxyMockServerSupport {
 	@Rule
 	public final ExpectedException expectedException = ExpectedException.none();
 
-	private static File _assertExists(File dir, String fileName) {
+	private File _assertExists(File dir, String fileName) {
 		File file = new File(dir, fileName);
 
 		Assert.assertTrue(file.exists());
@@ -373,13 +373,13 @@ public class BundleSupportCommandsTest extends HttpProxyMockServerSupport {
 		return file;
 	}
 
-	private static void _assertNotExists(File dir, String fileName) {
+	private void _assertNotExists(File dir, String fileName) {
 		File file = new File(dir, fileName);
 
 		Assert.assertFalse(file.exists());
 	}
 
-	private static void _assertPosixFilePermissions(
+	private void _assertPosixFilePermissions(
 			File dir, String fileName,
 			Set<PosixFilePermission> expectedPosixFilePermissions)
 		throws IOException {
@@ -399,7 +399,7 @@ public class BundleSupportCommandsTest extends HttpProxyMockServerSupport {
 			expectedPosixFilePermissions, actualPosixFilePermissions);
 	}
 
-	private static File _createDirectory(File parentDir, String dirName) {
+	private File _createDirectory(File parentDir, String dirName) {
 		File dir = new File(parentDir, dirName);
 
 		Assert.assertTrue(dir.mkdirs());
@@ -407,9 +407,7 @@ public class BundleSupportCommandsTest extends HttpProxyMockServerSupport {
 		return dir;
 	}
 
-	private static File _createFile(File dir, String fileName)
-		throws Exception {
-
+	private File _createFile(File dir, String fileName) throws Exception {
 		File file = new File(dir, fileName);
 
 		Assert.assertTrue(file.createNewFile());

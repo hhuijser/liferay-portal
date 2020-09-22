@@ -71,7 +71,7 @@ public class JSONValidatorTest {
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
-	private static InputStream _readJSONSchemaAsStream() {
+	private InputStream _readJSONSchemaAsStream() {
 		return JSONValidatorTest.class.getResourceAsStream(
 			"dependencies/example_json_schema.json");
 	}

@@ -1008,7 +1008,7 @@ public abstract class BaseJSONWebServiceClientImpl
 		return json;
 	}
 
-	private static boolean _isBlank(String s) {
+	private boolean _isBlank(String s) {
 		if (s == null) {
 			return true;
 		}
@@ -1022,7 +1022,7 @@ public abstract class BaseJSONWebServiceClientImpl
 		return true;
 	}
 
-	private static String[] _split(final String s) {
+	private String[] _split(final String s) {
 		if (_isBlank(s)) {
 			return null;
 		}

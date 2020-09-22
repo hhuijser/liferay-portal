@@ -215,7 +215,7 @@ public class ServicePreAction extends Action {
 
 	}
 
-	private static String _getPortalDomain(String portalURL) {
+	private String _getPortalDomain(String portalURL) {
 		String portalDomain = _portalDomains.get(portalURL);
 
 		if (portalDomain == null) {

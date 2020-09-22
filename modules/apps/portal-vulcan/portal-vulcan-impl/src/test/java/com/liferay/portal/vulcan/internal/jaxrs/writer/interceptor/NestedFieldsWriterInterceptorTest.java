@@ -635,7 +635,7 @@ public class NestedFieldsWriterInterceptorTest {
 		return sku;
 	}
 
-	private static Subproduct _toSubproduct(long id, String externalCode) {
+	private Subproduct _toSubproduct(long id, String externalCode) {
 		Subproduct subproduct = new Subproduct();
 
 		subproduct.setExternalCode(externalCode);

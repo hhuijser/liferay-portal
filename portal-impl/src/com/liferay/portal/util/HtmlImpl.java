@@ -961,9 +961,7 @@ public class HtmlImpl implements Html {
 		return pos;
 	}
 
-	private static void _appendHexChars(
-		StringBuilder sb, char[] buffer, char c) {
-
+	private void _appendHexChars(StringBuilder sb, char[] buffer, char c) {
 		int index = buffer.length;
 
 		do {

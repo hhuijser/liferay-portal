@@ -968,9 +968,7 @@ public class LiferayOAuthDataProvider
 		return dateCreated.getTime() / 1000;
 	}
 
-	private static void _invokeTransactionally(Runnable runnable)
-		throws Throwable {
-
+	private void _invokeTransactionally(Runnable runnable) throws Throwable {
 		TransactionInvokerUtil.invoke(
 			TransactionConfig.Factory.create(
 				Propagation.REQUIRED, new Class<?>[] {Exception.class}),

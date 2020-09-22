@@ -366,9 +366,7 @@ public class AssetListAssetEntryProviderImpl
 			assetListAssetEntryQueryProcessor);
 	}
 
-	private static long[] _getAssetCategoryIds(
-		UnicodeProperties unicodeProperties) {
-
+	private long[] _getAssetCategoryIds(UnicodeProperties unicodeProperties) {
 		long[] assetCategoryIds = new long[0];
 
 		for (int i = 0; true; i++) {
@@ -399,9 +397,7 @@ public class AssetListAssetEntryProviderImpl
 		return assetCategoryIds;
 	}
 
-	private static String[] _getAssetTagNames(
-		UnicodeProperties unicodeProperties) {
-
+	private String[] _getAssetTagNames(UnicodeProperties unicodeProperties) {
 		String[] allAssetTagNames = new String[0];
 
 		for (int i = 0; true; i++) {
@@ -432,7 +428,7 @@ public class AssetListAssetEntryProviderImpl
 		return allAssetTagNames;
 	}
 
-	private static String[] _getKeywords(UnicodeProperties unicodeProperties) {
+	private String[] _getKeywords(UnicodeProperties unicodeProperties) {
 		String[] allKeywords = new String[0];
 
 		for (int i = 0; true; i++) {

@@ -2094,7 +2094,7 @@ public class ServiceBuilder {
 		return sb.toString();
 	}
 
-	private static Configuration _getConfiguration() {
+	private Configuration _getConfiguration() {
 		if (_configuration != null) {
 			return _configuration;
 		}
@@ -2119,13 +2119,11 @@ public class ServiceBuilder {
 		return SAXReaderFactory.getSAXReader(null, false, false);
 	}
 
-	private static void _mkdir(File dir) throws IOException {
+	private void _mkdir(File dir) throws IOException {
 		Files.createDirectories(dir.toPath());
 	}
 
-	private static void _move(File sourceFile, File destinationFile)
-		throws Exception {
-
+	private void _move(File sourceFile, File destinationFile) throws Exception {
 		File parentFile = destinationFile.getParentFile();
 
 		Path parentPath = parentFile.toPath();
@@ -2142,7 +2140,7 @@ public class ServiceBuilder {
 			fileName, CharPool.BACK_SLASH, CharPool.SLASH);
 	}
 
-	private static String _read(File file) throws IOException {
+	private String _read(File file) throws IOException {
 		String s = new String(
 			Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
 
@@ -2179,13 +2177,13 @@ public class ServiceBuilder {
 		}
 	}
 
-	private static void _touch(File file) throws IOException {
+	private void _touch(File file) throws IOException {
 		_mkdir(file.getParentFile());
 
 		Files.createFile(file.toPath());
 	}
 
-	private static void _write(File file, String s) throws IOException {
+	private void _write(File file, String s) throws IOException {
 		Path path = file.toPath();
 
 		Files.createDirectories(path.getParent());

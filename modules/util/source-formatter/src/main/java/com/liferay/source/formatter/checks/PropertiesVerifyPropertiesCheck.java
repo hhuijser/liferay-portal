@@ -127,7 +127,7 @@ public class PropertiesVerifyPropertiesCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private static List<String> _getLines(String s) throws Exception {
+	private List<String> _getLines(String s) throws Exception {
 		List<String> lines = new ArrayList<>();
 
 		try (UnsyncBufferedReader unsyncBufferedReader =

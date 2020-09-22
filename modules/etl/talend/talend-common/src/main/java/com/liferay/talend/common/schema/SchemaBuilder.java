@@ -118,7 +118,7 @@ public class SchemaBuilder {
 		return _getSchema(endpoint, operation, apiSpecJsonObject);
 	}
 
-	private static JsonObject _extractSchemaJsonObject(
+	private JsonObject _extractSchemaJsonObject(
 		String schemaName, JsonObject oasJsonObject) {
 
 		String jsonFinderPath = StringUtil.replace(
@@ -129,7 +129,7 @@ public class SchemaBuilder {
 			jsonFinderPath, oasJsonObject);
 	}
 
-	private static Schema _getDeleteSchema() {
+	private Schema _getDeleteSchema() {
 		List<Schema.Field> schemaFields = new ArrayList<>(1);
 
 		Schema.Field designField = new Schema.Field(
@@ -142,7 +142,7 @@ public class SchemaBuilder {
 		return Schema.createRecord("Runtime", null, null, false, schemaFields);
 	}
 
-	private static Schema.Field _getDesignField(
+	private Schema.Field _getDesignField(
 		String fieldName, JsonObject propertyJsonObject) {
 
 		Schema.Field designField = new Schema.Field(
@@ -249,7 +249,7 @@ public class SchemaBuilder {
 		return designField;
 	}
 
-	private static String _stripSchemaName(String reference) {
+	private String _stripSchemaName(String reference) {
 		return reference.replaceAll(OASConstants.PATH_SCHEMA_REFERENCE, "");
 	}
 

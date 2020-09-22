@@ -117,7 +117,7 @@ public class TestExecutorRunnable implements Runnable {
 		}
 	}
 
-	private static Statement _classBlock(
+	private Statement _classBlock(
 		TestClass testClass, Description description,
 		ObjectOutputStream objectOutputStream) {
 
@@ -167,7 +167,7 @@ public class TestExecutorRunnable implements Runnable {
 		return statement;
 	}
 
-	private static void _execute(
+	private void _execute(
 			TestClass testClass, ObjectOutputStream objectOutputStream)
 		throws IOException {
 
@@ -201,7 +201,7 @@ public class TestExecutorRunnable implements Runnable {
 		return null;
 	}
 
-	private static Class<?> _getExpectedExceptionClass(Method method) {
+	private Class<?> _getExpectedExceptionClass(Method method) {
 		Test test = method.getAnnotation(Test.class);
 
 		if (test == null) {
@@ -211,7 +211,7 @@ public class TestExecutorRunnable implements Runnable {
 		return test.expected();
 	}
 
-	private static Statement _methodBlock(TestClass testClass, Method method)
+	private Statement _methodBlock(TestClass testClass, Method method)
 		throws Throwable {
 
 		Class<?> clazz = testClass.getJavaClass();
@@ -278,8 +278,7 @@ public class TestExecutorRunnable implements Runnable {
 		return statement;
 	}
 
-	private static void _processExpectedException(
-			Throwable throwable, Method method)
+	private void _processExpectedException(Throwable throwable, Method method)
 		throws Throwable {
 
 		Class<?> expectedThrown = _getExpectedExceptionClass(method);
@@ -377,7 +376,7 @@ public class TestExecutorRunnable implements Runnable {
 		}
 	}
 
-	private static Statement _withAfters(
+	private Statement _withAfters(
 		Statement statement, Class<? extends Annotation> afterClass,
 		TestClass junitTestClass, Object target) {
 
@@ -391,7 +390,7 @@ public class TestExecutorRunnable implements Runnable {
 		return statement;
 	}
 
-	private static Statement _withBefores(
+	private Statement _withBefores(
 		Statement statement, Class<? extends Annotation> beforeClass,
 		TestClass junitTestClass, Object target) {
 
@@ -405,7 +404,7 @@ public class TestExecutorRunnable implements Runnable {
 		return statement;
 	}
 
-	private static Statement _withRules(
+	private Statement _withRules(
 		Statement statement, Class<? extends Annotation> ruleClass,
 		TestClass junitTestClass, Object target, Description description) {
 
@@ -423,7 +422,7 @@ public class TestExecutorRunnable implements Runnable {
 		return statement;
 	}
 
-	private static Statement _withTimeout(Method method, Statement statement) {
+	private Statement _withTimeout(Method method, Statement statement) {
 		Test test = method.getAnnotation(Test.class);
 
 		if ((test == null) || (test.timeout() <= 0)) {

@@ -316,9 +316,7 @@ public class Version implements Comparable<Version>, Serializable {
 		}
 	}
 
-	private static boolean _contains(
-		String containerString, String numberString) {
-
+	private boolean _contains(String containerString, String numberString) {
 		if (containerString.endsWith(StringPool.PLUS)) {
 			String containerNumberString = containerString.substring(
 				0, containerString.length() - 1);

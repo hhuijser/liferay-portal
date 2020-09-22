@@ -102,11 +102,11 @@ public class FacetDiscounterTest {
 		_assertFrequencies(facet, "[public=1000]");
 	}
 
-	private static void _assertFrequencies(Facet facet, String expected) {
+	private void _assertFrequencies(Facet facet, String expected) {
 		FacetsAssert.assertFrequencies(_FIELD_NAME, facet, expected);
 	}
 
-	private static TermCollector _toTerm(String term, int frequency) {
+	private TermCollector _toTerm(String term, int frequency) {
 		return new DefaultTermCollector(term, frequency);
 	}
 

@@ -179,7 +179,7 @@ public class WriteMavenSettingsTask extends DefaultTask {
 		XMLUtil.write(document, getOutputFile());
 	}
 
-	private static void _appendNonnullElement(
+	private void _appendNonnullElement(
 		Document document, Element parentElement, String name, String text) {
 
 		if (Validator.isNull(text)) {

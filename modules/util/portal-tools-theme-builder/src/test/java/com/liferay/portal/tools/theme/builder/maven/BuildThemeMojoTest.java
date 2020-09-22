@@ -52,7 +52,7 @@ public class BuildThemeMojoTest extends ThemeBuilderTest {
 		Assert.assertEquals(result.output, 0, result.exitCode);
 	}
 
-	private static void _preparePomXml(
+	private void _preparePomXml(
 			File projectDir, File diffsDir, String name, File outputDir,
 			File parentDir, String parentName, String templateExtension,
 			File unstyledDir)

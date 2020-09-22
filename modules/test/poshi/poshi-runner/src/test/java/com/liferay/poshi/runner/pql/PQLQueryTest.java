@@ -222,7 +222,7 @@ public class PQLQueryTest extends TestCase {
 		}
 	}
 
-	private static void _validateGetPQLResult(
+	private void _validateGetPQLResult(
 			String pql, Object expectedPQLResult, Properties properties)
 		throws Exception {
 

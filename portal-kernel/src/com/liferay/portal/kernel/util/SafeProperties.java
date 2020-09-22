@@ -63,12 +63,12 @@ public class SafeProperties extends Properties {
 		return super.remove(key);
 	}
 
-	private static String _decode(String value) {
+	private String _decode(String value) {
 		return StringUtil.replace(
 			value, _SAFE_NEWLINE_CHARACTER, StringPool.NEW_LINE);
 	}
 
-	private static String _encode(String value) {
+	private String _encode(String value) {
 		return StringUtil.replace(
 			value,
 			new String[] {

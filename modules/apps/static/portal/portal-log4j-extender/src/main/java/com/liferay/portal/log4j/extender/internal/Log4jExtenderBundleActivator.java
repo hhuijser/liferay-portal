@@ -84,7 +84,7 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 		_bundleTracker.close();
 	}
 
-	private static String _escapeXMLAttribute(String s) {
+	private String _escapeXMLAttribute(String s) {
 		return StringUtil.replace(
 			s,
 			new char[] {
@@ -94,7 +94,7 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 			new String[] {"&amp;", "&apos;", "&lt;", "&quot;"});
 	}
 
-	private static String _getLiferayHome() {
+	private String _getLiferayHome() {
 		if (_liferayHome == null) {
 			_liferayHome = _escapeXMLAttribute(
 				PropsUtil.get(PropsKeys.LIFERAY_HOME));
@@ -103,7 +103,7 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 		return _liferayHome;
 	}
 
-	private static String _getURLContent(URL url) {
+	private String _getURLContent(URL url) {
 		Map<String, String> variables = HashMapBuilder.put(
 			"@liferay.home@", _getLiferayHome()
 		).put(

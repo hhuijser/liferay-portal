@@ -419,9 +419,7 @@ public class JournalArticleIndexerLocalizedContentTest {
 			document, document.toString());
 	}
 
-	private static Map<String, String> _withSortableValues(
-		Map<String, String> map) {
-
+	private Map<String, String> _withSortableValues(Map<String, String> map) {
 		Set<Map.Entry<String, String>> entrySet = map.entrySet();
 
 		Stream<Map.Entry<String, String>> entries = entrySet.stream();

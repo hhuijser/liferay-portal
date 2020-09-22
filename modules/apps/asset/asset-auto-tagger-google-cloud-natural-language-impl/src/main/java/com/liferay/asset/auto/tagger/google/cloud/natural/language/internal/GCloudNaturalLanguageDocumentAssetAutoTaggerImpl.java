@@ -120,7 +120,7 @@ public class GCloudNaturalLanguageDocumentAssetAutoTaggerImpl
 		);
 	}
 
-	private static <T> Predicate<T> _negate(Predicate<T> predicate) {
+	private <T> Predicate<T> _negate(Predicate<T> predicate) {
 		return predicate.negate();
 	}
 

@@ -858,7 +858,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			AssetPublisherWebConfiguration.class, properties);
 	}
 
-	private static List<AssetEntry> _filterAssetCategoriesAssetEntries(
+	private List<AssetEntry> _filterAssetCategoriesAssetEntries(
 		List<AssetEntry> assetEntries, long[] assetCategoryIds) {
 
 		List<AssetEntry> filteredAssetEntries = new ArrayList<>();
@@ -874,7 +874,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		return filteredAssetEntries;
 	}
 
-	private static List<AssetEntry> _filterAssetTagNamesAssetEntries(
+	private List<AssetEntry> _filterAssetTagNamesAssetEntries(
 		List<AssetEntry> assetEntries, String[] assetTagNames) {
 
 		List<AssetEntry> filteredAssetEntries = new ArrayList<>();
@@ -898,7 +898,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		return filteredAssetEntries;
 	}
 
-	private static boolean _isShowAssetEntryResults(
+	private boolean _isShowAssetEntryResults(
 		String portletName, AssetEntryQuery assetEntryQuery) {
 
 		if (!portletName.equals(AssetPublisherPortletKeys.RELATED_ASSETS) ||

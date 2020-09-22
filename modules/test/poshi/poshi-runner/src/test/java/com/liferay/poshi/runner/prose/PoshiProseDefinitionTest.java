@@ -94,7 +94,7 @@ public class PoshiProseDefinitionTest extends TestCase {
 		return read(new File(dir, fileName));
 	}
 
-	private static void _assertEqualElements(
+	private void _assertEqualElements(
 			Element actualElement, Element expectedElement, String errorMessage)
 		throws Exception {
 
@@ -111,7 +111,7 @@ public class PoshiProseDefinitionTest extends TestCase {
 		}
 	}
 
-	private static String _getErrorMessage(
+	private String _getErrorMessage(
 			String actual, String expected, String errorMessage)
 		throws Exception {
 

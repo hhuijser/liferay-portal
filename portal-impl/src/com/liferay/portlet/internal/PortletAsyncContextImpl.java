@@ -238,7 +238,7 @@ public class PortletAsyncContextImpl implements PortletAsyncContext {
 		}
 	}
 
-	private static PortletAsyncListenerFactory _getPortletAsyncListenerFactory(
+	private PortletAsyncListenerFactory _getPortletAsyncListenerFactory(
 		String servletContextName) {
 
 		PortletAsyncListenerFactory portletAsyncListenerFactory =
@@ -251,7 +251,7 @@ public class PortletAsyncContextImpl implements PortletAsyncContext {
 		return portletAsyncListenerFactory;
 	}
 
-	private static PortletAsyncScopeManager _getPortletAsyncScopeManager(
+	private PortletAsyncScopeManager _getPortletAsyncScopeManager(
 		String servletContextName) {
 
 		PortletAsyncScopeManagerFactory portletAsyncScopeManagerFactory =

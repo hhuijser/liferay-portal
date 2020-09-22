@@ -384,7 +384,7 @@ public class FragmentEntryConfigurationParserImpl
 		return jsonObject.toString();
 	}
 
-	private static void _translateConfigurationField(
+	private void _translateConfigurationField(
 		JSONObject fieldJSONObject, ResourceBundle resourceBundle) {
 
 		String fieldDescription = fieldJSONObject.getString("description");

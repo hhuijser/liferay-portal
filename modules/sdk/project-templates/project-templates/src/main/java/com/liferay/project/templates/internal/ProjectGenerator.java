@@ -175,9 +175,7 @@ public class ProjectGenerator {
 		return archetypeGenerationResult;
 	}
 
-	private static boolean _isInVersionRange(
-		String versionString, String range) {
-
+	private boolean _isInVersionRange(String versionString, String range) {
 		Version version = new Version(versionString);
 
 		VersionRange versionRange = new VersionRange(range);

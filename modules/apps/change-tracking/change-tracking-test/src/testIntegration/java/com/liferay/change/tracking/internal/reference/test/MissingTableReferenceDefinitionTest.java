@@ -105,7 +105,7 @@ public class MissingTableReferenceDefinitionTest {
 			missingTableNames.isEmpty());
 	}
 
-	private static <T extends Table<T>> void _collectTableNames(
+	private <T extends Table<T>> void _collectTableNames(
 		TableReferenceDefinition<T> tableReferenceDefinition,
 		Set<String> tableNames) {
 

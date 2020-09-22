@@ -179,7 +179,7 @@ public class ThemeBuilderCompareTest {
 	@Rule
 	public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private static Map<String, byte[]> _getFileNameDigests(
+	private Map<String, byte[]> _getFileNameDigests(
 			final Path dirPath, String... excludePatterns)
 		throws Exception {
 
@@ -309,7 +309,7 @@ public class ThemeBuilderCompareTest {
 		};
 	}
 
-	private static void _unzip(File file, File outputDir) throws Exception {
+	private void _unzip(File file, File outputDir) throws Exception {
 		Path outputDirPath = outputDir.toPath();
 
 		try (ZipFile zipFile = new ZipFile(file)) {

@@ -143,7 +143,7 @@ public class BundleSupportAntTest extends BundleSupportCommandsTest {
 		project.executeTarget("init-bundle");
 	}
 
-	private static String _getAbsolutePath(File file) {
+	private String _getAbsolutePath(File file) {
 		if (file == null) {
 			return null;
 		}

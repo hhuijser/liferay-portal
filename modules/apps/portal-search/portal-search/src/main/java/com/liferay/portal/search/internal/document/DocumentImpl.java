@@ -212,7 +212,7 @@ public class DocumentImpl implements Document {
 		setFieldValues(name, _toCollection(values));
 	}
 
-	private static Collection<Object> _toCollection(Object[] values) {
+	private Collection<Object> _toCollection(Object[] values) {
 		if (ArrayUtil.isEmpty(values)) {
 			return null;
 		}

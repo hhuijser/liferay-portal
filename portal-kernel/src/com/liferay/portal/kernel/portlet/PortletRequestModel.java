@@ -705,7 +705,7 @@ public class PortletRequestModel implements Serializable {
 		return map;
 	}
 
-	private static boolean _isValidAttributeName(String name) {
+	private boolean _isValidAttributeName(String name) {
 		if (StringUtil.equalsIgnoreCase(
 				name, WebKeys.PORTLET_RENDER_PARAMETERS) ||
 			StringUtil.equalsIgnoreCase(name, "j_password") ||
@@ -720,7 +720,7 @@ public class PortletRequestModel implements Serializable {
 		return true;
 	}
 
-	private static boolean _isValidAttributeValue(Object object) {
+	private boolean _isValidAttributeValue(Object object) {
 		if (object == null) {
 			return false;
 		}

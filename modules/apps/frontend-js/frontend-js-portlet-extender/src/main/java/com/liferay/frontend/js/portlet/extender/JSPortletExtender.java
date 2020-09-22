@@ -83,7 +83,7 @@ public class JSPortletExtender {
 		_bundleTracker = null;
 	}
 
-	private static boolean _optIn(Bundle bundle) {
+	private boolean _optIn(Bundle bundle) {
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
 
 		List<BundleWire> bundleWires = bundleWiring.getRequiredWires(

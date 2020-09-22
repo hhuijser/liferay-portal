@@ -42,7 +42,7 @@ public class ServiceXMLTest {
 		stream.forEach(ServiceXMLTest::_assertNoTXRequiredElement);
 	}
 
-	private static void _assertNoTXRequiredElement(Path path) {
+	private void _assertNoTXRequiredElement(Path path) {
 		try {
 			Stream<String> stream = Files.lines(path);
 
@@ -55,7 +55,7 @@ public class ServiceXMLTest {
 		}
 	}
 
-	private static boolean _isServiceXml(
+	private boolean _isServiceXml(
 		Path path, BasicFileAttributes basicFileAttributes) {
 
 		Path fileNamePath = path.getFileName();

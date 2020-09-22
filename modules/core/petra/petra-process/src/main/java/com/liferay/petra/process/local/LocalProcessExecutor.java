@@ -123,7 +123,7 @@ public class LocalProcessExecutor implements ProcessExecutor {
 		}
 	}
 
-	private static String _buildThreadName(
+	private String _buildThreadName(
 		ProcessCallable<?> processCallable, List<String> arguments) {
 
 		StringBundler sb = new StringBundler((arguments.size() * 2) + 2);
@@ -143,7 +143,7 @@ public class LocalProcessExecutor implements ProcessExecutor {
 		return sb.toString();
 	}
 
-	private static <T> NoticeableFuture<T> _submit(
+	private <T> NoticeableFuture<T> _submit(
 		String threadName, Callable<T> callable) {
 
 		DefaultNoticeableFuture<T> defaultNoticeableFuture =

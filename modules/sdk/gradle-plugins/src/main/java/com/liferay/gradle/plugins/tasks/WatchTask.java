@@ -242,7 +242,7 @@ public class WatchTask extends DefaultTask {
 		}
 	}
 
-	private static long _getBundleId(
+	private long _getBundleId(
 			String bundleSymbolicName, GogoShellClient gogoShellClient)
 		throws IOException {
 
@@ -280,7 +280,7 @@ public class WatchTask extends DefaultTask {
 		return -1;
 	}
 
-	private static <K, V> Map<K, V> _getDifferences(
+	private <K, V> Map<K, V> _getDifferences(
 		Map<? extends K, ? extends V> leftMap,
 		Map<? extends K, ? extends V> rightMap) {
 
@@ -301,7 +301,7 @@ public class WatchTask extends DefaultTask {
 		return differences;
 	}
 
-	private static final int _getState(String state) {
+	private final int _getState(String state) {
 		String bundleState = state.toUpperCase();
 
 		if (Objects.equals(bundleState, "ACTIVE")) {
@@ -326,7 +326,7 @@ public class WatchTask extends DefaultTask {
 		return 0;
 	}
 
-	private static boolean _isWarDir(File file) {
+	private boolean _isWarDir(File file) {
 		if (!file.isDirectory()) {
 			return false;
 		}
@@ -336,7 +336,7 @@ public class WatchTask extends DefaultTask {
 		return webInfDir.exists();
 	}
 
-	private static final BundleDTO _newBundleDTO(
+	private final BundleDTO _newBundleDTO(
 		Long id, int state, String symbolicName) {
 
 		BundleDTO bundle = new BundleDTO();
@@ -348,7 +348,7 @@ public class WatchTask extends DefaultTask {
 		return bundle;
 	}
 
-	private static final BundleDTO _parseBundleDTO(String line) {
+	private final BundleDTO _parseBundleDTO(String line) {
 		String[] fields = line.split("\\|");
 
 		Long id = Long.parseLong(fields[0].trim());
@@ -360,7 +360,7 @@ public class WatchTask extends DefaultTask {
 		return _newBundleDTO(id, state, symbolicName);
 	}
 
-	private static String _sendGogoShellCommand(
+	private String _sendGogoShellCommand(
 			GogoShellClient gogoShellClient, String command)
 		throws IOException {
 

@@ -506,7 +506,7 @@ public class LPKGBundleTrackerCustomizer
 		_properties.remove(bundle.getSymbolicName());
 	}
 
-	private static Properties _readMarketplaceProperties(Bundle bundle)
+	private Properties _readMarketplaceProperties(Bundle bundle)
 		throws IOException {
 
 		URL url = bundle.getEntry("liferay-marketplace.properties");

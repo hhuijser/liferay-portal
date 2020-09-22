@@ -176,7 +176,7 @@ public class UserBagImpl implements UserBag {
 		return _search(_userOrgGroupIds, group.getGroupId());
 	}
 
-	private static boolean _search(long[] ids, long id) {
+	private boolean _search(long[] ids, long id) {
 		if (Arrays.binarySearch(ids, id) >= 0) {
 			return true;
 		}

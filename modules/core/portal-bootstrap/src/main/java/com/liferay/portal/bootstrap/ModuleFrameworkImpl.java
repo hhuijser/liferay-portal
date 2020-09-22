@@ -598,7 +598,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		}
 	}
 
-	private static URL[] _getClassPathURLs() throws Exception {
+	private URL[] _getClassPathURLs() throws Exception {
 		File coreDir = new File(PropsValues.MODULE_FRAMEWORK_BASE_DIR, "core");
 
 		File[] files = coreDir.listFiles();
@@ -619,7 +619,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		return urls;
 	}
 
-	private static String _getLPKGLocation(File lpkgFile) {
+	private String _getLPKGLocation(File lpkgFile) {
 		String uriString = String.valueOf(lpkgFile.toURI());
 
 		return StringUtil.replace(

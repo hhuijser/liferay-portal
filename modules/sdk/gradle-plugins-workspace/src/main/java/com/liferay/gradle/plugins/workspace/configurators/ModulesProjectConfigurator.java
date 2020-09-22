@@ -283,7 +283,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 
 	protected static final String NAME = "modules";
 
-	private static File _getResourcesDir(SourceSet sourceSet) {
+	private File _getResourcesDir(SourceSet sourceSet) {
 		SourceSetOutput sourceSetOutput = sourceSet.getOutput();
 
 		return sourceSetOutput.getResourcesDir();

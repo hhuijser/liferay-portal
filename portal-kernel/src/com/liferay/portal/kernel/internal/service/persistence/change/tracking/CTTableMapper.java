@@ -427,7 +427,7 @@ public class CTTableMapper<L extends BaseModel<L>, R extends BaseModel<R>>
 			ParamSetter.BIGINT);
 	}
 
-	private static <T extends BaseModel<T>> List<T> _getBaseModels(
+	private <T extends BaseModel<T>> List<T> _getBaseModels(
 		MappingSqlQuery<Long> mappingSqlQuery, long masterPrimaryKey,
 		long ctCollectionId, BasePersistence<T> slaveBasePersistence, int start,
 		int end, OrderByComparator<T> orderByComparator) {
@@ -458,7 +458,7 @@ public class CTTableMapper<L extends BaseModel<L>, R extends BaseModel<R>>
 		return ListUtil.subList(slaveBaseModels, start, end);
 	}
 
-	private static long[] _getPrimaryKeys(
+	private long[] _getPrimaryKeys(
 		MappingSqlQuery<Long> mappingSqlQuery, long masterPrimaryKey,
 		long ctCollectionId) {
 

@@ -38,14 +38,14 @@ public abstract class MimeResponseImpl
 
 	@Override
 	public void flushBuffer() throws IOException {
-		response.flushBuffer();
+		httpServletResponse.flushBuffer();
 
 		_calledFlushBuffer = true;
 	}
 
 	@Override
 	public int getBufferSize() {
-		return response.getBufferSize();
+		return httpServletResponse.getBufferSize();
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public abstract class MimeResponseImpl
 
 	@Override
 	public String getCharacterEncoding() {
-		return response.getCharacterEncoding();
+		return httpServletResponse.getCharacterEncoding();
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public abstract class MimeResponseImpl
 
 		_calledGetPortletOutputStream = true;
 
-		return response.getOutputStream();
+		return httpServletResponse.getOutputStream();
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public abstract class MimeResponseImpl
 
 		_calledGetWriter = true;
 
-		return response.getWriter();
+		return httpServletResponse.getWriter();
 	}
 
 	public boolean isCalledFlushBuffer() {
@@ -128,7 +128,7 @@ public abstract class MimeResponseImpl
 
 	@Override
 	public boolean isCommitted() {
-		return response.isCommitted();
+		return httpServletResponse.isCommitted();
 	}
 
 	@Override
@@ -146,12 +146,12 @@ public abstract class MimeResponseImpl
 				"Unable to reset a buffer that has been flushed");
 		}
 
-		response.resetBuffer();
+		httpServletResponse.resetBuffer();
 	}
 
 	@Override
 	public void setBufferSize(int bufferSize) {
-		response.setBufferSize(bufferSize);
+		httpServletResponse.setBufferSize(bufferSize);
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public abstract class MimeResponseImpl
 
 		_contentType = contentType;
 
-		response.setContentType(contentType);
+		httpServletResponse.setContentType(contentType);
 	}
 
 	private boolean _calledFlushBuffer;

@@ -2094,60 +2094,8 @@ public class ServiceBuilder {
 		return sb.toString();
 	}
 
-	private static Configuration _getConfiguration() {
-		if (_configuration != null) {
-			return _configuration;
-		}
-
-		_configuration = new Configuration(Configuration.getVersion());
-
-		_configuration.setNumberFormat("computer");
-
-		DefaultObjectWrapperBuilder defaultObjectWrapperBuilder =
-			new DefaultObjectWrapperBuilder(Configuration.getVersion());
-
-		_configuration.setObjectWrapper(defaultObjectWrapperBuilder.build());
-
-		_configuration.setTemplateLoader(
-			new ClassTemplateLoader(ServiceBuilder.class, StringPool.SLASH));
-		_configuration.setTemplateUpdateDelayMilliseconds(Long.MAX_VALUE);
-
-		return _configuration;
-	}
-
 	private static SAXReader _getSAXReader() {
 		return SAXReaderFactory.getSAXReader(null, false, false);
-	}
-
-	private static void _mkdir(File dir) throws IOException {
-		Files.createDirectories(dir.toPath());
-	}
-
-	private static void _move(File sourceFile, File destinationFile)
-		throws Exception {
-
-		File parentFile = destinationFile.getParentFile();
-
-		Path parentPath = parentFile.toPath();
-
-		if (!Files.exists(parentPath)) {
-			Files.createDirectories(parentPath);
-		}
-
-		Files.move(sourceFile.toPath(), destinationFile.toPath());
-	}
-
-	private static String _normalize(String fileName) {
-		return StringUtil.replace(
-			fileName, CharPool.BACK_SLASH, CharPool.SLASH);
-	}
-
-	private static String _read(File file) throws IOException {
-		String s = new String(
-			Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-
-		return StringUtil.replace(
-			s, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
 	}
 
 	private static void _readResourceActionModels(
@@ -2177,20 +2125,6 @@ public class ServiceBuilder {
 		for (Node node : nodes) {
 			resourceActionModels.add(StringUtil.trim(node.getText()));
 		}
-	}
-
-	private static void _touch(File file) throws IOException {
-		_mkdir(file.getParentFile());
-
-		Files.createFile(file.toPath());
-	}
-
-	private static void _write(File file, String s) throws IOException {
-		Path path = file.toPath();
-
-		Files.createDirectories(path.getParent());
-
-		Files.write(path, s.getBytes(StandardCharsets.UTF_8));
 	}
 
 	private void _addIndexMetadata(
@@ -4757,6 +4691,27 @@ public class ServiceBuilder {
 		return properties;
 	}
 
+	private Configuration _getConfiguration() {
+		if (_configuration != null) {
+			return _configuration;
+		}
+
+		_configuration = new Configuration(Configuration.getVersion());
+
+		_configuration.setNumberFormat("computer");
+
+		DefaultObjectWrapperBuilder defaultObjectWrapperBuilder =
+			new DefaultObjectWrapperBuilder(Configuration.getVersion());
+
+		_configuration.setObjectWrapper(defaultObjectWrapperBuilder.build());
+
+		_configuration.setTemplateLoader(
+			new ClassTemplateLoader(ServiceBuilder.class, StringPool.SLASH));
+		_configuration.setTemplateUpdateDelayMilliseconds(Long.MAX_VALUE);
+
+		return _configuration;
+	}
+
 	private Map<String, Object> _getContext() throws Exception {
 		Map<String, Object> context = HashMapBuilder.<String, Object>put(
 			"apiPackagePath", _apiPackagePath
@@ -5928,6 +5883,27 @@ public class ServiceBuilder {
 		set.addAll(referenceEntities);
 
 		return new ArrayList<>(set);
+	}
+
+	private void _mkdir(File dir) throws IOException {
+		Files.createDirectories(dir.toPath());
+	}
+
+	private void _move(File sourceFile, File destinationFile) throws Exception {
+		File parentFile = destinationFile.getParentFile();
+
+		Path parentPath = parentFile.toPath();
+
+		if (!Files.exists(parentPath)) {
+			Files.createDirectories(parentPath);
+		}
+
+		Files.move(sourceFile.toPath(), destinationFile.toPath());
+	}
+
+	private String _normalize(String fileName) {
+		return StringUtil.replace(
+			fileName, CharPool.BACK_SLASH, CharPool.SLASH);
 	}
 
 	private Entity _parseEntity(Element entityElement) throws Exception {
@@ -7347,6 +7323,14 @@ public class ServiceBuilder {
 		return context;
 	}
 
+	private String _read(File file) throws IOException {
+		String s = new String(
+			Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+
+		return StringUtil.replace(
+			s, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
+	}
+
 	private String _read(String fileName) throws IOException {
 		Class<?> clazz = getClass();
 
@@ -7736,6 +7720,20 @@ public class ServiceBuilder {
 		}
 
 		entity.setResolved();
+	}
+
+	private void _touch(File file) throws IOException {
+		_mkdir(file.getParentFile());
+
+		Files.createFile(file.toPath());
+	}
+
+	private void _write(File file, String s) throws IOException {
+		Path path = file.toPath();
+
+		Files.createDirectories(path.getParent());
+
+		Files.write(path, s.getBytes(StandardCharsets.UTF_8));
 	}
 
 	private void _write(

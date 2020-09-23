@@ -252,7 +252,7 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 		return tempFile;
 	}
 
-	private static String _getUniqueId() {
+	private String _getUniqueId() {
 		int current = 0;
 
 		synchronized (LiferayFileItem.class) {

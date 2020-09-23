@@ -604,7 +604,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		return comparator;
 	}
 
-	private static boolean _isUADUserId(String name) {
+	private boolean _isUADUserId(String name) {
 		if (name.equals("userId") || name.endsWith("UserId")) {
 			return true;
 		}

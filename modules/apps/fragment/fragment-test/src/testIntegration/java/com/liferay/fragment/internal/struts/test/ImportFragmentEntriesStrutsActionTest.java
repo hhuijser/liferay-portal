@@ -162,7 +162,28 @@ public class ImportFragmentEntriesStrutsActionTest {
 				_group.getGroupId(), "page-template"));
 	}
 
-	private static Map<String, FileItem[]> _getFileParameters(
+	private byte[] _getFileBytes() throws Exception {
+		Enumeration<URL> enumeration = _bundle.findEntries(
+			_RESOURCES_PATH, "*", true);
+
+		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
+
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
+
+			String path = url.getPath();
+
+			if (!path.endsWith(StringPool.SLASH)) {
+				zipWriter.addEntry(
+					StringUtil.removeSubstring(url.getPath(), _RESOURCES_PATH),
+					url.openStream());
+			}
+		}
+
+		return FileUtil.getBytes(zipWriter.getFile());
+	}
+
+	private Map<String, FileItem[]> _getFileParameters(
 			byte[] bytes, String namespace)
 		throws Exception {
 
@@ -189,7 +210,7 @@ public class ImportFragmentEntriesStrutsActionTest {
 		).build();
 	}
 
-	private static HttpServletRequest _getMultipartHttpServletRequest(
+	private HttpServletRequest _getMultipartHttpServletRequest(
 		byte[] bytes, String fileNameParameter) {
 
 		MockMultipartHttpServletRequest mockMultipartHttpServletRequest =
@@ -209,27 +230,6 @@ public class ImportFragmentEntriesStrutsActionTest {
 		mockMultipartHttpServletRequest.setSession(mockHttpSession);
 
 		return mockMultipartHttpServletRequest;
-	}
-
-	private byte[] _getFileBytes() throws Exception {
-		Enumeration<URL> enumeration = _bundle.findEntries(
-			_RESOURCES_PATH, "*", true);
-
-		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
-
-		while (enumeration.hasMoreElements()) {
-			URL url = enumeration.nextElement();
-
-			String path = url.getPath();
-
-			if (!path.endsWith(StringPool.SLASH)) {
-				zipWriter.addEntry(
-					StringUtil.removeSubstring(url.getPath(), _RESOURCES_PATH),
-					url.openStream());
-			}
-		}
-
-		return FileUtil.getBytes(zipWriter.getFile());
 	}
 
 	private void _processEvents(

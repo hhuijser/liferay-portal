@@ -313,13 +313,13 @@ public class UserGroupCascadeReindexUsersTest {
 	protected UserGroupSearchFixture userGroupSearchFixture;
 	protected UserSearchFixture userSearchFixture;
 
-	private static String _getAllGroupIdsString(List<Group> groups) {
+	private String _getAllGroupIdsString(List<Group> groups) {
 		Stream<Group> stream = groups.stream();
 
 		return _toSortedListString(stream.map(Group::getGroupId));
 	}
 
-	private static long[] _getAllUserIds(List<User> users) {
+	private long[] _getAllUserIds(List<User> users) {
 		Stream<User> stream = users.stream();
 
 		return stream.mapToLong(
@@ -327,7 +327,7 @@ public class UserGroupCascadeReindexUsersTest {
 		).toArray();
 	}
 
-	private static Document _getDocument(Indexer<User> indexer, User user) {
+	private Document _getDocument(Indexer<User> indexer, User user) {
 		try {
 			return indexer.getDocument(user);
 		}
@@ -336,7 +336,7 @@ public class UserGroupCascadeReindexUsersTest {
 		}
 	}
 
-	private static String _repeat(String s, int times) {
+	private String _repeat(String s, int times) {
 		return _toListString(
 			Stream.generate(
 				() -> s
@@ -345,7 +345,7 @@ public class UserGroupCascadeReindexUsersTest {
 			));
 	}
 
-	private static String _toListString(Stream<?> stream) {
+	private String _toListString(Stream<?> stream) {
 		return stream.map(
 			String::valueOf
 		).collect(
@@ -355,7 +355,7 @@ public class UserGroupCascadeReindexUsersTest {
 		);
 	}
 
-	private static String _toSortedListString(Stream<?> stream) {
+	private String _toSortedListString(Stream<?> stream) {
 		return _toListString(
 			stream.map(
 				String::valueOf

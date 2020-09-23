@@ -517,7 +517,7 @@ public class JspAnalyzerPlugin implements AnalyzerPlugin {
 		return false;
 	}
 
-	private static String _removeComments(String content) {
+	private String _removeComments(String content) {
 		Matcher matcher = _commentPattern.matcher(content);
 
 		return matcher.replaceAll("");

@@ -50,7 +50,7 @@ public class WrapSoyAlloyTemplateMojoTest
 		Assert.assertEquals(result.output, 0, result.exitCode);
 	}
 
-	private static void _preparePomXml(
+	private void _preparePomXml(
 			File projectDir, File dir, String moduleName, String namespace)
 		throws Exception {
 

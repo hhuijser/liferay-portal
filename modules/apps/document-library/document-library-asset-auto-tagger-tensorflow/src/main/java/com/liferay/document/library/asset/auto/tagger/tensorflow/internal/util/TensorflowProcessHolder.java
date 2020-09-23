@@ -106,7 +106,7 @@ public class TensorflowProcessHolder {
 		}
 	}
 
-	private static String _createClassPath(Bundle bundle, Path tempPath)
+	private String _createClassPath(Bundle bundle, Path tempPath)
 		throws IOException {
 
 		StringBundler sb = new StringBundler();
@@ -157,8 +157,7 @@ public class TensorflowProcessHolder {
 		return sb.toString();
 	}
 
-	private static ProcessConfig _createProcessConfig(
-			Bundle bundle, Path tempPath)
+	private ProcessConfig _createProcessConfig(Bundle bundle, Path tempPath)
 		throws IOException {
 
 		ProcessConfig.Builder builder = new ProcessConfig.Builder();

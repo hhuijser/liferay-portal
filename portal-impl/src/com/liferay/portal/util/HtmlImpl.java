@@ -961,9 +961,19 @@ public class HtmlImpl implements Html {
 		return pos;
 	}
 
-	private static void _appendHexChars(
-		StringBuilder sb, char[] buffer, char c) {
+	private static boolean _isValidXmlCharacter(char c) {
+		if (((c >= CharPool.SPACE) && (c <= '\ud7ff')) ||
+			((c >= '\ue000') && (c <= '\ufffd')) || Character.isSurrogate(c) ||
+			(c == CharPool.TAB) || (c == CharPool.NEW_LINE) ||
+			(c == CharPool.RETURN)) {
 
+			return true;
+		}
+
+		return false;
+	}
+
+	private void _appendHexChars(StringBuilder sb, char[] buffer, char c) {
 		int index = buffer.length;
 
 		do {
@@ -981,18 +991,6 @@ public class HtmlImpl implements Html {
 		}
 
 		sb.append(buffer, index, buffer.length - index);
-	}
-
-	private static boolean _isValidXmlCharacter(char c) {
-		if (((c >= CharPool.SPACE) && (c <= '\ud7ff')) ||
-			((c >= '\ue000') && (c <= '\ufffd')) || Character.isSurrogate(c) ||
-			(c == CharPool.TAB) || (c == CharPool.NEW_LINE) ||
-			(c == CharPool.RETURN)) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 	private boolean _isUnicodeCompatibilityCharacter(char c) {

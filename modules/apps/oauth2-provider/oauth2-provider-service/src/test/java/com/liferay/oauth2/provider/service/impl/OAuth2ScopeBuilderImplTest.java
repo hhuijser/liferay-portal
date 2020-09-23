@@ -257,12 +257,6 @@ public class OAuth2ScopeBuilderImplTest extends PowerMockito {
 				Collections.singleton(key.getValue()), value));
 	}
 
-	private static String _getApplicationScopeAlias(
-		String applicationName, String scope) {
-
-		return applicationName + StringPool.PERIOD + scope;
-	}
-
 	private Map<Map.Entry<String, String>, Set<String>> _exerciseBuilder(
 		Consumer<OAuth2ScopeBuilder> builderConsumer) {
 
@@ -289,6 +283,12 @@ public class OAuth2ScopeBuilderImplTest extends PowerMockito {
 			});
 
 		return simpleEntryScopeAliasesSet;
+	}
+
+	private String _getApplicationScopeAlias(
+		String applicationName, String scope) {
+
+		return applicationName + StringPool.PERIOD + scope;
 	}
 
 	private static final String _TEST_BUNDLE_SYMBOLIC_NAME =

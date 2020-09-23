@@ -506,24 +506,6 @@ public class LPKGBundleTrackerCustomizer
 		_properties.remove(bundle.getSymbolicName());
 	}
 
-	private static Properties _readMarketplaceProperties(Bundle bundle)
-		throws IOException {
-
-		URL url = bundle.getEntry("liferay-marketplace.properties");
-
-		if (url == null) {
-			return null;
-		}
-
-		try (InputStream in = url.openStream()) {
-			Properties properties = new Properties();
-
-			properties.load(in);
-
-			return properties;
-		}
-	}
-
 	private String _buildImportPackageString(Class<?>... classes) {
 		StringBundler sb = new StringBundler(classes.length * 2);
 
@@ -640,6 +622,24 @@ public class LPKGBundleTrackerCustomizer
 		}
 
 		bundle.uninstall();
+	}
+
+	private Properties _readMarketplaceProperties(Bundle bundle)
+		throws IOException {
+
+		URL url = bundle.getEntry("liferay-marketplace.properties");
+
+		if (url == null) {
+			return null;
+		}
+
+		try (InputStream in = url.openStream()) {
+			Properties properties = new Properties();
+
+			properties.load(in);
+
+			return properties;
+		}
 	}
 
 	private String[] _readServletContextNameAndPortalProfileNames(URL url)

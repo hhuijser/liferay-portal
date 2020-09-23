@@ -1363,7 +1363,7 @@ public class BlogsEntryLocalServiceTest {
 		Assert.assertEquals(initialCount + 1, actualCount);
 	}
 
-	private static String _repeat(String string, int times) {
+	private String _repeat(String string, int times) {
 		StringBundler sb = new StringBundler(times);
 
 		for (int i = 0; i < times; i++) {

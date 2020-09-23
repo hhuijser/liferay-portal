@@ -143,7 +143,7 @@ public abstract class BaseCSSBuilderTestCase {
 
 	protected Path baseDirPath;
 
-	private static void _assertMatchesCount(
+	private void _assertMatchesCount(
 		Pattern pattern, String s, int expectedCount) {
 
 		int count = 0;

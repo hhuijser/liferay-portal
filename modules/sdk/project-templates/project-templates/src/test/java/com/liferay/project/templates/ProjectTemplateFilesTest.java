@@ -100,7 +100,7 @@ public class ProjectTemplateFilesTest {
 		_xmlDeclarations.put(fileName, template);
 	}
 
-	private static boolean _expressionContainedInList(
+	private boolean _expressionContainedInList(
 		Collection<String> list, String expression) {
 
 		Stream<String> stream = list.stream();

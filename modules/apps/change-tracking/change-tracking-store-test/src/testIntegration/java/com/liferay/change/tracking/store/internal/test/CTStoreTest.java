@@ -812,19 +812,6 @@ public class CTStoreTest {
 			this::_assertFile, _GET_FILE_AS_STREAM_METHOD);
 	}
 
-	private static String _toVersion(byte[] data) {
-		String version = _VERSION_1;
-
-		if (data == _DATA_3) {
-			version = _VERSION_3;
-		}
-		else if (data == _DATA_2) {
-			version = _VERSION_2;
-		}
-
-		return version;
-	}
-
 	private void _addCTFile(String fileName, byte[] data)
 		throws PortalException {
 
@@ -1252,6 +1239,19 @@ public class CTStoreTest {
 		}
 
 		throw new IllegalArgumentException("Unknown version : " + s);
+	}
+
+	private String _toVersion(byte[] data) {
+		String version = _VERSION_1;
+
+		if (data == _DATA_3) {
+			version = _VERSION_3;
+		}
+		else if (data == _DATA_2) {
+			version = _VERSION_2;
+		}
+
+		return version;
 	}
 
 	private static final Method _ADD_FILE_METHOD;

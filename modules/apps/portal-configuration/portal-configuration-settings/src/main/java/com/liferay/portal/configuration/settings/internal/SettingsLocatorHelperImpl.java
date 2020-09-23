@@ -398,9 +398,9 @@ public class SettingsLocatorHelperImpl implements SettingsLocatorHelper {
 		}
 
 		private ConfigurationBeanDeclarationServiceTracker(
-			BundleContext context) {
+			BundleContext bundleContext) {
 
-			super(context, ConfigurationBeanDeclaration.class, null);
+			super(bundleContext, ConfigurationBeanDeclaration.class, null);
 		}
 
 	}

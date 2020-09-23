@@ -69,9 +69,9 @@ import org.osgi.util.tracker.BundleTrackerCustomizer;
 public class JSPortletExtender {
 
 	@Activate
-	protected void activate(BundleContext context) {
+	protected void activate(BundleContext bundleContext) {
 		_bundleTracker = new BundleTracker<>(
-			context, Bundle.ACTIVE, _bundleTrackerCustomizer);
+			bundleContext, Bundle.ACTIVE, _bundleTrackerCustomizer);
 
 		_bundleTracker.open();
 	}

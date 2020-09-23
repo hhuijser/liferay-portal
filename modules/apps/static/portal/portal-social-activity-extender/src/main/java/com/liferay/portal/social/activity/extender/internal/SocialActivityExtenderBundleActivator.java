@@ -75,7 +75,7 @@ public class SocialActivityExtenderBundleActivator implements BundleActivator {
 	}
 
 	@Override
-	public void stop(BundleContext context) {
+	public void stop(BundleContext bundleContext) {
 		_serviceTracker.close();
 	}
 
@@ -107,10 +107,10 @@ public class SocialActivityExtenderBundleActivator implements BundleActivator {
 		}
 
 		private SocialActivityBundleTracker(
-			BundleContext context, int stateMask,
+			BundleContext bundleContext, int stateMask,
 			SocialConfiguration socialConfiguration) {
 
-			super(context, stateMask, null);
+			super(bundleContext, stateMask, null);
 
 			_socialConfiguration = socialConfiguration;
 		}

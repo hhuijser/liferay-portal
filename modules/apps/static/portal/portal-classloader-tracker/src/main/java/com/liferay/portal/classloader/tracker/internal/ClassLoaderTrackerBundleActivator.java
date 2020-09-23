@@ -62,7 +62,7 @@ public class ClassLoaderTrackerBundleActivator implements BundleActivator {
 	}
 
 	@Override
-	public void stop(BundleContext context) {
+	public void stop(BundleContext bundleContext) {
 		_bundleTracker.close();
 	}
 

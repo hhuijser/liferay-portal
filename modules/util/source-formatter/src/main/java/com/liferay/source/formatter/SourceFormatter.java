@@ -44,6 +44,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringReader;
 
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -62,6 +65,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import javax.xml.parsers.SAXParserFactory;
 
 /**
  * @author Hugo Huijser
@@ -308,6 +313,26 @@ public class SourceFormatter {
 
 	public void format() throws Exception {
 		_printProgressStatusMessage("Scanning for files...");
+
+		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+
+		Class<?> clazz = saxParserFactory.getClass();
+
+		ProtectionDomain protectionDomain = clazz.getProtectionDomain();
+
+		CodeSource codeSource = protectionDomain.getCodeSource();
+
+		System.out.println("=======================================");
+		System.out.println("CLASS_NAME: " + clazz.getName());
+
+		if (codeSource == null) {
+			System.out.println("CODE_SOURCE: NULL");
+		}
+		else {
+			System.out.println("CODE_SOURCE: " + codeSource.getLocation());
+		}
+
+		System.out.println("=======================================");
 
 		_init();
 

@@ -116,7 +116,7 @@ public class TopHeadExtender
 		_serviceTracker.close();
 	}
 
-	private static Map.Entry<List<String>, List<String>> _scanTopHeadResources(
+	private Map.Entry<List<String>, List<String>> _scanTopHeadResources(
 		Dictionary<String, String> headers) {
 
 		String liferayJsResourcesTopHead = headers.get(

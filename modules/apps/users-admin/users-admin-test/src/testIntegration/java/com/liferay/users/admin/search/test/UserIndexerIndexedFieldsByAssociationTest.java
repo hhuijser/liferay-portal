@@ -321,7 +321,7 @@ public class UserIndexerIndexedFieldsByAssociationTest {
 	protected UserGroupSearchFixture userGroupSearchFixture;
 	protected UserSearchFixture userSearchFixture;
 
-	private static String _toListString(Stream<?> stream) {
+	private String _toListString(Stream<?> stream) {
 		return stream.map(
 			String::valueOf
 		).collect(
@@ -331,11 +331,11 @@ public class UserIndexerIndexedFieldsByAssociationTest {
 		);
 	}
 
-	private static String _toSingletonListString(String string) {
+	private String _toSingletonListString(String string) {
 		return String.valueOf(Collections.singletonList(string));
 	}
 
-	private static String _toSortedListString(Stream<?> stream) {
+	private String _toSortedListString(Stream<?> stream) {
 		return _toListString(
 			stream.map(
 				String::valueOf

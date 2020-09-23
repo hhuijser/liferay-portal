@@ -110,10 +110,6 @@ public class AutoUpgradeProcessTest {
 			"2.0.0", _registerNewUpgradeProcess().getSchemaVersion());
 	}
 
-	private static void _setAutoUpgrade(boolean value) throws Exception {
-		_upgradeDatabaseAutoRunField.set(null, value);
-	}
-
 	private Release _registerNewUpgradeProcess() throws Exception {
 		_releaseLocalService.addRelease(_SERVLET_CONTEXT_NAME, "1.0.0");
 
@@ -126,6 +122,10 @@ public class AutoUpgradeProcessTest {
 			null);
 
 		return _releaseLocalService.fetchRelease(_SERVLET_CONTEXT_NAME);
+	}
+
+	private void _setAutoUpgrade(boolean value) throws Exception {
+		_upgradeDatabaseAutoRunField.set(null, value);
 	}
 
 	private static final boolean _ORIGINAL_UPGRADE_DATABASE_AUTO_RUN =

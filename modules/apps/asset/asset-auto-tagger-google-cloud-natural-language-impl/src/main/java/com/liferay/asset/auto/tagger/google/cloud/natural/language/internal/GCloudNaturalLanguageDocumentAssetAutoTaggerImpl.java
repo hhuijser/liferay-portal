@@ -120,10 +120,6 @@ public class GCloudNaturalLanguageDocumentAssetAutoTaggerImpl
 		);
 	}
 
-	private static <T> Predicate<T> _negate(Predicate<T> predicate) {
-		return predicate.negate();
-	}
-
 	private Collection<String> _getClassificationTagNames(
 			GCloudNaturalLanguageAssetAutoTaggerCompanyConfiguration
 				gCloudNaturalLanguageAssetAutoTaggerCompanyConfiguration,
@@ -208,6 +204,10 @@ public class GCloudNaturalLanguageDocumentAssetAutoTaggerImpl
 		return StringBundler.concat(
 			"https://language.googleapis.com/v1/documents:", endpoint, "?key=",
 			apiKey);
+	}
+
+	private <T> Predicate<T> _negate(Predicate<T> predicate) {
+		return predicate.negate();
 	}
 
 	private JSONObject _post(String serviceURL, String body) throws Exception {

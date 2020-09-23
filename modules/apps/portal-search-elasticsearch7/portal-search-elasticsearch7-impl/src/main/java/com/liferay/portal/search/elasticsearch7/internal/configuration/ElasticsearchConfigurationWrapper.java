@@ -276,7 +276,7 @@ public class ElasticsearchConfigurationWrapper
 		_props = props;
 	}
 
-	private static Map<String, Object> _getPropsMap(
+	private Map<String, Object> _getPropsMap(
 		String[] keys, Class<?> clazz, Props props) {
 
 		if (props == null) {

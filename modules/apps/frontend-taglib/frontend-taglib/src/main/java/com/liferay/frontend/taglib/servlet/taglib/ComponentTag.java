@@ -176,7 +176,7 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 		return positionInline;
 	}
 
-	private static String _getModuleName(String module) {
+	private String _getModuleName(String module) {
 		String moduleName = StringUtil.extractLast(
 			module, CharPool.FORWARD_SLASH);
 

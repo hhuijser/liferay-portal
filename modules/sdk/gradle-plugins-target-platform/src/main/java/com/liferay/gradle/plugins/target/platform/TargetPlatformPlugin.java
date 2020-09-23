@@ -134,9 +134,7 @@ public class TargetPlatformPlugin implements Plugin<Project> {
 			});
 	}
 
-	private static Configuration _addConfigurationTargetPlatformBoms(
-		Project project) {
-
+	private Configuration _addConfigurationTargetPlatformBoms(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, TARGET_PLATFORM_BOMS_CONFIGURATION_NAME);
 
@@ -148,7 +146,7 @@ public class TargetPlatformPlugin implements Plugin<Project> {
 		return configuration;
 	}
 
-	private static Configuration _addConfigurationTargetPlatformDistro(
+	private Configuration _addConfigurationTargetPlatformDistro(
 		Project project) {
 
 		Configuration configuration = GradleUtil.addConfiguration(

@@ -132,8 +132,30 @@ public class SQLEqualsTest {
 		_assert("typeVarchar", 3, " != ");
 	}
 
-	private static void _assert(
-			String columnName, long expectedPK, String compare)
+	private static void _insert(
+			PreparedStatement ps, int pk, String typeBlob, boolean typeBoolean,
+			long typeDate, double typeDouble, int typeInteger, long typeLong,
+			String typeString, String typeText, String typeVarchar)
+		throws Exception {
+
+		ps.setLong(1, pk);
+		ps.setBlob(
+			2,
+			new UnsyncByteArrayInputStream(
+				typeBlob.getBytes(StandardCharsets.US_ASCII)));
+		ps.setBoolean(3, typeBoolean);
+		ps.setDate(4, new Date(typeDate));
+		ps.setDouble(5, typeDouble);
+		ps.setInt(6, typeInteger);
+		ps.setLong(7, typeLong);
+		ps.setString(8, typeString);
+		ps.setString(9, typeText);
+		ps.setString(10, typeVarchar);
+
+		ps.executeUpdate();
+	}
+
+	private void _assert(String columnName, long expectedPK, String compare)
 		throws Exception {
 
 		DB db = DBManagerUtil.getDB();
@@ -188,29 +210,6 @@ public class SQLEqualsTest {
 			Assert.assertEquals(sql, expectedPK, rs.getLong(1));
 			Assert.assertFalse(sql, rs.next());
 		}
-	}
-
-	private static void _insert(
-			PreparedStatement ps, int pk, String typeBlob, boolean typeBoolean,
-			long typeDate, double typeDouble, int typeInteger, long typeLong,
-			String typeString, String typeText, String typeVarchar)
-		throws Exception {
-
-		ps.setLong(1, pk);
-		ps.setBlob(
-			2,
-			new UnsyncByteArrayInputStream(
-				typeBlob.getBytes(StandardCharsets.US_ASCII)));
-		ps.setBoolean(3, typeBoolean);
-		ps.setDate(4, new Date(typeDate));
-		ps.setDouble(5, typeDouble);
-		ps.setInt(6, typeInteger);
-		ps.setLong(7, typeLong);
-		ps.setString(8, typeString);
-		ps.setString(9, typeText);
-		ps.setString(10, typeVarchar);
-
-		ps.executeUpdate();
 	}
 
 	private static DB _db;

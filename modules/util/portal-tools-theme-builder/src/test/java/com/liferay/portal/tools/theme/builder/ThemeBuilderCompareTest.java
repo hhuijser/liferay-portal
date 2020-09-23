@@ -179,77 +179,6 @@ public class ThemeBuilderCompareTest {
 	@Rule
 	public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private static Map<String, byte[]> _getFileNameDigests(
-			final Path dirPath, String... excludePatterns)
-		throws Exception {
-
-		final Map<String, byte[]> fileNameDigests = new HashMap<>();
-
-		final MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-
-		final List<PathMatcher> excludePathMatchers = new ArrayList<>(
-			excludePatterns.length);
-
-		FileSystem fileSystem = dirPath.getFileSystem();
-
-		String dirName = dirPath.toString();
-
-		if (File.separatorChar != '/') {
-			dirName = dirName.replace(File.separatorChar, '/');
-		}
-
-		for (String pattern : excludePatterns) {
-			PathMatcher pathMatcher = fileSystem.getPathMatcher(
-				"glob:" + dirName + "/" + pattern);
-
-			excludePathMatchers.add(pathMatcher);
-		}
-
-		Files.walkFileTree(
-			dirPath,
-			new SimpleFileVisitor<Path>() {
-
-				@Override
-				public FileVisitResult visitFile(
-						Path path, BasicFileAttributes basicFileAttributes)
-					throws IOException {
-
-					for (PathMatcher pathMatcher : excludePathMatchers) {
-						if (pathMatcher.matches(path)) {
-							return FileVisitResult.CONTINUE;
-						}
-					}
-
-					Path relativePath = dirPath.relativize(path);
-
-					messageDigest.reset();
-
-					messageDigest.update(Files.readAllBytes(path));
-
-					fileNameDigests.put(
-						relativePath.toString(), messageDigest.digest());
-
-					return FileVisitResult.CONTINUE;
-				}
-
-			});
-
-		return fileNameDigests;
-	}
-
-	private static File _getParentDir(String parentName) {
-		if (parentName.equals(ThemeBuilder.STYLED)) {
-			return _styledJarFile;
-		}
-
-		if (parentName.equals(ThemeBuilder.UNSTYLED)) {
-			return _unstyledJarFile;
-		}
-
-		throw new IllegalArgumentException(
-			"Unsupported parent name " + parentName);
-	}
-
 	private static Object[] _getTestTheme(
 			String dirName, String warFileName,
 			DocumentBuilderFactory documentBuilderFactory)
@@ -309,7 +238,78 @@ public class ThemeBuilderCompareTest {
 		};
 	}
 
-	private static void _unzip(File file, File outputDir) throws Exception {
+	private Map<String, byte[]> _getFileNameDigests(
+			final Path dirPath, String... excludePatterns)
+		throws Exception {
+
+		final Map<String, byte[]> fileNameDigests = new HashMap<>();
+
+		final MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+
+		final List<PathMatcher> excludePathMatchers = new ArrayList<>(
+			excludePatterns.length);
+
+		FileSystem fileSystem = dirPath.getFileSystem();
+
+		String dirName = dirPath.toString();
+
+		if (File.separatorChar != '/') {
+			dirName = dirName.replace(File.separatorChar, '/');
+		}
+
+		for (String pattern : excludePatterns) {
+			PathMatcher pathMatcher = fileSystem.getPathMatcher(
+				"glob:" + dirName + "/" + pattern);
+
+			excludePathMatchers.add(pathMatcher);
+		}
+
+		Files.walkFileTree(
+			dirPath,
+			new SimpleFileVisitor<Path>() {
+
+				@Override
+				public FileVisitResult visitFile(
+						Path path, BasicFileAttributes basicFileAttributes)
+					throws IOException {
+
+					for (PathMatcher pathMatcher : excludePathMatchers) {
+						if (pathMatcher.matches(path)) {
+							return FileVisitResult.CONTINUE;
+						}
+					}
+
+					Path relativePath = dirPath.relativize(path);
+
+					messageDigest.reset();
+
+					messageDigest.update(Files.readAllBytes(path));
+
+					fileNameDigests.put(
+						relativePath.toString(), messageDigest.digest());
+
+					return FileVisitResult.CONTINUE;
+				}
+
+			});
+
+		return fileNameDigests;
+	}
+
+	private File _getParentDir(String parentName) {
+		if (parentName.equals(ThemeBuilder.STYLED)) {
+			return _styledJarFile;
+		}
+
+		if (parentName.equals(ThemeBuilder.UNSTYLED)) {
+			return _unstyledJarFile;
+		}
+
+		throw new IllegalArgumentException(
+			"Unsupported parent name " + parentName);
+	}
+
+	private void _unzip(File file, File outputDir) throws Exception {
 		Path outputDirPath = outputDir.toPath();
 
 		try (ZipFile zipFile = new ZipFile(file)) {

@@ -135,7 +135,7 @@ public class RepositoryClassDefinitionCatalogImplTest {
 		}
 	}
 
-	private static RepositoryDefiner _getRepositoryDefiner(
+	private RepositoryDefiner _getRepositoryDefiner(
 		String className, boolean external) {
 
 		return (RepositoryDefiner)ProxyUtil.newProxyInstance(

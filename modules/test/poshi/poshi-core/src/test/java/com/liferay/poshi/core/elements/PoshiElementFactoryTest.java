@@ -228,7 +228,7 @@ public class PoshiElementFactoryTest {
 			"Poshi XML syntax does not translate to XML");
 	}
 
-	private static void _assertEqualElements(
+	private void _assertEqualElements(
 			Element actualElement, Element expectedElement, String errorMessage)
 		throws Exception {
 
@@ -246,7 +246,7 @@ public class PoshiElementFactoryTest {
 		}
 	}
 
-	private static void _assertEqualStrings(
+	private void _assertEqualStrings(
 			String actual, String expected, String errorMessage)
 		throws Exception {
 
@@ -257,7 +257,7 @@ public class PoshiElementFactoryTest {
 		}
 	}
 
-	private static Element _getDom4JElement(String fileName) throws Exception {
+	private Element _getDom4JElement(String fileName) throws Exception {
 		String fileContent = FileUtil.read(_BASE_DIR + fileName);
 
 		Document document = Dom4JUtil.parse(fileContent);
@@ -269,7 +269,7 @@ public class PoshiElementFactoryTest {
 		return rootElement;
 	}
 
-	private static String _getErrorMessage(
+	private String _getErrorMessage(
 			String actual, String expected, String errorMessage)
 		throws Exception {
 
@@ -284,13 +284,11 @@ public class PoshiElementFactoryTest {
 		return sb.toString();
 	}
 
-	private static File _getFile(String fileName) {
+	private File _getFile(String fileName) {
 		return new File(_BASE_DIR + fileName);
 	}
 
-	private static PoshiElement _getPoshiElement(String fileName)
-		throws Exception {
-
+	private PoshiElement _getPoshiElement(String fileName) throws Exception {
 		File file = _getFile(fileName);
 
 		return (PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(

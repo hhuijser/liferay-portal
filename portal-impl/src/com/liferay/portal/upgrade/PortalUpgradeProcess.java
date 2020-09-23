@@ -156,7 +156,7 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	private static void _initializeSchemaVersion(Connection connection)
+	private void _initializeSchemaVersion(Connection connection)
 		throws Exception {
 
 		try (PreparedStatement ps = connection.prepareStatement(

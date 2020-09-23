@@ -277,7 +277,7 @@ public class ScopedBeanManager {
 		return scopedBean.getContainerCreatedInstance();
 	}
 
-	private static String _getAttributeName(Bean<?> bean) {
+	private String _getAttributeName(Bean<?> bean) {
 		String attributeName = bean.getName();
 
 		if ((attributeName == null) || attributeName.isEmpty()) {

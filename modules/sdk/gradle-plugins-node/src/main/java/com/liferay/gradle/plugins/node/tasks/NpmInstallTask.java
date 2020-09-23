@@ -284,9 +284,19 @@ public class NpmInstallTask extends ExecutePackageManagerTask {
 		return completeArgs;
 	}
 
-	private static String _getNodeModulesCacheDigest(
-		NpmInstallTask npmInstallTask) {
+	private File _getExistentFile(String fileName) {
+		Project project = getProject();
 
+		File file = project.file(fileName);
+
+		if (!file.exists()) {
+			file = null;
+		}
+
+		return file;
+	}
+
+	private String _getNodeModulesCacheDigest(NpmInstallTask npmInstallTask) {
 		Logger logger = npmInstallTask.getLogger();
 
 		JsonSlurper jsonSlurper = new JsonSlurper();
@@ -322,88 +332,6 @@ public class NpmInstallTask extends ExecutePackageManagerTask {
 		map.remove("version");
 
 		return String.valueOf(map.hashCode());
-	}
-
-	private static synchronized void _npmInstallCached(
-			NpmInstallTask npmInstallTask, boolean reset)
-		throws Exception {
-
-		Logger logger = npmInstallTask.getLogger();
-		Project project = npmInstallTask.getProject();
-
-		String digest = _getNodeModulesCacheDigest(npmInstallTask);
-
-		File nodeModulesCacheDir = new File(
-			npmInstallTask.getNodeModulesCacheDir(), digest);
-
-		File nodeModulesDir = npmInstallTask.getNodeModulesDir();
-
-		boolean nativeSync = npmInstallTask.isNodeModulesCacheNativeSync();
-
-		if (reset) {
-			project.delete(nodeModulesCacheDir);
-		}
-
-		if (nodeModulesCacheDir.exists()) {
-			if (logger.isLifecycleEnabled()) {
-				logger.lifecycle(
-					"Restoring node_modules of {} from {}", project,
-					nodeModulesCacheDir);
-			}
-
-			FileUtil.syncDir(
-				project, nodeModulesCacheDir, nodeModulesDir, nativeSync);
-
-			if (logger.isLifecycleEnabled()) {
-				logger.lifecycle(
-					"Removing binary symbolic links of {} from {}", project,
-					nodeModulesDir);
-			}
-
-			FileUtil.removeBinDirLinks(logger, nodeModulesDir);
-		}
-		else {
-			npmInstallTask._npmInstall(reset);
-
-			if (logger.isLifecycleEnabled()) {
-				logger.lifecycle(
-					"Removing binary symbolic links of {} from {}", project,
-					nodeModulesDir);
-			}
-
-			FileUtil.removeBinDirLinks(logger, nodeModulesDir);
-
-			if (logger.isLifecycleEnabled()) {
-				logger.lifecycle(
-					"Caching node_modules of {} in {}", project,
-					nodeModulesCacheDir);
-			}
-
-			FileUtil.syncDir(
-				project, nodeModulesDir, nodeModulesCacheDir, nativeSync);
-		}
-
-		if (!OSDetector.isWindows()) {
-			if (logger.isLifecycleEnabled()) {
-				logger.lifecycle(
-					"Restoring binary symbolic links of {} from {}", project,
-					nodeModulesDir);
-			}
-
-			FileUtil.createBinDirLinks(logger, nodeModulesDir);
-		}
-	}
-
-	private File _getExistentFile(String fileName) {
-		Project project = getProject();
-
-		File file = project.file(fileName);
-
-		if (!file.exists()) {
-			file = null;
-		}
-
-		return file;
 	}
 
 	private boolean _isCacheEnabled() {
@@ -472,6 +400,76 @@ public class NpmInstallTask extends ExecutePackageManagerTask {
 
 				_npmCacheVerify();
 			}
+		}
+	}
+
+	private synchronized void _npmInstallCached(
+			NpmInstallTask npmInstallTask, boolean reset)
+		throws Exception {
+
+		Logger logger = npmInstallTask.getLogger();
+		Project project = npmInstallTask.getProject();
+
+		String digest = _getNodeModulesCacheDigest(npmInstallTask);
+
+		File nodeModulesCacheDir = new File(
+			npmInstallTask.getNodeModulesCacheDir(), digest);
+
+		File nodeModulesDir = npmInstallTask.getNodeModulesDir();
+
+		boolean nativeSync = npmInstallTask.isNodeModulesCacheNativeSync();
+
+		if (reset) {
+			project.delete(nodeModulesCacheDir);
+		}
+
+		if (nodeModulesCacheDir.exists()) {
+			if (logger.isLifecycleEnabled()) {
+				logger.lifecycle(
+					"Restoring node_modules of {} from {}", project,
+					nodeModulesCacheDir);
+			}
+
+			FileUtil.syncDir(
+				project, nodeModulesCacheDir, nodeModulesDir, nativeSync);
+
+			if (logger.isLifecycleEnabled()) {
+				logger.lifecycle(
+					"Removing binary symbolic links of {} from {}", project,
+					nodeModulesDir);
+			}
+
+			FileUtil.removeBinDirLinks(logger, nodeModulesDir);
+		}
+		else {
+			npmInstallTask._npmInstall(reset);
+
+			if (logger.isLifecycleEnabled()) {
+				logger.lifecycle(
+					"Removing binary symbolic links of {} from {}", project,
+					nodeModulesDir);
+			}
+
+			FileUtil.removeBinDirLinks(logger, nodeModulesDir);
+
+			if (logger.isLifecycleEnabled()) {
+				logger.lifecycle(
+					"Caching node_modules of {} in {}", project,
+					nodeModulesCacheDir);
+			}
+
+			FileUtil.syncDir(
+				project, nodeModulesDir, nodeModulesCacheDir, nativeSync);
+		}
+
+		if (!OSDetector.isWindows()) {
+			if (logger.isLifecycleEnabled()) {
+				logger.lifecycle(
+					"Restoring binary symbolic links of {} from {}", project,
+					nodeModulesDir);
+			}
+
+			FileUtil.createBinDirLinks(logger, nodeModulesDir);
 		}
 	}
 

@@ -218,7 +218,7 @@ public class ScopedCSSVariablesTopHeadDynamicIncludeTest {
 		);
 	}
 
-	private static final String _read(String fileName, boolean addNewLine) {
+	private final String _read(String fileName, boolean addNewLine) {
 		Class<ScopedCSSVariablesTopHeadDynamicIncludeTest> clazz =
 			ScopedCSSVariablesTopHeadDynamicIncludeTest.class;
 

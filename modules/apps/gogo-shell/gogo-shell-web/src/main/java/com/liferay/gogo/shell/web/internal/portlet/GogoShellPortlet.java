@@ -249,7 +249,7 @@ public class GogoShellPortlet extends MVCPortlet {
 			new TransientValue<>(outputUnsyncByteArrayOutputStream));
 	}
 
-	private static <T> T _getSessionAttribute(
+	private <T> T _getSessionAttribute(
 		PortletRequest portletRequest, String name) {
 
 		PortletSession portletSession = portletRequest.getPortletSession();

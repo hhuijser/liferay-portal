@@ -482,16 +482,6 @@ public class AssignScopesDisplayContext
 			});
 	}
 
-	private static <K, V> Map<V, K> _invertMap(Map<K, V> map) {
-		Map<V, K> ret = new HashMap<>();
-
-		for (Map.Entry<K, V> entry : map.entrySet()) {
-			ret.put(entry.getValue(), entry.getKey());
-		}
-
-		return ret;
-	}
-
 	private void _indexAssignableScopes(
 		AssignableScopes assignableScopes, Set<String> assignedApplicationNames,
 		boolean indexAsGlobalAssignableScopes) {
@@ -524,6 +514,16 @@ public class AssignScopesDisplayContext
 
 			assignableScopesSet.add(assignableScopes);
 		}
+	}
+
+	private <K, V> Map<V, K> _invertMap(Map<K, V> map) {
+		Map<V, K> ret = new HashMap<>();
+
+		for (Map.Entry<K, V> entry : map.entrySet()) {
+			ret.put(entry.getValue(), entry.getKey());
+		}
+
+		return ret;
 	}
 
 	private Map<AssignableScopes, Relations> _normalize(

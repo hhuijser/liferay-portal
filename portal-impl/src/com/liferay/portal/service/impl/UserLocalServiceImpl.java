@@ -7177,17 +7177,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@BeanReference(type = MailService.class)
 	protected MailService mailService;
 
-	private static boolean _isPasswordUnchanged(
-			User user, String newPlaintextPwd, String newEncPwd)
-		throws PwdEncryptorException {
-
-		if (!user.isPasswordEncrypted()) {
-			return newPlaintextPwd.equals(user.getPassword());
-		}
-
-		return newEncPwd.equals(user.getPassword());
-	}
-
 	private User _checkPasswordPolicy(User user) throws PortalException {
 
 		// Check password policy to see if the is account locked out or if the
@@ -7259,6 +7248,17 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 					ticket.getExtraInfo(), new Date());
 			}
 		}
+	}
+
+	private boolean _isPasswordUnchanged(
+			User user, String newPlaintextPwd, String newEncPwd)
+		throws PwdEncryptorException {
+
+		if (!user.isPasswordEncrypted()) {
+			return newPlaintextPwd.equals(user.getPassword());
+		}
+
+		return newEncPwd.equals(user.getPassword());
 	}
 
 	private void _sendNotificationEmail(

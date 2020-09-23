@@ -91,21 +91,6 @@ public class Scanner {
 		}
 	}
 
-	private static List<File> _canononize(List<File> files) {
-		List<File> canonicalFiles = new ArrayList<>(files.size());
-
-		for (File file : files) {
-			try {
-				canonicalFiles.add(file.getCanonicalFile());
-			}
-			catch (IOException ioException) {
-				canonicalFiles.add(file);
-			}
-		}
-
-		return canonicalFiles;
-	}
-
 	private static long _checksum(File file) {
 		CRC32 crc32 = new CRC32();
 
@@ -140,6 +125,21 @@ public class Scanner {
 
 			l >>= 8;
 		}
+	}
+
+	private List<File> _canononize(List<File> files) {
+		List<File> canonicalFiles = new ArrayList<>(files.size());
+
+		for (File file : files) {
+			try {
+				canonicalFiles.add(file.getCanonicalFile());
+			}
+			catch (IOException ioException) {
+				canonicalFiles.add(file);
+			}
+		}
+
+		return canonicalFiles;
 	}
 
 	private File[] _list() {

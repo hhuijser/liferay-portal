@@ -730,7 +730,7 @@ public class CommercePriceListLocalServiceTest {
 	@Rule
 	public final FrutillaRule frutillaRule = new FrutillaRule();
 
-	private static void _assertPriceListAttributes(
+	private void _assertPriceListAttributes(
 			Currency currency, String name, CommercePriceList commercePriceList)
 		throws Exception {
 
@@ -744,7 +744,7 @@ public class CommercePriceListLocalServiceTest {
 		Assert.assertThat(commercePriceList.getName(), equalTo(name));
 	}
 
-	private static Date _truncateSeconds(Date date) {
+	private Date _truncateSeconds(Date date) {
 		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
 		calendar.setTime(date);

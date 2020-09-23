@@ -414,7 +414,7 @@ public class CommerceTierPriceEntryLocalServiceTest {
 	@Rule
 	public final FrutillaRule frutillaRule = new FrutillaRule();
 
-	private static void _assertTierPriceEntryAttributes(
+	private void _assertTierPriceEntryAttributes(
 			CommercePriceEntry commercePriceEntry, int minQuantity,
 			double price, double promoPrice,
 			CommerceTierPriceEntry commerceTierPriceEntry)

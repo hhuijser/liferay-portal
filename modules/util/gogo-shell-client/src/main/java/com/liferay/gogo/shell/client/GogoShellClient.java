@@ -76,22 +76,10 @@ public class GogoShellClient implements AutoCloseable {
 		return _readUntilNextGogoPrompt();
 	}
 
-	private static void _assertCondition(boolean condition) {
+	private void _assertCondition(boolean condition) {
 		if (!condition) {
 			throw new AssertionError();
 		}
-	}
-
-	private static int[] _toIntArray(List<Integer> list) {
-		int[] array = new int[list.size()];
-
-		int i = 0;
-
-		for (Integer integer : list) {
-			array[i++] = integer.intValue();
-		}
-
-		return array;
 	}
 
 	private void _handshake() throws IOException {
@@ -208,6 +196,18 @@ public class GogoShellClient implements AutoCloseable {
 		for (int code : codes) {
 			_dataOutputStream.write(code);
 		}
+	}
+
+	private int[] _toIntArray(List<Integer> list) {
+		int[] array = new int[list.size()];
+
+		int i = 0;
+
+		for (Integer integer : list) {
+			array[i++] = integer.intValue();
+		}
+
+		return array;
 	}
 
 	private final DataInputStream _dataInputStream;

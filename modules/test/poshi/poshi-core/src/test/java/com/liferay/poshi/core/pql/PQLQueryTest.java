@@ -222,28 +222,6 @@ public class PQLQueryTest extends TestCase {
 		}
 	}
 
-	private static void _validateGetPQLResult(
-			String pql, Object expectedPQLResult, Properties properties)
-		throws Exception {
-
-		PQLQuery pqlQuery = new PQLQuery(pql);
-
-		Object actualPQLResult = pqlQuery.getPQLResult(properties);
-
-		if (!actualPQLResult.equals(expectedPQLResult)) {
-			StringBuilder sb = new StringBuilder();
-
-			sb.append("Mismatched PQL result within the following PQL:\n");
-			sb.append(pql);
-			sb.append("\n* Actual:   ");
-			sb.append(actualPQLResult);
-			sb.append("\n* Expected: ");
-			sb.append(expectedPQLResult);
-
-			throw new Exception(sb.toString());
-		}
-	}
-
 	private static void _validateGetPQLResultError(
 			String pql, String expectedError)
 		throws Exception {
@@ -283,6 +261,28 @@ public class PQLQueryTest extends TestCase {
 				throw new Exception(
 					"No error thrown for the following PQL: " + pql);
 			}
+		}
+	}
+
+	private void _validateGetPQLResult(
+			String pql, Object expectedPQLResult, Properties properties)
+		throws Exception {
+
+		PQLQuery pqlQuery = new PQLQuery(pql);
+
+		Object actualPQLResult = pqlQuery.getPQLResult(properties);
+
+		if (!actualPQLResult.equals(expectedPQLResult)) {
+			StringBuilder sb = new StringBuilder();
+
+			sb.append("Mismatched PQL result within the following PQL:\n");
+			sb.append(pql);
+			sb.append("\n* Actual:   ");
+			sb.append(actualPQLResult);
+			sb.append("\n* Expected: ");
+			sb.append(expectedPQLResult);
+
+			throw new Exception(sb.toString());
 		}
 	}
 

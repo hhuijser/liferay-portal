@@ -238,7 +238,20 @@ public class PortletAsyncContextImpl implements PortletAsyncContext {
 		}
 	}
 
-	private static PortletAsyncListenerFactory _getPortletAsyncListenerFactory(
+	private ServletRequest _getOriginalServletRequest() {
+		ServletRequest originalServletRequest = _asyncPortletServletRequest;
+
+		while (originalServletRequest instanceof ServletRequestWrapper) {
+			ServletRequestWrapper servletRequestWrapper =
+				(ServletRequestWrapper)originalServletRequest;
+
+			originalServletRequest = servletRequestWrapper.getRequest();
+		}
+
+		return originalServletRequest;
+	}
+
+	private PortletAsyncListenerFactory _getPortletAsyncListenerFactory(
 		String servletContextName) {
 
 		PortletAsyncListenerFactory portletAsyncListenerFactory =
@@ -251,7 +264,7 @@ public class PortletAsyncContextImpl implements PortletAsyncContext {
 		return portletAsyncListenerFactory;
 	}
 
-	private static PortletAsyncScopeManager _getPortletAsyncScopeManager(
+	private PortletAsyncScopeManager _getPortletAsyncScopeManager(
 		String servletContextName) {
 
 		PortletAsyncScopeManagerFactory portletAsyncScopeManagerFactory =
@@ -262,19 +275,6 @@ public class PortletAsyncContextImpl implements PortletAsyncContext {
 		}
 
 		return portletAsyncScopeManagerFactory.getPortletAsyncScopeManager();
-	}
-
-	private ServletRequest _getOriginalServletRequest() {
-		ServletRequest originalServletRequest = _asyncPortletServletRequest;
-
-		while (originalServletRequest instanceof ServletRequestWrapper) {
-			ServletRequestWrapper servletRequestWrapper =
-				(ServletRequestWrapper)originalServletRequest;
-
-			originalServletRequest = servletRequestWrapper.getRequest();
-		}
-
-		return originalServletRequest;
 	}
 
 	private static final PortletAsyncListenerFactory

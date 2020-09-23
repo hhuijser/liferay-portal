@@ -366,9 +366,24 @@ public class AssetListAssetEntryProviderImpl
 			assetListAssetEntryQueryProcessor);
 	}
 
-	private static long[] _getAssetCategoryIds(
-		UnicodeProperties unicodeProperties) {
+	private long[] _filterAssetCategoryIds(long[] assetCategoryIds) {
+		List<Long> assetCategoryIdsList = new ArrayList<>();
 
+		for (long assetCategoryId : assetCategoryIds) {
+			AssetCategory category =
+				_assetCategoryLocalService.fetchAssetCategory(assetCategoryId);
+
+			if (category == null) {
+				continue;
+			}
+
+			assetCategoryIdsList.add(assetCategoryId);
+		}
+
+		return ArrayUtil.toArray(assetCategoryIdsList.toArray(new Long[0]));
+	}
+
+	private long[] _getAssetCategoryIds(UnicodeProperties unicodeProperties) {
 		long[] assetCategoryIds = new long[0];
 
 		for (int i = 0; true; i++) {
@@ -399,9 +414,7 @@ public class AssetListAssetEntryProviderImpl
 		return assetCategoryIds;
 	}
 
-	private static String[] _getAssetTagNames(
-		UnicodeProperties unicodeProperties) {
-
+	private String[] _getAssetTagNames(UnicodeProperties unicodeProperties) {
 		String[] allAssetTagNames = new String[0];
 
 		for (int i = 0; true; i++) {
@@ -430,53 +443,6 @@ public class AssetListAssetEntryProviderImpl
 		}
 
 		return allAssetTagNames;
-	}
-
-	private static String[] _getKeywords(UnicodeProperties unicodeProperties) {
-		String[] allKeywords = new String[0];
-
-		for (int i = 0; true; i++) {
-			String[] queryValues = StringUtil.split(
-				unicodeProperties.getProperty("queryValues" + i, null));
-
-			if (ArrayUtil.isEmpty(queryValues)) {
-				break;
-			}
-
-			boolean queryContains = GetterUtil.getBoolean(
-				unicodeProperties.getProperty(
-					"queryContains" + i, StringPool.BLANK));
-			boolean queryAndOperator = GetterUtil.getBoolean(
-				unicodeProperties.getProperty(
-					"queryAndOperator" + i, StringPool.BLANK));
-			String queryName = unicodeProperties.getProperty(
-				"queryName" + i, StringPool.BLANK);
-
-			if (Objects.equals(queryName, "keywords") && queryContains &&
-				(queryAndOperator || (queryValues.length == 1))) {
-
-				allKeywords = queryValues;
-			}
-		}
-
-		return allKeywords;
-	}
-
-	private long[] _filterAssetCategoryIds(long[] assetCategoryIds) {
-		List<Long> assetCategoryIdsList = new ArrayList<>();
-
-		for (long assetCategoryId : assetCategoryIds) {
-			AssetCategory category =
-				_assetCategoryLocalService.fetchAssetCategory(assetCategoryId);
-
-			if (category == null) {
-				continue;
-			}
-
-			assetCategoryIdsList.add(assetCategoryId);
-		}
-
-		return ArrayUtil.toArray(assetCategoryIdsList.toArray(new Long[0]));
 	}
 
 	private long[] _getClassNameIds(
@@ -687,6 +653,36 @@ public class AssetListAssetEntryProviderImpl
 		).orElse(
 			SegmentsEntryConstants.ID_DEFAULT
 		);
+	}
+
+	private String[] _getKeywords(UnicodeProperties unicodeProperties) {
+		String[] allKeywords = new String[0];
+
+		for (int i = 0; true; i++) {
+			String[] queryValues = StringUtil.split(
+				unicodeProperties.getProperty("queryValues" + i, null));
+
+			if (ArrayUtil.isEmpty(queryValues)) {
+				break;
+			}
+
+			boolean queryContains = GetterUtil.getBoolean(
+				unicodeProperties.getProperty(
+					"queryContains" + i, StringPool.BLANK));
+			boolean queryAndOperator = GetterUtil.getBoolean(
+				unicodeProperties.getProperty(
+					"queryAndOperator" + i, StringPool.BLANK));
+			String queryName = unicodeProperties.getProperty(
+				"queryName" + i, StringPool.BLANK);
+
+			if (Objects.equals(queryName, "keywords") && queryContains &&
+				(queryAndOperator || (queryValues.length == 1))) {
+
+				allKeywords = queryValues;
+			}
+		}
+
+		return allKeywords;
 	}
 
 	private List<AssetEntry> _getManualAssetEntries(

@@ -212,18 +212,6 @@ public class DocumentImpl implements Document {
 		setFieldValues(name, _toCollection(values));
 	}
 
-	private static Collection<Object> _toCollection(Object[] values) {
-		if (ArrayUtil.isEmpty(values)) {
-			return null;
-		}
-
-		if ((values.length == 1) && (values[0] == null)) {
-			return null;
-		}
-
-		return Arrays.asList(values);
-	}
-
 	private boolean _isEmpty(Object value) {
 		if (value == null) {
 			return true;
@@ -238,6 +226,18 @@ public class DocumentImpl implements Document {
 		}
 
 		return false;
+	}
+
+	private Collection<Object> _toCollection(Object[] values) {
+		if (ArrayUtil.isEmpty(values)) {
+			return null;
+		}
+
+		if ((values.length == 1) && (values[0] == null)) {
+			return null;
+		}
+
+		return Arrays.asList(values);
 	}
 
 	private final Map<String, Field> _fields;

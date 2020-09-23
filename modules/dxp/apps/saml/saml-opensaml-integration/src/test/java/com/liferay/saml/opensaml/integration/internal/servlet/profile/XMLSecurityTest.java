@@ -350,7 +350,7 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 		return mockHttpServletResponse.getRedirectedUrl();
 	}
 
-	private static Base64.Encoder _getEncoder() {
+	private Base64.Encoder _getEncoder() {
 		Base64.Encoder encoder = Base64.getEncoder();
 
 		return encoder.withoutPadding();

@@ -112,7 +112,7 @@ public class SambaAuth implements Authenticator {
 		_userLocalService = userLocalService;
 	}
 
-	private static void _setSambaPasswords(User user, String password) {
+	private void _setSambaPasswords(User user, String password) {
 		try {
 			PortalSambaUtil.setSambaLMPassword(user, password);
 			PortalSambaUtil.setSambaNTPassword(user, password);

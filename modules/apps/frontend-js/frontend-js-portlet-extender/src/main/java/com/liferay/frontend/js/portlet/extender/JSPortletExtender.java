@@ -83,29 +83,6 @@ public class JSPortletExtender {
 		_bundleTracker = null;
 	}
 
-	private static boolean _optIn(Bundle bundle) {
-		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
-
-		List<BundleWire> bundleWires = bundleWiring.getRequiredWires(
-			ExtenderNamespace.EXTENDER_NAMESPACE);
-
-		for (BundleWire bundleWire : bundleWires) {
-			BundleCapability bundleCapability = bundleWire.getCapability();
-
-			Map<String, Object> attributes = bundleCapability.getAttributes();
-
-			Object value = attributes.get(ExtenderNamespace.EXTENDER_NAMESPACE);
-
-			if ((value != null) &&
-				value.equals("liferay.frontend.js.portlet")) {
-
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	private void _addServiceProperties(
 		Dictionary<String, Object> properties, JSONObject portletJSONObject) {
 
@@ -158,6 +135,29 @@ public class JSPortletExtender {
 		}
 
 		return portletName;
+	}
+
+	private boolean _optIn(Bundle bundle) {
+		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
+
+		List<BundleWire> bundleWires = bundleWiring.getRequiredWires(
+			ExtenderNamespace.EXTENDER_NAMESPACE);
+
+		for (BundleWire bundleWire : bundleWires) {
+			BundleCapability bundleCapability = bundleWire.getCapability();
+
+			Map<String, Object> attributes = bundleCapability.getAttributes();
+
+			Object value = attributes.get(ExtenderNamespace.EXTENDER_NAMESPACE);
+
+			if ((value != null) &&
+				value.equals("liferay.frontend.js.portlet")) {
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private JSONObject _parse(URL url) {

@@ -132,7 +132,7 @@ public class PortalFixpackRelease {
 		return _portalRelease;
 	}
 
-	private static String _getPortalVersion(
+	private String _getPortalVersion(
 		String portalBuildVersion, String portalFixpackVersion) {
 
 		String basePortalVersionRegex = "(\\d)(\\d)(\\d\\d)";

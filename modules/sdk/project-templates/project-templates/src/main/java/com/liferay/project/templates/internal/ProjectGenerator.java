@@ -175,16 +175,6 @@ public class ProjectGenerator {
 		return archetypeGenerationResult;
 	}
 
-	private static boolean _isInVersionRange(
-		String versionString, String range) {
-
-		Version version = new Version(versionString);
-
-		VersionRange versionRange = new VersionRange(range);
-
-		return versionRange.includes(version);
-	}
-
 	private ProjectTemplateCustomizer _getProjectTemplateCustomizer(
 			String templateName)
 		throws Exception {
@@ -206,6 +196,14 @@ public class ProjectGenerator {
 		}
 
 		return null;
+	}
+
+	private boolean _isInVersionRange(String versionString, String range) {
+		Version version = new Version(versionString);
+
+		VersionRange versionRange = new VersionRange(range);
+
+		return versionRange.includes(version);
 	}
 
 	private void _setProperty(

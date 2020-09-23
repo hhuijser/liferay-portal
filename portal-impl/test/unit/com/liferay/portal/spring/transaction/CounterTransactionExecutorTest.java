@@ -326,7 +326,7 @@ public class CounterTransactionExecutorTest {
 	protected final Exception commitException = new Exception();
 	protected final Exception rollbackException = new Exception();
 
-	private static TransactionAttributeAdapter _newTransactionAttributeAdapter(
+	private TransactionAttributeAdapter _newTransactionAttributeAdapter(
 		Predicate<Throwable> predicate) {
 
 		return new TransactionAttributeAdapter(

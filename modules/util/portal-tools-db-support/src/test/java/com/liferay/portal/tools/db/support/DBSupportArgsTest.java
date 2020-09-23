@@ -57,7 +57,7 @@ public class DBSupportArgsTest {
 		Assert.assertEquals(_CUSTOM_USER_NAME, dbSupportArgs.getUserName());
 	}
 
-	private static File _getFile(String fileName) throws Exception {
+	private File _getFile(String fileName) throws Exception {
 		URL url = DBSupportArgsTest.class.getResource(
 			"dependencies/" + fileName);
 

@@ -347,9 +347,7 @@ public class ConfigurationImpl
 	}
 
 	@SuppressWarnings("unchecked")
-	private static Map<String, Object> _castPropertiesToMap(
-		Properties properties) {
-
+	private Map<String, Object> _castPropertiesToMap(Properties properties) {
 		return (Map)properties;
 	}
 

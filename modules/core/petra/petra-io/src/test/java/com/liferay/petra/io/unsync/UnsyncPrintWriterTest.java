@@ -604,7 +604,7 @@ public class UnsyncPrintWriterTest extends BaseWriterTestCase {
 		return new UnsyncPrintWriter(new StringWriter());
 	}
 
-	private static Writer _getOut(UnsyncPrintWriter unsyncPrintWriter) {
+	private Writer _getOut(UnsyncPrintWriter unsyncPrintWriter) {
 		try {
 			return (Writer)_writerField.get(unsyncPrintWriter);
 		}

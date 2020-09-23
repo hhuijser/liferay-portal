@@ -921,7 +921,39 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 	@Deprecated
 	protected boolean finderCacheEnabled = true;
 
-	private static Type _getType(Expression<?> expression) {
+	private ProjectionType _getProjectionType(
+		String[] tableNames, Collection<? extends Expression<?>> expressions) {
+
+		if (expressions.isEmpty() && (tableNames.length == 1)) {
+			if (Objects.equals(tableNames[0], _table.getTableName())) {
+				return ProjectionType.MODELS;
+			}
+		}
+		else if (expressions.size() == 1) {
+			Iterator<? extends Expression<?>> iterator = expressions.iterator();
+
+			Expression<?> expression = iterator.next();
+
+			if (expression instanceof TableStar) {
+				TableStar tableStar = (TableStar)expression;
+
+				if (Objects.equals(_table, tableStar.getTable())) {
+					return ProjectionType.MODELS;
+				}
+			}
+			else if (expression instanceof Alias<?>) {
+				Alias<?> alias = (Alias<?>)expression;
+
+				if (COUNT_COLUMN_NAME.equals(alias.getName())) {
+					return ProjectionType.COUNT;
+				}
+			}
+		}
+
+		return ProjectionType.COLUMNS;
+	}
+
+	private Type _getType(Expression<?> expression) {
 		if (expression instanceof Column) {
 			Column<?, ?> column = (Column<?, ?>)expression;
 
@@ -974,38 +1006,6 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 		}
 
 		throw new IllegalArgumentException(expression.toString());
-	}
-
-	private ProjectionType _getProjectionType(
-		String[] tableNames, Collection<? extends Expression<?>> expressions) {
-
-		if (expressions.isEmpty() && (tableNames.length == 1)) {
-			if (Objects.equals(tableNames[0], _table.getTableName())) {
-				return ProjectionType.MODELS;
-			}
-		}
-		else if (expressions.size() == 1) {
-			Iterator<? extends Expression<?>> iterator = expressions.iterator();
-
-			Expression<?> expression = iterator.next();
-
-			if (expression instanceof TableStar) {
-				TableStar tableStar = (TableStar)expression;
-
-				if (Objects.equals(_table, tableStar.getTable())) {
-					return ProjectionType.MODELS;
-				}
-			}
-			else if (expression instanceof Alias<?>) {
-				Alias<?> alias = (Alias<?>)expression;
-
-				if (COUNT_COLUMN_NAME.equals(alias.getName())) {
-					return ProjectionType.COUNT;
-				}
-			}
-		}
-
-		return ProjectionType.COLUMNS;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

@@ -162,7 +162,7 @@ public class DDMFormValuesMergerImpl implements DDMFormValuesMerger {
 		}
 	}
 
-	private static DecimalFormat _getDecimalFormat(Locale locale) {
+	private DecimalFormat _getDecimalFormat(Locale locale) {
 		DecimalFormat formatter = _decimalFormattersMap.get(locale);
 
 		if (formatter == null) {

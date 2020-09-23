@@ -172,194 +172,6 @@ public class DataGuardTestRule
 			null);
 	}
 
-	private static Map<String, List<BaseModel<?>>> _captureDataMap() {
-		Map<String, PersistedModelLocalService> persistedModelLocalServices =
-			_getPersistedModelLocalServices();
-
-		Map<String, List<BaseModel<?>>> dataMap = new HashMap<>();
-
-		for (Map.Entry<String, PersistedModelLocalService> entry :
-				persistedModelLocalServices.entrySet()) {
-
-			PersistedModelLocalService persistedModelLocalService =
-				entry.getValue();
-
-			BasePersistence<?> basePersistence = _getBasePersistence(
-				persistedModelLocalService);
-
-			if (basePersistence == null) {
-				continue;
-			}
-
-			Class<?> clazz = basePersistence.getClass();
-
-			Registry registry = RegistryUtil.getRegistry();
-
-			try (Closeable closeable = _installTransactionExecutor(
-					registry.getSymbolicName(clazz.getClassLoader()))) {
-
-				TransactionInvokerUtil.invoke(
-					_transactionConfig,
-					() -> {
-						basePersistence.clearCache();
-
-						List<BaseModel<?>> baseModels =
-							ReflectionTestUtil.invoke(
-								basePersistence, "findAll", new Class<?>[0]);
-
-						if (!baseModels.isEmpty()) {
-							dataMap.put(entry.getKey(), baseModels);
-						}
-
-						return null;
-					});
-			}
-			catch (Throwable throwable) {
-				return ReflectionUtil.throwException(throwable);
-			}
-		}
-
-		return dataMap;
-	}
-
-	private static BasePersistence<?> _getBasePersistence(
-		PersistedModelLocalService persistedModelLocalService) {
-
-		while (true) {
-			if (ProxyUtil.isProxyClass(persistedModelLocalService.getClass())) {
-				InvocationHandler invocationHandler =
-					ProxyUtil.getInvocationHandler(persistedModelLocalService);
-
-				Class<?> clazz = invocationHandler.getClass();
-
-				String className = clazz.getName();
-
-				if (className.equals(
-						"com.liferay.portal.spring.aop.AopInvocationHandler")) {
-
-					persistedModelLocalService =
-						ReflectionTestUtil.getFieldValue(
-							invocationHandler, "_target");
-
-					continue;
-				}
-				else if (invocationHandler instanceof ClassLoaderBeanHandler) {
-					ClassLoaderBeanHandler classLoaderBeanHandler =
-						(ClassLoaderBeanHandler)invocationHandler;
-
-					persistedModelLocalService =
-						(PersistedModelLocalService)
-							classLoaderBeanHandler.getBean();
-
-					continue;
-				}
-			}
-
-			if (persistedModelLocalService instanceof ServiceWrapper) {
-				ServiceWrapper<?> serviceWrapper =
-					(ServiceWrapper<?>)persistedModelLocalService;
-
-				Class<?> clazz = serviceWrapper.getClass();
-
-				String simpleName = clazz.getSimpleName();
-
-				if (simpleName.startsWith("Modular")) {
-					return null;
-				}
-
-				persistedModelLocalService =
-					(PersistedModelLocalService)
-						serviceWrapper.getWrappedService();
-
-				continue;
-			}
-
-			break;
-		}
-
-		Class<?> clazz = persistedModelLocalService.getClass();
-
-		Deprecated deprecated = clazz.getAnnotation(Deprecated.class);
-
-		if (deprecated != null) {
-			return null;
-		}
-
-		return persistedModelLocalService.getBasePersistence();
-	}
-
-	private static Map<String, PersistedModelLocalService>
-		_getPersistedModelLocalServices() {
-
-		return ReflectionTestUtil.getFieldValue(
-			PersistedModelLocalServiceRegistryUtil.
-				getPersistedModelLocalServiceRegistry(),
-			"_persistedModelLocalServices");
-	}
-
-	private static Closeable _installTransactionExecutor(
-			String originBundleSymbolicName)
-		throws Exception {
-
-		if (originBundleSymbolicName == null) {
-			return () -> {
-			};
-		}
-
-		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
-
-		Class<?> clazz = classLoader.loadClass(
-			"com.liferay.portal.spring.transaction." +
-				"TransactionExecutorThreadLocal");
-
-		Field field = clazz.getDeclaredField("_transactionExecutorThreadLocal");
-
-		field.setAccessible(true);
-
-		Registry registry = RegistryUtil.getRegistry();
-
-		ServiceReference<?>[] serviceReferences =
-			registry.getAllServiceReferences(
-				"com.liferay.portal.spring.transaction.TransactionExecutor",
-				"(origin.bundle.symbolic.name=" + originBundleSymbolicName +
-					")");
-
-		if (serviceReferences == null) {
-			return () -> {
-			};
-		}
-
-		Assert.assertEquals(
-			StringBundler.concat(
-				"Expected 1 TransactionExecutor for ", originBundleSymbolicName,
-				", actually have ", Arrays.toString(serviceReferences)),
-			1, serviceReferences.length);
-
-		ServiceReference<?> serviceReference = serviceReferences[0];
-
-		Object portletTransactionExecutor = registry.getService(
-			serviceReference);
-
-		ThreadLocal<Deque<Object>> transactionExecutorsThreadLocal =
-			(ThreadLocal<Deque<Object>>)field.get(null);
-
-		Deque<Object> transactionExecutors =
-			transactionExecutorsThreadLocal.get();
-
-		if (portletTransactionExecutor == transactionExecutors.peek()) {
-			return () -> {
-			};
-		}
-
-		transactionExecutors.push(portletTransactionExecutor);
-
-		return () -> {
-			transactionExecutors.pop();
-
-			registry.ungetService(serviceReference);
-		};
-	}
-
 	private DataGuardTestRule() {
 	}
 
@@ -488,6 +300,194 @@ public class DataGuardTestRule
 				break;
 			}
 		}
+	}
+
+	private Map<String, List<BaseModel<?>>> _captureDataMap() {
+		Map<String, PersistedModelLocalService> persistedModelLocalServices =
+			_getPersistedModelLocalServices();
+
+		Map<String, List<BaseModel<?>>> dataMap = new HashMap<>();
+
+		for (Map.Entry<String, PersistedModelLocalService> entry :
+				persistedModelLocalServices.entrySet()) {
+
+			PersistedModelLocalService persistedModelLocalService =
+				entry.getValue();
+
+			BasePersistence<?> basePersistence = _getBasePersistence(
+				persistedModelLocalService);
+
+			if (basePersistence == null) {
+				continue;
+			}
+
+			Class<?> clazz = basePersistence.getClass();
+
+			Registry registry = RegistryUtil.getRegistry();
+
+			try (Closeable closeable = _installTransactionExecutor(
+					registry.getSymbolicName(clazz.getClassLoader()))) {
+
+				TransactionInvokerUtil.invoke(
+					_transactionConfig,
+					() -> {
+						basePersistence.clearCache();
+
+						List<BaseModel<?>> baseModels =
+							ReflectionTestUtil.invoke(
+								basePersistence, "findAll", new Class<?>[0]);
+
+						if (!baseModels.isEmpty()) {
+							dataMap.put(entry.getKey(), baseModels);
+						}
+
+						return null;
+					});
+			}
+			catch (Throwable throwable) {
+				return ReflectionUtil.throwException(throwable);
+			}
+		}
+
+		return dataMap;
+	}
+
+	private BasePersistence<?> _getBasePersistence(
+		PersistedModelLocalService persistedModelLocalService) {
+
+		while (true) {
+			if (ProxyUtil.isProxyClass(persistedModelLocalService.getClass())) {
+				InvocationHandler invocationHandler =
+					ProxyUtil.getInvocationHandler(persistedModelLocalService);
+
+				Class<?> clazz = invocationHandler.getClass();
+
+				String className = clazz.getName();
+
+				if (className.equals(
+						"com.liferay.portal.spring.aop.AopInvocationHandler")) {
+
+					persistedModelLocalService =
+						ReflectionTestUtil.getFieldValue(
+							invocationHandler, "_target");
+
+					continue;
+				}
+				else if (invocationHandler instanceof ClassLoaderBeanHandler) {
+					ClassLoaderBeanHandler classLoaderBeanHandler =
+						(ClassLoaderBeanHandler)invocationHandler;
+
+					persistedModelLocalService =
+						(PersistedModelLocalService)
+							classLoaderBeanHandler.getBean();
+
+					continue;
+				}
+			}
+
+			if (persistedModelLocalService instanceof ServiceWrapper) {
+				ServiceWrapper<?> serviceWrapper =
+					(ServiceWrapper<?>)persistedModelLocalService;
+
+				Class<?> clazz = serviceWrapper.getClass();
+
+				String simpleName = clazz.getSimpleName();
+
+				if (simpleName.startsWith("Modular")) {
+					return null;
+				}
+
+				persistedModelLocalService =
+					(PersistedModelLocalService)
+						serviceWrapper.getWrappedService();
+
+				continue;
+			}
+
+			break;
+		}
+
+		Class<?> clazz = persistedModelLocalService.getClass();
+
+		Deprecated deprecated = clazz.getAnnotation(Deprecated.class);
+
+		if (deprecated != null) {
+			return null;
+		}
+
+		return persistedModelLocalService.getBasePersistence();
+	}
+
+	private Map<String, PersistedModelLocalService>
+		_getPersistedModelLocalServices() {
+
+		return ReflectionTestUtil.getFieldValue(
+			PersistedModelLocalServiceRegistryUtil.
+				getPersistedModelLocalServiceRegistry(),
+			"_persistedModelLocalServices");
+	}
+
+	private Closeable _installTransactionExecutor(
+			String originBundleSymbolicName)
+		throws Exception {
+
+		if (originBundleSymbolicName == null) {
+			return () -> {
+			};
+		}
+
+		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
+
+		Class<?> clazz = classLoader.loadClass(
+			"com.liferay.portal.spring.transaction." +
+				"TransactionExecutorThreadLocal");
+
+		Field field = clazz.getDeclaredField("_transactionExecutorThreadLocal");
+
+		field.setAccessible(true);
+
+		Registry registry = RegistryUtil.getRegistry();
+
+		ServiceReference<?>[] serviceReferences =
+			registry.getAllServiceReferences(
+				"com.liferay.portal.spring.transaction.TransactionExecutor",
+				"(origin.bundle.symbolic.name=" + originBundleSymbolicName +
+					")");
+
+		if (serviceReferences == null) {
+			return () -> {
+			};
+		}
+
+		Assert.assertEquals(
+			StringBundler.concat(
+				"Expected 1 TransactionExecutor for ", originBundleSymbolicName,
+				", actually have ", Arrays.toString(serviceReferences)),
+			1, serviceReferences.length);
+
+		ServiceReference<?> serviceReference = serviceReferences[0];
+
+		Object portletTransactionExecutor = registry.getService(
+			serviceReference);
+
+		ThreadLocal<Deque<Object>> transactionExecutorsThreadLocal =
+			(ThreadLocal<Deque<Object>>)field.get(null);
+
+		Deque<Object> transactionExecutors =
+			transactionExecutorsThreadLocal.get();
+
+		if (portletTransactionExecutor == transactionExecutors.peek()) {
+			return () -> {
+			};
+		}
+
+		transactionExecutors.push(portletTransactionExecutor);
+
+		return () -> {
+			transactionExecutors.pop();
+
+			registry.ungetService(serviceReference);
+		};
 	}
 
 	private void _smartDelete(

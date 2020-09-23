@@ -264,7 +264,7 @@ public class AggregateClassLoader extends ClassLoader {
 		return loadedClass;
 	}
 
-	private static Class<?> _findClass(ClassLoader classLoader, String name)
+	private Class<?> _findClass(ClassLoader classLoader, String name)
 		throws ClassNotFoundException {
 
 		try {
@@ -281,7 +281,7 @@ public class AggregateClassLoader extends ClassLoader {
 		}
 	}
 
-	private static Class<?> _loadClass(
+	private Class<?> _loadClass(
 			ClassLoader classLoader, String name, boolean resolve)
 		throws ClassNotFoundException {
 

@@ -316,32 +316,6 @@ public class Version implements Comparable<Version>, Serializable {
 		}
 	}
 
-	private static boolean _contains(
-		String containerString, String numberString) {
-
-		if (containerString.endsWith(StringPool.PLUS)) {
-			String containerNumberString = containerString.substring(
-				0, containerString.length() - 1);
-
-			try {
-				int containerNumber = GetterUtil.getInteger(
-					containerNumberString);
-				int number = GetterUtil.getInteger(numberString);
-
-				if (containerNumber <= number) {
-					return true;
-				}
-
-				return false;
-			}
-			catch (NumberFormatException numberFormatException) {
-				return false;
-			}
-		}
-
-		return false;
-	}
-
 	private static String _toString(
 		String major, String minor, String bugFix, String buildNumber,
 		String qualifier) {
@@ -403,6 +377,30 @@ public class Version implements Comparable<Version>, Serializable {
 		}
 
 		return 0;
+	}
+
+	private boolean _contains(String containerString, String numberString) {
+		if (containerString.endsWith(StringPool.PLUS)) {
+			String containerNumberString = containerString.substring(
+				0, containerString.length() - 1);
+
+			try {
+				int containerNumber = GetterUtil.getInteger(
+					containerNumberString);
+				int number = GetterUtil.getInteger(numberString);
+
+				if (containerNumber <= number) {
+					return true;
+				}
+
+				return false;
+			}
+			catch (NumberFormatException numberFormatException) {
+				return false;
+			}
+		}
+
+		return false;
 	}
 
 	private static final String _SEPARATOR = StringPool.PERIOD;

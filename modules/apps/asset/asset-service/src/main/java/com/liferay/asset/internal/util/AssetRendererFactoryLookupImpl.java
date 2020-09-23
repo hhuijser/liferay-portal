@@ -98,16 +98,16 @@ public class AssetRendererFactoryLookupImpl
 		_serviceTracker = null;
 	}
 
-	private static boolean _isIndexOnStartupWithDelayEnabled() {
+	private boolean _isAssetRendererFactoryInitialized(String className) {
+		return _initializedAssetRendererFactories.contains(className);
+	}
+
+	private boolean _isIndexOnStartupWithDelayEnabled() {
 		if (_INDEX_ON_STARTUP && (_INDEX_ON_STARTUP_DELAY > 0)) {
 			return true;
 		}
 
 		return false;
-	}
-
-	private boolean _isAssetRendererFactoryInitialized(String className) {
-		return _initializedAssetRendererFactories.contains(className);
 	}
 
 	private long _secondsElapsedSinceActivated() {

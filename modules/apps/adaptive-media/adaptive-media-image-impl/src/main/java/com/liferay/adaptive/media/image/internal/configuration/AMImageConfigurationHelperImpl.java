@@ -382,12 +382,6 @@ public class AMImageConfigurationHelperImpl
 		_destinationServiceRegistration.unregister();
 	}
 
-	private static final boolean _isPositiveNumber(String s) {
-		Matcher matcher = _positiveNumberPattern.matcher(s);
-
-		return matcher.matches();
-	}
-
 	private void _checkDuplicatesName(
 			Collection<AMImageConfigurationEntry> amImageConfigurationEntries,
 			String name)
@@ -527,6 +521,12 @@ public class AMImageConfigurationHelperImpl
 		Map<String, String[]> map = portletPreferences.getMap();
 
 		return Optional.ofNullable(map.get("imageVariants"));
+	}
+
+	private final boolean _isPositiveNumber(String s) {
+		Matcher matcher = _positiveNumberPattern.matcher(s);
+
+		return matcher.matches();
 	}
 
 	private void _normalizeProperties(Map<String, String> properties) {

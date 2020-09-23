@@ -771,7 +771,7 @@ public class IntrabandProxyUtil {
 			return methodId1.compareTo(methodId2);
 		}
 
-		private static String _getMethodId(Method method) {
+		private String _getMethodId(Method method) {
 			Proxy proxy = method.getAnnotation(Proxy.class);
 
 			String methodName = proxy.name();

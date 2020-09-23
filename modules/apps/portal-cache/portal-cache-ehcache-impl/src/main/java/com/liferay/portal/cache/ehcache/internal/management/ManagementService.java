@@ -137,7 +137,7 @@ public class ManagementService implements CacheManagerEventListener {
 				null));
 	}
 
-	private static ObjectName _getObjectName(
+	private ObjectName _getObjectName(
 		String type, String cacheManagerName, String name) {
 
 		StringBundler sb = new StringBundler(6);

@@ -257,16 +257,14 @@ public class ConfigurationModelListenerTest {
 		}
 	}
 
-	private static Configuration _getConfiguration(String pid)
-		throws IOException {
-
+	private Configuration _getConfiguration(String pid) throws IOException {
 		return OSGiServiceUtil.callService(
 			_bundleContext, ConfigurationAdmin.class,
 			configurationAdmin -> configurationAdmin.getConfiguration(
 				pid, StringPool.QUESTION));
 	}
 
-	private static boolean _hasPid(String pid) {
+	private boolean _hasPid(String pid) {
 		return OSGiServiceUtil.callService(
 			_bundleContext, PersistenceManager.class,
 			persistenceManager -> persistenceManager.exists(pid));

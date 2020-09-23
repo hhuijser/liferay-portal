@@ -392,7 +392,7 @@ public class PQLEntityFactoryTest extends TestCase {
 		}
 	}
 
-	private static void _validateGetPQLResultFromVariable(
+	private void _validateGetPQLResultFromVariable(
 			String pql, Object expectedPQLResult)
 		throws Exception {
 

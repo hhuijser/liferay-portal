@@ -940,7 +940,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 		return false;
 	}
 
-	private static String _getContent(
+	private String _getContent(
 		CalendarBooking calendarBooking, String displayStyle,
 		ThemeDisplay themeDisplay) {
 

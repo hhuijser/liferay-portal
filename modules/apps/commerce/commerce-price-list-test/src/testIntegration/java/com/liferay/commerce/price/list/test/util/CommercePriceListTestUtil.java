@@ -484,7 +484,7 @@ public class CommercePriceListTestUtil {
 			return _calendar.get(Calendar.YEAR);
 		}
 
-		private static Calendar _convertDateToCalendar(Date date) {
+		private Calendar _convertDateToCalendar(Date date) {
 			Calendar calendar = CalendarFactoryUtil.getCalendar();
 
 			calendar.setTime(date);

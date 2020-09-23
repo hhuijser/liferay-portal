@@ -598,34 +598,6 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		}
 	}
 
-	private static URL[] _getClassPathURLs() throws Exception {
-		File coreDir = new File(PropsValues.MODULE_FRAMEWORK_BASE_DIR, "core");
-
-		File[] files = coreDir.listFiles();
-
-		if (files == null) {
-			throw new IllegalStateException(
-				"Missing " + coreDir.getCanonicalPath());
-		}
-
-		URL[] urls = new URL[files.length];
-
-		for (int i = 0; i < urls.length; i++) {
-			URI uri = files[i].toURI();
-
-			urls[i] = uri.toURL();
-		}
-
-		return urls;
-	}
-
-	private static String _getLPKGLocation(File lpkgFile) {
-		String uriString = String.valueOf(lpkgFile.toURI());
-
-		return StringUtil.replace(
-			uriString, CharPool.BACK_SLASH, CharPool.FORWARD_SLASH);
-	}
-
 	private Bundle _addBundle(
 			String location, InputStream inputStream, boolean checkPermission)
 		throws PortalException {
@@ -1021,6 +993,27 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		return string.substring(beginIndex, endIndex);
 	}
 
+	private URL[] _getClassPathURLs() throws Exception {
+		File coreDir = new File(PropsValues.MODULE_FRAMEWORK_BASE_DIR, "core");
+
+		File[] files = coreDir.listFiles();
+
+		if (files == null) {
+			throw new IllegalStateException(
+				"Missing " + coreDir.getCanonicalPath());
+		}
+
+		URL[] urls = new URL[files.length];
+
+		for (int i = 0; i < urls.length; i++) {
+			URI uri = files[i].toURI();
+
+			urls[i] = uri.toURL();
+		}
+
+		return urls;
+	}
+
 	private Attributes _getExtraManifestAttributes() {
 		try (InputStream inputStream =
 				ModuleFrameworkImpl.class.getResourceAsStream(
@@ -1057,6 +1050,13 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		}
 
 		return fragmentHost;
+	}
+
+	private String _getLPKGLocation(File lpkgFile) {
+		String uriString = String.valueOf(lpkgFile.toURI());
+
+		return StringUtil.replace(
+			uriString, CharPool.BACK_SLASH, CharPool.FORWARD_SLASH);
 	}
 
 	private Dictionary<String, Object> _getProperties(

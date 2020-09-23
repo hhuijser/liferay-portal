@@ -187,7 +187,7 @@ public class MavenExecutorTest {
 	@Rule
 	public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private static int _getFakePort(int excludedPort) throws IOException {
+	private int _getFakePort(int excludedPort) throws IOException {
 		for (int i = 0; i < _FAKE_PORT_RETRIES; i++) {
 			try (ServerSocket serverSocket = new ServerSocket(0)) {
 				int port = serverSocket.getLocalPort();
@@ -201,7 +201,7 @@ public class MavenExecutorTest {
 		throw new IOException("Unable to find a random available port");
 	}
 
-	private static String _setSystemProperty(String key, String value) {
+	private String _setSystemProperty(String key, String value) {
 		String oldValue = System.getProperty(key);
 
 		if (value == null) {

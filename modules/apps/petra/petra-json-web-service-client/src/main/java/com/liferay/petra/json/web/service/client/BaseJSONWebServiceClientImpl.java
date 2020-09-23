@@ -1008,28 +1008,6 @@ public abstract class BaseJSONWebServiceClientImpl
 		return json;
 	}
 
-	private static boolean _isBlank(String s) {
-		if (s == null) {
-			return true;
-		}
-
-		for (int i = 0; i < s.length(); i++) {
-			if (!Character.isWhitespace(s.charAt(i))) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	private static String[] _split(final String s) {
-		if (_isBlank(s)) {
-			return null;
-		}
-
-		return s.split(" *, *");
-	}
-
 	private CredentialsProvider _getCredentialsProvider() {
 		if ((isNull(_login) || isNull(_password)) &&
 			(isNull(_proxyLogin) || isNull(_proxyPassword))) {
@@ -1124,6 +1102,20 @@ public abstract class BaseJSONWebServiceClientImpl
 		return false;
 	}
 
+	private boolean _isBlank(String s) {
+		if (s == null) {
+			return true;
+		}
+
+		for (int i = 0; i < s.length(); i++) {
+			if (!Character.isWhitespace(s.charAt(i))) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	private boolean _isStatus2XX(int statusCode) {
 		if ((statusCode == 200) || (statusCode == 201) || (statusCode == 202) ||
 			(statusCode == 203) || (statusCode == 204)) {
@@ -1132,6 +1124,14 @@ public abstract class BaseJSONWebServiceClientImpl
 		}
 
 		return false;
+	}
+
+	private String[] _split(final String s) {
+		if (_isBlank(s)) {
+			return null;
+		}
+
+		return s.split(" *, *");
 	}
 
 	private List<NameValuePair> _toNameValuePairs(String... keyValuesArray) {

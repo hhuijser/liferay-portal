@@ -49,7 +49,7 @@ public class JspReloader {
 		_bundleContext.removeBundleListener(_jspReloadBundleListener);
 	}
 
-	private static String _toString(BundleEvent bundleEvent) {
+	private String _toString(BundleEvent bundleEvent) {
 		StringBundler sb = new StringBundler(6);
 
 		sb.append("{bundle=");

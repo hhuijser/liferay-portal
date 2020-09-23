@@ -12,14 +12,18 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
-import com.liferay.account.admin.web.internal.display.AccountGroupDisplay;
+import com.liferay.account.constants.AccountRoleConstants;
+import com.liferay.account.model.AccountRole;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.RoleLocalService;
 
 import java.io.IOException;
 
@@ -32,7 +36,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Albert Lee
+ * @author Pei-Jung Lan
  */
 @Component(
 	property = {
@@ -41,9 +45,8 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class AccountGroupDetailsScreenNavigationCategory
-	implements ScreenNavigationCategory,
-			   ScreenNavigationEntry<AccountGroupDisplay> {
+public class AccountRoleDetailsScreenNavigationCategory
+	implements ScreenNavigationCategory, ScreenNavigationEntry<AccountRole> {
 
 	@Override
 	public String getCategoryKey() {
@@ -63,7 +66,22 @@ public class AccountGroupDetailsScreenNavigationCategory
 	@Override
 	public String getScreenNavigationKey() {
 		return AccountScreenNavigationEntryConstants.
-			SCREEN_NAVIGATION_KEY_ACCOUNT_GROUP;
+			SCREEN_NAVIGATION_KEY_ACCOUNT_ROLE;
+	}
+
+	@Override
+	public boolean isVisible(User user, AccountRole accountRole) {
+		if (accountRole == null) {
+			return true;
+		}
+
+		Role role = _roleLocalService.fetchRole(accountRole.getRoleId());
+
+		if ((role != null) && AccountRoleConstants.isSharedRole(role)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
@@ -74,10 +92,13 @@ public class AccountGroupDetailsScreenNavigationCategory
 
 		jspRenderer.renderJSP(
 			httpServletRequest, httpServletResponse,
-			"/account_groups_admin/account_group/details.jsp");
+			"/account_entries_admin/account_role/details.jsp");
 	}
 
 	@Reference
 	protected JSPRenderer jspRenderer;
+
+	@Reference
+	private RoleLocalService _roleLocalService;
 
 }

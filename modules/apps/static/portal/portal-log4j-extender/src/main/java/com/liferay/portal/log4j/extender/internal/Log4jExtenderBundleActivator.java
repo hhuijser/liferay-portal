@@ -80,7 +80,7 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 	}
 
 	@Override
-	public void stop(BundleContext context) {
+	public void stop(BundleContext bundleContext) {
 		_bundleTracker.close();
 	}
 

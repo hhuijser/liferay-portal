@@ -58,7 +58,7 @@ public class OSGiLogServiceExtenderBundleActivator implements BundleActivator {
 	}
 
 	@Override
-	public void stop(BundleContext context) {
+	public void stop(BundleContext bundleContext) {
 		_serviceTracker.close();
 	}
 

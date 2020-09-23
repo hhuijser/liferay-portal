@@ -108,7 +108,7 @@ public class LiferayJSONSerializer extends JSONSerializer {
 		return super.getClassFromHint(object);
 	}
 
-	private static String[] _toClassNames(Class<?>[] classes) {
+	private String[] _toClassNames(Class<?>[] classes) {
 		String[] classNames = new String[classes.length];
 
 		for (int i = 0; i < classes.length; i++) {

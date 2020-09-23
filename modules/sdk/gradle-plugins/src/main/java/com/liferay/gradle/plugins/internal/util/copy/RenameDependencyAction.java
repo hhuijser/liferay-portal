@@ -66,16 +66,6 @@ public class RenameDependencyAction implements Action<FileCopyDetails> {
 		}
 	}
 
-	private static int _getVersionStart(String name) {
-		Matcher matcher = _versionStartPattern.matcher(name);
-
-		if (!matcher.find()) {
-			return name.length();
-		}
-
-		return matcher.start();
-	}
-
 	private String _getFileName(JarFile jarFile) throws IOException {
 		Manifest manifest = jarFile.getManifest();
 
@@ -122,6 +112,16 @@ public class RenameDependencyAction implements Action<FileCopyDetails> {
 		fileName += ".jar";
 
 		return fileName;
+	}
+
+	private int _getVersionStart(String name) {
+		Matcher matcher = _versionStartPattern.matcher(name);
+
+		if (!matcher.find()) {
+			return name.length();
+		}
+
+		return matcher.start();
 	}
 
 	private static final Pattern _versionStartPattern = Pattern.compile(

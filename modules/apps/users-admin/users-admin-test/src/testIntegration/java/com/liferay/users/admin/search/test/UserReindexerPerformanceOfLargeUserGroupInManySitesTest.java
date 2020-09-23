@@ -337,18 +337,6 @@ public class UserReindexerPerformanceOfLargeUserGroupInManySitesTest {
 	protected UserGroupSearchFixture userGroupSearchFixture;
 	protected UserSearchFixture userSearchFixture;
 
-	private static Stream<Long> _getUserIdsStream(List<User> users) {
-		Stream<User> stream = users.stream();
-
-		return stream.map(User::getUserId);
-	}
-
-	private static Dictionary<String, Object> _toDictionary(
-		Map<String, String> map) {
-
-		return new HashMapDictionary<>(new HashMap<String, Object>(map));
-	}
-
 	private String _getTimesReport(Map<String, String> map) {
 		Set<Map.Entry<String, String>> set = map.entrySet();
 
@@ -360,6 +348,16 @@ public class UserReindexerPerformanceOfLargeUserGroupInManySitesTest {
 			Collectors.joining(
 				StringPool.NEW_LINE, StringPool.NEW_LINE, StringPool.NEW_LINE)
 		);
+	}
+
+	private Stream<Long> _getUserIdsStream(List<User> users) {
+		Stream<User> stream = users.stream();
+
+		return stream.map(User::getUserId);
+	}
+
+	private Dictionary<String, Object> _toDictionary(Map<String, String> map) {
+		return new HashMapDictionary<>(new HashMap<String, Object>(map));
 	}
 
 	private static final String _CLASS_NAME = User.class.getName();

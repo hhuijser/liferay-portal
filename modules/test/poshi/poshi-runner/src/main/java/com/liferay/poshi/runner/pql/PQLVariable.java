@@ -62,7 +62,7 @@ public class PQLVariable extends PQLValue {
 		return getObjectValue(value);
 	}
 
-	private static void _validateVariable(String variable) throws Exception {
+	private void _validateVariable(String variable) throws Exception {
 		if (variable == null) {
 			throw new Exception("Invalid variable: " + variable);
 		}

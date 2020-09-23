@@ -46,9 +46,7 @@ public class BuildSoyMojoTest extends BuildSoyCommandTest {
 		Assert.assertEquals(result.output, 0, result.exitCode);
 	}
 
-	private static void _preparePomXml(File projectDir, File dir)
-		throws Exception {
-
+	private void _preparePomXml(File projectDir, File dir) throws Exception {
 		String content = FileTestUtil.read(
 			BuildSoyMojoTest.class.getClassLoader(),
 			"com/liferay/portal/tools/soy/builder/maven/dependencies" +

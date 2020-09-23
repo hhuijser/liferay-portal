@@ -197,7 +197,14 @@ public class VerifyUUIDTest extends BaseVerifyProcessTestCase {
 		return _verifyUUID;
 	}
 
-	private static void _verifyException(
+	private void _testDoVerify(VerifiableUUIDModel... verifiableUUIDModels) {
+		ReflectionTestUtil.invoke(
+			_verifyUUID, "doVerify",
+			new Class<?>[] {VerifiableUUIDModel[].class},
+			new Object[] {verifiableUUIDModels});
+	}
+
+	private void _verifyException(
 			Exception exception, Map<DBType, String> expectedMessages)
 		throws Exception {
 
@@ -214,13 +221,6 @@ public class VerifyUUIDTest extends BaseVerifyProcessTestCase {
 		Assert.assertTrue(
 			message + " does not start " + expectedMessagePrefix,
 			message.startsWith(expectedMessagePrefix));
-	}
-
-	private void _testDoVerify(VerifiableUUIDModel... verifiableUUIDModels) {
-		ReflectionTestUtil.invoke(
-			_verifyUUID, "doVerify",
-			new Class<?>[] {VerifiableUUIDModel[].class},
-			new Object[] {verifiableUUIDModels});
 	}
 
 	private static final String _UNKNOWN = "Unknown";

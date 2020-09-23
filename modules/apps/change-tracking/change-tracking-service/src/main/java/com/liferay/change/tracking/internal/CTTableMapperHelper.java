@@ -132,7 +132,7 @@ public class CTTableMapperHelper {
 		_rightColumnName = rightColumnName;
 	}
 
-	private static void _clearCache(
+	private void _clearCache(
 		PortalCacheManager<?, ?> portalCacheManager, String tableName,
 		String leftColumnName, String rightColumnName) {
 

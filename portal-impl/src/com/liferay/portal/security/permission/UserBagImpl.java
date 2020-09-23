@@ -176,7 +176,7 @@ public class UserBagImpl implements UserBag {
 		return _search(_userOrgGroupIds, group.getGroupId());
 	}
 
-	private static boolean _search(long[] ids, long id) {
+	private boolean _search(long[] ids, long id) {
 		if (Arrays.binarySearch(ids, id) >= 0) {
 			return true;
 		}
@@ -184,7 +184,7 @@ public class UserBagImpl implements UserBag {
 		return false;
 	}
 
-	private static long[] _toSortedLongArray(
+	private long[] _toSortedLongArray(
 		Collection<? extends BaseModel<?>> baseModels) {
 
 		if ((baseModels == null) || baseModels.isEmpty()) {

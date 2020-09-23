@@ -82,7 +82,7 @@ public class ConfigurationFieldOptionsProviderUtil {
 			configurationPid, StringPool.POUND, fieldName);
 	}
 
-	private static Collection<String> _getPropertyValues(
+	private Collection<String> _getPropertyValues(
 		ServiceReference<?> serviceReference, String name) {
 
 		Object propertyValue = serviceReference.getProperty(name);

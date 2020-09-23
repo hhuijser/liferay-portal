@@ -469,7 +469,7 @@ public class ExpandoSearchTest {
 		return serviceContext;
 	}
 
-	private static String _toString(List<String> list) {
+	private String _toString(List<String> list) {
 		List<String> sorted = new ArrayList<>(list);
 
 		Collections.sort(sorted);

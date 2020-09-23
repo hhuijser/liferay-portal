@@ -283,12 +283,6 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 
 	protected static final String NAME = "modules";
 
-	private static File _getResourcesDir(SourceSet sourceSet) {
-		SourceSetOutput sourceSetOutput = sourceSet.getOutput();
-
-		return sourceSetOutput.getResourcesDir();
-	}
-
 	private void _configureLiferayOSGi(Project project) {
 		LiferayOSGiExtension liferayOSGiExtension = GradleUtil.getExtension(
 			project, LiferayOSGiExtension.class);
@@ -494,6 +488,12 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 		JsonSlurper jsonSlurper = new JsonSlurper();
 
 		return (Map<String, Object>)jsonSlurper.parse(packageJsonFile);
+	}
+
+	private File _getResourcesDir(SourceSet sourceSet) {
+		SourceSetOutput sourceSetOutput = sourceSet.getOutput();
+
+		return sourceSetOutput.getResourcesDir();
 	}
 
 	private WorkspaceExtension _getWorkspaceExtension(Project project) {

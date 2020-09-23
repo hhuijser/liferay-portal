@@ -84,7 +84,45 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 		_bundleTracker.close();
 	}
 
-	private static String _escapeXMLAttribute(String s) {
+	private void _configureLog4j(Bundle bundle, String resourcePath)
+		throws IOException {
+
+		Enumeration<URL> enumeration = bundle.findEntries(
+			"META-INF", resourcePath, false);
+
+		if (enumeration != null) {
+			while (enumeration.hasMoreElements()) {
+				DOMConfigurator domConfigurator = new DOMConfigurator();
+
+				domConfigurator.doConfigure(
+					new UnsyncStringReader(
+						_getURLContent(enumeration.nextElement())),
+					LogManager.getLoggerRepository());
+			}
+		}
+	}
+
+	private void _configureLog4j(String symbolicName)
+		throws MalformedURLException {
+
+		File configFile = new File(
+			StringBundler.concat(
+				PropsValues.MODULE_FRAMEWORK_BASE_DIR, "/log4j/", symbolicName,
+				"-log4j-ext.xml"));
+
+		if (!configFile.exists()) {
+			return;
+		}
+
+		DOMConfigurator domConfigurator = new DOMConfigurator();
+
+		URI uri = configFile.toURI();
+
+		domConfigurator.doConfigure(
+			uri.toURL(), LogManager.getLoggerRepository());
+	}
+
+	private String _escapeXMLAttribute(String s) {
 		return StringUtil.replace(
 			s,
 			new char[] {
@@ -94,7 +132,7 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 			new String[] {"&amp;", "&apos;", "&lt;", "&quot;"});
 	}
 
-	private static String _getLiferayHome() {
+	private String _getLiferayHome() {
 		if (_liferayHome == null) {
 			_liferayHome = _escapeXMLAttribute(
 				PropsUtil.get(PropsKeys.LIFERAY_HOME));
@@ -103,7 +141,7 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 		return _liferayHome;
 	}
 
-	private static String _getURLContent(URL url) {
+	private String _getURLContent(URL url) {
 		Map<String, String> variables = HashMapBuilder.put(
 			"@liferay.home@", _getLiferayHome()
 		).put(
@@ -144,44 +182,6 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 		}
 
 		return urlContent;
-	}
-
-	private void _configureLog4j(Bundle bundle, String resourcePath)
-		throws IOException {
-
-		Enumeration<URL> enumeration = bundle.findEntries(
-			"META-INF", resourcePath, false);
-
-		if (enumeration != null) {
-			while (enumeration.hasMoreElements()) {
-				DOMConfigurator domConfigurator = new DOMConfigurator();
-
-				domConfigurator.doConfigure(
-					new UnsyncStringReader(
-						_getURLContent(enumeration.nextElement())),
-					LogManager.getLoggerRepository());
-			}
-		}
-	}
-
-	private void _configureLog4j(String symbolicName)
-		throws MalformedURLException {
-
-		File configFile = new File(
-			StringBundler.concat(
-				PropsValues.MODULE_FRAMEWORK_BASE_DIR, "/log4j/", symbolicName,
-				"-log4j-ext.xml"));
-
-		if (!configFile.exists()) {
-			return;
-		}
-
-		DOMConfigurator domConfigurator = new DOMConfigurator();
-
-		URI uri = configFile.toURI();
-
-		domConfigurator.doConfigure(
-			uri.toURL(), LogManager.getLoggerRepository());
 	}
 
 	private static final Logger _logger = Logger.getLogger(

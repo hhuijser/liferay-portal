@@ -427,63 +427,6 @@ public class CTTableMapper<L extends BaseModel<L>, R extends BaseModel<R>>
 			ParamSetter.BIGINT);
 	}
 
-	private static <T extends BaseModel<T>> List<T> _getBaseModels(
-		MappingSqlQuery<Long> mappingSqlQuery, long masterPrimaryKey,
-		long ctCollectionId, BasePersistence<T> slaveBasePersistence, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-
-		long[] slavePrimaryKeys = _getPrimaryKeys(
-			mappingSqlQuery, masterPrimaryKey, ctCollectionId);
-
-		if (slavePrimaryKeys.length == 0) {
-			return Collections.emptyList();
-		}
-
-		List<T> slaveBaseModels = new ArrayList<>(slavePrimaryKeys.length);
-
-		try {
-			for (long slavePrimaryKey : slavePrimaryKeys) {
-				slaveBaseModels.add(
-					slaveBasePersistence.findByPrimaryKey(slavePrimaryKey));
-			}
-		}
-		catch (NoSuchModelException noSuchModelException) {
-			throw new SystemException(noSuchModelException);
-		}
-
-		if (orderByComparator != null) {
-			slaveBaseModels.sort(orderByComparator);
-		}
-
-		return ListUtil.subList(slaveBaseModels, start, end);
-	}
-
-	private static long[] _getPrimaryKeys(
-		MappingSqlQuery<Long> mappingSqlQuery, long masterPrimaryKey,
-		long ctCollectionId) {
-
-		List<Long> primaryKeysList = null;
-
-		try {
-			primaryKeysList = mappingSqlQuery.execute(
-				masterPrimaryKey, masterPrimaryKey, ctCollectionId,
-				ctCollectionId);
-		}
-		catch (Exception exception) {
-			throw new SystemException(exception);
-		}
-
-		long[] primaryKeys = new long[primaryKeysList.size()];
-
-		for (int i = 0; i < primaryKeys.length; i++) {
-			primaryKeys[i] = primaryKeysList.get(i);
-		}
-
-		Arrays.sort(primaryKeys);
-
-		return primaryKeys;
-	}
-
 	private void _addTableMapping(
 		long companyId, long leftPrimaryKey, long rightPrimaryKey,
 		long ctCollectionId) {
@@ -672,6 +615,63 @@ public class CTTableMapper<L extends BaseModel<L>, R extends BaseModel<R>>
 		}
 
 		return slavePrimaryKeys.length;
+	}
+
+	private <T extends BaseModel<T>> List<T> _getBaseModels(
+		MappingSqlQuery<Long> mappingSqlQuery, long masterPrimaryKey,
+		long ctCollectionId, BasePersistence<T> slaveBasePersistence, int start,
+		int end, OrderByComparator<T> orderByComparator) {
+
+		long[] slavePrimaryKeys = _getPrimaryKeys(
+			mappingSqlQuery, masterPrimaryKey, ctCollectionId);
+
+		if (slavePrimaryKeys.length == 0) {
+			return Collections.emptyList();
+		}
+
+		List<T> slaveBaseModels = new ArrayList<>(slavePrimaryKeys.length);
+
+		try {
+			for (long slavePrimaryKey : slavePrimaryKeys) {
+				slaveBaseModels.add(
+					slaveBasePersistence.findByPrimaryKey(slavePrimaryKey));
+			}
+		}
+		catch (NoSuchModelException noSuchModelException) {
+			throw new SystemException(noSuchModelException);
+		}
+
+		if (orderByComparator != null) {
+			slaveBaseModels.sort(orderByComparator);
+		}
+
+		return ListUtil.subList(slaveBaseModels, start, end);
+	}
+
+	private long[] _getPrimaryKeys(
+		MappingSqlQuery<Long> mappingSqlQuery, long masterPrimaryKey,
+		long ctCollectionId) {
+
+		List<Long> primaryKeysList = null;
+
+		try {
+			primaryKeysList = mappingSqlQuery.execute(
+				masterPrimaryKey, masterPrimaryKey, ctCollectionId,
+				ctCollectionId);
+		}
+		catch (Exception exception) {
+			throw new SystemException(exception);
+		}
+
+		long[] primaryKeys = new long[primaryKeysList.size()];
+
+		for (int i = 0; i < primaryKeys.length; i++) {
+			primaryKeys[i] = primaryKeysList.get(i);
+		}
+
+		Arrays.sort(primaryKeys);
+
+		return primaryKeys;
 	}
 
 	private static final ParamSetter _booleanParamSetter =

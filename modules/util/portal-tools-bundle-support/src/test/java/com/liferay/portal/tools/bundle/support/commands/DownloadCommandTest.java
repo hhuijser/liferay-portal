@@ -101,14 +101,6 @@ public class DownloadCommandTest extends HttpProxyMockServerSupport {
 		_assertExists(temp, fileName);
 	}
 
-	private static File _assertExists(File dir, String fileName) {
-		File file = new File(dir, fileName);
-
-		Assert.assertTrue(file.exists());
-
-		return file;
-	}
-
 	private static HttpContext _createHttpContext(
 		HttpServer httpServer, final String contextPath,
 		final String contentType, Authenticator authenticator) {
@@ -194,6 +186,14 @@ public class DownloadCommandTest extends HttpProxyMockServerSupport {
 		httpServer.start();
 
 		return httpServer;
+	}
+
+	private File _assertExists(File dir, String fileName) {
+		File file = new File(dir, fileName);
+
+		Assert.assertTrue(file.exists());
+
+		return file;
 	}
 
 }

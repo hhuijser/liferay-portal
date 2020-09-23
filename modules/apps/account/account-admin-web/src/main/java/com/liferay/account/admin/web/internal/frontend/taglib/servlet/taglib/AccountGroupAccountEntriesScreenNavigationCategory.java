@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
-import com.liferay.account.model.AccountRole;
+import com.liferay.account.admin.web.internal.display.AccountGroupDisplay;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
@@ -33,42 +33,45 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Pei-Jung Lan
+ * @author Albert Lee
  */
 @Component(
 	property = {
-		"screen.navigation.category.order:Integer=30",
+		"screen.navigation.category.order:Integer=20",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class AccountRoleAssigneesScreenNavigationCategory
-	implements ScreenNavigationCategory, ScreenNavigationEntry<AccountRole> {
+public class AccountGroupAccountEntriesScreenNavigationCategory
+	implements ScreenNavigationCategory,
+			   ScreenNavigationEntry<AccountGroupDisplay> {
 
 	@Override
 	public String getCategoryKey() {
-		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_ASSIGNEES;
+		return AccountScreenNavigationEntryConstants.CATEGORY_KEY_ACCOUNTS;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return AccountScreenNavigationEntryConstants.ENTRY_KEY_ASSIGNEES;
+		return AccountScreenNavigationEntryConstants.ENTRY_KEY_ACCOUNTS;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "assignees");
+		return LanguageUtil.get(locale, "accounts");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
 		return AccountScreenNavigationEntryConstants.
-			SCREEN_NAVIGATION_KEY_ACCOUNT_ROLE;
+			SCREEN_NAVIGATION_KEY_ACCOUNT_GROUP;
 	}
 
 	@Override
-	public boolean isVisible(User user, AccountRole accountRole) {
-		if (accountRole == null) {
+	public boolean isVisible(
+		User user, AccountGroupDisplay accountGroupDisplay) {
+
+		if (accountGroupDisplay.getAccountGroupId() == 0) {
 			return false;
 		}
 
@@ -83,7 +86,7 @@ public class AccountRoleAssigneesScreenNavigationCategory
 
 		jspRenderer.renderJSP(
 			httpServletRequest, httpServletResponse,
-			"/account_entries_admin/account_role/view_assignees.jsp");
+			"/account_groups_admin/account_group/view_account_entries.jsp");
 	}
 
 	@Reference

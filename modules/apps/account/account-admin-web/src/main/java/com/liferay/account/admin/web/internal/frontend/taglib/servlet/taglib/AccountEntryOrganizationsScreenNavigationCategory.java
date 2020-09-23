@@ -12,11 +12,10 @@
  * details.
  */
 
-package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.ui;
+package com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.account.admin.web.internal.constants.AccountScreenNavigationEntryConstants;
 import com.liferay.account.admin.web.internal.display.AccountEntryDisplay;
-import com.liferay.account.admin.web.internal.frontend.taglib.servlet.taglib.BaseAccountEntryScreenNavigationEntry;
 import com.liferay.account.admin.web.internal.security.permission.resource.AccountEntryPermission;
 import com.liferay.account.constants.AccountActionKeys;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;

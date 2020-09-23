@@ -314,6 +314,10 @@ public class SourceFormatter {
 	public void format() throws Exception {
 		_printProgressStatusMessage("Scanning for files...");
 
+		System.setProperty(
+			"javax.xml.parsers.DocumentBuilderFactory",
+			"org.apache.xerces.jaxp.DocumentBuilderFactoryImpl");
+
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 
 		Class<?> clazz = saxParserFactory.getClass();

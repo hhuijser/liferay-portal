@@ -1,8 +1,9 @@
-# Checks for .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd
+# Checks for .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd
 
 Check | Category | Description
 ----- | -------- | -----------
 XMLBuildFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+XMLCDATACheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLCheckstyleFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLCustomSQLOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLCustomSQLStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -23,7 +24,7 @@ XMLPortletPreferencesFileCheck | [Miscellaneous](miscellaneous_checks.markdown#m
 XMLPoshiFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLProjectElementCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLResourceActionsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-[XMLServiceEntityNameCheck](checks/xml_service_entity_name_check.markdown#xmlserviceentitynamecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Chceks that the entity name in `service.xml` does not equal the package name |
+[XMLServiceEntityNameCheck](checks/xml_service_entity_name_check.markdown#xmlserviceentitynamecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that the `entity name` in `service.xml` does not equal the `package name`. |
 XMLServiceFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLServiceReferenceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLSolrSchemaFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

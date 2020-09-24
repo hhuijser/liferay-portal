@@ -141,6 +141,10 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 			packageNameParts[packageNameParts.length - level];
 
 		if (classNamePart.equals(packageNamePart)) {
+			if (packageNameParts.length == 1) {
+				return;
+			}
+
 			_checkTypo(fileName, className, packageName, level + 1);
 		}
 		else if (SourceUtil.hasTypo(classNamePart, packageNamePart)) {

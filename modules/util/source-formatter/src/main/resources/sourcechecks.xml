@@ -61,6 +61,10 @@
 
 		<!-- Liferay Source Checks -->
 
+		<check name="BNDCategoryCheck">
+			<category name="Bug Prevention" />
+			<description name="Validates `Liferay-Releng-Category` properties" />
+		</check>
 		<check name="BNDExportsCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that modules not ending with `-api`, `-client`, `-spi`, `-tablig`, `-test-util` do not export packages" />

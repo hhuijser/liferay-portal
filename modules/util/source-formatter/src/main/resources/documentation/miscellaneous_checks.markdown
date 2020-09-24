@@ -86,12 +86,13 @@ JSPExceptionOrderCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPImportsCheck](checks/jsp_imports_check.markdown#jspimportscheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPIncludeCheck](checks/jsp_include_check.markdown#jspincludecheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPIndentationCheck | .jsp, .jspf, .tag, .tpl or .vm | |
+JSPJavaParserCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLanguageKeysCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLanguageUtilCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLineBreakCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLogFileNameCheck | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLogParametersCheck | .jsp, .jspf, .tag, .tpl or .vm | |
-JSPMethodCallsCheck | .jsp, .jspf, .tag, .tpl or .vm | |
+[JSPMethodCallsCheck](checks/jsp_method_calls_check.markdown#jspmethodcallscheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPMissingTaglibsCheck](checks/jsp_missing_taglibs_check.markdown#jspmissingtaglibscheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPModuleIllegalImportsCheck](checks/jsp_module_illegal_imports_check.markdown#jspmoduleillegalimportscheck) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPParenthesesCheck](checks/if_statement_check.markdown#ifstatementcheck) | .jsp, .jspf, .tag, .tpl or .vm | |
@@ -117,6 +118,7 @@ JavaAnnotationsCheck | .java | |
 JavaAssertEqualsCheck | .java | |
 JavaBooleanStatementCheck | .java | |
 JavaBooleanUsageCheck | .java | |
+JavaClassNameCheck | .java | |
 JavaCleanUpMethodSuperCleanUpCheck | .java | |
 [JavaComponentActivateCheck](checks/java_component_activate_check.markdown#javacomponentactivatecheck) | .java | |
 JavaComponentAnnotationsCheck | .java | |
@@ -178,6 +180,7 @@ JavaTaglibMethodCheck | .java | |
 JavaTermDividersCheck | .java | |
 JavaTermOrderCheck | .java | |
 JavaTermStylingCheck | .java | |
+JavaTransactionBoundaryCheck | .java | |
 JavaUnusedSourceFormatterChecksCheck | .java | |
 JavaUpgradeConnectionCheck | .java | |
 JavaUpgradeVersionCheck | .java | |
@@ -274,9 +277,9 @@ ThreadLocalUtilCheck | .java | |
 ThreadNameCheck | .java | |
 TransactionalTestRuleCheck | .java | |
 TryWithResourcesCheck | .java | |
-UnnecessaryAssignCheck | .java | |
+[UnnecessaryAssignCheck](checks/unnecessary_assign_check.markdown#unnecessaryassigncheck) | .java | |
 UnnecessaryTypeCastCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
-UnnecessaryVariableDeclarationCheck | .java | |
+[UnnecessaryVariableDeclarationCheck](checks/unnecessary_variable_declaration_check.markdown#unnecessaryvariabledeclarationcheck) | .java | |
 UnparameterizedClassCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 UnprocessedExceptionCheck | .java | |
 UnusedMethodCheck | .java | |
@@ -289,41 +292,42 @@ VariableNameCheck | .java | |
 WhitespaceAfterParameterAnnotationCheck | .java | |
 WhitespaceAroundGenericsCheck | .java | |
 WhitespaceCheck | .cfg, .config, .cql, .css, .dtd, .expect, .gradle, .groovy, .scss, .sh, .soy, .sql, .tld, .ts, Dockerfile or packageinfo | |
-XMLBuildFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLCheckstyleFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLCustomSQLOrderCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLCustomSQLStylingCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLDDLStructuresFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLEmptyLinesCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLFSBExcludeFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLFriendlyURLRoutesFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLHBMFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLIndentationCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .tld, .toggle, .wsdl, .xml or .xsd | |
-XMLIvyFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLLog4jFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLLookAndFeelCompatibilityVersionCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLLookAndFeelFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLModelHintsFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLPomFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLPortletFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLPortletPreferencesFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLPoshiFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLProjectElementCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLResourceActionsFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLServiceFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLServiceReferenceCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLSolrSchemaFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLSourcechecksFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLSpringFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLStrutsConfigFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLStylingCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLSuppressionsFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLTagAttributesCheck | .action, .function, .html, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLTestIgnorableErrorLinesFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLTilesDefsFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLToggleFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLWebFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLWhitespaceCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
+XMLBuildFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLCDATACheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLCheckstyleFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLCustomSQLOrderCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLCustomSQLStylingCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLDDLStructuresFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLEmptyLinesCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLFSBExcludeFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLFriendlyURLRoutesFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLHBMFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLIndentationCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .tld, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLIvyFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLLog4jFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLLookAndFeelCompatibilityVersionCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLLookAndFeelFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLModelHintsFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLPomFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLPortletFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLPortletPreferencesFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLPoshiFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLProjectElementCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLResourceActionsFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLServiceFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLServiceReferenceCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLSolrSchemaFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLSourcechecksFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLSpringFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLStrutsConfigFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLStylingCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLSuppressionsFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLTagAttributesCheck | .action, .function, .html, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLTestIgnorableErrorLinesFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLTilesDefsFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLToggleFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLWebFileCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLWhitespaceCheck | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
 YMLDefinitionOrderCheck | .yaml or .yml | |
 YMLEmptyLinesCheck | .yaml or .yml | |
 YMLLongLinesCheck | .yaml or .yml | |

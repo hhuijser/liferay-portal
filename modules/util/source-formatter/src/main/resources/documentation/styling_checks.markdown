@@ -11,7 +11,7 @@ BNDLineBreaksCheck | .bnd | Checks for incorrect/missing line breaks |
 BNDRunInstructionsOrderCheck | .bndrun | Sorts definition keys alphabetically |
 BNDStylingCheck | .bnd | Applies rules to enforce consisteny in code style |
 BNDWhitespaceCheck | .bnd | Checks for incorrect/missing line whitespace |
-[ChainingCheck](checks/chaining_check.markdown#chainingcheck) | .java | Checks that chaining is only applied on certain types and methods |
+[ChainingCheck](checks/chaining_check.markdown#chainingcheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that chaining is only applied on certain types and methods |
 [DefaultComesLastCheck](https://checkstyle.sourceforge.io/config_coding.html#DefaultComesLast) | .java, .jsp, .jspf, .tag, .tpl or .vm | Check that the default is after all the cases in a switch statement. |
 [GradleTaskCreationCheck](checks/gradle_task_creation_check.markdown#gradletaskcreationcheck) | .gradle | Checks that a task is declared on a separate line before the closure |
 [JSONUtilCheck](checks/json_util_check.markdown#jsonutilcheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks for utilization of class `JSONUtil` |

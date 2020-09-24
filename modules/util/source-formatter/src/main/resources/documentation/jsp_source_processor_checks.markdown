@@ -7,6 +7,7 @@ AppendCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks
 [ArrayTypeStyleCheck](https://checkstyle.sourceforge.io/config_misc.html#ArrayTypeStyle) | [Styling](styling_checks.markdown#styling-checks) | Checks the style of array type definitions. |
 [AvoidNestedBlocksCheck](https://checkstyle.sourceforge.io/config_blocks.html#AvoidNestedBlocks) | [Styling](styling_checks.markdown#styling-checks) | Finds nested blocks (blocks that are used freely in the code). |
 CamelCaseNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+[ChainingCheck](checks/chaining_check.markdown#chainingcheck) | [Styling](styling_checks.markdown#styling-checks) | Checks that chaining is only applied on certain types and methods |
 CompatClassImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 ConcatCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 ConstantNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
@@ -30,12 +31,13 @@ JSPExceptionOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellan
 [JSPImportsCheck](checks/jsp_imports_check.markdown#jspimportscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPIncludeCheck](checks/jsp_include_check.markdown#jspincludecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPIndentationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+JSPJavaParserCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPLanguageKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPLanguageUtilCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPLineBreakCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPLogFileNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JSPLogParametersCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-JSPMethodCallsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+[JSPMethodCallsCheck](checks/jsp_method_calls_check.markdown#jspmethodcallscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPMissingTaglibsCheck](checks/jsp_missing_taglibs_check.markdown#jspmissingtaglibscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPModuleIllegalImportsCheck](checks/jsp_module_illegal_imports_check.markdown#jspmoduleillegalimportscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPParenthesesCheck](checks/if_statement_check.markdown#ifstatementcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

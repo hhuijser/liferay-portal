@@ -1,8 +1,9 @@
-# Checks for .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd
+# Checks for .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd
 
 Check | Category | Description
 ----- | -------- | -----------
 XMLBuildFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+XMLCDATACheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLCheckstyleFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLCustomSQLOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 XMLCustomSQLStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

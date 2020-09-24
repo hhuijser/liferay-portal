@@ -50,6 +50,7 @@ JavaAnnotationsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneo
 JavaAssertEqualsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaBooleanStatementCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaBooleanUsageCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+JavaClassNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaCleanUpMethodSuperCleanUpCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JavaCleanUpMethodVariablesCheck](checks/java_clean_up_method_variables_check.markdown#javacleanupmethodvariablescheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that variables in `Tag` classes get cleaned up properly |
 [JavaCollatorUtilCheck](checks/java_collator_util_check.markdown#javacollatorutilcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks for correct use of `Collator` |
@@ -134,6 +135,7 @@ JavaTermDividersCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellane
 JavaTermOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 JavaTermStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JavaTestMethodAnnotationsCheck](checks/java_test_method_annotations_check.markdown#javatestmethodannotationscheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks if methods with test annotations follow the naming conventions |
+JavaTransactionBoundaryCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JavaUnsafeCastingCheck](checks/java_unsafe_casting_check.markdown#javaunsafecastingcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks for potential ClassCastException |
 JavaUnusedSourceFormatterChecksCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JavaUpgradeClassCheck](checks/java_upgrade_class_check.markdown#javaupgradeclasscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Performs several checks on Upgrade classes |
@@ -215,10 +217,10 @@ ThreadNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-ch
 TransactionalTestRuleCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 TryWithResourcesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [TypeNameCheck](https://checkstyle.sourceforge.io/config_naming.html#TypeName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that type names conform to a specified pattern. |
-UnnecessaryAssignCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+[UnnecessaryAssignCheck](checks/unnecessary_assign_check.markdown#unnecessaryassigncheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [UnnecessaryParenthesesCheck](https://checkstyle.sourceforge.io/config_coding.html#UnnecessaryParentheses) | [Styling](styling_checks.markdown#styling-checks) | Checks if unnecessary parentheses are used in a statement or expression. |
 UnnecessaryTypeCastCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-UnnecessaryVariableDeclarationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+[UnnecessaryVariableDeclarationCheck](checks/unnecessary_variable_declaration_check.markdown#unnecessaryvariabledeclarationcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 UnparameterizedClassCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 UnprocessedExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 UnusedMethodCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

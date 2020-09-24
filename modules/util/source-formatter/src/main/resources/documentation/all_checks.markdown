@@ -17,6 +17,7 @@ AttributeOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneou
 [BNDBundleCheck](checks/bnd_bundle_check.markdown#bndbundlecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Validates `Liferay-Releng-*` properties |
 [BNDBundleInformationCheck](checks/bnd_bundle_information_check.markdown#bndbundleinformationcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Validates property values for `Bundle-Version`, `Bundle-Name` and `Bundle-SymbolicName` |
 BNDCapabilityCheck | [Styling](styling_checks.markdown#styling-checks) | .bnd | Sorts and applies logic to fix line breaks to property values for `Provide-Capability` and `Require-Capability` |
+[BNDCategoryCheck](checks/bnd_category_check.markdown#bndcategorycheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Validates `Liferay-Releng-Category` properties |
 [BNDDefinitionKeysCheck](checks/bnd_definition_keys_check.markdown#bnddefinitionkeyscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Validates definition keys in `.bnd` files |
 [BNDDeprecatedAppBNDsCheck](checks/bnd_deprecated_app_bnds_check.markdown#bnddeprecatedappbndscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .bnd | Checks for redundant `app.bnd` in deprecated or archived modules |
 [BNDDirectoryNameCheck](checks/bnd_directory_name_check.markdown#bnddirectorynamecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks if the directory names of the submodules match the parent module name |
@@ -41,7 +42,7 @@ CSSHexColorsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-
 CSSImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .css or .scss | |
 CSSPropertiesOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .css or .scss | |
 CamelCaseNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
-[ChainingCheck](checks/chaining_check.markdown#chainingcheck) | [Styling](styling_checks.markdown#styling-checks) | .java | Checks that chaining is only applied on certain types and methods |
+[ChainingCheck](checks/chaining_check.markdown#chainingcheck) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that chaining is only applied on certain types and methods |
 [CodeownersFileLocationCheck](checks/codeowners_file_location_check.markdown#codeownersfilelocationcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | CODEOWNERS | |
 CodeownersWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | CODEOWNERS | |
 CompatClassImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
@@ -116,12 +117,13 @@ JSPExceptionOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellan
 [JSPImportsCheck](checks/jsp_imports_check.markdown#jspimportscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPIncludeCheck](checks/jsp_include_check.markdown#jspincludecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPIndentationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
+JSPJavaParserCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLanguageKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLanguageUtilCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLineBreakCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLogFileNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 JSPLogParametersCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
-JSPMethodCallsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
+[JSPMethodCallsCheck](checks/jsp_method_calls_check.markdown#jspmethodcallscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPMissingTaglibsCheck](checks/jsp_missing_taglibs_check.markdown#jspmissingtaglibscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPModuleIllegalImportsCheck](checks/jsp_module_illegal_imports_check.markdown#jspmoduleillegalimportscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
 [JSPParenthesesCheck](checks/if_statement_check.markdown#ifstatementcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .jsp, .jspf, .tag, .tpl or .vm | |
@@ -149,6 +151,7 @@ JavaAnnotationsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneo
 JavaAssertEqualsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaBooleanStatementCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaBooleanUsageCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+JavaClassNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaCleanUpMethodSuperCleanUpCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [JavaCleanUpMethodVariablesCheck](checks/java_clean_up_method_variables_check.markdown#javacleanupmethodvariablescheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks that variables in `Tag` classes get cleaned up properly |
 [JavaCollatorUtilCheck](checks/java_collator_util_check.markdown#javacollatorutilcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for correct use of `Collator` |
@@ -233,6 +236,7 @@ JavaTermDividersCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellane
 JavaTermOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 JavaTermStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [JavaTestMethodAnnotationsCheck](checks/java_test_method_annotations_check.markdown#javatestmethodannotationscheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java | Checks if methods with test annotations follow the naming conventions |
+JavaTransactionBoundaryCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [JavaUnsafeCastingCheck](checks/java_unsafe_casting_check.markdown#javaunsafecastingcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for potential ClassCastException |
 JavaUnusedSourceFormatterChecksCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [JavaUpgradeClassCheck](checks/java_upgrade_class_check.markdown#javaupgradeclasscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Performs several checks on Upgrade classes |
@@ -361,10 +365,10 @@ ThreadNameCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-ch
 TransactionalTestRuleCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 TryWithResourcesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [TypeNameCheck](https://checkstyle.sourceforge.io/config_naming.html#TypeName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java | Checks that type names conform to a specified pattern. |
-UnnecessaryAssignCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+[UnnecessaryAssignCheck](checks/unnecessary_assign_check.markdown#unnecessaryassigncheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [UnnecessaryParenthesesCheck](https://checkstyle.sourceforge.io/config_coding.html#UnnecessaryParentheses) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks if unnecessary parentheses are used in a statement or expression. |
 UnnecessaryTypeCastCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
-UnnecessaryVariableDeclarationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+[UnnecessaryVariableDeclarationCheck](checks/unnecessary_variable_declaration_check.markdown#unnecessaryvariabledeclarationcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 UnparameterizedClassCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 UnprocessedExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 UnusedMethodCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
@@ -380,42 +384,43 @@ WhitespaceAfterParameterAnnotationCheck | [Miscellaneous](miscellaneous_checks.m
 [WhitespaceAroundCheck](https://checkstyle.sourceforge.io/config_whitespace.html#WhitespaceAround) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that a token is surrounded by whitespace. |
 WhitespaceAroundGenericsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 WhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .cfg, .config, .cql, .css, .dtd, .expect, .gradle, .groovy, .scss, .sh, .soy, .sql, .tld, .ts, Dockerfile or packageinfo | |
-XMLBuildFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLCheckstyleFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLCustomSQLOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLCustomSQLStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLDDLStructuresFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLFSBExcludeFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLFriendlyURLRoutesFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLHBMFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLIndentationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .tld, .toggle, .wsdl, .xml or .xsd | |
-XMLIvyFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLLog4jFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLLookAndFeelCompatibilityVersionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLLookAndFeelFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLModelHintsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLPomFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLPortletFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLPortletPreferencesFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLPoshiFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLProjectElementCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLResourceActionsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-[XMLServiceEntityNameCheck](checks/xml_service_entity_name_check.markdown#xmlserviceentitynamecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | Chceks that the entity name in `service.xml` does not equal the package name |
-XMLServiceFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLServiceReferenceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLSolrSchemaFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLSourcechecksFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLSpringFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLStrutsConfigFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLSuppressionsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLTagAttributesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .html, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLTestIgnorableErrorLinesFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLTilesDefsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLToggleFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLWebFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
-XMLWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd | |
+XMLBuildFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLCDATACheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLCheckstyleFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLCustomSQLOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLCustomSQLStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLDDLStructuresFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLFSBExcludeFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLFriendlyURLRoutesFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLHBMFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLIndentationCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .tld, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLIvyFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLLog4jFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLLookAndFeelCompatibilityVersionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLLookAndFeelFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLModelHintsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLPomFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLPortletFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLPortletPreferencesFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLPoshiFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLProjectElementCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLResourceActionsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+[XMLServiceEntityNameCheck](checks/xml_service_entity_name_check.markdown#xmlserviceentitynamecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Chceks that the entity name in `service.xml` does not equal the package name |
+XMLServiceFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLServiceReferenceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLSolrSchemaFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLSourcechecksFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLSpringFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLStrutsConfigFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLSuppressionsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLTagAttributesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .html, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLTestIgnorableErrorLinesFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLTilesDefsFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLToggleFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLWebFileCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
+XMLWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | |
 YMLDefinitionOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .yaml or .yml | |
 YMLEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .yaml or .yml | |
 YMLLongLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .yaml or .yml | |

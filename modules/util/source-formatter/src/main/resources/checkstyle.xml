@@ -26,7 +26,7 @@
 		</module>
 		<module name="DefaultComesLastCheck">
 			<property name="category" value="Styling" />
-			<property name="description" value="Check that the default is after all the cases in a switch statement." />
+			<property name="description" value="Checks that the `default` is after all the cases in a `switch` statement." />
 			<property name="documentationLocation" value="config_coding.html#DefaultComesLast" />
 		</module>
 		<module name="JavadocStyleCheck">
@@ -237,7 +237,7 @@
 			<property name="allowedVariableTypeNames" value="^(?!String).+Builder(Impl)?,Column,CompletableFuture,.*Consumer,ContactsEngineClient,Dataset,Description,ExecuteActionRequest,(FormsEventDataset)?Filter,.*Function[0-9]*,HttpSecurity,InOrder,JSONArray,JSONObject,JsonPath,.*Mapper,NestedRepresentor.*,Optional,Predicate,RequestSpecification,Response,SoyContext,.+Step,(Double|Int|Long)?Stream,Try,UpdateFieldPropertyRequest,ValidatableResponse,WebTarget" />
 			<property name="applyToTypeCast" value="true" />
 			<property name="category" value="Styling" />
-			<property name="description" value="Checks that chaining is only applied on certain types and methods" />
+			<property name="description" value="Checks that chaining is only applied on certain types and methods." />
 			<message key="chaining.allowed" value="Chaining is allowed on ''{0}''" />
 			<message key="chaining.avoid.method" value="Avoid chaining on method ''{0}''" />
 			<message key="chaining.avoid.new.instance" value="Avoid chaining on new class instantiation" />
@@ -307,7 +307,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.FrameworkBundleCheck">
 			<property name="category" value="Performance" />
-			<property name="description" value="Checks that `org.osgi.framework.Bundle.getHeaders()` is not used" />
+			<property name="description" value="Checks that `org.osgi.framework.Bundle.getHeaders()` is not used." />
 			<message key="bundle.get.headers.use" value="Use ''Bundle.getHeaders(java.lang.String locale)'' statement instead ''Bundle.getHeaders()''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.FullyQualifiedNameCheck">
@@ -342,13 +342,13 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.JSONUtilCheck">
 			<property name="category" value="Styling" />
-			<property name="description" value="Checks for utilization of class `JSONUtil`" />
+			<property name="description" value="Checks for utilization of class `JSONUtil`." />
 			<message key="json.util.put.all.use" value="Use ''JSONUtil.putAll'' instead of chaining on ''JSONUtil.put''" />
 			<message key="json.util.put.use" value="Combine calls ''{0}'' ({1}) and ''{2}'' ({3}) into single call ''{4}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.LambdaCheck">
 			<property name="category" value="Styling" />
-			<property name="description" value="Checks that `lambda` statements are as simple as possible" />
+			<property name="description" value="Checks that `lambda` statements are as simple as possible." />
 			<message key="lambda.simplify" value="Simplify lambda statement with single statement" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.LineBreakAfterCommaCheck">
@@ -362,7 +362,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ListUtilCheck">
 			<property name="category" value="Styling" />
-			<property name="description" value="Checks for utilization of class `ListUtil`" />
+			<property name="description" value="Checks for utilization of class `ListUtil`." />
 			<message key="array.unneeded" value="Pass arguments directly to ''ListUtil.fromArray'' instead of passing new array" />
 			<message key="list.util.use" value="Use ''ListUtil.fromArray'' to simplify code" />
 		</module>
@@ -391,7 +391,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MapIterationCheck">
 			<property name="category" value="Performance" />
-			<property name="description" value="Checks that there are no unnecessary map iterations" />
+			<property name="description" value="Checks that there are no unnecessary map iterations." />
 			<message key="entry.set.use" value="Use Map.entrySet() to retrieve values" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MethodNamingCheck">
@@ -413,7 +413,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingEmptyLineCheck">
 			<property name="category" value="Styling" />
-			<property name="description" value="Checks for missing line breaks around variable declarations" />
+			<property name="description" value="Checks for missing line breaks around variable declarations." />
 			<message key="empty.line.missing.after.method.call" value="There should be an empty line after line ''{0}''" />
 			<message key="empty.line.missing.after.method.name" value="There should be an empty line after ''{0}''" />
 			<message key="empty.line.missing.after.variable.definition" value="There should be an empty line after variable definition of type ''{0}''" />
@@ -456,7 +456,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.PersistenceUpdateCheck">
 			<property name="category" value="Bug Prevention" />
-			<property name="description" value="Checks that there are no stale references in service code from persistence updates" />
+			<property name="description" value="Checks that there are no stale references in service code from persistence updates." />
 			<message key="update.call.reassign" value="Update call should be reassigned to variable ''{0}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.PlusStatementCheck">
@@ -493,7 +493,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.StringBundlerNamingCheck">
 			<property name="category" value="Naming Conventions" />
-			<property name="description" value="Checks for consistent naming on variables of type 'StringBundler'" />
+			<property name="description" value="Checks for consistent naming on variables of type 'StringBundler'." />
 			<message key="variable.name.incorrect" value="StringBundler {0} ''{1}'' should end with either ''sb'' or ''SB''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.StringCastCheck">

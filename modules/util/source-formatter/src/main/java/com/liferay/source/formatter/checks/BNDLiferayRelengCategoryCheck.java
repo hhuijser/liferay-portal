@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author Alan Huang
  */
-public class BNDCategoryCheck extends BaseFileCheck {
+public class BNDLiferayRelengCategoryCheck extends BaseFileCheck {
 
 	@Override
 	public boolean isLiferaySourceCheck() {
@@ -54,8 +54,8 @@ public class BNDCategoryCheck extends BaseFileCheck {
 				liferayRelengCategory)) {
 
 			String message = StringBundler.concat(
-				"The 'Liferay-Releng-Category' can be blank or one of the ",
-				"following values '",
+				"The value for 'Liferay-Releng-Category' can be either blank ",
+				"or one of the following values '",
 				StringUtil.merge(allowedLiferayRelengCategoryNames, ", "), "'");
 
 			addMessage(fileName, message);

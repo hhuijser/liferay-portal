@@ -69,10 +69,6 @@
 			<category name="Styling" />
 			<description name="Sorts class names and checks for use of wildcards in property values for `-conditionalpackage`, `-exportcontents` and `Export-Package`" />
 		</check>
-		<check name="BNDLiferayRelengCategoryCheck">
-			<category name="Bug Prevention" />
-			<description name="Validates `Liferay-Releng-Category` properties" />
-		</check>
 		<check name="BNDSuiteCheck">
 			<category name="Miscellaneous" />
 			<description name="Checks that deprecated apps are moved to the `archived` folder" />
@@ -98,6 +94,10 @@
 			<property name="checkTestIncludeResource" value="true" />
 		</check>
 		<check name="BNDLiferayEnterpriseAppCheck" />
+		<check name="BNDLiferayRelengCategoryCheck">
+			<category name="Bug Prevention" />
+			<description name="Validates `Liferay-Releng-Category` properties" />
+		</check>
 		<check name="BNDWebContextPathCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks if the property value for `Web-ContextPath` matches the module directory" />

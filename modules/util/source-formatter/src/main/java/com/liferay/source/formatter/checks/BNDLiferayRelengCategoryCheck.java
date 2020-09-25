@@ -27,7 +27,7 @@ import java.util.List;
 public class BNDLiferayRelengCategoryCheck extends BaseFileCheck {
 
 	@Override
-	public boolean isLiferaySourceCheck() {
+	public boolean isModuleSourceCheck() {
 		return true;
 	}
 

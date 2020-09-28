@@ -2,12 +2,12 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-FTLEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-[FTLIfStatementCheck](checks/if_statement_check.markdown#ifstatementcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-FTLImportsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-FTLLiferayVariableOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-FTLStringRelationalOperatorCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-FTLStylingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-FTLTagAttributesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-FTLTagCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
-FTLWhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+FTLEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary empty lines. |
+[FTLIfStatementCheck](checks/if_statement_check.markdown#ifstatementcheck) | [Styling](styling_checks.markdown#styling-checks) | Checks for correct use of parentheses in statement. |
+FTLImportsCheck | [Styling](styling_checks.markdown#styling-checks) | Sorts and groups imports in `.ftl` files. |
+FTLLiferayVariableOrderCheck | [Styling](styling_checks.markdown#styling-checks) | Sorts assign statement of `liferay_*` variables. |
+FTLStringRelationalOperatorCheck | [Styling](styling_checks.markdown#styling-checks) | Finds cases of `==` or `!=` where `stringUtil.equals`, `validator.isNotNull` or `validator.isNull` can be used instead. |
+FTLStylingCheck | [Styling](styling_checks.markdown#styling-checks) | Applies rules to enforce consisteny in code style. |
+FTLTagAttributesCheck | [Styling](styling_checks.markdown#styling-checks) | Sorts and formats attributes values in tags. |
+FTLTagCheck | [Styling](styling_checks.markdown#styling-checks) | Finds cases where consecutive `#assign` can be combined. |
+FTLWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary whitespace in `.ftl` files. |

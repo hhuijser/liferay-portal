@@ -2,4 +2,4 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-WhitespaceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+WhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary whitespace. |

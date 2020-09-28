@@ -258,13 +258,13 @@ public class ReflectionUtilTest {
 		}
 
 		@SuppressWarnings("unused")
-		private Object _getPrivateObject() {
-			return _privateObject;
+		private static Object _getPrivateStaticObject() {
+			return _privateStaticObject;
 		}
 
 		@SuppressWarnings("unused")
-		private Object _getPrivateStaticObject() {
-			return _privateStaticObject;
+		private Object _getPrivateObject() {
+			return _privateObject;
 		}
 
 		private static final Object _privateStaticFinalObject = new Object();

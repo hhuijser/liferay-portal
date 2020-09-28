@@ -162,6 +162,8 @@
 		<!-- Custom checks -->
 
 		<module name="com.liferay.source.formatter.checkstyle.checks.AppendCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Checks instances where literal Strings are appended." />
 			<message key="end.character.invalid" value="When appending multiple literal strings, only the last literal string can end with ''{0}''" />
 			<message key="line.break.incorrect" value="Avoid using line break when appending multiple literal strings" />
 			<message key="literal.string.combine" value="Combine the literal strings ''{0}'' and ''{1}''" />
@@ -170,6 +172,8 @@
 			<message key="start.character.invalid" value="When appending multiple literal strings, only the first literal string can start with ''{0}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.CamelCaseNameCheck">
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks variable names for correct use of `CamelCase`." />
 			<property name="enabled" value="false" />
 			<message key="following.underscore.incorrect" value="''{0}'' should not be followed by ''_'' for variable ''{1}''" />
 			<message key="following.uppercase.incorrect" value="''{0}'' should not be followed by an uppercase character for {1} ''{2}''" />
@@ -195,6 +199,8 @@
 			<message key="response.unsorted" value="Method calls between ''Response.status'' and ''Response.build'' should be sorted" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ConcatCheck">
+			<property name="category" value="Performance" />
+			<property name="description" value="Checks for correct use of `StringBundler.concat`." />
 			<message key="end.character.invalid" value="When concatenating multiple literal strings, only the last literal string can end with ''{0}''" />
 			<message key="literal.string.combine" value="Combine the literal strings ''{0}'' and ''{1}''" />
 			<message key="literal.string.move" value="Add the string ''{0}'' to the previous literal string" />
@@ -203,20 +209,30 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ConstantNameCheck">
 			<property name="camelCaseTypeNames" value="AggregateTestRule,CodeCoverageAssertor,LiferayIntegrationTestRule,Log,Pattern,TestRule" />
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks that variable names of constants follow correct naming rules." />
 			<property name="immutableFieldTypes" value="boolean,byte,char,double,float,int,long,short,Boolean,Byte,Character,Class,Double,Float,Int,Long,Number,Short,String" />
 			<message key="name.invalidConstantPattern" value="{0} constant ''{1}'' must match pattern ''{2}''" />
 			<message key="name.invalidConstantTypePattern" value="{0} constant ''{1}'' of type ''{2}'' must match pattern ''{3}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ContractionsCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Finds contractions in Strings (such as `can't` or `you're`)." />
 			<message key="contraction.avoid" value="Avoid using contraction ''{0}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ExceptionMessageCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Validates messages that are passed to exceptions." />
 			<message key="message.incorrect" value="Incorrect exception message" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.FactoryCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Finds cases where `*Factory` should be used when creating new instances of an object." />
 			<message key="factory.use" value="Use ''{0}'' to create new instance of ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.GenericTypeCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Checks that generics are always specified to provide compile-time checking and removing the risk of `ClassCastException` during runtime." />
 			<property name="enabled" value="false" />
 			<property name="populateTypeNames" value="false" />
 			<message key="generic.type.parameterize" value="Parameterize the generic {0} for ''{1}'" />
@@ -259,6 +275,8 @@
 			<message key="objects.equals.use.2" value="Either use ''{0}'' or use ''Objects.equals'' if ''{1}'' can have a ''null'' value, instead of calling ''equals'' on a literal String" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MapBuilderCheck">
+			<property name="category" value="Miscellaneous" />
+			<property name="description" value="Checks that `ConcurrentHashMapBuilder`, `HashMapBuilder`, `LinkedHashMapBuilder` or `TreeMapBuilder` is used when possible." />
 			<property name="enabled" value="false" />
 			<message key="builder.include" value="Include method call ''{0}'' ({1}) in ''{2}'' ({3})" />
 			<message key="builder.use" value="Use ''{0}'' ({1}, {2})" />

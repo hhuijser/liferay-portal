@@ -203,9 +203,13 @@
 			<message key="annotation.unsortedParameter" value="Annotation parameter ''{0}'' is not sorted alphabetically" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.AnonymousClassCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Checks for serialization issue when using anonymous class." />
 			<message key="anonymous.class.incorrect" value="Do not use anonymous class for variable ''{0}''. This causes (de)serialization issues when passed to method call ''{1}''." />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.AppendCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Checks instances where literal Strings are appended." />
 			<message key="end.character.invalid" value="When appending multiple literal strings, only the last literal string can end with ''{0}''" />
 			<message key="line.break.incorrect" value="Avoid using line break when appending multiple literal strings" />
 			<message key="literal.string.combine" value="Combine the literal strings ''{0}'' and ''{1}''" />
@@ -214,15 +218,23 @@
 			<message key="start.character.invalid" value="When appending multiple literal strings, only the first literal string can start with ''{0}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ArquillianCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Checks for correct use of `com.liferay.arquillian.extension.junit.bridge.junit.Arquillian`." />
 			<message key="import.invalid" value="Use import ''com.liferay.arquillian.extension.junit.bridge.junit.Arquillian'' instead of ''org.jboss.arquillian.junit.Arquillian'', see LPS-68945" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.AssertEqualsCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Checks that additional information is provided when calling `Assert.assertEquals`." />
 			<message key="assert.add.information" value="Add ''{0}'' as extra parameter at the beginning of the ''Assert.assertEquals'' call to provide more information to the test. See LPS-70411." />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.AttributeOrderCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Checks that attributes in anonymous classes are ordered alphabetically." />
 			<message key="attribute.incorrect.order" value="Attribute ''{0}'' should come after attribute ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.CamelCaseNameCheck">
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks variable names for correct use of `CamelCase`." />
 			<property name="enabled" value="false" />
 			<message key="following.underscore.incorrect" value="''{0}'' should not be followed by ''_'' for variable ''{1}''" />
 			<message key="following.uppercase.incorrect" value="''{0}'' should not be followed by an uppercase character for {1} ''{2}''" />
@@ -248,6 +260,8 @@
 			<message key="response.unsorted" value="Method calls between ''Response.status'' and ''Response.build'' should be sorted" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ConcatCheck">
+			<property name="category" value="Performance" />
+			<property name="description" value="Checks for correct use of `StringBundler.concat`." />
 			<message key="end.character.invalid" value="When concatenating multiple literal strings, only the last literal string can end with ''{0}''" />
 			<message key="literal.string.combine" value="Combine the literal strings ''{0}'' and ''{1}''" />
 			<message key="literal.string.move" value="Add the string ''{0}'' to the previous literal string" />
@@ -256,18 +270,26 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ConstantNameCheck">
 			<property name="camelCaseTypeNames" value="AggregateTestRule,Atomic.*,CodeCoverageAssertor,LiferayIntegrationTestRule,Log,Pattern,TestRule" />
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks that variable names of constants follow correct naming rules." />
 			<property name="immutableFieldTypes" value="boolean,byte,char,double,float,int,long,short,Boolean,Byte,Character,Class,Double,Float,Int,Long,Number,Short,String" />
 			<message key="name.invalidConstantPattern" value="{0} constant ''{1}'' must match pattern ''{2}''" />
 			<message key="name.invalidConstantTypePattern" value="{0} constant ''{1}'' of type ''{2}'' must match pattern ''{3}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ConstructorMissingEmptyLineCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Checks for line breaks when assiging variables in constructor." />
 			<message key="empty.line.missing" value="There should be an empty line before line ''{0}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ContractionsCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Finds contractions in Strings (such as `can't` or `you're`)." />
 			<message key="contraction.avoid" value="Avoid using contraction ''{0}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.CreationMenuBuilderCheck">
+			<property name="category" value="Miscellaneous" />
 			<property name="checkInline" value="true" />
+			<property name="description" value="Checks that `CreationMenuBuilder` is used when possible." />
 			<property name="enabled" value="false" />
 			<message key="builder.include" value="Include method call ''{0}'' ({1}) in ''{2}'' ({3})" />
 			<message key="builder.inline.1" value="Inline variable definition ''{0}'' ({1}) inside ''{2}'' ({3})" />
@@ -276,6 +298,8 @@
 			<message key="builder.use.instead" value="Use ''{0}'' instead of new instance of ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.DeprecatedUsageCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Finds calls to deprecated classes or methods." />
 			<property name="enabled" value="false" />
 			<message key="constructor.call.deprecated" value="Constructor ''{0}'' has been deprecated" />
 			<message key="field.call.deprecated" value="Field ''{0}'' has been deprecated" />
@@ -283,26 +307,40 @@
 			<message key="type.call.deprecated" value="Type ''{0}'' has been deprecated" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.EnumConstantDividerCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Find unnecessary empty lines between enum constants." />
 			<message key="empty.line.unnecessary" value="Unnecessary empty line needed between enum constants" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.EnumConstantOrderCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Checks the order of enum constants." />
 			<message key="enum.constant.incorrect.order" value="Enum constant ''{0}'' should come after constant ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ExceptionCheck">
+			<property name="category" value="Performance" />
+			<property name="description" value="Finds private methods that throw unnecessary exception." />
 			<property name="enabled" value="false" />
 			<message key="exception.unnecessary" value="Method ''{0}'' throws unnecessary {1}. All methods calling ''{0}'' throw ''Exception''." />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ExceptionMessageCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Validates messages that are passed to exceptions." />
 			<message key="message.incorrect" value="Incorrect exception message" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ExceptionVariableNameCheck">
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Validates variable names that have type `*Exception`." />
 			<property name="enabled" value="false" />
 			<message key="variable.rename" value="Rename exception variable ''{0}'' to ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.FactoryCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Finds cases where `*Factory` should be used when creating new instances of an object." />
 			<message key="factory.use" value="Use ''{0}'' to create new instance of ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.FilterStringWhitespaceCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Finds missing and unnecessary whitespace in the value of the filter string in `ServiceTrackerFactory.open` or `WaiterUtil.waitForFilter`." />
 			<message key="whitespace.incorrect" value="The value of ''{0}'' should not have spaces around ''='', see LPS-70526" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.FrameworkBundleCheck">
@@ -311,9 +349,13 @@
 			<message key="bundle.get.headers.use" value="Use ''Bundle.getHeaders(java.lang.String locale)'' statement instead ''Bundle.getHeaders()''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.FullyQualifiedNameCheck">
+			<property name="category" value="Miscellaneous" />
+			<property name="description" value="Finds cases where a Fully Qualified Name is used instead of importing a class." />
 			<message key="import.statement.use" value="Use import statement instead of Fully Qualified Name for ''{0}'" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.GenericTypeCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Checks that generics are always specified to provide compile-time checking and removing the risk of `ClassCastException` during runtime." />
 			<property name="enabled" value="false" />
 			<property name="populateTypeNames" value="false" />
 			<message key="generic.type.parameterize" value="Parameterize the generic {0} for ''{1}'" />
@@ -322,7 +364,9 @@
 			<message key="instanceof.order" value="''{0}'' should come before ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ItemListBuilderCheck">
+			<property name="category" value="Miscellaneous" />
 			<property name="checkInline" value="true" />
+			<property name="description" value="Checks that `DropdownItemListBuilder`, `LabelItemListBuilder` or `NavigationItemListBuilder` is used when possible." />
 			<property name="enabled" value="false" />
 			<message key="builder.include" value="Include method call ''{0}'' ({1}) in ''{2}'' ({3})" />
 			<message key="builder.inline.1" value="Inline variable definition ''{0}'' ({1}) inside ''{2}'' ({3})" />
@@ -380,7 +424,9 @@
 			<message key="lps42924" value="Use ''classNameLocalService.getClassNameId'' instead of ''PortalUtil.getClassName''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MapBuilderCheck">
+			<property name="category" value="Miscellaneous" />
 			<property name="checkInline" value="true" />
+			<property name="description" value="Checks that `ConcurrentHashMapBuilder`, `HashMapBuilder`, `LinkedHashMapBuilder` or `TreeMapBuilder` is used when possible." />
 			<property name="enabled" value="false" />
 			<message key="builder.include" value="Include method call ''{0}'' ({1}) in ''{2}'' ({3})" />
 			<message key="builder.inline.1" value="Inline variable definition ''{0}'' ({1}) inside ''{2}'' ({3})" />

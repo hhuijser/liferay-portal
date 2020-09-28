@@ -2,7 +2,10 @@
 
 <source-formatter>
 	<source-processor name="all">
-		<check name="CDNCheck" />
+		<check name="CDNCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks the URL in `artifact.properties` files." />
+		</check>
 		<check name="IncorrectFileLocationCheck" />
 		<check name="NonbreakingSpaceCheck" />
 		<check name="SlantedQuotesCheck" />
@@ -93,7 +96,10 @@
 			<description name="Checks for unnesecarry including of `test-classes/integration`." />
 			<property name="checkTestIncludeResource" value="true" />
 		</check>
-		<check name="BNDLiferayEnterpriseAppCheck" />
+		<check name="BNDLiferayEnterpriseAppCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks for correct use of property `Liferay-Enterprise-App`." />
+		</check>
 		<check name="BNDLiferayRelengCategoryCheck">
 			<category name="Bug Prevention" />
 			<description name="Validates `Liferay-Releng-Category` properties" />
@@ -104,62 +110,134 @@
 		</check>
 	</source-processor>
 	<source-processor name="CodeownersSourceProcessor">
-		<check name="CodeownersFileLocationCheck" />
+		<check name="CodeownersFileLocationCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that `CODEOWNERS` files are located in `.github` directory." />
+		</check>
 		<check name="CodeownersWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Checks for incorrect/missing line whitespace." />
 			<property name="allowLeadingSpaces" value="true" />
 		</check>
 	</source-processor>
 	<source-processor name="ConfigSourceProcessor">
-		<check name="ConfigDefinitionKeysCheck" />
-		<check name="WhitespaceCheck" />
+		<check name="ConfigDefinitionKeysCheck">
+			<category name="Styling" />
+			<description name="Sorts definition keys in `.config` files." />
+		</check>
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 	</source-processor>
 	<source-processor name="CQLSourceProcessor">
-		<check name="CQLKeywordCheck" />
+		<check name="CQLKeywordCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that Cassandra keywords are upper case." />
+		</check>
 		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
 			<property name="allowLeadingSpaces" value="true" />
 		</check>
 	</source-processor>
 	<source-processor name="CSSSourceProcessor">
-		<check name="CSSCommentsCheck" />
+		<check name="CSSCommentsCheck">
+			<category name="Styling" />
+			<description name="Validates comments in `.css` files." />
+		</check>
 		<check name="CSSEmptyLinesCheck">
 			<property name="enabled" value="false" />
 		</check>
 		<check name="CSSHexColorsCheck">
 			<property name="enabled" value="false" />
 		</check>
-		<check name="CSSImportsCheck" />
-		<check name="CSSPropertiesOrderCheck" />
+		<check name="CSSImportsCheck">
+			<category name="Styling" />
+			<description name="Sorts and groups imports in `.css` files." />
+		</check>
+		<check name="CSSPropertiesOrderCheck">
+			<category name="Styling" />
+			<description name="Sorts properties in `.css` files." />
+		</check>
 		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
 			<property name="enabled" value="false" />
 		</check>
 	</source-processor>
 	<source-processor name="DockerfileSourceProcessor">
-		<check name="DockerfileEmptyLinesCheck" />
-		<check name="DockerfileInstructionCheck" />
+		<check name="DockerfileEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
+		<check name="DockerfileInstructionCheck">
+			<category name="Styling" />
+			<description name="Performs styling rules on instructions in `Dockerfile` files." />
+		</check>
 		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
 			<property name="allowLeadingSpaces" value="true" />
 		</check>
 	</source-processor>
 	<source-processor name="DTDSourceProcessor">
 		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
 			<property name="allowLeadingSpaces" value="true" />
 		</check>
 	</source-processor>
 	<source-processor name="FTLSourceProcessor">
-		<check name="FTLEmptyLinesCheck" />
-		<check name="FTLIfStatementCheck" />
-		<check name="FTLImportsCheck" />
-		<check name="FTLLiferayVariableOrderCheck" />
-		<check name="FTLStringRelationalOperatorCheck" />
-		<check name="FTLStylingCheck" />
-		<check name="FTLTagAttributesCheck" />
-		<check name="FTLTagCheck" />
-		<check name="FTLWhitespaceCheck" />
+		<check name="FTLEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
+		<check name="FTLIfStatementCheck">
+			<category name="Styling" />
+			<description name="Checks for correct use of parentheses in statement." />
+		</check>
+		<check name="FTLImportsCheck">
+			<category name="Styling" />
+			<description name="Sorts and groups imports in `.ftl` files." />
+		</check>
+		<check name="FTLLiferayVariableOrderCheck">
+			<category name="Styling" />
+			<description name="Sorts assign statement of `liferay_*` variables." />
+		</check>
+		<check name="FTLStringRelationalOperatorCheck">
+			<category name="Styling" />
+			<description name="Finds cases of `==` or `!=` where `stringUtil.equals`, `validator.isNotNull` or `validator.isNull` can be used instead." />
+		</check>
+		<check name="FTLStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
+		<check name="FTLTagAttributesCheck">
+			<category name="Styling" />
+			<description name="Sorts and formats attributes values in tags." />
+		</check>
+		<check name="FTLTagCheck">
+			<category name="Styling" />
+			<description name="Finds cases where consecutive `#assign` can be combined." />
+		</check>
+		<check name="FTLWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.ftl` files." />
+		</check>
 	</source-processor>
 	<source-processor name="GradleSourceProcessor">
-		<check name="GradleBlockOrderCheck" />
-		<check name="GradleBodyCheck" />
+		<check name="GradleBlockOrderCheck">
+			<category name="Styling" />
+			<description name="Sorts logic in gradle build files." />
+		</check>
+		<check name="GradleBodyCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in the body of gradle build files." />
+		</check>
 		<check name="GradleDependenciesCheck">
+			<category name="Miscellaneous" />
+			<description name="Checks that `petra` modules are not depending on other modules." />
 			<property name="checkPetraDependencies" value="true" />
 		</check>
 		<check name="GradleDependencyArtifactsCheck">
@@ -170,7 +248,10 @@
 		<check name="GradleDependencyConfigurationCheck" />
 		<check name="GradleDependencyVersionCheck" />
 		<check name="GradleExportedPackageDependenciesCheck" />
-		<check name="GradleImportsCheck" />
+		<check name="GradleImportsCheck">
+			<category name="Styling" />
+			<description name="Sorts and groups imports in `.gradle` files." />
+		</check>
 		<check name="GradleIndentationCheck" />
 		<check name="GradleJavaVersionCheck" />
 		<check name="GradlePropertiesCheck" />
@@ -178,7 +259,10 @@
 		<check name="GradleRequiredDependenciesCheck">
 			<property name="enabled" value="false" />
 		</check>
-		<check name="GradleStylingCheck" />
+		<check name="GradleStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="GradleTaskCreationCheck">
 			<category name="Styling" />
 			<description name="Checks that a task is declared on a separate line before the closure." />
@@ -189,14 +273,26 @@
 			<property name="allowedDependencyNames" value="com.liferay.arquillian.extension.junit.bridge" />
 			<property name="allowedDependencyNames" value="com.liferay.portal.cache.test.util" />
 		</check>
-		<check name="WhitespaceCheck" />
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 	</source-processor>
 	<source-processor name="GroovySourceProcessor">
-		<check name="WhitespaceCheck" />
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 	</source-processor>
 	<source-processor name="HTMLSourceProcessor">
-		<check name="HTMLEmptyLinesCheck" />
-		<check name="HTMLWhitespaceCheck" />
+		<check name="HTMLEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
+		<check name="HTMLWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.html` files." />
+		</check>
 		<check name="XMLTagAttributesCheck" />
 	</source-processor>
 	<source-processor name="JavaSourceProcessor">
@@ -205,10 +301,18 @@
 			<description name="Checks if performance can be improved by using different mehods that can be used by collections." />
 		</check>
 		<check name="CopyrightCheck">
+			<category name="Styling" />
+			<description name="Validates `copyright` header." />
 			<property name="copyrightFileName" value="copyright.txt" />
 		</check>
-		<check name="EmptyCollectionCheck" />
-		<check name="GetterUtilCheck" />
+		<check name="EmptyCollectionCheck">
+			<category name="Styling" />
+			<description name="Checks that there are no calls to `Collections.EMPTY_LIST`, `Collections.EMPTY_MAP` or `Collections.EMPTY_SET`." />
+		</check>
+		<check name="GetterUtilCheck">
+			<category name="Styling" />
+			<description name="Finds cases where the default value is passed to `GetterUtil.get*` or `ParamUtil.get*`." />
+		</check>
 		<check name="Java2HTMLCheck" />
 		<check name="JavaAbstractMethodCheck" />
 		<check name="JavaAggregateTestRuleParameterOrderCheck" />
@@ -240,7 +344,10 @@
 		<check name="JavaDuplicateVariableCheck" />
 		<check name="JavaElseStatementCheck" />
 		<check name="JavaEmptyLineAfterSuperCallCheck" />
-		<check name="JavaEmptyLinesCheck" />
+		<check name="JavaEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
 		<check name="JavaExceptionCheck">
 			<property name="enabled" value="false" />
 		</check>
@@ -249,7 +356,10 @@
 			<description name="Checks if a Enhanced For Loop can be used instead of a Simple For Loop." />
 		</check>
 		<check name="JavaHibernateSQLCheck" />
-		<check name="JavaImportsCheck" />
+		<check name="JavaImportsCheck">
+			<category name="Styling" />
+			<description name="Sorts and groups imports in `.java` files." />
+		</check>
 		<check name="JavaIndexableCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that the type gets returned when using annotation `@Indexable`." />
@@ -301,11 +411,17 @@
 			<category name="Bug Prevention" />
 			<description name="Checks for potential NullPointerException when using `StopWatch`." />
 		</check>
-		<check name="JavaStylingCheck" />
+		<check name="JavaStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="JavaSystemExceptionCheck" />
 		<check name="JavaTermDividersCheck" />
 		<check name="JavaTermOrderCheck" />
-		<check name="JavaTermStylingCheck" />
+		<check name="JavaTermStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="MethodCallsOrderCheck" />
 		<check name="PrimitiveWrapperInstantiationCheck" />
 		<check name="PrincipalExceptionCheck" />
@@ -466,7 +582,10 @@
 		<check name="CompatClassImportsCheck" />
 	</source-processor>
 	<source-processor name="JSONSourceProcessor">
-		<check name="JSONStylingCheck" />
+		<check name="JSONStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="JSONValidationCheck" />
 
 		<!-- Liferay Source Checks -->
@@ -484,10 +603,18 @@
 			<description name="Checks if performance can be improved by using different mehods that can be used by collections." />
 		</check>
 		<check name="CopyrightCheck">
+			<category name="Styling" />
+			<description name="Validates `copyright` header." />
 			<property name="copyrightFileName" value="copyright.txt" />
 		</check>
-		<check name="EmptyCollectionCheck" />
-		<check name="GetterUtilCheck" />
+		<check name="EmptyCollectionCheck">
+			<category name="Styling" />
+			<description name="Checks that there are no calls to `Collections.EMPTY_LIST`, `Collections.EMPTY_MAP` or `Collections.EMPTY_SET`." />
+		</check>
+		<check name="GetterUtilCheck">
+			<category name="Styling" />
+			<description name="Finds cases where the default value is passed to `GetterUtil.get*` or `ParamUtil.get*`." />
+		</check>
 		<check name="JSPArrowFunctionCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that there are no array functions." />
@@ -496,10 +623,16 @@
 			<category name="Performance" />
 			<description name="Checks for unnesecarry duplication of code that already exists in `defineObjects`." />
 		</check>
-		<check name="JSPEmptyLinesCheck" />
+		<check name="JSPEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
 		<check name="JSPExceptionOrderCheck" />
 		<check name="JSPIllegalSyntaxCheck" />
-		<check name="JSPImportsCheck" />
+		<check name="JSPImportsCheck">
+			<category name="Styling" />
+			<description name="Sorts and groups imports in `.jsp` files." />
+		</check>
 		<check name="JSPIncludeCheck" />
 		<check name="JSPIndentationCheck" />
 		<check name="JSPJavaParserCheck">
@@ -514,11 +647,17 @@
 		<check name="JSPParenthesesCheck" />
 		<check name="JSPRedirectBackURLCheck" />
 		<check name="JSPSessionKeysCheck" />
-		<check name="JSPStylingCheck" />
+		<check name="JSPStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="JSPTagAttributesCheck" />
 		<check name="JSPTaglibVariableCheck" />
 		<check name="JSPUnusedTermsCheck" />
-		<check name="JSPWhitespaceCheck" />
+		<check name="JSPWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.jsp` files." />
+		</check>
 		<check name="JSPXSSVulnerabilitiesCheck" />
 		<check name="MethodCallsOrderCheck" />
 		<check name="PrimitiveWrapperInstantiationCheck" />
@@ -564,9 +703,13 @@
 			<property name="enabled" value="false" />
 		</check>
 		<check name="JSStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
 			<property name="enabled" value="false" />
 		</check>
 		<check name="JSWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.js` files." />
 			<property name="enabled" value="false" />
 		</check>
 
@@ -587,30 +730,50 @@
 		<check name="MarkdownSourceFormatterReadmeCheck">
 			<property name="enabled" value="false" />
 		</check>
-		<check name="MarkdownStylingCheck" />
+		<check name="MarkdownStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="MarkdownWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.markdown` files." />
 			<property name="allowLeadingSpaces" value="true" />
 			<property name="allowTrailingDoubleSpace" value="true" />
 		</check>
 	</source-processor>
 	<source-processor name="PackageinfoSourceProcessor">
 		<check name="PackageinfoBNDExportPackageCheck" />
-		<check name="WhitespaceCheck" />
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 	</source-processor>
 	<source-processor name="PoshiSourceProcessor">
 		<check name="PoshiAnnotationsOrderCheck" />
 		<check name="PoshiCommandsOrderCheck" />
-		<check name="PoshiEmptyLinesCheck" />
+		<check name="PoshiEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
 		<check name="PoshiIndentationCheck" />
 		<check name="PoshiParametersOrderCheck" />
-		<check name="PoshiStylingCheck" />
-		<check name="PoshiWhitespaceCheck" />
+		<check name="PoshiStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
+		<check name="PoshiWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in poshi files." />
+		</check>
 	</source-processor>
 	<source-processor name="PropertiesSourceProcessor">
 		<check name="PropertiesCommentsCheck" />
 		<check name="PropertiesDefinitionKeysCheck" />
 		<check name="PropertiesDependenciesFileCheck" />
-		<check name="PropertiesEmptyLinesCheck" />
+		<check name="PropertiesEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
 		<check name="PropertiesImportedFilesContentCheck" />
 		<check name="PropertiesLanguageKeysOrderCheck" />
 		<check name="PropertiesLiferayPluginPackageFileCheck" />
@@ -622,8 +785,13 @@
 		<check name="PropertiesPortletFileCheck" />
 		<check name="PropertiesSourceFormatterContentCheck" />
 		<check name="PropertiesSourceFormatterFileCheck" />
-		<check name="PropertiesStylingCheck" />
+		<check name="PropertiesStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="PropertiesWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.properties` files." />
 			<property name="allowDoubleSpace" value="true" />
 			<property name="allowLeadingSpaces" value="true" />
 		</check>
@@ -641,29 +809,52 @@
 		<check name="PropertiesVerifyPropertiesCheck" />
 	</source-processor>
 	<source-processor name="SHSourceProcessor">
-		<check name="WhitespaceCheck" />
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 	</source-processor>
 	<source-processor name="SoySourceProcessor">
-		<check name="SoyEmptyLinesCheck" />
-		<check name="WhitespaceCheck" />
+		<check name="SoyEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 	</source-processor>
 	<source-processor name="SQLSourceProcessor">
-		<check name="SQLEmptyLinesCheck" />
+		<check name="SQLEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
 		<check name="SQLLongNamesCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks for table and column names that exceed 30 characters." />
 		</check>
-		<check name="SQLStylingCheck" />
-		<check name="WhitespaceCheck" />
+		<check name="SQLStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 	</source-processor>
 	<source-processor name="TLDSourceProcessor">
 		<check name="TLDElementOrderCheck" />
 		<check name="TLDTypeCheck" />
-		<check name="WhitespaceCheck" />
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 		<check name="XMLIndentationCheck" />
 	</source-processor>
 	<source-processor name="TSSourceProcessor">
 		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
 			<property name="allowTrailingEmptyLines" value="true" />
 		</check>
 	</source-processor>
@@ -671,7 +862,10 @@
 		<check name="XMLBuildFileCheck" />
 		<check name="XMLCDATACheck" />
 		<check name="XMLCustomSQLOrderCheck" />
-		<check name="XMLCustomSQLStylingCheck" />
+		<check name="XMLCustomSQLStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style for `.xml` files in directory `custom-sql`." />
+		</check>
 		<check name="XMLDDLStructuresFileCheck" />
 		<check name="XMLFriendlyURLRoutesFileCheck" />
 		<check name="XMLFSBExcludeFileCheck" />
@@ -695,16 +889,25 @@
 			<property name="checkMVCCEnabled" value="false" />
 		</check>
 		<check name="XMLSolrSchemaFileCheck" />
-		<check name="XMLStylingCheck" />
+		<check name="XMLStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="XMLSuppressionsFileCheck" />
 		<check name="XMLTagAttributesCheck" />
 		<check name="XMLToggleFileCheck" />
-		<check name="XMLWhitespaceCheck" />
+		<check name="XMLWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.xml` files." />
+		</check>
 
 		<!-- Liferay Source Checks -->
 
 		<check name="XMLCheckstyleFileCheck" />
-		<check name="XMLEmptyLinesCheck" />
+		<check name="XMLEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
 		<check name="XMLIvyFileCheck" />
 		<check name="XMLServiceReferenceCheck" />
 		<check name="XMLSourcechecksFileCheck" />
@@ -716,12 +919,20 @@
 	</source-processor>
 	<source-processor name="YMLSourceProcessor">
 		<check name="YMLDefinitionOrderCheck" />
-		<check name="YMLEmptyLinesCheck" />
+		<check name="YMLEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary empty lines." />
+		</check>
 		<check name="YMLLongLinesCheck">
 			<property name="maxLineLength" value="120" />
 		</check>
-		<check name="YMLStylingCheck" />
+		<check name="YMLStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 		<check name="YMLWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.yml` files." />
 			<property name="allowLeadingSpaces" value="true" />
 		</check>
 	</source-processor>

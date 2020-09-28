@@ -3090,8 +3090,8 @@ public class CommerceWishListPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CommerceWishList commerceWishList : list) {
 					if ((userId != commerceWishList.getUserId()) ||
-						(createDate.getTime() <=
-							commerceWishList.getCreateDate().getTime())) {
+						(createDate.getTime() <= commerceWishList.getCreateDate(
+						).getTime())) {
 
 						list = null;
 

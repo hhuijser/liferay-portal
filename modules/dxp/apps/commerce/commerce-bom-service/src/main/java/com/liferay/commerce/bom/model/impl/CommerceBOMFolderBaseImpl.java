@@ -68,7 +68,8 @@ public abstract class CommerceBOMFolderBaseImpl
 					commerceBOMFolder.getParentCommerceBOMFolderId());
 		}
 
-		StringBundler sb = new StringBundler(commerceBOMFolders.size() * 2 + 1);
+		StringBundler sb = new StringBundler(
+			(commerceBOMFolders.size() * 2) + 1);
 
 		sb.append("/");
 

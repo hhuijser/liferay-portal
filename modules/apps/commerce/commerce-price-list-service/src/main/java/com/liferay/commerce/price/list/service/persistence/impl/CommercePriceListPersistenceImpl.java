@@ -4509,7 +4509,8 @@ public class CommercePriceListPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CommercePriceList commercePriceList : list) {
 					if ((displayDate.getTime() <=
-							commercePriceList.getDisplayDate().getTime()) ||
+							commercePriceList.getDisplayDate(
+							).getTime()) ||
 						(status != commercePriceList.getStatus())) {
 
 						list = null;

@@ -699,8 +699,8 @@ public class SyncDLFileVersionDiffPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (SyncDLFileVersionDiff syncDLFileVersionDiff : list) {
 					if (expirationDate.getTime() <=
-							syncDLFileVersionDiff.
-								getExpirationDate().getTime()) {
+							syncDLFileVersionDiff.getExpirationDate(
+							).getTime()) {
 
 						list = null;
 

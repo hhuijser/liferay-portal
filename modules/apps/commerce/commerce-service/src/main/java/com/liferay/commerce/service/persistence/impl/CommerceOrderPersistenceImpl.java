@@ -6375,8 +6375,8 @@ public class CommerceOrderPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (CommerceOrder commerceOrder : list) {
 					if ((userId != commerceOrder.getUserId()) ||
-						(createDate.getTime() <=
-							commerceOrder.getCreateDate().getTime()) ||
+						(createDate.getTime() <= commerceOrder.getCreateDate(
+						).getTime()) ||
 						(orderStatus != commerceOrder.getOrderStatus())) {
 
 						list = null;
@@ -6983,8 +6983,8 @@ public class CommerceOrderPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CommerceOrder commerceOrder : list) {
-					if ((createDate.getTime() <=
-							commerceOrder.getCreateDate().getTime()) ||
+					if ((createDate.getTime() <= commerceOrder.getCreateDate(
+						).getTime()) ||
 						(commerceAccountId !=
 							commerceOrder.getCommerceAccountId()) ||
 						(orderStatus != commerceOrder.getOrderStatus())) {

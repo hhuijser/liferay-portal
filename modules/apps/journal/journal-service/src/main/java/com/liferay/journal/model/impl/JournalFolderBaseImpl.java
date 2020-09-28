@@ -66,7 +66,7 @@ public abstract class JournalFolderBaseImpl
 				journalFolder.getParentFolderId());
 		}
 
-		StringBundler sb = new StringBundler(journalFolders.size() * 2 + 1);
+		StringBundler sb = new StringBundler((journalFolders.size() * 2) + 1);
 
 		sb.append("/");
 

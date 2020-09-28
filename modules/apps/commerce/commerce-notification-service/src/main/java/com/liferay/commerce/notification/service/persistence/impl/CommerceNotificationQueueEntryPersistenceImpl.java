@@ -1760,8 +1760,8 @@ public class CommerceNotificationQueueEntryPersistenceImpl
 						commerceNotificationQueueEntry : list) {
 
 					if (sentDate.getTime() <=
-							commerceNotificationQueueEntry.
-								getSentDate().getTime()) {
+							commerceNotificationQueueEntry.getSentDate(
+							).getTime()) {
 
 						list = null;
 

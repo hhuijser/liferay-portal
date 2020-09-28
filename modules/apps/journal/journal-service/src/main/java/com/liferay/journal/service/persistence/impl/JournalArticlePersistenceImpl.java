@@ -19305,8 +19305,8 @@ public class JournalArticlePersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if ((displayDate.getTime() <=
-							journalArticle.getDisplayDate().getTime()) ||
+					if ((displayDate.getTime() <= journalArticle.getDisplayDate(
+						).getTime()) ||
 						(status != journalArticle.getStatus())) {
 
 						list = null;
@@ -33095,7 +33095,7 @@ public class JournalArticlePersistenceImpl
 			return map;
 		}
 
-		StringBundler sb = new StringBundler(primaryKeys.size() * 2 + 1);
+		StringBundler sb = new StringBundler((primaryKeys.size() * 2) + 1);
 
 		sb.append(getSelectSQL());
 		sb.append(" WHERE ");

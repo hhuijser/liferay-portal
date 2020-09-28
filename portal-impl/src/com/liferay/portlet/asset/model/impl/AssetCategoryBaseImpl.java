@@ -66,7 +66,7 @@ public abstract class AssetCategoryBaseImpl
 				assetCategory.getParentCategoryId());
 		}
 
-		StringBundler sb = new StringBundler(assetCategories.size() * 2 + 1);
+		StringBundler sb = new StringBundler((assetCategories.size() * 2) + 1);
 
 		sb.append("/");
 

@@ -21,7 +21,6 @@ import com.liferay.dynamic.data.mapping.service.DDMTemplateService;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
@@ -116,11 +115,8 @@ public class AddDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 			uploadPortletRequest, "saveAndContinue");
 
 		if (saveAndContinue) {
-			LiferayPortletResponse liferayPortletResponse =
-				_portal.getLiferayPortletResponse(actionResponse);
-
 			PortletURL portletURL = PortletURLBuilder.createRenderURL(
-				liferayPortletResponse
+				_portal.getLiferayPortletResponse(actionResponse)
 			).setMVCPath(
 				"/edit_ddm_template.jsp"
 			).setRedirect(

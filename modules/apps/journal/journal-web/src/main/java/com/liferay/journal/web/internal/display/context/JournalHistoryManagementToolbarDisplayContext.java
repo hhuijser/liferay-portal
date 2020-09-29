@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -33,7 +34,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -70,13 +70,13 @@ public class JournalHistoryManagementToolbarDisplayContext
 							ActionKeys.DELETE)) {
 
 						PortletURL deleteArticlesURL =
-							liferayPortletResponse.createActionURL();
-
-						deleteArticlesURL.setParameter(
-							ActionRequest.ACTION_NAME,
-							"/journal/delete_articles");
-						deleteArticlesURL.setParameter(
-							"redirect", themeDisplay.getURLCurrent());
+							PortletURLBuilder.createActionURL(
+								liferayPortletResponse
+							).setActionName(
+								"/journal/delete_articles"
+							).setRedirect(
+								themeDisplay.getURLCurrent()
+							).build();
 
 						add(
 							dropdownItem -> {
@@ -101,13 +101,13 @@ public class JournalHistoryManagementToolbarDisplayContext
 							ActionKeys.EXPIRE)) {
 
 						PortletURL expireArticlesURL =
-							liferayPortletResponse.createActionURL();
-
-						expireArticlesURL.setParameter(
-							ActionRequest.ACTION_NAME,
-							"/journal/expire_articles");
-						expireArticlesURL.setParameter(
-							"redirect", themeDisplay.getURLCurrent());
+							PortletURLBuilder.createActionURL(
+								liferayPortletResponse
+							).setActionName(
+								"/journal/expire_articles"
+							).setRedirect(
+								themeDisplay.getURLCurrent()
+							).build();
 
 						add(
 							dropdownItem -> {

@@ -116,9 +116,6 @@ public class AddDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 			uploadPortletRequest, "saveAndContinue");
 
 		if (saveAndContinue) {
-			String redirect = ParamUtil.getString(
-				uploadPortletRequest, "redirect");
-
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(actionResponse);
 
@@ -127,7 +124,7 @@ public class AddDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 			).setMVCPath(
 				"/edit_ddm_template.jsp"
 			).setRedirect(
-				redirect
+				ParamUtil.getString(uploadPortletRequest, "redirect")
 			).setParameter(
 				"ddmTemplateId", ddmTemplate.getTemplateId()
 			).build();

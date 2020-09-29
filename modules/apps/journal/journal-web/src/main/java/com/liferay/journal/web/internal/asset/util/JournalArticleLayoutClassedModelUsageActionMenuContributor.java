@@ -44,7 +44,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -176,23 +175,23 @@ public class JournalArticleLayoutClassedModelUsageActionMenuContributor
 				layoutURL, "previewVersion", previewVersion);
 		}
 		else {
-			PortletURL portletURL = PortletURLBuilder.create(
-				PortletURLFactoryUtil.create(
-					httpServletRequest,
-					layoutClassedModelUsage.getContainerKey(),
-					layoutClassedModelUsage.getPlid(),
-					PortletRequest.RENDER_PHASE)
-			).setParameter(
-				"previewClassNameId", layoutClassedModelUsage.getClassNameId()
-			).setParameter(
-				"previewClassPK", layoutClassedModelUsage.getClassPK()
-			).setParameter(
-				"previewType", previewType
-			).setParameter(
-				"previewVersion", previewVersion
-			).build();
-
-			layoutURL = portletURL.toString();
+			layoutURL = String.valueOf(
+				PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(
+						httpServletRequest,
+						layoutClassedModelUsage.getContainerKey(),
+						layoutClassedModelUsage.getPlid(),
+						PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"previewClassNameId",
+					layoutClassedModelUsage.getClassNameId()
+				).setParameter(
+					"previewClassPK", layoutClassedModelUsage.getClassPK()
+				).setParameter(
+					"previewType", previewType
+				).setParameter(
+					"previewVersion", previewVersion
+				).build());
 		}
 
 		String portletURLString = _http.setParameter(

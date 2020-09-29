@@ -215,9 +215,9 @@ public class JournalUtil {
 			PortletURL portletURL = PortletURLBuilder.createRenderURL(
 				liferayPortletResponse
 			).setParameter(
-				"groupId", String.valueOf(groupId)
+				"groupId", groupId
 			).setParameter(
-				"folderId", String.valueOf(folderId)
+				"folderId", folderId
 			).build();
 
 			return portletURL.toString();
@@ -255,7 +255,7 @@ public class JournalUtil {
 				portletRequest, JournalArticle.class.getName(),
 				PortletProvider.Action.EDIT)
 		).setParameter(
-			"folderId", String.valueOf(folderId)
+			"folderId", folderId
 		).build();
 
 		return portletURL.toString();

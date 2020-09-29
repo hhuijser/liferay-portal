@@ -270,11 +270,11 @@ public class JournalArticleActionDropdownItemsProvider {
 		).setMVCPath(
 			"/select_version.jsp"
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", _article.getArticleId()
 		).setParameter(
-			"sourceVersion", String.valueOf(_article.getVersion())
+			"sourceVersion", _article.getVersion()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();
@@ -286,7 +286,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		).setRedirect(
 			_getRedirect()
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", _article.getArticleId()
 		).build();
@@ -312,11 +312,11 @@ public class JournalArticleActionDropdownItemsProvider {
 			).setRedirect(
 				_getRedirect()
 			).setParameter(
-				"groupId", String.valueOf(_article.getGroupId())
+				"groupId", _article.getGroupId()
 			).setParameter(
 				"oldArticleId", _article.getArticleId()
 			).setParameter(
-				"version", String.valueOf(_article.getVersion())
+				"version", _article.getVersion()
 			).setParameter(
 				"autoArticleId", Boolean.TRUE.toString()
 			).build();
@@ -349,7 +349,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		).setRedirect(
 			redirect
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", articleId
 		).build();
@@ -387,7 +387,7 @@ public class JournalArticleActionDropdownItemsProvider {
 			).setActionName(
 				"/journal/delete_article_translations"
 			).setParameter(
-				"id", String.valueOf(_article.getId())
+				"id", _article.getId()
 			).build();
 
 		return dropdownItem -> {
@@ -442,7 +442,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		).setRedirect(
 			redirect
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", articleId
 		).build();
@@ -506,7 +506,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		).setRedirect(
 			_getRedirect()
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", _article.getArticleId()
 		).build();
@@ -624,7 +624,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		).setParameter(
 			"backURL", _getRedirect()
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", _article.getArticleId()
 		).build();
@@ -675,7 +675,7 @@ public class JournalArticleActionDropdownItemsProvider {
 				).setRedirect(
 					_getRedirect()
 				).setParameter(
-					"articleId", String.valueOf(_article.getResourcePrimKey())
+					"articleId", _article.getResourcePrimKey()
 				).build();
 
 			return dropdownItem -> {
@@ -694,7 +694,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		).setRedirect(
 			_getRedirect()
 		).setParameter(
-			"articleId", String.valueOf(_article.getResourcePrimKey())
+			"articleId", _article.getResourcePrimKey()
 		).build();
 
 		return dropdownItem -> {

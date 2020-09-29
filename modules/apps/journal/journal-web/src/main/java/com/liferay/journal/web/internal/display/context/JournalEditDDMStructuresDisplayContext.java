@@ -99,8 +99,7 @@ public class JournalEditDDMStructuresDisplayContext {
 						).setMVCPath(
 							"/ddm_structure/basic_info_data_engine_editor.jsp"
 						).setParameter(
-							"ddmStructureId",
-							String.valueOf(getDDMStructureId())
+							"ddmStructureId", getDDMStructureId()
 						).setWindowState(
 							LiferayWindowState.EXCLUSIVE
 						).build();

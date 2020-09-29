@@ -77,9 +77,9 @@ public class JournalFolderCTDisplayRenderer
 		).setRedirect(
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
-			"groupId", String.valueOf(journalFolder.getGroupId())
+			"groupId", journalFolder.getGroupId()
 		).setParameter(
-			"folderId", String.valueOf(journalFolder.getFolderId())
+			"folderId", journalFolder.getFolderId()
 		).build();
 
 		return portletURL.toString();

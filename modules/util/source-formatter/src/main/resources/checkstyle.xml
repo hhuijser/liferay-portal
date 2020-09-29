@@ -199,9 +199,6 @@
 
 		<!-- Custom checks -->
 
-		<module name="com.liferay.source.formatter.checkstyle.checks.AnnotationParameterOrderCheck">
-			<message key="annotation.unsortedParameter" value="Annotation parameter ''{0}'' is not sorted alphabetically" />
-		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.AnonymousClassCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Checks for serialization issue when using anonymous class." />

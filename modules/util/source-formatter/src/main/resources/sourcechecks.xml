@@ -146,12 +146,6 @@
 			<category name="Styling" />
 			<description name="Validates comments in `.css` files." />
 		</check>
-		<check name="CSSEmptyLinesCheck">
-			<property name="enabled" value="false" />
-		</check>
-		<check name="CSSHexColorsCheck">
-			<property name="enabled" value="false" />
-		</check>
 		<check name="CSSImportsCheck">
 			<category name="Styling" />
 			<description name="Sorts and groups imports in `.css` files." />

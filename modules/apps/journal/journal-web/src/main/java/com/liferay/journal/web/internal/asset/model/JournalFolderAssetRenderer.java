@@ -140,7 +140,7 @@ public class JournalFolderAssetRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				liferayPortletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
 				PortletRequest.RENDER_PHASE)
@@ -149,8 +149,6 @@ public class JournalFolderAssetRenderer
 		).setParameter(
 			"folderId", _folder.getFolderId()
 		).build();
-
-		return portletURL;
 	}
 
 	@Override

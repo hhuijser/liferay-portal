@@ -2,11 +2,8 @@
 
 Check | File Extensions | Description
 ----- | --------------- | -----------
-AnnotationParameterOrderCheck | .java | |
 [BNDDeprecatedAppBNDsCheck](checks/bnd_deprecated_app_bnds_check.markdown#bnddeprecatedappbndscheck) | .bnd | Checks for redundant `app.bnd` in deprecated or archived modules. |
 [BNDSuiteCheck](checks/bnd_suite_check.markdown#bndsuitecheck) | .bnd | Checks that deprecated apps are moved to the `archived` folder. |
-CSSEmptyLinesCheck | .css or .scss | |
-CSSHexColorsCheck | .css or .scss | |
 CompatClassImportsCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 [CreationMenuBuilderCheck](checks/builder_check.markdown#buildercheck) | .java | Checks that `CreationMenuBuilder` is used when possible. |
 FullyQualifiedNameCheck | .java | Finds cases where a Fully Qualified Name is used instead of importing a class. |
@@ -194,7 +191,7 @@ SelfReferenceCheck | .java | |
 SemiColonCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 SessionKeysCheck | .java | |
 SingleStatementClauseCheck | .java | |
-SizeIsZeroCheck | .java | |
+SizeIsZeroCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 SlantedQuotesCheck | | |
 [StaticBlockCheck](checks/static_block_check.markdown#staticblockcheck) | .java | |
 StringCastCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | |

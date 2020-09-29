@@ -2,7 +2,6 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-AnnotationParameterOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [AnnotationUseStyleCheck](https://checkstyle.sourceforge.io/config_annotation.html#AnnotationUseStyle) | [Styling](styling_checks.markdown#styling-checks) | Checks the style of elements in annotations. |
 AnonymousClassCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks for serialization issue when using anonymous class. |
 AppendCheck | [Styling](styling_checks.markdown#styling-checks) | Checks instances where literal Strings are appended. |

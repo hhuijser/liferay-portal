@@ -89,6 +89,7 @@ PrimitiveWrapperInstantiationCheck | [Miscellaneous](miscellaneous_checks.markdo
 PrincipalExceptionCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [ResourceBundleCheck](checks/resource_bundle_check.markdown#resourcebundlecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that there are no calls to `java.util.ResourceBundle.getBundle`. |
 SemiColonCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+SizeIsZeroCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [StaticVariableNameCheck](https://checkstyle.sourceforge.io/config_naming.html#StaticVariableName) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that static, non-final variable names conform to a specified pattern. |
 StringBundlerNamingCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks for consistent naming on variables of type 'StringBundler'. |
 StringCastCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |

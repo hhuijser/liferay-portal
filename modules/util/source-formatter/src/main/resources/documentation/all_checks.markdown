@@ -2,7 +2,6 @@
 
 Check | Category | File Extensions | Description
 ----- | -------- | --------------- | -----------
-AnnotationParameterOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 [AnnotationUseStyleCheck](https://checkstyle.sourceforge.io/config_annotation.html#AnnotationUseStyle) | [Styling](styling_checks.markdown#styling-checks) | .java | Checks the style of elements in annotations. |
 AnonymousClassCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for serialization issue when using anonymous class. |
 AppendCheck | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks instances where literal Strings are appended. |
@@ -37,8 +36,6 @@ BNDWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .bnd | 
 CDNCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | | Checks the URL in `artifact.properties` files. |
 CQLKeywordCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .cql | Checks that Cassandra keywords are upper case. |
 CSSCommentsCheck | [Styling](styling_checks.markdown#styling-checks) | .css or .scss | Validates comments in `.css` files. |
-CSSEmptyLinesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .css or .scss | |
-CSSHexColorsCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .css or .scss | |
 CSSImportsCheck | [Styling](styling_checks.markdown#styling-checks) | .css or .scss | Sorts and groups imports in `.css` files. |
 CSSPropertiesOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .css or .scss | Sorts properties in `.css` files. |
 CamelCaseNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks variable names for correct use of `CamelCase`. |
@@ -346,7 +343,7 @@ SelfReferenceCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous
 SemiColonCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 SessionKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
 SingleStatementClauseCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
-SizeIsZeroCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |
+SizeIsZeroCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | |
 SlantedQuotesCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | | |
 SoyEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | .soy | Finds missing and unnecessary empty lines. |
 [StaticBlockCheck](checks/static_block_check.markdown#staticblockcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | |

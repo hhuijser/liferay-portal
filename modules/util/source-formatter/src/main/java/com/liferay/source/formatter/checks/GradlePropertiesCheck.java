@@ -19,10 +19,12 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
-import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
+
+import java.util.Map;
 
 /**
  * @author Peter Shin
@@ -42,23 +44,7 @@ public class GradlePropertiesCheck extends BaseFileCheck {
 			String line = null;
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
-				String[] array = line.split(StringPool.EQUAL, 2);
-
-				if (array.length == 2) {
-					String key = array[0].trim();
-
-					if (ArrayUtil.contains(_KEYS_WITH_QUOTED_VALUE, key)) {
-						String value = array[1].trim();
-
-						String strippedValue = StringUtil.removeChars(
-							value, CharPool.APOSTROPHE, CharPool.QUOTE);
-
-						line = StringUtil.replaceLast(
-							line, value, "\"" + strippedValue + "\"");
-					}
-				}
-
-				sb.append(line);
+				sb.append(_fixValue(line));
 				sb.append("\n");
 			}
 		}
@@ -70,8 +56,36 @@ public class GradlePropertiesCheck extends BaseFileCheck {
 		return sb.toString();
 	}
 
-	private static final String[] _KEYS_WITH_QUOTED_VALUE = {
-		"sourceCompatibility", "targetCompatibility"
-	};
+	private final String _fixValue(String line) {
+		String[] array = line.split(StringPool.EQUAL, 2);
+
+		if (array.length != 2) {
+			return line;
+		}
+
+		String regex = _keysRegexMap.get(StringUtil.trim(array[0]));
+
+		if (regex == null) {
+			return line;
+		}
+
+		String value = StringUtil.trim(array[1]);
+
+		String strippedValue = StringUtil.removeChars(
+			value, CharPool.APOSTROPHE, CharPool.QUOTE);
+
+		if (strippedValue.matches(regex)) {
+			return StringUtil.replaceLast(
+				line, value, "\"" + strippedValue + "\"");
+		}
+
+		return line;
+	}
+
+	private static final Map<String, String> _keysRegexMap = MapUtil.fromArray(
+		new String[] {
+			"sourceCompatibility", "[0-9]+\\.[0-9]+", "targetCompatibility",
+			"[0-9]+\\.[0-9]+"
+		});
 
 }

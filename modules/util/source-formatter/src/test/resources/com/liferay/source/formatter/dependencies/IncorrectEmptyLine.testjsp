@@ -44,7 +44,7 @@ if ((privateLayoutSet == null) || (privateLayoutSetPrototype == null)) {
 Map<String, Serializable> taskContextMap = optimizeImageSingleBackgroundTask.getTaskContextMap();
 String configurationEntryUuid = (String)taskContextMap.get("configurationEntryUuid");
 
-if ((taskContextMap.size() > 0) && (configurationEntryUuid.length > 0)) {
+if (!taskContextMap.isEmpty() && (configurationEntryUuid.length > 0)) {
 	s = "test";
 }
 %>

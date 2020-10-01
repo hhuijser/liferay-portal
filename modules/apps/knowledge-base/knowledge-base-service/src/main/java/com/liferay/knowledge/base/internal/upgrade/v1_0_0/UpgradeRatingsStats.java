@@ -50,7 +50,7 @@ public class UpgradeRatingsStats extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select statsId, totalScore, averageScore from RatingsStats " +
 					"where classNameId = " +
-						getClassNameId(_ARTICLE_CLASS_NAME));
+						getClassNameId(_CLASS_NAME_ARTICLE));
 			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
@@ -72,7 +72,7 @@ public class UpgradeRatingsStats extends UpgradeProcess {
 		}
 	}
 
-	private static final String _ARTICLE_CLASS_NAME =
+	private static final String _CLASS_NAME_ARTICLE =
 		"com.liferay.knowledgebase.model.Article";
 
 }

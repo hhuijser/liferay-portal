@@ -1457,7 +1457,7 @@ public class WorkflowTaskManagerImplTest {
 	private void _createJoinXorWorkflow() throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
-					_PROXY_MESSAGE_LISTENER_CLASS_NAME, Level.OFF)) {
+					_CLASS_NAME_PROXY_MESSAGE_LISTENER, Level.OFF)) {
 
 			_workflowDefinitionManager.getWorkflowDefinition(
 				_adminUser.getCompanyId(), _JOIN_XOR, 1);
@@ -1488,7 +1488,7 @@ public class WorkflowTaskManagerImplTest {
 	private void _createScriptedAssignmentWorkflow() throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
-					_PROXY_MESSAGE_LISTENER_CLASS_NAME, Level.OFF)) {
+					_CLASS_NAME_PROXY_MESSAGE_LISTENER, Level.OFF)) {
 
 			_workflowDefinitionManager.getWorkflowDefinition(
 				_adminUser.getCompanyId(), _SCRIPTED_SINGLE_APPROVER, 1);
@@ -1507,7 +1507,7 @@ public class WorkflowTaskManagerImplTest {
 	private void _createSiteMemberWorkflow() throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
-					_PROXY_MESSAGE_LISTENER_CLASS_NAME, Level.OFF)) {
+					_CLASS_NAME_PROXY_MESSAGE_LISTENER, Level.OFF)) {
 
 			_workflowDefinitionManager.getWorkflowDefinition(
 				_adminUser.getCompanyId(), _SITE_MEMBER_SINGLE_APPROVER, 1);
@@ -1809,13 +1809,13 @@ public class WorkflowTaskManagerImplTest {
 		return _updateFolder(folder, restrictionType, -1, dlFileEntryTypeMap);
 	}
 
+	private static final String _CLASS_NAME_PROXY_MESSAGE_LISTENER =
+		"com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener";
+
 	private static final String _JOIN_XOR = "Join Xor";
 
 	private static final String _ORGANIZATION_CONTENT_REVIEWER =
 		"Organization Content Reviewer";
-
-	private static final String _PROXY_MESSAGE_LISTENER_CLASS_NAME =
-		"com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener";
 
 	private static final String _REVIEW = "review";
 

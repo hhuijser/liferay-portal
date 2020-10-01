@@ -265,7 +265,7 @@ public class TemplateHandlerRegistryImpl implements TemplateHandlerRegistry {
 					_ddmTemplateLocalService.addTemplate(
 						userId, group.getGroupId(), classNameId, 0,
 						_portal.getClassNameId(
-							_PORTLET_DISPLAY_TEMPLATE_CLASS_NAME),
+							_CLASS_NAME_PORTLET_DISPLAY_TEMPLATE),
 						templateKey, nameMap, descriptionMap, type, null,
 						language, script, cacheable, false, null, null,
 						serviceContext);
@@ -306,7 +306,7 @@ public class TemplateHandlerRegistryImpl implements TemplateHandlerRegistry {
 			_templateHandler = templateHandler;
 		}
 
-		private static final String _PORTLET_DISPLAY_TEMPLATE_CLASS_NAME =
+		private static final String _CLASS_NAME_PORTLET_DISPLAY_TEMPLATE =
 			"com.liferay.portlet.display.template.PortletDisplayTemplate";
 
 		private final TemplateHandler _templateHandler;

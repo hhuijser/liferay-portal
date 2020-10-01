@@ -181,7 +181,7 @@ public class SpringExtenderDependencyManagerTest {
 			}
 
 			sb.append("\t\tservice dependency [");
-			sb.append(_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_CLASS_NAME);
+			sb.append(_CLASS_NAME_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE);
 			sb.append("]");
 
 			Assert.assertTrue(message, message.contains(sb.toString()));
@@ -315,7 +315,7 @@ public class SpringExtenderDependencyManagerTest {
 					new ZipEntry("OSGI-INF/context/context.dependencies"));
 
 				jarOutputStream.write(
-					_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_CLASS_NAME.
+					_CLASS_NAME_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE.
 						getBytes());
 
 				jarOutputStream.closeEntry();
@@ -352,7 +352,7 @@ public class SpringExtenderDependencyManagerTest {
 	}
 
 	private static final String
-		_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_CLASS_NAME =
+		_CLASS_NAME_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE =
 			SpringExtenderTestComponentReference.class.getName();
 
 	private static BundleContext _bundleContext;

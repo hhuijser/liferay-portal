@@ -122,7 +122,7 @@ public class SearchResultUtilJournalArticleTest
 
 	protected void assertSearchResult(SearchResult searchResult) {
 		Assert.assertEquals(
-			_JOURNAL_ARTICLE_CLASS_NAME, searchResult.getClassName());
+			_CLASS_NAME_JOURNAL_ARTICLE, searchResult.getClassName());
 		Assert.assertEquals(
 			SearchTestUtil.ENTRY_CLASS_PK, searchResult.getClassPK());
 
@@ -137,7 +137,7 @@ public class SearchResultUtilJournalArticleTest
 
 	protected Document createDocument() {
 		Document document = SearchTestUtil.createDocument(
-			_JOURNAL_ARTICLE_CLASS_NAME);
+			_CLASS_NAME_JOURNAL_ARTICLE);
 
 		document.add(new Field(Field.VERSION, _DOCUMENT_VERSION));
 
@@ -172,11 +172,11 @@ public class SearchResultUtilJournalArticleTest
 		return summaryFactoryImpl;
 	}
 
+	private static final String _CLASS_NAME_JOURNAL_ARTICLE =
+		JournalArticle.class.getName();
+
 	private static final String _DOCUMENT_VERSION = String.valueOf(
 		RandomTestUtil.randomInt());
-
-	private static final String _JOURNAL_ARTICLE_CLASS_NAME =
-		JournalArticle.class.getName();
 
 	@Mock
 	private Indexer<Object> _indexer;

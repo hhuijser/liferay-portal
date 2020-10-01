@@ -75,7 +75,7 @@ public class MySubscriptionsUtil {
 			ThemeDisplay themeDisplay, String className, long classPK)
 		throws PortalException {
 
-		if (className.equals(_BLOGS_ENTRY_CLASS_NAME)) {
+		if (className.equals(_CLASS_NAME_BLOGS_ENTRY)) {
 			return PortalUtil.getLayoutFullURL(classPK, PortletKeys.BLOGS);
 		}
 
@@ -138,7 +138,7 @@ public class MySubscriptionsUtil {
 		Group group = GroupLocalServiceUtil.fetchGroup(classPK);
 
 		if (className.equals(BlogsEntry.class.getName()) ||
-			className.equals(_BLOGS_ENTRY_CLASS_NAME)) {
+			className.equals(_CLASS_NAME_BLOGS_ENTRY)) {
 
 			title = "Blog at ";
 		}
@@ -236,7 +236,7 @@ public class MySubscriptionsUtil {
 		return assetRendererFactory.getAssetRenderer(classPK);
 	}
 
-	private static final String _BLOGS_ENTRY_CLASS_NAME =
+	private static final String _CLASS_NAME_BLOGS_ENTRY =
 		"com.liferay.blogs.kernel.model.BlogsEntry";
 
 	private static final String _KNOWLEDGE_BASE_DISPLAY_PORTLET_ID =

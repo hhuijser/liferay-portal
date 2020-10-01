@@ -142,7 +142,7 @@ public class GCloudNaturalLanguageDocumentAssetAutoTaggerTest {
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
-					_G_CLOUD_NATURAL_LANGUAGE_AUTO_TAG_CONFIGURATION_CLASS_NAME,
+					_CLASS_NAME_G_CLOUD_NATURAL_LANGUAGE_AUTO_TAG_CONFIGURATION,
 					new HashMapDictionary<String, Object>() {
 						{
 							put("entityEndpointEnabled", false);
@@ -161,7 +161,7 @@ public class GCloudNaturalLanguageDocumentAssetAutoTaggerTest {
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
-					_G_CLOUD_NATURAL_LANGUAGE_AUTO_TAG_CONFIGURATION_CLASS_NAME,
+					_CLASS_NAME_G_CLOUD_NATURAL_LANGUAGE_AUTO_TAG_CONFIGURATION,
 					new HashMapDictionary<String, Object>() {
 						{
 							put("apiKey", apiKey);
@@ -175,7 +175,7 @@ public class GCloudNaturalLanguageDocumentAssetAutoTaggerTest {
 	}
 
 	private static final String
-		_G_CLOUD_NATURAL_LANGUAGE_AUTO_TAG_CONFIGURATION_CLASS_NAME =
+		_CLASS_NAME_G_CLOUD_NATURAL_LANGUAGE_AUTO_TAG_CONFIGURATION =
 			"com.liferay.asset.auto.tagger.google.cloud.natural.language." +
 				"internal.configuration." +
 					"GCloudNaturalLanguageAssetAutoTaggerCompanyConfiguration";

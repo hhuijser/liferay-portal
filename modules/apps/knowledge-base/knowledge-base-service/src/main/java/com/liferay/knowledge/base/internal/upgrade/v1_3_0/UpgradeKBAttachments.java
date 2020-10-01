@@ -139,7 +139,7 @@ public class UpgradeKBAttachments extends UpgradeProcess {
 					FileUtil.getExtension(title));
 
 				PortletFileRepositoryUtil.addPortletFileEntry(
-					groupId, userId, _KB_ARTICLE_CLASS_NAME, resourcePrimKey,
+					groupId, userId, _CLASS_NAME_KB_ARTICLE, resourcePrimKey,
 					_PORTLET_ID, folderId, bytes, title, mimeType, false);
 
 				for (String versionLabel :
@@ -161,7 +161,7 @@ public class UpgradeKBAttachments extends UpgradeProcess {
 		}
 	}
 
-	private static final String _KB_ARTICLE_CLASS_NAME =
+	private static final String _CLASS_NAME_KB_ARTICLE =
 		"com.liferay.knowledgebase.model.KBArticle";
 
 	private static final String _PORTLET_ID = "3_WAR_knowledgebaseportlet";

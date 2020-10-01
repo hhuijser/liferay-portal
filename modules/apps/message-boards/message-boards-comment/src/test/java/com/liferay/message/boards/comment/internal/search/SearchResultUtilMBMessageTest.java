@@ -90,10 +90,10 @@ public class SearchResultUtilMBMessageTest
 	@Test
 	public void testMBMessage() throws Exception {
 		SearchResult searchResult = assertOneSearchResult(
-			SearchTestUtil.createDocument(_MB_MESSAGE_CLASS_NAME));
+			SearchTestUtil.createDocument(_CLASS_NAME_MB_MESSAGE));
 
 		Assert.assertEquals(
-			_MB_MESSAGE_CLASS_NAME, searchResult.getClassName());
+			_CLASS_NAME_MB_MESSAGE, searchResult.getClassName());
 		Assert.assertEquals(
 			SearchTestUtil.ENTRY_CLASS_PK, searchResult.getClassPK());
 
@@ -115,7 +115,7 @@ public class SearchResultUtilMBMessageTest
 	@Test
 	public void testMBMessageAttachment() throws Exception {
 		SearchResult searchResult = assertOneSearchResult(
-			SearchTestUtil.createAttachmentDocument(_MB_MESSAGE_CLASS_NAME));
+			SearchTestUtil.createAttachmentDocument(_CLASS_NAME_MB_MESSAGE));
 
 		Assert.assertEquals(
 			SearchTestUtil.ATTACHMENT_OWNER_CLASS_NAME,
@@ -145,9 +145,9 @@ public class SearchResultUtilMBMessageTest
 	@Test
 	public void testTwoDocumentsWithSameAttachmentOwner() {
 		Document document1 = SearchTestUtil.createAttachmentDocument(
-			_MB_MESSAGE_CLASS_NAME, SearchTestUtil.ENTRY_CLASS_PK);
+			_CLASS_NAME_MB_MESSAGE, SearchTestUtil.ENTRY_CLASS_PK);
 		Document document2 = SearchTestUtil.createAttachmentDocument(
-			_MB_MESSAGE_CLASS_NAME, SearchTestUtil.ENTRY_CLASS_PK + 1);
+			_CLASS_NAME_MB_MESSAGE, SearchTestUtil.ENTRY_CLASS_PK + 1);
 
 		List<SearchResult> searchResults = SearchTestUtil.getSearchResults(
 			searchResultTranslator, document1, document2);
@@ -208,7 +208,7 @@ public class SearchResultUtilMBMessageTest
 		return summaryFactoryImpl;
 	}
 
-	private static final String _MB_MESSAGE_CLASS_NAME =
+	private static final String _CLASS_NAME_MB_MESSAGE =
 		MBMessage.class.getName();
 
 	@Mock

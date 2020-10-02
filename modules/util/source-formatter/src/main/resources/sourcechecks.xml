@@ -622,6 +622,10 @@
 			<description name="Finds missing and unnecessary empty lines." />
 		</check>
 		<check name="JSPExceptionOrderCheck" />
+		<check name="JSPFileNameCheck">
+			<category name="Naming Conventions" />
+			<description name="Checks if the file name of `.jsp` or `.jspf` follows the naming conventions." />
+		</check>
 		<check name="JSPIllegalSyntaxCheck" />
 		<check name="JSPImportsCheck">
 			<category name="Styling" />

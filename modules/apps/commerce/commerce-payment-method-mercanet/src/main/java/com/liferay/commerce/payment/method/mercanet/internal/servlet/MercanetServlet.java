@@ -95,7 +95,7 @@ public class MercanetServlet extends HttpServlet {
 
 			RequestDispatcher requestDispatcher =
 				_servletContext.getRequestDispatcher(
-					"/mercanet_form/mercanet-form.jsp");
+					"/mercanet_form/mercanet_form.jsp");
 
 			requestDispatcher.forward(httpServletRequest, httpServletResponse);
 		}

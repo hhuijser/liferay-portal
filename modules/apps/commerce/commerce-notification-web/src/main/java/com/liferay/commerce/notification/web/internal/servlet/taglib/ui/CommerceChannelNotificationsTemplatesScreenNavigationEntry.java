@@ -105,7 +105,7 @@ public class CommerceChannelNotificationsTemplatesScreenNavigationEntry
 
 		_jspRenderer.renderJSP(
 			_servletContext, httpServletRequest, httpServletResponse,
-			"/view-templates.jsp");
+			"/view_templates.jsp");
 	}
 
 	@Reference

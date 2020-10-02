@@ -26,6 +26,7 @@ JSONNamingCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-ch
 [JSPDefineObjectsCheck](checks/jsp_define_objects_check.markdown#jspdefineobjectscheck) | [Performance](performance_checks.markdown#performance-checks) | Checks for unnesecarry duplication of code that already exists in `defineObjects`. |
 JSPEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary empty lines. |
 JSPExceptionOrderCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+JSPFileNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks if the file name of `.jsp` or `.jspf` follows the naming conventions. |
 [JSPFunctionNameCheck](checks/jsp_function_name_check.markdown#jspfunctionnamecheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPIllegalSyntaxCheck](checks/jsp_illegal_syntax_check.markdown#jspillegalsyntaxcheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
 [JSPImportsCheck](checks/jsp_imports_check.markdown#jspimportscheck) | [Styling](styling_checks.markdown#styling-checks) | Sorts and groups imports in `.jsp` files. |

@@ -23,8 +23,6 @@ if (question != null) {
 	hasViewPermission = PollsQuestionPermission.contains(permissionChecker, question, ActionKeys.VIEW);
 }
 
-boolean showAddPollIcon = hasConfigurationPermission && PollsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_QUESTION);
-boolean showEditPollIcon = (question != null) && PollsQuestionPermission.contains(permissionChecker, question, ActionKeys.UPDATE);
 boolean showIconsActions = themeDisplay.isSignedIn() && !layout.isLayoutPrototypeLinkActive() && (hasConfigurationPermission || showEditPollIcon || showAddPollIcon);
 %>
 
@@ -55,7 +53,7 @@ boolean showIconsActions = themeDisplay.isSignedIn() && !layout.isLayoutPrototyp
 			/>
 		</c:if>
 
-		<c:if test="<%= showAddPollIcon %>">
+		<c:if test="<%= hasConfigurationPermission && PollsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_QUESTION) %>">
 
 			<%
 			PortletURL editQuestionURL = PortalUtil.getControlPanelPortletURL(request, themeDisplay.getScopeGroup(), PollsPortletKeys.POLLS, 0, plid, PortletRequest.RENDER_PHASE);
@@ -79,7 +77,7 @@ boolean showIconsActions = themeDisplay.isSignedIn() && !layout.isLayoutPrototyp
 			/>
 		</c:if>
 
-		<c:if test="<%= showEditPollIcon %>">
+		<c:if test="<%= (question != null) && PollsQuestionPermission.contains(permissionChecker, question, ActionKeys.UPDATE) %>">
 
 			<%
 			PortletURL editQuestionURL = PortalUtil.getControlPanelPortletURL(request, PollsPortletKeys.POLLS, PortletRequest.RENDER_PHASE);

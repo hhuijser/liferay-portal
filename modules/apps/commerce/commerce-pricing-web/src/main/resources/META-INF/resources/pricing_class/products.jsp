@@ -22,11 +22,9 @@ CommercePricingClassCPDefinitionDisplayContext commercePricingClassCPDefinitionD
 CommercePricingClass commercePricingClass = commercePricingClassCPDefinitionDisplayContext.getCommercePricingClass();
 
 long commercePricingClassId = commercePricingClass.getCommercePricingClassId();
-
-boolean hasPermission = commercePricingClassCPDefinitionDisplayContext.hasPermission();
 %>
 
-<c:if test="<%= hasPermission %>">
+<c:if test="<%= commercePricingClassCPDefinitionDisplayContext.hasPermission() %>">
 	<div class="row">
 		<div class="col-12 pt-4">
 			<div id="item-finder-root"></div>

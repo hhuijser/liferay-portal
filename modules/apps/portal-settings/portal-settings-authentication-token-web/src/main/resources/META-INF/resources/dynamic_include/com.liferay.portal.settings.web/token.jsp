@@ -25,7 +25,6 @@ boolean enabled = tokenConfiguration.enabled();
 boolean importFromLDAP = tokenConfiguration.importFromLDAP();
 String logoutRedirectURL = tokenConfiguration.logoutRedirectURL();
 String tokenLocation = tokenConfiguration.tokenLocation();
-String userTokenName = tokenConfiguration.userTokenName();
 %>
 
 <aui:fieldset>
@@ -36,7 +35,7 @@ String userTokenName = tokenConfiguration.userTokenName();
 
 		<aui:input helpMessage="import-from-ldap-help" label="import-from-ldap" name='<%= PortalSettingsTokenConstants.FORM_PARAMETER_NAMESPACE + "importFromLDAP" %>' type="checkbox" value="<%= importFromLDAP %>" />
 
-		<aui:input cssClass="lfr-input-text-container" helpMessage="user-token-name-help" label="user-token-name" name="<%= PortalSettingsTokenConstants.FORM_PARAMETER_NAMESPACE + TokenConfigurationKeys.USER_TOKEN_NAME %>" type="text" value="<%= userTokenName %>" />
+		<aui:input cssClass="lfr-input-text-container" helpMessage="user-token-name-help" label="user-token-name" name="<%= PortalSettingsTokenConstants.FORM_PARAMETER_NAMESPACE + TokenConfigurationKeys.USER_TOKEN_NAME %>" type="text" value="<%= tokenConfiguration.userTokenName() %>" />
 
 		<aui:select helpMessage="token-location-help" label="token-location" name="<%= PortalSettingsTokenConstants.FORM_PARAMETER_NAMESPACE + TokenConfigurationKeys.TOKEN_LOCATION %>">
 			<aui:option label="<%= "token-location-" + TokenLocation.COOKIE %>" selected="<%= tokenLocation.equals(TokenLocation.COOKIE) %>" value="TokenLocation.COOKIE %>" />

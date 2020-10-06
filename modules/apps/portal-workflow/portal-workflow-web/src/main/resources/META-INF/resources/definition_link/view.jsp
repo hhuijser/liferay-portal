@@ -18,8 +18,6 @@
 
 <%
 Map<String, String> resourceTooltips = workflowDefinitionLinkDisplayContext.getResourceTooltips();
-
-boolean showStripeMessage = workflowDefinitionLinkDisplayContext.showStripeMessage(request);
 %>
 
 <liferay-util:include page="/definition_link/management_bar.jsp" servletContext="<%= application %>" />
@@ -28,7 +26,7 @@ boolean showStripeMessage = workflowDefinitionLinkDisplayContext.showStripeMessa
 	cssClass="workflow-definition-link-container"
 	id='<%= liferayPortletResponse.getNamespace() + "Container" %>'
 >
-	<c:if test="<%= showStripeMessage %>">
+	<c:if test="<%= workflowDefinitionLinkDisplayContext.showStripeMessage(request) %>">
 		<clay:alert
 			dismissible="<%= true %>"
 			message="the-assets-from-documents-and-media-and-forms-are-assigned-within-their-respective-applications"

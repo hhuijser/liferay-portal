@@ -188,35 +188,18 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 	}
 
 	private String _getVariableName(String line) {
-		if ((!line.endsWith(";") && !line.endsWith("(")) ||
-			line.startsWith("//")) {
+		Matcher matcher = _variableDeclarationPattern.matcher(line);
 
+		if (!matcher.find()) {
 			return null;
 		}
 
-		String variableName = null;
+		String typeName = matcher.group(1);
 
-		int x = line.indexOf(" = ");
+		if (!typeName.equals("break") && !typeName.equals("continue") &&
+			!typeName.equals("return") && !typeName.equals("throw")) {
 
-		if (x == -1) {
-			int y = line.lastIndexOf(CharPool.SPACE);
-
-			if (y != -1) {
-				variableName = line.substring(y + 1, line.length() - 1);
-			}
-		}
-		else {
-			line = line.substring(0, x);
-
-			int y = line.lastIndexOf(CharPool.SPACE);
-
-			if (y != -1) {
-				variableName = line.substring(y + 1);
-			}
-		}
-
-		if (Validator.isVariableName(variableName)) {
-			return variableName;
+			return matcher.group(2);
 		}
 
 		return null;
@@ -236,15 +219,9 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 		String fileName, String content, String line,
 		Set<String> checkedFileNames, Set<String> includeFileNames) {
 
-		if (line.contains(": ")) {
-			return false;
-		}
-
 		String variableName = _getVariableName(line);
 
-		if (Validator.isNull(variableName) || variableName.equals("false") ||
-			variableName.equals("true")) {
-
+		if (variableName == null) {
 			return false;
 		}
 
@@ -609,5 +586,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 		"(<.*\n*taglib uri=\".*>\n*)+", Pattern.MULTILINE);
 	private static final Pattern _defineObjectsPattern = Pattern.compile(
 		"<[\\w-]+:defineObjects />");
+	private static final Pattern _variableDeclarationPattern = Pattern.compile(
+		"^([\\w<>,\\s]+?)\\s(\\w+)( =\\s|;)");
 
 }

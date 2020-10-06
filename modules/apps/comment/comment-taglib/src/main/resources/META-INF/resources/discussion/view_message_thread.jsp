@@ -95,18 +95,13 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 									<liferay-util:buffer
 										var="parentCommentUserBuffer"
 									>
-
-										<%
-										User parentMessageUser = parentDiscussionComment.getUser();
-										%>
-
 										<clay:content-row
 											noGutters="x"
 										>
 											<clay:content-col>
 												<liferay-ui:user-portrait
 													cssClass="sticker-lg"
-													user="<%= parentMessageUser %>"
+													user="<%= parentDiscussionComment.getUser() %>"
 												/>
 											</clay:content-col>
 

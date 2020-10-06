@@ -14,10 +14,12 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.IOException;
@@ -44,17 +46,27 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 	}
 
 	protected boolean hasUnusedJSPTerm(
-		String fileName, String content, String regex, String type,
-		Set<String> checkedForIncludesFileNames, Set<String> includeFileNames,
-		Map<String, String> contentsMap) {
+		String fileName, String content, String regex, int lineNumber,
+		String type, Set<String> checkedForIncludesFileNames,
+		Set<String> includeFileNames, Map<String, String> contentsMap) {
 
 		includeFileNames.add(fileName);
 
 		Set<String> checkedForUnusedJSPTerm = new HashSet<>();
 
 		return !_isJSPTermRequired(
-			fileName, content, regex, type, checkedForUnusedJSPTerm,
+			fileName, content, regex, lineNumber, type, checkedForUnusedJSPTerm,
 			checkedForIncludesFileNames, includeFileNames, contentsMap);
+	}
+
+	protected boolean hasUnusedJSPTerm(
+		String fileName, String content, String regex, String type,
+		Set<String> checkedForIncludesFileNames, Set<String> includeFileNames,
+		Map<String, String> contentsMap) {
+
+		return hasUnusedJSPTerm(
+			fileName, content, regex, -1, type, checkedForIncludesFileNames,
+			includeFileNames, contentsMap);
 	}
 
 	protected synchronized void populateContentsMap(
@@ -84,9 +96,59 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 		_contentsMap.put(fileName, content);
 	}
 
+	private String _getRangeContent(String content, int lineNumber) {
+		String line = getLine(content, lineNumber);
+
+		String indent = SourceUtil.getIndent(line);
+
+		if (indent.length() == 0) {
+			return content;
+		}
+
+		StringBundler sb = new StringBundler();
+
+		sb.append("<%\n");
+		sb.append(line);
+
+		while (true) {
+			lineNumber++;
+
+			line = getLine(content, lineNumber);
+
+			if (line == null) {
+				if (indent.length() == 0) {
+					return sb.toString();
+				}
+
+				return content;
+			}
+
+			if (Validator.isNotNull(line) && !line.startsWith(indent)) {
+				String trimmedLine = StringUtil.trim(line);
+
+				if (trimmedLine.startsWith("}")) {
+					sb.append("%>/n");
+
+					return sb.toString();
+				}
+
+				if (trimmedLine.matches("</\\w+:\\w+>")) {
+					return sb.toString();
+				}
+
+				if (trimmedLine.matches("</\\w+>")) {
+					indent = indent.substring(1);
+				}
+			}
+
+			sb.append(line);
+			sb.append("\n");
+		}
+	}
+
 	private boolean _isJSPTermRequired(
-		String fileName, String content, String regex, String type,
-		Set<String> checkedForUnusedJSPTerm,
+		String fileName, String content, String regex, int lineNumber,
+		String type, Set<String> checkedForUnusedJSPTerm,
 		Set<String> checkedForIncludesFileNames, Set<String> includeFileNames,
 		Map<String, String> contentsMap) {
 
@@ -102,6 +164,10 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 
 		if (Validator.isNull(content)) {
 			return false;
+		}
+
+		if (lineNumber != -1) {
+			content = _getRangeContent(content, lineNumber);
 		}
 
 		int count = 0;
@@ -177,9 +243,9 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 		for (String includeFileName : includeFileNamesArray) {
 			if (!checkedForUnusedJSPTerm.contains(includeFileName) &&
 				_isJSPTermRequired(
-					includeFileName, null, regex, type, checkedForUnusedJSPTerm,
-					checkedForIncludesFileNames, includeFileNames,
-					contentsMap)) {
+					includeFileName, null, regex, -1, type,
+					checkedForUnusedJSPTerm, checkedForIncludesFileNames,
+					includeFileNames, contentsMap)) {
 
 				return true;
 			}

@@ -216,7 +216,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 	}
 
 	private boolean _hasUnusedVariable(
-		String fileName, String content, String line,
+		String fileName, String content, String line, int lineNumber,
 		Set<String> checkedFileNames, Set<String> includeFileNames) {
 
 		String variableName = _getVariableName(line);
@@ -226,8 +226,8 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 		}
 
 		return hasUnusedJSPTerm(
-			fileName, content, "\\W" + variableName + "\\W", "variable",
-			checkedFileNames, includeFileNames, getContentsMap());
+			fileName, content, "\\W" + variableName + "\\W", lineNumber,
+			"variable", checkedFileNames, includeFileNames, getContentsMap());
 	}
 
 	private boolean _isJSPDuplicateDefineObjects(
@@ -541,8 +541,8 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 					!isExcludedPath(
 						_UNUSED_VARIABLES_EXCLUDES, absolutePath, lineNumber) &&
 					_hasUnusedVariable(
-						fileName, content, trimmedLine, checkedFileNames,
-						includeFileNames)) {
+						fileName, content, trimmedLine, lineNumber,
+						checkedFileNames, includeFileNames)) {
 
 					unusedVariable = true;
 				}

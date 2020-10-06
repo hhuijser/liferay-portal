@@ -18,6 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 
@@ -50,27 +51,28 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		while (matcher.find()) {
 			int x = matcher.start(1);
 
-			String nextTag = getLine(
-				content, getLineNumber(content, matcher.end()));
+			StringBundler sb = new StringBundler();
 
-			if (!nextTag.endsWith(" />")) {
-				if (nextTag.contains(" />")) {
-					continue;
+			int lineNumber = getLineNumber(content, matcher.end());
+
+			String indent = matcher.group(3);
+
+			while (true) {
+				String line = getLine(content, lineNumber);
+
+				if ((line == null) ||
+					(Validator.isNotNull(line) && !line.startsWith(indent))) {
+
+					break;
 				}
 
-				String indent = matcher.group(7);
+				sb.append(line);
+				sb.append("\n");
 
-				int y = StringUtil.indexOfAny(
-					content, new String[] {indent + "</", indent + "/>"},
-					matcher.end());
-
-				if (y == -1) {
-					continue;
-				}
-
-				nextTag = content.substring(
-					matcher.end() - 1, y + indent.length() + 2);
+				lineNumber++;
 			}
+
+			String nextTags = sb.toString();
 
 			String s = matcher.group(1);
 
@@ -102,7 +104,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 					if (!variableName.startsWith("taglib") &&
 						(_getVariableCount(content, variableName) == 2) &&
-						nextTag.contains("=\"<%= " + variableName + " %>\"")) {
+						nextTags.contains("=\"<%= " + variableName + " %>\"")) {
 
 						addMessage(
 							fileName,
@@ -114,7 +116,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 					continue;
 				}
 
-				if (nextTag.contains("=\"<%= " + variableName + " %>\"")) {
+				if (nextTags.contains("=\"<%= " + variableName + " %>\"")) {
 					populateContentsMap(fileName, content);
 
 					String newContent = null;
@@ -161,7 +163,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 							StringBundler.concat(
 								"No need to declare variable '", variableName,
 								"', inline inside the tag."),
-							getLineNumber(content, matcher.start(3)));
+							getLineNumber(content, matcher.start(4)));
 					}
 				}
 			}
@@ -237,8 +239,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 	private static final Pattern _methodCallPattern = Pattern.compile(
 		"\\b(?<!['\"])([a-z]\\w+)\\.(\\w+)?\\(");
 	private static final Pattern _taglibVariablePattern = Pattern.compile(
-		"\n((\t*([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);\n)+)\\s*%>\n+" +
-			"(\n\t*)<",
+		"\n(((\t*)([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);\n)+)\\s*%>\n",
 		Pattern.DOTALL);
 
 }

@@ -50,11 +50,31 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		while (matcher.find()) {
 			int x = matcher.start(1);
 
+			String nextTag = getLine(
+				content, getLineNumber(content, matcher.end()));
+
+			if (!nextTag.endsWith(" />")) {
+				if (nextTag.contains(" />")) {
+					continue;
+				}
+
+				String indent = matcher.group(7);
+
+				int y = StringUtil.indexOfAny(
+					content, new String[] {indent + "</", indent + "/>"},
+					matcher.end());
+
+				if (y == -1) {
+					continue;
+				}
+
+				nextTag = content.substring(
+					matcher.end() - 1, y + indent.length() + 2);
+			}
+
 			String s = matcher.group(1);
 
 			String[] variableDefinitions = s.split(";\n");
-
-			String nextTag = matcher.group(7);
 
 			for (String variableDefinition : variableDefinitions) {
 				x = x + variableDefinition.length() + 2;
@@ -114,12 +134,12 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 							StringBundler.concat(
 								"<%= new ", typeName, " ", taglibValue,
 								" %>\""),
-							matcher.start(7));
+							matcher.end());
 					}
 					else {
 						newContent = StringUtil.replaceFirst(
 							content, "<%= " + variableName + " %>\"",
-							"<%= " + taglibValue + " %>\"", matcher.start(7));
+							"<%= " + taglibValue + " %>\"", matcher.end());
 					}
 
 					Set<String> checkedFileNames = new HashSet<>();
@@ -218,7 +238,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		"\\b(?<!['\"])([a-z]\\w+)\\.(\\w+)?\\(");
 	private static final Pattern _taglibVariablePattern = Pattern.compile(
 		"\n((\t*([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);\n)+)\\s*%>\n+" +
-			"((\n\t*)<(([^\n]+/>)|([\\S\\s]*?\\8((</)|(/>))\\S*)))(\n|\\Z)",
+			"(\n\t*)<",
 		Pattern.DOTALL);
 
 }

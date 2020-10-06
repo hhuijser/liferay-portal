@@ -80,8 +80,6 @@ page import="java.util.Collections" %><%@
 page import="java.util.Date" %><%@
 page import="java.util.Map" %>
 
-<%@ page import="javax.portlet.PortletURL" %>
-
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />

@@ -26,9 +26,6 @@ long commerceShippingMethodId = 0;
 if (commerceShippingMethod != null) {
 	commerceShippingMethodId = commerceShippingMethod.getCommerceShippingMethodId();
 }
-
-String name = BeanParamUtil.getString(commerceShippingMethod, request, "name", commerceShippingMethodsDisplayContext.getCommerceShippingMethodEngineName(locale));
-String description = BeanParamUtil.getString(commerceShippingMethod, request, "description", commerceShippingMethodsDisplayContext.getCommerceShippingMethodEngineDescription(locale));
 %>
 
 <portlet:actionURL name="editCommerceShippingMethod" var="editCommerceShippingMethodActionURL" />
@@ -50,11 +47,11 @@ String description = BeanParamUtil.getString(commerceShippingMethod, request, "d
 	</c:if>
 
 	<commerce-ui:panel>
-		<aui:input autoFocus="<%= true %>" label="name" localized="<%= true %>" name="nameMapAsXML" type="text" value="<%= name %>">
+		<aui:input autoFocus="<%= true %>" label="name" localized="<%= true %>" name="nameMapAsXML" type="text" value='<%= BeanParamUtil.getString(commerceShippingMethod, request, "name", commerceShippingMethodsDisplayContext.getCommerceShippingMethodEngineName(locale)) %>'>
 			<aui:validator name="required" />
 		</aui:input>
 
-		<aui:input label="description" localized="<%= true %>" name="descriptionMapAsXML" type="text" value="<%= description %>" />
+		<aui:input label="description" localized="<%= true %>" name="descriptionMapAsXML" type="text" value='<%= BeanParamUtil.getString(commerceShippingMethod, request, "description", commerceShippingMethodsDisplayContext.getCommerceShippingMethodEngineDescription(locale)) %>' />
 
 		<aui:model-context bean="<%= commerceShippingMethod %>" model="<%= CommerceShippingMethod.class %>" />
 

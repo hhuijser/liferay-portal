@@ -24,7 +24,6 @@ String randomNamespace = (String)row.getParameter("randomNamespace");
 WorkflowDefinitionLinkSearchEntry workflowDefinitionLinkSearchEntry = (WorkflowDefinitionLinkSearchEntry)row.getObject();
 
 String className = workflowDefinitionLinkSearchEntry.getClassName();
-String resource = workflowDefinitionLinkSearchEntry.getResource();
 %>
 
 <portlet:actionURL name="updateWorkflowDefinitionLink" var="updateWorkflowDefinitionLinkURL">
@@ -36,7 +35,7 @@ String resource = workflowDefinitionLinkSearchEntry.getResource();
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 		<aui:input name="namespace" type="hidden" value="<%= randomNamespace %>" />
 		<aui:input name="groupId" type="hidden" value="<%= workflowDefinitionLinkDisplayContext.getGroupId() %>" />
-		<aui:input name="resource" type="hidden" value="<%= resource %>" />
+		<aui:input name="resource" type="hidden" value="<%= workflowDefinitionLinkSearchEntry.getResource() %>" />
 		<aui:input name="editMode" type="hidden" value="false" />
 
 		<%

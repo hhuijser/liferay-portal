@@ -23,11 +23,6 @@ DDMStructureVersion structureVersion = structure.getStructureVersion();
 
 long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
 long classPK = BeanParamUtil.getLong(structure, request, "structureId");
-
-boolean copyFormTemplates = ParamUtil.getBoolean(request, "copyFormTemplates");
-boolean copyDisplayTemplates = ParamUtil.getBoolean(request, "copyDisplayTemplates");
-
-boolean showBackURL = ParamUtil.getBoolean(request, "showBackURL", true);
 %>
 
 <portlet:actionURL name="copyStructure" var="copyStructureURL">
@@ -43,7 +38,7 @@ boolean showBackURL = ParamUtil.getBoolean(request, "showBackURL", true);
 
 	<liferay-ui:error exception="<%= StructureNameException.class %>" message="please-enter-a-valid-name" />
 
-	<c:if test="<%= showBackURL %>">
+	<c:if test='<%= ParamUtil.getBoolean(request, "showBackURL", true) %>'>
 
 		<%
 		String title = LanguageUtil.format(request, "copy-x", ddmDisplay.getStructureName(locale), false);
@@ -65,11 +60,11 @@ boolean showBackURL = ParamUtil.getBoolean(request, "showBackURL", true);
 			<aui:input name="description" />
 
 			<c:if test="<%= Validator.isNull(templateTypeValue) || templateTypeValue.equals(DDMTemplateConstants.TEMPLATE_TYPE_FORM) %>">
-				<aui:input checked="<%= copyFormTemplates %>" label='<%= Validator.isNull(templateTypeValue) ? "copy-form-templates" : "copy-templates" %>' name="copyFormTemplates" type="checkbox" />
+				<aui:input checked='<%= ParamUtil.getBoolean(request, "copyFormTemplates") %>' label='<%= Validator.isNull(templateTypeValue) ? "copy-form-templates" : "copy-templates" %>' name="copyFormTemplates" type="checkbox" />
 			</c:if>
 
 			<c:if test="<%= Validator.isNull(templateTypeValue) || templateTypeValue.equals(DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY) %>">
-				<aui:input checked="<%= copyDisplayTemplates %>" label='<%= Validator.isNull(templateTypeValue) ? "copy-display-templates" : "copy-templates" %>' name="copyDisplayTemplates" type="checkbox" />
+				<aui:input checked='<%= ParamUtil.getBoolean(request, "copyDisplayTemplates") %>' label='<%= Validator.isNull(templateTypeValue) ? "copy-display-templates" : "copy-templates" %>' name="copyDisplayTemplates" type="checkbox" />
 			</c:if>
 		</aui:fieldset>
 	</aui:fieldset-group>

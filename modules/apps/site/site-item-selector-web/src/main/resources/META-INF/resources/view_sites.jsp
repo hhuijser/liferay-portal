@@ -25,8 +25,6 @@ String displayStyle = siteItemSelectorViewDisplayContext.getDisplayStyle();
 GroupItemSelectorCriterion groupItemSelectorCriterion = siteItemSelectorViewDisplayContext.getGroupItemSelectorCriterion();
 
 String target = ParamUtil.getString(request, "target", groupItemSelectorCriterion.getTarget());
-
-GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 %>
 
 <clay:management-toolbar
@@ -46,7 +44,7 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 	</c:if>
 
 	<liferay-ui:search-container
-		searchContainer="<%= groupSearch %>"
+		searchContainer="<%= siteItemSelectorViewDisplayContext.getGroupSearch() %>"
 	>
 		<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.Group"

@@ -22,8 +22,6 @@ CategoryCPAttachmentFileEntriesDisplayContext categoryCPAttachmentFileEntriesDis
 CPAttachmentFileEntry cpAttachmentFileEntry = categoryCPAttachmentFileEntriesDisplayContext.getCPAttachmentFileEntry();
 
 long categoryId = ParamUtil.getLong(request, "categoryId");
-
-long fileEntryId = BeanParamUtil.getLong(cpAttachmentFileEntry, request, "fileEntryId");
 %>
 
 <liferay-ui:error-marker
@@ -42,7 +40,7 @@ long fileEntryId = BeanParamUtil.getLong(cpAttachmentFileEntry, request, "fileEn
 <div class="lfr-attachment-cover-image-selector">
 	<liferay-item-selector:image-selector
 		draggableImage="vertical"
-		fileEntryId="<%= fileEntryId %>"
+		fileEntryId='<%= BeanParamUtil.getLong(cpAttachmentFileEntry, request, "fileEntryId") %>'
 		itemSelectorEventName="addCategoryCPAttachmentFileEntry"
 		itemSelectorURL="<%= categoryCPAttachmentFileEntriesDisplayContext.getItemSelectorUrl() %>"
 		maxFileSize="<%= categoryCPAttachmentFileEntriesDisplayContext.getImageMaxSize() %>"

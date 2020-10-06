@@ -17,12 +17,10 @@
 <%@ include file="/panel/init.jsp" %>
 
 <%
-String cardCssClasses = "card d-flex flex-column" + (Validator.isNotNull(elementClasses) ? StringPool.SPACE + elementClasses : StringPool.BLANK);
-String bodyCssClasses = "card-body" + (Validator.isNotNull(bodyClasses) ? StringPool.SPACE + bodyClasses : StringPool.BLANK);
 String collapseSwitchId = Validator.isNotNull(collapseSwitchName) ? collapseSwitchName : (randomNamespace + "toggle-switch-check");
 %>
 
-<div class="<%= cardCssClasses %>">
+<div class="<%= "card d-flex flex-column" + (Validator.isNotNull(elementClasses) ? StringPool.SPACE + elementClasses : StringPool.BLANK) %>">
 	<c:if test="<%= Validator.isNotNull(actionLabel) || Validator.isNotNull(actionIcon) || Validator.isNotNull(title) %>">
 		<h4 class="align-items-center card-header d-flex justify-content-between py-3">
 			<%= title %>
@@ -129,4 +127,4 @@ String collapseSwitchId = Validator.isNotNull(collapseSwitchName) ? collapseSwit
 	</c:if>
 
 	<div class="collapse<%= collapsed ? StringPool.BLANK : StringPool.SPACE + "show" %>" id="<%= randomNamespace %>collapse">
-		<div class="<%= bodyCssClasses %>">
+		<div class="<%= "card-body" + (Validator.isNotNull(bodyClasses) ? StringPool.SPACE + bodyClasses : StringPool.BLANK) %>">

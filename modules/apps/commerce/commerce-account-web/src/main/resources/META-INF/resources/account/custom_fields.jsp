@@ -18,9 +18,6 @@
 
 <%
 CommerceAccountDisplayContext commerceAccountDisplayContext = (CommerceAccountDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-CommerceAccount commerceAccount = commerceAccountDisplayContext.getCurrentCommerceAccount();
-long commerceAccountId = commerceAccountDisplayContext.getCurrentCommerceAccountId();
 %>
 
 <liferay-ui:error-marker
@@ -28,11 +25,11 @@ long commerceAccountId = commerceAccountDisplayContext.getCurrentCommerceAccount
 	value="custom-fields"
 />
 
-<aui:model-context bean="<%= commerceAccount %>" model="<%= CommerceAccount.class %>" />
+<aui:model-context bean="<%= commerceAccountDisplayContext.getCurrentCommerceAccount() %>" model="<%= CommerceAccount.class %>" />
 
 <liferay-expando:custom-attribute-list
 	className="<%= CommerceAccount.class.getName() %>"
-	classPK="<%= commerceAccountId %>"
+	classPK="<%= commerceAccountDisplayContext.getCurrentCommerceAccountId() %>"
 	editable="<%= true %>"
 	label="<%= true %>"
 />

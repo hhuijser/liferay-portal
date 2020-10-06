@@ -47,7 +47,6 @@ page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem" 
 page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
-page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@

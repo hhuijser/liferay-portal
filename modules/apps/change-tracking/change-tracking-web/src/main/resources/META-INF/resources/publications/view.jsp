@@ -18,8 +18,6 @@
 
 <%
 SearchContainer<CTCollection> searchContainer = publicationsDisplayContext.getSearchContainer();
-
-PublicationsManagementToolbarDisplayContext publicationsManagementToolbarDisplayContext = new PublicationsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, publicationsDisplayContext, searchContainer);
 %>
 
 <clay:navigation-bar
@@ -27,7 +25,7 @@ PublicationsManagementToolbarDisplayContext publicationsManagementToolbarDisplay
 />
 
 <clay:management-toolbar
-	displayContext="<%= publicationsManagementToolbarDisplayContext %>"
+	displayContext="<%= new PublicationsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, publicationsDisplayContext, searchContainer) %>"
 />
 
 <clay:container-fluid>

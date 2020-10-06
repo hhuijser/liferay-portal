@@ -16,16 +16,12 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-User selUser = (User)request.getAttribute("user.selUser");
-%>
-
 <liferay-ui:error-marker
 	key="<%= WebKeys.ERROR_SECTION %>"
 	value="openId"
 />
 
-<aui:model-context bean="<%= selUser %>" model="<%= User.class %>" />
+<aui:model-context bean='<%= (User)request.getAttribute("user.selUser") %>' model="<%= User.class %>" />
 
 <liferay-ui:error exception="<%= DuplicateOpenIdException.class %>" message="a-user-with-that-openid-already-exists" />
 

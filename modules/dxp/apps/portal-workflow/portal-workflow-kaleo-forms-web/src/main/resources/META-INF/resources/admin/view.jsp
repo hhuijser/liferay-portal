@@ -18,8 +18,6 @@
 
 <%
 String displayStyle = kaleoFormsAdminDisplayContext.getDisplayStyle();
-
-KaleoProcessSearch kaleoProcessSearch = kaleoFormsAdminDisplayContext.getKaleoProcessSearch();
 %>
 
 <liferay-util:include page="/admin/navigation_bar.jsp" servletContext="<%= application %>" />
@@ -36,7 +34,7 @@ KaleoProcessSearch kaleoProcessSearch = kaleoFormsAdminDisplayContext.getKaleoPr
 		<liferay-ui:search-container
 			id="kaleoProcess"
 			rowChecker="<%= new EmptyOnClickRowChecker(renderResponse) %>"
-			searchContainer="<%= kaleoProcessSearch %>"
+			searchContainer="<%= kaleoFormsAdminDisplayContext.getKaleoProcessSearch() %>"
 			total="<%= kaleoFormsAdminDisplayContext.getTotalItems() %>"
 		>
 			<liferay-ui:search-container-row

@@ -46,8 +46,6 @@ sb.append("\n");
 sb.append("vspace=");
 sb.append(iFramePortletInstanceConfiguration.vspace());
 sb.append("\n");
-
-String htmlAttributes = sb.toString();
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
@@ -162,7 +160,7 @@ String htmlAttributes = sb.toString();
 					<aui:input name="preferences--width--" type="text" value="<%= iFramePortletInstanceConfiguration.width() %>" />
 				</div>
 
-				<aui:input cssClass="lfr-textarea-container" name="preferences--htmlAttributes--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= htmlAttributes %>" wrap="soft" />
+				<aui:input cssClass="lfr-textarea-container" name="preferences--htmlAttributes--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= sb.toString() %>" wrap="soft" />
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>

@@ -20,8 +20,6 @@
 CommerceWishListDisplayContext commerceWishListDisplayContext = (CommerceWishListDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceWishList commerceWishList = commerceWishListDisplayContext.getCommerceWishList();
-
-boolean defaultWishList = BeanParamUtil.getBoolean(commerceWishList, request, "defaultWishList");
 %>
 
 <portlet:actionURL name="editCommerceWishList" var="editCommerceWishListActionURL" />
@@ -39,7 +37,7 @@ boolean defaultWishList = BeanParamUtil.getBoolean(commerceWishList, request, "d
 		<aui:fieldset>
 			<aui:input name="name" />
 
-			<aui:input checked="<%= defaultWishList %>" label="default" name="defaultWishList" type="toggle-switch" />
+			<aui:input checked='<%= BeanParamUtil.getBoolean(commerceWishList, request, "defaultWishList") %>' label="default" name="defaultWishList" type="toggle-switch" />
 		</aui:fieldset>
 	</aui:fieldset-group>
 

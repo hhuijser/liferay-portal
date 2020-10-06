@@ -44,16 +44,6 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 	}
 
 	protected boolean hasUnusedJSPTerm(
-		String fileName, String regex, String type,
-		Set<String> checkedForIncludesFileNames, Set<String> includeFileNames,
-		Map<String, String> contentsMap) {
-
-		return hasUnusedJSPTerm(
-			fileName, null, regex, type, checkedForIncludesFileNames,
-			includeFileNames, contentsMap);
-	}
-
-	protected boolean hasUnusedJSPTerm(
 		String fileName, String content, String regex, String type,
 		Set<String> checkedForIncludesFileNames, Set<String> includeFileNames,
 		Map<String, String> contentsMap) {

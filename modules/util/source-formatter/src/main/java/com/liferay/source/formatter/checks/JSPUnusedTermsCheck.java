@@ -71,7 +71,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 	}
 
 	private void _addJSPUnusedImports(
-		String fileName, List<String> importLines,
+		String fileName, String content, List<String> importLines,
 		List<String> unneededImports) {
 
 		Set<String> checkedFileNames = new HashSet<>();
@@ -92,7 +92,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 				className.lastIndexOf(CharPool.PERIOD) + 1);
 
 			if (hasUnusedJSPTerm(
-					fileName, "\\W" + className + "[^\\w\"]", "class",
+					fileName, content, "\\W" + className + "[^\\w\"]", "class",
 					checkedFileNames, includeFileNames, getContentsMap())) {
 
 				unneededImports.add(importLine);
@@ -101,7 +101,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 	}
 
 	private void _addJSPUnusedTaglibs(
-		String fileName, List<String> taglibLines,
+		String fileName, String content, List<String> taglibLines,
 		List<String> unneededTaglibs) {
 
 		Set<String> checkedFileNames = new HashSet<>();
@@ -123,7 +123,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 				"\\$\\{", prefix, StringPool.COLON);
 
 			if (hasUnusedJSPTerm(
-					fileName, regex, "taglib", checkedFileNames,
+					fileName, content, regex, "taglib", checkedFileNames,
 					includeFileNames, getContentsMap())) {
 
 				unneededTaglibs.add(taglibLine);
@@ -223,18 +223,18 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 	}
 
 	private boolean _hasUnusedPortletDefineObjectsProperty(
-		String fileName, String portletDefineObjectProperty,
+		String fileName, String content, String portletDefineObjectProperty,
 		Set<String> checkedFileNames, Set<String> includeFileNames) {
 
 		return hasUnusedJSPTerm(
-			fileName, "\\W" + portletDefineObjectProperty + "\\W",
+			fileName, content, "\\W" + portletDefineObjectProperty + "\\W",
 			"portletDefineObjectProperty", checkedFileNames, includeFileNames,
 			getContentsMap());
 	}
 
 	private boolean _hasUnusedVariable(
-		String fileName, String line, Set<String> checkedFileNames,
-		Set<String> includeFileNames) {
+		String fileName, String content, String line,
+		Set<String> checkedFileNames, Set<String> includeFileNames) {
 
 		if (line.contains(": ")) {
 			return false;
@@ -249,7 +249,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 		}
 
 		return hasUnusedJSPTerm(
-			fileName, "\\W" + variableName + "\\W", "variable",
+			fileName, content, "\\W" + variableName + "\\W", "variable",
 			checkedFileNames, includeFileNames, getContentsMap());
 	}
 
@@ -446,7 +446,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 		List<String> unneededImports = _getJSPDuplicateImports(
 			fileName, content, importLines);
 
-		_addJSPUnusedImports(fileName, importLines, unneededImports);
+		_addJSPUnusedImports(fileName, content, importLines, unneededImports);
 
 		for (String unneededImport : unneededImports) {
 			newImports = StringUtil.removeSubstring(newImports, unneededImport);
@@ -469,8 +469,8 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 				_PORTLET_DEFINE_OBJECTS_PROPERTIES) {
 
 			if (!_hasUnusedPortletDefineObjectsProperty(
-					fileName, portletDefineObjectProperty, checkedFileNames,
-					includeFileNames)) {
+					fileName, content, portletDefineObjectProperty,
+					checkedFileNames, includeFileNames)) {
 
 				return content;
 			}
@@ -514,7 +514,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 		List<String> unneededTaglibs = _getJSPDuplicateTaglibs(
 			fileName, content, taglibLines);
 
-		_addJSPUnusedTaglibs(fileName, taglibLines, unneededTaglibs);
+		_addJSPUnusedTaglibs(fileName, content, taglibLines, unneededTaglibs);
 
 		for (String unneededTaglib : unneededTaglibs) {
 			newTaglibs = StringUtil.removeSubstring(newTaglibs, unneededTaglib);
@@ -564,7 +564,7 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 					!isExcludedPath(
 						_UNUSED_VARIABLES_EXCLUDES, absolutePath, lineNumber) &&
 					_hasUnusedVariable(
-						fileName, trimmedLine, checkedFileNames,
+						fileName, content, trimmedLine, checkedFileNames,
 						includeFileNames)) {
 
 					unusedVariable = true;

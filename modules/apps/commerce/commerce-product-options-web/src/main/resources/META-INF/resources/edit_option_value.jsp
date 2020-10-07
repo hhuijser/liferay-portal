@@ -34,8 +34,6 @@ if (cpOptionValue != null) {
 		availableLocalesSet.add(LocaleUtil.fromLanguageId(languageId));
 	}
 }
-
-boolean hasCustomAttributesAvailable = CustomAttributesUtil.hasCustomAttributes(company.getCompanyId(), CPOptionValue.class.getName(), cpOptionValueId, null);
 %>
 
 <portlet:actionURL name="editProductOptionValue" var="editProductOptionValueActionURL" />
@@ -63,7 +61,7 @@ boolean hasCustomAttributesAvailable = CustomAttributesUtil.hasCustomAttributes(
 			<aui:input helpMessage="key-help" name="key" />
 		</aui:fieldset>
 
-		<c:if test="<%= hasCustomAttributesAvailable %>">
+		<c:if test="<%= CustomAttributesUtil.hasCustomAttributes(company.getCompanyId(), CPOptionValue.class.getName(), cpOptionValueId, null) %>">
 			<aui:fieldset>
 				<liferay-expando:custom-attribute-list
 					className="<%= CPOptionValue.class.getName() %>"

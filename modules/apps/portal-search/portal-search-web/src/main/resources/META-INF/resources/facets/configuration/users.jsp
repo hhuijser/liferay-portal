@@ -20,13 +20,10 @@
 SearchFacet searchFacet = (SearchFacet)request.getAttribute("facet_configuration.jsp-searchFacet");
 
 JSONObject dataJSONObject = searchFacet.getData();
-
-int maxTerms = dataJSONObject.getInt("maxTerms", 10);
-boolean showAssetCount = dataJSONObject.getBoolean("showAssetCount", true);
 %>
 
 <aui:input label="frequency-threshold" name='<%= searchFacet.getClassName() + "frequencyThreshold" %>' value='<%= dataJSONObject.getInt("frequencyThreshold") %>' />
 
-<aui:input label="max-terms" name='<%= searchFacet.getClassName() + "maxTerms" %>' value="<%= maxTerms %>" />
+<aui:input label="max-terms" name='<%= searchFacet.getClassName() + "maxTerms" %>' value='<%= dataJSONObject.getInt("maxTerms", 10) %>' />
 
-<aui:input label="show-asset-count" name='<%= searchFacet.getClassName() + "showAssetCount" %>' type="checkbox" value="<%= showAssetCount %>" />
+<aui:input label="show-asset-count" name='<%= searchFacet.getClassName() + "showAssetCount" %>' type="checkbox" value='<%= dataJSONObject.getBoolean("showAssetCount", true) %>' />

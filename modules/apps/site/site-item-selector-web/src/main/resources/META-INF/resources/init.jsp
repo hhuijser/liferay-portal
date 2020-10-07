@@ -32,7 +32,6 @@ page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.portlet.usersadmin.search.GroupSearch" %><%@
 page import="com.liferay.site.constants.SiteWebKeys" %><%@
 page import="com.liferay.site.item.selector.display.context.SitesItemSelectorViewDisplayContext" %><%@
 page import="com.liferay.site.item.selector.web.internal.constants.SitesItemSelectorWebKeys" %><%@

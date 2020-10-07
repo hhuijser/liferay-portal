@@ -31,8 +31,6 @@ page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
 
-<%@ page import="java.util.Map" %>
-
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />

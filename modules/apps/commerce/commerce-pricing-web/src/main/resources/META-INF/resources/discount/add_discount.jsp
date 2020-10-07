@@ -20,8 +20,6 @@
 CommerceDiscountDisplayContext commerceDiscountDisplayContext = (CommerceDiscountDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 PortletURL editDiscountPortletURL = commerceDiscountDisplayContext.getEditCommerceDiscountRenderURL();
-
-CommerceDiscount commerceDiscount = commerceDiscountDisplayContext.getCommerceDiscount();
 %>
 
 <portlet:actionURL name="editCommerceDiscount" var="editCommerceDiscountActionURL" />
@@ -31,7 +29,7 @@ CommerceDiscount commerceDiscount = commerceDiscountDisplayContext.getCommerceDi
 >
 	<div class="col-12 lfr-form-content">
 		<aui:form cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "apiSubmit(this.form);" %>' useNamespace="<%= false %>">
-			<aui:input bean="<%= commerceDiscount %>" label="name" model="<%= CommerceDiscount.class %>" name="title" required="<%= true %>" />
+			<aui:input bean="<%= commerceDiscountDisplayContext.getCommerceDiscount() %>" label="name" model="<%= CommerceDiscount.class %>" name="title" required="<%= true %>" />
 
 			<aui:select label="type" name="commerceDiscountType" required="<%= true %>">
 

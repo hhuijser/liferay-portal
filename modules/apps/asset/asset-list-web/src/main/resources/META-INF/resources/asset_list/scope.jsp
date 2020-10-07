@@ -18,8 +18,6 @@
 
 <%
 List<Group> selectedGroups = editAssetListDisplayContext.getSelectedGroups();
-
-PortletURL portletURL = editAssetListDisplayContext.getPortletURL();
 %>
 
 <aui:input name="TypeSettingsProperties--groupIds--" type="hidden" value="<%= StringUtil.merge(editAssetListDisplayContext.getSelectedGroupIds()) %>" />
@@ -38,7 +36,7 @@ PortletURL portletURL = editAssetListDisplayContext.getPortletURL();
 	compactEmptyResultsMessage="<%= true %>"
 	emptyResultsMessage="none"
 	headerNames="name,type,null"
-	iteratorURL="<%= portletURL %>"
+	iteratorURL="<%= editAssetListDisplayContext.getPortletURL() %>"
 	total="<%= selectedGroups.size() %>"
 >
 	<liferay-ui:search-container-results

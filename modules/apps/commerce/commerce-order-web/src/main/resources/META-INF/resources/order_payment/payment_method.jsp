@@ -22,10 +22,6 @@ CommerceOrderEditDisplayContext commerceOrderEditDisplayContext = (CommerceOrder
 CommerceOrder commerceOrder = commerceOrderEditDisplayContext.getCommerceOrder();
 
 long commerceOrderId = commerceOrder.getCommerceOrderId();
-
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"commerceOrderId", String.valueOf(commerceOrderId)
-).build();
 %>
 
 <portlet:actionURL name="editCommerceOrder" var="editCommerceOrderPaymentMethodActionURL" />
@@ -41,7 +37,11 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 		<liferay-ui:error exception="<%= CommerceOrderPaymentMethodException.class %>" message="please-select-a-valid-payment-method" />
 
 		<clay:data-set-display
-			contextParams="<%= contextParams %>"
+			contextParams='<%=
+				HashMapBuilder.<String, String>put(
+					"commerceOrderId", String.valueOf(commerceOrderId)
+				).build()
+			%>'
 			dataProviderKey="<%= CommerceOrderDataSetConstants.COMMERCE_DATA_SET_KEY_PAYMENT_METHODS %>"
 			formId="fm"
 			id="<%= CommerceOrderDataSetConstants.COMMERCE_DATA_SET_KEY_PAYMENT_METHODS %>"

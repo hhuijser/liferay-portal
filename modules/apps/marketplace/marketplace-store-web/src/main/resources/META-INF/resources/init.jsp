@@ -31,8 +31,6 @@ page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %>
 
-<%@ page import="java.util.Map" %>
-
 <%@ page import="javax.portlet.PortletURL" %>
 
 <liferay-theme:defineObjects />

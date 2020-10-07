@@ -17,9 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String command = (String)SessionMessages.get(renderRequest, "command");
 String commandOutput = (String)SessionMessages.get(renderRequest, "commandOutput");
-String prompt = (String)SessionMessages.get(renderRequest, "prompt");
 %>
 
 <portlet:actionURL name="executeCommand" var="executeCommandURL" />
@@ -39,7 +37,7 @@ String prompt = (String)SessionMessages.get(renderRequest, "prompt");
 
 		<aui:fieldset-group markupView="lexicon">
 			<aui:fieldset>
-				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>" name="command" prefix="<%= prompt %>" value="<%= command %>" />
+				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>" name="command" prefix='<%= (String)SessionMessages.get(renderRequest, "prompt") %>' value='<%= (String)SessionMessages.get(renderRequest, "command") %>' />
 			</aui:fieldset>
 		</aui:fieldset-group>
 

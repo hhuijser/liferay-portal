@@ -18,9 +18,6 @@
 
 <%
 CommerceDiscountDisplayContext commerceDiscountDisplayContext = (CommerceDiscountDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-CommerceDiscount commerceDiscount = commerceDiscountDisplayContext.getCommerceDiscount();
-long commerceDiscountId = commerceDiscountDisplayContext.getCommerceDiscountId();
 %>
 
 <liferay-ui:error-marker
@@ -28,11 +25,11 @@ long commerceDiscountId = commerceDiscountDisplayContext.getCommerceDiscountId()
 	value="custom-fields"
 />
 
-<aui:model-context bean="<%= commerceDiscount %>" model="<%= CommerceDiscount.class %>" />
+<aui:model-context bean="<%= commerceDiscountDisplayContext.getCommerceDiscount() %>" model="<%= CommerceDiscount.class %>" />
 
 <liferay-expando:custom-attribute-list
 	className="<%= CommerceDiscount.class.getName() %>"
-	classPK="<%= commerceDiscountId %>"
+	classPK="<%= commerceDiscountDisplayContext.getCommerceDiscountId() %>"
 	editable="<%= true %>"
 	label="<%= true %>"
 />

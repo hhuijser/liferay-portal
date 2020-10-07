@@ -22,9 +22,6 @@ CommercePricingClassDisplayContext commercePricingClassDisplayContext = (Commerc
 CommercePricingClass commercePricingClass = commercePricingClassDisplayContext.getCommercePricingClass();
 
 long commercePricingClassId = commercePricingClass.getCommercePricingClassId();
-boolean isViewOnly = !commercePricingClassDisplayContext.hasPermission(ActionKeys.UPDATE);
-
-boolean hasCustomAttributesAvailable = CustomAttributesUtil.hasCustomAttributes(company.getCompanyId(), CommercePricingClass.class.getName(), commercePricingClassId, null);
 %>
 
 <portlet:actionURL name="editCommercePricingClass" var="editCommercePricingClassActionURL" />
@@ -41,7 +38,7 @@ boolean hasCustomAttributesAvailable = CustomAttributesUtil.hasCustomAttributes(
 				title='<%= LanguageUtil.get(request, "details") %>'
 			>
 				<div class="col-12 lfr-form-content">
-					<aui:input bean="<%= commercePricingClass %>" disabled="<%= isViewOnly %>" label="name" model="<%= CommercePricingClass.class %>" name="title" required="<%= true %>" />
+					<aui:input bean="<%= commercePricingClass %>" disabled="<%= !commercePricingClassDisplayContext.hasPermission(ActionKeys.UPDATE) %>" label="name" model="<%= CommercePricingClass.class %>" name="title" required="<%= true %>" />
 
 					<aui:input localized="<%= true %>" name="description" type="textarea" value="<%= commercePricingClass.getDescription(locale) %>" />
 				</div>
@@ -51,7 +48,7 @@ boolean hasCustomAttributesAvailable = CustomAttributesUtil.hasCustomAttributes(
 
 	<div class="row">
 		<div class="col-12">
-			<c:if test="<%= hasCustomAttributesAvailable %>">
+			<c:if test="<%= CustomAttributesUtil.hasCustomAttributes(company.getCompanyId(), CommercePricingClass.class.getName(), commercePricingClassId, null) %>">
 				<commerce-ui:panel
 					title='<%= LanguageUtil.get(request, "custom-attributes") %>'
 				>

@@ -26,8 +26,6 @@ CPDefinitionInventory cpDefinitionInventory = cpDefinitionConfigurationDisplayCo
 List<CPTaxCategory> cpTaxCategories = cpDefinitionConfigurationDisplayContext.getCPTaxCategories();
 
 boolean shippable = BeanParamUtil.getBoolean(cpDefinition, request, "shippable", true);
-boolean freeShipping = BeanParamUtil.getBoolean(cpDefinition, request, "freeShipping", false);
-boolean shipSeparately = BeanParamUtil.getBoolean(cpDefinition, request, "shipSeparately", false);
 %>
 
 <portlet:actionURL name="editProductDefinition" var="editProductDefinitionConfigurationActionURL" />
@@ -171,9 +169,9 @@ boolean shipSeparately = BeanParamUtil.getBoolean(cpDefinition, request, "shipSe
 				<aui:input checked="<%= shippable %>" name="shippable" type="toggle-switch" value="<%= shippable %>" />
 
 				<div class="<%= shippable ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />shippableOptions">
-					<aui:input checked="<%= freeShipping %>" inlineField="<%= true %>" name="freeShipping" type="toggle-switch" />
+					<aui:input checked='<%= BeanParamUtil.getBoolean(cpDefinition, request, "freeShipping", false) %>' inlineField="<%= true %>" name="freeShipping" type="toggle-switch" />
 
-					<aui:input checked="<%= shipSeparately %>" inlineField="<%= true %>" label="always-ship-separately" name="shipSeparately" type="toggle-switch" />
+					<aui:input checked='<%= BeanParamUtil.getBoolean(cpDefinition, request, "shipSeparately", false) %>' inlineField="<%= true %>" label="always-ship-separately" name="shipSeparately" type="toggle-switch" />
 
 					<aui:input name="shippingExtraPrice" suffix="<%= HtmlUtil.escape(cpDefinitionConfigurationDisplayContext.getCommerceCurrencyCode()) %>" />
 				</div>

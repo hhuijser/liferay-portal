@@ -27,7 +27,6 @@ if (commerceAddress != null) {
 	selectedType = commerceAddress.getType();
 }
 
-long commerceAddressId = commerceAccountAddressAdminDisplayContext.getCommerceAddressId();
 long commerceCountryId = commerceAccountAddressAdminDisplayContext.getCommerceCountryId();
 long commerceRegionId = commerceAccountAddressAdminDisplayContext.getCommerceRegionId();
 %>
@@ -39,7 +38,7 @@ long commerceRegionId = commerceAccountAddressAdminDisplayContext.getCommerceReg
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceAddress == null) ? Constants.ADD : Constants.UPDATE %>" />
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 		<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
-		<aui:input name="commerceAddressId" type="hidden" value="<%= commerceAddressId %>" />
+		<aui:input name="commerceAddressId" type="hidden" value="<%= commerceAccountAddressAdminDisplayContext.getCommerceAddressId() %>" />
 		<aui:input name="commerceAccountId" type="hidden" value="<%= (commerceAddress == null) ? commerceAccountAddressAdminDisplayContext.getCommerceAccountId() : commerceAddress.getClassPK() %>" />
 
 		<aui:model-context bean="<%= commerceAddress %>" model="<%= CommerceAddress.class %>" />

@@ -18,8 +18,6 @@
 
 <%
 CommerceShipmentDisplayContext commerceShipmentDisplayContext = (CommerceShipmentDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-CommerceShipment commerceShipment = commerceShipmentDisplayContext.getCommerceShipment();
 %>
 
 <portlet:actionURL name="editCommerceShipment" var="editCommerceShipmentURL" />
@@ -31,7 +29,7 @@ CommerceShipment commerceShipment = commerceShipmentDisplayContext.getCommerceSh
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="carrierDetails" />
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
-		<aui:model-context bean="<%= commerceShipment %>" model="<%= CommerceShipment.class %>" />
+		<aui:model-context bean="<%= commerceShipmentDisplayContext.getCommerceShipment() %>" model="<%= CommerceShipment.class %>" />
 
 		<aui:input name="commerceShipmentId" type="hidden" />
 

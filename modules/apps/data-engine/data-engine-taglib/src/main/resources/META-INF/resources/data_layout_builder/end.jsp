@@ -18,40 +18,6 @@
 
 <portlet:renderURL var="basePortletURL" />
 
-<%
-Map<String, Object> props = HashMapBuilder.<String, Object>put(
-	"availableLanguageIds", availableLanguageIds
-).put(
-	"config", configJSONObject
-).put(
-	"contentType", contentType
-).put(
-	"context", dataLayoutJSONObject
-).put(
-	"dataDefinitionId", dataDefinitionId
-).put(
-	"dataLayoutBuilderElementId", liferayPortletResponse.getNamespace() + "-data-layout-builder"
-).put(
-	"dataLayoutBuilderId", componentId
-).put(
-	"dataLayoutId", dataLayoutId
-).put(
-	"fieldSetContentType", fieldSetContentType
-).put(
-	"fieldTypes", fieldTypesJSONArray
-).put(
-	"fieldTypesModules", fieldTypesModules
-).put(
-	"groupId", groupId
-).put(
-	"localizable", localizable
-).put(
-	"sidebarPanels", sidebarPanels
-).put(
-	"spritemap", themeDisplay.getPathThemeImages() + "/clay/icons.svg"
-).build();
-%>
-
 <div class="data-engine-form-builder-messages data-engine-form-builder-messages--collapsed">
 	<liferay-ui:error exception="<%= DataDefinitionValidationException.class %>" message="please-enter-a-valid-form-definition" />
 
@@ -101,6 +67,38 @@ Map<String, Object> props = HashMapBuilder.<String, Object>put(
 <div id="<%= componentId %>container">
 	<react:component
 		module="data_layout_builder/js/App.es"
-		props="<%= props %>"
+		props='<%=
+			HashMapBuilder.<String, Object>put(
+				"availableLanguageIds", availableLanguageIds
+			).put(
+				"config", configJSONObject
+			).put(
+				"contentType", contentType
+			).put(
+				"context", dataLayoutJSONObject
+			).put(
+				"dataDefinitionId", dataDefinitionId
+			).put(
+				"dataLayoutBuilderElementId", liferayPortletResponse.getNamespace() + "-data-layout-builder"
+			).put(
+				"dataLayoutBuilderId", componentId
+			).put(
+				"dataLayoutId", dataLayoutId
+			).put(
+				"fieldSetContentType", fieldSetContentType
+			).put(
+				"fieldTypes", fieldTypesJSONArray
+			).put(
+				"fieldTypesModules", fieldTypesModules
+			).put(
+				"groupId", groupId
+			).put(
+				"localizable", localizable
+			).put(
+				"sidebarPanels", sidebarPanels
+			).put(
+				"spritemap", themeDisplay.getPathThemeImages() + "/clay/icons.svg"
+			).build()
+		%>'
 	/>
 </div>

@@ -22,8 +22,6 @@ CPOptionDisplayContext cpOptionDisplayContext = (CPOptionDisplayContext)request.
 CPOption cpOption = cpOptionDisplayContext.getCPOption();
 
 long cpOptionId = cpOptionDisplayContext.getCPOptionId();
-
-boolean hasCustomAttributesAvailable = CustomAttributesUtil.hasCustomAttributes(company.getCompanyId(), CPOption.class.getName(), cpOptionId, null);
 %>
 
 <portlet:actionURL name="editProductOption" var="editProductOptionActionURL" />
@@ -76,7 +74,7 @@ boolean hasCustomAttributesAvailable = CustomAttributesUtil.hasCustomAttributes(
 			<aui:input helpMessage="key-help" name="key" />
 		</aui:fieldset>
 
-		<c:if test="<%= hasCustomAttributesAvailable %>">
+		<c:if test="<%= CustomAttributesUtil.hasCustomAttributes(company.getCompanyId(), CPOption.class.getName(), cpOptionId, null) %>">
 			<aui:fieldset>
 				<liferay-expando:custom-attribute-list
 					className="<%= CPOption.class.getName() %>"

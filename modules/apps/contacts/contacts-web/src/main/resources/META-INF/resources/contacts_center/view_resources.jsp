@@ -131,13 +131,8 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 			</c:if>
 
 			<span id="<portlet:namespace />contactsToolbar">
-
-				<%
-				boolean showDetailView = ParamUtil.getBoolean(request, "showDetailView");
-				%>
-
 				<c:choose>
-					<c:when test="<%= showDetailView %>">
+					<c:when test='<%= ParamUtil.getBoolean(request, "showDetailView") %>'>
 						<div class="lfr-button-column">
 							<div class="lfr-button-column-content">
 								<aui:button-row cssClass="edit-toolbar" id='<%= liferayPortletResponse.getNamespace() + "userToolbar" %>' />

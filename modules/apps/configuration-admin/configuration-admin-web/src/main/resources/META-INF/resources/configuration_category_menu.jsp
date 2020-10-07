@@ -53,11 +53,10 @@ ConfigurationCategoryMenuDisplay configurationCategoryMenuDisplay = (Configurati
 
 							<%
 							for (ConfigurationEntry curConfigurationEntry : configurationEntries) {
-								String cssClass = configurationEntry.equals(curConfigurationEntry) ? "active nav-link" : "nav-link";
 							%>
 
 								<li>
-									<aui:a cssClass="<%= cssClass %>" href="<%= curConfigurationEntry.getEditURL(renderRequest, renderResponse) %>"><%= curConfigurationEntry.getName() %></aui:a>
+									<aui:a cssClass='<%= configurationEntry.equals(curConfigurationEntry) ? "active nav-link" : "nav-link" %>' href="<%= curConfigurationEntry.getEditURL(renderRequest, renderResponse) %>"><%= curConfigurationEntry.getName() %></aui:a>
 								</li>
 
 							<%

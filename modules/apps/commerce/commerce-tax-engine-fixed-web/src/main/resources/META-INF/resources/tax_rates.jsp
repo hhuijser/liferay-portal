@@ -20,16 +20,14 @@
 CommerceTaxFixedRatesDisplayContext commerceTaxFixedRatesDisplayContext = (CommerceTaxFixedRatesDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 %>
 
-<%
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"commerceChannelId", String.valueOf(commerceTaxFixedRatesDisplayContext.getCommerceChannelId())
-).put(
-	"commerceTaxMethodId", String.valueOf(commerceTaxFixedRatesDisplayContext.getCommerceTaxMethodId())
-).build();
-%>
-
 <clay:data-set-display
-	contextParams="<%= contextParams %>"
+	contextParams='<%=
+		HashMapBuilder.<String, String>put(
+			"commerceChannelId", String.valueOf(commerceTaxFixedRatesDisplayContext.getCommerceChannelId())
+		).put(
+			"commerceTaxMethodId", String.valueOf(commerceTaxFixedRatesDisplayContext.getCommerceTaxMethodId())
+		).build()
+	%>'
 	creationMenu="<%= commerceTaxFixedRatesDisplayContext.getCreationMenu() %>"
 	dataProviderKey="<%= CommerceTaxRateClayTable.NAME %>"
 	id="<%= CommerceTaxRateClayTable.NAME %>"

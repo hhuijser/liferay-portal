@@ -74,21 +74,25 @@ AssetRenderer<?> assetRenderer = (AssetRenderer<?>)request.getAttribute(WebKeys.
 
 	<%
 	String portletId = PortletProviderUtil.getPortletId(assetEntry.getClassName(), PortletProvider.Action.ADD);
-
-	Map<String, Object> data = HashMapBuilder.<String, Object>put(
-		"class-name", assetEntry.getClassName()
-	).put(
-		"class-pk", assetEntry.getClassPK()
-	).put(
-		"instanceable", Boolean.TRUE
-	).put(
-		"portlet-id", portletId
-	).put(
-		"title", HtmlUtil.escape(assetRenderer.getTitle(themeDisplay.getLocale()))
-	).build();
 	%>
 
 	<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, layout, portletId, ActionKeys.ADD_TO_PAGE) %>">
-		<aui:button cssClass="add-button-preview" data="<%= data %>" value="add" />
+		<aui:button
+			cssClass="add-button-preview"
+			data='<%=
+				HashMapBuilder.<String, Object>put(
+					"class-name", assetEntry.getClassName()
+				).put(
+					"class-pk", assetEntry.getClassPK()
+				).put(
+					"instanceable", Boolean.TRUE
+				).put(
+					"portlet-id", portletId
+				).put(
+					"title", HtmlUtil.escape(assetRenderer.getTitle(themeDisplay.getLocale()))
+				).build()
+			%>'
+			value="add"
+		/>
 	</c:if>
 </div>

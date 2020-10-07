@@ -127,5 +127,5 @@ if (PropsValues.PORTAL_JAAS_ENABLE && (jUserName != null)) {
 </c:choose>
 
 <%!
-	private static Log _log = LogFactoryUtil.getLog("portal_web.docroot.html.portal.j_login_jsp");
+private static Log _log = LogFactoryUtil.getLog("portal_web.docroot.html.portal.j_login_jsp");
 %>

@@ -144,12 +144,15 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 							"<%= " + taglibValue + " %>\"", matcher.end());
 					}
 
+					y = newContent.indexOf(variableDefinition, matcher.start());
+
 					Set<String> checkedFileNames = new HashSet<>();
 					Set<String> includeFileNames = new HashSet<>();
 
 					if (hasUnusedJSPTerm(
 							fileName, newContent, "\\W" + variableName + "\\W",
-							"variable", checkedFileNames, includeFileNames,
+							getLineNumber(newContent, y), "variable",
+							checkedFileNames, includeFileNames,
 							getContentsMap())) {
 
 						if (!taglibValue.contains("\n")) {

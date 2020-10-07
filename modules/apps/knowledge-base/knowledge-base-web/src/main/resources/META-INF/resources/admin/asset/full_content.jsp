@@ -38,7 +38,6 @@ if (kbArticle != null) {
 
 			<%
 			for (FileEntry fileEntry : attachmentsFileEntries) {
-				String rowURL = PortletFileRepositoryUtil.getDownloadPortletFileEntryURL(themeDisplay, fileEntry, "status=" + WorkflowConstants.STATUS_APPROVED);
 			%>
 
 				<clay:col
@@ -46,7 +45,7 @@ if (kbArticle != null) {
 				>
 					<liferay-frontend:horizontal-card
 						text="<%= fileEntry.getTitle() %>"
-						url="<%= rowURL %>"
+						url='<%= PortletFileRepositoryUtil.getDownloadPortletFileEntryURL(themeDisplay, fileEntry, "status=" + WorkflowConstants.STATUS_APPROVED) %>'
 					>
 						<liferay-frontend:horizontal-card-col>
 							<liferay-document-library:mime-type-sticker

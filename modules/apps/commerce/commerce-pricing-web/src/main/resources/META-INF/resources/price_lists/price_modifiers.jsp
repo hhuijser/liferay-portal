@@ -23,16 +23,13 @@ long commercePriceListId = commercePriceListDisplayContext.getCommercePriceListI
 %>
 
 <c:if test="<%= commercePriceListDisplayContext.hasPermission(commercePriceListId, ActionKeys.UPDATE) %>">
-
-	<%
-	Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-		"commercePriceListId", String.valueOf(commercePriceListId)
-	).build();
-	%>
-
 	<div class="pt-4">
 		<clay:data-set-display
-			contextParams="<%= contextParams %>"
+			contextParams='<%=
+				HashMapBuilder.<String, String>put(
+					"commercePriceListId", String.valueOf(commercePriceListId)
+				).build()
+			%>'
 			creationMenu="<%= commercePriceListDisplayContext.getPriceModifiersCreationMenu() %>"
 			dataProviderKey="<%= CommercePricingDataSetConstants.COMMERCE_DATA_SET_KEY_PRICE_MODIFIERS %>"
 			formId="fm"

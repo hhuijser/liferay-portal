@@ -93,7 +93,6 @@ page import="com.liferay.taglib.util.CustomAttributesUtil" %>
 
 <%@ page import="java.util.List" %><%@
 page import="java.util.Locale" %><%@
-page import="java.util.Map" %><%@
 page import="java.util.Objects" %>
 
 <%@ page import="javax.portlet.PortletURL" %>

@@ -136,7 +136,6 @@ ViewTranslationDisplayContext viewTranslationDisplayContext = (ViewTranslationDi
 
 						<%
 						String targetContent = viewTranslationDisplayContext.getStringValue(infoField, viewTranslationDisplayContext.getTargetLocale());
-						String targetContentDir = LanguageUtil.get(viewTranslationDisplayContext.getTargetLocale(), "lang.dir");
 						%>
 
 						<c:choose>
@@ -145,7 +144,7 @@ ViewTranslationDisplayContext viewTranslationDisplayContext = (ViewTranslationDi
 									<%= label %>
 								</label>
 
-								<div class="translate-editor-preview" dir="<%= targetContentDir %>">
+								<div class="translate-editor-preview" dir="<%= LanguageUtil.get(viewTranslationDisplayContext.getTargetLocale(), "lang.dir") %>">
 									<%= targetContent %>
 								</div>
 							</c:when>

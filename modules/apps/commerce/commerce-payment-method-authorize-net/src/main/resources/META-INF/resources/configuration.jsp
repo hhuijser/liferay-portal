@@ -18,15 +18,13 @@
 
 <%
 AuthorizeNetGroupServiceConfiguration authorizeNetCommercePaymentEngineGroupServiceConfiguration = (AuthorizeNetGroupServiceConfiguration)request.getAttribute(AuthorizeNetGroupServiceConfiguration.class.getName());
-
-long commerceChannelId = ParamUtil.getLong(request, "commerceChannelId");
 %>
 
 <portlet:actionURL name="editAuthorizeNetCommercePaymentMethodConfiguration" var="editCommercePaymentMethodActionURL" />
 
 <aui:form action="<%= editCommercePaymentMethodActionURL %>" cssClass="container-fluid-1280" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="commerceChannelId" type="hidden" value="<%= commerceChannelId %>" />
+	<aui:input name="commerceChannelId" type="hidden" value='<%= ParamUtil.getLong(request, "commerceChannelId") %>' />
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
 	<commerce-ui:panel>

@@ -17,7 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Map<String, Object> data = (Map<String, Object>)request.getAttribute("liferay-ratings:ratings:data");
 String type = GetterUtil.getString((String)request.getAttribute("liferay-ratings:ratings:type"));
 %>
 
@@ -166,6 +165,6 @@ String type = GetterUtil.getString((String)request.getAttribute("liferay-ratings
 
 	<react:component
 		module="js/Ratings"
-		props="<%= data %>"
+		props='<%= (Map<String, Object>)request.getAttribute("liferay-ratings:ratings:data") %>'
 	/>
 </div>

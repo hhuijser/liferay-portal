@@ -63,16 +63,14 @@ List<Map<String, Object>> vocabularies = (List<Map<String, Object>>)data.get("vo
 
 										<%
 										for (Map<String, Object> selectedItem : selectedItems) {
-											String selectedItemLabel = GetterUtil.getString(selectedItem.get("label"));
-											String selectedItemValue = GetterUtil.getString(selectedItem.get("value"));
 										%>
 
 											<clay:label
 												dismissible="<%= true %>"
-												label="<%= selectedItemLabel %>"
+												label='<%= GetterUtil.getString(selectedItem.get("label")) %>'
 											/>
 
-											<input name="<%= (String)data.get("inputName") %>" type="hidden" value="<%= selectedItemValue %>" />
+											<input name="<%= (String)data.get("inputName") %>" type="hidden" value="<%= GetterUtil.getString(selectedItem.get("value")) %>" />
 
 										<%
 										}

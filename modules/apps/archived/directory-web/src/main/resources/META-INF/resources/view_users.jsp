@@ -27,8 +27,6 @@ PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
 if (Validator.isNotNull(viewUsersRedirect)) {
 	portletURL.setParameter("viewUsersRedirect", viewUsersRedirect);
 }
-
-boolean showSearch = ParamUtil.getBoolean(request, "showSearch", true);
 %>
 
 <c:if test="<%= Validator.isNotNull(viewUsersRedirect) %>">
@@ -57,7 +55,7 @@ boolean showSearch = ParamUtil.getBoolean(request, "showSearch", true);
 			portletURL="<%= portletURL %>"
 		/>
 
-		<c:if test="<%= showSearch %>">
+		<c:if test='<%= ParamUtil.getBoolean(request, "showSearch", true) %>'>
 			<li>
 				<liferay-util:include page="/user_search.jsp" servletContext="<%= application %>" />
 			</li>

@@ -26,9 +26,6 @@ long commerceTaxMethodId = 0;
 if (commerceTaxMethod != null) {
 	commerceTaxMethodId = commerceTaxMethod.getCommerceTaxMethodId();
 }
-
-String name = BeanParamUtil.getString(commerceTaxMethod, request, "name", commerceTaxMethodsDisplayContext.getCommerceTaxMethodEngineName(locale));
-String description = BeanParamUtil.getString(commerceTaxMethod, request, "description", commerceTaxMethodsDisplayContext.getCommerceTaxMethodEngineDescription(locale));
 %>
 
 <portlet:actionURL name="editCommerceTaxMethod" var="editCommerceTaxMethodActionURL" />
@@ -43,11 +40,11 @@ String description = BeanParamUtil.getString(commerceTaxMethod, request, "descri
 	<liferay-ui:error exception="<%= CommerceTaxMethodNameException.class %>" message="please-enter-a-valid-name" />
 
 	<commerce-ui:panel>
-		<aui:input autoFocus="<%= true %>" label="name" localized="<%= true %>" name="nameMapAsXML" type="text" value="<%= name %>">
+		<aui:input autoFocus="<%= true %>" label="name" localized="<%= true %>" name="nameMapAsXML" type="text" value='<%= BeanParamUtil.getString(commerceTaxMethod, request, "name", commerceTaxMethodsDisplayContext.getCommerceTaxMethodEngineName(locale)) %>'>
 			<aui:validator name="required" />
 		</aui:input>
 
-		<aui:input label="description" localized="<%= true %>" name="descriptionMapAsXML" type="text" value="<%= description %>" />
+		<aui:input label="description" localized="<%= true %>" name="descriptionMapAsXML" type="text" value='<%= BeanParamUtil.getString(commerceTaxMethod, request, "description", commerceTaxMethodsDisplayContext.getCommerceTaxMethodEngineDescription(locale)) %>' />
 
 		<aui:model-context bean="<%= commerceTaxMethod %>" model="<%= CommerceTaxMethod.class %>" />
 

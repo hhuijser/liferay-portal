@@ -35,8 +35,6 @@ portletURL.setParameter("navigation", navigation);
 portletURL.setParameter("orderByCol", orderByCol);
 portletURL.setParameter("orderByType", orderByType);
 portletURL.setParameter("searchContainerId", searchContainerId);
-
-OrderByComparator<BackgroundTask> orderByComparator = BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType);
 %>
 
 <portlet:actionURL name="deleteBackgroundTasks" var="deleteBackgroundTasksURL">
@@ -53,7 +51,7 @@ OrderByComparator<BackgroundTask> orderByComparator = BackgroundTaskComparatorFa
 		id="<%= searchContainerId %>"
 		iteratorURL="<%= portletURL %>"
 		orderByCol="<%= orderByCol %>"
-		orderByComparator="<%= orderByComparator %>"
+		orderByComparator="<%= BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType) %>"
 		orderByType="<%= orderByType %>"
 		rowChecker="<%= new EmptyOnClickRowChecker(liferayPortletResponse) %>"
 	>

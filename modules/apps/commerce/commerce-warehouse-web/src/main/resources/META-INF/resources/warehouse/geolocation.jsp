@@ -18,8 +18,6 @@
 
 <%
 CommerceInventoryWarehousesDisplayContext commerceInventoryWarehousesDisplayContext = (CommerceInventoryWarehousesDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-CommerceInventoryWarehouse commerceInventoryWarehouse = commerceInventoryWarehousesDisplayContext.getCommerceInventoryWarehouse();
 %>
 
 <liferay-ui:error-marker
@@ -27,7 +25,7 @@ CommerceInventoryWarehouse commerceInventoryWarehouse = commerceInventoryWarehou
 	value="geolocation"
 />
 
-<aui:model-context bean="<%= commerceInventoryWarehouse %>" model="<%= CommerceInventoryWarehouse.class %>" />
+<aui:model-context bean="<%= commerceInventoryWarehousesDisplayContext.getCommerceInventoryWarehouse() %>" model="<%= CommerceInventoryWarehouse.class %>" />
 
 <aui:fieldset>
 	<aui:input name="latitude" />

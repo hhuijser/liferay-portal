@@ -25,8 +25,6 @@ Date endDate = commerceDataIntegrationProcessLog.getEndDate();
 Date startDate = commerceDataIntegrationProcessLog.getStartDate();
 
 long timeMillis = endDate.getTime() - startDate.getTime();
-
-String formattedStartDate = commerceDataIntegrationProcessLogDisplayContext.getFormattedDate(commerceDataIntegrationProcessLog.getStartDate());
 %>
 
 <portlet:actionURL name="editCommerceDataIntegrationProcessLog" var="editCommerceDataIntegrationProcessLogActionURL" />
@@ -39,7 +37,7 @@ String formattedStartDate = commerceDataIntegrationProcessLogDisplayContext.getF
 
 		<div class="lfr-form-content">
 			<aui:fieldset>
-				<aui:input disabled="<%= true %>" label="start-date" name="startDate" value="<%= formattedStartDate %>" />
+				<aui:input disabled="<%= true %>" label="start-date" name="startDate" value="<%= commerceDataIntegrationProcessLogDisplayContext.getFormattedDate(commerceDataIntegrationProcessLog.getStartDate()) %>" />
 
 				<aui:input disabled="<%= true %>" name="status" value="<%= LanguageUtil.get(request, BackgroundTaskConstants.getStatusLabel(commerceDataIntegrationProcessLog.getStatus())) %>" />
 

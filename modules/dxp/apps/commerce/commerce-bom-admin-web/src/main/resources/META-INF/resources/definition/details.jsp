@@ -22,8 +22,6 @@ CommerceBOMAdminDisplayContext commerceBOMAdminDisplayContext = (CommerceBOMAdmi
 CommerceBOMDefinition commerceBOMDefinition = commerceBOMAdminDisplayContext.getCommerceBOMDefinition();
 
 CPAttachmentFileEntry cpAttachmentFileEntry = commerceBOMAdminDisplayContext.getCPAttachmentFileEntry();
-
-long fileEntryId = BeanParamUtil.getLong(cpAttachmentFileEntry, request, "fileEntryId");
 %>
 
 <portlet:actionURL name="editCommerceBOMDefinition" var="editCommerceBOMDefinitionActionURL" />
@@ -48,7 +46,7 @@ long fileEntryId = BeanParamUtil.getLong(cpAttachmentFileEntry, request, "fileEn
 				<div class="lfr-attachment-cover-image-selector">
 					<liferay-item-selector:image-selector
 						draggableImage="vertical"
-						fileEntryId="<%= fileEntryId %>"
+						fileEntryId='<%= BeanParamUtil.getLong(cpAttachmentFileEntry, request, "fileEntryId") %>'
 						itemSelectorEventName="addCPAttachmentFileEntry"
 						itemSelectorURL="<%= commerceBOMAdminDisplayContext.getItemSelectorUrl() %>"
 						maxFileSize="<%= commerceBOMAdminDisplayContext.getImageMaxSize() %>"

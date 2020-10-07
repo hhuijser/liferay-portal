@@ -30,22 +30,6 @@ String namespace = itemSelectorUploadViewDisplayContext.getNamespace();
 if (Validator.isNotNull(namespace)) {
 	uploadURL = HttpUtil.addParameter(uploadURL, namespace + "returnType", itemSelectorReturnTypeClass.getName());
 }
-
-Map<String, Object> context = HashMapBuilder.<String, Object>put(
-	"closeCaption", itemSelectorUploadViewDisplayContext.getTitle(locale)
-).put(
-	"eventName", itemSelectorUploadViewDisplayContext.getItemSelectedEventName()
-).put(
-	"maxFileSize", itemSelectorUploadViewDisplayContext.getMaxFileSize()
-).put(
-	"rootNode", "#itemSelectorUploadContainer"
-).put(
-	"uploadItemReturnType", HtmlUtil.escapeAttribute(itemSelectorReturnTypeClass.getName())
-).put(
-	"uploadItemURL", uploadURL
-).put(
-	"validExtensions", ArrayUtil.isEmpty(itemSelectorUploadViewDisplayContext.getExtensions()) ? "*" : StringUtil.merge(itemSelectorUploadViewDisplayContext.getExtensions())
-).build();
 %>
 
 <clay:container-fluid
@@ -76,6 +60,22 @@ Map<String, Object> context = HashMapBuilder.<String, Object>put(
 </clay:container-fluid>
 
 <liferay-frontend:component
-	context="<%= context %>"
+	context='<%=
+		HashMapBuilder.<String, Object>put(
+			"closeCaption", itemSelectorUploadViewDisplayContext.getTitle(locale)
+		).put(
+			"eventName", itemSelectorUploadViewDisplayContext.getItemSelectedEventName()
+		).put(
+			"maxFileSize", itemSelectorUploadViewDisplayContext.getMaxFileSize()
+		).put(
+			"rootNode", "#itemSelectorUploadContainer"
+		).put(
+			"uploadItemReturnType", HtmlUtil.escapeAttribute(itemSelectorReturnTypeClass.getName())
+		).put(
+			"uploadItemURL", uploadURL
+		).put(
+			"validExtensions", ArrayUtil.isEmpty(itemSelectorUploadViewDisplayContext.getExtensions()) ? "*" : StringUtil.merge(itemSelectorUploadViewDisplayContext.getExtensions())
+		).build()
+	%>'
 	module="js/index.es"
 />

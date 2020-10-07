@@ -29,7 +29,6 @@ long calendarNotificationTemplateId = BeanPropertiesUtil.getLong(calendarNotific
 String fromAddress = NotificationUtil.getTemplatePropertyValue(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS, PrefsPropsUtil.getString(PropsKeys.ADMIN_EMAIL_FROM_ADDRESS));
 String fromName = NotificationUtil.getTemplatePropertyValue(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME, PrefsPropsUtil.getString(PropsKeys.ADMIN_EMAIL_FROM_NAME));
 String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificationTemplate, "body", NotificationUtil.getDefaultTemplate(notificationType, notificationTemplateType, NotificationField.BODY));
-String notificationTemplateSubject = BeanPropertiesUtil.getString(calendarNotificationTemplate, "subject", NotificationUtil.getDefaultTemplate(notificationType, notificationTemplateType, NotificationField.SUBJECT));
 %>
 
 <liferay-ui:header
@@ -76,7 +75,7 @@ String notificationTemplateSubject = BeanPropertiesUtil.getString(calendarNotifi
 
 		<aui:input name="fromAddress" value="<%= fromAddress %>" />
 
-		<aui:input name="subject" value="<%= notificationTemplateSubject %>" />
+		<aui:input name="subject" value='<%= BeanPropertiesUtil.getString(calendarNotificationTemplate, "subject", NotificationUtil.getDefaultTemplate(notificationType, notificationTemplateType, NotificationField.SUBJECT)) %>' />
 
 		<aui:field-wrapper label="body">
 			<liferay-editor:editor

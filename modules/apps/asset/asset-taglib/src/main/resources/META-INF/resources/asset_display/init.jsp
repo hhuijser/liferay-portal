@@ -43,8 +43,6 @@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 
 <%@ page import="java.text.Format" %>
 
-<%@ page import="java.util.Map" %>
-
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />

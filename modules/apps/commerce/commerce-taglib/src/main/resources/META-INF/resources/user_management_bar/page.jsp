@@ -52,15 +52,18 @@ boolean showNotifications = (boolean)request.getAttribute("liferay-commerce:user
 		</span>
 	</c:when>
 	<c:otherwise>
-
-		<%
-		Map<String, Object> anchorData = HashMapBuilder.<String, Object>put(
-			"redirect", String.valueOf(PortalUtil.isLoginRedirectRequired(request))
-		).build();
-		%>
-
 		<span class="sign-in text-default" role="presentation">
-			<aui:a cssClass="sign-in text-default" data="<%= anchorData %>" href="<%= themeDisplay.getURLSignIn() %>" iconCssClass="icon-user" label="sign-in" />
+			<aui:a
+				cssClass="sign-in text-default"
+				data='<%=
+					HashMapBuilder.<String, Object>put(
+						"redirect", String.valueOf(PortalUtil.isLoginRedirectRequired(request))
+					).build()
+				%>'
+				href="<%= themeDisplay.getURLSignIn() %>"
+				iconCssClass="icon-user"
+				label="sign-in"
+			/>
 		</span>
 	</c:otherwise>
 </c:choose>

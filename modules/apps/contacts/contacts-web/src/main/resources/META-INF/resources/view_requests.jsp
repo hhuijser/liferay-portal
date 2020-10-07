@@ -48,17 +48,17 @@
 				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 			</liferay-portlet:renderURL>
 
-			<%
-			String creatorUserName = "<a href=\"" + rowURL.toString() + "\">" + user2.getFullName() + "</a>";
-			%>
-
 			<div class="lfr-user-portrait">
 				<a href="<%= rowURL %>"><img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="avatar" />" class="avatar" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 			</div>
 
+			<%
+			String taglibCreatorUserName = "<a href=\"" + rowURL.toString() + "\">" + user2.getFullName() + "</a>";
+			%>
+
 			<div class="lfr-user-data">
 				<div class="lfr-user-data-title">
-					<liferay-ui:message arguments="<%= creatorUserName %>" key="request-social-networking-summary-add-connection" translateArguments="<%= false %>" />
+					<liferay-ui:message arguments="<%= taglibCreatorUserName %>" key="request-social-networking-summary-add-connection" translateArguments="<%= false %>" />
 				</div>
 			</div>
 

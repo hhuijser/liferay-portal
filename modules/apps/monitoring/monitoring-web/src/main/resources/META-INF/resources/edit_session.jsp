@@ -215,5 +215,5 @@ renderResponse.setTitle(LanguageUtil.format(request, "session-id-x", sessionId, 
 	</c:choose>
 </aui:form>
 <%!
-	private static Log _log = LogFactoryUtil.getLog("com_liferay_monitoring_web.edit_session_jsp");
+private static Log _log = LogFactoryUtil.getLog("com_liferay_monitoring_web.edit_session_jsp");
 %>

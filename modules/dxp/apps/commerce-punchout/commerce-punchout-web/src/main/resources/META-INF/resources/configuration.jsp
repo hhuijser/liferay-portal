@@ -18,8 +18,6 @@
 
 <%
 CommercePunchOutDisplayContext commercePunchOutDisplayContext = (CommercePunchOutDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-long commerceChannelId = commercePunchOutDisplayContext.getCommerceChannelId();
 %>
 
 <portlet:actionURL name="editCommercePunchOutConfiguration" var="editCommercePunchOutConfigurationActionURL" />
@@ -27,7 +25,7 @@ long commerceChannelId = commercePunchOutDisplayContext.getCommerceChannelId();
 <aui:form action="<%= editCommercePunchOutConfigurationActionURL %>" method="post" name="fm">
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="commerceChannelId" type="hidden" value="<%= commerceChannelId %>" />
+	<aui:input name="commerceChannelId" type="hidden" value="<%= commercePunchOutDisplayContext.getCommerceChannelId() %>" />
 
 	<div class="row">
 		<div class="col-12">

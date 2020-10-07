@@ -19,7 +19,6 @@
 <%
 CommerceOrderEditDisplayContext commerceOrderEditDisplayContext = (CommerceOrderEditDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
-CommerceOrder commerceOrder = commerceOrderEditDisplayContext.getCommerceOrder();
 long commerceOrderId = commerceOrderEditDisplayContext.getCommerceOrderId();
 %>
 
@@ -37,7 +36,7 @@ long commerceOrderId = commerceOrderEditDisplayContext.getCommerceOrderId();
 				value="custom-fields"
 			/>
 
-			<aui:model-context bean="<%= commerceOrder %>" model="<%= CommerceOrder.class %>" />
+			<aui:model-context bean="<%= commerceOrderEditDisplayContext.getCommerceOrder() %>" model="<%= CommerceOrder.class %>" />
 
 			<liferay-expando:custom-attribute-list
 				className="<%= CommerceOrder.class.getName() %>"

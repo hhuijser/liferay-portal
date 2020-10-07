@@ -16,10 +16,6 @@
 
 <%@ include file="/document_library/init.jsp" %>
 
-<%
-long selectAllCount = GetterUtil.getLong(request.getAttribute(DLWebKeys.DOCUMENT_LIBRARY_SELECT_ALL_COUNT));
-%>
-
 <div class="sidebar-header">
 	<h1 class="sidebar-title">
 		<liferay-ui:message key="selection" />
@@ -34,7 +30,7 @@ long selectAllCount = GetterUtil.getLong(request.getAttribute(DLWebKeys.DOCUMENT
 	>
 		<liferay-ui:section>
 			<strong>
-				<liferay-ui:message arguments="<%= selectAllCount %>" key="x-items-are-selected" />
+				<liferay-ui:message arguments="<%= GetterUtil.getLong(request.getAttribute(DLWebKeys.DOCUMENT_LIBRARY_SELECT_ALL_COUNT)) %>" key="x-items-are-selected" />
 			</strong>
 		</liferay-ui:section>
 	</liferay-ui:tabs>

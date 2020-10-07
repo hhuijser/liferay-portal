@@ -18,15 +18,13 @@
 
 <%
 String displayStyle = (String)request.getAttribute("edit_role_assignments.jsp-displayStyle");
-
-SearchContainer<?> searchContainer = (SearchContainer)request.getAttribute("edit_role_assignments.jsp-searchContainer");
 %>
 
 <liferay-ui:membership-policy-error />
 
 <liferay-ui:search-container
 	id="assigneesSearch"
-	searchContainer="<%= searchContainer %>"
+	searchContainer='<%= (SearchContainer)request.getAttribute("edit_role_assignments.jsp-searchContainer") %>'
 	var="userSearchContainer"
 >
 	<liferay-ui:search-container-row

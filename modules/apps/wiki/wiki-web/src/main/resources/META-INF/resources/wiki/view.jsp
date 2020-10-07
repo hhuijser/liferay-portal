@@ -192,21 +192,6 @@ if (portletTitleBasedNavigation) {
 				catch (Exception e) {
 					formattedContent = wikiPage.getContent();
 				}
-
-				Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-					"assetEntry", layoutAssetEntry
-				).put(
-					"formattedContent", formattedContent
-				).put(
-					"viewURL", viewPageURL.toString()
-				).put(
-					"wikiPortletInstanceConfiguration", wikiPortletInstanceConfiguration
-
-				// Deprecated
-
-				).put(
-					"wikiPortletInstanceOverriddenConfiguration", wikiPortletInstanceConfiguration
-				).build();
 				%>
 
 				<c:if test="<%= !portletTitleBasedNavigation %>">
@@ -215,7 +200,19 @@ if (portletTitleBasedNavigation) {
 
 				<liferay-ddm:template-renderer
 					className="<%= WikiPage.class.getName() %>"
-					contextObjects="<%= contextObjects %>"
+					contextObjects='<%=
+						HashMapBuilder.<String, Object>put(
+							"assetEntry", layoutAssetEntry
+						).put(
+							"formattedContent", formattedContent
+						).put(
+							"viewURL", viewPageURL.toString()
+						).put(
+							"wikiPortletInstanceConfiguration", wikiPortletInstanceConfiguration
+						).put(
+							"wikiPortletInstanceOverriddenConfiguration", wikiPortletInstanceConfiguration
+						).build()
+					%>'
 					displayStyle="<%= wikiPortletInstanceSettingsHelper.getDisplayStyle() %>"
 					displayStyleGroupId="<%= wikiPortletInstanceSettingsHelper.getDisplayStyleGroupId() %>"
 					entries="<%= entries %>"

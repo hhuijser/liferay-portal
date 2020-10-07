@@ -18,8 +18,6 @@
 
 <%
 Group guestGroup = GroupLocalServiceUtil.getGroup(company.getCompanyId(), GroupConstants.GUEST);
-
-boolean mergeGuestPublicPages = PropertiesParamUtil.getBoolean(layoutsAdminDisplayContext.getGroupTypeSettingsUnicodeProperties(), request, "mergeGuestPublicPages");
 %>
 
 <liferay-ui:error-marker
@@ -29,7 +27,7 @@ boolean mergeGuestPublicPages = PropertiesParamUtil.getBoolean(layoutsAdminDispl
 
 <c:choose>
 	<c:when test="<%= !layoutsAdminDisplayContext.isPrivateLayout() && (layoutsAdminDisplayContext.getLiveGroupId() != guestGroup.getGroupId()) %>">
-		<aui:input helpMessage='<%= LanguageUtil.format(request, "you-can-configure-the-top-level-pages-of-this-public-site-to-merge-with-the-top-level-pages-of-the-public-x-site", HtmlUtil.escape(guestGroup.getDescriptiveName(locale)), false) %>' label='<%= LanguageUtil.format(request, "merge-x-public-pages", HtmlUtil.escape(guestGroup.getDescriptiveName(locale)), false) %>' name="mergeGuestPublicPages" type="checkbox" value="<%= mergeGuestPublicPages %>" />
+		<aui:input helpMessage='<%= LanguageUtil.format(request, "you-can-configure-the-top-level-pages-of-this-public-site-to-merge-with-the-top-level-pages-of-the-public-x-site", HtmlUtil.escape(guestGroup.getDescriptiveName(locale)), false) %>' label='<%= LanguageUtil.format(request, "merge-x-public-pages", HtmlUtil.escape(guestGroup.getDescriptiveName(locale)), false) %>' name="mergeGuestPublicPages" type="checkbox" value='<%= PropertiesParamUtil.getBoolean(layoutsAdminDisplayContext.getGroupTypeSettingsUnicodeProperties(), request, "mergeGuestPublicPages") %>' />
 	</c:when>
 	<c:otherwise>
 		<div class="alert alert-info">

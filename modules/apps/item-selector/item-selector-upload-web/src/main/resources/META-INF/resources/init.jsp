@@ -34,8 +34,6 @@ page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %>
 
-<%@ page import="java.util.Map" %>
-
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />

@@ -20,10 +20,6 @@
 CommerceShipmentDisplayContext commerceShipmentDisplayContext = (CommerceShipmentDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceShipment commerceShipment = commerceShipmentDisplayContext.getCommerceShipment();
-
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"commerceShipmentId", String.valueOf(commerceShipment.getCommerceShipmentId())
-).build();
 %>
 
 <portlet:actionURL name="editCommerceShipment" var="editCommerceShipmentURL" />
@@ -40,7 +36,11 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 
 		<clay:data-set-display
 			bulkActionDropdownItems="<%= commerceShipmentDisplayContext.getShipmentItemBulkActions() %>"
-			contextParams="<%= contextParams %>"
+			contextParams='<%=
+				HashMapBuilder.<String, String>put(
+					"commerceShipmentId", String.valueOf(commerceShipment.getCommerceShipmentId())
+				).build()
+			%>'
 			dataProviderKey="<%= CommerceShipmentDataSetConstants.COMMERCE_DATA_SET_KEY_SHIPPABLE_ORDER_ITEMS %>"
 			formId='<%= liferayPortletResponse.getNamespace() + "fm" %>'
 			id="<%= CommerceShipmentDataSetConstants.COMMERCE_DATA_SET_KEY_SHIPPABLE_ORDER_ITEMS %>"

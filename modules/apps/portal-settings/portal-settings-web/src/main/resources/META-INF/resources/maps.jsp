@@ -16,14 +16,10 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-String mapProviderKey = (String)request.getAttribute(MapProviderWebKeys.MAP_PROVIDER_KEY);
-%>
-
 <aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 <liferay-map:map-provider-selector
 	configurationPrefix="settings"
-	mapProviderKey="<%= mapProviderKey %>"
+	mapProviderKey="<%= (String)request.getAttribute(MapProviderWebKeys.MAP_PROVIDER_KEY) %>"
 	name='<%= "settings--" + MapProviderWebKeys.MAP_PROVIDER_KEY + "--" %>'
 />

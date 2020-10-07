@@ -26,8 +26,6 @@ Date endDate = dispatchLog.getEndDate();
 Date startDate = dispatchLog.getStartDate();
 
 long timeMillis = endDate.getTime() - startDate.getTime();
-
-String formattedStartDate = dispatchLogDisplayContext.getDateString(dispatchLog.getStartDate());
 %>
 
 <portlet:actionURL name="editDispatchLog" var="editDispatchLogActionURL" />
@@ -40,7 +38,7 @@ String formattedStartDate = dispatchLogDisplayContext.getDateString(dispatchLog.
 
 		<div class="lfr-form-content">
 			<aui:fieldset>
-				<aui:input disabled="<%= true %>" label="start-date" name="startDate" value="<%= formattedStartDate %>" />
+				<aui:input disabled="<%= true %>" label="start-date" name="startDate" value="<%= dispatchLogDisplayContext.getDateString(dispatchLog.getStartDate()) %>" />
 
 				<aui:input disabled="<%= true %>" name="status" value="<%= LanguageUtil.get(request, BackgroundTaskConstants.getStatusLabel(dispatchLog.getStatus())) %>" />
 

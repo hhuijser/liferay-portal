@@ -23,17 +23,19 @@
 		<liferay-ui:message key="liferay-marketplace-is-an-integral-part-of-the-liferay-platform-experience-for-all-users" />
 	</p>
 
-	<%
-	Map<String, Object> data = HashMapBuilder.<String, Object>put(
-		"senna-off", "true"
-	).build();
-	%>
-
 	<liferay-portlet:renderURL var="callbackURL" />
 
 	<liferay-portlet:actionURL name="authorize" var="authorizeURL">
 		<portlet:param name="callbackURL" value="<%= callbackURL %>" />
 	</liferay-portlet:actionURL>
 
-	<aui:button data="<%= data %>" onClick="<%= authorizeURL %>" value="sign-in" />
+	<aui:button
+		data='<%=
+			HashMapBuilder.<String, Object>put(
+				"senna-off", "true"
+			).build()
+		%>'
+		onClick="<%= authorizeURL %>"
+		value="sign-in"
+	/>
 </div>

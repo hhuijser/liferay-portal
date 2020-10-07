@@ -30,8 +30,6 @@ long structureClassNameId = PortalUtil.getClassNameId(DDMStructure.class);
 if ((classPK > 0) && (structureClassNameId == classNameId)) {
 	structure = DDMStructureLocalServiceUtil.getStructure(classPK);
 }
-
-SearchContainer<DDMTemplate> templateSearch = ddmDisplayContext.getTemplateSearch();
 %>
 
 <liferay-util:include page="/navigation_bar.jsp" servletContext="<%= application %>" />
@@ -53,7 +51,7 @@ SearchContainer<DDMTemplate> templateSearch = ddmDisplayContext.getTemplateSearc
 <aui:form action="<%= ddmDisplayContext.getSelectTemplateSearchActionURL() %>" method="post" name="selectTemplateFm">
 	<clay:container-fluid>
 		<liferay-ui:search-container
-			searchContainer="<%= templateSearch %>"
+			searchContainer="<%= ddmDisplayContext.getTemplateSearch() %>"
 		>
 			<liferay-ui:search-container-row
 				className="com.liferay.dynamic.data.mapping.model.DDMTemplate"

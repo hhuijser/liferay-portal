@@ -16,10 +16,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-String redirect = ParamUtil.getString(request, "redirect");
-%>
-
 <liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-web-content-could-not-be-found" />
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
@@ -50,7 +46,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	<liferay-frontend:edit-form-footer>
 		<aui:button name="saveButton" type="submit" />
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button href='<%= ParamUtil.getString(request, "redirect") %>' type="cancel" />
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 

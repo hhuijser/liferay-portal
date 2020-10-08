@@ -2,7 +2,7 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-JSLodashDependencyCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+JSLodashDependencyCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds incorrect use of `AUI._`. |
 JSStylingCheck | [Styling](styling_checks.markdown#styling-checks) | Applies rules to enforce consisteny in code style. |
 JSWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary whitespace in `.js` files. |
-LanguageKeysCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | |
+LanguageKeysCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds missing language keys in `Language.properties`. |

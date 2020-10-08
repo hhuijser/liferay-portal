@@ -87,9 +87,12 @@ Checks are configured in the following files:
 
 - ### By Category:
    - [Bug Prevention](src/main/resources/documentation/bug_prevention_checks.markdown#bug-prevention-checks)
+   - [Documentation](src/main/resources/documentation/documentation_checks.markdown#documentation-checks)
+   - [Javadoc](src/main/resources/documentation/javadoc_checks.markdown#javadoc-checks)
    - [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks)
    - [Naming Conventions](src/main/resources/documentation/naming_conventions_checks.markdown#naming-conventions-checks)
    - [Performance](src/main/resources/documentation/performance_checks.markdown#performance-checks)
+   - [Security](src/main/resources/documentation/security_checks.markdown#security-checks)
    - [Styling](src/main/resources/documentation/styling_checks.markdown#styling-checks)
 
 - ### By File Extensions:

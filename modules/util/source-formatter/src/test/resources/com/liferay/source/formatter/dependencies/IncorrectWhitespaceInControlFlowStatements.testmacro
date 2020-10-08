@@ -4,9 +4,7 @@ definition {
 
 		// if statement
 
-		if((IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) &&
-			("${check}" == "true") &&
-			("${check}" == "true")){
+		if(IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY") && ("${check}" == "true")){
 
 			Alert.viewSuccessMessage()
 			
@@ -99,9 +97,7 @@ definition {
 
 		/*
 		// If statement
-		if((IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) &&
-			("${check}" == "true") &&
-			("${check}" == "true")){
+		if(IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY") && ("${check}" == "true")){
 
 			Alert.viewSuccessMessage();
 		}
@@ -187,9 +183,7 @@ definition {
 		var wikiPageContent = '''
 <pre>
 		// If statement
-		if((IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) &&
-			("${check}" == "true") &&
-			("${check}" == "true")){
+		if(IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY") && ("${check}" == "true")){
 
 			Alert.viewSuccessMessage();
 		}

@@ -30,7 +30,7 @@
 			<property name="documentationLocation" value="config_coding.html#DefaultComesLast" />
 		</module>
 		<module name="JavadocStyleCheck">
-			<property name="category" value="Styling" />
+			<property name="category" value="Javadoc" />
 			<property name="checkFirstSentence" value="false" />
 			<property name="description" value="Validates Javadoc comments to help ensure they are well formed." />
 			<property name="documentationLocation" value="config_javadoc.html#JavadocStyle" />
@@ -91,7 +91,7 @@
 			<property name="documentationLocation" value="config_whitespace.html#MethodParamPad" />
 		</module>
 		<module name="MissingDeprecatedCheck">
-			<property name="category" value="Styling" />
+			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Verifies that the annotation @Deprecated and the Javadoc tag @deprecated are both present when either of them is present." />
 			<property name="documentationLocation" value="config_annotation.html#MissingDeprecated" />
 		</module>
@@ -358,6 +358,8 @@
 			<message key="generic.type.parameterize" value="Parameterize the generic {0} for ''{1}'" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.InstanceofOrderCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Check the order of `instanceof` calls." />
 			<message key="instanceof.order" value="''{0}'' should come before ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ItemListBuilderCheck">
@@ -372,12 +374,16 @@
 			<message key="builder.use.instead" value="Use ''{0}'' instead of new instance of ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.JavadocCheck">
+			<property name="category" value="Javadoc" />
+			<property name="description" value="Performs several checks on javadoc." />
 			<message key="javadoc.empty.line" value="First or last line in javadoc should not be empty" />
 			<message key="javadoc.incorrect.first.line" value="Javadoc should start with ''/**''" />
 			<message key="javadoc.incorrect.last.line" value="Javadoc should end with ''*/''" />
 			<message key="javadoc.multiple" value="''{0}'' has multiple javadocs" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.JSONNamingCheck">
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks if variable names follow naming conventions." />
 			<message key="variable.name.reserved" value="{0} name ending with ''{1}'' is reserved for object ''{2}''" />
 			<message key="variable.rename" value="Rename {0} ''{1}'' to ''{2}''" />
 		</module>
@@ -438,12 +444,16 @@
 			<message key="entry.set.use" value="Use Map.entrySet() to retrieve values" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MethodNamingCheck">
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks that method names follow naming conventions." />
 			<message key="method.incorrect.ending" value="Name of method returning type ''{0}'' should end with ''{0}''" />
 			<message key="method.rename" value="Rename method ''{0}'' to ''{1}''" />
 			<property name="enabled" value="false" />
 			<property name="enforceTypeNames" value="" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingAuthorCheck">
+			<property name="category" value="Javadoc" />
+			<property name="description" value="Finds classes that have no `@author` specified." />
 			<message key="author.missing" value="Missing author" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingDeprecatedJavadocCheck">

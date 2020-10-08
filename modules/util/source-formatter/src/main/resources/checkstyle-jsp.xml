@@ -238,9 +238,13 @@
 			<message key="generic.type.parameterize" value="Parameterize the generic {0} for ''{1}'" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.InstanceofOrderCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Check the order of `instanceof` calls." />
 			<message key="instanceof.order" value="''{0}'' should come before ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.JSONNamingCheck">
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks if variable names follow naming conventions." />
 			<message key="variable.name.reserved" value="{0} name ending with ''{1}'' is reserved for object ''{2}''" />
 			<message key="variable.rename" value="Rename {0} ''{1}'' to ''{2}''" />
 		</module>
@@ -289,6 +293,8 @@
 			<message key="entry.set.use" value="Use Map.entrySet() to retrieve values" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MethodNamingCheck">
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks that method names follow naming conventions." />
 			<message key="method.rename" value="Rename method ''{0}'' to ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingDiamondOperatorCheck">

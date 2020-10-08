@@ -58,8 +58,18 @@ public class JSPStylingCheck extends BaseStylingCheck {
 		content = content.replaceAll(
 			"((['\"])<%= ((?<!%>).)*?)\\\\(\".+?)\\\\(\".*?%>\\2)", "$1$4$5");
 
-		content = content.replaceAll(
-			"(\"<%= \\w+ )\\+ \"([^\"]+\") %>\"", "$1%>$2");
+		Matcher matcher = _portletNamespacePattern.matcher(content);
+
+		while (matcher.find()) {
+			String s = matcher.group(2);
+
+			if (s.endsWith(StringPool.CLOSE_PARENTHESIS) &&
+				(getLevel(s) == 0)) {
+
+				return StringUtil.insert(
+					content, StringPool.SEMICOLON, matcher.end() - 1);
+			}
+		}
 
 		return formatStyling(content);
 	}
@@ -168,5 +178,7 @@ public class JSPStylingCheck extends BaseStylingCheck {
 		"(\n(\t*)<(\\w+)>)(<\\w+>.*)(</\\3>\n)");
 	private static final Pattern _incorrectSingleLineJavaSourcePattern =
 		Pattern.compile("(\t*)(<% (.*) %>)\n");
+	private static final Pattern _portletNamespacePattern = Pattern.compile(
+		"=([\"'])<portlet:namespace />(\\w+\\(.*?)\\1");
 
 }

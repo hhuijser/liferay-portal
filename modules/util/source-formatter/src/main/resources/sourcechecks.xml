@@ -400,6 +400,7 @@
 			<category name="Styling" />
 			<description name="Checks that there are no static imports." />
 		</check>
+		<check name="JavaStaticMethodCheck" />
 		<check name="JavaStaticVariableDependencyCheck" />
 		<check name="JavaStopWatchCheck">
 			<category name="Bug Prevention" />

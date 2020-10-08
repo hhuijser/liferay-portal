@@ -142,7 +142,6 @@ definition {
 		}
 
 		task ("Delete the navigation menu") {
-
 			LexiconEntry.delete(
 				menuItem = "Delete",
 				rowEntry = "Test Navigation Menu Name");

@@ -1009,7 +1009,6 @@ definition {
 		AssertElementPresent(locator1 = "SitePages#DETAILS_PAGE_TYPE_PANEL_COMPONENT_TREE_EXPANDED");
 
 		for (var portletName : list "${portletNameList}") {
-
 			if ("${portletName}" == "Portal Directory") {
 				var key_componentOrPortletName ="Directory";
 			}

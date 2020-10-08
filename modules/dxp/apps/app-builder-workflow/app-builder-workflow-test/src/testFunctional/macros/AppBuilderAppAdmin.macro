@@ -1,30 +1,24 @@
 definition {
 
 	macro clickOnCreateNewAppButton {
-
 		Button.click(button = "Create New App");
 	}
 
 	macro clickOnPlusButton {
-
 		Click(locator1 = "AppBuilderAppAdmin#PLUS_BUTTON");
 	}
 
 	macro clickOnSelectObject {
-
 		Click(locator1 = "AppBuilderAppAdmin#SELECT_OBJECT_BUTTON");
 	}
 
 	macro createBasicWorkflowApp {
-
 		AppBuilderAppAdmin.goToWorkflowPoweredTab();
 
 		if ("${isCreatingViaPlusIcon}" == "true") {
-
 			AppBuilderAppAdmin.clickOnPlusButton();
 		}
 		else {
-
 			AppBuilderAppAdmin.clickOnCreateNewAppButton();
 		}
 
@@ -44,15 +38,12 @@ definition {
 	}
 
 	macro createBasicWorkflowAppWith1ExtraStep {
-
 		AppBuilderAppAdmin.goToWorkflowPoweredTab();
 
 		if ("${isCreatingViaPlusIcon}" == "true") {
-
 			AppBuilderAppAdmin.clickOnPlusButton();
 		}
 		else {
-
 			AppBuilderAppAdmin.clickOnCreateNewAppButton();
 		}
 
@@ -78,28 +69,24 @@ definition {
 	}
 
 	macro goToStandardTab {
-
 		Click(
 			key_tabName = "standard",
 			locator1 = "AppBuilderAppAdmin#APP_TAB");
 	}
 
 	macro goToWorkflowPoweredTab {
-
 		Click(
 			key_tabName = "workflow",
 			locator1 = "AppBuilderAppAdmin#APP_TAB");
 	}
 
 	macro searchItem {
-
 		Type(
 			locator1 = "AppBuilderAppAdmin#SEARCH_BOX",
 			value1 = "${itemName}");
 	}
 
 	macro selectObject {
-
 		Click(
 			key_objectName = "${objectName}",
 			locator1 = "AppBuilderAppAdmin#OBJECT_ITEM");
@@ -108,33 +95,28 @@ definition {
 	}
 
 	macro validateCreateNewAppButtonPresent {
-
 		AssertElementPresent(
 			key_text = "Create New App",
 			locator1 = "Button#ANY");
 	}
 
 	macro validateNoObjectResultMessage {
-
 		AssertElementPresent(locator1 = "AppBuilderAppAdmin#SEARCH_BOX_OBJECT_NO_RESULT_MESSAGE");
 	}
 
 	macro validateObjectResultNotPresent {
-
 		AssertElementNotPresent(
 			key_objectName = "${objectName}",
 			locator1 = "AppBuilderAppAdmin#OBJECT_ITEM");
 	}
 
 	macro validateObjectResultPresent {
-
 		AssertElementPresent(
 			key_objectName = "${objectName}",
 			locator1 = "AppBuilderAppAdmin#OBJECT_ITEM");
 	}
 
 	macro validateObjectSearchBoxDisabled {
-
 		AppBuilderAppAdmin.clickOnCreateNewAppButton();
 
 		AppBuilderAppAdmin.clickOnSelectObject();
@@ -143,14 +125,12 @@ definition {
 	}
 
 	macro validateSearchItemCount {
-
 		AssertTextEquals(
 			locator1 = "AppBuilder#VALIDATE_SEARCH_RESULTS_BAR",
 			value1 = "${itemCount} Results for ${itemName}");
 	}
 
 	macro validateStandardAppColumns {
-
 		AssertTextEquals(
 			locator1 = "AppBuilderAppAdmin#COLUMN_ITEM",
 			value1 = "Name");
@@ -177,7 +157,6 @@ definition {
 	}
 
 	macro validateTabsPresent {
-
 		AssertTextEquals.assertPartialText(
 			key_tabName = "standard",
 			locator1 = "AppBuilderAppAdmin#APP_TAB",
@@ -190,7 +169,6 @@ definition {
 	}
 
 	macro validateWorkflowAppColumns {
-
 		AssertTextEquals(
 			locator1 = "AppBuilderAppAdmin#COLUMN_ITEM",
 			value1 = "Name");
@@ -221,7 +199,6 @@ definition {
 	}
 
 	macro waitForItemPresentOnTable {
-
 		while (IsElementNotPresent(locator1 = "AppBuilder#ITEM_ON_THE_TABLE", value1 = "${itemName}")) {
 			Pause(locator1 = "3000");
 			Refresh();

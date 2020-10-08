@@ -81,7 +81,6 @@ definition {
 			locator1 = "Button#ANY");
 
 		if (isSet(siteName)) {
-
 			Click(
 				key_menuTab = "Type",
 				locator1 = "CommerceEntry#MENU_TAB");
@@ -720,7 +719,6 @@ definition {
 			locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH");
 
 		for (var optionList : list "${optionList}") {
-
 			IsElementPresent(
 				key_entryName = "${optionList}",
 				locator1 = "CommerceNavigation#ENTRY_NAME");

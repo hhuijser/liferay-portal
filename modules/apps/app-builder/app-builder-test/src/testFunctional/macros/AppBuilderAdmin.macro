@@ -6,7 +6,6 @@ definition {
 
 	macro addAllPermissionsFromRoles() {
 		for (var roleTitle : list "${roleList}") {
-
 			var key_roleTitle = "${roleTitle}";
 			Check(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_ADD_ENTRY");
 			Check(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_DELETE_ENTRY");
@@ -39,7 +38,6 @@ definition {
 	}
 
 	macro addEntry {
-
 		AppBuilderAdmin.add();
 		AppBuilderAdmin.waitForSaveButtonVisible();
 	}
@@ -49,7 +47,6 @@ definition {
 			var key_roleTitle = "${roleTitle}";
 
 			if ("${permission}" == "ADD") {
-
 				if ("${addOrRemovePermission}" == "ADD") {
 					Check(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_ADD_ENTRY");
 				}
@@ -58,7 +55,6 @@ definition {
 				}
 			}
 			else if ("${permission}" == "DELETE") {
-
 				if ("${addOrRemovePermission}" == "ADD") {
 					Check(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_DELETE_ENTRY");
 				}
@@ -67,7 +63,6 @@ definition {
 				}
 			}
 			else if ("${permission}" == "UPDATE") {
-
 				if ("${addOrRemovePermission}" == "ADD") {
 					Check(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_UPDATE_ENTRY");
 				}
@@ -76,7 +71,6 @@ definition {
 				}
 			}
 			else if ("${permission}" == "VIEW") {
-
 				if ("${addOrRemovePermission}" == "ADD") {
 					Check(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_VIEW_ENTRY");
 				}
@@ -338,7 +332,6 @@ definition {
 
 	macro removeAllPermissionsFromRoles() {
 		for (var roleTitle : list "${roleList}") {
-
 			var key_roleTitle = "${roleTitle}";
 			Uncheck(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_ADD_ENTRY");
 			Uncheck(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_DELETE_ENTRY");
@@ -521,7 +514,6 @@ definition {
 
 	macro validatePermissionsFromRolesAreChecked() {
 		for (var roleTitle : list "${roleList}") {
-
 			var key_roleTitle = "${roleTitle}";
 
 			AssertChecked(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_ADD_ENTRY");
@@ -533,7 +525,6 @@ definition {
 
 	macro validatePermissionsFromRolesAreNotChecked() {
 		for (var roleTitle : list "${roleList}") {
-
 			var key_roleTitle = "${roleTitle}";
 
 			AssertNotChecked(locator1 = "AppBuilder#CONFIGURATION_PERMISSIONS_ADD_ENTRY");

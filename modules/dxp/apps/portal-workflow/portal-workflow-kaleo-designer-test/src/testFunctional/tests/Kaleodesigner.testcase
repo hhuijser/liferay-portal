@@ -75,7 +75,6 @@ definition {
 
 	@priority = "3"
 	test AddForkNodeEditNameAndDesciptionAndDeleteViaViewTab {
-
 		property test.name.skip.portal.instance = "Kaleodesigner#AddForkNodeEditNameAndDesciptionAndDeleteViaViewTab";
 
 		ApplicationsMenu.gotoPortlet(
@@ -492,7 +491,6 @@ definition {
 			timerName = "Timer Name");
 
 		for (var iterator : list "1,2,3,4,5,6,7,8,9,10") {
-
 			KaleoDesigner.editSourceXML(
 				kdSourceXML = " ",
 				line = "12");
@@ -693,7 +691,6 @@ definition {
 		Workflow.addNewDefinition(workflowDefinitionTitle = "New Workflow Definition Title");
 
 		for (var iterator : list "1,2,3,4,5,6,7,8,9,10,11,12,13,14") {
-
 			var isLessThan10 = MathUtil.isLessThanOrEqualTo("${iterator}", "10");
 
 			if ("${isLessThan10}" == "true") {

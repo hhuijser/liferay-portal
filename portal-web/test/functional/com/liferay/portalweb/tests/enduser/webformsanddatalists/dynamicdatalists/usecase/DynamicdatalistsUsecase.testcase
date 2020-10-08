@@ -922,7 +922,6 @@ definition {
 	@description = "This is a use case for LPS-50549."
 	@priority = "4"
 	test AddXSSToHTMLField {
-
 		var ddlRecordFieldData1 = '''<img src=x onerror=alert(/xss/) />''';
 
 		var ddlRecordFieldData2 = ''''+alert('xss')+'"+alert("xss")+"''';

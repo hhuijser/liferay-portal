@@ -549,7 +549,6 @@ definition {
 		DMDocument.addMultiplePG(dmDocumentFileList = "Document_1.doc,Document_2.docx");
 
 		for (var tagName : list "tagone,tagtwo,tagthree") {
-
 			var key_dmDocumentTitle = "Document_1.doc";
 
 			Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
@@ -1561,7 +1560,6 @@ definition {
 	@priority = "4"
 	test ViewDocumentPagination {
 		for (var documentName : list "Document_2.doc,Document_1.xls,Document_4.jpg,Document_3.jpg,Document_2.xls,Document_1.txt,Document_4.txt,Document_3.xls,Document_2.jpg,Document_1.doc") {
-
 			var extension = StringUtil.extractLast("${documentName}", ".");
 
 			if ("${extension}" == "doc") {

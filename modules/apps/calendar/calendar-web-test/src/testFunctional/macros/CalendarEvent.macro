@@ -1748,7 +1748,6 @@ definition {
 	}
 
 	macro viewSiteRSVPWithUnapprovedWorkflow {
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		var key_siteCalendarName = "${siteCalendarName}";

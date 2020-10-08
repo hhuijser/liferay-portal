@@ -817,7 +817,6 @@ definition {
 	@priority = "5"
 	test SelectMultipleDocumentsManually {
 		for (var documentName : list "Document_1.doc,Document_2.jpg,Document_3.txt") {
-
 			var extension = StringUtil.extractLast("${documentName}", ".");
 
 			if ("${extension}" == "doc") {

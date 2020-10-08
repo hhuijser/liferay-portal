@@ -32,7 +32,6 @@ definition {
 
 	@priority = "4"
 	test AddPollsQuestionWithExpirationDate {
-
 		var pollsQuestionTitle = '''"Derivative"''';
 
 		Navigator.openURL();

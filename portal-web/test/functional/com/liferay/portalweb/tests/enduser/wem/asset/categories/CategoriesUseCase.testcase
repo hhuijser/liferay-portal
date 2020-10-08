@@ -1255,7 +1255,6 @@ definition {
 		}
 
 		task ("Add a page with category via json addLayout") {
-
 			JSONLayout.addPublicLayout(
 				assetCategoryIds = "${categoryId}",
 				groupName = "Test Site Name",

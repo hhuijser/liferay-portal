@@ -97,7 +97,6 @@ definition {
 		}
 
 		else if ("${remoteStaging}" == "true") {
-
 			if ("${browserType}" == "safari") {
 				Button.click(button = "Save");
 			}
@@ -120,7 +119,6 @@ definition {
 		}
 
 		else {
-
 			if ("${browserType}" == "safari") {
 				Button.click(button = "Save");
 			}

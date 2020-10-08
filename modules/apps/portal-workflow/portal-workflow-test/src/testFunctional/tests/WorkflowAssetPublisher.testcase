@@ -159,7 +159,6 @@ definition {
 
 	@priority = "4"
 	test ApproveWebContentPG {
-
 		Navigator.gotoPage(pageName = "Asset Publisher Page");
 
 		WebContent.addWithWorkflowPGViaAP(
@@ -193,7 +192,6 @@ definition {
 
 	@priority = "4"
 	test RejectBlogsEntryPG {
-
 		Navigator.gotoPage(pageName = "Asset Publisher Page");
 
 		Blogs.addWithWorkflowViaAP(

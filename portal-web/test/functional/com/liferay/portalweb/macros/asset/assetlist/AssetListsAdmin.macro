@@ -12,7 +12,6 @@ definition {
 		}
 
 		else {
-
 			LexiconEntry.gotoAddMenuItem(menuItem = "Dynamic Collection");
 		}
 
@@ -71,7 +70,6 @@ definition {
 		}
 
 		else {
-
 			LexiconEntry.gotoAddMenuItem(menuItem = "Manual Collection");
 		}
 
@@ -368,7 +366,6 @@ definition {
 
 		if (isSet(entryList)) {
 			for (var assetName : list "${entryList}") {
-
 				LexiconEntry.selectEntry(rowEntry = "${assetName}");
 
 				Pause(locator1 = "3000");

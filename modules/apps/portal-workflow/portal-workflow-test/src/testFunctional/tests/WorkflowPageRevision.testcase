@@ -70,7 +70,6 @@ definition {
 
 	@priority = "4"
 	test RejectPageRevisionPG {
-
 		var pageName = "Page Revision Page";
 
 		Navigator.gotoStagedSitePage(
@@ -246,7 +245,6 @@ definition {
 	@ignore = "true"
 	@priority = "2"
 	test WithdrawWorkflowSubmissionFromRemovedUser {
-
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",

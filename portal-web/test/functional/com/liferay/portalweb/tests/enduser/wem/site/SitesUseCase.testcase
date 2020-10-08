@@ -90,7 +90,6 @@ definition {
 		SiteTemplates.addCP(siteTemplateName = "Digital Class Room");
 
 		for (var pageName : list "Courses,Student Boards,Materials") {
-
 			SiteTemplates.addSitePageViaSiteTemplateCP(
 				pageName = "${pageName}",
 				siteTemplateName = "Digital Class Room");

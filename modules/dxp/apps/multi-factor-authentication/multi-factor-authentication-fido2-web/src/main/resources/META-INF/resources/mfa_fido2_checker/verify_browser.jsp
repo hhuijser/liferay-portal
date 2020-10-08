@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<div id="<portlet:namespace/>messageContainer"></div>
+<div id="<portlet:namespace />messageContainer"></div>
 
 <aui:button-row>
 	<clay:button

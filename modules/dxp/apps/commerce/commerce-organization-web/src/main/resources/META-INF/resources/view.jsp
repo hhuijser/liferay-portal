@@ -95,7 +95,7 @@ request.setAttribute("view.jsp-filterPerOrganization", false);
 		<aui:script require="commerce-organization-web/js/index as OrgChart">
 			OrgChart.default('<%= segmentEditRootElementId %>', {
 				assetsPath: '<%= PortalUtil.getPathContext(request) + "/assets" %>',
-				namespace: '<portlet:namespace/>',
+				namespace: '<portlet:namespace />',
 				spritemap:
 					'<%= themeDisplay.getPathThemeImages() + "/lexicon/icons.svg" %>',
 				imagesPath: '<%= themeDisplay.getPathThemeImages() %>',

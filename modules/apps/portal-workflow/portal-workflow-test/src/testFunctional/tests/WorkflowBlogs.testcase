@@ -42,7 +42,6 @@ definition {
 
 	@priority = "5"
 	test ApproveBlogsEntryCP {
-
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(

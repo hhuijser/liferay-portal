@@ -243,7 +243,6 @@ definition {
 				value1 = "No Data Definitions were found.");
 		}
 		else {
-
 			AssertTextNotEquals(
 				locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_1",
 				value1 = "Contacts");

@@ -25,7 +25,6 @@ definition {
 	}
 
 	tearDown {
-
 		AppBuilderAdmin.teardownAppBuilder();
 
 		Page.tearDownCP();
@@ -147,7 +146,6 @@ definition {
 	@description = "Create a Basic Workflow App with different deployment options"
 	@priority = "4"
 	test CreateBasicWorkflowAppWithDifferentDeployments {
-
 		AppBuilderAdmin.addCustomObject(
 			customObjectName = "my custom object 1",
 			isCreatingFormView = "true",
@@ -771,7 +769,6 @@ definition {
 	@description = "Validate steps while running an App"
 	@priority = "4"
 	test ValidateStepsWhileRunningApp {
-
 		var formViewName = "My Form View";
 		var tableViewName = "My Table View";
 

@@ -224,7 +224,6 @@ definition {
 
 	@priority = "4"
 	test AddKBArticleWithHTMLViaKBAdmin {
-
 		var kbArticleContentSource = '''<b>Knowledge Base&rsquo;s Article Content</b>''';
 
 		KBAdmin.openKBAdmin(siteURLKey = "guest");

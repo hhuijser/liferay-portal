@@ -1,7 +1,6 @@
 definition {
 
 	macro add {
-
 		App.selectFormView(formViewName = "${formViewName}");
 
 		App.selectTableView(tableViewName = "${tableViewName}");
@@ -26,7 +25,6 @@ definition {
 	}
 
 	macro clickBackButton {
-
 		Click(locator1 = "AppBuilderStandardApp#BACK_BUTTON");
 	}
 

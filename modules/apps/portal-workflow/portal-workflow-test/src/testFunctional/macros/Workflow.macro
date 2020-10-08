@@ -161,7 +161,6 @@ definition {
 		Navigator.gotoNavTab(navTab = "Assigned to My Roles");
 
 		while ("${iterator}" != "${numberOfBlogInstances}") {
-
 			if ("${userCount}" == "${numberOfUsers}") {
 				var userCount = "1";
 			}
@@ -344,7 +343,6 @@ definition {
 			value1 = "Edit");
 
 		if (IsNotVisible(locator1 = "WorkflowConfiguration#RESOURCE_TABLE_SELECT")) {
-
 			Refresh();
 
 			WaitForSPARefresh();
@@ -442,7 +440,6 @@ definition {
 	}
 
 	macro duplicateSingleApproverWorkflow {
-
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
 			panel = "Applications",
@@ -768,14 +765,12 @@ definition {
 	}
 
 	macro tearDownWorkflowDefinitions {
-
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
 			panel = "Applications",
 			portlet = "Process Builder");
 
 		while (IsElementPresent(locator1 = "WorkflowDefinition#DEFINITION_TABLE_EXTRA")) {
-
 			if (IsElementPresent(locator1 = "WorkflowDefinition#DEFINITION_TABLE_DEFINITION_EXTRA_ELLIPSIS")) {
 				Workflow.unpublishWorkflowDefinitionExtra();
 			}

@@ -94,7 +94,6 @@ definition {
 
 	@priority = "4"
 	test AddToEventRegular {
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		CalendarNavigator.gotoAddEvent();

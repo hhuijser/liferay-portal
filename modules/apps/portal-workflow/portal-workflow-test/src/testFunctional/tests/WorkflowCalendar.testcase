@@ -144,7 +144,6 @@ definition {
 	@description = "This is a use case for LPS-59572."
 	@priority = "3"
 	test DeleteAndRestoreEvent {
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		CalendarNavigator.gotoView(viewType = "Week");
@@ -271,7 +270,6 @@ definition {
 
 	@priority = "4"
 	test RejectEventWithInvitedUser {
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		CalendarNavigator.gotoView(viewType = "Week");

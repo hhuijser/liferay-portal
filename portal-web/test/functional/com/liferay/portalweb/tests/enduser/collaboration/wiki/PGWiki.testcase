@@ -119,7 +119,6 @@ definition {
 
 	@priority = "4"
 	test AddFrontPageChildPageFormatHTML {
-
 		var welcomeToLiferay = '''
 				<p><a href="http://www.liferay.com">Welcome to LIFERAY</a></p>
 			''';

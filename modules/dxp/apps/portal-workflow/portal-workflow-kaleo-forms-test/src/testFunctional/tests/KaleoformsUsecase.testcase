@@ -499,7 +499,6 @@ definition {
 
 	@priority = "4"
 	test AssignRolePermissionsAddProcessCP {
-
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
@@ -813,7 +812,6 @@ definition {
 
 	@priority = "4"
 	test AssignRolePermissionsCompleteFormPG {
-
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
@@ -1338,7 +1336,6 @@ definition {
 
 	@priority = "3"
 	test AssignRolePermissionsViewPG {
-
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",

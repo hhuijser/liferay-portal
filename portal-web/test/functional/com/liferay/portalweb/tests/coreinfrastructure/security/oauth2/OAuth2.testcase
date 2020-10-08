@@ -604,7 +604,6 @@ definition {
 			locator1 = "NavUnderline#NAV_UNDERLINE_LINK");
 
 		for (var resourcePanel : list "Bulk Processing,Content Delivery,Dynamic Data Lists,Forms,Portal Services,Taxonomy Administration,User Administration,Workflow Administration") {
-
 			AssertHTMLSourceTextNotPresent(value1 = "${resourcePanel}");
 		}
 	}

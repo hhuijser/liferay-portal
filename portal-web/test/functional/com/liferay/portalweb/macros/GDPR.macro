@@ -69,7 +69,6 @@ definition {
 		}
 
 		if (isSet(allApplications)) {
-
 			PortletEntry.selectAll();
 
 			Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");

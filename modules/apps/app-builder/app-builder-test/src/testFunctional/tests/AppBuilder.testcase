@@ -25,7 +25,6 @@ definition {
 	}
 
 	tearDown {
-
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "test@liferay.com",
 			userLoginFullName = "Test Test");
@@ -38,7 +37,6 @@ definition {
 			PortalInstances.tearDownCP();
 		}
 		else {
-
 			Page.tearDownCP();
 
 			JSONGroup.deleteGroupByName(groupName = "App Builder Site Name");
@@ -133,7 +131,6 @@ definition {
 		var fieldList = "Text,Select from List,Single Selection,Multiple Selection,Date,Numeric,Upload";
 
 		for (var field : list "${fieldList}") {
-
 			AppBuilderAdmin.add();
 
 			FormViewBuilder.addFormViewAndValidateFieldLabel(
@@ -1884,7 +1881,6 @@ definition {
 		FormViewBuilder.setName(formViewName = "Form View Title 1");
 
 		for (var fieldType : list "Text,Select from List,Single Selection,Multiple Selection,Date,Numeric,Upload") {
-
 			FormViewBuilder.addFieldByDoubleClick(fieldType = "${fieldType}");
 
 			FormViewBuilder.closeSidebar();
@@ -1905,7 +1901,6 @@ definition {
 		TableViewBuilder.validateColumnLabelAtSidebar(columnLabel = "Date");
 
 		for (var columnLabel : list "Text,Select from List,Single Selection,Multiple Selection,Numeric,Upload") {
-
 			TableViewBuilder.validateNoColumnLabelAtSidebar(columnLabel = "${columnLabel}");
 		}
 
@@ -1916,7 +1911,6 @@ definition {
 		TableViewBuilder.validateColumnLabelAtSidebar(columnLabel = "My Text 23");
 
 		for (var columnLabel : list "Select from List,Single Selection,Multiple Selection,Date,Numeric,Upload") {
-
 			TableViewBuilder.validateNoColumnLabelAtSidebar(columnLabel = "${columnLabel}");
 		}
 
@@ -1931,7 +1925,6 @@ definition {
 		TableViewBuilder.validateColumnLabelAtSidebar(columnLabel = "Multiple Selection");
 
 		for (var columnLabel : list "Text,Date,Numeric,Upload") {
-
 			TableViewBuilder.validateNoColumnLabelAtSidebar(columnLabel = "${columnLabel}");
 		}
 
@@ -1940,14 +1933,12 @@ definition {
 		TableViewBuilder.searchByItem(itemName = "Oranges");
 
 		for (var columnLabel : list "Text,Select from List,Single Selection,Multiple Selection,Date,Numeric,Upload") {
-
 			TableViewBuilder.validateNoColumnLabelAtSidebar(columnLabel = "${columnLabel}");
 		}
 
 		TableViewBuilder.clearSearch();
 
 		for (var columnLabel : list "My Text 23,Select from List,Single Selection,Multiple Selection,Date,Numeric,Upload") {
-
 			TableViewBuilder.validateColumnLabelAtSidebar(columnLabel = "${columnLabel}");
 		}
 	}
@@ -2337,9 +2328,7 @@ definition {
 			siteName = "App Builder Site Name");
 
 		for (var number : list "1,2") {
-
 			if ("${number}" == "2") {
-
 				User.logoutAndLoginPG(
 					userLoginEmailAddress = "test@liferay.com",
 					userLoginFullName = "Test Test");

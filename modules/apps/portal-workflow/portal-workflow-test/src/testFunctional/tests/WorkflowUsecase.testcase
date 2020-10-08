@@ -940,7 +940,6 @@ definition {
 
 	@priority = "3"
 	test ViewTaskCount {
-
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(

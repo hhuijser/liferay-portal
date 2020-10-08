@@ -90,7 +90,6 @@ definition {
 
 	@priority = "3"
 	test WithdrawTaskAssignedToMeByDetails {
-
 		var webContentContent = "WC WebContent Content";
 		var webContentTitle = "WC WebContent Title";
 
@@ -146,7 +145,6 @@ definition {
 
 	@priority = "4"
 	test WithdrawTaskAssignedToMyRolesByActions {
-
 		var webContentContent = "WC WebContent Content";
 		var webContentTitle = "WC WebContent Title";
 
@@ -239,7 +237,6 @@ definition {
 
 	@priority = "4"
 	test WithdrawTaskCompletedNoByActions {
-
 		var webContentContent = "WC WebContent Content";
 		var webContentTitle = "WC WebContent Title";
 

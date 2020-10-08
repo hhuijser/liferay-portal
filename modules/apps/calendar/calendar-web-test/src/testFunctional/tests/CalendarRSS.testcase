@@ -73,7 +73,6 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test DeleteEventAndViewFeed {
-
 		property test.name.skip.portal.instance = "CalendarRSS#DeleteEventAndViewFeed";
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
@@ -115,7 +114,6 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test DisableFeedForSiteCalendar {
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		Calendar.chooseSiteCalendarMenulistOption(
@@ -156,7 +154,6 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test ViewSiteCalendarFeed {
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		CalendarNavigator.gotoPreviousDay();

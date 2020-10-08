@@ -751,7 +751,6 @@ definition {
 		}
 
 		task ("Assert could edit fragment upgrading from 7.2") {
-
 			FragmentsAdminNavigator.openFragmentsAdmin(siteURLKey = "test-site-name");
 
 			FragmentsAdminNavigator.gotoEntry(entry = "Fragment Name");
@@ -768,7 +767,6 @@ definition {
 		}
 
 		task ("Assert could delete fragment upgrading from 7.2") {
-
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-fragment-content-page");
 
 			ContentPages.clickPencil();

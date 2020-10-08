@@ -81,7 +81,6 @@ definition {
 
 	@priority = "4"
 	test AddWikiFrontPageChildPageFormatHTML {
-
 		var welcomeToLiferay = '''
 				<p><a href="http://www.liferay.com">Welcome to LIFERAY</a></p>
 			''';

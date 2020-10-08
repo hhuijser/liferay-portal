@@ -331,7 +331,6 @@ definition {
 
 	@priority = "3"
 	test EditUserCalendarOtherCalendars {
-
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
@@ -365,7 +364,6 @@ definition {
 
 	@priority = "5"
 	test SearchForOtherCalendars {
-
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "Calendar#SearchForOtherCalendars";
 

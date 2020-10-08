@@ -175,7 +175,6 @@ definition {
 		CommerceNavigator.gotoCommercePortletNavItem(navItem = "Warehouses");
 
 		while (IsElementNotPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER")) {
-
 			Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 			MenuItem.clickNoError(menuItem = "Delete");

@@ -1696,7 +1696,6 @@ definition {
 			groupName = "Guest");
 
 		for (var documentName : list "Document_2.doc,Document_1.xls,Document_4.jpg,Document_3.jpg,Document_2.xls,Document_1.txt,Document_4.txt,Document_3.xls,Document_2.jpg,Document_1.doc") {
-
 			var extension = StringUtil.extractLast("${documentName}", ".");
 
 			if ("${extension}" == "doc") {

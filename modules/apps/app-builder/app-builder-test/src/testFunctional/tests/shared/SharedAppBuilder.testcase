@@ -25,7 +25,6 @@ definition {
 	}
 
 	tearDown {
-
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "test@liferay.com",
 			userLoginFullName = "Test Test");
@@ -38,7 +37,6 @@ definition {
 			PortalInstances.tearDownCP();
 		}
 		else {
-
 			Page.tearDownCP();
 
 			JSONGroup.deleteGroupByName(groupName = "App Builder Site Name");
@@ -1177,7 +1175,6 @@ definition {
 		FormViewBuilder.setName(formViewName = "Form View Title 1");
 
 		for (var fieldType : list "Text,Select from List,Single Selection,Multiple Selection,Date,Numeric,Upload") {
-
 			FormViewBuilder.addFieldByDoubleClick(fieldType = "${fieldType}");
 
 			FormViewBuilder.closeSidebar();
@@ -1188,7 +1185,6 @@ definition {
 		FormViewBuilder.openFormView(formViewName = "Form View Title 1");
 
 		for (var fieldLabel : list "Text,Select from List,Single Selection,Multiple Selection,Date,Numeric,Upload") {
-
 			FormViewBuilder.fieldEllipsisAction(
 				fieldLabel = "${fieldLabel}",
 				selectAction = "Remove");
@@ -1201,7 +1197,6 @@ definition {
 		FormViewBuilder.openFormView(formViewName = "Form View Title 1");
 
 		for (var fieldType : list "Select from List,Single Selection,Multiple Selection,Date,Numeric,Upload") {
-
 			FormViewBuilder.validateNoFieldLabel(fieldLabel = "${fieldType}");
 
 			FormViewBuilder.validateObjectFieldName(fieldName = "${fieldType}");

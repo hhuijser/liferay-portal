@@ -522,7 +522,6 @@ definition {
 
 	@priority = "3"
 	test AddRepeatingRSVPYes {
-
 		CalendarNavigator.gotoAddEvent();
 
 		CalendarEvent.add(

@@ -158,7 +158,6 @@ definition {
 
 	@priority = "4"
 	test RejectFrontPageUserEdit {
-
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",

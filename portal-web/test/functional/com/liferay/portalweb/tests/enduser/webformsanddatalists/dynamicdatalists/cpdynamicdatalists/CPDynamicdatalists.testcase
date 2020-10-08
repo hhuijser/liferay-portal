@@ -3492,7 +3492,6 @@ definition {
 
 	@priority = "3"
 	test ViewCannotAddNonAlphanumericCharactersToFieldName {
-
 		var character1 = '''`''';
 
 		var character2 = '''~''';

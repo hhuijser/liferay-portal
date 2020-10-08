@@ -55,7 +55,6 @@ definition {
 	@description = "LRQA-53648 Automate LPS-89014: [SLA] Create new SLA for total process resolution"
 	@priority = "5"
 	test AddSLAForTotalProcessResolution {
-
 		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
 
 		AssertElementPresent(locator1 = "WorkflowMetrics#METRICS_NO_SLA_MESSAGE");
@@ -2118,7 +2117,6 @@ definition {
 	@description = "LRQA-53639 - Automate LPS-100675"
 	@priority = "5"
 	test VerifyFilterTopStepPerformance {
-
 		var key_testSLADefinitionDays = "0";
 		var key_testSLADefinitionHours = "00:01";
 		var key_testSLADefinitionDescription = "SLA Description";
@@ -2209,7 +2207,6 @@ definition {
 	@description = "LRQA-53661 Automate LPS-89119: [SLA] Define the SLA timer calendar"
 	@priority = "5"
 	test VerifySLACustomCalendar {
-
 		property test.name.skip.portal.instance = "WorkflowMetrics#VerifySLACustomCalendar";
 
 		var appName = "com.liferay.portal.workflow.metrics.sla.calendar.sample";

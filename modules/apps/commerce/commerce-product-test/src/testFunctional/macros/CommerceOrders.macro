@@ -46,7 +46,6 @@ definition {
 
 	macro viewOrdersEntry {
 		if (isSet(addressAddress) && isSet(addressCity) && isSet(addressZipCode)) {
-
 			AssertTextEquals.assertPartialText(
 				key_addressInfo = "${addressAddress}",
 				locator1 = "CommerceOrders#ORDER_DETAILS_BILLING_ADDRESS",

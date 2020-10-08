@@ -158,7 +158,6 @@ definition {
 
 	@priority = "4"
 	test ApproveResubmitTaskByActions {
-
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -322,7 +321,6 @@ definition {
 
 	@priority = "3"
 	test ReviewerApproveResubmitTaskByActionsUser {
-
 		Permissions.setUpRegRoleLoginUserCP(
 			roleTitle = "Regrole Name",
 			userEmailAddress = "userea1@liferay.com",

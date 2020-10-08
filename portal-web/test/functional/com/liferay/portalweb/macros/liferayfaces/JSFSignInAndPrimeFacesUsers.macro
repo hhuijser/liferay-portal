@@ -44,7 +44,6 @@ definition {
 		}
 		else {
 			AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_DESCENDING_ICON_");
-
 		}
 
 		if (isSet(filterName)) {
@@ -105,7 +104,6 @@ definition {
 		}
 		else {
 			AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_DESCENDING_ICON_");
-
 		}
 
 		AssertTextEquals.assertPartialText(

@@ -91,7 +91,6 @@ definition {
 			Blogs.clickEllipsisItemPG(
 				entryTitle = "${entryTitle}",
 				item = "Edit");
-
 		}
 
 		AssertVisible(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE");

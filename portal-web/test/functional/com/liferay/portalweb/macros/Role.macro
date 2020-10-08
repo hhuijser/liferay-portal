@@ -390,7 +390,6 @@ definition {
 					AssertClick(
 						locator1 = "NavBar#MY_SITES",
 						value1 = "My Sites");
-
 				}
 
 				AssertClick.assertPartialTextClickAt(

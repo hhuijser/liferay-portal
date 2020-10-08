@@ -167,7 +167,6 @@ definition {
 				Button.clickAdd();
 
 				IFrame.selectTopFrame();
-
 			}
 			else {
 				NavigationMenusAdmin._editItemPage(name = "${name}");

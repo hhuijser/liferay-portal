@@ -76,7 +76,6 @@ definition {
 			Click(locator1 = "PortalShowcase#RENDERED_CHECKBOX");
 
 			AssertElementPresent(locator1 = "PortalShowcase#WRITEABLE_FIELD");
-
 		}
 
 		if (IsElementPresent(locator1 = "PortalShowcase#REQUIRED_CHECKBOX")) {
@@ -89,7 +88,6 @@ definition {
 			Click(locator1 = "PortalShowcase#SUBMIT_BUTTON");
 
 			AssertElementPresent(locator1 = "PortalShowcase#REQUIRED_ERROR_MESSAGE");
-
 		}
 
 		PortalShowcase._writeText(text = "Hello to the whole World!");

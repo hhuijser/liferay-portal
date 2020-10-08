@@ -417,7 +417,6 @@ definition {
 				content = "WC WebContent Content",
 				groupName = "Test Site Name",
 				title = "WC WebContent Title ${i}");
-
 		}
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");

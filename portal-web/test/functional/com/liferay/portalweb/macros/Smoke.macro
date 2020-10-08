@@ -94,7 +94,6 @@ definition {
 			task ("Assert the '${fragmentName}' fragment is present") {
 				AssertElementPresent(locator1 = "//h1[contains(.,'Heading Example')]");
 			}
-
 		}
 
 		var portlet = "Web Content";

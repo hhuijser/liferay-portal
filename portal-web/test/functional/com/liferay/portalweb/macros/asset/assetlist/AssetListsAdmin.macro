@@ -14,7 +14,6 @@ definition {
 		else {
 
 			LexiconEntry.gotoAddMenuItem(menuItem = "Dynamic Collection");
-
 		}
 
 		PortletEntry.inputText(
@@ -74,7 +73,6 @@ definition {
 		else {
 
 			LexiconEntry.gotoAddMenuItem(menuItem = "Manual Collection");
-
 		}
 
 		PortletEntry.inputText(

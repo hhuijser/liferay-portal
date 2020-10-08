@@ -774,7 +774,6 @@ definition {
 			ContentPages.clickPencil();
 
 			PageEditor.removeFragment(fragmentName = "Fragment Name");
-
 		}
 
 		task ("Assert the experience survived and could edit") {

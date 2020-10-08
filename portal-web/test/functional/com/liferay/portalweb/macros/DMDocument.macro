@@ -1624,7 +1624,6 @@ definition {
 			AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_VALUE",
 				value1 = "${customFieldValue}");
-
 		}
 
 		if (isSet(locationFieldName)) {

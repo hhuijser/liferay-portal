@@ -1530,7 +1530,6 @@ definition {
 				key_alignment = "center",
 				key_fragmentName = "heading",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_ALIGNMENT_IN_VIEW_MODE");
-
 		}
 
 		task ("View the Button's style in view mode") {

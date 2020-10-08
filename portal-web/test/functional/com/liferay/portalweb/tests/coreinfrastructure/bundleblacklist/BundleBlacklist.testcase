@@ -114,7 +114,6 @@ definition {
 		if ("${testRunEnvironment}" == "EE") {
 			var symbolicName = "Liferay Foundation - Liferay Gogo Shell - Impl";
 			var consoleText = "STOPPED Liferay Foundation - Liferay Gogo Shell - Impl";
-
 		}
 		else {
 			var symbolicName = "Liferay CE Foundation - Liferay CE Gogo Shell - Impl";

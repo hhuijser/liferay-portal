@@ -226,7 +226,7 @@ public class JenkinsCohort {
 		JenkinsResultsParserUtil.write(filePath, sb.toString());
 	}
 
-	private static JSONArray _createJSONArray(Object... items) {
+	private JSONArray _createJSONArray(Object... items) {
 		JSONArray jsonArray = new JSONArray();
 
 		for (Object item : items) {

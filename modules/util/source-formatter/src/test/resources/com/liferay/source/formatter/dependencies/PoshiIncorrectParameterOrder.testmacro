@@ -1,7 +1,6 @@
 definition {
 
 	test AddBlogsEntries {
-
 		echo("This is a message.");
 
 		SignIn.signIn();
@@ -58,7 +57,6 @@ definition {
 
 	@priority = "5"
 	test MySQLWithXSSContent {
-
 		SetupWizard.configurePG(
 			databaseType = "MySQL",
 			administratorEmail = "test@liferay.com",

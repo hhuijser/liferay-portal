@@ -1,7 +1,6 @@
 definition {
 
 	test AddBlogsEntries {
-
 		User.addCP(
 			userEmailAddress = "${userEmailAddress}",
 			userFirstName = "${userFirstName}",

@@ -7,7 +7,6 @@ definition {
 			Click(locator1 = "WorkflowMetricsSLA#DELETE_SLA_BUTTON");
 
 			Click(locator1 = "WorkflowMetricsSLA#SLA_REMOVE_CONFIRMATION_BUTTON");
-
 		}
 	}
 
@@ -139,7 +138,6 @@ definition {
 			AssertTextEquals(
 				locator1 = "WorkflowMetrics#METRICS_PERFORMANCE_BY_STEP_AVG_COMPLETION_TIME_VALUE",
 				value1 = "${key_avgCompletionTime}");
-
 		}
 	}
 

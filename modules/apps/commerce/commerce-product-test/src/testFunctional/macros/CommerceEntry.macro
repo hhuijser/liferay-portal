@@ -763,7 +763,6 @@ definition {
 				value1 = "${price}");
 
 			Click(locator1 = "Icon#CLOSE");
-
 		}
 	}
 

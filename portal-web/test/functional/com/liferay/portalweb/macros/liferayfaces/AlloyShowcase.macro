@@ -247,7 +247,6 @@ definition {
 					locator1 = "JSFShowcase#MODEL_RESULT",
 					value1 = "${menuItems}");
 			}
-
 		}
 
 		AssertClick(

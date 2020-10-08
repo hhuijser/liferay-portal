@@ -25,7 +25,6 @@ definition {
 				configurationScope = "System Scope");
 
 			FormFields.disableCheckbox(fieldName = "enabled");
-
 		}
 
 		else if ("${disableAutoTaggingFor}" == "Instance Settings") {

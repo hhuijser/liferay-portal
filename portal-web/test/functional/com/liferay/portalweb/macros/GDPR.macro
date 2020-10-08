@@ -66,7 +66,6 @@ definition {
 			MenuItem.clickNoError(menuItem = "Anonymize");
 
 			AssertConfirm(value1 = "Are you sure you want to anonymize the entities of this application?");
-
 		}
 
 		if (isSet(allApplications)) {

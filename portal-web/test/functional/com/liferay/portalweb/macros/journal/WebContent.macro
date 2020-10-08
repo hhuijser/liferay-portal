@@ -559,7 +559,6 @@ definition {
 					locator1 = "WC#ICON_DOCUMENT_TITLE",
 					value1 = "${webContentDocumentsAndMedia}");
 			}
-
 		}
 
 		if (isSet(webContentHTML)) {
@@ -671,7 +670,6 @@ definition {
 
 				SelectFrame(value1 = "relative=top");
 			}
-
 		}
 
 		if (isSet(webContentText)) {

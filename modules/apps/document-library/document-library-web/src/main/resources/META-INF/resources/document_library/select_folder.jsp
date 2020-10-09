@@ -56,19 +56,21 @@ DLVisualizationHelper dlVisualizationHelper = new DLVisualizationHelper(dlReques
 				<aui:button href="<%= editFolderURL %>" value="add-folder" />
 			</c:if>
 
-			<%
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"folderid", folderId
-			).put(
-				"folderissupportsmetadata", (folder != null) ? folder.isSupportsMetadata() : Boolean.TRUE.toString()
-			).put(
-				"folderissupportssocial", (folder != null) ? folder.isSupportsSocial() : Boolean.TRUE.toString()
-			).put(
-				"foldername", folderName
-			).build();
-			%>
-
-			<aui:button cssClass="selector-button" data="<%= data %>" value="select-this-folder" />
+			<aui:button
+				cssClass="selector-button"
+				data='<%=
+					HashMapBuilder.<String, Object>put(
+						"folderid", folderId
+					).put(
+						"folderissupportsmetadata", (folder != null) ? folder.isSupportsMetadata() : Boolean.TRUE.toString()
+					).put(
+						"folderissupportssocial", (folder != null) ? folder.isSupportsSocial() : Boolean.TRUE.toString()
+					).put(
+						"foldername", folderName
+					).build()
+				%>'
+				value="select-this-folder"
+			/>
 		</aui:button-row>
 
 		<%
@@ -151,20 +153,21 @@ DLVisualizationHelper dlVisualizationHelper = new DLVisualizationHelper(dlReques
 
 				<liferay-ui:search-container-column-text>
 					<c:if test="<%= rowURL != null %>">
-
-						<%
-						Map<String, Object> data = HashMapBuilder.<String, Object>put(
-							"folderid", curFolder.getFolderId()
-						).put(
-							"folderissupportsmetadata", curFolder.isSupportsMetadata()
-						).put(
-							"folderissupportssocial", curFolder.isSupportsSocial()
-						).put(
-							"foldername", curFolder.getName()
-						).build();
-						%>
-
-						<aui:button cssClass="selector-button" data="<%= data %>" value="select" />
+						<aui:button
+							cssClass="selector-button"
+							data='<%=
+								HashMapBuilder.<String, Object>put(
+									"folderid", curFolder.getFolderId()
+								).put(
+									"folderissupportsmetadata", curFolder.isSupportsMetadata()
+								).put(
+									"folderissupportssocial", curFolder.isSupportsSocial()
+								).put(
+									"foldername", curFolder.getName()
+								).build()
+							%>'
+							value="select"
+						/>
 					</c:if>
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>

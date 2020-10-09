@@ -156,12 +156,10 @@ SearchContainer<Object> searchContainer = itemSelectorViewDescriptorRendererDisp
 
 							<%
 							Date modifiedDate = itemDescriptor.getModifiedDate();
-
-							String modifiedDateDescription = LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - modifiedDate.getTime(), true);
 							%>
 
 							<span class="text-default">
-								<liferay-ui:message arguments="<%= modifiedDateDescription %>" key="modified-x-ago" />
+								<liferay-ui:message arguments="<%= LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - modifiedDate.getTime(), true) %>" key="modified-x-ago" />
 							</span>
 						</c:if>
 					</liferay-ui:search-container-column-text>

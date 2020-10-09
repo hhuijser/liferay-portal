@@ -7,7 +7,6 @@ definition {
 			userLastName = "${userLastName}",
 			userScreenName = "${userScreenName}",
 			userScreenName = "");
-
 	}
 
 }

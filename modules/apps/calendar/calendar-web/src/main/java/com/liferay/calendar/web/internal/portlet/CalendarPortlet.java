@@ -1051,9 +1051,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		recurrence.setFrequency(frequency);
 
-		int interval = ParamUtil.getInteger(actionRequest, "interval");
-
-		recurrence.setInterval(interval);
+		recurrence.setInterval(ParamUtil.getInteger(actionRequest, "interval"));
 
 		TimeZone timeZone = getTimeZone(actionRequest);
 

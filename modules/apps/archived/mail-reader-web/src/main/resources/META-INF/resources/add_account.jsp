@@ -47,7 +47,6 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 	for (int i = 0; i < accountsJSONArray.length(); i++) {
 		JSONObject accountJSONObject = accountsJSONArray.getJSONObject(i);
 
-		String titleLanguageKey = accountJSONObject.getString("titleLanguageKey");
 		boolean useLocalPartAsLogin = accountJSONObject.getBoolean("useLocalPartAsLogin");
 		boolean hideSettings = accountJSONObject.getBoolean("hideSettings");
 		String incomingPort = accountJSONObject.getString("incomingPort");

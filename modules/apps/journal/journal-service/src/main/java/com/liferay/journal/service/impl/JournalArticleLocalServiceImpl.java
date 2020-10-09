@@ -432,8 +432,6 @@ public class JournalArticleLocalServiceImpl
 		Map<String, String> urlTitleMap = _getURLTitleMap(
 			groupId, resourcePrimKey, friendlyURLMap, titleMap);
 
-		String urlTitle = urlTitleMap.get(LocaleUtil.toLanguageId(locale));
-
 		article.setUuid(serviceContext.getUuid());
 		article.setResourcePrimKey(resourcePrimKey);
 		article.setGroupId(groupId);
@@ -446,7 +444,7 @@ public class JournalArticleLocalServiceImpl
 		article.setTreePath(article.buildTreePath());
 		article.setArticleId(articleId);
 		article.setVersion(version);
-		article.setUrlTitle(urlTitle);
+		article.setUrlTitle(urlTitleMap.get(LocaleUtil.toLanguageId(locale)));
 
 		content = format(user, groupId, article, content);
 		content = _replaceTempImages(article, content);

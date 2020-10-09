@@ -792,10 +792,9 @@ public class ExpandoValueLocalServiceImpl
 				value.setFloatArray((float[])attributeValue);
 			}
 			else if (type == ExpandoColumnConstants.GEOLOCATION) {
-				JSONObject geolocationJSONObject =
-					JSONFactoryUtil.createJSONObject(attributeValue.toString());
-
-				value.setGeolocationJSONObject(geolocationJSONObject);
+				value.setGeolocationJSONObject(
+					JSONFactoryUtil.createJSONObject(
+						attributeValue.toString()));
 			}
 			else if (type == ExpandoColumnConstants.INTEGER) {
 				value.setInteger((Integer)attributeValue);

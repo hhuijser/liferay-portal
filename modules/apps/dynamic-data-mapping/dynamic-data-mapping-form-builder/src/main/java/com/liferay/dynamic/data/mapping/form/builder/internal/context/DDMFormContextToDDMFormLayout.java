@@ -225,9 +225,8 @@ public class DDMFormContextToDDMFormLayout
 	protected void setDDMFormLayoutDefaultLocale(
 		String defaultLanguageId, DDMFormLayout ddmFormLayout) {
 
-		Locale defaultLocale = LocaleUtil.fromLanguageId(defaultLanguageId);
-
-		ddmFormLayout.setDefaultLocale(defaultLocale);
+		ddmFormLayout.setDefaultLocale(
+			LocaleUtil.fromLanguageId(defaultLanguageId));
 	}
 
 	protected void setDDMFormLayoutPageDescription(

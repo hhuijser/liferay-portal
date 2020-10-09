@@ -404,10 +404,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		if (message.isDiscussion()) {
 			long classNameId = classNameLocalService.getClassNameId(
 				(String)serviceContext.getAttribute("className"));
-			long classPK = ParamUtil.getLong(serviceContext, "classPK");
 
 			message.setClassNameId(classNameId);
-			message.setClassPK(classPK);
+			message.setClassPK(ParamUtil.getLong(serviceContext, "classPK"));
 		}
 
 		message.setExpandoBridgeAttributes(serviceContext);

@@ -210,17 +210,15 @@ public class DDMFormXSDDeserializer implements DDMFormDeserializer {
 	protected void setDDMFormFieldDataType(
 		Element dynamicElementElement, DDMFormField ddmFormField) {
 
-		String dataType = dynamicElementElement.attributeValue("dataType");
-
-		ddmFormField.setDataType(dataType);
+		ddmFormField.setDataType(
+			dynamicElementElement.attributeValue("dataType"));
 	}
 
 	protected void setDDMFormFieldIndexType(
 		Element dynamicElementElement, DDMFormField ddmFormField) {
 
-		String indexType = dynamicElementElement.attributeValue("indexType");
-
-		ddmFormField.setIndexType(indexType);
+		ddmFormField.setIndexType(
+			dynamicElementElement.attributeValue("indexType"));
 	}
 
 	protected void setDDMFormFieldLocalizable(

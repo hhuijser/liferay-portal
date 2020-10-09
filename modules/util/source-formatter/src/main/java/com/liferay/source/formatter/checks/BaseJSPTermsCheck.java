@@ -105,6 +105,27 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 			return content;
 		}
 
+		int curLineNumber = lineNumber - 1;
+
+		while (true) {
+			if (curLineNumber == 0) {
+				break;
+			}
+
+			String trimmedLine = StringUtil.trim(
+				getLine(content, curLineNumber));
+
+			if (trimmedLine.equals("<%")) {
+				break;
+			}
+
+			if (trimmedLine.equals("<%!")) {
+				return content;
+			}
+
+			curLineNumber--;
+		}
+
 		StringBundler sb = new StringBundler();
 
 		sb.append("<%\n");

@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
@@ -180,15 +179,9 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 				return;
 			}
 
-			DetailAST firstChildDetailAST =
-				assignMethodCallDetailAST.getFirstChild();
+			if (!_matchesGetOrSetCall(
+					assignMethodCallDetailAST, identDetailAST, variableName)) {
 
-			FullIdent fullIdent = FullIdent.createFullIdent(
-				firstChildDetailAST);
-
-			String methodName = fullIdent.getText();
-
-			if (!methodName.matches("(?i)([\\w.]*\\.)?get" + variableName)) {
 				return;
 			}
 		}
@@ -522,6 +515,45 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 			parentDetailAST = grandParentDetailAST;
 		}
+	}
+
+	private boolean _matchesGetOrSetCall(
+		DetailAST assignMethodCallDetailAST, DetailAST identDetailAST,
+		String variableName) {
+
+		String methodName = getMethodName(assignMethodCallDetailAST);
+
+		if (methodName.matches("(?i)get" + variableName)) {
+			return true;
+		}
+
+		DetailAST parentDetailAST = identDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.EXPR) {
+			return false;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if ((parentDetailAST.getType() != TokenTypes.ELIST) ||
+			(parentDetailAST.getChildCount() != 1)) {
+
+			return false;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.METHOD_CALL) {
+			return false;
+		}
+
+		methodName = getMethodName(parentDetailAST);
+
+		if (methodName.matches("(?i)set" + variableName)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final String

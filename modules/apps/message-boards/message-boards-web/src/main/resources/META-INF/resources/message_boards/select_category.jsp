@@ -109,30 +109,32 @@ else {
 				/>
 
 				<liferay-ui:search-container-column-text>
-
-					<%
-					Map<String, Object> data = HashMapBuilder.<String, Object>put(
-						"categoryId", curCategory.getCategoryId()
-					).put(
-						"name", curCategory.getName()
-					).build();
-					%>
-
-					<aui:button cssClass="selector-button" data="<%= data %>" value="select" />
+					<aui:button
+						cssClass="selector-button"
+						data='<%=
+							HashMapBuilder.<String, Object>put(
+								"categoryId", curCategory.getCategoryId()
+							).put(
+								"name", curCategory.getName()
+							).build()
+						%>'
+						value="select"
+					/>
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
 			<aui:button-row>
-
-				<%
-				Map<String, Object> data = HashMapBuilder.<String, Object>put(
-					"categoryId", categoryId
-				).put(
-					"name", categoryName
-				).build();
-				%>
-
-				<aui:button cssClass="selector-button" data="<%= data %>" value="select-this-category" />
+				<aui:button
+					cssClass="selector-button"
+					data='<%=
+						HashMapBuilder.<String, Object>put(
+							"categoryId", categoryId
+						).put(
+							"name", categoryName
+						).build()
+					%>'
+					value="select-this-category"
+				/>
 			</aui:button-row>
 
 			<liferay-ui:search-iterator

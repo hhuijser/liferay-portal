@@ -291,13 +291,6 @@ public class BaseManagementToolbarDisplayContext
 	protected final LiferayPortletRequest liferayPortletRequest;
 	protected final LiferayPortletResponse liferayPortletResponse;
 
-	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #httpServletRequest}
-	 */
-	@Deprecated
-	protected HttpServletRequest request;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseManagementToolbarDisplayContext.class);
 

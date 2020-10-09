@@ -33,11 +33,4 @@ public class JSPViewTypeItemList extends ViewTypeItemList {
 	protected HttpServletRequest httpServletRequest;
 	protected RenderResponse renderResponse;
 
-	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #httpServletRequest}
-	 */
-	@Deprecated
-	protected HttpServletRequest request;
-
 }

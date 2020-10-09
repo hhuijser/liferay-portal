@@ -75,12 +75,10 @@
 
 						<%
 						Date createDate = layoutSetPrototype.getModifiedDate();
-
-						String modifiedDateDescription = LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - createDate.getTime(), true);
 						%>
 
 						<h6 class="text-default">
-							<span><liferay-ui:message arguments="<%= modifiedDateDescription %>" key="created-x-ago" /></span>
+							<span><liferay-ui:message arguments="<%= LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - createDate.getTime(), true) %>" key="created-x-ago" /></span>
 						</h6>
 
 						<h5>
@@ -124,12 +122,10 @@
 
 								<%
 								Date createDate = layoutSetPrototype.getModifiedDate();
-
-								String modifiedDateDescription = LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - createDate.getTime(), true);
 								%>
 
 								<label class="text-default">
-									<liferay-ui:message arguments="<%= modifiedDateDescription %>" key="created-x-ago" />
+									<liferay-ui:message arguments="<%= LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - createDate.getTime(), true) %>" key="created-x-ago" />
 								</label>
 							</liferay-frontend:vertical-card-header>
 

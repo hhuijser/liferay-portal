@@ -46,18 +46,19 @@ SearchContainer<com.liferay.dynamic.data.mapping.model.DDMStructure> ddmStructur
 			>
 				<c:choose>
 					<c:when test="<%= ddmStructure.getStructureId() != dlSelectDDMStructureDisplayContext.getDDMStructureId() %>">
-
-						<%
-						Map<String, Object> data = HashMapBuilder.<String, Object>put(
-							"ddmstructureid", ddmStructure.getStructureId()
-						).put(
-							"ddmstructurekey", ddmStructure.getStructureKey()
-						).put(
-							"name", ddmStructure.getName(locale)
-						).build();
-						%>
-
-						<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+						<aui:a
+							cssClass="selector-button"
+							data='<%=
+								HashMapBuilder.<String, Object>put(
+									"ddmstructureid", ddmStructure.getStructureId()
+								).put(
+									"ddmstructurekey", ddmStructure.getStructureKey()
+								).put(
+									"name", ddmStructure.getName(locale)
+								).build()
+							%>'
+							href="javascript:;"
+						>
 							<%= HtmlUtil.escape(ddmStructure.getUnambiguousName(ddmStructureSearch.getResults(), themeDisplay.getScopeGroupId(), locale)) %>
 						</aui:a>
 					</c:when>

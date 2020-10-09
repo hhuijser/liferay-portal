@@ -60,13 +60,18 @@ Group ddmTemplateGroup = GroupLocalServiceUtil.getGroup(ddmTemplateGroupId);
 				if (!DDMTemplatePermission.contains(permissionChecker, curDDMTemplate.getTemplateId(), ActionKeys.VIEW) || !DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY.equals(curDDMTemplate.getType())) {
 					continue;
 				}
-
-				Map<String, Object> data = HashMapBuilder.<String, Object>put(
-					"displaystylegroupid", curDDMTemplate.getGroupId()
-				).build();
 			%>
 
-				<aui:option data="<%= data %>" label="<%= HtmlUtil.escape(curDDMTemplate.getName(locale)) %>" selected="<%= (portletDisplayDDMTemplate != null) && (curDDMTemplate.getTemplateId() == portletDisplayDDMTemplate.getTemplateId()) %>" value="<%= PortletDisplayTemplate.DISPLAY_STYLE_PREFIX + HtmlUtil.escape(curDDMTemplate.getTemplateKey()) %>" />
+				<aui:option
+					data='<%=
+						HashMapBuilder.<String, Object>put(
+							"displaystylegroupid", curDDMTemplate.getGroupId()
+						).build()
+					%>'
+					label="<%= HtmlUtil.escape(curDDMTemplate.getName(locale)) %>"
+					selected="<%= (portletDisplayDDMTemplate != null) && (curDDMTemplate.getTemplateId() == portletDisplayDDMTemplate.getTemplateId()) %>"
+					value="<%= PortletDisplayTemplate.DISPLAY_STYLE_PREFIX + HtmlUtil.escape(curDDMTemplate.getTemplateKey()) %>"
+				/>
 
 			<%
 			}

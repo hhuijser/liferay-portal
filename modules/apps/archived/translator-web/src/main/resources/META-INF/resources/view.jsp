@@ -66,10 +66,9 @@ if (translation == null) {
 					<%
 					for (Map.Entry<String, String> entry : languageIdsMap.entrySet()) {
 						String languageId = entry.getKey();
-						String languageName = entry.getValue();
 					%>
 
-						<aui:option label="<%= languageName %>" selected="<%= languageId.equals(translation.getFromLanguageId()) %>" value="<%= languageId %>" />
+						<aui:option label="<%= entry.getValue() %>" selected="<%= languageId.equals(translation.getFromLanguageId()) %>" value="<%= languageId %>" />
 
 					<%
 					}
@@ -82,10 +81,9 @@ if (translation == null) {
 					<%
 					for (Map.Entry<String, String> entry : languageIdsMap.entrySet()) {
 						String languageId = entry.getKey();
-						String languageName = entry.getValue();
 					%>
 
-						<aui:option label="<%= languageName %>" selected="<%= languageId.equals(translation.getToLanguageId()) %>" value="<%= languageId %>" />
+						<aui:option label="<%= entry.getValue() %>" selected="<%= languageId.equals(translation.getToLanguageId()) %>" value="<%= languageId %>" />
 
 					<%
 					}

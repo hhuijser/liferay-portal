@@ -138,13 +138,17 @@ portletURL.setParameter("portletResource", portletResource);
 													<li>
 														<span class="selected-labels" id="<portlet:namespace />selectedConfiguration_<%= selPortlet.getRootPortletId() %>"></span>
 
-														<%
-														Map<String, Object> data = HashMapBuilder.<String, Object>put(
-															"portletid", selPortlet.getRootPortletId()
-														).build();
-														%>
-
-														<aui:a cssClass="configuration-link modify-link" data="<%= data %>" href="javascript:;" label="change" method="get" />
+														<aui:a
+															cssClass="configuration-link modify-link"
+															data='<%=
+																HashMapBuilder.<String, Object>put(
+																	"portletid", selPortlet.getRootPortletId()
+																).build()
+															%>'
+															href="javascript:;"
+															label="change"
+															method="get"
+														/>
 													</li>
 												</ul>
 
@@ -387,13 +391,18 @@ portletURL.setParameter("portletResource", portletResource);
 																<li>
 																	<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= selPortlet.getRootPortletId() %>"></span>
 
-																	<%
-																	Map<String, Object> data = HashMapBuilder.<String, Object>put(
-																		"portletid", selPortlet.getRootPortletId()
-																	).build();
-																	%>
-
-																	<aui:a cssClass="content-link modify-link" data="<%= data %>" href="javascript:;" id='<%= "contentLink_" + selPortlet.getRootPortletId() %>' label="change" method="get" />
+																	<aui:a
+																		cssClass="content-link modify-link"
+																		data='<%=
+																			HashMapBuilder.<String, Object>put(
+																				"portletid", selPortlet.getRootPortletId()
+																			).build()
+																		%>'
+																		href="javascript:;"
+																		id='<%= "contentLink_" + selPortlet.getRootPortletId() %>'
+																		label="change"
+																		method="get"
+																	/>
 																</li>
 															</ul>
 

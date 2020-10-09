@@ -49,10 +49,9 @@ NumberFormat decimalFormat = NumberFormat.getNumberInstance(locale);
 			<%
 			for (Map.Entry<String, String> entry : allSymbols.entrySet()) {
 				String symbol = entry.getValue();
-				String currencyValue = entry.getKey();
 			%>
 
-				<aui:option label="<%= currencyValue %>" selected="<%= symbol.equals(from) %>" value="<%= symbol %>" />
+				<aui:option label="<%= entry.getKey() %>" selected="<%= symbol.equals(from) %>" value="<%= symbol %>" />
 
 			<%
 			}
@@ -67,10 +66,9 @@ NumberFormat decimalFormat = NumberFormat.getNumberInstance(locale);
 			<%
 			for (Map.Entry<String, String> entry : allSymbols.entrySet()) {
 				String symbol = entry.getValue();
-				String currencyValue = entry.getKey();
 			%>
 
-				<aui:option label="<%= currencyValue %>" selected="<%= symbol.equals(to) %>" value="<%= symbol %>" />
+				<aui:option label="<%= entry.getKey() %>" selected="<%= symbol.equals(to) %>" value="<%= symbol %>" />
 
 			<%
 			}

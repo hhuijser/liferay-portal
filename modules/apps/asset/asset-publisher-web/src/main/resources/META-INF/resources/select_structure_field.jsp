@@ -108,27 +108,30 @@ portletURL.setParameter("eventName", eventName);
 			</liferay-ui:search-container-column-text>
 
 			<liferay-ui:search-container-column-text>
-
-				<%
-				Map<String, Object> data = HashMapBuilder.<String, Object>put(
-					"fieldsnamespace", fieldsNamespace
-				).put(
-					"form", liferayPortletResponse.getNamespace() + name + "fieldForm"
-				).put(
-					"label", label
-				).put(
-					"name", name
-				).put(
-					"value",
-					JSONUtil.put(
-						"ddmStructureFieldName", ddmStructureFieldName
-					).put(
-						"ddmStructureFieldValue", ddmStructureFieldValue
-					)
-				).build();
-				%>
-
-				<aui:button cssClass="selector-button" data="<%= data %>" disabled="<%= name.equals(ddmStructureFieldName) ? false : true %>" id='<%= "applyButton" + name %>' value="apply" />
+				<aui:button
+					cssClass="selector-button"
+					data='<%=
+						HashMapBuilder.<String, Object>put(
+							"fieldsnamespace", fieldsNamespace
+						).put(
+							"form", liferayPortletResponse.getNamespace() + name + "fieldForm"
+						).put(
+							"label", label
+						).put(
+							"name", name
+						).put(
+							"value",
+							JSONUtil.put(
+								"ddmStructureFieldName", ddmStructureFieldName
+							).put(
+								"ddmStructureFieldValue", ddmStructureFieldValue
+							)
+						).build()
+					%>'
+					disabled="<%= name.equals(ddmStructureFieldName) ? false : true %>"
+					id='<%= "applyButton" + name %>'
+					value="apply"
+				/>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 

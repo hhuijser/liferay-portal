@@ -101,16 +101,17 @@ if (folder != null) {
 				/>
 
 				<liferay-ui:search-container-column-text>
-
-					<%
-					Map<String, Object> data = HashMapBuilder.<String, Object>put(
-						"entityid", curFolder.getFolderId()
-					).put(
-						"entityname", curFolder.getName()
-					).build();
-					%>
-
-					<aui:button cssClass="selector-button" data="<%= data %>" value="choose" />
+					<aui:button
+						cssClass="selector-button"
+						data='<%=
+							HashMapBuilder.<String, Object>put(
+								"entityid", curFolder.getFolderId()
+							).put(
+								"entityname", curFolder.getName()
+							).build()
+						%>'
+						value="choose"
+					/>
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
@@ -125,15 +126,17 @@ if (folder != null) {
 					<aui:button href="<%= editFolderURL %>" value='<%= (folder == null) ? "add-folder" : "add-subfolder" %>' />
 				</c:if>
 
-				<%
-				Map<String, Object> data = HashMapBuilder.<String, Object>put(
-					"entityid", folderId
-				).put(
-					"entityname", folderName
-				).build();
-				%>
-
-				<aui:button cssClass="selector-button" data="<%= data %>" value="choose-this-folder" />
+				<aui:button
+					cssClass="selector-button"
+					data='<%=
+						HashMapBuilder.<String, Object>put(
+							"entityid", folderId
+						).put(
+							"entityname", folderName
+						).build()
+					%>'
+					value="choose-this-folder"
+				/>
 			</aui:button-row>
 
 			<liferay-ui:search-iterator />

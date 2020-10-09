@@ -81,11 +81,9 @@ renderResponse.setTitle(title);
 
 					<%
 					Iterator<String> iterator = ruleHandlerTypes.iterator();
-
-					String ruleHandlerType = iterator.next();
 					%>
 
-					<aui:input name="type" type="hidden" value="<%= ruleHandlerType %>" />
+					<aui:input name="type" type="hidden" value="<%= iterator.next() %>" />
 				</c:when>
 				<c:otherwise>
 					<aui:select changesContext="<%= true %>" name="type" showEmptyOption="<%= true %>">

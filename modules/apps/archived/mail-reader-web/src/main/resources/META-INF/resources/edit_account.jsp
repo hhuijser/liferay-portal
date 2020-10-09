@@ -41,38 +41,18 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 	<aui:fieldset column="<%= true %>" cssClass="span6" label="folders">
 		<aui:select label="inbox" name="inboxFolderId">
-
-			<%
-			long selectedFolderId = mailAccount.getInboxFolderId();
-			%>
-
 			<%@ include file="/select_folder.jspf" %>
 		</aui:select>
 
 		<aui:select label="sent" name="sentFolderId">
-
-			<%
-			long selectedFolderId = mailAccount.getSentFolderId();
-			%>
-
 			<%@ include file="/select_folder.jspf" %>
 		</aui:select>
 
 		<aui:select label="draft" name="draftFolderId">
-
-			<%
-			long selectedFolderId = mailAccount.getDraftFolderId();
-			%>
-
 			<%@ include file="/select_folder.jspf" %>
 		</aui:select>
 
 		<aui:select label="trash" name="trashFolderId">
-
-			<%
-			long selectedFolderId = mailAccount.getTrashFolderId();
-			%>
-
 			<%@ include file="/select_folder.jspf" %>
 		</aui:select>
 	</aui:fieldset>

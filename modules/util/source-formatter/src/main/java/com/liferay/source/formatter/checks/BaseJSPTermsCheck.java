@@ -153,11 +153,11 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 					return sb.toString();
 				}
 
-				if (trimmedLine.matches("</\\w+:\\w+>")) {
+				if (trimmedLine.matches("</[\\w-]+:[\\w-]+>")) {
 					return sb.toString();
 				}
 
-				if (trimmedLine.matches("</\\w+>")) {
+				if (trimmedLine.matches("</[\\w-]+>")) {
 					indent = indent.substring(1);
 				}
 			}

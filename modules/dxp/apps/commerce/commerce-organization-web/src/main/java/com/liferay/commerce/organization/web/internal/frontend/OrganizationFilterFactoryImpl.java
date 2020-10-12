@@ -37,10 +37,8 @@ public class OrganizationFilterFactoryImpl implements FilterFactory {
 		OrganizationFilterImpl organizationFilterImpl =
 			new OrganizationFilterImpl();
 
-		long organizationId = ParamUtil.getLong(
-			httpServletRequest, "organizationId");
-
-		organizationFilterImpl.setOrganizationId(organizationId);
+		organizationFilterImpl.setOrganizationId(
+			ParamUtil.getLong(httpServletRequest, "organizationId"));
 		organizationFilterImpl.setUserId(
 			ParamUtil.getLong(httpServletRequest, "userId"));
 

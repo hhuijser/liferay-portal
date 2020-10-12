@@ -205,9 +205,10 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 
 				labelItem.setCloseable(true);
 				labelItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "site-or-asset-library") + ": " +
-							_getScopeLabel(scopeId));
+					StringBundler.concat(
+						LanguageUtil.get(
+							httpServletRequest, "site-or-asset-library"),
+						": ", _getScopeLabel(scopeId)));
 			});
 
 		List<? extends ContentDashboardItemType> contentDashboardItemTypes =
@@ -644,10 +645,10 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 						_contentDashboardAdminDisplayContext.
 							getScopeIdItemSelectorURL()));
 
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "site-or-asset-library") +
-							StringPool.TRIPLE_PERIOD);
+				String label = LanguageUtil.get(
+					httpServletRequest, "site-or-asset-library");
+
+				dropdownItem.setLabel(label + StringPool.TRIPLE_PERIOD);
 
 				return dropdownItem;
 			},

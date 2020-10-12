@@ -402,10 +402,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		message.setAnonymous(anonymous);
 
 		if (message.isDiscussion()) {
-			long classNameId = classNameLocalService.getClassNameId(
-				(String)serviceContext.getAttribute("className"));
-
-			message.setClassNameId(classNameId);
+			message.setClassNameId(
+				classNameLocalService.getClassNameId(
+					(String)serviceContext.getAttribute("className")));
 			message.setClassPK(ParamUtil.getLong(serviceContext, "classPK"));
 		}
 

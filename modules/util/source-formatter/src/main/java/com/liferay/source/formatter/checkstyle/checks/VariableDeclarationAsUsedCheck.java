@@ -23,7 +23,6 @@ import com.liferay.portal.tools.ToolsUtil;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,76 +87,47 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 			_checkMoveAfterBranchingStatement(
 				detailAST, variableDefinitionDetailAST, variableName,
 				firstDependentIdentDetailAST);
-
 			_checkMoveInsideIfStatement(
 				variableDefinitionDetailAST, nameDetailAST, variableName,
 				dependentIdentDetailASTList);
 		}
 
 		_checkInline(
-			variableDefinitionDetailAST, nameDetailAST, variableName,
-			firstDependentIdentDetailAST);
+			variableDefinitionDetailAST, variableName,
+			_getAssignMethodCallDetailAST(variableDefinitionDetailAST),
+			firstDependentIdentDetailAST, dependentIdentDetailASTList);
 	}
 
 	private void _checkInline(
-		DetailAST variableDefinitionDetailAST, DetailAST nameDetailAST,
-		String variableName, DetailAST firstDependentIdentDetailAST) {
+		DetailAST detailAST, String variableName,
+		DetailAST assignMethodCallDetailAST, DetailAST identDetailAST,
+		List<DetailAST> dependentIdentDetailASTList) {
 
-		DetailAST assignMethodCallDetailAST = _getAssignMethodCallDetailAST(
-			variableDefinitionDetailAST);
+		if ((assignMethodCallDetailAST == null) ||
+			!variableName.equals(identDetailAST.getText())) {
 
-		if (assignMethodCallDetailAST == null) {
+			return;
+		}
+
+		DetailAST parentDetailAST = identDetailAST.getParent();
+
+		if (parentDetailAST.getType() == TokenTypes.LNOT) {
+			parentDetailAST = parentDetailAST.getParent();
+		}
+
+		if (parentDetailAST.getType() != TokenTypes.EXPR) {
 			return;
 		}
 
-		List<DetailAST> followingIdentDetailASTList = new ArrayList<>();
+		int endLineNumber = getEndLineNumber(detailAST);
 
-		DetailAST nextSiblingDetailAST =
-			variableDefinitionDetailAST.getNextSibling();
+		for (DetailAST dependentIdentDetailAST : dependentIdentDetailASTList) {
+			if (variableName.equals(dependentIdentDetailAST.getText()) &&
+				!equals(dependentIdentDetailAST, identDetailAST) &&
+				(dependentIdentDetailAST.getLineNo() > endLineNumber)) {
 
-		while (true) {
-			if (nextSiblingDetailAST == null) {
-				break;
-			}
-
-			followingIdentDetailASTList.addAll(
-				getAllChildTokens(
-					nextSiblingDetailAST, true, TokenTypes.IDENT));
-
-			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
-		}
-
-		DetailAST identDetailAST = null;
-
-		for (DetailAST curIdentDetailAST : followingIdentDetailASTList) {
-			if ((curIdentDetailAST.getLineNo() <= nameDetailAST.getLineNo()) ||
-				!variableName.equals(curIdentDetailAST.getText())) {
-
-				continue;
-			}
-
-			if (identDetailAST != null) {
 				return;
 			}
-
-			identDetailAST = curIdentDetailAST;
-
-			DetailAST parentDetailAST = identDetailAST.getParent();
-
-			if (parentDetailAST.getType() == TokenTypes.LNOT) {
-				parentDetailAST = parentDetailAST.getParent();
-			}
-
-			if (parentDetailAST.getType() != TokenTypes.EXPR) {
-				return;
-			}
-		}
-
-		if ((identDetailAST == null) ||
-			(firstDependentIdentDetailAST.getLineNo() <
-				identDetailAST.getLineNo())) {
-
-			return;
 		}
 
 		if (_hasChainStyle(assignMethodCallDetailAST, "build", "map", "put")) {
@@ -182,23 +152,22 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 			}
 		}
 
-		DetailAST parentDetailAST = getParentWithTokenType(
+		parentDetailAST = getParentWithTokenType(
 			identDetailAST, TokenTypes.LAMBDA, TokenTypes.LITERAL_DO,
 			TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_NEW,
 			TokenTypes.LITERAL_SYNCHRONIZED, TokenTypes.LITERAL_TRY,
 			TokenTypes.LITERAL_WHILE);
 
 		if ((parentDetailAST != null) &&
-			(parentDetailAST.getLineNo() >=
-				variableDefinitionDetailAST.getLineNo())) {
+			(parentDetailAST.getLineNo() >= detailAST.getLineNo())) {
 
 			return;
 		}
 
 		int emptyLineCount = 0;
 
-		for (int i = variableDefinitionDetailAST.getLineNo();
-			 i <= identDetailAST.getLineNo(); i++) {
+		for (int i = detailAST.getLineNo(); i <= identDetailAST.getLineNo();
+			 i++) {
 
 			if (Validator.isNull(getLine(i - 1))) {
 				emptyLineCount++;
@@ -210,8 +179,8 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		}
 
 		log(
-			variableDefinitionDetailAST, _MSG_VARIABLE_DECLARATION_NOT_NEEDED,
-			variableName, identDetailAST.getLineNo());
+			detailAST, _MSG_VARIABLE_DECLARATION_NOT_NEEDED, variableName,
+			identDetailAST.getLineNo());
 	}
 
 	private void _checkMoveAfterBranchingStatement(

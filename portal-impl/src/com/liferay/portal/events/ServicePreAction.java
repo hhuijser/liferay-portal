@@ -1614,8 +1614,9 @@ public class ServicePreAction extends Action {
 
 		themeDisplay.setURLControlPanel(urlControlPanel);
 
-		themeDisplay.setURLCurrent(
-			PortalUtil.getCurrentURL(httpServletRequest));
+		String currentURL = PortalUtil.getCurrentURL(httpServletRequest);
+
+		themeDisplay.setURLCurrent(currentURL);
 
 		themeDisplay.setURLHome(PortalUtil.getHomeURL(httpServletRequest));
 

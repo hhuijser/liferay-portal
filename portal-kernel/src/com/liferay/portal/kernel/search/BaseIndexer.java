@@ -1422,9 +1422,9 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 		if (countryId > 0) {
 			try {
-				countries.addAll(
-					getLocalizedCountryNames(
-						CountryServiceUtil.getCountry(countryId)));
+				Country country = CountryServiceUtil.getCountry(countryId);
+
+				countries.addAll(getLocalizedCountryNames(country));
 			}
 			catch (NoSuchCountryException noSuchCountryException) {
 				if (_log.isWarnEnabled()) {

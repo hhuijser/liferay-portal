@@ -71,6 +71,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -743,10 +744,12 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 		URL url = _servletContext.getResource(resourcePath);
 
 		if (url == null) {
+			RequestDispatcher requestDispatcher =
+				httpServletRequest.getRequestDispatcher(resourcePath);
+
 			ObjectValuePair<String, Long> objectValuePair =
 				RequestDispatcherUtil.getContentAndLastModifiedTime(
-					httpServletRequest.getRequestDispatcher(resourcePath),
-					httpServletRequest, httpServletResponse);
+					requestDispatcher, httpServletRequest, httpServletResponse);
 
 			return objectValuePair.getKey();
 		}

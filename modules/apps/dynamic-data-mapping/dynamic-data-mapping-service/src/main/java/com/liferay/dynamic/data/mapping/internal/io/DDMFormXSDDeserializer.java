@@ -183,7 +183,9 @@ public class DDMFormXSDDeserializer implements DDMFormDeserializer {
 		List<DDMFormField> ddmFormFields = new ArrayList<>();
 
 		for (Element dynamicElement : rootElement.elements("dynamic-element")) {
-			ddmFormFields.add(getDDMFormField(dynamicElement));
+			DDMFormField ddmFormField = getDDMFormField(dynamicElement);
+
+			ddmFormFields.add(ddmFormField);
 		}
 
 		return ddmFormFields;
@@ -198,13 +200,17 @@ public class DDMFormXSDDeserializer implements DDMFormDeserializer {
 	protected void setDDMFormAvailableLocales(
 		Element rootElement, DDMForm ddmForm) {
 
-		ddmForm.setAvailableLocales(getAvailableLocales(rootElement));
+		Set<Locale> availableLocales = getAvailableLocales(rootElement);
+
+		ddmForm.setAvailableLocales(availableLocales);
 	}
 
 	protected void setDDMFormDefaultLocale(
 		Element rootElement, DDMForm ddmForm) {
 
-		ddmForm.setDefaultLocale(getDefaultLocale(rootElement));
+		Locale defaultLocale = getDefaultLocale(rootElement);
+
+		ddmForm.setDefaultLocale(defaultLocale);
 	}
 
 	protected void setDDMFormFieldDataType(
@@ -366,7 +372,9 @@ public class DDMFormXSDDeserializer implements DDMFormDeserializer {
 	}
 
 	protected void setDDMFormFields(Element rootElement, DDMForm ddmForm) {
-		ddmForm.setDDMFormFields(getDDMFormFields(rootElement));
+		List<DDMFormField> ddmFormFields = getDDMFormFields(rootElement);
+
+		ddmForm.setDDMFormFields(ddmFormFields);
 	}
 
 	protected void setDDMFormFieldShowLabel(

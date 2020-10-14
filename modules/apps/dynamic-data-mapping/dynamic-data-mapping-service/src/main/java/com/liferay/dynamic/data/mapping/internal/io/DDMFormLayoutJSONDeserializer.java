@@ -234,13 +234,19 @@ public class DDMFormLayoutJSONDeserializer
 	protected void setDDMFormLayoutPageRows(
 		JSONArray jsonArray, DDMFormLayoutPage ddmFormLayoutPage) {
 
-		ddmFormLayoutPage.setDDMFormLayoutRows(getDDMFormLayoutRows(jsonArray));
+		List<DDMFormLayoutRow> ddmFormLayoutRows = getDDMFormLayoutRows(
+			jsonArray);
+
+		ddmFormLayoutPage.setDDMFormLayoutRows(ddmFormLayoutRows);
 	}
 
 	protected void setDDMFormLayoutPages(
 		JSONArray jsonArray, DDMFormLayout ddmFormLayout) {
 
-		ddmFormLayout.setDDMFormLayoutPages(getDDMFormLayoutPages(jsonArray));
+		List<DDMFormLayoutPage> ddmFormLayoutPages = getDDMFormLayoutPages(
+			jsonArray);
+
+		ddmFormLayout.setDDMFormLayoutPages(ddmFormLayoutPages);
 	}
 
 	protected void setDDMFormLayoutPageTitle(
@@ -276,8 +282,10 @@ public class DDMFormLayoutJSONDeserializer
 	protected void setDDMFormLayoutRowColumns(
 		JSONArray jsonArray, DDMFormLayoutRow ddmFormLayoutRow) {
 
-		ddmFormLayoutRow.setDDMFormLayoutColumns(
-			getDDMFormLayoutColumns(jsonArray));
+		List<DDMFormLayoutColumn> ddmFormLayoutColumns =
+			getDDMFormLayoutColumns(jsonArray);
+
+		ddmFormLayoutRow.setDDMFormLayoutColumns(ddmFormLayoutColumns);
 	}
 
 	@Reference(unbind = "-")

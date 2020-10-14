@@ -68,9 +68,10 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 
 	@Override
 	public void deleteFolder(long folderId) throws PortalException {
+		JournalFolder folder = journalFolderLocalService.getFolder(folderId);
+
 		_journalFolderModelResourcePermission.check(
-			getPermissionChecker(),
-			journalFolderLocalService.getFolder(folderId), ActionKeys.DELETE);
+			getPermissionChecker(), folder, ActionKeys.DELETE);
 
 		journalFolderLocalService.deleteFolder(folderId);
 	}
@@ -79,9 +80,10 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 	public void deleteFolder(long folderId, boolean includeTrashedEntries)
 		throws PortalException {
 
+		JournalFolder folder = journalFolderLocalService.getFolder(folderId);
+
 		_journalFolderModelResourcePermission.check(
-			getPermissionChecker(),
-			journalFolderLocalService.getFolder(folderId), ActionKeys.DELETE);
+			getPermissionChecker(), folder, ActionKeys.DELETE);
 
 		journalFolderLocalService.deleteFolder(folderId, includeTrashedEntries);
 	}
@@ -317,9 +319,10 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 			long folderId, long parentFolderId, ServiceContext serviceContext)
 		throws PortalException {
 
+		JournalFolder folder = journalFolderLocalService.getFolder(folderId);
+
 		_journalFolderModelResourcePermission.check(
-			getPermissionChecker(),
-			journalFolderLocalService.getFolder(folderId), ActionKeys.UPDATE);
+			getPermissionChecker(), folder, ActionKeys.UPDATE);
 
 		return journalFolderLocalService.moveFolder(
 			folderId, parentFolderId, serviceContext);
@@ -330,9 +333,10 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 			long folderId, long parentFolderId, ServiceContext serviceContext)
 		throws PortalException {
 
+		JournalFolder folder = journalFolderLocalService.getFolder(folderId);
+
 		_journalFolderModelResourcePermission.check(
-			getPermissionChecker(),
-			journalFolderLocalService.getFolder(folderId), ActionKeys.UPDATE);
+			getPermissionChecker(), folder, ActionKeys.UPDATE);
 
 		return journalFolderLocalService.moveFolderFromTrash(
 			getUserId(), folderId, parentFolderId, serviceContext);
@@ -342,9 +346,10 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 	public JournalFolder moveFolderToTrash(long folderId)
 		throws PortalException {
 
+		JournalFolder folder = journalFolderLocalService.getFolder(folderId);
+
 		_journalFolderModelResourcePermission.check(
-			getPermissionChecker(),
-			journalFolderLocalService.getFolder(folderId), ActionKeys.DELETE);
+			getPermissionChecker(), folder, ActionKeys.DELETE);
 
 		return journalFolderLocalService.moveFolderToTrash(
 			getUserId(), folderId);
@@ -352,9 +357,10 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 
 	@Override
 	public void restoreFolderFromTrash(long folderId) throws PortalException {
+		JournalFolder folder = journalFolderLocalService.getFolder(folderId);
+
 		_journalFolderModelResourcePermission.check(
-			getPermissionChecker(),
-			journalFolderLocalService.getFolder(folderId), ActionKeys.UPDATE);
+			getPermissionChecker(), folder, ActionKeys.UPDATE);
 
 		journalFolderLocalService.restoreFolderFromTrash(getUserId(), folderId);
 	}
@@ -399,9 +405,10 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
+		JournalFolder folder = journalFolderLocalService.getFolder(folderId);
+
 		_journalFolderModelResourcePermission.check(
-			getPermissionChecker(),
-			journalFolderLocalService.getFolder(folderId), ActionKeys.UPDATE);
+			getPermissionChecker(), folder, ActionKeys.UPDATE);
 
 		return journalFolderLocalService.updateFolder(
 			getUserId(), groupId, folderId, parentFolderId, name, description,

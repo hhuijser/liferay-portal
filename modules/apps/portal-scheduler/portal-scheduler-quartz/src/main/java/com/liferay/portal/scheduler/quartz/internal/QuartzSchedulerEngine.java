@@ -231,8 +231,9 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 		throws SchedulerException {
 
 		try {
-			return getScheduledJobs(
-				getScheduler(storageType), groupName, storageType);
+			Scheduler scheduler = getScheduler(storageType);
+
+			return getScheduledJobs(scheduler, groupName, storageType);
 		}
 		catch (Exception exception) {
 			throw new SchedulerException(
@@ -513,7 +514,9 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 		throws SchedulerException {
 
 		try {
-			update(getScheduler(storageType), trigger, storageType);
+			Scheduler scheduler = getScheduler(storageType);
+
+			update(scheduler, trigger, storageType);
 		}
 		catch (Exception exception) {
 			throw new SchedulerException("Unable to update trigger", exception);
@@ -650,7 +653,9 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 
 		Message message = getMessage(jobDataMap);
 
-		message.put(SchedulerEngine.JOB_STATE, getJobState(jobDataMap));
+		JobState jobState = getJobState(jobDataMap);
+
+		message.put(SchedulerEngine.JOB_STATE, jobState);
 
 		schedulerResponse.setMessage(message);
 

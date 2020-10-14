@@ -205,7 +205,9 @@ public class DDMFormContextToDDMFormLayout
 	protected void setDDMFormLayoutAvailableLocales(
 		JSONArray jsonArray, DDMFormLayout ddmFormLayout) {
 
-		ddmFormLayout.setAvailableLocales(getAvailableLocales(jsonArray));
+		Set<Locale> availableLocales = getAvailableLocales(jsonArray);
+
+		ddmFormLayout.setAvailableLocales(availableLocales);
 	}
 
 	protected void setDDMFormLayoutColumnFieldNames(
@@ -242,7 +244,10 @@ public class DDMFormContextToDDMFormLayout
 	protected void setDDMFormLayoutPageRows(
 		JSONArray jsonArray, DDMFormLayoutPage ddmFormLayoutPage) {
 
-		ddmFormLayoutPage.setDDMFormLayoutRows(getDDMFormLayoutRows(jsonArray));
+		List<DDMFormLayoutRow> ddmFormLayoutRows = getDDMFormLayoutRows(
+			jsonArray);
+
+		ddmFormLayoutPage.setDDMFormLayoutRows(ddmFormLayoutRows);
 	}
 
 	protected void setDDMFormLayoutPages(
@@ -274,8 +279,10 @@ public class DDMFormContextToDDMFormLayout
 	protected void setDDMFormLayoutRowColumns(
 		JSONArray jsonArray, DDMFormLayoutRow ddmFormLayoutRow) {
 
-		ddmFormLayoutRow.setDDMFormLayoutColumns(
-			getDDMFormLayoutColumns(jsonArray));
+		List<DDMFormLayoutColumn> ddmFormLayoutColumns =
+			getDDMFormLayoutColumns(jsonArray);
+
+		ddmFormLayoutRow.setDDMFormLayoutColumns(ddmFormLayoutColumns);
 	}
 
 	@Reference

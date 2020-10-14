@@ -41,10 +41,6 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		List<DetailAST> variableDefinitionDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.VARIABLE_DEF);
 
-		if (variableDefinitionDetailASTList.isEmpty()) {
-			return;
-		}
-
 		for (DetailAST variableDefinitionDetailAST :
 				variableDefinitionDetailASTList) {
 

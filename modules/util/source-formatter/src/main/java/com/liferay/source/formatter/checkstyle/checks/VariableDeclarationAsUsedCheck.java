@@ -44,11 +44,11 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		for (DetailAST variableDefinitionDetailAST :
 				variableDefinitionDetailASTList) {
 
-			_checkAsUsed(detailAST, variableDefinitionDetailAST);
+			_checkVariableDefinition(detailAST, variableDefinitionDetailAST);
 		}
 	}
 
-	private void _checkAsUsed(
+	private void _checkVariableDefinition(
 		DetailAST detailAST, DetailAST variableDefinitionDetailAST) {
 
 		if (hasParentWithTokenType(

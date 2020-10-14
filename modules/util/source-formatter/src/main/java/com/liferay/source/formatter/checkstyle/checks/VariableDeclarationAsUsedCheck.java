@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
@@ -39,74 +40,102 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		List<DetailAST> assignDetailASTList = getAllChildTokens(
+			detailAST, true, TokenTypes.ASSIGN);
+
+		for (DetailAST assignDetailAST : assignDetailASTList) {
+			_checkAsUsedForAssign(detailAST, assignDetailAST);
+		}
+
 		List<DetailAST> variableDefinitionDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.VARIABLE_DEF);
 
-		if (variableDefinitionDetailASTList.isEmpty()) {
-			return;
-		}
-
 		for (DetailAST variableDefinitionDetailAST :
 				variableDefinitionDetailASTList) {
-
-			DetailAST parentDetailAST = detailAST.getParent();
-
-			if (parentDetailAST.getType() != TokenTypes.OBJBLOCK) {
-				SFDebugHelper.printStructure(parentDetailAST);
-			}
 
 			_checkAsUsed(detailAST, variableDefinitionDetailAST);
 		}
 	}
 
-	private void _checkAsUsed(
-		DetailAST detailAST, DetailAST variableDefinitionDetailAST) {
+	private void _checkAsUsedForAssign(
+		DetailAST detailAST, DetailAST assignDetailAST) {
 
-		if (hasParentWithTokenType(
-				variableDefinitionDetailAST, TokenTypes.FOR_EACH_CLAUSE,
-				TokenTypes.FOR_INIT)) {
+		DetailAST parentDetailAST = assignDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.EXPR) {
+			return;
+		}
+
+		DetailAST slistDetailAST = parentDetailAST.getParent();
+
+		if (slistDetailAST.getType() != TokenTypes.SLIST) {
+			return;
+		}
+
+		DetailAST semiDetailAST = parentDetailAST.getNextSibling();
+
+		if ((semiDetailAST == null) ||
+			(semiDetailAST.getType() != TokenTypes.SEMI)) {
 
 			return;
 		}
 
-		DetailAST nameDetailAST = variableDefinitionDetailAST.findFirstToken(
-			TokenTypes.IDENT);
+		DetailAST nameDetailAST = assignDetailAST.getFirstChild();
 
-		List<DetailAST> dependentIdentDetailASTList =
-			getDependentIdentDetailASTList(
-				variableDefinitionDetailAST,
-				variableDefinitionDetailAST.getLineNo());
+		if (nameDetailAST.getType() != TokenTypes.IDENT) {
+			return;
+		}
 
-		if (dependentIdentDetailASTList.isEmpty()) {
+		DetailAST nextSiblingDetailAST = nameDetailAST.getNextSibling();
+
+		if (nextSiblingDetailAST.getType() != TokenTypes.METHOD_CALL) {
 			return;
 		}
 
 		String variableName = nameDetailAST.getText();
 
-		if (!_containsMethodName(
-				variableDefinitionDetailAST,
-				StringBundler.concat(
-					"_?(add|channel|close|copy|create|delete|execute|import|",
-					"manage|next|open|post|put|read|register|resolve|run|send|",
-					"test|transform|unzip|update|zip)([A-Z].*)?"),
-				"currentTimeMillis", "nextVersion", "toString") &&
-			!_containsVariableType(
-				variableDefinitionDetailAST, "ActionQueue", "File")) {
+		if (variableName.equals("byteBuffer")) {
+			//SFDebugHelper.printStructure(parentDetailAST);
 
-			_checkMoveAfterBranchingStatement(
-				detailAST, variableDefinitionDetailAST, variableName,
-				dependentIdentDetailASTList.get(0));
-			_checkMoveInsideIfStatement(
-				variableDefinitionDetailAST, nameDetailAST, variableName,
-				dependentIdentDetailASTList);
+			//System.out.println(variableName);
 		}
 
+		DetailAST typeDetailAST = getVariableTypeDetailAST(
+			assignDetailAST, variableName);
+
+		if (typeDetailAST == null) {
+			return;
+		}
+
+		DetailAST variableDeclarationDetailAST = typeDetailAST.getParent();
+
+		if (variableDeclarationDetailAST == null) {
+			return;
+		}
+
+		List<DetailAST> assignDependentIdentDetailASTList =
+			getDependentIdentDetailASTList(
+				parentDetailAST, parentDetailAST.getLineNo());
+
+		if (assignDependentIdentDetailASTList.isEmpty()) {
+			return;
+		}
+		List<DetailAST> variableDependentIdentDetailASTList =
+			getDependentIdentDetailASTList(
+				variableDeclarationDetailAST,
+				variableDeclarationDetailAST.getLineNo());
+
 		_checkInline(
-			variableDefinitionDetailAST, nameDetailAST, variableName,
-			dependentIdentDetailASTList);
+			parentDetailAST, variableName, nextSiblingDetailAST,
+			assignDependentIdentDetailASTList.get(0),
+			variableDependentIdentDetailASTList);
+
+		//_checkInlineForAssign2(
+		//	assignDetailAST, nameDetailAST, variableName,
+		//	detailASTList);
 	}
 
-	private void _checkInline(
+	private void _checkInlineForAssign2(
 		DetailAST variableDefinitionDetailAST, DetailAST nameDetailAST,
 		String variableName, List<DetailAST> dependentIdentDetailASTList) {
 
@@ -195,6 +224,262 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		log(
 			variableDefinitionDetailAST, _MSG_VARIABLE_DECLARATION_NOT_NEEDED,
 			variableName, firstDependentIdentDetailAST.getLineNo());
+	}
+
+
+	private void _checkInlineForAssign(
+		DetailAST exprDetailAST, DetailAST assignDetailAST,
+		DetailAST nameDetailAST, String variableName,
+		DetailAST firstDependentIdentDetailAST) {
+
+		List<DetailAST> followingIdentDetailASTList = new ArrayList<>();
+
+		DetailAST nextSiblingDetailAST = exprDetailAST.getNextSibling();
+
+		while (true) {
+			if (nextSiblingDetailAST == null) {
+				break;
+			}
+
+			followingIdentDetailASTList.addAll(
+				getAllChildTokens(
+					nextSiblingDetailAST, true, TokenTypes.IDENT));
+
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+		}
+
+		DetailAST identDetailAST = null;
+
+		for (DetailAST curIdentDetailAST : followingIdentDetailASTList) {
+			if ((curIdentDetailAST.getLineNo() <= nameDetailAST.getLineNo()) ||
+				!variableName.equals(curIdentDetailAST.getText())) {
+
+				continue;
+			}
+
+			if (identDetailAST != null) {
+				return;
+			}
+
+			identDetailAST = curIdentDetailAST;
+
+			DetailAST parentDetailAST = identDetailAST.getParent();
+
+			if (parentDetailAST.getType() == TokenTypes.LNOT) {
+				parentDetailAST = parentDetailAST.getParent();
+			}
+
+			if (parentDetailAST.getType() != TokenTypes.EXPR) {
+				return;
+			}
+		}
+
+		if ((identDetailAST == null) ||
+			(firstDependentIdentDetailAST.getLineNo() <
+				identDetailAST.getLineNo())) {
+
+			return;
+		}
+
+		if (_hasChainStyle(assignDetailAST, "build", "map", "put")) {
+			if (_isInsideStatementClause(identDetailAST)) {
+				return;
+			}
+		}
+		else {
+			if ((getStartLineNumber(assignDetailAST) !=
+					getEndLineNumber(assignDetailAST)) ||
+				(_isInsideStatementClause(identDetailAST) &&
+				 hasParentWithTokenType(
+					 identDetailAST, RELATIONAL_OPERATOR_TOKEN_TYPES))) {
+
+				return;
+			}
+
+			DetailAST methodCallDetailAST = assignDetailAST.findFirstToken(
+				TokenTypes.METHOD_CALL);
+
+			if (methodCallDetailAST == null) {
+				return;
+			}
+
+			DetailAST firstChildDetailAST = methodCallDetailAST.getFirstChild();
+
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST);
+
+			String methodName = fullIdent.getText();
+
+			if (!methodName.matches("(?i)([\\w.]*\\.)?get" + variableName)) {
+				return;
+			}
+		}
+
+		DetailAST parentDetailAST = getParentWithTokenType(
+			identDetailAST, TokenTypes.LAMBDA, TokenTypes.LITERAL_DO,
+			TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_NEW,
+			TokenTypes.LITERAL_SYNCHRONIZED, TokenTypes.LITERAL_TRY,
+			TokenTypes.LITERAL_WHILE);
+
+		if ((parentDetailAST != null) &&
+			(parentDetailAST.getLineNo() >= exprDetailAST.getLineNo())) {
+
+			return;
+		}
+
+		int emptyLineCount = 0;
+
+		for (int i = exprDetailAST.getLineNo();
+			 i <= identDetailAST.getLineNo(); i++) {
+
+			if (Validator.isNull(getLine(i - 1))) {
+				emptyLineCount++;
+
+				if (emptyLineCount > 1) {
+					return;
+				}
+			}
+		}
+
+		log(
+			exprDetailAST, _MSG_VARIABLE_DECLARATION_NOT_NEEDED,
+			variableName, identDetailAST.getLineNo());
+	}
+
+	private void _checkAsUsed(
+		DetailAST detailAST, DetailAST variableDefinitionDetailAST) {
+
+		if (hasParentWithTokenType(
+				variableDefinitionDetailAST, TokenTypes.FOR_EACH_CLAUSE,
+				TokenTypes.FOR_INIT)) {
+
+			return;
+		}
+
+		DetailAST nameDetailAST = variableDefinitionDetailAST.findFirstToken(
+			TokenTypes.IDENT);
+
+		List<DetailAST> dependentIdentDetailASTList =
+			getDependentIdentDetailASTList(
+				variableDefinitionDetailAST,
+				variableDefinitionDetailAST.getLineNo());
+
+		if (dependentIdentDetailASTList.isEmpty()) {
+			return;
+		}
+
+		String variableName = nameDetailAST.getText();
+
+		DetailAST firstDependentIdentDetailAST =
+			dependentIdentDetailASTList.get(0);
+
+		if (!_containsMethodName(
+				variableDefinitionDetailAST,
+				StringBundler.concat(
+					"_?(add|channel|close|copy|create|delete|execute|import|",
+					"manage|next|open|post|put|read|register|resolve|run|send|",
+					"test|transform|unzip|update|zip)([A-Z].*)?"),
+				"currentTimeMillis", "nextVersion", "toString") &&
+			!_containsVariableType(
+				variableDefinitionDetailAST, "ActionQueue", "File")) {
+
+			_checkMoveAfterBranchingStatement(
+				detailAST, variableDefinitionDetailAST, variableName,
+				firstDependentIdentDetailAST);
+			_checkMoveInsideIfStatement(
+				variableDefinitionDetailAST, nameDetailAST, variableName,
+				dependentIdentDetailASTList);
+		}
+
+		_checkInline(
+			variableDefinitionDetailAST, variableName,
+			_getAssignMethodCallDetailAST(variableDefinitionDetailAST),
+			firstDependentIdentDetailAST, dependentIdentDetailASTList);
+	}
+
+	private void _checkInline(
+		DetailAST detailAST, String variableName,
+		DetailAST assignMethodCallDetailAST, DetailAST identDetailAST,
+		List<DetailAST> dependentIdentDetailASTList) {
+
+		if ((assignMethodCallDetailAST == null) ||
+			!variableName.equals(identDetailAST.getText())) {
+
+			return;
+		}
+
+		DetailAST parentDetailAST = identDetailAST.getParent();
+
+		if (parentDetailAST.getType() == TokenTypes.LNOT) {
+			parentDetailAST = parentDetailAST.getParent();
+		}
+
+		if (parentDetailAST.getType() != TokenTypes.EXPR) {
+			return;
+		}
+
+		int endLineNumber = getEndLineNumber(detailAST);
+
+		for (DetailAST dependentIdentDetailAST : dependentIdentDetailASTList) {
+			if (variableName.equals(dependentIdentDetailAST.getText()) &&
+				!equals(dependentIdentDetailAST, identDetailAST) &&
+				(dependentIdentDetailAST.getLineNo() > endLineNumber)) {
+
+				return;
+			}
+		}
+
+		if (_hasChainStyle(assignMethodCallDetailAST, "build", "map", "put")) {
+			if (_isInsideStatementClause(identDetailAST)) {
+				return;
+			}
+		}
+		else {
+			if ((getStartLineNumber(assignMethodCallDetailAST) !=
+					getEndLineNumber(assignMethodCallDetailAST)) ||
+				(_isInsideStatementClause(identDetailAST) &&
+				 hasParentWithTokenType(
+					 identDetailAST, RELATIONAL_OPERATOR_TOKEN_TYPES))) {
+
+				return;
+			}
+
+			if (!_matchesGetOrSetCall(
+					assignMethodCallDetailAST, identDetailAST, variableName)) {
+
+				return;
+			}
+		}
+
+		parentDetailAST = getParentWithTokenType(
+			identDetailAST, TokenTypes.LAMBDA, TokenTypes.LITERAL_DO,
+			TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_NEW,
+			TokenTypes.LITERAL_SYNCHRONIZED, TokenTypes.LITERAL_TRY,
+			TokenTypes.LITERAL_WHILE);
+
+		if ((parentDetailAST != null) &&
+			(parentDetailAST.getLineNo() >= detailAST.getLineNo())) {
+
+			return;
+		}
+
+		int emptyLineCount = 0;
+
+		for (int i = detailAST.getLineNo();
+			 i <= identDetailAST.getLineNo(); i++) {
+
+			if (Validator.isNull(getLine(i - 1))) {
+				emptyLineCount++;
+
+				if (emptyLineCount > 1) {
+					return;
+				}
+			}
+		}
+
+		log(
+			detailAST, _MSG_VARIABLE_DECLARATION_NOT_NEEDED,
+			variableName, identDetailAST.getLineNo());
 	}
 
 	private void _checkInlineBackup(

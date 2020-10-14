@@ -148,15 +148,46 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 		String defaultUnbindMethodName = _getDefaultUnbindMethodName(
 			methodName);
 
+		int lineNo = annotationDetailAST.getLineNo();
+
 		_checkUnbind(
 			classDefinitionDetailAST, defaultUnbindMethodName, unbindName,
-			policyName, annotationDetailAST.getLineNo());
+			policyName, lineNo);
 
 		if (policyName.endsWith(_POLICY_DYNAMIC) && (unbindName == null)) {
 			_checkDynamicMethod(
 				classDefinitionDetailAST, detailAST, methodName,
 				defaultUnbindMethodName);
 		}
+
+		_checkTarget(
+			_getAnnotationMemberValue(annotationDetailAST, "target", null),
+			lineNo);
+	}
+
+	private void _checkTarget(String targetName, int lineNo) {
+		if (targetName == null) {
+			return;
+		}
+
+		List<String> allowedFileNames = getAttributeValues(_ALLOWED_FILE_NAMES);
+
+		String absolutePath = getAbsolutePath();
+
+		for (String allowedFileName : allowedFileNames) {
+			if (absolutePath.endsWith(allowedFileName)) {
+				return;
+			}
+		}
+
+		List<String> avoidReferenceTargetNames = getAttributeValues(
+			_AVOID_REFERENCE_TARGET_NAMES);
+
+		if (!avoidReferenceTargetNames.contains(targetName)) {
+			return;
+		}
+
+		log(lineNo, _MSG_AVOID_TARGET, targetName);
 	}
 
 	private void _checkUnbind(
@@ -284,6 +315,13 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 
 		return sb.toString();
 	}
+
+	private static final String _ALLOWED_FILE_NAMES = "allowedFileNames";
+
+	private static final String _AVOID_REFERENCE_TARGET_NAMES =
+		"avoidReferenceTargetNames";
+
+	private static final String _MSG_AVOID_TARGET = "target.avoid";
 
 	private static final String _MSG_MISSING_DYNAMIC_POLICY_UNBIND =
 		"unbind.dynamic.policy.missing";

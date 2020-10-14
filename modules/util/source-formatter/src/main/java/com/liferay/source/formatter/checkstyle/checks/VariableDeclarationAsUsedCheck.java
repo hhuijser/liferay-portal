@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.debug.SFDebugHelper;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -48,6 +49,12 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		for (DetailAST variableDefinitionDetailAST :
 				variableDefinitionDetailASTList) {
 
+			DetailAST parentDetailAST = detailAST.getParent();
+
+			if (parentDetailAST.getType() != TokenTypes.OBJBLOCK) {
+				SFDebugHelper.printStructure(parentDetailAST);
+			}
+
 			_checkAsUsed(detailAST, variableDefinitionDetailAST);
 		}
 	}
@@ -76,9 +83,6 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 		String variableName = nameDetailAST.getText();
 
-		DetailAST firstDependentIdentDetailAST =
-			dependentIdentDetailASTList.get(0);
-
 		if (!_containsMethodName(
 				variableDefinitionDetailAST,
 				StringBundler.concat(
@@ -91,8 +95,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 			_checkMoveAfterBranchingStatement(
 				detailAST, variableDefinitionDetailAST, variableName,
-				firstDependentIdentDetailAST);
-
+				dependentIdentDetailASTList.get(0));
 			_checkMoveInsideIfStatement(
 				variableDefinitionDetailAST, nameDetailAST, variableName,
 				dependentIdentDetailASTList);
@@ -100,10 +103,101 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 		_checkInline(
 			variableDefinitionDetailAST, nameDetailAST, variableName,
-			firstDependentIdentDetailAST);
+			dependentIdentDetailASTList);
 	}
 
 	private void _checkInline(
+		DetailAST variableDefinitionDetailAST, DetailAST nameDetailAST,
+		String variableName, List<DetailAST> dependentIdentDetailASTList) {
+
+		DetailAST assignMethodCallDetailAST = _getAssignMethodCallDetailAST(
+			variableDefinitionDetailAST);
+
+		if (assignMethodCallDetailAST == null) {
+			return;
+		}
+
+		DetailAST firstDependentIdentDetailAST =
+			dependentIdentDetailASTList.get(0);
+
+		if (!variableName.equals(firstDependentIdentDetailAST.getText())) {
+			return;
+		}
+
+		DetailAST parentDetailAST = firstDependentIdentDetailAST.getParent();
+
+		if (parentDetailAST.getType() == TokenTypes.LNOT) {
+			parentDetailAST = parentDetailAST.getParent();
+		}
+
+		if (parentDetailAST.getType() != TokenTypes.EXPR) {
+			return;
+		}
+
+		for (int i = 1; i < dependentIdentDetailASTList.size(); i++) {
+			DetailAST dependentIdentDetailAST = dependentIdentDetailASTList.get(
+				i);
+
+			if (variableName.equals(dependentIdentDetailAST.getText())) {
+				return;
+			}
+		}
+
+		if (_hasChainStyle(assignMethodCallDetailAST, "build", "map", "put")) {
+			if (_isInsideStatementClause(firstDependentIdentDetailAST)) {
+				return;
+			}
+		}
+		else {
+			if ((getStartLineNumber(assignMethodCallDetailAST) !=
+					getEndLineNumber(assignMethodCallDetailAST)) ||
+				(_isInsideStatementClause(firstDependentIdentDetailAST) &&
+				 hasParentWithTokenType(
+					 firstDependentIdentDetailAST, RELATIONAL_OPERATOR_TOKEN_TYPES))) {
+
+				return;
+			}
+
+			if (!_matchesGetOrSetCall(
+					assignMethodCallDetailAST, firstDependentIdentDetailAST, variableName)) {
+
+				return;
+			}
+		}
+
+		parentDetailAST = getParentWithTokenType(
+			firstDependentIdentDetailAST, TokenTypes.LAMBDA, TokenTypes.LITERAL_DO,
+			TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_NEW,
+			TokenTypes.LITERAL_SYNCHRONIZED, TokenTypes.LITERAL_TRY,
+			TokenTypes.LITERAL_WHILE);
+
+		if ((parentDetailAST != null) &&
+			(parentDetailAST.getLineNo() >=
+				variableDefinitionDetailAST.getLineNo())) {
+
+			return;
+		}
+
+		int emptyLineCount = 0;
+
+		for (int i = variableDefinitionDetailAST.getLineNo();
+			 i <= firstDependentIdentDetailAST.getLineNo(); i++) {
+
+			if (Validator.isNull(getLine(i - 1))) {
+				emptyLineCount++;
+
+				if (emptyLineCount > 1) {
+					return;
+				}
+			}
+		}
+
+		log(
+			variableDefinitionDetailAST, _MSG_VARIABLE_DECLARATION_NOT_NEEDED,
+			variableName, firstDependentIdentDetailAST.getLineNo());
+	}
+
+	private void _checkInlineBackup(
 		DetailAST variableDefinitionDetailAST, DetailAST nameDetailAST,
 		String variableName, DetailAST firstDependentIdentDetailAST) {
 

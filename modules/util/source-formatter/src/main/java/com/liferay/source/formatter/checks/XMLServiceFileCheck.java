@@ -50,6 +50,54 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private void _checkColumnsThatShouldComeLast(
+		String fileName, Element entityElement, String entityName) {
+
+		Iterator<Node> iterator = entityElement.nodeIterator();
+
+		boolean otherFields = false;
+		String previousColumnName = null;
+
+		while (iterator.hasNext()) {
+			Node node = (Node)iterator.next();
+
+			if (node instanceof DefaultComment) {
+				DefaultComment defaultComment = (DefaultComment)node;
+
+				if (Objects.equals(
+						defaultComment.asXML(), "<!-- Other fields -->")) {
+
+					otherFields = true;
+				}
+				else if (otherFields) {
+					return;
+				}
+			}
+			else if (otherFields && (node instanceof Element)) {
+				Element element = (Element)node;
+
+				if (!Objects.equals(element.getName(), "column")) {
+					continue;
+				}
+
+				String columnName = element.attributeValue("name");
+
+				if (_isStatusColumnName(previousColumnName) &&
+					!_isStatusColumnName(columnName)) {
+
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order '", entityName, "#",
+							previousColumnName, "'. Status columns should ",
+							"come last in the category 'Other fields'."));
+				}
+
+				previousColumnName = columnName;
+			}
+		}
+	}
+
 	private void _checkMVCCEnabled(
 		String fileName, String absolutePath, Element element) {
 
@@ -158,54 +206,6 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 		checkElementOrder(
 			fileName, rootElement.element("exceptions"), "exception", null,
 			new ServiceExceptionElementComparator());
-	}
-
-	private void _checkColumnsThatShouldComeLast(
-		String fileName, Element entityElement, String entityName) {
-
-		Iterator<Node> iterator = entityElement.nodeIterator();
-
-		boolean otherFields = false;
-		String previousColumnName = null;
-
-		while (iterator.hasNext()) {
-			Node node = (Node)iterator.next();
-
-			if (node instanceof DefaultComment) {
-				DefaultComment defaultComment = (DefaultComment)node;
-
-				if (Objects.equals(
-						defaultComment.asXML(), "<!-- Other fields -->")) {
-
-					otherFields = true;
-				}
-				else if (otherFields) {
-					return;
-				}
-			}
-			else if (otherFields && (node instanceof Element)) {
-				Element element = (Element)node;
-
-				if (!Objects.equals(element.getName(), "column")) {
-					continue;
-				}
-
-				String columnName = element.attributeValue("name");
-
-				if (_isStatusColumnName(previousColumnName) &&
-					!_isStatusColumnName(columnName)) {
-
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Incorrect order '", entityName, "#",
-							previousColumnName, "'. Status columns should ",
-							"come last in the category 'Other fields'."));
-				}
-
-				previousColumnName = columnName;
-			}
-		}
 	}
 
 	private boolean _isStatusColumnName(String columnName) {

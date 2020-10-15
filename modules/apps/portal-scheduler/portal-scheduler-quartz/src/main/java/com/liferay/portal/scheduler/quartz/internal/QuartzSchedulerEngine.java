@@ -640,9 +640,8 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 
 		JobDataMap jobDataMap = jobDetail.getJobDataMap();
 
-		String description = jobDataMap.getString(SchedulerEngine.DESCRIPTION);
-
-		schedulerResponse.setDescription(description);
+		schedulerResponse.setDescription(
+			jobDataMap.getString(SchedulerEngine.DESCRIPTION));
 
 		String destinationName = jobDataMap.getString(
 			SchedulerEngine.DESTINATION_NAME);

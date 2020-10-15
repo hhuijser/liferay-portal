@@ -82,15 +82,30 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 
 				String columnName = element.attributeValue("name");
 
-				if (_isStatusColumnName(previousColumnName) &&
-					!_isStatusColumnName(columnName)) {
+				if ((previousColumnName == null) ||
+					_isStatusColumnName(columnName)) {
 
+					previousColumnName = columnName;
+
+					continue;
+				}
+
+				if (_isStatusColumnName(previousColumnName)) {
 					addMessage(
 						fileName,
 						StringBundler.concat(
 							"Incorrect order '", entityName, "#",
 							previousColumnName, "'. Status columns should ",
 							"come last in the category 'Other fields'."));
+				}
+				else if (previousColumnName.equals("lastPublishDate")) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order '", entityName,
+							"#lastPublishDate'. 'lastPublishDate' column  ",
+							"should come last (only followed by status ",
+							"columns) in the category 'Other fields'."));
 				}
 
 				previousColumnName = columnName;

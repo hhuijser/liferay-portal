@@ -98,7 +98,8 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 
 			String entityName = entityElement.attributeValue("name");
 
-			_checkStatusColumns(fileName, entityElement, entityName);
+			_checkColumnsThatShouldComeLast(
+				fileName, entityElement, entityName);
 
 			List<String> columnNames = new ArrayList<>();
 
@@ -159,7 +160,7 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 			new ServiceExceptionElementComparator());
 	}
 
-	private void _checkStatusColumns(
+	private void _checkColumnsThatShouldComeLast(
 		String fileName, Element entityElement, String entityName) {
 
 		Iterator<Node> iterator = entityElement.nodeIterator();

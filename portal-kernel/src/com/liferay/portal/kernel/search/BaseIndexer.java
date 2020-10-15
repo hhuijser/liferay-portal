@@ -510,9 +510,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 			}
 
 			if (ids.length > 0) {
-				long companyId = GetterUtil.getLong(ids[0]);
-
-				CompanyThreadLocal.setCompanyId(companyId);
+				CompanyThreadLocal.setCompanyId(GetterUtil.getLong(ids[0]));
 			}
 
 			doReindex(ids);

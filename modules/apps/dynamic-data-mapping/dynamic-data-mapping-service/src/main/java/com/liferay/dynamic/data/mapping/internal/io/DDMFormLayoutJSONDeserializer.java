@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -215,9 +214,8 @@ public class DDMFormLayoutJSONDeserializer
 	protected void setDDMFormLayoutDefaultLocale(
 		String defaultLanguageId, DDMFormLayout ddmFormLayout) {
 
-		Locale defaultLocale = LocaleUtil.fromLanguageId(defaultLanguageId);
-
-		ddmFormLayout.setDefaultLocale(defaultLocale);
+		ddmFormLayout.setDefaultLocale(
+			LocaleUtil.fromLanguageId(defaultLanguageId));
 	}
 
 	protected void setDDMFormLayoutPageDescription(

@@ -524,7 +524,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.ReferenceAnnotationCheck">
 			<message key="default.unbind.redundant" value="No need to specify default ''unbind'' method. See https://osgi.org/javadoc/r4v43/cmpn/org/osgi/service/component/annotations/Reference.html#unbind()" />
 			<message key="reference.move" value="Move @Reference from method ''{0}'' to field ''{1}''" />
-			<message key="target.avoid" value="Avoid using ''target = {0}''" />
+			<message key="target.value.incorrect" value="Do not use ''target = {0}''" />
 			<message key="unbind.dynamic.policy.missing" value="Always specify a valid ''unbind'' method when using ''policy = ReferencePolicy.DYNAMIC'' policy. See https://osgi.org/javadoc/r4v43/cmpn/org/osgi/service/component/annotations/Reference.html#unbind()" />
 			<message key="unbind.static.policy.missing" value="Specify ''unbind'' method. Use ''unbind = {0}'' when ''unbind'' method is not needed. See https://osgi.org/javadoc/r4v43/cmpn/org/osgi/service/component/annotations/Reference.html#unbind()" />
 			<message key="volatile.missing" value="Variable ''{0}'' should be volatile" />

@@ -162,10 +162,10 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 	}
 
 	private void _checkTarget(DetailAST annotationDetailAST) {
-		String targetName = _getAnnotationMemberValue(
+		String targetValue = _getAnnotationMemberValue(
 			annotationDetailAST, "target", null);
 
-		if (targetName == null) {
+		if (targetValue == null) {
 			return;
 		}
 
@@ -179,14 +179,12 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 			}
 		}
 
-		List<String> avoidReferenceTargetNames = getAttributeValues(
-			_AVOID_REFERENCE_TARGET_NAMES);
+		List<String> forbiddenReferenceTargetValues = getAttributeValues(
+			_FORBIDDEN_REFERENCE_TARGET_VALUES);
 
-		if (!avoidReferenceTargetNames.contains(targetName)) {
-			return;
+		if (forbiddenReferenceTargetValues.contains(targetValue)) {
+			log(annotationDetailAST, _MSG_INCORRECT_TARGET_VALUE, targetValue);
 		}
-
-		log(annotationDetailAST, _MSG_AVOID_TARGET, targetName);
 	}
 
 	private void _checkUnbind(
@@ -319,10 +317,11 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 
 	private static final String _ALLOWED_FILE_NAMES = "allowedFileNames";
 
-	private static final String _AVOID_REFERENCE_TARGET_NAMES =
-		"avoidReferenceTargetNames";
+	private static final String _FORBIDDEN_REFERENCE_TARGET_VALUES =
+		"forbiddenReferenceTargetValues";
 
-	private static final String _MSG_AVOID_TARGET = "target.avoid";
+	private static final String _MSG_INCORRECT_TARGET_VALUE =
+		"target.value.incorrect";
 
 	private static final String _MSG_MISSING_DYNAMIC_POLICY_UNBIND =
 		"unbind.dynamic.policy.missing";

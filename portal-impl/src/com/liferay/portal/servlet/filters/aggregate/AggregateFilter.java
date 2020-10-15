@@ -423,9 +423,8 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 					fileLastModifiedTime) {
 
 				if (cacheContentTypeFile.exists()) {
-					String contentType = FileUtil.read(cacheContentTypeFile);
-
-					httpServletResponse.setContentType(contentType);
+					httpServletResponse.setContentType(
+						FileUtil.read(cacheContentTypeFile));
 				}
 				else if (resourcePath.endsWith(_CSS_EXTENSION)) {
 					httpServletResponse.setContentType(

@@ -358,9 +358,7 @@ public class WorkflowDefinitionLinkDisplayContext {
 				searchTerms.getKeywords(), false);
 		}
 
-		int total = workflowDefinitionLinkSearchEntries.size();
-
-		searchContainer.setTotal(total);
+		searchContainer.setTotal(workflowDefinitionLinkSearchEntries.size());
 
 		Collections.sort(
 			workflowDefinitionLinkSearchEntries,

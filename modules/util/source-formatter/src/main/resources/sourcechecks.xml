@@ -1213,6 +1213,7 @@
 			<description name="Checks that the `entity name` in `service.xml` does not equal the `package name`." />
 		</check>
 		<check name="XMLServiceFileCheck">
+			<property name="allowedIncorrectLastPublishDateEntities" value="CommerceCountry,CPDefinition,CPInstance,PollsQuestion,PollsVote" />
 			<property name="checkMVCCEnabled" value="false" />
 		</check>
 		<check name="XMLSolrSchemaFileCheck" />

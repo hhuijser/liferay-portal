@@ -51,7 +51,8 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 	}
 
 	private void _checkColumnsThatShouldComeLast(
-		String fileName, Element entityElement, String entityName) {
+		String fileName, String absolutePath, Element entityElement,
+		String entityName) {
 
 		Iterator<Node> iterator = entityElement.nodeIterator();
 
@@ -99,13 +100,22 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 							"come last in the category 'Other fields'."));
 				}
 				else if (previousColumnName.equals("lastPublishDate")) {
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Incorrect order '", entityName,
-							"#lastPublishDate'. 'lastPublishDate' column  ",
-							"should come last (only followed by status ",
-							"columns) in the category 'Other fields'."));
+					List<String> allowedIncorrectLastPublishDateEntities =
+						getAttributeValues(
+							_ALLOWED_INCORRECT_LAST_PUBLISHED_DATE_ENTITIES_KEY,
+							absolutePath);
+
+					if (!allowedIncorrectLastPublishDateEntities.contains(
+							entityName)) {
+
+						addMessage(
+							fileName,
+							StringBundler.concat(
+								"Incorrect order '", entityName,
+								"#lastPublishDate'. 'lastPublishDate' column ",
+								"should come last (only followed by status ",
+								"columns) in the category 'Other fields'."));
+					}
 				}
 
 				previousColumnName = columnName;
@@ -162,7 +172,7 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 			String entityName = entityElement.attributeValue("name");
 
 			_checkColumnsThatShouldComeLast(
-				fileName, entityElement, entityName);
+				fileName, absolutePath, entityElement, entityName);
 
 			List<String> columnNames = new ArrayList<>();
 
@@ -236,6 +246,10 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 
 		return false;
 	}
+
+	private static final String
+		_ALLOWED_INCORRECT_LAST_PUBLISHED_DATE_ENTITIES_KEY =
+			"allowedIncorrectLastPublishDateEntities";
 
 	private static final String _ALLOWED_MISSING_COMPANY_ID_ENTITY_NAMES_KEY =
 		"allowedMissingCompanyIdEntityNames";

@@ -148,11 +148,9 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 		String defaultUnbindMethodName = _getDefaultUnbindMethodName(
 			methodName);
 
-		int lineNo = annotationDetailAST.getLineNo();
-
 		_checkUnbind(
-			classDefinitionDetailAST, defaultUnbindMethodName, unbindName,
-			policyName, lineNo);
+			annotationDetailAST, classDefinitionDetailAST,
+			defaultUnbindMethodName, unbindName, policyName);
 
 		if (policyName.endsWith(_POLICY_DYNAMIC) && (unbindName == null)) {
 			_checkDynamicMethod(
@@ -160,12 +158,13 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 				defaultUnbindMethodName);
 		}
 
-		_checkTarget(
-			_getAnnotationMemberValue(annotationDetailAST, "target", null),
-			lineNo);
+		_checkTarget(annotationDetailAST);
 	}
 
-	private void _checkTarget(String targetName, int lineNo) {
+	private void _checkTarget(DetailAST annotationDetailAST) {
+		String targetName = _getAnnotationMemberValue(
+			annotationDetailAST, "target", null);
+
 		if (targetName == null) {
 			return;
 		}
@@ -187,28 +186,30 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 			return;
 		}
 
-		log(lineNo, _MSG_AVOID_TARGET, targetName);
+		log(annotationDetailAST, _MSG_AVOID_TARGET, targetName);
 	}
 
 	private void _checkUnbind(
-		DetailAST classDefinitionDetailAST, String defaultUnbindMethodName,
-		String unbindName, String policyName, int lineNo) {
+		DetailAST annotationDetailAST, DetailAST classDefinitionDetailAST,
+		String defaultUnbindMethodName, String unbindName, String policyName) {
 
 		if (unbindName == null) {
 			if (policyName.endsWith(_POLICY_STATIC) &&
 				!_containsMethod(
 					classDefinitionDetailAST, defaultUnbindMethodName)) {
 
-				log(lineNo, _MSG_MISSING_STATIC_POLICY_UNBIND, _NO_UNBIND);
+				log(
+					annotationDetailAST, _MSG_MISSING_STATIC_POLICY_UNBIND,
+					_NO_UNBIND);
 			}
 		}
 		else if (unbindName.equals("\"" + defaultUnbindMethodName + "\"")) {
-			log(lineNo, _MSG_REDUNDANT_DEFAULT_UNBIND);
+			log(annotationDetailAST, _MSG_REDUNDANT_DEFAULT_UNBIND);
 		}
 		else if (unbindName.equals(_NO_UNBIND) &&
 				 policyName.endsWith(_POLICY_DYNAMIC)) {
 
-			log(lineNo, _MSG_MISSING_DYNAMIC_POLICY_UNBIND);
+			log(annotationDetailAST, _MSG_MISSING_DYNAMIC_POLICY_UNBIND);
 		}
 	}
 

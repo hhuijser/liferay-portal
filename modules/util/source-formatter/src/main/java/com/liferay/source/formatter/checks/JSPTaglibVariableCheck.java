@@ -97,7 +97,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 				String taglibValue = array[1];
 
-				if (_hasVariableReference(
+				if (hasVariableReference(
 						s, taglibValue,
 						s.lastIndexOf("=\"<%= " + variableName + " %>\""))) {
 
@@ -202,43 +202,6 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		return count;
 	}
 
-	private boolean _hasVariableReference(
-		String content, String value, int pos) {
-
-		if (pos == -1) {
-			return false;
-		}
-
-		pos = content.indexOf("\n", pos);
-
-		Matcher matcher1 = _methodCallPattern.matcher(value);
-
-		while (matcher1.find()) {
-			Pattern pattern = Pattern.compile(
-				"\\b(?<!['\"])" + matcher1.group(1) + "\\.(\\w+)?\\(");
-
-			Matcher matcher2 = pattern.matcher(content);
-
-			while (matcher2.find()) {
-				if (matcher2.start() > pos) {
-					break;
-				}
-
-				String methodName = matcher2.group(1);
-
-				if (!methodName.startsWith("get") &&
-					!methodName.startsWith("is")) {
-
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	private static final Pattern _methodCallPattern = Pattern.compile(
-		"\\b(?<!['\"])([a-z]\\w+)\\.(\\w+)?\\(");
 	private static final Pattern _taglibVariablePattern = Pattern.compile(
 		"\n(((\t*)([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);\n)+)\\s*%>\n",
 		Pattern.DOTALL);

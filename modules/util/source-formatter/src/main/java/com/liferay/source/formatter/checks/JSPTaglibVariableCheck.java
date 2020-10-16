@@ -89,10 +89,17 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 
 				String variableName = variableTypeAndName.substring(y + 1);
 
+				if (!nextTags.contains("=\"<%= " + variableName + " %>\"")) {
+					continue;
+				}
+
+				s = content.substring(x);
+
 				String taglibValue = array[1];
 
 				if (_hasVariableReference(
-						content.substring(x), variableName, taglibValue)) {
+						s, taglibValue,
+						s.lastIndexOf("=\"<%= " + variableName + " %>\""))) {
 
 					continue;
 				}
@@ -113,10 +120,6 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 							getLineNumber(content, matcher.start(1)));
 					}
 
-					continue;
-				}
-
-				if (!nextTags.contains("=\"<%= " + variableName + " %>\"")) {
 					continue;
 				}
 
@@ -200,18 +203,15 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 	}
 
 	private boolean _hasVariableReference(
-		String content, String variableName, String taglibValue) {
+		String content, String value, int pos) {
 
-		int endPosition = content.lastIndexOf(
-			"=\"<%= " + variableName + " %>\"");
-
-		if (endPosition == -1) {
+		if (pos == -1) {
 			return false;
 		}
 
-		endPosition = content.indexOf("\n", endPosition);
+		pos = content.indexOf("\n", pos);
 
-		Matcher matcher1 = _methodCallPattern.matcher(taglibValue);
+		Matcher matcher1 = _methodCallPattern.matcher(value);
 
 		while (matcher1.find()) {
 			Pattern pattern = Pattern.compile(
@@ -220,7 +220,7 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 			Matcher matcher2 = pattern.matcher(content);
 
 			while (matcher2.find()) {
-				if (matcher2.start() > endPosition) {
+				if (matcher2.start() > pos) {
 					break;
 				}
 

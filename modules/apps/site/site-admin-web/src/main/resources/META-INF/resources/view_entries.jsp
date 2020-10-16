@@ -32,11 +32,10 @@
 
 		String siteImageURL = curGroup.getLogoURL(themeDisplay, false);
 
-		Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-			"actions", siteAdminManagementToolbarDisplayContext.getAvailableActions(curGroup)
-		).build();
-
-		row.setData(rowData);
+		row.setData(
+			HashMapBuilder.<String, Object>put(
+				"actions", siteAdminManagementToolbarDisplayContext.getAvailableActions(curGroup)
+			).build());
 		%>
 
 		<portlet:renderURL var="viewSubsitesURL">

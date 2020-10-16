@@ -137,11 +137,10 @@ TrashManagementToolbarDisplayContext trashManagementToolbarDisplayContext = new 
 						viewContentURLString = viewContentURL.toString();
 					}
 
-					Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-						"actions", trashManagementToolbarDisplayContext.getAvailableActions(trashEntry)
-					).build();
-
-					row.setData(rowData);
+					row.setData(
+						HashMapBuilder.<String, Object>put(
+							"actions", trashManagementToolbarDisplayContext.getAvailableActions(trashEntry)
+						).build());
 					%>
 
 					<c:choose>

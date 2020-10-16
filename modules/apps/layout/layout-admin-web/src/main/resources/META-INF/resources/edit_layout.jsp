@@ -32,9 +32,7 @@ Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 LayoutRevision layoutRevision = LayoutStagingUtil.getLayoutRevision(selLayout);
 
 if (layoutRevision != null) {
-	long layoutSetBranchId = layoutRevision.getLayoutSetBranchId();
-
-	if (StagingUtil.isIncomplete(selLayout, layoutSetBranchId)) {
+	if (StagingUtil.isIncomplete(selLayout, layoutRevision.getLayoutSetBranchId())) {
 		portletDisplay.setShowStagingIcon(false);
 	}
 }

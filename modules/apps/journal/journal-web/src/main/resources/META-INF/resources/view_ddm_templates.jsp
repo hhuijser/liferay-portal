@@ -75,11 +75,10 @@ if (ddmStructure != null) {
 				rowHREF = rowURL.toString();
 			}
 
-			Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-				"actions", journalDDMTemplateManagementToolbarDisplayContext.getAvailableActions(ddmTemplate)
-			).build();
-
-			row.setData(rowData);
+			row.setData(
+				HashMapBuilder.<String, Object>put(
+					"actions", journalDDMTemplateManagementToolbarDisplayContext.getAvailableActions(ddmTemplate)
+				).build());
 			%>
 
 			<c:choose>

@@ -56,11 +56,10 @@ LayoutPrototypeManagementToolbarDisplayContext layoutPrototypeManagementToolbarD
 
 			row.setCssClass("entry-card lfr-asset-item");
 
-			Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-				"actions", layoutPrototypeManagementToolbarDisplayContext.getAvailableActions(layoutPrototype)
-			).build();
-
-			row.setData(rowData);
+			row.setData(
+				HashMapBuilder.<String, Object>put(
+					"actions", layoutPrototypeManagementToolbarDisplayContext.getAvailableActions(layoutPrototype)
+				).build());
 			%>
 
 			<liferay-ui:search-container-column-text>

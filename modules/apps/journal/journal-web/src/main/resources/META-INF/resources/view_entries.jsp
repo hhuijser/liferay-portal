@@ -55,15 +55,14 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 					title = curArticle.getTitle(LocaleUtil.fromLanguageId(curArticle.getDefaultLanguageId()));
 				}
 
-				Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-					"actions", journalDisplayContext.getAvailableActions(curArticle)
-				).put(
-					"draggable", !BrowserSnifferUtil.isMobile(request) && (JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.DELETE) || JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE))
-				).put(
-					"title", HtmlUtil.escape(title)
-				).build();
-
-				row.setData(rowData);
+				row.setData(
+					HashMapBuilder.<String, Object>put(
+						"actions", journalDisplayContext.getAvailableActions(curArticle)
+					).put(
+						"draggable", !BrowserSnifferUtil.isMobile(request) && (JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.DELETE) || JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE))
+					).put(
+						"title", HtmlUtil.escape(title)
+					).build());
 
 				row.setPrimaryKey(HtmlUtil.escape(curArticle.getArticleId()));
 
@@ -257,19 +256,18 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 			<c:when test="<%= curFolder != null %>">
 
 				<%
-				Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-					"actions", journalDisplayContext.getAvailableActions(curFolder)
-				).put(
-					"draggable", !BrowserSnifferUtil.isMobile(request) && (JournalFolderPermission.contains(permissionChecker, curFolder, ActionKeys.DELETE) || JournalFolderPermission.contains(permissionChecker, curFolder, ActionKeys.UPDATE))
-				).put(
-					"folder", true
-				).put(
-					"folder-id", curFolder.getFolderId()
-				).put(
-					"title", HtmlUtil.escape(curFolder.getName())
-				).build();
-
-				row.setData(rowData);
+				row.setData(
+					HashMapBuilder.<String, Object>put(
+						"actions", journalDisplayContext.getAvailableActions(curFolder)
+					).put(
+						"draggable", !BrowserSnifferUtil.isMobile(request) && (JournalFolderPermission.contains(permissionChecker, curFolder, ActionKeys.DELETE) || JournalFolderPermission.contains(permissionChecker, curFolder, ActionKeys.UPDATE))
+					).put(
+						"folder", true
+					).put(
+						"folder-id", curFolder.getFolderId()
+					).put(
+						"title", HtmlUtil.escape(curFolder.getName())
+					).build());
 				row.setPrimaryKey(String.valueOf(curFolder.getPrimaryKey()));
 
 				PortletURL rowURL = liferayPortletResponse.createRenderURL();

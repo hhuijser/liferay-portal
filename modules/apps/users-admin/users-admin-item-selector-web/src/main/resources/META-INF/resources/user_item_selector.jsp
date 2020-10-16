@@ -41,13 +41,12 @@ String displayStyle = userItemSelectorViewDisplayContext.getDisplayStyle();
 		>
 
 			<%
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"id", user.getUserId()
-			).put(
-				"name", user.getFullName()
-			).build();
-
-			row.setData(data);
+			row.setData(
+				HashMapBuilder.<String, Object>put(
+					"id", user.getUserId()
+				).put(
+					"name", user.getFullName()
+				).build());
 			%>
 
 			<c:choose>

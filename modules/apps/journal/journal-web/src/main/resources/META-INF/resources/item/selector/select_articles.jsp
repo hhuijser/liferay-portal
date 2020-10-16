@@ -85,11 +85,10 @@ JournalArticleItemSelectorViewDisplayContext journalArticleItemSelectorViewDispl
 						"titleMap", curArticle.getTitleMap()
 					);
 
-					Map<String, Object> data = HashMapBuilder.<String, Object>put(
-						"value", articleJSONObject.toString()
-					).build();
-
-					row.setData(data);
+					row.setData(
+						HashMapBuilder.<String, Object>put(
+							"value", articleJSONObject.toString()
+						).build());
 					%>
 
 					<c:choose>

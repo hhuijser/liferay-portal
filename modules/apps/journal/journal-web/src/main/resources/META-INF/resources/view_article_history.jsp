@@ -66,11 +66,10 @@ JournalArticle article = journalDisplayContext.getArticle();
 				>
 
 					<%
-					Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-						"actions", journalHistoryManagementToolbarDisplayContext.getAvailableActions(articleVersion)
-					).build();
-
-					row.setData(rowData);
+					row.setData(
+						HashMapBuilder.<String, Object>put(
+							"actions", journalHistoryManagementToolbarDisplayContext.getAvailableActions(articleVersion)
+						).build());
 
 					row.setPrimaryKey(articleVersion.getArticleId() + JournalPortlet.VERSION_SEPARATOR + articleVersion.getVersion());
 					%>

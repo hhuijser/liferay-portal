@@ -47,57 +47,6 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 		}
 	}
 
-	private void _checkVariableDefinition(
-		DetailAST detailAST, DetailAST variableDefinitionDetailAST) {
-
-		if (hasParentWithTokenType(
-				variableDefinitionDetailAST, TokenTypes.FOR_EACH_CLAUSE,
-				TokenTypes.FOR_INIT)) {
-
-			return;
-		}
-
-		DetailAST nameDetailAST = variableDefinitionDetailAST.findFirstToken(
-			TokenTypes.IDENT);
-
-		List<DetailAST> dependentIdentDetailASTList =
-			getDependentIdentDetailASTList(
-				variableDefinitionDetailAST,
-				variableDefinitionDetailAST.getLineNo());
-
-		if (dependentIdentDetailASTList.isEmpty()) {
-			return;
-		}
-
-		String variableName = nameDetailAST.getText();
-
-		DetailAST firstDependentIdentDetailAST =
-			dependentIdentDetailASTList.get(0);
-
-		if (!_containsMethodName(
-				variableDefinitionDetailAST,
-				StringBundler.concat(
-					"_?(add|channel|close|copy|create|delete|execute|import|",
-					"manage|next|open|post|put|read|register|resolve|run|send|",
-					"test|transform|unzip|update|zip)([A-Z].*)?"),
-				"currentTimeMillis", "nextVersion", "toString") &&
-			!_containsVariableType(
-				variableDefinitionDetailAST, "ActionQueue", "File")) {
-
-			_checkMoveAfterBranchingStatement(
-				detailAST, variableDefinitionDetailAST, variableName,
-				firstDependentIdentDetailAST);
-			_checkMoveInsideIfStatement(
-				variableDefinitionDetailAST, nameDetailAST, variableName,
-				dependentIdentDetailASTList);
-		}
-
-		_checkInline(
-			variableDefinitionDetailAST, variableName,
-			_getAssignMethodCallDetailAST(variableDefinitionDetailAST),
-			firstDependentIdentDetailAST, dependentIdentDetailASTList);
-	}
-
 	private void _checkInline(
 		DetailAST detailAST, String variableName,
 		DetailAST assignMethodCallDetailAST, DetailAST identDetailAST,
@@ -243,6 +192,57 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 				_MSG_VARIABLE_DECLARATION_MOVE_INSIDE_IF_STATEMENT,
 				variableName, ifStatementDetailAST.getLineNo());
 		}
+	}
+
+	private void _checkVariableDefinition(
+		DetailAST detailAST, DetailAST variableDefinitionDetailAST) {
+
+		if (hasParentWithTokenType(
+				variableDefinitionDetailAST, TokenTypes.FOR_EACH_CLAUSE,
+				TokenTypes.FOR_INIT)) {
+
+			return;
+		}
+
+		DetailAST nameDetailAST = variableDefinitionDetailAST.findFirstToken(
+			TokenTypes.IDENT);
+
+		List<DetailAST> dependentIdentDetailASTList =
+			getDependentIdentDetailASTList(
+				variableDefinitionDetailAST,
+				variableDefinitionDetailAST.getLineNo());
+
+		if (dependentIdentDetailASTList.isEmpty()) {
+			return;
+		}
+
+		String variableName = nameDetailAST.getText();
+
+		DetailAST firstDependentIdentDetailAST =
+			dependentIdentDetailASTList.get(0);
+
+		if (!_containsMethodName(
+				variableDefinitionDetailAST,
+				StringBundler.concat(
+					"_?(add|channel|close|copy|create|delete|execute|import|",
+					"manage|next|open|post|put|read|register|resolve|run|send|",
+					"test|transform|unzip|update|zip)([A-Z].*)?"),
+				"currentTimeMillis", "nextVersion", "toString") &&
+			!_containsVariableType(
+				variableDefinitionDetailAST, "ActionQueue", "File")) {
+
+			_checkMoveAfterBranchingStatement(
+				detailAST, variableDefinitionDetailAST, variableName,
+				firstDependentIdentDetailAST);
+			_checkMoveInsideIfStatement(
+				variableDefinitionDetailAST, nameDetailAST, variableName,
+				dependentIdentDetailASTList);
+		}
+
+		_checkInline(
+			variableDefinitionDetailAST, variableName,
+			_getAssignMethodCallDetailAST(variableDefinitionDetailAST),
+			firstDependentIdentDetailAST, dependentIdentDetailASTList);
 	}
 
 	private boolean _containsMethodName(

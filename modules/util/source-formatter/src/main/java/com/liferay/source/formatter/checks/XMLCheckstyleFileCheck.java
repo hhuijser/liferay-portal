@@ -62,10 +62,6 @@ public class XMLCheckstyleFileCheck extends BaseFileCheck {
 		String fileName, Element moduleElement, String moduleName,
 		String propertyName) {
 
-		if (true) {
-			return;
-		}
-
 		for (Element propertyElement :
 				(List<Element>)moduleElement.elements("property")) {
 

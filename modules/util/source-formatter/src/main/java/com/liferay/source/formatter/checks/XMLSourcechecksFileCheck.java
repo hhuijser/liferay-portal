@@ -52,10 +52,6 @@ public class XMLSourcechecksFileCheck extends BaseFileCheck {
 		String fileName, Element checkElement, String checkName,
 		String tagName) {
 
-		if (true) {
-			return;
-		}
-
 		Element tagElement = checkElement.element(tagName);
 
 		if (tagElement == null) {

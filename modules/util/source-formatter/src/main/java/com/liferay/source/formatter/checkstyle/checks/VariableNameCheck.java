@@ -25,6 +25,7 @@ import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,9 @@ public class VariableNameCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		if (detailAST.findFirstToken(TokenTypes.ELLIPSIS) != null) {
+		if ((detailAST.findFirstToken(TokenTypes.ELLIPSIS) != null) ||
+			AnnotationUtil.containsAnnotation(detailAST, "Deprecated")) {
+
 			return;
 		}
 

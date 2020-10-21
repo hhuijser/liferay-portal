@@ -47,15 +47,6 @@ public class VariableNameCheck extends BaseCheck {
 			return;
 		}
 
-		DetailAST modifiersDetailAST = detailAST.findFirstToken(
-			TokenTypes.MODIFIERS);
-
-		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PROTECTED) ||
-			modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
-
-			return;
-		}
-
 		String name = _getVariableName(detailAST);
 
 		if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {

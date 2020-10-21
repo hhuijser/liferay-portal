@@ -3,13 +3,13 @@
 Check | Category | File Extensions | Description
 ----- | -------- | --------------- | -----------
 [AnnotationUseStyleCheck](https://checkstyle.sourceforge.io/config_annotation.html#AnnotationUseStyle) | [Styling](styling_checks.markdown#styling-checks) | .java | Checks the style of elements in annotations. |
-AnonymousClassCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for serialization issue when using anonymous class. |
+[AnonymousClassCheck](checks/anonymous_class_check.markdown#anonymousclasscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for serialization issue when using anonymous class. |
 AppendCheck | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks instances where literal Strings are appended. |
 ArquillianCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for correct use of `com.liferay.arquillian.extension.junit.bridge.junit.Arquillian`. |
 [ArrayCheck](checks/array_check.markdown#arraycheck) | [Performance](performance_checks.markdown#performance-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks if performance can be improved by using different mehods that can be used by collections. |
 [ArrayTypeStyleCheck](https://checkstyle.sourceforge.io/config_misc.html#ArrayTypeStyle) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks the style of array type definitions. |
 AssertEqualsCheck | [Styling](styling_checks.markdown#styling-checks) | .java | Checks that additional information is provided when calling `Assert.assertEquals`. |
-AttributeOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .java | Checks that attributes in anonymous classes are ordered alphabetically. |
+[AttributeOrderCheck](checks/attribute_order_check.markdown#attributeordercheck) | [Styling](styling_checks.markdown#styling-checks) | .java | Checks that attributes in anonymous classes are ordered alphabetically. |
 [AvoidNestedBlocksCheck](https://checkstyle.sourceforge.io/config_blocks.html#AvoidNestedBlocks) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds nested blocks (blocks that are used freely in the code). |
 [AvoidStarImportCheck](https://checkstyle.sourceforge.io/config_imports.html#AvoidStarImport) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks that there are no import statements that use the * notation. |
 [BNDBundleActivatorCheck](checks/bnd_bundle_activator_check.markdown#bndbundleactivatorcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Validates property value for `Bundle-Activator`. |
@@ -22,7 +22,7 @@ BNDCapabilityCheck | [Styling](styling_checks.markdown#styling-checks) | .bnd | 
 [BNDExportsCheck](checks/bnd_exports_check.markdown#bndexportscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks that modules not ending with `-api`, `-client`, `-spi`, `-tablig`, `-test-util` do not export packages. |
 [BNDImportsCheck](checks/bnd_imports_check.markdown#bndimportscheck) | [Styling](styling_checks.markdown#styling-checks) | .bnd | Sorts class names and checks for use of wildcards in property values for `-conditionalpackage`, `-exportcontents` and `Export-Package`. |
 [BNDIncludeResourceCheck](checks/bnd_include_resource_check.markdown#bndincluderesourcecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks for unnesecarry including of `test-classes/integration`. |
-BNDLiferayEnterpriseAppCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks for correct use of property `Liferay-Enterprise-App`. |
+[BNDLiferayEnterpriseAppCheck](checks/bnd_liferay_enterprise_app_check.markdown#bndliferayenterpriseappcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks for correct use of property `Liferay-Enterprise-App`. |
 [BNDLiferayRelengCategoryCheck](checks/bnd_liferay_releng_category_check.markdown#bndliferayrelengcategorycheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Validates `Liferay-Releng-Category` properties |
 BNDLineBreaksCheck | [Styling](styling_checks.markdown#styling-checks) | .bnd | Finds missing and unnecessary line breaks in `.bnd` files. |
 [BNDMultipleAppBNDsCheck](checks/bnd_multiple_app_bnds_check.markdown#bndmultipleappbndscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .bnd | Checks for duplicate `app.bnd` (when both `/apps/` and `/apps/dxp/` contain the same module). |
@@ -38,7 +38,7 @@ CQLKeywordCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention
 CSSCommentsCheck | [Styling](styling_checks.markdown#styling-checks) | .css or .scss | Validates comments in `.css` files. |
 CSSImportsCheck | [Styling](styling_checks.markdown#styling-checks) | .css or .scss | Sorts and groups imports in `.css` files. |
 CSSPropertiesOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .css or .scss | Sorts properties in `.css` files. |
-CamelCaseNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks variable names for correct use of `CamelCase`. |
+[CamelCaseNameCheck](checks/camel_case_name_check.markdown#camelcasenamecheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks variable names for correct use of `CamelCase`. |
 [ChainingCheck](checks/chaining_check.markdown#chainingcheck) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that chaining is only applied on certain types and methods. |
 [CodeownersFileLocationCheck](checks/codeowners_file_location_check.markdown#codeownersfilelocationcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | CODEOWNERS | Checks that `CODEOWNERS` files are located in `.github` directory. |
 CodeownersWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | CODEOWNERS | Finds missing and unnecessary whitespace in `CODEOWNERS` files. |
@@ -46,7 +46,7 @@ CompatClassImportsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-pr
 ConcatCheck | [Performance](performance_checks.markdown#performance-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks for correct use of `StringBundler.concat`. |
 ConfigDefinitionKeysCheck | [Styling](styling_checks.markdown#styling-checks) | .cfg or .config | Sorts definition keys in `.config` files. |
 ConstantNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that variable names of constants follow correct naming rules. |
-ConstructorMissingEmptyLineCheck | [Styling](styling_checks.markdown#styling-checks) | .java | Checks for line breaks when assiging variables in constructor. |
+[ConstructorMissingEmptyLineCheck](checks/constructor_missing_empty_line_check.markdown#constructormissingemptylinecheck) | [Styling](styling_checks.markdown#styling-checks) | .java | Checks for line breaks when assiging variables in constructor. |
 ContractionsCheck | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds contractions in Strings (such as `can't` or `you're`). |
 [CopyrightCheck](checks/copyright_check.markdown#copyrightcheck) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Validates `copyright` header. |
 [CreationMenuBuilderCheck](checks/builder_check.markdown#buildercheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | Checks that `CreationMenuBuilder` is used when possible. |
@@ -96,7 +96,7 @@ HTMLWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .html 
 [IncorrectFileLocationCheck](checks/incorrect_file_location_check.markdown#incorrectfilelocationcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | | Checks that `/src/*/java/` only contains `.java` files. |
 InstanceofOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Check the order of `instanceof` calls. |
 [ItemListBuilderCheck](checks/builder_check.markdown#buildercheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | Checks that `DropdownItemListBuilder`, `LabelItemListBuilder` or `NavigationItemListBuilder` is used when possible. |
-JSLodashDependencyCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .js or .jsx | Finds incorrect use of `AUI._`. |
+[JSLodashDependencyCheck](checks/js_lodash_dependency_check.markdown#jslodashdependencycheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .js or .jsx | Finds incorrect use of `AUI._`. |
 [JSONDeprecatedPackagesCheck](checks/json_deprecated_packages_check.markdown#jsondeprecatedpackagescheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .json or .npmbridgerc | Finds incorrect use of deprecated packages in `package.json` files. |
 JSONNamingCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks if variable names follow naming conventions. |
 JSONPackageJSONBNDVersionCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .json or .npmbridgerc | Checks the version for dependencies in `package.json` files. |
@@ -109,7 +109,7 @@ JSONStylingCheck | [Styling](styling_checks.markdown#styling-checks) | .json or 
 [JSPDefineObjectsCheck](checks/jsp_define_objects_check.markdown#jspdefineobjectscheck) | [Performance](performance_checks.markdown#performance-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks for unnesecarry duplication of code that already exists in `defineObjects`. |
 JSPEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds missing and unnecessary empty lines. |
 JSPExceptionOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks the order of exceptions in `.jsp` files. |
-JSPFileNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks if the file name of `.jsp` or `.jspf` follows the naming conventions. |
+[JSPFileNameCheck](checks/jsp_file_name_check.markdown#jspfilenamecheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks if the file name of `.jsp` or `.jspf` follows the naming conventions. |
 [JSPFunctionNameCheck](checks/jsp_function_name_check.markdown#jspfunctionnamecheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .jsp, .jspf, .tag, .tpl or .vm | Check if the names of functions in `.jsp` files follow naming conventions. |
 [JSPIllegalSyntaxCheck](checks/jsp_illegal_syntax_check.markdown#jspillegalsyntaxcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds incorrect use of `System.out.print`, `console.log` or `debugger.*` in `.jsp` files. |
 [JSPImportsCheck](checks/jsp_imports_check.markdown#jspimportscheck) | [Styling](styling_checks.markdown#styling-checks) | .jsp, .jspf, .tag, .tpl or .vm | Sorts and groups imports in `.jsp` files. |
@@ -134,7 +134,7 @@ JSPSessionKeysCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-preven
 JSPStylingCheck | [Styling](styling_checks.markdown#styling-checks) | .jsp, .jspf, .tag, .tpl or .vm | Applies rules to enforce consisteny in code style. |
 JSPTagAttributesCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .jsp, .jspf, .tag, .tpl or .vm | Performs several checks on tag attributes. |
 [JSPTaglibVariableCheck](checks/jsp_taglib_variable_check.markdown#jsptaglibvariablecheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks if variable names follow naming conventions. |
-JSPUnusedJSPFCheck | [Performance](performance_checks.markdown#performance-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds `.jspf` files that are not used. |
+[JSPUnusedJSPFCheck](checks/jsp_unused_jspf_check.markdown#jspunusedjspfcheck) | [Performance](performance_checks.markdown#performance-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds `.jspf` files that are not used. |
 JSPUnusedTermsCheck | [Performance](performance_checks.markdown#performance-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds taglibs, variables and imports that are unused. |
 JSPWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds missing and unnecessary whitespace in `.jsp` files. |
 JSPXSSVulnerabilitiesCheck | [Security](security_checks.markdown#security-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds xss vulnerabilities. |
@@ -238,7 +238,7 @@ JavaTermStylingCheck | [Styling](styling_checks.markdown#styling-checks) | .java
 [JavaTestMethodAnnotationsCheck](checks/java_test_method_annotations_check.markdown#javatestmethodannotationscheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java | Checks if methods with test annotations follow the naming conventions. |
 JavaTransactionBoundaryCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Finds direct `add*` or `get*` calls in `*ServiceImpl` (those should use the `*service` global variable instead). |
 [JavaUnsafeCastingCheck](checks/java_unsafe_casting_check.markdown#javaunsafecastingcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for potential ClassCastException. |
-JavaUnusedSourceFormatterChecksCheck | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | Finds `*Check` classes that are not configured. |
+[JavaUnusedSourceFormatterChecksCheck](checks/java_unused_source_formatter_checks_check.markdown#javaunusedsourceformattercheckscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java | Finds `*Check` classes that are not configured. |
 [JavaUpgradeClassCheck](checks/java_upgrade_class_check.markdown#javaupgradeclasscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Performs several checks on Upgrade classes. |
 JavaUpgradeConnectionCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Finds cases where `DataAccess.getConnection` is used (instead of using the availabe global variable `connection`). |
 JavaUpgradeVersionCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Verifies that the correct upgrade versions are used in classes that implement `UpgradeStepRegistrator`. |

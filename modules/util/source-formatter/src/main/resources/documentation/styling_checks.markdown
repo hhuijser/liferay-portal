@@ -6,7 +6,7 @@ Check | File Extensions | Description
 AppendCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks instances where literal Strings are appended. |
 [ArrayTypeStyleCheck](https://checkstyle.sourceforge.io/config_misc.html#ArrayTypeStyle) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks the style of array type definitions. |
 AssertEqualsCheck | .java | Checks that additional information is provided when calling `Assert.assertEquals`. |
-AttributeOrderCheck | .java | Checks that attributes in anonymous classes are ordered alphabetically. |
+[AttributeOrderCheck](checks/attribute_order_check.markdown#attributeordercheck) | .java | Checks that attributes in anonymous classes are ordered alphabetically. |
 [AvoidNestedBlocksCheck](https://checkstyle.sourceforge.io/config_blocks.html#AvoidNestedBlocks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds nested blocks (blocks that are used freely in the code). |
 BNDCapabilityCheck | .bnd | Sorts and applies logic to fix line breaks to property values for `Provide-Capability` and `Require-Capability`. |
 [BNDImportsCheck](checks/bnd_imports_check.markdown#bndimportscheck) | .bnd | Sorts class names and checks for use of wildcards in property values for `-conditionalpackage`, `-exportcontents` and `Export-Package`. |
@@ -20,7 +20,7 @@ CSSPropertiesOrderCheck | .css or .scss | Sorts properties in `.css` files. |
 [ChainingCheck](checks/chaining_check.markdown#chainingcheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that chaining is only applied on certain types and methods. |
 CodeownersWhitespaceCheck | CODEOWNERS | Finds missing and unnecessary whitespace in `CODEOWNERS` files. |
 ConfigDefinitionKeysCheck | .cfg or .config | Sorts definition keys in `.config` files. |
-ConstructorMissingEmptyLineCheck | .java | Checks for line breaks when assiging variables in constructor. |
+[ConstructorMissingEmptyLineCheck](checks/constructor_missing_empty_line_check.markdown#constructormissingemptylinecheck) | .java | Checks for line breaks when assiging variables in constructor. |
 ContractionsCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds contractions in Strings (such as `can't` or `you're`). |
 [CopyrightCheck](checks/copyright_check.markdown#copyrightcheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Validates `copyright` header. |
 [DefaultComesLastCheck](https://checkstyle.sourceforge.io/config_coding.html#DefaultComesLast) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that the `default` is after all the cases in a `switch` statement. |

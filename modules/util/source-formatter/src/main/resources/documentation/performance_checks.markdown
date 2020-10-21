@@ -9,7 +9,7 @@ ConcatCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks for correct use of 
 [GradleDependenciesCheck](checks/gradle_dependencies_check.markdown#gradledependenciescheck) | .gradle | Checks that `petra` modules are not depending on other modules. |
 [JSPDefineObjectsCheck](checks/jsp_define_objects_check.markdown#jspdefineobjectscheck) | .jsp, .jspf, .tag, .tpl or .vm | Checks for unnesecarry duplication of code that already exists in `defineObjects`. |
 [JSPStringMethodsCheck](checks/string_methods_check.markdown#stringmethodscheck) | .jsp, .jspf, .tag, .tpl or .vm | Finds cases of inefficient String operations. |
-JSPUnusedJSPFCheck | .jsp, .jspf, .tag, .tpl or .vm | Finds `.jspf` files that are not used. |
+[JSPUnusedJSPFCheck](checks/jsp_unused_jspf_check.markdown#jspunusedjspfcheck) | .jsp, .jspf, .tag, .tpl or .vm | Finds `.jspf` files that are not used. |
 JSPUnusedTermsCheck | .jsp, .jspf, .tag, .tpl or .vm | Finds taglibs, variables and imports that are unused. |
 JavaDataAccessConnectionCheck | .java | Finds calls to `DataAccess.getConnection` (use `DataAccess.getUpgradeOptimizedConnection` instead). |
 JavaHibernateSQLCheck | .java | Finds calls to `com.liferay.portal.kernel.dao.orm.Session.createSQLQuery` (use `Session.createSynchronizedSQLQuery` instead). |

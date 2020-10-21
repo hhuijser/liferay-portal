@@ -6,7 +6,7 @@ AppendCheck | [Styling](styling_checks.markdown#styling-checks) | Checks instanc
 [ArrayCheck](checks/array_check.markdown#arraycheck) | [Performance](performance_checks.markdown#performance-checks) | Checks if performance can be improved by using different mehods that can be used by collections. |
 [ArrayTypeStyleCheck](https://checkstyle.sourceforge.io/config_misc.html#ArrayTypeStyle) | [Styling](styling_checks.markdown#styling-checks) | Checks the style of array type definitions. |
 [AvoidNestedBlocksCheck](https://checkstyle.sourceforge.io/config_blocks.html#AvoidNestedBlocks) | [Styling](styling_checks.markdown#styling-checks) | Finds nested blocks (blocks that are used freely in the code). |
-CamelCaseNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks variable names for correct use of `CamelCase`. |
+[CamelCaseNameCheck](checks/camel_case_name_check.markdown#camelcasenamecheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks variable names for correct use of `CamelCase`. |
 [ChainingCheck](checks/chaining_check.markdown#chainingcheck) | [Styling](styling_checks.markdown#styling-checks) | Checks that chaining is only applied on certain types and methods. |
 CompatClassImportsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that classes are imported from `compat` modules, when possible. |
 ConcatCheck | [Performance](performance_checks.markdown#performance-checks) | Checks for correct use of `StringBundler.concat`. |
@@ -26,7 +26,7 @@ JSONNamingCheck | [Naming Conventions](naming_conventions_checks.markdown#naming
 [JSPDefineObjectsCheck](checks/jsp_define_objects_check.markdown#jspdefineobjectscheck) | [Performance](performance_checks.markdown#performance-checks) | Checks for unnesecarry duplication of code that already exists in `defineObjects`. |
 JSPEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary empty lines. |
 JSPExceptionOrderCheck | [Styling](styling_checks.markdown#styling-checks) | Checks the order of exceptions in `.jsp` files. |
-JSPFileNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks if the file name of `.jsp` or `.jspf` follows the naming conventions. |
+[JSPFileNameCheck](checks/jsp_file_name_check.markdown#jspfilenamecheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks if the file name of `.jsp` or `.jspf` follows the naming conventions. |
 [JSPFunctionNameCheck](checks/jsp_function_name_check.markdown#jspfunctionnamecheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Check if the names of functions in `.jsp` files follow naming conventions. |
 [JSPIllegalSyntaxCheck](checks/jsp_illegal_syntax_check.markdown#jspillegalsyntaxcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds incorrect use of `System.out.print`, `console.log` or `debugger.*` in `.jsp` files. |
 [JSPImportsCheck](checks/jsp_imports_check.markdown#jspimportscheck) | [Styling](styling_checks.markdown#styling-checks) | Sorts and groups imports in `.jsp` files. |
@@ -51,7 +51,7 @@ JSPSessionKeysCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-preven
 JSPStylingCheck | [Styling](styling_checks.markdown#styling-checks) | Applies rules to enforce consisteny in code style. |
 JSPTagAttributesCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Performs several checks on tag attributes. |
 [JSPTaglibVariableCheck](checks/jsp_taglib_variable_check.markdown#jsptaglibvariablecheck) | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks if variable names follow naming conventions. |
-JSPUnusedJSPFCheck | [Performance](performance_checks.markdown#performance-checks) | Finds `.jspf` files that are not used. |
+[JSPUnusedJSPFCheck](checks/jsp_unused_jspf_check.markdown#jspunusedjspfcheck) | [Performance](performance_checks.markdown#performance-checks) | Finds `.jspf` files that are not used. |
 JSPUnusedTermsCheck | [Performance](performance_checks.markdown#performance-checks) | Finds taglibs, variables and imports that are unused. |
 JSPWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary whitespace in `.jsp` files. |
 JSPXSSVulnerabilitiesCheck | [Security](security_checks.markdown#security-checks) | Finds xss vulnerabilities. |

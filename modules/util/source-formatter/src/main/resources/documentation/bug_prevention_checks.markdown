@@ -2,7 +2,7 @@
 
 Check | File Extensions | Description
 ----- | --------------- | -----------
-AnonymousClassCheck | .java | Checks for serialization issue when using anonymous class. |
+[AnonymousClassCheck](checks/anonymous_class_check.markdown#anonymousclasscheck) | .java | Checks for serialization issue when using anonymous class. |
 ArquillianCheck | .java | Checks for correct use of `com.liferay.arquillian.extension.junit.bridge.junit.Arquillian`. |
 [AvoidStarImportCheck](https://checkstyle.sourceforge.io/config_imports.html#AvoidStarImport) | .java | Checks that there are no import statements that use the * notation. |
 [BNDBundleActivatorCheck](checks/bnd_bundle_activator_check.markdown#bndbundleactivatorcheck) | .bnd | Validates property value for `Bundle-Activator`. |
@@ -12,7 +12,7 @@ ArquillianCheck | .java | Checks for correct use of `com.liferay.arquillian.exte
 [BNDDirectoryNameCheck](checks/bnd_directory_name_check.markdown#bnddirectorynamecheck) | .bnd | Checks if the directory names of the submodules match the parent module name. |
 [BNDExportsCheck](checks/bnd_exports_check.markdown#bndexportscheck) | .bnd | Checks that modules not ending with `-api`, `-client`, `-spi`, `-tablig`, `-test-util` do not export packages. |
 [BNDIncludeResourceCheck](checks/bnd_include_resource_check.markdown#bndincluderesourcecheck) | .bnd | Checks for unnesecarry including of `test-classes/integration`. |
-BNDLiferayEnterpriseAppCheck | .bnd | Checks for correct use of property `Liferay-Enterprise-App`. |
+[BNDLiferayEnterpriseAppCheck](checks/bnd_liferay_enterprise_app_check.markdown#bndliferayenterpriseappcheck) | .bnd | Checks for correct use of property `Liferay-Enterprise-App`. |
 [BNDLiferayRelengCategoryCheck](checks/bnd_liferay_releng_category_check.markdown#bndliferayrelengcategorycheck) | .bnd | Validates `Liferay-Releng-Category` properties |
 [BNDMultipleAppBNDsCheck](checks/bnd_multiple_app_bnds_check.markdown#bndmultipleappbndscheck) | .bnd | Checks for duplicate `app.bnd` (when both `/apps/` and `/apps/dxp/` contain the same module). |
 [BNDRangeCheck](checks/bnd_range_check.markdown#bndrangecheck) | .bnd | Checks for use or range expressions. |
@@ -36,7 +36,7 @@ GradleProvidedDependenciesCheck | .gradle | Validates the scope of dependencies 
 [GradleRequiredDependenciesCheck](checks/gradle_required_dependencies_check.markdown#gradlerequireddependenciescheck) | .gradle | Validates the dependencies in `/required-dependencies/required-dependencies/build.gradle`. |
 GradleTestDependencyVersionCheck | .gradle | Checks the version for dependencies in gradle build files. |
 [IncorrectFileLocationCheck](checks/incorrect_file_location_check.markdown#incorrectfilelocationcheck) | | Checks that `/src/*/java/` only contains `.java` files. |
-JSLodashDependencyCheck | .js or .jsx | Finds incorrect use of `AUI._`. |
+[JSLodashDependencyCheck](checks/js_lodash_dependency_check.markdown#jslodashdependencycheck) | .js or .jsx | Finds incorrect use of `AUI._`. |
 [JSONDeprecatedPackagesCheck](checks/json_deprecated_packages_check.markdown#jsondeprecatedpackagescheck) | .json or .npmbridgerc | Finds incorrect use of deprecated packages in `package.json` files. |
 JSONPackageJSONBNDVersionCheck | .json or .npmbridgerc | Checks the version for dependencies in `package.json` files. |
 JSONPackageJSONCheck | .json or .npmbridgerc | Checks content of `package.json` files. |

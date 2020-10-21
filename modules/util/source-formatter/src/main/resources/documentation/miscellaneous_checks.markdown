@@ -16,5 +16,5 @@ JavaDiamondOperatorCheck | .java | Finds cases where Diamond Operator is not use
 JavaDuplicateVariableCheck | .java | Finds variables where a variable with the same name already exists in an extended class. |
 [JavaElseStatementCheck](checks/java_else_statement_check.markdown#javaelsestatementcheck) | .java | Finds unnecessary `else` statements (when the `if` statement ends with a `return` statement). |
 JavaEmptyLineAfterSuperCallCheck | .java | Finds missing emptly line after a `super` call. |
-JavaUnusedSourceFormatterChecksCheck | .java | Finds `*Check` classes that are not configured. |
+[JavaUnusedSourceFormatterChecksCheck](checks/java_unused_source_formatter_checks_check.markdown#javaunusedsourceformattercheckscheck) | .java | Finds `*Check` classes that are not configured. |
 [MapBuilderCheck](checks/builder_check.markdown#buildercheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that `ConcurrentHashMapBuilder`, `HashMapBuilder`, `LinkedHashMapBuilder` or `TreeMapBuilder` is used when possible. |

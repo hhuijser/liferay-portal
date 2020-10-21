@@ -2,11 +2,11 @@
 
 Check | File Extensions | Description
 ----- | --------------- | -----------
-CamelCaseNameCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks variable names for correct use of `CamelCase`. |
+[CamelCaseNameCheck](checks/camel_case_name_check.markdown#camelcasenamecheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks variable names for correct use of `CamelCase`. |
 ConstantNameCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that variable names of constants follow correct naming rules. |
 ExceptionVariableNameCheck | .java | Validates variable names that have type `*Exception`. |
 JSONNamingCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks if variable names follow naming conventions. |
-JSPFileNameCheck | .jsp, .jspf, .tag, .tpl or .vm | Checks if the file name of `.jsp` or `.jspf` follows the naming conventions. |
+[JSPFileNameCheck](checks/jsp_file_name_check.markdown#jspfilenamecheck) | .jsp, .jspf, .tag, .tpl or .vm | Checks if the file name of `.jsp` or `.jspf` follows the naming conventions. |
 [JSPFunctionNameCheck](checks/jsp_function_name_check.markdown#jspfunctionnamecheck) | .jsp, .jspf, .tag, .tpl or .vm | Check if the names of functions in `.jsp` files follow naming conventions. |
 [JSPTaglibVariableCheck](checks/jsp_taglib_variable_check.markdown#jsptaglibvariablecheck) | .jsp, .jspf, .tag, .tpl or .vm | Checks if variable names follow naming conventions. |
 JavaClassNameCheck | .java | Checks if class names follow naming conventions. |

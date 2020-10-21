@@ -451,7 +451,8 @@ public class VariableNameCheck extends BaseCheck {
 	private void _checkTypeName(
 		DetailAST detailAST, String variableName, String typeName) {
 
-		if (variableName.matches("(?i).*" + typeName + "[0-9]*") ||
+		if (variableName.matches("_?INSTANCE") ||
+			variableName.matches("(?i).*" + typeName + "[0-9]*") ||
 			(typeName.equals("Object") &&
 			 !variableName.matches("(o|obj|(.*Obj))[0-9]*"))) {
 

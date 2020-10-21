@@ -55,7 +55,7 @@ public class XMLCheckstyleFileCheck extends BaseFileCheck {
 
 		Document document = SourceUtil.readXML(content);
 
-		_checkOrder(fileName, document.getRootElement());
+		_checkElement(fileName, document.getRootElement());
 	}
 
 	private void _checkMissingProperty(
@@ -77,7 +77,7 @@ public class XMLCheckstyleFileCheck extends BaseFileCheck {
 				"'"));
 	}
 
-	private void _checkOrder(String fileName, Element element) {
+	private void _checkElement(String fileName, Element element) {
 		checkElementOrder(
 			fileName, element, "module", null, new ElementComparator());
 
@@ -98,7 +98,7 @@ public class XMLCheckstyleFileCheck extends BaseFileCheck {
 		}
 
 		for (Element moduleElement : childModuleElements) {
-			_checkOrder(fileName, moduleElement);
+			_checkElement(fileName, moduleElement);
 		}
 	}
 

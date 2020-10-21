@@ -74,6 +74,14 @@ public class XMLCheckstyleFileCheck extends BaseFileCheck {
 			"module");
 
 		if (childModuleElements.isEmpty()) {
+			if (!moduleName.endsWith("Check")) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Name of class '", moduleName,
+						"' should end with 'Check'"));
+			}
+
 			_checkMissingProperty(fileName, element, moduleName, "category");
 			_checkMissingProperty(fileName, element, moduleName, "description");
 		}

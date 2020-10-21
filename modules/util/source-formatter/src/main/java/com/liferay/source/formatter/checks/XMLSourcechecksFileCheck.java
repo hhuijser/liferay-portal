@@ -86,6 +86,14 @@ public class XMLSourcechecksFileCheck extends BaseFileCheck {
 
 				String checkName = checkElement.attributeValue("name");
 
+				if (!checkName.endsWith("Check")) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Name of class '", checkName,
+							"' should end with 'Check'"));
+				}
+
 				_checkMissingTag(fileName, checkElement, checkName, "category");
 				_checkMissingTag(
 					fileName, checkElement, checkName, "description");

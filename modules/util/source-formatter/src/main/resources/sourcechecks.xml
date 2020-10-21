@@ -1049,7 +1049,7 @@
 			<category name="Performance" />
 			<description name="Finds cases of inefficient String operations." />
 		</check>
-		<check name="JSPUnusedJSPF">
+		<check name="JSPUnusedJSPFCheck">
 			<category name="Performance" />
 			<description name="Finds `.jspf` files that are not used." />
 		</check>

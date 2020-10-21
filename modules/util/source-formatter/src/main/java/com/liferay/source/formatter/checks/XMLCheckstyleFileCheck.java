@@ -58,25 +58,6 @@ public class XMLCheckstyleFileCheck extends BaseFileCheck {
 		_checkElement(fileName, document.getRootElement());
 	}
 
-	private void _checkMissingProperty(
-		String fileName, Element moduleElement, String moduleName,
-		String propertyName) {
-
-		for (Element propertyElement :
-				(List<Element>)moduleElement.elements("property")) {
-
-			if (propertyName.equals(propertyElement.attributeValue("name"))) {
-				return;
-			}
-		}
-
-		addMessage(
-			fileName,
-			StringBundler.concat(
-				"Missing property '", propertyName, "' for check '", moduleName,
-				"'"));
-	}
-
 	private void _checkElement(String fileName, Element element) {
 		checkElementOrder(
 			fileName, element, "module", null, new ElementComparator());
@@ -100,6 +81,25 @@ public class XMLCheckstyleFileCheck extends BaseFileCheck {
 		for (Element moduleElement : childModuleElements) {
 			_checkElement(fileName, moduleElement);
 		}
+	}
+
+	private void _checkMissingProperty(
+		String fileName, Element moduleElement, String moduleName,
+		String propertyName) {
+
+		for (Element propertyElement :
+				(List<Element>)moduleElement.elements("property")) {
+
+			if (propertyName.equals(propertyElement.attributeValue("name"))) {
+				return;
+			}
+		}
+
+		addMessage(
+			fileName,
+			StringBundler.concat(
+				"Missing property '", propertyName, "' for check '", moduleName,
+				"'"));
 	}
 
 }

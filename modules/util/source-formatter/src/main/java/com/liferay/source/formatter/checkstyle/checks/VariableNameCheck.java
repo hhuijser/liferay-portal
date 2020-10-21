@@ -785,6 +785,6 @@ public class VariableNameCheck extends BaseCheck {
 	private static final Pattern _countVariableNamePattern = Pattern.compile(
 		"^(\\w+?)([1-9][0-9]*)$");
 	private static final Pattern _isVariableNamePattern = Pattern.compile(
-		"(_?)(is|IS_)([A-Z])(.*)");
+		"^(_?)(is|IS_)([A-Z])(.*)");
 
 }

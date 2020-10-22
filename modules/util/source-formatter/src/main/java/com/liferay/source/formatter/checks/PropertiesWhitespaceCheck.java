@@ -59,7 +59,7 @@ public class PropertiesWhitespaceCheck extends WhitespaceCheck {
 				sb.append(line);
 				sb.append("\n");
 
-				if (!previousLine.matches("\\s+[^\\s#].*[,=]\\\\")) {
+				if (!previousLine.matches("\\s*[^\\s#].*[,=]\\\\")) {
 					previousLine = line;
 
 					continue;

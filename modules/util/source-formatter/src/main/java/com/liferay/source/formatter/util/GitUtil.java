@@ -66,6 +66,40 @@ public class GitUtil {
 		return commitMessages;
 	}
 
+	public static String getCurrentBranchDiff(
+			String baseDirName, String gitWorkingBranchName)
+		throws Exception {
+
+		System.out.println("baseDirName: " + baseDirName);
+		System.out.println("gitWorkingBranchName: " + gitWorkingBranchName);
+
+		String gitWorkingBranchLatestCommitId = _getLatestCommitId(
+			gitWorkingBranchName, "origin/" + gitWorkingBranchName,
+			"upstream/" + gitWorkingBranchName);
+
+		System.out.println(
+			"gitWorkingBranchLatestCommitId: " +
+				gitWorkingBranchLatestCommitId);
+
+		StringBundler sb = new StringBundler();
+
+		try (UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+				StringBundler.concat(
+					"git diff --diff-filter=M --unified=0 ",
+					gitWorkingBranchLatestCommitId, " HEAD"))) {
+
+			String line = null;
+
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				sb.append(line);
+
+				sb.append("\n");
+			}
+		}
+
+		return sb.toString();
+	}
+
 	public static String getCurrentBranchFileContent(
 			String gitWorkingBranchName, String fileName)
 		throws Exception {
@@ -100,40 +134,6 @@ public class GitUtil {
 		}
 
 		return fileNames;
-	}
-
-	public static String getCurrentBranchDiff(
-			String baseDirName, String gitWorkingBranchName)
-		throws Exception {
-
-		System.out.println("baseDirName: " + baseDirName);
-		System.out.println("gitWorkingBranchName: " + gitWorkingBranchName);
-
-		String gitWorkingBranchLatestCommitId = _getLatestCommitId(
-			gitWorkingBranchName, "origin/" + gitWorkingBranchName,
-			"upstream/" + gitWorkingBranchName);
-
-		System.out.println(
-			"gitWorkingBranchLatestCommitId: " +
-				gitWorkingBranchLatestCommitId);
-
-		StringBundler sb = new StringBundler();
-
-		try (UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
-				StringBundler.concat(
-					"git diff --diff-filter=M --unified=0 ",
-					gitWorkingBranchLatestCommitId, " HEAD"))) {
-
-			String line = null;
-
-			while ((line = unsyncBufferedReader.readLine()) != null) {
-				sb.append(line);
-
-				sb.append("\n");
-			}
-		}
-
-		return sb.toString();
 	}
 
 	public static String getLatestAuthorFileContent(String fileName)

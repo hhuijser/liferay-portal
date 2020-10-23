@@ -20,6 +20,7 @@ import com.liferay.portal.tools.java.parser.JavaParser;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleLogger;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.util.DebugUtil;
+import com.liferay.source.formatter.util.GitUtil;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -34,7 +35,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * @author Hugo Huijser
+ * @author Hugo Huijserrr
  */
 public class JavaSourceProcessor extends BaseSourceProcessor {
 
@@ -118,6 +119,16 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 	@Override
 	protected void preFormat() throws CheckstyleException {
 		SourceFormatterArgs sourceFormatterArgs = getSourceFormatterArgs();
+
+		try {
+			System.out.println("---------------------");
+			System.out.println(
+				GitUtil.getCurrentBranchDiff(
+					sourceFormatterArgs.getBaseDirName(),
+					sourceFormatterArgs.getGitWorkingBranchName()));
+		}
+		catch (Exception exception) {
+		}
 
 		_checkstyleLogger = new CheckstyleLogger(
 			sourceFormatterArgs.getBaseDirName());

@@ -244,8 +244,8 @@ public class PrincipalException extends PortalException {
 					origin),
 				throwable);
 
-			this.origin = origin;
 			this.userId = userId;
+			this.origin = origin;
 		}
 
 		public final String origin;

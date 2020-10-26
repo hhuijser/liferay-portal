@@ -62,9 +62,9 @@ public enum OASFormat {
 		String openAPIFormatDefinition, OASType oasType,
 		boolean defaultFormat) {
 
-		this.defaultFormat = defaultFormat;
 		this.openAPIFormatDefinition = openAPIFormatDefinition;
 		this.oasType = oasType;
+		this.defaultFormat = defaultFormat;
 	}
 
 	private final boolean defaultFormat;

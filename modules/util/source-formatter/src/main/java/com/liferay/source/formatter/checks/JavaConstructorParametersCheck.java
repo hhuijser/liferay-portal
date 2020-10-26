@@ -93,7 +93,8 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 						previousGlobalVariableName, " = ",
 						previousParameterName, ";' should come before '",
 						matcher.group(2), " = ", parameterName,
-						";' to match order of constructor parameters"));
+						";' to match order of constructor parameters"),
+					javaTerm.getLineNumber(previousPos));
 
 				return;
 			}

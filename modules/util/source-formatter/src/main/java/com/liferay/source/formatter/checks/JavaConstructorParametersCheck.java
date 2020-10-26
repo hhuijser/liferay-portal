@@ -58,6 +58,7 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 	private void _checkConstructorParameterOrder(
 		String fileName, JavaTerm javaTerm, List<JavaParameter> parameters) {
 
+		String previousGlobalVariableName = null;
 		String previousParameterName = null;
 		int previousPos = -1;
 
@@ -66,8 +67,8 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 
 			Pattern pattern = Pattern.compile(
 				StringBundler.concat(
-					"\\{\n([\\s\\S]*?)(_", parameterName, " =[ \t\n]+",
-					parameterName, ";)"));
+					"\\{\n([\\s\\S]*?)((_|this\\.)", parameterName,
+					") =[ \t\n]+", parameterName, ";"));
 
 			Matcher matcher = pattern.matcher(javaTerm.getContent());
 
@@ -83,28 +84,23 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 
 			int pos = matcher.start(2);
 
-			if (previousPos < pos) {
-				previousParameterName = parameterName;
-				previousPos = pos;
+			if ((previousPos > pos) &&
+				previousGlobalVariableName.startsWith(matcher.group(3))) {
 
-				continue;
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						previousGlobalVariableName, " = ",
+						previousParameterName, ";' should come before '",
+						matcher.group(2), " = ", parameterName,
+						";' to match order of constructor parameters"));
+
+				return;
 			}
 
-			StringBundler sb = new StringBundler(9);
-
-			sb.append("'_");
-			sb.append(previousParameterName);
-			sb.append(" = ");
-			sb.append(previousParameterName);
-			sb.append(";' should come before '_");
-			sb.append(parameterName);
-			sb.append(" = ");
-			sb.append(parameterName);
-			sb.append(";' to match order of constructor parameters");
-
-			addMessage(fileName, sb.toString());
-
-			return;
+			previousGlobalVariableName = matcher.group(2);
+			previousParameterName = parameterName;
+			previousPos = pos;
 		}
 	}
 

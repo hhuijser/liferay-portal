@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-		"mvc.command.name=/portal_settings/test_ldap_users"
+		"mvc.command.name=/portal_settings_authentication_ldap/portal_settings_test_ldap_users"
 	},
 	service = MVCRenderCommand.class
 )

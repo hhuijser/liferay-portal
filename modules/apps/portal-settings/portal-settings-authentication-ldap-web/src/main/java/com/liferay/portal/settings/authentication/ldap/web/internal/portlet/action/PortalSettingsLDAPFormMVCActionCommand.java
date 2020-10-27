@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-		"mvc.command.name=/portal_settings/ldap"
+		"mvc.command.name=/portal_settings_authentication_ldap/portal_settings_ldap_form"
 	},
 	service = MVCActionCommand.class
 )

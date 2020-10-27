@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	property = {
 		"javax.portlet.name=" + SearchAdminPortletKeys.SEARCH_ADMIN,
-		"mvc.command.name=/search_admin/view"
+		"mvc.command.name=/portal_search_admin/view"
 	},
 	service = MVCRenderCommand.class
 )

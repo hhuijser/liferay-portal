@@ -59,7 +59,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + SearchAdminPortletKeys.SEARCH_ADMIN,
-		"mvc.command.name=/search_admin/edit"
+		"mvc.command.name=/portal_search_admin/edit"
 	},
 	service = MVCActionCommand.class
 )

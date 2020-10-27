@@ -50,11 +50,11 @@ page import="java.util.Map" %>
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/search_admin/view");
+portletURL.setParameter("mvcRenderCommandName", "/portal_search_admin/view");
 %>
 
 <portlet:renderURL var="redirectURL">
-	<portlet:param name="mvcRenderCommandName" value="/search_admin/view" />
+	<portlet:param name="mvcRenderCommandName" value="/portal_search_admin/view" />
 	<portlet:param name="tabs1" value="index-actions" />
 </portlet:renderURL>
 
@@ -177,6 +177,6 @@ portletURL.setParameter("mvcRenderCommandName", "/search_admin/view");
 		redirectUrl: '<%= redirectURL %>',
 		submitButton: '.save-server-button',
 		url:
-			'<portlet:actionURL name="/search_admin/edit"><portlet:param name="redirect" value="<%= redirectURL %>" /></portlet:actionURL>',
+			'<portlet:actionURL name="/portal_search_admin/edit"><portlet:param name="redirect" value="<%= redirectURL %>" /></portlet:actionURL>',
 	});
 </aui:script>

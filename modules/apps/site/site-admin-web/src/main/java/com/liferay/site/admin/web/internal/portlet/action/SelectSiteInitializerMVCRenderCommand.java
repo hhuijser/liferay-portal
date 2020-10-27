@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SiteAdminPortletKeys.SITE_ADMIN,
-		"mvc.command.name=/site/select_site_initializer"
+		"mvc.command.name=/site_admin/select_site_initializer"
 	},
 	service = MVCRenderCommand.class
 )

@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SiteMembershipsPortletKeys.SITE_MEMBERSHIPS_ADMIN,
-		"mvc.command.name=/organization/info_panel"
+		"mvc.command.name=/site_memberships/organizations_info_panel"
 	},
 	service = MVCResourceCommand.class
 )

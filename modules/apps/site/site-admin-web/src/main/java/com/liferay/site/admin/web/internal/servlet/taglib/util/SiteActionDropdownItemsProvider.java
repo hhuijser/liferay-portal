@@ -132,7 +132,7 @@ public class SiteActionDropdownItemsProvider {
 		return dropdownItem -> {
 			dropdownItem.setHref(
 				_liferayPortletResponse.createRenderURL(),
-				"mvcRenderCommandName", "/site/select_site_initializer",
+				"mvcRenderCommandName", "/site_admin/select_site_initializer",
 				"redirect", _themeDisplay.getURLCurrent(), "parentGroupId",
 				String.valueOf(_group.getGroupId()));
 			dropdownItem.setLabel(

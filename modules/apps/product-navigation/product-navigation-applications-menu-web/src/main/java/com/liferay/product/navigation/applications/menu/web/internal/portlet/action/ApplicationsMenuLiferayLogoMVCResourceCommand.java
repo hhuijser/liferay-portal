@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ProductNavigationApplicationsMenuPortletKeys.PRODUCT_NAVIGATION_APPLICATIONS_MENU,
-		"mvc.command.name=/applications_menu/liferay_logo"
+		"mvc.command.name=/product_navigation_applications_menu/applications_menu_liferay_logo"
 	},
 	service = MVCResourceCommand.class
 )

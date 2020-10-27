@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + PersonalMenuPortletKeys.PERSONAL_MENU,
-		"mvc.command.name=/get_personal_menu_items"
+		"mvc.command.name=/product_navigation_personal_menu/get_personal_menu_items"
 	},
 	service = MVCResourceCommand.class
 )

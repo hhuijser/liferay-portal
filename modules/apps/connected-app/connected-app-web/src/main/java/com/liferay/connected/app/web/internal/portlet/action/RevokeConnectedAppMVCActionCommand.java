@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + UsersAdminPortletKeys.MY_ACCOUNT,
 		"javax.portlet.name=" + UsersAdminPortletKeys.USERS_ADMIN,
-		"mvc.command.name=/users_admin/revoke_connected_app"
+		"mvc.command.name=/connected_app/revoke_connected_app"
 	},
 	service = MVCActionCommand.class
 )

@@ -109,7 +109,8 @@ public class DepotAdminRolesDisplayContext {
 		PortletURL portletURL = requestBackedPortletURLFactory.createRenderURL(
 			DepotPortletKeys.DEPOT_ADMIN);
 
-		portletURL.setParameter("mvcRenderCommandName", "/depot/select_role");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/depot/select_depot_role");
 		portletURL.setParameter(
 			"p_u_i_d",
 			Optional.ofNullable(

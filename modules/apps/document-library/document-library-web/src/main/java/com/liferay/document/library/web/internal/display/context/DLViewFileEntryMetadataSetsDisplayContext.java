@@ -101,7 +101,7 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 		RenderURL renderURL = _liferayPortletResponse.createRenderURL();
 
 		renderURL.setParameter(
-			"mvcRenderCommandName", "/document_library/ddm/edit_ddm_structure");
+			"mvcRenderCommandName", "/document_library/edit_ddm_structure");
 
 		PortletURL currentPortletURL = PortletURLUtil.getCurrent(
 			_liferayPortletRequest, _liferayPortletResponse);
@@ -393,7 +393,7 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 
 		actionURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/document_library/ddm/delete_data_definition");
+			"/document_library/delete_data_definition");
 		actionURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view");
 		actionURL.setParameter("navigation", "file_entry_metadata_sets");
@@ -410,7 +410,7 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 
 		actionURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/document_library/ddm/delete_ddm_structure");
+			"/document_library/delete_ddm_structure");
 		actionURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view");
 		actionURL.setParameter("navigation", "file_entry_metadata_sets");

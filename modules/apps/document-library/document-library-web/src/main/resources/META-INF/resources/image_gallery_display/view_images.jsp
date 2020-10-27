@@ -127,7 +127,7 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 			</c:when>
 			<c:otherwise>
 				<portlet:renderURL var="viewFolderURL">
-					<portlet:param name="mvcRenderCommandName" value="/image_gallery_display/view" />
+					<portlet:param name="mvcRenderCommandName" value="/document_library/ig_view" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="folderId" value="<%= String.valueOf(curFolder.getFolderId()) %>" />
 				</portlet:renderURL>

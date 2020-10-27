@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + DLPortletKeys.MEDIA_GALLERY_DISPLAY,
-		"mvc.command.name=/", "mvc.command.name=/image_gallery_display/view"
+		"mvc.command.name=/", "mvc.command.name=/document_library/ig_view"
 	},
 	service = MVCRenderCommand.class
 )

@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + DLPortletKeys.MEDIA_GALLERY_DISPLAY,
 		"mvc.render.command.name=-",
-		"mvc.render.command.name=/image_gallery_display/view"
+		"mvc.render.command.name=/document_library/ig_view"
 	},
 	service = PortletToolbarContributor.class
 )

@@ -51,7 +51,7 @@ if (permissionChecker.isContentReviewer(user.getCompanyId(), scopeGroupId)) {
 		modelVar="curFolder"
 	>
 		<liferay-portlet:renderURL varImpl="rowURL">
-			<portlet:param name="mvcRenderCommandName" value="/image_gallery_display/view" />
+			<portlet:param name="mvcRenderCommandName" value="/document_library/ig_view" />
 			<portlet:param name="folderId" value="<%= String.valueOf(curFolder.getFolderId()) %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</liferay-portlet:renderURL>

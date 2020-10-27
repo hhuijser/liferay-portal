@@ -75,7 +75,7 @@ String[] mediaGalleryMimeTypes = dlPortletInstanceSettings.getMimeTypes();
 
 	PortletURL portletURL = renderResponse.createRenderURL();
 
-	portletURL.setParameter("mvcRenderCommandName", "/image_gallery_display/view");
+	portletURL.setParameter("mvcRenderCommandName", "/document_library/ig_view");
 
 	if (Validator.isNotNull(redirect)) {
 		portletURL.setParameter("redirect", redirect);

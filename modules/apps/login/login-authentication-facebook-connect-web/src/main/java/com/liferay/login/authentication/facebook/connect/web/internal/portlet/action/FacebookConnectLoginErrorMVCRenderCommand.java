@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + PortletKeys.FAST_LOGIN,
 		"javax.portlet.name=" + PortletKeys.LOGIN,
-		"mvc.command.name=/login/facebook_connect_login_error"
+		"mvc.command.name=/login_authentication_facebook_connect/facebook_connect_login_error"
 	},
 	service = MVCRenderCommand.class
 )

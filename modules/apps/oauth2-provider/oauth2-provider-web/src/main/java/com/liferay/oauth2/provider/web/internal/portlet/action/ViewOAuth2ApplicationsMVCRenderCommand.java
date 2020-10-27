@@ -46,7 +46,8 @@ import org.osgi.service.component.annotations.Reference;
 	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	property = {
 		"javax.portlet.name=" + OAuth2ProviderPortletKeys.OAUTH2_ADMIN,
-		"mvc.command.name=/", "mvc.command.name=/admin/view_oauth2_applications"
+		"mvc.command.name=/",
+		"mvc.command.name=/oauth2_provider/view_o_auth2_applications"
 	},
 	service = MVCRenderCommand.class
 )

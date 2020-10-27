@@ -68,7 +68,7 @@ int userOAuth2AuthorizationsCount = OAuth2AuthorizationServiceUtil.getUserOAuth2
 				/>
 
 				<portlet:renderURL var="viewURL">
-					<portlet:param name="mvcRenderCommandName" value="/connected_applications/view" />
+					<portlet:param name="mvcRenderCommandName" value="/oauth2_provider/view_connected_applications" />
 					<portlet:param name="oAuth2ApplicationId" value="<%= String.valueOf(oAuth2Authorization.getOAuth2ApplicationId()) %>" />
 					<portlet:param name="oAuth2AuthorizationId" value="<%= String.valueOf(oAuth2Authorization.getOAuth2AuthorizationId()) %>" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />

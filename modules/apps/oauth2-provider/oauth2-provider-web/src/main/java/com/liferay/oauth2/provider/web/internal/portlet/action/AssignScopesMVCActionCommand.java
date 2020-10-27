@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + OAuth2ProviderPortletKeys.OAUTH2_ADMIN,
-		"mvc.command.name=/admin/assign_scopes"
+		"mvc.command.name=/oauth2_provider/assign_scopes"
 	},
 	service = MVCActionCommand.class
 )

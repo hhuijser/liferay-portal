@@ -78,8 +78,9 @@ public class OAuth2ApplicationsManagementToolbarDisplayContext
 			dropdownItem -> {
 				dropdownItem.setHref(
 					liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName", "/admin/update_oauth2_application",
-					"redirect", currentURLObj.toString());
+					"mvcRenderCommandName",
+					"/oauth2_provider/update_o_auth2_application", "redirect",
+					currentURLObj.toString());
 				dropdownItem.setLabel(
 					LanguageUtil.get(
 						httpServletRequest, "add-o-auth2-application"));

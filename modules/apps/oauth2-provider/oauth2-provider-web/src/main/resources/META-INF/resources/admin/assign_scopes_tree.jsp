@@ -57,8 +57,8 @@ pageContext.setAttribute("scopeAliasesDescriptionsMap", assignScopesTreeDisplayC
 
 			<clay:row>
 				<clay:col>
-					<portlet:actionURL name="/admin/assign_scopes" var="assignScopesURL">
-						<portlet:param name="mvcRenderCommandName" value="/admin/assign_scopes" />
+					<portlet:actionURL name="/oauth2_provider/assign_scopes" var="assignScopesURL">
+						<portlet:param name="mvcRenderCommandName" value="/oauth2_provider/assign_scopes" />
 						<portlet:param name="navigation" value="assign_scopes" />
 						<portlet:param name="backURL" value="<%= redirect %>" />
 						<portlet:param name="oAuth2ApplicationId" value="<%= String.valueOf(oAuth2Application.getOAuth2ApplicationId()) %>" />

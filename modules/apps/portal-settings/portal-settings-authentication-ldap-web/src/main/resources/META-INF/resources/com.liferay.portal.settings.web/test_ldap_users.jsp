@@ -128,7 +128,7 @@ boolean showMissingAttributeMessage = false;
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/portal_settings/test_ldap_users");
+portletURL.setParameter("mvcRenderCommandName", "/portal_settings_authentication_ldap/portal_settings_test_ldap_users");
 portletURL.setParameter("ldapServerId", String.valueOf(ldapServerId));
 portletURL.setParameter("baseProviderURL", baseProviderURL);
 portletURL.setParameter("baseDN", baseDN);

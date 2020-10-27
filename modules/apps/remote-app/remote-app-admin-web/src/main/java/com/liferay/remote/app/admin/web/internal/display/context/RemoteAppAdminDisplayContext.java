@@ -47,7 +47,8 @@ public class RemoteAppAdminDisplayContext {
 					_renderResponse.createRenderURL();
 
 				addRemoteAppEntryURL.setParameter(
-					"mvcRenderCommandName", "/edit_remote_app_entry");
+					"mvcRenderCommandName",
+					"/remote_app_admin/edit_remote_app_entry");
 				addRemoteAppEntryURL.setParameter("redirect", _getRedirect());
 
 				dropdownItem.setHref(addRemoteAppEntryURL);

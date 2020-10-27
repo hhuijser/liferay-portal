@@ -323,7 +323,8 @@ public class ContentDashboardAdminDisplayContext {
 		PortletURL renderURL = _liferayPortletResponse.createRenderURL();
 
 		renderURL.setParameter(
-			"mvcRenderCommandName", "/edit_content_dashboard_configuration");
+			"mvcRenderCommandName",
+			"/content_dashboard/edit_content_dashboard_configuration");
 		renderURL.setWindowState(LiferayWindowState.POP_UP);
 
 		sb.append(HtmlUtil.escapeJS(renderURL.toString()));
@@ -378,7 +379,8 @@ public class ContentDashboardAdminDisplayContext {
 		ActionURL actionURL = _liferayPortletResponse.createActionURL();
 
 		actionURL.setParameter(
-			ActionRequest.ACTION_NAME, "/swap_content_dashboard_configuration");
+			ActionRequest.ACTION_NAME,
+			"/content_dashboard/swap_content_dashboard_configuration");
 
 		return actionURL;
 	}

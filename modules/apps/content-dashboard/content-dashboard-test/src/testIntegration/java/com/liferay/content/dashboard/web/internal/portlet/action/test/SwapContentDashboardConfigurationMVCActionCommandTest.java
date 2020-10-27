@@ -90,7 +90,7 @@ public class SwapContentDashboardConfigurationMVCActionCommandTest {
 	}
 
 	@Inject(
-		filter = "mvc.command.name=/swap_content_dashboard_configuration",
+		filter = "mvc.command.name=/content_dashboard/swap_content_dashboard_configuration",
 		type = MVCActionCommand.class
 	)
 	private MVCActionCommand _mvcActionCommand;

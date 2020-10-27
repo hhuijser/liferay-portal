@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ImageUploaderPortletKeys.IMAGE_UPLOADER,
-		"mvc.command.name=/image_uploader/view"
+		"mvc.command.name=/image_uploader/upload_image"
 	},
 	service = MVCResourceCommand.class
 )

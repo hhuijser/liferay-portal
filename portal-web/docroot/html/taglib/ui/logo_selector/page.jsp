@@ -42,7 +42,7 @@ if (deleteLogo) {
 else if (fileEntryId > 0) {
 	ResourceURL previewURL = PortletURLFactoryUtil.create(portletRequest, PortletKeys.IMAGE_UPLOADER, PortletRequest.RESOURCE_PHASE);
 
-	previewURL.setParameter("mvcRenderCommandName", "/image_uploader/view");
+	previewURL.setParameter("mvcRenderCommandName", "/image_uploader/upload_image");
 	previewURL.setParameter(Constants.CMD, Constants.GET_TEMP);
 	previewURL.setParameter("tempImageFileName", tempImageFileName);
 
@@ -82,7 +82,7 @@ else {
 		</div>
 
 		<liferay-portlet:renderURL portletName="<%= PortletKeys.IMAGE_UPLOADER %>" var="uploadImageURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<liferay-portlet:param name="mvcRenderCommandName" value="/image_uploader/view" />
+			<liferay-portlet:param name="mvcRenderCommandName" value="/image_uploader/upload_image" />
 			<liferay-portlet:param name="randomNamespace" value="<%= randomNamespace %>" />
 			<liferay-portlet:param name="aspectRatio" value="<%= String.valueOf(aspectRatio) %>" />
 			<liferay-portlet:param name="currentLogoURL" value="<%= currentLogoURL %>" />

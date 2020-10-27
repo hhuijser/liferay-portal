@@ -39,7 +39,7 @@ Role role = usersDisplayContext.getRole();
 	cssClass="closed sidenav-container sidenav-right"
 	id='<%= liferayPortletResponse.getNamespace() + "infoPanelId" %>'
 >
-	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/user/info_panel" var="sidebarPanelURL">
+	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/site_memberships/users_info_panel" var="sidebarPanelURL">
 		<portlet:param name="groupId" value="<%= String.valueOf(siteMembershipsDisplayContext.getGroupId()) %>" />
 	</liferay-portlet:resourceURL>
 

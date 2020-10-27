@@ -52,7 +52,7 @@ public class ReadingTimeEditorConfigContributor
 		LiferayPortletURL liferayPortletURL =
 			(LiferayPortletURL)calculateReadingTimeURL;
 
-		liferayPortletURL.setResourceID("/reading_time/calculate");
+		liferayPortletURL.setResourceID("/reading_time/calculate_reading_time");
 
 		JSONObject readingTimeJSONObject = JSONUtil.put(
 			"url", calculateReadingTimeURL.toString());

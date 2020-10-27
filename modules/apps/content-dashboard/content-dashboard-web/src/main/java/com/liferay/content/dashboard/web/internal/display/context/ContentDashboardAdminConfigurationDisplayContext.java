@@ -60,7 +60,7 @@ public class ContentDashboardAdminConfigurationDisplayContext {
 
 		actionURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/update_content_dashboard_configuration");
+			"/content_dashboard/update_content_dashboard_configuration");
 		actionURL.setParameter("redirect", String.valueOf(getRedirect()));
 
 		return actionURL;

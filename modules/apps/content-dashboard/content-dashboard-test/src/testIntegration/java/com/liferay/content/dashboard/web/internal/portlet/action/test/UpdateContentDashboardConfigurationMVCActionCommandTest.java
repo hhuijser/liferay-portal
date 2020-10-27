@@ -103,7 +103,7 @@ public class UpdateContentDashboardConfigurationMVCActionCommandTest {
 	}
 
 	@Inject(
-		filter = "mvc.command.name=/update_content_dashboard_configuration",
+		filter = "mvc.command.name=/content_dashboard/update_content_dashboard_configuration",
 		type = MVCActionCommand.class
 	)
 	private MVCActionCommand _mvcActionCommand;

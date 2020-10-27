@@ -238,7 +238,7 @@ public class EditContentDashboardConfigurationMVCRenderCommandTest {
 	private static AssetVocabulary _stageAssetVocabulary;
 
 	@Inject(
-		filter = "mvc.command.name=/edit_content_dashboard_configuration",
+		filter = "mvc.command.name=/content_dashboard/edit_content_dashboard_configuration",
 		type = MVCRenderCommand.class
 	)
 	private MVCRenderCommand _mvcRenderCommand;

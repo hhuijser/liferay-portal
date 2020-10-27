@@ -32,7 +32,7 @@ long organizationId = organization.getOrganizationId();
 	showWhenSingleIcon="<%= true %>"
 >
 	<portlet:renderURL var="viewUsersURL">
-		<portlet:param name="mvcRenderCommandName" value="/directory/view" />
+		<portlet:param name="mvcRenderCommandName" value="/directory/view_directory" />
 		<portlet:param name="tabs1" value="users" />
 		<portlet:param name="viewUsersRedirect" value="<%= currentURL %>" />
 		<portlet:param name="organizationId" value="<%= String.valueOf(organizationId) %>" />
@@ -46,7 +46,7 @@ long organizationId = organization.getOrganizationId();
 
 	<c:if test="<%= organization.hasSuborganizations() %>">
 		<portlet:renderURL var="viewSuborganizationsURL">
-			<portlet:param name="mvcRenderCommandName" value="/directory/view" />
+			<portlet:param name="mvcRenderCommandName" value="/directory/view_directory" />
 			<portlet:param name="tabs1" value="organizations" />
 			<portlet:param name="viewUsersRedirect" value="<%= currentURL %>" />
 			<portlet:param name="parentOrganizationId" value="<%= String.valueOf(organizationId) %>" />

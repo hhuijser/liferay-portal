@@ -24,7 +24,7 @@
 				{
 					PortletURL portletURL = renderResponse.createRenderURL();
 
-					portletURL.setParameter("mvcRenderCommandName", "/directory/view");
+					portletURL.setParameter("mvcRenderCommandName", "/directory/view_directory");
 					portletURL.setParameter("tabs1", "users");
 
 					add(

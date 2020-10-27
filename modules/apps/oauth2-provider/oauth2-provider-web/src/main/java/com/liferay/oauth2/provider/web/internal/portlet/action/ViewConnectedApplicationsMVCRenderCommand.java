@@ -56,7 +56,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + OAuth2ProviderPortletKeys.OAUTH2_CONNECTED_APPLICATIONS,
-		"mvc.command.name=/", "mvc.command.name=/connected_applications/view"
+		"mvc.command.name=/",
+		"mvc.command.name=/oauth2_provider/view_connected_applications"
 	},
 	service = MVCRenderCommand.class
 )

@@ -71,7 +71,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + OAuth2ProviderPortletKeys.OAUTH2_AUTHORIZE,
 		"mvc.command.name=/",
-		"mvc.command.name=/authorize/view_authorization_request"
+		"mvc.command.name=/oauth2_provider/view_authorization_request"
 	},
 	service = MVCRenderCommand.class
 )

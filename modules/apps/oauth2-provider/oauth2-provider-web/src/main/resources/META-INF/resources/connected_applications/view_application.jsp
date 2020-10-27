@@ -37,7 +37,7 @@ renderResponse.setTitle(oAuth2Application.getName());
 
 	<aui:form action="<%= revokeOAuth2AuthorizationURL %>" method="post" name="fm">
 		<aui:input name="backURL" type="hidden" value="<%= redirect %>" />
-		<aui:input name="mvcRenderCommandName" type="hidden" value="/connected_applications/view" />
+		<aui:input name="mvcRenderCommandName" type="hidden" value="/oauth2_provider/view_connected_applications" />
 		<aui:input name="oAuth2AuthorizationIds" type="hidden" value='<%= ParamUtil.getString(request, "oAuth2AuthorizationId") %>' />
 
 		<aui:fieldset-group markupView="lexicon">

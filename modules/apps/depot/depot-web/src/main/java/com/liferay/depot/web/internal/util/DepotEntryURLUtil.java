@@ -83,7 +83,7 @@ public class DepotEntryURLUtil {
 			liferayPortletResponse.createActionURL();
 
 		disconnectSiteActionURL.setParameter(
-			ActionRequest.ACTION_NAME, "/depot/disconnect_depot_entry");
+			ActionRequest.ACTION_NAME, "/depot/disconnect_site");
 		disconnectSiteActionURL.setParameter("redirect", redirect);
 		disconnectSiteActionURL.setParameter(
 			"depotEntryGroupRelId", String.valueOf(depotEntryGroupRelId));
@@ -117,7 +117,7 @@ public class DepotEntryURLUtil {
 
 		updateDDMStructuresAvailableActionURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/depot/update_depot_entry_group_rel_ddm_structures_available");
+			"/depot/update_ddm_structures_available");
 		updateDDMStructuresAvailableActionURL.setParameter(
 			"redirect", redirect);
 		updateDDMStructuresAvailableActionURL.setParameter(
@@ -136,8 +136,7 @@ public class DepotEntryURLUtil {
 			liferayPortletResponse.createActionURL();
 
 		updateSearchableActionURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/depot/update_depot_entry_group_rel_searchable");
+			ActionRequest.ACTION_NAME, "/depot/update_searchable");
 		updateSearchableActionURL.setParameter("redirect", redirect);
 		updateSearchableActionURL.setParameter(
 			"depotEntryGroupRelId", String.valueOf(depotEntryGroupRelId));

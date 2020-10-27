@@ -494,7 +494,8 @@ public class DepotAdminSelectRoleDisplayContext {
 				"p_u_i_d", String.valueOf(user.getUserId()));
 		}
 
-		portletURL.setParameter("mvcRenderCommandName", "/depot/select_role");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/depot/select_depot_role");
 
 		String[] keywords = ParamUtil.getStringValues(
 			renderRequest, "keywords");

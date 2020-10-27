@@ -22,7 +22,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 SiteNavigationMenu siteNavigationMenu = siteNavigationAdminDisplayContext.getSiteNavigationMenu();
 %>
 
-<portlet:actionURL name="/navigation_menu/edit_site_navigation_menu_settings" var="editSiteNavigationMenuSettingsURL" />
+<portlet:actionURL name="/site_navigation_admin/edit_site_navigation_menu_settings" var="editSiteNavigationMenuSettingsURL" />
 
 <aui:form action="<%= editSiteNavigationMenuSettingsURL %>">
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />

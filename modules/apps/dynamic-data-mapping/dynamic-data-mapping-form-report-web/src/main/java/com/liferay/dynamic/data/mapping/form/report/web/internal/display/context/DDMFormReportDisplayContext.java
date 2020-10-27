@@ -113,7 +113,8 @@ public class DDMFormReportDisplayContext {
 	public String getFormReportRecordsFieldValuesURL() {
 		ResourceURL resourceURL = _renderResponse.createResourceURL();
 
-		resourceURL.setResourceID("/form-report/get_records_field_values");
+		resourceURL.setResourceID(
+			"/dynamic_data_mapping_form_report/get_form_records_field_values");
 
 		return resourceURL.toString();
 	}

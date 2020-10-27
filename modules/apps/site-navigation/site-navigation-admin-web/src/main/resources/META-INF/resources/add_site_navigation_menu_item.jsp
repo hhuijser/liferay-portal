@@ -30,7 +30,7 @@ PortletURL addURL = siteNavigationMenuItemType.getAddURL(renderRequest, renderRe
 if (addURL == null) {
 	addURL = renderResponse.createActionURL();
 
-	addURL.setParameter(ActionRequest.ACTION_NAME, "/navigation_menu/add_site_navigation_menu_item");
+	addURL.setParameter(ActionRequest.ACTION_NAME, "/site_navigation_admin/add_site_navigation_menu_item");
 }
 
 portletDisplay.setShowBackIcon(true);

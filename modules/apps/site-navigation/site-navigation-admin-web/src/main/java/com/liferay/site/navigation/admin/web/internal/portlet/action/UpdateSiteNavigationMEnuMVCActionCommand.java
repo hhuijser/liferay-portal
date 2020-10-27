@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SiteNavigationAdminPortletKeys.SITE_NAVIGATION_ADMIN,
-		"mvc.command.name=/navigation_menu/update_site_navigation_menu"
+		"mvc.command.name=/site_navigation_admin/update_site_navigation_m_enu"
 	},
 	service = MVCActionCommand.class
 )

@@ -46,7 +46,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	</c:if>
 
 	<c:if test="<%= SiteNavigationMenuPermission.contains(permissionChecker, siteNavigationMenu, ActionKeys.UPDATE) && siteNavigationAdminDisplayContext.hasEditPermission() %>">
-		<portlet:actionURL name="/navigation_menu/update_site_navigation_menu" var="updateSiteNavigationMenuURL">
+		<portlet:actionURL name="/site_navigation_admin/update_site_navigation_m_enu" var="updateSiteNavigationMenuURL">
 			<portlet:param name="siteNavigationMenuId" value="<%= String.valueOf(siteNavigationMenu.getSiteNavigationMenuId()) %>" />
 		</portlet:actionURL>
 
@@ -88,7 +88,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 			<liferay-ui:message key="mark-as" />
 		</div>
 
-		<liferay-portlet:actionURL name="/navigation_menu/edit_site_navigation_menu_settings" var="markAsPrimaryURL">
+		<liferay-portlet:actionURL name="/site_navigation_admin/edit_site_navigation_menu_settings" var="markAsPrimaryURL">
 			<liferay-portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 			<liferay-portlet:param name="siteNavigationMenuId" value="<%= String.valueOf(siteNavigationMenu.getSiteNavigationMenuId()) %>" />
 			<liferay-portlet:param name="auto" value="<%= String.valueOf(siteNavigationMenu.isAuto()) %>" />
@@ -114,7 +114,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 			url="javascript:;"
 		/>
 
-		<liferay-portlet:actionURL name="/navigation_menu/edit_site_navigation_menu_settings" var="markAsSecondaryURL">
+		<liferay-portlet:actionURL name="/site_navigation_admin/edit_site_navigation_menu_settings" var="markAsSecondaryURL">
 			<liferay-portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 			<liferay-portlet:param name="siteNavigationMenuId" value="<%= String.valueOf(siteNavigationMenu.getSiteNavigationMenuId()) %>" />
 			<liferay-portlet:param name="auto" value="<%= String.valueOf(siteNavigationMenu.isAuto()) %>" />
@@ -134,7 +134,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 			url="javascript:;"
 		/>
 
-		<liferay-portlet:actionURL name="/navigation_menu/edit_site_navigation_menu_settings" var="markAsSocialURL">
+		<liferay-portlet:actionURL name="/site_navigation_admin/edit_site_navigation_menu_settings" var="markAsSocialURL">
 			<liferay-portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 			<liferay-portlet:param name="siteNavigationMenuId" value="<%= String.valueOf(siteNavigationMenu.getSiteNavigationMenuId()) %>" />
 			<liferay-portlet:param name="auto" value="<%= String.valueOf(siteNavigationMenu.isAuto()) %>" />
@@ -156,7 +156,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	</c:if>
 
 	<c:if test="<%= SiteNavigationMenuPermission.contains(permissionChecker, siteNavigationMenu, ActionKeys.DELETE) %>">
-		<portlet:actionURL name="/navigation_menu/delete_site_navigation_menu" var="deleteSiteNavigationMenuURL">
+		<portlet:actionURL name="/site_navigation_admin/delete_site_navigation_menu" var="deleteSiteNavigationMenuURL">
 			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 			<portlet:param name="siteNavigationMenuId" value="<%= String.valueOf(siteNavigationMenu.getSiteNavigationMenuId()) %>" />
 		</portlet:actionURL>

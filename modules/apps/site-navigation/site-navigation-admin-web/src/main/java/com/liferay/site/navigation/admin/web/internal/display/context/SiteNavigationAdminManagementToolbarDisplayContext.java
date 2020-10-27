@@ -114,7 +114,7 @@ public class SiteNavigationAdminManagementToolbarDisplayContext
 
 		addSiteNavigationMenuURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/navigation_menu/add_site_navigation_menu");
+			"/site_navigation_admin/add_site_navigation_menu");
 		addSiteNavigationMenuURL.setParameter(
 			"mvcPath", "/edit_site_navigation_menu.jsp");
 		addSiteNavigationMenuURL.setParameter(

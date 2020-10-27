@@ -25,7 +25,7 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle(LanguageUtil.get(request, "add-new-menu"));
 %>
 
-<portlet:actionURL name="/navigation_menu/add_site_navigation_menu" var="editSitaNavigationMenuURL">
+<portlet:actionURL name="/site_navigation_admin/add_site_navigation_menu" var="editSitaNavigationMenuURL">
 	<portlet:param name="mvcPath" value="/add_site_navigation_menu.jsp" />
 	<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
 </portlet:actionURL>

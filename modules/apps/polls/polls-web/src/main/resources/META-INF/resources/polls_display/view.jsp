@@ -64,8 +64,8 @@ if (question != null) {
 		boolean hasVoted = PollsUtil.hasVoted(request, question.getQuestionId());
 		%>
 
-		<portlet:actionURL name="/polls_display/vote_question" var="voteQuestionURL">
-			<portlet:param name="mvcActionCommand" value="/polls_display/vote_question" />
+		<portlet:actionURL name="/polls/vote_question" var="voteQuestionURL">
+			<portlet:param name="mvcActionCommand" value="/polls/vote_question" />
 		</portlet:actionURL>
 
 		<aui:form action="<%= voteQuestionURL %>" method="post" name="fm">

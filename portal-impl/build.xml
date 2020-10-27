@@ -737,7 +737,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 					<arg value="source.file.extensions=${source.file.extensions}" />
 					<arg value="source.files=${source.files}" />
 					<arg value="source.print.errors=${source.print.errors}" />
-					<arg value="validate.commit.messages=${source.formatter.validate.commit.messages}" />
+					<arg value="validate.commit.messages=${validate.commit.messages}" />
 				</java>
 
 				<delete file="ServiceBuilder.temp" />

@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
-		"mvc.command.name=/admin/edit_element_set"
+		"mvc.command.name=/dynamic_data_mapping_form/edit_element_set_instance"
 	},
 	service = MVCRenderCommand.class
 )

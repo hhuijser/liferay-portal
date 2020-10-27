@@ -35,7 +35,7 @@ FieldSetPermissionCheckerHelper fieldSetPermissionCheckerHelper = ddmFormAdminDi
 >
 	<c:if test="<%= fieldSetPermissionCheckerHelper.isShowEditIcon(ddmStructure) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="/admin/edit_element_set" />
+			<portlet:param name="mvcRenderCommandName" value="/dynamic_data_mapping_form/edit_element_set_instance" />
 			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 			<portlet:param name="structureId" value="<%= String.valueOf(ddmStructure.getStructureId()) %>" />
 		</portlet:renderURL>

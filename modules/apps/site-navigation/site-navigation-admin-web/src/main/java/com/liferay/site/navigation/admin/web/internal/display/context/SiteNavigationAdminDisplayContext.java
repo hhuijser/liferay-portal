@@ -264,7 +264,7 @@ public class SiteNavigationAdminDisplayContext {
 
 				actionURL.setParameter(
 					ActionRequest.ACTION_NAME,
-					"/navigation_menu/delete_site_navigation_menu_item");
+					"/site_navigation_admin/delete_site_navigation_menu_item");
 
 				return actionURL.toString();
 			}
@@ -276,7 +276,8 @@ public class SiteNavigationAdminDisplayContext {
 
 				actionURL.setParameter(
 					ActionRequest.ACTION_NAME,
-					"/navigation_menu/edit_site_navigation_menu_item_parent");
+					"/site_navigation_admin" +
+						"/edit_site_navigation_menu_item_parent");
 
 				actionURL.setParameter(
 					"redirect",

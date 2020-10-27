@@ -122,7 +122,7 @@ renderResponse.setTitle(siteNavigationAdminDisplayContext.getSiteNavigationMenuN
 
 		<c:if test="<%= siteNavigationAdminDisplayContext.hasUpdatePermission() %>">
 			<div>
-				<portlet:actionURL name="/navigation_menu/edit_site_navigation_menu_item_parent" var="editSiteNavigationMenuItemParentURL">
+				<portlet:actionURL name="/site_navigation_admin/edit_site_navigation_menu_item_parent" var="editSiteNavigationMenuItemParentURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:actionURL>
 

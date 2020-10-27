@@ -26,7 +26,7 @@ SiteNavigationMenuItem siteNavigationMenuItem = SiteNavigationMenuItemLocalServi
 SiteNavigationMenuItemType siteNavigationMenuItemType = siteNavigationMenuItemTypeRegistry.getSiteNavigationMenuItemType(siteNavigationMenuItem.getType());
 %>
 
-<portlet:actionURL name="/navigation_menu/edit_site_navigation_menu_item" var="editSiteNavigationMenuItemURL" />
+<portlet:actionURL name="/site_navigation_admin/edit_site_navigation_menu_item" var="editSiteNavigationMenuItemURL" />
 
 <aui:form action="<%= editSiteNavigationMenuItemURL %>">
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />

@@ -379,7 +379,7 @@ public class FolderActionDisplayContext {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/image_gallery_display/view_slide_show");
+			"mvcRenderCommandName", "/document_library/view_slide_show");
 		portletURL.setParameter("folderId", String.valueOf(_getFolderId()));
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
@@ -736,7 +736,7 @@ public class FolderActionDisplayContext {
 
 		String portletName = _dlRequestHelper.getPortletName();
 
-		String mvcRenderCommandName = "/image_gallery_display/view";
+		String mvcRenderCommandName = "/document_library/ig_view";
 
 		if (!portletName.equals(DLPortletKeys.MEDIA_GALLERY_DISPLAY)) {
 			mvcRenderCommandName = "/document_library/view";

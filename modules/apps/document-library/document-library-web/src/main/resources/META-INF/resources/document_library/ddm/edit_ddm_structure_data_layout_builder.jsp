@@ -39,12 +39,12 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle(title);
 %>
 
-<portlet:actionURL name="/document_library/ddm/add_data_definition" var="addDataDefinitionURL">
-	<portlet:param name="mvcRenderCommandName" value="/document_library/ddm/edit_ddm_structure" />
+<portlet:actionURL name="/document_library/add_data_definition" var="addDataDefinitionURL">
+	<portlet:param name="mvcRenderCommandName" value="/document_library/edit_ddm_structure" />
 </portlet:actionURL>
 
-<portlet:actionURL name="/document_library/ddm/update_data_definition" var="updateDataDefinitionURL">
-	<portlet:param name="mvcRenderCommandName" value="/document_library/ddm/edit_ddm_structure" />
+<portlet:actionURL name="/document_library/update_data_definition" var="updateDataDefinitionURL">
+	<portlet:param name="mvcRenderCommandName" value="/document_library/edit_ddm_structure" />
 </portlet:actionURL>
 
 <aui:form action="<%= (ddmStructure == null) ? addDataDefinitionURL : updateDataDefinitionURL %>" cssClass="edit-metadata-type-form" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>'>

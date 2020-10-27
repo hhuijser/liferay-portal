@@ -6,13 +6,13 @@
 		<pattern></pattern>
 		<implicit-parameter name="folderId">0</implicit-parameter>
 		<implicit-parameter name="instanceId">0000</implicit-parameter>
-		<implicit-parameter name="mvcRenderCommandName">/image_gallery_display/view</implicit-parameter>
+		<implicit-parameter name="mvcRenderCommandName">/document_library/ig_view</implicit-parameter>
 		<implicit-parameter name="userIdAndInstanceId"></implicit-parameter>
 	</route>
 	<route>
 		<pattern>/view/{folderId:\d+}</pattern>
 		<implicit-parameter name="instanceId">0000</implicit-parameter>
-		<implicit-parameter name="mvcRenderCommandName">/image_gallery_display/view</implicit-parameter>
+		<implicit-parameter name="mvcRenderCommandName">/document_library/ig_view</implicit-parameter>
 		<implicit-parameter name="userIdAndInstanceId"></implicit-parameter>
 	</route>
 	<route>

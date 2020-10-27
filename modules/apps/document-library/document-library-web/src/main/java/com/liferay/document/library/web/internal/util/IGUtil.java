@@ -64,7 +64,7 @@ public class IGUtil {
 		}
 		else {
 			portletURL.setParameter(
-				"mvcRenderCommandName", "/image_gallery_display/view");
+				"mvcRenderCommandName", "/document_library/ig_view");
 		}
 
 		long rootFolderId = getRootFolderId(httpServletRequest);

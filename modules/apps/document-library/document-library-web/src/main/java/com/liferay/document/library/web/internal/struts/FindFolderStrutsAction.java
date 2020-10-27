@@ -76,7 +76,7 @@ public class FindFolderStrutsAction extends FindStrutsAction {
 
 		if (rootPortletId.equals(DLPortletKeys.MEDIA_GALLERY_DISPLAY)) {
 			portletURL.setParameter(
-				"mvcRenderCommandName", "/image_gallery_display/view");
+				"mvcRenderCommandName", "/document_library/ig_view");
 		}
 		else {
 			portletURL.setParameter(

@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + AssetListPortletKeys.ASSET_LIST,
-		"mvc.command.name=/asset_list/delete_asset_list_entry"
+		"mvc.command.name=/asset_list/delete_asset_list_entries"
 	},
 	service = MVCActionCommand.class
 )

@@ -89,7 +89,7 @@ public class AssetEntryListActionDropdownItems {
 			_liferayPortletResponse.createActionURL();
 
 		deleteAssetListEntryURL.setParameter(
-			ActionRequest.ACTION_NAME, "/asset_list/delete_asset_list_entry");
+			ActionRequest.ACTION_NAME, "/asset_list/delete_asset_list_entries");
 		deleteAssetListEntryURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		deleteAssetListEntryURL.setParameter(

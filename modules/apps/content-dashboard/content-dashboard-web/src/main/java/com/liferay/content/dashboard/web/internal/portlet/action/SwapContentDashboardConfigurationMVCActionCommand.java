@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ContentDashboardPortletKeys.CONTENT_DASHBOARD_ADMIN,
-		"mvc.command.name=/swap_content_dashboard_configuration"
+		"mvc.command.name=/content_dashboard/swap_content_dashboard_configuration"
 	},
 	service = MVCActionCommand.class
 )

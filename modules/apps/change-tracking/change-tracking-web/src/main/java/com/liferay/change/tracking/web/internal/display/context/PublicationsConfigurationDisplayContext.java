@@ -64,7 +64,7 @@ public class PublicationsConfigurationDisplayContext {
 
 		actionURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/publications/update_global_publications_configuration");
+			"/change_tracking/update_global_publications_configuration");
 
 		return actionURL.toString();
 	}

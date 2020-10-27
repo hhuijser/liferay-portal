@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + CTPortletKeys.PUBLICATIONS,
-		"mvc.command.name=/publications/publish_ct_collection"
+		"mvc.command.name=/change_tracking/publish_ct_collection"
 	},
 	service = MVCActionCommand.class
 )
@@ -82,7 +82,7 @@ public class PublishCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 			PortletRequest.RENDER_PHASE);
 
 		redirectURL.setParameter(
-			"mvcRenderCommandName", "/publications/view_history");
+			"mvcRenderCommandName", "/change_tracking/view_history");
 
 		sendRedirect(actionRequest, actionResponse, redirectURL.toString());
 	}

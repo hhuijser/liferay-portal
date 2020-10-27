@@ -63,7 +63,7 @@ renderResponse.setTitle(StringBundler.concat(LanguageUtil.get(request, scheduled
 <clay:container-fluid
 	cssClass="container-form-lg"
 >
-	<liferay-portlet:actionURL name='<%= scheduled ? "/publications/reschedule_publication" : "/publications/schedule_publication" %>' var="submitURL">
+	<liferay-portlet:actionURL name='<%= scheduled ? "/publications/reschedule_publication" : "/change_tracking/schedule_publication" %>' var="submitURL">
 		<portlet:param name="redirect" value="<%= redirect %>" />
 	</liferay-portlet:actionURL>
 
@@ -175,7 +175,7 @@ renderResponse.setTitle(StringBundler.concat(LanguageUtil.get(request, scheduled
 								<div class="autofit-col">
 									<span>
 										<liferay-portlet:renderURL var="conflictsURL">
-											<portlet:param name="mvcRenderCommandName" value="/publications/view_conflicts" />
+											<portlet:param name="mvcRenderCommandName" value="/change_tracking/view_conflicts" />
 											<portlet:param name="redirect" value="<%= redirect %>" />
 											<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 											<portlet:param name="schedule" value="<%= Boolean.TRUE.toString() %>" />

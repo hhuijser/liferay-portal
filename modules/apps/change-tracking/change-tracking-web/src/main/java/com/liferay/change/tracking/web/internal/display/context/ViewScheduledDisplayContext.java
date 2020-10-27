@@ -168,7 +168,7 @@ public class ViewScheduledDisplayContext {
 				navigationItem.setActive(true);
 				navigationItem.setHref(
 					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/publications/view_scheduled", "displayStyle",
+					"/change_tracking/view_scheduled", "displayStyle",
 					getDisplayStyle());
 				navigationItem.setLabel(
 					_language.get(_httpServletRequest, "scheduled"));
@@ -178,7 +178,7 @@ public class ViewScheduledDisplayContext {
 				navigationItem.setActive(false);
 				navigationItem.setHref(
 					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/publications/view_history", "displayStyle",
+					"/change_tracking/view_history", "displayStyle",
 					getDisplayStyle());
 				navigationItem.setLabel(
 					_language.get(_httpServletRequest, "history"));

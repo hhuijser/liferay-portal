@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + CTPortletKeys.PUBLICATIONS,
-		"mvc.command.name=/publications/render_ct_entry"
+		"mvc.command.name=/change_tracking/render_ct_entry"
 	},
 	service = MVCResourceCommand.class
 )

@@ -28,7 +28,7 @@ renderResponse.setTitle(StringBundler.concat(LanguageUtil.get(request, schedule 
 %>
 
 <liferay-portlet:renderURL var="backURL">
-	<portlet:param name="mvcRenderCommandName" value="/publications/view_changes" />
+	<portlet:param name="mvcRenderCommandName" value="/change_tracking/view_changes" />
 	<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 </liferay-portlet:renderURL>
 
@@ -131,7 +131,7 @@ portletDisplay.setURLBack(backURL);
 							<c:choose>
 								<c:when test="<%= schedule %>">
 									<liferay-portlet:renderURL var="scheduleURL">
-										<portlet:param name="mvcRenderCommandName" value="/publications/schedule_publication" />
+										<portlet:param name="mvcRenderCommandName" value="/change_tracking/schedule_publication" />
 										<portlet:param name="redirect" value="<%= backURL %>" />
 										<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 									</liferay-portlet:renderURL>
@@ -139,7 +139,7 @@ portletDisplay.setURLBack(backURL);
 									<aui:button disabled="<%= !resolved %>" href="<%= scheduleURL %>" primary="true" value="next" />
 								</c:when>
 								<c:otherwise>
-									<liferay-portlet:actionURL name="/publications/publish_ct_collection" var="publishURL">
+									<liferay-portlet:actionURL name="/change_tracking/publish_ct_collection" var="publishURL">
 										<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 										<portlet:param name="name" value="<%= ctCollection.getName() %>" />
 									</liferay-portlet:actionURL>

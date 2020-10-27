@@ -195,7 +195,8 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 			CTPortletKeys.PUBLICATIONS, 0, 0, PortletRequest.ACTION_PHASE);
 
 		checkoutURL.setParameter(
-			ActionRequest.ACTION_NAME, "/publications/checkout_ct_collection");
+			ActionRequest.ACTION_NAME,
+			"/change_tracking/checkout_ct_collection");
 		checkoutURL.setParameter(
 			"redirect", _portal.getCurrentURL(httpServletRequest));
 
@@ -329,7 +330,7 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 				CTPortletKeys.PUBLICATIONS, 0, 0, PortletRequest.RENDER_PHASE);
 
 			reviewURL.setParameter(
-				"mvcRenderCommandName", "/publications/view_changes");
+				"mvcRenderCommandName", "/change_tracking/view_changes");
 			reviewURL.setParameter("backURL", backURL.toString());
 			reviewURL.setParameter(
 				"ctCollectionId", String.valueOf(ctCollectionId));
@@ -362,7 +363,7 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 					PortletRequest.RENDER_PHASE);
 
 				publishURL.setParameter(
-					"mvcRenderCommandName", "/publications/view_conflicts");
+					"mvcRenderCommandName", "/change_tracking/view_conflicts");
 				publishURL.setParameter(
 					"ctCollectionId",
 					String.valueOf(ctCollection.getCtCollectionId()));

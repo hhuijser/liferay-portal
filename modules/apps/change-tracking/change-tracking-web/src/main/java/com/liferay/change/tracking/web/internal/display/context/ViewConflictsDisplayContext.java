@@ -175,7 +175,7 @@ public class ViewConflictsDisplayContext {
 
 			dismissURL.setParameter(
 				ActionRequest.ACTION_NAME,
-				"/publications/delete_ct_auto_resolution_info");
+				"/change_tracking/delete_ct_auto_resolution_info");
 			dismissURL.setParameter(
 				"redirect", _portal.getCurrentURL(_renderRequest));
 			dismissURL.setParameter(
@@ -226,7 +226,7 @@ public class ViewConflictsDisplayContext {
 				RenderURL discardURL = _renderResponse.createRenderURL();
 
 				discardURL.setParameter(
-					"mvcRenderCommandName", "/publications/view_discard");
+					"mvcRenderCommandName", "/change_tracking/view_discard");
 				discardURL.setParameter(
 					"redirect", _portal.getCurrentURL(_renderRequest));
 				discardURL.setParameter(
@@ -299,11 +299,11 @@ public class ViewConflictsDisplayContext {
 
 		if (viewDiff) {
 			viewURL.setParameter(
-				"mvcRenderCommandName", "/publications/view_diff");
+				"mvcRenderCommandName", "/change_tracking/view_diff");
 		}
 		else {
 			viewURL.setParameter(
-				"mvcRenderCommandName", "/publications/view_entry");
+				"mvcRenderCommandName", "/change_tracking/view_entry");
 		}
 
 		viewURL.setParameter(
@@ -326,7 +326,7 @@ public class ViewConflictsDisplayContext {
 		RenderURL viewURL = renderResponse.createRenderURL();
 
 		viewURL.setParameter(
-			"mvcRenderCommandName", "/publications/view_entry");
+			"mvcRenderCommandName", "/change_tracking/view_entry");
 		viewURL.setParameter(
 			"modelClassNameId", String.valueOf(modelClassNameId));
 		viewURL.setParameter("modelClassPK", String.valueOf(modelClassPK));

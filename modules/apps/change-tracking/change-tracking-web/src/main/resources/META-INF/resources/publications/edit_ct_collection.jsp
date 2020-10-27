@@ -21,7 +21,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 CTCollection ctCollection = (CTCollection)request.getAttribute("ctCollection");
 
-String actionName = "/publications/edit_ct_collection";
+String actionName = "/change_tracking/edit_ct_collection";
 long ctCollectionId = CTConstants.CT_COLLECTION_ID_PRODUCTION;
 String description = StringPool.BLANK;
 String name = StringPool.BLANK;
@@ -30,7 +30,7 @@ String saveButtonLabel = "create";
 boolean revert = ParamUtil.getBoolean(request, "revert");
 
 if (revert) {
-	actionName = "/publications/undo_ct_collection";
+	actionName = "/change_tracking/undo_ct_collection";
 	ctCollectionId = ctCollection.getCtCollectionId();
 	name = StringBundler.concat(LanguageUtil.get(request, "revert"), " \"", ctCollection.getName(), "\"");
 	saveButtonLabel = "revert-and-create-publication";
@@ -54,7 +54,7 @@ portletDisplay.setShowBackIcon(true);
 %>
 
 <liferay-portlet:actionURL name="<%= actionName %>" var="actionURL">
-	<liferay-portlet:param name="mvcRenderCommandName" value="/publications/view" />
+	<liferay-portlet:param name="mvcRenderCommandName" value="/change_tracking/view_publications" />
 	<liferay-portlet:param name="redirect" value="<%= redirect %>" />
 </liferay-portlet:actionURL>
 

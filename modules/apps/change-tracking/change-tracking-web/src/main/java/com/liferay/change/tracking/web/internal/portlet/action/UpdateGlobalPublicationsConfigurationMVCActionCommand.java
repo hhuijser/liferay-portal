@@ -68,7 +68,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + CTPortletKeys.PUBLICATIONS_CONFIGURATION,
-		"mvc.command.name=/publications/update_global_publications_configuration"
+		"mvc.command.name=/change_tracking/update_global_publications_configuration"
 	},
 	service = AopService.class
 )

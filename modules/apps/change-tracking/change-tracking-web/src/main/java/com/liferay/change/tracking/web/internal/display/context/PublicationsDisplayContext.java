@@ -102,7 +102,7 @@ public class PublicationsDisplayContext {
 		PortletURL reviewURL = _renderResponse.createRenderURL();
 
 		reviewURL.setParameter(
-			"mvcRenderCommandName", "/publications/view_changes");
+			"mvcRenderCommandName", "/change_tracking/view_changes");
 		reviewURL.setParameter(
 			"backURL", _portal.getCurrentURL(_renderRequest));
 		reviewURL.setParameter(
@@ -173,7 +173,7 @@ public class PublicationsDisplayContext {
 				navigationItem.setActive(false);
 				navigationItem.setHref(
 					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/publications/view_scheduled", "displayStyle",
+					"/change_tracking/view_scheduled", "displayStyle",
 					getDisplayStyle());
 				navigationItem.setLabel(
 					_language.get(_httpServletRequest, "scheduled"));
@@ -183,7 +183,7 @@ public class PublicationsDisplayContext {
 				navigationItem.setActive(false);
 				navigationItem.setHref(
 					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/publications/view_history", "displayStyle",
+					"/change_tracking/view_history", "displayStyle",
 					getDisplayStyle());
 				navigationItem.setLabel(
 					_language.get(_httpServletRequest, "history"));

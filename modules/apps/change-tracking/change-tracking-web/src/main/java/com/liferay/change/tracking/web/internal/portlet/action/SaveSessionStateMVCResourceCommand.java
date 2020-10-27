@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + CTPortletKeys.PUBLICATIONS,
-		"mvc.command.name=/publications/save_session_state"
+		"mvc.command.name=/change_tracking/save_session_state"
 	},
 	service = MVCResourceCommand.class
 )

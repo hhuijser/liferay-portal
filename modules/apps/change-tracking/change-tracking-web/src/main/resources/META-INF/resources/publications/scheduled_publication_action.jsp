@@ -31,7 +31,7 @@ CTCollection ctCollection = (CTCollection)row.getObject();
 >
 	<c:if test="<%= CTCollectionPermission.contains(permissionChecker, ctCollection, CTActionKeys.PUBLISH) %>">
 		<liferay-portlet:renderURL var="rescheduleURL">
-			<portlet:param name="mvcRenderCommandName" value="/publications/schedule_publication" />
+			<portlet:param name="mvcRenderCommandName" value="/change_tracking/schedule_publication" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 		</liferay-portlet:renderURL>
@@ -55,7 +55,7 @@ CTCollection ctCollection = (CTCollection)row.getObject();
 	</c:if>
 
 	<liferay-portlet:renderURL var="reviewURL">
-		<portlet:param name="mvcRenderCommandName" value="/publications/view_changes" />
+		<portlet:param name="mvcRenderCommandName" value="/change_tracking/view_changes" />
 		<portlet:param name="backURL" value="<%= currentURL %>" />
 		<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 	</liferay-portlet:renderURL>

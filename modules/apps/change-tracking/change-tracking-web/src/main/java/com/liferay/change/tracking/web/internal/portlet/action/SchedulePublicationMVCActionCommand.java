@@ -44,8 +44,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + CTPortletKeys.PUBLICATIONS,
+		"mvc.command.name=/change_tracking/schedule_publication",
 		"mvc.command.name=/publications/reschedule_publication",
-		"mvc.command.name=/publications/schedule_publication",
 		"mvc.command.name=/publications/unschedule_publication"
 	},
 	service = MVCActionCommand.class
@@ -102,7 +102,7 @@ public class SchedulePublicationMVCActionCommand extends BaseMVCActionCommand {
 		long ctCollectionId = ParamUtil.getLong(
 			actionRequest, "ctCollectionId");
 
-		if (!actionName.equals("/publications/schedule_publication")) {
+		if (!actionName.equals("/change_tracking/schedule_publication")) {
 			_publishScheduler.unschedulePublish(ctCollectionId);
 		}
 
@@ -125,7 +125,7 @@ public class SchedulePublicationMVCActionCommand extends BaseMVCActionCommand {
 			PortletURL redirectURL = liferayPortletResponse.createRenderURL();
 
 			redirectURL.setParameter(
-				"mvcRenderCommandName", "/publications/view_scheduled");
+				"mvcRenderCommandName", "/change_tracking/view_scheduled");
 
 			sendRedirect(actionRequest, actionResponse, redirectURL.toString());
 		}

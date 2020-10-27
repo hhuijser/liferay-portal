@@ -17,7 +17,7 @@
 <%@ include file="/publications/init.jsp" %>
 
 <liferay-portlet:renderURL var="backURL">
-	<portlet:param name="mvcRenderCommandName" value="/publications/view" />
+	<portlet:param name="mvcRenderCommandName" value="/change_tracking/view_publications" />
 </liferay-portlet:renderURL>
 
 <%

@@ -53,7 +53,7 @@ Format format = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 			%>
 
 			<liferay-portlet:renderURL var="changesURL">
-				<portlet:param name="mvcRenderCommandName" value="/publications/view_changes" />
+				<portlet:param name="mvcRenderCommandName" value="/change_tracking/view_changes" />
 				<portlet:param name="backURL" value="<%= currentURL %>" />
 				<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 			</liferay-portlet:renderURL>
@@ -140,7 +140,7 @@ Format format = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 				cssClass="table-cell-expand-smallest"
 			>
 				<liferay-portlet:renderURL var="revertURL">
-					<portlet:param name="mvcRenderCommandName" value="/publications/undo_ct_collection" />
+					<portlet:param name="mvcRenderCommandName" value="/change_tracking/undo_ct_collection" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollection.getCtCollectionId()) %>" />
 					<portlet:param name="revert" value="true" />

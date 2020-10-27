@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + CTPortletKeys.PUBLICATIONS,
-		"mvc.command.name=/publications/undo_ct_collection"
+		"mvc.command.name=/change_tracking/undo_ct_collection"
 	},
 	service = MVCActionCommand.class
 )
@@ -83,11 +83,11 @@ public class UndoCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 
 		if (publishTime.equals("now")) {
 			redirectURL.setParameter(
-				"mvcRenderCommandName", "/publications/view_conflicts");
+				"mvcRenderCommandName", "/change_tracking/view_conflicts");
 		}
 		else {
 			redirectURL.setParameter(
-				"mvcRenderCommandName", "/publications/view_changes");
+				"mvcRenderCommandName", "/change_tracking/view_changes");
 		}
 
 		redirectURL.setParameter(

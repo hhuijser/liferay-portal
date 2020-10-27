@@ -275,7 +275,8 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 
 		portletURL.setParameter("saveLastPath", Boolean.FALSE.toString());
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/login/associate_facebook_user");
+			"mvcRenderCommandName",
+			"/login_authentication_facebook_connect/associate_facebook_user");
 		portletURL.setParameter(
 			"redirect", ParamUtil.getString(httpServletRequest, "redirect"));
 		portletURL.setParameter("userId", String.valueOf(user.getUserId()));
@@ -297,7 +298,9 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 			httpServletRequest, PortletKeys.LOGIN, PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/login/facebook_connect_login_error");
+			"mvcRenderCommandName",
+			"/login_authentication_facebook_connect" +
+				"/facebook_connect_login_error");
 		portletURL.setParameter("error", error);
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 

@@ -31,7 +31,7 @@ if (PropsValues.LIVE_USERS_ENABLED && PropsValues.SESSION_TRACKER_MEMORY_ENABLED
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/monitoring/view");
+portletURL.setParameter("mvcRenderCommandName", "/monitoring/monitoring_view");
 
 PortletURL sortingURL = PortletURLUtil.clone(portletURL, renderResponse);
 

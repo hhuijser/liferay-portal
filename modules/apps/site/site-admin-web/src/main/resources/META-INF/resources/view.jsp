@@ -41,7 +41,7 @@ if (group != null) {
 	cssClass="closed sidenav-container sidenav-right"
 	id='<%= liferayPortletResponse.getNamespace() + "infoPanelId" %>'
 >
-	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/site/info_panel" var="sidebarPanelURL" />
+	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/site_admin/info_panel" var="sidebarPanelURL" />
 
 	<liferay-frontend:sidebar-panel
 		resourceURL="<%= sidebarPanelURL %>"

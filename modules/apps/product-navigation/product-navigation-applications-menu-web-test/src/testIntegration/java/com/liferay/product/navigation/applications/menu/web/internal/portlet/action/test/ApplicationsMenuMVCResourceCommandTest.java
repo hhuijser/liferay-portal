@@ -467,7 +467,9 @@ public class ApplicationsMenuMVCResourceCommandTest {
 	private HttpServletRequest _mockHttpServletRequest;
 	private MockPortletRequest _mockPortletRequest;
 
-	@Inject(filter = "mvc.command.name=/applications_menu/panel_apps")
+	@Inject(
+		filter = "mvc.command.name=/product_navigation_applications_menu/applications_menu"
+	)
 	private MVCResourceCommand _mvcResourceCommand;
 
 	private String _originalName;

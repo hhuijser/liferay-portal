@@ -86,7 +86,7 @@ if (size != null) {
 
 	resourceURL.setParameter("currentURL", themeDisplay.getURLCurrent());
 	resourceURL.setParameter("portletId", themeDisplay.getPpid());
-	resourceURL.setResourceID("/get_personal_menu_items");
+	resourceURL.setResourceID("/product_navigation_personal_menu/get_personal_menu_items");
 
 	Map<String, Object> props = HashMapBuilder.<String, Object>put(
 		"color", color

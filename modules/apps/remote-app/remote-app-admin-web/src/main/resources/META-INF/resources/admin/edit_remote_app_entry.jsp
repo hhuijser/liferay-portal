@@ -29,7 +29,7 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle((remoteAppEntry == null) ? LanguageUtil.get(request, "new-remote-app") : remoteAppEntry.getName(locale));
 %>
 
-<portlet:actionURL name="/edit_remote_app_entry" var="editRemoteAppEntryURL" />
+<portlet:actionURL name="/remote_app_admin/edit_remote_app_entry" var="editRemoteAppEntryURL" />
 
 <clay:container-fluid>
 	<aui:form action="<%= editRemoteAppEntryURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveRemoteAppEntry();" %>'>

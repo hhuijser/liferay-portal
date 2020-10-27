@@ -172,7 +172,7 @@ if (Validator.isNotNull(viewUsersRedirect)) {
 		>
 			<liferay-portlet:renderURL varImpl="rowURL">
 				<portlet:param name="p_u_i_d" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="mvcRenderCommandName" value="/directory/view_user" />
+				<portlet:param name="mvcRenderCommandName" value="/directory/view_organization_directory" />
 				<portlet:param name="tabs1" value="<%= HtmlUtil.escape(tabs1) %>" />
 				<portlet:param name="redirect" value="<%= userSearchContainer.getIteratorURL().toString() %>" />
 			</liferay-portlet:renderURL>

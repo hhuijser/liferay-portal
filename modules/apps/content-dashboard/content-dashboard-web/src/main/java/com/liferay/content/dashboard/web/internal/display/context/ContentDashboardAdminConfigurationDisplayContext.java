@@ -61,7 +61,7 @@ public class ContentDashboardAdminConfigurationDisplayContext {
 
 		actionURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/update_content_dashboard_configuration");
+			"/content_dashboard/update_content_dashboard_configuration");
 		actionURL.setParameter("redirect", String.valueOf(getRedirect()));
 
 		return actionURL;
@@ -116,7 +116,8 @@ public class ContentDashboardAdminConfigurationDisplayContext {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/edit_content_dashboard_configuration");
+			"mvcRenderCommandName",
+			"/content_dashboard/edit_content_dashboard_configuration");
 
 		return portletURL;
 	}

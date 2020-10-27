@@ -134,7 +134,8 @@ public class AddContentPanelDisplayContext {
 				ResourceURL resourceURL =
 					_liferayPortletResponse.createResourceURL();
 
-				resourceURL.setResourceID("/add_content_panel/get_contents");
+				resourceURL.setResourceID(
+					"/product_navigation_control_menu/get_contents");
 
 				return resourceURL.toString();
 			}

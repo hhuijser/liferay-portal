@@ -66,7 +66,8 @@ public class ApplicationsMenuDisplayContext {
 						PortletRequest.RESOURCE_PHASE);
 
 				applicationsMenuLiferayLogoURL.setResourceID(
-					"/applications_menu/liferay_logo");
+					"/product_navigation_applications_menu" +
+						"/applications_menu_liferay_logo");
 
 				return applicationsMenuLiferayLogoURL.toString();
 			}
@@ -85,7 +86,7 @@ public class ApplicationsMenuDisplayContext {
 						PortletRequest.RESOURCE_PHASE);
 
 				applicationsMenuPanelAppsURL.setResourceID(
-					"/applications_menu/panel_apps");
+					"/product_navigation_applications_menu/applications_menu");
 				applicationsMenuPanelAppsURL.setParameter(
 					"selectedPortletId", themeDisplay.getPpid());
 

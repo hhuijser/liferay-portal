@@ -393,9 +393,9 @@ public class DDMFormAdminFieldSetDisplayContext
 
 			dropdownItem.setHref(
 				renderResponse.createRenderURL(), "mvcRenderCommandName",
-				"/admin/edit_element_set", "redirect",
-				PortalUtil.getCurrentURL(httpServletRequest), "groupId",
-				String.valueOf(themeDisplay.getScopeGroupId()));
+				"/dynamic_data_mapping_form/edit_element_set_instance",
+				"redirect", PortalUtil.getCurrentURL(httpServletRequest),
+				"groupId", String.valueOf(themeDisplay.getScopeGroupId()));
 
 			dropdownItem.setLabel(
 				LanguageUtil.get(httpServletRequest, "new-element-set"));

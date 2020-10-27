@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + AccountPortletKeys.ACCOUNT_GROUPS_ADMIN,
-		"mvc.command.name=/account_groups_admin/delete_account_groups"
+		"mvc.command.name=/account_admin/delete_account_groups"
 	},
 	service = MVCActionCommand.class
 )

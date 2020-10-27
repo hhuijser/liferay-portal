@@ -78,7 +78,7 @@ renderResponse.setTitle(accountGroupDisplay.getName());
 				</liferay-ui:search-container-column-text>
 
 				<liferay-ui:search-container-column-text>
-					<portlet:actionURL name="/account_groups_admin/remove_account_group_account_entries" var="removeAccountGroupAccountEntryURL">
+					<portlet:actionURL name="/account_admin/remove_account_group_account_entries" var="removeAccountGroupAccountEntryURL">
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="accountEntryIds" value="<%= String.valueOf(accountEntryDisplay.getAccountEntryId()) %>" />
 						<portlet:param name="accountGroupId" value="<%= String.valueOf(accountGroupDisplay.getAccountGroupId()) %>" />
@@ -101,11 +101,11 @@ renderResponse.setTitle(accountGroupDisplay.getName());
 	</aui:form>
 </clay:container-fluid>
 
-<portlet:actionURL name="/account_groups_admin/assign_account_group_account_entries" var="assignAccountGroupAccountEntriesURL">
+<portlet:actionURL name="/account_admin/assign_account_group_account_entries" var="assignAccountGroupAccountEntriesURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<portlet:actionURL name="/account_groups_admin/remove_account_group_account_entries" var="removeAccountGroupAccountEntriesURL">
+<portlet:actionURL name="/account_admin/remove_account_group_account_entries" var="removeAccountGroupAccountEntriesURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 	<portlet:param name="accountGroupId" value="<%= String.valueOf(accountGroupDisplay.getAccountGroupId()) %>" />
 </portlet:actionURL>

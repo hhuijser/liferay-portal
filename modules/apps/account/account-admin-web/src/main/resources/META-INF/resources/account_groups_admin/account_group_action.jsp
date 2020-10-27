@@ -30,7 +30,7 @@ AccountGroupDisplay accountGroupDisplay = (AccountGroupDisplay)row.getObject();
 	showWhenSingleIcon="<%= true %>"
 >
 	<portlet:renderURL var="editAccountGroupURL">
-		<portlet:param name="mvcRenderCommandName" value="/account_groups_admin/edit_account_group" />
+		<portlet:param name="mvcRenderCommandName" value="/account_admin/edit_account_group" />
 		<portlet:param name="backURL" value="<%= currentURL %>" />
 		<portlet:param name="accountGroupId" value="<%= String.valueOf(accountGroupDisplay.getAccountGroupId()) %>" />
 	</portlet:renderURL>
@@ -40,7 +40,7 @@ AccountGroupDisplay accountGroupDisplay = (AccountGroupDisplay)row.getObject();
 		url="<%= editAccountGroupURL %>"
 	/>
 
-	<portlet:actionURL name="/account_groups_admin/delete_account_groups" var="deleteAccountGroupURL">
+	<portlet:actionURL name="/account_admin/delete_account_groups" var="deleteAccountGroupURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="accountGroupIds" value="<%= String.valueOf(accountGroupDisplay.getAccountGroupId()) %>" />
 	</portlet:actionURL>

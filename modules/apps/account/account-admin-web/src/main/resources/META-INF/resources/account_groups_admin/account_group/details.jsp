@@ -27,7 +27,7 @@ portletDisplay.setURLBack(backURL);
 renderResponse.setTitle((accountGroupDisplay.getAccountGroupId() == 0) ? LanguageUtil.get(request, "add-account-group") : LanguageUtil.format(request, "edit-x", accountGroupDisplay.getName(), false));
 %>
 
-<portlet:actionURL name="/account_groups_admin/edit_account_group" var="editAccountGroupURL">
+<portlet:actionURL name="/account_admin/edit_account_group" var="editAccountGroupURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 	<portlet:param name="accountGroupId" value="<%= String.valueOf(accountGroupDisplay.getAccountGroupId()) %>" />
 </portlet:actionURL>

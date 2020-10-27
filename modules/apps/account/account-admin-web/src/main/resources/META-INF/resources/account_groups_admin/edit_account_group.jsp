@@ -21,7 +21,7 @@ AccountGroupDisplay accountGroupDisplay = (AccountGroupDisplay)request.getAttrib
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/account_groups_admin/edit_account_group");
+portletURL.setParameter("mvcRenderCommandName", "/account_admin/edit_account_group");
 portletURL.setParameter("accountGroupId", String.valueOf(accountGroupDisplay.getAccountGroupId()));
 %>
 

@@ -66,7 +66,7 @@ public class ViewAccountGroupsManagementToolbarDisplayContext
 
 				deleteAccountGroupsURL.setParameter(
 					ActionRequest.ACTION_NAME,
-					"/account_groups_admin/delete_account_groups");
+					"/account_admin/delete_account_groups");
 
 				dropdownItem.putData(
 					"deleteAccountGroupsURL",
@@ -96,9 +96,8 @@ public class ViewAccountGroupsManagementToolbarDisplayContext
 			dropdownItem -> {
 				dropdownItem.setHref(
 					liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName",
-					"/account_groups_admin/edit_account_group", "backURL",
-					currentURLObj.toString());
+					"mvcRenderCommandName", "/account_admin/edit_account_group",
+					"backURL", currentURLObj.toString());
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "add-account-group"));
 			}

@@ -153,7 +153,9 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 			httpServletRequest, PortletKeys.LOGIN, PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/login/google_login_error");
+			"mvcRenderCommandName",
+			"/portal_security_sso_google_login_authentication" +
+				"/google_login_error");
 		portletURL.setParameter("error", error);
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
@@ -185,7 +187,9 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 
 		portletURL.setParameter("saveLastPath", Boolean.FALSE.toString());
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/login/associate_google_user");
+			"mvcRenderCommandName",
+			"/portal_security_sso_google_login_authentication" +
+				"/associate_google_user");
 
 		PortletURL redirectURL = PortletURLFactoryUtil.create(
 			httpServletRequest, PortletKeys.LOGIN, PortletRequest.RENDER_PHASE);

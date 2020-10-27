@@ -90,7 +90,7 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 				addMessage(
 					fileName,
 					StringBundler.concat(
-						previousGlobalVariableName, " = ",
+						"'", previousGlobalVariableName, " = ",
 						previousParameterName, ";' should come before '",
 						matcher.group(2), " = ", parameterName,
 						";' to match order of constructor parameters"),

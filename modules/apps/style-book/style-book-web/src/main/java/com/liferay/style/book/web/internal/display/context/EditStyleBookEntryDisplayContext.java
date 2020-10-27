@@ -99,8 +99,7 @@ public class EditStyleBookEntryDisplayContext {
 		).put(
 			"redirectURL", _getRedirect()
 		).put(
-			"saveDraftURL",
-			_getActionURL("/style_book/save_draft_style_book_entry")
+			"saveDraftURL", _getActionURL("/style_book/edit_style_book_entry")
 		).put(
 			"styleBookEntryId", _getStyleBookEntryId()
 		).build();

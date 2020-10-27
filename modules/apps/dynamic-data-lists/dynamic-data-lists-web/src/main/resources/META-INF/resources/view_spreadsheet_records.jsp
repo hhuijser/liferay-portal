@@ -167,7 +167,7 @@ DDMStructure ddmStructure = recordSet.getDDMStructure();
 		},
 		structure: structure,
 		updateRecordURL:
-			'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/ddl/update_record" />',
+			'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/dynamic_data_lists/update_record" />',
 		width: '100%',
 	});
 

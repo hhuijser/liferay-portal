@@ -76,7 +76,8 @@ public class RemoteAppEntryClayDataSetActionProvider
 		PortletURL deleteRemoteAppEntryURL = _getActionURL(httpServletRequest);
 
 		deleteRemoteAppEntryURL.setParameter(
-			ActionRequest.ACTION_NAME, "/delete_remote_app_entry");
+			ActionRequest.ACTION_NAME,
+			"/remote_app_admin/delete_remote_app_entry");
 		deleteRemoteAppEntryURL.setParameter(
 			"remoteAppEntryId",
 			String.valueOf(remoteAppClayDataSetEntry.getRemoteAppEntryId()));
@@ -94,7 +95,7 @@ public class RemoteAppEntryClayDataSetActionProvider
 		PortletURL editRemoteAppEntryURL = _getRenderURL(httpServletRequest);
 
 		editRemoteAppEntryURL.setParameter(
-			"mvcRenderCommandName", "/edit_remote_app_entry");
+			"mvcRenderCommandName", "/remote_app_admin/edit_remote_app_entry");
 		editRemoteAppEntryURL.setParameter(
 			"remoteAppEntryId",
 			String.valueOf(remoteAppClayDataSetEntry.getRemoteAppEntryId()));

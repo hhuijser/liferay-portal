@@ -38,7 +38,7 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 %>
 
 <portlet:actionURL name="saveFormInstance" var="saveFormInstanceURL">
-	<portlet:param name="mvcRenderCommandName" value="/admin/edit_form_instance" />
+	<portlet:param name="mvcRenderCommandName" value="/dynamic_data_mapping_form/edit_form_instance" />
 </portlet:actionURL>
 
 <div class="lfr-alert-container">
@@ -170,7 +170,7 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 </div>
 
 <portlet:actionURL name="publishFormInstance" var="publishFormInstanceURL">
-	<portlet:param name="mvcRenderCommandName" value="/admin/edit_form_instance" />
+	<portlet:param name="mvcRenderCommandName" value="/dynamic_data_mapping_form/edit_form_instance" />
 </portlet:actionURL>
 
 <liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="saveFormInstance" var="autoSaveFormInstanceURL" />

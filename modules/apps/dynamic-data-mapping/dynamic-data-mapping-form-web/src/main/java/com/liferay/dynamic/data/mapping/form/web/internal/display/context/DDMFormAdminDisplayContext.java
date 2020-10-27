@@ -1208,7 +1208,7 @@ public class DDMFormAdminDisplayContext {
 
 			dropdownItem.setHref(
 				renderResponse.createRenderURL(), "mvcRenderCommandName",
-				"/admin/edit_form_instance", "redirect",
+				"/dynamic_data_mapping_form/edit_form_instance", "redirect",
 				PortalUtil.getCurrentURL(httpServletRequest), "groupId",
 				String.valueOf(themeDisplay.getScopeGroupId()));
 

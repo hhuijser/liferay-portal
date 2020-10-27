@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ImageEditorPortletKeys.IMAGE_EDITOR,
-		"mvc.command.name=/", "mvc.command.name=/image_editor/view"
+		"mvc.command.name=/", "mvc.command.name=/frontend_image_editor/view"
 	},
 	service = MVCRenderCommand.class
 )

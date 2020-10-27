@@ -57,7 +57,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + DDLPortletKeys.DYNAMIC_DATA_LISTS,
 		"javax.portlet.name=" + DDLPortletKeys.DYNAMIC_DATA_LISTS_DISPLAY,
-		"mvc.command.name=/ddl/update_record"
+		"mvc.command.name=/dynamic_data_lists/update_record"
 	},
 	service = MVCResourceCommand.class
 )

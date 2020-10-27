@@ -71,7 +71,8 @@ public class ConfigurationScreenConfigurationEntry
 		PortletURL portletURL = renderResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/view_configuration_screen");
+			"mvcRenderCommandName",
+			"/configuration_admin/view_configuration_screen");
 		portletURL.setParameter(
 			"configurationScreenKey", _configurationScreen.getKey());
 

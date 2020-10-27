@@ -57,7 +57,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.SITE_SETTINGS,
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
-		"mvc.command.name=/view_factory_instances",
+		"mvc.command.name=/configuration_admin/view_factory_instances",
 		"service.ranking:Integer=" + (Integer.MAX_VALUE - 1000)
 	},
 	service = MVCRenderCommand.class
@@ -143,7 +143,7 @@ public class ViewFactoryInstancesMVCRenderCommand implements MVCRenderCommand {
 		cardinality = ReferenceCardinality.MULTIPLE,
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY,
-		target = "(&(javax.portlet.name=" + ConfigurationAdminPortletKeys.SYSTEM_SETTINGS + ")(mvc.command.name=/view_factory_instances)(configurationPid=*))"
+		target = "(&(javax.portlet.name=" + ConfigurationAdminPortletKeys.SYSTEM_SETTINGS + ")(mvc.command.name=/configuration_admin/view_factory_instances)(configurationPid=*))"
 	)
 	protected void addRenderCommand(
 		MVCRenderCommand mvcRenderCommand, Map<String, Object> properties) {

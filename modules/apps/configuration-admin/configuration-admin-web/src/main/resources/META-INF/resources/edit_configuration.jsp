@@ -29,7 +29,7 @@ String bindRedirectURL = currentURL;
 
 PortletURL viewFactoryInstancesURL = renderResponse.createRenderURL();
 
-viewFactoryInstancesURL.setParameter("mvcRenderCommandName", "/view_factory_instances");
+viewFactoryInstancesURL.setParameter("mvcRenderCommandName", "/configuration_admin/view_factory_instances");
 
 ConfigurationModel configurationModel = (ConfigurationModel)request.getAttribute(ConfigurationAdminWebKeys.CONFIGURATION_MODEL);
 

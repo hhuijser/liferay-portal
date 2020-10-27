@@ -187,7 +187,8 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 				configurationModelListenerException);
 
 			actionResponse.setRenderParameter(
-				"mvcRenderCommandName", "/edit_configuration");
+				"mvcRenderCommandName",
+				"/configuration_admin/edit_configuration");
 		}
 		catch (IOException ioException) {
 			throw new PortletException(ioException);

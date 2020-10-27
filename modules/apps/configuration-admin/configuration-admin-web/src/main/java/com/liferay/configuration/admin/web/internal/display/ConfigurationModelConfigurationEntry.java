@@ -69,11 +69,13 @@ public class ConfigurationModelConfigurationEntry
 
 		if (_configurationModel.isFactory()) {
 			portletURL.setParameter(
-				"mvcRenderCommandName", "/view_factory_instances");
+				"mvcRenderCommandName",
+				"/configuration_admin/view_factory_instances");
 		}
 		else {
 			portletURL.setParameter(
-				"mvcRenderCommandName", "/edit_configuration");
+				"mvcRenderCommandName",
+				"/configuration_admin/edit_configuration");
 			portletURL.setParameter("pid", _configurationModel.getID());
 		}
 

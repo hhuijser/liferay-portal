@@ -157,7 +157,7 @@ public class CommentAssetRenderer
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/discussion/edit_discussion");
+			"mvcRenderCommandName", "/comment/edit_discussion");
 		portletURL.setParameter(
 			"commentId", String.valueOf(_workflowableComment.getCommentId()));
 

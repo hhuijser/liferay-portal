@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + CommentPortletKeys.COMMENT,
-		"mvc.command.name=/discussion/edit_discussion"
+		"mvc.command.name=/comment/edit_discussion"
 	},
 	service = MVCRenderCommand.class
 )

@@ -56,20 +56,20 @@
 	PortletURL deleteURL = liferayPortletResponse.createActionURL();
 
 	if (applicationKey.equals(UADConstants.ALL_APPLICATIONS)) {
-		autoAnonymizeURL.setParameter(ActionRequest.ACTION_NAME, "/anonymize_uad_applications");
+		autoAnonymizeURL.setParameter(ActionRequest.ACTION_NAME, "/user_associated_data/anonymize_uad_applications");
 		autoAnonymizeURL.setParameter("applicationKey", String.valueOf(uadEntity.getPrimaryKey()));
 
-		deleteURL.setParameter(ActionRequest.ACTION_NAME, "/delete_uad_applications");
+		deleteURL.setParameter(ActionRequest.ACTION_NAME, "/user_associated_data/delete_uad_applications");
 		deleteURL.setParameter("applicationKey", String.valueOf(uadEntity.getPrimaryKey()));
 	}
 	else {
-		autoAnonymizeURL.setParameter(ActionRequest.ACTION_NAME, "/anonymize_uad_entities");
+		autoAnonymizeURL.setParameter(ActionRequest.ACTION_NAME, "/user_associated_data/anonymize_uad_entities");
 
 		Class<?> typeClass = uadEntity.getTypeClass();
 
 		autoAnonymizeURL.setParameter("primaryKey__" + typeClass.getSimpleName(), String.valueOf(uadEntity.getPrimaryKey()));
 
-		deleteURL.setParameter(ActionRequest.ACTION_NAME, "/delete_uad_entities");
+		deleteURL.setParameter(ActionRequest.ACTION_NAME, "/user_associated_data/delete_uad_entities");
 		deleteURL.setParameter("primaryKey__" + typeClass.getSimpleName(), String.valueOf(uadEntity.getPrimaryKey()));
 	}
 	%>

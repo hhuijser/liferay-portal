@@ -151,7 +151,8 @@ public class UADExportProcessDisplayContext {
 			"p_u_i_d", String.valueOf(selectedUser.getUserId()));
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/view_uad_export_processes");
+			"mvcRenderCommandName",
+			"/user_associated_data/view_uad_export_processes");
 		portletURL.setParameter("navigation", getNavigation());
 		portletURL.setParameter("orderByCol", getOrderByCol());
 		portletURL.setParameter("orderByType", getOrderByType());

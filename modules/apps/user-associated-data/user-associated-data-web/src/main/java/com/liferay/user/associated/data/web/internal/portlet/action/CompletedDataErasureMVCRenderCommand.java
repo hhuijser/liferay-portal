@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
-		"mvc.command.name=/completed_data_erasure"
+		"mvc.command.name=/user_associated_data/completed_data_erasure"
 	},
 	service = MVCRenderCommand.class
 )

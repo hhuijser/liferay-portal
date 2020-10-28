@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + LayoutAdminPortletKeys.GROUP_PAGES,
-		"mvc.command.name=/layout_prototype/reset_merge_fail_count_and_merge"
+		"mvc.command.name=/layout_admin/reset_layout_prototype_merge_fail_count_and_merge"
 	},
 	service = MVCActionCommand.class
 )

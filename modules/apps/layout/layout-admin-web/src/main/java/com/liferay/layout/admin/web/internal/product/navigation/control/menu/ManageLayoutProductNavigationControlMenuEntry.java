@@ -105,7 +105,8 @@ public class ManageLayoutProductNavigationControlMenuEntry
 			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 			PortletRequest.RENDER_PHASE);
 
-		editPageURL.setParameter("mvcRenderCommandName", "/layout/edit_layout");
+		editPageURL.setParameter(
+			"mvcRenderCommandName", "/layout_admin/edit_layout");
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 

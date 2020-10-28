@@ -47,7 +47,7 @@ String portletNamespace = PortalUtil.getPortletNamespace(LayoutAdminPortletKeys.
 					<%
 					PortletURL resetPrototypeURL = PortletURLFactoryUtil.create(request, LayoutAdminPortletKeys.GROUP_PAGES, PortletRequest.ACTION_PHASE);
 
-					resetPrototypeURL.setParameter(ActionRequest.ACTION_NAME, "/layout/reset_prototype");
+					resetPrototypeURL.setParameter(ActionRequest.ACTION_NAME, "/layout_admin/reset_prototype");
 					resetPrototypeURL.setParameter("redirect", PortalUtil.getLayoutURL(themeDisplay));
 					resetPrototypeURL.setParameter("groupId", String.valueOf(themeDisplay.getSiteGroupId()));
 

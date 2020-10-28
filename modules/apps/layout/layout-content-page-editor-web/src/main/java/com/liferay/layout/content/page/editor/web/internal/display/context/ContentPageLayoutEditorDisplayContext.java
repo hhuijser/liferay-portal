@@ -151,7 +151,7 @@ public class ContentPageLayoutEditorDisplayContext
 		configContext.put(
 			"addSegmentsExperienceURL",
 			getFragmentEntryActionURL(
-				"/content_layout/add_segments_experience"));
+				"/layout_content_page_editor/add_segments_experience"));
 		configContext.put(
 			"availableSegmentsEntries", _getAvailableSegmentsEntries());
 		configContext.put(
@@ -162,7 +162,7 @@ public class ContentPageLayoutEditorDisplayContext
 		configContext.put(
 			"deleteSegmentsExperienceURL",
 			getFragmentEntryActionURL(
-				"/content_layout/delete_segments_experience"));
+				"/layout_content_page_editor/delete_segments_experience"));
 		configContext.put("editSegmentsEntryURL", _getEditSegmentsEntryURL());
 		configContext.put("plid", themeDisplay.getPlid());
 

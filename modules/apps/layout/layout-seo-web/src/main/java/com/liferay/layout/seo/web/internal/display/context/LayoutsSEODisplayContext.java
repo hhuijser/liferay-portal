@@ -207,7 +207,7 @@ public class LayoutsSEODisplayContext {
 				PortletRequest.ACTION_PHASE, MimeResponse.Copy.ALL);
 
 		liferayPortletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/edit_open_graph");
+			ActionRequest.ACTION_NAME, "/layout_seo/edit_open_graph");
 
 		liferayPortletURL.setParameter(
 			"mvcRenderCommandName",

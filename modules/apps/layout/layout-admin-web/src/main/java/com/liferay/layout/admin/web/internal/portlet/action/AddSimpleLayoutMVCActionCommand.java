@@ -61,7 +61,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + LayoutAdminPortletKeys.GROUP_PAGES,
-		"mvc.command.name=/layout/add_simple_layout"
+		"mvc.command.name=/layout_admin/add_simple_layout"
 	},
 	service = MVCActionCommand.class
 )

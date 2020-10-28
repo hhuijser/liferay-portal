@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + LayoutAdminPortletKeys.GROUP_PAGES,
-		"mvc.command.name=/layout/enable_layout"
+		"mvc.command.name=/layout_admin/enable_layout"
 	},
 	service = MVCActionCommand.class
 )

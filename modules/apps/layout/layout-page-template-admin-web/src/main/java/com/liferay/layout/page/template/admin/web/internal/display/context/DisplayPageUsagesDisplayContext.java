@@ -122,7 +122,7 @@ public class DisplayPageUsagesDisplayContext {
 
 		portletURL.setParameter(
 			"mvcRenderCommandName",
-			"/layout_page_template/view_display_page_usages");
+			"/layout_page_template_admin/view_display_page_usages");
 		portletURL.setParameter("redirect", getRedirect());
 		portletURL.setParameter(
 			"layoutPageTemplateEntryId",

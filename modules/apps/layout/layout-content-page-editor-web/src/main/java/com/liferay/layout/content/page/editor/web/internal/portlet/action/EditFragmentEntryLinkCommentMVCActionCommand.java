@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
-		"mvc.command.name=/content_layout/edit_fragment_entry_link_comment"
+		"mvc.command.name=/layout_content_page_editor/edit_fragment_entry_link_comment"
 	},
 	service = MVCActionCommand.class
 )

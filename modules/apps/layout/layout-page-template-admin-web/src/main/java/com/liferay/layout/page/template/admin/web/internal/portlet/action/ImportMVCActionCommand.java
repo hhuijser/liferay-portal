@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES,
-		"mvc.command.name=/layout_page_template/import"
+		"mvc.command.name=/layout_page_template_admin/import"
 	},
 	service = MVCActionCommand.class
 )

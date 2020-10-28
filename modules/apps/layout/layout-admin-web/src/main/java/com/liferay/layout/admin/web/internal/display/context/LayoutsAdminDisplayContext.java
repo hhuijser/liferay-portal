@@ -210,11 +210,11 @@ public class LayoutsAdminDisplayContext {
 
 		if (layoutPageTemplateEntryId > 0) {
 			portletURL.setParameter(
-				ActionRequest.ACTION_NAME, "/layout/add_content_layout");
+				ActionRequest.ACTION_NAME, "/layout_admin/add_content_layout");
 		}
 		else {
 			portletURL.setParameter(
-				ActionRequest.ACTION_NAME, "/layout/add_simple_layout");
+				ActionRequest.ACTION_NAME, "/layout_admin/add_simple_layout");
 		}
 
 		if (Objects.equals(type, LayoutConstants.TYPE_COLLECTION)) {
@@ -229,7 +229,8 @@ public class LayoutsAdminDisplayContext {
 			portletURL.setParameter("collectionType", collectionType);
 
 			portletURL.setParameter(
-				ActionRequest.ACTION_NAME, "/layout/add_collection_layout");
+				ActionRequest.ACTION_NAME,
+				"/layout_admin/add_collection_layout");
 		}
 
 		return portletURL.toString();
@@ -261,7 +262,7 @@ public class LayoutsAdminDisplayContext {
 			_liferayPortletResponse.createRenderURL();
 
 		configureLayoutURL.setParameter(
-			"mvcRenderCommandName", "/layout/edit_layout");
+			"mvcRenderCommandName", "/layout_admin/edit_layout");
 		configureLayoutURL.setParameter(
 			"redirect", themeDisplay.getURLCurrent());
 		configureLayoutURL.setParameter(
@@ -286,7 +287,7 @@ public class LayoutsAdminDisplayContext {
 		PortletURL convertLayoutURL = _liferayPortletResponse.createActionURL();
 
 		convertLayoutURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/convert_layout");
+			ActionRequest.ACTION_NAME, "/layout_admin/convert_layout");
 		convertLayoutURL.setParameter("redirect", themeDisplay.getURLCurrent());
 		convertLayoutURL.setParameter(
 			"selPlid", String.valueOf(layout.getPlid()));
@@ -299,7 +300,7 @@ public class LayoutsAdminDisplayContext {
 			_liferayPortletResponse.createRenderURL();
 
 		copyLayoutRenderURL.setParameter(
-			"mvcRenderCommandName", "/layout/add_layout");
+			"mvcRenderCommandName", "/layout_admin/add_layout");
 		copyLayoutRenderURL.setParameter(
 			"sourcePlid", String.valueOf(layout.getPlid()));
 		copyLayoutRenderURL.setParameter(
@@ -313,7 +314,7 @@ public class LayoutsAdminDisplayContext {
 		PortletURL copyLayoutURL = _liferayPortletResponse.createActionURL();
 
 		copyLayoutURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/copy_layout");
+			ActionRequest.ACTION_NAME, "/layout_admin/copy_layout");
 		copyLayoutURL.setParameter("sourcePlid", String.valueOf(sourcePlid));
 		copyLayoutURL.setParameter("groupId", String.valueOf(getGroupId()));
 		copyLayoutURL.setParameter(
@@ -332,7 +333,7 @@ public class LayoutsAdminDisplayContext {
 		PortletURL deleteLayoutURL = _liferayPortletResponse.createActionURL();
 
 		deleteLayoutURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/delete_layout");
+			ActionRequest.ACTION_NAME, "/layout_admin/delete_layout");
 
 		PortletURL redirectURL = _liferayPortletResponse.createRenderURL();
 
@@ -357,7 +358,7 @@ public class LayoutsAdminDisplayContext {
 		PortletURL discardDraftURL = _liferayPortletResponse.createActionURL();
 
 		discardDraftURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/discard_draft_layout");
+			ActionRequest.ACTION_NAME, "/layout_admin/discard_draft_layout");
 		discardDraftURL.setParameter("redirect", themeDisplay.getURLCurrent());
 		discardDraftURL.setParameter(
 			"selPlid", String.valueOf(draftLayout.getPlid()));
@@ -396,7 +397,7 @@ public class LayoutsAdminDisplayContext {
 		PortletURL editLayoutSetURL = _liferayPortletResponse.createRenderURL();
 
 		editLayoutSetURL.setParameter(
-			"mvcRenderCommandName", "/layout/edit_layout_set");
+			"mvcRenderCommandName", "/layout_admin/edit_layout_set");
 		editLayoutSetURL.setParameter("redirect", themeDisplay.getURLCurrent());
 		editLayoutSetURL.setParameter("backURL", themeDisplay.getURLCurrent());
 		editLayoutSetURL.setParameter(
@@ -530,7 +531,8 @@ public class LayoutsAdminDisplayContext {
 			_liferayPortletResponse.createActionURL();
 
 		layoutConversionPreviewURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/layout_conversion_preview");
+			ActionRequest.ACTION_NAME,
+			"/layout_admin/add_layout_conversion_preview");
 
 		layoutConversionPreviewURL.setParameter(
 			"redirect", themeDisplay.getURLCurrent());
@@ -660,7 +662,7 @@ public class LayoutsAdminDisplayContext {
 		PortletURL deleteLayoutURL = _liferayPortletResponse.createActionURL();
 
 		deleteLayoutURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/move_layout");
+			ActionRequest.ACTION_NAME, "/layout_admin/move_layout");
 		deleteLayoutURL.setParameter("redirect", themeDisplay.getURLCurrent());
 
 		return deleteLayoutURL.toString();
@@ -893,7 +895,8 @@ public class LayoutsAdminDisplayContext {
 	public PortletURL getScreenNavigationPortletURL() {
 		PortletURL portletURL = getPortletURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "/layout/edit_layout");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/layout_admin/edit_layout");
 		portletURL.setParameter(
 			"portletResource",
 			ParamUtil.getString(httpServletRequest, "portletResource"));

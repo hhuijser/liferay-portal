@@ -68,7 +68,8 @@ public class LayoutCTDisplayRenderer extends BaseCTDisplayRenderer<Layout> {
 			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcRenderCommandName", "/layout/edit_layout");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/layout_admin/edit_layout");
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 

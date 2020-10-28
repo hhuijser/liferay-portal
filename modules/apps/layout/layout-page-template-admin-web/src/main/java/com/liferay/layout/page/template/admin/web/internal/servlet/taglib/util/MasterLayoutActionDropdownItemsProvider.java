@@ -156,7 +156,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 
 		copyMasterLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/copy_layout_page_template_entry");
+			"/layout_page_template_admin/copy_layout_page_template_entry");
 		copyMasterLayoutURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		copyMasterLayoutURL.setParameter(
@@ -184,7 +184,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 
 		deleteMasterLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/delete_master_layout");
+			"/layout_page_template_admin/delete_master_layout");
 
 		deleteMasterLayoutURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -210,7 +210,8 @@ public class MasterLayoutActionDropdownItemsProvider {
 
 		deleteMasterLayoutPreviewURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/delete_layout_page_template_entry_preview");
+			"/layout_page_template_admin" +
+				"/delete_layout_page_template_entry_preview");
 
 		deleteMasterLayoutPreviewURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -291,7 +292,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 			String.valueOf(
 				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
 		exportMasterLayoutURL.setResourceID(
-			"/layout_page_template/export_master_layout");
+			"/layout_page_template_admin/export_master_layouts");
 
 		return dropdownItem -> {
 			dropdownItem.setDisabled(_layoutPageTemplateEntry.isDraft());
@@ -306,7 +307,8 @@ public class MasterLayoutActionDropdownItemsProvider {
 
 		uploadURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/upload_layout_page_template_entry_preview");
+			"/layout_page_template_admin" +
+				"/upload_layout_page_template_entry_preview");
 		uploadURL.setParameter(
 			"layoutPageTemplateEntryId",
 			String.valueOf(
@@ -343,7 +345,8 @@ public class MasterLayoutActionDropdownItemsProvider {
 
 		markAsDefaultMasterLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/edit_layout_page_template_settings");
+			"/layout_page_template_admin" +
+				"/edit_layout_page_template_entry_settings");
 		markAsDefaultMasterLayoutURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		markAsDefaultMasterLayoutURL.setParameter(
@@ -381,7 +384,8 @@ public class MasterLayoutActionDropdownItemsProvider {
 
 		markAsDefaultMasterLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/edit_layout_page_template_settings");
+			"/layout_page_template_admin" +
+				"/edit_layout_page_template_entry_settings");
 
 		markAsDefaultMasterLayoutURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -451,7 +455,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 
 		updateMasterLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/update_layout_page_template_entry");
+			"/layout_page_template_admin/update_layout_page_template_entry");
 
 		updateMasterLayoutURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());

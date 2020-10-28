@@ -60,7 +60,7 @@ public class SelectLayoutPageTemplateEntryVerticalCard implements VerticalCard {
 			PortletURL addLayoutURL = _renderResponse.createRenderURL();
 
 			addLayoutURL.setParameter(
-				"mvcRenderCommandName", "/layout/add_layout");
+				"mvcRenderCommandName", "/layout_admin/add_layout");
 
 			String redirect = ParamUtil.getString(
 				_httpServletRequest, "redirect");

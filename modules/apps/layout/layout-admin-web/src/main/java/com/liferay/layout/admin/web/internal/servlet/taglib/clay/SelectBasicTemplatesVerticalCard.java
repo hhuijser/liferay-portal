@@ -59,7 +59,7 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 			PortletURL addLayoutURL = _renderResponse.createRenderURL();
 
 			addLayoutURL.setParameter(
-				"mvcRenderCommandName", "/layout/add_layout");
+				"mvcRenderCommandName", "/layout_admin/add_layout");
 			addLayoutURL.setParameter("backURL", redirect);
 
 			long selPlid = ParamUtil.getLong(_httpServletRequest, "selPlid");

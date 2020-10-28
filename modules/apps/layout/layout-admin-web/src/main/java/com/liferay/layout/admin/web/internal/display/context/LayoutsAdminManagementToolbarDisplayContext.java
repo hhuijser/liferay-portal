@@ -85,7 +85,7 @@ public class LayoutsAdminManagementToolbarDisplayContext
 					liferayPortletResponse.createActionURL();
 
 				convertLayoutURL.setParameter(
-					ActionRequest.ACTION_NAME, "/layout/convert_layout");
+					ActionRequest.ACTION_NAME, "/layout_admin/convert_layout");
 				convertLayoutURL.setParameter(
 					"redirect", _themeDisplay.getURLCurrent());
 
@@ -106,7 +106,7 @@ public class LayoutsAdminManagementToolbarDisplayContext
 					liferayPortletResponse.createActionURL();
 
 				deleteLayoutURL.setParameter(
-					ActionRequest.ACTION_NAME, "/layout/delete_layout");
+					ActionRequest.ACTION_NAME, "/layout_admin/delete_layout");
 				deleteLayoutURL.setParameter(
 					"redirect", _themeDisplay.getURLCurrent());
 

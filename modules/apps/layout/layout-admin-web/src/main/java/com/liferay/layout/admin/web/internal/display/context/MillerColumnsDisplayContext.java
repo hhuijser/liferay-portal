@@ -81,7 +81,7 @@ public class MillerColumnsDisplayContext {
 		PortletURL itemChildrenURL = _liferayPortletResponse.createActionURL();
 
 		itemChildrenURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/get_layout_children");
+			ActionRequest.ACTION_NAME, "/layout_admin/get_layout_children");
 
 		return itemChildrenURL.toString();
 	}

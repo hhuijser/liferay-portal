@@ -225,7 +225,7 @@ exports[`ListFormViews renders 1`] = `
                   class="table-list-title"
                 >
                   <a
-                    href="/edit_form_view"
+                    href="/app_builder/edit_form_view"
                   >
                     Item 1
                   </a>

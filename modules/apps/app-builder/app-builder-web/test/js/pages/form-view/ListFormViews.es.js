@@ -23,7 +23,7 @@ import AppContextProviderWrapper from '../../AppContextProviderWrapper.es';
 import {DATA_DEFINITION_RESPONSES, RESPONSES} from '../../constants.es';
 
 const basePortletURL = 'localhost';
-const portletURL = '/edit_form_view';
+const portletURL = '/app_builder/edit_form_view';
 
 describe('ListFormViews', () => {
 	let spyFromNow;

@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + AppBuilderPortletKeys.OBJECTS,
-		"mvc.command.name=/objects/delete_data_definition"
+		"mvc.command.name=/app_builder/delete_data_definition"
 	},
 	service = MVCResourceCommand.class
 )

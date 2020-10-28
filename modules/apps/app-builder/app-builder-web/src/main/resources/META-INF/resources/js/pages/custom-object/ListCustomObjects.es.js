@@ -47,7 +47,7 @@ export default ({history}) => {
 			if (confirmed) {
 				fetch(
 					createResourceURL(baseResourceURL, {
-						p_p_resource_id: '/objects/delete_data_definition',
+						p_p_resource_id: '/app_builder/delete_data_definition',
 					}),
 					{
 						body: new URLSearchParams(
@@ -152,7 +152,8 @@ export default ({history}) => {
 							basePortletURL,
 							{
 								dataDefinitionId: id,
-								mvcRenderCommandName: '/edit_form_view',
+								mvcRenderCommandName:
+									'/app_builder/edit_form_view',
 								newCustomObject: true,
 							}
 						)

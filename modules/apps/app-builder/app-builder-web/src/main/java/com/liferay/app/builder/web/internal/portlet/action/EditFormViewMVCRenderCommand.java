@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Modified;
 	configurationPid = "com.liferay.app.builder.web.internal.configuration.AppBuilderConfiguration",
 	property = {
 		"javax.portlet.name=" + AppBuilderPortletKeys.OBJECTS,
-		"mvc.command.name=/edit_form_view"
+		"mvc.command.name=/app_builder/edit_form_view"
 	},
 	service = MVCRenderCommand.class
 )

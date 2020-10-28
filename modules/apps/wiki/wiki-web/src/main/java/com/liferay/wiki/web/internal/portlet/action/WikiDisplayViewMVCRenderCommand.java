@@ -50,7 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + WikiPortletKeys.WIKI_DISPLAY,
-		"mvc.command.name=/", "mvc.command.name=/wiki_display/view"
+		"mvc.command.name=/", "mvc.command.name=/wiki/wiki_display_view"
 	},
 	service = MVCRenderCommand.class
 )

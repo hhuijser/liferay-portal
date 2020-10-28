@@ -95,7 +95,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.name=" + WikiPortletKeys.WIKI,
 		"javax.portlet.name=" + WikiPortletKeys.WIKI_ADMIN,
 		"javax.portlet.name=" + WikiPortletKeys.WIKI_DISPLAY,
-		"mvc.command.name=/wiki/edit_page_attachment"
+		"mvc.command.name=/wiki/edit_page_attachments"
 	},
 	service = MVCActionCommand.class
 )

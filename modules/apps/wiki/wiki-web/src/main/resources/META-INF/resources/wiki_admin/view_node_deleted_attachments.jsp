@@ -29,7 +29,7 @@ portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 
 PortalUtil.addPortletBreadcrumbEntry(request, node.getName(), portletURL.toString());
 
-portletURL.setParameter("mvcRenderCommandName", "/wiki/view_node_deleted_attachments");
+portletURL.setParameter("mvcRenderCommandName", "/wiki/view_node_deleted_attachment");
 
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "attachments-recycle-bin"), portletURL.toString());
 
@@ -66,7 +66,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "removed-attachments"));
 
 	PortletURL iteratorURL = renderResponse.createRenderURL();
 
-	iteratorURL.setParameter("mvcRenderCommandName", "/wiki/view_node_deleted_attachments");
+	iteratorURL.setParameter("mvcRenderCommandName", "/wiki/view_node_deleted_attachment");
 	iteratorURL.setParameter("redirect", currentURL);
 	iteratorURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 	iteratorURL.setParameter("viewTrashAttachments", Boolean.TRUE.toString());

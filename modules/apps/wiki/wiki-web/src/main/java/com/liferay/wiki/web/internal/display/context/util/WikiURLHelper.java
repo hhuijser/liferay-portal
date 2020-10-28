@@ -81,7 +81,8 @@ public class WikiURLHelper {
 	public PortletURL getSearchURL() {
 		PortletURL searchURL = _liferayPortletResponse.createRenderURL();
 
-		searchURL.setParameter("mvcRenderCommandName", "/wiki/search");
+		searchURL.setParameter(
+			"mvcRenderCommandName", "/wiki/wiki_admin_search");
 
 		return searchURL;
 	}

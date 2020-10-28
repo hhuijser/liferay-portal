@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + WikiPortletKeys.WIKI_ADMIN,
-		"mvc.command.name=/wiki/search"
+		"mvc.command.name=/wiki/wiki_admin_search"
 	},
 	service = MVCRenderCommand.class
 )

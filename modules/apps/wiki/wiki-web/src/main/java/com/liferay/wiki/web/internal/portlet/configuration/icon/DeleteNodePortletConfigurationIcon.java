@@ -96,7 +96,7 @@ public class DeleteNodePortletConfigurationIcon
 				PortletRequest.RENDER_PHASE);
 
 			viewNodesURL.setParameter(
-				"mvcRenderCommandName", "/wiki_admin/view");
+				"mvcRenderCommandName", "/wiki/wiki_admin_view_nodes");
 
 			portletURL.setParameter("redirect", viewNodesURL.toString());
 

@@ -35,7 +35,7 @@ WikiPage wikiPage = WikiPageAttachmentsUtil.getPage(attachmentsFileEntry.getFile
 	<c:choose>
 		<c:when test="<%= viewTrashAttachments %>">
 			<c:if test="<%= WikiNodePermission.contains(permissionChecker, wikiPage.getNodeId(), ActionKeys.ADD_ATTACHMENT) %>">
-				<portlet:actionURL name="/wiki/edit_page_attachment" var="restoreEntryURL">
+				<portlet:actionURL name="/wiki/edit_page_attachments" var="restoreEntryURL">
 					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.RESTORE %>" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="nodeId" value="<%= String.valueOf(wikiPage.getNodeId()) %>" />
@@ -50,7 +50,7 @@ WikiPage wikiPage = WikiPageAttachmentsUtil.getPage(attachmentsFileEntry.getFile
 			</c:if>
 
 			<c:if test="<%= WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.DELETE) %>">
-				<portlet:actionURL name="/wiki/edit_page_attachment" var="deleteURL">
+				<portlet:actionURL name="/wiki/edit_page_attachments" var="deleteURL">
 					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="nodeId" value="<%= String.valueOf(wikiPage.getNodeId()) %>" />
@@ -65,7 +65,7 @@ WikiPage wikiPage = WikiPageAttachmentsUtil.getPage(attachmentsFileEntry.getFile
 		</c:when>
 		<c:otherwise>
 			<c:if test="<%= WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.DELETE) %>">
-				<portlet:actionURL name="/wiki/edit_page_attachment" var="deleteURL">
+				<portlet:actionURL name="/wiki/edit_page_attachments" var="deleteURL">
 					<portlet:param name="<%= Constants.CMD %>" value="<%= trashHelper.isTrashEnabled(scopeGroupId) ? Constants.MOVE_TO_TRASH : Constants.DELETE %>" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="nodeId" value="<%= String.valueOf(wikiPage.getNodeId()) %>" />

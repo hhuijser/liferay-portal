@@ -67,7 +67,7 @@ if (portletTitleBasedNavigation) {
 
 	PortletURL searchURL = renderResponse.createRenderURL();
 
-	searchURL.setParameter("mvcRenderCommandName", "/wiki/search");
+	searchURL.setParameter("mvcRenderCommandName", "/wiki/wiki_admin_search");
 	searchURL.setParameter("redirect", currentURL);
 	searchURL.setParameter("nodeId", String.valueOf(nodeId));
 	searchURL.setParameter("keywords", title);

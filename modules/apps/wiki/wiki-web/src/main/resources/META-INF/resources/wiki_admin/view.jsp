@@ -21,7 +21,7 @@ WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderRespons
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/wiki_admin/view");
+portletURL.setParameter("mvcRenderCommandName", "/wiki/wiki_admin_view_nodes");
 
 String displayStyle = ParamUtil.getString(request, "displayStyle");
 

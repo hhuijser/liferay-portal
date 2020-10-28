@@ -50,6 +50,6 @@ public class EditPageAttachmentAlwaysAllowDoAsUser
 	}
 
 	private final Collection<String> _mvcRenderCommandNames = Arrays.asList(
-		"/wiki/edit_page_attachment");
+		"/wiki/edit_page_attachments");
 
 }

@@ -21,7 +21,7 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WikiWebKeys.WIKI_PAGE);
 WikiNode node = (WikiNode)request.getAttribute(WikiWebKeys.WIKI_NODE);
 %>
 
-<portlet:actionURL name="/wiki/edit_page_attachment" var="undoTrashURL">
+<portlet:actionURL name="/wiki/edit_page_attachments" var="undoTrashURL">
 	<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.RESTORE %>" />
 </portlet:actionURL>
 
@@ -31,7 +31,7 @@ WikiNode node = (WikiNode)request.getAttribute(WikiWebKeys.WIKI_NODE);
 	/>
 
 	<c:if test="<%= WikiNodePermission.contains(permissionChecker, node, ActionKeys.ADD_ATTACHMENT) %>">
-		<portlet:actionURL name="/wiki/edit_page_attachment" var="emptyTrashURL">
+		<portlet:actionURL name="/wiki/edit_page_attachments" var="emptyTrashURL">
 			<portlet:param name="nodeId" value="<%= String.valueOf(wikiPage.getNodeId()) %>" />
 			<portlet:param name="title" value="<%= wikiPage.getTitle() %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />

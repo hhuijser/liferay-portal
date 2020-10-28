@@ -94,7 +94,7 @@ else {
 
 	<c:if test="<%= WikiNodePermission.contains(permissionChecker, node, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="viewDeletedAttachmentsURL">
-			<portlet:param name="mvcRenderCommandName" value="/wiki/view_node_deleted_attachments" />
+			<portlet:param name="mvcRenderCommandName" value="/wiki/view_node_deleted_attachment" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" />
 			<portlet:param name="viewTrashAttachments" value="<%= Boolean.TRUE.toString() %>" />

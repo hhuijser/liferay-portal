@@ -53,7 +53,7 @@ DLConfiguration dlConfiguration = ConfigurationProviderUtil.getSystemConfigurati
 	</aui:input>
 </div>
 
-<liferay-portlet:actionURL name="/wiki/edit_page_attachment" var="deleteURL">
+<liferay-portlet:actionURL name="/wiki/edit_page_attachments" var="deleteURL">
 	<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE_TEMP %>" />
 	<portlet:param name="redirect" value="<%= wikiRequestHelper.getCurrentURL() %>" />
 	<portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" />
@@ -85,6 +85,6 @@ DLConfiguration dlConfiguration = ConfigurationProviderUtil.getSystemConfigurati
 		},
 		tempRandomSuffix: '<%= TempFileEntryUtil.TEMP_RANDOM_SUFFIX %>',
 		uploadFile:
-			'<liferay-portlet:actionURL name="/wiki/edit_page_attachment"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" /><portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" /><portlet:param name="title" value="<%= wikiPage.getTitle() %>" /></liferay-portlet:actionURL>',
+			'<liferay-portlet:actionURL name="/wiki/edit_page_attachments"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" /><portlet:param name="nodeId" value="<%= String.valueOf(node.getNodeId()) %>" /><portlet:param name="title" value="<%= wikiPage.getTitle() %>" /></liferay-portlet:actionURL>',
 	});
 </aui:script>

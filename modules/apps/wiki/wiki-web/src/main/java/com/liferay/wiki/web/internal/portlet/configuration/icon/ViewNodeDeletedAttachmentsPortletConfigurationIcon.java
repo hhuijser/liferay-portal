@@ -70,7 +70,7 @@ public class ViewNodeDeletedAttachmentsPortletConfigurationIcon
 				PortletRequest.RENDER_PHASE);
 
 			portletURL.setParameter(
-				"mvcRenderCommandName", "/wiki/view_node_deleted_attachments");
+				"mvcRenderCommandName", "/wiki/view_node_deleted_attachment");
 			portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
 			portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 			portletURL.setParameter(

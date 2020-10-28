@@ -123,7 +123,7 @@ public class WikiNodesManagementToolbarDisplayContext {
 					_liferayPortletResponse.createRenderURL();
 
 				viewNodesURL.setParameter(
-					"mvcRenderCommandName", "/wiki_admin/view");
+					"mvcRenderCommandName", "/wiki/wiki_admin_view_nodes");
 
 				dropdownItem.setHref(
 					_liferayPortletResponse.createRenderURL(),
@@ -229,7 +229,8 @@ public class WikiNodesManagementToolbarDisplayContext {
 		PortletURL portletURL = PortletURLUtil.clone(
 			_currentURLObj, _liferayPortletResponse);
 
-		portletURL.setParameter("mvcRenderCommandName", "/wiki_admin/view");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/wiki/wiki_admin_view_nodes");
 
 		return portletURL;
 	}

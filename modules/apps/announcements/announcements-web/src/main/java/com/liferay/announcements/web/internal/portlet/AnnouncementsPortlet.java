@@ -41,8 +41,8 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.display-name=Announcements",
 		"javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.always-display-default-configuration-icons=true",
+		"javax.portlet.init-param.mvc-command-names-default-views=/announcements/view",
 		"javax.portlet.init-param.template-path=/META-INF/resources/",
-		"javax.portlet.init-param.view-template=/announcements/view",
 		"javax.portlet.name=" + AnnouncementsPortletKeys.ANNOUNCEMENTS,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"

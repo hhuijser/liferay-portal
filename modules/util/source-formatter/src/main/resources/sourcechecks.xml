@@ -1344,6 +1344,8 @@
 			<property name="allowTrailingEmptyLines" value="true" />
 		</check>
 	</source-processor>
+	<source-processor name="TXTSourceProcessor">
+	</source-processor>
 	<source-processor name="XMLSourceProcessor">
 		<check name="XMLBuildFileCheck">
 			<category name="Bug Prevention" />

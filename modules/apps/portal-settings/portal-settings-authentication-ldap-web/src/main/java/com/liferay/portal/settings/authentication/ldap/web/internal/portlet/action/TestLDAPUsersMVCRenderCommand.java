@@ -38,11 +38,11 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-		"mvc.command.name=/portal_settings_authentication_ldap/portal_settings_test_ldap_groups"
+		"mvc.command.name=/portal_settings_authentication_ldap/test_ldap_users"
 	},
 	service = MVCRenderCommand.class
 )
-public class PortalSettingsTestLDAPGroupsMVCRenderCommand
+public class TestLDAPUsersMVCRenderCommand
 	extends BasePortalSettingsMVCRenderCommand {
 
 	@Override
@@ -89,10 +89,10 @@ public class PortalSettingsTestLDAPGroupsMVCRenderCommand
 	}
 
 	private static final String _JSP_PATH =
-		"/com.liferay.portal.settings.web/test_ldap_groups.jsp";
+		"/com.liferay.portal.settings.web/test_ldap_users.jsp";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		PortalSettingsTestLDAPGroupsMVCRenderCommand.class);
+		TestLDAPUsersMVCRenderCommand.class);
 
 	@Reference
 	private Portal _portal;

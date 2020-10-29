@@ -41,7 +41,7 @@ boolean ldapAuthEnabled = ldapAuthConfiguration.enabled();
 	<%
 	PortletURL addServerURL = renderResponse.createRenderURL();
 
-	addServerURL.setParameter("mvcRenderCommandName", "/portal_settings_authentication_ldap/portal_settings_edit_ldap_server");
+	addServerURL.setParameter("mvcRenderCommandName", "/portal_settings_authentication_ldap/edit_ldap_server");
 	addServerURL.setParameter("redirect", authenticationURL);
 	%>
 
@@ -105,7 +105,7 @@ boolean ldapAuthEnabled = ldapAuthConfiguration.enabled();
 									</c:if>
 
 									<portlet:renderURL var="editURL">
-										<portlet:param name="mvcRenderCommandName" value="/portal_settings_authentication_ldap/portal_settings_edit_ldap_server" />
+										<portlet:param name="mvcRenderCommandName" value="/portal_settings_authentication_ldap/edit_ldap_server" />
 										<portlet:param name="redirect" value="<%= authenticationURL %>" />
 										<portlet:param name="ldapServerId" value="<%= String.valueOf(ldapServerId) %>" />
 									</portlet:renderURL>
@@ -117,7 +117,7 @@ boolean ldapAuthEnabled = ldapAuthConfiguration.enabled();
 										url="<%= editURL %>"
 									/>
 
-									<portlet:actionURL name="/portal_settings_authentication_ldap/portal_settings_edit_ldap_server" var="deleteURL">
+									<portlet:actionURL name="/portal_settings_authentication_ldap/edit_ldap_server" var="deleteURL">
 										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 										<portlet:param name="redirect" value="<%= authenticationURL %>" />
 										<portlet:param name="ldapServerId" value="<%= String.valueOf(ldapServerId) %>" />

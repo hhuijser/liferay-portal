@@ -89,7 +89,7 @@ String version = openSSOConfiguration.version();
 			].value;
 
 		var baseUrl =
-			'<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcRenderCommandName" value="/portal_settings_authentication_opensso/portal_settings_test_open_sso" /></portlet:renderURL>';
+			'<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcRenderCommandName" value="/portal_settings_authentication_opensso/test_open_sso" /></portlet:renderURL>';
 
 		var url = new URL(baseUrl);
 

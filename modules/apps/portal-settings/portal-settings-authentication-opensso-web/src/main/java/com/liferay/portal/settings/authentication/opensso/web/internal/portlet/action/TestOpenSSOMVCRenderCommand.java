@@ -37,12 +37,11 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-		"mvc.command.name=/portal_settings_authentication_opensso/portal_settings_test_open_sso"
+		"mvc.command.name=/portal_settings_authentication_opensso/test_open_sso"
 	},
 	service = MVCRenderCommand.class
 )
-public class PortalSettingsTestOpenSSOMVCRenderCommand
-	implements MVCRenderCommand {
+public class TestOpenSSOMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(
@@ -81,7 +80,7 @@ public class PortalSettingsTestOpenSSOMVCRenderCommand
 		"/com.liferay.portal.settings.web/test_opensso.jsp";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		PortalSettingsTestOpenSSOMVCRenderCommand.class);
+		TestOpenSSOMVCRenderCommand.class);
 
 	@Reference
 	private Portal _portal;

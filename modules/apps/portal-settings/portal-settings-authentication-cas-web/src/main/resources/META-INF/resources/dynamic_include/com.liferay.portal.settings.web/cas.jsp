@@ -79,7 +79,7 @@ String noSuchUserRedirectURL = casConfiguration.noSuchUserRedirectURL();
 			].value;
 
 		var baseUrl =
-			'<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcRenderCommandName" value="/portal_settings_authentication_cas/portal_settings_test_cas" /></portlet:renderURL>';
+			'<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcRenderCommandName" value="/portal_settings_authentication_cas/test_cas" /></portlet:renderURL>';
 
 		var url = new URL(baseUrl);
 

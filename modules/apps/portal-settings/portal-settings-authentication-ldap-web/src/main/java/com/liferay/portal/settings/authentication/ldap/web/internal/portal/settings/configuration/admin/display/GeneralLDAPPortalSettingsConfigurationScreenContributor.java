@@ -54,7 +54,7 @@ public class GeneralLDAPPortalSettingsConfigurationScreenContributor
 
 	@Override
 	public String getSaveMVCActionCommandName() {
-		return "/portal_settings_authentication_ldap/portal_settings_ldap_form";
+		return "/portal_settings_authentication_ldap/ldap_form";
 	}
 
 	@Override

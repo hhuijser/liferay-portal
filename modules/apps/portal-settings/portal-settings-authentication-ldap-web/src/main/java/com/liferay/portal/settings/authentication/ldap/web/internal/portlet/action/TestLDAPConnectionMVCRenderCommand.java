@@ -38,11 +38,11 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-		"mvc.command.name=/portal_settings_authentication_ldap/portal_settings_test_ldap_connection"
+		"mvc.command.name=/portal_settings_authentication_ldap/test_ldap_connection"
 	},
 	service = MVCRenderCommand.class
 )
-public class PortalSettingsTestLDAPConnectionMVCRenderCommand
+public class TestLDAPConnectionMVCRenderCommand
 	extends BasePortalSettingsMVCRenderCommand {
 
 	@Override
@@ -92,7 +92,7 @@ public class PortalSettingsTestLDAPConnectionMVCRenderCommand
 		"/com.liferay.portal.settings.web/test_ldap_connection.jsp";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		PortalSettingsTestLDAPConnectionMVCRenderCommand.class);
+		TestLDAPConnectionMVCRenderCommand.class);
 
 	@Reference
 	private Portal _portal;

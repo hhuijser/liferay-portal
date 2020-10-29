@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = MVCRenderCommand.class
 )
-public class EditMessageAttachmentsMVCRenderCommand
+public class ViewDeletedMessageAttachmentsMVCRenderCommand
 	extends GetMessageMVCRenderCommand {
 
 	@Override

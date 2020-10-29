@@ -37,7 +37,12 @@ boolean hasBanUserPermission = MBResourcePermission.contains(permissionChecker, 
 
 				PortletURL viewStatisticsURL = renderResponse.createRenderURL();
 
-				viewStatisticsURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+				if (Objects.equals(portletDisplay.getPortletName(), MBPortletKeys.MESSAGE_BOARDS)) {
+					viewStatisticsURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+				}
+				else {
+					viewStatisticsURL.setParameter("mvcRenderCommandName", "/message_boards_admin/view_statistics");
+				}
 
 				add(
 					navigationItem -> {

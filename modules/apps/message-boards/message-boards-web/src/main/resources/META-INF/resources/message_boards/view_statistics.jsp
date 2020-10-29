@@ -27,7 +27,13 @@ MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, category
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+if (Objects.equals(portletDisplay.getPortletName(), MBPortletKeys.MESSAGE_BOARDS)) {
+	portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+}
+else {
+	portletURL.setParameter("mvcRenderCommandName", "/message_boards_admin/view_statistics");
+}
+
 portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 %>
 

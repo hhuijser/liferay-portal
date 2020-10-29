@@ -21,7 +21,12 @@ String navigation = "statistics";
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+if (Objects.equals(portletDisplay.getPortletName(), MBPortletKeys.MESSAGE_BOARDS)) {
+	portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+}
+else {
+	portletURL.setParameter("mvcRenderCommandName", "/message_boards_admin/view_statistics");
+}
 %>
 
 <%@ include file="/message_boards_admin/nav.jspf" %>

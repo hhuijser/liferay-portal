@@ -69,11 +69,22 @@
 
 				PortletURL viewStatisticsURL = renderResponse.createRenderURL();
 
-				viewStatisticsURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+				if (Objects.equals(portletDisplay.getPortletName(), MBPortletKeys.MESSAGE_BOARDS)) {
+					viewStatisticsURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+				}
+				else {
+					viewStatisticsURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+				}
+
+				boolean active = false;
+
+				if (mvcRenderCommandName.equals("/message_boards/view_statistics") || mvcRenderCommandName.equals("/message_boards_admin/view_statistics")) {
+					active = true;
+				}
 
 				add(
 					navigationItem -> {
-						navigationItem.setActive(mvcRenderCommandName.equals("/message_boards/view_statistics"));
+						navigationItem.setActive(active);
 						navigationItem.setHref(viewStatisticsURL);
 						navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "statistics"));
 					});

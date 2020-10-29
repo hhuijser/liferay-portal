@@ -46,7 +46,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	</c:if>
 
 	<c:if test="<%= SiteNavigationMenuPermission.contains(permissionChecker, siteNavigationMenu, ActionKeys.UPDATE) && siteNavigationAdminDisplayContext.hasEditPermission() %>">
-		<portlet:actionURL name="/site_navigation_admin/update_site_navigation_m_enu" var="updateSiteNavigationMenuURL">
+		<portlet:actionURL name="/site_navigation_admin/update_site_navigation_menu" var="updateSiteNavigationMenuURL">
 			<portlet:param name="siteNavigationMenuId" value="<%= String.valueOf(siteNavigationMenu.getSiteNavigationMenuId()) %>" />
 		</portlet:actionURL>
 

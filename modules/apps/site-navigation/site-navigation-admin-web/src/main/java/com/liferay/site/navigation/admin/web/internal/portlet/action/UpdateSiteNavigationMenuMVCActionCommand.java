@@ -43,11 +43,11 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SiteNavigationAdminPortletKeys.SITE_NAVIGATION_ADMIN,
-		"mvc.command.name=/site_navigation_admin/update_site_navigation_m_enu"
+		"mvc.command.name=/site_navigation_admin/update_site_navigation_menu"
 	},
 	service = MVCActionCommand.class
 )
-public class UpdateSiteNavigationMEnuMVCActionCommand
+public class UpdateSiteNavigationMenuMVCActionCommand
 	extends BaseMVCActionCommand {
 
 	@Override

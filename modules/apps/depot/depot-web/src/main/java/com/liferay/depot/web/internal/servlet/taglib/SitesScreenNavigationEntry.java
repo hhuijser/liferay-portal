@@ -33,7 +33,7 @@ public class SitesScreenNavigationEntry extends BaseDepotScreenNavigationEntry {
 
 	@Override
 	public String getActionCommandName() {
-		return "/depot/connect_site";
+		return "/depot/connect_depot_entry";
 	}
 
 	@Override

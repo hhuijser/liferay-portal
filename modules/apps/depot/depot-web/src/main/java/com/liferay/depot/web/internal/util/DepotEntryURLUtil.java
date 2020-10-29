@@ -83,7 +83,7 @@ public class DepotEntryURLUtil {
 			liferayPortletResponse.createActionURL();
 
 		disconnectSiteActionURL.setParameter(
-			ActionRequest.ACTION_NAME, "/depot/disconnect_site");
+			ActionRequest.ACTION_NAME, "/depot/disconnect_depot_entry");
 		disconnectSiteActionURL.setParameter("redirect", redirect);
 		disconnectSiteActionURL.setParameter(
 			"depotEntryGroupRelId", String.valueOf(depotEntryGroupRelId));

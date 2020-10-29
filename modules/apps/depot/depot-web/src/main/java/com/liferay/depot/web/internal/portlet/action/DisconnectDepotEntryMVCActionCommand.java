@@ -34,11 +34,11 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + DepotPortletKeys.DEPOT_ADMIN,
 		"javax.portlet.name=" + DepotPortletKeys.DEPOT_SETTINGS,
-		"mvc.command.name=/depot/disconnect_site"
+		"mvc.command.name=/depot/disconnect_depot_entry"
 	},
 	service = MVCActionCommand.class
 )
-public class DisconnectSiteMVCActionCommand extends BaseMVCActionCommand {
+public class DisconnectDepotEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	@Override
 	protected void doProcessAction(

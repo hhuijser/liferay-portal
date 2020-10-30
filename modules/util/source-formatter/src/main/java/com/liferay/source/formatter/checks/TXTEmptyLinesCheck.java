@@ -28,11 +28,7 @@ public class TXTEmptyLinesCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		if (!absolutePath.endsWith("find-security-bugs-false-positives.txt") &&
-			!absolutePath.matches(
-				".*\\/modules\\/third-party\\/com-h3xstream-findsecbugs\\/" +
-					"src\\/main\\/resources\\/liferay-config\\/\\.txt")) {
-
+		if (!absolutePath.endsWith("find-security-bugs-false-positives.txt")) {
 			return content;
 		}
 

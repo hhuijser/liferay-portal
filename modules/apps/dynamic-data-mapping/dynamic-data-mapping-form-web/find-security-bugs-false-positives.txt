@@ -1,8 +1,10 @@
+Lcom/liferay/portal/kernel/json/JSONArray;:SAFE
+Lcom/liferay/portal/kernel/json/JSONObject;:SAFE
 com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormAdminDisplayContext.getAvailableLocales()[Ljava/util/Locale;:SAFE
 com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormAdminDisplayContext.getDDMFormHTML(Ljavax/portlet/RenderRequest;)Ljava/lang/String;:SAFE
 com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormAdminDisplayContext.getDefaultLanguageId()Ljava/lang/String;:SAFE
-com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormAdminDisplayContext.getPublishedFormURL(Lcom/liferay/dynamic/data/mapping/model/DDMFormInstance;)Ljava/lang/String;:SAFE
 com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormAdminDisplayContext.getPublishedFormURL()Ljava/lang/String;:SAFE
+com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormAdminDisplayContext.getPublishedFormURL(Lcom/liferay/dynamic/data/mapping/model/DDMFormInstance;)Ljava/lang/String;:SAFE
 com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormAdminDisplayContext.getRestrictedFormURL()Ljava/lang/String;:SAFE
 com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormAdminDisplayContext.getSharedFormURL()Ljava/lang/String;:SAFE
 com/liferay/dynamic/data/mapping/form/web/internal/display/context/DDMFormDisplayContext.getContainerId()Ljava/lang/String;:SAFE
@@ -15,5 +17,3 @@ com/liferay/portal/kernel/json/JSONArray.toString()Ljava/lang/String;:SAFE
 com/liferay/portal/kernel/json/JSONObject.toString()Ljava/lang/String;:SAFE
 com/liferay/portal/kernel/util/LocaleUtil.getSiteDefault()Ljava/util/Locale;:SAFE
 javax/servlet/http/HttpServletRequest.getAttribute("DYNAMIC_DATA_MAPPING_FORM_HTML"):SAFE@org/apache/jsp/admin/edit_005fform_005finstance_jsp
-Lcom/liferay/portal/kernel/json/JSONArray;:SAFE
-Lcom/liferay/portal/kernel/json/JSONObject;:SAFE

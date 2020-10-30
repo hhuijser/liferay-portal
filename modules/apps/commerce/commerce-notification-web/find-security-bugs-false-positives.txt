@@ -1,3 +1,2 @@
 com/liferay/commerce/notification/type/CommerceNotificationType.getKey()Ljava/lang/String;:SAFE
 com/liferay/commerce/notification/type/CommerceNotificationType.getLabel(Ljava/util/Locale;)Ljava/lang/String;:SAFE
-

@@ -1,7 +1,7 @@
+com/liferay/asset/kernel/model/AssetRenderer.getTitle(Ljava/util/Locale;)Ljava/lang/String;:TAINTED
 com/liferay/asset/kernel/model/AssetRendererFactory.getClassName()Ljava/lang/String;:SAFE
 com/liferay/asset/kernel/model/AssetRendererFactory.getSubtypeTitle(Ljava/util/Locale;)Ljava/lang/String;:SAFE
 com/liferay/asset/kernel/model/AssetRendererFactory.getTypeName(Ljava/util/Locale;)Ljava/lang/String;:SAFE
-com/liferay/asset/kernel/model/AssetRenderer.getTitle(Ljava/util/Locale;)Ljava/lang/String;:TAINTED
 com/liferay/asset/kernel/model/ClassTypeField.getName()Ljava/lang/String;:SAFE
 com/liferay/asset/list/web/internal/display/context/AssetListEntryUsagesDisplayContext.getAssetListEntryUsageName(Lcom/liferay/asset/list/model/AssetListEntryUsage;)Ljava/lang/String;:TAINTED
 com/liferay/asset/list/web/internal/display/context/EditAssetListDisplayContext.encodeName(JLjava/lang/String;Ljava/util/Locale;)Ljava/lang/String;:1

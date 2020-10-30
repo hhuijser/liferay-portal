@@ -34,10 +34,6 @@ public class TXTStylingCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		if (!absolutePath.endsWith("find-security-bugs-false-positives.txt")) {
-			return content;
-		}
-
 		List<String> lines = new ArrayList<>();
 
 		try (UnsyncBufferedReader unsyncBufferedReader =

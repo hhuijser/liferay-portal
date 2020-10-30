@@ -25,7 +25,10 @@ public class TXTSourceProcessor extends BaseSourceProcessor {
 
 	@Override
 	protected List<String> doGetFileNames() throws IOException {
-		return getFileNames(new String[0], getIncludes());
+		return getFileNames(
+			new String[0],
+			filterIncludes(
+				new String[] {"**/find-security-bugs-false-positives.txt"}));
 	}
 
 	@Override

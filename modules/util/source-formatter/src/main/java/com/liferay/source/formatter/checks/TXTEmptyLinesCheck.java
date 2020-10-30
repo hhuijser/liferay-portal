@@ -28,10 +28,6 @@ public class TXTEmptyLinesCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		if (!absolutePath.endsWith("find-security-bugs-false-positives.txt")) {
-			return content;
-		}
-
 		return StringUtil.replace(content, "\n\n", "\n");
 	}
 

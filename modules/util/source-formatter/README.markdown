@@ -120,6 +120,7 @@ Checks are configured in the following files:
    - [.sql](src/main/resources/documentation/sql_source_processor_checks.markdown#checks-for-sql)
    - [.tld](src/main/resources/documentation/tld_source_processor_checks.markdown#checks-for-tld)
    - [.ts](src/main/resources/documentation/ts_source_processor_checks.markdown#checks-for-ts)
+   - [.txt](src/main/resources/documentation/txt_source_processor_checks.markdown#checks-for-txt)
    - [.yaml or .yml](src/main/resources/documentation/yml_source_processor_checks.markdown#checks-for-yaml-or-yml)
    - [CODEOWNERS](src/main/resources/documentation/codeowners_source_processor_checks.markdown#checks-for-codeowners)
    - [Dockerfile](src/main/resources/documentation/dockerfile_source_processor_checks.markdown#checks-for-dockerfile)

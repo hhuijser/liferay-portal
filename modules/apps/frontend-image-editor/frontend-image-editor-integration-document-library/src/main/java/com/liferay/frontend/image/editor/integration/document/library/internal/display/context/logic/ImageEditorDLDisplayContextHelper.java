@@ -214,7 +214,7 @@ public class ImageEditorDLDisplayContextHelper {
 			PortletRequest.RENDER_PHASE);
 
 		imageEditorURL.setParameter(
-			"mvcRenderCommandName", "/image_editor/view");
+			"mvcRenderCommandName", "/frontend_image_editor/view");
 
 		try {
 			imageEditorURL.setWindowState(LiferayWindowState.POP_UP);

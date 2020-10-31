@@ -610,7 +610,7 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 
 			<c:if test="<%= Validator.isNotNull(imageEditorPortletId) %>">
 				<liferay-portlet:renderURL portletName="<%= imageEditorPortletId %>" var="viewImageEditorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<liferay-portlet:param name="mvcRenderCommandName" value="/image_editor/view" />
+					<liferay-portlet:param name="mvcRenderCommandName" value="/frontend_image_editor/view" />
 				</liferay-portlet:renderURL>
 
 				editItemURL: '<%= viewImageEditorURL.toString() %>',

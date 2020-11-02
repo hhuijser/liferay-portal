@@ -129,12 +129,14 @@ public class InsuranceSiteInitializerTest {
 		Assert.assertNotNull(displayPagesMap.get("Claim"));
 		Assert.assertNotNull(displayPagesMap.get("Policy"));
 
-		String[] privateLayoutNames = _getLayoutNames(_group.getGroupId(), true);
+		String[] privateLayoutNames = _getLayoutNames(
+			_group.getGroupId(), true);
 
 		Assert.assertTrue(
 			ArrayUtil.containsAll(privateLayoutNames, _PRIVATE_LAYOUT_NAMES));
 
-		String[] publicLayoutNames = _getLayoutNames(_group.getGroupId(), false);
+		String[] publicLayoutNames = _getLayoutNames(
+			_group.getGroupId(), false);
 
 		Assert.assertTrue(
 			ArrayUtil.containsAll(publicLayoutNames, _PUBLIC_LAYOUTS_NAMES));

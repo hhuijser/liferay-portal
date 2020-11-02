@@ -4,8 +4,8 @@ definition {
 	property portal.release = "true";
 	property portal.smoke = "true";
 	property portal.upstream = "true";
-	property testray.main.component.name = "Smoke";
 	property test.assert.warning.exceptions = "true";
+	property testray.main.component.name = "Smoke";
 
 	setUp {
 		TestCase.setUpPortalInstance();

@@ -1,9 +1,9 @@
 @component-name = "portal-plugins-osgi"
 definition {
 
+	property plugins.deployment.type = "osgi";
 	property portal.release = "false";
 	property portal.upstream = "true";
-	property plugins.deployment.type = "osgi";
 	property test.run.environment = "CE";
 	property testray.main.component.name = "Localization Hooks";
 

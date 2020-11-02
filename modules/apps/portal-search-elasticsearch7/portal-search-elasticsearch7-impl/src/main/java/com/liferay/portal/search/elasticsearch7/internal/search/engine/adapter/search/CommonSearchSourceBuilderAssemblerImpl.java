@@ -133,8 +133,7 @@ public class CommonSearchSourceBuilderAssemblerImpl
 		QueryBuilder queryBuilder, List<ComplexQueryPart> complexQueryParts) {
 
 		List<ComplexQueryPart> additiveComplexQueryParts = new ArrayList<>();
-		List<ComplexQueryPart> nonadditiveComplexQueryParts =
-			new ArrayList<>();
+		List<ComplexQueryPart> nonadditiveComplexQueryParts = new ArrayList<>();
 
 		for (ComplexQueryPart complexQueryPart : complexQueryParts) {
 			if (complexQueryPart.isAdditive()) {

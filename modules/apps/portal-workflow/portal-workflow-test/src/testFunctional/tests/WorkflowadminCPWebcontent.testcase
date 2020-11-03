@@ -4,6 +4,7 @@ definition {
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Workflow";
+
 	var workflowAssetType = "Web Content Article";
 
 	setUp {
@@ -37,7 +38,6 @@ definition {
 	@priority = "5"
 	test ApproveInWCSubfolderWorkflow {
 		property portal.acceptance = "true";
-
 		property testray.component.names = "Training";
 
 		Navigator.gotoNavItem(navItem = "Structures");

@@ -5,6 +5,7 @@ definition {
 	property portal.upstream = "true";
 	property testray.component.names = "WYSIWYG";
 	property testray.main.component.name = "User Interface";
+
 	var pageName = "CKEditor Page";
 
 	setUp {

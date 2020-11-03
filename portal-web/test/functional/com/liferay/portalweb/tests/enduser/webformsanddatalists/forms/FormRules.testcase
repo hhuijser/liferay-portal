@@ -41,6 +41,7 @@ definition {
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
 		property test.name.skip.portal.instance = "FormRules#ConfigureAutofillRule";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		FormsAdminNavigator.enableLocalNetworkDataProvider();
@@ -158,8 +159,9 @@ definition {
 	@description = "This is a use case for LPS-71592."
 	@priority = "5"
 	test ConfigureCalculateRule {
-		property test.name.skip.portal.instance = "FormRules#ConfigureCalculateRule";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormRules#ConfigureCalculateRule";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openURL();
@@ -269,8 +271,9 @@ definition {
 
 	@priority = "5"
 	test ConfigureRequireRule {
-		property test.name.skip.portal.instance = "FormRules#ConfigureRequireRule";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormRules#ConfigureRequireRule";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openURL();
@@ -359,6 +362,7 @@ definition {
 	@priority = "5"
 	test ConfigureShowRuleUsingAndCondition {
 		property test.name.skip.portal.instance = "FormRules#ConfigureShowRuleUsingAndCondition";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openURL();
@@ -479,8 +483,9 @@ definition {
 
 	@priority = "4"
 	test ConfigureUserBelongsToRule {
-		property test.name.skip.portal.instance = "FormRules#ConfigureUserBelongsToRule";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormRules#ConfigureUserBelongsToRule";
+
 		Navigator.openURL();
 
 		ApplicationsMenu.gotoPortlet(
@@ -711,8 +716,9 @@ definition {
 	@description = "This is a use case for LPS-79095."
 	@priority = "5"
 	test EditRule {
-		property test.name.skip.portal.instance = "FormRules#EditRule";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormRules#EditRule";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -791,8 +797,8 @@ definition {
 	@description = "This is a use case for LPS-71399."
 	@priority = "4"
 	test UseIsNotEmptyRuleToShowField {
-		property test.name.skip.portal.instance = "FormRules#UseIsNotEmptyRuleToShowField";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormRules#UseIsNotEmptyRuleToShowField";
 
 		Navigator.openURL();
 
@@ -952,8 +958,9 @@ definition {
 	@description = "This is a use case for LPS-71466."
 	@priority = "2"
 	test ViewPredefinedValueCanBeUsedToRequireAnotherField {
-		property test.name.skip.portal.instance = "FormRules#ViewPredefinedValueCanBeUsedToRequireAnotherField";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormRules#ViewPredefinedValueCanBeUsedToRequireAnotherField";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -1042,8 +1049,9 @@ definition {
 	@description = "This is a use case for LPS-73332."
 	@priority = "2"
 	test ViewPreviousFormRuleIsCopiedToNewDuplicatedForm {
-		property test.name.skip.portal.instance = "FormRules#ViewPreviousFormRuleIsCopiedToNewDuplicatedForm";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormRules#ViewPreviousFormRuleIsCopiedToNewDuplicatedForm";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -1114,6 +1122,7 @@ definition {
 	test ViewRuleConditionOperatorFieldOptions {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "FormRules#ViewRuleConditionOperatorFieldOptions";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -1146,8 +1155,9 @@ definition {
 	@description = "This is a use case for LPS-75495."
 	@priority = "3"
 	test ViewShowRuleActivationAfterInputtingUnrelatedField {
-		property test.name.skip.portal.instance = "FormRules#ViewShowRuleActivationAfterInputtingUnrelatedField";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormRules#ViewShowRuleActivationAfterInputtingUnrelatedField";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(

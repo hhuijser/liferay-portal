@@ -1799,7 +1799,6 @@ definition {
 	@priority = "3"
 	test EditDefaultLanguageAndPublishRecord {
 		property portal.upstream = "quarantine";
-
 		property test.name.skip.portal.instance = "DynamicdatalistUsecase#EditDefaultLanguageAndPublishRecord";
 
 		Navigator.openURL();
@@ -2068,6 +2067,7 @@ definition {
 	@priority = "4"
 	test FormTemplateUniqueField {
 		property test.name.skip.portal.instance = "DynamicdatalistsUsecase#FormTemplateUniqueField";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -2132,6 +2132,7 @@ definition {
 	@priority = "4"
 	test RemoveRepeatableDateField {
 		property test.name.skip.portal.instance = "DynamicdatalistsUsecase#RemoveRepeatableDateField";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -2417,6 +2418,7 @@ definition {
 	@priority = "4"
 	test ViewCannotSaveWithDuplicateFieldNames {
 		property test.name.skip.portal.instance = "DynamicdatalistsUsecase#ViewCannotSaveWithDuplicateFieldNames";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -2448,6 +2450,7 @@ definition {
 	@priority = "4"
 	test ViewDisplayTemplateClassLinks {
 		property test.name.skip.portal.instance = "DynamicdatalistsUsecase#ViewDisplayTemplateClassLinks";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -2989,8 +2992,8 @@ definition {
 	@description = "This is a use case for LPS-60155."
 	@priority = "5"
 	test ViewRequiredNestedDocumentsAndMediaField {
-		property portal.upstream = "quarantine";
 		property portal.acceptance = "false";
+		property portal.upstream = "quarantine";
 		property testray.component.names = "Training";
 
 		Navigator.openURL();
@@ -3073,6 +3076,7 @@ definition {
 	@priority = "4"
 	test ViewUniqueFieldLabels {
 		property test.name.skip.portal.instance = "DynamicdatalistsUsecase#ViewUniqueFieldLabels";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(

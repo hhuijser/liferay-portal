@@ -1616,6 +1616,7 @@ definition {
 	test ViewContentInCustomOrganizationTypeSite {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property test.name.skip.portal.instance = "UsersandorganizationsUsecase#ViewContentInCustomOrganizationTypeSite";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");

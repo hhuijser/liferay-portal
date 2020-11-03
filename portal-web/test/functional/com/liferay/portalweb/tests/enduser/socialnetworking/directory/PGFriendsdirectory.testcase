@@ -1,11 +1,12 @@
 @component-name = "portal-social-networking"
 definition {
 
+	property custom.properties = "default.layout.template.id=1_column";
 	property dummy.socket.proxy.disabled = "true";
 	property osgi.app.includes = "social-networking";
 	property portal.upstream = "true";
-	property custom.properties = "default.layout.template.id=1_column";
 	property testray.main.component.name = "Social Networking";
+
 	var pageName = "Friends Directory Page";
 	var portletName = "Friends Directory";
 

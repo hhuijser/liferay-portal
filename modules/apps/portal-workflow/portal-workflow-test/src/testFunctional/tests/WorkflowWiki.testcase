@@ -5,6 +5,7 @@ definition {
 	property portal.upstream = "true";
 	property testray.component.names = "Wiki";
 	property testray.main.component.name = "Workflow";
+
 	var pageName = "Wiki Page";
 	var portletName = "Wiki";
 	var workflowAssetType = "Wiki Page";

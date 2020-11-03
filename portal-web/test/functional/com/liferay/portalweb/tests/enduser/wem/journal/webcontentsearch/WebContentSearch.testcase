@@ -5,6 +5,7 @@ definition {
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Web Content Administration";
+
 	var webContentSearchPageName = "Web Content Search Page";
 	var webContentSearchPortletName = "Web Content Search";
 

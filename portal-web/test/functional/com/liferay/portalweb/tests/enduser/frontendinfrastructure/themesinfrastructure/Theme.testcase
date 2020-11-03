@@ -110,6 +110,7 @@ definition {
 	@priority = "5"
 	test DeactivateAndReactivateTheme {
 		property test.name.skip.portal.instance = "Theme#DeactivateAndReactivateTheme";
+
 		var appName = "test-theme";
 
 		User.firstLoginPG();
@@ -282,6 +283,7 @@ definition {
 	@priority = "5"
 	test UninstallAndRedeployTheme {
 		property test.name.skip.portal.instance = "Theme#UninstallAndRedeployTheme";
+
 		var appName = "test-theme";
 
 		User.firstLoginPG();

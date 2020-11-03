@@ -148,7 +148,6 @@ definition {
 	@priority = "5"
 	test AddJoinXORWorkflowDefinitionViaViewTab {
 		property portal.acceptance = "true";
-
 		property test.name.skip.portal.instance = "Kaleodesigner#AddJoinXORNodeEditNameAndDesciptionAndDeleteViaViewTab";
 		property testray.component.names = "Training";
 
@@ -748,8 +747,8 @@ definition {
 
 	@priority = "3"
 	test PublishWorkflowDefinitionWithConnectorPointingToStartNodeAndViewErrorMessage {
-		property test.name.skip.portal.instance = "Kaleodesigner#PublishWorkflowDefinitionWithConnectorPointingToStartNodeAndViewErrorMessage";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "Kaleodesigner#PublishWorkflowDefinitionWithConnectorPointingToStartNodeAndViewErrorMessage";
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
@@ -1072,8 +1071,8 @@ definition {
 
 	@priority = "4"
 	test PublishWorkflowDefinitionWithNoConnectorsAndViewErrorMessage {
-		property test.name.skip.portal.instance = "Kaleodesigner#PublishWorkflowDefinitionWithNoConnectorsAndViewErrorMessage";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "Kaleodesigner#PublishWorkflowDefinitionWithNoConnectorsAndViewErrorMessage";
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
@@ -1089,8 +1088,8 @@ definition {
 
 	@priority = "4"
 	test PublishWorkflowDefinitionWithNoEndNodeAndViewErrorMessage {
-		property test.name.skip.portal.instance = "Kaleodesigner#PublishWorkflowDefinitionWithNoEndNodeAndViewErrorMessage";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "Kaleodesigner#PublishWorkflowDefinitionWithNoEndNodeAndViewErrorMessage";
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
@@ -1108,8 +1107,8 @@ definition {
 
 	@priority = "4"
 	test PublishWorkflowDefinitionWithNoStartNodeAndViewErrorMessage {
-		property test.name.skip.portal.instance = "Kaleodesigner#PublishWorkflowDefinitionWithNoStartNodeAndViewErrorMessage";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "Kaleodesigner#PublishWorkflowDefinitionWithNoStartNodeAndViewErrorMessage";
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",

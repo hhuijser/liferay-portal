@@ -55,6 +55,8 @@ if (true) {
 
 	macro MacroB {
 		property setup.wizard.enabled = "true";
+
+		CalendarNavigator.gotoConfiguration();
 	}
 
 	@description = "This is the description for MacroA."

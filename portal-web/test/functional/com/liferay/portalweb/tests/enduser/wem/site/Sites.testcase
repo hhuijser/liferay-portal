@@ -240,6 +240,7 @@ definition {
 	@priority = "3"
 	test EditSiteFriendlyURLInvalid {
 		property test.name.skip.portal.instance = "Sites#EditSiteFriendlyURLInvalid";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONGroup.addGroup(groupName = "Site Name");

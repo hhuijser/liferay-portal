@@ -1,11 +1,12 @@
 @component-name = "portal-collaboration"
 definition {
 
+	property custom.properties = "default.layout.template.id=1_column${line.separator}jsonws.web.service.paths.excludes=";
 	property portal.release = "true";
 	property portal.upstream = "true";
-	property custom.properties = "default.layout.template.id=1_column${line.separator}jsonws.web.service.paths.excludes=";
 	property testray.component.names = "Notification";
 	property testray.main.component.name = "Notifications";
+
 	var pageName = "Blogs Page";
 	var portletName = "Blogs";
 

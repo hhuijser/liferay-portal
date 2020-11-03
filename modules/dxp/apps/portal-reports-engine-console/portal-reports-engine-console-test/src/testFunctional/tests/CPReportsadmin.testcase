@@ -226,6 +226,7 @@ definition {
 	test DeliverReportToEmail {
 		property test.assert.javascript.errors = "false";
 		property test.smtp.server.enabled = "true";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openURL();
@@ -546,9 +547,9 @@ definition {
 	@priority = "4"
 	test ViewEmailNotificationDelivery {
 		property portal.upstream = "quarantine";
-
 		property test.assert.javascript.errors = "false";
 		property test.name.skip.portal.instance = "CPReportsadmin#ViewEmailNotificationDelivery";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
@@ -625,8 +626,8 @@ definition {
 	@priority = "4"
 	test ViewEmailRecipientDelivery {
 		property portal.upstream = "quarantine";
-
 		property test.name.skip.portal.instance = "CPReportsadmin#ViewEmailRecipientDelivery";
+
 		var portalURL = PropsUtil.get("portal.url");
 		property test.assert.javascript.errors = "false";
 

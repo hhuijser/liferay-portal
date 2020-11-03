@@ -1,9 +1,9 @@
 @component-name = "portal-plugins-osgi"
 definition {
 
+	property plugins.deployment.type = "osgi";
 	property portal.release = "true";
 	property portal.upstream = "true";
-	property plugins.deployment.type = "osgi";
 	property testray.main.component.name = "Social Networking";
 
 	setUp {
@@ -24,6 +24,7 @@ definition {
 	@priority = "4"
 	test VimeoPortletSmoke {
 		property portlet.plugins.includes = "vimeo-portlet";
+
 		var appName = "Vimeo";
 
 		Navigator.gotoPage(pageName = "Test Page");

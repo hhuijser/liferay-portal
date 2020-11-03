@@ -214,6 +214,7 @@ definition {
 	test AssertResultRankingsWithSynonyms {
 		property portal.suite.search.engine = "disable";
 		property portal.upstream = "quarantine";
+
 		JSONWebcontent.addWebContent(
 			content = "Article Article Article Article",
 			groupName = "Guest",
@@ -618,6 +619,7 @@ definition {
 
 	test PinAndHideResultsWithAliases {
 		property portal.acceptance = "true";
+
 		JSONWebcontent.addWebContent(
 			content = "WC WC",
 			groupName = "Guest",

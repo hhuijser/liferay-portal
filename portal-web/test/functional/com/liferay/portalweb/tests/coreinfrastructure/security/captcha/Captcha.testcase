@@ -38,6 +38,7 @@ definition {
 		property osgi.module.configuration.file.names = "com.liferay.captcha.configuration.CaptchaConfiguration.config";
 		property osgi.module.configurations = "maxChallenges=&quot;0&quot;";
 		property test.name.skip.portal.instance = "Captcha#ViewRecaptchaEnabled";
+
 		var recaptchaPrivateKey = PropsUtil.get("recaptcha.private.key");
 		var recaptchaPublicKey = PropsUtil.get("recaptcha.public.key");
 

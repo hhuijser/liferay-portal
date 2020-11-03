@@ -82,8 +82,8 @@ definition {
 
 	@priority = "3"
 	test HSQLtoMariaDBSampleDataEnabled {
-		property databases.size = "1";
 		property database.types = "mariadb";
+		property databases.size = "1";
 		property test.name.skip.portal.instance = "SetupWizardHSQL#HSQLtoMariaDBSampleDataEnabled";
 
 		SetupWizard.configurePG(
@@ -109,8 +109,8 @@ definition {
 
 	@priority = "4"
 	test HSQLtoMySQLSampleDataEnabled {
-		property databases.size = "1";
 		property database.types = "mysql";
+		property databases.size = "1";
 		property test.name.skip.portal.instance = "SetupWizardHSQL#HSQLtoMySQLSampleDataEnabled";
 
 		SetupWizard.configurePG(
@@ -158,8 +158,8 @@ definition {
 
 	@priority = "3"
 	test HSQLtoPostgreSQLSampleDataEnabled {
-		property databases.size = "1";
 		property database.types = "postgresql";
+		property databases.size = "1";
 		property test.name.skip.portal.instance = "SetupWizardHSQL#HSQLtoPostgreSQLSampleDataEnabled";
 
 		SetupWizard.configurePG(

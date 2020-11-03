@@ -5,6 +5,7 @@ definition {
 	property portal.upstream = "true";
 	property testray.component.names = "Site Templates";
 	property testray.main.component.name = "Site Templates";
+
 	var siteTemplateName = "Site Template Name";
 
 	setUp {

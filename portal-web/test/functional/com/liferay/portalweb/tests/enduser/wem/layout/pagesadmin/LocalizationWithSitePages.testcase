@@ -26,6 +26,7 @@ definition {
 	test AddPageAndChildPageTranslations {
 		property test.name.skip.portal.instance = "LocalizationWithSitePages#AddPageAndChildPageTranslations";
 		property testray.component.names = "Localization,Site Administration,Site Localization,Site Pages Administration";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONGroup.addGroup(groupName = "Site Name");

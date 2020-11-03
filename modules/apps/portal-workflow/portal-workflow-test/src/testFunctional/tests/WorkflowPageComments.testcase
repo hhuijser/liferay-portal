@@ -5,6 +5,7 @@ definition {
 	property portal.upstream = "true";
 	property testray.component.names = "Comment,Workflow";
 	property testray.main.component.name = "Workflow";
+
 	var portletName = "Page Comments";
 	var workflowAssetType = "Comment";
 

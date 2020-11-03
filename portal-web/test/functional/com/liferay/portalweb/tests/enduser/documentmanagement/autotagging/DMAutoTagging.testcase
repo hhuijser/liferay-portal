@@ -295,7 +295,6 @@ definition {
 	test OpenNLPSmoke {
 		property environment.acceptance = "true";
 		property portal.acceptance = "true";
-
 		property test.name.skip.portal.instance = "DMAutoTagging#OpenNLPSmoke";
 
 		AutoTagging.enableOpenNLP(

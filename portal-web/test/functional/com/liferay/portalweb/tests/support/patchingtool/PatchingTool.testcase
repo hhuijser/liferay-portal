@@ -5,6 +5,7 @@ definition {
 	property portal.fixpack.release = "true";
 	property test.ignore.tomcat.ext.environment = "true";
 	property testray.main.component.name = "Patching Tool";
+
 	var testBuildFixPackZipURL = PropsUtil.get("test.build.fix.pack.zip.url");
 	var testBuildFixPackZipURLPrevious = PropsUtil.get("test.build.fix.pack.zip.url.previous");
 	var testBuildFixPackZipURLLatestHeavy = PropsUtil.get("test.build.fix.pack.zip.url.latest.heavy");

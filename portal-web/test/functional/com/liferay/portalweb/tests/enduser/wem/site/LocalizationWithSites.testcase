@@ -106,6 +106,7 @@ definition {
 		property custom.properties = "locale.prepend.friendly.url.style=0";
 		property test.name.skip.portal.instance = "LocalizationWithSites#LocalizationStyle0";
 		property testray.component.names = "Site Localization";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
@@ -143,6 +144,7 @@ definition {
 		property custom.properties = "locale.prepend.friendly.url.style=1";
 		property test.name.skip.portal.instance = "LocalizationWithSites#LocalizationStyle1";
 		property testray.component.names = "Site Localization";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
@@ -180,6 +182,7 @@ definition {
 		property custom.properties = "locale.prepend.friendly.url.style=2";
 		property test.name.skip.portal.instance = "LocalizationWithSites#LOcalizationStyle2";
 		property testray.component.names = "Site Localization";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
@@ -277,6 +280,7 @@ definition {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property test.name.skip.portal.instance = "LocalizationWithSites#NoLocalePrependedWhenLocaleMatchMyPreferredLocalization";
 		property testray.component.names = "Site Localization";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONGroup.addGroup(groupName = "Site Name");
@@ -511,6 +515,7 @@ definition {
 	@priority = "4"
 	test RedirectLocalizedFriendlyURL {
 		property test.name.skip.portal.instance = "LocalizationWithSites#RedirectLocalizedFriendlyURL";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONGroup.addGroup(groupName = "Site Name");
@@ -655,6 +660,7 @@ definition {
 	test ViewEditURLLocale {
 		property custom.properties = "locale.use.default.if.not.available=true";
 		property testray.component.names = "Site Localization";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Site.openSiteSettingsAdmin(siteURLKey = "guest");

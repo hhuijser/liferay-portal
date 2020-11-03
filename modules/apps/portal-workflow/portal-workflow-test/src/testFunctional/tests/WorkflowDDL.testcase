@@ -5,6 +5,7 @@ definition {
 	property portal.upstream = "true";
 	property testray.component.names = "Dynamic Data Lists,Workflow";
 	property testray.main.component.name = "Workflow";
+
 	var workflowAssetType = "Dynamic Data Lists Record";
 
 	setUp {

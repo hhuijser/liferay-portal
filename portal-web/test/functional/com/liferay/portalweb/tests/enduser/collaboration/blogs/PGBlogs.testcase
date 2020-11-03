@@ -4,6 +4,7 @@ definition {
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Blogs";
+
 	var pageName = "Blogs Page";
 
 	setUp {
@@ -293,6 +294,7 @@ definition {
 	@priority = "4"
 	test AddBlogsEntryWithTrackbackURL {
 		property custom.properties = "blogs.trackback.enabled=true";
+
 		var ipAddress = "${getIPAddress()}";
 
 		Blogs.addEntry(

@@ -27,9 +27,9 @@ definition {
 	@description = "This is a use case for LPS-92222."
 	@priority = "5"
 	test AddFormWithSpanishAsOnlyLocale {
-		property custom.properties = "locales=es_ES";
-		property custom.properties = "locales.enabled=es_ES";
 		property custom.properties = "company.default.locale=es_ES";
+		property custom.properties = "locales.enabled=es_ES";
+		property custom.properties = "locales=es_ES";
 		property test.name.skip.portal.instance = "Locale#AddFormWithSpanishAsOnlyLocale";
 
 		User.firstLoginPG(
@@ -65,8 +65,8 @@ definition {
 
 	@priority = "4"
 	test ChangesToInstanceTimeZoneDoNotPropagateToExistingUsers {
-		property portal.acceptance = "true";
 		property custom.properties = "company.default.time.zone=America/Los_Angeles";
+		property portal.acceptance = "true";
 
 		User.firstLoginPG();
 
@@ -184,8 +184,8 @@ definition {
 
 	@priority = "5"
 	test RestrictDefaultLocale {
-		property portal.acceptance = "true";
 		property custom.properties = "company.default.locale=es_ES";
+		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "Locale#RestrictDefaultLocale";
 
 		User.firstLoginPG(

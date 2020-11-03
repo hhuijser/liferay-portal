@@ -15,50 +15,10 @@
 --%>
 
 <%
-boolean hasBanUserPermission = MBResourcePermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.BAN_USER);
+MBNavigationDisplayContext mbNavigationDisplayContext = new MBNavigationDisplayContext(request, mbGroupServiceSettings, renderResponse);
 %>
 
 <clay:navigation-bar
-	inverted="<%= true %>"
-	navigationItems='<%=
-		new JSPNavigationItemList(pageContext) {
-			{
-				PortletURL messageBoardsHomeURL = renderResponse.createRenderURL();
-
-				messageBoardsHomeURL.setParameter("mvcRenderCommandName", "/message_boards/view");
-				messageBoardsHomeURL.setParameter("tag", StringPool.BLANK);
-
-				add(
-					navigationItem -> {
-						navigationItem.setActive(navigation.equals("threads"));
-						navigationItem.setHref(messageBoardsHomeURL);
-						navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "content"));
-					});
-
-				PortletURL viewStatisticsURL = renderResponse.createRenderURL();
-
-				viewStatisticsURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
-
-				add(
-					navigationItem -> {
-						navigationItem.setActive(navigation.equals("statistics"));
-						navigationItem.setHref(viewStatisticsURL);
-						navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "statistics"));
-					});
-
-				if (hasBanUserPermission) {
-					PortletURL bannedUsersURL = renderResponse.createRenderURL();
-
-					bannedUsersURL.setParameter("mvcRenderCommandName", "/message_boards/view_banned_users");
-
-					add(
-						navigationItem -> {
-							navigationItem.setActive(navigation.equals("banned-users"));
-							navigationItem.setHref(bannedUsersURL);
-							navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "banned-users"));
-						});
-				}
-			}
-		}
-	%>'
+	inverted="<%= mbNavigationDisplayContext.isInverted() %>"
+	navigationItems="<%= mbNavigationDisplayContext.getNavigationItems() %>"
 />

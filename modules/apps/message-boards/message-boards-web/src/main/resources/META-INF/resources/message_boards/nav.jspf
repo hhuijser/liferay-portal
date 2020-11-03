@@ -14,72 +14,15 @@
  */
 --%>
 
+<%
+MBNavigationDisplayContext mbNavigationDisplayContext = new MBNavigationDisplayContext(request, mbGroupServiceSettings, renderResponse);
+%>
+
 <clay:navigation-bar
-	navigationItems='<%=
-		new JSPNavigationItemList(pageContext) {
-			{
-				PortletURL messageBoardsHomeURL = renderResponse.createRenderURL();
-
-				messageBoardsHomeURL.setParameter("mvcRenderCommandName", "/message_boards/view");
-				messageBoardsHomeURL.setParameter("tag", StringPool.BLANK);
-
-				add(
-					navigationItem -> {
-						navigationItem.setActive(mvcRenderCommandName.equals("/message_boards/edit_category") || mvcRenderCommandName.equals("/message_boards/edit_message") || mvcRenderCommandName.equals("/message_boards/view") || mvcRenderCommandName.equals("/message_boards/view_category") || mvcRenderCommandName.equals("/message_boards/view_message"));
-						navigationItem.setHref(messageBoardsHomeURL);
-						navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "categories"));
-					});
-
-				PortletURL viewRecentPostsURL = renderResponse.createRenderURL();
-
-				viewRecentPostsURL.setParameter("mvcRenderCommandName", "/message_boards/view_recent_posts");
-
-				add(
-					navigationItem -> {
-						navigationItem.setActive(mvcRenderCommandName.equals("/message_boards/view_recent_posts"));
-						navigationItem.setHref(viewRecentPostsURL);
-						navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "recent-posts"));
-					});
-
-				if (themeDisplay.isSignedIn()) {
-					PortletURL viewMyPostsURL = renderResponse.createRenderURL();
-
-					viewMyPostsURL.setParameter("mvcRenderCommandName", "/message_boards/view_my_posts");
-
-					add(
-						navigationItem -> {
-							navigationItem.setActive(mvcRenderCommandName.equals("/message_boards/view_my_posts"));
-							navigationItem.setHref(viewMyPostsURL);
-							navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "my-posts"));
-						});
-
-					if (mbGroupServiceSettings.isEmailMessageAddedEnabled() || mbGroupServiceSettings.isEmailMessageUpdatedEnabled()) {
-						PortletURL viewMySubscriptionsURL = renderResponse.createRenderURL();
-
-						viewMySubscriptionsURL.setParameter("mvcRenderCommandName", "/message_boards/view_my_subscriptions");
-
-						add(
-							navigationItem -> {
-								navigationItem.setActive(mvcRenderCommandName.equals("/message_boards/view_my_subscriptions"));
-								navigationItem.setHref(viewMySubscriptionsURL);
-								navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "my-subscriptions"));
-							});
-					}
-				}
-
-				PortletURL viewStatisticsURL = renderResponse.createRenderURL();
-
-				viewStatisticsURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
-
-				add(
-					navigationItem -> {
-						navigationItem.setActive(mvcRenderCommandName.equals("/message_boards/view_statistics"));
-						navigationItem.setHref(viewStatisticsURL);
-						navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "statistics"));
-					});
-			}
-		}
-	%>'
+	inverted="<%= mbNavigationDisplayContext.isInverted() %>"
+	navigationItems="<%= mbNavigationDisplayContext.getNavigationItems() %>"
 />
 
-<div class="lfr-alert-container"></div>
+<c:if test="<%= mbNavigationDisplayContext.isShowAlert() %>">
+	<div class="lfr-alert-container"></div>
+</c:if>

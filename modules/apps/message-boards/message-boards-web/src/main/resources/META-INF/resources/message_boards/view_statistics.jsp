@@ -25,11 +25,20 @@ PortletURL portletURL = mbViewStatisticsDisplayContext.getPortletURL();
 
 <%@ include file="/message_boards/nav.jspf" %>
 
-<div class="main-content-body">
-	<h3><liferay-ui:message key="statistics" /></h3>
+<c:choose>
+	<c:when test="<%= mbViewStatisticsDisplayContext.isMBAdmin() %>">
+		<clay:container-fluid>
+			<%@ include file="/message_boards/view_statistics_panel.jspf" %>
+		</clay:container-fluid>
+	</c:when>
+	<c:otherwise>
+		<div class="main-content-body">
+			<h3><liferay-ui:message key="statistics" /></h3>
 
-	<%@ include file="/message_boards/view_statistics_panel.jspf" %>
-</div>
+			<%@ include file="/message_boards/view_statistics_panel.jspf" %>
+		</div>
+	</c:otherwise>
+</c:choose>
 
 <%
 PortalUtil.setPageSubtitle(LanguageUtil.get(request, "statistics"), request);

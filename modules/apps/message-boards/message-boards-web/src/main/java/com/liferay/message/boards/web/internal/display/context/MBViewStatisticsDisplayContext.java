@@ -60,17 +60,25 @@ public class MBViewStatisticsDisplayContext {
 		return portletURL;
 	}
 
+	public boolean isMBAdmin() {
+		PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
+
+		if (Objects.equals(
+				portletDisplay.getPortletName(),
+				MBPortletKeys.MESSAGE_BOARDS_ADMIN)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	private long _getCategoryId() {
 		if (_categoryId != null) {
 			return _categoryId;
 		}
 
-		PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
-
-		if (Objects.equals(
-				portletDisplay.getPortletName(),
-				MBPortletKeys.MESSAGE_BOARDS)) {
-
+		if (!isMBAdmin()) {
 			MBCategory category = (MBCategory)_renderRequest.getAttribute(
 				WebKeys.MESSAGE_BOARDS_CATEGORY);
 

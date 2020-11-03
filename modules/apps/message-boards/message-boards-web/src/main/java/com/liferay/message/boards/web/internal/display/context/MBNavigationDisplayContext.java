@@ -56,10 +56,6 @@ public class MBNavigationDisplayContext {
 			WebKeys.THEME_DISPLAY);
 	}
 
-	public boolean isShowAlert() {
-		return _isMBPortlet();
-	}
-
 	public List<NavigationItem> getNavigationItems() {
 		return NavigationItemListBuilder.add(
 			navigationItem -> {
@@ -131,6 +127,10 @@ public class MBNavigationDisplayContext {
 
 	public boolean isInverted() {
 		return !_isMBPortlet();
+	}
+
+	public boolean isShowAlert() {
+		return _isMBPortlet();
 	}
 
 	private PortletURL _getViewBannedUsersPortletURL() {

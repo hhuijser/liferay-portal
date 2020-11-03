@@ -17,18 +17,13 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
-PortletURL portletURL = renderResponse.createRenderURL();
+MBViewStatisticsDisplayContext mbViewStatisticsDisplayContext = new MBViewStatisticsDisplayContext(renderRequest, renderResponse);
 
-portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
+MBCategoryDisplay categoryDisplay = mbViewStatisticsDisplayContext.getMBCategoryDisplay();
+PortletURL portletURL = mbViewStatisticsDisplayContext.getPortletURL();
 %>
 
 <%@ include file="/message_boards_admin/nav.jspf" %>
-
-<%
-long categoryId = GetterUtil.getLong(request.getAttribute("view.jsp-categoryId"));
-
-MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, categoryId);
-%>
 
 <clay:container-fluid>
 	<%@ include file="/message_boards/view_statistics_panel.jspf" %>

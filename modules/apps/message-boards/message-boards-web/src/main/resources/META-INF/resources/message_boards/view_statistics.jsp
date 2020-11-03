@@ -17,16 +17,10 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
-MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
+MBViewStatisticsDisplayContext mbViewStatisticsDisplayContext = new MBViewStatisticsDisplayContext(renderRequest, renderResponse);
 
-long categoryId = MBUtil.getCategoryId(request, category);
-
-MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, categoryId);
-
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
-portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
+MBCategoryDisplay categoryDisplay = mbViewStatisticsDisplayContext.getMBCategoryDisplay();
+PortletURL portletURL = mbViewStatisticsDisplayContext.getPortletURL();
 %>
 
 <%@ include file="/message_boards/nav.jspf" %>

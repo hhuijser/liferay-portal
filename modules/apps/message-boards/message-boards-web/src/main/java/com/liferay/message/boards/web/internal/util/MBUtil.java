@@ -110,6 +110,18 @@ public class MBUtil {
 			httpServletRequest, "mbCategoryId", categoryId);
 	}
 
+	public static long getCategoryId(
+		PortletRequest portletRequest, MBCategory category) {
+
+		long categoryId = MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID;
+
+		if (category != null) {
+			categoryId = category.getCategoryId();
+		}
+
+		return ParamUtil.getLong(portletRequest, "mbCategoryId", categoryId);
+	}
+
 	public static String getEditorName(String messageFormat) {
 		if (messageFormat.equals("bbcode")) {
 			return "ckeditor_bbcode";

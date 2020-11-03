@@ -17,8 +17,6 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
-String mvcRenderCommandName = ParamUtil.getString(request, "mvcRenderCommandName", "/message_boards/view");
-
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
 long categoryId = MBUtil.getCategoryId(request, category);
@@ -36,83 +34,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 <div class="main-content-body">
 	<h3><liferay-ui:message key="statistics" /></h3>
 
-	<div class="statistics-panel">
-		<h3><liferay-ui:message key="overview" /></h3>
-
-		<clay:row>
-			<clay:col
-				md="4"
-			>
-				<div class="overview-container statistics-panel">
-					<clay:sticker
-						cssClass="sticker-categories sticker-user-icon"
-						icon="categories"
-					/>
-
-					<small class="text-uppercase"><liferay-ui:message key="categories" /></small>
-
-					<p class="statistics-number"><%= numberFormat.format(categoryDisplay.getAllCategoriesCount()) %></p>
-				</div>
-			</clay:col>
-
-			<clay:col
-				md="4"
-			>
-				<div class="overview-container statistics-panel">
-					<clay:sticker
-						cssClass="sticker-posts sticker-user-icon"
-						icon="message-boards"
-					/>
-
-					<small class="text-uppercase"><liferay-ui:message key="posts" /></small>
-
-					<p class="statistics-number"><%= numberFormat.format(MBStatsUserLocalServiceUtil.getMessageCountByGroupId(scopeGroupId)) %></p>
-				</div>
-			</clay:col>
-
-			<clay:col
-				md="4"
-			>
-				<div class="overview-container statistics-panel">
-					<clay:sticker
-						cssClass="sticker-participants sticker-user-icon"
-						icon="users"
-					/>
-
-					<small class="text-uppercase"><liferay-ui:message key="participants" /></small>
-
-					<p class="statistics-number"><%= numberFormat.format(MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId)) %></p>
-				</div>
-			</clay:col>
-		</clay:row>
-	</div>
-
-	<div class="statistics-panel">
-		<h3><liferay-ui:message key="top-posters" /></h3>
-
-		<liferay-ui:search-container
-			emptyResultsMessage="there-are-no-top-posters"
-			iteratorURL="<%= portletURL %>"
-			total="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId) %>"
-		>
-			<liferay-ui:search-container-results
-				results="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupId(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
-			/>
-
-			<liferay-ui:search-container-row
-				className="com.liferay.message.boards.model.MBStatsUser"
-				keyProperty="statsUserId"
-				modelVar="statsUser"
-			>
-				<%@ include file="/message_boards/top_posters_user_display.jspf" %>
-			</liferay-ui:search-container-row>
-
-			<liferay-ui:search-iterator
-				displayStyle="descriptive"
-				markupView="lexicon"
-			/>
-		</liferay-ui:search-container>
-	</div>
+	<%@ include file="/message_boards/view_statistics_panel.jspf" %>
 </div>
 
 <%

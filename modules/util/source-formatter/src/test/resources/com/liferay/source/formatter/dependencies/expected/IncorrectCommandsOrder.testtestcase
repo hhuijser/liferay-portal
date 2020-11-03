@@ -21,6 +21,8 @@ definition {
 
 	test TestB {
 		property setup.wizard.enabled = "true";
+
+		CalendarNavigator.gotoConfiguration();
 	}
 
 	@description = "This is the description for TestC."

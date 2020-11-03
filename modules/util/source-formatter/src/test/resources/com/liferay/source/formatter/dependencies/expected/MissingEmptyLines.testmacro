@@ -47,6 +47,8 @@ definition {
 
 	test TestB {
 		property setup.wizard.enabled = "true";
+
+		Upgrade.resetTestUserPassword();
 	}
 
 	@description = "This is the description for TestC."

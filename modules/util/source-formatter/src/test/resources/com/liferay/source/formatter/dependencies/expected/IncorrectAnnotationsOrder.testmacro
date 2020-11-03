@@ -20,6 +20,8 @@ definition {
 
 	test TestC {
 		property setup.wizard.enabled = "true";
+
+		Refresh();
 	}
 
 }

@@ -120,6 +120,7 @@ definition {
 	@priority = "5"
 	test WCPublicCategories {
 		property portal.acceptance = "true";
+
 		JSONCategory.addVocabulary(
 			groupName = "Global",
 			title = "Vocabulary Public");

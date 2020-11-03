@@ -4,8 +4,8 @@ definition {
 	property portal.release = "true";
 	property portal.smoke = "true";
 	property portal.upstream = "true";
-	property testray.main.component.name = "Smoke";
 	property test.assert.warning.exceptions = "true";
+	property testray.main.component.name = "Smoke";
 
 	setUp {
 		TestCase.setUpPortalInstance();
@@ -66,8 +66,8 @@ definition {
 	@priority = "4"
 	test SmokeWithJNDI {
 		property app.server.types = "tomcat,wildfly,weblogic,websphere";
-		property database.types = "mariadb,mysql";
 		property database.jndi.enabled = "true";
+		property database.types = "mariadb,mysql";
 		property portal.smoke = "false";
 
 		Smoke.viewWelcomeContentPage();

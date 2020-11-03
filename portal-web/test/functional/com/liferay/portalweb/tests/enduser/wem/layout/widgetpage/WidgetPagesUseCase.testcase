@@ -230,6 +230,7 @@ definition {
 	test SitesPanelLayout {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property testray.component.names = "Site Pages Administration";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONUser.addUser(
@@ -874,6 +875,7 @@ definition {
 	test WebContentAdministrationSitesPageTypes {
 		property portal.release = "false";
 		property testray.component.names = "Site Pages Administration,Training";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		JSONGroup.addGroup(groupName = "Page Type Test Site Name");

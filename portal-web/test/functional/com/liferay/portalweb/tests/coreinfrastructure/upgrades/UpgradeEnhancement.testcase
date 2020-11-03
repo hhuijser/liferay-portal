@@ -151,6 +151,7 @@ definition {
 		property portal.version = "6.0.12";
 		property skip.start-app-server = "true";
 		property test.assert.warning.exceptions = "true";
+
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");
 		var fileContent = FileUtil.read("${liferayHome}/tools/portal-tools-db-upgrade-client/logs/upgrade.log");
 
@@ -169,6 +170,7 @@ definition {
 		property portal.version = "6.1.30";
 		property skip.start-app-server = "true";
 		property test.assert.warning.exceptions = "true";
+
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");
 		var fileContent = FileUtil.read("${liferayHome}/tools/portal-tools-db-upgrade-client/logs/upgrade.log");
 

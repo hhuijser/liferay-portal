@@ -3,8 +3,8 @@ definition {
 
 	property portal.release = "true";
 	property portal.upstream = "true";
-	property testray.main.component.name = "Workflow";
 	property test.run.environment = "EE";
+	property testray.main.component.name = "Workflow";
 
 	setUp {
 		TestCase.setUpPortalInstance();
@@ -1051,6 +1051,7 @@ definition {
 	@priority = "5"
 	test FilterAllItemsList {
 		property portal.acceptance = "true";
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
@@ -1395,7 +1396,6 @@ definition {
 	@priority = "5"
 	test SearchAndFilterOnPerformanceByStepPage {
 		property portal.upstream = "true";
-
 		property test.name.skip.portal.instance = "WorkflowMetrics#SearchAndFilterOnPerformanceByStepPage";
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
@@ -1493,7 +1493,6 @@ definition {
 	@priority = "5"
 	test SearchPerformanceOfAllAssignees {
 		property portal.upstream = "true";
-
 		property test.name.skip.portal.instance = "WorkflowMetrics#SearchPerformanceOfAllAssignees";
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
@@ -1645,8 +1644,8 @@ definition {
 	@description = "LRQA-53660 Automate LPS-105495 single-task work"
 	@priority = "5"
 	test SingleTaskWorkflowTransition {
-		property test.name.skip.portal.instance = "WorkflowMetrics#SingleTaskWorkflowTransition";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "WorkflowMetrics#SingleTaskWorkflowTransition";
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
@@ -2069,8 +2068,8 @@ definition {
 	@description = "LRQA-53646 - Automate LPS-88573: Search and order the reports list"
 	@priority = "5"
 	test ValidateWorkflowProcessListOnMetrics {
-		property test.name.skip.portal.instance = "WorkflowMetrics#ValidateWorkflowProcessListOnMetrics";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "WorkflowMetrics#ValidateWorkflowProcessListOnMetrics";
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
@@ -2362,7 +2361,6 @@ definition {
 	@priority = "5"
 	test VerifyMetricsIndexesInControlPanel {
 		property portal.acceptance = "true";
-
 		property test.name.skip.portal.instance = "WorkflowMetrics#VerifyMetricsIndexesInControlPanel";
 
 		var companyId = JSONCompany.getCompanyId();
@@ -2751,7 +2749,6 @@ definition {
 	@priority = "5"
 	test ViewPendingItems {
 		property portal.acceptance = "true";
-
 		property test.name.skip.portal.instance = "WorkflowMetrics#ViewPendingItems";
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");

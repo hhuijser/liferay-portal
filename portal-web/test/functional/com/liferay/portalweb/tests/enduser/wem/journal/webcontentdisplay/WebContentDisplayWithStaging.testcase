@@ -4,6 +4,7 @@ definition {
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Web Content Display";
+
 	var pageName = "Web Content Display Page";
 	var portletName = "Web Content Display";
 

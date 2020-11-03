@@ -1,8 +1,8 @@
 @component-name = "core-infrastructure"
 definition {
 
-	property liferay.faces = "true";
 	property custom.properties = "company.default.time.zone=America/Los_Angeles";
+	property liferay.faces = "true";
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Liferay Faces";

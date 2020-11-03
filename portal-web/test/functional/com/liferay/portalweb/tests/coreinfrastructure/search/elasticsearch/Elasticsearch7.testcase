@@ -227,8 +227,8 @@ definition {
 	}
 
 	test AssertSidecarAutoInstall {
-		property environment.acceptance = "true";
 		property delete.sidecar.bundle = "true";
+		property environment.acceptance = "true";
 		property portal.acceptance = "true";
 		property test.assert.warning.exceptions = "true";
 

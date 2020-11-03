@@ -2,7 +2,6 @@
 definition {
 
 	property custom.properties = "default.layout.template.id=1_column";
-
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "App Builder";
@@ -113,8 +112,8 @@ definition {
 	@description = "This is a use case for LPS-104569."
 	@priority = "5"
 	test AddMultipleFormViewsToTheSameObject {
-		property test.name.skip.portal.instance = "AppBuilder#AddMultipleFormViewsToTheSameObject";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "AppBuilder#AddMultipleFormViewsToTheSameObject";
 
 		AppBuilderAdmin.addCustomObject(
 			customObjectName = "my custom object 1",
@@ -164,8 +163,8 @@ definition {
 	@description = "This is a use case for LPS-95964"
 	@priority = "5"
 	test AddRulesViaFormView {
-		property test.name.skip.portal.instance = "AppBuilder#AddRulesViaFormView";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "AppBuilder#AddRulesViaFormView";
 
 		var myFormViewName = "My Registration form";
 		var myTableViewName = "My display table";
@@ -303,8 +302,8 @@ definition {
 	@description = "Add a Form View with a Select From List field"
 	@priority = "5"
 	test AddSimpleFormViewWithSelectFromListField {
-		property test.name.skip.portal.instance = "AppBuilder#AddSimpleFormViewWithSelectFromListField";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "AppBuilder#AddSimpleFormViewWithSelectFromListField";
 
 		AppBuilderAdmin.addCustomObject(
 			customObjectName = "my custom object",
@@ -1874,8 +1873,8 @@ definition {
 	@description = "Search for a column(field) in the columns list in Table View Builder"
 	@priority = "5"
 	test SearchColumnListInTableViewBuilder {
-		property test.name.skip.portal.instance = "AppBuilder#SearchColumnListInTableViewBuilder";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "AppBuilder#SearchColumnListInTableViewBuilder";
 
 		AppBuilderAdmin.addCustomObject(
 			customObjectName = "Custom Object Title",

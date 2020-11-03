@@ -39,8 +39,9 @@ definition {
 
 	@priority = "5"
 	test ConfigureAutocompleteWithTextField {
-		property test.name.skip.portal.instance = "FormsDataProvider#ConfigureAutocompleteWithTextField";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormsDataProvider#ConfigureAutocompleteWithTextField";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openURL();
@@ -206,8 +207,9 @@ definition {
 
 	@priority = "5"
 	test ConfigureWithSelectField {
-		property test.name.skip.portal.instance = "FormsDataProvider#ConfigureWithSelectField";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormsDataProvider#ConfigureWithSelectField";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openURL();
@@ -308,8 +310,9 @@ definition {
 	@description = "This is a use case for LPS-75682."
 	@priority = "5"
 	test ViewDataRetrievedForGuestUser {
-		property test.name.skip.portal.instance = "FormsDataProvider#ViewDataRetrievedForGuestUser";
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "FormsDataProvider#ViewDataRetrievedForGuestUser";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openURL();

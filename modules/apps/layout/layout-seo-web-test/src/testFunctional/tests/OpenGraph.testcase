@@ -92,6 +92,7 @@ definition {
 	test DisableConfiguration {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "OpenGraph#DisableConfiguration";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		SystemSettings.openSystemSettingsAdmin();
@@ -643,6 +644,7 @@ definition {
 	@priority = "5"
 	test Smoke {
 		property portal.acceptance = "true";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		SitePages.openPagesAdmin(siteURLKey = "test-site-name");

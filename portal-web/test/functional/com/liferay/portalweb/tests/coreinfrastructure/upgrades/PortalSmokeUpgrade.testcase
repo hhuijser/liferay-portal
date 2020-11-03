@@ -174,8 +174,8 @@ definition {
 		property portal.upgrades = "true";
 		property portal.upstream = "quarantine";
 		property portal.version = "7.2.10";
-		property test.assert.warning.exceptions = "true";
 		property skip.upgrade-legacy-database = "true";
+		property test.assert.warning.exceptions = "true";
 		property test.run.environment = "EE";
 
 		Upgrade.viewUpgrade();

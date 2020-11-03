@@ -137,6 +137,7 @@ out.println(PortalUtil.escapeRedirect("/"));
 	@priority = "5"
 	test UserCanAccessPermissionsWindowWithPermissionFromAdmin {
 		property test.name.skip.portal.instance = "SecurityUsecase#UserCanAccessPermissionsWindowWithPermissionFromAdmin";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		ApplicationsMenu.gotoPortlet(
@@ -185,6 +186,7 @@ out.println(PortalUtil.escapeRedirect("/"));
 	@priority = "5"
 	test ValidateCannotOverwriteOSGiServiceIdentifier {
 		property portal.acceptance = "true";
+
 		var portalURL = PropsUtil.get("portal.url");
 		var url = "${portalURL}/c/portal/json_service?serviceClassName=com.liferay.portal.kernel.service.AccountServiceUtil&amp;serviceMethodName=getOSGiServiceIdentifier&amp;p_auth=";
 
@@ -196,6 +198,7 @@ out.println(PortalUtil.escapeRedirect("/"));
 	@priority = "4"
 	test ValidateCannotStealAdminAccount {
 		property test.name.skip.portal.instance = "SecurityUsecase#ValidateCannotStealAdminAccount";
+
 		var pAuth = Api.getPAuth();
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -236,6 +239,7 @@ out.println(PortalUtil.escapeRedirect("/"));
 	test ValidateForwardURLPG {
 		property custom.properties = "virtual.hosts.valid.hosts=localhost,127.0.0.1,${ip.address}";
 		property portal.acceptance = "true";
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/html/common/forward_jsp.jsp?FORWARD_URL=http://www.msn.com");

@@ -253,7 +253,6 @@ definition {
 	@priority = "5"
 	test Smoke {
 		property portal.acceptance = "true";
-
 		property test.name.skip.portal.instance = "BlogsAutoTagging#Smoke";
 
 		BlogsNavigator.openBlogsAdmin(siteURLKey = "site-name");

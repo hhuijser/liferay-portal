@@ -6,6 +6,7 @@ definition {
 	property portlet.plugins.includes = "test-localized-portlet";
 	property testray.component.names = "Site Localization";
 	property testray.main.component.name = "Site Localization";
+
 	var portletName = "Test Localized Portlet";
 
 	setUp {

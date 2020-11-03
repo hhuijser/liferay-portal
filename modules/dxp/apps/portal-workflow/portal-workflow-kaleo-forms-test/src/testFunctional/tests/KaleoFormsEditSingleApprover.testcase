@@ -5,6 +5,7 @@ definition {
 	property portal.upstream = "true";
 	property test.run.environment = "EE";
 	property testray.main.component.name = "Kaleo Forms Admin";
+
 	var kfFieldSetName = "New Kaleo Field Set";
 	var workflowAssetType = "Process";
 
@@ -405,8 +406,8 @@ definition {
 
 	@priority = "3"
 	test ViewApprovedProcessNotificationWithComments {
-		property test.name.skip.portal.instance = "KaleoFormsEditSingleApprover#ViewApprovedProcessNotificationWithComments";
 		property portal.upstream = "quarantine";
+		property test.name.skip.portal.instance = "KaleoFormsEditSingleApprover#ViewApprovedProcessNotificationWithComments";
 
 		Navigator.openURL();
 

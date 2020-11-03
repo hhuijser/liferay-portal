@@ -4,6 +4,7 @@ definition {
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Dynamic Data Lists";
+
 	var pageName = "Dynamic Data Lists Display Page";
 	var portletName = "Dynamic Data Lists Display";
 
@@ -1061,8 +1062,8 @@ definition {
 
 	@priority = "3"
 	test ViewDateFieldPredefinedValue {
-		property portal.upstream = "quarantine";
 		property custom.properties = "default.layout.template.id=1_column";
+		property portal.upstream = "quarantine";
 
 		Navigator.openURL();
 

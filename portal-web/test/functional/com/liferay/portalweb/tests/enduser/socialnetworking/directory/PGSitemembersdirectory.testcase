@@ -2,10 +2,11 @@
 @ignore = "true"
 definition {
 
+	property custom.properties = "default.layout.template.id=1_column";
 	property osgi.app.includes = "directory-web";
 	property portal.upstream = "true";
-	property custom.properties = "default.layout.template.id=1_column";
 	property testray.main.component.name = "Social Networking";
+
 	var pageName = "Site Members Directory Page";
 	var portletName = "Site Members Directory";
 

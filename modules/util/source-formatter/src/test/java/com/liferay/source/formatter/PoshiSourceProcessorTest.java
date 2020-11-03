@@ -60,7 +60,7 @@ public class PoshiSourceProcessorTest extends BaseSourceProcessorTestCase {
 				"There should be a line break after ';'",
 				"There should be a line break after ';'"
 			},
-			new Integer[] {3, 4, 18, 19});
+			new Integer[] {4, 5, 18, 20});
 	}
 
 	@Test

@@ -55,37 +55,53 @@ definition {
 
 	test BB {
 		property test.run.environment = "B";
+
+		Refresh();
 	}
 
 	test  CC {
 		property test.run.environment = "C";
+
+		Refresh();
 	}
 
 	test DD  {
 		property test.run.environment = "D";
+
+		Refresh();
 	}
 
 	test EE{
 		property test.run.environment = "E";
+
+		Refresh();
 	}
 
 	test  FF{
 		property test.run.environment = "F";
+
+		Refresh();
 	}
 
 	test  GG
 	{
 		property test.run.environment = "G";
+
+		Refresh();
 	}
 
 	test HH
 	{
 		property test.run.environment = "H";
+
+		Refresh();
 	}
 
 	test	 II
 	{
 		property test.run.environment = "I";
+
+		Refresh();
 	}
 
 	/*

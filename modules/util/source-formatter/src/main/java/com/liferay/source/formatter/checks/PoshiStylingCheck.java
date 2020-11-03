@@ -176,7 +176,7 @@ public class PoshiStylingCheck extends BaseFileCheck {
 	private String _formatProperties(String content) {
 		Matcher matcher = _propertyPattern.matcher(content);
 
-		if (matcher.find()) {
+		while (matcher.find()) {
 			String properties = matcher.group();
 
 			List<String> propertiesList = ListUtil.fromArray(
@@ -193,8 +193,12 @@ public class PoshiStylingCheck extends BaseFileCheck {
 
 			sb.append("\n");
 
-			return StringUtil.replaceFirst(
-				content, properties, sb.toString(), matcher.start());
+			String newProperties = sb.toString();
+
+			if (!properties.equals(newProperties)) {
+				return StringUtil.replaceFirst(
+					content, properties, newProperties, matcher.start());
+			}
 		}
 
 		return content;

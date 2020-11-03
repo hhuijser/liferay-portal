@@ -24,7 +24,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_banned_users");
 %>
 
-<%@ include file="/message_boards_admin/nav.jspf" %>
+<%@ include file="/message_boards/nav.jspf" %>
 
 <%
 MBBannedUsersManagementToolbarDisplayContext mbBannedUsersManagementToolbarDisplayContext = new MBBannedUsersManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse);

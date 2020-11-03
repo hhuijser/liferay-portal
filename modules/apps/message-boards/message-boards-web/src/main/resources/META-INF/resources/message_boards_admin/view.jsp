@@ -38,7 +38,7 @@ request.setAttribute("view.jsp-viewCategory", Boolean.TRUE.toString());
 	portletURL="<%= restoreTrashEntriesURL %>"
 />
 
-<%@ include file="/message_boards_admin/nav.jspf" %>
+<%@ include file="/message_boards/nav.jspf" %>
 
 <%
 MBAdminListDisplayContext mbAdminListDisplayContext = mbDisplayContextProvider.getMbAdminListDisplayContext(request, response, categoryId);

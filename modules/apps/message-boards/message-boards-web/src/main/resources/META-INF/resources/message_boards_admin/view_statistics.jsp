@@ -23,7 +23,7 @@ MBCategoryDisplay categoryDisplay = mbViewStatisticsDisplayContext.getMBCategory
 PortletURL portletURL = mbViewStatisticsDisplayContext.getPortletURL();
 %>
 
-<%@ include file="/message_boards_admin/nav.jspf" %>
+<%@ include file="/message_boards/nav.jspf" %>
 
 <clay:container-fluid>
 	<%@ include file="/message_boards/view_statistics_panel.jspf" %>

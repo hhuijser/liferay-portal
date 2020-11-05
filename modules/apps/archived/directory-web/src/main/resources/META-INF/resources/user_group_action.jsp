@@ -23,7 +23,7 @@ UserGroup userGroup = (UserGroup)row.getObject();
 %>
 
 <portlet:renderURL var="viewUsersURL">
-	<portlet:param name="mvcRenderCommandName" value="/directory/view_directory" />
+	<portlet:param name="mvcRenderCommandName" value="/directory/view" />
 	<portlet:param name="tabs1" value="users" />
 	<portlet:param name="viewUsersRedirect" value="<%= currentURL %>" />
 	<portlet:param name="userGroupId" value="<%= String.valueOf(userGroup.getUserGroupId()) %>" />

@@ -32,11 +32,11 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.name=" + PortletKeys.FRIENDS_DIRECTORY,
 		"javax.portlet.name=" + PortletKeys.MY_SITES_DIRECTORY,
 		"javax.portlet.name=" + PortletKeys.SITE_MEMBERS_DIRECTORY,
-		"mvc.command.name=/directory/view_user_directory"
+		"mvc.command.name=/directory/view_organization"
 	},
 	service = MVCRenderCommand.class
 )
-public class ViewUserDirectoryMVCRenderCommand implements MVCRenderCommand {
+public class ViewOrganizationMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

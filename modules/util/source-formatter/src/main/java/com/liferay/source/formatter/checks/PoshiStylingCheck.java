@@ -184,7 +184,8 @@ public class PoshiStylingCheck extends BaseFileCheck {
 
 			Collections.sort(propertiesList);
 
-			StringBundler sb = new StringBundler(propertiesList.size() * 2);
+			StringBundler sb = new StringBundler(
+				(propertiesList.size() * 2) + 1);
 
 			for (String property : propertiesList) {
 				sb.append(property);

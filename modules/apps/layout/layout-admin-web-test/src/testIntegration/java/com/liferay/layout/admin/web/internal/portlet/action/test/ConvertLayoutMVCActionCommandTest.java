@@ -335,7 +335,7 @@ public class ConvertLayoutMVCActionCommandTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	@Inject(filter = "mvc.command.name=/layout/convert_layout")
+	@Inject(filter = "mvc.command.name=/layout_admin/convert_layout")
 	private MVCActionCommand _mvcActionCommand;
 
 	@Inject

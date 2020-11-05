@@ -154,7 +154,7 @@ public class LayoutsTreeDisplayContext {
 			PortletRequest.RENDER_PHASE);
 
 		configureLayoutSetURL.setParameter(
-			"mvcRenderCommandName", "/layout/edit_layout_set");
+			"mvcRenderCommandName", "/layout_admin/edit_layout_set");
 
 		Layout layout = _themeDisplay.getLayout();
 
@@ -177,7 +177,7 @@ public class LayoutsTreeDisplayContext {
 			PortletRequest.RENDER_PHASE);
 
 		configureLayoutURL.setParameter(
-			"mvcRenderCommandName", "/layout/edit_layout");
+			"mvcRenderCommandName", "/layout_admin/edit_layout");
 
 		Layout layout = _themeDisplay.getLayout();
 

@@ -165,8 +165,9 @@ public class DisplayPageActionDropdownItemsProvider {
 
 		return dropdownItem -> {
 			dropdownItem.setHref(
-				editPageURL, "mvcRenderCommandName", "/layout/edit_layout",
-				"redirect", _themeDisplay.getURLCurrent(), "backURL",
+				editPageURL, "mvcRenderCommandName",
+				"/layout_admin/edit_layout", "redirect",
+				_themeDisplay.getURLCurrent(), "backURL",
 				_themeDisplay.getURLCurrent(), "portletResource",
 				LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES,
 				"selPlid", _layoutPageTemplateEntry.getPlid());
@@ -245,7 +246,7 @@ public class DisplayPageActionDropdownItemsProvider {
 			PortletRequest.ACTION_PHASE);
 
 		discardDraftURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/discard_draft_layout");
+			ActionRequest.ACTION_NAME, "/layout_admin/discard_draft_layout");
 		discardDraftURL.setParameter("redirect", _themeDisplay.getURLCurrent());
 		discardDraftURL.setParameter(
 			"selPlid", String.valueOf(_draftLayout.getPlid()));

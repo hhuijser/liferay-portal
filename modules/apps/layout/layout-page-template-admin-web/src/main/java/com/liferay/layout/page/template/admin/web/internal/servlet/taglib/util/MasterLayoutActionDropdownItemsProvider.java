@@ -245,7 +245,7 @@ public class MasterLayoutActionDropdownItemsProvider {
 			PortletRequest.ACTION_PHASE);
 
 		discardDraftURL.setParameter(
-			ActionRequest.ACTION_NAME, "/layout/discard_draft_layout");
+			ActionRequest.ACTION_NAME, "/layout_admin/discard_draft_layout");
 		discardDraftURL.setParameter("redirect", _themeDisplay.getURLCurrent());
 		discardDraftURL.setParameter(
 			"selPlid", String.valueOf(_draftLayout.getPlid()));

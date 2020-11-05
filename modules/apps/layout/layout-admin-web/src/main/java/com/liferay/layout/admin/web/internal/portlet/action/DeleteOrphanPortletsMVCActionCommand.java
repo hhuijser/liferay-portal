@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + LayoutAdminPortletKeys.GROUP_PAGES,
-		"mvc.command.name=/layout/delete_orphan_portlets"
+		"mvc.command.name=/layout_admin/delete_orphan_portlets"
 	},
 	service = MVCActionCommand.class
 )

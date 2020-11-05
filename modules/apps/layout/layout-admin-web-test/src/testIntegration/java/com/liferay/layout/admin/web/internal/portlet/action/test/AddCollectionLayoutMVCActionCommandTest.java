@@ -354,7 +354,7 @@ public class AddCollectionLayoutMVCActionCommandTest {
 	@Inject
 	private LayoutSetLocalService _layoutSetLocalService;
 
-	@Inject(filter = "mvc.command.name=/layout/add_collection_layout")
+	@Inject(filter = "mvc.command.name=/layout_admin/add_collection_layout")
 	private MVCActionCommand _mvcActionCommand;
 
 	@Inject

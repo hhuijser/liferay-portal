@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + LayoutAdminPortletKeys.GROUP_PAGES,
-		"mvc.command.name=/layout/layout_conversion_preview"
+		"mvc.command.name=/layout_admin/add_layout_conversion_preview"
 	},
 	service = MVCActionCommand.class
 )

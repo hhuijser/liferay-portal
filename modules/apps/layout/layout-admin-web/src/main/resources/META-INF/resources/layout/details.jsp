@@ -89,15 +89,15 @@ String friendlyURLBase = StringPool.BLANK;
 
 		<c:choose>
 			<c:when test="<%= selLayoutType.isURLFriendliable() && !layoutsAdminDisplayContext.isDraft() && !selLayout.isSystem() %>">
-				<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/layout/get_friendly_url_entry_localizations" var="friendlyURLEntryLocalizationsURL">
+				<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/layout_admin/get_friendly_url_entry_localizations" var="friendlyURLEntryLocalizationsURL">
 					<portlet:param name="plid" value="<%= String.valueOf(selLayout.getPlid()) %>" />
 				</liferay-portlet:resourceURL>
 
-				<portlet:actionURL name="/layout/delete_friendly_url_entry_localization" var="deleteFriendlyURLEntryLocalizationURL">
+				<portlet:actionURL name="/layout_admin/delete_friendly_url_entry_localization" var="deleteFriendlyURLEntryLocalizationURL">
 					<portlet:param name="plid" value="<%= String.valueOf(selLayout.getPlid()) %>" />
 				</portlet:actionURL>
 
-				<portlet:actionURL name="/layout/restore_friendly_url_entry_localization" var="restoreFriendlyURLEntryLocalizationURL">
+				<portlet:actionURL name="/layout_admin/restore_friendly_url_entry_localization" var="restoreFriendlyURLEntryLocalizationURL">
 					<portlet:param name="plid" value="<%= String.valueOf(selLayout.getPlid()) %>" />
 				</portlet:actionURL>
 

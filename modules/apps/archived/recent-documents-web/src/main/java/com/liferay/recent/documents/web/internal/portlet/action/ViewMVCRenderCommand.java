@@ -29,11 +29,11 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + RecentDocumentsPortletKeys.RECENT_DOCUMENTS,
-		"mvc.command.name=/recent_documents/recent_documents"
+		"mvc.command.name=/recent_documents/view"
 	},
 	service = MVCRenderCommand.class
 )
-public class RecentDocumentsMVCRenderCommand implements MVCRenderCommand {
+public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

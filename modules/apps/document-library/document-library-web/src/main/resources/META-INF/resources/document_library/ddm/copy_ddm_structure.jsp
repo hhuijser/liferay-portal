@@ -29,8 +29,8 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle(LanguageUtil.format(request, "copy-x", ddmStructure.getName(locale), false));
 %>
 
-<portlet:actionURL name="/document_library/ddm/copy_data_definition" var="copyDataDefinitionURL" />
-<portlet:actionURL name="/document_library/ddm/copy_ddm_structure" var="copyDDMStructureURL" />
+<portlet:actionURL name="/document_library/copy_data_definition" var="copyDataDefinitionURL" />
+<portlet:actionURL name="/document_library/copy_ddm_structure" var="copyDDMStructureURL" />
 
 <liferay-frontend:edit-form
 	action="<%= FFDocumentLibraryDDMEditorConfigurationUtil.useDataEngineEditor() ? copyDataDefinitionURL : copyDDMStructureURL %>"

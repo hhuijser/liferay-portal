@@ -45,9 +45,9 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle(title);
 %>
 
-<portlet:actionURL name="/document_library/ddm/add_ddm_structure" var="addDDMStructureURL" />
+<portlet:actionURL name="/document_library/add_ddm_structure" var="addDDMStructureURL" />
 
-<portlet:actionURL name="/document_library/ddm/update_ddm_structure" var="updateDDMStructureURL" />
+<portlet:actionURL name="/document_library/update_ddm_structure" var="updateDDMStructureURL" />
 
 <clay:container-fluid>
 	<aui:form action="<%= (ddmStructure == null) ? addDDMStructureURL : updateDDMStructureURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>'>

@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.name=" + DLPortletKeys.DOCUMENT_LIBRARY,
 		"javax.portlet.name=" + DLPortletKeys.DOCUMENT_LIBRARY_ADMIN,
 		"javax.portlet.name=" + DLPortletKeys.MEDIA_GALLERY_DISPLAY,
-		"mvc.command.name=/document_library/ddm/edit_ddm_structure"
+		"mvc.command.name=/document_library/edit_ddm_structure"
 	},
 	service = MVCRenderCommand.class
 )

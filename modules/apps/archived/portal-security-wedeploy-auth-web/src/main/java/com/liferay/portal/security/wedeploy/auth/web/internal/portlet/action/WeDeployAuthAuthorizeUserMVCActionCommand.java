@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCActionCommand.class
 )
-public class WeDeployAuthorizeUserMVCActionCommand
+public class WeDeployAuthAuthorizeUserMVCActionCommand
 	extends BaseMVCActionCommand {
 
 	@Override
@@ -115,7 +115,7 @@ public class WeDeployAuthorizeUserMVCActionCommand
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		WeDeployAuthorizeUserMVCActionCommand.class);
+		WeDeployAuthAuthorizeUserMVCActionCommand.class);
 
 	@Reference
 	private Http _http;

@@ -525,7 +525,7 @@ public class DeleteItemMVCActionCommandTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	@Inject(filter = "mvc.command.name=/content_layout/delete_item")
+	@Inject(filter = "mvc.command.name=/layout_content_page_editor/delete_item")
 	private MVCActionCommand _mvcActionCommand;
 
 	private ServiceContext _serviceContext;

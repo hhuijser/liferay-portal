@@ -542,7 +542,7 @@ public class AddFragmentCompositionMVCActionCommandTest {
 		_layoutPageTemplateStructureLocalService;
 
 	@Inject(
-		filter = "mvc.command.name=/content_layout/add_fragment_composition"
+		filter = "mvc.command.name=/layout_content_page_editor/add_fragment_composition"
 	)
 	private MVCActionCommand _mvcActionCommand;
 

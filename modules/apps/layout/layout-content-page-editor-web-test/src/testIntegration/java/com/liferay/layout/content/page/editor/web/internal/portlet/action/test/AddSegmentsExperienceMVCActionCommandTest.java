@@ -200,7 +200,9 @@ public class AddSegmentsExperienceMVCActionCommandTest {
 	@Inject
 	private LayoutLocalService _layoutLocalService;
 
-	@Inject(filter = "mvc.command.name=/content_layout/add_segments_experience")
+	@Inject(
+		filter = "mvc.command.name=/layout_content_page_editor/add_segments_experience"
+	)
 	private MVCActionCommand _mvcActionCommand;
 
 	@Inject

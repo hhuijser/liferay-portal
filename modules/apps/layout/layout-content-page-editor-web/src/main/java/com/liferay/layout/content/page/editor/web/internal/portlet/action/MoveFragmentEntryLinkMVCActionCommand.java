@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
-		"mvc.command.name=/content_layout/move_fragment_entry_link"
+		"mvc.command.name=/layout_content_page_editor/move_fragment_entry_link"
 	},
 	service = MVCActionCommand.class
 )

@@ -287,7 +287,9 @@ public class UpdateItemConfigMVCActionCommandTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	@Inject(filter = "mvc.command.name=/content_layout/update_item_config")
+	@Inject(
+		filter = "mvc.command.name=/layout_content_page_editor/update_item_config"
+	)
 	private MVCActionCommand _mvcActionCommand;
 
 	private ObjectMapper _objectMapper;

@@ -243,25 +243,28 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"addFragmentCompositionURL",
 				getFragmentEntryActionURL(
-					"/content_layout/add_fragment_composition")
+					"/layout_content_page_editor/add_fragment_composition")
 			).put(
 				"addFragmentEntryLinkCommentURL",
 				getFragmentEntryActionURL(
-					"/content_layout/add_fragment_entry_link_comment")
+					"/layout_content_page_editor" +
+						"/add_fragment_entry_link_comment")
 			).put(
 				"addFragmentEntryLinksURL",
 				getFragmentEntryActionURL(
-					"/content_layout/add_fragment_entry_links")
+					"/layout_content_page_editor/add_fragment_entry_links")
 			).put(
 				"addFragmentEntryLinkURL",
 				getFragmentEntryActionURL(
-					"/content_layout/add_fragment_entry_link")
+					"/layout_content_page_editor/add_fragment_entry_link")
 			).put(
 				"addItemURL",
-				getFragmentEntryActionURL("/content_layout/add_item")
+				getFragmentEntryActionURL(
+					"/layout_content_page_editor/add_item")
 			).put(
 				"addPortletURL",
-				getFragmentEntryActionURL("/content_layout/add_portlet")
+				getFragmentEntryActionURL(
+					"/layout_content_page_editor/add_portlet")
 			).put(
 				"autoExtendSessionEnabled",
 				_pageEditorConfiguration.autoExtendSessionEnabled()
@@ -272,11 +275,11 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"changeMasterLayoutURL",
 				getFragmentEntryActionURL(
-					"/content_layout/change_master_layout")
+					"/layout_content_page_editor/change_master_layout")
 			).put(
 				"changeStyleBookEntryURL",
 				getFragmentEntryActionURL(
-					"/content_layout/change_style_book_entry")
+					"/layout_content_page_editor/change_style_book_entry")
 			).put(
 				"collectionSelectorURL", _getCollectionSelectorURL()
 			).put(
@@ -321,10 +324,12 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"deleteFragmentEntryLinkCommentURL",
 				getFragmentEntryActionURL(
-					"/content_layout/delete_fragment_entry_link_comment")
+					"/layout_content_page_editor" +
+						"/delete_fragment_entry_link_comment")
 			).put(
 				"deleteItemURL",
-				getFragmentEntryActionURL("/content_layout/delete_item")
+				getFragmentEntryActionURL(
+					"/layout_content_page_editor/delete_item")
 			).put(
 				"discardDraftRedirectURL", themeDisplay.getURLCurrent()
 			).put(
@@ -338,16 +343,18 @@ public class ContentPageEditorDisplayContext {
 				}
 			).put(
 				"duplicateItemURL",
-				getFragmentEntryActionURL("/content_layout/duplicate_item")
+				getFragmentEntryActionURL(
+					"/layout_content_page_editor/duplicate_item")
 			).put(
 				"editFragmentEntryLinkCommentURL",
 				getFragmentEntryActionURL(
-					"/content_layout/edit_fragment_entry_link_comment",
+					"/layout_content_page_editor" +
+						"/edit_fragment_entry_link_comment",
 					Constants.UPDATE)
 			).put(
 				"editFragmentEntryLinkURL",
 				getFragmentEntryActionURL(
-					"/content_layout/edit_fragment_entry_link")
+					"/layout_content_page_editor/edit_fragment_entry_link")
 			).put(
 				"frontendTokens",
 				() -> {
@@ -370,26 +377,33 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"getAvailableImageConfigurationsURL",
 				getResourceURL(
-					"/content_layout/get_available_image_configurations")
+					"/layout_content_page_editor" +
+						"/get_available_image_configurations")
 			).put(
 				"getAvailableListItemRenderersURL",
 				getResourceURL(
-					"/content_layout/get_available_list_item_renderers")
+					"/layout_content_page_editor" +
+						"/get_available_list_item_renderers")
 			).put(
 				"getAvailableListRenderersURL",
-				getResourceURL("/content_layout/get_available_list_renderers")
+				getResourceURL(
+					"/layout_content_page_editor/get_available_list_renderers")
 			).put(
 				"getAvailableTemplatesURL",
-				getResourceURL("/content_layout/get_available_templates")
+				getResourceURL(
+					"/layout_content_page_editor/get_available_templates")
 			).put(
 				"getCollectionFieldURL",
-				getResourceURL("/content_layout/get_collection_field")
+				getResourceURL(
+					"/layout_content_page_editor/get_collection_field")
 			).put(
 				"getCollectionMappingFieldsURL",
-				getResourceURL("/content_layout/get_collection_mapping_fields")
+				getResourceURL(
+					"/layout_content_page_editor/get_collection_mapping_fields")
 			).put(
 				"getExperienceUsedPortletsURL",
-				getResourceURL("/content_layout/get_experience_used_portlets")
+				getResourceURL(
+					"/layout_content_page_editor/get_experience_used_portlets")
 			).put(
 				"getIframeContentCssURL",
 				PortalUtil.getStaticResourceURL(
@@ -408,13 +422,15 @@ public class ContentPageEditorDisplayContext {
 				}
 			).put(
 				"getInfoItemFieldValueURL",
-				getResourceURL("/content_layout/get_info_item_field_value")
+				getResourceURL(
+					"/layout_content_page_editor/get_info_item_field_value")
 			).put(
 				"getInfoItemMappingFieldsURL",
-				getResourceURL("/content_layout/get_info_item_mapping_fields")
+				getResourceURL(
+					"/layout_content_page_editor/get_info_item_mapping_fields")
 			).put(
 				"getPageContentsURL",
-				getResourceURL("/content_layout/get_page_contents")
+				getResourceURL("/layout_content_page_editor/get_page_content")
 			).put(
 				"imageSelectorURL", _getItemSelectorURL()
 			).put(
@@ -433,11 +449,11 @@ public class ContentPageEditorDisplayContext {
 				"lookAndFeelURL", _getLookAndFeelURL()
 			).put(
 				"mappingFieldsURL",
-				getResourceURL("/content_layout/get_mapping_fields")
+				getResourceURL("/layout_content_page_editor/get_mapping_fields")
 			).put(
 				"markItemForDeletionURL",
 				getFragmentEntryActionURL(
-					"/content_layout/mark_item_for_deletion")
+					"/layout_content_page_editor/mark_item_for_deletion")
 			).put(
 				"masterLayouts", _getMasterLayouts()
 			).put(
@@ -445,7 +461,7 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"moveItemURL",
 				getFragmentEntryActionURL(
-					"/content_layout/move_fragment_entry_link")
+					"/layout_content_page_editor/move_fragment_entry_link")
 			).put(
 				"paddingOptions",
 				() -> {
@@ -486,14 +502,16 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"previewPageURL",
 				getResourceURL(
-					"/content_layout/get_page_preview", !isLayoutPageTemplate())
+					"/layout_content_page_editor/get_page_preview",
+					!isLayoutPageTemplate())
 			).put(
 				"publishURL", getPublishURL()
 			).put(
 				"redirectURL", _getRedirect()
 			).put(
 				"renderFragmentEntryURL",
-				getResourceURL("/content_layout/get_fragment_entry_link")
+				getResourceURL(
+					"/layout_content_page_editor/get_fragment_entry_link")
 			).put(
 				"sidebarPanels", getSidebarPanels()
 			).put(
@@ -513,29 +531,33 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"unmarkItemForDeletionURL",
 				getFragmentEntryActionURL(
-					"/content_layout/unmark_item_for_deletion")
+					"/layout_content_page_editor/unmark_item_for_deletion")
 			).put(
 				"updateConfigurationValuesURL",
 				getFragmentEntryActionURL(
-					"/content_layout/update_configuration_values")
+					"/layout_content_page_editor/update_configuration_values")
 			).put(
 				"updateItemConfigURL",
-				getFragmentEntryActionURL("/content_layout/update_item_config")
+				getFragmentEntryActionURL(
+					"/layout_content_page_editor/update_item_config")
 			).put(
 				"updateLayoutPageTemplateDataURL",
 				getFragmentEntryActionURL(
-					"/content_layout/update_layout_page_template_data")
+					"/layout_content_page_editor" +
+						"/update_layout_page_template_data")
 			).put(
 				"updateRowColumnsURL",
-				getFragmentEntryActionURL("/content_layout/update_row_columns")
+				getFragmentEntryActionURL(
+					"/layout_content_page_editor/update_row_columns")
 			).put(
 				"updateSegmentsExperiencePriorityURL",
 				getFragmentEntryActionURL(
-					"/content_layout/update_segments_experience_priority")
+					"/layout_content_page_editor" +
+						"/update_segments_experience_priority")
 			).put(
 				"updateSegmentsExperienceURL",
 				getFragmentEntryActionURL(
-					"/content_layout/update_segments_experience")
+					"/layout_content_page_editor/update_segments_experience")
 			).put(
 				"workflowEnabled", isWorkflowEnabled()
 			).build()
@@ -584,7 +606,8 @@ public class ContentPageEditorDisplayContext {
 	}
 
 	public String getPublishURL() {
-		return getFragmentEntryActionURL("/content_layout/publish_layout");
+		return getFragmentEntryActionURL(
+			"/layout_content_page_editor/publish_layout");
 	}
 
 	public List<Map<String, Object>> getSidebarPanels() {

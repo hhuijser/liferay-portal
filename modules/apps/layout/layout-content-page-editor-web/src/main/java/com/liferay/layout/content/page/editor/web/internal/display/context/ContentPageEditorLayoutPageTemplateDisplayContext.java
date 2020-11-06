@@ -106,7 +106,7 @@ public class ContentPageEditorLayoutPageTemplateDisplayContext
 	@Override
 	public String getPublishURL() {
 		return getFragmentEntryActionURL(
-			"/content_layout/publish_layout_page_template_entry");
+			"/layout_content_page_editor/publish_layout_page_template_entry");
 	}
 
 	@Override

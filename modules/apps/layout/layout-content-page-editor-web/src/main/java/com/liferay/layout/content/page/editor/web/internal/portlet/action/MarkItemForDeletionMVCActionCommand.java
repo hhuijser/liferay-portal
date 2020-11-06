@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
-		"mvc.command.name=/content_layout/mark_item_for_deletion"
+		"mvc.command.name=/layout_content_page_editor/mark_item_for_deletion"
 	},
 	service = MVCActionCommand.class
 )

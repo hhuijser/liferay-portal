@@ -164,7 +164,9 @@ public class PublishLayoutMVCActionCommandTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	@Inject(filter = "mvc.command.name=/content_layout/publish_layout")
+	@Inject(
+		filter = "mvc.command.name=/layout_content_page_editor/publish_layout"
+	)
 	private MVCActionCommand _mvcActionCommand;
 
 	private ServiceContext _serviceContext;

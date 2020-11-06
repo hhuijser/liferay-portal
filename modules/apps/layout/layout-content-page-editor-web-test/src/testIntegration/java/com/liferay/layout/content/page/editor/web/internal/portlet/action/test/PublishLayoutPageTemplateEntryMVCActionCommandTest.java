@@ -180,7 +180,7 @@ public class PublishLayoutPageTemplateEntryMVCActionCommandTest {
 		_layoutPageTemplateStructureLocalService;
 
 	@Inject(
-		filter = "mvc.command.name=/content_layout/publish_layout_page_template_entry"
+		filter = "mvc.command.name=/layout_content_page_editor/publish_layout_page_template_entry"
 	)
 	private MVCActionCommand _mvcActionCommand;
 

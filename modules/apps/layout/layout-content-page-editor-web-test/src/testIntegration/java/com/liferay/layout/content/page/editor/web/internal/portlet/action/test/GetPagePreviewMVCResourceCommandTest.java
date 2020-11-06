@@ -225,7 +225,9 @@ public class GetPagePreviewMVCResourceCommandTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	@Inject(filter = "mvc.command.name=/content_layout/get_page_preview")
+	@Inject(
+		filter = "mvc.command.name=/layout_content_page_editor/get_page_preview"
+	)
 	private MVCResourceCommand _mvcResourceCommand;
 
 	@Inject

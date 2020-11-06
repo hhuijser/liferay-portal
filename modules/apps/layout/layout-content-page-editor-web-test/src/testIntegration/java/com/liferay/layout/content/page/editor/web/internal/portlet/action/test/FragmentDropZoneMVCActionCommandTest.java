@@ -556,10 +556,12 @@ public class FragmentDropZoneMVCActionCommandTest {
 		return themeDisplay;
 	}
 
-	@Inject(filter = "mvc.command.name=/content_layout/add_fragment_entry_link")
+	@Inject(
+		filter = "mvc.command.name=/layout_content_page_editor/add_fragment_entry_link"
+	)
 	private MVCActionCommand _addFragmentEntryLinkMVCActionCommand;
 
-	@Inject(filter = "mvc.command.name=/content_layout/add_item")
+	@Inject(filter = "mvc.command.name=/layout_content_page_editor/add_item")
 	private MVCActionCommand _addItemMVCActionCommand;
 
 	private Company _company;
@@ -567,10 +569,12 @@ public class FragmentDropZoneMVCActionCommandTest {
 	@Inject
 	private CompanyLocalService _companyLocalService;
 
-	@Inject(filter = "mvc.command.name=/content_layout/delete_item")
+	@Inject(filter = "mvc.command.name=/layout_content_page_editor/delete_item")
 	private MVCActionCommand _deleteItemMVCActionCommand;
 
-	@Inject(filter = "mvc.command.name=/content_layout/duplicate_item")
+	@Inject(
+		filter = "mvc.command.name=/layout_content_page_editor/duplicate_item"
+	)
 	private MVCActionCommand _duplicateItemMVCActionCommand;
 
 	@Inject
@@ -602,7 +606,7 @@ public class FragmentDropZoneMVCActionCommandTest {
 	private ThemeLocalService _themeLocalService;
 
 	@Inject(
-		filter = "mvc.command.name=/content_layout/update_configuration_values"
+		filter = "mvc.command.name=/layout_content_page_editor/update_configuration_values"
 	)
 	private MVCActionCommand _updateConfigurationValuesMVCActionCommand;
 

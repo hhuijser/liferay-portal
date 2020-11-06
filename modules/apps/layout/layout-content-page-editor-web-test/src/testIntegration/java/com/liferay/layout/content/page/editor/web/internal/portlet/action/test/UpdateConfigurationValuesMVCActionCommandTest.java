@@ -131,7 +131,7 @@ public class UpdateConfigurationValuesMVCActionCommandTest {
 	}
 
 	@Inject(
-		filter = "mvc.command.name=/content_layout/update_configuration_values"
+		filter = "mvc.command.name=/layout_content_page_editor/update_configuration_values"
 	)
 	private MVCActionCommand _mvcActionCommand;
 

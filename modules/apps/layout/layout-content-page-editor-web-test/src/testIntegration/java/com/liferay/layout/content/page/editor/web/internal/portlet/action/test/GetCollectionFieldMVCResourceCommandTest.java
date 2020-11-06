@@ -297,7 +297,9 @@ public class GetCollectionFieldMVCResourceCommandTest {
 	private ServiceRegistration<InfoListProvider<?>>
 		_infoListProviderServiceRegistration;
 
-	@Inject(filter = "mvc.command.name=/content_layout/get_collection_field")
+	@Inject(
+		filter = "mvc.command.name=/layout_content_page_editor/get_collection_field"
+	)
 	private MVCResourceCommand _mvcResourceCommand;
 
 	private Locale _originalThemeDisplayDefaultLocale;

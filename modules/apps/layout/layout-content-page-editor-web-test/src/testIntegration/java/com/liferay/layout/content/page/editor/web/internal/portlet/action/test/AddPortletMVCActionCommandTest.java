@@ -362,7 +362,7 @@ public class AddPortletMVCActionCommandTest {
 
 	private LayoutStructure _layoutStructure;
 
-	@Inject(filter = "mvc.command.name=/content_layout/add_portlet")
+	@Inject(filter = "mvc.command.name=/layout_content_page_editor/add_portlet")
 	private MVCActionCommand _mvcActionCommand;
 
 	@Inject

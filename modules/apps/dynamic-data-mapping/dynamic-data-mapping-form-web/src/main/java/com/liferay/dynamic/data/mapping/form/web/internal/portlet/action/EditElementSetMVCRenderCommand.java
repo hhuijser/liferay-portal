@@ -35,8 +35,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCRenderCommand.class
 )
-public class EditElementSetInstanceMVCRenderCommand
-	implements MVCRenderCommand {
+public class EditElementSetMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(
@@ -46,7 +45,7 @@ public class EditElementSetInstanceMVCRenderCommand
 			portal.getHttpServletRequest(renderRequest),
 			portal.getHttpServletResponse(renderResponse),
 			"com.liferay.dynamic.data.mapping.form.web#" +
-				"EditElementSetInstanceMVCRenderCommand#render",
+				"EditElementSetMVCRenderCommand#render",
 			true);
 
 		return "/admin/edit_element_set.jsp";

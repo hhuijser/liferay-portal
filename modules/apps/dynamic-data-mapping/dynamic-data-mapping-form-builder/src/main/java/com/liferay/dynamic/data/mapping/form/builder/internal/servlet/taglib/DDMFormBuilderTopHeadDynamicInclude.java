@@ -68,7 +68,7 @@ public class DDMFormBuilderTopHeadDynamicInclude extends BaseDynamicInclude {
 				"#pre");
 		dynamicIncludeRegistry.register(
 			"com.liferay.dynamic.data.mapping.form.web#" +
-				"EditElementSetInstanceMVCRenderCommand#render");
+				"EditElementSetMVCRenderCommand#render");
 		dynamicIncludeRegistry.register(
 			"com.liferay.dynamic.data.mapping.form.web#" +
 				"EditFormInstanceMVCRenderCommand#render");

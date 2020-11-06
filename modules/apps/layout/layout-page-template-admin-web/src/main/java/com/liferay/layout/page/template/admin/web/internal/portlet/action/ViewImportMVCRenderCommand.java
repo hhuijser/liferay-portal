@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES,
-		"mvc.command.name=/layout_page_template/view_import"
+		"mvc.command.name=/layout_page_template_admin/view_import"
 	},
 	service = MVCRenderCommand.class
 )

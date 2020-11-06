@@ -192,7 +192,7 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 
 		actionURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_prototype/add_layout_prototype");
+			"/layout_page_template_admin/add_layout_prototype");
 		actionURL.setParameter("backURL", _themeDisplay.getURLCurrent());
 		actionURL.setParameter(
 			"layoutPageTemplateCollectionId",
@@ -217,7 +217,7 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 				_layoutPageTemplateDisplayContext.
 					getLayoutPageTemplateCollectionId()));
 		exportLayoutPageTemplateURL.setResourceID(
-			"/layout_page_template/export_layout_page_template_entry");
+			"/layout_page_template_admin/export_layout_page_template_entries");
 
 		return exportLayoutPageTemplateURL.toString();
 	}

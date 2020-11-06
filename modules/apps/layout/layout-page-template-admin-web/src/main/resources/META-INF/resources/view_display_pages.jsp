@@ -35,7 +35,7 @@ DisplayPageManagementToolbarDisplayContext displayPageManagementToolbarDisplayCo
 	displayContext="<%= displayPageManagementToolbarDisplayContext %>"
 />
 
-<portlet:actionURL name="/layout_page_template/delete_layout_page_template_entry" var="deleteDisplayPageURL">
+<portlet:actionURL name="/layout_page_template_admin/delete_layout_page_template_entry" var="deleteDisplayPageURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
@@ -76,7 +76,7 @@ DisplayPageManagementToolbarDisplayContext displayPageManagementToolbarDisplayCo
 	</liferay-ui:search-container>
 </aui:form>
 
-<portlet:actionURL name="/layout_page_template/update_layout_page_template_entry_preview" var="updateLayoutPageTemplateEntryPreviewURL">
+<portlet:actionURL name="/layout_page_template_admin/update_layout_page_template_entry_preview" var="updateLayoutPageTemplateEntryPreviewURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 

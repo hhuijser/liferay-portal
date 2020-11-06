@@ -187,7 +187,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 
 		deleteLayoutPageTemplateEntryURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/delete_layout_page_template_entry");
+			"/layout_page_template_admin/delete_layout_page_template_entry");
 		deleteLayoutPageTemplateEntryURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		deleteLayoutPageTemplateEntryURL.setParameter(
@@ -213,7 +213,8 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 
 		deleteLayoutPageTemplateEntryPreviewURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/delete_layout_page_template_entry_preview");
+			"/layout_page_template_admin" +
+				"/delete_layout_page_template_entry_preview");
 
 		deleteLayoutPageTemplateEntryPreviewURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -326,7 +327,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 			String.valueOf(
 				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
 		exportLayoutPageTemplateURL.setResourceID(
-			"/layout_page_template/export_layout_page_template_entry");
+			"/layout_page_template_admin/export_layout_page_template_entries");
 
 		return dropdownItem -> {
 			dropdownItem.setDisabled(_layoutPageTemplateEntry.isDraft());
@@ -341,7 +342,8 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 
 		uploadURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/upload_layout_page_template_entry_preview");
+			"/layout_page_template_admin" +
+				"/upload_layout_page_template_entry_preview");
 		uploadURL.setParameter(
 			"layoutPageTemplateEntryId",
 			String.valueOf(
@@ -457,7 +459,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 
 		updateLayoutPageTemplateEntryURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/update_layout_page_template_entry");
+			"/layout_page_template_admin/update_layout_page_template_entry");
 		updateLayoutPageTemplateEntryURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		updateLayoutPageTemplateEntryURL.setParameter(
@@ -479,7 +481,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 
 		updateLayoutPrototypeURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_prototype/update_layout_prototype");
+			"/layout_page_template_admin/update_layout_prototype");
 		updateLayoutPrototypeURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		updateLayoutPrototypeURL.setParameter(

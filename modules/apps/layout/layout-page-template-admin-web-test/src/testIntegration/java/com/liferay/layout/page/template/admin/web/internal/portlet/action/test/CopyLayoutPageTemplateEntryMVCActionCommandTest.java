@@ -266,7 +266,7 @@ public class CopyLayoutPageTemplateEntryMVCActionCommandTest {
 		_layoutPageTemplateEntryLocalService;
 
 	@Inject(
-		filter = "mvc.command.name=/layout_page_template/copy_layout_page_template_entry"
+		filter = "mvc.command.name=/layout_page_template_admin/copy_layout_page_template_entry"
 	)
 	private MVCActionCommand _mvcActionCommand;
 

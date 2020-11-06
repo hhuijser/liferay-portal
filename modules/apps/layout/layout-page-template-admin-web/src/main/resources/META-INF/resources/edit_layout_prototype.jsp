@@ -47,7 +47,7 @@ renderResponse.setTitle(layoutPrototype.isNew() ? LanguageUtil.get(request, "new
 
 <liferay-util:include page="/merge_alert.jsp" servletContext="<%= application %>" />
 
-<portlet:actionURL name="/layout_prototype/edit_layout_prototype" var="editLayoutPrototypeURL" />
+<portlet:actionURL name="/layout_page_template_admin/edit_layout_prototype" var="editLayoutPrototypeURL" />
 
 <liferay-frontend:edit-form
 	action="<%= editLayoutPrototypeURL %>"

@@ -20,7 +20,7 @@
 ImportDisplayContext importDisplayContext = new ImportDisplayContext(request, renderRequest);
 %>
 
-<portlet:actionURL name="/layout_page_template/import" var="importURL">
+<portlet:actionURL name="/layout_page_template_admin/import" var="importURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 	<portlet:param name="portletResource" value="<%= portletDisplay.getId() %>" />
 </portlet:actionURL>

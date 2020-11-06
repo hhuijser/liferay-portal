@@ -115,7 +115,7 @@ public class LayoutPrototypeActionDropdownItemsProvider {
 
 		deleteLayoutPrototypeURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_prototype/delete_layout_prototype");
+			"/layout_page_template_admin/delete_layout_prototype");
 
 		deleteLayoutPrototypeURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());

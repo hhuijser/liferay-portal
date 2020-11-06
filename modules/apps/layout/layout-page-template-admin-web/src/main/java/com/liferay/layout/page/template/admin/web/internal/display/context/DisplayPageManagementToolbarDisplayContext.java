@@ -185,7 +185,7 @@ public class DisplayPageManagementToolbarDisplayContext
 			liferayPortletResponse.createResourceURL();
 
 		exportDisplayPageURL.setResourceID(
-			"/layout_page_template/export_display_page");
+			"/layout_page_template_admin/export_display_pages");
 
 		return exportDisplayPageURL.toString();
 	}

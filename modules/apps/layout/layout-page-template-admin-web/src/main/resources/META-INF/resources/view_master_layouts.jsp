@@ -35,7 +35,7 @@ MasterLayoutManagementToolbarDisplayContext masterLayoutManagementToolbarDisplay
 
 <liferay-ui:success key="masterPagePublished" message="the-master-page-was-published-succesfully" />
 
-<portlet:actionURL name="/layout_page_template/delete_master_layout" var="deleteMasterLayoutURL">
+<portlet:actionURL name="/layout_page_template_admin/delete_master_layout" var="deleteMasterLayoutURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
@@ -78,7 +78,7 @@ MasterLayoutManagementToolbarDisplayContext masterLayoutManagementToolbarDisplay
 	</liferay-ui:search-container>
 </aui:form>
 
-<portlet:actionURL name="/layout_page_template/update_layout_page_template_entry_preview" var="masterLayoutPreviewURL">
+<portlet:actionURL name="/layout_page_template_admin/update_layout_page_template_entry_preview" var="masterLayoutPreviewURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 

@@ -40,7 +40,7 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 				<ul class="nav nav-nested">
 					<li class="nav-item">
 						<portlet:renderURL var="editLayoutPageTemplateCollectionURL">
-							<portlet:param name="mvcRenderCommandName" value="/layout_page_template/edit_layout_page_template_collection" />
+							<portlet:param name="mvcRenderCommandName" value="/layout_page_template_admin/edit_layout_page_template_collection" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 						</portlet:renderURL>
 
@@ -75,14 +75,14 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 
 											<li>
 												<portlet:renderURL var="viewLayoutPageTemplateCollectionURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-													<portlet:param name="mvcRenderCommandName" value="/layout_page_template/select_layout_page_template_collections" />
+													<portlet:param name="mvcRenderCommandName" value="/layout_page_template_admin/select_layout_page_template_collections" />
 												</portlet:renderURL>
 
 												<portlet:renderURL var="redirectURL">
 													<portlet:param name="tabs1" value="page-templates" />
 												</portlet:renderURL>
 
-												<liferay-portlet:actionURL copyCurrentRenderParameters="<%= false %>" name="/layout_page_template/delete_layout_page_template_collection" var="deleteLayoutPageTemplateCollectionURL">
+												<liferay-portlet:actionURL copyCurrentRenderParameters="<%= false %>" name="/layout_page_template_admin/delete_layout_page_template_collection" var="deleteLayoutPageTemplateCollectionURL">
 													<portlet:param name="redirect" value="<%= redirectURL %>" />
 												</liferay-portlet:actionURL>
 

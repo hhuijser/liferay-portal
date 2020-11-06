@@ -65,8 +65,8 @@ public class LayoutPageTemplateDisplayContext {
 			dropdownItem -> {
 				dropdownItem.setHref(
 					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/layout_page_template/edit_layout_page_template_" +
-						"collection",
+					"/layout_page_template_admin" +
+						"/edit_layout_page_template_collection",
 					"redirect", _themeDisplay.getURLCurrent());
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "new"));

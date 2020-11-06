@@ -58,7 +58,7 @@ public class SelectDisplayPageMasterLayoutVerticalCard implements VerticalCard {
 
 				addDisplayPageURL.setParameter(
 					ActionRequest.ACTION_NAME,
-					"/layout_page_template/add_display_page");
+					"/layout_page_template_admin/add_display_page");
 				addDisplayPageURL.setParameter(
 					"redirect", _themeDisplay.getURLCurrent());
 				addDisplayPageURL.setParameter(

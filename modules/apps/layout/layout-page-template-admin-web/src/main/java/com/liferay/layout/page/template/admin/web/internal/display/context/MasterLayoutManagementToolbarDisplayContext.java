@@ -130,7 +130,7 @@ public class MasterLayoutManagementToolbarDisplayContext
 
 		addMasterLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template/add_master_layout");
+			"/layout_page_template_admin/add_master_layout");
 		addMasterLayoutURL.setParameter(
 			"backURL", _themeDisplay.getURLCurrent());
 		addMasterLayoutURL.setParameter(
@@ -193,7 +193,7 @@ public class MasterLayoutManagementToolbarDisplayContext
 			liferayPortletResponse.createResourceURL();
 
 		exportMasterLayoutURL.setResourceID(
-			"/layout_page_template/export_master_layout");
+			"/layout_page_template_admin/export_master_layouts");
 
 		return exportMasterLayoutURL.toString();
 	}

@@ -62,7 +62,8 @@ public class LayoutPageTemplateCollectionsManagementToolbarDisplayContext
 
 		searchActionURL.setParameter(
 			"mvcRenderCommandName",
-			"/layout_page_template/select_layout_page_template_collections");
+			"/layout_page_template_admin" +
+				"/select_layout_page_template_collections");
 		searchActionURL.setParameter("redirect", themeDisplay.getURLCurrent());
 
 		return searchActionURL.toString();

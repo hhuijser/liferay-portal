@@ -56,7 +56,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_REPORT,
-		"mvc.command.name=/form-report/get_records_field_values"
+		"mvc.command.name=/dynamic_data_mapping_form_report/get_form_records_field_values"
 	},
 	service = MVCResourceCommand.class
 )

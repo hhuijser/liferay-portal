@@ -41,7 +41,7 @@ portletDisplay.setURLBack(editRankingDisplayContext.getBackURL());
 renderResponse.setTitle(LanguageUtil.get(request, "customize-results"));
 %>
 
-<portlet:actionURL name="/results_ranking/edit" var="addResultsRankingEntryURL" />
+<portlet:actionURL name="/portal_search_tuning_rankings/edit_ranking" var="addResultsRankingEntryURL" />
 
 <aui:form action="<%= addResultsRankingEntryURL %>" name="<%= editRankingDisplayContext.getFormName() %>" onSubmit="event.preventDefault();">
 	<aui:input name="redirect" type="hidden" value="<%= editRankingDisplayContext.getRedirect() %>" />

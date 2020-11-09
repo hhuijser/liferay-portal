@@ -158,7 +158,7 @@ RankingPortletDisplayContext rankingPortletDisplayContext = (RankingPortletDispl
 	};
 
 	var activateResultsRankingsEntries = function () {
-		<portlet:actionURL name="/results_ranking/edit" var="activateResultsRankingEntryURL">
+		<portlet:actionURL name="/portal_search_tuning_rankings/edit_ranking" var="activateResultsRankingEntryURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= ResultRankingsConstants.ACTIVATE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</portlet:actionURL>
@@ -167,7 +167,7 @@ RankingPortletDisplayContext rankingPortletDisplayContext = (RankingPortletDispl
 	};
 
 	var deactivateResultsRankingsEntries = function () {
-		<portlet:actionURL name="/results_ranking/edit" var="deactivateResultsRankingEntryURL">
+		<portlet:actionURL name="/portal_search_tuning_rankings/edit_ranking" var="deactivateResultsRankingEntryURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= ResultRankingsConstants.DEACTIVATE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</portlet:actionURL>
@@ -181,7 +181,7 @@ RankingPortletDisplayContext rankingPortletDisplayContext = (RankingPortletDispl
 				'<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />'
 			)
 		) {
-			<portlet:actionURL name="/results_ranking/edit" var="deleteResultsRankingEntryURL">
+			<portlet:actionURL name="/portal_search_tuning_rankings/edit_ranking" var="deleteResultsRankingEntryURL">
 				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</portlet:actionURL>

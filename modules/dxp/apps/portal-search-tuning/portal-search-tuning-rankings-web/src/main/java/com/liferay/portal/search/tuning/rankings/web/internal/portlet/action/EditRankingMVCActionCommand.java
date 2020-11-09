@@ -72,7 +72,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ResultRankingsPortletKeys.RESULT_RANKINGS,
-		"mvc.command.name=/results_ranking/edit"
+		"mvc.command.name=/portal_search_tuning_rankings/edit_ranking"
 	},
 	service = MVCActionCommand.class
 )

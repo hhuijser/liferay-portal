@@ -36,8 +36,7 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = MVCActionCommand.class
 )
-public class HideAnalyticsReportsPanelMVCActionCommand
-	extends BaseMVCActionCommand {
+public class HidePanelMVCActionCommand extends BaseMVCActionCommand {
 
 	@Override
 	protected void doProcessAction(

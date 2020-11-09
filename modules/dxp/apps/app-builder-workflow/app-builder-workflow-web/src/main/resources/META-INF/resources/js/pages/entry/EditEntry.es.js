@@ -197,7 +197,7 @@ export default function EditEntry({
 
 			fetch(
 				createResourceURL(baseResourceURL, {
-					p_p_resource_id: `/app_builder/${resource}`,
+					p_p_resource_id: `/app_builder_workflow/${resource}`,
 				}),
 				{
 					body: new URLSearchParams(

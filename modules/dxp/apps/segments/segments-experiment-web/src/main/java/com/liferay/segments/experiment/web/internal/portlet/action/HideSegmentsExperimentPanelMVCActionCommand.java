@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SegmentsPortletKeys.SEGMENTS_EXPERIMENT,
-		"mvc.command.name=/segments_experiment/hide_panel"
+		"mvc.command.name=/segments_experiment/hide_segments_experiment_panel"
 	},
 	service = MVCActionCommand.class
 )

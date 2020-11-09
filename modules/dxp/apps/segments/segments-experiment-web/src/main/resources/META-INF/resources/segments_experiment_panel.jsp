@@ -69,7 +69,7 @@ SegmentsExperimentDisplayContext segmentsExperimentDisplayContext = (SegmentsExp
 						url="<%= SegmentsExperimentUtil.ANALYTICS_CLOUD_TRIAL_URL %>"
 					/>
 
-					<portlet:actionURL name="/segments_experiment/hide_panel" var="hideSegmentsExperimentPanelURL">
+					<portlet:actionURL name="/segments_experiment/hide_segments_experiment_panel" var="hideSegmentsExperimentPanelURL">
 						<portlet:param name="redirect" value="<%= themeDisplay.getLayoutFriendlyURL(layout) %>" />
 					</portlet:actionURL>
 

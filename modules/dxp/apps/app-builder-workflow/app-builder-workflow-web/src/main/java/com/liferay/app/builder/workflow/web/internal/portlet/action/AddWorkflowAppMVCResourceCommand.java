@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	property = {
 		"javax.portlet.name=" + AppBuilderPortletKeys.APPS,
-		"mvc.command.name=/app_builder/add_workflow_app"
+		"mvc.command.name=/app_builder_workflow/add_workflow_app"
 	},
 	service = MVCResourceCommand.class
 )

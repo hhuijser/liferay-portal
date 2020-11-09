@@ -264,7 +264,7 @@ export default ({
 
 		fetch(
 			createResourceURL(baseResourceURL, {
-				p_p_resource_id: `/app_builder/${resource}_workflow_app`,
+				p_p_resource_id: `/app_builder_workflow/${resource}_workflow_app`,
 			}),
 			{
 				body: new URLSearchParams(Liferay.Util.ns(namespace, params)),

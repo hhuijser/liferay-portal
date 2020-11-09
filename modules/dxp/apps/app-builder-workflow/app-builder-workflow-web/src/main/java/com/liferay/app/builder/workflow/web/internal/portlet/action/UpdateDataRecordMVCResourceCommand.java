@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"app.builder.app.scope=workflow",
-		"mvc.command.name=/app_builder/update_data_record"
+		"mvc.command.name=/app_builder_workflow/update_data_record"
 	},
 	service = MVCResourceCommand.class
 )

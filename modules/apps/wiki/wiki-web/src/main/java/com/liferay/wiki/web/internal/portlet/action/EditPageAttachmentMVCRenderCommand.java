@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = MVCRenderCommand.class
 )
-public class EditPageAttachmentsMVCRenderCommand implements MVCRenderCommand {
+public class EditPageAttachmentMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

@@ -99,7 +99,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCActionCommand.class
 )
-public class EditPageAttachmentsMVCActionCommand extends BaseMVCActionCommand {
+public class EditPageAttachmentMVCActionCommand extends BaseMVCActionCommand {
 
 	@Reference(unbind = "-")
 	public void setWikiAttachmentsHelper(

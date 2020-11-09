@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = MVCRenderCommand.class
 )
-public class WikiAdminViewNodesMVCRenderCommand
+public class WikiAdminViewMVCRenderCommand
 	extends BaseViewPageMVCRenderCommand {
 
 	@Override

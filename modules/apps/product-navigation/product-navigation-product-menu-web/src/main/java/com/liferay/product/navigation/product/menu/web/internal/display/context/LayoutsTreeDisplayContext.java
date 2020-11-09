@@ -246,7 +246,8 @@ public class LayoutsTreeDisplayContext {
 						PRODUCT_NAVIGATION_PRODUCT_MENU,
 					PortletRequest.RESOURCE_PHASE);
 
-				findLayoutsURL.setResourceID("/product_menu/find_layouts");
+				findLayoutsURL.setResourceID(
+					"/product_navigation_product_menu/find_layouts");
 
 				return findLayoutsURL.toString();
 			}

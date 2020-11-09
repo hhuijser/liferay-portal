@@ -58,7 +58,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCResourceCommand.class
 )
-public class RankingMVCResourceCommand implements MVCResourceCommand {
+public class GetResultsMVCResourceCommand implements MVCResourceCommand {
 
 	@Override
 	public boolean serveResource(

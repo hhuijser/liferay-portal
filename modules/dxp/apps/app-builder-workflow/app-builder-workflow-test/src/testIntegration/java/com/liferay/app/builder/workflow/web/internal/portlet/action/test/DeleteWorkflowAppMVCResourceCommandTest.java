@@ -15,11 +15,14 @@
 package com.liferay.app.builder.workflow.web.internal.portlet.action.test;
 
 import com.liferay.app.builder.rest.dto.v1_0.App;
-import com.liferay.app.builder.workflow.rest.dto.v1_0.AppWorkflow;
 import com.liferay.app.builder.workflow.web.internal.portlet.test.BaseAppBuilderPortletTestCase;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener;
 import com.liferay.portal.kernel.test.rule.DataGuard;
-import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.test.log.CaptureAppender;
+import com.liferay.portal.test.log.Log4JLoggerTestUtil;
+
+import org.apache.log4j.Level;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,32 +33,29 @@ import org.junit.runner.RunWith;
  */
 @DataGuard(scope = DataGuard.Scope.METHOD)
 @RunWith(Arquillian.class)
-public class AddAppBuilderAppMVCResourceCommandTest
+public class DeleteWorkflowAppMVCResourceCommandTest
 	extends BaseAppBuilderPortletTestCase {
 
 	@Test
-	public void testAddAppWorkflow() throws Exception {
+	public void testDeleteAppWorkflow() throws Exception {
 		App app = addApp();
 
 		Assert.assertNotNull(app);
-		Assert.assertEquals("1.0", app.getVersion());
-
-		AppWorkflow appWorkflow = getAppWorkflow(app);
-
-		Assert.assertNotNull(appWorkflow);
-		Assert.assertEquals("1.0", appWorkflow.getAppVersion());
+		Assert.assertTrue(deleteApp(app));
 	}
 
 	@Test
-	public void testAddAppWorkflowWithDuplicateTasks() throws Exception {
-		AppWorkflow appWorkflow = createAppWorkflow();
+	public void testDeleteAppWorkflowWithIncompleteInstance() throws Exception {
+		App app = addApp();
 
-		appWorkflow.setAppWorkflowTasks(
-			ArrayUtil.append(
-				appWorkflow.getAppWorkflowTasks(),
-				appWorkflow.getAppWorkflowTasks()));
+		addDataRecord(app);
 
-		Assert.assertNull(addApp(appWorkflow));
+		try (CaptureAppender captureAppender =
+				Log4JLoggerTestUtil.configureLog4JLogger(
+					ProxyMessageListener.class.getName(), Level.OFF)) {
+
+			Assert.assertFalse(deleteApp(app));
+		}
 	}
 
 }

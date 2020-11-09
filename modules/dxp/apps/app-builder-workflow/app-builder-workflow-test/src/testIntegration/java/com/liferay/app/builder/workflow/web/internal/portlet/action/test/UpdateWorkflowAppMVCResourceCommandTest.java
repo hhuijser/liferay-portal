@@ -29,7 +29,7 @@ import org.junit.runner.RunWith;
  */
 @DataGuard(scope = DataGuard.Scope.METHOD)
 @RunWith(Arquillian.class)
-public class UpdateAppBuilderAppMVCResourceCommandTest
+public class UpdateWorkflowAppMVCResourceCommandTest
 	extends BaseAppBuilderPortletTestCase {
 
 	@Test

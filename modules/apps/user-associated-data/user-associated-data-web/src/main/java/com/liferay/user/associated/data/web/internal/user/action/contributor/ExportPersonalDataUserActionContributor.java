@@ -32,7 +32,7 @@ public class ExportPersonalDataUserActionContributor
 
 	@Override
 	protected String getMVCRenderCommandName() {
-		return "/view_uad_export_processes";
+		return "/user_associated_data/view_uad_export_processes";
 	}
 
 }

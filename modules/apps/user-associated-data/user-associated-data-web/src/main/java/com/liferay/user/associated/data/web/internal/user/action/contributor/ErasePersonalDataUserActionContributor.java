@@ -52,7 +52,8 @@ public class ErasePersonalDataUserActionContributor
 			PortletRequest.ACTION_PHASE);
 
 		liferayPortletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/erase_personal_data");
+			ActionRequest.ACTION_NAME,
+			"/user_associated_data/erase_personal_data");
 		liferayPortletURL.setParameter(
 			"p_u_i_d", String.valueOf(selectedUser.getUserId()));
 

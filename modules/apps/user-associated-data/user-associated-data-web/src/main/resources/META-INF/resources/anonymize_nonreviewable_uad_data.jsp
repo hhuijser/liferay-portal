@@ -60,7 +60,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 					</div>
 
 					<div class="autofit-col">
-						<portlet:actionURL name="/anonymize_nonreviewable_uad_data" var="anonymizeURL" />
+						<portlet:actionURL name="/user_associated_data/anonymize_nonreviewable_uad_data" var="anonymizeURL" />
 
 						<aui:button cssClass="btn-sm" disabled="<%= totalReviewableUADEntitiesCount == 0 %>" onClick='<%= liferayPortletResponse.getNamespace() + "confirmAction('nonreviewableUADDataForm', '" + anonymizeURL.toString() + "', '" + UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-anonymize-the-users-personal-data") + "')" %>' primary="true" value="anonymize" />
 					</div>

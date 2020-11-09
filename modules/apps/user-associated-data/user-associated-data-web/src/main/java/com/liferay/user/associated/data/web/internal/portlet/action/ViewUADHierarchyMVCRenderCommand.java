@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
-		"mvc.command.name=/view_uad_hierarchy"
+		"mvc.command.name=/user_associated_data/view_uad_hierarchy"
 	},
 	service = MVCRenderCommand.class
 )

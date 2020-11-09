@@ -29,7 +29,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 
 <portlet:renderURL var="viewUADExportProcesses">
 	<portlet:param name="p_u_i_d" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
-	<portlet:param name="mvcRenderCommandName" value="/view_uad_export_processes" />
+	<portlet:param name="mvcRenderCommandName" value="/user_associated_data/view_uad_export_processes" />
 </portlet:renderURL>
 
 <clay:container-fluid
@@ -155,7 +155,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 
 			submitForm(
 				form,
-				'<portlet:actionURL name="/export_application_data" />'
+				'<portlet:actionURL name="/user_associated_data/export_application_data" />'
 			);
 		}
 	}

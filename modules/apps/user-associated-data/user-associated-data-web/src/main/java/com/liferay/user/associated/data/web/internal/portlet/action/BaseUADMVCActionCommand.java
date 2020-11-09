@@ -75,10 +75,11 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 					selectedUserId);
 
 			if (totalReviewableUADEntitiesCount == 0) {
-				mvcRenderCommandName = "/completed_data_erasure";
+				mvcRenderCommandName =
+					"/user_associated_data/completed_data_erasure";
 			}
 			else {
-				mvcRenderCommandName = "/review_uad_data";
+				mvcRenderCommandName = "/user_associated_data/review_uad_data";
 			}
 		}
 
@@ -117,10 +118,12 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 					getTotalNonreviewableUADEntitiesCount(selectedUserId);
 
 			if (totalNonreviewableUADEntitiesCount == 0) {
-				mvcRenderCommandName = "/completed_data_erasure";
+				mvcRenderCommandName =
+					"/user_associated_data/completed_data_erasure";
 			}
 			else {
-				mvcRenderCommandName = "/anonymize_nonreviewable_uad_data";
+				mvcRenderCommandName =
+					"/user_associated_data/anonymize_nonreviewable_uad_data";
 			}
 		}
 

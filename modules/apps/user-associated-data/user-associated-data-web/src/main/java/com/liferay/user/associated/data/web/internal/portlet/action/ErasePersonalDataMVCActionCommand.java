@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
-		"mvc.command.name=/erase_personal_data"
+		"mvc.command.name=/user_associated_data/erase_personal_data"
 	},
 	service = MVCActionCommand.class
 )
@@ -87,7 +87,7 @@ public class ErasePersonalDataMVCActionCommand
 		redirectURL.setParameter(
 			"p_u_i_d", String.valueOf(selectedUser.getUserId()));
 
-		String mvcRenderCommandName = "/review_uad_data";
+		String mvcRenderCommandName = "/user_associated_data/review_uad_data";
 
 		int totalReviewableUADEntitiesCount =
 			_uadApplicationSummaryHelper.getTotalReviewableUADEntitiesCount(
@@ -100,10 +100,12 @@ public class ErasePersonalDataMVCActionCommand
 						selectedUser.getUserId());
 
 			if (totalNonreviewableUADEntitiesCount == 0) {
-				mvcRenderCommandName = "/completed_data_erasure";
+				mvcRenderCommandName =
+					"/user_associated_data/completed_data_erasure";
 			}
 			else {
-				mvcRenderCommandName = "/anonymize_nonreviewable_uad_data";
+				mvcRenderCommandName =
+					"/user_associated_data/anonymize_nonreviewable_uad_data";
 			}
 		}
 

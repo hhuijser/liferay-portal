@@ -115,7 +115,8 @@ public class UADHierarchyDisplay {
 		PortletURL applicationURL = PortletURLUtil.clone(
 			baseURL, renderResponse);
 
-		applicationURL.setParameter("mvcRenderCommandName", "/review_uad_data");
+		applicationURL.setParameter(
+			"mvcRenderCommandName", "/user_associated_data/review_uad_data");
 
 		String className = ParamUtil.getString(
 			httpServletRequest, "parentContainerClass");
@@ -147,7 +148,8 @@ public class UADHierarchyDisplay {
 				baseURL, renderResponse);
 
 			portletURL.setParameter(
-				"mvcRenderCommandName", "/view_uad_hierarchy");
+				"mvcRenderCommandName",
+				"/user_associated_data/view_uad_hierarchy");
 
 			UADDisplay<Object> parentContainerUADDisplay =
 				(UADDisplay<Object>)_getUADDisplayByTypeClass(
@@ -323,11 +325,14 @@ public class UADHierarchyDisplay {
 			uadDisplay.getParentContainerId(container));
 
 		if (parentContainerId.equals("0") || parentContainerId.equals("-1")) {
-			portletURL.setParameter("mvcRenderCommandName", "/review_uad_data");
+			portletURL.setParameter(
+				"mvcRenderCommandName",
+				"/user_associated_data/review_uad_data");
 		}
 		else {
 			portletURL.setParameter(
-				"mvcRenderCommandName", "/view_uad_hierarchy");
+				"mvcRenderCommandName",
+				"/user_associated_data/view_uad_hierarchy");
 			portletURL.setParameter(
 				"parentContainerClass", parentContainerClass.getName());
 			portletURL.setParameter("parentContainerId", parentContainerId);
@@ -383,7 +388,8 @@ public class UADHierarchyDisplay {
 		PortletURL renderURL = liferayPortletResponse.createRenderURL();
 
 		renderURL.setParameter("p_u_i_d", String.valueOf(selectedUserId));
-		renderURL.setParameter("mvcRenderCommandName", "/view_uad_hierarchy");
+		renderURL.setParameter(
+			"mvcRenderCommandName", "/user_associated_data/view_uad_hierarchy");
 		renderURL.setParameter("applicationKey", applicationKey);
 		renderURL.setParameter("parentContainerClass", typeClass.getName());
 		renderURL.setParameter(

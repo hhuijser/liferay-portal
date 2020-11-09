@@ -76,9 +76,10 @@ public class UADExportProcessManagementToolbarDisplayContext
 
 				dropdownItem.setHref(
 					liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName", "/add_uad_export_processes",
-					"backURL", PortalUtil.getCurrentURL(httpServletRequest),
-					"p_u_i_d", String.valueOf(selectedUser.getUserId()));
+					"mvcRenderCommandName",
+					"/user_associated_data/add_uad_export_processes", "backURL",
+					PortalUtil.getCurrentURL(httpServletRequest), "p_u_i_d",
+					String.valueOf(selectedUser.getUserId()));
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(

@@ -88,7 +88,7 @@ long[] groupIds = viewUADEntitiesDisplay.getGroupIds();
 		</liferay-ui:error>
 
 		<c:if test="<%= !Objects.equals(viewUADEntitiesDisplay.getApplicationKey(), UADConstants.ALL_APPLICATIONS) %>">
-			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= true %>" id="/info_panel" var="entityTypeSidebarURL">
+			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= true %>" id="/user_associated_data/info_panel" var="entityTypeSidebarURL">
 				<liferay-portlet:param name="hierarchyView" value="<%= String.valueOf(viewUADEntitiesDisplay.isHierarchy()) %>" />
 				<liferay-portlet:param name="topLevelView" value="<%= String.valueOf(topLevelView) %>" />
 			</liferay-portlet:resourceURL>
@@ -184,7 +184,7 @@ long[] groupIds = viewUADEntitiesDisplay.getGroupIds();
 <aui:script>
 	function <portlet:namespace />doAnonymizeMultiple() {
 		<portlet:namespace />doMultiple(
-			'<portlet:actionURL name='<%= Objects.equals(viewUADEntitiesDisplay.getApplicationKey(), UADConstants.ALL_APPLICATIONS) ? "/anonymize_uad_applications" : "/anonymize_uad_entities" %>' />',
+			'<portlet:actionURL name='<%= Objects.equals(viewUADEntitiesDisplay.getApplicationKey(), UADConstants.ALL_APPLICATIONS) ? "/user_associated_data/anonymize_uad_applications" : "/user_associated_data/anonymize_uad_entities" %>' />',
 			'<liferay-ui:message key="are-you-sure-you-want-to-anonymize-the-selected-items" />',
 			'<liferay-ui:message key="only-items-belonging-to-the-user-will-be-anonymized" />'
 		);
@@ -192,7 +192,7 @@ long[] groupIds = viewUADEntitiesDisplay.getGroupIds();
 
 	function <portlet:namespace />doDeleteMultiple() {
 		<portlet:namespace />doMultiple(
-			'<portlet:actionURL name='<%= Objects.equals(viewUADEntitiesDisplay.getApplicationKey(), UADConstants.ALL_APPLICATIONS) ? "/delete_uad_applications" : "/delete_uad_entities" %>' />',
+			'<portlet:actionURL name='<%= Objects.equals(viewUADEntitiesDisplay.getApplicationKey(), UADConstants.ALL_APPLICATIONS) ? "/user_associated_data/delete_uad_applications" : "/user_associated_data/delete_uad_entities" %>' />',
 			'<liferay-ui:message key="are-you-sure-you-want-to-delete-the-selected-items" />',
 			'<liferay-ui:message key="only-items-belonging-to-the-user-will-be-deleted" />'
 		);

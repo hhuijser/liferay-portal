@@ -34,7 +34,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 	/>
 </clay:container-fluid>
 
-<portlet:actionURL name="/delete_user" var="deleteUserURL">
+<portlet:actionURL name="/user_associated_data/delete_user" var="deleteUserURL">
 	<portlet:param name="p_u_i_d" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
 </portlet:actionURL>
 

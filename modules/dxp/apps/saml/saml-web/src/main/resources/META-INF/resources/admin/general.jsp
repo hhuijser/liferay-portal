@@ -35,7 +35,7 @@ if (samlRoleIdpOptionDisabled) {
 }
 %>
 
-<portlet:actionURL name="/admin/updateGeneral" var="updateGeneralURL">
+<portlet:actionURL name="/admin/update_general" var="updateGeneralURL">
 	<portlet:param name="tabs1" value="general" />
 </portlet:actionURL>
 
@@ -78,7 +78,7 @@ if (samlRoleIdpOptionDisabled) {
 	</aui:button-row>
 </aui:form>
 
-<portlet:actionURL name="/admin/updateCertificate" var="updateCertificateURL">
+<portlet:actionURL name="/admin/update_certificate" var="updateCertificateURL">
 	<portlet:param name="tabs1" value="general" />
 </portlet:actionURL>
 

@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SamlPortletKeys.SAML_ADMIN,
-		"mvc.command.name=/admin/downloadCertificate"
+		"mvc.command.name=/admin/download_certificate"
 	},
 	service = MVCResourceCommand.class
 )

@@ -33,7 +33,7 @@ long assertionLifetime = GetterUtil.getLong(request.getAttribute(SamlWebKeys.SAM
 	/>
 </clay:container-fluid>
 
-<portlet:actionURL name="/admin/updateServiceProviderConnection" var="updateServiceProviderConnectionURL">
+<portlet:actionURL name="/admin/update_service_provider_connection" var="updateServiceProviderConnectionURL">
 	<portlet:param name="mvcRenderCommandName" value="/admin/edit_service_provider_connection" />
 	<portlet:param name="samlIdpSpConnectionId" value='<%= (samlIdpSpConnection != null) ? String.valueOf(samlIdpSpConnection.getSamlIdpSpConnectionId()) : "" %>' />
 </portlet:actionURL>

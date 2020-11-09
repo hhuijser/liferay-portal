@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.display-name=SAML Admin",
 		"javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.copy-request-parameters=true",
-		"javax.portlet.init-param.mvc-command-names-default-views=/admin",
+		"javax.portlet.init-param.mvc-command-names-default-views=/admin/view",
 		"javax.portlet.name=" + SamlPortletKeys.SAML_ADMIN,
 		"javax.portlet.portlet.info.keywords=SAML Admin",
 		"javax.portlet.portlet.info.short-title=SAML Admin",

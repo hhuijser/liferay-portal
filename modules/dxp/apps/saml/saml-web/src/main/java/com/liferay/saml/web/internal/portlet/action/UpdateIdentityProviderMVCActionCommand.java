@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SamlPortletKeys.SAML_ADMIN,
-		"mvc.command.name=/admin/updateIdentityProvider"
+		"mvc.command.name=/admin/update_identity_provider"
 	},
 	service = MVCActionCommand.class
 )
@@ -69,7 +69,8 @@ public class UpdateIdentityProviderMVCActionCommand
 
 		_samlProviderConfigurationHelper.updateProperties(unicodeProperties);
 
-		actionResponse.setRenderParameter("mvcRenderCommandName", "/admin");
+		actionResponse.setRenderParameter(
+			"mvcRenderCommandName", "/admin/view");
 		actionResponse.setRenderParameter("tabs1", "identity-provider");
 	}
 

@@ -51,21 +51,21 @@ if (Validator.isNotNull(tempFileName)) {
 
 				decimalSeparator: '<%= decimalFormatSymbols.getDecimalSeparator() %>',
 				deleteFile:
-					'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/admin/updateCertificate"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE_TEMP %>" /></liferay-portlet:resourceURL>',
+					'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/admin/update_certificate"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE_TEMP %>" /></liferay-portlet:resourceURL>',
 				fileDescription: '*.p12 *.pfx',
 				maxFileSize:
 					'<%= UploadServletRequestConfigurationHelperUtil.getMaxSize() %> B',
 				multipleFiles: false,
 				namespace: '<portlet:namespace />',
 				tempFileURL:
-					'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/admin/updateCertificate"><portlet:param name="selectUploadedFile" value="<%= Constants.GET_TEMP %>" /><portlet:param name="selectUploadedFile" value='<%= ParamUtil.getString(request, "selectUploadedFile") %>' /></liferay-portlet:resourceURL>',
+					'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/admin/update_certificate"><portlet:param name="selectUploadedFile" value="<%= Constants.GET_TEMP %>" /><portlet:param name="selectUploadedFile" value='<%= ParamUtil.getString(request, "selectUploadedFile") %>' /></liferay-portlet:resourceURL>',
 				tempRandomSuffix: '<%= SamlTempFileEntryUtil.TEMP_RANDOM_SUFFIX %>',
 				'strings.dropFileText':
 					'<liferay-ui:message key="drop-a-pkcs12-formatted-keystore-file-here-to-inspect" />',
 				'strings.fileCannotBeSavedText':
 					'<liferay-ui:message key="the-file-x-cannot-be-inspected" />',
 				uploadFile:
-					'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/admin/updateCertificate"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" /></liferay-portlet:resourceURL>',
+					'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/admin/update_certificate"><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" /></liferay-portlet:resourceURL>',
 			});
 
 			liferayUpload._uploader.on('alluploadscomplete', function (event) {
@@ -187,7 +187,7 @@ if (Validator.isNotNull(tempFileName)) {
 		</div>
 
 		<portlet:renderURL var="backURL">
-			<portlet:param name="mvcRenderCommandName" value="/admin/updateCertificate" />
+			<portlet:param name="mvcRenderCommandName" value="/admin/update_certificate" />
 			<portlet:param name="<%= Constants.CMD %>" value="<%= ParamUtil.getString(request, Constants.CMD) %>" />
 			<portlet:param name="certificateUsage" value="<%= certificateUsage.name() %>" />
 			<portlet:param name="selectUploadedFile" value="<%= fileEntry.getFileName() %>" />

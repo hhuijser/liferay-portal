@@ -38,7 +38,7 @@ SamlSpIdpConnection samlSpIdpConnection = (SamlSpIdpConnection)row.getObject();
 		url="<%= editURL %>"
 	/>
 
-	<portlet:actionURL name="/admin/deleteSamlSpIdpConnection" var="deleteURL">
+	<portlet:actionURL name="/admin/delete_saml_sp_idp_connection" var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="samlSpIdpConnectionId" value="<%= String.valueOf(samlSpIdpConnection.getSamlSpIdpConnectionId()) %>" />
 	</portlet:actionURL>

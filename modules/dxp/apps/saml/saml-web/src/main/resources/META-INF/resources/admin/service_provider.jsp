@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<portlet:actionURL name="/admin/updateServiceProvider" var="updateServiceProviderURL">
+<portlet:actionURL name="/admin/update_service_provider" var="updateServiceProviderURL">
 	<portlet:param name="tabs1" value="service-provider" />
 </portlet:actionURL>
 

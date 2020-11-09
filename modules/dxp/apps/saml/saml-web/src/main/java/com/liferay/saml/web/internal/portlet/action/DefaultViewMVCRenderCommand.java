@@ -54,7 +54,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SamlPortletKeys.SAML_ADMIN,
-		"mvc.command.name=/", "mvc.command.name=/admin"
+		"mvc.command.name=/", "mvc.command.name=/admin/view"
 	},
 	service = MVCRenderCommand.class
 )

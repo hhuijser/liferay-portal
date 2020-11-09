@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SamlPortletKeys.SAML_ADMIN,
-		"mvc.command.name=/admin/updateServiceProviderConnection"
+		"mvc.command.name=/admin/update_service_provider_connection"
 	},
 	service = MVCActionCommand.class
 )

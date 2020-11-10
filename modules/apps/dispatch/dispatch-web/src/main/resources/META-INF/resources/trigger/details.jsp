@@ -33,7 +33,7 @@ if (dispatchTrigger != null) {
 }
 %>
 
-<portlet:actionURL name="editDispatchTrigger" var="editDispatchTriggerActionURL" />
+<portlet:actionURL name="/dispatch/edit_dispatch_trigger" var="editDispatchTriggerActionURL" />
 
 <div class="closed container-fluid-1280" id="<portlet:namespace />editDispatchTriggerId">
 	<div class="container main-content-body sheet">
@@ -122,6 +122,6 @@ if (dispatchTrigger != null) {
 			STR_VALUE
 		);
 
-		submitForm(form, '<portlet:actionURL name="editDispatchTrigger" />');
+		submitForm(form, '<portlet:actionURL name="/dispatch/edit_dispatch_trigger" />');
 	});
 </aui:script>

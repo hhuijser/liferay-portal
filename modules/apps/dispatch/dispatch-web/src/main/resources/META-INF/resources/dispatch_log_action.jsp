@@ -33,7 +33,7 @@ DispatchLog dispatchLog = (DispatchLog)row.getObject();
 >
 	<c:if test="<%= DispatchTriggerPermission.contains(permissionChecker, dispatchLogDisplayContext.getDispatchTrigger(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="viewURL">
-			<portlet:param name="mvcRenderCommandName" value="viewDispatchLog" />
+			<portlet:param name="mvcRenderCommandName" value="/dispatch/view_dispatch_log" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="dispatchLogId" value="<%= String.valueOf(dispatchLog.getDispatchLogId()) %>" />
 		</portlet:renderURL>
@@ -43,7 +43,7 @@ DispatchLog dispatchLog = (DispatchLog)row.getObject();
 			url="<%= viewURL %>"
 		/>
 
-		<portlet:actionURL name="editDispatchLog" var="deleteURL">
+		<portlet:actionURL name="/dispatch/edit_dispatch_log" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="dispatchLogId" value="<%= String.valueOf(dispatchLog.getDispatchLogId()) %>" />

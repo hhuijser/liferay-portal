@@ -47,7 +47,7 @@ String runNowButton = "runNowButton" + row.getRowId();
 		iconSpinnerContainer.removeClass('hide');
 
 		A.io.request(
-			'<liferay-portlet:actionURL name="editDispatchTrigger" portletName="<%= portletDisplay.getPortletName() %>" />',
+			'<liferay-portlet:actionURL name="/dispatch/edit_dispatch_trigger" portletName="<%= portletDisplay.getPortletName() %>" />',
 			{
 				data: data,
 				on: {

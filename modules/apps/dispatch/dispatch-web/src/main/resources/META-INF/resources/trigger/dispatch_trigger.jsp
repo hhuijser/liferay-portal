@@ -48,7 +48,7 @@ if ((dispatchTrigger != null) && (dispatchTrigger.getEndDate() != null)) {
 }
 %>
 
-<portlet:actionURL name="editDispatchTrigger" var="editDispatchTriggerActionURL" />
+<portlet:actionURL name="/dispatch/edit_dispatch_trigger" var="editDispatchTriggerActionURL" />
 
 <aui:form action="<%= editDispatchTriggerActionURL %>" cssClass="container-fluid-1280" method="post" name="fm">
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />

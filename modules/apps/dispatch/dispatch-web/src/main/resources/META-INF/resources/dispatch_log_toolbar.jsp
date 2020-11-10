@@ -70,7 +70,7 @@ DispatchLogDisplayContext dispatchLogDisplayContext = (DispatchLogDisplayContext
 				'<portlet:namespace />allRowIds'
 			);
 
-			submitForm(form, '<portlet:actionURL name="editDispatchLog" />');
+			submitForm(form, '<portlet:actionURL name="/dispatch/edit_dispatch_log" />');
 		}
 	}
 </aui:script>

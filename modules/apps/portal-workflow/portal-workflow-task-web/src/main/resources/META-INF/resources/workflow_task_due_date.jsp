@@ -22,7 +22,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 %>
 
-<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="updateWorkflowTask" var="updateURL" />
+<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/portal_workflow_task/update_task" var="updateURL" />
 
 <div class="task-action">
 	<aui:form action="<%= updateURL %>" method="post" name="updateFm">

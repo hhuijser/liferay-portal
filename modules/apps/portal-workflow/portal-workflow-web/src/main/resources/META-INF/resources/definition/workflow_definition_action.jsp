@@ -26,7 +26,7 @@ WorkflowDefinition workflowDefinition = (WorkflowDefinition)row.getObject();
 String duplicateTitle = workflowDefinitionDisplayContext.getDuplicateTitle(workflowDefinition);
 %>
 
-<liferay-portlet:actionURL name="duplicateWorkflowDefinition" var="duplicateWorkflowDefinition">
+<liferay-portlet:actionURL name="/portal_workflow/duplicate_workflow_definition" var="duplicateWorkflowDefinition">
 	<portlet:param name="mvcPath" value="/definition/edit_workflow_definition.jsp" />
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </liferay-portlet:actionURL>
@@ -72,7 +72,7 @@ String duplicateTitle = workflowDefinitionDisplayContext.getDuplicateTitle(workf
 
 	<c:choose>
 		<c:when test="<%= workflowDefinition.isActive() %>">
-			<liferay-portlet:actionURL name="deactivateWorkflowDefinition" var="deactivateWorkflowDefinitionURL">
+			<liferay-portlet:actionURL name="/portal_workflow/deactivate_workflow_definition" var="deactivateWorkflowDefinitionURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="name" value="<%= workflowDefinition.getName() %>" />
 				<portlet:param name="version" value="<%= String.valueOf(workflowDefinition.getVersion()) %>" />
@@ -84,7 +84,7 @@ String duplicateTitle = workflowDefinitionDisplayContext.getDuplicateTitle(workf
 			/>
 		</c:when>
 		<c:otherwise>
-			<liferay-portlet:actionURL name="deleteWorkflowDefinition" var="deleteWorkflowDefinitionURL">
+			<liferay-portlet:actionURL name="/portal_workflow/delete_workflow_definition" var="deleteWorkflowDefinitionURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="name" value="<%= workflowDefinition.getName() %>" />
 				<portlet:param name="version" value="<%= String.valueOf(workflowDefinition.getVersion()) %>" />

@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW,
-		"mvc.command.name=saveWorkflowDefinition"
+		"mvc.command.name=/portal_workflow/save_workflow_definition"
 	},
 	service = MVCActionCommand.class
 )

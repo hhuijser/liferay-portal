@@ -26,7 +26,7 @@ WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 boolean hasAssignableUsers = workflowTaskDisplayContext.hasAssignableUsers(workflowTask);
 %>
 
-<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="assignWorkflowTask" var="assignURL" />
+<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/portal_workflow_task/assign_task" var="assignURL" />
 
 <div class="task-action">
 	<aui:form action="<%= assignURL %>" method="post" name="assignFm">

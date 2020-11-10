@@ -45,7 +45,7 @@ else {
 			<portlet:param name="tab" value="<%= WorkflowWebKeys.WORKFLOW_TAB_INSTANCE %>" />
 		</portlet:renderURL>
 
-		<portlet:actionURL name="deleteWorkflowInstance" var="deleteURL">
+		<portlet:actionURL name="/portal_workflow/delete_workflow_instance" var="deleteURL">
 			<portlet:param name="redirect" value="<%= redirectURL %>" />
 			<portlet:param name="workflowInstanceId" value="<%= String.valueOf(workflowInstance.getWorkflowInstanceId()) %>" />
 		</portlet:actionURL>

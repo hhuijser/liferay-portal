@@ -49,7 +49,7 @@ redirectURL.setParameter("mvcPath", "/view.jsp");
 					String message = workflowTaskDisplayContext.getTransitionMessage(transitionName);
 				%>
 
-					<liferay-portlet:actionURL copyCurrentRenderParameters="<%= false %>" name="completeWorkflowTask" portletName="<%= PortletKeys.MY_WORKFLOW_TASK %>" var="editURL">
+					<liferay-portlet:actionURL copyCurrentRenderParameters="<%= false %>" name="/portal_workflow_task/complete_task" portletName="<%= PortletKeys.MY_WORKFLOW_TASK %>" var="editURL">
 						<portlet:param name="mvcPath" value="/edit_workflow_task.jsp" />
 						<portlet:param name="redirect" value="<%= redirectURL.toString() %>" />
 						<portlet:param name="closeRedirect" value="<%= closeRedirect %>" />

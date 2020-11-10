@@ -56,7 +56,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.name=" + WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW_INSTANCE,
 		"javax.portlet.name=" + WorkflowPortletKeys.SITE_ADMINISTRATION_WORKFLOW,
 		"javax.portlet.name=" + WorkflowPortletKeys.USER_WORKFLOW,
-		"mvc.command.name=deleteWorkflowInstance"
+		"mvc.command.name=/portal_workflow/delete_workflow_instance"
 	},
 	service = MVCActionCommand.class
 )

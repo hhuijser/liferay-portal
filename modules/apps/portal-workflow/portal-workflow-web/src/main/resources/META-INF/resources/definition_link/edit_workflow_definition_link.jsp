@@ -26,7 +26,7 @@ WorkflowDefinitionLinkSearchEntry workflowDefinitionLinkSearchEntry = (WorkflowD
 String className = workflowDefinitionLinkSearchEntry.getClassName();
 %>
 
-<portlet:actionURL name="updateWorkflowDefinitionLink" var="updateWorkflowDefinitionLinkURL">
+<portlet:actionURL name="/portal_workflow/update_workflow_definition_link" var="updateWorkflowDefinitionLinkURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 

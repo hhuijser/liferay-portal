@@ -59,7 +59,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCActionCommand.class
 )
-public class EditInGoogleDriveMVCActionCommand extends BaseMVCActionCommand {
+public class EditInGoogleDocsMVCActionCommand extends BaseMVCActionCommand {
 
 	@Override
 	protected void doProcessAction(

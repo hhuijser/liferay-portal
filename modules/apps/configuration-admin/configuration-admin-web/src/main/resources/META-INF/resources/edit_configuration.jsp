@@ -78,8 +78,8 @@ renderResponse.setTitle(categoryDisplayName);
 	<liferay-ui:message key="<%= cmle.causeMessage %>" localizeKey="<%= false %>" />
 </liferay-ui:error>
 
-<portlet:actionURL name="bindConfiguration" var="bindConfigurationActionURL" />
-<portlet:actionURL name="deleteConfiguration" var="deleteConfigurationActionURL" />
+<portlet:actionURL name="/configuration_admin/bind_configuration" var="bindConfigurationActionURL" />
+<portlet:actionURL name="/configuration_admin/delete_configuration" var="deleteConfigurationActionURL" />
 
 <clay:container-fluid>
 	<clay:col
@@ -143,7 +143,7 @@ renderResponse.setTitle(categoryDisplayName);
 							>
 								<c:choose>
 									<c:when test="<%= configurationModel.isFactory() %>">
-										<portlet:actionURL name="deleteConfiguration" var="deleteConfigActionURL">
+										<portlet:actionURL name="/configuration_admin/delete_configuration" var="deleteConfigActionURL">
 											<portlet:param name="redirect" value="<%= currentURL %>" />
 											<portlet:param name="factoryPid" value="<%= configurationModel.getFactoryPid() %>" />
 											<portlet:param name="pid" value="<%= configurationModel.getID() %>" />
@@ -156,7 +156,7 @@ renderResponse.setTitle(categoryDisplayName);
 										/>
 									</c:when>
 									<c:otherwise>
-										<portlet:actionURL name="deleteConfiguration" var="deleteConfigActionURL">
+										<portlet:actionURL name="/configuration_admin/delete_configuration" var="deleteConfigActionURL">
 											<portlet:param name="redirect" value="<%= currentURL %>" />
 											<portlet:param name="factoryPid" value="<%= configurationModel.getFactoryPid() %>" />
 											<portlet:param name="pid" value="<%= configurationModel.getID() %>" />
@@ -170,7 +170,7 @@ renderResponse.setTitle(categoryDisplayName);
 									</c:otherwise>
 								</c:choose>
 
-								<portlet:resourceURL id="export" var="exportURL">
+								<portlet:resourceURL id="/configuration_admin/export_configuration" var="exportURL">
 									<portlet:param name="factoryPid" value="<%= configurationModel.getFactoryPid() %>" />
 									<portlet:param name="pid" value="<%= configurationModel.getID() %>" />
 								</portlet:resourceURL>

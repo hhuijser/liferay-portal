@@ -90,7 +90,7 @@ renderResponse.setTitle(categoryDisplayName);
 								markupView="lexicon"
 								showWhenSingleIcon="<%= true %>"
 							>
-								<portlet:resourceURL id="export" var="exportEntriesURL">
+								<portlet:resourceURL id="/configuration_admin/export_configuration" var="exportEntriesURL">
 									<portlet:param name="redirect" value="<%= currentURL %>" />
 									<portlet:param name="factoryPid" value="<%= configurationModel.getFactoryPid() %>" />
 								</portlet:resourceURL>
@@ -202,7 +202,7 @@ renderResponse.setTitle(categoryDisplayName);
 								/>
 
 								<c:if test="<%= curConfigurationModel.hasConfiguration() %>">
-									<portlet:actionURL name="deleteConfiguration" var="deleteConfigActionURL">
+									<portlet:actionURL name="/configuration_admin/delete_configuration" var="deleteConfigActionURL">
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="factoryPid" value="<%= curConfigurationModel.getFactoryPid() %>" />
 										<portlet:param name="pid" value="<%= curConfigurationModel.getID() %>" />

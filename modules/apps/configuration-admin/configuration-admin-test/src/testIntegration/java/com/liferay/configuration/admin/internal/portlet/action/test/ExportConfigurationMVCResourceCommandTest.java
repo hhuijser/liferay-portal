@@ -91,7 +91,9 @@ public class ExportConfigurationMVCResourceCommandTest {
 	private static final String _FACTORY_PID =
 		"com.liferay.configuration.admin.TestConfiguration";
 
-	@Inject(filter = "mvc.command.name=export")
+	@Inject(
+		filter = "mvc.command.name=/configuration_admin/export_configuration"
+	)
 	private MVCResourceCommand _mvcResourceCommand;
 
 }

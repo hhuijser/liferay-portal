@@ -63,7 +63,8 @@ public class ExportAllConfigurationIcon extends BasePortletConfigurationIcon {
 				portletRequest, _portal.getPortletId(portletRequest),
 				PortletRequest.RESOURCE_PHASE);
 
-		liferayPortletURL.setResourceID("export");
+		liferayPortletURL.setResourceID(
+			"/configuration_admin/export_configuration");
 
 		return liferayPortletURL.toString();
 	}

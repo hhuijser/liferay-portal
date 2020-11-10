@@ -76,7 +76,8 @@ public class ExportFactoryInstancesIcon extends BasePortletConfigurationIcon {
 		liferayPortletURL.setParameter(
 			"factoryPid", factoryConfigurationModel.getFactoryPid());
 
-		liferayPortletURL.setResourceID("export");
+		liferayPortletURL.setResourceID(
+			"/configuration_admin/export_configuration");
 
 		return liferayPortletURL.toString();
 	}

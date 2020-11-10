@@ -65,7 +65,7 @@ import org.osgi.service.metatype.AttributeDefinition;
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.SITE_SETTINGS,
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
-		"mvc.command.name=export"
+		"mvc.command.name=/configuration_admin/export_configuration"
 	},
 	service = MVCResourceCommand.class
 )

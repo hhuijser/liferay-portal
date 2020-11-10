@@ -146,7 +146,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "search-results"));
 						/>
 
 						<c:if test="<%= configurationModel.hasScopeConfiguration(configurationScopeDisplayContext.getScope()) %>">
-							<portlet:actionURL name="deleteConfiguration" var="deleteConfigActionURL">
+							<portlet:actionURL name="/configuration_admin/delete_configuration" var="deleteConfigActionURL">
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="factoryPid" value="<%= configurationModel.getFactoryPid() %>" />
 								<portlet:param name="pid" value="<%= configurationModel.getID() %>" />
@@ -159,7 +159,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "search-results"));
 							/>
 
 							<c:if test="<%= ExtendedObjectClassDefinition.Scope.SYSTEM.equals(configurationScopeDisplayContext.getScope()) %>">
-								<portlet:resourceURL id="export" var="exportURL">
+								<portlet:resourceURL id="/configuration_admin/export_configuration" var="exportURL">
 									<portlet:param name="factoryPid" value="<%= configurationModel.getFactoryPid() %>" />
 									<portlet:param name="pid" value="<%= configurationModel.getID() %>" />
 								</portlet:resourceURL>

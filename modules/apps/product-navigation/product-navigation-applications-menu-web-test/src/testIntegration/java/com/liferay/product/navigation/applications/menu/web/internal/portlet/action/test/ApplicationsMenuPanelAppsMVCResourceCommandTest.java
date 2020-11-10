@@ -80,7 +80,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
  */
 @RunWith(Arquillian.class)
 @Sync
-public class ApplicationsMenuMVCResourceCommandTest {
+public class ApplicationsMenuPanelAppsMVCResourceCommandTest {
 
 	@ClassRule
 	@Rule

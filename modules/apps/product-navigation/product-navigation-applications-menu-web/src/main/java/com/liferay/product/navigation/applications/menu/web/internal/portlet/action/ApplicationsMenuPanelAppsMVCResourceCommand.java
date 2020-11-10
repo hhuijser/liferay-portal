@@ -71,7 +71,8 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCResourceCommand.class
 )
-public class ApplicationsMenuMVCResourceCommand extends BaseMVCResourceCommand {
+public class ApplicationsMenuPanelAppsMVCResourceCommand
+	extends BaseMVCResourceCommand {
 
 	@Override
 	protected void doServeResource(

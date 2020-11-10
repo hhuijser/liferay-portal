@@ -28,7 +28,7 @@ Date startDate = dispatchLog.getStartDate();
 long timeMillis = endDate.getTime() - startDate.getTime();
 %>
 
-<portlet:actionURL name="editDispatchLog" var="editDispatchLogActionURL" />
+<portlet:actionURL name="/dispatch/edit_dispatch_log" var="editDispatchLogActionURL" />
 
 <div class="container-fluid-1280 sheet">
 	<aui:form action="<%= editDispatchLogActionURL %>" cssClass="container-fluid-1280" method="post" name="fm">

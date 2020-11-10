@@ -53,7 +53,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 						<%
 						PortletURL rowURL = renderResponse.createRenderURL();
 
-						rowURL.setParameter("mvcRenderCommandName", "viewDispatchLog");
+						rowURL.setParameter("mvcRenderCommandName", "/dispatch/view_dispatch_log");
 						rowURL.setParameter("redirect", currentURL);
 						rowURL.setParameter("dispatchLogId", String.valueOf(dispatchLog.getDispatchLogId()));
 						%>

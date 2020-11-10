@@ -31,7 +31,7 @@ DispatchTrigger dispatchTrigger = (DispatchTrigger)row.getObject();
 >
 	<c:if test="<%= DispatchTriggerPermission.contains(permissionChecker, dispatchTrigger, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editDispatchTrigger" />
+			<portlet:param name="mvcRenderCommandName" value="/dispatch/edit_dispatch_trigger" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="dispatchTriggerId" value="<%= String.valueOf(dispatchTrigger.getDispatchTriggerId()) %>" />
 		</portlet:renderURL>
@@ -43,7 +43,7 @@ DispatchTrigger dispatchTrigger = (DispatchTrigger)row.getObject();
 	</c:if>
 
 	<c:if test="<%= DispatchTriggerPermission.contains(permissionChecker, dispatchTrigger, ActionKeys.DELETE) && !dispatchTrigger.isSystem() %>">
-		<portlet:actionURL name="editDispatchTrigger" var="deleteURL">
+		<portlet:actionURL name="/dispatch/edit_dispatch_trigger" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="dispatchTriggerId" value="<%= String.valueOf(dispatchTrigger.getDispatchTriggerId()) %>" />

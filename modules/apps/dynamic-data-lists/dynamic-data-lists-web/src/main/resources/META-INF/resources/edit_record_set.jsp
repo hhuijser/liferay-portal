@@ -60,11 +60,11 @@ if (ddlDisplayContext.isAdminPortlet()) {
 }
 %>
 
-<portlet:actionURL name="addRecordSet" var="addRecordSetURL">
+<portlet:actionURL name="/dynamic_data_lists/add_record_set" var="addRecordSetURL">
 	<portlet:param name="mvcPath" value="/edit_record_set.jsp" />
 </portlet:actionURL>
 
-<portlet:actionURL name="updateRecordSet" var="updateRecordSetURL">
+<portlet:actionURL name="/dynamic_data_lists/update_record_set" var="updateRecordSetURL">
 	<portlet:param name="mvcPath" value="/edit_record_set.jsp" />
 </portlet:actionURL>
 

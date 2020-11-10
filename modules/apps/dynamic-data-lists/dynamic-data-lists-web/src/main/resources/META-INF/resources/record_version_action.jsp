@@ -47,7 +47,7 @@ DDLRecordVersion recordVersion = (DDLRecordVersion)request.getAttribute(DDLWebKe
 	/>
 
 	<c:if test="<%= recordVersion.isApproved() && !Objects.equals(record.getVersion(), recordVersion.getVersion()) %>">
-		<portlet:actionURL name="revertRecord" var="revertURL">
+		<portlet:actionURL name="/dynamic_data_lists/revert_record" var="revertURL">
 			<portlet:param name="mvcPath" value="/edit_record.jsp" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="recordId" value="<%= String.valueOf(recordVersion.getRecordId()) %>" />

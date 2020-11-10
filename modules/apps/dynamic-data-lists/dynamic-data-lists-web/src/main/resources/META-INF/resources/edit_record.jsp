@@ -94,11 +94,11 @@ else {
 }
 %>
 
-<portlet:actionURL name="addRecord" var="addRecordURL">
+<portlet:actionURL name="/dynamic_data_lists/add_record" var="addRecordURL">
 	<portlet:param name="mvcPath" value="/edit_record.jsp" />
 </portlet:actionURL>
 
-<portlet:actionURL name="updateRecord" var="updateRecordURL">
+<portlet:actionURL name="/dynamic_data_lists/update_record" var="updateRecordURL">
 	<portlet:param name="mvcPath" value="/edit_record.jsp" />
 </portlet:actionURL>
 

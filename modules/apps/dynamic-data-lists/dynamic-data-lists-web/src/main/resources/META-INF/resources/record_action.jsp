@@ -72,7 +72,7 @@ if (hasUpdatePermission) {
 	</c:if>
 
 	<c:if test="<%= hasDeletePermission %>">
-		<portlet:actionURL copyCurrentRenderParameters="<%= false %>" name="deleteRecord" var="deleteRecordURL">
+		<portlet:actionURL copyCurrentRenderParameters="<%= false %>" name="/dynamic_data_lists/delete_record" var="deleteRecordURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="recordIds" value="<%= String.valueOf(record.getRecordId()) %>" />
 		</portlet:actionURL>

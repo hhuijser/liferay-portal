@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"javax.portlet.name=" + DDLPortletKeys.DYNAMIC_DATA_LISTS,
 		"javax.portlet.name=" + DDLPortletKeys.DYNAMIC_DATA_LISTS_DISPLAY,
-		"mvc.command.name=updateRecord"
+		"mvc.command.name=/dynamic_data_lists/update_record"
 	},
 	service = MVCActionCommand.class
 )

@@ -179,7 +179,7 @@ if (!ddlDisplayContext.isAdminPortlet()) {
 			);
 
 			if (searchContainer) {
-				<portlet:actionURL name="deleteRecord" var="deleteRecordURL">
+				<portlet:actionURL name="/dynamic_data_lists/delete_record" var="deleteRecordURL">
 					<portlet:param name="mvcPath" value="/view_records.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:actionURL>

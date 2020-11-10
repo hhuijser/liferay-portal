@@ -20,7 +20,7 @@
 long recordSetId = ParamUtil.getLong(request, liferayPortletResponse.getNamespace() + "recordSetId");
 %>
 
-<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="exportRecordSet" var="exportRecordSetURL">
+<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/dynamic_data_lists/export_record_set" var="exportRecordSetURL">
 	<portlet:param name="recordSetId" value="<%= String.valueOf(recordSetId) %>" />
 </liferay-portlet:resourceURL>
 

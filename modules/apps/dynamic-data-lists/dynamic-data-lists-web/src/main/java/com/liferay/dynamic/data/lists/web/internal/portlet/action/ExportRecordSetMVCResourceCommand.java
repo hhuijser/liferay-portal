@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 	property = {
 		"javax.portlet.name=" + DDLPortletKeys.DYNAMIC_DATA_LISTS,
 		"javax.portlet.name=" + DDLPortletKeys.DYNAMIC_DATA_LISTS_DISPLAY,
-		"mvc.command.name=exportRecordSet"
+		"mvc.command.name=/dynamic_data_lists/export_record_set"
 	},
 	service = MVCResourceCommand.class
 )

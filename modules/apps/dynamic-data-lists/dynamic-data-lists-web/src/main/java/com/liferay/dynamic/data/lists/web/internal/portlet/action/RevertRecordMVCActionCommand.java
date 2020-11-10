@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + DDLPortletKeys.DYNAMIC_DATA_LISTS,
 		"javax.portlet.name=" + DDLPortletKeys.DYNAMIC_DATA_LISTS_DISPLAY,
-		"mvc.command.name=revertRecord"
+		"mvc.command.name=/dynamic_data_lists/revert_record"
 	},
 	service = MVCActionCommand.class
 )

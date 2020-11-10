@@ -69,7 +69,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 						submitForm(
 							form,
-							'<portlet:actionURL name="deleteRecordSet"><portlet:param name="mvcPath" value="/view.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>'
+							'<portlet:actionURL name="/dynamic_data_lists/delete_record_set"><portlet:param name="mvcPath" value="/view.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>'
 						);
 					}
 				}

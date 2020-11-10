@@ -34,7 +34,7 @@ WorkflowDefinition workflowDefinition = (WorkflowDefinition)row.getObject();
 	<portlet:param name="<%= WorkflowWebKeys.WORKFLOW_JSP_STATE %>" value="previewBeforeRevert" />
 </portlet:renderURL>
 
-<liferay-portlet:actionURL name="revertWorkflowDefinition" var="revertWorkflowDefinitionURL">
+<liferay-portlet:actionURL name="/portal_workflow/revert_workflow_definition" var="revertWorkflowDefinitionURL">
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="name" value="<%= currentWorkflowDefinition.getName() %>" />
 	<portlet:param name="version" value="<%= String.valueOf(currentWorkflowDefinition.getVersion()) %>" />

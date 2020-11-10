@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW,
-		"mvc.command.name=duplicateWorkflowDefinition"
+		"mvc.command.name=/portal_workflow/duplicate_workflow_definition"
 	},
 	service = MVCActionCommand.class
 )

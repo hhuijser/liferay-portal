@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + PortletKeys.MY_WORKFLOW_TASK,
-		"mvc.command.name=completeWorkflowTask"
+		"mvc.command.name=/portal_workflow_task/complete_task"
 	},
 	service = MVCActionCommand.class
 )

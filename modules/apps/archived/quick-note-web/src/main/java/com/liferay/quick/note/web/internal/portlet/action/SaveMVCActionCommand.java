@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + QuickNotePortletKeys.QUICK_NOTE,
-		"mvc.command.name=save"
+		"mvc.command.name=/quick-note/save"
 	},
 	service = MVCActionCommand.class
 )

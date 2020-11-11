@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING,
-		"mvc.command.name=copyStructure"
+		"mvc.command.name=/dynamic_data_mapping/copy_structure"
 	},
 	service = MVCActionCommand.class
 )

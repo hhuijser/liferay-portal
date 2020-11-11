@@ -48,7 +48,7 @@ boolean includeCheckBox = ParamUtil.getBoolean(request, "includeCheckBox", true)
 				'<portlet:namespace />entriesContainer'
 			);
 
-			<portlet:actionURL name="deleteTemplate" var="deleteTemplatesURL">
+			<portlet:actionURL name="/dynamic_data_mapping/delete_template" var="deleteTemplatesURL">
 				<portlet:param name="mvcPath" value="/view_template.jsp" />
 			</portlet:actionURL>
 

@@ -60,7 +60,7 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 	</c:if>
 
 	<c:if test="<%= formInstancePermissionCheckerHelper.isShowDeleteIcon(ddmFormAdminDisplayContext.getDDMFormInstance()) %>">
-		<portlet:actionURL name="deleteFormInstanceRecord" var="deleteURL">
+		<portlet:actionURL name="/dynamic_data_mapping_form/delete_form_instance_record" var="deleteURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="formInstanceRecordId" value="<%= String.valueOf(formInstanceRecord.getFormInstanceRecordId()) %>" />
 		</portlet:actionURL>

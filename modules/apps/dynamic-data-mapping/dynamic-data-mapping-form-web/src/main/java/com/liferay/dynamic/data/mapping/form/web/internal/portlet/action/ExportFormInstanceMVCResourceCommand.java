@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
-		"mvc.command.name=exportFormInstance"
+		"mvc.command.name=/dynamic_data_mapping_form/export_form_instance"
 	},
 	service = MVCResourceCommand.class
 )

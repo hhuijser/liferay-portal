@@ -40,7 +40,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "view-form"));
 <clay:container-fluid
 	cssClass="editing-form-entry-admin"
 >
-	<portlet:actionURL name="addFormInstanceRecord" var="editFormInstanceRecordActionURL" />
+	<portlet:actionURL name="/dynamic_data_mapping_form/add_form_instance_record" var="editFormInstanceRecordActionURL" />
 
 	<aui:form action="<%= editFormInstanceRecordActionURL %>" data-DDMFormInstanceId="<%= ddmFormInstanceRecordVersion.getFormInstanceId() %>" data-senna-off="true" method="post" name="fm">
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />

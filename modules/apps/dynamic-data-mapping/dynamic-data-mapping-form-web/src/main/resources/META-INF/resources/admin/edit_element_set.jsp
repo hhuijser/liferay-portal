@@ -36,7 +36,7 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle((structure == null) ? LanguageUtil.get(request, "new-element-set") : LanguageUtil.get(request, "edit-element-set"));
 %>
 
-<portlet:actionURL name="saveStructure" var="saveStructureURL">
+<portlet:actionURL name="/dynamic_data_mapping_form/save_structure" var="saveStructureURL">
 	<portlet:param name="mvcRenderCommandName" value="/admin/edit_element_set" />
 </portlet:actionURL>
 

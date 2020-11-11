@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
-		"mvc.command.name=deleteStructure"
+		"mvc.command.name=/dynamic_data_mapping_form/delete_structure"
 	},
 	service = MVCActionCommand.class
 )

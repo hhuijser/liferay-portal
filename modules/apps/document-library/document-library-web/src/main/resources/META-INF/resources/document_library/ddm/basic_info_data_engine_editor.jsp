@@ -37,7 +37,7 @@ com.liferay.dynamic.data.mapping.model.DDMStructure ddmStructure = dlEditDDMStru
 <aui:input name="description" />
 
 <c:if test="<%= ddmStructure != null %>">
-	<portlet:resourceURL id="getStructure" var="getStructureURL">
+	<portlet:resourceURL id="/dynamic_data_mapping/get_structure" var="getStructureURL">
 		<portlet:param name="structureId" value="<%= String.valueOf(ddmStructure.getStructureId()) %>" />
 	</portlet:resourceURL>
 

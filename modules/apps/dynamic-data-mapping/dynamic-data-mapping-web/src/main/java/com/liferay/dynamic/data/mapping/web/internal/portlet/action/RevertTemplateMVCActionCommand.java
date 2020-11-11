@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING,
-		"mvc.command.name=revertTemplate"
+		"mvc.command.name=/dynamic_data_mapping/revert_template"
 	},
 	service = MVCActionCommand.class
 )

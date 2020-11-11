@@ -44,7 +44,7 @@ DDMStructureVersion structureVersion = (DDMStructureVersion)row.getObject();
 	/>
 
 	<c:if test="<%= structureVersion.isApproved() %>">
-		<portlet:actionURL name="revertStructure" var="revertURL">
+		<portlet:actionURL name="/dynamic_data_mapping/revert_structure" var="revertURL">
 			<portlet:param name="mvcPath" value="/edit_structure.jsp" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="structureId" value="<%= String.valueOf(structureVersion.getStructureId()) %>" />

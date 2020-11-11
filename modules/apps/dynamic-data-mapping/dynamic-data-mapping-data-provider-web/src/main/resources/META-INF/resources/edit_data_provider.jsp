@@ -32,11 +32,11 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle((ddmDataProviderInstance == null) ? LanguageUtil.get(request, type) : ddmDataProviderInstance.getName(locale));
 %>
 
-<portlet:actionURL name="addDataProvider" var="addDataProviderURL">
+<portlet:actionURL name="/dynamic_data_mapping_data_provider/add_data_provider" var="addDataProviderURL">
 	<portlet:param name="mvcPath" value="/edit_data_provider.jsp" />
 </portlet:actionURL>
 
-<portlet:actionURL name="updateDataProvider" var="updateDataProviderURL">
+<portlet:actionURL name="/dynamic_data_mapping_data_provider/update_data_provider" var="updateDataProviderURL">
 	<portlet:param name="mvcPath" value="/edit_data_provider.jsp" />
 </portlet:actionURL>
 

@@ -60,7 +60,7 @@ DDMDataProviderInstance ddmDataProviderInstance = (DDMDataProviderInstance)row.g
 	</c:if>
 
 	<c:if test="<%= ddmDataProviderDisplayContext.isShowDeleteDataProviderIcon(ddmDataProviderInstance) %>">
-		<portlet:actionURL name="deleteDataProvider" var="deleteURL">
+		<portlet:actionURL name="/dynamic_data_mapping_data_provider/delete_data_provider" var="deleteURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="dataProviderInstanceId" value="<%= String.valueOf(ddmDataProviderInstance.getDataProviderInstanceId()) %>" />
 		</portlet:actionURL>

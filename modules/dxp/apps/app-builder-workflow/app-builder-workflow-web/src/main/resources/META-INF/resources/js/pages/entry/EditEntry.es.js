@@ -174,7 +174,9 @@ export default function EditEntry({
 				dataRecordId,
 			};
 
-			const resource = `${isEdit ? 'app_builder_workflow/update' : 'app_builder/add'}_data_record`;
+			const resource = `${
+				isEdit ? 'app_builder_workflow/update' : 'app_builder/add'
+			}_data_record`;
 
 			if (workflowInfo) {
 				const {

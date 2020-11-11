@@ -467,7 +467,7 @@ public abstract class BaseAppBuilderPortletTestCase {
 			byteArrayOutputStream.toString());
 	}
 
-	@Inject(filter = "mvc.command.name=/app_builder_workflow/add_workflow_app")
+	@Inject(filter = "mvc.command.name=/app_builder/add_workflow_app")
 	private MVCResourceCommand _addAppBuilderAppMVCResourceCommand;
 
 	@Inject(filter = "mvc.command.name=/app_builder/add_data_record")
@@ -490,9 +490,7 @@ public abstract class BaseAppBuilderPortletTestCase {
 	@Inject
 	private DEDataListViewLocalService _deDataListViewLocalService;
 
-	@Inject(
-		filter = "mvc.command.name=/app_builder_workflow/delete_workflow_app"
-	)
+	@Inject(filter = "mvc.command.name=/app_builder/delete_workflow_app")
 	private MVCResourceCommand _deleteAppBuilderAppMVCResourceCommand;
 
 	private Group _group;
@@ -506,14 +504,10 @@ public abstract class BaseAppBuilderPortletTestCase {
 	@Inject
 	private RoleLocalService _roleLocalService;
 
-	@Inject(
-		filter = "mvc.command.name=/app_builder_workflow/update_workflow_app"
-	)
+	@Inject(filter = "mvc.command.name=/app_builder/update_workflow_app")
 	private MVCResourceCommand _updateAppBuilderAppMVCResourceCommand;
 
-	@Inject(
-		filter = "mvc.command.name=/app_builder_workflow/update_data_record"
-	)
+	@Inject(filter = "mvc.command.name=/app_builder/update_data_record")
 	private MVCResourceCommand _updateDataRecordMVCResourceCommand;
 
 	@Inject

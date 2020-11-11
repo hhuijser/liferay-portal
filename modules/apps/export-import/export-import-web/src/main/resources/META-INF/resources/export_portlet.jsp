@@ -21,7 +21,7 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "new-export-process");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "exportImport");
+portletURL.setParameter("mvcRenderCommandName", "/export_import/export_import");
 portletURL.setParameter("portletResource", portletResource);
 %>
 
@@ -64,12 +64,12 @@ portletURL.setParameter("portletResource", portletResource);
 			</liferay-util:include>
 		</div>
 
-		<portlet:actionURL name="exportImport" var="exportURL">
-			<portlet:param name="mvcRenderCommandName" value="exportImport" />
+		<portlet:actionURL name="/export_import/export_import" var="exportURL">
+			<portlet:param name="mvcRenderCommandName" value="/export_import/export_import" />
 		</portlet:actionURL>
 
 		<liferay-portlet:renderURL var="redirectURL">
-			<portlet:param name="mvcRenderCommandName" value="exportImport" />
+			<portlet:param name="mvcRenderCommandName" value="/export_import/export_import" />
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EXPORT %>" />
 			<portlet:param name="tabs2" value="export" />
 			<portlet:param name="tabs3" value="current-and-previous" />
@@ -538,7 +538,7 @@ portletURL.setParameter("portletResource", portletResource);
 </c:choose>
 
 <aui:script use="liferay-export-import-export-import">
-	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="exportImport" var="exportProcessesURL">
+	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/export_import/export_import" var="exportProcessesURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EXPORT %>" />
 		<portlet:param name="tabs2" value="export" />
 		<portlet:param name="<%= SearchContainer.DEFAULT_CUR_PARAM %>" value="<%= ParamUtil.getString(request, SearchContainer.DEFAULT_CUR_PARAM) %>" />

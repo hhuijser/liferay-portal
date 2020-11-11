@@ -20,7 +20,7 @@
 	deleteMenu="<%= true %>"
 	emptyResultsMessage="no-publication-processes-were-found"
 	localTaskExecutorClassName="<%= BackgroundTaskExecutorNames.LAYOUT_IMPORT_BACKGROUND_TASK_EXECUTOR %>"
-	mvcRenderCommandName="importLayoutsView"
+	mvcRenderCommandName="/export_import/import_layouts_view"
 	relaunchMenu="<%= false %>"
 	resultRowSplitter="<%= new ExportImportResultRowSplitter() %>"
 	summaryMenu="<%= false %>"

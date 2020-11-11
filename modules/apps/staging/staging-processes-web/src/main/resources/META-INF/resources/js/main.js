@@ -674,7 +674,7 @@ AUI.add(
 
 						if (instance._exportLAR) {
 							redirectParameters.mvcRenderCommandName =
-								'editExportConfiguration';
+								'/export_import/edit_export_configuration';
 							redirectParameters.tabs2 = 'new-export-process';
 							redirectParameters.exportConfigurationButtons =
 								'custom';

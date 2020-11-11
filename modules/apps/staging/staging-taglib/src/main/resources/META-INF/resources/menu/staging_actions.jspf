@@ -73,7 +73,7 @@
 			%>
 
 			<liferay-portlet:renderURL portletName="<%= PortletKeys.EXPORT_IMPORT %>" varImpl="simplePublishLayoutsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcRenderCommandName" value="publishLayoutsSimple" />
+				<portlet:param name="mvcRenderCommandName" value="/export_import/publish_layouts_simple" />
 				<portlet:param name="<%= Constants.CMD %>" value="<%= localPublishing ? Constants.PUBLISH_TO_LIVE : Constants.PUBLISH_TO_REMOTE %>" />
 				<portlet:param name="redirect" value="<%= publishRedirectURL %>" />
 				<portlet:param name="backURL" value="<%= currentURL %>" />

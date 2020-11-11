@@ -21,7 +21,7 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "new-publication-process");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "publishPortlet");
+portletURL.setParameter("mvcRenderCommandName", "/export_import/publish_portlet");
 portletURL.setParameter("portletResource", portletResource);
 %>
 

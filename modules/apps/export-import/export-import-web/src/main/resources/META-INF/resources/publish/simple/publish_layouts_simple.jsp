@@ -66,8 +66,8 @@ advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
 	/>
 </clay:container-fluid>
 
-<portlet:actionURL name="editPublishConfiguration" var="confirmedActionURL">
-	<portlet:param name="mvcRenderCommandName" value="editPublishConfigurationSimple" />
+<portlet:actionURL name="/export_import/edit_publish_configuration" var="confirmedActionURL">
+	<portlet:param name="mvcRenderCommandName" value="/export_import/edit_publish_configuration_simple" />
 	<portlet:param name="exportImportConfigurationId" value="<%= String.valueOf(exportImportConfiguration.getExportImportConfigurationId()) %>" />
 	<portlet:param name="quickPublish" value="<%= Boolean.TRUE.toString() %>" />
 </portlet:actionURL>

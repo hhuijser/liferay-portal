@@ -21,7 +21,7 @@ long groupId = ParamUtil.getLong(request, "groupId", themeDisplay.getScopeGroupI
 
 PortletURL portletURL = currentURLObj;
 
-portletURL.setParameter("mvcRenderCommandName", "exportImport");
+portletURL.setParameter("mvcRenderCommandName", "/export_import/export_import");
 portletURL.setParameter("tabs2", "export");
 portletURL.setParameter("tabs3", "current-and-previous");
 
@@ -131,7 +131,7 @@ else {
 					%>
 
 					<liferay-portlet:renderURL var="redirectURL">
-						<portlet:param name="mvcRenderCommandName" value="exportImport" />
+						<portlet:param name="mvcRenderCommandName" value="/export_import/export_import" />
 						<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EXPORT %>" />
 						<portlet:param name="tabs2" value="export" />
 						<portlet:param name="tabs3" value="current-and-previous" />

@@ -104,7 +104,7 @@ simplePublishRedirectURL.setParameter("quickPublish", Boolean.TRUE.toString());
 
 PortletURL simplePublishURL = renderResponse.createRenderURL();
 
-simplePublishURL.setParameter("mvcRenderCommandName", "publishLayoutsSimple");
+simplePublishURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts_simple");
 simplePublishURL.setParameter(Constants.CMD, "localPublishing ? Constants.PUBLISH_TO_LIVE : Constants.PUBLISH_TO_REMOTE");
 simplePublishURL.setParameter("redirect", simplePublishRedirectURL.toString());
 simplePublishURL.setParameter("lastImportUserName", user.getFullName());

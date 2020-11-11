@@ -94,7 +94,7 @@ else {
 					%>
 
 					<liferay-portlet:renderURL var="redirectURL">
-						<portlet:param name="mvcRenderCommandName" value="exportImport" />
+						<portlet:param name="mvcRenderCommandName" value="/export_import/export_import" />
 						<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.IMPORT %>" />
 						<portlet:param name="tabs2" value="import" />
 						<portlet:param name="tabs3" value="current-and-previous" />

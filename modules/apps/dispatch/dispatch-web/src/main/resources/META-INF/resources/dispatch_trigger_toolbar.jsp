@@ -96,7 +96,10 @@ DispatchTriggerDisplayContext dispatchTriggerDisplayContext = (DispatchTriggerDi
 				'<portlet:namespace />allRowIds'
 			);
 
-			submitForm(form, '<portlet:actionURL name="/dispatch/edit_dispatch_trigger" />');
+			submitForm(
+				form,
+				'<portlet:actionURL name="/dispatch/edit_dispatch_trigger" />'
+			);
 		}
 	}
 </aui:script>

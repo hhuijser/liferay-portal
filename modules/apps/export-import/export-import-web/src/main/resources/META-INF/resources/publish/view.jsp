@@ -67,7 +67,7 @@ boolean configuredPublish = (exportImportConfiguration == null) ? false : true;
 
 PortletURL customPublishURL = renderResponse.createRenderURL();
 
-customPublishURL.setParameter("mvcRenderCommandName", "publishLayouts");
+customPublishURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
 customPublishURL.setParameter(Constants.CMD, cmd);
 customPublishURL.setParameter("tabs1", privateLayout ? "private-pages" : "public-pages");
 customPublishURL.setParameter("groupId", String.valueOf(stagingGroupId));
@@ -86,7 +86,7 @@ UnicodeProperties liveGroupTypeSettings = liveGroup.getTypeSettingsProperties();
 
 PortletURL publishTemplatesURL = renderResponse.createRenderURL();
 
-publishTemplatesURL.setParameter("mvcRenderCommandName", "publishLayouts");
+publishTemplatesURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
 publishTemplatesURL.setParameter(Constants.CMD, Constants.PUBLISH);
 publishTemplatesURL.setParameter("groupId", String.valueOf(stagingGroupId));
 publishTemplatesURL.setParameter("layoutSetBranchId", String.valueOf(layoutSetBranchId));
@@ -97,14 +97,14 @@ publishTemplatesURL.setParameter("publishConfigurationButtons", "saved");
 
 PortletURL simplePublishRedirectURL = renderResponse.createRenderURL();
 
-simplePublishRedirectURL.setParameter("mvcRenderCommandName", "publishLayouts");
+simplePublishRedirectURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
 simplePublishRedirectURL.setParameter("groupId", String.valueOf(groupId));
 simplePublishRedirectURL.setParameter("privateLayout", String.valueOf(privateLayout));
 simplePublishRedirectURL.setParameter("quickPublish", Boolean.TRUE.toString());
 
 PortletURL simplePublishURL = renderResponse.createRenderURL();
 
-simplePublishURL.setParameter("mvcRenderCommandName", "publishLayoutsSimple");
+simplePublishURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts_simple");
 simplePublishURL.setParameter(Constants.CMD, "localPublishing ? Constants.PUBLISH_TO_LIVE : Constants.PUBLISH_TO_REMOTE");
 simplePublishURL.setParameter("redirect", simplePublishRedirectURL.toString());
 simplePublishURL.setParameter("lastImportUserName", user.getFullName());

@@ -37,13 +37,13 @@ else {
 }
 %>
 
-<portlet:actionURL name="publishPortlet" var="publishPortletURL">
-	<portlet:param name="mvcRenderCommandName" value="publishPortlet" />
+<portlet:actionURL name="/export_import/publish_portlet" var="publishPortletURL">
+	<portlet:param name="mvcRenderCommandName" value="/export_import/publish_portlet" />
 	<portlet:param name="tabs3" value="<%= tabs3 %>" />
 </portlet:actionURL>
 
 <liferay-portlet:renderURL var="redirectURL">
-	<portlet:param name="mvcRenderCommandName" value="publishPortlet" />
+	<portlet:param name="mvcRenderCommandName" value="/export_import/publish_portlet" />
 	<portlet:param name="tabs3" value="current-and-previous" />
 	<portlet:param name="portletResource" value="<%= portletResource %>" />
 </liferay-portlet:renderURL>

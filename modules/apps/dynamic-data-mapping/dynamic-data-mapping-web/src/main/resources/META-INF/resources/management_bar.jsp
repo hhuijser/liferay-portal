@@ -45,7 +45,7 @@
 			);
 
 			if (searchContainer) {
-				<portlet:actionURL name="deleteStructure" var="deleteStructuresURL">
+				<portlet:actionURL name="/dynamic_data_mapping/delete_structure" var="deleteStructuresURL">
 					<portlet:param name="mvcPath" value="/view.jsp" />
 				</portlet:actionURL>
 

@@ -25,7 +25,7 @@ long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
 long classPK = BeanParamUtil.getLong(structure, request, "structureId");
 %>
 
-<portlet:actionURL name="copyStructure" var="copyStructureURL">
+<portlet:actionURL name="/dynamic_data_mapping/copy_structure" var="copyStructureURL">
 	<portlet:param name="mvcPath" value="/copy_structure.jsp" />
 </portlet:actionURL>
 

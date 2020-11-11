@@ -37,7 +37,7 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-form") : LanguageUtil.get(request, "edit-form"));
 %>
 
-<portlet:actionURL name="saveFormInstance" var="saveFormInstanceURL">
+<portlet:actionURL name="/dynamic_data_mapping_form/save_form_instance" var="saveFormInstanceURL">
 	<portlet:param name="mvcRenderCommandName" value="/admin/edit_form_instance" />
 </portlet:actionURL>
 
@@ -169,11 +169,11 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 	</clay:container-fluid>
 </div>
 
-<portlet:actionURL name="publishFormInstance" var="publishFormInstanceURL">
+<portlet:actionURL name="/dynamic_data_mapping_form/publish_form_instance" var="publishFormInstanceURL">
 	<portlet:param name="mvcRenderCommandName" value="/admin/edit_form_instance" />
 </portlet:actionURL>
 
-<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="saveFormInstance" var="autoSaveFormInstanceURL" />
+<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/dynamic_data_mapping_form/save_form_instance" var="autoSaveFormInstanceURL" />
 
 <liferay-portlet:runtime
 	portletName="<%= DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_REPORT %>"

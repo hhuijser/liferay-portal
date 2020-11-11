@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING,
 		"javax.portlet.name=" + PortletKeys.PORTLET_DISPLAY_TEMPLATE,
-		"mvc.command.name=deleteTemplate"
+		"mvc.command.name=/dynamic_data_mapping/delete_template"
 	},
 	service = MVCActionCommand.class
 )

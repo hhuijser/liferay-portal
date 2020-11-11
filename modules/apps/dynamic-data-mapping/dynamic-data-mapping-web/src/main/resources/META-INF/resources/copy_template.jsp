@@ -30,7 +30,7 @@ DDMTemplateVersion templateVersion = template.getTemplateVersion();
 boolean showBackURL = ParamUtil.getBoolean(request, "showBackURL", true);
 %>
 
-<portlet:actionURL name="copyTemplate" var="copyTemplateURL">
+<portlet:actionURL name="/dynamic_data_mapping/copy_template" var="copyTemplateURL">
 	<portlet:param name="mvcPath" value="/copy_template.jsp" />
 </portlet:actionURL>
 

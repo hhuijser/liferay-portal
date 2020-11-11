@@ -225,7 +225,8 @@ AUI.add(
 					p_p_auth: container.getData('ddmAuthToken'),
 					p_p_id: Liferay.PortletKeys.DYNAMIC_DATA_MAPPING,
 					p_p_isolated: true,
-					p_p_resource_id: 'renderStructureField',
+					p_p_resource_id:
+						'/dynamic_data_mapping/render_structure_field',
 					p_p_state: 'pop_up',
 					portletNamespace: instance.get('portletNamespace'),
 					readOnly: instance.get('readOnly'),

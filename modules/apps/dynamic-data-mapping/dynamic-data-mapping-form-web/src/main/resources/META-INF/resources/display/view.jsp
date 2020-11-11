@@ -77,7 +77,7 @@ long formInstanceId = ddmFormDisplayContext.getFormInstanceId();
 				</div>
 			</c:when>
 			<c:when test="<%= ddmFormDisplayContext.isFormAvailable() %>">
-				<portlet:actionURL name="addFormInstanceRecord" var="addFormInstanceRecordActionURL" />
+				<portlet:actionURL name="/dynamic_data_mapping_form/add_form_instance_record" var="addFormInstanceRecordActionURL" />
 
 				<%
 				DDMFormInstance formInstance = ddmFormDisplayContext.getFormInstance();
@@ -222,7 +222,7 @@ long formInstanceId = ddmFormDisplayContext.getFormInstanceId();
 						<c:when test="<%= ddmFormDisplayContext.isAutosaveEnabled() %>">
 							var <portlet:namespace />form;
 
-							<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="addFormInstanceRecord" var="autoSaveFormInstanceRecordURL">
+							<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/dynamic_data_mapping_form/add_form_instance_record" var="autoSaveFormInstanceRecordURL">
 								<portlet:param name="autoSave" value="<%= Boolean.TRUE.toString() %>" />
 								<portlet:param name="languageId" value="<%= languageId %>" />
 								<portlet:param name="preview" value="<%= String.valueOf(ddmFormDisplayContext.isPreview()) %>" />

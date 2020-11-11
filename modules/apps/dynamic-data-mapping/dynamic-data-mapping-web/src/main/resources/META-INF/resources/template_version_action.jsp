@@ -44,7 +44,7 @@ DDMTemplateVersion templateVersion = (DDMTemplateVersion)row.getObject();
 	/>
 
 	<c:if test="<%= templateVersion.isApproved() %>">
-		<liferay-portlet:actionURL name="revertTemplate" portletName="<%= DDMPortletKeys.DYNAMIC_DATA_MAPPING %>" var="revertURL">
+		<liferay-portlet:actionURL name="/dynamic_data_mapping/revert_template" portletName="<%= DDMPortletKeys.DYNAMIC_DATA_MAPPING %>" var="revertURL">
 			<portlet:param name="mvcPath" value="/edit_template.jsp" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="refererPortletName" value="<%= refererPortletName %>" />

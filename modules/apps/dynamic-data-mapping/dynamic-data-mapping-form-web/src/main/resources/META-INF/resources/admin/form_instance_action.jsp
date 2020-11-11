@@ -32,7 +32,7 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 	showWhenSingleIcon="<%= true %>"
 >
 	<c:if test="<%= formInstancePermissionCheckerHelper.isShowDeleteIcon(formInstance) %>">
-		<portlet:actionURL name="deleteFormInstance" var="deleteURL">
+		<portlet:actionURL name="/dynamic_data_mapping_form/delete_form_instance" var="deleteURL">
 			<portlet:param name="formInstanceId" value="<%= String.valueOf(formInstance.getFormInstanceId()) %>" />
 		</portlet:actionURL>
 
@@ -46,7 +46,7 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 	%>
 
 	<c:if test="<%= formInstancePermissionCheckerHelper.isShowDuplicateIcon() %>">
-		<liferay-portlet:actionURL name="copyFormInstance" var="copyFormInstanceURL">
+		<liferay-portlet:actionURL name="/dynamic_data_mapping_form/copy_form_instance" var="copyFormInstanceURL">
 			<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
 			<portlet:param name="formInstanceId" value="<%= String.valueOf(formInstance.getFormInstanceId()) %>" />
 		</liferay-portlet:actionURL>
@@ -73,7 +73,7 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 	</c:if>
 
 	<c:if test="<%= formInstancePermissionCheckerHelper.isShowExportIcon(formInstance) %>">
-		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="exportFormInstance" var="exportFormInstanceURL">
+		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/dynamic_data_mapping_form/export_form_instance" var="exportFormInstanceURL">
 			<portlet:param name="formInstanceId" value="<%= String.valueOf(formInstance.getFormInstanceId()) %>" />
 		</liferay-portlet:resourceURL>
 

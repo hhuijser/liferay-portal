@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
-		"mvc.command.name=saveFormInstance"
+		"mvc.command.name=/dynamic_data_mapping_form/save_form_instance"
 	},
 	service = MVCResourceCommand.class
 )

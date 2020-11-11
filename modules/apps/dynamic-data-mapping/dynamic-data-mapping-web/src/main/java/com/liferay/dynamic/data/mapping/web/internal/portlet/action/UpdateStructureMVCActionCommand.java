@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + DDMPortletKeys.DYNAMIC_DATA_MAPPING,
-		"mvc.command.name=updateStructure"
+		"mvc.command.name=/dynamic_data_mapping/update_structure"
 	},
 	service = MVCActionCommand.class
 )

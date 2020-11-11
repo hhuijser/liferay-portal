@@ -64,7 +64,7 @@ FieldSetPermissionCheckerHelper fieldSetPermissionCheckerHelper = ddmFormAdminDi
 	</c:if>
 
 	<c:if test="<%= fieldSetPermissionCheckerHelper.isShowDeleteIcon(ddmStructure) %>">
-		<portlet:actionURL name="deleteStructure" var="deleteURL">
+		<portlet:actionURL name="/dynamic_data_mapping_form/delete_structure" var="deleteURL">
 			<portlet:param name="structureId" value="<%= String.valueOf(ddmStructure.getStructureId()) %>" />
 		</portlet:actionURL>
 

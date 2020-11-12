@@ -15,7 +15,7 @@
 --%>
 
 <c:if test="<%= !backgroundTask.isInProgress() %>">
-	<portlet:actionURL name="deleteBackgroundTasks" var="deleteBackgroundTaskURL">
+	<portlet:actionURL name="/staging_processes/delete_background_tasks" var="deleteBackgroundTaskURL">
 		<portlet:param name="redirect" value="<%= currentURL.toString() %>" />
 		<portlet:param name="deleteBackgroundTaskIds" value="<%= String.valueOf(backgroundTask.getBackgroundTaskId()) %>" />
 	</portlet:actionURL>

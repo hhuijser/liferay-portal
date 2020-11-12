@@ -70,8 +70,8 @@ if (layoutBranch != null) {
 >
 	<aui:model-context bean="<%= layoutBranch %>" model="<%= LayoutBranch.class %>" />
 
-	<portlet:actionURL name="editLayoutBranch" var="editLayoutBranchURL">
-		<portlet:param name="mvcRenderCommandName" value="editLayoutBranch" />
+	<portlet:actionURL name="/staging_bar/edit_layout_branch" var="editLayoutBranchURL">
+		<portlet:param name="mvcRenderCommandName" value="/staging_bar/edit_layout_branch" />
 	</portlet:actionURL>
 
 	<aui:form action="<%= editLayoutBranchURL %>" method="post" name="fm3">

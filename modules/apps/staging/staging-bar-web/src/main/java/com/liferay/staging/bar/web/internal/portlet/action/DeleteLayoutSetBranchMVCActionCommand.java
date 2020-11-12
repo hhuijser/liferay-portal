@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + StagingBarPortletKeys.STAGING_BAR,
-		"mvc.command.name=deleteLayoutSetBranch"
+		"mvc.command.name=/staging_bar/delete_layout_set_branch"
 	},
 	service = MVCActionCommand.class
 )

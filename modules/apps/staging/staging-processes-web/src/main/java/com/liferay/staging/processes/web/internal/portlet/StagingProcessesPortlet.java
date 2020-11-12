@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.Reference;
 		"com.liferay.portlet.use-default-template=true",
 		"javax.portlet.display-name=Staging",
 		"javax.portlet.expiration-cache=0",
-		"javax.portlet.init-param.mvc-command-names-default-views=processesList",
+		"javax.portlet.init-param.mvc-command-names-default-views=/staging_processes/view_processes_list",
 		"javax.portlet.init-param.template-path=/META-INF/resources/",
 		"javax.portlet.init-param.view-template=/view.jsp",
 		"javax.portlet.name=" + StagingProcessesPortletKeys.STAGING_PROCESSES,

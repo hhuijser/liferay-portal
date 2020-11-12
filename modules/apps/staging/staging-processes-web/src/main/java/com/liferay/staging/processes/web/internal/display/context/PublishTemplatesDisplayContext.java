@@ -42,7 +42,7 @@ public class PublishTemplatesDisplayContext {
 				navigationItem.setActive(true);
 				navigationItem.setHref(
 					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"viewPublishConfigurations");
+					"/staging_processes/view_publish_configurations");
 				navigationItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "publish-templates"));
 			}

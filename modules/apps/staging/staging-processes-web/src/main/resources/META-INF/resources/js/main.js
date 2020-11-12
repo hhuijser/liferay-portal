@@ -681,7 +681,7 @@ AUI.add(
 						}
 						else {
 							redirectParameters.mvcRenderCommandName =
-								'editPublishConfiguration';
+								'/staging_processes/edit_publish_configuration';
 							redirectParameters.tabs2 =
 								'new-publication-process';
 							redirectParameters.publishConfigurationButtons =

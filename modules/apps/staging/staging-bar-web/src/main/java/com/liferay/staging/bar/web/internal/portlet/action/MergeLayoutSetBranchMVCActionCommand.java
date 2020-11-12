@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + StagingBarPortletKeys.STAGING_BAR,
-		"mvc.command.name=mergeLayoutSetBranch"
+		"mvc.command.name=/staging_bar/merge_layout_set_branch"
 	},
 	service = MVCActionCommand.class
 )

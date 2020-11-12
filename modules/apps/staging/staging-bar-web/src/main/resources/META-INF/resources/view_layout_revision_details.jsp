@@ -259,7 +259,7 @@ else {
 			title: '<liferay-ui:message key="page-variations" />',
 
 			<liferay-portlet:renderURL var="layoutBranchesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcRenderCommandName" value="viewLayoutBranches" />
+				<portlet:param name="mvcRenderCommandName" value="/staging_bar/view_layout_branches" />
 				<portlet:param name="layoutSetBranchId" value="<%= String.valueOf(layoutSetBranch.getLayoutSetBranchId()) %>" />
 			</liferay-portlet:renderURL>
 
@@ -281,7 +281,7 @@ else {
 			title: '<liferay-ui:message key="site-pages-variation" />',
 
 			<liferay-portlet:renderURL var="layoutSetBranchesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcRenderCommandName" value="viewLayoutSetBranches" />
+				<portlet:param name="mvcRenderCommandName" value="/staging_bar/view_layout_set_branches" />
 			</liferay-portlet:renderURL>
 
 			uri: '<%= HtmlUtil.escapeJS(layoutSetBranchesURL) %>',

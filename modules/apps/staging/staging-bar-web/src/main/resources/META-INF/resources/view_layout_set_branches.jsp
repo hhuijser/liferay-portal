@@ -38,7 +38,7 @@ request.setAttribute("view_layout_set_branches.jsp-currentLayoutSetBranchId", St
 
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, stagingGroup, ActionKeys.ADD_LAYOUT_SET_BRANCH) %>">
 		<liferay-portlet:renderURL var="addLayoutSetBranchURL">
-			<portlet:param name="mvcRenderCommandName" value="editLayoutSetBranch" />
+			<portlet:param name="mvcRenderCommandName" value="/staging_bar/edit_layout_set_branch" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</liferay-portlet:renderURL>
 

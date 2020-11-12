@@ -67,7 +67,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + StagingProcessesPortletKeys.STAGING_PROCESSES,
-		"mvc.command.name=editPublishConfiguration"
+		"mvc.command.name=/staging_processes/edit_publish_configuration"
 	},
 	service = MVCActionCommand.class
 )

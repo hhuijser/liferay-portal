@@ -35,7 +35,7 @@ long currentLayoutBranchId = GetterUtil.getLong((String)request.getAttribute("vi
 >
 	<c:if test="<%= LayoutBranchPermissionUtil.contains(permissionChecker, layoutBranch, ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL var="editLayoutBranchURL">
-			<portlet:param name="mvcRenderCommandName" value="editLayoutBranch" />
+			<portlet:param name="mvcRenderCommandName" value="/staging_bar/edit_layout_branch" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="groupId" value="<%= String.valueOf(layoutBranch.getGroupId()) %>" />
 			<portlet:param name="layoutBranchId" value="<%= String.valueOf(layoutBranch.getLayoutBranchId()) %>" />
@@ -47,7 +47,7 @@ long currentLayoutBranchId = GetterUtil.getLong((String)request.getAttribute("vi
 		/>
 
 		<c:if test="<%= !rootLayoutRevision.isPending() && !layoutBranch.isMaster() && LayoutBranchPermissionUtil.contains(permissionChecker, layoutBranch, ActionKeys.DELETE) %>">
-			<portlet:actionURL name="deleteLayoutBranch" var="deleteLayoutBranchURL">
+			<portlet:actionURL name="/staging_bar/delete_layout_branch" var="deleteLayoutBranchURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="groupId" value="<%= String.valueOf(layoutBranch.getGroupId()) %>" />
 				<portlet:param name="layoutBranchId" value="<%= String.valueOf(layoutBranch.getLayoutBranchId()) %>" />

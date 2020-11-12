@@ -49,8 +49,8 @@ if (layoutSetBranches.contains(layoutSetBranch)) {
 	</div>
 
 	<div id="<portlet:namespace />mergeLayoutSetBranch">
-		<portlet:actionURL name="mergeLayoutSetBranch" var="mergeLayoutSetBranchURL">
-			<portlet:param name="mvcRenderCommandName" value="viewLayoutSetBranches" />
+		<portlet:actionURL name="/staging_bar/merge_layout_set_branch" var="mergeLayoutSetBranchURL">
+			<portlet:param name="mvcRenderCommandName" value="/staging_bar/view_layout_set_branches" />
 		</portlet:actionURL>
 
 		<aui:form action="<%= mergeLayoutSetBranchURL %>" enctype="multipart/form-data" method="post" name="fm4">

@@ -33,7 +33,7 @@ long currentLayoutSetBranchId = GetterUtil.getLong((String)request.getAttribute(
 >
 	<c:if test="<%= LayoutSetBranchPermissionUtil.contains(permissionChecker, layoutSetBranch, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editLayoutSetBranchURL">
-			<portlet:param name="mvcRenderCommandName" value="editLayoutSetBranch" />
+			<portlet:param name="mvcRenderCommandName" value="/staging_bar/edit_layout_set_branch" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="groupId" value="<%= String.valueOf(layoutSetBranch.getGroupId()) %>" />
 			<portlet:param name="layoutSetBranchId" value="<%= String.valueOf(layoutSetBranch.getLayoutSetBranchId()) %>" />
@@ -64,7 +64,7 @@ long currentLayoutSetBranchId = GetterUtil.getLong((String)request.getAttribute(
 
 	<c:if test="<%= LayoutSetBranchPermissionUtil.contains(permissionChecker, layoutSetBranch, ActionKeys.MERGE) %>">
 		<portlet:renderURL var="mergeLayoutSetBranchURL">
-			<portlet:param name="mvcRenderCommandName" value="mergeLayoutSetBranch" />
+			<portlet:param name="mvcRenderCommandName" value="/staging_bar/merge_layout_set_branch" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="groupId" value="<%= String.valueOf(layoutSetBranch.getGroupId()) %>" />
 			<portlet:param name="privateLayout" value="<%= String.valueOf(layoutSetBranch.isPrivateLayout()) %>" />
@@ -78,7 +78,7 @@ long currentLayoutSetBranchId = GetterUtil.getLong((String)request.getAttribute(
 	</c:if>
 
 	<c:if test="<%= !layoutSetBranch.isMaster() && LayoutSetBranchPermissionUtil.contains(permissionChecker, layoutSetBranch, ActionKeys.DELETE) %>">
-		<portlet:actionURL name="deleteLayoutSetBranch" var="deleteLayoutSetBranchURL">
+		<portlet:actionURL name="/staging_bar/delete_layout_set_branch" var="deleteLayoutSetBranchURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="groupId" value="<%= String.valueOf(layoutSetBranch.getGroupId()) %>" />
 			<portlet:param name="layoutSetBranchId" value="<%= String.valueOf(layoutSetBranch.getLayoutSetBranchId()) %>" />

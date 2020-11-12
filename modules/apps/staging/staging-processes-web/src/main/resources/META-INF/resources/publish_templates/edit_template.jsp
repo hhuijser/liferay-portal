@@ -77,7 +77,7 @@ treeId = treeId + privateLayout + layoutSetBranchId;
 
 PortletURL renderURL = renderResponse.createRenderURL();
 
-renderURL.setParameter("mvcRenderCommandName", "viewPublishConfigurations");
+renderURL.setParameter("mvcRenderCommandName", "/staging_processes/view_publish_configurations");
 renderURL.setParameter("groupId", String.valueOf(stagingGroupId));
 renderURL.setParameter("layoutSetBranchId", String.valueOf(layoutSetBranchId));
 renderURL.setParameter("layoutSetBranchName", layoutSetBranchName);
@@ -106,8 +106,8 @@ renderResponse.setTitle((exportImportConfiguration == null) ? LanguageUtil.get(r
 
 <clay:container-fluid>
 	<div id="<portlet:namespace />customConfiguration">
-		<portlet:actionURL name="editPublishConfiguration" var="updatePublishConfigurationURL">
-			<portlet:param name="mvcRenderCommandName" value="editPublishConfiguration" />
+		<portlet:actionURL name="/staging_processes/edit_publish_configuration" var="updatePublishConfigurationURL">
+			<portlet:param name="mvcRenderCommandName" value="/staging_processes/edit_publish_configuration" />
 			<portlet:param name="groupId" value="<%= String.valueOf(stagingGroupId) %>" />
 		</portlet:actionURL>
 

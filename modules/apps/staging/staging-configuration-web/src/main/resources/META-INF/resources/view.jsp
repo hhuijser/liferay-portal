@@ -63,7 +63,7 @@ BackgroundTask lastCompletedInitialPublicationBackgroundTask = BackgroundTaskMan
 				</portlet:actionURL>
 
 				<portlet:renderURL var="redirectURL">
-					<portlet:param name="mvcRenderCommandName" value="staging" />
+					<portlet:param name="mvcRenderCommandName" value="/staging_configuration/view" />
 				</portlet:renderURL>
 
 				<aui:form action="<%= editStagingConfigurationURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveGroup();" %>'>

@@ -82,7 +82,7 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 			dropdownItem -> {
 				dropdownItem.setHref(
 					getRenderURL(), "mvcRenderCommandName",
-					"editPublishConfiguration", "groupId",
+					"/staging_processes/edit_publish_configuration", "groupId",
 					String.valueOf(_stagingGroupId), "layoutSetBranchId",
 					ParamUtil.getString(
 						httpServletRequest, "layoutSetBranchId"),
@@ -107,7 +107,8 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 		PortletURL searchActionURL = getRenderURL();
 
 		searchActionURL.setParameter(
-			"mvcRenderCommandName", "viewPublishConfigurations");
+			"mvcRenderCommandName",
+			"/staging_processes/view_publish_configurations");
 
 		return searchActionURL.toString();
 	}

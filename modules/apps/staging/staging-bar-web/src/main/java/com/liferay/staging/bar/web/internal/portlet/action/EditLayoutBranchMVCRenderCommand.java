@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + StagingBarPortletKeys.STAGING_BAR,
-		"mvc.command.name=editLayoutBranch"
+		"mvc.command.name=/staging_bar/edit_layout_branch"
 	},
 	service = MVCRenderCommand.class
 )

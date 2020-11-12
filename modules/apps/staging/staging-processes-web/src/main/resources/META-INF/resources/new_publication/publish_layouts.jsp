@@ -19,7 +19,7 @@
 <%@ include file="/new_publication/publish_layouts_setup.jspf" %>
 
 <portlet:renderURL var="basePortletURL">
-	<portlet:param name="mvcRenderCommandName" value="processesList" />
+	<portlet:param name="mvcRenderCommandName" value="/staging_processes/view_processes_list" />
 </portlet:renderURL>
 
 <aui:form action='<%= portletURL.toString() + "&etag=0&strip=0" %>' cssClass="lfr-export-dialog" method="post" name="exportPagesFm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "publishPages();" %>'>

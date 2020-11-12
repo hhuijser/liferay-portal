@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + KaleoDesignerPortletKeys.KALEO_DESIGNER,
-		"mvc.command.name=revertKaleoDefinitionVersion"
+		"mvc.command.name=/kaleo_designer/revert_kaleo_definition_version"
 	},
 	service = MVCActionCommand.class
 )

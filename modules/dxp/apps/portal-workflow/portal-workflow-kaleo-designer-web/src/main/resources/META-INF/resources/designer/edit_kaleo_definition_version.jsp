@@ -352,7 +352,7 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 										<portlet:namespace />updateTitle();
 
 										<portlet:namespace />updateAction(
-											'<portlet:actionURL name="publishKaleoDefinitionVersion" />'
+											'<portlet:actionURL name="/kaleo_designer/publish_kaleo_definition_version" />'
 										);
 
 										submitForm(document.<portlet:namespace />fm);
@@ -364,7 +364,7 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 										<portlet:namespace />updateTitle();
 
 										<portlet:namespace />updateAction(
-											'<portlet:actionURL name="saveKaleoDefinitionVersion" />'
+											'<portlet:actionURL name="/kaleo_designer/save_kaleo_definition_version" />'
 										);
 
 										submitForm(document.<portlet:namespace />fm);
@@ -774,7 +774,7 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 		</div>
 
 		<c:if test="<%= kaleoDefinition != null %>">
-			<liferay-portlet:actionURL name="duplicateWorkflowDefinition" portletName="<%= KaleoDesignerPortletKeys.KALEO_DESIGNER %>" var="duplicateWorkflowDefinition">
+			<liferay-portlet:actionURL name="/kaleo_designer/duplicate_workflow_definition" portletName="<%= KaleoDesignerPortletKeys.KALEO_DESIGNER %>" var="duplicateWorkflowDefinition">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</liferay-portlet:actionURL>
 

@@ -50,7 +50,8 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCRenderCommand.class
 )
-public class PreviewSegmentsUsersMVCRenderCommand implements MVCRenderCommand {
+public class PreviewSegmentsEntryUsersMVCRenderCommand
+	implements MVCRenderCommand {
 
 	@Override
 	public String render(

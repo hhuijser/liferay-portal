@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + SuggestionsPortletKeys.SUGGESTIONS,
-		"mvc.command.name=redirectSearchBar"
+		"mvc.command.name=/portal_search/suggestions_redirect"
 	},
 	service = MVCActionCommand.class
 )

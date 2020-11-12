@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SegmentsPortletKeys.SEGMENTS,
-		"mvc.command.name=selectOrganizations"
+		"mvc.command.name=/segments/select_organizations"
 	},
 	service = MVCRenderCommand.class
 )

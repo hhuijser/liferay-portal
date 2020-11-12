@@ -364,7 +364,7 @@ public class EditSegmentsEntryDisplayContext {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "previewSegmentsEntryUsers");
+			"mvcRenderCommandName", "/segments/preview_segments_entry_users");
 		portletURL.setParameter(
 			"segmentsEntryId", String.valueOf(getSegmentsEntryId()));
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
@@ -441,7 +441,8 @@ public class EditSegmentsEntryDisplayContext {
 	private String _getSegmentsEntryClassPKsCountURL() {
 		ResourceURL resourceURL = _renderResponse.createResourceURL();
 
-		resourceURL.setResourceID("getSegmentsEntryClassPKsCount");
+		resourceURL.setResourceID(
+			"/segments/get_segments_entry_class_pks_count");
 
 		return resourceURL.toString();
 	}
@@ -449,7 +450,7 @@ public class EditSegmentsEntryDisplayContext {
 	private String _getSegmentsFieldValueNameURL() {
 		ResourceURL resourceURL = _renderResponse.createResourceURL();
 
-		resourceURL.setResourceID("getSegmentsFieldValueName");
+		resourceURL.setResourceID("/segments/get_segments_field_value_name");
 
 		return resourceURL.toString();
 	}

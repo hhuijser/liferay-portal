@@ -47,7 +47,8 @@ public class SegmentsEntryBrowsePortletProvider
 
 		PortletURL portletURL = super.getPortletURL(httpServletRequest);
 
-		portletURL.setParameter("mvcRenderCommandName", "selectSegmentsEntry");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/segments/select_segments_entry");
 
 		return portletURL;
 	}

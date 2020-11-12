@@ -41,7 +41,7 @@ request.setAttribute("view.jsp-eventName", eventName);
 	sortingURL="<%= segmentsDisplayContext.getSortingURL() %>"
 />
 
-<portlet:actionURL name="deleteSegmentsEntry" var="deleteSegmentsEntryURL">
+<portlet:actionURL name="/segments/delete_segments_entry" var="deleteSegmentsEntryURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
@@ -162,7 +162,7 @@ request.setAttribute("view.jsp-eventName", eventName);
 	});
 </aui:script>
 
-<portlet:actionURL name="updateSegmentsEntrySiteRoles" var="updateSegmentsEntrySiteRolesURL">
+<portlet:actionURL name="/segments/update_segments_entry_site_roles" var="updateSegmentsEntrySiteRolesURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 

@@ -53,7 +53,8 @@ public class SegmentsSimulationDisplayContext {
 			SegmentsPortletKeys.SEGMENTS_SIMULATION);
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "deactivateSimulation");
+			ActionRequest.ACTION_NAME,
+			"/segments_simulation/deactivate_simulation");
 
 		return portletURL;
 	}
@@ -79,7 +80,8 @@ public class SegmentsSimulationDisplayContext {
 			SegmentsPortletKeys.SEGMENTS_SIMULATION);
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "simulateSegmentsEntries");
+			ActionRequest.ACTION_NAME,
+			"/segments_simulation/simulate_segments_entries");
 
 		return portletURL;
 	}

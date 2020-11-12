@@ -63,7 +63,8 @@ public class SegmentsEntryEditPortletProvider
 
 		PortletURL portletURL = super.getPortletURL(httpServletRequest);
 
-		portletURL.setParameter("mvcRenderCommandName", "editSegmentsEntry");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/segments/edit_segments_entry");
 
 		return portletURL;
 	}

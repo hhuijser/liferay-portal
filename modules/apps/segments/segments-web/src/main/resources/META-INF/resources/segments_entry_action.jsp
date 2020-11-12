@@ -33,7 +33,7 @@ SegmentsEntry segmentsEntry = (SegmentsEntry)row.getObject();
 >
 	<c:if test="<%= SegmentsEntryPermission.contains(permissionChecker, segmentsEntry, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editSegmentsEntry" />
+			<portlet:param name="mvcRenderCommandName" value="/segments/edit_segments_entry" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="segmentsEntryId" value="<%= String.valueOf(segmentsEntry.getSegmentsEntryId()) %>" />
 		</portlet:renderURL>
@@ -46,7 +46,7 @@ SegmentsEntry segmentsEntry = (SegmentsEntry)row.getObject();
 
 	<c:if test="<%= SegmentsEntryPermission.contains(permissionChecker, segmentsEntry, ActionKeys.VIEW) %>">
 		<portlet:renderURL var="previewMembersURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="mvcRenderCommandName" value="previewSegmentsEntryUsers" />
+			<portlet:param name="mvcRenderCommandName" value="/segments/preview_segments_entry_users" />
 			<portlet:param name="segmentsEntryId" value="<%= String.valueOf(segmentsEntry.getSegmentsEntryId()) %>" />
 		</portlet:renderURL>
 
@@ -107,7 +107,7 @@ SegmentsEntry segmentsEntry = (SegmentsEntry)row.getObject();
 	</c:if>
 
 	<c:if test="<%= SegmentsEntryPermission.contains(permissionChecker, segmentsEntry, ActionKeys.DELETE) %>">
-		<portlet:actionURL name="deleteSegmentsEntry" var="deleteURL">
+		<portlet:actionURL name="/segments/delete_segments_entry" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="segmentsEntryId" value="<%= String.valueOf(segmentsEntry.getSegmentsEntryId()) %>" />

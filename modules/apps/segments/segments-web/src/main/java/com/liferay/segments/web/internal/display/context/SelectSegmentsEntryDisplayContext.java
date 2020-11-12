@@ -316,7 +316,8 @@ public class SelectSegmentsEntryDisplayContext {
 	private PortletURL _getPortletURL() {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "selectSegmentsEntry");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/segments/select_segments_entry");
 
 		String keywords = _getKeywords();
 

@@ -110,7 +110,8 @@ public class SegmentsDisplayContext {
 			dropdownItem -> {
 				dropdownItem.setHref(
 					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"editSegmentsEntry", "type", User.class.getName());
+					"/segments/edit_segments_entry", "type",
+					User.class.getName());
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "user-segment"));
 			}
@@ -236,7 +237,8 @@ public class SegmentsDisplayContext {
 
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "editSegmentsEntry");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/segments/edit_segments_entry");
 		portletURL.setParameter(
 			"redirect", PortalUtil.getCurrentURL(_renderRequest));
 		portletURL.setParameter(

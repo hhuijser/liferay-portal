@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SegmentsPortletKeys.SEGMENTS,
-		"mvc.command.name=updateSegmentsEntrySiteRoles"
+		"mvc.command.name=/segments/update_segments_entry_site_roles"
 	},
 	service = MVCActionCommand.class
 )

@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + SegmentsPortletKeys.SEGMENTS_SIMULATION,
-		"mvc.command.name=simulateSegmentsEntries"
+		"mvc.command.name=/segments_simulation/simulate_segments_entries"
 	},
 	service = MVCActionCommand.class
 )

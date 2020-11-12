@@ -59,7 +59,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + SegmentsPortletKeys.SEGMENTS,
-		"mvc.command.name=updateSegmentsEntry"
+		"mvc.command.name=/segments/update_segments_entry"
 	},
 	service = MVCActionCommand.class
 )
@@ -153,7 +153,7 @@ public class UpdateSegmentsEntryMVCActionCommand extends BaseMVCActionCommand {
 					actionRequest, exception.getClass(), exception);
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editSegmentsEntry");
+					"mvcRenderCommandName", "/segments/edit_segments_entry");
 			}
 			else {
 				throw exception;
@@ -173,7 +173,8 @@ public class UpdateSegmentsEntryMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, portletConfig.getPortletName(),
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcRenderCommandName", "editSegmentsEntry");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/segments/edit_segments_entry");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
 		portletURL.setParameter("redirect", redirect, false);
 		portletURL.setParameter(

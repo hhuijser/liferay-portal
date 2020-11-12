@@ -92,7 +92,7 @@ public class OrganizationSegmentsFieldCustomizer
 				PortletRequest.RENDER_PHASE);
 
 			portletURL.setParameter(
-				"mvcRenderCommandName", "selectOrganizations");
+				"mvcRenderCommandName", "/segments/select_organizations");
 			portletURL.setParameter("eventName", "selectEntity");
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 

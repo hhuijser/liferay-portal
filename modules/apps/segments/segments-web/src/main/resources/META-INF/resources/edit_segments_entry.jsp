@@ -33,7 +33,7 @@ renderResponse.setTitle(editSegmentsEntryDisplayContext.getTitle(locale));
 <liferay-ui:error embed="<%= false %>" exception="<%= SegmentsEntryKeyException.class %>" message="key-is-already-used" />
 <liferay-ui:error embed="<%= false %>" exception="<%= SegmentsEntryNameException.class %>" message="please-enter-a-valid-name" />
 
-<portlet:actionURL name="updateSegmentsEntry" var="updateSegmentsEntryActionURL" />
+<portlet:actionURL name="/segments/update_segments_entry" var="updateSegmentsEntryActionURL" />
 
 <aui:form action="<%= updateSegmentsEntryActionURL %>" method="post" name="editSegmentFm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveSegmentsEntry();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= editSegmentsEntryDisplayContext.getRedirect() %>" />

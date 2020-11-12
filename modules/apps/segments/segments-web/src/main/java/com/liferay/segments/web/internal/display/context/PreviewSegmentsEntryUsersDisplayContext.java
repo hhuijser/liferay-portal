@@ -161,7 +161,7 @@ public class PreviewSegmentsEntryUsersDisplayContext {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "previewSegmentsEntryUsers");
+			"mvcRenderCommandName", "/segments/preview_segments_entry_users");
 
 		SegmentsEntry segmentsEntry = getSegmentsEntry();
 

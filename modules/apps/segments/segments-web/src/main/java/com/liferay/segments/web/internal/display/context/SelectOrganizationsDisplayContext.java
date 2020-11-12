@@ -210,7 +210,8 @@ public class SelectOrganizationsDisplayContext {
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "selectOrganizations");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/segments/select_organizations");
 		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
 		portletURL.setParameter("eventName", getEventName());
 

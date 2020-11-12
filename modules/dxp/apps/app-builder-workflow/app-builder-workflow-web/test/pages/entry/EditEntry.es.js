@@ -233,7 +233,7 @@ describe('EditEntry', () => {
 		});
 
 		expect(mockFetch).toHaveBeenCalledWith(
-			`${context.baseResourceURL}?p_p_resource_id=/app_builder/update_data_record`,
+			`${context.baseResourceURL}?p_p_resource_id=/app_builder_workflow/update_data_record`,
 			{
 				body: {
 					appBuilderAppId: 1,

@@ -174,7 +174,9 @@ export default function EditEntry({
 				dataRecordId,
 			};
 
-			const resource = `${isEdit ? 'update' : 'add'}_data_record`;
+			const resource = `${
+				isEdit ? 'app_builder_workflow/update' : 'app_builder/add'
+			}_data_record`;
 
 			if (workflowInfo) {
 				const {
@@ -197,7 +199,7 @@ export default function EditEntry({
 
 			fetch(
 				createResourceURL(baseResourceURL, {
-					p_p_resource_id: `/app_builder/${resource}`,
+					p_p_resource_id: `/${resource}`,
 				}),
 				{
 					body: new URLSearchParams(

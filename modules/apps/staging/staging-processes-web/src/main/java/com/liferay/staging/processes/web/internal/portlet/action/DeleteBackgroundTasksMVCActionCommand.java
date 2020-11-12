@@ -42,8 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCActionCommand.class
 )
-public class DeleteLayoutPublishBackgroundTaskMVCActionCommand
-	extends BaseMVCActionCommand {
+public class DeleteBackgroundTasksMVCActionCommand extends BaseMVCActionCommand {
 
 	protected void deleteBackgroundTask(ActionRequest actionRequest)
 		throws PortalException {

@@ -53,7 +53,7 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = MVCActionCommand.class
 )
-public class RevertWorkflowDefinitionMVCActionCommand
+public class RevertKaleoDefinitionVersionMVCActionCommand
 	extends BaseKaleoDesignerMVCActionCommand {
 
 	@Override

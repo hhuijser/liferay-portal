@@ -54,7 +54,7 @@ else {
 
 <div class="report-message"></div>
 
-<portlet:actionURL name="editDefinition" var="actionURL">
+<portlet:actionURL name="/reports_admin/edit_definition" var="actionURL">
 	<portlet:param name="mvcPath" value="/admin/definition/edit_definition.jsp" />
 </portlet:actionURL>
 
@@ -238,7 +238,7 @@ else {
 		) {
 			submitForm(
 				document.<portlet:namespace />fm,
-				'<portlet:actionURL name="deleteDefinition"><portlet:param name="redirect" value="<%= definitionsURL %>" /></portlet:actionURL>'
+				'<portlet:actionURL name="/reports_admin/delete_definition"><portlet:param name="redirect" value="<%= definitionsURL %>" /></portlet:actionURL>'
 			);
 		}
 	}

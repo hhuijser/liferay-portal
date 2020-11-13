@@ -38,7 +38,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 	<portlet:param name="tabs1" value="reports" />
 </portlet:renderURL>
 
-<portlet:actionURL name="generateReport" var="generateReportURL">
+<portlet:actionURL name="/reports_admin/generate_report" var="generateReportURL">
 	<portlet:param name="mvcPath" value="/admin/report/generate_report.jsp" />
 	<portlet:param name="redirect" value="<%= searchRequestsURL %>" />
 </portlet:actionURL>

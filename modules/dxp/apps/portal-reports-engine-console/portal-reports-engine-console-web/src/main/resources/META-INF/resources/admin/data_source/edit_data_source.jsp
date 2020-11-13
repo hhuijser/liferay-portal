@@ -32,7 +32,7 @@ portletDisplay.setURLBack(backURL);
 renderResponse.setTitle((source != null) ? LanguageUtil.format(request, "edit-x", source.getName(locale), false) : LanguageUtil.get(request, "new-data-source"));
 %>
 
-<portlet:actionURL name="editDataSource" var="actionURL">
+<portlet:actionURL name="/reports_admin/edit_data_source" var="actionURL">
 	<portlet:param name="mvcPath" value="/admin/data_source/edit_data_source.jsp" />
 	<portlet:param name="redirect" value="<%= searchSourcesURL %>" />
 </portlet:actionURL>

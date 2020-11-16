@@ -1,9 +1,6 @@
 import com.liferay.gradle.plugins.defaults.tasks.ReplaceRegexTask
 
-import com.pswidersk.gradle.python.VenvTask
-
 apply plugin: "com.gradle.plugin-publish"
-apply plugin: "com.pswidersk.python-plugin"
 apply plugin: "org.ysb33r.gradletest"
 
 task copyGradleTestDependencies(type: Copy)

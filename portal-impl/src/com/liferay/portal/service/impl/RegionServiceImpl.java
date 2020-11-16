@@ -62,9 +62,9 @@ public class RegionServiceImpl extends RegionServiceBaseImpl {
 		Region region = regionPersistence.create(regionId);
 
 		region.setCountryId(countryId);
-		region.setRegionCode(regionCode);
-		region.setName(name);
 		region.setActive(active);
+		region.setName(name);
+		region.setRegionCode(regionCode);
 
 		return regionPersistence.update(region);
 	}

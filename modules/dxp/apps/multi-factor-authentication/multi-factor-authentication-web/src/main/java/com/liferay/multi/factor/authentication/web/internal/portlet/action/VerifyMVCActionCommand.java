@@ -50,7 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCActionCommand.class
 )
-public class MFAVerifyMVCActionCommand extends BaseMVCActionCommand {
+public class VerifyMVCActionCommand extends BaseMVCActionCommand {
 
 	@Override
 	protected void doProcessAction(

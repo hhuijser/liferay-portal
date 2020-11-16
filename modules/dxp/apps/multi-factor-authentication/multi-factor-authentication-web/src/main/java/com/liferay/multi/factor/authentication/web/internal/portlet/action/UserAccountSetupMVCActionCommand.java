@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCActionCommand.class
 )
-public class MFAUserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
+public class UserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
@@ -114,7 +114,7 @@ public class MFAUserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		MFAUserAccountSetupMVCActionCommand.class);
+		UserAccountSetupMVCActionCommand.class);
 
 	private ServiceTrackerMap<Long, SetupMFAChecker>
 		_mfaCheckerServiceTrackerMap;

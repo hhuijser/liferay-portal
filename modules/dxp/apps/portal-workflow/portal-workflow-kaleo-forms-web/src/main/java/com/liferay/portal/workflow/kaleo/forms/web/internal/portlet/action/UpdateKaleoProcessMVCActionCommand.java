@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + KaleoFormsPortletKeys.KALEO_FORMS_ADMIN,
-		"mvc.command.name=/kaleo_forms/update_kaleo_process"
+		"mvc.command.name=/kaleo_forms_admin/update_kaleo_process"
 	},
 	service = MVCActionCommand.class
 )

@@ -134,7 +134,8 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 			PortletURL renderURL = liferayPortletResponse.createRenderURL();
 
 			renderURL.setParameter(
-				"mvcRenderCommandName", "addResultsRankingEntry");
+				"mvcRenderCommandName",
+				"/result_rankings/add_results_rankings");
 			renderURL.setParameter(
 				"redirect", editRankingMVCActionRequest.getRedirect());
 
@@ -353,7 +354,7 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editResultsRankingEntry");
+			"mvcRenderCommandName", "/result_rankings/edit_results_rankings");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
 		portletURL.setParameter("redirect", redirect, false);
 		portletURL.setParameter("resultsRankingUid", ranking.getId(), false);
@@ -385,7 +386,8 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 				SessionErrors.add(actionRequest, Exception.class);
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editResultsRankingEntry");
+					"mvcRenderCommandName",
+					"/result_rankings/edit_results_rankings");
 			}
 			else {
 				SessionErrors.add(actionRequest, Exception.class);

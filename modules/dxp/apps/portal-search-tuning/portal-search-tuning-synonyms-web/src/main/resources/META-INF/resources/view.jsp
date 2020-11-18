@@ -46,7 +46,7 @@ SynonymsDisplayContext synonymsDisplayContext = (SynonymsDisplayContext)request.
 	showSearch="<%= false %>"
 />
 
-<portlet:actionURL name="deleteSynonymSet" var="deleteSynonymSetActionURL">
+<portlet:actionURL name="/synonyms/delete_synonym_sets" var="deleteSynonymSetActionURL">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 

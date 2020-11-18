@@ -45,7 +45,7 @@ RankingEntryDisplayContext rankingEntryDisplayContext = (RankingEntryDisplayCont
 	showWhenSingleIcon="<%= true %>"
 >
 	<portlet:renderURL var="editURL">
-		<portlet:param name="mvcRenderCommandName" value="editResultsRankingEntry" />
+		<portlet:param name="mvcRenderCommandName" value="/result_rankings/edit_results_rankings" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="resultsRankingUid" value="<%= rankingEntryDisplayContext.getUid() %>" />
 		<portlet:param name="aliases" value="<%= rankingEntryDisplayContext.getAliases() %>" />

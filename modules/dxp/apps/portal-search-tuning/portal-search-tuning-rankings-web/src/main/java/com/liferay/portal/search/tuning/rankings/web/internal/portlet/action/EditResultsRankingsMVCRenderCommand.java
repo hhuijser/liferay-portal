@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCRenderCommand.class
 )
-public class EditRankingMVCRenderCommand implements MVCRenderCommand {
+public class EditResultsRankingsMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

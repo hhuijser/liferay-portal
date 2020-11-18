@@ -112,6 +112,10 @@
 			<category name="Bug Prevention" />
 			<description name="Checks for correct use of property `Liferay-Enterprise-App`." />
 		</check>
+		<check name="BNDLiferayRelengBundleCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks `.lfrbuild-release-src` file that already exists when module is in `/modules/dxp/apps` and `Liferay-Releng-Bundle` is set `true`" />
+		</check>
 		<check name="BNDLiferayRelengCategoryCheck">
 			<category name="Bug Prevention" />
 			<description name="Validates `Liferay-Releng-Category` properties" />

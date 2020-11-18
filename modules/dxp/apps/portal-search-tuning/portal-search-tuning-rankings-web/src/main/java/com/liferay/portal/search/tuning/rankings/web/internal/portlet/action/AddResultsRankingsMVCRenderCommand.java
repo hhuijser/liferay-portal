@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ResultRankingsPortletKeys.RESULT_RANKINGS,
-		"mvc.command.name=addResultsRankingEntry"
+		"mvc.command.name=/result_rankings/add_results_rankings"
 	},
 	service = MVCRenderCommand.class
 )

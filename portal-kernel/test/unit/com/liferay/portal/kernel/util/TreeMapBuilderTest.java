@@ -122,22 +122,22 @@ public class TreeMapBuilderTest {
 		_testUnsafeSupplierValue(false, 2);
 		_testUnsafeSupplierValue(true, 3);
 
-		Map<String, Integer> map1 = new TreeMap<>();
+		Map<String, Integer> map = new TreeMap<>();
 
 		String s1 = "Hello World";
 
 		String[] array1 = StringUtil.split(s1, ' ');
 
-		map1.put(s1, array1.length);
+		map.put(s1, array1.length);
 
 		String s2 = "Hello World Hello World";
 
 		String[] array2 = StringUtil.split(s2, ' ');
 
-		map1.put(s2, array2.length);
+		map.put(s2, array2.length);
 
 		Assert.assertEquals(
-			map1,
+			map,
 			TreeMapBuilder.put(
 				s1,
 				() -> {

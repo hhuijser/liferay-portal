@@ -115,9 +115,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 		int emptyLineCount = 0;
 
-		for (int i = endLineNumber; i <= identDetailAST.getLineNo();
-			 i++) {
-
+		for (int i = endLineNumber; i <= identDetailAST.getLineNo(); i++) {
 			if (Validator.isNull(getLine(i - 1))) {
 				emptyLineCount++;
 

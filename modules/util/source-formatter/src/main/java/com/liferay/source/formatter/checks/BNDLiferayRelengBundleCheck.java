@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.BNDSourceUtil;
@@ -49,24 +50,21 @@ public class BNDLiferayRelengBundleCheck extends BaseFileCheck {
 			return content;
 		}
 
-		if (!_hasLfrbuildReleaseSrcFile(absolutePath)) {
-			addMessage(
-				fileName,
-				"Module in '/modules/dxp/apps/' directory and " +
-					"'Liferay-Enterprise-App' has value 'true' should have " +
-						"'.lfrbuild-release-src' file");
-		}
-
-		return content;
-	}
-
-	private boolean _hasLfrbuildReleaseSrcFile(String absolutePath) {
 		int pos = absolutePath.lastIndexOf(StringPool.SLASH);
 
 		File file = new File(
 			absolutePath.substring(0, pos + 1) + ".lfrbuild-release-src");
 
-		return file.exists();
+		if (!file.exists()) {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"DXP modules that have a 'app.bnd' file that contains ",
+					"'Liferay-Enterprise-App: true' should have a ",
+					"'.lfrbuild-release-src' file"));
+		}
+
+		return content;
 	}
 
 }

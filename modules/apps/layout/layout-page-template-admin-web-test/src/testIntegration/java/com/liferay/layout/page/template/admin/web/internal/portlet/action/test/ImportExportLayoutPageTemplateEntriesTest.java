@@ -324,20 +324,18 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 			inputFile1, _group.getGroupId(), false,
 			LayoutPageTemplatesImporterResultEntry.Status.IMPORTED);
 
-		Map<String, String> valuesMap2 = HashMapBuilder.put(
-			"CLASS_PK",
-			() -> {
-				JournalArticle journalArticle = _addJournalArticle(
-					_group.getGroupId());
-
-				return String.valueOf(journalArticle.getResourcePrimKey());
-			}
-		).build();
-
 		File inputFile2 = _generateZipFile(
 			"fragment/text_field/mapped_value/class_pk_reference/expected" +
 				"/fragment_available",
-			valuesMap2);
+			HashMapBuilder.put(
+				"CLASS_PK",
+				() -> {
+					JournalArticle journalArticle = _addJournalArticle(
+						_group.getGroupId());
+
+					return String.valueOf(journalArticle.getResourcePrimKey());
+				}
+			).build());
 
 		File outputFile = _importExportLayoutPageTemplateEntry(
 			inputFile2, _group.getGroupId(), false,
@@ -384,19 +382,17 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 
 		_addTextFragmentEntry();
 
-		Map<String, String> valuesMap1 = HashMapBuilder.put(
-			"CLASS_PK",
-			() -> {
-				JournalArticle journalArticle = _addJournalArticle(
-					_group.getGroupId());
-
-				return String.valueOf(journalArticle.getResourcePrimKey());
-			}
-		).build();
-
 		File inputFile1 = _generateZipFile(
 			"fragment/text_field/mapped_value/class_pk_reference/input",
-			valuesMap1);
+			HashMapBuilder.put(
+				"CLASS_PK",
+				() -> {
+					JournalArticle journalArticle = _addJournalArticle(
+						_group.getGroupId());
+
+					return String.valueOf(journalArticle.getResourcePrimKey());
+				}
+			).build());
 
 		_getImportLayoutPageTemplateEntry(
 			inputFile1, _group.getGroupId(), false,

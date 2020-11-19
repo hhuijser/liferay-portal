@@ -2372,50 +2372,52 @@ public class ServiceBuilder {
 					String sqlType = getSqlType(
 						name, entityColumn.getName(), entityColumn.getType());
 
-					Map<String, String> column = HashMapBuilder.put(
-						"dbName", entityColumn.getDBName()
-					).put(
-						"flag",
-						() -> {
-							if (entityColumn.isPrimary()) {
-								return "FLAG_PRIMARY";
+					columns.add(
+						HashMapBuilder.put(
+							"dbName", entityColumn.getDBName()
+						).put(
+							"flag",
+							() -> {
+								if (entityColumn.isPrimary()) {
+									return "FLAG_PRIMARY";
+								}
+
+								if (changeTrackingEnabled &&
+									Objects.equals(
+										entityColumn.getName(),
+										"ctCollectionId")) {
+
+									return "FLAG_PRIMARY";
+								}
+
+								if (Objects.equals(
+										entityColumn.getName(),
+										"mvccVersion")) {
+
+									return "FLAG_NULLITY";
+								}
+
+								return "FLAG_DEFAULT";
 							}
+						).put(
+							"javaType",
+							() -> {
+								if (entityColumn.isPrimitiveType()) {
+									return getPrimitiveObj(
+										entityColumn.getType());
+								}
 
-							if (changeTrackingEnabled &&
-								Objects.equals(
-									entityColumn.getName(), "ctCollectionId")) {
+								if (Objects.equals("CLOB", sqlType)) {
+									return "Clob";
+								}
 
-								return "FLAG_PRIMARY";
+								return entityColumn.getGenericizedType();
 							}
-
-							if (Objects.equals(
-									entityColumn.getName(), "mvccVersion")) {
-
-								return "FLAG_NULLITY";
-							}
-
-							return "FLAG_DEFAULT";
-						}
-					).put(
-						"javaType",
-						() -> {
-							if (entityColumn.isPrimitiveType()) {
-								return getPrimitiveObj(entityColumn.getType());
-							}
-
-							if (Objects.equals("CLOB", sqlType)) {
-								return "Clob";
-							}
-
-							return entityColumn.getGenericizedType();
-						}
-					).put(
-						"name", entityColumn.getName()
-					).put(
-						"sqlType", sqlType
-					).build();
-
-					columns.add(column);
+						).put(
+							"name", entityColumn.getName()
+						).put(
+							"sqlType", sqlType
+						).build());
 				}
 
 				return columns;

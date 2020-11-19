@@ -136,23 +136,23 @@ public class TreeMapBuilderTest {
 
 		map1.put(s2, array2.length);
 
-		Map<String, Integer> map2 = TreeMapBuilder.put(
-			s1,
-			() -> {
-				String[] array = StringUtil.split(s1, ' ');
+		Assert.assertEquals(
+			map1,
+			TreeMapBuilder.put(
+				s1,
+				() -> {
+					String[] array = StringUtil.split(s1, ' ');
 
-				return array.length;
-			}
-		).put(
-			s2,
-			() -> {
-				String[] array = StringUtil.split(s2, ' ');
+					return array.length;
+				}
+			).put(
+				s2,
+				() -> {
+					String[] array = StringUtil.split(s2, ' ');
 
-				return array.length;
-			}
-		).build();
-
-		Assert.assertEquals(map1, map2);
+					return array.length;
+				}
+			).build());
 	}
 
 	private <K, V> void _assertContainsAll(Map<K, V> map1, Map<K, V> map2) {

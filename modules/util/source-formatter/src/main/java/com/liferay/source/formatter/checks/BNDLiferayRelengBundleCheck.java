@@ -60,7 +60,7 @@ public class BNDLiferayRelengBundleCheck extends BaseFileCheck {
 				fileName,
 				StringBundler.concat(
 					"DXP modules that have a 'app.bnd' file that contains ",
-					"'Liferay-Enterprise-App: true' should have a ",
+					"'Liferay-Releng-Bundle: true' should have a ",
 					"'.lfrbuild-release-src' file"));
 		}
 

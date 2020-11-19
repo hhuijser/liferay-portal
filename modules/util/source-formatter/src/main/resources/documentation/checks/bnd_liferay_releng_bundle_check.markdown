@@ -1,4 +1,5 @@
 ## BNDLiferayRelengBundleCheck
 
-If module is in `/modules/dxp/apps` directory and `Liferay-Releng-Bundle` has
-value `true` should have `.lfrbuild-release-src`.
+DXP modules (modules located in `/modules/dxp/apps`) with
+`Liferay-Releng-Bundle: true` in `app.bnd` should always have a
+.lfrbuild-release-src` file.

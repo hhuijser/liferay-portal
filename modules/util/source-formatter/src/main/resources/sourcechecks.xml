@@ -114,7 +114,7 @@
 		</check>
 		<check name="BNDLiferayRelengBundleCheck">
 			<category name="Bug Prevention" />
-			<description name="Checks `.lfrbuild-release-src` file that already exists when module is in `/modules/dxp/apps` and `Liferay-Releng-Bundle` is set `true`" />
+			<description name="Checks if `.lfrbuild-release-src` file exists for DXP module with `Liferay-Releng-Bundle: true`" />
 		</check>
 		<check name="BNDLiferayRelengCategoryCheck">
 			<category name="Bug Prevention" />

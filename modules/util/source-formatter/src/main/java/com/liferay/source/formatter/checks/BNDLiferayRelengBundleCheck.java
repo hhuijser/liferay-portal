@@ -34,7 +34,9 @@ public class BNDLiferayRelengBundleCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (!absolutePath.endsWith("/app.bnd")) {
+		if (!absolutePath.endsWith("/app.bnd") ||
+			!absolutePath.contains("/modules/dxp/apps/")) {
+
 			return content;
 		}
 
@@ -42,8 +44,7 @@ public class BNDLiferayRelengBundleCheck extends BaseFileCheck {
 			content, "Liferay-Releng-Bundle");
 
 		if (Validator.isNull(liferayRelengBundle) ||
-			liferayRelengBundle.equals("false") ||
-			!absolutePath.contains("/modules/dxp/apps/")) {
+			liferayRelengBundle.equals("false")) {
 
 			return content;
 		}

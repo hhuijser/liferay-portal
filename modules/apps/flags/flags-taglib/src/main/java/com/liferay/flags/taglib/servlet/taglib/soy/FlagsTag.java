@@ -15,7 +15,7 @@
 package com.liferay.flags.taglib.servlet.taglib.soy;
 
 import com.liferay.flags.taglib.internal.frontend.js.loader.modules.extender.npm.NPMResolverProvider;
-import com.liferay.flags.taglib.servlet.taglib.util.FlagsTagUtil;
+import com.liferay.flags.taglib.internal.servlet.taglib.util.FlagsTagUtil;
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
 import com.liferay.frontend.taglib.soy.servlet.taglib.ComponentRendererTag;
 import com.liferay.petra.string.StringPool;

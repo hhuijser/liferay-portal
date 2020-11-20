@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.staging.taglib.servlet.taglib.base;
+package com.liferay.staging.taglib.servlet.taglib;
 
 import com.liferay.frontend.taglib.util.TagAccessor;
 import com.liferay.frontend.taglib.util.TagResourceHandler;

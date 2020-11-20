@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sharing.taglib.util;
+package com.liferay.sharing.taglib.internal.util;
 
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetRenderer;

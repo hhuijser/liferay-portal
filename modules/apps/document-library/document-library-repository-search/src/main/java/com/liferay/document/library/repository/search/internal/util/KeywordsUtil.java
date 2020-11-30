@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.repository.search.util;
+package com.liferay.document.library.repository.search.internal.util;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;

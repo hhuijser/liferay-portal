@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.collection.contributor.navigation.bars;
+package com.liferay.fragment.collection.contributor.footers.internal;
 
 import com.liferay.fragment.contributor.BaseFragmentCollectionContributor;
 import com.liferay.fragment.contributor.FragmentCollectionContributor;
@@ -27,15 +27,15 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(
-	property = "fragment.collection.key=NAVIGATION_BARS",
+	property = "fragment.collection.key=FOOTERS",
 	service = FragmentCollectionContributor.class
 )
-public class NavigationBarsFragmentCollectionContributor
+public class FootersFragmentCollectionContributor
 	extends BaseFragmentCollectionContributor {
 
 	@Override
 	public String getFragmentCollectionKey() {
-		return "NAVIGATION_BARS";
+		return "FOOTERS";
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class NavigationBarsFragmentCollectionContributor
 	private PortletAliasRegistration _portletAliasRegistration;
 
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.fragment.collection.contributor.navigation.bars)"
+		target = "(osgi.web.symbolicname=com.liferay.fragment.collection.contributor.footers)"
 	)
 	private ServletContext _servletContext;
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.frontend.js.minifier.configuration;
+package com.liferay.frontend.js.minifier.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 

@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.frontend.js.minifier;
+package com.liferay.frontend.js.minifier.internal;
 
-import com.liferay.frontend.js.minifier.configuration.YahooJavaScriptMinifierConfiguration;
+import com.liferay.frontend.js.minifier.internal.configuration.YahooJavaScriptMinifierConfiguration;
 import com.liferay.petra.io.unsync.UnsyncStringReader;
 import com.liferay.petra.io.unsync.UnsyncStringWriter;
 import com.liferay.petra.string.StringBundler;

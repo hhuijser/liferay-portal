@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.frontend.js.minifier;
+package com.liferay.frontend.js.minifier.internal;
 
 import com.google.javascript.jscomp.BasicErrorManager;
 import com.google.javascript.jscomp.CheckLevel;

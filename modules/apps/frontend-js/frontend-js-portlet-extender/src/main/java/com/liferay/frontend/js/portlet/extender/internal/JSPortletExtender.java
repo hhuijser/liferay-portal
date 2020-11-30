@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.frontend.js.portlet.extender;
+package com.liferay.frontend.js.portlet.extender.internal;
 
 import com.liferay.dynamic.data.mapping.form.renderer.DDMFormRenderer;
 import com.liferay.dynamic.data.mapping.form.values.factory.DDMFormValuesFactory;

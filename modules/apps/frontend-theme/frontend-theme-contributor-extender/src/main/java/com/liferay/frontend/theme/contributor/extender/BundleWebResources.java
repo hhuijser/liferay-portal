@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.frontend.theme.contributor.extender;
+package com.liferay.frontend.theme.contributor.extender.internal;
 
 import java.util.Collection;
 

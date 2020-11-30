@@ -949,7 +949,7 @@ public abstract class BaseCheck extends AbstractCheck {
 			detailAST, true, TokenTypes.IDENT);
 
 		for (DetailAST identDetailAST : identDetailASTList) {
-			if (_isMethodNameDetailAST(identDetailAST) ||
+			if (isMethodNameDetailAST(identDetailAST) ||
 				dependentIdentDetailASTList.contains(identDetailAST)) {
 
 				continue;
@@ -1033,7 +1033,7 @@ public abstract class BaseCheck extends AbstractCheck {
 			detailAST, true, TokenTypes.IDENT);
 
 		for (DetailAST identDetailAST : identDetailASTList) {
-			if (_isMethodNameDetailAST(identDetailAST)) {
+			if (isMethodNameDetailAST(identDetailAST)) {
 				continue;
 			}
 
@@ -1130,7 +1130,7 @@ public abstract class BaseCheck extends AbstractCheck {
 		return false;
 	}
 
-	private boolean _isMethodNameDetailAST(DetailAST identDetailAST) {
+	protected boolean isMethodNameDetailAST(DetailAST identDetailAST) {
 		DetailAST parentDetailAST = identDetailAST.getParent();
 
 		if (parentDetailAST.getType() == TokenTypes.METHOD_CALL) {

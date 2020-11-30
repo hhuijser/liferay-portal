@@ -222,6 +222,13 @@ public abstract class BaseCheck extends AbstractCheck {
 			StringPool.PERIOD + typeName;
 	}
 
+	protected CommonHiddenStreamToken getHiddenAfter(DetailAST detailAST) {
+		CommonASTWithHiddenTokens commonASTWithHiddenTokens =
+			(CommonASTWithHiddenTokens)detailAST;
+
+		return commonASTWithHiddenTokens.getHiddenAfter();
+	}
+
 	protected CommonHiddenStreamToken getHiddenBefore(DetailAST detailAST) {
 		CommonASTWithHiddenTokens commonASTWithHiddenTokens =
 			(CommonASTWithHiddenTokens)detailAST;

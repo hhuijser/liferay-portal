@@ -903,6 +903,28 @@ public abstract class BaseCheck extends AbstractCheck {
 		return false;
 	}
 
+	protected boolean isMethodNameDetailAST(DetailAST identDetailAST) {
+		DetailAST parentDetailAST = identDetailAST.getParent();
+
+		if (parentDetailAST.getType() == TokenTypes.METHOD_CALL) {
+			return true;
+		}
+
+		if (parentDetailAST.getType() != TokenTypes.DOT) {
+			return false;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if ((parentDetailAST.getType() == TokenTypes.METHOD_CALL) &&
+			(identDetailAST.getNextSibling() == null)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	protected static final int ALL_TYPES = DetailASTUtil.ALL_TYPES;
 
 	protected static final int[] ARITHMETIC_OPERATOR_TOKEN_TYPES = {
@@ -1123,28 +1145,6 @@ public abstract class BaseCheck extends AbstractCheck {
 			(parentDetailAST.getType() == TokenTypes.POST_DEC) ||
 			(parentDetailAST.getType() == TokenTypes.POST_INC) ||
 			(parentDetailAST.getType() == TokenTypes.VARIABLE_DEF)) {
-
-			return true;
-		}
-
-		return false;
-	}
-
-	protected boolean isMethodNameDetailAST(DetailAST identDetailAST) {
-		DetailAST parentDetailAST = identDetailAST.getParent();
-
-		if (parentDetailAST.getType() == TokenTypes.METHOD_CALL) {
-			return true;
-		}
-
-		if (parentDetailAST.getType() != TokenTypes.DOT) {
-			return false;
-		}
-
-		parentDetailAST = parentDetailAST.getParent();
-
-		if ((parentDetailAST.getType() == TokenTypes.METHOD_CALL) &&
-			(identDetailAST.getNextSibling() == null)) {
 
 			return true;
 		}

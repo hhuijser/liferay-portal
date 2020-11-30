@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.data.provider.instance;
+package com.liferay.dynamic.data.mapping.data.provider.instance.internal;
 
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProvider;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderException;

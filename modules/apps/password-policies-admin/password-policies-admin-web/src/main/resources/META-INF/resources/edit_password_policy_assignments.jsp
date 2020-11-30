@@ -45,6 +45,7 @@ PortletURL homeURL = renderResponse.createRenderURL();
 homeURL.setParameter("mvcPath", "/view.jsp");
 
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "password-policies"), homeURL.toString());
+
 PortalUtil.addPortletBreadcrumbEntry(request, passwordPolicy.getName(), null);
 
 EditPasswordPolicyAssignmentsManagementToolbarDisplayContext editPasswordPolicyAssignmentsManagementToolbarDisplayContext = new EditPasswordPolicyAssignmentsManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle, "/edit_password_policy_assignments.jsp");

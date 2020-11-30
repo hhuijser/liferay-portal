@@ -20,6 +20,7 @@
 CommerceAccountAdminDisplayContext commerceAccountAdminDisplayContext = (CommerceAccountAdminDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceAccount commerceAccount = commerceAccountAdminDisplayContext.getCommerceAccount();
+
 PortletURL portletURL = commerceAccountAdminDisplayContext.getPortletURL();
 
 portletURL.setParameter("mvcRenderCommandName", "editCommerceAccount");

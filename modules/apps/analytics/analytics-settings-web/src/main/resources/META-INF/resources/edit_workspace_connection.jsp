@@ -27,6 +27,7 @@ long totalContactsSelected = 0;
 
 if (analyticsConfiguration != null) {
 	syncedGroupIds = analyticsConfiguration.syncedGroupIds();
+
 	token = analyticsConfiguration.token();
 
 	if (!Validator.isBlank(token)) {

@@ -21,6 +21,7 @@ List<ScopeDisplay> scopeDisplays = (List<ScopeDisplay>)request.getAttribute(UADW
 int totalReviewableUADEntitiesCount = (int)request.getAttribute(UADWebKeys.TOTAL_UAD_ENTITIES_COUNT);
 List<UADApplicationSummaryDisplay> uadApplicationSummaryDisplays = (List<UADApplicationSummaryDisplay>)request.getAttribute(UADWebKeys.UAD_APPLICATION_SUMMARY_DISPLAY_LIST);
 List<UADDisplay<?>> uadDisplays = (List<UADDisplay<?>>)request.getAttribute(UADWebKeys.APPLICATION_UAD_DISPLAYS);
+
 ViewUADEntitiesDisplay viewUADEntitiesDisplay = (ViewUADEntitiesDisplay)request.getAttribute(UADWebKeys.VIEW_UAD_ENTITIES_DISPLAY);
 
 long[] groupIds = viewUADEntitiesDisplay.getGroupIds();

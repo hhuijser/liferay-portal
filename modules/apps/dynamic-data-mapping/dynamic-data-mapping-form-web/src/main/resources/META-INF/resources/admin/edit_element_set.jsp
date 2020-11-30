@@ -22,6 +22,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 DDMStructure structure = ddmFormAdminDisplayContext.getDDMStructure();
 
 long groupId = BeanParamUtil.getLong(structure, request, "groupId", scopeGroupId);
+
 long structureId = ParamUtil.getLong(request, "structureId");
 
 if (structure != null) {

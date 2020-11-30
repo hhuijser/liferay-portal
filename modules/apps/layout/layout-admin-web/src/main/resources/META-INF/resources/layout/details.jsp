@@ -18,6 +18,7 @@
 
 <%
 Group group = layoutsAdminDisplayContext.getGroup();
+
 Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 
 LayoutType selLayoutType = selLayout.getLayoutType();

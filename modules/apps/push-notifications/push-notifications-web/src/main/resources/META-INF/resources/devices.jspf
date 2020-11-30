@@ -16,6 +16,7 @@
 
 <%
 String displayStyle = ParamUtil.getString(request, "displayStyle", "list");
+
 String orderByCol = ParamUtil.getString(request, "orderByCol", "platform");
 String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 

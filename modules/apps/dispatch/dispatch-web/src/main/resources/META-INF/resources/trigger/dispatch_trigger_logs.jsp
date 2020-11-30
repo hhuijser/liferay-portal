@@ -20,6 +20,7 @@
 DispatchLogDisplayContext dispatchLogDisplayContext = (DispatchLogDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 DispatchTrigger dispatchTrigger = dispatchLogDisplayContext.getDispatchTrigger();
+
 PortletURL portletURL = dispatchLogDisplayContext.getPortletURL();
 
 portletURL.setParameter("searchContainerId", "dispatchLogs");

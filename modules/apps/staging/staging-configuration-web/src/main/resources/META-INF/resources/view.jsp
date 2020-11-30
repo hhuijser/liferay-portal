@@ -21,17 +21,21 @@ GroupDisplayContextHelper groupDisplayContextHelper = new GroupDisplayContextHel
 
 liveGroup = groupDisplayContextHelper.getLiveGroup();
 liveGroupId = groupDisplayContextHelper.getLiveGroupId();
+
 UnicodeProperties liveGroupTypeSettings = liveGroup.getTypeSettingsProperties();
 
 LayoutSet privateLayoutSet = LayoutSetLocalServiceUtil.getLayoutSet(liveGroup.getGroupId(), true);
 LayoutSet publicLayoutSet = LayoutSetLocalServiceUtil.getLayoutSet(liveGroup.getGroupId(), false);
 
 boolean liveGroupRemoteStaging = liveGroup.hasRemoteStagingGroup() && PropsValues.STAGING_LIVE_GROUP_REMOTE_STAGING_ENABLED;
+
 boolean stagedLocally = liveGroup.isStaged() && !liveGroup.isStagedRemotely();
+
 boolean stagedRemotely = liveGroup.isStaged() && !stagedLocally;
 
 if (stagedLocally) {
 	stagingGroup = liveGroup.getStagingGroup();
+
 	stagingGroupId = stagingGroup.getGroupId();
 }
 

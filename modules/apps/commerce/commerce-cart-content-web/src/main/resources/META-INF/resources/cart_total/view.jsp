@@ -33,6 +33,7 @@ CommerceOrderPrice commerceOrderPrice = commerceCartContentTotalDisplayContext.g
 
 if (commerceOrderPrice != null) {
 	subtotalCommerceMoney = commerceOrderPrice.getSubtotal();
+
 	subtotalCommerceDiscountValue = commerceOrderPrice.getSubtotalDiscountValue();
 
 	if (subtotalCommerceDiscountValue != null) {
@@ -41,6 +42,7 @@ if (commerceOrderPrice != null) {
 
 	taxValueCommerceMoney = commerceOrderPrice.getTaxValue();
 	totalOrderCommerceMoney = commerceOrderPrice.getTotal();
+
 	totalCommerceDiscountValue = commerceOrderPrice.getTotalDiscountValue();
 
 	if (totalCommerceDiscountValue != null) {
@@ -49,6 +51,7 @@ if (commerceOrderPrice != null) {
 
 	if (priceDisplayType.equals(CommercePricingConstants.TAX_INCLUDED_IN_PRICE)) {
 		subtotalCommerceMoney = commerceOrderPrice.getSubtotalWithTaxAmount();
+
 		subtotalCommerceDiscountValue = commerceOrderPrice.getSubtotalDiscountValueWithTaxAmount();
 
 		if (subtotalCommerceDiscountValue != null) {
@@ -56,6 +59,7 @@ if (commerceOrderPrice != null) {
 		}
 
 		totalOrderCommerceMoney = commerceOrderPrice.getTotalWithTaxAmount();
+
 		totalCommerceDiscountValue = commerceOrderPrice.getTotalDiscountValueWithTaxAmount();
 
 		if (totalCommerceDiscountValue != null) {

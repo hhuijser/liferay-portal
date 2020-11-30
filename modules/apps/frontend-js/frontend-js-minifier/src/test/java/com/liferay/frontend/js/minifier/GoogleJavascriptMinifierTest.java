@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.frontend.js.minifier;
+package com.liferay.frontend.js.minifier;
 
 import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;

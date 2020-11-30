@@ -20,6 +20,7 @@
 CommerceDataIntegrationProcessLogDisplayContext commerceDataIntegrationProcessLogDisplayContext = (CommerceDataIntegrationProcessLogDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceDataIntegrationProcess commerceDataIntegrationProcess = commerceDataIntegrationProcessLogDisplayContext.getCommerceDataIntegrationProcess();
+
 PortletURL portletURL = commerceDataIntegrationProcessLogDisplayContext.getPortletURL();
 
 portletURL.setParameter("searchContainerId", "commerceDataIntegrationProcessLogs");

@@ -27,6 +27,7 @@ groups.addAll(userDisplayContext.getInheritedSiteGroups());
 List<Organization> organizations = userDisplayContext.getOrganizations();
 
 Long[] organizationIds = UsersAdminUtil.getOrganizationIds(organizations);
+
 List<Role> roles = userDisplayContext.getRoles();
 List<UserGroupRole> organizationRoles = userDisplayContext.getOrganizationRoles();
 List<UserGroupRole> siteRoles = userDisplayContext.getSiteRoles();

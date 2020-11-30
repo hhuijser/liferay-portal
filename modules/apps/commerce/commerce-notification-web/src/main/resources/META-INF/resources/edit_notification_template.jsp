@@ -27,6 +27,7 @@ String from = BeanParamUtil.getString(commerceNotificationTemplate, renderReques
 String fromName = BeanParamUtil.getString(commerceNotificationTemplate, renderRequest, "fromName");
 String cc = BeanParamUtil.getString(commerceNotificationTemplate, renderRequest, "cc");
 String bcc = BeanParamUtil.getString(commerceNotificationTemplate, renderRequest, "bcc");
+
 String type = BeanParamUtil.getString(commerceNotificationTemplate, renderRequest, "type");
 
 CommerceNotificationType commerceNotificationType = commerceNotificationTemplatesDisplayContext.getCommerceNotificationType(type);

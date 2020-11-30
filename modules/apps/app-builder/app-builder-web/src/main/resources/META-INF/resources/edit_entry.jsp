@@ -18,6 +18,7 @@
 
 <%
 AppBuilderApp appBuilderApp = (AppBuilderApp)request.getAttribute(AppBuilderWebKeys.APP);
+
 AppBuilderAppPortletTabContext appBuilderAppPortletTabContext = (AppBuilderAppPortletTabContext)request.getAttribute(AppBuilderWebKeys.APP_TAB_CONTEXT);
 
 List<Long> dataLayoutIds = appBuilderAppPortletTabContext.getDataLayoutIds();

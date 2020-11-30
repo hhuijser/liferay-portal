@@ -20,6 +20,7 @@
 CommerceAccountGroupAdminDisplayContext commerceAccountGroupAdminDisplayContext = (CommerceAccountGroupAdminDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceAccountGroup commerceAccountGroup = commerceAccountGroupAdminDisplayContext.getCommerceAccountGroup();
+
 PortletURL portletURL = commerceAccountGroupAdminDisplayContext.getPortletURL();
 
 portletURL.setParameter("mvcRenderCommandName", "editCommerceAccountGroup");

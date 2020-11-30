@@ -30,6 +30,7 @@ if (oAuth2Application != null) {
 }
 
 String oAuth2ApplicationIdString = String.valueOf(oAuth2ApplicationId);
+
 String headerTitle = LanguageUtil.get(request, "add-o-auth2-application");
 
 if (oAuth2Application != null) {

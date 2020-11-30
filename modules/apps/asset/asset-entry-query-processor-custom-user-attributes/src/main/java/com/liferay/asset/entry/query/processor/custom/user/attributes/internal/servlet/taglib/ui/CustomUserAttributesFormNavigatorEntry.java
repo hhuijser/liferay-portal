@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.entry.query.processor.custom.user.attributes.servlet.taglib.ui;
+package com.liferay.asset.entry.query.processor.custom.user.attributes.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;

@@ -12,11 +12,10 @@
  * details.
  */
 
-package com.liferay.fragment.collection.contributor.footers;
+package com.liferay.fragment.collection.contributor.featured.content.internal;
 
 import com.liferay.fragment.contributor.BaseFragmentCollectionContributor;
 import com.liferay.fragment.contributor.FragmentCollectionContributor;
-import com.liferay.fragment.contributor.PortletAliasRegistration;
 
 import javax.servlet.ServletContext;
 
@@ -27,15 +26,15 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(
-	property = "fragment.collection.key=FOOTERS",
+	property = "fragment.collection.key=FEATURED_CONTENT",
 	service = FragmentCollectionContributor.class
 )
-public class FootersFragmentCollectionContributor
+public class FeaturedContentFragmentCollectionContributor
 	extends BaseFragmentCollectionContributor {
 
 	@Override
 	public String getFragmentCollectionKey() {
-		return "FOOTERS";
+		return "FEATURED_CONTENT";
 	}
 
 	@Override
@@ -44,12 +43,7 @@ public class FootersFragmentCollectionContributor
 	}
 
 	@Reference(
-		target = "(com.liferay.fragment.entry.processor.portlet.alias=nav)"
-	)
-	private PortletAliasRegistration _portletAliasRegistration;
-
-	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.fragment.collection.contributor.footers)"
+		target = "(osgi.web.symbolicname=com.liferay.fragment.collection.contributor.featured.content)"
 	)
 	private ServletContext _servletContext;
 

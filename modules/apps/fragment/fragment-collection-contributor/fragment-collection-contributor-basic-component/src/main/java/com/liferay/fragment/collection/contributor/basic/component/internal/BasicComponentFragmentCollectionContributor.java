@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.collection.contributor.featured.content;
+package com.liferay.fragment.collection.contributor.basic.component.internal;
 
 import com.liferay.fragment.contributor.BaseFragmentCollectionContributor;
 import com.liferay.fragment.contributor.FragmentCollectionContributor;
@@ -23,18 +23,18 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Eudaldo Alonso
+ * @author Jürgen Kappler
  */
 @Component(
-	property = "fragment.collection.key=FEATURED_CONTENT",
+	property = "fragment.collection.key=BASIC_COMPONENT",
 	service = FragmentCollectionContributor.class
 )
-public class FeaturedContentFragmentCollectionContributor
+public class BasicComponentFragmentCollectionContributor
 	extends BaseFragmentCollectionContributor {
 
 	@Override
 	public String getFragmentCollectionKey() {
-		return "FEATURED_CONTENT";
+		return "BASIC_COMPONENT";
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class FeaturedContentFragmentCollectionContributor
 	}
 
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.fragment.collection.contributor.featured.content)"
+		target = "(osgi.web.symbolicname=com.liferay.fragment.collection.contributor.basic.component)"
 	)
 	private ServletContext _servletContext;
 

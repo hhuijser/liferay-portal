@@ -156,9 +156,11 @@ Map<String, ThemeSetting> configurableSettings = selTheme.getConfigurableSetting
 
 	for (Map.Entry<String, ThemeSetting> entry : configurableSettings.entrySet()) {
 		String name = LanguageUtil.get(selThemeResourceBundle, entry.getKey());
+
 		ThemeSetting themeSetting = entry.getValue();
 
 		String type = GetterUtil.getString(themeSetting.getType(), "text");
+
 		String value = StringPool.BLANK;
 
 		if (useDefaultThemeSettings) {

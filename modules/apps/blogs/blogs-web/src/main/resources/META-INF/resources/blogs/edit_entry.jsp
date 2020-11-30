@@ -496,6 +496,7 @@ if (entry != null) {
 	portletURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
 
 	PortalUtil.addPortletBreadcrumbEntry(request, BlogsEntryUtil.getDisplayTitle(resourceBundle, entry), portletURL.toString());
+
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "edit"), currentURL);
 }
 else {

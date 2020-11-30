@@ -20,6 +20,7 @@
 CommerceDiscountDisplayContext commerceDiscountDisplayContext = (CommerceDiscountDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceDiscount commerceDiscount = commerceDiscountDisplayContext.getCommerceDiscount();
+
 PortletURL portletURL = commerceDiscountDisplayContext.getPortletURL();
 
 portletURL.setParameter("mvcRenderCommandName", "editCommerceDiscount");

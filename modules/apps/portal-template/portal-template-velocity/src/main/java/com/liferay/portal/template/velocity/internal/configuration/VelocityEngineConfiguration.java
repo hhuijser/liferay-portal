@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.template.velocity.configuration;
+package com.liferay.portal.template.velocity.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 

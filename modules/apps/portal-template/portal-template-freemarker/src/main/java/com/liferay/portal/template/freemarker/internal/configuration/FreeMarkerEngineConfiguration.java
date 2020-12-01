@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.template.freemarker.configuration;
+package com.liferay.portal.template.freemarker.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 

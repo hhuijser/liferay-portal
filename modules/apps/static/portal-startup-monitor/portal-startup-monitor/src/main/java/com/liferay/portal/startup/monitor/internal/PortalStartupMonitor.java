@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.startup.monitor;
+package com.liferay.portal.startup.monitor.internal;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;

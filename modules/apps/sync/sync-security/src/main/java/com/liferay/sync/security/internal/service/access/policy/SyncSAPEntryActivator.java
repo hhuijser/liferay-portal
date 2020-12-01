@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.security.service.access.policy;
+package com.liferay.sync.security.internal.service.access.policy;
 
 import com.liferay.portal.instance.lifecycle.BasePortalInstanceLifecycleListener;
 import com.liferay.portal.instance.lifecycle.PortalInstanceLifecycleListener;

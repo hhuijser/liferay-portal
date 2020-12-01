@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.security.auth.verifier;
+package com.liferay.sync.security.internal.auth.verifier;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;

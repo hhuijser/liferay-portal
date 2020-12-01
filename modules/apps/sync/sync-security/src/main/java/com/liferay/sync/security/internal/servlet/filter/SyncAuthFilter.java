@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.security.servlet.filter;
+package com.liferay.sync.security.internal.servlet.filter;
 
 import com.liferay.portal.kernel.security.access.control.AccessControlUtil;
 import com.liferay.portal.kernel.security.auth.AccessControlContext;
@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.security.auth.verifier.AuthVerifierResult;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.service.access.policy.ServiceAccessPolicy;
-import com.liferay.sync.security.service.access.policy.SyncSAPEntryActivator;
+import com.liferay.sync.security.internal.service.access.policy.SyncSAPEntryActivator;
 
 import java.io.IOException;
 

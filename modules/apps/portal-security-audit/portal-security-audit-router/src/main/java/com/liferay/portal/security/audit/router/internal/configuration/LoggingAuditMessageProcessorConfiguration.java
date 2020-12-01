@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.audit.router.configuration;
+package com.liferay.portal.security.audit.router.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -24,16 +24,22 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "audit")
 @Meta.OCD(
-	id = "com.liferay.portal.security.audit.router.configuration.CSVLogMessageFormatterConfiguration",
+	id = "com.liferay.portal.security.audit.router.configuration.LoggingAuditMessageProcessorConfiguration",
 	localization = "content/Language",
-	name = "csv-log-message-formatter-configuration-name"
+	name = "logging-audit-message-processor-configuration-name"
 )
-public interface CSVLogMessageFormatterConfiguration {
+public interface LoggingAuditMessageProcessorConfiguration {
+
+	@Meta.AD(deflt = "false", name = "enabled", required = false)
+	public boolean enabled();
 
 	@Meta.AD(
-		deflt = "additionalInfo|className|classPK|clientHost|clientIP|companyId|eventType|message|serverName|serverPort|sessionID|timestamp|userId|userName",
-		name = "columns", required = false
+		deflt = "CSV", name = "log-message-format",
+		optionValues = {"CSV", "JSON"}, required = false
 	)
-	public String[] columns();
+	public String logMessageFormat();
+
+	@Meta.AD(deflt = "false", name = "output-to-console", required = false)
+	public boolean outputToConsole();
 
 }

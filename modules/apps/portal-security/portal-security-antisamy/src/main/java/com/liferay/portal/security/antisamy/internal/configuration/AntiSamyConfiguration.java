@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.antisamy.configuration;
+package com.liferay.portal.security.antisamy.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 

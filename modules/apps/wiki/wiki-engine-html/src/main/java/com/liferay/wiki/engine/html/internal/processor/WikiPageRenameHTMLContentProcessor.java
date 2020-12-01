@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.engine.html.processor;
+package com.liferay.wiki.engine.html.internal.processor;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;

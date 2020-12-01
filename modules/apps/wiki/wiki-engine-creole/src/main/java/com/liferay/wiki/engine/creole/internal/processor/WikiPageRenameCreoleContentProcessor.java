@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.engine.creole.processor;
+package com.liferay.wiki.engine.creole.internal.processor;
 
 import com.liferay.wiki.processor.BaseWikiPageRenameContentProcessor;
 import com.liferay.wiki.processor.WikiPageRenameContentProcessor;

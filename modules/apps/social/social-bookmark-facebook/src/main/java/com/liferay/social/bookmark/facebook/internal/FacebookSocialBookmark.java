@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.social.bookmark.facebook;
+package com.liferay.social.bookmark.facebook.internal;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;

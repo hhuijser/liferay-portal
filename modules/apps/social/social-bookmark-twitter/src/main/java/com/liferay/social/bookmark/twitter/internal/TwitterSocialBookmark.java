@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.social.bookmark.linkedin;
+package com.liferay.social.bookmark.twitter.internal;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -39,26 +39,25 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	property = {
-		"social.bookmarks.priority:Integer=1", "social.bookmarks.type=linkedin"
+		"social.bookmarks.priority:Integer=3", "social.bookmarks.type=twitter"
 	},
 	service = SocialBookmark.class
 )
-public class LinkedInSocialBookmark implements SocialBookmark {
+public class TwitterSocialBookmark implements SocialBookmark {
 
 	@Override
 	public String getName(Locale locale) {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			locale, LinkedInSocialBookmark.class);
+			locale, TwitterSocialBookmark.class);
 
-		return LanguageUtil.get(resourceBundle, "linkedin");
+		return LanguageUtil.get(resourceBundle, "twitter");
 	}
 
 	@Override
 	public String getPostURL(String title, String url) {
 		return String.format(
-			"http://www.linkedin.com/shareArticle?title=%s&mini=true&url=%s" +
-				"&summary=",
-			URLCodec.encodeURL(title), URLCodec.encodeURL(url));
+			"https://twitter.com/intent/tweet?text=%s&tw_p=tweetbutton&url=%s",
+			URLCodec.encodeURL(title), url);
 	}
 
 	@Override
@@ -75,7 +74,7 @@ public class LinkedInSocialBookmark implements SocialBookmark {
 	}
 
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.social.bookmark.linkedin)"
+		target = "(osgi.web.symbolicname=com.liferay.social.bookmark.twitter)"
 	)
 	private ServletContext _servletContext;
 

@@ -43,7 +43,7 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 		Matcher matcher = _descriptionPattern.matcher(content);
 
 		while (matcher.find()) {
-			String match = matcher.group(3);
+			String match = matcher.group(4);
 
 			if (match.contains(": ")) {
 				continue;
@@ -55,13 +55,14 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 
 			String indent = matcher.group(2) + StringPool.FOUR_SPACES;
 
-			description =
-				_splitDescription(indent + description, indent, maxLineLength) +
-					"\n";
+			description = _splitDescription(
+				indent + description, indent, maxLineLength);
+
+			description = StringPool.NEW_LINE + description;
 
 			if (!StringUtil.equals(match, description)) {
 				return StringUtil.replaceFirst(
-					content, match, description, matcher.start(3));
+					content, match, description, matcher.start(4));
 			}
 		}
 
@@ -84,7 +85,7 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 		if (x > maxLineLength) {
 			String s = indent + description.substring(x + 1);
 
-			return description.substring(0, x) + "\n" +
+			return description.substring(0, x) + StringPool.NEW_LINE +
 				_splitDescription(s, indent, maxLineLength);
 		}
 
@@ -92,13 +93,13 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 
 		String s = indent + description.substring(x + 1);
 
-		return description.substring(0, x) + "\n" +
+		return description.substring(0, x) + StringPool.NEW_LINE +
 			_splitDescription(s, indent, maxLineLength);
 	}
 
 	private static final String _MAX_LINE_LENGTH = "maxLineLength";
 
 	private static final Pattern _descriptionPattern = Pattern.compile(
-		"(\n( +)description:\n)((\\2 +.+\n)+)");
+		"(\n( +)description:(\n\\2 +#.*)*)((\n\\2 +.+)+)");
 
 }

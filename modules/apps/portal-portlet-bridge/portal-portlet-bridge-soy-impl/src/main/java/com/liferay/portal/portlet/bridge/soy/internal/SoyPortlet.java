@@ -427,12 +427,10 @@ public class SoyPortlet extends MVCPortlet {
 	private Template _createRequestTemplate(PortletRequest portletRequest)
 		throws TemplateException {
 
-		List<TemplateResource> templateResources = _getTemplateResources();
-
 		Template template = TemplateManagerUtil.getTemplate(
 			TemplateConstants.LANG_TYPE_SOY,
 			SoyTemplateResourceFactoryUtil.createSoyTemplateResource(
-				templateResources),
+				_getTemplateResources()),
 			false);
 
 		portletRequest.setAttribute(WebKeys.TEMPLATE, template);

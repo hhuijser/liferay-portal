@@ -964,9 +964,8 @@ public class PoshiContext {
 		throws Exception {
 
 		for (String baseDirName : baseDirNames) {
-			List<URL> poshiURLs = _getPoshiURLs(includes, baseDirName);
-
-			_storeRootElements(poshiURLs, _DEFAULT_NAMESPACE);
+			_storeRootElements(
+				_getPoshiURLs(includes, baseDirName), _DEFAULT_NAMESPACE);
 		}
 	}
 

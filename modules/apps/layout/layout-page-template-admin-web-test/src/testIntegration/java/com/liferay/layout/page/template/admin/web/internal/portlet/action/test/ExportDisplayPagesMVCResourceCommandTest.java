@@ -300,12 +300,9 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 
 		String className = "com.liferay.journal.model.JournalArticle";
 
-		long classNameId = _portal.getClassNameId(className);
-		long classTypeId = _getClassTypeId(className);
-
 		return _layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 			_serviceContext.getUserId(), _serviceContext.getScopeGroupId(), 0,
-			classNameId, classTypeId, name,
+			_portal.getClassNameId(className), _getClassTypeId(className), name,
 			LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, status,
 			_serviceContext);
 	}

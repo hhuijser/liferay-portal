@@ -577,15 +577,12 @@ public class JournalArticleContentDashboardItemTest {
 		ContentDashboardItemActionProvider contentDashboardItemActionProvider =
 			Mockito.mock(ContentDashboardItemActionProvider.class);
 
-		ContentDashboardItemAction contentDashboardItemAction =
-			_getContentDashboardItemAction(url);
-
 		Mockito.when(
 			contentDashboardItemActionProvider.getContentDashboardItemAction(
 				Mockito.any(JournalArticle.class),
 				Mockito.any(HttpServletRequest.class))
 		).thenReturn(
-			contentDashboardItemAction
+			_getContentDashboardItemAction(url)
 		);
 
 		Mockito.when(

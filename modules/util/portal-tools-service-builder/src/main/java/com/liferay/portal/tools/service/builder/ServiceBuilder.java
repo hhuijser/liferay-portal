@@ -2638,9 +2638,7 @@ public class ServiceBuilder {
 		Map<String, JavaMethod> methods = new LinkedHashMap<>();
 
 		for (JavaMethod method : _getMethods(modelImplJavaClass)) {
-			String methodSignature = _getMethodSignature(method, false);
-
-			methods.put(methodSignature, method);
+			methods.put(_getMethodSignature(method, false), method);
 		}
 
 		Set<Map.Entry<String, JavaMethod>> entrySet = methods.entrySet();
@@ -2664,9 +2662,7 @@ public class ServiceBuilder {
 				_serviceOutputPath, "/model/", entity.getName(), "Model.java"));
 
 		for (JavaMethod method : _getMethods(modelJavaClass)) {
-			String methodSignature = _getMethodSignature(method, false);
-
-			methods.remove(methodSignature);
+			methods.remove(_getMethodSignature(method, false));
 		}
 
 		Map<String, Object> context = _getContext();
@@ -3729,9 +3725,8 @@ public class ServiceBuilder {
 			return;
 		}
 
-		Map<String, Object> context = _getContext();
-
-		String content = _processTemplate(_tplServletContextUtil, context);
+		String content = _processTemplate(
+			_tplServletContextUtil, _getContext());
 
 		File file = new File(
 			_serviceOutputPath + "/service/ServletContextUtil.java");

@@ -85,9 +85,7 @@ public class ManagementToolbarTag extends BaseClayTag {
 		if (searchFormMethod.equals("GET") &&
 			Validator.isNotNull(searchActionURL)) {
 
-			Map<String, Object> searchData = _getSearchData(searchActionURL);
-
-			putValue("searchData", searchData);
+			putValue("searchData", _getSearchData(searchActionURL));
 
 			String contentRenderer = GetterUtil.getString(
 				context.get("contentRenderer"),

@@ -50,16 +50,13 @@ public class AvalaraCommerceTaxEngine implements CommerceTaxEngine {
 
 	@Override
 	public String getDescription(Locale locale) {
-		ResourceBundle resourceBundle = _getResourceBundle(locale);
-
-		return LanguageUtil.get(resourceBundle, "avalara-tax-rate-description");
+		return LanguageUtil.get(
+			_getResourceBundle(locale), "avalara-tax-rate-description");
 	}
 
 	@Override
 	public String getName(Locale locale) {
-		ResourceBundle resourceBundle = _getResourceBundle(locale);
-
-		return LanguageUtil.get(resourceBundle, KEY);
+		return LanguageUtil.get(_getResourceBundle(locale), KEY);
 	}
 
 	private ResourceBundle _getResourceBundle(Locale locale) {

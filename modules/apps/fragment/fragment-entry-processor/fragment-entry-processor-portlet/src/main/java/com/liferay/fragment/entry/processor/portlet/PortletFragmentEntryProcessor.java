@@ -242,9 +242,7 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 	public void validateFragmentEntryHTML(String html, String configuration)
 		throws PortalException {
 
-		Document document = _getDocument(html);
-
-		_validateFragmentEntryHTMLDocument(document);
+		_validateFragmentEntryHTMLDocument(_getDocument(html));
 	}
 
 	private boolean _checkNoninstanceablePortletUsed(
@@ -308,11 +306,10 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 	private String _getPortletId(
 		String portletName, String namespace, String id) {
 
-		String instanceId = _getInstanceId(namespace, id);
-
 		return PortletIdCodec.encode(
 			PortletIdCodec.decodePortletName(portletName),
-			PortletIdCodec.decodeUserId(portletName), instanceId);
+			PortletIdCodec.decodeUserId(portletName),
+			_getInstanceId(namespace, id));
 	}
 
 	private String _getPortletName(String tagName) {

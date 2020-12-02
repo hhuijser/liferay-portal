@@ -857,11 +857,9 @@ public class OpenSamlUtil {
 		Signature signature = buildSignature(credential);
 
 		try {
-			SignatureSigningParameters signatureSigningParameters =
-				_getSignatureSigningParameters(credential, peerRoleDescriptor);
-
 			SignatureSupport.prepareSignatureParams(
-				signature, signatureSigningParameters);
+				signature,
+				_getSignatureSigningParameters(credential, peerRoleDescriptor));
 
 			signableObject.setSignature(signature);
 

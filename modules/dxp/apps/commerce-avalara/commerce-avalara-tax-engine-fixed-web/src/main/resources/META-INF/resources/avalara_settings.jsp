@@ -20,7 +20,7 @@
 CommerceTaxAvalaraTypeConfiguration commerceTaxAvalaraTypeConfiguration = (CommerceTaxAvalaraTypeConfiguration)request.getAttribute(CommerceTaxAvalaraTypeConfiguration.class.getName());
 %>
 
-<portlet:actionURL name="editCommerceAvalaraConnector" var="editCommerceTaxAvalaraActionURL" />
+<portlet:actionURL name="/commerce_tax_methods/edit_commerce_tax_avalara" var="editCommerceTaxAvalaraActionURL" />
 
 <commerce-ui:side-panel-content
 	title='<%= LanguageUtil.get(resourceBundle, "edit-avalara-settings") %>'

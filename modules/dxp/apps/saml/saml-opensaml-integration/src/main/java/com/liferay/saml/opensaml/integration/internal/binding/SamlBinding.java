@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.saml.opensaml.integration;
+package com.liferay.saml.opensaml.integration.internal.binding;
 
 import java.util.function.Supplier;
 

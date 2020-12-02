@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.saml.opensaml.integration.metadata;
+package com.liferay.saml.opensaml.integration.internal.metadata;
 
 import com.liferay.saml.runtime.SamlException;
 

@@ -14,10 +14,12 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
-import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Alan Huang
@@ -26,8 +28,7 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-			String fileName, String absolutePath, String content)
-		throws IOException {
+		String fileName, String absolutePath, String content) {
 
 		int maxLineLength = 0;
 
@@ -39,29 +40,65 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 			return content;
 		}
 
-		try (UnsyncBufferedReader unsyncBufferedReader =
-				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+		Matcher matcher = _descriptionPattern.matcher(content);
 
-			int lineNumber = 0;
+		while (matcher.find()) {
+			String match = matcher.group(3);
 
-			String line = null;
+			if (match.contains(": ")) {
+				continue;
+			}
 
-			while ((line = unsyncBufferedReader.readLine()) != null) {
-				if (line.matches(" +-")) {
-					continue;
-				}
+			String description = match.replaceAll("\n +", StringPool.SPACE);
 
-				lineNumber++;
+			description = description.trim();
 
-				if (getLineLength(line) > maxLineLength) {
-					addMessage(fileName, "> " + maxLineLength, lineNumber);
-				}
+			String indent = matcher.group(2) + StringPool.FOUR_SPACES;
+
+			description =
+				_splitDescription(indent + description, indent, maxLineLength) +
+					"\n";
+
+			if (!StringUtil.equals(match, description)) {
+				return StringUtil.replaceFirst(
+					content, match, description, matcher.start(3));
 			}
 		}
 
 		return content;
 	}
 
+	private String _splitDescription(
+		String description, String indent, int maxLineLength) {
+
+		if (description.length() <= maxLineLength) {
+			return description;
+		}
+
+		int x = description.indexOf(CharPool.SPACE, indent.length());
+
+		if (x == -1) {
+			return description;
+		}
+
+		if (x > maxLineLength) {
+			String s = indent + description.substring(x + 1);
+
+			return description.substring(0, x) + "\n" +
+				_splitDescription(s, indent, maxLineLength);
+		}
+
+		x = description.lastIndexOf(CharPool.SPACE, maxLineLength);
+
+		String s = indent + description.substring(x + 1);
+
+		return description.substring(0, x) + "\n" +
+			_splitDescription(s, indent, maxLineLength);
+	}
+
 	private static final String _MAX_LINE_LENGTH = "maxLineLength";
+
+	private static final Pattern _descriptionPattern = Pattern.compile(
+		"(\n( +)description:\n)((\\2 +.+\n)+)");
 
 }

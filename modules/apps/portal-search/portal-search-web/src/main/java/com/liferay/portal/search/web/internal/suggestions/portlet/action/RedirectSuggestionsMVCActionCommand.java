@@ -43,11 +43,11 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = {
 		"javax.portlet.name=" + SuggestionsPortletKeys.SUGGESTIONS,
-		"mvc.command.name=/portal_search/suggestions_redirect"
+		"mvc.command.name=/portal_search/redirect_suggestions"
 	},
 	service = MVCActionCommand.class
 )
-public class SuggestionsRedirectMVCActionCommand extends BaseMVCActionCommand {
+public class RedirectSuggestionsMVCActionCommand extends BaseMVCActionCommand {
 
 	protected String addParameter(
 		String url, PortletRequest portletRequest, String parameterName) {

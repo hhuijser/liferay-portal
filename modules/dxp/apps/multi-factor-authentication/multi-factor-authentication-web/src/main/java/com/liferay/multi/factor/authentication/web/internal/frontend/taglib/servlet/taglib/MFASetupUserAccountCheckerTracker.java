@@ -46,7 +46,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 	configurationPid = "com.liferay.multi.factor.authentication.email.otp.configuration.MFAEmailOTPConfiguration.scoped",
 	immediate = true, service = {}
 )
-public class MFAUserAccountSetupCheckerTracker {
+public class MFASetupUserAccountCheckerTracker {
 
 	@Activate
 	protected void activate(
@@ -105,7 +105,7 @@ public class MFAUserAccountSetupCheckerTracker {
 
 			return (ServiceRegistration)_bundleContext.registerService(
 				ScreenNavigationEntry.class,
-				new MFAUserAccountSetupScreenNavigationEntry(
+				new MFASetupUserAccountScreenNavigationEntry(
 					serviceReference, _servletContext,
 					(SetupMFAChecker)setupMFAChecker),
 				_buildProperties(serviceReference));

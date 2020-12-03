@@ -17,7 +17,7 @@ package com.liferay.multi.factor.authentication.web.internal.constants;
 /**
  * @author Marta Medio
  */
-public class MFAUserAccountSetupScreenNavigationConstants {
+public class MFASetupUserAccountScreenNavigationConstants {
 
 	public static final String CATEGORY_KEY_MFA = "multi-factor-authentication";
 

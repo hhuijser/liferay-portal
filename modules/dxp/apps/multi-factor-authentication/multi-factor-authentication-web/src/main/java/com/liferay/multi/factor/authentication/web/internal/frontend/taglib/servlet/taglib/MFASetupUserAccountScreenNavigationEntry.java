@@ -16,7 +16,7 @@ package com.liferay.multi.factor.authentication.web.internal.frontend.taglib.ser
 
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.multi.factor.authentication.spi.checker.setup.SetupMFAChecker;
-import com.liferay.multi.factor.authentication.web.internal.constants.MFAUserAccountSetupScreenNavigationConstants;
+import com.liferay.multi.factor.authentication.web.internal.constants.MFASetupUserAccountScreenNavigationConstants;
 import com.liferay.multi.factor.authentication.web.internal.constants.MFAWebKeys;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoader;
@@ -42,10 +42,10 @@ import org.osgi.framework.ServiceReference;
 /**
  * @author Marta Medio
  */
-public class MFAUserAccountSetupScreenNavigationEntry
+public class MFASetupUserAccountScreenNavigationEntry
 	implements ScreenNavigationEntry<User> {
 
-	public MFAUserAccountSetupScreenNavigationEntry(
+	public MFASetupUserAccountScreenNavigationEntry(
 		ServiceReference<Object> serviceReference,
 		ServletContext servletContext, SetupMFAChecker setupMFAChecker) {
 
@@ -64,7 +64,7 @@ public class MFAUserAccountSetupScreenNavigationEntry
 
 	@Override
 	public String getCategoryKey() {
-		return MFAUserAccountSetupScreenNavigationConstants.CATEGORY_KEY_MFA;
+		return MFASetupUserAccountScreenNavigationConstants.CATEGORY_KEY_MFA;
 	}
 
 	@Override
@@ -120,14 +120,14 @@ public class MFAUserAccountSetupScreenNavigationEntry
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
-				"/my_account/user_account_setup.jsp");
+				"/my_account/setup_user_account.jsp");
 
 		try {
 			requestDispatcher.include(httpServletRequest, httpServletResponse);
 		}
 		catch (ServletException servletException) {
 			throw new IOException(
-				"Unable to render /my_account/user_account_setup.jsp",
+				"Unable to render /my_account/setup_user_account.jsp",
 				servletException);
 		}
 	}

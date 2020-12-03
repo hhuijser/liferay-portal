@@ -16,7 +16,7 @@ package com.liferay.multi.factor.authentication.web.internal.frontend.taglib.ser
 
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
-import com.liferay.multi.factor.authentication.web.internal.constants.MFAUserAccountSetupScreenNavigationConstants;
+import com.liferay.multi.factor.authentication.web.internal.constants.MFASetupUserAccountScreenNavigationConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -38,12 +38,12 @@ import org.osgi.service.component.annotations.Component;
 	property = "screen.navigation.category.order:Integer=40",
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class MFAUserAccountSetupScreenNavigationCategory
+public class MFASetupUserAccountScreenNavigationCategory
 	implements ScreenNavigationCategory, ScreenNavigationEntry<User> {
 
 	@Override
 	public String getCategoryKey() {
-		return MFAUserAccountSetupScreenNavigationConstants.CATEGORY_KEY_MFA;
+		return MFASetupUserAccountScreenNavigationConstants.CATEGORY_KEY_MFA;
 	}
 
 	@Override

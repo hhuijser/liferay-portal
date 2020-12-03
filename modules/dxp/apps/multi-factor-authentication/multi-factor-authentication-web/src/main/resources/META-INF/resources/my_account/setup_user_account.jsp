@@ -21,7 +21,7 @@ String mfaUserAccountLabel = GetterUtil.getString(request.getAttribute(MFAWebKey
 SetupMFAChecker setupMFAChecker = (SetupMFAChecker)request.getAttribute(SetupMFAChecker.class.getName());
 %>
 
-<portlet:actionURL name="/my_account/user_account_setup" var="actionURL">
+<portlet:actionURL name="/my_account/setup_user_account" var="actionURL">
 	<portlet:param name="mvcRenderCommandName" value="/users_admin/edit_user" />
 </portlet:actionURL>
 
@@ -34,7 +34,7 @@ SetupMFAChecker setupMFAChecker = (SetupMFAChecker)request.getAttribute(SetupMFA
 			<h1 class="sheet-title"><%= mfaUserAccountLabel %></h1>
 		</div>
 
-		<liferay-ui:error key="userAccountSetupFailed" message="user-account-setup-failed" />
+		<liferay-ui:error key="setupUserAccountFailed" message="user-account-setup-failed" />
 
 		<%
 		setupMFAChecker.includeSetup(request, response, user.getUserId());

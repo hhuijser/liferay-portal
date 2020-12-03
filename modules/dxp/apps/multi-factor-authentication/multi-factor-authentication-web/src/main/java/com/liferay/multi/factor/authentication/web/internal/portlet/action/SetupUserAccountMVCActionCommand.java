@@ -48,11 +48,11 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + UsersAdminPortletKeys.MY_ACCOUNT,
 		"javax.portlet.name=" + UsersAdminPortletKeys.USERS_ADMIN,
-		"mvc.command.name=/my_account/user_account_setup"
+		"mvc.command.name=/my_account/setup_user_account"
 	},
 	service = MVCActionCommand.class
 )
-public class UserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
+public class SetupUserAccountMVCActionCommand extends BaseMVCActionCommand {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
@@ -100,7 +100,7 @@ public class UserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
 		else if (!setupMFAChecker.setUp(
 					_portal.getHttpServletRequest(actionRequest), userId)) {
 
-			SessionErrors.add(actionRequest, "userAccountSetupFailed");
+			SessionErrors.add(actionRequest, "setupUserAccountFailed");
 		}
 
 		String redirect = _portal.escapeRedirect(
@@ -114,7 +114,7 @@ public class UserAccountSetupMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		UserAccountSetupMVCActionCommand.class);
+		SetupUserAccountMVCActionCommand.class);
 
 	private ServiceTrackerMap<Long, SetupMFAChecker>
 		_mfaCheckerServiceTrackerMap;

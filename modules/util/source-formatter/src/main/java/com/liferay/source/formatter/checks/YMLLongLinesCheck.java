@@ -15,6 +15,7 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -49,9 +50,8 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String description = match.replaceAll("\n +", StringPool.SPACE);
-
-			description = description.trim();
+			String description = StringUtil.trim(
+				match.replaceAll("\n +", StringPool.SPACE));
 
 			String indent = matcher.group(2) + StringPool.FOUR_SPACES;
 
@@ -76,25 +76,27 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 			return description;
 		}
 
-		int x = description.indexOf(CharPool.SPACE, indent.length());
+		int pos = description.indexOf(CharPool.SPACE, indent.length());
 
-		if (x == -1) {
+		if (pos == -1) {
 			return description;
 		}
 
-		if (x > maxLineLength) {
-			String s = indent + description.substring(x + 1);
-
-			return description.substring(0, x) + StringPool.NEW_LINE +
-				_splitDescription(s, indent, maxLineLength);
+		if (pos > maxLineLength) {
+			return StringBundler.concat(
+				description.substring(0, pos), StringPool.NEW_LINE,
+				_splitDescription(
+					indent + description.substring(pos + 1), indent,
+					maxLineLength));
 		}
 
-		x = description.lastIndexOf(CharPool.SPACE, maxLineLength);
+		pos = description.lastIndexOf(CharPool.SPACE, maxLineLength);
 
-		String s = indent + description.substring(x + 1);
-
-		return description.substring(0, x) + StringPool.NEW_LINE +
-			_splitDescription(s, indent, maxLineLength);
+		return StringBundler.concat(
+			description.substring(0, pos), StringPool.NEW_LINE,
+			_splitDescription(
+				indent + description.substring(pos + 1), indent,
+				maxLineLength));
 	}
 
 	private static final String _MAX_LINE_LENGTH = "maxLineLength";

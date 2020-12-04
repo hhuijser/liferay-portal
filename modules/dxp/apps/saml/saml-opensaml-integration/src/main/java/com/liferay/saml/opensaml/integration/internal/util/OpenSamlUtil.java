@@ -604,7 +604,7 @@ public class OpenSamlUtil {
 	}
 
 	public static KeyDescriptor buildKeyDescriptor(
-		UsageType useType, KeyInfo keyInfo) {
+		UsageType usageType, KeyInfo keyInfo) {
 
 		SAMLObjectBuilder<KeyDescriptor> samlObjectBuilder =
 			(SAMLObjectBuilder<KeyDescriptor>)_getBuilder(
@@ -613,7 +613,7 @@ public class OpenSamlUtil {
 		KeyDescriptor keyDescriptor = samlObjectBuilder.buildObject();
 
 		keyDescriptor.setKeyInfo(keyInfo);
-		keyDescriptor.setUse(useType);
+		keyDescriptor.setUse(usageType);
 
 		return keyDescriptor;
 	}

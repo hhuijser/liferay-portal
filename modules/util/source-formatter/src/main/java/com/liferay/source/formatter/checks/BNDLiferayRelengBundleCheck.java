@@ -21,6 +21,8 @@ import com.liferay.source.formatter.checks.util.BNDSourceUtil;
 
 import java.io.File;
 
+import java.util.List;
+
 /**
  * @author Alan Huang
  */
@@ -39,6 +41,17 @@ public class BNDLiferayRelengBundleCheck extends BaseFileCheck {
 			!absolutePath.contains("/modules/dxp/apps/")) {
 
 			return content;
+		}
+
+		List<String> allowedLiferayRelengBundleNames = getAttributeValues(
+			_ALLOWED_LIFERAY_RELENG_BUNDLE_NAMES, absolutePath);
+
+		for (String allowedLiferayRelengBundleName :
+				allowedLiferayRelengBundleNames) {
+
+			if (absolutePath.contains(allowedLiferayRelengBundleName)) {
+				return content;
+			}
 		}
 
 		String liferayRelengBundle = BNDSourceUtil.getDefinitionValue(
@@ -66,5 +79,8 @@ public class BNDLiferayRelengBundleCheck extends BaseFileCheck {
 
 		return content;
 	}
+
+	private static final String _ALLOWED_LIFERAY_RELENG_BUNDLE_NAMES =
+		"allowedLiferayRelengBundleNames";
 
 }

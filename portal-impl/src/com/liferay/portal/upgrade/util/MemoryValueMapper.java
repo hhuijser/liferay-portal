@@ -35,6 +35,7 @@ public class MemoryValueMapper implements ValueMapper {
 
 	public MemoryValueMapper(Set<Object> exceptions) {
 		_exceptions = exceptions;
+
 		_map = new LinkedHashMap<>();
 	}
 

@@ -89,6 +89,7 @@ public class Sidecar {
 		_processExecutorPaths = processExecutorPaths;
 		_settingsContributors = settingsContributors;
 		_sidecarManager = sidecarManager;
+
 		_dataHomePath = elasticsearchInstancePaths.getDataPath();
 		_sidecarHomePath = elasticsearchInstancePaths.getHomePath();
 	}

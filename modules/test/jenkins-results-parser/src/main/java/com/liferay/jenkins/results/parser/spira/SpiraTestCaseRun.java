@@ -326,6 +326,7 @@ public class SpiraTestCaseRun extends BaseSpiraArtifact {
 			_duration = duration;
 			_status = status;
 			_spiraCustomPropertyValues = spiraCustomPropertyValues;
+
 			_description = runnerStackTrace;
 		}
 
@@ -341,6 +342,7 @@ public class SpiraTestCaseRun extends BaseSpiraArtifact {
 			_duration = duration;
 			_status = status;
 			_spiraCustomPropertyValues = spiraCustomPropertyValues;
+
 			_description = runnerStackTrace;
 		}
 

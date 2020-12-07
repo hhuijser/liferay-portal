@@ -23,11 +23,13 @@ public class Account {
 		_accountId = accountId;
 		_name = name;
 		_thumbnail = thumbnail;
+
 		_success = true;
 	}
 
 	public Account(String[] errorMessages) {
 		_errorMessages = errorMessages;
+
 		_success = false;
 	}
 

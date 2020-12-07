@@ -74,6 +74,7 @@ public class AppPortlet extends MVCPortlet {
 		_portletName = portletName;
 		_showFormView = showFormView;
 		_showTableView = showTableView;
+
 		_viewTemplate = showTableView ? "/view_entries.jsp" : "/edit_entry.jsp";
 	}
 

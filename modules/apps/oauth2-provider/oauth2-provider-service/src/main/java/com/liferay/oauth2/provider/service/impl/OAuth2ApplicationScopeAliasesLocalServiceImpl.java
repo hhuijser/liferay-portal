@@ -259,6 +259,7 @@ public class OAuth2ApplicationScopeAliasesLocalServiceImpl
 				simpleEntryScopeAliases) {
 
 			_simpleEntryScopeAliases = simpleEntryScopeAliases;
+
 			_scopes = new ArrayList<>();
 			_scopeAliases = new ArrayList<>();
 		}

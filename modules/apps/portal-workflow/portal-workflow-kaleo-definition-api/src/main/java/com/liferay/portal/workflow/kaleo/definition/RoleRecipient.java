@@ -28,6 +28,7 @@ public class RoleRecipient extends Recipient {
 
 		_roleId = roleId;
 		_roleType = roleType;
+
 		_roleName = null;
 	}
 

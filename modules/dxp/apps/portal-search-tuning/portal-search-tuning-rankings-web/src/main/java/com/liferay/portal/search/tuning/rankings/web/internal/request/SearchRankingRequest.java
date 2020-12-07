@@ -54,6 +54,7 @@ public class SearchRankingRequest {
 		_sorts = sorts;
 		_searchContainer = searchContainer;
 		_searchEngineAdapter = searchEngineAdapter;
+
 		_searchContext = SearchContextFactory.getInstance(httpServletRequest);
 	}
 

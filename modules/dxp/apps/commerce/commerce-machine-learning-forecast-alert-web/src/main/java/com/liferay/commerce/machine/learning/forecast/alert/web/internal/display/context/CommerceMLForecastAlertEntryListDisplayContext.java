@@ -49,6 +49,7 @@ public class CommerceMLForecastAlertEntryListDisplayContext {
 		_commerceMLForecastAlertEntryService =
 			commerceMLForecastAlertEntryService;
 		_portletResourcePermission = portletResourcePermission;
+
 		_commerceMLForecastAlertEntryRequestHelper =
 			new CommerceMLForecastAlertEntryRequestHelper(renderRequest);
 	}

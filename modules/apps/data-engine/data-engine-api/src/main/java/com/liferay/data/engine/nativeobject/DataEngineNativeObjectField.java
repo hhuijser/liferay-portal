@@ -30,6 +30,7 @@ public class DataEngineNativeObjectField {
 	public DataEngineNativeObjectField(Column<?, ?> column, String customType) {
 		_column = column;
 		_customType = customType;
+
 		_customName = null;
 	}
 

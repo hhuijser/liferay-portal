@@ -270,6 +270,7 @@ public class FreeMarkerTemplate extends BaseTemplate {
 
 			_map = map;
 			_objectWrapper = objectWrapper;
+
 			_wrappedValueMap = new HashMap<>();
 		}
 

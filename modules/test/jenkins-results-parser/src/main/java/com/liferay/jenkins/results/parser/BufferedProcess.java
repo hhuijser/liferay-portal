@@ -86,6 +86,7 @@ public class BufferedProcess extends Process {
 
 		public InputStreamBuffer(int bufferSize, InputStream inputStream) {
 			_inputStream = inputStream;
+
 			_buffer = new byte[bufferSize];
 		}
 

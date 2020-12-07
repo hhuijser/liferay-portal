@@ -239,6 +239,7 @@ public class DefaultDLEditFileEntryDisplayContext
 			_dlValidator = dlValidator;
 			_fileEntry = fileEntry;
 			_storageEngine = storageEngine;
+
 			_dlRequestHelper = new DLRequestHelper(httpServletRequest);
 
 			ThemeDisplay themeDisplay =

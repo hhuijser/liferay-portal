@@ -84,6 +84,7 @@ public class GitRemote {
 
 		_gitWorkingDirectory = gitWorkingDirectory;
 		_name = name;
+
 		_fetchRemoteURL = remoteURL;
 		_pushRemoteURL = remoteURL;
 

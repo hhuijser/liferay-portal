@@ -22,6 +22,7 @@ public class PhoneNumberFormatWrapper implements PhoneNumberFormat {
 
 	public PhoneNumberFormatWrapper(PhoneNumberFormat phoneNumberFormat) {
 		_phoneNumberFormat = phoneNumberFormat;
+
 		_originalPhoneNumberFormat = phoneNumberFormat;
 	}
 

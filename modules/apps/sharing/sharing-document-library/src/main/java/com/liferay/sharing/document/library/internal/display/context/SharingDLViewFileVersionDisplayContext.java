@@ -73,6 +73,7 @@ public class SharingDLViewFileVersionDisplayContext
 		_sharingToolbarItemFactory = sharingToolbarItemFactory;
 		_sharingPermission = sharingPermission;
 		_sharingConfiguration = sharingConfiguration;
+
 		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}

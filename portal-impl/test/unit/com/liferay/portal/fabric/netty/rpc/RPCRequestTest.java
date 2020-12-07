@@ -207,6 +207,7 @@ public class RPCRequestTest {
 			_cancel = cancel;
 			_asyncThrowable = asyncThrowable;
 			_result = result;
+
 			_syncThrowable = throwable;
 		}
 

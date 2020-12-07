@@ -56,6 +56,7 @@ public class MessageRoutingBag implements Externalizable {
 	public MessageRoutingBag(Message message, boolean synchronizedBridge) {
 		_message = message;
 		_synchronizedBridge = synchronizedBridge;
+
 		_destinationName = message.getDestinationName();
 	}
 

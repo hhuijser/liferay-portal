@@ -65,6 +65,7 @@ public class RankingJSONBuilder {
 		_dlAppLocalService = dlAppLocalService;
 		_fastDateFormatFactory = fastDateFormatFactory;
 		_resourceActions = resourceActions;
+
 		_dlConfiguration = ConfigurableUtil.createConfigurable(
 			DLConfiguration.class, new HashMap<String, Object>());
 		_locale = themeDisplay.getLocale();

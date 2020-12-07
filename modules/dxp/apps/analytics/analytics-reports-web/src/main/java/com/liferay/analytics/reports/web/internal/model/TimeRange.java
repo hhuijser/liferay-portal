@@ -72,6 +72,7 @@ public class TimeRange {
 		_includeToday = includeToday;
 		_timeSpan = timeSpan;
 		_timeSpanOffset = timeSpanOffset;
+
 		_clock = Clock.systemUTC();
 	}
 

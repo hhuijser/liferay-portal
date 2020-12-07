@@ -24,6 +24,7 @@ public class ToolkitWrapper implements Toolkit {
 
 	public ToolkitWrapper(Toolkit toolkit) {
 		_toolkit = toolkit;
+
 		_originalToolkit = toolkit;
 	}
 

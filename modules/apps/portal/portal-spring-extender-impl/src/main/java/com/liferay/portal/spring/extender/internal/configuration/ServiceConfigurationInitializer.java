@@ -54,6 +54,7 @@ public class ServiceConfigurationInitializer {
 		_serviceConfiguration = serviceConfiguration;
 		_resourceActions = resourceActions;
 		_serviceComponentLocalService = serviceComponentLocalService;
+
 		_serviceComponentConfiguration = new ModuleResourceLoader(bundle);
 	}
 

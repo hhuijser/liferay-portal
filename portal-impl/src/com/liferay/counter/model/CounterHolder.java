@@ -23,6 +23,7 @@ public class CounterHolder {
 
 	public CounterHolder(long initValue, long rangeMax) {
 		_rangeMax = rangeMax;
+
 		_counter = new AtomicLong(initValue);
 	}
 

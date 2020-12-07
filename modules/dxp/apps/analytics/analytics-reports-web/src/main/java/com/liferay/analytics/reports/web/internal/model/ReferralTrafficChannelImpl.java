@@ -36,6 +36,7 @@ public class ReferralTrafficChannelImpl implements TrafficChannel {
 
 	public ReferralTrafficChannelImpl(boolean error) {
 		_error = error;
+
 		_referringDomains = Collections.emptyList();
 		_referringPages = Collections.emptyList();
 		_trafficAmount = 0;
@@ -50,6 +51,7 @@ public class ReferralTrafficChannelImpl implements TrafficChannel {
 		_referringPages = referringPages;
 		_trafficAmount = trafficAmount;
 		_trafficShare = trafficShare;
+
 		_error = false;
 	}
 

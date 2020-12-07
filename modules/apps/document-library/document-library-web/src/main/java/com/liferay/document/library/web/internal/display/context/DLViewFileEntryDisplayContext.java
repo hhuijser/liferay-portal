@@ -77,6 +77,7 @@ public class DLViewFileEntryDisplayContext {
 		_portal = portal;
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+
 		_httpServletRequest = _portal.getHttpServletRequest(renderRequest);
 		_httpServletResponse = _portal.getHttpServletResponse(renderResponse);
 		_themeDisplay = (ThemeDisplay)_renderRequest.getAttribute(

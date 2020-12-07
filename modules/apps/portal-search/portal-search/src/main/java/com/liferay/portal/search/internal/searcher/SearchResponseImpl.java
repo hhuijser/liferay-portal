@@ -53,6 +53,7 @@ public class SearchResponseImpl implements SearchResponse, Serializable {
 
 	public SearchResponseImpl(SearchContext searchContext) {
 		_searchContext = searchContext;
+
 		_facetContextImpl = new FacetContextImpl(searchContext);
 	}
 

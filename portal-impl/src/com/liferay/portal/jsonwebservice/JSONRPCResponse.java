@@ -63,6 +63,7 @@ public class JSONRPCResponse implements JSONSerializable {
 		}
 
 		_result = result;
+
 		_error = error;
 		_id = jsonRPCRequest.getId();
 	}

@@ -49,6 +49,7 @@ public class PaymentProcessCheckoutStepDisplayContext {
 			commerceCheckoutStepServicesTracker;
 		_commerceOrder = commerceOrder;
 		_portal = portal;
+
 		_commerceCheckoutRequestHelper = new CommerceCheckoutRequestHelper(
 			httpServletRequest);
 	}

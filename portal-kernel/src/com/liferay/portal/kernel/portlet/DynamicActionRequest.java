@@ -56,6 +56,7 @@ public class DynamicActionRequest extends ActionRequestWrapper {
 		super(actionRequest);
 
 		_inherit = inherit;
+
 		_params = new HashMap<>();
 
 		if (params != null) {

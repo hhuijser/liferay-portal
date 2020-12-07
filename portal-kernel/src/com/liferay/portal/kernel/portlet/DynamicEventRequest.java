@@ -55,6 +55,7 @@ public class DynamicEventRequest extends EventRequestWrapper {
 		super(eventRequest);
 
 		_inherit = inherit;
+
 		_params = new HashMap<>();
 
 		if (params != null) {

@@ -37,6 +37,7 @@ public class MutableRenderParametersImpl
 				copiedMap, publicRenderParameterNames));
 
 		_publicRenderParameterNames = publicRenderParameterNames;
+
 		_originalParameterMap = deepCopyMap(parameterMap);
 	}
 

@@ -285,6 +285,7 @@ public class DDMFormInstanceRecordUADDisplay
 
 		public DDMFormInstanceRecordUADUserCache(long formInstanceId) {
 			_formInstanceId = formInstanceId;
+
 			_ddmFormInstanceRecordUADUserMap = new HashMap<>();
 		}
 

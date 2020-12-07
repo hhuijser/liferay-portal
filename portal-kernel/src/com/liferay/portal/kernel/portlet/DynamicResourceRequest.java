@@ -57,6 +57,7 @@ public class DynamicResourceRequest extends ResourceRequestWrapper {
 		super(resourceRequest);
 
 		_inherit = inherit;
+
 		_params = new HashMap<>();
 
 		if (params != null) {

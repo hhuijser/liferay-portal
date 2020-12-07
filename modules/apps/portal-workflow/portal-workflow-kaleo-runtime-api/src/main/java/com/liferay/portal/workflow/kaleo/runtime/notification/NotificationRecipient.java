@@ -37,6 +37,7 @@ public class NotificationRecipient {
 
 		_emailAddress = emailAddress;
 		_notificationReceptionType = notificationReceptionType;
+
 		_companyId = 0;
 		_fullName = null;
 		_screenName = null;
@@ -47,6 +48,7 @@ public class NotificationRecipient {
 		User user, NotificationReceptionType notificationReceptionType) {
 
 		_notificationReceptionType = notificationReceptionType;
+
 		_companyId = user.getCompanyId();
 		_emailAddress = user.getEmailAddress();
 		_fullName = user.getFullName();

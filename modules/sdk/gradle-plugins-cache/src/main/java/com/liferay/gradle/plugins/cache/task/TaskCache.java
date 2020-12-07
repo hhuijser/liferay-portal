@@ -45,6 +45,7 @@ public class TaskCache implements PatternFilterable {
 	public TaskCache(String name, Project project) {
 		_name = name;
 		_project = project;
+
 		_baseDir = project.getProjectDir();
 		_cacheDir = project.file(".cache/" + name);
 		_disabled = GradleUtil.getProperty(

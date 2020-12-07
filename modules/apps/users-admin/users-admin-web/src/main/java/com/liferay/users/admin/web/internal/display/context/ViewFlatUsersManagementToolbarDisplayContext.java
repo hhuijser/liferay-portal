@@ -58,6 +58,7 @@ public class ViewFlatUsersManagementToolbarDisplayContext
 
 		_showDeleteButton = showDeleteButton;
 		_showRestoreButton = showRestoreButton;
+
 		_navigation = ParamUtil.getString(
 			liferayPortletRequest, "navigation", "active");
 	}

@@ -60,6 +60,7 @@ public class LayoutsAdminManagementToolbarDisplayContext
 			layoutsAdminDisplayContext.getLayoutsSearchContainer());
 
 		_layoutsAdminDisplayContext = layoutsAdminDisplayContext;
+
 		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}

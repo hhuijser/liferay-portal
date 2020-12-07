@@ -52,6 +52,7 @@ public class StyleBookVerticalCard
 
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+
 		_styleBookEntry = (StyleBookEntry)baseModel;
 
 		_themeDisplay = (ThemeDisplay)renderRequest.getAttribute(

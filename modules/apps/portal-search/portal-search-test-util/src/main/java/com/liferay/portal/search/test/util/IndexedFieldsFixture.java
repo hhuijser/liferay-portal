@@ -52,6 +52,7 @@ public class IndexedFieldsFixture {
 		ResourcePermissionLocalService resourcePermissionLocalService) {
 
 		_resourcePermissionLocalService = resourcePermissionLocalService;
+
 		_uidFactory = null;
 		_documentBuilderFactory = null;
 	}
@@ -62,6 +63,7 @@ public class IndexedFieldsFixture {
 
 		_resourcePermissionLocalService = resourcePermissionLocalService;
 		_documentBuilderFactory = documentBuilderFactory;
+
 		_uidFactory = null;
 	}
 

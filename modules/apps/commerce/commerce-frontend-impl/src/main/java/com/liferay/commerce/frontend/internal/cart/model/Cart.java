@@ -30,11 +30,13 @@ public class Cart {
 		_products = products;
 		_summary = summary;
 		_valid = valid;
+
 		_success = true;
 	}
 
 	public Cart(String[] errorMessages) {
 		_errorMessages = errorMessages;
+
 		_success = false;
 	}
 

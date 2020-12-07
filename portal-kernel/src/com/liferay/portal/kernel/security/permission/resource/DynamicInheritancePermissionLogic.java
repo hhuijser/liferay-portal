@@ -40,6 +40,7 @@ public class DynamicInheritancePermissionLogic
 		_fetchParentUnsafeFunction = Objects.requireNonNull(
 			fetchParentUnsafeFunction);
 		_checkParentAccess = checkParentAccess;
+
 		_portletResourcePermission = Objects.requireNonNull(
 			parentModelResourcePermission.getPortletResourcePermission());
 	}

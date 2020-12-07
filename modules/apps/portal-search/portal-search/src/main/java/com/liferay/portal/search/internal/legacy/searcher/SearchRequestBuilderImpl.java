@@ -61,6 +61,7 @@ public class SearchRequestBuilderImpl implements SearchRequestBuilder {
 
 		_searchRequestBuilderFactory = searchRequestBuilderFactory;
 		_searchContext = searchContext;
+
 		_facetContext = new FacetContextImpl(searchContext);
 	}
 

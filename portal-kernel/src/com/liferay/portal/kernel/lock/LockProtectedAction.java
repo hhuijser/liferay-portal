@@ -31,6 +31,7 @@ public class LockProtectedAction<T> {
 		_lockKey = lockKey;
 		_timeout = timeout;
 		_retryDelay = retryDelay;
+
 		_className = clazz.getName();
 	}
 

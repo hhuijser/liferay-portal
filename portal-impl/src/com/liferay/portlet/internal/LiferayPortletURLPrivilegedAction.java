@@ -60,6 +60,7 @@ public class LiferayPortletURLPrivilegedAction {
 		_portletResponseImpl = portletResponseImpl;
 		_requestPlid = requestPlid;
 		_constructors = constructors;
+
 		_httpServletRequest = null;
 	}
 

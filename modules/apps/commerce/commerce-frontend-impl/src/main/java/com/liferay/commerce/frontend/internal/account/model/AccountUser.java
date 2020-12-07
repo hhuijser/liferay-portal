@@ -26,11 +26,13 @@ public class AccountUser {
 		_name = name;
 		_email = email;
 		_thumbnail = thumbnail;
+
 		_success = true;
 	}
 
 	public AccountUser(String[] errorMessages) {
 		_errorMessages = errorMessages;
+
 		_success = false;
 	}
 

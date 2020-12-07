@@ -41,6 +41,7 @@ public abstract class BaseTestBatch
 	protected BaseTestBatch(T batchBuildData, S workspace) {
 		_batchBuildData = batchBuildData;
 		_workspace = workspace;
+
 		_jdk = JDKFactory.getJDK(batchBuildData.getBatchName());
 	}
 

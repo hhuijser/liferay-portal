@@ -221,6 +221,7 @@ public class ContentPageEditorDisplayContext {
 		_itemSelector = itemSelector;
 		_pageEditorConfiguration = pageEditorConfiguration;
 		_renderResponse = renderResponse;
+
 		_resourceBundleLoader =
 			ResourceBundleLoaderUtil.
 				getResourceBundleLoaderByBundleSymbolicName(

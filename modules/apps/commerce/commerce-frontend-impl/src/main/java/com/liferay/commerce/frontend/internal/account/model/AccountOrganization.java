@@ -26,11 +26,13 @@ public class AccountOrganization {
 		_name = name;
 		_email = email;
 		_thumbnail = thumbnail;
+
 		_success = true;
 	}
 
 	public AccountOrganization(String[] errorMessages) {
 		_errorMessages = errorMessages;
+
 		_success = false;
 	}
 

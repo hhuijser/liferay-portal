@@ -45,11 +45,13 @@ public class TrafficSource {
 		_name = name;
 		_trafficAmount = trafficAmount;
 		_trafficShare = trafficShare;
+
 		_error = false;
 	}
 
 	public TrafficSource(String name) {
 		_name = name;
+
 		_countrySearchKeywordsList = Collections.emptyList();
 		_error = true;
 		_trafficAmount = 0;

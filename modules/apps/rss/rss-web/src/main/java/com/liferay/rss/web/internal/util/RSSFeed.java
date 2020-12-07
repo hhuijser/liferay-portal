@@ -47,6 +47,7 @@ public class RSSFeed {
 
 		if (syndFeed == null) {
 			_title = title;
+
 			_baseURL = StringPool.BLANK;
 			_syndFeedImageLink = StringPool.BLANK;
 			_syndFeedImageURL = StringPool.BLANK;
@@ -101,6 +102,7 @@ public class RSSFeed {
 		}
 
 		_title = title;
+
 		_baseURL = baseURL;
 		_syndFeedImageLink = syndFeedImageLink;
 		_syndFeedImageURL = syndFeedImageURL;

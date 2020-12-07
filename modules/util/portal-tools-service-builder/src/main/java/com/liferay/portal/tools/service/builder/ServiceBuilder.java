@@ -650,6 +650,7 @@ public class ServiceBuilder {
 			_databaseNameMaxLength = GetterUtil.getInteger(
 				rootElement.attributeValue("database-name-max-length"),
 				databaseNameMaxLength);
+
 			_apiPackagePath = GetterUtil.getString(
 				rootElement.attributeValue("api-package-path"), packagePath);
 			_oldServiceOutputPath =

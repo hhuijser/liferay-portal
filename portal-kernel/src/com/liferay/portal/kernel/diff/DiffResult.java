@@ -40,6 +40,7 @@ public class DiffResult {
 
 	public DiffResult(int linePos, List<String> changedLines) {
 		_changedLines = changedLines;
+
 		_lineNumber = linePos + 1;
 	}
 

@@ -65,6 +65,7 @@ public class TransactionalTestRule implements TestRule {
 		Propagation propagation, String originBundleSymbolicName) {
 
 		_originBundleSymbolicName = originBundleSymbolicName;
+
 		_transactionConfig = TransactionConfig.Factory.create(
 			propagation,
 			new Class<?>[] {PortalException.class, SystemException.class});

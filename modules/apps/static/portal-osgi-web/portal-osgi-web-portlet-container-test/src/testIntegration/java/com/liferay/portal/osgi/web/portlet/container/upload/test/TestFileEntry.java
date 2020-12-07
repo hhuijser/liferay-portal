@@ -50,6 +50,7 @@ public class TestFileEntry implements FileEntry {
 		_folderId = folderId;
 		_groupId = groupId;
 		_inputStream = inputStream;
+
 		_date = new Date();
 	}
 

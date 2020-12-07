@@ -135,6 +135,7 @@ public class DynamicServletRequest extends HttpServletRequestWrapper {
 		super(httpServletRequest);
 
 		_inherit = inherit;
+
 		_params = new HashMap<>();
 
 		if (params != null) {

@@ -54,6 +54,7 @@ public class DLViewFileEntryMetadataSetsManagementToolbarDisplayContext
 
 		_dlViewFileEntryMetadataSetsDisplayContext =
 			dlViewFileEntryMetadataSetsDisplayContext;
+
 		_dlRequestHelper = new DLRequestHelper(httpServletRequest);
 	}
 

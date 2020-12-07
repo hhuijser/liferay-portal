@@ -35,6 +35,7 @@ public class PaidTrafficChannelImpl implements TrafficChannel {
 
 	public PaidTrafficChannelImpl(boolean error) {
 		_error = error;
+
 		_countrySearchKeywordsList = Collections.emptyList();
 		_trafficAmount = 0;
 		_trafficShare = 0;
@@ -47,6 +48,7 @@ public class PaidTrafficChannelImpl implements TrafficChannel {
 		_countrySearchKeywordsList = countrySearchKeywordsList;
 		_trafficAmount = trafficAmount;
 		_trafficShare = trafficShare;
+
 		_error = false;
 	}
 

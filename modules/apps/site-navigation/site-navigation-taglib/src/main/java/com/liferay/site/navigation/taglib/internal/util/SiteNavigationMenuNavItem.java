@@ -49,6 +49,7 @@ public class SiteNavigationMenuNavItem extends NavItem {
 		_httpServletRequest = httpServletRequest;
 		_themeDisplay = themeDisplay;
 		_siteNavigationMenuItem = siteNavigationMenuItem;
+
 		_siteNavigationMenuItemType = siteNavigationMenuItemType;
 	}
 

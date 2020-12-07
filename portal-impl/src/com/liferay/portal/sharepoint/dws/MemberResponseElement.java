@@ -24,6 +24,7 @@ public class MemberResponseElement implements ResponseElement {
 
 	public MemberResponseElement(User user, boolean member) {
 		_member = member;
+
 		_id = user.getScreenName();
 		_name = user.getFullName();
 		_loginName = user.getScreenName();

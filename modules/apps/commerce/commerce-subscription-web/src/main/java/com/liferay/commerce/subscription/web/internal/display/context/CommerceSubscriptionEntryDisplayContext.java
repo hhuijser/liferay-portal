@@ -65,7 +65,8 @@ public class CommerceSubscriptionEntryDisplayContext {
 	public CommerceSubscriptionEntryDisplayContext(
 		CommercePaymentMethodGroupRelLocalService
 			commercePaymentMethodGroupRelLocalService,
-		CommerceSubscriptionEntryLocalService commerceSubscriptionEntryService,
+		CommerceSubscriptionEntryLocalService
+			commerceSubscriptionEntryLocalService,
 		CommerceOrderItemLocalService commerceOrderItemLocalService,
 		CPSubscriptionTypeJSPContributorRegistry
 			cpSubscriptionTypeJSPContributorRegistry,
@@ -75,7 +76,7 @@ public class CommerceSubscriptionEntryDisplayContext {
 		_commercePaymentMethodGroupRelLocalService =
 			commercePaymentMethodGroupRelLocalService;
 		_commerceSubscriptionEntryLocalService =
-			commerceSubscriptionEntryService;
+			commerceSubscriptionEntryLocalService;
 		_commerceOrderItemLocalService = commerceOrderItemLocalService;
 		_cpSubscriptionTypeJSPContributorRegistry =
 			cpSubscriptionTypeJSPContributorRegistry;

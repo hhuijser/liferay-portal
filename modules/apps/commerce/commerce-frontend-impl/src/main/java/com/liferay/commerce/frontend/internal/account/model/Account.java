@@ -22,8 +22,8 @@ public class Account {
 	public Account(String accountId, String name, String thumbnail) {
 		_accountId = accountId;
 		_name = name;
-		_success = true;
 		_thumbnail = thumbnail;
+		_success = true;
 	}
 
 	public Account(String[] errorMessages) {

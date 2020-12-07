@@ -647,11 +647,11 @@ public class ServiceBuilder {
 					"The package-path attribute is required");
 			}
 
-			_apiPackagePath = GetterUtil.getString(
-				rootElement.attributeValue("api-package-path"), packagePath);
 			_databaseNameMaxLength = GetterUtil.getInteger(
 				rootElement.attributeValue("database-name-max-length"),
 				databaseNameMaxLength);
+			_apiPackagePath = GetterUtil.getString(
+				rootElement.attributeValue("api-package-path"), packagePath);
 			_oldServiceOutputPath =
 				_apiDirName + "/" + StringUtil.replace(packagePath, '.', '/');
 			_outputPath =

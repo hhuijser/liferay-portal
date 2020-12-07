@@ -34,9 +34,9 @@ public class DirectTrafficChannelImpl implements TrafficChannel {
 	}
 
 	public DirectTrafficChannelImpl(long trafficAmount, double trafficShare) {
-		_error = false;
 		_trafficAmount = trafficAmount;
 		_trafficShare = trafficShare;
+		_error = false;
 	}
 
 	@Override

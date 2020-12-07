@@ -53,9 +53,9 @@ public class SearchSynonymSetRequest {
 		_httpServletRequest = httpServletRequest;
 		_queries = queries;
 		_sorts = sorts;
-		_searchContext = SearchContextFactory.getInstance(httpServletRequest);
 		_searchContainer = searchContainer;
 		_searchEngineAdapter = searchEngineAdapter;
+		_searchContext = SearchContextFactory.getInstance(httpServletRequest);
 	}
 
 	public SearchSynonymSetResponse search() {

@@ -204,10 +204,10 @@ public class RPCRequestTest {
 			Throwable throwable, boolean cancel, Throwable asyncThrowable,
 			String result) {
 
-			_syncThrowable = throwable;
 			_cancel = cancel;
 			_asyncThrowable = asyncThrowable;
 			_result = result;
+			_syncThrowable = throwable;
 		}
 
 		@Override

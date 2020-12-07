@@ -34,8 +34,8 @@ import java.util.stream.Stream;
 public class OrganicTrafficChannelImpl implements TrafficChannel {
 
 	public OrganicTrafficChannelImpl(boolean error) {
-		_countrySearchKeywordsList = Collections.emptyList();
 		_error = error;
+		_countrySearchKeywordsList = Collections.emptyList();
 		_trafficAmount = 0;
 		_trafficShare = 0;
 	}
@@ -45,9 +45,9 @@ public class OrganicTrafficChannelImpl implements TrafficChannel {
 		long trafficAmount, double trafficShare) {
 
 		_countrySearchKeywordsList = countrySearchKeywordsList;
-		_error = false;
 		_trafficAmount = trafficAmount;
 		_trafficShare = trafficShare;
+		_error = false;
 	}
 
 	@Override

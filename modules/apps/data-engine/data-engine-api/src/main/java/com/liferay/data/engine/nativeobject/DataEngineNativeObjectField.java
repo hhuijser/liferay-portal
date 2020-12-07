@@ -29,8 +29,8 @@ public class DataEngineNativeObjectField {
 	@Deprecated
 	public DataEngineNativeObjectField(Column<?, ?> column, String customType) {
 		_column = column;
-		_customName = null;
 		_customType = customType;
+		_customName = null;
 	}
 
 	public DataEngineNativeObjectField(

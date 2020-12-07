@@ -64,10 +64,10 @@ public class TransactionalTestRule implements TestRule {
 	public TransactionalTestRule(
 		Propagation propagation, String originBundleSymbolicName) {
 
+		_originBundleSymbolicName = originBundleSymbolicName;
 		_transactionConfig = TransactionConfig.Factory.create(
 			propagation,
 			new Class<?>[] {PortalException.class, SystemException.class});
-		_originBundleSymbolicName = originBundleSymbolicName;
 	}
 
 	@Override

@@ -48,9 +48,9 @@ public class CommerceMLForecastAlertEntryListDisplayContext {
 		_commerceAccountLocalService = commerceAccountLocalService;
 		_commerceMLForecastAlertEntryService =
 			commerceMLForecastAlertEntryService;
+		_portletResourcePermission = portletResourcePermission;
 		_commerceMLForecastAlertEntryRequestHelper =
 			new CommerceMLForecastAlertEntryRequestHelper(renderRequest);
-		_portletResourcePermission = portletResourcePermission;
 	}
 
 	public CommerceAccount getCommerceAccount(long commerceAccountId) {

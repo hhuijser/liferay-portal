@@ -323,10 +323,10 @@ public class SpiraTestCaseRun extends BaseSpiraArtifact {
 			_spiraTestCaseObject = spiraTestCaseObject;
 			_spiraAutomationHost = spiraAutomationHost;
 			_runnerFormat = runnerFormat;
-			_description = runnerStackTrace;
 			_duration = duration;
 			_status = status;
 			_spiraCustomPropertyValues = spiraCustomPropertyValues;
+			_description = runnerStackTrace;
 		}
 
 		public Result(
@@ -338,10 +338,10 @@ public class SpiraTestCaseRun extends BaseSpiraArtifact {
 			_spiraTestCaseObjectSupplier = spiraTestCaseObjectSupplier;
 			_spiraAutomationHost = spiraAutomationHost;
 			_runnerFormat = runnerFormat;
-			_description = runnerStackTrace;
 			_duration = duration;
 			_status = status;
 			_spiraCustomPropertyValues = spiraCustomPropertyValues;
+			_description = runnerStackTrace;
 		}
 
 		public JSONArray getCustomPropertyValuesJSONArray() {

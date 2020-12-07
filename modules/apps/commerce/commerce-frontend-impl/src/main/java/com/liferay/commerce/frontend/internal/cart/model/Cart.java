@@ -29,8 +29,8 @@ public class Cart {
 		_orderId = orderId;
 		_products = products;
 		_summary = summary;
-		_success = true;
 		_valid = valid;
+		_success = true;
 	}
 
 	public Cart(String[] errorMessages) {

@@ -25,8 +25,8 @@ public class AccountUser {
 		_userId = userId;
 		_name = name;
 		_email = email;
-		_success = true;
 		_thumbnail = thumbnail;
+		_success = true;
 	}
 
 	public AccountUser(String[] errorMessages) {

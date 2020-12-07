@@ -86,8 +86,8 @@ public class WriterOutputStream extends OutputStream {
 
 		_inputByteBuffer.limit(0);
 
-		_outputCharBuffer = CharBuffer.allocate(outputBufferSize);
 		_autoFlush = autoFlush;
+		_outputCharBuffer = CharBuffer.allocate(outputBufferSize);
 	}
 
 	@Override

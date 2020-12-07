@@ -54,8 +54,8 @@ public class DynamicEventRequest extends EventRequestWrapper {
 
 		super(eventRequest);
 
-		_params = new HashMap<>();
 		_inherit = inherit;
+		_params = new HashMap<>();
 
 		if (params != null) {
 			_params.putAll(params);

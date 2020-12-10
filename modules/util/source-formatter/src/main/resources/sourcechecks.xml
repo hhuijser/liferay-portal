@@ -1289,6 +1289,8 @@
 			<description name="Finds usage of legacy properties in `portal.properties` or `system.properties`." />
 		</check>
 	</source-processor>
+	<source-processor name="PythonSourceProcessor">
+	</source-processor>
 	<source-processor name="SHSourceProcessor">
 		<check name="WhitespaceCheck">
 			<category name="Styling" />

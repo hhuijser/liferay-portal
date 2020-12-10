@@ -486,7 +486,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 		String methodName = getMethodName(assignMethodCallDetailAST);
 
-		if (methodName.matches("(?i)get" + variableName)) {
+		if (methodName.matches("(?i)_?get" + variableName)) {
 			return true;
 		}
 
@@ -512,7 +512,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 
 		methodName = getMethodName(parentDetailAST);
 
-		if (methodName.matches("(?i)set" + variableName)) {
+		if (methodName.matches("(?i)_?set" + variableName)) {
 			return true;
 		}
 

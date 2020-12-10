@@ -119,12 +119,9 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 			analyticsSyncedPrefsPropsWrapper);
 
 		try {
-			MockHttpServletRequest mockHttpServletRequest =
-				_getMockHttpServletRequest();
-
 			long[] segmentsExperienceIds =
 				_segmentsExperienceRequestProcessor.getSegmentsExperienceIds(
-					mockHttpServletRequest, new MockHttpServletResponse(),
+					_getMockHttpServletRequest(), new MockHttpServletResponse(),
 					_group.getGroupId(), classNameId, layout.getPlid(),
 					new long[] {segmentsExperience.getSegmentsEntryId()});
 
@@ -326,12 +323,9 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 			analyticsSyncedPrefsPropsWrapper);
 
 		try {
-			MockHttpServletRequest mockHttpServletRequest =
-				_getMockHttpServletRequest();
-
 			long[] segmentsExperienceIds =
 				_segmentsExperienceRequestProcessor.getSegmentsExperienceIds(
-					mockHttpServletRequest, new MockHttpServletResponse(),
+					_getMockHttpServletRequest(), new MockHttpServletResponse(),
 					_group.getGroupId(), classNameId, layout.getPlid(),
 					new long[] {segmentsEntry.getSegmentsEntryId()},
 					new long[] {segmentsExperience.getSegmentsEntryId()});

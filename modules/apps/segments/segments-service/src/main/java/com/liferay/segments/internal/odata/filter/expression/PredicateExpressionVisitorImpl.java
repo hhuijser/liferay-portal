@@ -58,6 +58,7 @@ public class PredicateExpressionVisitorImpl<T extends Map>
 
 	public PredicateExpressionVisitorImpl(EntityModel entityModel) {
 		_entityModel = entityModel;
+
 		_lambdaCollectionEntityField = null;
 	}
 

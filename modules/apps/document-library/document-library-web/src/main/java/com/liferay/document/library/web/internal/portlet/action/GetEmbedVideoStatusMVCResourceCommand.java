@@ -52,7 +52,8 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 	},
 	service = MVCResourceCommand.class
 )
-public class EmbedVideoStatusMVCResourceCommand extends BaseMVCResourceCommand {
+public class GetEmbedVideoStatusMVCResourceCommand
+	extends BaseMVCResourceCommand {
 
 	@Override
 	public void doServeResource(
@@ -113,7 +114,7 @@ public class EmbedVideoStatusMVCResourceCommand extends BaseMVCResourceCommand {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		EmbedVideoStatusMVCResourceCommand.class);
+		GetEmbedVideoStatusMVCResourceCommand.class);
 
 	@Reference
 	private DLAppLocalService _dlAppLocalService;

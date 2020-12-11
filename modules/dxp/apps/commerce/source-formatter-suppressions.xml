@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
 <suppressions>
+	<checkstyle>
+		<suppress checks="MVCCommandNameCheck" files=".*" />
+	</checkstyle>
 	<source-check>
 		<suppress checks="CopyrightCheck" files="\.*" />
 		<suppress checks="JavaClassNameCheck" files=".*" />

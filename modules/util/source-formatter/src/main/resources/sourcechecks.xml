@@ -1290,6 +1290,10 @@
 		</check>
 	</source-processor>
 	<source-processor name="PythonSourceProcessor">
+		<check name="WhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace." />
+		</check>
 	</source-processor>
 	<source-processor name="SHSourceProcessor">
 		<check name="WhitespaceCheck">

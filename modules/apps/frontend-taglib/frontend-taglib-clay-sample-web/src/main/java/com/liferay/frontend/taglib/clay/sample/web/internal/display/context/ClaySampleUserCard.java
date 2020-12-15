@@ -25,6 +25,7 @@ import java.util.List;
  */
 public class ClaySampleUserCard implements UserCard {
 
+	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		if (_actionDropdownItems != null) {
 			return _actionDropdownItems;
@@ -43,6 +44,7 @@ public class ClaySampleUserCard implements UserCard {
 		).build();
 	}
 
+	@Override
 	public String getCssClass() {
 		if (_cssClass != null) {
 			return _cssClass;
@@ -51,6 +53,7 @@ public class ClaySampleUserCard implements UserCard {
 		return "custom-css-class";
 	}
 
+	@Override
 	public String getHref() {
 		if (_href != null) {
 			return _href;
@@ -59,10 +62,12 @@ public class ClaySampleUserCard implements UserCard {
 		return "#user-card-href";
 	}
 
+	@Override
 	public String getIcon() {
 		return _icon;
 	}
 
+	@Override
 	public String getId() {
 		if (_id != null) {
 			return _id;
@@ -73,6 +78,7 @@ public class ClaySampleUserCard implements UserCard {
 		return "userCardId" + _currentIdNumber;
 	}
 
+	@Override
 	public String getImageAlt() {
 		if (_imageAlt != null) {
 			return _imageAlt;
@@ -81,10 +87,12 @@ public class ClaySampleUserCard implements UserCard {
 		return "User Card Image Alt Text";
 	}
 
+	@Override
 	public String getImageSrc() {
 		return _imageSrc;
 	}
 
+	@Override
 	public String getInputName() {
 		if (_inputName != null) {
 			return _inputName;
@@ -93,6 +101,7 @@ public class ClaySampleUserCard implements UserCard {
 		return "user-card-input-name";
 	}
 
+	@Override
 	public String getInputValue() {
 		if (_inputValue != null) {
 			return _inputValue;
@@ -101,6 +110,7 @@ public class ClaySampleUserCard implements UserCard {
 		return "user-card-input-value";
 	}
 
+	@Override
 	public String getName() {
 		if (_name != null) {
 			return _name;
@@ -109,6 +119,7 @@ public class ClaySampleUserCard implements UserCard {
 		return "User Name";
 	}
 
+	@Override
 	public String getSubtitle() {
 		if (_subtitle != null) {
 			return _subtitle;
@@ -117,6 +128,7 @@ public class ClaySampleUserCard implements UserCard {
 		return "Latest Action";
 	}
 
+	@Override
 	public String getUserColorClass() {
 		if (_userColorClass != null) {
 			return _userColorClass;
@@ -125,14 +137,17 @@ public class ClaySampleUserCard implements UserCard {
 		return "info";
 	}
 
+	@Override
 	public boolean isDisabled() {
 		return _disabled;
 	}
 
+	@Override
 	public boolean isSelectable() {
 		return _selectable;
 	}
 
+	@Override
 	public boolean isSelected() {
 		return _selected;
 	}

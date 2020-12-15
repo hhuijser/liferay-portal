@@ -51,6 +51,7 @@ public class ClassPKInfoItemIdentifier extends BaseInfoItemIdentifier {
 		return _classPK;
 	}
 
+	@Override
 	public InfoItemServiceFilter getInfoItemServiceFilter() {
 		return INFO_ITEM_SERVICE_FILTER;
 	}

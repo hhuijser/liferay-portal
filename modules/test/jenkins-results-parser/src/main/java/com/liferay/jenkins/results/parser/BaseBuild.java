@@ -1418,6 +1418,7 @@ public abstract class BaseBuild implements Build {
 		return !_status.equals(_previousStatus);
 	}
 
+	@Override
 	public boolean isCompareToUpstream() {
 		TopLevelBuild topLevelBuild = getTopLevelBuild();
 

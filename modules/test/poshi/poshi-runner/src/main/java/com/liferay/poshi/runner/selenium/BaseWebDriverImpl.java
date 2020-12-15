@@ -1335,10 +1335,12 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		return LiferaySeleniumUtil.getNumberIncrement(value);
 	}
 
+	@Override
 	public String getOcularResultImageDirName() {
 		return _OCULAR_RESULT_IMAGE_DIR_NAME;
 	}
 
+	@Override
 	public String getOcularSnapImageDirName() {
 		return _OCULAR_SNAP_IMAGE_DIR_NAME;
 	}
@@ -2174,6 +2176,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		return _webDriver.navigate();
 	}
 
+	@Override
 	public void ocularAssertElementImage(String locator) throws Exception {
 		ocularConfig();
 

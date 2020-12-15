@@ -28,6 +28,7 @@ public class OptionalPropertyInfoItemServiceFilter
 		super(propertyName, propertyValue);
 	}
 
+	@Override
 	public String getFilterString() {
 		return StringBundler.concat(
 			"(|", super.getFilterString(), "(!(", getPropertyName(), "=*)))");

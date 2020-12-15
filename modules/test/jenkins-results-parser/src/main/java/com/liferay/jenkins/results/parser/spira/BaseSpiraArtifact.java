@@ -97,6 +97,7 @@ public abstract class BaseSpiraArtifact implements SpiraArtifact {
 			getSpiraProject(), getClass());
 	}
 
+	@Override
 	public SpiraCustomPropertyValue getSpiraCustomPropertyValue(
 		String spiraCustomPropertyName) {
 

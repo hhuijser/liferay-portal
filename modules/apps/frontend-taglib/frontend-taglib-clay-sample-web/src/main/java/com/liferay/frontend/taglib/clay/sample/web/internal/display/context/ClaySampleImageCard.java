@@ -28,6 +28,7 @@ import java.util.List;
  */
 public class ClaySampleImageCard implements ImageCard {
 
+	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		if (_actionDropdownItems != null) {
 			return _actionDropdownItems;
@@ -74,6 +75,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return _actionDropdownItems;
 	}
 
+	@Override
 	public String getCssClass() {
 		if (_cssClass != null) {
 			return _cssClass;
@@ -82,6 +84,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "custom-image-card-css-class";
 	}
 
+	@Override
 	public String getHref() {
 		if (_href != null) {
 			return _href;
@@ -90,6 +93,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "#image-card-href";
 	}
 
+	@Override
 	public String getIcon() {
 		if (_icon != null) {
 			return _icon;
@@ -98,6 +102,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "camera";
 	}
 
+	@Override
 	public String getId() {
 		if (_id != null) {
 			return _id;
@@ -108,6 +113,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "imageCardId" + _currentIdNumber;
 	}
 
+	@Override
 	public String getImageAlt() {
 		if (_imageAlt != null) {
 			return _imageAlt;
@@ -116,10 +122,12 @@ public class ClaySampleImageCard implements ImageCard {
 		return "An image";
 	}
 
+	@Override
 	public String getImageSrc() {
 		return _imageSrc;
 	}
 
+	@Override
 	public String getInputName() {
 		if (_inputName != null) {
 			return _inputName;
@@ -128,6 +136,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "image-card-input-name";
 	}
 
+	@Override
 	public String getInputValue() {
 		if (_inputValue != null) {
 			return _inputValue;
@@ -136,6 +145,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "image-card-input-value";
 	}
 
+	@Override
 	public List<LabelItem> getLabels() {
 		if (_labels != null) {
 			return _labels;
@@ -159,22 +169,27 @@ public class ClaySampleImageCard implements ImageCard {
 		).build();
 	}
 
+	@Override
 	public String getStickerCssClass() {
 		return _stickerCssClass;
 	}
 
+	@Override
 	public String getStickerIcon() {
 		return _stickerIcon;
 	}
 
+	@Override
 	public String getStickerImageAlt() {
 		return _stickerImageAlt;
 	}
 
+	@Override
 	public String getStickerImageSrc() {
 		return _stickerImageSrc;
 	}
 
+	@Override
 	public String getStickerLabel() {
 		if (_stickerLabel != null) {
 			return _stickerLabel;
@@ -183,6 +198,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "JPG";
 	}
 
+	@Override
 	public String getStickerShape() {
 		if (_stickerShape != null) {
 			return _stickerShape;
@@ -191,6 +207,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "circle";
 	}
 
+	@Override
 	public String getStickerStyle() {
 		if (_stickerStyle != null) {
 		}
@@ -198,6 +215,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "danger";
 	}
 
+	@Override
 	public String getSubtitle() {
 		if (_subtitle != null) {
 			return _subtitle;
@@ -206,6 +224,7 @@ public class ClaySampleImageCard implements ImageCard {
 		return "Author Action";
 	}
 
+	@Override
 	public String getTitle() {
 		if (_title != null) {
 			return _title;
@@ -214,14 +233,17 @@ public class ClaySampleImageCard implements ImageCard {
 		return "Image Card";
 	}
 
+	@Override
 	public boolean isDisabled() {
 		return _disabled;
 	}
 
+	@Override
 	public boolean isSelectable() {
 		return _selectable;
 	}
 
+	@Override
 	public boolean isSelected() {
 		return _selected;
 	}

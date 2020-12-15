@@ -60,6 +60,7 @@ public class GroupUrlTitleInfoItemIdentifier extends BaseInfoItemIdentifier {
 		return _groupId;
 	}
 
+	@Override
 	public InfoItemServiceFilter getInfoItemServiceFilter() {
 		return INFO_ITEM_SERVICE_FILTER;
 	}

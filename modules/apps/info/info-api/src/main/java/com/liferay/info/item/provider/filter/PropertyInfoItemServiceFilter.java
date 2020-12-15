@@ -29,6 +29,7 @@ public class PropertyInfoItemServiceFilter implements InfoItemServiceFilter {
 		_propertyValue = propertyValue;
 	}
 
+	@Override
 	public String getFilterString() {
 		return StringBundler.concat(
 			"(", _propertyName, StringPool.EQUAL, _propertyValue, ")");

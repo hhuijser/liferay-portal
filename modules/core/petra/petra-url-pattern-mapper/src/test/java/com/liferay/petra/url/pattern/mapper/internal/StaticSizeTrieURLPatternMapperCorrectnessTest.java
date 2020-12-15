@@ -42,6 +42,7 @@ public class StaticSizeTrieURLPatternMapperCorrectnessTest
 
 		};
 
+	@Override
 	@Test
 	public void testConstructor() {
 		super.testConstructor();

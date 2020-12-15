@@ -315,17 +315,18 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributorTest
 			PowerMockito.spy(
 				_documentLibraryDDMFormFieldTemplateContextContributor);
 
-		PowerMockitoStubber stubber = PowerMockito.doReturn(_resourceBundle);
+		PowerMockitoStubber powerMockitoStubber = PowerMockito.doReturn(
+			_resourceBundle);
 
-		stubber.when(
+		powerMockitoStubber.when(
 			spy
 		).getResourceBundle(
 			Matchers.any(Locale.class)
 		);
 
-		stubber = PowerMockito.doReturn(themeDisplay);
+		powerMockitoStubber = PowerMockito.doReturn(themeDisplay);
 
-		stubber.when(
+		powerMockitoStubber.when(
 			spy
 		).getThemeDisplay(
 			Matchers.any(HttpServletRequest.class)

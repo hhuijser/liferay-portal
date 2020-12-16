@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.order.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.order.web.internal.servlet.taglib.ui.constants;
 
 /**
  * @author Andrea Di Giorgi

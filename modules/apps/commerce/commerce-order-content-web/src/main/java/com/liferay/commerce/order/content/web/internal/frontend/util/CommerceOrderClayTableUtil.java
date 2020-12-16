@@ -17,7 +17,7 @@ package com.liferay.commerce.order.content.web.internal.frontend.util;
 import com.liferay.commerce.constants.CommerceOrderConstants;
 import com.liferay.commerce.currency.model.CommerceMoney;
 import com.liferay.commerce.model.CommerceOrder;
-import com.liferay.commerce.order.content.web.internal.frontend.CommerceOrderDataSetConstants;
+import com.liferay.commerce.order.content.web.internal.frontend.constants.CommerceOrderDataSetConstants;
 import com.liferay.commerce.order.content.web.internal.model.Order;
 import com.liferay.commerce.pricing.constants.CommercePricingConstants;
 import com.liferay.petra.string.StringPool;

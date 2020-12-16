@@ -51,9 +51,8 @@ public class OrderFilterFactoryImpl implements FilterFactory {
 
 		orderFilterImpl.setCommerceOrderId(commerceOrderId);
 
-		String keywords = ParamUtil.getString(httpServletRequest, "search");
-
-		orderFilterImpl.setKeywords(keywords);
+		orderFilterImpl.setKeywords(
+			ParamUtil.getString(httpServletRequest, "search"));
 
 		return orderFilterImpl;
 	}

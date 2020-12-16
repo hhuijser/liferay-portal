@@ -49,7 +49,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.Portal;
@@ -154,12 +153,9 @@ public class CPInstanceHelperImpl implements CPInstanceHelper {
 			int start, int end)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		_commerceProductViewPermission.check(
-			permissionChecker, commerceAccountId, commerceChannelGroupId,
-			cpDefinitionId);
+			PermissionThreadLocal.getPermissionChecker(), commerceAccountId,
+			commerceChannelGroupId, cpDefinitionId);
 
 		return _cpAttachmentFileEntryLocalService.getCPAttachmentFileEntries(
 			cpDefinitionId, serializedDDMFormValues, type, start, end);

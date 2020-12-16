@@ -492,11 +492,9 @@ public class CPTestUtil {
 	public static CPInstance addCPInstanceWithSku(long groupId)
 		throws PortalException {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(groupId);
-
 		CPDefinition cpDefinition = _addCPDefinition(
-			SimpleCPTypeConstants.NAME, true, true, serviceContext);
+			SimpleCPTypeConstants.NAME, true, true,
+			ServiceContextTestUtil.getServiceContext(groupId));
 
 		CPInstance cpInstance = addCPDefinitionCPInstance(
 			cpDefinition.getCPDefinitionId(), Collections.emptyMap());
@@ -565,11 +563,10 @@ public class CPTestUtil {
 	public static void buildCPInstances(CPDefinition cpDefinition)
 		throws PortalException {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(cpDefinition.getGroupId());
-
 		CPInstanceLocalServiceUtil.buildCPInstances(
-			cpDefinition.getCPDefinitionId(), serviceContext);
+			cpDefinition.getCPDefinitionId(),
+			ServiceContextTestUtil.getServiceContext(
+				cpDefinition.getGroupId()));
 	}
 
 	public static String[] getCPOptionFieldTypes()

@@ -182,11 +182,10 @@ public class ProductFriendlyURLResolver implements FriendlyURLResolver {
 		String urlTitle = friendlyURL.substring(
 			CPConstants.SEPARATOR_PRODUCT_URL.length());
 
-		long classNameId = _portal.getClassNameId(CProduct.class);
-
 		FriendlyURLEntry friendlyURLEntry =
 			_friendlyURLEntryLocalService.fetchFriendlyURLEntry(
-				companyGroup.getGroupId(), classNameId, urlTitle);
+				companyGroup.getGroupId(),
+				_portal.getClassNameId(CProduct.class), urlTitle);
 
 		if (friendlyURLEntry == null) {
 			return null;

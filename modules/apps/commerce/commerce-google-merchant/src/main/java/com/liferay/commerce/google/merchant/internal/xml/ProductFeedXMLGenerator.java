@@ -153,11 +153,10 @@ public class ProductFeedXMLGenerator {
 
 		long commerceChannelGroupId = commerceChannel.getGroupId();
 
-		SearchContext searchContext = _getSearchContext(commerceChannel);
-
 		return GetterUtil.getInteger(
 			_cpDefinitionHelper.searchCount(
-				commerceChannelGroupId, searchContext, new CPQuery()));
+				commerceChannelGroupId, _getSearchContext(commerceChannel),
+				new CPQuery()));
 	}
 
 	private List<CPCatalogEntry> _getCPCatalogEntriesByChannel(
@@ -166,10 +165,9 @@ public class ProductFeedXMLGenerator {
 
 		long commerceChannelGroupId = commerceChannel.getGroupId();
 
-		SearchContext searchContext = _getSearchContext(commerceChannel);
-
 		CPDataSourceResult cpDataSourceResult = _cpDefinitionHelper.search(
-			commerceChannelGroupId, searchContext, new CPQuery(), start, end);
+			commerceChannelGroupId, _getSearchContext(commerceChannel),
+			new CPQuery(), start, end);
 
 		return cpDataSourceResult.getCPCatalogEntries();
 	}

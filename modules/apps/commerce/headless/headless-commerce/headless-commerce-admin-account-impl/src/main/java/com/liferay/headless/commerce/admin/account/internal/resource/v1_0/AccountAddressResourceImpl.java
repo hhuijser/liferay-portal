@@ -95,10 +95,8 @@ public class AccountAddressResourceImpl
 
 	@Override
 	public AccountAddress getAccountAddress(Long id) throws Exception {
-		CommerceAddress commerceAddress =
-			_commerceAddressService.getCommerceAddress(id);
-
-		return _toAccountAddress(commerceAddress);
+		return _toAccountAddress(
+			_commerceAddressService.getCommerceAddress(id));
 	}
 
 	@Override

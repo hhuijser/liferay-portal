@@ -76,8 +76,6 @@ import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import org.frutilla.FrutillaRule;
 
@@ -952,13 +950,12 @@ public class CommerceOrderTest {
 	}
 
 	private Role _addSalesAgentRole() throws Exception {
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			_serviceContext.getLocale(), "Sales Agent"
-		).build();
-
 		Role role = _roleLocalService.addRole(
-			_user.getUserId(), null, 0, "Sales Agent", titleMap, null, 1, null,
-			_serviceContext);
+			_user.getUserId(), null, 0, "Sales Agent",
+			HashMapBuilder.put(
+				_serviceContext.getLocale(), "Sales Agent"
+			).build(),
+			null, 1, null, _serviceContext);
 
 		_resourcePermissionLocalService.addResourcePermission(
 			_serviceContext.getCompanyId(), "90", 1,

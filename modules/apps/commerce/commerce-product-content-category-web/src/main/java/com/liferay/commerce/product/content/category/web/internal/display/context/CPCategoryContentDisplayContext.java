@@ -87,11 +87,10 @@ public class CPCategoryContentDisplayContext {
 			return null;
 		}
 
-		long classNameId = _portal.getClassNameId(AssetCategory.class);
-
 		List<CPAttachmentFileEntry> cpAttachmentFileEntries =
 			_cpAttachmentFileEntryService.getCPAttachmentFileEntries(
-				classNameId, assetCategory.getCategoryId(),
+				_portal.getClassNameId(AssetCategory.class),
+				assetCategory.getCategoryId(),
 				CPAttachmentFileEntryConstants.TYPE_IMAGE,
 				WorkflowConstants.STATUS_APPROVED, 0, 1);
 

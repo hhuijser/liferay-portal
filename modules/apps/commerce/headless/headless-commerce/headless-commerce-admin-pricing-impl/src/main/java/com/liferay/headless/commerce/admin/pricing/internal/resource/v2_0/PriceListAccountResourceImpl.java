@@ -145,13 +145,12 @@ public class PriceListAccountResourceImpl
 			Long id, PriceListAccount priceListAccount)
 		throws Exception {
 
-		CommercePriceList commercePriceList =
-			_commercePriceListService.getCommercePriceList(id);
-
 		CommercePriceListAccountRel commercePriceListAccountRel =
 			PriceListAccountUtil.addCommercePriceListAccountRel(
 				_commerceAccountService, _commercePriceListAccountRelService,
-				priceListAccount, commercePriceList, _serviceContextHelper);
+				priceListAccount,
+				_commercePriceListService.getCommercePriceList(id),
+				_serviceContextHelper);
 
 		return _toPriceListAccount(
 			commercePriceListAccountRel.getCommercePriceListAccountRelId());

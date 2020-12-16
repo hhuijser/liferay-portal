@@ -250,11 +250,10 @@ public class CPDefinitionOptionValueRelLocalServiceTest {
 			StringPool.BLANK, cpDefinitionOptionValueRel.getCPInstanceUuid());
 		Assert.assertEquals(0, cpDefinitionOptionValueRel.getCProductId());
 
-		BigDecimal price = cpDefinitionOptionValueRel.getPrice();
-
 		Assert.assertEquals(
 			CPTestUtil.stripTrailingZeros(BigDecimal.ZERO),
-			CPTestUtil.stripTrailingZeros(price));
+			CPTestUtil.stripTrailingZeros(
+				cpDefinitionOptionValueRel.getPrice()));
 
 		Assert.assertEquals(0, cpDefinitionOptionValueRel.getQuantity());
 	}
@@ -857,11 +856,10 @@ public class CPDefinitionOptionValueRelLocalServiceTest {
 			Validator.isNull(cpDefinitionOptionValueRel.getCPInstanceUuid()));
 		Assert.assertEquals(0, cpDefinitionOptionValueRel.getCProductId());
 
-		BigDecimal price = cpDefinitionOptionValueRel.getPrice();
-
 		Assert.assertEquals(
 			CPTestUtil.stripTrailingZeros(BigDecimal.ZERO),
-			CPTestUtil.stripTrailingZeros(price));
+			CPTestUtil.stripTrailingZeros(
+				cpDefinitionOptionValueRel.getPrice()));
 
 		Assert.assertEquals(0, cpDefinitionOptionValueRel.getQuantity());
 	}

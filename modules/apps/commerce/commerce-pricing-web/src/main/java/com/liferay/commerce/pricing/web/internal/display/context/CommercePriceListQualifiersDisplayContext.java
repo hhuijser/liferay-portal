@@ -88,11 +88,9 @@ public class CommercePriceListQualifiersDisplayContext
 	}
 
 	public String getActiveChannelEligibility() throws PortalException {
-		long commercePriceListId = getCommercePriceListId();
-
 		long commerceChannelRelsCount =
 			_commerceChannelRelService.getCommerceChannelRelsCount(
-				CommercePriceList.class.getName(), commercePriceListId);
+				CommercePriceList.class.getName(), getCommercePriceListId());
 
 		if (commerceChannelRelsCount > 0) {
 			return "channels";

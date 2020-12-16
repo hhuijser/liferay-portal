@@ -305,10 +305,9 @@ public class AssetCategoriesImporter {
 			Group companyGroup = _groupLocalService.getCompanyGroup(
 				assetCategory.getCompanyId());
 
-			long classNameId = _portal.getClassNameId(AssetCategory.class);
-
 			String urlTitle = _friendlyURLEntryLocalService.getUniqueUrlTitle(
-				companyGroup.getGroupId(), classNameId,
+				companyGroup.getGroupId(),
+				_portal.getClassNameId(AssetCategory.class),
 				assetCategory.getCategoryId(), titleEntry.getValue());
 
 			urlTitleMap.put(

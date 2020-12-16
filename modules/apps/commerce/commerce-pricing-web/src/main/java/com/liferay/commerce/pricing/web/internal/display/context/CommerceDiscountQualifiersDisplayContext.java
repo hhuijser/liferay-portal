@@ -127,11 +127,9 @@ public class CommerceDiscountQualifiersDisplayContext
 	}
 
 	public String getActiveChannelEligibility() throws PortalException {
-		long commerceDiscountId = getCommerceDiscountId();
-
 		long commerceChannelRelsCount =
 			_commerceChannelRelService.getCommerceChannelRelsCount(
-				CommerceDiscount.class.getName(), commerceDiscountId);
+				CommerceDiscount.class.getName(), getCommerceDiscountId());
 
 		if (commerceChannelRelsCount > 0) {
 			return "channels";

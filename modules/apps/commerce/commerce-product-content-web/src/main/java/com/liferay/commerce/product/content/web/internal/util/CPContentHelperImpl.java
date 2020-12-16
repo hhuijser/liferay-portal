@@ -144,11 +144,9 @@ public class CPContentHelperImpl implements CPContentHelper {
 
 		List<CPMedia> cpMedias = new ArrayList<>();
 
-		long classNameId = _portal.getClassNameId(CPDefinition.class);
-
 		List<CPAttachmentFileEntry> cpAttachmentFileEntries =
 			_cpAttachmentFileEntryLocalService.getCPAttachmentFileEntries(
-				classNameId, cpDefinitionId,
+				_portal.getClassNameId(CPDefinition.class), cpDefinitionId,
 				CPAttachmentFileEntryConstants.TYPE_OTHER,
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
@@ -333,11 +331,9 @@ public class CPContentHelperImpl implements CPContentHelper {
 
 		List<CPMedia> cpMedias = new ArrayList<>();
 
-		long classNameId = _portal.getClassNameId(CPDefinition.class);
-
 		List<CPAttachmentFileEntry> cpAttachmentFileEntries =
 			_cpAttachmentFileEntryLocalService.getCPAttachmentFileEntries(
-				classNameId, cpDefinitionId,
+				_portal.getClassNameId(CPDefinition.class), cpDefinitionId,
 				CPAttachmentFileEntryConstants.TYPE_IMAGE,
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);

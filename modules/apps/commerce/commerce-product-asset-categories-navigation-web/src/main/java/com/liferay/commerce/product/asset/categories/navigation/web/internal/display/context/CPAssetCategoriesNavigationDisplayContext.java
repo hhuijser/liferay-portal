@@ -159,11 +159,9 @@ public class CPAssetCategoriesNavigationDisplayContext {
 	public String getDefaultImageSrc(long categoryId, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		long classNameId = _portal.getClassNameId(AssetCategory.class);
-
 		List<CPAttachmentFileEntry> cpAttachmentFileEntries =
 			_cpAttachmentFileEntryService.getCPAttachmentFileEntries(
-				classNameId, categoryId,
+				_portal.getClassNameId(AssetCategory.class), categoryId,
 				CPAttachmentFileEntryConstants.TYPE_IMAGE,
 				WorkflowConstants.STATUS_APPROVED, 0, 1);
 

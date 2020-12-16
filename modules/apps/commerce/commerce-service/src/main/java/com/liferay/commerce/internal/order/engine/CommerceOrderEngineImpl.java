@@ -86,7 +86,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 import org.osgi.service.component.annotations.Component;
@@ -225,23 +224,24 @@ public class CommerceOrderEngineImpl implements CommerceOrderEngine {
 		CommerceAccount commerceAccount = commerceOrder.getCommerceAccount();
 
 		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
-			Map<String, String> context = HashMapBuilder.put(
-				CommerceInventoryAuditTypeConstants.ACCOUNT_NAME,
-				commerceAccount.getName()
-			).put(
-				CommerceInventoryAuditTypeConstants.ORDER_ID,
-				String.valueOf(commerceOrderItem.getCommerceOrderId())
-			).put(
-				CommerceInventoryAuditTypeConstants.ORDER_ITEM_ID,
-				String.valueOf(commerceOrderItem.getCommerceOrderItemId())
-			).build();
-
 			CommerceInventoryBookedQuantity commerceInventoryBookedQuantity =
 				_commerceInventoryBookedQuantityLocalService.
 					addCommerceBookedQuantity(
 						commerceOrderItem.getUserId(),
 						commerceOrderItem.getSku(),
-						commerceOrderItem.getQuantity(), null, context);
+						commerceOrderItem.getQuantity(), null,
+						HashMapBuilder.put(
+							CommerceInventoryAuditTypeConstants.ACCOUNT_NAME,
+							commerceAccount.getName()
+						).put(
+							CommerceInventoryAuditTypeConstants.ORDER_ID,
+							String.valueOf(
+								commerceOrderItem.getCommerceOrderId())
+						).put(
+							CommerceInventoryAuditTypeConstants.ORDER_ITEM_ID,
+							String.valueOf(
+								commerceOrderItem.getCommerceOrderItemId())
+						).build());
 
 			_commerceOrderItemLocalService.updateCommerceOrderItem(
 				commerceOrderItem.getCommerceOrderItemId(),

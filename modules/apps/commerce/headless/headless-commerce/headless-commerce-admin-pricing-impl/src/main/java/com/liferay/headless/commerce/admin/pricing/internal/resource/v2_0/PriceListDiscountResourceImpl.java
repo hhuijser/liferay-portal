@@ -142,13 +142,12 @@ public class PriceListDiscountResourceImpl
 			Long id, PriceListDiscount priceListDiscount)
 		throws Exception {
 
-		CommercePriceList commercePriceList =
-			_commercePriceListService.getCommercePriceList(id);
-
 		CommercePriceListDiscountRel commercePriceListDiscountRel =
 			PriceListDiscountUtil.addCommercePriceListDiscountRel(
 				_commerceDiscountService, _commercePriceListDiscountRelService,
-				priceListDiscount, commercePriceList, _serviceContextHelper);
+				priceListDiscount,
+				_commercePriceListService.getCommercePriceList(id),
+				_serviceContextHelper);
 
 		return _toPriceListDiscount(
 			commercePriceListDiscountRel.getCommercePriceListDiscountRelId());

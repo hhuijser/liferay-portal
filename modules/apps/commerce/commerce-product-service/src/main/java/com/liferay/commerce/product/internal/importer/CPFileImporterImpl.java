@@ -813,9 +813,8 @@ public class CPFileImporterImpl implements CPFileImporter {
 			if (key.equals("assetEntryId")) {
 				String articleId = jsonObject.getString("articleId");
 
-				long assetEntryId = getAssetEntryId(articleId, serviceContext);
-
-				value = String.valueOf(assetEntryId);
+				value = String.valueOf(
+					getAssetEntryId(articleId, serviceContext));
 			}
 			else if (key.equals("groupId")) {
 				value = String.valueOf(serviceContext.getScopeGroupId());
@@ -843,10 +842,9 @@ public class CPFileImporterImpl implements CPFileImporter {
 			String value = themeSetting.getValue();
 
 			if (!value.equals(themeSetting.getValue())) {
-				String key = entry.getKey();
-
 				typeSettingUnicodeProperties.setProperty(
-					ThemeSettingImpl.namespaceProperty(device, key), value);
+					ThemeSettingImpl.namespaceProperty(device, entry.getKey()),
+					value);
 			}
 		}
 	}

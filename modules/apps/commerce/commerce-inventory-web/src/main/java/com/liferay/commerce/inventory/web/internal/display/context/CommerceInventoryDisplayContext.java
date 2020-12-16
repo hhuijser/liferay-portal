@@ -148,11 +148,10 @@ public class CommerceInventoryDisplayContext {
 	public List<CommerceInventoryWarehouse> getCommerceInventoryWarehouses()
 		throws PrincipalException {
 
-		long companyId = _cpRequestHelper.getCompanyId();
-
 		return _commerceInventoryWarehouseService.
 			getCommerceInventoryWarehouses(
-				companyId, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+				_cpRequestHelper.getCompanyId(), true, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null);
 	}
 
 	public String getCreateInventoryItemActionURL() throws Exception {

@@ -233,9 +233,7 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 
 		Capture capture = new Capture();
 
-		Amount amount = _getAmount(commerceOrder);
-
-		capture.setAmount(amount);
+		capture.setAmount(_getAmount(commerceOrder));
 
 		capture.setIsFinalCapture(true);
 
@@ -328,10 +326,9 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 				_commerceOrderLocalService.getCommerceOrder(
 					commercePaymentRequest.getCommerceOrderId());
 
-			APIContext apiContext = _getAPIContext(commerceOrder.getGroupId());
-
 			Agreement activeAgreement = agreement.execute(
-				apiContext, agreement.getToken());
+				_getAPIContext(commerceOrder.getGroupId()),
+				agreement.getToken());
 
 			if (PayPalCommercePaymentMethodConstants.PAYMENT_STATE_FAILED.
 					equals(activeAgreement.getState())) {
@@ -411,10 +408,9 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 			_commerceOrderLocalService.getCommerceOrder(
 				commercePaymentRequest.getCommerceOrderId());
 
-		APIContext apiContext = _getAPIContext(commerceOrder.getGroupId());
-
 		Agreement agreement = Agreement.get(
-			apiContext, commercePaymentRequest.getTransactionId());
+			_getAPIContext(commerceOrder.getGroupId()),
+			commercePaymentRequest.getTransactionId());
 
 		AgreementDetails agreementDetails = agreement.getAgreementDetails();
 
@@ -438,10 +434,9 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 			_commerceOrderLocalService.getCommerceOrder(
 				commercePaymentRequest.getCommerceOrderId());
 
-		APIContext apiContext = _getAPIContext(commerceOrder.getGroupId());
-
 		Agreement agreement = Agreement.get(
-			apiContext, commercePaymentRequest.getTransactionId());
+			_getAPIContext(commerceOrder.getGroupId()),
+			commercePaymentRequest.getTransactionId());
 
 		String agreementState = agreement.getState();
 
@@ -699,9 +694,7 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 
 		RefundRequest refundRequest = new RefundRequest();
 
-		Amount amount = _getAmount(commerceOrder);
-
-		refundRequest.setAmount(amount);
+		refundRequest.setAmount(_getAmount(commerceOrder));
 
 		DetailedRefund detailedRefund = sale.refund(apiContext, refundRequest);
 
@@ -1054,9 +1047,7 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 			_getTransactions(
 				commerceOrder, commercePaymentRequest.getLocale()));
 
-		APIContext apiContext = _getAPIContext(commerceOrder.getGroupId());
-
-		return payment.create(apiContext);
+		return payment.create(_getAPIContext(commerceOrder.getGroupId()));
 	}
 
 	private PayPalGroupServiceConfiguration _getPayPalGroupServiceConfiguration(
@@ -1175,9 +1166,7 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 			locale = LocaleUtil.getSiteDefault();
 		}
 
-		ResourceBundle resourceBundle = _getResourceBundle(locale);
-
-		return LanguageUtil.get(resourceBundle, key);
+		return LanguageUtil.get(_getResourceBundle(locale), key);
 	}
 
 	private ResourceBundle _getResourceBundle(Locale locale) {

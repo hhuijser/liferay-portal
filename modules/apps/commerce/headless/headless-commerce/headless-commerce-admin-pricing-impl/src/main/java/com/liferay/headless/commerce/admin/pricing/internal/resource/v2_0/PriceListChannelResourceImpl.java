@@ -145,13 +145,12 @@ public class PriceListChannelResourceImpl
 			Long id, PriceListChannel priceListChannel)
 		throws Exception {
 
-		CommercePriceList commercePriceList =
-			_commercePriceListService.getCommercePriceList(id);
-
 		CommercePriceListChannelRel commercePriceListChannelRel =
 			PriceListChannelUtil.addCommercePriceListChannelRel(
 				_commerceChannelService, _commercePriceListChannelRelService,
-				priceListChannel, commercePriceList, _serviceContextHelper);
+				priceListChannel,
+				_commercePriceListService.getCommercePriceList(id),
+				_serviceContextHelper);
 
 		return _toPriceListChannel(
 			commercePriceListChannelRel.getCommercePriceListChannelRelId());

@@ -117,9 +117,7 @@ public class CommerceDiscountRuleCPDefinitionDataSetDataProvider
 
 		String languageId = LanguageUtil.getLanguageId(locale);
 
-		String keywords = filter.getKeywords();
-
-		String keywordsLowerCase = StringUtil.toLowerCase(keywords);
+		String keywordsLowerCase = StringUtil.toLowerCase(filter.getKeywords());
 
 		for (long cpDefinitionId : cpDefinitionIds) {
 			CPDefinition cpDefinition = _cpDefinitionService.getCPDefinition(

@@ -1142,9 +1142,7 @@ public class CPDefinitionLocalServiceImpl
 					LongStream longStream = stream.mapToLong(
 						GetterUtil::getLong);
 
-					long[] assetCategoryIds = longStream.toArray();
-
-					searchContext.setAssetCategoryIds(assetCategoryIds);
+					searchContext.setAssetCategoryIds(longStream.toArray());
 				}
 
 				facets.add(multiValueFacet);

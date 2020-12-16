@@ -168,16 +168,14 @@ public class PriceListAccountGroupResourceImpl
 			Long id, PriceListAccountGroup priceListAccountGroup)
 		throws Exception {
 
-		CommercePriceList commercePriceList =
-			_commercePriceListService.getCommercePriceList(id);
-
 		CommercePriceListCommerceAccountGroupRel
 			commercePriceListCommerceAccountGroupRel =
 				PriceListAccountGroupUtil.
 					addCommercePriceListCommerceAccountGroupRel(
 						_commerceAccountGroupService,
 						_commercePriceListCommerceAccountGroupRelService,
-						priceListAccountGroup, commercePriceList,
+						priceListAccountGroup,
+						_commercePriceListService.getCommercePriceList(id),
 						_serviceContextHelper);
 
 		return _toPriceListAccountGroup(

@@ -12,23 +12,20 @@
  * details.
  */
 
-package com.liferay.commerce.address.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.catalog.web.internal.frontend.constants;
 
 /**
- * @author Alessio Antonio Rendina
+ * @author Gianmarco Brunialti Masera
  */
-public class CommerceCountryScreenNavigationConstants {
+public class CommerceCatalogDataSetConstants {
 
-	public static final String CATEGORY_KEY_COMMERCE_COUNTRY_CHANNELS =
-		"channels";
+	public static final String COMMERCE_DATA_SET_KEY_CATALOG_ACCOUNT_GROUPS =
+		"commerceCatalogAccountGroups";
 
-	public static final String CATEGORY_KEY_COMMERCE_COUNTRY_DETAILS =
-		"details";
+	public static final String COMMERCE_DATA_SET_KEY_CATALOG_CHANNELS =
+		"commerceCatalogChannels";
 
-	public static final String CATEGORY_KEY_COMMERCE_COUNTRY_REGIONS =
-		"regions";
-
-	public static final String SCREEN_NAVIGATION_KEY_COMMERCE_COUNTRY_GENERAL =
-		"commerce.country.general";
+	public static final String COMMERCE_DATA_SET_KEY_CATALOGS =
+		"commerceCatalogs";
 
 }

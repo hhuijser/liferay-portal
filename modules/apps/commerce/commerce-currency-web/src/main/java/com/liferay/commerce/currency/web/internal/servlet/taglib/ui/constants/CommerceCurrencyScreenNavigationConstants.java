@@ -12,26 +12,26 @@
  * details.
  */
 
-package com.liferay.commerce.account.admin.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.currency.web.internal.servlet.taglib.ui.constants;
 
 /**
  * @author Alessio Antonio Rendina
  */
-public class CommerceAccountScreenNavigationConstants {
+public class CommerceCurrencyScreenNavigationConstants {
 
-	public static final String CATEGORY_KEY_COMMERCE_ACCOUNT_DETAIL = "detail";
+	public static final String CATEGORY_KEY_COMMERCE_CURRENCY_CURRENCIES =
+		"currencies";
 
-	public static final String ENTRY_KEY_COMMERCE_ACCOUNT_ADDRESSES =
-		"addresses";
+	public static final String CATEGORY_KEY_COMMERCE_CURRENCY_EXCHANGE_RATE =
+		"exchange-rate";
 
-	public static final String ENTRY_KEY_COMMERCE_ACCOUNT_DETAIL = "detail";
+	public static final String ENTRY_KEY_COMMERCE_CURRENCY_CURRENCIES =
+		"currencies";
 
-	public static final String ENTRY_KEY_COMMERCE_ACCOUNT_ORGANIZATIONS =
-		"organizations";
+	public static final String ENTRY_KEY_COMMERCE_CURRENCY_EXCHANGE_RATE =
+		"exchange-rate";
 
-	public static final String ENTRY_KEY_COMMERCE_ACCOUNT_USERS = "users";
-
-	public static final String SCREEN_NAVIGATION_KEY_COMMERCE_ACCOUNT_GENERAL =
-		"commerce.account.general";
+	public static final String SCREEN_NAVIGATION_KEY_COMMERCE_CURRENCY =
+		"commerce.currency.form";
 
 }

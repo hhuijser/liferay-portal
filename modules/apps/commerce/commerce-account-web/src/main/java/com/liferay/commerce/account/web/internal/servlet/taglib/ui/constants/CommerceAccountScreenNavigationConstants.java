@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.account.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.account.web.internal.servlet.taglib.ui.constants;
 
 /**
  * @author Marco Leo

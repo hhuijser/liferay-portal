@@ -12,20 +12,19 @@
  * details.
  */
 
-package com.liferay.commerce.catalog.web.internal.frontend;
+package com.liferay.commerce.channel.web.internal.servlet.taglib.ui.constants;
 
 /**
- * @author Gianmarco Brunialti Masera
+ * @author Marco Leo
  */
-public class CommerceCatalogDataSetConstants {
+public class CommerceChannelScreenNavigationConstants {
 
-	public static final String COMMERCE_DATA_SET_KEY_CATALOG_ACCOUNT_GROUPS =
-		"commerceCatalogAccountGroups";
+	public static final String CATEGORY_KEY_COMMERCE_CHANNEL_GENERAL =
+		"general";
 
-	public static final String COMMERCE_DATA_SET_KEY_CATALOG_CHANNELS =
-		"commerceCatalogChannels";
+	public static final String CATEGORY_KEY_COMMERCE_CHANNEL_SITE = "site";
 
-	public static final String COMMERCE_DATA_SET_KEY_CATALOGS =
-		"commerceCatalogs";
+	public static final String SCREEN_NAVIGATION_KEY_COMMERCE_CHANNEL_GENERAL =
+		"commerce.channel.general";
 
 }

@@ -14,6 +14,7 @@
 
 package com.liferay.commerce.catalog.web.internal.frontend;
 
+import com.liferay.commerce.catalog.web.internal.frontend.constants.CommerceCatalogDataSetConstants;
 import com.liferay.commerce.catalog.web.internal.model.Catalog;
 import com.liferay.commerce.product.constants.CPPortletKeys;
 import com.liferay.commerce.product.model.CommerceCatalog;

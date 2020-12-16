@@ -226,7 +226,7 @@ public class VariableDeclarationAsUsedCheck extends BaseCheck {
 				StringBundler.concat(
 					"_?(add|channel|close|copy|create|delete|execute|import|",
 					"manage|next|open|post|put|read|register|resolve|run|send|",
-					"test|transform|unzip|update|zip)([A-Z].*)?"),
+					"test|transform|unzip|update|upsert|zip)([A-Z].*)?"),
 				"currentTimeMillis", "nextVersion", "toString") &&
 			!_containsVariableType(
 				variableDefinitionDetailAST, "ActionQueue", "File")) {

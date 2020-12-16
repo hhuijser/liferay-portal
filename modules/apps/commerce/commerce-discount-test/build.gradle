@@ -1,4 +1,4 @@
 dependencies {
-	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")
 	testIntegrationCompile project(":apps:commerce:commerce-discount-api")
+	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")
 }

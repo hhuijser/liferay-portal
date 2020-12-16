@@ -69,14 +69,14 @@ public abstract class BaseCommerceProductPriceCalculation
 			long cpDefinitionId, CommerceContext commerceContext)
 		throws PortalException {
 
-		BigDecimal cpDefinitionMinimumPrice = BigDecimal.ZERO;
-
 		CommerceMoney commerceMoney = getUnitMinPrice(
 			cpDefinitionId, 1, commerceContext);
 
 		if (commerceMoney.isEmpty()) {
 			return commerceMoney;
 		}
+
+		BigDecimal cpDefinitionMinimumPrice = BigDecimal.ZERO;
 
 		cpDefinitionMinimumPrice = cpDefinitionMinimumPrice.add(
 			commerceMoney.getPrice());

@@ -536,9 +536,6 @@ public class CommerceOrderEditDisplayContext {
 			return steps;
 		}
 
-		List<CommerceOrderStatus> commerceOrderStatuses =
-			_commerceOrderStatusRegistry.getCommerceOrderStatuses();
-
 		if ((currentCommerceOrderStatus != null) &&
 			currentCommerceOrderStatus.isWorkflowEnabled(_commerceOrder)) {
 
@@ -551,6 +548,9 @@ public class CommerceOrderEditDisplayContext {
 
 			return steps;
 		}
+
+		List<CommerceOrderStatus> commerceOrderStatuses =
+			_commerceOrderStatusRegistry.getCommerceOrderStatuses();
 
 		for (CommerceOrderStatus commerceOrderStatus : commerceOrderStatuses) {
 			if (((commerceOrderStatus.getKey() ==

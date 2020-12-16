@@ -625,8 +625,6 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 		int status = CommerceOrderPaymentConstants.STATUS_FAILED;
 
 		try {
-			String url = null;
-
 			APIContext apiContext = _getAPIContext(commerceOrder.getGroupId());
 
 			Plan plan = _getPlan(
@@ -636,6 +634,8 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 			if (plan == null) {
 				return null;
 			}
+
+			String url = null;
 
 			Agreement agreement = _getAgreement(
 				commerceOrder, apiContext, plan,
@@ -1074,8 +1074,6 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 			CommerceOrder commerceOrder, APIContext apiContext, Locale locale)
 		throws PayPalRESTException, PortalException {
 
-		CommerceCurrency commerceCurrency = commerceOrder.getCommerceCurrency();
-
 		List<CommerceOrderItem> commerceOrderItems =
 			commerceOrder.getCommerceOrderItems();
 
@@ -1111,6 +1109,8 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 
 			subscriptionType = PayPalCommercePaymentMethodConstants.YEAR;
 		}
+
+		CommerceCurrency commerceCurrency = commerceOrder.getCommerceCurrency();
 
 		Currency amount = new Currency(
 			commerceCurrency.getCode(),

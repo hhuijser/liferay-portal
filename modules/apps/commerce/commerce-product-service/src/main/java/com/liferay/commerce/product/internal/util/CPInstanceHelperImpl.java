@@ -170,10 +170,6 @@ public class CPInstanceHelperImpl implements CPInstanceHelper {
 		getCPDefinitionOptionRelsMap(
 			long cpDefinitionId, boolean skuContributor, boolean publicStore) {
 
-		Map<CPDefinitionOptionRel, List<CPDefinitionOptionValueRel>>
-			cpDefinitionOptionRelsMap = new TreeMap<>(
-				new CPDefinitionOptionRelComparator());
-
 		List<CPDefinitionOptionRel> cpDefinitionOptionRels;
 
 		if (skuContributor) {
@@ -190,6 +186,10 @@ public class CPInstanceHelperImpl implements CPInstanceHelper {
 		if (cpDefinitionOptionRels.isEmpty()) {
 			return Collections.emptyMap();
 		}
+
+		Map<CPDefinitionOptionRel, List<CPDefinitionOptionValueRel>>
+			cpDefinitionOptionRelsMap = new TreeMap<>(
+				new CPDefinitionOptionRelComparator());
 
 		for (CPDefinitionOptionRel cpDefinitionOptionRel :
 				cpDefinitionOptionRels) {

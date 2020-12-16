@@ -217,9 +217,6 @@ public class CPAssetCategoriesNavigationDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		String groupFriendlyURL = _portal.getGroupFriendlyURL(
-			themeDisplay.getLayoutSet(), themeDisplay);
-
 		long classNameId = _portal.getClassNameId(AssetCategory.class);
 
 		FriendlyURLEntry friendlyURLEntry = null;
@@ -232,6 +229,9 @@ public class CPAssetCategoriesNavigationDisplayContext {
 		catch (Exception exception) {
 			return StringPool.BLANK;
 		}
+
+		String groupFriendlyURL = _portal.getGroupFriendlyURL(
+			themeDisplay.getLayoutSet(), themeDisplay);
 
 		String languageId = LanguageUtil.getLanguageId(
 			themeDisplay.getLocale());

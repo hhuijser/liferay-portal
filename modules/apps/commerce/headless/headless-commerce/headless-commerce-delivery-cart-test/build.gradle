@@ -1,11 +1,11 @@
 dependencies {
+	testIntegrationCompile compileOnly project(":apps:portal-odata:portal-odata-api")
+	testIntegrationCompile compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
+	testIntegrationCompile compileOnly project(":core:petra:petra-function")
+	testIntegrationCompile compileOnly project(":core:petra:petra-string")
 	testIntegrationCompile group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.10.3"
 	testIntegrationCompile group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.10.3"
 	testIntegrationCompile group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.10.3"
-	testIntegrationCompile compileOnly project(":core:petra:petra-function")
-	testIntegrationCompile compileOnly project(":core:petra:petra-string")
-	testIntegrationCompile compileOnly project(":apps:portal-odata:portal-odata-api")
-	testIntegrationCompile compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.test", version: "default"
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.test.integration", version: "default"

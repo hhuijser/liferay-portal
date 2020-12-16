@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.URLCodec;
@@ -334,16 +335,11 @@ public class CommercePriceListDisplayContext
 	public List<ClayDataSetActionDropdownItem>
 		getPriceModifierCategoryClayDataSetActionDropdownItems() {
 
-		List<ClayDataSetActionDropdownItem> clayDataSetActionDropdownItems =
-			new ArrayList<>();
-
-		clayDataSetActionDropdownItems.add(
+		return ListUtil.fromArray(
 			new ClayDataSetActionDropdownItem(
 				null, "trash", "remove",
 				LanguageUtil.get(httpServletRequest, "remove"), "delete",
 				"delete", "headless"));
-
-		return clayDataSetActionDropdownItems;
 	}
 
 	public String getPriceModifierCPDefinitionApiUrl() throws PortalException {
@@ -355,31 +351,21 @@ public class CommercePriceListDisplayContext
 	public List<ClayDataSetActionDropdownItem>
 		getPriceModifierCPDefinitionClayDataSetActionDropdownItems() {
 
-		List<ClayDataSetActionDropdownItem> clayDataSetActionDropdownItem =
-			new ArrayList<>();
-
-		clayDataSetActionDropdownItem.add(
+		return ListUtil.fromArray(
 			new ClayDataSetActionDropdownItem(
 				null, "trash", "remove",
 				LanguageUtil.get(httpServletRequest, "remove"), "delete",
 				"delete", "headless"));
-
-		return clayDataSetActionDropdownItem;
 	}
 
 	public List<ClayDataSetActionDropdownItem>
 		getPriceModifierPricingClassClayDataSetActionDropdownItems() {
 
-		List<ClayDataSetActionDropdownItem> clayDataSetActionDropdownItems =
-			new ArrayList<>();
-
-		clayDataSetActionDropdownItems.add(
+		return ListUtil.fromArray(
 			new ClayDataSetActionDropdownItem(
 				null, "trash", "remove",
 				LanguageUtil.get(httpServletRequest, "remove"), "delete",
 				"delete", "headless"));
-
-		return clayDataSetActionDropdownItems;
 	}
 
 	public String getPriceModifierPricingClassesApiUrl()

@@ -12,23 +12,23 @@
  * details.
  */
 
-package com.liferay.commerce.configuration.definition;
+package com.liferay.commerce.internal.settings.definition;
 
-import com.liferay.commerce.configuration.CommerceOrderFieldsConfiguration;
+import com.liferay.commerce.configuration.CommercePriceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Marco Leo
+ * @author Alessio Antonio Rendina
  */
 @Component(enabled = false, service = ConfigurationBeanDeclaration.class)
-public class CommerceOrderFieldsConfigurationBeanDeclaration
+public class CommercePriceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return CommerceOrderFieldsConfiguration.class;
+		return CommercePriceConfiguration.class;
 	}
 
 }

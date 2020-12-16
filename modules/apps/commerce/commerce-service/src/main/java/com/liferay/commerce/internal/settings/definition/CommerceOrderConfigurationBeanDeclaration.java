@@ -12,23 +12,23 @@
  * details.
  */
 
-package com.liferay.commerce.configuration.definition;
+package com.liferay.commerce.internal.settings.definition;
 
-import com.liferay.commerce.configuration.CommerceOrderCheckoutConfiguration;
+import com.liferay.commerce.configuration.CommerceOrderConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Alec Sloan
+ * @author Marco Leo
  */
 @Component(enabled = false, service = ConfigurationBeanDeclaration.class)
-public class CommerceOrderCheckoutConfigurationBeanDeclaration
+public class CommerceOrderConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return CommerceOrderCheckoutConfiguration.class;
+		return CommerceOrderConfiguration.class;
 	}
 
 }

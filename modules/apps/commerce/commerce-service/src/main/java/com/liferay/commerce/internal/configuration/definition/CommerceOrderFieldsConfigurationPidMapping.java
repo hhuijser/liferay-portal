@@ -12,29 +12,29 @@
  * details.
  */
 
-package com.liferay.commerce.configuration.definition;
+package com.liferay.commerce.internal.configuration.definition;
 
-import com.liferay.commerce.configuration.CommerceShippingGroupServiceConfiguration;
+import com.liferay.commerce.configuration.CommerceOrderFieldsConfiguration;
 import com.liferay.commerce.constants.CommerceConstants;
 import com.liferay.portal.kernel.settings.definition.ConfigurationPidMapping;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Andrea Di Giorgi
+ * @author Marco Leo
  */
 @Component(enabled = false, service = ConfigurationPidMapping.class)
-public class CommerceShippingGroupServiceConfigurationPidMapping
+public class CommerceOrderFieldsConfigurationPidMapping
 	implements ConfigurationPidMapping {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return CommerceShippingGroupServiceConfiguration.class;
+		return CommerceOrderFieldsConfiguration.class;
 	}
 
 	@Override
 	public String getConfigurationPid() {
-		return CommerceConstants.SHIPPING_SERVICE_NAME;
+		return CommerceConstants.ORDER_FIELDS_SERVICE_NAME;
 	}
 
 }

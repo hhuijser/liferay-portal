@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.inventory.web.internal.frontend;
+package com.liferay.commerce.inventory.web.internal.frontend.constants;
 
 /**
  * @author Luca Pellizzon

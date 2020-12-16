@@ -188,11 +188,8 @@ public class EditCommerceAccountMVCActionCommand extends BaseMVCActionCommand {
 
 		String name = ParamUtil.getString(actionRequest, "name");
 		boolean deleteLogo = ParamUtil.getBoolean(actionRequest, "deleteLogo");
-		long parentCommerceAccountId = ParamUtil.getLong(
-			actionRequest, "parentCommerceAccountId");
 		String email = ParamUtil.getString(actionRequest, "email");
 		String taxId = ParamUtil.getString(actionRequest, "taxId");
-		int type = ParamUtil.getInteger(actionRequest, "type");
 		boolean active = ParamUtil.getBoolean(actionRequest, "active");
 
 		byte[] logoBytes = null;
@@ -211,6 +208,10 @@ public class EditCommerceAccountMVCActionCommand extends BaseMVCActionCommand {
 		CommerceAccount commerceAccount = null;
 
 		if (commerceAccountId <= 0) {
+			long parentCommerceAccountId = ParamUtil.getLong(
+				actionRequest, "parentCommerceAccountId");
+			int type = ParamUtil.getInteger(actionRequest, "type");
+
 			commerceAccount = _commerceAccountService.addCommerceAccount(
 				name, parentCommerceAccountId, email, taxId, type, active,
 				StringPool.BLANK, serviceContext);

@@ -135,8 +135,6 @@ public class EditCPDefinitionOptionValueRelMVCActionCommand
 		long cpDefinitionOptionValueRelId = ParamUtil.getLong(
 			actionRequest, "cpDefinitionOptionValueRelId");
 
-		long cpDefinitionOptionRelId = ParamUtil.getLong(
-			actionRequest, "cpDefinitionOptionRelId");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "name");
 		double priority = ParamUtil.getDouble(actionRequest, "priority");
@@ -154,6 +152,9 @@ public class EditCPDefinitionOptionValueRelMVCActionCommand
 		if (cpDefinitionOptionValueRelId <= 0) {
 
 			// Add commerce product definition option value rel
+
+			long cpDefinitionOptionRelId = ParamUtil.getLong(
+				actionRequest, "cpDefinitionOptionRelId");
 
 			return _cpDefinitionOptionValueRelService.
 				addCPDefinitionOptionValueRel(

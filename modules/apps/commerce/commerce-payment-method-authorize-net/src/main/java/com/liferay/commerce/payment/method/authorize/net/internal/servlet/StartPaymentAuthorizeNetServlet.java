@@ -56,9 +56,9 @@ public class StartPaymentAuthorizeNetServlet extends HttpServlet {
 		throws IOException, ServletException {
 
 		try {
-			HttpSession httpSession = httpServletRequest.getSession();
-
 			if (PortalSessionThreadLocal.getHttpSession() == null) {
+				HttpSession httpSession = httpServletRequest.getSession();
+
 				PortalSessionThreadLocal.setHttpSession(httpSession);
 			}
 

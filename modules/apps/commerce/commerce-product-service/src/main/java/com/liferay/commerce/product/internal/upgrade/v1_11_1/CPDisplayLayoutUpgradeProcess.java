@@ -43,8 +43,6 @@ public class CPDisplayLayoutUpgradeProcess extends UpgradeProcess {
 			ResultSet r = s.executeQuery(_SELECT_CPDISPLAYLAYOUT_SQL)) {
 
 			while (r.next()) {
-				long cpDisplayLayoutId = r.getLong("CPDisplayLayoutId");
-
 				long groupId = r.getLong("groupId");
 
 				String layoutUuid = r.getString("layoutUuid");
@@ -52,6 +50,8 @@ public class CPDisplayLayoutUpgradeProcess extends UpgradeProcess {
 				Layout layout = _fetchLayout(groupId, layoutUuid);
 
 				if (layout == null) {
+					long cpDisplayLayoutId = r.getLong("CPDisplayLayoutId");
+
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							String.format(

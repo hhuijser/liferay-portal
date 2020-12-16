@@ -175,10 +175,10 @@ public class CommerceProductOptionDataSetDataProvider
 			ddmFormFieldTypeProperties, "ddm.form.field.type.label");
 
 		try {
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				"content.Language", locale, ddmFormFieldType.getClass());
-
 			if (Validator.isNotNull(label)) {
+				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+					"content.Language", locale, ddmFormFieldType.getClass());
+
 				return LanguageUtil.get(resourceBundle, label);
 			}
 		}

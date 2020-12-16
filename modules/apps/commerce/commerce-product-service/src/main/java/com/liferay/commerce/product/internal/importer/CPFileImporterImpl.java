@@ -396,7 +396,6 @@ public class CPFileImporterImpl implements CPFileImporter {
 
 		boolean hidden = jsonObject.getBoolean("hidden");
 		String icon = jsonObject.getString("icon");
-		String layoutTemplateId = jsonObject.getString("layoutTemplateId");
 		String layoutType = jsonObject.getString(
 			"layoutType", LayoutConstants.TYPE_PORTLET);
 		String name = jsonObject.getString("name");
@@ -442,6 +441,8 @@ public class CPFileImporterImpl implements CPFileImporter {
 		JSONArray portletsJSONArray = jsonObject.getJSONArray("portlets");
 
 		if ((portletsJSONArray != null) && (portletsJSONArray.length() > 0)) {
+			String layoutTemplateId = jsonObject.getString("layoutTemplateId");
+
 			addLayoutPortlets(
 				portletsJSONArray, layout, layoutTemplateId, classLoader,
 				serviceContext);
@@ -837,13 +838,13 @@ public class CPFileImporterImpl implements CPFileImporter {
 			theme.getConfigurableSettings();
 
 		for (Map.Entry<String, ThemeSetting> entry : themeSettings.entrySet()) {
-			String key = entry.getKey();
-
 			ThemeSetting themeSetting = entry.getValue();
 
 			String value = themeSetting.getValue();
 
 			if (!value.equals(themeSetting.getValue())) {
+				String key = entry.getKey();
+
 				typeSettingUnicodeProperties.setProperty(
 					ThemeSettingImpl.namespaceProperty(device, key), value);
 			}

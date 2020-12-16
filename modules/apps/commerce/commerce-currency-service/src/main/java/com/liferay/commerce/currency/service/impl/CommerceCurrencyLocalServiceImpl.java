@@ -82,11 +82,6 @@ public class CommerceCurrencyLocalServiceImpl
 
 		validate(0, user.getCompanyId(), code, nameMap, primary);
 
-		RoundingTypeConfiguration roundingTypeConfiguration =
-			_configurationProvider.getConfiguration(
-				RoundingTypeConfiguration.class,
-				new SystemSettingsLocator(RoundingTypeConstants.SERVICE_NAME));
-
 		if (formatPatternMap.isEmpty()) {
 			formatPatternMap.put(
 				user.getLocale(),
@@ -94,6 +89,12 @@ public class CommerceCurrencyLocalServiceImpl
 		}
 
 		if (Validator.isNull(roundingMode)) {
+			RoundingTypeConfiguration roundingTypeConfiguration =
+				_configurationProvider.getConfiguration(
+					RoundingTypeConfiguration.class,
+					new SystemSettingsLocator(
+						RoundingTypeConstants.SERVICE_NAME));
+
 			RoundingMode roundingModeEnum =
 				roundingTypeConfiguration.roundingMode();
 
@@ -314,11 +315,6 @@ public class CommerceCurrencyLocalServiceImpl
 			commerceCurrency.getCommerceCurrencyId(),
 			serviceContext.getCompanyId(), code, nameMap, primary);
 
-		RoundingTypeConfiguration roundingTypeConfiguration =
-			_configurationProvider.getConfiguration(
-				RoundingTypeConfiguration.class,
-				new SystemSettingsLocator(RoundingTypeConstants.SERVICE_NAME));
-
 		if (formatPatternMap.isEmpty()) {
 			formatPatternMap.put(
 				serviceContext.getLocale(),
@@ -326,6 +322,12 @@ public class CommerceCurrencyLocalServiceImpl
 		}
 
 		if (Validator.isNull(roundingMode)) {
+			RoundingTypeConfiguration roundingTypeConfiguration =
+				_configurationProvider.getConfiguration(
+					RoundingTypeConfiguration.class,
+					new SystemSettingsLocator(
+						RoundingTypeConstants.SERVICE_NAME));
+
 			RoundingMode roundingModeEnum =
 				roundingTypeConfiguration.roundingMode();
 

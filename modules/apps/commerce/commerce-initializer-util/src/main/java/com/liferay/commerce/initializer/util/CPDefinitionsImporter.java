@@ -263,13 +263,13 @@ public class CPDefinitionsImporter {
 		throws Exception {
 
 		for (int i = 0; i < commerceInventoryWarehouseIds.length; i++) {
-			long commerceInventoryWarehouseId =
-				commerceInventoryWarehouseIds[i];
-
 			int quantity = skuJSONObject.getInt(
 				"Warehouse" + String.valueOf(i + 1));
 
 			if (quantity > 0) {
+				long commerceInventoryWarehouseId =
+					commerceInventoryWarehouseIds[i];
+
 				_commerceInventoryWarehouseItemLocalService.
 					upsertCommerceInventoryWarehouseItem(
 						serviceContext.getUserId(),
@@ -478,9 +478,9 @@ public class CPDefinitionsImporter {
 
 		JSONArray skusJSONArray = jsonObject.getJSONArray("Skus");
 
-		Calendar calendar = Calendar.getInstance();
-
 		if (skusJSONArray != null) {
+			Calendar calendar = Calendar.getInstance();
+
 			for (int i = 0; i < skusJSONArray.length(); i++) {
 				JSONObject skuJSONObject = skusJSONArray.getJSONObject(i);
 

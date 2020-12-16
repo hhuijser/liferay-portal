@@ -175,9 +175,6 @@ public class EditCommerceOrderItemMVCActionCommand
 			actionRequest, "commerceOrderItemId");
 		int quantity = ParamUtil.getInteger(actionRequest, "quantity");
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			CommerceOrderItem.class.getName(), actionRequest);
-
 		CommerceOrderItem commerceOrderItem =
 			_commerceOrderItemService.getCommerceOrderItem(commerceOrderItemId);
 
@@ -187,6 +184,9 @@ public class EditCommerceOrderItemMVCActionCommand
 			CommerceContext commerceContext =
 				(CommerceContext)actionRequest.getAttribute(
 					CommerceWebKeys.COMMERCE_CONTEXT);
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				CommerceOrderItem.class.getName(), actionRequest);
 
 			commerceOrderItem =
 				_commerceOrderItemService.updateCommerceOrderItem(

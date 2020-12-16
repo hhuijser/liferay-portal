@@ -151,12 +151,12 @@ public class EditCommerceCatalogMVCActionCommand extends BaseMVCActionCommand {
 		String catalogDefaultLanguageId = ParamUtil.getString(
 			actionRequest, "catalogDefaultLanguageId");
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			CommerceCatalog.class.getName(), actionRequest);
-
 		CommerceCatalog commerceCatalog = null;
 
 		if (commerceCatalogId <= 0) {
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				CommerceCatalog.class.getName(), actionRequest);
+
 			commerceCatalog = _commerceCatalogService.addCommerceCatalog(
 				name, commerceCurrencyCode, catalogDefaultLanguageId, null,
 				serviceContext);

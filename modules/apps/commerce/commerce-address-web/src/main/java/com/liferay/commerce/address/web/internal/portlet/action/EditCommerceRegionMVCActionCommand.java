@@ -127,9 +127,6 @@ public class EditCommerceRegionMVCActionCommand extends BaseMVCActionCommand {
 	protected CommerceRegion updateCommerceRegion(ActionRequest actionRequest)
 		throws Exception {
 
-		long commerceCountryId = ParamUtil.getLong(
-			actionRequest, "commerceCountryId");
-
 		long commerceRegionId = ParamUtil.getLong(
 			actionRequest, "commerceRegionId");
 
@@ -144,6 +141,9 @@ public class EditCommerceRegionMVCActionCommand extends BaseMVCActionCommand {
 		CommerceRegion commerceRegion = null;
 
 		if (commerceRegionId <= 0) {
+			long commerceCountryId = ParamUtil.getLong(
+				actionRequest, "commerceCountryId");
+
 			commerceRegion = _commerceRegionService.addCommerceRegion(
 				commerceCountryId, name, code, priority, active,
 				serviceContext);

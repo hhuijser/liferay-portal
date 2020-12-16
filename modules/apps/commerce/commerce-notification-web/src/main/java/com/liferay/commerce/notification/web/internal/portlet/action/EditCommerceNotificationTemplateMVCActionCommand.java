@@ -140,9 +140,6 @@ public class EditCommerceNotificationTemplateMVCActionCommand
 			ActionRequest actionRequest)
 		throws PortalException {
 
-		long commerceChannelId = ParamUtil.getLong(
-			actionRequest, "commerceChannelId");
-
 		long commerceNotificationTemplateId = ParamUtil.getLong(
 			actionRequest, "commerceNotificationTemplateId");
 
@@ -167,6 +164,9 @@ public class EditCommerceNotificationTemplateMVCActionCommand
 		CommerceNotificationTemplate commerceNotificationTemplate = null;
 
 		if (commerceNotificationTemplateId <= 0) {
+			long commerceChannelId = ParamUtil.getLong(
+				actionRequest, "commerceChannelId");
+
 			CommerceChannel commerceChannel =
 				_commerceChannelService.getCommerceChannel(commerceChannelId);
 

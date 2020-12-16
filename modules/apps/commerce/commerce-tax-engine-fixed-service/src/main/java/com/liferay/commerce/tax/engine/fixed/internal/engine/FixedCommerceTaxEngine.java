@@ -68,11 +68,11 @@ public class FixedCommerceTaxEngine implements CommerceTaxEngine {
 			BigDecimal rate = BigDecimal.valueOf(
 				commerceTaxFixedRate.getRate());
 
-			BigDecimal amount = commerceTaxCalculateRequest.getPrice();
-
 			BigDecimal taxValue = rate;
 
 			if (commerceTaxCalculateRequest.isPercentage()) {
+				BigDecimal amount = commerceTaxCalculateRequest.getPrice();
+
 				taxValue = amount.multiply(rate);
 
 				BigDecimal denominator = _ONE_HUNDRED;

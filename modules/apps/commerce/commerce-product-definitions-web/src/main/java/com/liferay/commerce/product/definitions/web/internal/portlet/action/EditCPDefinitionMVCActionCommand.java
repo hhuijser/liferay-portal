@@ -273,8 +273,6 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 		long cpDefinitionId = ParamUtil.getLong(
 			actionRequest, "cpDefinitionId");
 
-		long commerceCatalogGroupId = ParamUtil.getLong(
-			actionRequest, "commerceCatalogGroupId");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "nameMapAsXML");
 		Map<Locale, String> shortDescriptionMap =
@@ -283,8 +281,6 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(
 				actionRequest, "descriptionMapAsXML");
-		String productTypeName = ParamUtil.getString(
-			actionRequest, "productTypeName");
 		Map<Locale, String> urlTitleMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "urlTitleMapAsXML");
 		Map<Locale, String> metaTitleMap = LocalizationUtil.getLocalizationMap(
@@ -340,6 +336,9 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 		CPDefinition cpDefinition = null;
 
 		if (cpDefinitionId <= 0) {
+			long commerceCatalogGroupId = ParamUtil.getLong(
+				actionRequest, "commerceCatalogGroupId");
+
 			CommerceCatalog commerceCatalog =
 				_commerceCatalogService.fetchCommerceCatalogByGroupId(
 					commerceCatalogGroupId);
@@ -354,6 +353,9 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 			if (Validator.isNull(nameMap.get(defaultLocale))) {
 				throw new CPDefinitionNameDefaultLanguageException();
 			}
+
+			String productTypeName = ParamUtil.getString(
+				actionRequest, "productTypeName");
 
 			// Add commerce product definition
 

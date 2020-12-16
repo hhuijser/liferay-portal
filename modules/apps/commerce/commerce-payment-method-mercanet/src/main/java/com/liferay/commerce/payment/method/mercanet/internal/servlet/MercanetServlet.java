@@ -83,9 +83,9 @@ public class MercanetServlet extends HttpServlet {
 		throws IOException, ServletException {
 
 		try {
-			HttpSession httpSession = httpServletRequest.getSession();
-
 			if (PortalSessionThreadLocal.getHttpSession() == null) {
+				HttpSession httpSession = httpServletRequest.getSession();
+
 				PortalSessionThreadLocal.setHttpSession(httpSession);
 			}
 
@@ -118,9 +118,9 @@ public class MercanetServlet extends HttpServlet {
 			Map<String, String> parameterMap = _getResponseParameters(data);
 
 			if (Objects.equals("normal", type)) {
-				HttpSession httpSession = httpServletRequest.getSession();
-
 				if (PortalSessionThreadLocal.getHttpSession() == null) {
+					HttpSession httpSession = httpServletRequest.getSession();
+
 					PortalSessionThreadLocal.setHttpSession(httpSession);
 				}
 

@@ -162,9 +162,6 @@ public class EditCommerceAccountGroupMVCActionCommand
 			actionRequest, "commerceAccountGroupId");
 
 		String name = ParamUtil.getString(actionRequest, "name");
-		int type = ParamUtil.getInteger(
-			actionRequest, "type",
-			CommerceAccountConstants.ACCOUNT_GROUP_TYPE_STATIC);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CommerceAccountGroup.class.getName(), actionRequest);
@@ -172,6 +169,10 @@ public class EditCommerceAccountGroupMVCActionCommand
 		CommerceAccountGroup commerceAccountGroup = null;
 
 		if (commerceAccountGroupId <= 0) {
+			int type = ParamUtil.getInteger(
+				actionRequest, "type",
+				CommerceAccountConstants.ACCOUNT_GROUP_TYPE_STATIC);
+
 			commerceAccountGroup =
 				_commerceAccountGroupService.addCommerceAccountGroup(
 					_portal.getCompanyId(actionRequest), name, type, null,

@@ -81,8 +81,6 @@ public class AddCommerceOrderItemMVCActionCommand extends BaseMVCActionCommand {
 		HttpServletResponse httpServletResponse =
 			_portal.getHttpServletResponse(actionResponse);
 
-		long cpDefinitionId = ParamUtil.getLong(
-			actionRequest, "cpDefinitionId");
 		int quantity = ParamUtil.getInteger(actionRequest, "quantity");
 		String ddmFormValues = ParamUtil.getString(
 			actionRequest, "ddmFormValues");
@@ -90,6 +88,9 @@ public class AddCommerceOrderItemMVCActionCommand extends BaseMVCActionCommand {
 		long cpInstanceId = ParamUtil.getLong(actionRequest, "cpInstanceId");
 
 		if (cpInstanceId == 0) {
+			long cpDefinitionId = ParamUtil.getLong(
+				actionRequest, "cpDefinitionId");
+
 			CPInstance cpInstance = _cpInstanceHelper.fetchCPInstance(
 				cpDefinitionId, ddmFormValues);
 

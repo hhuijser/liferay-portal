@@ -1191,10 +1191,11 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 
 		BigDecimal shippingAmount = commerceOrder.getShippingAmount();
 
-		CommerceCurrency commerceCurrency = commerceOrder.getCommerceCurrency();
-
 		if ((shippingAmount != null) &&
 			(shippingAmount.compareTo(BigDecimal.ZERO) > 0)) {
+
+			CommerceCurrency commerceCurrency =
+				commerceOrder.getCommerceCurrency();
 
 			_addItem(
 				commerceCurrency,

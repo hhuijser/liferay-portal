@@ -12,18 +12,18 @@
  * details.
  */
 
-package com.liferay.commerce.product.options.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.product.options.web.internal.servlet.taglib.ui.constants;
 
 /**
- * @author Andrea Di Giorgi
+ * @author Alessio Antonio Rendina
  */
-public class CPSpecificationOptionFormNavigatorConstants {
+public class CPOptionCategoryFormNavigatorConstants {
 
 	public static final String
-		CATEGORY_KEY_COMMERCE_PRODUCT_SPECIFICATION_OPTION_DETAILS = "details";
+		CATEGORY_KEY_COMMERCE_PRODUCT_OPTION_CATEGORY_DETAILS = "details";
 
 	public static final String
-		FORM_NAVIGATOR_ID_COMMERCE_PRODUCT_SPECIFICATION_OPTION =
-			"commerce.product.specification.option.form";
+		FORM_NAVIGATOR_ID_COMMERCE_PRODUCT_OPTION_CATEGORY =
+			"commerce.product.option.category.form";
 
 }

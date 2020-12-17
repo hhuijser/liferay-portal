@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.type.virtual.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.product.type.virtual.web.internal.servlet.taglib.ui.constants;
 
 /**
  * @author Alessio Antonio Rendina

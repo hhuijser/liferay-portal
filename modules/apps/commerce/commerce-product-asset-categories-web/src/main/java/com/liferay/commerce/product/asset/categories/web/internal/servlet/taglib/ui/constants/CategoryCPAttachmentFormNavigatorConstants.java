@@ -12,18 +12,18 @@
  * details.
  */
 
-package com.liferay.commerce.price.list.web.internal.frontend;
+package com.liferay.commerce.product.asset.categories.web.internal.servlet.taglib.ui.constants;
 
 /**
  * @author Alessio Antonio Rendina
  */
-public class CommercePriceListDataSetConstants {
+public class CategoryCPAttachmentFormNavigatorConstants {
 
-	public static final String COMMERCE_DATA_SET_KEY_INSTANCE_PRICE_ENTRIES =
-		"cpInstancePriceEntries";
+	public static final String CATEGORY_KEY_CP_ATTACHMENT_FILE_ENTRY_DETAILS =
+		"details";
 
 	public static final String
-		COMMERCE_DATA_SET_KEY_INSTANCE_TIER_PRICE_ENTRIES =
-			"cpInstanceTierPriceEntries";
+		FORM_NAVIGATOR_ID_COMMERCE_CP_ATTACHMENT_FILE_ENTRY =
+			"edit.category.cp.attachment.form";
 
 }

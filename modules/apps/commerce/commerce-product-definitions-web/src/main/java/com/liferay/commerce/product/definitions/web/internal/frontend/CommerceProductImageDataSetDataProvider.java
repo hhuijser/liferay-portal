@@ -17,6 +17,7 @@ package com.liferay.commerce.product.definitions.web.internal.frontend;
 import com.liferay.commerce.frontend.model.ImageField;
 import com.liferay.commerce.frontend.model.LabelField;
 import com.liferay.commerce.media.CommerceMediaResolverUtil;
+import com.liferay.commerce.product.definitions.web.internal.frontend.constants.CommerceProductDataSetConstants;
 import com.liferay.commerce.product.definitions.web.internal.model.ProductMedia;
 import com.liferay.commerce.product.model.CPAttachmentFileEntry;
 import com.liferay.commerce.product.model.CPAttachmentFileEntryConstants;

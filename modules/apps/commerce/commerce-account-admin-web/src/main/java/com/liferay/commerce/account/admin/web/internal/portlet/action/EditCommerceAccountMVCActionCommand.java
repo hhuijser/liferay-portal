@@ -53,7 +53,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommerceAccountPortletKeys.COMMERCE_ACCOUNT_ADMIN,
-		"mvc.command.name=editCommerceAccount"
+		"mvc.command.name=/commerce_account_admin/edit_commerce_account"
 	},
 	service = MVCActionCommand.class
 )
@@ -113,7 +113,8 @@ public class EditCommerceAccountMVCActionCommand extends BaseMVCActionCommand {
 				SessionErrors.add(actionRequest, exception.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editCommerceAccount");
+					"mvcRenderCommandName",
+					"/commerce_account_admin/edit_commerce_account");
 			}
 			else if (exception instanceof NoSuchAccountException ||
 					 exception instanceof PrincipalException) {
@@ -144,7 +145,8 @@ public class EditCommerceAccountMVCActionCommand extends BaseMVCActionCommand {
 			portletURL.setParameter("backURL", portletURL.toString());
 
 			portletURL.setParameter(
-				"mvcRenderCommandName", "editCommerceAccount");
+				"mvcRenderCommandName",
+				"/commerce_account_admin/edit_commerce_account");
 			portletURL.setParameter(
 				"commerceAccountId",
 				String.valueOf(commerceAccount.getCommerceAccountId()));

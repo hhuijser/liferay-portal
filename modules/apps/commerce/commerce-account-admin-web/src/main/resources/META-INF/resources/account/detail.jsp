@@ -23,7 +23,7 @@ CommerceAccount commerceAccount = commerceAccountAdminDisplayContext.getCommerce
 long commerceAccountId = commerceAccountAdminDisplayContext.getCommerceAccountId();
 %>
 
-<portlet:actionURL name="editCommerceAccount" var="editCommerceAccountActionURL" />
+<portlet:actionURL name="/commerce_account_admin/edit_commerce_account" var="editCommerceAccountActionURL" />
 
 <aui:form action="<%= editCommerceAccountActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceAccount == null) ? Constants.ADD : Constants.UPDATE %>" />

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.pricing.internal.configuration;
+package com.liferay.commerce.pricing.internal.configuration.definition;
 
 import com.liferay.commerce.pricing.configuration.CommercePricingConfiguration;
 import com.liferay.commerce.pricing.constants.CommercePricingConstants;

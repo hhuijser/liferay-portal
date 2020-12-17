@@ -20,7 +20,7 @@ import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.model.CommerceCatalog;
 import com.liferay.commerce.product.portlet.action.ActionHelper;
 import com.liferay.commerce.product.service.CPDefinitionLinkService;
-import com.liferay.commerce.product.servlet.taglib.ui.CPDefinitionScreenNavigationConstants;
+import com.liferay.commerce.product.servlet.taglib.ui.constants.CPDefinitionScreenNavigationConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;

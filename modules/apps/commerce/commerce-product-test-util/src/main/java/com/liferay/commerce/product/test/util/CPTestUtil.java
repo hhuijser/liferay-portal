@@ -27,11 +27,11 @@ import com.liferay.commerce.price.list.service.CommercePriceEntryLocalServiceUti
 import com.liferay.commerce.price.list.service.CommercePriceListLocalServiceUtil;
 import com.liferay.commerce.product.configuration.CPOptionConfiguration;
 import com.liferay.commerce.product.constants.CPConstants;
+import com.liferay.commerce.product.constants.CPInstanceConstants;
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.model.CPDefinitionOptionRel;
 import com.liferay.commerce.product.model.CPDefinitionOptionValueRel;
 import com.liferay.commerce.product.model.CPInstance;
-import com.liferay.commerce.product.model.CPInstanceConstants;
 import com.liferay.commerce.product.model.CPOption;
 import com.liferay.commerce.product.model.CPOptionValue;
 import com.liferay.commerce.product.model.CommerceCatalog;

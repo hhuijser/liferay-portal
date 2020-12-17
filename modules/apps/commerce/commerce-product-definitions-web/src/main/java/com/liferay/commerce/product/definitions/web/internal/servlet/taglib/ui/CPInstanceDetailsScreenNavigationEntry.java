@@ -24,7 +24,7 @@ import com.liferay.commerce.product.model.CommerceCatalog;
 import com.liferay.commerce.product.portlet.action.ActionHelper;
 import com.liferay.commerce.product.service.CPDefinitionOptionRelService;
 import com.liferay.commerce.product.service.CPMeasurementUnitLocalService;
-import com.liferay.commerce.product.servlet.taglib.ui.CPInstanceScreenNavigationConstants;
+import com.liferay.commerce.product.servlet.taglib.ui.constants.CPInstanceScreenNavigationConstants;
 import com.liferay.commerce.product.util.CPInstanceHelper;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;

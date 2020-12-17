@@ -12,18 +12,13 @@
  * details.
  */
 
-package com.liferay.commerce.product.model;
+package com.liferay.commerce.product.constants;
 
 /**
- * @author     Andrea Di Giorgi
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             com.liferay.commerce.product.constants.CPMeasurementUnitConstants}
+ * @author Alec Sloan
  */
-@Deprecated
-public class CPMeasurementUnitConstants {
+public class CommerceChannelConstants {
 
-	public static final int TYPE_DIMENSION = 0;
-
-	public static final int TYPE_WEIGHT = 1;
+	public static final String CHANNEL_TYPE_SITE = "site";
 
 }

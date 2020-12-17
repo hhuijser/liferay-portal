@@ -3147,8 +3147,8 @@ com/liferay/commerce/price/list/web/internal/servlet/taglib/ui/CommercePriceList
 com/liferay/commerce/price/list/web/internal/servlet/taglib/ui/CommercePriceListEntriesScreenNavigationEntry.getLabel(Ljava/util/Locale;)Ljava/lang/String;:SAFE
 com/liferay/commerce/price/list/web/internal/servlet/taglib/ui/CommercePriceListEntriesScreenNavigationEntry.getScreenNavigationKey()Ljava/lang/String;:SAFE
 com/liferay/commerce/pricing/constants/CommercePriceModifierConstants.TARGETS:SAFE
-com/liferay/commerce/pricing/internal/configuration/CommercePricingConfigurationPidMapping.getConfigurationBeanClass()Ljava/lang/Class;:SAFE
-com/liferay/commerce/pricing/internal/configuration/CommercePricingConfigurationPidMapping.getConfigurationPid()Ljava/lang/String;:SAFE
+com/liferay/commerce/pricing/internal/configuration/definition/CommercePricingConfigurationPidMapping.getConfigurationBeanClass()Ljava/lang/Class;:SAFE
+com/liferay/commerce/pricing/internal/configuration/definition/CommercePricingConfigurationPidMapping.getConfigurationPid()Ljava/lang/String;:SAFE
 com/liferay/commerce/pricing/internal/modifier/CommercePriceModifierHelperImpl.applyCommercePriceModifier(JJLcom/liferay/commerce/currency/model/CommerceMoney;)Ljava/math/BigDecimal;:SAFE
 com/liferay/commerce/pricing/internal/search/CommercePricingClassIndexer.getClassName()Ljava/lang/String;:SAFE
 com/liferay/commerce/pricing/internal/security/permission/resource/CommercePricingClassModelResourcePermission.getModelName()Ljava/lang/String;:SAFE

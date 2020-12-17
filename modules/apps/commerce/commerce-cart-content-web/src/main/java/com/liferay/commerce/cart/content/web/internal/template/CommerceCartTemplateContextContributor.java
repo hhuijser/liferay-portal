@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.portlet.template.contributor;
+package com.liferay.commerce.cart.content.web.internal.template;
 
-import com.liferay.commerce.product.content.util.CPCompareContentHelper;
+import com.liferay.commerce.order.CommerceOrderHttpHelper;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
 
 import java.util.Map;
@@ -25,14 +25,14 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Alessio Antonio Rendina
+ * @author Marco Leo
  */
 @Component(
 	enabled = false, immediate = true,
-	property = "type=" + TemplateContextContributor.TYPE_GLOBAL,
+	property = "type=" + TemplateContextContributor.TYPE_THEME,
 	service = TemplateContextContributor.class
 )
-public class CPCompareContentTemplateContextContributor
+public class CommerceCartTemplateContextContributor
 	implements TemplateContextContributor {
 
 	@Override
@@ -40,10 +40,10 @@ public class CPCompareContentTemplateContextContributor
 		Map<String, Object> contextObjects,
 		HttpServletRequest httpServletRequest) {
 
-		contextObjects.put("cpCompareContentHelper", _cpCompareContentHelper);
+		contextObjects.put("commerceOrderHttpHelper", _commerceOrderHttpHelper);
 	}
 
 	@Reference
-	private CPCompareContentHelper _cpCompareContentHelper;
+	private CommerceOrderHttpHelper _commerceOrderHttpHelper;
 
 }

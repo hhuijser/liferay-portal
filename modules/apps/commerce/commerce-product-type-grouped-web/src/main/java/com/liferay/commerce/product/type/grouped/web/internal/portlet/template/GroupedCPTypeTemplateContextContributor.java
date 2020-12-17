@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.type.grouped.web.internal.portlet.template.contributor;
+package com.liferay.commerce.product.type.grouped.web.internal.portlet.template;
 
 import com.liferay.commerce.product.type.grouped.util.GroupedCPTypeHelper;
 import com.liferay.portal.kernel.template.TemplateContextContributor;

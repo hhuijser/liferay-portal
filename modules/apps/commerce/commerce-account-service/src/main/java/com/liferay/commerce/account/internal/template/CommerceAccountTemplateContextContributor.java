@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.product.type.virtual.web.internal.portlet.template.contributor;
+package com.liferay.commerce.account.internal.template;
 
-import com.liferay.commerce.product.type.virtual.util.VirtualCPTypeHelper;
+import com.liferay.commerce.account.util.CommerceAccountHelper;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
 
 import java.util.Map;
@@ -29,10 +29,10 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	enabled = false, immediate = true,
-	property = "type=" + TemplateContextContributor.TYPE_GLOBAL,
+	property = "type=" + TemplateContextContributor.TYPE_THEME,
 	service = TemplateContextContributor.class
 )
-public class VirtualCPTypeTemplateContextContributor
+public class CommerceAccountTemplateContextContributor
 	implements TemplateContextContributor {
 
 	@Override
@@ -40,10 +40,10 @@ public class VirtualCPTypeTemplateContextContributor
 		Map<String, Object> contextObjects,
 		HttpServletRequest httpServletRequest) {
 
-		contextObjects.put("virtualCPTypeHelper", _virtualCPTypeHelper);
+		contextObjects.put("commerceAccountHelper", _commerceAccountHelper);
 	}
 
 	@Reference
-	private VirtualCPTypeHelper _virtualCPTypeHelper;
+	private CommerceAccountHelper _commerceAccountHelper;
 
 }

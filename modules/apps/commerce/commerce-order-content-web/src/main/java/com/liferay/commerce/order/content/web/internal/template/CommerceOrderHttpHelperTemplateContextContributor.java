@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.wish.list.web.internal.theme.contributor;
+package com.liferay.commerce.order.content.web.internal.template;
 
-import com.liferay.commerce.wish.list.util.CommerceWishListHttpHelper;
+import com.liferay.commerce.order.CommerceOrderHttpHelper;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
 
 import java.util.Map;
@@ -25,14 +25,14 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Andrea Di Giorgi
+ * @author Alec Sloan
  */
 @Component(
 	enabled = false, immediate = true,
-	property = "type=" + TemplateContextContributor.TYPE_THEME,
+	property = "type=" + TemplateContextContributor.TYPE_GLOBAL,
 	service = TemplateContextContributor.class
 )
-public class CommerceWishListTemplateContextContributor
+public class CommerceOrderHttpHelperTemplateContextContributor
 	implements TemplateContextContributor {
 
 	@Override
@@ -40,11 +40,10 @@ public class CommerceWishListTemplateContextContributor
 		Map<String, Object> contextObjects,
 		HttpServletRequest httpServletRequest) {
 
-		contextObjects.put(
-			"commerceWishListHttpHelper", _commerceWishListHttpHelper);
+		contextObjects.put("commerceOrderHttpHelper", _commerceOrderHttpHelper);
 	}
 
 	@Reference
-	private CommerceWishListHttpHelper _commerceWishListHttpHelper;
+	private CommerceOrderHttpHelper _commerceOrderHttpHelper;
 
 }

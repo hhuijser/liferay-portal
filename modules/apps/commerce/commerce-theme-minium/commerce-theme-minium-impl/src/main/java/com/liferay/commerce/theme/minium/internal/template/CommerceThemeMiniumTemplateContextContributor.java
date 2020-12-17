@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.theme.minium.internal.theme.contributor;
+package com.liferay.commerce.theme.minium.internal.template;
 
 import com.liferay.commerce.theme.minium.internal.helper.CommerceThemeMiniumHttpHelper;
 import com.liferay.portal.kernel.template.TemplateContextContributor;

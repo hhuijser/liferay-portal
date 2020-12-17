@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.commerce.currency.model;
+package com.liferay.commerce.currency.constants;
 
 /**
- * @author     Alessio Antonio Rendina
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             com.liferay.commerce.currency.constants.CommerceCurrencyConstants}
+ * @author Alessio Antonio Rendina
  */
-@Deprecated
 public class CommerceCurrencyConstants {
 
 	public static final String DEFAULT_FORMAT_PATTERN = "###,##0.00";

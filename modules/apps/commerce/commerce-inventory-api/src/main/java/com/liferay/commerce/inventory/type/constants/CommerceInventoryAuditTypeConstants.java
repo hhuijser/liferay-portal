@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.commerce.inventory.type;
+package com.liferay.commerce.inventory.type.constants;
 
 /**
- * @author     Luca Pellizzon
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             com.liferay.commerce.inventory.type.constants.CommerceInventoryAuditTypeConstants}
+ * @author Luca Pellizzon
  */
-@Deprecated
 public class CommerceInventoryAuditTypeConstants {
 
 	public static final String ACCOUNT_NAME = "accountName";

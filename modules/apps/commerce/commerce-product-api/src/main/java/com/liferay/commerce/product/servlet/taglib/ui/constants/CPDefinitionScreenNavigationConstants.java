@@ -12,14 +12,11 @@
  * details.
  */
 
-package com.liferay.commerce.product.servlet.taglib.ui;
+package com.liferay.commerce.product.servlet.taglib.ui.constants;
 
 /**
- * @author     Alessio Antonio Rendina
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             com.liferay.commerce.product.servlet.taglib.ui.constants.CPDefinitionScreenNavigationConstants}
+ * @author Alessio Antonio Rendina
  */
-@Deprecated
 public class CPDefinitionScreenNavigationConstants {
 
 	public static final String CATEGORY_KEY_CONFIGURATION = "configuration";

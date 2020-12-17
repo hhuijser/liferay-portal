@@ -12,18 +12,19 @@
  * details.
  */
 
-package com.liferay.commerce.product.model;
+package com.liferay.commerce.product.servlet.taglib.ui.constants;
 
 /**
- * @author     Andrea Di Giorgi
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             com.liferay.commerce.product.constants.CPMeasurementUnitConstants}
+ * @author Alessio Antonio Rendina
  */
-@Deprecated
-public class CPMeasurementUnitConstants {
+public class CPInstanceScreenNavigationConstants {
 
-	public static final int TYPE_DIMENSION = 0;
+	public static final String CATEGORY_KEY_DETAILS = "details";
 
-	public static final int TYPE_WEIGHT = 1;
+	public static final String CATEGORY_KEY_SUBSCRIPTION_OVERRIDE =
+		"subscription-override";
+
+	public static final String SCREEN_NAVIGATION_KEY_CP_INSTANCE_GENERAL =
+		"cp.instance.general";
 
 }

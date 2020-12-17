@@ -17,7 +17,7 @@ package com.liferay.commerce.subscription.web.internal.servlet.taglib.ui;
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.model.CommerceCatalog;
 import com.liferay.commerce.product.portlet.action.ActionHelper;
-import com.liferay.commerce.product.servlet.taglib.ui.CPDefinitionScreenNavigationConstants;
+import com.liferay.commerce.product.servlet.taglib.ui.constants.CPDefinitionScreenNavigationConstants;
 import com.liferay.commerce.product.util.CPSubscriptionTypeJSPContributorRegistry;
 import com.liferay.commerce.product.util.CPSubscriptionTypeRegistry;
 import com.liferay.commerce.subscription.web.internal.display.context.CPDefinitionSubscriptionInfoDisplayContext;

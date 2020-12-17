@@ -20,7 +20,7 @@ import com.liferay.commerce.product.display.context.BaseCPDefinitionsDisplayCont
 import com.liferay.commerce.product.item.selector.criterion.CPOptionItemSelectorCriterion;
 import com.liferay.commerce.product.model.CPDefinitionOptionRel;
 import com.liferay.commerce.product.portlet.action.ActionHelper;
-import com.liferay.commerce.product.servlet.taglib.ui.CPDefinitionScreenNavigationConstants;
+import com.liferay.commerce.product.servlet.taglib.ui.constants.CPDefinitionScreenNavigationConstants;
 import com.liferay.commerce.product.util.DDMFormFieldTypeUtil;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldType;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServicesTracker;

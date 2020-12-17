@@ -31,7 +31,7 @@ long commerceCountryId = commerceAccountAddressAdminDisplayContext.getCommerceCo
 long commerceRegionId = commerceAccountAddressAdminDisplayContext.getCommerceRegionId();
 %>
 
-<portlet:actionURL name="editCommerceAddress" var="editCommerceAddressActionURL" />
+<portlet:actionURL name="/commerce_account_admin/edit_commerce_address" var="editCommerceAddressActionURL" />
 
 <div class="container-fluid container-fluid-max-xl mt-4 sheet">
 	<aui:form action="<%= editCommerceAddressActionURL %>" method="post" name="fm">

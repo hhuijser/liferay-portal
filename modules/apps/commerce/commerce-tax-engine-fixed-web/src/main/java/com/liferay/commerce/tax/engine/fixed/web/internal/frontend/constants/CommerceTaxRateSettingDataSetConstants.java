@@ -12,26 +12,18 @@
  * details.
  */
 
-package com.liferay.commerce.shipping.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.tax.engine.fixed.web.internal.frontend.constants;
 
 /**
- * @author Alessio Antonio Rendina
+ * @author Alec Sloan
  */
-public class CommerceShippingScreenNavigationConstants {
-
-	public static final String CATEGORY_KEY_COMMERCE_SHIPPING_METHOD_DETAILS =
-		"details";
+public class CommerceTaxRateSettingDataSetConstants {
 
 	public static final String
-		CATEGORY_KEY_COMMERCE_SHIPPING_METHOD_RESTRICTIONS = "restrictions";
+		COMMERCE_DATA_SET_KEY_PERCENTAGE_TAX_RATE_SETTING =
+			"percentageCommerceTaxRateSetting";
 
-	public static final String ENTRY_KEY_COMMERCE_SHIPPING_METHOD_DETAILS =
-		"details";
-
-	public static final String ENTRY_KEY_COMMERCE_SHIPPING_METHOD_RESTRICTIONS =
-		"restrictions";
-
-	public static final String SCREEN_NAVIGATION_KEY_COMMERCE_SHIPPING_METHOD =
-		"commerce.shipping.method";
+	public static final String COMMERCE_DATA_SET_KEY_TAX_RATE_SETTING =
+		"commerceTaxRateSetting";
 
 }

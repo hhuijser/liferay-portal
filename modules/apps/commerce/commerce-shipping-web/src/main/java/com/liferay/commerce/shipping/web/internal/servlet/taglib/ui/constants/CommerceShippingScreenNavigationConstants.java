@@ -12,19 +12,26 @@
  * details.
  */
 
-package com.liferay.commerce.shipment.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.shipping.web.internal.servlet.taglib.ui.constants;
 
 /**
  * @author Alessio Antonio Rendina
  */
-public class CommerceShipmentScreenNavigationConstants {
+public class CommerceShippingScreenNavigationConstants {
 
-	public static final String CATEGORY_KEY_ATTACHMENTS = "attachments";
+	public static final String CATEGORY_KEY_COMMERCE_SHIPPING_METHOD_DETAILS =
+		"details";
 
-	public static final String CATEGORY_KEY_SHIPPING_SUMMARY =
-		"shipping-summary";
+	public static final String
+		CATEGORY_KEY_COMMERCE_SHIPPING_METHOD_RESTRICTIONS = "restrictions";
 
-	public static final String SCREEN_NAVIGATION_KEY_COMMERCE_SHIPMENT_GENERAL =
-		"commerce.shipment.general";
+	public static final String ENTRY_KEY_COMMERCE_SHIPPING_METHOD_DETAILS =
+		"details";
+
+	public static final String ENTRY_KEY_COMMERCE_SHIPPING_METHOD_RESTRICTIONS =
+		"restrictions";
+
+	public static final String SCREEN_NAVIGATION_KEY_COMMERCE_SHIPPING_METHOD =
+		"commerce.shipping.method";
 
 }

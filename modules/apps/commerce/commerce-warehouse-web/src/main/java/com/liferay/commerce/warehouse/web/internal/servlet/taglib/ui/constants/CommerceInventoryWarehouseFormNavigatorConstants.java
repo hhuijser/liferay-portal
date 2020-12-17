@@ -12,23 +12,17 @@
  * details.
  */
 
-package com.liferay.commerce.subscription.web.internal.frontend;
+package com.liferay.commerce.warehouse.web.internal.servlet.taglib.ui.constants;
 
 /**
- * @author Luca Pellizzon
+ * @author Andrea Di Giorgi
  */
-public class CommerceSubscriptionDataSetConstants {
+public class CommerceInventoryWarehouseFormNavigatorConstants {
 
-	public static final String COMMERCE_DATA_SET_KEY_SUBSCRIPTION_ENTRIES =
-		"commerceSubscriptionEntries";
+	public static final String CATEGORY_KEY_COMMERCE_WAREHOUSE_GENERAL =
+		"general";
 
-	public static final String COMMERCE_DATA_SET_KEY_SUBSCRIPTION_ORDER_ITEMS =
-		"commerceSubscriptionOrderItems";
-
-	public static final String COMMERCE_DATA_SET_KEY_SUBSCRIPTION_PAYMENTS =
-		"commerceSubscriptionPayments";
-
-	public static final String COMMERCE_DATA_SET_KEY_SUBSCRIPTION_SHIPMENTS =
-		"commerceSubscriptionShipments";
+	public static final String FORM_NAVIGATOR_ID_COMMERCE_WAREHOUSE =
+		"commerce.warehouse.form";
 
 }

@@ -38,7 +38,7 @@ PortletURL portletURL = commerceAccountUserRelAdminDisplayContext.getPortletURL(
 				selectedDisplayStyle="list"
 			/>
 
-			<portlet:actionURL name="editCommerceAccountUserRel" var="addCommerceAccountUserRelURL" />
+			<portlet:actionURL name="/commerce_account_admin/edit_commerce_account_user_rel" var="addCommerceAccountUserRelURL" />
 
 			<aui:form action="<%= addCommerceAccountUserRelURL %>" cssClass="hide" name="addCommerceAccountUserRelFm">
 				<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD_MULTIPLE %>" />
@@ -154,7 +154,7 @@ PortletURL portletURL = commerceAccountUserRelAdminDisplayContext.getPortletURL(
 
 				submitForm(
 					form,
-					'<portlet:actionURL name="editCommerceAccountUserRel" />'
+					'<portlet:actionURL name="/commerce_account_admin/edit_commerce_account_user_rel" />'
 				);
 			}
 		}

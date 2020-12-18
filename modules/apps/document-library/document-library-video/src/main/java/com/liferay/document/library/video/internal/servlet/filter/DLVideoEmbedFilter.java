@@ -142,6 +142,12 @@ public class DLVideoEmbedFilter extends BasePortalFilter {
 					fileVersion = fileEntry.getFileVersion(version);
 				}
 				catch (NoSuchFileVersionException noSuchFileVersionException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							noSuchFileVersionException,
+							noSuchFileVersionException);
+					}
+
 					fileVersion = fileEntry.getFileVersion();
 				}
 			}

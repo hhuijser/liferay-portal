@@ -26,4 +26,9 @@ public class PythonSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("IncorrectStatementsOrder.testpy");
 	}
 
+	@Test
+	public void testIncorrectWhitespace() throws Exception {
+		test("IncorrectWhitespace.testpy");
+	}
+
 }

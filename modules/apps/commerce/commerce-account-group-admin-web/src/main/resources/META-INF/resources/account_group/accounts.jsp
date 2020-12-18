@@ -38,7 +38,7 @@ PortletURL portletURL = commerceAccountGroupAdminDisplayContext.getPortletURL();
 				selectedDisplayStyle="list"
 			/>
 
-			<portlet:actionURL name="editCommerceAccountGroupCommerceAccountRel" var="addCommerceAccountGroupCommerceAccountRelURL" />
+			<portlet:actionURL name="/commerce_account_group_admin/edit_commerce_account_group_commerce_account_rel" var="addCommerceAccountGroupCommerceAccountRelURL" />
 
 			<aui:form action="<%= addCommerceAccountGroupCommerceAccountRelURL %>" cssClass="hide" name="addCommerceAccountGroupCommerceAccountRelFm">
 				<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD_MULTIPLE %>" />
@@ -142,7 +142,7 @@ PortletURL portletURL = commerceAccountGroupAdminDisplayContext.getPortletURL();
 
 				submitForm(
 					form,
-					'<portlet:actionURL name="editCommerceAccountGroupCommerceAccountRel" />'
+					'<portlet:actionURL name="/commerce_account_group_admin/edit_commerce_account_group_commerce_account_rel" />'
 				);
 			}
 		}

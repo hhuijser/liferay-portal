@@ -36,7 +36,7 @@ public class PythonSourceUtil {
 		for (int i = 1; i < lines.length; i++) {
 			String line = lines[i];
 
-			String indent = line.replaceFirst("^(\t+).+", "$1");
+			String indent = line.replaceFirst("^([\t ]+).+", "$1");
 
 			if (!indent.equals(line)) {
 				return indent;

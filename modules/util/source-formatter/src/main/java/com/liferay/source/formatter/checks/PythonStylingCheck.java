@@ -16,7 +16,6 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.PythonSourceUtil;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -80,14 +78,6 @@ public class PythonStylingCheck extends BaseFileCheck {
 		return statementsList;
 	}
 
-	private int _identifierKeyWeight(String definitionKey) {
-		if (_identifiersKeyWeightMap.containsKey(definitionKey)) {
-			return _identifiersKeyWeightMap.get(definitionKey);
-		}
-
-		return -1;
-	}
-
 	private int _sortIdentifiers(String statement1, String statement2) {
 		String trimmedStatement1 = StringUtil.trimLeading(statement1);
 		String trimmedStatement2 = StringUtil.trimLeading(statement2);
@@ -104,7 +94,6 @@ public class PythonStylingCheck extends BaseFileCheck {
 		}
 
 		String[] trimmedStatement1Lines = trimmedStatement1.split("\n", 2);
-		String[] trimmedStatement2Lines = trimmedStatement2.split("\n", 2);
 
 		Matcher matcher = _identifierAndNamePattern.matcher(
 			trimmedStatement1Lines[0]);
@@ -117,6 +106,12 @@ public class PythonStylingCheck extends BaseFileCheck {
 			name1 = matcher.group(2);
 		}
 
+		if (Validator.isNull(identifierKey1) || !identifierKey1.equals("def")) {
+			return 0;
+		}
+
+		String[] trimmedStatement2Lines = trimmedStatement2.split("\n", 2);
+
 		matcher = _identifierAndNamePattern.matcher(trimmedStatement2Lines[0]);
 
 		String identifiersKey2 = null;
@@ -127,22 +122,13 @@ public class PythonStylingCheck extends BaseFileCheck {
 			name2 = matcher.group(2);
 		}
 
-		if (_identifiersKeyWeightMap.containsKey(identifierKey1) &&
-			_identifiersKeyWeightMap.containsKey(identifiersKey2)) {
+		if (Validator.isNull(identifiersKey2) ||
+			!identifiersKey2.equals("def")) {
 
-			if (identifierKey1.equals(identifiersKey2)) {
-				return name1.compareTo(name2);
-			}
-
-			int weight1 = _identifierKeyWeight(identifierKey1);
-			int weight2 = _identifierKeyWeight(identifiersKey2);
-
-			if ((weight1 != -1) || (weight2 != -1)) {
-				return weight1 - weight2;
-			}
+			return 0;
 		}
 
-		return 0;
+		return name1.compareTo(name2);
 	}
 
 	private String _sortPythonStatements(
@@ -205,11 +191,5 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 	private static final Pattern _identifierAndNamePattern = Pattern.compile(
 		"(\\w+) (\\w+).*");
-	private static final Map<String, Integer> _identifiersKeyWeightMap =
-		HashMapBuilder.put(
-			"class", 2
-		).put(
-			"def", 1
-		).build();
 
 }

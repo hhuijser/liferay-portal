@@ -6682,6 +6682,7 @@ information. Make sure to commit in all build services results.
 				<if>
 					<or>
 						<contains string="${git.diff}" substring="modules${file.separator}util${file.separator}source-formatter" />
+						<contains string="${git.diff}" substring="source-formatter.properties" />
 					</or>
 					<then>
 						<antcall target="compile" />
@@ -6694,20 +6695,7 @@ information. Make sure to commit in all build services results.
 								<gradle-execute dir="modules/util/source-formatter" task="deploy" />
 							</then>
 						</if>
-					</then>
-					<else>
-						<antcall target="setup-sdk" />
 
-						<antcall target="setup-yarn" />
-					</else>
-				</if>
-
-				<if>
-					<or>
-						<contains string="${git.diff}" substring="modules${file.separator}util${file.separator}source-formatter" />
-						<contains string="${git.diff}" substring="source-formatter.properties" />
-					</or>
-					<then>
 						<ant dir="portal-impl" target="format-source-all">
 							<property name="show.documentation" value="false" />
 							<property name="source.auto.fix" value="false" />
@@ -6719,6 +6707,10 @@ information. Make sure to commit in all build services results.
 						</ant>
 					</then>
 					<else>
+						<antcall target="setup-sdk" />
+
+						<antcall target="setup-yarn" />
+
 						<ant dir="portal-impl" target="format-source-current-branch">
 							<property name="show.documentation" value="false" />
 							<property name="source.auto.fix" value="false" />

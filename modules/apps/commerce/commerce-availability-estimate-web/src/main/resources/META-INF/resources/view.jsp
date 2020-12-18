@@ -47,7 +47,7 @@ CommerceAvailabilityEstimateDisplayContext commerceAvailabilityEstimateDisplayCo
 			/>
 
 			<portlet:renderURL var="addCommerceAvailabilityEstimateURL">
-				<portlet:param name="mvcRenderCommandName" value="editCommerceAvailabilityEstimate" />
+				<portlet:param name="mvcRenderCommandName" value="/commerce_availability_estimate/edit_commerce_availability_estimate" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</portlet:renderURL>
 
@@ -71,7 +71,7 @@ CommerceAvailabilityEstimateDisplayContext commerceAvailabilityEstimateDisplayCo
 	</liferay-frontend:management-bar>
 
 	<div class="container-fluid container-fluid-max-xl">
-		<portlet:actionURL name="editCommerceAvailabilityEstimate" var="editCommerceAvailabilityEstimateActionURL" />
+		<portlet:actionURL name="/commerce_availability_estimate/edit_commerce_availability_estimate" var="editCommerceAvailabilityEstimateActionURL" />
 
 		<aui:form action="<%= editCommerceAvailabilityEstimateActionURL %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.DELETE %>" />
@@ -91,7 +91,7 @@ CommerceAvailabilityEstimateDisplayContext commerceAvailabilityEstimateDisplayCo
 					<%
 					PortletURL rowURL = renderResponse.createRenderURL();
 
-					rowURL.setParameter("mvcRenderCommandName", "editCommerceAvailabilityEstimate");
+					rowURL.setParameter("mvcRenderCommandName", "/commerce_availability_estimate/edit_commerce_availability_estimate");
 					rowURL.setParameter("redirect", currentURL);
 					rowURL.setParameter("commerceAvailabilityEstimateId", String.valueOf(commerceAvailabilityEstimate.getCommerceAvailabilityEstimateId()));
 					%>

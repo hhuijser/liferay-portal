@@ -23,7 +23,7 @@ CommerceAccountGroup commerceAccountGroup = commerceAccountGroupAdminDisplayCont
 
 PortletURL portletURL = commerceAccountGroupAdminDisplayContext.getPortletURL();
 
-portletURL.setParameter("mvcRenderCommandName", "editCommerceAccountGroup");
+portletURL.setParameter("mvcRenderCommandName", "/commerce_account_group_admin/edit_commerce_account_group");
 
 String title = LanguageUtil.get(request, "add-account-group");
 

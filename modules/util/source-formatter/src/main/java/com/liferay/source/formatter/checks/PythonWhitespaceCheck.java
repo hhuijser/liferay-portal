@@ -38,13 +38,19 @@ public class PythonWhitespaceCheck extends WhitespaceCheck {
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
 			String line = null;
+			String previousLine = null;
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				while (line.matches("^\t*" + StringPool.FOUR_SPACES + ".*")) {
+					if (previousLine.endsWith(StringPool.BACK_SLASH)) {
+						break;
+					}
+
 					line = StringUtil.replaceFirst(
 						line, StringPool.FOUR_SPACES, StringPool.TAB);
 				}
 
+				previousLine = line;
 				sb.append(line);
 				sb.append("\n");
 			}

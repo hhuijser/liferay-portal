@@ -1294,10 +1294,9 @@
 			<category name="Styling" />
 			<description name="Applies rules to enforce consisteny in code style." />
 		</check>
-		<check name="WhitespaceCheck">
+		<check name="PythonWhitespaceCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace." />
-			<property name="enabled" value="false" />
 		</check>
 	</source-processor>
 	<source-processor name="SHSourceProcessor">

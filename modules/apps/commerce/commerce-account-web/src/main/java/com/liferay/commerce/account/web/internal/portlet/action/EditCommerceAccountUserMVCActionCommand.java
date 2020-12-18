@@ -96,7 +96,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommerceAccountPortletKeys.COMMERCE_ACCOUNT,
-		"mvc.command.name=editCommerceAccountUser"
+		"mvc.command.name=/commerce_account/edit_commerce_account_user"
 	},
 	service = MVCActionCommand.class
 )
@@ -231,7 +231,7 @@ public class EditCommerceAccountUserMVCActionCommand
 		}
 		else {
 			portletURL.setParameter(
-				"mvcRenderCommandName", "editCommerceAccountUser");
+				"mvcRenderCommandName", "/commerce_account/edit_commerce_account_user");
 		}
 
 		portletURL.setParameter(

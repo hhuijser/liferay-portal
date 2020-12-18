@@ -43,7 +43,7 @@ else {
 boolean canEditUser = (selectedUser.getUserId() == user.getUserId()) || commerceAccountDisplayContext.hasCommerceAccountModelPermissions(commerceAccount.getCommerceAccountId(), CommerceAccountActionKeys.MANAGE_MEMBERS);
 %>
 
-<portlet:actionURL name="editCommerceAccountUser" var="editCommerceAccountUserActionURL" />
+<portlet:actionURL name="/commerce_account/edit_commerce_account_user" var="editCommerceAccountUserActionURL" />
 
 <div class="account-management">
 	<aui:form action="<%= editCommerceAccountUserActionURL %>" method="post" name="fm">

@@ -182,7 +182,8 @@ public class CommerceCartContentDisplayContext {
 		PortletURL portletURL = liferayPortletResponse.createActionURL();
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceOrderItem");
+			ActionRequest.ACTION_NAME,
+			"/commerce_cart_content/edit_commerce_order_item");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter(
 			"redirect", commerceCartContentRequestHelper.getCurrentURL());

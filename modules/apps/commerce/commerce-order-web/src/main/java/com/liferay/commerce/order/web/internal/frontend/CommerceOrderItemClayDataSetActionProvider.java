@@ -109,7 +109,8 @@ public class CommerceOrderItemClayDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceOrderItem");
+			ActionRequest.ACTION_NAME,
+			"/commerce_order/edit_commerce_order_item");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -127,7 +128,7 @@ public class CommerceOrderItemClayDataSetActionProvider
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceOrderItem");
+			"mvcRenderCommandName", "/commerce_order/edit_commerce_order_item");
 		portletURL.setParameter(
 			"redirect", _portal.getCurrentURL(httpServletRequest));
 

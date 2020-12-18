@@ -29,7 +29,7 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 	"userId", String.valueOf(selectedUser.getUserId())
 ).build();
 
-portletURL.setParameter("mvcRenderCommandName", "viewCommerceAccountUser");
+portletURL.setParameter("mvcRenderCommandName", "/commerce_account/view_commerce_account_user");
 portletURL.setParameter("userId", String.valueOf(selectedUser.getUserId()));
 %>
 

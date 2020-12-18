@@ -13,6 +13,16 @@
 import os
 import sys
 
+def b(a, b
+):
+	print "bbb"
+
+def a(
+	a,
+	b
+):
+	print "aaa"
+
 def method_b():
 
 	print("method_b")

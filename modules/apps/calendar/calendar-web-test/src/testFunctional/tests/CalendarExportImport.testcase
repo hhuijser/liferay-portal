@@ -78,8 +78,8 @@ definition {
 		CalendarEvent.view(eventTitle = "Event For Export");
 	}
 
-	@priority = "4"
 	@ignore = "true"
+	@priority = "4"
 	test ImportCalendarAndViewEventComment {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 

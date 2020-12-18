@@ -25,7 +25,7 @@ CommerceAddress shippingAddress = commerceAccountDisplayContext.getDefaultShippi
 
 PortletURL portletURL = commerceAccountDisplayContext.getPortletURL();
 
-portletURL.setParameter("mvcRenderCommandName", "viewCommerceAccount");
+portletURL.setParameter("mvcRenderCommandName", "/commerce_account/view_commerce_account");
 %>
 
 <portlet:renderURL var="editCommerceAccountURL">

@@ -211,7 +211,7 @@ public class EditCommerceAccountUserMVCActionCommand
 				CommerceAccountActionKeys.MANAGE_MEMBERS)) {
 
 			backPortletURL.setParameter(
-				"mvcRenderCommandName", "viewCommerceAccount");
+				"mvcRenderCommandName", "/commerce_account/view_commerce_account");
 
 			backPortletURL.setParameter(
 				"screenNavigationCategoryKey",

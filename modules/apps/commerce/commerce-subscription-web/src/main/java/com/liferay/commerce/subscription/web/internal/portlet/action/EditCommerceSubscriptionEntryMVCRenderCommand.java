@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = MVCRenderCommand.class
 )
-public class EditCommerceSubscriptionEntryRenderCommand
+public class EditCommerceSubscriptionEntryMVCRenderCommand
 	implements MVCRenderCommand {
 
 	@Override

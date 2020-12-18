@@ -105,7 +105,8 @@ public class EditCommerceRegionMVCActionCommand extends BaseMVCActionCommand {
 				SessionErrors.add(actionRequest, exception.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editCommerceCountry");
+					"mvcRenderCommandName",
+					"/commerce_address/edit_commerce_country");
 			}
 			else {
 				throw exception;

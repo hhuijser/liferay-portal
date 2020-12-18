@@ -69,7 +69,8 @@ public class CommerceRegionsDisplayContext
 	public PortletURL getPortletURL() throws PortalException {
 		PortletURL portletURL = super.getPortletURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "editCommerceCountry");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/commerce_address/edit_commerce_country");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey());
 

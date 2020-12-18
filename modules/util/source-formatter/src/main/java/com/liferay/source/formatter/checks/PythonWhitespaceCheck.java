@@ -37,17 +37,25 @@ public class PythonWhitespaceCheck extends WhitespaceCheck {
 		try (UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
+			boolean insideMultiLines = false;
+
 			String line = null;
 			String previousLine = null;
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				while (line.matches("^\t*" + StringPool.FOUR_SPACES + ".*")) {
-					if (previousLine.endsWith(StringPool.BACK_SLASH)) {
+					if (previousLine.endsWith(StringPool.BACK_SLASH) ||
+						insideMultiLines) {
+
 						break;
 					}
 
 					line = StringUtil.replaceFirst(
 						line, StringPool.FOUR_SPACES, StringPool.TAB);
+				}
+
+				if (line.contains("'''") || line.contains("\"\"\"")) {
+					insideMultiLines = insideMultiLines ^ true;
 				}
 
 				previousLine = line;

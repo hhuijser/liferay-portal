@@ -1297,6 +1297,7 @@
 		<check name="WhitespaceCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace." />
+			<property name="enabled" value="false" />
 		</check>
 	</source-processor>
 	<source-processor name="SHSourceProcessor">

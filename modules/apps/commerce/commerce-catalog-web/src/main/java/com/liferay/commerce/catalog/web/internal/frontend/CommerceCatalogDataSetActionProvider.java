@@ -109,7 +109,8 @@ public class CommerceCatalogDataSetActionProvider
 			PortletRequest.ACTION_PHASE);
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceCatalog");
+			ActionRequest.ACTION_NAME,
+			"/commerce_catalog/edit_commerce_catalog");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 
 		String redirect = ParamUtil.getString(
@@ -130,7 +131,8 @@ public class CommerceCatalogDataSetActionProvider
 			httpServletRequest, CPPortletKeys.COMMERCE_CATALOGS,
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcRenderCommandName", "editCommerceCatalog");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/commerce_catalog/edit_commerce_catalog");
 
 		String redirect = ParamUtil.getString(
 			httpServletRequest, "currentUrl",

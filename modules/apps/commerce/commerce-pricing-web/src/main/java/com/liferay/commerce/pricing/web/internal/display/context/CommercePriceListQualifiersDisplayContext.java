@@ -146,7 +146,8 @@ public class CommercePriceListQualifiersDisplayContext
 			httpServletRequest, CommerceChannel.class.getName(),
 			PortletProvider.Action.MANAGE);
 
-		portletURL.setParameter("mvcRenderCommandName", "editCommerceChannel");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/commerce_channel/edit_commerce_channel");
 		portletURL.setParameter(
 			"redirect", commercePricingRequestHelper.getCurrentURL());
 		portletURL.setParameter("commerceChannelId", "{channel.id}");

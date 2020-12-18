@@ -94,7 +94,7 @@ CommerceRegionsStarter commerceRegionsStarter = commerceCountriesDisplayContext.
 				this.attr('disabled', true);
 
 				A.io.request(
-					'<liferay-portlet:actionURL name="importCommerceRegions" portletName="<%= portletDisplay.getPortletName() %>" />',
+					'<liferay-portlet:actionURL name="/commerce_address/import_commerce_region" portletName="<%= portletDisplay.getPortletName() %>" />',
 					{
 						data: data,
 						on: {

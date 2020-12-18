@@ -36,7 +36,7 @@ if (Validator.isNotNull(backURL)) {
 }
 %>
 
-<portlet:actionURL name="editCommerceCurrency" var="editCommerceCurrencyActionURL" />
+<portlet:actionURL name="/commerce_currency/edit_commerce_currency" var="editCommerceCurrencyActionURL" />
 
 <aui:form action="<%= editCommerceCurrencyActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveCommerceCurrency();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceCurrency == null) ? Constants.ADD : Constants.UPDATE %>" />

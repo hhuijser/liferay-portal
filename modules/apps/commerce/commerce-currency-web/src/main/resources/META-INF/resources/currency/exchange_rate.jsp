@@ -26,7 +26,7 @@ boolean enableAutoUpdate = commerceCurrencyConfiguration.enableAutoUpdate();
 
 <c:if test="<%= commerceCurrenciesDisplayContext.hasManageCommerceCurrencyPermission() %>">
 	<div class="container-fluid container-fluid-max-xl" id="<portlet:namespace />exchangeRateContainer">
-		<portlet:actionURL name="editExchangeRate" var="editExchangeRateActionURL" />
+		<portlet:actionURL name="/commerce_currency/edit_exchange_rate" var="editExchangeRateActionURL" />
 
 		<aui:form action="<%= editExchangeRateActionURL %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />

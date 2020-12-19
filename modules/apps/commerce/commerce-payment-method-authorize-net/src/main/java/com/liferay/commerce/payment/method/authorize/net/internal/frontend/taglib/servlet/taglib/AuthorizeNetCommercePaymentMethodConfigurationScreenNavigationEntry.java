@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.commerce.payment.method.mercanet.internal.taglib.ui;
+package com.liferay.commerce.payment.method.authorize.net.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.commerce.payment.constants.CommercePaymentScreenNavigationConstants;
-import com.liferay.commerce.payment.method.mercanet.internal.MercanetCommercePaymentMethod;
-import com.liferay.commerce.payment.method.mercanet.internal.configuration.MercanetGroupServiceConfiguration;
-import com.liferay.commerce.payment.method.mercanet.internal.constants.MercanetCommercePaymentMethodConstants;
+import com.liferay.commerce.payment.method.authorize.net.internal.AuthorizeNetCommercePaymentMethod;
+import com.liferay.commerce.payment.method.authorize.net.internal.configuration.AuthorizeNetGroupServiceConfiguration;
+import com.liferay.commerce.payment.method.authorize.net.internal.constants.AuthorizeNetCommercePaymentMethodConstants;
 import com.liferay.commerce.payment.model.CommercePaymentMethodGroupRel;
 import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CommerceChannelService;
@@ -29,11 +29,11 @@ import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.settings.GroupServiceSettingsLocator;
 import com.liferay.portal.kernel.settings.ParameterMapSettingsLocator;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Portal;
 
 import java.io.IOException;
 
 import java.util.Locale;
-import java.util.Objects;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -49,12 +49,12 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, property = "screen.navigation.entry.order:Integer=20",
 	service = ScreenNavigationEntry.class
 )
-public class MercanetCommercePaymentMethodConfigurationScreenNavigationEntry
+public class AuthorizeNetCommercePaymentMethodConfigurationScreenNavigationEntry
 	implements ScreenNavigationEntry<CommercePaymentMethodGroupRel> {
 
 	public static final String
-		ENTRY_KEY_MERCANET_COMMERCE_PAYMENT_METHOD_CONFIGURATION =
-			"mercanet-configuration";
+		ENTRY_KEY_PAYPAL_COMMERCE_PAYMENT_METHOD_CONFIGURATION =
+			"authorize-net-configuration";
 
 	@Override
 	public String getCategoryKey() {
@@ -64,7 +64,7 @@ public class MercanetCommercePaymentMethodConfigurationScreenNavigationEntry
 
 	@Override
 	public String getEntryKey() {
-		return ENTRY_KEY_MERCANET_COMMERCE_PAYMENT_METHOD_CONFIGURATION;
+		return ENTRY_KEY_PAYPAL_COMMERCE_PAYMENT_METHOD_CONFIGURATION;
 	}
 
 	@Override
@@ -83,15 +83,15 @@ public class MercanetCommercePaymentMethodConfigurationScreenNavigationEntry
 
 	@Override
 	public boolean isVisible(
-		User user, CommercePaymentMethodGroupRel commercePaymentMethod) {
+		User user,
+		CommercePaymentMethodGroupRel commercePaymentMethodGroupRel) {
 
-		if (commercePaymentMethod == null) {
+		if (commercePaymentMethodGroupRel == null) {
 			return false;
 		}
 
-		if (Objects.equals(
-				commercePaymentMethod.getEngineKey(),
-				MercanetCommercePaymentMethod.KEY)) {
+		if (AuthorizeNetCommercePaymentMethod.KEY.equals(
+				commercePaymentMethodGroupRel.getEngineKey())) {
 
 			return true;
 		}
@@ -112,20 +112,20 @@ public class MercanetCommercePaymentMethodConfigurationScreenNavigationEntry
 			CommerceChannel commerceChannel =
 				_commerceChannelService.getCommerceChannel(commerceChannelId);
 
-			MercanetGroupServiceConfiguration
-				mercanetGroupServiceConfiguration =
+			AuthorizeNetGroupServiceConfiguration
+				authorizeNetGroupServiceConfiguration =
 					_configurationProvider.getConfiguration(
-						MercanetGroupServiceConfiguration.class,
+						AuthorizeNetGroupServiceConfiguration.class,
 						new ParameterMapSettingsLocator(
 							httpServletRequest.getParameterMap(),
 							new GroupServiceSettingsLocator(
 								commerceChannel.getGroupId(),
-								MercanetCommercePaymentMethodConstants.
+								AuthorizeNetCommercePaymentMethodConstants.
 									SERVICE_NAME)));
 
 			httpServletRequest.setAttribute(
-				MercanetGroupServiceConfiguration.class.getName(),
-				mercanetGroupServiceConfiguration);
+				AuthorizeNetGroupServiceConfiguration.class.getName(),
+				authorizeNetGroupServiceConfiguration);
 		}
 		catch (Exception exception) {
 			throw new IOException(exception);
@@ -145,8 +145,11 @@ public class MercanetCommercePaymentMethodConfigurationScreenNavigationEntry
 	@Reference
 	private JSPRenderer _jspRenderer;
 
+	@Reference
+	private Portal _portal;
+
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.commerce.payment.method.mercanet)"
+		target = "(osgi.web.symbolicname=com.liferay.commerce.payment.method.authorize.net)"
 	)
 	private ServletContext _servletContext;
 

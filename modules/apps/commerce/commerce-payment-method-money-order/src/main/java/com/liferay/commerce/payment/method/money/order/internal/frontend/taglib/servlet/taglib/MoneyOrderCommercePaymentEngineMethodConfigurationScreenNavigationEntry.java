@@ -12,17 +12,18 @@
  * details.
  */
 
-package com.liferay.commerce.payment.method.paypal.internal.taglib.ui;
+package com.liferay.commerce.payment.method.money.order.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.commerce.payment.constants.CommercePaymentScreenNavigationConstants;
-import com.liferay.commerce.payment.method.paypal.internal.PayPalCommercePaymentMethod;
-import com.liferay.commerce.payment.method.paypal.internal.configuration.PayPalGroupServiceConfiguration;
-import com.liferay.commerce.payment.method.paypal.internal.constants.PayPalCommercePaymentMethodConstants;
+import com.liferay.commerce.payment.method.money.order.internal.MoneyOrderCommercePaymentMethod;
+import com.liferay.commerce.payment.method.money.order.internal.configuration.MoneyOrderGroupServiceConfiguration;
+import com.liferay.commerce.payment.method.money.order.internal.constants.MoneyOrderCommercePaymentEngineMethodConstants;
 import com.liferay.commerce.payment.model.CommercePaymentMethodGroupRel;
 import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CommerceChannelService;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
@@ -48,12 +49,13 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, property = "screen.navigation.entry.order:Integer=20",
 	service = ScreenNavigationEntry.class
 )
-public class PayPalCommercePaymentMethodConfigurationScreenNavigationEntry
-	implements ScreenNavigationEntry<CommercePaymentMethodGroupRel> {
+public class
+	MoneyOrderCommercePaymentEngineMethodConfigurationScreenNavigationEntry
+		implements ScreenNavigationEntry<CommercePaymentMethodGroupRel> {
 
 	public static final String
-		ENTRY_KEY_PAYPAL_COMMERCE_PAYMENT_METHOD_CONFIGURATION =
-			"paypal-configuration";
+		ENTRY_KEY_MONEY_ORDER_COMMERCE_PAYMENT_METHOD_CONFIGURATION =
+			"money-order-configuration";
 
 	@Override
 	public String getCategoryKey() {
@@ -63,7 +65,7 @@ public class PayPalCommercePaymentMethodConfigurationScreenNavigationEntry
 
 	@Override
 	public String getEntryKey() {
-		return ENTRY_KEY_PAYPAL_COMMERCE_PAYMENT_METHOD_CONFIGURATION;
+		return ENTRY_KEY_MONEY_ORDER_COMMERCE_PAYMENT_METHOD_CONFIGURATION;
 	}
 
 	@Override
@@ -82,14 +84,15 @@ public class PayPalCommercePaymentMethodConfigurationScreenNavigationEntry
 
 	@Override
 	public boolean isVisible(
-		User user, CommercePaymentMethodGroupRel commercePaymentMethod) {
+		User user,
+		CommercePaymentMethodGroupRel commercePaymentMethodGroupRel) {
 
-		if (commercePaymentMethod == null) {
+		if (commercePaymentMethodGroupRel == null) {
 			return false;
 		}
 
-		if (PayPalCommercePaymentMethod.KEY.equals(
-				commercePaymentMethod.getEngineKey())) {
+		if (MoneyOrderCommercePaymentMethod.KEY.equals(
+				commercePaymentMethodGroupRel.getEngineKey())) {
 
 			return true;
 		}
@@ -110,22 +113,23 @@ public class PayPalCommercePaymentMethodConfigurationScreenNavigationEntry
 			CommerceChannel commerceChannel =
 				_commerceChannelService.getCommerceChannel(commerceChannelId);
 
-			PayPalGroupServiceConfiguration payPalGroupServiceConfiguration =
-				_configurationProvider.getConfiguration(
-					PayPalGroupServiceConfiguration.class,
-					new ParameterMapSettingsLocator(
-						httpServletRequest.getParameterMap(),
-						new GroupServiceSettingsLocator(
-							commerceChannel.getGroupId(),
-							PayPalCommercePaymentMethodConstants.
-								SERVICE_NAME)));
+			MoneyOrderGroupServiceConfiguration
+				moneyOrderGroupServiceConfiguration =
+					_configurationProvider.getConfiguration(
+						MoneyOrderGroupServiceConfiguration.class,
+						new ParameterMapSettingsLocator(
+							httpServletRequest.getParameterMap(),
+							new GroupServiceSettingsLocator(
+								commerceChannel.getGroupId(),
+								MoneyOrderCommercePaymentEngineMethodConstants.
+									SERVICE_NAME)));
 
 			httpServletRequest.setAttribute(
-				PayPalGroupServiceConfiguration.class.getName(),
-				payPalGroupServiceConfiguration);
+				MoneyOrderGroupServiceConfiguration.class.getName(),
+				moneyOrderGroupServiceConfiguration);
 		}
-		catch (Exception exception) {
-			throw new IOException(exception);
+		catch (PortalException portalException) {
+			throw new IOException(portalException);
 		}
 
 		_jspRenderer.renderJSP(
@@ -143,7 +147,7 @@ public class PayPalCommercePaymentMethodConfigurationScreenNavigationEntry
 	private JSPRenderer _jspRenderer;
 
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.commerce.payment.method.paypal)"
+		target = "(osgi.web.symbolicname=com.liferay.commerce.payment.method.money.order)"
 	)
 	private ServletContext _servletContext;
 

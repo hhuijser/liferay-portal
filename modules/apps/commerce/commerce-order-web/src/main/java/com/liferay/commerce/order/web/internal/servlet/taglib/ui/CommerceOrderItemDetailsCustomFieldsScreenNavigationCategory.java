@@ -108,7 +108,7 @@ public class CommerceOrderItemDetailsCustomFieldsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceOrderItemDetailsCustomFieldsScreenNavigationEntry.class);
+		CommerceOrderItemDetailsCustomFieldsScreenNavigationCategory.class);
 
 	@Reference
 	private JSPRenderer _jspRenderer;

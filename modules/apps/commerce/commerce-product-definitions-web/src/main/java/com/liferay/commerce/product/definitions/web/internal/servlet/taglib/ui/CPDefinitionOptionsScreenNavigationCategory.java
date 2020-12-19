@@ -126,7 +126,7 @@ public class CPDefinitionOptionsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPDefinitionOptionsScreenNavigationEntry.class);
+		CPDefinitionOptionsScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

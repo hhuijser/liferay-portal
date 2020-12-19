@@ -111,7 +111,7 @@ public class CategoryCPAttachmentScreenNavigationCategory
 	protected CPAttachmentFileEntryService cpAttachmentFileEntryService;
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CategoryCPAttachmentScreenNavigationEntry.class);
+		CategoryCPAttachmentScreenNavigationCategory.class);
 
 	@Reference
 	private AssetCategoryService _assetCategoryService;

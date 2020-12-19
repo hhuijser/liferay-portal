@@ -118,7 +118,7 @@ public class CPInstancePriceListsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPInstancePriceListsScreenNavigationEntry.class);
+		CPInstancePriceListsScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

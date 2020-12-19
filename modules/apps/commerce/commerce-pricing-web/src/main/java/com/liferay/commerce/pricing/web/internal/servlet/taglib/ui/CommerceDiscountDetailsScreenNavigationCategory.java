@@ -134,7 +134,7 @@ public class CommerceDiscountDetailsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceDiscountDetailsScreenNavigationEntry.class);
+		CommerceDiscountDetailsScreenNavigationCategory.class);
 
 	@Reference
 	private CommerceCurrencyLocalService _commerceCurrencyLocalService;

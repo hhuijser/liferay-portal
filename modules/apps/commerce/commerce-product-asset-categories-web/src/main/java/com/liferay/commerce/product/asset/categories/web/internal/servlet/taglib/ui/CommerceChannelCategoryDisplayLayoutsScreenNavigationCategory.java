@@ -135,7 +135,7 @@ public class CommerceChannelCategoryDisplayLayoutsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceChannelCategoryDisplayLayoutsScreenNavigationEntry.class);
+		CommerceChannelCategoryDisplayLayoutsScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

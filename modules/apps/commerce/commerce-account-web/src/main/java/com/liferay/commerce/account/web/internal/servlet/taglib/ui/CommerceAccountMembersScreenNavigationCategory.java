@@ -129,7 +129,7 @@ public class CommerceAccountMembersScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceAccountMembersScreenNavigationEntry.class);
+		CommerceAccountMembersScreenNavigationCategory.class);
 
 	@Reference
 	private CommerceAccountService _commerceAccountService;

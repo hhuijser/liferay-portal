@@ -129,7 +129,7 @@ public class CPDefinitionVisibilityScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPDefinitionVisibilityScreenNavigationEntry.class);
+		CPDefinitionVisibilityScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

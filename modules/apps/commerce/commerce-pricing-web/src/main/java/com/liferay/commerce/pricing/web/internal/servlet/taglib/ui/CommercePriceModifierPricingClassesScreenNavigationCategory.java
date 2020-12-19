@@ -152,7 +152,7 @@ public class CommercePriceModifierPricingClassesScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommercePriceModifierPricingClassesScreenNavigationEntry.class);
+		CommercePriceModifierPricingClassesScreenNavigationCategory.class);
 
 	@Reference
 	private CommerceCatalogService _commerceCatalogService;

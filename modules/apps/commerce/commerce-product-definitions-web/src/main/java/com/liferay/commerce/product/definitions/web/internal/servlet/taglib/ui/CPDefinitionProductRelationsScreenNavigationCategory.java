@@ -132,7 +132,7 @@ public class CPDefinitionProductRelationsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPDefinitionProductRelationsScreenNavigationEntry.class);
+		CPDefinitionProductRelationsScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

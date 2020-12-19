@@ -142,7 +142,7 @@ public class CommerceDiscountQualifiersScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceDiscountQualifiersScreenNavigationEntry.class);
+		CommerceDiscountQualifiersScreenNavigationCategory.class);
 
 	@Reference
 	private CommerceChannelRelService _commerceChannelRelService;

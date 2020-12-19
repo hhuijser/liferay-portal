@@ -120,7 +120,7 @@ public class CPDefinitionCPTypeGroupedScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPDefinitionCPTypeGroupedScreenNavigationEntry.class);
+		CPDefinitionCPTypeGroupedScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

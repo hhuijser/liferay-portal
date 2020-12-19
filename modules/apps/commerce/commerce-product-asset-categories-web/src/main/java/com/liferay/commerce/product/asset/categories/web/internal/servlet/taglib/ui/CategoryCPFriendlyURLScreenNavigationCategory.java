@@ -125,7 +125,7 @@ public class CategoryCPFriendlyURLScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CategoryCPFriendlyURLScreenNavigationEntry.class);
+		CategoryCPFriendlyURLScreenNavigationCategory.class);
 
 	@Reference
 	private AssetCategoryService _assetCategoryService;

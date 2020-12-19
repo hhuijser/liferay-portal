@@ -135,7 +135,7 @@ public class CommercePricingClassDiscountsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommercePricingClassDiscountsScreenNavigationEntry.class);
+		CommercePricingClassDiscountsScreenNavigationCategory.class);
 
 	@Reference(
 		target = "(model.class.name=com.liferay.commerce.pricing.model.CommercePricingClass)"

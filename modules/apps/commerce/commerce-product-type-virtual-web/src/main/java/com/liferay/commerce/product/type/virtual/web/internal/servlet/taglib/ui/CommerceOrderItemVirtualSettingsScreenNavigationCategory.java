@@ -171,7 +171,7 @@ public class CommerceOrderItemVirtualSettingsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceOrderItemVirtualSettingsScreenNavigationEntry.class);
+		CommerceOrderItemVirtualSettingsScreenNavigationCategory.class);
 
 	@Reference
 	private CommerceOrderItemService _commerceOrderItemService;

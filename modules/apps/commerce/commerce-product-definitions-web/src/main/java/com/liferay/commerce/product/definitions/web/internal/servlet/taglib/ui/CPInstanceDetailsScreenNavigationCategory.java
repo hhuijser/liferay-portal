@@ -130,7 +130,7 @@ public class CPInstanceDetailsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPInstanceDetailsScreenNavigationEntry.class);
+		CPInstanceDetailsScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

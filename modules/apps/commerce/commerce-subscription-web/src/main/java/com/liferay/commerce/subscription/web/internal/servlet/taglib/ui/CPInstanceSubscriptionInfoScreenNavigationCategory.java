@@ -138,7 +138,7 @@ public class CPInstanceSubscriptionInfoScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPInstanceSubscriptionInfoScreenNavigationEntry.class);
+		CPInstanceSubscriptionInfoScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

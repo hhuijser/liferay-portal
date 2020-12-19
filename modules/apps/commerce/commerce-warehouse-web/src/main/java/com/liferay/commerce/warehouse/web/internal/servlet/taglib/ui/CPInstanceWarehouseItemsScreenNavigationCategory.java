@@ -118,7 +118,7 @@ public class CPInstanceWarehouseItemsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPInstanceWarehouseItemsScreenNavigationEntry.class);
+		CPInstanceWarehouseItemsScreenNavigationCategory.class);
 
 	@Reference
 	private CommerceInventoryWarehouseItemService

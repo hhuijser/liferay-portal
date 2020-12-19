@@ -133,7 +133,7 @@ public class CPDefinitionPricingClassesRelationsScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPDefinitionPricingClassesRelationsScreenNavigationEntry.class);
+		CPDefinitionPricingClassesRelationsScreenNavigationCategory.class);
 
 	@Reference
 	private ActionHelper _actionHelper;

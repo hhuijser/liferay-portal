@@ -139,7 +139,7 @@ public class CommerceShippingMethodFedExConfigurationScreenNavigationCategory
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceShippingMethodFedExConfigurationScreenNavigationEntry.class);
+		CommerceShippingMethodFedExConfigurationScreenNavigationCategory.class);
 
 	@Reference
 	private CommerceChannelService _commerceChannelService;

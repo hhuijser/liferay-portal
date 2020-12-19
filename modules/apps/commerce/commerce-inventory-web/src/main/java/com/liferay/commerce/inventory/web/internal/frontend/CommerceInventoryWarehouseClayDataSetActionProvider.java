@@ -109,7 +109,8 @@ public class CommerceInventoryWarehouseClayDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceInventoryWarehouseItem");
+			ActionRequest.ACTION_NAME,
+			"/commerce_inventory/edit_commerce_inventory_warehouse_item");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -134,7 +135,8 @@ public class CommerceInventoryWarehouseClayDataSetActionProvider
 			themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceInventoryWarehouseItem");
+			"mvcRenderCommandName",
+			"/commerce_inventory/edit_commerce_inventory_warehouse_item");
 		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
 		portletURL.setParameter(
 			"commerceInventoryWarehouseItemId",

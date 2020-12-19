@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.COMMERCE_INVENTORY_WAREHOUSE,
-		"mvc.command.name=editCommerceInventoryWarehouse"
+		"mvc.command.name=/commerce_inventory/edit_commerce_inventory_warehouse"
 	},
 	service = MVCActionCommand.class
 )
@@ -150,7 +150,7 @@ public class EditCommerceInventoryWarehouseMVCActionCommand
 				SessionErrors.add(actionRequest, throwable.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editCommerceInventoryWarehouse");
+					"mvcRenderCommandName", "/commerce_inventory/edit_commerce_inventory_warehouse");
 			}
 		}
 	}

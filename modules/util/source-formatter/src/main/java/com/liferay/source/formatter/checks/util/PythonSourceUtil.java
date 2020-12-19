@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checks.util;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +56,10 @@ public class PythonSourceUtil {
 
 		StringBundler sb = new StringBundler();
 
+		boolean insideMethod = false;
+
 		for (String line : lines) {
-			if (line.length() == 0) {
+			if (Validator.isNull(line.trim())) {
 				sb.append("\n");
 
 				continue;
@@ -68,14 +71,23 @@ public class PythonSourceUtil {
 
 			String s = line.substring(indent.length(), indent.length() + 1);
 
+			String trimmedLine = line.trim();
+
 			if (!s.equals(StringPool.SPACE) && !s.equals(StringPool.TAB) &&
-				(sb.length() != 0)) {
+				(sb.length() != 0) && !insideMethod) {
 
 				sb.setIndex(sb.index() - 1);
 
 				statements.add(sb.toString());
 
 				sb.setIndex(0);
+			}
+
+			if ((trimmedLine.startsWith("def ") &&
+				 !trimmedLine.endsWith("):")) ||
+				(insideMethod && trimmedLine.endsWith("):"))) {
+
+				insideMethod = insideMethod ^ true;
 			}
 
 			sb.append(line);

@@ -29,11 +29,31 @@ def method_c():
 
 	print("method_c")
 
-def method_d():
+class B:
+	def _method_a_in_class_b(name):
 
-	print("method_d")
+		print("_method_a_in_class_b")
 
-class A:
+	def _method_b_in_class_b(name):
+
+		print("_method_b_in_class_b")
+
+	class Bb:
+		def _method_b_in_class_bb(name):
+
+			print("_method_b_in_class_bb")
+
+	class Ba:
+		def _method_a_in_class_ba(name):
+
+			print("_method_a_in_class_ba")
+
+class A(B):
+	class Bb:
+		def _method_a_in_class_bb(name):
+
+			print("_method_a_in_class_bb")
+
 	# This is comments
 	#
 	# Don't sort the comments
@@ -45,29 +65,9 @@ class A:
 	def _method_b_in_class_a(name):
 		print("_method_b_in_class_a")
 
-	class Bb:
-		def _method_a_in_class_bb(name):
+def method_d():
 
-			print("_method_a_in_class_bb")
-
-class B:
-	def _method_a_in_class_b(name):
-
-		print("_method_a_in_class_b")
-
-	def _method_b_in_class_b(name):
-
-		print("_method_b_in_class_b")
-
-	class Ba:
-		def _method_a_in_class_ba(name):
-
-			print("_method_a_in_class_ba")
-
-	class Bb:
-		def _method_b_in_class_bb(name):
-
-			print("_method_b_in_class_bb")
+	print("method_d")
 
 content = "Hello, world!"
 

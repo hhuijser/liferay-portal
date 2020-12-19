@@ -40,7 +40,7 @@ CommerceDiscountDisplayContext commerceDiscountDisplayContext = (CommerceDiscoun
 
 			<c:if test="<%= commerceDiscountDisplayContext.hasPermission(CommerceDiscountActionKeys.ADD_COMMERCE_DISCOUNT) %>">
 				<portlet:renderURL var="addCommerceDiscountURL">
-					<portlet:param name="mvcRenderCommandName" value="editCommerceDiscount" />
+					<portlet:param name="mvcRenderCommandName" value="/commerce_discount/edit_commerce_discount" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
@@ -81,7 +81,7 @@ CommerceDiscountDisplayContext commerceDiscountDisplayContext = (CommerceDiscoun
 	</liferay-frontend:management-bar>
 
 	<div class="container-fluid container-fluid-max-xl">
-		<portlet:actionURL name="editCommerceDiscount" var="editCommerceDiscountActionURL" />
+		<portlet:actionURL name="/commerce_discount/edit_commerce_discount" var="editCommerceDiscountActionURL" />
 
 		<aui:form action="<%= editCommerceDiscountActionURL %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.DELETE %>" />
@@ -98,7 +98,7 @@ CommerceDiscountDisplayContext commerceDiscountDisplayContext = (CommerceDiscoun
 					modelVar="commerceDiscount"
 				>
 					<portlet:renderURL var="rowURL">
-						<portlet:param name="mvcRenderCommandName" value="editCommerceDiscount" />
+						<portlet:param name="mvcRenderCommandName" value="/commerce_discount/edit_commerce_discount" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="commerceDiscountId" value="<%= String.valueOf(commerceDiscount.getCommerceDiscountId()) %>" />
 					</portlet:renderURL>

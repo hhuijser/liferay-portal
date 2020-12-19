@@ -29,7 +29,7 @@ String type = BeanParamUtil.getString(commerceDiscountRule, request, "type");
 
 PortletURL portletURL = commerceDiscountRuleDisplayContext.getPortletURL();
 
-portletURL.setParameter("mvcRenderCommandName", "editCommerceDiscountRule");
+portletURL.setParameter("mvcRenderCommandName", "/commerce_discount/edit_commerce_discount_rule");
 
 String title = LanguageUtil.get(request, (commerceDiscountRule == null) ? "add-discount-rule" : "edit-discount-rule");
 
@@ -45,7 +45,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, title, StringPool.BLANK, data);
 
 <%@ include file="/breadcrumb.jspf" %>
 
-<portlet:actionURL name="editCommerceDiscountRule" var="editCommerceDiscountRuleActionURL" />
+<portlet:actionURL name="/commerce_discount/edit_commerce_discount_rule" var="editCommerceDiscountRuleActionURL" />
 
 <aui:form action="<%= editCommerceDiscountRuleActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveCommerceDiscountRule();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceDiscountRule == null) ? Constants.ADD : Constants.UPDATE %>" />

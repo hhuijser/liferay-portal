@@ -35,7 +35,7 @@ SearchContainer<CommerceDiscountRule> commerceDiscountRuleSearchContainer = comm
 		/>
 
 		<portlet:renderURL var="addCommerceDiscountRuleURL">
-			<portlet:param name="mvcRenderCommandName" value="editCommerceDiscountRule" />
+			<portlet:param name="mvcRenderCommandName" value="/commerce_discount/edit_commerce_discount_rule" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceDiscountId" value="<%= String.valueOf(commerceDiscountRuleDisplayContext.getCommerceDiscountId()) %>" />
 		</portlet:renderURL>
@@ -69,7 +69,7 @@ SearchContainer<CommerceDiscountRule> commerceDiscountRuleSearchContainer = comm
 </liferay-frontend:management-bar>
 
 <div class="container-fluid container-fluid-max-xl">
-	<portlet:actionURL name="editCommerceDiscountRule" var="editCommerceDiscountRuleActionURL" />
+	<portlet:actionURL name="/commerce_discount/edit_commerce_discount_rule" var="editCommerceDiscountRuleActionURL" />
 
 	<aui:form action="<%= editCommerceDiscountRuleActionURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.DELETE %>" />
@@ -86,7 +86,7 @@ SearchContainer<CommerceDiscountRule> commerceDiscountRuleSearchContainer = comm
 				modelVar="commerceDiscountRule"
 			>
 				<portlet:renderURL var="rowURL">
-					<portlet:param name="mvcRenderCommandName" value="editCommerceDiscountRule" />
+					<portlet:param name="mvcRenderCommandName" value="/commerce_discount/edit_commerce_discount_rule" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="commerceDiscountId" value="<%= String.valueOf(commerceDiscountRule.getCommerceDiscountId()) %>" />
 					<portlet:param name="commerceDiscountRuleId" value="<%= String.valueOf(commerceDiscountRule.getCommerceDiscountRuleId()) %>" />

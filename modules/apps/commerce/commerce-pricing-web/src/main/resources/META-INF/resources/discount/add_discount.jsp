@@ -22,7 +22,7 @@ CommerceDiscountDisplayContext commerceDiscountDisplayContext = (CommerceDiscoun
 PortletURL editDiscountPortletURL = commerceDiscountDisplayContext.getEditCommerceDiscountRenderURL();
 %>
 
-<portlet:actionURL name="editCommerceDiscount" var="editCommerceDiscountActionURL" />
+<portlet:actionURL name="/commerce_pricing/edit_commerce_discount" var="editCommerceDiscountActionURL" />
 
 <commerce-ui:modal-content
 	title='<%= LanguageUtil.get(request, "add-discount") %>'

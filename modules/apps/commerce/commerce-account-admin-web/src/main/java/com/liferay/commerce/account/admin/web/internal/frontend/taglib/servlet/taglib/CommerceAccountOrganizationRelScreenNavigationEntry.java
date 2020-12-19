@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.account.admin.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.account.admin.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.commerce.account.admin.web.internal.display.context.CommerceAccountOrganizationRelAdminDisplayContext;
 import com.liferay.commerce.account.admin.web.internal.servlet.taglib.ui.constants.CommerceAccountScreenNavigationConstants;

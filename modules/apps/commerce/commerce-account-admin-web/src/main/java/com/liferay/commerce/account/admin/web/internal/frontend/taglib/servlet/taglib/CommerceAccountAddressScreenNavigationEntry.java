@@ -12,16 +12,17 @@
  * details.
  */
 
-package com.liferay.commerce.account.admin.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.account.admin.web.internal.frontend.taglib.servlet.taglib;
 
-import com.liferay.commerce.account.admin.web.internal.display.context.CommerceAccountUserRelAdminDisplayContext;
+import com.liferay.commerce.account.admin.web.internal.display.context.CommerceAccountAddressAdminDisplayContext;
 import com.liferay.commerce.account.admin.web.internal.servlet.taglib.ui.constants.CommerceAccountScreenNavigationConstants;
 import com.liferay.commerce.account.model.CommerceAccount;
 import com.liferay.commerce.account.service.CommerceAccountService;
-import com.liferay.commerce.account.service.CommerceAccountUserRelService;
+import com.liferay.commerce.service.CommerceAddressService;
+import com.liferay.commerce.service.CommerceCountryService;
+import com.liferay.commerce.service.CommerceRegionService;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
-import com.liferay.item.selector.ItemSelector;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
@@ -47,10 +48,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "screen.navigation.entry.order:Integer=20",
+	enabled = false, property = "screen.navigation.entry.order:Integer=40",
 	service = ScreenNavigationEntry.class
 )
-public class CommerceAccountUserRelScreenNavigationEntry
+public class CommerceAccountAddressScreenNavigationEntry
 	implements ScreenNavigationEntry<CommerceAccount> {
 
 	@Override
@@ -62,7 +63,7 @@ public class CommerceAccountUserRelScreenNavigationEntry
 	@Override
 	public String getEntryKey() {
 		return CommerceAccountScreenNavigationConstants.
-			ENTRY_KEY_COMMERCE_ACCOUNT_USERS;
+			ENTRY_KEY_COMMERCE_ACCOUNT_ADDRESSES;
 	}
 
 	@Override
@@ -73,7 +74,7 @@ public class CommerceAccountUserRelScreenNavigationEntry
 		return LanguageUtil.get(
 			resourceBundle,
 			CommerceAccountScreenNavigationConstants.
-				ENTRY_KEY_COMMERCE_ACCOUNT_USERS);
+				ENTRY_KEY_COMMERCE_ACCOUNT_ADDRESSES);
 	}
 
 	@Override
@@ -101,12 +102,13 @@ public class CommerceAccountUserRelScreenNavigationEntry
 			(RenderRequest)httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_REQUEST);
 
-		CommerceAccountUserRelAdminDisplayContext
+		CommerceAccountAddressAdminDisplayContext
 			commerceAccountUserRelAdminDisplayContext =
-				new CommerceAccountUserRelAdminDisplayContext(
+				new CommerceAccountAddressAdminDisplayContext(
 					_commerceAccountModelResourcePermission,
-					_commerceAccountService, _commerceAccountUserRelService,
-					_itemSelector, renderRequest);
+					_commerceAccountService, _commerceAddressService,
+					_commerceCountryService, _commerceRegionService,
+					renderRequest);
 
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
@@ -114,7 +116,7 @@ public class CommerceAccountUserRelScreenNavigationEntry
 
 		_jspRenderer.renderJSP(
 			_servletContext, httpServletRequest, httpServletResponse,
-			"/account/users.jsp");
+			"/account/addresses.jsp");
 	}
 
 	@Reference(
@@ -127,10 +129,13 @@ public class CommerceAccountUserRelScreenNavigationEntry
 	private CommerceAccountService _commerceAccountService;
 
 	@Reference
-	private CommerceAccountUserRelService _commerceAccountUserRelService;
+	private CommerceAddressService _commerceAddressService;
 
 	@Reference
-	private ItemSelector _itemSelector;
+	private CommerceCountryService _commerceCountryService;
+
+	@Reference
+	private CommerceRegionService _commerceRegionService;
 
 	@Reference
 	private JSPRenderer _jspRenderer;

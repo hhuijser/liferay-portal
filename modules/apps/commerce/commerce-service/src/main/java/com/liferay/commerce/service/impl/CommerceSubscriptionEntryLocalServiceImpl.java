@@ -315,10 +315,12 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 
 		if (cpSubscriptionType == null) {
 			if (_log.isInfoEnabled()) {
+				long commerceSubscriptionEntryId =
+					commerceSubscriptionEntry.getCommerceSubscriptionEntryId();
+
 				_log.info(
 					"No subscription type found for subscription entry " +
-						commerceSubscriptionEntry.
-							getCommerceSubscriptionEntryId());
+						commerceSubscriptionEntryId);
 			}
 
 			return commerceSubscriptionEntry;
@@ -383,10 +385,12 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 
 		if (cpSubscriptionType == null) {
 			if (_log.isInfoEnabled()) {
+				long commerceSubscriptionEntryId =
+					commerceSubscriptionEntry.getCommerceSubscriptionEntryId();
+
 				_log.info(
 					"No subscription type found for subscription entry " +
-						commerceSubscriptionEntry.
-							getCommerceSubscriptionEntryId());
+						commerceSubscriptionEntryId);
 			}
 
 			return commerceSubscriptionEntry;

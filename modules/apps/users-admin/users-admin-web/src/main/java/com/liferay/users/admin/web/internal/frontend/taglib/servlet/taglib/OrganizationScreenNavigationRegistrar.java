@@ -20,7 +20,7 @@ import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.service.OrganizationService;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.users.admin.constants.UserScreenNavigationEntryConstants;
-import com.liferay.users.admin.web.internal.frontend.taglib.servlet.taglib.ui.OrganizationScreenNavigationCategory;
+import com.liferay.users.admin.web.internal.frontend.taglib.servlet.taglib.OrganizationScreenNavigationCategory;
 
 import java.util.ArrayList;
 import java.util.List;

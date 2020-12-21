@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dispatch.web.internal.frontend.taglib.servlet.taglib.ui;
+package com.liferay.dispatch.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.dispatch.constants.DispatchConstants;
 import com.liferay.dispatch.model.DispatchTrigger;

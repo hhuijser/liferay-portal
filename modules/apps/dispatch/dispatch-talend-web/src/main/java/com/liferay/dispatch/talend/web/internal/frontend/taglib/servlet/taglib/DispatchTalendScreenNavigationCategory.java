@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dispatch.talend.web.internal.frontend.taglib.servlet.taglib.ui;
+package com.liferay.dispatch.talend.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.admin.kernel.util.Omniadmin;
 import com.liferay.dispatch.constants.DispatchConstants;

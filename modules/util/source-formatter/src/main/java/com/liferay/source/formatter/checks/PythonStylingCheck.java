@@ -36,7 +36,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		return _sortPythonStatements(fileName, content, StringPool.BLANK);
+		return _sortMethods(fileName, content, StringPool.BLANK);
 	}
 
 	private List<String> _combineAnnotationsAndComments(
@@ -78,7 +78,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 		return statementsList;
 	}
 
-	private int _sortIdentifiers(String statement1, String statement2) {
+	private int _sortMethods(String statement1, String statement2) {
 		String trimmedStatement1 = StringUtil.trimLeading(statement1);
 		String trimmedStatement2 = StringUtil.trimLeading(statement2);
 
@@ -95,43 +95,29 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 		String[] trimmedStatement1Lines = trimmedStatement1.split("\n", 2);
 
-		Matcher matcher = _identifierAndNamePattern.matcher(
+		Matcher matcher = _methodDefinationPattern.matcher(
 			trimmedStatement1Lines[0]);
 
-		String identifierKey1 = null;
-		String name1 = null;
-
-		if (matcher.find()) {
-			identifierKey1 = matcher.group(1);
-			name1 = matcher.group(2);
-		}
-
-		if (Validator.isNull(identifierKey1) || !identifierKey1.equals("def")) {
+		if (!matcher.find()) {
 			return 0;
 		}
+
+		String methodName1 = matcher.group(1);
 
 		String[] trimmedStatement2Lines = trimmedStatement2.split("\n", 2);
 
-		matcher = _identifierAndNamePattern.matcher(trimmedStatement2Lines[0]);
+		matcher = _methodDefinationPattern.matcher(trimmedStatement2Lines[0]);
 
-		String identifiersKey2 = null;
-		String name2 = null;
-
-		if (matcher.find()) {
-			identifiersKey2 = matcher.group(1);
-			name2 = matcher.group(2);
-		}
-
-		if (Validator.isNull(identifiersKey2) ||
-			!identifiersKey2.equals("def")) {
-
+		if (!matcher.find()) {
 			return 0;
 		}
 
-		return name1.compareTo(name2);
+		String methodName2 = matcher.group(1);
+
+		return methodName1.compareTo(methodName2);
 	}
 
-	private String _sortPythonStatements(
+	private String _sortMethods(
 		String fileName, String content, String indent) {
 
 		List<String> statements = PythonSourceUtil.getPythonStatements(
@@ -147,7 +133,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 				@Override
 				public int compare(String statement1, String statement2) {
-					return _sortIdentifiers(statement1, statement2);
+					return _sortMethods(statement1, statement2);
 				}
 
 			});
@@ -181,15 +167,14 @@ public class PythonStylingCheck extends BaseFileCheck {
 			if (!nestedStatementIndent.equals(StringPool.BLANK)) {
 				content = StringUtil.replaceFirst(
 					content, statement,
-					_sortPythonStatements(
-						fileName, statement, nestedStatementIndent));
+					_sortMethods(fileName, statement, nestedStatementIndent));
 			}
 		}
 
 		return content;
 	}
 
-	private static final Pattern _identifierAndNamePattern = Pattern.compile(
-		"(\\w+) (\\w+).*");
+	private static final Pattern _methodDefinationPattern = Pattern.compile(
+		"def (\\w+).*");
 
 }

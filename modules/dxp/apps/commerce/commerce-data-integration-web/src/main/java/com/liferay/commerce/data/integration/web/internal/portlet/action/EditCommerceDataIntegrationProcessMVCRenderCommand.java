@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCRenderCommand.class
 )
-public class EditCommerceDataIntegrationProcessRenderCommand
+public class EditCommerceDataIntegrationProcessMVCRenderCommand
 	implements MVCRenderCommand {
 
 	@Override

@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.commerce.punchout.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.punchout.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CommerceChannelLocalService;

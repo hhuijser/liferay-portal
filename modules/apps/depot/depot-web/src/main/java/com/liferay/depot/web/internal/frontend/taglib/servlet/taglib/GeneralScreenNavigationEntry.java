@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.depot.web.internal.servlet.taglib;
+package com.liferay.depot.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.depot.web.internal.constants.DepotScreenNavigationEntryConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;

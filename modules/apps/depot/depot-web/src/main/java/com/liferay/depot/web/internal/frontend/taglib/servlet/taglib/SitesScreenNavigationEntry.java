@@ -12,10 +12,13 @@
  * details.
  */
 
-package com.liferay.depot.web.internal.servlet.taglib;
+package com.liferay.depot.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.depot.web.internal.constants.DepotScreenNavigationEntryConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
+import com.liferay.portal.kernel.language.LanguageUtil;
+
+import java.util.Locale;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -26,22 +29,34 @@ import org.osgi.service.component.annotations.Component;
 	property = "screen.navigation.entry.order:Integer=2",
 	service = ScreenNavigationEntry.class
 )
-public class LanguagesScreenNavigationEntry
-	extends BaseDepotScreenNavigationEntry {
+public class SitesScreenNavigationEntry extends BaseDepotScreenNavigationEntry {
 
 	@Override
 	public String getActionCommandName() {
-		return "/depot/edit_depot_entry";
+		return "/depot/connect_depot_entry";
 	}
 
 	@Override
 	public String getEntryKey() {
-		return DepotScreenNavigationEntryConstants.ENTRY_KEY_LANGUAGES;
+		return DepotScreenNavigationEntryConstants.ENTRY_KEY_SITES;
 	}
 
 	@Override
 	public String getJspPath() {
-		return "/screen/navigation/entries/languages.jsp";
+		return "/screen/navigation/entries/sites.jsp";
+	}
+
+	@Override
+	protected String getDescription(Locale locale) {
+		return LanguageUtil.get(
+			getResourceBundle(locale),
+			"an-asset-library-can-be-connected-to-multiple-sites.-please-add-" +
+				"those-sites-here");
+	}
+
+	@Override
+	protected boolean isShowControls() {
+		return false;
 	}
 
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.depot.web.internal.servlet.taglib;
+package com.liferay.depot.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.asset.auto.tagger.configuration.AssetAutoTaggerConfiguration;
 import com.liferay.asset.auto.tagger.configuration.AssetAutoTaggerConfigurationFactory;

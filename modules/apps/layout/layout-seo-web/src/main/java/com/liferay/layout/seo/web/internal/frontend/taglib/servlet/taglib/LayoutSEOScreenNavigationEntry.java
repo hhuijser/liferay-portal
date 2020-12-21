@@ -12,66 +12,42 @@
  * details.
  */
 
-package com.liferay.layout.seo.web.internal.servlet.taglib.ui;
+package com.liferay.layout.seo.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
-import com.liferay.layout.seo.open.graph.OpenGraphConfiguration;
 import com.liferay.layout.seo.web.internal.constants.LayoutSEOScreenNavigationEntryConstants;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.User;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alejandro Tardín
  */
 @Component(
-	property = "screen.navigation.entry.order:Integer=2",
+	property = "screen.navigation.entry.order:Integer=1",
 	service = ScreenNavigationEntry.class
 )
-public class LayoutOpenGraphScreenNavigationEntry
+public class LayoutSEOScreenNavigationEntry
 	extends BaseLayoutScreenNavigationEntry {
 
 	@Override
 	public String getEntryKey() {
-		return LayoutSEOScreenNavigationEntryConstants.ENTRY_KEY_OPEN_GRAPH;
+		return LayoutSEOScreenNavigationEntryConstants.ENTRY_KEY_SEO;
 	}
 
 	@Override
 	public boolean isVisible(User user, Layout layout) {
-		try {
-			if (!_openGraphConfiguration.isOpenGraphEnabled(
-					layout.getGroup())) {
-
-				return false;
-			}
-
-			if (layout.isTypeAssetDisplay()) {
-				return true;
-			}
-
-			return super.isVisible(user, layout);
+		if (layout.isTypeAssetDisplay()) {
+			return true;
 		}
-		catch (PortalException portalException) {
-			_log.error(portalException, portalException);
 
-			return false;
-		}
+		return super.isVisible(user, layout);
 	}
 
 	@Override
 	protected String getJspPath() {
-		return "/layout/screen/navigation/entries/open_graph.jsp";
+		return "/layout/screen/navigation/entries/seo.jsp";
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LayoutOpenGraphScreenNavigationEntry.class);
-
-	@Reference
-	private OpenGraphConfiguration _openGraphConfiguration;
 
 }

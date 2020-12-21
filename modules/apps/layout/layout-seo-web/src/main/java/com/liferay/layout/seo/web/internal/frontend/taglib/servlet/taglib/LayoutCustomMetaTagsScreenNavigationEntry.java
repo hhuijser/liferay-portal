@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.seo.web.internal.servlet.taglib.ui;
+package com.liferay.layout.seo.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.layout.seo.web.internal.constants.LayoutSEOScreenNavigationEntryConstants;

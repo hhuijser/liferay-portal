@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.admin.web.internal.servlet.taglib.ui;
+package com.liferay.layout.admin.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategory;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategoryProvider;

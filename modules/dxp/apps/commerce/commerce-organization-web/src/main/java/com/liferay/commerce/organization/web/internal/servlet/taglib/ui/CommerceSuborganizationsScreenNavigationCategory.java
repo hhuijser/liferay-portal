@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class CommerceSuborganizationsScreenNavigationEntry
+public class CommerceSuborganizationsScreenNavigationCategory
 	implements ScreenNavigationCategory, ScreenNavigationEntry<Organization> {
 
 	@Override
@@ -130,7 +130,7 @@ public class CommerceSuborganizationsScreenNavigationEntry
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceSuborganizationsScreenNavigationEntry.class);
+		CommerceSuborganizationsScreenNavigationCategory.class);
 
 	@Reference
 	private JSPRenderer _jspRenderer;

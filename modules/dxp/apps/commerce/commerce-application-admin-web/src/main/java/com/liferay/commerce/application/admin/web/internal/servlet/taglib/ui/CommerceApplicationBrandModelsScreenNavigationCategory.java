@@ -12,10 +12,10 @@
  *
  */
 
-package com.liferay.commerce.organization.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.application.admin.web.internal.servlet.taglib.ui;
 
-import com.liferay.commerce.organization.web.internal.constants.CommerceOrganizationScreenNavigationConstants;
-import com.liferay.commerce.organization.web.internal.display.context.CommerceOrganizationDisplayContext;
+import com.liferay.commerce.application.admin.web.internal.constants.CommerceApplicationBrandScreenNavigationConstants;
+import com.liferay.commerce.application.model.CommerceApplicationBrand;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
@@ -23,15 +23,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
-import com.liferay.portal.kernel.service.OrganizationService;
-import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.service.permission.OrganizationPermissionUtil;
-import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 
 import java.io.IOException;
 
@@ -47,48 +43,54 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	configurationPid = "com.liferay.user.admin.configuration.UserFileUploadsConfiguration",
 	enabled = false,
 	property = {
-		"screen.navigation.category.order:Integer=30",
+		"screen.navigation.category.order:Integer=20",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class CommerceOrganizationAccountsScreenNavigationEntry
-	implements ScreenNavigationCategory, ScreenNavigationEntry<Organization> {
+public class CommerceApplicationBrandModelsScreenNavigationCategory
+	implements ScreenNavigationCategory,
+			   ScreenNavigationEntry<CommerceApplicationBrand> {
 
 	@Override
 	public String getCategoryKey() {
-		return CommerceOrganizationScreenNavigationConstants.
-			CATEGORY_KEY_ORGANIZATION_ACCOUNTS;
+		return CommerceApplicationBrandScreenNavigationConstants.
+			CATEGORY_KEY_MODELS;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return CommerceOrganizationScreenNavigationConstants.
-			ENTRY_KEY_ORGANIZATION_ACCOUNTS;
+		return CommerceApplicationBrandScreenNavigationConstants.
+			ENTRY_KEY_MODELS;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "accounts");
+		return LanguageUtil.get(locale, "models");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return CommerceOrganizationScreenNavigationConstants.
+		return CommerceApplicationBrandScreenNavigationConstants.
 			SCREEN_NAVIGATION_KEY;
 	}
 
 	@Override
-	public boolean isVisible(User user, Organization organization) {
+	public boolean isVisible(
+		User user, CommerceApplicationBrand commerceApplicationBrand) {
+
+		if (commerceApplicationBrand == null) {
+			return false;
+		}
+
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
 		try {
-			return OrganizationPermissionUtil.contains(
-				permissionChecker, organization, ActionKeys.UPDATE);
+			return _commerceApplicationBrandModelResourcePermission.contains(
+				permissionChecker, commerceApplicationBrand, ActionKeys.UPDATE);
 		}
 		catch (PortalException portalException) {
 			_log.error(portalException, portalException);
@@ -103,30 +105,20 @@ public class CommerceOrganizationAccountsScreenNavigationEntry
 			HttpServletResponse httpServletResponse)
 		throws IOException {
 
-		CommerceOrganizationDisplayContext commerceOrganizationDisplayContext =
-			new CommerceOrganizationDisplayContext(
-				httpServletRequest, _organizationService, null,
-				_userLocalService);
-
-		httpServletRequest.setAttribute(
-			WebKeys.PORTLET_DISPLAY_CONTEXT,
-			commerceOrganizationDisplayContext);
-
 		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse,
-			"/organization/accounts.jsp");
+			httpServletRequest, httpServletResponse, "/brand/models.jsp");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceOrganizationAccountsScreenNavigationEntry.class);
+		CommerceApplicationBrandModelsScreenNavigationCategory.class);
+
+	@Reference(
+		target = "(model.class.name=com.liferay.commerce.application.model.CommerceApplicationBrand)"
+	)
+	private ModelResourcePermission<CommerceApplicationBrand>
+		_commerceApplicationBrandModelResourcePermission;
 
 	@Reference
 	private JSPRenderer _jspRenderer;
-
-	@Reference
-	private OrganizationService _organizationService;
-
-	@Reference
-	private UserLocalService _userLocalService;
 
 }

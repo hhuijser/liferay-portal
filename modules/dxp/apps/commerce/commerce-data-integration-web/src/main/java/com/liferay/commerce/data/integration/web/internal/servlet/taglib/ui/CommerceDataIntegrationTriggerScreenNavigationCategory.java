@@ -20,6 +20,9 @@ import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineHelper;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.io.IOException;
@@ -39,19 +42,19 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false,
 	property = {
-		"screen.navigation.category.order:Integer=10",
+		"screen.navigation.category.order:Integer=30",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class CommerceDataIntegrationDetailScreenNavigationEntry
+public class CommerceDataIntegrationTriggerScreenNavigationCategory
 	implements ScreenNavigationCategory,
 			   ScreenNavigationEntry<CommerceDataIntegrationProcess> {
 
 	@Override
 	public String getCategoryKey() {
 		return CommerceDataIntegrationConstants.
-			CATEGORY_KEY_COMMERCE_DATA_INTEGRATION_DETAILS;
+			CATEGORY_KEY_COMMERCE_DATA_INTEGRATION_SCHEDULED_TASK;
 	}
 
 	@Override
@@ -74,16 +77,37 @@ public class CommerceDataIntegrationDetailScreenNavigationEntry
 	}
 
 	@Override
+	public boolean isVisible(
+		User user,
+		CommerceDataIntegrationProcess commerceDataIntegrationProcess) {
+
+		if (commerceDataIntegrationProcess == null) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
 	public void render(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
 		throws IOException {
 
 		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse, "/process/details.jsp");
+			httpServletRequest, httpServletResponse, "/process/trigger.jsp");
 	}
+
+	@Reference(
+		target = "(model.class.name=com.liferay.commerce.data.integration.model.CommerceDataIntegrationProcess)"
+	)
+	private ModelResourcePermission<CommerceDataIntegrationProcess>
+		_commerceDataIntegrationProcessModelResourcePermission;
 
 	@Reference
 	private JSPRenderer _jspRenderer;
+
+	@Reference
+	private SchedulerEngineHelper _schedulerEngineHelper;
 
 }

@@ -12,11 +12,10 @@
  *
  */
 
-package com.liferay.commerce.bom.admin.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.organization.web.internal.servlet.taglib.ui;
 
-import com.liferay.commerce.bom.admin.web.internal.constants.CommerceBOMFolderScreenNavigationConstants;
-import com.liferay.commerce.bom.constants.CommerceBOMActionKeys;
-import com.liferay.commerce.bom.model.CommerceBOMFolder;
+import com.liferay.commerce.organization.web.internal.constants.CommerceOrganizationScreenNavigationConstants;
+import com.liferay.commerce.organization.web.internal.display.context.CommerceOrganizationDisplayContext;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
@@ -24,12 +23,15 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
-import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
-import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
+import com.liferay.portal.kernel.service.OrganizationService;
+import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.service.permission.OrganizationPermissionUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
 
@@ -45,51 +47,48 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
+	configurationPid = "com.liferay.user.admin.configuration.UserFileUploadsConfiguration",
 	enabled = false,
 	property = {
-		"screen.navigation.category.order:Integer=10",
+		"screen.navigation.category.order:Integer=30",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class CommerceBOMFolderDetailsScreenNavigationEntry
-	implements ScreenNavigationCategory,
-			   ScreenNavigationEntry<CommerceBOMFolder> {
+public class CommerceOrganizationAccountsScreenNavigationCategory
+	implements ScreenNavigationCategory, ScreenNavigationEntry<Organization> {
 
 	@Override
 	public String getCategoryKey() {
-		return CommerceBOMFolderScreenNavigationConstants.CATEGORY_KEY_DETAILS;
+		return CommerceOrganizationScreenNavigationConstants.
+			CATEGORY_KEY_ORGANIZATION_ACCOUNTS;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return CommerceBOMFolderScreenNavigationConstants.ENTRY_KEY_DETAILS;
+		return CommerceOrganizationScreenNavigationConstants.
+			ENTRY_KEY_ORGANIZATION_ACCOUNTS;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "details");
+		return LanguageUtil.get(locale, "accounts");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return CommerceBOMFolderScreenNavigationConstants.SCREEN_NAVIGATION_KEY;
+		return CommerceOrganizationScreenNavigationConstants.
+			SCREEN_NAVIGATION_KEY;
 	}
 
 	@Override
-	public boolean isVisible(User user, CommerceBOMFolder commerceBOMFolder) {
+	public boolean isVisible(User user, Organization organization) {
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
 		try {
-			if (commerceBOMFolder == null) {
-				return PortalPermissionUtil.contains(
-					permissionChecker,
-					CommerceBOMActionKeys.ADD_COMMERCE_BOM_FOLDER);
-			}
-
-			return _commerceBOMFolderModelResourcePermission.contains(
-				permissionChecker, commerceBOMFolder, ActionKeys.UPDATE);
+			return OrganizationPermissionUtil.contains(
+				permissionChecker, organization, ActionKeys.UPDATE);
 		}
 		catch (PortalException portalException) {
 			_log.error(portalException, portalException);
@@ -104,20 +103,30 @@ public class CommerceBOMFolderDetailsScreenNavigationEntry
 			HttpServletResponse httpServletResponse)
 		throws IOException {
 
+		CommerceOrganizationDisplayContext commerceOrganizationDisplayContext =
+			new CommerceOrganizationDisplayContext(
+				httpServletRequest, _organizationService, null,
+				_userLocalService);
+
+		httpServletRequest.setAttribute(
+			WebKeys.PORTLET_DISPLAY_CONTEXT,
+			commerceOrganizationDisplayContext);
+
 		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse, "/folder/details.jsp");
+			httpServletRequest, httpServletResponse,
+			"/organization/accounts.jsp");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceBOMFolderDetailsScreenNavigationEntry.class);
-
-	@Reference(
-		target = "(model.class.name=com.liferay.commerce.bom.model.CommerceBOMFolder)"
-	)
-	private ModelResourcePermission<CommerceBOMFolder>
-		_commerceBOMFolderModelResourcePermission;
+		CommerceOrganizationAccountsScreenNavigationCategory.class);
 
 	@Reference
 	private JSPRenderer _jspRenderer;
+
+	@Reference
+	private OrganizationService _organizationService;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

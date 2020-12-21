@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class TalendScreenNavigationEntry
+public class TalendScreenNavigationCategory
 	implements ScreenNavigationCategory,
 			   ScreenNavigationEntry<CommerceDataIntegrationProcess> {
 

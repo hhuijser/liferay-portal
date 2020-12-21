@@ -12,23 +12,26 @@
  *
  */
 
-package com.liferay.commerce.data.integration.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.bom.admin.web.internal.servlet.taglib.ui;
 
-import com.liferay.commerce.data.integration.constants.CommerceDataIntegrationConstants;
-import com.liferay.commerce.data.integration.model.CommerceDataIntegrationProcess;
+import com.liferay.commerce.bom.admin.web.internal.constants.CommerceBOMFolderScreenNavigationConstants;
+import com.liferay.commerce.bom.model.CommerceBOMFolder;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.scheduler.SchedulerEngineHelper;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.io.IOException;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,50 +45,55 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false,
 	property = {
-		"screen.navigation.category.order:Integer=30",
+		"screen.navigation.category.order:Integer=20",
 		"screen.navigation.entry.order:Integer=10"
 	},
 	service = {ScreenNavigationCategory.class, ScreenNavigationEntry.class}
 )
-public class CommerceDataIntegrationTriggerScreenNavigationEntry
+public class CommerceBOMFolderApplicationModelsScreenNavigationCategory
 	implements ScreenNavigationCategory,
-			   ScreenNavigationEntry<CommerceDataIntegrationProcess> {
+			   ScreenNavigationEntry<CommerceBOMFolder> {
 
 	@Override
 	public String getCategoryKey() {
-		return CommerceDataIntegrationConstants.
-			CATEGORY_KEY_COMMERCE_DATA_INTEGRATION_SCHEDULED_TASK;
+		return CommerceBOMFolderScreenNavigationConstants.
+			CATEGORY_KEY_APPLICATION_MODELS;
 	}
 
 	@Override
 	public String getEntryKey() {
-		return getCategoryKey();
+		return CommerceBOMFolderScreenNavigationConstants.
+			ENTRY_KEY_APPLICATION_MODELS;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, getCategoryKey());
+		return LanguageUtil.get(locale, "models");
 	}
 
 	@Override
 	public String getScreenNavigationKey() {
-		return CommerceDataIntegrationConstants.
-			SCREEN_NAVIGATION_KEY_COMMERCE_DATA_INTEGRATION_GENERAL;
+		return CommerceBOMFolderScreenNavigationConstants.SCREEN_NAVIGATION_KEY;
 	}
 
 	@Override
-	public boolean isVisible(
-		User user,
-		CommerceDataIntegrationProcess commerceDataIntegrationProcess) {
-
-		if (commerceDataIntegrationProcess == null) {
+	public boolean isVisible(User user, CommerceBOMFolder commerceBOMFolder) {
+		if (commerceBOMFolder == null) {
 			return false;
 		}
 
-		return true;
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		try {
+			return _commerceBOMFolderModelResourcePermission.contains(
+				permissionChecker, commerceBOMFolder, ActionKeys.UPDATE);
+		}
+		catch (PortalException portalException) {
+			_log.error(portalException, portalException);
+		}
+
+		return false;
 	}
 
 	@Override
@@ -95,19 +103,19 @@ public class CommerceDataIntegrationTriggerScreenNavigationEntry
 		throws IOException {
 
 		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse, "/process/trigger.jsp");
+			httpServletRequest, httpServletResponse, "/folder/models.jsp");
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CommerceBOMFolderApplicationModelsScreenNavigationCategory.class);
+
 	@Reference(
-		target = "(model.class.name=com.liferay.commerce.data.integration.model.CommerceDataIntegrationProcess)"
+		target = "(model.class.name=com.liferay.commerce.bom.model.CommerceBOMFolder)"
 	)
-	private ModelResourcePermission<CommerceDataIntegrationProcess>
-		_commerceDataIntegrationProcessModelResourcePermission;
+	private ModelResourcePermission<CommerceBOMFolder>
+		_commerceBOMFolderModelResourcePermission;
 
 	@Reference
 	private JSPRenderer _jspRenderer;
-
-	@Reference
-	private SchedulerEngineHelper _schedulerEngineHelper;
 
 }

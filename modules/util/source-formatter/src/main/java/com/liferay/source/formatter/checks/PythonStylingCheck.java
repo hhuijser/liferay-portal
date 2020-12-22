@@ -139,7 +139,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 			});
 
 		if (!oldStatements.equals(statements)) {
-			StringBundler sb = new StringBundler();
+			StringBundler sb = new StringBundler(statements.size() * 2);
 
 			for (String statement : statements) {
 				sb.append(statement);

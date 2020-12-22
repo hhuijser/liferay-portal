@@ -58,9 +58,10 @@ public class PythonWhitespaceCheck extends WhitespaceCheck {
 					insideMultiLines = insideMultiLines ^ true;
 				}
 
-				previousLine = line;
 				sb.append(line);
 				sb.append("\n");
+
+				previousLine = line;
 			}
 		}
 

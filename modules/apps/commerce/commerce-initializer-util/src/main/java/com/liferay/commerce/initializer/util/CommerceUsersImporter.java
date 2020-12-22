@@ -402,11 +402,11 @@ public class CommerceUsersImporter {
 		if (Validator.isNotNull(externalUserId) &&
 			Validator.isNotNull(externalSystemType)) {
 
-			String exteralSsystemDescription = jsonObject.getString(
+			String externalSystemDescription = jsonObject.getString(
 				"externalSystemDescription", "");
 
 			_userIdMapperLocalService.updateUserIdMapper(
-				user.getUserId(), externalSystemType, exteralSsystemDescription,
+				user.getUserId(), externalSystemType, externalSystemDescription,
 				externalUserId);
 		}
 

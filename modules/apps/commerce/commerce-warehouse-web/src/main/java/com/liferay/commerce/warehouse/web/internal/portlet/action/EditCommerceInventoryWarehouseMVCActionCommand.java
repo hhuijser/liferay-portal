@@ -150,7 +150,8 @@ public class EditCommerceInventoryWarehouseMVCActionCommand
 				SessionErrors.add(actionRequest, throwable.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "/commerce_inventory/edit_commerce_inventory_warehouse");
+					"mvcRenderCommandName",
+					"/commerce_inventory/edit_commerce_inventory_warehouse");
 			}
 		}
 	}

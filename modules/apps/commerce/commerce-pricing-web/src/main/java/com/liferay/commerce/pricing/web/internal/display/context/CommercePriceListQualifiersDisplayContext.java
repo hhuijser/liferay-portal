@@ -108,7 +108,8 @@ public class CommercePriceListQualifiersDisplayContext
 			PortletProvider.Action.EDIT);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_account_admin/edit_commerce_account");
+			"mvcRenderCommandName",
+			"/commerce_account_admin/edit_commerce_account");
 		portletURL.setParameter(
 			"redirect", commercePricingRequestHelper.getCurrentURL());
 		portletURL.setParameter("commerceAccountId", "{account.id}");

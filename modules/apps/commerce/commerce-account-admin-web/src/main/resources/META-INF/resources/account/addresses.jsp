@@ -140,7 +140,10 @@ PortletURL portletURL = commerceAccountAddressAdminDisplayContext.getPortletURL(
 					'<portlet:namespace />allRowIds'
 				);
 
-				submitForm(form, '<portlet:actionURL name="/commerce_account_admin/edit_commerce_address" />');
+				submitForm(
+					form,
+					'<portlet:actionURL name="/commerce_account_admin/edit_commerce_address" />'
+				);
 			}
 		}
 	</aui:script>

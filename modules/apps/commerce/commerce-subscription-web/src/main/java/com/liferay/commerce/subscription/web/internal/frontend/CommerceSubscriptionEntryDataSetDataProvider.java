@@ -163,7 +163,8 @@ public class CommerceSubscriptionEntryDataSetDataProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_account_admin/edit_commerce_account");
+			"mvcRenderCommandName",
+			"/commerce_account_admin/edit_commerce_account");
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
 			"commerceAccountId", String.valueOf(commerceAccountId));

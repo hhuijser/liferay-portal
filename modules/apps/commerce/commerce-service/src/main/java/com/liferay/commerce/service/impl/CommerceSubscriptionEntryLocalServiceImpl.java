@@ -315,9 +315,6 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 
 		if (cpSubscriptionType == null) {
 			if (_log.isInfoEnabled()) {
-				long commerceSubscriptionEntryId =
-					commerceSubscriptionEntry.getCommerceSubscriptionEntryId();
-
 				_log.info(
 					"No subscription type found for subscription entry " +
 						commerceSubscriptionEntryId);
@@ -385,9 +382,6 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 
 		if (cpSubscriptionType == null) {
 			if (_log.isInfoEnabled()) {
-				long commerceSubscriptionEntryId =
-					commerceSubscriptionEntry.getCommerceSubscriptionEntryId();
-
 				_log.info(
 					"No subscription type found for subscription entry " +
 						commerceSubscriptionEntryId);

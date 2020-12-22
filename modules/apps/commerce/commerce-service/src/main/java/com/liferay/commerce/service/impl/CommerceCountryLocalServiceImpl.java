@@ -78,11 +78,11 @@ public class CommerceCountryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		CommerceCountry commerceCountry =
+		CommerceCountry existingCommerceCountry =
 			commerceCountryLocalService.fetchCommerceCountry(
 				serviceContext.getCompanyId(), twoLettersISOCode);
 
-		if (commerceCountry != null) {
+		if (existingCommerceCountry != null) {
 			throw new CommerceCountryAlreadyExistsException();
 		}
 

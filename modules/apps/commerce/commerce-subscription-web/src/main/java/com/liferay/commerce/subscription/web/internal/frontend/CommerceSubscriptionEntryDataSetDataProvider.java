@@ -187,7 +187,9 @@ public class CommerceSubscriptionEntryDataSetDataProvider
 			httpServletRequest, "currentUrl",
 			_portal.getCurrentURL(httpServletRequest));
 
-		portletURL.setParameter("mvcRenderCommandName", "editCommerceOrder");
+		portletURL.setParameter(
+			"mvcRenderCommandName",
+			"/commerce_order_content/edit_commerce_order");
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
 			"commerceOrderId", String.valueOf(commerceOrderId));

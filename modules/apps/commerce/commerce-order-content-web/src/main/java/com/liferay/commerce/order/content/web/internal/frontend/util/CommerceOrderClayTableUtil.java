@@ -75,7 +75,9 @@ public class CommerceOrderClayTableUtil {
 			originalHttpServletRequest, portletDisplay.getId(),
 			themeDisplay.getPlid(), PortletRequest.ACTION_PHASE);
 
-		portletURL.setParameter(ActionRequest.ACTION_NAME, "editCommerceOrder");
+		portletURL.setParameter(
+			ActionRequest.ACTION_NAME,
+			"/commerce_order_content/edit_commerce_order");
 		portletURL.setParameter(Constants.CMD, "setCurrent");
 		portletURL.setParameter(
 			"commerceOrderId", String.valueOf(commerceOrderId));
@@ -174,7 +176,8 @@ public class CommerceOrderClayTableUtil {
 			backURL.toString());
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "viewCommerceOrderDetails");
+			"mvcRenderCommandName",
+			"/commerce_order_content/view_commerce_order_details");
 		portletURL.setParameter(
 			"commerceOrderId", String.valueOf(commerceOrderId));
 
@@ -191,7 +194,8 @@ public class CommerceOrderClayTableUtil {
 			themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "viewCommerceOrderShipments");
+			"mvcRenderCommandName",
+			"/commerce_order_content/view_commerce_order_shipments");
 		portletURL.setParameter(
 			"commerceOrderItemId", String.valueOf(commerceOrderItemId));
 

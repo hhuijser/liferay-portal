@@ -162,7 +162,8 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 
 			if (commerceOrder != null) {
 				portletURL.setParameter(
-					"mvcRenderCommandName", "viewCommerceOrderDetails");
+					"mvcRenderCommandName",
+					"/commerce_order_content/view_commerce_order_details");
 				portletURL.setParameter(
 					"commerceOrderUuid",
 					String.valueOf(commerceOrder.getUuid()));
@@ -190,7 +191,8 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 
 			if (commerceOrder != null) {
 				portletURL.setParameter(
-					"mvcRenderCommandName", "editCommerceOrder");
+					"mvcRenderCommandName",
+					"/commerce_order_content/edit_commerce_order");
 				portletURL.setParameter(
 					"commerceOrderUuid",
 					String.valueOf(commerceOrder.getUuid()));

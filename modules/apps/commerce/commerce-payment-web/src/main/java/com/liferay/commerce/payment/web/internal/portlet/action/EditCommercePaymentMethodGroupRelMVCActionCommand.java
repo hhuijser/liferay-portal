@@ -54,7 +54,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.COMMERCE_PAYMENT_METHODS,
-		"mvc.command.name=editCommercePaymentMethodGroupRel"
+		"mvc.command.name=/commerce_payment/edit_commerce_payment_method_group_rel"
 	},
 	service = MVCActionCommand.class
 )
@@ -108,7 +108,7 @@ public class EditCommercePaymentMethodGroupRelMVCActionCommand
 
 				actionResponse.setRenderParameter(
 					"mvcRenderCommandName",
-					"editCommercePaymentMethodGroupRel");
+					"/commerce_payment/edit_commerce_payment_method_group_rel");
 			}
 			else {
 				throw exception;

@@ -178,7 +178,8 @@ public class CommerceChannelDisplayContext
 			PortletProvider.Action.EDIT);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePaymentMethodGroupRel");
+			"mvcRenderCommandName",
+			"/commerce_payment/edit_commerce_payment_method_group_rel");
 		portletURL.setParameter(
 			"commerceChannelId", String.valueOf(getCommerceChannelId()));
 

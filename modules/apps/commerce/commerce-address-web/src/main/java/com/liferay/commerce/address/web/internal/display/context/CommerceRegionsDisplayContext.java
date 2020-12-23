@@ -70,7 +70,7 @@ public class CommerceRegionsDisplayContext
 		PortletURL portletURL = super.getPortletURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_address/edit_commerce_country");
+			"mvcRenderCommandName", "/commerce_country/edit_commerce_country");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey());
 

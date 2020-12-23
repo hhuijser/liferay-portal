@@ -24,7 +24,7 @@ long commerceCountryId = commerceCountriesDisplayContext.getCommerceCountryId();
 CommerceRegionsStarter commerceRegionsStarter = commerceCountriesDisplayContext.getCommerceRegionsStarter();
 %>
 
-<portlet:actionURL name="/commerce_address/edit_commerce_country" var="editCommerceCountryActionURL" />
+<portlet:actionURL name="/commerce_country/edit_commerce_country" var="editCommerceCountryActionURL" />
 
 <aui:form action="<%= editCommerceCountryActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveCommerceCountry();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceCountry == null) ? Constants.ADD : Constants.UPDATE %>" />
@@ -94,7 +94,7 @@ CommerceRegionsStarter commerceRegionsStarter = commerceCountriesDisplayContext.
 				this.attr('disabled', true);
 
 				A.io.request(
-					'<liferay-portlet:actionURL name="/commerce_address/import_commerce_region" portletName="<%= portletDisplay.getPortletName() %>" />',
+					'<liferay-portlet:actionURL name="/commerce_country/import_commerce_region" portletName="<%= portletDisplay.getPortletName() %>" />',
 					{
 						data: data,
 						on: {

@@ -206,7 +206,7 @@ if (commerceAddress != null) {
 	</div>
 </div>
 
-<liferay-portlet:actionURL name="/commerce_order_content/edit_commerce_order_item" var="editCommerceOrderItemURL" />
+<liferay-portlet:actionURL name="/commerce_open_order_content/edit_commerce_order_item" var="editCommerceOrderItemURL" />
 
 <liferay-ui:search-container
 	cssClass="shipment-details-table"

@@ -47,7 +47,7 @@ CommerceRegionsDisplayContext commerceRegionsDisplayContext = (CommerceRegionsDi
 			/>
 
 			<portlet:renderURL var="addCommerceRegionURL">
-				<portlet:param name="mvcRenderCommandName" value="/commerce_address/edit_commerce_region" />
+				<portlet:param name="mvcRenderCommandName" value="/commerce_country/edit_commerce_region" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="commerceCountryId" value="<%= String.valueOf(commerceRegionsDisplayContext.getCommerceCountryId()) %>" />
 			</portlet:renderURL>
@@ -72,7 +72,7 @@ CommerceRegionsDisplayContext commerceRegionsDisplayContext = (CommerceRegionsDi
 	</liferay-frontend:management-bar>
 
 	<div class="container-fluid container-fluid-max-xl">
-		<portlet:actionURL name="/commerce_address/edit_commerce_region" var="editCommerceRegionActionURL" />
+		<portlet:actionURL name="/commerce_country/edit_commerce_region" var="editCommerceRegionActionURL" />
 
 		<aui:form action="<%= editCommerceRegionActionURL %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.DELETE %>" />
@@ -92,7 +92,7 @@ CommerceRegionsDisplayContext commerceRegionsDisplayContext = (CommerceRegionsDi
 					<%
 					PortletURL rowURL = renderResponse.createRenderURL();
 
-					rowURL.setParameter("mvcRenderCommandName", "/commerce_address/edit_commerce_region");
+					rowURL.setParameter("mvcRenderCommandName", "/commerce_country/edit_commerce_region");
 					rowURL.setParameter("redirect", currentURL);
 					rowURL.setParameter("commerceCountryId", String.valueOf(commerceRegion.getCommerceCountryId()));
 					rowURL.setParameter("commerceRegionId", String.valueOf(commerceRegion.getCommerceRegionId()));

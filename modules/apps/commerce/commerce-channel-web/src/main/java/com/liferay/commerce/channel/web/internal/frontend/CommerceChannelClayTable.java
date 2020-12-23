@@ -113,7 +113,7 @@ public class CommerceChannelClayTable
 					String.valueOf(channel.getChannelId()));
 				portletURL.setParameter(
 					"mvcRenderCommandName",
-					"/commerce_channel/edit_commerce_channel");
+					"/commerce_channels/edit_commerce_channel");
 
 				dropdownItem.setHref(portletURL.toString());
 
@@ -143,7 +143,7 @@ public class CommerceChannelClayTable
 
 				deleteURL.setParameter(
 					ActionRequest.ACTION_NAME,
-					"/commerce_channel/edit_commerce_channel");
+					"/commerce_channels/edit_commerce_channel");
 				deleteURL.setParameter(Constants.CMD, Constants.DELETE);
 
 				String redirect = ParamUtil.getString(

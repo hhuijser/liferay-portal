@@ -24,7 +24,7 @@ CommerceCatalog commerceCatalog = commerceCatalogDisplayContext.getCommerceCatal
 List<CommerceCurrency> commerceCurrencies = commerceCatalogDisplayContext.getCommerceCurrencies();
 %>
 
-<portlet:actionURL name="/commerce_catalog/edit_commerce_catalog" var="editCommerceCatalogActionURL" />
+<portlet:actionURL name="/commerce_catalogs/edit_commerce_catalog" var="editCommerceCatalogActionURL" />
 
 <commerce-ui:modal-content
 	title='<%= LanguageUtil.get(request, "add-catalog") %>'

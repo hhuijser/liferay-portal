@@ -108,7 +108,7 @@ public class CommerceCatalogDisplayContext {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_catalog/add_commerce_catalog");
+			"mvcRenderCommandName", "/commerce_catalogs/add_commerce_catalog");
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return portletURL.toString();
@@ -211,7 +211,7 @@ public class CommerceCatalogDisplayContext {
 
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/commerce_catalog/edit_commerce_catalog");
+			"/commerce_catalogs/edit_commerce_catalog");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE);
 		portletURL.setParameter(
 			"commerceCatalogId",
@@ -227,7 +227,7 @@ public class CommerceCatalogDisplayContext {
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_catalog/edit_commerce_catalog");
+			"mvcRenderCommandName", "/commerce_catalogs/edit_commerce_catalog");
 
 		return portletURL;
 	}

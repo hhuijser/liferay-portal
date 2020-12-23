@@ -22,7 +22,7 @@ CommerceCatalogDisplayContext commerceCatalogDisplayContext = (CommerceCatalogDi
 CommerceCatalog commerceCatalog = commerceCatalogDisplayContext.getCommerceCatalog();
 %>
 
-<portlet:actionURL name="/commerce_catalog/edit_commerce_catalog_external_reference_code" var="editCommerceCatalogExternalReferenceCodeURL" />
+<portlet:actionURL name="/commerce_catalogs/edit_commerce_catalog_external_reference_code" var="editCommerceCatalogExternalReferenceCodeURL" />
 
 <commerce-ui:modal-content>
 	<aui:form action="<%= editCommerceCatalogExternalReferenceCodeURL %>" cssClass="container-fluid container-fluid-max-xl p-0" method="post" name="fm">

@@ -158,7 +158,7 @@ public class CommerceChannelDisplayContext
 				PortletRequest.RENDER_PHASE);
 
 		editCommerceChannelPortletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_channel/add_commerce_channel");
+			"mvcRenderCommandName", "/commerce_channels/add_commerce_channel");
 
 		editCommerceChannelPortletURL.setWindowState(LiferayWindowState.POP_UP);
 
@@ -207,7 +207,7 @@ public class CommerceChannelDisplayContext
 			"commerceChannelId",
 			String.valueOf(commerceChannel.getCommerceChannelId()));
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_channel/edit_commerce_channel");
+			"mvcRenderCommandName", "/commerce_channels/edit_commerce_channel");
 
 		return portletURL.toString();
 	}
@@ -275,7 +275,7 @@ public class CommerceChannelDisplayContext
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_channel/edit_commerce_channel");
+			"mvcRenderCommandName", "/commerce_channels/edit_commerce_channel");
 
 		return portletURL;
 	}

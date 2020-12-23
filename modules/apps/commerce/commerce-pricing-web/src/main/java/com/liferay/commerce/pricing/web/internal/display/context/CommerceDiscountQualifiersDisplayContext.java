@@ -158,7 +158,7 @@ public class CommerceDiscountQualifiersDisplayContext
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_channel/edit_commerce_channel");
+			"mvcRenderCommandName", "/commerce_channels/edit_commerce_channel");
 		portletURL.setParameter(
 			"redirect", commercePricingRequestHelper.getCurrentURL());
 		portletURL.setParameter("commerceChannelId", "{channel.id}");

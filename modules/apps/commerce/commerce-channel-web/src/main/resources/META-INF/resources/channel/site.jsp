@@ -47,7 +47,7 @@ if (commerceChannel != null) {
 	/>
 </liferay-util:buffer>
 
-<portlet:actionURL name="/commerce_channel/edit_commerce_channel" var="editCommerceChannelActionURL" />
+<portlet:actionURL name="/commerce_channels/edit_commerce_channel" var="editCommerceChannelActionURL" />
 
 <aui:form action="<%= editCommerceChannelActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="selectSite" />

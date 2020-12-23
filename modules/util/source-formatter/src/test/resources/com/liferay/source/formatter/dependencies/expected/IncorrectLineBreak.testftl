@@ -1,0 +1,17 @@
+<#macro insertDDMContent
+	_ddmStorageLinkId
+	_ddmStructureId
+	_entry
+	_currentIndex = -1
+	_ddmStructureVersionId = 0
+>
+</#macro>
+
+<button
+	class="btn btn-link btn-unstyled facet-term ${(entry.isSelected())?then('facet-term-selected', 'facet-term-unselected')} term-name"
+	data-term-id="${entry.getValue()}"
+	disabled
+	onClick="Liferay.Search.FacetUtil.changeSelection(event);"
+>
+	${htmlUtil.escape(entry.getDisplayName())}
+</button>

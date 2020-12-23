@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.COMMERCE_CHANNELS,
-		"mvc.command.name=/commerce_notification/edit_commerce_notification_template"
+		"mvc.command.name=/commerce_channels/edit_commerce_notification_template"
 	},
 	service = MVCRenderCommand.class
 )

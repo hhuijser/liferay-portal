@@ -48,7 +48,7 @@ if (commerceNotificationTemplate != null) {
 <commerce-ui:side-panel-content
 	title="<%= title %>"
 >
-	<portlet:actionURL name="/commerce_notification/edit_commerce_notification_template" var="editCommerceNotificationTemplateActionURL" />
+	<portlet:actionURL name="/commerce_channels/edit_commerce_notification_template" var="editCommerceNotificationTemplateActionURL" />
 
 	<aui:form action="<%= editCommerceNotificationTemplateActionURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceNotificationTemplate == null) ? Constants.ADD : Constants.UPDATE %>" />

@@ -41,7 +41,7 @@ if (Validator.isNotNull(backURL)) {
 			</div>
 		</c:when>
 		<c:otherwise>
-			<portlet:actionURL name="/commerce_inventory/edit_commerce_inventory_warehouse_item" var="updateCommerceInventoryWarehouseItemURL" />
+			<portlet:actionURL name="/cp_definitions/edit_commerce_inventory_warehouse_item" var="updateCommerceInventoryWarehouseItemURL" />
 
 			<aui:form action="<%= updateCommerceInventoryWarehouseItemURL %>" method="post" name="fm">
 				<aui:input name="<%= Constants.CMD %>" type="hidden" />

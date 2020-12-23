@@ -83,7 +83,7 @@ CommerceInventoryWarehousesDisplayContext commerceInventoryWarehousesDisplayCont
 			/>
 
 			<portlet:renderURL var="addCommerceInventoryWarehouseURL">
-				<portlet:param name="mvcRenderCommandName" value="/commerce_inventory/edit_commerce_inventory_warehouse" />
+				<portlet:param name="mvcRenderCommandName" value="/commerce_inventory_warehouse/edit_commerce_inventory_warehouse" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="commerceCountryId" value="<%= String.valueOf(commerceCountryTwoLettersIsoCode) %>" />
 			</portlet:renderURL>
@@ -113,7 +113,7 @@ CommerceInventoryWarehousesDisplayContext commerceInventoryWarehousesDisplayCont
 				<%
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setParameter("mvcRenderCommandName", "/commerce_inventory/edit_commerce_inventory_warehouse");
+				rowURL.setParameter("mvcRenderCommandName", "/commerce_inventory_warehouse/edit_commerce_inventory_warehouse");
 				rowURL.setParameter("redirect", currentURL);
 				rowURL.setParameter("commerceInventoryWarehouseId", String.valueOf(commerceInventoryWarehouse.getCommerceInventoryWarehouseId()));
 				%>

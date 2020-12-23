@@ -85,7 +85,8 @@ public class CommercePricingClassDiscountDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_pricing/edit_commerce_discount");
+			"mvcRenderCommandName",
+			"/commerce_discount/edit_commerce_discount");
 		portletURL.setParameter(
 			"commerceDiscountId", String.valueOf(commerceDiscountId));
 		portletURL.setParameter("redirect", redirect);

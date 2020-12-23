@@ -436,7 +436,7 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/commerce_pricing/edit_commerce_discount");
+			"/commerce_discount/edit_commerce_discount");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE);
 		portletURL.setParameter(
 			"commerceDiscountId",
@@ -453,7 +453,8 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_pricing/edit_commerce_discount");
+			"mvcRenderCommandName",
+			"/commerce_discount/edit_commerce_discount");
 
 		return portletURL;
 	}
@@ -486,7 +487,7 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 
 		actionURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/commerce_pricing/edit_commerce_discount");
+			"/commerce_discount/edit_commerce_discount");
 
 		HeaderActionModel saveAsDraftHeaderActionModel = new HeaderActionModel(
 			null, liferayPortletResponse.getNamespace() + "fm",

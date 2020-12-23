@@ -54,7 +54,7 @@ public class CommerceNotificationQueueEntriesDisplayContext {
 
 		portletURL.setParameter(
 			"mvcRenderCommandName",
-			"/commerce_notification/edit_commerce_notification_template");
+			"/commerce_channels/edit_commerce_notification_template");
 		portletURL.setParameter(
 			"commerceChannelId", String.valueOf(getCommerceChannelId()));
 

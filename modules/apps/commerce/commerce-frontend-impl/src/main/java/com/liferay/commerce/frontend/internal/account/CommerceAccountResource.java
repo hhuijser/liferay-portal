@@ -415,7 +415,7 @@ public class CommerceAccountResource {
 
 		editURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/commerce_order_content/edit_commerce_order");
+			"/commerce_open_order_content/edit_commerce_order");
 		editURL.setParameter(Constants.CMD, "setCurrent");
 		editURL.setParameter(
 			"commerceOrderId", String.valueOf(commerceOrderId));

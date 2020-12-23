@@ -77,7 +77,7 @@ public class CommerceOrderClayTableUtil {
 
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/commerce_order_content/edit_commerce_order");
+			"/commerce_open_order_content/edit_commerce_order");
 		portletURL.setParameter(Constants.CMD, "setCurrent");
 		portletURL.setParameter(
 			"commerceOrderId", String.valueOf(commerceOrderId));

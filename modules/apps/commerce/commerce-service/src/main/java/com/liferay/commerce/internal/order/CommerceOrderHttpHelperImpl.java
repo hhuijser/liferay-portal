@@ -192,7 +192,7 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 			if (commerceOrder != null) {
 				portletURL.setParameter(
 					"mvcRenderCommandName",
-					"/commerce_order_content/edit_commerce_order");
+					"/commerce_open_order_content/edit_commerce_order");
 				portletURL.setParameter(
 					"commerceOrderUuid",
 					String.valueOf(commerceOrder.getUuid()));

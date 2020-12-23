@@ -25,8 +25,8 @@ boolean manageNotesPermission = commerceOrderContentDisplayContext.hasModelPermi
 boolean manageRestrictedNotesPermission = commerceOrderContentDisplayContext.hasModelPermission(commerceOrder, CommerceOrderActionKeys.MANAGE_COMMERCE_ORDER_RESTRICTED_NOTES);
 %>
 
-<portlet:actionURL name="/commerce_order_content/edit_commerce_order_note" var="editCommerceOrderNoteURL">
-	<portlet:param name="mvcRenderCommandName" value="/commerce_order_content/edit_commerce_order_notes" />
+<portlet:actionURL name="/commerce_open_order_content/edit_commerce_order_note" var="editCommerceOrderNoteURL">
+	<portlet:param name="mvcRenderCommandName" value="/commerce_open_order_content/edit_commerce_order_notes" />
 </portlet:actionURL>
 
 <div class="b2b-portlet-content-header">
@@ -147,7 +147,7 @@ boolean manageRestrictedNotesPermission = commerceOrderContentDisplayContext.has
 									showWhenSingleIcon="<%= true %>"
 								>
 									<portlet:renderURL var="editURL">
-										<portlet:param name="mvcRenderCommandName" value="/commerce_order_content/edit_commerce_order_note" />
+										<portlet:param name="mvcRenderCommandName" value="/commerce_open_order_content/edit_commerce_order_note" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="commerceOrderNoteId" value="<%= String.valueOf(commerceOrderNote.getCommerceOrderNoteId()) %>" />
 									</portlet:renderURL>
@@ -157,7 +157,7 @@ boolean manageRestrictedNotesPermission = commerceOrderContentDisplayContext.has
 										url="<%= editURL %>"
 									/>
 
-									<portlet:actionURL name="/commerce_order_content/edit_commerce_order_note" var="deleteURL">
+									<portlet:actionURL name="/commerce_open_order_content/edit_commerce_order_note" var="deleteURL">
 										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="commerceOrderNoteId" value="<%= String.valueOf(commerceOrderNote.getCommerceOrderNoteId()) %>" />

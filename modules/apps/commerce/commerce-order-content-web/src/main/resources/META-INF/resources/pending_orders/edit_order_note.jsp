@@ -22,8 +22,8 @@ CommerceOrderContentDisplayContext commerceOrderContentDisplayContext = (Commerc
 CommerceOrderNote commerceOrderNote = commerceOrderContentDisplayContext.getCommerceOrderNote();
 %>
 
-<portlet:actionURL name="/commerce_order_content/edit_commerce_order_note" var="editCommerceOrderNoteActionURL">
-	<portlet:param name="mvcRenderCommandName" value="/commerce_order_content/edit_commerce_order_note" />
+<portlet:actionURL name="/commerce_open_order_content/edit_commerce_order_note" var="editCommerceOrderNoteActionURL">
+	<portlet:param name="mvcRenderCommandName" value="/commerce_open_order_content/edit_commerce_order_note" />
 </portlet:actionURL>
 
 <div class="b2b-portlet-content-header">

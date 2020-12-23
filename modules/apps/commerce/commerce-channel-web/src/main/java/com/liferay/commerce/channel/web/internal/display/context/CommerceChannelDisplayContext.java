@@ -179,7 +179,7 @@ public class CommerceChannelDisplayContext
 
 		portletURL.setParameter(
 			"mvcRenderCommandName",
-			"/commerce_payment/edit_commerce_payment_method_group_rel");
+			"/commerce_payment_methods/edit_commerce_payment_method_group_rel");
 		portletURL.setParameter(
 			"commerceChannelId", String.valueOf(getCommerceChannelId()));
 

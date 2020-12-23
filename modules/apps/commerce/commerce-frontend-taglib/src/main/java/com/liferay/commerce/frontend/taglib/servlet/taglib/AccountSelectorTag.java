@@ -179,7 +179,7 @@ public class AccountSelectorTag extends ComponentRendererTag {
 
 			portletURL.setParameter(
 				ActionRequest.ACTION_NAME,
-				"/commerce_order_content/edit_commerce_order");
+				"/commerce_open_order_content/edit_commerce_order");
 			portletURL.setParameter(Constants.CMD, Constants.ADD);
 
 			return portletURL.toString();

@@ -66,7 +66,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_CART_CONTENT_MINI,
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_OPEN_ORDER_CONTENT,
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_ORDER_CONTENT,
-		"mvc.command.name=/commerce_order_content/edit_commerce_order"
+		"mvc.command.name=/commerce_open_order_content/edit_commerce_order"
 	},
 	service = MVCActionCommand.class
 )
@@ -242,7 +242,7 @@ public class EditCommerceOrderMVCActionCommand extends BaseMVCActionCommand {
 
 				openOrdersPortletURL.setParameter(
 					"mvcRenderCommandName",
-					"/commerce_order_content/edit_commerce_order");
+					"/commerce_open_order_content/edit_commerce_order");
 				openOrdersPortletURL.setParameter(
 					"commerceOrderId", String.valueOf(commerceOrderId));
 
@@ -406,7 +406,7 @@ public class EditCommerceOrderMVCActionCommand extends BaseMVCActionCommand {
 		if (commerceOrder != null) {
 			portletURL.setParameter(
 				"mvcRenderCommandName",
-				"/commerce_order_content/edit_commerce_order");
+				"/commerce_open_order_content/edit_commerce_order");
 			portletURL.setParameter(
 				"commerceOrderId",
 				String.valueOf(commerceOrder.getCommerceOrderId()));

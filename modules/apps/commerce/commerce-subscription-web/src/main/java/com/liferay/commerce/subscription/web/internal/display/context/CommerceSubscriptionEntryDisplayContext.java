@@ -205,7 +205,7 @@ public class CommerceSubscriptionEntryDisplayContext {
 
 		portletURL.setParameter(
 			"mvcRenderCommandName",
-			"/commerce_order_content/edit_commerce_order");
+			"/commerce_open_order_content/edit_commerce_order");
 		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
 		portletURL.setParameter("commerceOrderId", orderId);
 
@@ -347,7 +347,7 @@ public class CommerceSubscriptionEntryDisplayContext {
 
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/commerce_order_content/edit_commerce_order");
+			"/commerce_open_order_content/edit_commerce_order");
 		portletURL.setParameter(Constants.CMD, ActionKeys.UPDATE);
 		portletURL.setParameter(
 			"commerceSubscriptionEntryId",

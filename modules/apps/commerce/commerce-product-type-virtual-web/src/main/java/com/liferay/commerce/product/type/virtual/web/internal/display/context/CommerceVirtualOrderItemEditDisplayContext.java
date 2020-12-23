@@ -121,7 +121,7 @@ public class CommerceVirtualOrderItemEditDisplayContext {
 
 		portletURL.setParameter(
 			"mvcRenderCommandName",
-			"/commerce_order_content/edit_commerce_order");
+			"/commerce_open_order_content/edit_commerce_order");
 		portletURL.setParameter(
 			"commerceOrderId", String.valueOf(getCommerceOrderId()));
 		portletURL.setParameter("screenNavigationCategoryKey", "items");

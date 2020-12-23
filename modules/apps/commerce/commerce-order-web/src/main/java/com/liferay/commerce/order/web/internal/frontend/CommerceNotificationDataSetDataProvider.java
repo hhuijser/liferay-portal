@@ -162,7 +162,8 @@ public class CommerceNotificationDataSetDataProvider
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "viewCommerceNotificationQueueEntry");
+			"mvcRenderCommandName",
+			"/commerce_order/view_commerce_notification_queue_entry");
 		portletURL.setParameter(
 			"redirect", _portal.getCurrentURL(httpServletRequest));
 

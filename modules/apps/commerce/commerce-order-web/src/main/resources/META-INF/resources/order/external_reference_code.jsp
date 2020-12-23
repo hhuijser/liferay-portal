@@ -20,7 +20,7 @@
 CommerceOrderEditDisplayContext commerceOrderEditDisplayContext = (CommerceOrderEditDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 %>
 
-<portlet:actionURL name="editCommerceOrderExternalReferenceCode" var="editCommerceOrderExternalReferenceCodeURL" />
+<portlet:actionURL name="/commerce_order/edit_commerce_order_external_reference_code" var="editCommerceOrderExternalReferenceCodeURL" />
 
 <commerce-ui:modal-content>
 	<aui:form action="<%= editCommerceOrderExternalReferenceCodeURL %>" cssClass="container-fluid container-fluid-max-xl p-0" method="post" name="fm">

@@ -141,7 +141,7 @@ public class CommerceOrderAssetRenderer
 				liferayPortletRequest, group, CommerceOrder.class.getName(),
 				PortletProvider.Action.EDIT);
 
-			orderRenderCommand = "editCommerceOrder";
+			orderRenderCommand = "/commerce_order/edit_commerce_order";
 		}
 
 		portletURL.setParameter("mvcRenderCommandName", orderRenderCommand);

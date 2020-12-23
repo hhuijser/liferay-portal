@@ -24,7 +24,7 @@ CommerceOrder commerceOrder = commerceOrderEditDisplayContext.getCommerceOrder()
 CommerceCurrency commerceCurrency = commerceOrder.getCommerceCurrency();
 %>
 
-<portlet:actionURL name="editCommerceOrder" var="editCommerceOrderSummaryActionURL" />
+<portlet:actionURL name="/commerce_order/edit_commerce_order" var="editCommerceOrderSummaryActionURL" />
 
 <commerce-ui:modal-content>
 	<aui:form action="<%= editCommerceOrderSummaryActionURL %>" cssClass="container-fluid container-fluid-max-xl p-0" method="post" name="fm">

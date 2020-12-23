@@ -28,8 +28,8 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle(LanguageUtil.get(request, "edit-note"));
 %>
 
-<portlet:actionURL name="editCommerceOrderNote" var="editCommerceOrderNoteActionURL">
-	<portlet:param name="mvcRenderCommandName" value="editCommerceOrderNote" />
+<portlet:actionURL name="/commerce_order/edit_commerce_order_note" var="editCommerceOrderNoteActionURL">
+	<portlet:param name="mvcRenderCommandName" value="/commerce_order/edit_commerce_order_note" />
 </portlet:actionURL>
 
 <aui:form action="<%= editCommerceOrderNoteActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveCommerceOrderNote();" %>'>

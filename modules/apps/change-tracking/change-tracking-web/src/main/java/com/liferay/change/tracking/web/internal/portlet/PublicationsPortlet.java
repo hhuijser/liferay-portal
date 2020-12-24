@@ -61,7 +61,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.display-name=Overview",
 		"javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.template-path=/META-INF/resources/",
-		"javax.portlet.init-param.view-template=/publications/view.jsp",
+		"javax.portlet.init-param.view-template=/publications/view_publications.jsp",
 		"javax.portlet.name=" + CTPortletKeys.PUBLICATIONS,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=administrator"

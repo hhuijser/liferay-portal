@@ -493,7 +493,7 @@ public class DisplayPageActionDropdownItemsProvider {
 		return dropdownItem -> {
 			dropdownItem.setHref(
 				_renderResponse.createRenderURL(), "mvcRenderCommandName",
-				"/layout_page_template_admin/view_display_page_usages",
+				"/layout_page_template_admin/view_asset_display_page_usages",
 				"redirect", _themeDisplay.getURLCurrent(), "classNameId",
 				String.valueOf(_layoutPageTemplateEntry.getClassNameId()),
 				"classTypeId",

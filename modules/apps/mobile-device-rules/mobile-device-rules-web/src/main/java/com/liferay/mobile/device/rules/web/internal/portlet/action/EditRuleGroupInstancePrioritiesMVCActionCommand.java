@@ -43,11 +43,11 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + MDRPortletKeys.MOBILE_DEVICE_RULES,
-		"mvc.command.name=/mobile_device_rules/edit_rule_group_instance"
+		"mvc.command.name=/mobile_device_rules/edit_rule_group_instance_priorities"
 	},
 	service = MVCActionCommand.class
 )
-public class EditRuleGroupInstanceMVCActionCommand
+public class EditRuleGroupInstancePrioritiesMVCActionCommand
 	extends BaseMVCActionCommand {
 
 	protected void deleteRuleGroupInstance(ActionRequest actionRequest)

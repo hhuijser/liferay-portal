@@ -61,11 +61,11 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.SITE_SETTINGS,
 		"javax.portlet.name=" + ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
-		"mvc.command.name=/configuration_admin/search"
+		"mvc.command.name=/configuration_admin/search_results"
 	},
 	service = MVCRenderCommand.class
 )
-public class SearchMVCRenderCommand implements MVCRenderCommand {
+public class SearchResultsMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

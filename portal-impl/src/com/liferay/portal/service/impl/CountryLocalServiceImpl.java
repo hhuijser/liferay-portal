@@ -283,9 +283,7 @@ public class CountryLocalServiceImpl extends CountryLocalServiceBaseImpl {
 		}
 	}
 
-	private void _updateOrganizations(long countryId)
-		throws PortalException {
-
+	private void _updateOrganizations(long countryId) throws PortalException {
 		ActionableDynamicQuery actionableDynamicQuery =
 			organizationLocalService.getActionableDynamicQuery();
 

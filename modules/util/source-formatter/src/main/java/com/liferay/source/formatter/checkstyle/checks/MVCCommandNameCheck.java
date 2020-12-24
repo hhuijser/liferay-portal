@@ -150,7 +150,9 @@ public class MVCCommandNameCheck extends BaseCheck {
 			className, "MVCActionCommand", "MVCRenderCommand",
 			"MVCResourceCommand");
 
-		name = StringUtil.replace(name, "WeDeploy", "Wedeploy");
+		name = StringUtil.replace(
+			name, new String[] {"OAuth2", "WeDeploy"},
+			new String[] {"Oauth2", "Wedeploy"});
 
 		Matcher matcher = _classNamePattern.matcher(className);
 

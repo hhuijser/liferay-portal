@@ -193,9 +193,7 @@ public class RegionLocalServiceImpl extends RegionLocalServiceBaseImpl {
 		}
 	}
 
-	private void _updateOrganizations(long regionId)
-		throws PortalException {
-
+	private void _updateOrganizations(long regionId) throws PortalException {
 		ActionableDynamicQuery actionableDynamicQuery =
 			organizationLocalService.getActionableDynamicQuery();
 

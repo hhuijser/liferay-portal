@@ -50,8 +50,8 @@ public class FTLTagAttributesCheck extends BaseTagAttributesCheck {
 
 		while (matcher.find()) {
 			return StringUtil.replaceFirst(
-				content, StringPool.SPACE, "\n\t" + matcher.group(1),
-				matcher.end(2) - 1);
+				content, StringPool.SPACE, "\n\t" + matcher.group(2),
+				matcher.end(3) - 1);
 		}
 
 		return super.formatIncorrectLineBreak(fileName, content);
@@ -93,6 +93,6 @@ public class FTLTagAttributesCheck extends BaseTagAttributesCheck {
 	}
 
 	private static final Pattern _incorrectLineBreakPattern = Pattern.compile(
-		"\n(\t*)(<#macro \\w*) \\w[\\s\\S]*?>\n");
+		"(\n|\\A)(\t*)(<#macro \\w*) \\w[\\s\\S]*?>\n");
 
 }

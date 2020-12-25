@@ -25,7 +25,8 @@
 	/>
 </#if>
 
-<#macro site_navigation_menu_main default_preferences = "">
+<#macro site_navigation_menu_main
+	default_preferences = "">
 	<@liferay_portlet["runtime"]
 		defaultPreferences=default_preferences
 		instanceId="siteNavigationMenuPortlet_main"
@@ -33,7 +34,8 @@
 	/>
 </#macro>
 
-<#macro site_navigation_menu_sub_navigation default_preferences = "">
+<#macro site_navigation_menu_sub_navigation
+	default_preferences = "">
 	<@liferay_portlet["runtime"]
 		defaultPreferences=default_preferences
 		instanceId="siteNavigationMenuPortlet_sub_navigation"

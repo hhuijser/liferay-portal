@@ -20,6 +20,9 @@ import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Hugo Huijser
  */
@@ -35,11 +38,23 @@ public class FTLTagAttributesCheck extends BaseTagAttributesCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
-		content = formatIncorrectLineBreak(fileName, content);
+		content = _formatIncorrectLineBreak(fileName, content);
 
 		content = _formatTagAttributes(absolutePath, content);
 
 		return content;
+	}
+
+	private String _formatIncorrectLineBreak(String fileName, String content) {
+		Matcher matcher = _incorrectLineBreakPattern.matcher(content);
+
+		while (matcher.find()) {
+			return StringUtil.replaceFirst(
+				content, StringPool.SPACE, "\n\t" + matcher.group(1),
+				matcher.end(2) - 1);
+		}
+
+		return super.formatIncorrectLineBreak(fileName, content);
 	}
 
 	private String _formatTagAttributes(String absolutePath, String content)
@@ -76,5 +91,8 @@ public class FTLTagAttributesCheck extends BaseTagAttributesCheck {
 
 		return content;
 	}
+
+	private static final Pattern _incorrectLineBreakPattern = Pattern.compile(
+		"\n(\t*)(<#macro \\w*) \\w[\\s\\S]*?>\n");
 
 }

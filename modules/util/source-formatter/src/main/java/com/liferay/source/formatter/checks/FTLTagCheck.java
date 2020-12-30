@@ -17,9 +17,16 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -36,7 +43,9 @@ public class FTLTagCheck extends BaseFileCheck {
 
 		content = _formatTags(content);
 
-		return _formatAssignTags(content);
+		content = _formatAssignTags(content);
+
+		return _formatMacroTags(content);
 	}
 
 	private String _formatAssignTags(String content) {
@@ -74,6 +83,23 @@ public class FTLTagCheck extends BaseFileCheck {
 			sb.append("/>\n\n");
 
 			content = StringUtil.replace(content, match, sb.toString());
+		}
+
+		return content;
+	}
+
+	private String _formatMacroTags(String content) {
+		Matcher matcher = _macroTagPattern.matcher(content);
+
+		while (matcher.find()) {
+			String tag = matcher.group();
+
+			String newTag = _parseMacroTags(
+				matcher.group(3), matcher.group(1), matcher.group(2));
+
+			if (!tag.equals(newTag)) {
+				return StringUtil.replace(content, tag, newTag);
+			}
 		}
 
 		return content;
@@ -191,11 +217,189 @@ public class FTLTagCheck extends BaseFileCheck {
 		return sb.toString();
 	}
 
+	private String _parseMacroTags(
+		String attributes, String indent, String tagName) {
+
+		int x = -1;
+
+		Map<String, String> attributesMap = new HashMap<>();
+
+		String s = attributes.trim();
+
+		s = s.substring(x + 1);
+
+		while (true) {
+			if (s.length() == 0) {
+				break;
+			}
+
+			x = s.indexOf(CharPool.EQUAL);
+
+			String attributeName = StringPool.BLANK;
+
+			List<String> attributeNamesList = new ArrayList<>();
+
+			if (x != -1) {
+				attributeName = s.substring(0, x);
+				s = StringUtil.trimLeading(s.substring(x + 1));
+			}
+			else {
+				attributeName = s.replaceAll("\\s+", "\n");
+
+				attributeNamesList = ListUtil.fromArray(
+					attributeName.split("\n"));
+
+				for (String name : attributeNamesList) {
+					attributesMap.put(name.trim(), StringPool.BLANK);
+				}
+
+				break;
+			}
+
+			attributeName = attributeName.replaceAll("\\s+", "\n");
+
+			attributeNamesList = ListUtil.fromArray(attributeName.split("\n"));
+
+			if (attributeNamesList.size() > 1) {
+				for (int i = 0; i < (attributeNamesList.size() - 1); i++) {
+					attributeName = attributeNamesList.get(i);
+
+					attributesMap.put(attributeName, StringPool.BLANK);
+				}
+
+				attributeName = attributeNamesList.get(
+					attributeNamesList.size() - 1);
+			}
+
+			char delimeter = s.charAt(0);
+
+			if ((delimeter != CharPool.APOSTROPHE) &&
+				(delimeter != CharPool.QUOTE)) {
+
+				String tmp = StringPool.BLANK;
+
+				x = 0;
+
+				while (x != s.length()) {
+					tmp = s.substring(x, x + 1);
+
+					if (!tmp.matches("\\s")) {
+						x = x + 1;
+
+						continue;
+					}
+
+					break;
+				}
+
+				attributesMap.put(attributeName.trim(), s.substring(0, x));
+
+				if (x != s.length()) {
+					s = StringUtil.trim(s.substring(x + 1));
+
+					continue;
+				}
+
+				break;
+			}
+
+			x = 0;
+
+			while (true) {
+				x = s.indexOf(delimeter, x + 1);
+
+				if (x == -1) {
+					return null;
+				}
+
+				String attributeValue = s.substring(0, x + 1);
+
+				if (attributeValue.startsWith("\"") &&
+					(getLevel(attributeValue, "\"", "\"") == 0)) {
+
+					attributesMap.put(attributeName.trim(), attributeValue);
+
+					s = StringUtil.trim(s.substring(x + 1));
+
+					break;
+				}
+			}
+		}
+
+		return _sortMacroTags(attributesMap, indent, tagName);
+	}
+
+	private String _sortMacroTags(
+		Map<String, String> attributesMap, String indent, String tagName) {
+
+		List<Map.Entry<String, String>> attributeEntries = new ArrayList<>();
+
+		attributeEntries.addAll(attributesMap.entrySet());
+
+		Collections.sort(
+			attributeEntries,
+			new Comparator<Map.Entry>() {
+
+				@Override
+				public int compare(Map.Entry entry1, Map.Entry entry2) {
+					String entryValue1 = (String)entry1.getValue();
+					String entryValue2 = (String)entry2.getValue();
+
+					if ((entryValue1.length() == 0) &&
+						(entryValue2.length() != 0)) {
+
+						return -1;
+					}
+
+					if ((entryValue1.length() != 0) &&
+						(entryValue2.length() == 0)) {
+
+						return 1;
+					}
+
+					String entryName1 = (String)entry1.getKey();
+					String entryName2 = (String)entry2.getKey();
+
+					return entryName1.compareTo(entryName2);
+				}
+
+			});
+
+		StringBundler sb = new StringBundler((attributeEntries.size() * 7) + 5);
+
+		sb.append(indent + tagName);
+		sb.append(StringPool.NEW_LINE);
+
+		for (Map.Entry<String, String> attributeEntrie : attributeEntries) {
+			sb.append(indent + StringPool.TAB);
+			sb.append(attributeEntrie.getKey());
+
+			String attributeValue = attributeEntrie.getValue();
+
+			if (Validator.isNotNull(attributeValue)) {
+				sb.append(StringPool.SPACE);
+				sb.append(StringPool.EQUAL);
+				sb.append(StringPool.SPACE);
+				sb.append(attributeValue);
+			}
+
+			sb.append(StringPool.NEW_LINE);
+		}
+
+		sb.append(indent);
+		sb.append(StringPool.GREATER_THAN);
+		sb.append(StringPool.NEW_LINE);
+
+		return sb.toString();
+	}
+
 	private static final Pattern _assignTagsBlockPattern = Pattern.compile(
 		"((\t*)<#assign(.(?!<[#@]))+?/>(\n|$)+){2,}",
 		Pattern.DOTALL | Pattern.MULTILINE);
 	private static final Pattern _incorrectAssignTagPattern = Pattern.compile(
 		"(<#assign .*=.*[^/])>(\n|$)");
+	private static final Pattern _macroTagPattern = Pattern.compile(
+		"([ \t]*)(<#macro \\w+)\n(.*?)>(\n|$)", Pattern.DOTALL);
 	private static final Pattern _tagAttributePattern = Pattern.compile(
 		"\\s(\\S+)\\s*=");
 	private static final Pattern _tagPattern = Pattern.compile(

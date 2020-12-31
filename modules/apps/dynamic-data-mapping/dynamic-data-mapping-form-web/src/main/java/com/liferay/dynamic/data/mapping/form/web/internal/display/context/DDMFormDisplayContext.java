@@ -194,6 +194,7 @@ public class DDMFormDisplayContext {
 				PortalUtil.getHttpServletRequest(_renderRequest),
 				_ddmFormWebConfiguration.
 					maximumSubmissionsForGuestUploadFields());
+
 		boolean requireCaptcha = isCaptchaRequired(ddmFormInstance);
 
 		DDMForm ddmForm = getDDMForm(ddmFormInstance, requireCaptcha);

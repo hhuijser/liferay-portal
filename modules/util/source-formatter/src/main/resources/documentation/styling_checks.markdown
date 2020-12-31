@@ -123,8 +123,8 @@ PropertiesLongLinesCheck | .prettierignore or .properties | Finds lines that are
 PropertiesMultiLineValuesOrderCheck | .prettierignore or .properties | Verifies that property with multiple values is not on a single line. |
 PropertiesStylingCheck | .prettierignore or .properties | Applies rules to enforce consisteny in code style. |
 PropertiesWhitespaceCheck | .prettierignore or .properties | Finds missing and unnecessary whitespace in `.properties` files. |
-PythonStylingCheck | | Applies rules to enforce consisteny in code style. |
-PythonWhitespaceCheck | | Finds missing and unnecessary whitespace. |
+PythonStylingCheck | .py | Applies rules to enforce consisteny in code style. |
+PythonWhitespaceCheck | .py | Finds missing and unnecessary whitespace. |
 SQLEmptyLinesCheck | .sql | Finds missing and unnecessary empty lines. |
 SQLStylingCheck | .sql | Applies rules to enforce consisteny in code style. |
 SemiColonCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds cases of unnecessary semicolon. |

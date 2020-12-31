@@ -1,4 +1,4 @@
-# Checks for 
+# Checks for .py
 
 Check | Category | Description
 ----- | -------- | -----------

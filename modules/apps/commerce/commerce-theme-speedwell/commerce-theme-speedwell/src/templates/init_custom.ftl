@@ -38,7 +38,8 @@
 </#if>
 
 <#macro site_navigation_menu_main
-	default_preferences = "">
+	default_preferences = ""
+>
 	<@liferay_portlet["runtime"]
 		defaultPreferences=default_preferences
 		instanceId="siteNavigationMenuPortlet_main"
@@ -47,7 +48,8 @@
 </#macro>
 
 <#macro site_navigation_menu_sub_navigation
-	default_preferences = "">
+	default_preferences = ""
+>
 	<@liferay_portlet["runtime"]
 		defaultPreferences=default_preferences
 		instanceId="siteNavigationMenuPortlet_sub_navigation"
@@ -56,7 +58,8 @@
 </#macro>
 
 <#macro site_navigation_menu_account
-	default_preferences = "">
+	default_preferences = ""
+>
 	<@liferay_portlet["runtime"]
 		defaultPreferences=default_preferences
 		instanceId="siteNavigationMenuPortlet_account"
@@ -65,7 +68,8 @@
 </#macro>
 
 <#macro commerce_category_navigation_menu
-	default_preferences = "">
+	default_preferences = ""
+>
 	<@liferay_portlet["runtime"]
 		defaultPreferences=default_preferences
 		instanceId="cpAssetCategoriesNavigationPortlet_navigation_menu"

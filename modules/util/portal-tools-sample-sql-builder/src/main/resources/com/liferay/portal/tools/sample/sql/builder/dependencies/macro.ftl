@@ -26,8 +26,8 @@
 </#macro>
 
 <#macro insertContentLayout
-	_layoutModel
 	_fragmentEntryModel
+	_layoutModel
 >
 	${dataFactory.toInsertSQL(_layoutModel)}
 
@@ -56,8 +56,8 @@
 	_ddmStorageLinkId
 	_ddmStructureId
 	_entry
-	_ddmStructureVersionId = 0
 	_currentIndex = -1
+	_ddmStructureVersionId = 0
 >
 	<#if _currentIndex = -1>
 		<#local ddmStorageLinkModel = dataFactory.newDDMStorageLinkModel(_entry, _ddmStorageLinkId, _ddmStructureId)>
@@ -85,8 +85,8 @@
 </#macro>
 
 <#macro insertDDMStructure
-	_ddmStructureModel
 	_ddmStructureLayoutModel
+	_ddmStructureModel
 	_ddmStructureVersionModel
 >
 	${dataFactory.toInsertSQL(_ddmStructureModel)}

@@ -334,8 +334,8 @@ PropertiesSourceFormatterFileCheck | [Bug Prevention](bug_prevention_checks.mark
 PropertiesStylingCheck | [Styling](styling_checks.markdown#styling-checks) | .prettierignore or .properties | Applies rules to enforce consisteny in code style. |
 PropertiesVerifyPropertiesCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .prettierignore or .properties | Finds usage of legacy properties in `portal.properties` or `system.properties`. |
 PropertiesWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .prettierignore or .properties | Finds missing and unnecessary whitespace in `.properties` files. |
-PythonStylingCheck | [Styling](styling_checks.markdown#styling-checks) | | Applies rules to enforce consisteny in code style. |
-PythonWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | | Finds missing and unnecessary whitespace. |
+PythonStylingCheck | [Styling](styling_checks.markdown#styling-checks) | .py | Applies rules to enforce consisteny in code style. |
+PythonWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .py | Finds missing and unnecessary whitespace. |
 RedundantBranchingStatementCheck | [Performance](performance_checks.markdown#performance-checks) | .java | Finds unnecessary branching (`break`, `continue` or `return`) statements. |
 ReferenceAnnotationCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Performs several checks on classes with @Reference annotation. |
 [RequireThisCheck](https://checkstyle.sourceforge.io/config_coding.html#RequireThis) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks that references to instance variables and methods of the present object are explicitly of the form 'this.varName' or 'this.methodName(args)' and that those references don't rely on the default behavior when 'this.' is absent. |

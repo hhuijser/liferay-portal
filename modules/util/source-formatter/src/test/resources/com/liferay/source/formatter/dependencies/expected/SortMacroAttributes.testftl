@@ -1,0 +1,8 @@
+<#macro insertDDMContent
+	_ddmStorageLinkId
+	_ddmStructureId
+	_entry
+	_currentIndex = -1
+	_ddmStructureVersionId = 0
+>
+</#macro>

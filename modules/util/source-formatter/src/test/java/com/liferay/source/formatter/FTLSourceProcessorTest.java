@@ -26,4 +26,9 @@ public class FTLSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("IncorrectLineBreak.testftl");
 	}
 
+	@Test
+	public void testSortMacroAttributes() throws Exception {
+		test("SortMacroAttributes.testftl");
+	}
+
 }

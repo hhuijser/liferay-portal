@@ -12,24 +12,23 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.product.publisher.servlet.taglib.ui;
+package com.liferay.commerce.product.content.search.web.internal.frontend.taglib.form.navigator;
 
-import com.liferay.commerce.product.content.web.internal.constants.CPPublisherConstants;
+import com.liferay.commerce.product.content.search.web.internal.configuration.CPSearchResultsPortletInstanceConfiguration;
+import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
-
-import javax.portlet.PortletPreferences;
 
 import javax.servlet.ServletContext;
 
@@ -40,43 +39,39 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=600",
+	enabled = false, property = "form.navigator.entry.order:Integer=400",
 	service = FormNavigatorEntry.class
 )
-public class CPTypeRendererFormNavigatorEntry
-	extends BaseJSPFormNavigatorEntry<Void> {
+public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	public String getCategoryKey() {
-		return CPPublisherConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPSearchResultsConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPPublisherConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPSearchResultsConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
 	public String getKey() {
-		return "product-type-renderer";
+		return "adt";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, getKey());
+		return LanguageUtil.get(locale, "display-template");
 	}
 
 	@Override
 	public boolean isVisible(User user, Void object) {
-		return _isSelectionStyleCustomRenderer();
+		return _isSelectionStyleADT();
 	}
 
 	@Override
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.web)",
+		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.search.web)",
 		unbind = "-"
 	)
 	public void setServletContext(ServletContext servletContext) {
@@ -85,10 +80,10 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/product_publisher/configuration/product_type_renderer.jsp";
+		return "/search_results/configuration/adt.jsp";
 	}
 
-	private boolean _isSelectionStyleCustomRenderer() {
+	private boolean _isSelectionStyleADT() {
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
@@ -96,18 +91,27 @@ public class CPTypeRendererFormNavigatorEntry
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletPreferences portletPreferences =
-			themeDisplay.getStrictLayoutPortletSetup(
-				themeDisplay.getLayout(), portletDisplay.getPortletResource());
+		try {
+			CPSearchResultsPortletInstanceConfiguration
+				cpSearchResultsPortletInstanceConfiguration =
+					portletDisplay.getPortletInstanceConfiguration(
+						CPSearchResultsPortletInstanceConfiguration.class);
 
-		String renderSelection = GetterUtil.getString(
-			portletPreferences.getValue("renderSelection", null), "custom");
+			String selectionStyle =
+				cpSearchResultsPortletInstanceConfiguration.selectionStyle();
 
-		if (renderSelection.equals("custom")) {
-			return true;
+			return selectionStyle.equals(getKey());
 		}
+		catch (PortalException portalException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(portalException, portalException);
+			}
 
-		return false;
+			return false;
+		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ADTFormNavigatorEntry.class);
 
 }

@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.search.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.compare.frontend.taglib.form.navigator;
 
-import com.liferay.commerce.product.content.search.web.internal.configuration.CPSearchResultsPortletInstanceConfiguration;
-import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
+import com.liferay.commerce.product.content.web.internal.configuration.CPCompareContentPortletInstanceConfiguration;
+import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -46,12 +46,12 @@ public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	public String getCategoryKey() {
-		return CPSearchResultsConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPCompareContentConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPSearchResultsConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPCompareContentConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.search.web)",
+		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.web)",
 		unbind = "-"
 	)
 	public void setServletContext(ServletContext servletContext) {
@@ -80,7 +80,7 @@ public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	protected String getJspPath() {
-		return "/search_results/configuration/adt.jsp";
+		return "/compare_products/configuration/adt.jsp";
 	}
 
 	private boolean _isSelectionStyleADT() {
@@ -92,13 +92,13 @@ public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		try {
-			CPSearchResultsPortletInstanceConfiguration
-				cpSearchResultsPortletInstanceConfiguration =
+			CPCompareContentPortletInstanceConfiguration
+				cpCompareContentPortletInstanceConfiguration =
 					portletDisplay.getPortletInstanceConfiguration(
-						CPSearchResultsPortletInstanceConfiguration.class);
+						CPCompareContentPortletInstanceConfiguration.class);
 
 			String selectionStyle =
-				cpSearchResultsPortletInstanceConfiguration.selectionStyle();
+				cpCompareContentPortletInstanceConfiguration.selectionStyle();
 
 			return selectionStyle.equals(getKey());
 		}

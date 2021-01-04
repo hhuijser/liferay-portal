@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.product.compare.mini.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.compare.frontend.taglib.form.navigator;
 
-import com.liferay.commerce.product.content.web.internal.configuration.CPCompareContentMiniPortletInstanceConfiguration;
-import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
+import com.liferay.commerce.product.content.web.internal.configuration.CPCompareContentPortletInstanceConfiguration;
+import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -27,8 +27,10 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletContext;
 
@@ -39,34 +41,38 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=400",
+	enabled = false, property = "form.navigator.entry.order:Integer=500",
 	service = FormNavigatorEntry.class
 )
-public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
+public class ProductListRendererFormNavigatorEntry
+	extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	public String getCategoryKey() {
-		return CPCompareContentMiniConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPCompareContentConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPCompareContentMiniConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPCompareContentConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
 	public String getKey() {
-		return "adt";
+		return "product-list-renderer";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "display-template");
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", locale, getClass());
+
+		return LanguageUtil.get(resourceBundle, getKey());
 	}
 
 	@Override
 	public boolean isVisible(User user, Void object) {
-		return _isSelectionStyleADT();
+		return _isSelectionStyleCustomRenderer();
 	}
 
 	@Override
@@ -80,10 +86,10 @@ public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	protected String getJspPath() {
-		return "/compare_products_mini/configuration/adt.jsp";
+		return "/compare_products/configuration/product_list_renderer.jsp";
 	}
 
-	private boolean _isSelectionStyleADT() {
+	private boolean _isSelectionStyleCustomRenderer() {
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
@@ -92,16 +98,15 @@ public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		try {
-			CPCompareContentMiniPortletInstanceConfiguration
-				cpCompareContentMiniPortletInstanceConfiguration =
+			CPCompareContentPortletInstanceConfiguration
+				cpCompareContentPortletInstanceConfiguration =
 					portletDisplay.getPortletInstanceConfiguration(
-						CPCompareContentMiniPortletInstanceConfiguration.class);
+						CPCompareContentPortletInstanceConfiguration.class);
 
 			String selectionStyle =
-				cpCompareContentMiniPortletInstanceConfiguration.
-					selectionStyle();
+				cpCompareContentPortletInstanceConfiguration.selectionStyle();
 
-			return selectionStyle.equals(getKey());
+			return selectionStyle.equals("custom");
 		}
 		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
@@ -113,6 +118,6 @@ public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		ADTFormNavigatorEntry.class);
+		ProductListRendererFormNavigatorEntry.class);
 
 }

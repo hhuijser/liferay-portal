@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.product.compare.mini.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.compare.mini.frontend.taglib.form.navigator;
 
 import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;

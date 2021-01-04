@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.product.compare.mini.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.content.frontend.taglib.form.navigator;
 
-import com.liferay.commerce.product.content.web.internal.configuration.CPCompareContentMiniPortletInstanceConfiguration;
-import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
+import com.liferay.commerce.product.content.web.internal.configuration.CPContentPortletInstanceConfiguration;
+import com.liferay.commerce.product.content.web.internal.constants.CPContentPortletConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -27,10 +27,8 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.servlet.ServletContext;
 
@@ -41,38 +39,34 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=450",
+	enabled = false, property = "form.navigator.entry.order:Integer=400",
 	service = FormNavigatorEntry.class
 )
-public class CPTypeRendererFormNavigatorEntry
-	extends BaseJSPFormNavigatorEntry<Void> {
+public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	public String getCategoryKey() {
-		return CPCompareContentMiniConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPContentPortletConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPCompareContentMiniConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPContentPortletConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
 	public String getKey() {
-		return "product-type-renderer";
+		return "adt";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, getKey());
+		return LanguageUtil.get(locale, "display-template");
 	}
 
 	@Override
 	public boolean isVisible(User user, Void object) {
-		return _isSelectionStyleCustomRenderer();
+		return _isSelectionStyleADT();
 	}
 
 	@Override
@@ -86,10 +80,10 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/compare_products_mini/configuration/product_type_renderer.jsp";
+		return "/product_detail/configuration/adt.jsp";
 	}
 
-	private boolean _isSelectionStyleCustomRenderer() {
+	private boolean _isSelectionStyleADT() {
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
@@ -98,16 +92,15 @@ public class CPTypeRendererFormNavigatorEntry
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		try {
-			CPCompareContentMiniPortletInstanceConfiguration
-				cpCompareContentMiniPortletInstanceConfiguration =
+			CPContentPortletInstanceConfiguration
+				cpContentPortletInstanceConfiguration =
 					portletDisplay.getPortletInstanceConfiguration(
-						CPCompareContentMiniPortletInstanceConfiguration.class);
+						CPContentPortletInstanceConfiguration.class);
 
 			String selectionStyle =
-				cpCompareContentMiniPortletInstanceConfiguration.
-					selectionStyle();
+				cpContentPortletInstanceConfiguration.selectionStyle();
 
-			return selectionStyle.equals("custom");
+			return selectionStyle.equals(getKey());
 		}
 		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
@@ -119,6 +112,6 @@ public class CPTypeRendererFormNavigatorEntry
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPTypeRendererFormNavigatorEntry.class);
+		ADTFormNavigatorEntry.class);
 
 }

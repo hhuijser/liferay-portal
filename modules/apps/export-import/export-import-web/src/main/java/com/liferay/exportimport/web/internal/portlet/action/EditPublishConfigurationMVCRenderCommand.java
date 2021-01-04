@@ -35,7 +35,7 @@ public class EditPublishConfigurationMVCRenderCommand
 
 	@Override
 	protected String getPath() {
-		return "/publish/publish_layouts.jsp";
+		return "/publish/edit_publish_configuration.jsp";
 	}
 
 }

@@ -179,13 +179,13 @@ simplePublishURL.setParameter("targetGroupId", String.valueOf(liveGroupId));
 		</liferay-util:include>
 	</c:when>
 	<c:when test="<%= configuredPublish %>">
-		<liferay-util:include page="/publish/publish_layouts.jsp" servletContext="<%= application %>">
+		<liferay-util:include page="/publish/edit_publish_configuration.jsp" servletContext="<%= application %>">
 			<liferay-util:param name="<%= Constants.CMD %>" value="<%= cmd %>" />
 			<liferay-util:param name="exportImportConfigurationId" value="<%= String.valueOf(exportImportConfigurationId) %>" />
 		</liferay-util:include>
 	</c:when>
 	<c:otherwise>
-		<liferay-util:include page="/publish/publish_layouts.jsp" servletContext="<%= application %>">
+		<liferay-util:include page="/publish/edit_publish_configuration.jsp" servletContext="<%= application %>">
 			<liferay-util:param name="<%= Constants.CMD %>" value="<%= cmd %>" />
 			<liferay-util:param name="tabs1" value='<%= privateLayout ? "private-pages" : "public-pages" %>' />
 			<liferay-util:param name="groupId" value="<%= String.valueOf(stagingGroupId) %>" />

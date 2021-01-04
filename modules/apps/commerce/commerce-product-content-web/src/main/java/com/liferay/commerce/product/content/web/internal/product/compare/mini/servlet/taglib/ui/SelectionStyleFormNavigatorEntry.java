@@ -12,27 +12,34 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.frontend.taglib.form.navigator;
+package com.liferay.commerce.product.content.web.internal.product.compare.mini.servlet.taglib.ui;
 
 import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
-import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategory;
+import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
+import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
+
+import javax.servlet.ServletContext;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.category.order:Integer=100",
-	service = FormNavigatorCategory.class
+	enabled = false, property = "form.navigator.entry.order:Integer=600",
+	service = FormNavigatorEntry.class
 )
-public class RenderSelectionFormNavigatorCategory
-	implements FormNavigatorCategory {
+public class SelectionStyleFormNavigatorEntry
+	extends BaseJSPFormNavigatorEntry<Void> {
+
+	@Override
+	public String getCategoryKey() {
+		return CPCompareContentMiniConstants.CATEGORY_KEY_RENDER_SELECTION;
+	}
 
 	@Override
 	public String getFormNavigatorId() {
@@ -41,15 +48,26 @@ public class RenderSelectionFormNavigatorCategory
 
 	@Override
 	public String getKey() {
-		return CPCompareContentMiniConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return "render-selection";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
+		return LanguageUtil.get(locale, getKey());
+	}
 
-		return LanguageUtil.get(resourceBundle, "render-selection");
+	@Override
+	@Reference(
+		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.web)",
+		unbind = "-"
+	)
+	public void setServletContext(ServletContext servletContext) {
+		super.setServletContext(servletContext);
+	}
+
+	@Override
+	protected String getJspPath() {
+		return "/compare_products_mini/configuration/selection_style.jsp";
 	}
 
 }

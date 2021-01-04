@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.frontend.taglib.form.navigator;
+package com.liferay.commerce.product.content.web.internal.product.compare.servlet.taglib.ui;
 
-import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
+import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -38,12 +38,12 @@ public class SelectionStyleFormNavigatorEntry
 
 	@Override
 	public String getCategoryKey() {
-		return CPCompareContentMiniConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPCompareContentConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPCompareContentMiniConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPCompareContentConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class SelectionStyleFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/compare_products_mini/configuration/selection_style.jsp";
+		return "/compare_products/configuration/selection_style.jsp";
 	}
 
 }

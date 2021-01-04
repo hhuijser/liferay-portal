@@ -12,34 +12,27 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.search.web.internal.frontend.taglib.form.navigator;
+package com.liferay.commerce.product.content.search.web.internal.servlet.taglib.ui;
 
 import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
-import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
-import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
+import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-
-import javax.servlet.ServletContext;
+import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=600",
-	service = FormNavigatorEntry.class
+	enabled = false, property = "form.navigator.category.order:Integer=100",
+	service = FormNavigatorCategory.class
 )
-public class SelectionStyleFormNavigatorEntry
-	extends BaseJSPFormNavigatorEntry<Void> {
-
-	@Override
-	public String getCategoryKey() {
-		return CPSearchResultsConstants.CATEGORY_KEY_RENDER_SELECTION;
-	}
+public class RenderSelectionFormNavigatorCategory
+	implements FormNavigatorCategory {
 
 	@Override
 	public String getFormNavigatorId() {
@@ -48,26 +41,15 @@ public class SelectionStyleFormNavigatorEntry
 
 	@Override
 	public String getKey() {
-		return "render-selection";
+		return CPSearchResultsConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, getKey());
-	}
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", locale, getClass());
 
-	@Override
-	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.search.web)",
-		unbind = "-"
-	)
-	public void setServletContext(ServletContext servletContext) {
-		super.setServletContext(servletContext);
-	}
-
-	@Override
-	protected String getJspPath() {
-		return "/search_results/configuration/selection_style.jsp";
+		return LanguageUtil.get(resourceBundle, "render-selection");
 	}
 
 }

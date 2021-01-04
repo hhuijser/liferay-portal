@@ -12,14 +12,24 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.frontend.taglib.form.navigator;
+package com.liferay.commerce.product.content.web.internal.product.publisher.servlet.taglib.ui;
 
 import com.liferay.commerce.product.content.web.internal.constants.CPPublisherConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
+import com.liferay.portal.kernel.theme.PortletDisplay;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.portlet.PortletPreferences;
 
 import javax.servlet.ServletContext;
 
@@ -30,10 +40,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=700",
+	enabled = false, property = "form.navigator.entry.order:Integer=600",
 	service = FormNavigatorEntry.class
 )
-public class RenderSelectionFormNavigatorEntry
+public class CPTypeRendererFormNavigatorEntry
 	extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
@@ -48,12 +58,20 @@ public class RenderSelectionFormNavigatorEntry
 
 	@Override
 	public String getKey() {
-		return "render-selection";
+		return "product-type-renderer";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, getKey());
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", locale, getClass());
+
+		return LanguageUtil.get(resourceBundle, getKey());
+	}
+
+	@Override
+	public boolean isVisible(User user, Void object) {
+		return _isSelectionStyleCustomRenderer();
 	}
 
 	@Override
@@ -67,7 +85,29 @@ public class RenderSelectionFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/product_publisher/configuration/render_selection.jsp";
+		return "/product_publisher/configuration/product_type_renderer.jsp";
+	}
+
+	private boolean _isSelectionStyleCustomRenderer() {
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
+
+		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		PortletPreferences portletPreferences =
+			themeDisplay.getStrictLayoutPortletSetup(
+				themeDisplay.getLayout(), portletDisplay.getPortletResource());
+
+		String renderSelection = GetterUtil.getString(
+			portletPreferences.getValue("renderSelection", null), "custom");
+
+		if (renderSelection.equals("custom")) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

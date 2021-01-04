@@ -12,25 +12,24 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.search.web.internal.frontend.taglib.form.navigator;
+package com.liferay.commerce.product.content.web.internal.product.publisher.servlet.taglib.ui;
 
-import com.liferay.commerce.product.content.search.web.internal.configuration.CPSearchResultsPortletInstanceConfiguration;
-import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
+import com.liferay.commerce.product.content.web.internal.constants.CPPublisherConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import javax.portlet.PortletPreferences;
 
 import javax.servlet.ServletContext;
 
@@ -41,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=500",
+	enabled = false, property = "form.navigator.entry.order:Integer=650",
 	service = FormNavigatorEntry.class
 )
 public class ProductListRendererFormNavigatorEntry
@@ -49,12 +48,12 @@ public class ProductListRendererFormNavigatorEntry
 
 	@Override
 	public String getCategoryKey() {
-		return CPSearchResultsConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPPublisherConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPSearchResultsConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPPublisherConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
@@ -77,7 +76,7 @@ public class ProductListRendererFormNavigatorEntry
 
 	@Override
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.search.web)",
+		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.web)",
 		unbind = "-"
 	)
 	public void setServletContext(ServletContext servletContext) {
@@ -86,7 +85,7 @@ public class ProductListRendererFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/search_results/configuration/product_list_renderer.jsp";
+		return "/product_publisher/configuration/product_list_renderer.jsp";
 	}
 
 	private boolean _isSelectionStyleCustomRenderer() {
@@ -97,27 +96,18 @@ public class ProductListRendererFormNavigatorEntry
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		try {
-			CPSearchResultsPortletInstanceConfiguration
-				cpSearchResultsPortletInstanceConfiguration =
-					portletDisplay.getPortletInstanceConfiguration(
-						CPSearchResultsPortletInstanceConfiguration.class);
+		PortletPreferences portletPreferences =
+			themeDisplay.getStrictLayoutPortletSetup(
+				themeDisplay.getLayout(), portletDisplay.getPortletResource());
 
-			String selectionStyle =
-				cpSearchResultsPortletInstanceConfiguration.selectionStyle();
+		String renderSelection = GetterUtil.getString(
+			portletPreferences.getValue("renderSelection", null), "custom");
 
-			return selectionStyle.equals("custom");
+		if (renderSelection.equals("custom")) {
+			return true;
 		}
-		catch (PortalException portalException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(portalException, portalException);
-			}
 
-			return false;
-		}
+		return false;
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ProductListRendererFormNavigatorEntry.class);
 
 }

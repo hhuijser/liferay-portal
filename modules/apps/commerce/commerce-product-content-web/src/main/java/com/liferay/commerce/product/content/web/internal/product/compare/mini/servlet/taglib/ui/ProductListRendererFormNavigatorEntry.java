@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.search.web.internal.frontend.taglib.form.navigator;
+package com.liferay.commerce.product.content.web.internal.product.compare.mini.servlet.taglib.ui;
 
-import com.liferay.commerce.product.content.search.web.internal.configuration.CPSearchResultsPortletInstanceConfiguration;
-import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
+import com.liferay.commerce.product.content.web.internal.configuration.CPCompareContentMiniPortletInstanceConfiguration;
+import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -41,25 +41,25 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=450",
+	enabled = false, property = "form.navigator.entry.order:Integer=500",
 	service = FormNavigatorEntry.class
 )
-public class CPTypeRendererFormNavigatorEntry
+public class ProductListRendererFormNavigatorEntry
 	extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	public String getCategoryKey() {
-		return CPSearchResultsConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPCompareContentMiniConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPSearchResultsConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPCompareContentMiniConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
 	public String getKey() {
-		return "product-type-renderer";
+		return "product-list-renderer";
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.search.web)",
+		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.web)",
 		unbind = "-"
 	)
 	public void setServletContext(ServletContext servletContext) {
@@ -86,7 +86,7 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/search_results/configuration/product_type_renderer.jsp";
+		return "/compare_products_mini/configuration/product_list_renderer.jsp";
 	}
 
 	private boolean _isSelectionStyleCustomRenderer() {
@@ -98,13 +98,14 @@ public class CPTypeRendererFormNavigatorEntry
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		try {
-			CPSearchResultsPortletInstanceConfiguration
-				cpSearchResultsPortletInstanceConfiguration =
+			CPCompareContentMiniPortletInstanceConfiguration
+				cpCompareContentMiniPortletInstanceConfiguration =
 					portletDisplay.getPortletInstanceConfiguration(
-						CPSearchResultsPortletInstanceConfiguration.class);
+						CPCompareContentMiniPortletInstanceConfiguration.class);
 
 			String selectionStyle =
-				cpSearchResultsPortletInstanceConfiguration.selectionStyle();
+				cpCompareContentMiniPortletInstanceConfiguration.
+					selectionStyle();
 
 			return selectionStyle.equals("custom");
 		}
@@ -118,6 +119,6 @@ public class CPTypeRendererFormNavigatorEntry
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPTypeRendererFormNavigatorEntry.class);
+		ProductListRendererFormNavigatorEntry.class);
 
 }

@@ -67,7 +67,7 @@ boolean configuredPublish = (exportImportConfiguration == null) ? false : true;
 
 PortletURL customPublishURL = renderResponse.createRenderURL();
 
-customPublishURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
+customPublishURL.setParameter("mvcRenderCommandName", "/export_import/view_publish_layouts");
 customPublishURL.setParameter(Constants.CMD, cmd);
 customPublishURL.setParameter("tabs1", privateLayout ? "private-pages" : "public-pages");
 customPublishURL.setParameter("groupId", String.valueOf(stagingGroupId));
@@ -86,7 +86,7 @@ UnicodeProperties liveGroupTypeSettings = liveGroup.getTypeSettingsProperties();
 
 PortletURL publishTemplatesURL = renderResponse.createRenderURL();
 
-publishTemplatesURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
+publishTemplatesURL.setParameter("mvcRenderCommandName", "/export_import/view_publish_layouts");
 publishTemplatesURL.setParameter(Constants.CMD, Constants.PUBLISH);
 publishTemplatesURL.setParameter("groupId", String.valueOf(stagingGroupId));
 publishTemplatesURL.setParameter("layoutSetBranchId", String.valueOf(layoutSetBranchId));
@@ -97,7 +97,7 @@ publishTemplatesURL.setParameter("publishConfigurationButtons", "saved");
 
 PortletURL simplePublishRedirectURL = renderResponse.createRenderURL();
 
-simplePublishRedirectURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
+simplePublishRedirectURL.setParameter("mvcRenderCommandName", "/export_import/view_publish_layouts");
 simplePublishRedirectURL.setParameter("groupId", String.valueOf(groupId));
 simplePublishRedirectURL.setParameter("privateLayout", String.valueOf(privateLayout));
 simplePublishRedirectURL.setParameter("quickPublish", Boolean.TRUE.toString());

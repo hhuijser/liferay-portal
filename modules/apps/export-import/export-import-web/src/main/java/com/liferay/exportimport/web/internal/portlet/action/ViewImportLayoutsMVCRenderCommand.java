@@ -25,17 +25,17 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true,
 	property = {
-		"javax.portlet.name=" + ExportImportPortletKeys.EXPORT,
-		"mvc.command.name=/export_import/export_layouts_view"
+		"javax.portlet.name=" + ExportImportPortletKeys.IMPORT,
+		"mvc.command.name=/export_import/view_import_layouts"
 	},
 	service = MVCRenderCommand.class
 )
-public class ExportLayoutsViewMVCRenderCommand
+public class ViewImportLayoutsMVCRenderCommand
 	extends GetGroupMVCRenderCommand {
 
 	@Override
 	protected String getPath() {
-		return "/export/view.jsp";
+		return "/import/view_import_layouts.jsp";
 	}
 
 }

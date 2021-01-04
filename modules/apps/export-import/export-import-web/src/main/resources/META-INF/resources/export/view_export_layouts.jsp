@@ -14,10 +14,15 @@
  */
 --%>
 
-<%@ include file="/import/init.jsp" %>
+<%@ include file="/export/init.jsp" %>
+
+<liferay-staging:defineObjects />
 
 <%
-boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout");
+if (liveGroup == null) {
+	liveGroup = group;
+	liveGroupId = groupId;
+}
 
 String displayStyle = ParamUtil.getString(request, "displayStyle", "descriptive");
 String navigation = ParamUtil.getString(request, "navigation", "all");
@@ -34,23 +39,21 @@ else {
 	orderByType = portalPreferences.getValue(PortletKeys.BACKGROUND_TASK, "entries-order-by-type", "desc");
 }
 
-String searchContainerId = "importLayoutProcesses";
-
-GroupDisplayContextHelper groupDisplayContextHelper = new GroupDisplayContextHelper(request);
+String searchContainerId = "exportLayoutProcesses";
 %>
 
 <c:choose>
-	<c:when test="<%= !GroupPermissionUtil.contains(permissionChecker, groupDisplayContextHelper.getGroupId(), ActionKeys.EXPORT_IMPORT_LAYOUTS) %>">
+	<c:when test="<%= !GroupPermissionUtil.contains(permissionChecker, liveGroupId, ActionKeys.EXPORT_IMPORT_LAYOUTS) %>">
 		<div class="alert alert-info">
 			<liferay-ui:message key="you-do-not-have-permission-to-access-the-requested-resource" />
 		</div>
 	</c:when>
 	<c:otherwise>
-		<liferay-util:include page="/import/navigation.jsp" servletContext="<%= application %>" />
+		<liferay-util:include page="/export/navigation.jsp" servletContext="<%= application %>" />
 
 		<liferay-util:include page="/toolbar.jsp" servletContext="<%= application %>">
-			<liferay-util:param name="mvcRenderCommandName" value="/export_import/import_layouts_view" />
-			<liferay-util:param name="groupId" value="<%= String.valueOf(groupDisplayContextHelper.getGroupId()) %>" />
+			<liferay-util:param name="mvcRenderCommandName" value="/export_import/view_export_layouts" />
+			<liferay-util:param name="groupId" value="<%= String.valueOf(liveGroupId) %>" />
 			<liferay-util:param name="privateLayout" value="<%= String.valueOf(privateLayout) %>" />
 			<liferay-util:param name="displayStyle" value="<%= displayStyle %>" />
 			<liferay-util:param name="navigation" value="<%= navigation %>" />
@@ -59,8 +62,8 @@ GroupDisplayContextHelper groupDisplayContextHelper = new GroupDisplayContextHel
 			<liferay-util:param name="searchContainerId" value="<%= searchContainerId %>" />
 		</liferay-util:include>
 
-		<liferay-util:include page="/import/processes_list/view.jsp" servletContext="<%= application %>">
-			<liferay-util:param name="groupId" value="<%= String.valueOf(groupDisplayContextHelper.getGroupId()) %>" />
+		<liferay-util:include page="/export/processes_list/view.jsp" servletContext="<%= application %>">
+			<liferay-util:param name="liveGroupId" value="<%= String.valueOf(liveGroupId) %>" />
 			<liferay-util:param name="displayStyle" value="<%= displayStyle %>" />
 			<liferay-util:param name="navigation" value="<%= navigation %>" />
 			<liferay-util:param name="orderByCol" value="<%= orderByCol %>" />
@@ -72,11 +75,11 @@ GroupDisplayContextHelper groupDisplayContextHelper = new GroupDisplayContextHel
 </c:choose>
 
 <aui:script use="liferay-export-import-export-import">
-	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/export_import/import_layouts" var="importProcessesURL">
-		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.IMPORT %>" />
+	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/export_import/export_layouts" var="exportProcessesURL">
 		<portlet:param name="<%= SearchContainer.DEFAULT_CUR_PARAM %>" value="<%= ParamUtil.getString(request, SearchContainer.DEFAULT_CUR_PARAM) %>" />
 		<portlet:param name="<%= SearchContainer.DEFAULT_DELTA_PARAM %>" value="<%= ParamUtil.getString(request, SearchContainer.DEFAULT_DELTA_PARAM) %>" />
-		<portlet:param name="groupId" value="<%= String.valueOf(groupDisplayContextHelper.getGroupId()) %>" />
+		<portlet:param name="groupId" value="<%= String.valueOf(liveGroupId) %>" />
+		<portlet:param name="liveGroupId" value="<%= String.valueOf(liveGroupId) %>" />
 		<portlet:param name="privateLayout" value="<%= String.valueOf(privateLayout) %>" />
 		<portlet:param name="displayStyle" value="<%= displayStyle %>" />
 		<portlet:param name="navigation" value="<%= navigation %>" />
@@ -86,14 +89,14 @@ GroupDisplayContextHelper groupDisplayContextHelper = new GroupDisplayContextHel
 	</liferay-portlet:resourceURL>
 
 	var exportImport = new Liferay.ExportImport({
+		exportLAR: true,
 		incompleteProcessMessageNode:
 			'#<portlet:namespace />incompleteProcessMessage',
 		locale: '<%= locale.toLanguageTag() %>',
 		namespace: '<portlet:namespace />',
-		processesNode: '#importProcessesSearchContainer',
+		processesNode: '#exportProcessesSearchContainer',
 		processesResourceURL:
-			'<%= HtmlUtil.escapeJS(importProcessesURL.toString()) %>',
-		timeZoneOffset: <%= timeZoneOffset %>,
+			'<%= HtmlUtil.escapeJS(exportProcessesURL.toString()) %>',
 	});
 
 	var destroyInstance = function (event) {

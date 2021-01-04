@@ -38,7 +38,7 @@ public class ViewSystemPropertiesMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/system_properties.jsp";
+		return "/view_system_properties.jsp";
 	}
 
 }

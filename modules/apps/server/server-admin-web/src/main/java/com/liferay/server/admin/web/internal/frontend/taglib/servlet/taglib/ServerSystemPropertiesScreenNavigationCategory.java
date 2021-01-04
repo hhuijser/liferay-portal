@@ -72,7 +72,8 @@ public class ServerSystemPropertiesScreenNavigationCategory
 		throws IOException {
 
 		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse, "/system_properties.jsp");
+			httpServletRequest, httpServletResponse,
+			"/view_system_properties.jsp");
 	}
 
 	@Reference

@@ -60,7 +60,9 @@ public class ExportTemplatesConfigurationIcon
 			portletRequest, ExportImportPortletKeys.EXPORT,
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcPath", "/export/export_templates/view.jsp");
+		portletURL.setParameter(
+			"mvcPath",
+			"/export/export_templates/view_export_configurations.jsp");
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

@@ -72,7 +72,8 @@ public class ServerPortalPropertiesScreenNavigationCategory
 		throws IOException {
 
 		_jspRenderer.renderJSP(
-			httpServletRequest, httpServletResponse, "/portal_properties.jsp");
+			httpServletRequest, httpServletResponse,
+			"/view_portal_properties.jsp");
 	}
 
 	@Reference

@@ -38,7 +38,7 @@ public class ViewPortalPropertiesMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/portal_properties.jsp";
+		return "/view_portal_properties.jsp";
 	}
 
 }

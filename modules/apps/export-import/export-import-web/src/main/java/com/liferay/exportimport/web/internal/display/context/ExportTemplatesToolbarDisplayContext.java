@@ -63,7 +63,8 @@ public class ExportTemplatesToolbarDisplayContext
 		PortletURL clearResultsURL = getRenderURL();
 
 		clearResultsURL.setParameter(
-			"mvcPath", "/export/export_templates/view.jsp");
+			"mvcPath",
+			"/export/export_templates/view_export_configurations.jsp");
 
 		return clearResultsURL.toString();
 	}

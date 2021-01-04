@@ -35,7 +35,7 @@ public class EditExportConfigurationMVCRenderCommand
 
 	@Override
 	protected String getPath() {
-		return "/export/export_templates/edit_template.jsp";
+		return "/export/export_templates/edit_export_configuration.jsp";
 	}
 
 }

@@ -27,7 +27,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 
 PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/export_import/export_layouts_view");
+portletURL.setParameter("mvcRenderCommandName", "/export_import/view_export_layouts");
 portletURL.setParameter("groupId", String.valueOf(groupId));
 portletURL.setParameter("privateLayout", String.valueOf(privateLayout));
 portletURL.setParameter("displayStyle", displayStyle);
@@ -309,7 +309,7 @@ portletURL.setParameter("searchContainerId", searchContainerId);
 						showWhenSingleIcon="<%= true %>"
 					>
 						<portlet:actionURL name="/export_import/edit_export_configuration" var="relaunchURL">
-							<portlet:param name="mvcRenderCommandName" value="/export_import/export_layouts_view" />
+							<portlet:param name="mvcRenderCommandName" value="/export_import/view_export_layouts" />
 							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.RELAUNCH %>" />
 							<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 							<portlet:param name="backgroundTaskId" value="<%= String.valueOf(backgroundTask.getBackgroundTaskId()) %>" />

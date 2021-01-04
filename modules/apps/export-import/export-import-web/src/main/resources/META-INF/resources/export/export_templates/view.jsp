@@ -21,7 +21,7 @@ portletDisplay.setShowBackIcon(true);
 
 PortletURL exportProcessesURL = PortalUtil.getControlPanelPortletURL(request, ExportImportPortletKeys.EXPORT, PortletRequest.RENDER_PHASE);
 
-exportProcessesURL.setParameter("mvcPath", "/export/view.jsp");
+exportProcessesURL.setParameter("mvcPath", "/export/view_export_layouts.jsp");
 
 portletDisplay.setURLBack(exportProcessesURL.toString());
 

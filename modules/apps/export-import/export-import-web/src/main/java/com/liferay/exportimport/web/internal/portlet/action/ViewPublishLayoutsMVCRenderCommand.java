@@ -20,21 +20,22 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Péter Alius
+ * @author Daniel Kocsis
  */
 @Component(
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + ExportImportPortletKeys.EXPORT_IMPORT,
-		"mvc.command.name=/export_import/process_summary"
+		"mvc.command.name=/export_import/view_publish_layouts"
 	},
 	service = MVCRenderCommand.class
 )
-public class ProcessSummaryMVCRenderCommand extends GetGroupMVCRenderCommand {
+public class ViewPublishLayoutsMVCRenderCommand
+	extends GetGroupMVCRenderCommand {
 
 	@Override
 	protected String getPath() {
-		return "/process_summary/view.jsp";
+		return "/publish/view_publish_layouts.jsp";
 	}
 
 }

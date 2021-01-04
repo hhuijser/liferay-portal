@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.search.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.product.content.search.web.internal.frontend.taglib.form.navigator;
 
 import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;

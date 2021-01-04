@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.search.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.product.content.search.web.internal.frontend.taglib.form.navigator;
 
 import com.liferay.commerce.product.content.search.web.internal.configuration.CPSearchResultsPortletInstanceConfiguration;
 import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
@@ -41,10 +41,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=450",
+	enabled = false, property = "form.navigator.entry.order:Integer=500",
 	service = FormNavigatorEntry.class
 )
-public class CPTypeRendererFormNavigatorEntry
+public class ProductListRendererFormNavigatorEntry
 	extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
@@ -59,7 +59,7 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	public String getKey() {
-		return "product-type-renderer";
+		return "product-list-renderer";
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/search_results/configuration/product_type_renderer.jsp";
+		return "/search_results/configuration/product_list_renderer.jsp";
 	}
 
 	private boolean _isSelectionStyleCustomRenderer() {
@@ -118,6 +118,6 @@ public class CPTypeRendererFormNavigatorEntry
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CPTypeRendererFormNavigatorEntry.class);
+		ProductListRendererFormNavigatorEntry.class);
 
 }

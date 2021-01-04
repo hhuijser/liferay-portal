@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.product.publisher.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.publisher.frontend.taglib.form.navigator;
 
 import com.liferay.commerce.product.content.web.internal.constants.CPPublisherConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
@@ -24,10 +24,8 @@ import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletPreferences;
 
@@ -43,8 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, property = "form.navigator.entry.order:Integer=650",
 	service = FormNavigatorEntry.class
 )
-public class ProductListRendererFormNavigatorEntry
-	extends BaseJSPFormNavigatorEntry<Void> {
+public class ADTFormNavigatorEntry extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	public String getCategoryKey() {
@@ -58,20 +55,17 @@ public class ProductListRendererFormNavigatorEntry
 
 	@Override
 	public String getKey() {
-		return "product-list-renderer";
+		return "adt";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, getKey());
+		return LanguageUtil.get(locale, "display-template");
 	}
 
 	@Override
 	public boolean isVisible(User user, Void object) {
-		return _isSelectionStyleCustomRenderer();
+		return _isSelectionStyleADT();
 	}
 
 	@Override
@@ -85,10 +79,10 @@ public class ProductListRendererFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/product_publisher/configuration/product_list_renderer.jsp";
+		return "/product_publisher/configuration/adt.jsp";
 	}
 
-	private boolean _isSelectionStyleCustomRenderer() {
+	private boolean _isSelectionStyleADT() {
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
@@ -103,7 +97,7 @@ public class ProductListRendererFormNavigatorEntry
 		String renderSelection = GetterUtil.getString(
 			portletPreferences.getValue("renderSelection", null), "custom");
 
-		if (renderSelection.equals("custom")) {
+		if (renderSelection.equals("adt")) {
 			return true;
 		}
 

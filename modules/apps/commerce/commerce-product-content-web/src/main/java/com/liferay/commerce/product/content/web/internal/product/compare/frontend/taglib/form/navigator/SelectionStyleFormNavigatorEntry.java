@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.product.publisher.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.compare.frontend.taglib.form.navigator;
 
-import com.liferay.commerce.product.content.web.internal.constants.CPPublisherConstants;
+import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Marco Leo
+ * @author Alessio Antonio Rendina
  */
 @Component(
 	enabled = false, property = "form.navigator.entry.order:Integer=600",
@@ -38,17 +38,17 @@ public class SelectionStyleFormNavigatorEntry
 
 	@Override
 	public String getCategoryKey() {
-		return CPPublisherConstants.CATEGORY_KEY_PRODUCT_SELECTION;
+		return CPCompareContentConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPPublisherConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPCompareContentConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
 	public String getKey() {
-		return "product-selection";
+		return "render-selection";
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class SelectionStyleFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/product_publisher/configuration/selection_style.jsp";
+		return "/compare_products/configuration/selection_style.jsp";
 	}
 
 }

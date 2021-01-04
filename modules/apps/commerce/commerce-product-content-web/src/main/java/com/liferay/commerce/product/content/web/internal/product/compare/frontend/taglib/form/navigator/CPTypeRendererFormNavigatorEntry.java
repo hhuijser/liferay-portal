@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.product.compare.mini.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.compare.frontend.taglib.form.navigator;
 
-import com.liferay.commerce.product.content.web.internal.configuration.CPCompareContentMiniPortletInstanceConfiguration;
-import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
+import com.liferay.commerce.product.content.web.internal.configuration.CPCompareContentPortletInstanceConfiguration;
+import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -41,25 +41,25 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.entry.order:Integer=500",
+	enabled = false, property = "form.navigator.entry.order:Integer=450",
 	service = FormNavigatorEntry.class
 )
-public class ProductListRendererFormNavigatorEntry
+public class CPTypeRendererFormNavigatorEntry
 	extends BaseJSPFormNavigatorEntry<Void> {
 
 	@Override
 	public String getCategoryKey() {
-		return CPCompareContentMiniConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPCompareContentConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPCompareContentMiniConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPCompareContentConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
 	public String getKey() {
-		return "product-list-renderer";
+		return "product-type-renderer";
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class ProductListRendererFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/compare_products_mini/configuration/product_list_renderer.jsp";
+		return "/compare_products/configuration/product_type_renderer.jsp";
 	}
 
 	private boolean _isSelectionStyleCustomRenderer() {
@@ -98,14 +98,13 @@ public class ProductListRendererFormNavigatorEntry
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		try {
-			CPCompareContentMiniPortletInstanceConfiguration
-				cpCompareContentMiniPortletInstanceConfiguration =
+			CPCompareContentPortletInstanceConfiguration
+				cpCompareContentPortletInstanceConfiguration =
 					portletDisplay.getPortletInstanceConfiguration(
-						CPCompareContentMiniPortletInstanceConfiguration.class);
+						CPCompareContentPortletInstanceConfiguration.class);
 
 			String selectionStyle =
-				cpCompareContentMiniPortletInstanceConfiguration.
-					selectionStyle();
+				cpCompareContentPortletInstanceConfiguration.selectionStyle();
 
 			return selectionStyle.equals("custom");
 		}
@@ -119,6 +118,6 @@ public class ProductListRendererFormNavigatorEntry
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		ProductListRendererFormNavigatorEntry.class);
+		CPTypeRendererFormNavigatorEntry.class);
 
 }

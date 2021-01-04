@@ -48,9 +48,9 @@ import org.osgi.service.component.annotations.Reference;
 		"com.liferay.portlet.use-default-template=true",
 		"javax.portlet.display-name=Import", "javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.mvc-action-command-package-prefix=com.liferay.exportimport.web.portlet.action",
-		"javax.portlet.init-param.mvc-command-names-default-views=/export_import/import_layouts_view",
+		"javax.portlet.init-param.mvc-command-names-default-views=/export_import/view_import_layouts",
 		"javax.portlet.init-param.template-path=/META-INF/resources/",
-		"javax.portlet.init-param.view-template=/import/view.jsp",
+		"javax.portlet.init-param.view-template=/import/view_import_layouts.jsp",
 		"javax.portlet.name=" + ExportImportPortletKeys.IMPORT,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=administrator"

@@ -45,7 +45,7 @@ Map<String, String[]> parameterMap = (Map<String, String[]>)settingsMap.get("par
 
 PortletURL advancedPublishURL = renderResponse.createRenderURL();
 
-advancedPublishURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
+advancedPublishURL.setParameter("mvcRenderCommandName", "/export_import/view_publish_layouts");
 advancedPublishURL.setParameter(Constants.CMD, cmd);
 advancedPublishURL.setParameter("tabs1", privateLayout ? "private-pages" : "public-pages");
 advancedPublishURL.setParameter("groupId", String.valueOf(groupDisplayContextHelper.getGroupId()));

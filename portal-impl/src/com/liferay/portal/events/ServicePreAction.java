@@ -1670,7 +1670,7 @@ public class ServicePreAction extends Action {
 
 					publishToLiveURL.setParameter(
 						"mvcRenderCommandName",
-						"/export_import/publish_layouts");
+						"/export_import/view_publish_layouts");
 
 					if (layout.isPrivateLayout()) {
 						publishToLiveURL.setParameter("tabs1", "private-pages");

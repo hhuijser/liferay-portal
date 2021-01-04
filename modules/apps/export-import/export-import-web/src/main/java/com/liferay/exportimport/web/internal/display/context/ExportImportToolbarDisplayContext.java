@@ -89,7 +89,7 @@ public class ExportImportToolbarDisplayContext {
 				String mvcPath;
 
 				if (mvcRenderCommandName.equals(
-						"/export_import/export_layouts_view")) {
+						"/export_import/view_export_layouts")) {
 
 					cmd = Constants.EXPORT;
 					label = "custom-export";

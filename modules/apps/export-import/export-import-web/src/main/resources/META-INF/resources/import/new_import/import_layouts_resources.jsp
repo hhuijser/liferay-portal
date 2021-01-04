@@ -108,7 +108,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 
 <aui:form action="<%= importPagesURL %>" cssClass="lfr-export-dialog" method="post" name="fm1">
 	<portlet:renderURL var="portletURL">
-		<portlet:param name="mvcRenderCommandName" value="/export_import/import_layouts_view" />
+		<portlet:param name="mvcRenderCommandName" value="/export_import/view_import_layouts" />
 		<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
 	</portlet:renderURL>
 

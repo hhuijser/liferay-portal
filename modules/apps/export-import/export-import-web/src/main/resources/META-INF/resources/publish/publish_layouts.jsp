@@ -94,13 +94,13 @@ if (group.isStaged() && group.isStagedRemotely()) {
 }
 
 portletURL.setParameter(ActionRequest.ACTION_NAME, "/export_import/publish_layouts");
-portletURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
+portletURL.setParameter("mvcRenderCommandName", "/export_import/view_publish_layouts");
 portletURL.setParameter("closeRedirect", closeRedirect);
 portletURL.setParameter("stagingGroupId", String.valueOf(stagingGroupId));
 
 PortletURL redirectURL = renderResponse.createRenderURL();
 
-redirectURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
+redirectURL.setParameter("mvcRenderCommandName", "/export_import/view_publish_layouts");
 redirectURL.setParameter("closeRedirect", closeRedirect);
 redirectURL.setParameter("groupId", String.valueOf(stagingGroupId));
 redirectURL.setParameter("layoutSetBranchId", String.valueOf(layoutSetBranchId));

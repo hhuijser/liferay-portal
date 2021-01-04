@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.product.content.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.compare.frontend.taglib.form.navigator;
 
-import com.liferay.commerce.product.content.web.internal.constants.CPContentPortletConstants;
+import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentConstants;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -36,12 +36,12 @@ public class RenderSelectionFormNavigatorCategory
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPContentPortletConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPCompareContentConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
 	public String getKey() {
-		return CPContentPortletConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPCompareContentConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override

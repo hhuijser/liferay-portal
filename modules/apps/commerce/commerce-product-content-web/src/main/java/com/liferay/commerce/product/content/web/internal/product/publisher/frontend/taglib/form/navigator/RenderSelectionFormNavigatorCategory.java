@@ -12,15 +12,13 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.search.web.internal.servlet.taglib.ui;
+package com.liferay.commerce.product.content.web.internal.product.publisher.frontend.taglib.form.navigator;
 
-import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
+import com.liferay.commerce.product.content.web.internal.constants.CPPublisherConstants;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -28,7 +26,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.category.order:Integer=100",
+	enabled = false, property = "form.navigator.category.order:Integer=20",
 	service = FormNavigatorCategory.class
 )
 public class RenderSelectionFormNavigatorCategory
@@ -36,20 +34,17 @@ public class RenderSelectionFormNavigatorCategory
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPSearchResultsConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPPublisherConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
 	public String getKey() {
-		return CPSearchResultsConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPPublisherConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "render-selection");
+		return LanguageUtil.get(locale, "render-selection");
 	}
 
 }

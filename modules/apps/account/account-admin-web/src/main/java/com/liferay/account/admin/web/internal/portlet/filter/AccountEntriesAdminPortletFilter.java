@@ -107,8 +107,7 @@ public class AccountEntriesAdminPortletFilter
 					PortletRequest.RENDER_PHASE);
 
 				portletURL.setParameter(
-					"mvcRenderCommandName",
-					"/account_admin/edit_account_role_permissions");
+					"mvcRenderCommandName", "/account_admin/edit_account_role");
 				portletURL.setParameter(
 					"screenNavigationCategoryKey",
 					AccountScreenNavigationEntryConstants.

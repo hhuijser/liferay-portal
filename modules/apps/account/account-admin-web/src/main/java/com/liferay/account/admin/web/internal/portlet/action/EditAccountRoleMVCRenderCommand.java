@@ -32,12 +32,11 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + AccountPortletKeys.ACCOUNT_ENTRIES_ADMIN,
-		"mvc.command.name=/account_admin/edit_account_role_permissions"
+		"mvc.command.name=/account_admin/edit_account_role"
 	},
 	service = MVCRenderCommand.class
 )
-public class EditAccountRolePermissionsMVCRenderCommand
-	implements MVCRenderCommand {
+public class EditAccountRoleMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

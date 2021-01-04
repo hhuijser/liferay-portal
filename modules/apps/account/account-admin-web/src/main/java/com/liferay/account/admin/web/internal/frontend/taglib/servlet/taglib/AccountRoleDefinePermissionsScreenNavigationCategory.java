@@ -161,8 +161,7 @@ public class AccountRoleDefinePermissionsScreenNavigationCategory
 			PortletRequest.RENDER_PHASE);
 
 		redirectURL.setParameter(
-			"mvcRenderCommandName",
-			"/account_admin/edit_account_role_permissions");
+			"mvcRenderCommandName", "/account_admin/edit_account_role");
 		redirectURL.setParameter(
 			"screenNavigationCategoryKey",
 			AccountScreenNavigationEntryConstants.

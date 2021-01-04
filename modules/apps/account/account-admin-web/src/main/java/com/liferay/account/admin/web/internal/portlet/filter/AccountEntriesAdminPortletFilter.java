@@ -107,8 +107,7 @@ public class AccountEntriesAdminPortletFilter
 					PortletRequest.RENDER_PHASE);
 
 				portletURL.setParameter(
-					"mvcRenderCommandName",
-					"/account_admin/edit_account_role_permissions");
+					"mvcRenderCommandName", "/account_admin/edit_account_role");
 				portletURL.setParameter(
 					"screenNavigationCategoryKey",
 					AccountScreenNavigationEntryConstants.
@@ -186,7 +185,7 @@ public class AccountEntriesAdminPortletFilter
 	private JSPRenderer _jspRenderer;
 
 	@Reference(
-		target = "(component.name=com.liferay.account.admin.web.internal.portlet.action.EditAccountRolePermissionsMVCRenderCommand)"
+		target = "(component.name=com.liferay.account.admin.web.internal.portlet.action.EditAccountRoleMVCRenderCommand)"
 	)
 	private MVCRenderCommand _mvcRenderCommand;
 

@@ -71,7 +71,8 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 	public String getClearResultsURL() {
 		PortletURL clearResultsURL = getRenderURL();
 
-		clearResultsURL.setParameter("mvcPath", "/publish_templates/view.jsp");
+		clearResultsURL.setParameter(
+			"mvcPath", "/publish_templates/view_publish_configurations.jsp");
 
 		return clearResultsURL.toString();
 	}

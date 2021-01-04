@@ -69,7 +69,8 @@ public class PublishTemplatesConfigurationIcon
 			portletRequest, StagingProcessesPortletKeys.STAGING_PROCESSES,
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcPath", "/publish_templates/view.jsp");
+		portletURL.setParameter(
+			"mvcPath", "/publish_templates/view_publish_configurations.jsp");
 		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
 
 		return portletURL.toString();

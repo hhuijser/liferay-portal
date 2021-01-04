@@ -35,7 +35,7 @@ public class ViewPublishConfigurationsMVCRenderCommand
 
 	@Override
 	protected String getPath() {
-		return "/publish_templates/view.jsp";
+		return "/publish_templates/view_publish_configurations.jsp";
 	}
 
 }

@@ -1290,6 +1290,10 @@
 		</check>
 	</source-processor>
 	<source-processor name="PythonSourceProcessor">
+		<check name="PythonImportsCheck">
+			<category name="Styling" />
+			<description name="Sorts and groups imports in `.py` files." />
+		</check>
 		<check name="PythonStylingCheck">
 			<category name="Styling" />
 			<description name="Applies rules to enforce consisteny in code style." />

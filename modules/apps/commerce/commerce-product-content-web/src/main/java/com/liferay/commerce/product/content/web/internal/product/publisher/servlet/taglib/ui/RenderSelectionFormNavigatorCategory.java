@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.frontend.taglib.form.navigator;
+package com.liferay.commerce.product.content.web.internal.product.publisher.servlet.taglib.ui;
 
 import com.liferay.commerce.product.content.web.internal.constants.CPPublisherConstants;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategory;
@@ -23,13 +23,13 @@ import java.util.Locale;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Marco Leo
+ * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, property = "form.navigator.category.order:Integer=30",
+	enabled = false, property = "form.navigator.category.order:Integer=20",
 	service = FormNavigatorCategory.class
 )
-public class ProductSelectionFormNavigatorCategory
+public class RenderSelectionFormNavigatorCategory
 	implements FormNavigatorCategory {
 
 	@Override
@@ -39,12 +39,12 @@ public class ProductSelectionFormNavigatorCategory
 
 	@Override
 	public String getKey() {
-		return CPPublisherConstants.CATEGORY_KEY_PRODUCT_SELECTION;
+		return CPPublisherConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return LanguageUtil.get(locale, "asset-selection");
+		return LanguageUtil.get(locale, "render-selection");
 	}
 
 }

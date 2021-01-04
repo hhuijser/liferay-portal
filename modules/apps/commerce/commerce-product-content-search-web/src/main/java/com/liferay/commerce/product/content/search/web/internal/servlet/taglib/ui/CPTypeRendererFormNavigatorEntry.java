@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.frontend.taglib.form.navigator;
+package com.liferay.commerce.product.content.search.web.internal.servlet.taglib.ui;
 
-import com.liferay.commerce.product.content.web.internal.configuration.CPCompareContentMiniPortletInstanceConfiguration;
-import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
+import com.liferay.commerce.product.content.search.web.internal.configuration.CPSearchResultsPortletInstanceConfiguration;
+import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
 import com.liferay.frontend.taglib.form.navigator.BaseJSPFormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -49,12 +49,12 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	public String getCategoryKey() {
-		return CPCompareContentMiniConstants.CATEGORY_KEY_RENDER_SELECTION;
+		return CPSearchResultsConstants.CATEGORY_KEY_RENDER_SELECTION;
 	}
 
 	@Override
 	public String getFormNavigatorId() {
-		return CPCompareContentMiniConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
+		return CPSearchResultsConstants.FORM_NAVIGATOR_ID_CONFIGURATION;
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.web)",
+		target = "(osgi.web.symbolicname=com.liferay.commerce.product.content.search.web)",
 		unbind = "-"
 	)
 	public void setServletContext(ServletContext servletContext) {
@@ -86,7 +86,7 @@ public class CPTypeRendererFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/compare_products_mini/configuration/product_type_renderer.jsp";
+		return "/search_results/configuration/product_type_renderer.jsp";
 	}
 
 	private boolean _isSelectionStyleCustomRenderer() {
@@ -98,14 +98,13 @@ public class CPTypeRendererFormNavigatorEntry
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		try {
-			CPCompareContentMiniPortletInstanceConfiguration
-				cpCompareContentMiniPortletInstanceConfiguration =
+			CPSearchResultsPortletInstanceConfiguration
+				cpSearchResultsPortletInstanceConfiguration =
 					portletDisplay.getPortletInstanceConfiguration(
-						CPCompareContentMiniPortletInstanceConfiguration.class);
+						CPSearchResultsPortletInstanceConfiguration.class);
 
 			String selectionStyle =
-				cpCompareContentMiniPortletInstanceConfiguration.
-					selectionStyle();
+				cpSearchResultsPortletInstanceConfiguration.selectionStyle();
 
 			return selectionStyle.equals("custom");
 		}

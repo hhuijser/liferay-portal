@@ -78,7 +78,8 @@ public class CommercePriceListInfoPanelMVCResourceCommand
 				resourceRequest));
 
 		include(
-			resourceRequest, resourceResponse, "/price_list_info_panel.jsp");
+			resourceRequest, resourceResponse,
+			"/commerce_price_list_info_panel.jsp");
 	}
 
 	@Reference

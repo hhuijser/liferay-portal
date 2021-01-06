@@ -61,7 +61,7 @@ public class EditCPInstanceCommercePriceEntryMVCRenderCommand
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
-				"/edit_instance_price_entry.jsp");
+				"/edit_cp_instance_commerce_price_entry.jsp");
 
 		try {
 			HttpServletRequest httpServletRequest =

@@ -142,7 +142,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "price-lists"));
 					resourceURL="<%= sidebarPanelURL %>"
 					searchContainerId="commerceTierPriceEntries"
 				>
-					<liferay-util:include page="/tier_price_entry_info_panel.jsp" servletContext="<%= application %>" />
+					<liferay-util:include page="/commerce_tier_price_entry_info_panel.jsp" servletContext="<%= application %>" />
 				</liferay-frontend:sidebar-panel>
 			</c:if>
 

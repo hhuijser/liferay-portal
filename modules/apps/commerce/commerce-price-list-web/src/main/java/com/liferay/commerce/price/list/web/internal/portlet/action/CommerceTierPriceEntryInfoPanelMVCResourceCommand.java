@@ -70,7 +70,7 @@ public class CommerceTierPriceEntryInfoPanelMVCResourceCommand
 
 		include(
 			resourceRequest, resourceResponse,
-			"/tier_price_entry_info_panel.jsp");
+			"/commerce_tier_price_entry_info_panel.jsp");
 	}
 
 	@Reference

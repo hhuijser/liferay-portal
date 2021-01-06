@@ -39,7 +39,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 				resourceURL="<%= sidebarPanelURL %>"
 				searchContainerId="commercePriceLists"
 			>
-				<liferay-util:include page="/price_list_info_panel.jsp" servletContext="<%= application %>" />
+				<liferay-util:include page="/commerce_price_list_info_panel.jsp" servletContext="<%= application %>" />
 			</liferay-frontend:sidebar-panel>
 		</c:if>
 

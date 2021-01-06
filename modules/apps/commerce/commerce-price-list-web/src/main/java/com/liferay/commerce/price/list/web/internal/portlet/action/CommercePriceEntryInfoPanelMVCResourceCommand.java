@@ -67,7 +67,8 @@ public class CommercePriceEntryInfoPanelMVCResourceCommand
 				resourceRequest));
 
 		include(
-			resourceRequest, resourceResponse, "/price_entry_info_panel.jsp");
+			resourceRequest, resourceResponse,
+			"/commerce_price_entry_info_panel.jsp");
 	}
 
 	@Reference

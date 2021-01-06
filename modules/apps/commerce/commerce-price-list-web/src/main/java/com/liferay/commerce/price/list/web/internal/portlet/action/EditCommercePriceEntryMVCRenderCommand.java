@@ -60,7 +60,7 @@ public class EditCommercePriceEntryMVCRenderCommand
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commercePriceEntryDisplayContext);
 
-		return "/edit_price_entry.jsp";
+		return "/edit_commerce_price_entry.jsp";
 	}
 
 	@Reference

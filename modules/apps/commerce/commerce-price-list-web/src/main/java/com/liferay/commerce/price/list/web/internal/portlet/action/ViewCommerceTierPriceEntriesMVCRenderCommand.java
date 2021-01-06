@@ -62,7 +62,7 @@ public class ViewCommerceTierPriceEntriesMVCRenderCommand
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commerceTierPriceEntryDisplayContext);
 
-		return "/tier_price_entries.jsp";
+		return "/view_commerce_tier_price_entries.jsp";
 	}
 
 	@Reference

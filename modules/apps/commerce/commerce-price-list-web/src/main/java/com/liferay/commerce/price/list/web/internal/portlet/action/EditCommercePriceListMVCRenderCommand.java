@@ -70,7 +70,7 @@ public class EditCommercePriceListMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commercePriceListDisplayContext);
 
-		return "/edit_price_list_screen_navigation.jsp";
+		return "/edit_commerce_price_list_screen_navigation.jsp";
 	}
 
 	@Reference

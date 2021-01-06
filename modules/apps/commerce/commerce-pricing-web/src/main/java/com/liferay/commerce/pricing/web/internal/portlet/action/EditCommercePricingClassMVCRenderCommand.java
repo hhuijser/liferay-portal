@@ -42,7 +42,7 @@ public class EditCommercePricingClassMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/pricing_class/edit_pricing_class.jsp";
+		return "/pricing_class/edit_commerce_pricing_class.jsp";
 	}
 
 }

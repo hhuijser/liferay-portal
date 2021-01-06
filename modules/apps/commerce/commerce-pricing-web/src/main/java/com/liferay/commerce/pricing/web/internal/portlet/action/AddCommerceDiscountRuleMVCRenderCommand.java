@@ -42,7 +42,7 @@ public class AddCommerceDiscountRuleMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/discount/rule/add_discount_rule.jsp";
+		return "/discount/rule/add_commerce_discount_rule.jsp";
 	}
 
 }

@@ -59,7 +59,8 @@ public class EditCPDefinitionPricingClassMVCRenderCommand
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
-				"/definition_pricing_class/edit_definition_pricing_class.jsp");
+				"/definition_pricing_class" +
+					"/edit_cp_definition_pricing_class.jsp");
 
 		try {
 			HttpServletRequest httpServletRequest =

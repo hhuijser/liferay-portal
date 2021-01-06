@@ -38,7 +38,7 @@ if ((commercePriceList != null) && (commercePriceList.getExpirationDate() != nul
 	</div>
 </c:if>
 
-<portlet:actionURL name="editCommercePriceList" var="editCommercePriceListActionURL" />
+<portlet:actionURL name="/commerce_price_list/edit_commerce_price_list" var="editCommercePriceListActionURL" />
 
 <aui:form action="<%= editCommercePriceListActionURL %>" cssClass="pt-4" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />

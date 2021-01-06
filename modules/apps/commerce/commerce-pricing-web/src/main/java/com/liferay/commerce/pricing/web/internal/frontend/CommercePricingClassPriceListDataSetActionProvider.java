@@ -86,7 +86,8 @@ public class CommercePricingClassPriceListDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePriceList");
+			"mvcRenderCommandName",
+			"/commerce_price_list/edit_commerce_price_list");
 		portletURL.setParameter(
 			"commercePriceListId", String.valueOf(commercePriceListId));
 		portletURL.setParameter("redirect", redirect);

@@ -20,7 +20,7 @@
 CommercePriceListDisplayContext commercePriceListDisplayContext = (CommercePriceListDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 %>
 
-<portlet:actionURL name="editCommercePriceModifier" var="editCommercePriceModifierActionURL" />
+<portlet:actionURL name="/commerce_price_list/edit_commerce_price_modifier" var="editCommercePriceModifierActionURL" />
 
 <commerce-ui:modal-content
 	title='<%= LanguageUtil.get(request, "add-price-modifier") %>'

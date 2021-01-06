@@ -65,7 +65,8 @@ public class CommercePriceEntryDisplayContext
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "addCommerceTierPriceEntry");
+			"mvcRenderCommandName",
+			"/commerce_price_list/add_commerce_tier_price_entry");
 		portletURL.setParameter(
 			"commercePriceEntryId", String.valueOf(getCommercePriceEntryId()));
 		portletURL.setParameter(
@@ -152,7 +153,8 @@ public class CommercePriceEntryDisplayContext
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePriceEntry");
+			"mvcRenderCommandName",
+			"/commerce_price_list/edit_commerce_price_entry");
 		portletURL.setParameter(
 			"redirect", commercePricingRequestHelper.getCurrentURL());
 		portletURL.setParameter(

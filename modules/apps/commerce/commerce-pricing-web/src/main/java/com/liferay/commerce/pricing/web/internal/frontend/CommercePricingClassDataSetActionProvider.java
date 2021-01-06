@@ -151,7 +151,8 @@ public class CommercePricingClassDataSetActionProvider
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePricingClass");
+			"mvcRenderCommandName",
+			"/commerce_pricing_classes/edit_commerce_pricing_class");
 		portletURL.setParameter(
 			"commercePricingClassId", String.valueOf(pricingClassId));
 		portletURL.setParameter(

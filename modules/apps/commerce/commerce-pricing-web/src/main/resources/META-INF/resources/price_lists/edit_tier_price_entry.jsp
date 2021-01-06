@@ -40,7 +40,7 @@ if ((commerceTierPriceEntry != null) && (commerceTierPriceEntry.getExpirationDat
 }
 %>
 
-<portlet:actionURL name="editCommerceTierPriceEntry" var="editCommerceTierPriceEntryActionURL" />
+<portlet:actionURL name="/commerce_price_list/edit_commerce_tier_price_entry" var="editCommerceTierPriceEntryActionURL" />
 
 <commerce-ui:side-panel-content
 	title='<%= LanguageUtil.get(request, "edit-price-tier") %>'

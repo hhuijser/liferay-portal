@@ -22,7 +22,7 @@ CommercePriceListDisplayContext commercePriceListDisplayContext = (CommercePrice
 CommercePriceList commercePriceList = commercePriceListDisplayContext.getCommercePriceList();
 %>
 
-<portlet:actionURL name="editCommercePriceListExternalReferenceCode" var="editCommercePriceListExternalReferenceCodeURL" />
+<portlet:actionURL name="/commerce_price_list/edit_commerce_price_list_external_reference_code" var="editCommercePriceListExternalReferenceCodeURL" />
 
 <commerce-ui:modal-content>
 	<aui:form action="<%= editCommercePriceListExternalReferenceCodeURL %>" cssClass="container-fluid container-fluid-max-xl p-0" method="post" name="fm">

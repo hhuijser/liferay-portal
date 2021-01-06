@@ -89,7 +89,9 @@ public class CommercePriceListDisplayContext
 	public String getAddCommercePriceListRenderURL() throws Exception {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "addCommercePriceList");
+		portletURL.setParameter(
+			"mvcRenderCommandName",
+			"/commerce_price_list/add_commerce_price_list");
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return portletURL.toString();
@@ -99,7 +101,8 @@ public class CommercePriceListDisplayContext
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "addCommercePriceModifier");
+			"mvcRenderCommandName",
+			"/commerce_price_list/add_commerce_price_modifier");
 		portletURL.setParameter(
 			"commercePriceListId", String.valueOf(getCommercePriceListId()));
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
@@ -186,7 +189,8 @@ public class CommercePriceListDisplayContext
 		ActionURL actionURL = renderResponse.createActionURL();
 
 		actionURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommercePriceList");
+			ActionRequest.ACTION_NAME,
+			"/commerce_price_list/edit_commerce_price_list");
 
 		String saveButtonLabel = "save";
 
@@ -267,7 +271,8 @@ public class CommercePriceListDisplayContext
 		RenderURL portletURL = renderResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePriceList");
+			"mvcRenderCommandName",
+			"/commerce_price_list/edit_commerce_price_list");
 		portletURL.setParameter(
 			"redirect", commercePricingRequestHelper.getCurrentURL());
 		portletURL.setParameter("commercePriceListId", "{id}");

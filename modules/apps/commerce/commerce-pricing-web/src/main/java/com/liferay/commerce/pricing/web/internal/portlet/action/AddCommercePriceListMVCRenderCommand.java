@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + CommercePricingPortletKeys.COMMERCE_PRICE_LIST,
 		"javax.portlet.name=" + CommercePricingPortletKeys.COMMERCE_PROMOTION,
-		"mvc.command.name=addCommercePriceList"
+		"mvc.command.name=/commerce_price_list/add_commerce_price_list"
 	},
 	service = MVCRenderCommand.class
 )

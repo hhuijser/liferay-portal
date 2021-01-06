@@ -24,7 +24,7 @@ CommercePricingClass commercePricingClass = commercePricingClassDisplayContext.g
 long commercePricingClassId = commercePricingClass.getCommercePricingClassId();
 %>
 
-<portlet:actionURL name="editCommercePricingClass" var="editCommercePricingClassActionURL" />
+<portlet:actionURL name="/commerce_pricing_classes/edit_commerce_pricing_class" var="editCommercePricingClassActionURL" />
 
 <aui:form action="<%= editCommercePricingClassActionURL %>" cssClass="pt-4" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commercePricingClass == null) ? Constants.ADD : Constants.UPDATE %>" />

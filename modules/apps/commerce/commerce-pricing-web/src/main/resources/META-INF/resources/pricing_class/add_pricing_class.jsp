@@ -26,7 +26,7 @@ Locale defaultLocale = LocaleUtil.getSiteDefault();
 String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 %>
 
-<portlet:actionURL name="editCommercePricingClass" var="editCommercePricingClassActionURL" />
+<portlet:actionURL name="/commerce_pricing_classes/edit_commerce_pricing_class" var="editCommercePricingClassActionURL" />
 
 <commerce-ui:modal-content
 	title='<%= LanguageUtil.get(request, "add-product-group") %>'

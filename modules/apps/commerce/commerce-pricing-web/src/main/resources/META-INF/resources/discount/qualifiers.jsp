@@ -30,7 +30,7 @@ String channelQualifiers = ParamUtil.getString(request, "channelQualifiers", com
 boolean hasPermission = commerceDiscountQualifiersDisplayContext.hasPermission(ActionKeys.UPDATE);
 %>
 
-<portlet:actionURL name="editCommerceDiscountQualifiers" var="editCommerceDiscountQualifiersActionURL" />
+<portlet:actionURL name="/commerce_discount/edit_commerce_discount_qualifiers" var="editCommerceDiscountQualifiersActionURL" />
 
 <aui:form action="<%= editCommerceDiscountQualifiersActionURL %>" cssClass="pt-4" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceDiscount == null) ? Constants.ADD : Constants.UPDATE %>" />

@@ -23,7 +23,7 @@ List<CommerceCatalog> commerceCatalogs = commercePriceListDisplayContext.getComm
 CommercePriceList commercePriceList = commercePriceListDisplayContext.getCommercePriceList();
 %>
 
-<portlet:actionURL name="editCommercePriceList" var="editCommercePriceListActionURL" />
+<portlet:actionURL name="/commerce_price_list/edit_commerce_price_list" var="editCommercePriceListActionURL" />
 
 <commerce-ui:modal-content
 	title="<%= commercePriceListDisplayContext.getModalContextTitle(portletName) %>"

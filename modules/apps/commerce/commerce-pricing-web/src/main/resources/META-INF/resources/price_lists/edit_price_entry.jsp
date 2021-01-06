@@ -33,7 +33,7 @@ if ((commercePriceEntry != null) && (commercePriceEntry.getExpirationDate() != n
 }
 %>
 
-<portlet:actionURL name="editCommercePriceEntry" var="editCommercePriceEntryActionURL" />
+<portlet:actionURL name="/commerce_price_list/edit_commerce_price_entry" var="editCommercePriceEntryActionURL" />
 
 <commerce-ui:side-panel-content
 	title='<%= LanguageUtil.get(request, "edit-price") %>'

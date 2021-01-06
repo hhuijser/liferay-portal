@@ -70,7 +70,8 @@ public class CPDefinitionPricingClassDisplayContext
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(getCPDefinitionId()));
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePricingClass");
+			"mvcRenderCommandName",
+			"/cp_definitions/edit_commerce_pricing_class");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey());
 

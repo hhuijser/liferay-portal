@@ -32,7 +32,7 @@ portletDisplay.setShowBackIcon(true);
 %>
 
 <liferay-portlet:renderURL var="editCommercePricingClassExternalReferenceCodeURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-	<portlet:param name="mvcRenderCommandName" value="editCommercePricingClassExternalReferenceCode" />
+	<portlet:param name="mvcRenderCommandName" value="/commerce_pricing_classes/edit_commerce_pricing_class_external_reference_code" />
 	<portlet:param name="commercePricingClassId" value="<%= String.valueOf(commercePricingClass.getCommercePricingClassId()) %>" />
 </liferay-portlet:renderURL>
 

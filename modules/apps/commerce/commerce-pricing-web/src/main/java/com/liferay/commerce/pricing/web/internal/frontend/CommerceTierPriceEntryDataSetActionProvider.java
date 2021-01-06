@@ -115,7 +115,8 @@ public class CommerceTierPriceEntryDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceTierPriceEntry");
+			ActionRequest.ACTION_NAME,
+			"/commerce_price_list/edit_commerce_tier_price_entry");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -146,7 +147,8 @@ public class CommerceTierPriceEntryDataSetActionProvider
 			PortletProvider.Action.EDIT);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceTierPriceEntry");
+			"mvcRenderCommandName",
+			"/commerce_price_list/edit_commerce_tier_price_entry");
 		portletURL.setParameter(
 			"redirect", _portal.getCurrentURL(httpServletRequest));
 		portletURL.setParameter(

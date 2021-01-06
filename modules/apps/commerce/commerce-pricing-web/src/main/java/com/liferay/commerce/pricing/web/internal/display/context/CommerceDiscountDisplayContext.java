@@ -107,7 +107,8 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "addCommerceDiscount");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/commerce_discount/add_commerce_discount");
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return portletURL.toString();
@@ -120,7 +121,8 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "addCommerceDiscountRule");
+			"mvcRenderCommandName",
+			"/commerce_discount/add_commerce_discount_rule");
 		portletURL.setParameter(
 			"commerceDiscountId", String.valueOf(getCommerceDiscountId()));
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
@@ -354,7 +356,8 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePricingClass");
+			"mvcRenderCommandName",
+			"/commerce_pricing_classes/edit_commerce_pricing_class");
 		portletURL.setParameter(
 			"redirect", commercePricingRequestHelper.getCurrentURL());
 		portletURL.setParameter("commercePricingClassId", "{productGroupId}");

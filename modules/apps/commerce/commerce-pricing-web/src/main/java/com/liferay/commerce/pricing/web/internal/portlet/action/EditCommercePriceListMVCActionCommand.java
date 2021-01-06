@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + CommercePricingPortletKeys.COMMERCE_PRICE_LIST,
 		"javax.portlet.name=" + CommercePricingPortletKeys.COMMERCE_PROMOTION,
-		"mvc.command.name=editCommercePriceList"
+		"mvc.command.name=/commerce_price_list/edit_commerce_price_list"
 	},
 	service = MVCActionCommand.class
 )
@@ -170,7 +170,8 @@ public class EditCommercePriceListMVCActionCommand
 		}
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePriceList");
+			"mvcRenderCommandName",
+			"/commerce_price_list/edit_commerce_price_list");
 		portletURL.setParameter(
 			"commercePriceListId",
 			String.valueOf(commercePriceList.getCommercePriceListId()));

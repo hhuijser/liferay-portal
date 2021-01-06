@@ -71,7 +71,8 @@ public class CommercePricingClassDisplayContext
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "addCommercePricingClass");
+			"mvcRenderCommandName",
+			"/commerce_pricing_classes/add_commerce_pricing_class");
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return portletURL.toString();
@@ -133,7 +134,8 @@ public class CommercePricingClassDisplayContext
 			PortletRequest.ACTION_PHASE);
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommercePricingClass");
+			ActionRequest.ACTION_NAME,
+			"/commerce_pricing_classes/edit_commerce_pricing_class");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE);
 		portletURL.setParameter(
 			"commercePricingClassId",
@@ -150,7 +152,8 @@ public class CommercePricingClassDisplayContext
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePricingClass");
+			"mvcRenderCommandName",
+			"/commerce_pricing_classes/edit_commerce_pricing_class");
 
 		return portletURL;
 	}

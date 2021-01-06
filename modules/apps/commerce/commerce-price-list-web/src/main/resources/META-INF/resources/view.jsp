@@ -33,7 +33,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 <div id="<portlet:namespace />priceListsContainer">
 	<div class="closed container-fluid container-fluid-max-xl sidenav-container sidenav-right" id="<portlet:namespace />infoPanelId">
 		<c:if test="<%= commercePriceListDisplayContext.isShowInfoPanel() %>">
-			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="commercePriceListInfoPanel" var="sidebarPanelURL" />
+			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/commerce_price_list/commerce_price_list_info_panel" var="sidebarPanelURL" />
 
 			<liferay-frontend:sidebar-panel
 				resourceURL="<%= sidebarPanelURL %>"
@@ -64,7 +64,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 							<%
 							PortletURL rowURL = renderResponse.createRenderURL();
 
-							rowURL.setParameter("mvcRenderCommandName", "editCommercePriceList");
+							rowURL.setParameter("mvcRenderCommandName", "/commerce_price_list/edit_commerce_price_list");
 							rowURL.setParameter("redirect", currentURL);
 							rowURL.setParameter("commercePriceListId", String.valueOf(commercePriceList.getCommercePriceListId()));
 

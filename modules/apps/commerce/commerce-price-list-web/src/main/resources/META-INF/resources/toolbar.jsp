@@ -43,7 +43,7 @@ CommercePriceListDisplayContext commercePriceListDisplayContext = (CommercePrice
 		<c:if test="<%= commercePriceListDisplayContext.hasPermission(CommercePriceListActionKeys.ADD_COMMERCE_PRICE_LIST) %>">
 			<liferay-portlet:renderURL var="addProductDefinitionURL">
 				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
-				<portlet:param name="mvcRenderCommandName" value="editCommercePriceList" />
+				<portlet:param name="mvcRenderCommandName" value="/commerce_price_list/edit_commerce_price_list" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</liferay-portlet:renderURL>
 
@@ -114,7 +114,10 @@ CommercePriceListDisplayContext commercePriceListDisplayContext = (CommercePrice
 				'<portlet:namespace />allRowIds'
 			);
 
-			submitForm(form, '<portlet:actionURL name="editCommercePriceList" />');
+			submitForm(
+				form,
+				'<portlet:actionURL name="/commerce_price_list/edit_commerce_price_list" />'
+			);
 		}
 	}
 </aui:script>

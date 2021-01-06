@@ -184,7 +184,8 @@ public class CommerceTierPriceEntryDisplayContext
 		PortletURL portletURL = super.getPortletURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "viewCommerceTierPriceEntries");
+			"mvcRenderCommandName",
+			"/commerce_price_list/view_commerce_tier_price_entries");
 
 		CommercePriceEntry commercePriceEntry = getCommercePriceEntry();
 

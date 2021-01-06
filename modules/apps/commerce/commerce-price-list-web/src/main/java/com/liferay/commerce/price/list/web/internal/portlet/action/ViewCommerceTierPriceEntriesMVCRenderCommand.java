@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommercePriceListPortletKeys.COMMERCE_PRICE_LIST,
-		"mvc.command.name=viewCommerceTierPriceEntries"
+		"mvc.command.name=/commerce_price_list/view_commerce_tier_price_entries"
 	},
 	service = MVCRenderCommand.class
 )

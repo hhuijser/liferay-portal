@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommercePriceListPortletKeys.COMMERCE_PRICE_LIST,
-		"mvc.command.name=editCommerceTierPriceEntry"
+		"mvc.command.name=/commerce_price_list/edit_commerce_tier_price_entry"
 	},
 	service = MVCActionCommand.class
 )
@@ -141,7 +141,8 @@ public class EditCommerceTierPriceEntryMVCActionCommand
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceTierPriceEntry");
+			"mvcRenderCommandName",
+			"/commerce_price_list/edit_commerce_tier_price_entry");
 
 		long commercePriceEntryId = ParamUtil.getLong(
 			actionRequest, "commercePriceEntryId");

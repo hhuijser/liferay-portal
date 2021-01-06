@@ -117,7 +117,8 @@ public class CPInstancePriceEntryDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCPInstanceCommercePriceEntry");
+			ActionRequest.ACTION_NAME,
+			"/cp_definitions/edit_cp_instance_commerce_price_entry");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -142,8 +143,11 @@ public class CPInstancePriceEntryDataSetActionProvider
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCPInstanceCommercePriceEntry");
-		portletURL.setParameter("redirect", "editCPInstanceCommercePriceEntry");
+			"mvcRenderCommandName",
+			"/cp_definitions/edit_cp_instance_commerce_price_entry");
+		portletURL.setParameter(
+			"redirect",
+			"/cp_definitions/edit_cp_instance_commerce_price_entry");
 		portletURL.setParameter(
 			"commercePriceEntryId",
 			String.valueOf(commercePriceEntry.getCommercePriceEntryId()));

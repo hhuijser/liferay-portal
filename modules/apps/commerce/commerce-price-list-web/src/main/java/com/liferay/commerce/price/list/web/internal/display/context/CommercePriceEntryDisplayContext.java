@@ -140,7 +140,8 @@ public class CommercePriceEntryDisplayContext
 		PortletURL portletURL = super.getPortletURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommercePriceList");
+			"mvcRenderCommandName",
+			"/commerce_price_list/edit_commerce_price_list");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey());
 

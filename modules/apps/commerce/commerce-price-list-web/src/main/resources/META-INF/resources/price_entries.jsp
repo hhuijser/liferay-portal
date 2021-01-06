@@ -45,7 +45,7 @@ PortletURL portletURL = commercePriceEntryDisplayContext.getPortletURL();
 				selectedDisplayStyle="list"
 			/>
 
-			<portlet:actionURL name="editCommercePriceEntry" var="addCommercePriceEntryURL" />
+			<portlet:actionURL name="/commerce_price_list/edit_commerce_price_entry" var="addCommercePriceEntryURL" />
 
 			<aui:form action="<%= addCommercePriceEntryURL %>" cssClass="hide" name="addCommercePriceEntryFm">
 				<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD_MULTIPLE %>" />
@@ -102,13 +102,13 @@ PortletURL portletURL = commercePriceEntryDisplayContext.getPortletURL();
 	<div id="<portlet:namespace />priceEntriesContainer">
 		<div class="closed container-fluid container-fluid-max-xl sidenav-container sidenav-right" id="<portlet:namespace />infoPanelId">
 			<c:if test="<%= commercePriceEntryDisplayContext.isShowInfoPanel() %>">
-				<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="commercePriceEntryInfoPanel" var="sidebarPanelURL" />
+				<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/commerce_price_list/commerce_price_entry_info_panel" var="sidebarPanelURL" />
 
 				<liferay-frontend:sidebar-panel
 					resourceURL="<%= sidebarPanelURL %>"
 					searchContainerId="commercePriceEntries"
 				>
-					<liferay-util:include page="/price_entry_info_panel.jsp" servletContext="<%= application %>" />
+					<liferay-util:include page="/commerce_price_entry_info_panel.jsp" servletContext="<%= application %>" />
 				</liferay-frontend:sidebar-panel>
 			</c:if>
 
@@ -141,7 +141,7 @@ PortletURL portletURL = commercePriceEntryDisplayContext.getPortletURL();
 								<%
 								PortletURL rowURL = renderResponse.createRenderURL();
 
-								rowURL.setParameter("mvcRenderCommandName", "editCommercePriceEntry");
+								rowURL.setParameter("mvcRenderCommandName", "/commerce_price_list/edit_commerce_price_entry");
 								rowURL.setParameter("commercePriceEntryId", String.valueOf(commercePriceEntry.getCommercePriceEntryId()));
 								rowURL.setParameter("commercePriceListId", String.valueOf(commercePriceEntry.getCommercePriceListId()));
 
@@ -211,7 +211,10 @@ PortletURL portletURL = commercePriceEntryDisplayContext.getPortletURL();
 					'<portlet:namespace />allRowIds'
 				);
 
-				submitForm(form, '<portlet:actionURL name="editCommercePriceEntry" />');
+				submitForm(
+					form,
+					'<portlet:actionURL name="/commerce_price_list/edit_commerce_price_entry" />'
+				);
 			}
 		}
 	</aui:script>

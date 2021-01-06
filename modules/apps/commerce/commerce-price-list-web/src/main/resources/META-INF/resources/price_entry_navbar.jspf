@@ -15,14 +15,14 @@
 --%>
 
 <liferay-portlet:renderURL varImpl="viewCommercePriceEntryDetailsURL">
-	<portlet:param name="mvcRenderCommandName" value="editCommercePriceEntry" />
+	<portlet:param name="mvcRenderCommandName" value="/commerce_price_list/edit_commerce_price_entry" />
 	<portlet:param name="commercePriceEntryId" value="<%= String.valueOf(commercePriceEntryId) %>" />
 	<portlet:param name="commercePriceListId" value="<%= String.valueOf(commercePriceListId) %>" />
 	<portlet:param name="toolbarItem" value="view-price-entry-details" />
 </liferay-portlet:renderURL>
 
 <liferay-portlet:renderURL varImpl="viewCommerceTierPriceEntriesURL">
-	<portlet:param name="mvcRenderCommandName" value="viewCommerceTierPriceEntries" />
+	<portlet:param name="mvcRenderCommandName" value="/commerce_price_list/view_commerce_tier_price_entries" />
 	<portlet:param name="commercePriceEntryId" value="<%= String.valueOf(commercePriceEntryId) %>" />
 	<portlet:param name="commercePriceListId" value="<%= String.valueOf(commercePriceListId) %>" />
 	<portlet:param name="toolbarItem" value="view-tier-price-entries" />

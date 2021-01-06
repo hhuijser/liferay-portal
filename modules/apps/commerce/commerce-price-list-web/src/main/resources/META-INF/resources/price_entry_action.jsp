@@ -40,7 +40,7 @@ else {
 >
 	<c:if test="<%= commercePriceEntryDisplayContext.hasPermission(commercePriceEntry.getCommercePriceListId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editCommercePriceEntry" />
+			<portlet:param name="mvcRenderCommandName" value="/commerce_price_list/edit_commerce_price_entry" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commercePriceEntryId" value="<%= String.valueOf(commercePriceEntry.getCommercePriceEntryId()) %>" />
 			<portlet:param name="commercePriceListId" value="<%= String.valueOf(commercePriceEntry.getCommercePriceListId()) %>" />
@@ -51,7 +51,7 @@ else {
 			url="<%= editURL %>"
 		/>
 
-		<portlet:actionURL name="editCommercePriceEntry" var="deleteURL">
+		<portlet:actionURL name="/commerce_price_list/edit_commerce_price_entry" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commercePriceEntryId" value="<%= String.valueOf(commercePriceEntry.getCommercePriceEntryId()) %>" />

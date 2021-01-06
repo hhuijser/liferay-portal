@@ -30,7 +30,7 @@ productSkusURL.setParameter("cpDefinitionId", String.valueOf(cpInstanceCommerceP
 productSkusURL.setParameter("screenNavigationCategoryKey", "skus");
 %>
 
-<portlet:actionURL name="editCPInstanceCommercePriceEntry" var="addCommercePriceEntryURL" />
+<portlet:actionURL name="/cp_definitions/edit_cp_instance_commerce_price_entry" var="addCommercePriceEntryURL" />
 
 <aui:form action="<%= addCommercePriceEntryURL %>" cssClass="hide" name="addCommercePriceEntryFm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD_MULTIPLE %>" />

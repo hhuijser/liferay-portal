@@ -202,7 +202,8 @@ public class CPInstanceCommerceTierPriceEntryDisplayContext
 		RenderURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCPInstanceCommerceTierPriceEntry");
+			"mvcRenderCommandName",
+			"/cp_definitions/edit_cp_instance_commerce_tier_price_entry");
 		portletURL.setParameter("redirect", cpRequestHelper.getCurrentURL());
 		portletURL.setParameter(
 			"commercePriceEntryId", String.valueOf(getCommercePriceEntryId()));

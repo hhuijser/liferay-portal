@@ -25,7 +25,7 @@ long commercePriceEntryId = commercePriceEntry.getCommercePriceEntryId();
 CommercePriceList commercePriceList = commercePriceEntry.getCommercePriceList();
 %>
 
-<portlet:actionURL name="editCPInstanceCommercePriceEntry" var="editCommercePriceEntryActionURL" />
+<portlet:actionURL name="/cp_definitions/edit_cp_instance_commerce_price_entry" var="editCommercePriceEntryActionURL" />
 
 <aui:form action="<%= editCommercePriceEntryActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />

@@ -197,7 +197,9 @@ public class CommerceVirtualOrderItemContentDisplayContext {
 			"commerceVirtualOrderItemId",
 			String.valueOf(commerceVirtualOrderItemId));
 
-		resourceURL.setResourceID("downloadCommerceVirtualOrderItem");
+		resourceURL.setResourceID(
+			"/commerce_virtual_order_item_content" +
+				"/download_commerce_virtual_order_item");
 
 		return resourceURL;
 	}
@@ -225,7 +227,9 @@ public class CommerceVirtualOrderItemContentDisplayContext {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "viewCommerceVirtualOrderItemTermsOfUse");
+			"mvcRenderCommandName",
+			"/commerce_virtual_order_item_content" +
+				"/view_commerce_virtual_order_item_terms_of_use");
 		portletURL.setParameter(
 			"commerceVirtualOrderItemId",
 			String.valueOf(

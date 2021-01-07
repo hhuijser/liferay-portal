@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommerceVirtualOrderPortletKeys.COMMERCE_VIRTUAL_ORDER_ITEM_CONTENT,
-		"mvc.command.name=viewCommerceVirtualOrderItemTermsOfUse"
+		"mvc.command.name=/commerce_virtual_order_item_content/view_commerce_virtual_order_item_terms_of_use"
 	},
 	service = MVCRenderCommand.class
 )

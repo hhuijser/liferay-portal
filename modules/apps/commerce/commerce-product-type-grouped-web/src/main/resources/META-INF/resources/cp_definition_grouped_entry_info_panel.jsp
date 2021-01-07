@@ -46,7 +46,7 @@ if (cpDefinitionGroupedEntries == null) {
 				<div class="autofit-col">
 					<ul class="autofit-padded-no-gutters autofit-row">
 						<li class="autofit-col">
-							<liferay-util:include page="/definition_grouped_entry_action.jsp" servletContext="<%= application %>" />
+							<liferay-util:include page="/cp_definition_grouped_entry_action.jsp" servletContext="<%= application %>" />
 						</li>
 					</ul>
 				</div>

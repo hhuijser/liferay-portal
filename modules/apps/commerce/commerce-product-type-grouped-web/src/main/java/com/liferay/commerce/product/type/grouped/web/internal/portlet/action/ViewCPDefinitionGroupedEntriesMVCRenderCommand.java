@@ -57,7 +57,7 @@ public class ViewCPDefinitionGroupedEntriesMVCRenderCommand
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
-				"/view_definition_grouped_entries.jsp");
+				"/view_cp_definition_grouped_entries.jsp");
 
 		try {
 			HttpServletRequest httpServletRequest =

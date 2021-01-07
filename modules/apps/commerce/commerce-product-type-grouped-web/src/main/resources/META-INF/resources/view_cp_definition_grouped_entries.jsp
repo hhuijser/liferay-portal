@@ -111,7 +111,7 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 				resourceURL="<%= sidebarPanelURL %>"
 				searchContainerId="cpDefinitionGroupedEntries"
 			>
-				<liferay-util:include page="/definition_grouped_entry_info_panel.jsp" servletContext="<%= application %>" />
+				<liferay-util:include page="/cp_definition_grouped_entry_info_panel.jsp" servletContext="<%= application %>" />
 			</liferay-frontend:sidebar-panel>
 		</c:if>
 
@@ -165,7 +165,7 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 
 							<liferay-ui:search-container-column-jsp
 								cssClass="entry-action-column"
-								path="/definition_grouped_entry_action.jsp"
+								path="/cp_definition_grouped_entry_action.jsp"
 							/>
 						</liferay-ui:search-container-row>
 

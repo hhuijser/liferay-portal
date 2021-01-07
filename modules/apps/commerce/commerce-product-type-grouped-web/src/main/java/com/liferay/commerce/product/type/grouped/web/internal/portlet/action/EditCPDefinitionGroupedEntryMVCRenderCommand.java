@@ -57,7 +57,7 @@ public class EditCPDefinitionGroupedEntryMVCRenderCommand
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
-				"/edit_definition_grouped_entry.jsp");
+				"/edit_cp_definition_grouped_entry.jsp");
 
 		try {
 			HttpServletRequest httpServletRequest =

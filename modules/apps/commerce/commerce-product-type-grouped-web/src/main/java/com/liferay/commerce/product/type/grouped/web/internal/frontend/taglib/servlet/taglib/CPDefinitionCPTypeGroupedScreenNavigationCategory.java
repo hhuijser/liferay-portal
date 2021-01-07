@@ -116,7 +116,7 @@ public class CPDefinitionCPTypeGroupedScreenNavigationCategory
 
 		_jspRenderer.renderJSP(
 			_setServletContext, httpServletRequest, httpServletResponse,
-			"/view_definition_grouped_entries.jsp");
+			"/view_cp_definition_grouped_entries.jsp");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

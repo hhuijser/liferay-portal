@@ -58,7 +58,7 @@ public class EditCPDefinitionLinkMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, cpDefinitionLinkDisplayContext);
 
-		return "/edit_definition_link.jsp";
+		return "/edit_cp_definition_link.jsp";
 	}
 
 	@Reference

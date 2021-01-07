@@ -63,7 +63,7 @@ public class ViewCPInstancesMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, cpInstanceDisplayContext);
 
-		return "/view_instances.jsp";
+		return "/view_cp_instances.jsp";
 	}
 
 	@Reference

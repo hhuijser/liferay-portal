@@ -28,4 +28,4 @@ int type = CPAttachmentFileEntryConstants.TYPE_IMAGE;
 String title = (cpAttachmentFileEntry == null) ? LanguageUtil.get(request, "add-image") : LanguageUtil.format(request, "id-x", String.valueOf(cpAttachmentFileEntry.getCPAttachmentFileEntryId()), false);
 %>
 
-<%@ include file="/edit_attachment_file_entry.jspf" %>
+<%@ include file="/edit_cp_attachment_file_entry.jspf" %>

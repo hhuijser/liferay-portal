@@ -97,10 +97,10 @@ public class EditCPAttachmentFileEntryMVCRenderCommand
 			renderRequest, "type", CPAttachmentFileEntryConstants.TYPE_IMAGE);
 
 		if (type == CPAttachmentFileEntryConstants.TYPE_IMAGE) {
-			return "/edit_attachment_file_entry_image.jsp";
+			return "/edit_cp_attachment_file_entry_image.jsp";
 		}
 
-		return "/edit_attachment_file_entry_attachment.jsp";
+		return "/edit_cp_attachment_file_entry_attachment.jsp";
 	}
 
 	@Activate

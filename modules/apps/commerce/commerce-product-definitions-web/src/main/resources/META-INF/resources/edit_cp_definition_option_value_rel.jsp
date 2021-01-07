@@ -30,7 +30,7 @@ CPDefinitionOptionValueRel cpDefinitionOptionValueRel = cpDefinitionOptionValueR
 			title='<%= LanguageUtil.get(request, "add-value") %>'
 		>
 			<aui:form action="<%= editProductDefinitionOptionValueRelActionURL %>" method="post" name="cpDefinitionOptionValueRelfm">
-				<%@ include file="/edit_definition_option_value_rel.jspf" %>
+				<%@ include file="/edit_cp_definition_option_value_rel.jspf" %>
 
 				<c:if test="<%= cpDefinitionOptionValueRelDisplayContext.hasCustomAttributesAvailable() %>">
 					<liferay-expando:custom-attribute-list
@@ -51,7 +51,7 @@ CPDefinitionOptionValueRel cpDefinitionOptionValueRel = cpDefinitionOptionValueR
 				<commerce-ui:panel
 					title='<%= LanguageUtil.get(request, "details") %>'
 				>
-					<%@ include file="/edit_definition_option_value_rel.jspf" %>
+					<%@ include file="/edit_cp_definition_option_value_rel.jspf" %>
 				</commerce-ui:panel>
 
 				<c:if test="<%= cpDefinitionOptionValueRelDisplayContext.hasCustomAttributesAvailable() %>">

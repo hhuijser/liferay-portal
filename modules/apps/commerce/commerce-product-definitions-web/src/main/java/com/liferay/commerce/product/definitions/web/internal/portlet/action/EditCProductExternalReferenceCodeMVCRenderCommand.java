@@ -62,7 +62,7 @@ public class EditCProductExternalReferenceCodeMVCRenderCommand
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, cpDefinitionsDisplayContext);
 
-		return "/definition/external_reference_code.jsp";
+		return "/definition/edit_c_product_external_reference_code.jsp";
 	}
 
 	@Reference

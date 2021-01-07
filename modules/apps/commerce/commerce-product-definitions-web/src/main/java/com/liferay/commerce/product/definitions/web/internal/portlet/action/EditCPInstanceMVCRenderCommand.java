@@ -80,7 +80,7 @@ public class EditCPInstanceMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(exception);
 		}
 
-		return "/edit_instance.jsp";
+		return "/edit_cp_instance.jsp";
 	}
 
 	@Reference

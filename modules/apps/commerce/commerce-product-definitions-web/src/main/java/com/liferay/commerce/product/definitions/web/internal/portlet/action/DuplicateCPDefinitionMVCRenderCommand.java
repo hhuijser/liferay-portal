@@ -61,7 +61,7 @@ public class DuplicateCPDefinitionMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, cpDefinitionsDisplayContext);
 
-		return "/definition/duplicate_product.jsp";
+		return "/definition/duplicate_cp_definition.jsp";
 	}
 
 	@Reference

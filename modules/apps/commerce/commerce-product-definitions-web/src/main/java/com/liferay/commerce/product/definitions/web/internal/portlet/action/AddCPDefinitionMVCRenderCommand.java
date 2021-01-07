@@ -81,7 +81,7 @@ public class AddCPDefinitionMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(exception);
 		}
 
-		return "/definition/add_definition.jsp";
+		return "/definition/add_cp_definition.jsp";
 	}
 
 	protected void setCPDefinitionRequestAttribute(RenderRequest renderRequest)

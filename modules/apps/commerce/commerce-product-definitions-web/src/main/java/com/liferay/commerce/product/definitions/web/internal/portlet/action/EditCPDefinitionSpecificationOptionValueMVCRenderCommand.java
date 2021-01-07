@@ -77,7 +77,7 @@ public class EditCPDefinitionSpecificationOptionValueMVCRenderCommand
 			throw new PortletException(exception);
 		}
 
-		return "/edit_definition_specification_option_value.jsp";
+		return "/edit_cp_definition_specification_option_value.jsp";
 	}
 
 	@Reference

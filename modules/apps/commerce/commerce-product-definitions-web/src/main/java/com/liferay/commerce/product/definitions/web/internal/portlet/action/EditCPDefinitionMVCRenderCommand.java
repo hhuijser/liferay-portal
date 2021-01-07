@@ -82,7 +82,7 @@ public class EditCPDefinitionMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(exception);
 		}
 
-		return "/edit_definition.jsp";
+		return "/edit_cp_definition.jsp";
 	}
 
 	protected void setCPDefinitionRequestAttribute(RenderRequest renderRequest)

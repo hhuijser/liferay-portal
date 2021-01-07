@@ -60,7 +60,7 @@ public class EditCPDefinitionOptionValueRelMVCRenderCommand
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			cpDefinitionOptionValueRelDisplayContext);
 
-		return "/edit_definition_option_value_rel.jsp";
+		return "/edit_cp_definition_option_value_rel.jsp";
 	}
 
 	@Reference

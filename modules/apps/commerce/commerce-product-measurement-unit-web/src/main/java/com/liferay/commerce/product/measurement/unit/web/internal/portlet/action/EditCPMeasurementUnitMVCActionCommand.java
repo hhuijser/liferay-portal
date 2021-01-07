@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_MEASUREMENT_UNIT,
-		"mvc.command.name=editCPMeasurementUnit"
+		"mvc.command.name=/cp_measurement_unit/edit_cp_measurement_unit"
 	},
 	service = MVCActionCommand.class
 )
@@ -111,7 +111,8 @@ public class EditCPMeasurementUnitMVCActionCommand
 				SessionErrors.add(actionRequest, exception.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editCPMeasurementUnit");
+					"mvcRenderCommandName",
+					"/cp_measurement_unit/edit_cp_measurement_unit");
 			}
 			else {
 				throw exception;

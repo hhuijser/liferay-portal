@@ -33,7 +33,7 @@ CPMeasurementUnit cpMeasurementUnit = (CPMeasurementUnit)row.getObject();
 >
 	<c:if test="<%= cpMeasurementUnitsDisplayContext.hasManageCPMeasurementUnitsPermission() %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editCPMeasurementUnit" />
+			<portlet:param name="mvcRenderCommandName" value="/cp_measurement_unit/edit_cp_measurement_unit" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="cpMeasurementUnitId" value="<%= String.valueOf(cpMeasurementUnit.getCPMeasurementUnitId()) %>" />
 			<portlet:param name="type" value="<%= String.valueOf(cpMeasurementUnit.getType()) %>" />
@@ -44,7 +44,7 @@ CPMeasurementUnit cpMeasurementUnit = (CPMeasurementUnit)row.getObject();
 			url="<%= editURL %>"
 		/>
 
-		<portlet:actionURL name="editCPMeasurementUnit" var="setPrimaryURL">
+		<portlet:actionURL name="/cp_measurement_unit/edit_cp_measurement_unit" var="setPrimaryURL">
 			<portlet:param name="<%= Constants.CMD %>" value="setPrimary" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="cpMeasurementUnitId" value="<%= String.valueOf(cpMeasurementUnit.getCPMeasurementUnitId()) %>" />
@@ -56,7 +56,7 @@ CPMeasurementUnit cpMeasurementUnit = (CPMeasurementUnit)row.getObject();
 			url="<%= setPrimaryURL %>"
 		/>
 
-		<portlet:actionURL name="editCPMeasurementUnit" var="deleteURL">
+		<portlet:actionURL name="/cp_measurement_unit/edit_cp_measurement_unit" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="cpMeasurementUnitId" value="<%= String.valueOf(cpMeasurementUnit.getCPMeasurementUnitId()) %>" />

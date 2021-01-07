@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=com_liferay_asset_categories_admin_web_portlet_AssetCategoriesAdminPortlet",
-		"mvc.command.name=editAssetCategoryFriendlyURL"
+		"mvc.command.name=/asset_categories_admin/edit_asset_category_friendly_url"
 	},
 	service = MVCActionCommand.class
 )

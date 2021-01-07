@@ -66,7 +66,7 @@ public class EditCPOptionMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(exception);
 		}
 
-		return "/edit_option.jsp";
+		return "/edit_cp_option.jsp";
 	}
 
 	@Reference

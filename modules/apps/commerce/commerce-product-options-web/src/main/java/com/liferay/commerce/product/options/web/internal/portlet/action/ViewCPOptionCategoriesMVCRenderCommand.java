@@ -78,7 +78,7 @@ public class ViewCPOptionCategoriesMVCRenderCommand
 			throw new PortletException(exception);
 		}
 
-		return "/view_option_categories.jsp";
+		return "/view_cp_option_categories.jsp";
 	}
 
 	protected void setCPOptionCategoryRequestAttribute(

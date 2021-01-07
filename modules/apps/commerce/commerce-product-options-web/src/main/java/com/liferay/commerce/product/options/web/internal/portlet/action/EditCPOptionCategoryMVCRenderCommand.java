@@ -77,7 +77,7 @@ public class EditCPOptionCategoryMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(exception);
 		}
 
-		return "/edit_option_category.jsp";
+		return "/edit_cp_option_category.jsp";
 	}
 
 	protected void setCPOptionCategoryRequestAttribute(

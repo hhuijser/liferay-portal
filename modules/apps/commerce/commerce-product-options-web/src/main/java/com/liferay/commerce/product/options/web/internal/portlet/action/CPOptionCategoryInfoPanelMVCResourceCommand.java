@@ -50,7 +50,7 @@ public class CPOptionCategoryInfoPanelMVCResourceCommand
 
 		include(
 			resourceRequest, resourceResponse,
-			"/option_category_info_panel.jsp");
+			"/cp_option_category_info_panel.jsp");
 	}
 
 	@Reference

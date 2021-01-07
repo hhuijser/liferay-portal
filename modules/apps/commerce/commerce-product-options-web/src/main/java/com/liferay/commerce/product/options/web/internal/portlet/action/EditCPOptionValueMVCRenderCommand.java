@@ -65,7 +65,7 @@ public class EditCPOptionValueMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(exception);
 		}
 
-		return "/edit_option_value.jsp";
+		return "/edit_cp_option_value.jsp";
 	}
 
 	protected void setCPOptionValueRequestAttribute(RenderRequest renderRequest)

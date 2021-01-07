@@ -66,7 +66,7 @@ public class EditCPSpecificationOptionMVCRenderCommand
 			throw new PortletException(exception);
 		}
 
-		return "/edit_specification_option.jsp";
+		return "/edit_cp_specification_option.jsp";
 	}
 
 	protected void setCPSpecificationOptionRequestAttribute(

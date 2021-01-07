@@ -108,7 +108,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 				resourceURL="<%= sidebarPanelURL %>"
 				searchContainerId="cpOptionCategories"
 			>
-				<liferay-util:include page="/option_category_info_panel.jsp" servletContext="<%= application %>" />
+				<liferay-util:include page="/cp_option_category_info_panel.jsp" servletContext="<%= application %>" />
 			</liferay-frontend:sidebar-panel>
 		</c:if>
 

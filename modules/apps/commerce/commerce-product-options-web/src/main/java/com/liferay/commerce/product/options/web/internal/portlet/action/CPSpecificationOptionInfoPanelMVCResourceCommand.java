@@ -50,7 +50,7 @@ public class CPSpecificationOptionInfoPanelMVCResourceCommand
 
 		include(
 			resourceRequest, resourceResponse,
-			"/specification_option_info_panel.jsp");
+			"/cp_specification_option_info_panel.jsp");
 	}
 
 	@Reference

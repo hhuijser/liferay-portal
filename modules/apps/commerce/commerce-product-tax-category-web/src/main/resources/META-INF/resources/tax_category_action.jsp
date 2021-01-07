@@ -33,7 +33,7 @@ CPTaxCategory cpTaxCategory = (CPTaxCategory)row.getObject();
 >
 	<c:if test="<%= cpTaxCategoryDisplayContext.hasManageCPTaxCategoriesPermission() %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editCPTaxCategory" />
+			<portlet:param name="mvcRenderCommandName" value="/cp_tax_category/edit_cp_tax_category" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="cpTaxCategoryId" value="<%= String.valueOf(cpTaxCategory.getCPTaxCategoryId()) %>" />
 		</portlet:renderURL>
@@ -43,7 +43,7 @@ CPTaxCategory cpTaxCategory = (CPTaxCategory)row.getObject();
 			url="<%= editURL %>"
 		/>
 
-		<portlet:actionURL name="editCPTaxCategory" var="deleteURL">
+		<portlet:actionURL name="/cp_tax_category/edit_cp_tax_category" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="cpTaxCategoryId" value="<%= String.valueOf(cpTaxCategory.getCPTaxCategoryId()) %>" />

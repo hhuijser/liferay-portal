@@ -47,7 +47,7 @@ CPTaxCategoryDisplayContext cpTaxCategoryDisplayContext = (CPTaxCategoryDisplayC
 			/>
 
 			<portlet:renderURL var="addCPTaxCategoryURL">
-				<portlet:param name="mvcRenderCommandName" value="editCPTaxCategory" />
+				<portlet:param name="mvcRenderCommandName" value="/cp_tax_category/edit_cp_tax_category" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</portlet:renderURL>
 
@@ -71,7 +71,7 @@ CPTaxCategoryDisplayContext cpTaxCategoryDisplayContext = (CPTaxCategoryDisplayC
 	</liferay-frontend:management-bar>
 
 	<div class="container-fluid container-fluid-max-xl">
-		<portlet:actionURL name="editCPTaxCategory" var="editCPTaxCategoryActionURL" />
+		<portlet:actionURL name="/cp_tax_category/edit_cp_tax_category" var="editCPTaxCategoryActionURL" />
 
 		<aui:form action="<%= editCPTaxCategoryActionURL %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.DELETE %>" />
@@ -91,7 +91,7 @@ CPTaxCategoryDisplayContext cpTaxCategoryDisplayContext = (CPTaxCategoryDisplayC
 					<%
 					PortletURL rowURL = renderResponse.createRenderURL();
 
-					rowURL.setParameter("mvcRenderCommandName", "editCPTaxCategory");
+					rowURL.setParameter("mvcRenderCommandName", "/cp_tax_category/edit_cp_tax_category");
 					rowURL.setParameter("redirect", currentURL);
 					rowURL.setParameter("cpTaxCategoryId", String.valueOf(cpTaxCategory.getCPTaxCategoryId()));
 					%>

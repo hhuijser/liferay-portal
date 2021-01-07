@@ -33,7 +33,7 @@ else {
 }
 %>
 
-<portlet:actionURL name="editCPTaxCategory" var="editCPTaxCategoryActionURL" />
+<portlet:actionURL name="/cp_tax_category/edit_cp_tax_category" var="editCPTaxCategoryActionURL" />
 
 <aui:form action="<%= editCPTaxCategoryActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (cpTaxCategory == null) ? Constants.ADD : Constants.UPDATE %>" />

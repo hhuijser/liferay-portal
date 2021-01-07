@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 	enabled = false,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_TAX_CATEGORY,
-		"mvc.command.name=editCPTaxCategory"
+		"mvc.command.name=/cp_tax_category/edit_cp_tax_category"
 	},
 	service = MVCRenderCommand.class
 )

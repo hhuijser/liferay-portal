@@ -65,7 +65,8 @@ public class EditAssetCategoryCPAttachmentFileEntryMVCRenderCommand
 		throws PortletException {
 
 		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher("/edit_image.jsp");
+			_servletContext.getRequestDispatcher(
+				"/edit_asset_category_cp_attachment_file_entry.jsp");
 
 		try {
 			HttpServletRequest httpServletRequest =

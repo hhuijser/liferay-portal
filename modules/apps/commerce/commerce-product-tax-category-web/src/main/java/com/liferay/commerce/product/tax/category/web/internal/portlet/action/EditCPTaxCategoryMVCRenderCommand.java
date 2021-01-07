@@ -41,7 +41,7 @@ public class EditCPTaxCategoryMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_tax_category.jsp";
+		return "/edit_cp_tax_category.jsp";
 	}
 
 }

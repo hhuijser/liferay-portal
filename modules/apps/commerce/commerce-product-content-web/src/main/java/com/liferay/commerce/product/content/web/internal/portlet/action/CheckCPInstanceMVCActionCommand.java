@@ -68,7 +68,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_CONTENT_WEB,
-		"mvc.command.name=checkCPInstance"
+		"mvc.command.name=/cp_content_web/check_cp_instance"
 	},
 	service = MVCActionCommand.class
 )

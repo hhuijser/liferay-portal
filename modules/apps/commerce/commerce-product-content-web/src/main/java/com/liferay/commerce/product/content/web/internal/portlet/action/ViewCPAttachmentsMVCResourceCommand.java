@@ -50,7 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_CONTENT_WEB,
-		"mvc.command.name=viewCPAttachments"
+		"mvc.command.name=/cp_content_web/view_cp_attachments"
 	},
 	service = MVCResourceCommand.class
 )

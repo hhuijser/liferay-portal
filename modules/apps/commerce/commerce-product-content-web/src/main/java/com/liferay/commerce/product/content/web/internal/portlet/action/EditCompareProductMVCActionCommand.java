@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_COMPARE_CONTENT_WEB,
-		"mvc.command.name=editCompareProduct"
+		"mvc.command.name=/cp_compare_content_web/edit_compare_product"
 	},
 	service = MVCActionCommand.class
 )

@@ -164,7 +164,7 @@ public class MiniumCPCompareListRenderer implements CPContentListRenderer {
 						PortletRequest.ACTION_PHASE);
 
 				editCompareProductActionURL.setParameter(
-					ActionRequest.ACTION_NAME, "editCompareProduct");
+					ActionRequest.ACTION_NAME, "/cp_compare_content_web/edit_compare_product");
 
 				return editCompareProductActionURL.toString();
 			}

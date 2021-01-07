@@ -424,7 +424,7 @@ public class CPContentHelperImpl implements CPContentHelper {
 				String.valueOf(cpCatalogEntry.getCPDefinitionId()));
 		}
 
-		resourceURL.setResourceID("viewCPAttachments");
+		resourceURL.setResourceID("/cp_content_web/view_cp_attachments");
 
 		return resourceURL;
 	}

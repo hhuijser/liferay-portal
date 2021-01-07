@@ -300,7 +300,7 @@ String productContentAuthToken = AuthTokenUtil.getToken(request, plid, CPPortlet
 	});
 </aui:script>
 
-<liferay-portlet:actionURL name="checkCPInstance" portletName="com_liferay_commerce_product_content_web_internal_portlet_CPContentPortlet" var="checkCPInstanceURL">
+<liferay-portlet:actionURL name="/cp_content_web/check_cp_instance" portletName="com_liferay_commerce_product_content_web_internal_portlet_CPContentPortlet" var="checkCPInstanceURL">
 	<portlet:param name="cpDefinitionId" value="<%= String.valueOf(cpDefinitionId) %>" />
 	<portlet:param name="groupId" value="<%= String.valueOf(themeDisplay.getScopeGroupId()) %>" />
 </liferay-portlet:actionURL>

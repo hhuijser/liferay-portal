@@ -23,7 +23,7 @@ long cpDefinitionId = (long)request.getAttribute("liferay-commerce:compare-produ
 String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_commerce_compare_product_page") + StringPool.UNDERLINE;
 %>
 
-<liferay-portlet:actionURL name="editCompareProduct" portletName="<%= CPPortletKeys.CP_COMPARE_CONTENT_WEB %>" var="editCompareProductActionURL" />
+<liferay-portlet:actionURL name="/cp_compare_content_web/edit_compare_product" portletName="<%= CPPortletKeys.CP_COMPARE_CONTENT_WEB %>" var="editCompareProductActionURL" />
 
 <div class="commerce-compare-product-container">
 	<aui:form action="<%= editCompareProductActionURL %>" name='<%= randomNamespace + "Fm" %>' portletNamespace="<%= PortalUtil.getPortletNamespace(CPPortletKeys.CP_COMPARE_CONTENT_WEB) %>">

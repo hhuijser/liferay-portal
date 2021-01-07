@@ -93,7 +93,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 		PortletURL portletURL = renderResponse.createActionURL();
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "clearCompareProducts");
+			ActionRequest.ACTION_NAME, "/cp_compare_content_mini_web/clear_compare_products");
 
 		String redirect = _portal.getCurrentURL(renderRequest);
 
@@ -232,7 +232,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 		PortletURL portletURL = renderResponse.createActionURL();
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "deleteCompareProduct");
+			ActionRequest.ACTION_NAME, "/cp_compare_content_mini_web/delete_compare_product");
 
 		String redirect = _portal.getCurrentURL(renderRequest);
 

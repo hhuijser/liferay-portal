@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_COMPARE_CONTENT_MINI_WEB,
 		"javax.portlet.name=" + CPPortletKeys.CP_COMPARE_CONTENT_WEB,
-		"mvc.command.name=deleteCompareProduct"
+		"mvc.command.name=/cp_compare_content_mini_web/delete_compare_product"
 	},
 	service = MVCActionCommand.class
 )

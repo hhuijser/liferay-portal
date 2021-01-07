@@ -54,7 +54,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 
 		<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, CPActionKeys.ADD_COMMERCE_PRODUCT_OPTION_CATEGORY) %>">
 			<liferay-portlet:renderURL var="addProductOptionCategoryURL">
-				<portlet:param name="mvcRenderCommandName" value="editProductOptionCategory" />
+				<portlet:param name="mvcRenderCommandName" value="/cp_specification_options/edit_cp_option_category" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 			</liferay-portlet:renderURL>
 
@@ -102,7 +102,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 <div id="<portlet:namespace />productOptionCategoriesContainer">
 	<div class="closed container-fluid container-fluid-max-xl sidenav-container sidenav-right" id="<portlet:namespace />infoPanelId">
 		<c:if test="<%= cpOptionCategoryDisplayContext.isShowInfoPanel() %>">
-			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="cpOptionCategoryInfoPanel" var="sidebarPanelURL" />
+			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/cp_specification_options/cp_option_category_info_panel" var="sidebarPanelURL" />
 
 			<liferay-frontend:sidebar-panel
 				resourceURL="<%= sidebarPanelURL %>"
@@ -134,7 +134,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 							<%
 							PortletURL rowURL = renderResponse.createRenderURL();
 
-							rowURL.setParameter("mvcRenderCommandName", "editProductOptionCategory");
+							rowURL.setParameter("mvcRenderCommandName", "/cp_specification_options/edit_cp_option_category");
 							rowURL.setParameter("redirect", currentURL);
 							rowURL.setParameter("cpOptionCategoryId", String.valueOf(cpOptionCategory.getCPOptionCategoryId()));
 							%>
@@ -195,7 +195,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 
 			submitForm(
 				form,
-				'<portlet:actionURL name="editProductOptionCategory" />'
+				'<portlet:actionURL name="/cp_specification_options/edit_cp_option_category" />'
 			);
 		}
 	}

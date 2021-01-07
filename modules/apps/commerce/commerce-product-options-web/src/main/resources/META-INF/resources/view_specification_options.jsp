@@ -54,7 +54,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 
 		<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, CPActionKeys.ADD_COMMERCE_PRODUCT_OPTION_CATEGORY) %>">
 			<liferay-portlet:renderURL var="addProductSpecificationOptionURL">
-				<portlet:param name="mvcRenderCommandName" value="editProductSpecificationOption" />
+				<portlet:param name="mvcRenderCommandName" value="/cp_specification_options/edit_cp_specification_option" />
 			</liferay-portlet:renderURL>
 
 			<liferay-frontend:add-menu
@@ -109,7 +109,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 <div id="<portlet:namespace />productSpecificationOptionsContainer">
 	<div class="closed container-fluid container-fluid-max-xl sidenav-container sidenav-right" id="<portlet:namespace />infoPanelId">
 		<c:if test="<%= cpSpecificationOptionDisplayContext.isShowInfoPanel() %>">
-			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="cpSpecificationOptionInfoPanel" var="sidebarPanelURL" />
+			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/cp_specification_options/cp_specification_option_info_panel" var="sidebarPanelURL" />
 
 			<liferay-frontend:sidebar-panel
 				resourceURL="<%= sidebarPanelURL %>"
@@ -141,7 +141,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 							<%
 							PortletURL rowURL = renderResponse.createRenderURL();
 
-							rowURL.setParameter("mvcRenderCommandName", "editProductSpecificationOption");
+							rowURL.setParameter("mvcRenderCommandName", "/cp_specification_options/edit_cp_specification_option");
 							rowURL.setParameter("redirect", currentURL);
 							rowURL.setParameter("cpSpecificationOptionId", String.valueOf(cpSpecificationOption.getCPSpecificationOptionId()));
 							%>
@@ -209,7 +209,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 
 			submitForm(
 				form,
-				'<portlet:actionURL name="editProductSpecificationOption" />'
+				'<portlet:actionURL name="/cp_specification_options/edit_cp_specification_option" />'
 			);
 		}
 	}

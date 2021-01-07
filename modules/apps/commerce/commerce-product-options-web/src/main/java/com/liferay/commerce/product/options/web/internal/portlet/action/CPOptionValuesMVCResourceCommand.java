@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_OPTIONS,
-		"mvc.command.name=cpOptionValues"
+		"mvc.command.name=/cp_options/cp_option_values"
 	},
 	service = MVCResourceCommand.class
 )

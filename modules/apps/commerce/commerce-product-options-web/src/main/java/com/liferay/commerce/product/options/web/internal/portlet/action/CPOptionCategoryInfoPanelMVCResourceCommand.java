@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_SPECIFICATION_OPTIONS,
-		"mvc.command.name=cpOptionCategoryInfoPanel"
+		"mvc.command.name=/cp_specification_options/cp_option_category_info_panel"
 	},
 	service = MVCResourceCommand.class
 )

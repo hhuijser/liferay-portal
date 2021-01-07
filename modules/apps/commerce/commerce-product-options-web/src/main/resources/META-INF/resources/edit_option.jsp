@@ -24,7 +24,7 @@ CPOption cpOption = cpOptionDisplayContext.getCPOption();
 long cpOptionId = cpOptionDisplayContext.getCPOptionId();
 %>
 
-<portlet:actionURL name="editProductOption" var="editProductOptionActionURL" />
+<portlet:actionURL name="/cp_options/edit_cp_option" var="editProductOptionActionURL" />
 
 <aui:form action="<%= editProductOptionActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (cpOption == null) ? Constants.ADD : Constants.UPDATE %>" />

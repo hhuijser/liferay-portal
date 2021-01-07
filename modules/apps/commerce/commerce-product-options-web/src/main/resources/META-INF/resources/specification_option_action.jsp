@@ -38,7 +38,7 @@ else {
 >
 	<c:if test="<%= CPSpecificationOptionPermission.contains(permissionChecker, cpSpecificationOption, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editProductSpecificationOption" />
+			<portlet:param name="mvcRenderCommandName" value="/cp_specification_options/edit_cp_specification_option" />
 			<portlet:param name="cpSpecificationOptionId" value="<%= String.valueOf(cpSpecificationOption.getCPSpecificationOptionId()) %>" />
 		</portlet:renderURL>
 
@@ -49,7 +49,7 @@ else {
 	</c:if>
 
 	<c:if test="<%= CPSpecificationOptionPermission.contains(permissionChecker, cpSpecificationOption, ActionKeys.DELETE) %>">
-		<portlet:actionURL name="editProductSpecificationOption" var="deleteURL">
+		<portlet:actionURL name="/cp_specification_options/edit_cp_specification_option" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="cpSpecificationOptionId" value="<%= String.valueOf(cpSpecificationOption.getCPSpecificationOptionId()) %>" />

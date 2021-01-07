@@ -20,7 +20,7 @@
 </liferay-portlet:renderURL>
 
 <liferay-portlet:renderURL portletName="<%= CPPortletKeys.CP_SPECIFICATION_OPTIONS %>" varImpl="viewProductOptionCategoriesURL">
-	<portlet:param name="mvcRenderCommandName" value="viewProductOptionCategories" />
+	<portlet:param name="mvcRenderCommandName" value="/cp_specification_options/view_cp_option_categories" />
 	<portlet:param name="specificationNavbarItemKey" value="specification-groups" />
 </liferay-portlet:renderURL>
 

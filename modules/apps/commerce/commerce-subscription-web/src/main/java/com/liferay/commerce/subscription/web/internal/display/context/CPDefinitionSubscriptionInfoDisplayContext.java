@@ -48,7 +48,7 @@ public class CPDefinitionSubscriptionInfoDisplayContext
 		PortletURL portletURL = super.getPortletURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey",
 			getSelectedScreenNavigationCategoryKey());

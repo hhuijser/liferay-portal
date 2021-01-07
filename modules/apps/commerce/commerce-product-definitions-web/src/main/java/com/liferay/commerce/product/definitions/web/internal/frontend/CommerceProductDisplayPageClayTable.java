@@ -214,7 +214,8 @@ public class CommerceProductDisplayPageClayTable
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editProductDisplayLayout");
+			ActionRequest.ACTION_NAME,
+			"/commerce_channels/edit_cp_display_layout");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -232,7 +233,8 @@ public class CommerceProductDisplayPageClayTable
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDisplayLayout");
+			"mvcRenderCommandName",
+			"/commerce_channels/edit_cp_display_layout");
 
 		long commerceChannelId = ParamUtil.getLong(
 			httpServletRequest, "commerceChannelId");

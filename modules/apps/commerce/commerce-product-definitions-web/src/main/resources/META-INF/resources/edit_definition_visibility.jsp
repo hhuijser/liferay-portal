@@ -28,7 +28,7 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 ).build();
 %>
 
-<portlet:actionURL name="editProductDefinition" var="editProductDefinitionActionURL" />
+<portlet:actionURL name="/cp_definitions/edit_cp_definition" var="editProductDefinitionActionURL" />
 
 <aui:form action="<%= editProductDefinitionActionURL %>" cssClass="pt-4" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="updateVisibility" />

@@ -29,7 +29,7 @@ CPDefinition cProductCPDefinition = CPDefinitionLocalServiceUtil.getCPDefinition
 
 PortletURL groupedProductsURL = renderResponse.createRenderURL();
 
-groupedProductsURL.setParameter("mvcRenderCommandName", "editProductDefinition");
+groupedProductsURL.setParameter("mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 groupedProductsURL.setParameter("cpDefinitionId", String.valueOf(cpDefinition.getCPDefinitionId()));
 groupedProductsURL.setParameter("screenNavigationCategoryKey", cpDefinitionGroupedEntriesDisplayContext.getScreenNavigationCategoryKey());
 

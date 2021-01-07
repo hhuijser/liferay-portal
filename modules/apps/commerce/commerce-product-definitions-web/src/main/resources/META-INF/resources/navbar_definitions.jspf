@@ -19,7 +19,7 @@
 </liferay-portlet:renderURL>
 
 <liferay-portlet:renderURL portletName="<%= CPPortletKeys.CP_DEFINITIONS %>" varImpl="viewProductInstancesCatalogURL">
-	<portlet:param name="mvcRenderCommandName" value="viewInstances" />
+	<portlet:param name="mvcRenderCommandName" value="/cp_definitions/view_cp_instances" />
 	<portlet:param name="catalogNavigationItem" value="view-all-instances" />
 </liferay-portlet:renderURL>
 

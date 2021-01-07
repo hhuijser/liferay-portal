@@ -21,7 +21,7 @@ long fileEntryId = BeanParamUtil.getLong(cpAttachmentFileEntry, request, "fileEn
 <liferay-ui:error exception="<%= DuplicateCPAttachmentFileEntryException.class %>" message="that-attachment-is-already-in-use-on-this-product" />
 <liferay-ui:error exception="<%= NoSuchFileEntryException.class %>" message="please-select-an-existing-file" />
 
-<portlet:actionURL name="uploadTempAttachment" var="uploadCoverImageURL">
+<portlet:actionURL name="/cp_definitions/upload_temp_attachment" var="uploadCoverImageURL">
 	<portlet:param name="cpDefinitionId" value="<%= String.valueOf(cpDefinitionId) %>" />
 </portlet:actionURL>
 

@@ -125,7 +125,8 @@ public class CPDefinitionOptionValueRelDisplayContext
 
 		portletURL.setParameter(Constants.CMD, "deleteSku");
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editProductDefinitionOptionValueRel");
+			ActionRequest.ACTION_NAME,
+			"/cp_definitions/edit_cp_definition_option_value_rel");
 		portletURL.setParameter(
 			"cpDefinitionOptionValueRelId",
 			String.valueOf(getCPDefinitionOptionValueRelId()));

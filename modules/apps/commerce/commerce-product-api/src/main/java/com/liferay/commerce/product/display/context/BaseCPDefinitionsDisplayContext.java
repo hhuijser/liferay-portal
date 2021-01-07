@@ -144,7 +144,7 @@ public abstract class BaseCPDefinitionsDisplayContext {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(getCPDefinitionId()));
 

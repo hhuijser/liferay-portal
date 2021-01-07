@@ -36,7 +36,7 @@ CPDefinition cpDefinition = cpDefinitionsDisplayContext.getCPDefinition();
 	</aui:form>
 
 	<portlet:renderURL var="editProductDefinitionURL">
-		<portlet:param name="mvcRenderCommandName" value="editProductDefinition" />
+		<portlet:param name="mvcRenderCommandName" value="/cp_definitions/edit_cp_definition" />
 	</portlet:renderURL>
 
 	<aui:script require="commerce-frontend-js/components/autocomplete/entry as autocomplete, commerce-frontend-js/utilities/eventsDefinitions as events, commerce-frontend-js/utilities/forms/index as FormUtils, commerce-frontend-js/ServiceProvider/index as ServiceProvider">

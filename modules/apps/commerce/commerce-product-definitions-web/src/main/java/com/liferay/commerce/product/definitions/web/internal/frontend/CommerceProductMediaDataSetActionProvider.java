@@ -113,7 +113,8 @@ public class CommerceProductMediaDataSetActionProvider
 			CPPortletKeys.CP_DEFINITIONS, PortletRequest.ACTION_PHASE);
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCPAttachmentFileEntry");
+			ActionRequest.ACTION_NAME,
+			"/cp_definitions/edit_cp_attachment_file_entry");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 
 		String redirect = ParamUtil.getString(
@@ -138,7 +139,8 @@ public class CommerceProductMediaDataSetActionProvider
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCPAttachmentFileEntry");
+			"mvcRenderCommandName",
+			"/cp_definitions/edit_cp_attachment_file_entry");
 		portletURL.setParameter(
 			"cpDefinitionId",
 			String.valueOf(cpAttachmentFileEntry.getClassPK()));

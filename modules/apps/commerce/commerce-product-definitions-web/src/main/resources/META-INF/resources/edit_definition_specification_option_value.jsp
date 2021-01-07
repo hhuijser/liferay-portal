@@ -27,7 +27,7 @@ CPSpecificationOption cpSpecificationOption = cpDefinitionSpecificationOptionVal
 long cpOptionCategoryId = BeanParamUtil.getLong(cpDefinitionSpecificationOptionValue, request, "CPOptionCategoryId");
 %>
 
-<portlet:actionURL name="editProductDefinitionSpecificationOptionValue" var="editProductDefinitionSpecificationOptionValueActionURL" />
+<portlet:actionURL name="/cp_definitions/edit_cp_definition_specification_option_value" var="editProductDefinitionSpecificationOptionValueActionURL" />
 
 <commerce-ui:side-panel-content
 	title="<%= cpSpecificationOption.getTitle(locale) %>"

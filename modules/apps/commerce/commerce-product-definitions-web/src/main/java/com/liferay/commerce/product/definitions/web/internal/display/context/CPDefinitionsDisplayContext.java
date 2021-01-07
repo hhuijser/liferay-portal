@@ -203,7 +203,7 @@ public class CPDefinitionsDisplayContext
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter("cpDefinitionId", "{id}");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey",
@@ -287,7 +287,8 @@ public class CPDefinitionsDisplayContext
 
 		RenderURL renderURL = liferayPortletResponse.createRenderURL();
 
-		renderURL.setParameter("mvcRenderCommandName", "addProductDefinition");
+		renderURL.setParameter(
+			"mvcRenderCommandName", "/cp_definitions/add_cp_definition");
 		renderURL.setParameter("backURL", cpRequestHelper.getCurrentURL());
 		renderURL.setWindowState(LiferayWindowState.POP_UP);
 
@@ -314,7 +315,7 @@ public class CPDefinitionsDisplayContext
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "duplicateCPDefinition");
+			"mvcRenderCommandName", "/cp_definitions/duplicate_cp_definition");
 		portletURL.setParameter(
 			"cpDefinitionId",
 			ParamUtil.getString(httpServletRequest, "cpDefinitionId"));
@@ -351,7 +352,7 @@ public class CPDefinitionsDisplayContext
 		ActionURL actionURL = renderResponse.createActionURL();
 
 		actionURL.setParameter(
-			ActionRequest.ACTION_NAME, "editProductDefinition");
+			ActionRequest.ACTION_NAME, "/cp_definitions/edit_cp_definition");
 
 		String saveButtonLabel = "save";
 

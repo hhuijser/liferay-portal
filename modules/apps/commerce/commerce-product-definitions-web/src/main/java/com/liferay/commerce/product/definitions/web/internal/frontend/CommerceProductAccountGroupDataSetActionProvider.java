@@ -98,7 +98,7 @@ public class CommerceProductAccountGroupDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editProductDefinition");
+			ActionRequest.ACTION_NAME, "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(Constants.CMD, "deleteAccountGroup");
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(

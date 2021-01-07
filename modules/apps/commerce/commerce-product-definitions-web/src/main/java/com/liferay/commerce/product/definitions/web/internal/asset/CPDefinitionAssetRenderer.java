@@ -145,7 +145,7 @@ public class CPDefinitionAssetRenderer
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(
 			"cpDefinitionId",
 			String.valueOf(_cpDefinition.getCPDefinitionId()));

@@ -96,7 +96,7 @@ public class CommerceProductChannelDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editProductDefinition");
+			ActionRequest.ACTION_NAME, "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(Constants.CMD, "deleteChannel");
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(

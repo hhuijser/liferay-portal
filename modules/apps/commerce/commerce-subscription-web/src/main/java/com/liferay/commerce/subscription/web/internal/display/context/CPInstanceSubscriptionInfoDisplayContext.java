@@ -62,7 +62,8 @@ public class CPInstanceSubscriptionInfoDisplayContext
 	public PortletURL getPortletURL() throws PortalException {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "editProductInstance");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_instance");
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(getCPDefinitionId()));
 		portletURL.setParameter(

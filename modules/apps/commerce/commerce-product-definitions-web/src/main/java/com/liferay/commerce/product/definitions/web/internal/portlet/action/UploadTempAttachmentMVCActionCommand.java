@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_DEFINITIONS,
-		"mvc.command.name=uploadTempAttachment"
+		"mvc.command.name=/cp_definitions/upload_temp_attachment"
 	},
 	service = MVCActionCommand.class
 )

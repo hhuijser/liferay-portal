@@ -80,7 +80,8 @@ public class CPDefinitionDisplayLayoutDisplayContext
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDisplayLayout");
+			"mvcRenderCommandName",
+			"/commerce_channels/edit_cp_display_layout");
 		portletURL.setParameter(
 			"commerceChannelId", String.valueOf(getCommerceChannelId()));
 

@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.COMMERCE_CHANNELS,
-		"mvc.command.name=editProductDisplayLayout"
+		"mvc.command.name=/commerce_channels/edit_cp_display_layout"
 	},
 	service = MVCRenderCommand.class
 )

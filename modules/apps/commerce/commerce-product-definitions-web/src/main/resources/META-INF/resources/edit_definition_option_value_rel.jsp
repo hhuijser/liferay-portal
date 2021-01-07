@@ -22,7 +22,7 @@ CPDefinitionOptionValueRelDisplayContext cpDefinitionOptionValueRelDisplayContex
 CPDefinitionOptionValueRel cpDefinitionOptionValueRel = cpDefinitionOptionValueRelDisplayContext.getCPDefinitionOptionValueRel();
 %>
 
-<portlet:actionURL name="editProductDefinitionOptionValueRel" var="editProductDefinitionOptionValueRelActionURL" />
+<portlet:actionURL name="/cp_definitions/edit_cp_definition_option_value_rel" var="editProductDefinitionOptionValueRelActionURL" />
 
 <c:choose>
 	<c:when test="<%= cpDefinitionOptionValueRel == null %>">

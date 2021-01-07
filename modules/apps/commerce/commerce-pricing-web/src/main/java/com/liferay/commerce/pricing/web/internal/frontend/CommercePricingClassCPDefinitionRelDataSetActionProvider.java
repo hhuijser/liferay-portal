@@ -107,7 +107,7 @@ public class CommercePricingClassCPDefinitionRelDataSetActionProvider
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(cpDefinitionId));
 		portletURL.setParameter("screenNavigationCategoryKey", "details");

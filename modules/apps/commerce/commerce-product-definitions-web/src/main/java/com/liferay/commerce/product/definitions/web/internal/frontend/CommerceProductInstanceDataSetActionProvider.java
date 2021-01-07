@@ -111,7 +111,7 @@ public class CommerceProductInstanceDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editProductInstance");
+			ActionRequest.ACTION_NAME, "/cp_definitions/edit_cp_instance");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter("cpInstanceId", String.valueOf(cpInstanceId));
@@ -127,7 +127,8 @@ public class CommerceProductInstanceDataSetActionProvider
 			httpServletRequest, CPDefinition.class.getName(),
 			PortletProvider.Action.MANAGE);
 
-		portletURL.setParameter("mvcRenderCommandName", "editProductInstance");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_instance");
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(cpInstance.getCPDefinitionId()));
 		portletURL.setParameter(

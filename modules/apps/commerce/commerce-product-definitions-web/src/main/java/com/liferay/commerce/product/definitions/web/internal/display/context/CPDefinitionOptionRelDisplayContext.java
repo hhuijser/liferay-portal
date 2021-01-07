@@ -107,7 +107,8 @@ public class CPDefinitionOptionRelDisplayContext
 		RenderURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinitionOptionValueRel");
+			"mvcRenderCommandName",
+			"/cp_definitions/edit_cp_definition_option_value_rel");
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(getCPDefinitionId()));
 		portletURL.setParameter(
@@ -207,7 +208,7 @@ public class CPDefinitionOptionRelDisplayContext
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(getCPDefinitionId()));
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey());
 

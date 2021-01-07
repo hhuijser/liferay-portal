@@ -317,7 +317,7 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(
 			"redirect", commercePricingRequestHelper.getCurrentURL());
 		portletURL.setParameter("cpDefinitionId", "{product.id}");

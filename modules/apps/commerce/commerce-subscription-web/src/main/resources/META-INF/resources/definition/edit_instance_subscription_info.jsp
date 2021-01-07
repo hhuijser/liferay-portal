@@ -34,7 +34,7 @@ if (!cpSubscriptionTypes.isEmpty()) {
 
 PortletURL productSkusURL = renderResponse.createRenderURL();
 
-productSkusURL.setParameter("mvcRenderCommandName", "editProductDefinition");
+productSkusURL.setParameter("mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 productSkusURL.setParameter("cpDefinitionId", String.valueOf(cpDefinition.getCPDefinitionId()));
 productSkusURL.setParameter("screenNavigationCategoryKey", cpInstanceSubscriptionInfoDisplayContext.getScreenNavigationCategoryKey());
 
@@ -82,7 +82,7 @@ if (deliveryMaxSubscriptionCycles > 0) {
 	<liferay-ui:message key="all-channels-associated-with-this-product-must-have-at-least-one-payment-method-active-that-supports-recurring-payments" />
 </aui:alert>
 
-<portlet:actionURL name="editProductInstance" var="editProductInstanceShippingInfoActionURL" />
+<portlet:actionURL name="/cp_definitions/edit_cp_instance" var="editProductInstanceShippingInfoActionURL" />
 
 <aui:form action="<%= editProductInstanceShippingInfoActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="updateSubscriptionInfo" />

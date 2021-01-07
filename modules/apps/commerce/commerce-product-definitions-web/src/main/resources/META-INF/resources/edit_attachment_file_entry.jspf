@@ -17,7 +17,7 @@
 <commerce-ui:side-panel-content
 	title="<%= title %>"
 >
-	<portlet:actionURL name="editCPAttachmentFileEntry" var="editCPAttachmentFileEntryActionURL" />
+	<portlet:actionURL name="/cp_definitions/edit_cp_attachment_file_entry" var="editCPAttachmentFileEntryActionURL" />
 
 	<aui:form action="<%= editCPAttachmentFileEntryActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveAttachmentFileEntry();" %>'>
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (cpAttachmentFileEntry == null) ? Constants.ADD : Constants.UPDATE %>" />

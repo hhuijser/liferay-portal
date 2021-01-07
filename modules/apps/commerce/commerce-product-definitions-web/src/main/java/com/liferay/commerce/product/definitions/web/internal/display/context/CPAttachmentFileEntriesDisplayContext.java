@@ -142,7 +142,8 @@ public class CPAttachmentFileEntriesDisplayContext
 		RenderURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCPAttachmentFileEntry");
+			"mvcRenderCommandName",
+			"/cp_definitions/edit_cp_attachment_file_entry");
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(getCPDefinitionId()));
 		portletURL.setParameter("type", String.valueOf(type));
@@ -212,7 +213,7 @@ public class CPAttachmentFileEntriesDisplayContext
 		PortletURL portletURL = super.getPortletURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey());
 

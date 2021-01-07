@@ -45,7 +45,7 @@ else {
 %>
 
 <liferay-portlet:renderURL var="editCProductExternalReferenceCodeURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-	<portlet:param name="mvcRenderCommandName" value="editCProductExternalReferenceCode" />
+	<portlet:param name="mvcRenderCommandName" value="/cp_definitions/edit_c_product_external_reference_code" />
 	<portlet:param name="cpDefinitionId" value="<%= String.valueOf(cpDefinitionsDisplayContext.getCPDefinitionId()) %>" />
 </liferay-portlet:renderURL>
 

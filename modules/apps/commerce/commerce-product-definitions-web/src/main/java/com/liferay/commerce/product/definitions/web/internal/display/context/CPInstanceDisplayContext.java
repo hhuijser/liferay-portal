@@ -204,10 +204,11 @@ public class CPInstanceDisplayContext extends BaseCPDefinitionsDisplayContext {
 
 		if (getCPDefinitionId() > 0) {
 			portletURL.setParameter(
-				"mvcRenderCommandName", "editProductDefinition");
+				"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 		}
 		else {
-			portletURL.setParameter("mvcRenderCommandName", "viewInstances");
+			portletURL.setParameter(
+				"mvcRenderCommandName", "/cp_definitions/view_cp_instances");
 			portletURL.setParameter(
 				"catalogNavigationItem", "view-all-instances");
 		}
@@ -301,7 +302,7 @@ public class CPInstanceDisplayContext extends BaseCPDefinitionsDisplayContext {
 		ActionURL portletURL = liferayPortletResponse.createActionURL();
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editProductInstance");
+			ActionRequest.ACTION_NAME, "/cp_definitions/edit_cp_instance");
 		portletURL.setParameter(Constants.CMD, Constants.ADD_MULTIPLE);
 		portletURL.setParameter("redirect", cpRequestHelper.getCurrentURL());
 		portletURL.setParameter(
@@ -315,7 +316,8 @@ public class CPInstanceDisplayContext extends BaseCPDefinitionsDisplayContext {
 			httpServletRequest, CPDefinition.class.getName(),
 			PortletProvider.Action.MANAGE);
 
-		portletURL.setParameter("mvcRenderCommandName", "editProductInstance");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_instance");
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(getCPDefinitionId()));
 

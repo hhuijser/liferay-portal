@@ -22,7 +22,7 @@ CPDefinitionsDisplayContext cpDefinitionsDisplayContext = (CPDefinitionsDisplayC
 CProduct cProduct = cpDefinitionsDisplayContext.getCProduct();
 %>
 
-<portlet:actionURL name="editCProductExternalReferenceCode" var="editCProductExternalReferenceCodeURL" />
+<portlet:actionURL name="/cp_definitions/edit_c_product_external_reference_code" var="editCProductExternalReferenceCodeURL" />
 
 <commerce-ui:modal-content>
 	<aui:form action="<%= editCProductExternalReferenceCodeURL %>" cssClass="container-fluid container-fluid-max-xl p-0" method="post" name="fm">

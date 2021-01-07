@@ -25,7 +25,7 @@ PortletURL portletURL = cpInstanceCommercePriceEntryDisplayContext.getPortletURL
 
 PortletURL productSkusURL = PortalUtil.getControlPanelPortletURL(request, CPPortletKeys.CP_DEFINITIONS, lifecycle);
 
-productSkusURL.setParameter("mvcRenderCommandName", "editProductDefinition");
+productSkusURL.setParameter("mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 productSkusURL.setParameter("cpDefinitionId", String.valueOf(cpInstanceCommercePriceEntryDisplayContext.getCPDefinitionId()));
 productSkusURL.setParameter("screenNavigationCategoryKey", "skus");
 %>

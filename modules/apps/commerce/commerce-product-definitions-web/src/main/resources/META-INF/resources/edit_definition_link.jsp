@@ -26,7 +26,7 @@ CPDefinition cpDefinition = cpDefinitionLink.getCPDefinition();
 %>
 
 <commerce-ui:modal-content>
-	<portlet:actionURL name="editCPDefinitionLink" var="editCPDefinitionLinkActionURL" />
+	<portlet:actionURL name="/cp_definitions/edit_cp_definition_link" var="editCPDefinitionLinkActionURL" />
 
 	<aui:form action="<%= editCPDefinitionLinkActionURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />

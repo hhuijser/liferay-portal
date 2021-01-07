@@ -28,7 +28,7 @@ List<CPTaxCategory> cpTaxCategories = cpDefinitionConfigurationDisplayContext.ge
 boolean shippable = BeanParamUtil.getBoolean(cpDefinition, request, "shippable", true);
 %>
 
-<portlet:actionURL name="editProductDefinition" var="editProductDefinitionConfigurationActionURL" />
+<portlet:actionURL name="/cp_definitions/edit_cp_definition" var="editProductDefinitionConfigurationActionURL" />
 
 <aui:form action="<%= editProductDefinitionConfigurationActionURL %>" cssClass="pt-4" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="updateConfiguration" />

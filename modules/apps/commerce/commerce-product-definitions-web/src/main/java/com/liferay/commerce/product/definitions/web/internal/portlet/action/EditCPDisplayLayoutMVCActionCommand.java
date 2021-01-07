@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.COMMERCE_CHANNELS,
-		"mvc.command.name=editProductDisplayLayout"
+		"mvc.command.name=/commerce_channels/edit_cp_display_layout"
 	},
 	service = MVCActionCommand.class
 )
@@ -109,7 +109,8 @@ public class EditCPDisplayLayoutMVCActionCommand extends BaseMVCActionCommand {
 				SessionErrors.add(actionRequest, exception.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editProductDisplayLayout");
+					"mvcRenderCommandName",
+					"/commerce_channels/edit_cp_display_layout");
 			}
 			else {
 				_log.error(exception, exception);

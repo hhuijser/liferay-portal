@@ -144,7 +144,8 @@ public class MiniumCPContentListEntryRenderer
 					PortletRequest.ACTION_PHASE);
 
 			editCompareProductActionURL.setParameter(
-				ActionRequest.ACTION_NAME, "/cp_compare_content_web/edit_compare_product");
+				ActionRequest.ACTION_NAME,
+				"/cp_compare_content_web/edit_compare_product");
 
 			context.put("compareCheckboxVisible", false);
 			context.put(

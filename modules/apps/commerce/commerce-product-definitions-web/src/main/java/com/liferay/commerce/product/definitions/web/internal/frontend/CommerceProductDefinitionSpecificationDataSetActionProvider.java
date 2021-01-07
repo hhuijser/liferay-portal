@@ -124,7 +124,7 @@ public class CommerceProductDefinitionSpecificationDataSetActionProvider
 
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"editProductDefinitionSpecificationOptionValue");
+			"/cp_definitions/edit_cp_definition_specification_option_value");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -146,7 +146,7 @@ public class CommerceProductDefinitionSpecificationDataSetActionProvider
 
 		portletURL.setParameter(
 			"mvcRenderCommandName",
-			"editProductDefinitionSpecificationOptionValue");
+			"/cp_definitions/edit_cp_definition_specification_option_value");
 		portletURL.setParameter(
 			"cpDefinitionId",
 			String.valueOf(

@@ -72,7 +72,7 @@ public class CommerceInventoryWarehouseItemsDisplayContext {
 			renderRequest, CPPortletKeys.CP_DEFINITIONS, lifecycle);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editProductDefinition");
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
 
 		CPInstance cpInstance = getCPInstance();
 

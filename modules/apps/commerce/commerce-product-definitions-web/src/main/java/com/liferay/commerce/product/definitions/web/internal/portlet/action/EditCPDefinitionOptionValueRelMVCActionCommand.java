@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_DEFINITIONS,
-		"mvc.command.name=editProductDefinitionOptionValueRel"
+		"mvc.command.name=/cp_definitions/edit_cp_definition_option_value_rel"
 	},
 	service = MVCActionCommand.class
 )
@@ -108,7 +108,7 @@ public class EditCPDefinitionOptionValueRelMVCActionCommand
 
 				actionResponse.setRenderParameter(
 					"mvcRenderCommandName",
-					"editProductDefinitionOptionValueRel");
+					"/cp_definitions/edit_cp_definition_option_value_rel");
 			}
 			else {
 				_log.error(exception, exception);

@@ -32,7 +32,7 @@ if ((cpInstance != null) && (cpInstance.getExpirationDate() != null)) {
 }
 %>
 
-<portlet:actionURL name="editProductInstance" var="editProductInstanceActionURL" />
+<portlet:actionURL name="/cp_definitions/edit_cp_instance" var="editProductInstanceActionURL" />
 
 <aui:form action="<%= editProductInstanceActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveInstance();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (cpInstance == null) ? Constants.ADD : Constants.UPDATE %>" />

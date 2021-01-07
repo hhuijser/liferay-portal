@@ -111,7 +111,8 @@ public class CommerceProductDefinitionLinkDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCPDefinitionLink");
+			ActionRequest.ACTION_NAME,
+			"/cp_definitions/edit_cp_definition_link");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -133,7 +134,8 @@ public class CommerceProductDefinitionLinkDataSetActionProvider
 			httpServletRequest, CPDefinition.class.getName(),
 			PortletProvider.Action.MANAGE);
 
-		portletURL.setParameter("mvcRenderCommandName", "editCPDefinitionLink");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_definition_link");
 		portletURL.setParameter(
 			"cpDefinitionId",
 			String.valueOf(cpDefinitionLink.getCPDefinitionId()));

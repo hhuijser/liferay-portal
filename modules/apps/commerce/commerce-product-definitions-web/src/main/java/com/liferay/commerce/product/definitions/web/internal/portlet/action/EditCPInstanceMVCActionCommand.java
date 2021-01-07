@@ -74,7 +74,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_DEFINITIONS,
-		"mvc.command.name=editProductInstance"
+		"mvc.command.name=/cp_definitions/edit_cp_instance"
 	},
 	service = MVCActionCommand.class
 )
@@ -157,7 +157,7 @@ public class EditCPInstanceMVCActionCommand extends BaseMVCActionCommand {
 				SessionErrors.add(actionRequest, throwable.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editProductInstance");
+					"mvcRenderCommandName", "/cp_definitions/edit_cp_instance");
 			}
 			else {
 				throw new PortletException(throwable);
@@ -180,7 +180,8 @@ public class EditCPInstanceMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, themeDisplay.getScopeGroup(),
 			CPDefinition.class.getName(), PortletProvider.Action.EDIT);
 
-		portletURL.setParameter("mvcRenderCommandName", "editProductInstance");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/cp_definitions/edit_cp_instance");
 		portletURL.setParameter(
 			"cpDefinitionId", String.valueOf(cpInstance.getCPDefinitionId()));
 		portletURL.setParameter(

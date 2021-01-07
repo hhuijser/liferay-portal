@@ -41,7 +41,7 @@ public class EditCPMeasurementUnitMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_measurement_unit.jsp";
+		return "/edit_cp_measurement_unit.jsp";
 	}
 
 }

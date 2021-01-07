@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.CP_DEFINITIONS,
-		"mvc.command.name=viewCPDefinitionGroupedEntries"
+		"mvc.command.name=/cp_definitions/view_cp_definition_grouped_entries"
 	},
 	service = MVCRenderCommand.class
 )

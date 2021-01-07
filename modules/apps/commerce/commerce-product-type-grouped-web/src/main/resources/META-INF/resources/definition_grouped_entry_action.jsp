@@ -39,7 +39,7 @@ else {
 	showWhenSingleIcon="<%= true %>"
 >
 	<portlet:renderURL var="editURL">
-		<portlet:param name="mvcRenderCommandName" value="editCPDefinitionGroupedEntry" />
+		<portlet:param name="mvcRenderCommandName" value="/cp_definitions/edit_cp_definition_grouped_entry" />
 		<portlet:param name="cpDefinitionId" value="<%= String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionId()) %>" />
 		<portlet:param name="cpDefinitionGroupedEntryId" value="<%= String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionGroupedEntryId()) %>" />
 		<portlet:param name="toolbarItem" value="<%= toolbarItem %>" />
@@ -50,7 +50,7 @@ else {
 		url="<%= editURL %>"
 	/>
 
-	<portlet:actionURL name="editCPDefinitionGroupedEntry" var="deleteURL">
+	<portlet:actionURL name="/cp_definitions/edit_cp_definition_grouped_entry" var="deleteURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="cpDefinitionGroupedEntryId" value="<%= String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionGroupedEntryId()) %>" />

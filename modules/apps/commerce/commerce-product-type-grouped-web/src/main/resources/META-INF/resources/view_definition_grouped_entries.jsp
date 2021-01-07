@@ -50,8 +50,8 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 			selectedDisplayStyle="<%= cpDefinitionGroupedEntriesDisplayContext.getDisplayStyle() %>"
 		/>
 
-		<portlet:actionURL name="editCPDefinitionGroupedEntry" var="addDefinitionGroupedEntryURL">
-			<portlet:param name="mvcRenderCommandName" value="viewCPDefinitionGroupedEntries" />
+		<portlet:actionURL name="/cp_definitions/edit_cp_definition_grouped_entry" var="addDefinitionGroupedEntryURL">
+			<portlet:param name="mvcRenderCommandName" value="/cp_definitions/view_cp_definition_grouped_entries" />
 		</portlet:actionURL>
 
 		<aui:form action="<%= addDefinitionGroupedEntryURL %>" cssClass="hide" name="addCPDefinitionGroupedEntryFm">
@@ -105,7 +105,7 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 <div id="<portlet:namespace />cpDefinitionGroupedEntriesContainer">
 	<div class="closed container-fluid container-fluid-max-xl sidenav-container sidenav-right" id="<portlet:namespace />infoPanelId">
 		<c:if test="<%= cpDefinitionGroupedEntriesDisplayContext.isShowInfoPanel() %>">
-			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="cpDefinitionGroupedEntryInfoPanel" var="sidebarPanelURL" />
+			<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/cp_definitions/cp_definition_grouped_entry_info_panel" var="sidebarPanelURL" />
 
 			<liferay-frontend:sidebar-panel
 				resourceURL="<%= sidebarPanelURL %>"
@@ -137,7 +137,7 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 							<%
 							PortletURL rowURL = renderResponse.createRenderURL();
 
-							rowURL.setParameter("mvcRenderCommandName", "editCPDefinitionGroupedEntry");
+							rowURL.setParameter("mvcRenderCommandName", "/cp_definitions/edit_cp_definition_grouped_entry");
 							rowURL.setParameter("cpDefinitionId", String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionId()));
 							rowURL.setParameter("cpDefinitionGroupedEntryId", String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionGroupedEntryId()));
 
@@ -201,7 +201,7 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 
 			submitForm(
 				form,
-				'<portlet:actionURL name="editCPDefinitionGroupedEntry" />'
+				'<portlet:actionURL name="/cp_definitions/edit_cp_definition_grouped_entry" />'
 			);
 		}
 	}

@@ -39,8 +39,8 @@ portletDisplay.setURLBack(groupedProductsURL.toString());
 renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()) + " - " + cProductCPDefinition.getName(themeDisplay.getLanguageId()));
 %>
 
-<portlet:actionURL name="editCPDefinitionGroupedEntry" var="editCPDefinitionGroupedEntryActionURL">
-	<portlet:param name="mvcRenderCommandName" value="editCPDefinitionGroupedEntry" />
+<portlet:actionURL name="/cp_definitions/edit_cp_definition_grouped_entry" var="editCPDefinitionGroupedEntryActionURL">
+	<portlet:param name="mvcRenderCommandName" value="/cp_definitions/edit_cp_definition_grouped_entry" />
 </portlet:actionURL>
 
 <aui:form action="<%= editCPDefinitionGroupedEntryActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveCPDefinitionGroupedEntry();" %>'>

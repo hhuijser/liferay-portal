@@ -14,9 +14,6 @@
 
 package com.liferay.oauth2.provider.service.impl;
 
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.not;
-
 import com.liferay.oauth2.provider.service.impl.OAuth2ApplicationScopeAliasesLocalServiceImpl.ScopeNamespace;
 import com.liferay.oauth2.provider.util.builder.OAuth2ScopeBuilder;
 import com.liferay.petra.string.StringPool;
@@ -35,6 +32,8 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import org.apache.commons.compress.utils.Sets;
+
+import org.hamcrest.CoreMatchers;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -84,11 +83,12 @@ public class OAuth2ScopeBuilderImplTest extends PowerMockito {
 
 		simpeEntryScopeAliases.forEach(
 			(key, value) -> {
-				Assert.assertThat(value, not(hasItems(scopes)));
+				Assert.assertThat(
+					value, CoreMatchers.not(CoreMatchers.hasItems(scopes)));
 				Assert.assertEquals(1, value.size());
 				Assert.assertThat(
 					value,
-					hasItems(
+					CoreMatchers.hasItems(
 						_getApplicationScopeAlias(key.getKey(), scopeAlias)));
 			});
 	}
@@ -118,7 +118,8 @@ public class OAuth2ScopeBuilderImplTest extends PowerMockito {
 
 		simpeEntryScopeAliases.forEach(
 			(key, value) -> {
-				Assert.assertThat(value, not(hasItems(scopes)));
+				Assert.assertThat(
+					value, CoreMatchers.not(CoreMatchers.hasItems(scopes)));
 				Assert.assertEquals(
 					value, applicationScopeAlias.get(key.getKey()));
 			});
@@ -145,9 +146,10 @@ public class OAuth2ScopeBuilderImplTest extends PowerMockito {
 
 		simpeEntryScopeAliases.forEach(
 			(key, value) -> {
-				Assert.assertThat(value, not(hasItems(scopes)));
+				Assert.assertThat(
+					value, CoreMatchers.not(CoreMatchers.hasItems(scopes)));
 				Assert.assertEquals(1, value.size());
-				Assert.assertThat(value, hasItems(scopeAlias));
+				Assert.assertThat(value, CoreMatchers.hasItems(scopeAlias));
 			});
 	}
 

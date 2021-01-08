@@ -14,15 +14,12 @@
 
 package com.liferay.talend.tliferayoutput;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.not;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -52,16 +49,18 @@ public class TLiferayOutputDefinitionTest {
 	public void testGetFamilies() {
 		String[] actualFamilies = _tLiferayOutputDefinition.getFamilies();
 
-		assertThat(Arrays.asList(actualFamilies), contains("Business/Liferay"));
+		MatcherAssert.assertThat(
+			Arrays.asList(actualFamilies),
+			Matchers.contains("Business/Liferay"));
 	}
 
 	@Test
 	public void testGetPropertyClass() {
 		Class<?> propertyClass = _tLiferayOutputDefinition.getPropertyClass();
 
-		assertThat(
+		MatcherAssert.assertThat(
 			propertyClass.getCanonicalName(),
-			equalTo(
+			Matchers.equalTo(
 				"com.liferay.talend.tliferayoutput.TLiferayOutputProperties"));
 	}
 
@@ -70,7 +69,7 @@ public class TLiferayOutputDefinitionTest {
 		List<Property<?>> propertyList = Arrays.asList(
 			_tLiferayOutputDefinition.getReturnProperties());
 
-		assertThat(propertyList, hasSize(4));
+		MatcherAssert.assertThat(propertyList, Matchers.hasSize(4));
 
 		Assert.assertTrue(
 			propertyList.contains(
@@ -91,9 +90,9 @@ public class TLiferayOutputDefinitionTest {
 		RuntimeInfo runtimeInfo = _tLiferayOutputDefinition.getRuntimeInfo(
 			ExecutionEngine.DI, null, ConnectorTopology.INCOMING);
 
-		assertThat(
+		MatcherAssert.assertThat(
 			runtimeInfo.getRuntimeClassName(),
-			equalTo("com.liferay.talend.runtime.LiferaySink"));
+			Matchers.equalTo("com.liferay.talend.runtime.LiferaySink"));
 	}
 
 	@Test
@@ -124,14 +123,16 @@ public class TLiferayOutputDefinitionTest {
 		Set<ConnectorTopology> connectorTopologies =
 			_tLiferayOutputDefinition.getSupportedConnectorTopologies();
 
-		assertThat(
+		MatcherAssert.assertThat(
 			connectorTopologies,
-			contains(
+			Matchers.contains(
 				ConnectorTopology.INCOMING,
 				ConnectorTopology.INCOMING_AND_OUTGOING));
-		assertThat(
+		MatcherAssert.assertThat(
 			connectorTopologies,
-			not(contains(ConnectorTopology.OUTGOING, ConnectorTopology.NONE)));
+			Matchers.not(
+				Matchers.contains(
+					ConnectorTopology.OUTGOING, ConnectorTopology.NONE)));
 	}
 
 	@Rule

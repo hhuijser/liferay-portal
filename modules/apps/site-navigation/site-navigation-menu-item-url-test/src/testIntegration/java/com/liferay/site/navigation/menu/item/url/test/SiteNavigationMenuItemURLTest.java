@@ -14,8 +14,6 @@
 
 package com.liferay.site.navigation.menu.item.url.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -39,6 +37,8 @@ import com.liferay.site.navigation.service.SiteNavigationMenuItemLocalService;
 import com.liferay.site.navigation.service.SiteNavigationMenuLocalService;
 import com.liferay.site.navigation.type.SiteNavigationMenuItemType;
 import com.liferay.site.navigation.type.SiteNavigationMenuItemTypeRegistry;
+
+import org.hamcrest.CoreMatchers;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -106,7 +106,7 @@ public class SiteNavigationMenuItemURLTest {
 
 		Assert.assertThat(
 			siteNavigationMenuItemType.getTarget(siteNavigationMenuItem),
-			containsString("_blank"));
+			CoreMatchers.containsString("_blank"));
 	}
 
 	@Test

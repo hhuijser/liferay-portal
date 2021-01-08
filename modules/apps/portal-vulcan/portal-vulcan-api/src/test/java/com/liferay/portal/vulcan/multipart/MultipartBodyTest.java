@@ -14,12 +14,6 @@
 
 package com.liferay.portal.vulcan.multipart;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.core.Is.is;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
@@ -36,6 +30,11 @@ import java.util.Optional;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.InternalServerErrorException;
+
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.hamcrest.core.Is;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -61,8 +60,11 @@ public class MultipartBodyTest {
 			Collections.singletonMap("file", binaryFile), __ -> _objectMapper,
 			Collections.emptyMap());
 
-		assertThat(multipartBody.getBinaryFile("file"), is(binaryFile));
-		assertThat(multipartBody.getBinaryFile("null"), is(nullValue()));
+		MatcherAssert.assertThat(
+			multipartBody.getBinaryFile("file"), Is.is(binaryFile));
+		MatcherAssert.assertThat(
+			multipartBody.getBinaryFile("null"),
+			Is.is(CoreMatchers.nullValue()));
 	}
 
 	@Test
@@ -85,10 +87,11 @@ public class MultipartBodyTest {
 		TestClass testClass = multipartBody.getValueAsInstance(
 			"key", TestClass.class);
 
-		assertThat(testClass.list, contains(1, 2, 3));
-		assertThat(testClass.number, is(42L));
-		assertThat(testClass.string, is("Hello"));
-		assertThat(testClass.testClass, is(nullValue()));
+		MatcherAssert.assertThat(testClass.list, Matchers.contains(1, 2, 3));
+		MatcherAssert.assertThat(testClass.number, Is.is(42L));
+		MatcherAssert.assertThat(testClass.string, Is.is("Hello"));
+		MatcherAssert.assertThat(
+			testClass.testClass, Is.is(CoreMatchers.nullValue()));
 
 		try {
 			multipartBody.getValueAsInstance("null", TestClass.class);
@@ -96,10 +99,12 @@ public class MultipartBodyTest {
 			throw new AssertionError("Should thrown exception");
 		}
 		catch (Exception exception) {
-			assertThat(exception, is(instanceOf(BadRequestException.class)));
-			assertThat(
+			MatcherAssert.assertThat(
+				exception,
+				Is.is(CoreMatchers.instanceOf(BadRequestException.class)));
+			MatcherAssert.assertThat(
 				exception.getMessage(),
-				is("Missing JSON property with the key: null"));
+				Is.is("Missing JSON property with the key: null"));
 		}
 
 		// Without object mapper
@@ -114,14 +119,18 @@ public class MultipartBodyTest {
 			throw new AssertionError();
 		}
 		catch (Exception exception) {
-			assertThat(
-				exception, is(instanceOf(InternalServerErrorException.class)));
+			MatcherAssert.assertThat(
+				exception,
+				Is.is(
+					CoreMatchers.instanceOf(
+						InternalServerErrorException.class)));
 
 			String expectedMessage =
 				"Unable to get object mapper for class " +
 					TestClass.class.getName();
 
-			assertThat(exception.getMessage(), is(expectedMessage));
+			MatcherAssert.assertThat(
+				exception.getMessage(), Is.is(expectedMessage));
 		}
 	}
 
@@ -145,21 +154,22 @@ public class MultipartBodyTest {
 		Optional<TestClass> testClassOptional =
 			multipartBody.getValueAsInstanceOptional("key", TestClass.class);
 
-		assertThat(testClassOptional.isPresent(), is(true));
+		MatcherAssert.assertThat(testClassOptional.isPresent(), Is.is(true));
 
 		TestClass testClass = testClassOptional.get();
 
-		assertThat(testClass.list, contains(1, 2, 3));
-		assertThat(testClass.number, is(42L));
-		assertThat(testClass.string, is("Hello"));
-		assertThat(testClass.testClass, is(nullValue()));
+		MatcherAssert.assertThat(testClass.list, Matchers.contains(1, 2, 3));
+		MatcherAssert.assertThat(testClass.number, Is.is(42L));
+		MatcherAssert.assertThat(testClass.string, Is.is("Hello"));
+		MatcherAssert.assertThat(
+			testClass.testClass, Is.is(CoreMatchers.nullValue()));
 
 		// Null optional
 
 		testClassOptional = multipartBody.getValueAsInstanceOptional(
 			"null", TestClass.class);
 
-		assertThat(testClassOptional.isPresent(), is(false));
+		MatcherAssert.assertThat(testClassOptional.isPresent(), Is.is(false));
 
 		// Incorrect JSON
 
@@ -181,8 +191,11 @@ public class MultipartBodyTest {
 			throw new AssertionError();
 		}
 		catch (Exception exception) {
-			assertThat(
-				exception, is(instanceOf(UnrecognizedPropertyException.class)));
+			MatcherAssert.assertThat(
+				exception,
+				Is.is(
+					CoreMatchers.instanceOf(
+						UnrecognizedPropertyException.class)));
 		}
 	}
 
@@ -192,8 +205,11 @@ public class MultipartBodyTest {
 			Collections.emptyMap(), __ -> _objectMapper,
 			Collections.singletonMap("key", "value"));
 
-		assertThat(multipartBody.getValueAsString("key"), is("value"));
-		assertThat(multipartBody.getValueAsString("null"), is(nullValue()));
+		MatcherAssert.assertThat(
+			multipartBody.getValueAsString("key"), Is.is("value"));
+		MatcherAssert.assertThat(
+			multipartBody.getValueAsString("null"),
+			Is.is(CoreMatchers.nullValue()));
 	}
 
 	public static class TestClass {

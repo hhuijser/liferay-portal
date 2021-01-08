@@ -14,8 +14,6 @@
 
 package com.liferay.asset.info.list.renderer.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
@@ -53,6 +51,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.hamcrest.CoreMatchers;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -182,7 +182,8 @@ public class AssetInfoListRendererTest {
 				article.getGroupId(), article.getArticleId(), Constants.VIEW,
 				article.getDefaultLanguageId());
 
-			Assert.assertThat(content, containsString(articleContent));
+			Assert.assertThat(
+				content, CoreMatchers.containsString(articleContent));
 		}
 	}
 
@@ -190,7 +191,7 @@ public class AssetInfoListRendererTest {
 		for (AssetEntry assetEntry : _assetEntries) {
 			Assert.assertThat(
 				content,
-				containsString(
+				CoreMatchers.containsString(
 					assetEntry.getSummary(assetEntry.getDefaultLanguageId())));
 		}
 	}
@@ -199,7 +200,7 @@ public class AssetInfoListRendererTest {
 		for (AssetEntry assetEntry : _assetEntries) {
 			Assert.assertThat(
 				content,
-				containsString(
+				CoreMatchers.containsString(
 					assetEntry.getTitle(assetEntry.getDefaultLanguageId())));
 		}
 	}

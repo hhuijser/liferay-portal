@@ -14,8 +14,6 @@
 
 package com.liferay.portal.osgi.debug.spring.extender.internal;
 
-import static java.lang.Thread.sleep;
-
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -84,7 +82,7 @@ public class UnavailableComponentScanner {
 		public void run() {
 			try {
 				while (true) {
-					sleep(_scanningInterval);
+					Thread.sleep(_scanningInterval);
 
 					String scanResult =
 						UnavailableComponentUtil.scanUnavailableComponents();

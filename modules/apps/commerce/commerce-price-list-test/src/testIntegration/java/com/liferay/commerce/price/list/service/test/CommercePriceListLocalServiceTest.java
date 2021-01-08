@@ -14,8 +14,6 @@
 
 package com.liferay.commerce.price.list.service.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.commerce.currency.exception.NoSuchCurrencyException;
 import com.liferay.commerce.currency.model.CommerceCurrency;
@@ -46,6 +44,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.frutilla.FrutillaRule;
+
+import org.hamcrest.CoreMatchers;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -164,7 +164,7 @@ public class CommercePriceListLocalServiceTest {
 
 		Assert.assertThat(
 			commercePriceList.getExternalReferenceCode(),
-			equalTo(externalReferenceCode));
+			CoreMatchers.equalTo(externalReferenceCode));
 	}
 
 	@Test
@@ -209,7 +209,7 @@ public class CommercePriceListLocalServiceTest {
 
 		Assert.assertThat(
 			commercePriceList.getParentCommercePriceListId(),
-			equalTo(parentCommercePriceListId));
+			CoreMatchers.equalTo(parentCommercePriceListId));
 	}
 
 	@Test
@@ -259,10 +259,10 @@ public class CommercePriceListLocalServiceTest {
 
 		Assert.assertThat(
 			commercePriceList.getExternalReferenceCode(),
-			equalTo(externalReferenceCode));
+			CoreMatchers.equalTo(externalReferenceCode));
 		Assert.assertThat(
 			commercePriceList.getParentCommercePriceListId(),
-			equalTo(parentCommercePriceListId));
+			CoreMatchers.equalTo(parentCommercePriceListId));
 	}
 
 	@Test
@@ -358,23 +358,24 @@ public class CommercePriceListLocalServiceTest {
 
 		Assert.assertThat(
 			updatedCommercePriceList.getDisplayDate(),
-			equalTo(_truncateSeconds(displayDate)));
+			CoreMatchers.equalTo(_truncateSeconds(displayDate)));
 		Assert.assertThat(
 			updatedCommercePriceList.getExpirationDate(),
-			equalTo(_truncateSeconds(expirationDate)));
+			CoreMatchers.equalTo(_truncateSeconds(expirationDate)));
 
 		Assert.assertThat(
 			updatedCommercePriceList.getGroupId(),
-			equalTo(commercePriceList.getGroupId()));
+			CoreMatchers.equalTo(commercePriceList.getGroupId()));
 		Assert.assertThat(
 			updatedCommercePriceList.getCommercePriceListId(),
-			equalTo(commercePriceList.getCommercePriceListId()));
+			CoreMatchers.equalTo(commercePriceList.getCommercePriceListId()));
 		Assert.assertThat(
 			updatedCommercePriceList.getParentCommercePriceListId(),
-			equalTo(commercePriceList.getParentCommercePriceListId()));
+			CoreMatchers.equalTo(
+				commercePriceList.getParentCommercePriceListId()));
 		Assert.assertThat(
 			updatedCommercePriceList.getPriority(),
-			equalTo(commercePriceList.getPriority()));
+			CoreMatchers.equalTo(commercePriceList.getPriority()));
 	}
 
 	@Test(expected = NoSuchPriceListException.class)
@@ -446,7 +447,7 @@ public class CommercePriceListLocalServiceTest {
 
 		Assert.assertThat(
 			updatedCommercePriceList.getParentCommercePriceListId(),
-			equalTo(parentCommercePriceListId));
+			CoreMatchers.equalTo(parentCommercePriceListId));
 	}
 
 	@Test
@@ -684,7 +685,7 @@ public class CommercePriceListLocalServiceTest {
 
 		Assert.assertThat(
 			commercePriceList.getParentCommercePriceListId(),
-			equalTo(parentCommercePriceListId));
+			CoreMatchers.equalTo(parentCommercePriceListId));
 	}
 
 	@Test
@@ -726,7 +727,7 @@ public class CommercePriceListLocalServiceTest {
 
 		Assert.assertThat(
 			commercePriceList.getParentCommercePriceListId(),
-			equalTo(parentCommercePriceListId));
+			CoreMatchers.equalTo(parentCommercePriceListId));
 	}
 
 	@Rule
@@ -741,9 +742,10 @@ public class CommercePriceListLocalServiceTest {
 
 		Assert.assertThat(
 			Currency.getInstance(commerceCurrency.getCode()),
-			equalTo(currency));
+			CoreMatchers.equalTo(currency));
 
-		Assert.assertThat(commercePriceList.getName(), equalTo(name));
+		Assert.assertThat(
+			commercePriceList.getName(), CoreMatchers.equalTo(name));
 	}
 
 	private Date _truncateSeconds(Date date) {

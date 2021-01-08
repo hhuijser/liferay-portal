@@ -1,0 +1,47 @@
+#
+# Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+#
+# The contents of this file are subject to the terms of the Liferay Enterprise
+# Subscription License ("License"). You may not use this file except in
+# compliance with the License. You can obtain a copy of the License by
+# contacting Liferay, Inc. See the License for the specific language governing
+# permissions and limitations under the License, including but not limited to
+# distribution rights of the Software.
+#
+
+from abc import ABCMeta, \
+	abstractmethod
+
+from liferay.common.pubsub import PubSubBridge
+from liferay.common.spark import BaseSparkApplication, \
+	SparkJobPipeline
+
+from liferay.content_recommendation.job import GenerateItemsSparkJob, \
+	GenerateUserItemInteractionsSparkJob, \
+	PublishJobRunSparkJob, \
+	ReadAnalyticsEventsSparkJob, \
+	ReadRecommendedItemsSparkJob, \
+	WriteRecommendedItemsSparkJob, \
+	WriteUserItemInteractionsSparkJob
+
+from pyspark import SparkConf
+
+from pyspark.ml.linalg import DenseVector, \
+	VectorUDT
+
+from pyspark.sql.functions import udf
+from pyspark.sql.types import DoubleType, \
+	StringType
+
+import argparse
+import logging
+import os
+import sys
+
+def test():
+	from liferay.common.configuration import Configuration1, \
+		Configuration2
+	from liferay.common.spark import BaseSparkApplication1, \
+		BaseSparkApplication2
+
+	return

@@ -22,6 +22,11 @@ import org.junit.Test;
 public class PythonSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testIncorrectImportsOrder() throws Exception {
+		test("IncorrectImportsOrder.testpy");
+	}
+
+	@Test
 	public void testIncorrectStatementsOrder() throws Exception {
 		test("IncorrectStatementsOrder.testpy");
 	}

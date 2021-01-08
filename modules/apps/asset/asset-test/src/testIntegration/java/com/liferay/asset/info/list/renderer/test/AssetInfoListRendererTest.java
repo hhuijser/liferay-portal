@@ -249,7 +249,7 @@ public class AssetInfoListRendererTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private InfoListRenderer _infoListRenderer;
+	private InfoListRenderer<?> _infoListRenderer;
 
 	@Inject
 	private InfoListRendererTracker _infoListRendererTracker;

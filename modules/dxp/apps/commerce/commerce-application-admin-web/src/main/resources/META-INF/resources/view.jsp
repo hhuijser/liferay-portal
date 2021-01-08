@@ -69,7 +69,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "applications"));
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
-<portlet:actionURL name="editCommerceApplicationBrand" var="editCommerceApplicationBrandActionURL" />
+<portlet:actionURL name="/commerce_application_admin/edit_commerce_application_brand" var="editCommerceApplicationBrandActionURL" />
 
 <div class="container-fluid container-fluid-max-xl" id="<portlet:namespace />commerceApplicationBrandContainer">
 	<aui:form action="<%= editCommerceApplicationBrandActionURL %>" method="post" name="fm">
@@ -91,7 +91,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "applications"));
 				<%
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setParameter("mvcRenderCommandName", "editCommerceApplicationBrand");
+				rowURL.setParameter("mvcRenderCommandName", "/commerce_application_admin/edit_commerce_application_brand");
 				rowURL.setParameter("redirect", currentURL);
 				rowURL.setParameter("commerceApplicationBrandId", String.valueOf(commerceApplicationBrand.getCommerceApplicationBrandId()));
 				%>
@@ -138,7 +138,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "applications"));
 </aui:script>
 
 <c:if test="<%= commerceApplicationAdminDisplayContext.hasPermissions(CommerceApplicationActionKeys.ADD_COMMERCE_BRAND) %>">
-	<portlet:actionURL name="editCommerceApplicationBrand" var="editCommerceApplicationBrandActionURL">
+	<portlet:actionURL name="/commerce_application_admin/edit_commerce_application_brand" var="editCommerceApplicationBrandActionURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 	</portlet:actionURL>

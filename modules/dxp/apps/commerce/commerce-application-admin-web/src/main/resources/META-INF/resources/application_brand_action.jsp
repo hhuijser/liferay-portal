@@ -33,7 +33,7 @@ CommerceApplicationBrand commerceApplicationBrand = (CommerceApplicationBrand)ro
 >
 	<c:if test="<%= commerceApplicationAdminDisplayContext.hasCommerceApplicationBrandPermissions(commerceApplicationBrand.getCommerceApplicationBrandId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editCommerceApplicationBrand" />
+			<portlet:param name="mvcRenderCommandName" value="/commerce_application_admin/edit_commerce_application_brand" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceApplicationBrandId" value="<%= String.valueOf(commerceApplicationBrand.getCommerceApplicationBrandId()) %>" />
 		</portlet:renderURL>
@@ -45,7 +45,7 @@ CommerceApplicationBrand commerceApplicationBrand = (CommerceApplicationBrand)ro
 	</c:if>
 
 	<c:if test="<%= commerceApplicationAdminDisplayContext.hasCommerceApplicationBrandPermissions(commerceApplicationBrand.getCommerceApplicationBrandId(), ActionKeys.DELETE) %>">
-		<portlet:actionURL name="editCommerceApplicationBrand" var="deleteURL">
+		<portlet:actionURL name="/commerce_application_admin/edit_commerce_application_brand" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceApplicationBrandId" value="<%= String.valueOf(commerceApplicationBrand.getCommerceApplicationBrandId()) %>" />

@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommerceApplicationPortletKeys.COMMERCE_APPLICATION_ADMIN,
-		"mvc.command.name=editCommerceApplicationModel"
+		"mvc.command.name=/commerce_application_admin/edit_commerce_application_model"
 	},
 	service = MVCActionCommand.class
 )

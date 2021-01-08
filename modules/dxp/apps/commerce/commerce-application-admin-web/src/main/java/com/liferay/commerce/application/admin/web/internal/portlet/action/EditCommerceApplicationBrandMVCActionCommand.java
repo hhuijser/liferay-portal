@@ -53,7 +53,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommerceApplicationPortletKeys.COMMERCE_APPLICATION_ADMIN,
-		"mvc.command.name=editCommerceApplicationBrand"
+		"mvc.command.name=/commerce_application_admin/edit_commerce_application_brand"
 	},
 	service = MVCActionCommand.class
 )
@@ -165,7 +165,7 @@ public class EditCommerceApplicationBrandMVCActionCommand
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceApplicationBrand");
+			"mvcRenderCommandName", "/commerce_application_admin/edit_commerce_application_brand");
 
 		portletURL.setParameter(
 			"commerceApplicationBrandId",

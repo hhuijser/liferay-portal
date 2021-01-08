@@ -50,7 +50,7 @@ CommerceApplicationAdminDisplayContext commerceApplicationAdminDisplayContext = 
 				inline="<%= true %>"
 			>
 				<portlet:renderURL var="addCommerceApplicationModelURL">
-					<portlet:param name="mvcRenderCommandName" value="editCommerceApplicationModel" />
+					<portlet:param name="mvcRenderCommandName" value="/commerce_application_admin/edit_commerce_application_model" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="commerceApplicationBrandId" value="<%= String.valueOf(commerceApplicationAdminDisplayContext.getCommerceApplicationBrandId()) %>" />
 				</portlet:renderURL>
@@ -72,7 +72,7 @@ CommerceApplicationAdminDisplayContext commerceApplicationAdminDisplayContext = 
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
-<portlet:actionURL name="editCommerceApplicationModel" var="editCommerceApplicationModelActionURL" />
+<portlet:actionURL name="/commerce_application_admin/edit_commerce_application_model" var="editCommerceApplicationModelActionURL" />
 
 <div class="container-fluid container-fluid-max-xl" id="<portlet:namespace />commerceApplicationModelContainer">
 	<aui:form action="<%= editCommerceApplicationModelActionURL %>" method="post" name="fm">
@@ -95,7 +95,7 @@ CommerceApplicationAdminDisplayContext commerceApplicationAdminDisplayContext = 
 				<%
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setParameter("mvcRenderCommandName", "editCommerceApplicationModel");
+				rowURL.setParameter("mvcRenderCommandName", "/commerce_application_admin/edit_commerce_application_model");
 				rowURL.setParameter("redirect", currentURL);
 				rowURL.setParameter("commerceApplicationBrandId", String.valueOf(commerceApplicationModel.getCommerceApplicationBrandId()));
 				rowURL.setParameter("commerceApplicationModelId", String.valueOf(commerceApplicationModel.getCommerceApplicationModelId()));

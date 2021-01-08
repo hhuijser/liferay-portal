@@ -24,7 +24,7 @@ CommerceApplicationModel commerceApplicationModel = commerceApplicationAdminDisp
 renderResponse.setTitle(LanguageUtil.get(request, "applications"));
 %>
 
-<portlet:actionURL name="editCommerceApplicationModel" var="editCommerceApplicationModelActionURL" />
+<portlet:actionURL name="/commerce_application_admin/edit_commerce_application_model" var="editCommerceApplicationModelActionURL" />
 
 <div class="container-fluid container-fluid-max-xl entry-body">
 	<aui:form action="<%= editCommerceApplicationModelActionURL %>" method="post" name="fm">

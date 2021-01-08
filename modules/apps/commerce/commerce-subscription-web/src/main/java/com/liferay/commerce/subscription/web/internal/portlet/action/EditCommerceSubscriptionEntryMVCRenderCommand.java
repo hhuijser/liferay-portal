@@ -43,7 +43,7 @@ public class EditCommerceSubscriptionEntryMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_subscription_entry.jsp";
+		return "/edit_commerce_subscription_entry.jsp";
 	}
 
 }

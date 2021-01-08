@@ -123,6 +123,7 @@ PropertiesLongLinesCheck | .prettierignore or .properties | Finds lines that are
 PropertiesMultiLineValuesOrderCheck | .prettierignore or .properties | Verifies that property with multiple values is not on a single line. |
 PropertiesStylingCheck | .prettierignore or .properties | Applies rules to enforce consisteny in code style. |
 PropertiesWhitespaceCheck | .prettierignore or .properties | Finds missing and unnecessary whitespace in `.properties` files. |
+PythonImportsCheck | .py | Sorts and groups imports in `.py` files. |
 PythonStylingCheck | .py | Applies rules to enforce consisteny in code style. |
 PythonWhitespaceCheck | .py | Finds missing and unnecessary whitespace. |
 SQLEmptyLinesCheck | .sql | Finds missing and unnecessary empty lines. |

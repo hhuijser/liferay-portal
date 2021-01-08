@@ -73,7 +73,7 @@ public class ViewCommerceVirtualOrderItemTermsOfUseMVCRenderCommand
 			_log.error(portalException, portalException);
 		}
 
-		return "/terms_of_use.jsp";
+		return "/view_commerce_virtual_order_item_terms_of_use.jsp";
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

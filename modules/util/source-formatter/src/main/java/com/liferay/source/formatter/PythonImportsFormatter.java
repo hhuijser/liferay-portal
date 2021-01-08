@@ -178,8 +178,6 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 			sb.append(StringPool.NEW_LINE);
 		}
 
-		sb.append(StringPool.NEW_LINE);
-
 		return sb.toString();
 	}
 

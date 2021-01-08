@@ -43,6 +43,10 @@ public class PythonImportsCheck extends BaseFileCheck {
 
 		content = _formatPackageImports(content);
 
+		content = content.replaceAll(
+			"(?m)^(([ \t]*)from [\\s\\S]+?)\n+^(\\2(?!from )[^\t\n])",
+			"$1\n\n$3");
+
 		if (content.endsWith(StringPool.NEW_LINE)) {
 			content = content.substring(0, content.length() - 1);
 		}

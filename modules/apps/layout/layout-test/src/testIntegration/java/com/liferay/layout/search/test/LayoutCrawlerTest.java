@@ -231,7 +231,7 @@ public class LayoutCrawlerTest {
 
 	@Test
 	public void testSearchLayoutContentByInlineFieldValue() throws Exception {
-		Indexer indexer = IndexerRegistryUtil.getIndexer(
+		Indexer<Layout> indexer = IndexerRegistryUtil.getIndexer(
 			Layout.class.getName());
 
 		Document document = indexer.getDocument(_layout);
@@ -248,7 +248,7 @@ public class LayoutCrawlerTest {
 
 	@Test
 	public void testSearchLayoutContentByMappedFieldValue() throws Exception {
-		Indexer indexer = IndexerRegistryUtil.getIndexer(
+		Indexer<Layout> indexer = IndexerRegistryUtil.getIndexer(
 			Layout.class.getName());
 
 		Document document = indexer.getDocument(_layout);
@@ -265,7 +265,7 @@ public class LayoutCrawlerTest {
 
 	@Test
 	public void testSearchLayoutContentByWidgetContent() throws Exception {
-		Indexer indexer = IndexerRegistryUtil.getIndexer(
+		Indexer<Layout> indexer = IndexerRegistryUtil.getIndexer(
 			Layout.class.getName());
 
 		Document document = indexer.getDocument(_layout);

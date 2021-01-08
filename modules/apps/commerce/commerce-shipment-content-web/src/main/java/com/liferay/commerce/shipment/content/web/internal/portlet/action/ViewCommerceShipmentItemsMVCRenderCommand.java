@@ -62,7 +62,7 @@ public class ViewCommerceShipmentItemsMVCRenderCommand
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commerceShipmentContentDisplayContext);
 
-		return "/view_shipment_items.jsp";
+		return "/view_commerce_shipment_items.jsp";
 	}
 
 	@Reference

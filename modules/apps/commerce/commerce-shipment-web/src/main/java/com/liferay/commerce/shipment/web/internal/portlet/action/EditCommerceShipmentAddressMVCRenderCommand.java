@@ -64,7 +64,7 @@ public class EditCommerceShipmentAddressMVCRenderCommand
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceShipmentDisplayContext);
 
-		return "/shipment/address.jsp";
+		return "/shipment/edit_commerce_shipment_address.jsp";
 	}
 
 	@Reference

@@ -63,7 +63,7 @@ public class AddCommerceShipmentMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceShipmentDisplayContext);
 
-		return "/add_shipment.jsp";
+		return "/add_commerce_shipment.jsp";
 	}
 
 	@Reference

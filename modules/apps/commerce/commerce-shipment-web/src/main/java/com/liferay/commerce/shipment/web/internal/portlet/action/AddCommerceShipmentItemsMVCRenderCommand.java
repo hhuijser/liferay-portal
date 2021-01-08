@@ -64,7 +64,7 @@ public class AddCommerceShipmentItemsMVCRenderCommand
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceShipmentDisplayContext);
 
-		return "/shipment_item/add_shipment_items.jsp";
+		return "/shipment_item/add_commerce_shipment_items.jsp";
 	}
 
 	@Reference

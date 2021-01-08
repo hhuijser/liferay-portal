@@ -63,7 +63,7 @@ public class EditCommerceShipmentMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceShipmentDisplayContext);
 
-		return "/edit_shipment.jsp";
+		return "/edit_commerce_shipment.jsp";
 	}
 
 	@Reference

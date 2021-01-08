@@ -42,7 +42,7 @@ public class DeleteCommerceShipmentMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/delete.jsp";
+		return "/delete_commerce_shipment.jsp";
 	}
 
 }

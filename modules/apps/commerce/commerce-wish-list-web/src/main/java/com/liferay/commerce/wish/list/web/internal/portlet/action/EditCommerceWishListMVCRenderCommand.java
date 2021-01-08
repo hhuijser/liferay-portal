@@ -43,7 +43,7 @@ public class EditCommerceWishListMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_wish_list.jsp";
+		return "/edit_commerce_wish_list.jsp";
 	}
 
 }

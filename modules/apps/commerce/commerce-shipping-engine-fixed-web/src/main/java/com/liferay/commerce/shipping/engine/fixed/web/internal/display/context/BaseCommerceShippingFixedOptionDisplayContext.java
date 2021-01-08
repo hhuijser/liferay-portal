@@ -104,7 +104,8 @@ public class BaseCommerceShippingFixedOptionDisplayContext {
 		PortletURL portletURL = renderResponse.createRenderURL();
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceShippingMethod");
+			"mvcRenderCommandName",
+			"/commerce_shipping_methods/edit_commerce_shipping_method");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey",
 			getSelectedScreenNavigationCategoryKey());

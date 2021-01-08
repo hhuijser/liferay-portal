@@ -22,7 +22,7 @@ CommerceShippingMethodsDisplayContext commerceShippingMethodsDisplayContext = (C
 long commerceChannelId = commerceShippingMethodsDisplayContext.getCommerceChannelId();
 %>
 
-<portlet:actionURL name="editCommerceShippingMethodAddressRestriction" var="editCommerceShippingMethodAddressRestrictionActionURL" />
+<portlet:actionURL name="/commerce_channels/edit_commerce_shipping_method_address_restriction" var="editCommerceShippingMethodAddressRestrictionActionURL" />
 
 <aui:form action="<%= editCommerceShippingMethodAddressRestrictionActionURL %>" method="post" name="fm">
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />

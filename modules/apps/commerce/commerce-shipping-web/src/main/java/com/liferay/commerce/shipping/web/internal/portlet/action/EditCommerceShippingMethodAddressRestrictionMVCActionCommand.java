@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.COMMERCE_CHANNELS,
-		"mvc.command.name=editCommerceShippingMethodAddressRestriction"
+		"mvc.command.name=/commerce_channels/edit_commerce_shipping_method_address_restriction"
 	},
 	service = MVCActionCommand.class
 )

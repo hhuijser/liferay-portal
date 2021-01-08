@@ -28,7 +28,7 @@ if (commerceShippingMethod != null) {
 }
 %>
 
-<portlet:actionURL name="editCommerceShippingMethod" var="editCommerceShippingMethodActionURL" />
+<portlet:actionURL name="/commerce_shipping_methods/edit_commerce_shipping_method" var="editCommerceShippingMethodActionURL" />
 
 <aui:form action="<%= editCommerceShippingMethodActionURL %>" enctype="multipart/form-data" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceShippingMethodId <= 0) ? Constants.ADD : Constants.UPDATE %>" />

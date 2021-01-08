@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_SHIPPING_METHODS,
-		"mvc.command.name=editCommerceShippingMethod"
+		"mvc.command.name=/commerce_shipping_methods/edit_commerce_shipping_method"
 	},
 	service = MVCActionCommand.class
 )
@@ -85,7 +85,8 @@ public class EditCommerceShippingMethodMVCActionCommand
 				SessionErrors.add(actionRequest, exception.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editCommerceShippingMethod");
+					"mvcRenderCommandName",
+					"/commerce_shipping_methods/edit_commerce_shipping_method");
 			}
 			else {
 				throw exception;

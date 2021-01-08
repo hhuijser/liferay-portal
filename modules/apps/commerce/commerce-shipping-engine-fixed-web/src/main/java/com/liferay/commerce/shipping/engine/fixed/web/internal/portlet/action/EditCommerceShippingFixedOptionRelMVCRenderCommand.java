@@ -64,7 +64,7 @@ public class EditCommerceShippingFixedOptionRelMVCRenderCommand
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
-				"/edit_shipping_option_setting.jsp");
+				"/edit_commerce_shipping_fixed_option_rel.jsp");
 
 		try {
 			CommerceShippingFixedOptionRelsDisplayContext

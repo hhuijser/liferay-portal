@@ -58,7 +58,8 @@ public class EditCommerceShippingFixedOptionMVCRenderCommand
 		throws PortletException {
 
 		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher("/edit_shipping_option.jsp");
+			_servletContext.getRequestDispatcher(
+				"/edit_commerce_shipping_fixed_option.jsp");
 
 		try {
 			CommerceShippingFixedOptionsDisplayContext

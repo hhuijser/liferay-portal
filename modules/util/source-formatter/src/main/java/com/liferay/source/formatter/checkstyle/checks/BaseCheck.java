@@ -264,16 +264,19 @@ public abstract class BaseCheck extends AbstractCheck {
 		DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
 
 		while (true) {
-			if ((siblingDetailAST == null) ||
-				(siblingDetailAST.getType() != TokenTypes.IMPORT)) {
-
+			if (siblingDetailAST == null) {
 				return importNames;
 			}
 
-			FullIdent importIdent = FullIdent.createFullIdentBelow(
-				siblingDetailAST);
+			if (siblingDetailAST.getType() == TokenTypes.IMPORT) {
+				FullIdent importIdent = FullIdent.createFullIdentBelow(
+					siblingDetailAST);
 
-			importNames.add(importIdent.getText());
+				importNames.add(importIdent.getText());
+			}
+			else if (siblingDetailAST.getType() != TokenTypes.STATIC_IMPORT) {
+				return importNames;
+			}
 
 			siblingDetailAST = siblingDetailAST.getNextSibling();
 		}

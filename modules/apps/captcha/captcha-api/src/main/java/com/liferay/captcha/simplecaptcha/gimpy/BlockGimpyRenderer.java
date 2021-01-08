@@ -14,14 +14,13 @@
 
 package com.liferay.captcha.simplecaptcha.gimpy;
 
-import static nl.captcha.util.ImageUtil.applyFilter;
-
 import com.jhlabs.image.BlockFilter;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageFilter;
 
 import nl.captcha.gimpy.GimpyRenderer;
+import nl.captcha.util.ImageUtil;
 
 /**
  * This modified copy of {@code nl.captcha.gimpy.BlockGimpyRenderer} works with the latest
@@ -46,7 +45,8 @@ public class BlockGimpyRenderer implements GimpyRenderer {
 
 		blockFilter.setBlockSize(_blockSize);
 
-		applyFilter(bufferedImage, new BufferedImageFilter(blockFilter));
+		ImageUtil.applyFilter(
+			bufferedImage, new BufferedImageFilter(blockFilter));
 	}
 
 	private final int _blockSize;

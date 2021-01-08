@@ -14,8 +14,6 @@
 
 package com.liferay.portal.osgi.debug.declarative.service.internal;
 
-import static java.lang.Thread.sleep;
-
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -108,7 +106,7 @@ public class UnsatisfiedComponentScanner {
 		public void run() {
 			try {
 				while (true) {
-					sleep(_scanningInterval);
+					Thread.sleep(_scanningInterval);
 
 					_scanUnsatisfiedComponents(_serviceComponentRuntime);
 				}

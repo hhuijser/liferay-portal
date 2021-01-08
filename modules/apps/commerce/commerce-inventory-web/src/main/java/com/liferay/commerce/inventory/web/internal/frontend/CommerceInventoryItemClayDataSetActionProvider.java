@@ -14,8 +14,6 @@
 
 package com.liferay.commerce.inventory.web.internal.frontend;
 
-import static com.liferay.portal.kernel.security.permission.PermissionThreadLocal.getPermissionChecker;
-
 import com.liferay.commerce.inventory.constants.CommerceInventoryActionKeys;
 import com.liferay.commerce.inventory.web.internal.frontend.constants.CommerceInventoryDataSetConstants;
 import com.liferay.commerce.inventory.web.internal.model.InventoryItem;
@@ -26,6 +24,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuil
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -66,7 +65,7 @@ public class CommerceInventoryItemClayDataSetActionProvider
 
 		return DropdownItemListBuilder.add(
 			() -> PortalPermissionUtil.contains(
-				getPermissionChecker(),
+				PermissionThreadLocal.getPermissionChecker(),
 				CommerceInventoryActionKeys.MANAGE_INVENTORY),
 			dropdownItem -> {
 				ThemeDisplay themeDisplay =
@@ -82,7 +81,7 @@ public class CommerceInventoryItemClayDataSetActionProvider
 			}
 		).add(
 			() -> PortalPermissionUtil.contains(
-				getPermissionChecker(),
+				PermissionThreadLocal.getPermissionChecker(),
 				CommerceInventoryActionKeys.MANAGE_INVENTORY),
 			dropdownItem -> {
 				dropdownItem.setHref(

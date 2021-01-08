@@ -14,8 +14,8 @@
 
 package com.liferay.portal.vulcan.pagination;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.Is;
 
 import org.junit.Test;
 
@@ -28,10 +28,10 @@ public class PaginationTest {
 	public void testOf() {
 		Pagination pagination = Pagination.of(3, 30);
 
-		assertThat(pagination.getEndPosition(), is(90));
-		assertThat(pagination.getPage(), is(3));
-		assertThat(pagination.getPageSize(), is(30));
-		assertThat(pagination.getStartPosition(), is(60));
+		MatcherAssert.assertThat(pagination.getEndPosition(), Is.is(90));
+		MatcherAssert.assertThat(pagination.getPage(), Is.is(3));
+		MatcherAssert.assertThat(pagination.getPageSize(), Is.is(30));
+		MatcherAssert.assertThat(pagination.getStartPosition(), Is.is(60));
 	}
 
 }

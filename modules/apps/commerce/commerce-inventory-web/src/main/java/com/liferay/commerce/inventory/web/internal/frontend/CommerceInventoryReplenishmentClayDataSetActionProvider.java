@@ -14,8 +14,6 @@
 
 package com.liferay.commerce.inventory.web.internal.frontend;
 
-import static com.liferay.portal.kernel.security.permission.PermissionThreadLocal.getPermissionChecker;
-
 import com.liferay.commerce.inventory.constants.CommerceInventoryActionKeys;
 import com.liferay.commerce.inventory.web.internal.frontend.constants.CommerceInventoryDataSetConstants;
 import com.liferay.commerce.inventory.web.internal.model.Replenishment;
@@ -29,6 +27,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -70,7 +69,7 @@ public class CommerceInventoryReplenishmentClayDataSetActionProvider
 
 		return DropdownItemListBuilder.add(
 			() -> PortalPermissionUtil.contains(
-				getPermissionChecker(),
+				PermissionThreadLocal.getPermissionChecker(),
 				CommerceInventoryActionKeys.MANAGE_INVENTORY),
 			dropdownItem -> {
 				dropdownItem.setHref(
@@ -83,7 +82,7 @@ public class CommerceInventoryReplenishmentClayDataSetActionProvider
 			}
 		).add(
 			() -> PortalPermissionUtil.contains(
-				getPermissionChecker(),
+				PermissionThreadLocal.getPermissionChecker(),
 				CommerceInventoryActionKeys.MANAGE_INVENTORY),
 			dropdownItem -> {
 				dropdownItem.setHref(

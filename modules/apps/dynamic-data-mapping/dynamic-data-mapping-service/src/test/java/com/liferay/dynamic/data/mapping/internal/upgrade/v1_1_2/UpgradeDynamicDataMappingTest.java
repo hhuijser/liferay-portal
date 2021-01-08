@@ -14,8 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.internal.upgrade.v1_1_2;
 
-import static org.mockito.internal.verification.VerificationModeFactory.atLeastOnce;
-
 import com.liferay.dynamic.data.mapping.model.Value;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.portal.json.JSONArrayImpl;
@@ -31,6 +29,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.verification.VerificationModeFactory;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
@@ -72,7 +71,7 @@ public class UpgradeDynamicDataMappingTest {
 		radioDDMFormFieldValueTransformer.transform(_ddmFormFieldValue);
 
 		Mockito.verify(
-			_value, atLeastOnce()
+			_value, VerificationModeFactory.atLeastOnce()
 		).addString(
 			Matchers.any(Locale.class), Matchers.anyString()
 		);
@@ -134,7 +133,7 @@ public class UpgradeDynamicDataMappingTest {
 		selectDDMFormFieldValueTransformer.transform(_ddmFormFieldValue);
 
 		Mockito.verify(
-			_value, atLeastOnce()
+			_value, VerificationModeFactory.atLeastOnce()
 		).addString(
 			Matchers.any(Locale.class), Matchers.anyString()
 		);

@@ -14,9 +14,6 @@
 
 package com.liferay.mule.internal.metadata;
 
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.anyString;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,6 +31,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 import org.mule.metadata.api.builder.BaseTypeBuilder;
@@ -81,7 +79,7 @@ public class MetadataTypeBuilderTest {
 		).when(
 			metadataTypeBuilder
 		).getObjectTypeBuilder(
-			anyObject(), anyString()
+			Matchers.anyObject(), Matchers.anyString()
 		);
 
 		Mockito.doReturn(
@@ -89,7 +87,7 @@ public class MetadataTypeBuilderTest {
 		).when(
 			metadataTypeBuilder
 		).getArrayTypeBuilder(
-			anyObject(), anyString()
+			Matchers.anyObject(), Matchers.anyString()
 		);
 
 		Mockito.doReturn(
@@ -97,7 +95,7 @@ public class MetadataTypeBuilderTest {
 		).when(
 			metadataTypeBuilder
 		).getOASJsonNode(
-			anyObject()
+			Matchers.anyObject()
 		);
 
 		Mockito.doReturn(
@@ -105,7 +103,7 @@ public class MetadataTypeBuilderTest {
 		).when(
 			metadataTypeBuilder
 		).resolveAnyMetadataType(
-			anyObject()
+			Matchers.anyObject()
 		);
 	}
 
@@ -329,7 +327,7 @@ public class MetadataTypeBuilderTest {
 		Mockito.verify(
 			metadataTypeBuilder, Mockito.times(1)
 		).resolveAnyMetadataType(
-			anyObject()
+			Matchers.anyObject()
 		);
 	}
 

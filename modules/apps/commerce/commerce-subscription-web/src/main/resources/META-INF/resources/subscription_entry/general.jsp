@@ -120,7 +120,7 @@ if (deliveryMaxSubscriptionCycles > 0) {
 </div>
 </commerce-ui:panel>
 
-<portlet:actionURL name="editCommerceSubscriptionEntry" var="editCommerceSubscriptionEntryActionURL" />
+<portlet:actionURL name="/commerce_subscription_entry/edit_commerce_subscription_entry" var="editCommerceSubscriptionEntryActionURL" />
 
 <aui:form action="<%= editCommerceSubscriptionEntryActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />

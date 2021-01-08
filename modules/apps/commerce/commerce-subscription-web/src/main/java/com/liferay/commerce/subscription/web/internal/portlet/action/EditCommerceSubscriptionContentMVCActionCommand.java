@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.COMMERCE_SUBSCRIPTION_CONTENT_WEB,
-		"mvc.command.name=editCommerceSubscriptionEntry"
+		"mvc.command.name=/commerce_subscription_content_web/edit_commerce_subscription_content"
 	},
 	service = MVCActionCommand.class
 )
@@ -83,7 +83,9 @@ public class EditCommerceSubscriptionContentMVCActionCommand
 				SessionErrors.add(actionRequest, exception.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editCommerceSubscriptionEntry");
+					"mvcRenderCommandName",
+					"/commerce_subscription_content_web" +
+						"/edit_commerce_subscription_content");
 			}
 			else if (exception instanceof NoSuchSubscriptionEntryException ||
 					 exception instanceof PrincipalException) {

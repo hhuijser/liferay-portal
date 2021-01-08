@@ -104,7 +104,8 @@ public class CommerceSubscriptionDisplayContextHelper {
 		ActionURL actionURL = liferayPortletResponse.createActionURL();
 
 		actionURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceSubscriptionEntry");
+			ActionRequest.ACTION_NAME,
+			"/commerce_subscription_entry/edit_commerce_subscription_entry");
 		actionURL.setParameter(Constants.CMD, cmd);
 		actionURL.setParameter(
 			"commerceSubscriptionEntryId",

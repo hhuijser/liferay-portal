@@ -35,7 +35,7 @@ CommerceShipmentContentDisplayContext commerceShipmentContentDisplayContext = (C
 		PortletURL rowURL = renderResponse.createRenderURL();
 
 		rowURL.setParameter("redirect", currentURL);
-		rowURL.setParameter("mvcRenderCommandName", "viewCommerceShipmentItems");
+		rowURL.setParameter("mvcRenderCommandName", "/commerce_shipment_content/view_commerce_shipment_items");
 		rowURL.setParameter("commerceShipmentId", String.valueOf(commerceShipment.getCommerceShipmentId()));
 		%>
 

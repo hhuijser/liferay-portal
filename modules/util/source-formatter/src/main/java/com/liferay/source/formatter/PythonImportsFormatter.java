@@ -100,9 +100,9 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 			return null;
 		}
 
-		String importString = matcher.group(1);
+		String packageName = matcher.group(2);
 
-		return new ImportPackage(importString, false, line);
+		return new ImportPackage(packageName, false, line);
 	}
 
 	private String _mergeImports(String imports) {
@@ -114,9 +114,14 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 
 		List<String> importNamesList = new ArrayList<>();
 
+		String importNames = StringPool.BLANK;
+		String indent = StringPool.BLANK;
+		String packageName = StringPool.BLANK;
+
 		while (matcher.find()) {
-			String importNames = matcher.group(2);
-			String packageName = matcher.group(1);
+			importNames = matcher.group(3);
+			indent = matcher.group(1);
+			packageName = matcher.group(2);
 
 			for (String importName : importNames.split(StringPool.COMMA)) {
 				importNamesList.add(importName.trim());
@@ -140,6 +145,7 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 		for (Map.Entry<String, List<String>> entry :
 				packageImportsMap.entrySet()) {
 
+			sb.append(indent);
 			sb.append("from ");
 			sb.append(entry.getKey());
 			sb.append(" import ");
@@ -160,10 +166,24 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 	}
 
 	private String _splitImports(String imports) {
-		return imports.replaceAll(", ", ", \\\\\n    ");
+		String[] newImports = imports.split("\n");
+
+		StringBundler sb = new StringBundler((newImports.length * 2) + 1);
+
+		for (String newImport : newImports) {
+			String indent = newImport.replaceFirst("(\t*).*", "$1");
+
+			sb.append(newImport.replaceAll(", ", ", \\\\\n\t" + indent));
+
+			sb.append(StringPool.NEW_LINE);
+		}
+
+		sb.append(StringPool.NEW_LINE);
+
+		return sb.toString();
 	}
 
 	private static final Pattern _importPattern = Pattern.compile(
-		"from (.*) import (.*)");
+		"([ \t]*)from (.*) import (.*)");
 
 }

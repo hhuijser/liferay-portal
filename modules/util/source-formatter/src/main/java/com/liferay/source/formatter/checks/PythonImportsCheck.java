@@ -95,7 +95,7 @@ public class PythonImportsCheck extends BaseFileCheck {
 	private static final Pattern _importsPattern1 = Pattern.compile(
 		"\n+[ \t]*import (.*)");
 	private static final Pattern _importsPattern2 = Pattern.compile(
-		"(^[ \t]*from (.*) import (.+(\\\\\n[\\s\\S]+?)*)(?<!\\\\)(\n|\\Z))+",
+		"(^[ \t]*from (.*) import (.+(\\\\\n[\\s\\S]+?)*)(?<!\\\\)(\n|\\Z)+)+",
 		Pattern.MULTILINE);
 
 }

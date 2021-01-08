@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.Reference;
 		"com.liferay.portlet.scopeable=true",
 		"javax.portlet.display-name=Tax Methods",
 		"javax.portlet.expiration-cache=0",
-		"javax.portlet.init-param.view-template=/edit_tax_method.jsp",
+		"javax.portlet.init-param.view-template=/edit_commerce_tax_method.jsp",
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_TAX_METHODS,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"

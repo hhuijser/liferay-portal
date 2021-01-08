@@ -51,7 +51,8 @@ public class EditCommerceTaxMethodMVCRenderCommand implements MVCRenderCommand {
 		throws PortletException {
 
 		RequestDispatcher requestDispatcher =
-			_servletContext.getRequestDispatcher("/edit_tax_method.jsp");
+			_servletContext.getRequestDispatcher(
+				"/edit_commerce_tax_method.jsp");
 
 		try {
 			requestDispatcher.include(

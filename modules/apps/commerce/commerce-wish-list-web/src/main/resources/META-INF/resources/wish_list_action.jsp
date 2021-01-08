@@ -23,7 +23,7 @@ CommerceWishList commerceWishList = (CommerceWishList)row.getObject();
 %>
 
 <c:if test="<%= !commerceWishList.getDefaultWishList() %>">
-	<portlet:actionURL name="editCommerceWishList" var="deleteURL">
+	<portlet:actionURL name="/commerce_wish_list_content/edit_commerce_wish_list" var="deleteURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="commerceWishListId" value="<%= String.valueOf(commerceWishList.getCommerceWishListId()) %>" />

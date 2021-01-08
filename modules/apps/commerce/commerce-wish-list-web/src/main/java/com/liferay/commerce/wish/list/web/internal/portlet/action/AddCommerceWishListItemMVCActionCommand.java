@@ -58,7 +58,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommerceWishListPortletKeys.COMMERCE_WISH_LIST_CONTENT,
-		"mvc.command.name=addCommerceWishListItem"
+		"mvc.command.name=/commerce_wish_list_content/add_commerce_wish_list_item"
 	},
 	service = MVCActionCommand.class
 )

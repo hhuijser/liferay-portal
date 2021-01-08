@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + CommerceWishListPortletKeys.COMMERCE_WISH_LIST_CONTENT,
 		"javax.portlet.name=" + CommerceWishListPortletKeys.MY_COMMERCE_WISH_LISTS,
-		"mvc.command.name=editCommerceWishList"
+		"mvc.command.name=/commerce_wish_list_content/edit_commerce_wish_list"
 	},
 	service = MVCActionCommand.class
 )
@@ -111,7 +111,8 @@ public class EditCommerceWishListMVCActionCommand extends BaseMVCActionCommand {
 				SessionErrors.add(actionRequest, exception.getClass());
 
 				actionResponse.setRenderParameter(
-					"mvcRenderCommandName", "editCommerceWishList");
+					"mvcRenderCommandName",
+					"/commerce_wish_list_content/edit_commerce_wish_list");
 			}
 			else {
 				throw exception;

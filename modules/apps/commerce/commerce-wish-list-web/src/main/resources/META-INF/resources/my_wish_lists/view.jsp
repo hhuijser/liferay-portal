@@ -24,7 +24,7 @@ CommerceWishListDisplayContext commerceWishListDisplayContext = (CommerceWishLis
 	<h3 class="align-middle d-inline"><liferay-ui:message key="wish-lists" /></h3>
 
 	<div class="d-inline float-right">
-		<portlet:actionURL name="editCommerceWishList" var="addCommerceWishListActionURL">
+		<portlet:actionURL name="/commerce_wish_list_content/edit_commerce_wish_list" var="addCommerceWishListActionURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SAVE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</portlet:actionURL>
@@ -41,7 +41,7 @@ CommerceWishListDisplayContext commerceWishListDisplayContext = (CommerceWishLis
 </div>
 
 <div class="container-fluid container-fluid-max-xl">
-	<portlet:actionURL name="editCommerceWishList" var="editCommerceWishListActionURL" />
+	<portlet:actionURL name="/commerce_wish_list_content/edit_commerce_wish_list" var="editCommerceWishListActionURL" />
 
 	<aui:form action="<%= editCommerceWishListActionURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" />

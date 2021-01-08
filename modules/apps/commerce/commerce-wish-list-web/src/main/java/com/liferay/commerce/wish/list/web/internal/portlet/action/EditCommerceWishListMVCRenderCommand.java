@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"javax.portlet.name=" + CommerceWishListPortletKeys.COMMERCE_WISH_LIST_CONTENT,
 		"javax.portlet.name=" + CommerceWishListPortletKeys.MY_COMMERCE_WISH_LISTS,
-		"mvc.command.name=editCommerceWishList"
+		"mvc.command.name=/commerce_wish_list_content/edit_commerce_wish_list"
 	},
 	service = MVCRenderCommand.class
 )

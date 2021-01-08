@@ -50,7 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_SHIPPING_METHODS,
-		"mvc.command.name=editCommerceShippingFixedOptionRel"
+		"mvc.command.name=/commerce_shipping_methods/edit_commerce_shipping_fixed_option_rel"
 	},
 	service = MVCRenderCommand.class
 )

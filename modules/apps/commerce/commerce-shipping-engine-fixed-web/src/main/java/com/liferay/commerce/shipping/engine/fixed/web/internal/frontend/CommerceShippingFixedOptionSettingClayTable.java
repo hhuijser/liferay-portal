@@ -244,7 +244,8 @@ public class CommerceShippingFixedOptionSettingClayTable
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceShippingFixedOptionRel");
+			ActionRequest.ACTION_NAME,
+			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option_rel");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -264,7 +265,8 @@ public class CommerceShippingFixedOptionSettingClayTable
 			PortletProvider.Action.EDIT);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceShippingFixedOptionRel");
+			"mvcRenderCommandName",
+			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option_rel");
 
 		long commerceShippingMethodId = ParamUtil.getLong(
 			httpServletRequest, "commerceShippingMethodId");

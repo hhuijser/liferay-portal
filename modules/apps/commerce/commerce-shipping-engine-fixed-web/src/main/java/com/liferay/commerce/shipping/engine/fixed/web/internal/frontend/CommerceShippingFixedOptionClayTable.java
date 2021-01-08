@@ -201,7 +201,8 @@ public class CommerceShippingFixedOptionClayTable
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceShippingFixedOption");
+			ActionRequest.ACTION_NAME,
+			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -220,7 +221,8 @@ public class CommerceShippingFixedOptionClayTable
 			PortletProvider.Action.EDIT);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceShippingFixedOption");
+			"mvcRenderCommandName",
+			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option");
 		portletURL.setParameter(
 			"commerceShippingFixedOptionId",
 			String.valueOf(shippingFixedOptionId));

@@ -35,7 +35,7 @@ if (commerceShippingFixedOptionRel != null) {
 <commerce-ui:side-panel-content
 	title='<%= LanguageUtil.get(resourceBundle, "edit-shipping-option-setting") %>'
 >
-	<portlet:actionURL name="editCommerceShippingFixedOptionRel" var="editCommerceShippingFixedOptionRelActionURL" />
+	<portlet:actionURL name="/commerce_shipping_methods/edit_commerce_shipping_fixed_option_rel" var="editCommerceShippingFixedOptionRelActionURL" />
 
 	<aui:form action="<%= editCommerceShippingFixedOptionRelActionURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceShippingFixedOptionRel == null) ? Constants.ADD : Constants.UPDATE %>" />

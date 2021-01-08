@@ -68,7 +68,8 @@ public class CommerceShippingFixedOptionsDisplayContext
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceShippingFixedOption");
+			"mvcRenderCommandName",
+			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option");
 		portletURL.setParameter(
 			"commerceShippingMethodId",
 			String.valueOf(getCommerceShippingMethodId()));

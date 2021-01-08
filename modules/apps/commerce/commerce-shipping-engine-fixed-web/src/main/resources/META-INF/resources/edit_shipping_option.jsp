@@ -30,7 +30,7 @@ if (commerceShippingFixedOption != null) {
 }
 %>
 
-<portlet:actionURL name="editCommerceShippingFixedOption" var="editCommerceShippingFixedOptionActionURL" />
+<portlet:actionURL name="/commerce_shipping_methods/edit_commerce_shipping_fixed_option" var="editCommerceShippingFixedOptionActionURL" />
 
 <commerce-ui:side-panel-content
 	title='<%= LanguageUtil.get(resourceBundle, "shipping-option") %>'

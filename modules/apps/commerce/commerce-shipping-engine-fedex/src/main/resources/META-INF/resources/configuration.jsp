@@ -24,7 +24,7 @@ long commerceChannelId = ParamUtil.getLong(request, "commerceChannelId");
 String[] serviceTypes = StringUtil.split(fedExCommerceShippingEngineGroupServiceConfiguration.serviceTypes());
 %>
 
-<portlet:actionURL name="editCommerceShippingMethodFedExConfiguration" var="editCommerceShippingMethodConfigurationActionURL" />
+<portlet:actionURL name="/commerce_shipping_methods/edit_commerce_shipping_method_fedex_configuration" var="editCommerceShippingMethodConfigurationActionURL" />
 
 <aui:form action="<%= editCommerceShippingMethodConfigurationActionURL %>" method="post" name="fm">
 	<aui:input name="commerceChannelId" type="hidden" value="<%= commerceChannelId %>" />

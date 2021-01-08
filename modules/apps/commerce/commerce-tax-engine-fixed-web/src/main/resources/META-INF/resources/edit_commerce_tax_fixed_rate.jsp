@@ -30,7 +30,7 @@ CommerceTaxFixedRate commerceTaxFixedRate = commerceTaxFixedRatesDisplayContext.
 			title='<%= LanguageUtil.get(resourceBundle, "add-tax-rate") %>'
 		>
 			<aui:form action="<%= editCommerceTaxFixedRateActionURL %>" method="post" name="fm">
-				<%@ include file="/edit_tax_rate.jspf" %>
+				<%@ include file="/edit_commerce_tax_fixed_rate.jspf" %>
 			</aui:form>
 		</commerce-ui:modal-content>
 	</c:when>
@@ -40,7 +40,7 @@ CommerceTaxFixedRate commerceTaxFixedRate = commerceTaxFixedRatesDisplayContext.
 		>
 			<aui:form action="<%= editCommerceTaxFixedRateActionURL %>" method="post" name="fm">
 				<commerce-ui:panel>
-					<%@ include file="/edit_tax_rate.jspf" %>
+					<%@ include file="/edit_commerce_tax_fixed_rate.jspf" %>
 				</commerce-ui:panel>
 
 				<aui:button-row>

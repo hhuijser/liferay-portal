@@ -33,7 +33,7 @@ long commerceRegionId = commerceTaxFixedRateAddressRelsDisplayContext.getCommerc
 			title='<%= LanguageUtil.get(resourceBundle, "add-tax-rate-setting") %>'
 		>
 			<aui:form action="<%= editCommerceTaxFixedRateAddressRelActionURL %>" method="post" name="fm">
-				<%@ include file="/edit_address_tax_fixed_rate.jspf" %>
+				<%@ include file="/edit_commerce_tax_fixed_rate_address_rel.jspf" %>
 			</aui:form>
 		</commerce-ui:modal-content>
 	</c:when>
@@ -43,7 +43,7 @@ long commerceRegionId = commerceTaxFixedRateAddressRelsDisplayContext.getCommerc
 		>
 			<aui:form action="<%= editCommerceTaxFixedRateAddressRelActionURL %>" method="post" name="fm">
 				<commerce-ui:panel>
-					<%@ include file="/edit_address_tax_fixed_rate.jspf" %>
+					<%@ include file="/edit_commerce_tax_fixed_rate_address_rel.jspf" %>
 				</commerce-ui:panel>
 
 				<aui:button-row>

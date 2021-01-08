@@ -65,7 +65,7 @@ public class EditCommerceTaxFixedRateAddressRelMVCRenderCommand
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
-				"/edit_address_tax_fixed_rate.jsp");
+				"/edit_commerce_tax_fixed_rate_address_rel.jsp");
 
 		try {
 			CommerceTaxFixedRateAddressRelsDisplayContext

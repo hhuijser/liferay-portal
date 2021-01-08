@@ -94,7 +94,8 @@ public class CommerceOrderShipmentDataSetActionProvider
 			ActionRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "deleteCommerceShipment");
+			"mvcRenderCommandName",
+			"/commerce_shipment/delete_commerce_shipment");
 		portletURL.setParameter(
 			"redirect", _portal.getCurrentURL(httpServletRequest));
 		portletURL.setParameter(
@@ -119,7 +120,9 @@ public class CommerceOrderShipmentDataSetActionProvider
 
 		portletURL.setParameter("backURL", portletURL.toString());
 
-		portletURL.setParameter("mvcRenderCommandName", "editCommerceShipment");
+		portletURL.setParameter(
+			"mvcRenderCommandName",
+			"/commerce_shipment/edit_commerce_shipment");
 
 		String redirect = ParamUtil.getString(
 			httpServletRequest, "currentUrl",

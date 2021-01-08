@@ -42,7 +42,7 @@ Format dateFormat = FastDateFormatFactoryUtil.getDate(DateFormat.MEDIUM, locale,
 	<div class="row vertically-divided">
 		<div class="col-xl-4">
 			<liferay-portlet:renderURL var="editCommerceShipmentCourierDetailURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcRenderCommandName" value="editCommerceShipmentCourierDetail" />
+				<portlet:param name="mvcRenderCommandName" value="/commerce_shipment/edit_commerce_shipment_courier_detail" />
 				<portlet:param name="commerceShipmentId" value="<%= String.valueOf(commerceShipment.getCommerceShipmentId()) %>" />
 			</liferay-portlet:renderURL>
 
@@ -92,7 +92,7 @@ Format dateFormat = FastDateFormatFactoryUtil.getDate(DateFormat.MEDIUM, locale,
 
 		<div class="col-xl-4">
 			<liferay-portlet:renderURL var="editCommerceShipmentAddressURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcRenderCommandName" value="editCommerceShipmentAddress" />
+				<portlet:param name="mvcRenderCommandName" value="/commerce_shipment/edit_commerce_shipment_address" />
 				<portlet:param name="commerceShipmentId" value="<%= String.valueOf(commerceShipment.getCommerceShipmentId()) %>" />
 			</liferay-portlet:renderURL>
 
@@ -125,7 +125,7 @@ Format dateFormat = FastDateFormatFactoryUtil.getDate(DateFormat.MEDIUM, locale,
 
 		<div class="col-xl-4">
 			<liferay-portlet:renderURL var="editCommerceShipmentShippingDateURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcRenderCommandName" value="editCommerceShipmentShippingDate" />
+				<portlet:param name="mvcRenderCommandName" value="/commerce_shipment/edit_commerce_shipment_shipping_date" />
 				<portlet:param name="commerceShipmentId" value="<%= String.valueOf(commerceShipment.getCommerceShipmentId()) %>" />
 			</liferay-portlet:renderURL>
 
@@ -155,7 +155,7 @@ Format dateFormat = FastDateFormatFactoryUtil.getDate(DateFormat.MEDIUM, locale,
 			</commerce-ui:info-box>
 
 			<liferay-portlet:renderURL var="editCommerceShipmentExpectedDateURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcRenderCommandName" value="editCommerceShipmentExpectedDate" />
+				<portlet:param name="mvcRenderCommandName" value="/commerce_shipment/edit_commerce_shipment_expected_date" />
 				<portlet:param name="commerceShipmentId" value="<%= String.valueOf(commerceShipment.getCommerceShipmentId()) %>" />
 			</liferay-portlet:renderURL>
 

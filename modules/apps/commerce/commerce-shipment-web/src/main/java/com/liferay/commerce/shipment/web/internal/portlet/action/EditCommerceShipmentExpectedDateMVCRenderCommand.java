@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_SHIPMENT,
-		"mvc.command.name=editCommerceShipmentExpectedDate"
+		"mvc.command.name=/commerce_shipment/edit_commerce_shipment_expected_date"
 	},
 	service = MVCRenderCommand.class
 )

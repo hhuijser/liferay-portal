@@ -57,7 +57,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_SHIPMENT,
-		"mvc.command.name=editCommerceShipmentItem"
+		"mvc.command.name=/commerce_shipment/edit_commerce_shipment_item"
 	},
 	service = MVCActionCommand.class
 )
@@ -128,7 +128,8 @@ public class EditCommerceShipmentItemMVCActionCommand
 			CommerceShipment.class.getName(), PortletProvider.Action.EDIT);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceShipmentItem");
+			"mvcRenderCommandName",
+			"/commerce_shipment/edit_commerce_shipment_item");
 
 		long commerceShipmentId = ParamUtil.getLong(
 			actionRequest, "commerceShipmentId");

@@ -32,7 +32,7 @@ if (Validator.isNull(redirect)) {
 portletDisplay.setURLBack(redirect);
 %>
 
-<portlet:actionURL name="editCommerceShipmentItem" var="editCommerceShipmentItemActionURL" />
+<portlet:actionURL name="/commerce_shipment/edit_commerce_shipment_item" var="editCommerceShipmentItemActionURL" />
 
 <commerce-ui:side-panel-content
 	title='<%= LanguageUtil.format(request, "warehouse-availability-x", commerceOrderItem.getSku()) %>'

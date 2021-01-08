@@ -22,7 +22,7 @@ CommerceShipmentDisplayContext commerceShipmentDisplayContext = (CommerceShipmen
 CommerceShipment commerceShipment = commerceShipmentDisplayContext.getCommerceShipment();
 %>
 
-<portlet:actionURL name="editCommerceShipment" var="editCommerceShipmentURL" />
+<portlet:actionURL name="/commerce_shipment/edit_commerce_shipment" var="editCommerceShipmentURL" />
 
 <commerce-ui:modal-content
 	contentCssClasses="p-0"

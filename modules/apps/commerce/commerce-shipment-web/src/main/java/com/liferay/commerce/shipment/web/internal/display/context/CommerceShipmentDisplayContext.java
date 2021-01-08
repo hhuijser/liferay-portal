@@ -242,7 +242,8 @@ public class CommerceShipmentDisplayContext
 					PortletRequest.ACTION_PHASE);
 
 				portletURL.setParameter(
-					ActionRequest.ACTION_NAME, "editCommerceShipment");
+					ActionRequest.ACTION_NAME,
+					"/commerce_shipment/edit_commerce_shipment");
 				portletURL.setParameter(Constants.CMD, "transition");
 				portletURL.setParameter(
 					"redirect", PortalUtil.getCurrentURL(httpServletRequest));
@@ -323,7 +324,8 @@ public class CommerceShipmentDisplayContext
 				"commerceShipmentId",
 				String.valueOf(commerceShipment.getCommerceShipmentId()));
 			portletURL.setParameter(
-				"mvcRenderCommandName", "addCommerceShipmentItems");
+				"mvcRenderCommandName",
+				"/commerce_shipment/add_commerce_shipment_items");
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			creationMenu.addDropdownItem(

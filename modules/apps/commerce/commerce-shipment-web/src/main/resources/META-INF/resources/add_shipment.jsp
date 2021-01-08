@@ -20,7 +20,7 @@
 CommerceShipmentDisplayContext commerceShipmentDisplayContext = (CommerceShipmentDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 %>
 
-<portlet:actionURL name="editCommerceShipment" var="editCommerceShipmentActionURL" />
+<portlet:actionURL name="/commerce_shipment/edit_commerce_shipment" var="editCommerceShipmentActionURL" />
 
 <commerce-ui:modal-content
 	title='<%= LanguageUtil.get(request, "create-new-shipment") %>'

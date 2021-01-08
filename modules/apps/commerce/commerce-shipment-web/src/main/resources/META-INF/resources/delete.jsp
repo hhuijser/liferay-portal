@@ -23,10 +23,10 @@ long commerceShipmentItemId = ParamUtil.getLong(request, "commerceShipmentItemId
 String title = "shipment";
 %>
 
-<portlet:actionURL name="editCommerceShipment" var="editCommerceShipmentURL" />
+<portlet:actionURL name="/commerce_shipment/edit_commerce_shipment" var="editCommerceShipmentURL" />
 
 <c:if test="<%= commerceShipmentItemId > 0 %>">
-	<portlet:actionURL name="editCommerceShipmentItem" var="editCommerceShipmentURL" />
+	<portlet:actionURL name="/commerce_shipment/edit_commerce_shipment_item" var="editCommerceShipmentURL" />
 
 	<%
 	title = "shipment-item";

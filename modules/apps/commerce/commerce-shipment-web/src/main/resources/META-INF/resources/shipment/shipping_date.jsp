@@ -36,7 +36,7 @@ if (shippingDate != null) {
 }
 %>
 
-<portlet:actionURL name="editCommerceShipment" var="editCommerceShipmentURL" />
+<portlet:actionURL name="/commerce_shipment/edit_commerce_shipment" var="editCommerceShipmentURL" />
 
 <commerce-ui:modal-content
 	title='<%= LanguageUtil.format(request, "edit-x", "estimated-shipping-date") %>'

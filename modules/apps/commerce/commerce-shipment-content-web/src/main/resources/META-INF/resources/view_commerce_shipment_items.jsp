@@ -49,8 +49,8 @@ if (commerceAddress != null) {
 }
 %>
 
-<portlet:actionURL name="editCommerceShipment" var="editCommerceShipmentActionURL">
-	<portlet:param name="mvcRenderCommandName" value="editCommerceShipment" />
+<portlet:actionURL name="/commerce_shipment/edit_commerce_shipment" var="editCommerceShipmentActionURL">
+	<portlet:param name="mvcRenderCommandName" value="/commerce_shipment/edit_commerce_shipment" />
 </portlet:actionURL>
 
 <div class="b2b-portlet-content-header">

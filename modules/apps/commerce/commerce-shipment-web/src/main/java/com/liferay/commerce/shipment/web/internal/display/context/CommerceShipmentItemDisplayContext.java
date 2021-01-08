@@ -82,7 +82,9 @@ public class CommerceShipmentItemDisplayContext
 	public PortletURL getPortletURL() throws PortalException {
 		PortletURL portletURL = super.getPortletURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "editCommerceShipment");
+		portletURL.setParameter(
+			"mvcRenderCommandName",
+			"/commerce_shipment/edit_commerce_shipment");
 
 		return portletURL;
 	}

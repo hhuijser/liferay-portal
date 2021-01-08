@@ -24,7 +24,7 @@ CommerceShipment commerceShipment = commerceShipmentDisplayContext.getCommerceSh
 CommerceAddress shippingAddress = commerceShipmentDisplayContext.getShippingAddress();
 %>
 
-<portlet:actionURL name="editCommerceShipment" var="editCommerceShipmentURL" />
+<portlet:actionURL name="/commerce_shipment/edit_commerce_shipment" var="editCommerceShipmentURL" />
 
 <commerce-ui:modal-content
 	title='<%= LanguageUtil.format(request, "edit-x", "shipping-address") %>'

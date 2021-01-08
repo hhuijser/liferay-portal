@@ -14,8 +14,6 @@
 
 package com.liferay.talend.wizard;
 
-import static org.talend.daikon.properties.property.PropertyFactory.newProperty;
-
 import com.liferay.talend.LiferayDefinition;
 import com.liferay.talend.common.oas.OASExplorer;
 import com.liferay.talend.common.oas.constants.OASConstants;
@@ -44,6 +42,7 @@ import org.talend.daikon.properties.ValidationResult;
 import org.talend.daikon.properties.presentation.Form;
 import org.talend.daikon.properties.presentation.Widget;
 import org.talend.daikon.properties.property.Property;
+import org.talend.daikon.properties.property.PropertyFactory;
 import org.talend.daikon.properties.service.Repository;
 
 /**
@@ -163,10 +162,11 @@ public class LiferaySchemaListProperties extends ComponentPropertiesImpl {
 	public LiferayConnectionProperties connection;
 	public String repositoryLocation;
 	public List<NamedThing> schemaNames = new ArrayList<>();
-	public Property<List<NamedThing>> selectedSchemaNames = newProperty(
-		new TypeLiteral<List<NamedThing>>() {
-		},
-		"selectedSchemaNames");
+	public Property<List<NamedThing>> selectedSchemaNames =
+		PropertyFactory.newProperty(
+			new TypeLiteral<List<NamedThing>>() {
+			},
+			"selectedSchemaNames");
 
 	private Map<String, String> _getOperationPathSchemaNames(
 		JsonObject oasJsonObject, String operation) {

@@ -14,8 +14,6 @@
 
 package com.liferay.commerce.inventory.internal.permission;
 
-import static com.liferay.portal.kernel.security.permission.PermissionThreadLocal.getPermissionChecker;
-
 import com.liferay.commerce.inventory.constants.CommerceInventoryActionKeys;
 import com.liferay.commerce.inventory.model.CommerceInventoryWarehouse;
 import com.liferay.commerce.inventory.permission.CommerceInventoryWarehousePermission;
@@ -23,6 +21,7 @@ import com.liferay.commerce.inventory.service.CommerceInventoryWarehouseLocalSer
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.permission.PortalPermission;
 import com.liferay.portal.kernel.util.ArrayUtil;
 
@@ -143,7 +142,7 @@ public class CommerceInventoryWarehousePermissionImpl
 		}
 
 		if (_portalPermission.contains(
-				getPermissionChecker(),
+				PermissionThreadLocal.getPermissionChecker(),
 				CommerceInventoryActionKeys.MANAGE_INVENTORY)) {
 
 			return true;

@@ -14,8 +14,6 @@
 
 package com.liferay.layout.search.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.publisher.constants.AssetPublisherPortletKeys;
 import com.liferay.fragment.constants.FragmentConstants;
@@ -59,6 +57,8 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
+
+import org.hamcrest.CoreMatchers;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -243,7 +243,8 @@ public class LayoutCrawlerTest {
 
 		Assert.assertNotNull(content);
 
-		Assert.assertThat(content, containsString("test inline value"));
+		Assert.assertThat(
+			content, CoreMatchers.containsString("test inline value"));
 	}
 
 	@Test
@@ -260,7 +261,8 @@ public class LayoutCrawlerTest {
 
 		Assert.assertNotNull(content);
 
-		Assert.assertThat(content, containsString("test mapped value"));
+		Assert.assertThat(
+			content, CoreMatchers.containsString("test mapped value"));
 	}
 
 	@Test
@@ -277,7 +279,8 @@ public class LayoutCrawlerTest {
 
 		Assert.assertNotNull(content);
 
-		Assert.assertThat(content, containsString("test journal article"));
+		Assert.assertThat(
+			content, CoreMatchers.containsString("test journal article"));
 	}
 
 	@Inject

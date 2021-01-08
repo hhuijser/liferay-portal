@@ -14,11 +14,6 @@
 
 package com.liferay.talend;
 
-import static org.ops4j.pax.exam.CoreOptions.composite;
-import static org.ops4j.pax.exam.CoreOptions.linkBundle;
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-import static org.ops4j.pax.exam.CoreOptions.options;
-
 import com.liferay.talend.tliferaybatchfile.TLiferayBatchFileDefinition;
 import com.liferay.talend.tliferayconnection.TLiferayConnectionDefinition;
 import com.liferay.talend.tliferayinput.TLiferayInputDefinition;
@@ -28,6 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.ops4j.pax.exam.Configuration;
+import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -50,13 +46,13 @@ public class OSGiTLiferayInputTestIT extends LiferayAbstractComponentTestCase {
 			MavenArtifactProvisionOption.class,
 			ComponentsPaxExamOptions.getOptions());
 
-		Option bundleOption1 = linkBundle(
+		Option bundleOption1 = CoreOptions.linkBundle(
 			"org.talend.components-components-common-bundle");
-		Option bundleOption2 = linkBundle(
+		Option bundleOption2 = CoreOptions.linkBundle(
 			"com.liferay-com.liferay.talend.definition");
-		Option apacheFelixOption = composite(
-			options(
-				mavenBundle(
+		Option apacheFelixOption = CoreOptions.composite(
+			CoreOptions.options(
+				CoreOptions.mavenBundle(
 				).groupId(
 					"org.apache.felix"
 				).artifactId(
@@ -65,9 +61,9 @@ public class OSGiTLiferayInputTestIT extends LiferayAbstractComponentTestCase {
 					"1.6.0"
 				)));
 
-		return options(
-			composite(updatedOptions), apacheFelixOption, bundleOption1,
-			bundleOption2);
+		return CoreOptions.options(
+			CoreOptions.composite(updatedOptions), apacheFelixOption,
+			bundleOption1, bundleOption2);
 	}
 
 	@Test

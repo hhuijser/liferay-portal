@@ -14,8 +14,6 @@
 
 package com.liferay.commerce.account.web.internal.portlet.action;
 
-import static com.liferay.portal.kernel.security.permission.PermissionThreadLocal.getPermissionChecker;
-
 import com.liferay.commerce.account.configuration.CommerceAccountGroupServiceConfiguration;
 import com.liferay.commerce.account.constants.CommerceAccountActionKeys;
 import com.liferay.commerce.account.constants.CommerceAccountConstants;
@@ -55,6 +53,7 @@ import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.auth.session.AuthenticatedSessionManager;
 import com.liferay.portal.kernel.security.ldap.LDAPSettingsUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
@@ -343,7 +342,8 @@ public class EditCommerceAccountUserMVCActionCommand
 
 			if (Objects.equals(user, _userService.getCurrentUser())) {
 				UserPermissionUtil.check(
-					getPermissionChecker(), userId, ActionKeys.UPDATE);
+					PermissionThreadLocal.getPermissionChecker(), userId,
+					ActionKeys.UPDATE);
 			}
 			else {
 				long commerceAccountId = ParamUtil.getLong(

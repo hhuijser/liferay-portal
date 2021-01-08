@@ -14,9 +14,6 @@
 
 package com.liferay.portal.vulcan.internal.jaxrs.writer.interceptor;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.vulcan.internal.jaxrs.extension.ExtendedEntity;
 import com.liferay.portal.vulcan.internal.jaxrs.util.JAXRSExtensionContextUtil;
@@ -35,6 +32,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import org.mockito.ArgumentCaptor;
+import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 /**
@@ -69,13 +67,13 @@ public class PageEntityExtensionWriterInterceptorTest {
 		Mockito.verify(
 			_writerInterceptorContext, Mockito.never()
 		).setEntity(
-			any()
+			Matchers.any()
 		);
 
 		Mockito.verify(
 			_writerInterceptorContext, Mockito.never()
 		).setGenericType(
-			any()
+			Matchers.any()
 		);
 
 		Mockito.verify(
@@ -148,7 +146,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 		Mockito.verify(
 			_writerInterceptorContext
 		).setGenericType(
-			eq(
+			Matchers.eq(
 				new GenericType<Page<ExtendedEntity>>() {
 				}.getType())
 		);
@@ -189,13 +187,13 @@ public class PageEntityExtensionWriterInterceptorTest {
 		Mockito.verify(
 			_writerInterceptorContext, Mockito.never()
 		).setEntity(
-			any()
+			Matchers.any()
 		);
 
 		Mockito.verify(
 			_writerInterceptorContext, Mockito.never()
 		).setGenericType(
-			any()
+			Matchers.any()
 		);
 
 		Mockito.verify(
@@ -239,13 +237,13 @@ public class PageEntityExtensionWriterInterceptorTest {
 		Mockito.verify(
 			_writerInterceptorContext, Mockito.never()
 		).setEntity(
-			any()
+			Matchers.any()
 		);
 
 		Mockito.verify(
 			_writerInterceptorContext, Mockito.never()
 		).setGenericType(
-			any()
+			Matchers.any()
 		);
 
 		Mockito.verify(

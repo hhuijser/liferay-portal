@@ -14,8 +14,6 @@
 
 package com.liferay.data.engine.rest.resource.v2_0.test;
 
-import static com.liferay.portal.kernel.json.JSONUtil.put;
-
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.data.engine.rest.client.dto.v2_0.DataDefinition;
 import com.liferay.data.engine.rest.client.dto.v2_0.DataDefinitionField;
@@ -72,7 +70,7 @@ public class DataDefinitionFieldLinkResourceTest
 		DataDefinitionField dataDefinitionField = dataDefinitionFields[0];
 
 		dataDefinitionField.setCustomProperties(
-			HashMapBuilder.<String, Object>put(
+			HashMapBuilder.JSONUtil.put(
 				"ddmStructureId", _dataDefinition.getId()
 			).put(
 				"ddmStructureLayoutId", dataLayout.getId()

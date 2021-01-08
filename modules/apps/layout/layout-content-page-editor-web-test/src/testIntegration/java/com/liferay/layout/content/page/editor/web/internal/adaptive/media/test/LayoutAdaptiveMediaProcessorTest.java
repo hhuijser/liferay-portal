@@ -14,8 +14,6 @@
 
 package com.liferay.layout.content.page.editor.web.internal.adaptive.media.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
@@ -72,6 +70,8 @@ import com.liferay.segments.constants.SegmentsExperienceConstants;
 import java.util.Collection;
 import java.util.Dictionary;
 import java.util.Iterator;
+
+import org.hamcrest.CoreMatchers;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -173,10 +173,12 @@ public class LayoutAdaptiveMediaProcessorTest {
 
 		String content = mockHttpServletResponse.getContentAsString();
 
-		Assert.assertThat(content, containsString("(max-width:300px)"));
+		Assert.assertThat(
+			content, CoreMatchers.containsString("(max-width:300px)"));
 		Assert.assertThat(
 			content,
-			containsString("(max-width:1000px) and (min-width:300px)"));
+			CoreMatchers.containsString(
+				"(max-width:1000px) and (min-width:300px)"));
 	}
 
 	@Test
@@ -240,7 +242,8 @@ public class LayoutAdaptiveMediaProcessorTest {
 		String content = mockHttpServletResponse.getContentAsString();
 
 		Assert.assertThat(
-			content, containsString(amImageConfigurationEntry.getUUID()));
+			content,
+			CoreMatchers.containsString(amImageConfigurationEntry.getUUID()));
 
 		StringBundler sb = new StringBundler(5);
 
@@ -252,7 +255,7 @@ public class LayoutAdaptiveMediaProcessorTest {
 		sb.append(viewportSize.getMaxWidth());
 		sb.append("px)");
 
-		Assert.assertThat(content, containsString(sb.toString()));
+		Assert.assertThat(content, CoreMatchers.containsString(sb.toString()));
 	}
 
 	private void _addLayout() throws Exception {

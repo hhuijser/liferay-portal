@@ -14,8 +14,6 @@
 
 package com.liferay.talend.common.schema;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-
 import com.liferay.talend.BaseTestCase;
 import com.liferay.talend.common.oas.constants.OASConstants;
 
@@ -24,6 +22,8 @@ import java.util.List;
 import javax.json.JsonObject;
 
 import org.apache.avro.Schema;
+
+import org.hamcrest.CoreMatchers;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -110,7 +110,7 @@ public class SchemaBuilderTest extends BaseTestCase {
 
 		List<Schema.Field> fields = schema.getFields();
 
-		Assert.assertThat(fields.size(), equalTo(48));
+		Assert.assertThat(fields.size(), CoreMatchers.equalTo(48));
 
 		Schema.Field field = schema.getField("configuration_minStockQuantity");
 
@@ -129,7 +129,7 @@ public class SchemaBuilderTest extends BaseTestCase {
 
 		List<Schema.Field> fields = schema.getFields();
 
-		Assert.assertThat(fields.size(), equalTo(48));
+		Assert.assertThat(fields.size(), CoreMatchers.equalTo(48));
 
 		Schema.Field field = schema.getField("id");
 
@@ -161,7 +161,7 @@ public class SchemaBuilderTest extends BaseTestCase {
 
 		List<Schema.Field> fields = schema.getFields();
 
-		Assert.assertThat(fields.size(), equalTo(48));
+		Assert.assertThat(fields.size(), CoreMatchers.equalTo(48));
 
 		Schema.Field field = schema.getField("productType");
 
@@ -207,7 +207,7 @@ public class SchemaBuilderTest extends BaseTestCase {
 	private void _assertValidProductSchema(Schema schema) {
 		List<Schema.Field> fields = schema.getFields();
 
-		Assert.assertThat(fields.size(), equalTo(48));
+		Assert.assertThat(fields.size(), CoreMatchers.equalTo(48));
 
 		Schema.Field field = schema.getField("active");
 

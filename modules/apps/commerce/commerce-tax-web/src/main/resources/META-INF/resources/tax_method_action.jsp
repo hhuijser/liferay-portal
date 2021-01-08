@@ -32,7 +32,7 @@ CommerceTaxMethod commerceTaxMethod = (CommerceTaxMethod)row.getObject();
 	showWhenSingleIcon="<%= true %>"
 >
 	<c:if test="<%= commerceTaxMethodsDisplayContext.hasUpdateCommerceChannelPermission() %>">
-		<portlet:actionURL name="editCommerceTaxMethod" var="editURL">
+		<portlet:actionURL name="/commerce_channels/edit_commerce_tax_method" var="editURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EDIT %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceTaxMethodId" value="<%= String.valueOf(commerceTaxMethod.getCommerceTaxMethodId()) %>" />
@@ -44,7 +44,7 @@ CommerceTaxMethod commerceTaxMethod = (CommerceTaxMethod)row.getObject();
 			url="<%= editURL %>"
 		/>
 
-		<portlet:actionURL name="editCommerceTaxMethod" var="setActiveURL">
+		<portlet:actionURL name="/commerce_channels/edit_commerce_tax_method" var="setActiveURL">
 			<portlet:param name="<%= Constants.CMD %>" value="setActive" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceTaxMethodId" value="<%= String.valueOf(commerceTaxMethod.getCommerceTaxMethodId()) %>" />

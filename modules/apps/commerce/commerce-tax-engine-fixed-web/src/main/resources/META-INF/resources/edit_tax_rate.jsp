@@ -22,7 +22,7 @@ CommerceTaxFixedRatesDisplayContext commerceTaxFixedRatesDisplayContext = (Comme
 CommerceTaxFixedRate commerceTaxFixedRate = commerceTaxFixedRatesDisplayContext.getCommerceTaxFixedRate();
 %>
 
-<portlet:actionURL name="editCommerceTaxFixedRate" var="editCommerceTaxFixedRateActionURL" />
+<portlet:actionURL name="/commerce_tax_methods/edit_commerce_tax_fixed_rate" var="editCommerceTaxFixedRateActionURL" />
 
 <c:choose>
 	<c:when test="<%= commerceTaxFixedRate == null %>">

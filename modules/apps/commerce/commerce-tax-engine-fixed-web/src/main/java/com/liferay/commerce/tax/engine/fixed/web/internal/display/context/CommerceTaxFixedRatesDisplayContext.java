@@ -68,7 +68,8 @@ public class CommerceTaxFixedRatesDisplayContext
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceTaxFixedRate");
+			"mvcRenderCommandName",
+			"/commerce_tax_methods/edit_commerce_tax_fixed_rate");
 		portletURL.setParameter(
 			"commerceTaxMethodId", String.valueOf(getCommerceTaxMethodId()));
 

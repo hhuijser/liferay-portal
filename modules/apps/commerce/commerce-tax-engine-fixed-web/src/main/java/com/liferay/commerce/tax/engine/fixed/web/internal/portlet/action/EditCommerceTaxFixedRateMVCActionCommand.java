@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommercePortletKeys.COMMERCE_TAX_METHODS,
-		"mvc.command.name=editCommerceTaxFixedRate"
+		"mvc.command.name=/commerce_tax_methods/edit_commerce_tax_fixed_rate"
 	},
 	service = MVCActionCommand.class
 )

@@ -113,7 +113,8 @@ public class CommerceTaxRateSettingDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest));
 
 		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "editCommerceTaxFixedRateAddressRel");
+			ActionRequest.ACTION_NAME,
+			"/commerce_tax_methods/edit_commerce_tax_fixed_rate_address_rel");
 		portletURL.setParameter(Constants.CMD, Constants.DELETE);
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
@@ -132,7 +133,8 @@ public class CommerceTaxRateSettingDataSetActionProvider
 			PortletProvider.Action.EDIT);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceTaxFixedRateAddressRel");
+			"mvcRenderCommandName",
+			"/commerce_tax_methods/edit_commerce_tax_fixed_rate_address_rel");
 
 		long commerceTaxMethodId = ParamUtil.getLong(
 			httpServletRequest, "commerceTaxMethodId");

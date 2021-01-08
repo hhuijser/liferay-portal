@@ -25,7 +25,7 @@ long commerceCountryId = commerceTaxFixedRateAddressRelsDisplayContext.getCommer
 long commerceRegionId = commerceTaxFixedRateAddressRelsDisplayContext.getCommerceRegionId();
 %>
 
-<portlet:actionURL name="editCommerceTaxFixedRateAddressRel" var="editCommerceTaxFixedRateAddressRelActionURL" />
+<portlet:actionURL name="/commerce_tax_methods/edit_commerce_tax_fixed_rate_address_rel" var="editCommerceTaxFixedRateAddressRelActionURL" />
 
 <c:choose>
 	<c:when test="<%= commerceTaxFixedRateAddressRel == null %>">

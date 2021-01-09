@@ -43,7 +43,7 @@ CommerceMLForecastAlertEntryListDisplayContext commerceMLForecastAlertEntryListD
 		}
 		%>
 
-		<portlet:actionURL name="updateStatus" var="updateStatusURL">
+		<portlet:actionURL name="/commerce_ml_forecast_alert/update_commerce_ml_forecast_alert_entry" var="updateStatusURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= CommerceMLForecastAlertActionKeys.MANAGE_ALERT_STATUS %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceMLForecastAlertEntryId" value="<%= String.valueOf(commerceMLForecastAlertEntry.getCommerceMLForecastAlertEntryId()) %>" />
@@ -51,7 +51,7 @@ CommerceMLForecastAlertEntryListDisplayContext commerceMLForecastAlertEntryListD
 		</portlet:actionURL>
 
 		<liferay-ui:icon
-			message="updateStatus"
+			message="/commerce_ml_forecast_alert/update_commerce_ml_forecast_alert_entry"
 			url="<%= updateStatusURL %>"
 		/>
 	</c:if>

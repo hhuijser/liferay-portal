@@ -100,9 +100,11 @@ public class AssetInfoListRendererTest {
 		_assetEntries.add(assetEntry2);
 
 		_company = _companyLocalService.getCompany(_group.getCompanyId());
-		_infoListRenderer = _infoListRendererTracker.getInfoListRenderer(
-			"com.liferay.asset.info.internal.list.renderer." +
-				"UnstyledAssetEntryBasicListInfoListRenderer");
+		_infoListRenderer =
+			(InfoListRenderer<AssetEntry>)
+				_infoListRendererTracker.getInfoListRenderer(
+					"com.liferay.asset.info.internal.list.renderer." +
+						"UnstyledAssetEntryBasicListInfoListRenderer");
 		_layout = LayoutTestUtil.addLayout(_group);
 	}
 
@@ -250,7 +252,7 @@ public class AssetInfoListRendererTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private InfoListRenderer<?> _infoListRenderer;
+	private InfoListRenderer<AssetEntry> _infoListRenderer;
 
 	@Inject
 	private InfoListRendererTracker _infoListRendererTracker;

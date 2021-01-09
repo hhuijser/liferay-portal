@@ -59,7 +59,7 @@ public class EditCommerceDataIntegrationProcessMVCRenderCommand
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commerceDataIntegrationProcessDisplayContext);
 
-		return "/edit_process.jsp";
+		return "/edit_commerce_data_integration_process.jsp";
 	}
 
 	@Reference

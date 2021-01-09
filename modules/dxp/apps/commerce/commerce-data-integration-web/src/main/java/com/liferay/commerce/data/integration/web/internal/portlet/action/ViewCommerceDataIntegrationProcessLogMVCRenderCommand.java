@@ -56,7 +56,7 @@ public class ViewCommerceDataIntegrationProcessLogMVCRenderCommand
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commerceDataIntegrationProcessLogDisplayContext);
 
-		return "/process_log_details.jsp";
+		return "/view_commerce_data_integration_process_log.jsp";
 	}
 
 	@Reference

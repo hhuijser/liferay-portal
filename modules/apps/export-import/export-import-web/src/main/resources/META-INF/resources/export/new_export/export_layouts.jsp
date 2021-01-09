@@ -72,7 +72,7 @@ String displayStyle = ParamUtil.getString(request, "displayStyle");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("mvcRenderCommandName", "/export_import/export_layouts_view");
+portletURL.setParameter("mvcRenderCommandName", "/export_import/view_export_layouts");
 portletURL.setParameter("groupId", String.valueOf(groupId));
 portletURL.setParameter("liveGroupId", String.valueOf(liveGroupId));
 portletURL.setParameter("privateLayout", String.valueOf(privateLayout));

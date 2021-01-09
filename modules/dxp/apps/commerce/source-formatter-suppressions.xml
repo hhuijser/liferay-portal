@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 
 <suppressions>
-	<checkstyle>
-	</checkstyle>
 	<source-check>
 		<suppress checks="JavaHelperUtilCheck" files="commerce-organization-web/src/main/java/com/liferay/commerce/organization/web/internal/organization/resource/CommerceOrganizationResourceUtil\.java" />
 		<suppress checks="JavaModuleInternalImportsCheck" files="commerce-organization-web/src/main/java/com/liferay/commerce/organization/web/internal/frontend/OrganizationFilterImpl\.java" />

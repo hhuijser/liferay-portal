@@ -42,7 +42,7 @@ public class EditCommerceBOMDefinitionMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_bom_definition.jsp";
+		return "/edit_commerce_bom_definition.jsp";
 	}
 
 }

@@ -41,7 +41,7 @@ public class EditCommerceBOMFolderMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_bom_folder.jsp";
+		return "/edit_commerce_bom_folder.jsp";
 	}
 
 }

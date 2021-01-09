@@ -148,7 +148,8 @@ public class EditCommerceBOMFolderMVCActionCommand
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_bom_admin/edit_commerce_bom_folder");
+			"mvcRenderCommandName",
+			"/commerce_bom_admin/edit_commerce_bom_folder");
 
 		portletURL.setParameter(
 			"commerceBOMFolderId",

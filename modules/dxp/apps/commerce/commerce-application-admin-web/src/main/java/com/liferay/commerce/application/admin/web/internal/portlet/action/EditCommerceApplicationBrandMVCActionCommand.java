@@ -165,7 +165,8 @@ public class EditCommerceApplicationBrandMVCActionCommand
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_application_admin/edit_commerce_application_brand");
+			"mvcRenderCommandName",
+			"/commerce_application_admin/edit_commerce_application_brand");
 
 		portletURL.setParameter(
 			"commerceApplicationBrandId",

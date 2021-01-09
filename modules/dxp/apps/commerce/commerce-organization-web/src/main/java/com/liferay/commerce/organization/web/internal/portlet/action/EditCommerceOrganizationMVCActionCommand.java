@@ -141,7 +141,8 @@ public class EditCommerceOrganizationMVCActionCommand
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/commerce_organization/edit_commerce_organization");
+			"mvcRenderCommandName",
+			"/commerce_organization/edit_commerce_organization");
 
 		portletURL.setParameter(
 			"organizationId", String.valueOf(organization.getOrganizationId()));

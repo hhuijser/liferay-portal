@@ -23,11 +23,11 @@ Organization organization = commerceOrganizationDisplayContext.getOrganization()
 
 PortletURL portletURL = commerceOrganizationDisplayContext.getPortletURL();
 
-portletURL.setParameter("mvcRenderCommandName", "viewCommerceOrganization");
+portletURL.setParameter("mvcRenderCommandName", "/commerce_organization/view_commerce_organization");
 %>
 
 <portlet:renderURL var="editCommerceOrganizationURL">
-	<portlet:param name="mvcRenderCommandName" value="editCommerceOrganization" />
+	<portlet:param name="mvcRenderCommandName" value="/commerce_organization/edit_commerce_organization" />
 	<portlet:param name="organizationId" value="<%= String.valueOf(organization.getOrganizationId()) %>" />
 	<portlet:param name='<%= PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL" %>' value="<%= portletURL.toString() %>" />
 </portlet:renderURL>

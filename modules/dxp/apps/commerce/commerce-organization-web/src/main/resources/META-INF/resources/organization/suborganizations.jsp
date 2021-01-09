@@ -44,7 +44,7 @@ request.setAttribute("view.jsp-filterPerOrganization", false);
 		<aui:button cssClass="btn-lg" name="addOrganizationButton" primary="<%= true %>" value="add-organization" />
 	</div>
 
-	<portlet:actionURL name="editCommerceOrganization" var="editCommerceOrganizationActionURL">
+	<portlet:actionURL name="/commerce_organization/edit_commerce_organization" var="editCommerceOrganizationActionURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="organizationId" value="<%= String.valueOf(commerceOrganizationDisplayContext.getOrganizationId()) %>" />

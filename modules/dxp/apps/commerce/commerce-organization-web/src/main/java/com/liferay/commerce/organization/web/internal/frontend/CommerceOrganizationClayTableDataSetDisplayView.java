@@ -261,7 +261,8 @@ public class CommerceOrganizationClayTableDataSetDisplayView
 			PortletProvider.Action.MANAGE);
 
 		viewURL.setParameter(
-			"mvcRenderCommandName", "viewCommerceOrganization");
+			"mvcRenderCommandName",
+			"/commerce_organization/view_commerce_organization");
 		viewURL.setParameter("organizationId", String.valueOf(organizationId));
 
 		PortletURL backURL = PortletProviderUtil.getPortletURL(

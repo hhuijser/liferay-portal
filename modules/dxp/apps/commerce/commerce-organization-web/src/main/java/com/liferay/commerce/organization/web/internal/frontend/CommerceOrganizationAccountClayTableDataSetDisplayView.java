@@ -215,7 +215,8 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 			PortletProvider.Action.MANAGE);
 
 		backURL.setParameter(
-			"mvcRenderCommandName", "viewCommerceOrganization");
+			"mvcRenderCommandName",
+			"/commerce_organization/view_commerce_organization");
 		backURL.setParameter("organizationId", String.valueOf(organizationId));
 		backURL.setParameter(
 			"screenNavigationCategoryKey",

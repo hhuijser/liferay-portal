@@ -22,7 +22,7 @@ CommerceOrganizationDisplayContext commerceOrganizationDisplayContext = (Commerc
 Organization organization = commerceOrganizationDisplayContext.getOrganization();
 %>
 
-<portlet:actionURL name="editCommerceOrganization" var="editCommerceOrganizationActionURL" />
+<portlet:actionURL name="/commerce_organization/edit_commerce_organization" var="editCommerceOrganizationActionURL" />
 
 <div class="account-management">
 	<aui:form action="<%= editCommerceOrganizationActionURL %>" method="post" name="fm">

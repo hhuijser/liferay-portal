@@ -2,7 +2,6 @@
 
 <suppressions>
 	<checkstyle>
-		<suppress checks="MVCCommandNameCheck" files=".*" />
 	</checkstyle>
 	<source-check>
 		<suppress checks="JavaHelperUtilCheck" files="commerce-organization-web/src/main/java/com/liferay/commerce/organization/web/internal/organization/resource/CommerceOrganizationResourceUtil\.java" />

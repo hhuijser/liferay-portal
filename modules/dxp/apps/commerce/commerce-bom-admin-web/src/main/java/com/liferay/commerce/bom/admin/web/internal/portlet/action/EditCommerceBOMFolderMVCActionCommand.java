@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommerceBOMPortletKeys.COMMERCE_BOM_ADMIN,
-		"mvc.command.name=editCommerceBOMFolder"
+		"mvc.command.name=/commerce_bom_admin/edit_commerce_bom_folder"
 	},
 	service = MVCActionCommand.class
 )
@@ -148,7 +148,7 @@ public class EditCommerceBOMFolderMVCActionCommand
 			PortletProvider.Action.MANAGE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "editCommerceBOMFolder");
+			"mvcRenderCommandName", "/commerce_bom_admin/edit_commerce_bom_folder");
 
 		portletURL.setParameter(
 			"commerceBOMFolderId",

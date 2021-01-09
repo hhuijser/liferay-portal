@@ -67,7 +67,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "shop-by-diagram"));
 
 			<c:if test="<%= commerceBOMAdminDisplayContext.hasPermissions(CommerceBOMActionKeys.ADD_COMMERCE_BOM_DEFINITION) %>">
 				<portlet:renderURL var="addCommerceBOMDefinitionURL">
-					<portlet:param name="mvcRenderCommandName" value="editCommerceBOMDefinition" />
+					<portlet:param name="mvcRenderCommandName" value="/commerce_bom_admin/edit_commerce_bom_definition" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="commerceBOMFolderId" value="<%= String.valueOf(commerceBOMAdminDisplayContext.getCommerceBOMFolderId()) %>" />
 				</portlet:renderURL>
@@ -126,7 +126,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "shop-by-diagram"));
 					<%
 					PortletURL rowURL = renderResponse.createRenderURL();
 
-					rowURL.setParameter("mvcRenderCommandName", "editCommerceBOMDefinition");
+					rowURL.setParameter("mvcRenderCommandName", "/commerce_bom_admin/edit_commerce_bom_definition");
 					rowURL.setParameter("redirect", currentURL);
 					rowURL.setParameter("commerceBOMDefinitionId", String.valueOf(commerceBOMDefinition.getCommerceBOMDefinitionId()));
 					rowURL.setParameter("commerceBOMFolderId", String.valueOf(commerceBOMAdminDisplayContext.getCommerceBOMFolderId()));
@@ -176,7 +176,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "shop-by-diagram"));
 </div>
 
 <c:if test="<%= commerceBOMAdminDisplayContext.hasPermissions(CommerceBOMActionKeys.ADD_COMMERCE_BOM_FOLDER) %>">
-	<portlet:actionURL name="editCommerceBOMFolder" var="editCommerceBOMFolderActionURL">
+	<portlet:actionURL name="/commerce_bom_admin/edit_commerce_bom_folder" var="editCommerceBOMFolderActionURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="parentCommerceBOMFolderId" value="<%= String.valueOf(commerceBOMAdminDisplayContext.getCommerceBOMFolderId()) %>" />

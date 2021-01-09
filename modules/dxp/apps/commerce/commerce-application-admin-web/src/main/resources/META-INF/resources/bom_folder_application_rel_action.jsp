@@ -32,7 +32,7 @@ CommerceBOMFolderApplicationRel commerceBOMFolderApplicationRel = (CommerceBOMFo
 	showWhenSingleIcon="<%= true %>"
 >
 	<c:if test="<%= commerceApplicationAdminDisplayContext.hasCommerceApplicationModelPermissions(commerceBOMFolderApplicationRel.getCommerceApplicationModelId(), ActionKeys.UPDATE) %>">
-		<portlet:actionURL name="editCommerceBOMFolderApplicationRel" var="deleteURL">
+		<portlet:actionURL name="/commerce_bom_admin/edit_commerce_bom_folder_application_rel" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceApplicationModelId" value="<%= String.valueOf(commerceBOMFolderApplicationRel.getCommerceApplicationModelId()) %>" />

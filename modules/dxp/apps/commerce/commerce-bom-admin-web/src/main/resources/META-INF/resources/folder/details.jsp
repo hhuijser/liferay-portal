@@ -22,7 +22,7 @@ CommerceBOMAdminDisplayContext commerceBOMAdminDisplayContext = (CommerceBOMAdmi
 CommerceBOMFolder commerceBOMFolder = commerceBOMAdminDisplayContext.getCommerceBOMFolder();
 %>
 
-<portlet:actionURL name="editCommerceBOMFolder" var="editCommerceBOMFolderActionURL" />
+<portlet:actionURL name="/commerce_bom_admin/edit_commerce_bom_folder" var="editCommerceBOMFolderActionURL" />
 
 <aui:form action="<%= editCommerceBOMFolderActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (commerceBOMFolder == null) ? Constants.ADD : Constants.UPDATE %>" />

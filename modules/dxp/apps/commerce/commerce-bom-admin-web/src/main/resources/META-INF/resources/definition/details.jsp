@@ -24,7 +24,7 @@ CommerceBOMDefinition commerceBOMDefinition = commerceBOMAdminDisplayContext.get
 CPAttachmentFileEntry cpAttachmentFileEntry = commerceBOMAdminDisplayContext.getCPAttachmentFileEntry();
 %>
 
-<portlet:actionURL name="editCommerceBOMDefinition" var="editCommerceBOMDefinitionActionURL" />
+<portlet:actionURL name="/commerce_bom_admin/edit_commerce_bom_definition" var="editCommerceBOMDefinitionActionURL" />
 
 <div class="container-fluid container-fluid-max-xl entry-body">
 	<aui:form action="<%= editCommerceBOMDefinitionActionURL %>" method="post" name="fm">
@@ -41,7 +41,7 @@ CPAttachmentFileEntry cpAttachmentFileEntry = commerceBOMAdminDisplayContext.get
 
 		<aui:fieldset-group markupView="lexicon">
 			<aui:fieldset>
-				<portlet:actionURL name="uploadTempAttachment" var="uploadCoverImageURL" />
+				<portlet:actionURL name="/commerce_bom_admin/upload_temp_attachment" var="uploadCoverImageURL" />
 
 				<div class="lfr-attachment-cover-image-selector">
 					<liferay-item-selector:image-selector

@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false, immediate = true,
 	property = {
 		"javax.portlet.name=" + CommerceBOMPortletKeys.COMMERCE_BOM_ADMIN,
-		"mvc.command.name=uploadTempAttachment"
+		"mvc.command.name=/commerce_bom_admin/upload_temp_attachment"
 	},
 	service = MVCActionCommand.class
 )

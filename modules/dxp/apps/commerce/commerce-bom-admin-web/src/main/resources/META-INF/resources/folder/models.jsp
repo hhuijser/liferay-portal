@@ -69,7 +69,7 @@ CommerceBOMFolder commerceBOMFolder = commerceBOMAdminDisplayContext.getCommerce
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
-<portlet:actionURL name="editCommerceBOMFolderApplicationRel" var="editCommerceBOMFolderApplicationRelActionURL" />
+<portlet:actionURL name="/commerce_bom_admin/edit_commerce_bom_folder_application_rel" var="editCommerceBOMFolderApplicationRelActionURL" />
 
 <div class="container-fluid container-fluid-max-xl" id="<portlet:namespace />commerceBOMFolderApplicationRelContainer">
 	<aui:form action="<%= editCommerceBOMFolderApplicationRelActionURL %>" method="post" name="fm">

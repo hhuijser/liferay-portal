@@ -33,7 +33,7 @@ CommerceBOMFolder commerceBOMFolder = (CommerceBOMFolder)row.getObject();
 >
 	<c:if test="<%= commerceBOMAdminDisplayContext.hasCommerceBOMFolderPermissions(commerceBOMFolder.getCommerceBOMFolderId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editCommerceBOMFolder" />
+			<portlet:param name="mvcRenderCommandName" value="/commerce_bom_admin/edit_commerce_bom_folder" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceBOMFolderId" value="<%= String.valueOf(commerceBOMFolder.getCommerceBOMFolderId()) %>" />
 		</portlet:renderURL>
@@ -45,7 +45,7 @@ CommerceBOMFolder commerceBOMFolder = (CommerceBOMFolder)row.getObject();
 	</c:if>
 
 	<c:if test="<%= commerceBOMAdminDisplayContext.hasCommerceBOMFolderPermissions(commerceBOMFolder.getCommerceBOMFolderId(), ActionKeys.DELETE) %>">
-		<portlet:actionURL name="editCommerceBOMFolder" var="deleteURL">
+		<portlet:actionURL name="/commerce_bom_admin/edit_commerce_bom_folder" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceBOMFolderId" value="<%= String.valueOf(commerceBOMFolder.getCommerceBOMFolderId()) %>" />

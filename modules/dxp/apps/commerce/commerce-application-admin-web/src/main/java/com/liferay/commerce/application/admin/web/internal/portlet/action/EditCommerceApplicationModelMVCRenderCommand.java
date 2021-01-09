@@ -42,7 +42,7 @@ public class EditCommerceApplicationModelMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_application_model.jsp";
+		return "/edit_commerce_application_model.jsp";
 	}
 
 }

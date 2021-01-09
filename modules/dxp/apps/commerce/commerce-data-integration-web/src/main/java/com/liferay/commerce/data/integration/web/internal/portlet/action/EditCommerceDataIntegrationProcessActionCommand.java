@@ -53,7 +53,7 @@ import org.osgi.service.component.annotations.Reference;
 	enabled = false,
 	property = {
 		"javax.portlet.name=" + CommerceDataIntegrationPortletKeys.COMMERCE_DATA_INTEGRATION,
-		"mvc.command.name=editCommerceDataIntegrationProcess"
+		"mvc.command.name=/commerce_data_integration/edit_commerce_data_integration_process"
 	},
 	service = MVCActionCommand.class
 )

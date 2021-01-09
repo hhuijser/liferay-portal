@@ -31,7 +31,7 @@ CommerceDataIntegrationProcess commerceDataIntegrationProcess = (CommerceDataInt
 >
 	<c:if test="<%= CommerceDataintegrationProcessPermission.contains(permissionChecker, commerceDataIntegrationProcess, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcRenderCommandName" value="editCommerceDataIntegrationProcess" />
+			<portlet:param name="mvcRenderCommandName" value="/commerce_data_integration/edit_commerce_data_integration_process" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceDataIntegrationProcessId" value="<%= String.valueOf(commerceDataIntegrationProcess.getCommerceDataIntegrationProcessId()) %>" />
 		</portlet:renderURL>
@@ -43,7 +43,7 @@ CommerceDataIntegrationProcess commerceDataIntegrationProcess = (CommerceDataInt
 	</c:if>
 
 	<c:if test="<%= CommerceDataintegrationProcessPermission.contains(permissionChecker, commerceDataIntegrationProcess, ActionKeys.DELETE) && !commerceDataIntegrationProcess.isSystem() %>">
-		<portlet:actionURL name="editCommerceDataIntegrationProcess" var="deleteURL">
+		<portlet:actionURL name="/commerce_data_integration/edit_commerce_data_integration_process" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="commerceDataIntegrationProcessId" value="<%= String.valueOf(commerceDataIntegrationProcess.getCommerceDataIntegrationProcessId()) %>" />

@@ -33,7 +33,7 @@ CommerceDataIntegrationProcessDisplayContext commerceDataIntegrationProcessDispl
 
 		<liferay-portlet:renderURL var="addProcessURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
-			<portlet:param name="mvcRenderCommandName" value="editCommerceDataIntegrationProcess" />
+			<portlet:param name="mvcRenderCommandName" value="/commerce_data_integration/edit_commerce_data_integration_process" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</liferay-portlet:renderURL>
 
@@ -47,7 +47,7 @@ CommerceDataIntegrationProcessDisplayContext commerceDataIntegrationProcessDispl
 
 				<liferay-portlet:renderURL var="addProcessURL">
 					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
-					<portlet:param name="mvcRenderCommandName" value="editCommerceDataIntegrationProcess" />
+					<portlet:param name="mvcRenderCommandName" value="/commerce_data_integration/edit_commerce_data_integration_process" />
 					<portlet:param name="backURL" value="<%= currentURL %>" />
 					<portlet:param name="processType" value="<%= processType.getKey() %>" />
 				</liferay-portlet:renderURL>
@@ -101,7 +101,7 @@ CommerceDataIntegrationProcessDisplayContext commerceDataIntegrationProcessDispl
 
 			submitForm(
 				form,
-				'<portlet:actionURL name="editCommerceDataIntegrationProcess" />'
+				'<portlet:actionURL name="/commerce_data_integration/edit_commerce_data_integration_process" />'
 			);
 		}
 	}

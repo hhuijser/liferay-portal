@@ -75,7 +75,7 @@ CommerceDataIntegrationProcessLogDisplayContext commerceDataIntegrationProcessLo
 
 			submitForm(
 				form,
-				'<portlet:actionURL name="editCommerceDataIntegrationProcessLog" />'
+				'<portlet:actionURL name="/commerce_data_integration/edit_commerce_data_integration_process_log" />'
 			);
 		}
 	}

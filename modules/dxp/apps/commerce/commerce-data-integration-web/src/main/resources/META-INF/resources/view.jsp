@@ -53,7 +53,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 							<%
 							PortletURL rowURL = renderResponse.createRenderURL();
 
-							rowURL.setParameter("mvcRenderCommandName", "editCommerceDataIntegrationProcess");
+							rowURL.setParameter("mvcRenderCommandName", "/commerce_data_integration/edit_commerce_data_integration_process");
 							rowURL.setParameter("redirect", currentURL);
 							rowURL.setParameter("commerceDataIntegrationProcessId", String.valueOf(commerceDataIntegrationProcess.getCommerceDataIntegrationProcessId()));
 							%>

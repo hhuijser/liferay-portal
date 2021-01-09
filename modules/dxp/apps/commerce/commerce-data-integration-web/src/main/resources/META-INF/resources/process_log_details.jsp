@@ -27,7 +27,7 @@ Date startDate = commerceDataIntegrationProcessLog.getStartDate();
 long timeMillis = endDate.getTime() - startDate.getTime();
 %>
 
-<portlet:actionURL name="editCommerceDataIntegrationProcessLog" var="editCommerceDataIntegrationProcessLogActionURL" />
+<portlet:actionURL name="/commerce_data_integration/edit_commerce_data_integration_process_log" var="editCommerceDataIntegrationProcessLogActionURL" />
 
 <div class="container-fluid container-fluid-max-xl sheet">
 	<aui:form action="<%= editCommerceDataIntegrationProcessLogActionURL %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="fm">

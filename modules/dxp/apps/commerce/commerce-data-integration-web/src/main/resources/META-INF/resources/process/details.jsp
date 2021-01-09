@@ -34,7 +34,7 @@ if (commerceDataIntegrationProcess != null) {
 }
 %>
 
-<portlet:actionURL name="editCommerceDataIntegrationProcess" var="editCommerceDataIntegrationProcessActionURL" />
+<portlet:actionURL name="/commerce_data_integration/edit_commerce_data_integration_process" var="editCommerceDataIntegrationProcessActionURL" />
 
 <div class="closed container-fluid container-fluid-max-xl" id="<portlet:namespace />editCommerceDataIntegrationProcessId">
 	<div class="container main-content-body sheet">

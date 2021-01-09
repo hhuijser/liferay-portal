@@ -33,7 +33,7 @@ CommerceDataIntegrationProcessLog commerceDataIntegrationProcessLog = (CommerceD
 >
 	<c:if test="<%= CommerceDataintegrationProcessPermission.contains(permissionChecker, commerceDataIntegrationProcessLogDisplayContext.getCommerceDataIntegrationProcess(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="viewURL">
-			<portlet:param name="mvcRenderCommandName" value="viewCommerceDataIntegrationProcessLog" />
+			<portlet:param name="mvcRenderCommandName" value="/commerce_data_integration/view_commerce_data_integration_process_log" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="cDataIntegrationProcessLogId" value="<%= String.valueOf(commerceDataIntegrationProcessLog.getCommerceDataIntegrationProcessLogId()) %>" />
 		</portlet:renderURL>
@@ -43,7 +43,7 @@ CommerceDataIntegrationProcessLog commerceDataIntegrationProcessLog = (CommerceD
 			url="<%= viewURL %>"
 		/>
 
-		<portlet:actionURL name="editCommerceDataIntegrationProcessLog" var="deleteURL">
+		<portlet:actionURL name="/commerce_data_integration/edit_commerce_data_integration_process_log" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="cDataIntegrationProcessLogId" value="<%= String.valueOf(commerceDataIntegrationProcessLog.getCommerceDataIntegrationProcessLogId()) %>" />

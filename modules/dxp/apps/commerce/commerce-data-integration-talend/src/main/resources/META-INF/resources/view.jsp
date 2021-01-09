@@ -21,7 +21,7 @@ CommerceDataIntegrationProcess commerceDataIntegrationProcess = (CommerceDataInt
 TalendProcessTypeHelper talendProcessTypeHelper = (TalendProcessTypeHelper)request.getAttribute("talendProcessTypeHelper");
 %>
 
-<liferay-portlet:actionURL name="editTalendCommerceDataIntegrationProcess" portletName="<%= CommerceDataIntegrationPortletKeys.COMMERCE_DATA_INTEGRATION %>" var="editTalendCommerceDataIntegrationProcessActionURL" />
+<liferay-portlet:actionURL name="/commerce_data_integration/edit_talend_commerce_data_integration_process" portletName="<%= CommerceDataIntegrationPortletKeys.COMMERCE_DATA_INTEGRATION %>" var="editTalendCommerceDataIntegrationProcessActionURL" />
 
 <div class="closed container-fluid container-fluid-max-xl" id="<portlet:namespace />editCommerceDataIntegrationProcessId">
 	<div class="container main-content-body sheet">

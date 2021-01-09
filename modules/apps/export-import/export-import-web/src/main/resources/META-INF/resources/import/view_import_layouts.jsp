@@ -58,7 +58,7 @@ GroupDisplayContextHelper groupDisplayContextHelper = new GroupDisplayContextHel
 		<liferay-util:include page="/import/navigation.jsp" servletContext="<%= application %>" />
 
 		<liferay-util:include page="/toolbar.jsp" servletContext="<%= application %>">
-			<liferay-util:param name="mvcRenderCommandName" value="/export_import/import_layouts_view" />
+			<liferay-util:param name="mvcRenderCommandName" value="/export_import/view_import_layouts" />
 			<liferay-util:param name="groupId" value="<%= String.valueOf(groupDisplayContextHelper.getGroupId()) %>" />
 			<liferay-util:param name="privateLayout" value="<%= String.valueOf(privateLayout) %>" />
 			<liferay-util:param name="displayStyle" value="<%= displayStyle %>" />

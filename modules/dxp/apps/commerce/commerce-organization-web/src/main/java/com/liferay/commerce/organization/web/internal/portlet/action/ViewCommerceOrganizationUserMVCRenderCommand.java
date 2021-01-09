@@ -42,7 +42,7 @@ public class ViewCommerceOrganizationUserMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/view_user.jsp";
+		return "/view_commerce_organization_user.jsp";
 	}
 
 }

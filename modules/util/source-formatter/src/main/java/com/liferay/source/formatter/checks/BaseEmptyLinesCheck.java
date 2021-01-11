@@ -341,6 +341,17 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 		return content;
 	}
 
+	protected String fixMissingEmptyLineAfterDoctype(String content) {
+		Matcher matcher = _missingEmptyLineAfterDoctypePattern.matcher(content);
+
+		if (matcher.find()) {
+			return StringUtil.replaceFirst(
+				content, "\n", "\n\n", matcher.start());
+		}
+
+		return content;
+	}
+
 	protected String fixMissingEmptyLineAfterSettingVariable(String content) {
 		Matcher matcher1 = _setVariablePattern.matcher(content);
 
@@ -667,6 +678,9 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 			"\n.*?(\\Wnew (.*\\)) |\\[\\] (\\w+ = )?)?\\{(\n+)\t*\\{\n");
 	private static final Pattern _missingEmptyLineAfterComment =
 		Pattern.compile("\n\t*// .*\n[\t ]*(?!// )\\S");
+	private static final Pattern _missingEmptyLineAfterDoctypePattern =
+		Pattern.compile(
+			"^(<\\?xml .*\\?>|<\\!DOCTYPE .*>)\n<\\w", Pattern.MULTILINE);
 	private static final Pattern _missingEmptyLineBeforeComment =
 		Pattern.compile("\n[\t ]*(?!// )\\S.*\n\t*// ");
 	private static final Pattern _missingEmptyLineBetweenTagsPattern1 =

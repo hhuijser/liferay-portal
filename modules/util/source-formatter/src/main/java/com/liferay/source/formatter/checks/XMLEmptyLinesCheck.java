@@ -43,18 +43,13 @@ public class XMLEmptyLinesCheck extends BaseEmptyLinesCheck {
 
 		content = fixEmptyLinesInNestedTags(content);
 
+		content = fixMissingEmptyLineAfterDoctype(content);
+
 		content = _fixEmptyLinesBetweenTags(fileName, content);
 
 		content = _fixMissingEmptyLinesAroundComments(content);
 
-		Matcher matcher = _missingEmptyLinePattern.matcher(content);
-
-		if (matcher.find()) {
-			return StringUtil.replaceFirst(
-				content, "\n", "\n\n", matcher.start());
-		}
-
-		matcher = _redundantEmptyLinePattern.matcher(content);
+		Matcher matcher = _redundantEmptyLinePattern.matcher(content);
 
 		if (matcher.find()) {
 			return StringUtil.replaceFirst(
@@ -115,8 +110,6 @@ public class XMLEmptyLinesCheck extends BaseEmptyLinesCheck {
 		Pattern.compile("[\t ]-->\n[\t<]");
 	private static final Pattern _missingEmptyLineBeforeCommentPattern =
 		Pattern.compile(">\n\t+<!--[\n ]");
-	private static final Pattern _missingEmptyLinePattern = Pattern.compile(
-		"^(<\\?xml .*\\?>|<\\!DOCTYPE .*>)\n<\\w", Pattern.MULTILINE);
 	private static final Pattern _redundantEmptyLinePattern = Pattern.compile(
 		"<\\?xml .*\\?>\n\n<\\!DOCTYPE");
 

@@ -680,7 +680,8 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 		Pattern.compile("\n\t*// .*\n[\t ]*(?!// )\\S");
 	private static final Pattern _missingEmptyLineAfterDoctypePattern =
 		Pattern.compile(
-			"^(<\\?xml .*\\?>|<\\!DOCTYPE .*>)\n<\\w", Pattern.MULTILINE);
+			"^(<\\?xml .*\\?>|<\\!DOCTYPE .*>)\n<\\w",
+			Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
 	private static final Pattern _missingEmptyLineBeforeComment =
 		Pattern.compile("\n[\t ]*(?!// )\\S.*\n\t*// ");
 	private static final Pattern _missingEmptyLineBetweenTagsPattern1 =

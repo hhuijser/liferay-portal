@@ -108,10 +108,9 @@ public class JournalItemSelectorViewDisplayContext {
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
 			"resourcePrimKey",
-			String.valueOf(_journalItemSelectorCriterion.getResourcePrimKey())
+			_journalItemSelectorCriterion.getResourcePrimKey()
 		).setParameter(
-			"selectedTab",
-			String.valueOf(getTitle(httpServletRequest.getLocale()))
+			"selectedTab", getTitle(httpServletRequest.getLocale())
 		).build();
 
 		return portletURL;
@@ -129,11 +128,10 @@ public class JournalItemSelectorViewDisplayContext {
 		).setActionName(
 			"/journal/upload_image"
 		).setParameter(
-			"folderId",
-			String.valueOf(_journalItemSelectorCriterion.getFolderId())
+			"folderId", _journalItemSelectorCriterion.getFolderId()
 		).setParameter(
 			"resourcePrimKey",
-			String.valueOf(_journalItemSelectorCriterion.getResourcePrimKey())
+			_journalItemSelectorCriterion.getResourcePrimKey()
 		).build();
 
 		return portletURL;

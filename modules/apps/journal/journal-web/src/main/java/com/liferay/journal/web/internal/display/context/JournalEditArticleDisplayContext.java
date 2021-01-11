@@ -399,10 +399,10 @@ public class JournalEditArticleDisplayContext {
 	public String getEditArticleURL() {
 		PortletURL editArticleURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setRedirect(
-			getRedirect()
 		).setMVCPath(
 			"/edit_article.jsp"
+		).setRedirect(
+			getRedirect()
 		).setParameter(
 			"groupId", String.valueOf(getGroupId())
 		).setParameter(

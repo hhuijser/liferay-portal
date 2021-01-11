@@ -695,14 +695,18 @@ public class JournalContentDisplayContext {
 				assetRendererFactory.getAssetRenderer(
 					getArticle(), AssetRendererFactory.TYPE_LATEST_APPROVED);
 
-			PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
-
 			PortletURL portletURL = PortletURLBuilder.create(
 				latestArticleAssetRenderer.getURLEdit(
 					PortalUtil.getLiferayPortletRequest(_portletRequest), null,
 					LiferayWindowState.NORMAL, _themeDisplay.getURLCurrent())
 			).setParameter(
-				"portletResource", portletDisplay.getPortletName()
+				"portletResource",
+				() -> {
+					PortletDisplay portletDisplay =
+						_themeDisplay.getPortletDisplay();
+
+					return portletDisplay.getPortletName();
+				}
 			).build();
 
 			return portletURL.toString();

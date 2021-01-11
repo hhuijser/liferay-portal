@@ -29,6 +29,8 @@ public class HTMLEmptyLinesCheck extends BaseEmptyLinesCheck {
 
 		content = fixEmptyLinesBetweenTags(content);
 
+		content = fixMissingEmptyLineAfterDoctype(content);
+
 		return content;
 	}
 

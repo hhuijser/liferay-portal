@@ -57,6 +57,7 @@ import com.liferay.journal.web.internal.util.JournalPortletUtil;
 import com.liferay.journal.web.internal.util.SiteConnectedGroupUtil;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
@@ -270,12 +271,14 @@ public class JournalDisplayContext {
 			return _articleTranslationsSearchContainer;
 		}
 
-		PortletURL portletURL = PortletURLUtil.clone(
-			PortletURLUtil.getCurrent(
-				_liferayPortletRequest, _liferayPortletResponse),
-			_liferayPortletResponse);
-
-		portletURL.setParameter("mvcPath", "/select_article_translations.jsp");
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(
+				PortletURLUtil.getCurrent(
+					_liferayPortletRequest, _liferayPortletResponse),
+				_liferayPortletResponse)
+		).setMVCPath(
+			"/select_article_translations.jsp"
+		).build();
 
 		SearchContainer<JournalArticleTranslation>
 			articleTranslationsSearchContainer = new SearchContainer<>(
@@ -1447,10 +1450,13 @@ public class JournalDisplayContext {
 	}
 
 	private String _getFeedsURL() {
-		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view_feeds.jsp");
-		portletURL.setParameter("redirect", _themeDisplay.getURLCurrent());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setMVCPath(
+			"/view_feeds.jsp"
+		).setRedirect(
+			_themeDisplay.getURLCurrent()
+		).build();
 
 		return portletURL.toString();
 	}

@@ -35,6 +35,7 @@ import com.liferay.journal.web.internal.asset.model.JournalArticleAssetRenderer;
 import com.liferay.journal.web.internal.util.JournalUtil;
 import com.liferay.layout.model.LayoutClassedModelUsage;
 import com.liferay.layout.service.LayoutClassedModelUsageLocalService;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
@@ -439,24 +440,29 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 
 		String languageId = ParamUtil.getString(actionRequest, "languageId");
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			actionRequest, JournalPortletKeys.JOURNAL,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_article.jsp");
-		portletURL.setParameter("redirect", redirect);
-		portletURL.setParameter("portletResource", portletResource);
-		portletURL.setParameter(
-			"referringPortletResource", referringPortletResource);
-		portletURL.setParameter(
-			"resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
-		portletURL.setParameter(
-			"groupId", String.valueOf(article.getGroupId()));
-		portletURL.setParameter(
-			"folderId", String.valueOf(article.getFolderId()));
-		portletURL.setParameter("articleId", article.getArticleId());
-		portletURL.setParameter(
-			"version", String.valueOf(article.getVersion()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest, JournalPortletKeys.JOURNAL,
+				PortletRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/edit_article.jsp"
+		).setRedirect(
+			redirect
+		).setParameter(
+			"portletResource", portletResource
+		).setParameter(
+			"referringPortletResource", referringPortletResource
+		).setParameter(
+			"resourcePrimKey", String.valueOf(article.getResourcePrimKey())
+		).setParameter(
+			"groupId", String.valueOf(article.getGroupId())
+		).setParameter(
+			"folderId", String.valueOf(article.getFolderId())
+		).setParameter(
+			"articleId", article.getArticleId()
+		).setParameter(
+			"version", String.valueOf(article.getVersion())
+		).build();
 
 		if (Validator.isNotNull(languageId)) {
 			portletURL.setParameter("languageId", languageId);

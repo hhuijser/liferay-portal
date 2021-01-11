@@ -19,6 +19,7 @@ import com.liferay.change.tracking.spi.display.CTDisplayRenderer;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.web.internal.security.permission.resource.JournalFolderPermission;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -67,17 +68,19 @@ public class JournalFolderCTDisplayRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			httpServletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_folder.jsp");
-		portletURL.setParameter(
-			"redirect", _portal.getCurrentURL(httpServletRequest));
-		portletURL.setParameter(
-			"groupId", String.valueOf(journalFolder.getGroupId()));
-		portletURL.setParameter(
-			"folderId", String.valueOf(journalFolder.getFolderId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/edit_folder.jsp"
+		).setRedirect(
+			_portal.getCurrentURL(httpServletRequest)
+		).setParameter(
+			"groupId", String.valueOf(journalFolder.getGroupId())
+		).setParameter(
+			"folderId", String.valueOf(journalFolder.getFolderId())
+		).build();
 
 		return portletURL.toString();
 	}

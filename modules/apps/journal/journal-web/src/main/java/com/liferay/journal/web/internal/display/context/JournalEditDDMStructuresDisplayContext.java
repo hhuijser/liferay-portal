@@ -22,6 +22,7 @@ import com.liferay.dynamic.data.mapping.storage.StorageType;
 import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.web.internal.configuration.JournalWebConfiguration;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -81,14 +82,16 @@ public class JournalEditDDMStructuresDisplayContext {
 				"url",
 				() -> {
 					PortletURL editBasicInfoURL =
-						_liferayPortletResponse.createRenderURL();
-
-					editBasicInfoURL.setParameter(
-						"mvcPath", "/data_engine/basic_info.jsp");
-					editBasicInfoURL.setParameter(
-						"ddmStructureId", String.valueOf(getDDMStructureId()));
-					editBasicInfoURL.setWindowState(
-						LiferayWindowState.EXCLUSIVE);
+						PortletURLBuilder.createRenderURL(
+							_liferayPortletResponse
+						).setMVCPath(
+							"/data_engine/basic_info.jsp"
+						).setParameter(
+							"ddmStructureId",
+							String.valueOf(getDDMStructureId())
+						).setWindowState(
+							LiferayWindowState.EXCLUSIVE
+						).build();
 
 					return editBasicInfoURL.toString();
 				}

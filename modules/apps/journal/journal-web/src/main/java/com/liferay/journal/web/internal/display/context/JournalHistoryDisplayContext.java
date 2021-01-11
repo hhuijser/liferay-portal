@@ -20,6 +20,7 @@ import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleServiceUtil;
 import com.liferay.journal.web.internal.util.JournalPortletUtil;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -157,19 +158,27 @@ public class JournalHistoryDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view_article_history.jsp");
-		portletURL.setParameter("redirect", _getRedirect());
-		portletURL.setParameter("backURL", getBackURL());
-		portletURL.setParameter(
-			"referringPortletResource", getReferringPortletResource());
-		portletURL.setParameter(
-			"groupId", String.valueOf(_article.getGroupId()));
-		portletURL.setParameter("articleId", _article.getArticleId());
-		portletURL.setParameter("displayStyle", getDisplayStyle());
-		portletURL.setParameter("orderByCol", getOrderByCol());
-		portletURL.setParameter("orderByType", getOrderByType());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCPath(
+			"/view_article_history.jsp"
+		).setRedirect(
+			_getRedirect()
+		).setParameter(
+			"backURL", getBackURL()
+		).setParameter(
+			"referringPortletResource", getReferringPortletResource()
+		).setParameter(
+			"groupId", String.valueOf(_article.getGroupId())
+		).setParameter(
+			"articleId", _article.getArticleId()
+		).setParameter(
+			"displayStyle", getDisplayStyle()
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).build();
 
 		return portletURL;
 	}

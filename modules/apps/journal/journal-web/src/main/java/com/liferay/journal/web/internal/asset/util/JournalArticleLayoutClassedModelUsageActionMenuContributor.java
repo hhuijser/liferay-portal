@@ -24,6 +24,7 @@ import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.journal.web.internal.security.permission.resource.JournalArticlePermission;
 import com.liferay.layout.model.LayoutClassedModelUsage;
 import com.liferay.layout.util.LayoutClassedModelUsageActionMenuContributor;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -175,18 +176,23 @@ public class JournalArticleLayoutClassedModelUsageActionMenuContributor
 				layoutURL, "previewVersion", previewVersion);
 		}
 		else {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				httpServletRequest, layoutClassedModelUsage.getContainerKey(),
-				layoutClassedModelUsage.getPlid(), PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					httpServletRequest,
+					layoutClassedModelUsage.getContainerKey(),
+					layoutClassedModelUsage.getPlid(),
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
 				"previewClassNameId",
-				String.valueOf(layoutClassedModelUsage.getClassNameId()));
-			portletURL.setParameter(
+				String.valueOf(layoutClassedModelUsage.getClassNameId())
+			).setParameter(
 				"previewClassPK",
-				String.valueOf(layoutClassedModelUsage.getClassPK()));
-			portletURL.setParameter("previewType", String.valueOf(previewType));
-			portletURL.setParameter("previewVersion", previewVersion);
+				String.valueOf(layoutClassedModelUsage.getClassPK())
+			).setParameter(
+				"previewType", String.valueOf(previewType)
+			).setParameter(
+				"previewVersion", previewVersion
+			).build();
 
 			layoutURL = portletURL.toString();
 		}

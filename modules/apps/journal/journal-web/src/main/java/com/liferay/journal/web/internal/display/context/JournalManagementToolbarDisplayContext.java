@@ -28,6 +28,7 @@ import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.web.internal.configuration.JournalWebConfiguration;
 import com.liferay.journal.web.internal.security.permission.resource.JournalFolderPermission;
 import com.liferay.petra.function.UnsafeConsumer;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -133,15 +134,21 @@ public class JournalManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("navigation", StringPool.BLANK);
-		clearResultsURL.setParameter("ddmStructureKey", StringPool.BLANK);
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
-		clearResultsURL.setParameter("orderByCol", StringPool.BLANK);
-		clearResultsURL.setParameter("orderByType", StringPool.BLANK);
-		clearResultsURL.setParameter(
-			"status", String.valueOf(WorkflowConstants.STATUS_ANY));
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"navigation", StringPool.BLANK
+		).setParameter(
+			"ddmStructureKey", StringPool.BLANK
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).setParameter(
+			"orderByCol", StringPool.BLANK
+		).setParameter(
+			"orderByType", StringPool.BLANK
+		).setParameter(
+			"status", String.valueOf(WorkflowConstants.STATUS_ANY)
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -150,17 +157,18 @@ public class JournalManagementToolbarDisplayContext
 		return HashMapBuilder.<String, Object>put(
 			"addArticleURL",
 			() -> {
-				PortletURL addArticleURL =
-					liferayPortletResponse.createRenderURL();
-
-				addArticleURL.setParameter("mvcPath", "/edit_article.jsp");
-				addArticleURL.setParameter(
-					"redirect", _themeDisplay.getURLCurrent());
-				addArticleURL.setParameter(
-					"groupId", String.valueOf(_themeDisplay.getScopeGroupId()));
-				addArticleURL.setParameter(
+				PortletURL addArticleURL = PortletURLBuilder.createRenderURL(
+					liferayPortletResponse
+				).setMVCPath(
+					"/edit_article.jsp"
+				).setRedirect(
+					_themeDisplay.getURLCurrent()
+				).setParameter(
+					"groupId", String.valueOf(_themeDisplay.getScopeGroupId())
+				).setParameter(
 					"folderId",
-					String.valueOf(_journalDisplayContext.getFolderId()));
+					String.valueOf(_journalDisplayContext.getFolderId())
+				).build();
 
 				return addArticleURL.toString();
 			}
@@ -170,23 +178,23 @@ public class JournalManagementToolbarDisplayContext
 		).put(
 			"moveArticlesAndFoldersURL",
 			() -> {
-				PortletURL moveArticlesAndFoldersURL =
-					liferayPortletResponse.createRenderURL();
-
-				moveArticlesAndFoldersURL.setParameter(
-					"mvcPath", "/move_articles_and_folders.jsp");
-
 				String redirect = ParamUtil.getString(
 					liferayPortletRequest, "redirect",
 					_themeDisplay.getURLCurrent());
 
-				moveArticlesAndFoldersURL.setParameter("redirect", redirect);
-
 				String referringPortletResource = ParamUtil.getString(
 					liferayPortletRequest, "referringPortletResource");
 
-				moveArticlesAndFoldersURL.setParameter(
-					"referringPortletResource", referringPortletResource);
+				PortletURL moveArticlesAndFoldersURL =
+					PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setMVCPath(
+						"/move_articles_and_folders.jsp"
+					).setRedirect(
+						redirect
+					).setParameter(
+						"referringPortletResource", referringPortletResource
+					).build();
 
 				return moveArticlesAndFoldersURL.toString();
 			}
@@ -194,31 +202,33 @@ public class JournalManagementToolbarDisplayContext
 			"openViewMoreStructuresURL",
 			() -> {
 				PortletURL openViewMoreStructuresURL =
-					liferayPortletResponse.createRenderURL();
-
-				openViewMoreStructuresURL.setParameter(
-					"mvcPath", "/view_more_menu_items.jsp");
-				openViewMoreStructuresURL.setParameter(
-					"folderId",
-					String.valueOf(_journalDisplayContext.getFolderId()));
-				openViewMoreStructuresURL.setParameter(
-					"eventName",
-					liferayPortletResponse.getNamespace() +
-						"selectAddMenuItem");
-				openViewMoreStructuresURL.setWindowState(
-					LiferayWindowState.POP_UP);
+					PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setMVCPath(
+						"/view_more_menu_items.jsp"
+					).setParameter(
+						"folderId",
+						String.valueOf(_journalDisplayContext.getFolderId())
+					).setParameter(
+						"eventName",
+						liferayPortletResponse.getNamespace() +
+							"selectAddMenuItem"
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).build();
 
 				return openViewMoreStructuresURL.toString();
 			}
 		).put(
 			"selectEntityURL",
 			() -> {
-				PortletURL selectEntityURL =
-					liferayPortletResponse.createRenderURL();
-
-				selectEntityURL.setParameter(
-					"mvcPath", "/select_ddm_structure.jsp");
-				selectEntityURL.setWindowState(LiferayWindowState.POP_UP);
+				PortletURL selectEntityURL = PortletURLBuilder.createRenderURL(
+					liferayPortletResponse
+				).setMVCPath(
+					"/select_ddm_structure.jsp"
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).build();
 
 				return selectEntityURL.toString();
 			}
@@ -229,14 +239,15 @@ public class JournalManagementToolbarDisplayContext
 			"viewDDMStructureArticlesURL",
 			() -> {
 				PortletURL viewDDMStructureArticlesURL =
-					liferayPortletResponse.createRenderURL();
-
-				viewDDMStructureArticlesURL.setParameter(
-					"navigation", "structure");
-				viewDDMStructureArticlesURL.setParameter(
-					"folderId",
-					String.valueOf(
-						JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID));
+					PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setParameter(
+						"navigation", "structure"
+					).setParameter(
+						"folderId",
+						String.valueOf(
+							JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID)
+					).build();
 
 				return viewDDMStructureArticlesURL.toString();
 			}
@@ -299,10 +310,11 @@ public class JournalManagementToolbarDisplayContext
 		return LabelItemListBuilder.add(
 			_journalDisplayContext::isNavigationMine,
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					currentURLObj, liferayPortletResponse);
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -321,10 +333,11 @@ public class JournalManagementToolbarDisplayContext
 		).add(
 			_journalDisplayContext::isNavigationRecent,
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					currentURLObj, liferayPortletResponse);
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -336,10 +349,11 @@ public class JournalManagementToolbarDisplayContext
 		).add(
 			_journalDisplayContext::isNavigationStructure,
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					currentURLObj, liferayPortletResponse);
-
-				removeLabelURL.setParameter("navigation", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
+				).setParameter(
+					"navigation", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -355,10 +369,11 @@ public class JournalManagementToolbarDisplayContext
 		).add(
 			() -> status != _journalDisplayContext.getDefaultStatus(),
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLUtil.clone(
-					currentURLObj, liferayPortletResponse);
-
-				removeLabelURL.setParameter("status", (String)null);
+				PortletURL removeLabelURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
+				).setParameter(
+					"status", (String)null
+				).build();
 
 				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
@@ -378,12 +393,13 @@ public class JournalManagementToolbarDisplayContext
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"folderId", String.valueOf(_journalDisplayContext.getFolderId()));
-		portletURL.setParameter(
-			"status", String.valueOf(_journalDisplayContext.getStatus()));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
+			"folderId", String.valueOf(_journalDisplayContext.getFolderId())
+		).setParameter(
+			"status", String.valueOf(_journalDisplayContext.getStatus())
+		).build();
 
 		return portletURL.toString();
 	}
@@ -463,9 +479,11 @@ public class JournalManagementToolbarDisplayContext
 
 	@Override
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		List<DropdownItem> filterNavigationDropdownItems = getDropdownItems(
 			getNavigationEntriesMap(), portletURL, getNavigationParam(),
@@ -536,21 +554,23 @@ public class JournalManagementToolbarDisplayContext
 
 					for (DDMStructure ddmStructure : ddmStructures) {
 						PortletURL portletURL =
-							liferayPortletResponse.createRenderURL();
-
-						portletURL.setParameter("mvcPath", "/edit_article.jsp");
-						portletURL.setParameter(
-							"redirect",
-							PortalUtil.getCurrentURL(httpServletRequest));
-						portletURL.setParameter(
-							"groupId",
-							String.valueOf(_themeDisplay.getScopeGroupId()));
-						portletURL.setParameter(
-							"folderId",
-							String.valueOf(
-								_journalDisplayContext.getFolderId()));
-						portletURL.setParameter(
-							"ddmStructureKey", ddmStructure.getStructureKey());
+							PortletURLBuilder.createRenderURL(
+								liferayPortletResponse
+							).setMVCPath(
+								"/edit_article.jsp"
+							).setRedirect(
+								PortalUtil.getCurrentURL(httpServletRequest)
+							).setParameter(
+								"groupId",
+								String.valueOf(_themeDisplay.getScopeGroupId())
+							).setParameter(
+								"folderId",
+								String.valueOf(
+									_journalDisplayContext.getFolderId())
+							).setParameter(
+								"ddmStructureKey",
+								ddmStructure.getStructureKey()
+							).build();
 
 						UnsafeConsumer<DropdownItem, Exception> unsafeConsumer =
 							dropdownItem -> {

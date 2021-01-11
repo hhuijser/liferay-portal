@@ -20,6 +20,7 @@ import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalServiceUtil;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleDisplay;
 import com.liferay.journal.service.JournalArticleLocalServiceUtil;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
@@ -165,31 +166,43 @@ public class JournalPreviewArticleContentTemplateDisplayContext {
 	}
 
 	public PortletURL getPageIteratorPortletURL() throws Exception {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcPath", "/preview_article_content_template.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
-		portletURL.setParameter("articleId", getArticleId());
-		portletURL.setParameter("version", String.valueOf(getVersion()));
-		portletURL.setParameter(
-			"ddmTemplateId", String.valueOf(getDDMTemplateId()));
-		portletURL.setParameter("eventName", getEventName());
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCPath(
+			"/preview_article_content_template.jsp"
+		).setParameter(
+			"groupId", String.valueOf(getGroupId())
+		).setParameter(
+			"articleId", getArticleId()
+		).setParameter(
+			"version", String.valueOf(getVersion())
+		).setParameter(
+			"ddmTemplateId", String.valueOf(getDDMTemplateId())
+		).setParameter(
+			"eventName", getEventName()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return portletURL;
 	}
 
 	public PortletURL getPortletURL() throws Exception {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcPath", "/preview_article_content_template.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
-		portletURL.setParameter("articleId", getArticleId());
-		portletURL.setParameter("version", String.valueOf(getVersion()));
-		portletURL.setParameter("eventName", getEventName());
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCPath(
+			"/preview_article_content_template.jsp"
+		).setParameter(
+			"groupId", String.valueOf(getGroupId())
+		).setParameter(
+			"articleId", getArticleId()
+		).setParameter(
+			"version", String.valueOf(getVersion())
+		).setParameter(
+			"eventName", getEventName()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		return portletURL;
 	}

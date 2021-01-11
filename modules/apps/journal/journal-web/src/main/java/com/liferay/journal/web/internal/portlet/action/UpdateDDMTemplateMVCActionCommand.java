@@ -18,6 +18,7 @@ import com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateService;
 import com.liferay.journal.constants.JournalPortletKeys;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
@@ -115,12 +116,15 @@ public class UpdateDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(actionResponse);
 
-			PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-			portletURL.setParameter("mvcPath", "/edit_ddm_template.jsp");
-			portletURL.setParameter("redirect", redirect);
-			portletURL.setParameter(
-				"ddmTemplateId", String.valueOf(ddmTemplate.getTemplateId()));
+			PortletURL portletURL = PortletURLBuilder.createRenderURL(
+				liferayPortletResponse
+			).setMVCPath(
+				"/edit_ddm_template.jsp"
+			).setRedirect(
+				redirect
+			).setParameter(
+				"ddmTemplateId", String.valueOf(ddmTemplate.getTemplateId())
+			).build();
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());
 		}

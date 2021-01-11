@@ -42,6 +42,7 @@ import com.liferay.journal.service.JournalArticleResourceLocalServiceUtil;
 import com.liferay.journal.util.JournalContent;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -694,14 +695,15 @@ public class JournalContentDisplayContext {
 				assetRendererFactory.getAssetRenderer(
 					getArticle(), AssetRendererFactory.TYPE_LATEST_APPROVED);
 
-			PortletURL portletURL = latestArticleAssetRenderer.getURLEdit(
-				PortalUtil.getLiferayPortletRequest(_portletRequest), null,
-				LiferayWindowState.NORMAL, _themeDisplay.getURLCurrent());
-
 			PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
 
-			portletURL.setParameter(
-				"portletResource", portletDisplay.getPortletName());
+			PortletURL portletURL = PortletURLBuilder.create(
+				latestArticleAssetRenderer.getURLEdit(
+					PortalUtil.getLiferayPortletRequest(_portletRequest), null,
+					LiferayWindowState.NORMAL, _themeDisplay.getURLCurrent())
+			).setParameter(
+				"portletResource", portletDisplay.getPortletName()
+			).build();
 
 			return portletURL.toString();
 		}
@@ -719,16 +721,19 @@ public class JournalContentDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			_portletRequest, JournalPortletKeys.JOURNAL,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_ddm_template.jsp");
-		portletURL.setParameter("redirect", _themeDisplay.getURLCurrent());
-
-		portletURL.setParameter(
-			"ddmTemplateId", String.valueOf(ddmTemplate.getTemplateId()));
-		portletURL.setPortletMode(PortletMode.VIEW);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				_portletRequest, JournalPortletKeys.JOURNAL,
+				PortletRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/edit_ddm_template.jsp"
+		).setRedirect(
+			_themeDisplay.getURLCurrent()
+		).setParameter(
+			"ddmTemplateId", String.valueOf(ddmTemplate.getTemplateId())
+		).setPortletMode(
+			PortletMode.VIEW
+		).build();
 
 		return portletURL.toString();
 	}
@@ -740,13 +745,17 @@ public class JournalContentDisplayContext {
 			Group group = GroupLocalServiceUtil.fetchGroup(
 				article.getGroupId());
 
-			PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-				_portletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/view_article_history.jsp");
-			portletURL.setParameter("backURL", _themeDisplay.getURLCurrent());
-			portletURL.setParameter("articleId", article.getArticleId());
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortalUtil.getControlPanelPortletURL(
+					_portletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
+					PortletRequest.RENDER_PHASE)
+			).setMVCPath(
+				"/view_article_history.jsp"
+			).setParameter(
+				"backURL", _themeDisplay.getURLCurrent()
+			).setParameter(
+				"articleId", article.getArticleId()
+			).build();
 
 			return portletURL.toString();
 		}

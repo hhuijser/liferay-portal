@@ -25,6 +25,7 @@ import com.liferay.journal.internal.transformer.JournalTransformer;
 import com.liferay.journal.internal.transformer.JournalTransformerListenerRegistryUtil;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalServiceUtil;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -211,10 +212,13 @@ public class JournalUtil {
 		LiferayPortletResponse liferayPortletResponse) {
 
 		if (liferayPortletResponse != null) {
-			PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-			portletURL.setParameter("groupId", String.valueOf(groupId));
-			portletURL.setParameter("folderId", String.valueOf(folderId));
+			PortletURL portletURL = PortletURLBuilder.createRenderURL(
+				liferayPortletResponse
+			).setParameter(
+				"groupId", String.valueOf(groupId)
+			).setParameter(
+				"folderId", String.valueOf(folderId)
+			).build();
 
 			return portletURL.toString();
 		}
@@ -246,11 +250,13 @@ public class JournalUtil {
 			PortletRequest portletRequest, long folderId)
 		throws PortalException {
 
-		PortletURL portletURL = PortletProviderUtil.getPortletURL(
-			portletRequest, JournalArticle.class.getName(),
-			PortletProvider.Action.EDIT);
-
-		portletURL.setParameter("folderId", String.valueOf(folderId));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				portletRequest, JournalArticle.class.getName(),
+				PortletProvider.Action.EDIT)
+		).setParameter(
+			"folderId", String.valueOf(folderId)
+		).build();
 
 		return portletURL.toString();
 	}

@@ -15,6 +15,7 @@
 package com.liferay.journal.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -47,25 +48,28 @@ public class JournalSelectDDMStructureManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = getPortletURL();
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
 
 	@Override
 	public String getSearchActionURL() {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/select_ddm_structure.jsp");
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setMVCPath(
+			"/select_ddm_structure.jsp"
+		).setParameter(
 			"classPK",
 			String.valueOf(
-				_journalSelectDDMStructureDisplayContext.getClassPK()));
-		portletURL.setParameter(
-			"eventName",
-			_journalSelectDDMStructureDisplayContext.getEventName());
+				_journalSelectDDMStructureDisplayContext.getClassPK())
+		).setParameter(
+			"eventName", _journalSelectDDMStructureDisplayContext.getEventName()
+		).build();
 
 		return portletURL.toString();
 	}

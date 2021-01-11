@@ -19,6 +19,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.journal.web.internal.security.permission.resource.DDMTemplatePermission;
 import com.liferay.petra.function.UnsafeConsumer;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -31,7 +32,6 @@ import com.liferay.taglib.security.PermissionsURLTag;
 
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -109,15 +109,17 @@ public class JournalDDMTemplateActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getDeleteDDMTemplateActionUnsafeConsumer() {
 
-		PortletURL deleteDDMTemplateURL = _renderResponse.createActionURL();
-
-		deleteDDMTemplateURL.setParameter(
-			ActionRequest.ACTION_NAME, "/journal/delete_ddm_template");
-		deleteDDMTemplateURL.setParameter("mvcPath", "/view_ddm_templates.jsp");
-		deleteDDMTemplateURL.setParameter(
-			"redirect", _themeDisplay.getURLCurrent());
-		deleteDDMTemplateURL.setParameter(
-			"ddmTemplateId", String.valueOf(_ddmTemplate.getTemplateId()));
+		PortletURL deleteDDMTemplateURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			"/journal/delete_ddm_template"
+		).setMVCPath(
+			"/view_ddm_templates.jsp"
+		).setRedirect(
+			_themeDisplay.getURLCurrent()
+		).setParameter(
+			"ddmTemplateId", String.valueOf(_ddmTemplate.getTemplateId())
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deleteDDMTemplate");

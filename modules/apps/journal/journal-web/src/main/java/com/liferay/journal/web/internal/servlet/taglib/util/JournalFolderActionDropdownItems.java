@@ -208,15 +208,14 @@ public class JournalFolderActionDropdownItems {
 			_httpServletRequest, "folderId");
 
 		if (currentFolderId == _folder.getFolderId()) {
-			PortletURL redirectURL = PortletURLBuilder.createRenderURL(
-				_liferayPortletResponse
-			).setParameter(
-				"groupId", _folder.getGroupId()
-			).setParameter(
-				"folderId", _folder.getParentFolderId()
-			).build();
-
-			redirect = redirectURL.toString();
+			redirect = String.valueOf(
+				PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setParameter(
+					"groupId", _folder.getGroupId()
+				).setParameter(
+					"folderId", _folder.getParentFolderId()
+				).build());
 		}
 
 		String actionName = "/journal/delete_folder";

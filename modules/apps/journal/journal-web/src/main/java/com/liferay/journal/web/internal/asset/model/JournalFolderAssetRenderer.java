@@ -149,7 +149,7 @@ public class JournalFolderAssetRenderer
 		).setMVCPath(
 			"/edit_folder.jsp"
 		).setParameter(
-			"folderId", String.valueOf(_folder.getFolderId())
+			"folderId", _folder.getFolderId()
 		).build();
 
 		return portletURL;
@@ -169,7 +169,7 @@ public class JournalFolderAssetRenderer
 		).setMVCPath(
 			"/asset/folder_full_content.jsp"
 		).setParameter(
-			"folderId", String.valueOf(_folder.getFolderId())
+			"folderId", _folder.getFolderId()
 		).setWindowState(
 			windowState
 		).build();

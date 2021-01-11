@@ -100,7 +100,7 @@ public class JournalDDMTemplateVerticalCard extends BaseVerticalCard {
 			).setRedirect(
 				themeDisplay.getURLCurrent()
 			).setParameter(
-				"ddmTemplateId", String.valueOf(_ddmTemplate.getTemplateId())
+				"ddmTemplateId", _ddmTemplate.getTemplateId()
 			).build();
 
 			return editDDMTemplateURL.toString();

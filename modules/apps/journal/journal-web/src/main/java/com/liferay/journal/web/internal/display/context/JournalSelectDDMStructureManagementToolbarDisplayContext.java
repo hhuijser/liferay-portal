@@ -64,9 +64,7 @@ public class JournalSelectDDMStructureManagementToolbarDisplayContext
 		).setMVCPath(
 			"/select_ddm_structure.jsp"
 		).setParameter(
-			"classPK",
-			String.valueOf(
-				_journalSelectDDMStructureDisplayContext.getClassPK())
+			"classPK", _journalSelectDDMStructureDisplayContext.getClassPK()
 		).setParameter(
 			"eventName", _journalSelectDDMStructureDisplayContext.getEventName()
 		).build();

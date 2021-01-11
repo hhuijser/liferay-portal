@@ -169,7 +169,7 @@ public class JournalHistoryDisplayContext {
 		).setParameter(
 			"referringPortletResource", getReferringPortletResource()
 		).setParameter(
-			"groupId", String.valueOf(_article.getGroupId())
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"articleId", _article.getArticleId()
 		).setParameter(

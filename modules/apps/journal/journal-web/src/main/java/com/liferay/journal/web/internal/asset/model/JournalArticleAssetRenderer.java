@@ -284,7 +284,7 @@ public class JournalArticleAssetRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				httpServletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
 				PortletRequest.RENDER_PHASE)
@@ -297,8 +297,6 @@ public class JournalArticleAssetRenderer
 		).setParameter(
 			"version", _article.getVersion()
 		).build();
-
-		return portletURL;
 	}
 
 	@Override
@@ -368,7 +366,7 @@ public class JournalArticleAssetRenderer
 			return null;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				liferayPortletRequest, JournalPortletKeys.JOURNAL,
 				PortletRequest.RENDER_PHASE)
@@ -383,8 +381,6 @@ public class JournalArticleAssetRenderer
 		).setParameter(
 			"targetVersion", _article.getVersion()
 		).build();
-
-		return portletURL;
 	}
 
 	@Override

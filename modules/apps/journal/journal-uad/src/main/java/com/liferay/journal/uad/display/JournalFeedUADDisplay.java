@@ -18,6 +18,7 @@ import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalFeed;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.user.associated.data.display.UADDisplay;
 
@@ -40,17 +41,19 @@ public class JournalFeedUADDisplay extends BaseJournalFeedUADDisplay {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			liferayPortletRequest, JournalPortletKeys.JOURNAL,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/edit_feed.jsp");
-		portletURL.setParameter(
-			"redirect", _portal.getCurrentURL(liferayPortletRequest));
-		portletURL.setParameter(
-			"groupId", String.valueOf(journalFeed.getGroupId()));
-		portletURL.setParameter(
-			"feedId", String.valueOf(journalFeed.getFeedId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				liferayPortletRequest, JournalPortletKeys.JOURNAL,
+				PortletRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/edit_feed.jsp"
+		).setRedirect(
+			_portal.getCurrentURL(liferayPortletRequest)
+		).setParameter(
+			"groupId", String.valueOf(journalFeed.getGroupId())
+		).setParameter(
+			"feedId", String.valueOf(journalFeed.getFeedId())
+		).build();
 
 		return portletURL.toString();
 	}

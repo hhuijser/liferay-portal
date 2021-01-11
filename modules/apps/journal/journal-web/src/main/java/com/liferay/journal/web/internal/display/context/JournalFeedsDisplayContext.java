@@ -111,7 +111,7 @@ public class JournalFeedsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/view_feeds.jsp"
@@ -124,8 +124,6 @@ public class JournalFeedsDisplayContext {
 		).setParameter(
 			"orderByType", getOrderByType()
 		).build();
-
-		return portletURL;
 	}
 
 	public String getRedirect() {

@@ -234,7 +234,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 	}
 
 	public PortletURL getPortletURL() throws PortletException {
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletURLUtil.clone(
 				_portletURL,
 				PortalUtil.getLiferayPortletResponse(_portletResponse))
@@ -243,8 +243,6 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		).setParameter(
 			"selectedTab", _getTitle(_httpServletRequest.getLocale())
 		).build();
-
-		return portletURL;
 	}
 
 	public SearchContainer<?> getSearchContainer() throws Exception {

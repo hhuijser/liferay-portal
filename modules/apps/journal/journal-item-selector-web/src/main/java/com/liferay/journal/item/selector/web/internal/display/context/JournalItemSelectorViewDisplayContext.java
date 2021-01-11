@@ -104,7 +104,7 @@ public class JournalItemSelectorViewDisplayContext {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortletException {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
 			"resourcePrimKey",
@@ -112,8 +112,6 @@ public class JournalItemSelectorViewDisplayContext {
 		).setParameter(
 			"selectedTab", getTitle(httpServletRequest.getLocale())
 		).build();
-
-		return portletURL;
 	}
 
 	public String getTitle(Locale locale) {
@@ -123,7 +121,7 @@ public class JournalItemSelectorViewDisplayContext {
 	public PortletURL getUploadURL(
 		LiferayPortletResponse liferayPortletResponse) {
 
-		PortletURL portletURL = PortletURLBuilder.createActionURL(
+		return PortletURLBuilder.createActionURL(
 			liferayPortletResponse, JournalPortletKeys.JOURNAL
 		).setActionName(
 			"/journal/upload_image"
@@ -133,8 +131,6 @@ public class JournalItemSelectorViewDisplayContext {
 			"resourcePrimKey",
 			_journalItemSelectorCriterion.getResourcePrimKey()
 		).build();
-
-		return portletURL;
 	}
 
 	public boolean isSearch() {

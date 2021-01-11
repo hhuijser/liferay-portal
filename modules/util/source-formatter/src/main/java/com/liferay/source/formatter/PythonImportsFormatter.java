@@ -112,35 +112,35 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 
 		Matcher matcher = _importPattern.matcher(imports);
 
-		List<String> importNamesList = new ArrayList<>();
-
-		String importNames = StringPool.BLANK;
-		String indent = StringPool.BLANK;
-		String packageName = StringPool.BLANK;
+		String indent = null;
 
 		while (matcher.find()) {
-			importNames = matcher.group(3);
-			indent = matcher.group(1);
-			packageName = matcher.group(2);
+			if (indent == null) {
+				indent = matcher.group(1);
+			}
+
+			List<String> importNamesList = new ArrayList<>();
+
+			String importNames = matcher.group(3);
 
 			for (String importName : importNames.split(StringPool.COMMA)) {
 				importNamesList.add(importName.trim());
 			}
+
+			String packageName = matcher.group(2);
 
 			if (packageImportsMap.containsKey(packageName)) {
 				importNamesList.addAll(packageImportsMap.get(packageName));
 			}
 
 			packageImportsMap.put(packageName, importNamesList);
-
-			importNamesList = new ArrayList<>();
 		}
 
 		if (MapUtil.isEmpty(packageImportsMap)) {
 			return imports;
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(packageImportsMap.size() * 6);
 
 		for (Map.Entry<String, List<String>> entry :
 				packageImportsMap.entrySet()) {
@@ -150,7 +150,7 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 			sb.append(entry.getKey());
 			sb.append(" import ");
 
-			importNamesList = entry.getValue();
+			List<String> importNamesList = entry.getValue();
 
 			Collections.sort(importNamesList);
 
@@ -168,7 +168,7 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 	private String _splitImports(String imports) {
 		String[] newImports = imports.split("\n");
 
-		StringBundler sb = new StringBundler((newImports.length * 2) + 1);
+		StringBundler sb = new StringBundler(newImports.length * 2);
 
 		for (String newImport : newImports) {
 			String indent = newImport.replaceFirst("(\t*).*", "$1");

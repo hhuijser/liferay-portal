@@ -51,10 +51,7 @@ public class CopyrightCheck extends BaseFileCheck {
 
 				copyright = commercialCopyright;
 			}
-
-			if (absolutePath.contains("/modules/apps/archived/") &&
-				content.contains(commercialCopyright)) {
-
+			else if (content.contains(commercialCopyright)) {
 				content = StringUtil.replace(
 					content, commercialCopyright, copyright);
 			}

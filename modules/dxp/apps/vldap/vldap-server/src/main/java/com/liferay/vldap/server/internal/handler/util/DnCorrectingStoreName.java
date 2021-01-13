@@ -68,7 +68,9 @@ public class DnCorrectingStoreName<E extends LiferayLdapMessageContainer>
 			return new Dn(fixedDnString);
 		}
 		catch (LdapInvalidDnException ldapInvalidDnException) {
-			_log.error("Unable to convert " + dnString + " to a valid DN");
+			_log.error(
+				"Unable to convert " + dnString + " to a valid DN",
+				ldapInvalidDnException);
 
 			return Dn.EMPTY_DN;
 		}

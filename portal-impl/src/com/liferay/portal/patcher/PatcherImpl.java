@@ -81,7 +81,8 @@ public class PatcherImpl implements Patcher {
 			_log.error(
 				StringBundler.concat(
 					"Unable to copy ", patchFile.getAbsolutePath(), " to ",
-					patchDirectory.getAbsolutePath()));
+					patchDirectory.getAbsolutePath()),
+				exception);
 
 			return false;
 		}

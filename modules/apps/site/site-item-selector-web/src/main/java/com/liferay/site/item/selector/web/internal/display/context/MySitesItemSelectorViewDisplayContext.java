@@ -129,7 +129,8 @@ public class MySitesItemSelectorViewDisplayContext
 		catch (Exception exception) {
 			_log.error(
 				"Unable to add breadcrumb entries for group " +
-					group.getGroupId());
+					group.getGroupId(),
+				exception);
 		}
 	}
 

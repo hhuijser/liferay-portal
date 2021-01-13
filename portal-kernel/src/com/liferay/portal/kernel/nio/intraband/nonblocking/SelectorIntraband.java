@@ -419,7 +419,8 @@ public class SelectorIntraband extends BaseIntraband {
 
 					_log.info(
 						currentThread.getName() +
-							" exiting gracefully on selector closure");
+							" exiting gracefully on selector closure",
+						closedSelectorException);
 				}
 			}
 			catch (Throwable throwable) {

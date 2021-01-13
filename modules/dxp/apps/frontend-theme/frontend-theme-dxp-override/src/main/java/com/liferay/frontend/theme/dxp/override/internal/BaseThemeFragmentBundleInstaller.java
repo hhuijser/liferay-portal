@@ -163,7 +163,8 @@ public abstract class BaseThemeFragmentBundleInstaller {
 								StringBundler.concat(
 									"Unable to uninstall fragment bundle ",
 									fragmentBundle, " for host bundle ",
-									hostBundle));
+									hostBundle),
+								bundleException);
 						}
 					}
 

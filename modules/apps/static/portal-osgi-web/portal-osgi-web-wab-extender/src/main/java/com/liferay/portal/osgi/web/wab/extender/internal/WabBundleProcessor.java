@@ -858,7 +858,8 @@ public class WabBundleProcessor {
 			catch (Exception exception) {
 				_log.error(
 					"Bundle " + _bundle + " is unable to load listener " +
-						listenerClassName);
+						listenerClassName,
+					exception);
 			}
 		}
 	}

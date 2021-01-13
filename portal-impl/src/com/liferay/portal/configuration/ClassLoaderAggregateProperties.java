@@ -211,7 +211,9 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 		}
 		catch (ConfigurationException configurationException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Configuration source " + fileName + " ignored");
+				_log.debug(
+					"Configuration source " + fileName + " ignored",
+					configurationException);
 			}
 
 			return null;
@@ -361,7 +363,9 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 		}
 		catch (ConfigurationException configurationException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Configuration source " + url + " ignored");
+				_log.debug(
+					"Configuration source " + url + " ignored",
+					configurationException);
 			}
 
 			return null;

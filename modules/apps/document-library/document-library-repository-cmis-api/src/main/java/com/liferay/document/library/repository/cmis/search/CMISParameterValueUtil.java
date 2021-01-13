@@ -71,7 +71,8 @@ public class CMISParameterValueUtil {
 					_log.warn(
 						StringBundler.concat(
 							"Unable to parse date ", value, " for field ",
-							field));
+							field),
+						parseException);
 				}
 			}
 		}

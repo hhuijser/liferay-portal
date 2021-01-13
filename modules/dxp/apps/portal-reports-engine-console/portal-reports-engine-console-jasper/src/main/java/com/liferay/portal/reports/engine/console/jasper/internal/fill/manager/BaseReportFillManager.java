@@ -178,7 +178,8 @@ public abstract class BaseReportFillManager implements ReportFillManager {
 					value = dateFormat.parse(stringValue);
 				}
 				catch (ParseException parseException) {
-					_log.error(stringValue + " is not yyyy-MM-dd");
+					_log.error(
+						stringValue + " is not yyyy-MM-dd", parseException);
 				}
 			}
 			else if (clazz.equals(List.class)) {

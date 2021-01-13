@@ -64,7 +64,8 @@ public class KBArticleImporterUtil {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unsupported image file suffix used in ZIP file " +
-						imageFileName);
+						imageFileName,
+					kbArticleImportException);
 			}
 		}
 

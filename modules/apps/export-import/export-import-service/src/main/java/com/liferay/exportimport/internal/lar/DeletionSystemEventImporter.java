@@ -110,7 +110,7 @@ public class DeletionSystemEventImporter {
 				sb.append(" with UUID ");
 				sb.append(element.attributeValue("uuid"));
 
-				_log.warn(sb.toString());
+				_log.warn(sb.toString(), exception);
 			}
 		}
 	}

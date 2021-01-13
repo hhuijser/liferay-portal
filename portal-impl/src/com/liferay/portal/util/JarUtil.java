@@ -70,7 +70,9 @@ public class JarUtil {
 				}
 				catch (UnknownHostException unknownHostException) {
 					if (_log.isDebugEnabled()) {
-						_log.debug("Unable to resolve \"mirrors\"");
+						_log.debug(
+							"Unable to resolve \"mirrors\"",
+							unknownHostException);
 					}
 				}
 			}

@@ -123,7 +123,8 @@ public class JournalXSLURIResolver implements Externalizable, XSLURIResolver {
 			return new StreamSource(new UnsyncStringReader(content));
 		}
 		catch (Exception exception) {
-			_log.error(href + " does not reference a valid template");
+			_log.error(
+				href + " does not reference a valid template", exception);
 
 			return null;
 		}

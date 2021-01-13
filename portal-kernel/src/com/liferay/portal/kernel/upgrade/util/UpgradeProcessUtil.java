@@ -89,7 +89,8 @@ public class UpgradeProcessUtil {
 			}
 			catch (Exception exception) {
 				_log.error(
-					"Unable to initialize upgrade " + upgradeProcessClassName);
+					"Unable to initialize upgrade " + upgradeProcessClassName,
+					exception);
 
 				continue;
 			}

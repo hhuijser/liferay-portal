@@ -91,7 +91,8 @@ public class PunchOutSessionHelper {
 			_log.error(
 				"Failed to determine whether user has " +
 					PunchOutConstants.ROLE_NAME_ACCOUNT_PUNCH_OUT +
-						" role under commerce account");
+						" role under commerce account",
+				exception);
 
 			return false;
 		}

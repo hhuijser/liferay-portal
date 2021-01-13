@@ -255,7 +255,8 @@ public class JspCompiler extends Jsr199JavaCompiler {
 			catch (ClassNotFoundException classNotFoundException) {
 				_log.error(
 					"Unable to add depedency " + className +
-						" to the classpath");
+						" to the classpath",
+					classNotFoundException);
 			}
 		}
 	}

@@ -184,7 +184,9 @@ public class MonitoringProxyServlet extends ProxyServlet {
 		}
 		catch (NullPointerException nullPointerException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to initialize monitoring proxy servlet");
+				_log.warn(
+					"Unable to initialize monitoring proxy servlet",
+					nullPointerException);
 			}
 		}
 	}

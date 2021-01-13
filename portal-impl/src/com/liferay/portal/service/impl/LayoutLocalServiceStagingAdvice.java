@@ -588,7 +588,9 @@ public class LayoutLocalServiceStagingAdvice implements BeanFactoryAware {
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug("No layout set branch found for user " + userId);
+					_log.debug(
+						"No layout set branch found for user " + userId,
+						exception);
 				}
 			}
 		}

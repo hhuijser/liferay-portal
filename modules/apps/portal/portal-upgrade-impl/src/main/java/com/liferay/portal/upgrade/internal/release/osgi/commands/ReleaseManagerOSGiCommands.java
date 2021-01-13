@@ -353,7 +353,8 @@ public class ReleaseManagerOSGiCommands {
 		catch (SQLException sqlException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to get pending upgrade information for the portal");
+					"Unable to get pending upgrade information for the portal",
+					sqlException);
 			}
 		}
 

@@ -1038,7 +1038,9 @@ public class DDMImpl implements DDM {
 							serviceContext.getLocale());
 					}
 					catch (ParseException parseException) {
-						_log.error("Unable to parse date " + fieldValue);
+						_log.error(
+							"Unable to parse date " + fieldValue,
+							parseException);
 					}
 				}
 

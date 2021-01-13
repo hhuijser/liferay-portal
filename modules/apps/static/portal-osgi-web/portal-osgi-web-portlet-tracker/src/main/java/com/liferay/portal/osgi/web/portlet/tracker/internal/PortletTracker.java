@@ -440,7 +440,9 @@ public class PortletTracker
 				applicationTypes.add(applicationType);
 			}
 			catch (IllegalArgumentException illegalArgumentException) {
-				_log.error("Application type " + applicationTypeValue);
+				_log.error(
+					"Application type " + applicationTypeValue,
+					illegalArgumentException);
 			}
 		}
 

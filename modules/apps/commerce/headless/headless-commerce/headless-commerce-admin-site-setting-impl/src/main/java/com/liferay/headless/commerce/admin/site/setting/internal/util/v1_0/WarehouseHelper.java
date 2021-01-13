@@ -149,7 +149,8 @@ public class WarehouseHelper {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to find availabilityEstimate with ID: " +
-						warehouse.getId());
+						warehouse.getId(),
+					noSuchWarehouseException);
 			}
 		}
 

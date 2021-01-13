@@ -130,7 +130,8 @@ public class MeasurementUnitHelper {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to find measurementUnit with ID: " +
-						measurementUnit.getId());
+						measurementUnit.getId(),
+					noSuchCPMeasurementUnitException);
 			}
 		}
 

@@ -637,7 +637,8 @@ public class CommerceTierPriceEntryLocalServiceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find tier price entry with ID: " +
-							commerceTierPriceEntryId);
+							commerceTierPriceEntryId,
+						noSuchTierPriceEntryException);
 				}
 			}
 		}

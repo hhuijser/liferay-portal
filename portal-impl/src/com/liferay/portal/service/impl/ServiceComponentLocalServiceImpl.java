@@ -320,7 +320,8 @@ public class ServiceComponentLocalServiceImpl
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					"No optional file META-INF/portlet-model-hints-ext.xml " +
-						"found");
+						"found",
+					exception);
 			}
 		}
 
@@ -393,7 +394,8 @@ public class ServiceComponentLocalServiceImpl
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Unable to instantiate " + upgradeTableListenerClassName);
+					"Unable to instantiate " + upgradeTableListenerClassName,
+					exception);
 			}
 
 			return null;

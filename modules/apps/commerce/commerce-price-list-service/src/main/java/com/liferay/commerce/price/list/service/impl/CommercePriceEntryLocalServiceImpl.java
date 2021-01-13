@@ -1075,7 +1075,8 @@ public class CommercePriceEntryLocalServiceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find price entry with ID: " +
-							commercePriceEntryId);
+							commercePriceEntryId,
+						noSuchPriceEntryException);
 				}
 			}
 		}

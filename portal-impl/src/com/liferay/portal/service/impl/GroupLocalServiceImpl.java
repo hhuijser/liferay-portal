@@ -936,7 +936,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 				catch (Exception exception) {
 					_log.error(
 						"Unable to disable staging for group " +
-							group.getGroupId());
+							group.getGroupId(),
+						exception);
 				}
 			}
 
@@ -1073,7 +1074,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"No resources found for group " +
-								group.getGroupId());
+								group.getGroupId(),
+							exception);
 					}
 				}
 
@@ -4784,7 +4786,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		}
 		catch (Exception exception) {
 			_log.error(
-				"Unable to unschedule events for group: " + group.getGroupId());
+				"Unable to unschedule events for group: " + group.getGroupId(),
+				exception);
 		}
 	}
 

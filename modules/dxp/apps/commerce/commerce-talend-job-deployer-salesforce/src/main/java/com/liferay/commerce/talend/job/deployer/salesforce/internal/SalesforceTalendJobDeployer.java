@@ -111,7 +111,8 @@ public class SalesforceTalendJobDeployer {
 						ZipEntry zipEntry = enumeration.nextElement();
 
 						_log.error(
-							"Failed to deploy job " + zipEntry.getName());
+							"Failed to deploy job " + zipEntry.getName(),
+							exception);
 					}
 				}
 			}

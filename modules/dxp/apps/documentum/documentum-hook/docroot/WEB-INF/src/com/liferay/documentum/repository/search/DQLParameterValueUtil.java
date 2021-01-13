@@ -76,8 +76,8 @@ public class DQLParameterValueUtil {
 			catch (ParseException parseException) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Unable to parse date " + value + " for field " +
-							field);
+						"Unable to parse date " + value + " for field " + field,
+						parseException);
 				}
 			}
 

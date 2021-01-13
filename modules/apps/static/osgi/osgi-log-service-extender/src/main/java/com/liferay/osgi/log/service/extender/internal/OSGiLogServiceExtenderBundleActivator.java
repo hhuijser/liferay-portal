@@ -112,7 +112,8 @@ public class OSGiLogServiceExtenderBundleActivator implements BundleActivator {
 									"Bundle ", bundle, ", resource ",
 									resourcePath, ", and logger ", name,
 									" contains an invalid log level \"", value,
-									"\""));
+									"\""),
+								illegalArgumentException);
 						}
 					}
 				}

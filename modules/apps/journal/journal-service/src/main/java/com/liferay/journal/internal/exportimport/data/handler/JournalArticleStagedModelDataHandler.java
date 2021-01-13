@@ -1672,7 +1672,8 @@ public class JournalArticleStagedModelDataHandler
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								"Unable to send email notification for " +
-									"article " + article.getArticleId());
+									"article " + article.getArticleId(),
+								exception);
 						}
 					}
 				});
@@ -1684,7 +1685,8 @@ public class JournalArticleStagedModelDataHandler
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to send email notification for article " +
-						article.getArticleId());
+						article.getArticleId(),
+					exception);
 			}
 		}
 	}

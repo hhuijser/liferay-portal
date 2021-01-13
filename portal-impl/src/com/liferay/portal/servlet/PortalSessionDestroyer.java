@@ -116,7 +116,8 @@ public class PortalSessionDestroyer extends BasePortalLifecycle {
 		catch (IllegalStateException illegalStateException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Please upgrade to a Servlet 2.4 compliant container");
+					"Please upgrade to a Servlet 2.4 compliant container",
+					illegalStateException);
 			}
 		}
 		catch (Exception exception) {

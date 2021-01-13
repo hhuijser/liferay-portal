@@ -254,7 +254,8 @@ public class WikiPageIndexer
 		catch (WikiFormatException wikiFormatException) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Unable to get wiki engine for " + wikiPage.getFormat());
+					"Unable to get wiki engine for " + wikiPage.getFormat(),
+					wikiFormatException);
 			}
 		}
 

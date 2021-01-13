@@ -662,7 +662,8 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unable to get class name ID for class name " +
-							oldValue);
+							oldValue,
+						exception);
 				}
 			}
 		}
@@ -1013,7 +1014,8 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unable to find class name ID for class name " +
-							oldValue);
+							oldValue,
+						exception);
 				}
 			}
 		}

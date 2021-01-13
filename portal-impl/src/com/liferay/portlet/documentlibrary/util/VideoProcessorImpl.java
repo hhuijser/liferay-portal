@@ -379,7 +379,8 @@ public class VideoProcessorImpl
 						StringBundler.concat(
 							"Cancellation received for ",
 							fileVersion.getFileVersionId(), " ",
-							fileVersion.getTitle()));
+							fileVersion.getTitle()),
+						cancellationException);
 				}
 			}
 			catch (Exception exception) {
@@ -595,7 +596,8 @@ public class VideoProcessorImpl
 					StringBundler.concat(
 						"Cancellation received for ",
 						fileVersion.getFileVersionId(), " ",
-						fileVersion.getTitle()));
+						fileVersion.getTitle()),
+					cancellationException);
 			}
 
 			_fileVersionPreviewEventListener.onFailure(fileVersion);

@@ -228,7 +228,8 @@ public class BookmarksUtil {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Bookmarks search index is stale and contains entry " +
-							entryClassPK);
+							entryClassPK,
+						exception);
 				}
 			}
 		}

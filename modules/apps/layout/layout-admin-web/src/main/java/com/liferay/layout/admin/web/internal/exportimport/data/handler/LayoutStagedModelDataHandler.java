@@ -2017,6 +2017,10 @@ public class LayoutStagedModelDataHandler
 				previousTypeSettingsUnicodeProperties.toString());
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			layout.setTypeSettings(newTypeSettings);
 		}
 	}

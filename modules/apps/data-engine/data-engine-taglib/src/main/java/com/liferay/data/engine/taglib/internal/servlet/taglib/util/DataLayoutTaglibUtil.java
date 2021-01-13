@@ -485,6 +485,10 @@ public class DataLayoutTaglibUtil {
 			return fieldTypesJSONArray;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return fieldTypesJSONArray;
 		}
 	}

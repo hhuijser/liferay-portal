@@ -229,6 +229,9 @@ public class DirectoryWatcher extends Thread implements BundleListener {
 			join(10000);
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 
 		_fileInstallers.close();
@@ -245,6 +248,10 @@ public class DirectoryWatcher extends Thread implements BundleListener {
 				Thread.sleep(_poll);
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
+
 				return;
 			}
 
@@ -271,6 +278,10 @@ public class DirectoryWatcher extends Thread implements BundleListener {
 				}
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
+
 				interrupt();
 
 				return;
@@ -280,6 +291,11 @@ public class DirectoryWatcher extends Thread implements BundleListener {
 					_bundleContext.getBundle();
 				}
 				catch (IllegalStateException illegalStateException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							illegalStateException, illegalStateException);
+					}
+
 					return;
 				}
 
@@ -536,6 +552,10 @@ public class DirectoryWatcher extends Thread implements BundleListener {
 				uri = uri.normalize();
 			}
 			catch (URISyntaxException uriSyntaxException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(uriSyntaxException, uriSyntaxException);
+				}
+
 				File file = new File(location);
 
 				uri = file.toURI();

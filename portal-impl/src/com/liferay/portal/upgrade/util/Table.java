@@ -122,6 +122,10 @@ public class Table {
 			value = getValue(rs, name, type);
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
+
 			if (name.equals("uuid_")) {
 				sb.append(PortalUUIDUtil.generate());
 			}
@@ -351,6 +355,10 @@ public class Table {
 				value = GetterUtil.getLong(rs.getLong(name));
 			}
 			catch (SQLException sqlException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(sqlException, sqlException);
+				}
+
 				value = GetterUtil.getLong(rs.getString(name));
 			}
 		}
@@ -409,6 +417,9 @@ public class Table {
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 
 				// If the database doesn't allow CLOB types for the column
 				// value, then try retrieving it as a String
@@ -421,6 +432,10 @@ public class Table {
 				value = rs.getBigDecimal(name);
 			}
 			catch (SQLException sqlException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(sqlException, sqlException);
+				}
+
 				value = rs.getString(name);
 			}
 
@@ -449,6 +464,9 @@ public class Table {
 				value = rs.getTimestamp(name);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 
 			if (value == null) {

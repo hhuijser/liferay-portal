@@ -48,6 +48,10 @@ public abstract class BaseClusterReceiver implements ClusterReceiver {
 			hasDoViewAccepted = true;
 		}
 		catch (ReflectiveOperationException reflectiveOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					reflectiveOperationException, reflectiveOperationException);
+			}
 		}
 
 		_hasDoViewAccepted = hasDoViewAccepted;
@@ -61,6 +65,10 @@ public abstract class BaseClusterReceiver implements ClusterReceiver {
 			hasDoCoordinatorAddressUpdated = true;
 		}
 		catch (ReflectiveOperationException reflectiveOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					reflectiveOperationException, reflectiveOperationException);
+			}
 		}
 
 		_hasDoCoordinatorAddressUpdated = hasDoCoordinatorAddressUpdated;

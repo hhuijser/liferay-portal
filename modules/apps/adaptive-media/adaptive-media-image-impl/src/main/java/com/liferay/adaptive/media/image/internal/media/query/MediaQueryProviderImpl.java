@@ -274,6 +274,10 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 			return Optional.of(height);
 		}
 		catch (NumberFormatException numberFormatException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(numberFormatException, numberFormatException);
+			}
+
 			return Optional.empty();
 		}
 	}

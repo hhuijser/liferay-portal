@@ -1149,6 +1149,10 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 			Integer.parseInt(attemptsMaxCount);
 		}
 		catch (NumberFormatException numberFormatException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(numberFormatException, numberFormatException);
+			}
+
 			attemptsMaxCount = "0";
 		}
 

@@ -238,6 +238,9 @@ public class JournalArticleAssetRenderer
 				HtmlUtil.stripHtml(articleDisplay.getContent()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return summary;

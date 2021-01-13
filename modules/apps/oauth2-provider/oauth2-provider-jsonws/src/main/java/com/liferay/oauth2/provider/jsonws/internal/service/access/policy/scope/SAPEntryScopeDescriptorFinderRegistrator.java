@@ -156,6 +156,9 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 					_buildScopeDescriptorProperties(entry.getKey()));
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 
 				// Concurrent unregistration from register(long)
 
@@ -220,6 +223,9 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 					_buildScopeDescriptorProperties(entry.getKey()));
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 
 				// Concurrent unregistration from register(long)
 

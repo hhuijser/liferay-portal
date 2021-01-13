@@ -175,6 +175,10 @@ public class WikiPortletToolbarContributor
 					themeDisplay.getScopeGroupId(), name);
 			}
 			catch (NoSuchNodeException noSuchNodeException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchNodeException, noSuchNodeException);
+				}
+
 				node = null;
 			}
 			catch (PortalException portalException) {

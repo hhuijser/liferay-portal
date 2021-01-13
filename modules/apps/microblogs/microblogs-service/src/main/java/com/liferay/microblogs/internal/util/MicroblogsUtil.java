@@ -357,6 +357,9 @@ public class MicroblogsUtil {
 					portletURL.setWindowState(LiferayWindowState.NORMAL);
 				}
 				catch (WindowStateException windowStateException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(windowStateException, windowStateException);
+					}
 				}
 			}
 			else {
@@ -370,6 +373,9 @@ public class MicroblogsUtil {
 					portletURL.setWindowState(WindowState.MAXIMIZED);
 				}
 				catch (WindowStateException windowStateException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(windowStateException, windowStateException);
+					}
 				}
 			}
 

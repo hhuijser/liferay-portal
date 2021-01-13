@@ -109,6 +109,10 @@ public class FieldConstants {
 				serializable = getSerializable(type, number.toString());
 			}
 			catch (ParseException parseException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(parseException, parseException);
+				}
+
 				serializable = getSerializable(type, value);
 			}
 		}

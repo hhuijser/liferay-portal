@@ -191,6 +191,10 @@ public class DDMFormFieldOptionsFactoryImpl
 			return jsonArray.getString(0);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return value;
 		}
 	}

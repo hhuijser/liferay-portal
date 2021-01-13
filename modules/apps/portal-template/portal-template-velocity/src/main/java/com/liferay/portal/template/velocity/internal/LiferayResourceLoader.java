@@ -98,8 +98,15 @@ public class LiferayResourceLoader extends ResourceLoader {
 			}
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 		catch (ResourceNotFoundException resourceNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					resourceNotFoundException, resourceNotFoundException);
+			}
 		}
 
 		if (inputStream != null) {
@@ -123,6 +130,10 @@ public class LiferayResourceLoader extends ResourceLoader {
 			return new ReaderInputStream(templateResource.getReader());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}

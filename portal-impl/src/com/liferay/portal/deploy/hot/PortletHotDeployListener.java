@@ -482,6 +482,9 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 				context.unbind(_JNDI_JDBC_LIFERAY_POOL);
 			}
 			catch (NamingException namingException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(namingException, namingException);
+				}
 			}
 
 			try {
@@ -490,6 +493,9 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 				context.destroySubcontext(_JNDI_JDBC);
 			}
 			catch (NamingException namingException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(namingException, namingException);
+				}
 			}
 		}
 		catch (Exception exception) {

@@ -220,6 +220,10 @@ public class MediaWikiImporter implements WikiImporter {
 				page = _wikiPageLocalService.getPage(node.getNodeId(), title);
 			}
 			catch (NoSuchPageException noSuchPageException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchPageException, noSuchPageException);
+				}
+
 				page = _wikiPageLocalService.addPage(
 					authorUserId, node.getNodeId(), title,
 					WikiPageConstants.NEW, null, true, serviceContext);
@@ -353,6 +357,10 @@ public class MediaWikiImporter implements WikiImporter {
 					node.getNodeId(), SHARED_IMAGES_TITLE);
 			}
 			catch (NoSuchPageException noSuchPageException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchPageException, noSuchPageException);
+				}
+
 				ServiceContext serviceContext = new ServiceContext();
 
 				serviceContext.setAddGroupPermissions(true);

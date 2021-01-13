@@ -365,6 +365,10 @@ public class ZoomPowwowServiceProvider extends BasePowwowServiceProvider {
 						_apiCallCount = 1;
 					}
 					catch (InterruptedException interruptedException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								interruptedException, interruptedException);
+						}
 					}
 				}
 
@@ -469,6 +473,9 @@ public class ZoomPowwowServiceProvider extends BasePowwowServiceProvider {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 

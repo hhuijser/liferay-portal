@@ -182,6 +182,12 @@ public class FileHelperUtil {
 							catch (AtomicMoveNotSupportedException
 										atomicMoveNotSupportedException) {
 
+								if (_log.isDebugEnabled()) {
+									_log.debug(
+										atomicMoveNotSupportedException,
+										atomicMoveNotSupportedException);
+								}
+
 								atomicMove.set(false);
 							}
 						}

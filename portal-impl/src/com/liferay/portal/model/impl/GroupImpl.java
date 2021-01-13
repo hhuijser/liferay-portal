@@ -513,6 +513,9 @@ public class GroupImpl extends GroupBaseImpl {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return getTypeSettingsProperties();
@@ -764,6 +767,10 @@ public class GroupImpl extends GroupBaseImpl {
 				name, getDescriptiveName(locale));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return name;
 		}
 	}

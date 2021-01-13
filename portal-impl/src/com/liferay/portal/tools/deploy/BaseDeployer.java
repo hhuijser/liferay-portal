@@ -733,6 +733,9 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 				excludes += "**/WEB-INF/lib/el-api.jar,";
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 		}
 
@@ -1046,6 +1049,9 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 				PropsValues.HOT_UNDEPLOY_ON_REDEPLOY);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 
 			// This will only happen when running the deploy tool in Ant in the
 			// classical way where the WAR file is actually massaged and
@@ -1823,6 +1829,9 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 					inputStream.close();
 				}
 				catch (IOException ioException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(ioException, ioException);
+					}
 				}
 			}
 
@@ -1831,6 +1840,9 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 					zipFile.close();
 				}
 				catch (IOException ioException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(ioException, ioException);
+					}
 				}
 			}
 		}

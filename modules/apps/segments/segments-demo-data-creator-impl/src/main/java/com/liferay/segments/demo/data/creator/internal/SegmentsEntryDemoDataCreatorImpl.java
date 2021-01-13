@@ -130,6 +130,10 @@ public class SegmentsEntryDemoDataCreatorImpl
 			return CriteriaSerializer.serialize(criteria);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return StringPool.BLANK;
 		}
 	}

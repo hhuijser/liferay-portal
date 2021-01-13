@@ -85,6 +85,9 @@ public class DependencyManagerSyncImpl implements DependencyManagerSync {
 				dependencyManagerSyncServiceRegistration.unregister();
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 
 				// Concurrent unregister, no need to do anything
 
@@ -97,6 +100,9 @@ public class DependencyManagerSyncImpl implements DependencyManagerSync {
 			_componentExecutorFactoryRegistration.unregister();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// Concurrent unregister, no need to do anything
 

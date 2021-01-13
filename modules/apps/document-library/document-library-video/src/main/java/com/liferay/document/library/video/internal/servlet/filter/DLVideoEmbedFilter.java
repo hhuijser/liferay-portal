@@ -108,6 +108,9 @@ public class DLVideoEmbedFilter extends BasePortalFilter {
 			getEmbedVideoURL.setWindowState(LiferayWindowState.POP_UP);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		getEmbedVideoURL.setParameter(

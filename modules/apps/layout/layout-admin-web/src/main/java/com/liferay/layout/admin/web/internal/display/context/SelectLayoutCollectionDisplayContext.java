@@ -169,6 +169,10 @@ public class SelectLayoutCollectionDisplayContext {
 			return PortletURLUtil.clone(currentURLObj, _liferayPortletResponse);
 		}
 		catch (PortletException portletException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(portletException, portletException);
+			}
+
 			PortletURL portletURL = _liferayPortletResponse.createRenderURL();
 
 			portletURL.setParameters(currentURLObj.getParameterMap());

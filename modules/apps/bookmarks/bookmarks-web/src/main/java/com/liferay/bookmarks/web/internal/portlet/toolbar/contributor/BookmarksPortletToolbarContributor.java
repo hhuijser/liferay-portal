@@ -246,6 +246,10 @@ public class BookmarksPortletToolbarContributor
 				folder = _bookmarksFolderService.getFolder(folderId);
 			}
 			catch (NoSuchFolderException noSuchFolderException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchFolderException, noSuchFolderException);
+				}
+
 				folder = null;
 			}
 			catch (PortalException portalException) {

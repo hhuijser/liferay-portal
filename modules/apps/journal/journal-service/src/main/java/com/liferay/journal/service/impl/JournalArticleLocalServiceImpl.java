@@ -375,6 +375,9 @@ public class JournalArticleLocalServiceImpl
 			smallImageBytes = FileUtil.getBytes(smallImageFile);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		boolean validate = !ExportImportThreadLocal.isImportInProcess();
@@ -746,6 +749,9 @@ public class JournalArticleLocalServiceImpl
 			smallImageBytes = FileUtil.getBytes(smallImageFile);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		String articleId = String.valueOf(counterLocalService.increment());
@@ -1082,6 +1088,10 @@ public class JournalArticleLocalServiceImpl
 			copyArticleImages(oldArticle, newArticle);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			newArticle.setContent(oldArticle.getContent());
 		}
 
@@ -3866,6 +3876,10 @@ public class JournalArticleLocalServiceImpl
 				themeDisplay, true);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -5534,6 +5548,9 @@ public class JournalArticleLocalServiceImpl
 			smallImageBytes = FileUtil.getBytes(smallImageFile);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		JournalArticle latestArticle = getLatestArticle(
@@ -6139,6 +6156,9 @@ public class JournalArticleLocalServiceImpl
 			smallImageBytes = FileUtil.getBytes(smallImageFile);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		JournalArticle article = getArticle(groupId, articleId);
@@ -8211,6 +8231,9 @@ public class JournalArticleLocalServiceImpl
 				portletRequestModel, serviceContext.getThemeDisplay());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		subscriptionSender.setContextAttribute(

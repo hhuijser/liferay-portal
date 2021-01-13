@@ -881,6 +881,10 @@ public class FreeMarkerManager extends BaseTemplateManager {
 				return url.openStream();
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
+
 				return null;
 			}
 		}

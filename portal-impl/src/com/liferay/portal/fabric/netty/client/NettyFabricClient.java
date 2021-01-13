@@ -198,6 +198,10 @@ public class NettyFabricClient implements FabricClient {
 						TimeUnit.MILLISECONDS);
 				}
 				catch (TimeoutException timeoutException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(timeoutException, timeoutException);
+					}
+
 					fabricWorker.write(_runtimeHaltProcessCallable);
 
 					noticeableFuture.get(

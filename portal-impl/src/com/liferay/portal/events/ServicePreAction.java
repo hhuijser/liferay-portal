@@ -962,6 +962,10 @@ public class ServicePreAction extends Action {
 			CookieKeys.validateSupportCookie(httpServletRequest);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			CookieKeys.addSupportCookie(
 				httpServletRequest, httpServletResponse);
 		}

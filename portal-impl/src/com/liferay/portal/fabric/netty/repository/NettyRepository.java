@@ -180,6 +180,10 @@ public class NettyRepository implements Repository<Channel> {
 			return fileTime.toMillis();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return Long.MIN_VALUE;
 		}
 	}

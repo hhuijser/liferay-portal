@@ -250,6 +250,10 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			return new FileInputStream(certificatePath);
 		}
 		catch (FileNotFoundException fileNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(fileNotFoundException, fileNotFoundException);
+			}
+
 			ClassLoader classLoader =
 				ApplePushNotificationsSender.class.getClassLoader();
 

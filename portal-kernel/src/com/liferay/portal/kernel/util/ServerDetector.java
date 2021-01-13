@@ -195,6 +195,10 @@ public class ServerDetector {
 			return true;
 		}
 		catch (ClassNotFoundException classNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(classNotFoundException, classNotFoundException);
+			}
+
 			if (ServerDetector.class.getResource(className) != null) {
 				return true;
 			}

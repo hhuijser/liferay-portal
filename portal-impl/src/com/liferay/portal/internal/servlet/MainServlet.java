@@ -738,6 +738,9 @@ public class MainServlet extends HttpServlet {
 				httpServletRequest, company.getKeyObj());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return httpServletRequest;
@@ -1259,6 +1262,9 @@ public class MainServlet extends HttpServlet {
 				redirect = HttpUtil.addParameter(redirect, "p_l_id", plid);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 

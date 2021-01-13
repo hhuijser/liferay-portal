@@ -67,6 +67,9 @@ public class LinkbackConsumerImpl implements LinkbackConsumer {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		try {

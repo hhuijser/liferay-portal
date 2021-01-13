@@ -403,6 +403,10 @@ public class CustomJspBagRegistryUtil {
 								portalJspBackupFile, portalJspFile);
 						}
 						catch (IOException ioException) {
+							if (_log.isDebugEnabled()) {
+								_log.debug(ioException, ioException);
+							}
+
 							return;
 						}
 

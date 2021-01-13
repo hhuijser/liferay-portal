@@ -205,6 +205,10 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 				oldContent = read(source);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				return;
 			}
 
@@ -214,6 +218,9 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 				newContent = read(destination);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 
 			if ((oldContent == null) || !oldContent.equals(newContent)) {
@@ -329,6 +336,9 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 				exists = file.exists();
 			}
 			catch (SecurityException securityException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(securityException, securityException);
+				}
 
 				// We may have the permission to delete a specific file without
 				// having the permission to check if the file exists
@@ -703,6 +713,10 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			return true;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
@@ -801,6 +815,10 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			}
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return false;
 		}
 
@@ -919,6 +937,9 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			}
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		return list;
@@ -930,6 +951,10 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			return toList(new FileReader(fileName));
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return new ArrayList<>();
 		}
 	}
@@ -942,6 +967,9 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			properties.load(fileInputStream);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		return properties;
@@ -953,6 +981,10 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			return toProperties(new FileInputStream(fileName));
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return new Properties();
 		}
 	}
@@ -1112,6 +1144,9 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			mkdirs(parentFile);
 		}
 		catch (SecurityException securityException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(securityException, securityException);
+			}
 
 			// We may have the permission to write a specific file without
 			// having the permission to check if the parent file exists

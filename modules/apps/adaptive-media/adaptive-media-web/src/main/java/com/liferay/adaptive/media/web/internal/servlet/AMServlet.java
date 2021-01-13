@@ -117,6 +117,10 @@ public class AMServlet extends HttpServlet {
 			}
 		}
 		catch (AMException.AMNotFound amException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(amException, amException);
+			}
+
 			httpServletResponse.sendError(
 				HttpServletResponse.SC_NOT_FOUND,
 				httpServletRequest.getRequestURI());

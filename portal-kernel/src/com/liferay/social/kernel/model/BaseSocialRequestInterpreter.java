@@ -61,6 +61,10 @@ public abstract class BaseSocialRequestInterpreter
 				"</a>");
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
@@ -82,6 +86,10 @@ public abstract class BaseSocialRequestInterpreter
 				"</a>");
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}

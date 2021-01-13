@@ -322,6 +322,10 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 				ddmStructure, fields);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return;
 		}
 
@@ -660,6 +664,10 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 				ddmStructure, fields);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 

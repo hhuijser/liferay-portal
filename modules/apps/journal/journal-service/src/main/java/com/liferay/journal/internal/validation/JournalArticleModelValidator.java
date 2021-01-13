@@ -383,6 +383,10 @@ public class JournalArticleModelValidator
 						FileUtil.write(smallImageFile, smallImageBytes, false);
 					}
 					catch (IOException ioException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(ioException, ioException);
+						}
+
 						smallImageBytes = null;
 					}
 				}

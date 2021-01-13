@@ -341,6 +341,11 @@ public class CommerceTierPriceEntryLocalServiceImpl
 					new CommerceTierPriceEntryMinQuantityComparator(false));
 		}
 		catch (NoSuchTierPriceEntryException noSuchTierPriceEntryException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchTierPriceEntryException,
+					noSuchTierPriceEntryException);
+			}
 		}
 
 		return commerceTierPriceEntry;

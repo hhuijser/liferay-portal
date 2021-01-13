@@ -107,7 +107,8 @@ public class LiferayVideoConverter extends LiferayConverter {
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to move MOOV atom to front of MP4 file");
+				_log.warn(
+					"Unable to move MOOV atom to front of MP4 file", exception);
 			}
 		}
 		finally {

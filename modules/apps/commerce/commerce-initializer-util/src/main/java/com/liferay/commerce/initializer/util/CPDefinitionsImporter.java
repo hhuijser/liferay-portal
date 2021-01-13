@@ -500,7 +500,8 @@ public class CPDefinitionsImporter {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						"No options defined as sku contributor for " +
-							"CPDefinition " + cpDefinition.getCPDefinitionId());
+							"CPDefinition " + cpDefinition.getCPDefinitionId(),
+						noSuchSkuContributorCPDefinitionOptionRelException);
 				}
 			}
 

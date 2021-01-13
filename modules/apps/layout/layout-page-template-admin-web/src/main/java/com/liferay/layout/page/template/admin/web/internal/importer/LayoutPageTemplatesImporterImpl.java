@@ -242,7 +242,8 @@ public class LayoutPageTemplatesImporterImpl
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Invalid display page template for: " +
-							zipEntry.getName());
+							zipEntry.getName(),
+						displayPageTemplateValidatorException);
 				}
 
 				_layoutPageTemplatesImporterResultEntries.add(
@@ -281,7 +282,8 @@ public class LayoutPageTemplatesImporterImpl
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Invalid page definition for: " +
-							displayPageTemplate.getName());
+							displayPageTemplate.getName(),
+						exception);
 				}
 
 				_layoutPageTemplatesImporterResultEntries.add(
@@ -456,7 +458,9 @@ public class LayoutPageTemplatesImporterImpl
 			}
 			catch (MasterPageValidatorException masterPageValidatorException) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Invalid master page for: " + zipEntry.getName());
+					_log.warn(
+						"Invalid master page for: " + zipEntry.getName(),
+						masterPageValidatorException);
 				}
 
 				_layoutPageTemplatesImporterResultEntries.add(
@@ -494,7 +498,8 @@ public class LayoutPageTemplatesImporterImpl
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Invalid page definition for: " + masterPage.getName());
+						"Invalid page definition for: " + masterPage.getName(),
+						exception);
 				}
 
 				_layoutPageTemplatesImporterResultEntries.add(
@@ -599,7 +604,8 @@ public class LayoutPageTemplatesImporterImpl
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Invalid page template for: " + zipEntry.getName());
+						"Invalid page template for: " + zipEntry.getName(),
+						exception);
 				}
 
 				_layoutPageTemplatesImporterResultEntries.add(
@@ -645,7 +651,8 @@ public class LayoutPageTemplatesImporterImpl
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Invalid page definition for: " +
-							pageTemplate.getName());
+							pageTemplate.getName(),
+						exception);
 				}
 
 				_layoutPageTemplatesImporterResultEntries.add(

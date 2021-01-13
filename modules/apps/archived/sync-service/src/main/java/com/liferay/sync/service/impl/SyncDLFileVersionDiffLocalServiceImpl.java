@@ -121,7 +121,8 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to delete file entry " +
-						syncDLFileVersionDiff.getDataFileEntryId());
+						syncDLFileVersionDiff.getDataFileEntryId(),
+					exception);
 			}
 		}
 

@@ -1040,7 +1040,8 @@ public class PortalImpl implements Portal {
 			catch (UnknownHostException unknownHostException) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Unable to determine IP for redirect URL " + url);
+						"Unable to determine IP for redirect URL " + url,
+						unknownHostException);
 				}
 			}
 
@@ -7584,7 +7585,8 @@ public class PortalImpl implements Portal {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unable to impersonate " + doAsUserIdString +
-							" because the string cannot be decrypted");
+							" because the string cannot be decrypted",
+						exception);
 				}
 
 				return 0;
@@ -8126,7 +8128,8 @@ public class PortalImpl implements Portal {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to get default locale from group: " +
-						group.getGroupId() + ".  Using portal defaults.");
+						group.getGroupId() + ".  Using portal defaults.",
+					exception);
 			}
 
 			siteDefaultLocale = LocaleUtil.getDefault();

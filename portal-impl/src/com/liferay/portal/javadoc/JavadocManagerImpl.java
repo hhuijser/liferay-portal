@@ -112,13 +112,15 @@ public class JavadocManagerImpl implements JavadocManager {
 				_log.warn(
 					StringBundler.concat(
 						"Unable to load method ", method.getName(),
-						" from class ", implClassName));
+						" from class ", implClassName),
+					noSuchMethodException);
 			}
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to load implementation class " + implClassName);
+					"Unable to load implementation class " + implClassName,
+					exception);
 			}
 		}
 
@@ -177,7 +179,8 @@ public class JavadocManagerImpl implements JavadocManager {
 			}
 			catch (ClassNotFoundException classNotFoundException) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to load class " + type);
+					_log.warn(
+						"Unable to load class " + type, classNotFoundException);
 				}
 
 				continue;
@@ -215,7 +218,8 @@ public class JavadocManagerImpl implements JavadocManager {
 						_log.warn(
 							StringBundler.concat(
 								"Unable to load method ", methodName,
-								" from class ", type));
+								" from class ", type),
+							exception);
 					}
 				}
 			}

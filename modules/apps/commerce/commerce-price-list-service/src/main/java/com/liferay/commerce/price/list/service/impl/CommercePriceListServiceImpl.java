@@ -536,7 +536,8 @@ public class CommercePriceListServiceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find price list with ID: " +
-							commercePriceListId);
+							commercePriceListId,
+						noSuchPriceListException);
 				}
 			}
 		}

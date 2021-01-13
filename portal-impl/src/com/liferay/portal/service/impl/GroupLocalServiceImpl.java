@@ -1073,7 +1073,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"No resources found for group " +
-								group.getGroupId());
+								group.getGroupId(),
+							exception);
 					}
 				}
 

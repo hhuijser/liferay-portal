@@ -124,7 +124,8 @@ public class AvailabilityEstimateHelper {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to find availabilityEstimate with ID: " +
-						availabilityEstimate.getId());
+						availabilityEstimate.getId(),
+					noSuchAvailabilityEstimateException);
 			}
 		}
 

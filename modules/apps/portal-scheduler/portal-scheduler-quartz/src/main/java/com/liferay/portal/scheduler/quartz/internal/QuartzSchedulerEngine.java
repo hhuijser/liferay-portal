@@ -847,13 +847,16 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Scheduler job " + trigger.getJobKey() +
-							" already exists");
+							" already exists",
+						jobPersistenceException);
 				}
 			}
 		}
 		catch (ObjectAlreadyExistsException objectAlreadyExistsException) {
 			if (_log.isInfoEnabled()) {
-				_log.info("Message is already scheduled");
+				_log.info(
+					"Message is already scheduled",
+					objectAlreadyExistsException);
 			}
 		}
 	}

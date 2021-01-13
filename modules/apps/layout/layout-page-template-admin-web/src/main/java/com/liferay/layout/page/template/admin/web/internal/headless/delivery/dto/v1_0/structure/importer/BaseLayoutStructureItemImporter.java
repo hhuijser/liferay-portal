@@ -125,7 +125,8 @@ public abstract class BaseLayoutStructureItemImporter {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to process mapping because class name ID could " +
-						"not be obtained for class name " + className);
+						"not be obtained for class name " + className,
+					exception);
 			}
 
 			return;

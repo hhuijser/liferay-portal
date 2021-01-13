@@ -277,7 +277,8 @@ public class CXFEndpointPublisher {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unable to unregister CXF bus service registration " +
-							_busServiceRegistration);
+							_busServiceRegistration,
+						exception);
 				}
 			}
 
@@ -290,7 +291,8 @@ public class CXFEndpointPublisher {
 						_log.warn(
 							"Unable to unregister RemoteAccessFilter " +
 								"registration " +
-									_remoteAccessFilterServiceRegistration);
+									_remoteAccessFilterServiceRegistration,
+							exception);
 					}
 				}
 			}
@@ -304,7 +306,8 @@ public class CXFEndpointPublisher {
 						_log.warn(
 							"Unable to unregister AuthVerifierFilter " +
 								"registration " +
-									_authVerifierFilterServiceRegistration);
+									_authVerifierFilterServiceRegistration,
+							exception);
 					}
 				}
 			}
@@ -316,7 +319,8 @@ public class CXFEndpointPublisher {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unable to unregister servlet service registration " +
-							_servletServiceRegistration);
+							_servletServiceRegistration,
+						exception);
 				}
 			}
 
@@ -328,7 +332,8 @@ public class CXFEndpointPublisher {
 					_log.warn(
 						"Unable to unregister servlet context helper service " +
 							"registration " +
-								_servletContextHelperServiceRegistration);
+								_servletContextHelperServiceRegistration,
+						exception);
 				}
 			}
 		}

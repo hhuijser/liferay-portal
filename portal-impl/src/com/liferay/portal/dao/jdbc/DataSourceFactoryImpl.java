@@ -332,7 +332,8 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Property " + key + " is an invalid C3PO property");
+						"Property " + key + " is an invalid C3PO property",
+						exception);
 				}
 			}
 		}
@@ -414,7 +415,8 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Property " + key + " is an invalid HikariCP property");
+						"Property " + key + " is an invalid HikariCP property",
+						exception);
 				}
 			}
 		}
@@ -462,7 +464,8 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 					_log.warn(
 						StringBundler.concat(
 							"Property ", key, " is an invalid Tomcat JDBC ",
-							"property"));
+							"property"),
+						exception);
 				}
 			}
 		}

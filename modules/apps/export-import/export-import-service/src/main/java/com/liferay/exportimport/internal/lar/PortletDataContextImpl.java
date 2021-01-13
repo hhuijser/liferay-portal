@@ -2064,7 +2064,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to find group " + groupId);
+					_log.warn("Unable to find group " + groupId, exception);
 				}
 			}
 		}
@@ -2374,7 +2374,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to load class com.sybase.jdbc4.tds.SybTimestamp " +
-						"because the Sybase driver is not available");
+						"because the Sybase driver is not available",
+					classNotFoundException);
 			}
 		}
 

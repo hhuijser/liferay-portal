@@ -1602,7 +1602,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unknown application type " +
-							applicationTypeElement.getText());
+							applicationTypeElement.getText(),
+						illegalArgumentException);
 				}
 			}
 		}
@@ -2207,7 +2208,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Portlet with the name " + portletId +
-							" does not have valid default preferences");
+							" does not have valid default preferences",
+						exception);
 				}
 			}
 		}

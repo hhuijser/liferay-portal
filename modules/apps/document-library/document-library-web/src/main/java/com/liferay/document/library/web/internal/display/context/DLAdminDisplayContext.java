@@ -558,7 +558,8 @@ public class DLAdminDisplayContext {
 						_log.warn(
 							StringBundler.concat(
 								"Documents and Media search index is stale ",
-								"and contains file entry {", fileEntryId, "}"));
+								"and contains file entry {", fileEntryId, "}"),
+							exception);
 					}
 
 					continue;

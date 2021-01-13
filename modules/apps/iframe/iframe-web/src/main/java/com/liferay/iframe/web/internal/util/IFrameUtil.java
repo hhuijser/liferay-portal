@@ -119,7 +119,8 @@ public class IFrameUtil {
 				_log.warn(
 					StringBundler.concat(
 						"Error getting role ", roleName,
-						". The password token will be disabled."));
+						". The password token will be disabled."),
+					exception);
 			}
 		}
 

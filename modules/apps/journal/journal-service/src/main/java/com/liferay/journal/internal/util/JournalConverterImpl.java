@@ -810,7 +810,8 @@ public class JournalConverterImpl implements JournalConverter {
 				_log.warn(
 					StringBundler.concat(
 						"Unable to get file entry for UUID ", uuid,
-						" and group ID ", groupId));
+						" and group ID ", groupId),
+					exception);
 			}
 
 			jsonObject.put(

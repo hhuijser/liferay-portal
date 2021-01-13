@@ -317,7 +317,8 @@ public class CommercePricingClassLocalServiceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find pricing class with ID: " +
-							commercePricingClassId);
+							commercePricingClassId,
+						noSuchPricingClassException);
 				}
 			}
 		}

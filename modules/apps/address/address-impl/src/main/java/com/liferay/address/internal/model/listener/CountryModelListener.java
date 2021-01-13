@@ -94,7 +94,7 @@ public class CountryModelListener extends BaseModelListener<Country> {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("No regions found for country " + a2);
+				_log.debug("No regions found for country " + a2, exception);
 			}
 		}
 	}

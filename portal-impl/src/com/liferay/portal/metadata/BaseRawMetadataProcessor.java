@@ -189,7 +189,8 @@ public abstract class BaseRawMetadataProcessor implements RawMetadataProcessor {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"The property " + field.getName() +
-						" will not be added to the metatada set");
+						" will not be added to the metatada set",
+					illegalAccessException);
 			}
 		}
 

@@ -91,7 +91,8 @@ public abstract class BaseClusterReceiver implements ClusterReceiver {
 		catch (InterruptedException interruptedException) {
 			_log.error(
 				"Latch opened prematurely by interruption. Dependence may " +
-					"not be ready.");
+					"not be ready.",
+				interruptedException);
 		}
 		catch (RejectedExecutionException rejectedExecutionException) {
 			_log.error(
@@ -128,7 +129,8 @@ public abstract class BaseClusterReceiver implements ClusterReceiver {
 		catch (InterruptedException interruptedException) {
 			_log.error(
 				"Latch opened prematurely by interruption. Dependence may " +
-					"not be ready.");
+					"not be ready.",
+				interruptedException);
 		}
 		catch (RejectedExecutionException rejectedExecutionException) {
 			_log.error(
@@ -165,7 +167,8 @@ public abstract class BaseClusterReceiver implements ClusterReceiver {
 		catch (InterruptedException interruptedException) {
 			_log.error(
 				"Latch opened prematurely by interruption. Dependence may " +
-					"not be ready.");
+					"not be ready.",
+				interruptedException);
 		}
 		catch (RejectedExecutionException rejectedExecutionException) {
 			_log.error(

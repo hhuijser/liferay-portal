@@ -466,7 +466,8 @@ public class CommercePriceModifierLocalServiceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find price modifier with ID: " +
-							commercePriceModifierId);
+							commercePriceModifierId,
+						noSuchPriceModifierException);
 				}
 			}
 		}

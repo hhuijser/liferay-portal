@@ -340,7 +340,8 @@ public class PollerRequestHandlerImpl
 			_log.error(
 				StringBundler.concat(
 					"Invalid credentials for company id ", companyId,
-					" and user id ", userIdString));
+					" and user id ", userIdString),
+				exception);
 		}
 
 		return userId;

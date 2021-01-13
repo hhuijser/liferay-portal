@@ -320,7 +320,8 @@ public class BlogEntriesDisplayContext {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Blogs search index is stale and contains entry " +
-						searchResult.getClassPK());
+						searchResult.getClassPK(),
+					exception);
 			}
 
 			return Optional.empty();

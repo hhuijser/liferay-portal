@@ -192,7 +192,8 @@ public class WebSphereDeploymentExtension implements DeploymentExtension {
 				}
 			}
 			catch (IllegalThreadStateException illegalThreadStateException) {
-				_log.info("Process did not terminate");
+				_log.info(
+					"Process did not terminate", illegalThreadStateException);
 			}
 		}
 

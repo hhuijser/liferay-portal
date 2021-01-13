@@ -374,7 +374,8 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Blogs entry thumbnail URL exception and contains " +
-							"blogs entry ID " + blogsEntry.getEntryId());
+							"blogs entry ID " + blogsEntry.getEntryId(),
+						exception);
 				}
 			}
 
@@ -399,7 +400,8 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Journal article thumbnail URL exception and " +
-							"contains journal article class PK " + classPK);
+							"contains journal article class PK " + classPK,
+						exception);
 				}
 			}
 
@@ -436,7 +438,8 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"File entry thumbnail url exception and contains " +
-							"file classPK " + classPK);
+							"file classPK " + classPK,
+						exception);
 				}
 			}
 
@@ -539,7 +542,8 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Documents and Media search index is stale and contains " +
-						"file entry " + fileEntryId);
+						"file entry " + fileEntryId,
+					exception);
 			}
 		}
 

@@ -606,7 +606,8 @@ public class PortletBagFactory {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Portlet with the name " + portlet.getPortletId() +
-						" does not have valid default preferences");
+						" does not have valid default preferences",
+					exception);
 			}
 		}
 

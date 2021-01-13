@@ -115,7 +115,8 @@ public class UnsatisfiedComponentScanner {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						"Stopped scanning for unsatisfied declarative " +
-							"service components");
+							"service components",
+						interruptedException);
 				}
 			}
 		}

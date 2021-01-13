@@ -1893,7 +1893,7 @@ public class HttpImpl implements Http {
 				}
 				catch (IOException ioException) {
 					if (_log.isWarnEnabled()) {
-						_log.warn("Unable to close response", exception);
+						_log.warn("Unable to close response", ioException);
 					}
 				}
 			}

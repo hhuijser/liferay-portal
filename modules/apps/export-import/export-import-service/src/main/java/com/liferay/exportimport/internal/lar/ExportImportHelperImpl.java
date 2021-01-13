@@ -800,8 +800,8 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to process manifest for the process summary " +
-						"screen");
+					"Unable to process manifest for the process summary screen",
+					exception);
 			}
 		}
 		finally {

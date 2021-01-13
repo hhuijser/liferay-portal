@@ -238,7 +238,8 @@ public class TrashHelperImpl implements TrashHelper {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"No trash entry or trash version exists with ID " +
-						trashEntryId);
+						trashEntryId,
+					exception);
 			}
 		}
 

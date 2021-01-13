@@ -1063,7 +1063,8 @@ public class WebXMLDefinitionLoader extends DefaultHandler {
 			_log.error(
 				StringBundler.concat(
 					"Bundle ", _bundle, " is unable to load filter ",
-					filterClassName));
+					filterClassName),
+				exception);
 
 			return null;
 		}
@@ -1082,7 +1083,8 @@ public class WebXMLDefinitionLoader extends DefaultHandler {
 			_log.error(
 				StringBundler.concat(
 					"Bundle ", _bundle, " is unable to load listener ",
-					listenerClassName));
+					listenerClassName),
+				exception);
 
 			return null;
 		}

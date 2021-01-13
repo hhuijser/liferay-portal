@@ -407,7 +407,8 @@ public class AudioProcessorImpl
 					StringBundler.concat(
 						"Cancellation received for ",
 						fileVersion.getFileVersionId(), " ",
-						fileVersion.getTitle()));
+						fileVersion.getTitle()),
+					cancellationException);
 			}
 		}
 		catch (Exception exception) {

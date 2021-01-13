@@ -465,7 +465,8 @@ public class JournalContentImpl
 				_log.warn(
 					StringBundler.concat(
 						"Unable to get display for ", groupId, StringPool.SPACE,
-						articleId, StringPool.SPACE, languageId));
+						articleId, StringPool.SPACE, languageId),
+					exception);
 			}
 
 			return null;

@@ -159,7 +159,8 @@ public class Sidecar {
 							"because it did not shut down in ",
 							_elasticsearchConfigurationWrapper.
 								sidecarShutdownTimeout(),
-							" ms"));
+							" ms"),
+						exception);
 				}
 
 				noticeableFuture.cancel(true);

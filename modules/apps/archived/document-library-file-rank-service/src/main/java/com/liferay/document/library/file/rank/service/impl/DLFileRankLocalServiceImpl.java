@@ -109,7 +109,9 @@ public class DLFileRankLocalServiceImpl extends DLFileRankLocalServiceBaseImpl {
 				}
 				catch (Exception exception) {
 					if (_log.isWarnEnabled()) {
-						_log.warn("Unable to remove file rank " + fileRankId);
+						_log.warn(
+							"Unable to remove file rank " + fileRankId,
+							exception);
 					}
 				}
 			}
@@ -217,7 +219,8 @@ public class DLFileRankLocalServiceImpl extends DLFileRankLocalServiceBaseImpl {
 						StringBundler.concat(
 							"Update failed, fetch {companyId=", companyId,
 							", userId=", userId, ", fileEntryId=", fileEntryId,
-							"}"));
+							"}"),
+						exception);
 				}
 			}
 		}

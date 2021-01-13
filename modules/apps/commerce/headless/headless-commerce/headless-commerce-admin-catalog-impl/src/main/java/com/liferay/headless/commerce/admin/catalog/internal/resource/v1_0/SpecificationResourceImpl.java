@@ -186,7 +186,8 @@ public class SpecificationResourceImpl
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Unable to find specification with ID: " +
-							specificationId);
+							specificationId,
+						noSuchCPSpecificationOptionException);
 				}
 			}
 		}

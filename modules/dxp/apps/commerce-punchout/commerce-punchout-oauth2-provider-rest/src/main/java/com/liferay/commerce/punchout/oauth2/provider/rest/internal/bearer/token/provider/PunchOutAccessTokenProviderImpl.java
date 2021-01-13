@@ -75,7 +75,8 @@ public class PunchOutAccessTokenProviderImpl
 			}
 			catch (Exception exception) {
 				_log.error(
-					"Timeout setting punch out access token to master node");
+					"Timeout setting punch out access token to master node",
+					exception);
 			}
 		}
 
@@ -99,7 +100,8 @@ public class PunchOutAccessTokenProviderImpl
 		}
 		catch (Exception exception) {
 			_log.error(
-				"Timeout getting punch out access token from master node");
+				"Timeout getting punch out access token from master node",
+				exception);
 
 			return null;
 		}
@@ -122,7 +124,8 @@ public class PunchOutAccessTokenProviderImpl
 		}
 		catch (Exception exception) {
 			_log.error(
-				"Timeout removing punch out access token from master node");
+				"Timeout removing punch out access token from master node",
+				exception);
 
 			return null;
 		}

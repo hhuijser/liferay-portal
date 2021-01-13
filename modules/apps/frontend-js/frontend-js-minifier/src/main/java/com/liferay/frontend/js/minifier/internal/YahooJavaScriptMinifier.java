@@ -66,7 +66,7 @@ public class YahooJavaScriptMinifier implements JavaScriptMinifier {
 				_yahooJavaScriptMinifierConfiguration.jsDisableOptimizations());
 		}
 		catch (Exception exception) {
-			_log.error("Unable to minify JavaScript:\n" + content);
+			_log.error("Unable to minify JavaScript:\n" + content, exception);
 
 			unsyncStringWriter.append(content);
 		}

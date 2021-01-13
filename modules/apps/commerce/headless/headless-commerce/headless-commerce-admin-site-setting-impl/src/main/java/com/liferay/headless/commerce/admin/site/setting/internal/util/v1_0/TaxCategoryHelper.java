@@ -99,7 +99,8 @@ public class TaxCategoryHelper {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to find taxCategory with ID: " +
-						taxCategory.getId());
+						taxCategory.getId(),
+					noSuchCPTaxCategoryException);
 			}
 		}
 

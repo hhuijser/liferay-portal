@@ -427,7 +427,8 @@ public class JSONServiceAction extends JSONAction {
 					StringBundler.concat(
 						"Unsupported parameter type for class ", clazz,
 						", method ", methodName, ", parameter ", parameter,
-						", and type ", typeNameOrClassDescriptor));
+						", and type ", typeNameOrClassDescriptor),
+					exception);
 
 				return null;
 			}

@@ -488,7 +488,9 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to get folder for " + getResourcePrimKey());
+				_log.debug(
+					"Unable to get folder for " + getResourcePrimKey(),
+					exception);
 			}
 		}
 

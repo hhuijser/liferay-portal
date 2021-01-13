@@ -534,7 +534,7 @@ public class JournalArticleExportImportContentProcessor
 		}
 		catch (DocumentException documentException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Invalid content:\n" + content);
+				_log.debug("Invalid content:\n" + content, documentException);
 			}
 		}
 

@@ -55,7 +55,8 @@ public class UserModelListener extends BaseModelListener<User> {
 		catch (Exception exception) {
 			_log.error(
 				"Unable to remove chat entries and status for user " +
-					user.getUserId());
+					user.getUserId(),
+				exception);
 		}
 	}
 

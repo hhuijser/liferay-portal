@@ -58,7 +58,8 @@ public class RelatedProductUtil {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to find relatedProduct with ID: " +
-						relatedProduct.getId());
+						relatedProduct.getId(),
+					noSuchCPDefinitionLinkException);
 			}
 		}
 

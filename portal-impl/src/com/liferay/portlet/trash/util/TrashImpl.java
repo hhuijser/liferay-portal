@@ -256,7 +256,8 @@ public class TrashImpl implements Trash {
 					_log.warn(
 						StringBundler.concat(
 							"Unable to find trash entry for ", entryClassName,
-							" with primary key ", classPK));
+							" with primary key ", classPK),
+						exception);
 				}
 			}
 		}
@@ -586,7 +587,8 @@ public class TrashImpl implements Trash {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"No trash entry or trash version exists with ID " +
-						trashEntryId);
+						trashEntryId,
+					exception);
 			}
 		}
 

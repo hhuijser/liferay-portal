@@ -17,6 +17,8 @@ package com.liferay.portal.kernel.util;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 
 import java.util.Date;
@@ -61,6 +63,9 @@ public class OrderByComparatorFactoryUtil {
 						columnInstance = columnClass.newInstance();
 					}
 					catch (Exception exception) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(exception, exception);
+						}
 					}
 				}
 
@@ -201,5 +206,8 @@ public class OrderByComparatorFactoryUtil {
 		private final String _tableName;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		OrderByComparatorFactoryUtil.class);
 
 }

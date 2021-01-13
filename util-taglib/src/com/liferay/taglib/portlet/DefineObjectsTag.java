@@ -14,6 +14,8 @@
 
 package com.liferay.taglib.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -107,6 +109,9 @@ public class DefineObjectsTag extends TagSupport {
 					"portletSessionScope", portletSession.getAttributeMap());
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 			}
 		}
 
@@ -175,5 +180,8 @@ public class DefineObjectsTag extends TagSupport {
 		private final PortletPreferences _portletPreferences;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DefineObjectsTag.class);
 
 }

@@ -17,6 +17,8 @@ package com.liferay.users.admin.web.internal.portlet.configuration.icon;
 import com.liferay.expando.kernel.model.ExpandoColumn;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.portlet.PortletProvider;
@@ -77,6 +79,9 @@ public class ManageCustomFieldsPortletConfigurationIcon
 			return portletURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -109,9 +114,15 @@ public class ManageCustomFieldsPortletConfigurationIcon
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ManageCustomFieldsPortletConfigurationIcon.class);
 
 }

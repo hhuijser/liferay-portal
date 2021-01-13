@@ -15,6 +15,8 @@
 package com.liferay.portal.osgi.web.servlet.jsp.compiler.internal;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.IOException;
 
@@ -66,6 +68,9 @@ public class JspBundleClassloader extends URLClassLoader {
 				}
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
 			}
 		}
 
@@ -99,6 +104,9 @@ public class JspBundleClassloader extends URLClassLoader {
 				break;
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 		}
 
@@ -114,5 +122,8 @@ public class JspBundleClassloader extends URLClassLoader {
 	}
 
 	private final Bundle[] _bundles;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JspBundleClassloader.class);
 
 }

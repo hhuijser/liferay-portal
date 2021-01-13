@@ -17,6 +17,8 @@ package com.liferay.taglib.ui;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.PortletApp;
 import com.liferay.portal.kernel.model.SpriteImage;
@@ -582,6 +584,10 @@ public class IconTag extends IncludeTag {
 					imageFileName = imageURL.getPath();
 				}
 				catch (MalformedURLException malformedURLException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							malformedURLException, malformedURLException);
+					}
 				}
 			}
 		}
@@ -729,5 +735,7 @@ public class IconTag extends IncludeTag {
 	private Boolean _toolTip;
 	private String _url;
 	private boolean _useDialog;
+
+	private static final Log _log = LogFactoryUtil.getLog(IconTag.class);
 
 }

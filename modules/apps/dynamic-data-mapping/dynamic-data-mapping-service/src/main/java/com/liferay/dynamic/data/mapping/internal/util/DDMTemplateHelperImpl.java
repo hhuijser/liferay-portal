@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.template.StringTemplateResource;
 import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.template.TemplateConstants;
@@ -70,6 +72,9 @@ public class DDMTemplateHelperImpl implements DDMTemplateHelper {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -277,5 +282,8 @@ public class DDMTemplateHelperImpl implements DDMTemplateHelper {
 
 	@Reference
 	private Portal _portal;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMTemplateHelperImpl.class);
 
 }

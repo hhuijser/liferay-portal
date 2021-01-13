@@ -19,6 +19,8 @@ import aQute.bnd.version.Version;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
@@ -208,6 +210,9 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 			}
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -517,5 +522,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 		"alter table \\w+ drop column");
 	private static final Pattern _tableNamePattern = Pattern.compile(
 		"String TABLE_NAME =\\s+\"(.+)\";");
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavaUpgradeVersionCheck.class);
 
 }

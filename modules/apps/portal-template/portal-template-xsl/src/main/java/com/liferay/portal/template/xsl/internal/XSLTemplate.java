@@ -14,6 +14,8 @@
 
 package com.liferay.portal.template.xsl.internal;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.template.StringTemplateResource;
 import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateException;
@@ -69,6 +71,12 @@ public class XSLTemplate extends BaseTemplate {
 		}
 		catch (TransformerConfigurationException
 					transformerConfigurationException) {
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					transformerConfigurationException,
+					transformerConfigurationException);
+			}
 		}
 	}
 
@@ -221,5 +229,7 @@ public class XSLTemplate extends BaseTemplate {
 	private final boolean _preventLocalConnections;
 	private final TransformerFactory _transformerFactory;
 	private StreamSource _xmlStreamSource;
+
+	private static final Log _log = LogFactoryUtil.getLog(XSLTemplate.class);
 
 }

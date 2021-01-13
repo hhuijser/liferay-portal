@@ -27,6 +27,8 @@ import com.liferay.expando.kernel.service.ExpandoValueServiceUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -170,6 +172,10 @@ public class ExpandoBridgeImpl implements ExpandoBridge {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -377,6 +383,9 @@ public class ExpandoBridgeImpl implements ExpandoBridge {
 			hash = HashUtil.hash(0, getTable());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return HashUtil.hash(hash, getAttributeColumns());
@@ -673,5 +682,8 @@ public class ExpandoBridgeImpl implements ExpandoBridge {
 	private long _classPK;
 	private long _companyId;
 	private boolean _indexEnabled;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ExpandoBridgeImpl.class);
 
 }

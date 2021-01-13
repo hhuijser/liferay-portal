@@ -19,6 +19,8 @@ import com.liferay.document.library.repository.external.ExtRepositoryModel;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.CompanyConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.repository.model.RepositoryModel;
@@ -141,6 +143,9 @@ public abstract class ExtRepositoryModelAdapter<T>
 			return user.getUserUuid();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -259,6 +264,9 @@ public abstract class ExtRepositoryModelAdapter<T>
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -267,6 +275,9 @@ public abstract class ExtRepositoryModelAdapter<T>
 				user = UserLocalServiceUtil.getDefaultUser(getCompanyId());
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -277,5 +288,8 @@ public abstract class ExtRepositoryModelAdapter<T>
 	private final ExtRepositoryModel _extRepositoryModel;
 	private final long _extRepositoryObjectId;
 	private final String _uuid;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ExtRepositoryModelAdapter.class);
 
 }

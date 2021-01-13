@@ -33,6 +33,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.language.UnicodeLanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
@@ -1259,6 +1261,10 @@ public class UIItemsBuilder {
 			return false;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
@@ -1297,5 +1303,7 @@ public class UIItemsBuilder {
 	private final ThemeDisplay _themeDisplay;
 	private Boolean _trashEnabled;
 	private final VersioningStrategy _versioningStrategy;
+
+	private static final Log _log = LogFactoryUtil.getLog(UIItemsBuilder.class);
 
 }

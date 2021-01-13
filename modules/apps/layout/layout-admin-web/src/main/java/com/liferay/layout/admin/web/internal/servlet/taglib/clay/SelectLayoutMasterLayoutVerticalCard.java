@@ -16,6 +16,8 @@ package com.liferay.layout.admin.web.internal.servlet.taglib.clay;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -104,6 +106,9 @@ public class SelectLayoutMasterLayoutVerticalCard implements VerticalCard {
 			data.put("data-add-layout-url", addLayoutURL.toString());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return data;
@@ -133,5 +138,8 @@ public class SelectLayoutMasterLayoutVerticalCard implements VerticalCard {
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private final RenderResponse _renderResponse;
 	private final ThemeDisplay _themeDisplay;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectLayoutMasterLayoutVerticalCard.class);
 
 }

@@ -15,6 +15,8 @@
 package com.liferay.portlet.rolesadmin.search;
 
 import com.liferay.portal.kernel.dao.search.RowChecker;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalServiceUtil;
 
@@ -36,6 +38,10 @@ public class ResourceActionRowChecker extends RowChecker {
 			return doIsChecked(object);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
@@ -52,5 +58,8 @@ public class ResourceActionRowChecker extends RowChecker {
 			role.getCompanyId(), resourceName, scope, role.getRoleId(),
 			actionId);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ResourceActionRowChecker.class);
 
 }

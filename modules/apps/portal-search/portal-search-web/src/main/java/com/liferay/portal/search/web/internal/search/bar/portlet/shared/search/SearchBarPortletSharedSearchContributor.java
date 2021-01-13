@@ -14,6 +14,8 @@
 
 package com.liferay.portal.search.web.internal.search.bar.portlet.shared.search;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutTypePortlet;
@@ -161,6 +163,10 @@ public class SearchBarPortletSharedSearchContributor
 			return ArrayUtil.toLongArray(groupIds);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return new long[] {themeDisplay.getScopeGroupId()};
 		}
 	}
@@ -338,5 +344,8 @@ public class SearchBarPortletSharedSearchContributor
 
 	@Reference
 	protected PortletPreferencesLookup portletPreferencesLookup;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SearchBarPortletSharedSearchContributor.class);
 
 }

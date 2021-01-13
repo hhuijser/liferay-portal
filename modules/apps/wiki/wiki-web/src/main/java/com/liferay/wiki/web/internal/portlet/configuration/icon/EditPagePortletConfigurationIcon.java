@@ -16,6 +16,8 @@ package com.liferay.wiki.web.internal.portlet.configuration.icon;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -75,6 +77,9 @@ public class EditPagePortletConfigurationIcon
 			return portletURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -96,6 +101,9 @@ public class EditPagePortletConfigurationIcon
 				ActionUtil.getPage(portletRequest), ActionKeys.UPDATE);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -111,5 +119,8 @@ public class EditPagePortletConfigurationIcon
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiPage)")
 	private ModelResourcePermission<WikiPage> _wikiPageModelResourcePermission;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditPagePortletConfigurationIcon.class);
 
 }

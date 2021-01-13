@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.resource.bundle.AggregateResourceBundleLoader;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoader;
@@ -103,6 +105,10 @@ public class AlloyEditorConfigContributor
 				locale);
 		}
 		catch (MissingResourceException missingResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(missingResourceException, missingResourceException);
+			}
+
 			resourceBundle = ResourceBundleUtil.EMPTY_RESOURCE_BUNDLE;
 		}
 
@@ -286,5 +292,8 @@ public class AlloyEditorConfigContributor
 		target = "(bundle.symbolic.name=com.liferay.frontend.editor.lang)"
 	)
 	private volatile ResourceBundleLoader _resourceBundleLoader;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AlloyEditorConfigContributor.class);
 
 }

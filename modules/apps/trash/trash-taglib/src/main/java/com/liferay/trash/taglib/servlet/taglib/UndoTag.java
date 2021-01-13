@@ -14,6 +14,8 @@
 
 package com.liferay.trash.taglib.servlet.taglib;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.TrashedModel;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.PortletDisplay;
@@ -131,6 +133,9 @@ public class UndoTag extends IncludeTag {
 				titles.add(trashRenderer.getTitle(themeDisplay.getLocale()));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -201,5 +206,7 @@ public class UndoTag extends IncludeTag {
 
 	private String _portletURL;
 	private String _redirect;
+
+	private static final Log _log = LogFactoryUtil.getLog(UndoTag.class);
 
 }

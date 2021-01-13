@@ -17,6 +17,8 @@ package com.liferay.portal.kernel.process.local;
 import com.liferay.portal.kernel.concurrent.AsyncBroker;
 import com.liferay.portal.kernel.concurrent.FutureListener;
 import com.liferay.portal.kernel.concurrent.NoticeableFuture;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessChannel;
 
@@ -52,6 +54,9 @@ public class LocalProcessChannel<T extends Serializable>
 						_objectOutputStream.close();
 					}
 					catch (IOException ioException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(ioException, ioException);
+						}
 					}
 					finally {
 						Map<Long, NoticeableFuture<Serializable>> map =
@@ -100,5 +105,8 @@ public class LocalProcessChannel<T extends Serializable>
 	private final AtomicLong _idGenerator = new AtomicLong();
 	private final NoticeableFuture<T> _noticeableFuture;
 	private final ObjectOutputStream _objectOutputStream;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LocalProcessChannel.class);
 
 }

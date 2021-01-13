@@ -149,6 +149,9 @@ public class AnnotationsExtendedObjectClassDefinition
 				_objectClassDefinition.getID());
 		}
 		catch (ClassNotFoundException classNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(classNotFoundException, classNotFoundException);
+			}
 		}
 	}
 
@@ -225,5 +228,8 @@ public class AnnotationsExtendedObjectClassDefinition
 	private final Map<String, Map<String, String>> _extensionAttributes =
 		new HashMap<>();
 	private final ObjectClassDefinition _objectClassDefinition;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AnnotationsExtendedObjectClassDefinition.class);
 
 }

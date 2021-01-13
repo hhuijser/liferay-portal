@@ -21,6 +21,8 @@ import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
 import com.liferay.item.selector.criteria.URLItemSelectorReturnType;
 import com.liferay.item.selector.criteria.image.criterion.ImageItemSelectorCriterion;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
@@ -165,6 +167,10 @@ public class QuestionsPortlet extends MVCPortlet {
 			return portletURLWrapper.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -175,5 +181,8 @@ public class QuestionsPortlet extends MVCPortlet {
 	private Portal _portal;
 
 	private volatile QuestionsConfiguration _questionsConfiguration;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		QuestionsPortlet.class);
 
 }

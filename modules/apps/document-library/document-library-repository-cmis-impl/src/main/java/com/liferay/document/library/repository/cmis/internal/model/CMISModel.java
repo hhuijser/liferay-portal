@@ -19,6 +19,8 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.CompanyConstants;
 import com.liferay.portal.kernel.model.User;
@@ -121,6 +123,9 @@ public abstract class CMISModel {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (user == null) {
@@ -128,6 +133,9 @@ public abstract class CMISModel {
 				user = UserLocalServiceUtil.getDefaultUser(getCompanyId());
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -162,5 +170,7 @@ public abstract class CMISModel {
 			ActionKeys.PERMISSIONS, ActionKeys.SUBSCRIBE));
 
 	private Folder _parentFolder;
+
+	private static final Log _log = LogFactoryUtil.getLog(CMISModel.class);
 
 }

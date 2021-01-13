@@ -24,6 +24,8 @@ import com.liferay.commerce.product.service.CPDefinitionLocalService;
 import com.liferay.commerce.product.util.CPDefinitionHelper;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -142,6 +144,9 @@ public class CPDefinitionAssetRendererFactory
 			liferayPortletURL.setWindowState(windowState);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return liferayPortletURL;
@@ -188,5 +193,8 @@ public class CPDefinitionAssetRendererFactory
 		target = "(osgi.web.symbolicname=com.liferay.commerce.product.definitions.web)"
 	)
 	private ServletContext _servletContext;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPDefinitionAssetRendererFactory.class);
 
 }

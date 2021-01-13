@@ -14,6 +14,8 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.java.parser.JavaParser;
@@ -50,6 +52,9 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -58,5 +63,7 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 
 	private static final Pattern _javaSourcePattern = Pattern.compile(
 		"\n(\t*)(.*)<%=?\n(((?!%>)[\\s\\S])*)\n\t*%>");
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSPJavaParserCheck.class);
 
 }

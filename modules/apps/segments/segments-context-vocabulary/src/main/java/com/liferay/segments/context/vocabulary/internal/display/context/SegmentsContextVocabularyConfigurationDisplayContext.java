@@ -19,6 +19,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.definitions.ExtendedObjectClassDefinition;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.PortletDisplay;
@@ -254,6 +256,10 @@ public class SegmentsContextVocabularyConfigurationDisplayContext {
 			);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return Collections.emptyList();
 		}
 	}
@@ -270,5 +276,8 @@ public class SegmentsContextVocabularyConfigurationDisplayContext {
 	private final PortletDisplay _portletDisplay;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SegmentsContextVocabularyConfigurationDisplayContext.class);
 
 }

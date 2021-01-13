@@ -18,6 +18,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -189,9 +191,15 @@ public class AlloyPermission {
 			baseModel = alloyServiceInvoker.fetchModel(classPK);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return BeanPropertiesUtil.getLongSilent(baseModel, "userId");
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AlloyPermission.class);
 
 }

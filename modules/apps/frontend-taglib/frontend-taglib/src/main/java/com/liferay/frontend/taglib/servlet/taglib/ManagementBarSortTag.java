@@ -16,6 +16,8 @@ package com.liferay.frontend.taglib.servlet.taglib;
 
 import com.liferay.frontend.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
@@ -135,6 +137,9 @@ public class ManagementBarSortTag extends IncludeTag implements BodyTag {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return managementBarFilterItems;
@@ -202,5 +207,8 @@ public class ManagementBarSortTag extends IncludeTag implements BodyTag {
 	private String _orderByType = StringPool.BLANK;
 	private Map<String, String> _orderColumns = new HashMap<>();
 	private PortletURL _portletURL;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ManagementBarSortTag.class);
 
 }

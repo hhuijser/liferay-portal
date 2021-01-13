@@ -15,6 +15,8 @@
 package com.liferay.wiki.navigation.web.internal.util;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.wiki.model.WikiNode;
@@ -47,6 +49,10 @@ public class MenuItem implements Serializable {
 				nodeId, WikiNavigationConstants.MAX_PAGES);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return new LinkedList<>();
 		}
 
@@ -229,5 +235,7 @@ public class MenuItem implements Serializable {
 	private String _id;
 	private String _name;
 	private String _url;
+
+	private static final Log _log = LogFactoryUtil.getLog(MenuItem.class);
 
 }

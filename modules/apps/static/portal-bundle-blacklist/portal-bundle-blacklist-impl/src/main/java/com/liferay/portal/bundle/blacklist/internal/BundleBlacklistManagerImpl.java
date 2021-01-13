@@ -17,6 +17,8 @@ package com.liferay.portal.bundle.blacklist.internal;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.bundle.blacklist.BundleBlacklistManager;
 import com.liferay.portal.bundle.blacklist.internal.configuration.BundleBlacklistConfiguration;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -133,6 +135,9 @@ public class BundleBlacklistManagerImpl implements BundleBlacklistManager {
 			countDownLatch.await();
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 		finally {
 			bundleContext.removeServiceListener(serviceListener);
@@ -190,5 +195,8 @@ public class BundleBlacklistManagerImpl implements BundleBlacklistManager {
 
 	@Reference
 	private ConfigurationAdmin _configurationAdmin;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BundleBlacklistManagerImpl.class);
 
 }

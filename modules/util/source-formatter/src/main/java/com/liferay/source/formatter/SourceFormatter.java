@@ -17,6 +17,8 @@ package com.liferay.source.formatter;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -1110,6 +1112,9 @@ public class SourceFormatter {
 					}
 				}
 				catch (InterruptedException interruptedException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(interruptedException, interruptedException);
+					}
 				}
 			}
 		}
@@ -1141,5 +1146,8 @@ public class SourceFormatter {
 		new ArrayList<>();
 	private List<SourceProcessor> _sourceProcessors = new ArrayList<>();
 	private boolean _subrepository;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SourceFormatter.class);
 
 }

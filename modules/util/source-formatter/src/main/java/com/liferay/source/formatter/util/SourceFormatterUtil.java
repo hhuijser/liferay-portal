@@ -17,6 +17,8 @@ package com.liferay.source.formatter.util;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
@@ -224,6 +226,10 @@ public class SourceFormatterUtil {
 			return StringUtil.read(url.openStream());
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return null;
 		}
 	}
@@ -265,6 +271,10 @@ public class SourceFormatterUtil {
 					portalBranchName, StringPool.SLASH, fileName));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -586,6 +596,9 @@ public class SourceFormatterUtil {
 									}
 								}
 								catch (Exception exception) {
+									if (_log.isDebugEnabled()) {
+										_log.debug(exception, exception);
+									}
 								}
 							}
 						}
@@ -823,5 +836,8 @@ public class SourceFormatterUtil {
 		private List<PathMatcher> _includeFilePathMatchers = new ArrayList<>();
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SourceFormatterUtil.class);
 
 }

@@ -18,6 +18,8 @@ import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
@@ -123,6 +125,9 @@ public class CORSServletFilterServletContextHelperTracker {
 				serviceRegistration.unregister();
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -159,5 +164,8 @@ public class CORSServletFilterServletContextHelperTracker {
 		}
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CORSServletFilterServletContextHelperTracker.class);
 
 }

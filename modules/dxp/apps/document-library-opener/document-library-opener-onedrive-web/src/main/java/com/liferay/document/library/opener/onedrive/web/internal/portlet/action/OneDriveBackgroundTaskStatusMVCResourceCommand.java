@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatus;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatusRegistry;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
@@ -119,6 +121,12 @@ public class OneDriveBackgroundTaskStatusMVCResourceCommand
 				catch (GraphServicePortalException
 							graphServicePortalException) {
 
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							graphServicePortalException,
+							graphServicePortalException);
+					}
+
 					jsonObject.put("error", true);
 				}
 			}
@@ -143,5 +151,8 @@ public class OneDriveBackgroundTaskStatusMVCResourceCommand
 
 	@Reference
 	private Portal _portal;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		OneDriveBackgroundTaskStatusMVCResourceCommand.class);
 
 }

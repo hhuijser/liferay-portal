@@ -18,6 +18,8 @@ import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFileShortcut;
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileShortcut;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -139,6 +141,10 @@ public class RepositoryModelSizeComparator<T> extends OrderByComparator<T> {
 			return dlFileEntry.getSize();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return 0;
 		}
 	}
@@ -166,5 +172,8 @@ public class RepositoryModelSizeComparator<T> extends OrderByComparator<T> {
 
 	private final boolean _ascending;
 	private final boolean _orderByModel;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		RepositoryModelSizeComparator.class);
 
 }

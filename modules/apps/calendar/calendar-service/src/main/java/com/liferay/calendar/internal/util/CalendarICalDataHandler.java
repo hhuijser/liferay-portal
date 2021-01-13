@@ -34,6 +34,8 @@ import com.liferay.petra.io.unsync.UnsyncStringWriter;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.User;
@@ -461,6 +463,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			NotificationType.parse(value);
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
+
 			return false;
 		}
 
@@ -900,5 +906,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	private static final String _RRULE = "RRULE:";
 
 	private static TimeZoneRegistry _timeZoneRegistry;
+	private static final Log _log = LogFactoryUtil.getLog(
+		CalendarICalDataHandler.class);
 
 }

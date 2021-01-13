@@ -20,6 +20,8 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -72,6 +74,9 @@ public class OrganizationsVerticalCard
 				getActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -116,5 +121,8 @@ public class OrganizationsVerticalCard
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final boolean _showActions;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		OrganizationsVerticalCard.class);
 
 }

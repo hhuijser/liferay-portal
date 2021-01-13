@@ -23,6 +23,8 @@ import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
@@ -143,6 +145,9 @@ public class BlogsEntryAssetRendererFactory
 			liferayPortletURL.setWindowState(windowState);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return liferayPortletURL;
@@ -184,5 +189,8 @@ public class BlogsEntryAssetRendererFactory
 
 	@Reference(target = "(osgi.web.symbolicname=com.liferay.blogs.web)")
 	private ServletContext _servletContext;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BlogsEntryAssetRendererFactory.class);
 
 }

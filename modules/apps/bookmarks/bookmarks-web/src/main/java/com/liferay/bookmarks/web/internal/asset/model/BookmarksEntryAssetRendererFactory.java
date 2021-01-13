@@ -23,6 +23,8 @@ import com.liferay.bookmarks.constants.BookmarksPortletKeys;
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.service.BookmarksEntryLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
@@ -128,6 +130,9 @@ public class BookmarksEntryAssetRendererFactory
 			liferayPortletURL.setWindowState(windowState);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return liferayPortletURL;
@@ -169,5 +174,8 @@ public class BookmarksEntryAssetRendererFactory
 
 	@Reference(target = "(osgi.web.symbolicname=com.liferay.bookmarks.web)")
 	private ServletContext _servletContext;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BookmarksEntryAssetRendererFactory.class);
 
 }

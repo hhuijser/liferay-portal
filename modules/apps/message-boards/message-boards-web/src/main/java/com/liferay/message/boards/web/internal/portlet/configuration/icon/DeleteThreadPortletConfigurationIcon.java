@@ -21,6 +21,8 @@ import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.web.internal.portlet.action.ActionUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
@@ -119,6 +121,10 @@ public class DeleteThreadPortletConfigurationIcon
 				"threadId", String.valueOf(message.getThreadId()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 
@@ -150,6 +156,9 @@ public class DeleteThreadPortletConfigurationIcon
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -172,6 +181,9 @@ public class DeleteThreadPortletConfigurationIcon
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -187,5 +199,8 @@ public class DeleteThreadPortletConfigurationIcon
 
 	@Reference
 	private TrashHelper _trashHelper;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeleteThreadPortletConfigurationIcon.class);
 
 }

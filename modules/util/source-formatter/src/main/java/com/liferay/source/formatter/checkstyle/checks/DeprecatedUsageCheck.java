@@ -16,6 +16,8 @@ package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.BNDSourceUtil;
@@ -574,6 +576,9 @@ public class DeprecatedUsageCheck extends BaseCheck {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return classInfo;
@@ -962,5 +967,8 @@ public class DeprecatedUsageCheck extends BaseCheck {
 		private final List<JavaTerm> _javaMethods = new ArrayList<>();
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeprecatedUsageCheck.class);
 
 }

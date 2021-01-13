@@ -16,6 +16,8 @@ package com.liferay.dynamic.data.mapping.util.comparator;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLink;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -60,6 +62,10 @@ public class StructureLinkStructureNameComparator
 			return -value;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return 0;
 		}
 	}
@@ -84,5 +90,8 @@ public class StructureLinkStructureNameComparator
 	}
 
 	private final boolean _ascending;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		StructureLinkStructureNameComparator.class);
 
 }

@@ -16,6 +16,8 @@ package com.liferay.wiki.web.internal.portlet.configuration.icon;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
@@ -73,6 +75,9 @@ public class NodePermissionsPortletConfigurationIcon
 				themeDisplay.getRequest());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return url;
@@ -94,6 +99,9 @@ public class NodePermissionsPortletConfigurationIcon
 				ActionUtil.getNode(portletRequest), ActionKeys.PERMISSIONS);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -106,5 +114,8 @@ public class NodePermissionsPortletConfigurationIcon
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiNode)")
 	private ModelResourcePermission<WikiNode> _wikiNodeModelResourcePermission;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		NodePermissionsPortletConfigurationIcon.class);
 
 }

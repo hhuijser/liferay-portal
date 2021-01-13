@@ -22,6 +22,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.service.LayoutService;
 import com.liferay.portal.kernel.util.Validator;
@@ -66,6 +68,10 @@ public class LayoutDDMFormFieldValueRenderer
 			return layout.getName(locale);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return LanguageUtil.format(
 				locale, "is-temporarily-unavailable", "page");
 		}
@@ -76,5 +82,8 @@ public class LayoutDDMFormFieldValueRenderer
 
 	@Reference
 	private LayoutService _layoutService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutDDMFormFieldValueRenderer.class);
 
 }

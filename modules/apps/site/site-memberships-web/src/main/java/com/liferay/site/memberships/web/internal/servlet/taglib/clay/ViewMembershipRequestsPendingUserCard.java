@@ -17,6 +17,8 @@ package com.liferay.site.memberships.web.internal.servlet.taglib.clay;
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.BaseUserCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.MembershipRequest;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -59,6 +61,9 @@ public class ViewMembershipRequestsPendingUserCard extends BaseUserCard {
 				getActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -79,5 +84,8 @@ public class ViewMembershipRequestsPendingUserCard extends BaseUserCard {
 	private final HttpServletRequest _httpServletRequest;
 	private final MembershipRequest _membershipRequest;
 	private final RenderResponse _renderResponse;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ViewMembershipRequestsPendingUserCard.class);
 
 }

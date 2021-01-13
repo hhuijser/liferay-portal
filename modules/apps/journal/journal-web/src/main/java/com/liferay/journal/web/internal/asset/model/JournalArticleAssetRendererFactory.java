@@ -33,6 +33,8 @@ import com.liferay.journal.util.JournalContent;
 import com.liferay.journal.util.JournalConverter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
@@ -182,6 +184,10 @@ public class JournalArticleAssetRendererFactory
 			return ddmStructure.getName(locale);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return super.getTypeName(locale, subtypeId);
 		}
 	}
@@ -223,6 +229,9 @@ public class JournalArticleAssetRendererFactory
 			liferayPortletURL.setWindowState(windowState);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return liferayPortletURL;
@@ -324,5 +333,8 @@ public class JournalArticleAssetRendererFactory
 	private PortletResourcePermission _portletResourcePermission;
 
 	private ServletContext _servletContext;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleAssetRendererFactory.class);
 
 }

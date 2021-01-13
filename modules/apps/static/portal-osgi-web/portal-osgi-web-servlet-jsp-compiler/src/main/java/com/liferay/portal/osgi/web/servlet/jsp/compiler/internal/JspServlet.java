@@ -16,6 +16,8 @@ package com.liferay.portal.osgi.web.servlet.jsp.compiler.internal;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
@@ -728,6 +730,9 @@ public class JspServlet extends HttpServlet {
 				return _jspBundle.getResource(path);
 			}
 			catch (MalformedURLException malformedURLException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(malformedURLException, malformedURLException);
+				}
 			}
 
 			return null;
@@ -745,6 +750,10 @@ public class JspServlet extends HttpServlet {
 				return url.openStream();
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
+
 				return null;
 			}
 		}
@@ -909,5 +918,7 @@ public class JspServlet extends HttpServlet {
 		private final String _servletContextName;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(JspServlet.class);
 
 }

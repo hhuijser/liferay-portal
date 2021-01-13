@@ -14,6 +14,8 @@
 
 package com.liferay.portal.model.adapter.builder;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.adapter.builder.ModelAdapterBuilder;
 import com.liferay.portal.kernel.model.adapter.builder.ModelAdapterBuilderLocator;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -144,9 +146,15 @@ public class ServiceTrackerMapModelAdapterBuilderLocator
 							_getKey(adapteeModelClass, adaptedModelClass));
 					}
 					catch (ClassCastException classCastException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(classCastException, classCastException);
+						}
 					}
 				}
 
 			});
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceTrackerMapModelAdapterBuilderLocator.class);
 
 }

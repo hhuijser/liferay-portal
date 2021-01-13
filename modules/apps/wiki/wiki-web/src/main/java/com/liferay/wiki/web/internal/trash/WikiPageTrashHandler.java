@@ -16,6 +16,8 @@ package com.liferay.wiki.web.internal.trash;
 
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ContainerModel;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.model.SystemEvent;
@@ -147,6 +149,9 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -481,5 +486,8 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 
 	@Reference
 	private WikiPageService _wikiPageService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		WikiPageTrashHandler.class);
 
 }

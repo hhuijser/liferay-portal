@@ -25,6 +25,8 @@ import com.liferay.commerce.product.model.CPInstance;
 import com.liferay.commerce.product.util.CPDefinitionHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -81,6 +83,12 @@ public class CPPublisherWebHelper {
 				}
 			}
 			catch (NoSuchCPDefinitionException noSuchCPDefinitionException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchCPDefinitionException,
+						noSuchCPDefinitionException);
+				}
+
 				missingAssetCPDefinitionIds.add(cpDefinitionId);
 			}
 		}
@@ -323,5 +331,8 @@ public class CPPublisherWebHelper {
 
 	@Reference
 	private CPDefinitionHelper _cpDefinitionHelper;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPPublisherWebHelper.class);
 
 }

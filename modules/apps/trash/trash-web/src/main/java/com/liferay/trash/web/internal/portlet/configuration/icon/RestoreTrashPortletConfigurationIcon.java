@@ -17,6 +17,8 @@ package com.liferay.trash.web.internal.portlet.configuration.icon;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
@@ -96,6 +98,9 @@ public class RestoreTrashPortletConfigurationIcon
 			return sb.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -145,6 +150,10 @@ public class RestoreTrashPortletConfigurationIcon
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				return false;
 			}
 		}
@@ -154,5 +163,8 @@ public class RestoreTrashPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		RestoreTrashPortletConfigurationIcon.class);
 
 }

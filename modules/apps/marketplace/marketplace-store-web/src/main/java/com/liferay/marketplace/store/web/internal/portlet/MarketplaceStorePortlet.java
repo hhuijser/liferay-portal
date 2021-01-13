@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.patcher.PatcherUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -234,6 +236,10 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 			super.render(renderRequest, renderResponse);
 		}
 		catch (PortletException portletException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(portletException, portletException);
+			}
+
 			include("/error.jsp", renderRequest, renderResponse);
 		}
 	}
@@ -369,6 +375,10 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 						jsonArray.put(getAppJSONObject(app));
 					}
 					catch (Exception exception) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(exception, exception);
+						}
+
 						jsonObject.put("message", "failed");
 					}
 					finally {
@@ -552,5 +562,8 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 	private AppLocalService _appLocalService;
 	private AppService _appService;
 	private final ReentrantLock _reentrantLock = new ReentrantLock();
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MarketplaceStorePortlet.class);
 
 }

@@ -17,6 +17,8 @@ package com.liferay.batch.engine.internal.reader;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.Serializable;
@@ -46,6 +48,10 @@ public class BatchEngineImportTaskItemReaderUtil {
 				field = itemClass.getDeclaredField(name);
 			}
 			catch (NoSuchFieldException noSuchFieldException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchFieldException, noSuchFieldException);
+				}
+
 				field = itemClass.getDeclaredField(StringPool.UNDERLINE + name);
 			}
 
@@ -102,5 +108,7 @@ public class BatchEngineImportTaskItemReaderUtil {
 	}
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper();
+	private static final Log _log = LogFactoryUtil.getLog(
+		BatchEngineImportTaskItemReaderUtil.class);
 
 }

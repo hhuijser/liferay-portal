@@ -20,6 +20,8 @@ import com.liferay.message.boards.model.MBCategory;
 import com.liferay.message.boards.web.internal.portlet.action.ActionUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -120,6 +122,9 @@ public class DeleteCategoryPortletConfigurationIcon
 			return deleteURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -151,6 +156,9 @@ public class DeleteCategoryPortletConfigurationIcon
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -173,6 +181,9 @@ public class DeleteCategoryPortletConfigurationIcon
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -189,5 +200,8 @@ public class DeleteCategoryPortletConfigurationIcon
 
 	@Reference
 	private TrashHelper _trashHelper;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeleteCategoryPortletConfigurationIcon.class);
 
 }

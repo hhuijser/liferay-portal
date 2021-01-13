@@ -19,6 +19,8 @@ import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.util.Constants;
@@ -87,6 +89,9 @@ public class PrintKBArticlePortletConfigurationIcon
 			return sb.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -111,5 +116,8 @@ public class PrintKBArticlePortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PrintKBArticlePortletConfigurationIcon.class);
 
 }

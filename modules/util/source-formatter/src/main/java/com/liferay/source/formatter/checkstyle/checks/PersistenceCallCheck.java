@@ -15,6 +15,8 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
@@ -73,6 +75,10 @@ public class PersistenceCallCheck extends BaseCheck {
 			javaClass = JavaClassParser.parseJavaClass(absolutePath, content);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return;
 		}
 
@@ -217,6 +223,10 @@ public class PersistenceCallCheck extends BaseCheck {
 				FileUtil.read(new File(extendedClassFileName)));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -272,5 +282,7 @@ public class PersistenceCallCheck extends BaseCheck {
 
 	private static final Pattern _extendedClassPattern = Pattern.compile(
 		"\\sextends\\s+(\\w+)\\W");
+	private static final Log _log = LogFactoryUtil.getLog(
+		PersistenceCallCheck.class);
 
 }

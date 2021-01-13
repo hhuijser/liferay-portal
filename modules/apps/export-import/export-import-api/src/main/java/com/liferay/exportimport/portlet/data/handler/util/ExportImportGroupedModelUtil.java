@@ -15,6 +15,8 @@
 package com.liferay.exportimport.portlet.data.handler.util;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupedModel;
 import com.liferay.portal.kernel.model.Layout;
@@ -39,6 +41,10 @@ public class ExportImportGroupedModelUtil {
 			group = GroupLocalServiceUtil.getGroup(groupedModel.getGroupId());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -52,6 +58,10 @@ public class ExportImportGroupedModelUtil {
 					group.getClassPK());
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				return false;
 			}
 
@@ -62,5 +72,8 @@ public class ExportImportGroupedModelUtil {
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ExportImportGroupedModelUtil.class);
 
 }

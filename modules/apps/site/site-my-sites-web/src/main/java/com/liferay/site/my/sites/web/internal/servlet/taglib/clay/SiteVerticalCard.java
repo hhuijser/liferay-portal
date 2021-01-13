@@ -17,6 +17,8 @@ package com.liferay.site.my.sites.web.internal.servlet.taglib.clay;
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -65,6 +67,9 @@ public class SiteVerticalCard implements VerticalCard {
 			return siteActionDropdownItemsProvider.getActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return Collections.emptyList();
@@ -113,6 +118,9 @@ public class SiteVerticalCard implements VerticalCard {
 				_group.getDescriptiveName(_themeDisplay.getLocale()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return HtmlUtil.escape(_group.getName(_themeDisplay.getLocale()));
@@ -130,5 +138,8 @@ public class SiteVerticalCard implements VerticalCard {
 	private final RenderResponse _renderResponse;
 	private final String _tabs1;
 	private final ThemeDisplay _themeDisplay;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SiteVerticalCard.class);
 
 }

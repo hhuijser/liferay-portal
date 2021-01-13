@@ -16,6 +16,8 @@ package com.liferay.sync.internal.servlet.filter;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.upload.UploadServletRequest;
 import com.liferay.portal.kernel.util.Constants;
@@ -271,6 +273,10 @@ public class SyncJSONFilter implements Filter {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -288,5 +294,7 @@ public class SyncJSONFilter implements Filter {
 
 	@Reference
 	private SyncHelper _syncHelper;
+
+	private static final Log _log = LogFactoryUtil.getLog(SyncJSONFilter.class);
 
 }

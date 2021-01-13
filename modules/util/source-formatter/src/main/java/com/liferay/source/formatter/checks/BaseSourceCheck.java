@@ -20,6 +20,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -648,6 +650,9 @@ public abstract class BaseSourceCheck implements SourceCheck {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return absolutePath.contains("/modules/");
@@ -782,5 +787,8 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	private final Map<String, Set<SourceFormatterMessage>>
 		_sourceFormatterMessagesMap = new ConcurrentHashMap<>();
 	private boolean _subrepository;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseSourceCheck.class);
 
 }

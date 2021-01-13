@@ -17,6 +17,8 @@ package com.liferay.wiki.model.impl;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Repository;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -91,6 +93,9 @@ public class WikiNodeImpl extends WikiNodeBaseImpl {
 			_attachmentsFolderId = folder.getFolderId();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return _attachmentsFolderId;
@@ -111,5 +116,7 @@ public class WikiNodeImpl extends WikiNodeBaseImpl {
 	}
 
 	private long _attachmentsFolderId;
+
+	private static final Log _log = LogFactoryUtil.getLog(WikiNodeImpl.class);
 
 }

@@ -29,6 +29,8 @@ import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.service.GroupLocalService;
@@ -115,6 +117,9 @@ public class DLFileEntryTypeStagedModelDataHandler
 						fileEntryType.getCompanyId());
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				boolean preloaded = false;
@@ -458,5 +463,8 @@ public class DLFileEntryTypeStagedModelDataHandler
 	private GroupLocalService _groupLocalService;
 
 	private UserLocalService _userLocalService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLFileEntryTypeStagedModelDataHandler.class);
 
 }

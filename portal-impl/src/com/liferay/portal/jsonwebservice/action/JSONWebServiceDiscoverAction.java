@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionMapping;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManagerUtil;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceNaming;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.MethodParameter;
@@ -237,6 +239,10 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 			return beanAnalyzerTransformer.collect();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -433,6 +439,9 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 				modelType = classLoader.loadClass(modelImplClassName);
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 		}
 
@@ -458,5 +467,8 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 	private final String _contextName;
 	private final JSONWebServiceNaming _jsonWebServiceNaming;
 	private final List<Class<?>> _types = new ArrayList<>();
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSONWebServiceDiscoverAction.class);
 
 }

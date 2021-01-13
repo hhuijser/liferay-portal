@@ -16,6 +16,8 @@ package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.util.FileUtil;
 
@@ -198,6 +200,10 @@ public class ListUtilCheck extends BaseCheck {
 					return buildGradleContent;
 				}
 				catch (IOException ioException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(ioException, ioException);
+					}
+
 					return null;
 				}
 			}
@@ -331,5 +337,7 @@ public class ListUtilCheck extends BaseCheck {
 
 	private final Map<String, String> _buildGradleContentsMap =
 		new ConcurrentHashMap<>();
+
+	private static final Log _log = LogFactoryUtil.getLog(ListUtilCheck.class);
 
 }

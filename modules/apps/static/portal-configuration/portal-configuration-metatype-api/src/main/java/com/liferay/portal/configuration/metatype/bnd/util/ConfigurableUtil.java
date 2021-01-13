@@ -18,6 +18,8 @@ import aQute.bnd.annotation.metatype.Configurable;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.lang.reflect.Constructor;
@@ -75,6 +77,12 @@ public class ConfigurableUtil {
 						snapshotClassData.length);
 				}
 				catch (InvocationTargetException invocationTargetException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							invocationTargetException,
+							invocationTargetException);
+					}
+
 					snapshotClass = (Class<T>)classLoader.loadClass(
 						snapshotClassName);
 				}
@@ -217,5 +225,8 @@ public class ConfigurableUtil {
 			throw new ExceptionInInitializerError(throwable);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurableUtil.class);
 
 }

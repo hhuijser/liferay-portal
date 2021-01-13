@@ -17,6 +17,8 @@ package com.liferay.portal.search.similar.results.web.internal.util.http;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
@@ -44,6 +46,10 @@ public class HttpHelperImpl implements HttpHelper {
 				subpath[subpath.length - 1], CharPool.FORWARD_SLASH);
 		}
 		catch (RuntimeException runtimeException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(runtimeException, runtimeException);
+			}
+
 			return StringPool.EMPTY_ARRAY;
 		}
 	}
@@ -70,6 +76,10 @@ public class HttpHelperImpl implements HttpHelper {
 					parameterName))[0];
 		}
 		catch (RuntimeException runtimeException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(runtimeException, runtimeException);
+			}
+
 			return null;
 		}
 	}
@@ -88,6 +98,10 @@ public class HttpHelperImpl implements HttpHelper {
 					parameterName))[0];
 		}
 		catch (RuntimeException runtimeException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(runtimeException, runtimeException);
+			}
+
 			return null;
 		}
 	}
@@ -98,5 +112,7 @@ public class HttpHelperImpl implements HttpHelper {
 	}
 
 	private Http _http;
+
+	private static final Log _log = LogFactoryUtil.getLog(HttpHelperImpl.class);
 
 }

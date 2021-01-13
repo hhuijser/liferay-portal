@@ -21,6 +21,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.petra.xml.Dom4jUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
@@ -1091,6 +1093,10 @@ public class JavadocFormatter {
 				fileName, new UnsyncStringReader(originalContent));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			if (!fileName.contains("__")) {
 				System.out.println(
 					"Qdox parsing error while formatting file " + fileName);
@@ -1338,6 +1344,10 @@ public class JavadocFormatter {
 					_deprecationSyncDirName);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			_deprecationsDocument = DocumentHelper.createDocument();
 		}
 
@@ -2367,5 +2377,8 @@ public class JavadocFormatter {
 	private final String _outputFilePrefix;
 	private String _packagePath;
 	private final boolean _updateJavadocs;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavadocFormatter.class);
 
 }

@@ -16,6 +16,8 @@ package com.liferay.document.library.internal.upgrade.v1_0_0;
 
 import com.liferay.document.library.kernel.store.Store;
 import com.liferay.osgi.util.ServiceTrackerFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -104,9 +106,14 @@ public class StoreProvider {
 				_serviceRegistration.unregister();
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 			}
 		}
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(StoreProvider.class);
 
 }

@@ -16,6 +16,8 @@ package com.liferay.user.associated.data.web.internal.search;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.user.associated.data.display.UADDisplay;
 
@@ -57,6 +59,9 @@ public class UADHierarchyChecker extends EmptyOnClickRowChecker {
 					checkBoxRowIds, checkBoxAllRowIds, checkBoxPostOnClick);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -64,5 +69,8 @@ public class UADHierarchyChecker extends EmptyOnClickRowChecker {
 	}
 
 	private final UADDisplay<?>[] _uadDisplays;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UADHierarchyChecker.class);
 
 }

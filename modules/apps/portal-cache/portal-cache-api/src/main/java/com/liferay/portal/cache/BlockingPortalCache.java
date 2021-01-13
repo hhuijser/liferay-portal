@@ -16,6 +16,8 @@ package com.liferay.portal.cache;
 
 import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.concurrent.CompeteLatch;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.Serializable;
 
@@ -72,6 +74,9 @@ public class BlockingPortalCache<K extends Serializable, V>
 				currentCompeteLatch.await();
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
 			}
 
 			_competeLatch.set(null);
@@ -140,5 +145,8 @@ public class BlockingPortalCache<K extends Serializable, V>
 
 	private final ConcurrentMap<K, CompeteLatch> _competeLatchMap =
 		new ConcurrentHashMap<>();
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BlockingPortalCache.class);
 
 }

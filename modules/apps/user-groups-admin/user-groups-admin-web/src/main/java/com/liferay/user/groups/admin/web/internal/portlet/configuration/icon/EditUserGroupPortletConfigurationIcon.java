@@ -16,6 +16,8 @@ package com.liferay.user.groups.admin.web.internal.portlet.configuration.icon;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
@@ -76,6 +78,9 @@ public class EditUserGroupPortletConfigurationIcon
 			return portletURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -108,6 +113,9 @@ public class EditUserGroupPortletConfigurationIcon
 			return false;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -115,5 +123,8 @@ public class EditUserGroupPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditUserGroupPortletConfigurationIcon.class);
 
 }

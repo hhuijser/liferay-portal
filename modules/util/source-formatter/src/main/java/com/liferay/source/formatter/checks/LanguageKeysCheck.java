@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
@@ -467,6 +469,9 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			return properties;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return properties;
@@ -508,5 +513,8 @@ public class LanguageKeysCheck extends BaseFileCheck {
 		Pattern.compile("@Meta\\.(?:AD|OCD)\\([^\\{]*?name\\s*=\\s*\"(.+?)\"");
 
 	private Properties _portalLanguageProperties;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LanguageKeysCheck.class);
 
 }

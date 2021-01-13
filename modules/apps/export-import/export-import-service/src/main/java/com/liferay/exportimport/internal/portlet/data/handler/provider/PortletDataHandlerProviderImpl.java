@@ -16,6 +16,8 @@ package com.liferay.exportimport.internal.portlet.data.handler.provider;
 
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.exportimport.portlet.data.handler.provider.PortletDataHandlerProvider;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.util.Validator;
@@ -69,11 +71,18 @@ public class PortletDataHandlerProviderImpl
 			return portlet.getPortletDataHandlerInstance();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
 
 	@Reference
 	private PortletLocalService _portletLocalService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletDataHandlerProviderImpl.class);
 
 }

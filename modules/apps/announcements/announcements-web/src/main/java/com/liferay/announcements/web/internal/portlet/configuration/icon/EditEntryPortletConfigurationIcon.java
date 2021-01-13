@@ -19,6 +19,8 @@ import com.liferay.announcements.kernel.model.AnnouncementsEntry;
 import com.liferay.announcements.web.internal.portlet.action.ActionUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -77,6 +79,10 @@ public class EditEntryPortletConfigurationIcon
 				"entryId", String.valueOf(entry.getEntryId()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 
@@ -111,5 +117,8 @@ public class EditEntryPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditEntryPortletConfigurationIcon.class);
 
 }

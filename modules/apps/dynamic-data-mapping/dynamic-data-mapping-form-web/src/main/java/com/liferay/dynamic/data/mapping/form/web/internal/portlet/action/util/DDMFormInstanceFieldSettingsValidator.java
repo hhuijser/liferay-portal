@@ -298,6 +298,9 @@ public class DDMFormInstanceFieldSettingsValidator {
 		return ddmFormFieldList;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMFormInstanceFieldSettingsValidator.class);
+
 	@Reference
 	private DDMFormEvaluator _ddmFormEvaluator;
 
@@ -309,8 +312,5 @@ public class DDMFormInstanceFieldSettingsValidator {
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DDMFormInstanceFieldSettingsValidator.class);
 
 }

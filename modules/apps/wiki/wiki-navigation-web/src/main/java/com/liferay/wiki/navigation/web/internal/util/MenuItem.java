@@ -226,6 +226,8 @@ public class MenuItem implements Serializable {
 		return menuItems;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(MenuItem.class);
+
 	private static final Pattern _pattern = Pattern.compile(
 		"(?:(?:==\\s(.*?)\\s==)*(?:\\Q[[\\E(.*?)\\Q]]\\E)*)*");
 
@@ -235,7 +237,5 @@ public class MenuItem implements Serializable {
 	private String _id;
 	private String _name;
 	private String _url;
-
-	private static final Log _log = LogFactoryUtil.getLog(MenuItem.class);
 
 }

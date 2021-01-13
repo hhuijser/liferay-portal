@@ -316,6 +316,9 @@ public class AggregateClassLoader extends ClassLoader {
 
 	private static final Method _LOAD_CLASS_METHOD;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AggregateClassLoader.class);
+
 	static {
 		try {
 			_FIND_CLASS_METHOD = ReflectionUtil.getDeclaredMethod(
@@ -331,8 +334,5 @@ public class AggregateClassLoader extends ClassLoader {
 
 	private final List<EqualityWeakReference<ClassLoader>>
 		_classLoaderReferences = new ArrayList<>();
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AggregateClassLoader.class);
 
 }

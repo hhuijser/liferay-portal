@@ -111,10 +111,10 @@ public class ManagePagesPortletConfigurationIcon
 		return false;
 	}
 
-	@Reference
-	private Portal _portal;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		ManagePagesPortletConfigurationIcon.class);
+
+	@Reference
+	private Portal _portal;
 
 }

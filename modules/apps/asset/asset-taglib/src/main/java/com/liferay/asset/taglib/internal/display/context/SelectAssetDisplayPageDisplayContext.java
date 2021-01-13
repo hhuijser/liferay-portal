@@ -458,6 +458,9 @@ public class SelectAssetDisplayPageDisplayContext {
 		return sb.toString();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectAssetDisplayPageDisplayContext.class);
+
 	private AssetDisplayPageEntry _assetDisplayPageEntry;
 	private Long _assetDisplayPageId;
 	private final Long _classNameId;
@@ -472,8 +475,5 @@ public class SelectAssetDisplayPageDisplayContext {
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private final boolean _showPortletLayouts;
 	private final boolean _showViewInContextLink;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SelectAssetDisplayPageDisplayContext.class);
 
 }

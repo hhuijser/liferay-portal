@@ -171,10 +171,10 @@ public class EditSiteTeamAssignmentsUserGroupsManagementToolbarDisplayContext
 		return new String[] {"name", "description"};
 	}
 
-	private final EditSiteTeamAssignmentsUserGroupsDisplayContext
-		_editSiteTeamAssignmentsUserGroupsDisplayContext;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		EditSiteTeamAssignmentsUserGroupsManagementToolbarDisplayContext.class);
+
+	private final EditSiteTeamAssignmentsUserGroupsDisplayContext
+		_editSiteTeamAssignmentsUserGroupsDisplayContext;
 
 }

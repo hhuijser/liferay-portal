@@ -175,14 +175,14 @@ public class QuestionsPortlet extends MVCPortlet {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		QuestionsPortlet.class);
+
 	private ItemSelector _itemSelector;
 
 	@Reference
 	private Portal _portal;
 
 	private volatile QuestionsConfiguration _questionsConfiguration;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		QuestionsPortlet.class);
 
 }

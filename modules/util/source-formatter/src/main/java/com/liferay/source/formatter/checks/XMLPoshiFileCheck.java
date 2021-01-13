@@ -312,6 +312,9 @@ public class XMLPoshiFileCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		XMLPoshiFileCheck.class);
+
 	private static final Pattern _poshiCommandsPattern = Pattern.compile(
 		"\\<command.*name=\\\"([^\\\"]*)\\\".*\\>[\\s\\S]*?\\</command\\>" +
 			"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+");
@@ -335,7 +338,5 @@ public class XMLPoshiFileCheck extends BaseFileCheck {
 	private static final Pattern _poshiVariablesBlockPattern = Pattern.compile(
 		"((?:[\\t]*+\\<var.*?\\>\\n[\\t]*+){2,}?)" +
 			"(?:(?:\\n){1,}+|\\</execute\\>)");
-	private static final Log _log = LogFactoryUtil.getLog(
-		XMLPoshiFileCheck.class);
 
 }

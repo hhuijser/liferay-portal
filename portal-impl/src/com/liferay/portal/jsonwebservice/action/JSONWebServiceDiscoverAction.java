@@ -462,13 +462,13 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 			className, StringPool.POUND, method.getName());
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSONWebServiceDiscoverAction.class);
+
 	private final String _basePath;
 	private final String _baseURL;
 	private final String _contextName;
 	private final JSONWebServiceNaming _jsonWebServiceNaming;
 	private final List<Class<?>> _types = new ArrayList<>();
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JSONWebServiceDiscoverAction.class);
 
 }

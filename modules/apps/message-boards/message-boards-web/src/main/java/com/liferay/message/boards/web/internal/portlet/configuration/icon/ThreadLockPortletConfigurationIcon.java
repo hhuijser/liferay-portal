@@ -146,6 +146,9 @@ public class ThreadLockPortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ThreadLockPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
 	)
@@ -154,8 +157,5 @@ public class ThreadLockPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ThreadLockPortletConfigurationIcon.class);
 
 }

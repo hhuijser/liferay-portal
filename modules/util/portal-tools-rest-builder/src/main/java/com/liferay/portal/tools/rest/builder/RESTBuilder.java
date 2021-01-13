@@ -1991,11 +1991,11 @@ public class RESTBuilder {
 
 	private static final int _DESCRIPTION_MAX_LINE_LENGTH = 120;
 
+	private static final Log _log = LogFactoryUtil.getLog(RESTBuilder.class);
+
 	private final File _configDir;
 	private final ConfigYAML _configYAML;
 	private final File _copyrightFile;
 	private final List<File> _files = new ArrayList<>();
-
-	private static final Log _log = LogFactoryUtil.getLog(RESTBuilder.class);
 
 }

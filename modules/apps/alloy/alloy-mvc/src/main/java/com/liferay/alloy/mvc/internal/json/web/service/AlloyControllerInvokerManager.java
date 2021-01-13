@@ -447,14 +447,14 @@ public class AlloyControllerInvokerManager {
 
 	private static final String _BASE_CLASS_NAME = "AlloyControllerInvokerImpl";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AlloyControllerInvokerManager.class);
+
 	private final Map<String, AlloyControllerInvoker> _alloyControllerInvokers =
 		new ConcurrentHashMap<>();
 	private final String _contextName;
 	private final String _contextPath;
 	private final AtomicInteger _counter = new AtomicInteger(0);
 	private boolean _locked;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AlloyControllerInvokerManager.class);
 
 }

@@ -88,10 +88,10 @@ public class PortletDisplayTemplateExportRegisterImpl
 		return 0;
 	}
 
-	@Reference(unbind = "-")
-	private PortletLocalService _portletLocalService;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortletDisplayTemplateExportRegisterImpl.class);
+
+	@Reference(unbind = "-")
+	private PortletLocalService _portletLocalService;
 
 }

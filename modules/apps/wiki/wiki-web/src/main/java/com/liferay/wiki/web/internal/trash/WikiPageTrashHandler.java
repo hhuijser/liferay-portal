@@ -463,6 +463,9 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 			permissionChecker, classPK, actionId);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		WikiPageTrashHandler.class);
+
 	@Reference
 	private Portal _portal;
 
@@ -486,8 +489,5 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 
 	@Reference
 	private WikiPageService _wikiPageService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		WikiPageTrashHandler.class);
 
 }

@@ -212,9 +212,9 @@ public class OrganizationsManagementToolbarDisplayContext
 		return new String[] {"name", "type"};
 	}
 
-	private final OrganizationsDisplayContext _organizationsDisplayContext;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		OrganizationsManagementToolbarDisplayContext.class);
+
+	private final OrganizationsDisplayContext _organizationsDisplayContext;
 
 }

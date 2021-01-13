@@ -403,6 +403,9 @@ public class CPPublisherConfigurationDisplayContext
 		return liferayPortletResponse.getNamespace();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPPublisherConfigurationDisplayContext.class);
+
 	private final AssetCategoryLocalService _assetCategoryLocalService;
 	private final AssetTagLocalService _assetTagLocalService;
 	private final CPDataSourceRegistry _cpDataSourceRegistry;
@@ -412,8 +415,5 @@ public class CPPublisherConfigurationDisplayContext
 	private String _orderByColumn2;
 	private String _orderByType1;
 	private String _orderByType2;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CPPublisherConfigurationDisplayContext.class);
 
 }

@@ -136,13 +136,13 @@ public class LiferayTemplateCache extends TemplateCache {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LiferayTemplateCache.class);
+
 	private final Configuration _configuration;
 	private final Constructor<MaybeMissingTemplate> _constructor;
 	private final PortalCache<TemplateResource, MaybeMissingTemplate>
 		_portalCache;
 	private final TemplateResourceLoader _templateResourceLoader;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LiferayTemplateCache.class);
 
 }

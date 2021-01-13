@@ -448,6 +448,9 @@ public class ConfigurationModelToDDMFormConverter {
 				ExtendedAttributeDefinition.XML_NAMESPACE);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurationModelToDDMFormConverter.class);
+
 	private final ConfigurationModel _configurationModel;
 	private final Locale _locale;
 
@@ -460,8 +463,5 @@ public class ConfigurationModelToDDMFormConverter {
 		};
 
 	private final ResourceBundle _resourceBundle;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ConfigurationModelToDDMFormConverter.class);
 
 }

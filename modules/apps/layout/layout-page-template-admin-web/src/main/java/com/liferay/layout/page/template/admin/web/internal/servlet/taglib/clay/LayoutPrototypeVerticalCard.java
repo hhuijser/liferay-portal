@@ -157,13 +157,13 @@ public class LayoutPrototypeVerticalCard
 		return null;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutPrototypeVerticalCard.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPrototype _layoutPrototype;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LayoutPrototypeVerticalCard.class);
 
 }

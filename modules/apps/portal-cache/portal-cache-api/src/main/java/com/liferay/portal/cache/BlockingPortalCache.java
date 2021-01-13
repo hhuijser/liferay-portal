@@ -140,13 +140,13 @@ public class BlockingPortalCache<K extends Serializable, V>
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BlockingPortalCache.class);
+
 	private static final ThreadLocal<CompeteLatch> _competeLatch =
 		new ThreadLocal<>();
 
 	private final ConcurrentMap<K, CompeteLatch> _competeLatchMap =
 		new ConcurrentHashMap<>();
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BlockingPortalCache.class);
 
 }

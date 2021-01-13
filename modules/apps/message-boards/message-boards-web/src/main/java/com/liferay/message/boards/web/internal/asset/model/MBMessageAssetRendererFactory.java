@@ -127,6 +127,9 @@ public class MBMessageAssetRendererFactory
 		_mbMessageLocalService = mbMessageLocalService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MBMessageAssetRendererFactory.class);
+
 	@Reference
 	private AssetDisplayPageFriendlyURLProvider
 		_assetDisplayPageFriendlyURLProvider;
@@ -137,8 +140,5 @@ public class MBMessageAssetRendererFactory
 		target = "(model.class.name=com.liferay.message.boards.model.MBMessage)"
 	)
 	private ModelResourcePermission<MBMessage> _messageModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MBMessageAssetRendererFactory.class);
 
 }

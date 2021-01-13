@@ -115,10 +115,10 @@ public class EditEntryPortletConfigurationIcon
 		return false;
 	}
 
-	@Reference
-	private Portal _portal;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		EditEntryPortletConfigurationIcon.class);
+
+	@Reference
+	private Portal _portal;
 
 }

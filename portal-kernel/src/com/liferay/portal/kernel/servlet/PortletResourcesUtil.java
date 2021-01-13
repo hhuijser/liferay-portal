@@ -91,6 +91,9 @@ public class PortletResourcesUtil {
 		_serviceTracker.open();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletResourcesUtil.class);
+
 	private static final PortletResourcesUtil _portletResourcesUtil =
 		new PortletResourcesUtil();
 
@@ -136,8 +139,5 @@ public class PortletResourcesUtil {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PortletResourcesUtil.class);
 
 }

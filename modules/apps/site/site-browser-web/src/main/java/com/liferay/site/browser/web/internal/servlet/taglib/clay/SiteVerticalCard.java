@@ -133,12 +133,12 @@ public class SiteVerticalCard implements VerticalCard {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SiteVerticalCard.class);
+
 	private final Group _group;
 	private final HttpServletRequest _httpServletRequest;
 	private final SiteBrowserDisplayContext _siteBrowserDisplayContext;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SiteVerticalCard.class);
 
 }

@@ -63,9 +63,9 @@ public class InitFilterTracker {
 		}
 	}
 
-	private ServiceRegistration<Filter> _serviceRegistration;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		InitFilterTracker.class);
+
+	private ServiceRegistration<Filter> _serviceRegistration;
 
 }

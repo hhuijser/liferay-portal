@@ -111,12 +111,12 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleVerticalCard.class);
+
 	private final JournalArticle _article;
 	private final AssetRenderer<JournalArticle> _assetRenderer;
 	private final RenderRequest _renderRequest;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleVerticalCard.class);
 
 }

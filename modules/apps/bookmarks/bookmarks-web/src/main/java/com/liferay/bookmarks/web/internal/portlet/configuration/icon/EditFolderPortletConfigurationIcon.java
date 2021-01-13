@@ -126,6 +126,9 @@ public class EditFolderPortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditFolderPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.bookmarks.model.BookmarksFolder)"
 	)
@@ -134,8 +137,5 @@ public class EditFolderPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditFolderPortletConfigurationIcon.class);
 
 }

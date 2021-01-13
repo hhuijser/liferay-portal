@@ -166,6 +166,9 @@ public class ThreadSubscriptionPortletConfigurationIcon
 			MBThread.class.getName(), threadId);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ThreadSubscriptionPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBMessage)"
 	)
@@ -175,8 +178,5 @@ public class ThreadSubscriptionPortletConfigurationIcon
 	private Portal _portal;
 
 	private SubscriptionLocalService _subscriptionLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ThreadSubscriptionPortletConfigurationIcon.class);
 
 }

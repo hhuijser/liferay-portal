@@ -204,9 +204,9 @@ public class UndoTag extends IncludeTag {
 
 	private static final String _PAGE = "/undo/page.jsp";
 
+	private static final Log _log = LogFactoryUtil.getLog(UndoTag.class);
+
 	private String _portletURL;
 	private String _redirect;
-
-	private static final Log _log = LogFactoryUtil.getLog(UndoTag.class);
 
 }

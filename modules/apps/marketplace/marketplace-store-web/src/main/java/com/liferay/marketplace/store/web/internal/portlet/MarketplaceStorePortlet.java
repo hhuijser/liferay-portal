@@ -559,11 +559,11 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 		super.setOAuthManager(oAuthManager);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MarketplaceStorePortlet.class);
+
 	private AppLocalService _appLocalService;
 	private AppService _appService;
 	private final ReentrantLock _reentrantLock = new ReentrantLock();
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MarketplaceStorePortlet.class);
 
 }

@@ -271,10 +271,10 @@ public class RepositorySearchQueryBuilderImpl
 		_repositorySearchQueryTermBuilder = repositorySearchQueryTermBuilder;
 	}
 
-	private DLAppService _dlAppService;
-	private RepositorySearchQueryTermBuilder _repositorySearchQueryTermBuilder;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		RepositorySearchQueryBuilderImpl.class);
+
+	private DLAppService _dlAppService;
+	private RepositorySearchQueryTermBuilder _repositorySearchQueryTermBuilder;
 
 }

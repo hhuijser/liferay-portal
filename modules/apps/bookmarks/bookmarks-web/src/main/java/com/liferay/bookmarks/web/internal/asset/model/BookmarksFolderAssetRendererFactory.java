@@ -128,6 +128,9 @@ public class BookmarksFolderAssetRendererFactory
 			permissionChecker, classPK, actionId);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BookmarksFolderAssetRendererFactory.class);
+
 	@Reference
 	private BookmarksFolderLocalService _bookmarksFolderLocalService;
 
@@ -145,8 +148,5 @@ public class BookmarksFolderAssetRendererFactory
 
 	@Reference
 	private TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BookmarksFolderAssetRendererFactory.class);
 
 }

@@ -173,6 +173,9 @@ public class WebBundleDeployer {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		WebBundleDeployer.class);
+
 	private final BundleContext _bundleContext;
 	private final JSPServletFactory _jspServletFactory;
 	private final JSPTaglibHelper _jspTaglibHelper;
@@ -203,8 +206,5 @@ public class WebBundleDeployer {
 		private final Set<String> _portalProfileNames;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		WebBundleDeployer.class);
 
 }

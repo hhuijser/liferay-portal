@@ -555,6 +555,9 @@ public class ConfigurationPersistenceManager
 	private static final String _SERVIE_BUNDLE_LOCATION =
 		"service.bundleLocation";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurationPersistenceManager.class);
+
 	private static final Dictionary<?, ?> _emptyDictionary =
 		new HashMapDictionary<>();
 
@@ -567,8 +570,5 @@ public class ConfigurationPersistenceManager
 		true);
 	private ServiceTrackerMap<String, ConfigurationModelListener>
 		_serviceTrackerMap;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ConfigurationPersistenceManager.class);
 
 }

@@ -136,6 +136,9 @@ public class OneDriveBackgroundTaskStatusMVCResourceCommand
 			resourceRequest, resourceResponse, jsonObject);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		OneDriveBackgroundTaskStatusMVCResourceCommand.class);
+
 	@Reference
 	private BackgroundTaskStatusRegistry _backgroundTaskStatusRegistry;
 
@@ -151,8 +154,5 @@ public class OneDriveBackgroundTaskStatusMVCResourceCommand
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		OneDriveBackgroundTaskStatusMVCResourceCommand.class);
 
 }

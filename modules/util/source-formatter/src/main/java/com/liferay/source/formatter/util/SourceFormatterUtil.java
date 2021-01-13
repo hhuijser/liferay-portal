@@ -697,6 +697,9 @@ public class SourceFormatterUtil {
 	private static final String _SUPPRESSIONS_FILE_NAME =
 		"source-formatter-suppressions.xml";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SourceFormatterUtil.class);
+
 	private static class PathMatchers {
 
 		public PathMatchers(FileSystem fileSystem) {
@@ -836,8 +839,5 @@ public class SourceFormatterUtil {
 		private List<PathMatcher> _includeFilePathMatchers = new ArrayList<>();
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SourceFormatterUtil.class);
 
 }

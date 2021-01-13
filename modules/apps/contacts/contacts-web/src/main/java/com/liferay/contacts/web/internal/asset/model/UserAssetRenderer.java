@@ -193,9 +193,9 @@ public class UserAssetRenderer extends BaseJSPAssetRenderer<User> {
 		return false;
 	}
 
-	private final User _user;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserAssetRenderer.class);
+
+	private final User _user;
 
 }

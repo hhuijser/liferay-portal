@@ -364,9 +364,9 @@ public class MissingOverrideCheck extends BaseCheck {
 
 	private static final String _MSG_MISSING_OVERRIDE = "override.missing";
 
-	private JavaProjectBuilder _javaProjectBuilder;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		MissingOverrideCheck.class);
+
+	private JavaProjectBuilder _javaProjectBuilder;
 
 }

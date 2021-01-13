@@ -192,6 +192,9 @@ public class BlogsAggregatorExportImportPortletPreferencesProcessor
 		return portletPreferences;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BlogsAggregatorExportImportPortletPreferencesProcessor.class);
+
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -210,8 +213,5 @@ public class BlogsAggregatorExportImportPortletPreferencesProcessor
 
 	@Reference
 	private PortletLocalService _portletLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BlogsAggregatorExportImportPortletPreferencesProcessor.class);
 
 }

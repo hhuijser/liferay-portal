@@ -352,14 +352,14 @@ public class BlogsEntryActionDropdownItemsProvider {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BlogsEntryActionDropdownItemsProvider.class);
+
 	private final BlogsEntry _blogsEntry;
 	private final HttpServletRequest _httpServletRequest;
 	private final PermissionChecker _permissionChecker;
 	private final RenderResponse _renderResponse;
 	private final ResourceBundle _resourceBundle;
 	private final TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BlogsEntryActionDropdownItemsProvider.class);
 
 }

@@ -484,6 +484,8 @@ public class CompanyImpl extends CompanyBaseImpl {
 		return defaultValue;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(CompanyImpl.class);
+
 	private Account _account;
 	private CompanyInfo _companyInfo;
 
@@ -494,7 +496,5 @@ public class CompanyImpl extends CompanyBaseImpl {
 
 	@CacheField(propagateToInterface = true)
 	private String _virtualHostname;
-
-	private static final Log _log = LogFactoryUtil.getLog(CompanyImpl.class);
 
 }

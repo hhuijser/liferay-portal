@@ -118,6 +118,9 @@ public class MovePagePortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MovePagePortletConfigurationIcon.class);
+
 	@Reference
 	private Portal _portal;
 
@@ -126,8 +129,5 @@ public class MovePagePortletConfigurationIcon
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiPage)")
 	private ModelResourcePermission<WikiPage> _wikiPageModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MovePagePortletConfigurationIcon.class);
 
 }

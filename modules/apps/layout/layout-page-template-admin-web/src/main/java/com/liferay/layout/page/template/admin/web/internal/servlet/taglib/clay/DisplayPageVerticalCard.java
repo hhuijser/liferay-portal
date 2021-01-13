@@ -228,14 +228,14 @@ public class DisplayPageVerticalCard
 		return infoItemClassDetails.getLabel(_themeDisplay.getLocale());
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DisplayPageVerticalCard.class);
+
 	private final Layout _draftLayout;
 	private final InfoItemServiceTracker _infoItemServiceTracker;
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DisplayPageVerticalCard.class);
 
 }

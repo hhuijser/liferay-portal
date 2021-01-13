@@ -196,11 +196,11 @@ public class LayoutRevisionAssetRenderer
 		return true;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutRevisionAssetRenderer.class);
+
 	private final LayoutBranch _layoutBranch;
 	private final LayoutRevision _layoutRevision;
 	private final LayoutSetBranch _layoutSetBranch;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LayoutRevisionAssetRenderer.class);
 
 }

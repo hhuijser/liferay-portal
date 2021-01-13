@@ -128,6 +128,9 @@ public class MBCategoryAssetRendererFactory
 		_mbCategoryLocalService = mbCategoryLocalService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MBCategoryAssetRendererFactory.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
 	)
@@ -135,8 +138,5 @@ public class MBCategoryAssetRendererFactory
 		_categoryModelResourcePermission;
 
 	private MBCategoryLocalService _mbCategoryLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MBCategoryAssetRendererFactory.class);
 
 }

@@ -113,10 +113,10 @@ public class PrintKBTemplatePortletConfigurationIcon
 		return true;
 	}
 
-	@Reference
-	private Portal _portal;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		PrintKBTemplatePortletConfigurationIcon.class);
+
+	@Reference
+	private Portal _portal;
 
 }

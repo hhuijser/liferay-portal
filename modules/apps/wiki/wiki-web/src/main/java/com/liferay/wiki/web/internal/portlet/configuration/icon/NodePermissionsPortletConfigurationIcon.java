@@ -112,10 +112,10 @@ public class NodePermissionsPortletConfigurationIcon
 		return true;
 	}
 
-	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiNode)")
-	private ModelResourcePermission<WikiNode> _wikiNodeModelResourcePermission;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		NodePermissionsPortletConfigurationIcon.class);
+
+	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiNode)")
+	private ModelResourcePermission<WikiNode> _wikiNodeModelResourcePermission;
 
 }

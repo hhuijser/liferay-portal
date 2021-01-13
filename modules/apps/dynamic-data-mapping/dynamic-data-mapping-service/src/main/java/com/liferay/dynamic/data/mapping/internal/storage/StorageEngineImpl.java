@@ -184,11 +184,11 @@ public class StorageEngineImpl implements StorageEngine {
 		_storageAdapterRegistry = storageAdapterRegistry;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		StorageEngineImpl.class);
+
 	private DDMStorageLinkLocalService _ddmStorageLinkLocalService;
 	private DDMStructureLocalService _ddmStructureLocalService;
 	private StorageAdapterRegistry _storageAdapterRegistry;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		StorageEngineImpl.class);
 
 }

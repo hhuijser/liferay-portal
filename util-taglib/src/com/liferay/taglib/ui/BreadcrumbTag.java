@@ -192,6 +192,8 @@ public class BreadcrumbTag extends IncludeTag {
 
 	private static final String _PAGE = "/html/taglib/ui/breadcrumb/page.jsp";
 
+	private static final Log _log = LogFactoryUtil.getLog(BreadcrumbTag.class);
+
 	private long _ddmTemplateGroupId;
 	private String _ddmTemplateKey;
 	private boolean _showCurrentGroup = true;
@@ -199,7 +201,5 @@ public class BreadcrumbTag extends IncludeTag {
 	private boolean _showLayout = true;
 	private boolean _showParentGroups = true;
 	private boolean _showPortletBreadcrumb = true;
-
-	private static final Log _log = LogFactoryUtil.getLog(BreadcrumbTag.class);
 
 }

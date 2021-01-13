@@ -736,6 +736,9 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 	private static final String _SOURCE_CHECKS_SOURCE_LOCATION =
 		"src/main/java/com/liferay/source/formatter/checks/";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MarkdownSourceFormatterReadmeCheck.class);
+
 	private final Map<String, List<String>> _sourceProcessorFileExtensionsMap =
 		new HashMap<>();
 
@@ -796,8 +799,5 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 		private final List<String> _sourceProcessorNames = new ArrayList<>();
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MarkdownSourceFormatterReadmeCheck.class);
 
 }

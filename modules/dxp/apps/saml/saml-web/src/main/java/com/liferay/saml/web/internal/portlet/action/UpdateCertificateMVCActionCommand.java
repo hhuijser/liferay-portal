@@ -356,6 +356,9 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 
 	private static final String _SHA256_PREFIX = "SHA256with";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UpdateCertificateMVCActionCommand.class);
+
 	@Reference
 	private CertificateTool _certificateTool;
 
@@ -364,8 +367,5 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 
 	@Reference
 	private SamlProviderConfigurationHelper _samlProviderConfigurationHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UpdateCertificateMVCActionCommand.class);
 
 }

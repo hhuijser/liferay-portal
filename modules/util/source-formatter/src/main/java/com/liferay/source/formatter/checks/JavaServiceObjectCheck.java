@@ -345,6 +345,9 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 		"src", "test", "test-classes", "test-coverage", "test-results", "tmp"
 	};
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavaServiceObjectCheck.class);
+
 	private static final Pattern _getterCallPattern = Pattern.compile(
 		"\\W(\\w+)\\.\\s*(get)([A-Z]\\w*)\\(\\)");
 	private static final Pattern _setterCallPattern = Pattern.compile(
@@ -354,8 +357,5 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 		Pattern.DOTALL | Pattern.MULTILINE);
 
 	private Map<String, Element> _serviceXMLElementsMap;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JavaServiceObjectCheck.class);
 
 }

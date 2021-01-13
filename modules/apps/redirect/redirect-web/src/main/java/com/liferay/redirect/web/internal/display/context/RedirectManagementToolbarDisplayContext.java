@@ -185,9 +185,9 @@ public class RedirectManagementToolbarDisplayContext
 		};
 	}
 
-	private final ThemeDisplay _themeDisplay;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		RedirectManagementToolbarDisplayContext.class);
+
+	private final ThemeDisplay _themeDisplay;
 
 }

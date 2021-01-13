@@ -170,6 +170,9 @@ public class NodeSubscriptionPortletConfigurationIcon
 		_subscriptionLocalService = subscriptionLocalService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		NodeSubscriptionPortletConfigurationIcon.class);
+
 	@Reference
 	private Portal _portal;
 
@@ -177,8 +180,5 @@ public class NodeSubscriptionPortletConfigurationIcon
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiNode)")
 	private ModelResourcePermission<WikiNode> _wikiNodeModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NodeSubscriptionPortletConfigurationIcon.class);
 
 }

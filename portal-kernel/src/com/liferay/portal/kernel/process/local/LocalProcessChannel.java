@@ -101,12 +101,12 @@ public class LocalProcessChannel<T extends Serializable>
 		return (NoticeableFuture<V>)noticeableFuture;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LocalProcessChannel.class);
+
 	private final AsyncBroker<Long, Serializable> _asyncBroker;
 	private final AtomicLong _idGenerator = new AtomicLong();
 	private final NoticeableFuture<T> _noticeableFuture;
 	private final ObjectOutputStream _objectOutputStream;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LocalProcessChannel.class);
 
 }

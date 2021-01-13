@@ -789,6 +789,9 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		return sourceChecksResult;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseSourceProcessor.class);
+
 	private List<String> _allFileNames;
 	private boolean _browserStarted;
 	private final List<String> _modifiedFileNames =
@@ -808,8 +811,5 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 	private final List<SourceMismatchException> _sourceMismatchExceptions =
 		new ArrayList<>();
 	private boolean _subrepository;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseSourceProcessor.class);
 
 }

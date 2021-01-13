@@ -379,6 +379,9 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UploadImageMVCActionCommand.class);
+
 	private volatile DLConfiguration _dlConfiguration;
 
 	@Reference
@@ -387,8 +390,5 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 	@Reference
 	private UploadServletRequestConfigurationHelper
 		_uploadServletRequestConfigurationHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UploadImageMVCActionCommand.class);
 
 }

@@ -264,6 +264,9 @@ public class SegmentsContextVocabularyConfigurationDisplayContext {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SegmentsContextVocabularyConfigurationDisplayContext.class);
+
 	private final List<ConfigurationFieldOptionsProvider.Option>
 		_assetVocabularyOptions;
 	private final ConfigurationAdmin _configurationAdmin;
@@ -276,8 +279,5 @@ public class SegmentsContextVocabularyConfigurationDisplayContext {
 	private final PortletDisplay _portletDisplay;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SegmentsContextVocabularyConfigurationDisplayContext.class);
 
 }

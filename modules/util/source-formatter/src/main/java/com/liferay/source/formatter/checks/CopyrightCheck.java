@@ -186,9 +186,9 @@ public class CopyrightCheck extends BaseFileCheck {
 
 	private static final String _COPYRIGHT_FILE_NAME_KEY = "copyrightFileName";
 
+	private static final Log _log = LogFactoryUtil.getLog(CopyrightCheck.class);
+
 	private String _commercialCopyright;
 	private String _copyright;
-
-	private static final Log _log = LogFactoryUtil.getLog(CopyrightCheck.class);
 
 }

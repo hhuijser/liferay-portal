@@ -323,6 +323,9 @@ public class CPPublisherWebHelper {
 		return ArrayUtil.toArray(assetCategoryIdsList.toArray(new Long[0]));
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPPublisherWebHelper.class);
+
 	@Reference
 	private AssetCategoryLocalService _assetCategoryLocalService;
 
@@ -331,8 +334,5 @@ public class CPPublisherWebHelper {
 
 	@Reference
 	private CPDefinitionHelper _cpDefinitionHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CPPublisherWebHelper.class);
 
 }

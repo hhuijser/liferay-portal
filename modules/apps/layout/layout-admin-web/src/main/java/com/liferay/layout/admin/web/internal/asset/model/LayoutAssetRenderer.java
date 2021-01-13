@@ -170,9 +170,9 @@ public class LayoutAssetRenderer extends BaseJSPAssetRenderer<Layout> {
 		return super.isPreviewInContext();
 	}
 
-	private final Layout _layout;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		LayoutAssetRenderer.class);
+
+	private final Layout _layout;
 
 }

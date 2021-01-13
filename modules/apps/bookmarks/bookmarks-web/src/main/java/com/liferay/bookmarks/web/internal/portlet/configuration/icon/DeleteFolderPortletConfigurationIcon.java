@@ -179,6 +179,9 @@ public class DeleteFolderPortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeleteFolderPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.bookmarks.model.BookmarksFolder)"
 	)
@@ -190,8 +193,5 @@ public class DeleteFolderPortletConfigurationIcon
 
 	@Reference
 	private TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DeleteFolderPortletConfigurationIcon.class);
 
 }

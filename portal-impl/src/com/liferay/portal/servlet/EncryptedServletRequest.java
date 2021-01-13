@@ -92,10 +92,10 @@ public class EncryptedServletRequest extends HttpServletRequestWrapper {
 		return _params.get(name);
 	}
 
-	private final Key _key;
-	private final Map<String, String[]> _params;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		EncryptedServletRequest.class);
+
+	private final Key _key;
+	private final Map<String, String[]> _params;
 
 }

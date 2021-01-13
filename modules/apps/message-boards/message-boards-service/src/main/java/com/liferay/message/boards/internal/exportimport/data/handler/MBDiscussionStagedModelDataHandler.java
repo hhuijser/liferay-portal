@@ -204,11 +204,11 @@ public class MBDiscussionStagedModelDataHandler
 		_mbMessageLocalService = mbMessageLocalService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MBDiscussionStagedModelDataHandler.class);
+
 	private AssetEntryLocalService _assetEntryLocalService;
 	private MBDiscussionLocalService _mbDiscussionLocalService;
 	private MBMessageLocalService _mbMessageLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MBDiscussionStagedModelDataHandler.class);
 
 }

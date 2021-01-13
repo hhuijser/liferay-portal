@@ -174,10 +174,10 @@ public class EditSiteTeamAssignmentsUsersManagementToolbarDisplayContext
 		return new String[] {"first-name", "screen-name"};
 	}
 
-	private final EditSiteTeamAssignmentsUsersDisplayContext
-		_editSiteTeamAssignmentsUsersDisplayContext;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		EditSiteTeamAssignmentsUsersManagementToolbarDisplayContext.class);
+
+	private final EditSiteTeamAssignmentsUsersDisplayContext
+		_editSiteTeamAssignmentsUsersDisplayContext;
 
 }

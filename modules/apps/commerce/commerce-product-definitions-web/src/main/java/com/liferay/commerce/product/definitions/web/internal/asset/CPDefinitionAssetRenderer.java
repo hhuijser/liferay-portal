@@ -248,12 +248,12 @@ public class CPDefinitionAssetRenderer
 		return true;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPDefinitionAssetRenderer.class);
+
 	private final CPDefinition _cpDefinition;
 	private final CPDefinitionHelper _cpDefinitionHelper;
 	private final ModelResourcePermission<CommerceCatalog>
 		_modelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CPDefinitionAssetRenderer.class);
 
 }

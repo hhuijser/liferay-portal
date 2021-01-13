@@ -170,6 +170,9 @@ public class BlogsEntryAssetRendererFactory
 			permissionChecker, classPK, actionId);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BlogsEntryAssetRendererFactory.class);
+
 	@Reference
 	private AssetDisplayPageFriendlyURLProvider
 		_assetDisplayPageFriendlyURLProvider;
@@ -189,8 +192,5 @@ public class BlogsEntryAssetRendererFactory
 
 	@Reference(target = "(osgi.web.symbolicname=com.liferay.blogs.web)")
 	private ServletContext _servletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BlogsEntryAssetRendererFactory.class);
 
 }

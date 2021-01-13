@@ -519,6 +519,9 @@ public class KaleoFormsAdminPortlet extends MVCPortlet {
 	@Reference
 	protected StorageEngine storageEngine;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		KaleoFormsAdminPortlet.class);
+
 	@Reference
 	private DDLExporterFactory _ddlExporterFactory;
 
@@ -542,8 +545,5 @@ public class KaleoFormsAdminPortlet extends MVCPortlet {
 
 	@Reference
 	private WorkflowInstanceLinkLocalService _workflowInstanceLinkLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		KaleoFormsAdminPortlet.class);
 
 }

@@ -289,6 +289,9 @@ public class JournalArticleAssetRendererFactory
 		return journalArticleAssetRenderer;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleAssetRendererFactory.class);
+
 	@Reference
 	private AssetDisplayPageFriendlyURLProvider
 		_assetDisplayPageFriendlyURLProvider;
@@ -333,8 +336,5 @@ public class JournalArticleAssetRendererFactory
 	private PortletResourcePermission _portletResourcePermission;
 
 	private ServletContext _servletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleAssetRendererFactory.class);
 
 }

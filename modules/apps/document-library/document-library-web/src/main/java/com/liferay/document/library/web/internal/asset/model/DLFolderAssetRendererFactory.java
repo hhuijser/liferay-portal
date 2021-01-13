@@ -114,6 +114,9 @@ public class DLFolderAssetRendererFactory
 			permissionChecker, classPK, actionId);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLFolderAssetRendererFactory.class);
+
 	@Reference
 	private DLAppLocalService _dlAppLocalService;
 
@@ -124,8 +127,5 @@ public class DLFolderAssetRendererFactory
 
 	@Reference
 	private TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DLFolderAssetRendererFactory.class);
 
 }

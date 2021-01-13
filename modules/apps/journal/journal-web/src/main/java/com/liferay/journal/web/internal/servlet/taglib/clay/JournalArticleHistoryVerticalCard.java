@@ -128,14 +128,14 @@ public class JournalArticleHistoryVerticalCard extends BaseVerticalCard {
 		return HtmlUtil.escape(_article.getTitle(themeDisplay.getLocale()));
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleHistoryVerticalCard.class);
+
 	private final JournalArticle _article;
 	private final AssetDisplayPageFriendlyURLProvider
 		_assetDisplayPageFriendlyURLProvider;
 	private final HttpServletRequest _httpServletRequest;
 	private final RenderResponse _renderResponse;
 	private final TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleHistoryVerticalCard.class);
 
 }

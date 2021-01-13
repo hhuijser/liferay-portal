@@ -70,10 +70,10 @@ public class AssetRendererHorizontalCard implements HorizontalCard {
 		return false;
 	}
 
-	private final AssetRenderer<?> _assetRenderer;
-	private final ThemeDisplay _themeDisplay;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		AssetRendererHorizontalCard.class);
+
+	private final AssetRenderer<?> _assetRenderer;
+	private final ThemeDisplay _themeDisplay;
 
 }

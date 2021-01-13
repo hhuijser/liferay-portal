@@ -51,9 +51,9 @@ public class CurrentUserIdStrategy implements UserIdStrategy {
 		}
 	}
 
-	private final User _user;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		CurrentUserIdStrategy.class);
+
+	private final User _user;
 
 }

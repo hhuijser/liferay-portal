@@ -347,11 +347,11 @@ public class AssetBrowserManagementToolbarDisplayContext
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetBrowserManagementToolbarDisplayContext.class);
+
 	private final AssetBrowserDisplayContext _assetBrowserDisplayContext;
 	private final AssetHelper _assetHelper;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetBrowserManagementToolbarDisplayContext.class);
 
 }

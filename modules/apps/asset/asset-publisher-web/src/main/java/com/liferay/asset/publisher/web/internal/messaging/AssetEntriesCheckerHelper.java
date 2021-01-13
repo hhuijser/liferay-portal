@@ -364,6 +364,9 @@ public class AssetEntriesCheckerHelper {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetEntriesCheckerHelper.class);
+
 	@Reference
 	private AssetHelper _assetHelper;
 
@@ -391,8 +394,5 @@ public class AssetEntriesCheckerHelper {
 
 	@Reference
 	private UserLocalService _userLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetEntriesCheckerHelper.class);
 
 }

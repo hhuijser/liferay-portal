@@ -98,10 +98,10 @@ public class PortalStartupMonitor {
 
 	private static final long _SLEEP = 600000;
 
-	private ComponentContext _componentContext;
-	private Thread _thread;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortalStartupMonitor.class);
+
+	private ComponentContext _componentContext;
+	private Thread _thread;
 
 }

@@ -171,6 +171,9 @@ public class SegmentsExperimentUserNotificationHandler
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SegmentsExperimentUserNotificationHandler.class);
+
 	@Reference
 	private Http _http;
 
@@ -186,8 +189,5 @@ public class SegmentsExperimentUserNotificationHandler
 	@Reference
 	private UserNotificationEventLocalService
 		_userNotificationEventLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SegmentsExperimentUserNotificationHandler.class);
 
 }

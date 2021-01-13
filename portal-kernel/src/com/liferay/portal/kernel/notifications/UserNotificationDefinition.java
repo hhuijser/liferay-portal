@@ -103,14 +103,14 @@ public class UserNotificationDefinition {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UserNotificationDefinition.class);
+
 	private final long _classNameId;
 	private final String _description;
 	private final int _notificationType;
 	private final String _portletId;
 	private final Map<Integer, UserNotificationDeliveryType>
 		_userNotificationDeliveryTypes = new HashMap<>();
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UserNotificationDefinition.class);
 
 }

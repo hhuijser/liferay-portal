@@ -195,6 +195,9 @@ public class DBMetadataResolver extends AbstractMetadataResolver {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DBMetadataResolver.class);
+
 	@Reference
 	private ParserPool _parserPool;
 
@@ -206,8 +209,5 @@ public class DBMetadataResolver extends AbstractMetadataResolver {
 
 	@Reference
 	private SamlSpIdpConnectionLocalService _samlSpIdpConnectionLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DBMetadataResolver.class);
 
 }

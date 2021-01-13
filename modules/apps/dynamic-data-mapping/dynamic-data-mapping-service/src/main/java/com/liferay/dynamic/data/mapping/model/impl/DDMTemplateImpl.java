@@ -178,12 +178,12 @@ public class DDMTemplateImpl extends DDMTemplateBaseImpl {
 		_smallImageType = smallImageType;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMTemplateImpl.class);
+
 	@CacheField(propagateToInterface = true)
 	private String _resourceClassName;
 
 	private String _smallImageType;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DDMTemplateImpl.class);
 
 }

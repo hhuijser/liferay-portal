@@ -217,12 +217,12 @@ public class JavaDuplicateVariableCheck extends BaseJavaTermCheck {
 		return _rootDirName;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavaDuplicateVariableCheck.class);
+
 	private Map<String, String> _bundleSymbolicNamesMap;
 	private final Map<String, Map<String, List<JavaVariable>>>
 		_javaVariablesMap = new HashMap<>();
 	private String _rootDirName;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JavaDuplicateVariableCheck.class);
 
 }

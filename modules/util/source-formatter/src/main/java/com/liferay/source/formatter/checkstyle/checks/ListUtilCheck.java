@@ -335,9 +335,9 @@ public class ListUtilCheck extends BaseCheck {
 
 	private static final String _MSG_USE_LIST_UTIL = "list.util.use";
 
+	private static final Log _log = LogFactoryUtil.getLog(ListUtilCheck.class);
+
 	private final Map<String, String> _buildGradleContentsMap =
 		new ConcurrentHashMap<>();
-
-	private static final Log _log = LogFactoryUtil.getLog(ListUtilCheck.class);
 
 }

@@ -226,10 +226,10 @@ public class XSLTemplate extends BaseTemplate {
 			transformerFactoryClass.getClassLoader();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(XSLTemplate.class);
+
 	private final boolean _preventLocalConnections;
 	private final TransformerFactory _transformerFactory;
 	private StreamSource _xmlStreamSource;
-
-	private static final Log _log = LogFactoryUtil.getLog(XSLTemplate.class);
 
 }

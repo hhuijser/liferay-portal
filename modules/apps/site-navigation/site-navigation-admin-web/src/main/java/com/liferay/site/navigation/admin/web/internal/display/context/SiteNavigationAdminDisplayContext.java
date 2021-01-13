@@ -525,6 +525,9 @@ public class SiteNavigationAdminDisplayContext {
 		return siteNavigationMenuItemsJSONArray;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SiteNavigationAdminDisplayContext.class);
+
 	private String _displayStyle;
 	private final HttpServletRequest _httpServletRequest;
 	private String _keywords;
@@ -541,8 +544,5 @@ public class SiteNavigationAdminDisplayContext {
 	private String _siteNavigationMenuName;
 	private final SiteNavigationMenuService _siteNavigationMenuService;
 	private Boolean _updatePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SiteNavigationAdminDisplayContext.class);
 
 }

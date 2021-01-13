@@ -1023,6 +1023,9 @@ public class SharepointWSRepository
 		{_LIBRARY_NAME, _LIBRARY_PATH, _SERVER_VERSION, _SITE_URL}
 	};
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SharepointWSRepository.class);
+
 	private static final Map
 		<ExtRepositoryObjectType<?>, SharepointConnection.ObjectTypeFilter>
 			_objectTypeFilters =
@@ -1049,8 +1052,5 @@ public class SharepointWSRepository
 	private String _rootFolderKey;
 	private SharepointConnection.ServerVersion _serverVersion;
 	private String _sitePath;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SharepointWSRepository.class);
 
 }

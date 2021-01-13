@@ -603,6 +603,9 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 		"liferay-util:include", "liferay-util:param"
 	};
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSPTagAttributesCheck.class);
+
 	private static final Pattern _javaSourceInsideTagPattern = Pattern.compile(
 		"<%.*?%>");
 	private static final Pattern _jspTaglibPattern = Pattern.compile(
@@ -617,8 +620,5 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 		new HashMap<>();
 	private Set<String> _primitiveTagAttributeDataTypes;
 	private Map<String, Map<String, String>> _tagSetMethodsMap;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JSPTagAttributesCheck.class);
 
 }

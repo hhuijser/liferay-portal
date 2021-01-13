@@ -453,11 +453,11 @@ public class UnsyncPrintWriter extends PrintWriter {
 	private static final String _LINE_SEPARATOR = System.getProperty(
 		"line.separator");
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncPrintWriter.class);
+
 	private Formatter _formatter;
 	private boolean _hasError;
 	private Writer _writer;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UnsyncPrintWriter.class);
 
 }

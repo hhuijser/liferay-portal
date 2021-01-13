@@ -2609,6 +2609,8 @@ public class ParamUtil {
 
 	private static final Normalizer.Form _FORM;
 
+	private static final Log _log = LogFactoryUtil.getLog(ParamUtil.class);
+
 	static {
 		String formString = PropsUtil.get(
 			PropsKeys.UNICODE_TEXT_NORMALIZER_FORM);
@@ -2634,7 +2636,5 @@ public class ParamUtil {
 			_FORM = form;
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(ParamUtil.class);
 
 }

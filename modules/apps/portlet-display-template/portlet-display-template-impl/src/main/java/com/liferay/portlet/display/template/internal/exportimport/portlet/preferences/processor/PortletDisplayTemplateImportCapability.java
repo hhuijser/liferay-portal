@@ -139,13 +139,13 @@ public class PortletDisplayTemplateImportCapability implements Capability {
 		return processedPreferences;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletDisplayTemplateImportCapability.class);
+
 	private final Portal _portal;
 	private final PortletDisplayTemplate _portletDisplayTemplate;
 	private final PortletDisplayTemplateRegister
 		_portletDisplayTemplateImportRegister;
 	private final PortletLocalService _portletLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PortletDisplayTemplateImportCapability.class);
 
 }

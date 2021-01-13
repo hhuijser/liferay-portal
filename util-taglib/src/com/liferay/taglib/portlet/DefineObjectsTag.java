@@ -152,6 +152,9 @@ public class DefineObjectsTag extends TagSupport {
 		return SKIP_BODY;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DefineObjectsTag.class);
+
 	private static final Function<InvocationHandler, Map<?, ?>>
 		_mapProxyProviderFunction = ProxyUtil.getProxyProviderFunction(
 			Map.class);
@@ -180,8 +183,5 @@ public class DefineObjectsTag extends TagSupport {
 		private final PortletPreferences _portletPreferences;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DefineObjectsTag.class);
 
 }

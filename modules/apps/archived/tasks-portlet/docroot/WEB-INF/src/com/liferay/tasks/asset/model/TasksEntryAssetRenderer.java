@@ -166,9 +166,9 @@ public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer<TasksEntry> {
 		return super.include(httpServletRequest, httpServletResponse, template);
 	}
 
-	private final TasksEntry _entry;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		TasksEntryAssetRenderer.class);
+
+	private final TasksEntry _entry;
 
 }

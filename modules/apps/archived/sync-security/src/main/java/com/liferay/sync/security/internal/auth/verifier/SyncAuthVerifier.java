@@ -298,6 +298,9 @@ public class SyncAuthVerifier implements AuthVerifier {
 
 	private static final String _TOKEN_HEADER = "Sync-JWT";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SyncAuthVerifier.class);
+
 	private static JsonTokenParser _jsonTokenParser;
 	private static Signer _signer;
 
@@ -305,8 +308,5 @@ public class SyncAuthVerifier implements AuthVerifier {
 	private Portal _portal;
 
 	private UserLocalService _userLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SyncAuthVerifier.class);
 
 }

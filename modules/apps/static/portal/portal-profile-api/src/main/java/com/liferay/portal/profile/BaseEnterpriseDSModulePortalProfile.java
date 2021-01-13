@@ -115,10 +115,10 @@ public class BaseEnterpriseDSModulePortalProfile implements PortalProfile {
 		_DXP = dxp;
 	}
 
-	private ComponentContext _componentContext;
-	private Set<String> _supportedPortalProfileNames;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseEnterpriseDSModulePortalProfile.class);
+
+	private ComponentContext _componentContext;
+	private Set<String> _supportedPortalProfileNames;
 
 }

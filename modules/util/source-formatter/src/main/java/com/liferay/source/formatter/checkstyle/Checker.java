@@ -277,13 +277,13 @@ public class Checker extends com.puppycrawl.tools.checkstyle.Checker {
 		return messages;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(Checker.class);
+
 	private final AuditListener _auditListener;
 	private final CheckstyleLogger _checkstyleLogger;
 	private final ClassLoader _classLoader;
 	private final Configuration _configuration;
 	private final FilterSet _filterSet;
 	private final ModuleFactory _moduleFactory;
-
-	private static final Log _log = LogFactoryUtil.getLog(Checker.class);
 
 }

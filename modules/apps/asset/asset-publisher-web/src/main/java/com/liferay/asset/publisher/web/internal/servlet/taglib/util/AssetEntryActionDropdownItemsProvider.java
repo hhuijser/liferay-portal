@@ -167,6 +167,9 @@ public class AssetEntryActionDropdownItemsProvider {
 		return null;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetEntryActionDropdownItemsProvider.class);
+
 	private final List<AssetEntryAction<?>> _assetEntryActions;
 	private final AssetRenderer<?> _assetRenderer;
 	private final String _fullContentRedirect;
@@ -174,8 +177,5 @@ public class AssetEntryActionDropdownItemsProvider {
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetEntryActionDropdownItemsProvider.class);
 
 }

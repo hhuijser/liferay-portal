@@ -181,6 +181,9 @@ public class EditMessageAttachmentsMVCActionCommand
 			messageId, fileName);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditMessageAttachmentsMVCActionCommand.class);
+
 	@Reference
 	private MBMessageService _mbMessageService;
 
@@ -196,8 +199,5 @@ public class EditMessageAttachmentsMVCActionCommand
 
 	@Reference
 	private UploadHandler _uploadHandler;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditMessageAttachmentsMVCActionCommand.class);
 
 }

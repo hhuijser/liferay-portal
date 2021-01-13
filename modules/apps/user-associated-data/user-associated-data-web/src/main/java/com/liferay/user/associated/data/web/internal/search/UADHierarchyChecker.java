@@ -68,9 +68,9 @@ public class UADHierarchyChecker extends EmptyOnClickRowChecker {
 		return StringPool.BLANK;
 	}
 
-	private final UADDisplay<?>[] _uadDisplays;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		UADHierarchyChecker.class);
+
+	private final UADDisplay<?>[] _uadDisplays;
 
 }

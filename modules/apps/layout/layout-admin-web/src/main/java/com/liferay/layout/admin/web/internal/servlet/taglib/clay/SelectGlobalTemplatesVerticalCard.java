@@ -109,11 +109,11 @@ public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectGlobalTemplatesVerticalCard.class);
+
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SelectGlobalTemplatesVerticalCard.class);
 
 }

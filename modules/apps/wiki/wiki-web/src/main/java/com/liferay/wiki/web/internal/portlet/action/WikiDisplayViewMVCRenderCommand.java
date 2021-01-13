@@ -148,6 +148,9 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 		return _wikiNodeService.getNode(nodeId);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		WikiDisplayViewMVCRenderCommand.class);
+
 	@Reference
 	private WikiEngineRenderer _wikiEngineRenderer;
 
@@ -156,8 +159,5 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 
 	@Reference
 	private WikiPageService _wikiPageService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		WikiDisplayViewMVCRenderCommand.class);
 
 }

@@ -71,10 +71,10 @@ public class FileData {
 		_size = size;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(FileData.class);
+
 	private String _content;
 	private String _name;
 	private long _size;
-
-	private static final Log _log = LogFactoryUtil.getLog(FileData.class);
 
 }

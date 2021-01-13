@@ -104,6 +104,8 @@ public class MailboxUtil {
 		GetterUtil.getLong(
 			PropsUtil.get(PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE));
 
+	private static final Log _log = LogFactoryUtil.getLog(MailboxUtil.class);
+
 	private static final Map<Long, ByteBuffer> _mailMap =
 		new ConcurrentHashMap<>();
 	private static final BlockingQueue<ReceiptStub> _overdueMailQueue =
@@ -199,7 +201,5 @@ public class MailboxUtil {
 			thread.start();
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(MailboxUtil.class);
 
 }

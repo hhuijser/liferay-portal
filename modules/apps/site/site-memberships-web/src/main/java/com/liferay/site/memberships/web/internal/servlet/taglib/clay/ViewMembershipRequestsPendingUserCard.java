@@ -81,11 +81,11 @@ public class ViewMembershipRequestsPendingUserCard extends BaseUserCard {
 			_httpServletRequest, "x-ago", createDateDateDescription);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ViewMembershipRequestsPendingUserCard.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private final MembershipRequest _membershipRequest;
 	private final RenderResponse _renderResponse;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ViewMembershipRequestsPendingUserCard.class);
 
 }

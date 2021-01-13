@@ -57,10 +57,11 @@ public class JournalServiceConfigurationUtil {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalServiceConfigurationUtil.class);
+
 	private static final Configuration _configuration =
 		ConfigurationFactoryUtil.getConfiguration(
 			JournalServiceConfigurationUtil.class.getClassLoader(), "portlet");
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalServiceConfigurationUtil.class);
 
 }

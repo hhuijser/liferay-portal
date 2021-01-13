@@ -463,6 +463,8 @@ public class DDLImpl implements DDL {
 		_storageEngine = storageEngine;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(DDLImpl.class);
+
 	private DDLRecordLocalService _ddlRecordLocalService;
 	private DDLRecordService _ddlRecordService;
 	private DDLRecordSetLocalService _ddlRecordSetLocalService;
@@ -472,7 +474,5 @@ public class DDLImpl implements DDL {
 	private FieldsToDDMFormValuesConverter _fieldsToDDMFormValuesConverter;
 	private LayoutService _layoutService;
 	private StorageEngine _storageEngine;
-
-	private static final Log _log = LogFactoryUtil.getLog(DDLImpl.class);
 
 }

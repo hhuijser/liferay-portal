@@ -137,13 +137,13 @@ public class FolderPermissionsPortletConfigurationIcon
 		return true;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		FolderPermissionsPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.bookmarks.model.BookmarksFolder)"
 	)
 	private ModelResourcePermission<BookmarksFolder>
 		_bookmarksFolderModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		FolderPermissionsPortletConfigurationIcon.class);
 
 }

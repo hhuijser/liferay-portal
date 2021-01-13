@@ -174,6 +174,9 @@ public class CPDefinitionAssetRendererFactory
 			ASSET_RENDERER_FACTORY_GROUP);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPDefinitionAssetRendererFactory.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.commerce.product.model.CommerceCatalog)"
 	)
@@ -193,8 +196,5 @@ public class CPDefinitionAssetRendererFactory
 		target = "(osgi.web.symbolicname=com.liferay.commerce.product.definitions.web)"
 	)
 	private ServletContext _servletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CPDefinitionAssetRendererFactory.class);
 
 }

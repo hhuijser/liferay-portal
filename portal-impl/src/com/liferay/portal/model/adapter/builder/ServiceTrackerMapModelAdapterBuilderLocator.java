@@ -101,6 +101,9 @@ public class ServiceTrackerMapModelAdapterBuilderLocator
 		return adapteeModelClass.getName() + "->" + adaptedModelClass.getName();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceTrackerMapModelAdapterBuilderLocator.class);
+
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	private final ServiceTrackerMap<String, ModelAdapterBuilder>
 		_modelAdapterBuilders = ServiceTrackerCollections.openSingleValueMap(
@@ -153,8 +156,5 @@ public class ServiceTrackerMapModelAdapterBuilderLocator
 				}
 
 			});
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ServiceTrackerMapModelAdapterBuilderLocator.class);
 
 }

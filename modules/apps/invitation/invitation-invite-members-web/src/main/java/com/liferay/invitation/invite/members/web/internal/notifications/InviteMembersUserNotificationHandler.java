@@ -243,6 +243,9 @@ public class InviteMembersUserNotificationHandler
 		_userNotificationEventLocalService = userNotificationEventLocalService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		InviteMembersUserNotificationHandler.class);
+
 	private GroupLocalService _groupLocalService;
 	private MemberRequestLocalService _memberRequestLocalService;
 
@@ -252,8 +255,5 @@ public class InviteMembersUserNotificationHandler
 	private UserLocalService _userLocalService;
 	private UserNotificationEventLocalService
 		_userNotificationEventLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		InviteMembersUserNotificationHandler.class);
 
 }

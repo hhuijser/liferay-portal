@@ -114,10 +114,10 @@ public class AssignMembersPortletConfigurationIcon
 		return false;
 	}
 
-	@Reference
-	private Portal _portal;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		AssignMembersPortletConfigurationIcon.class);
+
+	@Reference
+	private Portal _portal;
 
 }

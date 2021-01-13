@@ -270,11 +270,11 @@ public class JournalDDMTemplateManagementToolbarDisplayContext
 				allowedTemplateLanguageTypes, templateLanguageType));
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalDDMTemplateManagementToolbarDisplayContext.class);
+
 	private final DDMWebConfiguration _ddmWebConfiguration;
 	private final JournalDDMTemplateDisplayContext
 		_journalDDMTemplateDisplayContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalDDMTemplateManagementToolbarDisplayContext.class);
 
 }

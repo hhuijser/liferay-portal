@@ -678,12 +678,12 @@ public class ExpandoBridgeImpl implements ExpandoBridge {
 		return table;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ExpandoBridgeImpl.class);
+
 	private String _className;
 	private long _classPK;
 	private long _companyId;
 	private boolean _indexEnabled;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ExpandoBridgeImpl.class);
 
 }

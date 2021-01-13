@@ -496,6 +496,9 @@ public class SessionMessages {
 
 	private static final String _CLASS_NAME = SessionMessages.class.getName();
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SessionMessages.class);
+
 	private static class SessionMessagesMap extends HashMap<String, Object> {
 
 		@Override
@@ -522,8 +525,5 @@ public class SessionMessages {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SessionMessages.class);
 
 }

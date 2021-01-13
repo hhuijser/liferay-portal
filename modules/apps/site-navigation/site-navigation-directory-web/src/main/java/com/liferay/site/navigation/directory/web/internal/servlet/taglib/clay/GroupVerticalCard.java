@@ -85,10 +85,10 @@ public class GroupVerticalCard implements VerticalCard {
 		return false;
 	}
 
-	private final Group _group;
-	private final ThemeDisplay _themeDisplay;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		GroupVerticalCard.class);
+
+	private final Group _group;
+	private final ThemeDisplay _themeDisplay;
 
 }

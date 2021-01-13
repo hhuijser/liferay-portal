@@ -332,6 +332,9 @@ public class FragmentEntryLinkRichTextEditorConfigContributor
 		return itemSelectorCriterion;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		FragmentEntryLinkRichTextEditorConfigContributor.class);
+
 	@Reference
 	private ItemSelector _itemSelector;
 
@@ -341,8 +344,5 @@ public class FragmentEntryLinkRichTextEditorConfigContributor
 		target = "(bundle.symbolic.name=com.liferay.frontend.editor.lang)"
 	)
 	private volatile ResourceBundleLoader _resourceBundleLoader;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		FragmentEntryLinkRichTextEditorConfigContributor.class);
 
 }

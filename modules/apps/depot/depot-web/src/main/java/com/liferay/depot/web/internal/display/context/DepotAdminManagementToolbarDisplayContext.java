@@ -226,9 +226,9 @@ public class DepotAdminManagementToolbarDisplayContext
 		return true;
 	}
 
-	private final DepotAdminDisplayContext _depotAdminDisplayContext;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		DepotAdminManagementToolbarDisplayContext.class);
+
+	private final DepotAdminDisplayContext _depotAdminDisplayContext;
 
 }

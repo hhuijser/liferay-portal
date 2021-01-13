@@ -135,14 +135,14 @@ public class InfoListProviderDisplayContext {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		InfoListProviderDisplayContext.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private final InfoItemServiceTracker _infoItemServiceTracker;
 	private final InfoListProviderTracker _infoListProviderTracker;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		InfoListProviderDisplayContext.class);
 
 }

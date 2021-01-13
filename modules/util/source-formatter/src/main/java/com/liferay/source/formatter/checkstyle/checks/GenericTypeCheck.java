@@ -470,10 +470,10 @@ public class GenericTypeCheck extends BaseCheck {
 
 	private static final String _POPULATE_TYPE_NAMES_KEY = "populateTypeNames";
 
-	private Map<String, Integer> _genericTypeNamesMap;
-	private Tuple _genericTypeNamesTuple;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		GenericTypeCheck.class);
+
+	private Map<String, Integer> _genericTypeNamesMap;
+	private Tuple _genericTypeNamesTuple;
 
 }

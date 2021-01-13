@@ -131,13 +131,13 @@ public class CommentAssetRendererFactory
 
 	private static final boolean _SELECTABLE = false;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CommentAssetRendererFactory.class);
+
 	@Reference
 	private CommentManager _commentManager;
 
 	@Reference(target = "(osgi.web.symbolicname=com.liferay.comment.web)")
 	private ServletContext _servletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CommentAssetRendererFactory.class);
 
 }

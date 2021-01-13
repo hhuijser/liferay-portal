@@ -177,12 +177,12 @@ public class CheckstyleLogger extends DefaultLogger {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CheckstyleLogger.class);
+
 	private static final Set<SourceFormatterMessage> _sourceFormatterMessages =
 		new TreeSet<>();
 
 	private final String _baseDirName;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CheckstyleLogger.class);
 
 }

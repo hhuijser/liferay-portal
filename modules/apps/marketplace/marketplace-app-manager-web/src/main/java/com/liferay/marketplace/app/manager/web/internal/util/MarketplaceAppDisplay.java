@@ -110,9 +110,9 @@ public class MarketplaceAppDisplay extends BaseAppDisplay {
 		return _app.isRequired();
 	}
 
-	private final App _app;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		MarketplaceAppDisplay.class);
+
+	private final App _app;
 
 }

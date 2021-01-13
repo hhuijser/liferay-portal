@@ -261,14 +261,14 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 		return UserLocalServiceUtil.fetchUser(article.getUserId());
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleVerticalCard.class);
+
 	private final JournalArticle _article;
 	private final AssetDisplayPageFriendlyURLProvider
 		_assetDisplayPageFriendlyURLProvider;
 	private final HttpServletRequest _httpServletRequest;
 	private final RenderResponse _renderResponse;
 	private final TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleVerticalCard.class);
 
 }

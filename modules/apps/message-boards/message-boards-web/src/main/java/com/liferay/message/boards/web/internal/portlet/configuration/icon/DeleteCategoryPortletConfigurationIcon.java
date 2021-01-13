@@ -189,6 +189,9 @@ public class DeleteCategoryPortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeleteCategoryPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
 	)
@@ -200,8 +203,5 @@ public class DeleteCategoryPortletConfigurationIcon
 
 	@Reference
 	private TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DeleteCategoryPortletConfigurationIcon.class);
 
 }

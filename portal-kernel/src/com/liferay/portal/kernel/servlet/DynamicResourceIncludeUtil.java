@@ -93,9 +93,10 @@ public class DynamicResourceIncludeUtil {
 		return null;
 	}
 
-	private static final List<ServletContext> _servletContexts =
-		ServiceTrackerCollections.openList(ServletContext.class);
 	private static final Log _log = LogFactoryUtil.getLog(
 		DynamicResourceIncludeUtil.class);
+
+	private static final List<ServletContext> _servletContexts =
+		ServiceTrackerCollections.openList(ServletContext.class);
 
 }

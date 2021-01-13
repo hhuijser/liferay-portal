@@ -765,6 +765,9 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	private static final String _MODULES_PROPERTIES_FILE_NAME =
 		"modules/modules.properties";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseSourceCheck.class);
+
 	private JSONObject _attributesJSONObject = new JSONObjectImpl();
 	private final Map<String, String> _attributeValueMap =
 		new ConcurrentHashMap<>();
@@ -787,8 +790,5 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	private final Map<String, Set<SourceFormatterMessage>>
 		_sourceFormatterMessagesMap = new ConcurrentHashMap<>();
 	private boolean _subrepository;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseSourceCheck.class);
 
 }

@@ -99,6 +99,9 @@ public class RequestBackedPortletURLFactoryUtil {
 		return liferayPortletURL;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		RequestBackedPortletURLFactoryUtil.class);
+
 	private static class HttpServletRequestRequestBackedPortletURLFactory
 		implements RequestBackedPortletURLFactory {
 
@@ -290,8 +293,5 @@ public class RequestBackedPortletURLFactoryUtil {
 		private final LiferayPortletResponse _liferayPortletResponse;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		RequestBackedPortletURLFactoryUtil.class);
 
 }

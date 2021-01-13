@@ -412,9 +412,9 @@ public class UsersManagementToolbarDisplayContext
 		return selectURL.toString();
 	}
 
-	private final UsersDisplayContext _usersDisplayContext;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		UsersManagementToolbarDisplayContext.class);
+
+	private final UsersDisplayContext _usersDisplayContext;
 
 }

@@ -172,10 +172,10 @@ public class RepositoryModelReadCountComparator<T>
 		}
 	}
 
-	private final boolean _ascending;
-	private final boolean _orderByModel;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		RepositoryModelReadCountComparator.class);
+
+	private final boolean _ascending;
+	private final boolean _orderByModel;
 
 }

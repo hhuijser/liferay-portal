@@ -5344,6 +5344,8 @@ public class DataFactory {
 
 	private static final String _SAMPLE_USER_NAME = "Sample";
 
+	private static final Log _log = LogFactoryUtil.getLog(DataFactory.class);
+
 	private static final PortletPreferencesFactory _portletPreferencesFactory =
 		new PortletPreferencesFactoryImpl();
 
@@ -5403,7 +5405,5 @@ public class DataFactory {
 	private final long _userPersonalSiteGroupId;
 	private RoleModel _userRoleModel;
 	private final SimpleCounter _userScreenNameCounter;
-
-	private static final Log _log = LogFactoryUtil.getLog(DataFactory.class);
 
 }

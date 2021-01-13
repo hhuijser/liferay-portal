@@ -193,11 +193,11 @@ public class MicroblogsEntryAssetRenderer
 		return super.include(httpServletRequest, httpServletResponse, template);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MicroblogsEntryAssetRenderer.class);
+
 	private final MicroblogsEntry _entry;
 	private final ModelResourcePermission<MicroblogsEntry>
 		_microblogsEntryModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MicroblogsEntryAssetRenderer.class);
 
 }

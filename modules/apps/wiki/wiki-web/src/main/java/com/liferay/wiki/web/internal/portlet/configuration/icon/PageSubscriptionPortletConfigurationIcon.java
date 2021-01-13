@@ -168,6 +168,9 @@ public class PageSubscriptionPortletConfigurationIcon
 		_subscriptionLocalService = subscriptionLocalService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PageSubscriptionPortletConfigurationIcon.class);
+
 	@Reference
 	private Portal _portal;
 
@@ -175,8 +178,5 @@ public class PageSubscriptionPortletConfigurationIcon
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiPage)")
 	private ModelResourcePermission<WikiPage> _wikiPageModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PageSubscriptionPortletConfigurationIcon.class);
 
 }

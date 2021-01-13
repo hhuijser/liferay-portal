@@ -202,6 +202,9 @@ public class ContactsCenterUserNotificationHandler
 		"<div class=\"title\">[$TITLE$]</div><div class=\"body\">[$BODY$]" +
 			"</div>";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ContactsCenterUserNotificationHandler.class);
+
 	@Reference
 	private SocialRequestLocalService _socialRequestLocalService;
 
@@ -211,8 +214,5 @@ public class ContactsCenterUserNotificationHandler
 	@Reference
 	private UserNotificationEventLocalService
 		_userNotificationEventLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ContactsCenterUserNotificationHandler.class);
 
 }

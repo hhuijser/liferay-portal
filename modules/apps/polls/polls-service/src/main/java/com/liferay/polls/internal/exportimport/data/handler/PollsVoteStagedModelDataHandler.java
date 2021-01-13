@@ -171,9 +171,9 @@ public class PollsVoteStagedModelDataHandler
 		_pollsVoteLocalService = pollsVoteLocalService;
 	}
 
-	private PollsVoteLocalService _pollsVoteLocalService;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		PollsVoteStagedModelDataHandler.class);
+
+	private PollsVoteLocalService _pollsVoteLocalService;
 
 }

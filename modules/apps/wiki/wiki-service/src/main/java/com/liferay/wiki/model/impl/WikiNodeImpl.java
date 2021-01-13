@@ -115,8 +115,8 @@ public class WikiNodeImpl extends WikiNodeBaseImpl {
 		return fileEntries;
 	}
 
-	private long _attachmentsFolderId;
-
 	private static final Log _log = LogFactoryUtil.getLog(WikiNodeImpl.class);
+
+	private long _attachmentsFolderId;
 
 }

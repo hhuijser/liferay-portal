@@ -1202,6 +1202,9 @@ public class EditAssetListDisplayContext {
 
 	private static final long _DEFAULT_SUBTYPE_SELECTION_ID = 0;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditAssetListDisplayContext.class);
+
 	private AssetListEntry _assetListEntry;
 	private Long _assetListEntryId;
 	private List<AssetListEntrySegmentsEntryRel>
@@ -1235,8 +1238,5 @@ public class EditAssetListDisplayContext {
 	private Boolean _subtypeFieldsFilterEnabled;
 	private final ThemeDisplay _themeDisplay;
 	private final UnicodeProperties _unicodeProperties;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditAssetListDisplayContext.class);
 
 }

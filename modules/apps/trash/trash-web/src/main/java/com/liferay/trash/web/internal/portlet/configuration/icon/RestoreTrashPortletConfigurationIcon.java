@@ -161,10 +161,10 @@ public class RestoreTrashPortletConfigurationIcon
 		return true;
 	}
 
-	@Reference
-	private Portal _portal;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		RestoreTrashPortletConfigurationIcon.class);
+
+	@Reference
+	private Portal _portal;
 
 }

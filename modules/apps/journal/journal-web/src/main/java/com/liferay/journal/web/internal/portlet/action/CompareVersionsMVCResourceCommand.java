@@ -113,13 +113,13 @@ public class CompareVersionsMVCResourceCommand extends BaseMVCResourceCommand {
 		portletRequestDispatcher.include(resourceRequest, resourceResponse);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CompareVersionsMVCResourceCommand.class);
+
 	@Reference
 	private JournalHelper _journalHelper;
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CompareVersionsMVCResourceCommand.class);
 
 }

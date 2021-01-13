@@ -235,12 +235,13 @@ public class JavaMapBuilderGenericsCheck extends BaseJavaTermCheck {
 		return true;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavaMapBuilderGenericsCheck.class);
+
 	private static final Pattern _mapBuilderPattern = Pattern.compile(
 		StringBundler.concat(
 			"((return|(\\w+) =)\\s*)?\\s(ConcurrentHash|Hash|LinkedHash|Tree)",
 			"MapBuilder\\.\\s*(<([<>\\[\\],\\s\\.\\w\\?]+)>)?\\s*(put(All)?)",
 			"\\("));
-	private static final Log _log = LogFactoryUtil.getLog(
-		JavaMapBuilderGenericsCheck.class);
 
 }

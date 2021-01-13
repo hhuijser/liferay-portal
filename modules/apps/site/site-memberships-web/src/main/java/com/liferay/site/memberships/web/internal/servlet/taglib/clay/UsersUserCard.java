@@ -70,9 +70,9 @@ public class UsersUserCard extends BaseUserCard {
 		return SiteMembershipWebKeys.USER_DROPDOWN_DEFAULT_EVENT_HANDLER;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(UsersUserCard.class);
+
 	private final RenderResponse _renderResponse;
 	private final boolean _showActions;
-
-	private static final Log _log = LogFactoryUtil.getLog(UsersUserCard.class);
 
 }

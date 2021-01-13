@@ -133,10 +133,10 @@ public class ManageSitePortletConfigurationIcon
 		return false;
 	}
 
-	@Reference
-	private Portal _portal;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		ManageSitePortletConfigurationIcon.class);
+
+	@Reference
+	private Portal _portal;
 
 }

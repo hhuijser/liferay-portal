@@ -363,6 +363,9 @@ public class CalendarResourceStagedModelDataHandler
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CalendarResourceStagedModelDataHandler.class);
+
 	@Reference
 	private CalendarLocalService _calendarLocalService;
 
@@ -377,8 +380,5 @@ public class CalendarResourceStagedModelDataHandler
 
 	@Reference
 	private UserLocalService _userLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CalendarResourceStagedModelDataHandler.class);
 
 }

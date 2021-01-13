@@ -136,10 +136,10 @@ public abstract class BasePortletRequestWhitelist
 		return false;
 	}
 
-	private Set<String> _portletInvocationWhitelist;
-	private Set<String> _portletInvocationWhitelistActions;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		BasePortletRequestWhitelist.class);
+
+	private Set<String> _portletInvocationWhitelist;
+	private Set<String> _portletInvocationWhitelistActions;
 
 }

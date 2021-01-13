@@ -188,14 +188,14 @@ public class AssetEntryVerticalCard implements VerticalCard {
 		return _assetBrowserDisplayContext.isMultipleSelection();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetEntryVerticalCard.class);
+
 	private final AssetBrowserDisplayContext _assetBrowserDisplayContext;
 	private final AssetEntry _assetEntry;
 	private final AssetRenderer<?> _assetRenderer;
 	private final AssetRendererFactory<?> _assetRendererFactory;
 	private final RenderRequest _renderRequest;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetEntryVerticalCard.class);
 
 }

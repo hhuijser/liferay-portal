@@ -276,14 +276,14 @@ public class DDMTemplateHelperImpl implements DDMTemplateHelper {
 
 	private static final String _TEMPLATE_ID = "0";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMTemplateHelperImpl.class);
+
 	private DDMStructureLocalService _ddmStructureLocalService;
 	private DDMStructureService _ddmStructureService;
 	private JSONFactory _jsonFactory;
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DDMTemplateHelperImpl.class);
 
 }

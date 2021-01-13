@@ -193,6 +193,9 @@ public class UADApplicationExportController {
 					StringPool.SLASH + fileName));
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UADApplicationExportController.class);
+
 	@Reference
 	private UADExportBackgroundTaskStatusMessageSender
 		_uadExportBackgroundTaskStatusMessageSender;
@@ -202,8 +205,5 @@ public class UADApplicationExportController {
 
 	@Reference
 	private UserLocalService _userLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UADApplicationExportController.class);
 
 }

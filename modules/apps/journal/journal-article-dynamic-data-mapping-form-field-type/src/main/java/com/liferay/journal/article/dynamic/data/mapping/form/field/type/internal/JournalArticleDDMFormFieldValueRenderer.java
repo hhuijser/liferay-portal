@@ -76,13 +76,13 @@ public class JournalArticleDDMFormFieldValueRenderer
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleDDMFormFieldValueRenderer.class);
+
 	@Reference
 	private AssetEntryLocalService _assetEntryLocalService;
 
 	@Reference
 	private JSONFactory _jsonFactory;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleDDMFormFieldValueRenderer.class);
 
 }

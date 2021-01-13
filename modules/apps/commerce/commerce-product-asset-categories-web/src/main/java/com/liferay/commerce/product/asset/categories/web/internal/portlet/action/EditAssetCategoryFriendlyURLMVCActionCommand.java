@@ -131,6 +131,9 @@ public class EditAssetCategoryFriendlyURLMVCActionCommand
 		return newUrlTitleMap;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditAssetCategoryFriendlyURLMVCActionCommand.class);
+
 	@Reference
 	private AssetCategoryService _assetCategoryService;
 
@@ -142,8 +145,5 @@ public class EditAssetCategoryFriendlyURLMVCActionCommand
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditAssetCategoryFriendlyURLMVCActionCommand.class);
 
 }

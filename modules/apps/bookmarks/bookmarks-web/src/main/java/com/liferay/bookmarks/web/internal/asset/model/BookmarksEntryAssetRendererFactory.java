@@ -155,6 +155,9 @@ public class BookmarksEntryAssetRendererFactory
 			permissionChecker, classPK, actionId);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BookmarksEntryAssetRendererFactory.class);
+
 	@Reference
 	private BookmarksEntryLocalService _bookmarksEntryLocalService;
 
@@ -174,8 +177,5 @@ public class BookmarksEntryAssetRendererFactory
 
 	@Reference(target = "(osgi.web.symbolicname=com.liferay.bookmarks.web)")
 	private ServletContext _servletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BookmarksEntryAssetRendererFactory.class);
 
 }

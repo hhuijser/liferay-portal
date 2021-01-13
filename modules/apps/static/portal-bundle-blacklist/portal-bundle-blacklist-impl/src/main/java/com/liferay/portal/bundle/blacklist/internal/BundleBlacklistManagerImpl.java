@@ -190,13 +190,13 @@ public class BundleBlacklistManagerImpl implements BundleBlacklistManager {
 		_updateConfiguration(configuration, properties);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BundleBlacklistManagerImpl.class);
+
 	@Reference
 	private BundleBlacklist _bundleBlacklist;
 
 	@Reference
 	private ConfigurationAdmin _configurationAdmin;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BundleBlacklistManagerImpl.class);
 
 }

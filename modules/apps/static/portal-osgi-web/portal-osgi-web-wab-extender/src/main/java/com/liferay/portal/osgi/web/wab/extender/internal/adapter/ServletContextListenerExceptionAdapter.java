@@ -132,11 +132,11 @@ public class ServletContextListenerExceptionAdapter
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServletContextListenerExceptionAdapter.class);
+
 	private Exception _exception;
 	private final ServletContext _servletContext;
 	private final ServletContextListener _servletContextListener;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ServletContextListenerExceptionAdapter.class);
 
 }

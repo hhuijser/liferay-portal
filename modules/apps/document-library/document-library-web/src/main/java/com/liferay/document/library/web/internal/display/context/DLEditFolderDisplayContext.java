@@ -424,6 +424,9 @@ public class DLEditFolderDisplayContext {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLEditFolderDisplayContext.class);
+
 	private List<DLFileEntryType> _dlFileEntryTypes;
 	private Folder _folder;
 	private Long _folderId;
@@ -435,8 +438,5 @@ public class DLEditFolderDisplayContext {
 	private final ThemeDisplay _themeDisplay;
 	private List<WorkflowDefinition> _workflowDefinitions;
 	private Boolean _workflowEnabled;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DLEditFolderDisplayContext.class);
 
 }

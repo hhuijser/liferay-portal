@@ -131,6 +131,9 @@ public class VimeoDLVideoExternalShortcutProvider
 		return null;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		VimeoDLVideoExternalShortcutProvider.class);
+
 	private static final List<Pattern> _urlPatterns = Arrays.asList(
 		Pattern.compile(
 			"https?:\\/\\/(?:www\\.)?vimeo\\.com\\/album\\/.*\\/video" +
@@ -148,8 +151,5 @@ public class VimeoDLVideoExternalShortcutProvider
 
 	@Reference
 	private Http _http;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		VimeoDLVideoExternalShortcutProvider.class);
 
 }

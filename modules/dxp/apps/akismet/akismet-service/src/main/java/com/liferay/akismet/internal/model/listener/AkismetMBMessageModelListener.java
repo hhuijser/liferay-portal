@@ -44,10 +44,10 @@ public class AkismetMBMessageModelListener
 		}
 	}
 
-	@Reference
-	private AkismetEntryLocalService _akismetEntryLocalService;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		AkismetMBMessageModelListener.class);
+
+	@Reference
+	private AkismetEntryLocalService _akismetEntryLocalService;
 
 }

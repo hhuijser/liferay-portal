@@ -84,6 +84,9 @@ public class CORSServletFilterServletContextHelperTracker {
 		_serviceTracker.close();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CORSServletFilterServletContextHelperTracker.class);
+
 	private BundleContext _bundleContext;
 	private Map<String, String> _corsHeaders;
 	private String[] _filterMappingUrlPatterns;
@@ -164,8 +167,5 @@ public class CORSServletFilterServletContextHelperTracker {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CORSServletFilterServletContextHelperTracker.class);
 
 }

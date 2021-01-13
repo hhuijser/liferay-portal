@@ -298,14 +298,14 @@ public class AlloyEditorCreoleConfigContributor
 
 	private static final int _CKEDITOR_STYLE_BLOCK = 1;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AlloyEditorCreoleConfigContributor.class);
+
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(bundle.symbolic.name=com.liferay.frontend.editor.lang)"
 	)
 	private volatile ResourceBundleLoader _resourceBundleLoader;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AlloyEditorCreoleConfigContributor.class);
 
 }

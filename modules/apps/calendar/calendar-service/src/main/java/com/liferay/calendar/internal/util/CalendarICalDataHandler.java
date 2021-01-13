@@ -905,8 +905,9 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 	private static final String _RRULE = "RRULE:";
 
-	private static TimeZoneRegistry _timeZoneRegistry;
 	private static final Log _log = LogFactoryUtil.getLog(
 		CalendarICalDataHandler.class);
+
+	private static TimeZoneRegistry _timeZoneRegistry;
 
 }

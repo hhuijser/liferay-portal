@@ -221,10 +221,10 @@ public class JournalFolderAssetRenderer
 			permissionChecker, _folder, ActionKeys.VIEW);
 	}
 
-	private final JournalFolder _folder;
-	private final TrashHelper _trashHelper;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalFolderAssetRenderer.class);
+
+	private final JournalFolder _folder;
+	private final TrashHelper _trashHelper;
 
 }

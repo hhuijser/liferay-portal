@@ -182,6 +182,9 @@ public class KBArticleAssetRendererFactory
 		_kbArticleLocalService = kbArticleLocalService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		KBArticleAssetRendererFactory.class);
+
 	private KBArticleLocalService _kbArticleLocalService;
 
 	@Reference(
@@ -199,8 +202,5 @@ public class KBArticleAssetRendererFactory
 	private PortletResourcePermission _portletResourcePermission;
 
 	private ServletContext _servletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		KBArticleAssetRendererFactory.class);
 
 }

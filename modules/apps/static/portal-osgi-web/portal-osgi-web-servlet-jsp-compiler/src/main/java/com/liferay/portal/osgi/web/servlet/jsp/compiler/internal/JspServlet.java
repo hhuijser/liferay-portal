@@ -456,6 +456,8 @@ public class JspServlet extends HttpServlet {
 	private static final String _WORK_DIR = StringBundler.concat(
 		PropsValues.LIFERAY_HOME, File.separator, "work", File.separator);
 
+	private static final Log _log = LogFactoryUtil.getLog(JspServlet.class);
+
 	private static final Properties _initParams = PropsUtil.getProperties(
 		"jsp.servlet.init.param.", true);
 	private static final Bundle _jspBundle = FrameworkUtil.getBundle(
@@ -918,7 +920,5 @@ public class JspServlet extends HttpServlet {
 		private final String _servletContextName;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(JspServlet.class);
 
 }

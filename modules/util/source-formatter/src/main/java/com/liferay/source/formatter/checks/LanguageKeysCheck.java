@@ -500,6 +500,9 @@ public class LanguageKeysCheck extends BaseFileCheck {
 		return _portalLanguageProperties;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LanguageKeysCheck.class);
+
 	private static final Pattern _applyLangMergerPluginPattern =
 		Pattern.compile(
 			"^apply[ \t]+plugin[ \t]*:[ \t]+\"com.liferay.lang.merger\"$",
@@ -513,8 +516,5 @@ public class LanguageKeysCheck extends BaseFileCheck {
 		Pattern.compile("@Meta\\.(?:AD|OCD)\\([^\\{]*?name\\s*=\\s*\"(.+?)\"");
 
 	private Properties _portalLanguageProperties;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LanguageKeysCheck.class);
 
 }

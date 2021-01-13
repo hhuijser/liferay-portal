@@ -257,8 +257,9 @@ public class JavaSourceUtil extends SourceUtil {
 		return null;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(JavaSourceUtil.class);
+
 	private static final Pattern _packagePattern = Pattern.compile(
 		"(\n|^)\\s*package (.*);\n");
-	private static final Log _log = LogFactoryUtil.getLog(JavaSourceUtil.class);
 
 }

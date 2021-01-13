@@ -170,10 +170,10 @@ public class RepositoryModelSizeComparator<T> extends OrderByComparator<T> {
 		}
 	}
 
-	private final boolean _ascending;
-	private final boolean _orderByModel;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		RepositoryModelSizeComparator.class);
+
+	private final boolean _ascending;
+	private final boolean _orderByModel;
 
 }

@@ -456,6 +456,9 @@ public class DLFileEntryTypeStagedModelDataHandler
 	protected void setVerifyProcessCompletionMarker(Object object) {
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLFileEntryTypeStagedModelDataHandler.class);
+
 	private DDMStructureLocalService _ddmStructureLocalService;
 	private DLFileEntryTypeLocalService _dlFileEntryTypeLocalService;
 
@@ -463,8 +466,5 @@ public class DLFileEntryTypeStagedModelDataHandler
 	private GroupLocalService _groupLocalService;
 
 	private UserLocalService _userLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DLFileEntryTypeStagedModelDataHandler.class);
 
 }

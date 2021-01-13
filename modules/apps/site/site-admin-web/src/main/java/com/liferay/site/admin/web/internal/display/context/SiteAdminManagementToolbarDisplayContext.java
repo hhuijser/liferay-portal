@@ -224,9 +224,9 @@ public class SiteAdminManagementToolbarDisplayContext
 		return true;
 	}
 
-	private final SiteAdminDisplayContext _siteAdminDisplayContext;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		SiteAdminManagementToolbarDisplayContext.class);
+
+	private final SiteAdminDisplayContext _siteAdminDisplayContext;
 
 }

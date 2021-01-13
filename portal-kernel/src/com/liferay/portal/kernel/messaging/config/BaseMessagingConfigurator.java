@@ -390,6 +390,9 @@ public abstract class BaseMessagingConfigurator
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseMessagingConfigurator.class);
+
 	private final Set<DestinationConfiguration> _destinationConfigurations =
 		new HashSet<>();
 	private final Map<String, List<DestinationEventListener>>
@@ -441,8 +444,5 @@ public abstract class BaseMessagingConfigurator
 		private final List<MessageListener> _messageListeners;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseMessagingConfigurator.class);
 
 }

@@ -186,6 +186,9 @@ public class AddLayoutSiteNavigationMenuItemMVCActionCommand
 			actionRequest, actionResponse, jsonObject);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AddLayoutSiteNavigationMenuItemMVCActionCommand.class);
+
 	@Reference
 	private LayoutLocalService _layoutLocalService;
 
@@ -194,8 +197,5 @@ public class AddLayoutSiteNavigationMenuItemMVCActionCommand
 
 	@Reference
 	private SiteNavigationMenuItemService _siteNavigationMenuItemService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AddLayoutSiteNavigationMenuItemMVCActionCommand.class);
 
 }

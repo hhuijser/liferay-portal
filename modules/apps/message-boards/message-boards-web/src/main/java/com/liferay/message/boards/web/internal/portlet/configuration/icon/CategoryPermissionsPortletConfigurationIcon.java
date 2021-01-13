@@ -137,13 +137,13 @@ public class CategoryPermissionsPortletConfigurationIcon
 		return true;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CategoryPermissionsPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
 	)
 	private ModelResourcePermission<MBCategory>
 		_categoryModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CategoryPermissionsPortletConfigurationIcon.class);
 
 }

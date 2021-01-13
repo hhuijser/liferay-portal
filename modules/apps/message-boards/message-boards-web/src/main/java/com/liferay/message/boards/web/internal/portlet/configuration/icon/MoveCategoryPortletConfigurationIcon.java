@@ -134,6 +134,9 @@ public class MoveCategoryPortletConfigurationIcon
 		return categoryId;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MoveCategoryPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
 	)
@@ -142,8 +145,5 @@ public class MoveCategoryPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MoveCategoryPortletConfigurationIcon.class);
 
 }

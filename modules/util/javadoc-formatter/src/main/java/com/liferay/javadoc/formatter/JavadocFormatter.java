@@ -2358,6 +2358,9 @@ public class JavadocFormatter {
 		Files.write(file.toPath(), s.getBytes(StandardCharsets.UTF_8));
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavadocFormatter.class);
+
 	private static final Pattern _paragraphTagPattern = Pattern.compile(
 		"(^.*?(?=\n\n|$)+|(?<=<p>\n).*?(?=\n</p>))", Pattern.DOTALL);
 
@@ -2377,8 +2380,5 @@ public class JavadocFormatter {
 	private final String _outputFilePrefix;
 	private String _packagePath;
 	private final boolean _updateJavadocs;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JavadocFormatter.class);
 
 }

@@ -205,6 +205,9 @@ public class AssetPublisherViewContentDisplayContext {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetPublisherViewContentDisplayContext.class);
+
 	private AssetEntry _assetEntry;
 	private Long _assetEntryId;
 	private AssetRenderer<?> _assetRenderer;
@@ -217,8 +220,5 @@ public class AssetPublisherViewContentDisplayContext {
 	private String _type;
 	private String _urlTitle;
 	private String _viewMode;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetPublisherViewContentDisplayContext.class);
 
 }

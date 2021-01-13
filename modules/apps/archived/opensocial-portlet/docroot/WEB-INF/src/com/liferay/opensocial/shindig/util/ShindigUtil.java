@@ -473,6 +473,8 @@ public class ShindigUtil {
 
 	private static final String _TABLE_OPEN_SOCIAL = "OPEN_SOCIAL_DATA_";
 
+	private static final Log _log = LogFactoryUtil.getLog(ShindigUtil.class);
+
 	@Inject
 	private static BasicSecurityTokenCodec _basicSecurityTokenCodec;
 
@@ -491,6 +493,5 @@ public class ShindigUtil {
 	private static final ThreadLocal<String> _scheme =
 		new CentralizedThreadLocal<>(
 			ShindigUtil.class + "._scheme", () -> StringPool.BLANK);
-	private static final Log _log = LogFactoryUtil.getLog(ShindigUtil.class);
 
 }

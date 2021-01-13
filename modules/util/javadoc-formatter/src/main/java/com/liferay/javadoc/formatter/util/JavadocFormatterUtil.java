@@ -369,11 +369,12 @@ public class JavadocFormatterUtil {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavadocFormatterUtil.class);
+
 	private static final Pattern _deprecatedVersionPattern = Pattern.compile(
 		"As of (\\w+ \\([\\w.]+\\))");
 	private static final Pattern _packagePattern = Pattern.compile(
 		"(\n|^)\\s*package (.*);\n");
-	private static final Log _log = LogFactoryUtil.getLog(
-		JavadocFormatterUtil.class);
 
 }

@@ -242,14 +242,14 @@ public class AlloyEditorBBCodeConfigContributor
 
 	private static final int _CKEDITOR_STYLE_INLINE = 2;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AlloyEditorBBCodeConfigContributor.class);
+
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(bundle.symbolic.name=com.liferay.frontend.editor.lang)"
 	)
 	private volatile ResourceBundleLoader _resourceBundleLoader;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AlloyEditorBBCodeConfigContributor.class);
 
 }

@@ -109,13 +109,13 @@ public class EditNodePortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditNodePortletConfigurationIcon.class);
+
 	@Reference
 	private Portal _portal;
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiNode)")
 	private ModelResourcePermission<WikiNode> _wikiNodeModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditNodePortletConfigurationIcon.class);
 
 }

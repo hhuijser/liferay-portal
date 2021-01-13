@@ -53,6 +53,8 @@ public class StoreProvider {
 		_serviceTracker.close();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(StoreProvider.class);
+
 	private BundleContext _bundleContext;
 
 	@Reference
@@ -113,7 +115,5 @@ public class StoreProvider {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(StoreProvider.class);
 
 }

@@ -294,6 +294,8 @@ public class DDLXLSExporter extends BaseDDLExporter {
 		_storageEngine = storageEngine;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(DDLXLSExporter.class);
+
 	private DDLRecordLocalService _ddlRecordLocalService;
 	private DDLRecordSetService _ddlRecordSetService;
 	private DDLRecordSetVersionService _ddlRecordSetVersionService;
@@ -301,7 +303,5 @@ public class DDLXLSExporter extends BaseDDLExporter {
 	private DDMFormFieldValueRendererRegistry
 		_ddmFormFieldValueRendererRegistry;
 	private StorageEngine _storageEngine;
-
-	private static final Log _log = LogFactoryUtil.getLog(DDLXLSExporter.class);
 
 }

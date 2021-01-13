@@ -312,8 +312,9 @@ public class JIRAUtil {
 		System.out.println();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(JIRAUtil.class);
+
 	private static final Pattern _jiraTicketIdPattern = Pattern.compile(
 		"^[A-Z0-9]+-[0-9]+");
-	private static final Log _log = LogFactoryUtil.getLog(JIRAUtil.class);
 
 }

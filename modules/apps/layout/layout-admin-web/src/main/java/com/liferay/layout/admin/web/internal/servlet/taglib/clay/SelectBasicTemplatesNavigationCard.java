@@ -119,13 +119,13 @@ public class SelectBasicTemplatesNavigationCard implements NavigationCard {
 		return true;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectBasicTemplatesNavigationCard.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutTypeController _layoutTypeController;
 	private final RenderResponse _renderResponse;
 	private final ThemeDisplay _themeDisplay;
 	private final String _type;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SelectBasicTemplatesNavigationCard.class);
 
 }

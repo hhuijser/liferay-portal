@@ -79,10 +79,10 @@ public class PortletDataHandlerProviderImpl
 		}
 	}
 
-	@Reference
-	private PortletLocalService _portletLocalService;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortletDataHandlerProviderImpl.class);
+
+	@Reference
+	private PortletLocalService _portletLocalService;
 
 }

@@ -327,8 +327,9 @@ public class PluginsGitSvnSyncer {
 
 	private static final String _SVN_SET_IGNORES = "svn propset svn:ignore ";
 
-	private static final FileImpl _fileImpl = FileImpl.getInstance();
 	private static final Log _log = LogFactoryUtil.getLog(
 		PluginsGitSvnSyncer.class);
+
+	private static final FileImpl _fileImpl = FileImpl.getInstance();
 
 }

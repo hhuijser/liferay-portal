@@ -275,13 +275,13 @@ public class DDMFormFactoryHelper {
 		_DDM_FORM_FIELD_ANNOTATION =
 			com.liferay.dynamic.data.mapping.annotations.DDMFormField.class;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMFormFactoryHelper.class);
+
 	private final Set<Locale> _availableLocales;
 	private final Class<?> _clazz;
 	private final DDMForm _ddmForm;
 	private final Locale _defaultLocale;
 	private Map<Locale, ResourceBundle> _resourceBundles;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DDMFormFactoryHelper.class);
 
 }

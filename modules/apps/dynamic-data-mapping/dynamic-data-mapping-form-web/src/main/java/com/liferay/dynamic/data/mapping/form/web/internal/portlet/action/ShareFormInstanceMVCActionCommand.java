@@ -89,13 +89,13 @@ public class ShareFormInstanceMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ShareFormInstanceMVCActionCommand.class);
+
 	@Reference
 	private DDMFormInstanceService _ddmFormInstanceService;
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ShareFormInstanceMVCActionCommand.class);
 
 }

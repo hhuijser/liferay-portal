@@ -167,6 +167,9 @@ public class DeleteNodePortletConfigurationIcon
 		_wikiNodeService = wikiNodeService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeleteNodePortletConfigurationIcon.class);
+
 	@Reference
 	private Portal _portal;
 
@@ -177,8 +180,5 @@ public class DeleteNodePortletConfigurationIcon
 	private ModelResourcePermission<WikiNode> _wikiNodeModelResourcePermission;
 
 	private WikiNodeService _wikiNodeService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DeleteNodePortletConfigurationIcon.class);
 
 }

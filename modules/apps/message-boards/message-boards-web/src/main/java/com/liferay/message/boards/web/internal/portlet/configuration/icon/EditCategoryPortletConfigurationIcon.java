@@ -134,6 +134,9 @@ public class EditCategoryPortletConfigurationIcon
 		return categoryId;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditCategoryPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
 	)
@@ -142,8 +145,5 @@ public class EditCategoryPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditCategoryPortletConfigurationIcon.class);
 
 }

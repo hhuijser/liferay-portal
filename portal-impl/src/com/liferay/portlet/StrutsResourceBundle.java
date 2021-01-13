@@ -105,6 +105,9 @@ public class StrutsResourceBundle extends ResourceBundle {
 		return StringBundler.concat(key, StringPool.PERIOD, _portletName);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		StrutsResourceBundle.class);
+
 	private static final Set<String> _keys = SetUtil.fromArray(
 		new String[] {
 			JavaConstants.JAVAX_PORTLET_DESCRIPTION,
@@ -116,8 +119,5 @@ public class StrutsResourceBundle extends ResourceBundle {
 
 	private final Locale _locale;
 	private final String _portletName;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		StrutsResourceBundle.class);
 
 }

@@ -241,6 +241,9 @@ public class EditLayoutModeProductNavigationControlMenuEntry
 		return url;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditLayoutModeProductNavigationControlMenuEntry.class);
+
 	@Reference
 	private Http _http;
 
@@ -258,8 +261,5 @@ public class EditLayoutModeProductNavigationControlMenuEntry
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditLayoutModeProductNavigationControlMenuEntry.class);
 
 }

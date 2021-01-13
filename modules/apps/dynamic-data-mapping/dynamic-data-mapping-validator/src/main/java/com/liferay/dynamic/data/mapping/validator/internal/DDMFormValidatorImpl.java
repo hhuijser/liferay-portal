@@ -473,6 +473,9 @@ public class DDMFormValidatorImpl implements DDMFormValidator {
 		StringPool.BLANK, "keyword", "none", "text"
 	};
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMFormValidatorImpl.class);
+
 	private static final Pattern _ddmFormFieldNamePattern = Pattern.compile(
 		"([^\\p{Punct}|\\p{Space}$]|_)+");
 	private static final Pattern _ddmFormFieldTypePattern = Pattern.compile(
@@ -480,8 +483,5 @@ public class DDMFormValidatorImpl implements DDMFormValidator {
 
 	private DDMExpressionFactory _ddmExpressionFactory;
 	private DDMFormFieldTypeServicesTracker _ddmFormFieldTypeServicesTracker;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DDMFormValidatorImpl.class);
 
 }

@@ -734,6 +734,9 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			getPermissionChecker(), fileEntryId, ActionKeys.OVERRIDE_CHECKOUT);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLFileEntryServiceImpl.class);
+
 	private static volatile ModelResourcePermission<DLFileEntry>
 		_dlFileEntryModelResourcePermission =
 			ModelResourcePermissionFactory.getInstance(
@@ -749,7 +752,5 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			ModelResourcePermissionFactory.getInstance(
 				DLFileEntryServiceImpl.class, "_folderModelResourcePermission",
 				Folder.class);
-	private static final Log _log = LogFactoryUtil.getLog(
-		DLFileEntryServiceImpl.class);
 
 }

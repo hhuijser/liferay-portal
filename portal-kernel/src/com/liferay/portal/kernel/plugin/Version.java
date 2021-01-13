@@ -411,6 +411,8 @@ public class Version implements Comparable<Version>, Serializable {
 
 	private static final String _SEPARATOR = StringPool.PERIOD;
 
+	private static final Log _log = LogFactoryUtil.getLog(Version.class);
+
 	private static final Map<String, Version> _versions =
 		new ConcurrentHashMap<>();
 
@@ -419,7 +421,5 @@ public class Version implements Comparable<Version>, Serializable {
 	private String _major;
 	private String _minor;
 	private String _qualifier;
-
-	private static final Log _log = LogFactoryUtil.getLog(Version.class);
 
 }

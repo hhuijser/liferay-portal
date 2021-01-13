@@ -89,9 +89,9 @@ public class StructureLinkStructureNameComparator
 		return _ascending;
 	}
 
-	private final boolean _ascending;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		StructureLinkStructureNameComparator.class);
+
+	private final boolean _ascending;
 
 }

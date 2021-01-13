@@ -160,6 +160,9 @@ public class DeletePagePortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeletePagePortletConfigurationIcon.class);
+
 	@Reference
 	private Portal _portal;
 
@@ -168,8 +171,5 @@ public class DeletePagePortletConfigurationIcon
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiPage)")
 	private ModelResourcePermission<WikiPage> _wikiPageModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DeletePagePortletConfigurationIcon.class);
 
 }

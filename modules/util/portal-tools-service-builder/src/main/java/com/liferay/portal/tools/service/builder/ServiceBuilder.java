@@ -7843,6 +7843,8 @@ public class ServiceBuilder {
 	private static final String _TPL_ROOT =
 		"com/liferay/portal/tools/service/builder/dependencies/";
 
+	private static final Log _log = LogFactoryUtil.getLog(ServiceBuilder.class);
+
 	private static Pattern _beansAttributePattern = Pattern.compile(
 		"\\s+([^=]*)=\\s*\"([^\"]*)\"");
 	private static Pattern _beansPattern = Pattern.compile("<beans[^>]*>");
@@ -7959,7 +7961,5 @@ public class ServiceBuilder {
 	private String _tplUADExporter = _TPL_ROOT + "uad_exporter.ftl";
 	private Map<String, List<Entity>> _uadApplicationEntities = new HashMap<>();
 	private String _uadDirName;
-
-	private static final Log _log = LogFactoryUtil.getLog(ServiceBuilder.class);
 
 }

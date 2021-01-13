@@ -132,6 +132,9 @@ public class JournalFolderAssetRendererFactory
 		_journalFolderLocalService = journalFolderLocalService;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalFolderAssetRendererFactory.class);
+
 	private JournalFolderLocalService _journalFolderLocalService;
 
 	@Reference(
@@ -144,8 +147,5 @@ public class JournalFolderAssetRendererFactory
 
 	@Reference
 	private TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalFolderAssetRendererFactory.class);
 
 }

@@ -160,6 +160,9 @@ public class LocalProcessExecutor implements ProcessExecutor {
 		return defaultNoticeableFuture;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LocalProcessExecutor.class);
+
 	private class SubprocessReactor<T extends Serializable>
 		implements Callable<T> {
 
@@ -352,8 +355,5 @@ public class LocalProcessExecutor implements ProcessExecutor {
 		private final ClassLoader _reactClassLoader;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LocalProcessExecutor.class);
 
 }

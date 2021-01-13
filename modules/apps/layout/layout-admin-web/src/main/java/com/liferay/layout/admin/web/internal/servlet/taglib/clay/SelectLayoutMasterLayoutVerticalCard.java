@@ -134,12 +134,12 @@ public class SelectLayoutMasterLayoutVerticalCard implements VerticalCard {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectLayoutMasterLayoutVerticalCard.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private final RenderResponse _renderResponse;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SelectLayoutMasterLayoutVerticalCard.class);
 
 }

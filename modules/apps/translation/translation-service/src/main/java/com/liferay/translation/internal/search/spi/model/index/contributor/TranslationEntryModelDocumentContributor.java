@@ -90,10 +90,10 @@ public class TranslationEntryModelDocumentContributor
 		}
 	}
 
-	@Reference
-	private Portal _portal;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		TranslationEntryModelDocumentContributor.class);
+
+	@Reference
+	private Portal _portal;
 
 }

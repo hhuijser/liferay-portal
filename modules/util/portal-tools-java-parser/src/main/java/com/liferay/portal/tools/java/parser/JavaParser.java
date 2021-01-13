@@ -1286,6 +1286,8 @@ public class JavaParser {
 		return parsedJavaClass;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(JavaParser.class);
+
 	private static class ContentModifications {
 
 		public void addInsertLineBreakLineNumber(int lineNumber) {
@@ -1325,7 +1327,5 @@ public class JavaParser {
 		private final Map<Integer, Tuple> _replaceContentMap = new HashMap<>();
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(JavaParser.class);
 
 }

@@ -220,13 +220,13 @@ public class MasterLayoutVerticalCard
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MasterLayoutVerticalCard.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MasterLayoutVerticalCard.class);
 
 }

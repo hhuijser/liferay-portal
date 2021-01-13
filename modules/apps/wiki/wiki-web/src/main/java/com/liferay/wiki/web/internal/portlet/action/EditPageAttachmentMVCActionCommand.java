@@ -420,6 +420,9 @@ public class EditPageAttachmentMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditPageAttachmentMVCActionCommand.class);
+
 	private volatile DLConfiguration _dlConfiguration;
 
 	@Reference
@@ -442,8 +445,5 @@ public class EditPageAttachmentMVCActionCommand extends BaseMVCActionCommand {
 
 	@Reference
 	private WikiPageService _wikiPageService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditPageAttachmentMVCActionCommand.class);
 
 }

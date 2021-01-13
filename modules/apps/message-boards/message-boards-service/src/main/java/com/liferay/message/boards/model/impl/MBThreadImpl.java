@@ -206,8 +206,8 @@ public class MBThreadImpl extends MBThreadBaseImpl {
 		return false;
 	}
 
-	private long _attachmentsFolderId;
-
 	private static final Log _log = LogFactoryUtil.getLog(MBThreadImpl.class);
+
+	private long _attachmentsFolderId;
 
 }

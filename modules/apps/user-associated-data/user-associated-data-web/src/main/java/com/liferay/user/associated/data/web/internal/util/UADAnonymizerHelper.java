@@ -183,6 +183,9 @@ public class UADAnonymizerHelper {
 		return anonymousUser;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UADAnonymizerHelper.class);
+
 	@Reference
 	private AnonymousUserConfigurationRetriever
 		_anonymousUserConfigurationRetriever;
@@ -198,8 +201,5 @@ public class UADAnonymizerHelper {
 
 	@Reference
 	private UserLocalService _userLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UADAnonymizerHelper.class);
 
 }

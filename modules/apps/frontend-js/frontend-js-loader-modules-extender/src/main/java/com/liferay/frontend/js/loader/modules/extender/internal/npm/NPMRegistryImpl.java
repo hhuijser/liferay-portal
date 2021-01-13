@@ -532,6 +532,9 @@ public class NPMRegistryImpl implements NPMRegistry {
 	private static final JSPackage _NULL_JS_PACKAGE =
 		ProxyFactory.newDummyInstance(JSPackage.class);
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		NPMRegistryImpl.class);
+
 	private static final ThreadLocal<Boolean> _activationThreadLocal =
 		new CentralizedThreadLocal<>(
 			NPMRegistryImpl.class.getName() + "._activationThreadLocal",
@@ -635,8 +638,5 @@ public class NPMRegistryImpl implements NPMRegistry {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NPMRegistryImpl.class);
 
 }

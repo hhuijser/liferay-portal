@@ -135,7 +135,8 @@ public class JS {
 		return sb.toString();
 	}
 
-	private static final Pattern _pattern = Pattern.compile("%u[0-9a-fA-F]{4}");
 	private static final Log _log = LogFactoryUtil.getLog(JS.class);
+
+	private static final Pattern _pattern = Pattern.compile("%u[0-9a-fA-F]{4}");
 
 }

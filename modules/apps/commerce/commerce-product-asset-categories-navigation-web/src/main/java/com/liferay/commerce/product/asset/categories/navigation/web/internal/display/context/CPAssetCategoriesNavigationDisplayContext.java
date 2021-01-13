@@ -360,6 +360,9 @@ public class CPAssetCategoriesNavigationDisplayContext {
 		return assetCategory;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPAssetCategoriesNavigationDisplayContext.class);
+
 	private List<AssetCategory> _assetCategories;
 	private final AssetCategoryService _assetCategoryService;
 	private List<AssetVocabulary> _assetVocabularies;
@@ -373,8 +376,5 @@ public class CPAssetCategoriesNavigationDisplayContext {
 	private final FriendlyURLEntryLocalService _friendlyURLEntryLocalService;
 	private final HttpServletRequest _httpServletRequest;
 	private final Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CPAssetCategoriesNavigationDisplayContext.class);
 
 }

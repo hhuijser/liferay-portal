@@ -188,6 +188,9 @@ public class InfoListProviderItemsDisplayContext {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		InfoListProviderItemsDisplayContext.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private InfoItemFieldValuesProvider<Object> _infoItemFieldValuesProvider;
 	private final InfoItemServiceTracker _infoItemServiceTracker;
@@ -198,8 +201,5 @@ public class InfoListProviderItemsDisplayContext {
 	private final RenderResponse _renderResponse;
 	private Boolean _showActions;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		InfoListProviderItemsDisplayContext.class);
 
 }

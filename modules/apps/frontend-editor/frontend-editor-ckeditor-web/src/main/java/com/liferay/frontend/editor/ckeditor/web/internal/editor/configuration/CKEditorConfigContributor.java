@@ -261,14 +261,14 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 		return jsonArray;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CKEditorConfigContributor.class);
+
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(bundle.symbolic.name=com.liferay.frontend.editor.lang)"
 	)
 	private volatile ResourceBundleLoader _resourceBundleLoader;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CKEditorConfigContributor.class);
 
 }

@@ -289,12 +289,12 @@ public class SyncJSONFilter implements Filter {
 
 	private static final int _ABSOLUTE_SYNC_CLIENT_MIN_BUILD_IOS = 7;
 
+	private static final Log _log = LogFactoryUtil.getLog(SyncJSONFilter.class);
+
 	@Reference
 	private Portal _portal;
 
 	@Reference
 	private SyncHelper _syncHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(SyncJSONFilter.class);
 
 }

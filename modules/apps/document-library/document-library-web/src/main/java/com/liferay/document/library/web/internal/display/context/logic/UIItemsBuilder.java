@@ -1286,6 +1286,8 @@ public class UIItemsBuilder {
 		return _trashEnabled;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(UIItemsBuilder.class);
+
 	private String _currentURL;
 	private final DLTrashHelper _dlTrashHelper;
 	private final DLURLHelper _dlURLHelper;
@@ -1303,7 +1305,5 @@ public class UIItemsBuilder {
 	private final ThemeDisplay _themeDisplay;
 	private Boolean _trashEnabled;
 	private final VersioningStrategy _versioningStrategy;
-
-	private static final Log _log = LogFactoryUtil.getLog(UIItemsBuilder.class);
 
 }

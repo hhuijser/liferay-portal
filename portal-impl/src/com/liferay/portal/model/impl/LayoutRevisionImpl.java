@@ -317,9 +317,9 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 		super.setTypeSettings(_typeSettingsUnicodeProperties.toString());
 	}
 
-	private UnicodeProperties _typeSettingsUnicodeProperties;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		LayoutRevisionImpl.class);
+
+	private UnicodeProperties _typeSettingsUnicodeProperties;
 
 }

@@ -114,13 +114,13 @@ public class EditPagePortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditPagePortletConfigurationIcon.class);
+
 	@Reference
 	private Portal _portal;
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiPage)")
 	private ModelResourcePermission<WikiPage> _wikiPageModelResourcePermission;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EditPagePortletConfigurationIcon.class);
 
 }

@@ -119,13 +119,13 @@ public class AssetInfoEditURLProviderImpl implements AssetInfoEditURLProvider {
 		return StringPool.BLANK;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetInfoEditURLProviderImpl.class);
+
 	@Reference
 	private Http _http;
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetInfoEditURLProviderImpl.class);
 
 }

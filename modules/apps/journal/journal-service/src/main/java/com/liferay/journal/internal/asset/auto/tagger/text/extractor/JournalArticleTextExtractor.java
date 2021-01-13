@@ -83,6 +83,9 @@ public class JournalArticleTextExtractor
 		return JournalArticle.class.getName();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleTextExtractor.class);
+
 	@Reference
 	private DDMIndexer _ddmIndexer;
 
@@ -97,8 +100,5 @@ public class JournalArticleTextExtractor
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleTextExtractor.class);
 
 }

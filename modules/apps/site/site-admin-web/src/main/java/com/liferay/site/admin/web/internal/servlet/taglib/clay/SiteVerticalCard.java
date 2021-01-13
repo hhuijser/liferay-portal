@@ -152,14 +152,14 @@ public class SiteVerticalCard extends BaseBaseClayCard implements VerticalCard {
 		return _group.getName(_themeDisplay.getLocale());
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SiteVerticalCard.class);
+
 	private final Group _group;
 	private final HttpServletRequest _httpServletRequest;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private final SiteAdminDisplayContext _siteAdminDisplayContext;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SiteVerticalCard.class);
 
 }

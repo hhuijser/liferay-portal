@@ -155,9 +155,9 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 			StringPool.BLANK);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(EntriesChecker.class);
+
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private final PermissionChecker _permissionChecker;
-
-	private static final Log _log = LogFactoryUtil.getLog(EntriesChecker.class);
 
 }

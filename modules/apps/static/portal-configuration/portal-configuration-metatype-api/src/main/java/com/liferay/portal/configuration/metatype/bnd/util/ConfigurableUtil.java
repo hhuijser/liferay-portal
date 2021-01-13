@@ -210,8 +210,10 @@ public class ConfigurableUtil {
 			className, CharPool.PERIOD, CharPool.FORWARD_SLASH);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurableUtil.class);
+
 	private static final Method _defineClassMethod;
-	private static final Method _findLoadedClassMethod;
 
 	static {
 		try {
@@ -226,7 +228,6 @@ public class ConfigurableUtil {
 		}
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		ConfigurableUtil.class);
+	private static final Method _findLoadedClassMethod;
 
 }

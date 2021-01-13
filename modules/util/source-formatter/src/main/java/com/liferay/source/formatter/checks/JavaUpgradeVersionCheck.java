@@ -512,6 +512,9 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	private static final String _JAVA_UPGRADE_PROCESS_EXCLUDES =
 		"java.upgrade.process.excludes";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavaUpgradeVersionCheck.class);
+
 	private static final Pattern _addColumnPattern = Pattern.compile(
 		"alter table \\w+ add ");
 	private static final Pattern _alterColumnTypePattern = Pattern.compile(
@@ -522,7 +525,5 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 		"alter table \\w+ drop column");
 	private static final Pattern _tableNamePattern = Pattern.compile(
 		"String TABLE_NAME =\\s+\"(.+)\";");
-	private static final Log _log = LogFactoryUtil.getLog(
-		JavaUpgradeVersionCheck.class);
 
 }

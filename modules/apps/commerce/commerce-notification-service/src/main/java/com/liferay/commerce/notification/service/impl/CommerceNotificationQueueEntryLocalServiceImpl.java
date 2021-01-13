@@ -344,10 +344,10 @@ public class CommerceNotificationQueueEntryLocalServiceImpl
 			commerceNotificationQueueEntry);
 	}
 
-	@ServiceReference(type = MailService.class)
-	private MailService _mailService;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		CommerceNotificationQueueEntryLocalServiceImpl.class);
+
+	@ServiceReference(type = MailService.class)
+	private MailService _mailService;
 
 }

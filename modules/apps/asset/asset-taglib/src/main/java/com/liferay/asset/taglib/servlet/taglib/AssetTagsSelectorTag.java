@@ -349,6 +349,9 @@ public class AssetTagsSelectorTag extends IncludeTag {
 
 	private static final String _PAGE = "/asset_tags_selector/page.jsp";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetTagsSelectorTag.class);
+
 	private String _addCallback;
 	private boolean _allowAddEntry = true;
 	private boolean _autoFocus;
@@ -362,8 +365,5 @@ public class AssetTagsSelectorTag extends IncludeTag {
 	private String _removeCallback;
 	private boolean _showSelectButton = true;
 	private String _tagNames;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetTagsSelectorTag.class);
 
 }

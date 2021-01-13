@@ -111,13 +111,13 @@ public class AddSiteNavigationMenuItemMVCActionCommand
 			actionRequest, actionResponse, jsonObject);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AddSiteNavigationMenuItemMVCActionCommand.class);
+
 	@Reference
 	private Portal _portal;
 
 	@Reference
 	private SiteNavigationMenuItemService _siteNavigationMenuItemService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AddSiteNavigationMenuItemMVCActionCommand.class);
 
 }

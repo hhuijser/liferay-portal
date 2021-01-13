@@ -165,6 +165,9 @@ public class CategorySubscriptionPortletConfigurationIcon
 			MBCategory.class.getName(), category.getCategoryId());
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CategorySubscriptionPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
 	)
@@ -175,8 +178,5 @@ public class CategorySubscriptionPortletConfigurationIcon
 	private Portal _portal;
 
 	private SubscriptionLocalService _subscriptionLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CategorySubscriptionPortletConfigurationIcon.class);
 
 }

@@ -97,6 +97,9 @@ public class DataRecordExporter {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DataRecordExporter.class);
+
 	private final DataDefinitionContentTypeTracker
 		_dataDefinitionContentTypeTracker;
 	private final DDLRecordSetLocalService _ddlRecordSetLocalService;
@@ -105,8 +108,5 @@ public class DataRecordExporter {
 	private final DDMStructureLayoutLocalService
 		_ddmStructureLayoutLocalService;
 	private final SPIDDMFormRuleConverter _spiDDMFormRuleConverter;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DataRecordExporter.class);
 
 }

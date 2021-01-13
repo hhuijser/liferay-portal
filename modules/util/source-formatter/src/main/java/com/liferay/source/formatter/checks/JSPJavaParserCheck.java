@@ -61,9 +61,10 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private static final Pattern _javaSourcePattern = Pattern.compile(
-		"\n(\t*)(.*)<%=?\n(((?!%>)[\\s\\S])*)\n\t*%>");
 	private static final Log _log = LogFactoryUtil.getLog(
 		JSPJavaParserCheck.class);
+
+	private static final Pattern _javaSourcePattern = Pattern.compile(
+		"\n(\t*)(.*)<%=?\n(((?!%>)[\\s\\S])*)\n\t*%>");
 
 }

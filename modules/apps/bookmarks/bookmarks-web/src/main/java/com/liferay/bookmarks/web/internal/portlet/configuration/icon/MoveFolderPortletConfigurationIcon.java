@@ -124,6 +124,9 @@ public class MoveFolderPortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MoveFolderPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.bookmarks.model.BookmarksFolder)"
 	)
@@ -132,8 +135,5 @@ public class MoveFolderPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MoveFolderPortletConfigurationIcon.class);
 
 }

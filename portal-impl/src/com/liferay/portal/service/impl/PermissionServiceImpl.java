@@ -229,6 +229,9 @@ public class PermissionServiceImpl extends PermissionServiceBaseImpl {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PermissionServiceImpl.class);
+
 	private static final ServiceTrackerMap<String, BaseModelPermissionChecker>
 		_baseModelPermissionCheckers =
 			ServiceTrackerCollections.openSingleValueMap(
@@ -238,7 +241,5 @@ public class PermissionServiceImpl extends PermissionServiceBaseImpl {
 			(Class<ModelResourcePermission<?>>)
 				(Class<?>)ModelResourcePermission.class,
 			"model.class.name");
-	private static final Log _log = LogFactoryUtil.getLog(
-		PermissionServiceImpl.class);
 
 }

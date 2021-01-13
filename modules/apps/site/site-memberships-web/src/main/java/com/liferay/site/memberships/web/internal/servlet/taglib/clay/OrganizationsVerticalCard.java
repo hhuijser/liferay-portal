@@ -116,13 +116,13 @@ public class OrganizationsVerticalCard
 		return _organization.getName();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		OrganizationsVerticalCard.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private final Organization _organization;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final boolean _showActions;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		OrganizationsVerticalCard.class);
 
 }

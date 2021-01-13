@@ -711,6 +711,8 @@ public class IconTag extends IncludeTag {
 
 	private static final boolean _CLEAN_UP_SET_ATTRIBUTES = true;
 
+	private static final Log _log = LogFactoryUtil.getLog(IconTag.class);
+
 	private String _alt;
 	private String _ariaRole;
 	private String _cssClass;
@@ -735,7 +737,5 @@ public class IconTag extends IncludeTag {
 	private Boolean _toolTip;
 	private String _url;
 	private boolean _useDialog;
-
-	private static final Log _log = LogFactoryUtil.getLog(IconTag.class);
 
 }

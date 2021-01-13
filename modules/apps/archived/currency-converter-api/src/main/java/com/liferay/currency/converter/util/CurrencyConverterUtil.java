@@ -116,14 +116,14 @@ public class CurrencyConverterUtil {
 		_currencyIds.add("ZAR");
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CurrencyConverterUtil.class);
+
 	private static final CurrencyConverterUtil _currencyConverterUtil =
 		new CurrencyConverterUtil();
 	private static final Map<String, Map<String, String>> _symbolsPool =
 		new ConcurrentHashMap<>();
 
 	private final Set<String> _currencyIds;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CurrencyConverterUtil.class);
 
 }

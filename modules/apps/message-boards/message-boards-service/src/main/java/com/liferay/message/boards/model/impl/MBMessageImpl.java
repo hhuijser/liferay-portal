@@ -284,8 +284,8 @@ public class MBMessageImpl extends MBMessageBaseImpl {
 		_attachmentsFolderId = attachmentsFolderId;
 	}
 
-	private long _attachmentsFolderId;
-
 	private static final Log _log = LogFactoryUtil.getLog(MBMessageImpl.class);
+
+	private long _attachmentsFolderId;
 
 }

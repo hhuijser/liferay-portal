@@ -127,6 +127,9 @@ public class GoogleDriveOAuth2Servlet extends HttpServlet {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		GoogleDriveOAuth2Servlet.class);
+
 	private static final long serialVersionUID = 7759897747401129852L;
 
 	@Reference
@@ -134,8 +137,5 @@ public class GoogleDriveOAuth2Servlet extends HttpServlet {
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		GoogleDriveOAuth2Servlet.class);
 
 }

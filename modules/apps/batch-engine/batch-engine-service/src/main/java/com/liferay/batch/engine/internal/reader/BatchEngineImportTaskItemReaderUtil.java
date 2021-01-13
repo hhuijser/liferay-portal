@@ -107,8 +107,9 @@ public class BatchEngineImportTaskItemReaderUtil {
 		return targetFieldNameValueMap;
 	}
 
-	private static final ObjectMapper _objectMapper = new ObjectMapper();
 	private static final Log _log = LogFactoryUtil.getLog(
 		BatchEngineImportTaskItemReaderUtil.class);
+
+	private static final ObjectMapper _objectMapper = new ObjectMapper();
 
 }

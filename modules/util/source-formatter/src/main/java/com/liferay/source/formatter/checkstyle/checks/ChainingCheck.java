@@ -904,8 +904,8 @@ public class ChainingCheck extends BaseCheck {
 	private static final String _REQUIRED_CHAINING_CLASS_FILE_NAMES_KEY =
 		"requiredChainingClassFileNames";
 
-	private Map<String, List<String>> _requiredChainingMethodNamesMap;
-
 	private static final Log _log = LogFactoryUtil.getLog(ChainingCheck.class);
+
+	private Map<String, List<String>> _requiredChainingMethodNamesMap;
 
 }

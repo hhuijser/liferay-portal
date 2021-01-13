@@ -117,12 +117,12 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectBasicTemplatesVerticalCard.class);
+
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private final RenderResponse _renderResponse;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SelectBasicTemplatesVerticalCard.class);
 
 }

@@ -871,6 +871,9 @@ public class DeprecatedUsageCheck extends BaseCheck {
 
 	private static final String _TYPE_UNKNOWN = "unknown";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeprecatedUsageCheck.class);
+
 	private static final Pattern _fieldNamePattern = Pattern.compile(
 		"((.*\\.)?([A-Z]\\w+))\\.(\\w+)");
 
@@ -967,8 +970,5 @@ public class DeprecatedUsageCheck extends BaseCheck {
 		private final List<JavaTerm> _javaMethods = new ArrayList<>();
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DeprecatedUsageCheck.class);
 
 }

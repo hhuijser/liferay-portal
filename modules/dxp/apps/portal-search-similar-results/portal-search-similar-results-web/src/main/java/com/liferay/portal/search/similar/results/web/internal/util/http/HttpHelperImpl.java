@@ -111,8 +111,8 @@ public class HttpHelperImpl implements HttpHelper {
 		_http = http;
 	}
 
-	private Http _http;
-
 	private static final Log _log = LogFactoryUtil.getLog(HttpHelperImpl.class);
+
+	private Http _http;
 
 }

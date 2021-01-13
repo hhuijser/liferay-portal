@@ -201,6 +201,9 @@ public class JournalArticleActivityInterpreter
 		JournalArticle.class.getName()
 	};
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleActivityInterpreter.class);
+
 	private JournalArticleLocalService _journalArticleLocalService;
 
 	@Reference(
@@ -217,8 +220,5 @@ public class JournalArticleActivityInterpreter
 
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleActivityInterpreter.class);
 
 }

@@ -467,9 +467,9 @@ public class TryWithResourcesCheck extends BaseCheck {
 
 	private static final String _POPULATE_TYPE_NAMES_KEY = "populateTypeNames";
 
-	private Tuple _closeableTypeNamesTuple;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		TryWithResourcesCheck.class);
+
+	private Tuple _closeableTypeNamesTuple;
 
 }

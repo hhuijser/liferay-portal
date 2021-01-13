@@ -108,12 +108,12 @@ public class JournalFolderHorizontalCard extends BaseHorizontalCard {
 		return HtmlUtil.escape(_folder.getName());
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalFolderHorizontalCard.class);
+
 	private final String _displayStyle;
 	private final JournalFolder _folder;
 	private final RenderResponse _renderResponse;
 	private final TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalFolderHorizontalCard.class);
 
 }

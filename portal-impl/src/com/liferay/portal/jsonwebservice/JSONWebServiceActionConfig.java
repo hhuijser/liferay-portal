@@ -243,6 +243,9 @@ public class JSONWebServiceActionConfig
 		return sb.toString();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSONWebServiceActionConfig.class);
+
 	private final Class<?> _actionClass;
 	private final Method _actionMethod;
 	private final Object _actionObject;
@@ -253,8 +256,5 @@ public class JSONWebServiceActionConfig
 	private final String _path;
 	private final Method _realActionMethod;
 	private final String _signature;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JSONWebServiceActionConfig.class);
 
 }

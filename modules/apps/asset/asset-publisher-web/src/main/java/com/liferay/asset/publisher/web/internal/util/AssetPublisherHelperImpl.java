@@ -1338,6 +1338,9 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		assetEntryQuery.setNotAnyTagIds(notAnyAssetTagIds);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetPublisherHelperImpl.class);
+
 	@Reference
 	private AssetCategoryLocalService _assetCategoryLocalService;
 
@@ -1378,8 +1381,5 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 
 	@Reference
 	private SegmentsEntryRetriever _segmentsEntryRetriever;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetPublisherHelperImpl.class);
 
 }

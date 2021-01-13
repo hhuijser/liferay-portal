@@ -105,11 +105,11 @@ public class ComponentExecutorFactoryBundleActivator
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ComponentExecutorFactoryBundleActivator.class);
+
 	private ServiceRegistration<DependencyManagerSync>
 		_dependencyManagerSyncServiceRegistration;
 	private ServiceRegistration<ComponentExecutorFactory> _serviceRegistration;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ComponentExecutorFactoryBundleActivator.class);
 
 }

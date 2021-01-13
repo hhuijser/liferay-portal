@@ -140,6 +140,9 @@ public class YouTubeDLVideoExternalShortcutProvider
 		return null;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		YouTubeDLVideoExternalShortcutProvider.class);
+
 	private static final List<Pattern> _urlPatterns = Arrays.asList(
 		Pattern.compile(
 			"https?:\\/\\/(?:www\\.)?youtube\\.com\\/watch\\S*v=([^?&]*)\\S*$"),
@@ -149,8 +152,5 @@ public class YouTubeDLVideoExternalShortcutProvider
 
 	@Reference
 	private Http _http;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		YouTubeDLVideoExternalShortcutProvider.class);
 
 }

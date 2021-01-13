@@ -96,10 +96,10 @@ public class SimilarResultsContributorsRegistryImpl
 		return Optional.of(routeBuilderImpl.build());
 	}
 
-	private Http _http;
-	private SimilarResultsContributorsHolder _similarResultsContributorsHolder;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		SimilarResultsContributorsRegistryImpl.class);
+
+	private Http _http;
+	private SimilarResultsContributorsHolder _similarResultsContributorsHolder;
 
 }

@@ -267,10 +267,11 @@ public class ASMWrapperUtil {
 	private ASMWrapperUtil() {
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(ASMWrapperUtil.class);
+
 	private static final Method _defineClassMethod;
 	private static final Method _equalsMethod;
 	private static final Method _hashCodeMethod;
-	private static final Method _toStringMethod;
 
 	static {
 		try {
@@ -289,6 +290,6 @@ public class ASMWrapperUtil {
 		}
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(ASMWrapperUtil.class);
+	private static final Method _toStringMethod;
 
 }

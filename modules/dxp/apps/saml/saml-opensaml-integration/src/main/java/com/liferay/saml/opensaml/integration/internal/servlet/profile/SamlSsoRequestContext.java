@@ -115,6 +115,9 @@ public class SamlSsoRequestContext implements Serializable {
 		_userId = userId;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SamlSsoRequestContext.class);
+
 	private final String _authnRequestXml;
 	private volatile MessageContext<?> _messageContext;
 	private boolean _newSession;
@@ -124,8 +127,5 @@ public class SamlSsoRequestContext implements Serializable {
 	private int _stage;
 	private long _userId;
 	private final UserLocalService _userLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SamlSsoRequestContext.class);
 
 }

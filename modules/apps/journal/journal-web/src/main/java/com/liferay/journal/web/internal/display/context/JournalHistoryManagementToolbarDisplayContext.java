@@ -197,9 +197,9 @@ public class JournalHistoryManagementToolbarDisplayContext
 		return new String[] {"version", "display-date", "modified-date"};
 	}
 
-	private final JournalArticle _article;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalHistoryManagementToolbarDisplayContext.class);
+
+	private final JournalArticle _article;
 
 }

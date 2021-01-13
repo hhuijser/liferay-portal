@@ -77,13 +77,13 @@ public class LayoutDDMFormFieldValueRenderer
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutDDMFormFieldValueRenderer.class);
+
 	@Reference
 	private JSONFactory _jsonFactory;
 
 	@Reference
 	private LayoutService _layoutService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LayoutDDMFormFieldValueRenderer.class);
 
 }

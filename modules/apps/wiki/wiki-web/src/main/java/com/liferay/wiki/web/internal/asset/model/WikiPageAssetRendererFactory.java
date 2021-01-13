@@ -151,6 +151,9 @@ public class WikiPageAssetRendererFactory
 			permissionChecker, classPK, actionId);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		WikiPageAssetRendererFactory.class);
+
 	@Reference
 	private AssetDisplayPageFriendlyURLProvider
 		_assetDisplayPageFriendlyURLProvider;
@@ -169,8 +172,5 @@ public class WikiPageAssetRendererFactory
 
 	@Reference
 	private WikiPageResourceLocalService _wikiPageResourceLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		WikiPageAssetRendererFactory.class);
 
 }

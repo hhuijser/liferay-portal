@@ -131,6 +131,9 @@ public class SiteVerticalCard implements VerticalCard {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SiteVerticalCard.class);
+
 	private final Group _group;
 	private final int _groupUsersCount;
 	private final HttpServletRequest _httpServletRequest;
@@ -138,8 +141,5 @@ public class SiteVerticalCard implements VerticalCard {
 	private final RenderResponse _renderResponse;
 	private final String _tabs1;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SiteVerticalCard.class);
 
 }

@@ -107,9 +107,10 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 
 	private static final String _MAX_LINE_LENGTH = "maxLineLength";
 
-	private static final Pattern _descriptionPattern = Pattern.compile(
-		"(\n( +)description:(\n\\2 +#.*)*)((\n\\2 +.+)+)");
 	private static final Log _log = LogFactoryUtil.getLog(
 		YMLLongLinesCheck.class);
+
+	private static final Pattern _descriptionPattern = Pattern.compile(
+		"(\n( +)description:(\n\\2 +#.*)*)((\n\\2 +.+)+)");
 
 }

@@ -187,6 +187,9 @@ public class PortalWebResourcesUtil {
 		return path;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortalWebResourcesUtil.class);
+
 	private static final ServiceTrackerMap<String, PortalWebResources>
 		_contextPathServiceTrackerMap =
 			ServiceTrackerCollections.openSingleValueMap(
@@ -201,7 +204,5 @@ public class PortalWebResourcesUtil {
 				ServiceReferenceMapperFactory.create(
 					(portalWebResources, emitter) -> emitter.emit(
 						portalWebResources.getResourceType())));
-	private static final Log _log = LogFactoryUtil.getLog(
-		PortalWebResourcesUtil.class);
 
 }

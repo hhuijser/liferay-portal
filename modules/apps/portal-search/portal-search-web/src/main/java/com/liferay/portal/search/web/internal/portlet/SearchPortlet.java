@@ -172,9 +172,9 @@ public class SearchPortlet extends MVCPortlet {
 	@Reference
 	protected SearchDisplayContextFactory searchDisplayContextFactory;
 
+	private static final Log _log = LogFactoryUtil.getLog(SearchPortlet.class);
+
 	@Reference
 	private Portal _portal;
-
-	private static final Log _log = LogFactoryUtil.getLog(SearchPortlet.class);
 
 }

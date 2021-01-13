@@ -91,11 +91,11 @@ public class AssetRendererVerticalCard implements VerticalCard {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetRendererVerticalCard.class);
+
 	private final AssetRenderer<?> _assetRenderer;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetRendererVerticalCard.class);
 
 }

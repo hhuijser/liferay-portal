@@ -1163,6 +1163,8 @@ public abstract class BaseCheck extends AbstractCheck {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(BaseCheck.class);
+
 	private JSONObject _attributesJSONObject = new JSONObjectImpl();
 	private final Map<String, String> _attributeValueMap =
 		new ConcurrentHashMap<>();
@@ -1193,7 +1195,5 @@ public abstract class BaseCheck extends AbstractCheck {
 		private final String _name;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(BaseCheck.class);
 
 }

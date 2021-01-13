@@ -259,6 +259,9 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 		return new Tuple(defaultInfoItemRenderer);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ContentObjectFragmentRenderer.class);
+
 	@Reference
 	private FragmentEntryConfigurationParser _fragmentEntryConfigurationParser;
 
@@ -267,8 +270,5 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 
 	@Reference
 	private InfoItemServiceTracker _infoItemServiceTracker;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ContentObjectFragmentRenderer.class);
 
 }

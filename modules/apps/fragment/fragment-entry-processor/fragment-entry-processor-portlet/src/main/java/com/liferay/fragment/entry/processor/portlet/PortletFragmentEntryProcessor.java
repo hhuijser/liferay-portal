@@ -526,6 +526,9 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletFragmentEntryProcessor.class);
+
 	@Reference
 	private FragmentEntryLinkLocalService _fragmentEntryLinkLocalService;
 
@@ -551,8 +554,5 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 
 	private final ResourceBundle _resourceBundle = ResourceBundleUtil.getBundle(
 		"content.Language", getClass());
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PortletFragmentEntryProcessor.class);
 
 }

@@ -425,6 +425,9 @@ public class LDAPServerConfigurationProviderImpl
 		super.configurationAdmin = configurationAdmin;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LDAPServerConfigurationProviderImpl.class);
+
 	private final Map
 		<Long,
 		 Map<Long, ObjectValuePair<Configuration, LDAPServerConfiguration>>>
@@ -434,8 +437,5 @@ public class LDAPServerConfigurationProviderImpl
 			LDAPServerConfiguration.class, Collections.emptyMap());
 	private final Map<String, Long> _pidCompanyConfigurations = new HashMap<>();
 	private final Map<String, Long> _pidServerConfigurations = new HashMap<>();
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LDAPServerConfigurationProviderImpl.class);
 
 }

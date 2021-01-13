@@ -203,9 +203,9 @@ public class FragmentCollectionImpl extends FragmentCollectionBaseImpl {
 		}
 	}
 
-	private long _resourcesFolderId;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		FragmentCollectionImpl.class);
+
+	private long _resourcesFolderId;
 
 }

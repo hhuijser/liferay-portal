@@ -379,9 +379,9 @@ public class UserGroupsManagementToolbarDisplayContext
 		return selectURL.toString();
 	}
 
-	private final UserGroupsDisplayContext _userGroupsDisplayContext;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserGroupsManagementToolbarDisplayContext.class);
+
+	private final UserGroupsDisplayContext _userGroupsDisplayContext;
 
 }

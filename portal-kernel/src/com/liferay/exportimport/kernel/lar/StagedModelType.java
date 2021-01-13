@@ -234,13 +234,13 @@ public class StagedModelType {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		StagedModelType.class);
+
 	private String _className;
 	private long _classNameId;
 	private String _classSimpleName;
 	private String _referrerClassName;
 	private long _referrerClassNameId;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		StagedModelType.class);
 
 }

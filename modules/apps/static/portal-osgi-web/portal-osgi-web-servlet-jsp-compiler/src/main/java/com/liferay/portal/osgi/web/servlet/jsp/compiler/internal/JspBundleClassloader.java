@@ -121,9 +121,9 @@ public class JspBundleClassloader extends URLClassLoader {
 		return clazz;
 	}
 
-	private final Bundle[] _bundles;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		JspBundleClassloader.class);
+
+	private final Bundle[] _bundles;
 
 }

@@ -496,6 +496,9 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 		_urlTitleMap = urlTitleMap;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPDefinitionImpl.class);
+
 	private UnicodeProperties
 		_deliverySubscriptionTypeSettingsUnicodeProperties;
 	private Map<Locale, String> _descriptionMap;
@@ -507,8 +510,5 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 	private Map<Locale, String> _shortDescriptionMap;
 	private UnicodeProperties _subscriptionTypeSettingsUnicodeProperties;
 	private Map<Locale, String> _urlTitleMap;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CPDefinitionImpl.class);
 
 }

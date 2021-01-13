@@ -191,13 +191,13 @@ public class ParameterMapInvocationHandler<S> implements InvocationHandler {
 		return constructor.newInstance(_parameterMap.get(method.getName()));
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ParameterMapInvocationHandler.class);
+
 	private final Object _bean;
 	private final Class<?> _clazz;
 	private final Map<String, String[]> _parameterMap;
 	private final String _parameterPrefix;
 	private final String _parameterSuffix;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ParameterMapInvocationHandler.class);
 
 }

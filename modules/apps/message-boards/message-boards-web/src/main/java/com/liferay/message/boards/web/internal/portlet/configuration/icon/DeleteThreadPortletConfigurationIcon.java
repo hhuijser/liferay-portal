@@ -189,6 +189,9 @@ public class DeleteThreadPortletConfigurationIcon
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeleteThreadPortletConfigurationIcon.class);
+
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBMessage)"
 	)
@@ -199,8 +202,5 @@ public class DeleteThreadPortletConfigurationIcon
 
 	@Reference
 	private TrashHelper _trashHelper;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DeleteThreadPortletConfigurationIcon.class);
 
 }

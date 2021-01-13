@@ -24,16 +24,18 @@ import com.liferay.portal.kernel.util.StringUtil;
 public class ImportPackage implements Comparable<ImportPackage> {
 
 	public ImportPackage(String importString, boolean isStatic, String line) {
-		this(importString, isStatic, line, false);
+		this(importString, isStatic, line, false, false);
 	}
 
 	public ImportPackage(
-		String importString, boolean isStatic, String line, boolean bndImport) {
+		String importString, boolean isStatic, String line, boolean bndImport,
+		boolean pythonImport) {
 
 		_importString = importString;
 		_isStatic = isStatic;
 		_line = line;
 		_bndImport = bndImport;
+		_pythonImport = pythonImport;
 	}
 
 	@Override
@@ -120,6 +122,14 @@ public class ImportPackage implements Comparable<ImportPackage> {
 
 		pos = _importString.indexOf(StringPool.PERIOD);
 
+		if (_pythonImport) {
+			if (pos == -1) {
+				return _importString;
+			}
+
+			return _importString.substring(0, pos);
+		}
+
 		pos = _importString.indexOf(StringPool.PERIOD, pos + 1);
 
 		if ((pos == -1) && !_bndImport) {
@@ -170,5 +180,6 @@ public class ImportPackage implements Comparable<ImportPackage> {
 	private final String _importString;
 	private boolean _isStatic;
 	private final String _line;
+	private final boolean _pythonImport;
 
 }

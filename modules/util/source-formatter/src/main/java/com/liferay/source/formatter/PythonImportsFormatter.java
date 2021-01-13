@@ -102,7 +102,7 @@ public class PythonImportsFormatter extends BaseImportsFormatter {
 
 		String packageName = matcher.group(2);
 
-		return new ImportPackage(packageName, false, line);
+		return new ImportPackage(packageName, false, line, false, true);
 	}
 
 	private String _mergeImports(String imports) {

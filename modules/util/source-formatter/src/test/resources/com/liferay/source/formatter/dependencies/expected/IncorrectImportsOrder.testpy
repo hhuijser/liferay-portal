@@ -15,7 +15,6 @@ from abc import ABCMeta, \
 from liferay.common.pubsub import PubSubBridge
 from liferay.common.spark import BaseSparkApplication, \
 	SparkJobPipeline
-
 from liferay.content_recommendation.job import GenerateItemsSparkJob, \
 	GenerateUserItemInteractionsSparkJob, \
 	PublishJobRunSparkJob, \
@@ -25,10 +24,8 @@ from liferay.content_recommendation.job import GenerateItemsSparkJob, \
 	WriteUserItemInteractionsSparkJob
 
 from pyspark import SparkConf
-
 from pyspark.ml.linalg import DenseVector, \
 	VectorUDT
-
 from pyspark.sql.functions import udf
 from pyspark.sql.types import DoubleType, \
 	StringType

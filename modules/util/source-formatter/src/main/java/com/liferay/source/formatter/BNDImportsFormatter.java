@@ -62,7 +62,7 @@ public class BNDImportsFormatter extends BaseImportsFormatter {
 			importString = importString.substring(0, pos);
 		}
 
-		return new ImportPackage(importString, false, line, true);
+		return new BNDImportPackage(importString, line);
 	}
 
 	@Override

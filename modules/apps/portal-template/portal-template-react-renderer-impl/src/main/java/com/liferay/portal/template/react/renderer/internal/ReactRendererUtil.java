@@ -126,13 +126,12 @@ public class ReactRendererUtil {
 
 		JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
 
-		StringBundler javascriptSB = new StringBundler(15);
+		StringBundler javascriptSB = new StringBundler(14);
 
 		javascriptSB.append("window[");
 		javascriptSB.append("Symbol.for('__LIFERAY_WEBPACK_GET_MODULE__')]('");
 		javascriptSB.append("portal-template-react-renderer-impl");
-		javascriptSB.append("').then(({render}) => {");
-		javascriptSB.append("render(renderFunction");
+		javascriptSB.append("').then(({render}) => {render(renderFunction");
 		javascriptSB.append(placeholderId);
 		javascriptSB.append(".default, ");
 

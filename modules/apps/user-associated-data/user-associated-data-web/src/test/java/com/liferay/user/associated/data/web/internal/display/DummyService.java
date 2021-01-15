@@ -84,7 +84,8 @@ public class DummyService<T extends UserAssociatedEntity> {
 	}
 
 	private long _currentId;
-	private List<T> _userAssociatedEntities = new CopyOnWriteArrayList<>();
+	private final List<T> _userAssociatedEntities =
+		new CopyOnWriteArrayList<>();
 	private final Supplier<UserAssociatedEntity> _userAssociatedEntitySupplier;
 
 }

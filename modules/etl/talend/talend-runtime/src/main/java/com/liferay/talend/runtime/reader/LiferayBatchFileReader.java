@@ -141,7 +141,9 @@ public class LiferayBatchFileReader implements Reader<IndexedRecord> {
 
 	private File _batchFile;
 	private File _batchSegmentFile;
-	private int _batchSize = 10;
+
+	private static final int _batchSize = 10;
+
 	private BufferedReader _bufferedReader;
 	private int _current;
 	private Instant _currentTimestamp = Instant.now();

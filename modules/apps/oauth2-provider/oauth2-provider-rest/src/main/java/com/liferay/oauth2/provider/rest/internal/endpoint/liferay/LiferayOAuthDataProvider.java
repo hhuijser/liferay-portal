@@ -1113,7 +1113,7 @@ public class LiferayOAuthDataProvider
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		LiferayOAuthDataProvider.class);
 
 	@Reference(

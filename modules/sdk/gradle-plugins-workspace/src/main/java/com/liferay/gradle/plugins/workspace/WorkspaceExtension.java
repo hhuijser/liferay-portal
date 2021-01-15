@@ -597,7 +597,7 @@ public class WorkspaceExtension {
 		new LinkedHashSet<>();
 	private final Plugin<Project> _rootProjectConfigurator;
 	private Object _targetPlatformVersion;
-	private File _workspaceCacheDir = new File(
+	private final File _workspaceCacheDir = new File(
 		System.getProperty("user.home"), _DEFAULT_WORKSPACE_CACHE_DIR_NAME);
 
 	@SuppressWarnings("unused")

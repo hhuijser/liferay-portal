@@ -60,7 +60,7 @@ public class SourceFormatterExcludes {
 
 	private Set<ExcludeSyntaxPattern> _defaultExcludeSyntaxPatterns =
 		new HashSet<>();
-	private Map<String, List<ExcludeSyntaxPattern>> _excludeSyntaxPatternsMap =
-		new HashMap<>();
+	private final Map<String, List<ExcludeSyntaxPattern>>
+		_excludeSyntaxPatternsMap = new HashMap<>();
 
 }

@@ -132,7 +132,7 @@ public class FunctionScoreQueryImpl
 	private static final long serialVersionUID = 1L;
 
 	private CombineFunction _combineFunction;
-	private List<FilterQueryScoreFunctionHolder>
+	private final List<FilterQueryScoreFunctionHolder>
 		_filterQueryScoreFunctionHolders = new ArrayList<>();
 	private Float _maxBoost;
 	private Float _minScore;

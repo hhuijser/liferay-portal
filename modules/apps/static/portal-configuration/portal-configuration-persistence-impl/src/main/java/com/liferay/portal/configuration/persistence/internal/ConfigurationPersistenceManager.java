@@ -550,7 +550,7 @@ public class ConfigurationPersistenceManager
 
 	private final BundleContext _bundleContext;
 	private final DataSource _dataSource;
-	private DB _db = DBManagerUtil.getDB();
+	private final DB _db = DBManagerUtil.getDB();
 	private final ConcurrentMap<String, Dictionary<?, ?>> _dictionaries =
 		new ConcurrentHashMap<>();
 	private final ReadWriteLock _readWriteLock = new ReentrantReadWriteLock(

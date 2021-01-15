@@ -280,6 +280,7 @@ public class RowStyledLayoutStructureItem extends StyledLayoutStructureItem {
 	private int _numberOfColumns;
 	private boolean _reverseOrder;
 	private String _verticalAlignment = "top";
-	private Map<String, JSONObject> _viewportConfigurations = new HashMap<>();
+	private final Map<String, JSONObject> _viewportConfigurations =
+		new HashMap<>();
 
 }

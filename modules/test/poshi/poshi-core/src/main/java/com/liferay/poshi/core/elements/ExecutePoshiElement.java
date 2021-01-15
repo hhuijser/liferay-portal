@@ -380,7 +380,7 @@ public class ExecutePoshiElement extends PoshiElement {
 	private static final String _UTILITY_INVOCATION_REGEX =
 		"(echo|fail|takeScreenshot)\\(.*?\\)";
 
-	private static Pattern _executeParameterPattern = Pattern.compile(
+	private static final Pattern _executeParameterPattern = Pattern.compile(
 		"^[\\s]*(\\w*\\s*=\\s*\"[ \\t\\S]*?\"|\\w*\\s*=\\s*'''.*?'''|" +
 			"\\w*\\s=\\s*[\\w\\.]*\\(.*?\\))[\\s]*$",
 		Pattern.DOTALL);

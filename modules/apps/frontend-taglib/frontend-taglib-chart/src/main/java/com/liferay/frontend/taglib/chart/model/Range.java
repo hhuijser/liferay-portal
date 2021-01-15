@@ -45,6 +45,6 @@ public class Range implements Iterable<Number> {
 		_values.set(0, start);
 	}
 
-	private List<Number> _values = new ArrayList<>();
+	private final List<Number> _values = new ArrayList<>();
 
 }

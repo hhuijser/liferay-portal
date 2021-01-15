@@ -42,7 +42,8 @@ public class ConfigurationScopeDisplay {
 		return _configurationEntries.isEmpty();
 	}
 
-	private List<ConfigurationEntry> _configurationEntries = new ArrayList<>();
+	private final List<ConfigurationEntry> _configurationEntries =
+		new ArrayList<>();
 	private final String _scope;
 
 }

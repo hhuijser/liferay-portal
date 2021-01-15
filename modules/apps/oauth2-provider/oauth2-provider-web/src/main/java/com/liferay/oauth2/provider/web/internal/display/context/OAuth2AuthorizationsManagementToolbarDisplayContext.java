@@ -107,7 +107,7 @@ public class OAuth2AuthorizationsManagementToolbarDisplayContext
 		};
 	}
 
-	private static String[] _orderByColumns = {
+	private static final String[] _orderByColumns = {
 		"createDate", "userId", "userName", "accessTokenCreateDate",
 		"accessTokenExpirationDate", "refreshTokenCreateDate",
 		"refreshTokenExpirationDate", "remoteIPInfo"

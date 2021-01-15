@@ -112,7 +112,7 @@ public class JavaMethodSignature {
 	private final String _parentSchemaName;
 	private final String _path;
 	private final PathItem _pathItem;
-	private List<JavaMethodParameter> _pathJavaMethodParameters =
+	private final List<JavaMethodParameter> _pathJavaMethodParameters =
 		new ArrayList<>();
 	private final Set<String> _requestBodyMediaTypes;
 	private final String _returnType;

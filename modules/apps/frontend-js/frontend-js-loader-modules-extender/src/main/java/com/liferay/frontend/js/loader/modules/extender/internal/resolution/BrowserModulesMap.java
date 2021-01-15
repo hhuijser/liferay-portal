@@ -53,7 +53,7 @@ public class BrowserModulesMap {
 	}
 
 	private final BrowserModulesResolution _browserModulesResolution;
-	private Map<String, JSBrowserModule> _map = new HashMap<>();
+	private final Map<String, JSBrowserModule> _map = new HashMap<>();
 	private final NPMRegistry _npmRegistry;
 
 }

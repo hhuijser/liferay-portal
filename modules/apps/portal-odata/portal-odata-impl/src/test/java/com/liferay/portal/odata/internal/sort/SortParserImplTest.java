@@ -356,7 +356,7 @@ public class SortParserImplTest {
 		Assert.assertTrue(!sortField2.isAscending());
 	}
 
-	private EntityModel _entityModel = new EntityModel() {
+	private final EntityModel _entityModel = new EntityModel() {
 
 		@Override
 		public Map<String, EntityField> getEntityFieldsMap() {

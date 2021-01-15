@@ -59,7 +59,7 @@ public final class ExecuteActionResponse {
 	private ExecuteActionResponse() {
 	}
 
-	private Map<String, Object> _output = new HashMap<>();
+	private final Map<String, Object> _output = new HashMap<>();
 	private boolean _success;
 
 }

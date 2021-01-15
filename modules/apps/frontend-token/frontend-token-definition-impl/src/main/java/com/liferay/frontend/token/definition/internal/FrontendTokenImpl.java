@@ -118,7 +118,7 @@ public class FrontendTokenImpl implements FrontendToken {
 	}
 
 	private final Object _defaultValue;
-	private Collection<FrontendTokenMapping> _frontendTokenMappings =
+	private final Collection<FrontendTokenMapping> _frontendTokenMappings =
 		new ArrayList<>();
 	private final FrontendTokenSetImpl _frontendTokenSetImpl;
 	private final JSONLocalizer _jsonLocalizer;

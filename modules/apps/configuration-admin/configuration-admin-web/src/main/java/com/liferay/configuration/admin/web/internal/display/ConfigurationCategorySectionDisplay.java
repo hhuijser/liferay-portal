@@ -56,8 +56,9 @@ public class ConfigurationCategorySectionDisplay {
 		return "category-section." + _configurationCategorySection;
 	}
 
-	private Set<ConfigurationCategoryDisplay> _configurationCategoryDisplays =
-		new TreeSet<>(new ConfigurationCategoryDisplayComparator());
+	private final Set<ConfigurationCategoryDisplay>
+		_configurationCategoryDisplays = new TreeSet<>(
+			new ConfigurationCategoryDisplayComparator());
 	private final String _configurationCategorySection;
 
 	private static class ConfigurationCategoryDisplayComparator

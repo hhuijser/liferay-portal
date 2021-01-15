@@ -240,7 +240,7 @@ public class DefaultMapToDDMFormValuesConverterStrategy
 		return ddmFormFieldValues;
 	}
 
-	private static DefaultMapToDDMFormValuesConverterStrategy
+	private static final DefaultMapToDDMFormValuesConverterStrategy
 		_defaultMapToDDMFormValuesConverterStrategy =
 			new DefaultMapToDDMFormValuesConverterStrategy();
 

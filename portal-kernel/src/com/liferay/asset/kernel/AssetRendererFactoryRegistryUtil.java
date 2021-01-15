@@ -207,7 +207,7 @@ public class AssetRendererFactoryRegistryUtil {
 	private AssetRendererFactoryRegistryUtil() {
 	}
 
-	private static ServiceTrackerMap<String, AssetRendererFactory<?>>
+	private static final ServiceTrackerMap<String, AssetRendererFactory<?>>
 		_classNameAssetRenderFactoriesServiceTrackerMap =
 			ServiceTrackerCollections.openSingleValueMap(
 				(Class<AssetRendererFactory<?>>)
@@ -226,7 +226,7 @@ public class AssetRendererFactoryRegistryUtil {
 	private static final ServiceRegistrationMap<AssetRendererFactory<?>>
 		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
 
-	private static ServiceTrackerMap<String, AssetRendererFactory<?>>
+	private static final ServiceTrackerMap<String, AssetRendererFactory<?>>
 		_typeAssetRenderFactoriesServiceTrackerMap =
 			ServiceTrackerCollections.openSingleValueMap(
 				(Class<AssetRendererFactory<?>>)

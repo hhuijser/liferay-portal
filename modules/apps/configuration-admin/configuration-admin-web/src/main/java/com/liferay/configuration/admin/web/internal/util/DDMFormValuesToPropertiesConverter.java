@@ -263,7 +263,8 @@ public class DDMFormValuesToPropertiesConverter {
 	private final JSONFactory _jsonFactory;
 	private final Locale _locale;
 	private LocationVariableResolver _locationVariableResolver;
-	private Log _log = LogFactoryUtil.getLog(
+
+	private static final Log _log = LogFactoryUtil.getLog(
 		DDMFormValuesToPropertiesConverter.class);
 
 }

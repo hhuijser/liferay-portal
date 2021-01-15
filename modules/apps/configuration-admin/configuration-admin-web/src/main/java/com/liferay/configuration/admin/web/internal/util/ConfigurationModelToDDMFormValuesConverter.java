@@ -207,7 +207,7 @@ public class ConfigurationModelToDDMFormValuesConverter {
 		Portal.TEMP_OBFUSCATION_VALUE
 	};
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		ConfigurationModelToDDMFormValuesConverter.class);
 
 	private final ConfigurationModel _configurationModel;

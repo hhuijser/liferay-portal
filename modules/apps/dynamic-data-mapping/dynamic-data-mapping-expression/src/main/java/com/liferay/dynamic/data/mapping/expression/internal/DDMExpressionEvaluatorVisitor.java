@@ -600,7 +600,7 @@ public class DDMExpressionEvaluatorVisitor
 		return methods.toArray(new Method[0]);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		DDMExpressionEvaluatorVisitor.class);
 
 	private final DDMExpressionActionHandler _ddmExpressionActionHandler;

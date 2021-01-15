@@ -5363,8 +5363,10 @@ public class DataFactory {
 	private AssetVocabularyModel _defaultAssetVocabularyModel;
 	private final long _defaultDLDDMStructureId;
 	private final long _defaultDLDDMStructureVersionId;
-	private long _defaultDLFileEntryTypeId =
+
+	private static final long _defaultDLFileEntryTypeId =
 		DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT;
+
 	private String _defaultJournalArticleId;
 	private final long _defaultJournalDDMStructureId;
 	private final long _defaultJournalDDMStructureVersionId;

@@ -278,7 +278,7 @@ public class UpgradeDDMFormInstanceReport extends UpgradeProcess {
 		UpgradeDDMFormInstanceReport.class);
 
 	private final DDMFormDeserializer _ddmFormDeserializer;
-	private DDMFormFieldTypeReportProcessorTracker
+	private final DDMFormFieldTypeReportProcessorTracker
 		_ddmFormFieldTypeReportProcessorTracker =
 			new DDMFormFieldTypeReportProcessorTracker();
 	private final JSONFactory _jsonFactory;

@@ -57,6 +57,6 @@ public class GroupByResponseImpl implements GroupByResponse, Serializable {
 	}
 
 	private String _field;
-	private Map<String, Hits> _groupedHits = new LinkedHashMap<>();
+	private final Map<String, Hits> _groupedHits = new LinkedHashMap<>();
 
 }

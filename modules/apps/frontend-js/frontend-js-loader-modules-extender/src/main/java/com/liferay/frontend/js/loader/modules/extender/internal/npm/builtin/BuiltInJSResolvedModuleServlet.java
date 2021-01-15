@@ -90,7 +90,7 @@ public class BuiltInJSResolvedModuleServlet extends BaseBuiltInJSModuleServlet {
 
 	private static final long serialVersionUID = 2647715401054034600L;
 
-	private LinkedHashMap<String, String> _jsPackageIdsCache =
+	private final LinkedHashMap<String, String> _jsPackageIdsCache =
 		new LinkedHashMap<String, String>() {
 
 			@Override

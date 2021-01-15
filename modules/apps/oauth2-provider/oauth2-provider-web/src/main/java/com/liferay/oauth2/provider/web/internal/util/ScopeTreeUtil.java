@@ -60,7 +60,7 @@ public class ScopeTreeUtil {
 		return (Tree.Node<String>)node.accept(_sortTreeVisitor);
 	}
 
-	private static TreeVisitor<String, Tree<String>> _sortTreeVisitor =
+	private static final TreeVisitor<String, Tree<String>> _sortTreeVisitor =
 		new TreeVisitor<String, Tree<String>>() {
 
 			@Override

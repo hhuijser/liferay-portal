@@ -77,8 +77,9 @@ public class RedirectEntrySearch extends SearchContainer<RedirectEntry> {
 	private static final String _EMPTY_RESULTS_MESSAGE =
 		"no-redirects-were-found";
 
-	private static Map<String, String> _orderableHeaders = HashMapBuilder.put(
-		"destinationURL", "sourceURL"
-	).build();
+	private static final Map<String, String> _orderableHeaders =
+		HashMapBuilder.put(
+			"destinationURL", "sourceURL"
+		).build();
 
 }

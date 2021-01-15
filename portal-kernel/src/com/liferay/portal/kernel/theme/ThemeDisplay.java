@@ -1964,7 +1964,7 @@ public class ThemeDisplay
 	private String _portalDomain = StringPool.BLANK;
 	private String _portalURL = StringPool.BLANK;
 	private PortletDisplay _portletDisplay = new PortletDisplay();
-	private Map<EmbeddedPortletCacheKey, Boolean> _portletEmbeddedMap =
+	private final Map<EmbeddedPortletCacheKey, Boolean> _portletEmbeddedMap =
 		new HashMap<>();
 	private String _ppid = StringPool.BLANK;
 	private String _realCompanyLogo = StringPool.BLANK;

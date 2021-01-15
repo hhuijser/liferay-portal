@@ -145,7 +145,7 @@ public class ReturnPoshiElement extends PoshiElement {
 
 	private static final String _ELEMENT_NAME = "return";
 
-	private Pattern _returnPattern = Pattern.compile(
+	private static final Pattern _returnPattern = Pattern.compile(
 		"^return[\\s]*\"[\\s\\S]*\"[\\s]*;$");
 
 }

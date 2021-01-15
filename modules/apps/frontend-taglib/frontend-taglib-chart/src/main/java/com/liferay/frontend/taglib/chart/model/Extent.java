@@ -62,6 +62,6 @@ public class Extent implements Iterable<List<Integer>> {
 		values.set(1, top);
 	}
 
-	private List<List<Integer>> _values = new ArrayList<>();
+	private final List<List<Integer>> _values = new ArrayList<>();
 
 }

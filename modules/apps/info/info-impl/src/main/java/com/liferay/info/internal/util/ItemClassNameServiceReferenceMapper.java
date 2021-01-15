@@ -56,7 +56,7 @@ public class ItemClassNameServiceReferenceMapper
 	private static final String _PROPERTY_NAME = "item.class.name";
 
 	private final BundleContext _bundleContext;
-	private PropertyServiceReferenceMapper<String, Object>
+	private final PropertyServiceReferenceMapper<String, Object>
 		_propertyServiceReferenceMapper = new PropertyServiceReferenceMapper<>(
 			_PROPERTY_NAME);
 

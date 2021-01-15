@@ -67,6 +67,6 @@ public class CSVFileWriter implements AutoCloseable {
 
 	private static final int _WRITER_BUFFER_SIZE = 16 * 1024;
 
-	private Map<String, Writer> _csvWriters = new HashMap<>();
+	private final Map<String, Writer> _csvWriters = new HashMap<>();
 
 }

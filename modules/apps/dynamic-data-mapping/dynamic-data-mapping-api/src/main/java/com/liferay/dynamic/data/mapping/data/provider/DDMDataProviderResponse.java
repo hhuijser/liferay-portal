@@ -86,7 +86,7 @@ public final class DDMDataProviderResponse implements Serializable {
 	private DDMDataProviderResponse() {
 	}
 
-	private Map<String, Object> _ddmDataProviderResponseOutputs =
+	private final Map<String, Object> _ddmDataProviderResponseOutputs =
 		new HashMap<>();
 	private DDMDataProviderResponseStatus _ddmDataProviderResponseStatus =
 		DDMDataProviderResponseStatus.OK;

@@ -291,7 +291,7 @@ public class LiferayBatchFileProperties
 		form.addRow(bulkFilePathWidget);
 	}
 
-	private transient final OASExplorer _oasExplorer = new OASExplorer();
+	private final transient OASExplorer _oasExplorer = new OASExplorer();
 	private transient JsonObject _oasJsonObject;
 
 }

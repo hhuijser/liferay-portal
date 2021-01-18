@@ -235,7 +235,7 @@ public class JSPortletExtender {
 
 	private BundleTracker<ServiceRegistration<?>> _bundleTracker;
 
-	private BundleTrackerCustomizer<ServiceRegistration<?>>
+	private final BundleTrackerCustomizer<ServiceRegistration<?>>
 		_bundleTrackerCustomizer =
 			new BundleTrackerCustomizer<ServiceRegistration<?>>() {
 

@@ -256,6 +256,9 @@ public class DDMFormValuesToPropertiesConverter {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMFormValuesToPropertiesConverter.class);
+
 	private final ConfigurationModel _configurationModel;
 	private final Map<String, DDMFormField> _ddmFormFieldsMap;
 	private final Map<String, List<DDMFormFieldValue>> _ddmFormFieldValuesMap;
@@ -263,7 +266,5 @@ public class DDMFormValuesToPropertiesConverter {
 	private final JSONFactory _jsonFactory;
 	private final Locale _locale;
 	private LocationVariableResolver _locationVariableResolver;
-	private Log _log = LogFactoryUtil.getLog(
-		DDMFormValuesToPropertiesConverter.class);
 
 }

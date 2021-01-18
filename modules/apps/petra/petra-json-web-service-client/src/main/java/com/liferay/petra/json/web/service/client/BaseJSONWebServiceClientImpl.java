@@ -1203,7 +1203,7 @@ public abstract class BaseJSONWebServiceClientImpl
 	private String _oAuthAccessToken;
 	private String _oAuthConsumerKey;
 	private String _oAuthConsumerSecret;
-	private ObjectMapper _objectMapper = new ObjectMapper();
+	private final ObjectMapper _objectMapper = new ObjectMapper();
 	private String _password;
 	private String _protocol = "http";
 	private String _proxyAuthType;

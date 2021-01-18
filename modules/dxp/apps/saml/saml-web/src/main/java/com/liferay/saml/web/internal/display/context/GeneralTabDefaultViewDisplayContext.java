@@ -198,7 +198,8 @@ public class GeneralTabDefaultViewDisplayContext {
 
 	private final LocalEntityManager _localEntityManager;
 	private final SamlConfiguration _samlConfiguration;
-	private Map<LocalEntityManager.CertificateUsage, X509CertificateStatus>
-		_x509CertificateStatuses = new HashMap<>();
+	private final Map
+		<LocalEntityManager.CertificateUsage, X509CertificateStatus>
+			_x509CertificateStatuses = new HashMap<>();
 
 }

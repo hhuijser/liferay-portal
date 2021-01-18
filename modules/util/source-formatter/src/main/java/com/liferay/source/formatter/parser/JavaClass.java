@@ -144,9 +144,9 @@ public class JavaClass extends BaseJavaTerm {
 
 	private final boolean _anonymous;
 	private final List<JavaTerm> _childJavaTerms = new ArrayList<>();
-	private List<String> _extendedClassNames = new ArrayList<>();
-	private List<String> _implementedClassNames = new ArrayList<>();
-	private List<String> _imports = new ArrayList<>();
+	private final List<String> _extendedClassNames = new ArrayList<>();
+	private final List<String> _implementedClassNames = new ArrayList<>();
+	private final List<String> _imports = new ArrayList<>();
 	private final boolean _isInterface;
 	private String _packageName;
 

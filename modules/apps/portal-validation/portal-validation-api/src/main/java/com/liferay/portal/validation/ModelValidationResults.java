@@ -159,8 +159,8 @@ public class ModelValidationResults {
 
 	private static final int _WARNING = 2;
 
-	private Map<String, Throwable> _exceptions = new HashMap<>();
-	private Map<String, Object> _fields = new HashMap<>();
+	private final Map<String, Throwable> _exceptions = new HashMap<>();
+	private final Map<String, Object> _fields = new HashMap<>();
 	private final int _outcome;
 
 	private static class Builder {

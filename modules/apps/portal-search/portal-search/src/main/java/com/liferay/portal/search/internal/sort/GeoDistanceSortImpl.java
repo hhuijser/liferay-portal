@@ -110,7 +110,7 @@ public class GeoDistanceSortImpl extends SortImpl implements GeoDistanceSort {
 	private DistanceUnit _distanceUnit;
 	private final String _field;
 	private GeoDistanceType _geoDistanceType;
-	private List<GeoLocationPoint> _geoLocationPoints = new ArrayList<>();
+	private final List<GeoLocationPoint> _geoLocationPoints = new ArrayList<>();
 	private GeoValidationMethod _geoValidationMethod;
 	private NestedSort _nestedSort;
 	private SortMode _sortMode;

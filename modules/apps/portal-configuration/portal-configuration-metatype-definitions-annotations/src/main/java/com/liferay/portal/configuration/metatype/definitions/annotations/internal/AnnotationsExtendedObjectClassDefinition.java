@@ -216,7 +216,7 @@ public class AnnotationsExtendedObjectClassDefinition
 			ExtendedObjectClassDefinition.XML_NAMESPACE, attributes);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		AnnotationsExtendedObjectClassDefinition.class);
 
 	private Class<?> _configurationBeanClass;

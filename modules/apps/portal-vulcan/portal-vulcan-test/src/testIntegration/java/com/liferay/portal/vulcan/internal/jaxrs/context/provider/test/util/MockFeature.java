@@ -98,6 +98,6 @@ public class MockFeature {
 		return _objects.get(className);
 	}
 
-	private Map<String, Object> _objects = new HashMap<>();
+	private final Map<String, Object> _objects = new HashMap<>();
 
 }

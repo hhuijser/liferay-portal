@@ -388,7 +388,7 @@ public class SpiraTestSet extends PathSpiraArtifact {
 	}
 
 	private SpiraTestSetFolder _parentSpiraTestSetFolder;
-	private Map<Integer, SpiraTestSetTestCase> _spiraTestSetTestCases =
+	private final Map<Integer, SpiraTestSetTestCase> _spiraTestSetTestCases =
 		Collections.synchronizedMap(
 			new HashMap<Integer, SpiraTestSetTestCase>());
 

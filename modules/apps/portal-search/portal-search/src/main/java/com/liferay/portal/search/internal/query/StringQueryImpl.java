@@ -315,7 +315,7 @@ public class StringQueryImpl extends BaseQueryImpl implements StringQuery {
 	private Operator _defaultOperator;
 	private Boolean _enablePositionIncrements;
 	private Boolean _escape;
-	private Map<String, Float> _fieldsBoosts = new HashMap<>();
+	private final Map<String, Float> _fieldsBoosts = new HashMap<>();
 	private Float _fuzziness;
 	private Integer _fuzzyMaxExpansions;
 	private Integer _fuzzyPrefixLength;

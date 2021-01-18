@@ -399,12 +399,12 @@ public class UpgradeDDMDataProviderInstance extends UpgradeProcess {
 	private static final Log _log = LogFactoryUtil.getLog(
 		UpgradeDDMDataProviderInstance.class);
 
-	private Map<Long, Map<String, String>>
+	private final Map<Long, Map<String, String>>
 		_ddmDataProviderInstanceOutputParametersInstanceId = new HashMap<>();
-	private Map<String, Map<String, String>>
+	private final Map<String, Map<String, String>>
 		_ddmDataProviderInstanceOutputParametersUUID = new HashMap<>();
 	private final JSONFactory _jsonFactory;
-	private List<Long> _updatedStructureIds = new ArrayList<>();
-	private List<Long> _updatedStructureVersionIds = new ArrayList<>();
+	private final List<Long> _updatedStructureIds = new ArrayList<>();
+	private final List<Long> _updatedStructureVersionIds = new ArrayList<>();
 
 }

@@ -1773,7 +1773,7 @@ public abstract class TopLevelBuild extends BaseBuild {
 	private static final String _URL_CHART_JS =
 		"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js";
 
-	private static ExecutorService _executorService =
+	private static final ExecutorService _executorService =
 		JenkinsResultsParserUtil.getNewThreadPoolExecutor(10, true);
 
 	private boolean _compareToUpstream;

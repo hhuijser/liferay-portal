@@ -168,7 +168,7 @@ public class BuildLangTask extends JavaExec {
 	private static final Logger _logger = Logging.getLogger(
 		BuildLangTask.class);
 
-	private Set<Object> _excludedLanguageIds = new LinkedHashSet<>();
+	private final Set<Object> _excludedLanguageIds = new LinkedHashSet<>();
 	private Object _langDir;
 	private Object _langFileName = LangBuilderArgs.LANG_FILE_NAME;
 	private boolean _titleCapitalization = LangBuilderArgs.TITLE_CAPITALIZATION;

@@ -2733,7 +2733,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	private transient List<Layout> _newLayouts;
 	private final Map<String, Map<?, ?>> _newPrimaryKeysMaps = new HashMap<>();
 	private final Set<String> _notUniquePerLayout = new HashSet<>();
-	private Map<String, Object> _objectsMap = new HashMap<>();
+	private final Map<String, Object> _objectsMap = new HashMap<>();
 	private Map<String, String[]> _parameterMap;
 	private final Map<String, List<KeyValuePair>> _permissionsMap =
 		new HashMap<>();

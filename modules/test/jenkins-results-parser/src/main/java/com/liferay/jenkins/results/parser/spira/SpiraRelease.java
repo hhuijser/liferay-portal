@@ -379,7 +379,7 @@ public class SpiraRelease extends IndentLevelSpiraArtifact {
 		return spiraReleases.get(0);
 	}
 
-	private static Pattern _propertyPattern = Pattern.compile(
+	private static final Pattern _propertyPattern = Pattern.compile(
 		".*\\[(?<jobName>.*?)\\]\\[(?<testSuiteName>.*?)\\]");
 
 	private SpiraRelease _parentSpiraRelease;

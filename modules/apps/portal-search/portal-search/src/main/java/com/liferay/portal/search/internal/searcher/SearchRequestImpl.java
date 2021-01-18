@@ -504,7 +504,7 @@ public class SearchRequestImpl implements SearchRequest, Serializable {
 	private String _paginationStartParameterName;
 	private final Map<String, PipelineAggregation> _pipelineAggregationsMap =
 		new LinkedHashMap<>();
-	private List<ComplexQueryPart> _postFilterComplexQueryParts =
+	private final List<ComplexQueryPart> _postFilterComplexQueryParts =
 		new ArrayList<>();
 	private Query _postFilterQuery;
 	private Query _query;

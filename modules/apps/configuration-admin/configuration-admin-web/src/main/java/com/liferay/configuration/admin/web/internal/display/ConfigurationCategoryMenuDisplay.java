@@ -106,7 +106,7 @@ public class ConfigurationCategoryMenuDisplay {
 	};
 
 	private final ConfigurationCategoryDisplay _configurationCategoryDisplay;
-	private Map<String, ConfigurationScopeDisplay> _configurationScopeDisplays =
-		new LinkedHashMap<>();
+	private final Map<String, ConfigurationScopeDisplay>
+		_configurationScopeDisplays = new LinkedHashMap<>();
 
 }

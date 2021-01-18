@@ -629,7 +629,7 @@ public class BatchBuild extends BaseBuild {
 		return targetPropertyName;
 	}
 
-	private static ExecutorService _executorService =
+	private static final ExecutorService _executorService =
 		JenkinsResultsParserUtil.getNewThreadPoolExecutor(10, true);
 	private static final Pattern _jobVariantPattern = Pattern.compile(
 		"(?<batchName>[^/]+)(/.*)?");

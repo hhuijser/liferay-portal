@@ -1139,7 +1139,7 @@ public class SourceFormatter {
 	private SourceFormatterSuppressions _sourceFormatterSuppressions;
 	private volatile List<SourceMismatchException> _sourceMismatchExceptions =
 		new ArrayList<>();
-	private List<SourceProcessor> _sourceProcessors = new ArrayList<>();
+	private final List<SourceProcessor> _sourceProcessors = new ArrayList<>();
 	private boolean _subrepository;
 
 }

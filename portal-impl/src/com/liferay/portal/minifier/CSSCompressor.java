@@ -882,6 +882,6 @@ public class CSSCompressor {
 				"([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])",
 				"(:?\\}|[^0-9a-fA-F{][^{]*?\\})"));
 
-	private StringBuffer _sb = new StringBuffer();
+	private final StringBuffer _sb = new StringBuffer();
 
 }

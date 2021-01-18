@@ -152,7 +152,7 @@ public class JavaVariableDefinition extends BaseJavaTerm {
 	private final List<JavaAnnotation> _javaAnnotations;
 	private JavaType _javaType;
 	private final List<JavaSimpleValue> _modifiers;
-	private Map<JavaSimpleValue, JavaExpression> _variableMap =
+	private final Map<JavaSimpleValue, JavaExpression> _variableMap =
 		new LinkedHashMap<>();
 
 }

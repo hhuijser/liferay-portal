@@ -523,7 +523,7 @@ public class LiferayResourceProperties extends ComponentPropertiesImpl {
 		return ValidationResult.OK;
 	}
 
-	private static Logger _logger = LoggerFactory.getLogger(
+	private static final Logger _logger = LoggerFactory.getLogger(
 		LiferayResourceProperties.class);
 
 	private transient Operation[] _allowedOperations = {Operation.Get};

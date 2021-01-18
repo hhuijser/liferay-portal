@@ -278,26 +278,28 @@ public class ChartSampleDisplayContext {
 			new MultiValueColumn("data2", 20, 70, 100));
 	}
 
-	private AreaSplineChartConfig _areaSplineChartConfig =
+	private final AreaSplineChartConfig _areaSplineChartConfig =
 		new AreaSplineChartConfig();
-	private AreaStepChartConfig _areaStepChartConfig =
+	private final AreaStepChartConfig _areaStepChartConfig =
 		new AreaStepChartConfig();
-	private BarChartConfig _barChartConfig = new BarChartConfig();
-	private CombinationChartConfig _combinationChartConfig =
+	private final BarChartConfig _barChartConfig = new BarChartConfig();
+	private final CombinationChartConfig _combinationChartConfig =
 		new CombinationChartConfig();
-	private DonutChartConfig _donutChartConfig = new DonutChartConfig();
-	private GaugeChartConfig _gaugeChartConfig = new GaugeChartConfig();
-	private GeomapConfig _geomapConfig1 = new GeomapConfig();
-	private GeomapConfig _geomapConfig2 = new GeomapConfig();
-	private LineChartConfig _lineChartConfig = new LineChartConfig();
-	private PieChartConfig _pieChartConfig = new PieChartConfig();
-	private LineChartConfig _pollingIntervalLineChartConfig =
+	private final DonutChartConfig _donutChartConfig = new DonutChartConfig();
+	private final GaugeChartConfig _gaugeChartConfig = new GaugeChartConfig();
+	private final GeomapConfig _geomapConfig1 = new GeomapConfig();
+	private final GeomapConfig _geomapConfig2 = new GeomapConfig();
+	private final LineChartConfig _lineChartConfig = new LineChartConfig();
+	private final PieChartConfig _pieChartConfig = new PieChartConfig();
+	private final LineChartConfig _pollingIntervalLineChartConfig =
 		new LineChartConfig();
 	private final PortletRequest _portletRequest;
-	private PredictiveChartConfig _predictiveChartConfig =
+	private final PredictiveChartConfig _predictiveChartConfig =
 		new PredictiveChartConfig();
-	private ScatterChartConfig _scatterChartConfig = new ScatterChartConfig();
-	private SplineChartConfig _splineChartConfig = new SplineChartConfig();
-	private StepChartConfig _stepChartConfig = new StepChartConfig();
+	private final ScatterChartConfig _scatterChartConfig =
+		new ScatterChartConfig();
+	private final SplineChartConfig _splineChartConfig =
+		new SplineChartConfig();
+	private final StepChartConfig _stepChartConfig = new StepChartConfig();
 
 }

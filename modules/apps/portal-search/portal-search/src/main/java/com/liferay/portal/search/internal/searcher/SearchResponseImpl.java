@@ -273,7 +273,7 @@ public class SearchResponseImpl implements SearchResponse, Serializable {
 	private String _responseString = StringPool.BLANK;
 	private final SearchContext _searchContext;
 	private SearchHits _searchHits;
-	private SearchHitsBuilderFactory _searchHitsBuilderFactory =
+	private final SearchHitsBuilderFactory _searchHitsBuilderFactory =
 		new SearchHitsBuilderFactoryImpl();
 	private SearchRequest _searchRequest;
 	private SearchTimeValue _searchTimeValue;

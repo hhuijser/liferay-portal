@@ -212,9 +212,9 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 	private final AssetDisplayPageEntryLocalService
 		_assetDisplayPageEntryLocalService;
 	private final CompanyLocalService _companyLocalService;
-	private Map<Long, Long> _liveGroupIdsMap = new HashMap<>();
-	private Set<Long> _stagedGroupIds = new HashSet<>();
-	private Map<Long, Map<String, String>> _uuidsMaps = new HashMap<>();
+	private final Map<Long, Long> _liveGroupIdsMap = new HashMap<>();
+	private final Set<Long> _stagedGroupIds = new HashSet<>();
+	private final Map<Long, Map<String, String>> _uuidsMaps = new HashMap<>();
 
 	private class SaveAssetDisplayPageEntryCallable
 		implements Callable<Boolean> {

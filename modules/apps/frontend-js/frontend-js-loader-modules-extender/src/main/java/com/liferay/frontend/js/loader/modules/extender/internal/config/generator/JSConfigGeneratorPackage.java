@@ -389,7 +389,7 @@ public class JSConfigGeneratorPackage {
 	private final boolean _applyVersioning;
 	private final Bundle _bundle;
 	private final String _contextPath;
-	private List<JSConfigGeneratorModule> _jsConfigGeneratorModules =
+	private final List<JSConfigGeneratorModule> _jsConfigGeneratorModules =
 		new ArrayList<>();
 	private final String _name;
 	private String _unversionedConfiguration = "";

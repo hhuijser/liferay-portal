@@ -156,6 +156,7 @@ public class ColumnLayoutStructureItem extends LayoutStructureItem {
 	}
 
 	private int _size;
-	private Map<String, JSONObject> _viewportConfigurations = new HashMap<>();
+	private final Map<String, JSONObject> _viewportConfigurations =
+		new HashMap<>();
 
 }

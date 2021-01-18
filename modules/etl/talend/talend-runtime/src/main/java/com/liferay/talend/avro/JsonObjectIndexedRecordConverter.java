@@ -260,7 +260,7 @@ public class JsonObjectIndexedRecordConverter {
 		return false;
 	}
 
-	private static Logger _logger = LoggerFactory.getLogger(
+	private static final Logger _logger = LoggerFactory.getLogger(
 		JsonObjectIndexedRecordConverter.class);
 
 	private static final Map<Schema.Type, AvroConverter> _converterRegistry =

@@ -95,7 +95,8 @@ public class UpgradeAppBuilderApp extends UpgradeProcess {
 	}
 
 	private final DDLRecordSetLocalService _ddlRecordSetLocalService;
-	private Map<Long, Long> _ddmStructureIdDDLRecordSetIdMap = new HashMap<>();
+	private final Map<Long, Long> _ddmStructureIdDDLRecordSetIdMap =
+		new HashMap<>();
 	private final DDMStructureLocalService _ddmStructureLocalService;
 
 }

@@ -229,7 +229,7 @@ public final class Criteria implements Serializable {
 		return sb.toString();
 	}
 
-	private Map<String, Criterion> _criteria = new HashMap<>();
-	private Map<String, String> _filterStrings = new HashMap<>();
+	private final Map<String, Criterion> _criteria = new HashMap<>();
+	private final Map<String, String> _filterStrings = new HashMap<>();
 
 }

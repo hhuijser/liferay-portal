@@ -1144,6 +1144,6 @@ public class FreeMarkerTool {
 		return false;
 	}
 
-	private static FreeMarkerTool _freeMarkerTool = new FreeMarkerTool();
+	private static final FreeMarkerTool _freeMarkerTool = new FreeMarkerTool();
 
 }

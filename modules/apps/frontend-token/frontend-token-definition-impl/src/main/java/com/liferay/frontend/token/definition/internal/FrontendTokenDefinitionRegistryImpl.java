@@ -210,7 +210,7 @@ public class FrontendTokenDefinitionRegistryImpl
 	private static final Pattern _themeIdPattern = Pattern.compile(
 		".*<theme id=\"([^\"]*)\"[^>]*>.*");
 
-	private BundleTrackerCustomizer<Bundle> _bundleTrackerCustomizer =
+	private final BundleTrackerCustomizer<Bundle> _bundleTrackerCustomizer =
 		new BundleTrackerCustomizer<Bundle>() {
 
 			@Override

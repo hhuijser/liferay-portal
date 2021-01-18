@@ -30,7 +30,7 @@ public class ContentAccessorUtil {
 	private ContentAccessorUtil() {
 	}
 
-	private static ContentAccessorUtil _contentAccessorUtil =
+	private static final ContentAccessorUtil _contentAccessorUtil =
 		new ContentAccessorUtil();
 
 }

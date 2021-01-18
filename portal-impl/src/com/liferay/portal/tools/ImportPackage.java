@@ -26,8 +26,6 @@ public class ImportPackage implements Comparable<ImportPackage> {
 		_importString = importString;
 		_isStatic = isStatic;
 		_line = line;
-
-		_bndImport = false;
 	}
 
 	/**
@@ -41,7 +39,6 @@ public class ImportPackage implements Comparable<ImportPackage> {
 		_importString = importString;
 		_isStatic = isStatic;
 		_line = line;
-		_bndImport = bndImport;
 	}
 
 	@Override
@@ -156,12 +153,6 @@ public class ImportPackage implements Comparable<ImportPackage> {
 	public boolean isStatic() {
 		return _isStatic;
 	}
-
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x)
-	 */
-	@Deprecated
-	private final boolean _bndImport;
 
 	private final String _importString;
 	private boolean _isStatic;

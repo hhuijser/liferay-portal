@@ -425,6 +425,7 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("SortJavaTerms2.testjava");
 		test("SortJavaTerms3.testjava");
 		test("SortJavaTerms4.testjava");
+		test("SortJavaTerms5.testjava");
 	}
 
 	@Test

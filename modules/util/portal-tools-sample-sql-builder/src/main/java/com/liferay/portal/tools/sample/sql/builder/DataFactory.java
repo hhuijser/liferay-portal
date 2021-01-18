@@ -2448,7 +2448,7 @@ public class DataFactory {
 		// PK fields
 
 		defaultDLFileEntryTypeModel.setFileEntryTypeId(
-			_defaultDLFileEntryTypeId);
+			_DEFAULT_DL_FILE_ENTRY_TYPE_ID);
 
 		// Audit fields
 
@@ -4590,7 +4590,7 @@ public class DataFactory {
 		dlFolderModel.setParentFolderId(parentFolderId);
 		dlFolderModel.setName("Test Folder " + index);
 		dlFolderModel.setLastPostDate(nextFutureDate());
-		dlFolderModel.setDefaultFileEntryTypeId(_defaultDLFileEntryTypeId);
+		dlFolderModel.setDefaultFileEntryTypeId(_DEFAULT_DL_FILE_ENTRY_TYPE_ID);
 		dlFolderModel.setLastPublishDate(nextFutureDate());
 		dlFolderModel.setStatusDate(nextFutureDate());
 
@@ -5328,6 +5328,9 @@ public class DataFactory {
 
 	private static final long _CURRENT_TIME = System.currentTimeMillis();
 
+	private static final long _DEFAULT_DL_FILE_ENTRY_TYPE_ID =
+		DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT;
+
 	private static final String _DEPENDENCIES_DIR =
 		"com/liferay/portal/tools/sample/sql/builder/dependencies/data/";
 
@@ -5338,8 +5341,6 @@ public class DataFactory {
 
 	private static final String _SAMPLE_USER_NAME = "Sample";
 
-	private static final long _defaultDLFileEntryTypeId =
-		DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT;
 	private static final PortletPreferencesFactory _portletPreferencesFactory =
 		new PortletPreferencesFactoryImpl();
 

@@ -123,7 +123,7 @@ public class LiferayBatchFileReader implements Reader<IndexedRecord> {
 			if (line == null) {
 			}
 
-			while ((line != null) && (++_current < _batchSize)) {
+			while ((line != null) && (++_current < _BATCH_SIZE)) {
 				fileWriter.write(line);
 				fileWriter.write(System.lineSeparator());
 
@@ -139,7 +139,7 @@ public class LiferayBatchFileReader implements Reader<IndexedRecord> {
 		}
 	}
 
-	private static final int _batchSize = 10;
+	private static final int _BATCH_SIZE = 10;
 
 	private File _batchFile;
 	private File _batchSegmentFile;

@@ -71,6 +71,7 @@ import com.liferay.portal.tools.java.parser.JavaTypeCast;
 import com.liferay.portal.tools.java.parser.JavaVariableDefinition;
 import com.liferay.portal.tools.java.parser.JavaWhileStatement;
 import com.liferay.portal.tools.java.parser.Position;
+import com.liferay.portal.tools.java.parser.util.comparator.ModifierComparator;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -1871,6 +1872,8 @@ public class JavaParserUtil {
 
 		while (true) {
 			if (childDetailAST == null) {
+				Collections.sort(modifiers, new ModifierComparator());
+
 				return modifiers;
 			}
 

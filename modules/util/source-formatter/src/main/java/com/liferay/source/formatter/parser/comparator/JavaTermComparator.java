@@ -70,13 +70,19 @@ public class JavaTermComparator implements Comparator<JavaTerm> {
 			}
 
 			if (javaTerm1.isPrivate() && javaTerm1.isStatic()) {
-				if (name2.equals("_log") || name2.equals("_logger")) {
+				if (name1.matches("_log(ger)?") &&
+					!name2.matches("_log(ger)?")) {
+
+					return -1;
+				}
+
+				if (!name1.matches("_log(ger)?") &&
+					name2.matches("_log(ger)?")) {
+
 					return 1;
 				}
 
-				if (name1.equals("_instance") || name1.equals("_log") ||
-					name1.equals("_logger")) {
-
+				if (name1.equals("_instance")) {
 					return -1;
 				}
 

@@ -58,19 +58,19 @@ public class SourceChecksUtil {
 			String sourceProcessorName, Map<String, Properties> propertiesMap,
 			List<String> skipCheckNames, boolean portalSource,
 			boolean subrepository, boolean includeModuleChecks,
-			String checkName)
+			List<String> checkNames)
 		throws Exception {
 
 		List<SourceCheck> sourceChecks = _getSourceChecks(
 			sourceFormatterConfiguration, sourceProcessorName, propertiesMap,
 			skipCheckNames, portalSource, subrepository, includeModuleChecks,
-			checkName);
+			checkNames);
 
 		sourceChecks.addAll(
 			_getSourceChecks(
 				sourceFormatterConfiguration, "all", propertiesMap,
 				skipCheckNames, includeModuleChecks, subrepository,
-				includeModuleChecks, checkName));
+				includeModuleChecks, checkNames));
 
 		return sourceChecks;
 	}
@@ -221,7 +221,7 @@ public class SourceChecksUtil {
 			String sourceProcessorName, Map<String, Properties> propertiesMap,
 			List<String> skipCheckNames, boolean portalSource,
 			boolean subrepository, boolean includeModuleChecks,
-			String checkName)
+			List<String> checkNames)
 		throws Exception {
 
 		List<SourceCheck> sourceChecks = new ArrayList<>();
@@ -243,7 +243,9 @@ public class SourceChecksUtil {
 			String sourceCheckName = SourceFormatterUtil.getSimpleName(
 				sourceCheckConfiguration.getName());
 
-			if ((checkName != null) && !checkName.equals(sourceCheckName)) {
+			if (!checkNames.isEmpty() &&
+				!checkNames.contains(sourceCheckName)) {
+
 				continue;
 			}
 

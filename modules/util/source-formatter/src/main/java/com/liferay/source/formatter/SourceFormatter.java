@@ -114,10 +114,11 @@ public class SourceFormatter {
 
 			sourceFormatterArgs.setBaseDirName(baseDirName);
 
-			String checkName = ArgumentsUtil.getString(
-				arguments, "source.check.name", null);
+			List<String> checkNames = ListUtil.fromString(
+				ArgumentsUtil.getString(arguments, "source.check.name", null),
+				StringPool.COMMA);
 
-			sourceFormatterArgs.setCheckName(checkName);
+			sourceFormatterArgs.setCheckNames(checkNames);
 
 			boolean failOnAutoFix = ArgumentsUtil.getBoolean(
 				arguments, "source.fail.on.auto.fix",

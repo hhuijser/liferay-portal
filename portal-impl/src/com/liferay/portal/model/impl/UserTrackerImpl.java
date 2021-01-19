@@ -72,6 +72,9 @@ public class UserTrackerImpl extends UserTrackerBaseImpl {
 				_emailAddress = _user.getEmailAddress();
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -93,6 +96,9 @@ public class UserTrackerImpl extends UserTrackerBaseImpl {
 				_fullName = _user.getFullName();
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 

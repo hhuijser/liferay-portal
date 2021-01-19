@@ -305,6 +305,10 @@ public class StagingGroupHelperImpl implements StagingGroupHelper {
 					group.getCompanyId(), true);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return true;
 		}
 

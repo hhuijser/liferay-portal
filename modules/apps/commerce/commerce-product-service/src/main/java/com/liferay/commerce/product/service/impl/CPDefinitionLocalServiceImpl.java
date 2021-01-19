@@ -1196,6 +1196,10 @@ public class CPDefinitionLocalServiceImpl
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return Collections.emptyMap();
 		}
 
@@ -1218,6 +1222,10 @@ public class CPDefinitionLocalServiceImpl
 			return friendlyURLEntry.getUrlTitleMapAsXML();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
@@ -1521,6 +1529,10 @@ public class CPDefinitionLocalServiceImpl
 				friendlyURLEntry.getDefaultLanguageId(), newUrlTitleMap);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			Group companyGroup = _groupLocalService.getCompanyGroup(
 				cpDefinition.getCompanyId());
 

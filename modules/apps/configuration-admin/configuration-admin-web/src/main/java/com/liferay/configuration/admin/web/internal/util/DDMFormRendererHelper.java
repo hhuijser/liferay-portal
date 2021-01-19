@@ -119,6 +119,10 @@ public class DDMFormRendererHelper {
 				return DDMFormLayoutFactory.create(formClass);
 			}
 			catch (IllegalArgumentException illegalArgumentException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						illegalArgumentException, illegalArgumentException);
+				}
 			}
 		}
 

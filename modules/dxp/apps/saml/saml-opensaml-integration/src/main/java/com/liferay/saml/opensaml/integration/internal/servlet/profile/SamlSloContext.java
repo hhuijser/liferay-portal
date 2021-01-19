@@ -94,6 +94,12 @@ public class SamlSloContext implements Serializable {
 				}
 				catch (NoSuchIdpSpConnectionException
 							noSuchIdpSpConnectionException) {
+
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							noSuchIdpSpConnectionException,
+							noSuchIdpSpConnectionException);
+					}
 				}
 
 				SamlSloRequestInfo samlSloRequestInfo =
@@ -151,6 +157,10 @@ public class SamlSloContext implements Serializable {
 			return _userLocalService.fetchUserById(_userId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}

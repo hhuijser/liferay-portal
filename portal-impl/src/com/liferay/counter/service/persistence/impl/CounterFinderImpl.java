@@ -127,6 +127,10 @@ public class CounterFinderImpl implements CacheRegistryItem, CounterFinder {
 				preparedStatement.executeUpdate();
 			}
 			catch (ObjectNotFoundException objectNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						objectNotFoundException, objectNotFoundException);
+				}
 			}
 			catch (Exception exception) {
 				throw processException(exception);
@@ -156,6 +160,10 @@ public class CounterFinderImpl implements CacheRegistryItem, CounterFinder {
 				session.flush();
 			}
 			catch (ObjectNotFoundException objectNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						objectNotFoundException, objectNotFoundException);
+				}
 			}
 			catch (Exception exception) {
 				throw processException(exception);

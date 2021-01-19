@@ -525,6 +525,9 @@ public class PortalRequestProcessor {
 			user = PortalUtil.getUser(httpServletRequest);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		// Last path
@@ -725,6 +728,9 @@ public class PortalRequestProcessor {
 			user = PortalUtil.getUser(httpServletRequest);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if ((user != null) && _isPortletPath(path)) {
@@ -788,6 +794,10 @@ public class PortalRequestProcessor {
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				SessionErrors.add(
 					httpServletRequest, PrincipalException.class.getName());
 

@@ -271,6 +271,10 @@ public class TemplateNode extends LinkedHashMap<String, Object> {
 			sb.append(name);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			sb.append("@group_id@");
 		}
 
@@ -365,6 +369,9 @@ public class TemplateNode extends LinkedHashMap<String, Object> {
 				StringPool.BLANK);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -392,6 +399,9 @@ public class TemplateNode extends LinkedHashMap<String, Object> {
 				false, true);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;

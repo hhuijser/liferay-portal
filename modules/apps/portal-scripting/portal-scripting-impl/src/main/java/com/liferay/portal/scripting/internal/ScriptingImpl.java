@@ -138,6 +138,10 @@ public class ScriptingImpl implements Scripting {
 			}
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			sb.setIndex(0);
 
 			sb.append(exception.getMessage());

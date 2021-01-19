@@ -190,6 +190,10 @@ public class InviteMembersPortlet extends MVCPortlet {
 			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			jsonObject.put("success", Boolean.FALSE);
 		}
 

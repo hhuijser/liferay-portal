@@ -1763,6 +1763,11 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 				samlPeerEntityContext.getEntityId());
 		}
 		catch (NoSuchIdpSpSessionException noSuchIdpSpSessionException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchIdpSpSessionException, noSuchIdpSpSessionException);
+			}
+
 			_samlIdpSpSessionLocalService.addSamlIdpSpSession(
 				samlIdpSsoSession.getSamlIdpSsoSessionId(),
 				samlPeerEntityContext.getEntityId(), nameID.getFormat(),

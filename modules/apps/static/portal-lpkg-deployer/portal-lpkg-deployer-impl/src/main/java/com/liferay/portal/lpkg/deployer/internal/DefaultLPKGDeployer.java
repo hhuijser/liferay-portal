@@ -404,6 +404,9 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 					LicenseManagerUtil.registerLicense(jsonObject);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}

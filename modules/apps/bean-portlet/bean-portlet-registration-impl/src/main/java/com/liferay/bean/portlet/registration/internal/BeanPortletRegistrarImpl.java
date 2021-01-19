@@ -328,6 +328,9 @@ public class BeanPortletRegistrarImpl implements BeanPortletRegistrar {
 				serviceRegistration.unregister();
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 
 				// Ignore since the service has been unregistered
 

@@ -658,6 +658,10 @@ public class PortletFileRepositoryImpl implements PortletFileRepository {
 					fileName, String.valueOf(i));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				break;
 			}
 		}

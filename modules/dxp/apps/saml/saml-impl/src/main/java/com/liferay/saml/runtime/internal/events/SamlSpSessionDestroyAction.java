@@ -56,6 +56,9 @@ public class SamlSpSessionDestroyAction extends SessionAction {
 			userCompanyId = _companyLocalService.getCompanyIdByUserId(userId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (userCompanyId == 0) {
@@ -96,6 +99,9 @@ public class SamlSpSessionDestroyAction extends SessionAction {
 				samlSpSession.getSamlSpSessionId());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 

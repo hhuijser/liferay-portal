@@ -150,6 +150,9 @@ public class ServletContextHelperRegistrationImpl
 			_servletContextRegistration.unregister();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// Ignore since the service has been unregistered
 
@@ -159,6 +162,9 @@ public class ServletContextHelperRegistrationImpl
 			_servletContextHelperServiceRegistration.unregister();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// Ignore since the service has been unregistered
 
@@ -168,6 +174,9 @@ public class ServletContextHelperRegistrationImpl
 			_servletContextListenerServiceRegistration.unregister();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// Ignore since the service has been unregistered
 
@@ -177,6 +186,9 @@ public class ServletContextHelperRegistrationImpl
 			_defaultServletServiceRegistration.unregister();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// Ignore since the service has been unregistered
 
@@ -186,6 +198,9 @@ public class ServletContextHelperRegistrationImpl
 			_jspServletServiceRegistration.unregister();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// Ignore since the service has been unregistered
 
@@ -196,6 +211,9 @@ public class ServletContextHelperRegistrationImpl
 				_portletServletServiceRegistration.unregister();
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 
 				// Ignore since the service has been unregistered
 
@@ -271,6 +289,10 @@ public class ServletContextHelperRegistrationImpl
 				}
 			}
 			catch (InstanceNotFoundException instanceNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						instanceNotFoundException, instanceNotFoundException);
+				}
 			}
 			catch (JMException jmException) {
 				_log.error(jmException, jmException);
@@ -496,6 +518,9 @@ public class ServletContextHelperRegistrationImpl
 				properties.load(inputStream);
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
 			}
 
 			if (_bundle.getLastModified() == GetterUtil.getLong(
@@ -511,6 +536,11 @@ public class ServletContextHelperRegistrationImpl
 						classes.add(classLoader.loadClass(className));
 					}
 					catch (ClassNotFoundException classNotFoundException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								classNotFoundException, classNotFoundException);
+						}
+
 						failed = true;
 
 						break;
@@ -565,6 +595,9 @@ public class ServletContextHelperRegistrationImpl
 				classes.add(future.get());
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 

@@ -333,6 +333,10 @@ public class WabProcessor {
 			return PropertiesUtil.load(FileUtil.read(file));
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return new Properties();
 		}
 	}
@@ -863,6 +867,9 @@ public class WabProcessor {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 
 			// Ignore this case
 
@@ -1218,6 +1225,10 @@ public class WabProcessor {
 			return UnsecureSAXReaderUtil.read(content);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return SAXReaderUtil.createDocument();
 		}
 	}

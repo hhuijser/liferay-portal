@@ -1366,6 +1366,10 @@ public class GraphQLServletExtender {
 			return clazz.getDeclaredField("this$0");
 		}
 		catch (NoSuchFieldException noSuchFieldException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFieldException, noSuchFieldException);
+			}
+
 			return null;
 		}
 	}

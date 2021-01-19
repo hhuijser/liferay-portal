@@ -201,6 +201,10 @@ public class MailManager {
 			return createJSONResult("success", StringPool.BLANK, "false");
 		}
 		catch (MailException mailException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(mailException, mailException);
+			}
+
 			return createJSONResult("failure", StringPool.BLANK);
 		}
 	}
@@ -761,6 +765,10 @@ public class MailManager {
 				return createJSONResult("success", "logged-in-successfully");
 			}
 			catch (MailException mailException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(mailException, mailException);
+				}
+
 				return createJSONResult("failure", "incorrect-password");
 			}
 		}

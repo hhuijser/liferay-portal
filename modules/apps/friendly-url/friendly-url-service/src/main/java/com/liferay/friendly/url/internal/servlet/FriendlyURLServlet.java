@@ -328,6 +328,10 @@ public class FriendlyURLServlet extends HttpServlet {
 					actualURL, "doAsUserId", encDoAsUserId);
 			}
 			catch (EncryptorException encryptorException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(encryptorException, encryptorException);
+				}
+
 				return new Redirect(actualURL);
 			}
 		}

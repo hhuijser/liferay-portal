@@ -311,6 +311,10 @@ public class CacheFilter extends BasePortalFilter {
 			return layoutTypePortlet.isCacheable();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}

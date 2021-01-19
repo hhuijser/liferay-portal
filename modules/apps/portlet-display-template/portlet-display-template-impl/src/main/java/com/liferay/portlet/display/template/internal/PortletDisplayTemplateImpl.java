@@ -111,6 +111,10 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 					uuid, companyGroup.getGroupId());
 			}
 			catch (NoSuchTemplateException noSuchTemplateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchTemplateException, noSuchTemplateException);
+				}
 			}
 		}
 		catch (Exception exception) {

@@ -676,6 +676,10 @@ public class S3Store implements Store {
 			throw transform(amazonClientException);
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
+
 			upload.abort();
 
 			Thread thread = Thread.currentThread();

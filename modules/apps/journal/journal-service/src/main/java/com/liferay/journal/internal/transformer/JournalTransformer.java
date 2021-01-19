@@ -463,6 +463,9 @@ public class JournalTransformer {
 			return new StringTemplateResource(langType, template);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;

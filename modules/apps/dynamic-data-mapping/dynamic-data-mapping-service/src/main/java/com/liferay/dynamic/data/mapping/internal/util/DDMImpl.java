@@ -623,6 +623,9 @@ public class DDMImpl implements DDM {
 					JSONFactoryUtil.createJSONArray(propertyValue));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 
 			return;
@@ -1139,6 +1142,9 @@ public class DDMImpl implements DDM {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;

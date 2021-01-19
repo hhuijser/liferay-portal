@@ -245,6 +245,10 @@ public abstract class BaseSocialActivityInterpreter
 				HtmlUtil.escape(groupName), "</a>");
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
@@ -429,6 +433,10 @@ public abstract class BaseSocialActivityInterpreter
 				HtmlUtil.escape(userName), "</a>");
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}

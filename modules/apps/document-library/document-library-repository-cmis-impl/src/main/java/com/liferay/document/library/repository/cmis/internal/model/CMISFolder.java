@@ -76,6 +76,9 @@ public class CMISFolder extends CMISModel implements Folder {
 			cmisFolder.setParentFolder(getParentFolder());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		cmisFolder.setPrimaryKey(getPrimaryKey());
@@ -251,6 +254,9 @@ public class CMISFolder extends CMISModel implements Folder {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (_cmisFolder.isRootFolder()) {
@@ -357,6 +363,9 @@ public class CMISFolder extends CMISModel implements Folder {
 			return user.getUserUuid();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;

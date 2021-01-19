@@ -85,6 +85,12 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 			register(objectCacheKey, object, objectName);
 		}
 		catch (InstanceAlreadyExistsException instanceAlreadyExistsException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					instanceAlreadyExistsException,
+					instanceAlreadyExistsException);
+			}
+
 			unregister(objectCacheKey, objectName);
 
 			register(objectCacheKey, object, objectName);

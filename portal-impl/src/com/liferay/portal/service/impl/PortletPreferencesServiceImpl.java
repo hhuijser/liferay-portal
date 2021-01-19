@@ -151,6 +151,9 @@ public class PortletPreferencesServiceImpl
 					targetJxPortletPreferences.reset(key);
 				}
 				catch (ReadOnlyException readOnlyException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(readOnlyException, readOnlyException);
+					}
 				}
 			}
 
@@ -165,6 +168,9 @@ public class PortletPreferencesServiceImpl
 							key, new String[0]));
 				}
 				catch (ReadOnlyException readOnlyException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(readOnlyException, readOnlyException);
+					}
 				}
 			}
 

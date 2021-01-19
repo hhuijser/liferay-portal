@@ -82,6 +82,10 @@ public class UnicodeFormatter {
 				bytes[i / 2] = (byte)Integer.parseInt(s, 16);
 			}
 			catch (NumberFormatException numberFormatException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(numberFormatException, numberFormatException);
+				}
+
 				return new byte[0];
 			}
 		}

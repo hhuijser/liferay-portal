@@ -87,6 +87,10 @@ public final class AllowedIPAddressesValidatorFactory {
 				inetAddress = InetAddressUtil.getInetAddressByName(ipAddress);
 			}
 			catch (UnknownHostException unknownHostException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(unknownHostException, unknownHostException);
+				}
+
 				return false;
 			}
 

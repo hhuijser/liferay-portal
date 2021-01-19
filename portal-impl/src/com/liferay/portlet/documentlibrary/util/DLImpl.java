@@ -1193,6 +1193,10 @@ public class DLImpl implements DL {
 				groupId, folderId, getTitleWithExtension(title, extension));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -1207,6 +1211,10 @@ public class DLImpl implements DL {
 				groupId, folderId, uniqueFileTitle);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 

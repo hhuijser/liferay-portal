@@ -476,6 +476,10 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			return validateMissingReference(uuid, groupId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}

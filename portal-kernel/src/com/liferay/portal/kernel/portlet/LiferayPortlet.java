@@ -184,6 +184,10 @@ public class LiferayPortlet extends GenericPortlet {
 			return true;
 		}
 		catch (NoSuchMethodException noSuchMethodException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchMethodException, noSuchMethodException);
+			}
+
 			try {
 				super.processAction(actionRequest, actionResponse);
 
@@ -229,6 +233,10 @@ public class LiferayPortlet extends GenericPortlet {
 			return true;
 		}
 		catch (NoSuchMethodException noSuchMethodException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchMethodException, noSuchMethodException);
+			}
+
 			try {
 				super.serveResource(resourceRequest, resourceResponse);
 
@@ -454,6 +462,10 @@ public class LiferayPortlet extends GenericPortlet {
 			return PortalUtil.getPortletTitle(renderRequest);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return super.getTitle(renderRequest);
 		}
 	}

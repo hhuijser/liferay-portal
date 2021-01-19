@@ -102,6 +102,10 @@ public class DefaultJSONWebServiceRegistrator
 			bean = beanLocator.locate(beanName);
 		}
 		catch (BeanLocatorException beanLocatorException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(beanLocatorException, beanLocatorException);
+			}
+
 			return;
 		}
 
@@ -271,6 +275,11 @@ public class DefaultJSONWebServiceRegistrator
 						method.getName(), method.getParameterTypes());
 				}
 				catch (NoSuchMethodException noSuchMethodException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							noSuchMethodException, noSuchMethodException);
+					}
+
 					continue;
 				}
 			}

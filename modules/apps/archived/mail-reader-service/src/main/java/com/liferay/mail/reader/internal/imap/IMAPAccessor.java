@@ -647,6 +647,11 @@ public class IMAPAccessor {
 						folderId, remoteMessageId);
 				}
 				catch (NoSuchMessageException noSuchMessageException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							noSuchMessageException, noSuchMessageException);
+					}
+
 					MessageLocalServiceUtil.addMessage(
 						_user.getUserId(), folderId, sender, to, cc, bcc,
 						sentDate, subject, StringPool.BLANK, flags,
@@ -850,6 +855,10 @@ public class IMAPAccessor {
 				folderId, oldest);
 		}
 		catch (NoSuchMessageException noSuchMessageException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchMessageException, noSuchMessageException);
+			}
+
 			return null;
 		}
 

@@ -71,6 +71,10 @@ public class ApplicationContextServicePublisherUtil {
 					}
 				}
 				catch (BeanIsAbstractException beanIsAbstractException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							beanIsAbstractException, beanIsAbstractException);
+					}
 				}
 				catch (Exception exception) {
 					_log.error(
@@ -129,6 +133,11 @@ public class ApplicationContextServicePublisherUtil {
 				clazz = target.getClass();
 			}
 			catch (ReflectiveOperationException reflectiveOperationException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						reflectiveOperationException,
+						reflectiveOperationException);
+				}
 			}
 		}
 

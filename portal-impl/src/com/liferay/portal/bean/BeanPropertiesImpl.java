@@ -155,6 +155,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = Convert.toBooleanValue(value, defaultValue);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -200,6 +203,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = Convert.toByteValue(value, defaultValue);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -247,6 +253,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = Convert.toDoubleValue(value, defaultValue);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -292,6 +301,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = Convert.toFloatValue(value, defaultValue);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -337,6 +349,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = Convert.toIntValue(value, defaultValue);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -382,6 +397,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = Convert.toLongValue(value, defaultValue);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -429,6 +447,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = BeanUtil.getProperty(bean, param);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -482,6 +503,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanType = BeanUtil.getPropertyType(bean, param);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -531,6 +555,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = Convert.toShortValue(value, defaultValue);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -578,6 +605,9 @@ public class BeanPropertiesImpl implements BeanProperties {
 				beanValue = Convert.toString(value, defaultValue);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 

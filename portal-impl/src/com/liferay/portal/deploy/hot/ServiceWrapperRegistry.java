@@ -123,6 +123,10 @@ public class ServiceWrapperRegistry {
 					serviceTypeClass.getName());
 			}
 			catch (BeanLocatorException beanLocatorException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(beanLocatorException, beanLocatorException);
+				}
+
 				serviceReference = registry.getServiceReference(
 					serviceTypeClass);
 

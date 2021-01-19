@@ -301,6 +301,9 @@ public abstract class RemoteSPI implements ProcessCallable<SPI>, Remote, SPI {
 				}
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
 			}
 
 			if (_log.isInfoEnabled()) {

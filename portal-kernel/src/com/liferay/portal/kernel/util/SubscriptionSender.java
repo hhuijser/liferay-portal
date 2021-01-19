@@ -545,6 +545,9 @@ public class SubscriptionSender implements Serializable {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		this.scopeGroupId = scopeGroupId;

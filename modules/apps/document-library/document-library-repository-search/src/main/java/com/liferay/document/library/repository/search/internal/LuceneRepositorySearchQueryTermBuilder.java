@@ -76,6 +76,10 @@ public class LuceneRepositorySearchQueryTermBuilder
 				query = queryParser.parse(value);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				query = queryParser.parse(KeywordsUtil.escape(value));
 			}
 

@@ -1507,6 +1507,9 @@ public class PortletDataContextImpl implements PortletDataContext {
 			group = GroupLocalServiceUtil.getGroup(getGroupId());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (ExportImportThreadLocal.isStagingInProcess() && (group != null) &&

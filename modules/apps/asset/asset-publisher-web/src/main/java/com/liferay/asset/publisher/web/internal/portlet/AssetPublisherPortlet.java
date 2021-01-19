@@ -217,6 +217,9 @@ public class AssetPublisherPortlet extends MVCPortlet {
 					resourceRequest, resourceResponse);
 			}
 			catch (ServletException servletException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(servletException, servletException);
+				}
 			}
 
 			return;

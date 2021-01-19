@@ -176,6 +176,9 @@ public class DocumentumQuery {
 				idfCollection.close();
 			}
 			catch (DfException dfException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(dfException, dfException);
+				}
 			}
 		}
 	}

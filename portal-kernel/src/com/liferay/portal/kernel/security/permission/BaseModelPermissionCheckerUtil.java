@@ -70,6 +70,10 @@ public class BaseModelPermissionCheckerUtil {
 				permissionChecker, groupId, classPK, actionId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 

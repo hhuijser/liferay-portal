@@ -664,6 +664,10 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			jsonObject.put("deleted", Boolean.TRUE);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			String errorMessage = themeDisplay.translate(
 				"an-unexpected-error-occurred-while-deleting-the-file");
 

@@ -77,6 +77,9 @@ public class CMISFileVersion extends CMISModel implements FileVersion {
 			cmisFileVersion.setParentFolder(getParentFolder());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		cmisFileVersion.setPrimaryKey(getPrimaryKey());
@@ -307,6 +310,10 @@ public class CMISFileVersion extends CMISModel implements FileVersion {
 			return UserLocalServiceUtil.getDefaultUserId(getCompanyId());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return 0;
 		}
 	}
@@ -324,6 +331,10 @@ public class CMISFileVersion extends CMISModel implements FileVersion {
 			return user.getUserUuid();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}

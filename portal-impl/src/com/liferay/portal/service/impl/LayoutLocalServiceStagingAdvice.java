@@ -803,6 +803,11 @@ public class LayoutLocalServiceStagingAdvice implements BeanFactoryAware {
 					throw invocationTargetException.getTargetException();
 				}
 				catch (NoSuchMethodException noSuchMethodException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							noSuchMethodException, noSuchMethodException);
+					}
+
 					returnValue = _invoke(method, arguments);
 				}
 			}

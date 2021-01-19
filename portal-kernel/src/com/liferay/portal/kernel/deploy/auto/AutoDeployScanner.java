@@ -48,6 +48,9 @@ public class AutoDeployScanner extends Thread {
 			sleep(1000 * 10);
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 
 		while (_started) {
@@ -55,6 +58,9 @@ public class AutoDeployScanner extends Thread {
 				sleep(_autoDeployDir.getInterval());
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
 			}
 
 			try {

@@ -312,6 +312,10 @@ public class SyncHelperImpl implements SyncHelper {
 				Digester.SHA_1, dlFileVersion.getContentStream(false));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
@@ -329,6 +333,10 @@ public class SyncHelperImpl implements SyncHelper {
 			return DigesterUtil.digestBase64(Digester.SHA_1, fileInputStream);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}

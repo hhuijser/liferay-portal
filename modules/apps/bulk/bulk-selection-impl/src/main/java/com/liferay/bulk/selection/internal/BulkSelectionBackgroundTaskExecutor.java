@@ -162,6 +162,10 @@ public class BulkSelectionBackgroundTaskExecutor
 			return Optional.empty();
 		}
 		catch (InvalidSyntaxException invalidSyntaxException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(invalidSyntaxException, invalidSyntaxException);
+			}
+
 			return Optional.empty();
 		}
 	}

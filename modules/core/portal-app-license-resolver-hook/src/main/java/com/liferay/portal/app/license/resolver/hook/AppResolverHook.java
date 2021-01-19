@@ -81,6 +81,10 @@ public class AppResolverHook implements ResolverHook {
 				properties = _getAppLicenseProperties(bundle);
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
+
 				iterator.remove();
 
 				continue;

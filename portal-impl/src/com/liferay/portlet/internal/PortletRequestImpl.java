@@ -628,6 +628,9 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 						themeDisplay.getCompanyId(), portletResource);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				if (resourcePortlet != null) {

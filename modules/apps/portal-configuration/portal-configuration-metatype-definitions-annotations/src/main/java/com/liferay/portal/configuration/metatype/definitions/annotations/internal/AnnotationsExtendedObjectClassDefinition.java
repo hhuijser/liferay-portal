@@ -149,6 +149,9 @@ public class AnnotationsExtendedObjectClassDefinition
 				_objectClassDefinition.getID());
 		}
 		catch (ClassNotFoundException classNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(classNotFoundException, classNotFoundException);
+			}
 		}
 	}
 

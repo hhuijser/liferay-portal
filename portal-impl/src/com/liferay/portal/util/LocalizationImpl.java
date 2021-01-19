@@ -364,6 +364,9 @@ public class LocalizationImpl implements Localization {
 					xmlStreamReader.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}
@@ -1054,6 +1057,9 @@ public class LocalizationImpl implements Localization {
 					xmlStreamReader.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 
@@ -1062,6 +1068,9 @@ public class LocalizationImpl implements Localization {
 					xmlStreamWriter.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}
@@ -1297,6 +1306,9 @@ public class LocalizationImpl implements Localization {
 					xmlStreamReader.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 
@@ -1305,6 +1317,9 @@ public class LocalizationImpl implements Localization {
 					xmlStreamWriter.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}
@@ -1318,6 +1333,9 @@ public class LocalizationImpl implements Localization {
 				xmlStreamWriter.close();
 			}
 			catch (XMLStreamException xmlStreamException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(xmlStreamException, xmlStreamException);
+				}
 			}
 		}
 	}
@@ -1401,6 +1419,9 @@ public class LocalizationImpl implements Localization {
 					value.getBytes(StringPool.ISO_8859_1), StringPool.UTF8);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -1468,6 +1489,9 @@ public class LocalizationImpl implements Localization {
 					xmlStreamReader.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}

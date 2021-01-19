@@ -121,6 +121,10 @@ public class ModuleReadHookImpl implements ModuleReadHook {
 				path = Paths.get(uri);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				path = Paths.get(location);
 			}
 

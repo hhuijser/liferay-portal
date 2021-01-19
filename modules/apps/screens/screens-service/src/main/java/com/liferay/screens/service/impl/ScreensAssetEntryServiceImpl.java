@@ -312,6 +312,10 @@ public class ScreensAssetEntryServiceImpl
 				assetEntry.getClassPK());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			JournalArticleResource journalArticleResource =
 				journalArticleResourceLocalService.getArticleResource(
 					assetEntry.getClassPK());

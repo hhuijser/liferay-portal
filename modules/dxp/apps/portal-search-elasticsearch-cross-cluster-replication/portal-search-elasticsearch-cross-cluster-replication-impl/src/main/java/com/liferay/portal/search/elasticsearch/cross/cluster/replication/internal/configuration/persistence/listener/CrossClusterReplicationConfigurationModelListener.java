@@ -305,6 +305,10 @@ public class CrossClusterReplicationConfigurationModelListener
 				_getResourceBundle(), key, arguments);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}

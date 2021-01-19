@@ -88,6 +88,10 @@ public class RTLServlet extends HttpServlet {
 			return super.getLastModified(httpServletRequest);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return super.getLastModified(httpServletRequest);
 		}
 	}

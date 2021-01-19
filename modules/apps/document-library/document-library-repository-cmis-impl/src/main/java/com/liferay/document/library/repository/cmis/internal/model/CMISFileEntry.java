@@ -97,6 +97,9 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 			cmisFileEntry.setParentFolder(getParentFolder());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		cmisFileEntry.setPrimaryKey(getPrimaryKey());
@@ -288,6 +291,9 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		try {
@@ -531,6 +537,9 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 			return user.getUserUuid();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;

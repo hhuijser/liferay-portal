@@ -314,6 +314,10 @@ public class PortletResponseUtil {
 					"mime.types.content.disposition.inline");
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				mimeTypesContentDispositionInline = new String[0];
 			}
 

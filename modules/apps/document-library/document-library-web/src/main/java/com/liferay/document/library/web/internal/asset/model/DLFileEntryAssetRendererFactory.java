@@ -162,6 +162,10 @@ public class DLFileEntryAssetRendererFactory
 			return dlFileEntryType.getName(locale);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return super.getTypeName(locale, subtypeId);
 		}
 	}
@@ -214,6 +218,9 @@ public class DLFileEntryAssetRendererFactory
 			liferayPortletURL.setWindowState(windowState);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return liferayPortletURL;

@@ -323,6 +323,10 @@ public class CustomServletContextHelper
 				HttpServletResponse.SC_FORBIDDEN, path);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		}
 

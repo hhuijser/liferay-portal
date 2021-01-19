@@ -162,6 +162,9 @@ public class LayoutSetBranchImpl extends LayoutSetBranchBaseImpl {
 			controlPanel = group.isControlPanel();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (controlPanel) {

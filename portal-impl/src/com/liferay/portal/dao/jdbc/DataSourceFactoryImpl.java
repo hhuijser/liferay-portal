@@ -153,6 +153,9 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 					Class.forName("com.mysql.cj.protocol.ExportControlled"));
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 		}
 

@@ -40,6 +40,10 @@ public class ChannelSessionDestroyAction extends SessionAction {
 			user = (User)session.getAttribute(WebKeys.USER);
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
+
 			return;
 		}
 

@@ -85,6 +85,10 @@ public class VerifyProcessTrackerOSGiCommands {
 			getVerifyProcesses(_verifyProcesses, verifyProcessName);
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
+
 			System.out.println(
 				"No verify process with name " + verifyProcessName);
 
@@ -164,6 +168,10 @@ public class VerifyProcessTrackerOSGiCommands {
 			getVerifyProcesses(_verifyProcesses, verifyProcessName);
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
+
 			System.out.println(
 				"No verify process with name " + verifyProcessName);
 

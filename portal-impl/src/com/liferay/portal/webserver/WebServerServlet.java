@@ -218,6 +218,10 @@ public class WebServerServlet extends HttpServlet {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 		finally {
@@ -545,6 +549,9 @@ public class WebServerServlet extends HttpServlet {
 					image = convertFileEntry(igSmallImage, fileEntry);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}
@@ -693,6 +700,9 @@ public class WebServerServlet extends HttpServlet {
 					fileEntry = getFileEntry(pathArray);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				if (fileEntry == null) {
@@ -825,6 +835,9 @@ public class WebServerServlet extends HttpServlet {
 			return true;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;

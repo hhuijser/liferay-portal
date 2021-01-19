@@ -515,6 +515,9 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 				originalRecurrence);
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// LPS-65972
 

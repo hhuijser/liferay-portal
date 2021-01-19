@@ -110,6 +110,10 @@ public class LiferaySyncCapability
 			return group.isStagingGroup();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}

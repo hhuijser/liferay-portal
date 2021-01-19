@@ -154,6 +154,10 @@ public class DDMStructureStagedModelDataHandler
 				structure.getCompanyId());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return referenceAttributes;
 		}
 
@@ -608,6 +612,10 @@ public class DDMStructureStagedModelDataHandler
 			return jsonArray.getLong(0);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return GetterUtil.getLong(value);
 		}
 	}

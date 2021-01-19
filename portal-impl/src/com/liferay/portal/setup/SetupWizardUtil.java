@@ -83,6 +83,10 @@ public class SetupWizardUtil {
 			return defaultUser.getTimeZoneId();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return PropsValues.COMPANY_DEFAULT_TIME_ZONE;
 		}
 	}

@@ -420,6 +420,11 @@ public class UADSearchContainerBuilder {
 						return Long.valueOf((String)entry);
 					}
 					catch (NumberFormatException numberFormatException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								numberFormatException, numberFormatException);
+						}
+
 						return 0L;
 					}
 				});

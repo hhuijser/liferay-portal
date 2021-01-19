@@ -99,12 +99,18 @@ public class MailingListMessageListener extends BaseMessageListener {
 						messages, new Flags(Flags.Flag.DELETED), true);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				try {
 					folder.close(true);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 
@@ -113,6 +119,9 @@ public class MailingListMessageListener extends BaseMessageListener {
 					store.close();
 				}
 				catch (MessagingException messagingException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(messagingException, messagingException);
+					}
 				}
 			}
 		}

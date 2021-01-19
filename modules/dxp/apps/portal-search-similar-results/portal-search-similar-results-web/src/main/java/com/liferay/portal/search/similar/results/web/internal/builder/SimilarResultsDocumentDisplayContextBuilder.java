@@ -92,6 +92,10 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 			return build(className, classPK);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return buildTemporarilyUnavailable();
 		}
 	}

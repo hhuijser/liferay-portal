@@ -390,6 +390,11 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 					return new URL(fileName);
 				}
 				catch (MalformedURLException malformedURLException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							malformedURLException, malformedURLException);
+					}
+
 					return null;
 				}
 			}

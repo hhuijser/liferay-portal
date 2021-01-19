@@ -320,6 +320,9 @@ public class HttpImpl implements Http {
 				Thread.sleep(500);
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
 			}
 
 			retry++;
@@ -497,6 +500,10 @@ public class HttpImpl implements Http {
 			return address.getHostAddress();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return url;
 		}
 	}
@@ -650,6 +657,10 @@ public class HttpImpl implements Http {
 			return _getURI(uriString);
 		}
 		catch (URISyntaxException uriSyntaxException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(uriSyntaxException, uriSyntaxException);
+			}
+
 			return null;
 		}
 	}
@@ -947,6 +958,10 @@ public class HttpImpl implements Http {
 			return urlObj.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return url;
 		}
 	}

@@ -138,6 +138,10 @@ public class ShindigFilter extends InjectedFilter {
 				Encryptor.decrypt(company.getKeyObj(), userUUIDString));
 		}
 		catch (EncryptorException encryptorException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(encryptorException, encryptorException);
+			}
+
 			return false;
 		}
 		catch (Exception exception) {

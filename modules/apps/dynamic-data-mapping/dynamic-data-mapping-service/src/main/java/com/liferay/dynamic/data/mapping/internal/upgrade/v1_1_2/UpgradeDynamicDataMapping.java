@@ -423,6 +423,10 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 				return _jsonFactory.createJSONArray(value);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				JSONArray jsonArray = _jsonFactory.createJSONArray();
 
 				jsonArray.put(value);

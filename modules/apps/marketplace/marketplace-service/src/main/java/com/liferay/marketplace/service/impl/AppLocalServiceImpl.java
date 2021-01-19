@@ -397,6 +397,9 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 					app.getFilePath());
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 
 			DLStoreUtil.addFile(
@@ -455,6 +458,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			}
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return null;
 		}
 	}

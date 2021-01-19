@@ -489,6 +489,10 @@ public class ServletResponseUtil {
 					PropsKeys.MIME_TYPES_CONTENT_DISPOSITION_INLINE);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				mimeTypesContentDispositionInline = new String[0];
 			}
 

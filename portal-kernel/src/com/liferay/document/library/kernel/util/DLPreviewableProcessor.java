@@ -337,6 +337,9 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 			DLStoreUtil.deleteFile(companyId, REPOSITORY_ID, thumbnailFilePath);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 
@@ -399,6 +402,9 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 			return fileNames.length;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return 0;

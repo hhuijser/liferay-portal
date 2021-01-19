@@ -221,6 +221,9 @@ public class PortletTracker
 			_bundleContext.ungetService(serviceReference);
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// We still need to remove the service so we can ignore this and
 			// keep going

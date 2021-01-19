@@ -511,6 +511,12 @@ public class DDMStructureLocalServiceImpl
 			catch (NoSuchStructureLayoutException
 						noSuchStructureLayoutException) {
 
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchStructureLayoutException,
+						noSuchStructureLayoutException);
+				}
+
 				continue;
 			}
 
@@ -1801,6 +1807,9 @@ public class DDMStructureLocalServiceImpl
 				return getDDMDataProviderInstanceIds(jsonArray);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 

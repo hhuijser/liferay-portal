@@ -1505,6 +1505,10 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 					bean = configurableApplicationContext.getBean(beanName);
 				}
 				catch (BeanIsAbstractException beanIsAbstractException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							beanIsAbstractException, beanIsAbstractException);
+					}
 				}
 				catch (Exception exception) {
 					_log.error(exception, exception);

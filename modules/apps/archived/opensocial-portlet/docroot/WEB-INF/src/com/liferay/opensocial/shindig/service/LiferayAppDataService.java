@@ -259,6 +259,10 @@ public class LiferayAppDataService implements AppDataService {
 				ShindigUtil.getTableOpenSocial());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -276,6 +280,10 @@ public class LiferayAppDataService implements AppDataService {
 			return expandoValue.getData();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}

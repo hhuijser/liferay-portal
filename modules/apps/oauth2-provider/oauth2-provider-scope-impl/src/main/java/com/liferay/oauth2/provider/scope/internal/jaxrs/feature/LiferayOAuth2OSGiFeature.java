@@ -176,6 +176,9 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 				serviceRegistration.unregister();
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 

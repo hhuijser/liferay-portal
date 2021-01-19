@@ -582,6 +582,10 @@ public class HookHotDeployListener
 			return (BasePersistence<?>)PortalBeanLocatorUtil.locate(beanName);
 		}
 		catch (BeanLocatorException beanLocatorException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(beanLocatorException, beanLocatorException);
+			}
+
 			return (BasePersistence<?>)PortletBeanLocatorUtil.locate(
 				servletContextName, beanName);
 		}
@@ -1712,6 +1716,10 @@ public class HookHotDeployListener
 					servletContextName, serviceImplConstructor, serviceProxy);
 			}
 			catch (BeanLocatorException beanLocatorException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(beanLocatorException, beanLocatorException);
+				}
+
 				Registry registry = RegistryUtil.getRegistry();
 
 				registry.callService(

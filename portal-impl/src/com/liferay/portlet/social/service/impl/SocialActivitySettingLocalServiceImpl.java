@@ -349,6 +349,10 @@ public class SocialActivitySettingLocalServiceImpl
 						activitySetting.getValue());
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
+
 					jsonObject = JSONFactoryUtil.createJSONObject();
 				}
 

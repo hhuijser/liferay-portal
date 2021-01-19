@@ -94,6 +94,9 @@ public class RequestHeaderAutoLogin extends BaseAutoLogin {
 					companyId, StringPool.BLANK, screenName);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 

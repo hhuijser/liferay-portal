@@ -1734,6 +1734,11 @@ public class CalendarBookingLocalServiceImpl
 				calendarId = getNotLiveCalendarId(calendarId);
 			}
 			catch (NoSuchCalendarException noSuchCalendarException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchCalendarException, noSuchCalendarException);
+				}
+
 				continue;
 			}
 
@@ -2382,6 +2387,11 @@ public class CalendarBookingLocalServiceImpl
 				calendarId = getNotLiveCalendarId(calendarId);
 			}
 			catch (NoSuchCalendarException noSuchCalendarException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchCalendarException, noSuchCalendarException);
+				}
+
 				continue;
 			}
 

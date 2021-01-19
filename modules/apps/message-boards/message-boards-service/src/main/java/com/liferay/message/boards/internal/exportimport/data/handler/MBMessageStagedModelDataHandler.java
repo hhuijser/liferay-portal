@@ -512,6 +512,9 @@ public class MBMessageStagedModelDataHandler
 					inputStream = FileEntryUtil.getContentStream(fileEntry);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 			else {

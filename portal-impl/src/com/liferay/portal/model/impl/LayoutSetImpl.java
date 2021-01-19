@@ -154,6 +154,10 @@ public class LayoutSetImpl extends LayoutSetBaseImpl {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return logoId;
 		}
 
@@ -392,6 +396,9 @@ public class LayoutSetImpl extends LayoutSetBaseImpl {
 			controlPanel = group.isControlPanel();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (controlPanel) {

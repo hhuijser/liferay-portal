@@ -161,6 +161,10 @@ public class RemoteSPIProxy implements SPI {
 			return _spi.isAlive();
 		}
 		catch (RemoteException remoteException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(remoteException, remoteException);
+			}
+
 			try {
 				_cancelHandlerFuture.get();
 			}

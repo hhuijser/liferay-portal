@@ -362,6 +362,9 @@ public class JournalRSSHelper {
 				feed = _journalFeedLocalService.getFeed(id);
 			}
 			catch (NoSuchFeedException noSuchFeedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchFeedException, noSuchFeedException);
+				}
 
 				// Backward compatibility with old URLs
 

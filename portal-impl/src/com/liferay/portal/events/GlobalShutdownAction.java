@@ -174,6 +174,9 @@ public class GlobalShutdownAction extends SimpleAction {
 			LogFactoryUtil.setLogFactory(new Jdk14LogFactoryImpl());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		// Thread local registry
@@ -204,6 +207,9 @@ public class GlobalShutdownAction extends SimpleAction {
 					thread.interrupt();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 

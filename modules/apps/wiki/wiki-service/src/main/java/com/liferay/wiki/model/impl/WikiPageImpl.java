@@ -203,6 +203,9 @@ public class WikiPageImpl extends WikiPageBaseImpl {
 			_attachmentsFolderId = folder.getFolderId();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return _attachmentsFolderId;

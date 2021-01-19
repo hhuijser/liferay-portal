@@ -893,6 +893,9 @@ public class WabBundleProcessor {
 			}
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 	}
 

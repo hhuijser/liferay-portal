@@ -212,6 +212,10 @@ public class KaleoInstanceLocalServiceImpl
 			kaleoInstance = kaleoInstancePersistence.remove(kaleoInstanceId);
 		}
 		catch (NoSuchInstanceException noSuchInstanceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchInstanceException, noSuchInstanceException);
+			}
+
 			return null;
 		}
 

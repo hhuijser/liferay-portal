@@ -245,6 +245,9 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return categoryIdsTitles;
@@ -270,6 +273,9 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 			return PortalUtil.getCurrentAndAncestorSiteGroupIds(_groupIds);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return new long[0];
@@ -301,6 +307,9 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 			return portletURL;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;

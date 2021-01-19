@@ -257,6 +257,9 @@ public class SPAHelper {
 				jsonArray.put(field.getInt(null));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 

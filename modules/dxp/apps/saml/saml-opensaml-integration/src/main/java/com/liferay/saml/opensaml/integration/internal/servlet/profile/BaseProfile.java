@@ -457,6 +457,9 @@ public abstract class BaseProfile {
 			session.invalidate();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 
@@ -494,6 +497,9 @@ public abstract class BaseProfile {
 						endpoint.getBinding()));
 			}
 			catch (MarshallingException marshallingException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(marshallingException, marshallingException);
+				}
 			}
 		}
 

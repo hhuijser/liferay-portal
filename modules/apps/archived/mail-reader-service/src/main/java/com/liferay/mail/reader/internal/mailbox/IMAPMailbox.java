@@ -445,6 +445,10 @@ public class IMAPMailbox extends BaseMailbox {
 				MessageLocalServiceUtil.getMessage(folderId, remoteMessageId);
 			}
 			catch (NoSuchMessageException noSuchMessageException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchMessageException, noSuchMessageException);
+				}
+
 				missingRemoteMessageIdsList.add(remoteMessageId);
 			}
 		}
@@ -493,6 +497,10 @@ public class IMAPMailbox extends BaseMailbox {
 					account.getAccountId(), jxFolder.getFullName());
 			}
 			catch (NoSuchFolderException noSuchFolderException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchFolderException, noSuchFolderException);
+				}
+
 				FolderLocalServiceUtil.addFolder(
 					user.getUserId(), account.getAccountId(),
 					jxFolder.getFullName(), jxFolder.getName(), 0);

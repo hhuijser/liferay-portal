@@ -110,6 +110,10 @@ public abstract class BaseModelUADDisplay<T extends BaseModel>
 			return (boolean)method.invoke(t);
 		}
 		catch (NoSuchMethodException noSuchMethodException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchMethodException, noSuchMethodException);
+			}
+
 			return false;
 		}
 	}

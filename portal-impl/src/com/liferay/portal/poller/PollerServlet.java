@@ -151,6 +151,9 @@ public class PollerServlet extends HttpServlet {
 				_countDownLatch.await(timeout, TimeUnit.MILLISECONDS);
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
 			}
 
 			List<NotificationEvent> notificationEvents =

@@ -95,7 +95,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 				parentClassList.set(i, StringUtil.trim(parentClassList.get(i)));
 			}
 
-			StringBundler sb = new StringBundler(10);
+			StringBundler sb = new StringBundler(9);
 
 			sb.append(indent);
 			sb.append("class");
@@ -112,8 +112,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 			}
 
 			sb.append(StringPool.COLON);
-			sb.append(StringPool.NEW_LINE);
-			sb.append(StringPool.NEW_LINE);
+			sb.append("\n\n");
 
 			content = StringUtil.replaceFirst(
 				content, matcher.group(), sb.toString());

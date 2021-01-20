@@ -37,6 +37,8 @@ public class PythonStylingCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		content = _formatClassDefinationHeader(content);
+
 		return _sortItems(fileName, content, StringPool.BLANK);
 	}
 
@@ -79,8 +81,45 @@ public class PythonStylingCheck extends BaseFileCheck {
 		return statementsList;
 	}
 
+	private String _formatClassDefinationHeader(String content) {
+		Matcher matcher = _classDefinationHeaderPattern1.matcher(content);
+
+		while (matcher.find()) {
+			String indent = matcher.group(1);
+			String className = matcher.group(2);
+
+			List<String> parentClassList = ListUtil.fromString(
+				matcher.group(4), StringPool.COMMA);
+
+			for (int i = 0; i < parentClassList.size(); i++) {
+				parentClassList.set(i, StringUtil.trim(parentClassList.get(i)));
+			}
+
+			StringBundler sb = new StringBundler(10);
+
+			sb.append(indent);
+			sb.append("class");
+			sb.append(StringPool.SPACE);
+			sb.append(className);
+			sb.append(StringPool.OPEN_PARENTHESIS);
+			sb.append(
+				ListUtil.toString(
+					parentClassList, StringPool.BLANK,
+					StringPool.COMMA_AND_SPACE));
+			sb.append(StringPool.CLOSE_PARENTHESIS);
+			sb.append(StringPool.COLON);
+			sb.append(StringPool.NEW_LINE);
+			sb.append(StringPool.NEW_LINE);
+
+			content = StringUtil.replaceFirst(
+				content, matcher.group(), sb.toString());
+		}
+
+		return content;
+	}
+
 	private int _sortClasses(String class1, String class2) {
-		Matcher matcher = _classDefinationHeaderPattern.matcher(class1);
+		Matcher matcher = _classDefinationHeaderPattern2.matcher(class1);
 
 		if (!matcher.find()) {
 			return 0;
@@ -95,7 +134,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 			parentClassList.set(i, StringUtil.trim(parentClassList.get(i)));
 		}
 
-		matcher = _classDefinationHeaderPattern.matcher(class2);
+		matcher = _classDefinationHeaderPattern2.matcher(class2);
 
 		if (!matcher.find()) {
 			return 0;
@@ -208,7 +247,10 @@ public class PythonStylingCheck extends BaseFileCheck {
 		return methodName1.compareTo(methodName2);
 	}
 
-	private static final Pattern _classDefinationHeaderPattern =
+	private static final Pattern _classDefinationHeaderPattern1 =
+		Pattern.compile(
+			"(?<=\n)(\t*)class (\\w+)(\\((.*?)\\))?:\n+", Pattern.DOTALL);
+	private static final Pattern _classDefinationHeaderPattern2 =
 		Pattern.compile("class (\\w+)(\\((.*?)\\))?:", Pattern.DOTALL);
 
 }

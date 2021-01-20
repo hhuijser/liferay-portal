@@ -101,12 +101,16 @@ public class PythonStylingCheck extends BaseFileCheck {
 			sb.append("class");
 			sb.append(StringPool.SPACE);
 			sb.append(className);
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(
-				ListUtil.toString(
-					parentClassList, StringPool.BLANK,
-					StringPool.COMMA_AND_SPACE));
-			sb.append(StringPool.CLOSE_PARENTHESIS);
+
+			if (ListUtil.isNotEmpty(parentClassList)) {
+				sb.append(StringPool.OPEN_PARENTHESIS);
+				sb.append(
+					ListUtil.toString(
+						parentClassList, StringPool.BLANK,
+						StringPool.COMMA_AND_SPACE));
+				sb.append(StringPool.CLOSE_PARENTHESIS);
+			}
+
 			sb.append(StringPool.COLON);
 			sb.append(StringPool.NEW_LINE);
 			sb.append(StringPool.NEW_LINE);

@@ -113,6 +113,10 @@ public class FormatSourceTask extends Task {
 		_sourceFormatterArgs.setMaxLineLength(maxLineLength);
 	}
 
+	public void setOutputFileName(String outputFileName) {
+		_sourceFormatterArgs.setOutputFileName(outputFileName);
+	}
+
 	public void setPrintErrors(boolean printErrors) {
 		_sourceFormatterArgs.setPrintErrors(printErrors);
 	}

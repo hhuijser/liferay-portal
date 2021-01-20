@@ -47,6 +47,8 @@ public class SourceFormatterArgs {
 
 	public static final int MAX_LINE_LENGTH = 80;
 
+	public static final String OUTPUT_FILE_NAME = null;
+
 	public static final String OUTPUT_KEY_MODIFIED_FILES =
 		"source.formatter.modified.files";
 
@@ -97,6 +99,10 @@ public class SourceFormatterArgs {
 
 	public int getMaxLineLength() {
 		return _maxLineLength;
+	}
+
+	public String getOutputFileName() {
+		return _outputFileName;
 	}
 
 	public int getProcessorThreadCount() {
@@ -236,6 +242,10 @@ public class SourceFormatterArgs {
 		_maxLineLength = maxLineLength;
 	}
 
+	public void setOutputFileName(String outputFileName) {
+		_outputFileName = outputFileName;
+	}
+
 	public void setPrintErrors(boolean printErrors) {
 		_printErrors = printErrors;
 	}
@@ -278,6 +288,7 @@ public class SourceFormatterArgs {
 	private boolean _includeGeneratedFiles = INCLUDE_GENERATED_FILES;
 	private boolean _includeSubrepositories = INCLUDE_SUBREPOSITORIES;
 	private int _maxLineLength = MAX_LINE_LENGTH;
+	private String _outputFileName = OUTPUT_FILE_NAME;
 	private boolean _printErrors = PRINT_ERRORS;
 	private int _processorThreadCount = PROCESSOR_THREAD_COUNT;
 	private final Set<String> _recentChangesFileNames = new HashSet<>();

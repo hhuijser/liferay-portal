@@ -131,6 +131,13 @@ public class FormatSourceMojo extends AbstractMojo {
 	/**
 	 * @parameter
 	 */
+	public void setOutputFileName(String outputFileName) {
+		_sourceFormatterArgs.setOutputFileName(outputFileName);
+	}
+
+	/**
+	 * @parameter
+	 */
 	public void setPrintErrors(boolean printErrors) {
 		_sourceFormatterArgs.setPrintErrors(printErrors);
 	}

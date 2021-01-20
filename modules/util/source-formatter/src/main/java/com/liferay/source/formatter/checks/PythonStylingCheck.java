@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Alan Huang
@@ -36,7 +34,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		return _sortMethods(fileName, content, StringPool.BLANK);
+		return _sortItems(fileName, content, StringPool.BLANK);
 	}
 
 	private List<String> _combineAnnotationsAndComments(
@@ -78,7 +76,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 		return statementsList;
 	}
 
-	private int _sortMethods(String statement1, String statement2) {
+	private int _sortItems(String statement1, String statement2) {
 		String trimmedStatement1 = StringUtil.trimLeading(
 			statement1.replaceAll("(\t*[#@].*(\\Z|\n))*(.*)", "$3"));
 		String trimmedStatement2 = StringUtil.trimLeading(
@@ -90,33 +88,16 @@ public class PythonStylingCheck extends BaseFileCheck {
 			return 0;
 		}
 
-		String[] trimmedStatement1Lines = trimmedStatement1.split("\n", 2);
+		if (trimmedStatement1.startsWith("def ") &&
+			trimmedStatement2.startsWith("def ")) {
 
-		Matcher matcher = _methodDefinationPattern.matcher(
-			trimmedStatement1Lines[0]);
-
-		if (!matcher.find()) {
-			return 0;
+			return _sortMethods(trimmedStatement1, trimmedStatement2);
 		}
 
-		String methodName1 = matcher.group(1);
-
-		String[] trimmedStatement2Lines = trimmedStatement2.split("\n", 2);
-
-		matcher = _methodDefinationPattern.matcher(trimmedStatement2Lines[0]);
-
-		if (!matcher.find()) {
-			return 0;
-		}
-
-		String methodName2 = matcher.group(1);
-
-		return methodName1.compareTo(methodName2);
+		return 0;
 	}
 
-	private String _sortMethods(
-		String fileName, String content, String indent) {
-
+	private String _sortItems(String fileName, String content, String indent) {
 		List<String> statements = PythonSourceUtil.getPythonStatements(
 			content, indent);
 
@@ -130,7 +111,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 				@Override
 				public int compare(String statement1, String statement2) {
-					return _sortMethods(statement1, statement2);
+					return _sortItems(statement1, statement2);
 				}
 
 			});
@@ -164,14 +145,23 @@ public class PythonStylingCheck extends BaseFileCheck {
 			if (!nestedStatementIndent.equals(StringPool.BLANK)) {
 				content = StringUtil.replaceFirst(
 					content, statement,
-					_sortMethods(fileName, statement, nestedStatementIndent));
+					_sortItems(fileName, statement, nestedStatementIndent));
 			}
 		}
 
 		return content;
 	}
 
-	private static final Pattern _methodDefinationPattern = Pattern.compile(
-		"def (\\w+).*");
+	private int _sortMethods(String method1, String method2) {
+		String[] lines1 = method1.split("\n", 2);
+
+		String methodName1 = lines1[0].replaceFirst("def (\\w+).*", "$1");
+
+		String[] lines2 = method2.split("\n", 2);
+
+		String methodName2 = lines2[0].replaceFirst("def (\\w+).*", "$1");
+
+		return methodName1.compareTo(methodName2);
+	}
 
 }

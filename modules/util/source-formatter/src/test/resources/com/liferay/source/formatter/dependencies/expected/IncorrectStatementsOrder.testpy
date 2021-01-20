@@ -48,15 +48,15 @@ class B:
 
 		print("_method_b_in_class_b")
 
-	class Bb:
-		def _method_b_in_class_bb(name):
-
-			print("_method_b_in_class_bb")
-
 	class Ba:
 		def _method_a_in_class_ba(name):
 
 			print("_method_a_in_class_ba")
+
+	class Bb:
+		def _method_b_in_class_bb(name):
+
+			print("_method_b_in_class_bb")
 
 class A(B):
 	class Bb:

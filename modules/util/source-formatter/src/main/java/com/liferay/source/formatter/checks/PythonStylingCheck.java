@@ -114,7 +114,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 			sb.append(StringPool.COLON);
 			sb.append("\n\n");
 
-			content = StringUtil.replaceFirst(
+			content = StringUtil.replace(
 				content, matcher.group(), sb.toString());
 		}
 

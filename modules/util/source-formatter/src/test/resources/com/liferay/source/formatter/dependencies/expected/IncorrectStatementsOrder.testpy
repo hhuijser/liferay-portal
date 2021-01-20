@@ -40,6 +40,7 @@ def method_c():
 	print("method_c")
 
 class B:
+
 	def _method_a_in_class_b(name):
 
 		print("_method_a_in_class_b")
@@ -49,17 +50,21 @@ class B:
 		print("_method_b_in_class_b")
 
 	class Ba:
+
 		def _method_a_in_class_ba(name):
 
 			print("_method_a_in_class_ba")
 
 	class Bb:
+
 		def _method_b_in_class_bb(name):
 
 			print("_method_b_in_class_bb")
 
 class A(B):
+
 	class Bb:
+
 		def _method_a_in_class_bb(name):
 
 			print("_method_a_in_class_bb")

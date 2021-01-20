@@ -80,7 +80,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 	}
 
 	private int _sortClasses(String class1, String class2) {
-		Matcher matcher = _classDefinationPattern.matcher(class1);
+		Matcher matcher = _classDefinationHeaderPattern.matcher(class1);
 
 		if (!matcher.find()) {
 			return 0;
@@ -95,7 +95,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 			parentClassList.set(i, StringUtil.trim(parentClassList.get(i)));
 		}
 
-		matcher = _classDefinationPattern.matcher(class2);
+		matcher = _classDefinationHeaderPattern.matcher(class2);
 
 		if (!matcher.find()) {
 			return 0;
@@ -208,7 +208,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 		return methodName1.compareTo(methodName2);
 	}
 
-	private static final Pattern _classDefinationPattern = Pattern.compile(
-		"class (\\w+)(\\((.*?)\\))?:", Pattern.DOTALL);
+	private static final Pattern _classDefinationHeaderPattern =
+		Pattern.compile("class (\\w+)(\\((.*?)\\))?:", Pattern.DOTALL);
 
 }

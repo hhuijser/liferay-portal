@@ -16,6 +16,7 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.PythonSourceUtil;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Alan Huang
@@ -76,6 +79,41 @@ public class PythonStylingCheck extends BaseFileCheck {
 		return statementsList;
 	}
 
+	private int _sortClasses(String class1, String class2) {
+		Matcher matcher = _classDefinationPattern.matcher(class1);
+
+		if (!matcher.find()) {
+			return 0;
+		}
+
+		String className1 = matcher.group(1);
+
+		List<String> parentClassList = ListUtil.fromString(
+			matcher.group(3), StringPool.COMMA);
+
+		for (int i = 0; i < parentClassList.size(); i++) {
+			parentClassList.set(i, StringUtil.trim(parentClassList.get(i)));
+		}
+
+		matcher = _classDefinationPattern.matcher(class2);
+
+		if (!matcher.find()) {
+			return 0;
+		}
+
+		String className2 = matcher.group(1);
+
+		if (className1.compareTo(className2) < 0) {
+			if (!parentClassList.contains(className2)) {
+				return -1;
+			}
+
+			return 1;
+		}
+
+		return className1.compareTo(className2);
+	}
+
 	private int _sortItems(String statement1, String statement2) {
 		String trimmedStatement1 = StringUtil.trimLeading(
 			statement1.replaceAll("(\t*[#@].*(\\Z|\n))*(.*)", "$3"));
@@ -86,6 +124,12 @@ public class PythonStylingCheck extends BaseFileCheck {
 			Validator.isNull(trimmedStatement2)) {
 
 			return 0;
+		}
+
+		if (trimmedStatement1.startsWith("class ") &&
+			trimmedStatement2.startsWith("class ")) {
+
+			return _sortClasses(trimmedStatement1, trimmedStatement2);
 		}
 
 		if (trimmedStatement1.startsWith("def ") &&
@@ -163,5 +207,8 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 		return methodName1.compareTo(methodName2);
 	}
+
+	private static final Pattern _classDefinationPattern = Pattern.compile(
+		"class (\\w+)(\\((.*?)\\))?:", Pattern.DOTALL);
 
 }

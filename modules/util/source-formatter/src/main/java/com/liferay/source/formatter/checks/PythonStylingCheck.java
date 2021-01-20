@@ -79,13 +79,10 @@ public class PythonStylingCheck extends BaseFileCheck {
 	}
 
 	private int _sortMethods(String statement1, String statement2) {
-		String trimmedStatement1 = StringUtil.trimLeading(statement1);
-		String trimmedStatement2 = StringUtil.trimLeading(statement2);
-
-		trimmedStatement1 = trimmedStatement1.replaceAll(
-			"(\t*[#@].*(\\Z|\n))*(.*)", "$3");
-		trimmedStatement2 = trimmedStatement2.replaceAll(
-			"(\t*[#@].*(\\Z|\n))*(.*)", "$3");
+		String trimmedStatement1 = StringUtil.trimLeading(
+			statement1.replaceAll("(\t*[#@].*(\\Z|\n))*(.*)", "$3"));
+		String trimmedStatement2 = StringUtil.trimLeading(
+			statement2.replaceAll("(\t*[#@].*(\\Z|\n))*(.*)", "$3"));
 
 		if (Validator.isNull(trimmedStatement1) ||
 			Validator.isNull(trimmedStatement2)) {

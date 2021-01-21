@@ -37,7 +37,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _formatClassDefinationHeader(content);
+		content = _formatClassDefinationHeader(absolutePath, content);
 
 		return _sortItems(fileName, content, StringPool.BLANK);
 	}
@@ -81,7 +81,19 @@ public class PythonStylingCheck extends BaseFileCheck {
 		return statementsList;
 	}
 
-	private String _formatClassDefinationHeader(String content) {
+	private String _formatClassDefinationHeader(
+		String absolutePath, String content) {
+
+		int maxLineLength = 0;
+
+		try {
+			maxLineLength = Integer.parseInt(
+				getAttributeValue(_MAX_LINE_LENGTH, absolutePath));
+		}
+		catch (NumberFormatException numberFormatException) {
+			return content;
+		}
+
 		Matcher matcher = _classDefinationHeaderPattern1.matcher(content);
 
 		while (matcher.find()) {
@@ -95,7 +107,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 				parentClassList.set(i, StringUtil.trim(parentClassList.get(i)));
 			}
 
-			StringBundler sb = new StringBundler(9);
+			StringBundler sb = new StringBundler(8);
 
 			sb.append(indent);
 			sb.append("class");
@@ -112,10 +124,11 @@ public class PythonStylingCheck extends BaseFileCheck {
 			}
 
 			sb.append(StringPool.COLON);
-			sb.append("\n\n");
 
 			content = StringUtil.replace(
-				content, matcher.group(), sb.toString());
+				content, matcher.group(),
+				_splitLine(sb.toString(), indent + "\t", maxLineLength) +
+					"\n\n");
 		}
 
 		return content;
@@ -249,6 +262,36 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 		return methodName1.compareTo(methodName2);
 	}
+
+	private String _splitLine(String line, String indent, int maxLineLength) {
+		if (line.length() <= maxLineLength) {
+			return line;
+		}
+
+		int pos = line.indexOf(StringPool.COMMA_AND_SPACE, indent.length());
+
+		if (pos == -1) {
+			return line;
+		}
+
+		if (pos > maxLineLength) {
+			return StringBundler.concat(
+				line.substring(0, pos + 1), StringPool.NEW_LINE,
+				_splitLine(
+					indent + StringUtil.trimLeading(line.substring(pos + 2)),
+					indent, maxLineLength));
+		}
+
+		pos = line.lastIndexOf(StringPool.COMMA_AND_SPACE, maxLineLength);
+
+		return StringBundler.concat(
+			line.substring(0, pos + 1), StringPool.NEW_LINE,
+			_splitLine(
+				indent + StringUtil.trimLeading(line.substring(pos + 2)),
+				indent, maxLineLength));
+	}
+
+	private static final String _MAX_LINE_LENGTH = "maxLineLength";
 
 	private static final Pattern _classDefinationHeaderPattern1 =
 		Pattern.compile(

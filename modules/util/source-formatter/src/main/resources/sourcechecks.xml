@@ -1297,6 +1297,7 @@
 		<check name="PythonStylingCheck">
 			<category name="Styling" />
 			<description name="Applies rules to enforce consisteny in code style." />
+			<property name="maxLineLength" value="80" />
 		</check>
 		<check name="PythonWhitespaceCheck">
 			<category name="Styling" />

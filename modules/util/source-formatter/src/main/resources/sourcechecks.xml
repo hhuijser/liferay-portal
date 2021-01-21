@@ -1290,6 +1290,10 @@
 		</check>
 	</source-processor>
 	<source-processor name="PythonSourceProcessor">
+		<check name="PythonClassesAndMethodsOrderCheck">
+			<category name="Styling" />
+			<description name="Checks the order of classes and methods." />
+		</check>
 		<check name="PythonImportsCheck">
 			<category name="Styling" />
 			<description name="Sorts and groups imports in `.py` files." />

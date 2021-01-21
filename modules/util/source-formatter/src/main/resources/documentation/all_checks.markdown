@@ -334,6 +334,7 @@ PropertiesSourceFormatterFileCheck | [Bug Prevention](bug_prevention_checks.mark
 PropertiesStylingCheck | [Styling](styling_checks.markdown#styling-checks) | .eslintignore, .prettierignore or .properties | Applies rules to enforce consisteny in code style. |
 PropertiesVerifyPropertiesCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .eslintignore, .prettierignore or .properties | Finds usage of legacy properties in `portal.properties` or `system.properties`. |
 PropertiesWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .eslintignore, .prettierignore or .properties | Finds missing and unnecessary whitespace in `.properties` files. |
+PythonClassesAndMethodsOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .py | Checks the order of classes and methods. |
 PythonImportsCheck | [Styling](styling_checks.markdown#styling-checks) | .py | Sorts and groups imports in `.py` files. |
 PythonStylingCheck | [Styling](styling_checks.markdown#styling-checks) | .py | Applies rules to enforce consisteny in code style. |
 PythonWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .py | Finds missing and unnecessary whitespace. |

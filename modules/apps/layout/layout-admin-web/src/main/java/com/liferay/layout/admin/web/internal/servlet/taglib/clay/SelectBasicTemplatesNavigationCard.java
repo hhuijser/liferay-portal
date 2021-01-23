@@ -16,6 +16,8 @@ package com.liferay.layout.admin.web.internal.servlet.taglib.clay;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.NavigationCard;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.LayoutTypeController;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -88,6 +90,9 @@ public class SelectBasicTemplatesNavigationCard implements NavigationCard {
 			data.put("data-add-layout-url", addLayoutURL.toString());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return data;
@@ -113,6 +118,9 @@ public class SelectBasicTemplatesNavigationCard implements NavigationCard {
 	public Boolean isSmall() {
 		return true;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectBasicTemplatesNavigationCard.class);
 
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutTypeController _layoutTypeController;

@@ -16,6 +16,8 @@ package com.liferay.portal.tools;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -120,6 +122,9 @@ public class PluginsGitSvnSyncer {
 					unsyncBufferedReader.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}
@@ -321,6 +326,9 @@ public class PluginsGitSvnSyncer {
 	private static final String _SVN_GET_IGNORES = "svn propget svn:ignore ";
 
 	private static final String _SVN_SET_IGNORES = "svn propset svn:ignore ";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PluginsGitSvnSyncer.class);
 
 	private static final FileImpl _fileImpl = FileImpl.getInstance();
 

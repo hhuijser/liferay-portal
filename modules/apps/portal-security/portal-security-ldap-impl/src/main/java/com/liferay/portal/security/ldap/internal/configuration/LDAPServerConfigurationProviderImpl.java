@@ -17,6 +17,8 @@ package com.liferay.portal.security.ldap.internal.configuration;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.CompanyConstants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
@@ -264,6 +266,12 @@ public class LDAPServerConfigurationProviderImpl
 									LDAPConstants.AUTH_SERVER_PRIORITY));
 						}
 						catch (IllegalStateException illegalStateException) {
+							if (_log.isDebugEnabled()) {
+								_log.debug(
+									illegalStateException,
+									illegalStateException);
+							}
+
 							return 0L;
 						}
 					}));
@@ -416,6 +424,9 @@ public class LDAPServerConfigurationProviderImpl
 
 		super.configurationAdmin = configurationAdmin;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LDAPServerConfigurationProviderImpl.class);
 
 	private final Map
 		<Long,

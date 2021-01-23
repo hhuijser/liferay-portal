@@ -20,6 +20,8 @@ import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.web.internal.constants.JournalWebConstants;
 import com.liferay.journal.web.internal.servlet.taglib.util.JournalFolderActionDropdownItems;
 import com.liferay.portal.kernel.dao.search.RowChecker;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -62,6 +64,9 @@ public class JournalFolderHorizontalCard extends BaseHorizontalCard {
 			return folderActionDropdownItems.getActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -102,6 +107,9 @@ public class JournalFolderHorizontalCard extends BaseHorizontalCard {
 	public String getTitle() {
 		return HtmlUtil.escape(_folder.getName());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalFolderHorizontalCard.class);
 
 	private final String _displayStyle;
 	private final JournalFolder _folder;

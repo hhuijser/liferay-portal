@@ -14,6 +14,8 @@
 
 package com.liferay.user.groups.admin.internal.exportimport.portlet.preferences.processor;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.template.TemplateHandler;
 import com.liferay.portal.kernel.template.TemplateHandlerRegistryUtil;
@@ -39,6 +41,9 @@ public class UserGroupsAdminExportImportPortletPreferencesProcessorUtil {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -58,9 +63,15 @@ public class UserGroupsAdminExportImportPortletPreferencesProcessorUtil {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return 0;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UserGroupsAdminExportImportPortletPreferencesProcessorUtil.class);
 
 }

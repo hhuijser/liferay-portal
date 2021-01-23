@@ -14,6 +14,8 @@
 
 package com.liferay.saml.persistence.internal.upgrade.v1_1_0;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.saml.persistence.internal.upgrade.v1_1_0.util.SamlSpAuthRequestTable;
 
@@ -33,6 +35,10 @@ public class UpgradeSamlSpAuthRequest extends UpgradeProcess {
 					"VARCHAR(1024) null");
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
+
 			upgradeTable(
 				SamlSpAuthRequestTable.TABLE_NAME,
 				SamlSpAuthRequestTable.TABLE_COLUMNS,
@@ -40,5 +46,8 @@ public class UpgradeSamlSpAuthRequest extends UpgradeProcess {
 				SamlSpAuthRequestTable.TABLE_SQL_ADD_INDEXES);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UpgradeSamlSpAuthRequest.class);
 
 }

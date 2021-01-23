@@ -21,6 +21,8 @@ import com.liferay.layout.util.LayoutCopyHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutTypeController;
 import com.liferay.portal.kernel.model.LayoutTypePortlet;
@@ -148,6 +150,9 @@ public class EditLayoutModeProductNavigationControlMenuEntry
 			return _http.setParameter(redirect, "p_l_mode", Constants.EDIT);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -235,6 +240,9 @@ public class EditLayoutModeProductNavigationControlMenuEntry
 
 		return url;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditLayoutModeProductNavigationControlMenuEntry.class);
 
 	@Reference
 	private Http _http;

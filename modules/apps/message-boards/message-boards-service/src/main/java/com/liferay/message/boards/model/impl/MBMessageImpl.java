@@ -27,6 +27,8 @@ import com.liferay.message.boards.service.MBCategoryLocalServiceUtil;
 import com.liferay.message.boards.service.MBThreadLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Repository;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
@@ -153,6 +155,9 @@ public class MBMessageImpl extends MBMessageBaseImpl {
 			_attachmentsFolderId = folder.getFolderId();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return _attachmentsFolderId;
@@ -278,6 +283,8 @@ public class MBMessageImpl extends MBMessageBaseImpl {
 	public void setAttachmentsFolderId(long attachmentsFolderId) {
 		_attachmentsFolderId = attachmentsFolderId;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(MBMessageImpl.class);
 
 	private long _attachmentsFolderId;
 

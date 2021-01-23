@@ -26,6 +26,8 @@ import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryServiceUtil;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -88,6 +90,9 @@ public class MasterLayoutVerticalCard
 			return null;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -116,6 +121,9 @@ public class MasterLayoutVerticalCard
 				layoutFullURL, "p_l_back_url", _themeDisplay.getURLCurrent());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -216,6 +224,9 @@ public class MasterLayoutVerticalCard
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MasterLayoutVerticalCard.class);
 
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;

@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.UserGroupRole;
@@ -54,6 +56,10 @@ public abstract class BaseSiteMembershipPolicy implements SiteMembershipPolicy {
 			checkMembership(new long[] {userId}, new long[] {groupId}, null);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -98,6 +104,10 @@ public abstract class BaseSiteMembershipPolicy implements SiteMembershipPolicy {
 			checkMembership(new long[] {userId}, null, new long[] {groupId});
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return true;
 		}
 
@@ -123,6 +133,10 @@ public abstract class BaseSiteMembershipPolicy implements SiteMembershipPolicy {
 			checkRoles(userGroupRoles, null);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -175,6 +189,10 @@ public abstract class BaseSiteMembershipPolicy implements SiteMembershipPolicy {
 			checkRoles(null, userGroupRoles);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return true;
 		}
 
@@ -232,5 +250,8 @@ public abstract class BaseSiteMembershipPolicy implements SiteMembershipPolicy {
 		Role role, Role oldRole,
 		Map<String, Serializable> oldExpandoAttributes) {
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseSiteMembershipPolicy.class);
 
 }

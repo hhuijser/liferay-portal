@@ -17,6 +17,8 @@ package com.liferay.portal.jsonwebservice;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionMapping;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MethodParameter;
 import com.liferay.portal.kernel.util.MethodParametersResolverUtil;
@@ -99,6 +101,9 @@ public class JSONWebServiceActionConfig
 				actionMethod.getName(), actionMethod.getParameterTypes());
 		}
 		catch (NoSuchMethodException noSuchMethodException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchMethodException, noSuchMethodException);
+			}
 		}
 
 		_realActionMethod = realActionMethod;
@@ -237,6 +242,9 @@ public class JSONWebServiceActionConfig
 
 		return sb.toString();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSONWebServiceActionConfig.class);
 
 	private final Class<?> _actionClass;
 	private final Method _actionMethod;

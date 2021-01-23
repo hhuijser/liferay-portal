@@ -14,6 +14,8 @@
 
 package com.liferay.saml.opensaml.integration.internal.provider;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.saml.opensaml.integration.internal.util.SamlUtil;
@@ -137,6 +139,12 @@ public class DBMetadataResolver extends AbstractMetadataResolver {
 			catch (NoSuchIdpSpConnectionException
 						noSuchIdpSpConnectionException) {
 
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchIdpSpConnectionException,
+						noSuchIdpSpConnectionException);
+				}
+
 				return null;
 			}
 		}
@@ -154,6 +162,12 @@ public class DBMetadataResolver extends AbstractMetadataResolver {
 			}
 			catch (NoSuchSpIdpConnectionException
 						noSuchSpIdpConnectionException) {
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchSpIdpConnectionException,
+						noSuchSpIdpConnectionException);
+				}
 
 				return null;
 			}
@@ -180,6 +194,9 @@ public class DBMetadataResolver extends AbstractMetadataResolver {
 			throw new ResolverException(exception);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DBMetadataResolver.class);
 
 	@Reference
 	private ParserPool _parserPool;

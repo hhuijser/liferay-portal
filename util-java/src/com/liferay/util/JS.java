@@ -17,6 +17,8 @@ package com.liferay.util;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeFormatter;
 
@@ -51,6 +53,9 @@ public class JS {
 			s = URLDecoder.decode(s, StringPool.UTF8);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return s;
@@ -64,6 +69,9 @@ public class JS {
 			s = URLEncoder.encode(s, StringPool.UTF8);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		// Adjust for JavaScript specific annoyances
@@ -126,6 +134,8 @@ public class JS {
 
 		return sb.toString();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(JS.class);
 
 	private static final Pattern _pattern = Pattern.compile("%u[0-9a-fA-F]{4}");
 

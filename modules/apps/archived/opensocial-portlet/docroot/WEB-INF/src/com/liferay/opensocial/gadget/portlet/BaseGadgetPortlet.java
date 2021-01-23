@@ -22,6 +22,8 @@ import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.ResourceConstants;
@@ -156,6 +158,9 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 			gadget = getGadget(renderRequest);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (gadget != null) {
@@ -213,5 +218,8 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 			PortletDisplay portletDisplay)
 		throws Exception {
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseGadgetPortlet.class);
 
 }

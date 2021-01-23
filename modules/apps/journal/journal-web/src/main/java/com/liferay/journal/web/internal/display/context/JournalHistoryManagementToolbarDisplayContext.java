@@ -23,6 +23,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -95,6 +97,9 @@ public class JournalHistoryManagementToolbarDisplayContext
 					}
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				try {
@@ -127,6 +132,9 @@ public class JournalHistoryManagementToolbarDisplayContext
 					}
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		};
@@ -188,6 +196,9 @@ public class JournalHistoryManagementToolbarDisplayContext
 	protected String[] getOrderByKeys() {
 		return new String[] {"version", "display-date", "modified-date"};
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalHistoryManagementToolbarDisplayContext.class);
 
 	private final JournalArticle _article;
 

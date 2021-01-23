@@ -160,6 +160,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.metadata.RawMetadataProcessor;
 import com.liferay.portal.kernel.model.AccountModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -4033,6 +4035,10 @@ public class DataFactory {
 					}
 				}
 				catch (NoSuchMethodException noSuchMethodException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							noSuchMethodException, noSuchMethodException);
+					}
 				}
 			}
 
@@ -5340,6 +5346,8 @@ public class DataFactory {
 	private static final String _JOURNAL_STRUCTURE_KEY = "BASIC-WEB-CONTENT";
 
 	private static final String _SAMPLE_USER_NAME = "Sample";
+
+	private static final Log _log = LogFactoryUtil.getLog(DataFactory.class);
 
 	private static final PortletPreferencesFactory _portletPreferencesFactory =
 		new PortletPreferencesFactoryImpl();

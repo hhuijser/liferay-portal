@@ -16,6 +16,8 @@ package com.liferay.portlet.configuration.css.web.internal.portlet.configuration
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
@@ -74,6 +76,9 @@ public class PortletConfigurationCSSPortletConfigurationIcon
 			return renderURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -107,5 +112,8 @@ public class PortletConfigurationCSSPortletConfigurationIcon
 	public boolean isUseDialog() {
 		return true;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletConfigurationCSSPortletConfigurationIcon.class);
 
 }

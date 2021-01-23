@@ -24,6 +24,8 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.role.RoleConstants;
@@ -91,6 +93,9 @@ public class UserGroupsManagementToolbarDisplayContext
 					}
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				try {
@@ -167,6 +172,9 @@ public class UserGroupsManagementToolbarDisplayContext
 					}
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		};
@@ -220,6 +228,10 @@ public class UserGroupsManagementToolbarDisplayContext
 			).build();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -282,6 +294,9 @@ public class UserGroupsManagementToolbarDisplayContext
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -363,6 +378,9 @@ public class UserGroupsManagementToolbarDisplayContext
 
 		return selectURL.toString();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UserGroupsManagementToolbarDisplayContext.class);
 
 	private final UserGroupsDisplayContext _userGroupsDisplayContext;
 

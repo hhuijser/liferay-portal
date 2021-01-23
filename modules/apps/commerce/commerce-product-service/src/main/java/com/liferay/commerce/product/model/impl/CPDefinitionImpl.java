@@ -41,6 +41,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
@@ -389,6 +391,10 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 					classNameId, getCProductId());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 
@@ -489,6 +495,9 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 	public void setUrlTitleMap(Map<Locale, String> urlTitleMap) {
 		_urlTitleMap = urlTitleMap;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPDefinitionImpl.class);
 
 	private UnicodeProperties
 		_deliverySubscriptionTypeSettingsUnicodeProperties;

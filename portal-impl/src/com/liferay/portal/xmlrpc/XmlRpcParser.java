@@ -18,6 +18,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.xmlrpc.Response;
@@ -151,6 +153,9 @@ public class XmlRpcParser {
 					xmlStreamReader.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}
@@ -259,6 +264,9 @@ public class XmlRpcParser {
 					xmlStreamReader.close();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}
@@ -308,5 +316,7 @@ public class XmlRpcParser {
 
 		return sb.toString();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(XmlRpcParser.class);
 
 }

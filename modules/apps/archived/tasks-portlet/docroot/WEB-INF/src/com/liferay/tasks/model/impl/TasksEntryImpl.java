@@ -18,6 +18,8 @@
 package com.liferay.tasks.model.impl;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.tasks.model.TasksEntryConstants;
@@ -59,9 +61,14 @@ public class TasksEntryImpl extends TasksEntryBaseImpl {
 			fullName = user.getFullName();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return fullName;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(TasksEntryImpl.class);
 
 }

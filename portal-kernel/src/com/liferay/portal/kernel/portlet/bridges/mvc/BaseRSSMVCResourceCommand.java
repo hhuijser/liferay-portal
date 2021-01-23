@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.portlet.bridges.mvc;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -49,6 +51,9 @@ public abstract class BaseRSSMVCResourceCommand implements MVCResourceCommand {
 					resourceRequest, resourceResponse);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -62,5 +67,8 @@ public abstract class BaseRSSMVCResourceCommand implements MVCResourceCommand {
 	protected boolean isRSSFeedsEnabled(ResourceRequest resourceRequest) {
 		return PortalUtil.isRSSFeedsEnabled();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseRSSMVCResourceCommand.class);
 
 }

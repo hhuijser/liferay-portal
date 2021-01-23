@@ -16,6 +16,8 @@ package com.liferay.portal.javadoc;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Arrays;
@@ -43,6 +45,9 @@ public class JavadocUtil {
 				return classLoader.loadClass(className);
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 		}
 
@@ -55,6 +60,9 @@ public class JavadocUtil {
 				return contextClassLoader.loadClass(className);
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 		}
 
@@ -110,5 +118,7 @@ public class JavadocUtil {
 		boolean.class, byte.class, char.class, double.class, float.class,
 		int.class, long.class, short.class
 	};
+
+	private static final Log _log = LogFactoryUtil.getLog(JavadocUtil.class);
 
 }

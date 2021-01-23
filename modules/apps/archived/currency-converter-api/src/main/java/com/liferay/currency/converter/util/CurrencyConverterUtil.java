@@ -17,6 +17,8 @@ package com.liferay.currency.converter.util;
 import com.liferay.currency.converter.model.CurrencyConverter;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
 import com.liferay.portal.kernel.webcache.WebCachePoolUtil;
 
@@ -62,6 +64,10 @@ public class CurrencyConverterUtil {
 			return (CurrencyConverter)WebCachePoolUtil.get(key, wci);
 		}
 		catch (ClassCastException classCastException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(classCastException, classCastException);
+			}
+
 			WebCachePoolUtil.remove(key);
 		}
 
@@ -109,6 +115,9 @@ public class CurrencyConverterUtil {
 		_currencyIds.add("USD");
 		_currencyIds.add("ZAR");
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CurrencyConverterUtil.class);
 
 	private static final CurrencyConverterUtil _currencyConverterUtil =
 		new CurrencyConverterUtil();

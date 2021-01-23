@@ -19,6 +19,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -570,6 +572,10 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 				Double.parseDouble(value);
 			}
 			catch (NumberFormatException numberFormatException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(numberFormatException, numberFormatException);
+				}
+
 				return false;
 			}
 
@@ -596,6 +602,9 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 		"liferay-ui:success", "liferay-util:dynamic-include",
 		"liferay-util:include", "liferay-util:param"
 	};
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSPTagAttributesCheck.class);
 
 	private static final Pattern _javaSourceInsideTagPattern = Pattern.compile(
 		"<%.*?%>");

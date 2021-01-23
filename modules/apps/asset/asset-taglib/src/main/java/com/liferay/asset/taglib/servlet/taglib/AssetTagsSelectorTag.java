@@ -19,6 +19,8 @@ import com.liferay.asset.kernel.service.AssetTagServiceUtil;
 import com.liferay.asset.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.petra.string.StringUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletProvider;
@@ -232,6 +234,9 @@ public class AssetTagsSelectorTag extends IncludeTag {
 			return portletURL;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -343,6 +348,9 @@ public class AssetTagsSelectorTag extends IncludeTag {
 	}
 
 	private static final String _PAGE = "/asset_tags_selector/page.jsp";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetTagsSelectorTag.class);
 
 	private String _addCallback;
 	private boolean _allowAddEntry = true;

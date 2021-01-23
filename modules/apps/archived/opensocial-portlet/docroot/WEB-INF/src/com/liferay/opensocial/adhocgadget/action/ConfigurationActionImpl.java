@@ -18,6 +18,8 @@ import com.liferay.opensocial.gadget.action.BaseConfigurationAction;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.JavaConstants;
@@ -62,6 +64,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 				ShindigUtil.getOAuthServices(gadget.getUrl()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		super.include(portletConfig, httpServletRequest, httpServletResponse);
@@ -124,5 +129,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		return ShindigUtil.getGadget(portletPreferences);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurationActionImpl.class);
 
 }

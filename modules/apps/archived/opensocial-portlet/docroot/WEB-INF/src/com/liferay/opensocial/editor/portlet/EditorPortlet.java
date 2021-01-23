@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
@@ -358,6 +360,9 @@ public class EditorPortlet extends AdminPortlet {
 					gadgetId = gadget.getGadgetId();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				jsonObject.put(
@@ -513,5 +518,7 @@ public class EditorPortlet extends AdminPortlet {
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(EditorPortlet.class);
 
 }

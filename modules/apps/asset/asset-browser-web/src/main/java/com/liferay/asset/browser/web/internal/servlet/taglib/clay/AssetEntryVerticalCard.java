@@ -22,6 +22,8 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -110,6 +112,9 @@ public class AssetEntryVerticalCard implements VerticalCard {
 					group.getDescriptiveName(_themeDisplay.getLocale()));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -127,6 +132,9 @@ public class AssetEntryVerticalCard implements VerticalCard {
 			return _assetRenderer.getThumbnailPath(_renderRequest);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -161,6 +169,9 @@ public class AssetEntryVerticalCard implements VerticalCard {
 					group.getDescriptiveName(_themeDisplay.getLocale()));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -176,6 +187,9 @@ public class AssetEntryVerticalCard implements VerticalCard {
 	public boolean isSelectable() {
 		return _assetBrowserDisplayContext.isMultipleSelection();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetEntryVerticalCard.class);
 
 	private final AssetBrowserDisplayContext _assetBrowserDisplayContext;
 	private final AssetEntry _assetEntry;

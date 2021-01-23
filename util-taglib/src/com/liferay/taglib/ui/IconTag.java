@@ -17,6 +17,8 @@ package com.liferay.taglib.ui;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.PortletApp;
 import com.liferay.portal.kernel.model.SpriteImage;
@@ -582,6 +584,10 @@ public class IconTag extends IncludeTag {
 					imageFileName = imageURL.getPath();
 				}
 				catch (MalformedURLException malformedURLException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							malformedURLException, malformedURLException);
+					}
 				}
 			}
 		}
@@ -704,6 +710,8 @@ public class IconTag extends IncludeTag {
 	private static final String _AUI_PATH = "../aui/";
 
 	private static final boolean _CLEAN_UP_SET_ATTRIBUTES = true;
+
+	private static final Log _log = LogFactoryUtil.getLog(IconTag.class);
 
 	private String _alt;
 	private String _ariaRole;

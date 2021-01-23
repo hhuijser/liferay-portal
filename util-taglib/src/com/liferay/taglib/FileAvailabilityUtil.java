@@ -15,6 +15,8 @@
 package com.liferay.taglib;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.PortalWebResourcesUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -73,6 +75,9 @@ public class FileAvailabilityUtil {
 			url = servletContext.getResource(path);
 		}
 		catch (MalformedURLException malformedURLException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(malformedURLException, malformedURLException);
+			}
 		}
 
 		if ((url == null) && !PortalWebResourcesUtil.isAvailable(path)) {
@@ -103,5 +108,8 @@ public class FileAvailabilityUtil {
 
 		return availabilities;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FileAvailabilityUtil.class);
 
 }

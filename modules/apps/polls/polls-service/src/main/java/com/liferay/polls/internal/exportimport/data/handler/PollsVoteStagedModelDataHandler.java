@@ -26,6 +26,8 @@ import com.liferay.polls.model.PollsQuestion;
 import com.liferay.polls.model.PollsVote;
 import com.liferay.polls.service.PollsVoteLocalService;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
@@ -156,6 +158,9 @@ public class PollsVoteStagedModelDataHandler
 				vote.getUserId(), questionId, choiceId, serviceContext);
 		}
 		catch (DuplicateVoteException duplicateVoteException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(duplicateVoteException, duplicateVoteException);
+			}
 		}
 	}
 
@@ -165,6 +170,9 @@ public class PollsVoteStagedModelDataHandler
 
 		_pollsVoteLocalService = pollsVoteLocalService;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PollsVoteStagedModelDataHandler.class);
 
 	private PollsVoteLocalService _pollsVoteLocalService;
 

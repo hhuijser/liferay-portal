@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.servlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -310,6 +312,9 @@ public class PortalMessages {
 			}
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// Session is already invalidated, just return a null map
 
@@ -317,5 +322,7 @@ public class PortalMessages {
 
 		return map;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(PortalMessages.class);
 
 }

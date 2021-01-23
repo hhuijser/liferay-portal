@@ -21,6 +21,8 @@ import com.liferay.message.boards.web.internal.upload.TempAttachmentMBUploadFile
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -104,6 +106,10 @@ public class EditMessageAttachmentsMVCActionCommand
 			jsonObject.put("deleted", Boolean.TRUE);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			jsonObject.put("deleted", Boolean.FALSE);
 
 			String errorMessage = themeDisplay.translate(
@@ -174,6 +180,9 @@ public class EditMessageAttachmentsMVCActionCommand
 		_mbMessageService.restoreMessageAttachmentFromTrash(
 			messageId, fileName);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditMessageAttachmentsMVCActionCommand.class);
 
 	@Reference
 	private MBMessageService _mbMessageService;

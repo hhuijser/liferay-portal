@@ -26,6 +26,8 @@ import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.journal.web.internal.util.JournalResourceBundleLoader;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -113,6 +115,10 @@ public class JournalArticleActivityInterpreter
 			return null;
 		}
 		catch (NoSuchArticleException noSuchArticleException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchArticleException, noSuchArticleException);
+			}
+
 			return null;
 		}
 	}
@@ -194,6 +200,9 @@ public class JournalArticleActivityInterpreter
 	private static final String[] _CLASS_NAMES = {
 		JournalArticle.class.getName()
 	};
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleActivityInterpreter.class);
 
 	private JournalArticleLocalService _journalArticleLocalService;
 

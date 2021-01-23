@@ -44,6 +44,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
@@ -207,6 +209,10 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 			jsonObject.put("deleted", Boolean.TRUE);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			String errorMessage = themeDisplay.translate(
 				"an-unexpected-error-occurred-while-deleting-the-file");
 
@@ -335,6 +341,9 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 								resourceResponse));
 					}
 					catch (ServletException servletException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(servletException, servletException);
+						}
 					}
 				}
 
@@ -725,5 +734,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 	protected KBTemplateService kbTemplateService;
 	protected Portal portal;
 	protected UploadResponseHandler uploadResponseHandler;
+
+	private static final Log _log = LogFactoryUtil.getLog(BaseKBPortlet.class);
 
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.saml.opensaml.integration.internal.servlet.profile;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 
@@ -77,6 +79,10 @@ public class SamlSsoRequestContext implements Serializable {
 			return _userLocalService.fetchUserById(_userId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -108,6 +114,9 @@ public class SamlSsoRequestContext implements Serializable {
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SamlSsoRequestContext.class);
 
 	private final String _authnRequestXml;
 	private volatile MessageContext<?> _messageContext;

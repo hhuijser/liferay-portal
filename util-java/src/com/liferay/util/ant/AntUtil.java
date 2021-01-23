@@ -18,6 +18,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.IOException;
 
@@ -68,6 +70,9 @@ public class AntUtil {
 					}
 				}
 				catch (IOException ioException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(ioException, ioException);
+					}
 				}
 
 				String message = sb.toString();
@@ -92,5 +97,7 @@ public class AntUtil {
 
 		return project;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(AntUtil.class);
 
 }

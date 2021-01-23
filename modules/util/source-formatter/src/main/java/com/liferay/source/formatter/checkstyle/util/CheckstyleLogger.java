@@ -16,6 +16,8 @@ package com.liferay.source.formatter.checkstyle.util;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.SourceFormatterMessage;
@@ -145,6 +147,10 @@ public class CheckstyleLogger extends DefaultLogger {
 				document.getRootElement(), checkName);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -163,9 +169,16 @@ public class CheckstyleLogger extends DefaultLogger {
 				classLoader.loadClass(checkName));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CheckstyleLogger.class);
 
 	private static final Set<SourceFormatterMessage> _sourceFormatterMessages =
 		new TreeSet<>();

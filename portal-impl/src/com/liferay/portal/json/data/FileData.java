@@ -14,6 +14,8 @@
 
 package com.liferay.portal.json.data;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.FileUtil;
 
@@ -32,6 +34,10 @@ public class FileData {
 			bytes = FileUtil.getBytes(file);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			bytes = null;
 		}
 
@@ -64,6 +70,8 @@ public class FileData {
 	public void setSize(long size) {
 		_size = size;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(FileData.class);
 
 	private String _content;
 	private String _name;

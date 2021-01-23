@@ -36,6 +36,8 @@ import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
@@ -171,6 +173,11 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 					kbTemplateId);
 			}
 			catch (NoSuchTemplateException noSuchTemplateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchTemplateException, noSuchTemplateException);
+				}
+
 				continue;
 			}
 
@@ -330,5 +337,8 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 			throw new KBTemplateContentException();
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		KBTemplateLocalServiceImpl.class);
 
 }

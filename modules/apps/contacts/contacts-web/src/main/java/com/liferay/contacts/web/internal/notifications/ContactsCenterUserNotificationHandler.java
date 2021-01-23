@@ -19,6 +19,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
@@ -188,6 +190,10 @@ public class ContactsCenterUserNotificationHandler
 				"</a>");
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
@@ -195,6 +201,9 @@ public class ContactsCenterUserNotificationHandler
 	private static final String _BODY =
 		"<div class=\"title\">[$TITLE$]</div><div class=\"body\">[$BODY$]" +
 			"</div>";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ContactsCenterUserNotificationHandler.class);
 
 	@Reference
 	private SocialRequestLocalService _socialRequestLocalService;

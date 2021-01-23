@@ -34,6 +34,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -133,6 +135,9 @@ public class DDMFormInstanceFieldSettingsValidator {
 						}
 					}
 					catch (Exception exception) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(exception, exception);
+						}
 					}
 
 					return localizedValue;
@@ -292,6 +297,9 @@ public class DDMFormInstanceFieldSettingsValidator {
 
 		return ddmFormFieldList;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMFormInstanceFieldSettingsValidator.class);
 
 	@Reference
 	private DDMFormEvaluator _ddmFormEvaluator;

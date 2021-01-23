@@ -18,6 +18,8 @@ import com.liferay.petra.lang.HashUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -60,6 +62,10 @@ public class StagedModelType {
 			return new StagedModelType(className, referrerClassName);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -227,6 +233,9 @@ public class StagedModelType {
 			_referrerClassName = PortalUtil.getClassName(referrerClassNameId);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		StagedModelType.class);
 
 	private String _className;
 	private long _classNameId;

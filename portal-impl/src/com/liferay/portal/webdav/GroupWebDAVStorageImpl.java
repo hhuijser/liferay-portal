@@ -15,6 +15,8 @@
 package com.liferay.portal.webdav;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.webdav.BaseResourceImpl;
 import com.liferay.portal.kernel.webdav.BaseWebDAVStorageImpl;
@@ -75,11 +77,17 @@ public class GroupWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		throw new WebDAVException(
 			"Invalid group for given credentials " +
 				webDAVRequest.getRootPath() + path);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		GroupWebDAVStorageImpl.class);
 
 }

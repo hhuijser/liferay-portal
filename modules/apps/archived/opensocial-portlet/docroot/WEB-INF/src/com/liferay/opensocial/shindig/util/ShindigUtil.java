@@ -27,6 +27,8 @@ import com.liferay.petra.lang.CentralizedThreadLocal;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.User;
@@ -217,6 +219,9 @@ public class ShindigUtil {
 				_GADGET_EDITOR_ROOT_FOLDER_NAME);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (folder == null) {
@@ -380,6 +385,9 @@ public class ShindigUtil {
 			return true;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -464,6 +472,8 @@ public class ShindigUtil {
 		"OpenSocial Gadgets";
 
 	private static final String _TABLE_OPEN_SOCIAL = "OPEN_SOCIAL_DATA_";
+
+	private static final Log _log = LogFactoryUtil.getLog(ShindigUtil.class);
 
 	@Inject
 	private static BasicSecurityTokenCodec _basicSecurityTokenCodec;

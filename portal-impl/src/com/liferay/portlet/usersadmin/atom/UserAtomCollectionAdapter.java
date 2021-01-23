@@ -21,6 +21,8 @@ import com.liferay.portal.atom.AtomUtil;
 import com.liferay.portal.kernel.atom.AtomEntryContent;
 import com.liferay.portal.kernel.atom.AtomRequestContext;
 import com.liferay.portal.kernel.atom.BaseAtomCollectionAdapter;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletProvider;
@@ -77,6 +79,9 @@ public class UserAtomCollectionAdapter extends BaseAtomCollectionAdapter<User> {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return new AtomEntryContent(sb.toString());
@@ -162,5 +167,8 @@ public class UserAtomCollectionAdapter extends BaseAtomCollectionAdapter<User> {
 	}
 
 	private static final String _COLLECTION_NAME = "users";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UserAtomCollectionAdapter.class);
 
 }

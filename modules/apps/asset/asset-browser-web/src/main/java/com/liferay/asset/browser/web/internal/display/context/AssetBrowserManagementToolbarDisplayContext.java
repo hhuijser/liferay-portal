@@ -28,6 +28,8 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -290,6 +292,10 @@ public class AssetBrowserManagementToolbarDisplayContext
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 
@@ -340,6 +346,9 @@ public class AssetBrowserManagementToolbarDisplayContext
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetBrowserManagementToolbarDisplayContext.class);
 
 	private final AssetBrowserDisplayContext _assetBrowserDisplayContext;
 	private final AssetHelper _assetHelper;

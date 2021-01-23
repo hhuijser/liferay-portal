@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.messaging.config;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Destination;
 import com.liferay.portal.kernel.messaging.DestinationConfiguration;
 import com.liferay.portal.kernel.messaging.DestinationEventListener;
@@ -225,6 +227,9 @@ public abstract class BaseMessagingConfigurator
 					continue;
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				try {
@@ -237,6 +242,9 @@ public abstract class BaseMessagingConfigurator
 					setMessageBusMethod.invoke(messageListener, _messageBus);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		}
@@ -381,6 +389,9 @@ public abstract class BaseMessagingConfigurator
 				MessageBusEventListener.class, messageBusEventListener);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseMessagingConfigurator.class);
 
 	private final Set<DestinationConfiguration> _destinationConfigurations =
 		new HashSet<>();

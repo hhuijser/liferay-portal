@@ -17,6 +17,8 @@ package com.liferay.marketplace.app.manager.web.internal.util;
 import com.liferay.marketplace.constants.MarketplaceStorePortletKeys;
 import com.liferay.marketplace.model.App;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -85,6 +87,9 @@ public class MarketplaceAppDisplay extends BaseAppDisplay {
 			return portletURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -104,6 +109,9 @@ public class MarketplaceAppDisplay extends BaseAppDisplay {
 	public boolean isRequired() {
 		return _app.isRequired();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MarketplaceAppDisplay.class);
 
 	private final App _app;
 

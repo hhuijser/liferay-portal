@@ -14,6 +14,8 @@
 
 package com.liferay.saml.persistence.internal.upgrade.v1_1_3;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.saml.persistence.internal.upgrade.v1_1_3.util.SamlSpIdpConnectionTable;
 
@@ -30,6 +32,10 @@ public class UpgradeSamlSpIdpConnection extends UpgradeProcess {
 			runSQL("alter_column_type SamlSpIdpConnection forceAuthn BOOLEAN");
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
+
 			upgradeTable(
 				SamlSpIdpConnectionTable.TABLE_NAME,
 				SamlSpIdpConnectionTable.TABLE_COLUMNS,
@@ -37,5 +43,8 @@ public class UpgradeSamlSpIdpConnection extends UpgradeProcess {
 				SamlSpIdpConnectionTable.TABLE_SQL_ADD_INDEXES);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UpgradeSamlSpIdpConnection.class);
 
 }

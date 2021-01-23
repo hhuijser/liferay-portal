@@ -15,6 +15,8 @@
 package com.liferay.exportimport.internal.lar;
 
 import com.liferay.exportimport.kernel.lar.UserIdStrategy;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -41,9 +43,16 @@ public class CurrentUserIdStrategy implements UserIdStrategy {
 			return user.getUserId();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return _user.getUserId();
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CurrentUserIdStrategy.class);
 
 	private final User _user;
 

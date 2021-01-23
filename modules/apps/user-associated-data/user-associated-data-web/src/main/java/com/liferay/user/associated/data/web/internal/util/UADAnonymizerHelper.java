@@ -18,6 +18,8 @@ import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -66,6 +68,10 @@ public class UADAnonymizerHelper {
 			return false;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
@@ -176,6 +182,9 @@ public class UADAnonymizerHelper {
 
 		return anonymousUser;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UADAnonymizerHelper.class);
 
 	@Reference
 	private AnonymousUserConfigurationRetriever

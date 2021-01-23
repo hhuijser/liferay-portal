@@ -48,6 +48,8 @@ import com.liferay.dynamic.data.mapping.validator.DDMFormValidator;
 import com.liferay.dynamic.data.mapping.validator.internal.util.DDMFormRuleValidatorUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -369,6 +371,10 @@ public class DDMFormValidatorImpl implements DDMFormValidator {
 			}
 		}
 		catch (DDMExpressionException ddmExpressionException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ddmExpressionException, ddmExpressionException);
+			}
+
 			throw new MustSetValidValidationExpression(
 				ddmFormField.getName(),
 				ddmFormFieldValidationExpression.getValue());
@@ -392,6 +398,10 @@ public class DDMFormValidatorImpl implements DDMFormValidator {
 				).build());
 		}
 		catch (DDMExpressionException ddmExpressionException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ddmExpressionException, ddmExpressionException);
+			}
+
 			throw new MustSetValidVisibilityExpression(
 				ddmFormField.getName(), visibilityExpression);
 		}
@@ -462,6 +472,9 @@ public class DDMFormValidatorImpl implements DDMFormValidator {
 	private static final String[] _DDM_FORM_FIELD_INDEX_TYPES = {
 		StringPool.BLANK, "keyword", "none", "text"
 	};
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMFormValidatorImpl.class);
 
 	private static final Pattern _ddmFormFieldNamePattern = Pattern.compile(
 		"([^\\p{Punct}|\\p{Space}$]|_)+");

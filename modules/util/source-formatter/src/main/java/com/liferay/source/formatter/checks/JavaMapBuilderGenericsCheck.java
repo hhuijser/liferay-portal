@@ -16,6 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.parser.JavaClass;
@@ -132,6 +134,9 @@ public class JavaMapBuilderGenericsCheck extends BaseJavaTermCheck {
 				return Class.forName(importName);
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 		}
 
@@ -139,18 +144,27 @@ public class JavaMapBuilderGenericsCheck extends BaseJavaTermCheck {
 			return Class.forName(typeName);
 		}
 		catch (ClassNotFoundException classNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(classNotFoundException, classNotFoundException);
+			}
 		}
 
 		try {
 			return Class.forName("java.lang." + typeName);
 		}
 		catch (ClassNotFoundException classNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(classNotFoundException, classNotFoundException);
+			}
 		}
 
 		try {
 			return Class.forName(javaClass.getPackageName() + "." + typeName);
 		}
 		catch (ClassNotFoundException classNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(classNotFoundException, classNotFoundException);
+			}
 		}
 
 		return null;
@@ -220,6 +234,9 @@ public class JavaMapBuilderGenericsCheck extends BaseJavaTermCheck {
 
 		return true;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavaMapBuilderGenericsCheck.class);
 
 	private static final Pattern _mapBuilderPattern = Pattern.compile(
 		StringBundler.concat(

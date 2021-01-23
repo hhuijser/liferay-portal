@@ -20,6 +20,8 @@ import com.beust.jcommander.ParameterException;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CamelCaseUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -1769,6 +1771,10 @@ public class RESTBuilder {
 			).findFirst();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return Optional.empty();
 		}
 	}
@@ -1993,6 +1999,8 @@ public class RESTBuilder {
 	}
 
 	private static final int _DESCRIPTION_MAX_LINE_LENGTH = 120;
+
+	private static final Log _log = LogFactoryUtil.getLog(RESTBuilder.class);
 
 	private final File _configDir;
 	private final ConfigYAML _configYAML;

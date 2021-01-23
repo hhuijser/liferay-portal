@@ -18,6 +18,8 @@ import com.liferay.commerce.machine.learning.internal.recommendation.constants.C
 import com.liferay.commerce.machine.learning.recommendation.CommerceMLRecommendation;
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
@@ -207,6 +209,9 @@ public abstract class BaseCommerceMLRecommendationServiceImpl
 			return dateFormat.parse(dateString);
 		}
 		catch (ParseException parseException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(parseException, parseException);
+			}
 		}
 
 		return null;
@@ -226,5 +231,8 @@ public abstract class BaseCommerceMLRecommendationServiceImpl
 
 	private static final String _INDEX_DATE_FORMAT_PATTERN =
 		"yyyy-MM-dd'T'HH:mm:ss.SSSX";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseCommerceMLRecommendationServiceImpl.class);
 
 }

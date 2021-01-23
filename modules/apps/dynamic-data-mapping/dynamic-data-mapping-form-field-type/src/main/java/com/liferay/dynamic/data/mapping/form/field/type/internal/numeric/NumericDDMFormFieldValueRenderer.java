@@ -19,6 +19,8 @@ import com.liferay.dynamic.data.mapping.form.field.type.constants.DDMFormFieldTy
 import com.liferay.dynamic.data.mapping.model.Value;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.text.NumberFormat;
@@ -68,10 +70,16 @@ public class NumericDDMFormFieldValueRenderer
 				return formatter.parse(valueString);
 			}
 			catch (ParseException parseException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(parseException, parseException);
+				}
 			}
 		}
 
 		return null;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		NumericDDMFormFieldValueRenderer.class);
 
 }

@@ -15,6 +15,8 @@
 package com.liferay.saml.web.internal.portlet.action;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -101,6 +103,10 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 				SamlWebKeys.SAML_X509_CERTIFICATE, x509Certificate);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			SessionErrors.add(
 				actionRequest, CertificateKeyPasswordException.class);
 		}
@@ -210,6 +216,10 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 				selectKeyStoreAlias, new KeyStore.PasswordProtection(password));
 		}
 		catch (CertificateException certificateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(certificateException, certificateException);
+			}
+
 			SessionErrors.add(actionRequest, "certificateException");
 
 			return;
@@ -224,6 +234,10 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 			throw new PortalException(ioException);
 		}
 		catch (KeyStoreException | NoSuchAlgorithmException exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			if (keyStore == null) {
 				SessionErrors.add(
 					actionRequest,
@@ -237,6 +251,11 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 			return;
 		}
 		catch (UnrecoverableEntryException unrecoverableEntryException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unrecoverableEntryException, unrecoverableEntryException);
+			}
+
 			SessionErrors.add(actionRequest, "incorrectKeyPassword");
 
 			return;
@@ -336,6 +355,9 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private static final String _SHA256_PREFIX = "SHA256with";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UpdateCertificateMVCActionCommand.class);
 
 	@Reference
 	private CertificateTool _certificateTool;

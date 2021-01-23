@@ -18,6 +18,8 @@
 package com.liferay.tasks.asset.model;
 
 import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -124,6 +126,9 @@ public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer<TasksEntry> {
 			return portletURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -160,6 +165,9 @@ public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer<TasksEntry> {
 
 		return super.include(httpServletRequest, httpServletResponse, template);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TasksEntryAssetRenderer.class);
 
 	private final TasksEntry _entry;
 

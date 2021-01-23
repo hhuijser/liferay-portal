@@ -17,6 +17,8 @@ package com.liferay.layout.internal.model.adapter.builder;
 import com.liferay.layout.internal.model.adapter.StagedLayoutSetImpl;
 import com.liferay.layout.set.model.adapter.StagedLayoutSet;
 import com.liferay.petra.reflect.ReflectionUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.model.adapter.builder.ModelAdapterBuilder;
 
@@ -42,8 +44,15 @@ public class LayoutSetModelAdapterBuilder
 			return (LayoutSet)layoutSetField.get(stagedLayoutSet);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutSetModelAdapterBuilder.class);
 
 }

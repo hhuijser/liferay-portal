@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PropsValues;
@@ -184,6 +186,10 @@ public class ConfigurationPersistenceManager
 			populateDictionaries();
 		}
 		catch (IOException | SQLException exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			createConfigurationTable();
 		}
 	}
@@ -504,6 +510,10 @@ public class ConfigurationPersistenceManager
 				configFile = new File(URI.create(felixFileInstallFileName));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				configFile = new File(felixFileInstallFileName);
 			}
 
@@ -544,6 +554,9 @@ public class ConfigurationPersistenceManager
 
 	private static final String _SERVIE_BUNDLE_LOCATION =
 		"service.bundleLocation";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurationPersistenceManager.class);
 
 	private static final Dictionary<?, ?> _emptyDictionary =
 		new HashMapDictionary<>();

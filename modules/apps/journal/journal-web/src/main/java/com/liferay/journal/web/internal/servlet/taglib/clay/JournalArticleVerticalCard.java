@@ -28,6 +28,8 @@ import com.liferay.journal.web.internal.servlet.taglib.util.JournalArticleAction
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -87,6 +89,9 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 			return articleActionDropdownItemsProvider.getActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -128,6 +133,9 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 			return editArticleURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -205,6 +213,10 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 			return user.getPortraitURL(themeDisplay);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
@@ -248,6 +260,9 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 
 		return UserLocalServiceUtil.fetchUser(article.getUserId());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleVerticalCard.class);
 
 	private final JournalArticle _article;
 	private final AssetDisplayPageFriendlyURLProvider

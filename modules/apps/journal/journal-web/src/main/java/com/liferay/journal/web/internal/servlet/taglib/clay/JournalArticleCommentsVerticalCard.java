@@ -17,6 +17,8 @@ package com.liferay.journal.web.internal.servlet.taglib.clay;
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserConstants;
@@ -57,6 +59,9 @@ public class JournalArticleCommentsVerticalCard implements VerticalCard {
 				return user.getPortraitURL(themeDisplay);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -89,6 +94,9 @@ public class JournalArticleCommentsVerticalCard implements VerticalCard {
 	public boolean isSelectable() {
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleCommentsVerticalCard.class);
 
 	private final HttpServletRequest _httpServletRequest;
 	private final MBMessage _mbMessage;

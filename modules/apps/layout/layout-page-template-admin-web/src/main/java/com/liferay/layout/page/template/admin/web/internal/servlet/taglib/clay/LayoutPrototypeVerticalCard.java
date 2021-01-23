@@ -22,6 +22,8 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder
 import com.liferay.layout.page.template.admin.web.internal.servlet.taglib.util.LayoutPrototypeActionDropdownItemsProvider;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutPrototype;
@@ -72,6 +74,9 @@ public class LayoutPrototypeVerticalCard
 				getActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -93,6 +98,9 @@ public class LayoutPrototypeVerticalCard
 				layoutFullURL, "p_l_back_url", _themeDisplay.getURLCurrent());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -148,6 +156,9 @@ public class LayoutPrototypeVerticalCard
 
 		return null;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutPrototypeVerticalCard.class);
 
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPrototype _layoutPrototype;

@@ -17,6 +17,8 @@ package com.liferay.journal.web.internal.portlet.configuration.icon;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.web.internal.portlet.action.ActionUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BaseJSPPortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.util.JavaConstants;
@@ -86,6 +88,9 @@ public class ViewSourcePortletConfigurationIcon
 				WebKeys.JOURNAL_ARTICLE, ActionUtil.getArticle(portletRequest));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return super.include(httpServletRequest, httpServletResponse);
@@ -99,6 +104,9 @@ public class ViewSourcePortletConfigurationIcon
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -111,5 +119,8 @@ public class ViewSourcePortletConfigurationIcon
 	public void setServletContext(ServletContext servletContext) {
 		super.setServletContext(servletContext);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ViewSourcePortletConfigurationIcon.class);
 
 }

@@ -20,6 +20,8 @@ import com.liferay.exportimport.kernel.lar.PortletDataException;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.portlet.preferences.processor.Capability;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.portletdisplaytemplate.PortletDisplayTemplateManager;
@@ -64,6 +66,10 @@ public class PortletDisplayTemplateImportCapability implements Capability {
 				portletPreferences);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return portletPreferences;
 		}
 	}
@@ -132,6 +138,9 @@ public class PortletDisplayTemplateImportCapability implements Capability {
 
 		return processedPreferences;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletDisplayTemplateImportCapability.class);
 
 	private final Portal _portal;
 	private final PortletDisplayTemplate _portletDisplayTemplate;

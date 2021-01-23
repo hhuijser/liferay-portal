@@ -18,6 +18,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.internal.util.ContextResourcePathsUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.URLUtil;
 
@@ -262,6 +264,9 @@ public class ServletContextUtil {
 						}
 					}
 					catch (IOException ioException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(ioException, ioException);
+						}
 					}
 				}
 
@@ -313,5 +318,8 @@ public class ServletContextUtil {
 
 	private static final String _LIFERAY_WAB_BUNDLE_RESOURCES_LAST_MODIFIED =
 		"LIFERAY_WAB_BUNDLE_RESOURCES_LAST_MODIFIED";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServletContextUtil.class);
 
 }

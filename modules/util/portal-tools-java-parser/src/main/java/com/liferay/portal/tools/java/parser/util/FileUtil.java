@@ -15,6 +15,8 @@
 package com.liferay.portal.tools.java.parser.util;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
@@ -36,6 +38,10 @@ public class FileUtil {
 				s, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
 		}
 		catch (FileNotFoundException fileNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(fileNotFoundException, fileNotFoundException);
+			}
+
 			return null;
 		}
 	}
@@ -43,5 +49,7 @@ public class FileUtil {
 	public static void write(File file, String s) throws IOException {
 		FileUtils.writeStringToFile(file, s, StringPool.UTF8);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(FileUtil.class);
 
 }

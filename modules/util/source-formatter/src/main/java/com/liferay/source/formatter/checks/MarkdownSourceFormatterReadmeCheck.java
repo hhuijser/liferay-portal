@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -530,6 +532,10 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 				sourceFile.getName(), FileUtil.read(sourceFile));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 
@@ -593,6 +599,9 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		_sourceProcessorFileExtensionsMap.put(
@@ -726,6 +735,9 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 
 	private static final String _SOURCE_CHECKS_SOURCE_LOCATION =
 		"src/main/java/com/liferay/source/formatter/checks/";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MarkdownSourceFormatterReadmeCheck.class);
 
 	private final Map<String, List<String>> _sourceProcessorFileExtensionsMap =
 		new HashMap<>();

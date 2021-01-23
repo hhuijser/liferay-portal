@@ -19,6 +19,8 @@ import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.asset.kernel.model.BaseAssetRendererFactory;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -76,6 +78,10 @@ public class WikiPageAssetRendererFactory
 					page = _wikiPageLocalService.getPage(classPK, Boolean.TRUE);
 				}
 				catch (NoSuchPageException noSuchPageException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(noSuchPageException, noSuchPageException);
+					}
+
 					page = _wikiPageLocalService.getPage(
 						classPK, (Boolean)null);
 				}
@@ -128,6 +134,9 @@ public class WikiPageAssetRendererFactory
 			liferayPortletURL.setWindowState(windowState);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return liferayPortletURL;
@@ -141,6 +150,9 @@ public class WikiPageAssetRendererFactory
 		return WikiPagePermission.contains(
 			permissionChecker, classPK, actionId);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		WikiPageAssetRendererFactory.class);
 
 	@Reference
 	private AssetDisplayPageFriendlyURLProvider

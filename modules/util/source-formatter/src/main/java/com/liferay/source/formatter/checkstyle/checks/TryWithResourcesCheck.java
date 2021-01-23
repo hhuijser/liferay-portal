@@ -20,6 +20,8 @@ import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.source.formatter.util.FileUtil;
@@ -359,6 +361,9 @@ public class TryWithResourcesCheck extends BaseCheck {
 				_closeableTypeNamesTuple = null;
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
 			}
 		}
 	}
@@ -461,6 +466,9 @@ public class TryWithResourcesCheck extends BaseCheck {
 		"try.with.resources.use";
 
 	private static final String _POPULATE_TYPE_NAMES_KEY = "populateTypeNames";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TryWithResourcesCheck.class);
 
 	private Tuple _closeableTypeNamesTuple;
 

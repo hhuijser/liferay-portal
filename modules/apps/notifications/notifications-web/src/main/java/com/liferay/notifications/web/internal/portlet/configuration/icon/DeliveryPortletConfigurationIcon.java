@@ -17,6 +17,8 @@ package com.liferay.notifications.web.internal.portlet.configuration.icon;
 import com.liferay.notifications.web.internal.constants.NotificationsPortletKeys;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
@@ -122,9 +124,15 @@ public class DeliveryPortletConfigurationIcon
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return portletURL;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DeliveryPortletConfigurationIcon.class);
 
 }

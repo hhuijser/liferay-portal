@@ -14,6 +14,8 @@
 
 package com.liferay.portal.json.jabsorb.serializer;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Locale;
@@ -136,6 +138,9 @@ public class LocaleSerializer extends AbstractSerializer {
 			country = localeJSONObject.getString("country");
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		String language = null;
@@ -153,6 +158,9 @@ public class LocaleSerializer extends AbstractSerializer {
 			variant = localeJSONObject.getString("variant");
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		Locale locale = null;
@@ -221,5 +229,8 @@ public class LocaleSerializer extends AbstractSerializer {
 	private static final Class<?>[] _JSON_CLASSES = {JSONObject.class};
 
 	private static final Class<?>[] _SERIALIZABLE_CLASSES = {Locale.class};
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LocaleSerializer.class);
 
 }

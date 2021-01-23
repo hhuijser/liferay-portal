@@ -14,6 +14,8 @@
 
 package com.liferay.portal.init.servlet.filter.internal;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 
 import java.util.Dictionary;
@@ -55,8 +57,14 @@ public class InitFilterTracker {
 			_serviceRegistration.unregister();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		InitFilterTracker.class);
 
 	private ServiceRegistration<Filter> _serviceRegistration;
 

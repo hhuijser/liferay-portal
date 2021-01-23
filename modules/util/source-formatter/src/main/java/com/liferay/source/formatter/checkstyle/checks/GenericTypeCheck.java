@@ -21,6 +21,8 @@ import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Tuple;
@@ -446,6 +448,9 @@ public class GenericTypeCheck extends BaseCheck {
 			_genericTypeNamesTuple = null;
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 	}
 
@@ -464,6 +469,9 @@ public class GenericTypeCheck extends BaseCheck {
 		"generic.type.parameterize";
 
 	private static final String _POPULATE_TYPE_NAMES_KEY = "populateTypeNames";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		GenericTypeCheck.class);
 
 	private Map<String, Integer> _genericTypeNamesMap;
 	private Tuple _genericTypeNamesTuple;

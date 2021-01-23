@@ -15,6 +15,8 @@
 package com.liferay.portal.configuration.metatype.util;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 import com.liferay.portal.kernel.util.ProxyUtil;
 
@@ -62,6 +64,9 @@ public class ParameterMapInvocationHandler<S> implements InvocationHandler {
 			result = _invokeMap(method);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (result != null) {
@@ -72,6 +77,10 @@ public class ParameterMapInvocationHandler<S> implements InvocationHandler {
 			return _invokeConfigurationInstance(method, arguments);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -181,6 +190,9 @@ public class ParameterMapInvocationHandler<S> implements InvocationHandler {
 
 		return constructor.newInstance(_parameterMap.get(method.getName()));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ParameterMapInvocationHandler.class);
 
 	private final Object _bean;
 	private final Class<?> _clazz;

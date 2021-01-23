@@ -18,6 +18,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -301,6 +303,10 @@ public class SourceUtil {
 			return true;
 		}
 		catch (DocumentException documentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(documentException, documentException);
+			}
+
 			return false;
 		}
 	}
@@ -339,5 +345,7 @@ public class SourceUtil {
 		"unlike", "until", "unto", "up", "upon", "v", "versus", "via", "vice",
 		"vs", "with", "within", "without", "worth"
 	};
+
+	private static final Log _log = LogFactoryUtil.getLog(SourceUtil.class);
 
 }

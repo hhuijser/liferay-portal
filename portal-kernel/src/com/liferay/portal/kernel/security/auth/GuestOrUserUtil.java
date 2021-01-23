@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.security.auth;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -42,6 +44,10 @@ public class GuestOrUserUtil {
 				return UserLocalServiceUtil.getDefaultUser(companyId);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				throw principalException;
 			}
 		}
@@ -57,6 +63,10 @@ public class GuestOrUserUtil {
 					CompanyThreadLocal.getCompanyId());
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				throw principalException;
 			}
 		}
@@ -72,6 +82,10 @@ public class GuestOrUserUtil {
 					CompanyThreadLocal.getCompanyId());
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				throw principalException;
 			}
 		}
@@ -110,5 +124,8 @@ public class GuestOrUserUtil {
 
 		return GetterUtil.getLong(name);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		GuestOrUserUtil.class);
 
 }

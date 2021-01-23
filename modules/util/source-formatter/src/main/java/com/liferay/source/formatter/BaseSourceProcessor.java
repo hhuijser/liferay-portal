@@ -17,6 +17,8 @@ package com.liferay.source.formatter;
 import com.liferay.petra.nio.CharsetDecoderUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -592,6 +594,10 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			charsetDecoder.decode(ByteBuffer.wrap(bytes));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			processMessage(fileName, "UTF-8");
 		}
 	}
@@ -719,6 +725,9 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return absolutePath.contains("/modules/");
@@ -778,6 +787,9 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 		return sourceChecksResult;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseSourceProcessor.class);
 
 	private List<String> _allFileNames;
 	private boolean _browserStarted;

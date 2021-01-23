@@ -18,6 +18,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import com.thoughtworks.qdox.JavaProjectBuilder;
@@ -87,6 +89,10 @@ public class JavadocFormatterUtil {
 				javaProjectBuilder.addSource(new UnsyncStringReader(content));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				continue;
 			}
 
@@ -362,6 +368,9 @@ public class JavadocFormatterUtil {
 			_parseClass(rootElement, nestedJavaClass, fullyQualifiedName);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavadocFormatterUtil.class);
 
 	private static final Pattern _deprecatedVersionPattern = Pattern.compile(
 		"As of (\\w+ \\([\\w.]+\\))");

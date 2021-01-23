@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.regex.Matcher;
@@ -38,6 +40,10 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 				getAttributeValue(_MAX_LINE_LENGTH, absolutePath));
 		}
 		catch (NumberFormatException numberFormatException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(numberFormatException, numberFormatException);
+			}
+
 			return content;
 		}
 
@@ -100,6 +106,9 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 	}
 
 	private static final String _MAX_LINE_LENGTH = "maxLineLength";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		YMLLongLinesCheck.class);
 
 	private static final Pattern _descriptionPattern = Pattern.compile(
 		"(\n( +)description:(\n\\2 +#.*)*)((\n\\2 +.+)+)");

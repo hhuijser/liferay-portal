@@ -25,6 +25,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONSerializable;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManagerUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -127,6 +129,11 @@ public class AlloyControllerInvokerManager {
 			_alloyControllerInvokers.put(controller, alloyControllerInvoker);
 		}
 		catch (NoClassNecessaryException noClassNecessaryException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noClassNecessaryException, noClassNecessaryException);
+			}
+
 			return;
 		}
 		catch (Exception exception) {
@@ -439,6 +446,9 @@ public class AlloyControllerInvokerManager {
 	}
 
 	private static final String _BASE_CLASS_NAME = "AlloyControllerInvokerImpl";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AlloyControllerInvokerManager.class);
 
 	private final Map<String, AlloyControllerInvoker> _alloyControllerInvokers =
 		new ConcurrentHashMap<>();

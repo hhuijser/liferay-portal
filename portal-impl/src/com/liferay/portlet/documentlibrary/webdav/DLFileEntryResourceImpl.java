@@ -17,6 +17,8 @@ package com.liferay.portlet.documentlibrary.webdav;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.lock.Lock;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.webdav.BaseResourceImpl;
@@ -68,6 +70,10 @@ public class DLFileEntryResourceImpl extends BaseResourceImpl {
 			return fileVersion.getMimeType();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return fileEntry.getMimeType();
 		}
 	}
@@ -94,6 +100,10 @@ public class DLFileEntryResourceImpl extends BaseResourceImpl {
 			return fileVersion.getSize();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return fileEntry.getSize();
 		}
 	}
@@ -111,6 +121,9 @@ public class DLFileEntryResourceImpl extends BaseResourceImpl {
 			return fileEntry.hasLock();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -123,5 +136,8 @@ public class DLFileEntryResourceImpl extends BaseResourceImpl {
 
 		return StringPool.BLANK;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLFileEntryResourceImpl.class);
 
 }

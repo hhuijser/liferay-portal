@@ -17,6 +17,8 @@ package com.liferay.user.associated.data.web.internal.export.controller;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.SystemProperties;
@@ -162,6 +164,12 @@ public class UADApplicationExportController {
 				userName = URLEncoder.encode(user.getFullName(), "UTF-8");
 			}
 			catch (UnsupportedEncodingException unsupportedEncodingException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						unsupportedEncodingException,
+						unsupportedEncodingException);
+				}
+
 				userName = String.valueOf(userId);
 			}
 
@@ -184,6 +192,9 @@ public class UADApplicationExportController {
 				SystemProperties.get(SystemProperties.TMP_DIR) +
 					StringPool.SLASH + fileName));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UADApplicationExportController.class);
 
 	@Reference
 	private UADExportBackgroundTaskStatusMessageSender

@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.servlet;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.registry.collections.ServiceReferenceMapperFactory;
@@ -128,6 +130,9 @@ public class PortalWebResourcesUtil {
 			}
 		}
 		catch (MalformedURLException malformedURLException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(malformedURLException, malformedURLException);
+			}
 		}
 
 		return null;
@@ -181,6 +186,9 @@ public class PortalWebResourcesUtil {
 
 		return path;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortalWebResourcesUtil.class);
 
 	private static final ServiceTrackerMap<String, PortalWebResources>
 		_contextPathServiceTrackerMap =

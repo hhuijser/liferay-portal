@@ -38,6 +38,8 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.lock.DuplicateLockException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.TrashedModel;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
@@ -164,6 +166,10 @@ public class EditPageAttachmentMVCActionCommand extends BaseMVCActionCommand {
 			jsonObject.put("deleted", Boolean.TRUE);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			jsonObject.put("deleted", Boolean.FALSE);
 
 			String errorMessage = themeDisplay.translate(
@@ -413,6 +419,9 @@ public class EditPageAttachmentMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditPageAttachmentMVCActionCommand.class);
 
 	private volatile DLConfiguration _dlConfiguration;
 

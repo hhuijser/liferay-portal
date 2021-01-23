@@ -18,6 +18,8 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.AccessControlContext;
 import com.liferay.portal.kernel.security.auth.AuthException;
@@ -103,6 +105,10 @@ public class SyncAuthVerifier implements AuthVerifier {
 			return String.valueOf(userId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -198,6 +204,10 @@ public class SyncAuthVerifier implements AuthVerifier {
 			signer = getSigner();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 
@@ -216,6 +226,10 @@ public class SyncAuthVerifier implements AuthVerifier {
 			return jsonToken.serializeAndSign();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -265,6 +279,10 @@ public class SyncAuthVerifier implements AuthVerifier {
 			return _signer;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -279,6 +297,9 @@ public class SyncAuthVerifier implements AuthVerifier {
 	private static final String _SECRET = PwdGenerator.getPassword();
 
 	private static final String _TOKEN_HEADER = "Sync-JWT";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SyncAuthVerifier.class);
 
 	private static JsonTokenParser _jsonTokenParser;
 	private static Signer _signer;

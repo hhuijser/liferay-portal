@@ -17,6 +17,8 @@ package com.liferay.portal.kernel.util;
 import com.liferay.portal.kernel.language.LanguageBuilderUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.language.UTF8Control;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoader;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoaderUtil;
 import com.liferay.registry.Registry;
@@ -159,6 +161,10 @@ public class ResourceBundleUtil {
 			return LanguageBuilderUtil.fixValue(resourceBundle.getString(key));
 		}
 		catch (MissingResourceException missingResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(missingResourceException, missingResourceException);
+			}
+
 			return null;
 		}
 	}
@@ -214,5 +220,8 @@ public class ResourceBundleUtil {
 
 		return resourceBundleLoader.loadResourceBundle(locale);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ResourceBundleUtil.class);
 
 }

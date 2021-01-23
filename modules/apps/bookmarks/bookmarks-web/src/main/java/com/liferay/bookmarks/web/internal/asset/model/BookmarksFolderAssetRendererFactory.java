@@ -21,6 +21,8 @@ import com.liferay.bookmarks.constants.BookmarksPortletKeys;
 import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.bookmarks.service.BookmarksFolderLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -109,6 +111,9 @@ public class BookmarksFolderAssetRendererFactory
 			liferayPortletURL.setWindowState(windowState);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return liferayPortletURL;
@@ -122,6 +127,9 @@ public class BookmarksFolderAssetRendererFactory
 		return _bookmarksFolderModelResourcePermission.contains(
 			permissionChecker, classPK, actionId);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BookmarksFolderAssetRendererFactory.class);
 
 	@Reference
 	private BookmarksFolderLocalService _bookmarksFolderLocalService;

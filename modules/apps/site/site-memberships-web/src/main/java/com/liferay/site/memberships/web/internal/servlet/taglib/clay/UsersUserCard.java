@@ -17,6 +17,8 @@ package com.liferay.site.memberships.web.internal.servlet.taglib.clay;
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.BaseUserCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.portal.kernel.dao.search.RowChecker;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.site.memberships.web.internal.constants.SiteMembershipWebKeys;
 import com.liferay.site.memberships.web.internal.servlet.taglib.util.UserActionDropdownItemsProvider;
@@ -55,6 +57,9 @@ public class UsersUserCard extends BaseUserCard {
 			return userActionDropdownItemsProvider.getActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -64,6 +69,8 @@ public class UsersUserCard extends BaseUserCard {
 	public String getDefaultEventHandler() {
 		return SiteMembershipWebKeys.USER_DROPDOWN_DEFAULT_EVENT_HANDLER;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(UsersUserCard.class);
 
 	private final RenderResponse _renderResponse;
 	private final boolean _showActions;

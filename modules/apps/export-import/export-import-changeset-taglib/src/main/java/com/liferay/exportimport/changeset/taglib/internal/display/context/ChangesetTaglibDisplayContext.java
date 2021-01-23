@@ -16,6 +16,8 @@ package com.liferay.exportimport.changeset.taglib.internal.display.context;
 
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerRegistryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.StagedModel;
 import com.liferay.portal.kernel.model.WorkflowedModel;
@@ -41,6 +43,10 @@ public class ChangesetTaglibDisplayContext {
 			return true;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
@@ -60,6 +66,10 @@ public class ChangesetTaglibDisplayContext {
 			return false;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
@@ -94,8 +104,15 @@ public class ChangesetTaglibDisplayContext {
 			return isShowPublishMenuItem(group, portletId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ChangesetTaglibDisplayContext.class);
 
 }

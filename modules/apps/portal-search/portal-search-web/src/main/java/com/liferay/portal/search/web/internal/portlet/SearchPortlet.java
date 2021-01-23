@@ -15,6 +15,8 @@
 package com.liferay.portal.search.web.internal.portlet;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.search.OpenSearch;
@@ -115,6 +117,9 @@ public class SearchPortlet extends MVCPortlet {
 						exception, httpServletRequest, httpServletResponse);
 				}
 				catch (ServletException servletException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(servletException, servletException);
+					}
 				}
 			}
 		}
@@ -166,6 +171,8 @@ public class SearchPortlet extends MVCPortlet {
 
 	@Reference
 	protected SearchDisplayContextFactory searchDisplayContextFactory;
+
+	private static final Log _log = LogFactoryUtil.getLog(SearchPortlet.class);
 
 	@Reference
 	private Portal _portal;

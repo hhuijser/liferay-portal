@@ -16,6 +16,8 @@ package com.liferay.wiki.web.internal.portlet.action;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -105,9 +107,17 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 			return "/wiki_display/view.jsp";
 		}
 		catch (NoSuchNodeException noSuchNodeException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchNodeException, noSuchNodeException);
+			}
+
 			return "/wiki_display/portlet_not_setup.jsp";
 		}
 		catch (NoSuchPageException noSuchPageException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchPageException, noSuchPageException);
+			}
+
 			return "/wiki_display/portlet_not_setup.jsp";
 		}
 		catch (PortalException portalException) {
@@ -137,6 +147,9 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 
 		return _wikiNodeService.getNode(nodeId);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		WikiDisplayViewMVCRenderCommand.class);
 
 	@Reference
 	private WikiEngineRenderer _wikiEngineRenderer;

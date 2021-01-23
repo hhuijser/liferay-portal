@@ -23,6 +23,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Locale;
@@ -65,10 +67,17 @@ public class JournalArticleDDMFormFieldValueRenderer
 			return assetEntry.getTitle(locale);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return LanguageUtil.format(
 				locale, "is-temporarily-unavailable", "content");
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleDDMFormFieldValueRenderer.class);
 
 	@Reference
 	private AssetEntryLocalService _assetEntryLocalService;

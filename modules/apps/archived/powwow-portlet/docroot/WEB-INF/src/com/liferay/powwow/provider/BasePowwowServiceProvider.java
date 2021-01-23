@@ -17,6 +17,8 @@ package com.liferay.powwow.provider;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.Http;
@@ -271,11 +273,18 @@ public abstract class BasePowwowServiceProvider
 				return HttpUtil.URLtoString(options);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				try {
 					Thread.sleep(
 						PortletPropsValues.POWWOW_PROVIDER_API_RETRY_INTERVAL);
 				}
 				catch (InterruptedException interruptedException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(interruptedException, interruptedException);
+					}
 				}
 			}
 		}
@@ -336,5 +345,8 @@ public abstract class BasePowwowServiceProvider
 	protected abstract Map<String, Serializable> updatePowwowMeeting(
 		PowwowServer powwowServer, PowwowMeeting powwowMeeting, String name,
 		User creator, Map<String, String> options);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BasePowwowServiceProvider.class);
 
 }

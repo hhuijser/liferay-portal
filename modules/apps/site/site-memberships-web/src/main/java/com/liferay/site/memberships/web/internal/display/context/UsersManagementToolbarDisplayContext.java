@@ -26,6 +26,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
@@ -159,6 +161,9 @@ public class UsersManagementToolbarDisplayContext
 					}
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 		};
@@ -241,6 +246,10 @@ public class UsersManagementToolbarDisplayContext
 			).build();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -308,6 +317,9 @@ public class UsersManagementToolbarDisplayContext
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -399,6 +411,9 @@ public class UsersManagementToolbarDisplayContext
 
 		return selectURL.toString();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UsersManagementToolbarDisplayContext.class);
 
 	private final UsersDisplayContext _usersDisplayContext;
 

@@ -20,6 +20,8 @@ import com.liferay.knowledge.base.web.internal.constants.KBWebKeys;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
@@ -86,6 +88,9 @@ public class PrintKBTemplatePortletConfigurationIcon
 			return sb.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -107,6 +112,9 @@ public class PrintKBTemplatePortletConfigurationIcon
 	public boolean isShow(PortletRequest portletRequest) {
 		return true;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PrintKBTemplatePortletConfigurationIcon.class);
 
 	@Reference
 	private Portal _portal;

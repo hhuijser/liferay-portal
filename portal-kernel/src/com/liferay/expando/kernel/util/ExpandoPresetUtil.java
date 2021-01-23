@@ -16,6 +16,8 @@ package com.liferay.expando.kernel.util;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.model.ExpandoColumnConstants;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
 /**
@@ -38,6 +40,10 @@ public class ExpandoPresetUtil {
 			unicodeProperties = expandoBridge.getAttributeProperties(name);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			unicodeProperties = new UnicodeProperties();
 		}
 
@@ -102,5 +108,8 @@ public class ExpandoPresetUtil {
 
 		return type;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ExpandoPresetUtil.class);
 
 }

@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.security.membershippolicy;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.Role;
@@ -55,6 +57,10 @@ public abstract class BaseOrganizationMembershipPolicy
 				new long[] {userId}, new long[] {organizationId}, null);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -109,6 +115,10 @@ public abstract class BaseOrganizationMembershipPolicy
 				new long[] {userId}, null, new long[] {organizationId});
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return true;
 		}
 
@@ -137,6 +147,10 @@ public abstract class BaseOrganizationMembershipPolicy
 			checkRoles(userGroupRoles, null);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -199,6 +213,10 @@ public abstract class BaseOrganizationMembershipPolicy
 			checkRoles(null, userGroupRoles);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return true;
 		}
 
@@ -249,5 +267,8 @@ public abstract class BaseOrganizationMembershipPolicy
 		Role role, Role oldRole,
 		Map<String, Serializable> oldExpandoAttributes) {
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseOrganizationMembershipPolicy.class);
 
 }

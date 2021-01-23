@@ -16,6 +16,8 @@ package com.liferay.polls.web.internal.portlet.action;
 
 import com.liferay.polls.constants.PollsPortletKeys;
 import com.liferay.polls.web.internal.portlet.util.PollsUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -115,6 +117,10 @@ public class ViewChartMVCResourceCommand extends BaseMVCResourceCommand {
 			ChartUtilities.writeChartAsJPEG(outputStream, jFreeChart, 400, 400);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			PortletSession portletSession = resourceRequest.getPortletSession();
 
 			PortletContext portletContext = portletSession.getPortletContext();
@@ -125,5 +131,8 @@ public class ViewChartMVCResourceCommand extends BaseMVCResourceCommand {
 			requestDispatcher.forward(resourceRequest, resourceResponse);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ViewChartMVCResourceCommand.class);
 
 }

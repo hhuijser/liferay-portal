@@ -17,6 +17,8 @@ package com.liferay.site.memberships.web.internal.servlet.taglib.clay;
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.BaseUserCard;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.MembershipRequest;
 import com.liferay.portal.kernel.model.User;
@@ -104,10 +106,16 @@ public class ViewMembershipRequestsUserCard extends BaseUserCard {
 			return HtmlUtil.escape(membershipRequestReplierCompany.getName());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return StringPool.BLANK;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ViewMembershipRequestsUserCard.class);
 
 	private final HttpServletRequest _httpServletRequest;
 	private final MembershipRequest _membershipRequest;

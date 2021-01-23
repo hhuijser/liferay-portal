@@ -16,6 +16,8 @@ package com.liferay.portal.model.impl;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ColorScheme;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutBranch;
@@ -178,6 +180,9 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 				return theme.getSetting(key);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -187,6 +192,9 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 			value = layoutSet.getThemeSetting(key, device);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return value;
@@ -308,6 +316,9 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 
 		super.setTypeSettings(_typeSettingsUnicodeProperties.toString());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutRevisionImpl.class);
 
 	private UnicodeProperties _typeSettingsUnicodeProperties;
 

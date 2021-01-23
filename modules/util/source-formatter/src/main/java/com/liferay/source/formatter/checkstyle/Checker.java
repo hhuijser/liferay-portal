@@ -15,6 +15,8 @@
 package com.liferay.source.formatter.checkstyle;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.SourceFormatterMessage;
@@ -202,6 +204,10 @@ public class Checker extends com.puppycrawl.tools.checkstyle.Checker {
 			return _walk(rootDetailAST, fileContents, checks);
 		}
 		catch (CheckstyleException checkstyleException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(checkstyleException, checkstyleException);
+			}
+
 			return new TreeSet<>();
 		}
 	}
@@ -270,6 +276,8 @@ public class Checker extends com.puppycrawl.tools.checkstyle.Checker {
 
 		return messages;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(Checker.class);
 
 	private final AuditListener _auditListener;
 	private final CheckstyleLogger _checkstyleLogger;

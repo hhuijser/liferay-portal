@@ -16,6 +16,8 @@ package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.util.ThreadSafeSortedClassLibraryBuilder;
 
@@ -269,6 +271,10 @@ public class UnprocessedExceptionCheck extends BaseCheck {
 			javaProjectBuilder.addSource(new UnsyncStringReader(content));
 		}
 		catch (ParseException parseException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(parseException, parseException);
+			}
+
 			return null;
 		}
 
@@ -295,5 +301,8 @@ public class UnprocessedExceptionCheck extends BaseCheck {
 
 	private static final String _MSG_UNPROCESSED_EXCEPTION =
 		"exception.unprocessed";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnprocessedExceptionCheck.class);
 
 }

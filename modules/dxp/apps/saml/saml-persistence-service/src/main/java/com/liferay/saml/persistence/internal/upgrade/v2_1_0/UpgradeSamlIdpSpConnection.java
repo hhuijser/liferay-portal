@@ -14,6 +14,8 @@
 
 package com.liferay.saml.persistence.internal.upgrade.v2_1_0;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.saml.persistence.internal.upgrade.v2_1_0.util.SamlIdpSpConnectionTable;
@@ -33,6 +35,10 @@ public class UpgradeSamlIdpSpConnection extends UpgradeProcess {
 				new AlterTableAddColumn("encryptionForced", "BOOLEAN"));
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
+
 			upgradeTable(
 				SamlIdpSpConnectionTable.TABLE_NAME,
 				SamlIdpSpConnectionTable.TABLE_COLUMNS,
@@ -40,5 +46,8 @@ public class UpgradeSamlIdpSpConnection extends UpgradeProcess {
 				SamlIdpSpConnectionTable.TABLE_SQL_ADD_INDEXES);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UpgradeSamlIdpSpConnection.class);
 
 }

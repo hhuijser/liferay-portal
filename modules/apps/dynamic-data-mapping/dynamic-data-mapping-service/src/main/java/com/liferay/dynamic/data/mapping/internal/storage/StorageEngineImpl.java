@@ -24,6 +24,8 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.storage.StorageAdapter;
 import com.liferay.dynamic.data.mapping.storage.StorageAdapterRegistry;
 import com.liferay.dynamic.data.mapping.storage.StorageEngine;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import org.osgi.service.component.annotations.Component;
@@ -112,6 +114,10 @@ public class StorageEngineImpl implements StorageEngine {
 			return getStorageAdapter(ddmStorageLink.getStorageType());
 		}
 		catch (NoSuchStructureException noSuchStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchStructureException, noSuchStructureException);
+			}
+
 			return _storageAdapterRegistry.getDefaultStorageAdapter();
 		}
 		catch (StorageException storageException) {
@@ -143,6 +149,10 @@ public class StorageEngineImpl implements StorageEngine {
 			return getStorageAdapter(ddmStructure.getStorageType());
 		}
 		catch (NoSuchStructureException noSuchStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchStructureException, noSuchStructureException);
+			}
+
 			return _storageAdapterRegistry.getDefaultStorageAdapter();
 		}
 		catch (StorageException storageException) {
@@ -173,6 +183,9 @@ public class StorageEngineImpl implements StorageEngine {
 
 		_storageAdapterRegistry = storageAdapterRegistry;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		StorageEngineImpl.class);
 
 	private DDMStorageLinkLocalService _ddmStorageLinkLocalService;
 	private DDMStructureLocalService _ddmStructureLocalService;

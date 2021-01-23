@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.util;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
@@ -2607,6 +2609,8 @@ public class ParamUtil {
 
 	private static final Normalizer.Form _FORM;
 
+	private static final Log _log = LogFactoryUtil.getLog(ParamUtil.class);
+
 	static {
 		String formString = PropsUtil.get(
 			PropsKeys.UNICODE_TEXT_NORMALIZER_FORM);
@@ -2621,6 +2625,11 @@ public class ParamUtil {
 				form = Normalizer.Form.valueOf(formString);
 			}
 			catch (IllegalArgumentException illegalArgumentException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						illegalArgumentException, illegalArgumentException);
+				}
+
 				form = null;
 			}
 

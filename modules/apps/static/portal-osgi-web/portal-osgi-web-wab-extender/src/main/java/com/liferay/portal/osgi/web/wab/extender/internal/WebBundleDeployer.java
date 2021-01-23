@@ -14,6 +14,8 @@
 
 package com.liferay.portal.osgi.web.wab.extender.internal;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.osgi.web.servlet.JSPServletFactory;
@@ -78,6 +80,9 @@ public class WebBundleDeployer {
 			properties.load(inputStream);
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		Set<String> portalProfileNames = SetUtil.fromArray(
@@ -111,6 +116,9 @@ public class WebBundleDeployer {
 			handleCollidedWABs(bundle);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 
@@ -159,8 +167,14 @@ public class WebBundleDeployer {
 			newWabBundleProcessor.init(_properties);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		WebBundleDeployer.class);
 
 	private final BundleContext _bundleContext;
 	private final JSPServletFactory _jspServletFactory;

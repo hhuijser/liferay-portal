@@ -27,6 +27,8 @@ import com.liferay.info.item.renderer.InfoItemTemplatedRenderer;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Tuple;
 
@@ -194,6 +196,9 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 			return infoItem;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return displayObjectOptional.orElse(null);
@@ -253,6 +258,9 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 
 		return new Tuple(defaultInfoItemRenderer);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ContentObjectFragmentRenderer.class);
 
 	@Reference
 	private FragmentEntryConfigurationParser _fragmentEntryConfigurationParser;

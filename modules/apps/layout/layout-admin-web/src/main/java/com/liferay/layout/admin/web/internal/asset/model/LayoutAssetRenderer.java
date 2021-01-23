@@ -18,6 +18,8 @@ import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -125,6 +127,10 @@ public class LayoutAssetRenderer extends BaseJSPAssetRenderer<Layout> {
 				previewURL, "p_l_back_url", themeDisplay.getURLCurrent());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
@@ -163,6 +169,9 @@ public class LayoutAssetRenderer extends BaseJSPAssetRenderer<Layout> {
 
 		return super.isPreviewInContext();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutAssetRenderer.class);
 
 	private final Layout _layout;
 

@@ -20,6 +20,8 @@ import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.web.internal.security.permission.resource.JournalFolderPermission;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -180,6 +182,10 @@ public class JournalFolderAssetRenderer
 			return getURLView(liferayPortletResponse, WindowState.MAXIMIZED);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return noSuchEntryRedirect;
 		}
 	}
@@ -214,6 +220,9 @@ public class JournalFolderAssetRenderer
 		return JournalFolderPermission.contains(
 			permissionChecker, _folder, ActionKeys.VIEW);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalFolderAssetRenderer.class);
 
 	private final JournalFolder _folder;
 	private final TrashHelper _trashHelper;

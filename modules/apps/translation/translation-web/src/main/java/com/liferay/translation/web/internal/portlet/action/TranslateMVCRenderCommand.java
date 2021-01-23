@@ -27,6 +27,8 @@ import com.liferay.info.item.provider.InfoItemPermissionProvider;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -204,6 +206,10 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 			return infoItemObjectProvider.getInfoItem(classPK);
 		}
 		catch (NoSuchInfoItemException noSuchInfoItemException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchInfoItemException, noSuchInfoItemException);
+			}
+
 			return null;
 		}
 	}
@@ -287,6 +293,9 @@ public class TranslateMVCRenderCommand implements MVCRenderCommand {
 			themeDisplay.getScopeGroup(), name, name,
 			TranslationActionKeys.TRANSLATE);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TranslateMVCRenderCommand.class);
 
 	@Reference
 	private InfoItemServiceTracker _infoItemServiceTracker;

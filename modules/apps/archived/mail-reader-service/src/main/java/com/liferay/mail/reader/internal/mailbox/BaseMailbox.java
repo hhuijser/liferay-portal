@@ -20,6 +20,8 @@ import com.liferay.mail.reader.mailbox.Mailbox;
 import com.liferay.mail.reader.model.Account;
 import com.liferay.mail.reader.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 
 /**
@@ -47,6 +49,10 @@ public abstract class BaseMailbox implements Mailbox {
 			throw new MailException(MailException.ACCOUNT_ALREADY_EXISTS);
 		}
 		catch (NoSuchAccountException noSuchAccountException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchAccountException, noSuchAccountException);
+			}
+
 			long inboxFolderId = 0;
 			long draftFolderId = 0;
 			long sentFolderId = 0;
@@ -120,5 +126,7 @@ public abstract class BaseMailbox implements Mailbox {
 
 	protected Account account;
 	protected User user;
+
+	private static final Log _log = LogFactoryUtil.getLog(BaseMailbox.class);
 
 }

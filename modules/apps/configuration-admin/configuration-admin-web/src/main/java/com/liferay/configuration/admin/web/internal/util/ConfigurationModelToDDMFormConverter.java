@@ -28,6 +28,8 @@ import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 import com.liferay.portal.configuration.metatype.definitions.ExtendedAttributeDefinition;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -127,6 +129,10 @@ public class ConfigurationModelToDDMFormConverter {
 				return DDMFormFactory.create(formClass);
 			}
 			catch (IllegalArgumentException illegalArgumentException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						illegalArgumentException, illegalArgumentException);
+				}
 			}
 		}
 
@@ -441,6 +447,9 @@ public class ConfigurationModelToDDMFormConverter {
 			com.liferay.portal.configuration.metatype.annotations.
 				ExtendedAttributeDefinition.XML_NAMESPACE);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurationModelToDDMFormConverter.class);
 
 	private final ConfigurationModel _configurationModel;
 	private final Locale _locale;

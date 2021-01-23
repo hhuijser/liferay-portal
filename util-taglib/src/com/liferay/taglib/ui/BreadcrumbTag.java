@@ -14,6 +14,8 @@
 
 package com.liferay.taglib.ui;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portletdisplaytemplate.PortletDisplayTemplateManagerUtil;
 import com.liferay.portal.kernel.servlet.taglib.ui.BreadcrumbEntry;
 import com.liferay.portal.kernel.servlet.taglib.ui.BreadcrumbEntryContributorUtil;
@@ -139,6 +141,9 @@ public class BreadcrumbTag extends IncludeTag {
 				httpServletRequest, ArrayUtil.toIntArray(breadcrumbEntryTypes));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return breadcrumbEntries;
@@ -186,6 +191,8 @@ public class BreadcrumbTag extends IncludeTag {
 	}
 
 	private static final String _PAGE = "/html/taglib/ui/breadcrumb/page.jsp";
+
+	private static final Log _log = LogFactoryUtil.getLog(BreadcrumbTag.class);
 
 	private long _ddmTemplateGroupId;
 	private String _ddmTemplateKey;

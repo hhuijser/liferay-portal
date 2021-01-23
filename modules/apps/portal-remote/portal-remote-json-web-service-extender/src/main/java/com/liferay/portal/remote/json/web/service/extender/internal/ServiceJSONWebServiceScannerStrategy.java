@@ -16,6 +16,8 @@ package com.liferay.portal.remote.json.web.service.extender.internal;
 
 import com.liferay.portal.kernel.bean.ClassLoaderBeanHandler;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceScannerStrategy;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 import com.liferay.portal.kernel.util.ProxyUtil;
 
@@ -88,11 +90,20 @@ public class ServiceJSONWebServiceScannerStrategy
 				}
 				catch (ReflectiveOperationException
 							reflectiveOperationException) {
+
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							reflectiveOperationException,
+							reflectiveOperationException);
+					}
 				}
 			}
 		}
 
 		return service.getClass();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceJSONWebServiceScannerStrategy.class);
 
 }

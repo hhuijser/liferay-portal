@@ -15,6 +15,8 @@
 package com.liferay.asset.publisher.web.internal.exportimport.portlet.preferences.processor;
 
 import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.template.TemplateHandler;
 import com.liferay.portal.kernel.template.TemplateHandlerRegistryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -42,6 +44,9 @@ public class AssetPublisherExportImportPortletPreferencesProcessorUtil {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -61,9 +66,15 @@ public class AssetPublisherExportImportPortletPreferencesProcessorUtil {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return 0;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetPublisherExportImportPortletPreferencesProcessorUtil.class);
 
 }

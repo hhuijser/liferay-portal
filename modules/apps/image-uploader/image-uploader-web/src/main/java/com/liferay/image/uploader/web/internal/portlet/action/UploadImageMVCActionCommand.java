@@ -33,6 +33,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -128,6 +130,9 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 				UploadImageUtil.getTempImageFolderName(), fileName);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return TempFileEntryUtil.addTempFileEntry(
@@ -354,6 +359,9 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 						getTempImageFileName(actionRequest));
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				return TempFileEntryUtil.addTempFileEntry(
@@ -370,6 +378,9 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 			throw new UploadException(noSuchRepositoryException);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UploadImageMVCActionCommand.class);
 
 	private volatile DLConfiguration _dlConfiguration;
 

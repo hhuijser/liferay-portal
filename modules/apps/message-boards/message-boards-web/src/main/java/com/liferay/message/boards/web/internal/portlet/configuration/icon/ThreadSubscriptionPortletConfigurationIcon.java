@@ -20,6 +20,8 @@ import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.settings.MBGroupServiceSettings;
 import com.liferay.message.boards.web.internal.portlet.action.ActionUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -64,6 +66,9 @@ public class ThreadSubscriptionPortletConfigurationIcon
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return LanguageUtil.get(
@@ -87,6 +92,10 @@ public class ThreadSubscriptionPortletConfigurationIcon
 			message = ActionUtil.getMessage(portletRequest);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 
@@ -131,6 +140,9 @@ public class ThreadSubscriptionPortletConfigurationIcon
 				ActionUtil.getMessage(portletRequest), ActionKeys.SUBSCRIBE);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
@@ -153,6 +165,9 @@ public class ThreadSubscriptionPortletConfigurationIcon
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 			MBThread.class.getName(), threadId);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ThreadSubscriptionPortletConfigurationIcon.class);
 
 	@Reference(
 		target = "(model.class.name=com.liferay.message.boards.model.MBMessage)"

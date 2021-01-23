@@ -16,6 +16,8 @@ package com.liferay.portlet;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.language.LanguageResources;
@@ -87,6 +89,11 @@ public class StrutsResourceBundle extends ResourceBundle {
 				return parent.getObject(key);
 			}
 			catch (MissingResourceException missingResourceException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						missingResourceException, missingResourceException);
+				}
+
 				return null;
 			}
 		}
@@ -97,6 +104,9 @@ public class StrutsResourceBundle extends ResourceBundle {
 	private String _buildKey(String key) {
 		return StringBundler.concat(key, StringPool.PERIOD, _portletName);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		StrutsResourceBundle.class);
 
 	private static final Set<String> _keys = SetUtil.fromArray(
 		new String[] {

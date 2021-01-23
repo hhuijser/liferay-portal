@@ -27,6 +27,8 @@ import com.liferay.dynamic.data.mapping.spi.converter.SPIDDMFormRuleConverter;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 
 import java.util.List;
@@ -87,9 +89,16 @@ public class DataRecordExporter {
 				dataDefinition, dataRecord.getDataRecordValues());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DataRecordExporter.class);
 
 	private final DataDefinitionContentTypeTracker
 		_dataDefinitionContentTypeTracker;

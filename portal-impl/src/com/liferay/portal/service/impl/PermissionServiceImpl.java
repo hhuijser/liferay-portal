@@ -19,6 +19,8 @@ import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceMode;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.PortletConstants;
 import com.liferay.portal.kernel.model.ResourceConstants;
@@ -177,6 +179,9 @@ public class PermissionServiceImpl extends PermissionServiceBaseImpl {
 					}
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 
@@ -223,6 +228,9 @@ public class PermissionServiceImpl extends PermissionServiceBaseImpl {
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PermissionServiceImpl.class);
 
 	private static final ServiceTrackerMap<String, BaseModelPermissionChecker>
 		_baseModelPermissionCheckers =

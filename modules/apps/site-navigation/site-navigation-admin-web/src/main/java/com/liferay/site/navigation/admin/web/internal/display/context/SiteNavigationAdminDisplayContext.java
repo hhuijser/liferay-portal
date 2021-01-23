@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -446,6 +448,10 @@ public class SiteNavigationAdminDisplayContext {
 			addURL.setWindowState(LiferayWindowState.POP_UP);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
+
 			return StringPool.BLANK;
 		}
 
@@ -518,6 +524,9 @@ public class SiteNavigationAdminDisplayContext {
 
 		return siteNavigationMenuItemsJSONArray;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SiteNavigationAdminDisplayContext.class);
 
 	private String _displayStyle;
 	private final HttpServletRequest _httpServletRequest;

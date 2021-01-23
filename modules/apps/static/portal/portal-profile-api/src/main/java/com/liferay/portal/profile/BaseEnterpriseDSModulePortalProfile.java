@@ -15,6 +15,8 @@
 package com.liferay.portal.profile;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 
 import java.util.Dictionary;
@@ -92,6 +94,9 @@ public class BaseEnterpriseDSModulePortalProfile implements PortalProfile {
 
 	private static final boolean _DXP;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseEnterpriseDSModulePortalProfile.class);
+
 	static {
 		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
 
@@ -104,6 +109,10 @@ public class BaseEnterpriseDSModulePortalProfile implements PortalProfile {
 			dxp = true;
 		}
 		catch (ReflectiveOperationException reflectiveOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					reflectiveOperationException, reflectiveOperationException);
+			}
 		}
 
 		_DXP = dxp;

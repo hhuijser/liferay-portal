@@ -24,6 +24,8 @@ import com.liferay.portal.json.JSONArrayImpl;
 import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -565,6 +567,9 @@ public abstract class BaseCheck extends AbstractCheck {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (jsonObject == null) {
@@ -1027,6 +1032,9 @@ public abstract class BaseCheck extends AbstractCheck {
 				importNames.addAll(curImportNames);
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
 			}
 		}
 
@@ -1154,6 +1162,8 @@ public abstract class BaseCheck extends AbstractCheck {
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(BaseCheck.class);
 
 	private JSONObject _attributesJSONObject = new JSONObjectImpl();
 	private final Map<String, String> _attributeValueMap =

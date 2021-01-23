@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checks;
 import aQute.bnd.version.Version;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.SourceFormatterExcludes;
@@ -157,6 +159,12 @@ public class BNDSchemaVersionCheck extends BaseFileCheck {
 								parameterList.get(i), CharPool.QUOTE));
 					}
 					catch (IllegalArgumentException illegalArgumentException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								illegalArgumentException,
+								illegalArgumentException);
+						}
+
 						continue;
 					}
 
@@ -177,5 +185,8 @@ public class BNDSchemaVersionCheck extends BaseFileCheck {
 
 		return null;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BNDSchemaVersionCheck.class);
 
 }

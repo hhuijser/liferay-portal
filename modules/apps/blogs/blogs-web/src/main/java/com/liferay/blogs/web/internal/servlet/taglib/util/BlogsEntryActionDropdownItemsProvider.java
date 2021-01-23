@@ -28,6 +28,8 @@ import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.StagedModel;
 import com.liferay.portal.kernel.model.WorkflowedModel;
@@ -133,6 +135,10 @@ public class BlogsEntryActionDropdownItemsProvider {
 			return false;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
@@ -171,6 +177,10 @@ public class BlogsEntryActionDropdownItemsProvider {
 			return _isShowPublishMenuItem(group, portletId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 	}
@@ -341,6 +351,9 @@ public class BlogsEntryActionDropdownItemsProvider {
 			return ReflectionUtil.throwException(portalException);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BlogsEntryActionDropdownItemsProvider.class);
 
 	private final BlogsEntry _blogsEntry;
 	private final HttpServletRequest _httpServletRequest;

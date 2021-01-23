@@ -40,6 +40,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyFactory;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -351,6 +353,10 @@ public class NPMRegistryImpl implements NPMRegistry {
 				content = StringUtil.read(url.openStream());
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
+
 				return null;
 			}
 
@@ -361,6 +367,10 @@ public class NPMRegistryImpl implements NPMRegistry {
 			return _jsonFactory.createJSONObject(content);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -521,6 +531,9 @@ public class NPMRegistryImpl implements NPMRegistry {
 
 	private static final JSPackage _NULL_JS_PACKAGE =
 		ProxyFactory.newDummyInstance(JSPackage.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		NPMRegistryImpl.class);
 
 	private static final ThreadLocal<Boolean> _activationThreadLocal =
 		new CentralizedThreadLocal<>(

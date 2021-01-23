@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checks.util;
 import aQute.bnd.osgi.Constants;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -108,6 +110,9 @@ public class BNDSourceUtil {
 			}
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		return bundleSymbolicNamesMap;
@@ -299,5 +304,7 @@ public class BNDSourceUtil {
 	private static final String[] _SUITE_BND_DEFINITION_KEYS = {
 		"Liferay-Releng-Suite-Description", "Liferay-Releng-Suite-Title"
 	};
+
+	private static final Log _log = LogFactoryUtil.getLog(BNDSourceUtil.class);
 
 }

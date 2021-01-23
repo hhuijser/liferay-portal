@@ -16,6 +16,8 @@ package com.liferay.site.taglib.internal.servlet.taglib.clay;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -75,6 +77,9 @@ public class SiteVerticalCard implements VerticalCard {
 			data.put("data-uuid", _group.getUuid());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return data;
@@ -102,6 +107,9 @@ public class SiteVerticalCard implements VerticalCard {
 				_group.getDescriptiveName(_themeDisplay.getLocale()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -111,6 +119,9 @@ public class SiteVerticalCard implements VerticalCard {
 	public boolean isSelectable() {
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SiteVerticalCard.class);
 
 	private final Group _group;
 	private final HttpServletRequest _httpServletRequest;

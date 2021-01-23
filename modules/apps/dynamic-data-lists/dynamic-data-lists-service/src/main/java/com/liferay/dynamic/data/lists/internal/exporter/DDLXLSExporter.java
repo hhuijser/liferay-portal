@@ -29,6 +29,8 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.storage.StorageEngine;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
@@ -225,6 +227,10 @@ public class DDLXLSExporter extends BaseDDLExporter {
 			return byteArrayOutputStream.toByteArray();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return new byte[0];
 		}
 	}
@@ -287,6 +293,8 @@ public class DDLXLSExporter extends BaseDDLExporter {
 	protected void setStorageEngine(StorageEngine storageEngine) {
 		_storageEngine = storageEngine;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(DDLXLSExporter.class);
 
 	private DDLRecordLocalService _ddlRecordLocalService;
 	private DDLRecordSetService _ddlRecordSetService;

@@ -15,6 +15,8 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
@@ -233,6 +235,10 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 			_populateServiceXMLElements("portal-impl/src/com/liferay", 4);
 		}
 		catch (DocumentException | IOException exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 
@@ -338,6 +344,9 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 		"classes", "dependencies", "node_modules", "node_modules_cache", "sql",
 		"src", "test", "test-classes", "test-coverage", "test-results", "tmp"
 	};
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JavaServiceObjectCheck.class);
 
 	private static final Pattern _getterCallPattern = Pattern.compile(
 		"\\W(\\w+)\\.\\s*(get)([A-Z]\\w*)\\(\\)");

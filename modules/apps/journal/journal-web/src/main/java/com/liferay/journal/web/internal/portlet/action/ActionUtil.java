@@ -35,6 +35,8 @@ import com.liferay.journal.web.internal.util.JournalUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.diff.CompareVersionsException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletRequestModel;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -294,6 +296,10 @@ public class ActionUtil {
 					groupId, className, classPK);
 			}
 			catch (NoSuchArticleException noSuchArticleException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchArticleException, noSuchArticleException);
+				}
+
 				return null;
 			}
 		}
@@ -311,6 +317,9 @@ public class ActionUtil {
 						ddmStructureId);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 
@@ -336,6 +345,10 @@ public class ActionUtil {
 				article.setVersion(0);
 			}
 			catch (NoSuchArticleException noSuchArticleException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchArticleException, noSuchArticleException);
+				}
+
 				return null;
 			}
 		}
@@ -600,5 +613,7 @@ public class ActionUtil {
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(ActionUtil.class);
 
 }

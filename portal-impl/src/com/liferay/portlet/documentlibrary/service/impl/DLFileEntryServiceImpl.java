@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lock.Lock;
 import com.liferay.portal.kernel.lock.LockManagerUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.Hits;
@@ -423,6 +425,10 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 				DLFileEntry.class.getName(), fileEntryId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -727,6 +733,9 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		return _fileEntryModelResourcePermission.contains(
 			getPermissionChecker(), fileEntryId, ActionKeys.OVERRIDE_CHECKOUT);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLFileEntryServiceImpl.class);
 
 	private static volatile ModelResourcePermission<DLFileEntry>
 		_dlFileEntryModelResourcePermission =

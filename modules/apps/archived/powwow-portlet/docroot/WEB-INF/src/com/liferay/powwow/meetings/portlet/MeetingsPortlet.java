@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.User;
@@ -116,6 +118,10 @@ public class MeetingsPortlet extends MVCPortlet {
 			jsonObject.put("success", true);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			jsonObject.put(
 				"message",
 				translate(actionRequest, "the-meeting-could-not-be-deleted")
@@ -547,6 +553,10 @@ public class MeetingsPortlet extends MVCPortlet {
 			);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			jsonObject.put(
 				"message",
 				translate(
@@ -733,5 +743,8 @@ public class MeetingsPortlet extends MVCPortlet {
 
 		return calendarBooking;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MeetingsPortlet.class);
 
 }

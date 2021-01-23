@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Repository;
 import com.liferay.portal.kernel.model.User;
@@ -103,6 +105,10 @@ public class FragmentCollectionImpl extends FragmentCollectionBaseImpl {
 				String.valueOf(getFragmentCollectionId()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			if (createIfAbsent) {
 				ServiceContext serviceContext = new ServiceContext();
 
@@ -196,6 +202,9 @@ public class FragmentCollectionImpl extends FragmentCollectionBaseImpl {
 			zipWriter.addEntry(sb.toString(), fileEntry.getContentStream());
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FragmentCollectionImpl.class);
 
 	private long _resourcesFolderId;
 

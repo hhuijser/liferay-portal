@@ -18,6 +18,8 @@ import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.service.LayoutRevisionLocalServiceUtil;
@@ -57,6 +59,9 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 				layout.getPlid());
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 
 			// This is only needed because of LayoutPersistenceTest but should
 			// never happen in a deployed environment
@@ -79,5 +84,8 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 			CacheUtil.clearCache(layout.getCompanyId());
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutModelListener.class);
 
 }

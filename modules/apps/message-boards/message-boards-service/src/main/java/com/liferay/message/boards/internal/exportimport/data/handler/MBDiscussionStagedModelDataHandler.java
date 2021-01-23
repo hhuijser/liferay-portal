@@ -28,6 +28,8 @@ import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.service.MBDiscussionLocalService;
 import com.liferay.message.boards.service.MBMessageLocalService;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Element;
@@ -95,6 +97,10 @@ public class MBDiscussionStagedModelDataHandler
 			return assetEntry.getTitleCurrentValue();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return discussion.getUuid();
 		}
 	}
@@ -197,6 +203,9 @@ public class MBDiscussionStagedModelDataHandler
 
 		_mbMessageLocalService = mbMessageLocalService;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MBDiscussionStagedModelDataHandler.class);
 
 	private AssetEntryLocalService _assetEntryLocalService;
 	private MBDiscussionLocalService _mbDiscussionLocalService;

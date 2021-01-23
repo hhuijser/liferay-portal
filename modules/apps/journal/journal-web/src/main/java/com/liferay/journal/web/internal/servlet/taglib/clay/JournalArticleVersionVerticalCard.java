@@ -24,6 +24,8 @@ import com.liferay.journal.web.internal.constants.JournalWebConstants;
 import com.liferay.journal.web.internal.servlet.taglib.util.JournalArticleActionDropdownItemsProvider;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -74,6 +76,9 @@ public class JournalArticleVersionVerticalCard extends BaseVerticalCard {
 				getArticleVersionActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -122,6 +127,9 @@ public class JournalArticleVersionVerticalCard extends BaseVerticalCard {
 	public String getTitle() {
 		return HtmlUtil.escape(_article.getTitle(themeDisplay.getLocale()));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleVersionVerticalCard.class);
 
 	private final JournalArticle _article;
 	private final AssetDisplayPageFriendlyURLProvider

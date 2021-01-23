@@ -24,6 +24,8 @@ import com.liferay.layout.page.template.constants.LayoutPageTemplateEntryTypeCon
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -73,6 +75,9 @@ public class LayoutPageTemplateEntryVerticalCard extends BaseVerticalCard {
 				getActionDropdownItems();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -123,6 +128,9 @@ public class LayoutPageTemplateEntryVerticalCard extends BaseVerticalCard {
 				layoutFullURL, "p_l_back_url", themeDisplay.getURLCurrent());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -183,6 +191,9 @@ public class LayoutPageTemplateEntryVerticalCard extends BaseVerticalCard {
 	public String getTitle() {
 		return HtmlUtil.escape(_layoutPageTemplateEntry.getName());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutPageTemplateEntryVerticalCard.class);
 
 	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;

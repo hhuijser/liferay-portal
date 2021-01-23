@@ -56,6 +56,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -455,6 +457,9 @@ public class EditAssetListDisplayContext {
 			return portletURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -937,6 +942,9 @@ public class EditAssetListDisplayContext {
 			return portletURL.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -1223,6 +1231,9 @@ public class EditAssetListDisplayContext {
 	}
 
 	private static final long _DEFAULT_SUBTYPE_SELECTION_ID = 0;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		EditAssetListDisplayContext.class);
 
 	private AssetListEntry _assetListEntry;
 	private Long _assetListEntryId;

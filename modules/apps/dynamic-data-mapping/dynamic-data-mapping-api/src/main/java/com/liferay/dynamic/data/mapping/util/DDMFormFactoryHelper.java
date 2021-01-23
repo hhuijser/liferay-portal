@@ -18,6 +18,8 @@ import com.liferay.dynamic.data.mapping.annotations.DDMForm;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormRule;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderInputParametersSettings;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderOutputParametersSettings;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
@@ -108,6 +110,9 @@ public class DDMFormFactoryHelper {
 			}
 		}
 		catch (MissingResourceException missingResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(missingResourceException, missingResourceException);
+			}
 		}
 	}
 
@@ -269,6 +274,9 @@ public class DDMFormFactoryHelper {
 	private static final Class<? extends Annotation>
 		_DDM_FORM_FIELD_ANNOTATION =
 			com.liferay.dynamic.data.mapping.annotations.DDMFormField.class;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMFormFactoryHelper.class);
 
 	private final Set<Locale> _availableLocales;
 	private final Class<?> _clazz;

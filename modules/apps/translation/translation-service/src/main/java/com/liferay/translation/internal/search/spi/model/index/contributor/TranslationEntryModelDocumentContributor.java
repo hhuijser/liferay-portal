@@ -19,6 +19,8 @@ import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -80,9 +82,16 @@ public class TranslationEntryModelDocumentContributor
 			return assetRenderer.getTitle(_getLocale(translationEntry));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TranslationEntryModelDocumentContributor.class);
 
 	@Reference
 	private Portal _portal;

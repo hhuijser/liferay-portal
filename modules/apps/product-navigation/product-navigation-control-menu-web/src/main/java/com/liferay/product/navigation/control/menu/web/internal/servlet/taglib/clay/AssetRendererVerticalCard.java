@@ -16,6 +16,8 @@ package com.liferay.product.navigation.control.menu.web.internal.servlet.taglib.
 
 import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -49,6 +51,9 @@ public class AssetRendererVerticalCard implements VerticalCard {
 			return _assetRenderer.getIconCssClass();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -61,6 +66,9 @@ public class AssetRendererVerticalCard implements VerticalCard {
 				_assetRenderer.getThumbnailPath(_liferayPortletRequest));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return null;
@@ -82,6 +90,9 @@ public class AssetRendererVerticalCard implements VerticalCard {
 	public boolean isSelectable() {
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetRendererVerticalCard.class);
 
 	private final AssetRenderer<?> _assetRenderer;
 	private final LiferayPortletRequest _liferayPortletRequest;

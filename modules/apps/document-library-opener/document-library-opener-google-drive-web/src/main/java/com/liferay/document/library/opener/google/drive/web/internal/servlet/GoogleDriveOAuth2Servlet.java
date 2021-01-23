@@ -21,6 +21,8 @@ import com.liferay.document.library.opener.google.drive.web.internal.constants.D
 import com.liferay.document.library.opener.google.drive.web.internal.oauth.OAuth2StateUtil;
 import com.liferay.document.library.opener.oauth.OAuth2State;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -109,6 +111,10 @@ public class GoogleDriveOAuth2Servlet extends HttpServlet {
 				httpServletResponse.sendRedirect(oAuth2State.getSuccessURL());
 			}
 			catch (TokenResponseException tokenResponseException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(tokenResponseException, tokenResponseException);
+				}
+
 				OAuth2StateUtil.cleanUp(httpServletRequest);
 
 				SessionErrors.add(httpServletRequest, "externalServiceFailed");
@@ -120,6 +126,9 @@ public class GoogleDriveOAuth2Servlet extends HttpServlet {
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		GoogleDriveOAuth2Servlet.class);
 
 	private static final long serialVersionUID = 7759897747401129852L;
 

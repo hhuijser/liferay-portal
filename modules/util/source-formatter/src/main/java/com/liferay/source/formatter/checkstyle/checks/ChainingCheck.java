@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checkstyle.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -602,6 +604,10 @@ public class ChainingCheck extends BaseCheck {
 				StringUtil.read(url.openStream()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -897,6 +903,8 @@ public class ChainingCheck extends BaseCheck {
 
 	private static final String _REQUIRED_CHAINING_CLASS_FILE_NAMES_KEY =
 		"requiredChainingClassFileNames";
+
+	private static final Log _log = LogFactoryUtil.getLog(ChainingCheck.class);
 
 	private Map<String, List<String>> _requiredChainingMethodNamesMap;
 

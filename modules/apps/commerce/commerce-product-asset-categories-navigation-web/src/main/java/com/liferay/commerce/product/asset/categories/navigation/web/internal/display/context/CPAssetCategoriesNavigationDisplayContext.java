@@ -32,6 +32,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -225,6 +227,10 @@ public class CPAssetCategoriesNavigationDisplayContext {
 					classNameId, categoryId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 
@@ -353,6 +359,9 @@ public class CPAssetCategoriesNavigationDisplayContext {
 
 		return assetCategory;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CPAssetCategoriesNavigationDisplayContext.class);
 
 	private List<AssetCategory> _assetCategories;
 	private final AssetCategoryService _assetCategoryService;

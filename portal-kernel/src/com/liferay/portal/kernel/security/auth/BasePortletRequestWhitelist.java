@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.security.auth;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -126,10 +128,16 @@ public abstract class BasePortletRequestWhitelist
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BasePortletRequestWhitelist.class);
 
 	private Set<String> _portletInvocationWhitelist;
 	private Set<String> _portletInvocationWhitelistActions;

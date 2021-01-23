@@ -23,6 +23,8 @@ import com.liferay.petra.reflect.GenericUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -174,6 +176,10 @@ public class InfoListProviderItemsDisplayContext {
 			return PortletURLUtil.clone(currentURLObj, _renderResponse);
 		}
 		catch (PortletException portletException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(portletException, portletException);
+			}
+
 			PortletURL portletURL = _renderResponse.createRenderURL();
 
 			portletURL.setParameters(currentURLObj.getParameterMap());
@@ -181,6 +187,9 @@ public class InfoListProviderItemsDisplayContext {
 			return portletURL;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		InfoListProviderItemsDisplayContext.class);
 
 	private final HttpServletRequest _httpServletRequest;
 	private InfoItemFieldValuesProvider<Object> _infoItemFieldValuesProvider;

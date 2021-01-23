@@ -15,6 +15,8 @@
 package com.liferay.oauth2.provider.rest.internal.endpoint.access.token;
 
 import com.liferay.oauth2.provider.rest.internal.endpoint.constants.OAuth2ProviderRESTEndpointConstants;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.InetAddressUtil;
 import com.liferay.portal.remote.cors.annotation.CORS;
 
@@ -88,6 +90,9 @@ public class LiferayAccessTokenService extends AccessTokenService {
 			remoteHost = inetAddress.getCanonicalHostName();
 		}
 		catch (UnknownHostException unknownHostException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(unknownHostException, unknownHostException);
+			}
 		}
 
 		properties.put(
@@ -103,5 +108,8 @@ public class LiferayAccessTokenService extends AccessTokenService {
 	@Override
 	protected void injectContextIntoOAuthProviders() {
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LiferayAccessTokenService.class);
 
 }

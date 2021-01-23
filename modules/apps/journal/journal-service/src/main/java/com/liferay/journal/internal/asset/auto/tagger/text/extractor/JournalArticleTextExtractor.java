@@ -24,6 +24,8 @@ import com.liferay.dynamic.data.mapping.util.FieldsToDDMFormValuesConverter;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.util.JournalConverter;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Portal;
 
 import java.util.Locale;
@@ -61,6 +63,10 @@ public class JournalArticleTextExtractor
 				ddmStructure, fields);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return StringPool.BLANK;
 		}
 
@@ -76,6 +82,9 @@ public class JournalArticleTextExtractor
 	public String getClassName() {
 		return JournalArticle.class.getName();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleTextExtractor.class);
 
 	@Reference
 	private DDMIndexer _ddmIndexer;

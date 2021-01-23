@@ -15,6 +15,8 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -67,6 +69,10 @@ public class MissingOverrideCheck extends BaseCheck {
 			javaProjectBuilder = _getJavaProjectBuilder(absolutePath);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return;
 		}
 
@@ -182,6 +188,9 @@ public class MissingOverrideCheck extends BaseCheck {
 					new File(SourceUtil.getAbsolutePath(curFileName)));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -354,6 +363,9 @@ public class MissingOverrideCheck extends BaseCheck {
 	private static final double _LOWEST_SUPPORTED_JAVA_VERSION = 1.7;
 
 	private static final String _MSG_MISSING_OVERRIDE = "override.missing";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MissingOverrideCheck.class);
 
 	private JavaProjectBuilder _javaProjectBuilder;
 

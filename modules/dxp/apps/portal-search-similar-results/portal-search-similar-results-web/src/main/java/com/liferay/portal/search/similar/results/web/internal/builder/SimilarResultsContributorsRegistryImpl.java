@@ -14,6 +14,8 @@
 
 package com.liferay.portal.search.similar.results.web.internal.builder;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.similar.results.web.spi.contributor.SimilarResultsContributor;
@@ -78,6 +80,10 @@ public class SimilarResultsContributorsRegistryImpl
 				routeBuilderImpl, routeHelper);
 		}
 		catch (RuntimeException runtimeException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(runtimeException, runtimeException);
+			}
+
 			return Optional.empty();
 		}
 
@@ -89,6 +95,9 @@ public class SimilarResultsContributorsRegistryImpl
 
 		return Optional.of(routeBuilderImpl.build());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SimilarResultsContributorsRegistryImpl.class);
 
 	private Http _http;
 	private SimilarResultsContributorsHolder _similarResultsContributorsHolder;

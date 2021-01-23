@@ -22,6 +22,8 @@ import com.liferay.message.boards.constants.MBPortletKeys;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBMessageLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -101,6 +103,9 @@ public class MBMessageAssetRendererFactory
 			liferayPortletURL.setWindowState(windowState);
 		}
 		catch (WindowStateException windowStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(windowStateException, windowStateException);
+			}
 		}
 
 		return liferayPortletURL;
@@ -121,6 +126,9 @@ public class MBMessageAssetRendererFactory
 
 		_mbMessageLocalService = mbMessageLocalService;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MBMessageAssetRendererFactory.class);
 
 	@Reference
 	private AssetDisplayPageFriendlyURLProvider

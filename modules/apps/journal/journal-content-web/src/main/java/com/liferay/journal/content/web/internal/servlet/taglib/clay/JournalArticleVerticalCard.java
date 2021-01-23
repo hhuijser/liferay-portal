@@ -19,6 +19,8 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.soy.BaseVerticalCard;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -58,6 +60,10 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 				_assetRenderer.getThumbnailPath(_renderRequest));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -92,6 +98,10 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 			return sb.toString();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return title;
 		}
 	}
@@ -100,6 +110,9 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 	public boolean isSelectable() {
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleVerticalCard.class);
 
 	private final JournalArticle _article;
 	private final AssetRenderer<JournalArticle> _assetRenderer;

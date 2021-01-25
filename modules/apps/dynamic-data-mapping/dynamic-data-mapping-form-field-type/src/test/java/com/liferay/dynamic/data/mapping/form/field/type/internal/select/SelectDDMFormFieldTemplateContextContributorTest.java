@@ -212,10 +212,12 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		_setUpDDMFormFieldOptionsFactory(
 			ddmFormField, ddmFormFieldRenderingContext);
 
-		SelectDDMFormFieldTemplateContextContributor spy = _createSpy();
+		SelectDDMFormFieldTemplateContextContributor
+			selectDDMFormFieldTemplateContextContributor = _createSpy();
 
-		Map<String, Object> parameters = spy.getParameters(
-			ddmFormField, ddmFormFieldRenderingContext);
+		Map<String, Object> parameters =
+			selectDDMFormFieldTemplateContextContributor.getParameters(
+				ddmFormField, ddmFormFieldRenderingContext);
 
 		Assert.assertTrue(parameters.containsKey("dataSourceType"));
 		Assert.assertEquals("data-provider", parameters.get("dataSourceType"));
@@ -272,10 +274,12 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		_setUpDDMFormFieldOptionsFactory(
 			ddmFormField, ddmFormFieldRenderingContext);
 
-		SelectDDMFormFieldTemplateContextContributor spy = _createSpy();
+		SelectDDMFormFieldTemplateContextContributor
+			selectDDMFormFieldTemplateContextContributor = _createSpy();
 
-		Map<String, Object> parameters = spy.getParameters(
-			ddmFormField, ddmFormFieldRenderingContext);
+		Map<String, Object> parameters =
+			selectDDMFormFieldTemplateContextContributor.getParameters(
+				ddmFormField, ddmFormFieldRenderingContext);
 
 		Assert.assertTrue(parameters.containsKey("dataSourceType"));
 		Assert.assertEquals("manual", parameters.get("dataSourceType"));
@@ -338,19 +342,20 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 	}
 
 	private SelectDDMFormFieldTemplateContextContributor _createSpy() {
-		SelectDDMFormFieldTemplateContextContributor spy = PowerMockito.spy(
-			_selectDDMFormFieldTemplateContextContributor);
+		SelectDDMFormFieldTemplateContextContributor
+			selectDDMFormFieldTemplateContextContributor = PowerMockito.spy(
+				_selectDDMFormFieldTemplateContextContributor);
 
 		PowerMockitoStubber powerMockitoStubber = PowerMockito.doReturn(
 			_resourceBundle);
 
 		powerMockitoStubber.when(
-			spy
+			selectDDMFormFieldTemplateContextContributor
 		).getResourceBundle(
 			Matchers.any(Locale.class)
 		);
 
-		return spy;
+		return selectDDMFormFieldTemplateContextContributor;
 	}
 
 	private List<Map<String, String>> _getActualOptions(

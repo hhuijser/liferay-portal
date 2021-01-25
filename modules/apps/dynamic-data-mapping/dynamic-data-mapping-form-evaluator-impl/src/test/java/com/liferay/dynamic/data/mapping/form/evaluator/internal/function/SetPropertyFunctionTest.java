@@ -39,9 +39,11 @@ public class SetPropertyFunctionTest extends PowerMockito {
 		DefaultDDMExpressionObserver defaultDDMExpressionObserver =
 			new DefaultDDMExpressionObserver();
 
-		DefaultDDMExpressionObserver spy = spy(defaultDDMExpressionObserver);
+		DefaultDDMExpressionObserver spyDefaultDDMExpressionObserver = spy(
+			defaultDDMExpressionObserver);
 
-		setPropertyFunction.setDDMExpressionObserver(spy);
+		setPropertyFunction.setDDMExpressionObserver(
+			spyDefaultDDMExpressionObserver);
 
 		Boolean result = setPropertyFunction.apply("field", true);
 
@@ -49,7 +51,7 @@ public class SetPropertyFunctionTest extends PowerMockito {
 			ArgumentCaptor.forClass(UpdateFieldPropertyRequest.class);
 
 		Mockito.verify(
-			spy, Mockito.times(1)
+			spyDefaultDDMExpressionObserver, Mockito.times(1)
 		).updateFieldProperty(
 			argumentCaptor.capture()
 		);

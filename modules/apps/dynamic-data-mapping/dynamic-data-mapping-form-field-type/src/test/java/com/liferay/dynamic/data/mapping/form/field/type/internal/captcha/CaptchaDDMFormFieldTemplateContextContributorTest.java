@@ -46,12 +46,14 @@ public class CaptchaDDMFormFieldTemplateContextContributorTest
 		sb.append("Identify\" src=\"captcha\"><label>Text Verification");
 		sb.append("</label><input type=\"text\"></div></div>");
 
-		CaptchaDDMFormFieldTemplateContextContributor spy = createSpy(
-			sb.toString());
+		CaptchaDDMFormFieldTemplateContextContributor
+			captchaDDMFormFieldTemplateContextContributor = createSpy(
+				sb.toString());
 
-		Map<String, Object> parameters = spy.getParameters(
-			new DDMFormField("field", "captcha"),
-			new DDMFormFieldRenderingContext());
+		Map<String, Object> parameters =
+			captchaDDMFormFieldTemplateContextContributor.getParameters(
+				new DDMFormField("field", "captcha"),
+				new DDMFormFieldRenderingContext());
 
 		Assert.assertEquals(sb.toString(), parameters.get("html"));
 	}
@@ -60,19 +62,20 @@ public class CaptchaDDMFormFieldTemplateContextContributorTest
 			String html)
 		throws Exception {
 
-		CaptchaDDMFormFieldTemplateContextContributor spy = PowerMockito.spy(
-			_captchaDDMFormFieldTemplateContextContributor);
+		CaptchaDDMFormFieldTemplateContextContributor
+			captchaDDMFormFieldTemplateContextContributor = PowerMockito.spy(
+				_captchaDDMFormFieldTemplateContextContributor);
 
 		PowerMockitoStubber powerMockitoStubber = PowerMockito.doReturn(html);
 
 		powerMockitoStubber.when(
-			spy
+			captchaDDMFormFieldTemplateContextContributor
 		).renderCaptchaTag(
 			Matchers.any(DDMFormField.class),
 			Matchers.any(DDMFormFieldRenderingContext.class)
 		);
 
-		return spy;
+		return captchaDDMFormFieldTemplateContextContributor;
 	}
 
 	private final CaptchaDDMFormFieldTemplateContextContributor

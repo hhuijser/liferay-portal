@@ -476,12 +476,12 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 	public void testGetCacheKey() {
 		HttpRequest httpRequest = mock(HttpRequest.class);
 
-		HttpRequest spy = spy(httpRequest);
+		HttpRequest spyHttpRequest = spy(httpRequest);
 
-		_ddmRESTDataProvider.getCacheKey(spy);
+		_ddmRESTDataProvider.getCacheKey(spyHttpRequest);
 
 		Mockito.verify(
-			spy, Mockito.times(1)
+			spyHttpRequest, Mockito.times(1)
 		).url();
 	}
 
@@ -826,15 +826,15 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 	public void testSetMultiVMPool() {
 		MultiVMPool multiVMPool = mock(MultiVMPool.class);
 
-		MultiVMPool spy = spy(multiVMPool);
+		MultiVMPool spyMultiVMPool = spy(multiVMPool);
 
-		_ddmRESTDataProvider.setMultiVMPool(spy);
+		_ddmRESTDataProvider.setMultiVMPool(spyMultiVMPool);
 
 		ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(
 			String.class);
 
 		Mockito.verify(
-			spy, Mockito.times(1)
+			spyMultiVMPool, Mockito.times(1)
 		).getPortalCache(
 			argumentCaptor.capture()
 		);
@@ -892,7 +892,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 
 		HttpRequest httpRequest = mock(HttpRequest.class);
 
-		HttpRequest spy = spy(httpRequest);
+		HttpRequest spyHttpRequest = spy(httpRequest);
 
 		DDMDataProviderRequest.Builder builder =
 			DDMDataProviderRequest.Builder.newBuilder();
@@ -906,13 +906,14 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 		).build();
 
 		_ddmRESTDataProvider.setRequestParameters(
-			ddmDataProviderRequest, ddmRESTDataProviderSettings, spy);
+			ddmDataProviderRequest, ddmRESTDataProviderSettings,
+			spyHttpRequest);
 
 		ArgumentCaptor<String> name = ArgumentCaptor.forClass(String.class);
 		ArgumentCaptor<String> value = ArgumentCaptor.forClass(String.class);
 
 		Mockito.verify(
-			spy, Mockito.times(3)
+			spyHttpRequest, Mockito.times(3)
 		).query(
 			name.capture(), value.capture()
 		);

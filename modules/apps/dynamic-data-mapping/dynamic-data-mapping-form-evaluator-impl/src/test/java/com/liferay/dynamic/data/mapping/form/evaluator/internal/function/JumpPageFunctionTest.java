@@ -38,12 +38,13 @@ public class JumpPageFunctionTest extends PowerMockito {
 		DefaultDDMExpressionActionHandler defaultDDMExpressionActionHandler =
 			new DefaultDDMExpressionActionHandler();
 
-		DefaultDDMExpressionActionHandler spy = spy(
-			defaultDDMExpressionActionHandler);
+		DefaultDDMExpressionActionHandler spyDefaultDDMExpressionActionHandler =
+			spy(defaultDDMExpressionActionHandler);
 
 		JumpPageFunction jumpPageFunction = new JumpPageFunction();
 
-		jumpPageFunction.setDDMExpressionActionHandler(spy);
+		jumpPageFunction.setDDMExpressionActionHandler(
+			spyDefaultDDMExpressionActionHandler);
 
 		Boolean result = jumpPageFunction.apply(1, 3);
 
@@ -51,7 +52,7 @@ public class JumpPageFunctionTest extends PowerMockito {
 			ArgumentCaptor.forClass(ExecuteActionRequest.class);
 
 		Mockito.verify(
-			spy, Mockito.times(1)
+			spyDefaultDDMExpressionActionHandler, Mockito.times(1)
 		).executeAction(
 			argumentCaptor.capture()
 		);

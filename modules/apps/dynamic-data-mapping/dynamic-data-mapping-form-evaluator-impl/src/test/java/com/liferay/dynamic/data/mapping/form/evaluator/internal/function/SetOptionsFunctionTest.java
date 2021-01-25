@@ -82,9 +82,11 @@ public class SetOptionsFunctionTest extends PowerMockito {
 		DefaultDDMExpressionObserver defaultDDMExpressionObserver =
 			new DefaultDDMExpressionObserver();
 
-		DefaultDDMExpressionObserver spy = spy(defaultDDMExpressionObserver);
+		DefaultDDMExpressionObserver spyDefaultDDMExpressionObserver = spy(
+			defaultDDMExpressionObserver);
 
-		_setOptionsFunction.setDDMExpressionObserver(spy);
+		_setOptionsFunction.setDDMExpressionObserver(
+			spyDefaultDDMExpressionObserver);
 
 		_setOptionsFunction.setDDMExpressionParameterAccessor(
 			new DefaultDDMExpressionParameterAccessor());
@@ -95,7 +97,7 @@ public class SetOptionsFunctionTest extends PowerMockito {
 			ArgumentCaptor.forClass(UpdateFieldPropertyRequest.class);
 
 		Mockito.verify(
-			spy, Mockito.times(1)
+			spyDefaultDDMExpressionObserver, Mockito.times(1)
 		).updateFieldProperty(
 			argumentCaptor.capture()
 		);
@@ -135,9 +137,11 @@ public class SetOptionsFunctionTest extends PowerMockito {
 		DefaultDDMExpressionObserver defaultDDMExpressionObserver =
 			new DefaultDDMExpressionObserver();
 
-		DefaultDDMExpressionObserver spy = spy(defaultDDMExpressionObserver);
+		DefaultDDMExpressionObserver spyDefaultDDMExpressionObserver = spy(
+			defaultDDMExpressionObserver);
 
-		_setOptionsFunction.setDDMExpressionObserver(spy);
+		_setOptionsFunction.setDDMExpressionObserver(
+			spyDefaultDDMExpressionObserver);
 
 		_setOptionsFunction.setDDMExpressionParameterAccessor(
 			new DefaultDDMExpressionParameterAccessor());
@@ -148,7 +152,7 @@ public class SetOptionsFunctionTest extends PowerMockito {
 			ArgumentCaptor.forClass(UpdateFieldPropertyRequest.class);
 
 		Mockito.verify(
-			spy, Mockito.times(1)
+			spyDefaultDDMExpressionObserver, Mockito.times(1)
 		).updateFieldProperty(
 			argumentCaptor.capture()
 		);

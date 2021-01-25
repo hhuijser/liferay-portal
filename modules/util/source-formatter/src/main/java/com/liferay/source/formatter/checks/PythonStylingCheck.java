@@ -32,10 +32,10 @@ public class PythonStylingCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		return _formatClassDefinationHeader(absolutePath, content);
+		return _formatClassDefinitionHeader(absolutePath, content);
 	}
 
-	private String _formatClassDefinationHeader(
+	private String _formatClassDefinitionHeader(
 		String absolutePath, String content) {
 
 		int maxLineLength = 0;
@@ -48,12 +48,9 @@ public class PythonStylingCheck extends BaseFileCheck {
 			return content;
 		}
 
-		Matcher matcher = _classDefinationHeaderPattern.matcher(content);
+		Matcher matcher = _classDefinitionHeaderPattern.matcher(content);
 
 		while (matcher.find()) {
-			String indent = matcher.group(1);
-			String className = matcher.group(2);
-
 			List<String> parentClassList = ListUtil.fromString(
 				matcher.group(4), StringPool.COMMA);
 
@@ -61,12 +58,14 @@ public class PythonStylingCheck extends BaseFileCheck {
 				parentClassList.set(i, StringUtil.trim(parentClassList.get(i)));
 			}
 
-			StringBundler sb = new StringBundler(8);
+			StringBundler sb = new StringBundler(7);
+
+			String indent = matcher.group(1);
 
 			sb.append(indent);
-			sb.append("class");
-			sb.append(StringPool.SPACE);
-			sb.append(className);
+
+			sb.append("class ");
+			sb.append(matcher.group(2));
 
 			if (ListUtil.isNotEmpty(parentClassList)) {
 				sb.append(StringPool.OPEN_PARENTHESIS);
@@ -118,7 +117,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 	private static final String _MAX_LINE_LENGTH = "maxLineLength";
 
-	private static final Pattern _classDefinationHeaderPattern =
+	private static final Pattern _classDefinitionHeaderPattern =
 		Pattern.compile(
 			"(?<=\n)(\t*)class (\\w+)(\\((.*?)\\))?:\n+", Pattern.DOTALL);
 

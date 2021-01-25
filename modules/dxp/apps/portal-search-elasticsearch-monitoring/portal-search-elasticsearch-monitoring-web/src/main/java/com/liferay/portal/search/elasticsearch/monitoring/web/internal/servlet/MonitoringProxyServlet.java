@@ -140,14 +140,14 @@ public class MonitoringProxyServlet extends ProxyServlet {
 
 	@Override
 	protected void copyRequestHeaders(
-		HttpServletRequest httpServletRequest, HttpRequest proxyRequest) {
+		HttpServletRequest httpServletRequest, HttpRequest proxyHttpRequest) {
 
-		super.copyRequestHeaders(httpServletRequest, proxyRequest);
+		super.copyRequestHeaders(httpServletRequest, proxyHttpRequest);
 
-		proxyRequest.addHeader(
+		proxyHttpRequest.addHeader(
 			HttpHeaders.AUTHORIZATION, getShieldAuthorization());
 
-		proxyRequest.removeHeaders(HttpHeaders.ACCEPT_ENCODING);
+		proxyHttpRequest.removeHeaders(HttpHeaders.ACCEPT_ENCODING);
 	}
 
 	@Override

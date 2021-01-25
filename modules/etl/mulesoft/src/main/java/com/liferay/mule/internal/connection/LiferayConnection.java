@@ -92,7 +92,9 @@ public final class LiferayConnection {
 			connectionTimeout);
 	}
 
-	public HttpResponse getOpenAPISpec() throws IOException, TimeoutException {
+	public HttpResponse getOpenAPISpecHttpResponse()
+		throws IOException, TimeoutException {
+
 		return httpClient.send(
 			getHttpRequest(
 				HttpConstants.Method.GET, openAPISpecPath, new MultiMap<>(),

@@ -49,7 +49,8 @@ public abstract class BaseCachedConnectionProvider
 		LiferayConnection liferayConnection) {
 
 		try {
-			HttpResponse httpResponse = liferayConnection.getOpenAPISpec();
+			HttpResponse httpResponse =
+				liferayConnection.getOpenAPISpecHttpResponse();
 
 			int statusCode = httpResponse.getStatusCode();
 

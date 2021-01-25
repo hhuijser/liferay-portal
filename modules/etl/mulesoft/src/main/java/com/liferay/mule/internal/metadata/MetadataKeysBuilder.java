@@ -57,7 +57,7 @@ public class MetadataKeysBuilder {
 
 			return getMetadataKeys(
 				jsonNodeReader.fromHttpResponse(
-					liferayConnection.getOpenAPISpec()),
+					liferayConnection.getOpenAPISpecHttpResponse()),
 				operation);
 		}
 		catch (IOException ioException) {

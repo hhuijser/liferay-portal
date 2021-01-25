@@ -119,7 +119,7 @@ public class MetadataTypeBuilder {
 				liferayConnectionOptional.get();
 
 			return jsonNodeReader.fromHttpResponse(
-				liferayConnection.getOpenAPISpec());
+				liferayConnection.getOpenAPISpecHttpResponse());
 		}
 		catch (IOException ioException) {
 			logger.error(

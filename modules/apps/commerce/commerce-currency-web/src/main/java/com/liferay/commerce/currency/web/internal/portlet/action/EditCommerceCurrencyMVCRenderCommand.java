@@ -42,7 +42,7 @@ public class EditCommerceCurrencyMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_currency.jsp";
+		return "/edit_commerce_currency.jsp";
 	}
 
 }

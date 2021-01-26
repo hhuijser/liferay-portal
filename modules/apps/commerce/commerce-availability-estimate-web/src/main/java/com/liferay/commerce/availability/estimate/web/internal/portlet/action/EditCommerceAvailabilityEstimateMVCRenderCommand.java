@@ -42,7 +42,7 @@ public class EditCommerceAvailabilityEstimateMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_availability_estimate.jsp";
+		return "/edit_commerce_availability_estimate.jsp";
 	}
 
 }

@@ -41,7 +41,7 @@ public class EditCommerceCountryMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_country.jsp";
+		return "/edit_commerce_country.jsp";
 	}
 
 }

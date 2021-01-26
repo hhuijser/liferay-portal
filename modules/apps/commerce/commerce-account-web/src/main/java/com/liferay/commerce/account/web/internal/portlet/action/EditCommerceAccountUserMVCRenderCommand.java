@@ -73,7 +73,7 @@ public class EditCommerceAccountUserMVCRenderCommand
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceAccountDisplayContext);
 
-		return "/edit_user.jsp";
+		return "/edit_commerce_account_user.jsp";
 	}
 
 	@Activate

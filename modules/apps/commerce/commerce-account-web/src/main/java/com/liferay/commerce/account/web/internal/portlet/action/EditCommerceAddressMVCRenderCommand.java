@@ -64,7 +64,7 @@ public class EditCommerceAddressMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceAccountDisplayContext);
 
-		return "/edit_address.jsp";
+		return "/edit_commerce_address.jsp";
 	}
 
 	@Reference

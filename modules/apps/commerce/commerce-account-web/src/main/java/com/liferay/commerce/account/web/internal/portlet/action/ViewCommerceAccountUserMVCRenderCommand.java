@@ -65,7 +65,7 @@ public class ViewCommerceAccountUserMVCRenderCommand
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceAccountDisplayContext);
 
-		return "/view_user.jsp";
+		return "/view_commerce_account_user.jsp";
 	}
 
 	@Reference

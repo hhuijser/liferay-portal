@@ -72,7 +72,7 @@ public class EditCommerceAccountMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceAccountDisplayContext);
 
-		return "/edit_account.jsp";
+		return "/edit_commerce_account.jsp";
 	}
 
 	@Activate

@@ -64,7 +64,7 @@ public class ViewCommerceAccountMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceAccountDisplayContext);
 
-		return "/view_account.jsp";
+		return "/view_commerce_account.jsp";
 	}
 
 	@Reference

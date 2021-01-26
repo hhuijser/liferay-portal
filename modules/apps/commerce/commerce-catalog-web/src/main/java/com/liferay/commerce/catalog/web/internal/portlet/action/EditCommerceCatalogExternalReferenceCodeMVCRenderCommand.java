@@ -74,7 +74,7 @@ public class EditCommerceCatalogExternalReferenceCodeMVCRenderCommand
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, commerceCatalogDisplayContext);
 
-		return "/catalog/external_reference_code.jsp";
+		return "/catalog/edit_commerce_external_reference_code.jsp";
 	}
 
 	@Activate

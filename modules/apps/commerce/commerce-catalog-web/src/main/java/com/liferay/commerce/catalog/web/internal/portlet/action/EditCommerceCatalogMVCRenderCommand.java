@@ -41,7 +41,7 @@ public class EditCommerceCatalogMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_catalog.jsp";
+		return "/edit_commerce_catalog.jsp";
 	}
 
 }

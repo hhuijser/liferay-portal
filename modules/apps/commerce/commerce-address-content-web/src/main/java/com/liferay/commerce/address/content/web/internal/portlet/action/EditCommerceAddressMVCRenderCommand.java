@@ -80,7 +80,7 @@ public class EditCommerceAddressMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(exception);
 		}
 
-		return "/edit_address.jsp";
+		return "/edit_commerce_address.jsp";
 	}
 
 	protected void setCommerceAddressRequestAttribute(

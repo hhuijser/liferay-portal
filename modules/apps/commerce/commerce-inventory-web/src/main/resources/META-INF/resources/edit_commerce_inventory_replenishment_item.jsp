@@ -32,7 +32,7 @@ CommerceInventoryReplenishmentItem commerceInventoryReplenishmentItem = commerce
 			title='<%= LanguageUtil.get(request, "add-income") %>'
 		>
 			<aui:form action="<%= editCommerceInventoryReplenishmentItemActionURL %>" method="post" name="fm">
-				<%@ include file="/edit_inventory_replenishment_item.jspf" %>
+				<%@ include file="/edit_commerce_inventory_replenishment_item.jspf" %>
 			</aui:form>
 		</commerce-ui:modal-content>
 	</c:when>
@@ -44,7 +44,7 @@ CommerceInventoryReplenishmentItem commerceInventoryReplenishmentItem = commerce
 				title='<%= LanguageUtil.get(request, "details") %>'
 			>
 				<aui:form action="<%= editCommerceInventoryReplenishmentItemActionURL %>" method="post" name="fm">
-					<%@ include file="/edit_inventory_replenishment_item.jspf" %>
+					<%@ include file="/edit_commerce_inventory_replenishment_item.jspf" %>
 
 					<aui:button-row>
 						<aui:button cssClass="btn-lg" type="submit" value="save" />

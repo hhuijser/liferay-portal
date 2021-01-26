@@ -42,7 +42,7 @@ public class EditCommerceInventoryWarehouseItemMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_inventory_warehouse_item.jsp";
+		return "/edit_commerce_inventory_warehouse_item.jsp";
 	}
 
 }

@@ -43,7 +43,7 @@ public class EditCommerceInventoryItemMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_inventory_item.jsp";
+		return "/edit_commerce_inventory_item.jsp";
 	}
 
 }

@@ -42,7 +42,7 @@ public class AddCommerceInventoryItemMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/add_inventory_item.jsp";
+		return "/add_commerce_inventory_item.jsp";
 	}
 
 }

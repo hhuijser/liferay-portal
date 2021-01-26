@@ -40,7 +40,7 @@ public class UploadImageMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/view.jsp";
+		return "/upload_image.jsp";
 	}
 
 }

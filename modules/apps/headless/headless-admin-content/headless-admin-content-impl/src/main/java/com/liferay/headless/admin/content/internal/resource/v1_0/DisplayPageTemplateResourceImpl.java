@@ -146,14 +146,13 @@ public class DisplayPageTemplateResourceImpl
 			layoutPageTemplateEntry);
 	}
 
-	private static final Map<String, String> _fieldNames =
-		HashMapBuilder.put(
-			"dateCreated", "createDate"
-		).put(
-			"dateModified", "modifiedDate"
-		).put(
-			"title", "name"
-		).build();
+	private static final Map<String, String> _fieldNames = HashMapBuilder.put(
+		"dateCreated", "createDate"
+	).put(
+		"dateModified", "modifiedDate"
+	).put(
+		"title", "name"
+	).build();
 
 	@Reference
 	private DisplayPageTemplateDTOConverter _displayPageTemplateDTOConverter;

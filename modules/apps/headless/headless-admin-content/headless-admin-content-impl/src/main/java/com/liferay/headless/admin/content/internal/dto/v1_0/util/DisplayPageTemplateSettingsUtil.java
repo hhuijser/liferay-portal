@@ -139,15 +139,14 @@ public class DisplayPageTemplateSettingsUtil {
 		};
 	}
 
-	private static final Map<String, String> _contentTypes =
-		HashMapBuilder.put(
-			"com.liferay.blogs.model.BlogsEntry", "BlogPosting"
-		).put(
-			"com.liferay.document.library.kernel.model.DLFileEntry", "Document"
-		).put(
-			"com.liferay.journal.model.JournalArticle", "StructuredContent"
-		).put(
-			"com.liferay.portal.kernel.repository.model.FileEntry", "Document"
-		).build();
+	private static final Map<String, String> _contentTypes = HashMapBuilder.put(
+		"com.liferay.blogs.model.BlogsEntry", "BlogPosting"
+	).put(
+		"com.liferay.document.library.kernel.model.DLFileEntry", "Document"
+	).put(
+		"com.liferay.journal.model.JournalArticle", "StructuredContent"
+	).put(
+		"com.liferay.portal.kernel.repository.model.FileEntry", "Document"
+	).build();
 
 }

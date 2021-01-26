@@ -64,6 +64,6 @@ public class JavaStaticImportsCheck extends BaseFileCheck {
 	private static final Pattern _importConstantPattern = Pattern.compile(
 		"\nimport static ((.*)\\.[A-Z_]*);");
 	private static final Pattern _importMethodPattern = Pattern.compile(
-		"\nimport static ((.*\\.(Assert|(Power)?Mockito))\\.[a-z]\\w*);");
+		"\nimport static ((.*\\..*)\\.[a-z]\\w*);");
 
 }

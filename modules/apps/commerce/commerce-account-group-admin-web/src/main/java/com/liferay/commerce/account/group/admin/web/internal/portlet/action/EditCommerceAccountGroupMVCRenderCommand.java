@@ -42,7 +42,7 @@ public class EditCommerceAccountGroupMVCRenderCommand
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		return "/edit_account_group.jsp";
+		return "/edit_commerce_account_group.jsp";
 	}
 
 }

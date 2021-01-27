@@ -1,396 +1,394 @@
 [#assign test="Configuration Example"]
 
 <div class="gf-1">
+	<lfr-editable id="unique-id" type="text">
+		This is editable text
+	</lfr-editable>
 
-<lfr-editable id="unique-id" type="text">
-This is editable text
-</lfr-editable>
+	<h1>${test}</h1>
 
-<h1>${test}</h1>
-
-<table>
-<tr>
-	<th>Field</th>
-	<th>Value</th>
-	<th>is_string</th>
-	<th>is_number</th>
-	<th>is_boolean</th>
-</tr>
-<tr>
-	<td>configuration.headingAppliedStyle</td>
-	<td>${configuration.headingAppliedStyle}</td>
-	<td>
-	  [#if configuration.headingAppliedStyle?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.headingAppliedStyle?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.headingAppliedStyle?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.bodyAppliedStyle</td>
-	<td>${configuration.bodyAppliedStyle}</td>
-	<td>
-	  [#if configuration.bodyAppliedStyle?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyAppliedStyle?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyAppliedStyle?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.bodyNumberOfColumns</td>
-	<td>${configuration.bodyNumberOfColumns}</td>
-	<td>
-	  [#if configuration.bodyNumberOfColumns?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyNumberOfColumns?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyNumberOfColumns?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.bodyTableWidth</td>
-	<td>${configuration.bodyTableWidth}</td>
-	<td>
-	  [#if configuration.bodyTableWidth?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyTableWidth?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyTableWidth?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.bodyHideBody</td>
-	<td>${configuration.bodyHideBody?c}</td>
-	<td>
-	  [#if configuration.bodyHideBody?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyHideBody?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyHideBody?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.bodyHideTitle</td>
-	<td>${configuration.bodyHideTitle?c}</td>
-	<td>
-	  [#if configuration.bodyHideTitle?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyHideTitle?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyHideTitle?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.bodyHideSubtitle</td>
-	<td>${configuration.bodyHideSubtitle?c}</td>
-	<td>
-	  [#if configuration.bodyHideSubtitle?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyHideSubtitle?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.bodyHideSubtitle?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.buttonTextDefault</td>
-	<td>${configuration.buttonTextDefault}</td>
-	<td>
-	  [#if configuration.buttonTextDefault?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.buttonTextDefault?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.buttonTextDefault?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.buttonTextString</td>
-	<td>${configuration.buttonTextString}</td>
-	<td>
-	  [#if configuration.buttonTextString?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.buttonTextString?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.buttonTextString?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.buttonTextInt</td>
-	<td>${configuration.buttonTextInt}</td>
-	<td>
-	  [#if configuration.buttonTextInt?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.buttonTextInt?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.buttonTextInt?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.buttonTextDouble</td>
-	<td>${configuration.buttonTextDouble}</td>
-	<td>
-	  [#if configuration.buttonTextDouble?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.buttonTextDouble?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.buttonTextDouble?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.backgroundColor.cssClass</td>
-	<td>${configuration.backgroundColor.cssClass}</td>
-	<td>
-	  [#if configuration.backgroundColor.cssClass?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.backgroundColor.cssClass?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.backgroundColor.cssClass?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.backgroundColor.rgbValue</td>
-	<td>${configuration.backgroundColor.rgbValue}</td>
-	<td>
-	  [#if configuration.backgroundColor.rgbValue?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.backgroundColor.rgbValue?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.backgroundColor.rgbValue?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.textColor.cssClass</td>
-	<td>${configuration.textColor.cssClass}</td>
-	<td>
-	  [#if configuration.textColor.cssClass?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.textColor.cssClass?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.textColor.cssClass?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-<tr>
-	<td>configuration.textColor.rgbValue</td>
-	<td>${configuration.textColor.rgbValue}</td>
-	<td>
-	  [#if configuration.textColor.rgbValue?is_string]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.textColor.rgbValue?is_number]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-	<td>
-	  [#if configuration.textColor.rgbValue?is_boolean]
-		true
-	  [#else]
-		false
-	  [/#if]
-	</td>
-</tr>
-</table>
-
+	<table>
+		<tr>
+			<th>Field</th>
+			<th>Value</th>
+			<th>is_string</th>
+			<th>is_number</th>
+			<th>is_boolean</th>
+		</tr>
+		<tr>
+			<td>configuration.headingAppliedStyle</td>
+			<td>${configuration.headingAppliedStyle}</td>
+			<td>
+				  [#if configuration.headingAppliedStyle?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.headingAppliedStyle?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.headingAppliedStyle?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.bodyAppliedStyle</td>
+			<td>${configuration.bodyAppliedStyle}</td>
+			<td>
+				  [#if configuration.bodyAppliedStyle?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyAppliedStyle?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyAppliedStyle?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.bodyNumberOfColumns</td>
+			<td>${configuration.bodyNumberOfColumns}</td>
+			<td>
+				  [#if configuration.bodyNumberOfColumns?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyNumberOfColumns?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyNumberOfColumns?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.bodyTableWidth</td>
+			<td>${configuration.bodyTableWidth}</td>
+			<td>
+				  [#if configuration.bodyTableWidth?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyTableWidth?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyTableWidth?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.bodyHideBody</td>
+			<td>${configuration.bodyHideBody?c}</td>
+			<td>
+				  [#if configuration.bodyHideBody?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyHideBody?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyHideBody?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.bodyHideTitle</td>
+			<td>${configuration.bodyHideTitle?c}</td>
+			<td>
+				  [#if configuration.bodyHideTitle?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyHideTitle?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyHideTitle?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.bodyHideSubtitle</td>
+			<td>${configuration.bodyHideSubtitle?c}</td>
+			<td>
+				  [#if configuration.bodyHideSubtitle?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyHideSubtitle?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.bodyHideSubtitle?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.buttonTextDefault</td>
+			<td>${configuration.buttonTextDefault}</td>
+			<td>
+				  [#if configuration.buttonTextDefault?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.buttonTextDefault?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.buttonTextDefault?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.buttonTextString</td>
+			<td>${configuration.buttonTextString}</td>
+			<td>
+				  [#if configuration.buttonTextString?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.buttonTextString?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.buttonTextString?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.buttonTextInt</td>
+			<td>${configuration.buttonTextInt}</td>
+			<td>
+				  [#if configuration.buttonTextInt?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.buttonTextInt?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.buttonTextInt?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.buttonTextDouble</td>
+			<td>${configuration.buttonTextDouble}</td>
+			<td>
+				  [#if configuration.buttonTextDouble?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.buttonTextDouble?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.buttonTextDouble?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.backgroundColor.cssClass</td>
+			<td>${configuration.backgroundColor.cssClass}</td>
+			<td>
+				  [#if configuration.backgroundColor.cssClass?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.backgroundColor.cssClass?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.backgroundColor.cssClass?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.backgroundColor.rgbValue</td>
+			<td>${configuration.backgroundColor.rgbValue}</td>
+			<td>
+				  [#if configuration.backgroundColor.rgbValue?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.backgroundColor.rgbValue?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.backgroundColor.rgbValue?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.textColor.cssClass</td>
+			<td>${configuration.textColor.cssClass}</td>
+			<td>
+				  [#if configuration.textColor.cssClass?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.textColor.cssClass?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.textColor.cssClass?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+		<tr>
+			<td>configuration.textColor.rgbValue</td>
+			<td>${configuration.textColor.rgbValue}</td>
+			<td>
+				  [#if configuration.textColor.rgbValue?is_string]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.textColor.rgbValue?is_number]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+			<td>
+				  [#if configuration.textColor.rgbValue?is_boolean]
+				true
+				  [#else]
+				false
+				  [/#if]
+			</td>
+		</tr>
+	</table>
 </div>

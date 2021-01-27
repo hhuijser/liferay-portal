@@ -1,6 +1,6 @@
 [#assign
-	privateFriendlyURL = themeDisplay.getPathFriendlyURLPrivateGroup() + themeDisplay.getSiteGroup().getFriendlyURL()
-	publicFriendlyURL = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
+privateFriendlyURL = themeDisplay.getPathFriendlyURLPrivateGroup() + themeDisplay.getSiteGroup().getFriendlyURL()
+publicFriendlyURL = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
 /]
 
 <nav class="navbar navbar-expand-lg insured-portal-navbar">
@@ -17,16 +17,16 @@
 			<lfr-widget-nav id="nav"></lfr-widget-nav>
 
 			[#if themeDisplay.isSignedIn()]
-				<div class="dropdown">
-					<button aria-expanded="false" aria-haspopup="true" class="btn btn-unstyled dropdown-toggle" data-toggle="dropdown" id="${fragmentEntryLinkNamespace}_dropdown_menu" type="button">
-						[@liferay_ui["user-portrait"] user=user /]
-					</button>
+			<div class="dropdown">
+				<button aria-expanded="false" aria-haspopup="true" class="btn btn-unstyled dropdown-toggle" data-toggle="dropdown" id="${fragmentEntryLinkNamespace}_dropdown_menu" type="button">
+					[@liferay_ui["user-portrait"] user=user /]
+				</button>
 
-					<ul aria-labelledby="${fragmentEntryLinkNamespace}_dropdown_menu" class="dropdown-menu right">
-						<li><a class="dropdown-item" href="${privateFriendlyURL}">My Raylife</a></li>
-						<li><a class="dropdown-item" href="${htmlUtil.escape(themeDisplay.getURLSignOut())}?referer=${publicFriendlyURL}">Sign Out</a></li>
-					</ul>
-				</div>
+				<ul aria-labelledby="${fragmentEntryLinkNamespace}_dropdown_menu" class="dropdown-menu right">
+					<li><a class="dropdown-item" href="${privateFriendlyURL}">My Raylife</a></li>
+					<li><a class="dropdown-item" href="${htmlUtil.escape(themeDisplay.getURLSignOut())}?referer=${publicFriendlyURL}">Sign Out</a></li>
+				</ul>
+			</div>
 			[/#if]
 		</div>
 	</div>

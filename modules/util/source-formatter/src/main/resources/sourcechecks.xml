@@ -328,6 +328,10 @@
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace in `.html` files." />
 		</check>
+		<check name="JSPIndentationCheck">
+			<category name="Styling" />
+			<description name="Finds incorrect indentation in `.jsp` files." />
+		</check>
 		<check name="XMLTagAttributesCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on tag attributes." />

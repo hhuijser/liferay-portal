@@ -7846,18 +7846,42 @@ public class ServiceBuilder {
 	private static final String _TPL_ROOT =
 		"com/liferay/portal/tools/service/builder/dependencies/";
 
-	private static Pattern _beansAttributePattern = Pattern.compile(
+	private static final Pattern _beansAttributePattern = Pattern.compile(
 		"\\s+([^=]*)=\\s*\"([^\"]*)\"");
-	private static Pattern _beansPattern = Pattern.compile("<beans[^>]*>");
+	private static final Pattern _beansPattern = Pattern.compile(
+		"<beans[^>]*>");
 	private static Configuration _configuration;
 	private static final Pattern _dtdVersionPattern = Pattern.compile(
 		".*service-builder_([^\\.]+)\\.dtd");
-	private static Pattern _getterPattern = Pattern.compile(
+	private static final Pattern _getterPattern = Pattern.compile(
 		StringBundler.concat(
 			"public .* get.*", Pattern.quote("("), "|public boolean is.*",
 			Pattern.quote("(")));
-	private static Pattern _setterPattern = Pattern.compile(
+	private static final Pattern _setterPattern = Pattern.compile(
 		"public void set.*" + Pattern.quote("("));
+	private static final String _tplBaseUADAnonymizer =
+		_TPL_ROOT + "base_uad_anonymizer.ftl";
+	private static final String _tplBaseUADDisplay =
+		_TPL_ROOT + "base_uad_display.ftl";
+	private static final String _tplBaseUADExporter =
+		_TPL_ROOT + "base_uad_exporter.ftl";
+	private static final String _tplCTServiceImpl =
+		_TPL_ROOT + "ct_service_impl.ftl";
+	private static final String _tplModelTable = _TPL_ROOT + "model_table.ftl";
+	private static final String _tplPersistenceConstants =
+		_TPL_ROOT + "persistence_constants.ftl";
+	private static final String _tplPersistenceTest =
+		_TPL_ROOT + "persistence_test.ftl";
+	private static final String _tplServletContextUtil =
+		_TPL_ROOT + "servlet_context_util.ftl";
+	private static final String _tplUADAnonymizer =
+		_TPL_ROOT + "uad_anonymizer.ftl";
+	private static final String _tplUADBnd = _TPL_ROOT + "uad_bnd.ftl";
+	private static final String _tplUADConstants =
+		_TPL_ROOT + "uad_constants.ftl";
+	private static final String _tplUADDisplay = _TPL_ROOT + "uad_display.ftl";
+	private static final String _tplUADExporter =
+		_TPL_ROOT + "uad_exporter.ftl";
 
 	private String _apiDirName;
 	private String _apiPackagePath;
@@ -7880,13 +7904,13 @@ public class ServiceBuilder {
 	private Version _dtdVersion;
 	private List<Entity> _entities;
 	private Map<String, EntityMapping> _entityMappings;
-	private Map<String, Entity> _entityPool = new HashMap<>();
+	private final Map<String, Entity> _entityPool = new HashMap<>();
 	private String _hbmFileName;
 	private String _implDirName;
 	private String[] _incubationFeatures;
-	private Map<String, JavaClass> _javaClasses = new HashMap<>();
+	private final Map<String, JavaClass> _javaClasses = new HashMap<>();
 	private String _modelHintsFileName;
-	private Set<String> _modifiedFileNames = new HashSet<>();
+	private final Set<String> _modifiedFileNames = new HashSet<>();
 	private boolean _mvccEnabled;
 	private String _oldServiceOutputPath;
 	private boolean _osgiModule;
@@ -7911,12 +7935,7 @@ public class ServiceBuilder {
 	private String _tplBadAliasNames = _TPL_ROOT + "bad_alias_names.txt";
 	private String _tplBadColumnNames = _TPL_ROOT + "bad_column_names.txt";
 	private String _tplBadTableNames = _TPL_ROOT + "bad_table_names.txt";
-	private String _tplBaseUADAnonymizer =
-		_TPL_ROOT + "base_uad_anonymizer.ftl";
-	private String _tplBaseUADDisplay = _TPL_ROOT + "base_uad_display.ftl";
-	private String _tplBaseUADExporter = _TPL_ROOT + "base_uad_exporter.ftl";
 	private String _tplBlobModel = _TPL_ROOT + "blob_model.ftl";
-	private String _tplCTServiceImpl = _TPL_ROOT + "ct_service_impl.ftl";
 	private String _tplEjbPK = _TPL_ROOT + "ejb_pk.ftl";
 	private String _tplException = _TPL_ROOT + "exception.ftl";
 	private String _tplExtendedModel = _TPL_ROOT + "extended_model.ftl";
@@ -7935,13 +7954,9 @@ public class ServiceBuilder {
 	private String _tplModelHintsXml = _TPL_ROOT + "model_hints_xml.ftl";
 	private String _tplModelImpl = _TPL_ROOT + "model_impl.ftl";
 	private String _tplModelSoap = _TPL_ROOT + "model_soap.ftl";
-	private String _tplModelTable = _TPL_ROOT + "model_table.ftl";
 	private String _tplModelWrapper = _TPL_ROOT + "model_wrapper.ftl";
 	private String _tplPersistence = _TPL_ROOT + "persistence.ftl";
-	private String _tplPersistenceConstants =
-		_TPL_ROOT + "persistence_constants.ftl";
 	private String _tplPersistenceImpl = _TPL_ROOT + "persistence_impl.ftl";
-	private String _tplPersistenceTest = _TPL_ROOT + "persistence_test.ftl";
 	private String _tplPersistenceUtil = _TPL_ROOT + "persistence_util.ftl";
 	private String _tplProps = _TPL_ROOT + "props.ftl";
 	private String _tplService = _TPL_ROOT + "service.ftl";
@@ -7952,15 +7967,9 @@ public class ServiceBuilder {
 	private String _tplServiceSoap = _TPL_ROOT + "service_soap.ftl";
 	private String _tplServiceUtil = _TPL_ROOT + "service_util.ftl";
 	private String _tplServiceWrapper = _TPL_ROOT + "service_wrapper.ftl";
-	private String _tplServletContextUtil =
-		_TPL_ROOT + "servlet_context_util.ftl";
 	private String _tplSpringXml = _TPL_ROOT + "spring_xml.ftl";
-	private String _tplUADAnonymizer = _TPL_ROOT + "uad_anonymizer.ftl";
-	private String _tplUADBnd = _TPL_ROOT + "uad_bnd.ftl";
-	private String _tplUADConstants = _TPL_ROOT + "uad_constants.ftl";
-	private String _tplUADDisplay = _TPL_ROOT + "uad_display.ftl";
-	private String _tplUADExporter = _TPL_ROOT + "uad_exporter.ftl";
-	private Map<String, List<Entity>> _uadApplicationEntities = new HashMap<>();
+	private final Map<String, List<Entity>> _uadApplicationEntities =
+		new HashMap<>();
 	private String _uadDirName;
 
 }

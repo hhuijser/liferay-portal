@@ -2262,7 +2262,7 @@ public class ServiceBuilder {
 
 		context.put("hasAssetEntry", hasAssetEntry);
 
-		String content = _processTemplate(_tplBaseUADAnonymizer, context);
+		String content = _processTemplate(_TPL_BASE_UAD_ANONYMIZER, context);
 
 		File file = new File(
 			StringBundler.concat(
@@ -2277,7 +2277,7 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 
-		String content = _processTemplate(_tplBaseUADDisplay, context);
+		String content = _processTemplate(_TPL_BASE_UAD_DISPLAY, context);
 
 		File file = new File(
 			StringBundler.concat(
@@ -2292,7 +2292,7 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 
-		String content = _processTemplate(_tplBaseUADExporter, context);
+		String content = _processTemplate(_TPL_BASE_UAD_EXPORTER, context);
 
 		File file = new File(
 			StringBundler.concat(
@@ -2349,7 +2349,7 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 
-		String content = _processTemplate(_tplCTServiceImpl, context);
+		String content = _processTemplate(_TPL_CT_SERVICE_IMPL, context);
 
 		_write(file, content, _modifiedFileNames);
 	}
@@ -2449,7 +2449,7 @@ public class ServiceBuilder {
 			"table", tableName
 		).build();
 
-		String content = _processTemplate(_tplModelTable, context);
+		String content = _processTemplate(_TPL_MODEL_TABLE, context);
 
 		_write(modelTableFile, content, _modifiedFileNames);
 	}
@@ -3257,7 +3257,7 @@ public class ServiceBuilder {
 				_portletShortName, "PersistenceConstants.java"));
 
 		String content = _processTemplate(
-			_tplPersistenceConstants, _getContext());
+			_TPL_PERSISTENCE_CONSTANTS, _getContext());
 
 		_write(file, content, _modifiedFileNames);
 	}
@@ -3322,7 +3322,7 @@ public class ServiceBuilder {
 
 			context = _putDeprecatedKeys(context, modelImplJavaClass);
 
-			String content = _processTemplate(_tplPersistenceTest, context);
+			String content = _processTemplate(_TPL_PERSISTENCE_TEST, context);
 
 			_write(file, content, _modifiedFileNames);
 		}
@@ -3745,7 +3745,7 @@ public class ServiceBuilder {
 		}
 
 		String content = _processTemplate(
-			_tplServletContextUtil, _getContext());
+			_TPL_SERVLET_CONTEXT_UTIL, _getContext());
 
 		File file = new File(
 			_serviceOutputPath + "/service/ServletContextUtil.java");
@@ -4387,7 +4387,7 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 
-		String content = _processTemplate(_tplUADAnonymizer, context);
+		String content = _processTemplate(_TPL_UAD_ANOYMIZER, context);
 
 		_write(file, content, _modifiedFileNames);
 	}
@@ -4421,7 +4421,7 @@ public class ServiceBuilder {
 				" UAD"));
 		context.put("uadPackagePath", entity.getUADPackagePath());
 
-		String content = _processTemplate(_tplUADBnd, context);
+		String content = _processTemplate(_TPL_UAD_BND, context);
 
 		ToolsUtil.writeFileRaw(file, content, _modifiedFileNames);
 	}
@@ -4440,7 +4440,7 @@ public class ServiceBuilder {
 		context.put("uadApplicationName", uadApplicationName);
 		context.put("uadPackagePath", entity.getUADPackagePath());
 
-		String content = _processTemplate(_tplUADConstants, context);
+		String content = _processTemplate(_TPL_UAD_CONSTANTS, context);
 
 		File file = new File(
 			StringBundler.concat(
@@ -4464,7 +4464,7 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 
-		String content = _processTemplate(_tplUADDisplay, context);
+		String content = _processTemplate(_TPL_UAD_DISPLAY, context);
 
 		_write(file, content, _modifiedFileNames);
 	}
@@ -4483,7 +4483,7 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 
-		String content = _processTemplate(_tplUADExporter, context);
+		String content = _processTemplate(_TPL_UAD_EXPORTER, context);
 
 		_write(file, content, _modifiedFileNames);
 	}
@@ -7843,8 +7843,46 @@ public class ServiceBuilder {
 	private static final String _TMP_DIR_NAME = System.getProperty(
 		"java.io.tmpdir");
 
+	private static final String _TPL_BASE_UAD_ANONYMIZER =
+		ServiceBuilder._TPL_ROOT + "base_uad_anonymizer.ftl";
+
+	private static final String _TPL_BASE_UAD_DISPLAY =
+		ServiceBuilder._TPL_ROOT + "base_uad_display.ftl";
+
+	private static final String _TPL_BASE_UAD_EXPORTER =
+		ServiceBuilder._TPL_ROOT + "base_uad_exporter.ftl";
+
+	private static final String _TPL_CT_SERVICE_IMPL =
+		ServiceBuilder._TPL_ROOT + "ct_service_impl.ftl";
+
+	private static final String _TPL_MODEL_TABLE =
+		ServiceBuilder._TPL_ROOT + "model_table.ftl";
+
+	private static final String _TPL_PERSISTENCE_CONSTANTS =
+		ServiceBuilder._TPL_ROOT + "persistence_constants.ftl";
+
+	private static final String _TPL_PERSISTENCE_TEST =
+		ServiceBuilder._TPL_ROOT + "persistence_test.ftl";
+
 	private static final String _TPL_ROOT =
 		"com/liferay/portal/tools/service/builder/dependencies/";
+
+	private static final String _TPL_SERVLET_CONTEXT_UTIL =
+		_TPL_ROOT + "servlet_context_util.ftl";
+
+	private static final String _TPL_UAD_ANOYMIZER =
+		_TPL_ROOT + "uad_anonymizer.ftl";
+
+	private static final String _TPL_UAD_BND = _TPL_ROOT + "uad_bnd.ftl";
+
+	private static final String _TPL_UAD_CONSTANTS =
+		_TPL_ROOT + "uad_constants.ftl";
+
+	private static final String _TPL_UAD_DISPLAY =
+		_TPL_ROOT + "uad_display.ftl";
+
+	private static final String _TPL_UAD_EXPORTER =
+		_TPL_ROOT + "uad_exporter.ftl";
 
 	private static final Pattern _beansAttributePattern = Pattern.compile(
 		"\\s+([^=]*)=\\s*\"([^\"]*)\"");
@@ -7859,29 +7897,6 @@ public class ServiceBuilder {
 			Pattern.quote("(")));
 	private static final Pattern _setterPattern = Pattern.compile(
 		"public void set.*" + Pattern.quote("("));
-	private static final String _tplBaseUADAnonymizer =
-		_TPL_ROOT + "base_uad_anonymizer.ftl";
-	private static final String _tplBaseUADDisplay =
-		_TPL_ROOT + "base_uad_display.ftl";
-	private static final String _tplBaseUADExporter =
-		_TPL_ROOT + "base_uad_exporter.ftl";
-	private static final String _tplCTServiceImpl =
-		_TPL_ROOT + "ct_service_impl.ftl";
-	private static final String _tplModelTable = _TPL_ROOT + "model_table.ftl";
-	private static final String _tplPersistenceConstants =
-		_TPL_ROOT + "persistence_constants.ftl";
-	private static final String _tplPersistenceTest =
-		_TPL_ROOT + "persistence_test.ftl";
-	private static final String _tplServletContextUtil =
-		_TPL_ROOT + "servlet_context_util.ftl";
-	private static final String _tplUADAnonymizer =
-		_TPL_ROOT + "uad_anonymizer.ftl";
-	private static final String _tplUADBnd = _TPL_ROOT + "uad_bnd.ftl";
-	private static final String _tplUADConstants =
-		_TPL_ROOT + "uad_constants.ftl";
-	private static final String _tplUADDisplay = _TPL_ROOT + "uad_display.ftl";
-	private static final String _tplUADExporter =
-		_TPL_ROOT + "uad_exporter.ftl";
 
 	private String _apiDirName;
 	private String _apiPackagePath;

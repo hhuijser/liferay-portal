@@ -16,7 +16,6 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.parser.JavaClass;
@@ -160,10 +159,8 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 		String classContent, JavaClass javaClass, JavaVariable javaVariable,
 		String fieldType) {
 
-		for (String annotation : _getAnnotationsExclusions()) {
-			if (javaVariable.hasAnnotation(annotation)) {
-				return classContent;
-			}
+		if (javaVariable.hasAnnotation()) {
+			return classContent;
 		}
 
 		JavaClass parentJavaClass = javaClass;
@@ -179,18 +176,7 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 		List<JavaTerm> allChildJavaTerms = _getAllChildJavaTerms(
 			parentJavaClass);
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("(((\\+\\+( ?))|(--( ?)))");
-		sb.append(javaVariable.getName());
-		sb.append(")|((\\b|\\.)");
-		sb.append(javaVariable.getName());
-		sb.append("((( )((=)|(\\+=)|(-=)|(\\*=)|(/=)|(%=)))");
-		sb.append("|(\\+\\+)|(--)|(( )((\\|=)|(&=)|(^=)))))");
-
-		Pattern pattern = Pattern.compile(sb.toString());
-
-		if (!_isFinalableField(javaClass, pattern, allChildJavaTerms)) {
+		if (!_isFinalableField(javaClass, javaVariable, allChildJavaTerms)) {
 			return classContent;
 		}
 
@@ -237,17 +223,6 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 		return childJavaTerms;
 	}
 
-	private synchronized List<String> _getAnnotationsExclusions() {
-		if (_annotationsExclusions == null) {
-			_annotationsExclusions = ListUtil.fromArray(
-				"ArquillianResource", "Autowired", "BeanReference", "Captor",
-				"Context", "Inject", "Mock", "Parameter", "Reference",
-				"ServiceReference", "SuppressWarnings", "Value");
-		}
-
-		return _annotationsExclusions;
-	}
-
 	private synchronized Map<String, String> _getDefaultPrimitiveValues() {
 		if (_defaultPrimitiveValues == null) {
 			_defaultPrimitiveValues = MapUtil.fromArray(
@@ -281,12 +256,35 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 	}
 
 	private boolean _isFinalableField(
-		JavaClass javaClass, Pattern pattern,
+		JavaClass javaClass, JavaVariable javaVariable,
 		List<JavaTerm> allChildJavaTerms) {
 
-		int assignmentCount = 0;
+		boolean hasInitialAssign = false;
+
+		String javaVariableContent = javaVariable.getContent();
+
+		if (javaVariableContent.contains(" =")) {
+			hasInitialAssign = true;
+		}
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("(((\\+\\+( ?))|(--( ?)))");
+		sb.append(javaVariable.getName());
+		sb.append(")|((\\b|\\.)");
+		sb.append(javaVariable.getName());
+		sb.append("((( )((=)|(\\+=)|(-=)|(\\*=)|(/=)|(%=)))");
+		sb.append("|(\\+\\+)|(--)|(( )((\\|=)|(&=)|(^=)))))");
+
+		Pattern pattern = Pattern.compile(sb.toString());
+
+		boolean hasAssign = false;
 
 		for (JavaTerm childJavaTerm : allChildJavaTerms) {
+			if (childJavaTerm.equals(javaVariable)) {
+				continue;
+			}
+
 			String content = childJavaTerm.getContent();
 
 			Matcher matcher = pattern.matcher(content);
@@ -294,7 +292,11 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 			boolean found = matcher.find();
 
 			if (found) {
-				assignmentCount++;
+				if (hasInitialAssign) {
+					return false;
+				}
+
+				hasAssign = true;
 			}
 
 			if (childJavaTerm.isJavaConstructor()) {
@@ -303,7 +305,7 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 				String constructorClassName = constructorClass.getName();
 
 				if (constructorClassName.equals(javaClass.getName())) {
-					if (!found) {
+					if (!found && !hasInitialAssign) {
 						return false;
 					}
 				}
@@ -323,11 +325,11 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 			}
 		}
 
-		if (assignmentCount == 0) {
-			return false;
+		if (hasAssign || hasInitialAssign) {
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	private boolean _isImmutableField(String fieldType, String absolutePath) {
@@ -350,7 +352,6 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 
 	private static final String _STATIC_LOG_EXCLUDES = "static.log.excludes";
 
-	private List<String> _annotationsExclusions;
 	private Map<String, String> _defaultPrimitiveValues;
 
 }

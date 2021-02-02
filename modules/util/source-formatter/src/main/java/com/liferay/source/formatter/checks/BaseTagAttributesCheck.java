@@ -423,8 +423,11 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 
 					s = StringUtil.trim(s.substring(x + 1));
 
-					if (s.equals(">") || s.equals("/>")) {
-						tag.setClosingTag(s);
+					if (s.equals(">") || s.equals("/>") ||
+						s.matches(">\\s*</" + tagName + "\\s*>")) {
+
+						tag.setClosingTag(
+							s.replaceAll("\\s", StringPool.BLANK));
 
 						return tag;
 					}

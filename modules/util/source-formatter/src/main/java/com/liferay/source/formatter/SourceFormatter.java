@@ -1205,8 +1205,8 @@ public class SourceFormatter {
 	private final Set<SourceFormatterMessage> _sourceFormatterMessages =
 		new ConcurrentSkipListSet<>();
 	private SourceFormatterSuppressions _sourceFormatterSuppressions;
-	private volatile List<SourceMismatchException> _sourceMismatchExceptions =
-		new ArrayList<>();
+	private final List<SourceMismatchException> _sourceMismatchExceptions =
+		new CopyOnWriteArrayList<>();
 	private final List<SourceProcessor> _sourceProcessors = new ArrayList<>();
 	private boolean _subrepository;
 

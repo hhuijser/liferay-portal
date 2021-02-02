@@ -23,9 +23,12 @@ public class DuplicateVariables {
 		return _STRING_1 + _STRING_2 + _STRING_3;
 	}
 
-	private static String _STRING_1 = "Hello";
-	private static String _STRING_2 = "World";
-	private static String _STRING_2 = "Hello World";
-	private static String _STRING_3 = "World Hello";
+	private static final String _STRING_1 = "Hello";
+
+	private static final String _STRING_2 = "World";
+
+	private static final String _STRING_2 = "Hello World";
+
+	private static final String _STRING_3 = "World Hello";
 
 }

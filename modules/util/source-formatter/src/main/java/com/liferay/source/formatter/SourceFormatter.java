@@ -17,6 +17,11 @@ package com.liferay.source.formatter;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.json.JSONArrayImpl;
+import com.liferay.portal.json.JSONObjectImpl;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -705,13 +710,27 @@ public class SourceFormatter {
 	}
 
 	private String _getOutputFileContent() {
-		StringBundler sb = new StringBundler();
+		JSONObject jsonObject = new JSONObjectImpl();
 
+		JSONArray modifiedFilesJSONArray = new JSONArrayImpl();
+
+		for (SourceMismatchException sourceMismatchException :
+				_sourceMismatchExceptions) {
+
+			modifiedFilesJSONArray.put(sourceMismatchException.getFileName());
+		}
+
+		jsonObject.put(
+			"modifiedFileNames", modifiedFilesJSONArray
+		).put(
+			"violationsCount", _sourceFormatterMessages.size()
+		);
+
+		JSONArray checksJSONArray = new JSONArrayImpl();
+
+		JSONObject checkJSONObject = null;
 		String currentCheckName = null;
-
-		sb.append("## Found ");
-		sb.append(_sourceFormatterMessages.size());
-		sb.append(" formatting issues\n\n");
+		JSONArray violationsJSONArray = null;
 
 		Set<SourceFormatterMessage> sortedSourceFormatterMessages =
 			new TreeSet<>(new SourceFormatterMessageCheckNameComparator());
@@ -729,27 +748,49 @@ public class SourceFormatter {
 
 			if (!Objects.equals(checkName, currentCheckName)) {
 				if (currentCheckName != null) {
-					sb.append("</details>\n");
-					sb.append("\n");
+					checkJSONObject.put("violations", violationsJSONArray);
+
+					checksJSONArray.put(checkJSONObject);
 				}
 
-				sb.append("<details>\n");
-				sb.append("  <summary>");
-				sb.append(checkName);
-				sb.append(" violations</summary>\n");
-				sb.append("\n");
+				checkJSONObject = new JSONObjectImpl();
+
+				checkJSONObject.put("name", checkName);
+
+				String documentationURLString =
+					sourceFormatterMessage.getDocumentationURLString();
+
+				if (documentationURLString != null) {
+					checkJSONObject.put(
+						"documentationURLString",
+						sourceFormatterMessage.getDocumentationURLString());
+				}
+
+				violationsJSONArray = new JSONArrayImpl();
 
 				currentCheckName = checkName;
 			}
 
-			sb.append("  - ");
-			sb.append(sourceFormatterMessage.toString());
-			sb.append("\n\n");
+			JSONObject violationJSONObject = new JSONObjectImpl();
+
+			violationJSONObject.put(
+				"fileName", sourceFormatterMessage.getFileName()
+			).put(
+				"lineNumber", sourceFormatterMessage.getLineNumber()
+			).put(
+				"message", sourceFormatterMessage.getMessage()
+			);
+
+			violationsJSONArray.put(violationJSONObject);
 		}
 
-		sb.append("</details>\n");
+		checkJSONObject.put("violations", violationsJSONArray);
 
-		return sb.toString();
+		checksJSONArray.put(checkJSONObject);
+
+		jsonObject.put("checks", checksJSONArray);
+
+		return JSONUtil.toString(jsonObject);
 	}
 
 	private List<String> _getPluginsInsideModulesDirectoryNames() {

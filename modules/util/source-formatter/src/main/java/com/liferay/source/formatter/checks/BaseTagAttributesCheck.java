@@ -424,7 +424,8 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 					s = StringUtil.trim(s.substring(x + 1));
 
 					if (s.equals(">") || s.equals("/>") ||
-						s.matches(">\\s*</" + tagName + "\\s*>")) {
+						(tagName.matches("[-\\w:]+") &&
+						 s.matches(">\\s*</" + tagName + "\\s*>"))) {
 
 						tag.setClosingTag(
 							s.replaceAll("\\s", StringPool.BLANK));

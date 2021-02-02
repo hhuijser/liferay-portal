@@ -428,7 +428,9 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 						 s.matches(">\\s*</" + tagName + "\\s*>"))) {
 
 						tag.setClosingTag(
-							s.replaceAll("\\s", StringPool.BLANK));
+							StringUtil.removeChars(
+								s, CharPool.NEW_LINE, CharPool.SPACE,
+								CharPool.TAB));
 
 						return tag;
 					}

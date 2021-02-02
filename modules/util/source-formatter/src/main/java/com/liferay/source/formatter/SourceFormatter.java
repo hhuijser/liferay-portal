@@ -117,7 +117,7 @@ public class SourceFormatter {
 			sourceFormatterArgs.setBaseDirName(baseDirName);
 
 			List<String> checkNames = ListUtil.fromString(
-				ArgumentsUtil.getString(arguments, "source.check.name", null),
+				ArgumentsUtil.getString(arguments, "source.check.names", null),
 				StringPool.COMMA);
 
 			sourceFormatterArgs.setCheckNames(checkNames);

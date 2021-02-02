@@ -15,13 +15,18 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.parser.comparator.JavaTermComparator;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -69,10 +74,48 @@ public class JavaTermOrderCheck extends BaseJavaTermCheck {
 	}
 
 	private String _sortJavaTerms(
+		JavaClass javaClass, List<JavaTerm> javaTerms,
+		JavaTermComparator javaTermComparator) {
+
+		String content = javaClass.getContent();
+
+		List<JavaTerm> sortedJavaTerms = new ArrayList<>(javaTerms);
+
+		Collections.sort(sortedJavaTerms, javaTermComparator);
+
+		for (int i = javaTerms.size() - 1; i >= 0; i--) {
+			JavaTerm javaTerm1 = javaTerms.get(i);
+			JavaTerm javaTerm2 = sortedJavaTerms.get(i);
+
+			if (!Objects.equals(
+					javaTerm1.getContent(), javaTerm2.getContent())) {
+
+				content = StringUtil.replaceFirst(
+					content, javaTerm1.getContent(), javaTerm2.getContent(),
+					SourceUtil.getLineStartPos(
+						content,
+						javaTerm1.getLineNumber() - javaClass.getLineNumber()));
+			}
+		}
+
+		return content;
+	}
+
+	private String _sortJavaTerms(
 		String fileName, String absolutePath, JavaClass javaClass,
 		String customSQLContent) {
 
 		List<JavaTerm> childJavaTerms = javaClass.getChildJavaTerms();
+
+		Iterator<JavaTerm> iterator = childJavaTerms.iterator();
+
+		while (iterator.hasNext()) {
+			JavaTerm javaTerm = iterator.next();
+
+			if (javaTerm.isJavaStaticBlock() || javaTerm.isDefault()) {
+				iterator.remove();
+			}
+		}
 
 		if (childJavaTerms.size() < 2) {
 			return javaClass.getContent();
@@ -84,10 +127,6 @@ public class JavaTermOrderCheck extends BaseJavaTermCheck {
 		JavaTerm previousJavaTerm = null;
 
 		for (JavaTerm javaTerm : childJavaTerms) {
-			if (javaTerm.isJavaStaticBlock() || javaTerm.isDefault()) {
-				continue;
-			}
-
 			if (previousJavaTerm == null) {
 				previousJavaTerm = javaTerm;
 
@@ -99,24 +138,19 @@ public class JavaTermOrderCheck extends BaseJavaTermCheck {
 
 			if (compare == 0) {
 				addMessage(fileName, "Duplicate " + javaTerm.getName());
+
+				return javaClass.getContent();
 			}
-			else if (!isExcludedPath(
-						JAVATERM_SORT_EXCLUDES, absolutePath,
-						previousJavaTerm.getName()) &&
-					 !isExcludedPath(
-						 JAVATERM_SORT_EXCLUDES, absolutePath,
-						 javaTerm.getName()) &&
-					 (compare > 0)) {
 
-				String classContent = javaClass.getContent();
+			if (!isExcludedPath(
+					JAVATERM_SORT_EXCLUDES, absolutePath,
+					previousJavaTerm.getName()) &&
+				!isExcludedPath(
+					JAVATERM_SORT_EXCLUDES, absolutePath, javaTerm.getName()) &&
+				(compare > 0)) {
 
-				String newClassContent = StringUtil.replaceFirst(
-					classContent, "\n" + previousJavaTerm.getContent(),
-					"\n" + javaTerm.getContent());
-
-				return StringUtil.replaceLast(
-					newClassContent, "\n" + javaTerm.getContent(),
-					"\n" + previousJavaTerm.getContent());
+				return _sortJavaTerms(
+					javaClass, childJavaTerms, javaTermComparator);
 			}
 
 			previousJavaTerm = javaTerm;

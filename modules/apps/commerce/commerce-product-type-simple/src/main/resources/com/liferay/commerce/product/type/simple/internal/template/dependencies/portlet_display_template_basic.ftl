@@ -56,13 +56,13 @@
 				<#else>
 					<h4 class="sku" data-text-cp-instance-sku=""></h4>
 
-					<div class="price" data-text-cp-instance-price="" ></div>
+					<div class="price" data-text-cp-instance-price=""></div>
 
-					<div class="availability" data-text-cp-instance-availability="" ></div>
+					<div class="availability" data-text-cp-instance-availability=""></div>
 
-					<div class="availabilityEstimate" data-text-cp-instance-availability-estimate="" ></div>
+					<div class="availabilityEstimate" data-text-cp-instance-availability-estimate=""></div>
 
-					<div class="stockQuantity" data-text-cp-instance-stock-quantity="" ></div>
+					<div class="stockQuantity" data-text-cp-instance-stock-quantity=""></div>
 				</#if>
 
 				<div class="row">

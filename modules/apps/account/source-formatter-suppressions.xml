@@ -3,5 +3,6 @@
 <suppressions>
 	<source-check>
 		<suppress checks="JavaConfigurationCategoryCheck" files="account-api/src/main/java/com/liferay/account/configuration/AccountEntryEmailDomainsConfiguration\.java" />
+		<suppress checks="JavaUpgradeVersionCheck" files="account-service/src/main/java/com/liferay/account/internal/upgrade/AccountServiceUpgrade\.java" />
 	</source-check>
 </suppressions>

@@ -75,6 +75,21 @@ public abstract class BaseJavaTerm implements JavaTerm {
 	}
 
 	@Override
+	public boolean hasAnnotation() {
+		Pattern pattern = Pattern.compile(
+			StringBundler.concat(
+				"(\\A|\n)", SourceUtil.getIndent(_content), "@"));
+
+		Matcher matcher = pattern.matcher(_content);
+
+		if (matcher.find()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
 	public boolean hasAnnotation(String... annotations) {
 		for (String annotation : annotations) {
 			Pattern pattern = Pattern.compile(

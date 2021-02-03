@@ -520,10 +520,9 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 					file.delete();
 				}
 			}
-			else {
-				_sourceMismatchExceptions.add(
-					new SourceMismatchException(fileName, content, newContent));
-			}
+
+			_sourceMismatchExceptions.add(
+				new SourceMismatchException(fileName, content, newContent));
 		}
 
 		if (_sourceFormatterArgs.isPrintErrors()) {

@@ -846,7 +846,7 @@ public class PullRequest {
 	private Boolean _autoCloseCommentAvailable;
 	private String _ciMergeSHA = "";
 	private String _commonParentSHA;
-	private List<String> _fileNames = new ArrayList<>();
+	private final List<String> _fileNames = new ArrayList<>();
 	private List<GitHubRemoteGitCommit> _gitHubRemoteGitCommits;
 	private GitHubRemoteGitRepository _gitHubRemoteGitRepository;
 	private final String _gitHubRemoteGitRepositoryName;

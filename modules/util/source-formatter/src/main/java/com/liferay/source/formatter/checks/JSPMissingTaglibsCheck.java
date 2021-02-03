@@ -14,17 +14,9 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.petra.string.CharPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.source.formatter.checks.util.JSPSourceUtil;
-
 import java.io.IOException;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,66 +42,24 @@ public class JSPMissingTaglibsCheck extends BaseJSPTermsCheck {
 			return content;
 		}
 
-		_checkMissingTaglibs(fileName, content);
-
-		return content;
-	}
-
-	private void _checkMissingTaglibs(String fileName, String content)
-		throws IOException {
-
 		Set<String> taglibPrefixes = _getTaglibPrefixes(content);
 
 		if (taglibPrefixes.isEmpty()) {
-			return;
+			return content;
 		}
 
 		populateContentsMap(fileName, content);
 
-		List<String> dependentfileNames = new ArrayList<>();
+		Set<String> missingTaglibPrefixes = getMissingTaglibPrefixes(
+			fileName, taglibPrefixes);
 
-		dependentfileNames.add(fileName);
-
-		Map<String, String> contentsMap = getContentsMap();
-
-		dependentfileNames = JSPSourceUtil.addIncludedAndReferencedFileNames(
-			dependentfileNames, new HashSet<String>(), contentsMap,
-			".*\\.jspf");
-
-		if (fileName.endsWith(".jspf") && (dependentfileNames.size() == 1)) {
-			return;
-		}
-
-		for (String dependentfileName : dependentfileNames) {
-			dependentfileName = StringUtil.replace(
-				dependentfileName, CharPool.BACK_SLASH, CharPool.SLASH);
-
-			String dependenFileContent = contentsMap.get(dependentfileName);
-
-			if (dependenFileContent == null) {
-				return;
-			}
-
-			Iterator<String> iterator = taglibPrefixes.iterator();
-
-			while (iterator.hasNext()) {
-				String prefix = iterator.next();
-
-				if (dependenFileContent.contains("prefix=\"" + prefix + "\"")) {
-					iterator.remove();
-
-					if (taglibPrefixes.isEmpty()) {
-						return;
-					}
-				}
-			}
-		}
-
-		for (String prefix : taglibPrefixes) {
+		for (String prefix : missingTaglibPrefixes) {
 			addMessage(
 				fileName,
 				"Missing taglib for tag with prefix '" + prefix + "'");
 		}
+
+		return content;
 	}
 
 	private Set<String> _getTaglibPrefixes(String content) {

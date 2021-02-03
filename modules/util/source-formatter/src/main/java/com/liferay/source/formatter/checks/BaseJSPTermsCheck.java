@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -24,7 +25,10 @@ import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,6 +47,51 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 
 	protected Map<String, String> getContentsMap() {
 		return _contentsMap;
+	}
+
+	protected Set<String> getMissingTaglibPrefixes(
+		String fileName, Set<String> taglibPrefixes) {
+
+		List<String> dependentfileNames = new ArrayList<>();
+
+		dependentfileNames.add(fileName);
+
+		Map<String, String> contentsMap = getContentsMap();
+
+		dependentfileNames = JSPSourceUtil.addIncludedAndReferencedFileNames(
+			dependentfileNames, new HashSet<String>(), contentsMap,
+			".*\\.jspf");
+
+		if (fileName.endsWith(".jspf") && (dependentfileNames.size() == 1)) {
+			return Collections.emptySet();
+		}
+
+		for (String dependentfileName : dependentfileNames) {
+			dependentfileName = StringUtil.replace(
+				dependentfileName, CharPool.BACK_SLASH, CharPool.SLASH);
+
+			String dependenFileContent = contentsMap.get(dependentfileName);
+
+			if (dependenFileContent == null) {
+				return Collections.emptySet();
+			}
+
+			Iterator<String> iterator = taglibPrefixes.iterator();
+
+			while (iterator.hasNext()) {
+				String prefix = iterator.next();
+
+				if (dependenFileContent.contains("prefix=\"" + prefix + "\"")) {
+					iterator.remove();
+
+					if (taglibPrefixes.isEmpty()) {
+						return taglibPrefixes;
+					}
+				}
+			}
+		}
+
+		return taglibPrefixes;
 	}
 
 	protected boolean hasUnusedJSPTerm(

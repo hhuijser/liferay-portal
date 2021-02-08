@@ -2,11 +2,13 @@
 <head>
 <title>CommerceEntry</title>
 </head>
+
 <body>
-<table cellpadding="1" cellspacing="1" border="1">
+<table border="1" cellpadding="1" cellspacing="1">
 <thead>
 <tr><td rowspan="1" colspan="3">CommerceEntry</td></tr>
 </thead>
+
 <tbody>
 	<tr>
 	<td>ANY_MENU_ITEM</td>
@@ -411,7 +413,7 @@
 <tr>
 	<td>ROW_VERTICAL_ELLIPSIS</td>
 	<td>//td//span[*[name()='svg'][contains(@class,'icon-ellipsis')]]</td>
-    <td></td>
+	<td></td>
 </tr>
 <tr>
 	<td>TABLE_ENTRY_NAME</td>

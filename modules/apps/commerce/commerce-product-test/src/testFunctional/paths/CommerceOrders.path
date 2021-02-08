@@ -2,61 +2,63 @@
 <head>
 <title>CommerceOrders</title>
 </head>
+
 <body>
-<table cellpadding="1" cellspacing="1" border="1">
+<table border="1" cellpadding="1" cellspacing="1">
 <thead>
 <tr><td rowspan="1" colspan="3">CommerceOrders</td></tr>
 </thead>
+
 <tbody>
 <tr>
-    <td>ORDER_DETAILS_BILLING_ADDRESS</td>
-    <td>//h5[contains(.,'Billing Address')]/../../div</td>
-    <td></td>
+	<td>ORDER_DETAILS_BILLING_ADDRESS</td>
+	<td>//h5[contains(.,'Billing Address')]/../../div</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_DETAILS_PAYMENT_METHOD_NAME</td>
-    <td>//span[contains(@class,'payment-name')]</td>
-    <td></td>
+	<td>ORDER_DETAILS_PAYMENT_METHOD_NAME</td>
+	<td>//span[contains(@class,'payment-name')]</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_DETAILS_PRODUCT_DISCOUNT</td>
-    <td>//table[contains(@class,'table')]//td[contains(.,'${key_productDiscount}')]</td>
-    <td></td>
+	<td>ORDER_DETAILS_PRODUCT_DISCOUNT</td>
+	<td>//table[contains(@class,'table')]//td[contains(.,'${key_productDiscount}')]</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_DETAILS_PRODUCT_NAME</td>
-    <td>//table[contains(@class,'table')]//td[contains(.,'${key_productName}')]</td>
-    <td></td>
+	<td>ORDER_DETAILS_PRODUCT_NAME</td>
+	<td>//table[contains(@class,'table')]//td[contains(.,'${key_productName}')]</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_DETAILS_TOTAL_PRICE</td>
-    <td>//table[contains(@class,'table')]//td[contains(.,'${key_productTotalPrice}')]</td>
-    <td></td>
+	<td>ORDER_DETAILS_TOTAL_PRICE</td>
+	<td>//table[contains(@class,'table')]//td[contains(.,'${key_productTotalPrice}')]</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_DETAILS_PRODUCT_QUANTITY</td>
-    <td>//table[contains(@class,'table')]//td[contains(.,'${key_productQuantity}')]</td>
-    <td></td>
+	<td>ORDER_DETAILS_PRODUCT_QUANTITY</td>
+	<td>//table[contains(@class,'table')]//td[contains(.,'${key_productQuantity}')]</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_DETAILS_PRODUCT_SKU</td>
-    <td>//table[contains(@class,'table')]//td[2]//a[contains(.,'${key_productSKU}')]</td>
-    <td></td>
+	<td>ORDER_DETAILS_PRODUCT_SKU</td>
+	<td>//table[contains(@class,'table')]//td[2]//a[contains(.,'${key_productSKU}')]</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_DETAILS_PRODUCT_LIST_PRICE</td>
-    <td>//table[contains(@class,'table')]//td[contains(.,'${key_productListPrice}')]</td>
-    <td></td>
+	<td>ORDER_DETAILS_PRODUCT_LIST_PRICE</td>
+	<td>//table[contains(@class,'table')]//td[contains(.,'${key_productListPrice}')]</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_DETAILS_SHIPPING_ADDRESS</td>
-    <td>//h5[contains(.,'Shipping Address')]/../../div[contains(.,'${key_addressInfo}')]</td>
-    <td></td>
+	<td>ORDER_DETAILS_SHIPPING_ADDRESS</td>
+	<td>//h5[contains(.,'Shipping Address')]/../../div[contains(.,'${key_addressInfo}')]</td>
+	<td></td>
 </tr>
 <tr>
-    <td>ORDER_ITEMS_PRODUCT_DETAILS</td>
-    <td>//tbody//td[2][contains(.,'${key_productSKU}')]/..//div[@class='table-list-title']/button</td>
-    <td></td>
+	<td>ORDER_ITEMS_PRODUCT_DETAILS</td>
+	<td>//tbody//td[2][contains(.,'${key_productSKU}')]/..//div[@class='table-list-title']/button</td>
+	<td></td>
 </tr>
 </tbody>
 </table>

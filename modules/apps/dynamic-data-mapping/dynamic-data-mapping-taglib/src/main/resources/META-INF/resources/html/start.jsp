@@ -75,7 +75,7 @@
 							String linkCssClass = "dropdown-item palette-item";
 
 							Locale curLocale = LocaleUtil.fromLanguageId(curLanguageId);
-							%>
+						%>
 
 							<c:if test="<%= showLanguageSelector %>">
 								<liferay-ui:icon

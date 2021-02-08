@@ -151,10 +151,9 @@ ColorScheme selColorScheme = ThemeLocalServiceUtil.getColorScheme(company.getCom
 				<%
 				for (int i = 0; i < themes.size(); i++) {
 					Theme curTheme = themes.get(i);
-
-					if (!Objects.equals(selTheme.getThemeId(), curTheme.getThemeId())) {
 				%>
 
+					<c:if test="<%= !Objects.equals(selTheme.getThemeId(), curTheme.getThemeId()) %>">
 						<li>
 							<div class="theme-entry">
 								<img alt="" class="modify-link theme-thumbnail" onclick="document.getElementById('<portlet:namespace />ThemeId<%= i %>').checked = true;" src="<%= curTheme.getStaticResourcePath() %><%= HtmlUtil.escapeAttribute(curTheme.getImagesPath()) %>/thumbnail.png" title="<%= HtmlUtil.escapeAttribute(curTheme.getName()) %>" />
@@ -162,9 +161,9 @@ ColorScheme selColorScheme = ThemeLocalServiceUtil.getColorScheme(company.getCom
 								<aui:input cssClass="theme-title" id='<%= "ThemeId" + i %>' label="<%= curTheme.getName() %>" name="themeId" type="radio" value="<%= curTheme.getThemeId() %>" />
 							</div>
 						</li>
+					</c:if>
 
 				<%
-					}
 				}
 				%>
 

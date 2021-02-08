@@ -116,10 +116,9 @@ renderResponse.setTitle(translateDisplayContext.getTitle());
 							}
 
 							String infoFieldSetLabel = translateDisplayContext.getInfoFieldSetLabel(infoFieldSetEntry, locale);
-
-							if (Validator.isNotNull(infoFieldSetLabel)) {
 						%>
 
+							<c:if test="<%= Validator.isNotNull(infoFieldSetLabel) %>">
 								<clay:row>
 									<clay:col
 										md="6"
@@ -137,10 +136,9 @@ renderResponse.setTitle(translateDisplayContext.getTitle());
 										</div>
 									</clay:col>
 								</clay:row>
+							</c:if>
 
 							<%
-							}
-
 							for (InfoField<TextInfoFieldType> infoField : infoFields) {
 								boolean html = translateDisplayContext.getBooleanValue(infoField, TextInfoFieldType.HTML);
 								String label = translateDisplayContext.getInfoFieldLabel(infoField);

@@ -47,14 +47,13 @@ List<String> previewFileURLs = (List<String>)request.getAttribute(DLPreviewAudio
 						type = "audio/ogg";
 					}
 				}
-
-				if (type != null) {
 			%>
 
+				<c:if test="<%= type != null %>">
 					<source src="<%= previewFileURL %>" type="<%= type %>" />
+				</c:if>
 
 			<%
-				}
 			}
 			%>
 

@@ -378,14 +378,13 @@ if (portletTitleBasedNavigation) {
 								String priorityName = priority[0];
 
 								double priorityValue = GetterUtil.getDouble(priority[2]);
-
-								if (priorityValue > 0) {
 						%>
 
+								<c:if test="<%= priorityValue > 0 %>">
 									<aui:option label="<%= HtmlUtil.escape(priorityName) %>" selected="<%= threadPriority == priorityValue %>" value="<%= priorityValue %>" />
+								</c:if>
 
 						<%
-								}
 							}
 							catch (Exception e) {
 							}

@@ -364,13 +364,15 @@ renderResponse.setTitle(headerTitle);
 
 										<%
 										for (DLFileEntryType curDLFileEntryType : dlFileEntryTypes) {
-											if ((curDLFileEntryType.getFileEntryTypeId() == DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT) || (fileEntryTypeId == curDLFileEntryType.getFileEntryTypeId()) || DLFileEntryTypePermission.contains(permissionChecker, curDLFileEntryType, ActionKeys.VIEW)) {
 										%>
+
+											<c:if test="<%= (curDLFileEntryType.getFileEntryTypeId() == DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT) || (fileEntryTypeId == curDLFileEntryType.getFileEntryTypeId()) || DLFileEntryTypePermission.contains(permissionChecker, curDLFileEntryType, ActionKeys.VIEW) %>">
 
 											<aui:option label="<%= HtmlUtil.escape(curDLFileEntryType.getName(locale)) %>" selected="<%= fileEntryTypeId == curDLFileEntryType.getPrimaryKey() %>" value="<%= curDLFileEntryType.getPrimaryKey() %>" />
 
+											</c:if>
+
 										<%
-											}
 										}
 										%>
 
@@ -383,21 +385,22 @@ renderResponse.setTitle(headerTitle);
 
 							<aui:input name="defaultLanguageId" type="hidden" value="<%= defaultLanguageId %>" />
 
+							<c:if test="<%= fileEntryTypeId > 0 %>">
+
 							<%
-							if (fileEntryTypeId > 0) {
-								try {
-									boolean localizable = true;
+							try {
+								boolean localizable = true;
 
-									for (DDMStructure ddmStructure : dlFileEntryType.getDDMStructures()) {
-										com.liferay.dynamic.data.mapping.storage.DDMFormValues ddmFormValues = null;
+								for (DDMStructure ddmStructure : dlFileEntryType.getDDMStructures()) {
+									com.liferay.dynamic.data.mapping.storage.DDMFormValues ddmFormValues = null;
 
-										try {
-											DLFileEntryMetadata fileEntryMetadata = DLFileEntryMetadataLocalServiceUtil.getFileEntryMetadata(ddmStructure.getStructureId(), fileVersionId);
+									try {
+										DLFileEntryMetadata fileEntryMetadata = DLFileEntryMetadataLocalServiceUtil.getFileEntryMetadata(ddmStructure.getStructureId(), fileVersionId);
 
-											ddmFormValues = dlEditFileEntryDisplayContext.getDDMFormValues(fileEntryMetadata.getDDMStorageId());
-										}
-										catch (Exception e) {
-										}
+										ddmFormValues = dlEditFileEntryDisplayContext.getDDMFormValues(fileEntryMetadata.getDDMStorageId());
+									}
+									catch (Exception e) {
+									}
 							%>
 
 										<c:if test="<%= !dlEditFileEntryDisplayContext.isDDMStructureVisible(ddmStructure) %>">
@@ -426,15 +429,15 @@ renderResponse.setTitle(headerTitle);
 										</c:if>
 
 							<%
-										localizable = false;
-									}
+									localizable = false;
 								}
-								catch (Exception e) {
-									_log.error(e, e);
-								}
+							}
+							catch (Exception e) {
+								_log.error(e, e);
 							}
 							%>
 
+							</c:if>
 						</c:if>
 					</c:if>
 				</aui:fieldset>

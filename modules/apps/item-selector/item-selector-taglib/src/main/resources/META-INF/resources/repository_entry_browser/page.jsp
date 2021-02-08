@@ -87,10 +87,13 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 
 	<%
 	long folderId = ParamUtil.getLong(request, "folderId");
-
-	if (showBreadcrumb && !showSearchInfo) {
-		ItemSelectorRepositoryEntryBrowserUtil.addPortletBreadcrumbEntries(folderId, displayStyle, request, liferayPortletRequest, liferayPortletResponse, PortletURLUtil.clone(portletURL, liferayPortletResponse));
 	%>
+
+	<c:if test="<%= showBreadcrumb && !showSearchInfo %>">
+
+		<%
+		ItemSelectorRepositoryEntryBrowserUtil.addPortletBreadcrumbEntries(folderId, displayStyle, request, liferayPortletRequest, liferayPortletResponse, PortletURLUtil.clone(portletURL, liferayPortletResponse));
+		%>
 
 		<liferay-ui:breadcrumb
 			showCurrentGroup="<%= false %>"
@@ -98,10 +101,7 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 			showLayout="<%= false %>"
 			showParentGroups="<%= false %>"
 		/>
-
-	<%
-	}
-	%>
+	</c:if>
 
 	<c:if test="<%= showDragAndDropZone && !showSearchInfo && DLFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_DOCUMENT) %>">
 		<liferay-util:buffer
@@ -158,8 +158,11 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 						else {
 							folder = (Folder)repositoryEntry;
 						}
+						%>
 
-						if (fileEntry != null) {
+						<c:if test="<%= fileEntry != null %>">
+
+							<%
 							FileVersion latestFileVersion = fileEntry.getLatestFileVersion();
 
 							String title = fileEntry.getTitle();
@@ -167,7 +170,7 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 							JSONObject itemMedatadaJSONObject = ItemSelectorRepositoryEntryBrowserUtil.getItemMetadataJSONObject(fileEntry, locale);
 
 							String thumbnailSrc = DLURLHelperUtil.getThumbnailSrc(fileEntry, themeDisplay);
-						%>
+							%>
 
 							<liferay-ui:search-container-column-text
 								name="title"
@@ -229,13 +232,13 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 									icon="view"
 								/>
 							</liferay-ui:search-container-column-text>
+						</c:if>
 
-						<%
-						}
+						<c:if test="<%= folder != null %>">
 
-						if (folder != null) {
+							<%
 							PortletURL viewFolderURL = EntryURLUtil.getFolderPortletURL(folder, liferayPortletRequest, liferayPortletResponse, portletURL);
-						%>
+							%>
 
 							<liferay-ui:search-container-column-text
 								name="title"
@@ -285,11 +288,7 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 							<liferay-ui:search-container-column-text
 								value="--"
 							/>
-
-						<%
-						}
-						%>
-
+						</c:if>
 					</c:when>
 					<c:otherwise>
 
@@ -315,10 +314,13 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 
 								<%
 								row.setCssClass("card-page-item card-page-item-directory");
-
-								if (folder != null) {
-									PortletURL viewFolderURL = EntryURLUtil.getFolderPortletURL(folder, liferayPortletRequest, liferayPortletResponse, portletURL);
 								%>
+
+								<c:if test="<%= folder != null %>">
+
+									<%
+									PortletURL viewFolderURL = EntryURLUtil.getFolderPortletURL(folder, liferayPortletRequest, liferayPortletResponse, portletURL);
+									%>
 
 									<liferay-ui:search-container-column-text
 										colspan="<%= 3 %>"
@@ -355,11 +357,11 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 											</div>
 										</div>
 									</liferay-ui:search-container-column-text>
+								</c:if>
 
-								<%
-								}
+								<c:if test="<%= fileEntry != null %>">
 
-								if (fileEntry != null) {
+									<%
 									FileVersion latestFileVersion = fileEntry.getLatestFileVersion();
 
 									String title = fileEntry.getTitle();
@@ -386,7 +388,7 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 									data.put("title", title);
 									data.put("url", DLURLHelperUtil.getPreviewURL(fileEntry, latestFileVersion, themeDisplay, StringPool.BLANK));
 									data.put("value", ItemSelectorRepositoryEntryBrowserUtil.getValue(itemSelectorReturnTypeResolver, existingFileEntryReturnType, fileEntry, themeDisplay));
-								%>
+									%>
 
 									<liferay-ui:search-container-column-text>
 										<c:choose>
@@ -452,18 +454,14 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 											</c:otherwise>
 										</c:choose>
 									</liferay-ui:search-container-column-text>
-
-								<%
-								}
-								%>
-
+								</c:if>
 							</c:when>
 							<c:otherwise>
+								<c:if test="<%= folder != null %>">
 
-								<%
-								if (folder != null) {
+									<%
 									PortletURL viewFolderURL = EntryURLUtil.getFolderPortletURL(folder, liferayPortletRequest, liferayPortletResponse, portletURL);
-								%>
+									%>
 
 									<liferay-ui:search-container-column-icon
 										icon="folder"
@@ -497,11 +495,11 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 											<liferay-ui:message arguments="<%= new String[] {LanguageUtil.getTimeDescription(locale, System.currentTimeMillis() - folder.getCreateDate().getTime(), true), HtmlUtil.escape(folder.getUserName())} %>" key="x-ago-by-x" translateArguments="<%= false %>" />
 										</h6>
 									</liferay-ui:search-container-column-text>
+								</c:if>
 
-								<%
-								}
+								<c:if test="<%= fileEntry != null %>">
 
-								if (fileEntry != null) {
+									<%
 									row.setCssClass("item-selector-list-row " + row.getCssClass());
 
 									FileVersion latestFileVersion = fileEntry.getLatestFileVersion();
@@ -511,7 +509,7 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 									JSONObject itemMedatadaJSONObject = ItemSelectorRepositoryEntryBrowserUtil.getItemMetadataJSONObject(fileEntry, locale);
 
 									String thumbnailSrc = DLURLHelperUtil.getThumbnailSrc(fileEntry, themeDisplay);
-								%>
+									%>
 
 									<c:choose>
 										<c:when test="<%= Validator.isNotNull(thumbnailSrc) %>">
@@ -571,13 +569,8 @@ SearchContainer<?> searchContainer = new SearchContainer(renderRequest, itemSele
 											icon="view"
 										/>
 									</liferay-ui:search-container-column-text>
-
-								<%
-								}
-								%>
-
-							</c:otherwise>
-						</c:choose>
+								</c:if>
+							</c:otherwise> </c:choose>
 					</c:otherwise>
 				</c:choose>
 			</liferay-ui:search-container-row>

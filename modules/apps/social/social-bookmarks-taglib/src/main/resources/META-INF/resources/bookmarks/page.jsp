@@ -64,9 +64,7 @@ String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_ui_social
 
 			</ul>
 
-			<%
-			if (types.length > maxInlineItems) {
-			%>
+			<c:if test="<%= types.length > maxInlineItems %>">
 
 				<%
 				String[] remainingTypes = ArrayUtil.subset(types, maxInlineItems, types.length);
@@ -82,11 +80,7 @@ String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_ui_social
 					small="<%= true %>"
 					title="share"
 				/>
-
-			<%
-			}
-			%>
-
+			</c:if>
 		</c:otherwise>
 	</c:choose>
 </div>

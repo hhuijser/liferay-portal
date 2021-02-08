@@ -114,10 +114,7 @@ String signature = ParamUtil.getString(request, "signature");
 		<div class="lfr-api-parameters lfr-api-section">
 			<h3><liferay-ui:message key="parameters" /></h3>
 
-			<%
-			if (PropsValues.JSON_SERVICE_AUTH_TOKEN_ENABLED) {
-			%>
-
+			<c:if test="<%= PropsValues.JSON_SERVICE_AUTH_TOKEN_ENABLED %>">
 				<div class="lfr-api-param">
 					<span class="lfr-api-param-name">
 						p_auth
@@ -130,10 +127,9 @@ String signature = ParamUtil.getString(request, "signature");
 						authentication token used to validate the request
 					</p>
 				</div>
+			</c:if>
 
 			<%
-			}
-
 			MethodParameter[] methodParameters = jsonWebServiceActionMapping.getMethodParameters();
 
 			for (int i = 0; i < methodParameters.length; i++) {
@@ -305,16 +301,11 @@ String signature = ParamUtil.getString(request, "signature");
 			</aui:script>
 
 			<aui:form action="<%= jsonWSPath + jsonWebServiceActionMapping.getPath() %>" enctype="<%= enctype %>" method="<%= jsonWebServiceActionMapping.getMethod() %>" name="execute">
-
-				<%
-				if (PropsValues.JSON_SERVICE_AUTH_TOKEN_ENABLED) {
-				%>
-
+				<c:if test="<%= PropsValues.JSON_SERVICE_AUTH_TOKEN_ENABLED %>">
 					<aui:input id='<%= "field" + methodParameters.length %>' label="p_auth" name="p_auth" readonly="true" suffix="String" value="<%= AuthTokenUtil.getToken(request) %>" />
+				</c:if>
 
 				<%
-				}
-
 				for (int i = 0; i < methodParameters.length; i++) {
 					MethodParameter methodParameter = methodParameters[i];
 

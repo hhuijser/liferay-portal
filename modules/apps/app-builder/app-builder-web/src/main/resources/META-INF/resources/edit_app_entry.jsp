@@ -41,14 +41,11 @@ List<Long> dataLayoutIds = appBuilderAppPortletTabContext.getDataLayoutIds();
 
 						<%
 						for (Long dataLayoutId : dataLayoutIds) {
-							if (dataLayoutIds.size() > 1) {
 						%>
 
+							<c:if test="<%= dataLayoutIds.size() > 1 %>">
 								<h3 class="px-4" id="<%= dataLayoutId %>_name"></h3>
-
-							<%
-							}
-							%>
+							</c:if>
 
 							<div id="app-entry-taglib">
 								<aui:form name='<%= dataLayoutId + "_fm" %>'>

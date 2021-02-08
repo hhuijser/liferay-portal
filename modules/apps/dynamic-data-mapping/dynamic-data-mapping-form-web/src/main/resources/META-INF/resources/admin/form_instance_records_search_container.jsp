@@ -53,11 +53,7 @@ PortletURL portletURL = ddmFormViewFormInstanceRecordsDisplayContext.getPortletU
 				keyProperty="formInstanceRecordId"
 				modelVar="formInstanceRecord"
 			>
-
-				<%
-				if (ddmFormViewFormInstanceRecordsDisplayContext.getAvailableLocalesCount() > 1) {
-				%>
-
+				<c:if test="<%= ddmFormViewFormInstanceRecordsDisplayContext.getAvailableLocalesCount() > 1 %>">
 					<liferay-ui:search-container-column-text
 						name="language"
 					>
@@ -72,10 +68,7 @@ PortletURL portletURL = ddmFormViewFormInstanceRecordsDisplayContext.getPortletU
 							</svg>
 						</div>
 					</liferay-ui:search-container-column-text>
-
-				<%
-				}
-				%>
+				</c:if>
 
 				<%
 				Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap = ddmFormViewFormInstanceRecordsDisplayContext.getDDMFormFieldValues(formInstanceRecord);

@@ -34,25 +34,24 @@
 	boolean hasTags = false;
 
 	for (AssetTag assetTag : assetTags) {
-		if (assetTag.getAssetCount() > 0) {
-			hasTags = true;
 	%>
+
+		<c:if test="<%= assetTag.getAssetCount() > 0 %>">
+
+			<%
+			hasTags = true;
+			%>
 
 			<a class="asset-tag icon-check-empty" data-assetTagId="<%= assetTag.getTagId() %>" href="javascript:;"><%= assetTag.getName() %></a>
+		</c:if>
 
 	<%
-		}
 	}
-
-	if (!hasTags) {
 	%>
 
+	<c:if test="<%= !hasTags %>">
 		<liferay-ui:message key="no-tags-were-found" />
-
-	<%
-	}
-	%>
-
+	</c:if>
 </div>
 
 <%

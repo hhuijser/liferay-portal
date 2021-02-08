@@ -34,40 +34,46 @@ if (credentials.equals(Portal.TEMP_OBFUSCATION_VALUE)) {
 SafePortalLDAP safePortalLDAP = SafePortalLDAPUtil.getSafePortalLDAP();
 
 SafeLdapContext safeLdapContext = safePortalLDAP.getSafeLdapContext(themeDisplay.getCompanyId(), baseProviderURL, principal, credentials);
-
-if (safeLdapContext == null) {
 %>
 
+<c:if test="<%= safeLdapContext == null %>">
 	<liferay-ui:message key="liferay-has-failed-to-connect-to-the-ldap-server" />
 
-<%
+	<%
 	return;
-}
+	%>
 
+</c:if>
+
+<%
 FullNameDefinition fullNameDefinition = FullNameDefinitionFactory.getInstance(locale);
-
-if (Validator.isNull(ParamUtil.getString(request, "userMappingScreenName")) || Validator.isNull(ParamUtil.getString(request, "userMappingPassword")) || (Validator.isNull(ParamUtil.getString(request, "userMappingEmailAddress")) && PropsValues.USERS_EMAIL_ADDRESS_REQUIRED) || Validator.isNull(ParamUtil.getString(request, "userMappingFirstName")) || (Validator.isNull(ParamUtil.getString(request, "userMappingLastName")) && fullNameDefinition.isFieldRequired("last-name"))) {
 %>
 
+<c:if test='<%= Validator.isNull(ParamUtil.getString(request, "userMappingScreenName")) || Validator.isNull(ParamUtil.getString(request, "userMappingPassword")) || (Validator.isNull(ParamUtil.getString(request, "userMappingEmailAddress")) && PropsValues.USERS_EMAIL_ADDRESS_REQUIRED) || Validator.isNull(ParamUtil.getString(request, "userMappingFirstName")) || (Validator.isNull(ParamUtil.getString(request, "userMappingLastName")) && fullNameDefinition.isFieldRequired("last-name")) %>'>
 	<liferay-ui:message key="please-map-each-of-the-user-properties-screen-name,-password,-email-address,-first-name,-and-last-name-to-an-ldap-attribute" />
 
-<%
+	<%
 	return;
-}
+	%>
 
+</c:if>
+
+<%
 LDAPFilterValidator ldapFilterValidator = LDAPFilterValidatorUtil.getLDAPFilterValidator();
 
 String userFilter = ParamUtil.getString(request, "importUserSearchFilter");
-
-if (!ldapFilterValidator.isValid(userFilter)) {
 %>
 
+<c:if test="<%= !ldapFilterValidator.isValid(userFilter) %>">
 	<liferay-ui:message key="please-enter-a-valid-ldap-search-filter" />
 
-<%
+	<%
 	return;
-}
+	%>
 
+</c:if>
+
+<%
 StringBundler sb = new StringBundler(23);
 
 sb.append("screenName=");
@@ -101,21 +107,25 @@ Properties userMappings = PropertiesUtil.load(userMappingsParams);
 String[] attributeIds = StringUtil.split(StringUtil.merge(userMappings.values()));
 
 List<SearchResult> searchResults = new ArrayList<SearchResult>();
+%>
 
-if (Validator.isNotNull(userFilter) && !userFilter.equals(StringPool.STAR)) {
+<c:if test="<%= Validator.isNotNull(userFilter) && !userFilter.equals(StringPool.STAR) %>">
+
+	<%
 	try {
 		safePortalLDAP.getUsers(themeDisplay.getCompanyId(), safeLdapContext, new byte[0], 20, SafeLdapNameFactory.fromUnsafe(baseDN), SafeLdapFilterFactory.fromUnsafeFilter(userFilter, ldapFilterValidator), attributeIds, searchResults);
 	}
 	catch (InvalidNameException | NameNotFoundException exception) {
-%>
+	%>
 
 		<liferay-ui:message key="please-enter-a-valid-ldap-base-dn" />
 
-<%
+	<%
 		return;
 	}
-}
-%>
+	%>
+
+</c:if>
 
 <liferay-ui:message key="test-ldap-users" />
 
@@ -209,17 +219,13 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
-<%
-if (showMissingAttributeMessage) {
-%>
-
+<c:if test="<%= showMissingAttributeMessage %>">
 	<div class="alert alert-info">
 		<liferay-ui:message key="the-above-results-include-users-which-are-missing-the-required-attributes-(screen-name,-password,-email-address,-first-name,-and-last-name).-these-users-will-not-be-imported-until-these-attributes-are-filled-in" />
 	</div>
+</c:if>
 
 <%
-}
-
 if (safeLdapContext != null) {
 	safeLdapContext.close();
 }

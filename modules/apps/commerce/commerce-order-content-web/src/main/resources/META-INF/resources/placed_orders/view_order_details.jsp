@@ -56,18 +56,21 @@ if (commerceOrder != null) {
 
 	<%
 	CommerceOrderValidatorException commerceOrderValidatorException = (CommerceOrderValidatorException)errorException;
-
-	if (commerceOrderValidatorException != null) {
-		for (CommerceOrderValidatorResult commerceOrderValidatorResult : commerceOrderValidatorException.getCommerceOrderValidatorResults()) {
 	%>
+
+	<c:if test="<%= commerceOrderValidatorException != null %>">
+
+		<%
+		for (CommerceOrderValidatorResult commerceOrderValidatorResult : commerceOrderValidatorException.getCommerceOrderValidatorResults()) {
+		%>
 
 			<liferay-ui:message key="<%= commerceOrderValidatorResult.getLocalizedMessage() %>" />
 
-	<%
+		<%
 		}
-	}
-	%>
+		%>
 
+	</c:if>
 </liferay-ui:error>
 
 <div class="commerce-panel">

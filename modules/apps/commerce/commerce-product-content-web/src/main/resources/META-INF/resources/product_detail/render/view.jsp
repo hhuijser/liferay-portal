@@ -251,16 +251,19 @@ List<CPMedia> cpAttachmentFileEntries = cpContentHelper.getCPAttachmentFileEntri
 
 				<%
 				attachmentsCount = attachmentsCount + 1;
-
-				if (attachmentsCount >= 2) {
 				%>
 
+				<c:if test="<%= attachmentsCount >= 2 %>">
 					<dt class="specification-empty specification-term"></dt>
 					<dd class="specification-desc specification-empty"></dd>
 
-			<%
+					<%
 					attachmentsCount = 0;
-				}
+					%>
+
+				</c:if>
+
+			<%
 			}
 			%>
 

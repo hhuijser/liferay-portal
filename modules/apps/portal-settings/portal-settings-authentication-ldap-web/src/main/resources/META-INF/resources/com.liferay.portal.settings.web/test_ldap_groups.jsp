@@ -34,38 +34,42 @@ if (credentials.equals(Portal.TEMP_OBFUSCATION_VALUE)) {
 SafePortalLDAP safePortalLDAP = SafePortalLDAPUtil.getSafePortalLDAP();
 
 SafeLdapContext safeLdapContext = safePortalLDAP.getSafeLdapContext(themeDisplay.getCompanyId(), baseProviderURL, principal, credentials);
-
-if (safeLdapContext == null) {
 %>
 
+<c:if test="<%= safeLdapContext == null %>">
 	<liferay-ui:message key="liferay-has-failed-to-connect-to-the-ldap-server" />
 
-<%
+	<%
 	return;
-}
+	%>
 
-if (Validator.isNull(ParamUtil.getString(request, "groupMappingGroupName")) || Validator.isNull(ParamUtil.getString(request, "groupMappingUser"))) {
-%>
+</c:if>
 
+<c:if test='<%= Validator.isNull(ParamUtil.getString(request, "groupMappingGroupName")) || Validator.isNull(ParamUtil.getString(request, "groupMappingUser")) %>'>
 	<liferay-ui:message key="please-map-each-of-the-group-properties-group-name-and-user-to-an-ldap-attribute" />
 
-<%
+	<%
 	return;
-}
+	%>
 
+</c:if>
+
+<%
 LDAPFilterValidator ldapFilterValidator = LDAPFilterValidatorUtil.getLDAPFilterValidator();
 
 String groupFilter = ParamUtil.getString(request, "importGroupSearchFilter");
-
-if (!ldapFilterValidator.isValid(groupFilter)) {
 %>
 
+<c:if test="<%= !ldapFilterValidator.isValid(groupFilter) %>">
 	<liferay-ui:message key="please-enter-a-valid-ldap-search-filter" />
 
-<%
+	<%
 	return;
-}
+	%>
 
+</c:if>
+
+<%
 SafeLdapFilter groupSafeLdapFilter = SafeLdapFilterFactory.fromUnsafeFilter(groupFilter, ldapFilterValidator);
 
 String groupMappingsParam = "groupName=" + ParamUtil.getString(request, "groupMappingGroupName") + "\ndescription=" + ParamUtil.getString(request, "groupMappingDescription") + "\nuser=" + ParamUtil.getString(request, "groupMappingUser");
@@ -120,10 +124,9 @@ catch (InvalidNameException | NameNotFoundException exception) {
 
 			attribute = safePortalLDAP.getMultivaluedAttribute(themeDisplay.getCompanyId(), safeLdapContext, SafeLdapNameFactory.fromUnsafe(baseDN), safeLdapFilter, attribute);
 		}
-
-		if (counter == 0) {
 	%>
 
+		<c:if test="<%= counter == 0 %>">
 			<col width="5%" />
 			<col width="25%" />
 			<col width="60%" />
@@ -143,10 +146,9 @@ catch (InvalidNameException | NameNotFoundException exception) {
 					<liferay-ui:message key="members" />
 				</th>
 			</tr>
+		</c:if>
 
 		<%
-		}
-
 		counter++;
 		%>
 
@@ -167,33 +169,24 @@ catch (InvalidNameException | NameNotFoundException exception) {
 
 	<%
 	}
-
-	if (counter == 0) {
 	%>
 
+	<c:if test="<%= counter == 0 %>">
 		<tr>
 			<td colspan="4">
 				<liferay-ui:message key="no-groups-were-found" />
 			</td>
 		</tr>
-
-	<%
-	}
-	%>
-
+	</c:if>
 </table>
 
-<%
-if (showMissingAttributeMessage) {
-%>
-
+<c:if test="<%= showMissingAttributeMessage %>">
 	<div class="alert alert-info">
 		<liferay-ui:message key="the-above-results-include-groups-which-are-missing-the-required-attributes-(group-name-and-user).-these-groups-will-not-be-imported-until-these-attributes-are-filled-in" />
 	</div>
+</c:if>
 
 <%
-}
-
 if (safeLdapContext != null) {
 	safeLdapContext.close();
 }

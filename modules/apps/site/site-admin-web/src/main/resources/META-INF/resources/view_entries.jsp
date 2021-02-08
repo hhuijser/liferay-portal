@@ -117,8 +117,11 @@
 					List<String> names = SitesUtil.getOrganizationNames(curGroup, user);
 
 					names.addAll(SitesUtil.getUserGroupNames(curGroup, user));
+					%>
 
-					if (ListUtil.isNotEmpty(names)) {
+					<c:if test="<%= ListUtil.isNotEmpty(names) %>">
+
+						<%
 						String message = StringPool.BLANK;
 
 						if (names.size() == 1) {
@@ -129,14 +132,10 @@
 
 							message = LanguageUtil.format(request, "you-are-a-member-of-x-because-you-belong-to-x-and-x", new Object[] {HtmlUtil.escape(curGroup.getDescriptiveName(locale)), HtmlUtil.escape(StringUtil.merge(namesList.toArray(new String[names.size() - 1]), ", ")), HtmlUtil.escape(names.get(names.size() - 1))}, false);
 						}
-					%>
+						%>
 
 						<liferay-ui:icon-help message="<%= message %>" />
-
-					<%
-					}
-					%>
-
+					</c:if>
 				</liferay-ui:search-container-column-text>
 
 				<liferay-ui:search-container-column-text

@@ -29,10 +29,11 @@ String randomNamespace = StringUtil.randomId() + StringPool.UNDERLINE;
 				<li><a href="<%= contentId %>"><liferay-ui:message key="skip-to-content" /></a></li>
 			</c:if>
 
-			<%
-			if ((quickAccessEntries != null) && !quickAccessEntries.isEmpty()) {
+			<c:if test="<%= (quickAccessEntries != null) && !quickAccessEntries.isEmpty() %>">
+
+				<%
 				for (QuickAccessEntry quickAccessEntry : quickAccessEntries) {
-			%>
+				%>
 
 					<li>
 						<a href="<%= quickAccessEntry.getURL() %>" id="<%= randomNamespace + quickAccessEntry.getId() %>" onclick="<%= quickAccessEntry.getOnClick() %>">
@@ -40,11 +41,11 @@ String randomNamespace = StringUtil.randomId() + StringPool.UNDERLINE;
 						</a>
 					</li>
 
-			<%
+				<%
 				}
-			}
-			%>
+				%>
 
+			</c:if>
 		</ul>
 	</nav>
 </c:if>

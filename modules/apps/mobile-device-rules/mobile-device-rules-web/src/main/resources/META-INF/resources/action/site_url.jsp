@@ -29,14 +29,18 @@ long actionGroupId = GetterUtil.getLong(typeSettingsProperties.getProperty("grou
 	int count = 0;
 
 	for (Group group : GroupServiceUtil.getUserSitesGroups()) {
-		if (!group.isUser() && !group.isControlPanel()) {
-			count++;
 	%>
 
+		<c:if test="<%= !group.isUser() && !group.isControlPanel() %>">
+
+			<%
+			count++;
+			%>
+
 			<aui:option label="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>" selected="<%= group.getGroupId() == actionGroupId %>" value="<%= group.getGroupId() %>" />
+		</c:if>
 
 	<%
-		}
 	}
 	%>
 

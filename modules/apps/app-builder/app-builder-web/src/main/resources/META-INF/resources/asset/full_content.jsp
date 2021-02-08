@@ -28,14 +28,11 @@ List<Long> dataLayoutIds = appBuilderAppPortletTabContext.getDataLayoutIds();
 
 			<%
 			for (Long dataLayoutId : dataLayoutIds) {
-				if (dataLayoutIds.size() > 1) {
 			%>
 
+				<c:if test="<%= dataLayoutIds.size() > 1 %>">
 					<h3 class="px-4"><%= appBuilderAppPortletTabContext.getName(dataLayoutId, locale) %></h3>
-
-				<%
-				}
-				%>
+				</c:if>
 
 				<liferay-data-engine:data-layout-renderer
 					containerId='<%= liferayPortletResponse.getNamespace() + "container" + dataLayoutId %>'

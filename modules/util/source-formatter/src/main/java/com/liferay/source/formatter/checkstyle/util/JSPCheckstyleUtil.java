@@ -41,7 +41,7 @@ public class JSPCheckstyleUtil {
 			return null;
 		}
 
-		Matcher matcher = _javaSourceTag.matcher(content);
+		Matcher matcher = _javaSourceTagPattern.matcher(content);
 
 		if (matcher.find()) {
 			return _getJavaContent(content);
@@ -134,6 +134,7 @@ public class JSPCheckstyleUtil {
 
 	private static final Pattern _ifTagPattern = Pattern.compile(
 		"^<c:if test=[\"']<%= (.*) %>[\"']>$");
-	private static final Pattern _javaSourceTag = Pattern.compile("\n\t*<%\n");
+	private static final Pattern _javaSourceTagPattern = Pattern.compile(
+		"\n\t*<%\n");
 
 }

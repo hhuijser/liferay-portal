@@ -198,7 +198,7 @@ public class VariableNameCheck extends BaseCheck {
 	private void _checkClassNameVariable(
 		DetailAST detailAST, String variableName) {
 
-		Matcher matcher = _classNameVariableNamePatter.matcher(variableName);
+		Matcher matcher = _classNameVariableNamePattern.matcher(variableName);
 
 		if (!matcher.find()) {
 			return;
@@ -780,8 +780,8 @@ public class VariableNameCheck extends BaseCheck {
 
 	private static final String _MSG_TYPO_VARIABLE = "variable.typo";
 
-	private static final Pattern _classNameVariableNamePatter = Pattern.compile(
-		"^_(.+)_CLASS_NAME$");
+	private static final Pattern _classNameVariableNamePattern =
+		Pattern.compile("^_(.+)_CLASS_NAME$");
 	private static final Pattern _countVariableNamePattern = Pattern.compile(
 		"^(\\w+?)([1-9][0-9]*)$");
 	private static final Pattern _isVariableNamePattern = Pattern.compile(

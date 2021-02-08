@@ -1422,7 +1422,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 									String key = entry.getKey();
 									Object value = entry.getValue();
 
-									Matcher matcher = _keyRegex.matcher(key);
+									Matcher matcher = _keyPattern.matcher(key);
 
 									if (matcher.matches() &&
 										(value instanceof String)) {
@@ -1583,7 +1583,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 	private static final Logger _logger = Logging.getLogger(
 		LiferayOSGiPlugin.class);
 
-	private static final Pattern _keyRegex = Pattern.compile(
+	private static final Pattern _keyPattern = Pattern.compile(
 		"[a-z][\\p{Alnum}-_.]*");
 
 }

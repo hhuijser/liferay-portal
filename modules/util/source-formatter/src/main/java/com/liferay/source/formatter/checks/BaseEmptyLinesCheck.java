@@ -503,7 +503,7 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 	}
 
 	protected String fixMissingEmptyLinesAroundComments(String content) {
-		Matcher matcher = _missingEmptyLineAfterComment.matcher(content);
+		Matcher matcher = _missingEmptyLineAfterCommentPattern.matcher(content);
 
 		while (matcher.find()) {
 			if (isJavaSource(content, matcher.start())) {
@@ -512,7 +512,7 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 			}
 		}
 
-		matcher = _missingEmptyLineBeforeComment.matcher(content);
+		matcher = _missingEmptyLineBeforeCommentPattern.matcher(content);
 
 		while (matcher.find()) {
 			if (isJavaSource(content, matcher.start())) {
@@ -676,13 +676,13 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 	private static final Pattern _incorrectOpenCurlyBracePattern =
 		Pattern.compile(
 			"\n.*?(\\Wnew (.*\\)) |\\[\\] (\\w+ = )?)?\\{(\n+)\t*\\{\n");
-	private static final Pattern _missingEmptyLineAfterComment =
+	private static final Pattern _missingEmptyLineAfterCommentPattern =
 		Pattern.compile("\n\t*// .*\n[\t ]*(?!// )\\S");
 	private static final Pattern _missingEmptyLineAfterDoctypePattern =
 		Pattern.compile(
 			"^(<\\?xml .*\\?>|<\\!DOCTYPE .*>)\n<\\w",
 			Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
-	private static final Pattern _missingEmptyLineBeforeComment =
+	private static final Pattern _missingEmptyLineBeforeCommentPattern =
 		Pattern.compile("\n[\t ]*(?!// )\\S.*\n\t*// ");
 	private static final Pattern _missingEmptyLineBetweenTagsPattern1 =
 		Pattern.compile("\n(\t*)/>\n(\t*)<[-\\w:]+[> \n]");

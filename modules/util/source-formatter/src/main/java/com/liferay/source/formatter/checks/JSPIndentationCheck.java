@@ -51,7 +51,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 			if (newContent.equals(content) ||
 				newContent.equals(originalContent)) {
 
-				return newContent;
+				return _fixTabsInJavaSource(newContent);
 			}
 
 			content = newContent;
@@ -293,7 +293,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 			closeTagJSPLine.setClosed(true);
 		}
 
-		return _fixTabsInJavaSource(content);
+		return content;
 	}
 
 	private JSPLine _getCloseTagJSPLine(

@@ -74,7 +74,6 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 					%>
 
 				</aui:select>
-
 			</commerce-ui:panel>
 		</div>
 

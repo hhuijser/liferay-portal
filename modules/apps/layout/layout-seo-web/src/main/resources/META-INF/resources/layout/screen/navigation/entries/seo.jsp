@@ -143,7 +143,6 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 						<label><liferay-ui:message key="preview" /></label>
 
 						<div>
-
 							<react:component
 								module="js/seo/PreviewSeo.es"
 								props='<%=

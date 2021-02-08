@@ -76,5 +76,4 @@ response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 	<body onload="javascript:location.replace('<%= HtmlUtil.escapeJS(redirect) %>')">
 
 	</body>
-
 </html>

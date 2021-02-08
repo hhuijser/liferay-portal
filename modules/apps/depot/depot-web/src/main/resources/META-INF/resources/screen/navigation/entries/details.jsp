@@ -72,7 +72,6 @@ DepotAdminDetailsDisplayContext depotAdminDetailsDisplayContext = (DepotAdminDet
 			%>
 
 		</clay:row>
-
 	</liferay-frontend:fieldset>
 
 	<liferay-util:include page="/screen/navigation/entries/sharing.jsp" servletContext="<%= application %>" />

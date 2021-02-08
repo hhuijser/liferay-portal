@@ -203,7 +203,6 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 				%>
 
 			</aui:fieldset>
-
 		</c:if>
 
 		<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions">

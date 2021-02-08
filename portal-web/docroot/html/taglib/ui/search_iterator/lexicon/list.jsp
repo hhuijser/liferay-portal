@@ -338,7 +338,6 @@ if (fixedHeader) {
 
 									</c:otherwise>
 								</c:choose>
-
 							</td>
 
 						<%

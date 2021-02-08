@@ -132,7 +132,6 @@ Layout selLayout = layoutsSEODisplayContext.getSelLayout();
 						<label><liferay-ui:message key="preview" /> <liferay-ui:icon-help message="preview-help" /></label>
 
 						<div>
-
 							<react:component
 								module="js/seo/PreviewSeo.es"
 								props='<%=

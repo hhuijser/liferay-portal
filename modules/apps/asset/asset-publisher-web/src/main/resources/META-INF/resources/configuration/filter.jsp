@@ -51,7 +51,6 @@
 <div id="<portlet:namespace />ConditionForm"></div>
 
 <div>
-
 	<react:component
 		module="auto_field/index"
 		props='<%=

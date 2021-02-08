@@ -202,11 +202,11 @@ else {
 						if (firstChildLayoutRevision.isInactive()) {
 						%>
 
-						<li>
-							<a class="dropdown-item" href="javascript:Liferay.fire('<%= liferayPortletResponse.getNamespace() %>redo', {layoutRevisionId: '<%= firstChildLayoutRevision.getLayoutRevisionId() %>', layoutSetBranchId: '<%= firstChildLayoutRevision.getLayoutSetBranchId() %>'}); void(0);" id="redoLink">
-								<liferay-ui:message key="redo" />
-							</a>
-						</li>
+							<li>
+								<a class="dropdown-item" href="javascript:Liferay.fire('<%= liferayPortletResponse.getNamespace() %>redo', {layoutRevisionId: '<%= firstChildLayoutRevision.getLayoutRevisionId() %>', layoutSetBranchId: '<%= firstChildLayoutRevision.getLayoutSetBranchId() %>'}); void(0);" id="redoLink">
+									<liferay-ui:message key="redo" />
+								</a>
+							</li>
 
 						<%
 						}
@@ -217,6 +217,7 @@ else {
 			</ul>
 		</div>
 	</li>
+</ul>
 
 <portlet:renderURL var="layoutRevisionStatusURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 	<portlet:param name="mvcPath" value="/view_layout_revision_status.jsp" />

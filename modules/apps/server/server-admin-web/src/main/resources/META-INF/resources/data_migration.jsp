@@ -71,47 +71,53 @@ Collection<ConvertProcess> convertProcesses = ConvertProcessUtil.getEnabledConve
 
 									<%
 									for (String parameterName : parameterNames) {
-										if (parameterName.contains(StringPool.EQUAL) && parameterName.contains(StringPool.SEMICOLON)) {
-											String[] parameterPair = StringUtil.split(parameterName, CharPool.EQUAL);
-
-											String[] parameterSelectEntries = StringUtil.split(parameterPair[1], CharPool.SEMICOLON);
 									%>
 
-											<aui:select label="<%= parameterPair[0] %>" name="<%= clazz.getName() + StringPool.PERIOD + parameterPair[0] %>">
+										<c:choose>
+											<c:when test="<%= parameterName.contains(StringPool.EQUAL) && parameterName.contains(StringPool.SEMICOLON) %>">
 
 												<%
-												for (String parameterSelectEntry : parameterSelectEntries) {
+												String[] parameterPair = StringUtil.split(parameterName, CharPool.EQUAL);
+
+												String[] parameterSelectEntries = StringUtil.split(parameterPair[1], CharPool.SEMICOLON);
 												%>
 
-													<aui:option label="<%= parameterSelectEntry %>" />
+												<aui:select label="<%= parameterPair[0] %>" name="<%= clazz.getName() + StringPool.PERIOD + parameterPair[0] %>">
+
+													<%
+													for (String parameterSelectEntry : parameterSelectEntries) {
+													%>
+
+														<aui:option label="<%= parameterSelectEntry %>" />
+
+													<%
+													}
+													%>
+
+												</aui:select>
+											</c:when>
+											<c:otherwise>
 
 												<%
+												String[] parameterPair = StringUtil.split(parameterName, CharPool.EQUAL);
+
+												String currentParameterName = null;
+												String currentParameterType = null;
+
+												if (parameterPair.length > 1) {
+													currentParameterName = parameterPair[0];
+													currentParameterType = parameterPair[1];
+												}
+												else {
+													currentParameterName = parameterName;
 												}
 												%>
 
-											</aui:select>
-
-										<%
-										}
-										else {
-											String[] parameterPair = StringUtil.split(parameterName, CharPool.EQUAL);
-
-											String currentParameterName = null;
-											String currentParameterType = null;
-
-											if (parameterPair.length > 1) {
-												currentParameterName = parameterPair[0];
-												currentParameterType = parameterPair[1];
-											}
-											else {
-												currentParameterName = parameterName;
-											}
-										%>
-
-											<aui:input cssClass="lfr-input-text-container" label="<%= currentParameterName %>" name="<%= clazz.getName() + StringPool.PERIOD + currentParameterName %>" type='<%= (currentParameterType != null) ? currentParameterType : "" %>' />
+												<aui:input cssClass="lfr-input-text-container" label="<%= currentParameterName %>" name="<%= clazz.getName() + StringPool.PERIOD + currentParameterName %>" type='<%= (currentParameterType != null) ? currentParameterType : "" %>' />
+											</c:otherwise>
+										</c:choose>
 
 									<%
-										}
 									}
 									%>
 

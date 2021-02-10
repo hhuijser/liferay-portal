@@ -332,10 +332,9 @@ portletURL.setParameter("portletResource", portletResource);
 														<%
 														PortletDataHandlerControl[] exportControls = portletDataHandler.getExportControls();
 														PortletDataHandlerControl[] metadataControls = portletDataHandler.getExportMetadataControls();
-
-														if (ArrayUtil.isNotEmpty(exportControls) || ArrayUtil.isNotEmpty(metadataControls)) {
 														%>
 
+														<c:if test="<%= ArrayUtil.isNotEmpty(exportControls) || ArrayUtil.isNotEmpty(metadataControls) %>">
 															<div class="hide" id="<portlet:namespace />content_<%= selPortlet.getRootPortletId() %>">
 																<ul class="lfr-tree list-unstyled">
 																	<li class="tree-item">
@@ -365,19 +364,22 @@ portletURL.setParameter("portletResource", portletResource);
 																					PortletDataHandlerBoolean control = (PortletDataHandlerBoolean)metadataControl;
 
 																					PortletDataHandlerControl[] childrenControls = control.getChildren();
-
-																					if (ArrayUtil.isNotEmpty(childrenControls)) {
-																						request.setAttribute("render_controls.jsp-controls", childrenControls);
 																				%>
+
+																					<c:if test="<%= ArrayUtil.isNotEmpty(childrenControls) %>">
+
+																						<%
+																						request.setAttribute("render_controls.jsp-controls", childrenControls);
+																						%>
 
 																						<aui:field-wrapper label="content-metadata">
 																							<ul class="lfr-tree list-unstyled">
 																								<liferay-util:include page="/render_controls.jsp" servletContext="<%= application %>" />
 																							</ul>
 																						</aui:field-wrapper>
+																					</c:if>
 
 																				<%
-																					}
 																				}
 																				%>
 
@@ -412,11 +414,7 @@ portletURL.setParameter("portletResource", portletResource);
 																	'<portlet:namespace />showChangeContent<%= StringPool.UNDERLINE + selPortlet.getRootPortletId() %>'
 																);
 															</aui:script>
-
-														<%
-														}
-														%>
-
+														</c:if>
 													</li>
 												</ul>
 

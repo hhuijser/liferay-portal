@@ -116,8 +116,11 @@ advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
 								Set<String> portletDataHandlerClassNames = new HashSet<String>();
 
 								List<Portlet> dataSiteLevelPortlets = ExportImportHelperUtil.getDataSiteLevelPortlets(company.getCompanyId(), false);
+								%>
 
-								if (!dataSiteLevelPortlets.isEmpty()) {
+								<c:if test="<%= !dataSiteLevelPortlets.isEmpty() %>">
+
+									<%
 									boolean displayingChanges = false;
 
 									for (Portlet portlet : dataSiteLevelPortlets) {
@@ -147,10 +150,13 @@ advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
 										long modelDeletionCount = manifestSummary.getModelDeletionCount(portletDataHandler.getDeletionSystemEventStagedModelTypes());
 
 										UnicodeProperties liveGroupTypeSettings = liveGroup.getTypeSettingsProperties();
+									%>
 
-										if (((exportModelCount > 0) || (modelDeletionCount > 0)) && GetterUtil.getBoolean(liveGroupTypeSettings.getProperty(StagingUtil.getStagedPortletId(portlet.getRootPortletId())), portletDataHandler.isPublishToLiveByDefault())) {
+										<c:if test="<%= ((exportModelCount > 0) || (modelDeletionCount > 0)) && GetterUtil.getBoolean(liveGroupTypeSettings.getProperty(StagingUtil.getStagedPortletId(portlet.getRootPortletId())), portletDataHandler.isPublishToLiveByDefault()) %>">
+
+											<%
 											displayingChanges = true;
-								%>
+											%>
 
 											<liferay-util:buffer
 												var="badgeHTML"
@@ -163,21 +169,16 @@ advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
 											<li class="tree-item">
 												<liferay-ui:message key="<%= PortalUtil.getPortletTitle(portlet, application, locale) + StringPool.SPACE + badgeHTML %>" />
 											</li>
+										</c:if>
 
 									<%
-										}
 									}
-
-									if (!displayingChanges) {
 									%>
 
+									<c:if test="<%= !displayingChanges %>">
 										<liferay-ui:message key="none" />
-
-								<%
-									}
-								}
-								%>
-
+									</c:if>
+								</c:if>
 							</ul>
 						</li>
 					</aui:fieldset>

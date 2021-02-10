@@ -51,14 +51,13 @@ List<LayoutDescription> layoutDescriptions = siteNavigationSiteMapDisplayContext
 					<%
 					for (LayoutDescription layoutDescription : layoutDescriptions) {
 						Layout layoutDescriptionLayout = LayoutLocalServiceUtil.fetchLayout(layoutDescription.getPlid());
-
-						if (layoutDescriptionLayout != null) {
 					%>
 
+						<c:if test="<%= layoutDescriptionLayout != null %>">
 							<aui:option label="<%= layoutDescription.getDisplayName() %>" selected="<%= Objects.equals(layoutDescriptionLayout.getUuid(), siteNavigationSiteMapPortletInstanceConfiguration.rootLayoutUuid()) %>" value="<%= layoutDescriptionLayout.getUuid() %>" />
+						</c:if>
 
 					<%
-						}
 					}
 					%>
 

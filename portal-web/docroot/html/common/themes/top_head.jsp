@@ -111,17 +111,23 @@ if (layout != null) {
 
 <%
 List<String> markupHeaders = (List<String>)request.getAttribute(MimeResponse.MARKUP_HEAD_ELEMENT);
-
-if (markupHeaders != null) {
-	for (String markupHeader : markupHeaders) {
 %>
+
+<c:if test="<%= markupHeaders != null %>">
+
+	<%
+	for (String markupHeader : markupHeaders) {
+	%>
 
 		<%= markupHeader %>
 
-<%
+	<%
 	}
-}
+	%>
 
+</c:if>
+
+<%
 com.liferay.petra.string.StringBundler pageTopSB = OutputTag.getDataSB(request, WebKeys.PAGE_TOP);
 %>
 

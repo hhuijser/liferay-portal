@@ -209,17 +209,13 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
-<%
-if (showMissingAttributeMessage) {
-%>
-
+<c:if test="<%= showMissingAttributeMessage %>">
 	<div class="alert alert-info">
 		<liferay-ui:message key="the-above-results-include-users-which-are-missing-the-required-attributes-(screen-name,-password,-email-address,-first-name,-and-last-name).-these-users-will-not-be-imported-until-these-attributes-are-filled-in" />
 	</div>
+</c:if>
 
 <%
-}
-
 if (safeLdapContext != null) {
 	safeLdapContext.close();
 }

@@ -43,15 +43,11 @@
 
 			<%
 			daysBetween = curDaysBetween;
-
-			if (hasActivities) {
 			%>
 
+			<c:if test="<%= hasActivities %>">
 				</ul>
-
-			<%
-			}
-			%>
+			</c:if>
 
 			<div class="autofit-row mb-1">
 				<div class="autofit-col autofit-col-expand">

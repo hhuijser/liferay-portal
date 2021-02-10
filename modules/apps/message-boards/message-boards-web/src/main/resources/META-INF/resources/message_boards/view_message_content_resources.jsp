@@ -34,8 +34,11 @@ MBTreeWalker treeWalker = messageDisplay.getTreeWalker();
 int[] range = treeWalker.getChildrenRange(treeWalker.getRoot());
 
 MBMessageIterator mbMessageIterator = new MBMessageIterator(treeWalker.getMessages(), rootIndexPage, range[1]);
+%>
 
-if (mbMessageIterator != null) {
+<c:if test="<%= mbMessageIterator != null %>">
+
+	<%
 	while (mbMessageIterator.hasNext()) {
 		rootIndexPage = mbMessageIterator.getIndexPage();
 
@@ -50,17 +53,20 @@ if (mbMessageIterator != null) {
 		request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_LAST_NODE, Boolean.valueOf(false));
 		request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_SEL_MESSAGE, message);
 		request.setAttribute(WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD, thread);
-%>
+	%>
 
 		<div class="card-tab message-container">
 			<liferay-util:include page="/message_boards/view_thread_tree.jsp" servletContext="<%= application %>" />
 		</div>
 
-<%
+	<%
 		index = GetterUtil.getInteger(request.getAttribute(WebKeys.MESSAGE_BOARDS_TREE_INDEX));
 	}
-}
+	%>
 
+</c:if>
+
+<%
 List<MBMessage> messages = treeWalker.getMessages();
 %>
 

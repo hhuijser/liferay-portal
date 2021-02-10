@@ -50,11 +50,7 @@
 <liferay-util:buffer
 	var="close"
 >
-
-	<%
-	if (dismissible) {
-	%>
-
+	<c:if test="<%= dismissible %>">
 		<button aria-label="<%= LanguageUtil.get(request, "close") %>" class="close" data-dismiss="liferay-alert" type="button">
 			<svg aria-hidden="true" class="icon-monospaced lexicon-icon lexicon-icon-times">
 				<use xlink:href="<%= themeDisplayPath %>/clay/icons.svg#times" />
@@ -62,11 +58,7 @@
 
 			<span class="sr-only"><%= LanguageUtil.get(request, "close") %></span>
 		</button>
-
-	<%
-	}
-	%>
-
+	</c:if>
 </liferay-util:buffer>
 
 <div class="alert alert-<%= type %><%= dismissible ? " alert-dismissible" : "" %><%= fluid ? " alert-fluid" : "" %>">

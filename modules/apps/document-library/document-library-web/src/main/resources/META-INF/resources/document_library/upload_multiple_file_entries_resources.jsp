@@ -169,8 +169,9 @@ else {
 						</liferay-ui:icon-menu>
 					</div>
 
-					<%
-					if (fileEntryTypeId > 0) {
+					<c:if test="<%= fileEntryTypeId > 0 %>">
+
+						<%
 						try {
 							List<DDMStructure> ddmStructures = fileEntryType.getDDMStructures();
 
@@ -188,7 +189,7 @@ else {
 								if (groupId <= 0) {
 									groupId = ddmStructure.getGroupId();
 								}
-					%>
+						%>
 
 								<div class="document-type-fields">
 									<liferay-data-engine:data-layout-renderer
@@ -199,13 +200,14 @@ else {
 									/>
 								</div>
 
-					<%
+						<%
 							}
 						}
 						catch (Exception e) {
 						}
-					}
-					%>
+						%>
+
+					</c:if>
 
 					<aui:script position="inline" require="frontend-js-web/liferay/delegate/delegate.es as delegateModule,frontend-js-web/liferay/util/run_scripts_in_element.es as runScriptsInElement">
 						var documentTypeMenuList = document.querySelector(

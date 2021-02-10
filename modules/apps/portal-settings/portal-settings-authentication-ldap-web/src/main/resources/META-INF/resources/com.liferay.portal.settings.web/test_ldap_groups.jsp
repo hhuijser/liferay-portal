@@ -120,10 +120,9 @@ catch (InvalidNameException | NameNotFoundException exception) {
 
 			attribute = safePortalLDAP.getMultivaluedAttribute(themeDisplay.getCompanyId(), safeLdapContext, SafeLdapNameFactory.fromUnsafe(baseDN), safeLdapFilter, attribute);
 		}
-
-		if (counter == 0) {
 	%>
 
+		<c:if test="<%= counter == 0 %>">
 			<col width="5%" />
 			<col width="25%" />
 			<col width="60%" />
@@ -143,10 +142,9 @@ catch (InvalidNameException | NameNotFoundException exception) {
 					<liferay-ui:message key="members" />
 				</th>
 			</tr>
+		</c:if>
 
 		<%
-		}
-
 		counter++;
 		%>
 
@@ -167,33 +165,24 @@ catch (InvalidNameException | NameNotFoundException exception) {
 
 	<%
 	}
-
-	if (counter == 0) {
 	%>
 
+	<c:if test="<%= counter == 0 %>">
 		<tr>
 			<td colspan="4">
 				<liferay-ui:message key="no-groups-were-found" />
 			</td>
 		</tr>
-
-	<%
-	}
-	%>
-
+	</c:if>
 </table>
 
-<%
-if (showMissingAttributeMessage) {
-%>
-
+<c:if test="<%= showMissingAttributeMessage %>">
 	<div class="alert alert-info">
 		<liferay-ui:message key="the-above-results-include-groups-which-are-missing-the-required-attributes-(group-name-and-user).-these-groups-will-not-be-imported-until-these-attributes-are-filled-in" />
 	</div>
+</c:if>
 
 <%
-}
-
 if (safeLdapContext != null) {
 	safeLdapContext.close();
 }

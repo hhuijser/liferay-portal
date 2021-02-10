@@ -38,16 +38,11 @@ if (commerceOrder != null) {
 
 		<%
 		CommerceDiscountValidatorException commerceDiscountValidatorException = (CommerceDiscountValidatorException)errorException;
-
-		if (commerceDiscountValidatorException != null) {
 		%>
 
+		<c:if test="<%= commerceDiscountValidatorException != null %>">
 			<liferay-ui:message key="<%= commerceDiscountValidatorException.getLocalizedMessage() %>" />
-
-		<%
-		}
-		%>
-
+		</c:if>
 	</liferay-ui:error>
 
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />

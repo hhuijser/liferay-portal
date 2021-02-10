@@ -79,19 +79,19 @@ else {
 String deltaURL = HttpUtil.removeParameter(url, namespace + deltaParam);
 
 NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
-
-if (forcePost && (portletURL != null)) {
-	url = url.split(namespace)[0];
 %>
+
+<c:if test="<%= forcePost && (portletURL != null) %>">
+
+	<%
+	url = url.split(namespace)[0];
+	%>
 
 	<form action="<%= HtmlUtil.escapeAttribute(url) %>" id="<%= randomNamespace + namespace %>pageIteratorFm" method="post" name="<%= randomNamespace + namespace %>pageIteratorFm">
 		<aui:input name="<%= curParam %>" type="hidden" />
 		<liferay-portlet:renderURLParams portletURL="<%= portletURL %>" />
 	</form>
-
-<%
-}
-%>
+</c:if>
 
 <c:if test='<%= type.equals("approximate") || type.equals("more") || type.equals("regular") || (type.equals("article") && (total > resultRowsSize)) %>'>
 	<div class="taglib-page-iterator" id="<%= namespace + id %>">
@@ -341,4 +341,5 @@ private String _getHREF(String formName, String curParam, int cur, String jsCall
 private String _getOnClick(String namespace, String curParam, int cur) {
 	return "event.preventDefault(); " + namespace + "submitForm('" + namespace + curParam + "','" + cur + "');";
 }
+
 %>

@@ -101,19 +101,18 @@ renderResponse.setTitle(headerTitle);
 
 							for (RepositoryConfiguration.Parameter repositoryConfigurationParameter : repositoryConfiguration.getParameters()) {
 								String parameterValue = typeSettingsProperties.getProperty(repositoryConfigurationParameter.getName());
-
-								if (Validator.isNotNull(parameterValue)) {
 							%>
 
+								<c:if test="<%= Validator.isNotNull(parameterValue) %>">
 									<dt>
 										<%= HtmlUtil.escape(repositoryConfigurationParameter.getLabel(locale)) %>
 									</dt>
 									<dd>
 										<%= HtmlUtil.escape(parameterValue) %>
 									</dd>
+								</c:if>
 
 							<%
-								}
 							}
 							%>
 

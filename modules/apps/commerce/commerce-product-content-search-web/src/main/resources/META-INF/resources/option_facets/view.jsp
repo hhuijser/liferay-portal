@@ -48,9 +48,9 @@ CPOptionFacetsDisplayContext cpOptionFacetsDisplayContext = (CPOptionFacetsDispl
 					FacetCollector facetCollector = facet.getFacetCollector();
 
 					List<TermCollector> termCollectors = facetCollector.getTermCollectors();
-
-					if (!termCollectors.isEmpty()) {
 				%>
+
+					<c:if test="<%= !termCollectors.isEmpty() %>">
 
 				<liferay-ui:panel-container
 					extended="<%= true %>"
@@ -109,8 +109,9 @@ CPOptionFacetsDisplayContext cpOptionFacetsDisplayContext = (CPOptionFacetsDispl
 					</liferay-ui:panel>
 				</liferay-ui:panel-container>
 
+					</c:if>
+
 				<%
-					}
 				}
 				%>
 

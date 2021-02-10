@@ -24,10 +24,9 @@
 				<%
 				for (String zip : zips) {
 					Weather weather = WeatherUtil.getWeather(zip, apiKey);
-
-					if (weather != null) {
 				%>
 
+					<c:if test="<%= weather != null %>">
 						<tr>
 							<td>
 								<a href="http://www.openweathermap.org/city/<%= HtmlUtil.escapeURL(weather.getCityId()) %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= HtmlUtil.escape(weather.getZip()) %></a>
@@ -47,9 +46,9 @@
 								<img alt="" src="<%= weather.getIconURL() %>" />
 							</td>
 						</tr>
+					</c:if>
 
 				<%
-					}
 				}
 				%>
 

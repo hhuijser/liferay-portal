@@ -77,16 +77,16 @@ for (int i = 0; i < controls.length; i++) {
 				String controlInputName = controlName;
 
 				boolean disabled = controls[i].isDisabled() || disableInputs;
-
-				if (disabled) {
-					controlInputName += "Display";
 				%>
+
+				<c:if test="<%= disabled %>">
+
+					<%
+					controlInputName += "Display";
+					%>
 
 					<aui:input name="<%= controlName %>" type="hidden" value="<%= MapUtil.getBoolean(parameterMap, controlName, control.getDefaultState()) || MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PORTLET_DATA_ALL) %>" />
-
-				<%
-				}
-				%>
+				</c:if>
 
 				<aui:input checked="<%= MapUtil.getBoolean(parameterMap, controlName, control.getDefaultState()) || MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PORTLET_DATA_ALL) %>" data="<%= data %>" disabled="<%= disabled %>" helpMessage="<%= control.getHelpMessage(locale, action) %>" ignoreRequestValue="<%= disabled %>" label="<%= controlLabel %>" name="<%= controlInputName %>" type="checkbox" />
 

@@ -102,9 +102,9 @@
 				<ul class="lfr-tree list-unstyled">
 					<li class="tree-item">
 						<aui:fieldset cssClass="portlet-type-data-section" label="<%= portletTitle %>">
+							<c:if test="<%= exportControls != null %>">
 
-							<%
-							if (exportControls != null) {
+								<%
 								if (type.equals(Constants.EXPORT)) {
 									request.setAttribute("render_controls.jsp-action", Constants.EXPORT);
 									request.setAttribute("render_controls.jsp-childControl", false);
@@ -114,7 +114,7 @@
 									request.setAttribute("render_controls.jsp-parameterMap", parameterMap);
 									request.setAttribute("render_controls.jsp-portletDisabled", !portletDataHandler.isPublishToLiveByDefault());
 									request.setAttribute("render_controls.jsp-portletId", portlet.getPortletId());
-							%>
+								%>
 
 									<aui:field-wrapper label='<%= ArrayUtil.isNotEmpty(metadataControls) ? "content" : StringPool.BLANK %>'>
 										<ul class="lfr-tree list-unstyled">
@@ -141,11 +141,15 @@
 										</ul>
 									</aui:field-wrapper>
 
-							<%
+								<%
 								}
-							}
+								%>
 
-							if (metadataControls != null) {
+							</c:if>
+
+							<c:if test="<%= metadataControls != null %>">
+
+								<%
 								for (PortletDataHandlerControl metadataControl : metadataControls) {
 									if (displayedControls.contains(metadataControl.getControlName())) {
 										continue;
@@ -156,24 +160,27 @@
 									PortletDataHandlerBoolean control = (PortletDataHandlerBoolean)metadataControl;
 
 									PortletDataHandlerControl[] childrenControls = control.getChildren();
+								%>
 
-									if (ArrayUtil.isNotEmpty(childrenControls)) {
+									<c:if test="<%= ArrayUtil.isNotEmpty(childrenControls) %>">
+
+										<%
 										request.setAttribute("render_controls.jsp-controls", childrenControls);
 										request.setAttribute("render_controls.jsp-portletId", portlet.getPortletId());
-							%>
+										%>
 
 										<aui:field-wrapper label="content-metadata">
 											<ul class="lfr-tree list-unstyled">
 												<liferay-util:include page="/portlet_list/render_controls.jsp" servletContext="<%= application %>" />
 											</ul>
 										</aui:field-wrapper>
+									</c:if>
 
-							<%
-									}
+								<%
 								}
-							}
-							%>
+								%>
 
+							</c:if>
 						</aui:fieldset>
 					</li>
 				</ul>

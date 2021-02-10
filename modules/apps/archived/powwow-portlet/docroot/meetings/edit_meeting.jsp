@@ -202,13 +202,13 @@ if (powwowMeeting != null) {
 
 			<%
 			for (String providerType : PortletPropsValues.POWWOW_PROVIDER_TYPES) {
-				if (PowwowServerLocalServiceUtil.getPowwowServersCount(providerType, true) > 0) {
 			%>
 
+				<c:if test="<%= PowwowServerLocalServiceUtil.getPowwowServersCount(providerType, true) > 0 %>">
 					<aui:option value="<%= providerType %>"><%= LanguageUtil.get(request, PowwowServiceProviderUtil.getBrandingLabel(providerType)) %></aui:option>
+				</c:if>
 
 			<%
-				}
 			}
 			%>
 

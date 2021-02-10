@@ -146,20 +146,20 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 			Group group = GroupLocalServiceUtil.getGroup(ruleGroup.getGroupId());
 
 			String rowHREF = null;
-
-			if (MDRRuleGroupPermission.contains(permissionChecker, ruleGroup.getRuleGroupId(), ActionKeys.VIEW) && MDRPermission.contains(permissionChecker, groupId, ActionKeys.ADD_RULE_GROUP)) {
 			%>
 
+			<c:if test="<%= MDRRuleGroupPermission.contains(permissionChecker, ruleGroup.getRuleGroupId(), ActionKeys.VIEW) && MDRPermission.contains(permissionChecker, groupId, ActionKeys.ADD_RULE_GROUP) %>">
 				<portlet:renderURL var="editRulesURL">
 					<portlet:param name="mvcPath" value="/view_rules.jsp" />
 					<portlet:param name="ruleGroupId" value="<%= String.valueOf(ruleGroup.getRuleGroupId()) %>" />
 					<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
 				</portlet:renderURL>
 
-			<%
+				<%
 				rowHREF = editRulesURL;
-			}
-			%>
+				%>
+
+			</c:if>
 
 			<c:choose>
 				<c:when test='<%= displayStyle.equals("descriptive") %>'>

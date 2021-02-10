@@ -312,16 +312,11 @@ if (portletTitleBasedNavigation) {
 
 									<%
 									}
-
-									if (!formats.contains(selectedFormat)) {
 									%>
 
+									<c:if test="<%= !formats.contains(selectedFormat) %>">
 										<aui:option label="<%= selectedFormat %>" selected="<%= true %>" value="<%= selectedFormat %>" />
-
-									<%
-									}
-									%>
-
+									</c:if>
 								</aui:select>
 							</c:when>
 							<c:otherwise>

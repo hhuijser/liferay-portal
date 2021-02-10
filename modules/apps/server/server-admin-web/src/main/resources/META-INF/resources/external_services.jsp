@@ -127,16 +127,11 @@
 						</div>
 
 						<aui:select label="jar-file" name="jarName">
-
-							<%
-							if (Validator.isNull(guess)) {
-							%>
-
+							<c:if test="<%= Validator.isNull(guess) %>">
 								<aui:option label="unknown" value="" />
+							</c:if>
 
 							<%
-							}
-
 							for (String xugglerOption : xugglerOptions) {
 								String jarFile = PropsUtil.get(PropsKeys.XUGGLER_JAR_FILE, new Filter(xugglerOption));
 								String jarName = PropsUtil.get(PropsKeys.XUGGLER_JAR_NAME, new Filter(xugglerOption));

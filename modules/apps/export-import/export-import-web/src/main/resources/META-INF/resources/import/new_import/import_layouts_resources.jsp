@@ -247,17 +247,16 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 													<%
 													PortletDataHandlerControl[] importControls = portletDataHandler.getImportControls();
 													PortletDataHandlerControl[] importMetadataControls = portletDataHandler.getImportMetadataControls();
-
-													if (ArrayUtil.isNotEmpty(importControls) || ArrayUtil.isNotEmpty(importMetadataControls)) {
 													%>
 
+													<c:if test="<%= ArrayUtil.isNotEmpty(importControls) || ArrayUtil.isNotEmpty(importMetadataControls) %>">
 														<div class="hide" id="<portlet:namespace />content_<%= portlet.getRootPortletId() %>">
 															<ul class="lfr-tree list-unstyled">
 																<li class="tree-item">
 																	<aui:fieldset cssClass="portlet-type-data-section" label="<%= portletTitle %>">
+																		<c:if test="<%= importControls != null %>">
 
-																		<%
-																		if (importControls != null) {
+																			<%
 																			request.setAttribute("render_controls.jsp-action", Constants.IMPORT);
 																			request.setAttribute("render_controls.jsp-childControl", false);
 																			request.setAttribute("render_controls.jsp-controls", importControls);
@@ -265,18 +264,18 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 																			request.setAttribute("render_controls.jsp-portletDisabled", !portletDataHandler.isPublishToLiveByDefault());
 																			request.setAttribute("render_controls.jsp-portletId", portlet.getPortletId());
 																			request.setAttribute("render_controls.jsp-rootControlId", rootControlId);
-																		%>
+																			%>
 
 																			<aui:field-wrapper label='<%= ArrayUtil.isNotEmpty(importMetadataControls) ? "content" : StringPool.BLANK %>'>
 																				<ul class="lfr-tree list-unstyled">
 																					<liferay-util:include page="/render_controls.jsp" servletContext="<%= application %>" />
 																				</ul>
 																			</aui:field-wrapper>
+																		</c:if>
 
-																		<%
-																		}
+																		<c:if test="<%= importMetadataControls != null %>">
 
-																		if (importMetadataControls != null) {
+																			<%
 																			for (PortletDataHandlerControl metadataControl : importMetadataControls) {
 																				if (!displayedControls.contains(metadataControl.getControlName())) {
 																					displayedControls.add(metadataControl.getControlName());
@@ -288,23 +287,26 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 																				PortletDataHandlerBoolean control = (PortletDataHandlerBoolean)metadataControl;
 
 																				PortletDataHandlerControl[] childrenControls = control.getChildren();
+																			%>
 
-																				if (ArrayUtil.isNotEmpty(childrenControls)) {
+																				<c:if test="<%= ArrayUtil.isNotEmpty(childrenControls) %>">
+
+																					<%
 																					request.setAttribute("render_controls.jsp-controls", childrenControls);
-																		%>
+																					%>
 
 																					<aui:field-wrapper label="content-metadata">
 																						<ul class="lfr-tree list-unstyled">
 																							<liferay-util:include page="/render_controls.jsp" servletContext="<%= application %>" />
 																						</ul>
 																					</aui:field-wrapper>
+																				</c:if>
 
-																		<%
-																				}
+																			<%
 																			}
-																		}
-																		%>
+																			%>
 
+																		</c:if>
 																	</aui:fieldset>
 																</li>
 															</ul>
@@ -337,11 +339,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 																'<portlet:namespace />showChangeContent<%= StringPool.UNDERLINE + portlet.getRootPortletId() %>'
 															);
 														</aui:script>
-
-													<%
-													}
-													%>
-
+													</c:if>
 												</li>
 											</c:if>
 

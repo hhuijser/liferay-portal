@@ -366,13 +366,15 @@ renderResponse.setTitle(headerTitle);
 
 										<%
 										for (DLFileEntryType curDLFileEntryType : dlFileEntryTypes) {
-											if ((curDLFileEntryType.getFileEntryTypeId() == DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT) || (fileEntryTypeId == curDLFileEntryType.getFileEntryTypeId()) || DLFileEntryTypePermission.contains(permissionChecker, curDLFileEntryType, ActionKeys.VIEW)) {
 										%>
+
+											<c:if test="<%= (curDLFileEntryType.getFileEntryTypeId() == DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT) || (fileEntryTypeId == curDLFileEntryType.getFileEntryTypeId()) || DLFileEntryTypePermission.contains(permissionChecker, curDLFileEntryType, ActionKeys.VIEW) %>">
 
 											<aui:option label="<%= HtmlUtil.escape(curDLFileEntryType.getName(locale)) %>" selected="<%= fileEntryTypeId == curDLFileEntryType.getPrimaryKey() %>" value="<%= curDLFileEntryType.getPrimaryKey() %>" />
 
+											</c:if>
+
 										<%
-											}
 										}
 										%>
 
@@ -385,8 +387,9 @@ renderResponse.setTitle(headerTitle);
 
 							<aui:input name="defaultLanguageId" type="hidden" value="<%= defaultLanguageId %>" />
 
-							<%
-							if (fileEntryTypeId > 0) {
+							<c:if test="<%= fileEntryTypeId > 0 %>">
+
+								<%
 								try {
 									boolean localizable = true;
 
@@ -400,7 +403,7 @@ renderResponse.setTitle(headerTitle);
 										}
 										catch (Exception e) {
 										}
-							%>
+								%>
 
 										<c:if test="<%= !dlEditFileEntryDisplayContext.isDDMStructureVisible(ddmStructure) %>">
 											<div class="hide">
@@ -427,16 +430,16 @@ renderResponse.setTitle(headerTitle);
 											</div>
 										</c:if>
 
-							<%
+								<%
 										localizable = false;
 									}
 								}
 								catch (Exception e) {
 									_log.error(e, e);
 								}
-							}
-							%>
+								%>
 
+							</c:if>
 						</c:if>
 					</c:if>
 				</aui:fieldset>

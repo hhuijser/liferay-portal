@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.metrics.internal.search.index;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -85,8 +84,7 @@ public class TaskWorkflowMetricsIndexerImpl
 			"createDate", getDate(createDate)
 		).setValue(
 			Field.getSortableFieldName(
-				StringBundler.concat(
-					"createDate", StringPool.UNDERLINE, "Number")),
+				StringBundler.concat("createDate_Number")),
 			createDate.getTime()
 		).setValue(
 			"deleted", false

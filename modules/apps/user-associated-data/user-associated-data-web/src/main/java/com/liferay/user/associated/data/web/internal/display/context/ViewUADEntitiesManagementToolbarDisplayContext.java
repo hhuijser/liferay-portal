@@ -18,7 +18,6 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -92,8 +91,7 @@ public class ViewUADEntitiesManagementToolbarDisplayContext
 	@Override
 	public String getComponentId() {
 		return StringBundler.concat(
-			"viewUADEntitiesManagementToolbar", StringPool.UNDERLINE,
-			StringUtil.randomId());
+			"viewUADEntitiesManagementToolbar_", StringUtil.randomId());
 	}
 
 	@Override

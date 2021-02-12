@@ -310,8 +310,7 @@ public class DLFileEntryIndexerIndexedFieldsTest extends BaseDLIndexerTestCase {
 
 		for (Locale locale : availableLocales) {
 			String ddmFieldValueText = StringBundler.concat(
-				"ddmFieldValueText", StringPool.UNDERLINE,
-				LocaleUtil.toLanguageId(locale));
+				"ddmFieldValueText_", LocaleUtil.toLanguageId(locale));
 
 			Map<String, String> ddmField = HashMapBuilder.put(
 				ddmFieldValueText, value

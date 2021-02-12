@@ -16,7 +16,6 @@ package com.liferay.headless.admin.taxonomy.internal.odata.entity.v1_0;
 
 import com.liferay.headless.common.spi.odata.entity.EntityFieldsMapFactory;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.odata.entity.DateTimeEntityField;
 import com.liferay.portal.odata.entity.EntityField;
@@ -43,8 +42,7 @@ public class KeywordEntityModel implements EntityModel {
 			new StringEntityField(
 				Field.NAME,
 				locale -> Field.getSortableFieldName(
-					StringBundler.concat(
-						Field.NAME, StringPool.UNDERLINE, "String"))));
+					StringBundler.concat(Field.NAME, "_String"))));
 	}
 
 	@Override

@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.metrics.rest.internal.resource.v1_0;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -526,9 +525,7 @@ public class NodeMetricResourceImpl
 	private boolean _isOrderByDurationAvg(String fieldName) {
 		if (StringUtil.equals(fieldName, "durationAvg") ||
 			StringUtil.equals(
-				fieldName,
-				StringBundler.concat(
-					"countFilter", StringPool.GREATER_THAN, "durationAvg"))) {
+				fieldName, StringBundler.concat("countFilter>durationAvg"))) {
 
 			return true;
 		}
@@ -539,9 +536,7 @@ public class NodeMetricResourceImpl
 	private boolean _isOrderByInstanceCount(String fieldName) {
 		if (StringUtil.equals(fieldName, "instanceCount") ||
 			StringUtil.equals(
-				fieldName,
-				StringBundler.concat(
-					"countFilter", StringPool.GREATER_THAN, "instanceCount"))) {
+				fieldName, StringBundler.concat("countFilter>instanceCount"))) {
 
 			return true;
 		}
@@ -553,9 +548,7 @@ public class NodeMetricResourceImpl
 		if (StringUtil.equals(fieldName, "onTimeInstanceCount") ||
 			StringUtil.equals(
 				fieldName,
-				StringBundler.concat(
-					"onTime", StringPool.GREATER_THAN,
-					"instanceCount.value"))) {
+				StringBundler.concat("onTime>instanceCount.value"))) {
 
 			return true;
 		}
@@ -567,9 +560,7 @@ public class NodeMetricResourceImpl
 		if (StringUtil.equals(fieldName, "overdueInstanceCount") ||
 			StringUtil.equals(
 				fieldName,
-				StringBundler.concat(
-					"overdue", StringPool.GREATER_THAN,
-					"instanceCount.value"))) {
+				StringBundler.concat("overdue>instanceCount.value"))) {
 
 			return true;
 		}
@@ -683,19 +674,17 @@ public class NodeMetricResourceImpl
 		String fieldName = sort.getFieldName();
 
 		if (_isOrderByDurationAvg(fieldName)) {
-			fieldName = StringBundler.concat(
-				"countFilter", StringPool.GREATER_THAN, "durationAvg");
+			fieldName = StringBundler.concat("countFilter>durationAvg");
 		}
 		else if (_isOrderByInstanceCount(fieldName)) {
-			fieldName = StringBundler.concat(
-				"countFilter", StringPool.GREATER_THAN, "instanceCount");
+			fieldName = StringBundler.concat("countFilter>instanceCount");
 		}
 		else if (_isOrderByOnTimeInstanceCount(fieldName) ||
 				 _isOrderByOverdueInstanceCount(fieldName)) {
 
 			fieldName = StringBundler.concat(
 				StringUtil.extractFirst(fieldName, "InstanceCount"),
-				StringPool.GREATER_THAN, "instanceCount.value");
+				">instanceCount.value");
 		}
 
 		FieldSort fieldSort = _sorts.field(fieldName);

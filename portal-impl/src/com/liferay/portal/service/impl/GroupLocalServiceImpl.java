@@ -4495,7 +4495,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 						friendlyURL, CharPool.DASH, StringPool.BLANK);
 				}
 				else {
-					friendlyURL = StringPool.SLASH + "group-" + classPK;
+					friendlyURL = "/group-" + classPK;
 				}
 			}
 		}

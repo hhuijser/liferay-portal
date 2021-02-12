@@ -66,8 +66,8 @@ public class SegmentsExperimentTemplateContextContributor
 
 			contextObjects.put(
 				"bodyCssClass",
-				cssClass + StringPool.SPACE +
-					"lfr-has-segments-experiment-panel open-admin-panel");
+				cssClass +
+					" lfr-has-segments-experiment-panel open-admin-panel");
 		}
 	}
 

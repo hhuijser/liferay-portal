@@ -14,7 +14,7 @@
 
 package com.liferay.account.internal.upgrade;
 
-import com.liferay.account.internal.upgrade.v1_1_0.UpgradeSchema;
+import com.liferay.account.internal.upgrade.v1_1_0.SchemaUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
@@ -30,44 +30,48 @@ public class AccountServiceUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		registry.register(
 			"1.0.0", "1.0.1",
-			new com.liferay.account.internal.upgrade.v1_0_1.UpgradeRole());
+			new com.liferay.account.internal.upgrade.v1_0_1.
+				RoleUpgradeProcess());
 
 		registry.register(
 			"1.0.1", "1.0.2",
-			new com.liferay.account.internal.upgrade.v1_0_2.UpgradeRole());
+			new com.liferay.account.internal.upgrade.v1_0_2.
+				RoleUpgradeProcess());
 
 		registry.register(
 			"1.0.2", "1.0.3",
-			new com.liferay.account.internal.upgrade.v1_0_3.UpgradeRole());
+			new com.liferay.account.internal.upgrade.v1_0_3.
+				RoleUpgradeProcess());
 
 		registry.register(
 			"1.0.3", "1.1.0",
 			new com.liferay.account.internal.upgrade.v1_1_0.
-				UpgradeAccountEntry(),
-			new UpgradeSchema());
+				AccountEntryUpgradeProcess(),
+			new SchemaUpgradeProcess());
 
 		registry.register(
 			"1.1.0", "1.1.1",
 			new com.liferay.account.internal.upgrade.v1_1_1.
-				UpgradeAccountEntry());
+				AccountEntryUpgradeProcess());
 
 		registry.register("1.1.1", "1.2.0", new DummyUpgradeStep());
 
 		registry.register(
 			"1.2.0", "1.2.1",
-			new com.liferay.account.internal.upgrade.v1_2_1.UpgradeRole());
+			new com.liferay.account.internal.upgrade.v1_2_1.
+				RoleUpgradeProcess());
 
 		registry.register(
 			"1.2.1", "1.3.0",
 			new com.liferay.account.internal.upgrade.v1_3_0.
-				UpgradeAccountEntry(),
+				AccountEntryUpgradeProcess(),
 			new com.liferay.account.internal.upgrade.v1_3_0.
-				UpgradeAccountGroup());
+				AccountGroupUpgradeProcess());
 
 		registry.register(
 			"1.3.0", "2.0.0",
 			new com.liferay.account.internal.upgrade.v2_0_0.
-				UpgradeAccountGroupAccountEntryRel());
+				AccountGroupAccountEntryRelUpgradeProcess());
 	}
 
 }

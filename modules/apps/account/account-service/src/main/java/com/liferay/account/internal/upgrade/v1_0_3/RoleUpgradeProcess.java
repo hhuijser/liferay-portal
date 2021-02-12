@@ -26,7 +26,7 @@ import java.sql.ResultSet;
 /**
  * @author Pei-Jung Lan
  */
-public class UpgradeRole extends UpgradeProcess {
+public class RoleUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

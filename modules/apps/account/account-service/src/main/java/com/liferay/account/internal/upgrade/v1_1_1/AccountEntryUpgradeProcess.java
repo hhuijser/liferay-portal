@@ -12,22 +12,29 @@
  * details.
  */
 
-package com.liferay.account.internal.upgrade.v1_1_0;
+package com.liferay.account.internal.upgrade.v1_1_1;
 
+import com.liferay.account.constants.AccountConstants;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Pei-Jung Lan
+ * @author Drew Brokke
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class AccountEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		String template = StringUtil.read(
-			UpgradeSchema.class.getResourceAsStream("dependencies/update.sql"));
+		String oldType = StringUtil.quote("personal", StringPool.APOSTROPHE);
+		String newType = StringUtil.quote(
+			AccountConstants.ACCOUNT_ENTRY_TYPE_PERSON, StringPool.APOSTROPHE);
 
-		runSQLTemplateString(template, false);
+		runSQL(
+			StringBundler.concat(
+				"update AccountEntry set type_ = ", newType, " where type_ = ",
+				oldType));
 	}
 
 }

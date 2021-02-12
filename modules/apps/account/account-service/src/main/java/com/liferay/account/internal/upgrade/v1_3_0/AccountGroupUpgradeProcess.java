@@ -14,39 +14,20 @@
 
 package com.liferay.account.internal.upgrade.v1_3_0;
 
-import com.liferay.account.internal.upgrade.v1_3_0.util.AccountEntryTable;
+import com.liferay.account.internal.upgrade.v1_3_0.util.AccountGroupTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Pei-Jung Lan
  */
-public class UpgradeAccountEntry extends UpgradeProcess {
+public class AccountGroupUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (!hasColumn("AccountEntry", "defaultBillingAddressId")) {
+		if (!hasColumn("AccountGroup", "defaultAccountGroup")) {
 			alter(
-				AccountEntryTable.class,
-				new AlterTableAddColumn("defaultBillingAddressId", "LONG"));
-		}
-
-		if (!hasColumn("AccountEntry", "defaultShippingAddressId")) {
-			alter(
-				AccountEntryTable.class,
-				new AlterTableAddColumn("defaultShippingAddressId", "LONG"));
-		}
-
-		if (!hasColumn("AccountEntry", "emailAddress")) {
-			alter(
-				AccountEntryTable.class,
-				new AlterTableAddColumn("emailAddress", "VARCHAR(254) null"));
-		}
-
-		if (!hasColumn("AccountEntry", "taxExemptionCode")) {
-			alter(
-				AccountEntryTable.class,
-				new AlterTableAddColumn(
-					"taxExemptionCode", "VARCHAR(75) null"));
+				AccountGroupTable.class,
+				new AlterTableAddColumn("defaultAccountGroup", "BOOLEAN"));
 		}
 	}
 

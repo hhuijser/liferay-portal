@@ -15,7 +15,7 @@
 package com.liferay.nested.portlets.web.internal.upgrade;
 
 import com.liferay.nested.portlets.web.internal.upgrade.v1_0_0.UpgradePortletId;
-import com.liferay.nested.portlets.web.internal.upgrade.v1_0_1.UpgradePortletPreferencesValue;
+import com.liferay.nested.portlets.web.internal.upgrade.v1_0_1.PortletPreferencesValueUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
@@ -35,7 +35,7 @@ public class NestedPortletWebUpgrade implements UpgradeStepRegistrator {
 		registry.register("0.0.1", "1.0.0", new UpgradePortletId());
 
 		registry.register(
-			"1.0.0", "1.0.1", new UpgradePortletPreferencesValue());
+			"1.0.0", "1.0.1", new PortletPreferencesValueUpgradeProcess());
 	}
 
 }

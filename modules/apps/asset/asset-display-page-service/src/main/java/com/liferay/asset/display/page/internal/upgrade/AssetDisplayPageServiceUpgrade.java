@@ -15,10 +15,10 @@
 package com.liferay.asset.display.page.internal.upgrade;
 
 import com.liferay.asset.display.page.internal.upgrade.v2_0_0.util.AssetDisplayPageEntryTable;
-import com.liferay.asset.display.page.internal.upgrade.v2_1_0.UpgradeAssetDisplayLayout;
-import com.liferay.asset.display.page.internal.upgrade.v2_1_1.UpgradeAssetDisplayPrivateLayout;
-import com.liferay.asset.display.page.internal.upgrade.v2_2_1.UpgradeAssetDisplayLayoutFriendlyURLPrivateLayout;
-import com.liferay.asset.display.page.internal.upgrade.v3_0_0.UpgradeAssetDisplayPageEntry;
+import com.liferay.asset.display.page.internal.upgrade.v2_1_0.AssetDisplayLayoutUpgradeProcess;
+import com.liferay.asset.display.page.internal.upgrade.v2_1_1.AssetDisplayPrivateLayoutUpgradeProcess;
+import com.liferay.asset.display.page.internal.upgrade.v2_2_1.AssetDisplayLayoutFriendlyURLPrivateLayoutUpgradeProcess;
+import com.liferay.asset.display.page.internal.upgrade.v3_0_0.AssetDisplayPageEntryUpgradeProcess;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalService;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryService;
@@ -48,14 +48,14 @@ public class AssetDisplayPageServiceUpgrade implements UpgradeStepRegistrator {
 
 		registry.register(
 			"2.0.0", "2.1.0",
-			new UpgradeAssetDisplayLayout(
+			new AssetDisplayLayoutUpgradeProcess(
 				_assetEntryLocalService, _layoutLocalService,
 				_layoutPageTemplateEntryLocalService,
 				_layoutPageTemplateEntryService));
 
 		registry.register(
 			"2.1.0", "2.1.1",
-			new UpgradeAssetDisplayPrivateLayout(
+			new AssetDisplayPrivateLayoutUpgradeProcess(
 				_layoutLocalService, _resourceLocalService));
 
 		registry.register(
@@ -71,11 +71,11 @@ public class AssetDisplayPageServiceUpgrade implements UpgradeStepRegistrator {
 
 		registry.register(
 			"2.2.0", "2.2.1",
-			new UpgradeAssetDisplayLayoutFriendlyURLPrivateLayout());
+			new AssetDisplayLayoutFriendlyURLPrivateLayoutUpgradeProcess());
 
 		registry.register(
 			"2.2.1", "2.2.2",
-			new UpgradeAssetDisplayLayoutFriendlyURLPrivateLayout());
+			new AssetDisplayLayoutFriendlyURLPrivateLayoutUpgradeProcess());
 
 		registry.register(
 			"2.2.2", "2.3.0", new UpgradeCTModel("AssetDisplayPageEntry"));
@@ -85,9 +85,9 @@ public class AssetDisplayPageServiceUpgrade implements UpgradeStepRegistrator {
 		registry.register(
 			"2.3.1", "2.3.2",
 			new com.liferay.asset.display.page.internal.upgrade.v2_3_2.
-				UpgradeAssetDisplayPageEntry());
+				AssetDisplayPageEntryUpgradeProcess());
 
-		registry.register("2.3.2", "3.0.0", new UpgradeAssetDisplayPageEntry());
+		registry.register("2.3.2", "3.0.0", new AssetDisplayPageEntryUpgradeProcess());
 
 		registry.register("3.0.0", "3.0.1", new DummyUpgradeProcess());
 	}

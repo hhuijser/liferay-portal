@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 /**
  * @author Drew Brokke
  */
-public class UpgradeAccountEntry extends UpgradeProcess {
+public class AccountEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

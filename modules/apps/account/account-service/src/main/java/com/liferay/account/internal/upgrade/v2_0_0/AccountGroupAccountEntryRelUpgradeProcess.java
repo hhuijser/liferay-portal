@@ -20,12 +20,12 @@ import com.liferay.portal.kernel.util.StringUtil;
 /**
  * @author Drew Brokke
  */
-public class UpgradeAccountGroupAccountEntryRel extends UpgradeProcess {
+public class AccountGroupAccountEntryRelUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		String template = StringUtil.read(
-			UpgradeAccountGroupAccountEntryRel.class.getResourceAsStream(
+			AccountGroupAccountEntryRelUpgradeProcess.class.getResourceAsStream(
 				"dependencies/update.sql"));
 
 		runSQLTemplateString(template, false);

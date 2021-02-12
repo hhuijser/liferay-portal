@@ -90,8 +90,7 @@ public class ViewUADEntitiesManagementToolbarDisplayContext
 
 	@Override
 	public String getComponentId() {
-		return StringBundler.concat(
-			"viewUADEntitiesManagementToolbar_", StringUtil.randomId());
+		return "viewUADEntitiesManagementToolbar_" + StringUtil.randomId();
 	}
 
 	@Override

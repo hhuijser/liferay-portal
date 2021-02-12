@@ -332,9 +332,7 @@ public class PortalLog4jTest {
 			Class<?> expectedThrowableClass = expectedThrowable.getClass();
 
 			Assert.assertEquals(
-				StringBundler.concat(
-					"<log4j:throwable><![CDATA[",
-					expectedThrowableClass.getName()),
+				"<log4j:throwable><![CDATA[" + expectedThrowableClass.getName(),
 				outputLines[2]);
 
 			String actualFirstPrefixStackTraceElement = outputLines[3].trim();

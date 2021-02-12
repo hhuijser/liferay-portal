@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.metrics.rest.internal.resource.v1_0;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.User;
@@ -498,9 +497,7 @@ public class AssigneeMetricResourceImpl
 
 	private boolean _isOrderByDurationTaskAvg(String fieldName) {
 		if (StringUtil.equals(fieldName, "durationTaskAvg") ||
-			StringUtil.equals(
-				fieldName,
-				StringBundler.concat("countFilter>durationTaskAvg"))) {
+			StringUtil.equals(fieldName, "countFilter>durationTaskAvg")) {
 
 			return true;
 		}
@@ -510,8 +507,7 @@ public class AssigneeMetricResourceImpl
 
 	private boolean _isOrderByOnTimeTaskCount(String fieldName) {
 		if (StringUtil.equals(fieldName, "onTimeTaskCount") ||
-			StringUtil.equals(
-				fieldName, StringBundler.concat("onTime>taskCount.value"))) {
+			StringUtil.equals(fieldName, "onTime>taskCount.value")) {
 
 			return true;
 		}
@@ -521,8 +517,7 @@ public class AssigneeMetricResourceImpl
 
 	private boolean _isOrderByOverdueTaskCount(String fieldName) {
 		if (StringUtil.equals(fieldName, "overdueTaskCount") ||
-			StringUtil.equals(
-				fieldName, StringBundler.concat("overdue>taskCount.value"))) {
+			StringUtil.equals(fieldName, "overdue>taskCount.value")) {
 
 			return true;
 		}
@@ -532,8 +527,7 @@ public class AssigneeMetricResourceImpl
 
 	private boolean _isOrderByTaskCount(String fieldName) {
 		if (StringUtil.equals(fieldName, "taskCount") ||
-			StringUtil.equals(
-				fieldName, StringBundler.concat("countFilter>taskCount"))) {
+			StringUtil.equals(fieldName, "countFilter>taskCount")) {
 
 			return true;
 		}
@@ -569,17 +563,17 @@ public class AssigneeMetricResourceImpl
 		String fieldName = sort.getFieldName();
 
 		if (_isOrderByDurationTaskAvg(fieldName)) {
-			fieldName = StringBundler.concat("countFilter>durationTaskAvg");
+			fieldName = "countFilter>durationTaskAvg";
 		}
 		else if (_isOrderByTaskCount(fieldName)) {
-			fieldName = StringBundler.concat("countFilter>taskCount");
+			fieldName = "countFilter>taskCount";
 		}
 		else if (_isOrderByOnTimeTaskCount(fieldName) ||
 				 _isOrderByOverdueTaskCount(fieldName)) {
 
-			fieldName = StringBundler.concat(
-				StringUtil.extractFirst(fieldName, "TaskCount"),
-				">taskCount.value");
+			fieldName =
+				StringUtil.extractFirst(fieldName, "TaskCount") +
+					">taskCount.value";
 		}
 
 		FieldSort fieldSort = _sorts.field(fieldName);

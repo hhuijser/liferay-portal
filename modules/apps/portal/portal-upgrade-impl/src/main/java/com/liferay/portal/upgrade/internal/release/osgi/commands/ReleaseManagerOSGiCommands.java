@@ -389,7 +389,7 @@ public class ReleaseManagerOSGiCommands {
 				Version.parseVersion(fromSchemaVersion),
 				Version.parseVersion(toSchemaVersion))) {
 
-			toMessage += StringBundler.concat(" (REQUIRED)");
+			toMessage += " (REQUIRED)";
 		}
 
 		sb.append(fromSchemaVersion);

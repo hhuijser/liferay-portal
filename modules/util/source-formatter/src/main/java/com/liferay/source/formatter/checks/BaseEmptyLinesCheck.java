@@ -664,9 +664,9 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 	private static final Pattern _emptyLineInMultiLineTagsPattern2 =
 		Pattern.compile("\n(\t*)\\S*[^>]\n\n(\t*)(/?)>\n");
 	private static final Pattern _emptyLineInNestedTagsPattern1 =
-		Pattern.compile("\n(\t*)(?:<\\w.*[^/])?>\n\n(\t*)(<.*)\n");
+		Pattern.compile("\n(\t*)(?:<\\w.*[^/])?>\n(?=\n(\t*)(<.*)\n)");
 	private static final Pattern _emptyLineInNestedTagsPattern2 =
-		Pattern.compile("\n(\t*)(.*>)\n\n(\t*)</.*(\n|$)");
+		Pattern.compile("\n(\t*)(.*>)\n(?=\n(\t*)</.*(\n|$))");
 	private static final Pattern _incorrectCloseCurlyBracePattern1 =
 		Pattern.compile("\n(.+)\n\n(\t+)}\n");
 	private static final Pattern _incorrectCloseCurlyBracePattern2 =

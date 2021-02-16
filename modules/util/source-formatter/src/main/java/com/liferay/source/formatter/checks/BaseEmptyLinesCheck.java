@@ -21,8 +21,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
-import com.liferay.source.formatter.regex.Matcher;
-import com.liferay.source.formatter.regex.Pattern;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -655,52 +656,50 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 	};
 
 	private static final Pattern _emptyLineBetweenTagsPattern1 =
-		Pattern.compile(
-			"\n(\t*)</([-\\w:]+)>(\n*)(\t*)<([-\\w:]+)[> \n]", true);
+		Pattern.compile("\n(\t*)</([-\\w:]+)>(\n*)(\t*)<([-\\w:]+)[> \n]");
 	private static final Pattern _emptyLineBetweenTagsPattern2 =
-		Pattern.compile("(\\S</(\\w+)>| />)\n(\t+)<([-\\w:]+)[> \n]", true);
+		Pattern.compile("(\\S</(\\w+)>| />)\n(\t+)<([-\\w:]+)[> \n]");
 	private static final Pattern _emptyLineInMultiLineTagsPattern1 =
-		Pattern.compile("\n\t*<[-\\w:#]+\n\n\t*\\w", true);
+		Pattern.compile("\n\t*<[-\\w:#]+\n\n\t*\\w");
 	private static final Pattern _emptyLineInMultiLineTagsPattern2 =
-		Pattern.compile("\n(\t*)\\S*[^>]\n\n(\t*)(/?)>\n", true);
+		Pattern.compile("\n(\t*)\\S*[^>]\n\n(\t*)(/?)>\n");
 	private static final Pattern _emptyLineInNestedTagsPattern1 =
-		Pattern.compile("\n(\t*)(?:<\\w.*[^/])?>\n\n(\t*)(<.*)\n", true);
+		Pattern.compile("\n(\t*)(?:<\\w.*[^/])?>\n\n(\t*)(<.*)\n");
 	private static final Pattern _emptyLineInNestedTagsPattern2 =
-		Pattern.compile("\n(\t*)(.*>)\n\n(\t*)</.*(\n|$)", true);
+		Pattern.compile("\n(\t*)(.*>)\n\n(\t*)</.*(\n|$)");
 	private static final Pattern _incorrectCloseCurlyBracePattern1 =
-		Pattern.compile("\n(.+)\n\n(\t+)}\n", true);
+		Pattern.compile("\n(.+)\n\n(\t+)}\n");
 	private static final Pattern _incorrectCloseCurlyBracePattern2 =
 		Pattern.compile("(\t| )@?(class|enum|interface|new)\\s");
 	private static final Pattern _incorrectCloseCurlyBracePattern3 =
-		Pattern.compile("\n\t*\\}(\n+)\t*\\}\\)*;\n", true);
+		Pattern.compile("\n\t*\\}(\n+)\t*\\}\\)*;\n");
 	private static final Pattern _incorrectOpenCurlyBracePattern =
 		Pattern.compile(
-			"\n.*?(\\Wnew (.*\\)) |\\[\\] (\\w+ = )?)?\\{(\n+)\t*\\{\n", true);
+			"\n.*?(\\Wnew (.*\\)) |\\[\\] (\\w+ = )?)?\\{(\n+)\t*\\{\n");
 	private static final Pattern _missingEmptyLineAfterCommentPattern =
-		Pattern.compile("\n\t*// .*\n[\t ]*(?!// )\\S", true);
+		Pattern.compile("\n\t*// .*\n[\t ]*(?!// )\\S");
 	private static final Pattern _missingEmptyLineAfterDoctypePattern =
 		Pattern.compile(
 			"^(<\\?xml .*\\?>|<\\!DOCTYPE .*>)\n<\\w",
 			Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
 	private static final Pattern _missingEmptyLineBeforeCommentPattern =
-		Pattern.compile("\n[\t ]*(?!// )\\S.*\n\t*// ", true);
+		Pattern.compile("\n[\t ]*(?!// )\\S.*\n\t*// ");
 	private static final Pattern _missingEmptyLineBetweenTagsPattern1 =
-		Pattern.compile("\n(\t*)/>\n(\t*)<[-\\w:]+[> \n]", true);
+		Pattern.compile("\n(\t*)/>\n(\t*)<[-\\w:]+[> \n]");
 	private static final Pattern _missingEmptyLineBetweenTagsPattern2 =
 		Pattern.compile(
-			"\n(\t*)<.* />\n(\t*)<([-\\w:]+|\\w((?!</| />).)*[^/]>)\n", true);
+			"\n(\t*)<.* />\n(\t*)<([-\\w:]+|\\w((?!</| />).)*[^/]>)\n");
 	private static final Pattern _missingEmptyLinePattern1 = Pattern.compile(
 		"(\t| = | -> |return )new .*\\(.*\\) \\{\n\t+[^{\t]");
 	private static final Pattern _missingEmptyLinePattern2 = Pattern.compile(
 		"(\n\t*)(public|private|protected) [^;]+? \\{");
 	private static final Pattern _missingEmptyLinePattern3 = Pattern.compile(
-		"\n(.*\\) \\{)\n[\t ]*[^ \n\t\\}]", true);
+		"\n(.*\\) \\{)\n[\t ]*[^ \n\t\\}]");
 	private static final Pattern _missingEmptyLinePattern4 = Pattern.compile(
 		"[^%{:/\n]\n\t*(for|if|try) [({]");
 	private static final Pattern _missingEmptyLinePattern5 = Pattern.compile(
 		"[\t\n]\\}\n[\t ]*(?!(%>|/?\\*|\\}|\\)|//|catch |else |finally " +
-			"|while ))\\S",
-		true);
+			"|while ))\\S");
 	private static final Pattern _missingEmptyLinePattern6 = Pattern.compile(
 		"[^%{:\\s]\n\t*(break|continue|return|throw)[ ;]");
 	private static final Pattern _missingEmptyLinePattern7 = Pattern.compile(
@@ -708,10 +707,9 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 	private static final Pattern _redundantEmptyLinePattern1 = Pattern.compile(
 		"\n(.*)\n\npublic ((abstract|static) )*(class|enum|interface) ");
 	private static final Pattern _redundantEmptyLinePattern2 = Pattern.compile(
-		"\n\t* \\*/\n\n\t*(.+)\n", true);
+		"\n\t* \\*/\n\n\t*(.+)\n");
 	private static final Pattern _redundantEmptyLinePattern3 = Pattern.compile(
-		"[\n\t](catch |else |finally |for |if |try |while ).*\\{\n\n\t+\\w",
-		true);
+		"[\n\t](catch |else |finally |for |if |try |while ).*\\{\n\n\t+\\w");
 	private static final Pattern _redundantEmptyLinePattern4 = Pattern.compile(
 		"\\{\n\n\t*\\}");
 	private static final Pattern _redundantEmptyLinePattern5 = Pattern.compile(

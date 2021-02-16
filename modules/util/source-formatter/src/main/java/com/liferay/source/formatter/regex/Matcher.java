@@ -22,9 +22,8 @@ import java.util.regex.Pattern;
  */
 public class Matcher {
 
-	public Matcher(java.util.regex.Matcher matcher, boolean overlapEnabled) {
+	public Matcher(java.util.regex.Matcher matcher) {
 		_matcher = matcher;
-		_overlapEnabled = overlapEnabled;
 	}
 
 	public Matcher appendReplacement(StringBuffer sb, String replacement) {
@@ -50,17 +49,7 @@ public class Matcher {
 	}
 
 	public boolean find() {
-		if (!_overlapEnabled) {
-			return _matcher.find();
-		}
-
-		if (_matcher.find(_lastStart + 1)) {
-			_lastStart = _matcher.start();
-
-			return true;
-		}
-
-		return false;
+		return _matcher.find();
 	}
 
 	public boolean find(int start) {
@@ -175,8 +164,6 @@ public class Matcher {
 		return this;
 	}
 
-	private int _lastStart = -1;
 	private final java.util.regex.Matcher _matcher;
-	private final boolean _overlapEnabled;
 
 }

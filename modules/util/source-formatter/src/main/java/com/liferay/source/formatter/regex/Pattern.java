@@ -40,40 +40,25 @@ public class Pattern {
 	public static final int UNIX_LINES = java.util.regex.Pattern.UNIX_LINES;
 
 	public static Pattern compile(String regex) {
-		return new Pattern(java.util.regex.Pattern.compile(regex), false);
-	}
-
-	public static Pattern compile(String regex, boolean overlapEnabled) {
-		return new Pattern(
-			java.util.regex.Pattern.compile(regex), overlapEnabled);
+		return new Pattern(java.util.regex.Pattern.compile(regex));
 	}
 
 	public static Pattern compile(String regex, int flags) {
-		return new Pattern(
-			java.util.regex.Pattern.compile(regex, flags), false);
+		return new Pattern(java.util.regex.Pattern.compile(regex, flags));
 	}
 
-	public static Pattern compile(
-		String regex, int flags, boolean overlapEnabled) {
-
-		return new Pattern(
-			java.util.regex.Pattern.compile(regex, flags), overlapEnabled);
-	}
-
-	public Pattern(java.util.regex.Pattern pattern, boolean overlapEnabled) {
+	public Pattern(java.util.regex.Pattern pattern) {
 		_pattern = pattern;
-		_overlapEnabled = overlapEnabled;
 	}
 
 	public Matcher matcher(CharSequence input) {
-		return new Matcher(_pattern.matcher(input), _overlapEnabled);
+		return new Matcher(_pattern.matcher(input));
 	}
 
 	public boolean matches(String regex, CharSequence input) {
 		return java.util.regex.Pattern.matches(regex, input);
 	}
 
-	private final boolean _overlapEnabled;
 	private final java.util.regex.Pattern _pattern;
 
 }

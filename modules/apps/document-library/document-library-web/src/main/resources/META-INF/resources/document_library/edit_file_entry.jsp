@@ -424,7 +424,7 @@ renderResponse.setTitle(headerTitle);
 									}
 									catch (Exception e) {
 									}
-								%>
+							%>
 
 										<c:if test="<%= !dlEditFileEntryDisplayContext.isDDMStructureVisible(ddmStructure) %>">
 											<div class="hide">

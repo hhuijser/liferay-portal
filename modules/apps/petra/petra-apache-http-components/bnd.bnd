@@ -1,0 +1,17 @@
+Bundle-Name: Liferay Petra Apache HTTP Components
+Bundle-SymbolicName: com.liferay.petra.apache.http.components
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.petra.apache.http.components,\
+	\
+	org.apache.http,\
+	org.apache.http.client,\
+	org.apache.http.client.methods,\
+	org.apache.http.client.utils,\
+	org.apache.http.conn,\
+	org.apache.http.entity,\
+	org.apache.http.impl.client,\
+	org.apache.http.impl.conn,\
+	org.apache.http.message,\
+	org.apache.http.pool,\
+	org.apache.http.util

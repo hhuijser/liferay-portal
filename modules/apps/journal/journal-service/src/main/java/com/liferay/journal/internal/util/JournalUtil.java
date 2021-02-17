@@ -77,7 +77,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 /**
  * @author Brian Wing Shun Chan
@@ -212,15 +211,13 @@ public class JournalUtil {
 		LiferayPortletResponse liferayPortletResponse) {
 
 		if (liferayPortletResponse != null) {
-			PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			return PortletURLBuilder.createRenderURL(
 				liferayPortletResponse
 			).setParameter(
 				"groupId", groupId
 			).setParameter(
 				"folderId", folderId
-			).build();
-
-			return portletURL.toString();
+			).buildString();
 		}
 
 		try {
@@ -250,15 +247,13 @@ public class JournalUtil {
 			PortletRequest portletRequest, long folderId)
 		throws PortalException {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletProviderUtil.getPortletURL(
 				portletRequest, JournalArticle.class.getName(),
 				PortletProvider.Action.EDIT)
 		).setParameter(
 			"folderId", folderId
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	public static Map<String, String> getTokens(

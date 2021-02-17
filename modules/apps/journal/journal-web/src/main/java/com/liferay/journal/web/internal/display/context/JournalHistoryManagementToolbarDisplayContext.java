@@ -36,8 +36,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.portlet.PortletURL;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -72,22 +70,19 @@ public class JournalHistoryManagementToolbarDisplayContext
 							themeDisplay.getPermissionChecker(), _article,
 							ActionKeys.DELETE)) {
 
-						PortletURL deleteArticlesURL =
-							PortletURLBuilder.createActionURL(
-								liferayPortletResponse
-							).setActionName(
-								"/journal/delete_articles"
-							).setRedirect(
-								themeDisplay.getURLCurrent()
-							).build();
-
 						add(
 							dropdownItem -> {
 								dropdownItem.putData(
 									"action", "deleteArticles");
 								dropdownItem.putData(
 									"deleteArticlesURL",
-									deleteArticlesURL.toString());
+									PortletURLBuilder.createActionURL(
+										liferayPortletResponse
+									).setActionName(
+										"/journal/delete_articles"
+									).setRedirect(
+										themeDisplay.getURLCurrent()
+									).buildString());
 								dropdownItem.setIcon("times-circle");
 								dropdownItem.setLabel(
 									LanguageUtil.get(
@@ -107,22 +102,19 @@ public class JournalHistoryManagementToolbarDisplayContext
 							themeDisplay.getPermissionChecker(), _article,
 							ActionKeys.EXPIRE)) {
 
-						PortletURL expireArticlesURL =
-							PortletURLBuilder.createActionURL(
-								liferayPortletResponse
-							).setActionName(
-								"/journal/expire_articles"
-							).setRedirect(
-								themeDisplay.getURLCurrent()
-							).build();
-
 						add(
 							dropdownItem -> {
 								dropdownItem.putData(
 									"action", "expireArticles");
 								dropdownItem.putData(
 									"expireArticlesURL",
-									expireArticlesURL.toString());
+									PortletURLBuilder.createActionURL(
+										liferayPortletResponse
+									).setActionName(
+										"/journal/expire_articles"
+									).setRedirect(
+										themeDisplay.getURLCurrent()
+									).buildString());
 								dropdownItem.setIcon("time");
 								dropdownItem.setLabel(
 									LanguageUtil.get(

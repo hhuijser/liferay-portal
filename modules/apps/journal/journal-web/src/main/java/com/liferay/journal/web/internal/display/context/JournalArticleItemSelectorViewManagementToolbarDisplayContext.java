@@ -70,15 +70,13 @@ public class JournalArticleItemSelectorViewManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			getPortletURL()
 		).setParameter(
 			"keywords", StringPool.BLANK
 		).setParameter(
 			"scope", StringPool.BLANK
-		).build();
-
-		return clearResultsURL.toString();
+		).buildString();
 	}
 
 	@Override
@@ -123,14 +121,14 @@ public class JournalArticleItemSelectorViewManagementToolbarDisplayContext
 
 		return LabelItemListBuilder.add(
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLBuilder.create(
-					PortletURLUtil.clone(
-						getPortletURL(), liferayPortletResponse)
-				).setParameter(
-					"scope", (String)null
-				).build();
-
-				labelItem.putData("removeLabelURL", removeLabelURL.toString());
+				labelItem.putData(
+					"removeLabelURL",
+					PortletURLBuilder.create(
+						PortletURLUtil.clone(
+							getPortletURL(), liferayPortletResponse)
+					).setParameter(
+						"scope", (String)null
+					).buildString());
 
 				labelItem.setCloseable(true);
 

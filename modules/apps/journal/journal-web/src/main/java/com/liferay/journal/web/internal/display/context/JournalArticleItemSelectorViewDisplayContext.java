@@ -555,13 +555,12 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		breadcrumbEntry.setTitle(
 			group.getDescriptiveName(_themeDisplay.getLocale()));
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			getPortletURL()
-		).setParameter(
-			"folderId", JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID
-		).build();
-
-		breadcrumbEntry.setURL(portletURL.toString());
+		breadcrumbEntry.setURL(
+			PortletURLBuilder.create(
+				getPortletURL()
+			).setParameter(
+				"folderId", JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID
+			).buildString());
 
 		return breadcrumbEntry;
 	}
@@ -604,15 +603,14 @@ public class JournalArticleItemSelectorViewDisplayContext {
 		breadcrumbEntry.setTitle(
 			LanguageUtil.get(_httpServletRequest, "sites-and-libraries"));
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			getPortletURL()
-		).setParameter(
-			"groupType", "site"
-		).setParameter(
-			"showGroupSelector", Boolean.TRUE.toString()
-		).build();
-
-		breadcrumbEntry.setURL(portletURL.toString());
+		breadcrumbEntry.setURL(
+			PortletURLBuilder.create(
+				getPortletURL()
+			).setParameter(
+				"groupType", "site"
+			).setParameter(
+				"showGroupSelector", Boolean.TRUE.toString()
+			).buildString());
 
 		return breadcrumbEntry;
 	}

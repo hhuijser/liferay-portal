@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 
-import javax.portlet.PortletURL;
-
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -52,14 +50,13 @@ public class JournalArticleContentEditorOptionsContributor
 			return;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			requestBackedPortletURLFactory.createActionURL(
-				portletDisplay.getId())
-		).setActionName(
-			"/journal/upload_image"
-		).build();
-
-		editorOptions.setUploadURL(portletURL.toString());
+		editorOptions.setUploadURL(
+			PortletURLBuilder.create(
+				requestBackedPortletURLFactory.createActionURL(
+					portletDisplay.getId())
+			).setActionName(
+				"/journal/upload_image"
+			).buildString());
 	}
 
 }

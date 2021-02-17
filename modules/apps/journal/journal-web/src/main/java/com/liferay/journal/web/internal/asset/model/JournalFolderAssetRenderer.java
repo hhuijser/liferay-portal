@@ -162,7 +162,7 @@ public class JournalFolderAssetRenderer
 		AssetRendererFactory<JournalFolder> assetRendererFactory =
 			getAssetRendererFactory();
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			assetRendererFactory.getURLView(liferayPortletResponse, windowState)
 		).setMVCPath(
 			"/asset/folder_full_content.jsp"
@@ -170,9 +170,7 @@ public class JournalFolderAssetRenderer
 			"folderId", _folder.getFolderId()
 		).setWindowState(
 			windowState
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	@Override

@@ -32,7 +32,6 @@ import com.liferay.taglib.security.PermissionsURLTag;
 
 import java.util.List;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -109,22 +108,21 @@ public class JournalDDMTemplateActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getDeleteDDMTemplateActionUnsafeConsumer() {
 
-		PortletURL deleteDDMTemplateURL = PortletURLBuilder.createActionURL(
-			_renderResponse
-		).setMVCPath(
-			"/view_ddm_templates.jsp"
-		).setActionName(
-			"/journal/delete_ddm_template"
-		).setRedirect(
-			_themeDisplay.getURLCurrent()
-		).setParameter(
-			"ddmTemplateId", _ddmTemplate.getTemplateId()
-		).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deleteDDMTemplate");
 			dropdownItem.putData(
-				"deleteDDMTemplateURL", deleteDDMTemplateURL.toString());
+				"deleteDDMTemplateURL",
+				PortletURLBuilder.createActionURL(
+					_renderResponse
+				).setMVCPath(
+					"/view_ddm_templates.jsp"
+				).setActionName(
+					"/journal/delete_ddm_template"
+				).setRedirect(
+					_themeDisplay.getURLCurrent()
+				).setParameter(
+					"ddmTemplateId", _ddmTemplate.getTemplateId()
+				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "delete"));
 		};

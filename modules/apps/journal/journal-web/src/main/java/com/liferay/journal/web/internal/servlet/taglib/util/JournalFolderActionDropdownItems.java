@@ -208,14 +208,13 @@ public class JournalFolderActionDropdownItems {
 			_httpServletRequest, "folderId");
 
 		if (currentFolderId == _folder.getFolderId()) {
-			redirect = String.valueOf(
-				PortletURLBuilder.createRenderURL(
-					_liferayPortletResponse
-				).setParameter(
-					"groupId", _folder.getGroupId()
-				).setParameter(
-					"folderId", _folder.getParentFolderId()
-				).build());
+			redirect = PortletURLBuilder.createRenderURL(
+				_liferayPortletResponse
+			).setParameter(
+				"groupId", _folder.getGroupId()
+			).setParameter(
+				"folderId", _folder.getParentFolderId()
+			).buildString();
 		}
 
 		String actionName = "/journal/delete_folder";
@@ -226,7 +225,9 @@ public class JournalFolderActionDropdownItems {
 			key = "move-to-recycle-bin";
 		}
 
-		PortletURL deleteURL = PortletURLBuilder.createActionURL(
+		String label = LanguageUtil.get(_httpServletRequest, key);
+
+		String deleteURL = PortletURLBuilder.createActionURL(
 			_liferayPortletResponse
 		).setActionName(
 			actionName
@@ -236,13 +237,11 @@ public class JournalFolderActionDropdownItems {
 			"groupId", _folder.getGroupId()
 		).setParameter(
 			"folderId", _folder.getFolderId()
-		).build();
-
-		String label = LanguageUtil.get(_httpServletRequest, key);
+		).buildString();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "delete");
-			dropdownItem.putData("deleteURL", deleteURL.toString());
+			dropdownItem.putData("deleteURL", deleteURL);
 			dropdownItem.setLabel(label);
 		};
 	}

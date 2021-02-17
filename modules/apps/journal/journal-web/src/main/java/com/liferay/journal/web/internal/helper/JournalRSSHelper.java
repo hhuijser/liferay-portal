@@ -81,7 +81,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import javax.portlet.ResourceURL;
@@ -515,16 +514,14 @@ public class JournalRSSHelper {
 		long plid = _portal.getPlidFromFriendlyURL(
 			feed.getCompanyId(), feed.getTargetLayoutFriendlyUrl());
 
-		PortletURL entryURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(
 				resourceRequest, portletId, plid, PortletRequest.RENDER_PHASE)
 		).setParameter(
 			"groupId", article.getGroupId()
 		).setParameter(
 			"articleId", article.getArticleId()
-		).build();
-
-		return entryURL.toString();
+		).buildString();
 	}
 
 	protected Object[] getImageProperties(String url) {

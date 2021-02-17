@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import java.util.Locale;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -83,7 +82,7 @@ public class JournalArticleCTDisplayRenderer
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
 				httpServletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
 				PortletRequest.RENDER_PHASE)
@@ -97,9 +96,7 @@ public class JournalArticleCTDisplayRenderer
 			"articleId", journalArticle.getArticleId()
 		).setParameter(
 			"version", journalArticle.getVersion()
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	@Override

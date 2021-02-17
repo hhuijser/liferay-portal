@@ -40,8 +40,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.List;
 import java.util.Map;
 
-import javax.portlet.PortletURL;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -80,20 +78,15 @@ public class JournalEditDDMStructuresDisplayContext {
 				"sidebarPanelId", "properties"
 			).put(
 				"url",
-				() -> {
-					PortletURL editBasicInfoURL =
-						PortletURLBuilder.createRenderURL(
-							_liferayPortletResponse
-						).setMVCPath(
-							"/data_engine/basic_info.jsp"
-						).setParameter(
-							"ddmStructureId", getDDMStructureId()
-						).setWindowState(
-							LiferayWindowState.EXCLUSIVE
-						).build();
-
-					return editBasicInfoURL.toString();
-				}
+				() -> PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setMVCPath(
+					"/data_engine/basic_info.jsp"
+				).setParameter(
+					"ddmStructureId", getDDMStructureId()
+				).setWindowState(
+					LiferayWindowState.EXCLUSIVE
+				).buildString()
 			).build());
 	}
 

@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.user.associated.data.display.UADDisplay;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -46,7 +45,7 @@ public class JournalFolderUADDisplay extends BaseJournalFolderUADDisplay {
 			return StringPool.BLANK;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
 				liferayPortletRequest, JournalPortletKeys.JOURNAL,
 				PortletRequest.RENDER_PHASE)
@@ -58,9 +57,7 @@ public class JournalFolderUADDisplay extends BaseJournalFolderUADDisplay {
 			"groupId", journalFolder.getGroupId()
 		).setParameter(
 			"folderId", journalFolder.getFolderId()
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	@Reference

@@ -69,7 +69,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -397,7 +396,7 @@ public class JournalEditArticleDisplayContext {
 	}
 
 	public String getEditArticleURL() {
-		PortletURL editArticleURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setMVCPath(
 			"/edit_article.jsp"
@@ -409,9 +408,7 @@ public class JournalEditArticleDisplayContext {
 			"articleId", getArticleId()
 		).setParameter(
 			"version", getVersion()
-		).build();
-
-		return editArticleURL.toString();
+		).buildString();
 	}
 
 	public long getFolderId() {
@@ -809,15 +806,14 @@ public class JournalEditArticleDisplayContext {
 					JournalArticleConstants.CLASS_NAME_ID_DEFAULT) &&
 				 (_article != null)) {
 
-			PortletURL backURL = PortletURLBuilder.createRenderURL(
-				_liferayPortletResponse
-			).setParameter(
-				"groupId", _article.getGroupId()
-			).setParameter(
-				"folderId", _article.getFolderId()
-			).build();
-
-			portletDisplay.setURLBack(backURL.toString());
+			portletDisplay.setURLBack(
+				PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setParameter(
+					"groupId", _article.getGroupId()
+				).setParameter(
+					"folderId", _article.getFolderId()
+				).buildString());
 		}
 
 		if (_liferayPortletResponse instanceof RenderResponse) {

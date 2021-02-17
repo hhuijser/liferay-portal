@@ -73,7 +73,6 @@ import java.util.Locale;
 import java.util.Set;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -271,37 +270,36 @@ public class JournalArticleActionDropdownItemsProvider {
 			_getCompareArticleVersionsActionUnsafeConsumer()
 		throws Exception {
 
-		PortletURL compareVersionsURL = PortletURLBuilder.createRenderURL(
-			_liferayPortletResponse
-		).setMVCPath(
-			"/select_version.jsp"
-		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
-			"articleId", _article.getArticleId()
-		).setParameter(
-			"sourceVersion", _article.getVersion()
-		).setWindowState(
-			LiferayWindowState.POP_UP
-		).build();
-
-		PortletURL redirectURL = PortletURLBuilder.createRenderURL(
-			_liferayPortletResponse
-		).setMVCRenderCommandName(
-			"/journal/compare_versions"
-		).setRedirect(
-			_getRedirect()
-		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
-			"articleId", _article.getArticleId()
-		).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "compareVersions");
 			dropdownItem.putData(
-				"compareVersionsURL", compareVersionsURL.toString());
-			dropdownItem.putData("redirectURL", redirectURL.toString());
+				"compareVersionsURL",
+				PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setMVCPath(
+					"/select_version.jsp"
+				).setParameter(
+					"groupId", _article.getGroupId()
+				).setParameter(
+					"articleId", _article.getArticleId()
+				).setParameter(
+					"sourceVersion", _article.getVersion()
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString());
+			dropdownItem.putData(
+				"redirectURL",
+				PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setMVCRenderCommandName(
+					"/journal/compare_versions"
+				).setRedirect(
+					_getRedirect()
+				).setParameter(
+					"groupId", _article.getGroupId()
+				).setParameter(
+					"articleId", _article.getArticleId()
+				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "compare-to"));
 		};
@@ -311,26 +309,25 @@ public class JournalArticleActionDropdownItemsProvider {
 		_getCopyArticleActionUnsafeConsumer() {
 
 		if (_journalWebConfiguration.journalArticleForceAutogenerateId()) {
-			PortletURL copyArticleURL = PortletURLBuilder.createActionURL(
-				_liferayPortletResponse
-			).setActionName(
-				"/journal/copy_article"
-			).setRedirect(
-				_getRedirect()
-			).setParameter(
-				"groupId", _article.getGroupId()
-			).setParameter(
-				"oldArticleId", _article.getArticleId()
-			).setParameter(
-				"version", _article.getVersion()
-			).setParameter(
-				"autoArticleId", Boolean.TRUE.toString()
-			).build();
-
 			return dropdownItem -> {
 				dropdownItem.putData("action", "copyArticle");
 				dropdownItem.putData(
-					"copyArticleURL", copyArticleURL.toString());
+					"copyArticleURL",
+					PortletURLBuilder.createActionURL(
+						_liferayPortletResponse
+					).setActionName(
+						"/journal/copy_article"
+					).setRedirect(
+						_getRedirect()
+					).setParameter(
+						"groupId", _article.getGroupId()
+					).setParameter(
+						"oldArticleId", _article.getArticleId()
+					).setParameter(
+						"version", _article.getVersion()
+					).setParameter(
+						"autoArticleId", Boolean.TRUE.toString()
+					).buildString());
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "copy"));
 			};
@@ -348,21 +345,21 @@ public class JournalArticleActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception> _getDeleteArticleAction(
 		String articleId, String redirect) {
 
-		PortletURL deleteURL = PortletURLBuilder.createActionURL(
-			_liferayPortletResponse
-		).setActionName(
-			"/journal/delete_article"
-		).setRedirect(
-			redirect
-		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
-			"articleId", articleId
-		).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "delete");
-			dropdownItem.putData("deleteURL", deleteURL.toString());
+			dropdownItem.putData(
+				"deleteURL",
+				PortletURLBuilder.createActionURL(
+					_liferayPortletResponse
+				).setActionName(
+					"/journal/delete_article"
+				).setRedirect(
+					redirect
+				).setParameter(
+					"groupId", _article.getGroupId()
+				).setParameter(
+					"articleId", articleId
+				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "delete"));
 		};
@@ -372,38 +369,32 @@ public class JournalArticleActionDropdownItemsProvider {
 			_getDeleteArticleTranslationsActionUnsafeConsumer()
 		throws Exception {
 
-		PortletURL selectArticleTranslationsURL =
-			PortletURLBuilder.createRenderURL(
-				_liferayPortletResponse
-			).setMVCPath(
-				"/select_article_translations.jsp"
-			).setRedirect(
-				_getRedirect()
-			).setParameter(
-				"backURL", _getRedirect()
-			).setParameter(
-				"articleId", _article.getArticleId()
-			).setWindowState(
-				LiferayWindowState.POP_UP
-			).build();
-
-		PortletURL deleteArticleTranslationsURL =
-			PortletURLBuilder.createActionURL(
-				_liferayPortletResponse
-			).setActionName(
-				"/journal/delete_article_translations"
-			).setParameter(
-				"id", _article.getId()
-			).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "deleteArticleTranslations");
 			dropdownItem.putData(
 				"deleteArticleTranslationsURL",
-				deleteArticleTranslationsURL.toString());
+				PortletURLBuilder.createActionURL(
+					_liferayPortletResponse
+				).setActionName(
+					"/journal/delete_article_translations"
+				).setParameter(
+					"id", _article.getId()
+				).buildString());
 			dropdownItem.putData(
 				"selectArticleTranslationsURL",
-				selectArticleTranslationsURL.toString());
+				PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setMVCPath(
+					"/select_article_translations.jsp"
+				).setRedirect(
+					_getRedirect()
+				).setParameter(
+					"backURL", _getRedirect()
+				).setParameter(
+					"articleId", _article.getArticleId()
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString());
 			dropdownItem.putData(
 				"title",
 				LanguageUtil.get(_httpServletRequest, "delete-translations") +
@@ -441,21 +432,21 @@ public class JournalArticleActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getExpireArticleActionConsumer(String articleId, String redirect) {
 
-		PortletURL expireURL = PortletURLBuilder.createActionURL(
-			_liferayPortletResponse
-		).setActionName(
-			"/journal/expire_articles"
-		).setRedirect(
-			redirect
-		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
-			"articleId", articleId
-		).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "expireArticles");
-			dropdownItem.putData("expireURL", expireURL.toString());
+			dropdownItem.putData(
+				"expireURL",
+				PortletURLBuilder.createActionURL(
+					_liferayPortletResponse
+				).setActionName(
+					"/journal/expire_articles"
+				).setRedirect(
+					redirect
+				).setParameter(
+					"groupId", _article.getGroupId()
+				).setParameter(
+					"articleId", articleId
+				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "expire"));
 		};
@@ -505,21 +496,21 @@ public class JournalArticleActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getMoveToTrashArticleActionUnsafeConsumer() {
 
-		PortletURL deleteURL = PortletURLBuilder.createActionURL(
-			_liferayPortletResponse
-		).setActionName(
-			"/journal/move_to_trash"
-		).setRedirect(
-			_getRedirect()
-		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
-			"articleId", _article.getArticleId()
-		).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "delete");
-			dropdownItem.putData("deleteURL", deleteURL.toString());
+			dropdownItem.putData(
+				"deleteURL",
+				PortletURLBuilder.createActionURL(
+					_liferayPortletResponse
+				).setActionName(
+					"/journal/move_to_trash"
+				).setRedirect(
+					_getRedirect()
+				).setParameter(
+					"groupId", _article.getGroupId()
+				).setParameter(
+					"articleId", _article.getArticleId()
+				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "move-to-recycle-bin"));
 		};
@@ -599,7 +590,7 @@ public class JournalArticleActionDropdownItemsProvider {
 			return StringPool.BLANK;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
+		return PortletURLBuilder.createLiferayPortletURL(
 			_liferayPortletResponse,
 			JournalUtil.getPreviewPlid(_article, _themeDisplay),
 			JournalPortletKeys.JOURNAL, PortletRequest.RENDER_PHASE
@@ -615,30 +606,27 @@ public class JournalArticleActionDropdownItemsProvider {
 			).build()
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getPublishToLiveArticleActionUnsafeConsumer() {
 
-		PortletURL publishArticleURL = PortletURLBuilder.createActionURL(
-			_liferayPortletResponse
-		).setActionName(
-			"/journal/publish_article"
-		).setParameter(
-			"backURL", _getRedirect()
-		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
-			"articleId", _article.getArticleId()
-		).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "publishArticleToLive");
 			dropdownItem.putData(
-				"publishArticleURL", publishArticleURL.toString());
+				"publishArticleURL",
+				PortletURLBuilder.createActionURL(
+					_liferayPortletResponse
+				).setActionName(
+					"/journal/publish_article"
+				).setParameter(
+					"backURL", _getRedirect()
+				).setParameter(
+					"groupId", _article.getGroupId()
+				).setParameter(
+					"articleId", _article.getArticleId()
+				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "publish-to-live"));
 		};
@@ -673,40 +661,37 @@ public class JournalArticleActionDropdownItemsProvider {
 				_article.getCompanyId(), _themeDisplay.getScopeGroupId(),
 				_themeDisplay.getUserId(), _article.getResourcePrimKey())) {
 
-			PortletURL unsubscribeArticleURL =
-				PortletURLBuilder.createActionURL(
-					_liferayPortletResponse
-				).setActionName(
-					"/journal/unsubscribe_article"
-				).setRedirect(
-					_getRedirect()
-				).setParameter(
-					"articleId", _article.getResourcePrimKey()
-				).build();
-
 			return dropdownItem -> {
 				dropdownItem.putData("action", "unsubscribeArticle");
 				dropdownItem.putData(
-					"unsubscribeArticleURL", unsubscribeArticleURL.toString());
+					"unsubscribeArticleURL",
+					PortletURLBuilder.createActionURL(
+						_liferayPortletResponse
+					).setActionName(
+						"/journal/unsubscribe_article"
+					).setRedirect(
+						_getRedirect()
+					).setParameter(
+						"articleId", _article.getResourcePrimKey()
+					).buildString());
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "unsubscribe"));
 			};
 		}
 
-		PortletURL subscribeArticleURL = PortletURLBuilder.createActionURL(
-			_liferayPortletResponse
-		).setActionName(
-			"/journal/subscribe_article"
-		).setRedirect(
-			_getRedirect()
-		).setParameter(
-			"articleId", _article.getResourcePrimKey()
-		).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "subscribeArticle");
 			dropdownItem.putData(
-				"subscribeArticleURL", subscribeArticleURL.toString());
+				"subscribeArticleURL",
+				PortletURLBuilder.createActionURL(
+					_liferayPortletResponse
+				).setActionName(
+					"/journal/subscribe_article"
+				).setRedirect(
+					_getRedirect()
+				).setParameter(
+					"articleId", _article.getResourcePrimKey()
+				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "subscribe"));
 		};

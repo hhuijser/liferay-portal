@@ -30,7 +30,6 @@ import com.liferay.trash.TrashHelper;
 
 import java.util.List;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -80,7 +79,7 @@ public class JournalFolderHorizontalCard extends BaseHorizontalCard {
 
 	@Override
 	public String getHref() {
-		PortletURL rowURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
 			"groupId", _folder.getGroupId()
@@ -88,9 +87,7 @@ public class JournalFolderHorizontalCard extends BaseHorizontalCard {
 			"folderId", _folder.getFolderId()
 		).setParameter(
 			"displayStyle", _displayStyle
-		).build();
-
-		return rowURL.toString();
+		).buildString();
 	}
 
 	@Override

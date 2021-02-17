@@ -41,7 +41,6 @@ import java.util.Objects;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -115,17 +114,17 @@ public class AddDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 			uploadPortletRequest, "saveAndContinue");
 
 		if (saveAndContinue) {
-			PortletURL portletURL = PortletURLBuilder.createRenderURL(
-				_portal.getLiferayPortletResponse(actionResponse)
-			).setMVCPath(
-				"/edit_ddm_template.jsp"
-			).setRedirect(
-				ParamUtil.getString(uploadPortletRequest, "redirect")
-			).setParameter(
-				"ddmTemplateId", ddmTemplate.getTemplateId()
-			).build();
-
-			actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());
+			actionRequest.setAttribute(
+				WebKeys.REDIRECT,
+				PortletURLBuilder.createRenderURL(
+					_portal.getLiferayPortletResponse(actionResponse)
+				).setMVCPath(
+					"/edit_ddm_template.jsp"
+				).setRedirect(
+					ParamUtil.getString(uploadPortletRequest, "redirect")
+				).setParameter(
+					"ddmTemplateId", ddmTemplate.getTemplateId()
+				).buildString());
 		}
 	}
 

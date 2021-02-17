@@ -1450,15 +1450,13 @@ public class JournalDisplayContext {
 	}
 
 	private String _getFeedsURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setMVCPath(
 			"/view_feeds.jsp"
 		).setRedirect(
 			_themeDisplay.getURLCurrent()
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	private List<Long> _getFolderIds() {

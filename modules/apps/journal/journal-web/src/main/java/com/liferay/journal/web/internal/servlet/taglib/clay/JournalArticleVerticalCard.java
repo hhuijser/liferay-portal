@@ -48,7 +48,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -113,7 +112,7 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 				return StringPool.BLANK;
 			}
 
-			PortletURL editArticleURL = PortletURLBuilder.createRenderURL(
+			return PortletURLBuilder.createRenderURL(
 				_renderResponse
 			).setMVCPath(
 				"/edit_article.jsp"
@@ -131,9 +130,7 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 				"articleId", _article.getArticleId()
 			).setParameter(
 				"version", _article.getVersion()
-			).build();
-
-			return editArticleURL.toString();
+			).buildString();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

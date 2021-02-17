@@ -695,7 +695,7 @@ public class JournalContentDisplayContext {
 				assetRendererFactory.getAssetRenderer(
 					getArticle(), AssetRendererFactory.TYPE_LATEST_APPROVED);
 
-			PortletURL portletURL = PortletURLBuilder.create(
+			return PortletURLBuilder.create(
 				latestArticleAssetRenderer.getURLEdit(
 					PortalUtil.getLiferayPortletRequest(_portletRequest), null,
 					LiferayWindowState.NORMAL, _themeDisplay.getURLCurrent())
@@ -707,9 +707,7 @@ public class JournalContentDisplayContext {
 
 					return portletDisplay.getPortletName();
 				}
-			).build();
-
-			return portletURL.toString();
+			).buildString();
 		}
 		catch (Exception exception) {
 			_log.error("Unable to get edit URL", exception);
@@ -725,7 +723,7 @@ public class JournalContentDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				_portletRequest, JournalPortletKeys.JOURNAL,
 				PortletRequest.RENDER_PHASE)
@@ -737,9 +735,7 @@ public class JournalContentDisplayContext {
 			"ddmTemplateId", ddmTemplate.getTemplateId()
 		).setPortletMode(
 			PortletMode.VIEW
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	public String getURLViewHistory() {
@@ -749,7 +745,7 @@ public class JournalContentDisplayContext {
 			Group group = GroupLocalServiceUtil.fetchGroup(
 				article.getGroupId());
 
-			PortletURL portletURL = PortletURLBuilder.create(
+			return PortletURLBuilder.create(
 				PortalUtil.getControlPanelPortletURL(
 					_portletRequest, group, JournalPortletKeys.JOURNAL, 0, 0,
 					PortletRequest.RENDER_PHASE)
@@ -759,9 +755,7 @@ public class JournalContentDisplayContext {
 				"backURL", _themeDisplay.getURLCurrent()
 			).setParameter(
 				"articleId", article.getArticleId()
-			).build();
-
-			return portletURL.toString();
+			).buildString();
 		}
 		catch (Exception exception) {
 			_log.error("Unable to get view history URL", exception);

@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.user.associated.data.display.UADDisplay;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -41,7 +40,7 @@ public class JournalFeedUADDisplay extends BaseJournalFeedUADDisplay {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
 				liferayPortletRequest, JournalPortletKeys.JOURNAL,
 				PortletRequest.RENDER_PHASE)
@@ -53,9 +52,7 @@ public class JournalFeedUADDisplay extends BaseJournalFeedUADDisplay {
 			"groupId", journalFeed.getGroupId()
 		).setParameter(
 			"feedId", journalFeed.getFeedId()
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	@Reference

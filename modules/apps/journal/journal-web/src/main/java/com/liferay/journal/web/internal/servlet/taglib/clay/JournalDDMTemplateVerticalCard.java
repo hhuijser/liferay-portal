@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import java.util.Date;
 import java.util.List;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -93,7 +92,7 @@ public class JournalDDMTemplateVerticalCard extends BaseVerticalCard {
 				return StringPool.BLANK;
 			}
 
-			PortletURL editDDMTemplateURL = PortletURLBuilder.createRenderURL(
+			return PortletURLBuilder.createRenderURL(
 				_renderResponse
 			).setMVCPath(
 				"/edit_ddm_template.jsp"
@@ -101,9 +100,7 @@ public class JournalDDMTemplateVerticalCard extends BaseVerticalCard {
 				themeDisplay.getURLCurrent()
 			).setParameter(
 				"ddmTemplateId", _ddmTemplate.getTemplateId()
-			).build();
-
-			return editDDMTemplateURL.toString();
+			).buildString();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

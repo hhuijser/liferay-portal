@@ -190,6 +190,11 @@ public class PortletURLBuilder {
 		}
 
 		@Override
+		public String buildString() {
+			return _portletURL.toString();
+		}
+
+		@Override
 		public AfterActionNameStep setActionName(String value) {
 			setParameter(ActionRequest.ACTION_NAME, value);
 
@@ -389,6 +394,8 @@ public class PortletURLBuilder {
 	public interface BuildStep {
 
 		public PortletURL build();
+
+		public String buildString();
 
 	}
 

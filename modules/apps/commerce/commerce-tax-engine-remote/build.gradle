@@ -1,7 +1,5 @@
 dependencies {
 	compileInclude group: "org.apache.commons", name: "commons-lang3", version: "3.8.1"
-	compileInclude group: "org.apache.httpcomponents", name: "httpclient", version: "4.5.3"
-	compileInclude group: "org.apache.httpcomponents", name: "httpcore", version: "4.4.6"
 
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.10.3"
@@ -15,6 +13,7 @@ dependencies {
 	compileOnly project(":apps:commerce:commerce-product-api")
 	compileOnly project(":apps:commerce:commerce-tax-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
+	compileOnly project(":apps:petra:petra-apache-http-components")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":core:petra:petra-lang")
 

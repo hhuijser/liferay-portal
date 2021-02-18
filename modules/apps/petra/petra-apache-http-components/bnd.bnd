@@ -5,6 +5,7 @@ Export-Package:\
 	com.liferay.petra.apache.http.components,\
 	\
 	org.apache.http,\
+	org.apache.http.auth,\
 	org.apache.http.client,\
 	org.apache.http.client.methods,\
 	org.apache.http.client.utils,\

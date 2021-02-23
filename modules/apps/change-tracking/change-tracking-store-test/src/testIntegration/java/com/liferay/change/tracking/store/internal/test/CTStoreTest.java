@@ -35,6 +35,8 @@ import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.change.tracking.store.CTStoreFactory;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -1076,6 +1078,9 @@ public class CTStoreTest {
 			Assert.fail();
 		}
 		catch (NoSuchFileException noSuchFileException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFileException, noSuchFileException);
+			}
 		}
 
 		_assertMethods(readMethod);
@@ -1105,6 +1110,9 @@ public class CTStoreTest {
 					Assert.fail();
 				}
 				catch (NoSuchFileException noSuchFileException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(noSuchFileException, noSuchFileException);
+					}
 				}
 
 				_assertMethods(readMethod);
@@ -1201,6 +1209,9 @@ public class CTStoreTest {
 			Assert.fail();
 		}
 		catch (NoSuchFileException noSuchFileException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFileException, noSuchFileException);
+			}
 		}
 
 		_assertMethods(readMethod);
@@ -1211,6 +1222,9 @@ public class CTStoreTest {
 			Assert.fail();
 		}
 		catch (NoSuchFileException noSuchFileException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFileException, noSuchFileException);
+			}
 		}
 	}
 
@@ -1278,6 +1292,8 @@ public class CTStoreTest {
 
 	private static final String _VERSION_3 = "3.0";
 
+	private static final Log _log = LogFactoryUtil.getLog(CTStoreTest.class);
+
 	private static long _companyId;
 
 	@Inject
@@ -1295,41 +1311,6 @@ public class CTStoreTest {
 	private static Store _fileSystemStore;
 
 	private static final List<Method> _methods = new ArrayList<>();
-
-	static {
-		try {
-			_ADD_FILE_METHOD = Store.class.getMethod(
-				"addFile", long.class, long.class, String.class, String.class,
-				InputStream.class);
-
-			_DELETE_DIRECTORY_METHOD = Store.class.getMethod(
-				"deleteDirectory", long.class, long.class, String.class);
-
-			_DELETE_FILE_METHOD = Store.class.getMethod(
-				"deleteFile", long.class, long.class, String.class,
-				String.class);
-
-			_GET_FILE_AS_STREAM_METHOD = Store.class.getMethod(
-				"getFileAsStream", long.class, long.class, String.class,
-				String.class);
-
-			_GET_FILE_NAMES = Store.class.getMethod(
-				"getFileNames", long.class, long.class, String.class);
-
-			_GET_FILE_SIZE = Store.class.getMethod(
-				"getFileSize", long.class, long.class, String.class,
-				String.class);
-
-			_GET_FILE_VERSIONS = Store.class.getMethod(
-				"getFileVersions", long.class, long.class, String.class);
-
-			_HAS_FILE_METHOD = Store.class.getMethod(
-				"hasFile", long.class, long.class, String.class, String.class);
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new ExceptionInInitializerError(noSuchMethodException);
-		}
-	}
 
 	@DeleteAfterTestRun
 	private final CTCollection[] _ctCollections = new CTCollection[4];
@@ -1368,6 +1349,41 @@ public class CTStoreTest {
 		public void assertFile(String fileName, byte[] fileContent)
 			throws Exception;
 
+	}
+
+	static {
+		try {
+			_ADD_FILE_METHOD = Store.class.getMethod(
+				"addFile", long.class, long.class, String.class, String.class,
+				InputStream.class);
+
+			_DELETE_DIRECTORY_METHOD = Store.class.getMethod(
+				"deleteDirectory", long.class, long.class, String.class);
+
+			_DELETE_FILE_METHOD = Store.class.getMethod(
+				"deleteFile", long.class, long.class, String.class,
+				String.class);
+
+			_GET_FILE_AS_STREAM_METHOD = Store.class.getMethod(
+				"getFileAsStream", long.class, long.class, String.class,
+				String.class);
+
+			_GET_FILE_NAMES = Store.class.getMethod(
+				"getFileNames", long.class, long.class, String.class);
+
+			_GET_FILE_SIZE = Store.class.getMethod(
+				"getFileSize", long.class, long.class, String.class,
+				String.class);
+
+			_GET_FILE_VERSIONS = Store.class.getMethod(
+				"getFileVersions", long.class, long.class, String.class);
+
+			_HAS_FILE_METHOD = Store.class.getMethod(
+				"hasFile", long.class, long.class, String.class, String.class);
+		}
+		catch (NoSuchMethodException noSuchMethodException) {
+			throw new ExceptionInInitializerError(noSuchMethodException);
+		}
 	}
 
 }

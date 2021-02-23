@@ -40,6 +40,8 @@ import com.liferay.expando.kernel.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.role.RoleConstants;
@@ -341,6 +343,9 @@ public class DLFileVersionTest {
 				"Test Folder");
 		}
 		catch (NoSuchFolderException noSuchFolderException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFolderException, noSuchFolderException);
+			}
 		}
 
 		ServiceContext serviceContext =
@@ -435,16 +440,8 @@ public class DLFileVersionTest {
 
 	private static final String _UPDATE_VALUE = "Update Value";
 
-	static {
-		for (int i = 0; i < _DATA_SIZE_1; i++) {
-			_DATA_VERSION_1[i] = (byte)i;
-			_DATA_VERSION_2[i] = (byte)(i + 1);
-		}
-
-		for (int i = 0; i < _DATA_SIZE_2; i++) {
-			_DATA_VERSION_3[i] = (byte)i;
-		}
-	}
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLFileVersionTest.class);
 
 	@DeleteAfterTestRun
 	private DLFileEntryType _dlFileEntryType;
@@ -456,5 +453,16 @@ public class DLFileVersionTest {
 
 	private Folder _parentFolder;
 	private ServiceContext _serviceContext;
+
+	static {
+		for (int i = 0; i < _DATA_SIZE_1; i++) {
+			_DATA_VERSION_1[i] = (byte)i;
+			_DATA_VERSION_2[i] = (byte)(i + 1);
+		}
+
+		for (int i = 0; i < _DATA_SIZE_2; i++) {
+			_DATA_VERSION_3[i] = (byte)i;
+		}
+	}
 
 }

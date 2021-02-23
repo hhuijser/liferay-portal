@@ -32,6 +32,8 @@ import com.liferay.portal.kernel.exception.NoSuchAccountException;
 import com.liferay.portal.kernel.exception.NoSuchPasswordPolicyException;
 import com.liferay.portal.kernel.exception.NoSuchVirtualHostException;
 import com.liferay.portal.kernel.exception.RequiredCompanyException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Account;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.Company;
@@ -933,6 +935,10 @@ public class CompanyLocalServiceTest {
 				Assert.assertFalse(expectFailure);
 			}
 			catch (AccountNameException accountNameException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(accountNameException, accountNameException);
+				}
+
 				Assert.assertTrue(expectFailure);
 			}
 		}
@@ -975,6 +981,10 @@ public class CompanyLocalServiceTest {
 			}
 		}
 		catch (CompanyMxException companyMxException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(companyMxException, companyMxException);
+			}
+
 			Assert.assertFalse(valid);
 			Assert.assertTrue(mailMxUpdate);
 		}
@@ -1000,6 +1010,12 @@ public class CompanyLocalServiceTest {
 				Assert.assertFalse(expectFailure);
 			}
 			catch (CompanyVirtualHostException companyVirtualHostException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						companyVirtualHostException,
+						companyVirtualHostException);
+				}
+
 				Assert.assertTrue(expectFailure);
 			}
 		}
@@ -1046,7 +1062,15 @@ public class CompanyLocalServiceTest {
 		return list;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CompanyLocalServiceTest.class);
+
 	private static final TransactionConfig _transactionConfig;
+
+	private long _companyId;
+	private MockServletContext _mockServletContext;
+	private final List<ServiceRegistration<?>> _serviceRegistrations =
+		new CopyOnWriteArrayList<>();
 
 	static {
 		TransactionConfig.Builder builder = new TransactionConfig.Builder();
@@ -1057,10 +1081,5 @@ public class CompanyLocalServiceTest {
 
 		_transactionConfig = builder.build();
 	}
-
-	private long _companyId;
-	private MockServletContext _mockServletContext;
-	private final List<ServiceRegistration<?>> _serviceRegistrations =
-		new CopyOnWriteArrayList<>();
 
 }

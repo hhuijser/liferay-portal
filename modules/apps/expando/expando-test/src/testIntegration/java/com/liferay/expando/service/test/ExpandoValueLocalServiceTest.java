@@ -25,6 +25,8 @@ import com.liferay.expando.kernel.model.ExpandoValue;
 import com.liferay.expando.kernel.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.expando.kernel.service.ExpandoRowLocalServiceUtil;
 import com.liferay.expando.kernel.service.ExpandoValueLocalServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -160,6 +162,9 @@ public class ExpandoValueLocalServiceTest {
 			Assert.fail();
 		}
 		catch (ValueDataException valueDataException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(valueDataException, valueDataException);
+			}
 		}
 	}
 
@@ -286,5 +291,8 @@ public class ExpandoValueLocalServiceTest {
 
 	private Locale _frLocale;
 	private Locale _ptLocale;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ExpandoValueLocalServiceTest.class);
 
 }

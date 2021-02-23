@@ -56,6 +56,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.test.util.ConfigurationTestUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Organization;
@@ -1449,6 +1451,10 @@ public class WorkflowTaskManagerImplTest {
 				_adminUser.getCompanyId(), _JOIN_XOR, 1);
 		}
 		catch (WorkflowException workflowException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(workflowException, workflowException);
+			}
+
 			String content = _read("join-xor-definition.xml");
 
 			_workflowDefinitionManager.deployWorkflowDefinition(
@@ -1480,6 +1486,10 @@ public class WorkflowTaskManagerImplTest {
 				_adminUser.getCompanyId(), _SCRIPTED_SINGLE_APPROVER, 1);
 		}
 		catch (WorkflowException workflowException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(workflowException, workflowException);
+			}
+
 			String content = _read(
 				"single-approver-definition-scripted-assignment.xml");
 
@@ -1499,6 +1509,10 @@ public class WorkflowTaskManagerImplTest {
 				_adminUser.getCompanyId(), _SITE_MEMBER_SINGLE_APPROVER, 1);
 		}
 		catch (WorkflowException workflowException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(workflowException, workflowException);
+			}
+
 			String content = _read(
 				"single-approver-definition-site-member.xml");
 
@@ -1898,5 +1912,8 @@ public class WorkflowTaskManagerImplTest {
 
 	@Inject
 	private WorkflowTaskManager _workflowTaskManager;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		WorkflowTaskManagerImplTest.class);
 
 }

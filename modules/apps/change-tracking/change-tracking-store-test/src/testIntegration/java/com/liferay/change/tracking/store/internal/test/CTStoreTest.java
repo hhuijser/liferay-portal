@@ -35,6 +35,8 @@ import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.change.tracking.store.CTStoreFactory;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -1076,6 +1078,9 @@ public class CTStoreTest {
 			Assert.fail();
 		}
 		catch (NoSuchFileException noSuchFileException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFileException, noSuchFileException);
+			}
 		}
 
 		_assertMethods(readMethod);
@@ -1105,6 +1110,9 @@ public class CTStoreTest {
 					Assert.fail();
 				}
 				catch (NoSuchFileException noSuchFileException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(noSuchFileException, noSuchFileException);
+					}
 				}
 
 				_assertMethods(readMethod);
@@ -1201,6 +1209,9 @@ public class CTStoreTest {
 			Assert.fail();
 		}
 		catch (NoSuchFileException noSuchFileException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFileException, noSuchFileException);
+			}
 		}
 
 		_assertMethods(readMethod);
@@ -1211,6 +1222,9 @@ public class CTStoreTest {
 			Assert.fail();
 		}
 		catch (NoSuchFileException noSuchFileException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFileException, noSuchFileException);
+			}
 		}
 	}
 
@@ -1369,5 +1383,7 @@ public class CTStoreTest {
 			throws Exception;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(CTStoreTest.class);
 
 }

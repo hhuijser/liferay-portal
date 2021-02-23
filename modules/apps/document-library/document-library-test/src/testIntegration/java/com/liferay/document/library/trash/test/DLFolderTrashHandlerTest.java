@@ -21,6 +21,8 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppServiceUtil;
 import com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLTrashServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.ClassedModel;
 import com.liferay.portal.kernel.model.Group;
@@ -155,6 +157,10 @@ public class DLFolderTrashHandlerTest
 		catch (com.liferay.trash.kernel.exception.TrashEntryException
 					trashEntryException) {
 
+			if (_log.isDebugEnabled()) {
+				_log.debug(trashEntryException, trashEntryException);
+			}
+
 			throw new TrashEntryException();
 		}
 	}
@@ -167,6 +173,10 @@ public class DLFolderTrashHandlerTest
 		}
 		catch (com.liferay.trash.kernel.exception.RestoreEntryException
 					restoreEntryException) {
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(restoreEntryException, restoreEntryException);
+			}
 
 			throw new RestoreEntryException();
 		}
@@ -301,5 +311,8 @@ public class DLFolderTrashHandlerTest
 		new DefaultWhenIsAssetable();
 	private final WhenIsIndexableBaseModel _whenIsIndexableBaseModel =
 		new DefaultWhenIsIndexableBaseModel();
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLFolderTrashHandlerTest.class);
 
 }

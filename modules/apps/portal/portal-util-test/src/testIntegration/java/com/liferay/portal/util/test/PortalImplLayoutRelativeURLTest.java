@@ -17,6 +17,8 @@ package com.liferay.portal.util.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.service.VirtualHostLocalService;
@@ -112,6 +114,9 @@ public class PortalImplLayoutRelativeURLTest extends BasePortalImplURLTestCase {
 			Assert.fail();
 		}
 		catch (NoSuchLayoutException noSuchLayoutException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchLayoutException, noSuchLayoutException);
+			}
 		}
 	}
 
@@ -120,5 +125,8 @@ public class PortalImplLayoutRelativeURLTest extends BasePortalImplURLTestCase {
 
 	@Inject
 	private VirtualHostLocalService _virtualHostLocalService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortalImplLayoutRelativeURLTest.class);
 
 }

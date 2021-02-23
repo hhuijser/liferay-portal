@@ -18,6 +18,8 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.security.ldap.LDAPSettingsUtil;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
@@ -349,6 +351,10 @@ public class LDAPPropertiesVerifyProcessTest extends BaseVerifyProcessTestCase {
 				serviceReferences[0]);
 		}
 		catch (InvalidSyntaxException invalidSyntaxException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(invalidSyntaxException, invalidSyntaxException);
+			}
+
 			throw new IllegalStateException("Unable to get verify process");
 		}
 	}
@@ -609,5 +615,8 @@ public class LDAPPropertiesVerifyProcessTest extends BaseVerifyProcessTestCase {
 	private static ServiceComponentRuntime _serviceComponentRuntime;
 
 	private boolean _configureProperties = true;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LDAPPropertiesVerifyProcessTest.class);
 
 }

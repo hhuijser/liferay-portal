@@ -27,6 +27,8 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.SystemEvent;
 import com.liferay.portal.kernel.model.SystemEventConstants;
@@ -208,6 +210,9 @@ public class SystemEventTest {
 			GroupLocalServiceUtil.deleteGroup(_stagingGroup);
 		}
 		catch (NoSuchGroupException noSuchGroupException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchGroupException, noSuchGroupException);
+			}
 		}
 	}
 
@@ -302,5 +307,8 @@ public class SystemEventTest {
 
 	private int _serverPort;
 	private Group _stagingGroup;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SystemEventTest.class);
 
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.dao.orm.hibernate;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.io.Serializable;
@@ -111,6 +113,10 @@ public class LongType implements CompositeUserType, Serializable {
 							rs, names[0], session)));
 			}
 			catch (SQLException sqlException2) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(sqlException2, sqlException2);
+				}
+
 				throw sqlException1;
 			}
 		}
@@ -151,5 +157,7 @@ public class LongType implements CompositeUserType, Serializable {
 	@Override
 	public void setPropertyValue(Object component, int property, Object value) {
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(LongType.class);
 
 }

@@ -14,6 +14,9 @@
 
 package com.liferay.poshi.core.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.math.BigDecimal;
 
 import java.text.DateFormat;
@@ -177,6 +180,10 @@ public class GetterUtil {
 				return new BigDecimal(valueString.trim());
 			}
 			catch (NumberFormatException numberFormatException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(numberFormatException, numberFormatException);
+				}
+
 				return defaultValue;
 			}
 		}
@@ -271,6 +278,9 @@ public class GetterUtil {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return defaultValue;
@@ -282,6 +292,9 @@ public class GetterUtil {
 				return Double.parseDouble(value.trim());
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -297,6 +310,9 @@ public class GetterUtil {
 			return Float.parseFloat(value.trim());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return defaultValue;
@@ -1106,5 +1122,7 @@ public class GetterUtil {
 
 		return (short)i;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(GetterUtil.class);
 
 }

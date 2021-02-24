@@ -15,6 +15,8 @@
 package com.liferay.portal.remote.soap.extender.test;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.List;
 
@@ -61,6 +63,10 @@ public class JaxWsApiHandlerBundleActivator implements BundleActivator {
 			binding.setHandlerChain(handlers);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			cleanUp(bundleContext);
 		}
 	}
@@ -75,12 +81,18 @@ public class JaxWsApiHandlerBundleActivator implements BundleActivator {
 			_configurationAdminBundleActivator.stop(bundleContext);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (_endpoint != null) {
 			_endpoint.stop();
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JaxWsApiHandlerBundleActivator.class);
 
 	private ConfigurationAdminBundleActivator
 		_configurationAdminBundleActivator;

@@ -136,18 +136,6 @@ public class MailboxUtil {
 
 	}
 
-	static {
-		if (_INTRABAND_MAILBOX_REAPER_THREAD_ENABLED) {
-			Thread thread = new OverdueMailReaperThread(
-				MailboxUtil.class.getName());
-
-			thread.setContextClassLoader(MailboxUtil.class.getClassLoader());
-			thread.setDaemon(true);
-
-			thread.start();
-		}
-	}
-
 	private static class ReceiptStub implements Delayed {
 
 		@Override
@@ -200,6 +188,18 @@ public class MailboxUtil {
 		private final long _expireTime;
 		private final long _receipt;
 
+	}
+
+	static {
+		if (_INTRABAND_MAILBOX_REAPER_THREAD_ENABLED) {
+			Thread thread = new OverdueMailReaperThread(
+				MailboxUtil.class.getName());
+
+			thread.setContextClassLoader(MailboxUtil.class.getClassLoader());
+			thread.setDaemon(true);
+
+			thread.start();
+		}
 	}
 
 }

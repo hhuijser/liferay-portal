@@ -100,6 +100,17 @@ public class AutoBatchPreparedStatementUtil {
 			PortalExecutorManager.class, AutoBatchPreparedStatementUtil.class,
 			"_portalExecutorManager", true);
 
+	static {
+		try {
+			_addBatchMethod = PreparedStatement.class.getMethod("addBatch");
+			_closeMethod = PreparedStatement.class.getMethod("close");
+			_executeBatch = PreparedStatement.class.getMethod("executeBatch");
+		}
+		catch (NoSuchMethodException noSuchMethodException) {
+			throw new ExceptionInInitializerError(noSuchMethodException);
+		}
+	}
+
 	private static class BatchInvocationHandler implements InvocationHandler {
 
 		@Override
@@ -390,17 +401,6 @@ public class AutoBatchPreparedStatementUtil {
 
 		private final PreparedStatement _preparedStatement;
 
-	}
-
-	static {
-		try {
-			_addBatchMethod = PreparedStatement.class.getMethod("addBatch");
-			_closeMethod = PreparedStatement.class.getMethod("close");
-			_executeBatch = PreparedStatement.class.getMethod("executeBatch");
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new ExceptionInInitializerError(noSuchMethodException);
-		}
 	}
 
 }

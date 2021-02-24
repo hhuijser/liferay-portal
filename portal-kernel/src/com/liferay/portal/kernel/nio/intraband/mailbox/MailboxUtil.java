@@ -104,6 +104,8 @@ public class MailboxUtil {
 		GetterUtil.getLong(
 			PropsUtil.get(PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE));
 
+	private static final Log _log = LogFactoryUtil.getLog(MailboxUtil.class);
+
 	private static final Map<Long, ByteBuffer> _mailMap =
 		new ConcurrentHashMap<>();
 	private static final BlockingQueue<ReceiptStub> _overdueMailQueue =
@@ -132,6 +134,18 @@ public class MailboxUtil {
 			super(name);
 		}
 
+	}
+
+	static {
+		if (_INTRABAND_MAILBOX_REAPER_THREAD_ENABLED) {
+			Thread thread = new OverdueMailReaperThread(
+				MailboxUtil.class.getName());
+
+			thread.setContextClassLoader(MailboxUtil.class.getClassLoader());
+			thread.setDaemon(true);
+
+			thread.start();
+		}
 	}
 
 	private static class ReceiptStub implements Delayed {
@@ -187,19 +201,5 @@ public class MailboxUtil {
 		private final long _receipt;
 
 	}
-
-	static {
-		if (_INTRABAND_MAILBOX_REAPER_THREAD_ENABLED) {
-			Thread thread = new OverdueMailReaperThread(
-				MailboxUtil.class.getName());
-
-			thread.setContextClassLoader(MailboxUtil.class.getClassLoader());
-			thread.setDaemon(true);
-
-			thread.start();
-		}
-	}
-
-	private static final Log _log = LogFactoryUtil.getLog(MailboxUtil.class);
 
 }

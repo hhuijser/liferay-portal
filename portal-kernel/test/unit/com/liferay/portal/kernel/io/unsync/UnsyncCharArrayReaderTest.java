@@ -265,13 +265,13 @@ public class UnsyncCharArrayReaderTest {
 
 	private static final int _SIZE = 10;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncCharArrayReaderTest.class);
+
 	static {
 		for (int i = 0; i < _SIZE; i++) {
 			_BUFFER[i] = (char)('a' + i);
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UnsyncCharArrayReaderTest.class);
 
 }

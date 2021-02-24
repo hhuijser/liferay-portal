@@ -346,9 +346,10 @@ public class ResourceActionLocalServiceImpl
 		return StringBundler.concat(name, StringPool.POUND, actionId);
 	}
 
-	private static final Map<String, ResourceAction> _resourceActions =
-		new ConcurrentHashMap<>();
 	private static final Log _log = LogFactoryUtil.getLog(
 		ResourceActionLocalServiceImpl.class);
+
+	private static final Map<String, ResourceAction> _resourceActions =
+		new ConcurrentHashMap<>();
 
 }

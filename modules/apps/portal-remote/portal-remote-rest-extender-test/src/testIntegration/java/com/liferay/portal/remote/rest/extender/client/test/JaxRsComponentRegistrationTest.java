@@ -236,12 +236,12 @@ public class JaxRsComponentRegistrationTest {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JaxRsComponentRegistrationTest.class);
+
 	private BundleContext _bundleContext;
 	private Configuration _cxfConfiguration;
 	private Configuration _restConfiguration;
 	private ServiceRegistration<Application> _serviceRegistration;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JaxRsComponentRegistrationTest.class);
 
 }

@@ -641,6 +641,9 @@ public class PortletSessionImplTest {
 
 	private static final String _PORTLET_NAME = "portletName";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletSessionImplTest.class);
+
 	private static final PortletContext _portletContext =
 		(PortletContext)ProxyUtil.newProxyInstance(
 			PortletContext.class.getClassLoader(),
@@ -698,8 +701,5 @@ public class PortletSessionImplTest {
 		private final String _name;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PortletSessionImplTest.class);
 
 }

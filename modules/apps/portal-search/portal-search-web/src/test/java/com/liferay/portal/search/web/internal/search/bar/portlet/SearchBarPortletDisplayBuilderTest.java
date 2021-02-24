@@ -348,6 +348,9 @@ public class SearchBarPortletDisplayBuilderTest {
 		);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SearchBarPortletDisplayBuilderTest.class);
+
 	@Mock
 	private Group _group;
 
@@ -365,8 +368,5 @@ public class SearchBarPortletDisplayBuilderTest {
 
 	@Mock
 	private ThemeDisplay _themeDisplay;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SearchBarPortletDisplayBuilderTest.class);
 
 }

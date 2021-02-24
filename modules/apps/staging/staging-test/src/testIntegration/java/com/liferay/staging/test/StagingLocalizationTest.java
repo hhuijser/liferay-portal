@@ -326,6 +326,9 @@ public class StagingLocalizationTest {
 		return nameMap;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		StagingLocalizationTest.class);
+
 	private static Set<Locale> _availableLocales;
 	private static Locale _defaultLocale;
 
@@ -337,8 +340,5 @@ public class StagingLocalizationTest {
 
 	@DeleteAfterTestRun
 	private Group _targetGroup;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		StagingLocalizationTest.class);
 
 }

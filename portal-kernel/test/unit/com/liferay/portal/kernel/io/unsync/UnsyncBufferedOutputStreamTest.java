@@ -122,13 +122,13 @@ public class UnsyncBufferedOutputStreamTest {
 
 	private static final int _SIZE = 10;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncBufferedOutputStreamTest.class);
+
 	static {
 		for (int i = 0; i < _SIZE; i++) {
 			_BUFFER[i] = (byte)i;
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UnsyncBufferedOutputStreamTest.class);
 
 }

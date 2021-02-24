@@ -136,6 +136,9 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLAppDLStorageQuotaLocalServiceTest.class);
+
 	@Inject
 	private DLAppLocalService _dlAppLocalService;
 
@@ -144,8 +147,5 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 
 	@DeleteAfterTestRun
 	private Group _group;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DLAppDLStorageQuotaLocalServiceTest.class);
 
 }

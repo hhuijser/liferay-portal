@@ -950,6 +950,9 @@ public abstract class BaseDDMTestCase extends PowerMockito {
 
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseDDMTestCase.class);
+
 	@Mock
 	private ClassLoader _classLoader;
 
@@ -964,8 +967,5 @@ public abstract class BaseDDMTestCase extends PowerMockito {
 
 	@Mock
 	private ResourceBundle _resourceBundle;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseDDMTestCase.class);
 
 }

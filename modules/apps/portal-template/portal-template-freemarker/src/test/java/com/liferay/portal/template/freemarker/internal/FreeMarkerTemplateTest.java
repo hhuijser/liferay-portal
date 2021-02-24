@@ -445,6 +445,9 @@ public class FreeMarkerTemplateTest {
 
 	private static final String _WRONG_TEMPLATE_ID = "WRONG_TEMPLATE_ID";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		FreeMarkerTemplateTest.class);
+
 	private static FreeMarkerManager _freeMarkerManager;
 	private static FreeMarkerTemplateResourceLoader
 		_freeMarkerTemplateResourceLoader;
@@ -533,8 +536,5 @@ public class FreeMarkerTemplateTest {
 		private String _templateId;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		FreeMarkerTemplateTest.class);
 
 }

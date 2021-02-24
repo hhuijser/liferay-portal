@@ -84,6 +84,9 @@ public class SaveFormInstanceMVCResourceCommand
 	@Reference
 	protected SaveFormInstanceMVCCommandHelper saveFormInstanceMVCCommandHelper;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SaveFormInstanceMVCResourceCommand.class);
+
 	private static final TransactionConfig _transactionConfig;
 
 	static {
@@ -94,8 +97,5 @@ public class SaveFormInstanceMVCResourceCommand
 
 		_transactionConfig = builder.build();
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SaveFormInstanceMVCResourceCommand.class);
 
 }

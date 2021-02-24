@@ -563,10 +563,11 @@ public class AuthVerifierTest {
 				properties));
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AuthVerifierTest.class);
+
 	private static BundleContext _bundleContext;
 	private static final List<ServiceRegistration<?>> _serviceRegistrations =
 		new ArrayList<>();
-	private static final Log _log = LogFactoryUtil.getLog(
-		AuthVerifierTest.class);
 
 }

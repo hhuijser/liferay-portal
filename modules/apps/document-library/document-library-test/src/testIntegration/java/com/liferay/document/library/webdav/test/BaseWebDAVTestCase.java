@@ -345,6 +345,9 @@ public class BaseWebDAVTestCase {
 
 	private static final String _SERVLET_PATH = "";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseWebDAVTestCase.class);
+
 	@Inject
 	private static WebDAVStorage _webDAVStorage;
 
@@ -371,8 +374,5 @@ public class BaseWebDAVTestCase {
 
 		_PROPFIND_XML = sb.toString();
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseWebDAVTestCase.class);
 
 }

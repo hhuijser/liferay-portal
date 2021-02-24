@@ -201,11 +201,11 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 	protected void prepareProps(Map<String, Object> props) {
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(ComponentTag.class);
+
 	private String _componentId;
 	private String _module;
 	private Map<String, Object> _props = Collections.emptyMap();
 	private boolean _setServletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(ComponentTag.class);
 
 }

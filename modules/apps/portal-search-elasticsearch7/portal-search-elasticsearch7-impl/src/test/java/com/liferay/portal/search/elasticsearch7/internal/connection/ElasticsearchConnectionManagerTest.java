@@ -745,6 +745,9 @@ public class ElasticsearchConnectionManagerTest {
 
 	private static final String _REMOTE_3_CONNECTION_ID = "remote 3";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ElasticsearchConnectionManagerTest.class);
+
 	@Mock
 	private ElasticsearchConnection _defaultRemoteElasticsearchConnection;
 
@@ -771,8 +774,5 @@ public class ElasticsearchConnectionManagerTest {
 
 	@Mock
 	private ElasticsearchConnection _sidecarElasticsearchConnection;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ElasticsearchConnectionManagerTest.class);
 
 }

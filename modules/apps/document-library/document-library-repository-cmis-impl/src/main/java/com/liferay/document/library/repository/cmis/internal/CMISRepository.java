@@ -2175,6 +2175,9 @@ public class CMISRepository extends BaseCmisRepository {
 				login = _cmisRepositoryHandler.getLogin();
 			}
 			catch (Exception exception2) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception2, exception2);
+				}
 			}
 
 			throw new PrincipalException.MustBeAuthenticated(login);

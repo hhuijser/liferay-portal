@@ -14,6 +14,9 @@
 
 package com.liferay.portal.servlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
@@ -67,6 +70,10 @@ public class SharedSessionServletRequest extends HttpServletRequestWrapper {
 			_portalSession.isNew();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
+
 			_portalSession = super.getSession(true);
 		}
 	}
@@ -79,5 +86,8 @@ public class SharedSessionServletRequest extends HttpServletRequestWrapper {
 
 	private HttpSession _portalSession;
 	private final boolean _shared;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SharedSessionServletRequest.class);
 
 }

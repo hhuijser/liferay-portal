@@ -14,6 +14,8 @@
 
 package com.liferay.portlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
@@ -179,6 +181,11 @@ public class PortletSessionAttributeMapTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		try {
@@ -187,6 +194,11 @@ public class PortletSessionAttributeMapTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		try {
@@ -195,6 +207,11 @@ public class PortletSessionAttributeMapTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		try {
@@ -203,6 +220,11 @@ public class PortletSessionAttributeMapTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		Set<String> keySet = portletSessionAttributeMap.keySet();
@@ -213,6 +235,11 @@ public class PortletSessionAttributeMapTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		Set<Map.Entry<String, Object>> entrySet =
@@ -224,6 +251,11 @@ public class PortletSessionAttributeMapTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 	}
 
@@ -427,5 +459,8 @@ public class PortletSessionAttributeMapTest {
 	private static final Object _value5 = new Object();
 
 	private final HttpSession _session = new MockHttpSession();
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletSessionAttributeMapTest.class);
 
 }

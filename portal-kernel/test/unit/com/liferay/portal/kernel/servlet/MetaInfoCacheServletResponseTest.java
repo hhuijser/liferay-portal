@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.servlet;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -799,6 +801,9 @@ public class MetaInfoCacheServletResponseTest {
 			metaInfoCacheServletResponse.setBufferSize(2048);
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -1140,6 +1145,9 @@ public class MetaInfoCacheServletResponseTest {
 			metaInfoCacheServletResponse.reset();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -1179,6 +1187,9 @@ public class MetaInfoCacheServletResponseTest {
 			metaInfoCacheServletResponse.resetBuffer();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -1256,6 +1267,9 @@ public class MetaInfoCacheServletResponseTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 
 		// Set status after commit
@@ -1271,6 +1285,9 @@ public class MetaInfoCacheServletResponseTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -1335,6 +1352,9 @@ public class MetaInfoCacheServletResponseTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -1795,5 +1815,8 @@ public class MetaInfoCacheServletResponseTest {
 		Assert.assertEquals(
 			sb.toString(), metaInfoCacheServletResponse.toString());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MetaInfoCacheServletResponseTest.class);
 
 }

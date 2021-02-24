@@ -17,6 +17,8 @@ package com.liferay.portal.remote.rest.extender.client.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -199,18 +201,27 @@ public class JaxRsComponentRegistrationTest {
 			_serviceRegistration.unregister();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		try {
 			_restConfiguration.delete();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		try {
 			_cxfConfiguration.delete();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		if (!countDownLatch.await(10, TimeUnit.MINUTES)) {
@@ -222,5 +233,8 @@ public class JaxRsComponentRegistrationTest {
 	private Configuration _cxfConfiguration;
 	private Configuration _restConfiguration;
 	private ServiceRegistration<Application> _serviceRegistration;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JaxRsComponentRegistrationTest.class);
 
 }

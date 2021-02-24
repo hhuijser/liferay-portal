@@ -17,6 +17,8 @@ package com.liferay.portal.jsonwebservice;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.jsonwebservice.action.JSONWebServiceInvokerAction;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -198,6 +200,9 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 			Assert.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		map.clear();
@@ -981,5 +986,8 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 
 		return new JSONWebServiceInvokerAction(mockHttpServletRequest);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSONWebServiceInvokerTest.class);
 
 }

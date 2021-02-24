@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.io.unsync;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -122,6 +125,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -130,6 +136,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -138,6 +147,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -146,6 +158,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -154,6 +169,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -162,6 +180,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -170,6 +191,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		unsyncBufferedReader.close();
@@ -192,6 +216,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -199,6 +226,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -223,6 +253,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		Assert.assertEquals(-1, unsyncBufferedReader.markLimitIndex);
@@ -275,6 +308,9 @@ public class UnsyncBufferedReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		// Shuffle
@@ -421,6 +457,9 @@ public class UnsyncBufferedReaderTest {
 			unsyncBufferedReader.skip(-1);
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		// Load data into buffer
@@ -488,5 +527,8 @@ public class UnsyncBufferedReaderTest {
 			_BUFFER[i] = (char)((i % 26) + 'a');
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncBufferedReaderTest.class);
 
 }

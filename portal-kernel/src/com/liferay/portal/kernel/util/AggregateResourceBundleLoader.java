@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.util;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,9 @@ public class AggregateResourceBundleLoader implements ResourceBundleLoader {
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 
@@ -83,5 +88,8 @@ public class AggregateResourceBundleLoader implements ResourceBundleLoader {
 	}
 
 	private final ResourceBundleLoader[] _resourceBundleLoaders;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AggregateResourceBundleLoader.class);
 
 }

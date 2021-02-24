@@ -14,6 +14,9 @@
 
 package com.liferay.poshi.core.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.StringReader;
@@ -150,6 +153,10 @@ public class Dom4JUtil {
 			saxReader.read(url);
 		}
 		catch (DocumentException documentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(documentException, documentException);
+			}
+
 			return false;
 		}
 
@@ -262,5 +269,7 @@ public class Dom4JUtil {
 
 		return nodeList;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(Dom4JUtil.class);
 
 }

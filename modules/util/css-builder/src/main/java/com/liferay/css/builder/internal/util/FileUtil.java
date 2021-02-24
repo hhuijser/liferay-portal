@@ -15,6 +15,8 @@
 package com.liferay.css.builder.internal.util;
 
 import com.liferay.css.builder.CSSBuilder;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -139,6 +141,10 @@ public class FileUtil {
 			return fileTime.toMillis();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			return -1;
 		}
 	}
@@ -196,5 +202,7 @@ public class FileUtil {
 
 		return pathMatchers;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(FileUtil.class);
 
 }

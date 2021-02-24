@@ -14,6 +14,9 @@
 
 package com.liferay.jenkins.results.parser;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.File;
 
 import org.json.JSONObject;
@@ -42,6 +45,10 @@ public class LocalGitRepositoryTest extends GitRepositoryTest {
 			}
 		}
 		catch (RuntimeException runtimeException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(runtimeException, runtimeException);
+			}
+
 			errorCollector.addError(
 				new Throwable(
 					"The repository directory should be " +
@@ -117,5 +124,8 @@ public class LocalGitRepositoryTest extends GitRepositoryTest {
 		return GitRepositoryFactory.getLocalGitRepository(
 			NAME_REPOSITORY, NAME_REPOSITORY_UPSTREAM_BRANCH);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LocalGitRepositoryTest.class);
 
 }

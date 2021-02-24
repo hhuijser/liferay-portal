@@ -14,6 +14,8 @@
 
 package com.liferay.portal.fabric.status;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.lang.management.PlatformManagedObject;
@@ -41,6 +43,9 @@ public class RemoteFabricStatusTest extends BaseFabricStatusTestCase {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -49,5 +54,8 @@ public class RemoteFabricStatusTest extends BaseFabricStatusTestCase {
 		doTestObjectNames(
 			new RemoteFabricStatus(LocalFabricStatus.processCallableExecutor));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		RemoteFabricStatusTest.class);
 
 }

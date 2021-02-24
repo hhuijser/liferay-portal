@@ -46,6 +46,8 @@ package com.liferay.portal.kernel.cal;
 
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.Serializable;
 
@@ -136,6 +138,11 @@ public class DayAndPosition implements Cloneable, Serializable {
 			return other;
 		}
 		catch (CloneNotSupportedException cloneNotSupportedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					cloneNotSupportedException, cloneNotSupportedException);
+			}
+
 			throw new InternalError();
 		}
 	}
@@ -259,5 +266,7 @@ public class DayAndPosition implements Cloneable, Serializable {
 	 * Field position
 	 */
 	private int _position;
+
+	private static final Log _log = LogFactoryUtil.getLog(DayAndPosition.class);
 
 }

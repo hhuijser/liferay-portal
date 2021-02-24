@@ -16,6 +16,8 @@ package com.liferay.portal.fabric.netty.fileserver;
 
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.nio.file.Path;
@@ -51,6 +53,9 @@ public class FileResponseTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		Assert.assertEquals(_path, _fileResponse.getPath());
@@ -181,5 +186,8 @@ public class FileResponseTest {
 
 	private FileResponse _fileResponse;
 	private final Path _path = Paths.get("testPath");
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FileResponseTest.class);
 
 }

@@ -20,6 +20,8 @@ import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.model.DepotEntryGroupRel;
 import com.liferay.depot.service.DepotEntryGroupRelLocalService;
 import com.liferay.depot.service.DepotEntryLocalService;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.service.GroupLocalService;
@@ -118,6 +120,10 @@ public class DepotEntryGroupRelLocalServiceTest {
 			Assert.fail();
 		}
 		catch (NoSuchEntryGroupRelException noSuchEntryGroupRelException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchEntryGroupRelException, noSuchEntryGroupRelException);
+			}
 		}
 	}
 
@@ -317,5 +323,8 @@ public class DepotEntryGroupRelLocalServiceTest {
 
 	@Inject
 	private GroupLocalService _groupLocalService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DepotEntryGroupRelLocalServiceTest.class);
 
 }

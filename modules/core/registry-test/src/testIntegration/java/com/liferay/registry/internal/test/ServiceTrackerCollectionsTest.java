@@ -15,6 +15,8 @@
 package com.liferay.registry.internal.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.registry.Filter;
@@ -125,6 +127,9 @@ public class ServiceTrackerCollectionsTest {
 				Assert.fail();
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 			}
 
 			Assert.assertEquals(
@@ -264,6 +269,9 @@ public class ServiceTrackerCollectionsTest {
 				Assert.fail();
 			}
 			catch (IllegalStateException illegalStateException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(illegalStateException, illegalStateException);
+				}
 			}
 
 			Assert.assertEquals(
@@ -687,5 +695,8 @@ public class ServiceTrackerCollectionsTest {
 		private final AtomicInteger _counter;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceTrackerCollectionsTest.class);
 
 }

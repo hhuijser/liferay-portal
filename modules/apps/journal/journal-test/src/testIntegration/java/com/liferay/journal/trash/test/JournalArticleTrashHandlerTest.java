@@ -35,6 +35,8 @@ import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.ClassedModel;
 import com.liferay.portal.kernel.model.Group;
@@ -424,6 +426,10 @@ public class JournalArticleTrashHandlerTest
 				return journalArticleResource.getResourcePrimKey();
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				return super.getAssetClassPK(classedModel);
 			}
 		}
@@ -507,5 +513,8 @@ public class JournalArticleTrashHandlerTest
 		new DefaultWhenIsAssetable();
 	private final WhenIsIndexableBaseModel _whenIsIndexableBaseModel =
 		new DefaultWhenIsIndexableBaseModel();
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleTrashHandlerTest.class);
 
 }

@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactory;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
@@ -148,6 +150,9 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 			field.set(serviceUtilClass, null);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 
@@ -268,6 +273,11 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 				mockHttpServletRequest.setParameter(kvp[0], value);
 			}
 			catch (UnsupportedEncodingException unsupportedEncodingException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						unsupportedEncodingException,
+						unsupportedEncodingException);
+				}
 			}
 		}
 
@@ -784,5 +794,8 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 		private boolean _idpNeedsSignature = true;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseSamlTestCase.class);
 
 }

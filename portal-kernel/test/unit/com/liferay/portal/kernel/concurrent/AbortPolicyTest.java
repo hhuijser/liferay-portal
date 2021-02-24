@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.concurrent;
 
 import com.liferay.portal.kernel.concurrent.test.MarkerBlockingJob;
 import com.liferay.portal.kernel.concurrent.test.TestUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.util.concurrent.Executors;
@@ -50,7 +52,14 @@ public class AbortPolicyTest {
 			Assert.fail();
 		}
 		catch (RejectedExecutionException rejectedExecutionException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					rejectedExecutionException, rejectedExecutionException);
+			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AbortPolicyTest.class);
 
 }

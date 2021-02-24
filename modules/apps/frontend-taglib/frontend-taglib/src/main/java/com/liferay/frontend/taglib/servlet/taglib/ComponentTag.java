@@ -23,6 +23,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONSerializer;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.taglib.aui.ScriptData;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -143,6 +145,12 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 			return NPMResolvedPackageNameUtil.get(servletContext);
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
+
 			JSModuleResolver jsModuleResolver =
 				ServicesProvider.getJSModuleResolver();
 
@@ -307,5 +315,7 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 		JSONFactoryUtil.createJSONSerializer();
 	private String _module;
 	private boolean _setServletContext;
+
+	private static final Log _log = LogFactoryUtil.getLog(ComponentTag.class);
 
 }

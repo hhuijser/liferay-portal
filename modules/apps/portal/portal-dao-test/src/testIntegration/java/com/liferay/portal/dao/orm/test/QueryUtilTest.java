@@ -380,13 +380,13 @@ public class QueryUtilTest {
 		"( SELECT 'value' AS type, id as value from QueryUtilTest ) UNION " +
 			"ALL ( SELECT 'id' AS type, id as value from QueryUtilTest )";
 
+	private static final Log _log = LogFactoryUtil.getLog(QueryUtilTest.class);
+
 	private static DB _db;
 
 	private SessionFactory _sessionFactory;
 
 	@Inject
 	private UserPersistence _userPersistence;
-
-	private static final Log _log = LogFactoryUtil.getLog(QueryUtilTest.class);
 
 }

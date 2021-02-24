@@ -503,6 +503,9 @@ public class JournalArticleTrashHandlerTest
 
 	private static final int _FOLDER_NAME_MAX_LENGTH = 100;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleTrashHandlerTest.class);
+
 	private static ServiceTracker<TrashHelper, TrashHelper> _serviceTracker;
 
 	@Inject(filter = "ddm.form.deserializer.type=xsd")
@@ -513,8 +516,5 @@ public class JournalArticleTrashHandlerTest
 		new DefaultWhenIsAssetable();
 	private final WhenIsIndexableBaseModel _whenIsIndexableBaseModel =
 		new DefaultWhenIsIndexableBaseModel();
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleTrashHandlerTest.class);
 
 }

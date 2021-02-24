@@ -579,6 +579,9 @@ public class ConfigurationPersistenceManager
 	private static final String _SERVIE_BUNDLE_LOCATION =
 		"service.bundleLocation";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurationPersistenceManager.class);
+
 	private final BundleContext _bundleContext;
 	private final DataSource _dataSource;
 	private final DB _db = DBManagerUtil.getDB();
@@ -588,8 +591,5 @@ public class ConfigurationPersistenceManager
 		true);
 	private ServiceTrackerMap<String, ConfigurationModelListener>
 		_serviceTrackerMap;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ConfigurationPersistenceManager.class);
 
 }

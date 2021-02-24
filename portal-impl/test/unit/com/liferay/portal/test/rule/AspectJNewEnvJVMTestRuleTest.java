@@ -80,6 +80,9 @@ public class AspectJNewEnvJVMTestRuleTest {
 	public final AspectJNewEnvTestRule aspectJNewEnvTestRule =
 		AspectJNewEnvTestRule.INSTANCE;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AspectJNewEnvJVMTestRuleTest.class);
+
 	@Aspect
 	private static class AdviceClass1 {
 
@@ -126,8 +129,5 @@ public class AspectJNewEnvJVMTestRuleTest {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AspectJNewEnvJVMTestRuleTest.class);
 
 }

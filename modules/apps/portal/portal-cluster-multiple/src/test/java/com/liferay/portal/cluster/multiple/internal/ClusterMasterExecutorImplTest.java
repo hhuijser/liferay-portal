@@ -711,6 +711,9 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 	private static final MethodKey _TEST_METHOD = new MethodKey(
 		TestBean.class, "testMethod1", String.class);
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ClusterMasterExecutorImplTest.class);
+
 	private static class MockClusterExecutor extends ClusterExecutorImpl {
 
 		public void addClusterNode(Address address, ClusterNode clusterNode) {
@@ -891,8 +894,5 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 		private boolean _masterTokenReleasedNotified;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ClusterMasterExecutorImplTest.class);
 
 }

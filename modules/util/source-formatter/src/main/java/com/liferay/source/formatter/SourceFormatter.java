@@ -1147,6 +1147,9 @@ public class SourceFormatter {
 
 	private static final int _SUBREPOSITORY_MAX_DIR_LEVEL = 3;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SourceFormatter.class);
+
 	private List<String> _allFileNames;
 	private int _maxStatusMessageLength = -1;
 	private final List<String> _modifiedFileNames =
@@ -1294,8 +1297,5 @@ public class SourceFormatter {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SourceFormatter.class);
 
 }

@@ -227,11 +227,11 @@ public class MethodParameter {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MethodParameter.class);
+
 	private final Class<?>[] _genericTypes;
 	private final String _name;
 	private final Class<?> _type;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MethodParameter.class);
 
 }

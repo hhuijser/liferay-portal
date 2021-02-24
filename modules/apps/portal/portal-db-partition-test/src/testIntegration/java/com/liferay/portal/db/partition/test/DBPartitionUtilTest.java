@@ -384,6 +384,9 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 	private static final String _DB_PARTITION_SCHEMA_NAME_PREFIX =
 		"lpartitiontest_";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DBPartitionUtilTest.class);
+
 	private static Connection _connection;
 	private static final DataSource _currentDataSource =
 		ReflectionTestUtil.getFieldValue(DBInitUtil.class, "_dataSource");
@@ -397,8 +400,5 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 
 	@Inject
 	private static Props _props;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DBPartitionUtilTest.class);
 
 }

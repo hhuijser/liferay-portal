@@ -106,13 +106,13 @@ public class ModuleFrameworkClassLoader extends URLClassLoader {
 		return true;
 	}
 
-	private final String[] _packageNames;
+	private static final Log _log = LogFactoryUtil.getLog(
+		ModuleFrameworkClassLoader.class);
 
 	static {
 		ClassLoader.registerAsParallelCapable();
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		ModuleFrameworkClassLoader.class);
+	private final String[] _packageNames;
 
 }

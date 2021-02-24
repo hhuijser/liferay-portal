@@ -236,6 +236,9 @@ public class SchedulerEventMessageListenerWrapperTest {
 		return thread;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SchedulerEventMessageListenerWrapperTest.class);
+
 	private Message _testMessage1;
 	private Message _testMessage2;
 	private TestMessageListener _testMessageListener;
@@ -278,8 +281,5 @@ public class SchedulerEventMessageListenerWrapperTest {
 			1);
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SchedulerEventMessageListenerWrapperTest.class);
 
 }

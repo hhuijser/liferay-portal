@@ -522,13 +522,13 @@ public class UnsyncBufferedReaderTest {
 
 	private static final int _SIZE = 16 * 1024;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncBufferedReaderTest.class);
+
 	static {
 		for (int i = 0; i < _SIZE; i++) {
 			_BUFFER[i] = (char)((i % 26) + 'a');
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UnsyncBufferedReaderTest.class);
 
 }

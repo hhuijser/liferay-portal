@@ -654,6 +654,9 @@ public class ServiceTrackerCollectionsTest {
 		};
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceTrackerCollectionsTest.class);
+
 	private Registry _registry;
 
 	private class MockServiceTrackerCustomizer
@@ -695,8 +698,5 @@ public class ServiceTrackerCollectionsTest {
 		private final AtomicInteger _counter;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ServiceTrackerCollectionsTest.class);
 
 }

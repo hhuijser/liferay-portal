@@ -239,6 +239,9 @@ public class NettyFabricAgentStub implements FabricAgent {
 		return _nettyFabricWorkerStubs.remove(id);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		NettyFabricAgentStub.class);
+
 	private final Channel _channel;
 	private final AtomicLong _idGenerator = new AtomicLong();
 	private final Map<Long, NettyFabricWorkerStub<?>> _nettyFabricWorkerStubs =
@@ -249,8 +252,5 @@ public class NettyFabricAgentStub implements FabricAgent {
 	private final Map<Long, DefaultNoticeableFuture<?>>
 		_startupNoticeableFutures = new ConcurrentHashMap<>();
 	private final long _startupTimeout;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NettyFabricAgentStub.class);
 
 }

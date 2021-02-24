@@ -307,6 +307,8 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 		CharPool.PERIOD, CharPool.DASH
 	};
 
+	private static final Log _log = LogFactoryUtil.getLog(ComponentTag.class);
+
 	private String _componentId;
 	private String _containerId;
 	private Map<String, Object> _context;
@@ -315,7 +317,5 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 		JSONFactoryUtil.createJSONSerializer();
 	private String _module;
 	private boolean _setServletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(ComponentTag.class);
 
 }

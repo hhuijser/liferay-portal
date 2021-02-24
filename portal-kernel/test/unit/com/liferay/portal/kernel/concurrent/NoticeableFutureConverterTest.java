@@ -288,6 +288,9 @@ public class NoticeableFutureConverterTest {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		NoticeableFutureConverterTest.class);
+
 	private final DefaultNoticeableFuture<Object> _defaultNoticeableFuture =
 		new DefaultNoticeableFuture<>();
 
@@ -306,8 +309,5 @@ public class NoticeableFutureConverterTest {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NoticeableFutureConverterTest.class);
 
 }

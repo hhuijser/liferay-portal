@@ -280,6 +280,9 @@ public class NestableFlushEventListenerTest {
 		return session;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		NestableFlushEventListenerTest.class);
+
 	private static org.hibernate.impl.SessionFactoryImpl _sessionFactoryImpl;
 
 	@Inject
@@ -315,8 +318,5 @@ public class NestableFlushEventListenerTest {
 		private final Session _session;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NestableFlushEventListenerTest.class);
 
 }

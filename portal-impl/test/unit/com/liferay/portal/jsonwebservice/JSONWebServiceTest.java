@@ -208,6 +208,9 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 			Assert.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		mockHttpServletRequest = createHttpRequest(
@@ -251,6 +254,9 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 			Assert.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		mockHttpServletRequest = createHttpRequest("/foo/use2");
@@ -325,6 +331,9 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 			Assert.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		mockHttpServletRequest = createHttpRequest(
@@ -380,6 +389,9 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 			Assert.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		mockHttpServletRequest = createHttpRequest(

@@ -144,6 +144,9 @@ public class WikiPageLocalServiceTest {
 						invalidCharacter);
 			}
 			catch (PageTitleException pageTitleException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(pageTitleException, pageTitleException);
+				}
 			}
 		}
 	}
@@ -418,6 +421,11 @@ public class WikiPageLocalServiceTest {
 			Assert.fail();
 		}
 		catch (NoSuchPageResourceException noSuchPageResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchPageResourceException, noSuchPageResourceException);
+			}
+
 			redirectPage = WikiPageLocalServiceUtil.getPage(
 				redirectPage.getResourcePrimKey());
 
@@ -443,6 +451,11 @@ public class WikiPageLocalServiceTest {
 			Assert.fail();
 		}
 		catch (NoSuchPageResourceException noSuchPageResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchPageResourceException, noSuchPageResourceException);
+			}
+
 			WikiPageLocalServiceUtil.getPage(redirectPage.getResourcePrimKey());
 		}
 	}
@@ -467,6 +480,11 @@ public class WikiPageLocalServiceTest {
 			Assert.fail();
 		}
 		catch (NoSuchPageResourceException noSuchPageResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchPageResourceException, noSuchPageResourceException);
+			}
+
 			childPage = WikiPageLocalServiceUtil.getPage(
 				childPage.getResourcePrimKey());
 
@@ -498,6 +516,11 @@ public class WikiPageLocalServiceTest {
 			Assert.fail();
 		}
 		catch (NoSuchPageResourceException noSuchPageResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchPageResourceException, noSuchPageResourceException);
+			}
+
 			redirectPage = WikiPageLocalServiceUtil.getPageByPageId(
 				redirectPage.getPageId());
 
@@ -525,6 +548,11 @@ public class WikiPageLocalServiceTest {
 			Assert.fail();
 		}
 		catch (NoSuchPageResourceException noSuchPageResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchPageResourceException, noSuchPageResourceException);
+			}
+
 			childPage = WikiPageLocalServiceUtil.getPageByPageId(
 				childPage.getPageId());
 
@@ -550,6 +578,11 @@ public class WikiPageLocalServiceTest {
 			Assert.fail();
 		}
 		catch (NoSuchPageResourceException noSuchPageResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchPageResourceException, noSuchPageResourceException);
+			}
+
 			WikiPageLocalServiceUtil.getPage(childPage.getResourcePrimKey());
 		}
 	}

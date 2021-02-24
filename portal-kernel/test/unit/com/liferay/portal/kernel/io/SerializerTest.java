@@ -332,7 +332,7 @@ public class SerializerTest {
 
 			Assert.fail();
 		}
-		catch (OutOfMemoryError oome) {
+		catch (OutOfMemoryError outOfMemoryError) {
 		}
 
 		// Normal doubling size

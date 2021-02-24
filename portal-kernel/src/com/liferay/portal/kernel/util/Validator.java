@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.util;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -1056,6 +1058,9 @@ public class Validator {
 				return true;
 			}
 			catch (URISyntaxException uriSyntaxException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(uriSyntaxException, uriSyntaxException);
+				}
 			}
 		}
 
@@ -1099,6 +1104,9 @@ public class Validator {
 				return true;
 			}
 			catch (MalformedURLException malformedURLException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(malformedURLException, malformedURLException);
+				}
 			}
 		}
 
@@ -1276,5 +1284,7 @@ public class Validator {
 
 		_ipv6AddressPattern = Pattern.compile(sb.toString());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(Validator.class);
 
 }

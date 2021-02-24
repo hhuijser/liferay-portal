@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.nio.intraband;
 
 import com.liferay.portal.kernel.io.BigEndianCodec;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.nio.intraband.BaseIntraband.SendSyncDatagramCompletionHandler;
 import com.liferay.portal.kernel.nio.intraband.test.MockIntraband;
 import com.liferay.portal.kernel.nio.intraband.test.MockRegistrationReference;
@@ -229,6 +231,9 @@ public class BaseIntrabandTest {
 			Assert.fail();
 		}
 		catch (ClosedIntrabandException closedIntrabandException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(closedIntrabandException, closedIntrabandException);
+			}
 		}
 
 		// Register after close
@@ -240,6 +245,9 @@ public class BaseIntrabandTest {
 			Assert.fail();
 		}
 		catch (ClosedIntrabandException closedIntrabandException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(closedIntrabandException, closedIntrabandException);
+			}
 		}
 
 		// Unregister after close
@@ -250,6 +258,9 @@ public class BaseIntrabandTest {
 			Assert.fail();
 		}
 		catch (ClosedIntrabandException closedIntrabandException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(closedIntrabandException, closedIntrabandException);
+			}
 		}
 	}
 
@@ -1692,5 +1703,8 @@ public class BaseIntrabandTest {
 		private final boolean _eofOnDataBufferReading;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseIntrabandTest.class);
 
 }

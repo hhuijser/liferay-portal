@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.concurrent;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
@@ -56,6 +58,9 @@ public class NoticeableFutureConverterTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 
 		try {
@@ -64,6 +69,9 @@ public class NoticeableFutureConverterTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 	}
 
@@ -88,6 +96,9 @@ public class NoticeableFutureConverterTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 
 		try {
@@ -96,6 +107,9 @@ public class NoticeableFutureConverterTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 	}
 
@@ -234,6 +248,9 @@ public class NoticeableFutureConverterTest {
 			Assert.fail();
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 
 		Assert.assertFalse(currentThread.isInterrupted());
@@ -246,6 +263,9 @@ public class NoticeableFutureConverterTest {
 			Assert.fail();
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 
 		Assert.assertFalse(currentThread.isInterrupted());
@@ -262,6 +282,9 @@ public class NoticeableFutureConverterTest {
 			Assert.fail();
 		}
 		catch (TimeoutException timeoutException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(timeoutException, timeoutException);
+			}
 		}
 	}
 
@@ -283,5 +306,8 @@ public class NoticeableFutureConverterTest {
 		}
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		NoticeableFutureConverterTest.class);
 
 }

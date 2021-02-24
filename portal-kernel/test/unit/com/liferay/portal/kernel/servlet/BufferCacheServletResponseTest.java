@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.io.DummyWriter;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
@@ -414,6 +416,9 @@ public class BufferCacheServletResponseTest {
 			bufferCacheServletResponse.getOutputStream();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -616,6 +621,9 @@ public class BufferCacheServletResponseTest {
 			bufferCacheServletResponse.getWriter();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -991,6 +999,9 @@ public class BufferCacheServletResponseTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -1033,5 +1044,8 @@ public class BufferCacheServletResponseTest {
 	private static final byte[] _TEST_BYTES = {'a', 'b', 'c'};
 
 	private static final String _TEST_STRING = "abc";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BufferCacheServletResponseTest.class);
 
 }

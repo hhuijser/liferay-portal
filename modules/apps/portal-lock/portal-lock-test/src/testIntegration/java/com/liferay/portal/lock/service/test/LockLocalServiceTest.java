@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -182,6 +184,9 @@ public class LockLocalServiceTest {
 			Assert.fail();
 		}
 		catch (DuplicateLockException duplicateLockException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(duplicateLockException, duplicateLockException);
+			}
 		}
 
 		// Set lock to be expired
@@ -489,5 +494,8 @@ public class LockLocalServiceTest {
 		private final int _requiredSuccessCount;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LockLocalServiceTest.class);
 
 }

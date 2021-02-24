@@ -37,6 +37,8 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.service.JournalArticleServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
@@ -244,6 +246,10 @@ public class JournalArticleServiceTest {
 			Assert.fail();
 		}
 		catch (RequiredTemplateException requiredTemplateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					requiredTemplateException, requiredTemplateException);
+			}
 		}
 	}
 
@@ -787,5 +793,8 @@ public class JournalArticleServiceTest {
 	private String _keyword;
 	private JournalArticle _latestArticle;
 	private String _originalPortalPreferencesXML;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleServiceTest.class);
 
 }

@@ -15,6 +15,8 @@
 package com.liferay.exportimport.test.util;
 
 import com.liferay.exportimport.kernel.lar.UserIdStrategy;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 
 /**
@@ -28,8 +30,15 @@ public class TestUserIdStrategy implements UserIdStrategy {
 			return TestPropsValues.getUserId();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return 0;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TestUserIdStrategy.class);
 
 }

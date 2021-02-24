@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.scheduler.messaging;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.messaging.MessageListener;
@@ -94,6 +96,9 @@ public class SchedulerEventMessageListenerWrapperTest {
 			Assert.fail("Should throw TimeoutException");
 		}
 		catch (TimeoutException timeoutException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(timeoutException, timeoutException);
+			}
 		}
 
 		_testMessageListener.unblock();
@@ -248,6 +253,9 @@ public class SchedulerEventMessageListenerWrapperTest {
 					message.setResponse(message.getPayload());
 				}
 				catch (InterruptedException interruptedException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(interruptedException, interruptedException);
+					}
 				}
 				finally {
 					_lock.unlock();
@@ -270,5 +278,8 @@ public class SchedulerEventMessageListenerWrapperTest {
 			1);
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SchedulerEventMessageListenerWrapperTest.class);
 
 }

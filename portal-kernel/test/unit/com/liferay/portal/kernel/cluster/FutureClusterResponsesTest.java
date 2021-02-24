@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.cluster;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.net.InetAddress;
 
 import java.util.HashSet;
@@ -55,6 +58,9 @@ public class FutureClusterResponsesTest {
 			Assert.fail("Should have failed");
 		}
 		catch (TimeoutException timeoutException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(timeoutException, timeoutException);
+			}
 		}
 	}
 
@@ -100,6 +106,9 @@ public class FutureClusterResponsesTest {
 			Assert.fail("Should have failed");
 		}
 		catch (TimeoutException timeoutException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(timeoutException, timeoutException);
+			}
 		}
 	}
 
@@ -119,5 +128,8 @@ public class FutureClusterResponsesTest {
 
 		futureClusterResponses.get(500, TimeUnit.MILLISECONDS);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FutureClusterResponsesTest.class);
 
 }

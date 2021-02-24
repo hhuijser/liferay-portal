@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.test;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -43,6 +46,10 @@ public class GCUtil {
 				list.add(new byte[100 * 1024 * 1024]);
 			}
 			catch (OutOfMemoryError outOfMemoryError) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(outOfMemoryError, outOfMemoryError);
+				}
+
 				list.clear();
 
 				list = null;
@@ -87,5 +94,7 @@ public class GCUtil {
 			gc(actively, false);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(GCUtil.class);
 
 }

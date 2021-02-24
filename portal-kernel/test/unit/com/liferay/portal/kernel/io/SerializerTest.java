@@ -19,6 +19,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.constants.SerializationConstants;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
@@ -333,6 +335,9 @@ public class SerializerTest {
 			Assert.fail();
 		}
 		catch (OutOfMemoryError outOfMemoryError) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(outOfMemoryError, outOfMemoryError);
+			}
 		}
 
 		// Normal doubling size
@@ -972,6 +977,8 @@ public class SerializerTest {
 	}
 
 	private static final int _COUNT = 1024;
+
+	private static final Log _log = LogFactoryUtil.getLog(SerializerTest.class);
 
 	private final Random _random = new Random();
 

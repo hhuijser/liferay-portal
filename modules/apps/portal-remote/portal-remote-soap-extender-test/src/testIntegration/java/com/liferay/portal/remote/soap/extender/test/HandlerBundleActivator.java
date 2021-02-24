@@ -14,6 +14,9 @@
 
 package com.liferay.portal.remote.soap.extender.test;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -59,10 +62,16 @@ public class HandlerBundleActivator implements BundleActivator {
 			_greeterBundleActivator.stop(bundleContext);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		_serviceRegistration.unregister();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		HandlerBundleActivator.class);
 
 	private GreeterBundleActivator _greeterBundleActivator;
 

@@ -14,6 +14,8 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.FileNotFoundException;
@@ -61,11 +63,18 @@ public class NewFileCheck extends BaseFileCheck {
 				url.openStream();
 			}
 			catch (FileNotFoundException fileNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(fileNotFoundException, fileNotFoundException);
+				}
+
 				addMessage(
 					fileName,
 					"Do not add new files to '" + forbiddenDirName + "'");
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
 			}
 		}
 
@@ -73,5 +82,7 @@ public class NewFileCheck extends BaseFileCheck {
 	}
 
 	private static final String _FORBIDDEN_DIR_NAMES_KEY = "forbiddenDirNames";
+
+	private static final Log _log = LogFactoryUtil.getLog(NewFileCheck.class);
 
 }

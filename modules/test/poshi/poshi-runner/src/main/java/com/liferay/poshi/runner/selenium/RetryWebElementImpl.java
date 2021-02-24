@@ -14,6 +14,8 @@
 
 package com.liferay.poshi.runner.selenium;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.poshi.core.util.PropsValues;
 
 import java.util.List;
@@ -465,6 +467,9 @@ public class RetryWebElementImpl extends RemoteWebElement {
 			Thread.sleep(_RETRY_WAIT_TIME * 1000);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		WebDriver webDriver = WebDriverUtil.getWebDriver();
@@ -486,6 +491,9 @@ public class RetryWebElementImpl extends RemoteWebElement {
 
 	private static final int _RETRY_WAIT_TIME =
 		PropsValues.TEST_RETRY_COMMAND_WAIT_TIME;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		RetryWebElementImpl.class);
 
 	private final String _locator;
 	private RemoteWebElement _remoteWebElement;

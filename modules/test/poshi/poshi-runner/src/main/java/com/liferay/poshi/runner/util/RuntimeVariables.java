@@ -14,6 +14,8 @@
 
 package com.liferay.poshi.runner.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.poshi.core.util.GetterUtil;
 import com.liferay.poshi.core.util.StringPool;
 import com.liferay.poshi.core.util.StringUtil;
@@ -137,6 +139,9 @@ public class RuntimeVariables {
 						"\\$\\{([^}]*?)\\}", result);
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 			else {
@@ -224,6 +229,9 @@ public class RuntimeVariables {
 
 		_contextReplace = new ContextReplace(_runtimeVariables);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		RuntimeVariables.class);
 
 	private static final RuntimeVariables _instance = new RuntimeVariables();
 

@@ -38,31 +38,19 @@ public class PlusStatementCheck extends BaseStringConcatenationCheck {
 		_checkPlusOperator(detailAST);
 	}
 
-	private void _checkPlusOperator(DetailAST detailAST) {
-		if (detailAST.getChildCount() != 2) {
-			return;
-		}
+	private void _checkLiteralStrings(
+		DetailAST detailAST, DetailAST leftHandOperandDetailAST,
+		DetailAST rightHandOperandDetailAST) {
 
-		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+		String value1 = getStringValue(leftHandOperandDetailAST);
+		String value2 = getStringValue(rightHandOperandDetailAST);
 
-		String literalString1 = _getLiteralString(firstChildDetailAST);
+		if (rightHandOperandDetailAST.getLineNo() ==
+				leftHandOperandDetailAST.getLineNo()) {
 
-		if (literalString1 == null) {
-			return;
-		}
-
-		DetailAST lastChildDetailAST = detailAST.getLastChild();
-
-		String literalString2 = _getLiteralString(lastChildDetailAST);
-
-		if (literalString2 == null) {
-			return;
-		}
-
-		if (firstChildDetailAST.getLineNo() == lastChildDetailAST.getLineNo()) {
 			log(
-				firstChildDetailAST, MSG_COMBINE_LITERAL_STRINGS,
-				literalString1, literalString2);
+				leftHandOperandDetailAST, MSG_COMBINE_LITERAL_STRINGS, value1,
+				value2);
 
 			return;
 		}
@@ -72,10 +60,10 @@ public class PlusStatementCheck extends BaseStringConcatenationCheck {
 		}
 
 		checkLiteralStringStartAndEndCharacter(
-			literalString1, literalString2, detailAST.getLineNo());
+			value1, value2, detailAST.getLineNo());
 
-		String line1 = getLine(lastChildDetailAST.getLineNo() - 2);
-		String line2 = getLine(lastChildDetailAST.getLineNo() - 1);
+		String line1 = getLine(rightHandOperandDetailAST.getLineNo() - 2);
+		String line2 = getLine(rightHandOperandDetailAST.getLineNo() - 1);
 
 		if (_getLeadingTabCount(line1) == _getLeadingTabCount(line2)) {
 			return;
@@ -88,8 +76,8 @@ public class PlusStatementCheck extends BaseStringConcatenationCheck {
 
 		if ((lineLength1 + trimmedLine2.length() - 4) <= getMaxLineLength()) {
 			log(
-				lastChildDetailAST, MSG_COMBINE_LITERAL_STRINGS, literalString1,
-				literalString2);
+				rightHandOperandDetailAST, MSG_COMBINE_LITERAL_STRINGS, value1,
+				value2);
 
 			return;
 		}
@@ -97,22 +85,52 @@ public class PlusStatementCheck extends BaseStringConcatenationCheck {
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		if ((parentDetailAST.getType() == TokenTypes.PLUS) &&
-			((lineLength1 + literalString2.length()) <= getMaxLineLength())) {
+			((lineLength1 + value2.length()) <= getMaxLineLength())) {
 
-			log(
-				detailAST, MSG_COMBINE_LITERAL_STRINGS, literalString1,
-				literalString2);
+			log(detailAST, MSG_COMBINE_LITERAL_STRINGS, value1, value2);
 
 			return;
 		}
 
 		int pos = getStringBreakPos(
-			literalString1, literalString2, getMaxLineLength() - lineLength1);
+			value1, value2, getMaxLineLength() - lineLength1);
 
 		if (pos != -1) {
 			log(
-				lastChildDetailAST, MSG_MOVE_LITERAL_STRING,
-				literalString2.substring(0, pos + 1));
+				rightHandOperandDetailAST, MSG_MOVE_LITERAL_STRING,
+				value2.substring(0, pos + 1));
+		}
+	}
+
+	private void _checkPlusOperator(DetailAST detailAST) {
+		if (detailAST.getChildCount() != 2) {
+			return;
+		}
+
+		DetailAST leftHandOperandDetailAST = _getOperandDetailAST(
+			detailAST.getFirstChild());
+		DetailAST rightHandOperandDetailAST = _getOperandDetailAST(
+			detailAST.getLastChild());
+
+		if ((leftHandOperandDetailAST.getType() == TokenTypes.STRING_LITERAL) &&
+			(rightHandOperandDetailAST.getType() ==
+				TokenTypes.STRING_LITERAL)) {
+
+			_checkLiteralStrings(
+				detailAST, leftHandOperandDetailAST, rightHandOperandDetailAST);
+
+			return;
+		}
+
+		if (leftHandOperandDetailAST.getType() == TokenTypes.STRING_LITERAL) {
+			checkCombineOperand(
+				leftHandOperandDetailAST, rightHandOperandDetailAST);
+		}
+		else if (rightHandOperandDetailAST.getType() ==
+					TokenTypes.STRING_LITERAL) {
+
+			checkCombineOperand(
+				rightHandOperandDetailAST, leftHandOperandDetailAST);
 		}
 	}
 
@@ -128,27 +146,12 @@ public class PlusStatementCheck extends BaseStringConcatenationCheck {
 		return leadingTabCount;
 	}
 
-	private String _getLiteralString(DetailAST detailAST) {
-		String literalString = null;
-
-		if (detailAST.getType() == TokenTypes.STRING_LITERAL) {
-			literalString = detailAST.getText();
-		}
-		else if ((detailAST.getType() == TokenTypes.PLUS) &&
-				 (detailAST.getChildCount() == 2)) {
-
-			DetailAST lastChildDetailAST = detailAST.getLastChild();
-
-			if (lastChildDetailAST.getType() == TokenTypes.STRING_LITERAL) {
-				literalString = lastChildDetailAST.getText();
-			}
+	private DetailAST _getOperandDetailAST(DetailAST detailAST) {
+		if (detailAST.getType() == TokenTypes.PLUS) {
+			return detailAST.getLastChild();
 		}
 
-		if (literalString != null) {
-			return literalString.substring(1, literalString.length() - 1);
-		}
-
-		return null;
+		return detailAST;
 	}
 
 	private boolean _isRegexPattern(DetailAST detailAST) {

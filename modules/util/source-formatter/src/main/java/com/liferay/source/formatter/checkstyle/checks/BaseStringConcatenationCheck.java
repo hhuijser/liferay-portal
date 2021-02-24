@@ -18,10 +18,35 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 /**
  * @author Hugo Huijser
  */
 public abstract class BaseStringConcatenationCheck extends BaseCheck {
+
+	protected void checkCombineOperand(
+		DetailAST literalStringDetailAST, DetailAST operandDetailAST) {
+
+		if (operandDetailAST.getType() != TokenTypes.DOT) {
+			return;
+		}
+
+		FullIdent fullIdent = FullIdent.createFullIdent(operandDetailAST);
+
+		String text = fullIdent.getText();
+
+		if ((text.startsWith("CharPool.") || text.startsWith("StringPool.")) &&
+			!text.endsWith(".NEW_LINE") && !text.endsWith(".NO_BREAK_SPACE") &&
+			!text.endsWith(".TAB")) {
+
+			log(
+				literalStringDetailAST, _MSG_COMBINE_STRING,
+				getStringValue(literalStringDetailAST), text);
+		}
+	}
 
 	protected void checkLiteralStringStartAndEndCharacter(
 		String literalString1, String literalString2, int lineNumber) {
@@ -77,6 +102,12 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 		return -1;
 	}
 
+	protected String getStringValue(DetailAST stringLiteralDetailAST) {
+		String stringValue = stringLiteralDetailAST.getText();
+
+		return stringValue.substring(1, stringValue.length() - 1);
+	}
+
 	protected static final String MSG_COMBINE_LITERAL_STRINGS =
 		"literal.string.combine";
 
@@ -84,6 +115,8 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 
 	protected static final String MSG_MOVE_LITERAL_STRING =
 		"literal.string.move";
+
+	private static final String _MSG_COMBINE_STRING = "string.combine";
 
 	private static final String _MSG_INVALID_END_CHARACTER =
 		"end.character.invalid";

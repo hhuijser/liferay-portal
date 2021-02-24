@@ -14,6 +14,9 @@
 
 package com.liferay.portal.tools.service.builder;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 /**
  * @author Glenn Powell
  * @author Brian Wing Shun Chan
@@ -35,6 +38,10 @@ public class EntityMapping {
 			return _entityNames[index];
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -42,6 +49,8 @@ public class EntityMapping {
 	public String getTableName() {
 		return _tableName;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(EntityMapping.class);
 
 	private final String[] _entityNames = new String[3];
 	private final String _tableName;

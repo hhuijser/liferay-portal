@@ -14,6 +14,9 @@
 
 package com.liferay.portal.template.freemarker.internal;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.IOException;
 
 import java.net.URL;
@@ -66,6 +69,9 @@ public class FreeMarkerBundleClassloader extends URLClassLoader {
 				}
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
 			}
 		}
 
@@ -89,6 +95,9 @@ public class FreeMarkerBundleClassloader extends URLClassLoader {
 				return bundle.loadClass(name);
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 		}
 
@@ -107,6 +116,9 @@ public class FreeMarkerBundleClassloader extends URLClassLoader {
 
 		return clazz;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FreeMarkerBundleClassloader.class);
 
 	private final Set<Bundle> _bundles = ConcurrentHashMap.newKeySet();
 

@@ -14,6 +14,8 @@
 
 package com.liferay.poshi.runner.selenium;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.poshi.core.util.OSDetector;
 import com.liferay.poshi.core.util.PropsValues;
 import com.liferay.poshi.core.util.StringPool;
@@ -85,6 +87,10 @@ public class WebDriverUtil extends PropsValues {
 			outputDirName = file.getCanonicalPath();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			System.out.println(
 				"Unable to get canonical path for " + outputDirName);
 		}
@@ -144,6 +150,9 @@ public class WebDriverUtil extends PropsValues {
 				PropsValues.SELENIUM_REMOTE_DRIVER_HUB + ":4444/wd/hub");
 		}
 		catch (MalformedURLException malformedURLException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(malformedURLException, malformedURLException);
+			}
 		}
 
 		return new RemoteWebDriver(url, edgeOptions);
@@ -200,6 +209,10 @@ public class WebDriverUtil extends PropsValues {
 			firefoxOptions.setProfile(firefoxProfile);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			System.out.println(
 				"Unable to add the jserrorcollector.xpi extension to the " +
 					"Firefox profile.");
@@ -228,6 +241,9 @@ public class WebDriverUtil extends PropsValues {
 				PropsValues.SELENIUM_REMOTE_DRIVER_HUB + ":4444/wd/hub");
 		}
 		catch (MalformedURLException malformedURLException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(malformedURLException, malformedURLException);
+			}
 		}
 
 		return new RemoteWebDriver(url, internetExplorerOptions);
@@ -309,6 +325,7 @@ public class WebDriverUtil extends PropsValues {
 		_webDriver = null;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(WebDriverUtil.class);
 	private static final Map<String, Object> _genericCapabilities =
 		new HashMap<String, Object>() {
 			{
@@ -317,6 +334,7 @@ public class WebDriverUtil extends PropsValues {
 				}
 			}
 		};
+
 	private static final WebDriverUtil _webDriverUtil = new WebDriverUtil();
 
 	private WebDriver _webDriver;

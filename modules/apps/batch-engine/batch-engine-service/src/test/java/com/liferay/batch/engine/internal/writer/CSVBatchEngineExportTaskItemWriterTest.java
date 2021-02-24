@@ -19,6 +19,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.petra.string.StringUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.lang.reflect.Field;
 
@@ -69,6 +71,9 @@ public class CSVBatchEngineExportTaskItemWriterTest
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -143,5 +148,8 @@ public class CSVBatchEngineExportTaskItemWriterTest
 		Assert.assertEquals(
 			_getExpectedContent(fieldNames, getItems()), content);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CSVBatchEngineExportTaskItemWriterTest.class);
 
 }

@@ -1010,6 +1010,9 @@ public class WorkflowMetricsRESTTestHelper {
 					indexerClass, methodName, Document.class);
 			}
 			catch (NoSuchMethodException noSuchMethodException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchMethodException, noSuchMethodException);
+				}
 			}
 
 			indexerClass = indexerClass.getSuperclass();

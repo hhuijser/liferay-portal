@@ -1192,6 +1192,9 @@ public class CTStoreTest {
 					Assert.fail();
 				}
 				catch (NoSuchContentException | NoSuchFileException exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 
 				_assertMethods();

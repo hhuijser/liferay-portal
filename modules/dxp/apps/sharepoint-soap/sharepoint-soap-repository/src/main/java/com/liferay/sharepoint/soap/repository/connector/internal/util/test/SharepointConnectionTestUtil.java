@@ -117,6 +117,9 @@ public class SharepointConnectionTestUtil {
 					Thread.sleep(5000);
 				}
 				catch (InterruptedException interruptedException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(interruptedException, interruptedException);
+					}
 				}
 			}
 			catch (Exception exception) {

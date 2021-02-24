@@ -65,10 +65,10 @@ public class VelocityBeanHandler implements InvocationHandler {
 		}
 	}
 
-	private final Object _bean;
-	private final ClassLoader _classLoader;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		VelocityBeanHandler.class);
+
+	private final Object _bean;
+	private final ClassLoader _classLoader;
 
 }

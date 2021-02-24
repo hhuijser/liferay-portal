@@ -381,6 +381,9 @@ public class BatchablePipeTest {
 		Assert.assertNull(batchablePipe.take());
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BatchablePipeTest.class);
+
 	private static class IntegerIncreasableEntry
 		extends IncreasableEntry<String, Integer> {
 
@@ -394,8 +397,5 @@ public class BatchablePipeTest {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BatchablePipeTest.class);
 
 }

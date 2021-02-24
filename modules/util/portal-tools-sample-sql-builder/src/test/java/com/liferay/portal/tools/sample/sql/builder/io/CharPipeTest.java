@@ -848,6 +848,8 @@ public class CharPipeTest {
 		return System.currentTimeMillis();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(CharPipeTest.class);
+
 	private class SlowReaderJob implements Runnable {
 
 		public SlowReaderJob(
@@ -968,7 +970,5 @@ public class CharPipeTest {
 		private final Writer _writer;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(CharPipeTest.class);
 
 }

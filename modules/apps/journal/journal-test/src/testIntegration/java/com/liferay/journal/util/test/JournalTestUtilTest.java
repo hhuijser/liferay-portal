@@ -317,6 +317,9 @@ public class JournalTestUtilTest {
 		).build();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalTestUtilTest.class);
+
 	@DeleteAfterTestRun
 	private DDMStructure _ddmStructure;
 
@@ -324,8 +327,5 @@ public class JournalTestUtilTest {
 	private Group _group;
 
 	private Method _transformMethod;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalTestUtilTest.class);
 
 }

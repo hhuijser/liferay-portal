@@ -699,6 +699,9 @@ public abstract class BasePortletDataHandlerTestCase {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BasePortletDataHandlerTestCase.class);
+
 	@Inject
 	private PortletDataContextFactory _portletDataContextFactory;
 
@@ -713,8 +716,5 @@ public abstract class BasePortletDataHandlerTestCase {
 
 	@Inject
 	private ZipWriterFactory _zipWriterFactory;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BasePortletDataHandlerTestCase.class);
 
 }

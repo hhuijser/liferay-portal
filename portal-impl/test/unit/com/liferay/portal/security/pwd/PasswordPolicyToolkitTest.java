@@ -115,10 +115,10 @@ public class PasswordPolicyToolkitTest {
 		return true;
 	}
 
-	private PasswordPolicy _passwordPolicy;
-	private PasswordPolicyToolkit _passwordPolicyToolkit;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		PasswordPolicyToolkitTest.class);
+
+	private PasswordPolicy _passwordPolicy;
+	private PasswordPolicyToolkit _passwordPolicyToolkit;
 
 }

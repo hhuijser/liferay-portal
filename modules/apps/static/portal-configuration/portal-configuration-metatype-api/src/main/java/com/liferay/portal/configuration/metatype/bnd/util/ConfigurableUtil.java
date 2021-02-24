@@ -264,6 +264,9 @@ public class ConfigurableUtil {
 		return overrideMap;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurableUtil.class);
+
 	private static final Method _defineClassMethod;
 	private static final Method _findLoadedClassMethod;
 
@@ -279,8 +282,5 @@ public class ConfigurableUtil {
 			throw new ExceptionInInitializerError(throwable);
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ConfigurableUtil.class);
 
 }

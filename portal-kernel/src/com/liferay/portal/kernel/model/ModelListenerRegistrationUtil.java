@@ -100,6 +100,9 @@ public class ModelListenerRegistrationUtil {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ModelListenerRegistrationUtil.class);
+
 	private static final ModelListenerRegistrationUtil
 		_modelListenerRegistrationUtil = new ModelListenerRegistrationUtil();
 
@@ -218,8 +221,5 @@ public class ModelListenerRegistrationUtil {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ModelListenerRegistrationUtil.class);
 
 }

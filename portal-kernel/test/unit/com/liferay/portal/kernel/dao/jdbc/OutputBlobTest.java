@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.dao.jdbc;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -40,6 +43,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -48,6 +54,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		new OutputBlob(new ByteArrayInputStream(new byte[10]), 10);
@@ -72,6 +81,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 	}
 
@@ -88,6 +100,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		// pos - 1 > _length
@@ -98,6 +113,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		// pos - 1 + length > _length
@@ -108,6 +126,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		// Fail to skip enough data
@@ -119,6 +140,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		// Normal
@@ -147,6 +171,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		// length < 0
@@ -157,6 +184,9 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		// Normal read
@@ -195,6 +225,11 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		try {
@@ -203,6 +238,11 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		try {
@@ -211,6 +251,11 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		try {
@@ -219,6 +264,11 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		try {
@@ -227,6 +277,11 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		try {
@@ -235,7 +290,14 @@ public class OutputBlobTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(OutputBlobTest.class);
 
 }

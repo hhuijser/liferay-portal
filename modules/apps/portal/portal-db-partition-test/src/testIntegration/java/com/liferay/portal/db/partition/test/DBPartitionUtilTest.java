@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.dao.jdbc.CurrentConnection;
 import com.liferay.portal.kernel.dao.jdbc.CurrentConnectionUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -197,6 +199,10 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 				Assert.fail("Should throw an exception");
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				Assert.assertEquals(tablesCount, _getTablesCount());
 				Assert.assertEquals(viewsCount, _getViewsCount() - 1);
 			}
@@ -391,5 +397,8 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 
 	@Inject
 	private static Props _props;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DBPartitionUtilTest.class);
 
 }

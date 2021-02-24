@@ -50,6 +50,8 @@ import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -521,6 +523,10 @@ public abstract class BaseDDMTestCase extends PowerMockito {
 			return DDMStructureLocalServiceUtil.getStructure(structureId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -530,6 +536,10 @@ public abstract class BaseDDMTestCase extends PowerMockito {
 			return DDMStructureLocalServiceUtil.getStructureDDMForm(structure);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -539,6 +549,10 @@ public abstract class BaseDDMTestCase extends PowerMockito {
 			return DDMTemplateLocalServiceUtil.getTemplate(templateId);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -950,5 +964,8 @@ public abstract class BaseDDMTestCase extends PowerMockito {
 
 	@Mock
 	private ResourceBundle _resourceBundle;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseDDMTestCase.class);
 
 }

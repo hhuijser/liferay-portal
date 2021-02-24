@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.concurrent;
 
 import com.liferay.portal.kernel.concurrent.test.MarkerBlockingJob;
 import com.liferay.portal.kernel.concurrent.test.TestUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -150,6 +152,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		threadPoolExecutor = new ThreadPoolExecutor(
@@ -161,6 +166,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		threadPoolExecutor = new ThreadPoolExecutor(
@@ -172,6 +180,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		threadPoolExecutor = new ThreadPoolExecutor(
@@ -183,6 +194,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -320,6 +334,11 @@ public class ThreadPoolExecutorTest {
 					Assert.fail();
 				}
 				catch (RejectedExecutionException rejectedExecutionException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							rejectedExecutionException,
+							rejectedExecutionException);
+					}
 				}
 
 				Assert.assertEquals(10, threadPoolExecutor.getPoolSize());
@@ -427,6 +446,11 @@ public class ThreadPoolExecutorTest {
 					Assert.fail();
 				}
 				catch (RejectedExecutionException rejectedExecutionException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							rejectedExecutionException,
+							rejectedExecutionException);
+					}
 				}
 
 				Assert.assertEquals(10, threadPoolExecutor.getPoolSize());
@@ -657,6 +681,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -666,6 +693,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -675,6 +705,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -684,6 +717,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -692,6 +728,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -701,6 +740,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -710,6 +752,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -721,6 +766,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		try {
@@ -731,6 +779,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		try {
@@ -741,6 +792,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 	}
 
@@ -785,6 +839,9 @@ public class ThreadPoolExecutorTest {
 					}
 				}
 				catch (InterruptedException interruptedException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(interruptedException, interruptedException);
+					}
 				}
 			}
 
@@ -964,6 +1021,9 @@ public class ThreadPoolExecutorTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 		finally {
 			TestUtil.closePool(threadPoolExecutor);
@@ -1009,6 +1069,9 @@ public class ThreadPoolExecutorTest {
 					}
 				}
 				catch (InterruptedException interruptedException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(interruptedException, interruptedException);
+					}
 				}
 			}
 
@@ -1291,5 +1354,8 @@ public class ThreadPoolExecutorTest {
 		Assert.assertTrue(terminationNoticeableFutute.isDone());
 		Assert.assertTrue(marker.get());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ThreadPoolExecutorTest.class);
 
 }

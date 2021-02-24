@@ -14,6 +14,8 @@
 
 package com.liferay.portal.language;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.util.Arrays;
@@ -57,6 +59,9 @@ public class ResourceBundleEnumerationTest {
 			Assert.fail();
 		}
 		catch (NoSuchElementException noSuchElementException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchElementException, noSuchElementException);
+			}
 		}
 	}
 
@@ -77,7 +82,13 @@ public class ResourceBundleEnumerationTest {
 			Assert.fail();
 		}
 		catch (NoSuchElementException noSuchElementException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchElementException, noSuchElementException);
+			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ResourceBundleEnumerationTest.class);
 
 }

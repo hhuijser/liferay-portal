@@ -14,6 +14,8 @@
 
 package com.liferay.portal.scripting.groovy.internal;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Collections;
@@ -45,6 +47,9 @@ public class GroovyExecutorTest {
 			Assert.fail("Should throw RuntimeException");
 		}
 		catch (RuntimeException runtimeException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(runtimeException, runtimeException);
+			}
 		}
 	}
 
@@ -62,6 +67,11 @@ public class GroovyExecutorTest {
 			Assert.fail("Should throw UnsupportedOperationException");
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 	}
 
@@ -78,5 +88,8 @@ public class GroovyExecutorTest {
 				getClass().getResourceAsStream(
 					"dependencies/" + fileName + ".groovy")));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		GroovyExecutorTest.class);
 
 }

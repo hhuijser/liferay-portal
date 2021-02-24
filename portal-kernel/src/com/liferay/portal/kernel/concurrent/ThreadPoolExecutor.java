@@ -621,6 +621,9 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 	private static final int _TERMINATED = 3;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ThreadPoolExecutor.class);
+
 	private volatile boolean _allowCoreThreadTimeout;
 	private long _completedTaskCount;
 	private volatile int _corePoolSize;
@@ -791,8 +794,5 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 		private Thread _thread;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ThreadPoolExecutor.class);
 
 }

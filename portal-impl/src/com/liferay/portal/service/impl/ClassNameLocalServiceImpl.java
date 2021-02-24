@@ -155,10 +155,11 @@ public class ClassNameLocalServiceImpl
 		_classNames.clear();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ClassNameLocalServiceImpl.class);
+
 	private static final Map<String, ClassName> _classNames =
 		new ConcurrentHashMap<>();
 	private static final ClassName _nullClassName = new ClassNameImpl();
-	private static final Log _log = LogFactoryUtil.getLog(
-		ClassNameLocalServiceImpl.class);
 
 }

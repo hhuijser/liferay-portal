@@ -309,6 +309,9 @@ public class DepotEntryGroupRelLocalServiceTest {
 		return depotEntry;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		DepotEntryGroupRelLocalServiceTest.class);
+
 	@DeleteAfterTestRun
 	private final List<DepotEntry> _depotEntries = new ArrayList<>();
 
@@ -323,8 +326,5 @@ public class DepotEntryGroupRelLocalServiceTest {
 
 	@Inject
 	private GroupLocalService _groupLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DepotEntryGroupRelLocalServiceTest.class);
 
 }

@@ -812,6 +812,9 @@ public class NettyRepositoryTest {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		NettyRepositoryTest.class);
+
 	private final AnnotatedObjectDecoder _annotatedObjectDecoder =
 		new AnnotatedObjectDecoder();
 	private AsyncBroker<Path, FileResponse> _asyncBroker;
@@ -832,8 +835,5 @@ public class NettyRepositoryTest {
 
 	private NettyRepository _nettyRepository;
 	private Path _repositoryPath;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NettyRepositoryTest.class);
 
 }

@@ -1231,6 +1231,8 @@ public class Validator {
 
 	private static final String _XML_EMPTY = "<root />";
 
+	private static final Log _log = LogFactoryUtil.getLog(Validator.class);
+
 	private static final Pattern _emailAddressPattern = Pattern.compile(
 		"^[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@" +
 			"(?:\\w(?:[\\w-]*\\w)?\\.)+(\\w(?:[\\w-]*\\w))$");
@@ -1284,7 +1286,5 @@ public class Validator {
 
 		_ipv6AddressPattern = Pattern.compile(sb.toString());
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(Validator.class);
 
 }

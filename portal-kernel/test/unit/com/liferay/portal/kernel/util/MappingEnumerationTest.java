@@ -82,6 +82,9 @@ public class MappingEnumerationTest {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		MappingEnumerationTest.class);
+
 	private static final MappingEnumeration.Mapper<Integer, String> _mapper =
 		new MappingEnumeration.Mapper<Integer, String>() {
 
@@ -95,8 +98,5 @@ public class MappingEnumerationTest {
 			}
 
 		};
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		MappingEnumerationTest.class);
 
 }

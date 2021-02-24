@@ -487,13 +487,13 @@ public class UnsyncBufferedInputStreamTest {
 
 	private static final int _SIZE = 16 * 1024;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncBufferedInputStreamTest.class);
+
 	static {
 		for (int i = 0; i < _SIZE; i++) {
 			_BUFFER[i] = (byte)i;
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UnsyncBufferedInputStreamTest.class);
 
 }

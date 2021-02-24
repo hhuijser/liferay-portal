@@ -672,12 +672,12 @@ public class ListServiceTrackerMapTest {
 		return new BundleContextWrapper(_bundleContext);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ListServiceTrackerMapTest.class);
+
 	private BundleContext _bundleContext;
 	private final List<ServiceRegistration<?>> _serviceRegistrations =
 		new ArrayList<>();
 	private ServiceTrackerMap<String, List<TrackedOne>> _serviceTrackerMap;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ListServiceTrackerMapTest.class);
 
 }

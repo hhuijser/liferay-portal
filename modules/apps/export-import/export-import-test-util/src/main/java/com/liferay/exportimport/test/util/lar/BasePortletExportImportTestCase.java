@@ -150,6 +150,9 @@ public abstract class BasePortletExportImportTestCase
 			Assert.assertNull(importedStagedModel);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 

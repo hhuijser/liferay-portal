@@ -95,6 +95,11 @@ public class SocketState {
 				return serverSocket;
 			}
 			catch (IOException ioException) {
+				if (_logger.isLoggable(Level.INFO)) {
+					_logger.log(
+						Level.INFO, ioException.getMessage(), ioException);
+				}
+
 				port++;
 			}
 		}
@@ -109,6 +114,12 @@ public class SocketState {
 			return _objectInputStream.readObject();
 		}
 		catch (WriteAbortedException writeAbortedException) {
+			if (_logger.isLoggable(Level.INFO)) {
+				_logger.log(
+					Level.INFO, writeAbortedException.getMessage(),
+					writeAbortedException);
+			}
+
 			return _objectInputStream.readObject();
 		}
 	}

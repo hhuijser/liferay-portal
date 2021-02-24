@@ -494,6 +494,10 @@ public class SpringBeanPortletExtension {
 			methods = clazz.getMethods();
 		}
 		catch (Throwable throwable) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(throwable, throwable);
+			}
+
 			String className = clazz.getName();
 
 			if (!className.startsWith("org.springframework")) {

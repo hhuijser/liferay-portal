@@ -100,6 +100,10 @@ public class TestExecutorRunnable implements Runnable {
 			}
 		}
 		catch (EOFException eofException) {
+			if (_logger.isLoggable(Level.INFO)) {
+				_logger.log(
+					Level.INFO, eofException.getMessage(), eofException);
+			}
 		}
 		catch (Exception exception) {
 			try {

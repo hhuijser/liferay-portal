@@ -16,6 +16,8 @@ package com.liferay.batch.engine.internal.writer;
 
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -81,6 +83,9 @@ public class XLSBatchEngineExportTaskItemWriterTest
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -228,5 +233,8 @@ public class XLSBatchEngineExportTaskItemWriterTest
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		XLSBatchEngineExportTaskItemWriterTest.class);
 
 }

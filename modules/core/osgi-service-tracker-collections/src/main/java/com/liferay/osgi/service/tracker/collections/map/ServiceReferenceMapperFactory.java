@@ -14,6 +14,9 @@
 
 package com.liferay.osgi.service.tracker.collections.map;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -51,6 +54,10 @@ public final class ServiceReferenceMapperFactory {
 				emitter.emit(biFunction.apply(serviceReference, service));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				bundleContext.ungetService(serviceReference);
 			}
 		};
@@ -81,5 +88,8 @@ public final class ServiceReferenceMapperFactory {
 			}
 		};
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceReferenceMapperFactory.class);
 
 }

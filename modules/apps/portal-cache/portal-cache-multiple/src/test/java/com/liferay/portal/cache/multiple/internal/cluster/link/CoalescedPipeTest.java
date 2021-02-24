@@ -14,6 +14,9 @@
 
 package com.liferay.portal.cache.multiple.internal.cluster.link;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.concurrent.Executors;
@@ -93,6 +96,9 @@ public class CoalescedPipeTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		// Normal
@@ -139,6 +145,9 @@ public class CoalescedPipeTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		// Normal
@@ -189,5 +198,8 @@ public class CoalescedPipeTest {
 		Assert.assertEquals("test1", snapShot[0]);
 		Assert.assertEquals("test2", snapShot[1]);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CoalescedPipeTest.class);
 
 }

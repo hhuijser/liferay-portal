@@ -15,6 +15,8 @@
 package com.liferay.portal.remote.soap.extender.test;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -122,6 +124,9 @@ public class ConfigurationAdminBundleActivator implements BundleActivator {
 			_soapConfiguration.delete();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		try {
@@ -133,14 +138,23 @@ public class ConfigurationAdminBundleActivator implements BundleActivator {
 			}
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		try {
 			_cxfConfiguration.delete();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurationAdminBundleActivator.class);
 
 	private Configuration _cxfConfiguration;
 	private String _filterString;

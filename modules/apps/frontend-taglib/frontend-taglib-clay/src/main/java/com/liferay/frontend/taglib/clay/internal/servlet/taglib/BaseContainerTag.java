@@ -424,6 +424,9 @@ public class BaseContainerTag extends AttributesTagSupport {
 		jspWriter.write("\"");
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseContainerTag.class);
+
 	private Map<String, Object> _additionalProps;
 	private String _componentId;
 	private String _containerElement;
@@ -436,8 +439,5 @@ public class BaseContainerTag extends AttributesTagSupport {
 	private String _id;
 	private String _propsTransformer;
 	private ServletContext _propsTransformerServletContext;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseContainerTag.class);
 
 }

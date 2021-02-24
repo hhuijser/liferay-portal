@@ -107,10 +107,10 @@ public class AggregateResourceBundle extends ResourceBundle {
 		return _keys;
 	}
 
-	private volatile Set<String> _keys;
-	private final ResourceBundle[] _resourceBundles;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		AggregateResourceBundle.class);
+
+	private volatile Set<String> _keys;
+	private final ResourceBundle[] _resourceBundles;
 
 }

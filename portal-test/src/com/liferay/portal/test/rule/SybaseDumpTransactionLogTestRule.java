@@ -137,9 +137,9 @@ public class SybaseDumpTransactionLogTestRule
 		}
 	}
 
-	private Thread _thread;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		SybaseDumpTransactionLogTestRule.class);
+
+	private Thread _thread;
 
 }

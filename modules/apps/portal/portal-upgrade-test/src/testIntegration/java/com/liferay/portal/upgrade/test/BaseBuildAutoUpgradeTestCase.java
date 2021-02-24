@@ -539,6 +539,9 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseBuildAutoUpgradeTestCase.class);
+
 	private Bundle _bundle;
 	private boolean _previousSchemaModuleBuildAutoUpgrade;
 
@@ -550,8 +553,5 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 
 	@Inject
 	private ServiceComponentPersistence _serviceComponentPersistence;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseBuildAutoUpgradeTestCase.class);
 
 }

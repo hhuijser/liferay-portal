@@ -260,6 +260,9 @@ public class FutureConverterTest {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		FutureConverterTest.class);
+
 	private final FutureTask<Object> _futureTask = new FutureTask<Object>(
 		new Callable<Object>() {
 
@@ -283,8 +286,5 @@ public class FutureConverterTest {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		FutureConverterTest.class);
 
 }

@@ -364,10 +364,10 @@ public class ByteArrayFileInputStreamTest {
 		byteArrayFileInputStream.close();
 	}
 
-	private File _testDir;
-	private File _testFile;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		ByteArrayFileInputStreamTest.class);
+
+	private File _testDir;
+	private File _testFile;
 
 }

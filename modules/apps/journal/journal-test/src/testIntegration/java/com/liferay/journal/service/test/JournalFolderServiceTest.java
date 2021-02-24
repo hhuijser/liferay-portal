@@ -136,6 +136,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 
 		JournalFolder subfolder = JournalTestUtil.addFolder(
@@ -150,6 +154,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 
 		JournalFolderLocalServiceUtil.deleteFolder(folder.getFolderId());
@@ -397,6 +405,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 
 		JournalFolder subfolder = JournalTestUtil.addFolder(
@@ -410,6 +422,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 	}
 
@@ -539,6 +555,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 
 		JournalFolder subfolder = JournalTestUtil.addFolder(
@@ -551,6 +571,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 	}
 
@@ -617,6 +641,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 
 		JournalFolderLocalServiceUtil.updateFolder(
@@ -702,6 +730,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 
 		JournalFolder subfolder = JournalTestUtil.addFolder(
@@ -724,6 +756,10 @@ public class JournalFolderServiceTest {
 			Assert.fail();
 		}
 		catch (InvalidDDMStructureException invalidDDMStructureException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					invalidDDMStructureException, invalidDDMStructureException);
+			}
 		}
 	}
 

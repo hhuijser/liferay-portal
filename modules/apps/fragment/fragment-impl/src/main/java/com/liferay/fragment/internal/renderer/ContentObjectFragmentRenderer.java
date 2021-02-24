@@ -220,6 +220,9 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 			return infoItem;
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		return displayObjectOptional.orElse(null);

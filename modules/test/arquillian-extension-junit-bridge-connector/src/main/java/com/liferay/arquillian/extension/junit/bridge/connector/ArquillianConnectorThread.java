@@ -90,8 +90,15 @@ public class ArquillianConnectorThread extends Thread {
 				}
 			}
 			catch (EOFException eofException) {
+				if (_logger.isDebugEnabled()) {
+					_logger.debug(eofException, eofException);
+				}
 			}
 			catch (SocketException socketException) {
+				if (_logger.isDebugEnabled()) {
+					_logger.debug(socketException, socketException);
+				}
+
 				break;
 			}
 			catch (Exception exception) {

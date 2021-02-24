@@ -79,6 +79,12 @@ public class DefineObjectsTag extends TagSupport {
 				pageContext.getServletContext());
 		}
 		catch (UnsupportedOperationException unsupportedOperationException1) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException1,
+					unsupportedOperationException1);
+			}
+
 			try {
 				JSModuleResolver jsModuleResolver =
 					ServicesProvider.getJSModuleResolver();

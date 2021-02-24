@@ -42,7 +42,7 @@ public class GCUtil {
 			try {
 				list.add(new byte[100 * 1024 * 1024]);
 			}
-			catch (OutOfMemoryError oome) {
+			catch (OutOfMemoryError outOfMemoryError) {
 				list.clear();
 
 				list = null;

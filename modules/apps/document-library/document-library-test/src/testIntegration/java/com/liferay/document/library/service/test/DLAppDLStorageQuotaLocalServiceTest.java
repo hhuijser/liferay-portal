@@ -20,6 +20,8 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.document.library.model.DLStorageQuota;
 import com.liferay.document.library.service.DLStorageQuotaLocalService;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -125,6 +127,11 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 			return dlStorageQuota.getStorageSize();
 		}
 		catch (NoSuchStorageQuotaException noSuchStorageQuotaException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchStorageQuotaException, noSuchStorageQuotaException);
+			}
+
 			return 0;
 		}
 	}
@@ -137,5 +144,8 @@ public class DLAppDLStorageQuotaLocalServiceTest {
 
 	@DeleteAfterTestRun
 	private Group _group;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLAppDLStorageQuotaLocalServiceTest.class);
 
 }

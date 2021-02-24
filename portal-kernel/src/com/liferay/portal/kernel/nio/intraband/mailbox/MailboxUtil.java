@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.nio.intraband.mailbox;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.nio.intraband.Datagram;
 import com.liferay.portal.kernel.nio.intraband.Intraband;
 import com.liferay.portal.kernel.nio.intraband.RegistrationReference;
@@ -119,6 +121,9 @@ public class MailboxUtil {
 					_mailMap.remove(receiptStub.getReceipt());
 				}
 				catch (InterruptedException interruptedException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(interruptedException, interruptedException);
+					}
 				}
 			}
 		}
@@ -194,5 +199,7 @@ public class MailboxUtil {
 			thread.start();
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(MailboxUtil.class);
 
 }

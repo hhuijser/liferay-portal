@@ -14,6 +14,9 @@
 
 package com.liferay.portal.dao.orm.hibernate;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.Serializable;
 
 import java.sql.PreparedStatement;
@@ -99,6 +102,9 @@ public class IntegerType implements CompositeUserType, Serializable {
 				rs, names[0], session);
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		if (value == null) {
@@ -137,5 +143,7 @@ public class IntegerType implements CompositeUserType, Serializable {
 	@Override
 	public void setPropertyValue(Object component, int property, Object value) {
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(IntegerType.class);
 
 }

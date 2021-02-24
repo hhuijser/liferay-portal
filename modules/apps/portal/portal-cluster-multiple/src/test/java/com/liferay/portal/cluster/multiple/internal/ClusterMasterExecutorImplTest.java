@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.cluster.ClusterRequest;
 import com.liferay.portal.kernel.cluster.FutureClusterResponses;
 import com.liferay.portal.kernel.concurrent.NoticeableFuture;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
@@ -657,6 +659,10 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 					null, 1000, TimeUnit.MILLISECONDS);
 			}
 			catch (TimeoutException timeoutException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(timeoutException, timeoutException);
+				}
+
 				return "null";
 			}
 		}
@@ -885,5 +891,8 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 		private boolean _masterTokenReleasedNotified;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ClusterMasterExecutorImplTest.class);
 
 }

@@ -19,6 +19,8 @@ import com.liferay.petra.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.fabric.netty.fileserver.handlers.FileServerTestUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.nio.FileSystemProviderWrapper;
 import com.liferay.portal.kernel.nio.FileSystemWrapper;
 import com.liferay.portal.kernel.nio.PathWrapper;
@@ -469,6 +471,10 @@ public class FileHelperUtilTest {
 			Assert.fail();
 		}
 		catch (DirectoryNotEmptyException directoryNotEmptyException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					directoryNotEmptyException, directoryNotEmptyException);
+			}
 		}
 		finally {
 			Assert.assertTrue(Files.exists(regularToFilePath));
@@ -601,6 +607,9 @@ public class FileHelperUtilTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 	}
 
@@ -624,6 +633,9 @@ public class FileHelperUtilTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 	}
 
@@ -766,6 +778,9 @@ public class FileHelperUtilTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 	}
 
@@ -793,6 +808,9 @@ public class FileHelperUtilTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 	}
 
@@ -824,5 +842,8 @@ public class FileHelperUtilTest {
 			ReflectionUtil.throwException(ioException);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FileHelperUtilTest.class);
 
 }

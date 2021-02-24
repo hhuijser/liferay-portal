@@ -31,6 +31,8 @@ import com.liferay.headless.admin.user.client.serdes.v1_0.WebUrlSerDes;
 import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexer;
@@ -443,6 +445,10 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 							deserializerFunction.apply(json), subfieldName);
 					}
 					catch (Exception exception) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(exception, exception);
+						}
+
 						return null;
 					}
 				});
@@ -534,5 +540,8 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 
 	@Inject
 	private UserLocalService _userLocalService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UserAccountResourceTest.class);
 
 }

@@ -16,6 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -91,6 +93,10 @@ public class PythonClassesAndMethodsOrderCheck extends BaseFileCheck {
 				getAttributeValue(_MAX_LINE_LENGTH, absolutePath));
 		}
 		catch (NumberFormatException numberFormatException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(numberFormatException, numberFormatException);
+			}
+
 			return content;
 		}
 
@@ -298,5 +304,7 @@ public class PythonClassesAndMethodsOrderCheck extends BaseFileCheck {
 			"(?<=\n)(\t*)class (\\w+)(\\((.*?)\\))?:\n+", Pattern.DOTALL);
 	private static final Pattern _classDefinationHeaderPattern2 =
 		Pattern.compile("class (\\w+)(\\((.*?)\\))?:", Pattern.DOTALL);
+	private static final Log _log = LogFactoryUtil.getLog(
+		PythonClassesAndMethodsOrderCheck.class);
 
 }

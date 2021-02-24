@@ -15,6 +15,8 @@
 package com.liferay.portal.security.auth.verifier.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.access.control.AccessControlThreadLocal;
 import com.liferay.portal.kernel.security.auth.AccessControlContext;
 import com.liferay.portal.kernel.security.auth.AuthException;
@@ -265,6 +267,9 @@ public class AuthVerifierTest {
 				serviceRegistration.unregister();
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 	}
@@ -561,5 +566,7 @@ public class AuthVerifierTest {
 	private static BundleContext _bundleContext;
 	private static final List<ServiceRegistration<?>> _serviceRegistrations =
 		new ArrayList<>();
+	private static final Log _log = LogFactoryUtil.getLog(
+		AuthVerifierTest.class);
 
 }

@@ -31,6 +31,8 @@ import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.User;
@@ -288,12 +290,18 @@ public class StagingLocalizationTest {
 				StagingLocalServiceUtil.disableStaging(group, serviceContext);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 
 			try {
 				GroupLocalServiceUtil.deleteGroup(group);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 	}
@@ -329,5 +337,8 @@ public class StagingLocalizationTest {
 
 	@DeleteAfterTestRun
 	private Group _targetGroup;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		StagingLocalizationTest.class);
 
 }

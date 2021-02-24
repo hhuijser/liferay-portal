@@ -14,6 +14,8 @@
 
 package com.liferay.batch.engine.internal.reader;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.ByteArrayInputStream;
@@ -174,6 +176,10 @@ public class XLSBatchEngineImportTaskItemReaderTest
 				Assert.fail();
 			}
 			catch (IllegalArgumentException illegalArgumentException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						illegalArgumentException, illegalArgumentException);
+				}
 			}
 		}
 	}
@@ -198,6 +204,12 @@ public class XLSBatchEngineImportTaskItemReaderTest
 			}
 			catch (ArrayIndexOutOfBoundsException
 						arrayIndexOutOfBoundsException) {
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						arrayIndexOutOfBoundsException,
+						arrayIndexOutOfBoundsException);
+				}
 			}
 		}
 	}
@@ -374,5 +386,8 @@ public class XLSBatchEngineImportTaskItemReaderTest
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		XLSBatchEngineImportTaskItemReaderTest.class);
 
 }

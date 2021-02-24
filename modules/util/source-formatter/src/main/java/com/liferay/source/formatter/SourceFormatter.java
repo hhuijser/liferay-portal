@@ -578,6 +578,23 @@ public class SourceFormatter {
 						new String[] {"**/build.gradle"},
 						_sourceFormatterExcludes, false));
 			}
+			else if (recentChangesFileName.endsWith(
+						_sourceFormatterArgs.getBaseDirName() +
+							"release.properties")) {
+
+				dependentFileNames.add(
+					_sourceFormatterArgs.getBaseDirName() +
+						"/modules/sdk/ant-bnd/src/main/java/com/liferay/ant" +
+							"/bnd/social/SocialAnalyzerPlugin.java");
+				dependentFileNames.add(
+					_sourceFormatterArgs.getBaseDirName() +
+						"/portal-impl/src/com/liferay/portal/util" +
+							"/EntityResolver.java");
+				dependentFileNames.add(
+					_sourceFormatterArgs.getBaseDirName() +
+						"/portal-impl/src/com/liferay/portlet/social/util" +
+							"/SocialConfigurationImpl.java");
+			}
 		}
 
 		_sourceFormatterArgs.addRecentChangesFileNames(

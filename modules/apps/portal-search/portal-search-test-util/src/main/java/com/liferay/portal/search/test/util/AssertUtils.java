@@ -18,6 +18,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
@@ -68,6 +70,10 @@ public class AssertUtils {
 			Assert.assertEquals(expected, actual);
 		}
 		catch (AssertionError assertionError) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(assertionError, assertionError);
+			}
+
 			Assert.assertEquals(messageSupplier.get(), expected, actual);
 		}
 	}
@@ -97,6 +103,10 @@ public class AssertUtils {
 			Assert.assertEquals(expected, actual);
 		}
 		catch (AssertionError assertionError) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(assertionError, assertionError);
+			}
+
 			Assert.assertEquals(messageSupplier.get(), expected, actual);
 		}
 	}
@@ -163,5 +173,7 @@ public class AssertUtils {
 
 		return StringPool.QUOTE + escapedString + StringPool.QUOTE;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(AssertUtils.class);
 
 }

@@ -244,6 +244,9 @@ public class DLSharepointStorageImpl extends BaseSharepointStorageImpl {
 					fileEntry = getFileEntry(sharepointRequest);
 				}
 				catch (Exception exception2) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception2, exception2);
+					}
 				}
 			}
 		}
@@ -425,6 +428,9 @@ public class DLSharepointStorageImpl extends BaseSharepointStorageImpl {
 					fileEntry = getFileEntry(sharepointRequest);
 				}
 				catch (Exception exception2) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception2, exception2);
+					}
 				}
 			}
 		}
@@ -446,10 +452,17 @@ public class DLSharepointStorageImpl extends BaseSharepointStorageImpl {
 				removedDocsTree.addChild(documentTree);
 			}
 			catch (Exception exception1) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception1, exception1);
+				}
+
 				try {
 					failedDocsTree.addChild(documentTree);
 				}
 				catch (Exception exception2) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception2, exception2);
+					}
 				}
 			}
 		}
@@ -464,10 +477,17 @@ public class DLSharepointStorageImpl extends BaseSharepointStorageImpl {
 				removedDirsTree.addChild(folderTree);
 			}
 			catch (Exception exception1) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception1, exception1);
+				}
+
 				try {
 					failedDirsTree.addChild(folderTree);
 				}
 				catch (Exception exception2) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception2, exception2);
+					}
 				}
 			}
 		}

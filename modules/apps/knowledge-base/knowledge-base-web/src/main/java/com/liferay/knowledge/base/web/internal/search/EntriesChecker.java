@@ -88,6 +88,10 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 					kbFolder = KBFolderServiceUtil.getKBFolder(entryId);
 				}
 				catch (Exception exception2) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception2, exception2);
+					}
+
 					return StringPool.BLANK;
 				}
 			}

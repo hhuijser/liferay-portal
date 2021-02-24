@@ -297,6 +297,9 @@ public class SynchronousDestinationTestRule
 					asyncDestination = true;
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
 				}
 			}
 
@@ -396,6 +399,11 @@ public class SynchronousDestinationTestRule
 							"Waiting for destination " + filter.toString());
 					}
 					catch (InterruptedException interruptedException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								interruptedException, interruptedException);
+						}
+
 						System.out.println(
 							StringBundler.concat(
 								"Stopped waiting for destination ",
@@ -406,6 +414,9 @@ public class SynchronousDestinationTestRule
 				}
 			}
 		}
+
+		private static final Log _log = LogFactoryUtil.getLog(
+			SyncHandler.class);
 
 		private final List<String> _absentDestinationNames = new ArrayList<>();
 		private final List<Destination> _asyncServiceDestinations =

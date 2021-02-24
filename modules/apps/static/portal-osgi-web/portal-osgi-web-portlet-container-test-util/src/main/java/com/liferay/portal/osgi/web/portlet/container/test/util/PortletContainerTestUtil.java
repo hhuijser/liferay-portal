@@ -321,6 +321,10 @@ public class PortletContainerTestUtil {
 				StringUtil.read(inputStream), headerFields.get("Set-Cookie"));
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
+
 			try (InputStream inputStream = httpURLConnection.getErrorStream()) {
 				if (inputStream != null) {
 					while (inputStream.read() != -1);

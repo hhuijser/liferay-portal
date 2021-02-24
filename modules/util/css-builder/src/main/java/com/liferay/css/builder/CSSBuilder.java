@@ -19,6 +19,8 @@ import com.beust.jcommander.ParameterException;
 
 import com.liferay.css.builder.internal.util.CSSBuilderUtil;
 import com.liferay.css.builder.internal.util.FileUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.rtl.css.RTLCSSConverter;
 import com.liferay.sass.compiler.SassCompiler;
 import com.liferay.sass.compiler.jni.internal.JniSassCompiler;
@@ -298,6 +300,10 @@ public class CSSBuilder implements AutoCloseable {
 				System.out.println("Using native Sass compiler");
 			}
 			catch (Throwable throwable) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(throwable, throwable);
+				}
+
 				System.out.println(
 					"Unable to load native compiler, falling back to Ruby");
 
@@ -313,6 +319,10 @@ public class CSSBuilder implements AutoCloseable {
 				System.out.println("Using native 32-bit Sass compiler");
 			}
 			catch (Throwable throwable) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(throwable, throwable);
+				}
+
 				System.out.println(
 					"Unable to load native compiler, falling back to Ruby");
 
@@ -326,6 +336,10 @@ public class CSSBuilder implements AutoCloseable {
 				System.out.println("Using Ruby Sass compiler");
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				System.out.println(
 					"Unable to load Ruby compiler, falling back to native");
 
@@ -499,6 +513,8 @@ public class CSSBuilder implements AutoCloseable {
 
 		outputFile.setLastModified(file.lastModified());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(CSSBuilder.class);
 
 	private static RTLCSSConverter _rtlCSSConverter;
 

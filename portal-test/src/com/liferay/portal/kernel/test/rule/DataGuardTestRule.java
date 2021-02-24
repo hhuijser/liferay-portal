@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.dao.orm.SessionFactory;
 import com.liferay.portal.kernel.dao.orm.SessionWrapper;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.model.Portlet;
@@ -565,6 +567,10 @@ public class DataGuardTestRule
 			}
 		}
 		catch (Throwable throwable1) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(throwable1, throwable1);
+			}
+
 			BasePersistence<?> basePersistence = _getBasePersistence(
 				persistedModelLocalService);
 
@@ -601,9 +607,15 @@ public class DataGuardTestRule
 				}
 			}
 			catch (Throwable throwable2) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(throwable2, throwable2);
+				}
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DataGuardTestRule.class);
 
 	private static final ThreadLocal<Map<String, Map<Serializable, String>>>
 		_recordsThreadLocal = new ThreadLocal<>();

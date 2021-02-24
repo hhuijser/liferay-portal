@@ -111,9 +111,9 @@ public class FileRequestChannelHandler
 			new DefaultFileRegion(fileChannel, 0, fileChannel.size()));
 	}
 
-	private final CompressionLevel _compressionLevel;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		FileRequestChannelHandler.class);
+
+	private final CompressionLevel _compressionLevel;
 
 }

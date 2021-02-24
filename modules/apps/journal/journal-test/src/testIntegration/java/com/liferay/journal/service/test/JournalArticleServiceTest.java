@@ -777,6 +777,9 @@ public class JournalArticleServiceTest {
 			serviceContext);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleServiceTest.class);
+
 	@Inject
 	private static JournalArticleLocalService _journalArticleLocalService;
 
@@ -793,8 +796,5 @@ public class JournalArticleServiceTest {
 	private String _keyword;
 	private JournalArticle _latestArticle;
 	private String _originalPortalPreferencesXML;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleServiceTest.class);
 
 }

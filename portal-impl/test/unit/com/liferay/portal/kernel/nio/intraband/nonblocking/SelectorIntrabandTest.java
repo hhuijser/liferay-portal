@@ -1388,6 +1388,9 @@ public class SelectorIntrabandTest {
 
 	private static final byte _TYPE = 1;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectorIntrabandTest.class);
+
 	static {
 		String dataString = SelectorIntrabandTest.class.getName();
 
@@ -1515,8 +1518,5 @@ public class SelectorIntrabandTest {
 		private final SelectorIntraband _selectorIntraband;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SelectorIntrabandTest.class);
 
 }

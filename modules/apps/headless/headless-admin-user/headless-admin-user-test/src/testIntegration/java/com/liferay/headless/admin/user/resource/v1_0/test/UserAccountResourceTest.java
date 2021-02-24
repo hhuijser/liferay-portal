@@ -535,13 +535,13 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		};
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		UserAccountResourceTest.class);
+
 	private Organization _organization;
 	private User _testUser;
 
 	@Inject
 	private UserLocalService _userLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		UserAccountResourceTest.class);
 
 }

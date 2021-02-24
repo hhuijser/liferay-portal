@@ -184,10 +184,10 @@ public class FileResponseTest {
 
 	private static final long _SIZE = System.currentTimeMillis();
 
-	private FileResponse _fileResponse;
-	private final Path _path = Paths.get("testPath");
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		FileResponseTest.class);
+
+	private FileResponse _fileResponse;
+	private final Path _path = Paths.get("testPath");
 
 }

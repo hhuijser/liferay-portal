@@ -292,6 +292,9 @@ public class AnnotatedObjectDecoderTest {
 		return byteBuf;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AnnotatedObjectDecoderTest.class);
+
 	private final AnnotatedObjectDecoder _annotatedObjectDecoder =
 		new AnnotatedObjectDecoder();
 	private final ChannelPipeline _channelPipeline =
@@ -337,8 +340,5 @@ public class AnnotatedObjectDecoderTest {
 		private UUID _uuid;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AnnotatedObjectDecoderTest.class);
 
 }

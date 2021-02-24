@@ -89,6 +89,9 @@ public class AutoBatchPreparedStatementUtil {
 		PreparedStatement.class
 	};
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AutoBatchPreparedStatementUtil.class);
+
 	private static final Method _addBatchMethod;
 	private static final Method _closeMethod;
 	private static final Method _executeBatch;
@@ -96,17 +99,6 @@ public class AutoBatchPreparedStatementUtil {
 		ServiceProxyFactory.newServiceTrackedInstance(
 			PortalExecutorManager.class, AutoBatchPreparedStatementUtil.class,
 			"_portalExecutorManager", true);
-
-	static {
-		try {
-			_addBatchMethod = PreparedStatement.class.getMethod("addBatch");
-			_closeMethod = PreparedStatement.class.getMethod("close");
-			_executeBatch = PreparedStatement.class.getMethod("executeBatch");
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
-			throw new ExceptionInInitializerError(noSuchMethodException);
-		}
-	}
 
 	private static class BatchInvocationHandler implements InvocationHandler {
 
@@ -400,7 +392,15 @@ public class AutoBatchPreparedStatementUtil {
 
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		AutoBatchPreparedStatementUtil.class);
+	static {
+		try {
+			_addBatchMethod = PreparedStatement.class.getMethod("addBatch");
+			_closeMethod = PreparedStatement.class.getMethod("close");
+			_executeBatch = PreparedStatement.class.getMethod("executeBatch");
+		}
+		catch (NoSuchMethodException noSuchMethodException) {
+			throw new ExceptionInInitializerError(noSuchMethodException);
+		}
+	}
 
 }

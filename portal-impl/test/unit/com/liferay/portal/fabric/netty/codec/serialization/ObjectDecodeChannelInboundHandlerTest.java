@@ -158,6 +158,9 @@ public class ObjectDecodeChannelInboundHandlerTest {
 			dateChannelHandler, annotatedObjectDecoder.removeLast());
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ObjectDecodeChannelInboundHandlerTest.class);
+
 	private static class DateChannelHandler
 		extends ObjectDecodeChannelInboundHandler<Date> {
 
@@ -202,8 +205,5 @@ public class ObjectDecodeChannelInboundHandlerTest {
 		private Throwable _throwable;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ObjectDecodeChannelInboundHandlerTest.class);
 
 }

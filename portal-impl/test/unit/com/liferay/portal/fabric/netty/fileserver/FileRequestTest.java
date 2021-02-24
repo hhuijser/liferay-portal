@@ -115,10 +115,10 @@ public class FileRequestTest {
 
 	private static final long _LAST_MODIFIED_TIME = System.currentTimeMillis();
 
-	private FileRequest _fileRequest;
-	private final Path _path = Paths.get("testPath");
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		FileRequestTest.class);
+
+	private FileRequest _fileRequest;
+	private final Path _path = Paths.get("testPath");
 
 }

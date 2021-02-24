@@ -232,6 +232,9 @@ public class IntrabandRPCUtilTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 	}
 

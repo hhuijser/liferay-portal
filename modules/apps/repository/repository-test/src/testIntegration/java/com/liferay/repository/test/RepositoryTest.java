@@ -408,9 +408,9 @@ public class RepositoryTest {
 	private static final String _TEST_CONTENT =
 		"LIFERAY\nEnterprise. Open Source. For Life.";
 
+	private static final Log _log = LogFactoryUtil.getLog(RepositoryTest.class);
+
 	@DeleteAfterTestRun
 	private Group _group;
-
-	private static final Log _log = LogFactoryUtil.getLog(RepositoryTest.class);
 
 }

@@ -452,6 +452,9 @@ public class PortletSessionAttributeMapTest {
 
 	private static final String _SCOPE_PREFIX = "scopePrefix?";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletSessionAttributeMapTest.class);
+
 	private static final Object _value1 = new Object();
 	private static final Object _value2 = new Object();
 	private static final Object _value3 = new Object();
@@ -459,8 +462,5 @@ public class PortletSessionAttributeMapTest {
 	private static final Object _value5 = new Object();
 
 	private final HttpSession _session = new MockHttpSession();
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PortletSessionAttributeMapTest.class);
 
 }

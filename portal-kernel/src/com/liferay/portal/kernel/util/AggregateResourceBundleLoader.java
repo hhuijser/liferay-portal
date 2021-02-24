@@ -87,9 +87,9 @@ public class AggregateResourceBundleLoader implements ResourceBundleLoader {
 			resourceBundles.toArray(new ResourceBundle[0]));
 	}
 
-	private final ResourceBundleLoader[] _resourceBundleLoaders;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		AggregateResourceBundleLoader.class);
+
+	private final ResourceBundleLoader[] _resourceBundleLoaders;
 
 }

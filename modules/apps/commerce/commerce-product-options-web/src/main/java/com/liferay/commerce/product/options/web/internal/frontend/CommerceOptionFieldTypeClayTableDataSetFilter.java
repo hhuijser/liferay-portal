@@ -130,13 +130,13 @@ public class CommerceOptionFieldTypeClayTableDataSetFilter
 		return radioClayDataSetFilterItems;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CommerceOptionFieldTypeClayTableDataSetFilter.class);
+
 	@Reference
 	private ConfigurationProvider _configurationProvider;
 
 	@Reference
 	private DDMFormFieldTypeServicesTracker _ddmFormFieldTypeServicesTracker;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceOptionFieldTypeClayTableDataSetFilter.class);
 
 }

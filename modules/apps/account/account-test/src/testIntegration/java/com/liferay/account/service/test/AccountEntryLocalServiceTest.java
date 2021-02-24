@@ -1063,6 +1063,9 @@ public class AccountEntryLocalServiceTest {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		AccountEntryLocalServiceTest.class);
+
 	private static final Comparator<AccountEntry> _accountEntryNameComparator =
 		(accountEntry1, accountEntry2) -> {
 			String name1 = accountEntry1.getName();
@@ -1101,8 +1104,5 @@ public class AccountEntryLocalServiceTest {
 
 	@Inject
 	private ResourcePermissionLocalService _resourcePermissionLocalService;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AccountEntryLocalServiceTest.class);
 
 }

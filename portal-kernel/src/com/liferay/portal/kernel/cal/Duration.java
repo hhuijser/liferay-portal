@@ -45,6 +45,8 @@
 package com.liferay.portal.kernel.cal;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.Serializable;
 
@@ -116,6 +118,11 @@ public class Duration implements Cloneable, Serializable {
 			return other;
 		}
 		catch (CloneNotSupportedException cloneNotSupportedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					cloneNotSupportedException, cloneNotSupportedException);
+			}
+
 			throw new InternalError();
 		}
 	}
@@ -401,5 +408,7 @@ public class Duration implements Cloneable, Serializable {
 	 * Field weeks
 	 */
 	private int _weeks;
+
+	private static final Log _log = LogFactoryUtil.getLog(Duration.class);
 
 }

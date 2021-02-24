@@ -24,6 +24,8 @@ import com.liferay.frontend.taglib.clay.data.set.filter.BaseRadioClayDataSetFilt
 import com.liferay.frontend.taglib.clay.data.set.filter.ClayDataSetFilter;
 import com.liferay.frontend.taglib.clay.data.set.filter.RadioClayDataSetFilterItem;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.settings.SystemSettingsLocator;
@@ -71,6 +73,9 @@ public class CommerceOptionFieldTypeClayTableDataSetFilter
 			}
 		}
 		catch (MissingResourceException missingResourceException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(missingResourceException, missingResourceException);
+			}
 		}
 
 		return ddmFormFieldType.getName();
@@ -130,5 +135,8 @@ public class CommerceOptionFieldTypeClayTableDataSetFilter
 
 	@Reference
 	private DDMFormFieldTypeServicesTracker _ddmFormFieldTypeServicesTracker;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CommerceOptionFieldTypeClayTableDataSetFilter.class);
 
 }

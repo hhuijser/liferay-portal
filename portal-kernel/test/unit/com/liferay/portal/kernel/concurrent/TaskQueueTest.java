@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.concurrent;
 
 import com.liferay.portal.kernel.concurrent.test.TestUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.SyncThrowableThread;
 
 import java.util.ArrayList;
@@ -40,6 +42,9 @@ public class TaskQueueTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -47,6 +52,9 @@ public class TaskQueueTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		TaskQueue<Object> taskQueue = new TaskQueue<>(10);
@@ -68,6 +76,9 @@ public class TaskQueueTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		Object object1 = new Object();
@@ -123,6 +134,9 @@ public class TaskQueueTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 
 		Assert.assertEquals(list.toString(), 2, list.size());
@@ -154,6 +168,9 @@ public class TaskQueueTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		taskQueue = new TaskQueue<>(10);
@@ -164,6 +181,9 @@ public class TaskQueueTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		taskQueue = new TaskQueue<>(10);
@@ -174,6 +194,9 @@ public class TaskQueueTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		taskQueue = new TaskQueue<>(10);
@@ -309,6 +332,10 @@ public class TaskQueueTest {
 							Assert.fail();
 						}
 						catch (InterruptedException interruptedException) {
+							if (_log.isDebugEnabled()) {
+								_log.debug(
+									interruptedException, interruptedException);
+							}
 						}
 
 						return null;
@@ -328,5 +355,7 @@ public class TaskQueueTest {
 
 		syncThrowableThread.sync();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(TaskQueueTest.class);
 
 }

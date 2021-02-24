@@ -19,6 +19,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
 import com.liferay.portal.kernel.service.ServiceComponentLocalService;
@@ -96,6 +98,9 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 			ps.executeUpdate();
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		_previousSchemaModuleBuildAutoUpgrade =
@@ -120,6 +125,9 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 			ps.executeUpdate();
 		}
 		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
+			}
 		}
 
 		Release release = _releaseLocalService.fetchRelease(
@@ -542,5 +550,8 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 
 	@Inject
 	private ServiceComponentPersistence _serviceComponentPersistence;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseBuildAutoUpgradeTestCase.class);
 
 }

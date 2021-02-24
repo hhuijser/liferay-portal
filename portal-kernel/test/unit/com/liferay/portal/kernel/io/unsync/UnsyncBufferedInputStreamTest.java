@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.io.unsync;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
@@ -150,6 +153,9 @@ public class UnsyncBufferedInputStreamTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -158,6 +164,9 @@ public class UnsyncBufferedInputStreamTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -166,6 +175,9 @@ public class UnsyncBufferedInputStreamTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -174,6 +186,9 @@ public class UnsyncBufferedInputStreamTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -182,6 +197,9 @@ public class UnsyncBufferedInputStreamTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		unsyncBufferedInputStream.close();
@@ -209,6 +227,9 @@ public class UnsyncBufferedInputStreamTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -218,6 +239,9 @@ public class UnsyncBufferedInputStreamTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -292,6 +316,9 @@ public class UnsyncBufferedInputStreamTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		// Shuffle
@@ -465,5 +492,8 @@ public class UnsyncBufferedInputStreamTest {
 			_BUFFER[i] = (byte)i;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncBufferedInputStreamTest.class);
 
 }

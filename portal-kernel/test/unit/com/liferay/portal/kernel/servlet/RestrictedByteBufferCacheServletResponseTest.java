@@ -17,6 +17,8 @@ package com.liferay.portal.kernel.servlet;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.io.DummyOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
@@ -195,6 +197,9 @@ public class RestrictedByteBufferCacheServletResponseTest {
 			restrictedByteBufferCacheServletResponse.getOutputStream();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -238,6 +243,9 @@ public class RestrictedByteBufferCacheServletResponseTest {
 			restrictedByteBufferCacheServletResponse.getWriter();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -348,6 +356,9 @@ public class RestrictedByteBufferCacheServletResponseTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -409,6 +420,9 @@ public class RestrictedByteBufferCacheServletResponseTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 
 		// Setting a larger buffer size causes overflow with a failure in
@@ -468,5 +482,8 @@ public class RestrictedByteBufferCacheServletResponseTest {
 			Assert.assertSame(ioException, illegalStateException.getCause());
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		RestrictedByteBufferCacheServletResponseTest.class);
 
 }

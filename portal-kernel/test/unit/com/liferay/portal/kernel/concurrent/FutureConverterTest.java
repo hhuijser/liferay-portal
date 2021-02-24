@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.concurrent;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.util.concurrent.Callable;
@@ -57,6 +59,9 @@ public class FutureConverterTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 
 		try {
@@ -65,6 +70,9 @@ public class FutureConverterTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 	}
 
@@ -88,6 +96,9 @@ public class FutureConverterTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 
 		try {
@@ -96,6 +107,9 @@ public class FutureConverterTest {
 			Assert.fail();
 		}
 		catch (CancellationException cancellationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(cancellationException, cancellationException);
+			}
 		}
 	}
 
@@ -207,6 +221,9 @@ public class FutureConverterTest {
 			Assert.fail();
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 
 		Assert.assertFalse(currentThread.isInterrupted());
@@ -219,6 +236,9 @@ public class FutureConverterTest {
 			Assert.fail();
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 
 		Assert.assertFalse(currentThread.isInterrupted());
@@ -234,6 +254,9 @@ public class FutureConverterTest {
 			Assert.fail();
 		}
 		catch (TimeoutException timeoutException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(timeoutException, timeoutException);
+			}
 		}
 	}
 
@@ -260,5 +283,8 @@ public class FutureConverterTest {
 		}
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FutureConverterTest.class);
 
 }

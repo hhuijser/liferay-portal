@@ -16,6 +16,8 @@ package com.liferay.portal.template.freemarker.internal;
 
 import com.liferay.petra.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.template.StringTemplateResource;
 import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.template.TemplateException;
@@ -411,6 +413,10 @@ public class FreeMarkerTemplateTest {
 				"Template processing should fail by exceeding threshold");
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			String result = unsyncStringWriter.toString();
 
 			Assert.assertTrue(
@@ -527,5 +533,8 @@ public class FreeMarkerTemplateTest {
 		private String _templateId;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FreeMarkerTemplateTest.class);
 
 }

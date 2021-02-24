@@ -15,6 +15,8 @@
 package com.liferay.registry.internal.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.registry.Registry;
@@ -102,6 +104,9 @@ public class ObjectServiceTrackerMapTest {
 				Assert.fail();
 			}
 			catch (NullPointerException nullPointerException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(nullPointerException, nullPointerException);
+				}
 			}
 
 			serviceRegistration1.unregister();
@@ -457,6 +462,12 @@ public class ObjectServiceTrackerMapTest {
 			}
 			catch (UnsupportedOperationException
 						unsupportedOperationException) {
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						unsupportedOperationException,
+						unsupportedOperationException);
+				}
 			}
 
 			serviceRegistration1.unregister();
@@ -561,5 +572,8 @@ public class ObjectServiceTrackerMapTest {
 
 	private BundleContext _bundleContext;
 	private ServiceTrackerMap<String, TrackedOne> _serviceTrackerMap;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ObjectServiceTrackerMapTest.class);
 
 }

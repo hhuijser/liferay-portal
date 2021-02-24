@@ -24,6 +24,8 @@ import com.liferay.exportimport.kernel.lar.PortletDataHandlerControl;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.StagedModel;
@@ -190,6 +192,10 @@ public abstract class BasePortletDataHandlerTestCase {
 					return TestPropsValues.getUserId();
 				}
 				catch (Exception exception) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(exception, exception);
+					}
+
 					return 0;
 				}
 			});
@@ -707,5 +713,8 @@ public abstract class BasePortletDataHandlerTestCase {
 
 	@Inject
 	private ZipWriterFactory _zipWriterFactory;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BasePortletDataHandlerTestCase.class);
 
 }

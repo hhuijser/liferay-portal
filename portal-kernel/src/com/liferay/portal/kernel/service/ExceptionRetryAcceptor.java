@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.service;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.util.Map;
 
 /**
@@ -51,6 +54,9 @@ public class ExceptionRetryAcceptor implements RetryAcceptor {
 				}
 			}
 			catch (ClassNotFoundException classNotFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(classNotFoundException, classNotFoundException);
+				}
 			}
 
 			Throwable causeThrowable = throwable.getCause();
@@ -71,5 +77,8 @@ public class ExceptionRetryAcceptor implements RetryAcceptor {
 
 		return false;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ExceptionRetryAcceptor.class);
 
 }

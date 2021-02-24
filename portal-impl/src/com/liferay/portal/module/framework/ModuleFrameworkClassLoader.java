@@ -15,6 +15,8 @@
 package com.liferay.portal.module.framework;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -49,6 +51,11 @@ public class ModuleFrameworkClassLoader extends URLClassLoader {
 						clazz = findClass(name);
 					}
 					catch (ClassNotFoundException classNotFoundException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								classNotFoundException, classNotFoundException);
+						}
+
 						clazz = super.loadClass(name, resolve);
 					}
 				}
@@ -57,6 +64,11 @@ public class ModuleFrameworkClassLoader extends URLClassLoader {
 						clazz = super.loadClass(name, resolve);
 					}
 					catch (ClassNotFoundException classNotFoundException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								classNotFoundException, classNotFoundException);
+						}
+
 						clazz = findClass(name);
 					}
 				}
@@ -99,5 +111,8 @@ public class ModuleFrameworkClassLoader extends URLClassLoader {
 	static {
 		ClassLoader.registerAsParallelCapable();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ModuleFrameworkClassLoader.class);
 
 }

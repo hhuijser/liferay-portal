@@ -23,6 +23,8 @@ import com.liferay.portal.fabric.netty.fileserver.FileResponse;
 import com.liferay.portal.fabric.netty.fileserver.handlers.FileResponseChannelHandler;
 import com.liferay.portal.fabric.netty.fileserver.handlers.FileServerTestUtil;
 import com.liferay.portal.fabric.netty.util.NettyUtilAdvice;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -121,6 +123,9 @@ public class NettyRepositoryTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		NettyRepository nettyRepository = new NettyRepository(
@@ -827,5 +832,8 @@ public class NettyRepositoryTest {
 
 	private NettyRepository _nettyRepository;
 	private Path _repositoryPath;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		NettyRepositoryTest.class);
 
 }

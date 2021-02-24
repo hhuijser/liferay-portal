@@ -123,10 +123,11 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 	private static final String _MAX_LINE_LENGTH = "maxLineLength";
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PythonStylingCheck.class);
+
 	private static final Pattern _classDefinitionHeaderPattern =
 		Pattern.compile(
 			"(?<=\n)(\t*)class (\\w+)(\\((.*?)\\))?:\n+", Pattern.DOTALL);
-	private static final Log _log = LogFactoryUtil.getLog(
-		PythonStylingCheck.class);
 
 }

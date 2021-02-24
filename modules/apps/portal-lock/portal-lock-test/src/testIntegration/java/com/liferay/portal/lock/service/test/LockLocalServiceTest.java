@@ -404,6 +404,9 @@ public class LockLocalServiceTest {
 		LockLocalServiceUtil.unlock(className, key, owner2);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LockLocalServiceTest.class);
+
 	private static class LockingJob implements Callable<Void> {
 
 		@Override
@@ -494,8 +497,5 @@ public class LockLocalServiceTest {
 		private final int _requiredSuccessCount;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LockLocalServiceTest.class);
 
 }

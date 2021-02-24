@@ -244,6 +244,14 @@ public class CodeCoverageAssertor implements TestRule {
 
 	private static final Method _DYNAMICALLY_INSTRUMENT_METHOD;
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		CodeCoverageAssertor.class);
+
+	private final String[] _excludes;
+	private final boolean _includeInnerClasses;
+	private final String[] _includes;
+	private final boolean _skip;
+
 	static {
 		ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
 
@@ -261,13 +269,5 @@ public class CodeCoverageAssertor implements TestRule {
 			throw new ExceptionInInitializerError(exception);
 		}
 	}
-
-	private final String[] _excludes;
-	private final boolean _includeInnerClasses;
-	private final String[] _includes;
-	private final boolean _skip;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CodeCoverageAssertor.class);
 
 }

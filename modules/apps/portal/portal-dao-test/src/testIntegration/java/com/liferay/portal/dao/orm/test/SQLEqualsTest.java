@@ -218,7 +218,8 @@ public class SQLEqualsTest {
 		}
 	}
 
-	private static DB _db;
 	private static final Log _log = LogFactoryUtil.getLog(SQLEqualsTest.class);
+
+	private static DB _db;
 
 }

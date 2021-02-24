@@ -336,6 +336,8 @@ public class JAASTest {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(JAASTest.class);
+
 	private static String _jaasAuthType;
 	private static Boolean _jaasEnabled;
 
@@ -416,7 +418,5 @@ public class JAASTest {
 		}
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(JAASTest.class);
 
 }

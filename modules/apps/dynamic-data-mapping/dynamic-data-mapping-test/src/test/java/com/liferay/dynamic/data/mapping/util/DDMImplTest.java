@@ -804,12 +804,12 @@ public class DDMImplTest extends BaseDDMTestCase {
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(DDMImplTest.class);
+
 	private final DDMFormValuesDeserializer _ddmFormValuesDeserializer =
 		new DDMFormValuesJSONDeserializer();
 	private final DDMFormValuesSerializer _ddmFormValuesSerializer =
 		new DDMFormValuesJSONSerializer();
 	private final DDMImpl _ddmImpl = new DDMImpl();
-
-	private static final Log _log = LogFactoryUtil.getLog(DDMImplTest.class);
 
 }

@@ -95,7 +95,6 @@ public class SearchContainer<R> {
 		_portletRequest = portletRequest;
 		_displayTerms = displayTerms;
 		_searchTerms = searchTerms;
-
 		_curParam = curParam;
 
 		boolean resetCur = ParamUtil.getBoolean(portletRequest, "resetCur");

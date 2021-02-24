@@ -41,7 +41,6 @@ public abstract class BasePortalReleaseJob
 		super(jobName, buildProfile);
 
 		_portalBranchName = portalBranchName;
-
 		_testSuiteName = testSuiteName;
 
 		_jenkinsGitWorkingDirectory =

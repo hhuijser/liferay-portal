@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.SessionFactory;
 import com.liferay.portal.kernel.dao.orm.Type;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -278,6 +280,12 @@ public class QueryUtilTest {
 			catch (UnsupportedOperationException
 						unsupportedOperationException) {
 
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						unsupportedOperationException,
+						unsupportedOperationException);
+				}
+
 				Assert.assertTrue(unmodifiable);
 			}
 
@@ -378,5 +386,7 @@ public class QueryUtilTest {
 
 	@Inject
 	private UserPersistence _userPersistence;
+
+	private static final Log _log = LogFactoryUtil.getLog(QueryUtilTest.class);
 
 }

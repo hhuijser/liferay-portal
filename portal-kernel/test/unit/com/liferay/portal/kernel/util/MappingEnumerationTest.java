@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.util.Arrays;
@@ -74,6 +76,9 @@ public class MappingEnumerationTest {
 			Assert.fail();
 		}
 		catch (NoSuchElementException noSuchElementException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchElementException, noSuchElementException);
+			}
 		}
 	}
 
@@ -90,5 +95,8 @@ public class MappingEnumerationTest {
 			}
 
 		};
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MappingEnumerationTest.class);
 
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.internal.increment;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
@@ -184,6 +186,10 @@ public class BatchablePipeTest {
 						}
 					}
 					catch (InterruptedException interruptedException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								interruptedException, interruptedException);
+						}
 					}
 				}
 			}
@@ -388,5 +394,8 @@ public class BatchablePipeTest {
 		}
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BatchablePipeTest.class);
 
 }

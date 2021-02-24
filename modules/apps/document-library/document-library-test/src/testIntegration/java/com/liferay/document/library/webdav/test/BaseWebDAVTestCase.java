@@ -16,6 +16,8 @@ package com.liferay.document.library.webdav.test;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -77,6 +79,10 @@ public class BaseWebDAVTestCase {
 				String.valueOf(TestPropsValues.getUserId()));
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			Assert.fail("User ID cannot be initialized");
 		}
 
@@ -365,5 +371,8 @@ public class BaseWebDAVTestCase {
 
 		_PROPFIND_XML = sb.toString();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseWebDAVTestCase.class);
 
 }

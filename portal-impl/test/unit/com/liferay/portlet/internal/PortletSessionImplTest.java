@@ -19,6 +19,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletSession;
 import com.liferay.portal.kernel.servlet.HttpSessionWrapper;
 import com.liferay.portal.kernel.test.CaptureHandler;
@@ -162,6 +164,9 @@ public class PortletSessionImplTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -172,6 +177,9 @@ public class PortletSessionImplTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		Assert.assertSame(_value1, portletSessionImpl.getAttribute(_KEY_1));
@@ -279,6 +287,9 @@ public class PortletSessionImplTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 
 		try {
@@ -289,6 +300,9 @@ public class PortletSessionImplTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 
 		Assert.assertTrue(portletSessionImpl.isInvalidated());
@@ -399,6 +413,9 @@ public class PortletSessionImplTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		portletSessionImpl.removeAttribute(_KEY_1);
@@ -532,6 +549,9 @@ public class PortletSessionImplTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		String key7 = "key7";
@@ -678,5 +698,8 @@ public class PortletSessionImplTest {
 		private final String _name;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletSessionImplTest.class);
 
 }

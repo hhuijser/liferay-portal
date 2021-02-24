@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.io.unsync;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -99,6 +102,9 @@ public class UnsyncBufferedWriterTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -107,6 +113,9 @@ public class UnsyncBufferedWriterTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -115,6 +124,9 @@ public class UnsyncBufferedWriterTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -123,6 +135,9 @@ public class UnsyncBufferedWriterTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 	}
 
@@ -260,5 +275,8 @@ public class UnsyncBufferedWriterTest {
 		Assert.assertEquals(3, stringBuffer.length());
 		Assert.assertEquals("abc", stringBuffer.toString());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncBufferedWriterTest.class);
 
 }

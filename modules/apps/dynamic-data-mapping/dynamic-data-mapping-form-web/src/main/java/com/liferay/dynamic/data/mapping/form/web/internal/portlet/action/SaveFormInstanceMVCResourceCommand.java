@@ -17,6 +17,8 @@ package com.liferay.dynamic.data.mapping.form.web.internal.portlet.action;
 import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
 import com.liferay.dynamic.data.mapping.form.web.internal.portlet.action.util.BaseDDMFormMVCResourceCommand;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.TransactionConfig;
@@ -58,6 +60,10 @@ public class SaveFormInstanceMVCResourceCommand
 			writeResponse(resourceRequest, resourceResponse, formInstance);
 		}
 		catch (Throwable throwable) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(throwable, throwable);
+			}
+
 			resourceResponse.setProperty(
 				ResourceResponse.HTTP_STATUS_CODE,
 				String.valueOf(HttpServletResponse.SC_BAD_REQUEST));
@@ -88,5 +94,8 @@ public class SaveFormInstanceMVCResourceCommand
 
 		_transactionConfig = builder.build();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SaveFormInstanceMVCResourceCommand.class);
 
 }

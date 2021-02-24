@@ -38,6 +38,8 @@ import com.liferay.dynamic.data.mapping.storage.Field;
 import com.liferay.dynamic.data.mapping.storage.Fields;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.json.JSONFactoryImpl;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -583,6 +585,9 @@ public class DDMImplTest extends BaseDDMTestCase {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 	}
 
@@ -804,5 +809,7 @@ public class DDMImplTest extends BaseDDMTestCase {
 	private final DDMFormValuesSerializer _ddmFormValuesSerializer =
 		new DDMFormValuesJSONSerializer();
 	private final DDMImpl _ddmImpl = new DDMImpl();
+
+	private static final Log _log = LogFactoryUtil.getLog(DDMImplTest.class);
 
 }

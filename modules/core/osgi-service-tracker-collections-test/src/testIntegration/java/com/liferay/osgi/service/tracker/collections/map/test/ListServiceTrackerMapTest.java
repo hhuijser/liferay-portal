@@ -19,6 +19,8 @@ import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReference
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapListener;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -498,6 +500,9 @@ public class ListServiceTrackerMapTest {
 							contentTrackedOnes.add(new TrackedOne("spurious"));
 						}
 						catch (Exception exception) {
+							if (_log.isDebugEnabled()) {
+								_log.debug(exception, exception);
+							}
 						}
 					}
 
@@ -671,5 +676,8 @@ public class ListServiceTrackerMapTest {
 	private final List<ServiceRegistration<?>> _serviceRegistrations =
 		new ArrayList<>();
 	private ServiceTrackerMap<String, List<TrackedOne>> _serviceTrackerMap;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ListServiceTrackerMapTest.class);
 
 }

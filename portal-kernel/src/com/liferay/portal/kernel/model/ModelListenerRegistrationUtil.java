@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.model;
 
 import com.liferay.portal.kernel.bean.ClassLoaderBeanHandler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
@@ -187,6 +189,9 @@ public class ModelListenerRegistrationUtil {
 				}
 			}
 			catch (Throwable throwable) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(throwable, throwable);
+				}
 			}
 
 			return null;
@@ -213,5 +218,8 @@ public class ModelListenerRegistrationUtil {
 		}
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ModelListenerRegistrationUtil.class);
 
 }

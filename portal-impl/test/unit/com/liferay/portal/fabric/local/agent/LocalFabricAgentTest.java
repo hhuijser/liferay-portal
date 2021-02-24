@@ -20,6 +20,8 @@ import com.liferay.petra.process.ProcessException;
 import com.liferay.portal.fabric.agent.FabricAgent;
 import com.liferay.portal.fabric.status.LocalFabricStatus;
 import com.liferay.portal.fabric.worker.FabricWorker;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.util.Collection;
@@ -57,6 +59,11 @@ public class LocalFabricAgentTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 	}
 
@@ -132,5 +139,8 @@ public class LocalFabricAgentTest {
 
 		Assert.assertTrue(fabricWorkers.toString(), fabricWorkers.isEmpty());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LocalFabricAgentTest.class);
 
 }

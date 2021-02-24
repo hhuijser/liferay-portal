@@ -17,6 +17,8 @@ package com.liferay.batch.engine.internal.reader;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.petra.string.StringUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.ByteArrayInputStream;
@@ -171,6 +173,10 @@ public class CSVBatchEngineImportTaskItemReaderTest
 				Assert.fail();
 			}
 			catch (IllegalArgumentException illegalArgumentException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						illegalArgumentException, illegalArgumentException);
+				}
 			}
 		}
 	}
@@ -195,6 +201,12 @@ public class CSVBatchEngineImportTaskItemReaderTest
 			}
 			catch (ArrayIndexOutOfBoundsException
 						arrayIndexOutOfBoundsException) {
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						arrayIndexOutOfBoundsException,
+						arrayIndexOutOfBoundsException);
+				}
 			}
 		}
 	}
@@ -335,5 +347,8 @@ public class CSVBatchEngineImportTaskItemReaderTest
 			new ByteArrayInputStream(
 				_getContent(cellNames, delimiter, rowValues)));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CSVBatchEngineImportTaskItemReaderTest.class);
 
 }

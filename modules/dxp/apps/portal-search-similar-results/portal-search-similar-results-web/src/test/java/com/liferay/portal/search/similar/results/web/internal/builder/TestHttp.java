@@ -17,6 +17,8 @@ package com.liferay.portal.search.similar.results.web.internal.builder;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -75,6 +77,9 @@ public class TestHttp {
 			return URLCodec.decodeURL(url, StringPool.UTF8);
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		return StringPool.BLANK;
@@ -192,6 +197,11 @@ public class TestHttp {
 					value = decodeURL(kvp[1]);
 				}
 				catch (IllegalArgumentException illegalArgumentException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							illegalArgumentException, illegalArgumentException);
+					}
+
 					continue;
 				}
 			}
@@ -307,5 +317,7 @@ public class TestHttp {
 
 		return invocationOnMock.getArgumentAt(index, String.class);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(TestHttp.class);
 
 }

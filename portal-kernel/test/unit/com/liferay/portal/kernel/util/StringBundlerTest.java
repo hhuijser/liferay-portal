@@ -17,6 +17,8 @@ package com.liferay.portal.kernel.util;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
@@ -576,6 +578,11 @@ public class StringBundlerTest {
 			Assert.fail();
 		}
 		catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					arrayIndexOutOfBoundsException,
+					arrayIndexOutOfBoundsException);
+			}
 		}
 
 		// New index equals current index
@@ -636,6 +643,11 @@ public class StringBundlerTest {
 			Assert.fail();
 		}
 		catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					arrayIndexOutOfBoundsException,
+					arrayIndexOutOfBoundsException);
+			}
 		}
 	}
 
@@ -942,5 +954,8 @@ public class StringBundlerTest {
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		StringBundlerTest.class);
 
 }

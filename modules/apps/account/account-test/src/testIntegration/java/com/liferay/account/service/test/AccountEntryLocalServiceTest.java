@@ -32,6 +32,8 @@ import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Organization;
@@ -234,6 +236,11 @@ public class AccountEntryLocalServiceTest {
 					"Created an account entry with invalid domain " + domain);
 			}
 			catch (AccountEntryDomainsException accountEntryDomainsException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						accountEntryDomainsException,
+						accountEntryDomainsException);
+				}
 			}
 		}
 	}
@@ -1094,5 +1101,8 @@ public class AccountEntryLocalServiceTest {
 
 	@Inject
 	private ResourcePermissionLocalService _resourcePermissionLocalService;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AccountEntryLocalServiceTest.class);
 
 }

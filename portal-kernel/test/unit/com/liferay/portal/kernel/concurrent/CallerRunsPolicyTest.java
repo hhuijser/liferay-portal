@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.concurrent;
 
 import com.liferay.portal.kernel.concurrent.test.MarkerBlockingJob;
 import com.liferay.portal.kernel.concurrent.test.TestUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.util.concurrent.Executors;
@@ -107,6 +109,9 @@ public class CallerRunsPolicyTest {
 				Assert.fail();
 			}
 			catch (RuntimeException runtimeException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(runtimeException, runtimeException);
+				}
 			}
 
 			Assert.assertTrue(markerBlockingJob.isStarted());
@@ -118,5 +123,8 @@ public class CallerRunsPolicyTest {
 			TestUtil.closePool(threadPoolExecutor, true);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CallerRunsPolicyTest.class);
 
 }

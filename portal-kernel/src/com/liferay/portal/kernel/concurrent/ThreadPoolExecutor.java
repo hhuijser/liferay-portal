@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.concurrent;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -579,6 +582,9 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 				}
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
 			}
 		}
 	}
@@ -785,5 +791,8 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 		private Thread _thread;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ThreadPoolExecutor.class);
 
 }

@@ -17,6 +17,8 @@ package com.liferay.portal.fabric.netty.codec.serialization;
 import com.liferay.petra.io.AnnotatedObjectOutputStream;
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.fabric.netty.util.NettyUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
@@ -138,6 +140,9 @@ public class AnnotatedObjectDecoderTest {
 			Assert.fail();
 		}
 		catch (NoSuchElementException noSuchElementException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchElementException, noSuchElementException);
+			}
 		}
 
 		_assertChannelPipeline(_dateChannelHandler);
@@ -150,6 +155,9 @@ public class AnnotatedObjectDecoderTest {
 			Assert.fail();
 		}
 		catch (NoSuchElementException noSuchElementException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchElementException, noSuchElementException);
+			}
 		}
 
 		_assertChannelPipeline();
@@ -196,6 +204,9 @@ public class AnnotatedObjectDecoderTest {
 			Assert.fail();
 		}
 		catch (NoSuchElementException noSuchElementException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchElementException, noSuchElementException);
+			}
 		}
 
 		_assertChannelPipeline(_dateChannelHandler);
@@ -210,6 +221,9 @@ public class AnnotatedObjectDecoderTest {
 			Assert.fail();
 		}
 		catch (NoSuchElementException noSuchElementException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchElementException, noSuchElementException);
+			}
 		}
 
 		_assertChannelPipeline();
@@ -323,5 +337,8 @@ public class AnnotatedObjectDecoderTest {
 		private UUID _uuid;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AnnotatedObjectDecoderTest.class);
 
 }

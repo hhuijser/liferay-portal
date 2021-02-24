@@ -14,6 +14,9 @@
 
 package com.liferay.document.library.kernel.model;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 /**
  * @author Adolfo Pérez
  */
@@ -42,8 +45,15 @@ public enum DLVersionNumberIncrease {
 			return valueOf(name);
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
+
 			return defaultValue;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DLVersionNumberIncrease.class);
 
 }

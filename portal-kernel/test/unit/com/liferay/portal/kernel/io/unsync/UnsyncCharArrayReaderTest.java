@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.io.unsync;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.IOException;
 
 import java.nio.CharBuffer;
@@ -95,6 +98,9 @@ public class UnsyncCharArrayReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -103,6 +109,9 @@ public class UnsyncCharArrayReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -111,6 +120,9 @@ public class UnsyncCharArrayReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -119,6 +131,9 @@ public class UnsyncCharArrayReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -127,6 +142,9 @@ public class UnsyncCharArrayReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -135,6 +153,9 @@ public class UnsyncCharArrayReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -143,6 +164,9 @@ public class UnsyncCharArrayReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		unsyncCharArrayReader.close();
@@ -246,5 +270,8 @@ public class UnsyncCharArrayReaderTest {
 			_BUFFER[i] = (char)('a' + i);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncCharArrayReaderTest.class);
 
 }

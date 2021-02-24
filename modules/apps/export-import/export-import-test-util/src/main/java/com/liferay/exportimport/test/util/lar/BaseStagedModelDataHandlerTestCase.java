@@ -37,6 +37,8 @@ import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.StagedGroupedModel;
@@ -1207,6 +1209,10 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 				return TestPropsValues.getUserId();
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				return 0;
 			}
 		}
@@ -1214,5 +1220,8 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 		private final long _userId;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseStagedModelDataHandlerTestCase.class);
 
 }

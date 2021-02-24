@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.concurrent;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.FinalizeManagerUtil;
 import com.liferay.portal.kernel.test.GCUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
@@ -53,6 +55,11 @@ public class AsyncBrokerTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		NoticeableFuture<String> noticeableFuture = asyncBroker.post(_KEY);
@@ -220,5 +227,8 @@ public class AsyncBrokerTest {
 	private static final String _KEY = "testKey";
 
 	private static final String _VALUE = "testValue";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AsyncBrokerTest.class);
 
 }

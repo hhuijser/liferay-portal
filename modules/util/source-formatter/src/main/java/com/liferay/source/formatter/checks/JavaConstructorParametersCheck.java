@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaParameter;
 import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
@@ -45,7 +46,12 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 			String content = _sortAssignCalls(
 				javaTerm.getContent(), parameters);
 
-			return _fixIncorrectEmptyLines(content, parameters);
+			content = _fixIncorrectEmptyLines(
+				content, _missingLineBreakPattern1, parameters);
+			content = _fixIncorrectEmptyLines(
+				content, _missingLineBreakPattern2, parameters);
+
+			return content;
 		}
 
 		return javaTerm.getContent();
@@ -106,31 +112,51 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 		}
 	}
 
+	private boolean _containsParameterName(
+		List<JavaParameter> parameters, String name) {
+
+		for (JavaParameter parameter : parameters) {
+			if (name.equals(parameter.getParameterName())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	private String _fixIncorrectEmptyLines(
-		String content, List<JavaParameter> parameters) {
+		String content, Pattern pattern, List<JavaParameter> parameters) {
 
-		for (int i = 1; i < parameters.size(); i++) {
-			JavaParameter parameter = parameters.get(i);
-			JavaParameter previousParameter = parameters.get(i - 1);
+		Matcher matcher = pattern.matcher(content);
 
-			String name = parameter.getParameterName();
-			String previousName = previousParameter.getParameterName();
+		while (matcher.find()) {
+			String name1 = matcher.group(3);
+			String name2 = matcher.group(5);
 
-			Pattern pattern = Pattern.compile(
-				StringBundler.concat(
-					"\t_", previousName, " =[ \t\n]+", previousName,
-					";(\n\n)\t+_", name, " =[ \t\n]+", name, ";\n"));
+			if (!_containsParameterName(parameters, name1) ||
+				!_containsParameterName(parameters, name2)) {
 
-			Matcher matcher = pattern.matcher(content);
-
-			if (!matcher.find()) {
 				continue;
 			}
 
-			if ((_getOccurenceCount(content, name) == 2) &&
-				(_getOccurenceCount(content, "_" + name) == 1) &&
-				(_getOccurenceCount(content, previousName) == 2) &&
-				(_getOccurenceCount(content, "_" + previousName) == 1)) {
+			String previousStatementsBlock = _getPreviousStatementsBlock(
+				content, matcher.group(1), matcher.start() + 1);
+
+			if (previousStatementsBlock.matches(
+					StringBundler.concat(
+						"(?s).*\\W(", matcher.group(2), ")?", name1,
+						"\\W.*"))) {
+
+				continue;
+			}
+
+			String nextStatementsBlock = _getNextStatementsBlock(
+				content, matcher.group(1), matcher.start(6));
+
+			if (!nextStatementsBlock.matches(
+					StringBundler.concat(
+						"(?s).*\\W(", matcher.group(2), ")?", name2,
+						"\\W.*"))) {
 
 				return StringUtil.replaceFirst(
 					content, StringPool.NEW_LINE, StringPool.BLANK,
@@ -161,18 +187,86 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 		return parameters.size();
 	}
 
-	private int _getOccurenceCount(String content, String name) {
-		int count = 0;
+	private String _getNextStatementsBlock(
+		String content, String indent, int pos) {
 
-		Pattern pattern = Pattern.compile("\\W" + name + "\\W");
+		int x = pos;
 
-		Matcher matcher = pattern.matcher(content);
+		while (true) {
+			x = content.indexOf("\n\n", x + 1);
 
-		while (matcher.find()) {
-			count++;
+			if (x == -1) {
+				return StringPool.BLANK;
+			}
+
+			String nextLine = getLine(content, getLineNumber(content, x + 2));
+
+			if (indent.equals(SourceUtil.getIndent(nextLine))) {
+				break;
+			}
 		}
 
-		return count;
+		int y = x;
+
+		while (true) {
+			y = content.indexOf("\n\n", y + 1);
+
+			if (y == -1) {
+				return content.substring(x);
+			}
+
+			String nextLine = getLine(content, getLineNumber(content, y + 2));
+
+			if (indent.equals(SourceUtil.getIndent(nextLine))) {
+				break;
+			}
+		}
+
+		return content.substring(x, y);
+	}
+
+	private String _getPreviousStatementsBlock(
+		String content, String indent, int pos) {
+
+		int x = pos;
+
+		while (true) {
+			x = content.lastIndexOf("\n\n", x - 1);
+
+			if (x == -1) {
+				return StringPool.BLANK;
+			}
+
+			String nextLine = getLine(content, getLineNumber(content, x + 2));
+
+			if (indent.equals(SourceUtil.getIndent(nextLine))) {
+				break;
+			}
+		}
+
+		int y = x;
+
+		while (true) {
+			y = content.lastIndexOf("\n\n", y - 1);
+
+			if (y == -1) {
+				int z = content.indexOf("{\n");
+
+				if (z == -1) {
+					return StringPool.BLANK;
+				}
+
+				return content.substring(z + 1, x);
+			}
+
+			String nextLine = getLine(content, getLineNumber(content, y + 2));
+
+			if (indent.equals(SourceUtil.getIndent(nextLine))) {
+				break;
+			}
+		}
+
+		return content.substring(y, x);
 	}
 
 	private String _sortAssignCalls(
@@ -231,5 +325,10 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 
 	private static final Pattern _assignCallPattern = Pattern.compile(
 		"\t(_|this\\.)(\\w+) (=[^;]+;)\n");
+	private static final Pattern _missingLineBreakPattern1 = Pattern.compile(
+		"\n(\t+)(_)(\\w+) =[ \t\n]+\\3;(?=(\n\n)\\1_(\\w+) =[ \t\n]+\\5(;)\n)");
+	private static final Pattern _missingLineBreakPattern2 = Pattern.compile(
+		"\n(\t+)(this\\.)(\\w+) =[ \t\n]+\\3;(?=(\n\n)\\1this\\.(\\w+) " +
+			"=[ \t\n]+\\5(;)\n)");
 
 }

@@ -396,6 +396,12 @@ public class SelectorIntraband extends BaseIntraband {
 								catch (CancelledKeyException
 											cancelledKeyException) {
 
+									if (_log.isDebugEnabled()) {
+										_log.debug(
+											cancelledKeyException,
+											cancelledKeyException);
+									}
+
 									// Concurrent cancelling, move to next key
 
 								}

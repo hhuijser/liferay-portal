@@ -24,6 +24,8 @@ import com.liferay.document.library.kernel.service.DLFolderServiceUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Repository;
 import com.liferay.portal.kernel.repository.LocalRepository;
@@ -143,6 +145,9 @@ public class RepositoryTest {
 					"Should not be able to access repository " + repositoryId);
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 	}
@@ -212,6 +217,9 @@ public class RepositoryTest {
 						" from repository ", dlRepository.getRepositoryId()));
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
 			}
 		}
 	}
@@ -292,6 +300,9 @@ public class RepositoryTest {
 					_group.getGroupId());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		LocalRepository localRepository =
@@ -349,6 +360,9 @@ public class RepositoryTest {
 					repository2.getRepositoryId());
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		LocalRepository localRepository =
@@ -396,5 +410,7 @@ public class RepositoryTest {
 
 	@DeleteAfterTestRun
 	private Group _group;
+
+	private static final Log _log = LogFactoryUtil.getLog(RepositoryTest.class);
 
 }

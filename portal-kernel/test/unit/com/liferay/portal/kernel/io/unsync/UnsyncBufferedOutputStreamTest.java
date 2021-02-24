@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.io.unsync;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -76,12 +79,18 @@ public class UnsyncBufferedOutputStreamTest {
 			new UnsyncBufferedOutputStream(byteArrayOutputStream, 0);
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
 			new UnsyncBufferedOutputStream(byteArrayOutputStream, -1);
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -118,5 +127,8 @@ public class UnsyncBufferedOutputStreamTest {
 			_BUFFER[i] = (byte)i;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncBufferedOutputStreamTest.class);
 
 }

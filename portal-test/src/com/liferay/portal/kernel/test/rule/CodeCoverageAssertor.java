@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.test.rule;
 
 import com.liferay.petra.process.ClassPathUtil;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.lang.reflect.Constructor;
@@ -144,6 +146,10 @@ public class CodeCoverageAssertor implements TestRule {
 			classLoader.loadClass(className);
 		}
 		catch (ClassNotFoundException classNotFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(classNotFoundException, classNotFoundException);
+			}
+
 			className = null;
 		}
 
@@ -260,5 +266,8 @@ public class CodeCoverageAssertor implements TestRule {
 	private final boolean _includeInnerClasses;
 	private final String[] _includes;
 	private final boolean _skip;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CodeCoverageAssertor.class);
 
 }

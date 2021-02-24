@@ -17,6 +17,8 @@ package com.liferay.portal.security.pwd;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.pwd.PasswordEncryptor;
 import com.liferay.portal.kernel.security.pwd.PasswordEncryptorUtil;
 import com.liferay.portal.kernel.util.DigesterUtil;
@@ -252,6 +254,9 @@ public class CompositePasswordEncryptorTest {
 			Assert.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 
@@ -275,5 +280,8 @@ public class CompositePasswordEncryptorTest {
 				originalLegacyAlgorithm;
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CompositePasswordEncryptorTest.class);
 
 }

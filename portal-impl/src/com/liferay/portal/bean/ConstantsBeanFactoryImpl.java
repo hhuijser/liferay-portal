@@ -191,6 +191,9 @@ public class ConstantsBeanFactoryImpl implements ConstantsBeanFactory {
 				FinalizeManager.WEAK_REFERENCE_FACTORY),
 			FinalizeManager.WEAK_REFERENCE_FACTORY);
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConstantsBeanFactoryImpl.class);
+
 	private static final Method _defineClassMethod;
 
 	static {
@@ -203,8 +206,5 @@ public class ConstantsBeanFactoryImpl implements ConstantsBeanFactory {
 			throw new ExceptionInInitializerError(throwable);
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ConstantsBeanFactoryImpl.class);
 
 }

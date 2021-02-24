@@ -570,10 +570,10 @@ public class ObjectServiceTrackerMapTest {
 			TrackedOne.class, trackedOne, properties);
 	}
 
-	private BundleContext _bundleContext;
-	private ServiceTrackerMap<String, TrackedOne> _serviceTrackerMap;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		ObjectServiceTrackerMapTest.class);
+
+	private BundleContext _bundleContext;
+	private ServiceTrackerMap<String, TrackedOne> _serviceTrackerMap;
 
 }

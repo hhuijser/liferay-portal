@@ -84,10 +84,10 @@ public class SharedSessionServletRequest extends HttpServletRequestWrapper {
 		return new SharedSessionWrapper(portalSession, portletSession);
 	}
 
-	private HttpSession _portalSession;
-	private final boolean _shared;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		SharedSessionServletRequest.class);
+
+	private HttpSession _portalSession;
+	private final boolean _shared;
 
 }

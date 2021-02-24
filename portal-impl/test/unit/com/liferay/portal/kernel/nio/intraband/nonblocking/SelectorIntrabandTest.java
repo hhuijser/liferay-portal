@@ -1388,11 +1388,8 @@ public class SelectorIntrabandTest {
 
 	private static final byte _TYPE = 1;
 
-	static {
-		String dataString = SelectorIntrabandTest.class.getName();
-
-		_DATA = dataString.getBytes(Charset.defaultCharset());
-	}
+	private static final Log _log = LogFactoryUtil.getLog(
+		SelectorIntrabandTest.class);
 
 	private SelectorIntraband _selectorIntraband;
 
@@ -1516,7 +1513,10 @@ public class SelectorIntrabandTest {
 
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		SelectorIntrabandTest.class);
+	static {
+		String dataString = SelectorIntrabandTest.class.getName();
+
+		_DATA = dataString.getBytes(Charset.defaultCharset());
+	}
 
 }

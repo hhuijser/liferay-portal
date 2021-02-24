@@ -257,6 +257,8 @@ public class DayAndPosition implements Cloneable, Serializable {
 		return sb.toString();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(DayAndPosition.class);
+
 	/**
 	 * Field day
 	 */
@@ -266,7 +268,5 @@ public class DayAndPosition implements Cloneable, Serializable {
 	 * Field position
 	 */
 	private int _position;
-
-	private static final Log _log = LogFactoryUtil.getLog(DayAndPosition.class);
 
 }

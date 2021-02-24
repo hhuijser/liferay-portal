@@ -7897,6 +7897,8 @@ public class ServiceBuilder {
 	private static final String _TPL_UAD_EXPORTER =
 		_TPL_ROOT + "uad_exporter.ftl";
 
+	private static final Log _log = LogFactoryUtil.getLog(ServiceBuilder.class);
+
 	private static final Pattern _beansAttributePattern = Pattern.compile(
 		"\\s+([^=]*)=\\s*\"([^\"]*)\"");
 	private static final Pattern _beansPattern = Pattern.compile(
@@ -7999,7 +8001,5 @@ public class ServiceBuilder {
 	private final Map<String, List<Entity>> _uadApplicationEntities =
 		new HashMap<>();
 	private String _uadDirName;
-
-	private static final Log _log = LogFactoryUtil.getLog(ServiceBuilder.class);
 
 }

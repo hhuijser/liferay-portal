@@ -15,6 +15,8 @@
 package com.liferay.portal.remote.soap.extender.test;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.spi.Provider;
@@ -62,10 +64,16 @@ public class JaxWsApiBundleActivator implements BundleActivator {
 			_endpoint.stop();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		_configurationAdminBundleActivator.stop(bundleContext);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JaxWsApiBundleActivator.class);
 
 	private ConfigurationAdminBundleActivator
 		_configurationAdminBundleActivator;

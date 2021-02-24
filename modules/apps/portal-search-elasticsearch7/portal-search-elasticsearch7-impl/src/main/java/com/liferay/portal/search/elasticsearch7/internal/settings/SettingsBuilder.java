@@ -14,6 +14,9 @@
 
 package com.liferay.portal.search.elasticsearch7.internal.settings;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import org.apache.commons.lang.StringUtils;
 
 import org.elasticsearch.common.settings.Settings;
@@ -46,6 +49,10 @@ public class SettingsBuilder {
 			_builder.loadFromSource(source, XContentType.JSON);
 		}
 		catch (SettingsException settingsException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(settingsException, settingsException);
+			}
+
 			_builder.loadFromSource(source, XContentType.YAML);
 		}
 	}
@@ -63,6 +70,9 @@ public class SettingsBuilder {
 	public void putList(String setting, String... values) {
 		_builder.putList(setting, values);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SettingsBuilder.class);
 
 	private final Settings.Builder _builder;
 

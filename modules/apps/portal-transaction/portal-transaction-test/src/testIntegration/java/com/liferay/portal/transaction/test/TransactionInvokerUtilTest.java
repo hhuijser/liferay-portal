@@ -16,6 +16,8 @@ package com.liferay.portal.transaction.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.counter.kernel.service.CounterLocalService;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.persistence.ClassNamePersistence;
@@ -120,9 +122,15 @@ public class TransactionInvokerUtilTest {
 				_classNameLocalService.deleteClassName(classNameId);
 			}
 			catch (Exception exception2) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception2, exception2);
+				}
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TransactionInvokerUtilTest.class);
 
 	private static TransactionConfig _transactionConfig;
 

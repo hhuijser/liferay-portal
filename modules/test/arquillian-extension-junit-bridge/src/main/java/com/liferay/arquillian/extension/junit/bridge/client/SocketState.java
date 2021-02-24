@@ -95,6 +95,10 @@ public class SocketState {
 				return serverSocket;
 			}
 			catch (IOException ioException) {
+				if (_logger.isDebugEnabled()) {
+					_logger.debug(ioException, ioException);
+				}
+
 				port++;
 			}
 		}
@@ -109,6 +113,10 @@ public class SocketState {
 			return _objectInputStream.readObject();
 		}
 		catch (WriteAbortedException writeAbortedException) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(writeAbortedException, writeAbortedException);
+			}
+
 			return _objectInputStream.readObject();
 		}
 	}

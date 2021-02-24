@@ -100,6 +100,9 @@ public class TestExecutorRunnable implements Runnable {
 			}
 		}
 		catch (EOFException eofException) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(eofException, eofException);
+			}
 		}
 		catch (Exception exception) {
 			try {

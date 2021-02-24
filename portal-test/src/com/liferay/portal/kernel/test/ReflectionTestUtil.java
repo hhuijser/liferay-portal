@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.test;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -107,6 +109,9 @@ public class ReflectionTestUtil {
 			return field;
 		}
 		catch (NoSuchFieldException noSuchFieldException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchFieldException, noSuchFieldException);
+			}
 		}
 		catch (Exception exception) {
 			return ReflectionUtil.throwException(exception);
@@ -123,6 +128,10 @@ public class ReflectionTestUtil {
 				return field;
 			}
 			catch (NoSuchFieldException noSuchFieldException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchFieldException, noSuchFieldException);
+				}
+
 				clazz = clazz.getSuperclass();
 			}
 			catch (Exception exception) {
@@ -169,6 +178,9 @@ public class ReflectionTestUtil {
 			return method;
 		}
 		catch (NoSuchMethodException noSuchMethodException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchMethodException, noSuchMethodException);
+			}
 		}
 
 		while (clazz != null) {
@@ -181,6 +193,10 @@ public class ReflectionTestUtil {
 				return method;
 			}
 			catch (NoSuchMethodException noSuchMethodException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchMethodException, noSuchMethodException);
+				}
+
 				clazz = clazz.getSuperclass();
 			}
 		}
@@ -387,5 +403,8 @@ public class ReflectionTestUtil {
 
 		return null;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ReflectionTestUtil.class);
 
 }

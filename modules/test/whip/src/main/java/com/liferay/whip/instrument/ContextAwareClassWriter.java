@@ -14,6 +14,9 @@
 
 package com.liferay.whip.instrument;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -108,8 +111,14 @@ public class ContextAwareClassWriter extends ClassWriter {
 				inputStream.close();
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ContextAwareClassWriter.class);
 
 }

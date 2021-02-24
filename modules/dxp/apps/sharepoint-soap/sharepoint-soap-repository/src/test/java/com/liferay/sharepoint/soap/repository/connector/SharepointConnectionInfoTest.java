@@ -16,6 +16,8 @@ package com.liferay.sharepoint.soap.repository.connector;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.net.URL;
 
@@ -35,6 +37,9 @@ public class SharepointConnectionInfoTest {
 			Assert.fail("IllegalArgumentException not thrown for site path /");
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -46,6 +51,9 @@ public class SharepointConnectionInfoTest {
 					"leading /");
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -57,6 +65,9 @@ public class SharepointConnectionInfoTest {
 					"trailing /");
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -100,5 +111,8 @@ public class SharepointConnectionInfoTest {
 		SharepointConnection.ServerVersion.SHAREPOINT_2013;
 
 	private static final String _USER_NAME = "Administrator";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SharepointConnectionInfoTest.class);
 
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.registry.internal;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.registry.ServiceReference;
 import com.liferay.registry.ServiceTrackerCustomizer;
 import com.liferay.registry.collections.ServiceReferenceMapper;
@@ -66,6 +68,9 @@ public class ServiceTrackerMapFactoryImpl implements ServiceTrackerMapFactory {
 					serviceTrackerMap.close();
 				}
 				catch (Throwable throwable) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(throwable, throwable);
+					}
 				}
 			}
 		}
@@ -393,6 +398,9 @@ public class ServiceTrackerMapFactoryImpl implements ServiceTrackerMapFactory {
 			_serviceTrackerMaps.remove(reference);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceTrackerMapFactoryImpl.class);
 
 	private final BundleContext _bundleContext;
 	private final ReferenceQueue

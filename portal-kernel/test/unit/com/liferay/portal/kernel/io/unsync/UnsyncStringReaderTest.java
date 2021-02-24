@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.io.unsync;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.IOException;
 
 import java.util.Arrays;
@@ -61,6 +64,9 @@ public class UnsyncStringReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -69,6 +75,9 @@ public class UnsyncStringReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -77,6 +86,9 @@ public class UnsyncStringReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -85,6 +97,9 @@ public class UnsyncStringReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -93,6 +108,9 @@ public class UnsyncStringReaderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		unsyncStringReader.close();
@@ -158,5 +176,8 @@ public class UnsyncStringReaderTest {
 		Assert.assertEquals(2, unsyncStringReader.skip(3));
 		Assert.assertEquals(-1, unsyncStringReader.read());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnsyncStringReaderTest.class);
 
 }

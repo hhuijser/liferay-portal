@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -93,6 +95,10 @@ public class SQLEqualsTest {
 				con.commit();
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				con.rollback();
 			}
 			finally {
@@ -213,5 +219,6 @@ public class SQLEqualsTest {
 	}
 
 	private static DB _db;
+	private static final Log _log = LogFactoryUtil.getLog(SQLEqualsTest.class);
 
 }

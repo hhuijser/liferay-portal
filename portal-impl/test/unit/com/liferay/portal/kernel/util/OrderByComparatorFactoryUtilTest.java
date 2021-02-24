@@ -16,6 +16,8 @@ package com.liferay.portal.kernel.util;
 
 import com.liferay.portal.bean.BeanPropertiesImpl;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.EmailAddress;
 import com.liferay.portal.model.impl.EmailAddressImpl;
 import com.liferay.portal.model.impl.EmailAddressModelImpl;
@@ -252,6 +254,9 @@ public class OrderByComparatorFactoryUtilTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -261,6 +266,9 @@ public class OrderByComparatorFactoryUtilTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		try {
@@ -271,6 +279,9 @@ public class OrderByComparatorFactoryUtilTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 	}
 
@@ -295,5 +306,8 @@ public class OrderByComparatorFactoryUtilTest {
 
 		return emailAddress;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		OrderByComparatorFactoryUtilTest.class);
 
 }

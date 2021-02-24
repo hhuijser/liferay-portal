@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.nio.intraband.welder.fifo;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.nio.intraband.test.MockIntraband;
 import com.liferay.portal.kernel.nio.intraband.test.MockRegistrationReference;
 import com.liferay.portal.kernel.nio.intraband.welder.test.WelderTestUtil;
@@ -100,6 +102,9 @@ public class FIFOWelderTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 		finally {
 			System.setProperty("java.io.tmpdir", oldTempFolder);
@@ -193,5 +198,7 @@ public class FIFOWelderTest {
 			serverFIFOWelder.outputFIFOFile.delete();
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(FIFOWelderTest.class);
 
 }

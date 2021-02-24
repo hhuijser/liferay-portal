@@ -17,6 +17,8 @@ package com.liferay.portal.dao.orm.hibernate.event.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl;
 import com.liferay.portal.dao.orm.hibernate.VerifySessionFactoryWrapper;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
@@ -112,6 +114,10 @@ public class NestableFlushEventListenerTest {
 			Assert.fail();
 		}
 		catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					indexOutOfBoundsException, indexOutOfBoundsException);
+			}
 		}
 		finally {
 			eventListeners.setAutoFlushEventListeners(autoFlushEventListeners);
@@ -134,6 +140,10 @@ public class NestableFlushEventListenerTest {
 			Assert.fail();
 		}
 		catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					indexOutOfBoundsException, indexOutOfBoundsException);
+			}
 		}
 		finally {
 			eventListeners.setFlushEventListeners(flushEventListeners);
@@ -305,5 +315,8 @@ public class NestableFlushEventListenerTest {
 		private final Session _session;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		NestableFlushEventListenerTest.class);
 
 }

@@ -15,6 +15,8 @@
 package com.liferay.portal.security.pwd;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.PasswordPolicy;
 import com.liferay.portal.model.impl.PasswordPolicyImpl;
 
@@ -103,6 +105,10 @@ public class PasswordPolicyToolkitTest {
 				password, password, _passwordPolicy);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return false;
 		}
 
@@ -111,5 +117,8 @@ public class PasswordPolicyToolkitTest {
 
 	private PasswordPolicy _passwordPolicy;
 	private PasswordPolicyToolkit _passwordPolicyToolkit;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PasswordPolicyToolkitTest.class);
 
 }

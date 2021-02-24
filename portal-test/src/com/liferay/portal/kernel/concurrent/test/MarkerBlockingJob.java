@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.concurrent.test;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -67,6 +70,10 @@ public class MarkerBlockingJob implements Runnable {
 				_blockingLatch.await();
 			}
 			catch (InterruptedException interruptedException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(interruptedException, interruptedException);
+				}
+
 				_interrupted = true;
 			}
 		}
@@ -95,6 +102,9 @@ public class MarkerBlockingJob implements Runnable {
 	public void waitUntilEnded() throws InterruptedException {
 		_endedLatch.await();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MarkerBlockingJob.class);
 
 	private final boolean _blocking;
 	private final CountDownLatch _blockingLatch = new CountDownLatch(1);

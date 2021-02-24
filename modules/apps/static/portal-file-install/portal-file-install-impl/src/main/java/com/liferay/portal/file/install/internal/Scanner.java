@@ -15,6 +15,8 @@
 package com.liferay.portal.file.install.internal;
 
 import com.liferay.petra.reflect.ReflectionUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -143,6 +145,10 @@ public class Scanner {
 				canonicalFiles.add(file.getCanonicalFile());
 			}
 			catch (IOException ioException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(ioException, ioException);
+				}
+
 				canonicalFiles.add(file);
 			}
 		}
@@ -252,6 +258,8 @@ public class Scanner {
 
 		return files;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(Scanner.class);
 
 	private final FilenameFilter _filenameFilter;
 	private final Map<File, Long> _lastChecksums = new HashMap<>();

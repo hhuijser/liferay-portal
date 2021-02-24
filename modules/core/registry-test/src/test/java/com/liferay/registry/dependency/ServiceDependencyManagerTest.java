@@ -14,6 +14,8 @@
 
 package com.liferay.registry.dependency;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.registry.BasicRegistryImpl;
 import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
@@ -281,6 +283,9 @@ public class ServiceDependencyManagerTest {
 			Assert.assertTrue(dependenciesSatisfied.get());
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 	}
 
@@ -342,8 +347,14 @@ public class ServiceDependencyManagerTest {
 			Assert.fail("Dependencies should have timed out");
 		}
 		catch (InterruptedException interruptedException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(interruptedException, interruptedException);
+			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceDependencyManagerTest.class);
 
 	private static class TestInstance1 implements TestInterface1 {
 	}

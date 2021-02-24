@@ -1622,6 +1622,12 @@ public class BaseIntrabandTest {
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseIntrabandTest.class);
 
+	static {
+		String dataString = BaseIntrabandTest.class.getName();
+
+		_DATA = dataString.getBytes(Charset.defaultCharset());
+	}
+
 	private final MockIntraband _mockIntraband = new MockIntraband(
 		_DEFAULT_TIMEOUT);
 
@@ -1699,12 +1705,6 @@ public class BaseIntrabandTest {
 
 		private final boolean _eofOnDataBufferReading;
 
-	}
-
-	static {
-		String dataString = BaseIntrabandTest.class.getName();
-
-		_DATA = dataString.getBytes(Charset.defaultCharset());
 	}
 
 }

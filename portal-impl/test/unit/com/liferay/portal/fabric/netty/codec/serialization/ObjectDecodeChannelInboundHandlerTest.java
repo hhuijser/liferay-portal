@@ -15,6 +15,8 @@
 package com.liferay.portal.fabric.netty.codec.serialization;
 
 import com.liferay.portal.fabric.netty.util.NettyUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
@@ -58,6 +60,11 @@ public class ObjectDecodeChannelInboundHandlerTest {
 			Assert.fail();
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					unsupportedOperationException,
+					unsupportedOperationException);
+			}
 		}
 
 		ReflectionTestUtil.invoke(
@@ -195,5 +202,8 @@ public class ObjectDecodeChannelInboundHandlerTest {
 		private Throwable _throwable;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ObjectDecodeChannelInboundHandlerTest.class);
 
 }

@@ -17,6 +17,8 @@ package com.liferay.portal.jsonwebservice;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.jsonwebservice.action.JSONWebServiceInvokerAction;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -59,6 +61,9 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 			TestCase.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 
@@ -102,6 +107,9 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 			TestCase.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 	}
 
@@ -167,6 +175,9 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 			TestCase.fail();
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		Registry registry = RegistryUtil.getRegistry();
@@ -200,5 +211,8 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 
 		jsonWebServiceAction.invoke();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSONWebServiceSecureTest.class);
 
 }

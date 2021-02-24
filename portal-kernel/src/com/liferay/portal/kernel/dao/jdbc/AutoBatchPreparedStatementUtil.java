@@ -18,6 +18,8 @@ import com.liferay.petra.concurrent.FutureListener;
 import com.liferay.petra.concurrent.NoticeableExecutorService;
 import com.liferay.petra.concurrent.NoticeableFuture;
 import com.liferay.petra.executor.PortalExecutorManager;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -241,6 +243,9 @@ public class AutoBatchPreparedStatementUtil {
 							_futures.remove(future);
 						}
 						catch (Throwable throwable) {
+							if (_log.isDebugEnabled()) {
+								_log.debug(throwable, throwable);
+							}
 						}
 					}
 
@@ -346,6 +351,9 @@ public class AutoBatchPreparedStatementUtil {
 							_futures.remove(future);
 						}
 						catch (Throwable throwable) {
+							if (_log.isDebugEnabled()) {
+								_log.debug(throwable, throwable);
+							}
 						}
 					}
 
@@ -391,5 +399,8 @@ public class AutoBatchPreparedStatementUtil {
 		private final PreparedStatement _preparedStatement;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AutoBatchPreparedStatementUtil.class);
 
 }

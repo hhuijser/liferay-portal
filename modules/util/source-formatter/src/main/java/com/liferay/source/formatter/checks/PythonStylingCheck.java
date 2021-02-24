@@ -16,6 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -45,6 +47,10 @@ public class PythonStylingCheck extends BaseFileCheck {
 				getAttributeValue(_MAX_LINE_LENGTH, absolutePath));
 		}
 		catch (NumberFormatException numberFormatException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(numberFormatException, numberFormatException);
+			}
+
 			return content;
 		}
 
@@ -120,5 +126,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 	private static final Pattern _classDefinitionHeaderPattern =
 		Pattern.compile(
 			"(?<=\n)(\t*)class (\\w+)(\\((.*?)\\))?:\n+", Pattern.DOTALL);
+	private static final Log _log = LogFactoryUtil.getLog(
+		PythonStylingCheck.class);
 
 }

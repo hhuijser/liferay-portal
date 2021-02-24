@@ -14,6 +14,8 @@
 
 package com.liferay.portal.tools.sample.sql.builder.io;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.SyncThrowableThread;
 
 import java.io.IOException;
@@ -56,6 +58,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -66,6 +71,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -76,6 +84,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -86,6 +97,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -96,6 +110,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -106,6 +123,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -116,6 +136,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -126,6 +149,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -136,6 +162,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -146,6 +175,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 	}
 
@@ -275,6 +307,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		try {
@@ -283,6 +318,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IOException ioException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(ioException, ioException);
+			}
 		}
 
 		charPipe.close();
@@ -589,6 +627,9 @@ public class CharPipeTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		SlowWriterJob slowWriterJob = new SlowWriterJob(
@@ -855,6 +896,10 @@ public class CharPipeTest {
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				if (!_close) {
 					_failed = true;
 				}
@@ -905,6 +950,10 @@ public class CharPipeTest {
 				}
 			}
 			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+
 				if (!_expectException) {
 					_failed = true;
 				}
@@ -919,5 +968,7 @@ public class CharPipeTest {
 		private final Writer _writer;
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(CharPipeTest.class);
 
 }

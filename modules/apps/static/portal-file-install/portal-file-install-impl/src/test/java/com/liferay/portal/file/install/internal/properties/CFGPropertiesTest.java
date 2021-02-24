@@ -16,6 +16,8 @@ package com.liferay.portal.file.install.internal.properties;
 
 import com.liferay.petra.io.unsync.UnsyncBufferedReader;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
@@ -55,6 +57,9 @@ public class CFGPropertiesTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 
 		try {
@@ -254,5 +259,8 @@ public class CFGPropertiesTest {
 
 		return cfgProperties;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CFGPropertiesTest.class);
 
 }

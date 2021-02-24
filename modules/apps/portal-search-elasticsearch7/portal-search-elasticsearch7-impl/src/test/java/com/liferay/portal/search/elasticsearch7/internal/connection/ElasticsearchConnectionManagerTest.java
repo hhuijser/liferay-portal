@@ -14,6 +14,8 @@
 
 package com.liferay.portal.search.elasticsearch7.internal.connection;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.search.elasticsearch7.configuration.RESTClientLoggerLevel;
 import com.liferay.portal.search.elasticsearch7.internal.configuration.ElasticsearchConfigurationWrapper;
@@ -295,6 +297,9 @@ public class ElasticsearchConnectionManagerTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nullPointerException, nullPointerException);
+			}
 		}
 	}
 
@@ -766,5 +771,8 @@ public class ElasticsearchConnectionManagerTest {
 
 	@Mock
 	private ElasticsearchConnection _sidecarElasticsearchConnection;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ElasticsearchConnectionManagerTest.class);
 
 }

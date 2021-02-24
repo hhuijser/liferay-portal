@@ -28,6 +28,8 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.PortletRequestModel;
 import com.liferay.portal.kernel.template.TemplateConstants;
@@ -255,6 +257,9 @@ public class JournalTestUtilTest {
 					ddmStructure.getStructureId()));
 		}
 		catch (NoSuchArticleException noSuchArticleException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(noSuchArticleException, noSuchArticleException);
+			}
 		}
 	}
 
@@ -328,5 +333,8 @@ public class JournalTestUtilTest {
 	private Group _group;
 
 	private Method _transformMethod;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalTestUtilTest.class);
 
 }

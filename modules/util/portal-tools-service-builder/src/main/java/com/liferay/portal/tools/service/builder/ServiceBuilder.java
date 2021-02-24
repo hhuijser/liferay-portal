@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.dao.db.IndexMetadata;
 import com.liferay.portal.kernel.dao.db.IndexMetadataFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.cache.CacheField;
 import com.liferay.portal.kernel.plugin.Version;
@@ -1251,6 +1253,10 @@ public class ServiceBuilder {
 			return getEntity(name);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -1264,6 +1270,10 @@ public class ServiceBuilder {
 			return getEntity(name);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return null;
 		}
 	}
@@ -6686,6 +6696,10 @@ public class ServiceBuilder {
 					referenceEntities.add(entity);
 				}
 				catch (RuntimeException runtimeException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(runtimeException, runtimeException);
+					}
+
 					unresolvedReferenceEntityNames.add(referenceEntityName);
 				}
 			}
@@ -7985,5 +7999,7 @@ public class ServiceBuilder {
 	private final Map<String, List<Entity>> _uadApplicationEntities =
 		new HashMap<>();
 	private String _uadDirName;
+
+	private static final Log _log = LogFactoryUtil.getLog(ServiceBuilder.class);
 
 }

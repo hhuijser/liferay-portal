@@ -15,6 +15,8 @@
 package com.liferay.batch.engine.internal.reader;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.ByteArrayInputStream;
@@ -164,6 +166,10 @@ public class JSONLBatchEngineImportTaskItemReaderTest
 				Assert.fail();
 			}
 			catch (IllegalArgumentException illegalArgumentException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						illegalArgumentException, illegalArgumentException);
+				}
 			}
 		}
 	}
@@ -196,6 +202,9 @@ public class JSONLBatchEngineImportTaskItemReaderTest
 				Assert.fail();
 			}
 			catch (NoSuchFieldException noSuchFieldException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(noSuchFieldException, noSuchFieldException);
+				}
 			}
 		}
 	}
@@ -353,5 +362,8 @@ public class JSONLBatchEngineImportTaskItemReaderTest
 	private static final String[] _FIELD_NAMES = {
 		"createDate", "description", "id", "name", "unknownColumn"
 	};
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSONLBatchEngineImportTaskItemReaderTest.class);
 
 }

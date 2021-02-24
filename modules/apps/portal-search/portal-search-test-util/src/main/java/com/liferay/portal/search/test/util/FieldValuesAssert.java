@@ -16,6 +16,8 @@ package com.liferay.portal.search.test.util;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.document.Document;
 import com.liferay.portal.search.document.Field;
@@ -174,6 +176,10 @@ public class FieldValuesAssert {
 			Collections.sort(sortedList, null);
 		}
 		catch (ClassCastException | NullPointerException exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return list;
 		}
 
@@ -252,5 +258,8 @@ public class FieldValuesAssert {
 				entry -> entry.getKey(),
 				entry -> function.apply(entry.getValue())));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FieldValuesAssert.class);
 
 }

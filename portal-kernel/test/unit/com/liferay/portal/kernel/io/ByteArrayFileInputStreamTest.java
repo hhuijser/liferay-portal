@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.io;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -212,6 +215,9 @@ public class ByteArrayFileInputStreamTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		// File does not exist
@@ -222,6 +228,9 @@ public class ByteArrayFileInputStreamTest {
 			Assert.fail();
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalArgumentException, illegalArgumentException);
+			}
 		}
 
 		// Constructor 1
@@ -357,5 +366,8 @@ public class ByteArrayFileInputStreamTest {
 
 	private File _testDir;
 	private File _testFile;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ByteArrayFileInputStreamTest.class);
 
 }

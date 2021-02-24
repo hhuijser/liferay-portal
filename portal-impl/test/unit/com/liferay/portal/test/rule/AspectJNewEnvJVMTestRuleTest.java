@@ -14,6 +14,8 @@
 
 package com.liferay.portal.test.rule;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 
 import org.aspectj.lang.annotation.Around;
@@ -68,6 +70,9 @@ public class AspectJNewEnvJVMTestRuleTest {
 			Assert.fail();
 		}
 		catch (IllegalStateException illegalStateException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(illegalStateException, illegalStateException);
+			}
 		}
 	}
 
@@ -121,5 +126,8 @@ public class AspectJNewEnvJVMTestRuleTest {
 		}
 
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AspectJNewEnvJVMTestRuleTest.class);
 
 }

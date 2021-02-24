@@ -20,6 +20,8 @@ import com.liferay.journal.content.compatibility.converter.JournalContentCompati
 import com.liferay.layout.dynamic.data.mapping.form.field.type.constants.LayoutDDMFormFieldTypeConstants;
 import com.liferay.petra.string.StringPool;
 import com.liferay.petra.xml.XMLUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Attribute;
@@ -72,6 +74,10 @@ public class JournalContentCompatibilityConverterImpl
 			return XMLUtil.formatXML(document);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
+
 			return content;
 		}
 	}
@@ -209,5 +215,8 @@ public class JournalContentCompatibilityConverterImpl
 	}
 
 	private static final String _LATEST_CONTENT_VERSION = "1.0";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalContentCompatibilityConverterImpl.class);
 
 }

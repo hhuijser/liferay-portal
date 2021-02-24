@@ -18,6 +18,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -305,6 +307,9 @@ public class SearchBarPortletDisplayBuilderTest {
 			);
 		}
 		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception, exception);
+			}
 		}
 
 		Mockito.when(
@@ -360,5 +365,8 @@ public class SearchBarPortletDisplayBuilderTest {
 
 	@Mock
 	private ThemeDisplay _themeDisplay;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SearchBarPortletDisplayBuilderTest.class);
 
 }

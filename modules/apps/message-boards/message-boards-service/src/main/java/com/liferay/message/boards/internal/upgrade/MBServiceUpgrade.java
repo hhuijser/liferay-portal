@@ -16,7 +16,7 @@ package com.liferay.message.boards.internal.upgrade;
 
 import com.liferay.message.boards.internal.upgrade.v1_0_0.UpgradeClassNames;
 import com.liferay.message.boards.internal.upgrade.v1_0_1.UpgradeUnsupportedGuestPermissions;
-import com.liferay.message.boards.internal.upgrade.v1_1_0.UpgradeMBThread;
+import com.liferay.message.boards.internal.upgrade.v1_1_0.MBThreadUpgradeProcess;
 import com.liferay.message.boards.internal.upgrade.v2_0_0.util.MBBanTable;
 import com.liferay.message.boards.internal.upgrade.v2_0_0.util.MBCategoryTable;
 import com.liferay.message.boards.internal.upgrade.v2_0_0.util.MBDiscussionTable;
@@ -25,13 +25,13 @@ import com.liferay.message.boards.internal.upgrade.v2_0_0.util.MBMessageTable;
 import com.liferay.message.boards.internal.upgrade.v2_0_0.util.MBStatsUserTable;
 import com.liferay.message.boards.internal.upgrade.v2_0_0.util.MBThreadFlagTable;
 import com.liferay.message.boards.internal.upgrade.v2_0_0.util.MBThreadTable;
-import com.liferay.message.boards.internal.upgrade.v3_0_0.UpgradeMBMessageTreePath;
-import com.liferay.message.boards.internal.upgrade.v3_1_0.UpgradeUrlSubject;
-import com.liferay.message.boards.internal.upgrade.v4_0_0.UpgradeMBCategoryLastPostDate;
-import com.liferay.message.boards.internal.upgrade.v4_0_0.UpgradeMBCategoryMessageCount;
-import com.liferay.message.boards.internal.upgrade.v4_0_0.UpgradeMBCategoryThreadCount;
-import com.liferay.message.boards.internal.upgrade.v5_0_0.UpgradeMBThreadMessageCount;
-import com.liferay.message.boards.internal.upgrade.v5_2_0.UpgradeMBMessageExternalReferenceCode;
+import com.liferay.message.boards.internal.upgrade.v3_0_0.MBMessageTreePathUpgradeProcess;
+import com.liferay.message.boards.internal.upgrade.v3_1_0.UrlSubjectUpgradeProcess;
+import com.liferay.message.boards.internal.upgrade.v4_0_0.MBCategoryLastPostDateUpgradeProcess;
+import com.liferay.message.boards.internal.upgrade.v4_0_0.MBCategoryMessageCountUpgradeProcess;
+import com.liferay.message.boards.internal.upgrade.v4_0_0.MBCategoryThreadCountUpgradeProcess;
+import com.liferay.message.boards.internal.upgrade.v5_0_0.MBThreadMessageCountUpgradeProcess;
+import com.liferay.message.boards.internal.upgrade.v5_2_0.MBMessageExternalReferenceCodeUpgradeProcess;
 import com.liferay.message.boards.model.MBThread;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
@@ -62,7 +62,7 @@ public class MBServiceUpgrade implements UpgradeStepRegistrator {
 				_resourceActionLocalService, _resourcePermissionLocalService,
 				_roleLocalService));
 
-		registry.register("1.0.1", "1.1.0", new UpgradeMBThread());
+		registry.register("1.0.1", "1.1.0", new MBThreadUpgradeProcess());
 
 		registry.register(
 			"1.1.0", "2.0.0",
@@ -78,17 +78,17 @@ public class MBServiceUpgrade implements UpgradeStepRegistrator {
 			"2.0.0", "3.0.0",
 			new UpgradeViewCount(
 				"MBThread", MBThread.class, "threadId", "viewCount"),
-			new UpgradeMBMessageTreePath());
+			new MBMessageTreePathUpgradeProcess());
 
-		registry.register("3.0.0", "3.1.0", new UpgradeUrlSubject());
-
-		registry.register(
-			"3.1.0", "4.0.0", new UpgradeMBCategoryLastPostDate(),
-			new UpgradeMBCategoryMessageCount(),
-			new UpgradeMBCategoryThreadCount());
+		registry.register("3.0.0", "3.1.0", new UrlSubjectUpgradeProcess());
 
 		registry.register(
-			"4.0.0", "5.0.0", new UpgradeMBThreadMessageCount(),
+			"3.1.0", "4.0.0", new MBCategoryLastPostDateUpgradeProcess(),
+			new MBCategoryMessageCountUpgradeProcess(),
+			new MBCategoryThreadCountUpgradeProcess());
+
+		registry.register(
+			"4.0.0", "5.0.0", new MBThreadMessageCountUpgradeProcess(),
 			new UpgradeMVCCVersion() {
 
 				@Override
@@ -108,7 +108,8 @@ public class MBServiceUpgrade implements UpgradeStepRegistrator {
 				"MBMessage", "MBStatsUser", "MBThread", "MBThreadFlag"));
 
 		registry.register(
-			"5.1.0", "5.2.0", new UpgradeMBMessageExternalReferenceCode());
+			"5.1.0", "5.2.0",
+			new MBMessageExternalReferenceCodeUpgradeProcess());
 	}
 
 	@Reference

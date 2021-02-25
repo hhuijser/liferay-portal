@@ -16,16 +16,16 @@ package com.liferay.layout.page.template.internal.upgrade;
 
 import com.liferay.fragment.service.FragmentEntryLinkLocalService;
 import com.liferay.fragment.util.configuration.FragmentEntryConfigurationParser;
-import com.liferay.layout.page.template.internal.upgrade.v1_1_0.UpgradeLayoutPrototype;
-import com.liferay.layout.page.template.internal.upgrade.v1_1_1.UpgradeLayoutPageTemplateEntry;
-import com.liferay.layout.page.template.internal.upgrade.v1_2_0.UpgradeLayoutPageTemplateStructure;
+import com.liferay.layout.page.template.internal.upgrade.v1_1_0.LayoutPrototypeUpgradeProcess;
+import com.liferay.layout.page.template.internal.upgrade.v1_1_1.LayoutPageTemplateEntryUpgradeProcess;
+import com.liferay.layout.page.template.internal.upgrade.v1_2_0.LayoutPageTemplateStructureUpgradeProcess;
 import com.liferay.layout.page.template.internal.upgrade.v2_0_0.util.LayoutPageTemplateCollectionTable;
 import com.liferay.layout.page.template.internal.upgrade.v2_0_0.util.LayoutPageTemplateEntryTable;
-import com.liferay.layout.page.template.internal.upgrade.v2_1_0.UpgradeLayout;
+import com.liferay.layout.page.template.internal.upgrade.v2_1_0.LayoutUpgradeProcess;
 import com.liferay.layout.page.template.internal.upgrade.v3_0_1.util.LayoutPageTemplateStructureRelTable;
-import com.liferay.layout.page.template.internal.upgrade.v3_1_3.UpgradeResourcePermission;
-import com.liferay.layout.page.template.internal.upgrade.v3_3_0.UpgradeLayoutPageTemplateStructureRel;
-import com.liferay.layout.page.template.internal.upgrade.v3_4_1.UpgradeFragmentEntryLinkEditableValues;
+import com.liferay.layout.page.template.internal.upgrade.v3_1_3.ResourcePermissionUpgradeProcess;
+import com.liferay.layout.page.template.internal.upgrade.v3_3_0.LayoutPageTemplateStructureRelUpgradeProcess;
+import com.liferay.layout.page.template.internal.upgrade.v3_4_1.FragmentEntryLinkEditableValuesUpgradeProcess;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.LayoutPrototypeLocalService;
@@ -54,16 +54,16 @@ public class LayoutPageTemplateServiceUpgrade
 
 		registry.register(
 			"1.0.0", "1.1.0",
-			new UpgradeLayoutPrototype(
+			new LayoutPrototypeUpgradeProcess(
 				_companyLocalService, _layoutPrototypeLocalService));
 
 		registry.register(
 			"1.1.0", "1.1.1",
-			new UpgradeLayoutPageTemplateEntry(_companyLocalService));
+			new LayoutPageTemplateEntryUpgradeProcess(_companyLocalService));
 
 		registry.register(
 			"1.1.1", "1.2.0",
-			new UpgradeLayoutPageTemplateStructure(
+			new LayoutPageTemplateStructureUpgradeProcess(
 				_fragmentEntryLinkLocalService, _layoutLocalService));
 
 		registry.register(
@@ -76,14 +76,14 @@ public class LayoutPageTemplateServiceUpgrade
 
 		registry.register(
 			"2.0.0", "2.1.0",
-			new UpgradeLayout(
+			new LayoutUpgradeProcess(
 				_fragmentEntryLinkLocalService, _layoutLocalService,
 				_layoutPrototypeLocalService));
 
 		registry.register(
 			"2.1.0", "3.0.0",
 			new com.liferay.layout.page.template.internal.upgrade.v3_0_0.
-				UpgradeLayoutPageTemplateStructure());
+				LayoutPageTemplateStructureUpgradeProcess());
 
 		registry.register(
 			"3.0.0", "3.0.1",
@@ -111,25 +111,27 @@ public class LayoutPageTemplateServiceUpgrade
 
 		registry.register("3.1.1", "3.1.2", new DummyUpgradeStep());
 
-		registry.register("3.1.2", "3.1.3", new UpgradeResourcePermission());
+		registry.register(
+			"3.1.2", "3.1.3", new ResourcePermissionUpgradeProcess());
 
 		registry.register(
 			"3.1.3", "3.2.0",
 			new com.liferay.layout.page.template.internal.upgrade.v3_2_0.
-				UpgradeLayoutPageTemplateCollection(),
+				LayoutPageTemplateCollectionUpgradeProcess(),
 			new com.liferay.layout.page.template.internal.upgrade.v3_2_0.
-				UpgradeLayoutPageTemplateEntry());
+				LayoutPageTemplateEntryUpgradeProcess());
 
 		registry.register(
 			"3.2.0", "3.3.0",
-			new UpgradeLayoutPageTemplateStructureRel(
+			new LayoutPageTemplateStructureRelUpgradeProcess(
 				_fragmentEntryLinkLocalService,
 				_portletPreferencesLocalService));
 
 		registry.register(
 			"3.3.0", "3.3.1",
 			new com.liferay.layout.page.template.internal.upgrade.v3_3_1.
-				UpgradeLayoutPageTemplateEntry(_layoutPrototypeLocalService));
+				LayoutPageTemplateEntryUpgradeProcess(
+					_layoutPrototypeLocalService));
 
 		registry.register(
 			"3.3.1", "3.4.0",
@@ -141,15 +143,15 @@ public class LayoutPageTemplateServiceUpgrade
 		registry.register(
 			"3.4.0", "3.4.1",
 			new com.liferay.layout.page.template.internal.upgrade.v3_4_1.
-				UpgradeLayoutPageTemplateEntry(_portal),
-			new UpgradeFragmentEntryLinkEditableValues());
+				LayoutPageTemplateEntryUpgradeProcess(_portal),
+			new FragmentEntryLinkEditableValuesUpgradeProcess());
 
 		registry.register(
 			"3.4.1", "3.4.2",
 			new com.liferay.layout.page.template.internal.upgrade.v3_4_2.
-				UpgradeFragmentEntryLinkEditableValues(),
+				FragmentEntryLinkEditableValuesUpgradeProcess(),
 			new com.liferay.layout.page.template.internal.upgrade.v3_4_2.
-				UpgradeLayoutPageTemplateStructureRel(
+				LayoutPageTemplateStructureRelUpgradeProcess(
 					_fragmentEntryConfigurationParser));
 	}
 

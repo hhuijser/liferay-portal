@@ -12,22 +12,30 @@
  * details.
  */
 
-package com.liferay.redirect.internal.upgrade.v2_0_0;
+package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_3_1;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.redirect.internal.upgrade.v2_0_0.util.RedirectNotFoundEntryTable;
+import com.liferay.portal.kernel.util.LoggingTimer;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Alejandro Tardín
+ * @author Rafael Praxedes
  */
-public class UpgradeRedirectNotFoundEntry extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		alter(
-			RedirectNotFoundEntryTable.class, new AlterTableAddColumn("userId"),
-			new AlterTableAddColumn("userName"),
-			new AlterTableAddColumn("ignored"));
+		updateSQL();
+	}
+
+	protected void updateSQL() throws Exception {
+		try (LoggingTimer loggingTimer = new LoggingTimer()) {
+			String template = StringUtil.read(
+				SchemaUpgradeProcess.class.getResourceAsStream(
+					"dependencies/update.sql"));
+
+			runSQLTemplateString(template, false);
+		}
 	}
 
 }

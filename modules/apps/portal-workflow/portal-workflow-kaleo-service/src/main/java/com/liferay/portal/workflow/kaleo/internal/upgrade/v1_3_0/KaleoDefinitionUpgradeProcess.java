@@ -23,7 +23,7 @@ import java.sql.ResultSet;
 /**
  * @author Leonardo Barros
  */
-public class UpgradeKaleoDefinition extends UpgradeProcess {
+public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

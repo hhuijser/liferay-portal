@@ -12,50 +12,41 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_3_0;
+package com.liferay.redirect.internal.upgrade.v2_0_1;
 
+import com.liferay.portal.dao.orm.common.SQLTransformer;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.view.count.ViewCountManagerUtil;
+import com.liferay.redirect.model.RedirectNotFoundEntry;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * @author Leonardo Barros
+ * @author Alejandro Tardín
  */
-public class UpgradeKaleoAction extends UpgradeProcess {
+public class RedirectNotFoundEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
-				"select kaleoActionId, script from KaleoAction where script " +
-					"like '%WorkflowConstants.toStatus(%'");
+				SQLTransformer.transform(
+					"select redirectNotFoundEntryId, companyId, hits from " +
+						"RedirectNotFoundEntry"));
 			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
-				long kaleoActionId = rs.getLong(1);
+				long redirectNotFoundEntryId = rs.getLong(
+					"redirectNotFoundEntryId");
+				long companyId = rs.getLong("companyId");
+				int hits = rs.getInt("hits");
 
-				String script = rs.getString(2);
-
-				script = StringUtil.replace(
-					script, "WorkflowConstants.toStatus(",
-					"WorkflowConstants.getLabelStatus(");
-
-				updateScript(kaleoActionId, script);
+				ViewCountManagerUtil.incrementViewCount(
+					companyId,
+					PortalUtil.getClassNameId(RedirectNotFoundEntry.class),
+					redirectNotFoundEntryId, hits);
 			}
-		}
-	}
-
-	protected void updateScript(long kaleoActionId, String script)
-		throws Exception {
-
-		try (PreparedStatement ps = connection.prepareStatement(
-				"update KaleoAction set script = ? where kaleoActionId = ?")) {
-
-			ps.setString(1, script);
-			ps.setLong(2, kaleoActionId);
-
-			ps.executeUpdate();
 		}
 	}
 

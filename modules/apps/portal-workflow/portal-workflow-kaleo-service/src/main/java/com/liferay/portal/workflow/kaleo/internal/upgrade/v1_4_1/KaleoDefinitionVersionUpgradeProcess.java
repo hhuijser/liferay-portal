@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * @author Inácio Nery
  */
-public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
+public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 
 	protected void addBatch(
 			PreparedStatement ps, long kaleoDefinitionId,

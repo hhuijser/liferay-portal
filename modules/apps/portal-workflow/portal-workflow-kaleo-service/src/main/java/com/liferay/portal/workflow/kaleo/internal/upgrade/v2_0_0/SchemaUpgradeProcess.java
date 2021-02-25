@@ -22,7 +22,7 @@ import com.liferay.portal.workflow.kaleo.internal.upgrade.v2_0_0.util.KaleoNotif
 /**
  * @author Rafael Praxedes
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

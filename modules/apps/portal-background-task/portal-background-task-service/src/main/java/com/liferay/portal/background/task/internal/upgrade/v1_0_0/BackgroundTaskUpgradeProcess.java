@@ -12,21 +12,22 @@
  * details.
  */
 
-package com.liferay.portal.lock.internal.upgrade.v1_0_0;
+package com.liferay.portal.background.task.internal.upgrade.v1_0_0;
 
+import com.liferay.portal.background.task.internal.upgrade.v1_0_0.util.BackgroundTaskTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.lock.internal.upgrade.v1_0_0.util.LockTable;
 
 /**
- * @author Miguel Pastor
+ * @author Cristina González
  */
-public class UpgradeLock extends UpgradeProcess {
+public class BackgroundTaskUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		alter(
-			LockTable.class,
-			new AlterColumnType("owner", "VARCHAR(1024) null"));
+			BackgroundTaskTable.class,
+			new AlterColumnType("name", "VARCHAR(255) null"),
+			new AlterColumnName("taskContext", "taskContextMap TEXT null"));
 	}
 
 }

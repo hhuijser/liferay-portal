@@ -12,20 +12,20 @@
  * details.
  */
 
-package com.liferay.portal.lock.internal.upgrade.v2_0_1;
+package com.liferay.redirect.internal.upgrade.v3_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.lock.internal.upgrade.v2_0_1.util.LockTable;
+import com.liferay.redirect.internal.upgrade.v3_0_0.util.RedirectNotFoundEntryTable;
 
 /**
- * @author Rafael Praxedes
+ * @author Alejandro Tardín
  */
-public class UpgradeLock extends UpgradeProcess {
+public class RedirectNotFoundEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		alter(
-			LockTable.class, new AlterColumnType("key_", "VARCHAR(255) null"));
+			RedirectNotFoundEntryTable.class, new AlterTableDropColumn("hits"));
 	}
 
 }

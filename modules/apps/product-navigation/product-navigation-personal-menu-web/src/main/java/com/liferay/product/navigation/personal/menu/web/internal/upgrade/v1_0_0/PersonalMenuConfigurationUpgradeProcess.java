@@ -29,9 +29,9 @@ import org.osgi.service.cm.ConfigurationAdmin;
 /**
  * @author Pei-Jung Lan
  */
-public class UpgradePersonalMenuConfiguration extends UpgradeProcess {
+public class PersonalMenuConfigurationUpgradeProcess extends UpgradeProcess {
 
-	public UpgradePersonalMenuConfiguration(
+	public PersonalMenuConfigurationUpgradeProcess(
 		ConfigurationAdmin configurationAdmin) {
 
 		_configurationAdmin = configurationAdmin;

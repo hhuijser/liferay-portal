@@ -48,7 +48,7 @@ import java.util.List;
 /**
  * @author Inácio Nery
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	protected void addBatch(
 			PreparedStatement ps, long kaleoDefinitionId,

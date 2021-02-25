@@ -12,29 +12,23 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_4_0;
+package com.liferay.portal.security.audit.storage.internal.upgrade.v1_0_1;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.LoggingTimer;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.security.audit.storage.internal.upgrade.v1_0_1.util.AuditEventTable;
 
 /**
- * @author Inácio Nery
+ * @author Peter Petrekanics
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		updateSQL();
-	}
-
-	protected void updateSQL() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			String template = StringUtil.read(
-				UpgradeSchema.class.getResourceAsStream(
-					"dependencies/update.sql"));
-
-			runSQLTemplateString(template, false);
+			alter(
+				AuditEventTable.class,
+				new AlterColumnType("clientIP", "VARCHAR(255) null"));
 		}
 	}
 

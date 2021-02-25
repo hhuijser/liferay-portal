@@ -29,7 +29,7 @@ import java.util.Set;
 /**
  * @author Marcellus Tavares
  */
-public class UpgradeKaleoTaskInstanceToken extends UpgradeProcess {
+public class KaleoTaskInstanceTokenUpgradeProcess extends UpgradeProcess {
 
 	protected void deleteKaleoInstanceTokens() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {

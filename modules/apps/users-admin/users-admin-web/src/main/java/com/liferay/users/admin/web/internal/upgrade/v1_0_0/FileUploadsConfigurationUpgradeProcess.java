@@ -22,9 +22,9 @@ import com.liferay.users.admin.configuration.UserFileUploadsConfiguration;
 /**
  * @author Drew Brokke
  */
-public class UpgradeFileUploadsConfiguration extends UpgradeProcess {
+public class FileUploadsConfigurationUpgradeProcess extends UpgradeProcess {
 
-	public UpgradeFileUploadsConfiguration(
+	public FileUploadsConfigurationUpgradeProcess(
 		PrefsPropsToConfigurationUpgradeHelper
 			prefsPropsToConfigurationUpgradeHelper) {
 

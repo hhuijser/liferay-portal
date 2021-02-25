@@ -18,8 +18,8 @@ import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeCTModel;
 import com.liferay.portal.kernel.upgrade.UpgradeMVCCVersion;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
-import com.liferay.segments.internal.upgrade.v2_0_0.UpgradeSchema;
-import com.liferay.segments.internal.upgrade.v2_0_0.UpgradeSegmentsExperience;
+import com.liferay.segments.internal.upgrade.v2_0_0.SchemaUpgradeProcess;
+import com.liferay.segments.internal.upgrade.v2_0_0.SegmentsExperienceUpgradeProcess;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -32,11 +32,11 @@ public class SegmentsServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register("1.0.0", "1.0.1", new UpgradeSchema());
+		registry.register("1.0.0", "1.0.1", new SchemaUpgradeProcess());
 
 		registry.register(
 			"1.0.1", "2.0.0",
-			new UpgradeSegmentsExperience(_counterLocalService));
+			new SegmentsExperienceUpgradeProcess(_counterLocalService));
 
 		registry.register(
 			"2.0.0", "2.1.0",
@@ -55,7 +55,8 @@ public class SegmentsServiceUpgrade implements UpgradeStepRegistrator {
 
 		registry.register(
 			"2.1.0", "2.2.0",
-			new com.liferay.segments.internal.upgrade.v2_2_0.UpgradeSchema());
+			new com.liferay.segments.internal.upgrade.v2_2_0.
+				SchemaUpgradeProcess());
 
 		registry.register(
 			"2.2.0", "2.3.0",
@@ -66,7 +67,8 @@ public class SegmentsServiceUpgrade implements UpgradeStepRegistrator {
 
 		registry.register(
 			"2.3.0", "2.4.0",
-			new com.liferay.segments.internal.upgrade.v2_4_0.UpgradeSchema());
+			new com.liferay.segments.internal.upgrade.v2_4_0.
+				SchemaUpgradeProcess());
 	}
 
 	@Reference

@@ -22,15 +22,15 @@ import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeMVCCVersion;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.subscription.service.SubscriptionLocalService;
+import com.liferay.wiki.internal.upgrade.v1_0_0.SchemaUpgradeProcess;
 import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeCompanyId;
 import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeKernelPackage;
 import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeLastPublishDate;
 import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradePortletPreferences;
 import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradePortletSettings;
-import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeSchema;
-import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeWikiPage;
-import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeWikiPageResource;
-import com.liferay.wiki.internal.upgrade.v1_1_0.UpgradeWikiNode;
+import com.liferay.wiki.internal.upgrade.v1_0_0.WikiPageResourceUpgradeProcess;
+import com.liferay.wiki.internal.upgrade.v1_0_0.WikiPageUpgradeProcess;
+import com.liferay.wiki.internal.upgrade.v1_1_0.WikiNodeUpgradeProcess;
 import com.liferay.wiki.internal.upgrade.v2_0_0.util.WikiNodeTable;
 import com.liferay.wiki.internal.upgrade.v2_0_0.util.WikiPageTable;
 import com.liferay.wiki.model.WikiPage;
@@ -47,17 +47,17 @@ public class WikiServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register("0.0.1", "0.0.2", new UpgradeSchema());
+		registry.register("0.0.1", "0.0.2", new SchemaUpgradeProcess());
 
 		registry.register("0.0.2", "0.0.3", new UpgradeKernelPackage());
 
 		registry.register(
 			"0.0.3", "1.0.0", new UpgradeCompanyId(),
 			new UpgradeLastPublishDate(), new UpgradePortletPreferences(),
-			new UpgradePortletSettings(_settingsFactory), new UpgradeWikiPage(),
-			new UpgradeWikiPageResource());
+			new UpgradePortletSettings(_settingsFactory),
+			new WikiPageResourceUpgradeProcess(), new WikiPageUpgradeProcess());
 
-		registry.register("1.0.0", "1.1.0", new UpgradeWikiNode());
+		registry.register("1.0.0", "1.1.0", new WikiNodeUpgradeProcess());
 
 		registry.register(
 			"1.1.0", "1.1.1",

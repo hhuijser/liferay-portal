@@ -26,7 +26,7 @@ import java.sql.ResultSet;
 /**
  * @author Jürgen Kappler
  */
-public class UpgradeStyleBookEntry extends UpgradeProcess {
+public class StyleBookEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

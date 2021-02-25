@@ -26,9 +26,11 @@ import java.sql.ResultSet;
 /**
  * @author David Arques
  */
-public class UpgradeSegmentsExperience extends UpgradeProcess {
+public class SegmentsExperienceUpgradeProcess extends UpgradeProcess {
 
-	public UpgradeSegmentsExperience(CounterLocalService counterLocalService) {
+	public SegmentsExperienceUpgradeProcess(
+		CounterLocalService counterLocalService) {
+
 		_counterLocalService = counterLocalService;
 	}
 
@@ -82,7 +84,7 @@ public class UpgradeSegmentsExperience extends UpgradeProcess {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		UpgradeSegmentsExperience.class);
+		SegmentsExperienceUpgradeProcess.class);
 
 	private final CounterLocalService _counterLocalService;
 

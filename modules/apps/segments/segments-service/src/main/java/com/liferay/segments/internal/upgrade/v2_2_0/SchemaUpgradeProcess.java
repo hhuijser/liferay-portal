@@ -12,21 +12,23 @@
  * details.
  */
 
-package com.liferay.segments.internal.upgrade.v2_4_0;
+package com.liferay.segments.internal.upgrade.v2_2_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.segments.internal.upgrade.v2_4_0.util.SegmentsExperienceTable;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Cristina González
+ * @author Eduardo García
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		alter(
-			SegmentsExperienceTable.class,
-			new AlterTableAddColumn("typeSettings", "VARCHAR(75) null"));
+		String template = StringUtil.read(
+			SchemaUpgradeProcess.class.getResourceAsStream(
+				"dependencies/update.sql"));
+
+		runSQLTemplateString(template, true);
 	}
 
 }

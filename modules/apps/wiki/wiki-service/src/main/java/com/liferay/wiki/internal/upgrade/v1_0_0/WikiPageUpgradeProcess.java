@@ -23,7 +23,7 @@ import com.liferay.wiki.model.WikiPage;
 /**
  * @author Norbert Kocsis
  */
-public class UpgradeWikiPage extends UpgradeProcess {
+public class WikiPageUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

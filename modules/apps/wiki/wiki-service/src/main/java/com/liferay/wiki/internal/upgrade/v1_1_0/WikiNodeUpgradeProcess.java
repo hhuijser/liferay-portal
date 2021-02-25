@@ -12,57 +12,45 @@
  * details.
  */
 
-package com.liferay.wiki.internal.upgrade.v1_0_0;
+package com.liferay.wiki.internal.upgrade.v1_1_0;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.LoggingTimer;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * @author Akos Thurzo
+ * @author Sergio González
  */
-public class UpgradeWikiPageResource extends UpgradeProcess {
+public class WikiNodeUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		updateWikiPageResources();
+		updateWikiNodeName();
 	}
 
-	protected long getGroupId(long resourcePrimKey) throws Exception {
-		long groupId = 0;
-
-		try (PreparedStatement ps = connection.prepareStatement(
-				"select groupId from WikiPage where resourcePrimKey = ?")) {
-
-			ps.setLong(1, resourcePrimKey);
-
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					groupId = rs.getLong("groupId");
-				}
-			}
-		}
-
-		return groupId;
-	}
-
-	protected void updateWikiPageResources() throws Exception {
+	protected void updateWikiNodeName() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(
-				"select resourcePrimKey from WikiPageResource");
+				"select nodeId, name from WikiNode");
 			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
-				long resourcePrimKey = rs.getLong("resourcePrimKey");
+				String name = rs.getString("name");
+
+				if (!Validator.isNumber(name)) {
+					continue;
+				}
+
+				long nodeId = rs.getLong("nodeId");
 
 				runSQL(
 					StringBundler.concat(
-						"update WikiPageResource set groupId = ",
-						getGroupId(resourcePrimKey),
-						" where resourcePrimKey = ", resourcePrimKey));
+						"update WikiNode set name = 'Node ", name,
+						"' where nodeId = ", nodeId));
 			}
 		}
 	}

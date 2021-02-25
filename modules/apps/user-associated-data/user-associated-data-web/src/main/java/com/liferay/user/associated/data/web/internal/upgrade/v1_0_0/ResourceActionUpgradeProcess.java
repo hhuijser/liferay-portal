@@ -12,22 +12,20 @@
  * details.
  */
 
-package com.liferay.segments.internal.upgrade.v2_2_0;
+package com.liferay.user.associated.data.web.internal.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Eduardo García
+ * @author Tina Tian
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class ResourceActionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		String template = StringUtil.read(
-			UpgradeSchema.class.getResourceAsStream("dependencies/update.sql"));
-
-		runSQLTemplateString(template, true);
+		runSQL(
+			"delete from ResourceAction where name = 'com_liferay_user_" +
+				"associated_data_web_portlet_UserAssociatedDataPortlet'");
 	}
 
 }

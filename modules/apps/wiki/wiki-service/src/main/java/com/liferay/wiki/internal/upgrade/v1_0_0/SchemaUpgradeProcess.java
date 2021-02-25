@@ -12,22 +12,23 @@
  * details.
  */
 
-package com.liferay.segments.internal.upgrade.v2_0_0;
+package com.liferay.wiki.internal.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author David Arques
+ * @author Eduardo García
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		String template = StringUtil.read(
-			UpgradeSchema.class.getResourceAsStream("dependencies/update.sql"));
+			SchemaUpgradeProcess.class.getResourceAsStream(
+				"dependencies/update.sql"));
 
-		runSQLTemplateString(template, true);
+		runSQLTemplateString(template, false);
 	}
 
 }

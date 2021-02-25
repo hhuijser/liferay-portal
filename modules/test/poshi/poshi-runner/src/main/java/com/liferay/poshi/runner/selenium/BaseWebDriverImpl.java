@@ -4769,7 +4769,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 				put("SHIFT", Integer.valueOf(KeyEvent.VK_SHIFT));
 			}
 		};
-
 	private static final Pattern _tabPattern = Pattern.compile(
 		".*?(\\t).*?", Pattern.DOTALL);
 

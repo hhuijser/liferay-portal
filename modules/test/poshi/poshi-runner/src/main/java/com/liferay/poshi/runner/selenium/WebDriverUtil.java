@@ -326,6 +326,7 @@ public class WebDriverUtil extends PropsValues {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(WebDriverUtil.class);
+
 	private static final Map<String, Object> _genericCapabilities =
 		new HashMap<String, Object>() {
 			{
@@ -334,7 +335,6 @@ public class WebDriverUtil extends PropsValues {
 				}
 			}
 		};
-
 	private static final WebDriverUtil _webDriverUtil = new WebDriverUtil();
 
 	private WebDriver _webDriver;

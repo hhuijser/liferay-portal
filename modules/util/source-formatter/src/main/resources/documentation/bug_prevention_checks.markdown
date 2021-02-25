@@ -83,6 +83,7 @@ JavaLogClassNameCheck | .java | Checks the name of the class that is passed in `
 JavaLogParametersCheck | .java | Validates the values of parameters passed to `_log.*` calls. |
 JavaMapBuilderGenericsCheck | .java | Finds missing or unnecessary generics on `*MapBuilder.put` calls. |
 [JavaMetaAnnotationsCheck](checks/java_meta_annotations_check.markdown#javametaannotationscheck) | .java | Checks for correct use of attributes `description` and `name` in annotation `@aQute.bnd.annotation.metatype.Meta`. |
+JavaMissingXMLPublicIdsCheck | .java | Finds missing public IDs for check XML files. |
 JavaModifiedServiceMethodCheck | .java | Finds missing empty lines before `removedService` or `addingService` calls. |
 [JavaModuleComponentCheck](checks/java_module_component_check.markdown#javamodulecomponentcheck) | .java | Checks for use of `@Component` in `-api` or `-spi` modules. |
 [JavaModuleExposureCheck](checks/java_module_exposure_check.markdown#javamoduleexposurecheck) | .java | Checks for exposure of `SPI` types in `API`. |

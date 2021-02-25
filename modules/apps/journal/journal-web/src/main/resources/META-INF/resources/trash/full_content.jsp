@@ -28,16 +28,6 @@ JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribu
 </div>
 
 <c:if test="<%= articleDisplay.isPaginate() %>">
-
-	<%
-	PortletURL articlePageURL = renderResponse.createRenderURL();
-
-	articlePageURL.setParameter("mvcPath", "/preview.jsp");
-	articlePageURL.setParameter("classNameId", String.valueOf(assetRendererFactory.getClassNameId()));
-	articlePageURL.setParameter("classPK", String.valueOf(JournalArticleAssetRenderer.getClassPK(article)));
-	articlePageURL.setWindowState(LiferayWindowState.POP_UP);
-	%>
-
 	<br />
 
 	<liferay-ui:page-iterator
@@ -46,7 +36,19 @@ JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribu
 		delta="<%= 1 %>"
 		id="articleDisplayPages"
 		maxPages="<%= 25 %>"
-		portletURL="<%= articlePageURL %>"
+		portletURL='<%=
+			PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setParameter(
+				"mvcPath", "/preview.jsp"
+			).setParameter(
+				"classNameId", assetRendererFactory.getClassNameId()
+			).setParameter(
+				"classPK", JournalArticleAssetRenderer.getClassPK(article)
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build()
+		%>'
 		total="<%= articleDisplay.getNumberOfPages() %>"
 		type="article"
 	/>

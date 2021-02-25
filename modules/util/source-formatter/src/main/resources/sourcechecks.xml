@@ -676,6 +676,10 @@
 			<category name="Bug Prevention" />
 			<description name="Validates the values of parameters passed to `_log.*` calls." />
 		</check>
+		<check name="JavaMissingXMLPublicIdsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds missing public IDs for check XML files." />
+		</check>
 		<check name="JavaMultiPlusConcatCheck">
 			<category name="Performance" />
 			<description name="Checks that we do not concatenate more than 3 String objects." />

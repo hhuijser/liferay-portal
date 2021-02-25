@@ -23,9 +23,10 @@ import com.liferay.portal.upload.internal.configuration.UploadServletRequestConf
 /**
  * @author Pei-Jung Lan
  */
-public class UpgradeUploadServletRequestConfiguration extends UpgradeProcess {
+public class UploadServletRequestConfigurationUpgradeProcess
+	extends UpgradeProcess {
 
-	public UpgradeUploadServletRequestConfiguration(
+	public UploadServletRequestConfigurationUpgradeProcess(
 		PrefsPropsToConfigurationUpgradeHelper
 			prefsPropsToConfigurationUpgradeHelper) {
 

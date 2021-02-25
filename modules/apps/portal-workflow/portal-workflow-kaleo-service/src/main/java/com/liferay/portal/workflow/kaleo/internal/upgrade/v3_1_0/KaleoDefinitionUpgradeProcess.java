@@ -12,22 +12,34 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_2_0;
+package com.liferay.portal.workflow.kaleo.internal.upgrade.v3_1_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.workflow.constants.WorkflowDefinitionConstants;
+import com.liferay.portal.workflow.kaleo.internal.upgrade.v3_1_0.util.KaleoDefinitionTable;
+
+import java.sql.PreparedStatement;
 
 /**
- * @author Marcellus Tavares
+ * @author Inácio Nery
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		String template = StringUtil.read(
-			UpgradeSchema.class.getResourceAsStream("dependencies/update.sql"));
+		if (!hasColumn("KaleoDefinition", "scope")) {
+			alter(
+				KaleoDefinitionTable.class,
+				new AlterTableAddColumn("scope", "VARCHAR(75) null"));
 
-		runSQLTemplateString(template, false);
+			try (PreparedStatement ps = connection.prepareStatement(
+					"update KaleoDefinition set scope = ?")) {
+
+				ps.setString(1, WorkflowDefinitionConstants.SCOPE_ALL);
+
+				ps.execute();
+			}
+		}
 	}
 
 }

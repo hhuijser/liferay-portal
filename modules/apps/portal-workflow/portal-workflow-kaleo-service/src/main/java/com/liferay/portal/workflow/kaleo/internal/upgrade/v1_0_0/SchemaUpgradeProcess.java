@@ -12,34 +12,30 @@
  * details.
  */
 
-package com.liferay.product.navigation.product.menu.web.internal.upgrade.v1_0_0;
+package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_0_0;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.LoggingTimer;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Jürgen Kappler
+ * @author Rafael Praxedes
  */
-public class UpgradePortletPreferences extends UpgradeProcess {
-
-	protected void deletePortletPreferences(String portletId) throws Exception {
-		if (_log.isDebugEnabled()) {
-			_log.debug("Delete portlet preferences for portlet " + portletId);
-		}
-
-		runSQL(
-			"delete from PortletPreferences where portletId = '" + portletId +
-				"'");
-	}
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		deletePortletPreferences("145");
-		deletePortletPreferences("160");
+		updateSQL();
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		UpgradePortletPreferences.class);
+	protected void updateSQL() throws Exception {
+		try (LoggingTimer loggingTimer = new LoggingTimer()) {
+			String template = StringUtil.read(
+				SchemaUpgradeProcess.class.getResourceAsStream(
+					"dependencies/update.sql"));
+
+			runSQLTemplateString(template, false);
+		}
+	}
 
 }

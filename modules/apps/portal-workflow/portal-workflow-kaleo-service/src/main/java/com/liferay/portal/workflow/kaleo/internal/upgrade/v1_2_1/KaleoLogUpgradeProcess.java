@@ -20,7 +20,7 @@ import com.liferay.portal.workflow.kaleo.internal.upgrade.v1_2_0.util.KaleoLogTa
 /**
  * @author Kenneth Chang
  */
-public class UpgradeKaleoLog extends UpgradeProcess {
+public class KaleoLogUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

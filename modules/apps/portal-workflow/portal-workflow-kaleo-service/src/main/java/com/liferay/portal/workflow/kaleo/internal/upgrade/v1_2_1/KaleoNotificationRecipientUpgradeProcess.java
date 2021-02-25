@@ -12,34 +12,37 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.internal.upgrade.v3_1_0;
+package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_2_1;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.workflow.constants.WorkflowDefinitionConstants;
-import com.liferay.portal.workflow.kaleo.internal.upgrade.v3_1_0.util.KaleoDefinitionTable;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
- * @author Inácio Nery
+ * @author Michael C. Han
  */
-public class UpgradeKaleoDefinition extends UpgradeProcess {
+public class KaleoNotificationRecipientUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (!hasColumn("KaleoDefinition", "scope")) {
-			alter(
-				KaleoDefinitionTable.class,
-				new AlterTableAddColumn("scope", "VARCHAR(75) null"));
+		try (PreparedStatement ps = connection.prepareStatement(
+				"update KaleoNotificationRecipient set recipientClassName = " +
+					"'ADDRESS' where recipientClassName is null or " +
+						"recipientClassName = ''")) {
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					"update KaleoDefinition set scope = ?")) {
-
-				ps.setString(1, WorkflowDefinitionConstants.SCOPE_ALL);
-
-				ps.execute();
+			ps.executeUpdate();
+		}
+		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(sqlException, sqlException);
 			}
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		KaleoNotificationRecipientUpgradeProcess.class);
 
 }

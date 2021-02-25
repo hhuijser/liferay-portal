@@ -12,37 +12,49 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_2_1;
+package com.liferay.portal.scheduler.quartz.internal.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.LoggingTimer;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * @author Michael C. Han
+ * @author Akos Thurzo
  */
-public class UpgradeKaleoNotificationRecipient extends UpgradeProcess {
+public class QuartzUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
-				"update KaleoNotificationRecipient set recipientClassName = " +
-					"'ADDRESS' where recipientClassName is null or " +
-						"recipientClassName = ''")) {
+		updateJobDetails();
+	}
+
+	protected void updateJobDetails() {
+		try (LoggingTimer loggingTimer = new LoggingTimer();
+			PreparedStatement ps = connection.prepareStatement(
+				"update QUARTZ_JOB_DETAILS set job_class_name = ? where " +
+					"job_class_name = ?")) {
+
+			ps.setString(
+				1,
+				"com.liferay.portal.scheduler.quartz.internal.job." +
+					"MessageSenderJob");
+			ps.setString(
+				2, "com.liferay.portal.scheduler.job.MessageSenderJob");
 
 			ps.executeUpdate();
 		}
 		catch (SQLException sqlException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(sqlException, sqlException);
+			if (_log.isWarnEnabled()) {
+				_log.warn(sqlException, sqlException);
 			}
 		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		UpgradeKaleoNotificationRecipient.class);
+		QuartzUpgradeProcess.class);
 
 }

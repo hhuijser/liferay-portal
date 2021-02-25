@@ -41,7 +41,7 @@ import org.json.JSONObject;
 /**
  * @author Jang Kim
  */
-public class UpgradeWorkflowContext extends UpgradeProcess {
+public class WorkflowContextUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

@@ -24,7 +24,8 @@ import java.sql.PreparedStatement;
 /**
  * @author Rafael Praxedes
  */
-public class UpgradeKaleoClassNameAndKaleoClassPK extends UpgradeProcess {
+public class KaleoClassNameAndKaleoClassPKUpgradeProcess
+	extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

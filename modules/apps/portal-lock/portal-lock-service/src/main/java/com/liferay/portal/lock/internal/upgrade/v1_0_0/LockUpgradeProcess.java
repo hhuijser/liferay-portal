@@ -12,35 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.search.web.internal.upgrade.v2_0_0;
+package com.liferay.portal.lock.internal.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.search.web.constants.SearchPortletKeys;
-
-import java.sql.PreparedStatement;
+import com.liferay.portal.lock.internal.upgrade.v1_0_0.util.LockTable;
 
 /**
- * @author Bryan Engler
+ * @author Miguel Pastor
  */
-public class UpgradeSearchPortlet extends UpgradeProcess {
+public class LockUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradePortletPreferencesPortletId();
-	}
-
-	protected void upgradePortletPreferencesPortletId() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
-				"update PortletPreferences set portletId = ? where " +
-					"portletId= ? and plid = ?")) {
-
-			ps.setString(
-				1, SearchPortletKeys.SEARCH + "_INSTANCE_templateSearch");
-			ps.setString(2, SearchPortletKeys.SEARCH);
-			ps.setLong(3, 0);
-
-			ps.executeUpdate();
-		}
+		alter(
+			LockTable.class,
+			new AlterColumnType("owner", "VARCHAR(1024) null"));
 	}
 
 }

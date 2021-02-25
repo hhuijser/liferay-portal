@@ -12,26 +12,20 @@
  * details.
  */
 
-package com.liferay.portal.background.task.internal.upgrade.v1_0_0;
+package com.liferay.portal.lock.internal.upgrade.v2_0_1;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.LoggingTimer;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.lock.internal.upgrade.v2_0_1.util.LockTable;
 
 /**
- * @author Miguel Pastor
+ * @author Rafael Praxedes
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class LockUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			String template = StringUtil.read(
-				UpgradeSchema.class.getResourceAsStream(
-					"dependencies/update.sql"));
-
-			runSQLTemplateString(template, false);
-		}
+		alter(
+			LockTable.class, new AlterColumnType("key_", "VARCHAR(255) null"));
 	}
 
 }

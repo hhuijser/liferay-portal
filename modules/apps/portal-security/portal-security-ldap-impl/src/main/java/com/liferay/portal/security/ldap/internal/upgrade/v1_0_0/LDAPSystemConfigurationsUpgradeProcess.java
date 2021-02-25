@@ -31,9 +31,9 @@ import org.osgi.service.cm.ConfigurationAdmin;
 /**
  * @author Marta Medio
  */
-public class UpgradeLDAPSystemConfigurations extends UpgradeProcess {
+public class LDAPSystemConfigurationsUpgradeProcess extends UpgradeProcess {
 
-	public UpgradeLDAPSystemConfigurations(
+	public LDAPSystemConfigurationsUpgradeProcess(
 		ConfigurationAdmin configurationAdmin,
 		ConfigurationProvider configurationProvider) {
 

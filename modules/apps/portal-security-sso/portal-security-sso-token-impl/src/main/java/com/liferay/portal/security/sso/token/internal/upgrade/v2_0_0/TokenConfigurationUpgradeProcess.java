@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * @author Christopher Kian
  */
-public class UpgradeTokenConfiguration extends UpgradeProcess {
+public class TokenConfigurationUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

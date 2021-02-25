@@ -12,21 +12,23 @@
  * details.
  */
 
-package com.liferay.portal.settings.web.internal.upgrade.v1_0_2;
+package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_2_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.settings.constants.PortalSettingsPortletKeys;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Tina Tian
+ * @author Marcellus Tavares
  */
-public class UpgradeResourceAction extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL(
-			"delete from ResourceAction where name = '" +
-				PortalSettingsPortletKeys.PORTAL_SETTINGS + "'");
+		String template = StringUtil.read(
+			SchemaUpgradeProcess.class.getResourceAsStream(
+				"dependencies/update.sql"));
+
+		runSQLTemplateString(template, false);
 	}
 
 }

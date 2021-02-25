@@ -12,20 +12,35 @@
  * details.
  */
 
-package com.liferay.redirect.internal.upgrade.v3_0_0;
+package com.liferay.portal.search.web.internal.upgrade.v2_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.redirect.internal.upgrade.v3_0_0.util.RedirectNotFoundEntryTable;
+import com.liferay.portal.search.web.constants.SearchPortletKeys;
+
+import java.sql.PreparedStatement;
 
 /**
- * @author Alejandro Tardín
+ * @author Bryan Engler
  */
-public class UpgradeRedirectNotFoundEntry extends UpgradeProcess {
+public class SearchPortletUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		alter(
-			RedirectNotFoundEntryTable.class, new AlterTableDropColumn("hits"));
+		upgradePortletPreferencesPortletId();
+	}
+
+	protected void upgradePortletPreferencesPortletId() throws Exception {
+		try (PreparedStatement ps = connection.prepareStatement(
+				"update PortletPreferences set portletId = ? where " +
+					"portletId= ? and plid = ?")) {
+
+			ps.setString(
+				1, SearchPortletKeys.SEARCH + "_INSTANCE_templateSearch");
+			ps.setString(2, SearchPortletKeys.SEARCH);
+			ps.setLong(3, 0);
+
+			ps.executeUpdate();
+		}
 	}
 
 }

@@ -99,7 +99,7 @@ public class UpgradeKaleoDefinitionVersionTest {
 		_addKaleoDefinition(
 			company2.getCompanyId(), company2.getGroupId(), _name, 3);
 
-		_upgradeKaleoDefinitionVersion.upgrade();
+		_kaleoDefinitionVersionUpgradeProcess.upgrade();
 
 		_getKaleoDefinition(company1.getCompanyId(), _name);
 		_getKaleoDefinitionVersion(company1.getCompanyId(), _name, 1);
@@ -230,9 +230,9 @@ public class UpgradeKaleoDefinitionVersionTest {
 						String className = clazz.getName();
 
 						if (className.contains(
-								"UpgradeKaleoDefinitionVersion")) {
+								"KaleoDefinitionVersionUpgradeProcess")) {
 
-							_upgradeKaleoDefinitionVersion =
+							_kaleoDefinitionVersionUpgradeProcess =
 								(UpgradeProcess)upgradeStep;
 						}
 					}
@@ -251,8 +251,8 @@ public class UpgradeKaleoDefinitionVersionTest {
 	private KaleoDefinitionVersionLocalService
 		_kaleoDefinitionVersionLocalService;
 
+	private UpgradeProcess _kaleoDefinitionVersionUpgradeProcess;
 	private String _name;
 	private Timestamp _timestamp;
-	private UpgradeProcess _upgradeKaleoDefinitionVersion;
 
 }

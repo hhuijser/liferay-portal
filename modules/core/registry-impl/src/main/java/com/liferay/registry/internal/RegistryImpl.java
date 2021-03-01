@@ -14,8 +14,6 @@
 
 package com.liferay.registry.internal;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
 import com.liferay.registry.ServiceReference;
@@ -115,9 +113,6 @@ public class RegistryImpl implements Registry {
 					serviceTracker.close();
 				}
 				catch (Throwable throwable) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(throwable, throwable);
-					}
 				}
 			}
 		}
@@ -571,8 +566,6 @@ public class RegistryImpl implements Registry {
 
 		return serviceReferences;
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(RegistryImpl.class);
 
 	private final BundleContext _bundleContext;
 	private final ReferenceQueue<org.osgi.util.tracker.ServiceTracker<?, ?>>

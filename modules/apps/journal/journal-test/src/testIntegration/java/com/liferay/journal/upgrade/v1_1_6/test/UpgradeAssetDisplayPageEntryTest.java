@@ -377,7 +377,7 @@ public class UpgradeAssetDisplayPageEntryTest {
 						Class<?> clazz = upgradeStep.getClass();
 
 						if (Objects.equals(clazz.getName(), _CLASS_NAME)) {
-							_upgradeAssetDisplayPageEntry =
+							_assetDisplayPageEntryUpgradeProcess =
 								(UpgradeProcess)upgradeStep;
 						}
 					}
@@ -404,7 +404,7 @@ public class UpgradeAssetDisplayPageEntryTest {
 			stagingResourcePrimKeys, multipleArticleVersions, liveGroup,
 			layoutUuid);
 
-		_upgradeAssetDisplayPageEntry.upgrade();
+		_assetDisplayPageEntryUpgradeProcess.upgrade();
 
 		assertAssetDisplayPageEntries(stagingGroup, stagingResourcePrimKeys);
 		assertAssetDisplayPageEntries(liveGroup, liveResourcePrimKeys);
@@ -442,7 +442,7 @@ public class UpgradeAssetDisplayPageEntryTest {
 			createJournalArticles(
 				articleCount, multipleArticleVersions, group, layoutUuid);
 
-			_upgradeAssetDisplayPageEntry.upgrade();
+			_assetDisplayPageEntryUpgradeProcess.upgrade();
 
 			Assert.assertEquals(0, getAssetDisplayPageEntriesCount(group));
 		}
@@ -464,7 +464,7 @@ public class UpgradeAssetDisplayPageEntryTest {
 		List<Long> resourcePrimKeys = createJournalArticles(
 			articleCount, multipleArticleVersions, group, layoutUuid);
 
-		_upgradeAssetDisplayPageEntry.upgrade();
+		_assetDisplayPageEntryUpgradeProcess.upgrade();
 
 		Assert.assertEquals(
 			articleCount, getAssetDisplayPageEntriesCount(group));
@@ -474,13 +474,14 @@ public class UpgradeAssetDisplayPageEntryTest {
 
 	private static final String _CLASS_NAME =
 		"com.liferay.journal.internal.upgrade.v1_1_6." +
-			"UpgradeAssetDisplayPageEntry";
+			"AssetDisplayPageEntryUpgradeProcess";
 
 	@Inject(
 		filter = "(&(objectClass=com.liferay.journal.internal.upgrade.JournalServiceUpgrade))"
 	)
 	private static UpgradeStepRegistrator _upgradeStepRegistrator;
 
+	private UpgradeProcess _assetDisplayPageEntryUpgradeProcess;
 	private Map<Long, String> _assetEntryClassUuids;
 	private long _classNameIdJournalArticle;
 
@@ -491,6 +492,5 @@ public class UpgradeAssetDisplayPageEntryTest {
 	private List<Group> _groups;
 
 	private Timestamp _timestamp;
-	private UpgradeProcess _upgradeAssetDisplayPageEntry;
 
 }

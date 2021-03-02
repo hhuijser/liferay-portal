@@ -14,8 +14,6 @@
 
 package com.liferay.poshi.core;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.poshi.core.elements.PoshiElement;
 import com.liferay.poshi.core.util.OSDetector;
 import com.liferay.poshi.core.util.PropsUtil;
@@ -1021,9 +1019,6 @@ public class PoshiValidation {
 					break;
 				}
 				catch (Exception exception) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(exception, exception);
-					}
 				}
 			}
 		}
@@ -1034,9 +1029,6 @@ public class PoshiValidation {
 				fullClassName = className;
 			}
 			catch (Exception exception) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(exception, exception);
-				}
 			}
 		}
 
@@ -1781,9 +1773,6 @@ public class PoshiValidation {
 
 		throw new Exception();
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PoshiValidation.class);
 
 	private static final Set<Exception> _exceptions = new HashSet<>();
 	private static final Pattern _pattern = Pattern.compile("\\$\\{([^}]*)\\}");

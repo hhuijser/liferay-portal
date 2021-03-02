@@ -16,8 +16,6 @@ package com.liferay.poshi.runner.selenium;
 
 import com.deque.axe.AXE;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.poshi.core.PoshiContext;
 import com.liferay.poshi.core.PoshiGetterUtil;
 import com.liferay.poshi.core.selenium.LiferaySelenium;
@@ -195,9 +193,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 			throw executionException;
 		}
 		catch (TimeoutException timeoutException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(timeoutException, timeoutException);
-			}
 		}
 	}
 
@@ -420,10 +415,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 			pageSource = getPageSource();
 		}
 		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
-
 			WebDriver.TargetLocator targetLocator = switchTo();
 
 			targetLocator.window(_defaultWindowHandle);
@@ -454,9 +445,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 				JavaScriptError.readErrors(wrappedWebDriver));
 		}
 		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
 		}
 
 		List<Exception> exceptions = new ArrayList<>();
@@ -799,10 +787,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 				webElement.click();
 			}
 			catch (Exception exception) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(exception, exception);
-				}
-
 				scrollWebElementIntoView(webElement);
 
 				webElement.click();
@@ -971,9 +955,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 			action.perform();
 		}
 		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
 		}
 	}
 
@@ -1029,10 +1010,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		catch (ElementNotFoundPoshiRunnerException | InvalidSelectorException
 					exception) {
 
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
-
 			object1 = argument1;
 		}
 
@@ -1041,10 +1018,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		}
 		catch (ElementNotFoundPoshiRunnerException | InvalidSelectorException
 					exception) {
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
 
 			object2 = argument2;
 		}
@@ -1305,10 +1278,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		catch (ElementNotFoundPoshiRunnerException | InvalidSelectorException
 					exception) {
 
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
-
 			object1 = argument1;
 		}
 
@@ -1317,10 +1286,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		}
 		catch (ElementNotFoundPoshiRunnerException | InvalidSelectorException
 					exception) {
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
 
 			object2 = argument2;
 		}
@@ -1433,10 +1398,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 			return firstSelectedOptionWebElement.getText();
 		}
 		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
-
 			return null;
 		}
 	}
@@ -1556,10 +1517,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 			alertPresent = true;
 		}
 		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
-
 			alertPresent = false;
 		}
 
@@ -3019,10 +2976,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 						Thread.sleep(200);
 					}
 					catch (InterruptedException interruptedException) {
-						if (_log.isDebugEnabled()) {
-							_log.debug(
-								interruptedException, interruptedException);
-						}
 					}
 				}
 			}
@@ -3542,9 +3495,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 					Thread.sleep(1000);
 				}
 				catch (Exception exception) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(exception, exception);
-					}
 				}
 			}
 		}
@@ -3572,9 +3522,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 					Thread.sleep(1000);
 				}
 				catch (Exception exception) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(exception, exception);
-					}
 				}
 			}
 		}
@@ -3977,10 +3924,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 				}
 				catch (ElementNotFoundPoshiRunnerException |
 					   InvalidSelectorException exception) {
-
-					if (_log.isDebugEnabled()) {
-						_log.debug(exception, exception);
-					}
 
 					object = argument;
 				}
@@ -4720,9 +4663,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 					}
 				}
 				catch (Exception exception) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(exception, exception);
-					}
 				}
 
 				Thread.sleep(1000);
@@ -4751,9 +4691,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 	private static final String _SIKULI_IMAGES_DIR_NAME;
 
 	private static final String _TEST_DEPENDENCIES_DIR_NAME;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseWebDriverImpl.class);
 
 	private static final Pattern _aceEditorPattern = Pattern.compile(
 		"\\(|\\$\\{line\\.separator\\}");

@@ -73,6 +73,17 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 
 		String methodName = javaTerm.getName();
 
+		if (fileName.endsWith("ResourceTest.java") &&
+			!javaTerm.hasAnnotation("Override") &&
+			methodName.startsWith("test")) {
+
+			addMessage(
+				fileName,
+				"Public test method in '*ResourceTest.java' should contain " +
+					"annotation @Override",
+				javaTerm.getLineNumber());
+		}
+
 		Pattern pattern = Pattern.compile(requiredMethodNameRegex);
 
 		Matcher matcher = pattern.matcher(methodName);

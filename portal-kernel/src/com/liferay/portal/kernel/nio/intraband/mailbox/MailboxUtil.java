@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.nio.intraband.mailbox;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.nio.intraband.Datagram;
 import com.liferay.portal.kernel.nio.intraband.Intraband;
 import com.liferay.portal.kernel.nio.intraband.RegistrationReference;
@@ -104,8 +102,6 @@ public class MailboxUtil {
 		GetterUtil.getLong(
 			PropsUtil.get(PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE));
 
-	private static final Log _log = LogFactoryUtil.getLog(MailboxUtil.class);
-
 	private static final Map<Long, ByteBuffer> _mailMap =
 		new ConcurrentHashMap<>();
 	private static final BlockingQueue<ReceiptStub> _overdueMailQueue =
@@ -123,9 +119,6 @@ public class MailboxUtil {
 					_mailMap.remove(receiptStub.getReceipt());
 				}
 				catch (InterruptedException interruptedException) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(interruptedException, interruptedException);
-					}
 				}
 			}
 		}

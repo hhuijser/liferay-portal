@@ -17,8 +17,6 @@ package com.liferay.portal.asm;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.lang.reflect.Constructor;
@@ -66,11 +64,6 @@ public class ASMWrapperUtil {
 						asmWrapperClassName);
 				}
 				catch (ClassNotFoundException classNotFoundException) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(
-							classNotFoundException, classNotFoundException);
-					}
-
 					byte[] classData = _generateASMWrapperClassData(
 						StringUtil.replace(asmWrapperClassName, '.', '/'),
 						interfaceClass, delegateObject, defaultObject);
@@ -181,10 +174,6 @@ public class ASMWrapperUtil {
 					_getClassBinaryName(delegateObjectClass));
 			}
 			catch (NoSuchMethodException noSuchMethodException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(noSuchMethodException, noSuchMethodException);
-				}
-
 				_generateMethod(
 					classWriter, method, asmWrapperClassBinaryName, "_default",
 					defaultObjectClassDescriptor,
@@ -266,8 +255,6 @@ public class ASMWrapperUtil {
 
 	private ASMWrapperUtil() {
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(ASMWrapperUtil.class);
 
 	private static final Method _defineClassMethod;
 	private static final Method _equalsMethod;

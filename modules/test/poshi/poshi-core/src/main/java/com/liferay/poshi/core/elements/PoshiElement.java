@@ -14,8 +14,6 @@
 
 package com.liferay.poshi.core.elements;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.poshi.core.PoshiContext;
 import com.liferay.poshi.core.PoshiGetterUtil;
 import com.liferay.poshi.core.script.PoshiScriptParserException;
@@ -289,10 +287,6 @@ public abstract class PoshiElement
 			}
 		}
 		catch (PoshiScriptParserException poshiScriptParserException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					poshiScriptParserException, poshiScriptParserException);
-			}
 		}
 
 		detach();
@@ -752,10 +746,6 @@ public abstract class PoshiElement
 			return isBalancedPoshiScript(poshiScript, false);
 		}
 		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
-
 			return false;
 		}
 	}
@@ -940,10 +930,6 @@ public abstract class PoshiElement
 			}
 		}
 		catch (IllegalArgumentException illegalArgumentException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(illegalArgumentException, illegalArgumentException);
-			}
-
 			return false;
 		}
 
@@ -1123,8 +1109,6 @@ public abstract class PoshiElement
 
 		return poshiScript.trim();
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(PoshiElement.class);
 
 	private static final Map<Character, Character> _codeBoundariesMap =
 		new HashMap<Character, Character>() {

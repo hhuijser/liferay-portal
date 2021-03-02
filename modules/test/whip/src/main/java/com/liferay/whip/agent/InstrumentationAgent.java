@@ -14,8 +14,6 @@
 
 package com.liferay.whip.agent;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.whip.coveragedata.ClassData;
 import com.liferay.whip.coveragedata.LineData;
 import com.liferay.whip.coveragedata.ProjectData;
@@ -386,9 +384,6 @@ public class InstrumentationAgent {
 		}
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		InstrumentationAgent.class);
-
 	private static final File _dataFile;
 	private static boolean _dynamicallyInstrumented;
 	private static String[] _excludes;
@@ -430,10 +425,6 @@ public class InstrumentationAgent {
 				return new ClassDefinition(clazz, _bytes);
 			}
 			catch (Throwable throwable) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(throwable, throwable);
-				}
-
 				return null;
 			}
 		}

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.nio.intraband.blocking;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.nio.intraband.BaseIntraband;
 import com.liferay.portal.kernel.nio.intraband.ChannelContext;
 import com.liferay.portal.kernel.nio.intraband.Datagram;
@@ -263,9 +261,6 @@ public class ExecutorIntraband extends BaseIntraband {
 				}
 			}
 			catch (InterruptedException interruptedException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(interruptedException, interruptedException);
-				}
 			}
 
 			return null;
@@ -280,8 +275,5 @@ public class ExecutorIntraband extends BaseIntraband {
 		private final GatheringByteChannel _gatheringByteChannel;
 
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ExecutorIntraband.class);
 
 }

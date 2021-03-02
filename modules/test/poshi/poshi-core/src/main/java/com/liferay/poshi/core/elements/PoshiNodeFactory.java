@@ -16,8 +16,6 @@ package com.liferay.poshi.core.elements;
 
 import com.google.common.reflect.ClassPath;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.poshi.core.script.PoshiScriptParserException;
 import com.liferay.poshi.core.script.UnbalancedCodeException;
 import com.liferay.poshi.core.util.Dom4JUtil;
@@ -68,10 +66,6 @@ public abstract class PoshiNodeFactory {
 			nodeContent = Dom4JUtil.format(node);
 		}
 		catch (IOException ioException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(ioException, ioException);
-			}
-
 			nodeContent = node.toString();
 		}
 
@@ -213,9 +207,6 @@ public abstract class PoshiNodeFactory {
 
 		return null;
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PoshiNodeFactory.class);
 
 	private static final DefinitionPoshiElement _definitionPoshiElement;
 	private static final List<PoshiComment> _poshiComments = new ArrayList<>();

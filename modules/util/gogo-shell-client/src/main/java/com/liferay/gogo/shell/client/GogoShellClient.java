@@ -14,9 +14,6 @@
 
 package com.liferay.gogo.shell.client;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -59,9 +56,6 @@ public class GogoShellClient implements AutoCloseable {
 			_dataOutputStream.close();
 		}
 		catch (IOException ioException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(ioException, ioException);
-			}
 		}
 	}
 
@@ -215,9 +209,6 @@ public class GogoShellClient implements AutoCloseable {
 
 		return array;
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		GogoShellClient.class);
 
 	private final DataInputStream _dataInputStream;
 	private final DataOutputStream _dataOutputStream;

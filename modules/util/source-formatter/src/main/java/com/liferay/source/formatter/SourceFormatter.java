@@ -123,6 +123,13 @@ public class SourceFormatter {
 
 			sourceFormatterArgs.setBaseDirName(baseDirName);
 
+			List<String> checkCategoryNames = ListUtil.fromString(
+				ArgumentsUtil.getString(
+					arguments, "source.check.category.names", null),
+				StringPool.COMMA);
+
+			sourceFormatterArgs.setCheckCategoryNames(checkCategoryNames);
+
 			List<String> checkNames = ListUtil.fromString(
 				ArgumentsUtil.getString(arguments, "source.check.names", null),
 				StringPool.COMMA);

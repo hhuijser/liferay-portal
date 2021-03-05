@@ -29,8 +29,6 @@ import com.liferay.portal.fabric.repository.Repository;
 import com.liferay.portal.fabric.status.FabricStatus;
 import com.liferay.portal.fabric.status.RemoteFabricStatus;
 import com.liferay.portal.fabric.worker.FabricWorker;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -192,10 +190,6 @@ public class NettyFabricAgentStub implements FabricAgent {
 			_nettyFabricWorkerStubs.put(id, nettyFabricWorkerStub);
 		}
 		catch (CancellationException cancellationException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(cancellationException, cancellationException);
-			}
-
 			nettyFabricWorkerStub.setCancel();
 		}
 		catch (Throwable throwable) {
@@ -238,9 +232,6 @@ public class NettyFabricAgentStub implements FabricAgent {
 	public NettyFabricWorkerStub<?> takeNettyStubFabricWorker(long id) {
 		return _nettyFabricWorkerStubs.remove(id);
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NettyFabricAgentStub.class);
 
 	private final Channel _channel;
 	private final AtomicLong _idGenerator = new AtomicLong();

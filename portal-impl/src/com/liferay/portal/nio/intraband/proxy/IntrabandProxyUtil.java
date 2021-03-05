@@ -82,10 +82,6 @@ public class IntrabandProxyUtil {
 			return (String[])field.get(null);
 		}
 		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
-			}
-
 			return null;
 		}
 	}
@@ -620,9 +616,6 @@ public class IntrabandProxyUtil {
 			return Class.forName(className.concat(postfix), false, classLoader);
 		}
 		catch (ClassNotFoundException classNotFoundException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(classNotFoundException, classNotFoundException);
-			}
 		}
 
 		return null;
@@ -738,9 +731,6 @@ public class IntrabandProxyUtil {
 			reloadedClass = Class.forName(clazz.getName(), false, classLoader);
 		}
 		catch (ClassNotFoundException classNotFoundException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(classNotFoundException, classNotFoundException);
-			}
 		}
 
 		if (reloadedClass != clazz) {

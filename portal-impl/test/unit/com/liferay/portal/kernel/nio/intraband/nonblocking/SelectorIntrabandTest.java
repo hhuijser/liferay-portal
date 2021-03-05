@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.nio.intraband.nonblocking;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.nio.intraband.BaseIntraband;
 import com.liferay.portal.kernel.nio.intraband.BaseIntrabandUtil;
 import com.liferay.portal.kernel.nio.intraband.ChannelContext;
@@ -707,10 +705,6 @@ public class SelectorIntrabandTest {
 				Assert.fail();
 			}
 			catch (ClosedIntrabandException closedIntrabandException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						closedIntrabandException, closedIntrabandException);
-				}
 			}
 		}
 		finally {
@@ -914,10 +908,6 @@ public class SelectorIntrabandTest {
 				Assert.fail();
 			}
 			catch (ClosedIntrabandException closedIntrabandException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						closedIntrabandException, closedIntrabandException);
-				}
 			}
 		}
 	}
@@ -1387,9 +1377,6 @@ public class SelectorIntrabandTest {
 	private static final long _DEFAULT_TIMEOUT = Time.SECOND;
 
 	private static final byte _TYPE = 1;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SelectorIntrabandTest.class);
 
 	static {
 		String dataString = SelectorIntrabandTest.class.getName();

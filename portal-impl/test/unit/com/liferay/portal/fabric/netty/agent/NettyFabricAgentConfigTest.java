@@ -14,8 +14,6 @@
 
 package com.liferay.portal.fabric.netty.agent;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.util.SerializableUtil;
 
@@ -42,9 +40,6 @@ public class NettyFabricAgentConfigTest {
 			Assert.fail();
 		}
 		catch (NullPointerException nullPointerException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(nullPointerException, nullPointerException);
-			}
 		}
 
 		File repositoryFolder = new File("RepositoryFolder");
@@ -70,8 +65,5 @@ public class NettyFabricAgentConfigTest {
 			repositoryFolder.toPath(),
 			copyNettyFabricAgentConfig.getRepositoryPath());
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		NettyFabricAgentConfigTest.class);
 
 }

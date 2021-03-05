@@ -18,8 +18,6 @@ import com.liferay.portal.fabric.netty.fileserver.CompressionLevel;
 import com.liferay.portal.fabric.netty.fileserver.FileHelperUtil;
 import com.liferay.portal.fabric.netty.fileserver.FileRequest;
 import com.liferay.portal.fabric.netty.fileserver.FileResponse;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.DefaultFileRegion;
@@ -62,10 +60,6 @@ public class FileRequestChannelHandler
 				path, BasicFileAttributes.class);
 		}
 		catch (NoSuchFileException noSuchFileException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(noSuchFileException, noSuchFileException);
-			}
-
 			channelHandlerContext.writeAndFlush(
 				new FileResponse(path, FileResponse.FILE_NOT_FOUND, -1, false));
 
@@ -110,9 +104,6 @@ public class FileRequestChannelHandler
 		channelHandlerContext.writeAndFlush(
 			new DefaultFileRegion(fileChannel, 0, fileChannel.size()));
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		FileRequestChannelHandler.class);
 
 	private final CompressionLevel _compressionLevel;
 

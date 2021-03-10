@@ -12,27 +12,22 @@
  * details.
  */
 
-package com.liferay.calendar.internal.upgrade.v4_1_1;
+package com.liferay.calendar.internal.upgrade.v2_0_0;
 
-import com.liferay.calendar.internal.upgrade.v4_1_1.util.CalendarNotificationTemplateTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Marcell Gyopos
+ * @author Adam Brandizzi
  */
-public class UpgradeCalendarNotificationTemplate extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (!hasColumnType(
-				"CalendarNotificationTemplate", "notificationTypeSettings",
-				"VARCHAR(150) null")) {
+		String template = StringUtil.read(
+			SchemaUpgradeProcess.class.getResourceAsStream("dependencies/update.sql"));
 
-			alter(
-				CalendarNotificationTemplateTable.class,
-				new AlterColumnType(
-					"notificationTypeSettings", "VARCHAR(150) null"));
-		}
+		runSQLTemplateString(template, false);
 	}
 
 }

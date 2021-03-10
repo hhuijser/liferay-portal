@@ -28,7 +28,7 @@ import java.sql.ResultSet;
 /**
  * @author Adam Brandizzi
  */
-public class UpgradeCalendar extends UpgradeProcess {
+public class CalendarUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	public void doUpgrade() throws Exception {

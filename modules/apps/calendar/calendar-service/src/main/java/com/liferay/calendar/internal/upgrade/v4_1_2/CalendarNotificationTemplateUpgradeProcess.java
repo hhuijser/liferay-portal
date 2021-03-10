@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 /**
  * @author Nara Andrade
  */
-public class UpgradeCalendarNotificationTemplate extends UpgradeProcess {
+public class CalendarNotificationTemplateUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

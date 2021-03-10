@@ -12,22 +12,21 @@
  * details.
  */
 
-package com.liferay.calendar.internal.upgrade.v2_0_0;
+package com.liferay.calendar.internal.upgrade.v1_0_0;
 
+import com.liferay.calendar.internal.upgrade.v1_0_0.util.CalendarBookingTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Adam Brandizzi
+ * @author Bryan Engler
  */
-public class UpgradeSchema extends UpgradeProcess {
+public class CalendarBookingUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		String template = StringUtil.read(
-			UpgradeSchema.class.getResourceAsStream("dependencies/update.sql"));
-
-		runSQLTemplateString(template, false);
+		alter(
+			CalendarBookingTable.class,
+			new AlterColumnType("description", "TEXT null"));
 	}
 
 }

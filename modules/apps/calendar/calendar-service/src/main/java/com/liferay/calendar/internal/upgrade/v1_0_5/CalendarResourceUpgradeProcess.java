@@ -42,9 +42,9 @@ import java.util.List;
 /**
  * @author Adam Brandizzi
  */
-public class UpgradeCalendarResource extends UpgradeProcess {
+public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 
-	public UpgradeCalendarResource(
+	public CalendarResourceUpgradeProcess(
 		ClassNameLocalService classNameLocalService,
 		CompanyLocalService companyLocalService,
 		UserLocalService userLocalService) {

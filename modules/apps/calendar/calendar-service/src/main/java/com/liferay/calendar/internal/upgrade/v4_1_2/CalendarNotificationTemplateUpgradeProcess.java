@@ -12,26 +12,26 @@
  * details.
  */
 
-package com.liferay.calendar.internal.upgrade.v4_1_1;
+package com.liferay.calendar.internal.upgrade.v4_1_2;
 
-import com.liferay.calendar.internal.upgrade.v4_1_1.util.CalendarNotificationTemplateTable;
+import com.liferay.calendar.internal.upgrade.v4_1_2.util.CalendarNotificationTemplateTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
- * @author Marcell Gyopos
+ * @author Nara Andrade
  */
-public class UpgradeCalendarNotificationTemplate extends UpgradeProcess {
+public class CalendarNotificationTemplateUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		if (!hasColumnType(
 				"CalendarNotificationTemplate", "notificationTypeSettings",
-				"VARCHAR(150) null")) {
+				"VARCHAR(200) null")) {
 
 			alter(
 				CalendarNotificationTemplateTable.class,
 				new AlterColumnType(
-					"notificationTypeSettings", "VARCHAR(150) null"));
+					"notificationTypeSettings", "VARCHAR(200) null"));
 		}
 	}
 

@@ -12,18 +12,21 @@
  * details.
  */
 
-package com.liferay.change.tracking.internal.upgrade.v2_2_0;
+package com.liferay.change.tracking.internal.upgrade.v1_0_1;
 
+import com.liferay.change.tracking.internal.upgrade.v1_0_1.util.CTCollectionTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
- * @author Samuel Trong Tran
+ * @author Daniel Kocsis
  */
-public class UpgradeCTPreferences extends UpgradeProcess {
+public class CTCollectionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("alter table CTPreferences add previousCtCollectionId LONG");
+		alter(
+			CTCollectionTable.class,
+			new AlterColumnType("description", "VARCHAR(200) null"));
 	}
 
 }

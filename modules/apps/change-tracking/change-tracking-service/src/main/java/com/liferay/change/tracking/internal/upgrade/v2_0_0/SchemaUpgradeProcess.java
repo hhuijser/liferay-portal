@@ -12,21 +12,23 @@
  * details.
  */
 
-package com.liferay.change.tracking.internal.upgrade.v1_0_1;
+package com.liferay.change.tracking.internal.upgrade.v2_0_0;
 
-import com.liferay.change.tracking.internal.upgrade.v1_0_1.util.CTCollectionTable;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Daniel Kocsis
+ * @author Gergely Mathe
  */
-public class UpgradeCTCollection extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		alter(
-			CTCollectionTable.class,
-			new AlterColumnType("description", "VARCHAR(200) null"));
+		String template = StringUtil.read(
+			SchemaUpgradeProcess.class.getResourceAsStream(
+				"dependencies/update.sql"));
+
+		runSQLTemplateString(template, true);
 	}
 
 }

@@ -12,18 +12,22 @@
  * details.
  */
 
-package com.liferay.change.tracking.internal.upgrade.v2_2_0;
+package com.liferay.change.tracking.internal.upgrade.v2_1_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
- * @author Samuel Trong Tran
+ * @author Preston Crary
  */
-public class UpgradeCTPreferences extends UpgradeProcess {
+public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("alter table CTPreferences add previousCtCollectionId LONG");
+		String template = StringUtil.read(
+			SchemaUpgradeProcess.class.getResourceAsStream("dependencies/update.sql"));
+
+		runSQLTemplateString(template, true);
 	}
 
 }

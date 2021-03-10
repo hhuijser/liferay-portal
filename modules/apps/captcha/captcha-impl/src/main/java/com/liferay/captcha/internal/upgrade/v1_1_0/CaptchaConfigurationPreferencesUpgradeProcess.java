@@ -29,9 +29,9 @@ import org.osgi.service.cm.ConfigurationAdmin;
 /**
  * @author Marta Medio
  */
-public class UpgradeCaptchaConfigurationPreferences extends UpgradeProcess {
+public class CaptchaConfigurationPreferencesUpgradeProcess extends UpgradeProcess {
 
-	public UpgradeCaptchaConfigurationPreferences(
+	public CaptchaConfigurationPreferencesUpgradeProcess(
 		ConfigurationAdmin configurationAdmin) {
 
 		_configurationAdmin = configurationAdmin;

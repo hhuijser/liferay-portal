@@ -100,6 +100,7 @@ public class TaglibUtil {
 		}
 
 		String[] tldDirLocations = {
+			"modules/apps/commerce/commerce-frontend-taglib/",
 			"modules/apps/frontend-taglib/", "portal-web/docroot/WEB-INF/tld/",
 			"util-taglib/src/META-INF/"
 		};

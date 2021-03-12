@@ -176,11 +176,8 @@ public class CommerceCartContentDisplayContext {
 	}
 
 	public String getDeleteURL(CommerceOrderItem commerceOrderItem) {
-		LiferayPortletResponse liferayPortletResponse =
-			commerceCartContentRequestHelper.getLiferayPortletResponse();
-
 		PortletURL portletURL = PortletURLBuilder.createActionURL(
-			liferayPortletResponse
+			commerceCartContentRequestHelper.getLiferayPortletResponse()
 		).setActionName(
 			"/commerce_cart_content/edit_commerce_order_item"
 		).setRedirect(
@@ -188,8 +185,7 @@ public class CommerceCartContentDisplayContext {
 		).setParameter(
 			Constants.CMD, Constants.DELETE
 		).setParameter(
-			"commerceOrderItemId",
-			String.valueOf(commerceOrderItem.getCommerceOrderItemId())
+			"commerceOrderItemId", commerceOrderItem.getCommerceOrderItemId()
 		).build();
 
 		return portletURL.toString();

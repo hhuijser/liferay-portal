@@ -187,18 +187,6 @@ public class TasksPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long tasksEntryId = ParamUtil.getLong(actionRequest, "tasksEntryId");
-
-		long resolverUserId = ParamUtil.getLong(
-			actionRequest, "resolverUserId");
-		int status = ParamUtil.getInteger(actionRequest, "status");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			TasksEntry.class.getName(), actionRequest);
-
-		TasksEntryServiceUtil.updateTasksEntryStatus(
-			tasksEntryId, resolverUserId, status, serviceContext);
-
 		Layout layout = themeDisplay.getLayout();
 
 		PortletURL portletURL = PortletURLBuilder.create(
@@ -208,7 +196,25 @@ public class TasksPortlet extends MVCPortlet {
 		).setMVCPath(
 			"/tasks/view_task.jsp"
 		).setParameter(
-			"tasksEntryId", tasksEntryId
+			"tasksEntryId",
+			() -> {
+				ServiceContext serviceContext =
+					ServiceContextFactory.getInstance(
+						TasksEntry.class.getName(), actionRequest);
+
+				int status = ParamUtil.getInteger(actionRequest, "status");
+
+				long resolverUserId = ParamUtil.getLong(
+					actionRequest, "resolverUserId");
+
+				long tasksEntryId = ParamUtil.getLong(
+					actionRequest, "tasksEntryId");
+
+				TasksEntryServiceUtil.updateTasksEntryStatus(
+					tasksEntryId, resolverUserId, status, serviceContext);
+
+				return tasksEntryId;
+			}
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

@@ -51,6 +51,7 @@ if (Boolean.getBoolean("build.bnd.print.enabled")) {
 	}
 
 	dependencies {
+	compileOnly project(":apps:petra:petra-portlet-url-builder")
 		bnd group: "biz.aQute.bnd", name: "biz.aQute.bnd", version: "4.3.0"
 	}
 

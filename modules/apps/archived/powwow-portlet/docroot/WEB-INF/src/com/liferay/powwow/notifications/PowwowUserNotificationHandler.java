@@ -14,6 +14,7 @@
 
 package com.liferay.powwow.notifications;
 
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -101,20 +102,21 @@ public class PowwowUserNotificationHandler extends BaseUserNotificationHandler {
 		long portletPlid = PortalUtil.getPlidFromPortletId(
 			user.getGroupId(), true, PowwowPortletKeys.POWWOW_MEETINGS);
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			serviceContext.getLiferayPortletRequest(),
-			PowwowPortletKeys.POWWOW_MEETINGS, portletPlid,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/meetings/view_meeting.jsp");
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
 		long powwowMeetingId = jsonObject.getLong("classPK");
 
-		portletURL.setParameter(
-			"powwowMeetingId", String.valueOf(powwowMeetingId));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				serviceContext.getLiferayPortletRequest(),
+				PowwowPortletKeys.POWWOW_MEETINGS, portletPlid,
+				PortletRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/meetings/view_meeting.jsp"
+		).setParameter(
+			"powwowMeetingId", String.valueOf(powwowMeetingId)
+		).build();
 
 		return portletURL.toString();
 	}

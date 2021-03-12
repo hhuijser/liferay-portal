@@ -19,6 +19,7 @@ package com.liferay.tasks.portlet;
 
 import com.liferay.asset.kernel.exception.AssetTagException;
 import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Layout;
@@ -154,14 +155,17 @@ public class TasksPortlet extends MVCPortlet {
 
 			Layout layout = themeDisplay.getLayout();
 
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				actionRequest, PortletKeys.TASKS, layout.getPlid(),
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
-			portletURL.setParameter(
-				"tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
-			portletURL.setWindowState(LiferayWindowState.POP_UP);
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					actionRequest, PortletKeys.TASKS, layout.getPlid(),
+					PortletRequest.RENDER_PHASE)
+			).setMVCPath(
+				"/tasks/view_task.jsp"
+			).setParameter(
+				"tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId())
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).build();
 
 			actionResponse.sendRedirect(portletURL.toString());
 		}
@@ -197,13 +201,17 @@ public class TasksPortlet extends MVCPortlet {
 
 		Layout layout = themeDisplay.getLayout();
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			actionRequest, PortletKeys.TASKS, layout.getPlid(),
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
-		portletURL.setParameter("tasksEntryId", String.valueOf(tasksEntryId));
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				actionRequest, PortletKeys.TASKS, layout.getPlid(),
+				PortletRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/tasks/view_task.jsp"
+		).setParameter(
+			"tasksEntryId", String.valueOf(tasksEntryId)
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		actionResponse.sendRedirect(portletURL.toString());
 	}

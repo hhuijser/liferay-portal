@@ -18,6 +18,7 @@
 package com.liferay.tasks.asset.model;
 
 import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
@@ -117,11 +118,13 @@ public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer<TasksEntry> {
 			long portletPlid = PortalUtil.getPlidFromPortletId(
 				user.getGroupId(), true, PortletKeys.TASKS);
 
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				liferayPortletRequest, PortletKeys.TASKS, portletPlid,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/tasks/view.jsp");
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					liferayPortletRequest, PortletKeys.TASKS, portletPlid,
+					PortletRequest.RENDER_PHASE)
+			).setMVCPath(
+				"/tasks/view.jsp"
+			).build();
 
 			return portletURL.toString();
 		}

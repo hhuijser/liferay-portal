@@ -144,10 +144,10 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			_mvcPath
-		).setParameter(
-			"userGroupId", String.valueOf(_userGroup.getUserGroupId())
 		).setRedirect(
 			redirect
+		).setParameter(
+			"userGroupId", String.valueOf(_userGroup.getUserGroupId())
 		).setParameter(
 			"displayStyle", _displayStyle
 		).build();

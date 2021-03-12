@@ -104,8 +104,7 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 		).setParameter(
 			Constants.CMD, Constants.DELETE
 		).setParameter(
-			"commerceSubscriptionEntryId",
-			String.valueOf(commerceSubscriptionEntryId)
+			"commerceSubscriptionEntryId", commerceSubscriptionEntryId
 		).build();
 
 		return portletURL;
@@ -125,8 +124,7 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 		).setRedirect(
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
-			"commerceSubscriptionEntryId",
-			String.valueOf(commerceSubscriptionEntryId)
+			"commerceSubscriptionEntryId", commerceSubscriptionEntryId
 		).build();
 
 		return portletURL;

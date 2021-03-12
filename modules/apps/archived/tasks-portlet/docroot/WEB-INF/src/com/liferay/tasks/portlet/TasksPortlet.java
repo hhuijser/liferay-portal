@@ -49,7 +49,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 /**
  * @author Ryan Park
@@ -155,19 +154,18 @@ public class TasksPortlet extends MVCPortlet {
 
 			Layout layout = themeDisplay.getLayout();
 
-			PortletURL portletURL = PortletURLBuilder.create(
-				PortletURLFactoryUtil.create(
-					actionRequest, PortletKeys.TASKS, layout.getPlid(),
-					PortletRequest.RENDER_PHASE)
-			).setMVCPath(
-				"/tasks/view_task.jsp"
-			).setParameter(
-				"tasksEntryId", tasksEntry.getTasksEntryId()
-			).setWindowState(
-				LiferayWindowState.POP_UP
-			).build();
-
-			actionResponse.sendRedirect(portletURL.toString());
+			actionResponse.sendRedirect(
+				PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(
+						actionRequest, PortletKeys.TASKS, layout.getPlid(),
+						PortletRequest.RENDER_PHASE)
+				).setMVCPath(
+					"/tasks/view_task.jsp"
+				).setParameter(
+					"tasksEntryId", tasksEntry.getTasksEntryId()
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString());
 		}
 		catch (AssetTagException assetTagException) {
 			actionResponse.setRenderParameter(
@@ -189,37 +187,36 @@ public class TasksPortlet extends MVCPortlet {
 
 		Layout layout = themeDisplay.getLayout();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			PortletURLFactoryUtil.create(
-				actionRequest, PortletKeys.TASKS, layout.getPlid(),
-				PortletRequest.RENDER_PHASE)
-		).setMVCPath(
-			"/tasks/view_task.jsp"
-		).setParameter(
-			"tasksEntryId",
-			() -> {
-				ServiceContext serviceContext =
-					ServiceContextFactory.getInstance(
-						TasksEntry.class.getName(), actionRequest);
+		actionResponse.sendRedirect(
+			PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					actionRequest, PortletKeys.TASKS, layout.getPlid(),
+					PortletRequest.RENDER_PHASE)
+			).setMVCPath(
+				"/tasks/view_task.jsp"
+			).setParameter(
+				"tasksEntryId",
+				() -> {
+					ServiceContext serviceContext =
+						ServiceContextFactory.getInstance(
+							TasksEntry.class.getName(), actionRequest);
 
-				int status = ParamUtil.getInteger(actionRequest, "status");
+					int status = ParamUtil.getInteger(actionRequest, "status");
 
-				long resolverUserId = ParamUtil.getLong(
-					actionRequest, "resolverUserId");
+					long resolverUserId = ParamUtil.getLong(
+						actionRequest, "resolverUserId");
 
-				long tasksEntryId = ParamUtil.getLong(
-					actionRequest, "tasksEntryId");
+					long tasksEntryId = ParamUtil.getLong(
+						actionRequest, "tasksEntryId");
 
-				TasksEntryServiceUtil.updateTasksEntryStatus(
-					tasksEntryId, resolverUserId, status, serviceContext);
+					TasksEntryServiceUtil.updateTasksEntryStatus(
+						tasksEntryId, resolverUserId, status, serviceContext);
 
-				return tasksEntryId;
-			}
-		).setWindowState(
-			LiferayWindowState.POP_UP
-		).build();
-
-		actionResponse.sendRedirect(portletURL.toString());
+					return tasksEntryId;
+				}
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).buildString());
 	}
 
 	public void updateTasksEntryViewCount(

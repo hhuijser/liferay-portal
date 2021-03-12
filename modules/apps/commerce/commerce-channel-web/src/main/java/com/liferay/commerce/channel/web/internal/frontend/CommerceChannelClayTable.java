@@ -103,19 +103,18 @@ public class CommerceChannelClayTable
 				PermissionThreadLocal.getPermissionChecker(),
 				channel.getChannelId(), ActionKeys.UPDATE),
 			dropdownItem -> {
-				PortletURL portletURL = PortletURLBuilder.create(
-					_portal.getControlPanelPortletURL(
-						httpServletRequest, CPPortletKeys.COMMERCE_CHANNELS,
-						PortletRequest.RENDER_PHASE)
-				).setMVCRenderCommandName(
-					"/commerce_channels/edit_commerce_channel"
-				).setParameter(
-					"backURL", portletURL.toString()
-				).setParameter(
-					"commerceChannelId", channel.getChannelId()
-				).build();
-
-				dropdownItem.setHref(portletURL.toString());
+				dropdownItem.setHref(
+					PortletURLBuilder.create(
+						_portal.getControlPanelPortletURL(
+							httpServletRequest, CPPortletKeys.COMMERCE_CHANNELS,
+							PortletRequest.RENDER_PHASE)
+					).setMVCRenderCommandName(
+						"/commerce_channels/edit_commerce_channel"
+					).setParameter(
+						"backURL", portletURL.toString()
+					).setParameter(
+						"commerceChannelId", channel.getChannelId()
+					).buildString());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "edit"));

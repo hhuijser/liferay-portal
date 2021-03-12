@@ -34,7 +34,6 @@ import com.liferay.powwow.service.PowwowMeetingLocalServiceUtil;
 import com.liferay.powwow.util.PowwowPortletKeys;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 /**
  * @author Matthew Kong
@@ -102,7 +101,7 @@ public class PowwowUserNotificationHandler extends BaseUserNotificationHandler {
 		long portletPlid = PortalUtil.getPlidFromPortletId(
 			user.getGroupId(), true, PowwowPortletKeys.POWWOW_MEETINGS);
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(
 				serviceContext.getLiferayPortletRequest(),
 				PowwowPortletKeys.POWWOW_MEETINGS, portletPlid,
@@ -117,9 +116,7 @@ public class PowwowUserNotificationHandler extends BaseUserNotificationHandler {
 
 				return jsonObject.getLong("classPK");
 			}
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 }

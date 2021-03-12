@@ -38,7 +38,6 @@ import java.util.Locale;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -118,15 +117,13 @@ public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer<TasksEntry> {
 			long portletPlid = PortalUtil.getPlidFromPortletId(
 				user.getGroupId(), true, PortletKeys.TASKS);
 
-			PortletURL portletURL = PortletURLBuilder.create(
+			return PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(
 					liferayPortletRequest, PortletKeys.TASKS, portletPlid,
 					PortletRequest.RENDER_PHASE)
 			).setMVCPath(
 				"/tasks/view.jsp"
-			).build();
-
-			return portletURL.toString();
+			).buildString();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

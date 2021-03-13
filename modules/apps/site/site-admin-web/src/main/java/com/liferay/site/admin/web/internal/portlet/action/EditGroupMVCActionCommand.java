@@ -15,6 +15,7 @@
 package com.liferay.site.admin.web.internal.portlet.action;
 
 import com.liferay.layout.seo.service.LayoutSEOSiteLocalService;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.GroupNameException;
@@ -115,14 +116,14 @@ public class EditGroupMVCActionCommand extends BaseMVCActionCommand {
 					SiteAdminPortletKeys.SITE_SETTINGS + "requestProcessed");
 			}
 
-			PortletURL siteAdministrationURL = _getSiteAdministrationURL(
-				actionRequest, group);
-
-			siteAdministrationURL.setParameter(
-				"redirect", siteAdministrationURL.toString());
-			siteAdministrationURL.setParameter(
+			PortletURL siteAdministrationURL = PortletURLBuilder.create(
+				_getSiteAdministrationURL(actionRequest, group)
+			).setRedirect(
+				siteAdministrationURL.toString()
+			).setParameter(
 				"historyKey",
-				ActionUtil.getHistoryKey(actionRequest, actionResponse));
+				ActionUtil.getHistoryKey(actionRequest, actionResponse)
+			).build();
 
 			actionRequest.setAttribute(
 				WebKeys.REDIRECT, siteAdministrationURL.toString());

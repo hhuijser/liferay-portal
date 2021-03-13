@@ -93,7 +93,7 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 		long commerceSubscriptionEntryId,
 		HttpServletRequest httpServletRequest) {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
 				httpServletRequest, CPPortletKeys.COMMERCE_SUBSCRIPTION_ENTRY,
 				PortletRequest.ACTION_PHASE)
@@ -106,8 +106,6 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 		).setParameter(
 			"commerceSubscriptionEntryId", commerceSubscriptionEntryId
 		).build();
-
-		return portletURL;
 	}
 
 	private PortletURL _getSubscriptionEntryEditURL(
@@ -115,7 +113,7 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 			HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletProviderUtil.getPortletURL(
 				httpServletRequest, CommerceSubscriptionEntry.class.getName(),
 				PortletProvider.Action.MANAGE)
@@ -126,8 +124,6 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 		).setParameter(
 			"commerceSubscriptionEntryId", commerceSubscriptionEntryId
 		).build();
-
-		return portletURL;
 	}
 
 	@Reference

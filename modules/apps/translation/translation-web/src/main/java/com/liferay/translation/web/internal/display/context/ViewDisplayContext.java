@@ -151,13 +151,11 @@ public class ViewDisplayContext {
 		return HashMapBuilder.<String, Object>put(
 			"deleteTranslationEntriesURL",
 			() -> {
-				PortletURL portletURL = PortletURLBuilder.createActionURL(
+				return PortletURLBuilder.createActionURL(
 					_liferayPortletResponse
 				).setActionName(
 					"/translation/delete_translation_entry"
-				).build();
-
-				return portletURL.toString();
+				).buildString();
 			}
 		).build();
 	}

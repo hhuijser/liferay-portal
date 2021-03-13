@@ -61,7 +61,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.WindowStateException;
 
@@ -226,7 +225,7 @@ public class LayoutReportsProductNavigationControlMenuEntry
 			PortletURLFactory portletURLFactory)
 		throws WindowStateException {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			portletURLFactory.create(
 				httpServletRequest, LayoutReportsPortletKeys.LAYOUT_REPORTS,
 				RenderRequest.RENDER_PHASE)
@@ -236,9 +235,7 @@ public class LayoutReportsProductNavigationControlMenuEntry
 			portal.getCurrentCompleteURL(httpServletRequest)
 		).setWindowState(
 			LiferayWindowState.EXCLUSIVE
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	private boolean _hasEditPermission(

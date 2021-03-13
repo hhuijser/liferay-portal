@@ -141,9 +141,9 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 		PortletURL portletURL = PortletURLBuilder.create(
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
-			"folderId", String.valueOf(_getFolderId())
+			"folderId", _getFolderId()
 		).setParameter(
-			"selectedTab", String.valueOf(getTitle())
+			"selectedTab", getTitle()
 		).build();
 
 		return portletURL;
@@ -292,7 +292,7 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 		).setActionName(
 			"/document_library/upload_file_entry"
 		).setParameter(
-			"folderId", String.valueOf(_getFolderId())
+			"folderId", _getFolderId()
 		).build();
 
 		return portletURL;

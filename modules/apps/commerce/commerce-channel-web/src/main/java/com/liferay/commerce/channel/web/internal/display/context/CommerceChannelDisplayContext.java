@@ -181,7 +181,7 @@ public class CommerceChannelDisplayContext
 		).setMVCRenderCommandName(
 			"/commerce_payment_methods/edit_commerce_payment_method_group_rel"
 		).setParameter(
-			"commerceChannelId", String.valueOf(getCommerceChannelId())
+			"commerceChannelId", getCommerceChannelId()
 		).setParameter(
 			"commercePaymentMethodEngineKey", commercePaymentMethodEngineKey
 		).setWindowState(
@@ -207,8 +207,7 @@ public class CommerceChannelDisplayContext
 		).setParameter(
 			"backURL", portletURL.toString()
 		).setParameter(
-			"commerceChannelId",
-			String.valueOf(commerceChannel.getCommerceChannelId())
+			"commerceChannelId", commerceChannel.getCommerceChannelId()
 		).build();
 
 		return portletURL.toString();

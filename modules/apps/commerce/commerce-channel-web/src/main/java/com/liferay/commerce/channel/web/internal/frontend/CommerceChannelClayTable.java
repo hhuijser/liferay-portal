@@ -112,7 +112,7 @@ public class CommerceChannelClayTable
 				).setParameter(
 					"backURL", portletURL.toString()
 				).setParameter(
-					"commerceChannelId", String.valueOf(channel.getChannelId())
+					"commerceChannelId", channel.getChannelId()
 				).build();
 
 				dropdownItem.setHref(portletURL.toString());
@@ -222,7 +222,7 @@ public class CommerceChannelClayTable
 		).setParameter(
 			"modelResourceDescription", channel.getName()
 		).setParameter(
-			"resourcePrimKey", String.valueOf(channel.getChannelId())
+			"resourcePrimKey", channel.getChannelId()
 		).build();
 
 		try {

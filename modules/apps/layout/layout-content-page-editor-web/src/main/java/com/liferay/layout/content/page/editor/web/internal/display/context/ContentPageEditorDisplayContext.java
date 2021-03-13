@@ -1029,7 +1029,7 @@ public class ContentPageEditorDisplayContext {
 			).buildString();
 		}
 
-		PortletURL deleteLayoutURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 				PortletRequest.ACTION_PHASE)
@@ -1045,9 +1045,7 @@ public class ContentPageEditorDisplayContext {
 			).buildString()
 		).setParameter(
 			"selPlid", themeDisplay.getPlid()
-		).build();
-
-		return deleteLayoutURL.toString();
+		).buildString();
 	}
 
 	private List<Map<String, Object>> _getDynamicFragments() {

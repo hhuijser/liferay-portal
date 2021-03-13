@@ -38,7 +38,6 @@ import java.util.List;
 
 import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -187,46 +186,45 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 			HttpServletResponse httpServletResponse, User user)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			PortletURLFactoryUtil.create(
-				httpServletRequest, PortletKeys.LOGIN,
-				PortletRequest.RENDER_PHASE)
-		).setMVCRenderCommandName(
-			"/portal_security_sso_google_login_authentication" +
-				"/associate_google_user"
-		).setRedirect(
+		httpServletResponse.sendRedirect(
 			PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(
 					httpServletRequest, PortletKeys.LOGIN,
 					PortletRequest.RENDER_PHASE)
 			).setMVCRenderCommandName(
-				"/login/login_redirect"
+				"/portal_security_sso_google_login_authentication" +
+					"/associate_google_user"
+			).setRedirect(
+				PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(
+						httpServletRequest, PortletKeys.LOGIN,
+						PortletRequest.RENDER_PHASE)
+				).setMVCRenderCommandName(
+					"/login/login_redirect"
+				).setParameter(
+					"emailAddress", user.getEmailAddress()
+				).setParameter(
+					"anonymousUser", Boolean.FALSE.toString()
+				).setPortletMode(
+					PortletMode.VIEW
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString()
+			).setParameter(
+				"saveLastPath", Boolean.FALSE.toString()
+			).setParameter(
+				"userId", user.getUserId()
 			).setParameter(
 				"emailAddress", user.getEmailAddress()
 			).setParameter(
-				"anonymousUser", Boolean.FALSE.toString()
+				"firstName", user.getFirstName()
+			).setParameter(
+				"lastName", user.getLastName()
 			).setPortletMode(
 				PortletMode.VIEW
 			).setWindowState(
 				LiferayWindowState.POP_UP
-			).buildString()
-		).setParameter(
-			"saveLastPath", Boolean.FALSE.toString()
-		).setParameter(
-			"userId", user.getUserId()
-		).setParameter(
-			"emailAddress", user.getEmailAddress()
-		).setParameter(
-			"firstName", user.getFirstName()
-		).setParameter(
-			"lastName", user.getLastName()
-		).setPortletMode(
-			PortletMode.VIEW
-		).setWindowState(
-			LiferayWindowState.POP_UP
-		).build();
-
-		httpServletResponse.sendRedirect(portletURL.toString());
+			).buildString());
 	}
 
 	private static final String _REDIRECT_URI =

@@ -340,7 +340,7 @@ public class LayoutsAdminDisplayContext {
 	}
 
 	public String getDeleteLayoutURL(Layout layout) throws PortalException {
-		PortletURL deleteLayoutURL = PortletURLBuilder.createActionURL(
+		return PortletURLBuilder.createActionURL(
 			_liferayPortletResponse
 		).setActionName(
 			"/layout_admin/delete_layout"
@@ -356,9 +356,7 @@ public class LayoutsAdminDisplayContext {
 			"selPlid", layout.getPlid()
 		).setParameter(
 			"layoutSetBranchId", getActiveLayoutSetBranchId()
-		).build();
-
-		return deleteLayoutURL.toString();
+		).buildString();
 	}
 
 	public String getDiscardDraftURL(Layout layout) {

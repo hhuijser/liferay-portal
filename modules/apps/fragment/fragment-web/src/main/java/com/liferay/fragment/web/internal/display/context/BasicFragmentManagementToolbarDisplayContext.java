@@ -165,8 +165,7 @@ public class BasicFragmentManagementToolbarDisplayContext
 				return PortletURLBuilder.createActionURL(
 					liferayPortletResponse
 				).setActionName(
-					"/fragment/move_fragment_compositions_and_fragment_" +
-						"entries"
+					"/fragment/move_fragment_compositions_and_fragment_entries"
 				).setRedirect(
 					themeDisplay.getURLCurrent()
 				).buildString();

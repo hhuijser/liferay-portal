@@ -302,14 +302,12 @@ public class TrashPortlet extends MVCPortlet {
 				TrashEntryConstants.DEFAULT_CONTAINER_ID, newName);
 		}
 		catch (RestoreEntryException restoreEntryException) {
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
-
 			PortletURL renderURL = PortletURLBuilder.createRenderURL(
 				_portal.getLiferayPortletResponse(actionResponse)
 			).setMVCPath(
 				"/restore_entry.jsp"
 			).setRedirect(
-				redirect
+				ParamUtil.getString(actionRequest, "redirect")
 			).setParameter(
 				"trashEntryId", restoreEntryException.getTrashEntryId()
 			).setParameter(

@@ -97,10 +97,10 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 			_portal.getControlPanelPortletURL(
 				httpServletRequest, CPPortletKeys.COMMERCE_SUBSCRIPTION_ENTRY,
 				PortletRequest.ACTION_PHASE)
-		).setRedirect(
-			portletURL.toString()
 		).setActionName(
 			"/commerce_subscription_entry/edit_commerce_subscription_entry"
+		).setRedirect(
+			portletURL.toString()
 		).setParameter(
 			Constants.CMD, Constants.DELETE
 		).setParameter(

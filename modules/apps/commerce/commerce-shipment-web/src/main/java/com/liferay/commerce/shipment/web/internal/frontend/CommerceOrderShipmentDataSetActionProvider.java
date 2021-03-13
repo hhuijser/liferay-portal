@@ -120,10 +120,10 @@ public class CommerceOrderShipmentDataSetActionProvider
 			_portal.getControlPanelPortletURL(
 				httpServletRequest, CommercePortletKeys.COMMERCE_SHIPMENT,
 				PortletRequest.RENDER_PHASE)
-		).setParameter(
-			"backURL", portletURL.toString()
 		).setMVCRenderCommandName(
 			"/commerce_shipment/edit_commerce_shipment"
+		).setParameter(
+			"backURL", portletURL.toString()
 		).build();
 
 		String redirect = ParamUtil.getString(

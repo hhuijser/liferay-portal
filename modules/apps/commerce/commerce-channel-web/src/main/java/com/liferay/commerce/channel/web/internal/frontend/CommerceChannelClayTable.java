@@ -107,12 +107,12 @@ public class CommerceChannelClayTable
 					_portal.getControlPanelPortletURL(
 						httpServletRequest, CPPortletKeys.COMMERCE_CHANNELS,
 						PortletRequest.RENDER_PHASE)
+				).setMVCRenderCommandName(
+					"/commerce_channels/edit_commerce_channel"
 				).setParameter(
 					"backURL", portletURL.toString()
 				).setParameter(
 					"commerceChannelId", String.valueOf(channel.getChannelId())
-				).setMVCRenderCommandName(
-					"/commerce_channels/edit_commerce_channel"
 				).build();
 
 				dropdownItem.setHref(portletURL.toString());

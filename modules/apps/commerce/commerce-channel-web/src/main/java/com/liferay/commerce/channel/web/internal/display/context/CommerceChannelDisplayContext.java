@@ -161,10 +161,10 @@ public class CommerceChannelDisplayContext
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/commerce_channels/add_commerce_channel"
-		).setWindowState(
-			LiferayWindowState.POP_UP
 		).setRedirect(
 			portletURL.toString()
+		).setWindowState(
+			LiferayWindowState.POP_UP
 		).build();
 
 		return editCommerceChannelPortletURL.toString();
@@ -202,13 +202,13 @@ public class CommerceChannelDisplayContext
 			_portal.getControlPanelPortletURL(
 				httpServletRequest, CPPortletKeys.COMMERCE_CHANNELS,
 				PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/commerce_channels/edit_commerce_channel"
 		).setParameter(
 			"backURL", portletURL.toString()
 		).setParameter(
 			"commerceChannelId",
 			String.valueOf(commerceChannel.getCommerceChannelId())
-		).setMVCRenderCommandName(
-			"/commerce_channels/edit_commerce_channel"
 		).build();
 
 		return portletURL.toString();

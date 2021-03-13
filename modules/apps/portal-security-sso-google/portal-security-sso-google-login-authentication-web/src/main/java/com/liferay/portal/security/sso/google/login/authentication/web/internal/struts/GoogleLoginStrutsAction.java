@@ -194,12 +194,7 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 		).setMVCRenderCommandName(
 			"/portal_security_sso_google_login_authentication" +
 				"/associate_google_user"
-		).setParameter(
-			"saveLastPath", Boolean.FALSE.toString()
-		).build();
-
-		portletURL.setParameter(
-			"redirect",
+		).setRedirect(
 			PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(
 					httpServletRequest, PortletKeys.LOGIN,
@@ -214,14 +209,22 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 				PortletMode.VIEW
 			).setWindowState(
 				LiferayWindowState.POP_UP
-			).buildString());
-
-		portletURL.setParameter("userId", String.valueOf(user.getUserId()));
-		portletURL.setParameter("emailAddress", user.getEmailAddress());
-		portletURL.setParameter("firstName", user.getFirstName());
-		portletURL.setParameter("lastName", user.getLastName());
-		portletURL.setPortletMode(PortletMode.VIEW);
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
+			).buildString()
+		).setParameter(
+			"saveLastPath", Boolean.FALSE.toString()
+		).setParameter(
+			"userId", user.getUserId()
+		).setParameter(
+			"emailAddress", user.getEmailAddress()
+		).setParameter(
+			"firstName", user.getFirstName()
+		).setParameter(
+			"lastName", user.getLastName()
+		).setPortletMode(
+			PortletMode.VIEW
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		httpServletResponse.sendRedirect(portletURL.toString());
 	}

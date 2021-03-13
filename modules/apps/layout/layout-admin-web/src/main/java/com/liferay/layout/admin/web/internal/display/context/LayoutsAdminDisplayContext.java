@@ -344,22 +344,19 @@ public class LayoutsAdminDisplayContext {
 			_liferayPortletResponse
 		).setActionName(
 			"/layout_admin/delete_layout"
-		).build();
-
-		deleteLayoutURL.setParameter(
-			"redirect",
+		).setRedirect(
 			PortletURLBuilder.createRenderURL(
 				_liferayPortletResponse
 			).setParameter(
 				"selPlid", layout.getParentPlid()
 			).setParameter(
 				"layoutSetBranchId", getActiveLayoutSetBranchId()
-			).buildString());
-
-		deleteLayoutURL.setParameter(
-			"selPlid", String.valueOf(layout.getPlid()));
-		deleteLayoutURL.setParameter(
-			"layoutSetBranchId", String.valueOf(getActiveLayoutSetBranchId()));
+			).buildString()
+		).setParameter(
+			"selPlid", layout.getPlid()
+		).setParameter(
+			"layoutSetBranchId", getActiveLayoutSetBranchId()
+		).build();
 
 		return deleteLayoutURL.toString();
 	}

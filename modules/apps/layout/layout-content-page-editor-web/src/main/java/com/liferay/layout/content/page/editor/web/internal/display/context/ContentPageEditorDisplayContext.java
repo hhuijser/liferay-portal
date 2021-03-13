@@ -1035,20 +1035,17 @@ public class ContentPageEditorDisplayContext {
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/layout_admin/delete_layout"
-		).build();
-
-		deleteLayoutURL.setParameter(
-			"redirect",
+		).setRedirect(
 			PortletURLBuilder.create(
 				PortalUtil.getControlPanelPortletURL(
 					httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 					PortletRequest.RENDER_PHASE)
 			).setParameter(
 				"selPlid", publishedLayout.getPlid()
-			).buildString());
-
-		deleteLayoutURL.setParameter(
-			"selPlid", String.valueOf(themeDisplay.getPlid()));
+			).buildString()
+		).setParameter(
+			"selPlid", themeDisplay.getPlid()
+		).build();
 
 		return deleteLayoutURL.toString();
 	}

@@ -1370,6 +1370,7 @@
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace." />
 			<property name="allowTrailingEmptyLines" value="true" />
+			<property name="enabled" value="false" />
 		</check>
 	</source-processor>
 	<source-processor name="TXTSourceProcessor">

@@ -267,11 +267,11 @@ public class ViewDisplayContext {
 		).setRedirect(
 			String.valueOf(_liferayPortletResponse.createRenderURL())
 		).setParameter(
-			"classNameId", String.valueOf(translationEntry.getClassNameId())
+			"classNameId", translationEntry.getClassNameId()
 		).setParameter(
-			"classPK", String.valueOf(translationEntry.getClassPK())
+			"classPK", translationEntry.getClassPK()
 		).setParameter(
-			"targetLanguageId", String.valueOf(translationEntry.getLanguageId())
+			"targetLanguageId", translationEntry.getLanguageId()
 		).build();
 
 		return translatePortletURL;

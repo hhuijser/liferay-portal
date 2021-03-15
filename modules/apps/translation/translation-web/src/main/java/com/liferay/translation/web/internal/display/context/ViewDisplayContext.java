@@ -260,7 +260,7 @@ public class ViewDisplayContext {
 	public PortletURL getTranslatePortletURL(
 		TranslationEntry translationEntry) {
 
-		PortletURL translatePortletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/translation/translate"
@@ -273,8 +273,6 @@ public class ViewDisplayContext {
 		).setParameter(
 			"targetLanguageId", translationEntry.getLanguageId()
 		).build();
-
-		return translatePortletURL;
 	}
 
 	public TranslationEntryManagementToolbarDisplayContext

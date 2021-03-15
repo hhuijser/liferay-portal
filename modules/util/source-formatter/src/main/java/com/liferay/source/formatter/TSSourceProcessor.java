@@ -33,6 +33,6 @@ public class TSSourceProcessor extends BaseSourceProcessor {
 		return _INCLUDES;
 	}
 
-	private static final String[] _INCLUDES = {"**/*.ts"};
+	private static final String[] _INCLUDES = {"**/*.ts", "**/*.tsx"};
 
 }

@@ -150,13 +150,11 @@ public class ViewDisplayContext {
 	public Map<String, Object> getComponentContext() {
 		return HashMapBuilder.<String, Object>put(
 			"deleteTranslationEntriesURL",
-			() -> {
-				return PortletURLBuilder.createActionURL(
-					_liferayPortletResponse
-				).setActionName(
-					"/translation/delete_translation_entry"
-				).buildString();
-			}
+			() -> PortletURLBuilder.createActionURL(
+				_liferayPortletResponse
+			).setActionName(
+				"/translation/delete_translation_entry"
+			).buildString()
 		).build();
 	}
 

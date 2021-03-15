@@ -19,6 +19,7 @@ import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
@@ -150,12 +151,11 @@ public class ViewDisplayContext {
 		return HashMapBuilder.<String, Object>put(
 			"deleteTranslationEntriesURL",
 			() -> {
-				PortletURL portletURL =
-					_liferayPortletResponse.createActionURL();
-
-				portletURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/translation/delete_translation_entry");
+				PortletURL portletURL = PortletURLBuilder.createActionURL(
+					_liferayPortletResponse
+				).setActionName(
+					"/translation/delete_translation_entry"
+				).build();
 
 				return portletURL.toString();
 			}
@@ -260,21 +260,19 @@ public class ViewDisplayContext {
 	public PortletURL getTranslatePortletURL(
 		TranslationEntry translationEntry) {
 
-		PortletURL translatePortletURL =
-			_liferayPortletResponse.createRenderURL();
-
-		translatePortletURL.setParameter(
-			"mvcRenderCommandName", "/translation/translate");
-		translatePortletURL.setParameter(
-			"redirect",
-			String.valueOf(_liferayPortletResponse.createRenderURL()));
-		translatePortletURL.setParameter(
-			"classNameId", String.valueOf(translationEntry.getClassNameId()));
-		translatePortletURL.setParameter(
-			"classPK", String.valueOf(translationEntry.getClassPK()));
-		translatePortletURL.setParameter(
-			"targetLanguageId",
-			String.valueOf(translationEntry.getLanguageId()));
+		PortletURL translatePortletURL = PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setMVCRenderCommandName(
+			"/translation/translate"
+		).setRedirect(
+			String.valueOf(_liferayPortletResponse.createRenderURL())
+		).setParameter(
+			"classNameId", String.valueOf(translationEntry.getClassNameId())
+		).setParameter(
+			"classPK", String.valueOf(translationEntry.getClassPK())
+		).setParameter(
+			"targetLanguageId", String.valueOf(translationEntry.getLanguageId())
+		).build();
 
 		return translatePortletURL;
 	}

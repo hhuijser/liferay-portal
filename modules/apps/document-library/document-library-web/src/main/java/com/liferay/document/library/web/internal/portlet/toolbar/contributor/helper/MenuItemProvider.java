@@ -109,25 +109,24 @@ public class MenuItemProvider {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_getPortletURL(themeDisplay, portletRequest)
-		).setMVCRenderCommandName(
-			"/document_library/edit_file_entry"
-		).setRedirect(
-			PortalUtil.getCurrentURL(portletRequest)
-		).setParameter(
-			Constants.CMD, Constants.ADD
-		).setParameter(
-			"portletResource", portletDisplay.getId()
-		).setParameter(
-			"repositoryId", _getRepositoryId(folder, themeDisplay)
-		).setParameter(
-			"folderId", folderId
-		).setParameter(
-			"fileEntryTypeId", _getDefaultFileEntryTypeId(folderId)
-		).build();
-
-		urlMenuItem.setURL(portletURL.toString());
+		urlMenuItem.setURL(
+			PortletURLBuilder.create(
+				_getPortletURL(themeDisplay, portletRequest)
+			).setMVCRenderCommandName(
+				"/document_library/edit_file_entry"
+			).setRedirect(
+				PortalUtil.getCurrentURL(portletRequest)
+			).setParameter(
+				Constants.CMD, Constants.ADD
+			).setParameter(
+				"portletResource", portletDisplay.getId()
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
+			).setParameter(
+				"folderId", folderId
+			).setParameter(
+				"fileEntryTypeId", _getDefaultFileEntryTypeId(folderId)
+			).buildString());
 
 		return urlMenuItem;
 	}
@@ -155,23 +154,22 @@ public class MenuItemProvider {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_getPortletURL(themeDisplay, portletRequest)
-		).setMVCRenderCommandName(
-			"/document_library/edit_folder"
-		).setRedirect(
-			PortalUtil.getCurrentURL(portletRequest)
-		).setParameter(
-			"portletResource", portletDisplay.getId()
-		).setParameter(
-			"repositoryId", _getRepositoryId(folder, themeDisplay)
-		).setParameter(
-			"parentFolderId", folderId
-		).setParameter(
-			"ignoreRootFolder", Boolean.TRUE.toString()
-		).build();
-
-		urlMenuItem.setURL(portletURL.toString());
+		urlMenuItem.setURL(
+			PortletURLBuilder.create(
+				_getPortletURL(themeDisplay, portletRequest)
+			).setMVCRenderCommandName(
+				"/document_library/edit_folder"
+			).setRedirect(
+				PortalUtil.getCurrentURL(portletRequest)
+			).setParameter(
+				"portletResource", portletDisplay.getId()
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
+			).setParameter(
+				"parentFolderId", folderId
+			).setParameter(
+				"ignoreRootFolder", Boolean.TRUE.toString()
+			).buildString());
 
 		return urlMenuItem;
 	}
@@ -206,21 +204,20 @@ public class MenuItemProvider {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_getPortletURL(themeDisplay, portletRequest)
-		).setMVCRenderCommandName(
-			"/document_library/upload_multiple_file_entries"
-		).setRedirect(
-			PortalUtil.getCurrentURL(portletRequest)
-		).setParameter(
-			"portletResource", portletDisplay.getId()
-		).setParameter(
-			"repositoryId", _getRepositoryId(folder, themeDisplay)
-		).setParameter(
-			"folderId", folderId
-		).build();
-
-		urlMenuItem.setURL(portletURL.toString());
+		urlMenuItem.setURL(
+			PortletURLBuilder.create(
+				_getPortletURL(themeDisplay, portletRequest)
+			).setMVCRenderCommandName(
+				"/document_library/upload_multiple_file_entries"
+			).setRedirect(
+				PortalUtil.getCurrentURL(portletRequest)
+			).setParameter(
+				"portletResource", portletDisplay.getId()
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
+			).setParameter(
+				"folderId", folderId
+			).buildString());
 
 		return urlMenuItem;
 	}
@@ -250,15 +247,14 @@ public class MenuItemProvider {
 				PortalUtil.getHttpServletRequest(portletRequest),
 				"repository"));
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_getPortletURL(themeDisplay, portletRequest)
-		).setMVCRenderCommandName(
-			"/document_library/edit_repository"
-		).setRedirect(
-			PortalUtil.getCurrentURL(portletRequest)
-		).build();
-
-		urlMenuItem.setURL(portletURL.toString());
+		urlMenuItem.setURL(
+			PortletURLBuilder.create(
+				_getPortletURL(themeDisplay, portletRequest)
+			).setMVCRenderCommandName(
+				"/document_library/edit_repository"
+			).setRedirect(
+				PortalUtil.getCurrentURL(portletRequest)
+			).buildString());
 
 		return urlMenuItem;
 	}
@@ -288,19 +284,18 @@ public class MenuItemProvider {
 			LanguageUtil.get(
 				PortalUtil.getHttpServletRequest(portletRequest), "shortcut"));
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_getPortletURL(themeDisplay, portletRequest)
-		).setMVCRenderCommandName(
-			"/document_library/edit_file_shortcut"
-		).setRedirect(
-			PortalUtil.getCurrentURL(portletRequest)
-		).setParameter(
-			"repositoryId", _getRepositoryId(folder, themeDisplay)
-		).setParameter(
-			"folderId", folderId
-		).build();
-
-		urlMenuItem.setURL(portletURL.toString());
+		urlMenuItem.setURL(
+			PortletURLBuilder.create(
+				_getPortletURL(themeDisplay, portletRequest)
+			).setMVCRenderCommandName(
+				"/document_library/edit_file_shortcut"
+			).setRedirect(
+				PortalUtil.getCurrentURL(portletRequest)
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
+			).setParameter(
+				"folderId", folderId
+			).buildString());
 
 		return urlMenuItem;
 	}
@@ -354,25 +349,24 @@ public class MenuItemProvider {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_getPortletURL(themeDisplay, portletRequest)
-		).setMVCRenderCommandName(
-			"/document_library/edit_file_entry"
-		).setRedirect(
-			PortalUtil.getCurrentURL(portletRequest)
-		).setParameter(
-			Constants.CMD, Constants.ADD
-		).setParameter(
-			"portletResource", portletDisplay.getId()
-		).setParameter(
-			"repositoryId", _getRepositoryId(folder, themeDisplay)
-		).setParameter(
-			"folderId", _getFolderId(folder)
-		).setParameter(
-			"fileEntryTypeId", fileEntryType.getFileEntryTypeId()
-		).build();
-
-		urlMenuItem.setURL(portletURL.toString());
+		urlMenuItem.setURL(
+			PortletURLBuilder.create(
+				_getPortletURL(themeDisplay, portletRequest)
+			).setMVCRenderCommandName(
+				"/document_library/edit_file_entry"
+			).setRedirect(
+				PortalUtil.getCurrentURL(portletRequest)
+			).setParameter(
+				Constants.CMD, Constants.ADD
+			).setParameter(
+				"portletResource", portletDisplay.getId()
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
+			).setParameter(
+				"folderId", _getFolderId(folder)
+			).setParameter(
+				"fileEntryTypeId", fileEntryType.getFileEntryTypeId()
+			).buildString());
 
 		return urlMenuItem;
 	}

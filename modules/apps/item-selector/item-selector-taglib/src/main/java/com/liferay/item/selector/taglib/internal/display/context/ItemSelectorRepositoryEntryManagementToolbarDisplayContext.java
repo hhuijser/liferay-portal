@@ -80,13 +80,11 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_getPortletURL()
 		).setParameter(
 			"keywords", StringPool.BLANK
-		).build();
-
-		return clearResultsURL.toString();
+		).buildString();
 	}
 
 	public CreationMenu getCreationMenu() {
@@ -190,13 +188,13 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 
 		return LabelItemListBuilder.add(
 			labelItem -> {
-				PortletURL removeLabelURL = PortletURLBuilder.create(
-					getCurrentSortingURL()
-				).setParameter(
-					"scope", (String)null
-				).build();
-
-				labelItem.putData("removeLabelURL", removeLabelURL.toString());
+				labelItem.putData(
+					"removeLabelURL",
+					PortletURLBuilder.create(
+						getCurrentSortingURL()
+					).setParameter(
+						"scope", (String)null
+					).buildString());
 
 				labelItem.setCloseable(true);
 

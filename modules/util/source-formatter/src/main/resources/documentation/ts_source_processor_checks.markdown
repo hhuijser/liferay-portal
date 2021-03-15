@@ -1,4 +1,4 @@
-# Checks for .ts
+# Checks for .ts or .tsx
 
 Check | Category | Description
 ----- | -------- | -----------

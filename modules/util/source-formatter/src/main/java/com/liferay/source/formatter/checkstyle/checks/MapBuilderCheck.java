@@ -17,8 +17,10 @@ package com.liferay.source.formatter.checkstyle.checks;
 import com.liferay.portal.kernel.util.ListUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -27,12 +29,49 @@ public class MapBuilderCheck extends BaseBuilderCheck {
 
 	@Override
 	protected boolean allowNullValues() {
-		return false;
+		return true;
 	}
 
 	@Override
 	protected String getAssignClassName(DetailAST assignDetailAST) {
-		return getNewInstanceTypeName(assignDetailAST);
+		List<DetailAST> identDetailASTList = getAllChildTokens(
+			assignDetailAST, true, TokenTypes.IDENT);
+
+		for (BaseBuilderCheck.BuilderInformation builderInformation :
+				getBuilderInformationList()) {
+
+			for (DetailAST identDetailAST : identDetailASTList) {
+				if (Objects.equals(
+						builderInformation.getBuilderClassName(),
+						identDetailAST.getText())) {
+
+					return null;
+				}
+			}
+		}
+
+		DetailAST parentDetailAST = assignDetailAST.getParent();
+
+		if (parentDetailAST.getType() == TokenTypes.VARIABLE_DEF) {
+			return getTypeName(parentDetailAST, false);
+		}
+
+		DetailAST identDetailAST = assignDetailAST.findFirstToken(
+			TokenTypes.IDENT);
+
+		if (identDetailAST != null) {
+			return getVariableTypeName(
+				assignDetailAST, identDetailAST.getText(), false);
+		}
+
+		return null;
+	}
+
+	@Override
+	protected List<String> getSupportsFunctionMethodNames() {
+		return ListUtil.fromArray(
+			"setActionName", "setMVCPath", "setMVCRenderCommandName",
+			"setParameter", "setRedirect");
 	}
 
 	@Override
@@ -41,19 +80,10 @@ public class MapBuilderCheck extends BaseBuilderCheck {
 
 		return ListUtil.fromArray(
 			new BaseBuilderCheck.BuilderInformation(
-				"ConcurrentHashMap", "ConcurrentHashMapBuilder", "put",
-				"putAll"),
-			new BaseBuilderCheck.BuilderInformation(
-				"HashMap", "HashMapBuilder", "put", "putAll"),
-			new BaseBuilderCheck.BuilderInformation(
-				"LinkedHashMap", "LinkedHashMapBuilder", "put", "putAll"),
-			new BaseBuilderCheck.BuilderInformation(
-				"TreeMap", "TreeMapBuilder", "put", "putAll"));
-	}
-
-	@Override
-	protected List<String> getSupportsFunctionMethodNames() {
-		return ListUtil.fromArray("put");
+				"PortletURL", "PortletURLBuilder", "setActionName",
+				"setMVCPath", "setMVCRenderCommandName", "setParameter", 
+				"setParameters", "setPortletMode", "setProperty", "setRedirect",
+				"setSecure", "setWindowState"));
 	}
 
 	@Override

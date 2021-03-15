@@ -14,6 +14,8 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.debug.SFDebugHelper;
+import com.liferay.petra.string.StringBundler;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -39,7 +41,13 @@ public class LambdaCheck extends BaseCheck {
 
 		if (lastChildDetailAST.getChildCount() == 2) {
 			if (firstChildDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
-				log(detailAST, _MSG_SIMPLIFY_LAMBDA);
+				//log(detailAST, _MSG_SIMPLIFY_LAMBDA);
+
+				log(
+					detailAST,
+					StringBundler.concat(
+						"PART6:", firstChildDetailAST.getLineNo(),
+						":", lastChildDetailAST.getLastChild().getLineNo()));
 			}
 
 			return;

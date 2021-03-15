@@ -15,7 +15,10 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,9 +27,179 @@ import java.util.regex.Pattern;
  */
 public class JavaStylingCheck extends BaseStylingCheck {
 
+	private String _fixReturn(String content) {
+		Pattern pattern = Pattern.compile(
+			"\n(\t+)((PortletURL )?(\\w+) =) PortletURLBuilder.create");
+
+		Matcher matcher = pattern.matcher(content);
+
+		while (matcher.find()) {
+			String indent = matcher.group(1);
+			String varName = matcher.group(4);
+
+			int x = content.indexOf(
+				"\n" + indent + ").build()", matcher.start());
+
+			if (x == -1) {
+				return content;
+			}
+
+			int lineNumber = SourceUtil.getLineNumber(content, x + 1);
+
+			String nextLine = SourceUtil.getLine(content, lineNumber + 2);
+
+			String trimmedNextLine = StringUtil.trim(nextLine);
+
+			if (trimmedNextLine.equals("return " + varName + ";")) {
+				content = StringUtil.replaceFirst(
+					content, nextLine, "",
+					SourceUtil.getLineStartPos(content, lineNumber + 1));
+
+				content = StringUtil.replaceFirst(
+					content, matcher.group(2), "return", matcher.start());
+
+				return content;
+			}
+		}
+
+		return content;
+	}
+
+	private String _fixStringValueof(String content) {
+		int x = -1;
+
+		while (true) {
+			x = content.indexOf("\t).setParameter(\n", x + 1);
+
+			if (x == -1) {
+				break;
+			}
+
+			List<String> parameters = JavaSourceUtil.getParameterList(content.substring(x + 3));
+
+			if (parameters.size() != 2) {
+				continue;
+			}
+
+			String parameter = StringUtil.trim(parameters.get(1));
+
+			if (parameter.startsWith("String.valueOf(")) {
+				String newParameter = StringUtil.replaceFirst(parameter, "String.valueOf(", "");
+
+				newParameter = StringUtil.replaceLast(newParameter, ")", "");
+
+				return StringUtil.replaceFirst(content, parameter, newParameter, x);
+			}
+		}
+
+		return content;
+	}
+
+	private String _fixOrder(
+		String fileName, String content, String methodName,
+		String... otherMethodNames) {
+
+		Pattern pattern = Pattern.compile("\n(\t+)\\)\\." + methodName + "\\(");
+
+		Matcher matcher = pattern.matcher(content);
+
+		while (matcher.find()) {
+			int x = content.indexOf(
+				"\n" + matcher.group(1) + ").", matcher.end() - 1);
+
+			if (x == -1) {
+				System.out.println("NOT GOOD1: " + fileName);
+			}
+
+			int lineNumber = SourceUtil.getLineNumber(content, x + 1);
+
+			String line = SourceUtil.getLine(content, lineNumber);
+
+			String trimmedLine = StringUtil.trim(line);
+
+			boolean match = false;
+
+			for (String otherMethodName : otherMethodNames) {
+				if (trimmedLine.startsWith(")." + otherMethodName + "(")) {
+					match = true;
+
+					break;
+				}
+			}
+
+			if (!match) {
+				continue;
+			}
+
+			int y = content.indexOf("\n" + matcher.group(1) + ").", x + 1);
+
+			if (y == -1) {
+				System.out.println("NOT GOOD2: " + fileName);
+			}
+
+			String part1 = content.substring(matcher.start(), x);
+			String part2 = content.substring(x, y);
+
+			content = StringUtil.replaceFirst(content, part2, part1, matcher.start() - 1);
+			content = StringUtil.replaceFirst(content, part1, part2, matcher.start() - 1);
+
+			return content;
+		}
+
+		return content;
+	}
+
+	private String _fixOrder(String fileName, String content) {
+
+		//setWindowState
+		//setSecure
+		//setPortletMode
+		//setParameter
+		//setParameters
+		//setRedirect
+		//setActionName
+		//setMVCRenderCommandName
+		//setMVCPath
+
+		content = _fixOrder(
+			fileName, content, "setWindowState", "setSecure", "setPortletMode",
+			"setParameter", "setParameters", "setRedirect", "setActionName",
+			"setMVCRenderCommandName", "setMVCPath");
+		content = _fixOrder(
+			fileName, content, "setSecure", "setPortletMode",
+			"setParameter", "setParameters", "setRedirect", "setActionName",
+			"setMVCRenderCommandName", "setMVCPath");
+		content = _fixOrder(
+			fileName, content, "setPortletMode", "setParameter",
+			"setParameters", "setRedirect", "setActionName",
+			"setMVCRenderCommandName", "setMVCPath");
+		content = _fixOrder(
+			fileName, content, "setParameter", "setRedirect", "setActionName",
+			"setMVCRenderCommandName", "setMVCPath");
+		content = _fixOrder(
+			fileName, content, "setParameters", "setRedirect", "setActionName",
+			"setMVCRenderCommandName", "setMVCPath");
+		content = _fixOrder(
+			fileName, content, "setRedirect", "setActionName",
+			"setMVCRenderCommandName", "setMVCPath");
+		content = _fixOrder(
+			fileName, content, "setActionName", "setMVCRenderCommandName",
+			"setMVCPath");
+		content = _fixOrder(
+			fileName, content, "setMVCRenderCommandName", "setMVCPath");
+
+		return content;
+	}
+
 	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
+
+		content = _fixStringValueof(content);
+
+		content = _fixReturn(content);
+
+		content = _fixOrder(fileName, content);
 
 		if (content.contains("$\n */")) {
 			content = StringUtil.replace(content, "$\n */", "$\n *\n */");

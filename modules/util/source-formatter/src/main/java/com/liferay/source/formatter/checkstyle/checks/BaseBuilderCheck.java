@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -316,9 +317,20 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 				while (true) {
 					if (childDetailAST == null) {
 						log(
+							assignDetailAST,
+							StringBundler.concat(
+								"PART1:", variableName, ":",
+								getStartLineNumber(assignDetailAST),
+								":", getEndLineNumber(assignDetailAST), ":",
+								getStartLineNumber(methodCallDetailAST), ":",
+								getEndLineNumber(methodCallDetailAST)));
+
+						/*
+						log(
 							assignDetailAST, _MSG_USE_BUILDER,
 							builderInformation.getBuilderClassName(),
 							assignDetailAST.getLineNo(), fullIdent.getLineNo());
+						*/
 
 						return;
 					}
@@ -445,9 +457,18 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 			if (fullIdent != null) {
 				log(
-					assignDetailAST, _MSG_INCLUDE_BUILDER, fullIdent.getText(),
-					fullIdent.getLineNo(), builderClassName,
-					assignDetailAST.getLineNo());
+					assignDetailAST,
+					StringBundler.concat(
+						"PART2:", variableName, ":",
+						getStartLineNumber(assignDetailAST), ":",
+						getEndLineNumber(assignDetailAST), ":",
+						getStartLineNumber(nextSiblingDetailAST), ":",
+						getEndLineNumber(nextSiblingDetailAST)));
+
+				//log(
+				//	assignDetailAST, _MSG_INCLUDE_BUILDER, fullIdent.getText(),
+				//	fullIdent.getLineNo(), builderClassName,
+				//	assignDetailAST.getLineNo());
 
 				return;
 			}
@@ -558,6 +579,18 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			expressionDetailASTMap, dependentIdentDetailASTList);
 
 		if (matchingMethodName != null) {
+			List<Integer> lineNumbers = _getLineNumbers(
+				variableDefinitionDetailAST,dependentIdentDetailASTList,
+				variableDefinitionDetailAST.getLineNo(), startLineNumber);
+
+			log(
+				identDetailAST,
+				StringBundler.concat(
+					"PART3:", identDetailAST.getText(),
+					":", StringUtil.merge(lineNumbers),
+					":", startLineNumber, ":", endlineNumber));
+
+			/*
 			List<Integer> dependentLineNumbers = _getDependentLineNumbers(
 				dependentIdentDetailASTList,
 				variableDefinitionDetailAST.getLineNo(), startLineNumber);
@@ -575,6 +608,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 					StringUtil.merge(dependentLineNumbers), builderClassName,
 					startLineNumber);
 			}
+			*/
+
 		}
 	}
 
@@ -627,6 +662,44 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 
 		return null;
+	}
+
+	private List<Integer> _getLineNumbers(
+		DetailAST variableDefinitionDetailAST,
+		List<DetailAST> dependentIdentDetailASTList, int startLineNumber,
+		int endLineNumber) {
+
+		List<Integer> lineNumbers = new ArrayList<>();
+
+		lineNumbers.add(getStartLineNumber(variableDefinitionDetailAST));
+		lineNumbers.add(getEndLineNumber(variableDefinitionDetailAST));
+
+		for (DetailAST dependentIdentDetailAST : dependentIdentDetailASTList) {
+			if (dependentIdentDetailAST.getLineNo() >= endLineNumber) {
+				return lineNumbers;
+			}
+
+			DetailAST detailAST = dependentIdentDetailAST;
+
+			while (true) {
+				DetailAST parentDetailAST = detailAST.getParent();
+
+				if (parentDetailAST.getLineNo() < startLineNumber) {
+					int start = getStartLineNumber(detailAST);
+
+					if (!lineNumbers.contains(start)) {
+						lineNumbers.add(start);
+						lineNumbers.add(getEndLineNumber(detailAST));
+					}
+
+					break;
+				}
+
+				detailAST = parentDetailAST;
+			}
+		}
+
+		return lineNumbers;
 	}
 
 	private List<Integer> _getDependentLineNumbers(

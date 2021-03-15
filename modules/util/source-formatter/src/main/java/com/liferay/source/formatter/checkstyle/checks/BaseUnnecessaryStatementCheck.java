@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -153,9 +154,23 @@ public abstract class BaseUnnecessaryStatementCheck extends BaseCheck {
 		}
 
 		log(
-			assignDetailAST, messageKey, variableName,
-			getStartLineNumber(parentDetailAST),
-			getStartLineNumber(assignDetailAST));
+			assignDetailAST,
+			StringBundler.concat(
+				"PART5:", variableName,
+				":", getStartLineNumber(parentDetailAST),
+				":", getEndLineNumber(parentDetailAST),
+				":", getStartLineNumber(assignDetailAST),
+				":", getEndLineNumber(assignDetailAST)));
+
+		//System.out.println("--------------------");
+		//System.out.println(getStartLineNumber(parentDetailAST));
+		//System.out.println(getEndLineNumber(parentDetailAST));
+		//System.out.println(variableName);
+
+		//log(
+		//	assignDetailAST, messageKey, variableName,
+		//	getStartLineNumber(parentDetailAST),
+		//	getStartLineNumber(assignDetailAST));
 	}
 
 }

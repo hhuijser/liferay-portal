@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.util.LoggingTimer;
 /**
  * @author Bryan Engler
  */
-public class UpgradeCalendarBooking extends UpgradeProcess {
+public class CalendarBookingUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

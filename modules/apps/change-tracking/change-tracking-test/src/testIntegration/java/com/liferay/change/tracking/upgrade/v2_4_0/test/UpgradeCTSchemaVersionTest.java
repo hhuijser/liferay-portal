@@ -135,7 +135,7 @@ public class UpgradeCTSchemaVersionTest {
 
 	private static final String _CLASS_NAME =
 		"com.liferay.change.tracking.internal.upgrade.v2_4_0." +
-			"UpgradeCTSchemaVersion";
+			"CTSchemaVersionUpgradeProcess";
 
 	@Inject
 	private static CTCollectionLocalService _ctCollectionLocalService;

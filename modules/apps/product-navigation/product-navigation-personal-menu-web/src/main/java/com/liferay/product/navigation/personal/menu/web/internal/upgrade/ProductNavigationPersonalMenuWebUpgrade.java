@@ -16,7 +16,7 @@ package com.liferay.product.navigation.personal.menu.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
-import com.liferay.product.navigation.personal.menu.web.internal.upgrade.v1_0_0.UpgradePersonalMenuConfiguration;
+import com.liferay.product.navigation.personal.menu.web.internal.upgrade.v1_0_0.PersonalMenuConfigurationUpgradeProcess;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.annotations.Component;
@@ -35,7 +35,7 @@ public class ProductNavigationPersonalMenuWebUpgrade
 
 		registry.register(
 			"0.0.1", "1.0.0",
-			new UpgradePersonalMenuConfiguration(_configurationAdmin));
+			new PersonalMenuConfigurationUpgradeProcess(_configurationAdmin));
 	}
 
 	@Reference

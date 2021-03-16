@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 /**
  * @author Preston Crary
  */
-public class UpgradeCTSchemaVersion extends UpgradeProcess {
+public class CTSchemaVersionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

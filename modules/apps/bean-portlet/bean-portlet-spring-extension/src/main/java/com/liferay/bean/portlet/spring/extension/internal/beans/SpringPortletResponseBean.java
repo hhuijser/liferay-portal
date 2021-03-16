@@ -32,8 +32,6 @@ import org.w3c.dom.Element;
 /**
  * @author Neil Griffin
  */
-@ManagedBean("portletResponse")
-
 // When the developer uses "@Inject PortletResponse", Spring must be able to
 // disambiguate between PortletResponse and all its extending interfaces. This
 // is accomplished with @Priority. However, Spring only knows how to apply the
@@ -42,14 +40,15 @@ import org.w3c.dom.Element;
 // annotation for a class like JSR362SpringBeanProducer that produces multiple
 // types of beans via producer methods annotated with @Bean.
 
-@Priority(1)
-
 // In order to support unwrapping, it is necessary for this bean to extend
 // PortletResponseWrapper. However, PortletResponseWrapper is designed in such a
 // way that it requires the wrapped instance to be specified via the
 // constructor. Since the instance is obtained from a request-based ThreadLocal,
 // it is not possible to pass the instance via the constructor. Therefore each
 // of the methods of PortletResponseWrapper are overridden in this class.
+
+@ManagedBean("portletResponse")
+@Priority(1)
 public class SpringPortletResponseBean extends PortletResponseWrapper {
 
 	public SpringPortletResponseBean() {

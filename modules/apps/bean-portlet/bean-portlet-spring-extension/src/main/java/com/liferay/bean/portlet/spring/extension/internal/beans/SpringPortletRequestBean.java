@@ -42,8 +42,6 @@ import javax.servlet.http.Cookie;
 /**
  * @author Neil Griffin
  */
-@ManagedBean("portletRequest")
-
 // When the developer uses "@Inject PortletRequest", Spring must be able to
 // disambiguate between PortletRequest and all its extending interfaces. This is
 // accomplished with @Priority. However, Spring only knows how to apply the
@@ -52,14 +50,15 @@ import javax.servlet.http.Cookie;
 // annotation for a class like JSR362SpringBeanProducer that produces multiple
 // types of beans via producer methods annotated with @Bean.
 
-@Priority(1)
-
 // In order to support unwrapping, it is necessary for this bean to extend
 // PortletRequestWrapper. However, PortletRequestWrapper is designed in such a
 // way that it requires the wrapped instance to be specified via the
 // constructor. Since the instance is obtained from a request-based ThreadLocal,
 // it is not possible to pass the instance via the constructor. Therefore each
 // of the methods of PortletRequestWrapper are overridden in this class.
+
+@ManagedBean("portletRequest")
+@Priority(1)
 public class SpringPortletRequestBean extends PortletRequestWrapper {
 
 	public SpringPortletRequestBean() {

@@ -43,8 +43,6 @@ import org.w3c.dom.Element;
 /**
  * @author Neil Griffin
  */
-@ManagedBean("stateAwareResponse")
-
 // When the developer uses "@Inject StateAwareResponse", Spring must be able to
 // disambiguate between StateAwareResponse, ActionResponse, and EventResponse.
 // This is accomplished with @Priority. However, Spring only knows how to apply
@@ -53,8 +51,6 @@ import org.w3c.dom.Element;
 // annotation for a class like JSR362SpringBeanProducer that produces multiple
 // types of beans via producer methods annotated with @Bean.
 
-@Priority(3)
-
 // In order to support unwrapping, it is necessary for this bean to extend
 // StateAwareResponseWrapper. However, StateAwareResponseWrapper is designed in
 // such a way that it requires the wrapped instance to be specified via the
@@ -62,6 +58,9 @@ import org.w3c.dom.Element;
 // it is not possible to pass the instance via the constructor. Therefore each
 // of the methods of PortletResponseWrapper and StateAwareResponseWrapper are
 // overridden in this class.
+
+@ManagedBean("stateAwareResponse")
+@Priority(3)
 public class SpringStateAwareResponseBean extends StateAwareResponseWrapper {
 
 	public SpringStateAwareResponseBean() {

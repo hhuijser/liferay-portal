@@ -51,8 +51,6 @@ import javax.servlet.http.Part;
 /**
  * @author Neil Griffin
  */
-@ManagedBean("clientDataRequest")
-
 // When the developer uses "@Inject ClientDataRequest", Spring must be able to
 // disambiguate between ClientDataRequest, ActionRequest, and ResourceRequest.
 // This is accomplished with @Priority. However, Spring only knows how to apply
@@ -61,8 +59,6 @@ import javax.servlet.http.Part;
 // annotation for a class like JSR362SpringBeanProducer that produces multiple
 // types of beans via producer methods annotated with @Bean.
 
-@Priority(2)
-
 // In order to support unwrapping, it is necessary for this bean to extend
 // ClientDataRequestWrapper. However, ClientDataRequestWrapper is designed in
 // such a way that it requires the wrapped instance to be specified via the
@@ -70,6 +66,9 @@ import javax.servlet.http.Part;
 // it is not possible to pass the instance via the constructor. Therefore each
 // of the methods of PortletRequestWrapper and ClientDataRequestWrapper are
 // overridden in this class.
+
+@ManagedBean("clientDataRequest")
+@Priority(2)
 public class SpringClientDataRequestBean extends ClientDataRequestWrapper {
 
 	public SpringClientDataRequestBean() {

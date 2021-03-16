@@ -43,8 +43,6 @@ import org.w3c.dom.Element;
 /**
  * @author Neil Griffin
  */
-@ManagedBean("mimeResponse")
-
 // When the developer uses "@Inject MimeResponse", Spring must be able to
 // disambiguate between MimeResponse, HeaderResponse, RenderResponse, and
 // ResourceResponse. This is accomplished with @Priority. However, Spring only
@@ -53,8 +51,6 @@ import org.w3c.dom.Element;
 // apply the @Priority annotation for a class like JSR362SpringBeanProducer that
 // produces multiple types of beans via producer methods annotated with @Bean.
 
-@Priority(2)
-
 // In order to support unwrapping, it is necessary for this bean to extend
 // MimeResponseWrapper. However, MimeResponseWrapper is designed in such a way
 // that it requires the wrapped instance to be specified via the constructor.
@@ -62,6 +58,9 @@ import org.w3c.dom.Element;
 // possible to pass the instance via the constructor. Therefore each of the
 // methods of PortletResponseWrapper and MimeResponseWrapper are overridden in
 // this class.
+
+@ManagedBean("mimeResponse")
+@Priority(2)
 public class SpringMimeResponseBean extends MimeResponseWrapper {
 
 	public SpringMimeResponseBean() {

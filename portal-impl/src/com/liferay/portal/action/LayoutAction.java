@@ -14,6 +14,7 @@
 
 package com.liferay.portal.action;
 
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.audit.AuditMessage;
 import com.liferay.portal.kernel.audit.AuditRouterUtil;
@@ -114,16 +115,19 @@ public class LayoutAction implements Action {
 				}
 
 				if (Validator.isNull(authLoginURL)) {
-					PortletURL loginURL = PortletURLFactoryUtil.create(
-						httpServletRequest, PortletKeys.LOGIN,
-						PortletRequest.RENDER_PHASE);
-
-					loginURL.setParameter(
-						"saveLastPath", Boolean.FALSE.toString());
-					loginURL.setParameter(
-						"mvcRenderCommandName", "/login/login");
-					loginURL.setPortletMode(PortletMode.VIEW);
-					loginURL.setWindowState(WindowState.MAXIMIZED);
+					PortletURL loginURL = PortletURLBuilder.create(
+						PortletURLFactoryUtil.create(
+							httpServletRequest, PortletKeys.LOGIN,
+							PortletRequest.RENDER_PHASE)
+					).setParameter(
+						"saveLastPath", Boolean.FALSE.toString()
+					).setMVCRenderCommandName(
+						"/login/login"
+					).setPortletMode(
+						PortletMode.VIEW
+					).setWindowState(
+						WindowState.MAXIMIZED
+					).build();
 
 					authLoginURL = loginURL.toString();
 				}

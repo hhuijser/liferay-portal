@@ -14,6 +14,7 @@
 
 package com.liferay.portal.action;
 
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -140,14 +141,19 @@ public class LoginAction implements Action {
 		}
 
 		if (Validator.isNull(redirect)) {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				httpServletRequest, PortletKeys.LOGIN,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("saveLastPath", Boolean.FALSE.toString());
-			portletURL.setParameter("mvcRenderCommandName", "/login/login");
-			portletURL.setPortletMode(PortletMode.VIEW);
-			portletURL.setWindowState(getWindowState(httpServletRequest));
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					httpServletRequest, PortletKeys.LOGIN,
+					PortletRequest.RENDER_PHASE)
+			).setParameter(
+				"saveLastPath", Boolean.FALSE.toString()
+			).setMVCRenderCommandName(
+				"/login/login"
+			).setPortletMode(
+				PortletMode.VIEW
+			).setWindowState(
+				getWindowState(httpServletRequest)
+			).build();
 
 			redirect = portletURL.toString();
 		}

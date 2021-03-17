@@ -46,13 +46,11 @@ public class RankingEditPortletProvider
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			super.getPortletURL(httpServletRequest)
 		).setMVCPath(
 			"/add_results_rankings.jsp"
 		).build();
-
-		return portletURL;
 	}
 
 }

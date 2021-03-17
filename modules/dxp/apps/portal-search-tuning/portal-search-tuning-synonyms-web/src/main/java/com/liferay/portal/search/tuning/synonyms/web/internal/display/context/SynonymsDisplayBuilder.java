@@ -249,13 +249,11 @@ public class SynonymsDisplayBuilder {
 	}
 
 	private PortletURL _getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/view.jsp"
 		).build();
-
-		return portletURL;
 	}
 
 	private final DocumentToSynonymSetTranslator

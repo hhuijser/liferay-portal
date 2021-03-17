@@ -52,14 +52,12 @@ public class CommerceApplicationModelItemSelectorViewDisplayContext
 
 	@Override
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			super.getPortletURL()
 		).setParameter(
 			"checkedCommerceApplicationModelIds",
 			StringUtil.merge(getCheckedCommerceApplicationModelIds())
 		).build();
-
-		return portletURL;
 	}
 
 	@Override

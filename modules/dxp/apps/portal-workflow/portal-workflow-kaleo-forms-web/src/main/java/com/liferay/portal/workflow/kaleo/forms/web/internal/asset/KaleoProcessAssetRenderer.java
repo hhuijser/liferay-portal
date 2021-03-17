@@ -137,7 +137,7 @@ public class KaleoProcessAssetRenderer
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				liferayPortletRequest, KaleoFormsPortletKeys.KALEO_FORMS_ADMIN,
 				PortletRequest.RENDER_PHASE)
@@ -148,8 +148,6 @@ public class KaleoProcessAssetRenderer
 		).setParameter(
 			"ddlRecordId", _ddlRecord.getRecordId()
 		).build();
-
-		return portletURL;
 	}
 
 	@Override

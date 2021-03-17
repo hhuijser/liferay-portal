@@ -240,16 +240,14 @@ public class DLImpl implements DL {
 		String portletId = PortletProviderUtil.getPortletId(
 			FileEntry.class.getName(), PortletProvider.Action.MANAGE);
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
 				portletRequest, portletId, PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/document_library/view_file_entry"
 		).setParameter(
 			"fileEntryId", fileEntryId
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	/**

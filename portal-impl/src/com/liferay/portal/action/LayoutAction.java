@@ -119,10 +119,10 @@ public class LayoutAction implements Action {
 						PortletURLFactoryUtil.create(
 							httpServletRequest, PortletKeys.LOGIN,
 							PortletRequest.RENDER_PHASE)
-					).setParameter(
-						"saveLastPath", Boolean.FALSE.toString()
 					).setMVCRenderCommandName(
 						"/login/login"
+					).setParameter(
+						"saveLastPath", Boolean.FALSE.toString()
 					).setPortletMode(
 						PortletMode.VIEW
 					).setWindowState(

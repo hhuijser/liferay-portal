@@ -169,8 +169,7 @@ public class EditCommerceApplicationBrandMVCActionCommand
 			"/commerce_application_admin/edit_commerce_application_brand"
 		).setParameter(
 			"commerceApplicationBrandId",
-			String.valueOf(
-				commerceApplicationBrand.getCommerceApplicationBrandId())
+			commerceApplicationBrand.getCommerceApplicationBrandId()
 		).build();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");

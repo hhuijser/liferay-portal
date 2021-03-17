@@ -179,9 +179,9 @@ public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
 		).setMVCPath(
 			"/select_template.jsp"
 		).setParameter(
-			"classNameId", String.valueOf(classNameId)
+			"classNameId", classNameId
 		).setParameter(
-			"classPK", String.valueOf(classPK)
+			"classPK", classPK
 		).setParameter(
 			"eventName", "selectStructure"
 		).build();

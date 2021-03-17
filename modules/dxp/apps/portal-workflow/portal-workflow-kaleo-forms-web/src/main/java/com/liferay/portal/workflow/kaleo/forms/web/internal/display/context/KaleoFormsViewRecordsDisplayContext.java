@@ -288,7 +288,7 @@ public class KaleoFormsViewRecordsDisplayContext {
 		).setRedirect(
 			ParamUtil.getString(_renderRequest, "redirect")
 		).setParameter(
-			"kaleoProcessId", String.valueOf(_kaleoProcess.getKaleoProcessId())
+			"kaleoProcessId", _kaleoProcess.getKaleoProcessId()
 		).build();
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
@@ -382,7 +382,7 @@ public class KaleoFormsViewRecordsDisplayContext {
 		).setRedirect(
 			ParamUtil.getString(_renderRequest, "redirect")
 		).setParameter(
-			"kaleoProcessId", String.valueOf(_kaleoProcess.getKaleoProcessId())
+			"kaleoProcessId", _kaleoProcess.getKaleoProcessId()
 		).build();
 
 		return portletURL.toString();

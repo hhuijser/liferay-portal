@@ -112,8 +112,7 @@ public class CommerceBOMAdminDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"commerceBOMFolderId",
-			String.valueOf(
-				CommerceBOMFolderConstants.DEFAULT_COMMERCE_BOM_FOLDER_ID)
+			CommerceBOMFolderConstants.DEFAULT_COMMERCE_BOM_FOLDER_ID
 		).build();
 
 		PortalUtil.addPortletBreadcrumbEntry(

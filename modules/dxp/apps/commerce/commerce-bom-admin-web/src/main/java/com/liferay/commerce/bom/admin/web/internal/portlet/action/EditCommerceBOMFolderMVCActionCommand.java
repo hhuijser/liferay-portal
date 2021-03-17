@@ -151,8 +151,7 @@ public class EditCommerceBOMFolderMVCActionCommand
 		).setMVCRenderCommandName(
 			"/commerce_bom_admin/edit_commerce_bom_folder"
 		).setParameter(
-			"commerceBOMFolderId",
-			String.valueOf(commerceBOMFolder.getCommerceBOMFolderId())
+			"commerceBOMFolderId", commerceBOMFolder.getCommerceBOMFolderId()
 		).build();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");

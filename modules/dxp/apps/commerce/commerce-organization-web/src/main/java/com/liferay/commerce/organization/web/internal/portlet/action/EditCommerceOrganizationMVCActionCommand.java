@@ -144,7 +144,7 @@ public class EditCommerceOrganizationMVCActionCommand
 		).setMVCRenderCommandName(
 			"/commerce_organization/edit_commerce_organization"
 		).setParameter(
-			"organizationId", String.valueOf(organization.getOrganizationId())
+			"organizationId", organization.getOrganizationId()
 		).build();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");

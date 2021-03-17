@@ -144,9 +144,9 @@ public class KaleoProcessAssetRenderer
 		).setMVCPath(
 			"/admin/edit_record.jsp"
 		).setParameter(
-			"kaleoProcessId", String.valueOf(_kaleoProcess.getKaleoProcessId())
+			"kaleoProcessId", _kaleoProcess.getKaleoProcessId()
 		).setParameter(
-			"ddlRecordId", String.valueOf(_ddlRecord.getRecordId())
+			"ddlRecordId", _ddlRecord.getRecordId()
 		).build();
 
 		return portletURL;

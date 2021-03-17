@@ -209,7 +209,7 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 				httpServletRequest, CommerceAccount.class.getName(),
 				PortletProvider.Action.VIEW)
 		).setParameter(
-			"commerceAccountId", String.valueOf(commerceAccountId)
+			"commerceAccountId", commerceAccountId
 		).build();
 
 		PortletURL backURL = PortletURLBuilder.create(
@@ -219,7 +219,7 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 		).setMVCRenderCommandName(
 			"/commerce_organization/view_commerce_organization"
 		).setParameter(
-			"organizationId", String.valueOf(organizationId)
+			"organizationId", organizationId
 		).setParameter(
 			"screenNavigationCategoryKey",
 			CommerceOrganizationScreenNavigationConstants.

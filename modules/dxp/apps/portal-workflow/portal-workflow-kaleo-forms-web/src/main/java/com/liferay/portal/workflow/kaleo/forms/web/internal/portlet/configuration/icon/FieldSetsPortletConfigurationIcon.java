@@ -85,7 +85,7 @@ public class FieldSetsPortletConfigurationIcon
 		).setParameter(
 			"backURL", themeDisplay.getURLCurrent()
 		).setParameter(
-			"groupId", String.valueOf(themeDisplay.getScopeGroupId())
+			"groupId", themeDisplay.getScopeGroupId()
 		).setParameter(
 			"refererPortletName", KaleoFormsPortletKeys.KALEO_FORMS_ADMIN
 		).setParameter(

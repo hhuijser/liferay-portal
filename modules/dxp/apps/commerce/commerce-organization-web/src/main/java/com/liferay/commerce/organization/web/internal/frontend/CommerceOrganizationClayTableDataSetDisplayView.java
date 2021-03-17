@@ -238,7 +238,7 @@ public class CommerceOrganizationClayTableDataSetDisplayView
 				com.liferay.portal.kernel.model.Organization.class.getName(),
 				PortletProvider.Action.MANAGE)
 		).setParameter(
-			"organizationId", String.valueOf(organizationId)
+			"organizationId", organizationId
 		).build();
 
 		PortletURL backURL = PortletProviderUtil.getPortletURL(
@@ -265,7 +265,7 @@ public class CommerceOrganizationClayTableDataSetDisplayView
 		).setMVCRenderCommandName(
 			"/commerce_organization/view_commerce_organization"
 		).setParameter(
-			"organizationId", String.valueOf(organizationId)
+			"organizationId", organizationId
 		).build();
 
 		PortletURL backURL = PortletProviderUtil.getPortletURL(

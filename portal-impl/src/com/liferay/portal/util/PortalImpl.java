@@ -5897,7 +5897,7 @@ public class PortalImpl implements Portal {
 				).setParameter(
 					"struts_action", "/directory/view_user"
 				).setParameter(
-					"p_u_i_d", String.valueOf(user.getUserId())
+					"p_u_i_d", user.getUserId()
 				).setPortletMode(
 					PortletMode.VIEW
 				).setWindowState(

@@ -532,6 +532,11 @@
 			<property name="description" value="Verifies that when an operator has a literal string or a number as one of the operands, it is always on the right hand side." />
 			<message key="left.argument.literal.or.num" value="''{0}'' should be on the right hand side of the operator" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.OSGiResourceBuilderCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Avoid using *Resource.builder." />
+			<message key="method.call.avoid" value="Avoid using method ''*Resource.builder'' in OSGi component" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ParsePrimitiveTypeCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Verifies that `GetterUtil.parse*` is used to parse primitive types, when possible." />

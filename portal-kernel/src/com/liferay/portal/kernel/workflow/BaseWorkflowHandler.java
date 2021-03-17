@@ -17,6 +17,7 @@ package com.liferay.portal.kernel.workflow;
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -155,14 +156,17 @@ public abstract class BaseWorkflowHandler<T> implements WorkflowHandler<T> {
 		throws PortalException {
 
 		try {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				serviceContext.getRequest(), PortletKeys.MY_WORKFLOW_TASK,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcPath", "/edit_workflow_task.jsp");
-			portletURL.setParameter(
-				"workflowTaskId", String.valueOf(workflowTaskId));
-			portletURL.setWindowState(WindowState.MAXIMIZED);
+			PortletURL portletURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					serviceContext.getRequest(), PortletKeys.MY_WORKFLOW_TASK,
+					PortletRequest.RENDER_PHASE)
+			).setMVCPath(
+				"/edit_workflow_task.jsp"
+			).setParameter(
+				"workflowTaskId", String.valueOf(workflowTaskId)
+			).setWindowState(
+				WindowState.MAXIMIZED
+			).build();
 
 			return portletURL.toString();
 		}

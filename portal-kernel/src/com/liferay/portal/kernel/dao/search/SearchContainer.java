@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.dao.search;
 
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.DeterminateKeyGenerator;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
@@ -124,10 +125,13 @@ public class SearchContainer<R> {
 
 		setDelta(ParamUtil.getInteger(portletRequest, _deltaParam, delta));
 
-		_iteratorURL = iteratorURL;
-
-		_iteratorURL.setParameter(_curParam, String.valueOf(_cur));
-		_iteratorURL.setParameter(_deltaParam, String.valueOf(_delta));
+		_iteratorURL = PortletURLBuilder.create(
+			iteratorURL
+		).setParameter(
+			_curParam, String.valueOf(_cur)
+		).setParameter(
+			_deltaParam, String.valueOf(_delta)
+		).build();
 
 		_setParameter(DisplayTerms.KEYWORDS);
 		_setParameter(DisplayTerms.ADVANCED_SEARCH);

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.search;
 
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Layout;
@@ -570,13 +571,16 @@ public abstract class BaseOpenSearchImpl implements OpenSearch {
 			long scopeGroupId)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			httpServletRequest, portletId,
-			getPlid(httpServletRequest, portletId, scopeGroupId),
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setPortletMode(PortletMode.VIEW);
-		portletURL.setWindowState(WindowState.MAXIMIZED);
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(
+				httpServletRequest, portletId,
+				getPlid(httpServletRequest, portletId, scopeGroupId),
+				PortletRequest.RENDER_PHASE)
+		).setPortletMode(
+			PortletMode.VIEW
+		).setWindowState(
+			WindowState.MAXIMIZED
+		).build();
 
 		return portletURL;
 	}

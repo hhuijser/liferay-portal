@@ -38,7 +38,6 @@ import com.liferay.portal.util.PropsValues;
 
 import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
@@ -141,7 +140,7 @@ public class LoginAction implements Action {
 		}
 
 		if (Validator.isNull(redirect)) {
-			PortletURL portletURL = PortletURLBuilder.create(
+			redirect = PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(
 					httpServletRequest, PortletKeys.LOGIN,
 					PortletRequest.RENDER_PHASE)
@@ -153,9 +152,7 @@ public class LoginAction implements Action {
 				PortletMode.VIEW
 			).setWindowState(
 				getWindowState(httpServletRequest)
-			).build();
-
-			redirect = portletURL.toString();
+			).buildString();
 		}
 
 		if (PropsValues.COMPANY_SECURITY_AUTH_REQUIRES_HTTPS) {

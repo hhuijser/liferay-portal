@@ -156,7 +156,7 @@ public abstract class BaseWorkflowHandler<T> implements WorkflowHandler<T> {
 		throws PortalException {
 
 		try {
-			PortletURL portletURL = PortletURLBuilder.create(
+			return PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(
 					serviceContext.getRequest(), PortletKeys.MY_WORKFLOW_TASK,
 					PortletRequest.RENDER_PHASE)
@@ -166,9 +166,7 @@ public abstract class BaseWorkflowHandler<T> implements WorkflowHandler<T> {
 				"workflowTaskId", workflowTaskId
 			).setWindowState(
 				WindowState.MAXIMIZED
-			).build();
-
-			return portletURL.toString();
+			).buildString();
 		}
 		catch (WindowStateException windowStateException) {
 			throw new PortalException(windowStateException);

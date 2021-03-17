@@ -5890,23 +5890,22 @@ public class PortalImpl implements Portal {
 				Layout layout = (Layout)httpServletRequest.getAttribute(
 					WebKeys.LAYOUT);
 
-				PortletURL portletURL = PortletURLBuilder.create(
-					PortletURLFactoryUtil.create(
-						httpServletRequest, PortletKeys.DIRECTORY, layout,
-						PortletRequest.RENDER_PHASE)
-				).setParameter(
-					"struts_action", "/directory/view_user"
-				).setParameter(
-					"p_u_i_d", user.getUserId()
-				).setPortletMode(
-					PortletMode.VIEW
-				).setWindowState(
-					WindowState.MAXIMIZED
-				).build();
-
 				userName = StringBundler.concat(
-					"<a href=\"", portletURL.toString(), "\">",
-					HtmlUtil.escape(userName), "</a>");
+					"<a href=\"",
+					PortletURLBuilder.create(
+						PortletURLFactoryUtil.create(
+							httpServletRequest, PortletKeys.DIRECTORY, layout,
+							PortletRequest.RENDER_PHASE)
+					).setParameter(
+						"struts_action", "/directory/view_user"
+					).setParameter(
+						"p_u_i_d", user.getUserId()
+					).setPortletMode(
+						PortletMode.VIEW
+					).setWindowState(
+						WindowState.MAXIMIZED
+					).buildString(),
+					"\">", HtmlUtil.escape(userName), "</a>");
 			}
 		}
 		catch (Exception exception) {

@@ -61,7 +61,6 @@ import java.util.Map;
 
 import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.WindowState;
 
@@ -115,7 +114,7 @@ public class LayoutAction implements Action {
 				}
 
 				if (Validator.isNull(authLoginURL)) {
-					PortletURL loginURL = PortletURLBuilder.create(
+					authLoginURL = PortletURLBuilder.create(
 						PortletURLFactoryUtil.create(
 							httpServletRequest, PortletKeys.LOGIN,
 							PortletRequest.RENDER_PHASE)
@@ -127,9 +126,7 @@ public class LayoutAction implements Action {
 						PortletMode.VIEW
 					).setWindowState(
 						WindowState.MAXIMIZED
-					).build();
-
-					authLoginURL = loginURL.toString();
+					).buildString();
 				}
 
 				authLoginURL = HttpUtil.setParameter(

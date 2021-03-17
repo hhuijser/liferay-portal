@@ -193,9 +193,6 @@ public class CommerceBOMAdminDisplayContext {
 				Collections.<ItemSelectorReturnType>singletonList(
 					new UUIDItemSelectorReturnType()));
 
-		String checkedCommerceApplicationModelIds = StringUtil.merge(
-			getCheckedCommerceApplicationModelIds());
-
 		PortletURL itemSelectorURL = PortletURLBuilder.create(
 			_itemSelector.getItemSelectorURL(
 				requestBackedPortletURLFactory,
@@ -203,7 +200,7 @@ public class CommerceBOMAdminDisplayContext {
 				commerceApplicationModelItemSelectorCriterion)
 		).setParameter(
 			"checkedCommerceApplicationModelIds",
-			checkedCommerceApplicationModelIds
+			StringUtil.merge(getCheckedCommerceApplicationModelIds())
 		).build();
 
 		return itemSelectorURL.toString();

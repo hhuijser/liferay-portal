@@ -249,24 +249,24 @@ public class ReportsEngineDisplayContext {
 	}
 
 	public String getSearchURL() {
-		ThemeDisplay themeDisplay =
-			_reportsEngineRequestHelper.getThemeDisplay();
-
 		PortletURL portletURL = PortletURLBuilder.create(
 			getPortletURL()
 		).setParameter(
-			"groupId", themeDisplay.getScopeGroupId()
+			"groupId",
+			() -> {
+				ThemeDisplay themeDisplay =
+					_reportsEngineRequestHelper.getThemeDisplay();
+
+				return themeDisplay.getScopeGroupId();
+			}
 		).build();
 
 		return portletURL.toString();
 	}
 
 	public String getSortingURL() {
-		LiferayPortletResponse liferayPortletResponse =
-			_reportsEngineRequestHelper.getLiferayPortletResponse();
-
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
-			liferayPortletResponse
+			_reportsEngineRequestHelper.getLiferayPortletResponse()
 		).setParameter(
 			"tabs1", _getTabs1()
 		).setParameter(

@@ -363,12 +363,16 @@ public class KaleoFormsAdminDisplayContext {
 	}
 
 	public String getSortingURL() throws Exception {
-		String orderByType = ParamUtil.getString(_renderRequest, "orderByType");
-
 		PortletURL sortingURL = PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), _renderResponse)
 		).setParameter(
-			"orderByType", orderByType.equals("asc") ? "desc" : "asc"
+			"orderByType",
+			() -> {
+				String orderByType = ParamUtil.getString(
+					_renderRequest, "orderByType");
+
+				return orderByType.equals("asc") ? "desc" : "asc";
+			}
 		).build();
 
 		return sortingURL.toString();

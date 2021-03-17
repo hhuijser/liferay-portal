@@ -163,7 +163,7 @@ public abstract class BaseWorkflowHandler<T> implements WorkflowHandler<T> {
 			).setMVCPath(
 				"/edit_workflow_task.jsp"
 			).setParameter(
-				"workflowTaskId", String.valueOf(workflowTaskId)
+				"workflowTaskId", workflowTaskId
 			).setWindowState(
 				WindowState.MAXIMIZED
 			).build();

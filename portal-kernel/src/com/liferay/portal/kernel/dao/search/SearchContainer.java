@@ -128,9 +128,9 @@ public class SearchContainer<R> {
 		_iteratorURL = PortletURLBuilder.create(
 			iteratorURL
 		).setParameter(
-			_curParam, String.valueOf(_cur)
+			_curParam, _cur
 		).setParameter(
-			_deltaParam, String.valueOf(_delta)
+			_deltaParam, _delta
 		).build();
 
 		_setParameter(DisplayTerms.KEYWORDS);

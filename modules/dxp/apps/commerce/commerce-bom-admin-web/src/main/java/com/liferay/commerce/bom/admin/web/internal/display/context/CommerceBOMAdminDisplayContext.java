@@ -31,6 +31,7 @@ import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
 import com.liferay.item.selector.criteria.image.criterion.ImageItemSelectorCriterion;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -107,12 +108,13 @@ public class CommerceBOMAdminDisplayContext {
 		ThemeDisplay themeDisplay =
 			_commerceBOMAdminRequestHelper.getThemeDisplay();
 
-		PortletURL portletURL = getPortletURL();
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			getPortletURL()
+		).setParameter(
 			"commerceBOMFolderId",
 			String.valueOf(
-				CommerceBOMFolderConstants.DEFAULT_COMMERCE_BOM_FOLDER_ID));
+				CommerceBOMFolderConstants.DEFAULT_COMMERCE_BOM_FOLDER_ID)
+		).build();
 
 		PortalUtil.addPortletBreadcrumbEntry(
 			_commerceBOMAdminRequestHelper.getRequest(),
@@ -192,17 +194,18 @@ public class CommerceBOMAdminDisplayContext {
 				Collections.<ItemSelectorReturnType>singletonList(
 					new UUIDItemSelectorReturnType()));
 
-		PortletURL itemSelectorURL = _itemSelector.getItemSelectorURL(
-			requestBackedPortletURLFactory,
-			"commerceApplicationModelsSelectItem",
-			commerceApplicationModelItemSelectorCriterion);
-
 		String checkedCommerceApplicationModelIds = StringUtil.merge(
 			getCheckedCommerceApplicationModelIds());
 
-		itemSelectorURL.setParameter(
+		PortletURL itemSelectorURL = PortletURLBuilder.create(
+			_itemSelector.getItemSelectorURL(
+				requestBackedPortletURLFactory,
+				"commerceApplicationModelsSelectItem",
+				commerceApplicationModelItemSelectorCriterion)
+		).setParameter(
 			"checkedCommerceApplicationModelIds",
-			checkedCommerceApplicationModelIds);
+			checkedCommerceApplicationModelIds
+		).build();
 
 		return itemSelectorURL.toString();
 	}

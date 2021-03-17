@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.tuning.rankings.web.internal.portlet.action;
 
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
@@ -131,13 +132,13 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 			LiferayPortletResponse liferayPortletResponse =
 				portal.getLiferayPortletResponse(actionResponse);
 
-			PortletURL renderURL = liferayPortletResponse.createRenderURL();
-
-			renderURL.setParameter(
-				"mvcRenderCommandName",
-				"/result_rankings/add_results_rankings");
-			renderURL.setParameter(
-				"redirect", editRankingMVCActionRequest.getRedirect());
+			PortletURL renderURL = PortletURLBuilder.createRenderURL(
+				liferayPortletResponse
+			).setMVCRenderCommandName(
+				"/result_rankings/add_results_rankings"
+			).setRedirect(
+				editRankingMVCActionRequest.getRedirect()
+			).build();
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, renderURL.toString());
 

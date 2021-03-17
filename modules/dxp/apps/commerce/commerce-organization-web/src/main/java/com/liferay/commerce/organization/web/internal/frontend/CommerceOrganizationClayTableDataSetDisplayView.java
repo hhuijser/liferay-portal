@@ -26,6 +26,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -231,13 +232,14 @@ public class CommerceOrganizationClayTableDataSetDisplayView
 			long organizationId, HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = PortletProviderUtil.getPortletURL(
-			httpServletRequest,
-			com.liferay.portal.kernel.model.Organization.class.getName(),
-			PortletProvider.Action.MANAGE);
-
-		portletURL.setParameter(
-			"organizationId", String.valueOf(organizationId));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				httpServletRequest,
+				com.liferay.portal.kernel.model.Organization.class.getName(),
+				PortletProvider.Action.MANAGE)
+		).setParameter(
+			"organizationId", String.valueOf(organizationId)
+		).build();
 
 		PortletURL backURL = PortletProviderUtil.getPortletURL(
 			httpServletRequest,
@@ -255,15 +257,16 @@ public class CommerceOrganizationClayTableDataSetDisplayView
 			long organizationId, HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL viewURL = PortletProviderUtil.getPortletURL(
-			httpServletRequest,
-			com.liferay.portal.kernel.model.Organization.class.getName(),
-			PortletProvider.Action.MANAGE);
-
-		viewURL.setParameter(
-			"mvcRenderCommandName",
-			"/commerce_organization/view_commerce_organization");
-		viewURL.setParameter("organizationId", String.valueOf(organizationId));
+		PortletURL viewURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				httpServletRequest,
+				com.liferay.portal.kernel.model.Organization.class.getName(),
+				PortletProvider.Action.MANAGE)
+		).setMVCRenderCommandName(
+			"/commerce_organization/view_commerce_organization"
+		).setParameter(
+			"organizationId", String.valueOf(organizationId)
+		).build();
 
 		PortletURL backURL = PortletProviderUtil.getPortletURL(
 			httpServletRequest,

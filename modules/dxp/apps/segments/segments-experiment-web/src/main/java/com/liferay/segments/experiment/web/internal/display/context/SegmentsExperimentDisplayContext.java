@@ -15,6 +15,7 @@
 package com.liferay.segments.experiment.web.internal.display.context;
 
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortletKeys;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -61,7 +62,6 @@ import java.util.ResourceBundle;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
 
@@ -177,10 +177,12 @@ public class SegmentsExperimentDisplayContext {
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(_renderResponse);
 
-		PortletURL actionURL = liferayPortletResponse.createActionURL(
-			ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET);
-
-		actionURL.setParameter(ActionRequest.ACTION_NAME, action);
+		PortletURL actionURL = PortletURLBuilder.createActionURL(
+			liferayPortletResponse,
+			ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET
+		).setActionName(
+			action
+		).build();
 
 		return HttpUtil.addParameter(
 			actionURL.toString(), "p_l_mode", Constants.EDIT);
@@ -400,9 +402,11 @@ public class SegmentsExperimentDisplayContext {
 	}
 
 	private String _getSegmentsExperimentActionURL(String action) {
-		PortletURL actionURL = _renderResponse.createActionURL();
-
-		actionURL.setParameter(ActionRequest.ACTION_NAME, action);
+		PortletURL actionURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			action
+		).build();
 
 		return HttpUtil.addParameter(
 			actionURL.toString(), "p_l_mode", Constants.VIEW);

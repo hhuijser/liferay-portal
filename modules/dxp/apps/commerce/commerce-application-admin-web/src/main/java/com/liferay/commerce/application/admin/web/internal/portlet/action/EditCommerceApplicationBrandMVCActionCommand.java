@@ -19,6 +19,7 @@ import com.liferay.commerce.application.exception.NoSuchApplicationBrandExceptio
 import com.liferay.commerce.application.model.CommerceApplicationBrand;
 import com.liferay.commerce.application.service.CommerceApplicationBrandService;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -160,18 +161,17 @@ public class EditCommerceApplicationBrandMVCActionCommand
 			CommerceApplicationBrand commerceApplicationBrand)
 		throws PortalException {
 
-		PortletURL portletURL = PortletProviderUtil.getPortletURL(
-			actionRequest, CommerceApplicationBrand.class.getName(),
-			PortletProvider.Action.MANAGE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName",
-			"/commerce_application_admin/edit_commerce_application_brand");
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				actionRequest, CommerceApplicationBrand.class.getName(),
+				PortletProvider.Action.MANAGE)
+		).setMVCRenderCommandName(
+			"/commerce_application_admin/edit_commerce_application_brand"
+		).setParameter(
 			"commerceApplicationBrandId",
 			String.valueOf(
-				commerceApplicationBrand.getCommerceApplicationBrandId()));
+				commerceApplicationBrand.getCommerceApplicationBrandId())
+		).build();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 

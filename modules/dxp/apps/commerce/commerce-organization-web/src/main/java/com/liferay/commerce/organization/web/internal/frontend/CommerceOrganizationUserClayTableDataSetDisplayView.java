@@ -26,6 +26,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -208,12 +209,13 @@ public class CommerceOrganizationUserClayTableDataSetDisplayView
 			long userId, HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL viewURL = PortletProviderUtil.getPortletURL(
-			httpServletRequest, Organization.class.getName(),
-			PortletProvider.Action.MANAGE);
-
-		viewURL.setParameter(
-			"mvcRenderCommandName", "viewCommerceOrganizationUser");
+		PortletURL viewURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				httpServletRequest, Organization.class.getName(),
+				PortletProvider.Action.MANAGE)
+		).setMVCRenderCommandName(
+			"viewCommerceOrganizationUser"
+		).build();
 
 		long organizationId = ParamUtil.getLong(
 			httpServletRequest, "organizationId");

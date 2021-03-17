@@ -16,6 +16,7 @@ package com.liferay.commerce.organization.web.internal.portlet.action;
 
 import com.liferay.commerce.organization.constants.CommerceOrganizationPortletKeys;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.DuplicateOrganizationException;
 import com.liferay.portal.kernel.exception.NoSuchOrganizationException;
 import com.liferay.portal.kernel.exception.OrganizationNameException;
@@ -136,16 +137,15 @@ public class EditCommerceOrganizationMVCActionCommand
 			ActionRequest actionRequest, Organization organization)
 		throws PortalException {
 
-		PortletURL portletURL = PortletProviderUtil.getPortletURL(
-			actionRequest, Organization.class.getName(),
-			PortletProvider.Action.MANAGE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName",
-			"/commerce_organization/edit_commerce_organization");
-
-		portletURL.setParameter(
-			"organizationId", String.valueOf(organization.getOrganizationId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				actionRequest, Organization.class.getName(),
+				PortletProvider.Action.MANAGE)
+		).setMVCRenderCommandName(
+			"/commerce_organization/edit_commerce_organization"
+		).setParameter(
+			"organizationId", String.valueOf(organization.getOrganizationId())
+		).build();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 

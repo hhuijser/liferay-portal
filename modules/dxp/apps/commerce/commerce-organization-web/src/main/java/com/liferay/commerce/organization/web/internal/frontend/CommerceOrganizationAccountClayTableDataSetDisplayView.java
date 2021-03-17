@@ -33,6 +33,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -203,25 +204,27 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 			HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL viewURL = PortletProviderUtil.getPortletURL(
-			httpServletRequest, CommerceAccount.class.getName(),
-			PortletProvider.Action.VIEW);
+		PortletURL viewURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				httpServletRequest, CommerceAccount.class.getName(),
+				PortletProvider.Action.VIEW)
+		).setParameter(
+			"commerceAccountId", String.valueOf(commerceAccountId)
+		).build();
 
-		viewURL.setParameter(
-			"commerceAccountId", String.valueOf(commerceAccountId));
-
-		PortletURL backURL = PortletProviderUtil.getPortletURL(
-			httpServletRequest, Organization.class.getName(),
-			PortletProvider.Action.MANAGE);
-
-		backURL.setParameter(
-			"mvcRenderCommandName",
-			"/commerce_organization/view_commerce_organization");
-		backURL.setParameter("organizationId", String.valueOf(organizationId));
-		backURL.setParameter(
+		PortletURL backURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				httpServletRequest, Organization.class.getName(),
+				PortletProvider.Action.MANAGE)
+		).setMVCRenderCommandName(
+			"/commerce_organization/view_commerce_organization"
+		).setParameter(
+			"organizationId", String.valueOf(organizationId)
+		).setParameter(
 			"screenNavigationCategoryKey",
 			CommerceOrganizationScreenNavigationConstants.
-				CATEGORY_KEY_ORGANIZATION_ACCOUNTS);
+				CATEGORY_KEY_ORGANIZATION_ACCOUNTS
+		).build();
 
 		viewURL.setParameter(
 			PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL",

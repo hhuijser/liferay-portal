@@ -18,6 +18,7 @@ import com.liferay.analytics.reports.info.item.ClassNameClassPKInfoItemIdentifie
 import com.liferay.analytics.reports.web.internal.util.AnalyticsReportsUtil;
 import com.liferay.info.item.ClassPKInfoItemIdentifier;
 import com.liferay.info.item.InfoItemReference;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
@@ -26,7 +27,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.Collections;
 import java.util.Map;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -64,10 +64,11 @@ public class AnalyticsReportsDisplayContext<T> {
 	}
 
 	public String getHideAnalyticsReportsPanelURL() {
-		PortletURL portletURL = _renderResponse.createActionURL();
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME, "/analytics_reports/hide_panel");
+		PortletURL portletURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			"/analytics_reports/hide_panel"
+		).build();
 
 		String redirect = ParamUtil.getString(_renderRequest, "redirect");
 

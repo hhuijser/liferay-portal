@@ -24,6 +24,7 @@ import com.liferay.commerce.product.exception.DuplicateCPAttachmentFileEntryExce
 import com.liferay.commerce.product.model.CPAttachmentFileEntry;
 import com.liferay.commerce.product.service.CPAttachmentFileEntryService;
 import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -134,21 +135,19 @@ public class EditCommerceBOMDefinitionMVCActionCommand
 			CommerceBOMDefinition commerceBOMDefinition)
 		throws PortalException {
 
-		PortletURL portletURL = PortletProviderUtil.getPortletURL(
-			actionRequest, CommerceBOMFolder.class.getName(),
-			PortletProvider.Action.MANAGE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName",
-			"/commerce_bom_admin/edit_commerce_bom_definition");
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				actionRequest, CommerceBOMFolder.class.getName(),
+				PortletProvider.Action.MANAGE)
+		).setMVCRenderCommandName(
+			"/commerce_bom_admin/edit_commerce_bom_definition"
+		).setParameter(
 			"commerceBOMFolderId",
-			String.valueOf(commerceBOMDefinition.getCommerceBOMFolderId()));
-
-		portletURL.setParameter(
+			String.valueOf(commerceBOMDefinition.getCommerceBOMFolderId())
+		).setParameter(
 			"commerceBOMDefinitionId",
-			String.valueOf(commerceBOMDefinition.getCommerceBOMDefinitionId()));
+			String.valueOf(commerceBOMDefinition.getCommerceBOMDefinitionId())
+		).build();
 
 		String backURL = ParamUtil.getString(actionRequest, "backURL");
 

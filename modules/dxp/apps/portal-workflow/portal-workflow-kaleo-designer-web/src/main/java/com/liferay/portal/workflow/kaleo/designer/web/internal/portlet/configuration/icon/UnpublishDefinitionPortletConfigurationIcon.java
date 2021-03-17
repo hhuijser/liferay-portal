@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.designer.web.internal.portlet.configuration.icon;
 
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -33,7 +34,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoDefinitionVersion;
 
 import java.util.ResourceBundle;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
@@ -68,16 +68,15 @@ public class UnpublishDefinitionPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			portletRequest, KaleoDesignerPortletKeys.KALEO_DESIGNER,
-			PortletRequest.ACTION_PHASE);
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/kaleo_designer/unpublish_kaleo_definition_version");
-
-		portletURL.setParameter(
-			"mvcPath", portletRequest.getParameter("mvcPath"));
+		PortletURL portletURL = PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				portletRequest, KaleoDesignerPortletKeys.KALEO_DESIGNER,
+				PortletRequest.ACTION_PHASE)
+		).setActionName(
+			"/kaleo_designer/unpublish_kaleo_definition_version"
+		).setMVCPath(
+			portletRequest.getParameter("mvcPath")
+		).build();
 
 		KaleoDefinition kaleoDefinition = getKaleoDefinition(portletRequest);
 

@@ -18,6 +18,7 @@ import com.liferay.analytics.reports.info.item.ClassNameClassPKInfoItemIdentifie
 import com.liferay.analytics.reports.web.internal.constants.AnalyticsReportsPortletKeys;
 import com.liferay.info.item.ClassPKInfoItemIdentifier;
 import com.liferay.info.item.InfoItemReference;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
@@ -52,15 +53,18 @@ public class AnalyticsReportsUtil {
 			PortletURLFactory portletURLFactory)
 		throws WindowStateException {
 
-		PortletURL portletURL = portletURLFactory.create(
-			httpServletRequest, AnalyticsReportsPortletKeys.ANALYTICS_REPORTS,
-			RenderRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/analytics_reports_panel.jsp");
-		portletURL.setParameter(
-			"redirect", portal.getCurrentCompleteURL(httpServletRequest));
-
-		portletURL.setParameter("className", infoItemReference.getClassName());
+		PortletURL portletURL = PortletURLBuilder.create(
+			portletURLFactory.create(
+				httpServletRequest,
+				AnalyticsReportsPortletKeys.ANALYTICS_REPORTS,
+				RenderRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/analytics_reports_panel.jsp"
+		).setRedirect(
+			portal.getCurrentCompleteURL(httpServletRequest)
+		).setParameter(
+			"className", infoItemReference.getClassName()
+		).build();
 
 		if (infoItemReference.getInfoItemIdentifier() instanceof
 				ClassNameClassPKInfoItemIdentifier) {

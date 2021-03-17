@@ -19,6 +19,7 @@ import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
 import com.liferay.dynamic.data.lists.constants.DDLWebKeys;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecordVersion;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -136,16 +137,17 @@ public class KaleoProcessAssetRenderer
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, KaleoFormsPortletKeys.KALEO_FORMS_ADMIN,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", "/admin/edit_record.jsp");
-		portletURL.setParameter(
-			"kaleoProcessId",
-			String.valueOf(_kaleoProcess.getKaleoProcessId()));
-		portletURL.setParameter(
-			"ddlRecordId", String.valueOf(_ddlRecord.getRecordId()));
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, KaleoFormsPortletKeys.KALEO_FORMS_ADMIN,
+				PortletRequest.RENDER_PHASE)
+		).setMVCPath(
+			"/admin/edit_record.jsp"
+		).setParameter(
+			"kaleoProcessId", String.valueOf(_kaleoProcess.getKaleoProcessId())
+		).setParameter(
+			"ddlRecordId", String.valueOf(_ddlRecord.getRecordId())
+		).build();
 
 		return portletURL;
 	}

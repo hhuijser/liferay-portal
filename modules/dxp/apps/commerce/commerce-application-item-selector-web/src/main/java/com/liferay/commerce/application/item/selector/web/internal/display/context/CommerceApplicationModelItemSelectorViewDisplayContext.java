@@ -17,6 +17,7 @@ package com.liferay.commerce.application.item.selector.web.internal.display.cont
 import com.liferay.commerce.application.item.selector.web.internal.search.CommerceApplicationModelItemSelectorChecker;
 import com.liferay.commerce.application.model.CommerceApplicationModel;
 import com.liferay.commerce.application.service.CommerceApplicationModelService;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -51,14 +52,15 @@ public class CommerceApplicationModelItemSelectorViewDisplayContext
 
 	@Override
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = super.getPortletURL();
-
 		String checkedCommerceApplicationModelIds = StringUtil.merge(
 			getCheckedCommerceApplicationModelIds());
 
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			super.getPortletURL()
+		).setParameter(
 			"checkedCommerceApplicationModelIds",
-			checkedCommerceApplicationModelIds);
+			checkedCommerceApplicationModelIds
+		).build();
 
 		return portletURL;
 	}

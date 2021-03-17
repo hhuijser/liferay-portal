@@ -19,6 +19,7 @@ import com.liferay.commerce.bom.exception.NoSuchBOMFolderException;
 import com.liferay.commerce.bom.model.CommerceBOMFolder;
 import com.liferay.commerce.bom.service.CommerceBOMFolderService;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -143,17 +144,16 @@ public class EditCommerceBOMFolderMVCActionCommand
 			ActionRequest actionRequest, CommerceBOMFolder commerceBOMFolder)
 		throws PortalException {
 
-		PortletURL portletURL = PortletProviderUtil.getPortletURL(
-			actionRequest, CommerceBOMFolder.class.getName(),
-			PortletProvider.Action.MANAGE);
-
-		portletURL.setParameter(
-			"mvcRenderCommandName",
-			"/commerce_bom_admin/edit_commerce_bom_folder");
-
-		portletURL.setParameter(
+		PortletURL portletURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(
+				actionRequest, CommerceBOMFolder.class.getName(),
+				PortletProvider.Action.MANAGE)
+		).setMVCRenderCommandName(
+			"/commerce_bom_admin/edit_commerce_bom_folder"
+		).setParameter(
 			"commerceBOMFolderId",
-			String.valueOf(commerceBOMFolder.getCommerceBOMFolderId()));
+			String.valueOf(commerceBOMFolder.getCommerceBOMFolderId())
+		).build();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 

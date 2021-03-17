@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -150,9 +151,11 @@ public class RankingPortletDisplayBuilder {
 
 	@SuppressWarnings("deprecation")
 	protected String getClearResultsURL() {
-		PortletURL clearResultsURL = _getPortletURL(getKeywords());
-
-		clearResultsURL.setParameter("keywords", StringPool.BLANK);
+		PortletURL clearResultsURL = PortletURLBuilder.create(
+			_getPortletURL(getKeywords())
+		).setParameter(
+			"keywords", StringPool.BLANK
+		).build();
 
 		return clearResultsURL.toString();
 	}
@@ -244,11 +247,12 @@ public class RankingPortletDisplayBuilder {
 
 	@SuppressWarnings("deprecation")
 	protected String getSortingURL() {
-		PortletURL sortingURL = _getPortletURL(getKeywords());
-
-		sortingURL.setParameter(
+		PortletURL sortingURL = PortletURLBuilder.create(
+			_getPortletURL(getKeywords())
+		).setParameter(
 			"orderByType",
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
+		).build();
 
 		return sortingURL.toString();
 	}
@@ -310,9 +314,11 @@ public class RankingPortletDisplayBuilder {
 
 	@SuppressWarnings("deprecation")
 	private PortletURL _getPortletURL(String keywords) {
-		PortletURL portletURL = _renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCPath(
+			"/view.jsp"
+		).build();
 
 		if (!Validator.isBlank(keywords)) {
 			portletURL.setParameter("keywords", keywords);

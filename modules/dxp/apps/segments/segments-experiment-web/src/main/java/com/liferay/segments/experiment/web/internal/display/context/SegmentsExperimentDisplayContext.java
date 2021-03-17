@@ -61,7 +61,6 @@ import java.util.ResourceBundle;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -173,15 +172,14 @@ public class SegmentsExperimentDisplayContext {
 	}
 
 	private String _getContentPageEditorActionURL(String action) {
-		PortletURL actionURL = PortletURLBuilder.createActionURL(
-			_portal.getLiferayPortletResponse(_renderResponse),
-			ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET
-		).setActionName(
-			action
-		).build();
-
 		return HttpUtil.addParameter(
-			actionURL.toString(), "p_l_mode", Constants.EDIT);
+			PortletURLBuilder.createActionURL(
+				_portal.getLiferayPortletResponse(_renderResponse),
+				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET
+			).setActionName(
+				action
+			).buildString(),
+			"p_l_mode", Constants.EDIT);
 	}
 
 	private String _getContentPageEditorPortletNamespace() {
@@ -398,14 +396,13 @@ public class SegmentsExperimentDisplayContext {
 	}
 
 	private String _getSegmentsExperimentActionURL(String action) {
-		PortletURL actionURL = PortletURLBuilder.createActionURL(
-			_renderResponse
-		).setActionName(
-			action
-		).build();
-
 		return HttpUtil.addParameter(
-			actionURL.toString(), "p_l_mode", Constants.VIEW);
+			PortletURLBuilder.createActionURL(
+				_renderResponse
+			).setActionName(
+				action
+			).buildString(),
+			"p_l_mode", Constants.VIEW);
 	}
 
 	private JSONArray _getSegmentsExperimentGoalsJSONArray(Locale locale) {

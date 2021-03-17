@@ -26,7 +26,6 @@ import com.liferay.portal.search.tuning.rankings.web.internal.util.RankingResult
 
 import java.util.Locale;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -92,16 +91,14 @@ public class RankingResultContentDisplayBuilder {
 
 				rankingResultContentDisplayContext.setIconEditTarget(title);
 
-				PortletURL editPortletURL = PortletURLBuilder.create(
-					assetRenderer.getURLEdit(
-						_portal.getLiferayPortletRequest(_renderRequest),
-						_portal.getLiferayPortletResponse(_renderResponse))
-				).setRedirect(
-					themeDisplay.getURLCurrent()
-				).build();
-
 				rankingResultContentDisplayContext.setIconURLString(
-					editPortletURL.toString());
+					PortletURLBuilder.create(
+						assetRenderer.getURLEdit(
+							_portal.getLiferayPortletRequest(_renderRequest),
+							_portal.getLiferayPortletResponse(_renderResponse))
+					).setRedirect(
+						themeDisplay.getURLCurrent()
+					).buildString());
 			}
 		}
 

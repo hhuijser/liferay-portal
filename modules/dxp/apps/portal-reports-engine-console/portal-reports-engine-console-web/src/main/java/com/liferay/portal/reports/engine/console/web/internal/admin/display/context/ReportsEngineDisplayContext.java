@@ -86,13 +86,11 @@ public class ReportsEngineDisplayContext {
 	}
 
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			getPortletURL()
 		).setParameter(
 			"keywords", StringPool.BLANK
-		).build();
-
-		return clearResultsURL.toString();
+		).buildString();
 	}
 
 	public CreationMenu getCreationMenu() throws PortalException {
@@ -249,7 +247,7 @@ public class ReportsEngineDisplayContext {
 	}
 
 	public String getSearchURL() {
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			getPortletURL()
 		).setParameter(
 			"groupId",
@@ -259,13 +257,11 @@ public class ReportsEngineDisplayContext {
 
 				return themeDisplay.getScopeGroupId();
 			}
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	public String getSortingURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_reportsEngineRequestHelper.getLiferayPortletResponse()
 		).setParameter(
 			"tabs1", _getTabs1()
@@ -274,9 +270,7 @@ public class ReportsEngineDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	public int getTotalItems() throws PortalException {

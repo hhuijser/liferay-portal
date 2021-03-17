@@ -36,7 +36,6 @@ import java.util.ResourceBundle;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -74,7 +73,7 @@ public class FieldSetsPortletConfigurationIcon
 		Portlet portlet = _portletLocalService.getPortletById(
 			portletDisplay.getId());
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(
 				portletRequest,
 				PortletProviderUtil.getPortletId(
@@ -94,9 +93,7 @@ public class FieldSetsPortletConfigurationIcon
 			"showAncestorScopes", Boolean.TRUE.toString()
 		).setParameter(
 			"showManageTemplates", Boolean.TRUE.toString()
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	@Override

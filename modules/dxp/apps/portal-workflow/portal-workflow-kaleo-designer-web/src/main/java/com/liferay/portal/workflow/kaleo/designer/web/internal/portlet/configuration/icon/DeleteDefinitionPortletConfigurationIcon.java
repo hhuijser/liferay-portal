@@ -34,7 +34,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoDefinitionVersion;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -92,7 +91,7 @@ public class DeleteDefinitionPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
 				portletRequest, KaleoDesignerPortletKeys.CONTROL_PANEL_WORKFLOW,
 				PortletRequest.ACTION_PHASE)
@@ -102,9 +101,7 @@ public class DeleteDefinitionPortletConfigurationIcon
 			"name", portletRequest.getParameter("name")
 		).setParameter(
 			"version", portletRequest.getParameter("draftVersion")
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	@Override

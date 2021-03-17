@@ -43,7 +43,6 @@ import java.util.function.Function;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -108,7 +107,7 @@ public class OAuth2ControllerFactory {
 	}
 
 	private String _getRenderURL(PortletRequest portletRequest) {
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_portletURLFactory.create(
 				portletRequest, _portal.getPortletId(portletRequest),
 				PortletRequest.RENDER_PHASE)
@@ -116,9 +115,7 @@ public class OAuth2ControllerFactory {
 			"repositoryId", ParamUtil.getString(portletRequest, "repositoryId")
 		).setParameter(
 			"folderId", ParamUtil.getString(portletRequest, "folderId")
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	private String _translate(Locale locale, String key) {

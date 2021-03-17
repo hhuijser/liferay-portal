@@ -105,13 +105,11 @@ public class KaleoFormsViewRecordsDisplayContext {
 	}
 
 	public String getClearResultsURL() throws PortletException {
-		PortletURL clearResultsURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), _renderResponse)
 		).setParameter(
 			"keywords", StringPool.BLANK
-		).build();
-
-		return clearResultsURL.toString();
+		).buildString();
 	}
 
 	public String getColumnName(DDMFormField formField) {
@@ -375,7 +373,7 @@ public class KaleoFormsViewRecordsDisplayContext {
 	}
 
 	public String getSearchActionURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/admin/view_kaleo_process.jsp"
@@ -383,9 +381,7 @@ public class KaleoFormsViewRecordsDisplayContext {
 			ParamUtil.getString(_renderRequest, "redirect")
 		).setParameter(
 			"kaleoProcessId", _kaleoProcess.getKaleoProcessId()
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	public String getSearchContainerId() {
@@ -393,7 +389,7 @@ public class KaleoFormsViewRecordsDisplayContext {
 	}
 
 	public String getSortingURL() throws Exception {
-		PortletURL sortingURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), _renderResponse)
 		).setParameter(
 			"orderByType",
@@ -403,9 +399,7 @@ public class KaleoFormsViewRecordsDisplayContext {
 
 				return orderByType.equals("asc") ? "desc" : "asc";
 			}
-		).build();
-
-		return sortingURL.toString();
+		).buildString();
 	}
 
 	public int getTotalItems() throws Exception {

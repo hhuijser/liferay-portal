@@ -212,23 +212,21 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 			"commerceAccountId", commerceAccountId
 		).build();
 
-		PortletURL backURL = PortletURLBuilder.create(
-			PortletProviderUtil.getPortletURL(
-				httpServletRequest, Organization.class.getName(),
-				PortletProvider.Action.MANAGE)
-		).setMVCRenderCommandName(
-			"/commerce_organization/view_commerce_organization"
-		).setParameter(
-			"organizationId", organizationId
-		).setParameter(
-			"screenNavigationCategoryKey",
-			CommerceOrganizationScreenNavigationConstants.
-				CATEGORY_KEY_ORGANIZATION_ACCOUNTS
-		).build();
-
 		viewURL.setParameter(
 			PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL",
-			backURL.toString());
+			PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(
+					httpServletRequest, Organization.class.getName(),
+					PortletProvider.Action.MANAGE)
+			).setMVCRenderCommandName(
+				"/commerce_organization/view_commerce_organization"
+			).setParameter(
+				"organizationId", organizationId
+			).setParameter(
+				"screenNavigationCategoryKey",
+				CommerceOrganizationScreenNavigationConstants.
+					CATEGORY_KEY_ORGANIZATION_ACCOUNTS
+			).buildString());
 
 		return viewURL.toString();
 	}

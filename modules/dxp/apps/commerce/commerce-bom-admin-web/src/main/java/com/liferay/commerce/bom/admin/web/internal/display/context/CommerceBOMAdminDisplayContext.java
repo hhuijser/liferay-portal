@@ -193,7 +193,7 @@ public class CommerceBOMAdminDisplayContext {
 				Collections.<ItemSelectorReturnType>singletonList(
 					new UUIDItemSelectorReturnType()));
 
-		PortletURL itemSelectorURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_itemSelector.getItemSelectorURL(
 				requestBackedPortletURLFactory,
 				"commerceApplicationModelsSelectItem",
@@ -201,9 +201,7 @@ public class CommerceBOMAdminDisplayContext {
 		).setParameter(
 			"checkedCommerceApplicationModelIds",
 			StringUtil.merge(getCheckedCommerceApplicationModelIds())
-		).build();
-
-		return itemSelectorURL.toString();
+		).buildString();
 	}
 
 	public CommerceBOMDefinition getCommerceBOMDefinition()

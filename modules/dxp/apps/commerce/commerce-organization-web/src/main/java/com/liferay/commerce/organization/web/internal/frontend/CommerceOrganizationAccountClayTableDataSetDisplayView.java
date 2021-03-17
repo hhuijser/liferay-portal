@@ -54,8 +54,6 @@ import com.liferay.portal.kernel.webserver.WebServerServletTokenUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.portlet.PortletURL;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
@@ -204,15 +202,13 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 			HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL viewURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletProviderUtil.getPortletURL(
 				httpServletRequest, CommerceAccount.class.getName(),
 				PortletProvider.Action.VIEW)
 		).setParameter(
 			"commerceAccountId", commerceAccountId
-		).build();
-
-		viewURL.setParameter(
+		).setParameter(
 			PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL",
 			PortletURLBuilder.create(
 				PortletProviderUtil.getPortletURL(
@@ -226,9 +222,8 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 				"screenNavigationCategoryKey",
 				CommerceOrganizationScreenNavigationConstants.
 					CATEGORY_KEY_ORGANIZATION_ACCOUNTS
-			).buildString());
-
-		return viewURL.toString();
+			).buildString()
+		).buildString();
 	}
 
 	private String _getDefaultBillingCommerceAddress(

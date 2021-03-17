@@ -1861,10 +1861,10 @@ public class PortalImpl implements Portal {
 				PortletURLFactoryUtil.create(
 					httpServletRequest, PortletKeys.LOGIN, plid,
 					PortletRequest.RENDER_PHASE)
-			).setParameter(
-				"saveLastPath", Boolean.FALSE.toString()
 			).setMVCRenderCommandName(
 				"/login/create_account"
+			).setParameter(
+				"saveLastPath", Boolean.FALSE.toString()
 			).setPortletMode(
 				PortletMode.VIEW
 			).setWindowState(

@@ -571,7 +571,7 @@ public abstract class BaseOpenSearchImpl implements OpenSearch {
 			long scopeGroupId)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(
 				httpServletRequest, portletId,
 				getPlid(httpServletRequest, portletId, scopeGroupId),
@@ -581,8 +581,6 @@ public abstract class BaseOpenSearchImpl implements OpenSearch {
 		).setWindowState(
 			WindowState.MAXIMIZED
 		).build();
-
-		return portletURL;
 	}
 
 	protected PortletURL getPortletURL(

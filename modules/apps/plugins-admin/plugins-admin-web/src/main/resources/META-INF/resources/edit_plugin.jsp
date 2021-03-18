@@ -133,12 +133,12 @@ renderResponse.setTitle(title);
 												<%
 												PortletURL editURL = PortletURLBuilder.create(
 													PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.MANAGE)
+												).setRedirect(
+													currentURL
 												).setParameter(
 													Constants.CMD, "edit"
 												).setParameter(
 													"tabs1", "roles"
-												).setRedirect(
-													currentURL
 												).setParameter(
 													"roleId", String.valueOf(role.getRoleId())
 												).setParameter(

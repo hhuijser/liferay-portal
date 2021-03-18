@@ -71,10 +71,10 @@ List<Layout> mergeFailFriendlyURLLayouts = SitesUtil.getMergeFailFriendlyURLLayo
 			<%
 			PortletURL editLayoutsURL = PortletURLBuilder.create(
 				PortletProviderUtil.getPortletURL(request, Layout.class.getName(), PortletProvider.Action.VIEW)
-			).setParameter(
-				"tabs1", layoutSet.isPrivateLayout() ? "private-pages" : "public-pages"
 			).setRedirect(
 				redirect
+			).setParameter(
+				"tabs1", layoutSet.isPrivateLayout() ? "private-pages" : "public-pages"
 			).setParameter(
 				"groupId", String.valueOf(groupId)
 			).build();

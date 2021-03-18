@@ -44,12 +44,12 @@ if (!tabs1.equals("mentions") && !tabs1.equals("timeline")) {
 
 PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setWindowState(
-	WindowState.NORMAL
 ).setMVCPath(
 	"/microblogs/view.jsp"
 ).setParameter(
 	"tabs1", tabs1
+).setWindowState(
+	WindowState.NORMAL
 ).build();
 %>
 
@@ -151,14 +151,14 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 
 	PortletURL microblogsEntriesURL = PortletURLBuilder.createRenderURL(
 		renderResponse
-	).setWindowState(
-		LiferayWindowState.EXCLUSIVE
 	).setMVCPath(
 		"/microblogs/view.jsp"
 	).setParameter(
 		"tabs1", tabs1
 	).setParameter(
 		"cur", String.valueOf(cur)
+	).setWindowState(
+		LiferayWindowState.EXCLUSIVE
 	).build();
 
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, results);

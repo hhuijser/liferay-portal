@@ -132,9 +132,9 @@ if (group.isStaged() && group.isStagedRemotely()) {
 
 PortletURL portletURL = PortletURLBuilder.createActionURL(
 	renderResponse
-).setActionName(
-	"/staging_processes/publish_layouts"
 ).setMVCRenderCommandName(
+	"/staging_processes/publish_layouts"
+).setActionName(
 	"/staging_processes/publish_layouts"
 ).setParameter(
 	"stagingGroupId", String.valueOf(stagingGroupId)

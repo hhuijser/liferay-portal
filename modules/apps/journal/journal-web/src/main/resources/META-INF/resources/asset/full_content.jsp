@@ -43,10 +43,10 @@ JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribu
 		renderResponse
 	).setMVCPath(
 		"/view_content.jsp"
-	).setParameter(
-		"cur", String.valueOf(cur)
 	).setRedirect(
 		pageRedirect
+	).setParameter(
+		"cur", String.valueOf(cur)
 	).setParameter(
 		"type", assetRendererFactory.getType()
 	).setParameter(

@@ -21,10 +21,10 @@ User selUser = PortalUtil.getSelectedUser(request, false);
 
 PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setParameter(
-	"p_u_i_d", String.valueOf(selUser.getUserId())
 ).setMVCPath(
 	"/account_users_admin/edit_account_user.jsp"
+).setParameter(
+	"p_u_i_d", String.valueOf(selUser.getUserId())
 ).build();
 %>
 

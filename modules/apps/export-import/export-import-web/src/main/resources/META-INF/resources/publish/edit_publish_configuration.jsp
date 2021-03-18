@@ -93,9 +93,9 @@ if (group.isStaged() && group.isStagedRemotely()) {
 
 PortletURL portletURL = PortletURLBuilder.createActionURL(
 	renderResponse
-).setActionName(
-	"/export_import/publish_layouts"
 ).setMVCRenderCommandName(
+	"/export_import/publish_layouts"
+).setActionName(
 	"/export_import/publish_layouts"
 ).setParameter(
 	"closeRedirect", closeRedirect

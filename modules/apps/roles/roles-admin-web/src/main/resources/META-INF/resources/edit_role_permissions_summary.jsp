@@ -177,6 +177,8 @@ for (int i = 0; i < results.size(); i++) {
 		liferayPortletResponse
 	).setMVCPath(
 		"/edit_role_permissions.jsp"
+	).setRedirect(
+		permissionsAllURL.toString()
 	).setParameter(
 		Constants.CMD, Constants.EDIT
 	).setParameter(
@@ -185,8 +187,6 @@ for (int i = 0; i < results.size(); i++) {
 		"tabs2", "roles"
 	).setParameter(
 		"roleId", String.valueOf(role.getRoleId())
-	).setRedirect(
-		permissionsAllURL.toString()
 	).setParameter(
 		"portletResource", curPortletName
 	).build();

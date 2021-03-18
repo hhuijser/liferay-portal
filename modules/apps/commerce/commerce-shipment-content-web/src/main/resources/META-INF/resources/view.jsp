@@ -34,10 +34,10 @@ CommerceShipmentContentDisplayContext commerceShipmentContentDisplayContext = (C
 		<%
 		PortletURL rowURL = PortletURLBuilder.createRenderURL(
 			renderResponse
-		).setRedirect(
-			currentURL
 		).setMVCRenderCommandName(
 			"/commerce_shipment_content/view_commerce_shipment_items"
+		).setRedirect(
+			currentURL
 		).setParameter(
 			"commerceShipmentId", String.valueOf(commerceShipment.getCommerceShipmentId())
 		).build();

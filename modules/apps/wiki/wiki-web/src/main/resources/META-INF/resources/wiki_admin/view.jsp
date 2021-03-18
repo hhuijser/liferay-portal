@@ -158,10 +158,10 @@ WikiNodesManagementToolbarDisplayContext wikiNodesManagementToolbarDisplayContex
 							renderResponse
 						).setMVCRenderCommandName(
 							"/wiki/view_pages"
-						).setParameter(
-							"navigation", "all-pages"
 						).setRedirect(
 							currentURL
+						).setParameter(
+							"navigation", "all-pages"
 						).setParameter(
 							"nodeId", String.valueOf(node.getNodeId())
 						).build();

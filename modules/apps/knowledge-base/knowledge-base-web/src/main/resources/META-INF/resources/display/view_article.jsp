@@ -44,10 +44,10 @@ String[] searchKeywords = (String[])renderRequest.getAttribute(KBWebKeys.KNOWLED
 
 			PortletURL portletURL = PortletURLBuilder.createLiferayPortletURL(
 				liferayPortletResponse, searchPortletId, PortletRequest.RENDER_PHASE
-			).setParameter(
-				"struts_action", "/search/search"
 			).setRedirect(
 				currentURL
+			).setParameter(
+				"struts_action", "/search/search"
 			).setParameter(
 				"keywords", StringUtil.merge(searchKeywords, StringPool.SPACE)
 			).setPortletMode(

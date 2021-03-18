@@ -29,14 +29,14 @@ request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
 
 PortletURL microblogsEntriesURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setWindowState(
-	WindowState.NORMAL
 ).setMVCPath(
 	"/microblogs/view.jsp"
 ).setParameter(
 	"tabs1", tabs1
 ).setParameter(
 	"cur", String.valueOf(cur)
+).setWindowState(
+	WindowState.NORMAL
 ).build();
 
 request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);

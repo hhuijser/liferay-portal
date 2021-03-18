@@ -22,12 +22,12 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WikiWebKeys.WIKI_PAGE);
 
 PortletURL portletURL = PortletURLBuilder.createActionURL(
 	renderResponse
+).setActionName(
+	"/wiki/view"
 ).setParameter(
 	"nodeId", String.valueOf(node.getNodeId())
 ).setParameter(
 	"title", wikiPage.getTitle()
-).setActionName(
-	"/wiki/view"
 ).build();
 
 PortalUtil.addPortletBreadcrumbEntry(request, wikiPage.getTitle(), portletURL.toString());

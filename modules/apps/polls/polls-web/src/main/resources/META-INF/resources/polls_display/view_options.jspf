@@ -61,10 +61,10 @@ boolean showIconsActions = themeDisplay.isSignedIn() && !layout.isLayoutPrototyp
 			<%
 			PortletURL editQuestionURL = PortletURLBuilder.create(
 				PortalUtil.getControlPanelPortletURL(request, themeDisplay.getScopeGroup(), PollsPortletKeys.POLLS, 0, plid, PortletRequest.RENDER_PHASE)
-			).setParameter(
-				"struts_action", "/polls/edit_question"
 			).setRedirect(
 				redirectURL.toString()
+			).setParameter(
+				"struts_action", "/polls/edit_question"
 			).setParameter(
 				"referringPortletResource", portletDisplay.getId()
 			).setParameter(

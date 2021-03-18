@@ -51,24 +51,24 @@ if (tabs2.equals("open")) {
 
 PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setWindowState(
-	WindowState.NORMAL
 ).setParameter(
 	"tabs1", tabs1
 ).setParameter(
 	"tabs2", tabs2
+).setWindowState(
+	WindowState.NORMAL
 ).build();
 
 PortletURL taskListURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setWindowState(
-	LiferayWindowState.EXCLUSIVE
 ).setMVCPath(
 	"/tasks/view_tasks.jsp"
 ).setParameter(
 	"tabs1", tabs1
 ).setParameter(
 	"tabs2", tabs2
+).setWindowState(
+	LiferayWindowState.EXCLUSIVE
 ).build();
 %>
 
@@ -95,12 +95,12 @@ PortletURL taskListURL = PortletURLBuilder.createRenderURL(
 		if (TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE)) {
 			PortletURL rowURL = PortletURLBuilder.createRenderURL(
 				renderResponse
-			).setWindowState(
-				LiferayWindowState.POP_UP
 			).setMVCPath(
 				"/tasks/view_task.jsp"
 			).setParameter(
 				"tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId())
+			).setWindowState(
+				LiferayWindowState.POP_UP
 			).build();
 
 			rowHREF = rowURL.toString();

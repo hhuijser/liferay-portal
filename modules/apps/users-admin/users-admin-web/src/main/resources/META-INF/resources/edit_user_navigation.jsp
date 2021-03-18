@@ -53,10 +53,10 @@ String redirect = ParamUtil.getString(request, "redirect");
 if (Validator.isNull(redirect)) {
 	PortletURL redirectURL = PortletURLBuilder.createRenderURL(
 		renderResponse
-	).setParameter(
-		"p_u_i_d", String.valueOf(selUserId)
 	).setMVCRenderCommandName(
 		"/users_admin/edit_user"
+	).setParameter(
+		"p_u_i_d", String.valueOf(selUserId)
 	).setParameter(
 		"backURL", backURL
 	).build();

@@ -21,9 +21,9 @@
 	<%
 	PortletURL portletURL = PortletURLBuilder.create(
 		PortletURLFactoryUtil.create(request, ChangesetPortletKeys.CHANGESET, PortletRequest.ACTION_PHASE)
-	).setActionName(
-		"exportImportEntity"
 	).setMVCRenderCommandName(
+		"exportImportEntity"
+	).setActionName(
 		"exportImportEntity"
 	).setParameter(
 		"cmd", Constants.EXPORT

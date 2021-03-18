@@ -122,12 +122,12 @@ else {
 					"/edit_workflow_task.jsp"
 				).setParameter(
 					"workflowTaskId", String.valueOf(workflowTask.getWorkflowTaskId())
+				).setParameter(
+					"closeRedirect", layoutURL
 				).setPortletMode(
 					PortletMode.VIEW
 				).setWindowState(
 					LiferayWindowState.POP_UP
-				).setParameter(
-					"closeRedirect", layoutURL
 				).build();
 				%>
 

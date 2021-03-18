@@ -59,10 +59,10 @@ String className = ParamUtil.getString(request, "className", User.class.getName(
 
 PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setParameter(
-	"tabs1", tabs1
 ).setRedirect(
 	redirect
+).setParameter(
+	"tabs1", tabs1
 ).setParameter(
 	"className", className
 ).setParameter(

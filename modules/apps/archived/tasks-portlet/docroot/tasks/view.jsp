@@ -25,12 +25,12 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "open");
 
 PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setWindowState(
-	WindowState.NORMAL
 ).setParameter(
 	"tabs1", tabs1
 ).setParameter(
 	"tabs2", tabs2
+).setWindowState(
+	WindowState.NORMAL
 ).build();
 %>
 

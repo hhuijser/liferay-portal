@@ -129,10 +129,10 @@ PortletURL simplePublishURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/export_import/publish_layouts_simple"
-).setParameter(
-	Constants.CMD, "localPublishing ? Constants.PUBLISH_TO_LIVE : Constants.PUBLISH_TO_REMOTE"
 ).setRedirect(
 	simplePublishRedirectURL.toString()
+).setParameter(
+	Constants.CMD, "localPublishing ? Constants.PUBLISH_TO_LIVE : Constants.PUBLISH_TO_REMOTE"
 ).setParameter(
 	"lastImportUserName", user.getFullName()
 ).setParameter(

@@ -14,10 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
-import com.liferay.petra.string.CharPool;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
@@ -52,7 +49,7 @@ public class OSGiResourceBuilderCheck extends BaseCheck {
 				continue;
 			}
 
-			String classOrVariableName = _getClassOrVariableName(
+			String classOrVariableName = getClassOrVariableName(
 				methodCallDetailAST);
 
 			if (classOrVariableName == null) {
@@ -75,45 +72,6 @@ public class OSGiResourceBuilderCheck extends BaseCheck {
 
 			log(methodCallDetailAST, _MSG_AVOID_METHOD_CALL);
 		}
-	}
-
-	private String _getClassOrVariableName(DetailAST methodCallDetailAST) {
-		DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
-			TokenTypes.DOT);
-
-		if (dotDetailAST == null) {
-			return null;
-		}
-
-		DetailAST firstChildDetailAST = dotDetailAST.getFirstChild();
-
-		FullIdent fullIdent = null;
-
-		if (firstChildDetailAST.getType() == TokenTypes.LITERAL_NEW) {
-			fullIdent = FullIdent.createFullIdent(
-				firstChildDetailAST.getFirstChild());
-		}
-		else {
-			fullIdent = FullIdent.createFullIdent(dotDetailAST);
-		}
-
-		firstChildDetailAST = firstChildDetailAST.getFirstChild();
-
-		if ((firstChildDetailAST != null) &&
-			(firstChildDetailAST.getType() == TokenTypes.DOT)) {
-
-			return fullIdent.getText();
-		}
-
-		String s = fullIdent.getText();
-
-		int x = s.lastIndexOf(CharPool.PERIOD);
-
-		if (x == -1) {
-			return s;
-		}
-
-		return s.substring(0, x);
 	}
 
 	private static final String _MSG_AVOID_METHOD_CALL = "method.call.avoid";

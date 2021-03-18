@@ -33,7 +33,6 @@ import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
@@ -112,7 +111,7 @@ public class ChainingCheck extends BaseCheck {
 			return;
 		}
 
-		String classOrVariableName = _getClassOrVariableName(
+		String classOrVariableName = getClassOrVariableName(
 			methodCallDetailAST);
 
 		if (!Objects.equals(classOrVariableName, "Optional") &&
@@ -303,7 +302,7 @@ public class ChainingCheck extends BaseCheck {
 				chainedMethodNames.get(chainedMethodNames.size() - 1),
 				"build") ||
 			!Objects.equals(
-				_getClassOrVariableName(methodCallDetailAST), "Response")) {
+				getClassOrVariableName(methodCallDetailAST), "Response")) {
 
 			return;
 		}
@@ -338,7 +337,7 @@ public class ChainingCheck extends BaseCheck {
 	private void _checkRequiredChaining(
 		DetailAST methodCallDetailAST, List<String> chainedMethodNames) {
 
-		String classOrVariableName = _getClassOrVariableName(
+		String classOrVariableName = getClassOrVariableName(
 			methodCallDetailAST);
 
 		if (classOrVariableName == null) {
@@ -437,7 +436,7 @@ public class ChainingCheck extends BaseCheck {
 		}
 
 		if (classOrVariableName.equals(
-				_getClassOrVariableName(nextMethodCallDetailAST)) &&
+				getClassOrVariableName(nextMethodCallDetailAST)) &&
 			!Objects.equals(getMethodName(nextMethodCallDetailAST), "remove")) {
 
 			log(
@@ -491,45 +490,6 @@ public class ChainingCheck extends BaseCheck {
 
 			chainedMethodNames.add(getMethodName(methodCallDetailAST));
 		}
-	}
-
-	private String _getClassOrVariableName(DetailAST methodCallDetailAST) {
-		DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
-			TokenTypes.DOT);
-
-		if (dotDetailAST == null) {
-			return null;
-		}
-
-		DetailAST firstChildDetailAST = dotDetailAST.getFirstChild();
-
-		FullIdent fullIdent = null;
-
-		if (firstChildDetailAST.getType() == TokenTypes.LITERAL_NEW) {
-			fullIdent = FullIdent.createFullIdent(
-				firstChildDetailAST.getFirstChild());
-		}
-		else {
-			fullIdent = FullIdent.createFullIdent(dotDetailAST);
-		}
-
-		firstChildDetailAST = firstChildDetailAST.getFirstChild();
-
-		if ((firstChildDetailAST != null) &&
-			(firstChildDetailAST.getType() == TokenTypes.DOT)) {
-
-			return fullIdent.getText();
-		}
-
-		String s = fullIdent.getText();
-
-		int x = s.lastIndexOf(CharPool.PERIOD);
-
-		if (x == -1) {
-			return s;
-		}
-
-		return s.substring(0, x);
 	}
 
 	private DetailAST _getGlobalVariableDefinitonDetailAST(
@@ -763,7 +723,7 @@ public class ChainingCheck extends BaseCheck {
 			return false;
 		}
 
-		String classOrVariableName = _getClassOrVariableName(
+		String classOrVariableName = getClassOrVariableName(
 			methodCallDetailAST);
 
 		if (classOrVariableName != null) {

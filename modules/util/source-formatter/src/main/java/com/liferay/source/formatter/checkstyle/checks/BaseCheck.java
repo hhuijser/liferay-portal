@@ -153,6 +153,45 @@ public abstract class BaseCheck extends AbstractCheck {
 			true);
 	}
 
+	protected String getClassOrVariableName(DetailAST methodCallDetailAST) {
+		DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
+			TokenTypes.DOT);
+
+		if (dotDetailAST == null) {
+			return null;
+		}
+
+		DetailAST firstChildDetailAST = dotDetailAST.getFirstChild();
+
+		FullIdent fullIdent = null;
+
+		if (firstChildDetailAST.getType() == TokenTypes.LITERAL_NEW) {
+			fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST.getFirstChild());
+		}
+		else {
+			fullIdent = FullIdent.createFullIdent(dotDetailAST);
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if ((firstChildDetailAST != null) &&
+			(firstChildDetailAST.getType() == TokenTypes.DOT)) {
+
+			return fullIdent.getText();
+		}
+
+		String s = fullIdent.getText();
+
+		int x = s.lastIndexOf(CharPool.PERIOD);
+
+		if (x == -1) {
+			return s;
+		}
+
+		return s.substring(0, x);
+	}
+
 	protected List<DetailAST> getDependentIdentDetailASTList(
 		DetailAST variableDefinitionDetailAST, int lineNumber) {
 

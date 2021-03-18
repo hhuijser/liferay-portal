@@ -20,6 +20,7 @@
 CommerceAccountDisplayContext commerceAccountDisplayContext = (CommerceAccountDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceAccount commerceAccount = commerceAccountDisplayContext.getCurrentCommerceAccount();
+
 User selectedUser = commerceAccountDisplayContext.getSelectedUser();
 
 Map<String, String> contextParams = HashMapBuilder.<String, String>put(

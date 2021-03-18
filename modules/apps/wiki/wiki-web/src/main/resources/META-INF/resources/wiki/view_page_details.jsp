@@ -49,6 +49,7 @@ PortletURL editPageURL = PortletURLBuilder.createRenderURL(
 ).build();
 
 PortalUtil.addPortletBreadcrumbEntry(request, wikiPage.getTitle(), viewPageURL.toString());
+
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "details"), currentURL);
 %>
 

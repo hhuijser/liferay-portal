@@ -39,12 +39,17 @@ List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(cl
 		<span class="heading-end">
 
 			<%
-			PortletURL editURL = liferayPortletResponse.createRenderURL();
-
-			editURL.setParameter("mvcPath", "/common/edit_email_address.jsp");
-			editURL.setParameter("redirect", currentURL);
-			editURL.setParameter("className", className);
-			editURL.setParameter("classPK", String.valueOf(classPK));
+			PortletURL editURL = PortletURLBuilder.createRenderURL(
+				liferayPortletResponse
+			).setMVCPath(
+				"/common/edit_email_address.jsp"
+			).setRedirect(
+				currentURL
+			).setParameter(
+				"className", className
+			).setParameter(
+				"classPK", String.valueOf(classPK)
+			).build();
 			%>
 
 			<liferay-ui:icon

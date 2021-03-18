@@ -70,13 +70,19 @@ String treeId = "layoutsExportTree" + liveGroupId + privateLayout;
 
 String displayStyle = ParamUtil.getString(request, "displayStyle");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/export_import/view_export_layouts");
-portletURL.setParameter("groupId", String.valueOf(groupId));
-portletURL.setParameter("liveGroupId", String.valueOf(liveGroupId));
-portletURL.setParameter("privateLayout", String.valueOf(privateLayout));
-portletURL.setParameter("displayStyle", displayStyle);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/export_import/view_export_layouts"
+).setParameter(
+	"groupId", String.valueOf(groupId)
+).setParameter(
+	"liveGroupId", String.valueOf(liveGroupId)
+).setParameter(
+	"privateLayout", String.valueOf(privateLayout)
+).setParameter(
+	"displayStyle", displayStyle
+).build();
 
 if (Validator.isBlank(backURL)) {
 	backURL = portletURL.toString();

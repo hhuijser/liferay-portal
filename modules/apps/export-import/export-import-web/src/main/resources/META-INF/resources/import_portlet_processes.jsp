@@ -19,9 +19,11 @@
 <%
 long groupId = ParamUtil.getLong(request, "groupId", themeDisplay.getScopeGroupId());
 
-PortletURL portletURL = currentURLObj;
-
-portletURL.setParameter("tabs3", "current-and-previous");
+PortletURL portletURL = PortletURLBuilder.create(
+	currentURLObj
+).setParameter(
+	"tabs3", "current-and-previous"
+).build();
 
 String orderByCol = ParamUtil.getString(request, "orderByCol");
 String orderByType = ParamUtil.getString(request, "orderByType");

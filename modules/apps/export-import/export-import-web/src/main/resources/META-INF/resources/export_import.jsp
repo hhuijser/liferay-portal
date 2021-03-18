@@ -19,15 +19,19 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "export");
 
-String redirect = ParamUtil.getString(request, "redirect");
 String returnToFullPageURL = ParamUtil.getString(request, "returnToFullPageURL");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/export_import/export_import");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("returnToFullPageURL", returnToFullPageURL);
-portletURL.setParameter("portletResource", portletResource);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/export_import/export_import"
+).setRedirect(
+	ParamUtil.getString(request, "redirect")
+).setParameter(
+	"returnToFullPageURL", returnToFullPageURL
+).setParameter(
+	"portletResource", portletResource
+).build();
 %>
 
 <c:choose>

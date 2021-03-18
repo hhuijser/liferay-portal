@@ -36,6 +36,7 @@ page import="com.liferay.commerce.exception.CommerceAddressStreetException" %><%
 page import="com.liferay.commerce.exception.CommerceAddressZipException" %><%@
 page import="com.liferay.commerce.exception.NoSuchAddressException" %><%@
 page import="com.liferay.commerce.model.CommerceAddress" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@

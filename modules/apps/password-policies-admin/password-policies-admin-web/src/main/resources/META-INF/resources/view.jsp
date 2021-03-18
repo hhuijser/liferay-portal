@@ -99,15 +99,17 @@ PortletURL portletURL = viewPasswordPoliciesManagementToolbarDisplayContext.getP
 				String rowHREF = null;
 
 				if (passwordPolicyDisplayContext.hasPermission(ActionKeys.UPDATE, passwordPolicy.getPasswordPolicyId())) {
-					PortletURL rowURL = renderResponse.createRenderURL();
-
-					rowURL.setParameter("mvcPath", "/edit_password_policy.jsp");
-
 					PortletURL redirectURL = passwordPolicySearchContainer.getIteratorURL();
 
-					rowURL.setParameter("redirect", redirectURL.toString());
-
-					rowURL.setParameter("passwordPolicyId", String.valueOf(passwordPolicy.getPasswordPolicyId()));
+					PortletURL rowURL = PortletURLBuilder.createRenderURL(
+						renderResponse
+					).setMVCPath(
+						"/edit_password_policy.jsp"
+					).setRedirect(
+						redirectURL.toString()
+					).setParameter(
+						"passwordPolicyId", String.valueOf(passwordPolicy.getPasswordPolicyId())
+					).build();
 
 					rowHREF = rowURL.toString();
 				}

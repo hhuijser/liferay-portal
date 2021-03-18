@@ -34,6 +34,7 @@ page import="com.liferay.journal.web.internal.dao.search.JournalResultRowSplitte
 page import="com.liferay.journal.web.internal.display.context.JournalArticleItemSelectorViewDisplayContext" %><%@
 page import="com.liferay.journal.web.internal.display.context.JournalArticleItemSelectorViewManagementToolbarDisplayContext" %><%@
 page import="com.liferay.journal.web.internal.servlet.taglib.clay.JournalArticleItemSelectorVerticalCard" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.json.JSONUtil" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@

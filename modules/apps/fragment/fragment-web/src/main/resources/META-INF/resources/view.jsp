@@ -107,10 +107,13 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 											<li class="nav-item">
 
 												<%
-												PortletURL fragmentCollectionURL = renderResponse.createRenderURL();
-
-												fragmentCollectionURL.setParameter("mvcRenderCommandName", "/fragment/view");
-												fragmentCollectionURL.setParameter("fragmentCollectionKey", String.valueOf(fragmentCollectionContributor.getFragmentCollectionKey()));
+												PortletURL fragmentCollectionURL = PortletURLBuilder.createRenderURL(
+													renderResponse
+												).setMVCRenderCommandName(
+													"/fragment/view"
+												).setParameter(
+													"fragmentCollectionKey", String.valueOf(fragmentCollectionContributor.getFragmentCollectionKey())
+												).build();
 												%>
 
 												<a class="d-flex nav-link <%= Objects.equals(fragmentCollectionContributor.getFragmentCollectionKey(), fragmentDisplayContext.getFragmentCollectionKey()) ? "active" : StringPool.BLANK %>" href="<%= fragmentCollectionURL.toString() %>">
@@ -133,10 +136,13 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 											<li class="nav-item">
 
 												<%
-												PortletURL fragmentCollectionURL = renderResponse.createRenderURL();
-
-												fragmentCollectionURL.setParameter("mvcRenderCommandName", "/fragment/view");
-												fragmentCollectionURL.setParameter("fragmentCollectionId", String.valueOf(fragmentCollection.getFragmentCollectionId()));
+												PortletURL fragmentCollectionURL = PortletURLBuilder.createRenderURL(
+													renderResponse
+												).setMVCRenderCommandName(
+													"/fragment/view"
+												).setParameter(
+													"fragmentCollectionId", String.valueOf(fragmentCollection.getFragmentCollectionId())
+												).build();
 												%>
 
 												<a class="d-flex nav-link <%= (fragmentCollection.getFragmentCollectionId() == fragmentDisplayContext.getFragmentCollectionId()) ? "active" : StringPool.BLANK %>" href="<%= fragmentCollectionURL.toString() %>">
@@ -174,10 +180,13 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 											<li class="nav-item">
 
 												<%
-												PortletURL fragmentCollectionURL = renderResponse.createRenderURL();
-
-												fragmentCollectionURL.setParameter("mvcRenderCommandName", "/fragment/view");
-												fragmentCollectionURL.setParameter("fragmentCollectionId", String.valueOf(fragmentCollection.getFragmentCollectionId()));
+												PortletURL fragmentCollectionURL = PortletURLBuilder.createRenderURL(
+													renderResponse
+												).setMVCRenderCommandName(
+													"/fragment/view"
+												).setParameter(
+													"fragmentCollectionId", String.valueOf(fragmentCollection.getFragmentCollectionId())
+												).build();
 												%>
 
 												<a class="d-flex nav-link <%= (fragmentCollection.getFragmentCollectionId() == fragmentDisplayContext.getFragmentCollectionId()) ? "active" : StringPool.BLANK %>" href="<%= fragmentCollectionURL.toString() %>">
@@ -209,10 +218,13 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 											<li class="nav-item">
 
 												<%
-												PortletURL fragmentCollectionURL = renderResponse.createRenderURL();
-
-												fragmentCollectionURL.setParameter("mvcRenderCommandName", "/fragment/view");
-												fragmentCollectionURL.setParameter("fragmentCollectionId", String.valueOf(fragmentCollection.getFragmentCollectionId()));
+												PortletURL fragmentCollectionURL = PortletURLBuilder.createRenderURL(
+													renderResponse
+												).setMVCRenderCommandName(
+													"/fragment/view"
+												).setParameter(
+													"fragmentCollectionId", String.valueOf(fragmentCollection.getFragmentCollectionId())
+												).build();
 												%>
 
 												<a class="d-flex nav-link <%= (fragmentCollection.getFragmentCollectionId() == fragmentDisplayContext.getFragmentCollectionId()) ? "active" : StringPool.BLANK %>" href="<%= fragmentCollectionURL.toString() %>">

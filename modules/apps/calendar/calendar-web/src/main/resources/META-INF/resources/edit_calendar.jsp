@@ -50,13 +50,19 @@ if (Validator.isNotNull(calendarName) && !calendarName.equals(calendarResourceNa
 String calendarId = (calendar != null) ? String.valueOf(calendar.getCalendarId()) : StringPool.BLANK;
 String calendarResourceId = (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK;
 
-PortletURL navigationURL = renderResponse.createRenderURL();
-
-navigationURL.setParameter("mvcPath", "/edit_calendar.jsp");
-navigationURL.setParameter("redirect", redirect);
-navigationURL.setParameter("backURL", backURL);
-navigationURL.setParameter("calendarId", calendarId);
-navigationURL.setParameter("calendarResourceId", calendarResourceId);
+PortletURL navigationURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/edit_calendar.jsp"
+).setRedirect(
+	redirect
+).setParameter(
+	"backURL", backURL
+).setParameter(
+	"calendarId", calendarId
+).setParameter(
+	"calendarResourceId", calendarResourceId
+).build();
 %>
 
 <aui:nav-bar cssClass="navbar-collapse-absolute navbar-expand-md navbar-underline navigation-bar navigation-bar-light" markupView="lexicon">

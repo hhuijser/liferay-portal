@@ -72,6 +72,7 @@ page import="com.liferay.dynamic.data.mapping.web.internal.search.TemplateSearch
 page import="com.liferay.dynamic.data.mapping.web.internal.security.permission.resource.DDMStructurePermission" %><%@
 page import="com.liferay.dynamic.data.mapping.web.internal.security.permission.resource.DDMTemplatePermission" %><%@
 page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.CharPool" %><%@
 page import="com.liferay.petra.string.StringBundler" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@

@@ -32,11 +32,15 @@ CommerceShipmentContentDisplayContext commerceShipmentContentDisplayContext = (C
 	>
 
 		<%
-		PortletURL rowURL = renderResponse.createRenderURL();
-
-		rowURL.setParameter("redirect", currentURL);
-		rowURL.setParameter("mvcRenderCommandName", "/commerce_shipment_content/view_commerce_shipment_items");
-		rowURL.setParameter("commerceShipmentId", String.valueOf(commerceShipment.getCommerceShipmentId()));
+		PortletURL rowURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setRedirect(
+			currentURL
+		).setMVCRenderCommandName(
+			"/commerce_shipment_content/view_commerce_shipment_items"
+		).setParameter(
+			"commerceShipmentId", String.valueOf(commerceShipment.getCommerceShipmentId())
+		).build();
 		%>
 
 		<liferay-ui:search-container-column-text

@@ -22,11 +22,15 @@ String backURL = ParamUtil.getString(request, "backURL");
 long accountEntryId = ParamUtil.getLong(request, "accountEntryId");
 
 if (Validator.isNull(backURL)) {
-	PortletURL viewAccountRolesURL = renderResponse.createRenderURL();
-
-	viewAccountRolesURL.setParameter("mvcRenderCommandName", "/account_admin/edit_account_entry");
-	viewAccountRolesURL.setParameter("screenNavigationCategoryKey", AccountScreenNavigationEntryConstants.CATEGORY_KEY_ROLES);
-	viewAccountRolesURL.setParameter("accountEntryId", String.valueOf(accountEntryId));
+	PortletURL viewAccountRolesURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCRenderCommandName(
+		"/account_admin/edit_account_entry"
+	).setParameter(
+		"screenNavigationCategoryKey", AccountScreenNavigationEntryConstants.CATEGORY_KEY_ROLES
+	).setParameter(
+		"accountEntryId", String.valueOf(accountEntryId)
+	).build();
 
 	backURL = viewAccountRolesURL.toString();
 }
@@ -41,11 +45,15 @@ if (accountRole != null) {
 	role = accountRole.getRole();
 }
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/account_entries_admin/edit_account_role.jsp");
-portletURL.setParameter("accountEntryId", String.valueOf(accountEntryId));
-portletURL.setParameter("accountRoleId", String.valueOf(accountRoleId));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/account_entries_admin/edit_account_role.jsp"
+).setParameter(
+	"accountEntryId", String.valueOf(accountEntryId)
+).setParameter(
+	"accountRoleId", String.valueOf(accountRoleId)
+).build();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL);

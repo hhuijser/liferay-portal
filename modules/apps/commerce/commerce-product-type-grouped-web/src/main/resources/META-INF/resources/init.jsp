@@ -44,6 +44,7 @@ page import="com.liferay.commerce.product.type.grouped.model.CPDefinitionGrouped
 page import="com.liferay.commerce.product.type.grouped.util.GroupedCPTypeHelper" %><%@
 page import="com.liferay.commerce.product.type.grouped.web.internal.constants.GroupedCPTypeWebKeys" %><%@
 page import="com.liferay.commerce.product.type.grouped.web.internal.display.context.CPDefinitionGroupedEntriesDisplayContext" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@

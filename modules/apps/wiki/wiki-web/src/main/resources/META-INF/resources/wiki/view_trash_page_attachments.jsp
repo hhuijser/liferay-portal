@@ -55,13 +55,19 @@ WikiNode node = (WikiNode)request.getAttribute(WikiWebKeys.WIKI_NODE);
 	int attachmentsFileEntriesCount = wikiPage.getDeletedAttachmentsFileEntriesCount();
 	String emptyResultsMessage = "this-page-does-not-have-file-attachments-in-the-recycle-bin";
 
-	PortletURL iteratorURL = renderResponse.createRenderURL();
-
-	iteratorURL.setParameter("mvcRenderCommandName", "/wiki/view_trash_page_attachments");
-	iteratorURL.setParameter("redirect", currentURL);
-	iteratorURL.setParameter("nodeId", String.valueOf(wikiPage.getNodeId()));
-	iteratorURL.setParameter("title", wikiPage.getTitle());
-	iteratorURL.setWindowState(LiferayWindowState.POP_UP);
+	PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCRenderCommandName(
+		"/wiki/view_trash_page_attachments"
+	).setRedirect(
+		currentURL
+	).setParameter(
+		"nodeId", String.valueOf(wikiPage.getNodeId())
+	).setParameter(
+		"title", wikiPage.getTitle()
+	).setWindowState(
+		LiferayWindowState.POP_UP
+	).build();
 
 	boolean paginate = false;
 	boolean showPageAttachmentAction = true;

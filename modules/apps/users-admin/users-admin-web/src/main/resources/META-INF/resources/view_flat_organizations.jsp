@@ -32,9 +32,11 @@ else {
 
 String usersListView = (String)request.getAttribute("view.jsp-usersListView");
 
-PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
-
-portletURL.setParameter("displayStyle", displayStyle);
+PortletURL portletURL = PortletURLBuilder.create(
+	(PortletURL)request.getAttribute("view.jsp-portletURL")
+).setParameter(
+	"displayStyle", displayStyle
+).build();
 
 String keywords = ParamUtil.getString(request, "keywords");
 

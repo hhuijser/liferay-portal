@@ -47,10 +47,13 @@ else {
 		/>
 
 		<%
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/message_boards/select_category");
-		portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCRenderCommandName(
+			"/message_boards/select_category"
+		).setParameter(
+			"mbCategoryId", String.valueOf(categoryId)
+		).build();
 		%>
 
 		<liferay-ui:search-container

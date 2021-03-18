@@ -131,13 +131,19 @@ renderResponse.setTitle(title);
 											>
 
 												<%
-												PortletURL editURL = PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.MANAGE);
-
-												editURL.setParameter(Constants.CMD, "edit");
-												editURL.setParameter("tabs1", "roles");
-												editURL.setParameter("redirect", currentURL);
-												editURL.setParameter("roleId", String.valueOf(role.getRoleId()));
-												editURL.setParameter("portletResource", String.valueOf(portlet.getPortletId()));
+												PortletURL editURL = PortletURLBuilder.create(
+													PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.MANAGE)
+												).setParameter(
+													Constants.CMD, "edit"
+												).setParameter(
+													"tabs1", "roles"
+												).setRedirect(
+													currentURL
+												).setParameter(
+													"roleId", String.valueOf(role.getRoleId())
+												).setParameter(
+													"portletResource", String.valueOf(portlet.getPortletId())
+												).build();
 												%>
 
 												<liferay-ui:icon
@@ -187,12 +193,17 @@ renderResponse.setTitle(title);
 											>
 
 												<%
-												PortletURL editURL = PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.MANAGE);
-
-												editURL.setParameter(Constants.CMD, "edit");
-												editURL.setParameter("tabs1", "roles");
-												editURL.setParameter("roleId", String.valueOf(role.getRoleId()));
-												editURL.setParameter("portletResource", String.valueOf(portlet.getPortletId()));
+												PortletURL editURL = PortletURLBuilder.create(
+													PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.MANAGE)
+												).setParameter(
+													Constants.CMD, "edit"
+												).setParameter(
+													"tabs1", "roles"
+												).setParameter(
+													"roleId", String.valueOf(role.getRoleId())
+												).setParameter(
+													"portletResource", String.valueOf(portlet.getPortletId())
+												).build();
 												%>
 
 												<liferay-ui:icon

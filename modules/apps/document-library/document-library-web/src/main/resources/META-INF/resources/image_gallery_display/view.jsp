@@ -73,9 +73,11 @@ String[] mediaGalleryMimeTypes = dlPortletInstanceSettings.getMimeTypes();
 
 	boolean useAssetEntryQuery = (assetCategoryId > 0) || Validator.isNotNull(assetTagName);
 
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	portletURL.setParameter("mvcRenderCommandName", "/image_gallery_display/view");
+	PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCRenderCommandName(
+		"/image_gallery_display/view"
+	).build();
 
 	if (Validator.isNotNull(redirect)) {
 		portletURL.setParameter("redirect", redirect);

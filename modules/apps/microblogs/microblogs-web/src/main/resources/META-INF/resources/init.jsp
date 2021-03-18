@@ -35,6 +35,7 @@ page import="com.liferay.microblogs.web.internal.security.permission.resource.Mi
 page import="com.liferay.microblogs.web.internal.security.permission.resource.MicroblogsPermission" %><%@
 page import="com.liferay.microblogs.web.internal.util.MicroblogsWebUtil" %><%@
 page import="com.liferay.microblogs.web.internal.util.WebKeys" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@

@@ -22,9 +22,11 @@ String layoutSetBranchName = ParamUtil.getString(request, "layoutSetBranchName")
 
 portletDisplay.setShowBackIcon(true);
 
-PortletURL stagingProcessesURL = PortalUtil.getControlPanelPortletURL(request, StagingProcessesPortletKeys.STAGING_PROCESSES, PortletRequest.RENDER_PHASE);
-
-stagingProcessesURL.setParameter("mvcPath", "/view.jsp");
+PortletURL stagingProcessesURL = PortletURLBuilder.create(
+	PortalUtil.getControlPanelPortletURL(request, StagingProcessesPortletKeys.STAGING_PROCESSES, PortletRequest.RENDER_PHASE)
+).setMVCPath(
+	"/view.jsp"
+).build();
 
 portletDisplay.setURLBack(stagingProcessesURL.toString());
 

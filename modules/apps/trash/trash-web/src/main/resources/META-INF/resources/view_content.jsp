@@ -61,11 +61,15 @@ TrashHandler trashHandler = trashDisplayContext.getTrashHandler();
 
 							TrashRenderer curTrashRenderer = curTrashHandler.getTrashRenderer(curTrashedModel.getTrashEntryClassPK());
 
-							PortletURL rowURL = renderResponse.createRenderURL();
-
-							rowURL.setParameter("mvcPath", "/view_content.jsp");
-							rowURL.setParameter("classNameId", String.valueOf(PortalUtil.getClassNameId(curTrashRenderer.getClassName())));
-							rowURL.setParameter("classPK", String.valueOf(curTrashRenderer.getClassPK()));
+							PortletURL rowURL = PortletURLBuilder.createRenderURL(
+								renderResponse
+							).setMVCPath(
+								"/view_content.jsp"
+							).setParameter(
+								"classNameId", String.valueOf(PortalUtil.getClassNameId(curTrashRenderer.getClassName()))
+							).setParameter(
+								"classPK", String.valueOf(curTrashRenderer.getClassPK())
+							).build();
 							%>
 
 							<c:choose>

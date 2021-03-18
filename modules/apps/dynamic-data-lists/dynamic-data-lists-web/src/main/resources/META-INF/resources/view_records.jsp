@@ -96,14 +96,21 @@ if (!ddlDisplayContext.isAdminPortlet()) {
 				String href = StringPool.BLANK;
 
 				if (ddlViewRecordsDisplayContext.isEditable()) {
-					PortletURL rowURL = renderResponse.createRenderURL();
-
-					rowURL.setParameter("mvcPath", "/view_record.jsp");
-					rowURL.setParameter("redirect", currentURL);
-					rowURL.setParameter("recordId", String.valueOf(record.getRecordId()));
-					rowURL.setParameter("version", recordVersion.getVersion());
-					rowURL.setParameter("editable", String.valueOf(ddlViewRecordsDisplayContext.isEditable()));
-					rowURL.setParameter("formDDMTemplateId", String.valueOf(formDDMTemplateId));
+					PortletURL rowURL = PortletURLBuilder.createRenderURL(
+						renderResponse
+					).setMVCPath(
+						"/view_record.jsp"
+					).setRedirect(
+						currentURL
+					).setParameter(
+						"recordId", String.valueOf(record.getRecordId())
+					).setParameter(
+						"version", recordVersion.getVersion()
+					).setParameter(
+						"editable", String.valueOf(ddlViewRecordsDisplayContext.isEditable())
+					).setParameter(
+						"formDDMTemplateId", String.valueOf(formDDMTemplateId)
+					).build();
 
 					href = rowURL.toString();
 				}

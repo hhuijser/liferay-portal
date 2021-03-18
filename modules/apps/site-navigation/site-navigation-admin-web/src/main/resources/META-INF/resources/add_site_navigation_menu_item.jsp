@@ -28,9 +28,11 @@ SiteNavigationMenuItemType siteNavigationMenuItemType = siteNavigationMenuItemTy
 PortletURL addURL = siteNavigationMenuItemType.getAddURL(renderRequest, renderResponse);
 
 if (addURL == null) {
-	addURL = renderResponse.createActionURL();
-
-	addURL.setParameter(ActionRequest.ACTION_NAME, "/site_navigation_admin/add_site_navigation_menu_item");
+	addURL = PortletURLBuilder.createActionURL(
+		renderResponse
+	).setActionName(
+		"/site_navigation_admin/add_site_navigation_menu_item"
+	).build();
 }
 
 portletDisplay.setShowBackIcon(true);

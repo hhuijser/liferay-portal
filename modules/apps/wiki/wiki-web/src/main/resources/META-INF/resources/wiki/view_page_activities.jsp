@@ -30,10 +30,13 @@
 WikiNode node = (WikiNode)request.getAttribute(WikiWebKeys.WIKI_NODE);
 WikiPage wikiPage = (WikiPage)request.getAttribute(WikiWebKeys.WIKI_PAGE);
 
-PortletURL portletURL = renderResponse.createActionURL();
-
-portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-portletURL.setParameter("title", wikiPage.getTitle());
+PortletURL portletURL = PortletURLBuilder.createActionURL(
+	renderResponse
+).setParameter(
+	"nodeId", String.valueOf(node.getNodeId())
+).setParameter(
+	"title", wikiPage.getTitle()
+).build();
 
 PortalUtil.addPortletBreadcrumbEntry(request, wikiPage.getTitle(), portletURL.toString());
 
@@ -42,12 +45,17 @@ portletURL.setParameter("redirect", currentURL);
 
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "history"), portletURL.toString());
 
-PortletURL iteratorURL = renderResponse.createRenderURL();
-
-iteratorURL.setParameter("mvcRenderCommandName", "/wiki/view_page_activities");
-iteratorURL.setParameter("redirect", currentURL);
-iteratorURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-iteratorURL.setParameter("title", wikiPage.getTitle());
+PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/wiki/view_page_activities"
+).setRedirect(
+	currentURL
+).setParameter(
+	"nodeId", String.valueOf(node.getNodeId())
+).setParameter(
+	"title", wikiPage.getTitle()
+).build();
 %>
 
 <div class="page-activities">

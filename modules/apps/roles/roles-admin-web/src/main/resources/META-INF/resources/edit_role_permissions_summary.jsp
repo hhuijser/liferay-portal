@@ -23,14 +23,21 @@ String backURL = ParamUtil.getString(request, "backURL", redirect);
 
 Role role = (Role)request.getAttribute("edit_role_permissions.jsp-role");
 
-PortletURL permissionsAllURL = liferayPortletResponse.createRenderURL();
-
-permissionsAllURL.setParameter("mvcPath", "/edit_role_permissions.jsp");
-permissionsAllURL.setParameter(Constants.CMD, Constants.VIEW);
-permissionsAllURL.setParameter("tabs1", "define-permissions");
-permissionsAllURL.setParameter("tabs2", "roles");
-permissionsAllURL.setParameter("backURL", backURL);
-permissionsAllURL.setParameter("roleId", String.valueOf(role.getRoleId()));
+PortletURL permissionsAllURL = PortletURLBuilder.createRenderURL(
+	liferayPortletResponse
+).setMVCPath(
+	"/edit_role_permissions.jsp"
+).setParameter(
+	Constants.CMD, Constants.VIEW
+).setParameter(
+	"tabs1", "define-permissions"
+).setParameter(
+	"tabs2", "roles"
+).setParameter(
+	"backURL", backURL
+).setParameter(
+	"roleId", String.valueOf(role.getRoleId())
+).build();
 
 List<String> headerNames = new ArrayList<String>();
 
@@ -166,15 +173,23 @@ for (int i = 0; i < results.size(); i++) {
 	editPermissionsResourceURL.setParameter("redirect", permissionsAllURL.toString());
 	editPermissionsResourceURL.setParameter("portletResource", curPortletName);
 
-	PortletURL editPermissionsURL = liferayPortletResponse.createRenderURL();
-
-	editPermissionsURL.setParameter("mvcPath", "/edit_role_permissions.jsp");
-	editPermissionsURL.setParameter(Constants.CMD, Constants.EDIT);
-	editPermissionsURL.setParameter("tabs1", "define-permissions");
-	editPermissionsURL.setParameter("tabs2", "roles");
-	editPermissionsURL.setParameter("roleId", String.valueOf(role.getRoleId()));
-	editPermissionsURL.setParameter("redirect", permissionsAllURL.toString());
-	editPermissionsURL.setParameter("portletResource", curPortletName);
+	PortletURL editPermissionsURL = PortletURLBuilder.createRenderURL(
+		liferayPortletResponse
+	).setMVCPath(
+		"/edit_role_permissions.jsp"
+	).setParameter(
+		Constants.CMD, Constants.EDIT
+	).setParameter(
+		"tabs1", "define-permissions"
+	).setParameter(
+		"tabs2", "roles"
+	).setParameter(
+		"roleId", String.valueOf(role.getRoleId())
+	).setRedirect(
+		permissionsAllURL.toString()
+	).setParameter(
+		"portletResource", curPortletName
+	).build();
 
 	StringBundler sb = new StringBundler(17);
 

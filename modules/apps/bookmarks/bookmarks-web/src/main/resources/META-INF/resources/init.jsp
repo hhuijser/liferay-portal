@@ -63,6 +63,7 @@ page import="com.liferay.bookmarks.web.internal.search.EntriesMover" %><%@
 page import="com.liferay.bookmarks.web.internal.security.permission.resource.BookmarksEntryPermission" %><%@
 page import="com.liferay.bookmarks.web.internal.security.permission.resource.BookmarksFolderPermission" %><%@
 page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPNavigationItemList" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.CharPool" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@

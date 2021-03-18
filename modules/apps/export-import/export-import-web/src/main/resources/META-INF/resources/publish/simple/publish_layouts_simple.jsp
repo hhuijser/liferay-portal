@@ -43,15 +43,23 @@ Map<String, Serializable> settingsMap = exportImportConfiguration.getSettingsMap
 
 Map<String, String[]> parameterMap = (Map<String, String[]>)settingsMap.get("parameterMap");
 
-PortletURL advancedPublishURL = renderResponse.createRenderURL();
-
-advancedPublishURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
-advancedPublishURL.setParameter(Constants.CMD, cmd);
-advancedPublishURL.setParameter("tabs1", privateLayout ? "private-pages" : "public-pages");
-advancedPublishURL.setParameter("groupId", String.valueOf(groupDisplayContextHelper.getGroupId()));
-advancedPublishURL.setParameter("layoutSetBranchId", MapUtil.getString(parameterMap, "layoutSetBranchId"));
-advancedPublishURL.setParameter("selPlid", String.valueOf(selPlid));
-advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
+PortletURL advancedPublishURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/export_import/publish_layouts"
+).setParameter(
+	Constants.CMD, cmd
+).setParameter(
+	"tabs1", privateLayout ? "private-pages" : "public-pages"
+).setParameter(
+	"groupId", String.valueOf(groupDisplayContextHelper.getGroupId())
+).setParameter(
+	"layoutSetBranchId", MapUtil.getString(parameterMap, "layoutSetBranchId")
+).setParameter(
+	"selPlid", String.valueOf(selPlid)
+).setParameter(
+	"privateLayout", String.valueOf(privateLayout)
+).build();
 %>
 
 <clay:container-fluid

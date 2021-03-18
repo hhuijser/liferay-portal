@@ -22,10 +22,13 @@ Group group = siteAdminDisplayContext.getGroup();
 if (group != null) {
 	portletDisplay.setShowBackIcon(true);
 
-	PortletURL backURL = renderResponse.createRenderURL();
-
-	backURL.setParameter("mvcPath", "/view.jsp");
-	backURL.setParameter("groupId", String.valueOf(group.getParentGroupId()));
+	PortletURL backURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCPath(
+		"/view.jsp"
+	).setParameter(
+		"groupId", String.valueOf(group.getParentGroupId())
+	).build();
 
 	portletDisplay.setURLBack(backURL.toString());
 

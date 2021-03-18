@@ -19,11 +19,15 @@
 <%
 long groupId = ParamUtil.getLong(request, "groupId", themeDisplay.getScopeGroupId());
 
-PortletURL portletURL = currentURLObj;
-
-portletURL.setParameter("mvcRenderCommandName", "/export_import/export_import");
-portletURL.setParameter("tabs2", "export");
-portletURL.setParameter("tabs3", "current-and-previous");
+PortletURL portletURL = PortletURLBuilder.create(
+	currentURLObj
+).setMVCRenderCommandName(
+	"/export_import/export_import"
+).setParameter(
+	"tabs2", "export"
+).setParameter(
+	"tabs3", "current-and-previous"
+).build();
 
 String orderByCol = ParamUtil.getString(request, "orderByCol");
 String orderByType = ParamUtil.getString(request, "orderByType");

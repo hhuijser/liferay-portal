@@ -241,12 +241,17 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 		</div>
 
 		<%
-		PortletURL loginURL = PortletURLFactoryUtil.create(request, PortletKeys.FAST_LOGIN, PortletRequest.RENDER_PHASE);
-
-		loginURL.setParameter("saveLastPath", Boolean.FALSE.toString());
-		loginURL.setParameter("mvcRenderCommandName", "/login/login");
-		loginURL.setPortletMode(PortletMode.VIEW);
-		loginURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL loginURL = PortletURLBuilder.create(
+			PortletURLFactoryUtil.create(request, PortletKeys.FAST_LOGIN, PortletRequest.RENDER_PHASE)
+		).setParameter(
+			"saveLastPath", Boolean.FALSE.toString()
+		).setMVCRenderCommandName(
+			"/login/login"
+		).setPortletMode(
+			PortletMode.VIEW
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 		%>
 
 		<aui:script require="frontend-js-web/liferay/util/run_scripts_in_element.es as runScriptsInElement">

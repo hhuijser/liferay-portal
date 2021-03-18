@@ -38,10 +38,6 @@ notificationsSearchContainer.setId(searchContainerId);
 NotificationsManagementToolbarDisplayContext notificationsManagementToolbarDisplayContext = new NotificationsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, currentURLObj);
 
 NotificationsUtil.populateResults(themeDisplay.getUserId(), actionRequired, navigation, notificationsManagementToolbarDisplayContext.getOrderByType(), notificationsSearchContainer);
-
-PortletURL navigationURL = PortletURLUtil.clone(currentURLObj, renderResponse);
-
-navigationURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
 %>
 
 <clay:navigation-bar

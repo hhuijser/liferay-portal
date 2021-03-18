@@ -41,10 +41,13 @@ AccountEntryDisplay accountEntryDisplay = (AccountEntryDisplay)request.getAttrib
 				action = PortletProvider.Action.MANAGE;
 			}
 
-			PortletURL customFieldsURL = PortletProviderUtil.getPortletURL(request, ExpandoColumn.class.getName(), action);
-
-			customFieldsURL.setParameter("redirect", currentURL);
-			customFieldsURL.setParameter("modelResource", AccountEntry.class.getName());
+			PortletURL customFieldsURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(request, ExpandoColumn.class.getName(), action)
+			).setRedirect(
+				currentURL
+			).setParameter(
+				"modelResource", AccountEntry.class.getName()
+			).build();
 			%>
 
 			<liferay-ui:icon

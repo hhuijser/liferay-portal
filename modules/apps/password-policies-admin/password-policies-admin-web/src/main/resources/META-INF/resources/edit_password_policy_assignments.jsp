@@ -40,9 +40,11 @@ portletDisplay.setURLBack(String.valueOf(renderResponse.createRenderURL()));
 
 renderResponse.setTitle(passwordPolicy.getName());
 
-PortletURL homeURL = renderResponse.createRenderURL();
-
-homeURL.setParameter("mvcPath", "/view.jsp");
+PortletURL homeURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view.jsp"
+).build();
 
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "password-policies"), homeURL.toString());
 

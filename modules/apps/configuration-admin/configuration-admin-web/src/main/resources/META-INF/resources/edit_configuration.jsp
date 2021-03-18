@@ -27,13 +27,15 @@ if (Validator.isNull(redirect)) {
 
 String bindRedirectURL = currentURL;
 
-PortletURL viewFactoryInstancesURL = renderResponse.createRenderURL();
-
-viewFactoryInstancesURL.setParameter("mvcRenderCommandName", "/configuration_admin/view_factory_instances");
-
 ConfigurationModel configurationModel = (ConfigurationModel)request.getAttribute(ConfigurationAdminWebKeys.CONFIGURATION_MODEL);
 
-viewFactoryInstancesURL.setParameter("factoryPid", configurationModel.getFactoryPid());
+PortletURL viewFactoryInstancesURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/configuration_admin/view_factory_instances"
+).setParameter(
+	"factoryPid", configurationModel.getFactoryPid()
+).build();
 
 if (configurationModel.isFactory()) {
 	bindRedirectURL = viewFactoryInstancesURL.toString();

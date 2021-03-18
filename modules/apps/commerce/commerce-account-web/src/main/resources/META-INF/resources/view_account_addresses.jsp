@@ -25,9 +25,11 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 	"commerceAccountId", String.valueOf(commerceAccount.getCommerceAccountId())
 ).build();
 
-PortletURL portletURL = currentURLObj;
-
-portletURL.setParameter(PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL", backURL);
+PortletURL portletURL = PortletURLBuilder.create(
+	currentURLObj
+).setParameter(
+	PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL", backURL
+).build();
 %>
 
 <portlet:actionURL name="/commerce_account/edit_commerce_address" var="editCommerceAddressActionURL" />

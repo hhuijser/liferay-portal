@@ -22,11 +22,15 @@ AccountEntryDisplay accountEntryDisplay = (AccountEntryDisplay)request.getAttrib
 String backURL = ParamUtil.getString(request, "backURL");
 
 if (Validator.isNull(backURL)) {
-	PortletURL viewAccountUserURL = renderResponse.createRenderURL();
-
-	viewAccountUserURL.setParameter("mvcRenderCommandName", "/account_admin/edit_account_entry");
-	viewAccountUserURL.setParameter("screenNavigationCategoryKey", AccountScreenNavigationEntryConstants.CATEGORY_KEY_USERS);
-	viewAccountUserURL.setParameter("accountEntryId", String.valueOf(accountEntryDisplay.getAccountEntryId()));
+	PortletURL viewAccountUserURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCRenderCommandName(
+		"/account_admin/edit_account_entry"
+	).setParameter(
+		"screenNavigationCategoryKey", AccountScreenNavigationEntryConstants.CATEGORY_KEY_USERS
+	).setParameter(
+		"accountEntryId", String.valueOf(accountEntryDisplay.getAccountEntryId())
+	).build();
 
 	backURL = viewAccountUserURL.toString();
 }
@@ -139,11 +143,15 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 	if (accountEntryDisplay.isValidateUserEmailAddress(themeDisplay)) {
 		context.put("validDomains", StringUtil.merge(accountEntryDisplay.getDomains(), StringPool.COMMA));
 
-		PortletURL viewValidDomainsURL = renderResponse.createRenderURL();
-
-		viewValidDomainsURL.setParameter("mvcPath", "/account_users_admin/account_user/view_valid_domains.jsp");
-		viewValidDomainsURL.setParameter("validDomains", StringUtil.merge(accountEntryDisplay.getDomains(), StringPool.COMMA));
-		viewValidDomainsURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL viewValidDomainsURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCPath(
+			"/account_users_admin/account_user/view_valid_domains.jsp"
+		).setParameter(
+			"validDomains", StringUtil.merge(accountEntryDisplay.getDomains(), StringPool.COMMA)
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 
 		context.put("viewValidDomainsURL", viewValidDomainsURL.toString());
 	}

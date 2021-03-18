@@ -58,19 +58,29 @@ if (portletTitleBasedNavigation) {
 		nodeId = node.getNodeId();
 	}
 
-	PortletURL editPageURL = renderResponse.createRenderURL();
+	PortletURL editPageURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCRenderCommandName(
+		"/wiki/edit_page"
+	).setRedirect(
+		currentURL
+	).setParameter(
+		"nodeId", String.valueOf(nodeId)
+	).setParameter(
+		"title", title
+	).build();
 
-	editPageURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");
-	editPageURL.setParameter("redirect", currentURL);
-	editPageURL.setParameter("nodeId", String.valueOf(nodeId));
-	editPageURL.setParameter("title", title);
-
-	PortletURL searchURL = renderResponse.createRenderURL();
-
-	searchURL.setParameter("mvcRenderCommandName", "/wiki/search");
-	searchURL.setParameter("redirect", currentURL);
-	searchURL.setParameter("nodeId", String.valueOf(nodeId));
-	searchURL.setParameter("keywords", title);
+	PortletURL searchURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCRenderCommandName(
+		"/wiki/search"
+	).setRedirect(
+		currentURL
+	).setParameter(
+		"nodeId", String.valueOf(nodeId)
+	).setParameter(
+		"keywords", title
+	).build();
 	%>
 
 	<div <%= portletTitleBasedNavigation ? "class=\"container-fluid container-fluid-max-xl container-form-lg\"" : StringPool.BLANK %>>

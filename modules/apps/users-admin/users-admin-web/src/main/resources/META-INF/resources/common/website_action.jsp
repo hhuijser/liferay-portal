@@ -36,13 +36,19 @@ long websiteId = website.getWebsiteId();
 >
 
 	<%
-	PortletURL editURL = liferayPortletResponse.createRenderURL();
-
-	editURL.setParameter("mvcPath", "/common/edit_website.jsp");
-	editURL.setParameter("redirect", currentURL);
-	editURL.setParameter("className", className);
-	editURL.setParameter("classPK", String.valueOf(classPK));
-	editURL.setParameter("primaryKey", String.valueOf(websiteId));
+	PortletURL editURL = PortletURLBuilder.createRenderURL(
+		liferayPortletResponse
+	).setMVCPath(
+		"/common/edit_website.jsp"
+	).setRedirect(
+		currentURL
+	).setParameter(
+		"className", className
+	).setParameter(
+		"classPK", String.valueOf(classPK)
+	).setParameter(
+		"primaryKey", String.valueOf(websiteId)
+	).build();
 	%>
 
 	<liferay-ui:icon
@@ -51,18 +57,27 @@ long websiteId = website.getWebsiteId();
 	/>
 
 	<%
-	PortletURL portletURL = renderResponse.createActionURL();
+	PortletURL portletURL = PortletURLBuilder.createActionURL(
+		renderResponse
+	).setActionName(
+		"/users_admin/update_contact_information"
+	).setRedirect(
+		currentURL
+	).setParameter(
+		"className", className
+	).setParameter(
+		"classPK", String.valueOf(classPK)
+	).setParameter(
+		"listType", ListTypeConstants.WEBSITE
+	).setParameter(
+		"primaryKey", String.valueOf(websiteId)
+	).build();
 
-	portletURL.setParameter(ActionRequest.ACTION_NAME, "/users_admin/update_contact_information");
-	portletURL.setParameter("redirect", currentURL);
-	portletURL.setParameter("className", className);
-	portletURL.setParameter("classPK", String.valueOf(classPK));
-	portletURL.setParameter("listType", ListTypeConstants.WEBSITE);
-	portletURL.setParameter("primaryKey", String.valueOf(websiteId));
-
-	PortletURL makePrimaryURL = PortletURLUtil.clone(portletURL, renderResponse);
-
-	makePrimaryURL.setParameter(Constants.CMD, "makePrimary");
+	PortletURL makePrimaryURL = PortletURLBuilder.create(
+		PortletURLUtil.clone(portletURL, renderResponse)
+	).setParameter(
+		Constants.CMD, "makePrimary"
+	).build();
 	%>
 
 	<liferay-ui:icon
@@ -71,9 +86,11 @@ long websiteId = website.getWebsiteId();
 	/>
 
 	<%
-	PortletURL removeWebsiteURL = PortletURLUtil.clone(portletURL, renderResponse);
-
-	removeWebsiteURL.setParameter(Constants.CMD, Constants.DELETE);
+	PortletURL removeWebsiteURL = PortletURLBuilder.create(
+		PortletURLUtil.clone(portletURL, renderResponse)
+	).setParameter(
+		Constants.CMD, Constants.DELETE
+	).build();
 	%>
 
 	<liferay-ui:icon

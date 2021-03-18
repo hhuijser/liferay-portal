@@ -35,12 +35,17 @@ boolean createNewPage = WikiNodePermission.contains(permissionChecker, node, Act
 
 WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderResponse, wikiGroupServiceConfiguration);
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/wiki/search");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("nodeId", String.valueOf(nodeId));
-portletURL.setParameter("keywords", keywords);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/wiki/search"
+).setRedirect(
+	redirect
+).setParameter(
+	"nodeId", String.valueOf(nodeId)
+).setParameter(
+	"keywords", keywords
+).build();
 %>
 
 <aui:form action="<%= wikiURLHelper.getSearchURL() %>" method="get" name="fm">
@@ -120,12 +125,17 @@ portletURL.setParameter("keywords", keywords);
 			viewPageURL.setParameter("nodeName", node.getName());
 			viewPageURL.setParameter("title", wikiPage.getTitle());
 
-			PortletURL editPageURL = renderResponse.createRenderURL();
-
-			editPageURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");
-			editPageURL.setParameter("redirect", currentURL);
-			editPageURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-			editPageURL.setParameter("title", title);
+			PortletURL editPageURL = PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCRenderCommandName(
+				"/wiki/edit_page"
+			).setRedirect(
+				currentURL
+			).setParameter(
+				"nodeId", String.valueOf(node.getNodeId())
+			).setParameter(
+				"title", title
+			).build();
 
 			WikiEngineRenderer wikiEngineRenderer = (WikiEngineRenderer)request.getAttribute(WikiWebKeys.WIKI_ENGINE_RENDERER);
 

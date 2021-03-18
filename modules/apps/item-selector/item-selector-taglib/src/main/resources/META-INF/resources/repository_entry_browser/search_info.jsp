@@ -45,15 +45,21 @@
 		<%
 		PortletURL portletURL = (PortletURL)request.getAttribute("liferay-item-selector:repository-entry-browser:portletURL");
 
-		PortletURL searchEverywhereURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
+		PortletURL searchEverywhereURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(portletURL, liferayPortletResponse)
+		).setParameter(
+			"folderId", String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID)
+		).setParameter(
+			"searchFolderId", String.valueOf(folderId)
+		).setParameter(
+			"keywords", keywords
+		).build();
 
-		searchEverywhereURL.setParameter("folderId", String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
-		searchEverywhereURL.setParameter("searchFolderId", String.valueOf(folderId));
-		searchEverywhereURL.setParameter("keywords", keywords);
-
-		PortletURL searchFolderURL = PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse);
-
-		searchFolderURL.setParameter("folderId", String.valueOf(folderId));
+		PortletURL searchFolderURL = PortletURLBuilder.create(
+			PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse)
+		).setParameter(
+			"folderId", String.valueOf(folderId)
+		).build();
 		%>
 
 		<liferay-util:whitespace-remover>

@@ -32,9 +32,11 @@ String duplicateTitle = workflowDefinitionDisplayContext.getDuplicateTitle(workf
 
 portletDisplay.setShowBackIcon(true);
 
-PortletURL portletURL = PortalUtil.getControlPanelPortletURL(renderRequest, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW, PortletRequest.RENDER_PHASE);
-
-portletURL.setParameter("mvcPath", "/view.jsp");
+PortletURL portletURL = PortletURLBuilder.create(
+	PortalUtil.getControlPanelPortletURL(renderRequest, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW, PortletRequest.RENDER_PHASE)
+).setMVCPath(
+	"/view.jsp"
+).build();
 
 portletDisplay.setURLBack(portletURL.toString());
 

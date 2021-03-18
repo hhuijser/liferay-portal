@@ -41,6 +41,7 @@ page import="com.liferay.commerce.account.web.internal.frontend.CommerceAccountU
 page import="com.liferay.commerce.account.web.internal.servlet.taglib.ui.constants.CommerceAccountScreenNavigationConstants" %><%@
 page import="com.liferay.commerce.exception.NoSuchAddressException" %><%@
 page import="com.liferay.commerce.model.CommerceAddress" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringBundler" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@

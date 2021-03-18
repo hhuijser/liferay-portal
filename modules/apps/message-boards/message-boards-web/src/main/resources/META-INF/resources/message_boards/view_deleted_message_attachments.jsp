@@ -23,10 +23,13 @@ long messageId = BeanParamUtil.getLong(message, request, "messageId");
 
 MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 
-PortletURL iteratorURL = renderResponse.createRenderURL();
-
-iteratorURL.setParameter("mvcRenderCommandName", "/message_boards/view_deleted_message_attachments");
-iteratorURL.setParameter("messageId", String.valueOf(messageId));
+PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/message_boards/view_deleted_message_attachments"
+).setParameter(
+	"messageId", String.valueOf(messageId)
+).build();
 %>
 
 <portlet:actionURL name="/message_boards/edit_message_attachments" var="emptyTrashURL">

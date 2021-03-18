@@ -88,16 +88,19 @@ PortletURL portletURL = viewRolesManagementToolbarDisplayContext.getPortletURL()
 			PortletURL rowURL = null;
 
 			if (RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.UPDATE)) {
-				rowURL = renderResponse.createRenderURL();
-
-				rowURL.setParameter("mvcPath", "/edit_role.jsp");
-				rowURL.setParameter("tabs1", "details");
-
 				PortletURL searchContainerPortletURL = roleSearchContainer.getIteratorURL();
 
-				rowURL.setParameter("backURL", searchContainerPortletURL.toString());
-
-				rowURL.setParameter("roleId", String.valueOf(role.getRoleId()));
+				rowURL = PortletURLBuilder.createRenderURL(
+					renderResponse
+				).setMVCPath(
+					"/edit_role.jsp"
+				).setParameter(
+					"tabs1", "details"
+				).setParameter(
+					"backURL", searchContainerPortletURL.toString()
+				).setParameter(
+					"roleId", String.valueOf(role.getRoleId())
+				).build();
 			}
 			%>
 

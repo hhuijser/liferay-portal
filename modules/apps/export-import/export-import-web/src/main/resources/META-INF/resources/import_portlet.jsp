@@ -19,11 +19,15 @@
 <%
 String tabs3 = ParamUtil.getString(request, "tabs3", "new-import-process");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/export_import/export_import");
-portletURL.setParameter("tabs2", "import");
-portletURL.setParameter("portletResource", portletResource);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/export_import/export_import"
+).setParameter(
+	"tabs2", "import"
+).setParameter(
+	"portletResource", portletResource
+).build();
 
 boolean validate = ParamUtil.getBoolean(request, "validate", true);
 

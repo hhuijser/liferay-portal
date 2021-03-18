@@ -66,13 +66,19 @@ if (row == null) {
 	<c:if test="<%= (folder != null) && BookmarksFolderPermission.contains(permissionChecker, folder, ActionKeys.UPDATE) %>">
 
 		<%
-		PortletURL editURL = PortalUtil.getControlPanelPortletURL(request, themeDisplay.getScopeGroup(), BookmarksPortletKeys.BOOKMARKS_ADMIN, 0, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
-
-		editURL.setParameter("mvcRenderCommandName", "/bookmarks/edit_folder");
-		editURL.setParameter("redirect", currentURL);
-		editURL.setParameter("portletResource", portletDisplay.getId());
-		editURL.setParameter("folderId", String.valueOf(folder.getFolderId()));
-		editURL.setParameter("mergeWithParentFolderDisabled", String.valueOf(row == null));
+		PortletURL editURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(request, themeDisplay.getScopeGroup(), BookmarksPortletKeys.BOOKMARKS_ADMIN, 0, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/bookmarks/edit_folder"
+		).setRedirect(
+			currentURL
+		).setParameter(
+			"portletResource", portletDisplay.getId()
+		).setParameter(
+			"folderId", String.valueOf(folder.getFolderId())
+		).setParameter(
+			"mergeWithParentFolderDisabled", String.valueOf(row == null)
+		).build();
 		%>
 
 		<liferay-ui:icon

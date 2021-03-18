@@ -70,11 +70,15 @@ else {
 	dlViewFileVersionDisplayContext = dlDisplayContextProvider.getDLViewFileVersionDisplayContext(request, response, fileShortcut);
 }
 
-PortletURL rowURL = liferayPortletResponse.createRenderURL();
-
-rowURL.setParameter("mvcRenderCommandName", "/document_library/view_file_entry");
-rowURL.setParameter("redirect", HttpUtil.removeParameter(currentURL, liferayPortletResponse.getNamespace() + "ajax"));
-rowURL.setParameter("fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
+PortletURL rowURL = PortletURLBuilder.createRenderURL(
+	liferayPortletResponse
+).setMVCRenderCommandName(
+	"/document_library/view_file_entry"
+).setRedirect(
+	HttpUtil.removeParameter(currentURL, liferayPortletResponse.getNamespace() + "ajax")
+).setParameter(
+	"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
+).build();
 %>
 
 <h2 class="h5">

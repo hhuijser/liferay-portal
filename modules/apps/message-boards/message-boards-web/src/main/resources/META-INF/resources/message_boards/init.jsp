@@ -121,6 +121,7 @@ page import="com.liferay.message.boards.web.internal.util.MBRSSUtil" %><%@
 page import="com.liferay.message.boards.web.internal.util.MBSubscriptionUtil" %><%@
 page import="com.liferay.message.boards.web.internal.util.MBUtil" %><%@
 page import="com.liferay.message.boards.web.internal.util.MBWebComponentProvider" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.CharPool" %><%@
 page import="com.liferay.petra.string.StringBundler" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@

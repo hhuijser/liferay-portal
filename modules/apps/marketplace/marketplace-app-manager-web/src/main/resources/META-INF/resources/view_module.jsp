@@ -46,9 +46,11 @@ String bundleName = GetterUtil.getString(headers.get(Constants.BUNDLE_NAME));
 renderResponse.setTitle(bundleName);
 
 if (Validator.isNull(app)) {
-	PortletURL viewURL = renderResponse.createRenderURL();
-
-	viewURL.setParameter("mvcPath", "/view.jsp");
+	PortletURL viewURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCPath(
+		"/view.jsp"
+	).build();
 
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "app-manager"), viewURL.toString());
 

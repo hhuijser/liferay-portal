@@ -48,10 +48,13 @@ portlets = ListUtil.sort(portlets, new PortletTitleComparator(application, local
 			<%
 			PluginPackage pluginPackage = portlet.getPluginPackage();
 
-			PortletURL rowURL = renderResponse.createRenderURL();
-
-			rowURL.setParameter("mvcRenderCommandName", "/plugins_admin/edit_plugin");
-			rowURL.setParameter("redirect", currentURL);
+			PortletURL rowURL = PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCRenderCommandName(
+				"/plugins_admin/edit_plugin"
+			).setRedirect(
+				currentURL
+			).build();
 
 			if (pluginPackage != null) {
 				rowURL.setParameter("moduleId", pluginPackage.getModuleId());

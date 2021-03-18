@@ -40,11 +40,15 @@
 			>
 
 				<%
-				PortletURL rowURL = renderResponse.createRenderURL();
-
-				rowURL.setParameter("mvcRenderCommandName", "/polls/view_question");
-				rowURL.setParameter("redirect", currentURL);
-				rowURL.setParameter("questionId", String.valueOf(question.getQuestionId()));
+				PortletURL rowURL = PortletURLBuilder.createRenderURL(
+					renderResponse
+				).setMVCRenderCommandName(
+					"/polls/view_question"
+				).setRedirect(
+					currentURL
+				).setParameter(
+					"questionId", String.valueOf(question.getQuestionId())
+				).build();
 				%>
 
 				<liferay-ui:search-container-column-text

@@ -20,12 +20,15 @@
 WikiNode node = (WikiNode)request.getAttribute(WikiWebKeys.WIKI_NODE);
 WikiPage wikiPage = (WikiPage)request.getAttribute(WikiWebKeys.WIKI_PAGE);
 
-PortletURL portletURL = renderResponse.createActionURL();
-
-portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-portletURL.setParameter("title", wikiPage.getTitle());
-
-portletURL.setParameter(ActionRequest.ACTION_NAME, "/wiki/view");
+PortletURL portletURL = PortletURLBuilder.createActionURL(
+	renderResponse
+).setParameter(
+	"nodeId", String.valueOf(node.getNodeId())
+).setParameter(
+	"title", wikiPage.getTitle()
+).setActionName(
+	"/wiki/view"
+).build();
 
 PortalUtil.addPortletBreadcrumbEntry(request, wikiPage.getTitle(), portletURL.toString());
 
@@ -45,12 +48,17 @@ List<FileEntry> attachmentsFileEntries = wikiPage.getAttachmentsFileEntries();
 int attachmentsFileEntriesCount = wikiPage.getAttachmentsFileEntriesCount();
 String emptyResultsMessage = "this-page-does-not-have-file-attachments";
 
-PortletURL iteratorURL = renderResponse.createRenderURL();
-
-iteratorURL.setParameter("mvcRenderCommandName", "/wiki/view_page_attachments");
-iteratorURL.setParameter("redirect", currentURL);
-iteratorURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-iteratorURL.setParameter("title", wikiPage.getTitle());
+PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/wiki/view_page_attachments"
+).setRedirect(
+	currentURL
+).setParameter(
+	"nodeId", String.valueOf(node.getNodeId())
+).setParameter(
+	"title", wikiPage.getTitle()
+).build();
 
 boolean paginate = false;
 boolean showPageAttachmentAction = false;

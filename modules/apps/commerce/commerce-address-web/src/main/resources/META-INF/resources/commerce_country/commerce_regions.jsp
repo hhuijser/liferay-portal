@@ -90,12 +90,17 @@ CommerceRegionsDisplayContext commerceRegionsDisplayContext = (CommerceRegionsDi
 				>
 
 					<%
-					PortletURL rowURL = renderResponse.createRenderURL();
-
-					rowURL.setParameter("mvcRenderCommandName", "/commerce_country/edit_commerce_region");
-					rowURL.setParameter("redirect", currentURL);
-					rowURL.setParameter("countryId", String.valueOf(region.getCountryId()));
-					rowURL.setParameter("regionId", String.valueOf(region.getRegionId()));
+					PortletURL rowURL = PortletURLBuilder.createRenderURL(
+						renderResponse
+					).setMVCRenderCommandName(
+						"/commerce_country/edit_commerce_region"
+					).setRedirect(
+						currentURL
+					).setParameter(
+						"countryId", String.valueOf(region.getCountryId())
+					).setParameter(
+						"regionId", String.valueOf(region.getRegionId())
+					).build();
 					%>
 
 					<liferay-ui:search-container-column-text

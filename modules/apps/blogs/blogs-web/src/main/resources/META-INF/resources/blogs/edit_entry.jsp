@@ -467,10 +467,13 @@ if (entry != null) {
 
 <%
 if (entry != null) {
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	portletURL.setParameter("mvcRenderCommandName", "/blogs/view_entry");
-	portletURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
+	PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCRenderCommandName(
+		"/blogs/view_entry"
+	).setParameter(
+		"entryId", String.valueOf(entry.getEntryId())
+	).build();
 
 	PortalUtil.addPortletBreadcrumbEntry(request, BlogsEntryUtil.getDisplayTitle(resourceBundle, entry), portletURL.toString());
 

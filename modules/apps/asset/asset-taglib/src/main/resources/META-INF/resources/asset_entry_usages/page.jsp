@@ -41,10 +41,13 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 							<li class="nav-item">
 
 								<%
-								PortletURL allNavigationURL = assetEntryUsagesDisplayContext.getPortletURL();
-
-								allNavigationURL.setParameter("navigation", "all");
-								allNavigationURL.setParameter("resetCur", Boolean.TRUE.toString());
+								PortletURL allNavigationURL = PortletURLBuilder.create(
+									assetEntryUsagesDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "all"
+								).setParameter(
+									"resetCur", Boolean.TRUE.toString()
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(assetEntryUsagesDisplayContext.getNavigation(), "all") ? "active" : StringPool.BLANK %>" href="<%= allNavigationURL.toString() %>">
@@ -54,10 +57,13 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 							<li class="nav-item">
 
 								<%
-								PortletURL pagesNavigationURL = assetEntryUsagesDisplayContext.getPortletURL();
-
-								pagesNavigationURL.setParameter("navigation", "pages");
-								pagesNavigationURL.setParameter("resetCur", Boolean.TRUE.toString());
+								PortletURL pagesNavigationURL = PortletURLBuilder.create(
+									assetEntryUsagesDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "pages"
+								).setParameter(
+									"resetCur", Boolean.TRUE.toString()
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(assetEntryUsagesDisplayContext.getNavigation(), "pages") ? "active" : StringPool.BLANK %>" href="<%= pagesNavigationURL.toString() %>">
@@ -67,10 +73,13 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 							<li class="nav-item">
 
 								<%
-								PortletURL pageTemplatesNavigationURL = assetEntryUsagesDisplayContext.getPortletURL();
-
-								pageTemplatesNavigationURL.setParameter("navigation", "page-templates");
-								pageTemplatesNavigationURL.setParameter("resetCur", Boolean.TRUE.toString());
+								PortletURL pageTemplatesNavigationURL = PortletURLBuilder.create(
+									assetEntryUsagesDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "page-templates"
+								).setParameter(
+									"resetCur", Boolean.TRUE.toString()
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(assetEntryUsagesDisplayContext.getNavigation(), "page-templates") ? "active" : StringPool.BLANK %>" href="<%= pageTemplatesNavigationURL.toString() %>">
@@ -80,10 +89,13 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 							<li class="nav-item">
 
 								<%
-								PortletURL displayPagesNavigationURL = assetEntryUsagesDisplayContext.getPortletURL();
-
-								displayPagesNavigationURL.setParameter("navigation", "display-page-templates");
-								displayPagesNavigationURL.setParameter("resetCur", Boolean.TRUE.toString());
+								PortletURL displayPagesNavigationURL = PortletURLBuilder.create(
+									assetEntryUsagesDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "display-page-templates"
+								).setParameter(
+									"resetCur", Boolean.TRUE.toString()
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(assetEntryUsagesDisplayContext.getNavigation(), "display-page-templates") ? "active" : StringPool.BLANK %>" href="<%= displayPagesNavigationURL.toString() %>">

@@ -81,10 +81,13 @@ portlets = ListUtil.sort(portlets, new PortletTitleComparator(application, local
 				<c:if test="<%= !portlet.isInstanceable() %>">
 
 					<%
-					PortletURL portletURL = PortletURLFactoryUtil.create(request, portlet.getRootPortlet(), PortletRequest.ACTION_PHASE);
-
-					portletURL.setPortletMode(PortletMode.VIEW);
-					portletURL.setWindowState(WindowState.MAXIMIZED);
+					PortletURL portletURL = PortletURLBuilder.create(
+						PortletURLFactoryUtil.create(request, portlet.getRootPortlet(), PortletRequest.ACTION_PHASE)
+					).setPortletMode(
+						PortletMode.VIEW
+					).setWindowState(
+						WindowState.MAXIMIZED
+					).build();
 					%>
 
 					<div>

@@ -19,10 +19,13 @@
 <%
 DispatchTriggerDisplayContext dispatchTriggerDisplayContext = (DispatchTriggerDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
-PortletURL portletURL = dispatchTriggerDisplayContext.getPortletURL();
-
-portletURL.setParameter("tabs1", "dispatch-trigger");
-portletURL.setParameter("searchContainerId", "dispatchTriggers");
+PortletURL portletURL = PortletURLBuilder.create(
+	dispatchTriggerDisplayContext.getPortletURL()
+).setParameter(
+	"tabs1", "dispatch-trigger"
+).setParameter(
+	"searchContainerId", "dispatchTriggers"
+).build();
 %>
 
 <clay:navigation-bar
@@ -51,11 +54,15 @@ portletURL.setParameter("searchContainerId", "dispatchTriggers");
 				>
 
 					<%
-					PortletURL rowURL = renderResponse.createRenderURL();
-
-					rowURL.setParameter("mvcRenderCommandName", "/dispatch/edit_dispatch_trigger");
-					rowURL.setParameter("redirect", currentURL);
-					rowURL.setParameter("dispatchTriggerId", String.valueOf(dispatchTrigger.getDispatchTriggerId()));
+					PortletURL rowURL = PortletURLBuilder.createRenderURL(
+						renderResponse
+					).setMVCRenderCommandName(
+						"/dispatch/edit_dispatch_trigger"
+					).setRedirect(
+						currentURL
+					).setParameter(
+						"dispatchTriggerId", String.valueOf(dispatchTrigger.getDispatchTriggerId())
+					).build();
 					%>
 
 					<liferay-ui:search-container-column-jsp

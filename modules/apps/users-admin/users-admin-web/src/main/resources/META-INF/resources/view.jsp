@@ -27,10 +27,13 @@ int status = ParamUtil.getInteger(request, "status", WorkflowConstants.STATUS_AP
 
 String usersListView = ParamUtil.get(request, "usersListView", UserConstants.LIST_VIEW_FLAT_USERS);
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("toolbarItem", toolbarItem);
-portletURL.setParameter("usersListView", usersListView);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setParameter(
+	"toolbarItem", toolbarItem
+).setParameter(
+	"usersListView", usersListView
+).build();
 
 if (Validator.isNotNull(viewUsersRedirect)) {
 	portletURL.setParameter("viewUsersRedirect", viewUsersRedirect);
@@ -273,11 +276,15 @@ else {
 	function <portlet:namespace />showUsers(status) {
 
 		<%
-		PortletURL showUsersURL = renderResponse.createRenderURL();
-
-		showUsersURL.setParameter("mvcRenderCommandName", "/users_admin/view");
-		showUsersURL.setParameter("toolbarItem", toolbarItem);
-		showUsersURL.setParameter("usersListView", usersListView);
+		PortletURL showUsersURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCRenderCommandName(
+			"/users_admin/view"
+		).setParameter(
+			"toolbarItem", toolbarItem
+		).setParameter(
+			"usersListView", usersListView
+		).build();
 
 		organizationId = ParamUtil.getLong(request, "organizationId", OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
 

@@ -17,9 +17,11 @@
 <%@ include file="/search/init.jsp" %>
 
 <%
-PortletURL searchURL = PortletURLUtil.clone(currentURLObj, liferayPortletResponse);
-
-searchURL.setParameter("resetCur", Boolean.TRUE.toString());
+PortletURL searchURL = PortletURLBuilder.create(
+	PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
+).setParameter(
+	"resetCur", Boolean.TRUE.toString()
+).build();
 %>
 
 <aui:form action='<%= HttpUtil.removeParameter(searchURL.toString(), liferayPortletResponse.getNamespace() + "keywords") %>' name="searchFm">

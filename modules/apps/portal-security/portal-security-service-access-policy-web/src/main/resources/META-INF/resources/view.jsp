@@ -33,10 +33,13 @@ int sapEntriesCount = SAPEntryServiceUtil.getCompanySAPEntriesCount(company.getC
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-PortletURL sortingURL = renderResponse.createRenderURL();
-
-sortingURL.setParameter("displayStyle", displayStyle);
-sortingURL.setParameter("orderByType", orderByAsc ? "desc" : "asc");
+PortletURL sortingURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setParameter(
+	"displayStyle", displayStyle
+).setParameter(
+	"orderByType", orderByAsc ? "desc" : "asc"
+).build();
 %>
 
 <clay:management-toolbar

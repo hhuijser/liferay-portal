@@ -51,9 +51,11 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 							<li class="nav-item">
 
 								<%
-								PortletURL allNavigationURL = assetListEntryUsagesDisplayContext.getPortletURL();
-
-								allNavigationURL.setParameter("navigation", "all");
+								PortletURL allNavigationURL = PortletURLBuilder.create(
+									assetListEntryUsagesDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "all"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(assetListEntryUsagesDisplayContext.getNavigation(), "all") ? "active" : StringPool.BLANK %>" href="<%= allNavigationURL.toString() %>">
@@ -63,9 +65,11 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 							<li class="nav-item">
 
 								<%
-								PortletURL pagesNavigationURL = assetListEntryUsagesDisplayContext.getPortletURL();
-
-								pagesNavigationURL.setParameter("navigation", "pages");
+								PortletURL pagesNavigationURL = PortletURLBuilder.create(
+									assetListEntryUsagesDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "pages"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(assetListEntryUsagesDisplayContext.getNavigation(), "pages") ? "active" : StringPool.BLANK %>" href="<%= pagesNavigationURL.toString() %>">
@@ -75,9 +79,11 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 							<li class="nav-item">
 
 								<%
-								PortletURL pageTemplatesNavigationURL = assetListEntryUsagesDisplayContext.getPortletURL();
-
-								pageTemplatesNavigationURL.setParameter("navigation", "page-templates");
+								PortletURL pageTemplatesNavigationURL = PortletURLBuilder.create(
+									assetListEntryUsagesDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "page-templates"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(assetListEntryUsagesDisplayContext.getNavigation(), "page-templates") ? "active" : StringPool.BLANK %>" href="<%= pageTemplatesNavigationURL.toString() %>">
@@ -87,9 +93,11 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 							<li class="nav-item">
 
 								<%
-								PortletURL displayPagesNavigationURL = assetListEntryUsagesDisplayContext.getPortletURL();
-
-								displayPagesNavigationURL.setParameter("navigation", "display-page-templates");
+								PortletURL displayPagesNavigationURL = PortletURLBuilder.create(
+									assetListEntryUsagesDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "display-page-templates"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(assetListEntryUsagesDisplayContext.getNavigation(), "display-page-templates") ? "active" : StringPool.BLANK %>" href="<%= displayPagesNavigationURL.toString() %>">

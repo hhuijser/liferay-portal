@@ -19,10 +19,6 @@
 <%
 String tabs3 = ParamUtil.getString(request, "tabs3", "current");
 
-String redirect = ParamUtil.getString(request, "redirect");
-
-String backURL = ParamUtil.getString(request, "backURL", redirect);
-
 long roleId = ParamUtil.getLong(request, "roleId");
 
 Role role = RoleServiceUtil.fetchRole(roleId);
@@ -226,13 +222,3 @@ if (Validator.isNotNull(portletResource)) {
 		</clay:sheet-footer>
 	</clay:sheet>
 </aui:form>
-
-<%
-PortletURL definePermissionsURL = liferayPortletResponse.createRenderURL();
-
-definePermissionsURL.setParameter("mvcPath", "/edit_role_permissions.jsp");
-definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
-definePermissionsURL.setParameter("redirect", backURL);
-definePermissionsURL.setParameter("roleId", String.valueOf(role.getRoleId()));
-definePermissionsURL.setParameter("tabs1", "define-permissions");
-%>

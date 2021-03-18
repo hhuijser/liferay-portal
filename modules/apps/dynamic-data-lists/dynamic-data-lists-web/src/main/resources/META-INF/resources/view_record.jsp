@@ -104,10 +104,13 @@ else {
 </clay:container-fluid>
 
 <%
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/view_record_set.jsp");
-portletURL.setParameter("recordSetId", String.valueOf(recordSetId));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view_record_set.jsp"
+).setParameter(
+	"recordSetId", String.valueOf(recordSetId)
+).build();
 
 PortalUtil.addPortletBreadcrumbEntry(request, recordSet.getName(locale), portletURL.toString());
 

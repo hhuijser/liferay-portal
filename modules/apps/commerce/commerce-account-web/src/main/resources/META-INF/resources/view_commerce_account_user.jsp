@@ -21,7 +21,6 @@ CommerceAccountDisplayContext commerceAccountDisplayContext = (CommerceAccountDi
 
 CommerceAccount commerceAccount = commerceAccountDisplayContext.getCurrentCommerceAccount();
 User selectedUser = commerceAccountDisplayContext.getSelectedUser();
-PortletURL portletURL = commerceAccountDisplayContext.getPortletURL();
 
 Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 	"commerceAccountId", String.valueOf(commerceAccountDisplayContext.getCurrentCommerceAccountId())
@@ -29,8 +28,13 @@ Map<String, String> contextParams = HashMapBuilder.<String, String>put(
 	"userId", String.valueOf(selectedUser.getUserId())
 ).build();
 
-portletURL.setParameter("mvcRenderCommandName", "/commerce_account/view_commerce_account_user");
-portletURL.setParameter("userId", String.valueOf(selectedUser.getUserId()));
+PortletURL portletURL = PortletURLBuilder.create(
+	commerceAccountDisplayContext.getPortletURL()
+).setMVCRenderCommandName(
+	"/commerce_account/view_commerce_account_user"
+).setParameter(
+	"userId", String.valueOf(selectedUser.getUserId())
+).build();
 %>
 
 <portlet:renderURL var="editCommerceAccountURL">

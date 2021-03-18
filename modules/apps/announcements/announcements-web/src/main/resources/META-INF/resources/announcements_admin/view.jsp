@@ -117,11 +117,15 @@ AnnouncementsAdminViewManagementToolbarDisplayContext announcementsAdminViewMana
 						"actions", StringUtil.merge(announcementsAdminViewManagementToolbarDisplayContext.getAvailableActions(entry))
 					).build());
 
-				PortletURL rowURL = renderResponse.createRenderURL();
-
-				rowURL.setParameter("mvcRenderCommandName", "/announcements/view_entry");
-				rowURL.setParameter("redirect", currentURL);
-				rowURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
+				PortletURL rowURL = PortletURLBuilder.createRenderURL(
+					renderResponse
+				).setMVCRenderCommandName(
+					"/announcements/view_entry"
+				).setRedirect(
+					currentURL
+				).setParameter(
+					"entryId", String.valueOf(entry.getEntryId())
+				).build();
 				%>
 
 				<liferay-ui:search-container-column-text

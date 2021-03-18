@@ -45,10 +45,13 @@ Group group = themeDisplay.getScopeGroup();
 
 		request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
 
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcPath", "/status_update/view.jsp");
-		portletURL.setWindowState(WindowState.NORMAL);
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCPath(
+			"/status_update/view.jsp"
+		).setWindowState(
+			WindowState.NORMAL
+		).build();
 
 		request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, portletURL);
 		%>

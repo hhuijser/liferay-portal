@@ -25,9 +25,11 @@ String navigation = ParamUtil.getString(request, "navigation", "all-pages");
 long categoryId = ParamUtil.getLong(request, "categoryId");
 String tagName = ParamUtil.getString(request, "tag");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("nodeName", node.getName());
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setParameter(
+	"nodeName", node.getName()
+).build();
 
 if (wikiPage != null) {
 	portletURL.setParameter("title", wikiPage.getTitle());
@@ -48,15 +50,17 @@ else if (navigation.equals("draft-pages")) {
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "draft-pages"), portletURL.toString());
 }
 else if (navigation.equals("history")) {
-	PortletURL viewPageHistoryURL = PortletURLUtil.clone(portletURL, renderResponse);
-
 	if (wikiPage != null) {
 		portletURL.setParameter("mvcRenderCommandName", "/wiki/view");
 
 		PortalUtil.addPortletBreadcrumbEntry(request, wikiPage.getTitle(), portletURL.toString());
 	}
 
-	viewPageHistoryURL.setParameter("mvcRenderCommandName", "/wiki/view_page_activities");
+	PortletURL viewPageHistoryURL = PortletURLBuilder.create(
+		PortletURLUtil.clone(portletURL, renderResponse)
+	).setMVCRenderCommandName(
+		"/wiki/view_page_activities"
+	).build();
 
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "history"), viewPageHistoryURL.toString());
 }

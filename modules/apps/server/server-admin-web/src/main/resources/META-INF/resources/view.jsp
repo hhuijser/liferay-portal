@@ -21,11 +21,15 @@ int cur = ParamUtil.getInteger(request, SearchContainer.DEFAULT_CUR_PARAM);
 int delta = ParamUtil.getInteger(request, SearchContainer.DEFAULT_DELTA_PARAM);
 String keywords = ParamUtil.getString(request, "keywords");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/server_admin/view");
-portletURL.setParameter("tabs1", tabs1);
-portletURL.setParameter("tabs2", tabs2);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/server_admin/view"
+).setParameter(
+	"tabs1", tabs1
+).setParameter(
+	"tabs2", tabs2
+).build();
 %>
 
 <portlet:renderURL var="redirectURL">

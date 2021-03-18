@@ -15,12 +15,17 @@
 --%>
 
 <%
-PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/view.jsp");
-portletURL.setParameter("selPlid", String.valueOf(selPlid));
-portletURL.setParameter("className", className);
-portletURL.setParameter("classPK", String.valueOf(classPK));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	liferayPortletResponse
+).setMVCPath(
+	"/view.jsp"
+).setParameter(
+	"selPlid", String.valueOf(selPlid)
+).setParameter(
+	"className", className
+).setParameter(
+	"classPK", String.valueOf(classPK)
+).build();
 
 request.setAttribute("mobile_device_rules_header.jspf-portletURL", portletURL);
 %>

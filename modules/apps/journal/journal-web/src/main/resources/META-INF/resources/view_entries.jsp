@@ -70,15 +70,23 @@ Map<String, Object> componentContext = journalDisplayContext.getComponentContext
 				String editURL = StringPool.BLANK;
 
 				if (JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE)) {
-					PortletURL editArticleURL = liferayPortletResponse.createRenderURL();
-
-					editArticleURL.setParameter("mvcPath", "/edit_article.jsp");
-					editArticleURL.setParameter("redirect", currentURL);
-					editArticleURL.setParameter("referringPortletResource", referringPortletResource);
-					editArticleURL.setParameter("groupId", String.valueOf(curArticle.getGroupId()));
-					editArticleURL.setParameter("folderId", String.valueOf(curArticle.getFolderId()));
-					editArticleURL.setParameter("articleId", curArticle.getArticleId());
-					editArticleURL.setParameter("version", String.valueOf(curArticle.getVersion()));
+					PortletURL editArticleURL = PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setMVCPath(
+						"/edit_article.jsp"
+					).setRedirect(
+						currentURL
+					).setParameter(
+						"referringPortletResource", referringPortletResource
+					).setParameter(
+						"groupId", String.valueOf(curArticle.getGroupId())
+					).setParameter(
+						"folderId", String.valueOf(curArticle.getFolderId())
+					).setParameter(
+						"articleId", curArticle.getArticleId()
+					).setParameter(
+						"version", String.valueOf(curArticle.getVersion())
+					).build();
 
 					editURL = editArticleURL.toString();
 				}
@@ -276,11 +284,15 @@ Map<String, Object> componentContext = journalDisplayContext.getComponentContext
 					).build());
 				row.setPrimaryKey(String.valueOf(curFolder.getPrimaryKey()));
 
-				PortletURL rowURL = liferayPortletResponse.createRenderURL();
-
-				rowURL.setParameter("groupId", String.valueOf(curFolder.getGroupId()));
-				rowURL.setParameter("folderId", String.valueOf(curFolder.getFolderId()));
-				rowURL.setParameter("displayStyle", journalDisplayContext.getDisplayStyle());
+				PortletURL rowURL = PortletURLBuilder.createRenderURL(
+					liferayPortletResponse
+				).setParameter(
+					"groupId", String.valueOf(curFolder.getGroupId())
+				).setParameter(
+					"folderId", String.valueOf(curFolder.getFolderId())
+				).setParameter(
+					"displayStyle", journalDisplayContext.getDisplayStyle()
+				).build();
 				%>
 
 				<c:choose>

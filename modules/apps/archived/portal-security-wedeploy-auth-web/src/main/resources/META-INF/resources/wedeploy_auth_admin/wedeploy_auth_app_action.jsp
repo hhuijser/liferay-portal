@@ -21,9 +21,11 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 WeDeployAuthApp weDeployAuthApp = (WeDeployAuthApp)row.getObject();
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/wedeploy_auth_admin/view");
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/wedeploy_auth_admin/view"
+).build();
 %>
 
 <liferay-ui:icon-menu

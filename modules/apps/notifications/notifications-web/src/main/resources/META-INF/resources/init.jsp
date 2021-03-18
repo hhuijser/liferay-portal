@@ -42,7 +42,6 @@ page import="com.liferay.portal.kernel.notifications.UserNotificationDefinition"
 page import="com.liferay.portal.kernel.notifications.UserNotificationDeliveryType" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationFeedEntry" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationManagerUtil" %><%@
-page import="com.liferay.portal.kernel.portlet.PortletURLUtil" %><%@
 page import="com.liferay.portal.kernel.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.service.ServiceContextFactory" %><%@
 page import="com.liferay.portal.kernel.service.UserNotificationDeliveryLocalServiceUtil" %><%@
@@ -65,8 +64,6 @@ page import="com.liferay.taglib.search.ResultRow" %>
 page import="java.util.List" %><%@
 page import="java.util.Map" %><%@
 page import="java.util.TreeMap" %>
-
-<%@ page import="javax.portlet.PortletURL" %>
 
 <liferay-frontend:defineObjects />
 

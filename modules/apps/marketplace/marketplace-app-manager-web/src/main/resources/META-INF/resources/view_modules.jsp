@@ -25,9 +25,11 @@ AppDisplay appDisplay = viewModulesManagementToolbarDisplayContext.getAppDisplay
 
 SearchContainer<Object> searchContainer = viewModulesManagementToolbarDisplayContext.getSearchContainer();
 
-PortletURL backURL = renderResponse.createRenderURL();
-
-backURL.setParameter("mvcPath", "/view.jsp");
+PortletURL backURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view.jsp"
+).build();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL.toString());

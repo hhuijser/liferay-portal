@@ -25,18 +25,27 @@ DDMStructure structure = DDMStructureServiceUtil.getStructure(structureId);
 
 String title = LanguageUtil.format(request, "x-history", structure.getName(locale), false);
 
-PortletURL portletURL = renderResponse.createRenderURL();
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view_structure_history.jsp"
+).setRedirect(
+	redirect
+).setParameter(
+	"structureId", String.valueOf(structureId)
+).build();
 
-portletURL.setParameter("mvcPath", "/view_structure_history.jsp");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("structureId", String.valueOf(structureId));
-
-PortletURL backURL = renderResponse.createRenderURL();
-
-backURL.setParameter("mvcPath", "/edit_structure.jsp");
-backURL.setParameter("redirect", redirect);
-backURL.setParameter("classNameId", String.valueOf(PortalUtil.getClassNameId(DDMStructure.class)));
-backURL.setParameter("classPK", String.valueOf(structure.getStructureId()));
+PortletURL backURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/edit_structure.jsp"
+).setRedirect(
+	redirect
+).setParameter(
+	"classNameId", String.valueOf(PortalUtil.getClassNameId(DDMStructure.class))
+).setParameter(
+	"classPK", String.valueOf(structure.getStructureId())
+).build();
 %>
 
 <c:choose>

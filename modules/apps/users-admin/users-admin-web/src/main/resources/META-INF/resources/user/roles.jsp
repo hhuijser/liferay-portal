@@ -167,11 +167,15 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 							'<liferay-ui:message arguments="regular-role" key="select-x" />',
 
 						<%
-						PortletURL selectRegularRoleURL = PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE);
-
-						selectRegularRoleURL.setParameter("p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId()));
-						selectRegularRoleURL.setParameter("eventName", regularRoleEventName);
-						selectRegularRoleURL.setWindowState(LiferayWindowState.POP_UP);
+						PortletURL selectRegularRoleURL = PortletURLBuilder.create(
+							PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE)
+						).setParameter(
+							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
+						).setParameter(
+							"eventName", regularRoleEventName
+						).setWindowState(
+							LiferayWindowState.POP_UP
+						).build();
 						%>
 
 						url: '<%= selectRegularRoleURL.toString() %>',
@@ -413,14 +417,21 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 							'<liferay-ui:message arguments="organization-role" key="select-x" />',
 
 						<%
-						PortletURL selectOrganizationRoleURL = PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE);
-
-						selectOrganizationRoleURL.setParameter("p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId()));
-						selectOrganizationRoleURL.setParameter("step", "1");
-						selectOrganizationRoleURL.setParameter("roleType", String.valueOf(RoleConstants.TYPE_ORGANIZATION));
-						selectOrganizationRoleURL.setParameter("organizationIds", StringUtil.merge(organizationIds));
-						selectOrganizationRoleURL.setParameter("eventName", organizationRoleEventName);
-						selectOrganizationRoleURL.setWindowState(LiferayWindowState.POP_UP);
+						PortletURL selectOrganizationRoleURL = PortletURLBuilder.create(
+							PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE)
+						).setParameter(
+							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
+						).setParameter(
+							"step", "1"
+						).setParameter(
+							"roleType", String.valueOf(RoleConstants.TYPE_ORGANIZATION)
+						).setParameter(
+							"organizationIds", StringUtil.merge(organizationIds)
+						).setParameter(
+							"eventName", organizationRoleEventName
+						).setWindowState(
+							LiferayWindowState.POP_UP
+						).build();
 						%>
 
 						url: '<%= selectOrganizationRoleURL.toString() %>',
@@ -599,13 +610,19 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 								'<liferay-ui:message arguments="site-role" key="select-x" />',
 
 							<%
-							PortletURL selectSiteRoleURL = PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE);
-
-							selectSiteRoleURL.setParameter("p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId()));
-							selectSiteRoleURL.setParameter("step", "1");
-							selectSiteRoleURL.setParameter("roleType", String.valueOf(RoleConstants.TYPE_SITE));
-							selectSiteRoleURL.setParameter("eventName", siteRoleEventName);
-							selectSiteRoleURL.setWindowState(LiferayWindowState.POP_UP);
+							PortletURL selectSiteRoleURL = PortletURLBuilder.create(
+								PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE)
+							).setParameter(
+								"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
+							).setParameter(
+								"step", "1"
+							).setParameter(
+								"roleType", String.valueOf(RoleConstants.TYPE_SITE)
+							).setParameter(
+								"eventName", siteRoleEventName
+							).setWindowState(
+								LiferayWindowState.POP_UP
+							).build();
 							%>
 
 							uri: '<%= selectSiteRoleURL.toString() %>',

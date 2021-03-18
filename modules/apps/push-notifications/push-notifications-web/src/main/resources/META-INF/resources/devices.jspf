@@ -38,9 +38,11 @@ ResourceBundleLoaderProvider resourceBundleLoaderProvider = (ResourceBundleLoade
 		</liferay-frontend:management-bar-buttons>
 
 		<%
-		PortletURL iteratorURL = renderResponse.createRenderURL();
-
-		iteratorURL.setParameter("displayStyle", displayStyle);
+		PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"displayStyle", displayStyle
+		).build();
 		%>
 
 		<liferay-frontend:management-bar-filters>

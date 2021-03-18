@@ -64,6 +64,7 @@ page import="com.liferay.fragment.web.internal.servlet.taglib.clay.FragmentColle
 page import="com.liferay.fragment.web.internal.servlet.taglib.clay.FragmentCollectionResourceVerticalCard" %><%@
 page import="com.liferay.fragment.web.internal.servlet.taglib.clay.FragmentEntryVerticalCardFactory" %><%@
 page import="com.liferay.frontend.taglib.servlet.taglib.util.EmptyResultMessageKeys" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.model.Group" %><%@

@@ -27,11 +27,15 @@ DDMTemplate template = templateVersion.getTemplate();
 
 String title = LanguageUtil.format(request, "x-version-x", new Object[] {templateVersion.getName(locale), templateVersion.getVersion()});
 
-PortletURL backURL = renderResponse.createRenderURL();
-
-backURL.setParameter("mvcPath", "/view_template_history.jsp");
-backURL.setParameter("redirect", redirect);
-backURL.setParameter("templateId", String.valueOf(template.getTemplateId()));
+PortletURL backURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view_template_history.jsp"
+).setRedirect(
+	redirect
+).setParameter(
+	"templateId", String.valueOf(template.getTemplateId())
+).build();
 %>
 
 <clay:container-fluid>

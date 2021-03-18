@@ -31,6 +31,7 @@ page import="com.liferay.application.list.constants.PanelCategoryKeys" %><%@
 page import="com.liferay.application.list.display.context.logic.PanelCategoryHelper" %><%@
 page import="com.liferay.layout.set.prototype.constants.LayoutSetPrototypePortletKeys" %><%@
 page import="com.liferay.layout.set.prototype.web.internal.display.context.LayoutSetPrototypeDisplayContext" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.exception.NoSuchLayoutSetPrototypeException" %><%@

@@ -18,11 +18,6 @@
 
 <%
 String tabs1 = ParamUtil.getString(renderRequest, "tabs1", "assigned-to-me");
-
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/view.jsp");
-portletURL.setParameter("tabs1", tabs1);
 %>
 
 <clay:navigation-bar

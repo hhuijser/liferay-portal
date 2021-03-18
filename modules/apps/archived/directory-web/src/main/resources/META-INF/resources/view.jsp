@@ -17,10 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/directory/view");
-portletURL.setParameter("tabs1", tabs1);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/directory/view"
+).setParameter(
+	"tabs1", tabs1
+).build();
 
 pageContext.setAttribute("portletURL", portletURL);
 

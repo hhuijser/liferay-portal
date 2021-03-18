@@ -32,13 +32,19 @@ long addressId = ParamUtil.getLong(request, "addressId");
 >
 
 	<%
-	PortletURL editURL = liferayPortletResponse.createRenderURL();
-
-	editURL.setParameter("mvcPath", "/common/edit_address.jsp");
-	editURL.setParameter("redirect", currentURL);
-	editURL.setParameter("className", className);
-	editURL.setParameter("classPK", String.valueOf(classPK));
-	editURL.setParameter("primaryKey", String.valueOf(addressId));
+	PortletURL editURL = PortletURLBuilder.createRenderURL(
+		liferayPortletResponse
+	).setMVCPath(
+		"/common/edit_address.jsp"
+	).setRedirect(
+		currentURL
+	).setParameter(
+		"className", className
+	).setParameter(
+		"classPK", String.valueOf(classPK)
+	).setParameter(
+		"primaryKey", String.valueOf(addressId)
+	).build();
 	%>
 
 	<liferay-ui:icon
@@ -47,18 +53,27 @@ long addressId = ParamUtil.getLong(request, "addressId");
 	/>
 
 	<%
-	PortletURL portletURL = renderResponse.createActionURL();
+	PortletURL portletURL = PortletURLBuilder.createActionURL(
+		renderResponse
+	).setActionName(
+		"/users_admin/update_contact_information"
+	).setRedirect(
+		currentURL
+	).setParameter(
+		"className", className
+	).setParameter(
+		"classPK", String.valueOf(classPK)
+	).setParameter(
+		"listType", ListTypeConstants.ADDRESS
+	).setParameter(
+		"primaryKey", String.valueOf(addressId)
+	).build();
 
-	portletURL.setParameter(ActionRequest.ACTION_NAME, "/users_admin/update_contact_information");
-	portletURL.setParameter("redirect", currentURL);
-	portletURL.setParameter("className", className);
-	portletURL.setParameter("classPK", String.valueOf(classPK));
-	portletURL.setParameter("listType", ListTypeConstants.ADDRESS);
-	portletURL.setParameter("primaryKey", String.valueOf(addressId));
-
-	PortletURL makePrimaryURL = PortletURLUtil.clone(portletURL, renderResponse);
-
-	makePrimaryURL.setParameter(Constants.CMD, "makePrimary");
+	PortletURL makePrimaryURL = PortletURLBuilder.create(
+		PortletURLUtil.clone(portletURL, renderResponse)
+	).setParameter(
+		Constants.CMD, "makePrimary"
+	).build();
 	%>
 
 	<liferay-ui:icon
@@ -67,9 +82,11 @@ long addressId = ParamUtil.getLong(request, "addressId");
 	/>
 
 	<%
-	PortletURL removeAddressURL = PortletURLUtil.clone(portletURL, renderResponse);
-
-	removeAddressURL.setParameter(Constants.CMD, Constants.DELETE);
+	PortletURL removeAddressURL = PortletURLBuilder.create(
+		PortletURLUtil.clone(portletURL, renderResponse)
+	).setParameter(
+		Constants.CMD, Constants.DELETE
+	).build();
 	%>
 
 	<liferay-ui:icon

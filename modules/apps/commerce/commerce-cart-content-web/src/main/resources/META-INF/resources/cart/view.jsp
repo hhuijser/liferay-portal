@@ -25,9 +25,11 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 
 SearchContainer<CommerceOrderItem> commerceOrderItemSearchContainer = commerceCartContentDisplayContext.getSearchContainer();
 
-PortletURL portletURL = commerceCartContentDisplayContext.getPortletURL();
-
-portletURL.setParameter("searchContainerId", "commerceOrderItems");
+PortletURL portletURL = PortletURLBuilder.create(
+	commerceCartContentDisplayContext.getPortletURL()
+).setParameter(
+	"searchContainerId", "commerceOrderItems"
+).build();
 
 request.setAttribute("view.jsp-portletURL", portletURL);
 

@@ -65,9 +65,11 @@ String redirect = PortalUtil.getLayoutFullURL(layout, themeDisplay);
 								curGroupId = group.getLiveGroupId();
 							}
 
-							PortletURL portletURL = assetPublisherAddItemHolder.getPortletURL();
-
-							portletURL.setParameter("redirect", redirect);
+							PortletURL portletURL = PortletURLBuilder.create(
+								assetPublisherAddItemHolder.getPortletURL()
+							).setRedirect(
+								redirect
+							).build();
 						%>
 
 							<aui:option

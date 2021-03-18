@@ -29,11 +29,15 @@ List<String> attributeNames = Collections.list(expandoBridge.getAttributeNames()
 
 ExpandoDisplayContext expandoDisplayContext = new ExpandoDisplayContext(request);
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/view_attributes.jsp");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("modelResource", modelResource);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view_attributes.jsp"
+).setRedirect(
+	redirect
+).setParameter(
+	"modelResource", modelResource
+).build();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);

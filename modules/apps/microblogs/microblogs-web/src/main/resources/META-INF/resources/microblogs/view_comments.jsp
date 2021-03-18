@@ -27,13 +27,17 @@ List<MicroblogsEntry> microblogsEntries = MicroblogsEntryLocalServiceUtil.getPar
 
 request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
 
-PortletURL microblogsEntriesURL = renderResponse.createRenderURL();
-
-microblogsEntriesURL.setWindowState(WindowState.NORMAL);
-
-microblogsEntriesURL.setParameter("mvcPath", "/microblogs/view.jsp");
-microblogsEntriesURL.setParameter("tabs1", tabs1);
-microblogsEntriesURL.setParameter("cur", String.valueOf(cur));
+PortletURL microblogsEntriesURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setWindowState(
+	WindowState.NORMAL
+).setMVCPath(
+	"/microblogs/view.jsp"
+).setParameter(
+	"tabs1", tabs1
+).setParameter(
+	"cur", String.valueOf(cur)
+).build();
 
 request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);
 %>

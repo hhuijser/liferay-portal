@@ -22,18 +22,27 @@ String keywords = ParamUtil.getString(request, "keywords");
 String screenNavigationCategoryKey = ParamUtil.getString(request, "screenNavigationCategoryKey", ServerAdminNavigationEntryConstants.CATEGORY_KEY_PORTAL_PROPERTIES);
 String screenNavigationEntryKey = ParamUtil.getString(request, "screenNavigationEntryKey", ServerAdminNavigationEntryConstants.ENTRY_KEY_PORTAL_PROPERTIES);
 
-PortletURL serverURL = renderResponse.createRenderURL();
+PortletURL serverURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/server_admin/view"
+).setParameter(
+	"tabs1", tabs1
+).setParameter(
+	"delta", String.valueOf(delta)
+).setParameter(
+	"screenNavigationCategoryKey", screenNavigationCategoryKey
+).setParameter(
+	"screenNavigationEntryKey", screenNavigationEntryKey
+).build();
 
-serverURL.setParameter("mvcRenderCommandName", "/server_admin/view");
-serverURL.setParameter("tabs1", tabs1);
-serverURL.setParameter("delta", String.valueOf(delta));
-serverURL.setParameter("screenNavigationCategoryKey", screenNavigationCategoryKey);
-serverURL.setParameter("screenNavigationEntryKey", screenNavigationEntryKey);
-
-PortletURL clearResultsURL = PortletURLUtil.clone(serverURL, liferayPortletResponse);
-
-clearResultsURL.setParameter("navigation", (String)null);
-clearResultsURL.setParameter("keywords", StringPool.BLANK);
+PortletURL clearResultsURL = PortletURLBuilder.create(
+	PortletURLUtil.clone(serverURL, liferayPortletResponse)
+).setParameter(
+	"navigation", (String)null
+).setParameter(
+	"keywords", StringPool.BLANK
+).build();
 
 Map<String, String> filteredProperties = new TreeMap<String, String>();
 

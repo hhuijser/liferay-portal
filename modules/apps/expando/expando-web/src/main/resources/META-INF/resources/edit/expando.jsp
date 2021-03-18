@@ -65,11 +65,15 @@ if (expandoColumn != null) {
 	}
 }
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/view_attributes.jsp");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("modelResource", modelResource);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view_attributes.jsp"
+).setRedirect(
+	redirect
+).setParameter(
+	"modelResource", modelResource
+).build();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
@@ -84,11 +88,15 @@ if (expandoColumn != null) {
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.format(request, "edit-x", new Object[] {expandoColumn.getName()}, false), null);
 }
 else {
-	PortletURL newCustomFieldURL = renderResponse.createRenderURL();
-
-	newCustomFieldURL.setParameter("mvcPath", "/edit/select_field_type.jsp");
-	newCustomFieldURL.setParameter("redirect", redirect);
-	newCustomFieldURL.setParameter("modelResource", modelResource);
+	PortletURL newCustomFieldURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCPath(
+		"/edit/select_field_type.jsp"
+	).setRedirect(
+		redirect
+	).setParameter(
+		"modelResource", modelResource
+	).build();
 
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-custom-field"), newCustomFieldURL.toString());
 

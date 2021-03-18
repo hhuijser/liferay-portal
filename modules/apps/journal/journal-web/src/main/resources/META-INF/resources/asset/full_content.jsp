@@ -39,14 +39,21 @@ JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribu
 
 	int cur = ParamUtil.getInteger(request, "cur");
 
-	PortletURL articlePageURL = renderResponse.createRenderURL();
-
-	articlePageURL.setParameter("mvcPath", "/view_content.jsp");
-	articlePageURL.setParameter("cur", String.valueOf(cur));
-	articlePageURL.setParameter("redirect", pageRedirect);
-	articlePageURL.setParameter("type", assetRendererFactory.getType());
-	articlePageURL.setParameter("groupId", String.valueOf(articleDisplay.getGroupId()));
-	articlePageURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
+	PortletURL articlePageURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCPath(
+		"/view_content.jsp"
+	).setParameter(
+		"cur", String.valueOf(cur)
+	).setRedirect(
+		pageRedirect
+	).setParameter(
+		"type", assetRendererFactory.getType()
+	).setParameter(
+		"groupId", String.valueOf(articleDisplay.getGroupId())
+	).setParameter(
+		"urlTitle", articleDisplay.getUrlTitle()
+	).build();
 	%>
 
 	<br />

@@ -36,6 +36,7 @@ page import="com.liferay.marketplace.app.manager.web.internal.display.context.Vi
 page import="com.liferay.marketplace.app.manager.web.internal.util.AppDisplay" %><%@
 page import="com.liferay.marketplace.app.manager.web.internal.util.MarketplaceAppManagerUtil" %><%@
 page import="com.liferay.marketplace.exception.FileExtensionException" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@

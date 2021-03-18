@@ -32,11 +32,15 @@ if (!cpSubscriptionTypes.isEmpty()) {
 	defaultCPSubscriptionType = firstCPSubscriptionType.getName();
 }
 
-PortletURL productSkusURL = renderResponse.createRenderURL();
-
-productSkusURL.setParameter("mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
-productSkusURL.setParameter("cpDefinitionId", String.valueOf(cpDefinition.getCPDefinitionId()));
-productSkusURL.setParameter("screenNavigationCategoryKey", cpInstanceSubscriptionInfoDisplayContext.getScreenNavigationCategoryKey());
+PortletURL productSkusURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/cp_definitions/edit_cp_definition"
+).setParameter(
+	"cpDefinitionId", String.valueOf(cpDefinition.getCPDefinitionId())
+).setParameter(
+	"screenNavigationCategoryKey", cpInstanceSubscriptionInfoDisplayContext.getScreenNavigationCategoryKey()
+).build();
 
 boolean overrideSubscriptionInfo = BeanParamUtil.getBoolean(cpInstance, request, "overrideSubscriptionInfo", false);
 boolean subscriptionEnabled = BeanParamUtil.getBoolean(cpInstance, request, "subscriptionEnabled", false);

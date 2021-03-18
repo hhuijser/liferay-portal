@@ -49,20 +49,27 @@ if (tabs2.equals("open")) {
 	status = TasksEntryConstants.STATUS_OPEN;
 }
 
-PortletURL portletURL = renderResponse.createRenderURL();
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setWindowState(
+	WindowState.NORMAL
+).setParameter(
+	"tabs1", tabs1
+).setParameter(
+	"tabs2", tabs2
+).build();
 
-portletURL.setWindowState(WindowState.NORMAL);
-
-portletURL.setParameter("tabs1", tabs1);
-portletURL.setParameter("tabs2", tabs2);
-
-PortletURL taskListURL = renderResponse.createRenderURL();
-
-taskListURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-taskListURL.setParameter("mvcPath", "/tasks/view_tasks.jsp");
-taskListURL.setParameter("tabs1", tabs1);
-taskListURL.setParameter("tabs2", tabs2);
+PortletURL taskListURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setWindowState(
+	LiferayWindowState.EXCLUSIVE
+).setMVCPath(
+	"/tasks/view_tasks.jsp"
+).setParameter(
+	"tabs1", tabs1
+).setParameter(
+	"tabs2", tabs2
+).build();
 %>
 
 <liferay-ui:search-container
@@ -86,12 +93,15 @@ taskListURL.setParameter("tabs2", tabs2);
 		String rowHREF = null;
 
 		if (TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE)) {
-			PortletURL rowURL = renderResponse.createRenderURL();
-
-			rowURL.setWindowState(LiferayWindowState.POP_UP);
-
-			rowURL.setParameter("mvcPath", "/tasks/view_task.jsp");
-			rowURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
+			PortletURL rowURL = PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setWindowState(
+				LiferayWindowState.POP_UP
+			).setMVCPath(
+				"/tasks/view_task.jsp"
+			).setParameter(
+				"tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId())
+			).build();
 
 			rowHREF = rowURL.toString();
 		}

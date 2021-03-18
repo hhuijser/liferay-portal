@@ -109,23 +109,26 @@ else {
 			<c:if test="<%= hasWorkflowTask %>">
 
 				<%
-				PortletURL portletURL = PortalUtil.getControlPanelPortletURL(request, PortletKeys.MY_WORKFLOW_TASK, PortletRequest.RENDER_PHASE);
-
-				portletURL.setParameter("mvcPath", "/edit_workflow_task.jsp");
-
 				WorkflowTask workflowTask = StagingUtil.getWorkflowTask(user.getUserId(), layoutRevision);
-
-				portletURL.setParameter("workflowTaskId", String.valueOf(workflowTask.getWorkflowTaskId()));
-
-				portletURL.setPortletMode(PortletMode.VIEW);
-				portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 				String layoutURL = PortalUtil.getLayoutFriendlyURL(layout, themeDisplay);
 
 				layoutURL = HttpUtil.addParameter(layoutURL, "layoutSetBranchId", layoutRevision.getLayoutSetBranchId());
 				layoutURL = HttpUtil.addParameter(layoutURL, "layoutRevisionId", layoutRevision.getLayoutRevisionId());
 
-				portletURL.setParameter("closeRedirect", layoutURL);
+				PortletURL portletURL = PortletURLBuilder.create(
+					PortalUtil.getControlPanelPortletURL(request, PortletKeys.MY_WORKFLOW_TASK, PortletRequest.RENDER_PHASE)
+				).setMVCPath(
+					"/edit_workflow_task.jsp"
+				).setParameter(
+					"workflowTaskId", String.valueOf(workflowTask.getWorkflowTaskId())
+				).setPortletMode(
+					PortletMode.VIEW
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).setParameter(
+					"closeRedirect", layoutURL
+				).build();
 				%>
 
 				<liferay-ui:icon

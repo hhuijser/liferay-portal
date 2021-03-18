@@ -108,11 +108,15 @@ catch (Exception exception) {
 				title: '<liferay-ui:message arguments="category" key="select-x" />',
 
 				<%
-				PortletURL selectMBCategoryURL = PortletProviderUtil.getPortletURL(request, MBCategory.class.getName(), PortletProvider.Action.EDIT);
-
-				selectMBCategoryURL.setParameter("mvcRenderCommandName", "/message_boards/select_category");
-				selectMBCategoryURL.setParameter("mbCategoryId", String.valueOf(rootTopicId));
-				selectMBCategoryURL.setWindowState(LiferayWindowState.POP_UP);
+				PortletURL selectMBCategoryURL = PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(request, MBCategory.class.getName(), PortletProvider.Action.EDIT)
+				).setMVCRenderCommandName(
+					"/message_boards/select_category"
+				).setParameter(
+					"mbCategoryId", String.valueOf(rootTopicId)
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).build();
 				%>
 
 				url: '<%= selectMBCategoryURL.toString() %>',

@@ -24,6 +24,7 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.asset.util.AssetHelper" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.reflect.ReflectionUtil" %><%@
 page import="com.liferay.petra.string.StringBundler" %><%@
 page import="com.liferay.portal.kernel.portlet.PortletURLFactoryUtil" %><%@
@@ -45,8 +46,7 @@ page import="com.liferay.wiki.service.WikiPageLocalServiceUtil" %>
 <%@ page import="java.util.List" %><%@
 page import="java.util.function.Supplier" %>
 
-<%@ page import="javax.portlet.ActionRequest" %><%@
-page import="javax.portlet.PortletMode" %><%@
+<%@ page import="javax.portlet.PortletMode" %><%@
 page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>

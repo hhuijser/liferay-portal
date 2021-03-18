@@ -68,6 +68,7 @@ page import="com.liferay.info.list.provider.InfoListProvider" %><%@
 page import="com.liferay.item.selector.ItemSelector" %><%@
 page import="com.liferay.item.selector.criteria.GroupItemSelectorReturnType" %><%@
 page import="com.liferay.item.selector.criteria.group.criterion.GroupItemSelectorCriterion" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringBundler" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@

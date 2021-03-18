@@ -64,6 +64,7 @@ page import="com.liferay.frontend.taglib.servlet.taglib.util.EmptyResultMessageK
 page import="com.liferay.info.field.InfoFieldValue" %><%@
 page import="com.liferay.info.item.InfoItemFieldValues" %><%@
 page import="com.liferay.info.item.provider.InfoItemFieldValuesProvider" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.exception.NoSuchModelException" %><%@

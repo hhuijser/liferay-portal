@@ -116,12 +116,17 @@ Group group = siteAdministrationPanelCategoryDisplayContext.getGroup();
 <c:if test="<%= !group.isDepot() && !group.isCompany() %>">
 
 	<%
-	PortletURL portletURL = PortletURLFactoryUtil.create(request, ProductNavigationProductMenuPortletKeys.PRODUCT_NAVIGATION_PRODUCT_MENU, RenderRequest.RENDER_PHASE);
-
-	portletURL.setParameter("mvcPath", "/portlet/pages_tree.jsp");
-	portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
-	portletURL.setParameter("selPpid", portletDisplay.getId());
-	portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+	PortletURL portletURL = PortletURLBuilder.create(
+		PortletURLFactoryUtil.create(request, ProductNavigationProductMenuPortletKeys.PRODUCT_NAVIGATION_PRODUCT_MENU, RenderRequest.RENDER_PHASE)
+	).setMVCPath(
+		"/portlet/pages_tree.jsp"
+	).setRedirect(
+		themeDisplay.getURLCurrent()
+	).setParameter(
+		"selPpid", portletDisplay.getId()
+	).setWindowState(
+		LiferayWindowState.EXCLUSIVE
+	).build();
 	%>
 
 	<aui:script sandbox="<%= true %>">

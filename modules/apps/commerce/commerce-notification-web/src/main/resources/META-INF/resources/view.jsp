@@ -21,9 +21,11 @@ String notificationNavigationItem = ParamUtil.getString(request, "notificationNa
 
 CommerceNotificationQueueEntriesDisplayContext commerceNotificationQueueEntriesDisplayContext = (CommerceNotificationQueueEntriesDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
-PortletURL portletURL = commerceNotificationQueueEntriesDisplayContext.getPortletURL();
-
-portletURL.setParameter("notificationNavigationItem", notificationNavigationItem);
+PortletURL portletURL = PortletURLBuilder.create(
+	commerceNotificationQueueEntriesDisplayContext.getPortletURL()
+).setParameter(
+	"notificationNavigationItem", notificationNavigationItem
+).build();
 %>
 
 <clay:data-set-display

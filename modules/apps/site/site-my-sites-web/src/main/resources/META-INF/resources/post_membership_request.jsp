@@ -20,9 +20,11 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 if (Validator.isNull(redirect)) {
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	portletURL.setParameter("tabs1", "available-sites");
+	PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setParameter(
+		"tabs1", "available-sites"
+	).build();
 
 	redirect = portletURL.toString();
 }

@@ -25,17 +25,25 @@ DDMTemplate template = DDMTemplateServiceUtil.getTemplate(templateId);
 
 String title = LanguageUtil.format(request, "x-history", template.getName(locale), false);
 
-PortletURL portletURL = renderResponse.createRenderURL();
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view_template_history.jsp"
+).setRedirect(
+	redirect
+).setParameter(
+	"templateId", String.valueOf(templateId)
+).build();
 
-portletURL.setParameter("mvcPath", "/view_template_history.jsp");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("templateId", String.valueOf(templateId));
-
-PortletURL backURL = renderResponse.createRenderURL();
-
-backURL.setParameter("mvcPath", "/edit_template.jsp");
-backURL.setParameter("redirect", redirect);
-backURL.setParameter("templateId", String.valueOf(templateId));
+PortletURL backURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/edit_template.jsp"
+).setRedirect(
+	redirect
+).setParameter(
+	"templateId", String.valueOf(templateId)
+).build();
 %>
 
 <c:choose>

@@ -134,11 +134,15 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 						>
 
 							<%
-							PortletURL rowURL = renderResponse.createRenderURL();
-
-							rowURL.setParameter("mvcRenderCommandName", "/cp_definitions/edit_cp_definition_grouped_entry");
-							rowURL.setParameter("cpDefinitionId", String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionId()));
-							rowURL.setParameter("cpDefinitionGroupedEntryId", String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionGroupedEntryId()));
+							PortletURL rowURL = PortletURLBuilder.createRenderURL(
+								renderResponse
+							).setMVCRenderCommandName(
+								"/cp_definitions/edit_cp_definition_grouped_entry"
+							).setParameter(
+								"cpDefinitionId", String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionId())
+							).setParameter(
+								"cpDefinitionGroupedEntryId", String.valueOf(cpDefinitionGroupedEntry.getCPDefinitionGroupedEntryId())
+							).build();
 
 							CProduct cProduct = cpDefinitionGroupedEntry.getEntryCProduct();
 

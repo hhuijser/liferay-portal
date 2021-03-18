@@ -125,12 +125,17 @@ NumberFormat percentFormat = NumberFormat.getPercentInstance(locale);
 		/>
 
 		<%
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/polls/view_question");
-		portletURL.setParameter("redirect", redirect);
-		portletURL.setParameter("questionId", String.valueOf(question.getQuestionId()));
-		portletURL.setParameter("viewResults", Boolean.TRUE.toString());
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCRenderCommandName(
+			"/polls/view_question"
+		).setRedirect(
+			redirect
+		).setParameter(
+			"questionId", String.valueOf(question.getQuestionId())
+		).setParameter(
+			"viewResults", Boolean.TRUE.toString()
+		).build();
 
 		List<String> headerNames = new ArrayList<String>();
 

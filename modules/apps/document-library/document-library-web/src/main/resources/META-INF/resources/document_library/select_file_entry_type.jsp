@@ -22,10 +22,13 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 
 long[] groupIds = PortalUtil.getCurrentAndAncestorSiteGroupIds(scopeGroupId);
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/document_library/select_file_entry_type.jsp");
-portletURL.setParameter("eventName", eventName);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/document_library/select_file_entry_type.jsp"
+).setParameter(
+	"eventName", eventName
+).build();
 %>
 
 <clay:navigation-bar

@@ -94,11 +94,15 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 										<li class="nav-item">
 
 											<%
-											PortletURL editAssetListEntryURL = renderResponse.createRenderURL();
-
-											editAssetListEntryURL.setParameter("mvcPath", "/edit_asset_list_entry.jsp");
-											editAssetListEntryURL.setParameter("assetListEntryId", String.valueOf(assetListEntrySegmentsEntryRel.getAssetListEntryId()));
-											editAssetListEntryURL.setParameter("segmentsEntryId", String.valueOf(assetListEntrySegmentsEntryRel.getSegmentsEntryId()));
+											PortletURL editAssetListEntryURL = PortletURLBuilder.createRenderURL(
+												renderResponse
+											).setMVCPath(
+												"/edit_asset_list_entry.jsp"
+											).setParameter(
+												"assetListEntryId", String.valueOf(assetListEntrySegmentsEntryRel.getAssetListEntryId())
+											).setParameter(
+												"segmentsEntryId", String.valueOf(assetListEntrySegmentsEntryRel.getSegmentsEntryId())
+											).build();
 											%>
 
 											<a class="nav-link text-truncate <%= (editAssetListDisplayContext.getSegmentsEntryId() == assetListEntrySegmentsEntryRel.getSegmentsEntryId()) ? "active" : StringPool.BLANK %>" href="<%= editAssetListEntryURL.toString() %>">

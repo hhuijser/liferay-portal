@@ -33,13 +33,19 @@ scopeGroup = themeDisplay.getScopeGroup();
 	/>
 
 	<%
-	PortletURL portletURL = PortletURLFactoryUtil.create(request, ChangesetPortletKeys.CHANGESET, PortletRequest.ACTION_PHASE);
-
-	portletURL.setParameter(ActionRequest.ACTION_NAME, "exportImportEntity");
-	portletURL.setParameter("mvcRenderCommandName", "exportImportEntity");
-	portletURL.setParameter("cmd", cmd);
-	portletURL.setParameter("backURL", themeDisplay.getURLCurrent());
-	portletURL.setParameter("portletId", portletDisplay.getId());
+	PortletURL portletURL = PortletURLBuilder.create(
+		PortletURLFactoryUtil.create(request, ChangesetPortletKeys.CHANGESET, PortletRequest.ACTION_PHASE)
+	).setActionName(
+		"exportImportEntity"
+	).setMVCRenderCommandName(
+		"exportImportEntity"
+	).setParameter(
+		"cmd", cmd
+	).setParameter(
+		"backURL", themeDisplay.getURLCurrent()
+	).setParameter(
+		"portletId", portletDisplay.getId()
+	).build();
 	%>
 
 	<aui:script use="liferay-export-import-management-bar-button">

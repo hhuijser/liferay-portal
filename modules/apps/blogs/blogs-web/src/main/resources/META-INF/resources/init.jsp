@@ -89,6 +89,7 @@ page import="com.liferay.document.library.kernel.util.DLValidatorUtil" %><%@
 page import="com.liferay.document.library.util.DLURLHelperUtil" %><%@
 page import="com.liferay.friendly.url.exception.DuplicateFriendlyURLEntryException" %><%@
 page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPNavigationItemList" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringBundler" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@

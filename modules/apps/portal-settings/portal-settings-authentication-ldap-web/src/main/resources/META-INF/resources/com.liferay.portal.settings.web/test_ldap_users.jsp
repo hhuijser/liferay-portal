@@ -126,24 +126,41 @@ if (Validator.isNotNull(userFilter) && !userFilter.equals(StringPool.STAR)) {
 <%
 boolean showMissingAttributeMessage = false;
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/portal_settings_authentication_ldap/test_ldap_users");
-portletURL.setParameter("ldapServerId", String.valueOf(ldapServerId));
-portletURL.setParameter("baseProviderURL", baseProviderURL);
-portletURL.setParameter("baseDN", baseDN);
-portletURL.setParameter("principal", principal);
-portletURL.setParameter("credentials", credentials);
-portletURL.setParameter("importUserSearchFilter", userFilter);
-portletURL.setParameter("userMappingScreenName", ParamUtil.getString(request, "userMappingScreenName"));
-portletURL.setParameter("userMappingPassword", ParamUtil.getString(request, "userMappingPassword"));
-portletURL.setParameter("userMappingEmailAddress", ParamUtil.getString(request, "userMappingEmailAddress"));
-portletURL.setParameter("userMappingFullName", ParamUtil.getString(request, "userMappingFullName"));
-portletURL.setParameter("userMappingFirstName", ParamUtil.getString(request, "userMappingFirstName"));
-portletURL.setParameter("userMappingLastName", ParamUtil.getString(request, "userMappingLastName"));
-portletURL.setParameter("userMappingJobTitle", ParamUtil.getString(request, "userMappingJobTitle"));
-portletURL.setParameter("userMappingGroup", ParamUtil.getString(request, "userMappingGroup"));
-portletURL.setWindowState(LiferayWindowState.POP_UP);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/portal_settings_authentication_ldap/test_ldap_users"
+).setParameter(
+	"ldapServerId", String.valueOf(ldapServerId)
+).setParameter(
+	"baseProviderURL", baseProviderURL
+).setParameter(
+	"baseDN", baseDN
+).setParameter(
+	"principal", principal
+).setParameter(
+	"credentials", credentials
+).setParameter(
+	"importUserSearchFilter", userFilter
+).setParameter(
+	"userMappingScreenName", ParamUtil.getString(request, "userMappingScreenName")
+).setParameter(
+	"userMappingPassword", ParamUtil.getString(request, "userMappingPassword")
+).setParameter(
+	"userMappingEmailAddress", ParamUtil.getString(request, "userMappingEmailAddress")
+).setParameter(
+	"userMappingFullName", ParamUtil.getString(request, "userMappingFullName")
+).setParameter(
+	"userMappingFirstName", ParamUtil.getString(request, "userMappingFirstName")
+).setParameter(
+	"userMappingLastName", ParamUtil.getString(request, "userMappingLastName")
+).setParameter(
+	"userMappingJobTitle", ParamUtil.getString(request, "userMappingJobTitle")
+).setParameter(
+	"userMappingGroup", ParamUtil.getString(request, "userMappingGroup")
+).setWindowState(
+	LiferayWindowState.POP_UP
+).build();
 %>
 
 <liferay-ui:search-container

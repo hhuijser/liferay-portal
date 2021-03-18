@@ -21,9 +21,11 @@ DispatchLogDisplayContext dispatchLogDisplayContext = (DispatchLogDisplayContext
 
 DispatchTrigger dispatchTrigger = dispatchLogDisplayContext.getDispatchTrigger();
 
-PortletURL portletURL = dispatchLogDisplayContext.getPortletURL();
-
-portletURL.setParameter("searchContainerId", "dispatchLogs");
+PortletURL portletURL = PortletURLBuilder.create(
+	dispatchLogDisplayContext.getPortletURL()
+).setParameter(
+	"searchContainerId", "dispatchLogs"
+).build();
 
 request.setAttribute("view.jsp-portletURL", portletURL);
 %>
@@ -51,11 +53,15 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 					>
 
 						<%
-						PortletURL rowURL = renderResponse.createRenderURL();
-
-						rowURL.setParameter("mvcRenderCommandName", "/dispatch/view_dispatch_log");
-						rowURL.setParameter("redirect", currentURL);
-						rowURL.setParameter("dispatchLogId", String.valueOf(dispatchLog.getDispatchLogId()));
+						PortletURL rowURL = PortletURLBuilder.createRenderURL(
+							renderResponse
+						).setMVCRenderCommandName(
+							"/dispatch/view_dispatch_log"
+						).setRedirect(
+							currentURL
+						).setParameter(
+							"dispatchLogId", String.valueOf(dispatchLog.getDispatchLogId())
+						).build();
 						%>
 
 						<liferay-ui:search-container-column-text

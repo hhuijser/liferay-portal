@@ -89,9 +89,11 @@ UserGroup userGroup = (UserGroup)row.getObject();
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, userGroupGroup, ActionKeys.MANAGE_LAYOUTS) %>">
 
 		<%
-		PortletURL managePagesURL = PortletProviderUtil.getPortletURL(request, userGroupGroup, Layout.class.getName(), PortletProvider.Action.EDIT);
-
-		managePagesURL.setParameter("redirect", currentURL);
+		PortletURL managePagesURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(request, userGroupGroup, Layout.class.getName(), PortletProvider.Action.EDIT)
+		).setRedirect(
+			currentURL
+		).build();
 		%>
 
 		<liferay-ui:icon

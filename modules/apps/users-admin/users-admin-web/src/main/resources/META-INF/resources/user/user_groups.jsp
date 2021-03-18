@@ -192,10 +192,13 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 				title: '<liferay-ui:message arguments="user-group" key="select-x" />',
 
 				<%
-				PortletURL selectUserGroupURL = PortletProviderUtil.getPortletURL(request, UserGroup.class.getName(), PortletProvider.Action.BROWSE);
-
-				selectUserGroupURL.setParameter("p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId()));
-				selectUserGroupURL.setWindowState(LiferayWindowState.POP_UP);
+				PortletURL selectUserGroupURL = PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(request, UserGroup.class.getName(), PortletProvider.Action.BROWSE)
+				).setParameter(
+					"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).build();
 				%>
 
 				url: '<%= selectUserGroupURL.toString() %>',

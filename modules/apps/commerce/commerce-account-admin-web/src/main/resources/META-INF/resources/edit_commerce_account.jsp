@@ -21,10 +21,6 @@ CommerceAccountAdminDisplayContext commerceAccountAdminDisplayContext = (Commerc
 
 CommerceAccount commerceAccount = commerceAccountAdminDisplayContext.getCommerceAccount();
 
-PortletURL portletURL = commerceAccountAdminDisplayContext.getPortletURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/commerce_account_admin/edit_commerce_account");
-
 String title = LanguageUtil.get(request, "add-account");
 
 if (commerceAccount != null) {

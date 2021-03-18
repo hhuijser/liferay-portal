@@ -38,6 +38,7 @@ page import="com.liferay.contacts.service.EntryLocalServiceUtil" %><%@
 page import="com.liferay.contacts.util.ContactsExtensionsUtil" %><%@
 page import="com.liferay.contacts.util.ContactsUtil" %><%@
 page import="com.liferay.contacts.web.internal.constants.ContactsPortletKeys" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.CharPool" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@

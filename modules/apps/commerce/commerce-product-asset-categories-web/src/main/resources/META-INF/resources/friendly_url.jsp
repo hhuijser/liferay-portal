@@ -23,11 +23,13 @@ long vocabularyId = ParamUtil.getLong(request, "vocabularyId");
 
 String friendlyURLBase = themeDisplay.getPortalURL() + CPConstants.SEPARATOR_ASSET_CATEGORY_URL;
 
-PortletURL categoryRedirectURL = renderResponse.createRenderURL();
-
 long parentCategoryId = BeanParamUtil.getLong(category, request, "parentCategoryId");
 
-categoryRedirectURL.setParameter("mvcPath", "/view_categories.jsp");
+PortletURL categoryRedirectURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view_categories.jsp"
+).build();
 
 if (parentCategoryId > 0) {
 	categoryRedirectURL.setParameter("categoryId", String.valueOf(parentCategoryId));

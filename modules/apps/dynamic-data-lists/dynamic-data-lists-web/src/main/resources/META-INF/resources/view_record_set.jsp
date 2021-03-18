@@ -20,9 +20,11 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 if (Validator.isNull(redirect)) {
-	PortletURL redirectURL = renderResponse.createRenderURL();
-
-	redirectURL.setParameter("mvcPath", "/view.jsp");
+	PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCPath(
+		"/view.jsp"
+	).build();
 
 	redirect = redirectURL.toString();
 }

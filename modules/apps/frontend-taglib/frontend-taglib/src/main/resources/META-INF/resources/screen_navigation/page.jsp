@@ -89,10 +89,13 @@ LiferayPortletResponse finalLiferayPortletResponse = liferayPortletResponse;
 
 							<%
 							for (ScreenNavigationEntry<Object> screenNavigationEntry : screenNavigationEntries) {
-								PortletURL screenNavigationEntryURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
-
-								screenNavigationEntryURL.setParameter("screenNavigationCategoryKey", screenNavigationEntry.getCategoryKey());
-								screenNavigationEntryURL.setParameter("screenNavigationEntryKey", screenNavigationEntry.getEntryKey());
+								PortletURL screenNavigationEntryURL = PortletURLBuilder.create(
+									PortletURLUtil.clone(portletURL, liferayPortletResponse)
+								).setParameter(
+									"screenNavigationCategoryKey", screenNavigationEntry.getCategoryKey()
+								).setParameter(
+									"screenNavigationEntryKey", screenNavigationEntry.getEntryKey()
+								).build();
 							%>
 
 								<li class="nav-item">

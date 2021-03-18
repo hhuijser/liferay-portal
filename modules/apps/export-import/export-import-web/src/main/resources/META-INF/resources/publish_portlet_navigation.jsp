@@ -19,10 +19,13 @@
 <%
 String tabs3 = ParamUtil.getString(request, "tabs3", "new-publish-process");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/export_import/publish_portlet");
-portletURL.setParameter("portletResource", portletResource);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/export_import/publish_portlet"
+).setParameter(
+	"portletResource", portletResource
+).build();
 %>
 
 <c:if test="<%= (themeDisplay.getURLPublishToLive() != null) || layout.isTypeControlPanel() %>">

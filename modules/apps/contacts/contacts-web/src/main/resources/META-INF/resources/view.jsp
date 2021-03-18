@@ -67,9 +67,11 @@ else {
 	contactsCount = EntryLocalServiceUtil.searchUsersAndContactsCount(themeDisplay.getCompanyId(), user.getUserId(), name);
 }
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setWindowState(WindowState.NORMAL);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setWindowState(
+	WindowState.NORMAL
+).build();
 %>
 
 <c:choose>

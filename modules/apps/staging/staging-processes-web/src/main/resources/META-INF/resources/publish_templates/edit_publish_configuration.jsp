@@ -75,13 +75,19 @@ treeId = treeId + liveGroupId;
 
 treeId = treeId + privateLayout + layoutSetBranchId;
 
-PortletURL renderURL = renderResponse.createRenderURL();
-
-renderURL.setParameter("mvcRenderCommandName", "/staging_processes/view_publish_configurations");
-renderURL.setParameter("groupId", String.valueOf(stagingGroupId));
-renderURL.setParameter("layoutSetBranchId", String.valueOf(layoutSetBranchId));
-renderURL.setParameter("layoutSetBranchName", layoutSetBranchName);
-renderURL.setParameter("privateLayout", String.valueOf(privateLayout));
+PortletURL renderURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/staging_processes/view_publish_configurations"
+).setParameter(
+	"groupId", String.valueOf(stagingGroupId)
+).setParameter(
+	"layoutSetBranchId", String.valueOf(layoutSetBranchId)
+).setParameter(
+	"layoutSetBranchName", layoutSetBranchName
+).setParameter(
+	"privateLayout", String.valueOf(privateLayout)
+).build();
 
 response.setHeader("Ajax-ID", request.getHeader("Ajax-ID"));
 

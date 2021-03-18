@@ -93,9 +93,11 @@ if (organization != null) {
 			<c:if test="<%= site %>">
 
 				<%
-				PortletURL editOrganizationSiteURL = PortletProviderUtil.getPortletURL(request, organizationGroup, Group.class.getName(), PortletProvider.Action.EDIT);
-
-				editOrganizationSiteURL.setParameter("viewOrganizationsRedirect", currentURL);
+				PortletURL editOrganizationSiteURL = PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(request, organizationGroup, Group.class.getName(), PortletProvider.Action.EDIT)
+				).setParameter(
+					"viewOrganizationsRedirect", currentURL
+				).build();
 				%>
 
 				<aui:input inlineField="<%= true %>" name="siteId" type="resource" value="<%= String.valueOf(organizationGroup.getGroupId()) %>" />

@@ -21,13 +21,19 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WikiWebKeys.WIKI_PAGE);
 
 double sourceVersion = ParamUtil.getDouble(request, "sourceVersion");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/wiki/select_version");
-portletURL.setParameter("redirect", currentURL);
-portletURL.setParameter("nodeId", String.valueOf(wikiPage.getNodeId()));
-portletURL.setParameter("title", HtmlUtil.unescape(wikiPage.getTitle()));
-portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/wiki/select_version"
+).setRedirect(
+	currentURL
+).setParameter(
+	"nodeId", String.valueOf(wikiPage.getNodeId())
+).setParameter(
+	"title", HtmlUtil.unescape(wikiPage.getTitle())
+).setParameter(
+	"sourceVersion", String.valueOf(sourceVersion)
+).build();
 %>
 
 <clay:container-fluid>

@@ -23,9 +23,11 @@ CPOptionCategoryDisplayContext cpOptionCategoryDisplayContext = (CPOptionCategor
 
 String displayStyle = cpOptionCategoryDisplayContext.getDisplayStyle();
 
-PortletURL portletURL = cpOptionCategoryDisplayContext.getPortletURL();
-
-portletURL.setParameter("searchContainerId", "cpOptionCategories");
+PortletURL portletURL = PortletURLBuilder.create(
+	cpOptionCategoryDisplayContext.getPortletURL()
+).setParameter(
+	"searchContainerId", "cpOptionCategories"
+).build();
 
 request.setAttribute("view.jsp-portletURL", portletURL);
 
@@ -132,11 +134,15 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 							>
 
 								<%
-								PortletURL rowURL = renderResponse.createRenderURL();
-
-								rowURL.setParameter("mvcRenderCommandName", "/cp_specification_options/edit_cp_option_category");
-								rowURL.setParameter("redirect", currentURL);
-								rowURL.setParameter("cpOptionCategoryId", String.valueOf(cpOptionCategory.getCPOptionCategoryId()));
+								PortletURL rowURL = PortletURLBuilder.createRenderURL(
+									renderResponse
+								).setMVCRenderCommandName(
+									"/cp_specification_options/edit_cp_option_category"
+								).setRedirect(
+									currentURL
+								).setParameter(
+									"cpOptionCategoryId", String.valueOf(cpOptionCategory.getCPOptionCategoryId())
+								).build();
 								%>
 
 								<liferay-ui:search-container-column-text

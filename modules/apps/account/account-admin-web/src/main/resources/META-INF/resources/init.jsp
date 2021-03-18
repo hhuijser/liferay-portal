@@ -74,6 +74,7 @@ page import="com.liferay.account.service.AccountRoleLocalServiceUtil" %><%@
 page import="com.liferay.asset.kernel.model.AssetVocabularyConstants" %><%@
 page import="com.liferay.expando.kernel.model.ExpandoColumn" %><%@
 page import="com.liferay.expando.util.ExpandoAttributesUtil" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.exception.DuplicateRoleException" %><%@

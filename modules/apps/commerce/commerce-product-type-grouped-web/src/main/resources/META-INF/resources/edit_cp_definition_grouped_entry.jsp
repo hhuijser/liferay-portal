@@ -27,11 +27,15 @@ CProduct cProduct = cpDefinitionGroupedEntry.getEntryCProduct();
 
 CPDefinition cProductCPDefinition = CPDefinitionLocalServiceUtil.getCPDefinition(cProduct.getPublishedCPDefinitionId());
 
-PortletURL groupedProductsURL = renderResponse.createRenderURL();
-
-groupedProductsURL.setParameter("mvcRenderCommandName", "/cp_definitions/edit_cp_definition");
-groupedProductsURL.setParameter("cpDefinitionId", String.valueOf(cpDefinition.getCPDefinitionId()));
-groupedProductsURL.setParameter("screenNavigationCategoryKey", cpDefinitionGroupedEntriesDisplayContext.getScreenNavigationCategoryKey());
+PortletURL groupedProductsURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/cp_definitions/edit_cp_definition"
+).setParameter(
+	"cpDefinitionId", String.valueOf(cpDefinition.getCPDefinitionId())
+).setParameter(
+	"screenNavigationCategoryKey", cpDefinitionGroupedEntriesDisplayContext.getScreenNavigationCategoryKey()
+).build();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(groupedProductsURL.toString());

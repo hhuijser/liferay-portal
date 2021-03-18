@@ -23,11 +23,15 @@ BookmarksFolder folder = (BookmarksFolder)row.getObject();
 
 folder = folder.toEscapedModel();
 
-PortletURL rowURL = liferayPortletResponse.createRenderURL();
-
-rowURL.setParameter("mvcRenderCommandName", "/bookmarks/view_folder");
-rowURL.setParameter("redirect", currentURL);
-rowURL.setParameter("folderId", String.valueOf(folder.getFolderId()));
+PortletURL rowURL = PortletURLBuilder.createRenderURL(
+	liferayPortletResponse
+).setMVCRenderCommandName(
+	"/bookmarks/view_folder"
+).setRedirect(
+	currentURL
+).setParameter(
+	"folderId", String.valueOf(folder.getFolderId())
+).build();
 %>
 
 <h4>

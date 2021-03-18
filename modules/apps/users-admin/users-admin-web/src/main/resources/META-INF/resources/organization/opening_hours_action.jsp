@@ -33,13 +33,19 @@ long orgLaborId = ParamUtil.getLong(request, "orgLaborId");
 >
 
 	<%
-	PortletURL editURL = liferayPortletResponse.createRenderURL();
-
-	editURL.setParameter("mvcPath", "/organization/edit_opening_hours.jsp");
-	editURL.setParameter("redirect", currentURL);
-	editURL.setParameter("className", Organization.class.getName());
-	editURL.setParameter("classPK", String.valueOf(organizationId));
-	editURL.setParameter("primaryKey", String.valueOf(orgLaborId));
+	PortletURL editURL = PortletURLBuilder.createRenderURL(
+		liferayPortletResponse
+	).setMVCPath(
+		"/organization/edit_opening_hours.jsp"
+	).setRedirect(
+		currentURL
+	).setParameter(
+		"className", Organization.class.getName()
+	).setParameter(
+		"classPK", String.valueOf(organizationId)
+	).setParameter(
+		"primaryKey", String.valueOf(orgLaborId)
+	).build();
 	%>
 
 	<liferay-ui:icon

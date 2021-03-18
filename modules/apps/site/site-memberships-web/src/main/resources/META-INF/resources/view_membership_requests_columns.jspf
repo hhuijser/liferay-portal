@@ -32,11 +32,15 @@ if (membershipRequestReplierUser != null) {
 	}
 }
 
-PortletURL previewURL = renderResponse.createRenderURL();
-
-previewURL.setParameter("mvcPath", "/preview_membership_request.jsp");
-previewURL.setParameter("redirect", currentURL);
-previewURL.setParameter("membershipRequestId", String.valueOf(membershipRequest.getMembershipRequestId()));
+PortletURL previewURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/preview_membership_request.jsp"
+).setRedirect(
+	currentURL
+).setParameter(
+	"membershipRequestId", String.valueOf(membershipRequest.getMembershipRequestId())
+).build();
 %>
 
 <c:choose>

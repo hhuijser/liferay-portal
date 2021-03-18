@@ -39,9 +39,11 @@ String assetTagName = ParamUtil.getString(request, "tag");
 
 boolean useAssetEntryQuery = Validator.isNotNull(assetTagName);
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", mvcRenderCommandName);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	mvcRenderCommandName
+).build();
 
 int cur1 = ParamUtil.getInteger(request, "cur1");
 

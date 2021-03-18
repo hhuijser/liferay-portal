@@ -46,10 +46,13 @@ SiteTeamsManagementToolbarDisplayContext siteTeamsManagementToolbarDisplayContex
 			PortletURL rowURL = null;
 
 			if (TeamPermissionUtil.contains(permissionChecker, team, ActionKeys.ASSIGN_MEMBERS)) {
-				rowURL = renderResponse.createRenderURL();
-
-				rowURL.setParameter("mvcPath", "/edit_team_assignments.jsp");
-				rowURL.setParameter("teamId", String.valueOf(team.getTeamId()));
+				rowURL = PortletURLBuilder.createRenderURL(
+					renderResponse
+				).setMVCPath(
+					"/edit_team_assignments.jsp"
+				).setParameter(
+					"teamId", String.valueOf(team.getTeamId())
+				).build();
 			}
 
 			row.setData(

@@ -69,11 +69,15 @@ List<Layout> mergeFailFriendlyURLLayouts = SitesUtil.getMergeFailFriendlyURLLayo
 		<ul>
 
 			<%
-			PortletURL editLayoutsURL = PortletProviderUtil.getPortletURL(request, Layout.class.getName(), PortletProvider.Action.VIEW);
-
-			editLayoutsURL.setParameter("tabs1", layoutSet.isPrivateLayout() ? "private-pages" : "public-pages");
-			editLayoutsURL.setParameter("redirect", redirect);
-			editLayoutsURL.setParameter("groupId", String.valueOf(groupId));
+			PortletURL editLayoutsURL = PortletURLBuilder.create(
+				PortletProviderUtil.getPortletURL(request, Layout.class.getName(), PortletProvider.Action.VIEW)
+			).setParameter(
+				"tabs1", layoutSet.isPrivateLayout() ? "private-pages" : "public-pages"
+			).setRedirect(
+				redirect
+			).setParameter(
+				"groupId", String.valueOf(groupId)
+			).build();
 
 			for (Layout mergeFailFriendlyURLLayout : mergeFailFriendlyURLLayouts) {
 				editLayoutsURL.setParameter("selPlid", String.valueOf(mergeFailFriendlyURLLayout.getPlid()));

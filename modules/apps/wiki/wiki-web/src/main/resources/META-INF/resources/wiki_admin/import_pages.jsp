@@ -36,11 +36,15 @@ if (Validator.isNull(tabs2)) {
 	tabs2 = importers[0];
 }
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/wiki/import_pages");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("nodeId", String.valueOf(nodeId));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/wiki/import_pages"
+).setRedirect(
+	redirect
+).setParameter(
+	"nodeId", String.valueOf(nodeId)
+).build();
 
 portletDisplay.setShowBackIcon(true);
 

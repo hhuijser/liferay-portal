@@ -122,9 +122,11 @@ TrashManagementToolbarDisplayContext trashManagementToolbarDisplayContext = new 
 						String viewContentURLString = null;
 
 						if (trashRenderer != null) {
-							PortletURL viewContentURL = renderResponse.createRenderURL();
-
-							viewContentURL.setParameter("mvcPath", "/view_content.jsp");
+							PortletURL viewContentURL = PortletURLBuilder.createRenderURL(
+								renderResponse
+							).setMVCPath(
+								"/view_content.jsp"
+							).build();
 
 							if (trashEntry.getRootEntry() != null) {
 								viewContentURL.setParameter("classNameId", String.valueOf(trashEntry.getClassNameId()));
@@ -213,10 +215,13 @@ TrashManagementToolbarDisplayContext trashManagementToolbarDisplayContext = new 
 										String viewRootContentURLString = null;
 
 										if (rootTrashRenderer != null) {
-											PortletURL viewContentURL = renderResponse.createRenderURL();
-
-											viewContentURL.setParameter("mvcPath", "/view_content.jsp");
-											viewContentURL.setParameter("trashEntryId", String.valueOf(rootEntry.getEntryId()));
+											PortletURL viewContentURL = PortletURLBuilder.createRenderURL(
+												renderResponse
+											).setMVCPath(
+												"/view_content.jsp"
+											).setParameter(
+												"trashEntryId", String.valueOf(rootEntry.getEntryId())
+											).build();
 
 											viewRootContentURLString = viewContentURL.toString();
 										}

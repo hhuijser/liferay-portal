@@ -48,6 +48,7 @@ page import="com.liferay.announcements.web.internal.display.context.DefaultAnnou
 page import="com.liferay.announcements.web.internal.display.context.util.AnnouncementsRequestHelper" %><%@
 page import="com.liferay.announcements.web.internal.search.AnnouncementsEntryChecker" %><%@
 page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPNavigationItemList" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.configuration.metatype.util.ParameterMapUtil" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@

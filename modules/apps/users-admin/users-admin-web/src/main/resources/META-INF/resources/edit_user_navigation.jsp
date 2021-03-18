@@ -51,11 +51,15 @@ if (!portletName.equals(UsersAdminPortletKeys.MY_ACCOUNT)) {
 String redirect = ParamUtil.getString(request, "redirect");
 
 if (Validator.isNull(redirect)) {
-	PortletURL redirectURL = renderResponse.createRenderURL();
-
-	redirectURL.setParameter("p_u_i_d", String.valueOf(selUserId));
-	redirectURL.setParameter("mvcRenderCommandName", "/users_admin/edit_user");
-	redirectURL.setParameter("backURL", backURL);
+	PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setParameter(
+		"p_u_i_d", String.valueOf(selUserId)
+	).setMVCRenderCommandName(
+		"/users_admin/edit_user"
+	).setParameter(
+		"backURL", backURL
+	).build();
 
 	redirect = redirectURL.toString();
 }

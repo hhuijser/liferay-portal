@@ -17,18 +17,22 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect");
 String returnToFullPageURL = ParamUtil.getString(request, "returnToFullPageURL");
 
 List<PublicRenderParameterConfiguration> publicRenderParameterConfigurations = (List<PublicRenderParameterConfiguration>)request.getAttribute(WebKeys.PUBLIC_RENDER_PARAMETER_CONFIGURATIONS);
 Set<PublicRenderParameter> publicRenderParameters = (Set<PublicRenderParameter>)request.getAttribute(WebKeys.PUBLIC_RENDER_PARAMETERS);
 
-PortletURL editPublicRenderParameterURL = renderResponse.createRenderURL();
-
-editPublicRenderParameterURL.setParameter("mvcPath", "/edit_public_render_parameters.jsp");
-editPublicRenderParameterURL.setParameter("redirect", redirect);
-editPublicRenderParameterURL.setParameter("returnToFullPageURL", returnToFullPageURL);
-editPublicRenderParameterURL.setParameter("portletResource", portletResource);
+PortletURL editPublicRenderParameterURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/edit_public_render_parameters.jsp"
+).setRedirect(
+	ParamUtil.getString(request, "redirect")
+).setParameter(
+	"returnToFullPageURL", returnToFullPageURL
+).setParameter(
+	"portletResource", portletResource
+).build();
 %>
 
 <portlet:actionURL name="editPublicRenderParameters" var="editPublicRenderParametersURL">

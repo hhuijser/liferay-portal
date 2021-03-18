@@ -65,9 +65,11 @@ else {
 </style>
 
 <%
-PortletURL searchBaseURL = PortletURLUtil.clone(currentURLObj, liferayPortletResponse);
-
-searchBaseURL.setParameter("resetCur", Boolean.TRUE.toString());
+PortletURL searchBaseURL = PortletURLBuilder.create(
+	PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
+).setParameter(
+	"resetCur", Boolean.TRUE.toString()
+).build();
 
 String searchURL = HttpUtil.removeParameter(searchBaseURL.toString(), liferayPortletResponse.getNamespace() + "keywords");
 %>

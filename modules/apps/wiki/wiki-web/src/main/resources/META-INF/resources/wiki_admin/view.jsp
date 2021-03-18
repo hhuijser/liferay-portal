@@ -19,9 +19,11 @@
 <%
 WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderResponse, wikiGroupServiceConfiguration);
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/wiki_admin/view");
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/wiki_admin/view"
+).build();
 
 String displayStyle = ParamUtil.getString(request, "displayStyle");
 
@@ -152,12 +154,17 @@ WikiNodesManagementToolbarDisplayContext wikiNodesManagementToolbarDisplayContex
 								"actions", StringUtil.merge(wikiNodesManagementToolbarDisplayContext.getAvailableActions(node))
 							).build());
 
-						PortletURL rowURL = renderResponse.createRenderURL();
-
-						rowURL.setParameter("mvcRenderCommandName", "/wiki/view_pages");
-						rowURL.setParameter("navigation", "all-pages");
-						rowURL.setParameter("redirect", currentURL);
-						rowURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
+						PortletURL rowURL = PortletURLBuilder.createRenderURL(
+							renderResponse
+						).setMVCRenderCommandName(
+							"/wiki/view_pages"
+						).setParameter(
+							"navigation", "all-pages"
+						).setRedirect(
+							currentURL
+						).setParameter(
+							"nodeId", String.valueOf(node.getNodeId())
+						).build();
 						%>
 
 						<c:choose>

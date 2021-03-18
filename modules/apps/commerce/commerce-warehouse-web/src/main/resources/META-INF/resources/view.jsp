@@ -111,11 +111,15 @@ CommerceInventoryWarehousesDisplayContext commerceInventoryWarehousesDisplayCont
 			>
 
 				<%
-				PortletURL rowURL = renderResponse.createRenderURL();
-
-				rowURL.setParameter("mvcRenderCommandName", "/commerce_inventory_warehouse/edit_commerce_inventory_warehouse");
-				rowURL.setParameter("redirect", currentURL);
-				rowURL.setParameter("commerceInventoryWarehouseId", String.valueOf(commerceInventoryWarehouse.getCommerceInventoryWarehouseId()));
+				PortletURL rowURL = PortletURLBuilder.createRenderURL(
+					renderResponse
+				).setMVCRenderCommandName(
+					"/commerce_inventory_warehouse/edit_commerce_inventory_warehouse"
+				).setRedirect(
+					currentURL
+				).setParameter(
+					"commerceInventoryWarehouseId", String.valueOf(commerceInventoryWarehouse.getCommerceInventoryWarehouseId())
+				).build();
 				%>
 
 				<liferay-ui:search-container-column-text

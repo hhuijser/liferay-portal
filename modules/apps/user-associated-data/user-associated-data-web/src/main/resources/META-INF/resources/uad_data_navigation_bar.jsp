@@ -19,9 +19,11 @@
 <%
 String servletPath = GetterUtil.getString(request.getServletPath());
 
-PortletURL baseURL = liferayPortletResponse.createRenderURL();
-
-baseURL.setParameter("p_u_i_d", String.valueOf(selectedUser.getUserId()));
+PortletURL baseURL = PortletURLBuilder.createRenderURL(
+	liferayPortletResponse
+).setParameter(
+	"p_u_i_d", String.valueOf(selectedUser.getUserId())
+).build();
 %>
 
 <clay:navigation-bar
@@ -35,9 +37,11 @@ baseURL.setParameter("p_u_i_d", String.valueOf(selectedUser.getUserId()));
 						PortletURL reviewDataURL = null;
 
 						try {
-							reviewDataURL = PortletURLUtil.clone(baseURL, renderResponse);
-
-							reviewDataURL.setParameter("mvcRenderCommandName", "/user_associated_data/review_uad_data");
+							reviewDataURL = PortletURLBuilder.create(
+								PortletURLUtil.clone(baseURL, renderResponse)
+							).setMVCRenderCommandName(
+								"/user_associated_data/review_uad_data"
+							).build();
 						}
 						catch (PortletException e) {
 							reviewDataURL = baseURL;
@@ -54,9 +58,11 @@ baseURL.setParameter("p_u_i_d", String.valueOf(selectedUser.getUserId()));
 						PortletURL nonreviewableDataURL = null;
 
 						try {
-							nonreviewableDataURL = PortletURLUtil.clone(baseURL, renderResponse);
-
-							nonreviewableDataURL.setParameter("mvcRenderCommandName", "/user_associated_data/anonymize_nonreviewable_uad_data");
+							nonreviewableDataURL = PortletURLBuilder.create(
+								PortletURLUtil.clone(baseURL, renderResponse)
+							).setMVCRenderCommandName(
+								"/user_associated_data/anonymize_nonreviewable_uad_data"
+							).build();
 						}
 						catch (PortletException e) {
 							nonreviewableDataURL = baseURL;

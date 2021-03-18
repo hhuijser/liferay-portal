@@ -18,10 +18,13 @@
 	<div class="entry">
 
 		<%
-		PortletURL showErrorMessageURL = renderResponse.createRenderURL();
-
-		showErrorMessageURL.setParameter("mvcRenderCommandName", "/blogs_aggregator/view");
-		showErrorMessageURL.setParameter("blogsPortletFound", Boolean.FALSE.toString());
+		PortletURL showErrorMessageURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCRenderCommandName(
+			"/blogs_aggregator/view"
+		).setParameter(
+			"blogsPortletFound", Boolean.FALSE.toString()
+		).build();
 
 		StringBundler sb = new StringBundler(5);
 

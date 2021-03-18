@@ -25,10 +25,13 @@ int delta = ParamUtil.getInteger(request, "delta", SearchContainer.DEFAULT_DELTA
 String orderByCol = ParamUtil.getString(request, "orderByCol", "name");
 String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("tabs1", tabs1);
-portletURL.setParameter("delta", String.valueOf(delta));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setParameter(
+	"tabs1", tabs1
+).setParameter(
+	"delta", String.valueOf(delta)
+).build();
 %>
 
 <liferay-frontend:management-bar>
@@ -55,9 +58,11 @@ portletURL.setParameter("delta", String.valueOf(delta));
 			/>
 
 			<%
-			PortletURL searchURL = renderResponse.createRenderURL();
-
-			searchURL.setParameter("tabs1", tabs1);
+			PortletURL searchURL = PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setParameter(
+				"tabs1", tabs1
+			).build();
 			%>
 
 			<li>

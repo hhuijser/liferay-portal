@@ -19,9 +19,11 @@
 <%
 String backURL = ParamUtil.getString(request, "backURL");
 
-PortletURL homeURL = renderResponse.createRenderURL();
-
-homeURL.setParameter("mvcPath", "/view.jsp");
+PortletURL homeURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view.jsp"
+).build();
 
 if (Validator.isNull(backURL)) {
 	backURL = homeURL.toString();

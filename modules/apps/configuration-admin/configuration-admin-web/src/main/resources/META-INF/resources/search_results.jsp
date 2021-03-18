@@ -28,10 +28,13 @@ if (Validator.isNull(redirect)) {
 	redirect = String.valueOf(renderResponse.createRenderURL());
 }
 
-PortletURL searchURL = renderResponse.createRenderURL();
-
-searchURL.setParameter("mvcRenderCommandName", "/configuration_admin/search_results");
-searchURL.setParameter("redirect", redirect);
+PortletURL searchURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/configuration_admin/search_results"
+).setRedirect(
+	redirect
+).build();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);

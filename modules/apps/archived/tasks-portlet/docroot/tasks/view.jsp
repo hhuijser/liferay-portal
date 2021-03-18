@@ -23,12 +23,15 @@
 String tabs1 = ParamUtil.getString(request, "tabs1", tabs1Default);
 String tabs2 = ParamUtil.getString(request, "tabs2", "open");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setWindowState(WindowState.NORMAL);
-
-portletURL.setParameter("tabs1", tabs1);
-portletURL.setParameter("tabs2", tabs2);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setWindowState(
+	WindowState.NORMAL
+).setParameter(
+	"tabs1", tabs1
+).setParameter(
+	"tabs2", tabs2
+).build();
 %>
 
 <%@ include file="/tasks/tabs1.jspf" %>

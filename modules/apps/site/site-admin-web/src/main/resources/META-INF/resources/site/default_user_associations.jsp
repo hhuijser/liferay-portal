@@ -203,13 +203,19 @@ for (long defaultTeamId : defaultTeamIds) {
 	};
 
 	<%
-	PortletURL selectSiteRoleURL = PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE);
-
-	selectSiteRoleURL.setParameter("roleType", String.valueOf(RoleConstants.TYPE_SITE));
-	selectSiteRoleURL.setParameter("step", "2");
-	selectSiteRoleURL.setParameter("groupId", String.valueOf(groupId));
-	selectSiteRoleURL.setParameter("eventName", liferayPortletResponse.getNamespace() + "selectSiteRole");
-	selectSiteRoleURL.setWindowState(LiferayWindowState.POP_UP);
+	PortletURL selectSiteRoleURL = PortletURLBuilder.create(
+		PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE)
+	).setParameter(
+		"roleType", String.valueOf(RoleConstants.TYPE_SITE)
+	).setParameter(
+		"step", "2"
+	).setParameter(
+		"groupId", String.valueOf(groupId)
+	).setParameter(
+		"eventName", liferayPortletResponse.getNamespace() + "selectSiteRole"
+	).setWindowState(
+		LiferayWindowState.POP_UP
+	).build();
 
 	String selectSiteRolePortletId = PortletProviderUtil.getPortletId(Role.class.getName(), PortletProvider.Action.BROWSE);
 	%>
@@ -233,11 +239,15 @@ for (long defaultTeamId : defaultTeamIds) {
 	bindSelectLink(siteRolesConfig);
 
 	<%
-	PortletURL selectTeamURL = PortletProviderUtil.getPortletURL(request, Team.class.getName(), PortletProvider.Action.BROWSE);
-
-	selectTeamURL.setParameter("groupId", String.valueOf(groupId));
-	selectTeamURL.setParameter("eventName", liferayPortletResponse.getNamespace() + "selectTeam");
-	selectTeamURL.setWindowState(LiferayWindowState.POP_UP);
+	PortletURL selectTeamURL = PortletURLBuilder.create(
+		PortletProviderUtil.getPortletURL(request, Team.class.getName(), PortletProvider.Action.BROWSE)
+	).setParameter(
+		"groupId", String.valueOf(groupId)
+	).setParameter(
+		"eventName", liferayPortletResponse.getNamespace() + "selectTeam"
+	).setWindowState(
+		LiferayWindowState.POP_UP
+	).build();
 
 	String selectTeamPortletId = PortletProviderUtil.getPortletId(Team.class.getName(), PortletProvider.Action.BROWSE);
 	%>

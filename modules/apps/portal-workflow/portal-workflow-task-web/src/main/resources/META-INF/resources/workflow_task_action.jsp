@@ -25,9 +25,11 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 
-PortletURL redirectURL = renderResponse.createRenderURL();
-
-redirectURL.setParameter("mvcPath", "/view.jsp");
+PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/view.jsp"
+).build();
 %>
 
 <liferay-ui:icon-menu

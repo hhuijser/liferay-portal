@@ -118,6 +118,7 @@ page import="com.liferay.knowledge.base.web.internal.util.AdminUtil" %><%@
 page import="com.liferay.knowledge.base.web.internal.util.KBArticleAssetEntriesUtil" %><%@
 page import="com.liferay.knowledge.base.web.internal.util.comparator.KBOrderByComparatorAdapter" %><%@
 page import="com.liferay.message.boards.model.MBMessage" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringBundler" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.configuration.metatype.util.ParameterMapUtil" %><%@

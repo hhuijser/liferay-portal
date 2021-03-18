@@ -21,12 +21,17 @@ int abstractLength = GetterUtil.getInteger(request.getAttribute(WebKeys.ASSET_EN
 
 final WikiPage wikiPage = (WikiPage)request.getAttribute(WikiWebKeys.WIKI_PAGE);
 
-PortletURL viewPageURL = PortletURLFactoryUtil.create(request, WikiPortletKeys.WIKI, PortletRequest.ACTION_PHASE);
-
-viewPageURL.setParameter(ActionRequest.ACTION_NAME, "/wiki/view");
-viewPageURL.setParameter("nodeId", String.valueOf(wikiPage.getNodeId()));
-viewPageURL.setPortletMode(PortletMode.VIEW);
-viewPageURL.setWindowState(WindowState.MAXIMIZED);
+PortletURL viewPageURL = PortletURLBuilder.create(
+	PortletURLFactoryUtil.create(request, WikiPortletKeys.WIKI, PortletRequest.ACTION_PHASE)
+).setActionName(
+	"/wiki/view"
+).setParameter(
+	"nodeId", String.valueOf(wikiPage.getNodeId())
+).setPortletMode(
+	PortletMode.VIEW
+).setWindowState(
+	WindowState.MAXIMIZED
+).build();
 
 StringBundler sb = new StringBundler(8);
 
@@ -48,11 +53,15 @@ WikiPageDisplay pageDisplay = WikiPageLocalServiceUtil.getPageDisplay(
 	new Supplier<PortletURL>() {
 
 		public PortletURL get() {
-			PortletURL editPageURL = PortletURLFactoryUtil.create(httpServletRequest, WikiPortletKeys.WIKI, PortletRequest.ACTION_PHASE);
-
-			editPageURL.setParameter(ActionRequest.ACTION_NAME, "/wiki/edit_page");
-			editPageURL.setParameter("redirect", redirectURL);
-			editPageURL.setParameter("nodeId", String.valueOf(wikiPage.getNodeId()));
+			PortletURL editPageURL = PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(httpServletRequest, WikiPortletKeys.WIKI, PortletRequest.ACTION_PHASE)
+			).setActionName(
+				"/wiki/edit_page"
+			).setRedirect(
+				redirectURL
+			).setParameter(
+				"nodeId", String.valueOf(wikiPage.getNodeId())
+			).build();
 
 			try {
 				editPageURL.setPortletMode(PortletMode.VIEW);

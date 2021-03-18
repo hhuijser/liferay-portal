@@ -21,9 +21,11 @@ AssetCategory assetCategory = (AssetCategory)request.getAttribute(WebKeys.ASSET_
 
 CPAttachmentFileEntryService cpAttachmentFileEntryService = (CPAttachmentFileEntryService)request.getAttribute("cpAttachmentFileEntryService");
 
-PortletURL portletURL = currentURLObj;
-
-portletURL.setParameter("historyKey", liferayPortletResponse.getNamespace() + "images");
+PortletURL portletURL = PortletURLBuilder.create(
+	currentURLObj
+).setParameter(
+	"historyKey", liferayPortletResponse.getNamespace() + "images"
+).build();
 
 SearchContainer<CPAttachmentFileEntry> cpAttachmentFileEntrySearchContainer = new SearchContainer<>(liferayPortletRequest, portletURL, null, null);
 

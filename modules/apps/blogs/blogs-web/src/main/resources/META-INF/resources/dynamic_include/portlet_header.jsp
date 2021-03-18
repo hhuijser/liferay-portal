@@ -86,11 +86,15 @@ BlogsGroupServiceOverriddenConfiguration blogsGroupServiceOverriddenConfiguratio
 	<c:if test="<%= BlogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) %>">
 
 		<%
-		PortletURL editEntryURL = PortalUtil.getControlPanelPortletURL(request, themeDisplay.getScopeGroup(), BlogsPortletKeys.BLOGS_ADMIN, 0, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
-
-		editEntryURL.setParameter("mvcRenderCommandName", "/blogs/edit_entry");
-		editEntryURL.setParameter("redirect", currentURL);
-		editEntryURL.setParameter("portletResource", portletDisplay.getId());
+		PortletURL editEntryURL = PortletURLBuilder.create(
+			PortalUtil.getControlPanelPortletURL(request, themeDisplay.getScopeGroup(), BlogsPortletKeys.BLOGS_ADMIN, 0, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/blogs/edit_entry"
+		).setRedirect(
+			currentURL
+		).setParameter(
+			"portletResource", portletDisplay.getId()
+		).build();
 		%>
 
 		<div class="btn-group-item">

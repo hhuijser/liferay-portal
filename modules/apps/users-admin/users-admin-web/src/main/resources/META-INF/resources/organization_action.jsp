@@ -73,9 +73,11 @@ long organizationGroupId = organization.getGroupId();
 	<c:if test="<%= organizationGroup.isSite() && (GroupPermissionUtil.contains(permissionChecker, organizationGroup, ActionKeys.MANAGE_STAGING) || hasUpdatePermission) %>">
 
 		<%
-		PortletURL editSettingsURL = PortletProviderUtil.getPortletURL(request, organizationGroup, Group.class.getName(), PortletProvider.Action.EDIT);
-
-		editSettingsURL.setParameter("viewOrganizationsRedirect", currentURL);
+		PortletURL editSettingsURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(request, organizationGroup, Group.class.getName(), PortletProvider.Action.EDIT)
+		).setParameter(
+			"viewOrganizationsRedirect", currentURL
+		).build();
 		%>
 
 		<liferay-ui:icon
@@ -87,11 +89,15 @@ long organizationGroupId = organization.getGroupId();
 	<c:if test="<%= permissionChecker.isGroupOwner(organizationGroupId) || OrganizationPermissionUtil.contains(permissionChecker, organization, ActionKeys.ASSIGN_USER_ROLES) %>">
 
 		<%
-		PortletURL assignUserRolesURL = PortletProviderUtil.getPortletURL(request, UserGroupRole.class.getName(), PortletProvider.Action.EDIT);
-
-		assignUserRolesURL.setParameter("className", User.class.getName());
-		assignUserRolesURL.setParameter("groupId", String.valueOf(organizationGroupId));
-		assignUserRolesURL.setWindowState(LiferayWindowState.POP_UP);
+		PortletURL assignUserRolesURL = PortletURLBuilder.create(
+			PortletProviderUtil.getPortletURL(request, UserGroupRole.class.getName(), PortletProvider.Action.EDIT)
+		).setParameter(
+			"className", User.class.getName()
+		).setParameter(
+			"groupId", String.valueOf(organizationGroupId)
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build();
 		%>
 
 		<liferay-ui:icon

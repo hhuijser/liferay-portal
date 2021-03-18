@@ -47,10 +47,13 @@ List<Theme> themes = ThemeLocalServiceUtil.getThemes(company.getCompanyId());
 			PluginPackage pluginPackage = curTheme.getPluginPackage();
 			PluginSetting pluginSetting = PluginSettingLocalServiceUtil.getPluginSetting(company.getCompanyId(), curTheme.getThemeId(), Plugin.TYPE_THEME);
 
-			PortletURL rowURL = renderResponse.createRenderURL();
-
-			rowURL.setParameter("mvcRenderCommandName", "/plugins_admin/edit_plugin");
-			rowURL.setParameter("redirect", currentURL);
+			PortletURL rowURL = PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCRenderCommandName(
+				"/plugins_admin/edit_plugin"
+			).setRedirect(
+				currentURL
+			).build();
 
 			if (pluginPackage != null) {
 				rowURL.setParameter("moduleId", pluginPackage.getModuleId());

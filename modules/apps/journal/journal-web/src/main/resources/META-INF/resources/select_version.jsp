@@ -22,13 +22,19 @@ String articleId = ParamUtil.getString(request, "articleId");
 double sourceVersion = ParamUtil.getDouble(request, "sourceVersion");
 String eventName = ParamUtil.getString(request, "eventName", liferayPortletResponse.getNamespace() + "selectVersionFm");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/select_version.jsp");
-portletURL.setParameter("redirect", currentURL);
-portletURL.setParameter("groupId", String.valueOf(groupId));
-portletURL.setParameter("articleId", articleId);
-portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/select_version.jsp"
+).setRedirect(
+	currentURL
+).setParameter(
+	"groupId", String.valueOf(groupId)
+).setParameter(
+	"articleId", articleId
+).setParameter(
+	"sourceVersion", String.valueOf(sourceVersion)
+).build();
 %>
 
 <aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid container-fluid-max-xl" method="post" name="selectVersionFm">

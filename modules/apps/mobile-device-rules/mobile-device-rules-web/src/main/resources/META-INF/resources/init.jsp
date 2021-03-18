@@ -58,6 +58,7 @@ page import="com.liferay.mobile.device.rules.web.internal.search.RuleGroupSearch
 page import="com.liferay.mobile.device.rules.web.internal.security.permission.resource.MDRPermission" %><%@
 page import="com.liferay.mobile.device.rules.web.internal.security.permission.resource.MDRRuleGroupInstancePermission" %><%@
 page import="com.liferay.mobile.device.rules.web.internal.security.permission.resource.MDRRuleGroupPermission" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@

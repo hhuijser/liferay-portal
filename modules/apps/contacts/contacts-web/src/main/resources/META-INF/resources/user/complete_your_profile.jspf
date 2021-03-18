@@ -62,10 +62,13 @@
 			<c:if test="<%= phones.isEmpty() %>">
 
 				<%
-				PortletURL editPhonesURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE);
-
-				editPhonesURL.setParameter("screenNavigationCategoryKey", "contact");
-				editPhonesURL.setParameter("screenNavigationEntryKey", "contact-information");
+				PortletURL editPhonesURL = PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"screenNavigationCategoryKey", "contact"
+				).setParameter(
+					"screenNavigationEntryKey", "contact-information"
+				).build();
 				%>
 
 				<a href="<%= editPhonesURL.toString() %>">
@@ -85,10 +88,13 @@
 			<c:if test="<%= emailAddresses.isEmpty() %>">
 
 				<%
-				PortletURL editAdditionalEmailAddressesURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE);
-
-				editAdditionalEmailAddressesURL.setParameter("screenNavigationCategoryKey", "contact");
-				editAdditionalEmailAddressesURL.setParameter("screenNavigationEntryKey", "contact-information");
+				PortletURL editAdditionalEmailAddressesURL = PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"screenNavigationCategoryKey", "contact"
+				).setParameter(
+					"screenNavigationEntryKey", "contact-information"
+				).build();
 				%>
 
 				<a href="<%= editAdditionalEmailAddressesURL.toString() %>">
@@ -108,9 +114,11 @@
 			<c:if test="<%= addresses.isEmpty() %>">
 
 				<%
-				PortletURL editAddressesURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE);
-
-				editAddressesURL.setParameter("screenNavigationCategoryKey", "contact");
+				PortletURL editAddressesURL = PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"screenNavigationCategoryKey", "contact"
+				).build();
 				%>
 
 				<a href="<%= editAddressesURL.toString() %>">
@@ -130,10 +138,13 @@
 			<c:if test="<%= websites.isEmpty() %>">
 
 				<%
-				PortletURL editWebsitesURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE);
-
-				editWebsitesURL.setParameter("screenNavigationCategoryKey", "contact");
-				editWebsitesURL.setParameter("screenNavigationEntryKey", "contact-information");
+				PortletURL editWebsitesURL = PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"screenNavigationCategoryKey", "contact"
+				).setParameter(
+					"screenNavigationEntryKey", "contact-information"
+				).build();
 				%>
 
 				<a href="<%= editWebsitesURL.toString() %>">
@@ -153,10 +164,13 @@
 			<c:if test="<%= Validator.isNull(facebook) && Validator.isNull(twitter) %>">
 
 				<%
-				PortletURL editSocialNetworkURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE);
-
-				editSocialNetworkURL.setParameter("screenNavigationCategoryKey", "contact");
-				editSocialNetworkURL.setParameter("screenNavigationEntryKey", "contact-information");
+				PortletURL editSocialNetworkURL = PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"screenNavigationCategoryKey", "contact"
+				).setParameter(
+					"screenNavigationEntryKey", "contact-information"
+				).build();
 				%>
 
 				<a href="<%= editSocialNetworkURL.toString() %>">
@@ -176,10 +190,13 @@
 			<c:if test="<%= Validator.isNull(contact2.getSmsSn()) %>">
 
 				<%
-				PortletURL editSmsURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE);
-
-				editSmsURL.setParameter("screenNavigationCategoryKey", "contact");
-				editSmsURL.setParameter("screenNavigationEntryKey", "contact-information");
+				PortletURL editSmsURL = PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE)
+				).setParameter(
+					"screenNavigationCategoryKey", "contact"
+				).setParameter(
+					"screenNavigationEntryKey", "contact-information"
+				).build();
 				%>
 
 				<a href="<%= editSmsURL.toString() %>">

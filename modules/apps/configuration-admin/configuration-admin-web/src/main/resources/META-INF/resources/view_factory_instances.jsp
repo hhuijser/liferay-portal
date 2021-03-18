@@ -134,10 +134,13 @@ renderResponse.setTitle(categoryDisplayName);
 				</clay:content-row>
 
 				<%
-				PortletURL iteratorURL = renderResponse.createRenderURL();
-
-				iteratorURL.setParameter("mvcRenderCommandName", "/configuration_admin/view_factory_instances");
-				iteratorURL.setParameter("factoryPid", configurationModel.getFactoryPid());
+				PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
+					renderResponse
+				).setMVCRenderCommandName(
+					"/configuration_admin/view_factory_instances"
+				).setParameter(
+					"factoryPid", configurationModel.getFactoryPid()
+				).build();
 				%>
 
 				<liferay-ui:search-container

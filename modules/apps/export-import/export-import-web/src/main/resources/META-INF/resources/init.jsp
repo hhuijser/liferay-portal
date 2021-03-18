@@ -65,6 +65,7 @@ page import="com.liferay.exportimport.web.internal.display.context.ExportImportT
 page import="com.liferay.exportimport.web.internal.display.context.ExportTemplatesToolbarDisplayContext" %><%@
 page import="com.liferay.exportimport.web.internal.portlet.action.ExportImportMVCActionCommand" %><%@
 page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPNavigationItemList" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringBundler" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.backgroundtask.BackgroundTask" %><%@
@@ -172,8 +173,7 @@ page import="java.util.Objects" %><%@
 page import="java.util.ResourceBundle" %><%@
 page import="java.util.Set" %>
 
-<%@ page import="javax.portlet.ActionRequest" %><%@
-page import="javax.portlet.PortletRequest" %><%@
+<%@ page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletURL" %>
 
 <liferay-frontend:defineObjects />

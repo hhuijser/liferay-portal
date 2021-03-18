@@ -17,17 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect");
 String returnToFullPageURL = ParamUtil.getString(request, "returnToFullPageURL");
 
 Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletResource);
-
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/edit_sharing.jsp");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("returnToFullPageURL", returnToFullPageURL);
-portletURL.setParameter("portletResource", portletResource);
 
 String widgetURL = PortalUtil.getWidgetURL(portlet, themeDisplay);
 %>

@@ -36,17 +36,19 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 			<liferay-ui:message key="search-colon" />
 
 			<%
-			PortletURL searchEverywhereURL = liferayPortletResponse.createRenderURL();
-
-			searchEverywhereURL.setParameter("mvcRenderCommandName", "/document_library/search");
-
 			long repositoryId = ParamUtil.getLong(request, "repositoryId");
 
 			if (repositoryId == 0) {
 				repositoryId = scopeGroupId;
 			}
 
-			searchEverywhereURL.setParameter("repositoryId", String.valueOf(repositoryId));
+			PortletURL searchEverywhereURL = PortletURLBuilder.createRenderURL(
+				liferayPortletResponse
+			).setMVCRenderCommandName(
+				"/document_library/search"
+			).setParameter(
+				"repositoryId", String.valueOf(repositoryId)
+			).build();
 
 			long searchRepositoryId = ParamUtil.getLong(request, "searchRepositoryId");
 
@@ -66,11 +68,15 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 
 			searchEverywhereURL.setParameter("showSearchInfo", Boolean.TRUE.toString());
 
-			PortletURL searchFolderURL = PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse);
-
-			searchFolderURL.setParameter("searchRepositoryId", String.valueOf(scopeGroupId));
-			searchFolderURL.setParameter("folderId", String.valueOf(folderId));
-			searchFolderURL.setParameter("searchFolderId", String.valueOf(folderId));
+			PortletURL searchFolderURL = PortletURLBuilder.create(
+				PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse)
+			).setParameter(
+				"searchRepositoryId", String.valueOf(scopeGroupId)
+			).setParameter(
+				"folderId", String.valueOf(folderId)
+			).setParameter(
+				"searchFolderId", String.valueOf(folderId)
+			).build();
 
 			long searchFolderId = ParamUtil.getLong(request, "searchFolderId");
 			%>
@@ -103,10 +109,13 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 			<c:if test="<%= !mountFolders.isEmpty() %>">
 
 				<%
-				PortletURL searchRepositoryURL = PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse);
-
-				searchRepositoryURL.setParameter("repositoryId", String.valueOf(scopeGroupId));
-				searchRepositoryURL.setParameter("searchRepositoryId", String.valueOf(scopeGroupId));
+				PortletURL searchRepositoryURL = PortletURLBuilder.create(
+					PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse)
+				).setParameter(
+					"repositoryId", String.valueOf(scopeGroupId)
+				).setParameter(
+					"searchRepositoryId", String.valueOf(scopeGroupId)
+				).build();
 				%>
 
 				<clay:link

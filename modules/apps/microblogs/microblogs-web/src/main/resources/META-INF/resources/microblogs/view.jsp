@@ -42,12 +42,15 @@ if (!tabs1.equals("mentions") && !tabs1.equals("timeline")) {
 	assetTagName = StringUtil.toLowerCase(tabs1);
 }
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setWindowState(WindowState.NORMAL);
-
-portletURL.setParameter("mvcPath", "/microblogs/view.jsp");
-portletURL.setParameter("tabs1", tabs1);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setWindowState(
+	WindowState.NORMAL
+).setMVCPath(
+	"/microblogs/view.jsp"
+).setParameter(
+	"tabs1", tabs1
+).build();
 %>
 
 <div class="microblogs-container">
@@ -146,13 +149,17 @@ portletURL.setParameter("tabs1", tabs1);
 
 	searchContainer.setResults(results);
 
-	PortletURL microblogsEntriesURL = renderResponse.createRenderURL();
-
-	microblogsEntriesURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-	microblogsEntriesURL.setParameter("mvcPath", "/microblogs/view.jsp");
-	microblogsEntriesURL.setParameter("tabs1", tabs1);
-	microblogsEntriesURL.setParameter("cur", String.valueOf(cur));
+	PortletURL microblogsEntriesURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setWindowState(
+		LiferayWindowState.EXCLUSIVE
+	).setMVCPath(
+		"/microblogs/view.jsp"
+	).setParameter(
+		"tabs1", tabs1
+	).setParameter(
+		"cur", String.valueOf(cur)
+	).build();
 
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, results);
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);

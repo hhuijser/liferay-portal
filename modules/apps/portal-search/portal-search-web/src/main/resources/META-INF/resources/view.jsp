@@ -17,12 +17,17 @@
 <%@ include file="/init.jsp" %>
 
 <%
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/search.jsp");
-portletURL.setParameter("redirect", currentURL);
-portletURL.setPortletMode(PortletMode.VIEW);
-portletURL.setWindowState(WindowState.MAXIMIZED);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/search.jsp"
+).setRedirect(
+	currentURL
+).setPortletMode(
+	PortletMode.VIEW
+).setWindowState(
+	WindowState.MAXIMIZED
+).build();
 
 pageContext.setAttribute("portletURL", portletURL);
 %>

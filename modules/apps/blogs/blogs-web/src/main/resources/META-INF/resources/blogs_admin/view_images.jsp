@@ -21,10 +21,13 @@ int delta = ParamUtil.getInteger(request, SearchContainer.DEFAULT_DELTA_PARAM);
 String orderByCol = ParamUtil.getString(request, "orderByCol", "title");
 String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/blogs/view");
-portletURL.setParameter("navigation", "images");
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/blogs/view"
+).setParameter(
+	"navigation", "images"
+).build();
 
 if (delta > 0) {
 	portletURL.setParameter("delta", String.valueOf(delta));

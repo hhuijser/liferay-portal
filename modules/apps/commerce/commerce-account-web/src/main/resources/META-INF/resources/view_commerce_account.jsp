@@ -23,9 +23,11 @@ CommerceAccount commerceAccount = commerceAccountDisplayContext.getCurrentCommer
 CommerceAddress billingAddress = commerceAccountDisplayContext.getDefaultBillingCommerceAddress();
 CommerceAddress shippingAddress = commerceAccountDisplayContext.getDefaultShippingCommerceAddress();
 
-PortletURL portletURL = commerceAccountDisplayContext.getPortletURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/commerce_account/view_commerce_account");
+PortletURL portletURL = PortletURLBuilder.create(
+	commerceAccountDisplayContext.getPortletURL()
+).setMVCRenderCommandName(
+	"/commerce_account/view_commerce_account"
+).build();
 %>
 
 <portlet:renderURL var="editCommerceAccountURL">

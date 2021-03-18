@@ -19,11 +19,15 @@
 <%
 String portletNamespace = PortalUtil.getPortletNamespace(ProductNavigationControlMenuPortletKeys.PRODUCT_NAVIGATION_CONTROL_MENU);
 
-PortletURL addPanelURL = PortletURLFactoryUtil.create(request, ProductNavigationControlMenuPortletKeys.PRODUCT_NAVIGATION_CONTROL_MENU, PortletRequest.RENDER_PHASE);
-
-addPanelURL.setParameter("mvcPath", "/add_panel.jsp");
-addPanelURL.setParameter("stateMaximized", String.valueOf(themeDisplay.isStateMaximized()));
-addPanelURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+PortletURL addPanelURL = PortletURLBuilder.create(
+	PortletURLFactoryUtil.create(request, ProductNavigationControlMenuPortletKeys.PRODUCT_NAVIGATION_CONTROL_MENU, PortletRequest.RENDER_PHASE)
+).setMVCPath(
+	"/add_panel.jsp"
+).setParameter(
+	"stateMaximized", String.valueOf(themeDisplay.isStateMaximized())
+).setWindowState(
+	LiferayWindowState.EXCLUSIVE
+).build();
 %>
 
 <li class="control-menu-nav-item">

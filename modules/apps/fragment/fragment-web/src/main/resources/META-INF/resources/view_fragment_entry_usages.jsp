@@ -45,9 +45,11 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 							<li class="nav-item">
 
 								<%
-								PortletURL allNavigationURL = fragmentEntryLinkDisplayContext.getPortletURL();
-
-								allNavigationURL.setParameter("navigation", "all");
+								PortletURL allNavigationURL = PortletURLBuilder.create(
+									fragmentEntryLinkDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "all"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(fragmentEntryLinkDisplayContext.getNavigation(), "all") ? "active" : StringPool.BLANK %>" href="<%= allNavigationURL.toString() %>">
@@ -57,9 +59,11 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 							<li class="nav-item">
 
 								<%
-								PortletURL pagesNavigationURL = fragmentEntryLinkDisplayContext.getPortletURL();
-
-								pagesNavigationURL.setParameter("navigation", "pages");
+								PortletURL pagesNavigationURL = PortletURLBuilder.create(
+									fragmentEntryLinkDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "pages"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(fragmentEntryLinkDisplayContext.getNavigation(), "pages") ? "active" : StringPool.BLANK %>" href="<%= pagesNavigationURL.toString() %>">
@@ -69,9 +73,11 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 							<li class="nav-item">
 
 								<%
-								PortletURL masterPagessNavigationURL = fragmentEntryLinkDisplayContext.getPortletURL();
-
-								masterPagessNavigationURL.setParameter("navigation", "master-pages");
+								PortletURL masterPagessNavigationURL = PortletURLBuilder.create(
+									fragmentEntryLinkDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "master-pages"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(fragmentEntryLinkDisplayContext.getNavigation(), "master-pages") ? "active" : StringPool.BLANK %>" href="<%= masterPagessNavigationURL.toString() %>">
@@ -81,9 +87,11 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 							<li class="nav-item">
 
 								<%
-								PortletURL pageTemplatesNavigationURL = fragmentEntryLinkDisplayContext.getPortletURL();
-
-								pageTemplatesNavigationURL.setParameter("navigation", "page-templates");
+								PortletURL pageTemplatesNavigationURL = PortletURLBuilder.create(
+									fragmentEntryLinkDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "page-templates"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(fragmentEntryLinkDisplayContext.getNavigation(), "page-templates") ? "active" : StringPool.BLANK %>" href="<%= pageTemplatesNavigationURL.toString() %>">
@@ -93,9 +101,11 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 							<li class="nav-item">
 
 								<%
-								PortletURL displayPagesNavigationURL = fragmentEntryLinkDisplayContext.getPortletURL();
-
-								displayPagesNavigationURL.setParameter("navigation", "display-page-templates");
+								PortletURL displayPagesNavigationURL = PortletURLBuilder.create(
+									fragmentEntryLinkDisplayContext.getPortletURL()
+								).setParameter(
+									"navigation", "display-page-templates"
+								).build();
 								%>
 
 								<a class="nav-link <%= Objects.equals(fragmentEntryLinkDisplayContext.getNavigation(), "display-page-templates") ? "active" : StringPool.BLANK %>" href="<%= displayPagesNavigationURL.toString() %>">

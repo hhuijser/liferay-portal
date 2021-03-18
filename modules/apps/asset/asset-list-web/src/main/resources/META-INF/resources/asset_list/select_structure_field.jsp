@@ -29,12 +29,17 @@ ClassTypeReader classTypeReader = assetRendererFactory.getClassTypeReader();
 
 ClassType classType = classTypeReader.getClassType(classTypeId, locale);
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/asset_list/select_structure_field.jsp");
-portletURL.setParameter("className", className);
-portletURL.setParameter("classTypeId", String.valueOf(classTypeId));
-portletURL.setParameter("eventName", eventName);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/asset_list/select_structure_field.jsp"
+).setParameter(
+	"className", className
+).setParameter(
+	"classTypeId", String.valueOf(classTypeId)
+).setParameter(
+	"eventName", eventName
+).build();
 %>
 
 <div class="alert alert-danger hide" id="<portlet:namespace />message">

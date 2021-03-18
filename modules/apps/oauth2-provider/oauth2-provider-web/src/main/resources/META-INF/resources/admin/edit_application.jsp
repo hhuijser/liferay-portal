@@ -58,12 +58,17 @@ if (request.getAttribute(OAuth2ProviderWebKeys.ASSIGN_SCOPES_TREE_DISPLAY_CONTEX
 						navigationItem -> {
 							navigationItem.setActive(navigation.equals("credentials"));
 
-							PortletURL portletURL = renderResponse.createRenderURL();
-
-							portletURL.setParameter("mvcRenderCommandName", "/oauth2_provider/update_oauth2_application");
-							portletURL.setParameter("navigation", "credentials");
-							portletURL.setParameter("redirect", redirect);
-							portletURL.setParameter("oAuth2ApplicationId", oAuth2ApplicationIdString);
+							PortletURL portletURL = PortletURLBuilder.createRenderURL(
+								renderResponse
+							).setMVCRenderCommandName(
+								"/oauth2_provider/update_oauth2_application"
+							).setParameter(
+								"navigation", "credentials"
+							).setRedirect(
+								redirect
+							).setParameter(
+								"oAuth2ApplicationId", oAuth2ApplicationIdString
+							).build();
 
 							navigationItem.setHref(portletURL.toString());
 
@@ -74,12 +79,17 @@ if (request.getAttribute(OAuth2ProviderWebKeys.ASSIGN_SCOPES_TREE_DISPLAY_CONTEX
 						navigationItem -> {
 							navigationItem.setActive(navigation.equals("assign_scopes"));
 
-							PortletURL portletURL = renderResponse.createRenderURL();
-
-							portletURL.setParameter("mvcRenderCommandName", "/oauth2_provider/assign_scopes");
-							portletURL.setParameter("navigation", "assign_scopes");
-							portletURL.setParameter("redirect", redirect);
-							portletURL.setParameter("oAuth2ApplicationId", oAuth2ApplicationIdString);
+							PortletURL portletURL = PortletURLBuilder.createRenderURL(
+								renderResponse
+							).setMVCRenderCommandName(
+								"/oauth2_provider/assign_scopes"
+							).setParameter(
+								"navigation", "assign_scopes"
+							).setRedirect(
+								redirect
+							).setParameter(
+								"oAuth2ApplicationId", oAuth2ApplicationIdString
+							).build();
 
 							navigationItem.setHref(portletURL.toString());
 
@@ -91,12 +101,17 @@ if (request.getAttribute(OAuth2ProviderWebKeys.ASSIGN_SCOPES_TREE_DISPLAY_CONTEX
 							navigationItem -> {
 								navigationItem.setActive(navigation.equals("application_authorizations"));
 
-								PortletURL portletURL = renderResponse.createRenderURL();
-
-								portletURL.setParameter("mvcRenderCommandName", "/oauth2_provider/view_oauth2_authorizations");
-								portletURL.setParameter("navigation", "application_authorizations");
-								portletURL.setParameter("redirect", redirect);
-								portletURL.setParameter("oAuth2ApplicationId", oAuth2ApplicationIdString);
+								PortletURL portletURL = PortletURLBuilder.createRenderURL(
+									renderResponse
+								).setMVCRenderCommandName(
+									"/oauth2_provider/view_oauth2_authorizations"
+								).setParameter(
+									"navigation", "application_authorizations"
+								).setRedirect(
+									redirect
+								).setParameter(
+									"oAuth2ApplicationId", oAuth2ApplicationIdString
+								).build();
 
 								navigationItem.setHref(portletURL.toString());
 

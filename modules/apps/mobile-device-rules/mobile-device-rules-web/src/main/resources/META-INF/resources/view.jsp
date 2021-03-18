@@ -22,9 +22,11 @@ long classPK = ParamUtil.getLong(request, "classPK");
 
 String displayStyle = ParamUtil.getString(request, "displayStyle", "list");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("groupId", String.valueOf(groupId));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setParameter(
+	"groupId", String.valueOf(groupId)
+).build();
 
 RuleGroupSearch ruleGroupSearch = new RuleGroupSearch(liferayPortletRequest, PortletURLUtil.clone(portletURL, renderResponse));
 
@@ -82,9 +84,11 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 	</liferay-frontend:management-bar-buttons>
 
 	<%
-	PortletURL iteratorURL = PortletURLUtil.clone(portletURL, renderResponse);
-
-	iteratorURL.setParameter("displayStyle", displayStyle);
+	PortletURL iteratorURL = PortletURLBuilder.create(
+		PortletURLUtil.clone(portletURL, renderResponse)
+	).setParameter(
+		"displayStyle", displayStyle
+	).build();
 	%>
 
 	<liferay-frontend:management-bar-filters>

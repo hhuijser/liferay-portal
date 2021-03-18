@@ -89,11 +89,15 @@ CommerceAvailabilityEstimateDisplayContext commerceAvailabilityEstimateDisplayCo
 				>
 
 					<%
-					PortletURL rowURL = renderResponse.createRenderURL();
-
-					rowURL.setParameter("mvcRenderCommandName", "/commerce_availability_estimate/edit_commerce_availability_estimate");
-					rowURL.setParameter("redirect", currentURL);
-					rowURL.setParameter("commerceAvailabilityEstimateId", String.valueOf(commerceAvailabilityEstimate.getCommerceAvailabilityEstimateId()));
+					PortletURL rowURL = PortletURLBuilder.createRenderURL(
+						renderResponse
+					).setMVCRenderCommandName(
+						"/commerce_availability_estimate/edit_commerce_availability_estimate"
+					).setRedirect(
+						currentURL
+					).setParameter(
+						"commerceAvailabilityEstimateId", String.valueOf(commerceAvailabilityEstimate.getCommerceAvailabilityEstimateId())
+					).build();
 					%>
 
 					<liferay-ui:search-container-column-text

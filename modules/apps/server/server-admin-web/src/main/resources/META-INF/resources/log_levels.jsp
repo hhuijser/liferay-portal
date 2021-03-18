@@ -20,16 +20,23 @@
 int delta = ParamUtil.getInteger(request, SearchContainer.DEFAULT_DELTA_PARAM, SearchContainer.DEFAULT_DELTA);
 String keywords = ParamUtil.getString(request, "keywords");
 
-PortletURL searchURL = renderResponse.createRenderURL();
+PortletURL searchURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/server_admin/view"
+).setParameter(
+	"tabs1", tabs1
+).setParameter(
+	"delta", String.valueOf(delta)
+).build();
 
-searchURL.setParameter("mvcRenderCommandName", "/server_admin/view");
-searchURL.setParameter("tabs1", tabs1);
-searchURL.setParameter("delta", String.valueOf(delta));
-
-PortletURL clearResultsURL = PortletURLUtil.clone(searchURL, liferayPortletResponse);
-
-clearResultsURL.setParameter("navigation", (String)null);
-clearResultsURL.setParameter("keywords", StringPool.BLANK);
+PortletURL clearResultsURL = PortletURLBuilder.create(
+	PortletURLUtil.clone(searchURL, liferayPortletResponse)
+).setParameter(
+	"navigation", (String)null
+).setParameter(
+	"keywords", StringPool.BLANK
+).build();
 
 SearchContainer<Map.Entry<String, String>> loggerSearchContainer = new SearchContainer(liferayPortletRequest, searchURL, null, null);
 
@@ -50,10 +57,13 @@ List<Map.Entry<String, String>> currentPrioritiesList = ListUtil.fromCollection(
 loggerSearchContainer.setResults(ListUtil.subList(currentPrioritiesList, loggerSearchContainer.getStart(), loggerSearchContainer.getEnd()));
 loggerSearchContainer.setTotal(currentPrioritiesList.size());
 
-PortletURL addLogCategoryURL = renderResponse.createRenderURL();
-
-addLogCategoryURL.setParameter("mvcRenderCommandName", "/server_admin/add_log_category");
-addLogCategoryURL.setParameter("redirect", currentURL);
+PortletURL addLogCategoryURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/server_admin/add_log_category"
+).setRedirect(
+	currentURL
+).build();
 
 CreationMenu creationMenu =
 	new CreationMenu() {

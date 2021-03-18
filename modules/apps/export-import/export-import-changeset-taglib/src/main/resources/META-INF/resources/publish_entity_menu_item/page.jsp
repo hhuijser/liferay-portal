@@ -19,15 +19,23 @@
 <c:if test="<%= GroupPermissionUtil.contains(permissionChecker, themeDisplay.getScopeGroup(), ActionKeys.EXPORT_IMPORT_PORTLET_INFO) && showMenuItem %>">
 
 	<%
-	PortletURL portletURL = PortletURLFactoryUtil.create(request, ChangesetPortletKeys.CHANGESET, PortletRequest.ACTION_PHASE);
-
-	portletURL.setParameter(ActionRequest.ACTION_NAME, "/export_import_changeset/export_import_changeset");
-	portletURL.setParameter("mvcRenderCommandName", "/export_import_changeset/export_import_changeset");
-	portletURL.setParameter("cmd", Constants.PUBLISH);
-	portletURL.setParameter("backURL", currentURL);
-	portletURL.setParameter("groupId", String.valueOf(entityGroupId));
-	portletURL.setParameter("changesetUuid", changesetUuid);
-	portletURL.setParameter("portletId", portletDisplay.getId());
+	PortletURL portletURL = PortletURLBuilder.create(
+		PortletURLFactoryUtil.create(request, ChangesetPortletKeys.CHANGESET, PortletRequest.ACTION_PHASE)
+	).setActionName(
+		"/export_import_changeset/export_import_changeset"
+	).setMVCRenderCommandName(
+		"/export_import_changeset/export_import_changeset"
+	).setParameter(
+		"cmd", Constants.PUBLISH
+	).setParameter(
+		"backURL", currentURL
+	).setParameter(
+		"groupId", String.valueOf(entityGroupId)
+	).setParameter(
+		"changesetUuid", changesetUuid
+	).setParameter(
+		"portletId", portletDisplay.getId()
+	).build();
 	%>
 
 	<liferay-ui:icon-delete

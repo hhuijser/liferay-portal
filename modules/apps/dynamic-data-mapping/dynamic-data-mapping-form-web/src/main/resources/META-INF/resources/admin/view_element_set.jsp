@@ -17,9 +17,11 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-PortletURL portletURL = ddmFormAdminDisplayContext.getPortletURL();
-
-portletURL.setParameter("displayStyle", displayStyle);
+PortletURL portletURL = PortletURLBuilder.create(
+	ddmFormAdminDisplayContext.getPortletURL()
+).setParameter(
+	"displayStyle", displayStyle
+).build();
 
 FieldSetPermissionCheckerHelper fieldSetPermissionCheckerHelper = ddmFormAdminDisplayContext.getPermissionCheckerHelper();
 %>

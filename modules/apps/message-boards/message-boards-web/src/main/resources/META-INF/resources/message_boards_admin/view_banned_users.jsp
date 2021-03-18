@@ -19,9 +19,11 @@
 <%
 String navigation = "banned-users";
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/message_boards_admin/view_banned_users");
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/message_boards_admin/view_banned_users"
+).build();
 %>
 
 <%@ include file="/message_boards/nav.jspf" %>

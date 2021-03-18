@@ -51,9 +51,11 @@ if (commerceOrderPrice != null) {
 
 SearchContainer<CommerceOrderItem> commerceOrderItemSearchContainer = commerceCartContentMiniDisplayContext.getSearchContainer();
 
-PortletURL portletURL = commerceCartContentMiniDisplayContext.getPortletURL();
-
-portletURL.setParameter("searchContainerId", "commerceOrderItems");
+PortletURL portletURL = PortletURLBuilder.create(
+	commerceCartContentMiniDisplayContext.getPortletURL()
+).setParameter(
+	"searchContainerId", "commerceOrderItems"
+).build();
 
 request.setAttribute("view.jsp-portletURL", portletURL);
 %>

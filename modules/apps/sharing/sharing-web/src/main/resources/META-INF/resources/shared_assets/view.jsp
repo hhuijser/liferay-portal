@@ -26,9 +26,11 @@ ViewSharedAssetsDisplayContext viewSharedAssetsDisplayContext = (ViewSharedAsset
 />
 
 <%
-PortletURL viewAssetTypeURL = PortletURLUtil.clone(currentURLObj, liferayPortletResponse);
-
-viewAssetTypeURL.setParameter("className", (String)null);
+PortletURL viewAssetTypeURL = PortletURLBuilder.create(
+	PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
+).setParameter(
+	"className", (String)null
+).build();
 
 PortletURL selectAssetTypeURL = viewSharedAssetsDisplayContext.getSelectAssetTypeURL();
 %>
@@ -50,9 +52,11 @@ PortletURL selectAssetTypeURL = viewSharedAssetsDisplayContext.getSelectAssetTyp
 />
 
 <%
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcRenderCommandName", "/blogs/view");
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/blogs/view"
+).build();
 
 SearchContainer<SharingEntry> sharingEntriesSearchContainer = new SearchContainer(renderRequest, PortletURLUtil.clone(portletURL, liferayPortletResponse), null, "no-entries-were-found");
 

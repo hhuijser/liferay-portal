@@ -45,9 +45,11 @@ boolean readyForPropagation = GetterUtil.getBoolean(layoutSetPrototype.getSettin
 		String portletId = panelCategoryHelper.getFirstPortletId(PanelCategoryKeys.SITE_ADMINISTRATION, permissionChecker, group);
 
 		if (Validator.isNotNull(portletId)) {
-			siteAdministrationURL = PortalUtil.getControlPanelPortletURL(request, group, portletId, 0, 0, PortletRequest.RENDER_PHASE);
-
-			siteAdministrationURL.setParameter("redirect", currentURL);
+			siteAdministrationURL = PortletURLBuilder.create(
+				PortalUtil.getControlPanelPortletURL(request, group, portletId, 0, 0, PortletRequest.RENDER_PHASE)
+			).setRedirect(
+				currentURL
+			).build();
 		}
 		%>
 

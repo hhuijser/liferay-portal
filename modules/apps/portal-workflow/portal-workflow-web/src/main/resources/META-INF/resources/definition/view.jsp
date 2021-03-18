@@ -28,9 +28,11 @@ else if (StringUtil.equals(definitionsNavigation, "not-published")) {
 	displayedStatus = WorkflowConstants.STATUS_DRAFT;
 }
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("definitionsNavigation", definitionsNavigation);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setParameter(
+	"definitionsNavigation", definitionsNavigation
+).build();
 %>
 
 <clay:management-toolbar
@@ -73,12 +75,17 @@ portletURL.setParameter("definitionsNavigation", definitionsNavigation);
 		>
 
 			<%
-			PortletURL rowURL = renderResponse.createRenderURL();
-
-			rowURL.setParameter("mvcPath", "/definition/edit_workflow_definition.jsp");
-			rowURL.setParameter("redirect", currentURL);
-			rowURL.setParameter("name", workflowDefinition.getName());
-			rowURL.setParameter("version", String.valueOf(workflowDefinition.getVersion()));
+			PortletURL rowURL = PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCPath(
+				"/definition/edit_workflow_definition.jsp"
+			).setRedirect(
+				currentURL
+			).setParameter(
+				"name", workflowDefinition.getName()
+			).setParameter(
+				"version", String.valueOf(workflowDefinition.getVersion())
+			).build();
 			%>
 
 			<liferay-ui:search-container-column-text

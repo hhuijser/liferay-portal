@@ -20,12 +20,6 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 CalendarResource calendarResource = (CalendarResource)request.getAttribute(CalendarWebKeys.CALENDAR_RESOURCE);
-
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/view_calendars.jsp");
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("calendarResourceId", String.valueOf(calendarResource.getCalendarResourceId()));
 %>
 
 <liferay-ui:header

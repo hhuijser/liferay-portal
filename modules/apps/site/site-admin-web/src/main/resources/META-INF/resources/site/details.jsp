@@ -240,12 +240,17 @@ else {
 				title: '<liferay-ui:message arguments="site" key="select-x" />',
 
 				<%
-				PortletURL groupSelectorURL = PortletProviderUtil.getPortletURL(request, Group.class.getName(), PortletProvider.Action.BROWSE);
-
-				groupSelectorURL.setParameter("includeCurrentGroup", Boolean.FALSE.toString());
-				groupSelectorURL.setParameter("groupId", String.valueOf(group.getGroupId()));
-				groupSelectorURL.setParameter("eventName", liferayPortletResponse.getNamespace() + "selectGroup");
-				groupSelectorURL.setWindowState(LiferayWindowState.POP_UP);
+				PortletURL groupSelectorURL = PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(request, Group.class.getName(), PortletProvider.Action.BROWSE)
+				).setParameter(
+					"includeCurrentGroup", Boolean.FALSE.toString()
+				).setParameter(
+					"groupId", String.valueOf(group.getGroupId())
+				).setParameter(
+					"eventName", liferayPortletResponse.getNamespace() + "selectGroup"
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).build();
 				%>
 
 				url: '<%= groupSelectorURL.toString() %>',

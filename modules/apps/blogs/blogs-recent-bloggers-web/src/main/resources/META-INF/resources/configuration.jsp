@@ -109,9 +109,11 @@ if (organizationId > 0) {
 								'<liferay-ui:message arguments="organization" key="select-x" />',
 
 							<%
-							PortletURL selectOrganizationURL = PortletProviderUtil.getPortletURL(request, Organization.class.getName(), PortletProvider.Action.BROWSE);
-
-							selectOrganizationURL.setWindowState(LiferayWindowState.POP_UP);
+							PortletURL selectOrganizationURL = PortletURLBuilder.create(
+								PortletProviderUtil.getPortletURL(request, Organization.class.getName(), PortletProvider.Action.BROWSE)
+							).setWindowState(
+								LiferayWindowState.POP_UP
+							).build();
 							%>
 
 							url: '<%= selectOrganizationURL.toString() %>',

@@ -18,11 +18,6 @@
 
 <%
 SchedulerResponseDisplayContext schedulerResponseDisplayContext = (SchedulerResponseDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-PortletURL portletURL = schedulerResponseDisplayContext.getPortletURL();
-
-portletURL.setParameter("searchContainerId", "schedulerResponses");
-portletURL.setParameter("tabs1", "scheduler-response");
 %>
 
 <clay:navigation-bar

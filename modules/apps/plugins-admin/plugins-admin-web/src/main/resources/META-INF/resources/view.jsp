@@ -19,10 +19,13 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "portlets");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("struts_action", "/plugins_admin/view");
-portletURL.setParameter("tabs2", tabs2);
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setParameter(
+	"struts_action", "/plugins_admin/view"
+).setParameter(
+	"tabs2", tabs2
+).build();
 
 PortletURL marketplaceURL = null;
 

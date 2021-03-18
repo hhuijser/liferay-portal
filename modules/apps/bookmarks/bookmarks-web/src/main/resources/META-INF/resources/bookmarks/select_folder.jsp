@@ -42,11 +42,15 @@ if (folder != null) {
 		/>
 
 		<%
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/bookmarks/select_folder");
-		portletURL.setParameter("folderId", String.valueOf(folderId));
-		portletURL.setParameter("eventName", eventName);
+		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCRenderCommandName(
+			"/bookmarks/select_folder"
+		).setParameter(
+			"folderId", String.valueOf(folderId)
+		).setParameter(
+			"eventName", eventName
+		).build();
 		%>
 
 		<br />

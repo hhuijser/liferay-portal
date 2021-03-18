@@ -133,11 +133,15 @@ groupItemSelectorCriterion.setIncludeParentSites(true);
 groupItemSelectorCriterion.setIncludeRecentSites(false);
 groupItemSelectorCriterion.setIncludeSitesThatIAdminister(true);
 
-PortletURL itemSelectorURL = itemSelector.getItemSelectorURL(RequestBackedPortletURLFactoryUtil.create(renderRequest), eventName, groupItemSelectorCriterion);
-
-itemSelectorURL.setParameter("plid", String.valueOf(layout.getPlid()));
-itemSelectorURL.setParameter("groupId", String.valueOf(layout.getGroupId()));
-itemSelectorURL.setParameter("portletResource", assetPublisherDisplayContext.getPortletResource());
+PortletURL itemSelectorURL = PortletURLBuilder.create(
+	itemSelector.getItemSelectorURL(RequestBackedPortletURLFactoryUtil.create(renderRequest), eventName, groupItemSelectorCriterion)
+).setParameter(
+	"plid", String.valueOf(layout.getPlid())
+).setParameter(
+	"groupId", String.valueOf(layout.getGroupId())
+).setParameter(
+	"portletResource", assetPublisherDisplayContext.getPortletResource()
+).build();
 %>
 
 <aui:script sandbox="<%= true %>">

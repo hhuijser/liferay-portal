@@ -37,6 +37,7 @@ page import="com.liferay.commerce.warehouse.web.internal.display.context.Commerc
 page import="com.liferay.commerce.warehouse.web.internal.display.context.CommerceInventoryWarehousesDisplayContext" %><%@
 page import="com.liferay.commerce.warehouse.web.internal.servlet.taglib.ui.constants.CommerceInventoryWarehouseFormNavigatorConstants" %><%@
 page import="com.liferay.frontend.taglib.servlet.taglib.ManagementBarFilterItem" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@

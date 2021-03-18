@@ -47,10 +47,13 @@ List<LayoutTemplate> layoutTemplates = LayoutTemplateLocalServiceUtil.getLayoutT
 			PluginPackage pluginPackage = layoutTemplate.getPluginPackage();
 			PluginSetting pluginSetting = PluginSettingLocalServiceUtil.getPluginSetting(company.getCompanyId(), layoutTemplate.getLayoutTemplateId(), Plugin.TYPE_LAYOUT_TEMPLATE);
 
-			PortletURL rowURL = renderResponse.createRenderURL();
-
-			rowURL.setParameter("mvcRenderCommandName", "/plugins_admin/edit_plugin");
-			rowURL.setParameter("redirect", currentURL);
+			PortletURL rowURL = PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCRenderCommandName(
+				"/plugins_admin/edit_plugin"
+			).setRedirect(
+				currentURL
+			).build();
 
 			if (pluginPackage != null) {
 				rowURL.setParameter("moduleId", pluginPackage.getModuleId());

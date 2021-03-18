@@ -101,10 +101,13 @@
 											<li class="nav-item">
 
 												<%
-												PortletURL vocabularyURL = renderResponse.createRenderURL();
-
-												vocabularyURL.setParameter("mvcPath", "/view.jsp");
-												vocabularyURL.setParameter("vocabularyId", String.valueOf(vocabulary.getVocabularyId()));
+												PortletURL vocabularyURL = PortletURLBuilder.createRenderURL(
+													renderResponse
+												).setMVCPath(
+													"/view.jsp"
+												).setParameter(
+													"vocabularyId", String.valueOf(vocabulary.getVocabularyId())
+												).build();
 												%>
 
 												<a class="d-flex nav-link <%= (assetCategoriesDisplayContext.getVocabularyId() == vocabulary.getVocabularyId()) ? "active" : StringPool.BLANK %>" href="<%= vocabularyURL.toString() %>">
@@ -146,10 +149,13 @@
 											<li class="nav-item">
 
 												<%
-												PortletURL vocabularyURL = renderResponse.createRenderURL();
-
-												vocabularyURL.setParameter("mvcPath", "/view.jsp");
-												vocabularyURL.setParameter("vocabularyId", String.valueOf(vocabulary.getVocabularyId()));
+												PortletURL vocabularyURL = PortletURLBuilder.createRenderURL(
+													renderResponse
+												).setMVCPath(
+													"/view.jsp"
+												).setParameter(
+													"vocabularyId", String.valueOf(vocabulary.getVocabularyId())
+												).build();
 												%>
 
 												<a class="d-flex nav-link <%= (assetCategoriesDisplayContext.getVocabularyId() == vocabulary.getVocabularyId()) ? "active" : StringPool.BLANK %>" href="<%= vocabularyURL.toString() %>">

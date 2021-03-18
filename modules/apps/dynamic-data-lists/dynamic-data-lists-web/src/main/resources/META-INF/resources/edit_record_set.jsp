@@ -208,10 +208,13 @@ if (ddlDisplayContext.isAdminPortlet()) {
 
 <%
 if (recordSet != null) {
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	portletURL.setParameter("mvcPath", "/edit_record_set.jsp");
-	portletURL.setParameter("recordSetId", String.valueOf(recordSet.getRecordSetId()));
+	PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		renderResponse
+	).setMVCPath(
+		"/edit_record_set.jsp"
+	).setParameter(
+		"recordSetId", String.valueOf(recordSet.getRecordSetId())
+	).build();
 
 	PortalUtil.addPortletBreadcrumbEntry(request, recordSet.getName(locale), portletURL.toString());
 

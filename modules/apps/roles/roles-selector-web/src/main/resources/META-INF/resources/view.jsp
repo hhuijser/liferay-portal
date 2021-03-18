@@ -57,12 +57,17 @@ if (group.isOrganization()) {
 
 String className = ParamUtil.getString(request, "className", User.class.getName());
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("tabs1", tabs1);
-portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("className", className);
-portletURL.setParameter("groupId", String.valueOf(group.getGroupId()));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setParameter(
+	"tabs1", tabs1
+).setRedirect(
+	redirect
+).setParameter(
+	"className", className
+).setParameter(
+	"groupId", String.valueOf(group.getGroupId())
+).build();
 
 if (role != null) {
 	portletURL.setParameter("roleId", String.valueOf(roleId));
@@ -166,9 +171,11 @@ String methodName = null;
 </liferay-util:buffer>
 
 <%
-PortletURL clearResultsURL = (PortletURL)request.getAttribute("edit_roles.jsp-portletURL");
-
-clearResultsURL.setParameter("keywords", StringPool.BLANK);
+PortletURL clearResultsURL = PortletURLBuilder.create(
+	(PortletURL)request.getAttribute("edit_roles.jsp-portletURL")
+).setParameter(
+	"keywords", StringPool.BLANK
+).build();
 
 SearchContainer<?> searchContainer = (SearchContainer<?>)request.getAttribute("liferay-ui:search:searchContainer");
 %>

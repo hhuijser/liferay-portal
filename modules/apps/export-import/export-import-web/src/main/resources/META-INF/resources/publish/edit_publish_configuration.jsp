@@ -87,25 +87,37 @@ if (configuredPublish) {
 
 treeId = treeId + privateLayout + layoutSetBranchId;
 
-PortletURL portletURL = renderResponse.createActionURL();
-
 if (group.isStaged() && group.isStagedRemotely()) {
 	cmd = Constants.PUBLISH_TO_REMOTE;
 }
 
-portletURL.setParameter(ActionRequest.ACTION_NAME, "/export_import/publish_layouts");
-portletURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
-portletURL.setParameter("closeRedirect", closeRedirect);
-portletURL.setParameter("stagingGroupId", String.valueOf(stagingGroupId));
+PortletURL portletURL = PortletURLBuilder.createActionURL(
+	renderResponse
+).setActionName(
+	"/export_import/publish_layouts"
+).setMVCRenderCommandName(
+	"/export_import/publish_layouts"
+).setParameter(
+	"closeRedirect", closeRedirect
+).setParameter(
+	"stagingGroupId", String.valueOf(stagingGroupId)
+).build();
 
-PortletURL redirectURL = renderResponse.createRenderURL();
-
-redirectURL.setParameter("mvcRenderCommandName", "/export_import/publish_layouts");
-redirectURL.setParameter("closeRedirect", closeRedirect);
-redirectURL.setParameter("groupId", String.valueOf(stagingGroupId));
-redirectURL.setParameter("layoutSetBranchId", String.valueOf(layoutSetBranchId));
-redirectURL.setParameter("layoutSetBranchName", layoutSetBranchName);
-redirectURL.setParameter("privateLayout", String.valueOf(privateLayout));
+PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCRenderCommandName(
+	"/export_import/publish_layouts"
+).setParameter(
+	"closeRedirect", closeRedirect
+).setParameter(
+	"groupId", String.valueOf(stagingGroupId)
+).setParameter(
+	"layoutSetBranchId", String.valueOf(layoutSetBranchId)
+).setParameter(
+	"layoutSetBranchName", layoutSetBranchName
+).setParameter(
+	"privateLayout", String.valueOf(privateLayout)
+).build();
 
 response.setHeader("Ajax-ID", request.getHeader("Ajax-ID"));
 %>

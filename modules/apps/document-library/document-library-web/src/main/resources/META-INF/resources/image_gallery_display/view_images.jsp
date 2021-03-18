@@ -163,10 +163,13 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 </liferay-ui:search-container>
 
 <%
-PortletURL embeddedPlayerURL = renderResponse.createRenderURL();
-
-embeddedPlayerURL.setParameter("mvcPath", "/image_gallery_display/embedded_player.jsp");
-embeddedPlayerURL.setWindowState(LiferayWindowState.POP_UP);
+PortletURL embeddedPlayerURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/image_gallery_display/embedded_player.jsp"
+).setWindowState(
+	LiferayWindowState.POP_UP
+).build();
 %>
 
 <aui:script use="aui-image-viewer,aui-image-viewer-media">

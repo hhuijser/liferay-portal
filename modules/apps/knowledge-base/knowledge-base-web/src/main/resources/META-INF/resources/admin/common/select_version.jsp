@@ -25,12 +25,17 @@ int selStatus = KBArticlePermission.contains(permissionChecker, kbArticle, KBAct
 int sourceVersion = ParamUtil.getInteger(request, "sourceVersion");
 String eventName = ParamUtil.getString(request, "eventName", liferayPortletResponse.getNamespace() + "selectVersionFm");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/admin/common/select_version.jsp");
-portletURL.setParameter("redirect", currentURL);
-portletURL.setParameter("resourcePrimKey", String.valueOf(kbArticle.getResourcePrimKey()));
-portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
+PortletURL portletURL = PortletURLBuilder.createRenderURL(
+	renderResponse
+).setMVCPath(
+	"/admin/common/select_version.jsp"
+).setRedirect(
+	currentURL
+).setParameter(
+	"resourcePrimKey", String.valueOf(kbArticle.getResourcePrimKey())
+).setParameter(
+	"sourceVersion", String.valueOf(sourceVersion)
+).build();
 %>
 
 <clay:container-fluid>

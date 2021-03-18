@@ -30,11 +30,15 @@
 	>
 
 		<%
-		PortletURL rowURL = renderResponse.createRenderURL();
-
-		rowURL.setParameter("mvcRenderCommandName", "/portal_instances/edit_instance");
-		rowURL.setParameter("redirect", currentURL);
-		rowURL.setParameter("companyId", String.valueOf(curCompany.getCompanyId()));
+		PortletURL rowURL = PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCRenderCommandName(
+			"/portal_instances/edit_instance"
+		).setRedirect(
+			currentURL
+		).setParameter(
+			"companyId", String.valueOf(curCompany.getCompanyId())
+		).build();
 		%>
 
 		<liferay-ui:search-container-column-text

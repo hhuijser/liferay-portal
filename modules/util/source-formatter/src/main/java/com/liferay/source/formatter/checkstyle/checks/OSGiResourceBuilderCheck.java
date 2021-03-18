@@ -52,7 +52,9 @@ public class OSGiResourceBuilderCheck extends BaseCheck {
 			String classOrVariableName = getClassOrVariableName(
 				methodCallDetailAST);
 
-			if (classOrVariableName == null) {
+			if ((classOrVariableName == null) ||
+				!classOrVariableName.matches("[A-Z].*Resource")) {
+
 				return;
 			}
 

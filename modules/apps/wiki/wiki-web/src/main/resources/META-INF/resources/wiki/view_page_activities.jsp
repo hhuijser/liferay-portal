@@ -44,23 +44,23 @@ portletURL.setParameter(ActionRequest.ACTION_NAME, "/wiki/view_page_history");
 portletURL.setParameter("redirect", currentURL);
 
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "history"), portletURL.toString());
-
-PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
-	renderResponse
-).setMVCRenderCommandName(
-	"/wiki/view_page_activities"
-).setRedirect(
-	currentURL
-).setParameter(
-	"nodeId", String.valueOf(node.getNodeId())
-).setParameter(
-	"title", wikiPage.getTitle()
-).build();
 %>
 
 <div class="page-activities">
 	<liferay-ui:search-container
-		iteratorURL="<%= iteratorURL %>"
+		iteratorURL='<%=
+			PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCRenderCommandName(
+				"/wiki/view_page_activities"
+			).setRedirect(
+				currentURL
+			).setParameter(
+				"nodeId", String.valueOf(node.getNodeId())
+			).setParameter(
+				"title", wikiPage.getTitle()
+			).build()
+		%>'
 		total="<%= SocialActivityLocalServiceUtil.getActivitiesCount(0, WikiPage.class.getName(), wikiPage.getResourcePrimKey()) %>"
 	>
 		<liferay-ui:search-container-results

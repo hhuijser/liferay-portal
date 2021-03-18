@@ -41,22 +41,20 @@ if (folder != null) {
 			showParentGroups="<%= false %>"
 		/>
 
-		<%
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
-			renderResponse
-		).setMVCRenderCommandName(
-			"/bookmarks/select_folder"
-		).setParameter(
-			"folderId", String.valueOf(folderId)
-		).setParameter(
-			"eventName", eventName
-		).build();
-		%>
-
 		<br />
 
 		<liferay-ui:search-container
-			iteratorURL="<%= portletURL %>"
+			iteratorURL='<%=
+				PortletURLBuilder.createRenderURL(
+					renderResponse
+				).setMVCRenderCommandName(
+					"/bookmarks/select_folder"
+				).setParameter(
+					"folderId", String.valueOf(folderId)
+				).setParameter(
+					"eventName", eventName
+				).build()
+			%>'
 			total="<%= BookmarksFolderServiceUtil.getFoldersCount(scopeGroupId, folderId) %>"
 		>
 			<liferay-ui:search-container-results

@@ -20,20 +20,14 @@
 CommerceAccountDisplayContext commerceAccountDisplayContext = (CommerceAccountDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceAccount commerceAccount = commerceAccountDisplayContext.getCurrentCommerceAccount();
-
-Map<String, String> contextParams = HashMapBuilder.<String, String>put(
-	"commerceAccountId", String.valueOf(commerceAccount.getCommerceAccountId())
-).build();
-
-PortletURL portletURL = PortletURLBuilder.create(
-	currentURLObj
-).setParameter(
-	PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL", backURL
-).build();
 %>
 
 <clay:data-set-display
-	contextParams="<%= contextParams %>"
+	contextParams='<%=
+		HashMapBuilder.<String, String>put(
+			"commerceAccountId", String.valueOf(commerceAccount.getCommerceAccountId())
+		).build()
+	%>'
 	dataProviderKey="<%= CommerceAccountUserClayDataSetDataSetDisplayView.NAME %>"
 	id="<%= CommerceAccountUserClayDataSetDataSetDisplayView.NAME %>"
 	itemsPerPage="<%= 10 %>"
@@ -56,7 +50,19 @@ PortletURL portletURL = PortletURLBuilder.create(
 
 	<aui:form action="<%= inviteUserActionURL %>" method="post" name="inviteUserFm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ASSIGN %>" />
-		<aui:input name="redirect" type="hidden" value="<%= portletURL %>" />
+
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value='<%=
+				PortletURLBuilder.create(
+					currentURLObj
+				).setParameter(
+					PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL", backURL
+				).build()
+			%>'
+		/>
+
 		<aui:input name="commerceAccountId" type="hidden" value="<%= commerceAccountDisplayContext.getCurrentCommerceAccountId() %>" />
 		<aui:input name="userId" type="hidden" />
 		<aui:input name="userIds" type="hidden" />

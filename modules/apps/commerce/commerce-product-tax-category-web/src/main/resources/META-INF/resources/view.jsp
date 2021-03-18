@@ -87,22 +87,19 @@ CPTaxCategoryDisplayContext cpTaxCategoryDisplayContext = (CPTaxCategoryDisplayC
 					keyProperty="CPTaxCategoryId"
 					modelVar="cpTaxCategory"
 				>
-
-					<%
-					PortletURL rowURL = PortletURLBuilder.createRenderURL(
-						renderResponse
-					).setMVCRenderCommandName(
-						"/cp_tax_category/edit_cp_tax_category"
-					).setRedirect(
-						currentURL
-					).setParameter(
-						"cpTaxCategoryId", String.valueOf(cpTaxCategory.getCPTaxCategoryId())
-					).build();
-					%>
-
 					<liferay-ui:search-container-column-text
 						cssClass="important table-cell-expand"
-						href="<%= rowURL %>"
+						href='<%=
+							PortletURLBuilder.createRenderURL(
+								renderResponse
+							).setMVCRenderCommandName(
+								"/cp_tax_category/edit_cp_tax_category"
+							).setRedirect(
+								currentURL
+							).setParameter(
+								"cpTaxCategoryId", String.valueOf(cpTaxCategory.getCPTaxCategoryId())
+							).build()
+						%>'
 						name="name"
 						value="<%= HtmlUtil.escape(cpTaxCategory.getName(languageId)) %>"
 					/>

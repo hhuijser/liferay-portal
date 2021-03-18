@@ -65,7 +65,6 @@ page import="java.util.ResourceBundle" %>
 <%@ page import="javax.portlet.PortletConfig" %><%@
 page import="javax.portlet.PortletMode" %><%@
 page import="javax.portlet.PortletRequest" %><%@
-page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
 <liferay-theme:defineObjects />

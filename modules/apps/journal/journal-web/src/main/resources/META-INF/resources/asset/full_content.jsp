@@ -38,22 +38,6 @@ JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribu
 	}
 
 	int cur = ParamUtil.getInteger(request, "cur");
-
-	PortletURL articlePageURL = PortletURLBuilder.createRenderURL(
-		renderResponse
-	).setMVCPath(
-		"/view_content.jsp"
-	).setRedirect(
-		pageRedirect
-	).setParameter(
-		"cur", String.valueOf(cur)
-	).setParameter(
-		"type", assetRendererFactory.getType()
-	).setParameter(
-		"groupId", String.valueOf(articleDisplay.getGroupId())
-	).setParameter(
-		"urlTitle", articleDisplay.getUrlTitle()
-	).build();
 	%>
 
 	<br />
@@ -64,7 +48,23 @@ JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribu
 		delta="<%= 1 %>"
 		id="articleDisplayPages"
 		maxPages="<%= 25 %>"
-		portletURL="<%= articlePageURL %>"
+		portletURL='<%=
+			PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCPath(
+				"/view_content.jsp"
+			).setRedirect(
+				pageRedirect
+			).setParameter(
+				"cur", String.valueOf(cur)
+			).setParameter(
+				"type", assetRendererFactory.getType()
+			).setParameter(
+				"groupId", String.valueOf(articleDisplay.getGroupId())
+			).setParameter(
+				"urlTitle", articleDisplay.getUrlTitle()
+			).build()
+		%>'
 		total="<%= articleDisplay.getNumberOfPages() %>"
 		type="article"
 	/>

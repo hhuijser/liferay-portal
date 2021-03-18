@@ -125,47 +125,47 @@ if (Validator.isNotNull(userFilter) && !userFilter.equals(StringPool.STAR)) {
 
 <%
 boolean showMissingAttributeMessage = false;
-
-PortletURL portletURL = PortletURLBuilder.createRenderURL(
-	renderResponse
-).setMVCRenderCommandName(
-	"/portal_settings_authentication_ldap/test_ldap_users"
-).setParameter(
-	"ldapServerId", String.valueOf(ldapServerId)
-).setParameter(
-	"baseProviderURL", baseProviderURL
-).setParameter(
-	"baseDN", baseDN
-).setParameter(
-	"principal", principal
-).setParameter(
-	"credentials", credentials
-).setParameter(
-	"importUserSearchFilter", userFilter
-).setParameter(
-	"userMappingScreenName", ParamUtil.getString(request, "userMappingScreenName")
-).setParameter(
-	"userMappingPassword", ParamUtil.getString(request, "userMappingPassword")
-).setParameter(
-	"userMappingEmailAddress", ParamUtil.getString(request, "userMappingEmailAddress")
-).setParameter(
-	"userMappingFullName", ParamUtil.getString(request, "userMappingFullName")
-).setParameter(
-	"userMappingFirstName", ParamUtil.getString(request, "userMappingFirstName")
-).setParameter(
-	"userMappingLastName", ParamUtil.getString(request, "userMappingLastName")
-).setParameter(
-	"userMappingJobTitle", ParamUtil.getString(request, "userMappingJobTitle")
-).setParameter(
-	"userMappingGroup", ParamUtil.getString(request, "userMappingGroup")
-).setWindowState(
-	LiferayWindowState.POP_UP
-).build();
 %>
 
 <liferay-ui:search-container
 	emptyResultsMessage="no-users-were-found"
-	iteratorURL="<%= portletURL %>"
+	iteratorURL='<%=
+		PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCRenderCommandName(
+			"/portal_settings_authentication_ldap/test_ldap_users"
+		).setParameter(
+			"ldapServerId", String.valueOf(ldapServerId)
+		).setParameter(
+			"baseProviderURL", baseProviderURL
+		).setParameter(
+			"baseDN", baseDN
+		).setParameter(
+			"principal", principal
+		).setParameter(
+			"credentials", credentials
+		).setParameter(
+			"importUserSearchFilter", userFilter
+		).setParameter(
+			"userMappingScreenName", ParamUtil.getString(request, "userMappingScreenName")
+		).setParameter(
+			"userMappingPassword", ParamUtil.getString(request, "userMappingPassword")
+		).setParameter(
+			"userMappingEmailAddress", ParamUtil.getString(request, "userMappingEmailAddress")
+		).setParameter(
+			"userMappingFullName", ParamUtil.getString(request, "userMappingFullName")
+		).setParameter(
+			"userMappingFirstName", ParamUtil.getString(request, "userMappingFirstName")
+		).setParameter(
+			"userMappingLastName", ParamUtil.getString(request, "userMappingLastName")
+		).setParameter(
+			"userMappingJobTitle", ParamUtil.getString(request, "userMappingJobTitle")
+		).setParameter(
+			"userMappingGroup", ParamUtil.getString(request, "userMappingGroup")
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).build()
+	%>'
 	total="<%= searchResults.size() %>"
 >
 	<liferay-ui:search-container-results

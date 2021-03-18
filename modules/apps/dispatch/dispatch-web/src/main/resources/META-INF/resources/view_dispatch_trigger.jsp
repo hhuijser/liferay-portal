@@ -52,19 +52,6 @@ PortletURL portletURL = PortletURLBuilder.create(
 					keyProperty="dispatchTriggerId"
 					modelVar="dispatchTrigger"
 				>
-
-					<%
-					PortletURL rowURL = PortletURLBuilder.createRenderURL(
-						renderResponse
-					).setMVCRenderCommandName(
-						"/dispatch/edit_dispatch_trigger"
-					).setRedirect(
-						currentURL
-					).setParameter(
-						"dispatchTriggerId", String.valueOf(dispatchTrigger.getDispatchTriggerId())
-					).build();
-					%>
-
 					<liferay-ui:search-container-column-jsp
 						cssClass="entry-action-column"
 						path="/dispatch_trigger_action.jsp"
@@ -72,7 +59,17 @@ PortletURL portletURL = PortletURLBuilder.create(
 
 					<liferay-ui:search-container-column-text
 						cssClass="important table-cell-expand"
-						href="<%= rowURL %>"
+						href='<%=
+							PortletURLBuilder.createRenderURL(
+								renderResponse
+							).setMVCRenderCommandName(
+								"/dispatch/edit_dispatch_trigger"
+							).setRedirect(
+								currentURL
+							).setParameter(
+								"dispatchTriggerId", String.valueOf(dispatchTrigger.getDispatchTriggerId())
+							).build()
+						%>'
 						property="name"
 					/>
 

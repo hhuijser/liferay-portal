@@ -51,22 +51,19 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 						keyProperty="dispatchLogId"
 						modelVar="dispatchLog"
 					>
-
-						<%
-						PortletURL rowURL = PortletURLBuilder.createRenderURL(
-							renderResponse
-						).setMVCRenderCommandName(
-							"/dispatch/view_dispatch_log"
-						).setRedirect(
-							currentURL
-						).setParameter(
-							"dispatchLogId", String.valueOf(dispatchLog.getDispatchLogId())
-						).build();
-						%>
-
 						<liferay-ui:search-container-column-text
 							cssClass="important table-cell-expand"
-							href="<%= rowURL %>"
+							href='<%=
+								PortletURLBuilder.createRenderURL(
+									renderResponse
+								).setMVCRenderCommandName(
+									"/dispatch/view_dispatch_log"
+								).setRedirect(
+									currentURL
+								).setParameter(
+									"dispatchLogId", String.valueOf(dispatchLog.getDispatchLogId())
+								).build()
+							%>'
 							name="start-date"
 						>
 							<%= dispatchLogDisplayContext.getDateString(dispatchLog.getStartDate()) %>

@@ -29,20 +29,6 @@ AssetRendererFactory<?> assetRendererFactory = AssetRendererFactoryRegistryUtil.
 ClassTypeReader classTypeReader = assetRendererFactory.getClassTypeReader();
 
 ClassType classType = classTypeReader.getClassType(classTypeId, locale);
-
-PortletURL portletURL = PortletURLBuilder.createRenderURL(
-	renderResponse
-).setMVCPath(
-	"/select_structure_field.jsp"
-).setParameter(
-	"portletResource", portletResource
-).setParameter(
-	"className", className
-).setParameter(
-	"classTypeId", String.valueOf(classTypeId)
-).setParameter(
-	"eventName", eventName
-).build();
 %>
 
 <div class="alert alert-danger hide" id="<portlet:namespace />message">
@@ -53,7 +39,21 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	id='<%= liferayPortletResponse.getNamespace() + "selectDDMStructureFieldForm" %>'
 >
 	<liferay-ui:search-container
-		iteratorURL="<%= portletURL %>"
+		iteratorURL='<%=
+			PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCPath(
+				"/select_structure_field.jsp"
+			).setParameter(
+				"portletResource", portletResource
+			).setParameter(
+				"className", className
+			).setParameter(
+				"classTypeId", String.valueOf(classTypeId)
+			).setParameter(
+				"eventName", eventName
+			).build()
+		%>'
 		total="<%= classType.getClassTypeFieldsCount() %>"
 	>
 		<liferay-ui:search-container-results

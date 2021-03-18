@@ -18,18 +18,18 @@
 
 <%
 AccountGroupDisplay accountGroupDisplay = (AccountGroupDisplay)request.getAttribute(AccountWebKeys.ACCOUNT_GROUP_DISPLAY);
-
-PortletURL portletURL = PortletURLBuilder.createRenderURL(
-	renderResponse
-).setMVCRenderCommandName(
-	"/account_admin/edit_account_group"
-).setParameter(
-	"accountGroupId", String.valueOf(accountGroupDisplay.getAccountGroupId())
-).build();
 %>
 
 <liferay-frontend:screen-navigation
 	context="<%= accountGroupDisplay %>"
 	key="<%= AccountScreenNavigationEntryConstants.SCREEN_NAVIGATION_KEY_ACCOUNT_GROUP %>"
-	portletURL="<%= portletURL %>"
+	portletURL='<%=
+		PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setMVCRenderCommandName(
+			"/account_admin/edit_account_group"
+		).setParameter(
+			"accountGroupId", String.valueOf(accountGroupDisplay.getAccountGroupId())
+		).build()
+	%>'
 />

@@ -34,18 +34,6 @@ String keywords = ParamUtil.getString(request, "keywords");
 boolean createNewPage = WikiNodePermission.contains(permissionChecker, node, ActionKeys.ADD_PAGE);
 
 WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderResponse, wikiGroupServiceConfiguration);
-
-PortletURL portletURL = PortletURLBuilder.createRenderURL(
-	renderResponse
-).setMVCRenderCommandName(
-	"/wiki/search"
-).setRedirect(
-	redirect
-).setParameter(
-	"nodeId", String.valueOf(nodeId)
-).setParameter(
-	"keywords", keywords
-).build();
 %>
 
 <aui:form action="<%= wikiURLHelper.getSearchURL() %>" method="get" name="fm">
@@ -68,7 +56,19 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 
 	<liferay-ui:search-container
 		emptyResultsMessage='<%= LanguageUtil.format(request, "no-pages-were-found-that-matched-the-keywords-x", "<strong>" + HtmlUtil.escape(keywords) + "</strong>", false) %>'
-		iteratorURL="<%= portletURL %>"
+		iteratorURL='<%=
+			PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCRenderCommandName(
+				"/wiki/search"
+			).setRedirect(
+				redirect
+			).setParameter(
+				"nodeId", String.valueOf(nodeId)
+			).setParameter(
+				"keywords", keywords
+			).build()
+		%>'
 	>
 
 		<%

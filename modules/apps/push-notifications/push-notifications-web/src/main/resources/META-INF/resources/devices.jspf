@@ -37,14 +37,6 @@ ResourceBundleLoaderProvider resourceBundleLoaderProvider = (ResourceBundleLoade
 			/>
 		</liferay-frontend:management-bar-buttons>
 
-		<%
-		PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
-			renderResponse
-		).setParameter(
-			"displayStyle", displayStyle
-		).build();
-		%>
-
 		<liferay-frontend:management-bar-filters>
 			<liferay-frontend:management-bar-navigation
 				navigationKeys='<%= new String[] {"all"} %>'
@@ -55,7 +47,13 @@ ResourceBundleLoaderProvider resourceBundleLoaderProvider = (ResourceBundleLoade
 				orderByCol="<%= orderByCol %>"
 				orderByType="<%= orderByType %>"
 				orderColumns='<%= new String[] {"platform"} %>'
-				portletURL="<%= iteratorURL %>"
+				portletURL='<%=
+					PortletURLBuilder.createRenderURL(
+						renderResponse
+					).setParameter(
+						"displayStyle", displayStyle
+					).build()
+				%>'
 			/>
 		</liferay-frontend:management-bar-filters>
 	</liferay-frontend:management-bar>

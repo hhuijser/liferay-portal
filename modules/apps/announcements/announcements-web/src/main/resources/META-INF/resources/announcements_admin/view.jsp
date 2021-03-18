@@ -116,21 +116,21 @@ AnnouncementsAdminViewManagementToolbarDisplayContext announcementsAdminViewMana
 					HashMapBuilder.<String, Object>put(
 						"actions", StringUtil.merge(announcementsAdminViewManagementToolbarDisplayContext.getAvailableActions(entry))
 					).build());
-
-				PortletURL rowURL = PortletURLBuilder.createRenderURL(
-					renderResponse
-				).setMVCRenderCommandName(
-					"/announcements/view_entry"
-				).setRedirect(
-					currentURL
-				).setParameter(
-					"entryId", String.valueOf(entry.getEntryId())
-				).build();
 				%>
 
 				<liferay-ui:search-container-column-text
 					cssClass="table-cell-expand"
-					href="<%= rowURL %>"
+					href='<%=
+						PortletURLBuilder.createRenderURL(
+							renderResponse
+						).setMVCRenderCommandName(
+							"/announcements/view_entry"
+						).setRedirect(
+							currentURL
+						).setParameter(
+							"entryId", String.valueOf(entry.getEntryId())
+						).build()
+					%>'
 					name="title"
 					value="<%= HtmlUtil.escape(entry.getTitle()) %>"
 				/>

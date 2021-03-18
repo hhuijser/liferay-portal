@@ -208,19 +208,16 @@ for (AssetEntry assetEntry : assetEntryResult.getAssetEntries()) {
 			</c:if>
 
 			<c:if test="<%= assetPublisherDisplayContext.isEnableRelatedAssets() %>">
-
-				<%
-				PortletURL assetLingsURL = PortletURLBuilder.createRenderURL(
-					renderResponse
-				).setMVCPath(
-					"/view_content.jsp"
-				).build();
-				%>
-
 				<div class="asset-links mb-4">
 					<liferay-asset:asset-links
 						assetEntryId="<%= assetEntry.getEntryId() %>"
-						portletURL="<%= assetLingsURL %>"
+						portletURL='<%=
+							PortletURLBuilder.createRenderURL(
+								renderResponse
+							).setMVCPath(
+								"/view_content.jsp"
+							).build()
+						%>'
 						viewInContext="<%= assetPublisherDisplayContext.isAssetLinkBehaviorViewInPortlet() %>"
 					/>
 				</div>

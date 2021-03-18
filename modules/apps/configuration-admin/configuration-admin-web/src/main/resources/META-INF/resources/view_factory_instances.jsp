@@ -133,19 +133,17 @@ renderResponse.setTitle(categoryDisplayName);
 					</clay:content-col>
 				</clay:content-row>
 
-				<%
-				PortletURL iteratorURL = PortletURLBuilder.createRenderURL(
-					renderResponse
-				).setMVCRenderCommandName(
-					"/configuration_admin/view_factory_instances"
-				).setParameter(
-					"factoryPid", configurationModel.getFactoryPid()
-				).build();
-				%>
-
 				<liferay-ui:search-container
 					emptyResultsMessage='<%= LanguageUtil.format(request, "no-entries-for-x-have-been-added-yet", factoryConfigurationModelName) %>'
-					iteratorURL="<%= iteratorURL %>"
+					iteratorURL='<%=
+						PortletURLBuilder.createRenderURL(
+							renderResponse
+						).setMVCRenderCommandName(
+							"/configuration_admin/view_factory_instances"
+						).setParameter(
+							"factoryPid", configurationModel.getFactoryPid()
+						).build()
+					%>'
 					total="<%= configurationModelIterator.getTotal() %>"
 				>
 					<liferay-ui:search-container-results

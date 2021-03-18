@@ -65,8 +65,10 @@ public class UpdateDataRecordMVCResourceCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		DataRecordResource dataRecordResource = DataRecordResource.builder(
-		).user(
+		DataRecordResource.Builder dataRecordResourceBuilder =
+			_dataRecordResourceFactory.create();
+
+		DataRecordResource dataRecordResource = dataRecordResourceBuilder.user(
 			themeDisplay.getUser()
 		).build();
 
@@ -108,6 +110,9 @@ public class UpdateDataRecordMVCResourceCommand
 	@Reference
 	private AppBuilderAppDataRecordLinkLocalService
 		_appBuilderAppDataRecordLinkLocalService;
+
+	@Reference
+	private DataRecordResource.Factory _dataRecordResourceFactory;
 
 	@Reference
 	private DDLRecordLocalService _ddlRecordLocalService;

@@ -73,8 +73,10 @@ public class DeleteDataDefinitionMVCResourceCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		DataDefinitionResource appResource = DataDefinitionResource.builder(
-		).user(
+		DataDefinitionResource.Builder dataDefinitionResourceBuilder =
+			_dataDefinitionResourceFactory.create();
+
+		DataDefinitionResource appResource = dataDefinitionResourceBuilder.user(
 			themeDisplay.getUser()
 		).build();
 
@@ -102,5 +104,8 @@ public class DeleteDataDefinitionMVCResourceCommand
 
 	private ServiceTrackerMap<String, AppBuilderAppsPortletTab>
 		_appBuilderAppsPortletTabTrackerMap;
+
+	@Reference
+	private DataDefinitionResource.Factory _dataDefinitionResourceFactory;
 
 }

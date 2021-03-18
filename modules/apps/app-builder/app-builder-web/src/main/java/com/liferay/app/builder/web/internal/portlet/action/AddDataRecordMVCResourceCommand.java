@@ -70,8 +70,10 @@ public class AddDataRecordMVCResourceCommand
 			_appBuilderAppVersionLocalService.getLatestAppBuilderAppVersion(
 				ParamUtil.getLong(resourceRequest, "appBuilderAppId"));
 
-		DataRecordResource dataRecordResource = DataRecordResource.builder(
-		).user(
+		DataRecordResource.Builder dataRecordResourceBuilder =
+			_dataRecordResourceFactory.create();
+
+		DataRecordResource dataRecordResource = dataRecordResourceBuilder.user(
 			themeDisplay.getUser()
 		).build();
 
@@ -116,6 +118,9 @@ public class AddDataRecordMVCResourceCommand
 
 	@Reference
 	private AppBuilderAppVersionLocalService _appBuilderAppVersionLocalService;
+
+	@Reference
+	private DataRecordResource.Factory _dataRecordResourceFactory;
 
 	@Reference
 	private DDLRecordLocalService _ddlRecordLocalService;

@@ -171,13 +171,13 @@ List<String> domains = accountEntryDisplay.getDomains();
 				title: '<liferay-ui:message key="add-domain" />',
 				url:
 					'<%=
-					PortletURLBuilder.createRenderURL(
-						renderResponse
-					).setMVCPath(
-						"/account_entries_admin/account_entry/add_domains.jsp"
-					).setWindowState(
-						LiferayWindowState.POP_UP
-					).build()
+						PortletURLBuilder.createRenderURL(
+							renderResponse
+						).setMVCPath(
+							"/account_entries_admin/account_entry/add_domains.jsp"
+						).setWindowState(
+							LiferayWindowState.POP_UP
+						).build()
 				%>',
 			});
 		});

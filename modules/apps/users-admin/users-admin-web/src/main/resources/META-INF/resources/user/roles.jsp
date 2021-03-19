@@ -424,7 +424,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 						).setParameter(
 							"step", "1"
 						).setParameter(
-							"roleType", String.valueOf(RoleConstants.TYPE_ORGANIZATION)
+							"roleType", RoleConstants.TYPE_ORGANIZATION
 						).setParameter(
 							"organizationIds", StringUtil.merge(organizationIds)
 						).setParameter(
@@ -617,7 +617,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 							).setParameter(
 								"step", "1"
 							).setParameter(
-								"roleType", String.valueOf(RoleConstants.TYPE_SITE)
+								"roleType", RoleConstants.TYPE_SITE
 							).setParameter(
 								"eventName", siteRoleEventName
 							).setWindowState(

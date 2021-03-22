@@ -59,17 +59,17 @@ public class ReportsServiceUpgrade implements UpgradeStepRegistrator {
 		registry.register(
 			"0.0.1", "1.0.0",
 			new com.liferay.portal.reports.engine.console.internal.upgrade.
-				v1_0_0.UpgradeReportDefinition(),
+				v1_0_0.ReportDefinitionUpgradeProcess(),
 			new com.liferay.portal.reports.engine.console.internal.upgrade.
-				v1_0_0.UpgradeReportEntry());
+				v1_0_0.ReportEntryUpgradeProcess());
 
 		registry.register(
 			"1.0.0", "1.0.1", new UpgradeKernelPackage(),
 			new UpgradeLastPublishDate(),
 			new com.liferay.portal.reports.engine.console.internal.upgrade.
-				v1_0_1.UpgradeReportDefinition(),
+				v1_0_1.ReportDefinitionUpgradeProcess(),
 			new com.liferay.portal.reports.engine.console.internal.upgrade.
-				v1_0_1.UpgradeReportEntry());
+				v1_0_1.ReportEntryUpgradeProcess());
 	}
 
 	@Reference(target = ModuleServiceLifecycle.PORTAL_INITIALIZED, unbind = "-")

@@ -2,15 +2,15 @@
 
 When possible, we should declare new variables instead of chaining.
 
-### Example
+### Examples
 
-Incorrect formatting:
+Incorrect:
 
 ```java
 String lowerCaseName = UserLocalServiceUtil.getUserById(12345).getFirstName().toLowerCase();
 ```
 
-Correct formatting:
+Correct:
 
 ```java
 User user = UserLocalServiceUtil.getUserById(12345);
@@ -20,14 +20,14 @@ String name = user.getFirstName();
 String lowerCaseName = name.toLowerCase();
 ```
 
-Incorrect formatting:
+Incorrect:
 
 ```java
 new HtmlUtil().setHtml(html);
 
 ```
 
-Correct formatting:
+Correct:
 
 ```java
 HtmlUtil htmlUtil = new HtmlUtil();

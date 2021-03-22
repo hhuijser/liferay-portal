@@ -4,13 +4,13 @@ Use either a single phrase or multiple sentences.
 
 ### Example
 
-#### Correct:
+Correct:
 
 Single phrase: `This is Alpha`
 
 Two sentences: `This is Alpha. This is Beta.`
 
-#### Incorrect:
+Incorrect:
 
 `This is Alpha.`
 

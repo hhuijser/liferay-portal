@@ -4,7 +4,7 @@ In OSGi component, do not call `*Resource.builder`, use the Factory component in
 
 ### Example
 
-Incorrect formatting:
+Incorrect:
 
 ```java
 DataListViewResource dataListViewResource =
@@ -16,7 +16,7 @@ DataListViewResource dataListViewResource =
 	).build();
 ```
 
-Correct formatting:
+Correct:
 
 ```java
 DataListViewResource.Builder dataListViewResourceBuilder =

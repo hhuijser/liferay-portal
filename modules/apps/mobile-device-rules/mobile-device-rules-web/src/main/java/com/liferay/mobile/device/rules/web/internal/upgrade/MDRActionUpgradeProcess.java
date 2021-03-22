@@ -24,9 +24,11 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 /**
  * @author Tom Wang
  */
-public class MDRActionUpgrade extends UpgradeProcess {
+public class MDRActionUpgradeProcess extends UpgradeProcess {
 
-	public MDRActionUpgrade(String oldPackageName, String newPackageName) {
+	public MDRActionUpgradeProcess(
+		String oldPackageName, String newPackageName) {
+
 		_oldPackageName = oldPackageName;
 		_newPackageName = newPackageName;
 	}

@@ -17,7 +17,7 @@ package com.liferay.data.cleanup.internal.upgrade;
 /**
  * @author Sam Ziemer
  */
-public class UpgradeDirectory extends BaseUpgradeNoninstanceablePortlet {
+public class DirectoryUpgradeProcess extends BaseUpgradeNoninstanceablePortlet {
 
 	@Override
 	protected void doUpgrade() throws Exception {

@@ -47,42 +47,44 @@ public class DataCleanup implements UpgradeStepRegistrator {
 		try {
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpChatModuleData,
-				"com.liferay.chat.service", UpgradeChat::new);
+				"com.liferay.chat.service", ChatUpgradeProcess::new);
 
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpDictionaryModuleData,
-				"com.liferay.dictionary.web", UpgradeDictionary::new);
+				"com.liferay.dictionary.web", DictionaryUpgradeProcess::new);
 
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpDirectoryModuleData,
-				"com.liferay.directory.web", UpgradeDirectory::new);
+				"com.liferay.directory.web", DirectoryUpgradeProcess::new);
 
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpImageEditorModuleData,
 				"com.liferay.frontend.image.editor.web",
-				UpgradeImageEditor::new);
+				ImageEditorUpgradeProcess::new);
 
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpInvitationModuleData,
-				"com.liferay.invitation.web", UpgradeInvitation::new);
+				"com.liferay.invitation.web", InvitationUpgradeProcess::new);
 
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpMailReaderModuleData,
-				"com.liferay.mail.reader.service", UpgradeMailReader::new);
+				"com.liferay.mail.reader.service",
+				MailReaderUpgradeProcess::new);
 
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpPrivateMessagingModuleData,
 				"com.liferay.social.privatemessaging.service",
-				() -> new UpgradePrivateMessaging(_mbThreadLocalService));
+				() -> new PrivateMessagingUpgradeProcess(
+					_mbThreadLocalService));
 
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpShoppingModuleData,
 				"com.liferay.shopping.service",
-				() -> new UpgradeShopping(_imageLocalService));
+				() -> new ShoppingUpgradeProcess(_imageLocalService));
 
 			_cleanUpModuleData(
 				_dataCleanupConfiguration::cleanUpTwitterModuleData,
-				"com.liferay.twitter.service", UpgradeTwitter::new);
+				"com.liferay.twitter.service", TwitterUpgradeProcess::new);
 		}
 		catch (UpgradeException upgradeException) {
 			ReflectionUtil.throwException(upgradeException);

@@ -19,10 +19,10 @@ import com.liferay.portal.kernel.util.PrefsProps;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.saml.runtime.configuration.SamlProviderConfigurationHelper;
-import com.liferay.saml.runtime.internal.upgrade.v1_0_0.UpgradeSamlConfigurationPreferences;
-import com.liferay.saml.runtime.internal.upgrade.v1_0_0.UpgradeSamlIdpSsoSessionMaxAgeProperty;
-import com.liferay.saml.runtime.internal.upgrade.v1_0_0.UpgradeSamlKeyStoreProperties;
-import com.liferay.saml.runtime.internal.upgrade.v1_0_0.UpgradeSamlProviderConfigurationPreferences;
+import com.liferay.saml.runtime.internal.upgrade.v1_0_0.SamlConfigurationPreferencesUpgradeProcess;
+import com.liferay.saml.runtime.internal.upgrade.v1_0_0.SamlIdpSsoSessionMaxAgePropertyUpgradeProcess;
+import com.liferay.saml.runtime.internal.upgrade.v1_0_0.SamlKeyStorePropertiesUpgradeProcess;
+import com.liferay.saml.runtime.internal.upgrade.v1_0_0.SamlProviderConfigurationPreferencesUpgradeProcess;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.annotations.Component;
@@ -41,16 +41,17 @@ public class SamlImplUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		registry.register(
 			"0.0.0", "0.0.1",
-			new UpgradeSamlConfigurationPreferences(
+			new SamlConfigurationPreferencesUpgradeProcess(
 				_configurationAdmin, _props),
-			new UpgradeSamlKeyStoreProperties(_configurationAdmin, _prefsProps),
-			new UpgradeSamlProviderConfigurationPreferences(
+			new SamlKeyStorePropertiesUpgradeProcess(
+				_configurationAdmin, _prefsProps),
+			new SamlProviderConfigurationPreferencesUpgradeProcess(
 				_companyLocalService, _prefsProps, _props,
 				_samlProviderConfigurationHelper));
 
 		registry.register(
 			"0.0.1", "1.0.0",
-			new UpgradeSamlIdpSsoSessionMaxAgeProperty(
+			new SamlIdpSsoSessionMaxAgePropertyUpgradeProcess(
 				_configurationAdmin, _props));
 	}
 

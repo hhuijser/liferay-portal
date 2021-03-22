@@ -20,9 +20,9 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 /**
  * @author Tom Wang
  */
-public class MDRRuleUpgrade extends UpgradeProcess {
+public class MDRRuleUpgradeProcess extends UpgradeProcess {
 
-	public MDRRuleUpgrade(String oldPackageName, String newPackageName) {
+	public MDRRuleUpgradeProcess(String oldPackageName, String newPackageName) {
 		_oldPackageName = oldPackageName;
 		_newPackageName = newPackageName;
 	}

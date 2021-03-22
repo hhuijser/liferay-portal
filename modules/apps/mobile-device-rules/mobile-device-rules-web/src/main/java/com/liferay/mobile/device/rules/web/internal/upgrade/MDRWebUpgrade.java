@@ -36,10 +36,10 @@ public class MDRWebUpgrade implements UpgradeStepRegistrator {
 
 		registry.register(
 			"1.0.0", "1.0.1",
-			new MDRActionUpgrade(
+			new MDRActionUpgradeProcess(
 				"com.liferay.portal.mobile.device.rulegroup.action.impl",
 				"com.liferay.mobile.device.rules.rule.group.action"),
-			new MDRRuleUpgrade(
+			new MDRRuleUpgradeProcess(
 				"com.liferay.portal.mobile.device.rulegroup.rule.impl." +
 					"SimpleRuleHandler",
 				"com.liferay.mobile.device.rules.rule.group.rule." +
@@ -47,11 +47,11 @@ public class MDRWebUpgrade implements UpgradeStepRegistrator {
 
 		registry.register(
 			"1.0.1", "1.0.2",
-			new MDRActionUpgrade(
+			new MDRActionUpgradeProcess(
 				"com.liferay.mobile.device.rules.rule.group.action",
 				"com.liferay.mobile.device.rules.web.internal.rule.group." +
 					"action"),
-			new MDRRuleUpgrade(
+			new MDRRuleUpgradeProcess(
 				"com.liferay.mobile.device.rules.rule.group.rule." +
 					"SimpleRuleHandler",
 				"com.liferay.mobile.device.rules.web.internal.rule.group." +

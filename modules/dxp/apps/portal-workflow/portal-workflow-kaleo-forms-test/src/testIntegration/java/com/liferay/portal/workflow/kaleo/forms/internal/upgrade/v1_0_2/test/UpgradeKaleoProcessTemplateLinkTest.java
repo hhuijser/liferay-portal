@@ -83,7 +83,7 @@ public class UpgradeKaleoProcessTemplateLinkTest {
 	public void testCreateKaleoProcess() throws Exception {
 		addKaleoProcess(_kaleoProcessId);
 
-		_upgradeKaleoProcessTemplateLink.upgrade();
+		_kaleoProcessTemplateLinkUpgradeProcess.upgrade();
 
 		DDMTemplateLink ddmTemplateLink =
 			DDMTemplateLinkLocalServiceUtil.getTemplateLink(
@@ -98,7 +98,7 @@ public class UpgradeKaleoProcessTemplateLinkTest {
 	public void testCreateKaleoProcessLink() throws Exception {
 		addKaleoProcessLink(_kaleoProcessLinkId);
 
-		_upgradeKaleoProcessTemplateLink.upgrade();
+		_kaleoProcessTemplateLinkUpgradeProcess.upgrade();
 
 		DDMTemplateLink ddmTemplateLink =
 			DDMTemplateLinkLocalServiceUtil.getTemplateLink(
@@ -215,9 +215,9 @@ public class UpgradeKaleoProcessTemplateLinkTest {
 						String className = clazz.getName();
 
 						if (className.contains(
-								"UpgradeKaleoProcessTemplateLink")) {
+								"KaleoProcessTemplateLinkUpgradeProcess")) {
 
-							_upgradeKaleoProcessTemplateLink =
+							_kaleoProcessTemplateLinkUpgradeProcess =
 								(UpgradeProcess)upgradeStep;
 						}
 					}
@@ -236,7 +236,7 @@ public class UpgradeKaleoProcessTemplateLinkTest {
 	private long _kaleoProcessId;
 	private long _kaleoProcessLinkClassNameId;
 	private long _kaleoProcessLinkId;
+	private UpgradeProcess _kaleoProcessTemplateLinkUpgradeProcess;
 	private Timestamp _timestamp;
-	private UpgradeProcess _upgradeKaleoProcessTemplateLink;
 
 }

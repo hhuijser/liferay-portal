@@ -23,7 +23,7 @@ import com.liferay.site.navigation.menu.web.internal.constants.SiteNavigationMen
  * @author Balázs Sáfrány-Kovalik
  * @author Preston Crary
  */
-public class RenameUpgradePortletPreferences extends UpgradeProcess {
+public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

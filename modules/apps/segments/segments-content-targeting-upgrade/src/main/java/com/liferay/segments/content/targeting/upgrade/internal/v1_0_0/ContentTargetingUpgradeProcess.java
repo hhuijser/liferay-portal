@@ -38,9 +38,9 @@ import java.util.Map;
 /**
  * @author Eduardo García
  */
-public class UpgradeContentTargeting extends UpgradeProcess {
+public class ContentTargetingUpgradeProcess extends UpgradeProcess {
 
-	public UpgradeContentTargeting(
+	public ContentTargetingUpgradeProcess(
 		RuleConverterRegistry ruleConverterRegistry,
 		SegmentsEntryLocalService segmentsEntryLocalService) {
 
@@ -183,7 +183,7 @@ public class UpgradeContentTargeting extends UpgradeProcess {
 		"com.liferay.content.targeting";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		UpgradeContentTargeting.class);
+		ContentTargetingUpgradeProcess.class);
 
 	private final RuleConverterRegistry _ruleConverterRegistry;
 	private final SegmentsEntryLocalService _segmentsEntryLocalService;

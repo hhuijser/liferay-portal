@@ -84,7 +84,7 @@ import org.junit.runner.RunWith;
  * @author Eduardo García
  */
 @RunWith(Arquillian.class)
-public class UpgradeContentTargetingTest {
+public class ContentTargetingUpgradeProcessTest {
 
 	@ClassRule
 	@Rule
@@ -101,7 +101,7 @@ public class UpgradeContentTargetingTest {
 		_db = DBManagerUtil.getDB();
 
 		createContentTargetingTables();
-		setUpUpgradeContentTargeting();
+		setUpContentTargetingUpgradeProcess();
 	}
 
 	@After
@@ -120,7 +120,7 @@ public class UpgradeContentTargetingTest {
 		insertContentTargetingUserSegment(
 			contentTargetingUserSegmentId, nameMap, descriptionMap);
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -147,7 +147,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -192,7 +192,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -231,7 +231,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -279,7 +279,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -324,7 +324,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -363,7 +363,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -406,7 +406,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -444,7 +444,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -488,7 +488,7 @@ public class UpgradeContentTargetingTest {
 		insertContentTargetingUserSegment(
 			contentTargetingUserSegmentId, nameMap, descriptionMap);
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -515,7 +515,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -553,7 +553,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -591,7 +591,7 @@ public class UpgradeContentTargetingTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap());
 
-		_upgradeContentTargeting.upgrade();
+		_contentTargetingUpgradeProcess.upgrade();
 
 		SegmentsEntry segmentsEntry =
 			_segmentsEntryLocalService.fetchSegmentsEntry(
@@ -736,7 +736,7 @@ public class UpgradeContentTargetingTest {
 		}
 	}
 
-	protected void setUpUpgradeContentTargeting() {
+	protected void setUpContentTargetingUpgradeProcess() {
 		Registry registry = RegistryUtil.getRegistry();
 
 		UpgradeStepRegistrator upgradeStepRegistror = registry.getService(
@@ -756,7 +756,7 @@ public class UpgradeContentTargetingTest {
 						Class<?> clazz = upgradeStep.getClass();
 
 						if (Objects.equals(clazz.getName(), _CLASS_NAME)) {
-							_upgradeContentTargeting =
+							_contentTargetingUpgradeProcess =
 								(UpgradeProcess)upgradeStep;
 						}
 					}
@@ -823,9 +823,11 @@ public class UpgradeContentTargetingTest {
 
 	private static final String _CLASS_NAME =
 		"com.liferay.segments.content.targeting.upgrade.internal.v1_0_0." +
-			"UpgradeContentTargeting";
+			"ContentTargetingUpgradeProcess";
 
 	private static DB _db;
+
+	private UpgradeProcess _contentTargetingUpgradeProcess;
 
 	@Inject
 	private CounterLocalService _counterLocalService;
@@ -838,7 +840,5 @@ public class UpgradeContentTargetingTest {
 
 	@Inject
 	private SegmentsEntryLocalService _segmentsEntryLocalService;
-
-	private UpgradeProcess _upgradeContentTargeting;
 
 }

@@ -15,7 +15,7 @@
 package com.liferay.segments.content.targeting.upgrade.internal;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
-import com.liferay.segments.content.targeting.upgrade.internal.v1_0_0.UpgradeContentTargeting;
+import com.liferay.segments.content.targeting.upgrade.internal.v1_0_0.ContentTargetingUpgradeProcess;
 import com.liferay.segments.content.targeting.upgrade.internal.v1_0_0.util.RuleConverterRegistry;
 import com.liferay.segments.service.SegmentsEntryLocalService;
 
@@ -37,7 +37,7 @@ public class SegmentsContentTargetingUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		registry.register(
 			"0.0.0", "1.0.0",
-			new UpgradeContentTargeting(
+			new ContentTargetingUpgradeProcess(
 				_ruleConverterRegistry, _segmentsEntryLocalService));
 	}
 

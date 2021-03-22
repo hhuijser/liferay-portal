@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.util.PropsImpl;
 import com.liferay.saml.runtime.configuration.SamlProviderConfiguration;
 import com.liferay.saml.runtime.internal.constants.LegacySamlPropsKeys;
-import com.liferay.saml.runtime.internal.upgrade.v1_0_0.UpgradeSamlIdpSsoSessionMaxAgeProperty;
+import com.liferay.saml.runtime.internal.upgrade.v1_0_0.SamlIdpSsoSessionMaxAgePropertyUpgradeProcess;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -45,7 +45,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
  * @author Tomas Polesovsky
  */
 @RunWith(PowerMockRunner.class)
-public class UpgradeSamlIdpSsoSessionMaxAgePropertyTest extends PowerMockito {
+public class SamlIdpSsoSessionMaxAgePropertyUpgradeProcessTest
+	extends PowerMockito {
 
 	@BeforeClass
 	public static void setUpClass() {
@@ -89,12 +90,12 @@ public class UpgradeSamlIdpSsoSessionMaxAgePropertyTest extends PowerMockito {
 			null
 		);
 
-		UpgradeSamlIdpSsoSessionMaxAgeProperty
-			upgradeSamlIdpSsoSessionMaxAgeProperty =
-				new UpgradeSamlIdpSsoSessionMaxAgeProperty(
+		SamlIdpSsoSessionMaxAgePropertyUpgradeProcess
+			samlIdpSsoSessionMaxAgePropertyUpgradeProcess =
+				new SamlIdpSsoSessionMaxAgePropertyUpgradeProcess(
 					configurationAdmin, props);
 
-		upgradeSamlIdpSsoSessionMaxAgeProperty.doUpgrade();
+		samlIdpSsoSessionMaxAgePropertyUpgradeProcess.doUpgrade();
 
 		Dictionary<String, Object> properties = new Hashtable<>();
 
@@ -137,12 +138,12 @@ public class UpgradeSamlIdpSsoSessionMaxAgePropertyTest extends PowerMockito {
 			""
 		);
 
-		UpgradeSamlIdpSsoSessionMaxAgeProperty
-			upgradeSamlIdpSsoSessionMaxAgeProperty =
-				new UpgradeSamlIdpSsoSessionMaxAgeProperty(
+		SamlIdpSsoSessionMaxAgePropertyUpgradeProcess
+			samlIdpSsoSessionMaxAgePropertyUpgradeProcess =
+				new SamlIdpSsoSessionMaxAgePropertyUpgradeProcess(
 					configurationAdmin, props);
 
-		upgradeSamlIdpSsoSessionMaxAgeProperty.doUpgrade();
+		samlIdpSsoSessionMaxAgePropertyUpgradeProcess.doUpgrade();
 
 		properties = new Hashtable<>();
 
@@ -178,12 +179,12 @@ public class UpgradeSamlIdpSsoSessionMaxAgePropertyTest extends PowerMockito {
 			samlIdpSsoSessionMaxAge
 		);
 
-		UpgradeSamlIdpSsoSessionMaxAgeProperty
-			upgradeSamlIdpSsoSessionMaxAgeProperty =
-				new UpgradeSamlIdpSsoSessionMaxAgeProperty(
+		SamlIdpSsoSessionMaxAgePropertyUpgradeProcess
+			samlIdpSsoSessionMaxAgePropertyUpgradeProcess =
+				new SamlIdpSsoSessionMaxAgePropertyUpgradeProcess(
 					configurationAdmin, props);
 
-		upgradeSamlIdpSsoSessionMaxAgeProperty.doUpgrade();
+		samlIdpSsoSessionMaxAgePropertyUpgradeProcess.doUpgrade();
 
 		Dictionary<String, Object> properties = new Hashtable<>();
 
@@ -232,12 +233,12 @@ public class UpgradeSamlIdpSsoSessionMaxAgePropertyTest extends PowerMockito {
 			String.valueOf(RandomTestUtil.randomInt())
 		);
 
-		UpgradeSamlIdpSsoSessionMaxAgeProperty
-			upgradeSamlIdpSsoSessionMaxAgeProperty =
-				new UpgradeSamlIdpSsoSessionMaxAgeProperty(
+		SamlIdpSsoSessionMaxAgePropertyUpgradeProcess
+			samlIdpSsoSessionMaxAgePropertyUpgradeProcess =
+				new SamlIdpSsoSessionMaxAgePropertyUpgradeProcess(
 					configurationAdmin, props);
 
-		upgradeSamlIdpSsoSessionMaxAgeProperty.doUpgrade();
+		samlIdpSsoSessionMaxAgePropertyUpgradeProcess.doUpgrade();
 
 		Configuration verifyConfiguration = Mockito.verify(
 			configuration, Mockito.never());

@@ -61,7 +61,7 @@ public class UpgradeKaleoProcessTest {
 		KaleoProcess kaleoProcess = KaleoProcessTestUtil.addKaleoProcess(
 			_CLASS_NAME_DDL_RECORD_SET);
 
-		_upgradeKaleoProcess.upgrade();
+		_kaleoProcessUpgradeProcess.upgrade();
 
 		EntityCacheUtil.clearCache();
 
@@ -115,8 +115,11 @@ public class UpgradeKaleoProcessTest {
 
 						String className = clazz.getName();
 
-						if (className.contains(".v1_1_0.UpgradeKaleoProcess")) {
-							_upgradeKaleoProcess = (UpgradeProcess)upgradeStep;
+						if (className.contains(
+								".v1_1_0.KaleoProcessUpgradeProcess")) {
+
+							_kaleoProcessUpgradeProcess =
+								(UpgradeProcess)upgradeStep;
 						}
 					}
 				}
@@ -127,6 +130,6 @@ public class UpgradeKaleoProcessTest {
 	private static final String _CLASS_NAME_DDL_RECORD_SET =
 		DDLRecordSet.class.getName();
 
-	private UpgradeProcess _upgradeKaleoProcess;
+	private UpgradeProcess _kaleoProcessUpgradeProcess;
 
 }

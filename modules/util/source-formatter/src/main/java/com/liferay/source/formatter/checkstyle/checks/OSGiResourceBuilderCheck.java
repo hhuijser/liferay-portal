@@ -68,11 +68,9 @@ public class OSGiResourceBuilderCheck extends BaseCheck {
 				}
 			}
 
-			if (fullyQualifiedClassName.contains(".client.")) {
-				continue;
+			if (!fullyQualifiedClassName.contains(".client.")) {
+				log(methodCallDetailAST, _MSG_AVOID_METHOD_CALL);
 			}
-
-			log(methodCallDetailAST, _MSG_AVOID_METHOD_CALL);
 		}
 	}
 

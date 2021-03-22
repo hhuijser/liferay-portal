@@ -39,6 +39,8 @@ public class OSGiResourceBuilderCheck extends BaseCheck {
 			return;
 		}
 
+		List<String> importNames = null;
+
 		List<DetailAST> methodCallDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.METHOD_CALL);
 
@@ -58,9 +60,13 @@ public class OSGiResourceBuilderCheck extends BaseCheck {
 				return;
 			}
 
+			if (importNames == null) {
+				importNames = getImportNames(methodCallDetailAST);
+			}
+
 			String fullyQualifiedClassName = classOrVariableName;
 
-			for (String importName : getImportNames(methodCallDetailAST)) {
+			for (String importName : importNames) {
 				if (importName.endsWith("." + classOrVariableName)) {
 					fullyQualifiedClassName = importName;
 

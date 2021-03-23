@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
-import com.liferay.portal.kernel.upgrade.UpgradeViewCount;
+import com.liferay.portal.kernel.upgrade.ViewCountUpgradeProcess;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -59,10 +59,10 @@ public class UpgradeViewCountTest {
 		_db = DBManagerUtil.getDB();
 
 		_db.runSQL(
-			"create table UpgradeViewCount (primaryKey LONG not null primary " +
+			"create table ViewCountUpgradeProcess (primaryKey LONG not null primary " +
 				"key, companyId LONG not null, readCount LONG);");
 
-		_db.runSQL("insert into UpgradeViewCount values (1, 2, 3);");
+		_db.runSQL("insert into ViewCountUpgradeProcess values (1, 2, 3);");
 	}
 
 	@After
@@ -71,20 +71,20 @@ public class UpgradeViewCountTest {
 			"delete from ViewCountEntry where classNameId = " +
 				_className.getClassNameId());
 
-		_db.runSQL("drop table UpgradeViewCount");
+		_db.runSQL("drop table ViewCountUpgradeProcess");
 	}
 
 	@Test
 	public void testUpgrade() throws Exception {
-		UpgradeViewCount upgradeCTModel = new UpgradeViewCount(
-			"UpgradeViewCount", UpgradeViewCountTest.class, "primaryKey",
+		ViewCountUpgradeProcess upgradeCTModel = new ViewCountUpgradeProcess(
+			"ViewCountUpgradeProcess", UpgradeViewCountTest.class, "primaryKey",
 			"readCount");
 
 		try (Connection connection = DataAccess.getConnection()) {
 			DBInspector dbInspector = new DBInspector(connection);
 
 			Assert.assertTrue(
-				dbInspector.hasColumn("UpgradeViewCount", "readCount"));
+				dbInspector.hasColumn("ViewCountUpgradeProcess", "readCount"));
 		}
 
 		upgradeCTModel.upgrade();
@@ -106,7 +106,7 @@ public class UpgradeViewCountTest {
 			DBInspector dbInspector = new DBInspector(connection);
 
 			Assert.assertFalse(
-				dbInspector.hasColumn("UpgradeViewCount", "readCount"));
+				dbInspector.hasColumn("ViewCountUpgradeProcess", "readCount"));
 		}
 	}
 

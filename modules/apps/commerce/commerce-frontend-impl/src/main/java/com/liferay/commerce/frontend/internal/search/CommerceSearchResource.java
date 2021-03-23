@@ -374,11 +374,9 @@ public class CommerceSearchResource {
 		SearchItemModel searchItemModel = new SearchItemModel(
 			"item", HtmlUtil.escape(cpCatalogEntry.getName()));
 
-		String subtitle = cpCatalogEntry.getShortDescription();
-
-		if (Validator.isNull(subtitle)) {
-			subtitle = HtmlUtil.extractText(cpCatalogEntry.getDescription());
-		}
+		String subtitle = GetterUtil.getString(
+			cpCatalogEntry.getShortDescription(),
+			HtmlUtil.extractText(cpCatalogEntry.getDescription()));
 
 		searchItemModel.setSubtitle(subtitle);
 

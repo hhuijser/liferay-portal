@@ -191,14 +191,12 @@ public class SearchUtil {
 			AssetRenderer<?> assetRenderer =
 				assetRendererFactory.getAssetRenderer(classPK);
 
-			String viewURL = assetRenderer.getURLViewInContext(
-				PortalUtil.getLiferayPortletRequest(renderRequest),
-				PortalUtil.getLiferayPortletResponse(renderResponse),
+			String viewURL = GetterUtil.getString(
+				assetRenderer.getURLViewInContext(
+					PortalUtil.getLiferayPortletRequest(renderRequest),
+					PortalUtil.getLiferayPortletResponse(renderResponse),
+					viewContentURL.toString()),
 				viewContentURL.toString());
-
-			if (Validator.isNull(viewURL)) {
-				viewURL = viewContentURL.toString();
-			}
 
 			return HttpUtil.setParameter(viewURL, "p_l_back_url", currentURL);
 		}

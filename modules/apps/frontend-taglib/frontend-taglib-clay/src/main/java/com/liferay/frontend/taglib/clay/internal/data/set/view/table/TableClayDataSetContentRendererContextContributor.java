@@ -26,9 +26,9 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Collections;
 import java.util.Locale;
@@ -77,12 +77,10 @@ public class TableClayDataSetContentRendererContextContributor
 			baseTableClayDataSetDisplayView.getResourceBundle(locale);
 
 		for (ClayTableSchemaField clayTableSchemaField : fieldsMap.values()) {
-			String label = LanguageUtil.get(
-				resourceBundle, clayTableSchemaField.getLabel());
-
-			if (Validator.isNull(label)) {
-				label = StringPool.BLANK;
-			}
+			String label = GetterUtil.getString(
+				LanguageUtil.get(
+					resourceBundle, clayTableSchemaField.getLabel()),
+				StringPool.BLANK);
 
 			JSONObject jsonObject = JSONUtil.put(
 				"actionId", clayTableSchemaField.getActionId()

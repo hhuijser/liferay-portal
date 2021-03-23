@@ -147,12 +147,11 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 		}
 		else {
 			String guestUploadURL = GetterUtil.getString(
-				ddmFormField.getProperty("guestUploadURL"));
-
-			if (Validator.isNull(guestUploadURL)) {
-				guestUploadURL = getGuestUploadURL(
-					ddmFormFieldRenderingContext, folderId, httpServletRequest);
-			}
+				GetterUtil.getString(
+					ddmFormField.getProperty("guestUploadURL")),
+				getGuestUploadURL(
+					ddmFormFieldRenderingContext, folderId,
+					httpServletRequest));
 
 			parameters.put("guestUploadURL", guestUploadURL);
 		}
@@ -171,11 +170,8 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 				ddmFormFieldRenderingContext.getLocale(),
 				ddmFormFieldRenderingContext.getValue()));
 
-		String value = ddmFormFieldRenderingContext.getValue();
-
-		if (Validator.isNull(value)) {
-			value = "{}";
-		}
+		String value = GetterUtil.getString(
+			ddmFormFieldRenderingContext.getValue(), "{}");
 
 		parameters.put("value", value);
 

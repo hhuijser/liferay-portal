@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
@@ -266,11 +267,9 @@ public class DefaultUserResolver implements UserResolver {
 		UserResolverSAMLContext userResolverSAMLContext,
 		String defaultNameIdFormat) {
 
-		String format = userResolverSAMLContext.resolveSubjectNameFormat();
-
-		if (Validator.isNull(format)) {
-			format = defaultNameIdFormat;
-		}
+		String format = GetterUtil.getString(
+			userResolverSAMLContext.resolveSubjectNameFormat(),
+			defaultNameIdFormat);
 
 		if (format.equals(NameIDType.EMAIL)) {
 			return CompanyConstants.AUTH_TYPE_EA;

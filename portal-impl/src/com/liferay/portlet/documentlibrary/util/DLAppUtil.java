@@ -30,11 +30,9 @@ import java.io.File;
 public class DLAppUtil {
 
 	public static String getExtension(String title, String sourceFileName) {
-		String extension = FileUtil.getExtension(sourceFileName);
-
-		if (Validator.isNull(extension)) {
-			extension = FileUtil.getExtension(title);
-		}
+		String extension = GetterUtil.getString(
+			FileUtil.getExtension(sourceFileName),
+			FileUtil.getExtension(title));
 
 		return extension;
 	}

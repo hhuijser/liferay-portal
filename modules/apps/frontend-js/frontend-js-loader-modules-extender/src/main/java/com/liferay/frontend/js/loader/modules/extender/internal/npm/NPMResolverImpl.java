@@ -22,7 +22,7 @@ import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -50,11 +50,8 @@ public class NPMResolverImpl implements NPMResolver {
 	public JSPackage getDependencyJSPackage(String packageName) {
 		JSPackage jsPackage = getJSPackage();
 
-		String destPackageName = _packageNamesMap.get(packageName);
-
-		if (Validator.isNull(destPackageName)) {
-			destPackageName = packageName;
-		}
+		String destPackageName = GetterUtil.getString(
+			_packageNamesMap.get(packageName), packageName);
 
 		JSPackageDependency jsPackageDependency =
 			jsPackage.getJSPackageDependency(destPackageName);

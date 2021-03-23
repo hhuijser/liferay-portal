@@ -34,11 +34,11 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.rss.export.RSSExporter;
@@ -612,11 +612,8 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 			String value = null;
 
 			if (displayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) {
-				String summary = entry.getDescription();
-
-				if (Validator.isNull(summary)) {
-					summary = entry.getContent();
-				}
+				String summary = GetterUtil.getString(
+					entry.getDescription(), entry.getContent());
 
 				value = StringUtil.shorten(
 					HtmlUtil.extractText(summary),

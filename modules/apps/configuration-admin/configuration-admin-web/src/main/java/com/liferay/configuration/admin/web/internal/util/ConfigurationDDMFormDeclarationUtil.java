@@ -18,7 +18,7 @@ import com.liferay.configuration.admin.definition.ConfigurationDDMFormDeclaratio
 import com.liferay.configuration.admin.web.internal.model.ConfigurationModel;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -32,11 +32,8 @@ public class ConfigurationDDMFormDeclarationUtil {
 	public static Class<?> getConfigurationDDMFormClass(
 		ConfigurationModel configurationModel) {
 
-		String pid = configurationModel.getFactoryPid();
-
-		if (Validator.isNull(pid)) {
-			pid = configurationModel.getID();
-		}
+		String pid = GetterUtil.getString(
+			configurationModel.getFactoryPid(), configurationModel.getID());
 
 		return getConfigurationDDMFormClass(pid);
 	}

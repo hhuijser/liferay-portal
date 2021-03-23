@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.portlet.WindowStateFactory;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
 import com.liferay.portal.kernel.security.auth.session.AuthenticatedSessionManagerUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -133,11 +134,9 @@ public class LoginAction implements Action {
 			return null;
 		}
 
-		String redirect = PortalUtil.getSiteLoginURL(themeDisplay);
-
-		if (Validator.isNull(redirect)) {
-			redirect = PropsValues.AUTH_LOGIN_URL;
-		}
+		String redirect = GetterUtil.getString(
+			PortalUtil.getSiteLoginURL(themeDisplay),
+			PropsValues.AUTH_LOGIN_URL);
 
 		if (Validator.isNull(redirect)) {
 			PortletURL portletURL = PortletURLFactoryUtil.create(

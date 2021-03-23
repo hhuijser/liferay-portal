@@ -237,12 +237,8 @@ public class AssetPublisherConfigurationAction
 
 				updateDisplaySettings(actionRequest);
 
-				String selectionStyle = getParameter(
-					actionRequest, "selectionStyle");
-
-				if (Validator.isNull(selectionStyle)) {
-					selectionStyle = "dynamic";
-				}
+				String selectionStyle = GetterUtil.getString(
+					getParameter(actionRequest, "selectionStyle"), "dynamic");
 
 				if (selectionStyle.equals("dynamic")) {
 					updateQueryLogic(actionRequest, preferences);

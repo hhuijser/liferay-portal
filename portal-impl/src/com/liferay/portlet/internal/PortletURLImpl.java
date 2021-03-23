@@ -1031,11 +1031,8 @@ public class PortletURLImpl
 			}
 		}
 
-		String doAsUserLanguageId = _doAsUserLanguageId;
-
-		if (Validator.isNull(doAsUserLanguageId)) {
-			doAsUserLanguageId = themeDisplay.getDoAsUserLanguageId();
-		}
+		String doAsUserLanguageId = GetterUtil.getString(
+			_doAsUserLanguageId, themeDisplay.getDoAsUserLanguageId());
 
 		if (Validator.isNotNull(doAsUserLanguageId)) {
 			sb.append("doAsUserLanguageId=");

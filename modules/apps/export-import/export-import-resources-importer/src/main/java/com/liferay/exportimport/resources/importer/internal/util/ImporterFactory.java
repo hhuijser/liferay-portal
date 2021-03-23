@@ -170,12 +170,10 @@ public class ImporterFactory {
 		importer.setTargetClassName(
 			pluginPackageProperties.getTargetClassName());
 
-		String targetValue = pluginPackageProperties.getTargetValue();
-
-		if (Validator.isNull(targetValue)) {
-			targetValue = TextFormatter.format(
-				servletContext.getServletContextName(), TextFormatter.J);
-		}
+		String targetValue = GetterUtil.getString(
+			pluginPackageProperties.getTargetValue(),
+			TextFormatter.format(
+				servletContext.getServletContextName(), TextFormatter.J));
 
 		importer.setTargetValue(targetValue);
 

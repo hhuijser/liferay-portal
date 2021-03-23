@@ -17,11 +17,11 @@ package com.liferay.portal.search.tuning.rankings.web.internal.display.context;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -141,11 +141,9 @@ public class EditRankingDisplayBuilder {
 	}
 
 	private String _getRedirect() {
-		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
-
-		if (Validator.isNull(redirect)) {
-			redirect = String.valueOf(_renderResponse.createRenderURL());
-		}
+		String redirect = GetterUtil.getString(
+			ParamUtil.getString(_httpServletRequest, "redirect"),
+			String.valueOf(_renderResponse.createRenderURL()));
 
 		return redirect;
 	}

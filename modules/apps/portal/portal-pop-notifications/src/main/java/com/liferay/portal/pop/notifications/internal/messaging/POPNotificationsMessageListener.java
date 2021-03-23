@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.scheduler.TriggerFactory;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.pop.notifications.internal.MessageListenerWrapper;
 import com.liferay.portal.util.PropsValues;
 
@@ -205,17 +204,13 @@ public class POPNotificationsMessageListener extends BaseMessageListener {
 
 		String host = session.getProperty(prefix + "host");
 
-		String user = session.getProperty(prefix + "user");
+		String user = GetterUtil.getString(
+			session.getProperty(prefix + "user"),
+			session.getProperty("mail.smtp.user"));
 
-		if (Validator.isNull(user)) {
-			user = session.getProperty("mail.smtp.user");
-		}
-
-		String password = session.getProperty(prefix + "password");
-
-		if (Validator.isNull(password)) {
-			password = session.getProperty("mail.smtp.password");
-		}
+		String password = GetterUtil.getString(
+			session.getProperty(prefix + "password"),
+			session.getProperty("mail.smtp.password"));
 
 		store.connect(host, user, password);
 

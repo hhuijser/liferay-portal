@@ -16,6 +16,7 @@ package com.liferay.taglib.ui;
 
 import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.taglib.BaseValidatorTagSupport;
 import com.liferay.taglib.util.TagResourceBundleUtil;
@@ -156,17 +157,9 @@ public class InputSearchTag extends BaseValidatorTagSupport {
 			_name = DisplayTerms.KEYWORDS;
 		}
 
-		String id = _id;
+		String id = GetterUtil.getString(_id, _name);
 
-		if (Validator.isNull(id)) {
-			id = _name;
-		}
-
-		String placeholder = _placeholder;
-
-		if (Validator.isNull(placeholder)) {
-			placeholder = buttonLabel;
-		}
+		String placeholder = GetterUtil.getString(_placeholder, buttonLabel);
 
 		String title = _title;
 

@@ -20,6 +20,7 @@ import com.liferay.document.library.repository.authorization.oauth2.OAuth2Author
 import com.liferay.document.library.repository.authorization.oauth2.Token;
 import com.liferay.document.library.repository.authorization.oauth2.TokenStore;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -245,12 +246,9 @@ public class SharepointRepositoryAuthorizationCapability
 		String error = ParamUtil.getString(httpServletRequest, "error");
 
 		if (Validator.isNotNull(error)) {
-			String description = ParamUtil.getString(
-				httpServletRequest, "error_description");
-
-			if (Validator.isNull(description)) {
-				description = error;
-			}
+			String description = GetterUtil.getString(
+				ParamUtil.getString(httpServletRequest, "error_description"),
+				error);
 
 			throw OAuth2AuthorizationException.getErrorException(
 				error, description);

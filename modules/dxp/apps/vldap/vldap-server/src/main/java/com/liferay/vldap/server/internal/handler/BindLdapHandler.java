@@ -194,11 +194,8 @@ public class BindLdapHandler extends BaseLdapHandler {
 
 		Company company = setCompany(ldapHandlerContext, name);
 
-		String screenName = getValue(name, "cn");
-
-		if (Validator.isNull(screenName)) {
-			screenName = getValue(name, "uid");
-		}
+		String screenName = GetterUtil.getString(
+			getValue(name, "cn"), getValue(name, "uid"));
 
 		String emailAddress = getValue(name, "mail");
 		String password = new String(bindRequest.getCredentials());
@@ -309,11 +306,8 @@ public class BindLdapHandler extends BaseLdapHandler {
 
 		boolean allowDefaultUser = false;
 
-		String screenName = getValue(name, "cn");
-
-		if (Validator.isNull(screenName)) {
-			screenName = getValue(name, "uid");
-		}
+		String screenName = GetterUtil.getString(
+			getValue(name, "cn"), getValue(name, "uid"));
 
 		String emailAddress = getValue(name, "mail");
 

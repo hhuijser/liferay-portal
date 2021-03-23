@@ -264,11 +264,8 @@ public class ReleaseLocalServiceImpl extends ReleaseLocalServiceBaseImpl {
 			}
 		}
 
-		String currentSchemaVersion = release.getSchemaVersion();
-
-		if (Validator.isNull(currentSchemaVersion)) {
-			currentSchemaVersion = "0.0.0";
-		}
+		String currentSchemaVersion = GetterUtil.getString(
+			release.getSchemaVersion(), "0.0.0");
 
 		if (!previousSchemaVersion.equals(currentSchemaVersion)) {
 			StringBundler sb = new StringBundler(5);

@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.Locale;
@@ -118,13 +117,11 @@ public class CPDefinitionAssetRenderer
 				AssetHelper.ASSET_ENTRY_ABSTRACT_LENGTH);
 		}
 
-		String summary = _cpDefinition.getDescription();
-
-		if (Validator.isNull(summary)) {
-			summary = HtmlUtil.stripHtml(
+		String summary = GetterUtil.getString(
+			_cpDefinition.getDescription(),
+			HtmlUtil.stripHtml(
 				StringUtil.shorten(
-					_cpDefinition.getDescriptionMapAsXML(), abstractLength));
-		}
+					_cpDefinition.getDescriptionMapAsXML(), abstractLength)));
 
 		return summary;
 	}

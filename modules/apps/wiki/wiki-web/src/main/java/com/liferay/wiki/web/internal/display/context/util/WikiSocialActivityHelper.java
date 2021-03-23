@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.social.kernel.model.SocialActivity;
@@ -102,11 +103,8 @@ public class WikiSocialActivityHelper {
 				socialActivity.getCompanyId());
 		}
 
-		String userName = HtmlUtil.escape(socialActivityUser.getFullName());
-
-		if (Validator.isNull(userName)) {
-			userName = "Liferay";
-		}
+		String userName = GetterUtil.getString(
+			HtmlUtil.escape(socialActivityUser.getFullName()), "Liferay");
 
 		int type = socialActivity.getType();
 

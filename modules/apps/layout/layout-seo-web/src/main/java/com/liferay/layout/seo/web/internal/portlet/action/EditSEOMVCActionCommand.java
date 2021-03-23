@@ -29,13 +29,13 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.MultiSessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PropertiesParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.Locale;
@@ -150,11 +150,9 @@ public class EditSEOMVCActionCommand extends BaseMVCActionCommand {
 			uploadPortletRequest,
 			_portal.getHttpServletResponse(actionResponse));
 
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-		if (Validator.isNull(redirect)) {
-			redirect = _portal.getLayoutFullURL(layout, themeDisplay);
-		}
+		String redirect = GetterUtil.getString(
+			ParamUtil.getString(actionRequest, "redirect"),
+			_portal.getLayoutFullURL(layout, themeDisplay));
 
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");

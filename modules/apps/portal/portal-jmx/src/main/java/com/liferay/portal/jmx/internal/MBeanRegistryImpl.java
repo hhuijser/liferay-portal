@@ -19,7 +19,6 @@ import com.liferay.portal.jmx.MBeanRegistry;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.lang.management.ManagementFactory;
 
@@ -175,11 +174,9 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 				serviceReference.getProperty("jmx.objectname"));
 
 			String objectNameCacheKey = GetterUtil.getString(
-				serviceReference.getProperty("jmx.objectname.cache.key"));
-
-			if (Validator.isNull(objectNameCacheKey)) {
-				objectNameCacheKey = objectName;
-			}
+				GetterUtil.getString(
+					serviceReference.getProperty("jmx.objectname.cache.key")),
+				objectName);
 
 			Object service = _bundleContext.getService(serviceReference);
 
@@ -209,11 +206,9 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 				serviceReference.getProperty("jmx.objectname"));
 
 			String objectNameCacheKey = GetterUtil.getString(
-				serviceReference.getProperty("jmx.objectname.cache.key"));
-
-			if (Validator.isNull(objectNameCacheKey)) {
-				objectNameCacheKey = objectName;
-			}
+				GetterUtil.getString(
+					serviceReference.getProperty("jmx.objectname.cache.key")),
+				objectName);
 
 			_bundleContext.ungetService(serviceReference);
 

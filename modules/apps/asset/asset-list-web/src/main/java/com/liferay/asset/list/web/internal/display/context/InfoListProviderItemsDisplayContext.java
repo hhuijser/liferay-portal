@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -156,13 +157,9 @@ public class InfoListProviderItemsDisplayContext {
 			return _infoListProviderKey;
 		}
 
-		String infoListProviderKey = ParamUtil.getString(
-			_renderRequest, "infoListProviderKey");
-
-		if (Validator.isNull(infoListProviderKey)) {
-			infoListProviderKey = ParamUtil.getString(
-				_renderRequest, "collectionPK");
-		}
+		String infoListProviderKey = GetterUtil.getString(
+			ParamUtil.getString(_renderRequest, "infoListProviderKey"),
+			ParamUtil.getString(_renderRequest, "collectionPK"));
 
 		_infoListProviderKey = infoListProviderKey;
 

@@ -144,11 +144,8 @@ public abstract class HitsOpenSearchImpl extends BaseOpenSearchImpl {
 					resultScopeGroupId = themeDisplay.getScopeGroupId();
 				}
 
-				String className = indexer.getClassName();
-
-				if (Validator.isNull(className)) {
-					className = result.get(Field.ENTRY_CLASS_NAME);
-				}
+				String className = GetterUtil.getString(
+					indexer.getClassName(), result.get(Field.ENTRY_CLASS_NAME));
 
 				PortletURL portletURL = getPortletURL(
 					httpServletRequest, className, PortletProvider.Action.VIEW,

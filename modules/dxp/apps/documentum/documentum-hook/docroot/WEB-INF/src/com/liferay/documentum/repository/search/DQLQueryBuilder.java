@@ -31,8 +31,8 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.TermQuery;
 import com.liferay.portal.kernel.search.TermRangeQuery;
 import com.liferay.portal.kernel.search.WildcardQuery;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -163,11 +163,8 @@ public class DQLQueryBuilder {
 			value = _extRepositoryQueryMapper.formatParameterValue(
 				field, value);
 
-			String dqlField = _dqlFields.get(field);
-
-			if (Validator.isNull(dqlField)) {
-				dqlField = field;
-			}
+			String dqlField = GetterUtil.getString(
+				_dqlFields.get(field), field);
 
 			dqlCriterion = new DQLSimpleExpression(
 				dqlField, value, dqlSimpleExpressionOperator);

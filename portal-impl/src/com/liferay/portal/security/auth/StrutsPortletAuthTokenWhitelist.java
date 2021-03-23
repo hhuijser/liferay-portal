@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.security.auth.BaseAuthTokenWhitelist;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.Validator;
@@ -75,12 +76,9 @@ public class StrutsPortletAuthTokenWhitelist extends BaseAuthTokenWhitelist {
 
 		String namespace = PortalUtil.getPortletNamespace(portletId);
 
-		String strutsAction = httpServletRequest.getParameter(
-			namespace.concat("struts_action"));
-
-		if (Validator.isNull(strutsAction)) {
-			strutsAction = httpServletRequest.getParameter("struts_action");
-		}
+		String strutsAction = GetterUtil.getString(
+			httpServletRequest.getParameter(namespace.concat("struts_action")),
+			httpServletRequest.getParameter("struts_action"));
 
 		if (Validator.isNull(strutsAction)) {
 			return false;

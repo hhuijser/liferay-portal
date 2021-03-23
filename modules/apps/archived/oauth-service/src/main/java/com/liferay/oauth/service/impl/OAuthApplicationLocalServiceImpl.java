@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PwdGenerator;
 import com.liferay.portal.kernel.util.Validator;
@@ -66,11 +67,8 @@ public class OAuthApplicationLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		String consumerKey = serviceContext.getUuid();
-
-		if (Validator.isNull(consumerKey)) {
-			consumerKey = PortalUUIDUtil.generate();
-		}
+		String consumerKey = GetterUtil.getString(
+			serviceContext.getUuid(), PortalUUIDUtil.generate());
 
 		return oAuthApplicationLocalService.addOAuthApplication(
 			userId, name, description,
@@ -107,11 +105,8 @@ public class OAuthApplicationLocalServiceImpl
 		oAuthApplication.setName(name);
 		oAuthApplication.setDescription(description);
 
-		String consumerKey = serviceContext.getUuid();
-
-		if (Validator.isNull(consumerKey)) {
-			consumerKey = PortalUUIDUtil.generate();
-		}
+		String consumerKey = GetterUtil.getString(
+			serviceContext.getUuid(), PortalUUIDUtil.generate());
 
 		oAuthApplication.setConsumerKey(consumerKey);
 

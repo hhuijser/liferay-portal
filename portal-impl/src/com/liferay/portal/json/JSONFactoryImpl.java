@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.json.JSONTransformer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.lang.reflect.InvocationTargetException;
@@ -314,11 +315,8 @@ public class JSONFactoryImpl implements JSONFactory {
 			throwable = throwable.getCause();
 		}
 
-		String throwableMessage = throwable.getMessage();
-
-		if (Validator.isNull(throwableMessage)) {
-			throwableMessage = throwable.toString();
-		}
+		String throwableMessage = GetterUtil.getString(
+			throwable.getMessage(), throwable.toString());
 
 		JSONObject errorJSONObject = createJSONObject();
 

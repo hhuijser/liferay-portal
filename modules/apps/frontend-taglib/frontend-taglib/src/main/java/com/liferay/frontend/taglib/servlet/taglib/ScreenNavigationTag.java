@@ -17,6 +17,7 @@ package com.liferay.frontend.taglib.servlet.taglib;
 import com.liferay.frontend.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -333,12 +334,9 @@ public class ScreenNavigationTag extends IncludeTag {
 	}
 
 	private ScreenNavigationEntry<?> _getSelectedScreenNavigationEntry() {
-		String screenNavigationEntryKey = ParamUtil.getString(
-			request, "screenNavigationEntryKey");
-
-		if (Validator.isNull(screenNavigationEntryKey)) {
-			screenNavigationEntryKey = _getDefaultScreenNavigationEntryKey();
-		}
+		String screenNavigationEntryKey = GetterUtil.getString(
+			ParamUtil.getString(request, "screenNavigationEntryKey"),
+			_getDefaultScreenNavigationEntryKey());
 
 		List<ScreenNavigationEntry<Object>> screenNavigationEntries =
 			_getScreenNavigationEntries();

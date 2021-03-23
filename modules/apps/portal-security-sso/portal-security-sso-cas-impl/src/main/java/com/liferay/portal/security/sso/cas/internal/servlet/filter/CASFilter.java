@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.servlet.BaseFilter;
 import com.liferay.portal.kernel.settings.CompanyServiceSettingsLocator;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -217,13 +218,11 @@ public class CASFilter extends BaseFilter {
 
 		String serverName = casConfiguration.serverName();
 
-		String serviceURL = casConfiguration.serviceURL();
-
-		if (Validator.isNull(serviceURL)) {
-			serviceURL = CommonUtils.constructServiceUrl(
+		String serviceURL = GetterUtil.getString(
+			casConfiguration.serviceURL(),
+			CommonUtils.constructServiceUrl(
 				httpServletRequest, httpServletResponse, serviceURL, serverName,
-				"service", "ticket", true);
-		}
+				"service", "ticket", true));
 
 		String ticket = ParamUtil.getString(httpServletRequest, "ticket");
 

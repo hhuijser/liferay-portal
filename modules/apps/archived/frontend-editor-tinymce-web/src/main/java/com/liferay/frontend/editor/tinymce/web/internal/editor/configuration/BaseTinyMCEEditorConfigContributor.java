@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 import java.util.Locale;
@@ -142,11 +141,9 @@ public abstract class BaseTinyMCEEditorConfigContributor
 
 		contentsLanguageId = LocaleUtil.toLanguageId(contentsLocale);
 
-		String tinyMCELanguage = _tinyMCELanguages.get(contentsLanguageId);
-
-		if (Validator.isNull(tinyMCELanguage)) {
-			tinyMCELanguage = _tinyMCELanguages.get("en_US");
-		}
+		String tinyMCELanguage = GetterUtil.getString(
+			_tinyMCELanguages.get(contentsLanguageId),
+			_tinyMCELanguages.get("en_US"));
 
 		return tinyMCELanguage;
 	}

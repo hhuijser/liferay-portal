@@ -106,11 +106,8 @@ public class DeployUtil {
 	}
 
 	public static String getAutoDeployDestDir() throws Exception {
-		String destDir = PropsValues.AUTO_DEPLOY_DEST_DIR;
-
-		if (Validator.isNull(destDir)) {
-			destDir = getAutoDeployServerDestDir();
-		}
+		String destDir = GetterUtil.getString(
+			PropsValues.AUTO_DEPLOY_DEST_DIR, getAutoDeployServerDestDir());
 
 		FileUtil.mkdirs(destDir);
 

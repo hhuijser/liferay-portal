@@ -148,11 +148,8 @@ public class AuthenticatedSessionManagerImpl
 
 		// Set cookies
 
-		String domain = CookieKeys.getDomain(httpServletRequest);
-
-		if (Validator.isNull(domain)) {
-			domain = null;
-		}
+		String domain = GetterUtil.getString(
+			CookieKeys.getDomain(httpServletRequest), null);
 
 		String userIdString = String.valueOf(user.getUserId());
 
@@ -329,11 +326,8 @@ public class AuthenticatedSessionManagerImpl
 			PropsKeys.LOGOUT_EVENTS_PRE, PropsValues.LOGOUT_EVENTS_PRE,
 			httpServletRequest, httpServletResponse);
 
-		String domain = CookieKeys.getDomain(httpServletRequest);
-
-		if (Validator.isNull(domain)) {
-			domain = null;
-		}
+		String domain = GetterUtil.getString(
+			CookieKeys.getDomain(httpServletRequest), null);
 
 		boolean rememberMe = GetterUtil.getBoolean(
 			CookieKeys.getCookie(

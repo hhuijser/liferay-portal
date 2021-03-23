@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.security.xml.SecureXMLFactoryProviderUtil;
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 import com.liferay.portal.kernel.settings.Settings;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Localization;
@@ -300,12 +301,9 @@ public class LocalizationImpl implements Localization {
 				int event = xmlStreamReader.next();
 
 				if (event == XMLStreamConstants.START_ELEMENT) {
-					String languageId = xmlStreamReader.getAttributeValue(
-						null, _LANGUAGE_ID);
-
-					if (Validator.isNull(languageId)) {
-						languageId = defaultLanguageId;
-					}
+					String languageId = GetterUtil.getString(
+						xmlStreamReader.getAttributeValue(null, _LANGUAGE_ID),
+						defaultLanguageId);
 
 					if (languageId.equals(defaultLanguageId) ||
 						languageId.equals(priorityLanguageId) ||
@@ -1349,12 +1347,9 @@ public class LocalizationImpl implements Localization {
 			int event = xmlStreamReader.next();
 
 			if (event == XMLStreamConstants.START_ELEMENT) {
-				String languageId = xmlStreamReader.getAttributeValue(
-					null, _LANGUAGE_ID);
-
-				if (Validator.isNull(languageId)) {
-					languageId = defaultLanguageId;
-				}
+				String languageId = GetterUtil.getString(
+					xmlStreamReader.getAttributeValue(null, _LANGUAGE_ID),
+					defaultLanguageId);
 
 				if (!languageId.equals(exemptLanguageId)) {
 					xmlStreamWriter.writeStartElement(

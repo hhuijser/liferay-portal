@@ -16,9 +16,9 @@ package com.liferay.dynamic.data.mapping.internal.io.exporter;
 
 import com.liferay.dynamic.data.mapping.io.exporter.DDMFormInstanceRecordWriter;
 import com.liferay.dynamic.data.mapping.io.exporter.DDMFormInstanceRecordWriterTracker;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Collections;
 import java.util.Map;
@@ -63,12 +63,10 @@ public class DDMFormInstanceRecordWriterTrackerImpl
 		String type = MapUtil.getString(
 			properties, "ddm.form.instance.record.writer.type");
 
-		String extension = MapUtil.getString(
-			properties, "ddm.form.instance.record.writer.extension");
-
-		if (Validator.isNull(extension)) {
-			extension = StringUtil.toUpperCase(type);
-		}
+		String extension = GetterUtil.getString(
+			MapUtil.getString(
+				properties, "ddm.form.instance.record.writer.extension"),
+			StringUtil.toUpperCase(type));
 
 		_ddmFormInstanceRecordWriterExtensions.put(type, extension);
 

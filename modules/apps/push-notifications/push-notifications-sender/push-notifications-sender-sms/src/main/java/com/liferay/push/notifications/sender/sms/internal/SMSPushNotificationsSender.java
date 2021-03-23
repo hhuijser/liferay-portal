@@ -17,6 +17,7 @@ package com.liferay.push.notifications.sender.sms.internal;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.MessageBus;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.push.notifications.constants.PushNotificationsConstants;
 import com.liferay.push.notifications.constants.PushNotificationsDestinationNames;
@@ -63,12 +64,9 @@ public class SMSPushNotificationsSender implements PushNotificationsSender {
 		String body = payloadJSONObject.getString(
 			PushNotificationsConstants.KEY_BODY);
 
-		String from = payloadJSONObject.getString(
-			PushNotificationsConstants.KEY_FROM);
-
-		if (Validator.isNull(from)) {
-			from = _smsPushNotificationsSenderConfiguration.number();
-		}
+		String from = GetterUtil.getString(
+			payloadJSONObject.getString(PushNotificationsConstants.KEY_FROM),
+			_smsPushNotificationsSenderConfiguration.number());
 
 		for (String number : numbers) {
 			MessageCreator messageCreator = Message.creator(

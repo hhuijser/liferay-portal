@@ -16,7 +16,6 @@ package com.liferay.saml.runtime.internal.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Props;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.saml.runtime.internal.constants.LegacySamlPropsKeys;
 
 import java.util.Dictionary;
@@ -39,13 +38,9 @@ public class UpgradeSamlIdpSsoSessionMaxAgeProperty extends BaseUpgradeSaml {
 
 	@Override
 	public void doUpgrade() throws Exception {
-		String samlIdpSsoSessionMaxAge = _props.get(
-			LegacySamlPropsKeys.SAML_IDP_SSO_SESSION_MAX_AGE);
-
-		if (Validator.isNull(samlIdpSsoSessionMaxAge)) {
-			samlIdpSsoSessionMaxAge = getDefaultValue(
-				LegacySamlPropsKeys.SAML_IDP_SSO_SESSION_MAX_AGE);
-		}
+		String samlIdpSsoSessionMaxAge = GetterUtil.getString(
+			_props.get(LegacySamlPropsKeys.SAML_IDP_SSO_SESSION_MAX_AGE),
+			getDefaultValue(LegacySamlPropsKeys.SAML_IDP_SSO_SESSION_MAX_AGE));
 
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
 			"(service.factoryPid=com.liferay.saml.runtime.configuration." +

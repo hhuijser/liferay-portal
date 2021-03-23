@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.servlet.BufferCacheServletResponse;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -102,16 +103,13 @@ public class LayoutAction implements Action {
 					redirectParam = portletNamespace + redirectParam;
 				}
 
-				String authLoginURL = SSOUtil.getSignInURL(
-					themeDisplay.getCompanyId(), themeDisplay.getURLSignIn());
-
-				if (Validator.isNull(authLoginURL)) {
-					authLoginURL = PortalUtil.getSiteLoginURL(themeDisplay);
-				}
-
-				if (Validator.isNull(authLoginURL)) {
-					authLoginURL = PropsValues.AUTH_LOGIN_URL;
-				}
+				String authLoginURL = GetterUtil.getString(
+					GetterUtil.getString(
+						SSOUtil.getSignInURL(
+							themeDisplay.getCompanyId(),
+							themeDisplay.getURLSignIn()),
+						PortalUtil.getSiteLoginURL(themeDisplay)),
+					PropsValues.AUTH_LOGIN_URL);
 
 				if (Validator.isNull(authLoginURL)) {
 					PortletURL loginURL = PortletURLFactoryUtil.create(

@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
 import com.liferay.portal.kernel.servlet.BrowserSnifferUtil;
 import com.liferay.portal.kernel.servlet.PortalWebResourcesUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -388,11 +389,7 @@ public class EditorTag extends BaseValidatorTagSupport {
 	}
 
 	private String _getConfigKey() {
-		String configKey = _configKey;
-
-		if (Validator.isNull(configKey)) {
-			configKey = _name;
-		}
+		String configKey = GetterUtil.getString(_configKey, _name);
 
 		return configKey;
 	}

@@ -16,6 +16,7 @@ package com.liferay.user.associated.data.web.internal.portlet.action;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -97,13 +98,9 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 		}
 
 		if (uadInfoPanelDisplay.getUADEntitiesCount() != 1) {
-			String uadRegistryKey = ParamUtil.getString(
-				resourceRequest, "uadRegistryKey");
-
-			if (Validator.isNull(uadRegistryKey)) {
-				uadRegistryKey = ParamUtil.getString(
-					resourceRequest, "parentContainerClass");
-			}
+			String uadRegistryKey = GetterUtil.getString(
+				ParamUtil.getString(resourceRequest, "uadRegistryKey"),
+				ParamUtil.getString(resourceRequest, "parentContainerClass"));
 
 			if (Validator.isNull(uadRegistryKey)) {
 				String applicationKey = ParamUtil.getString(

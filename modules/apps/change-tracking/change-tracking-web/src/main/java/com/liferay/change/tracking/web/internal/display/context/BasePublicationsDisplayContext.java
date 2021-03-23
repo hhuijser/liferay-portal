@@ -20,8 +20,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ConcurrentModificationException;
 
@@ -46,14 +46,11 @@ public abstract class BasePublicationsDisplayContext {
 			return _displayStyle;
 		}
 
-		String displayStyle = ParamUtil.getString(
-			_httpServletRequest, "displayStyle");
-
-		if (Validator.isNull(displayStyle)) {
-			displayStyle = _portalPreferences.getValue(
+		String displayStyle = GetterUtil.getString(
+			ParamUtil.getString(_httpServletRequest, "displayStyle"),
+			_portalPreferences.getValue(
 				CTPortletKeys.PUBLICATIONS,
-				getPortalPreferencesPrefix() + "-display-style", "list");
-		}
+				getPortalPreferencesPrefix() + "-display-style", "list"));
 
 		try {
 			_portalPreferences.setValue(
@@ -80,15 +77,14 @@ public abstract class BasePublicationsDisplayContext {
 			return _orderByCol;
 		}
 
-		String orderByCol = ParamUtil.getString(
-			_httpServletRequest, SearchContainer.DEFAULT_ORDER_BY_COL_PARAM);
-
-		if (Validator.isNull(orderByCol)) {
-			orderByCol = _portalPreferences.getValue(
+		String orderByCol = GetterUtil.getString(
+			ParamUtil.getString(
+				_httpServletRequest,
+				SearchContainer.DEFAULT_ORDER_BY_COL_PARAM),
+			_portalPreferences.getValue(
 				CTPortletKeys.PUBLICATIONS,
 				getPortalPreferencesPrefix() + "-order-by-col",
-				getDefaultOrderByCol());
-		}
+				getDefaultOrderByCol()));
 
 		try {
 			_portalPreferences.setValue(
@@ -113,14 +109,13 @@ public abstract class BasePublicationsDisplayContext {
 			return _orderByType;
 		}
 
-		String orderByType = ParamUtil.getString(
-			_httpServletRequest, SearchContainer.DEFAULT_ORDER_BY_TYPE_PARAM);
-
-		if (Validator.isNull(orderByType)) {
-			orderByType = _portalPreferences.getValue(
+		String orderByType = GetterUtil.getString(
+			ParamUtil.getString(
+				_httpServletRequest,
+				SearchContainer.DEFAULT_ORDER_BY_TYPE_PARAM),
+			_portalPreferences.getValue(
 				CTPortletKeys.PUBLICATIONS,
-				getPortalPreferencesPrefix() + "-order-by-type", "desc");
-		}
+				getPortalPreferencesPrefix() + "-order-by-type", "desc"));
 
 		try {
 			_portalPreferences.setValue(

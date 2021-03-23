@@ -226,13 +226,11 @@ public class BookmarksManagementToolbarDisplayContext {
 		int deltaEntry = ParamUtil.getInteger(
 			_httpServletRequest, "deltaEntry");
 
-		String displayStyle = ParamUtil.getString(
-			_httpServletRequest, "displayStyle");
-
-		if (Validator.isNull(displayStyle)) {
-			displayStyle = _portalPreferences.getValue(
-				BookmarksPortletKeys.BOOKMARKS, "display-style", "descriptive");
-		}
+		String displayStyle = GetterUtil.getString(
+			ParamUtil.getString(_httpServletRequest, "displayStyle"),
+			_portalPreferences.getValue(
+				BookmarksPortletKeys.BOOKMARKS, "display-style",
+				"descriptive"));
 
 		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
 

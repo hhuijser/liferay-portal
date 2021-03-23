@@ -20,8 +20,8 @@ import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldOptions;
 import com.liferay.dynamic.data.mapping.render.DDMFormFieldRenderingContext;
 import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 import java.util.Map;
@@ -57,11 +57,8 @@ public class GridDDMFormFieldTemplateContextContributor
 		).put(
 			"value",
 			() -> {
-				String value = ddmFormFieldRenderingContext.getValue();
-
-				if (Validator.isNull(value)) {
-					value = "{}";
-				}
+				String value = GetterUtil.getString(
+					ddmFormFieldRenderingContext.getValue(), "{}");
 
 				return jsonFactory.looseDeserialize(value);
 			}

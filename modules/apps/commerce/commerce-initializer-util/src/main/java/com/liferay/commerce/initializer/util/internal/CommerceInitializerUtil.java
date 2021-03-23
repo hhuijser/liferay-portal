@@ -15,8 +15,8 @@
 package com.liferay.commerce.initializer.util.internal;
 
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
-import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Andrea Di Giorgi
@@ -26,11 +26,9 @@ public class CommerceInitializerUtil {
 	public static String getValue(
 		JSONObject jsonObject, String propertyName, String key) {
 
-		String value = jsonObject.getString(propertyName);
-
-		if (Validator.isNull(value)) {
-			value = TextFormatter.format(key, TextFormatter.J);
-		}
+		String value = GetterUtil.getString(
+			jsonObject.getString(propertyName),
+			TextFormatter.format(key, TextFormatter.J));
 
 		return value;
 	}

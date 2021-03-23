@@ -16,6 +16,7 @@ package com.liferay.taglib.ui;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.search.ResultRowSplitter;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,11 +92,8 @@ public class SearchIteratorTag<R> extends SearchPaginatorTag<R> {
 
 	@Override
 	protected String getPage() {
-		String displayStyle = _displayStyle;
-
-		if (Validator.isNull(displayStyle)) {
-			displayStyle = DEFAULT_DISPLAY_STYLE;
-		}
+		String displayStyle = GetterUtil.getString(
+			_displayStyle, DEFAULT_DISPLAY_STYLE);
 
 		if (Validator.isNotNull(_markupView)) {
 			return StringBundler.concat(

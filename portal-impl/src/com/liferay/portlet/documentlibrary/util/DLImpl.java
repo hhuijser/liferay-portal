@@ -537,11 +537,8 @@ public class DLImpl implements DL {
 		FileEntry fileEntry, FileVersion fileVersion, ThemeDisplay themeDisplay,
 		String queryString, boolean appendVersion, boolean absoluteURL) {
 
-		String previewQueryString = queryString;
-
-		if (Validator.isNull(previewQueryString)) {
-			previewQueryString = StringPool.BLANK;
-		}
+		String previewQueryString = GetterUtil.getString(
+			queryString, StringPool.BLANK);
 
 		if (ImageProcessorUtil.isSupported(fileVersion.getMimeType())) {
 			previewQueryString = previewQueryString.concat("&imagePreview=1");

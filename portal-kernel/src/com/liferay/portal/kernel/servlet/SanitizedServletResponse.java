@@ -247,11 +247,8 @@ public class SanitizedServletResponse extends HttpServletResponseWrapper {
 				continue;
 			}
 
-			String value = StringUtil.trim(propertyValueParts[1]);
-
-			if (Validator.isNull(value)) {
-				value = null;
-			}
+			String value = GetterUtil.getString(
+				StringUtil.trim(propertyValueParts[1]), null);
 
 			xFrameOptionKVPs.add(new KeyValuePair(url, value));
 		}

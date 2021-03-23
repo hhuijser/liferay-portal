@@ -1205,13 +1205,10 @@ public class ResourceActionsImpl implements ResourceActions {
 		for (Element modelResourceElement :
 				rootElement.elements("model-resource")) {
 
-			String modelName = modelResourceElement.elementTextTrim(
-				"model-name");
-
-			if (Validator.isNull(modelName)) {
-				modelName = _getCompositeModelName(
-					modelResourceElement.element("composite-model-name"));
-			}
+			String modelName = GetterUtil.getString(
+				modelResourceElement.elementTextTrim("model-name"),
+				_getCompositeModelName(
+					modelResourceElement.element("composite-model-name")));
 
 			if (GetterUtil.getBoolean(
 					modelResourceElement.attributeValue("organization"))) {

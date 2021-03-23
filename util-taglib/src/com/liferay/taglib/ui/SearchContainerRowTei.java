@@ -15,7 +15,7 @@
 package com.liferay.taglib.ui;
 
 import com.liferay.portal.kernel.dao.search.ResultRow;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import javax.servlet.jsp.tagext.TagData;
 import javax.servlet.jsp.tagext.TagExtraInfo;
@@ -30,23 +30,17 @@ public class SearchContainerRowTei extends TagExtraInfo {
 	public VariableInfo[] getVariableInfo(TagData tagData) {
 		String className = tagData.getAttributeString("className");
 
-		String indexVar = tagData.getAttributeString("indexVar");
+		String indexVar = GetterUtil.getString(
+			tagData.getAttributeString("indexVar"),
+			SearchContainerRowTag.DEFAULT_INDEX_VAR);
 
-		if (Validator.isNull(indexVar)) {
-			indexVar = SearchContainerRowTag.DEFAULT_INDEX_VAR;
-		}
+		String modelVar = GetterUtil.getString(
+			tagData.getAttributeString("modelVar"),
+			SearchContainerRowTag.DEFAULT_MODEL_VAR);
 
-		String modelVar = tagData.getAttributeString("modelVar");
-
-		if (Validator.isNull(modelVar)) {
-			modelVar = SearchContainerRowTag.DEFAULT_MODEL_VAR;
-		}
-
-		String rowVar = tagData.getAttributeString("rowVar");
-
-		if (Validator.isNull(rowVar)) {
-			rowVar = SearchContainerRowTag.DEFAULT_ROW_VAR;
-		}
+		String rowVar = GetterUtil.getString(
+			tagData.getAttributeString("rowVar"),
+			SearchContainerRowTag.DEFAULT_ROW_VAR);
 
 		return new VariableInfo[] {
 			new VariableInfo(

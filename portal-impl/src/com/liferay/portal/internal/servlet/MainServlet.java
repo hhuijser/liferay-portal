@@ -1277,11 +1277,9 @@ public class MainServlet extends HttpServlet {
 			return false;
 		}
 
-		String messageKey = ShutdownUtil.getMessage();
-
-		if (Validator.isNull(messageKey)) {
-			messageKey = "the-system-is-shutdown-please-try-again-later";
-		}
+		String messageKey = GetterUtil.getString(
+			ShutdownUtil.getMessage(),
+			"the-system-is-shutdown-please-try-again-later");
 
 		_inactiveRequestHandler.processInactiveRequest(
 			httpServletRequest, httpServletResponse, messageKey);

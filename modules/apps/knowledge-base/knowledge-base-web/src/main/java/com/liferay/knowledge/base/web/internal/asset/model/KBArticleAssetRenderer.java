@@ -30,10 +30,10 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.Locale;
@@ -96,12 +96,10 @@ public class KBArticleAssetRenderer extends BaseJSPAssetRenderer<KBArticle> {
 	public String getSummary(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		String summary = _kbArticle.getDescription();
-
-		if (Validator.isNull(summary)) {
-			summary = StringUtil.shorten(
-				HtmlUtil.extractText(_kbArticle.getContent()), 200);
-		}
+		String summary = GetterUtil.getString(
+			_kbArticle.getDescription(),
+			StringUtil.shorten(
+				HtmlUtil.extractText(_kbArticle.getContent()), 200));
 
 		return summary;
 	}

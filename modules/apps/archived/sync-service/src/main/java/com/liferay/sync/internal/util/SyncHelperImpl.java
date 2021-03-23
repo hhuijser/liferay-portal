@@ -168,11 +168,8 @@ public class SyncHelperImpl implements SyncHelper {
 			throwable = throwable.getCause();
 		}
 
-		String throwableMessage = throwable.getMessage();
-
-		if (Validator.isNull(throwableMessage)) {
-			throwableMessage = throwable.toString();
-		}
+		String throwableMessage = GetterUtil.getString(
+			throwable.getMessage(), throwable.toString());
 
 		sb.append(StringPool.QUOTE);
 		sb.append(throwableMessage);

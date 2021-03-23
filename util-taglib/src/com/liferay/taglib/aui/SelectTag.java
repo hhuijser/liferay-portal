@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.servlet.taglib.aui.ValidatorTag;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Tuple;
@@ -53,11 +54,7 @@ public class SelectTag extends BaseSelectTag implements BodyTag {
 
 	@Override
 	public String getField() {
-		String field = super.getField();
-
-		if (Validator.isNull(field)) {
-			field = getName();
-		}
+		String field = GetterUtil.getString(super.getField(), getName());
 
 		return field;
 	}
@@ -130,17 +127,9 @@ public class SelectTag extends BaseSelectTag implements BodyTag {
 			name = name.substring(pos + 2, name.length() - 2);
 		}
 
-		String field = getField();
+		String field = GetterUtil.getString(getField(), name);
 
-		if (Validator.isNull(field)) {
-			field = name;
-		}
-
-		String id = getId();
-
-		if (Validator.isNull(id)) {
-			id = AUIUtil.normalizeId(name);
-		}
+		String id = GetterUtil.getString(getId(), AUIUtil.normalizeId(name));
 
 		String label = getLabel();
 

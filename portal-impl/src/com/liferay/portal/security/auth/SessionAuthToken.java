@@ -157,12 +157,9 @@ public class SessionAuthToken implements AuthToken {
 			}
 		}
 
-		String csrfToken = ParamUtil.getString(httpServletRequest, "p_auth");
-
-		if (Validator.isNull(csrfToken)) {
-			csrfToken = GetterUtil.getString(
-				httpServletRequest.getHeader("X-CSRF-Token"));
-		}
+		String csrfToken = GetterUtil.getString(
+			ParamUtil.getString(httpServletRequest, "p_auth"),
+			GetterUtil.getString(httpServletRequest.getHeader("X-CSRF-Token")));
 
 		String sessionToken = getSessionAuthenticationToken(
 			httpServletRequest, _CSRF, false);

@@ -767,11 +767,9 @@ public class BeanPortletRegistrarImpl implements BeanPortletRegistrar {
 			return;
 		}
 
-		String portletName = descriptorBeanPortlet.getPortletName();
-
-		if (Validator.isNull(portletName)) {
-			portletName = portletConfiguration.portletName();
-		}
+		String portletName = GetterUtil.getString(
+			descriptorBeanPortlet.getPortletName(),
+			portletConfiguration.portletName());
 
 		Set<BeanPortletMethod> beanPortletMethods = new HashSet<>();
 
@@ -799,11 +797,9 @@ public class BeanPortletRegistrarImpl implements BeanPortletRegistrar {
 
 		displayNames.putAll(descriptorBeanPortlet.getDisplayNames());
 
-		String portletClassName = descriptorBeanPortlet.getPortletClassName();
-
-		if (Validator.isNull(portletClassName)) {
-			portletClassName = discoveredClass.getName();
-		}
+		String portletClassName = GetterUtil.getString(
+			descriptorBeanPortlet.getPortletClassName(),
+			discoveredClass.getName());
 
 		initParams.putAll(descriptorBeanPortlet.getInitParams());
 
@@ -821,11 +817,9 @@ public class BeanPortletRegistrarImpl implements BeanPortletRegistrar {
 
 		supportedLocales.addAll(descriptorBeanPortlet.getSupportedLocales());
 
-		String resourceBundle = descriptorBeanPortlet.getResourceBundle();
-
-		if (Validator.isNull(resourceBundle)) {
-			resourceBundle = portletConfiguration.resourceBundle();
-		}
+		String resourceBundle = GetterUtil.getString(
+			descriptorBeanPortlet.getResourceBundle(),
+			portletConfiguration.resourceBundle());
 
 		titles.putAll(descriptorBeanPortlet.getTitles());
 

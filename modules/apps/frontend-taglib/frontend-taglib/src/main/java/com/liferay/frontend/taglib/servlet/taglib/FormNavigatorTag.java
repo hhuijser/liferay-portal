@@ -21,6 +21,7 @@ import com.liferay.frontend.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -129,11 +130,8 @@ public class FormNavigatorTag extends IncludeTag {
 	}
 
 	private String _getBackURL() {
-		String backURL = _backURL;
-
-		if (Validator.isNull(backURL)) {
-			backURL = ParamUtil.getString(request, "redirect");
-		}
+		String backURL = GetterUtil.getString(
+			_backURL, ParamUtil.getString(request, "redirect"));
 
 		if (Validator.isNull(backURL)) {
 			PortletResponse portletResponse =

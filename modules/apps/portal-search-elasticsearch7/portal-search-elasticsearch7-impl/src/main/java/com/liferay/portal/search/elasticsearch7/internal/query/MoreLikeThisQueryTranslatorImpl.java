@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.elasticsearch7.internal.query;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.elasticsearch7.internal.util.DocumentTypes;
@@ -47,15 +48,11 @@ public class MoreLikeThisQueryTranslatorImpl
 
 			documentIdentifiers.forEach(
 				documentIdentifier -> {
-					String type = documentIdentifier.getType();
-
-					if (Validator.isNull(type)) {
-						type = moreLikeThisQuery.getType();
-					}
-
-					if (Validator.isNull(type)) {
-						type = DocumentTypes.LIFERAY;
-					}
+					String type = GetterUtil.getString(
+						GetterUtil.getString(
+							documentIdentifier.getType(),
+							moreLikeThisQuery.getType()),
+						DocumentTypes.LIFERAY);
 
 					MoreLikeThisQueryBuilder.Item moreLikeThisQueryBuilderItem =
 						new MoreLikeThisQueryBuilder.Item(

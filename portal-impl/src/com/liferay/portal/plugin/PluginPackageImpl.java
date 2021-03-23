@@ -189,11 +189,8 @@ public class PluginPackageImpl
 
 	@Override
 	public String getRecommendedDeploymentContext() {
-		String context = _recommendedDeploymentContext;
-
-		if (Validator.isNull(context)) {
-			context = _moduleId.getArtifactId();
-		}
+		String context = GetterUtil.getString(
+			_recommendedDeploymentContext, _moduleId.getArtifactId());
 
 		return context;
 	}

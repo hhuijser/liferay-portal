@@ -273,11 +273,8 @@ public class FragmentEntryConfigurationParserImpl
 				 StringUtil.equalsIgnoreCase(
 					 fragmentConfigurationField.getType(), "text")) {
 
-			String dataType = fragmentConfigurationField.getDataType();
-
-			if (Validator.isNull(dataType)) {
-				dataType = "string";
-			}
+			String dataType = GetterUtil.getString(
+				fragmentConfigurationField.getDataType(), "string");
 
 			return _getFieldValue(dataType, value);
 		}

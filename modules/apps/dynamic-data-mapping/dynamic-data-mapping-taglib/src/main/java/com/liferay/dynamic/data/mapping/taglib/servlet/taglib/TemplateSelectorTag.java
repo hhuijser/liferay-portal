@@ -19,6 +19,7 @@ import com.liferay.dynamic.data.mapping.taglib.internal.servlet.ServletContextUt
 import com.liferay.dynamic.data.mapping.taglib.internal.util.PortletDisplayTemplateUtil;
 import com.liferay.dynamic.data.mapping.taglib.servlet.taglib.base.BaseTemplateSelectorTag;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -73,11 +74,8 @@ public class TemplateSelectorTag extends BaseTemplateSelectorTag {
 	}
 
 	protected DDMTemplate getPortletDisplayDDMTemplate() {
-		String displayStyle = super.getDisplayStyle();
-
-		if (Validator.isNull(displayStyle)) {
-			displayStyle = super.getDefaultDisplayStyle();
-		}
+		String displayStyle = GetterUtil.getString(
+			super.getDisplayStyle(), super.getDefaultDisplayStyle());
 
 		return PortletDisplayTemplateUtil.getPortletDisplayTemplateDDMTemplate(
 			getDisplayStyleGroupId(), PortalUtil.getClassNameId(getClassName()),

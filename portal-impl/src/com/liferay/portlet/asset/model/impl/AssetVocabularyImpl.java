@@ -23,8 +23,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.asset.util.AssetVocabularySettingsHelper;
 
 import java.util.List;
@@ -83,22 +83,16 @@ public class AssetVocabularyImpl extends AssetVocabularyBaseImpl {
 
 	@Override
 	public String getTitle(String languageId) {
-		String value = super.getTitle(languageId);
-
-		if (Validator.isNull(value)) {
-			value = getName();
-		}
+		String value = GetterUtil.getString(
+			super.getTitle(languageId), getName());
 
 		return value;
 	}
 
 	@Override
 	public String getTitle(String languageId, boolean useDefault) {
-		String value = super.getTitle(languageId, useDefault);
-
-		if (Validator.isNull(value)) {
-			value = getName();
-		}
+		String value = GetterUtil.getString(
+			super.getTitle(languageId, useDefault), getName());
 
 		return value;
 	}

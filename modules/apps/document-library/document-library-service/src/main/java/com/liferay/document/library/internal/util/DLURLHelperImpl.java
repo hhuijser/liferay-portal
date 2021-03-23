@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
@@ -164,11 +165,8 @@ public class DLURLHelperImpl implements DLURLHelper {
 			return StringPool.BLANK;
 		}
 
-		String previewQueryString = queryString;
-
-		if (Validator.isNull(previewQueryString)) {
-			previewQueryString = StringPool.BLANK;
-		}
+		String previewQueryString = GetterUtil.getString(
+			queryString, StringPool.BLANK);
 
 		if (ImageProcessorUtil.isSupported(fileVersion.getMimeType()) ||
 			ArrayUtil.contains(

@@ -165,11 +165,8 @@ public class DDMFormTemplateContextFactoryImpl
 			DDMFormRenderingContext ddmFormRenderingContext)
 		throws PortalException {
 
-		String containerId = ddmFormRenderingContext.getContainerId();
-
-		if (Validator.isNull(containerId)) {
-			containerId = StringUtil.randomId();
-		}
+		String containerId = GetterUtil.getString(
+			ddmFormRenderingContext.getContainerId(), StringUtil.randomId());
 
 		setDDMFormFieldsEvaluableProperty(ddmForm, ddmFormLayout);
 

@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowEngineManagerUtil;
@@ -358,12 +357,9 @@ public class FolderActionDisplayContext {
 			"/document_library/view_folder"
 		).setRedirect(
 			() -> {
-				String redirect = ParamUtil.getString(
-					_httpServletRequest, "redirect");
-
-				if (Validator.isNull(redirect)) {
-					redirect = themeDisplay.getURLCurrent();
-				}
+				String redirect = GetterUtil.getString(
+					ParamUtil.getString(_httpServletRequest, "redirect"),
+					themeDisplay.getURLCurrent());
 
 				return redirect;
 			}

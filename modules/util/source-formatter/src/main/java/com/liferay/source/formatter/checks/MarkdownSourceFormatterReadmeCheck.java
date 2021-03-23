@@ -19,6 +19,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -116,11 +117,8 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 			return checkInfoMap;
 		}
 
-		String category = _getPropertyValue(moduleElement, "category");
-
-		if (Validator.isNull(category)) {
-			category = "Miscellaneous";
-		}
+		String category = GetterUtil.getString(
+			_getPropertyValue(moduleElement, "category"), "Miscellaneous");
 
 		checkInfoMap.put(
 			checkName,

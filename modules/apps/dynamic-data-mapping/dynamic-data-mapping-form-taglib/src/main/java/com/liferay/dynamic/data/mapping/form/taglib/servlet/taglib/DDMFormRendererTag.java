@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -433,11 +432,8 @@ public class DDMFormRendererTag extends BaseDDMFormRendererTag {
 		DDMFormRenderingContext ddmFormRenderingContext,
 		RenderResponse renderResponse) {
 
-		String namespace = getNamespace();
-
-		if (Validator.isNull(namespace)) {
-			namespace = renderResponse.getNamespace();
-		}
+		String namespace = GetterUtil.getString(
+			getNamespace(), renderResponse.getNamespace());
 
 		ddmFormRenderingContext.setPortletNamespace(namespace);
 	}

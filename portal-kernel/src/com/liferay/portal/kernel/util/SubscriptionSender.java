@@ -203,11 +203,8 @@ public class SubscriptionSender implements Serializable {
 				MailTemplateContext mailTemplateContext =
 					_getBasicMailTemplateContext(locale);
 
-				String template = replyToAddress;
-
-				if (Validator.isNull(template)) {
-					template = fromAddress;
-				}
+				String template = GetterUtil.getString(
+					replyToAddress, fromAddress);
 
 				MailTemplate replyToAddressMailTemplate =
 					MailTemplateFactoryUtil.createMailTemplate(template, false);

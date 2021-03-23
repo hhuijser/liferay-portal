@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -228,13 +229,11 @@ public class MySubscriptionsUtil {
 				PortletPreferencesFactoryUtil.getPortletSetup(
 					layout, portletPreferences.getPortletId(), null);
 
-			String portletTitle = jxPortletPreferences.getValue(
-				"portletSetupTitle_" + LocaleUtil.toLanguageId(locale),
-				StringPool.BLANK);
-
-			if (Validator.isNull(portletTitle)) {
-				portletTitle = "Asset Publisher";
-			}
+			String portletTitle = GetterUtil.getString(
+				jxPortletPreferences.getValue(
+					"portletSetupTitle_" + LocaleUtil.toLanguageId(locale),
+					StringPool.BLANK),
+				"Asset Publisher");
 
 			return portletTitle;
 		}

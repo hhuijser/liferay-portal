@@ -1034,31 +1034,22 @@ public class PluginPackageUtil {
 			attributes = new Attributes();
 		}
 
-		String artifactGroupId = attributes.getValue(
-			"Implementation-Vendor-Id");
+		String artifactGroupId = GetterUtil.getString(
+			GetterUtil.getString(
+				attributes.getValue("Implementation-Vendor-Id"),
+				attributes.getValue("Implementation-Vendor")),
+			GetterUtil.getString(
+				attributes.getValue("Bundle-Vendor"), servletContextName));
 
-		if (Validator.isNull(artifactGroupId)) {
-			artifactGroupId = attributes.getValue("Implementation-Vendor");
-		}
+		String artifactId = GetterUtil.getString(
+			attributes.getValue("Implementation-Title"),
+			GetterUtil.getString(
+				attributes.getValue("Bundle-Name"), servletContextName));
 
-		if (Validator.isNull(artifactGroupId)) {
-			artifactGroupId = GetterUtil.getString(
-				attributes.getValue("Bundle-Vendor"), servletContextName);
-		}
-
-		String artifactId = attributes.getValue("Implementation-Title");
-
-		if (Validator.isNull(artifactId)) {
-			artifactId = GetterUtil.getString(
-				attributes.getValue("Bundle-Name"), servletContextName);
-		}
-
-		String version = attributes.getValue("Implementation-Version");
-
-		if (Validator.isNull(version)) {
-			version = GetterUtil.getString(
-				attributes.getValue("Bundle-Version"), Version.UNKNOWN);
-		}
+		String version = GetterUtil.getString(
+			attributes.getValue("Implementation-Version"),
+			GetterUtil.getString(
+				attributes.getValue("Bundle-Version"), Version.UNKNOWN));
 
 		if (version.equals(Version.UNKNOWN) && _log.isWarnEnabled()) {
 			_log.warn(

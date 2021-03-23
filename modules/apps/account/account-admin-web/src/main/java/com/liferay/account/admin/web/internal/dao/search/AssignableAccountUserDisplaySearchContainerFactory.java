@@ -36,11 +36,11 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
@@ -86,12 +86,9 @@ public class AssignableAccountUserDisplaySearchContainerFactory {
 		long accountRoleId = ParamUtil.getLong(
 			liferayPortletRequest, "accountRoleId");
 
-		String navigation = ParamUtil.getString(
-			liferayPortletRequest, "navigation");
-
-		if (Validator.isNull(navigation)) {
-			navigation = _getDefaultNavigation(liferayPortletRequest);
-		}
+		String navigation = GetterUtil.getString(
+			ParamUtil.getString(liferayPortletRequest, "navigation"),
+			_getDefaultNavigation(liferayPortletRequest));
 
 		String keywords = ParamUtil.getString(
 			liferayPortletRequest, "keywords", null);

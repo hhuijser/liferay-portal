@@ -16,8 +16,8 @@ package com.liferay.portal.workflow.metrics.rest.internal.resource.v1_0;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.engine.adapter.search.SearchRequestExecutor;
 import com.liferay.portal.search.engine.adapter.search.SearchSearchRequest;
 import com.liferay.portal.search.engine.adapter.search.SearchSearchResponse;
@@ -114,15 +114,13 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		).findFirst(
 		).map(
 			document -> {
-				String title = document.getString(
-					_getTitleFieldName(
-						contextAcceptLanguage.getPreferredLocale()));
-
-				if (Validator.isNull(title)) {
-					title = document.getString(
+				String title = GetterUtil.getString(
+					document.getString(
 						_getTitleFieldName(
-							LocaleThreadLocal.getDefaultLocale()));
-				}
+							contextAcceptLanguage.getPreferredLocale())),
+					document.getString(
+						_getTitleFieldName(
+							LocaleThreadLocal.getDefaultLocale())));
 
 				return title;
 			}

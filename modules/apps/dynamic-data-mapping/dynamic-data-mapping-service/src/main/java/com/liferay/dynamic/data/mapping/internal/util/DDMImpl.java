@@ -608,11 +608,9 @@ public class DDMImpl implements DDM {
 		LocalizedValue localizedValue, Locale locale, Locale defaultLocale,
 		String type) {
 
-		String propertyValue = localizedValue.getString(locale);
-
-		if (Validator.isNull(propertyValue)) {
-			propertyValue = localizedValue.getString(defaultLocale);
-		}
+		String propertyValue = GetterUtil.getString(
+			localizedValue.getString(locale),
+			localizedValue.getString(defaultLocale));
 
 		if (type.equals(DDMFormFieldType.SELECT) &&
 			propertyName.equals("predefinedValue")) {

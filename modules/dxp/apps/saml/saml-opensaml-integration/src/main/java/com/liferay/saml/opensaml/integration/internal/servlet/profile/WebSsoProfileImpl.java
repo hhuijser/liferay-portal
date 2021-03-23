@@ -1016,12 +1016,9 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 		SAMLBindingContext samlBindingContext = messageContext.getSubcontext(
 			SAMLBindingContext.class);
 
-		String relayState = portal.escapeRedirect(
-			samlBindingContext.getRelayState());
-
-		if (Validator.isNull(relayState)) {
-			relayState = portal.getHomeURL(httpServletRequest);
-		}
+		String relayState = GetterUtil.getString(
+			portal.escapeRedirect(samlBindingContext.getRelayState()),
+			portal.getHomeURL(httpServletRequest));
 
 		sb.append(URLCodec.encodeURL(relayState));
 

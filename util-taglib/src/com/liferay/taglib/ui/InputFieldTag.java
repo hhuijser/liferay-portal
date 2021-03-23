@@ -14,7 +14,7 @@
 
 package com.liferay.taglib.ui;
 
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.text.Format;
@@ -201,17 +201,9 @@ public class InputFieldTag extends IncludeTag {
 
 	@Override
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
-		String fieldParam = _fieldParam;
+		String fieldParam = GetterUtil.getString(_fieldParam, _field);
 
-		if (Validator.isNull(fieldParam)) {
-			fieldParam = _field;
-		}
-
-		String id = _id;
-
-		if (Validator.isNull(id)) {
-			id = fieldParam;
-		}
+		String id = GetterUtil.getString(_id, fieldParam);
 
 		httpServletRequest.setAttribute(
 			"liferay-ui:input-field:autoComplete", _autoComplete);

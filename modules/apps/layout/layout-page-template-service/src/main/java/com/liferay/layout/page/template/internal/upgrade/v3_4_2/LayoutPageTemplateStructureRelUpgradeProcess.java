@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -112,16 +113,15 @@ public class LayoutPageTemplateStructureRelUpgradeProcess
 			return;
 		}
 
-		String marginBottom = fragmentConfigValuesJSONObject.getString(
-			"bottomSpacing",
-			fragmentConfigDefaultValuesJSONObject.getString("bottomSpacing"));
-
-		if (Validator.isNull(marginBottom)) {
-			marginBottom = fragmentConfigValuesJSONObject.getString(
+		String marginBottom = GetterUtil.getString(
+			fragmentConfigValuesJSONObject.getString(
+				"bottomSpacing",
+				fragmentConfigDefaultValuesJSONObject.getString(
+					"bottomSpacing")),
+			fragmentConfigValuesJSONObject.getString(
 				"marginBottom",
 				fragmentConfigDefaultValuesJSONObject.getString(
-					"marginBottom"));
-		}
+					"marginBottom")));
 
 		stylesJSONObject.put("marginBottom", marginBottom);
 	}

@@ -14,8 +14,8 @@
 
 package com.liferay.taglib.aui;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.taglib.aui.base.BaseAlertTag;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,11 +32,7 @@ public class AlertTag extends BaseAlertTag {
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 		super.setAttributes(httpServletRequest);
 
-		String id = getId();
-
-		if (Validator.isNull(id)) {
-			id = StringUtil.randomId();
-		}
+		String id = GetterUtil.getString(getId(), StringUtil.randomId());
 
 		setId(id);
 

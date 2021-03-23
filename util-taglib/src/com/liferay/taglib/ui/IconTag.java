@@ -242,11 +242,7 @@ public class IconTag extends IncludeTag {
 		String id = (String)httpServletRequest.getAttribute(
 			"liferay-ui:icon-menu:id");
 
-		String message = _message;
-
-		if (Validator.isNull(message)) {
-			message = _image;
-		}
+		String message = GetterUtil.getString(_message, _image);
 
 		if (Validator.isNotNull(id) && Validator.isNotNull(message)) {
 			id = StringBundler.concat(

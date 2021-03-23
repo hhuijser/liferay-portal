@@ -16,7 +16,7 @@ package com.liferay.taglib.aui;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.taglib.aui.base.BaseNavItemTag;
 import com.liferay.taglib.util.TagResourceBundleUtil;
 
@@ -39,11 +39,7 @@ public class NavItemTag extends BaseNavItemTag implements BodyTag {
 			this, NavBarTag.class);
 
 		if ((navBarTag != null) && getSelected()) {
-			String title = getTitle();
-
-			if (Validator.isNull(title)) {
-				title = getLabel();
-			}
+			String title = GetterUtil.getString(getTitle(), getLabel());
 
 			navBarTag.setSelectedItemName(title);
 		}

@@ -67,6 +67,7 @@ import com.liferay.portal.kernel.service.RepositoryEntryLocalServiceUtil;
 import com.liferay.portal.kernel.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -1164,11 +1165,9 @@ public class CMISRepository extends BaseCmisRepository {
 			List<Document> documentVersions = document.getAllVersions();
 
 			for (Document currentVersion : documentVersions) {
-				String currentVersionLabel = currentVersion.getVersionLabel();
-
-				if (Validator.isNull(currentVersionLabel)) {
-					currentVersionLabel = DLFileEntryConstants.VERSION_DEFAULT;
-				}
+				String currentVersionLabel = GetterUtil.getString(
+					currentVersion.getVersionLabel(),
+					DLFileEntryConstants.VERSION_DEFAULT);
 
 				if (currentVersionLabel.equals(version)) {
 					oldVersion = currentVersion;

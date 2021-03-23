@@ -256,11 +256,9 @@ public class LayoutsAdminDisplayContext {
 			return _backURL;
 		}
 
-		String backURL = ParamUtil.getString(_liferayPortletRequest, "backURL");
-
-		if (Validator.isNull(backURL)) {
-			backURL = getRedirect();
-		}
+		String backURL = GetterUtil.getString(
+			ParamUtil.getString(_liferayPortletRequest, "backURL"),
+			getRedirect());
 
 		_backURL = backURL;
 

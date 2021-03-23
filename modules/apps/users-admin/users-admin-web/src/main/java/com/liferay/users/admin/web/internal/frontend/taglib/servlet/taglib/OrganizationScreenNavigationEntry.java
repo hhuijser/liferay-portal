@@ -26,9 +26,9 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.service.OrganizationService;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.users.admin.constants.UserScreenNavigationEntryConstants;
 import com.liferay.users.admin.constants.UsersAdminPortletKeys;
 import com.liferay.users.admin.web.internal.constants.UsersAdminWebKeys;
@@ -96,10 +96,9 @@ public class OrganizationScreenNavigationEntry
 		organizationScreenNavigationDisplayContext.setActionName(
 			_mvcActionCommandName);
 
-		String backURL = ParamUtil.getString(httpServletRequest, "backURL");
-
-		if (Validator.isNull(backURL)) {
-			backURL = PortletURLBuilder.create(
+		String backURL = GetterUtil.getString(
+			ParamUtil.getString(httpServletRequest, "backURL"),
+			PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(
 					httpServletRequest, UsersAdminPortletKeys.USERS_ADMIN,
 					PortletRequest.RENDER_PHASE)
@@ -107,15 +106,13 @@ public class OrganizationScreenNavigationEntry
 				"toolbarItem", "view-all-organizations"
 			).setParameter(
 				"usersListView", UserConstants.LIST_VIEW_FLAT_ORGANIZATIONS
-			).buildString();
-		}
+			).buildString());
 
 		organizationScreenNavigationDisplayContext.setBackURL(backURL);
 
-		String redirect = ParamUtil.getString(httpServletRequest, "redirect");
-
-		if (Validator.isNull(redirect)) {
-			redirect = PortletURLBuilder.create(
+		String redirect = GetterUtil.getString(
+			ParamUtil.getString(httpServletRequest, "redirect"),
+			PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(
 					httpServletRequest, UsersAdminPortletKeys.USERS_ADMIN,
 					PortletRequest.RENDER_PHASE)
@@ -126,8 +123,7 @@ public class OrganizationScreenNavigationEntry
 			).setParameter(
 				"organizationId",
 				ParamUtil.getString(httpServletRequest, "organizationId")
-			).buildString();
-		}
+			).buildString());
 
 		organizationScreenNavigationDisplayContext.setRedirect(redirect);
 

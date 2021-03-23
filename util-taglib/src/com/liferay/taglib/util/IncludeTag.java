@@ -65,11 +65,7 @@ public class IncludeTag extends AttributesTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			String page = getPage();
-
-			if (Validator.isNull(page)) {
-				page = getEndPage();
-			}
+			String page = GetterUtil.getString(getPage(), getEndPage());
 
 			callSetAttributes();
 

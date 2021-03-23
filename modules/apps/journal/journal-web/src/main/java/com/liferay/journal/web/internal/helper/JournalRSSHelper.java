@@ -104,17 +104,11 @@ public class JournalRSSHelper {
 		String description = null;
 		String content = null;
 
-		String ddmStructureKey = feed.getDDMStructureKey();
+		String ddmStructureKey = GetterUtil.getString(
+			feed.getDDMStructureKey(), null);
 
-		if (Validator.isNull(ddmStructureKey)) {
-			ddmStructureKey = null;
-		}
-
-		String ddmTemplateKey = feed.getDDMTemplateKey();
-
-		if (Validator.isNull(ddmTemplateKey)) {
-			ddmTemplateKey = null;
-		}
+		String ddmTemplateKey = GetterUtil.getString(
+			feed.getDDMTemplateKey(), null);
 
 		Date displayDateGT = null;
 		Date displayDateLT = new Date();

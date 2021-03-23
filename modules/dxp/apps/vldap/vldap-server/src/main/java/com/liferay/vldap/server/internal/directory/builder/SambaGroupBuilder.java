@@ -17,7 +17,7 @@ package com.liferay.vldap.server.internal.directory.builder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Organization;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.vldap.server.internal.directory.FilterConstraint;
 import com.liferay.vldap.server.internal.directory.SearchBase;
 import com.liferay.vldap.server.internal.directory.ldap.Directory;
@@ -81,11 +81,9 @@ public class SambaGroupBuilder extends OrganizationBuilder {
 				continue;
 			}
 
-			String name = filterConstraint.getValue("cn");
-
-			if (Validator.isNull(name)) {
-				name = filterConstraint.getValue("displayName");
-			}
+			String name = GetterUtil.getString(
+				filterConstraint.getValue("cn"),
+				filterConstraint.getValue("displayName"));
 
 			String sambaSID = filterConstraint.getValue("sambaSID");
 

@@ -18,6 +18,7 @@ import com.liferay.petra.encryptor.Encryptor;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -44,11 +45,8 @@ public class DoAsURLTag extends TagSupport {
 
 		Company company = themeDisplay.getCompany();
 
-		String doAsURL = company.getHomeURL();
-
-		if (Validator.isNull(doAsURL)) {
-			doAsURL = _PORTAL_IMPERSONATION_DEFAULT_URL;
-		}
+		String doAsURL = GetterUtil.getString(
+			company.getHomeURL(), _PORTAL_IMPERSONATION_DEFAULT_URL);
 
 		doAsURL = themeDisplay.getPathContext() + doAsURL;
 

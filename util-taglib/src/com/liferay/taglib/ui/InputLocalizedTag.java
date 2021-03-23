@@ -17,9 +17,9 @@ package com.liferay.taglib.ui;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.ModelHintsConstants;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.util.IncludeTag;
 
@@ -264,17 +264,9 @@ public class InputLocalizedTag extends IncludeTag {
 				themeDisplay.getSiteGroupId());
 		}
 
-		String formName = _formName;
+		String formName = GetterUtil.getString(_formName, "fm");
 
-		if (Validator.isNull(formName)) {
-			formName = "fm";
-		}
-
-		String id = _id;
-
-		if (Validator.isNull(id)) {
-			id = _name;
-		}
+		String id = GetterUtil.getString(_id, _name);
 
 		httpServletRequest.setAttribute(
 			"liferay-ui:input-localized:autoFocus", String.valueOf(_autoFocus));

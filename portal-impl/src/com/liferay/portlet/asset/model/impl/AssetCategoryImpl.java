@@ -21,7 +21,7 @@ import com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -89,22 +89,16 @@ public class AssetCategoryImpl extends AssetCategoryBaseImpl {
 
 	@Override
 	public String getTitle(String languageId) {
-		String value = super.getTitle(languageId);
-
-		if (Validator.isNull(value)) {
-			value = getName();
-		}
+		String value = GetterUtil.getString(
+			super.getTitle(languageId), getName());
 
 		return value;
 	}
 
 	@Override
 	public String getTitle(String languageId, boolean useDefault) {
-		String value = super.getTitle(languageId, useDefault);
-
-		if (Validator.isNull(value)) {
-			value = getName();
-		}
+		String value = GetterUtil.getString(
+			super.getTitle(languageId, useDefault), getName());
 
 		return value;
 	}

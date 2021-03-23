@@ -111,12 +111,9 @@ public class JournalArticleItemSelectorViewDisplayContext {
 			return _ddmStructureKey;
 		}
 
-		String ddmStructureKey = ParamUtil.getString(
-			_httpServletRequest, "ddmStructureKey");
-
-		if (Validator.isNull(ddmStructureKey)) {
-			ddmStructureKey = _infoItemItemSelectorCriterion.getItemSubtype();
-		}
+		String ddmStructureKey = GetterUtil.getString(
+			ParamUtil.getString(_httpServletRequest, "ddmStructureKey"),
+			_infoItemItemSelectorCriterion.getItemSubtype());
 
 		_ddmStructureKey = ddmStructureKey;
 

@@ -315,15 +315,11 @@ public class PortalImpl implements Portal {
 
 		// Computer name
 
-		String computerName = System.getProperty("env.COMPUTERNAME");
-
-		if (Validator.isNull(computerName)) {
-			computerName = System.getProperty("env.HOST");
-		}
-
-		if (Validator.isNull(computerName)) {
-			computerName = System.getProperty("env.HOSTNAME");
-		}
+		String computerName = GetterUtil.getString(
+			GetterUtil.getString(
+				System.getProperty("env.COMPUTERNAME"),
+				System.getProperty("env.HOST")),
+			System.getProperty("env.HOSTNAME"));
 
 		if (Validator.isNull(computerName)) {
 			try {
@@ -4235,17 +4231,15 @@ public class PortalImpl implements Portal {
 
 		ResourceBundle resourceBundle = portletConfig.getResourceBundle(locale);
 
-		String portletDescription = LanguageUtil.get(
-			resourceBundle,
-			StringBundler.concat(
-				JavaConstants.JAVAX_PORTLET_DESCRIPTION, StringPool.PERIOD,
-				portlet.getRootPortletId()),
-			null);
-
-		if (Validator.isNull(portletDescription)) {
-			portletDescription = LanguageUtil.get(
-				resourceBundle, JavaConstants.JAVAX_PORTLET_DESCRIPTION);
-		}
+		String portletDescription = GetterUtil.getString(
+			LanguageUtil.get(
+				resourceBundle,
+				StringBundler.concat(
+					JavaConstants.JAVAX_PORTLET_DESCRIPTION, StringPool.PERIOD,
+					portlet.getRootPortletId()),
+				null),
+			LanguageUtil.get(
+				resourceBundle, JavaConstants.JAVAX_PORTLET_DESCRIPTION));
 
 		return portletDescription;
 	}
@@ -4508,16 +4502,14 @@ public class PortalImpl implements Portal {
 
 	@Override
 	public String getPortletLongTitle(String portletId, Locale locale) {
-		String portletLongTitle = LanguageUtil.get(
-			locale,
-			StringBundler.concat(
-				JavaConstants.JAVAX_PORTLET_LONG_TITLE, StringPool.PERIOD,
-				portletId),
-			StringPool.BLANK);
-
-		if (Validator.isNull(portletLongTitle)) {
-			portletLongTitle = getPortletTitle(portletId, locale);
-		}
+		String portletLongTitle = GetterUtil.getString(
+			LanguageUtil.get(
+				locale,
+				StringBundler.concat(
+					JavaConstants.JAVAX_PORTLET_LONG_TITLE, StringPool.PERIOD,
+					portletId),
+				StringPool.BLANK),
+			getPortletTitle(portletId, locale));
 
 		return portletLongTitle;
 	}
@@ -4648,17 +4640,15 @@ public class PortalImpl implements Portal {
 
 		portletId = PortletIdCodec.decodePortletName(portletId);
 
-		String portletTitle = LanguageUtil.get(
-			resourceBundle,
-			StringBundler.concat(
-				JavaConstants.JAVAX_PORTLET_TITLE, StringPool.PERIOD,
-				portletId),
-			null);
-
-		if (Validator.isNull(portletTitle)) {
-			portletTitle = ResourceBundleUtil.getString(
-				resourceBundle, JavaConstants.JAVAX_PORTLET_TITLE);
-		}
+		String portletTitle = GetterUtil.getString(
+			LanguageUtil.get(
+				resourceBundle,
+				StringBundler.concat(
+					JavaConstants.JAVAX_PORTLET_TITLE, StringPool.PERIOD,
+					portletId),
+				null),
+			ResourceBundleUtil.getString(
+				resourceBundle, JavaConstants.JAVAX_PORTLET_TITLE));
 
 		return portletTitle;
 	}
@@ -4733,11 +4723,8 @@ public class PortalImpl implements Portal {
 
 		Company company = getCompany(httpServletRequest);
 
-		String homeURL = company.getHomeURL();
-
-		if (Validator.isNull(homeURL)) {
-			homeURL = PropsValues.COMPANY_DEFAULT_HOME_URL;
-		}
+		String homeURL = GetterUtil.getString(
+			company.getHomeURL(), PropsValues.COMPANY_DEFAULT_HOME_URL);
 
 		return homeURL;
 	}
@@ -8663,17 +8650,15 @@ public class PortalImpl implements Portal {
 
 		ResourceBundle resourceBundle = portletConfig.getResourceBundle(locale);
 
-		String portletTitle = LanguageUtil.get(
-			resourceBundle,
-			StringBundler.concat(
-				JavaConstants.JAVAX_PORTLET_TITLE, StringPool.PERIOD,
-				rootPortletId),
-			null);
-
-		if (Validator.isNull(portletTitle)) {
-			portletTitle = LanguageUtil.get(
-				resourceBundle, JavaConstants.JAVAX_PORTLET_TITLE);
-		}
+		String portletTitle = GetterUtil.getString(
+			LanguageUtil.get(
+				resourceBundle,
+				StringBundler.concat(
+					JavaConstants.JAVAX_PORTLET_TITLE, StringPool.PERIOD,
+					rootPortletId),
+				null),
+			LanguageUtil.get(
+				resourceBundle, JavaConstants.JAVAX_PORTLET_TITLE));
 
 		return portletTitle;
 	}

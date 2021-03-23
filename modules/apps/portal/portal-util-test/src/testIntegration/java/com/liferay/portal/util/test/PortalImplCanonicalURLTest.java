@@ -162,11 +162,8 @@ public class PortalImplCanonicalURLTest {
 		_layout3 = LayoutTestUtil.addLayout(
 			_group.getGroupId(), false, nameMap, friendlyURLMap);
 
-		String groupKey = PropsValues.VIRTUAL_HOSTS_DEFAULT_SITE_NAME;
-
-		if (Validator.isNull(groupKey)) {
-			groupKey = GroupConstants.GUEST;
-		}
+		String groupKey = GetterUtil.getString(
+			PropsValues.VIRTUAL_HOSTS_DEFAULT_SITE_NAME, GroupConstants.GUEST);
 
 		if (_defaultGroup == null) {
 			_defaultGroup = _groupLocalService.getGroup(

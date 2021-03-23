@@ -19,6 +19,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizer;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -48,13 +49,11 @@ public class FriendlyURLNormalizerImpl implements FriendlyURLNormalizer {
 			return friendlyURL;
 		}
 
-		String decodedFriendlyURL = HttpUtil.decodePath(friendlyURL);
-
-		if (Validator.isNull(decodedFriendlyURL)) {
-			decodedFriendlyURL = HttpUtil.decodePath(
+		String decodedFriendlyURL = GetterUtil.getString(
+			HttpUtil.decodePath(friendlyURL),
+			HttpUtil.decodePath(
 				StringUtil.replace(
-					friendlyURL, CharPool.PERCENT, CharPool.POUND));
-		}
+					friendlyURL, CharPool.PERCENT, CharPool.POUND)));
 
 		StringBuilder sb = new StringBuilder(decodedFriendlyURL.length());
 

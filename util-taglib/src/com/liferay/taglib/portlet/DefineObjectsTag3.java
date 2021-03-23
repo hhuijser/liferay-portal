@@ -14,8 +14,8 @@
 
 package com.liferay.taglib.portlet;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.taglib.aui.AUIUtil;
 
 import java.util.Collections;
@@ -111,12 +111,9 @@ public class DefineObjectsTag3 extends DefineObjectsTag {
 			return SKIP_BODY;
 		}
 
-		String namespace = AUIUtil.getNamespace(
-			portletRequest, portletResponse);
-
-		if (Validator.isNull(namespace)) {
-			namespace = AUIUtil.getNamespace(httpServletRequest);
-		}
+		String namespace = GetterUtil.getString(
+			AUIUtil.getNamespace(portletRequest, portletResponse),
+			AUIUtil.getNamespace(httpServletRequest));
 
 		pageContext.setAttribute("namespace", namespace);
 		pageContext.setAttribute("portletResponse", portletResponse);

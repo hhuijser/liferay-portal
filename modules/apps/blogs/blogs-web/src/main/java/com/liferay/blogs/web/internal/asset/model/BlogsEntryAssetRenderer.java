@@ -140,12 +140,10 @@ public class BlogsEntryAssetRenderer
 				AssetHelper.ASSET_ENTRY_ABSTRACT_LENGTH);
 		}
 
-		String summary = HtmlUtil.escape(_entry.getDescription());
-
-		if (Validator.isNull(summary)) {
-			summary = StringUtil.shorten(
-				HtmlUtil.stripHtml(_entry.getContent()), abstractLength);
-		}
+		String summary = GetterUtil.getString(
+			HtmlUtil.escape(_entry.getDescription()),
+			StringUtil.shorten(
+				HtmlUtil.stripHtml(_entry.getContent()), abstractLength));
 
 		return summary;
 	}

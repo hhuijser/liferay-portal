@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.repository.model.RepositoryModelOperation;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -233,11 +234,9 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	public String getMimeType() {
-		String mimeType = _extRepositoryFileEntry.getMimeType();
-
-		if (Validator.isNull(mimeType)) {
-			mimeType = MimeTypesUtil.getContentType(getTitle());
-		}
+		String mimeType = GetterUtil.getString(
+			_extRepositoryFileEntry.getMimeType(),
+			MimeTypesUtil.getContentType(getTitle()));
 
 		return mimeType;
 	}

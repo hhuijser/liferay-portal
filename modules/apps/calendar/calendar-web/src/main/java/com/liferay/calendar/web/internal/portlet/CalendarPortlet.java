@@ -848,11 +848,9 @@ public class CalendarPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String editCalendarURL = getRedirect(actionRequest, actionResponse);
-
-		if (Validator.isNull(editCalendarURL)) {
-			editCalendarURL = _portal.getLayoutFullURL(themeDisplay);
-		}
+		String editCalendarURL = GetterUtil.getString(
+			getRedirect(actionRequest, actionResponse),
+			_portal.getLayoutFullURL(themeDisplay));
 
 		String namespace = actionResponse.getNamespace();
 
@@ -1193,12 +1191,9 @@ public class CalendarPortlet extends MVCPortlet {
 
 		User user = themeDisplay.getUser();
 
-		String timeZoneId = preferences.getValue(
-			"timeZoneId", user.getTimeZoneId());
-
-		if (Validator.isNull(timeZoneId)) {
-			timeZoneId = user.getTimeZoneId();
-		}
+		String timeZoneId = GetterUtil.getString(
+			preferences.getValue("timeZoneId", user.getTimeZoneId()),
+			user.getTimeZoneId());
 
 		return TimeZone.getTimeZone(timeZoneId);
 	}

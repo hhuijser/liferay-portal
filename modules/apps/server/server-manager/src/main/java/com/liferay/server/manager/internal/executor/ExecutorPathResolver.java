@@ -15,7 +15,7 @@
 package com.liferay.server.manager.internal.executor;
 
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,11 +34,7 @@ public class ExecutorPathResolver {
 	}
 
 	public String getExecutorPath(String path) {
-		String executorPath = path;
-
-		if (Validator.isNull(executorPath)) {
-			executorPath = StringPool.SLASH;
-		}
+		String executorPath = GetterUtil.getString(path, StringPool.SLASH);
 
 		while (!executorPath.isEmpty() &&
 			   !_availableExecutorPaths.contains(executorPath)) {

@@ -21,8 +21,8 @@ import com.liferay.exportimport.changeset.taglib.internal.servlet.ServletContext
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerRegistryUtil;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.taglib.util.IncludeTag;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +38,8 @@ public class PublishEntityMenuItemTag extends IncludeTag {
 	public int doStartTag() throws JspException {
 		Changeset.RawBuilder rawBuilder = Changeset.createRaw();
 
-		String className = _className;
-
-		if (Validator.isNull(className)) {
-			className = PortalUtil.getClassName(_classNameId);
-		}
+		String className = GetterUtil.getString(
+			_className, PortalUtil.getClassName(_classNameId));
 
 		StagedModelDataHandler<?> stagedModelDataHandler =
 			StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(

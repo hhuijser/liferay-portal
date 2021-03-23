@@ -459,24 +459,18 @@ public class WabProcessor {
 	}
 
 	protected void processBundleManifestVersion(Analyzer analyzer) {
-		String bundleManifestVersion = MapUtil.getString(
-			_parameters, Constants.BUNDLE_MANIFESTVERSION);
-
-		if (Validator.isNull(bundleManifestVersion)) {
-			bundleManifestVersion = "2";
-		}
+		String bundleManifestVersion = GetterUtil.getString(
+			MapUtil.getString(_parameters, Constants.BUNDLE_MANIFESTVERSION),
+			"2");
 
 		analyzer.setProperty(
 			Constants.BUNDLE_MANIFESTVERSION, bundleManifestVersion);
 	}
 
 	protected void processBundleSymbolicName(Analyzer analyzer) {
-		String bundleSymbolicName = MapUtil.getString(
-			_parameters, Constants.BUNDLE_SYMBOLICNAME);
-
-		if (Validator.isNull(bundleSymbolicName)) {
-			bundleSymbolicName = _context.substring(1);
-		}
+		String bundleSymbolicName = GetterUtil.getString(
+			MapUtil.getString(_parameters, Constants.BUNDLE_SYMBOLICNAME),
+			_context.substring(1));
 
 		analyzer.setProperty(Constants.BUNDLE_SYMBOLICNAME, bundleSymbolicName);
 	}

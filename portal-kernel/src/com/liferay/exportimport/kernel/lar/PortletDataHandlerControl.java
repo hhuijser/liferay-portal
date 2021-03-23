@@ -17,7 +17,7 @@ package com.liferay.exportimport.kernel.lar;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.Locale;
 
@@ -90,15 +90,14 @@ public class PortletDataHandlerControl {
 	}
 
 	public String getHelpMessage(Locale locale, String action) {
-		String helpMessage = LanguageUtil.get(
-			locale, StringBundler.concat(action, "-", _controlLabel, "-help"),
-			StringPool.BLANK);
-
-		if (Validator.isNull(helpMessage)) {
-			helpMessage = LanguageUtil.get(
+		String helpMessage = GetterUtil.getString(
+			LanguageUtil.get(
+				locale,
+				StringBundler.concat(action, "-", _controlLabel, "-help"),
+				StringPool.BLANK),
+			LanguageUtil.get(
 				locale, "export-import-publish-" + _controlLabel + "-help",
-				StringPool.BLANK);
-		}
+				StringPool.BLANK));
 
 		return helpMessage;
 	}

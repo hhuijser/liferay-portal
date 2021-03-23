@@ -25,10 +25,10 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutTypeController;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.LayoutTypeControllerTracker;
@@ -61,11 +61,8 @@ public class SelectLayoutPageTemplateEntryDisplayContext {
 			return _backURL;
 		}
 
-		String backURL = ParamUtil.getString(_httpServletRequest, "backURL");
-
-		if (Validator.isNull(backURL)) {
-			backURL = getRedirect();
-		}
+		String backURL = GetterUtil.getString(
+			ParamUtil.getString(_httpServletRequest, "backURL"), getRedirect());
 
 		_backURL = backURL;
 

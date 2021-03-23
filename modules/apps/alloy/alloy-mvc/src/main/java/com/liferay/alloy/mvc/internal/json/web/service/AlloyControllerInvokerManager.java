@@ -32,10 +32,10 @@ import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.io.File;
 
@@ -278,11 +278,8 @@ public class AlloyControllerInvokerManager {
 
 			jsonWebServiceMethodsPresent = true;
 
-			String methodName = jsonWebServiceMethod.methodName();
-
-			if (Validator.isNull(methodName)) {
-				methodName = method.getName();
-			}
+			String methodName = GetterUtil.getString(
+				jsonWebServiceMethod.methodName(), method.getName());
 
 			Class<?>[] parameterTypes = jsonWebServiceMethod.parameterTypes();
 

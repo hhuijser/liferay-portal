@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.AggregateResourceBundle;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
@@ -223,11 +224,8 @@ public class FlagsTag extends IncludeTag {
 	private JSONObject _getDataJSONObject(ThemeDisplay themeDisplay) {
 		String namespace = PortalUtil.getPortletNamespace(PortletKeys.FLAGS);
 
-		String contentURL = _contentURL;
-
-		if (Validator.isNull(contentURL)) {
-			contentURL = FlagsTagUtil.getCurrentURL(getRequest());
-		}
+		String contentURL = GetterUtil.getString(
+			_contentURL, FlagsTagUtil.getCurrentURL(getRequest()));
 
 		JSONObject dataJSONObject = JSONUtil.put(
 			namespace + "className", _className

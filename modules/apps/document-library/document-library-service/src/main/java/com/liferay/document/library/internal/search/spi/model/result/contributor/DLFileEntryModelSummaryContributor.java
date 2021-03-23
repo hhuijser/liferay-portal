@@ -18,7 +18,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Summary;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.search.spi.model.result.contributor.ModelSummaryContributor;
 
 import java.util.Locale;
@@ -41,13 +41,9 @@ public class DLFileEntryModelSummaryContributor
 
 		String prefix = Field.SNIPPET + StringPool.UNDERLINE;
 
-		String content = document.get(
-			locale, prefix + Field.CONTENT, Field.CONTENT);
-
-		if (Validator.isNull(content)) {
-			content = document.get(
-				prefix + Field.DESCRIPTION, Field.DESCRIPTION);
-		}
+		String content = GetterUtil.getString(
+			document.get(locale, prefix + Field.CONTENT, Field.CONTENT),
+			document.get(prefix + Field.DESCRIPTION, Field.DESCRIPTION));
 
 		String title = document.get(prefix + Field.TITLE, Field.TITLE);
 

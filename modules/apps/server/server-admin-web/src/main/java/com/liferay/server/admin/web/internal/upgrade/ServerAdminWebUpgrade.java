@@ -16,7 +16,7 @@ package com.liferay.server.admin.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
-import com.liferay.server.admin.web.internal.upgrade.v1_0_0.UpgradePortletId;
+import com.liferay.server.admin.web.internal.upgrade.v1_0_0.PortletIdUpgradeProcess;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -31,7 +31,7 @@ public class ServerAdminWebUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
-		registry.register("0.0.1", "1.0.0", new UpgradePortletId());
+		registry.register("0.0.1", "1.0.0", new PortletIdUpgradeProcess());
 	}
 
 }

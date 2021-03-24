@@ -15,7 +15,7 @@
 package com.liferay.invitation.invite.members.internal.upgrade;
 
 import com.liferay.invitation.invite.members.internal.upgrade.v1_0_0.NamespaceUpgradeProcess;
-import com.liferay.invitation.invite.members.internal.upgrade.v1_0_0.UpgradePortletId;
+import com.liferay.invitation.invite.members.internal.upgrade.v1_0_0.PortletIdUpgradeProcess;
 import com.liferay.invitation.invite.members.internal.upgrade.v2_0_0.util.MemberRequestTable;
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -32,13 +32,13 @@ public class InviteMembersServiceUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		registry.register(
 			"0.0.1", "1.0.1", new NamespaceUpgradeProcess(),
-			new UpgradePortletId());
+			new PortletIdUpgradeProcess());
 
 		// See LPS-65946
 
 		registry.register(
 			"1.0.0", "1.0.1", new NamespaceUpgradeProcess(),
-			new UpgradePortletId());
+			new PortletIdUpgradeProcess());
 
 		registry.register(
 			"1.0.1", "2.0.0",

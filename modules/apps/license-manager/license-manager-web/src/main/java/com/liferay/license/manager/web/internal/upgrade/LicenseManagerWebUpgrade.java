@@ -32,12 +32,12 @@ public class LicenseManagerWebUpgrade implements UpgradeStepRegistrator {
 		registry.register(
 			"0.0.1", "1.0.0",
 			new com.liferay.license.manager.web.internal.upgrade.v1_0_0.
-				UpgradePortletId());
+				PortletIdUpgradeProcess());
 
 		registry.register(
 			"1.0.0", "1.0.1",
 			new com.liferay.license.manager.web.internal.upgrade.v1_0_1.
-				UpgradePortletId());
+				PortletIdUpgradeProcess());
 	}
 
 }

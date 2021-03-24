@@ -17,7 +17,7 @@ package com.liferay.calendar.internal.upgrade;
 import com.liferay.calendar.internal.upgrade.v1_0_2.CalendarUpgradeProcess;
 import com.liferay.calendar.internal.upgrade.v1_0_4.UpgradeClassNames;
 import com.liferay.calendar.internal.upgrade.v1_0_5.CalendarResourceUpgradeProcess;
-import com.liferay.calendar.internal.upgrade.v1_0_5.UpgradeCompanyId;
+import com.liferay.calendar.internal.upgrade.v1_0_5.CompanyIdUpgradeProcess;
 import com.liferay.calendar.internal.upgrade.v1_0_5.UpgradeLastPublishDate;
 import com.liferay.calendar.internal.upgrade.v1_0_6.ResourcePermissionUpgradeProcess;
 import com.liferay.calendar.internal.upgrade.v2_0_0.SchemaUpgradeProcess;
@@ -78,7 +78,7 @@ public class CalendarServiceUpgrade implements UpgradeStepRegistrator {
 			new CalendarResourceUpgradeProcess(
 				_classNameLocalService, _companyLocalService,
 				_userLocalService),
-			new UpgradeCompanyId(), new UpgradeLastPublishDate());
+			new CompanyIdUpgradeProcess(), new UpgradeLastPublishDate());
 
 		registry.register(
 			"1.0.5", "1.0.6",

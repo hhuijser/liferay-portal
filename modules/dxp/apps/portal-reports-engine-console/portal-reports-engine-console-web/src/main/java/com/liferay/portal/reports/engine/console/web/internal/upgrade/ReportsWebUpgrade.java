@@ -17,7 +17,7 @@ package com.liferay.portal.reports.engine.console.web.internal.upgrade;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
-import com.liferay.portal.reports.engine.console.web.internal.upgrade.v1_0_0.UpgradePortletId;
+import com.liferay.portal.reports.engine.console.web.internal.upgrade.v1_0_0.PortletIdUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.portal.upgrade.release.BaseUpgradeWebModuleRelease;
 
@@ -58,7 +58,7 @@ public class ReportsWebUpgrade implements UpgradeStepRegistrator {
 
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
-		registry.register("0.0.1", "1.0.0", new UpgradePortletId());
+		registry.register("0.0.1", "1.0.0", new PortletIdUpgradeProcess());
 	}
 
 	@Reference(target = ModuleServiceLifecycle.PORTAL_INITIALIZED, unbind = "-")

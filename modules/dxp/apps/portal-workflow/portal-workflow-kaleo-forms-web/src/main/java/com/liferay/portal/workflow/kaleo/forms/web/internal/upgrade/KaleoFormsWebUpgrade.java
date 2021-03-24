@@ -16,8 +16,8 @@ package com.liferay.portal.workflow.kaleo.forms.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
-import com.liferay.portal.workflow.kaleo.forms.web.internal.upgrade.v1_0_2.UpgradePortletId;
-import com.liferay.portal.workflow.kaleo.forms.web.internal.upgrade.v1_0_3.UpgradeLayoutTypeSettings;
+import com.liferay.portal.workflow.kaleo.forms.web.internal.upgrade.v1_0_2.PortletIdUpgradeProcess;
+import com.liferay.portal.workflow.kaleo.forms.web.internal.upgrade.v1_0_3.LayoutTypeSettingsUpgradeProcess;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -31,9 +31,9 @@ public class KaleoFormsWebUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		registry.register("0.0.0", "1.0.2", new DummyUpgradeStep());
 
-		registry.register("0.0.1", "1.0.2", new UpgradePortletId());
+		registry.register("0.0.1", "1.0.2", new PortletIdUpgradeProcess());
 
-		registry.register("1.0.2", "1.0.3", new UpgradeLayoutTypeSettings());
+		registry.register("1.0.2", "1.0.3", new LayoutTypeSettingsUpgradeProcess());
 	}
 
 }

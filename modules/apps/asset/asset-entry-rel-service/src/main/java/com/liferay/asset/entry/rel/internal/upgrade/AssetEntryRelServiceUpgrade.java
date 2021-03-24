@@ -15,7 +15,7 @@
 package com.liferay.asset.entry.rel.internal.upgrade;
 
 import com.liferay.asset.entry.rel.internal.upgrade.v1_0_0.AssetEntryAssetCategoryRelUpgradeProcess;
-import com.liferay.asset.entry.rel.internal.upgrade.v2_0_0.UpgradeCompanyId;
+import com.liferay.asset.entry.rel.internal.upgrade.v2_0_0.CompanyIdUpgradeProcess;
 import com.liferay.asset.entry.rel.internal.upgrade.v3_0_0.AssetEntriesAssetCategoriesUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
@@ -45,7 +45,7 @@ public class AssetEntryRelServiceUpgrade implements UpgradeStepRegistrator {
 
 			});
 
-		registry.register("1.1.0", "2.0.0", new UpgradeCompanyId());
+		registry.register("1.1.0", "2.0.0", new CompanyIdUpgradeProcess());
 
 		registry.register(
 			"2.0.0", "2.1.0",

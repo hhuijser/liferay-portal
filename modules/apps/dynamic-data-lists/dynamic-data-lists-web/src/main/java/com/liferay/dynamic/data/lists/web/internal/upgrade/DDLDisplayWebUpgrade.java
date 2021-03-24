@@ -14,8 +14,8 @@
 
 package com.liferay.dynamic.data.lists.web.internal.upgrade;
 
-import com.liferay.dynamic.data.lists.web.internal.upgrade.v1_0_0.UpgradeDDLDisplayPortletId;
-import com.liferay.dynamic.data.lists.web.internal.upgrade.v1_0_0.UpgradeDDLFormPortletId;
+import com.liferay.dynamic.data.lists.web.internal.upgrade.v1_0_0.DDLDisplayPortletIdUpgradeProcess;
+import com.liferay.dynamic.data.lists.web.internal.upgrade.v1_0_0.DDLFormPortletIdUpgradeProcess;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalService;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -35,8 +35,8 @@ public class DDLDisplayWebUpgrade implements UpgradeStepRegistrator {
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
 		registry.register(
-			"0.0.1", "1.0.0", new UpgradeDDLDisplayPortletId(),
-			new UpgradeDDLFormPortletId(
+			"0.0.1", "1.0.0", new DDLDisplayPortletIdUpgradeProcess(),
+			new DDLFormPortletIdUpgradeProcess(
 				_portletPreferencesLocalService,
 				_resourcePermissionLocalService));
 	}

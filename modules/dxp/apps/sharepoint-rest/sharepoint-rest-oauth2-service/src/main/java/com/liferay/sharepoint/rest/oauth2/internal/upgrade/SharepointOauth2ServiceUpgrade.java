@@ -15,7 +15,7 @@
 package com.liferay.sharepoint.rest.oauth2.internal.upgrade;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
-import com.liferay.sharepoint.rest.oauth2.internal.upgrade.v2_0_0.UpgradeCompanyId;
+import com.liferay.sharepoint.rest.oauth2.internal.upgrade.v2_0_0.CompanyIdUpgradeProcess;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -32,7 +32,7 @@ public class SharepointOauth2ServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(UpgradeStepRegistrator.Registry registry) {
-		registry.register("1.0.0", "2.0.0", new UpgradeCompanyId());
+		registry.register("1.0.0", "2.0.0", new CompanyIdUpgradeProcess());
 	}
 
 }

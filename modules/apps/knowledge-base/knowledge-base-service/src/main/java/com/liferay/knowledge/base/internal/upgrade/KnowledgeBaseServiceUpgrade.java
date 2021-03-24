@@ -94,7 +94,7 @@ public class KnowledgeBaseServiceUpgrade implements UpgradeStepRegistrator {
 			new com.liferay.knowledge.base.internal.upgrade.v1_1_0.
 				ResourcePermissionUpgradeProcess(),
 			new com.liferay.knowledge.base.internal.upgrade.v1_1_0.
-				UpgradePortletPreferences());
+				PortletPreferencesUpgradeProcess());
 
 		registry.register(
 			"1.1.0", "1.2.0",
@@ -110,7 +110,7 @@ public class KnowledgeBaseServiceUpgrade implements UpgradeStepRegistrator {
 			new com.liferay.knowledge.base.internal.upgrade.v1_3_0.
 				KBAttachmentsUpgradeProcess(_companyLocalService, _store),
 			new com.liferay.knowledge.base.internal.upgrade.v1_3_0.
-				UpgradePortletPreferences());
+				PortletPreferencesUpgradeProcess());
 
 		registry.register(
 			"1.3.0", "1.3.1",
@@ -138,12 +138,12 @@ public class KnowledgeBaseServiceUpgrade implements UpgradeStepRegistrator {
 			new com.liferay.knowledge.base.internal.upgrade.v1_3_4.
 				ResourceActionUpgradeProcess(),
 			new com.liferay.knowledge.base.internal.upgrade.v1_3_4.
-				UpgradePortletPreferences());
+				PortletPreferencesUpgradeProcess());
 
 		registry.register(
 			"1.3.4", "1.3.5",
 			new com.liferay.knowledge.base.internal.upgrade.v1_3_5.
-				UpgradeLastPublishDate());
+				LastPublishDateUpgradeProcess());
 
 		registry.register(
 			"1.3.5", "2.0.0",
@@ -152,7 +152,7 @@ public class KnowledgeBaseServiceUpgrade implements UpgradeStepRegistrator {
 			new com.liferay.knowledge.base.internal.upgrade.v2_0_0.
 				KBCommentUpgradeProcess(),
 			new com.liferay.knowledge.base.internal.upgrade.v2_0_0.
-				UpgradeRepository());
+				RepositoryUpgradeProcess());
 
 		registry.register(
 			"2.0.0", "2.0.1",

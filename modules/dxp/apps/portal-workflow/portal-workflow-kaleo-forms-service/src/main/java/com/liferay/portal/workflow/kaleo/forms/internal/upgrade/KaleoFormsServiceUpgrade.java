@@ -31,7 +31,7 @@ import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.portal.workflow.kaleo.forms.internal.upgrade.v1_0_2.KaleoProcessTemplateLinkUpgradeProcess;
 import com.liferay.portal.workflow.kaleo.forms.internal.upgrade.v1_1_0.KaleoProcessUpgradeProcess;
 import com.liferay.portal.workflow.kaleo.forms.internal.upgrade.v2_0_0.util.KaleoProcessTable;
-import com.liferay.portal.workflow.kaleo.forms.internal.upgrade.v3_0_0.UpgradeCompanyId;
+import com.liferay.portal.workflow.kaleo.forms.internal.upgrade.v3_0_0.CompanyIdUpgradeProcess;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -81,7 +81,7 @@ public class KaleoFormsServiceUpgrade implements UpgradeStepRegistrator {
 			new BaseSQLServerDatetimeUpgradeProcess(
 				new Class<?>[] {KaleoProcessTable.class}));
 
-		registry.register("2.0.0", "3.0.0", new UpgradeCompanyId());
+		registry.register("2.0.0", "3.0.0", new CompanyIdUpgradeProcess());
 	}
 
 	@Reference(unbind = "-")

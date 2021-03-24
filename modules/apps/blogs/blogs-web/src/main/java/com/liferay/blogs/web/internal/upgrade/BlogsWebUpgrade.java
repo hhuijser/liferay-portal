@@ -15,7 +15,7 @@
 package com.liferay.blogs.web.internal.upgrade;
 
 import com.liferay.blogs.constants.BlogsPortletKeys;
-import com.liferay.blogs.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
+import com.liferay.blogs.web.internal.upgrade.v1_0_0.PortletPreferencesUpgradeProcess;
 import com.liferay.blogs.web.internal.upgrade.v1_0_0.UpgradePortletSettings;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
@@ -39,18 +39,18 @@ public class BlogsWebUpgrade implements UpgradeStepRegistrator {
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
 		registry.register(
-			"0.0.1", "1.0.0", new UpgradePortletPreferences(),
+			"0.0.1", "1.0.0", new PortletPreferencesUpgradeProcess(),
 			new UpgradePortletSettings(_settingsFactory));
 
 		registry.register(
 			"1.0.0", "1.1.0",
 			new com.liferay.blogs.web.internal.upgrade.v1_1_0.
-				UpgradePortletPreferences());
+				PortletPreferencesUpgradeProcess());
 
 		registry.register(
 			"1.1.0", "1.2.0",
 			new com.liferay.blogs.web.internal.upgrade.v1_2_0.
-				UpgradePortletPreferences());
+				PortletPreferencesUpgradeProcess());
 
 		registry.register(
 			"1.2.0", "1.2.1",

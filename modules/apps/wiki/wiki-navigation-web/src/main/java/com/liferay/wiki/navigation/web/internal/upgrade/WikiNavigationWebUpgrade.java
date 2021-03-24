@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.portal.upgrade.release.BaseUpgradeWebModuleRelease;
 import com.liferay.wiki.navigation.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
-import com.liferay.wiki.navigation.web.internal.upgrade.v1_0_1.UpgradePortletId;
+import com.liferay.wiki.navigation.web.internal.upgrade.v1_0_1.PortletIdUpgradeProcess;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -62,7 +62,7 @@ public class WikiNavigationWebUpgrade implements UpgradeStepRegistrator {
 
 		registry.register("0.0.1", "1.0.0", new UpgradePortletPreferences());
 
-		registry.register("1.0.0", "1.0.1", new UpgradePortletId());
+		registry.register("1.0.0", "1.0.1", new PortletIdUpgradeProcess());
 	}
 
 	@Reference(target = ModuleServiceLifecycle.PORTAL_INITIALIZED, unbind = "-")

@@ -14,9 +14,9 @@
 
 package com.liferay.polls.internal.upgrade;
 
+import com.liferay.polls.internal.upgrade.v1_0_0.PortletIdUpgradeProcess;
 import com.liferay.polls.internal.upgrade.v1_0_0.UpgradeKernelPackage;
 import com.liferay.polls.internal.upgrade.v1_0_0.UpgradeLastPublishDate;
-import com.liferay.polls.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.polls.internal.upgrade.v2_0_0.util.PollsChoiceTable;
 import com.liferay.polls.internal.upgrade.v2_0_0.util.PollsQuestionTable;
 import com.liferay.polls.internal.upgrade.v2_0_0.util.PollsVoteTable;
@@ -37,7 +37,7 @@ public class PollsServiceUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		registry.register(
 			"0.0.1", "0.0.2", new UpgradeKernelPackage(),
-			new UpgradePortletId());
+			new PortletIdUpgradeProcess());
 
 		registry.register("0.0.2", "1.0.0", new UpgradeLastPublishDate());
 
@@ -45,7 +45,8 @@ public class PollsServiceUpgrade implements UpgradeStepRegistrator {
 
 		registry.register(
 			"1.0.3", "1.0.4",
-			new com.liferay.polls.internal.upgrade.v1_0_4.UpgradePortletId());
+			new com.liferay.polls.internal.upgrade.v1_0_4.
+				PortletIdUpgradeProcess());
 
 		registry.register(
 			"1.0.4", "2.0.0",

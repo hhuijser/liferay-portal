@@ -29,10 +29,10 @@ import com.liferay.journal.content.compatibility.converter.JournalContentCompati
 import com.liferay.journal.internal.upgrade.util.JournalArticleImageUpgradeHelper;
 import com.liferay.journal.internal.upgrade.v0_0_3.JournalArticleTypeUpgradeProcess;
 import com.liferay.journal.internal.upgrade.v0_0_4.SchemaUpgradeProcess;
+import com.liferay.journal.internal.upgrade.v0_0_5.CompanyIdUpgradeProcess;
+import com.liferay.journal.internal.upgrade.v0_0_5.JournalArticlesUpgradeProcess;
+import com.liferay.journal.internal.upgrade.v0_0_5.JournalDisplayPreferencesUpgradeProcess;
 import com.liferay.journal.internal.upgrade.v0_0_5.JournalUpgradeProcess;
-import com.liferay.journal.internal.upgrade.v0_0_5.UpgradeCompanyId;
-import com.liferay.journal.internal.upgrade.v0_0_5.UpgradeJournalArticles;
-import com.liferay.journal.internal.upgrade.v0_0_5.UpgradeJournalDisplayPreferences;
 import com.liferay.journal.internal.upgrade.v0_0_5.UpgradeLastPublishDate;
 import com.liferay.journal.internal.upgrade.v0_0_5.UpgradePortletSettings;
 import com.liferay.journal.internal.upgrade.v0_0_6.ImageTypeContentAttributesUpgradeProcess;
@@ -118,19 +118,19 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 		registry.register("0.0.3", "0.0.4", new SchemaUpgradeProcess());
 
 		registry.register(
-			"0.0.4", "0.0.5", new UpgradeCompanyId(),
+			"0.0.4", "0.0.5", new CompanyIdUpgradeProcess(),
+			new JournalArticlesUpgradeProcess(
+				_assetCategoryLocalService, _ddmStructureLocalService,
+				_groupLocalService, _layoutLocalService,
+				_portletPreferenceValueLocalService,
+				_portletPreferencesLocalService),
+			new JournalDisplayPreferencesUpgradeProcess(),
 			new JournalUpgradeProcess(
 				_companyLocalService, _ddmStorageLinkLocalService,
 				_ddmStructureLocalService, _ddmTemplateLinkLocalService,
 				_defaultDDMStructureHelper, _groupLocalService,
 				_resourceActionLocalService, _resourceActions,
 				_resourceLocalService, _userLocalService),
-			new UpgradeJournalArticles(
-				_assetCategoryLocalService, _ddmStructureLocalService,
-				_groupLocalService, _layoutLocalService,
-				_portletPreferenceValueLocalService,
-				_portletPreferencesLocalService),
-			new UpgradeJournalDisplayPreferences(),
 			new UpgradeLastPublishDate(),
 			new UpgradePortletSettings(_settingsFactory),
 			new UpgradeStep() {

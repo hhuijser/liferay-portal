@@ -21,7 +21,7 @@ import com.liferay.document.library.internal.upgrade.v1_0_1.DLFileEntryConfigura
 import com.liferay.document.library.internal.upgrade.v1_0_2.DLFileShortcutUpgradeProcess;
 import com.liferay.document.library.internal.upgrade.v1_1_0.SchemaUpgradeProcess;
 import com.liferay.document.library.internal.upgrade.v1_1_2.DLFileEntryTypeUpgradeProcess;
-import com.liferay.document.library.internal.upgrade.v2_0_0.UpgradeCompanyId;
+import com.liferay.document.library.internal.upgrade.v2_0_0.CompanyIdUpgradeProcess;
 import com.liferay.document.library.internal.upgrade.v3_2_1.DDMStructureLinkUpgradeProcess;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.store.Store;
@@ -67,7 +67,7 @@ public class DLServiceUpgrade implements UpgradeStepRegistrator {
 			"1.1.1", "1.1.2",
 			new DLFileEntryTypeUpgradeProcess(_resourceLocalService));
 
-		registry.register("1.1.2", "2.0.0", new UpgradeCompanyId());
+		registry.register("1.1.2", "2.0.0", new CompanyIdUpgradeProcess());
 
 		registry.register(
 			"2.0.0", "3.0.0",

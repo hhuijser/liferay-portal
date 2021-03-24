@@ -15,8 +15,8 @@
 package com.liferay.portal.search.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.search.web.internal.upgrade.v1_0_0.UpgradePortletId;
-import com.liferay.portal.search.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
+import com.liferay.portal.search.web.internal.upgrade.v1_0_0.PortletIdUpgradeProcess;
+import com.liferay.portal.search.web.internal.upgrade.v1_0_0.PortletPreferencesUpgradeProcess;
 import com.liferay.portal.search.web.internal.upgrade.v2_0_0.SearchPortletUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
@@ -33,8 +33,8 @@ public class SearchWebUpgrade implements UpgradeStepRegistrator {
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
 		registry.register(
-			"0.0.1", "1.0.0", new UpgradePortletId(),
-			new UpgradePortletPreferences());
+			"0.0.1", "1.0.0", new PortletIdUpgradeProcess(),
+			new PortletPreferencesUpgradeProcess());
 
 		registry.register("1.0.0", "2.0.0", new SearchPortletUpgradeProcess());
 	}

@@ -14,7 +14,7 @@
 
 package com.liferay.microblogs.web.internal.upgrade;
 
-import com.liferay.microblogs.web.internal.upgrade.v1_0_0.UpgradePortletId;
+import com.liferay.microblogs.web.internal.upgrade.v1_0_0.PortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -57,11 +57,11 @@ public class MicroblogsWebUpgrade implements UpgradeStepRegistrator {
 
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
-		registry.register("0.0.1", "1.0.1", new UpgradePortletId());
+		registry.register("0.0.1", "1.0.1", new PortletIdUpgradeProcess());
 
 		// See LPS-65946
 
-		registry.register("1.0.0", "1.0.1", new UpgradePortletId());
+		registry.register("1.0.0", "1.0.1", new PortletIdUpgradeProcess());
 	}
 
 }

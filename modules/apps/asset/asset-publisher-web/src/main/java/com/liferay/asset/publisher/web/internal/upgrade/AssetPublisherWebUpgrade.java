@@ -14,8 +14,8 @@
 
 package com.liferay.asset.publisher.web.internal.upgrade;
 
-import com.liferay.asset.publisher.web.internal.upgrade.v1_0_0.UpgradePortletId;
-import com.liferay.asset.publisher.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
+import com.liferay.asset.publisher.web.internal.upgrade.v1_0_0.PortletIdUpgradeProcess;
+import com.liferay.asset.publisher.web.internal.upgrade.v1_0_0.PortletPreferencesUpgradeProcess;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLinkLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -36,30 +36,30 @@ public class AssetPublisherWebUpgrade implements UpgradeStepRegistrator {
 		registry.register("0.0.0", "1.0.4", new DummyUpgradeStep());
 
 		registry.register(
-			"0.0.1", "1.0.0", new UpgradePortletId(),
-			new UpgradePortletPreferences(
+			"0.0.1", "1.0.0", new PortletIdUpgradeProcess(),
+			new PortletPreferencesUpgradeProcess(
 				_ddmStructureLocalService, _ddmStructureLinkLocalService,
 				_saxReader));
 
 		registry.register(
 			"1.0.0", "1.0.1",
 			new com.liferay.asset.publisher.web.internal.upgrade.v1_0_1.
-				UpgradePortletPreferences(_saxReader));
+				PortletPreferencesUpgradeProcess(_saxReader));
 
 		registry.register(
 			"1.0.1", "1.0.2",
 			new com.liferay.asset.publisher.web.internal.upgrade.v1_0_2.
-				UpgradePortletPreferences());
+				PortletPreferencesUpgradeProcess());
 
 		registry.register(
 			"1.0.2", "1.0.3",
 			new com.liferay.asset.publisher.web.internal.upgrade.v1_0_3.
-				UpgradePortletPreferences());
+				PortletPreferencesUpgradeProcess());
 
 		registry.register(
 			"1.0.3", "1.0.4",
 			new com.liferay.asset.publisher.web.internal.upgrade.v1_0_4.
-				UpgradePortletPreferences());
+				PortletPreferencesUpgradeProcess());
 	}
 
 	@Reference

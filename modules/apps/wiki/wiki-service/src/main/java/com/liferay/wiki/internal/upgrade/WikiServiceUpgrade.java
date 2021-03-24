@@ -22,11 +22,11 @@ import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.subscription.service.SubscriptionLocalService;
+import com.liferay.wiki.internal.upgrade.v1_0_0.CompanyIdUpgradeProcess;
+import com.liferay.wiki.internal.upgrade.v1_0_0.PortletPreferencesUpgradeProcess;
 import com.liferay.wiki.internal.upgrade.v1_0_0.SchemaUpgradeProcess;
-import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeCompanyId;
 import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeKernelPackage;
 import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradeLastPublishDate;
-import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradePortletPreferences;
 import com.liferay.wiki.internal.upgrade.v1_0_0.UpgradePortletSettings;
 import com.liferay.wiki.internal.upgrade.v1_0_0.WikiPageResourceUpgradeProcess;
 import com.liferay.wiki.internal.upgrade.v1_0_0.WikiPageUpgradeProcess;
@@ -52,8 +52,9 @@ public class WikiServiceUpgrade implements UpgradeStepRegistrator {
 		registry.register("0.0.2", "0.0.3", new UpgradeKernelPackage());
 
 		registry.register(
-			"0.0.3", "1.0.0", new UpgradeCompanyId(),
-			new UpgradeLastPublishDate(), new UpgradePortletPreferences(),
+			"0.0.3", "1.0.0", new CompanyIdUpgradeProcess(),
+			new PortletPreferencesUpgradeProcess(),
+			new UpgradeLastPublishDate(),
 			new UpgradePortletSettings(_settingsFactory),
 			new WikiPageResourceUpgradeProcess(), new WikiPageUpgradeProcess());
 

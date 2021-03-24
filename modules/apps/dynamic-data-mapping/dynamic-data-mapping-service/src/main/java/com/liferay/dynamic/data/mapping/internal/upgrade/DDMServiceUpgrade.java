@@ -23,8 +23,8 @@ import com.liferay.document.library.kernel.service.DLFolderLocalService;
 import com.liferay.document.library.kernel.store.Store;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderTracker;
 import com.liferay.dynamic.data.mapping.data.provider.settings.DDMDataProviderSettingsProvider;
+import com.liferay.dynamic.data.mapping.internal.upgrade.v1_0_0.CompanyIdUpgradeProcess;
 import com.liferay.dynamic.data.mapping.internal.upgrade.v1_0_0.SchemaUpgradeProcess;
-import com.liferay.dynamic.data.mapping.internal.upgrade.v1_0_0.UpgradeCompanyId;
 import com.liferay.dynamic.data.mapping.internal.upgrade.v1_0_0.UpgradeKernelPackage;
 import com.liferay.dynamic.data.mapping.internal.upgrade.v1_0_0.UpgradeLastPublishDate;
 import com.liferay.dynamic.data.mapping.internal.upgrade.v1_0_1.ResourcePermissionUpgradeProcess;
@@ -120,7 +120,7 @@ public class DDMServiceUpgrade implements UpgradeStepRegistrator {
 		registry.register("0.0.2", "0.0.3", new UpgradeKernelPackage());
 
 		registry.register(
-			"0.0.3", "1.0.0", new UpgradeCompanyId(),
+			"0.0.3", "1.0.0", new CompanyIdUpgradeProcess(),
 			new com.liferay.dynamic.data.mapping.internal.upgrade.v1_0_0.
 				DynamicDataMappingUpgradeProcess(
 					_assetEntryLocalService, _classNameLocalService, _ddm,
@@ -342,7 +342,7 @@ public class DDMServiceUpgrade implements UpgradeStepRegistrator {
 		registry.register(
 			"3.6.0", "3.7.0",
 			new com.liferay.dynamic.data.mapping.internal.upgrade.v3_7_0.
-				UpgradeDDMDataProviderInstance());
+				DDMDataProviderInstanceUpgradeProcess());
 
 		registry.register(
 			"3.7.0", "3.7.1",

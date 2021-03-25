@@ -44,15 +44,13 @@ String publishGadgetRedirect = StringPool.BLANK;
 if (Validator.isNotNull(editorGadgetURL)) {
 	editorGadget = true;
 
-	PortletURL publishGadgetRedirectURL = PortletURLBuilder.createRenderURL(
+	publishGadgetRedirect = PortletURLBuilder.createRenderURL(
 		renderResponse
 	).setMVCPath(
 		"/editor/publish_gadget_redirect.jsp"
 	).setWindowState(
 		LiferayWindowState.POP_UP
-	).build();
-
-	publishGadgetRedirect = publishGadgetRedirectURL.toString();
+	).buildString();
 }
 %>
 

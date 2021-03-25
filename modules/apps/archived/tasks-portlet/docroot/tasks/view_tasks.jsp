@@ -48,22 +48,22 @@ int status = TasksEntryConstants.STATUS_ALL;
 if (tabs2.equals("open")) {
 	status = TasksEntryConstants.STATUS_OPEN;
 }
-
-PortletURL portletURL = PortletURLBuilder.createRenderURL(
-	renderResponse
-).setParameter(
-	"tabs1", tabs1
-).setParameter(
-	"tabs2", tabs2
-).setWindowState(
-	WindowState.NORMAL
-).build();
 %>
 
 <liferay-ui:search-container
 	emptyResultsMessage="no-tasks-were-found"
 	headerNames="description,due, "
-	iteratorURL="<%= portletURL %>"
+	iteratorURL='<%=
+		PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"tabs1", tabs1
+		).setParameter(
+			"tabs2", tabs2
+		).setWindowState(
+			WindowState.NORMAL
+		).build()
+	%>'
 	total="<%= TasksEntryLocalServiceUtil.getTasksEntriesCount(groupId, userId, 0, assigneeUserId, status, assetTagIds, new long[0]) %>"
 >
 	<liferay-ui:search-container-results
@@ -81,7 +81,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 		String rowHREF = null;
 
 		if (TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE)) {
-			PortletURL rowURL = PortletURLBuilder.createRenderURL(
+			rowHREF = PortletURLBuilder.createRenderURL(
 				renderResponse
 			).setMVCPath(
 				"/tasks/view_task.jsp"
@@ -89,9 +89,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 				"tasksEntryId", tasksEntry.getTasksEntryId()
 			).setWindowState(
 				LiferayWindowState.POP_UP
-			).build();
-
-			rowHREF = rowURL.toString();
+			).buildString();
 		}
 		%>
 

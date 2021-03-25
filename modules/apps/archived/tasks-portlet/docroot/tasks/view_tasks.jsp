@@ -49,21 +49,22 @@ if (tabs2.equals("open")) {
 	status = TasksEntryConstants.STATUS_OPEN;
 }
 
-PortletURL portletURL = PortletURLBuilder.createRenderURL(
-	renderResponse
-).setParameter(
-	"tabs1", tabs1
-).setParameter(
-	"tabs2", tabs2
-).setWindowState(
-	WindowState.NORMAL
-).build();
 %>
 
 <liferay-ui:search-container
 	emptyResultsMessage="no-tasks-were-found"
 	headerNames="description,due, "
-	iteratorURL="<%= portletURL %>"
+	iteratorURL="<%=
+	PortletURLBuilder.createRenderURL(
+			renderResponse
+			).setParameter(
+				"tabs1", tabs1
+			).setParameter(
+				"tabs2", tabs2
+			).setWindowState(
+				WindowState.NORMAL
+			).build() 
+			%>"
 	total="<%= TasksEntryLocalServiceUtil.getTasksEntriesCount(groupId, userId, 0, assigneeUserId, status, assetTagIds, new long[0]) %>"
 >
 	<liferay-ui:search-container-results

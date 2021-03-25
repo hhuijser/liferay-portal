@@ -58,18 +58,6 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setWindowState(
 	WindowState.NORMAL
 ).build();
-
-PortletURL taskListURL = PortletURLBuilder.createRenderURL(
-	renderResponse
-).setMVCPath(
-	"/tasks/view_tasks.jsp"
-).setParameter(
-	"tabs1", tabs1
-).setParameter(
-	"tabs2", tabs2
-).setWindowState(
-	LiferayWindowState.EXCLUSIVE
-).build();
 %>
 
 <liferay-ui:search-container
@@ -226,7 +214,23 @@ PortletURL taskListURL = PortletURLBuilder.createRenderURL(
 								%>
 
 									<portlet:actionURL name="updateTasksEntryStatus" var="statusURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-										<portlet:param name="redirect" value="<%= taskListURL.toString() %>" />
+										<portlet:param
+											name="redirect"
+											value='<%=
+												PortletURLBuilder.createRenderURL(
+													renderResponse
+												).setMVCPath(
+													"/tasks/view_tasks.jsp"
+												).setParameter(
+													"tabs1", tabs1
+												).setParameter(
+													"tabs2", tabs2
+												).setWindowState(
+													LiferayWindowState.EXCLUSIVE
+												).buildString()
+											%>'
+										/>
+
 										<portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" />
 										<portlet:param name="resolverUserId" value="<%= String.valueOf(user.getUserId()) %>" />
 										<portlet:param name="status" value="<%= String.valueOf(i) %>" />

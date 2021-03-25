@@ -32,8 +32,6 @@ if (Validator.isNull(redirect)) {
 KaleoFormsViewRecordsDisplayContext kaleoFormsViewRecordsDisplayContext = kaleoFormsAdminDisplayContext.getKaleoFormsViewRecordsDisplayContext();
 
 KaleoProcess kaleoProcess = kaleoFormsViewRecordsDisplayContext.getKaleoProcess();
-
-boolean hasSubmitPermission = KaleoProcessPermission.contains(permissionChecker, kaleoProcess, ActionKeys.SUBMIT);
 %>
 
 <clay:navigation-bar
@@ -142,7 +140,7 @@ boolean hasSubmitPermission = KaleoProcessPermission.contains(permissionChecker,
 				}
 				%>
 
-				<c:if test="<%= hasSubmitPermission %>">
+				<c:if test="<%= KaleoProcessPermission.contains(permissionChecker, kaleoProcess, ActionKeys.SUBMIT) %>">
 					<liferay-ui:search-container-column-status
 						name="status"
 						status="<%= recordVersion.getStatus() %>"

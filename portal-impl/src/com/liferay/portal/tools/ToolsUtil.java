@@ -699,6 +699,10 @@ public class ToolsUtil {
 	private static String _stripFullyQualifiedClassNames(
 		String imports, String afterImportsContent, String packagePath) {
 
+		if (Validator.isNull(packagePath)) {
+			return afterImportsContent;
+		}
+
 		Pattern pattern1 = Pattern.compile(
 			StringBundler.concat(
 				"\n(.*)(",

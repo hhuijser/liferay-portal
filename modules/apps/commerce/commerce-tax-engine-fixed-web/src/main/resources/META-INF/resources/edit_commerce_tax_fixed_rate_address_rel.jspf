@@ -62,9 +62,7 @@ if (commerceTaxFixedRateAddressRel != null) {
 		<aui:select label="country" name="countryId" showEmptyOption="<%= true %>">
 
 			<%
-			List<Country> countries = commerceTaxFixedRateAddressRelsDisplayContext.getCountries();
-
-			for (Country country : countries) {
+			for (Country country : commerceTaxFixedRateAddressRelsDisplayContext.getCountries()) {
 			%>
 
 				<aui:option label="<%= country.getTitle(languageId) %>" selected="<%= (commerceTaxFixedRateAddressRel != null) && (commerceTaxFixedRateAddressRel.getCountryId() == country.getCountryId()) %>" value="<%= country.getCountryId() %>" />
@@ -80,9 +78,7 @@ if (commerceTaxFixedRateAddressRel != null) {
 		<aui:select label="region" name="regionId" showEmptyOption="<%= true %>">
 
 			<%
-			List<Region> regions = commerceTaxFixedRateAddressRelsDisplayContext.getRegions();
-
-			for (Region region : regions) {
+			for (Region region : commerceTaxFixedRateAddressRelsDisplayContext.getRegions()) {
 			%>
 
 				<aui:option label="<%= region.getName() %>" selected="<%= (commerceTaxFixedRateAddressRel != null) && (commerceTaxFixedRateAddressRel.getRegionId() == region.getRegionId()) %>" value="<%= region.getRegionId() %>" />

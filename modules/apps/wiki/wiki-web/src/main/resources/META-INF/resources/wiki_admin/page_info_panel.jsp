@@ -244,9 +244,7 @@ if (wikiPageInfoPanelDisplayContext.isSinglePageSelection()) {
 				<ul class="list-group sidebar-list-group">
 
 					<%
-					List<WikiPage> pages = WikiPageLocalServiceUtil.getPages(wikiPage.getNodeId(), wikiPage.getTitle(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new PageVersionComparator());
-
-					for (WikiPage curPage : pages) {
+					for (WikiPage curPage : WikiPageLocalServiceUtil.getPages(wikiPage.getNodeId(), wikiPage.getTitle(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new PageVersionComparator())) {
 					%>
 
 						<li class="list-group-item list-group-item-flex">

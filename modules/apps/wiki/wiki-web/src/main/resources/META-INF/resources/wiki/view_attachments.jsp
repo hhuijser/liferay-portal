@@ -27,9 +27,7 @@ final WikiPage wikiPage = (WikiPage)request.getAttribute(WikiWebKeys.WIKI_PAGE);
 		<clay:row>
 
 			<%
-			List<FileEntry> attachmentsFileEntries = wikiPage.getAttachmentsFileEntries();
-
-			for (FileEntry fileEntry : attachmentsFileEntries) {
+			for (FileEntry fileEntry : wikiPage.getAttachmentsFileEntries()) {
 			%>
 
 				<clay:col

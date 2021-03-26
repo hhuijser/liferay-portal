@@ -21,9 +21,7 @@ DDLRecord record = (DDLRecord)request.getAttribute(DDLWebKeys.DYNAMIC_DATA_LISTS
 
 DateSearchEntry dateSearchEntry = new DateSearchEntry();
 
-List<DDLRecordVersion> recordVersions = DDLRecordVersionServiceUtil.getRecordVersions(record.getRecordId());
-
-for (DDLRecordVersion recordVersion : recordVersions) {
+for (DDLRecordVersion recordVersion : DDLRecordVersionServiceUtil.getRecordVersions(record.getRecordId())) {
 	dateSearchEntry.setDate(recordVersion.getCreateDate());
 
 	request.setAttribute(DDLWebKeys.DYNAMIC_DATA_LISTS_RECORD_VERSION, recordVersion);

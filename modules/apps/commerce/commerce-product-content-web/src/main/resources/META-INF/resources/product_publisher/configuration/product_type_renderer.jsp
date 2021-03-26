@@ -48,9 +48,7 @@ CPPublisherConfigurationDisplayContext cpPublisherConfigurationDisplayContext = 
 					<aui:select label='<%= HtmlUtil.escape(cpType.getLabel(locale) + StringPool.SPACE + LanguageUtil.get(request, "cp-type-list-renderer-key")) %>' name='<%= "preferences--" + cpType.getName() + "--cpTypeListEntryRendererKey--" %>'>
 
 						<%
-						List<CPContentListEntryRenderer> cpContentListEntryRenderers = cpPublisherConfigurationDisplayContext.getCPContentListEntryRenderers(cpType.getName());
-
-						for (CPContentListEntryRenderer cpContentListEntryRenderer : cpContentListEntryRenderers) {
+						for (CPContentListEntryRenderer cpContentListEntryRenderer : cpPublisherConfigurationDisplayContext.getCPContentListEntryRenderers(cpType.getName())) {
 							String key = cpContentListEntryRenderer.getKey();
 						%>
 

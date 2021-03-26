@@ -92,9 +92,7 @@ Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(),
 				<dl>
 
 					<%
-					List<CPDefinitionSpecificationOptionValue> cpDefinitionSpecificationOptionValues = cpDefinition.getCPDefinitionSpecificationOptionValues();
-
-					for (CPDefinitionSpecificationOptionValue cpDefinitionSpecificationOptionValue : cpDefinitionSpecificationOptionValues) {
+					for (CPDefinitionSpecificationOptionValue cpDefinitionSpecificationOptionValue : cpDefinition.getCPDefinitionSpecificationOptionValues()) {
 						CPSpecificationOption cpSpecificationOption = cpDefinitionSpecificationOptionValue.getCPSpecificationOption();
 					%>
 
@@ -115,9 +113,7 @@ Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(),
 			<liferay-ui:section>
 
 				<%
-				List<CPInstance> cpInstances = cpDefinition.getCPInstances();
-
-				for (CPInstance cpInstance : cpInstances) {
+				for (CPInstance cpInstance : cpDefinition.getCPInstances()) {
 				%>
 
 					<dt class="h5">

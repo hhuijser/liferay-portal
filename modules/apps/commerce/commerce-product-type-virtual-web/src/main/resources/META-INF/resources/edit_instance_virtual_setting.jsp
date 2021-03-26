@@ -70,9 +70,7 @@ boolean override = BeanParamUtil.getBoolean(cpDefinitionVirtualSetting, request,
 				<%
 				boolean durationDisabled = true;
 
-				CPSubscriptionInfo cpSubscriptionInfo = cpInstance.getCPSubscriptionInfo();
-
-				if (cpSubscriptionInfo == null) {
+				if (cpInstance.getCPSubscriptionInfo() == null) {
 					durationDisabled = false;
 				}
 

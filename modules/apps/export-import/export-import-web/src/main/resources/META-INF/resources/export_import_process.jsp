@@ -99,9 +99,7 @@ if (Validator.isNotNull(backURL)) {
 				</span>
 
 				<%
-				List<FileEntry> attachmentsFileEntries = curBackgroundTask.getAttachmentsFileEntries();
-
-				for (FileEntry fileEntry : attachmentsFileEntries) {
+				for (FileEntry fileEntry : curBackgroundTask.getAttachmentsFileEntries()) {
 				%>
 
 					<liferay-ui:icon

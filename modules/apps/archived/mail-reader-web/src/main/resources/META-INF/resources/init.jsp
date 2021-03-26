@@ -51,8 +51,6 @@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %>
 
-<%@ page import="java.io.File" %>
-
 <%@ page import="java.text.Format" %>
 
 <%@ page import="java.util.ArrayList" %><%@

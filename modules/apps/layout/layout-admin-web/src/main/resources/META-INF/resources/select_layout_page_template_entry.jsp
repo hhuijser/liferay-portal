@@ -51,9 +51,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-template"));
 						<ul class="nav nav-stacked">
 
 							<%
-							List<LayoutPageTemplateCollection> layoutPageTemplateCollections = LayoutPageTemplateCollectionServiceUtil.getLayoutPageTemplateCollections(scopeGroupId);
-
-							for (LayoutPageTemplateCollection layoutPageTemplateCollection : layoutPageTemplateCollections) {
+							for (LayoutPageTemplateCollection layoutPageTemplateCollection : LayoutPageTemplateCollectionServiceUtil.getLayoutPageTemplateCollections(scopeGroupId)) {
 								int layoutPageTemplateEntriesCount = LayoutPageTemplateEntryServiceUtil.getLayoutPageTemplateEntriesCount(themeDisplay.getScopeGroupId(), layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(), WorkflowConstants.STATUS_APPROVED);
 							%>
 

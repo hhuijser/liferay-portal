@@ -48,9 +48,7 @@ CPSearchResultsDisplayContext cpSearchResultsDisplayContext = (CPSearchResultsDi
 					<aui:select label='<%= cpType.getLabel(locale) + StringPool.SPACE + LanguageUtil.get(request, "cp-type-list-entry-renderer-key") %>' name='<%= "preferences--" + cpType.getName() + "--cpTypeListEntryRendererKey--" %>'>
 
 						<%
-						List<CPContentListEntryRenderer> cpContentListEntryRenderers = cpSearchResultsDisplayContext.getCPContentListEntryRenderers(cpType.getName());
-
-						for (CPContentListEntryRenderer cpContentListEntryRenderer : cpContentListEntryRenderers) {
+						for (CPContentListEntryRenderer cpContentListEntryRenderer : cpSearchResultsDisplayContext.getCPContentListEntryRenderers(cpType.getName())) {
 							String key = cpContentListEntryRenderer.getKey();
 						%>
 

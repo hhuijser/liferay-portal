@@ -15,9 +15,7 @@
 --%>
 
 <%
-List<Folder> folders = FolderLocalServiceUtil.getFolders(accountId);
-
-for (Folder curFolder : folders) {
+for (Folder curFolder : FolderLocalServiceUtil.getFolders(accountId)) {
 %>
 
 	<aui:nav-item cssClass="move-messages" data-folderId="<%= Long.toString(curFolder.getFolderId()) %>" label="<%= curFolder.getDisplayName() %>" />

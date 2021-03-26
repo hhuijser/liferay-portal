@@ -143,9 +143,7 @@ com.liferay.petra.string.StringBundler pageTopSB = OutputTag.getDataSB(request, 
 boolean portletHubRequired = false;
 
 for (Portlet portlet : portlets) {
-	List<PortletDependency> portletDependencies = portlet.getPortletDependencies();
-
-	for (PortletDependency portletDependency : portletDependencies) {
+	for (PortletDependency portletDependency : portlet.getPortletDependencies()) {
 		if (Objects.equals(portletDependency.getName(), "PortletHub") && Objects.equals(portletDependency.getScope(), "javax.portlet")) {
 			portletHubRequired = true;
 

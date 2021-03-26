@@ -85,9 +85,7 @@ WikiPageDisplay pageDisplay = WikiPageLocalServiceUtil.getPageDisplay(
 		<clay:row>
 
 			<%
-			List<FileEntry> attachmentsFileEntries = wikiPage.getAttachmentsFileEntries();
-
-			for (FileEntry fileEntry : attachmentsFileEntries) {
+			for (FileEntry fileEntry : wikiPage.getAttachmentsFileEntries()) {
 			%>
 
 				<clay:col

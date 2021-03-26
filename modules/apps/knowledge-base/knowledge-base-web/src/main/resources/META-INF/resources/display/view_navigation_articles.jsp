@@ -26,9 +26,7 @@ int level = GetterUtil.getInteger(request.getAttribute("view_navigation_articles
 
 KBArticleURLHelper kbArticleURLHelper = (KBArticleURLHelper)request.getAttribute("view_navigation_articles.jsp-kbArticleURLHelper");
 
-List<KBArticle> childKBArticles = kbNavigationDisplayContext.getChildKBArticles(themeDisplay.getScopeGroupId(), parentResourcePrimKey, level);
-
-for (KBArticle childKBArticle : childKBArticles) {
+for (KBArticle childKBArticle : kbNavigationDisplayContext.getChildKBArticles(themeDisplay.getScopeGroupId(), parentResourcePrimKey, level)) {
 %>
 
 	<ul>

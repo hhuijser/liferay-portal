@@ -81,9 +81,7 @@ if ((commercePriceList != null) && (commercePriceList.getExpirationDate() != nul
 				<aui:select label="currency" name="commerceCurrencyId" required="<%= true %>" showEmptyOption="<%= true %>">
 
 					<%
-					List<CommerceCurrency> commerceCurrencies = commercePriceListDisplayContext.getCommerceCurrencies();
-
-					for (CommerceCurrency commerceCurrency : commerceCurrencies) {
+					for (CommerceCurrency commerceCurrency : commercePriceListDisplayContext.getCommerceCurrencies()) {
 					%>
 
 						<aui:option label="<%= HtmlUtil.escape(commerceCurrency.getCode()) %>" selected="<%= (commercePriceList != null) && (commercePriceList.getCommerceCurrencyId() == commerceCurrency.getCommerceCurrencyId()) %>" value="<%= commerceCurrency.getCommerceCurrencyId() %>" />

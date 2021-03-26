@@ -88,9 +88,7 @@ else {
 				<aui:option label="<%= ReportDataSourceType.PORTAL.getValue() %>" selected="<%= sourceId == 0 %>" value="<%= 0 %>" />
 
 				<%
-				List<Source> sources = SourceServiceUtil.getSources(themeDisplay.getSiteGroupId(), null, null, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-				for (Source source : sources) {
+				for (Source source : SourceServiceUtil.getSources(themeDisplay.getSiteGroupId(), null, null, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 				%>
 
 					<aui:option label="<%= HtmlUtil.escape(source.getName(locale)) %>" selected="<%= sourceId == source.getSourceId() %>" value="<%= source.getSourceId() %>" />

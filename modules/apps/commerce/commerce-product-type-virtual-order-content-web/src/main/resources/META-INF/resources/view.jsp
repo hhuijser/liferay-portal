@@ -61,11 +61,9 @@ CommerceVirtualOrderItemContentDisplayContext commerceVirtualOrderItemContentDis
 
 							String thumbnailSrc = commerceVirtualOrderItemContentDisplayContext.getCommerceOrderItemThumbnailSrc(commerceOrderItem);
 
-							List<KeyValuePair> keyValuePairs = commerceVirtualOrderItemContentDisplayContext.getKeyValuePairs(commerceOrderItem.getCPDefinitionId(), commerceOrderItem.getJson(), locale);
-
 							StringJoiner stringJoiner = new StringJoiner(StringPool.COMMA);
 
-							for (KeyValuePair keyValuePair : keyValuePairs) {
+							for (KeyValuePair keyValuePair : commerceVirtualOrderItemContentDisplayContext.getKeyValuePairs(commerceOrderItem.getCPDefinitionId(), commerceOrderItem.getJson(), locale)) {
 								stringJoiner.add(keyValuePair.getValue());
 							}
 							%>

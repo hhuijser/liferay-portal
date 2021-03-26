@@ -173,9 +173,7 @@ else {
 
 						<%
 						try {
-							List<DDMStructure> ddmStructures = fileEntryType.getDDMStructures();
-
-							for (DDMStructure ddmStructure : ddmStructures) {
+							for (DDMStructure ddmStructure : fileEntryType.getDDMStructures()) {
 								DDMFormValues ddmFormValues = null;
 
 								try {

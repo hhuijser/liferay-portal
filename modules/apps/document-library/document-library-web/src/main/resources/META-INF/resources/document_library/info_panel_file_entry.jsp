@@ -434,9 +434,7 @@ long assetClassPK = DLAssetHelperUtil.getAssetClassPK(fileEntry, fileVersion);
 
 					<%
 					try {
-						List<DDMStructure> ddmStructures = dlViewFileVersionDisplayContext.getDDMStructures();
-
-						for (DDMStructure ddmStructure : ddmStructures) {
+						for (DDMStructure ddmStructure : dlViewFileVersionDisplayContext.getDDMStructures()) {
 							DDMFormValues ddmFormValues = null;
 
 							try {

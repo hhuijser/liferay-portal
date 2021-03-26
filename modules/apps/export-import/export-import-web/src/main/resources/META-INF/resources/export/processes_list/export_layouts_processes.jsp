@@ -139,9 +139,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 							</span>
 
 							<%
-							List<FileEntry> attachmentsFileEntries = backgroundTask.getAttachmentsFileEntries();
-
-							for (FileEntry fileEntry : attachmentsFileEntries) {
+							for (FileEntry fileEntry : backgroundTask.getAttachmentsFileEntries()) {
 							%>
 
 								<liferay-ui:icon
@@ -277,9 +275,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 					>
 
 						<%
-						List<FileEntry> attachmentsFileEntries = backgroundTask.getAttachmentsFileEntries();
-
-						for (FileEntry fileEntry : attachmentsFileEntries) {
+						for (FileEntry fileEntry : backgroundTask.getAttachmentsFileEntries()) {
 						%>
 
 							<%

@@ -38,7 +38,6 @@ page import="com.liferay.commerce.product.model.CPDefinitionSpecificationOptionV
 page import="com.liferay.commerce.product.model.CPInstance" %><%@
 page import="com.liferay.commerce.product.model.CPOptionCategory" %><%@
 page import="com.liferay.commerce.product.model.CPSpecificationOption" %><%@
-page import="com.liferay.commerce.product.model.CPSubscriptionInfo" %><%@
 page import="com.liferay.commerce.product.type.virtual.exception.CPDefinitionVirtualSettingException" %><%@
 page import="com.liferay.commerce.product.type.virtual.exception.CPDefinitionVirtualSettingFileEntryIdException" %><%@
 page import="com.liferay.commerce.product.type.virtual.exception.CPDefinitionVirtualSettingSampleException" %><%@

@@ -50,9 +50,7 @@
 		Map<String, Map<String, Long>> deletions = new HashMap<>();
 
 		if (portletIds.isEmpty()) {
-			List<Portlet> dataSiteLevelPortlets = ExportImportHelperUtil.getDataSiteLevelPortlets(company.getCompanyId(), false);
-
-			for (Portlet dataSiteLevelPortlet : dataSiteLevelPortlets) {
+			for (Portlet dataSiteLevelPortlet : ExportImportHelperUtil.getDataSiteLevelPortlets(company.getCompanyId(), false)) {
 				portletIds.add(dataSiteLevelPortlet.getPortletId());
 			}
 		}
@@ -70,10 +68,8 @@
 
 			PortletDataHandlerControl[] metadataControls = portletDataHandler.getExportMetadataControls();
 
-			PortletDataHandlerControl[] stagingControls = portletDataHandler.getStagingControls();
-
 			if (!type.equals(Constants.EXPORT) && liveGroup.isStagedPortlet(portlet.getRootPortletId())) {
-				exportControls = stagingControls;
+				exportControls = portletDataHandler.getStagingControls();
 			}
 
 			if (ArrayUtil.isEmpty(exportControls) && ArrayUtil.isEmpty(metadataControls)) {

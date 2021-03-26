@@ -128,8 +128,8 @@ for (int i = 0; i < results.size(); i++) {
 	String curPortletName = permissionDisplay.getPortletName();
 	String curPortletLabel = permissionDisplay.getPortletLabel();
 	String curModelLabel = permissionDisplay.getModelLabel();
+
 	String actionId = permissionDisplay.getActionId();
-	String actionLabel = permissionDisplay.getActionLabel();
 
 	ResultRow row = new ResultRow(new Object[] {permission, role}, actionId, i);
 
@@ -212,7 +212,7 @@ for (int i = 0; i < results.size(); i++) {
 	}
 
 	sb.append("</a>: <strong>");
-	sb.append(actionLabel);
+	sb.append(permissionDisplay.getActionLabel());
 	sb.append("</strong>");
 
 	row.addText(sb.toString());

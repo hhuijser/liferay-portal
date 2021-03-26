@@ -136,9 +136,7 @@ long organizationGroupId = organization.getGroupId();
 	<c:if test="<%= organization.isParentable() %>">
 
 		<%
-		String[] childrenTypes = organization.getChildrenTypes();
-
-		for (String childrenType : childrenTypes) {
+		for (String childrenType : organization.getChildrenTypes()) {
 		%>
 
 			<c:if test="<%= OrganizationPermissionUtil.contains(permissionChecker, organization, ActionKeys.ADD_ORGANIZATION) %>">

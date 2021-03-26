@@ -26,9 +26,7 @@ for (String servletContextName : ServletContextPool.keySet()) {
 
 	PortletApp portletApp = PortletLocalServiceUtil.getPortletApp(servletContextName);
 
-	List<Portlet> portlets = portletApp.getPortlets();
-
-	for (Portlet portlet : portlets) {
+	for (Portlet portlet : portletApp.getPortlets()) {
 		PortletConfig portletConfig = PortletConfigFactoryUtil.create(portlet, servletContext);
 
 		String invokerPortletName = portletConfig.getInitParameter(InvokerPortlet.INIT_INVOKER_PORTLET_NAME);

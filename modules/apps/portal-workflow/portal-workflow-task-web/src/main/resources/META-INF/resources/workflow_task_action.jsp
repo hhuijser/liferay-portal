@@ -45,9 +45,7 @@ PortletURL redirectURL = PortletURLBuilder.createRenderURL(
 			<c:when test="<%= workflowTaskDisplayContext.isAssignedToUser(workflowTask) %>">
 
 				<%
-				List<String> transitionNames = workflowTaskDisplayContext.getTransitionNames(workflowTask);
-
-				for (String transitionName : transitionNames) {
+				for (String transitionName : workflowTaskDisplayContext.getTransitionNames(workflowTask)) {
 					String message = workflowTaskDisplayContext.getTransitionMessage(transitionName);
 				%>
 
@@ -135,9 +133,7 @@ PortletURL redirectURL = PortletURLBuilder.createRenderURL(
 	<c:if test="<%= !workflowTask.isCompleted() && workflowTaskDisplayContext.isAssignedToUser(workflowTask) %>">
 
 		<%
-		List<String> transitionNames = workflowTaskDisplayContext.getTransitionNames(workflowTask);
-
-		for (String transitionName : transitionNames) {
+		for (String transitionName : workflowTaskDisplayContext.getTransitionNames(workflowTask)) {
 		%>
 
 			Liferay.delegateClick(

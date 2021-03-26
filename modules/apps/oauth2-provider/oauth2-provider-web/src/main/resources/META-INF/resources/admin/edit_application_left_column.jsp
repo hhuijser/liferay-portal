@@ -264,9 +264,7 @@ OAuth2Application oAuth2Application = oAuth2AdminPortletDisplayContext.getOAuth2
 				oAuth2ApplicationFeaturesList = oAuth2Application.getFeaturesList();
 			}
 
-			String[] oAuth2Features = oAuth2AdminPortletDisplayContext.getOAuth2Features(portletPreferences);
-
-			for (String oAuth2Feature : oAuth2Features) {
+			for (String oAuth2Feature : oAuth2AdminPortletDisplayContext.getOAuth2Features(portletPreferences)) {
 				boolean checked = false;
 
 				if ((oAuth2Application != null) && oAuth2ApplicationFeaturesList.contains(oAuth2Feature)) {

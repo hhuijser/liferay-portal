@@ -76,9 +76,7 @@ if (commerceNotificationTemplate != null) {
 					<aui:select name="type" onChange='<%= liferayPortletResponse.getNamespace() + "selectType();" %>' showEmptyOption="<%= true %>">
 
 						<%
-						List<CommerceNotificationType> commerceNotificationTypes = commerceNotificationTemplatesDisplayContext.getCommerceNotificationTypes();
-
-						for (CommerceNotificationType curCommerceNotificationType : commerceNotificationTypes) {
+						for (CommerceNotificationType curCommerceNotificationType : commerceNotificationTemplatesDisplayContext.getCommerceNotificationTypes()) {
 							String commerceNotificationTypeKey = curCommerceNotificationType.getKey();
 						%>
 

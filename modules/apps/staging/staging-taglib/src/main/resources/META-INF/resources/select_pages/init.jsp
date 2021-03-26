@@ -46,9 +46,7 @@ if (exportImportConfiguration != null) {
 
 	parameterMap = (Map<String, String[]>)settingsMap.get("parameterMap");
 
-	int type = exportImportConfiguration.getType();
-
-	if (type == ExportImportConfigurationConstants.TYPE_PUBLISH_LAYOUT_REMOTE) {
+	if (exportImportConfiguration.getType() == ExportImportConfigurationConstants.TYPE_PUBLISH_LAYOUT_REMOTE) {
 		Map<Long, Boolean> layoutIdMap = (Map<Long, Boolean>)settingsMap.get("layoutIdMap");
 
 		selectedLayoutIdsArray = ExportImportHelperUtil.getLayoutIds(layoutIdMap);

@@ -96,9 +96,7 @@ else {
 			>
 
 				<%
-				List<FileEntry> attachmentsFileEntries = backgroundTask.getAttachmentsFileEntries();
-
-				for (FileEntry fileEntry : attachmentsFileEntries) {
+				for (FileEntry fileEntry : backgroundTask.getAttachmentsFileEntries()) {
 					Map<String, Object> data = HashMapBuilder.<String, Object>put(
 						"senna-off", "true"
 					).build();

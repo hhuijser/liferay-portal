@@ -71,9 +71,7 @@ long regionId = commerceAccountAddressAdminDisplayContext.getRegionId();
 						<aui:select label="country" name="countryId" showEmptyOption="<%= true %>">
 
 							<%
-							List<Country> countries = commerceAccountAddressAdminDisplayContext.getCountries();
-
-							for (Country country : countries) {
+							for (Country country : commerceAccountAddressAdminDisplayContext.getCountries()) {
 							%>
 
 								<aui:option label="<%= country.getTitle(locale) %>" selected="<%= (commerceAddress != null) && (commerceAddress.getCountryId() == country.getCountryId()) %>" value="<%= country.getCountryId() %>" />
@@ -87,9 +85,7 @@ long regionId = commerceAccountAddressAdminDisplayContext.getRegionId();
 						<aui:select label="region" name="regionId" showEmptyOption="<%= true %>">
 
 							<%
-							List<Region> regions = commerceAccountAddressAdminDisplayContext.getRegions();
-
-							for (Region region : regions) {
+							for (Region region : commerceAccountAddressAdminDisplayContext.getRegions()) {
 							%>
 
 								<aui:option label="<%= region.getName() %>" selected="<%= (commerceAddress != null) && (commerceAddress.getRegionId() == region.getRegionId()) %>" value="<%= region.getRegionId() %>" />

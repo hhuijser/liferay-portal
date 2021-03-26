@@ -22,14 +22,13 @@ CommerceContext commerceContext = (CommerceContext)request.getAttribute(Commerce
 BaseAddressCheckoutStepDisplayContext baseAddressCheckoutStepDisplayContext = (BaseAddressCheckoutStepDisplayContext)request.getAttribute(CommerceCheckoutWebKeys.COMMERCE_CHECKOUT_STEP_DISPLAY_CONTEXT);
 
 List<CommerceAddress> commerceAddresses = baseAddressCheckoutStepDisplayContext.getCommerceAddresses();
-long defaultCommerceAddressId = baseAddressCheckoutStepDisplayContext.getDefaultCommerceAddressId();
 
 String paramName = baseAddressCheckoutStepDisplayContext.getParamName();
 
 long commerceAddressId = BeanParamUtil.getLong(baseAddressCheckoutStepDisplayContext.getCommerceOrder(), request, paramName);
 
 if (commerceAddressId == 0) {
-	commerceAddressId = defaultCommerceAddressId;
+	commerceAddressId = baseAddressCheckoutStepDisplayContext.getDefaultCommerceAddressId();
 }
 
 String selectLabel = "choose-" + baseAddressCheckoutStepDisplayContext.getTitle();

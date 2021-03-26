@@ -77,9 +77,7 @@ boolean shippable = BeanParamUtil.getBoolean(cpDefinition, request, "shippable",
 						<aui:select label="inventory-engine" name="CPDefinitionInventoryEngine">
 
 							<%
-							List<CPDefinitionInventoryEngine> cpDefinitionInventoryEngines = cpDefinitionConfigurationDisplayContext.getCPDefinitionInventoryEngines();
-
-							for (CPDefinitionInventoryEngine cpDefinitionInventoryEngine : cpDefinitionInventoryEngines) {
+							for (CPDefinitionInventoryEngine cpDefinitionInventoryEngine : cpDefinitionConfigurationDisplayContext.getCPDefinitionInventoryEngines()) {
 								String cpDefinitionInventoryEngineName = cpDefinitionInventoryEngine.getKey();
 							%>
 
@@ -94,9 +92,7 @@ boolean shippable = BeanParamUtil.getBoolean(cpDefinition, request, "shippable",
 						<aui:select label="availability-estimate" name="commerceAvailabilityEstimateId" showEmptyOption="<%= true %>">
 
 							<%
-							List<CommerceAvailabilityEstimate> commerceAvailabilityEstimates = cpDefinitionConfigurationDisplayContext.getCommerceAvailabilityEstimates();
-
-							for (CommerceAvailabilityEstimate commerceAvailabilityEstimate : commerceAvailabilityEstimates) {
+							for (CommerceAvailabilityEstimate commerceAvailabilityEstimate : cpDefinitionConfigurationDisplayContext.getCommerceAvailabilityEstimates()) {
 							%>
 
 								<aui:option label="<%= commerceAvailabilityEstimate.getTitle(languageId) %>" selected="<%= (cpdAvailabilityEstimate != null) && (commerceAvailabilityEstimate.getCommerceAvailabilityEstimateId() == cpdAvailabilityEstimate.getCommerceAvailabilityEstimateId()) %>" value="<%= commerceAvailabilityEstimate.getCommerceAvailabilityEstimateId() %>" />
@@ -124,9 +120,7 @@ boolean shippable = BeanParamUtil.getBoolean(cpDefinition, request, "shippable",
 							<aui:option selected="<%= cpDefinitionInventory == null %>" value="" />
 
 							<%
-							List<CommerceLowStockActivity> commerceLowStockActivities = cpDefinitionConfigurationDisplayContext.getCommerceLowStockActivities();
-
-							for (CommerceLowStockActivity commerceLowStockActivity : commerceLowStockActivities) {
+							for (CommerceLowStockActivity commerceLowStockActivity : cpDefinitionConfigurationDisplayContext.getCommerceLowStockActivities()) {
 								String commerceLowStockActivityName = commerceLowStockActivity.getKey();
 							%>
 

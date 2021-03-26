@@ -43,8 +43,7 @@ page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %>
 
 <%@ page import="java.util.Calendar" %><%@
-page import="java.util.Date" %><%@
-page import="java.util.List" %>
+page import="java.util.Date" %>
 
 <liferay-frontend:defineObjects />
 

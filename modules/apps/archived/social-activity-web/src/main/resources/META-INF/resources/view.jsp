@@ -68,9 +68,7 @@
 				List<String> activityDefinitionLanguageKeys = new ArrayList<String>();
 
 				for (String modelName : activitySettingsMap.keySet()) {
-					List<SocialActivityDefinition> activityDefinitions = SocialConfigurationUtil.getActivityDefinitions(modelName);
-
-					for (SocialActivityDefinition activityDefinition : activityDefinitions) {
+					for (SocialActivityDefinition activityDefinition : SocialConfigurationUtil.getActivityDefinitions(modelName)) {
 						activityDefinitionLanguageKeys.add("'" + modelName + "." + activityDefinition.getLanguageKey() + "': \"" + activityDefinition.getName(locale) + "\"");
 					}
 				}

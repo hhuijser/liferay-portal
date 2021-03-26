@@ -48,9 +48,7 @@ CPCompareContentMiniDisplayContext cpCompareContentMiniDisplayContext = (CPCompa
 					<aui:select label='<%= HtmlUtil.escape(cpType.getLabel(locale) + StringPool.SPACE + LanguageUtil.get(request, "cp-type-list-entry-renderer-key")) %>' name='<%= "preferences--" + cpType.getName() + "--cpTypeListEntryRendererKey--" %>'>
 
 						<%
-						List<CPContentListEntryRenderer> cpContentListEntryRenderers = cpCompareContentMiniDisplayContext.getCPContentListEntryRenderers(cpType.getName());
-
-						for (CPContentListEntryRenderer cpContentListEntryRenderer : cpContentListEntryRenderers) {
+						for (CPContentListEntryRenderer cpContentListEntryRenderer : cpCompareContentMiniDisplayContext.getCPContentListEntryRenderers(cpType.getName())) {
 							String key = cpContentListEntryRenderer.getKey();
 						%>
 

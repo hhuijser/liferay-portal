@@ -45,11 +45,9 @@ CommerceSubscriptionContentDisplayContext commerceSubscriptionContentDisplayCont
 
 						String thumbnailSrc = commerceSubscriptionContentDisplayContext.getCommerceSubscriptionEntryThumbnailSrc(commerceSubscriptionEntry);
 
-						List<KeyValuePair> keyValuePairs = commerceSubscriptionContentDisplayContext.getKeyValuePairs(commerceSubscriptionEntry);
-
 						StringJoiner stringJoiner = new StringJoiner(StringPool.COMMA);
 
-						for (KeyValuePair keyValuePair : keyValuePairs) {
+						for (KeyValuePair keyValuePair : commerceSubscriptionContentDisplayContext.getKeyValuePairs(commerceSubscriptionEntry)) {
 							stringJoiner.add(keyValuePair.getValue());
 						}
 						%>

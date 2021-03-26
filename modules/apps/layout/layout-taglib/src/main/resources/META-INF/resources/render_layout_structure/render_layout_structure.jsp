@@ -167,12 +167,11 @@ for (String childrenItemId : childrenItemIds) {
 
 					String templateId = themeId + LayoutTemplateConstants.CUSTOM_SEPARATOR + layoutTypePortlet.getLayoutTemplateId();
 					String templateContent = LayoutTemplateLocalServiceUtil.getContent(layoutTypePortlet.getLayoutTemplateId(), false, theme.getThemeId());
-					String langType = LayoutTemplateLocalServiceUtil.getLangType(layoutTypePortlet.getLayoutTemplateId(), false, theme.getThemeId());
 
 					if (Validator.isNotNull(templateContent)) {
 						HttpServletRequest originalServletRequest = (HttpServletRequest)request.getAttribute("ORIGINAL_HTTP_SERVLET_REQUEST");
 
-						RuntimePageUtil.processTemplate(originalServletRequest, response, new StringTemplateResource(templateId, templateContent), langType);
+						RuntimePageUtil.processTemplate(originalServletRequest, response, new StringTemplateResource(templateId, templateContent), LayoutTemplateLocalServiceUtil.getLangType(layoutTypePortlet.getLayoutTemplateId(), false, theme.getThemeId()));
 					}
 					%>
 

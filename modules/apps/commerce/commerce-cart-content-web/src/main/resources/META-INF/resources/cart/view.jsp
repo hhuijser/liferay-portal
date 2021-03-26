@@ -94,9 +94,7 @@ Map<Long, List<CommerceOrderValidatorResult>> commerceOrderValidatorResultMap = 
 
 						thumbnailSrc = commerceCartContentDisplayContext.getCommerceOrderItemThumbnailSrc(commerceOrderItem);
 
-						List<KeyValuePair> keyValuePairs = commerceCartContentDisplayContext.getKeyValuePairs(commerceOrderItem.getCPDefinitionId(), commerceOrderItem.getJson(), locale);
-
-						for (KeyValuePair keyValuePair : keyValuePairs) {
+						for (KeyValuePair keyValuePair : commerceCartContentDisplayContext.getKeyValuePairs(commerceOrderItem.getCPDefinitionId(), commerceOrderItem.getJson(), locale)) {
 							stringJoiner.add(keyValuePair.getValue());
 						}
 					}

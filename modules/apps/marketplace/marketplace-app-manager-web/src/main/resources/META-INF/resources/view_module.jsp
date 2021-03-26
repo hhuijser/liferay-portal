@@ -31,7 +31,6 @@ else {
 
 ViewModuleManagementToolbarDisplayContext viewModuleManagementToolbarDisplayContext = new ViewModuleManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse);
 
-AppDisplay appDisplay = viewModuleManagementToolbarDisplayContext.getAppDisplay();
 Bundle bundle = viewModuleManagementToolbarDisplayContext.getBundle();
 String pluginType = viewModuleManagementToolbarDisplayContext.getPluginType();
 SearchContainer<Object> searchContainer = viewModuleManagementToolbarDisplayContext.getSearchContainer();
@@ -57,7 +56,7 @@ if (Validator.isNull(app)) {
 	PortalUtil.addPortletBreadcrumbEntry(request, bundleName, null);
 }
 else {
-	MarketplaceAppManagerUtil.addPortletBreadcrumbEntry(appDisplay, bundle, request, renderResponse);
+	MarketplaceAppManagerUtil.addPortletBreadcrumbEntry(viewModuleManagementToolbarDisplayContext.getAppDisplay(), bundle, request, renderResponse);
 }
 %>
 

@@ -43,8 +43,7 @@ page import="com.liferay.wiki.model.WikiPage" %><%@
 page import="com.liferay.wiki.model.WikiPageDisplay" %><%@
 page import="com.liferay.wiki.service.WikiPageLocalServiceUtil" %>
 
-<%@ page import="java.util.List" %><%@
-page import="java.util.function.Supplier" %>
+<%@ page import="java.util.function.Supplier" %>
 
 <%@ page import="javax.portlet.PortletMode" %><%@
 page import="javax.portlet.PortletRequest" %><%@

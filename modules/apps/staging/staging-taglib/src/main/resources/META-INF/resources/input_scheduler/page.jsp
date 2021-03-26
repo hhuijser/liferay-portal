@@ -246,11 +246,9 @@
 						>
 
 							<%
-							int firstDayOfWeek = cal.getFirstDayOfWeek();
-
 							Weekday[] weekdaysArray = Weekday.values();
 
-							Collections.rotate(Arrays.asList(weekdaysArray), -firstDayOfWeek);
+							Collections.rotate(Arrays.asList(weekdaysArray), -cal.getFirstDayOfWeek());
 
 							for (Weekday weekday : weekdaysArray) {
 							%>

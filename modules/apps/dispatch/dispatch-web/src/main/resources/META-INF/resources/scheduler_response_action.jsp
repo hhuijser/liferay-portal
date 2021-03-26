@@ -23,9 +23,7 @@ SchedulerResponse schedulerResponse = (SchedulerResponse)row.getObject();
 
 SchedulerResponseDisplayContext schedulerResponseDisplayContext = (SchedulerResponseDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
-TriggerState triggerState = schedulerResponseDisplayContext.getTriggerState(schedulerResponse);
-
-String cmd = (triggerState == TriggerState.NORMAL) ? "pause" : "resume";
+String cmd = (schedulerResponseDisplayContext.getTriggerState(schedulerResponse) == TriggerState.NORMAL) ? "pause" : "resume";
 %>
 
 <liferay-ui:icon-menu

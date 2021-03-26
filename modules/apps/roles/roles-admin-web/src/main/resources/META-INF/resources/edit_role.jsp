@@ -83,9 +83,7 @@ renderResponse.setTitle((role == null) ? LanguageUtil.get(request, "new-role") :
 					<aui:select label="type" name="roleType">
 
 						<%
-						List<RoleTypeContributor> roleTypeContributors = RoleTypeContributorRetrieverUtil.getRoleTypeContributors(request);
-
-						for (RoleTypeContributor roleTypeContributor : roleTypeContributors) {
+						for (RoleTypeContributor roleTypeContributor : RoleTypeContributorRetrieverUtil.getRoleTypeContributors(request)) {
 						%>
 
 							<aui:option label="<%= roleTypeContributor.getName() %>" value="<%= roleTypeContributor.getType() %>" />

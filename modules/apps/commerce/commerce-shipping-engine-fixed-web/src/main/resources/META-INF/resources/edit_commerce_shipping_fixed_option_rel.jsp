@@ -55,9 +55,7 @@ if (commerceShippingFixedOptionRel != null) {
 					<aui:select bean="<%= commerceShippingFixedOptionRel %>" label="shipping-option" model="<%= CommerceShippingFixedOptionRel.class %>" name="commerceShippingFixedOptionId" required="<%= true %>">
 
 						<%
-						List<CommerceShippingFixedOption> commerceShippingFixedOptions = commerceShippingFixedOptionRelsDisplayContext.getCommerceShippingFixedOptions();
-
-						for (CommerceShippingFixedOption commerceShippingFixedOption : commerceShippingFixedOptions) {
+						for (CommerceShippingFixedOption commerceShippingFixedOption : commerceShippingFixedOptionRelsDisplayContext.getCommerceShippingFixedOptions()) {
 						%>
 
 							<aui:option label="<%= commerceShippingFixedOption.getName(languageId) %>" value="<%= commerceShippingFixedOption.getCommerceShippingFixedOptionId() %>" />
@@ -73,9 +71,7 @@ if (commerceShippingFixedOptionRel != null) {
 					<aui:select bean="<%= commerceShippingFixedOptionRel %>" label="warehouse" model="<%= CommerceShippingFixedOptionRel.class %>" name="commerceInventoryWarehouseId" showEmptyOption="<%= true %>">
 
 						<%
-						List<CommerceInventoryWarehouse> commerceInventoryWarehouses = commerceShippingFixedOptionRelsDisplayContext.getCommerceInventoryWarehouses();
-
-						for (CommerceInventoryWarehouse commerceInventoryWarehouse : commerceInventoryWarehouses) {
+						for (CommerceInventoryWarehouse commerceInventoryWarehouse : commerceShippingFixedOptionRelsDisplayContext.getCommerceInventoryWarehouses()) {
 						%>
 
 							<aui:option label="<%= commerceInventoryWarehouse.getName() %>" value="<%= commerceInventoryWarehouse.getCommerceInventoryWarehouseId() %>" />
@@ -93,9 +89,7 @@ if (commerceShippingFixedOptionRel != null) {
 					<aui:select bean="<%= commerceShippingFixedOptionRel %>" label="country" model="<%= CommerceShippingFixedOptionRel.class %>" name="countryId" showEmptyOption="<%= true %>">
 
 						<%
-						List<Country> countries = commerceShippingFixedOptionRelsDisplayContext.getCountries();
-
-						for (Country country : countries) {
+						for (Country country : commerceShippingFixedOptionRelsDisplayContext.getCountries()) {
 						%>
 
 							<aui:option label="<%= country.getTitle(languageId) %>" selected="<%= (commerceShippingFixedOptionRel != null) && (commerceShippingFixedOptionRel.getCountryId() == country.getCountryId()) %>" value="<%= country.getCountryId() %>" />
@@ -111,9 +105,7 @@ if (commerceShippingFixedOptionRel != null) {
 					<aui:select bean="<%= commerceShippingFixedOptionRel %>" label="region" model="<%= CommerceShippingFixedOptionRel.class %>" name="regionId" showEmptyOption="<%= true %>">
 
 						<%
-						List<Region> regions = commerceShippingFixedOptionRelsDisplayContext.getRegions();
-
-						for (Region region : regions) {
+						for (Region region : commerceShippingFixedOptionRelsDisplayContext.getRegions()) {
 						%>
 
 							<aui:option label="<%= region.getName() %>" selected="<%= (commerceShippingFixedOptionRel != null) && (commerceShippingFixedOptionRel.getRegionId() == region.getRegionId()) %>" value="<%= region.getRegionId() %>" />

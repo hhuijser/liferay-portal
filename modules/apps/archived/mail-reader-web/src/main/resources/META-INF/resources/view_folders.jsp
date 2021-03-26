@@ -32,9 +32,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			<%
 			Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
-			List<Folder> folders = mailManager.getFolders(accountId, true, true);
-
-			for (Folder folder : folders) {
+			for (Folder folder : mailManager.getFolders(accountId, true, true)) {
 				String folderIcon = "icon-folder-open";
 
 				if (folder.getFolderId() == mailAccount.getInboxFolderId()) {

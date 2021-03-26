@@ -133,9 +133,7 @@ StyleBookEntry styleBookEntry = null;
 
 Group liveGroup = StagingUtil.getLiveGroup(group);
 
-int styleBookEntriesCount = StyleBookEntryLocalServiceUtil.getStyleBookEntriesCount(liveGroup.getGroupId());
-
-boolean hasStyleBooks = styleBookEntriesCount > 0;
+boolean hasStyleBooks = StyleBookEntryLocalServiceUtil.getStyleBookEntriesCount(liveGroup.getGroupId()) > 0;
 
 if (hasStyleBooks && (selLayout.getStyleBookEntryId() > 0)) {
 	styleBookEntry = StyleBookEntryLocalServiceUtil.fetchStyleBookEntry(selLayout.getStyleBookEntryId());

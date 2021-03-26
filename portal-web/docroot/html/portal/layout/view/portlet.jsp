@@ -58,10 +58,9 @@ else {
 
 	String templateId = themeId + LayoutTemplateConstants.CUSTOM_SEPARATOR + layoutTypePortlet.getLayoutTemplateId();
 	String templateContent = LayoutTemplateLocalServiceUtil.getContent(layoutTypePortlet.getLayoutTemplateId(), false, theme.getThemeId());
-	String langType = LayoutTemplateLocalServiceUtil.getLangType(layoutTypePortlet.getLayoutTemplateId(), false, theme.getThemeId());
 
 	if (Validator.isNotNull(templateContent)) {
-		RuntimePageUtil.processTemplate(request, response, new StringTemplateResource(templateId, templateContent), langType);
+		RuntimePageUtil.processTemplate(request, response, new StringTemplateResource(templateId, templateContent), LayoutTemplateLocalServiceUtil.getLangType(layoutTypePortlet.getLayoutTemplateId(), false, theme.getThemeId()));
 	}
 }
 %>

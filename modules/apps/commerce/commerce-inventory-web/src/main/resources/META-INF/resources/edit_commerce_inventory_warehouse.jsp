@@ -44,9 +44,7 @@ CommerceInventoryWarehouseItem commerceInventoryWarehouseItem = commerceInventor
 		<aui:select label="warehouse" name="commerceInventoryWarehouseId" required="<%= true %>">
 
 			<%
-			List<CommerceInventoryWarehouse> commerceInventoryWarehouses = commerceInventoryDisplayContext.getCommerceInventoryWarehouses();
-
-			for (CommerceInventoryWarehouse commerceInventoryWarehouse : commerceInventoryWarehouses) {
+			for (CommerceInventoryWarehouse commerceInventoryWarehouse : commerceInventoryDisplayContext.getCommerceInventoryWarehouses()) {
 			%>
 
 				<aui:option label="<%= commerceInventoryWarehouse.getName() %>" value="<%= commerceInventoryWarehouse.getCommerceInventoryWarehouseId() %>" />

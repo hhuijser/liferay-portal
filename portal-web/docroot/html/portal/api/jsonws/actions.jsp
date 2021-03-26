@@ -50,9 +50,7 @@ Set<String> contextNames = JSONWebServiceActionsManagerUtil.getContextNames();
 	<%
 	Map<String, Set> jsonWebServiceClasses = new LinkedHashMap<String, Set>();
 
-	List<JSONWebServiceActionMapping> jsonWebServiceActionMappings = JSONWebServiceActionsManagerUtil.getJSONWebServiceActionMappings(contextName);
-
-	for (JSONWebServiceActionMapping jsonWebServiceActionMapping : jsonWebServiceActionMappings) {
+	for (JSONWebServiceActionMapping jsonWebServiceActionMapping : JSONWebServiceActionsManagerUtil.getJSONWebServiceActionMappings(contextName)) {
 		Class<?> actionClass = jsonWebServiceActionMapping.getActionClass();
 
 		String actionClassName = actionClass.getSimpleName();

@@ -138,15 +138,13 @@ MailManager mailManager = MailManager.getInstance(request);
 
 						int messageNumber = messagesDisplay.getStartMessageNumber();
 
-						List<Message> messages = messagesDisplay.getMessages();
-
 						String messageCssClass = "message-link";
 
 						if (mailAccount.getDraftFolderId() == folderId) {
 							messageCssClass = "draft-link";
 						}
 
-						for (Message message : messages) {
+						for (Message message : messagesDisplay.getMessages()) {
 							String address = StringPool.BLANK;
 							String date = StringPool.DASH;
 

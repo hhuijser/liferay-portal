@@ -52,9 +52,7 @@ if (wikiPage.getAttachmentsFolderId() != DLFolderConstants.DEFAULT_PARENT_FOLDER
 
 		portletFileEntriesCount = hits.getLength();
 
-		Document[] docs = hits.getDocs();
-
-		for (Document doc : docs) {
+		for (Document doc : hits.getDocs()) {
 			long fileEntryId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
 
 			FileEntry fileEntry = null;

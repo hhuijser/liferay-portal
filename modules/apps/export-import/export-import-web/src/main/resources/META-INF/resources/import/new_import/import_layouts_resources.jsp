@@ -61,9 +61,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 	<ul>
 
 		<%
-		List<Tuple> missingLayoutPrototypes = lpe.getMissingLayoutPrototypes();
-
-		for (Tuple missingLayoutPrototype : missingLayoutPrototypes) {
+		for (Tuple missingLayoutPrototype : lpe.getMissingLayoutPrototypes()) {
 			String layoutPrototypeClassName = (String)missingLayoutPrototype.getObject(0);
 			String layoutPrototypeUuid = (String)missingLayoutPrototype.getObject(1);
 			String layoutPrototypeName = (String)missingLayoutPrototype.getObject(2);

@@ -35,9 +35,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 	<td>
 
 		<%
-			if (!fileEntries.isEmpty()) {
-				FileEntry fileEntry = (FileEntry)fileEntries.get(0);
-
+			for (FileEntry fileEntry : fileEntries) {
 				String largeSrc = DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK);
 		%>
 

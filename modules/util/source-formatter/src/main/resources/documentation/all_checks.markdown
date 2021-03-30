@@ -108,6 +108,7 @@ JSONStylingCheck | [Styling](styling_checks.markdown#styling-checks) | .ipynb, .
 [JSONUtilCheck](checks/json_util_check.markdown#jsonutilcheck) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks for utilization of class `JSONUtil`. |
 [JSONValidationCheck](checks/json_validation_check.markdown#jsonvalidationcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .ipynb, .json or .npmbridgerc | Validates content of `.json` files. |
 [JSPArrowFunctionCheck](checks/jsp_arrow_function_check.markdown#jsparrowfunctioncheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks that there are no array functions. |
+JSPCoreTaglibCheck | [Styling](styling_checks.markdown#styling-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds cases where a `c:choose` or `c:if` tag can be used instead of an if-statement. |
 [JSPDefineObjectsCheck](checks/jsp_define_objects_check.markdown#jspdefineobjectscheck) | [Performance](performance_checks.markdown#performance-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks for unnesecarry duplication of code that already exists in `defineObjects`. |
 JSPEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | .jsp, .jspf, .tag, .tpl or .vm | Finds missing and unnecessary empty lines. |
 JSPExceptionOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .jsp, .jspf, .tag, .tpl or .vm | Checks the order of exceptions in `.jsp` files. |

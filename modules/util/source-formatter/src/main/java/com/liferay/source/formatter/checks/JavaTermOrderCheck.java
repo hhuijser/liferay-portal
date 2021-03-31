@@ -105,7 +105,8 @@ public class JavaTermOrderCheck extends BaseJavaTermCheck {
 		String fileName, String absolutePath, JavaClass javaClass,
 		String customSQLContent) {
 
-		List<JavaTerm> childJavaTerms = javaClass.getChildJavaTerms();
+		List<JavaTerm> childJavaTerms = new ArrayList<>(
+			javaClass.getChildJavaTerms());
 
 		Iterator<JavaTerm> iterator = childJavaTerms.iterator();
 

@@ -34,9 +34,7 @@ long selUserId = (selUser != null) ? selUser.getUserId() : 0;
 
 String screenNavigationCategoryKey = ParamUtil.getString(request, "screenNavigationCategoryKey", UserScreenNavigationEntryConstants.CATEGORY_KEY_GENERAL);
 String screenNavigationEntryKey = ParamUtil.getString(request, "screenNavigationEntryKey");
-%>
 
-<%
 PortletURL viewURL = renderResponse.createRenderURL();
 
 String backURL = ParamUtil.getString(request, "backURL", viewURL.toString());

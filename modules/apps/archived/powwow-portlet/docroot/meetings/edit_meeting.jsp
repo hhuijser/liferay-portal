@@ -329,9 +329,7 @@ if (powwowMeeting != null) {
 
 				<%
 				}
-				%>
 
-				<%
 				if (PowwowServiceProviderUtil.isSupportsOptionPassword(providerType)) {
 				%>
 

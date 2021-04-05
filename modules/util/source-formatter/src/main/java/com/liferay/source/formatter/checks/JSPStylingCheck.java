@@ -31,6 +31,8 @@ public class JSPStylingCheck extends BaseStylingCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		content = _combineJavaSourceBlocks(content);
+
 		content = _formatLineBreak(fileName, content);
 
 		content = _fixEmptyJavaSourceTag(content);
@@ -77,6 +79,17 @@ public class JSPStylingCheck extends BaseStylingCheck {
 	@Override
 	protected boolean isJavaSource(String content, int pos) {
 		return JSPSourceUtil.isJavaSource(content, pos, true);
+	}
+
+	private String _combineJavaSourceBlocks(String content) {
+		Matcher matcher = _adjacentJavaBlocksPattern.matcher(content);
+
+		if (matcher.find()) {
+			return StringUtil.replaceFirst(
+				content, matcher.group(), "\n\n", matcher.start() - 1);
+		}
+
+		return content;
 	}
 
 	private String _fixEmptyJavaSourceTag(String content) {
@@ -164,6 +177,8 @@ public class JSPStylingCheck extends BaseStylingCheck {
 		return matcher.replaceAll("$1\n\t$2$4\n$2$5");
 	}
 
+	private static final Pattern _adjacentJavaBlocksPattern = Pattern.compile(
+		"\n\t*%>\n+\t*<%\n");
 	private static final Pattern _emptyJavaSourceTagPattern = Pattern.compile(
 		"\n\t*<%\\!?\n+\t*%>(\n|\\Z)");
 	private static final Pattern _incorrectClosingTagPattern = Pattern.compile(

@@ -276,16 +276,13 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 
 						<%
 						for (FileEntry fileEntry : backgroundTask.getAttachmentsFileEntries()) {
-						%>
-
-							<%
 							StringBundler sb = new StringBundler(4);
 
 							sb.append(fileEntry.getTitle());
 							sb.append(StringPool.OPEN_PARENTHESIS);
 							sb.append(LanguageUtil.formatStorageSize(fileEntry.getSize(), locale));
 							sb.append(StringPool.CLOSE_PARENTHESIS);
-							%>
+						%>
 
 							<liferay-ui:icon
 								icon="download"

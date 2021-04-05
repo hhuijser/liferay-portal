@@ -49,9 +49,7 @@
 	<%
 		}
 	}
-	%>
 
-	<%
 	if (!labels.isEmpty()) {
 	%>
 

@@ -520,9 +520,6 @@ PersonalMenuEntryHelper personalMenuEntryHelper = (PersonalMenuEntryHelper)reque
 
 						<%
 						for (BasePersonalMenuEntry basePersonalMenuEntry : personalMenuEntryHelper.getBasePersonalMenuEntries()) {
-						%>
-
-							<%
 							Portlet personalPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), basePersonalMenuEntry.getPortletId());
 
 							editPermissionsResourceURL.setParameter("portletResource", personalPortlet.getPortletId());
@@ -530,7 +527,7 @@ PersonalMenuEntryHelper personalMenuEntryHelper = (PersonalMenuEntryHelper)reque
 							editPermissionsURL.setParameter("portletResource", personalPortlet.getPortletId());
 
 							data.put("resource-href", editPermissionsResourceURL.toString());
-							%>
+						%>
 
 							<li class="nav-item permission-navigation-item-container <%= portletResource.equals(personalPortlet.getPortletId())? "selected" : "" %>">
 								<aui:a cssClass="nav-link permission-navigation-link" data="<%= data %>" href="<%= editPermissionsURL.toString() %>">

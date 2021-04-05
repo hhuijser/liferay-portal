@@ -233,9 +233,7 @@ List<Map<String, Object>> classTypesList = new ArrayList<>();
 
 		<%
 		}
-		%>
 
-		<%
 		for (AssetRendererFactory<?> curRendererFactory : classTypesAssetRendererFactories) {
 			ClassTypeReader classTypeReader = curRendererFactory.getClassTypeReader();
 

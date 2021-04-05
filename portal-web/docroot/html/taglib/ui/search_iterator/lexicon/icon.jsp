@@ -109,13 +109,8 @@ for (int i = 0; i < resultRowSplitterEntries.size(); i++) {
 					entry.setIndex(k);
 
 					request.setAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW_ENTRY, entry);
-				%>
 
-					<%
 					entry.print(pageContext.getOut(), request, response);
-					%>
-
-				<%
 				}
 				%>
 

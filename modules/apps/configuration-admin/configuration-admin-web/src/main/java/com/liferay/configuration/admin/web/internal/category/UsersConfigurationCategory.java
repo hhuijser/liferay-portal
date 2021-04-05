@@ -26,23 +26,17 @@ public class UsersConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "users";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "users";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "users";
-
-	private static final String _CATEGORY_KEY = "users";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

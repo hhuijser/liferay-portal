@@ -26,23 +26,17 @@ public class AntivirusConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "shield-check";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "antivirus";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "security";
 	}
-
-	private static final String _CATEGORY_ICON = "shield-check";
-
-	private static final String _CATEGORY_KEY = "antivirus";
-
-	private static final String _CATEGORY_SECTION = "security";
 
 }

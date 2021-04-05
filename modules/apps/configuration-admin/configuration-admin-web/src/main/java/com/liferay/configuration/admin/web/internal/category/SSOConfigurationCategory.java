@@ -26,23 +26,17 @@ public class SSOConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "lock-dots";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "sso";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "security";
 	}
-
-	private static final String _CATEGORY_ICON = "lock-dots";
-
-	private static final String _CATEGORY_KEY = "sso";
-
-	private static final String _CATEGORY_SECTION = "security";
 
 }

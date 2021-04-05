@@ -26,16 +26,12 @@ public class ShoppingConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "shopping";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_KEY = "shopping";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

@@ -27,23 +27,17 @@ public class CommerceSalesforceConnectorConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "plug";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "salesforce-connector";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "commerce";
 	}
-
-	private static final String _CATEGORY_ICON = "plug";
-
-	private static final String _CATEGORY_KEY = "salesforce-connector";
-
-	private static final String _CATEGORY_SECTION = "commerce";
 
 }

@@ -27,23 +27,17 @@ public class UserActivityConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "thumbs-up-arrow";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "user-activity";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "content-and-data";
 	}
-
-	private static final String _CATEGORY_ICON = "thumbs-up-arrow";
-
-	private static final String _CATEGORY_KEY = "user-activity";
-
-	private static final String _CATEGORY_SECTION = "content-and-data";
 
 }

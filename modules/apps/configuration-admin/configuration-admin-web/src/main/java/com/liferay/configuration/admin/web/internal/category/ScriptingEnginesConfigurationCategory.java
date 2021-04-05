@@ -27,23 +27,17 @@ public class ScriptingEnginesConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "file-script";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "scripting-engines";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "file-script";
-
-	private static final String _CATEGORY_KEY = "scripting-engines";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

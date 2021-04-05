@@ -26,23 +26,17 @@ public class OAuth2ConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "oauth";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "oauth2";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "security";
 	}
-
-	private static final String _CATEGORY_ICON = "oauth";
-
-	private static final String _CATEGORY_KEY = "oauth2";
-
-	private static final String _CATEGORY_SECTION = "security";
 
 }

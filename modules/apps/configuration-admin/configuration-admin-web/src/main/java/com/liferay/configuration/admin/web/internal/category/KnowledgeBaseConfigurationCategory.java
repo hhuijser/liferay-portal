@@ -27,23 +27,17 @@ public class KnowledgeBaseConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "info-book";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "knowledge-base";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "content-and-data";
 	}
-
-	private static final String _CATEGORY_ICON = "info-book";
-
-	private static final String _CATEGORY_KEY = "knowledge-base";
-
-	private static final String _CATEGORY_SECTION = "content-and-data";
 
 }

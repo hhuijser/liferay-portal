@@ -27,23 +27,17 @@ public class APIAuthenticationConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "api-lock";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "api-authentication";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "security";
 	}
-
-	private static final String _CATEGORY_ICON = "api-lock";
-
-	private static final String _CATEGORY_KEY = "api-authentication";
-
-	private static final String _CATEGORY_SECTION = "security";
 
 }

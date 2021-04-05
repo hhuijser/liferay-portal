@@ -26,23 +26,17 @@ public class ConnectorsConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "plug";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "connectors";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "plug";
-
-	private static final String _CATEGORY_KEY = "connectors";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

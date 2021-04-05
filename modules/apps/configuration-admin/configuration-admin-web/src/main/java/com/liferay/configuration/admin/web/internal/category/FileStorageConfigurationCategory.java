@@ -26,23 +26,17 @@ public class FileStorageConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "folder";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "file-storage";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "folder";
-
-	private static final String _CATEGORY_KEY = "file-storage";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

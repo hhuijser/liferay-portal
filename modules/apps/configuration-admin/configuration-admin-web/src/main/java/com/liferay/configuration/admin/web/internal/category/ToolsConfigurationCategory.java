@@ -26,16 +26,12 @@ public class ToolsConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "tools";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_KEY = "tools";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

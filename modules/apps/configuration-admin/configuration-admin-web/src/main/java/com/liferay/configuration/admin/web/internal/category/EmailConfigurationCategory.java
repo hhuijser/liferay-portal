@@ -26,23 +26,17 @@ public class EmailConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "envelope-closed";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "email";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "envelope-closed";
-
-	private static final String _CATEGORY_KEY = "email";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

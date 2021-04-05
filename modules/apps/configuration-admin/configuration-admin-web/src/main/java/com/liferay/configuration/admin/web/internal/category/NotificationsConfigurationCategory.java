@@ -27,23 +27,17 @@ public class NotificationsConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "info-circle";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "notifications";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "info-circle";
-
-	private static final String _CATEGORY_KEY = "notifications";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

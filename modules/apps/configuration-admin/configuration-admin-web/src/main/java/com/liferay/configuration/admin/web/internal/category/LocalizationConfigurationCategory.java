@@ -27,23 +27,17 @@ public class LocalizationConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "globe";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "localization";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "globe";
-
-	private static final String _CATEGORY_KEY = "localization";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

@@ -26,23 +26,17 @@ public class MFAEmailOTPConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "lock";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "multi-factor-authentication";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "security";
 	}
-
-	private static final String _CATEGORY_ICON = "lock";
-
-	private static final String _CATEGORY_KEY = "multi-factor-authentication";
-
-	private static final String _CATEGORY_SECTION = "security";
 
 }

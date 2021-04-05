@@ -31,16 +31,12 @@ public class InventoryConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "inventory";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "commerce";
 	}
-
-	private static final String _CATEGORY_KEY = "inventory";
-
-	private static final String _CATEGORY_SECTION = "commerce";
 
 }

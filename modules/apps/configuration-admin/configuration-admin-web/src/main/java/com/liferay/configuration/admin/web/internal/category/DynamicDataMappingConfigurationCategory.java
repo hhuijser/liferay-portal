@@ -27,23 +27,17 @@ public class DynamicDataMappingConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "dynamic-data-mapping";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "dynamic-data-mapping";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "content-and-data";
 	}
-
-	private static final String _CATEGORY_ICON = "dynamic-data-mapping";
-
-	private static final String _CATEGORY_KEY = "dynamic-data-mapping";
-
-	private static final String _CATEGORY_SECTION = "content-and-data";
 
 }

@@ -27,16 +27,12 @@ public class GoogleMerchantConfigurationCategory
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "google-merchant";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "commerce";
 	}
-
-	private static final String _CATEGORY_KEY = "google-merchant";
-
-	private static final String _CATEGORY_SECTION = "commerce";
 
 }

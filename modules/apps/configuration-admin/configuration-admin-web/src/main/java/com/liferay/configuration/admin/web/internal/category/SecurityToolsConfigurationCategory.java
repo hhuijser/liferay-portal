@@ -27,23 +27,17 @@ public class SecurityToolsConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "lock";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "security-tools";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "security";
 	}
-
-	private static final String _CATEGORY_ICON = "lock";
-
-	private static final String _CATEGORY_KEY = "security-tools";
-
-	private static final String _CATEGORY_SECTION = "security";
 
 }

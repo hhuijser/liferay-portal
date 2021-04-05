@@ -27,23 +27,17 @@ public class ThirdPartyUtilitiesConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "plus-squares";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "third-party-utilities";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "plus-squares";
-
-	private static final String _CATEGORY_KEY = "third-party-utilities";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

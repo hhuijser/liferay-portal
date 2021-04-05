@@ -27,23 +27,17 @@ public class TemplateEnginesConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "file-template";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "template-engines";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "file-template";
-
-	private static final String _CATEGORY_KEY = "template-engines";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

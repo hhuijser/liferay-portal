@@ -26,23 +26,17 @@ public class AuditConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "view";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "audit";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "security";
 	}
-
-	private static final String _CATEGORY_ICON = "view";
-
-	private static final String _CATEGORY_KEY = "audit";
-
-	private static final String _CATEGORY_SECTION = "security";
 
 }

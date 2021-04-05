@@ -26,16 +26,12 @@ public class CaptchaConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "captcha";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_KEY = "captcha";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

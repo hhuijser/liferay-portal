@@ -31,23 +31,17 @@ public class PaymentConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "credit-card";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "payment";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "commerce";
 	}
-
-	private static final String _CATEGORY_ICON = "credit-card";
-
-	private static final String _CATEGORY_KEY = "payment";
-
-	private static final String _CATEGORY_SECTION = "commerce";
 
 }

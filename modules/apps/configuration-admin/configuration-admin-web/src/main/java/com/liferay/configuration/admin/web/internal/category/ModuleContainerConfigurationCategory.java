@@ -27,23 +27,17 @@ public class ModuleContainerConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "box-container";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "module-container";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "box-container";
-
-	private static final String _CATEGORY_KEY = "module-container";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

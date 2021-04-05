@@ -26,16 +26,12 @@ public class DispatchConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "dispatch";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "other";
 	}
-
-	private static final String _CATEGORY_KEY = "dispatch";
-
-	private static final String _CATEGORY_SECTION = "other";
 
 }

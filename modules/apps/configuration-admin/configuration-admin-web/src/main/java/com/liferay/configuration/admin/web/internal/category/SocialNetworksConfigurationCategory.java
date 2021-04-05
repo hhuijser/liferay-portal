@@ -27,23 +27,17 @@ public class SocialNetworksConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "share";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "social-networks";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "content-and-data";
 	}
-
-	private static final String _CATEGORY_ICON = "share";
-
-	private static final String _CATEGORY_KEY = "social-networks";
-
-	private static final String _CATEGORY_SECTION = "content-and-data";
 
 }

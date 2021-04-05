@@ -26,23 +26,17 @@ public class AssetsConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "sheets";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "assets";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "content-and-data";
 	}
-
-	private static final String _CATEGORY_ICON = "sheets";
-
-	private static final String _CATEGORY_KEY = "assets";
-
-	private static final String _CATEGORY_SECTION = "content-and-data";
 
 }

@@ -26,23 +26,17 @@ public class WebAPIConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return _CATEGORY_ICON;
+		return "api-web";
 	}
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "web-api";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "platform";
 	}
-
-	private static final String _CATEGORY_ICON = "api-web";
-
-	private static final String _CATEGORY_KEY = "web-api";
-
-	private static final String _CATEGORY_SECTION = "platform";
 
 }

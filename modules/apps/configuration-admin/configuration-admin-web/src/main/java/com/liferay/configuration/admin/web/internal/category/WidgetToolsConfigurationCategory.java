@@ -26,16 +26,12 @@ public class WidgetToolsConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryKey() {
-		return _CATEGORY_KEY;
+		return "widget-tools";
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SECTION;
+		return "content-and-data";
 	}
-
-	private static final String _CATEGORY_KEY = "widget-tools";
-
-	private static final String _CATEGORY_SECTION = "content-and-data";
 
 }

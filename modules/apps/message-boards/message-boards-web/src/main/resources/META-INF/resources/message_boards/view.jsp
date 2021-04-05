@@ -529,9 +529,7 @@ request.setAttribute("view.jsp-viewCategory", Boolean.TRUE.toString());
 					if (groupThreadsUserId > 0) {
 						portletURL.setParameter("groupThreadsUserId", String.valueOf(groupThreadsUserId));
 					}
-					%>
 
-					<%
 					SearchContainer threadEntriesSearchContainer = new SearchContainer(renderRequest, null, null, "cur1", 0, mbListDisplayContext.getThreadEntriesDelta(), portletURL, null, "there-are-no-threads");
 
 					mbListDisplayContext.setThreadEntriesDelta(threadEntriesSearchContainer);

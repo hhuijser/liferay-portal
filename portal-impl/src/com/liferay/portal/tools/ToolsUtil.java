@@ -298,7 +298,7 @@ public class ToolsUtil {
 
 		int pos = content.lastIndexOf("\nimport ");
 
-		if (pos == -1) {
+		if ((pos == -1) && !content.startsWith("import ")) {
 			afterImportsContent = content;
 		}
 		else {

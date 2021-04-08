@@ -71,10 +71,10 @@ public abstract class BaseLayoutTypePortletImplTestCase {
 	protected Layout layout;
 	protected LayoutTypePortlet layoutTypePortlet;
 
-	@DeleteAfterTestRun
-	private Group _group;
-
 	private static final String[] _layoutStaticPortletsAll =
 		PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
+
+	@DeleteAfterTestRun
+	private Group _group;
 
 }

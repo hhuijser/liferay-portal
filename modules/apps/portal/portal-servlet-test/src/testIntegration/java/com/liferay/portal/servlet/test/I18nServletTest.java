@@ -415,6 +415,8 @@ public class I18nServletTest extends I18nServlet {
 	private static Language _language;
 
 	private static String[] _localesEnabled;
+	private static final boolean _originalLocaleUseDefaultIfNotAvailable =
+		PropsValues.LOCALE_USE_DEFAULT_IF_NOT_AVAILABLE;
 
 	@Inject
 	private static Portal _portal;
@@ -424,8 +426,5 @@ public class I18nServletTest extends I18nServlet {
 
 	@Inject
 	private GroupLocalService _groupLocalService;
-
-	private static final boolean _originalLocaleUseDefaultIfNotAvailable =
-		PropsValues.LOCALE_USE_DEFAULT_IF_NOT_AVAILABLE;
 
 }

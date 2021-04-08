@@ -524,10 +524,10 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		}
 	}
 
-	private Bundle _bundle;
-
 	private static final boolean _previousSchemaModuleBuildAutoUpgrade =
 		PropsValues.SCHEMA_MODULE_BUILD_AUTO_UPGRADE;
+
+	private Bundle _bundle;
 
 	@Inject
 	private ReleaseLocalService _releaseLocalService;

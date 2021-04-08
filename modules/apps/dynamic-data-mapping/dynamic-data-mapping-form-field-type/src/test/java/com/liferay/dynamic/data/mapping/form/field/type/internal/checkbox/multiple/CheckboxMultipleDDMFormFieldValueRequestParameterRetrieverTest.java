@@ -113,7 +113,7 @@ public class CheckboxMultipleDDMFormFieldValueRequestParameterRetrieverTest {
 	private static final String _CHECKBOX_MULTIPLE_SUBMISSION =
 		"checkBoxSubmissionResult";
 
-	private CheckboxMultipleDDMFormFieldValueRequestParameterRetriever
+	private final CheckboxMultipleDDMFormFieldValueRequestParameterRetriever
 		_checkboxMultipleDDMFormFieldValueRequestParameterRetriever =
 			new CheckboxMultipleDDMFormFieldValueRequestParameterRetriever();
 	private final JSONFactory _jsonFactory = new JSONFactoryImpl();

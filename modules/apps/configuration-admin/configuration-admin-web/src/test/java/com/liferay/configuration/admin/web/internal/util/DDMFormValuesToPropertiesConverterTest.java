@@ -428,6 +428,6 @@ public class DDMFormValuesToPropertiesConverterTest extends Mockito {
 	}
 
 	private final Locale _enLocale = LocaleUtil.US;
-	private JSONFactory _jsonFactory = new JSONFactoryImpl();
+	private final JSONFactory _jsonFactory = new JSONFactoryImpl();
 
 }

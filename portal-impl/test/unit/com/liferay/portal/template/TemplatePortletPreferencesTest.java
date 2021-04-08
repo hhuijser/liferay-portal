@@ -114,7 +114,7 @@ public class TemplatePortletPreferencesTest {
 	}
 
 	private ExecutorService _executorService;
-	private TemplatePortletPreferences _templatePortletPreferences =
+	private final TemplatePortletPreferences _templatePortletPreferences =
 		new TemplatePortletPreferences();
 
 	private class TemplateCallable implements Callable<String> {

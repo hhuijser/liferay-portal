@@ -167,6 +167,6 @@ public class PublishLayoutMVCActionCommandTest {
 	)
 	private MVCActionCommand _mvcActionCommand;
 
-	private ServiceContext _serviceContext = new ServiceContext();
+	private final ServiceContext _serviceContext = new ServiceContext();
 
 }

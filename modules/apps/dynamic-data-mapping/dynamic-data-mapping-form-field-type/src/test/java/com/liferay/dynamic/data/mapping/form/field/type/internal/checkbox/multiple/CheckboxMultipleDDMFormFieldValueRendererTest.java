@@ -133,7 +133,7 @@ public class CheckboxMultipleDDMFormFieldValueRendererTest {
 		htmlUtil.setHtml(new HtmlImpl());
 	}
 
-	private CheckboxMultipleDDMFormFieldValueRenderer
+	private final CheckboxMultipleDDMFormFieldValueRenderer
 		_checkboxMultipleDDMFormFieldValueRenderer =
 			new CheckboxMultipleDDMFormFieldValueRenderer();
 

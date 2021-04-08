@@ -123,6 +123,6 @@ public class WebXMLDefinitionTest {
 			servletDefinitions.toString(), count, servletDefinitions.size());
 	}
 
-	private WebXMLDefinition _webXMLDefinition = new WebXMLDefinition();
+	private final WebXMLDefinition _webXMLDefinition = new WebXMLDefinition();
 
 }

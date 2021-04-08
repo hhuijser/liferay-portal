@@ -214,6 +214,6 @@ public class MavenExecutorTest {
 
 	private static String _mavenDistributionFileName;
 
-	private MavenExecutor _mavenExecutor = new MavenExecutor();
+	private final MavenExecutor _mavenExecutor = new MavenExecutor();
 
 }

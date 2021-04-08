@@ -541,7 +541,7 @@ public class JournalArticleLocalServiceTest {
 	@Inject
 	private ResourcePermissionLocalService _resourcePermissionLocalService;
 
-	private ThemeDisplay _themeDisplay = new ThemeDisplay();
+	private final ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 	@Inject
 	private UserLocalService _userLocalService;

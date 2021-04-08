@@ -182,7 +182,7 @@ public class DDMDataProviderInstancesDataProviderTest extends PowerMockito {
 	private DDMDataProviderInstanceLocalService
 		_ddmDataProviderInstanceLocalService;
 
-	private DDMDataProviderInstancesDataProvider
+	private final DDMDataProviderInstancesDataProvider
 		_ddmDataProviderInstancesDataProvider =
 			new DDMDataProviderInstancesDataProvider();
 

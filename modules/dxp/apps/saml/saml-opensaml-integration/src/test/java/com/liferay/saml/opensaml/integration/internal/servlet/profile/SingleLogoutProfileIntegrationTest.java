@@ -328,7 +328,7 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 	private SamlIdpSpConnectionLocalService _samlIdpSpConnectionLocalService;
 	private SamlIdpSpSessionLocalService _samlIdpSpSessionLocalService;
 	private SamlSpSessionLocalService _samlSpSessionLocalService;
-	private SingleLogoutProfileImpl _singleLogoutProfileImpl =
+	private final SingleLogoutProfileImpl _singleLogoutProfileImpl =
 		new SingleLogoutProfileImpl();
 
 }

@@ -185,6 +185,6 @@ public class PublishLayoutPageTemplateEntryMVCActionCommandTest {
 	@Inject
 	private Portal _portal;
 
-	private ServiceContext _serviceContext = new ServiceContext();
+	private final ServiceContext _serviceContext = new ServiceContext();
 
 }

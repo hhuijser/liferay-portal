@@ -394,7 +394,7 @@ public class OrderStockManagementTest {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
+	private final List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@DeleteAfterTestRun
 	private Company _company;

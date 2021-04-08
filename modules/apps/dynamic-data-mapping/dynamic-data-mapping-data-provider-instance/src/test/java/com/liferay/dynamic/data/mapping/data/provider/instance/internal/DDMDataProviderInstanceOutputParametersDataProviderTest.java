@@ -356,7 +356,7 @@ public class DDMDataProviderInstanceOutputParametersDataProviderTest
 	@Mock
 	private DDMDataProviderInstance _ddmDataProviderInstance;
 
-	private DDMDataProviderInstanceOutputParametersDataProvider
+	private final DDMDataProviderInstanceOutputParametersDataProvider
 		_ddmDataProviderInstanceOutputParametersDataProvider =
 			new DDMDataProviderInstanceOutputParametersDataProvider();
 

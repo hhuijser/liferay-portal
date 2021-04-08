@@ -138,7 +138,7 @@ public class GridDDMFormFieldValueRequestParameterRetrieverTest {
 
 	private static final String _PARAMETER_NAME = "ddmFormFieldGrid";
 
-	private GridDDMFormFieldValueRequestParameterRetriever
+	private final GridDDMFormFieldValueRequestParameterRetriever
 		_gridDDMFormFieldValueRequestParameterRetriever =
 			new GridDDMFormFieldValueRequestParameterRetriever();
 	private final JSONFactory _jsonFactory = new JSONFactoryImpl();

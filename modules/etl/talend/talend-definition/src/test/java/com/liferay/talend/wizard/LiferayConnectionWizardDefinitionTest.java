@@ -98,7 +98,7 @@ public class LiferayConnectionWizardDefinitionTest {
 	private static final String _REPOSITORY_LOCATION = "___DRI";
 
 	private LiferayConnectionProperties _liferayConnectionProperties;
-	private LiferayConnectionWizardDefinition
+	private final LiferayConnectionWizardDefinition
 		_liferayConnectionWizardDefinition =
 			new LiferayConnectionWizardDefinition();
 

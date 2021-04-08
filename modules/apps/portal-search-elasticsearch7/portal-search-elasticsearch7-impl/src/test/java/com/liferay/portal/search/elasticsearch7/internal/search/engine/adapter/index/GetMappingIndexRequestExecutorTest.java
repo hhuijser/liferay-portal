@@ -70,7 +70,7 @@ public class GetMappingIndexRequestExecutorTest {
 
 	private static final String _MAPPING_NAME = "testMapping";
 
-	private ElasticsearchFixture _elasticsearchFixture =
+	private final ElasticsearchFixture _elasticsearchFixture =
 		new ElasticsearchFixture();
 
 }

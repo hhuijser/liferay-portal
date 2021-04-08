@@ -704,7 +704,7 @@ public class QuartzSchedulerEngineTest {
 	private static final String _TEST_JOB_NAME_PREFIX = "test.job.";
 
 	private JSONFactory _jsonFactory;
-	private QuartzSchedulerEngine _quartzSchedulerEngine =
+	private final QuartzSchedulerEngine _quartzSchedulerEngine =
 		new QuartzSchedulerEngine();
 	private final QuartzTriggerFactory _quartzTriggerFactory =
 		new QuartzTriggerFactory();

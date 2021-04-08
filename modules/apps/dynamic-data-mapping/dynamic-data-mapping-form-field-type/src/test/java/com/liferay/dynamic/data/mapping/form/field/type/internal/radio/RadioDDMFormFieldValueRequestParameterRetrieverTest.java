@@ -54,7 +54,7 @@ public class RadioDDMFormFieldValueRequestParameterRetrieverTest
 		Assert.assertEquals(StringPool.BLANK, fieldValue);
 	}
 
-	private RadioDDMFormFieldValueRequestParameterRetriever
+	private final RadioDDMFormFieldValueRequestParameterRetriever
 		_radioDDMFormFieldValueRequestParameterRetriever =
 			new RadioDDMFormFieldValueRequestParameterRetriever();
 

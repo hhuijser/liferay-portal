@@ -110,7 +110,7 @@ public class SortContextProviderTest {
 	)
 	private Feature _feature;
 
-	private MockResource _mockResource = new MockResource();
+	private final MockResource _mockResource = new MockResource();
 	private ServiceRegistration<EntityModelResource> _serviceRegistration;
 
 }

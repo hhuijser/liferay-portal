@@ -108,7 +108,7 @@ public class ElasticsearchConnectionTest {
 		Assert.assertEquals(port, httpHost.getPort());
 	}
 
-	private ElasticsearchConnection _elasticsearchConnection =
+	private final ElasticsearchConnection _elasticsearchConnection =
 		new ElasticsearchConnection();
 
 }

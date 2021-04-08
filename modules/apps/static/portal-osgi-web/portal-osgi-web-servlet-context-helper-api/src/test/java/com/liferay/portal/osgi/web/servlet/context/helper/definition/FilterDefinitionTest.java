@@ -125,6 +125,6 @@ public class FilterDefinitionTest {
 	@Mock
 	private Filter _filter;
 
-	private FilterDefinition _filterDefinition = new FilterDefinition();
+	private final FilterDefinition _filterDefinition = new FilterDefinition();
 
 }

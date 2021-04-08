@@ -351,9 +351,9 @@ public class ComboServletTest extends PowerMockito {
 	private static final String _TEST_PORTLET_ID = "TEST_PORTLET_ID";
 
 	private ComboServlet _comboServlet;
-	private MockHttpServletRequest _mockHttpServletRequest =
+	private final MockHttpServletRequest _mockHttpServletRequest =
 		new MockHttpServletRequest();
-	private MockHttpServletResponse _mockHttpServletResponse =
+	private final MockHttpServletResponse _mockHttpServletResponse =
 		new MockHttpServletResponse();
 	private MockServletContext _pluginServletContext;
 	private Portlet _portalPortlet;

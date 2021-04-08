@@ -364,7 +364,7 @@ public class BaseModelUADDisplayTest {
 	@DeleteAfterTestRun
 	private final List<Layout> _layouts = new ArrayList<>();
 
-	private TestLayoutUADDisplay _uadDisplay = new TestLayoutUADDisplay();
+	private final TestLayoutUADDisplay _uadDisplay = new TestLayoutUADDisplay();
 
 	@DeleteAfterTestRun
 	private User _user;

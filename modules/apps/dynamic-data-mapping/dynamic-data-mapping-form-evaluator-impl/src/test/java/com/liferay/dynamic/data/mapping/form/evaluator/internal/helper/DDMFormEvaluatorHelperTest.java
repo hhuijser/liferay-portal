@@ -1523,7 +1523,7 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 	@Mock
 	private Company _company;
 
-	private DDMExpressionFactory _ddmExpressionFactory =
+	private final DDMExpressionFactory _ddmExpressionFactory =
 		new DDMExpressionFactoryImpl();
 
 	@Mock

@@ -294,7 +294,7 @@ public class ConfigurationProviderTest {
 	}
 
 	private Configuration _configuration;
-	private Dictionary<String, Object> _properties = new Hashtable<>();
+	private final Dictionary<String, Object> _properties = new Hashtable<>();
 
 	private static final String _PID = "test.pid";
 

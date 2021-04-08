@@ -227,7 +227,7 @@ public class CustomSQLTest {
 	private static Portal _portal;
 	private static Props _props;
 
-	private CustomSQL _customSQL = new TestCustomSQL();
+	private final CustomSQL _customSQL = new TestCustomSQL();
 	private final QueryDefinition<Object> _queryDefinition =
 		new QueryDefinition<>();
 

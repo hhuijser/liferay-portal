@@ -442,8 +442,8 @@ public class FreeMarkerTemplateTest {
 		_freeMarkerTemplateResourceLoader;
 	private static TemplateResourceCache _templateResourceCache;
 
-	private Configuration _configuration = new Configuration();
-	private TemplateContextHelper _templateContextHelper =
+	private final Configuration _configuration = new Configuration();
+	private final TemplateContextHelper _templateContextHelper =
 		new MockTemplateContextHelper();
 
 	private static class MockTemplateContextHelper

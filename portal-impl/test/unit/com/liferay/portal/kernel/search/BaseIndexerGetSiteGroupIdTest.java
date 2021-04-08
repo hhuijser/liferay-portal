@@ -193,7 +193,7 @@ public class BaseIndexerGetSiteGroupIdTest {
 			});
 	}
 
-	private BaseIndexer<Object> _indexer = new TestIndexer();
+	private final BaseIndexer<Object> _indexer = new TestIndexer();
 
 	private static class TestIndexer extends BaseIndexer<Object> {
 

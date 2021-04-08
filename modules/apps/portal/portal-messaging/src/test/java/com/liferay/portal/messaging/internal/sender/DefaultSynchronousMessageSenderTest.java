@@ -158,10 +158,11 @@ public class DefaultSynchronousMessageSenderTest {
 		}
 	}
 
-	private DefaultSynchronousMessageSender _defaultSynchronousMessageSender =
-		new DefaultSynchronousMessageSender();
+	private final DefaultSynchronousMessageSender
+		_defaultSynchronousMessageSender =
+			new DefaultSynchronousMessageSender();
 	private Map<String, Destination> _destinations;
-	private MessageBus _messageBus = new DefaultMessageBus();
+	private final MessageBus _messageBus = new DefaultMessageBus();
 	private PortalExecutorManager _portalExecutorManager;
 
 	private class ReplayMessageListener implements MessageListener {

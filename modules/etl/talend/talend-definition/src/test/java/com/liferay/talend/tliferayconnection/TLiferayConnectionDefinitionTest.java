@@ -90,7 +90,7 @@ public class TLiferayConnectionDefinitionTest {
 	@Rule
 	public final ExpectedException expectedException = ExpectedException.none();
 
-	private TLiferayConnectionDefinition _tLiferayConnectionDefinition =
+	private final TLiferayConnectionDefinition _tLiferayConnectionDefinition =
 		new TLiferayConnectionDefinition();
 	private LiferayConnectionProperties _tLiferayConnectionProperties;
 

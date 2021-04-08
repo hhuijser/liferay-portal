@@ -232,15 +232,15 @@ public class InstantIndexesTest {
 
 	private static ElasticsearchFixture _elasticsearchFixture;
 
-	private EventsIndexDefinition _eventsIndexDefinition =
+	private final EventsIndexDefinition _eventsIndexDefinition =
 		new EventsIndexDefinition();
 	private IndexSynchronizationPortalInitializedListener
 		_indexSynchronizationPortalInitializedListener;
-	private InstancesAndProcessesIndexRegistrar
+	private final InstancesAndProcessesIndexRegistrar
 		_instancesAndProcessesIndexRegistrar =
 			new InstancesAndProcessesIndexRegistrar();
 	private Microcontainer _microcontainer;
-	private TasksIndexDefinition _tasksIndexDefinition =
+	private final TasksIndexDefinition _tasksIndexDefinition =
 		new TasksIndexDefinition();
 
 }

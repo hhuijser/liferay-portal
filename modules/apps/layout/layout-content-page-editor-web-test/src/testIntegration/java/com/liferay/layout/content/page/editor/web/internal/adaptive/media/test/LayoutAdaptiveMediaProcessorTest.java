@@ -329,7 +329,7 @@ public class LayoutAdaptiveMediaProcessorTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	private ServiceContext _serviceContext = new ServiceContext();
-	private ThemeDisplay _themeDisplay = new ThemeDisplay();
+	private final ServiceContext _serviceContext = new ServiceContext();
+	private final ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 }

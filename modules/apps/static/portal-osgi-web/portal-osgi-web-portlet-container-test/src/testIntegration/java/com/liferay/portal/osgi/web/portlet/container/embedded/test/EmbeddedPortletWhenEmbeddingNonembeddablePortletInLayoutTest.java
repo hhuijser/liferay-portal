@@ -177,7 +177,7 @@ public class EmbeddedPortletWhenEmbeddingNonembeddablePortletInLayoutTest
 	private static PortletPreferenceValueLocalService
 		_portletPreferenceValueLocalService;
 
-	private TestNonembeddedPortlet _testNonembeddedPortlet =
+	private final TestNonembeddedPortlet _testNonembeddedPortlet =
 		new TestNonembeddedPortlet();
 
 }

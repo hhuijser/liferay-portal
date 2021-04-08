@@ -85,7 +85,7 @@ public class CheckboxMultipleDDMFormFieldValueAccessorTest {
 		return jsonArray;
 	}
 
-	private CheckboxMultipleDDMFormFieldValueAccessor
+	private final CheckboxMultipleDDMFormFieldValueAccessor
 		_checkboxMultipleDDMFormFieldValueAccessor =
 			new CheckboxMultipleDDMFormFieldValueAccessor();
 	private final JSONFactory _jsonFactory = new JSONFactoryImpl();

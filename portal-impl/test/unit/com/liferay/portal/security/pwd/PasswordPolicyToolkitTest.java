@@ -113,8 +113,8 @@ public class PasswordPolicyToolkitTest {
 		return true;
 	}
 
-	private PasswordPolicy _passwordPolicy = new PasswordPolicyImpl();
-	private PasswordPolicyToolkit _passwordPolicyToolkit =
+	private final PasswordPolicy _passwordPolicy = new PasswordPolicyImpl();
+	private final PasswordPolicyToolkit _passwordPolicyToolkit =
 		new PasswordPolicyToolkit();
 
 }

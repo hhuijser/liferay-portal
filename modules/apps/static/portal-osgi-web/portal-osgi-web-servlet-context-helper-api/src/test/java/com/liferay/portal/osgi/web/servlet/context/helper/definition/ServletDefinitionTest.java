@@ -125,6 +125,7 @@ public class ServletDefinitionTest {
 	@Mock
 	private Servlet _servlet;
 
-	private ServletDefinition _servletDefinition = new ServletDefinition();
+	private final ServletDefinition _servletDefinition =
+		new ServletDefinition();
 
 }

@@ -1383,10 +1383,10 @@ public class TransactionalPortalCacheTest {
 	private static final String _VALUE_2 = "VALUE_2";
 
 	private PortalCache<String, String> _portalCache;
-	private TestPortalCacheListener<String, String> _testCacheListener =
+	private final TestPortalCacheListener<String, String> _testCacheListener =
 		new TestPortalCacheListener<>();
-	private TestPortalCacheReplicator<String, String> _testCacheReplicator =
-		new TestPortalCacheReplicator<>();
+	private final TestPortalCacheReplicator<String, String>
+		_testCacheReplicator = new TestPortalCacheReplicator<>();
 
 	private static class TestCallable implements Callable<Void> {
 

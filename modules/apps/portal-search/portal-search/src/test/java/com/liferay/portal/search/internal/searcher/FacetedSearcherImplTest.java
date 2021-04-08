@@ -159,6 +159,6 @@ public class FacetedSearcherImplTest {
 	protected SearchableAssetClassNamesProvider
 		searchableAssetClassNamesProvider;
 
-	private DocumentFixture _documentFixture = new DocumentFixture();
+	private final DocumentFixture _documentFixture = new DocumentFixture();
 
 }

@@ -93,7 +93,7 @@ public class UpdateIndexSettingsIndexRequestExecutorTest {
 	private static final String _INDEX_NAME = "test_request_index";
 
 	private ElasticsearchFixture _elasticsearchFixture;
-	private IndicesOptionsTranslator _indicesOptionsTranslator =
+	private final IndicesOptionsTranslator _indicesOptionsTranslator =
 		new IndicesOptionsTranslatorImpl();
 
 }

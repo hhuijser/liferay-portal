@@ -458,9 +458,9 @@ public class ApplicationsMenuPanelAppsMVCResourceCommandTest {
 	@DeleteAfterTestRun
 	private List<Group> _groups = new ArrayList<>();
 
-	private HttpServletRequest _mockHttpServletRequest =
+	private final HttpServletRequest _mockHttpServletRequest =
 		new MockHttpServletRequest();
-	private MockPortletRequest _mockPortletRequest =
+	private final MockPortletRequest _mockPortletRequest =
 		new MockLiferayResourceRequest();
 
 	@Inject(filter = "mvc.command.name=/applications_menu/panel_apps")

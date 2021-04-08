@@ -225,9 +225,9 @@ public class SchedulerEventMessageListenerWrapperTest {
 		return thread;
 	}
 
-	private Message _testMessage1 = new Message();
-	private Message _testMessage2 = new Message();
-	private TestMessageListener _testMessageListener =
+	private final Message _testMessage1 = new Message();
+	private final Message _testMessage2 = new Message();
+	private final TestMessageListener _testMessageListener =
 		new TestMessageListener();
 
 	private class TestMessageListener implements MessageListener {

@@ -152,7 +152,8 @@ public class ConfigurationBeanSettingsTest {
 		}
 	}
 
-	private ConfigurationBean _configurationBean = new ConfigurationBean();
+	private final ConfigurationBean _configurationBean =
+		new ConfigurationBean();
 	private ConfigurationBeanSettings _configurationBeanSettings;
 	private LocationVariableResolver _locationVariableResolver;
 

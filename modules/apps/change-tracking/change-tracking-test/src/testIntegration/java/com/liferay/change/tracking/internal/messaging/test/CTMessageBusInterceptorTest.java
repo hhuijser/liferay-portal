@@ -200,7 +200,7 @@ public class CTMessageBusInterceptorTest {
 	private CTCollection _ctCollection;
 
 	private Set<MessageListener> _originalMessageListeners;
-	private TestMessageListener _testMessageListener =
+	private final TestMessageListener _testMessageListener =
 		new TestMessageListener();
 
 	private static class TestMessageListener implements MessageListener {

@@ -393,9 +393,9 @@ public class MVCCPortalCacheTest {
 
 	private MVCCPortalCache<String, MockMVCCModel> _mvccPortalCache;
 	private PortalCache<String, MockMVCCModel> _portalCache;
-	private TestPortalCacheListener<String, MockMVCCModel>
+	private final TestPortalCacheListener<String, MockMVCCModel>
 		_testPortalCacheListener = new TestPortalCacheListener<>();
-	private TestPortalCacheReplicator<String, MockMVCCModel>
+	private final TestPortalCacheReplicator<String, MockMVCCModel>
 		_testPortalCacheReplicator = new TestPortalCacheReplicator<>();
 
 }

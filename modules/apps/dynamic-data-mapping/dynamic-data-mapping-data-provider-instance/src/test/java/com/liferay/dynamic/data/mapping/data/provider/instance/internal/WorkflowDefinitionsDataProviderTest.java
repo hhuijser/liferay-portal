@@ -213,7 +213,8 @@ public class WorkflowDefinitionsDataProviderTest extends PowerMockito {
 	@Mock
 	private WorkflowDefinitionManager _workflowDefinitionManager;
 
-	private WorkflowDefinitionsDataProvider _workflowDefinitionsDataProvider =
-		new WorkflowDefinitionsDataProvider();
+	private final WorkflowDefinitionsDataProvider
+		_workflowDefinitionsDataProvider =
+			new WorkflowDefinitionsDataProvider();
 
 }

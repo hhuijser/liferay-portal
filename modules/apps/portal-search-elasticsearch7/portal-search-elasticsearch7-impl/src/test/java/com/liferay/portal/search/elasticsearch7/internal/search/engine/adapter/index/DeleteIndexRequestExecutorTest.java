@@ -109,7 +109,7 @@ public class DeleteIndexRequestExecutorTest {
 	private static final String _INDEX_NAME_2 = "test_request_index2";
 
 	private ElasticsearchFixture _elasticsearchFixture;
-	private IndicesOptionsTranslator _indicesOptionsTranslator =
+	private final IndicesOptionsTranslator _indicesOptionsTranslator =
 		new IndicesOptionsTranslatorImpl();
 
 }

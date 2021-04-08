@@ -206,7 +206,7 @@ public class LiferayTemplateClassResolverTest {
 			freeMarkerEngineConfiguration);
 	}
 
-	private TemplateClassResolver _liferayTemplateClassResolver =
+	private final TemplateClassResolver _liferayTemplateClassResolver =
 		new LiferayTemplateClassResolver();
 
 }

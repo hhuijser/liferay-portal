@@ -108,7 +108,7 @@ public class NumericDDMFormFieldValueValidatorTest {
 			ddmFormField, ddmFormFieldValue.getValue());
 	}
 
-	private NumericDDMFormFieldValueValidator
+	private final NumericDDMFormFieldValueValidator
 		_numericDDMFormFieldValueValidator =
 			new NumericDDMFormFieldValueValidator();
 

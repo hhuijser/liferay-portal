@@ -82,6 +82,6 @@ public class GetValueFunctionTest {
 		Assert.assertEquals(new BigDecimal(10), result);
 	}
 
-	private GetValueFunction _getValueFunction = new GetValueFunction();
+	private final GetValueFunction _getValueFunction = new GetValueFunction();
 
 }

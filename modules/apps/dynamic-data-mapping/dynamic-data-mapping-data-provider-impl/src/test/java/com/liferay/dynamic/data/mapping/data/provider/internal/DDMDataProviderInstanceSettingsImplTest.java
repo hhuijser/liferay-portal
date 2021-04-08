@@ -139,7 +139,7 @@ public class DDMDataProviderInstanceSettingsImplTest extends PowerMockito {
 	@Mock
 	private DDMDataProviderInstance _ddmDataProviderInstance;
 
-	private DDMDataProviderInstanceSettingsImpl
+	private final DDMDataProviderInstanceSettingsImpl
 		_ddmDataProviderInstanceSettingsImpl =
 			new DDMDataProviderInstanceSettingsImpl();
 

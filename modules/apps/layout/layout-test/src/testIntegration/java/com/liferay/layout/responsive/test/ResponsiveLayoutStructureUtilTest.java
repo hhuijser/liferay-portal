@@ -314,6 +314,6 @@ public class ResponsiveLayoutStructureUtilTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	private ThemeDisplay _themeDisplay = new ThemeDisplay();
+	private final ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 }

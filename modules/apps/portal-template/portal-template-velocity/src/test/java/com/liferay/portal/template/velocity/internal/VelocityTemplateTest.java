@@ -376,9 +376,9 @@ public class VelocityTemplateTest {
 	private static VelocityTemplateResourceLoader
 		_velocityTemplateResourceLoader;
 
-	private TemplateContextHelper _templateContextHelper =
+	private final TemplateContextHelper _templateContextHelper =
 		new MockTemplateContextHelper();
-	private VelocityEngine _velocityEngine = new VelocityEngine();
+	private final VelocityEngine _velocityEngine = new VelocityEngine();
 
 	private static class MockTemplateContextHelper
 		extends TemplateContextHelper {

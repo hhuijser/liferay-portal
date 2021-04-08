@@ -1136,7 +1136,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 		);
 	}
 
-	private DDMRESTDataProvider _ddmRESTDataProvider =
+	private final DDMRESTDataProvider _ddmRESTDataProvider =
 		new DDMRESTDataProvider();
 
 }

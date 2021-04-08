@@ -71,7 +71,7 @@ public class SAPAccessControlPolicyTest {
 				"com.liferay.portal.service.*#update*"));
 	}
 
-	private SAPAccessControlPolicy _sapAccessControlPolicy =
+	private final SAPAccessControlPolicy _sapAccessControlPolicy =
 		new SAPAccessControlPolicy();
 
 }

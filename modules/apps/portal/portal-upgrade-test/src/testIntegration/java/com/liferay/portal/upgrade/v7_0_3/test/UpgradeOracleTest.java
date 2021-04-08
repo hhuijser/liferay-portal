@@ -116,6 +116,6 @@ public class UpgradeOracleTest {
 	@Inject
 	private ReleaseLocalService _releaseLocalService;
 
-	private UpgradeOracle _upgradeOracle = new UpgradeOracle();
+	private final UpgradeOracle _upgradeOracle = new UpgradeOracle();
 
 }

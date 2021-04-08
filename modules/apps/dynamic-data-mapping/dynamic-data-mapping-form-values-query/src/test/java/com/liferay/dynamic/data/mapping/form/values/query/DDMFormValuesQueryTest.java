@@ -633,7 +633,7 @@ public class DDMFormValuesQueryTest extends PowerMockito {
 	}
 
 	private DDMFormValues _ddmFormValues;
-	private DDMFormValuesQueryFactory _ddmFormValuesQueryFactory =
+	private final DDMFormValuesQueryFactory _ddmFormValuesQueryFactory =
 		new DDMFormValuesQueryFactoryImpl();
 
 }

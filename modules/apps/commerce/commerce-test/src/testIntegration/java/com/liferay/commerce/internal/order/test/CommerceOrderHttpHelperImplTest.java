@@ -268,7 +268,7 @@ public class CommerceOrderHttpHelperImplTest {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
+	private final List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@DeleteAfterTestRun
 	private Company _company;
@@ -278,7 +278,7 @@ public class CommerceOrderHttpHelperImplTest {
 	@Inject
 	private GroupLocalService _groupLocalService;
 
-	private HttpServletRequest _httpServletRequest =
+	private final HttpServletRequest _httpServletRequest =
 		new MockHttpServletRequest();
 	private ThemeDisplay _themeDisplay;
 	private User _user;

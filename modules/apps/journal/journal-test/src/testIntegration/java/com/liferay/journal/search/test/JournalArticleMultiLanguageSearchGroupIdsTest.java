@@ -341,7 +341,8 @@ public class JournalArticleMultiLanguageSearchGroupIdsTest {
 
 	private JournalArticleSearchFixture _journalArticleSearchFixture;
 	private Group _jpGroup;
-	private UserSearchFixture _userSearchFixture = new UserSearchFixture();
+	private final UserSearchFixture _userSearchFixture =
+		new UserSearchFixture();
 	private Group _usGroup;
 
 }

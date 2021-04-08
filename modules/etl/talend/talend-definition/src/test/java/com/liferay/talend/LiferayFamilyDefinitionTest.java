@@ -78,7 +78,7 @@ public class LiferayFamilyDefinitionTest {
 			_liferayFamilyDefinition);
 	}
 
-	private LiferayFamilyDefinition _liferayFamilyDefinition =
+	private final LiferayFamilyDefinition _liferayFamilyDefinition =
 		new LiferayFamilyDefinition();
 
 }

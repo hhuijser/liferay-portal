@@ -110,9 +110,9 @@ public class UpgradeMessageBoardsTest {
 			values);
 	}
 
-	private PortletPreferences _portletPreferences =
+	private final PortletPreferences _portletPreferences =
 		new MockPortletPreferences();
-	private UpgradeMessageBoards _upgradeMessageBoards =
+	private final UpgradeMessageBoards _upgradeMessageBoards =
 		new UpgradeMessageBoards();
 
 }

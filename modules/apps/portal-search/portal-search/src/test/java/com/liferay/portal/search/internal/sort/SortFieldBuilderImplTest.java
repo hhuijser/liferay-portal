@@ -179,7 +179,7 @@ public class SortFieldBuilderImplTest {
 	@Mock
 	private IndexerRegistry _indexerRegistry;
 
-	private SortFieldBuilderImpl _sortFieldBuilderImpl =
+	private final SortFieldBuilderImpl _sortFieldBuilderImpl =
 		new SortFieldBuilderImpl();
 
 }

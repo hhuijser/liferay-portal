@@ -200,7 +200,7 @@ public class WikiLinksCKEditorCreoleEditorConfigContributorTest
 	@Mock
 	private ItemSelector _itemSelector;
 
-	private WikiLinksCKEditorCreoleEditorConfigContributor
+	private final WikiLinksCKEditorCreoleEditorConfigContributor
 		_wikiLinksCKEditorCreoleEditorConfigContributor =
 			new WikiLinksCKEditorCreoleEditorConfigContributor();
 

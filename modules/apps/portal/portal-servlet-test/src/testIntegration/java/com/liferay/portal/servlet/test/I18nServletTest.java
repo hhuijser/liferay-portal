@@ -425,7 +425,7 @@ public class I18nServletTest extends I18nServlet {
 	@Inject
 	private GroupLocalService _groupLocalService;
 
-	private boolean _originalLocaleUseDefaultIfNotAvailable =
+	private static final boolean _originalLocaleUseDefaultIfNotAvailable =
 		PropsValues.LOCALE_USE_DEFAULT_IF_NOT_AVAILABLE;
 
 }

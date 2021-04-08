@@ -321,7 +321,7 @@ public class SecureXMLFactoryProviderImplTest {
 	private static String _xxeParameterEntitiesXML1;
 	private static String _xxeParameterEntitiesXML2;
 
-	private SecureXMLFactoryProviderImpl _secureXMLFactoryProviderImpl =
+	private final SecureXMLFactoryProviderImpl _secureXMLFactoryProviderImpl =
 		new SecureXMLFactoryProviderImpl();
 
 	private abstract class XMLSecurityTest {

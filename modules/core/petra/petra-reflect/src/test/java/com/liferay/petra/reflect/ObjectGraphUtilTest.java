@@ -393,10 +393,10 @@ public class ObjectGraphUtilTest {
 
 	private List<Map.Entry<Field, Object>> _annotatedFieldMappingEntries;
 	private List<Map.Entry<Field, Object>> _entries;
-	private RecordAnnotatedFieldMappingVisitor
+	private final RecordAnnotatedFieldMappingVisitor
 		_recordAnnotatedFieldMappingVisitor =
 			new RecordAnnotatedFieldMappingVisitor();
-	private RecordVisitor _recordVisitor = new RecordVisitor();
+	private final RecordVisitor _recordVisitor = new RecordVisitor();
 
 	private static class LinkedType1 {
 

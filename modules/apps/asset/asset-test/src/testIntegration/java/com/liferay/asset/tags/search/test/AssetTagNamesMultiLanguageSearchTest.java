@@ -278,6 +278,7 @@ public class AssetTagNamesMultiLanguageSearchTest {
 	@DeleteAfterTestRun
 	private List<User> _users;
 
-	private UserSearchFixture _userSearchFixture = new UserSearchFixture();
+	private final UserSearchFixture _userSearchFixture =
+		new UserSearchFixture();
 
 }

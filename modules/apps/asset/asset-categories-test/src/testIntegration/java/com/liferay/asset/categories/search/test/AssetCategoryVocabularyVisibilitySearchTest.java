@@ -310,7 +310,8 @@ public class AssetCategoryVocabularyVisibilitySearchTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private GroupSearchFixture _groupSearchFixture = new GroupSearchFixture();
+	private final GroupSearchFixture _groupSearchFixture =
+		new GroupSearchFixture();
 
 	@Inject
 	private JournalArticleLocalService _journalArticleLocalService;

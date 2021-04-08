@@ -74,7 +74,7 @@ public abstract class BaseLayoutTypePortletImplTestCase {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private String[] _layoutStaticPortletsAll =
+	private static final String[] _layoutStaticPortletsAll =
 		PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 
 }

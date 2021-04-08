@@ -205,6 +205,6 @@ public class BufferedIncrementConfigurationTest {
 		return logCapture;
 	}
 
-	private Properties _properties = new Properties();
+	private final Properties _properties = new Properties();
 
 }

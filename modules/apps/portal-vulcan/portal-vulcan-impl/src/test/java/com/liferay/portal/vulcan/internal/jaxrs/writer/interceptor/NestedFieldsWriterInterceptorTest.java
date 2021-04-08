@@ -659,9 +659,9 @@ public class NestedFieldsWriterInterceptorTest {
 	private NestedFieldsWriterInterceptor.NestedFieldServiceTrackerCustomizer
 		_nestedFieldServiceTrackerCustomizer;
 	private NestedFieldsWriterInterceptor _nestedFieldsWriterInterceptor;
-	private ProductResource_v1_0_Impl _productResource_v1_0_Impl =
+	private final ProductResource_v1_0_Impl _productResource_v1_0_Impl =
 		new ProductResource_v1_0_Impl();
-	private ProductResource_v2_0_Impl _productResource_v2_0_Impl =
+	private final ProductResource_v2_0_Impl _productResource_v2_0_Impl =
 		new ProductResource_v2_0_Impl();
 	private WriterInterceptorContext _writerInterceptorContext;
 

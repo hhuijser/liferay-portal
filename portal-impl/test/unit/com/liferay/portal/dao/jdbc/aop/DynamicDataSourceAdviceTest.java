@@ -138,7 +138,7 @@ public class DynamicDataSourceAdviceTest {
 	}
 
 	private AopInvocationHandler _aopInvocationHandler;
-	private DynamicDataSourceTargetSource _dynamicDataSourceTargetSource =
+	private final DynamicDataSourceTargetSource _dynamicDataSourceTargetSource =
 		new DefaultDynamicDataSourceTargetSource();
 	private DataSource _readDataSource;
 	private final TestClass _testClass = new TestClass();

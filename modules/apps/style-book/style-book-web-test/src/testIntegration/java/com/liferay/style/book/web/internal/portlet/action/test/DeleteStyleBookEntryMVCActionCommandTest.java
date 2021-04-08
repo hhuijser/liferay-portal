@@ -184,7 +184,7 @@ public class DeleteStyleBookEntryMVCActionCommandTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private ServiceContext _serviceContext = new ServiceContext();
+	private final ServiceContext _serviceContext = new ServiceContext();
 
 	@Inject
 	private StyleBookEntryLocalService _styleBookEntryLocalService;

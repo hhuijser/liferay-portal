@@ -279,7 +279,7 @@ public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 
 	private final List<Method> _parentTestMethods = getMethodsAnnotatedWith(
 		getClass().getSuperclass(), Test.class);
-	private RemoveAttributeFromLARExportImportLifecycleListener
+	private final RemoveAttributeFromLARExportImportLifecycleListener
 		_removeAttributeFromLARExportImportLifecycleListener =
 			new RemoveAttributeFromLARExportImportLifecycleListener();
 

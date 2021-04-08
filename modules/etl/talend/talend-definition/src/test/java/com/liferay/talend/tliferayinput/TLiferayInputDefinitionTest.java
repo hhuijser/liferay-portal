@@ -129,7 +129,7 @@ public class TLiferayInputDefinitionTest {
 	@Rule
 	public final ExpectedException expectedException = ExpectedException.none();
 
-	private TLiferayInputDefinition _tLiferayInputDefinition =
+	private final TLiferayInputDefinition _tLiferayInputDefinition =
 		new TLiferayInputDefinition();
 
 }

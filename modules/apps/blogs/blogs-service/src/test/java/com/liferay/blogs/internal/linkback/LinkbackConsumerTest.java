@@ -152,6 +152,7 @@ public class LinkbackConsumerTest {
 	@Mock
 	private Http _http;
 
-	private LinkbackConsumer _linkbackConsumer = new LinkbackConsumerImpl();
+	private final LinkbackConsumer _linkbackConsumer =
+		new LinkbackConsumerImpl();
 
 }

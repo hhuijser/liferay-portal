@@ -257,7 +257,7 @@ public class RadioDDMFormFieldTemplateContextContributorTest
 	}
 
 	private final JSONFactory _jsonFactory = new JSONFactoryImpl();
-	private RadioDDMFormFieldTemplateContextContributor
+	private final RadioDDMFormFieldTemplateContextContributor
 		_radioDDMFormFieldTemplateContextContributor =
 			new RadioDDMFormFieldTemplateContextContributor();
 

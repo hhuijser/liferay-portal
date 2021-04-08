@@ -114,7 +114,7 @@ public class ProgressTrackerTest {
 			status + ProgressTrackerTest.class.getName());
 	}
 
-	private MockHttpSession _mockHttpSession = new MockHttpSession();
+	private final MockHttpSession _mockHttpSession = new MockHttpSession();
 	private MockInstallProcess _mockInstallProcess;
 
 	private class MockInstallProcess {

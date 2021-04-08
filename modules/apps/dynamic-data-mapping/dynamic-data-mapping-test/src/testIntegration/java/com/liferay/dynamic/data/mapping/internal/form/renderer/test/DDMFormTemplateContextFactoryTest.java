@@ -378,7 +378,7 @@ public class DDMFormTemplateContextFactoryTest {
 	@Inject
 	private static DDMFormTemplateContextFactory _ddmFormTemplateContextFactory;
 
-	private HttpServletRequest _httpServletRequest =
+	private final HttpServletRequest _httpServletRequest =
 		new MockHttpServletRequest();
 	private Locale _originalSiteDefaultLocale;
 	private Locale _originalThemeDisplayDefaultLocale;

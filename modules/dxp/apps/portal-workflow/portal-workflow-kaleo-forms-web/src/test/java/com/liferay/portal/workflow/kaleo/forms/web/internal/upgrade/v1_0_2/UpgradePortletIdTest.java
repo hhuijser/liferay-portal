@@ -57,6 +57,6 @@ public class UpgradePortletIdTest extends PowerMockito {
 
 	private static final String _PORTLET_KEY = RandomTestUtil.randomString();
 
-	private UpgradePortletId _upgradePortletId = new UpgradePortletId();
+	private final UpgradePortletId _upgradePortletId = new UpgradePortletId();
 
 }

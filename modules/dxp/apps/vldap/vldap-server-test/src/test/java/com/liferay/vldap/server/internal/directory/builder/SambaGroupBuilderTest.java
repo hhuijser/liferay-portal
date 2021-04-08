@@ -266,6 +266,7 @@ public class SambaGroupBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	private SambaGroupBuilder _sambaGroupBuilder = new SambaGroupBuilder();
+	private final SambaGroupBuilder _sambaGroupBuilder =
+		new SambaGroupBuilder();
 
 }

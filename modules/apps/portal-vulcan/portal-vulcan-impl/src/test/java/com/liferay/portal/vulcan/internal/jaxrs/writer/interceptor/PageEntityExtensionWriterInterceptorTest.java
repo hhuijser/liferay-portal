@@ -257,7 +257,7 @@ public class PageEntityExtensionWriterInterceptorTest {
 		).proceed();
 	}
 
-	private PageEntityExtensionWriterInterceptor
+	private final PageEntityExtensionWriterInterceptor
 		_pageEntityExtensionWriterInterceptor =
 			new PageEntityExtensionWriterInterceptor();
 	private WriterInterceptorContext _writerInterceptorContext;

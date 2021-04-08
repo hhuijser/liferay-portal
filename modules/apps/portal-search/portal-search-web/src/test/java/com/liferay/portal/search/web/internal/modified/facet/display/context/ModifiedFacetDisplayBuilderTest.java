@@ -506,8 +506,9 @@ public class ModifiedFacetDisplayBuilderTest {
 	@Mock
 	protected Portal portal;
 
-	private CalendarFactory _calendarFactory = new CalendarFactoryImpl();
-	private DateFormatFactory _dateFormatFactory = new DateFormatFactoryImpl();
+	private final CalendarFactory _calendarFactory = new CalendarFactoryImpl();
+	private final DateFormatFactory _dateFormatFactory =
+		new DateFormatFactoryImpl();
 	private DateRangeFactory _dateRangeFactory;
 
 	@Mock
@@ -516,7 +517,7 @@ public class ModifiedFacetDisplayBuilderTest {
 	@Mock
 	private FacetCollector _facetCollector;
 
-	private HttpImpl _httpImpl = new HttpImpl();
-	private JSONFactoryImpl _jsonFactoryImpl = new JSONFactoryImpl();
+	private final HttpImpl _httpImpl = new HttpImpl();
+	private final JSONFactoryImpl _jsonFactoryImpl = new JSONFactoryImpl();
 
 }

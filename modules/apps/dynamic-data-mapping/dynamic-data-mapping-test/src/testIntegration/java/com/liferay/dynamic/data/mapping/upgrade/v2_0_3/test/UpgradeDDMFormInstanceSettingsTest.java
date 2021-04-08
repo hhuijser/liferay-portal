@@ -274,6 +274,6 @@ public class UpgradeDDMFormInstanceSettingsTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private JSONFactory _jsonFactory = new JSONFactoryImpl();
+	private final JSONFactory _jsonFactory = new JSONFactoryImpl();
 
 }

@@ -330,7 +330,7 @@ public class DefaultElasticsearchDocumentFactoryTest {
 	private static final String _FIELD = "field";
 
 	private final DocumentFixture _documentFixture = new DocumentFixture();
-	private ElasticsearchDocumentFactory _elasticsearchDocumentFactory =
+	private final ElasticsearchDocumentFactory _elasticsearchDocumentFactory =
 		new DefaultElasticsearchDocumentFactory();
 
 }

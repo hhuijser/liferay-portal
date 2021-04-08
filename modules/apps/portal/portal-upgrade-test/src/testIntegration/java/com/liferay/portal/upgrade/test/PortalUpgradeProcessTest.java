@@ -287,7 +287,7 @@ public class PortalUpgradeProcessTest {
 
 	private static Version _currentSchemaVersion;
 
-	private InnerPortalUpgradeProcess _innerPortalUpgradeProcess =
+	private final InnerPortalUpgradeProcess _innerPortalUpgradeProcess =
 		new InnerPortalUpgradeProcess();
 
 	private static class InnerPortalUpgradeProcess

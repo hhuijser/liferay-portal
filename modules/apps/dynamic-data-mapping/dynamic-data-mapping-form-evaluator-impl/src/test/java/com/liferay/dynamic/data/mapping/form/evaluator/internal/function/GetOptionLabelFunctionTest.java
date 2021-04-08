@@ -115,7 +115,7 @@ public class GetOptionLabelFunctionTest extends PowerMockito {
 			_getOptionLabelFunction.apply("fieldName", "optionName"));
 	}
 
-	private GetOptionLabelFunction _getOptionLabelFunction =
+	private final GetOptionLabelFunction _getOptionLabelFunction =
 		new GetOptionLabelFunction();
 
 }

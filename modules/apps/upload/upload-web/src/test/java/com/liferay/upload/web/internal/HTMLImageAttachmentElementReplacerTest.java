@@ -103,7 +103,7 @@ public class HTMLImageAttachmentElementReplacerTest extends PowerMockito {
 		RandomTestUtil.randomLong();
 
 	private FileEntry _fileEntry;
-	private HTMLImageAttachmentElementReplacer
+	private final HTMLImageAttachmentElementReplacer
 		_htmlImageAttachmentElementReplacer =
 			new HTMLImageAttachmentElementReplacer();
 	private PortletFileRepository _portletFileRepository;

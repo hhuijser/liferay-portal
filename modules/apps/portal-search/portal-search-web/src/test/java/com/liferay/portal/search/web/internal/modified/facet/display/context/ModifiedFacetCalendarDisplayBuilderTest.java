@@ -179,6 +179,6 @@ public class ModifiedFacetCalendarDisplayBuilderTest {
 		return Optional.of(TimeZoneUtil.getTimeZone(availableIDs[0]));
 	}
 
-	private CalendarFactory _calendarFactory = new CalendarFactoryImpl();
+	private final CalendarFactory _calendarFactory = new CalendarFactoryImpl();
 
 }

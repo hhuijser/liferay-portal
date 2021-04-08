@@ -166,8 +166,9 @@ public class EntityExtensionWriterInterceptorTest {
 		).proceed();
 	}
 
-	private EntityExtensionWriterInterceptor _entityExtensionWriterInterceptor =
-		new EntityExtensionWriterInterceptor();
+	private final EntityExtensionWriterInterceptor
+		_entityExtensionWriterInterceptor =
+			new EntityExtensionWriterInterceptor();
 	private WriterInterceptorContext _mockedWriterInterceptorContext;
 
 }

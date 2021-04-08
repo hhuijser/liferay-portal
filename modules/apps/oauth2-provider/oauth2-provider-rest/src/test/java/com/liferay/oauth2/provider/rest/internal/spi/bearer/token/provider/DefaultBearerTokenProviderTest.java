@@ -184,7 +184,7 @@ public class DefaultBearerTokenProviderTest extends PowerMockito {
 	private static final String _TOKEN_KEY_STRING_32_BYTES_HEX =
 		"decadefeededbabedecadefeededbabedecadefeededbabedecadefeededbabe";
 
-	private DefaultBearerTokenProvider _defaultBearerTokenProvider =
+	private final DefaultBearerTokenProvider _defaultBearerTokenProvider =
 		new DefaultBearerTokenProvider();
 
 }

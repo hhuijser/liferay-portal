@@ -320,10 +320,10 @@ public class ItemSelectorImplTest extends PowerMockito {
 			new MediaItemSelectorCriterionHandler());
 	}
 
-	private FlickrItemSelectorCriterion _flickrItemSelectorCriterion =
+	private final FlickrItemSelectorCriterion _flickrItemSelectorCriterion =
 		new FlickrItemSelectorCriterion();
-	private ItemSelectorImpl _itemSelectorImpl = new ItemSelectorImpl();
-	private MediaItemSelectorCriterion _mediaItemSelectorCriterion =
+	private final ItemSelectorImpl _itemSelectorImpl = new ItemSelectorImpl();
+	private final MediaItemSelectorCriterion _mediaItemSelectorCriterion =
 		new MediaItemSelectorCriterion();
 	private final StubItemSelectorCriterionSerializerImpl
 		_stubItemSelectorCriterionSerializerImpl =

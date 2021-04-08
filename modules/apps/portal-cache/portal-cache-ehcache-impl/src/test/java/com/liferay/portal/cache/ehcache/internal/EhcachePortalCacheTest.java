@@ -662,9 +662,9 @@ public class EhcachePortalCacheTest {
 
 	private static CacheManager _cacheManager;
 
-	private TestPortalCacheListener<String, String>
+	private final TestPortalCacheListener<String, String>
 		_defaultPortalCacheListener = new TestPortalCacheListener<>();
-	private TestPortalCacheReplicator<String, String>
+	private final TestPortalCacheReplicator<String, String>
 		_defaultPortalCacheReplicator = new TestPortalCacheReplicator<>();
 	private Ehcache _ehcache;
 	private EhcachePortalCache<String, String> _ehcachePortalCache;

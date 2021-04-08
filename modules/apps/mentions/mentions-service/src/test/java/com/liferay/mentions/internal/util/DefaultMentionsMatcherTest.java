@@ -165,6 +165,7 @@ public class DefaultMentionsMatcherTest {
 	private static final String _SCREEN_NAME_WITH_SPECIAL_CHARS =
 		"user" + _SCREEN_NAME_SPECIAL_CHARS;
 
-	private MentionsMatcher _mentionsMatcher = new DefaultMentionsMatcher();
+	private final MentionsMatcher _mentionsMatcher =
+		new DefaultMentionsMatcher();
 
 }

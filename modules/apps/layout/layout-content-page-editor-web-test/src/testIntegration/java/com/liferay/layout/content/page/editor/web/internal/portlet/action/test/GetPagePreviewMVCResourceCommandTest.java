@@ -245,7 +245,7 @@ public class GetPagePreviewMVCResourceCommandTest {
 	@Inject
 	private PortletLocalService _portletLocalService;
 
-	private ServiceContext _serviceContext = new ServiceContext();
-	private ThemeDisplay _themeDisplay = new ThemeDisplay();
+	private final ServiceContext _serviceContext = new ServiceContext();
+	private final ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 }

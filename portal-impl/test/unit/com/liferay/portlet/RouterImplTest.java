@@ -216,6 +216,6 @@ public class RouterImplTest {
 		Assert.assertEquals(expectedUrl, generatedUrl);
 	}
 
-	private RouterImpl _routerImpl = new RouterImpl();
+	private final RouterImpl _routerImpl = new RouterImpl();
 
 }

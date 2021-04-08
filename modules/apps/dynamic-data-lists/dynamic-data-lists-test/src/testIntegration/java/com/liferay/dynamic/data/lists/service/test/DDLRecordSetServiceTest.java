@@ -361,7 +361,7 @@ public class DDLRecordSetServiceTest {
 	private Set<Locale> _availableLocales;
 	private DDLRecordSetTestHelper _ddlRecordSetTestHelper;
 	private DDMStructureTestHelper _ddmStructureTestHelper;
-	private Locale _defaultLocale = LocaleUtil.US;
+	private final Locale _defaultLocale = LocaleUtil.US;
 
 	@DeleteAfterTestRun
 	private Group _group;

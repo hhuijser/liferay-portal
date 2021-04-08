@@ -854,7 +854,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 	private final DefaultAttributeResolver _defaultAttributeResolver =
 		new DefaultAttributeResolver();
 	private ExpandoBridge _expandoBridge;
-	private MessageContext<AuthnRequest> _messageContext =
+	private final MessageContext<AuthnRequest> _messageContext =
 		new MessageContext<>();
 	private MetadataManager _metadataManager;
 	private RoleLocalService _roleLocalService;

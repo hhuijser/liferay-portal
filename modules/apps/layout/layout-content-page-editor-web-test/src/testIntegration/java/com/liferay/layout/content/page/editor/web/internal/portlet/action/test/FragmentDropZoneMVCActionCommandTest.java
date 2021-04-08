@@ -598,7 +598,7 @@ public class FragmentDropZoneMVCActionCommandTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	private LayoutStructure _layoutStructure = new LayoutStructure();
+	private final LayoutStructure _layoutStructure = new LayoutStructure();
 
 	@Inject
 	private ThemeLocalService _themeLocalService;

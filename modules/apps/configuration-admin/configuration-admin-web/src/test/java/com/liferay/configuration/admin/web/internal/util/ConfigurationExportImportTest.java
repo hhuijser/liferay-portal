@@ -102,6 +102,6 @@ public class ConfigurationExportImportTest {
 		return ConfigurationHandler.read(new UnsyncByteArrayInputStream(bytes));
 	}
 
-	private Dictionary<String, Object> _dictionary = new Hashtable<>();
+	private final Dictionary<String, Object> _dictionary = new Hashtable<>();
 
 }

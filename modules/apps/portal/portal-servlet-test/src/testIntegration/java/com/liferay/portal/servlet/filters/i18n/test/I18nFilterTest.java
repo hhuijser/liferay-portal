@@ -211,14 +211,14 @@ public class I18nFilterTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private I18nFilter _i18nFilter = new I18nFilter();
+	private final I18nFilter _i18nFilter = new I18nFilter();
 
 	@Inject
 	private Language _language;
 
-	private MockHttpServletRequest _mockHttpServletRequest =
+	private final MockHttpServletRequest _mockHttpServletRequest =
 		new MockHttpServletRequest();
-	private MockHttpServletResponse _mockHttpServletResponse =
+	private final MockHttpServletResponse _mockHttpServletResponse =
 		new MockHttpServletResponse();
 
 	@DeleteAfterTestRun

@@ -480,7 +480,7 @@ public class UpgradeAssetDisplayPageEntryTest {
 	private static UpgradeStepRegistrator _upgradeStepRegistrator;
 
 	private UpgradeProcess _assetDisplayPageEntryUpgradeProcess;
-	private Map<Long, String> _assetEntryClassUuids = new HashMap<>();
+	private final Map<Long, String> _assetEntryClassUuids = new HashMap<>();
 	private long _classNameIdJournalArticle;
 
 	@Inject

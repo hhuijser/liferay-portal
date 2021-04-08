@@ -196,7 +196,7 @@ public class WikiLinksCKEditorEditorConfigContributorTest extends PowerMockito {
 	@Mock
 	private ItemSelector _itemSelector;
 
-	private WikiLinksCKEditorConfigContributor
+	private final WikiLinksCKEditorConfigContributor
 		_wikiLinksCKEditorEditorConfigContributor =
 			new WikiLinksCKEditorConfigContributor();
 

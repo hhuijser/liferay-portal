@@ -789,7 +789,7 @@ public class FragmentEntryValidatorImplTest {
 
 	private static ClassLoader _classLoader;
 
-	private FragmentEntryValidatorImpl _fragmentEntryValidatorImpl =
+	private final FragmentEntryValidatorImpl _fragmentEntryValidatorImpl =
 		new FragmentEntryValidatorImpl();
 
 }

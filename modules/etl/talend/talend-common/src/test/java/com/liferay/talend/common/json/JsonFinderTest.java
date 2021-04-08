@@ -21,17 +21,12 @@ import javax.json.JsonObject;
 import javax.json.JsonValue;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
  * @author Igor Beslic
  */
 public class JsonFinderTest extends BaseTestCase {
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@Test
 	public void testGetDescendantJsonArray() {

@@ -26,7 +26,6 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -47,10 +46,6 @@ public class RecurrenceSplitterTest {
 		CalendarFactoryUtil calendarFactoryUtil = new CalendarFactoryUtil();
 
 		calendarFactoryUtil.setCalendarFactory(new CalendarFactoryImpl());
-	}
-
-	@Before
-	public void setUp() {
 	}
 
 	@Test

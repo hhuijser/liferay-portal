@@ -35,7 +35,6 @@ import java.util.Hashtable;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -61,10 +60,6 @@ public class ConfigurationProviderTest {
 
 	@Inject
 	private static ConfigurationProvider _configurationProvider;
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@After
 	public void tearDown() throws Exception {

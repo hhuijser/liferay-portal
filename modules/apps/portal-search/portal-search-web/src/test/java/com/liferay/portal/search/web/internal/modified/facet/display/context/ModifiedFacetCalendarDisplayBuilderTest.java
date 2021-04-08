@@ -26,7 +26,6 @@ import java.util.Optional;
 import java.util.TimeZone;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -40,10 +39,6 @@ public class ModifiedFacetCalendarDisplayBuilderTest {
 	@Rule
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@Test
 	public void testDoNotBreakWithoutSettingValues() {

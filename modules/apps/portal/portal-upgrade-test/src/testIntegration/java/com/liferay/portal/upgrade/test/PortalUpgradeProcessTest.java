@@ -30,7 +30,6 @@ import java.util.Set;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -54,10 +53,6 @@ public class PortalUpgradeProcessTest {
 			_currentSchemaVersion =
 				PortalUpgradeProcess.getCurrentSchemaVersion(connection);
 		}
-	}
-
-	@Before
-	public void setUp() throws SQLException {
 	}
 
 	@After

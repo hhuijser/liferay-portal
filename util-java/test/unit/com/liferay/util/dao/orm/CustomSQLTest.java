@@ -37,7 +37,6 @@ import javax.sql.DataSource;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -107,10 +106,6 @@ public class CustomSQLTest {
 			PropsUtil.class, "_props");
 
 		propsField.set(null, _props);
-	}
-
-	@Before
-	public void setUp() throws Exception {
 	}
 
 	@Test

@@ -22,7 +22,6 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,10 +38,6 @@ import org.talend.daikon.runtime.RuntimeInfo;
  * @author Zoltán Takács
  */
 public class TLiferayOutputDefinitionTest {
-
-	@Before
-	public void setUp() {
-	}
 
 	@Test
 	public void testGetFamilies() {

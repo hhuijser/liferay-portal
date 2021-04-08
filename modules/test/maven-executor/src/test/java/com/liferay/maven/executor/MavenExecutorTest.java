@@ -26,7 +26,6 @@ import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,10 +42,6 @@ public class MavenExecutorTest {
 			"maven.distribution.file.name");
 
 		Assert.assertNotNull(_mavenDistributionFileName);
-	}
-
-	@Before
-	public void setUp() {
 	}
 
 	@After

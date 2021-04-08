@@ -21,7 +21,6 @@ import com.liferay.portal.test.rule.LiferayUnitTestRule;
 import java.math.BigDecimal;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -35,10 +34,6 @@ public class GetValueFunctionTest {
 	@Rule
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@Test
 	public void testArray() {

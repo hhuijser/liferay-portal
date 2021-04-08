@@ -25,7 +25,6 @@ import java.util.Hashtable;
 import org.apache.felix.cm.file.ConfigurationHandler;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,10 +38,6 @@ public class ConfigurationExportImportTest {
 	@Rule
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
-
-	@Before
-	public void setUp() {
-	}
 
 	@Test
 	public void testExportImportBlankString() throws Exception {

@@ -39,7 +39,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -68,10 +67,6 @@ public class BaseAuthFilterTest {
 
 		registry.registerService(
 			AccessControl.class, new TestAccessControlImpl());
-	}
-
-	@Before
-	public void setUp() {
 	}
 
 	@After

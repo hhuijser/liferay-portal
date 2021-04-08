@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.kaleo.forms.web.internal.upgrade.v1_0_2;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -29,10 +28,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
  */
 @RunWith(PowerMockRunner.class)
 public class UpgradePortletIdTest extends PowerMockito {
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@Test
 	public void testOldTypeSettingsShouldBeUpdate1() {

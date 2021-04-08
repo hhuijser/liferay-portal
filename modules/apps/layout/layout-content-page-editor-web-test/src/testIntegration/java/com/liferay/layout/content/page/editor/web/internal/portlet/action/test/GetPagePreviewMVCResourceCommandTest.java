@@ -92,6 +92,7 @@ public class GetPagePreviewMVCResourceCommandTest {
 		_group = GroupTestUtil.addGroup();
 
 		_serviceContext.setScopeGroupId(_group.getGroupId());
+
 		_serviceContext.setUserId(TestPropsValues.getUserId());
 
 		ServiceContextThreadLocal.pushServiceContext(_serviceContext);

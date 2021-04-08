@@ -105,6 +105,7 @@ public class JournalArticleLocalServiceTest {
 
 		_themeDisplay.setCompany(
 			_companyLocalService.getCompany(_group.getCompanyId()));
+
 		_themeDisplay.setLayout(layout);
 		_themeDisplay.setLookAndFeel(
 			layout.getTheme(), layout.getColorScheme());

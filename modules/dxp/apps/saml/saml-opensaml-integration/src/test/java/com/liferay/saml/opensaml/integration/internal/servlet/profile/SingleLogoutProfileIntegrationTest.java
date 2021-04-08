@@ -83,6 +83,7 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 		_samlIdpSpSessionLocalService = getMockPortletService(
 			SamlIdpSpSessionLocalServiceUtil.class,
 			SamlIdpSpSessionLocalService.class);
+
 		_samlSpSessionLocalService = getMockPortletService(
 			SamlSpSessionLocalServiceUtil.class,
 			SamlSpSessionLocalService.class);

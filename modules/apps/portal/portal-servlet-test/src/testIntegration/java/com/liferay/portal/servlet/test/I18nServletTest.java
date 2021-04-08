@@ -119,7 +119,7 @@ public class I18nServletTest extends I18nServlet {
 	@After
 	public void tearDown() {
 		PropsValues.LOCALE_USE_DEFAULT_IF_NOT_AVAILABLE =
-			_originalLocaleUseDefaultIfNotAvailable;
+			_ORIGINAL_LOCALE_LUSE_DEFAULT_IF_NOT_AVAILABLED;
 	}
 
 	@Test
@@ -408,6 +408,10 @@ public class I18nServletTest extends I18nServlet {
 		Assert.assertNotEquals(defaultLocale, locale);
 	}
 
+	private static final boolean
+		_ORIGINAL_LOCALE_LUSE_DEFAULT_IF_NOT_AVAILABLED =
+			PropsValues.LOCALE_USE_DEFAULT_IF_NOT_AVAILABLE;
+
 	private static Set<Locale> _availableLocales;
 	private static Locale _defaultLocale;
 
@@ -415,8 +419,6 @@ public class I18nServletTest extends I18nServlet {
 	private static Language _language;
 
 	private static String[] _localesEnabled;
-	private static final boolean _originalLocaleUseDefaultIfNotAvailable =
-		PropsValues.LOCALE_USE_DEFAULT_IF_NOT_AVAILABLE;
 
 	@Inject
 	private static Portal _portal;

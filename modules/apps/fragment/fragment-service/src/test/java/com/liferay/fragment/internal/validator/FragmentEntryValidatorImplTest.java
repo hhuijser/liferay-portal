@@ -71,8 +71,6 @@ public class FragmentEntryValidatorImplTest {
 
 	@Before
 	public void setUp() {
-		_fragmentEntryValidatorImpl = new FragmentEntryValidatorImpl();
-
 		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
 
 		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
@@ -791,6 +789,7 @@ public class FragmentEntryValidatorImplTest {
 
 	private static ClassLoader _classLoader;
 
-	private FragmentEntryValidatorImpl _fragmentEntryValidatorImpl;
+	private FragmentEntryValidatorImpl _fragmentEntryValidatorImpl =
+		new FragmentEntryValidatorImpl();
 
 }

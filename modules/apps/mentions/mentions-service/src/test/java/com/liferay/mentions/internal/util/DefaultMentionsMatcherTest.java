@@ -44,8 +44,6 @@ public class DefaultMentionsMatcherTest {
 		PropsTestUtil.setProps(
 			PropsKeys.USERS_SCREEN_NAME_SPECIAL_CHARACTERS,
 			_SCREEN_NAME_SPECIAL_CHARS);
-
-		_mentionsMatcher = new DefaultMentionsMatcher();
 	}
 
 	@Test
@@ -167,6 +165,6 @@ public class DefaultMentionsMatcherTest {
 	private static final String _SCREEN_NAME_WITH_SPECIAL_CHARS =
 		"user" + _SCREEN_NAME_SPECIAL_CHARS;
 
-	private MentionsMatcher _mentionsMatcher;
+	private MentionsMatcher _mentionsMatcher = new DefaultMentionsMatcher();
 
 }

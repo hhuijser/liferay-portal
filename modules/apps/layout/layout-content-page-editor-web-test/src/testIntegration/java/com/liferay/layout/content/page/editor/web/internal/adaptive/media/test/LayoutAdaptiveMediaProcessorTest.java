@@ -97,14 +97,10 @@ public class LayoutAdaptiveMediaProcessorTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_serviceContext = new ServiceContext();
-
 		_serviceContext.setScopeGroupId(_group.getGroupId());
 		_serviceContext.setUserId(TestPropsValues.getUserId());
 
 		ServiceContextThreadLocal.pushServiceContext(_serviceContext);
-
-		_themeDisplay = new ThemeDisplay();
 
 		_themeDisplay.setCompany(
 			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
@@ -333,7 +329,7 @@ public class LayoutAdaptiveMediaProcessorTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	private ServiceContext _serviceContext;
-	private ThemeDisplay _themeDisplay;
+	private ServiceContext _serviceContext = new ServiceContext();
+	private ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 }

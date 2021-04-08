@@ -89,9 +89,6 @@ public class WikiLinksCKEditorEditorConfigContributorTest extends PowerMockito {
 			}
 		);
 
-		_wikiLinksCKEditorEditorConfigContributor =
-			new WikiLinksCKEditorConfigContributor();
-
 		ReflectionTestUtil.setFieldValue(
 			_wikiLinksCKEditorEditorConfigContributor, "itemSelector",
 			_itemSelector);
@@ -200,6 +197,7 @@ public class WikiLinksCKEditorEditorConfigContributorTest extends PowerMockito {
 	private ItemSelector _itemSelector;
 
 	private WikiLinksCKEditorConfigContributor
-		_wikiLinksCKEditorEditorConfigContributor;
+		_wikiLinksCKEditorEditorConfigContributor =
+			new WikiLinksCKEditorConfigContributor();
 
 }

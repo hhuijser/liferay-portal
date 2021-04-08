@@ -97,8 +97,6 @@ public class MultiLanguageSearchFieldsSharedAcrossIndexersTest {
 
 		_journalArticles = _journalArticleSearchFixture.getJournalArticles();
 
-		_userSearchFixture = new UserSearchFixture();
-
 		_userSearchFixture.setUp();
 
 		_groups = _userSearchFixture.getGroups();
@@ -374,6 +372,6 @@ public class MultiLanguageSearchFieldsSharedAcrossIndexersTest {
 	@DeleteAfterTestRun
 	private List<User> _users;
 
-	private UserSearchFixture _userSearchFixture;
+	private UserSearchFixture _userSearchFixture = new UserSearchFixture();
 
 }

@@ -63,8 +63,6 @@ public class FilterContextProviderTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		_mockResource = new MockResource();
-
 		_serviceRegistration = registry.registerService(
 			EntityModelResource.class, _mockResource,
 			HashMapBuilder.<String, Object>put(
@@ -111,7 +109,7 @@ public class FilterContextProviderTest {
 	)
 	private Feature _feature;
 
-	private MockResource _mockResource;
+	private MockResource _mockResource = new MockResource();
 	private ServiceRegistration<EntityModelResource> _serviceRegistration;
 
 }

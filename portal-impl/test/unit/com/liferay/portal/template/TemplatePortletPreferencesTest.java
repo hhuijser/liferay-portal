@@ -75,8 +75,6 @@ public class TemplatePortletPreferencesTest {
 	@Before
 	public void setUp() throws Exception {
 		_executorService = Executors.newFixedThreadPool(_THREADS_SIZE);
-
-		_templatePortletPreferences = new TemplatePortletPreferences();
 	}
 
 	@After
@@ -116,7 +114,8 @@ public class TemplatePortletPreferencesTest {
 	}
 
 	private ExecutorService _executorService;
-	private TemplatePortletPreferences _templatePortletPreferences;
+	private TemplatePortletPreferences _templatePortletPreferences =
+		new TemplatePortletPreferences();
 
 	private class TemplateCallable implements Callable<String> {
 

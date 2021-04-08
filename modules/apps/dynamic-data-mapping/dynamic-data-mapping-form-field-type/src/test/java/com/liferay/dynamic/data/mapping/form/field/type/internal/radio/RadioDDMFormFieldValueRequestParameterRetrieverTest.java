@@ -36,9 +36,6 @@ public class RadioDDMFormFieldValueRequestParameterRetrieverTest
 
 	@Before
 	public void setUp() throws Exception {
-		_radioDDMFormFieldValueRequestParameterRetriever =
-			new RadioDDMFormFieldValueRequestParameterRetriever();
-
 		field(
 			RadioDDMFormFieldValueRequestParameterRetriever.class,
 			"_jsonFactory"
@@ -58,6 +55,7 @@ public class RadioDDMFormFieldValueRequestParameterRetrieverTest
 	}
 
 	private RadioDDMFormFieldValueRequestParameterRetriever
-		_radioDDMFormFieldValueRequestParameterRetriever;
+		_radioDDMFormFieldValueRequestParameterRetriever =
+			new RadioDDMFormFieldValueRequestParameterRetriever();
 
 }

@@ -30,8 +30,6 @@ public class ProgressTrackerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_mockHttpSession = new MockHttpSession();
-
 		_mockInstallProcess = new MockInstallProcess(_mockHttpSession);
 	}
 
@@ -116,7 +114,7 @@ public class ProgressTrackerTest {
 			status + ProgressTrackerTest.class.getName());
 	}
 
-	private MockHttpSession _mockHttpSession;
+	private MockHttpSession _mockHttpSession = new MockHttpSession();
 	private MockInstallProcess _mockInstallProcess;
 
 	private class MockInstallProcess {

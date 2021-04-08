@@ -123,8 +123,6 @@ public class CommerceOrderHttpHelperImplTest {
 
 		PrincipalThreadLocal.setName(_user.getUserId());
 
-		_httpServletRequest = new MockHttpServletRequest();
-
 		_commerceCurrency = CommerceCurrencyTestUtil.addCommerceCurrency(
 			_group.getCompanyId());
 
@@ -157,8 +155,6 @@ public class CommerceOrderHttpHelperImplTest {
 		_httpServletRequest.setAttribute(WebKeys.USER_ID, _user.getUserId());
 
 		_themeDisplay.setRequest(_httpServletRequest);
-
-		_commerceOrders = new ArrayList<>();
 	}
 
 	@After
@@ -272,7 +268,7 @@ public class CommerceOrderHttpHelperImplTest {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders;
+	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@DeleteAfterTestRun
 	private Company _company;
@@ -282,7 +278,8 @@ public class CommerceOrderHttpHelperImplTest {
 	@Inject
 	private GroupLocalService _groupLocalService;
 
-	private HttpServletRequest _httpServletRequest;
+	private HttpServletRequest _httpServletRequest =
+		new MockHttpServletRequest();
 	private ThemeDisplay _themeDisplay;
 	private User _user;
 

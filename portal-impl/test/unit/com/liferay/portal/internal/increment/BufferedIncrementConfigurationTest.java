@@ -48,8 +48,6 @@ public class BufferedIncrementConfigurationTest {
 
 	@Before
 	public void setUp() {
-		_properties = new Properties();
-
 		PropsUtil.addProperties(_properties);
 	}
 
@@ -207,6 +205,6 @@ public class BufferedIncrementConfigurationTest {
 		return logCapture;
 	}
 
-	private Properties _properties;
+	private Properties _properties = new Properties();
 
 }

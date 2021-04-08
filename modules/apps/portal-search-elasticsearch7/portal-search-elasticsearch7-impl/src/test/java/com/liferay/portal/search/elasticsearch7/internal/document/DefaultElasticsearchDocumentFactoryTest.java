@@ -53,9 +53,6 @@ public class DefaultElasticsearchDocumentFactoryTest {
 	@Before
 	public void setUp() throws Exception {
 		_documentFixture.setUp();
-
-		_elasticsearchDocumentFactory =
-			new DefaultElasticsearchDocumentFactory();
 	}
 
 	@After
@@ -333,6 +330,7 @@ public class DefaultElasticsearchDocumentFactoryTest {
 	private static final String _FIELD = "field";
 
 	private final DocumentFixture _documentFixture = new DocumentFixture();
-	private ElasticsearchDocumentFactory _elasticsearchDocumentFactory;
+	private ElasticsearchDocumentFactory _elasticsearchDocumentFactory =
+		new DefaultElasticsearchDocumentFactory();
 
 }

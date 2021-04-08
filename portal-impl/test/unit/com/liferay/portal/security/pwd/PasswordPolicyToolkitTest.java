@@ -37,10 +37,6 @@ public class PasswordPolicyToolkitTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_passwordPolicyToolkit = new PasswordPolicyToolkit();
-
-		_passwordPolicy = new PasswordPolicyImpl();
-
 		_passwordPolicy.setChangeable(true);
 		_passwordPolicy.setCheckSyntax(true);
 		_passwordPolicy.setAllowDictionaryWords(true);
@@ -117,7 +113,8 @@ public class PasswordPolicyToolkitTest {
 		return true;
 	}
 
-	private PasswordPolicy _passwordPolicy;
-	private PasswordPolicyToolkit _passwordPolicyToolkit;
+	private PasswordPolicy _passwordPolicy = new PasswordPolicyImpl();
+	private PasswordPolicyToolkit _passwordPolicyToolkit =
+		new PasswordPolicyToolkit();
 
 }

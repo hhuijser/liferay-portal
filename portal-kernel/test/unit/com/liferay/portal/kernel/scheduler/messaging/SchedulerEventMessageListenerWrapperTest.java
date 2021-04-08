@@ -53,13 +53,7 @@ public class SchedulerEventMessageListenerWrapperTest {
 	public void setUp() {
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 
-		_testMessageListener = new TestMessageListener();
-
-		_testMessage1 = new Message();
-
 		_testMessage1.setPayload("Test Message 1");
-
-		_testMessage2 = new Message();
 
 		_testMessage2.setPayload("Test Message 2");
 	}
@@ -231,9 +225,10 @@ public class SchedulerEventMessageListenerWrapperTest {
 		return thread;
 	}
 
-	private Message _testMessage1;
-	private Message _testMessage2;
-	private TestMessageListener _testMessageListener;
+	private Message _testMessage1 = new Message();
+	private Message _testMessage2 = new Message();
+	private TestMessageListener _testMessageListener =
+		new TestMessageListener();
 
 	private class TestMessageListener implements MessageListener {
 

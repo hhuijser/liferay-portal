@@ -94,8 +94,6 @@ public class AddPortletMVCActionCommandTest {
 
 		_layout = _addLayout();
 
-		_layoutStructure = new LayoutStructure();
-
 		_layoutStructure.addRootLayoutStructureItem();
 
 		_layoutPageTemplateStructure =
@@ -360,7 +358,7 @@ public class AddPortletMVCActionCommandTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	private LayoutStructure _layoutStructure;
+	private LayoutStructure _layoutStructure = new LayoutStructure();
 
 	@Inject(filter = "mvc.command.name=/layout_content_page_editor/add_portlet")
 	private MVCActionCommand _mvcActionCommand;

@@ -84,8 +84,6 @@ public class JournalArticleMultiLanguageSearchGroupIdsTest {
 
 		_journalArticles = _journalArticleSearchFixture.getJournalArticles();
 
-		_userSearchFixture = new UserSearchFixture();
-
 		_userSearchFixture.setUp();
 
 		_groups = _userSearchFixture.getGroups();
@@ -343,7 +341,7 @@ public class JournalArticleMultiLanguageSearchGroupIdsTest {
 
 	private JournalArticleSearchFixture _journalArticleSearchFixture;
 	private Group _jpGroup;
-	private UserSearchFixture _userSearchFixture;
+	private UserSearchFixture _userSearchFixture = new UserSearchFixture();
 	private Group _usGroup;
 
 }

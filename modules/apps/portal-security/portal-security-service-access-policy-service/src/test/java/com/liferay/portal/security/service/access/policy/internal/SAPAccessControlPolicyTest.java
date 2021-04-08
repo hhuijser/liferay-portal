@@ -34,7 +34,6 @@ public class SAPAccessControlPolicyTest {
 
 	@Before
 	public void setUp() {
-		_sapAccessControlPolicy = new SAPAccessControlPolicy();
 	}
 
 	@Test
@@ -77,6 +76,7 @@ public class SAPAccessControlPolicyTest {
 				"com.liferay.portal.service.*#update*"));
 	}
 
-	private SAPAccessControlPolicy _sapAccessControlPolicy;
+	private SAPAccessControlPolicy _sapAccessControlPolicy =
+		new SAPAccessControlPolicy();
 
 }

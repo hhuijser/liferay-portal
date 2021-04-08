@@ -46,9 +46,6 @@ public class CheckboxMultipleDDMFormFieldValueRendererTest {
 
 	@Before
 	public void setUp() {
-		_checkboxMultipleDDMFormFieldValueRenderer =
-			new CheckboxMultipleDDMFormFieldValueRenderer();
-
 		CheckboxMultipleDDMFormFieldValueAccessor
 			checkboxMultipleDDMFormFieldValueAccessor =
 				new CheckboxMultipleDDMFormFieldValueAccessor();
@@ -137,6 +134,7 @@ public class CheckboxMultipleDDMFormFieldValueRendererTest {
 	}
 
 	private CheckboxMultipleDDMFormFieldValueRenderer
-		_checkboxMultipleDDMFormFieldValueRenderer;
+		_checkboxMultipleDDMFormFieldValueRenderer =
+			new CheckboxMultipleDDMFormFieldValueRenderer();
 
 }

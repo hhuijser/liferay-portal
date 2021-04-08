@@ -41,9 +41,6 @@ public class GridDDMFormFieldValueRequestParameterRetrieverTest {
 
 	@Before
 	public void setUp() {
-		_gridDDMFormFieldValueRequestParameterRetriever =
-			new GridDDMFormFieldValueRequestParameterRetriever();
-
 		_gridDDMFormFieldValueRequestParameterRetriever.jsonFactory =
 			_jsonFactory;
 
@@ -142,7 +139,8 @@ public class GridDDMFormFieldValueRequestParameterRetrieverTest {
 	private static final String _PARAMETER_NAME = "ddmFormFieldGrid";
 
 	private GridDDMFormFieldValueRequestParameterRetriever
-		_gridDDMFormFieldValueRequestParameterRetriever;
+		_gridDDMFormFieldValueRequestParameterRetriever =
+			new GridDDMFormFieldValueRequestParameterRetriever();
 	private final JSONFactory _jsonFactory = new JSONFactoryImpl();
 
 }

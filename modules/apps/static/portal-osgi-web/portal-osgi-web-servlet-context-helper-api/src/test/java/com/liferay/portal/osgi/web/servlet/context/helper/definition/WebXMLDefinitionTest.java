@@ -38,7 +38,6 @@ public class WebXMLDefinitionTest {
 
 	@Before
 	public void setUp() {
-		_webXMLDefinition = new WebXMLDefinition();
 	}
 
 	@Test
@@ -129,6 +128,6 @@ public class WebXMLDefinitionTest {
 			servletDefinitions.toString(), count, servletDefinitions.size());
 	}
 
-	private WebXMLDefinition _webXMLDefinition;
+	private WebXMLDefinition _webXMLDefinition = new WebXMLDefinition();
 
 }

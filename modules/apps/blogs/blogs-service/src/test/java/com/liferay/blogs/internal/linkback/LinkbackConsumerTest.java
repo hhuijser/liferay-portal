@@ -50,8 +50,6 @@ public class LinkbackConsumerTest {
 
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 
-		_linkbackConsumer = new LinkbackConsumerImpl();
-
 		ReflectionTestUtil.setFieldValue(
 			_linkbackConsumer, "_commentManager", _commentManager);
 
@@ -154,6 +152,6 @@ public class LinkbackConsumerTest {
 	@Mock
 	private Http _http;
 
-	private LinkbackConsumer _linkbackConsumer;
+	private LinkbackConsumer _linkbackConsumer = new LinkbackConsumerImpl();
 
 }

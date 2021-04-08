@@ -65,7 +65,6 @@ public class AssetSearcherClassNameIdsTest {
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
-		_users = new ArrayList<>();
 
 		_journalArticleFixture.setGroup(_group);
 
@@ -204,6 +203,6 @@ public class AssetSearcherClassNameIdsTest {
 
 	private final JournalArticleFixture _journalArticleFixture =
 		new JournalArticleFixture();
-	private List<User> _users;
+	private List<User> _users = new ArrayList<>();
 
 }

@@ -36,8 +36,6 @@ public class LiferayConnectionWizardDefinitionTest {
 	@Before
 	public void setUp() {
 		Locale.setDefault(Locale.ENGLISH);
-		_liferayConnectionWizardDefinition =
-			new LiferayConnectionWizardDefinition();
 
 		_liferayConnectionProperties = new LiferayConnectionProperties(
 			"connection");
@@ -101,6 +99,7 @@ public class LiferayConnectionWizardDefinitionTest {
 
 	private LiferayConnectionProperties _liferayConnectionProperties;
 	private LiferayConnectionWizardDefinition
-		_liferayConnectionWizardDefinition;
+		_liferayConnectionWizardDefinition =
+			new LiferayConnectionWizardDefinition();
 
 }

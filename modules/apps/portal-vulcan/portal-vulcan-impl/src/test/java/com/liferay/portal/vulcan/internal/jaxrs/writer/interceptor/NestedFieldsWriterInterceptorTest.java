@@ -108,8 +108,6 @@ public class NestedFieldsWriterInterceptorTest {
 
 		ServiceReference<Object> serviceReference1 = new MockServiceReference();
 
-		_productResource_v1_0_Impl = new ProductResource_v1_0_Impl();
-
 		Mockito.doReturn(
 			_productResource_v1_0_Impl
 		).when(
@@ -129,8 +127,6 @@ public class NestedFieldsWriterInterceptorTest {
 		_nestedFieldServiceTrackerCustomizer.addingService(serviceReference1);
 
 		ServiceReference<Object> serviceReference2 = new MockServiceReference();
-
-		_productResource_v2_0_Impl = new ProductResource_v2_0_Impl();
 
 		Mockito.doReturn(
 			_productResource_v2_0_Impl
@@ -663,8 +659,10 @@ public class NestedFieldsWriterInterceptorTest {
 	private NestedFieldsWriterInterceptor.NestedFieldServiceTrackerCustomizer
 		_nestedFieldServiceTrackerCustomizer;
 	private NestedFieldsWriterInterceptor _nestedFieldsWriterInterceptor;
-	private ProductResource_v1_0_Impl _productResource_v1_0_Impl;
-	private ProductResource_v2_0_Impl _productResource_v2_0_Impl;
+	private ProductResource_v1_0_Impl _productResource_v1_0_Impl =
+		new ProductResource_v1_0_Impl();
+	private ProductResource_v2_0_Impl _productResource_v2_0_Impl =
+		new ProductResource_v2_0_Impl();
 	private WriterInterceptorContext _writerInterceptorContext;
 
 	@Path("/v1.0")

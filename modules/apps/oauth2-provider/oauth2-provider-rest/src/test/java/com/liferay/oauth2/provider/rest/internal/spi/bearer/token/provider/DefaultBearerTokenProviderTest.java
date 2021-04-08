@@ -52,8 +52,6 @@ public class DefaultBearerTokenProviderTest extends PowerMockito {
 			"refresh.token.key.byte.size", _REFRESH_TOKEN_KEY_BYTE_SIZE
 		).build();
 
-		_defaultBearerTokenProvider = new DefaultBearerTokenProvider();
-
 		_defaultBearerTokenProvider.activate(properties);
 
 		mockStatic(SecureRandomUtil.class);
@@ -186,6 +184,7 @@ public class DefaultBearerTokenProviderTest extends PowerMockito {
 	private static final String _TOKEN_KEY_STRING_32_BYTES_HEX =
 		"decadefeededbabedecadefeededbabedecadefeededbabedecadefeededbabe";
 
-	private DefaultBearerTokenProvider _defaultBearerTokenProvider;
+	private DefaultBearerTokenProvider _defaultBearerTokenProvider =
+		new DefaultBearerTokenProvider();
 
 }

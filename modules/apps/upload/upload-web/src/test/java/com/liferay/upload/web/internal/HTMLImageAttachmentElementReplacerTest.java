@@ -64,9 +64,6 @@ public class HTMLImageAttachmentElementReplacerTest extends PowerMockito {
 			_FILE_ENTRY_IMAGE_URL
 		);
 
-		_htmlImageAttachmentElementReplacer =
-			new HTMLImageAttachmentElementReplacer();
-
 		_htmlImageAttachmentElementReplacer.setPortletFileRepository(
 			_portletFileRepository);
 	}
@@ -107,7 +104,8 @@ public class HTMLImageAttachmentElementReplacerTest extends PowerMockito {
 
 	private FileEntry _fileEntry;
 	private HTMLImageAttachmentElementReplacer
-		_htmlImageAttachmentElementReplacer;
+		_htmlImageAttachmentElementReplacer =
+			new HTMLImageAttachmentElementReplacer();
 	private PortletFileRepository _portletFileRepository;
 
 }

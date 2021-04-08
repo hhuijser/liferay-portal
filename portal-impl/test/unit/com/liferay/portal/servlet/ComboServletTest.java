@@ -156,13 +156,9 @@ public class ComboServletTest extends PowerMockito {
 
 		};
 
-		_mockHttpServletRequest = new MockHttpServletRequest();
-
 		_mockHttpServletRequest.setLocalAddr("localhost");
 		_mockHttpServletRequest.setLocalPort(8080);
 		_mockHttpServletRequest.setScheme("http");
-
-		_mockHttpServletResponse = new MockHttpServletResponse();
 	}
 
 	@Test
@@ -355,8 +351,10 @@ public class ComboServletTest extends PowerMockito {
 	private static final String _TEST_PORTLET_ID = "TEST_PORTLET_ID";
 
 	private ComboServlet _comboServlet;
-	private MockHttpServletRequest _mockHttpServletRequest;
-	private MockHttpServletResponse _mockHttpServletResponse;
+	private MockHttpServletRequest _mockHttpServletRequest =
+		new MockHttpServletRequest();
+	private MockHttpServletResponse _mockHttpServletResponse =
+		new MockHttpServletResponse();
 	private MockServletContext _pluginServletContext;
 	private Portlet _portalPortlet;
 	private PortletApp _portalPortletApp;

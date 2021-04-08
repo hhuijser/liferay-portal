@@ -72,11 +72,6 @@ public class BaseAuthFilterTest {
 
 	@Before
 	public void setUp() {
-		_authFilter = new TestAuthFilter();
-		_mockFilterChain = new MockFilterChain();
-		_mockFilterConfig = new MockFilterConfig();
-		_mockHttpServletRequest = new MockHttpServletRequest();
-		_mockHttpServletResponse = new MockHttpServletResponse();
 	}
 
 	@After
@@ -259,11 +254,13 @@ public class BaseAuthFilterTest {
 	private static final PortalUtil _portalUtil = new PortalUtil();
 	private static final PortalImpl _testPortalImpl = new TestPortalImpl();
 
-	private TestAuthFilter _authFilter;
-	private MockFilterChain _mockFilterChain;
-	private MockFilterConfig _mockFilterConfig;
-	private MockHttpServletRequest _mockHttpServletRequest;
-	private MockHttpServletResponse _mockHttpServletResponse;
+	private TestAuthFilter _authFilter = new TestAuthFilter();
+	private MockFilterChain _mockFilterChain = new MockFilterChain();
+	private MockFilterConfig _mockFilterConfig = new MockFilterConfig();
+	private MockHttpServletRequest _mockHttpServletRequest =
+		new MockHttpServletRequest();
+	private MockHttpServletResponse _mockHttpServletResponse =
+		new MockHttpServletResponse();
 
 	private static class TestAccessControlImpl extends AccessControlImpl {
 

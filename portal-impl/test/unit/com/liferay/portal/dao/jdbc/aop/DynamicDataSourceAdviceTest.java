@@ -55,9 +55,6 @@ public class DynamicDataSourceAdviceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_dynamicDataSourceTargetSource =
-			new DefaultDynamicDataSourceTargetSource();
-
 		ClassLoader classLoader =
 			DynamicDataSourceAdviceTest.class.getClassLoader();
 
@@ -141,7 +138,8 @@ public class DynamicDataSourceAdviceTest {
 	}
 
 	private AopInvocationHandler _aopInvocationHandler;
-	private DynamicDataSourceTargetSource _dynamicDataSourceTargetSource;
+	private DynamicDataSourceTargetSource _dynamicDataSourceTargetSource =
+		new DefaultDynamicDataSourceTargetSource();
 	private DataSource _readDataSource;
 	private final TestClass _testClass = new TestClass();
 	private DataSource _writeDataSource;

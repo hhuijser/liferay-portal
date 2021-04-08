@@ -49,8 +49,6 @@ public class SortFieldBuilderImplTest {
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 
-		_sortFieldBuilderImpl = new SortFieldBuilderImpl();
-
 		Mockito.when(
 			_indexerRegistry.getIndexer(Mockito.anyString())
 		).thenAnswer(
@@ -181,6 +179,7 @@ public class SortFieldBuilderImplTest {
 	@Mock
 	private IndexerRegistry _indexerRegistry;
 
-	private SortFieldBuilderImpl _sortFieldBuilderImpl;
+	private SortFieldBuilderImpl _sortFieldBuilderImpl =
+		new SortFieldBuilderImpl();
 
 }

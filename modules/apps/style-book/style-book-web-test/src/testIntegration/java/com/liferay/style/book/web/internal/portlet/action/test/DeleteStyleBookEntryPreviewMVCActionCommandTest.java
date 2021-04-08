@@ -61,8 +61,6 @@ public class DeleteStyleBookEntryPreviewMVCActionCommandTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_serviceContext = new ServiceContext();
-
 		_serviceContext.setScopeGroupId(_group.getGroupId());
 		_serviceContext.setUserId(TestPropsValues.getUserId());
 	}
@@ -123,7 +121,7 @@ public class DeleteStyleBookEntryPreviewMVCActionCommandTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private ServiceContext _serviceContext;
+	private ServiceContext _serviceContext = new ServiceContext();
 
 	@Inject
 	private StyleBookEntryLocalService _styleBookEntryLocalService;

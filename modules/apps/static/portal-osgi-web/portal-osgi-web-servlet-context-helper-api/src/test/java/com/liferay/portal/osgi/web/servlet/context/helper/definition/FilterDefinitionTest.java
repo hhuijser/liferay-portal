@@ -38,7 +38,6 @@ public class FilterDefinitionTest {
 
 	@Before
 	public void setUp() {
-		_filterDefinition = new FilterDefinition();
 	}
 
 	@Test
@@ -131,6 +130,6 @@ public class FilterDefinitionTest {
 	@Mock
 	private Filter _filter;
 
-	private FilterDefinition _filterDefinition;
+	private FilterDefinition _filterDefinition = new FilterDefinition();
 
 }

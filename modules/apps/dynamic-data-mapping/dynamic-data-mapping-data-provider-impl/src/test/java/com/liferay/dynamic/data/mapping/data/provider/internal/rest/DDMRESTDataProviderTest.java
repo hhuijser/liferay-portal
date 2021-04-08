@@ -87,8 +87,6 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 		_setUpLanguageUtil();
 		_setUpPortalUtil();
 		_setUpResourceBundleUtil();
-
-		_ddmRESTDataProvider = new DDMRESTDataProvider();
 	}
 
 	@Test
@@ -1138,6 +1136,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 		);
 	}
 
-	private DDMRESTDataProvider _ddmRESTDataProvider;
+	private DDMRESTDataProvider _ddmRESTDataProvider =
+		new DDMRESTDataProvider();
 
 }

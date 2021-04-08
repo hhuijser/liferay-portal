@@ -50,9 +50,6 @@ public class PageEntityExtensionWriterInterceptorTest {
 
 	@Before
 	public void setUp() {
-		_pageEntityExtensionWriterInterceptor =
-			new PageEntityExtensionWriterInterceptor();
-
 		ReflectionTestUtil.setFieldValue(
 			_pageEntityExtensionWriterInterceptor, "_providers",
 			JAXRSExtensionContextUtil.getTestProviders());
@@ -261,7 +258,8 @@ public class PageEntityExtensionWriterInterceptorTest {
 	}
 
 	private PageEntityExtensionWriterInterceptor
-		_pageEntityExtensionWriterInterceptor;
+		_pageEntityExtensionWriterInterceptor =
+			new PageEntityExtensionWriterInterceptor();
 	private WriterInterceptorContext _writerInterceptorContext;
 
 }

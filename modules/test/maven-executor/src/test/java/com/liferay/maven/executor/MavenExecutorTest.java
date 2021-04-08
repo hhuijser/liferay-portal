@@ -47,7 +47,6 @@ public class MavenExecutorTest {
 
 	@Before
 	public void setUp() {
-		_mavenExecutor = new MavenExecutor();
 	}
 
 	@After
@@ -220,6 +219,6 @@ public class MavenExecutorTest {
 
 	private static String _mavenDistributionFileName;
 
-	private MavenExecutor _mavenExecutor;
+	private MavenExecutor _mavenExecutor = new MavenExecutor();
 
 }

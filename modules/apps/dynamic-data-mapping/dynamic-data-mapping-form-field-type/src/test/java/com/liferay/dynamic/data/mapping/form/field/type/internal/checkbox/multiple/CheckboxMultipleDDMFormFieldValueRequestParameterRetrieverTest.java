@@ -41,9 +41,6 @@ public class CheckboxMultipleDDMFormFieldValueRequestParameterRetrieverTest {
 
 	@Before
 	public void setUp() {
-		_checkboxMultipleDDMFormFieldValueRequestParameterRetriever =
-			new CheckboxMultipleDDMFormFieldValueRequestParameterRetriever();
-
 		_checkboxMultipleDDMFormFieldValueRequestParameterRetriever.
 			jsonFactory = _jsonFactory;
 	}
@@ -117,7 +114,8 @@ public class CheckboxMultipleDDMFormFieldValueRequestParameterRetrieverTest {
 		"checkBoxSubmissionResult";
 
 	private CheckboxMultipleDDMFormFieldValueRequestParameterRetriever
-		_checkboxMultipleDDMFormFieldValueRequestParameterRetriever;
+		_checkboxMultipleDDMFormFieldValueRequestParameterRetriever =
+			new CheckboxMultipleDDMFormFieldValueRequestParameterRetriever();
 	private final JSONFactory _jsonFactory = new JSONFactoryImpl();
 
 }

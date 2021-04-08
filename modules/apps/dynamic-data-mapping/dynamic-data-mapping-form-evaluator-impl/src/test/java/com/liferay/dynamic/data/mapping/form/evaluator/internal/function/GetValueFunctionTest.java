@@ -38,7 +38,6 @@ public class GetValueFunctionTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_getValueFunction = new GetValueFunction();
 	}
 
 	@Test
@@ -88,6 +87,6 @@ public class GetValueFunctionTest {
 		Assert.assertEquals(new BigDecimal(10), result);
 	}
 
-	private GetValueFunction _getValueFunction;
+	private GetValueFunction _getValueFunction = new GetValueFunction();
 
 }

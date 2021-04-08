@@ -40,8 +40,6 @@ public class NumericDDMFormFieldValueValidatorTest {
 
 	@Before
 	public void setUp() {
-		_numericDDMFormFieldValueValidator =
-			new NumericDDMFormFieldValueValidator();
 	}
 
 	@Test(expected = DDMFormFieldValueValidationException.class)
@@ -116,6 +114,7 @@ public class NumericDDMFormFieldValueValidatorTest {
 	}
 
 	private NumericDDMFormFieldValueValidator
-		_numericDDMFormFieldValueValidator;
+		_numericDDMFormFieldValueValidator =
+			new NumericDDMFormFieldValueValidator();
 
 }

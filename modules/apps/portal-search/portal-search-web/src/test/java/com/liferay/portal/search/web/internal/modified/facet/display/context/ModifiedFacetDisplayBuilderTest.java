@@ -73,14 +73,7 @@ public class ModifiedFacetDisplayBuilderTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 
-		_calendarFactory = new CalendarFactoryImpl();
-
-		_dateFormatFactory = new DateFormatFactoryImpl();
-
 		_dateRangeFactory = new DateRangeFactory(_dateFormatFactory);
-
-		_httpImpl = new HttpImpl();
-		_jsonFactoryImpl = new JSONFactoryImpl();
 
 		setUpHtmlUtil();
 		setUpPortalUtil();
@@ -513,8 +506,8 @@ public class ModifiedFacetDisplayBuilderTest {
 	@Mock
 	protected Portal portal;
 
-	private CalendarFactory _calendarFactory;
-	private DateFormatFactory _dateFormatFactory;
+	private CalendarFactory _calendarFactory = new CalendarFactoryImpl();
+	private DateFormatFactory _dateFormatFactory = new DateFormatFactoryImpl();
 	private DateRangeFactory _dateRangeFactory;
 
 	@Mock
@@ -523,7 +516,7 @@ public class ModifiedFacetDisplayBuilderTest {
 	@Mock
 	private FacetCollector _facetCollector;
 
-	private HttpImpl _httpImpl;
-	private JSONFactoryImpl _jsonFactoryImpl;
+	private HttpImpl _httpImpl = new HttpImpl();
+	private JSONFactoryImpl _jsonFactoryImpl = new JSONFactoryImpl();
 
 }

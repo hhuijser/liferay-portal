@@ -48,8 +48,6 @@ public class RouterImplTest {
 
 		httpUtil.setHttp(new HttpImpl());
 
-		_routerImpl = new RouterImpl();
-
 		Route route = _routerImpl.addRoute(
 			"instance/{userIdAndInstanceId}/{topLink}");
 
@@ -218,6 +216,6 @@ public class RouterImplTest {
 		Assert.assertEquals(expectedUrl, generatedUrl);
 	}
 
-	private RouterImpl _routerImpl;
+	private RouterImpl _routerImpl = new RouterImpl();
 
 }

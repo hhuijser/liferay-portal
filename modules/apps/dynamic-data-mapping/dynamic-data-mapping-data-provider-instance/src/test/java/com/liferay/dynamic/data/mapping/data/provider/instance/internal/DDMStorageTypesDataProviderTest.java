@@ -52,8 +52,6 @@ public class DDMStorageTypesDataProviderTest extends PowerMockito {
 
 	@Before
 	public void setUp() {
-		_ddmStorageTypesDataProvider = new DDMStorageTypesDataProvider();
-
 		_ddmStorageTypesDataProvider.ddmStorageAdapterTracker =
 			_ddmStorageAdapterTracker;
 	}
@@ -124,6 +122,7 @@ public class DDMStorageTypesDataProviderTest extends PowerMockito {
 	@Mock
 	private DDMStorageAdapterTracker _ddmStorageAdapterTracker;
 
-	private DDMStorageTypesDataProvider _ddmStorageTypesDataProvider;
+	private DDMStorageTypesDataProvider _ddmStorageTypesDataProvider =
+		new DDMStorageTypesDataProvider();
 
 }

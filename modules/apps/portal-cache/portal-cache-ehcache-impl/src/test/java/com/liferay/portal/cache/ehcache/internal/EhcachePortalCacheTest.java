@@ -90,12 +90,8 @@ public class EhcachePortalCacheTest {
 
 		_ehcachePortalCache.put(_KEY_1, _VALUE_1);
 
-		_defaultPortalCacheListener = new TestPortalCacheListener<>();
-
 		_ehcachePortalCache.registerPortalCacheListener(
 			_defaultPortalCacheListener);
-
-		_defaultPortalCacheReplicator = new TestPortalCacheReplicator<>();
 
 		_ehcachePortalCache.registerPortalCacheListener(
 			_defaultPortalCacheReplicator);
@@ -666,9 +662,10 @@ public class EhcachePortalCacheTest {
 
 	private static CacheManager _cacheManager;
 
-	private TestPortalCacheListener<String, String> _defaultPortalCacheListener;
+	private TestPortalCacheListener<String, String>
+		_defaultPortalCacheListener = new TestPortalCacheListener<>();
 	private TestPortalCacheReplicator<String, String>
-		_defaultPortalCacheReplicator;
+		_defaultPortalCacheReplicator = new TestPortalCacheReplicator<>();
 	private Ehcache _ehcache;
 	private EhcachePortalCache<String, String> _ehcachePortalCache;
 

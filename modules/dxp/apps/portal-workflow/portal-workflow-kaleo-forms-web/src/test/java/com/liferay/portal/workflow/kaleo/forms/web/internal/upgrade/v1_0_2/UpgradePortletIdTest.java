@@ -32,7 +32,6 @@ public class UpgradePortletIdTest extends PowerMockito {
 
 	@Before
 	public void setUp() throws Exception {
-		_upgradePortletId = new UpgradePortletId();
 	}
 
 	@Test
@@ -63,6 +62,6 @@ public class UpgradePortletIdTest extends PowerMockito {
 
 	private static final String _PORTLET_KEY = RandomTestUtil.randomString();
 
-	private UpgradePortletId _upgradePortletId;
+	private UpgradePortletId _upgradePortletId = new UpgradePortletId();
 
 }

@@ -87,7 +87,6 @@ public class DDLRecordSetServiceTest {
 	public void setUp() throws Exception {
 		_availableLocales = DDMFormTestUtil.createAvailableLocales(
 			LocaleUtil.US);
-		_defaultLocale = LocaleUtil.US;
 
 		_group = GroupTestUtil.addGroup();
 
@@ -362,7 +361,7 @@ public class DDLRecordSetServiceTest {
 	private Set<Locale> _availableLocales;
 	private DDLRecordSetTestHelper _ddlRecordSetTestHelper;
 	private DDMStructureTestHelper _ddmStructureTestHelper;
-	private Locale _defaultLocale;
+	private Locale _defaultLocale = LocaleUtil.US;
 
 	@DeleteAfterTestRun
 	private Group _group;

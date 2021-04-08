@@ -69,12 +69,8 @@ public class ItemSelectorImplTest extends PowerMockito {
 
 	@Before
 	public void setUp() {
-		_flickrItemSelectorCriterion = new FlickrItemSelectorCriterion();
-
 		_flickrItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			_testURLItemSelectorReturnType);
-
-		_itemSelectorImpl = new ItemSelectorImpl();
 
 		_stubItemSelectorCriterionSerializerImpl.addItemSelectorReturnType(
 			_testFileEntryItemSelectorReturnType);
@@ -93,8 +89,6 @@ public class ItemSelectorImplTest extends PowerMockito {
 		ReflectionTestUtil.setFieldValue(
 			_itemSelectorImpl, "_serviceTrackerMap",
 			ProxyFactory.newDummyInstance(ServiceTrackerMap.class));
-
-		_mediaItemSelectorCriterion = new MediaItemSelectorCriterion();
 
 		_mediaItemSelectorCriterion.setFileExtension("jpg");
 		_mediaItemSelectorCriterion.setMaxSize(2048);
@@ -326,9 +320,11 @@ public class ItemSelectorImplTest extends PowerMockito {
 			new MediaItemSelectorCriterionHandler());
 	}
 
-	private FlickrItemSelectorCriterion _flickrItemSelectorCriterion;
-	private ItemSelectorImpl _itemSelectorImpl;
-	private MediaItemSelectorCriterion _mediaItemSelectorCriterion;
+	private FlickrItemSelectorCriterion _flickrItemSelectorCriterion =
+		new FlickrItemSelectorCriterion();
+	private ItemSelectorImpl _itemSelectorImpl = new ItemSelectorImpl();
+	private MediaItemSelectorCriterion _mediaItemSelectorCriterion =
+		new MediaItemSelectorCriterion();
 	private final StubItemSelectorCriterionSerializerImpl
 		_stubItemSelectorCriterionSerializerImpl =
 			new StubItemSelectorCriterionSerializerImpl();

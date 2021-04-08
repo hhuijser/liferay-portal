@@ -64,7 +64,6 @@ public class ConfigurationProviderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_properties = new Hashtable<>();
 	}
 
 	@After
@@ -300,7 +299,7 @@ public class ConfigurationProviderTest {
 	}
 
 	private Configuration _configuration;
-	private Dictionary<String, Object> _properties;
+	private Dictionary<String, Object> _properties = new Hashtable<>();
 
 	private static final String _PID = "test.pid";
 

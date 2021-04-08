@@ -91,10 +91,6 @@ public class VelocityTemplateTest {
 			ConfigurableUtil.createConfigurable(
 				VelocityEngineConfiguration.class, Collections.emptyMap());
 
-		_templateContextHelper = new MockTemplateContextHelper();
-
-		_velocityEngine = new VelocityEngine();
-
 		boolean cacheEnabled = false;
 
 		ExtendedProperties extendedProperties = new FastExtendedProperties();
@@ -380,8 +376,9 @@ public class VelocityTemplateTest {
 	private static VelocityTemplateResourceLoader
 		_velocityTemplateResourceLoader;
 
-	private TemplateContextHelper _templateContextHelper;
-	private VelocityEngine _velocityEngine;
+	private TemplateContextHelper _templateContextHelper =
+		new MockTemplateContextHelper();
+	private VelocityEngine _velocityEngine = new VelocityEngine();
 
 	private static class MockTemplateContextHelper
 		extends TemplateContextHelper {

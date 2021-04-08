@@ -103,8 +103,6 @@ public class JournalArticleLocalServiceTest {
 
 		Layout layout = LayoutTestUtil.addLayout(_group);
 
-		_themeDisplay = new ThemeDisplay();
-
 		_themeDisplay.setCompany(
 			_companyLocalService.getCompany(_group.getCompanyId()));
 		_themeDisplay.setLayout(layout);
@@ -543,7 +541,7 @@ public class JournalArticleLocalServiceTest {
 	@Inject
 	private ResourcePermissionLocalService _resourcePermissionLocalService;
 
-	private ThemeDisplay _themeDisplay;
+	private ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 	@Inject
 	private UserLocalService _userLocalService;

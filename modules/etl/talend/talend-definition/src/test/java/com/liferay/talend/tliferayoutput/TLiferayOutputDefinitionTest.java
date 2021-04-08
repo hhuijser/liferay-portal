@@ -42,7 +42,6 @@ public class TLiferayOutputDefinitionTest {
 
 	@Before
 	public void setUp() {
-		_tLiferayOutputDefinition = new TLiferayOutputDefinition();
 	}
 
 	@Test
@@ -138,6 +137,7 @@ public class TLiferayOutputDefinitionTest {
 	@Rule
 	public final ExpectedException expectedException = ExpectedException.none();
 
-	private TLiferayOutputDefinition _tLiferayOutputDefinition;
+	private TLiferayOutputDefinition _tLiferayOutputDefinition =
+		new TLiferayOutputDefinition();
 
 }

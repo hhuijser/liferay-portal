@@ -43,7 +43,6 @@ public class LiferayFamilyDefinitionTest {
 
 	@Before
 	public void setUp() {
-		_liferayFamilyDefinition = new LiferayFamilyDefinition();
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -84,6 +83,7 @@ public class LiferayFamilyDefinitionTest {
 			_liferayFamilyDefinition);
 	}
 
-	private LiferayFamilyDefinition _liferayFamilyDefinition;
+	private LiferayFamilyDefinition _liferayFamilyDefinition =
+		new LiferayFamilyDefinition();
 
 }

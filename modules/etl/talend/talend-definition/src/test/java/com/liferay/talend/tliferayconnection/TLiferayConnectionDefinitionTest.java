@@ -39,8 +39,6 @@ public class TLiferayConnectionDefinitionTest {
 
 	@Before
 	public void setUp() {
-		_tLiferayConnectionDefinition = new TLiferayConnectionDefinition();
-
 		_tLiferayConnectionProperties = new LiferayConnectionProperties(
 			"connection");
 
@@ -92,7 +90,8 @@ public class TLiferayConnectionDefinitionTest {
 	@Rule
 	public final ExpectedException expectedException = ExpectedException.none();
 
-	private TLiferayConnectionDefinition _tLiferayConnectionDefinition;
+	private TLiferayConnectionDefinition _tLiferayConnectionDefinition =
+		new TLiferayConnectionDefinition();
 	private LiferayConnectionProperties _tLiferayConnectionProperties;
 
 }

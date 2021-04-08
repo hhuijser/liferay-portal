@@ -65,11 +65,7 @@ public class MVCCPortalCacheTest {
 		_mvccPortalCache = new MVCCPortalCache<>(
 			(LowLevelCache<String, MockMVCCModel>)_portalCache);
 
-		_testPortalCacheListener = new TestPortalCacheListener<>();
-
 		_portalCache.registerPortalCacheListener(_testPortalCacheListener);
-
-		_testPortalCacheReplicator = new TestPortalCacheReplicator<>();
 
 		_portalCache.registerPortalCacheListener(_testPortalCacheReplicator);
 	}
@@ -398,8 +394,8 @@ public class MVCCPortalCacheTest {
 	private MVCCPortalCache<String, MockMVCCModel> _mvccPortalCache;
 	private PortalCache<String, MockMVCCModel> _portalCache;
 	private TestPortalCacheListener<String, MockMVCCModel>
-		_testPortalCacheListener;
+		_testPortalCacheListener = new TestPortalCacheListener<>();
 	private TestPortalCacheReplicator<String, MockMVCCModel>
-		_testPortalCacheReplicator;
+		_testPortalCacheReplicator = new TestPortalCacheReplicator<>();
 
 }

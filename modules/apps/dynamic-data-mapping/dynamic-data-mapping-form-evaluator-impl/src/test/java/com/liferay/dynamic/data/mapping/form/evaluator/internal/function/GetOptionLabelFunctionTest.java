@@ -43,7 +43,6 @@ public class GetOptionLabelFunctionTest extends PowerMockito {
 
 	@Before
 	public void setUp() throws Exception {
-		_getOptionLabelFunction = new GetOptionLabelFunction();
 	}
 
 	@Test
@@ -121,6 +120,7 @@ public class GetOptionLabelFunctionTest extends PowerMockito {
 			_getOptionLabelFunction.apply("fieldName", "optionName"));
 	}
 
-	private GetOptionLabelFunction _getOptionLabelFunction;
+	private GetOptionLabelFunction _getOptionLabelFunction =
+		new GetOptionLabelFunction();
 
 }

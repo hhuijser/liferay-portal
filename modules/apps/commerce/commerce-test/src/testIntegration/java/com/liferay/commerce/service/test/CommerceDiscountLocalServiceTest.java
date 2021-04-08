@@ -124,8 +124,6 @@ public class CommerceDiscountLocalServiceTest {
 		_commercePricingConfiguration =
 			_configurationProvider.getSystemConfiguration(
 				CommercePricingConfiguration.class);
-
-		_commerceOrders = new ArrayList<>();
 	}
 
 	@After
@@ -769,7 +767,7 @@ public class CommerceDiscountLocalServiceTest {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders;
+	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
 	private CommercePricingConfiguration _commercePricingConfiguration;
 
 	@DeleteAfterTestRun

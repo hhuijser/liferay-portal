@@ -45,7 +45,6 @@ public class ElasticsearchConnectionTest {
 
 	@Before
 	public void setUp() {
-		_elasticsearchConnection = new ElasticsearchConnection();
 	}
 
 	@Test
@@ -114,6 +113,7 @@ public class ElasticsearchConnectionTest {
 		Assert.assertEquals(port, httpHost.getPort());
 	}
 
-	private ElasticsearchConnection _elasticsearchConnection;
+	private ElasticsearchConnection _elasticsearchConnection =
+		new ElasticsearchConnection();
 
 }

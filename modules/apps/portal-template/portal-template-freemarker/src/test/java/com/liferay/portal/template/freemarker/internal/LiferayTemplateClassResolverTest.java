@@ -46,8 +46,6 @@ public class LiferayTemplateClassResolverTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_liferayTemplateClassResolver = new LiferayTemplateClassResolver();
-
 		_updateProperties(null, null);
 	}
 
@@ -208,6 +206,7 @@ public class LiferayTemplateClassResolverTest {
 			freeMarkerEngineConfiguration);
 	}
 
-	private TemplateClassResolver _liferayTemplateClassResolver;
+	private TemplateClassResolver _liferayTemplateClassResolver =
+		new LiferayTemplateClassResolver();
 
 }

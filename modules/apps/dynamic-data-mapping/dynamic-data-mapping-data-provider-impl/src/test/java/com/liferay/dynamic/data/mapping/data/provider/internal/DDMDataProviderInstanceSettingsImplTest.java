@@ -53,9 +53,6 @@ public class DDMDataProviderInstanceSettingsImplTest extends PowerMockito {
 
 	@Before
 	public void setUp() throws Exception {
-		_ddmDataProviderInstanceSettingsImpl =
-			new DDMDataProviderInstanceSettingsImpl();
-
 		_ddmDataProviderInstanceSettingsImpl.ddmDataProviderTracker =
 			_ddmDataProviderTracker;
 		_ddmDataProviderInstanceSettingsImpl.jsonDDMFormValuesDeserializer =
@@ -143,7 +140,8 @@ public class DDMDataProviderInstanceSettingsImplTest extends PowerMockito {
 	private DDMDataProviderInstance _ddmDataProviderInstance;
 
 	private DDMDataProviderInstanceSettingsImpl
-		_ddmDataProviderInstanceSettingsImpl;
+		_ddmDataProviderInstanceSettingsImpl =
+			new DDMDataProviderInstanceSettingsImpl();
 
 	@Mock
 	private DDMDataProviderTracker _ddmDataProviderTracker;

@@ -57,8 +57,6 @@ public class CTMessageBusInterceptorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_testMessageListener = new TestMessageListener();
-
 		Destination destination = _messageBus.getDestination(
 			DestinationNames.SUBSCRIPTION_SENDER);
 
@@ -202,7 +200,8 @@ public class CTMessageBusInterceptorTest {
 	private CTCollection _ctCollection;
 
 	private Set<MessageListener> _originalMessageListeners;
-	private TestMessageListener _testMessageListener;
+	private TestMessageListener _testMessageListener =
+		new TestMessageListener();
 
 	private static class TestMessageListener implements MessageListener {
 

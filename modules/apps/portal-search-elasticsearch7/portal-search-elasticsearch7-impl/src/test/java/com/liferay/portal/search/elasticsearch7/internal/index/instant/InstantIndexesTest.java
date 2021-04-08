@@ -91,13 +91,9 @@ public class InstantIndexesTest {
 			IndexRegistrar.class, indexSynchronizerImpl::addIndexRegistrar,
 			indexSynchronizationPortalInitializedListener::addIndexRegistrar);
 
-		_eventsIndexDefinition = new EventsIndexDefinition();
 		_indexSynchronizationPortalInitializedListener =
 			indexSynchronizationPortalInitializedListener;
-		_instancesAndProcessesIndexRegistrar =
-			new InstancesAndProcessesIndexRegistrar();
 		_microcontainer = microcontainer;
-		_tasksIndexDefinition = new TasksIndexDefinition();
 	}
 
 	@Test
@@ -236,12 +232,15 @@ public class InstantIndexesTest {
 
 	private static ElasticsearchFixture _elasticsearchFixture;
 
-	private EventsIndexDefinition _eventsIndexDefinition;
+	private EventsIndexDefinition _eventsIndexDefinition =
+		new EventsIndexDefinition();
 	private IndexSynchronizationPortalInitializedListener
 		_indexSynchronizationPortalInitializedListener;
 	private InstancesAndProcessesIndexRegistrar
-		_instancesAndProcessesIndexRegistrar;
+		_instancesAndProcessesIndexRegistrar =
+			new InstancesAndProcessesIndexRegistrar();
 	private Microcontainer _microcontainer;
-	private TasksIndexDefinition _tasksIndexDefinition;
+	private TasksIndexDefinition _tasksIndexDefinition =
+		new TasksIndexDefinition();
 
 }

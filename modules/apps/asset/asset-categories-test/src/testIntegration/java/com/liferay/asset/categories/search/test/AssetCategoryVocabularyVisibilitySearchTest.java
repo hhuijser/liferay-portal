@@ -91,8 +91,6 @@ public class AssetCategoryVocabularyVisibilitySearchTest {
 	public void setUp() throws Exception {
 		WorkflowThreadLocal.setEnabled(false);
 
-		_groupSearchFixture = new GroupSearchFixture();
-
 		_group = _groupSearchFixture.addGroup(new GroupBlueprint());
 
 		_journalArticleSearchFixture = new JournalArticleSearchFixture(
@@ -312,7 +310,7 @@ public class AssetCategoryVocabularyVisibilitySearchTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private GroupSearchFixture _groupSearchFixture;
+	private GroupSearchFixture _groupSearchFixture = new GroupSearchFixture();
 
 	@Inject
 	private JournalArticleLocalService _journalArticleLocalService;

@@ -43,7 +43,6 @@ public class ModifiedFacetCalendarDisplayBuilderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_calendarFactory = new CalendarFactoryImpl();
 	}
 
 	@Test
@@ -185,6 +184,6 @@ public class ModifiedFacetCalendarDisplayBuilderTest {
 		return Optional.of(TimeZoneUtil.getTimeZone(availableIDs[0]));
 	}
 
-	private CalendarFactory _calendarFactory;
+	private CalendarFactory _calendarFactory = new CalendarFactoryImpl();
 
 }

@@ -93,13 +93,7 @@ public class ApplicationsMenuPanelAppsMVCResourceCommandTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_groups = new ArrayList<>();
-
 		_themeDisplay = _getThemeDisplay();
-
-		_mockHttpServletRequest = new MockHttpServletRequest();
-
-		_mockPortletRequest = new MockLiferayResourceRequest();
 
 		_mockPortletRequest.setAttribute(
 			PortletServlet.PORTLET_SERVLET_REQUEST, _mockHttpServletRequest);
@@ -462,10 +456,12 @@ public class ApplicationsMenuPanelAppsMVCResourceCommandTest {
 	private Group _group;
 
 	@DeleteAfterTestRun
-	private List<Group> _groups;
+	private List<Group> _groups = new ArrayList<>();
 
-	private HttpServletRequest _mockHttpServletRequest;
-	private MockPortletRequest _mockPortletRequest;
+	private HttpServletRequest _mockHttpServletRequest =
+		new MockHttpServletRequest();
+	private MockPortletRequest _mockPortletRequest =
+		new MockLiferayResourceRequest();
 
 	@Inject(filter = "mvc.command.name=/applications_menu/panel_apps")
 	private MVCResourceCommand _mvcResourceCommand;

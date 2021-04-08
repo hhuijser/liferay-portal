@@ -120,8 +120,6 @@ public class ResponsiveLayoutStructureUtilTest {
 			fragmentEntry.getJs(), fragmentEntry.getConfiguration(), null,
 			StringPool.BLANK, 0, null, serviceContext);
 
-		_themeDisplay = new ThemeDisplay();
-
 		_themeDisplay.setCompany(
 			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
 		_themeDisplay.setLanguageId(
@@ -316,6 +314,6 @@ public class ResponsiveLayoutStructureUtilTest {
 	private LayoutPageTemplateStructureLocalService
 		_layoutPageTemplateStructureLocalService;
 
-	private ThemeDisplay _themeDisplay;
+	private ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 }

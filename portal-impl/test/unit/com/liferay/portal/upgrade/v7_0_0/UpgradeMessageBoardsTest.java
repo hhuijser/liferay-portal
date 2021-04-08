@@ -42,9 +42,6 @@ public class UpgradeMessageBoardsTest {
 	public void setUp() {
 		PropsTestUtil.setProps(
 			PropsKeys.MESSAGE_BOARDS_EMAIL_HTML_FORMAT, StringPool.FALSE);
-
-		_portletPreferences = new MockPortletPreferences();
-		_upgradeMessageBoards = new UpgradeMessageBoards();
 	}
 
 	@Test
@@ -113,7 +110,9 @@ public class UpgradeMessageBoardsTest {
 			values);
 	}
 
-	private PortletPreferences _portletPreferences;
-	private UpgradeMessageBoards _upgradeMessageBoards;
+	private PortletPreferences _portletPreferences =
+		new MockPortletPreferences();
+	private UpgradeMessageBoards _upgradeMessageBoards =
+		new UpgradeMessageBoards();
 
 }

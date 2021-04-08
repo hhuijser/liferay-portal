@@ -77,9 +77,6 @@ public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_removeAttributeFromLARExportImportLifecycleListener =
-			new RemoveAttributeFromLARExportImportLifecycleListener();
-
 		ExportImportLifecycleEventListenerRegistryUtil.register(
 			_removeAttributeFromLARExportImportLifecycleListener);
 	}
@@ -283,6 +280,7 @@ public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 	private final List<Method> _parentTestMethods = getMethodsAnnotatedWith(
 		getClass().getSuperclass(), Test.class);
 	private RemoveAttributeFromLARExportImportLifecycleListener
-		_removeAttributeFromLARExportImportLifecycleListener;
+		_removeAttributeFromLARExportImportLifecycleListener =
+			new RemoveAttributeFromLARExportImportLifecycleListener();
 
 }

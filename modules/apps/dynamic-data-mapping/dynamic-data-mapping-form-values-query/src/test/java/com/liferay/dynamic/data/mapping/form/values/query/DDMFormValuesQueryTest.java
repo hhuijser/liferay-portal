@@ -49,7 +49,6 @@ public class DDMFormValuesQueryTest extends PowerMockito {
 	@Before
 	public void setUp() {
 		_ddmFormValues = createDDMFormValues();
-		_ddmFormValuesQueryFactory = new DDMFormValuesQueryFactoryImpl();
 
 		setUpLocaleUtil();
 	}
@@ -634,6 +633,7 @@ public class DDMFormValuesQueryTest extends PowerMockito {
 	}
 
 	private DDMFormValues _ddmFormValues;
-	private DDMFormValuesQueryFactory _ddmFormValuesQueryFactory;
+	private DDMFormValuesQueryFactory _ddmFormValuesQueryFactory =
+		new DDMFormValuesQueryFactoryImpl();
 
 }

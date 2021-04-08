@@ -119,8 +119,6 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		setUpLanguageUtil();
 		setUpPortalUtil();
 		setUpResourceBundleLoaderUtil();
-
-		_ddmExpressionFactory = new DDMExpressionFactoryImpl();
 	}
 
 	@Test
@@ -1525,7 +1523,8 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 	@Mock
 	private Company _company;
 
-	private DDMExpressionFactory _ddmExpressionFactory;
+	private DDMExpressionFactory _ddmExpressionFactory =
+		new DDMExpressionFactoryImpl();
 
 	@Mock
 	private HttpServletRequest _httpServletRequest;

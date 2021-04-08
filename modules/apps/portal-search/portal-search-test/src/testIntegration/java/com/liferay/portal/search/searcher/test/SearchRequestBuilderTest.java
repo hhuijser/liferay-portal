@@ -91,8 +91,6 @@ public class SearchRequestBuilderTest {
 
 		_journalArticleSearchFixture.setUp();
 
-		_userSearchFixture = new UserSearchFixture();
-
 		_userSearchFixture.setUp();
 
 		_users = _userSearchFixture.getUsers();
@@ -499,6 +497,6 @@ public class SearchRequestBuilderTest {
 	@DeleteAfterTestRun
 	private List<User> _users;
 
-	private UserSearchFixture _userSearchFixture;
+	private UserSearchFixture _userSearchFixture = new UserSearchFixture();
 
 }

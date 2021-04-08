@@ -58,8 +58,6 @@ public class BaseIndexerGetSiteGroupIdTest {
 		Registry registry = new BasicRegistryImpl();
 
 		RegistryUtil.setRegistry(registry);
-
-		_indexer = new TestIndexer();
 	}
 
 	@Test
@@ -195,7 +193,7 @@ public class BaseIndexerGetSiteGroupIdTest {
 			});
 	}
 
-	private BaseIndexer<Object> _indexer;
+	private BaseIndexer<Object> _indexer = new TestIndexer();
 
 	private static class TestIndexer extends BaseIndexer<Object> {
 

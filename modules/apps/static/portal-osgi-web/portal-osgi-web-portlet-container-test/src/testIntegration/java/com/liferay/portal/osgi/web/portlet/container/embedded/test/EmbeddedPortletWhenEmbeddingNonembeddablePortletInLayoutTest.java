@@ -64,8 +64,6 @@ public class EmbeddedPortletWhenEmbeddingNonembeddablePortletInLayoutTest
 
 		_layoutStaticPortletsAll = PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 
-		_testNonembeddedPortlet = new TestNonembeddedPortlet();
-
 		Dictionary<String, Object> properties = new Hashtable<>();
 
 		setUpPortlet(
@@ -179,6 +177,7 @@ public class EmbeddedPortletWhenEmbeddingNonembeddablePortletInLayoutTest
 	private static PortletPreferenceValueLocalService
 		_portletPreferenceValueLocalService;
 
-	private TestNonembeddedPortlet _testNonembeddedPortlet;
+	private TestNonembeddedPortlet _testNonembeddedPortlet =
+		new TestNonembeddedPortlet();
 
 }

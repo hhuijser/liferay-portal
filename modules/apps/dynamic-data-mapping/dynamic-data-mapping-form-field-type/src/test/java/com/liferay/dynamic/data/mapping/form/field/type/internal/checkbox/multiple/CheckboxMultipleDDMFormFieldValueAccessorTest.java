@@ -42,9 +42,6 @@ public class CheckboxMultipleDDMFormFieldValueAccessorTest {
 
 	@Before
 	public void setUp() {
-		_checkboxMultipleDDMFormFieldValueAccessor =
-			new CheckboxMultipleDDMFormFieldValueAccessor();
-
 		_checkboxMultipleDDMFormFieldValueAccessor.jsonFactory = _jsonFactory;
 	}
 
@@ -89,7 +86,8 @@ public class CheckboxMultipleDDMFormFieldValueAccessorTest {
 	}
 
 	private CheckboxMultipleDDMFormFieldValueAccessor
-		_checkboxMultipleDDMFormFieldValueAccessor;
+		_checkboxMultipleDDMFormFieldValueAccessor =
+			new CheckboxMultipleDDMFormFieldValueAccessor();
 	private final JSONFactory _jsonFactory = new JSONFactoryImpl();
 
 }

@@ -78,8 +78,6 @@ public class AssetTagNamesMultiLanguageSearchTest {
 
 		_fileEntrySearchFixture.setUp();
 
-		_userSearchFixture = new UserSearchFixture();
-
 		_userSearchFixture.setUp();
 
 		_assetTags = _userSearchFixture.getAssetTags();
@@ -280,6 +278,6 @@ public class AssetTagNamesMultiLanguageSearchTest {
 	@DeleteAfterTestRun
 	private List<User> _users;
 
-	private UserSearchFixture _userSearchFixture;
+	private UserSearchFixture _userSearchFixture = new UserSearchFixture();
 
 }

@@ -70,8 +70,6 @@ public class FacetedSearcherImplTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 
-		_documentFixture = new DocumentFixture();
-
 		_documentFixture.setUp();
 
 		facetedSearcher = createFacetedSearcher();
@@ -161,6 +159,6 @@ public class FacetedSearcherImplTest {
 	protected SearchableAssetClassNamesProvider
 		searchableAssetClassNamesProvider;
 
-	private DocumentFixture _documentFixture;
+	private DocumentFixture _documentFixture = new DocumentFixture();
 
 }

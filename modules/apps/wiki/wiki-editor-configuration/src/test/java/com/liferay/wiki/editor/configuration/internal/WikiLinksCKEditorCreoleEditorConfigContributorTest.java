@@ -90,9 +90,6 @@ public class WikiLinksCKEditorCreoleEditorConfigContributorTest
 			}
 		);
 
-		_wikiLinksCKEditorCreoleEditorConfigContributor =
-			new WikiLinksCKEditorCreoleEditorConfigContributor();
-
 		ReflectionTestUtil.setFieldValue(
 			_wikiLinksCKEditorCreoleEditorConfigContributor, "itemSelector",
 			_itemSelector);
@@ -204,6 +201,7 @@ public class WikiLinksCKEditorCreoleEditorConfigContributorTest
 	private ItemSelector _itemSelector;
 
 	private WikiLinksCKEditorCreoleEditorConfigContributor
-		_wikiLinksCKEditorCreoleEditorConfigContributor;
+		_wikiLinksCKEditorCreoleEditorConfigContributor =
+			new WikiLinksCKEditorCreoleEditorConfigContributor();
 
 }

@@ -69,9 +69,6 @@ public class DDMDataProviderInstanceOutputParametersDataProviderTest
 		_setUpPortalUtil();
 		_setUpResourceBundleUtil();
 
-		_ddmDataProviderInstanceOutputParametersDataProvider =
-			new DDMDataProviderInstanceOutputParametersDataProvider();
-
 		_ddmDataProviderInstanceOutputParametersDataProvider.
 			ddmDataProviderInstanceService = _ddmDataProviderInstanceService;
 		_ddmDataProviderInstanceOutputParametersDataProvider.
@@ -360,7 +357,8 @@ public class DDMDataProviderInstanceOutputParametersDataProviderTest
 	private DDMDataProviderInstance _ddmDataProviderInstance;
 
 	private DDMDataProviderInstanceOutputParametersDataProvider
-		_ddmDataProviderInstanceOutputParametersDataProvider;
+		_ddmDataProviderInstanceOutputParametersDataProvider =
+			new DDMDataProviderInstanceOutputParametersDataProvider();
 
 	@Mock
 	private DDMDataProviderInstanceService _ddmDataProviderInstanceService;

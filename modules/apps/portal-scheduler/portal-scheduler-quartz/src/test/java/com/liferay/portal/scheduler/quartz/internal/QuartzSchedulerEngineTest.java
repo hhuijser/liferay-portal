@@ -105,8 +105,6 @@ public class QuartzSchedulerEngineTest {
 
 		setUpPortalUUIDUtil();
 
-		_quartzSchedulerEngine = new QuartzSchedulerEngine();
-
 		_quartzSchedulerEngine.setProps(setUpPropsUtil());
 
 		ReflectionTestUtil.setFieldValue(
@@ -706,7 +704,8 @@ public class QuartzSchedulerEngineTest {
 	private static final String _TEST_JOB_NAME_PREFIX = "test.job.";
 
 	private JSONFactory _jsonFactory;
-	private QuartzSchedulerEngine _quartzSchedulerEngine;
+	private QuartzSchedulerEngine _quartzSchedulerEngine =
+		new QuartzSchedulerEngine();
 	private final QuartzTriggerFactory _quartzTriggerFactory =
 		new QuartzTriggerFactory();
 

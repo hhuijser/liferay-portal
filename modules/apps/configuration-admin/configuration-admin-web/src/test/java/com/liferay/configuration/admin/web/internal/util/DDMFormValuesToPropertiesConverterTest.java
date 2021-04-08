@@ -60,8 +60,6 @@ public class DDMFormValuesToPropertiesConverterTest extends Mockito {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-
-		_jsonFactory = new JSONFactoryImpl();
 	}
 
 	@Test
@@ -430,6 +428,6 @@ public class DDMFormValuesToPropertiesConverterTest extends Mockito {
 	}
 
 	private final Locale _enLocale = LocaleUtil.US;
-	private JSONFactory _jsonFactory;
+	private JSONFactory _jsonFactory = new JSONFactoryImpl();
 
 }

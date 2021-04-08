@@ -46,8 +46,6 @@ public class ItemSelectorCriterionSerializerImplTest {
 
 	@Before
 	public void setUp() {
-		_flickrItemSelectorCriterion = new FlickrItemSelectorCriterion();
-
 		_flickrItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			_testStringItemSelectorReturnType, _testURLItemSelectorReturnType);
 
@@ -118,7 +116,8 @@ public class ItemSelectorCriterionSerializerImplTest {
 		return json.replaceAll(Pattern.quote(expected), "");
 	}
 
-	private FlickrItemSelectorCriterion _flickrItemSelectorCriterion;
+	private FlickrItemSelectorCriterion _flickrItemSelectorCriterion =
+		new FlickrItemSelectorCriterion();
 	private final StubItemSelectorCriterionSerializerImpl
 		_stubItemSelectorCriterionSerializerImpl =
 			new StubItemSelectorCriterionSerializerImpl();

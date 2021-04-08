@@ -50,9 +50,6 @@ public class DDMDataProviderInstancesDataProviderTest extends PowerMockito {
 	public void setUp() throws Exception {
 		_setUpLocaleThreadLocal();
 
-		_ddmDataProviderInstancesDataProvider =
-			new DDMDataProviderInstancesDataProvider();
-
 		_ddmDataProviderInstancesDataProvider.
 			ddmDataProviderInstanceLocalService =
 				_ddmDataProviderInstanceLocalService;
@@ -186,7 +183,8 @@ public class DDMDataProviderInstancesDataProviderTest extends PowerMockito {
 		_ddmDataProviderInstanceLocalService;
 
 	private DDMDataProviderInstancesDataProvider
-		_ddmDataProviderInstancesDataProvider;
+		_ddmDataProviderInstancesDataProvider =
+			new DDMDataProviderInstancesDataProvider();
 
 	@Mock
 	private Portal _portal;

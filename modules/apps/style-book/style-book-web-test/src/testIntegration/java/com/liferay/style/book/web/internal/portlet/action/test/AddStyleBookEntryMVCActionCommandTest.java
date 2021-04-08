@@ -66,14 +66,10 @@ public class AddStyleBookEntryMVCActionCommandTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_serviceContext = new ServiceContext();
-
 		_serviceContext.setScopeGroupId(_group.getGroupId());
 		_serviceContext.setUserId(TestPropsValues.getUserId());
 
 		ServiceContextThreadLocal.pushServiceContext(_serviceContext);
-
-		_themeDisplay = new ThemeDisplay();
 
 		_themeDisplay.setCompany(
 			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
@@ -178,11 +174,11 @@ public class AddStyleBookEntryMVCActionCommandTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private ServiceContext _serviceContext;
+	private ServiceContext _serviceContext = new ServiceContext();
 
 	@Inject
 	private StyleBookEntryLocalService _styleBookEntryLocalService;
 
-	private ThemeDisplay _themeDisplay;
+	private ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 }

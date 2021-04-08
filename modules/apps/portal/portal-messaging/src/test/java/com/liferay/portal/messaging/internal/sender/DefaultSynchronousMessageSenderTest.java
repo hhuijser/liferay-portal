@@ -55,8 +55,6 @@ public class DefaultSynchronousMessageSenderTest {
 
 	@Before
 	public void setUp() {
-		_messageBus = new DefaultMessageBus();
-
 		ReflectionTestUtil.setFieldValue(
 			_messageBus, "_serviceTrackerList",
 			new ServiceTrackerList() {
@@ -88,9 +86,6 @@ public class DefaultSynchronousMessageSenderTest {
 
 		_destinations.put(
 			synchronousDestination.getName(), synchronousDestination);
-
-		_defaultSynchronousMessageSender =
-			new DefaultSynchronousMessageSender();
 
 		ReflectionTestUtil.setFieldValue(
 			_defaultSynchronousMessageSender, "_entityCache",
@@ -163,9 +158,10 @@ public class DefaultSynchronousMessageSenderTest {
 		}
 	}
 
-	private DefaultSynchronousMessageSender _defaultSynchronousMessageSender;
+	private DefaultSynchronousMessageSender _defaultSynchronousMessageSender =
+		new DefaultSynchronousMessageSender();
 	private Map<String, Destination> _destinations;
-	private MessageBus _messageBus;
+	private MessageBus _messageBus = new DefaultMessageBus();
 	private PortalExecutorManager _portalExecutorManager;
 
 	private class ReplayMessageListener implements MessageListener {

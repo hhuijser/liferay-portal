@@ -42,7 +42,6 @@ public class ConfigurationExportImportTest {
 
 	@Before
 	public void setUp() {
-		_dictionary = new Hashtable<>();
 	}
 
 	@Test
@@ -108,6 +107,6 @@ public class ConfigurationExportImportTest {
 		return ConfigurationHandler.read(new UnsyncByteArrayInputStream(bytes));
 	}
 
-	private Dictionary<String, Object> _dictionary;
+	private Dictionary<String, Object> _dictionary = new Hashtable<>();
 
 }

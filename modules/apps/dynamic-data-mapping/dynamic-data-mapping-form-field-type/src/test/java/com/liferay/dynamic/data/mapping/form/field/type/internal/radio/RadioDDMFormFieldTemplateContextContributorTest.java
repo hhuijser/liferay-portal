@@ -51,9 +51,6 @@ public class RadioDDMFormFieldTemplateContextContributorTest
 
 	@Before
 	public void setUp() throws Exception {
-		_radioDDMFormFieldTemplateContextContributor =
-			new RadioDDMFormFieldTemplateContextContributor();
-
 		setUpJSONFactory();
 	}
 
@@ -261,6 +258,7 @@ public class RadioDDMFormFieldTemplateContextContributorTest
 
 	private final JSONFactory _jsonFactory = new JSONFactoryImpl();
 	private RadioDDMFormFieldTemplateContextContributor
-		_radioDDMFormFieldTemplateContextContributor;
+		_radioDDMFormFieldTemplateContextContributor =
+			new RadioDDMFormFieldTemplateContextContributor();
 
 }

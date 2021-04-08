@@ -37,8 +37,6 @@ public class GetMappingIndexRequestExecutorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_elasticsearchFixture = new ElasticsearchFixture();
-
 		_elasticsearchFixture.setUp();
 	}
 
@@ -72,6 +70,7 @@ public class GetMappingIndexRequestExecutorTest {
 
 	private static final String _MAPPING_NAME = "testMapping";
 
-	private ElasticsearchFixture _elasticsearchFixture;
+	private ElasticsearchFixture _elasticsearchFixture =
+		new ElasticsearchFixture();
 
 }

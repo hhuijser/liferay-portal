@@ -111,7 +111,6 @@ public class CustomSQLTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_customSQL = new TestCustomSQL();
 	}
 
 	@Test
@@ -233,7 +232,7 @@ public class CustomSQLTest {
 	private static Portal _portal;
 	private static Props _props;
 
-	private CustomSQL _customSQL;
+	private CustomSQL _customSQL = new TestCustomSQL();
 	private final QueryDefinition<Object> _queryDefinition =
 		new QueryDefinition<>();
 

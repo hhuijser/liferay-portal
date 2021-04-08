@@ -41,7 +41,6 @@ public class TLiferayInputDefinitionTest {
 
 	@Before
 	public void setUp() {
-		_tLiferayInputDefinition = new TLiferayInputDefinition();
 	}
 
 	@Test
@@ -135,6 +134,7 @@ public class TLiferayInputDefinitionTest {
 	@Rule
 	public final ExpectedException expectedException = ExpectedException.none();
 
-	private TLiferayInputDefinition _tLiferayInputDefinition;
+	private TLiferayInputDefinition _tLiferayInputDefinition =
+		new TLiferayInputDefinition();
 
 }

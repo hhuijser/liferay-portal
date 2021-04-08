@@ -56,8 +56,6 @@ public class SecureXMLFactoryProviderImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_secureXMLFactoryProviderImpl = new SecureXMLFactoryProviderImpl();
-
 		_xmlBombBillionLaughsXML = readDependency(
 			"xml-bomb-billion-laughs.xml");
 		_xmlBombQuadraticBlowupXML = readDependency(
@@ -323,7 +321,8 @@ public class SecureXMLFactoryProviderImplTest {
 	private static String _xxeParameterEntitiesXML1;
 	private static String _xxeParameterEntitiesXML2;
 
-	private SecureXMLFactoryProviderImpl _secureXMLFactoryProviderImpl;
+	private SecureXMLFactoryProviderImpl _secureXMLFactoryProviderImpl =
+		new SecureXMLFactoryProviderImpl();
 
 	private abstract class XMLSecurityTest {
 

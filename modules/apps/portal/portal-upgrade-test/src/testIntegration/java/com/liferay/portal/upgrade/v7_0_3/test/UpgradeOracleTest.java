@@ -62,8 +62,6 @@ public class UpgradeOracleTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_upgradeOracle = new UpgradeOracle();
-
 		_db.runSQL(
 			StringBundler.concat(
 				"alter table ", _TABLE_NAME, " modify ", _FIELD_NAME,
@@ -118,6 +116,6 @@ public class UpgradeOracleTest {
 	@Inject
 	private ReleaseLocalService _releaseLocalService;
 
-	private UpgradeOracle _upgradeOracle;
+	private UpgradeOracle _upgradeOracle = new UpgradeOracle();
 
 }

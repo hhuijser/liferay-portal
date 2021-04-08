@@ -38,7 +38,6 @@ public class ServletDefinitionTest {
 
 	@Before
 	public void setUp() {
-		_servletDefinition = new ServletDefinition();
 	}
 
 	@Test
@@ -131,6 +130,6 @@ public class ServletDefinitionTest {
 	@Mock
 	private Servlet _servlet;
 
-	private ServletDefinition _servletDefinition;
+	private ServletDefinition _servletDefinition = new ServletDefinition();
 
 }

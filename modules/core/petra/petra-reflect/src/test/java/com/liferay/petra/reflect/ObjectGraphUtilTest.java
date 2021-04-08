@@ -53,12 +53,7 @@ public class ObjectGraphUtilTest {
 
 	@Before
 	public void setUp() {
-		_recordVisitor = new RecordVisitor();
-
 		_entries = _recordVisitor._entries;
-
-		_recordAnnotatedFieldMappingVisitor =
-			new RecordAnnotatedFieldMappingVisitor();
 
 		_annotatedFieldMappingEntries =
 			_recordAnnotatedFieldMappingVisitor._entries;
@@ -399,8 +394,9 @@ public class ObjectGraphUtilTest {
 	private List<Map.Entry<Field, Object>> _annotatedFieldMappingEntries;
 	private List<Map.Entry<Field, Object>> _entries;
 	private RecordAnnotatedFieldMappingVisitor
-		_recordAnnotatedFieldMappingVisitor;
-	private RecordVisitor _recordVisitor;
+		_recordAnnotatedFieldMappingVisitor =
+			new RecordAnnotatedFieldMappingVisitor();
+	private RecordVisitor _recordVisitor = new RecordVisitor();
 
 	private static class LinkedType1 {
 

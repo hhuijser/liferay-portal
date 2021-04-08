@@ -59,10 +59,6 @@ public class I18nFilterTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_i18nFilter = new I18nFilter();
-		_mockHttpServletRequest = new MockHttpServletRequest();
-		_mockHttpServletResponse = new MockHttpServletResponse();
-
 		_group = GroupTestUtil.addGroup();
 	}
 
@@ -215,13 +211,15 @@ public class I18nFilterTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private I18nFilter _i18nFilter;
+	private I18nFilter _i18nFilter = new I18nFilter();
 
 	@Inject
 	private Language _language;
 
-	private MockHttpServletRequest _mockHttpServletRequest;
-	private MockHttpServletResponse _mockHttpServletResponse;
+	private MockHttpServletRequest _mockHttpServletRequest =
+		new MockHttpServletRequest();
+	private MockHttpServletResponse _mockHttpServletResponse =
+		new MockHttpServletResponse();
 
 	@DeleteAfterTestRun
 	private User _user;

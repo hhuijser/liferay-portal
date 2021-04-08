@@ -69,8 +69,6 @@ public class BaseModelUADDisplayTest {
 
 		_user = UserTestUtil.addGroupAdminUser(_group);
 
-		_uadDisplay = new TestLayoutUADDisplay();
-
 		_uadDisplay.setSearchableFields("name", "title", "description");
 	}
 
@@ -366,7 +364,7 @@ public class BaseModelUADDisplayTest {
 	@DeleteAfterTestRun
 	private final List<Layout> _layouts = new ArrayList<>();
 
-	private TestLayoutUADDisplay _uadDisplay;
+	private TestLayoutUADDisplay _uadDisplay = new TestLayoutUADDisplay();
 
 	@DeleteAfterTestRun
 	private User _user;

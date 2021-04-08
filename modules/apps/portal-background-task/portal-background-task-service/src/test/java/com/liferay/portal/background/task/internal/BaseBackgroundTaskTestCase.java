@@ -98,11 +98,7 @@ public abstract class BaseBackgroundTaskTestCase {
 			userLocalService);
 
 		_companyId = 1234L;
-		_clusterInvokeEnabled = true;
-		_defaultLocale = LocaleUtil.US;
 		_groupId = 1234L;
-		_siteDefaultLocale = LocaleUtil.CANADA;
-		_themeDisplayLocale = LocaleUtil.FRANCE;
 
 		_principalName = String.valueOf(1234L);
 	}
@@ -187,12 +183,12 @@ public abstract class BaseBackgroundTaskTestCase {
 	protected BackgroundTaskThreadLocalManagerImpl
 		backgroundTaskThreadLocalManagerImpl;
 
-	private boolean _clusterInvokeEnabled;
+	private boolean _clusterInvokeEnabled = true;
 	private long _companyId;
-	private Locale _defaultLocale;
+	private Locale _defaultLocale = LocaleUtil.US;
 	private long _groupId;
 	private String _principalName;
-	private Locale _siteDefaultLocale;
-	private Locale _themeDisplayLocale;
+	private Locale _siteDefaultLocale = LocaleUtil.CANADA;
+	private Locale _themeDisplayLocale = LocaleUtil.FRANCE;
 
 }

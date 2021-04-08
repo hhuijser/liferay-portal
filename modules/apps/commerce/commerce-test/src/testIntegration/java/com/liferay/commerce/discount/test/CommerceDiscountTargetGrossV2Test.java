@@ -123,8 +123,6 @@ public class CommerceDiscountTargetGrossV2Test {
 
 		_commerceChannelLocalService.updateCommerceChannel(_commerceChannel);
 
-		_commerceOrders = new ArrayList<>();
-
 		_commerceTaxMethod = CommerceTaxTestUtil.addCommerceByAddressTaxMethod(
 			_user.getUserId(), _commerceChannel.getGroupId(), true);
 	}
@@ -1617,7 +1615,7 @@ public class CommerceDiscountTargetGrossV2Test {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders;
+	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@Inject
 	private CommercePriceFormatter _commercePriceFormatter;

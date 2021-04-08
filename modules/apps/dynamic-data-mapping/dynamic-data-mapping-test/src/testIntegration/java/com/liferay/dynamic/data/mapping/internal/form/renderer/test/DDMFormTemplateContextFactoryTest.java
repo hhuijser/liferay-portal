@@ -59,8 +59,6 @@ public class DDMFormTemplateContextFactoryTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_httpServletRequest = new MockHttpServletRequest();
-
 		setUpThemeDisplay();
 
 		_originalSiteDefaultLocale = LocaleThreadLocal.getSiteDefaultLocale();
@@ -380,7 +378,8 @@ public class DDMFormTemplateContextFactoryTest {
 	@Inject
 	private static DDMFormTemplateContextFactory _ddmFormTemplateContextFactory;
 
-	private HttpServletRequest _httpServletRequest;
+	private HttpServletRequest _httpServletRequest =
+		new MockHttpServletRequest();
 	private Locale _originalSiteDefaultLocale;
 	private Locale _originalThemeDisplayDefaultLocale;
 

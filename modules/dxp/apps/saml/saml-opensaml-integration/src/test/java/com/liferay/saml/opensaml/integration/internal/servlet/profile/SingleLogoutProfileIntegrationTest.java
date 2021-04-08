@@ -87,8 +87,6 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 			SamlSpSessionLocalServiceUtil.class,
 			SamlSpSessionLocalService.class);
 
-		_singleLogoutProfileImpl = new SingleLogoutProfileImpl();
-
 		_singleLogoutProfileImpl.setIdentifierGenerationStrategyFactory(
 			identifierGenerationStrategyFactory);
 		_singleLogoutProfileImpl.setMetadataManager(metadataManagerImpl);
@@ -330,6 +328,7 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 	private SamlIdpSpConnectionLocalService _samlIdpSpConnectionLocalService;
 	private SamlIdpSpSessionLocalService _samlIdpSpSessionLocalService;
 	private SamlSpSessionLocalService _samlSpSessionLocalService;
-	private SingleLogoutProfileImpl _singleLogoutProfileImpl;
+	private SingleLogoutProfileImpl _singleLogoutProfileImpl =
+		new SingleLogoutProfileImpl();
 
 }

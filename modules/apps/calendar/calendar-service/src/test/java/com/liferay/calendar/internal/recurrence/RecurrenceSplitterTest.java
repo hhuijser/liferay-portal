@@ -51,7 +51,6 @@ public class RecurrenceSplitterTest {
 
 	@Before
 	public void setUp() {
-		_recurrenceSplitter = new RecurrenceSplitterImpl();
 	}
 
 	@Test
@@ -256,6 +255,7 @@ public class RecurrenceSplitterTest {
 	private static final TimeZone _utcTimeZone = TimeZone.getTimeZone(
 		StringPool.UTC);
 
-	private RecurrenceSplitter _recurrenceSplitter;
+	private RecurrenceSplitter _recurrenceSplitter =
+		new RecurrenceSplitterImpl();
 
 }

@@ -90,8 +90,6 @@ public class GetCollectionFieldMVCResourceCommandTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_serviceContext = new ServiceContext();
-
 		_serviceContext.setScopeGroupId(_group.getGroupId());
 		_serviceContext.setUserId(TestPropsValues.getUserId());
 
@@ -307,7 +305,7 @@ public class GetCollectionFieldMVCResourceCommandTest {
 	@Inject
 	private Portal _portal;
 
-	private ServiceContext _serviceContext;
+	private ServiceContext _serviceContext = new ServiceContext();
 
 	private class TestInfoListProvider implements InfoListProvider<BlogsEntry> {
 

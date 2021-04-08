@@ -96,8 +96,6 @@ public class FreeMarkerTemplateTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_configuration = new Configuration();
-
 		_configuration.setLogTemplateExceptions(false);
 
 		TemplateCache templateCache = new LiferayTemplateCache(
@@ -107,8 +105,6 @@ public class FreeMarkerTemplateTest {
 			_configuration, "cache", templateCache);
 
 		_configuration.setLocalizedLookup(false);
-
-		_templateContextHelper = new MockTemplateContextHelper();
 	}
 
 	@Test
@@ -446,8 +442,9 @@ public class FreeMarkerTemplateTest {
 		_freeMarkerTemplateResourceLoader;
 	private static TemplateResourceCache _templateResourceCache;
 
-	private Configuration _configuration;
-	private TemplateContextHelper _templateContextHelper;
+	private Configuration _configuration = new Configuration();
+	private TemplateContextHelper _templateContextHelper =
+		new MockTemplateContextHelper();
 
 	private static class MockTemplateContextHelper
 		extends TemplateContextHelper {

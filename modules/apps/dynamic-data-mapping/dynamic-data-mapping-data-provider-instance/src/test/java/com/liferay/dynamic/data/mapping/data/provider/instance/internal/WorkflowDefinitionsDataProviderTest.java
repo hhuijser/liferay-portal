@@ -54,9 +54,6 @@ public class WorkflowDefinitionsDataProviderTest extends PowerMockito {
 	public void setUp() throws Exception {
 		_setUpLanguageUtil();
 		_setUpLocaleUtil();
-
-		_workflowDefinitionsDataProvider =
-			new WorkflowDefinitionsDataProvider();
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
@@ -216,6 +213,7 @@ public class WorkflowDefinitionsDataProviderTest extends PowerMockito {
 	@Mock
 	private WorkflowDefinitionManager _workflowDefinitionManager;
 
-	private WorkflowDefinitionsDataProvider _workflowDefinitionsDataProvider;
+	private WorkflowDefinitionsDataProvider _workflowDefinitionsDataProvider =
+		new WorkflowDefinitionsDataProvider();
 
 }

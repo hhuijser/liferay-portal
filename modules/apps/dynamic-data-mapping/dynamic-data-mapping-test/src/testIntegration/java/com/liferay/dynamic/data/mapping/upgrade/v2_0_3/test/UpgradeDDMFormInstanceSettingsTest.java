@@ -60,8 +60,6 @@ public class UpgradeDDMFormInstanceSettingsTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_jsonFactory = new JSONFactoryImpl();
-
 		setUpUpgradeDDMFormInstanceSettings();
 	}
 
@@ -276,6 +274,6 @@ public class UpgradeDDMFormInstanceSettingsTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private JSONFactory _jsonFactory;
+	private JSONFactory _jsonFactory = new JSONFactoryImpl();
 
 }

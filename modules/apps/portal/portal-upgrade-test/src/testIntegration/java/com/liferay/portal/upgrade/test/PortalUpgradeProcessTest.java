@@ -58,7 +58,6 @@ public class PortalUpgradeProcessTest {
 
 	@Before
 	public void setUp() throws SQLException {
-		_innerPortalUpgradeProcess = new InnerPortalUpgradeProcess();
 	}
 
 	@After
@@ -293,7 +292,8 @@ public class PortalUpgradeProcessTest {
 
 	private static Version _currentSchemaVersion;
 
-	private InnerPortalUpgradeProcess _innerPortalUpgradeProcess;
+	private InnerPortalUpgradeProcess _innerPortalUpgradeProcess =
+		new InnerPortalUpgradeProcess();
 
 	private static class InnerPortalUpgradeProcess
 		extends PortalUpgradeProcess {

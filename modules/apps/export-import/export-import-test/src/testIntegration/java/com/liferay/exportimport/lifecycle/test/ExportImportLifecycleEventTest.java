@@ -88,8 +88,6 @@ public class ExportImportLifecycleEventTest {
 		ExportImportLifecycleEventListenerRegistryUtil.register(
 			new MockExportImportLifecycleListener());
 
-		_firedExportImportLifecycleEventsMap = new HashMap<>();
-
 		_parameterMap =
 			ExportImportConfigurationParameterMapFactoryUtil.
 				buildParameterMap();
@@ -359,7 +357,7 @@ public class ExportImportLifecycleEventTest {
 	}
 
 	private Map<Integer, ExportImportLifecycleEvent>
-		_firedExportImportLifecycleEventsMap;
+		_firedExportImportLifecycleEventsMap = new HashMap<>();
 
 	@DeleteAfterTestRun
 	private Group _group;

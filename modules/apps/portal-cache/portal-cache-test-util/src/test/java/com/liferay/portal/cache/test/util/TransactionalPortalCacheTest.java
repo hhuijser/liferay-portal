@@ -90,9 +90,6 @@ public class TransactionalPortalCacheTest {
 	public void setUp() {
 		_portalCache = new TestPortalCache<>("Test Portal Cache");
 
-		_testCacheListener = new TestPortalCacheListener<>();
-		_testCacheReplicator = new TestPortalCacheReplicator<>();
-
 		_portalCache.registerPortalCacheListener(_testCacheListener);
 		_portalCache.registerPortalCacheListener(_testCacheReplicator);
 	}
@@ -1386,8 +1383,10 @@ public class TransactionalPortalCacheTest {
 	private static final String _VALUE_2 = "VALUE_2";
 
 	private PortalCache<String, String> _portalCache;
-	private TestPortalCacheListener<String, String> _testCacheListener;
-	private TestPortalCacheReplicator<String, String> _testCacheReplicator;
+	private TestPortalCacheListener<String, String> _testCacheListener =
+		new TestPortalCacheListener<>();
+	private TestPortalCacheReplicator<String, String> _testCacheReplicator =
+		new TestPortalCacheReplicator<>();
 
 	private static class TestCallable implements Callable<Void> {
 

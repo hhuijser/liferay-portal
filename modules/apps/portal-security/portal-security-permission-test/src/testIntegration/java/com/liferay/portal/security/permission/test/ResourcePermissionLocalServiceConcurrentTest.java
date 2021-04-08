@@ -81,8 +81,6 @@ public class ResourcePermissionLocalServiceConcurrentTest {
 	public void setUp() throws NoSuchMethodException {
 		Assume.assumeTrue(PropsValues.RETRY_ADVICE_MAX_RETRIES != 0);
 
-		_threadCount = ServiceTestConstants.THREAD_COUNT;
-
 		if ((PropsValues.RETRY_ADVICE_MAX_RETRIES > 0) &&
 			(_threadCount > PropsValues.RETRY_ADVICE_MAX_RETRIES)) {
 
@@ -294,6 +292,6 @@ public class ResourcePermissionLocalServiceConcurrentTest {
 	@Inject
 	private RoleLocalService _roleLocalService;
 
-	private int _threadCount;
+	private int _threadCount = ServiceTestConstants.THREAD_COUNT;
 
 }

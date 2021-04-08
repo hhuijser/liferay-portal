@@ -45,8 +45,6 @@ public class EntityExtensionWriterInterceptorTest {
 
 	@Before
 	public void setUp() {
-		_entityExtensionWriterInterceptor =
-			new EntityExtensionWriterInterceptor();
 		_mockedWriterInterceptorContext = Mockito.mock(
 			WriterInterceptorContext.class);
 
@@ -168,7 +166,8 @@ public class EntityExtensionWriterInterceptorTest {
 		).proceed();
 	}
 
-	private EntityExtensionWriterInterceptor _entityExtensionWriterInterceptor;
+	private EntityExtensionWriterInterceptor _entityExtensionWriterInterceptor =
+		new EntityExtensionWriterInterceptor();
 	private WriterInterceptorContext _mockedWriterInterceptorContext;
 
 }

@@ -64,8 +64,6 @@ public class SortContextProviderTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		_mockResource = new MockResource();
-
 		_serviceRegistration = registry.registerService(
 			EntityModelResource.class, _mockResource,
 			HashMapBuilder.<String, Object>put(
@@ -112,7 +110,7 @@ public class SortContextProviderTest {
 	)
 	private Feature _feature;
 
-	private MockResource _mockResource;
+	private MockResource _mockResource = new MockResource();
 	private ServiceRegistration<EntityModelResource> _serviceRegistration;
 
 }

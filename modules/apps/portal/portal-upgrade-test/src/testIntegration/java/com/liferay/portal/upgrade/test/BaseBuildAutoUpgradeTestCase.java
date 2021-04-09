@@ -104,7 +104,7 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 	@After
 	public void tearDown() throws Throwable {
 		PropsValues.SCHEMA_MODULE_BUILD_AUTO_UPGRADE =
-			_previousSchemaModuleBuildAutoUpgrade;
+			_PREVIOUS_SCHEMA_MODULE_BUILD_AUTO_UPGRADE;
 
 		if (_bundle != null) {
 			_bundle.uninstall();
@@ -524,7 +524,7 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		}
 	}
 
-	private static final boolean _previousSchemaModuleBuildAutoUpgrade =
+	private static final boolean _PREVIOUS_SCHEMA_MODULE_BUILD_AUTO_UPGRADE =
 		PropsValues.SCHEMA_MODULE_BUILD_AUTO_UPGRADE;
 
 	private Bundle _bundle;

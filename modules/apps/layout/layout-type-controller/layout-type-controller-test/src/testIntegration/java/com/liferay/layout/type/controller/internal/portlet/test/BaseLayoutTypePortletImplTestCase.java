@@ -49,9 +49,10 @@ public abstract class BaseLayoutTypePortletImplTestCase {
 
 	@After
 	public void tearDown() {
-		StringBundler sb = new StringBundler(_layoutStaticPortletsAll.length);
+		StringBundler sb = new StringBundler(
+			_LAYOUT_STATIC_PORTLETS_ALL.length);
 
-		for (String layoutStaticPortlet : _layoutStaticPortletsAll) {
+		for (String layoutStaticPortlet : _LAYOUT_STATIC_PORTLETS_ALL) {
 			sb.append(layoutStaticPortlet);
 		}
 
@@ -71,7 +72,7 @@ public abstract class BaseLayoutTypePortletImplTestCase {
 	protected Layout layout;
 	protected LayoutTypePortlet layoutTypePortlet;
 
-	private static final String[] _layoutStaticPortletsAll =
+	private static final String[] _LAYOUT_STATIC_PORTLETS_ALL =
 		PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 
 	@DeleteAfterTestRun

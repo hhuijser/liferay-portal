@@ -45,7 +45,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.PortletMode;
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.WindowState;
@@ -152,19 +151,18 @@ public class SearchUtil {
 		String currentURL) {
 
 		try {
-			PortletURL viewContentURL = PortletURLBuilder.createRenderURL(
-				renderResponse
-			).setMVCPath(
-				"/view_content.jsp"
-			).setPortletMode(
-				PortletMode.VIEW
-			).setWindowState(
-				WindowState.MAXIMIZED
-			).build();
-
 			if (Validator.isNull(className) || (classPK <= 0)) {
 				return HttpUtil.setParameter(
-					viewContentURL.toString(), "p_l_back_url", currentURL);
+					PortletURLBuilder.createRenderURL(
+						renderResponse
+					).setMVCPath(
+						"/view_content.jsp"
+					).setPortletMode(
+						PortletMode.VIEW
+					).setWindowState(
+						WindowState.MAXIMIZED
+					).buildString(),
+					"p_l_back_url", currentURL);
 			}
 
 			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(

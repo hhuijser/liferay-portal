@@ -107,12 +107,6 @@ public class DLBreadcrumbUtil {
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
-			liferayPortletResponse
-		).setMVCRenderCommandName(
-			"/document_library/view"
-		).build();
-
 		Map<String, Object> data = HashMapBuilder.<String, Object>put(
 			"direction-right", Boolean.TRUE.toString()
 		).put(
@@ -131,7 +125,12 @@ public class DLBreadcrumbUtil {
 
 		PortalUtil.addPortletBreadcrumbEntry(
 			httpServletRequest, themeDisplay.translate("home"),
-			portletURL.toString(), data);
+			PortletURLBuilder.createRenderURL(
+				liferayPortletResponse
+			).setMVCRenderCommandName(
+				"/document_library/view"
+			).buildString(),
+			data);
 
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view_folder");

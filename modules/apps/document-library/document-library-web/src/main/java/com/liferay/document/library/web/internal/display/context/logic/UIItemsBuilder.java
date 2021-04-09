@@ -852,19 +852,18 @@ public class UIItemsBuilder {
 	}
 
 	public MenuItem getCheckinMenuItem() throws PortalException {
-		PortletURL portletURL = PortletURLBuilder.create(
-			_getActionURL(
-				"/document_library/edit_file_entry", Constants.CHECKIN)
-		).setParameter(
-			"fileEntryId", _fileEntry.getFileEntryId()
-		).build();
-
 		if (!_versioningStrategy.isOverridable()) {
 			URLMenuItem urlMenuItem = new URLMenuItem();
 
 			urlMenuItem.setKey(DLUIItemKeys.CHECKIN);
 			urlMenuItem.setLabel("checkin");
-			urlMenuItem.setURL(portletURL.toString());
+			urlMenuItem.setURL(
+				PortletURLBuilder.create(
+					_getActionURL(
+						"/document_library/edit_file_entry", Constants.CHECKIN)
+				).setParameter(
+					"fileEntryId", _fileEntry.getFileEntryId()
+				).buildString());
 
 			return urlMenuItem;
 		}

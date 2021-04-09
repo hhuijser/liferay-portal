@@ -108,16 +108,15 @@ public class CommerceBOMAdminDisplayContext {
 		ThemeDisplay themeDisplay =
 			_commerceBOMAdminRequestHelper.getThemeDisplay();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			getPortletURL()
-		).setParameter(
-			"commerceBOMFolderId",
-			CommerceBOMFolderConstants.DEFAULT_COMMERCE_BOM_FOLDER_ID
-		).build();
-
 		PortalUtil.addPortletBreadcrumbEntry(
 			_commerceBOMAdminRequestHelper.getRequest(),
-			themeDisplay.translate("home"), portletURL.toString(),
+			themeDisplay.translate("home"),
+			PortletURLBuilder.create(
+				getPortletURL()
+			).setParameter(
+				"commerceBOMFolderId",
+				CommerceBOMFolderConstants.DEFAULT_COMMERCE_BOM_FOLDER_ID
+			).buildString(),
 			HashMapBuilder.<String, Object>put(
 				"commerce-bom-folder-id",
 				CommerceBOMFolderConstants.DEFAULT_COMMERCE_BOM_FOLDER_ID

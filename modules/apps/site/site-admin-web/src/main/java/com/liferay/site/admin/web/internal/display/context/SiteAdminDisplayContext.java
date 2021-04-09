@@ -97,13 +97,12 @@ public class SiteAdminDisplayContext {
 		breadcrumbEntry.setTitle(
 			LanguageUtil.get(_httpServletRequest, "sites"));
 
-		PortletURL mainURL = PortletURLBuilder.createRenderURL(
-			_liferayPortletResponse
-		).setMVCPath(
-			"/view.jsp"
-		).build();
-
-		breadcrumbEntry.setURL(mainURL.toString());
+		breadcrumbEntry.setURL(
+			PortletURLBuilder.createRenderURL(
+				_liferayPortletResponse
+			).setMVCPath(
+				"/view.jsp"
+			).buildString());
 
 		breadcrumbEntries.add(breadcrumbEntry);
 

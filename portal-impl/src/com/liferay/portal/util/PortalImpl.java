@@ -1857,22 +1857,20 @@ public class PortalImpl implements Portal {
 					layout.getGroupId(), false);
 			}
 
-			PortletURL createAccountURL = PortletURLBuilder.create(
-				PortletURLFactoryUtil.create(
-					httpServletRequest, PortletKeys.LOGIN, plid,
-					PortletRequest.RENDER_PHASE)
-			).setMVCRenderCommandName(
-				"/login/create_account"
-			).setParameter(
-				"saveLastPath", Boolean.FALSE.toString()
-			).setPortletMode(
-				PortletMode.VIEW
-			).setWindowState(
-				WindowState.MAXIMIZED
-			).build();
-
 			if (!PropsValues.COMPANY_SECURITY_AUTH_REQUIRES_HTTPS) {
-				return createAccountURL.toString();
+				return PortletURLBuilder.create(
+					PortletURLFactoryUtil.create(
+						httpServletRequest, PortletKeys.LOGIN, plid,
+						PortletRequest.RENDER_PHASE)
+				).setMVCRenderCommandName(
+					"/login/create_account"
+				).setParameter(
+					"saveLastPath", Boolean.FALSE.toString()
+				).setPortletMode(
+					PortletMode.VIEW
+				).setWindowState(
+					WindowState.MAXIMIZED
+				).buildString();
 			}
 
 			return StringUtil.replaceFirst(

@@ -365,21 +365,21 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 					themeDisplay.getPermissionChecker(), ctCollection,
 					CTActionKeys.PUBLISH)) {
 
-				PortletURL publishURL = PortletURLBuilder.create(
-					_portal.getControlPanelPortletURL(
-						httpServletRequest, themeDisplay.getScopeGroup(),
-						CTPortletKeys.PUBLICATIONS, 0, 0,
-						PortletRequest.RENDER_PHASE)
-				).setMVCRenderCommandName(
-					"/change_tracking/view_conflicts"
-				).setParameter(
-					"ctCollectionId", ctCollection.getCtCollectionId()
-				).build();
-
 				data.put(
 					"publishDropdownItem",
 					JSONUtil.put(
-						"href", publishURL.toString()
+						"href",
+						PortletURLBuilder.create(
+							_portal.getControlPanelPortletURL(
+								httpServletRequest,
+								themeDisplay.getScopeGroup(),
+								CTPortletKeys.PUBLICATIONS, 0, 0,
+								PortletRequest.RENDER_PHASE)
+						).setMVCRenderCommandName(
+							"/change_tracking/view_conflicts"
+						).setParameter(
+							"ctCollectionId", ctCollection.getCtCollectionId()
+						).buildString()
 					).put(
 						"label", _language.get(resourceBundle, "publish")
 					).put(

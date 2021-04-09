@@ -64,8 +64,6 @@ public class AutocompleteUserMVCResourceCommandTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_users = new ArrayList<>();
-
 		_setUpAutocompleteUserMVCResourceCommand();
 	}
 
@@ -227,6 +225,6 @@ public class AutocompleteUserMVCResourceCommandTest {
 	private Portal _portal;
 
 	@DeleteAfterTestRun
-	private List<User> _users;
+	private List<User> _users = new ArrayList<>();
 
 }

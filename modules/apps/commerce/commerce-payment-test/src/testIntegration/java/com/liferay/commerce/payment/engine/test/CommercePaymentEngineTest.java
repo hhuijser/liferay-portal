@@ -119,8 +119,6 @@ public class CommercePaymentEngineTest {
 				RandomTestUtil.randomLocaleStringMap(), null,
 				TestCommercePaymentMethod.KEY, 99, true);
 
-		_commerceOrders = new ArrayList<>();
-
 		_httpServletRequest = new MockHttpServletRequest("GET", "");
 
 		_httpServletRequest.setAttribute("LOCALE", LocaleUtil.ITALY);
@@ -319,7 +317,7 @@ public class CommercePaymentEngineTest {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders;
+	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@Inject
 	private CommercePaymentEngine _commercePaymentEngine;

@@ -45,8 +45,6 @@ public abstract class BaseLayoutTypePortletImplTestCase {
 		layout = LayoutTestUtil.addLayout(_group, false);
 
 		layoutTypePortlet = (LayoutTypePortlet)layout.getLayoutType();
-
-		_layoutStaticPortletsAll = PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 	}
 
 	@After
@@ -76,6 +74,7 @@ public abstract class BaseLayoutTypePortletImplTestCase {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private String[] _layoutStaticPortletsAll;
+	private String[] _layoutStaticPortletsAll =
+		PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 
 }

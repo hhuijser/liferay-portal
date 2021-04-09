@@ -129,8 +129,6 @@ public class CommerceShipmentTest {
 
 		_commerceChannel = CommerceTestUtil.addCommerceChannel(
 			_group.getGroupId(), _commerceCurrency.getCode());
-
-		_commerceOrders = new ArrayList<>();
 	}
 
 	@After
@@ -1042,7 +1040,7 @@ public class CommerceShipmentTest {
 	@Inject
 	private CommerceOrderPriceCalculation _commerceOrderPriceCalculation;
 
-	private List<CommerceOrder> _commerceOrders;
+	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@Inject
 	private CommercePriceListLocalService _commercePriceListLocalService;

@@ -109,7 +109,6 @@ public class DDLExporterTest {
 	public void setUp() throws Exception {
 		_availableLocales = DDMFormTestUtil.createAvailableLocales(
 			LocaleUtil.US);
-		_defaultLocale = LocaleUtil.US;
 		_group = GroupTestUtil.addGroup();
 
 		_originalPermissionChecker =
@@ -823,7 +822,7 @@ public class DDLExporterTest {
 
 	private Set<Locale> _availableLocales;
 	private Map<DDMFormFieldType, String> _ddmFormFieldDataTypes;
-	private Locale _defaultLocale;
+	private Locale _defaultLocale = LocaleUtil.US;
 	private Map<DDMFormFieldType, String> _fieldValues;
 
 	@DeleteAfterTestRun

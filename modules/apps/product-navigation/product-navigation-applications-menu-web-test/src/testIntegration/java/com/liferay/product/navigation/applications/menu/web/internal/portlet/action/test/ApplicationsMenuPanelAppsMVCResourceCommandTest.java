@@ -93,8 +93,6 @@ public class ApplicationsMenuPanelAppsMVCResourceCommandTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_groups = new ArrayList<>();
-
 		_themeDisplay = _getThemeDisplay();
 
 		_mockHttpServletRequest = new MockHttpServletRequest();
@@ -462,7 +460,7 @@ public class ApplicationsMenuPanelAppsMVCResourceCommandTest {
 	private Group _group;
 
 	@DeleteAfterTestRun
-	private List<Group> _groups;
+	private List<Group> _groups = new ArrayList<>();
 
 	private HttpServletRequest _mockHttpServletRequest;
 	private MockPortletRequest _mockPortletRequest;

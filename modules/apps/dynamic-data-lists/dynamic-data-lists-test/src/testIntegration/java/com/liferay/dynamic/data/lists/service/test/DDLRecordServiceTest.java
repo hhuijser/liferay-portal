@@ -98,7 +98,6 @@ public class DDLRecordServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_defaultLocale = LocaleUtil.US;
 		_ddmStructureTestHelper = new DDMStructureTestHelper(
 			PortalUtil.getClassNameId(DDLRecordSet.class), _group);
 		_recordSetTestHelper = new DDLRecordSetTestHelper(_group);
@@ -598,7 +597,7 @@ public class DDLRecordServiceTest {
 	private static ServiceRegistration<StorageAdapter> _serviceRegistration;
 
 	private DDMStructureTestHelper _ddmStructureTestHelper;
-	private Locale _defaultLocale;
+	private Locale _defaultLocale = LocaleUtil.US;
 	private DDLRecordSetTestHelper _recordSetTestHelper;
 
 }

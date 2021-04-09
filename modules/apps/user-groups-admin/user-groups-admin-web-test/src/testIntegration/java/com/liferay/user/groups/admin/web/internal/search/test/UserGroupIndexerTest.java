@@ -81,7 +81,6 @@ public class UserGroupIndexerTest {
 
 		_groups = groupSearchFixture.getGroups();
 
-		_roles = new ArrayList<>();
 		_userGroupFixture = userGroupFixture;
 		_userGroups = userGroupFixture.getUserGroups();
 	}
@@ -203,7 +202,7 @@ public class UserGroupIndexerTest {
 	private List<Group> _groups;
 
 	@DeleteAfterTestRun
-	private List<Role> _roles;
+	private List<Role> _roles = new ArrayList<>();
 
 	private UserGroupFixture _userGroupFixture;
 

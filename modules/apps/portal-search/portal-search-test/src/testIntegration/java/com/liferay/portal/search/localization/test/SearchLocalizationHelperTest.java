@@ -67,8 +67,6 @@ public class SearchLocalizationHelperTest {
 	@Before
 	public void setUp() {
 		_companyId = CompanyThreadLocal.getCompanyId();
-
-		_groups = new ArrayList<>();
 	}
 
 	@After
@@ -218,6 +216,6 @@ public class SearchLocalizationHelperTest {
 	private Long _companyId;
 
 	@DeleteAfterTestRun
-	private List<Group> _groups;
+	private List<Group> _groups = new ArrayList<>();
 
 }

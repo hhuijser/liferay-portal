@@ -75,9 +75,7 @@ public class UpgradeAssetDisplayPageEntryTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_groups = new ArrayList<>();
 		_timestamp = new Timestamp(System.currentTimeMillis());
-		_assetEntryClassUuids = new HashMap<>();
 
 		setUpClassNameIds();
 		setUpUpgradeAssetDisplayPageEntry();
@@ -482,14 +480,14 @@ public class UpgradeAssetDisplayPageEntryTest {
 	private static UpgradeStepRegistrator _upgradeStepRegistrator;
 
 	private UpgradeProcess _assetDisplayPageEntryUpgradeProcess;
-	private Map<Long, String> _assetEntryClassUuids;
+	private Map<Long, String> _assetEntryClassUuids = new HashMap<>();
 	private long _classNameIdJournalArticle;
 
 	@Inject
 	private CounterLocalService _counterLocalService;
 
 	@DeleteAfterTestRun
-	private List<Group> _groups;
+	private List<Group> _groups = new ArrayList<>();
 
 	private Timestamp _timestamp;
 

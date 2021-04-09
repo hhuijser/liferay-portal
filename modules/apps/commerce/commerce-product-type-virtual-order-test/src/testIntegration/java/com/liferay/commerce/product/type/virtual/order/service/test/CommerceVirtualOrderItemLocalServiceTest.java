@@ -98,8 +98,6 @@ public class CommerceVirtualOrderItemLocalServiceTest {
 		_commerceCatalog = CommerceTestUtil.addCommerceCatalog(
 			_company.getCompanyId(), _company.getGroupId(), _user.getUserId(),
 			_commerceCurrency.getCode());
-
-		_commerceOrders = new ArrayList<>();
 	}
 
 	@After
@@ -318,7 +316,7 @@ public class CommerceVirtualOrderItemLocalServiceTest {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders;
+	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@Inject
 	private CommercePriceEntryLocalService _commercePriceEntryLocalService;

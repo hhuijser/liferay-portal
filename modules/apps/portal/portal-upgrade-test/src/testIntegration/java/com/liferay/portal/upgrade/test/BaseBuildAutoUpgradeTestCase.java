@@ -98,9 +98,6 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		catch (SQLException sqlException) {
 		}
 
-		_previousSchemaModuleBuildAutoUpgrade =
-			PropsValues.SCHEMA_MODULE_BUILD_AUTO_UPGRADE;
-
 		PropsValues.SCHEMA_MODULE_BUILD_AUTO_UPGRADE = true;
 	}
 
@@ -528,7 +525,8 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 	}
 
 	private Bundle _bundle;
-	private boolean _previousSchemaModuleBuildAutoUpgrade;
+	private boolean _previousSchemaModuleBuildAutoUpgrade =
+		PropsValues.SCHEMA_MODULE_BUILD_AUTO_UPGRADE;
 
 	@Inject
 	private ReleaseLocalService _releaseLocalService;

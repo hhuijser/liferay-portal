@@ -157,8 +157,6 @@ public class CommerceOrderHttpHelperImplTest {
 		_httpServletRequest.setAttribute(WebKeys.USER_ID, _user.getUserId());
 
 		_themeDisplay.setRequest(_httpServletRequest);
-
-		_commerceOrders = new ArrayList<>();
 	}
 
 	@After
@@ -272,7 +270,7 @@ public class CommerceOrderHttpHelperImplTest {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders;
+	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@DeleteAfterTestRun
 	private Company _company;

@@ -112,8 +112,6 @@ public class CommerceDiscountV2Test {
 
 		_commerceCurrency = CommerceCurrencyTestUtil.addCommerceCurrency(
 			_group.getCompanyId());
-
-		_commerceOrders = new ArrayList<>();
 	}
 
 	@After
@@ -1648,7 +1646,7 @@ public class CommerceDiscountV2Test {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders;
+	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@Inject
 	private CommercePriceListAccountRelLocalService

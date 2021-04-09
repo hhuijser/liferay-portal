@@ -94,6 +94,7 @@ public class AssetCategoryTitlesMultiLanguageSearchTest {
 
 		_groups = groupSearchFixture.getGroups();
 		_groupSearchFixture = groupSearchFixture;
+
 		_journalArticles = journalArticleSearchFixture.getJournalArticles();
 		_journalArticleSearchFixture = journalArticleSearchFixture;
 	}

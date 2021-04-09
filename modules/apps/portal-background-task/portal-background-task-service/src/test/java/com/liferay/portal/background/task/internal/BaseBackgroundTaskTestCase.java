@@ -183,12 +183,13 @@ public abstract class BaseBackgroundTaskTestCase {
 	protected BackgroundTaskThreadLocalManagerImpl
 		backgroundTaskThreadLocalManagerImpl;
 
-	private boolean _clusterInvokeEnabled = true;
+	private static final boolean _clusterInvokeEnabled = true;
+
 	private long _companyId;
-	private Locale _defaultLocale = LocaleUtil.US;
+	private final Locale _defaultLocale = LocaleUtil.US;
 	private long _groupId;
 	private String _principalName;
-	private Locale _siteDefaultLocale = LocaleUtil.CANADA;
-	private Locale _themeDisplayLocale = LocaleUtil.FRANCE;
+	private final Locale _siteDefaultLocale = LocaleUtil.CANADA;
+	private final Locale _themeDisplayLocale = LocaleUtil.FRANCE;
 
 }

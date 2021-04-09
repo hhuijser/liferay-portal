@@ -1646,7 +1646,7 @@ public class CommerceDiscountV2Test {
 	@Inject
 	private CommerceOrderLocalService _commerceOrderLocalService;
 
-	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
+	private final List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@Inject
 	private CommercePriceListAccountRelLocalService

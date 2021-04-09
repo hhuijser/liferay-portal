@@ -597,7 +597,7 @@ public class DDLRecordServiceTest {
 	private static ServiceRegistration<StorageAdapter> _serviceRegistration;
 
 	private DDMStructureTestHelper _ddmStructureTestHelper;
-	private Locale _defaultLocale = LocaleUtil.US;
+	private final Locale _defaultLocale = LocaleUtil.US;
 	private DDLRecordSetTestHelper _recordSetTestHelper;
 
 }

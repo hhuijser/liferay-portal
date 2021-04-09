@@ -822,7 +822,7 @@ public class DDLExporterTest {
 
 	private Set<Locale> _availableLocales;
 	private Map<DDMFormFieldType, String> _ddmFormFieldDataTypes;
-	private Locale _defaultLocale = LocaleUtil.US;
+	private final Locale _defaultLocale = LocaleUtil.US;
 	private Map<DDMFormFieldType, String> _fieldValues;
 
 	@DeleteAfterTestRun

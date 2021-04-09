@@ -620,7 +620,7 @@ public class CommerceOrderDiscountTargetGrossV2Test {
 	@Inject
 	private CommerceOrderPriceCalculation _commerceOrderPriceCalculation;
 
-	private List<CommerceOrder> _commerceOrders = new ArrayList<>();
+	private final List<CommerceOrder> _commerceOrders = new ArrayList<>();
 
 	@Inject
 	private CommercePriceListLocalService _commercePriceListLocalService;

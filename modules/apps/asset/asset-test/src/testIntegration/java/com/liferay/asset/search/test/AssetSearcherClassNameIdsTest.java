@@ -203,6 +203,6 @@ public class AssetSearcherClassNameIdsTest {
 
 	private final JournalArticleFixture _journalArticleFixture =
 		new JournalArticleFixture();
-	private List<User> _users = new ArrayList<>();
+	private final List<User> _users = new ArrayList<>();
 
 }

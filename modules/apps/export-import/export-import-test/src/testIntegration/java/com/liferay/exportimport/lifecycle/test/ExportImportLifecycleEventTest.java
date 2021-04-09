@@ -356,7 +356,7 @@ public class ExportImportLifecycleEventTest {
 					EVENT_STAGED_MODEL_IMPORT_SUCCEEDED));
 	}
 
-	private Map<Integer, ExportImportLifecycleEvent>
+	private final Map<Integer, ExportImportLifecycleEvent>
 		_firedExportImportLifecycleEventsMap = new HashMap<>();
 
 	@DeleteAfterTestRun

@@ -565,6 +565,7 @@
 		<check name="JavaUnnecessaryMethodCallsCheck">
 			<category name="Styling" />
 			<description name="Finds unnecessary method calls." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="MethodCallsOrderCheck">
 			<category name="Styling" />

@@ -562,6 +562,10 @@
 			<category name="Styling" />
 			<description name="Applies rules to enforce consisteny in code style." />
 		</check>
+		<check name="JavaUnnecessaryMethodCallsCheck">
+			<category name="Styling" />
+			<description name="Finds unnecessary method calls." />
+		</check>
 		<check name="MethodCallsOrderCheck">
 			<category name="Styling" />
 			<description name="Sorts method calls for certain object (for example, `put` calls in `java.util.HashMap`)." />

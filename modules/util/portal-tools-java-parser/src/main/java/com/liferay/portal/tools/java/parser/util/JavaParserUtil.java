@@ -911,9 +911,7 @@ public class JavaParserUtil {
 				_parseExtendedOrImplementedClassJavaTypes(
 					extendsClauseDetailAST);
 
-			if ((extendedClassJavaTypes.size() > 1) &&
-				(definitionDetailAST.getParent() == null)) {
-
+			if (extendedClassJavaTypes.size() > 1) {
 				Collections.sort(extendedClassJavaTypes);
 			}
 
@@ -929,9 +927,7 @@ public class JavaParserUtil {
 				_parseExtendedOrImplementedClassJavaTypes(
 					implementsClauseDetailAST);
 
-			if ((implementedClassJavaTypes.size() > 1) &&
-				(definitionDetailAST.getParent() == null)) {
-
+			if (implementedClassJavaTypes.size() > 1) {
 				Collections.sort(implementedClassJavaTypes);
 			}
 

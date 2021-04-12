@@ -83,6 +83,7 @@ JavaStylingCheck | .java | Applies rules to enforce consisteny in code style. |
 JavaTermDividersCheck | .java | Finds missing or unnecessary empty lines between javaterms. |
 JavaTermOrderCheck | .java | Checks the order of javaterms. |
 JavaTermStylingCheck | .java | Applies rules to enforce consisteny in code style. |
+JavaUnnecessaryMethodCallsCheck | .java | Finds unnecessary method calls. |
 [LambdaCheck](checks/lambda_check.markdown#lambdacheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that `lambda` statements are as simple as possible. |
 [ListUtilCheck](checks/list_util_check.markdown#listutilcheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks for utilization of class `ListUtil`. |
 LiteralStringEqualsCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds cases where `Objects.equals` should be used. |
@@ -90,7 +91,7 @@ LiteralStringEqualsCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds cases w
 MarkdownFileExtensionCheck | .markdown or .md | Finds `markdown` files with `.md` extension (use `.markdown`). |
 MarkdownStylingCheck | .markdown or .md | Applies rules to enforce consisteny in code style. |
 MarkdownWhitespaceCheck | .markdown or .md | Finds missing and unnecessary whitespace in `.markdown` files. |
-MethodCallsOrderCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Sorts method calls for certain object (for example, `put` calls in `java.util.HashMap`). |
+MethodCallsOrderCheck | .jsp, .jspf, .tag, .tpl or .vm | Sorts method calls for certain object (for example, `put` calls in `java.util.HashMap`). |
 [MethodParamPadCheck](https://checkstyle.sourceforge.io/config_whitespace.html#MethodParamPad) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks the padding between the identifier of a method definition, constructor definition, method call, or constructor invocation; and the left parenthesis of the parameter list. |
 [MissingEmptyLineCheck](checks/missing_empty_line_check.markdown#missingemptylinecheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks for missing line breaks around variable declarations. |
 MissingParenthesesCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds missing parentheses in conditional statement. |

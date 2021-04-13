@@ -4,6 +4,7 @@
 	<checkstyle>
 		<suppress checks="CamelCaseNameCheck" />
 		<suppress checks="ConstantNameCheck" />
+		<suppress checks="GenericTypeCheck" />
 		<suppress checks="MemberNameCheck" />
 		<suppress checks="MethodNameCheck" />
 	</checkstyle>

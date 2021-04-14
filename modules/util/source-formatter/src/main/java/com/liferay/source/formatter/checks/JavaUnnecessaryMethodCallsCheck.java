@@ -15,6 +15,7 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 
@@ -206,6 +207,15 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 				TokenTypes.IDENT);
 
 			if (Objects.equals(nameDetailAST.getText(), methodReturn)) {
+				DetailAST modifiersDetailAST = previousDetailAST.findFirstToken(
+					TokenTypes.MODIFIERS);
+
+				if (modifiersDetailAST.branchContains(
+						TokenTypes.LITERAL_STATIC)) {
+
+					return "";
+				}
+
 				if (variableDefDetailAST.getLineNo() <=
 						methodCallDetailAST.getLineNo()) {
 
@@ -255,11 +265,15 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 				}
 
 				if (parentDetailAST.equals(classDetailAST)) {
+					String replacement = _getReplacement(
+						methodCallDetailAST, methodReturnsMap.get(methodName));
+
+					if (Validator.isNull(replacement)) {
+						continue;
+					}
+
 					return StringUtil.replaceFirst(
-						content, methodName + "()",
-						_getReplacement(
-							methodCallDetailAST,
-							methodReturnsMap.get(methodName)),
+						content, methodName + "()", replacement,
 						getLineStartPos(
 							content, methodCallDetailAST.getLineNo()));
 				}

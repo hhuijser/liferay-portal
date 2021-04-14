@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author Alan Huang
@@ -187,6 +188,37 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 			parametersDetailAST, false, TokenTypes.PARAMETER_DEF);
 	}
 
+	private String _getReplacement(
+		DetailAST methodCallDetailAST, String methodReturn) {
+
+		DetailAST previousDetailAST = methodCallDetailAST.getParent();
+
+		while (previousDetailAST.getType() != TokenTypes.METHOD_DEF) {
+			previousDetailAST = previousDetailAST.getParent();
+		}
+
+		List<DetailAST> variableDefDetailASTList =
+			DetailASTUtil.getAllChildTokens(
+				previousDetailAST, true, TokenTypes.VARIABLE_DEF);
+
+		for (DetailAST variableDefDetailAST : variableDefDetailASTList) {
+			DetailAST nameDetailAST = variableDefDetailAST.findFirstToken(
+				TokenTypes.IDENT);
+
+			if (Objects.equals(nameDetailAST.getText(), methodReturn)) {
+				if (variableDefDetailAST.getLineNo() <=
+						methodCallDetailAST.getLineNo()) {
+
+					return "this." + methodReturn;
+				}
+
+				return methodReturn;
+			}
+		}
+
+		return methodReturn;
+	}
+
 	private String _replaceMethods(
 		String content, Map<String, String> methodReturnsMap,
 		DetailAST classDetailAST) {
@@ -223,12 +255,13 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 				}
 
 				if (parentDetailAST.equals(classDetailAST)) {
-					int lineNumber = methodCallDetailAST.getLineNo();
-
 					return StringUtil.replaceFirst(
 						content, methodName + "()",
-						methodReturnsMap.get(methodName),
-						getLineStartPos(content, lineNumber));
+						_getReplacement(
+							methodCallDetailAST,
+							methodReturnsMap.get(methodName)),
+						getLineStartPos(
+							content, methodCallDetailAST.getLineNo()));
 				}
 
 				break;

@@ -52,22 +52,48 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 
 		DetailAST nextSiblingDetailAST = rootDetailAST.getNextSibling();
 
-		while (nextSiblingDetailAST != null) {
+		Map<String, String> methodReturnsMap = new HashMap<>();
+
+		while (true) {
+			if (nextSiblingDetailAST == null) {
+				return content;
+			}
+
 			if (nextSiblingDetailAST.getType() != TokenTypes.CLASS_DEF) {
 				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
 
 				continue;
 			}
 
-			Map<String, String> methodReturnsMap = _getMethodReturnsMap(
-				nextSiblingDetailAST);
+			methodReturnsMap = _getMethodReturnsMap(nextSiblingDetailAST);
 
-			if (methodReturnsMap.isEmpty()) {
-				return content;
+			if (!methodReturnsMap.isEmpty()) {
+				content = _replaceMethods(
+					content, methodReturnsMap, nextSiblingDetailAST);
 			}
 
-			return _replaceMethods(
-				content, methodReturnsMap, nextSiblingDetailAST);
+			methodReturnsMap.clear();
+
+			break;
+		}
+
+		List<DetailAST> classDefinitionDetailASTList =
+			DetailASTUtil.getAllChildTokens(
+				nextSiblingDetailAST, true, TokenTypes.CLASS_DEF);
+
+		for (DetailAST classDefinitionDetailAST :
+				classDefinitionDetailASTList) {
+
+			methodReturnsMap = _getMethodReturnsMap(classDefinitionDetailAST);
+
+			if (methodReturnsMap.isEmpty()) {
+				continue;
+			}
+
+			content = _replaceMethods(
+				content, methodReturnsMap, classDefinitionDetailAST);
+
+			methodReturnsMap.clear();
 		}
 
 		return content;
@@ -82,9 +108,16 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 	private Map<String, String> _getMethodReturnsMap(DetailAST classDetailAST) {
 		Map<String, String> methodReturnsMap = new HashMap<>();
 
+		DetailAST objBlockDetailAST = classDetailAST.findFirstToken(
+			TokenTypes.OBJBLOCK);
+
+		if (objBlockDetailAST == null) {
+			return methodReturnsMap;
+		}
+
 		List<DetailAST> methodDefinitionDetailASTList =
 			DetailASTUtil.getAllChildTokens(
-				classDetailAST, true, TokenTypes.METHOD_DEF);
+				objBlockDetailAST, false, TokenTypes.METHOD_DEF);
 
 		for (DetailAST methodDefinitionDetailAST :
 				methodDefinitionDetailASTList) {
@@ -183,12 +216,22 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 			String methodName = _getMethodName(methodCallDetailAST);
 
 			if (methodReturnsMap.containsKey(methodName)) {
-				int lineNumber = methodCallDetailAST.getLineNo();
+				DetailAST parentDetailAST = methodCallDetailAST.getParent();
 
-				return StringUtil.replaceFirst(
-					content, methodName + "()",
-					methodReturnsMap.get(methodName),
-					getLineStartPos(content, lineNumber));
+				while (parentDetailAST.getType() != TokenTypes.CLASS_DEF) {
+					parentDetailAST = parentDetailAST.getParent();
+				}
+
+				if (parentDetailAST.equals(classDetailAST)) {
+					int lineNumber = methodCallDetailAST.getLineNo();
+
+					return StringUtil.replaceFirst(
+						content, methodName + "()",
+						methodReturnsMap.get(methodName),
+						getLineStartPos(content, lineNumber));
+				}
+
+				break;
 			}
 		}
 

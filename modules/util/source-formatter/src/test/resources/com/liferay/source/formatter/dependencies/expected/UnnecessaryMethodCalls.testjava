@@ -21,45 +21,65 @@ import com.liferay.portal.kernel.webcache.WebCachePool;
  */
 public class UnnecessaryMethodCalls {
 
-	public static void clear() {
-		_webCachePool.clear();
+	public static String getValue() {
+		return value;
 	}
 
-	public static void clear_1() {
+	public static int getValueLegth() {
+		String value = getValue();
+
+		return value.length();
+	}
+
+	public void clear() {
+		webCachePool.clear();
+	}
+
+	public void clear_1() {
 		_webCachePoolUtil_1.clear();
 	}
 
-	public static Object get(String key, WebCacheItem webCacheItem) {
-		return _webCachePool.get(key, webCacheItem);
+	public Object get(String key, WebCacheItem webCacheItem) {
+		return webCachePool.get(key, webCacheItem);
 	}
 
-	public static WebCachePool getWebCachePool() {
-		return _webCachePool;
+	public String getName() {
+		return name;
 	}
 
-	public static void remove(String key) {
-		_webCachePool.remove(key);
+	public int getNameLegth() {
+		String name = this.name;
+
+		return name.length();
 	}
 
-	public void setWebCachePool(WebCachePool webCachePool) {
-		_webCachePool = webCachePool;
+	public WebCachePool getWebCachePool() {
+		return webCachePool;
 	}
 
-	private static WebCachePool _webCachePool;
+	public void remove(String key) {
+		webCachePool.remove(key);
+	}
+
+	protected static String value = "";
+	protected static WebCachePool webCachePool;
+
+	protected String name = "";
+
 	private static final WebCachePoolUtil_1 _webCachePoolUtil_1 =
 		new WebCachePoolUtil_1();
 
 	private static class WebCachePoolUtil_1 {
 
 		public static WebCachePool getWebCachePool() {
-			return _webCachePool_1;
+			return webCachePool_1;
 		}
 
 		public void clear() {
-			_webCachePool_1.clear();
+			webCachePool_1.clear();
 		}
 
-		private static WebCachePool _webCachePool_1;
+		protected static WebCachePool webCachePool_1;
 
 	}
 

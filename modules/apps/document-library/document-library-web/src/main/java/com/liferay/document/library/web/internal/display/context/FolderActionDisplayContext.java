@@ -167,10 +167,10 @@ public class FolderActionDisplayContext {
 			_dlRequestHelper.getLiferayPortletResponse()
 		).setActionName(
 			"/document_library/edit_folder"
-		).setRedirect(
-			_dlRequestHelper.getCurrentURL()
 		).setCMD(
 			"deleteExpiredTemporaryFileEntries"
+		).setRedirect(
+			_dlRequestHelper.getCurrentURL()
 		).setParameter(
 			"repositoryId", _getRepositoryId()
 		).buildString();

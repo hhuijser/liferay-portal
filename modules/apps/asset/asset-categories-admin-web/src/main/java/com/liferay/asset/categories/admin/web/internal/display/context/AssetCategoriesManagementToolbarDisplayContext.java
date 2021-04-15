@@ -92,12 +92,12 @@ public class AssetCategoriesManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
+		).setKeywords(
+			StringPool.BLANK
 		).setNavigation(
 			"all"
 		).setParameter(
 			"categoryId", "0"
-		).setKeywords(
-			StringPool.BLANK
 		).buildString();
 	}
 

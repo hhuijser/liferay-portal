@@ -112,10 +112,10 @@ public class CommerceProductDefinitionLinkDataSetActionProvider
 				CPPortletKeys.CP_DEFINITIONS, PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/cp_definitions/edit_cp_definition_link"
-		).setRedirect(
-			redirect
 		).setCMD(
 			Constants.DELETE
+		).setRedirect(
+			redirect
 		).setParameter(
 			"cpDefinitionId", cpDefinitionLink.getCPDefinitionId()
 		).setParameter(

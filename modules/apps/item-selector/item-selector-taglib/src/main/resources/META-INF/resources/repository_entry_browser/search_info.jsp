@@ -47,12 +47,12 @@
 
 		PortletURL searchEverywhereURL = PortletURLBuilder.create(
 			PortletURLUtil.clone(portletURL, liferayPortletResponse)
+		).setKeywords(
+			keywords
 		).setParameter(
 			"folderId", DLFolderConstants.DEFAULT_PARENT_FOLDER_ID
 		).setParameter(
 			"searchFolderId", folderId
-		).setKeywords(
-			keywords
 		).build();
 		%>
 

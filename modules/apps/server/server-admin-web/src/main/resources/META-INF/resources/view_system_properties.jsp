@@ -38,10 +38,10 @@ PortletURL serverURL = PortletURLBuilder.createRenderURL(
 
 PortletURL clearResultsURL = PortletURLBuilder.create(
 	PortletURLUtil.clone(serverURL, liferayPortletResponse)
-).setNavigation(
-	StringPool.NULL
 ).setKeywords(
 	StringPool.BLANK
+).setNavigation(
+	StringPool.NULL
 ).build();
 
 Map<String, String> filteredProperties = new TreeMap<String, String>();

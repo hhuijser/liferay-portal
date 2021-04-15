@@ -231,10 +231,10 @@ public class RoleDisplayContext {
 				"/edit_role_assignments.jsp"
 			).setRedirect(
 				redirect
-			).setTabs1(
-				"assignees"
 			).setBackURL(
 				backURL
+			).setTabs1(
+				"assignees"
 			).setParameter(
 				"roleId", role.getRoleId()
 			).buildString()
@@ -244,14 +244,14 @@ public class RoleDisplayContext {
 				_renderResponse
 			).setMVCPath(
 				"/edit_role_permissions.jsp"
-			).setRedirect(
-				redirect
-			).setTabs1(
-				"define-permissions"
-			).setBackURL(
-				backURL
 			).setCMD(
 				Constants.VIEW
+			).setRedirect(
+				redirect
+			).setBackURL(
+				backURL
+			).setTabs1(
+				"define-permissions"
 			).setParameter(
 				"roleId", role.getRoleId()
 			).buildString()
@@ -263,10 +263,10 @@ public class RoleDisplayContext {
 				"/edit_role.jsp"
 			).setRedirect(
 				redirect
-			).setTabs1(
-				"details"
 			).setBackURL(
 				backURL
+			).setTabs1(
+				"details"
 			).setParameter(
 				"roleId", role.getRoleId()
 			).buildString()

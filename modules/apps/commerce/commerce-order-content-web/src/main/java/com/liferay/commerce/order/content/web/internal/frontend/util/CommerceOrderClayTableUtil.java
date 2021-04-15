@@ -76,12 +76,12 @@ public class CommerceOrderClayTableUtil {
 				themeDisplay.getPlid(), PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_open_order_content/edit_commerce_order"
+		).setCMD(
+			"setCurrent"
 		).setRedirect(
 			ParamUtil.getString(
 				httpServletRequest, "currentUrl",
 				PortalUtil.getCurrentURL(httpServletRequest))
-		).setCMD(
-			"setCurrent"
 		).setParameter(
 			"commerceOrderId", commerceOrderId
 		).buildString();

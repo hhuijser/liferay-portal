@@ -275,10 +275,10 @@ public class CommerceInventoryDisplayContext {
 			_cpRequestHelper.getLiferayPortletResponse()
 		).setActionName(
 			"/commerce_inventory/edit_commerce_inventory_item"
-		).setRedirect(
-			_cpRequestHelper.getCurrentURL()
 		).setCMD(
 			"transition"
+		).setRedirect(
+			_cpRequestHelper.getCurrentURL()
 		).setParameter(
 			"sku", _sku
 		).build();

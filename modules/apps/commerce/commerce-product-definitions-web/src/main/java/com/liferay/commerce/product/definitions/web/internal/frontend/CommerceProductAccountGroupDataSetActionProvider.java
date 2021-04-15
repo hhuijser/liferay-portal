@@ -98,10 +98,10 @@ public class CommerceProductAccountGroupDataSetActionProvider
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/cp_definitions/edit_cp_definition"
-		).setRedirect(
-			redirect
 		).setCMD(
 			"deleteAccountGroup"
+		).setRedirect(
+			redirect
 		).setParameter(
 			"commerceAccountGroupRelId",
 			commerceAccountGroupRel.getCommerceAccountGroupRelId()

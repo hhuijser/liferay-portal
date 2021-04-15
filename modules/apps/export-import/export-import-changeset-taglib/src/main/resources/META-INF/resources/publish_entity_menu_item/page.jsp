@@ -27,9 +27,11 @@
 				"/export_import_changeset/export_import_changeset"
 			).setMVCRenderCommandName(
 				"/export_import_changeset/export_import_changeset"
+			).setBackURL(
+				currentURL
 			).setParameter(
 				"cmd", Constants.PUBLISH
-			).setBackURL(currentURL).setParameter(
+			).setParameter(
 				"groupId", entityGroupId
 			).setParameter(
 				"changesetUuid", changesetUuid

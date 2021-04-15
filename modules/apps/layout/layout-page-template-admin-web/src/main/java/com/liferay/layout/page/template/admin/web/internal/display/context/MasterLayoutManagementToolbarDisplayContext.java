@@ -113,8 +113,8 @@ public class MasterLayoutManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -136,8 +136,8 @@ public class MasterLayoutManagementToolbarDisplayContext
 							liferayPortletResponse
 						).setActionName(
 							"/layout_page_template_admin/add_master_layout"
-						).setParameter(
-							"backURL", _themeDisplay.getURLCurrent()
+						).setBackURL(
+							_themeDisplay.getURLCurrent()
 						).setParameter(
 							"type",
 							LayoutPageTemplateEntryTypeConstants.

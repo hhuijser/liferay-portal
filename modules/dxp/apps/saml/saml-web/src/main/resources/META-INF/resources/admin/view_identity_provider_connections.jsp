@@ -22,8 +22,8 @@
 	iteratorURL='<%=
 		PortletURLBuilder.createRenderURL(
 			renderResponse
-		).setParameter(
-			"tabs1", "identity-provider-connections"
+		).setTabs1(
+			"identity-provider-connections"
 		).build()
 	%>'
 	total="<%= GetterUtil.getInteger(renderRequest.getAttribute(SamlWebKeys.SAML_SP_IDP_CONNECTIONS_COUNT)) %>"

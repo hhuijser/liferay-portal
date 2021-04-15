@@ -28,7 +28,6 @@ import com.liferay.commerce.product.servlet.taglib.ui.constants.CPDefinitionScre
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.util.CustomAttributesUtil;
 
@@ -125,8 +124,8 @@ public class CPDefinitionOptionValueRelDisplayContext
 			"/cp_definitions/edit_cp_definition_option_value_rel"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, "deleteSku"
+		).setCMD(
+			"deleteSku"
 		).setParameter(
 			"cpDefinitionOptionValueRelId", getCPDefinitionOptionValueRelId()
 		).buildString();

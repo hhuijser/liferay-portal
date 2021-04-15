@@ -97,8 +97,8 @@ public class LayoutsTreeDisplayContext {
 			"/select_layout_collections.jsp"
 		).setRedirect(
 			PortalUtil.getLayoutFullURL(layout, _themeDisplay)
-		).setParameter(
-			"backURL", PortalUtil.getLayoutFullURL(layout, _themeDisplay)
+		).setBackURL(
+			PortalUtil.getLayoutFullURL(layout, _themeDisplay)
 		).setParameter(
 			"groupId", _themeDisplay.getSiteGroupId()
 		).setParameter(
@@ -123,8 +123,8 @@ public class LayoutsTreeDisplayContext {
 			"/select_layout_page_template_entry.jsp"
 		).setRedirect(
 			PortalUtil.getLayoutFullURL(layout, _themeDisplay)
-		).setParameter(
-			"backURL", PortalUtil.getLayoutFullURL(layout, _themeDisplay)
+		).setBackURL(
+			PortalUtil.getLayoutFullURL(layout, _themeDisplay)
 		).setParameter(
 			"groupId", _themeDisplay.getSiteGroupId()
 		).setParameter(
@@ -153,8 +153,8 @@ public class LayoutsTreeDisplayContext {
 			"/layout_admin/edit_layout_set"
 		).setRedirect(
 			PortalUtil.getLayoutFullURL(layout, _themeDisplay)
-		).setParameter(
-			"backURL", PortalUtil.getLayoutFullURL(layout, _themeDisplay)
+		).setBackURL(
+			PortalUtil.getLayoutFullURL(layout, _themeDisplay)
 		).setParameter(
 			"groupId", _themeDisplay.getScopeGroupId()
 		).setParameter(

@@ -183,8 +183,8 @@ public class AccountSelectorTag extends IncludeTag {
 					CommercePortletKeys.COMMERCE_OPEN_ORDER_CONTENT)
 			).setActionName(
 				"/commerce_open_order_content/edit_commerce_order"
-			).setParameter(
-				Constants.CMD, Constants.ADD
+			).setCMD(
+				Constants.ADD
 			).buildString();
 		}
 
@@ -205,8 +205,8 @@ public class AccountSelectorTag extends IncludeTag {
 					CommercePortletKeys.COMMERCE_OPEN_ORDER_CONTENT)
 			).setActionName(
 				"/commerce_open_order_content/edit_commerce_order"
-			).setParameter(
-				Constants.CMD, "setCurrent"
+			).setCMD(
+				"setCurrent"
 			).setParameter(
 				"commerceOrderId", "{id}"
 			).buildString();

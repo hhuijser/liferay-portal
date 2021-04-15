@@ -160,8 +160,8 @@ public class CommerceAddressDisplayContext {
 
 				return themeDisplay.getURLCurrent();
 			}
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceAddressId", commerceAddressId
 		).buildString();

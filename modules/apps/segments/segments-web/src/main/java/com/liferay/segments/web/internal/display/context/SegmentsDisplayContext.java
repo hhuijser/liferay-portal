@@ -104,8 +104,8 @@ public class SegmentsDisplayContext {
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			_getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

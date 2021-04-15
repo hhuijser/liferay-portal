@@ -86,8 +86,8 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			_getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -235,8 +235,8 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 	public PortletURL getSearchURL() throws PortletException {
 		return PortletURLBuilder.create(
 			PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse)
-		).setParameter(
-			"keywords", (String)null
+		).setKeywords(
+			(String)null
 		).setParameter(
 			"resetCur", Boolean.TRUE.toString()
 		).build();

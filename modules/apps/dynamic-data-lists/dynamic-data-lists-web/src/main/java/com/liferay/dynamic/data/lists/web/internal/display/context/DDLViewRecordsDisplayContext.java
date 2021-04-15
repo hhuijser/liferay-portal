@@ -131,8 +131,8 @@ public class DDLViewRecordsDisplayContext {
 	public String getClearResultsURL() throws PortletException {
 		return PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), _liferayPortletResponse)
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

@@ -743,8 +743,8 @@ public class JournalContentDisplayContext {
 					PortletRequest.RENDER_PHASE)
 			).setMVCPath(
 				"/view_article_history.jsp"
-			).setParameter(
-				"backURL", _themeDisplay.getURLCurrent()
+			).setBackURL(
+				_themeDisplay.getURLCurrent()
 			).setParameter(
 				"articleId", article.getArticleId()
 			).buildString();

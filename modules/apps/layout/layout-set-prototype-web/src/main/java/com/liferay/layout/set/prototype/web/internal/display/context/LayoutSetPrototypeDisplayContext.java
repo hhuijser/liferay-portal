@@ -227,8 +227,8 @@ public class LayoutSetPrototypeDisplayContext {
 	public String getSortingURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", _getKeywords()
+		).setKeywords(
+			_getKeywords()
 		).setParameter(
 			"orderByCol", getOrderByCol()
 		).setParameter(

@@ -58,10 +58,10 @@ public class SelectAccountUsersManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"navigation", (String)null
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setNavigation(
+			(String)null
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

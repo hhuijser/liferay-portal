@@ -21,8 +21,8 @@ DispatchTriggerDisplayContext dispatchTriggerDisplayContext = (DispatchTriggerDi
 
 PortletURL portletURL = PortletURLBuilder.create(
 	dispatchTriggerDisplayContext.getPortletURL()
-).setParameter(
-	"tabs1", "dispatch-trigger"
+).setTabs1(
+	"dispatch-trigger"
 ).setParameter(
 	"searchContainerId", "dispatchTriggers"
 ).build();

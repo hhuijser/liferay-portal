@@ -133,8 +133,8 @@ public class AddLayoutPageTemplateEntryMVCActionCommand
 					actionRequest,
 					LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES,
 					PortletRequest.RENDER_PHASE)
-			).setParameter(
-				"tabs1", "page-templates"
+			).setTabs1(
+				"page-templates"
 			).setParameter(
 				"layoutPageTemplateCollectionId",
 				layoutPageTemplateEntry.getLayoutPageTemplateCollectionId()

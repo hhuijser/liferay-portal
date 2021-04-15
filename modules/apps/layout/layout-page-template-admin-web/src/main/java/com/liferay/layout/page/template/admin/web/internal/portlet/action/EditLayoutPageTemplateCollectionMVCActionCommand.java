@@ -93,8 +93,8 @@ public class EditLayoutPageTemplateCollectionMVCActionCommand
 
 		return PortletURLBuilder.createRenderURL(
 			_portal.getLiferayPortletResponse(actionResponse)
-		).setParameter(
-			"tabs1", "page-templates"
+		).setTabs1(
+			"page-templates"
 		).setParameter(
 			"layoutPageTemplateCollectionId",
 			layoutPageTemplateCollection.getLayoutPageTemplateCollectionId()

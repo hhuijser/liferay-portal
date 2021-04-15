@@ -48,8 +48,8 @@ public class
 	public String getClearResultsURL() {
 		PortletURL clearResultsURL = PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).build();
 
 		return String.valueOf(clearResultsURL);

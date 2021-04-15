@@ -181,8 +181,8 @@ public class LayoutsAdminDisplayContext {
 			_liferayPortletResponse
 		).setMVCPath(
 			"/select_layout_page_template_entry.jsp"
-		).setParameter(
-			"backURL", getBackURL()
+		).setBackURL(
+			getBackURL()
 		).setParameter(
 			"portletResource", getPortletResource()
 		).setParameter(
@@ -274,8 +274,8 @@ public class LayoutsAdminDisplayContext {
 			"/layout_admin/edit_layout"
 		).setRedirect(
 			themeDisplay.getURLCurrent()
-		).setParameter(
-			"backURL", themeDisplay.getURLCurrent()
+		).setBackURL(
+			themeDisplay.getURLCurrent()
 		).setParameter(
 			"portletResource",
 			() -> {
@@ -411,8 +411,8 @@ public class LayoutsAdminDisplayContext {
 			"/layout_admin/edit_layout_set"
 		).setRedirect(
 			themeDisplay.getURLCurrent()
-		).setParameter(
-			"backURL", themeDisplay.getURLCurrent()
+		).setBackURL(
+			themeDisplay.getURLCurrent()
 		).setParameter(
 			"groupId", themeDisplay.getScopeGroupId()
 		).setParameter(
@@ -681,8 +681,8 @@ public class LayoutsAdminDisplayContext {
 			_liferayPortletResponse
 		).setMVCPath(
 			"/orphan_portlets.jsp"
-		).setParameter(
-			"backURL", themeDisplay.getURLCurrent()
+		).setBackURL(
+			themeDisplay.getURLCurrent()
 		).setParameter(
 			"selPlid", layout.getPlid()
 		).buildString();
@@ -732,8 +732,8 @@ public class LayoutsAdminDisplayContext {
 
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setParameter(
-			"tabs1", getTabs1()
+		).setTabs1(
+			getTabs1()
 		).setParameter(
 			"selPlid", LayoutConstants.DEFAULT_PLID
 		).build();
@@ -800,8 +800,8 @@ public class LayoutsAdminDisplayContext {
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setParameter(
-			"tabs1", getTabs1()
+		).setTabs1(
+			getTabs1()
 		).setParameter(
 			"privateLayout", isPrivateLayout()
 		).build();
@@ -928,8 +928,8 @@ public class LayoutsAdminDisplayContext {
 				"/select_layout_collections.jsp"
 			).setRedirect(
 				getRedirect()
-			).setParameter(
-				"backURL", themeDisplay.getURLCurrent()
+			).setBackURL(
+				themeDisplay.getURLCurrent()
 			).setParameter(
 				"groupId", getSelGroupId()
 			).setParameter(
@@ -980,8 +980,8 @@ public class LayoutsAdminDisplayContext {
 				"/select_layout_page_template_entry.jsp"
 			).setRedirect(
 				getRedirect()
-			).setParameter(
-				"backURL", themeDisplay.getURLCurrent()
+			).setBackURL(
+				themeDisplay.getURLCurrent()
 			).setParameter(
 				"groupId", getSelGroupId()
 			).setParameter(
@@ -1097,8 +1097,8 @@ public class LayoutsAdminDisplayContext {
 						"/layout_admin/edit_layout_set"
 					).setRedirect(
 						PortalUtil.getCurrentURL(httpServletRequest)
-					).setParameter(
-						"backURL", _backURL
+					).setBackURL(
+						_backURL
 					).setParameter(
 						"groupId", themeDisplay.getScopeGroupId()
 					).setParameter(

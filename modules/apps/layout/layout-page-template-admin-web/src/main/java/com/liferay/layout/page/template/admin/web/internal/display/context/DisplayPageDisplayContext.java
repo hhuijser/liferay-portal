@@ -168,8 +168,8 @@ public class DisplayPageDisplayContext {
 			"/view_display_pages.jsp"
 		).setRedirect(
 			_themeDisplay.getURLCurrent()
-		).setParameter(
-			"tabs1", "display-page-templates"
+		).setTabs1(
+			"display-page-templates"
 		).build();
 
 		String keywords = getKeywords();

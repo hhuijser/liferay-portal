@@ -230,8 +230,8 @@ public class WikiPagesManagementToolbarDisplayContext {
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							_getPortletURL(), _liferayPortletResponse)
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);

@@ -114,8 +114,8 @@ public class UserGroupsManagementToolbarDisplayContext
 										liferayPortletResponse
 									).setActionName(
 										"editUserGroupsRoles"
-									).setParameter(
-										"tabs1", "user-groups"
+									).setTabs1(
+										"user-groups"
 									).buildString());
 
 								dropdownItem.putData(
@@ -178,10 +178,10 @@ public class UserGroupsManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"navigation", "all"
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setNavigation(
+			"all"
+		).setKeywords(
+			StringPool.BLANK
 		).setParameter(
 			"roleId", "0"
 		).buildString();
@@ -335,10 +335,10 @@ public class UserGroupsManagementToolbarDisplayContext
 						"/view.jsp"
 					).setRedirect(
 						themeDisplay.getURLCurrent()
-					).setParameter(
-						"tabs1", "user-groups"
-					).setParameter(
-						"navigation", "roles"
+					).setTabs1(
+						"user-groups"
+					).setNavigation(
+						"roles"
 					).setParameter(
 						"groupId", _userGroupsDisplayContext.getGroupId()
 					).buildString());

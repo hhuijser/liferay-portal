@@ -141,8 +141,8 @@ public class ExportImportChangesetMVCActionCommandImpl
 			ExportImportPortletKeys.EXPORT_IMPORT
 		).setMVCPath(
 			"/view_export_import.jsp"
-		).setParameter(
-			"backURL", actionRequest.getParameter("backURL")
+		).setBackURL(
+			actionRequest.getParameter("backURL")
 		).setParameter(
 			"backgroundTaskId", backgroundTaskId
 		).build();

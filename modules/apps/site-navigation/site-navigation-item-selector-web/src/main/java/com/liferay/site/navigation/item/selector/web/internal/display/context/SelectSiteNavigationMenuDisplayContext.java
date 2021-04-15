@@ -325,8 +325,7 @@ public class SelectSiteNavigationMenuDisplayContext {
 			PortletURLUtil.clone(
 				_portletURL,
 				PortalUtil.getLiferayPortletResponse(portletResponse))
-		).setParameter(
-			"backURL",
+		).setBackURL(
 			ParamUtil.getString(
 				_httpServletRequest, "backURL",
 				PortalUtil.getCurrentURL(_httpServletRequest))

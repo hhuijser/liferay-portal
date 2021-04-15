@@ -102,8 +102,8 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 		PortletURL currentPortletURL = PortletURLBuilder.create(
 			PortletURLUtil.getCurrent(
 				_liferayPortletRequest, _liferayPortletResponse)
-		).setParameter(
-			"navigation", "file_entry_metadata_sets"
+		).setNavigation(
+			"file_entry_metadata_sets"
 		).build();
 
 		renderURL.setParameter("redirect", String.valueOf(currentPortletURL));

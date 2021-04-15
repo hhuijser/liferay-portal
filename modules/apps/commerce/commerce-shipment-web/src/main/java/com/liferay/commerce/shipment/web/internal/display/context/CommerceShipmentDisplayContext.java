@@ -51,7 +51,6 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 import com.liferay.portal.kernel.service.CountryService;
 import com.liferay.portal.kernel.service.RegionService;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.webserver.WebServerServletTokenUtil;
@@ -243,8 +242,8 @@ public class CommerceShipmentDisplayContext
 					"/commerce_shipment/edit_commerce_shipment"
 				).setRedirect(
 					PortalUtil.getCurrentURL(httpServletRequest)
-				).setParameter(
-					Constants.CMD, "transition"
+				).setCMD(
+					"transition"
 				).setParameter(
 					"commerceShipmentId", getCommerceShipmentId()
 				).setParameter(
@@ -281,8 +280,8 @@ public class CommerceShipmentDisplayContext
 	public PortletURL getPortletURL() throws PortalException {
 		return PortletURLBuilder.create(
 			super.getPortletURL()
-		).setParameter(
-			"navigation", getNavigation()
+		).setNavigation(
+			getNavigation()
 		).build();
 	}
 

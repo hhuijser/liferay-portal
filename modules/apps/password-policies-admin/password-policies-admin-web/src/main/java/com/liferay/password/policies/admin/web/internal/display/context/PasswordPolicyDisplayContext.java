@@ -103,8 +103,8 @@ public class PasswordPolicyDisplayContext {
 						PortletURLUtil.clone(portletURL, _renderResponse)
 					).setMVCPath(
 						"/edit_password_policy.jsp"
-					).setParameter(
-						"tabs1", "details"
+					).setTabs1(
+						"details"
 					).buildString());
 
 				navigationItem.setLabel(
@@ -120,8 +120,8 @@ public class PasswordPolicyDisplayContext {
 						PortletURLUtil.clone(portletURL, _renderResponse)
 					).setMVCPath(
 						"/edit_password_policy_assignments.jsp"
-					).setParameter(
-						"tabs1", "assignees"
+					).setTabs1(
+						"assignees"
 					).buildString());
 
 				navigationItem.setLabel(

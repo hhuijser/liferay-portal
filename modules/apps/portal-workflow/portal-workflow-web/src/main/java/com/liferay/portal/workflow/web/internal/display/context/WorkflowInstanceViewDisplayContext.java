@@ -113,8 +113,8 @@ public class WorkflowInstanceViewDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getViewPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

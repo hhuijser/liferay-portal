@@ -184,10 +184,10 @@ public class ViewTreeManagementToolbarDisplayContext {
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
-		).setParameter(
-			"navigation", (String)null
+		).setKeywords(
+			StringPool.BLANK
+		).setNavigation(
+			(String)null
 		).buildString();
 	}
 
@@ -224,8 +224,8 @@ public class ViewTreeManagementToolbarDisplayContext {
 								_renderResponse
 							).setMVCRenderCommandName(
 								"/users_admin/edit_organization"
-							).setParameter(
-								"backURL", currentURL.toString()
+							).setBackURL(
+								currentURL.toString()
 							).setParameter(
 								"parentOrganizationSearchContainerPrimaryKeys",
 								_organization.getOrganizationId()
@@ -292,8 +292,8 @@ public class ViewTreeManagementToolbarDisplayContext {
 					"removeLabelURL",
 					PortletURLBuilder.create(
 						getPortletURL()
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);

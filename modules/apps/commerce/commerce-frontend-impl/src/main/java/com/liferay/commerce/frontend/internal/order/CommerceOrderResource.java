@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -156,8 +155,8 @@ public class CommerceOrderResource {
 				PortletProvider.Action.EDIT)
 		).setActionName(
 			"/commerce_open_order_content/edit_commerce_order"
-		).setParameter(
-			Constants.CMD, "setCurrent"
+		).setCMD(
+			"setCurrent"
 		).setParameter(
 			"commerceOrderId", commerceOrderId
 		).build();

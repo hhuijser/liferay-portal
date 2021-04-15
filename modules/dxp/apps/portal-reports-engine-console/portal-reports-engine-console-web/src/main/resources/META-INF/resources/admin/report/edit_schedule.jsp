@@ -27,8 +27,8 @@ PortletURL searchDefinitionURL = PortletURLBuilder.create(
 	reportsEngineDisplayContext.getPortletURL()
 ).setMVCPath(
 	"/admin/view.jsp"
-).setParameter(
-	"tabs1", "definitions"
+).setTabs1(
+	"definitions"
 ).build();
 
 portletDisplay.setURLBack(searchDefinitionURL.toString());

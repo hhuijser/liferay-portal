@@ -243,8 +243,8 @@ public class DefaultAnnouncementsDisplayContext
 			_announcementsRequestHelper.getLiferayPortletResponse()
 		).setMVCRenderCommandName(
 			"/announcements/view"
-		).setParameter(
-			"tabs1", _announcementsRequestHelper.getTabs1()
+		).setTabs1(
+			_announcementsRequestHelper.getTabs1()
 		).buildString();
 	}
 

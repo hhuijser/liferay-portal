@@ -135,8 +135,8 @@ public class CopyLayoutMVCActionCommand extends BaseMVCActionCommand {
 
 			PortletURL redirectURL = PortletURLBuilder.createRenderURL(
 				_portal.getLiferayPortletResponse(actionResponse)
-			).setParameter(
-				"navigation", privateLayout ? "private-pages" : "public-pages"
+			).setNavigation(
+				privateLayout ? "private-pages" : "public-pages"
 			).setParameter(
 				"selPlid", sourceLayout.getParentPlid()
 			).setParameter(

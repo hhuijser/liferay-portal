@@ -66,8 +66,8 @@ public class DeleteEntryPortletConfigurationIcon
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/announcements/edit_entry"
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).build();
 
 		PortletURL redirectURL = _portal.getControlPanelPortletURL(

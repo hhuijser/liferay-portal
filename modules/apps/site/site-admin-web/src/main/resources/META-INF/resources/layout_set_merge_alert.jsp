@@ -73,8 +73,8 @@ List<Layout> mergeFailFriendlyURLLayouts = SitesUtil.getMergeFailFriendlyURLLayo
 				PortletProviderUtil.getPortletURL(request, Layout.class.getName(), PortletProvider.Action.VIEW)
 			).setRedirect(
 				redirect
-			).setParameter(
-				"tabs1", layoutSet.isPrivateLayout() ? "private-pages" : "public-pages"
+			).setTabs1(
+				layoutSet.isPrivateLayout() ? "private-pages" : "public-pages"
 			).setParameter(
 				"groupId", groupId
 			).build();

@@ -35,10 +35,10 @@ int delta = ParamUtil.getInteger(request, SearchContainer.DEFAULT_DELTA_PARAM);
 			renderResponse
 		).setMVCRenderCommandName(
 			"/server_admin/view"
-		).setParameter(
-			"tabs1", tabs1
-		).setParameter(
-			"tabs2", tabs2
+		).setTabs1(
+			tabs1
+		).setTabs2(
+			tabs2
 		).buildString()
 	%>'
 	method="post"

@@ -107,8 +107,8 @@ public class CalendarDisplayContext {
 	public String getClearResultsURL() throws PortletException {
 		return PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), _renderResponse)
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -353,8 +353,8 @@ public class CalendarDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/view.jsp"
-		).setParameter(
-			"tabs1", "resources"
+		).setTabs1(
+			"resources"
 		).build();
 
 		String keywords = getKeywords();

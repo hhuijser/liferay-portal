@@ -74,8 +74,8 @@ public class CollectionProvidersVerticalCard extends BaseVerticalCard {
 					"/select_layout_master_layout.jsp"
 				).setRedirect(
 					ParamUtil.getString(_httpServletRequest, "redirect")
-				).setParameter(
-					"backURL", themeDisplay.getURLCurrent()
+				).setBackURL(
+					themeDisplay.getURLCurrent()
 				).setParameter(
 					"groupId", _groupId
 				).setParameter(

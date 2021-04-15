@@ -48,7 +48,6 @@ page import="com.liferay.portal.kernel.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.service.ResourcePermissionLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.service.RoleLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.service.ThemeLocalServiceUtil" %><%@
-page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@

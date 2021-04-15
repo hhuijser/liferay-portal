@@ -56,8 +56,8 @@ PortletURL navigationURL = PortletURLBuilder.createRenderURL(
 	"/edit_calendar.jsp"
 ).setRedirect(
 	redirect
-).setParameter(
-	"backURL", backURL
+).setBackURL(
+	backURL
 ).setParameter(
 	"calendarId", calendarId
 ).setParameter(

@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -382,8 +381,8 @@ public class CommerceSubscriptionEntryDisplayContext {
 			"/commerce_open_order_content/edit_commerce_order"
 		).setRedirect(
 			_cpRequestHelper.getCurrentURL()
-		).setParameter(
-			Constants.CMD, ActionKeys.UPDATE
+		).setCMD(
+			ActionKeys.UPDATE
 		).setParameter(
 			"commerceSubscriptionEntryId",
 			_commerceSubscriptionEntry.getCommerceSubscriptionEntryId()

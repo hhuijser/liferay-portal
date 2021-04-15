@@ -44,8 +44,8 @@ X509Certificate x509Certificate = (X509Certificate)request.getAttribute(SamlWebK
 						"/admin/update_certificate"
 					).setParameter(
 						"certificateUsage", certificateUsage.name()
-					).setParameter(
-						Constants.CMD, "replace"
+					).setCMD(
+						"replace"
 					).build();
 
 					add(

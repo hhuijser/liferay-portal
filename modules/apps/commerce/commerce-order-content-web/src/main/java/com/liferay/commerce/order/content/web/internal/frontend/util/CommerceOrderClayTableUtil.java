@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.portlet.PortletQName;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -81,8 +80,8 @@ public class CommerceOrderClayTableUtil {
 			ParamUtil.getString(
 				httpServletRequest, "currentUrl",
 				PortalUtil.getCurrentURL(httpServletRequest))
-		).setParameter(
-			Constants.CMD, "setCurrent"
+		).setCMD(
+			"setCurrent"
 		).setParameter(
 			"commerceOrderId", commerceOrderId
 		).buildString();

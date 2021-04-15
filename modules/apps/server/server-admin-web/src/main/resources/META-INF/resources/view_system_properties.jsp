@@ -26,8 +26,8 @@ PortletURL serverURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/server_admin/view"
-).setParameter(
-	"tabs1", tabs1
+).setTabs1(
+	tabs1
 ).setParameter(
 	"delta", String.valueOf(delta)
 ).setParameter(
@@ -38,10 +38,10 @@ PortletURL serverURL = PortletURLBuilder.createRenderURL(
 
 PortletURL clearResultsURL = PortletURLBuilder.create(
 	PortletURLUtil.clone(serverURL, liferayPortletResponse)
-).setParameter(
-	"navigation", StringPool.NULL
-).setParameter(
-	"keywords", StringPool.BLANK
+).setNavigation(
+	StringPool.NULL
+).setKeywords(
+	StringPool.BLANK
 ).build();
 
 Map<String, String> filteredProperties = new TreeMap<String, String>();

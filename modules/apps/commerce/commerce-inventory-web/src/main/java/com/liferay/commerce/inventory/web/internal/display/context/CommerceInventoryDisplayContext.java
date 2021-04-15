@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -278,8 +277,8 @@ public class CommerceInventoryDisplayContext {
 			"/commerce_inventory/edit_commerce_inventory_item"
 		).setRedirect(
 			_cpRequestHelper.getCurrentURL()
-		).setParameter(
-			Constants.CMD, "transition"
+		).setCMD(
+			"transition"
 		).setParameter(
 			"sku", _sku
 		).build();

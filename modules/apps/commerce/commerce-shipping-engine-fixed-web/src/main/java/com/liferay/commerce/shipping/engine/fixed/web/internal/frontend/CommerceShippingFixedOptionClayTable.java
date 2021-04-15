@@ -205,8 +205,8 @@ public class CommerceShippingFixedOptionClayTable
 			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceShippingFixedOptionId", shippingFixedOptionId
 		).buildString();

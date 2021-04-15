@@ -130,8 +130,8 @@ public class WorkflowDefinitionLinkDisplayContext {
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -253,8 +253,8 @@ public class WorkflowDefinitionLinkDisplayContext {
 			"/view.jsp"
 		).setParameter(
 			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
-		).setParameter(
-			"tabs1", "default-configuration"
+		).setTabs1(
+			"default-configuration"
 		).build();
 
 		String delta = ParamUtil.getString(_httpServletRequest, "delta");

@@ -28,8 +28,8 @@
 				"/export_import_changeset/export_import_changeset"
 			).setBackURL(
 				currentURL
-			).setParameter(
-				"cmd", Constants.PUBLISH
+			).setCMD(
+				Constants.PUBLISH
 			).setParameter(
 				"changesetUuid", changesetUuid
 			).setParameter(

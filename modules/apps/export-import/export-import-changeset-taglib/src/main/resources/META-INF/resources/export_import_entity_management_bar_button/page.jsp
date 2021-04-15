@@ -41,8 +41,8 @@ scopeGroup = themeDisplay.getScopeGroup();
 		"exportImportEntity"
 	).setBackURL(
 		themeDisplay.getURLCurrent()
-	).setParameter(
-		"cmd", cmd
+	).setCMD(
+		cmd
 	).setParameter(
 		"portletId", portletDisplay.getId()
 	).build();

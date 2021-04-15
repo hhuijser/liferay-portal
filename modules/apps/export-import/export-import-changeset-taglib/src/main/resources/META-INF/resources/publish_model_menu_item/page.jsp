@@ -26,10 +26,10 @@
 				"/export_import_changeset/export_import_changeset"
 			).setMVCRenderCommandName(
 				"/export_import_changeset/export_import_changeset"
-			).setBackURL(
-				currentURL
 			).setCMD(
 				Constants.PUBLISH
+			).setBackURL(
+				currentURL
 			).setParameter(
 				"changesetUuid", changesetUuid
 			).setParameter(

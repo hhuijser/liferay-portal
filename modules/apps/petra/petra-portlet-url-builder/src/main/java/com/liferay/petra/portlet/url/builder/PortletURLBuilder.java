@@ -366,19 +366,18 @@ public class PortletURLBuilder {
 	}
 
 	public interface AfterActionNameStep
-		extends BuildStep, ParameterStep, PortletModeStep, RedirectStep,
-				SecureStep, WindowStateStep {
+		extends BuildStep, MVCPathStep, MVCRenderCommandNameStep, ParameterStep,
+				PortletModeStep, RedirectStep, SecureStep, WindowStateStep {
 	}
 
 	public interface AfterMVCPathStep
-		extends ActionNameStep, BuildStep, MVCRenderCommandNameStep,
-				ParameterStep, PortletModeStep, RedirectStep, SecureStep,
-				WindowStateStep {
+		extends BuildStep, MVCRenderCommandNameStep, ParameterStep,
+				PortletModeStep, RedirectStep, SecureStep, WindowStateStep {
 	}
 
 	public interface AfterMVCRenderCommandNameStep
-		extends ActionNameStep, BuildStep, ParameterStep, PortletModeStep,
-				RedirectStep, SecureStep, WindowStateStep {
+		extends BuildStep, ParameterStep, PortletModeStep, RedirectStep,
+				SecureStep, WindowStateStep {
 	}
 
 	public interface AfterParameterStep

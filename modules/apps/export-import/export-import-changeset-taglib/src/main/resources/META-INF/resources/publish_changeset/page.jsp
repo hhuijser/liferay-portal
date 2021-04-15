@@ -28,8 +28,8 @@
 				"/export_import_changeset/export_import_changeset"
 			).setBackURL(
 				currentURL
-			).setParameter(
-				"cmd", ChangesetConstants.PUBLISH_CHANGESET
+			).setCMD(
+				ChangesetConstants.PUBLISH_CHANGESET
 			).setParameter(
 				"groupId", changesetGroupId
 			).setParameter(

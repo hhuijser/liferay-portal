@@ -469,15 +469,15 @@ public class PortletDisplay implements Cloneable, Serializable {
 	}
 
 	public boolean isShowPortletTitle() {
-		if (Validator.isNull(getPortletDecoratorId())) {
+		if (Validator.isNull(_portletDecoratorId)) {
 			return false;
 		}
 
-		if (StringUtil.equals(getPortletDecoratorId(), "barebone")) {
+		if (StringUtil.equals(_portletDecoratorId, "barebone")) {
 			return false;
 		}
 
-		PortletPreferences portletSetup = getPortletSetup();
+		PortletPreferences portletSetup = _portletSetup;
 
 		String portletSetupPortletDecoratorId = portletSetup.getValue(
 			"portletSetupPortletDecoratorId", StringPool.BLANK);

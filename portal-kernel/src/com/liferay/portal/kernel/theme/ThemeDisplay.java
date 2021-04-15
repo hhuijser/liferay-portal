@@ -168,13 +168,13 @@ public class ThemeDisplay
 			return _cdnBaseURL;
 		}
 
-		String host = getCDNHost();
+		String host = _cdnHost;
 
 		if (Validator.isNull(host)) {
-			String portalURL = getPortalURL();
+			String portalURL = _portalURL;
 
 			try {
-				portalURL = PortalUtil.getPortalURL(getLayout(), this);
+				portalURL = PortalUtil.getPortalURL(_layout, this);
 			}
 			catch (Exception exception) {
 				_log.error(exception, exception);
@@ -948,11 +948,11 @@ public class ThemeDisplay
 	 * @return the theme's configurable settings
 	 */
 	public String getThemeSetting(String key) {
-		Theme theme = getTheme();
+		Theme theme = _theme;
 
 		String device = theme.getDevice();
 
-		Layout layout = getLayout();
+		Layout layout = _layout;
 
 		return layout.getThemeSetting(key, device);
 	}
@@ -965,7 +965,7 @@ public class ThemeDisplay
 	 * @return a list of the theme's configurable settings
 	 */
 	public Properties getThemeSettings() {
-		Theme theme = getTheme();
+		Theme theme = _theme;
 
 		Properties properties = new Properties();
 
@@ -1028,7 +1028,7 @@ public class ThemeDisplay
 				PortletProvider.Action.VIEW);
 
 			_urlMyAccount = PortalUtil.getControlPanelPortletURL(
-				getRequest(), portletId, PortletRequest.RENDER_PHASE);
+				_httpServletRequest, portletId, PortletRequest.RENDER_PHASE);
 		}
 
 		return _urlMyAccount;
@@ -1055,7 +1055,7 @@ public class ThemeDisplay
 	public PortletURL getURLUpdateManager() {
 		if (_urlUpdateManager == null) {
 			_urlUpdateManager = PortalUtil.getControlPanelPortletURL(
-				getRequest(), PortletKeys.MARKETPLACE_STORE,
+				_httpServletRequest, PortletKeys.MARKETPLACE_STORE,
 				PortletRequest.RENDER_PHASE);
 		}
 
@@ -1129,9 +1129,9 @@ public class ThemeDisplay
 	}
 
 	public boolean isIncludedJs(String js) {
-		String path = getPathJavaScript();
+		String path = _pathJavaScript;
 
-		if (isIncludePortletCssJs() &&
+		if (_includePortletCssJs &&
 			js.startsWith(path + "/liferay/portlet_css.js")) {
 
 			return true;
@@ -1452,13 +1452,13 @@ public class ThemeDisplay
 			cdnBaseURL + themeStaticResourcePath +
 				colorScheme.getColorSchemeImagesPath());
 
-		String dynamicResourcesHost = getCDNDynamicResourcesHost();
+		String dynamicResourcesHost = _cdnDynamicResourcesHost;
 
 		if (Validator.isNull(dynamicResourcesHost)) {
-			String portalURL = getPortalURL();
+			String portalURL = _portalURL;
 
 			try {
-				portalURL = PortalUtil.getPortalURL(getLayout(), this);
+				portalURL = PortalUtil.getPortalURL(_layout, this);
 			}
 			catch (Exception exception) {
 				_log.error(exception, exception);
@@ -1833,11 +1833,11 @@ public class ThemeDisplay
 	}
 
 	public String translate(String key) {
-		return LanguageUtil.get(getLocale(), key);
+		return LanguageUtil.get(_locale, key);
 	}
 
 	public String translate(String pattern, Object... arguments) {
-		return LanguageUtil.format(getLocale(), pattern, arguments);
+		return LanguageUtil.format(_locale, pattern, arguments);
 	}
 
 	private String _getFriendlyURL(Layout layout) {

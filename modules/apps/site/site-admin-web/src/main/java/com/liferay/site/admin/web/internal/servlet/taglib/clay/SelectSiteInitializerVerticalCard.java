@@ -58,10 +58,10 @@ public class SelectSiteInitializerVerticalCard implements VerticalCard {
 			"data-add-site-url",
 			() -> PortletURLBuilder.createActionURL(
 				_renderResponse
-			).setMVCPath(
-				"/select_layout_set_prototype_entry.jsp"
 			).setActionName(
 				"/site_admin/add_group"
+			).setMVCPath(
+				"/select_layout_set_prototype_entry.jsp"
 			).setParameter(
 				"parentGroupId",
 				ParamUtil.getLong(_httpServletRequest, "parentGroupId")

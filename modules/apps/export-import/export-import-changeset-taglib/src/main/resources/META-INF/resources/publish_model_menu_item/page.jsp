@@ -22,9 +22,9 @@
 		url='<%=
 			PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(request, ChangesetPortletKeys.CHANGESET, PortletRequest.ACTION_PHASE)
-			).setMVCRenderCommandName(
-				"/export_import_changeset/export_import_changeset"
 			).setActionName(
+				"/export_import_changeset/export_import_changeset"
+			).setMVCRenderCommandName(
 				"/export_import_changeset/export_import_changeset"
 			).setParameter(
 				"cmd", Constants.PUBLISH

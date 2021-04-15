@@ -636,10 +636,10 @@ public class PortletConfigurationPermissionsDisplayContext {
 				_httpServletRequest,
 				PortletConfigurationPortletKeys.PORTLET_CONFIGURATION,
 				PortletRequest.ACTION_PHASE)
-		).setMVCPath(
-			"/edit_permissions.jsp"
 		).setActionName(
 			"updateRolePermissions"
+		).setMVCPath(
+			"/edit_permissions.jsp"
 		).setParameter(
 			"cur",
 			ParamUtil.getInteger(

@@ -16,6 +16,7 @@ package com.liferay.petra.portlet.url.builder;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.util.Constants;
 
 import java.util.Map;
 
@@ -174,12 +175,15 @@ public class PortletURLBuilder {
 	}
 
 	public static class PortletURLStep
-		implements ActionNameStep, AfterActionNameStep, AfterMVCPathStep,
-				   AfterMVCRenderCommandNameStep, AfterParameterStep,
-				   AfterPortletModeStep, AfterRedirectStep, AfterSecureStep,
-				   AfterWindowStateStep, BuildStep, MVCPathStep,
-				   MVCRenderCommandNameStep, ParameterStep, PortletModeStep,
-				   RedirectStep, SecureStep, WindowStateStep {
+		implements ActionNameStep, AfterActionNameStep, AfterBackURLStep,
+				   AfterCMDStep, AfterKeywordsStep, AfterMVCPathStep,
+				   AfterMVCRenderCommandNameStep, AfterNavigationStep,
+				   AfterParameterStep, AfterPortletModeStep, AfterRedirectStep,
+				   AfterSecureStep, AfterTabs1Step, AfterTabs2Step,
+				   AfterWindowStateStep, BackURLStep, BuildStep, CMDStep,
+				   KeywordsStep, MVCPathStep, MVCRenderCommandNameStep,
+				   NavigationStep, ParameterStep, PortletModeStep, RedirectStep,
+				   SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
 
 		public PortletURLStep(PortletURL portletURL) {
 			_portletURL = portletURL;
@@ -207,6 +211,54 @@ public class PortletURLBuilder {
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
 			setParameter(ActionRequest.ACTION_NAME, valueUnsafeSupplier);
+
+			return this;
+		}
+
+		@Override
+		public AfterBackURLStep setBackURL(String value) {
+			setParameter("backURL", value);
+
+			return this;
+		}
+
+		@Override
+		public AfterBackURLStep setBackURL(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			setParameter("backURL", valueUnsafeSupplier);
+
+			return this;
+		}
+
+		@Override
+		public AfterCMDStep setCMD(String value) {
+			setParameter(Constants.CMD, value);
+
+			return this;
+		}
+
+		@Override
+		public AfterCMDStep setCMD(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			setParameter(Constants.CMD, valueUnsafeSupplier);
+
+			return this;
+		}
+
+		@Override
+		public AfterKeywordsStep setKeywords(String value) {
+			setParameter("keywords", value);
+
+			return this;
+		}
+
+		@Override
+		public AfterKeywordsStep setKeywords(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			setParameter("keywords", valueUnsafeSupplier);
 
 			return this;
 		}
@@ -241,6 +293,22 @@ public class PortletURLBuilder {
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
 			setParameter("mvcRenderCommandName", valueUnsafeSupplier);
+
+			return this;
+		}
+
+		@Override
+		public AfterNavigationStep setNavigation(String value) {
+			setParameter("navigation", value);
+
+			return this;
+		}
+
+		@Override
+		public AfterNavigationStep setNavigation(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			setParameter("navigation", valueUnsafeSupplier);
 
 			return this;
 		}
@@ -341,6 +409,38 @@ public class PortletURLBuilder {
 		}
 
 		@Override
+		public AfterTabs1Step setTabs1(String value) {
+			setParameter("tabs1", value);
+
+			return this;
+		}
+
+		@Override
+		public AfterTabs1Step setTabs1(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			setParameter("tabs1", valueUnsafeSupplier);
+
+			return this;
+		}
+
+		@Override
+		public AfterTabs2Step setTabs2(String value) {
+			setParameter("tabs2", value);
+
+			return this;
+		}
+
+		@Override
+		public AfterTabs2Step setTabs2(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			setParameter("tabs2", valueUnsafeSupplier);
+
+			return this;
+		}
+
+		@Override
 		public AfterWindowStateStep setWindowState(WindowState windowState) {
 			try {
 				_portletURL.setWindowState(windowState);
@@ -366,18 +466,45 @@ public class PortletURLBuilder {
 	}
 
 	public interface AfterActionNameStep
-		extends BuildStep, MVCPathStep, MVCRenderCommandNameStep, ParameterStep,
-				PortletModeStep, RedirectStep, SecureStep, WindowStateStep {
+		extends BackURLStep, BuildStep, CMDStep, KeywordsStep, MVCPathStep,
+				MVCRenderCommandNameStep, NavigationStep, ParameterStep,
+				PortletModeStep, RedirectStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
+	}
+
+	public interface AfterBackURLStep
+		extends BuildStep, KeywordsStep, NavigationStep, ParameterStep,
+				PortletModeStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
+	}
+
+	public interface AfterCMDStep
+		extends BackURLStep, BuildStep, KeywordsStep, NavigationStep,
+				ParameterStep, PortletModeStep, RedirectStep, SecureStep,
+				Tabs1Step, Tabs2Step, WindowStateStep {
+	}
+
+	public interface AfterKeywordsStep
+		extends BuildStep, NavigationStep, ParameterStep, PortletModeStep,
+				SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterMVCPathStep
-		extends BuildStep, MVCRenderCommandNameStep, ParameterStep,
-				PortletModeStep, RedirectStep, SecureStep, WindowStateStep {
+		extends BackURLStep, BuildStep, CMDStep, KeywordsStep,
+				MVCRenderCommandNameStep, NavigationStep, ParameterStep,
+				PortletModeStep, RedirectStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
 	}
 
 	public interface AfterMVCRenderCommandNameStep
-		extends BuildStep, ParameterStep, PortletModeStep, RedirectStep,
-				SecureStep, WindowStateStep {
+		extends BackURLStep, BuildStep, CMDStep, KeywordsStep, NavigationStep,
+				ParameterStep, PortletModeStep, RedirectStep, SecureStep,
+				Tabs1Step, Tabs2Step, WindowStateStep {
+	}
+
+	public interface AfterNavigationStep
+		extends BuildStep, ParameterStep, PortletModeStep, SecureStep,
+				Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterParameterStep
@@ -390,14 +517,34 @@ public class PortletURLBuilder {
 	}
 
 	public interface AfterRedirectStep
-		extends BuildStep, ParameterStep, PortletModeStep, SecureStep,
-				WindowStateStep {
+		extends BackURLStep, BuildStep, KeywordsStep, NavigationStep,
+				ParameterStep, PortletModeStep, SecureStep, Tabs1Step,
+				Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterSecureStep extends BuildStep, WindowStateStep {
 	}
 
+	public interface AfterTabs1Step
+		extends BuildStep, ParameterStep, PortletModeStep, SecureStep,
+				Tabs2Step, WindowStateStep {
+	}
+
+	public interface AfterTabs2Step
+		extends BuildStep, ParameterStep, PortletModeStep, SecureStep,
+				WindowStateStep {
+	}
+
 	public interface AfterWindowStateStep extends BuildStep {
+	}
+
+	public interface BackURLStep {
+
+		public AfterBackURLStep setBackURL(String value);
+
+		public AfterBackURLStep setBackURL(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
+
 	}
 
 	public interface BuildStep {
@@ -405,6 +552,24 @@ public class PortletURLBuilder {
 		public PortletURL build();
 
 		public String buildString();
+
+	}
+
+	public interface CMDStep {
+
+		public AfterCMDStep setCMD(String value);
+
+		public AfterCMDStep setCMD(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
+
+	}
+
+	public interface KeywordsStep {
+
+		public AfterKeywordsStep setKeywords(String value);
+
+		public AfterKeywordsStep setKeywords(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
 
 	}
 
@@ -423,6 +588,15 @@ public class PortletURLBuilder {
 			String value);
 
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
+
+	}
+
+	public interface NavigationStep {
+
+		public AfterNavigationStep setNavigation(String value);
+
+		public AfterNavigationStep setNavigation(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
 
 	}
@@ -461,6 +635,24 @@ public class PortletURLBuilder {
 	public interface SecureStep {
 
 		public AfterSecureStep setSecure(boolean secure);
+
+	}
+
+	public interface Tabs1Step {
+
+		public AfterTabs1Step setTabs1(String value);
+
+		public AfterTabs1Step setTabs1(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
+
+	}
+
+	public interface Tabs2Step {
+
+		public AfterTabs2Step setTabs2(String value);
+
+		public AfterTabs2Step setTabs2(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
 
 	}
 

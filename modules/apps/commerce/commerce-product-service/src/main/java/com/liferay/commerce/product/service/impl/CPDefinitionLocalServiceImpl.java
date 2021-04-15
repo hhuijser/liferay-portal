@@ -2028,8 +2028,8 @@ public class CPDefinitionLocalServiceImpl
 		searchContext.setAttributes(attributes);
 
 		searchContext.setCompanyId(companyId);
-		searchContext.setGroupIds(groupIds);
 		searchContext.setEnd(end);
+		searchContext.setGroupIds(groupIds);
 
 		if (Validator.isNotNull(keywords)) {
 			searchContext.setKeywords(keywords);

@@ -46,8 +46,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	searchContext.setEnd(searchContainer.getEnd());
 	searchContext.setIncludeInternalAssetCategories(true);
 	searchContext.setKeywords(keywords);
-	searchContext.setStart(searchContainer.getStart());
 	searchContext.setSorts(KBUtil.getKBArticleSorts(orderByCol, orderByType));
+	searchContext.setStart(searchContainer.getStart());
 
 	Indexer<KBArticle> indexer = IndexerRegistryUtil.getIndexer(KBArticle.class);
 

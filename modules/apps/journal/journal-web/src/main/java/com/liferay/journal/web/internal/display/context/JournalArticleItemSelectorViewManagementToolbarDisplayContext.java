@@ -72,8 +72,8 @@ public class JournalArticleItemSelectorViewManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).setParameter(
 			"scope", StringPool.BLANK
 		).buildString();

@@ -110,8 +110,8 @@ public class AddDisplayPageMVCActionCommand extends BaseMVCActionCommand {
 					actionRequest,
 					LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES,
 					PortletRequest.RENDER_PHASE)
-			).setParameter(
-				"tabs1", "display-page-templates"
+			).setTabs1(
+				"display-page-templates"
 			).buildString());
 
 		return _http.setParameter(layoutFullURL, "p_l_mode", Constants.EDIT);

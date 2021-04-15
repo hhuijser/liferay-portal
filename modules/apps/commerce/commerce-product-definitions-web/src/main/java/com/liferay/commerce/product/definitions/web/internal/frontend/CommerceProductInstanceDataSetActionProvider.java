@@ -114,8 +114,8 @@ public class CommerceProductInstanceDataSetActionProvider
 			"/cp_definitions/edit_cp_instance"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"cpInstanceId", cpInstanceId
 		).build();

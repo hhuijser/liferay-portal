@@ -147,8 +147,8 @@ public class BlogImagesManagementToolbarDisplayContext
 			_liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/blogs/view"
-		).setParameter(
-			"navigation", "images"
+		).setNavigation(
+			"images"
 		).setParameter(
 			"orderByCol", getOrderByCol()
 		).setParameter(
@@ -171,8 +171,8 @@ public class BlogImagesManagementToolbarDisplayContext
 			_liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/blogs/view"
-		).setParameter(
-			"navigation", "images"
+		).setNavigation(
+			"images"
 		).build();
 
 		int delta = ParamUtil.getInteger(

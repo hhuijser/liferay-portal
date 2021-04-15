@@ -128,8 +128,8 @@ public class EditRoleAssignmentsManagementToolbarDisplayContext {
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -150,8 +150,7 @@ public class EditRoleAssignmentsManagementToolbarDisplayContext {
 							PortletProvider.Action.EDIT)
 					).setRedirect(
 						ParamUtil.getString(_httpServletRequest, "redirect")
-					).setParameter(
-						"backURL",
+					).setBackURL(
 						ParamUtil.getString(_httpServletRequest, "backURL")
 					).setParameter(
 						"groupId",

@@ -196,8 +196,8 @@ public class JournalManagementToolbarDisplayContext
 			"viewDDMStructureArticlesURL",
 			PortletURLBuilder.createRenderURL(
 				liferayPortletResponse
-			).setParameter(
-				"navigation", "structure"
+			).setNavigation(
+				"structure"
 			).setParameter(
 				"folderId", JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID
 			).buildString()
@@ -208,12 +208,12 @@ public class JournalManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"navigation", StringPool.BLANK
+		).setNavigation(
+			StringPool.BLANK
 		).setParameter(
 			"ddmStructureKey", StringPool.BLANK
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).setParameter(
 			"orderByCol", StringPool.BLANK
 		).setParameter(
@@ -279,8 +279,8 @@ public class JournalManagementToolbarDisplayContext
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);
@@ -303,8 +303,8 @@ public class JournalManagementToolbarDisplayContext
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);
@@ -320,8 +320,8 @@ public class JournalManagementToolbarDisplayContext
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);
@@ -447,8 +447,8 @@ public class JournalManagementToolbarDisplayContext
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
 		PortletURL portletURL = PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).build();
 
 		List<DropdownItem> filterNavigationDropdownItems = getDropdownItems(

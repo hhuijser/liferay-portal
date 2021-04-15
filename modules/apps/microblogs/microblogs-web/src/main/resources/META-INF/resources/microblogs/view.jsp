@@ -46,8 +46,8 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCPath(
 	"/microblogs/view.jsp"
-).setParameter(
-	"tabs1", tabs1
+).setTabs1(
+	tabs1
 ).setWindowState(
 	WindowState.NORMAL
 ).build();
@@ -153,8 +153,8 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 		renderResponse
 	).setMVCPath(
 		"/microblogs/view.jsp"
-	).setParameter(
-		"tabs1", tabs1
+	).setTabs1(
+		tabs1
 	).setParameter(
 		"cur", cur
 	).setWindowState(

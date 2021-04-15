@@ -56,8 +56,8 @@ public class DefaultSocialActivitiesDisplayContext
 	public String getPaginationURL() {
 		return PortletURLBuilder.createRenderURL(
 			_socialActivitiesRequestHelper.getLiferayPortletResponse()
-		).setParameter(
-			"tabs1", getSelectedTabName()
+		).setTabs1(
+			getSelectedTabName()
 		).setParameter(
 			"end",
 			_socialActivitiesRequestHelper.getEnd() +
@@ -137,8 +137,8 @@ public class DefaultSocialActivitiesDisplayContext
 	public String getTabsURL() {
 		return PortletURLBuilder.createRenderURL(
 			_socialActivitiesRequestHelper.getLiferayPortletResponse()
-		).setParameter(
-			"tabs1", getSelectedTabName()
+		).setTabs1(
+			getSelectedTabName()
 		).buildString();
 	}
 

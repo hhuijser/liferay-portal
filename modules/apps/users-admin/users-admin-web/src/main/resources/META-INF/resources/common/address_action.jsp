@@ -72,8 +72,8 @@ long addressId = ParamUtil.getLong(request, "addressId");
 		url='<%=
 			PortletURLBuilder.create(
 				PortletURLUtil.clone(portletURL, renderResponse)
-			).setParameter(
-				Constants.CMD, "makePrimary"
+			).setCMD(
+				"makePrimary"
 			).buildString()
 		%>'
 	/>
@@ -83,8 +83,8 @@ long addressId = ParamUtil.getLong(request, "addressId");
 		url="<%=
 			PortletURLBuilder.create(
 				PortletURLUtil.clone(portletURL, renderResponse)
-			).setParameter(
-				Constants.CMD, Constants.DELETE
+			).setCMD(
+				Constants.DELETE
 			).buildString()
 		%>"
 	/>

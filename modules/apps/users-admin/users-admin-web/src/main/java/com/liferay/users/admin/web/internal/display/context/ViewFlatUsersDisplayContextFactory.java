@@ -163,8 +163,8 @@ public class ViewFlatUsersDisplayContextFactory {
 
 		PortletURL portletURL = PortletURLBuilder.create(
 			(PortletURL)httpServletRequest.getAttribute("view.jsp-portletURL")
-		).setParameter(
-			"navigation", navigation
+		).setNavigation(
+			navigation
 		).build();
 
 		UserSearch userSearch = new UserSearch(

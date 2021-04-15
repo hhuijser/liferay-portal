@@ -65,8 +65,8 @@ WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderRespons
 				redirect
 			).setParameter(
 				"nodeId", nodeId
-			).setParameter(
-				"keywords", keywords
+			).setKeywords(
+				keywords
 			).build()
 		%>'
 	>

@@ -23,8 +23,8 @@ PortletURL portletURL = PortletURLBuilder.create(
 	currentURLObj
 ).setMVCRenderCommandName(
 	"/export_import/export_import"
-).setParameter(
-	"tabs2", "export"
+).setTabs2(
+	"export"
 ).setParameter(
 	"tabs3", "current-and-previous"
 ).build();

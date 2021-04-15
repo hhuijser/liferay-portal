@@ -111,8 +111,8 @@ public class CommerceCatalogDataSetActionProvider
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_catalogs/edit_commerce_catalog"
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).build();
 
 		String redirect = ParamUtil.getString(

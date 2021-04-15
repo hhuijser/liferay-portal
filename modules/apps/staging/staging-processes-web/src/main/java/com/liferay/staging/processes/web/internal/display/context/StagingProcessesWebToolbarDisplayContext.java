@@ -250,8 +250,8 @@ public class StagingProcessesWebToolbarDisplayContext {
 	private PortletURL _getNavigationURL(String navigation) {
 		return PortletURLBuilder.create(
 			_getStagingRenderURL()
-		).setParameter(
-			"navigation", navigation
+		).setNavigation(
+			navigation
 		).build();
 	}
 
@@ -288,8 +288,7 @@ public class StagingProcessesWebToolbarDisplayContext {
 	private PortletURL _getStagingRenderURL() {
 		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setParameter(
-			"navigation",
+		).setNavigation(
 			ParamUtil.getString(_httpServletRequest, "navigation", "all")
 		).setParameter(
 			"groupId", ParamUtil.getLong(_httpServletRequest, "groupId")

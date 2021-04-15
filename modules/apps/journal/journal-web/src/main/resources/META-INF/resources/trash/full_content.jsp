@@ -39,8 +39,8 @@ JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribu
 		portletURL='<%=
 			PortletURLBuilder.createRenderURL(
 				renderResponse
-			).setParameter(
-				"mvcPath", "/preview.jsp"
+			).setMVCPath(
+				"/preview.jsp"
 			).setParameter(
 				"classNameId", assetRendererFactory.getClassNameId()
 			).setParameter(

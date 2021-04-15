@@ -156,8 +156,8 @@ public class UADExportProcessDisplayContext {
 
 				return selectedUser.getUserId();
 			}
-		).setParameter(
-			"navigation", getNavigation()
+		).setNavigation(
+			getNavigation()
 		).setParameter(
 			"orderByCol", getOrderByCol()
 		).setParameter(

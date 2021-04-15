@@ -112,8 +112,8 @@ public class CommerceOrderItemClayDataSetActionProvider
 			"/commerce_order/edit_commerce_order_item"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceOrderItemId", commerceOrderItemId
 		).build();

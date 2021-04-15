@@ -54,8 +54,8 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 									href="<%=
 										PortletURLBuilder.create(
 											assetListEntryUsagesDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "all"
+										).setNavigation(
+											"all"
 										).buildString()
 									%>"
 								>
@@ -68,8 +68,8 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 									href="<%=
 										PortletURLBuilder.create(
 											assetListEntryUsagesDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "pages"
+										).setNavigation(
+											"pages"
 										).buildString()
 									%>"
 								>
@@ -82,8 +82,8 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 									href="<%=
 										PortletURLBuilder.create(
 											assetListEntryUsagesDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "page-templates"
+										).setNavigation(
+											"page-templates"
 										).buildString()
 									%>"
 								>
@@ -96,8 +96,8 @@ renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
 									href="<%=
 										PortletURLBuilder.create(
 											assetListEntryUsagesDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "display-page-templates"
+										).setNavigation(
+											"display-page-templates"
 										).buildString()
 									%>"
 								>

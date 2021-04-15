@@ -69,10 +69,10 @@ PortletURL customPublishURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/export_import/publish_layouts"
-).setParameter(
-	Constants.CMD, cmd
-).setParameter(
-	"tabs1", privateLayout ? "private-pages" : "public-pages"
+).setCMD(
+	cmd
+).setTabs1(
+	privateLayout ? "private-pages" : "public-pages"
 ).setParameter(
 	"groupId", String.valueOf(stagingGroupId)
 ).setParameter(
@@ -97,8 +97,8 @@ PortletURL publishTemplatesURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/export_import/publish_layouts"
-).setParameter(
-	Constants.CMD, Constants.PUBLISH
+).setCMD(
+	Constants.PUBLISH
 ).setParameter(
 	"groupId", String.valueOf(stagingGroupId)
 ).setParameter(
@@ -168,8 +168,8 @@ PortletURL simplePublishRedirectURL = PortletURLBuilder.createRenderURL(
 							"/export_import/publish_layouts_simple"
 						).setRedirect(
 							simplePublishRedirectURL.toString()
-						).setParameter(
-							Constants.CMD, "localPublishing ? Constants.PUBLISH_TO_LIVE : Constants.PUBLISH_TO_REMOTE"
+						).setCMD(
+							"localPublishing ? Constants.PUBLISH_TO_LIVE : Constants.PUBLISH_TO_REMOTE"
 						).setParameter(
 							"lastImportUserName", user.getFullName()
 						).setParameter(

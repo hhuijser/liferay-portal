@@ -24,18 +24,18 @@ PortletURL searchURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/server_admin/view"
-).setParameter(
-	"tabs1", tabs1
+).setTabs1(
+	tabs1
 ).setParameter(
 	"delta", String.valueOf(delta)
 ).build();
 
 PortletURL clearResultsURL = PortletURLBuilder.create(
 	PortletURLUtil.clone(searchURL, liferayPortletResponse)
-).setParameter(
-	"navigation", (String)null
-).setParameter(
-	"keywords", StringPool.BLANK
+).setNavigation(
+	(String)null
+).setKeywords(
+	StringPool.BLANK
 ).build();
 
 SearchContainer<Map.Entry<String, String>> loggerSearchContainer = new SearchContainer(liferayPortletRequest, searchURL, null, null);

@@ -25,8 +25,8 @@ int delta = ParamUtil.getInteger(request, "delta", SearchContainer.DEFAULT_DELTA
 
 PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setParameter(
-	"tabs1", tabs1
+).setTabs1(
+	tabs1
 ).setParameter(
 	"delta", String.valueOf(delta)
 ).build();
@@ -53,13 +53,13 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 
 			<li>
 				<aui:form
-					action='<%=
+					action="<%=
 						PortletURLBuilder.createRenderURL(
 							renderResponse
-						).setParameter(
-							"tabs1", tabs1
+						).setTabs1(
+							tabs1
 						).buildString()
-					%>'
+					%>"
 					name="searchFm"
 				>
 					<liferay-ui:input-search

@@ -524,8 +524,7 @@ public class DefaultWikiListPagesDisplayContext
 					"/wiki/edit_page"
 				).setRedirect(
 					_wikiRequestHelper.getCurrentURL()
-				).setParameter(
-					Constants.CMD,
+				).setCMD(
 					() -> {
 						String cmd = Constants.DELETE;
 
@@ -563,8 +562,8 @@ public class DefaultWikiListPagesDisplayContext
 					"/wiki/edit_page"
 				).setRedirect(
 					_wikiRequestHelper.getCurrentURL()
-				).setParameter(
-					Constants.CMD, Constants.DELETE
+				).setCMD(
+					Constants.DELETE
 				).setParameter(
 					"nodeId", wikiPage.getNodeId()
 				).setParameter(
@@ -756,8 +755,8 @@ public class DefaultWikiListPagesDisplayContext
 					"/wiki/edit_page"
 				).setRedirect(
 					_wikiRequestHelper.getCurrentURL()
-				).setParameter(
-					Constants.CMD, Constants.UNSUBSCRIBE
+				).setCMD(
+					Constants.UNSUBSCRIBE
 				).setParameter(
 					"nodeId", wikiPage.getNodeId()
 				).setParameter(
@@ -779,8 +778,8 @@ public class DefaultWikiListPagesDisplayContext
 					"/wiki/edit_page"
 				).setRedirect(
 					_wikiRequestHelper.getCurrentURL()
-				).setParameter(
-					Constants.CMD, Constants.SUBSCRIBE
+				).setCMD(
+					Constants.SUBSCRIBE
 				).setParameter(
 					"nodeId", wikiPage.getNodeId()
 				).setParameter(

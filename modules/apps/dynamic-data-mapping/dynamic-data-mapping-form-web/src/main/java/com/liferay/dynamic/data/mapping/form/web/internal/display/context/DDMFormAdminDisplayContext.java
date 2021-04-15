@@ -244,8 +244,8 @@ public class DDMFormAdminDisplayContext {
 	public String getClearResultsURL() throws PortletException {
 		return PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), renderResponse)
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -1621,8 +1621,8 @@ public class DDMFormAdminDisplayContext {
 					PortletRequest.RENDER_PHASE)
 			).setMVCPath(
 				"/view.jsp"
-			).setParameter(
-				"backURL", formAdminRequestHelper.getCurrentURL()
+			).setBackURL(
+				formAdminRequestHelper.getCurrentURL()
 			).setParameter(
 				"refererPortletName",
 				DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN

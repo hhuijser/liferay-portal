@@ -135,8 +135,8 @@ public class CommerceAccountAddressAdminDisplayContext
 			"/commerce_account_admin/edit_commerce_address"
 		).setRedirect(
 			commerceAccountAdminRequestHelper.getCurrentURL()
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceAddressId", commerceAddressId
 		).buildString();

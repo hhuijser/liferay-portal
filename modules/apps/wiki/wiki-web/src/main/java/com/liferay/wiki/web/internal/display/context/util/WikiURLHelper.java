@@ -62,8 +62,8 @@ public class WikiURLHelper {
 			_liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/wiki/view_pages"
-		).setParameter(
-			"navigation", "all-pages"
+		).setNavigation(
+			"all-pages"
 		).setParameter(
 			"nodeId", node.getNodeId()
 		).build();
@@ -94,8 +94,8 @@ public class WikiURLHelper {
 			_liferayPortletResponse
 		).setActionName(
 			"/wiki/edit_page"
-		).setParameter(
-			Constants.CMD, Constants.RESTORE
+		).setCMD(
+			Constants.RESTORE
 		).build();
 	}
 

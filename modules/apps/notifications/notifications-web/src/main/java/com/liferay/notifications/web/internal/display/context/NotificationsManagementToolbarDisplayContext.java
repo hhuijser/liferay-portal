@@ -150,8 +150,8 @@ public class NotificationsManagementToolbarDisplayContext {
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							_currentURLObj, _liferayPortletResponse)
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);

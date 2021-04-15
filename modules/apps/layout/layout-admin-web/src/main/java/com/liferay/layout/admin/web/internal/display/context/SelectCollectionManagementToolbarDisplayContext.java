@@ -64,8 +64,8 @@ public class SelectCollectionManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			_selectLayoutCollectionDisplayContext.getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -130,8 +130,8 @@ public class SelectCollectionManagementToolbarDisplayContext
 						PortletRequest.ACTION_PHASE)
 				).setActionName(
 					"/asset_list/add_asset_list_entry"
-				).setParameter(
-					"backURL", _themeDisplay.getURLCurrent()
+				).setBackURL(
+					_themeDisplay.getURLCurrent()
 				).setParameter(
 					"type", type
 				).buildString());

@@ -119,8 +119,8 @@ public class AccountEntriesAdminPortletFilter
 					"delta", ParamUtil.getString(renderRequest, "delta")
 				).setParameter(
 					"resetCur", ParamUtil.getString(renderRequest, "resetCur")
-				).setParameter(
-					"backURL", ParamUtil.getString(renderRequest, "backURL")
+				).setBackURL(
+					ParamUtil.getString(renderRequest, "backURL")
 				).build();
 
 				long roleId = ParamUtil.getLong(renderRequest, "roleId");

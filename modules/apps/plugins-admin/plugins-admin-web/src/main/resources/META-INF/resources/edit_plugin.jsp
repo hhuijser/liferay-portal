@@ -139,10 +139,10 @@ renderResponse.setTitle(title);
 															PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.MANAGE)
 														).setRedirect(
 															currentURL
-														).setParameter(
-															Constants.CMD, "edit"
-														).setParameter(
-															"tabs1", "roles"
+														).setCMD(
+															"edit"
+														).setTabs1(
+															"roles"
 														).setParameter(
 															"roleId", role.getRoleId()
 														).setParameter(
@@ -196,10 +196,10 @@ renderResponse.setTitle(title);
 													url='<%=
 														PortletURLBuilder.create(
 															PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.MANAGE)
-														).setParameter(
-															Constants.CMD, "edit"
-														).setParameter(
-															"tabs1", "roles"
+														).setCMD(
+															"edit"
+														).setTabs1(
+															"roles"
 														).setParameter(
 															"roleId", role.getRoleId()
 														).setParameter(

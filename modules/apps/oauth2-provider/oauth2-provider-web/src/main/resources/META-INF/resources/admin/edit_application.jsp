@@ -64,8 +64,8 @@ if (request.getAttribute(OAuth2ProviderWebKeys.ASSIGN_SCOPES_TREE_DISPLAY_CONTEX
 								"/oauth2_provider/update_oauth2_application"
 							).setRedirect(
 								redirect
-							).setParameter(
-								"navigation", "credentials"
+							).setNavigation(
+								"credentials"
 							).setParameter(
 								"oAuth2ApplicationId", oAuth2ApplicationIdString
 							).build();
@@ -85,8 +85,8 @@ if (request.getAttribute(OAuth2ProviderWebKeys.ASSIGN_SCOPES_TREE_DISPLAY_CONTEX
 								"/oauth2_provider/assign_scopes"
 							).setRedirect(
 								redirect
-							).setParameter(
-								"navigation", "assign_scopes"
+							).setNavigation(
+								"assign_scopes"
 							).setParameter(
 								"oAuth2ApplicationId", oAuth2ApplicationIdString
 							).build();
@@ -107,8 +107,8 @@ if (request.getAttribute(OAuth2ProviderWebKeys.ASSIGN_SCOPES_TREE_DISPLAY_CONTEX
 									"/oauth2_provider/view_oauth2_authorizations"
 								).setRedirect(
 									redirect
-								).setParameter(
-									"navigation", "application_authorizations"
+								).setNavigation(
+									"application_authorizations"
 								).setParameter(
 									"oAuth2ApplicationId", oAuth2ApplicationIdString
 								).build();

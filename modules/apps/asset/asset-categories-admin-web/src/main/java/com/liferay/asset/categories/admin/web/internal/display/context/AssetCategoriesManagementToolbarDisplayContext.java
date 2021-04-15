@@ -92,12 +92,12 @@ public class AssetCategoriesManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"navigation", "all"
+		).setNavigation(
+			"all"
 		).setParameter(
 			"categoryId", "0"
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -166,8 +166,8 @@ public class AssetCategoriesManagementToolbarDisplayContext
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).setParameter(
 						"categoryId", "0"
 					).buildString());
@@ -269,8 +269,8 @@ public class AssetCategoriesManagementToolbarDisplayContext
 			liferayPortletResponse
 		).setMVCPath(
 			"/view.jsp"
-		).setParameter(
-			"navigation", "category"
+		).setNavigation(
+			"category"
 		).setParameter(
 			"vocabularyId", _assetCategoriesDisplayContext.getVocabularyId()
 		).buildString();

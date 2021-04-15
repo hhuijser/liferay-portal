@@ -182,8 +182,8 @@ public class CommerceCartContentDisplayContext {
 			"/commerce_cart_content/edit_commerce_order_item"
 		).setRedirect(
 			commerceCartContentRequestHelper.getCurrentURL()
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceOrderItemId", commerceOrderItem.getCommerceOrderItemId()
 		).buildString();

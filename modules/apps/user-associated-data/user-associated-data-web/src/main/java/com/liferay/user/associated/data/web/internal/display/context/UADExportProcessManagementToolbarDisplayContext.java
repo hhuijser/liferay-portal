@@ -63,8 +63,8 @@ public class UADExportProcessManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"navigation", (String)null
+		).setNavigation(
+			(String)null
 		).buildString();
 	}
 
@@ -100,8 +100,8 @@ public class UADExportProcessManagementToolbarDisplayContext
 					"removeLabelURL",
 					PortletURLBuilder.create(
 						getPortletURL()
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);

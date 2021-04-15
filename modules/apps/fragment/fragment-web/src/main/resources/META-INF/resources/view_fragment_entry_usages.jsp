@@ -48,8 +48,8 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 									href="<%=
 										PortletURLBuilder.create(
 											fragmentEntryLinkDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "all"
+										).setNavigation(
+											"all"
 										).buildString()
 									%>"
 								>
@@ -62,8 +62,8 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 									href="<%=
 										PortletURLBuilder.create(
 											fragmentEntryLinkDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "pages"
+										).setNavigation(
+											"pages"
 										).buildString()
 									%>"
 								>
@@ -76,8 +76,8 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 									href="<%=
 										PortletURLBuilder.create(
 											fragmentEntryLinkDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "master-pages"
+										).setNavigation(
+											"master-pages"
 										).buildString()
 									%>"
 								>
@@ -90,8 +90,8 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 									href="<%=
 										PortletURLBuilder.create(
 											fragmentEntryLinkDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "page-templates"
+										).setNavigation(
+											"page-templates"
 										).buildString()
 									%>"
 								>
@@ -104,8 +104,8 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 									href="<%=
 										PortletURLBuilder.create(
 											fragmentEntryLinkDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "display-page-templates"
+										).setNavigation(
+											"display-page-templates"
 										).buildString()
 									%>"
 								>

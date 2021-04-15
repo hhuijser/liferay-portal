@@ -24,6 +24,7 @@ import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerRegistryUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.function.UnsafeConsumer;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -277,13 +278,15 @@ public class BlogsEntryActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getPublishToLiveEntryActionUnsafeConsumer(BlogsEntry blogsEntry) {
 
-		PortletURL publishEntryURL = _renderResponse.createActionURL();
-
-		publishEntryURL.setParameter(
-			ActionRequest.ACTION_NAME, "/blogs/publish_entry");
-		publishEntryURL.setParameter("backURL", _getRedirectURL());
-		publishEntryURL.setParameter(
-			"entryId", String.valueOf(blogsEntry.getEntryId()));
+		PortletURL publishEntryURL = PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			"/blogs/publish_entry"
+		).setBackURL(
+			_getRedirectURL()
+		).setParameter(
+			"entryId", blogsEntry.getEntryId()
+		).build();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "publishToLive");
@@ -294,9 +297,11 @@ public class BlogsEntryActionDropdownItemsProvider {
 	}
 
 	private String _getRedirectURL() {
-		PortletURL redirectURL = _renderResponse.createRenderURL();
-
-		redirectURL.setParameter("mvcRenderCommandName", "/blogs/view");
+		PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCRenderCommandName(
+			"/blogs/view"
+		).build();
 
 		return redirectURL.toString();
 	}

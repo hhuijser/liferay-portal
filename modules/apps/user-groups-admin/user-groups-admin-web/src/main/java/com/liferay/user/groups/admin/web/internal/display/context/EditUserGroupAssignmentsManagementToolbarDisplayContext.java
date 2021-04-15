@@ -49,7 +49,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -95,10 +94,11 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 			"editUserGroupAssignmentsURL",
 			() -> {
 				PortletURL editUserGroupAssignmentsURL =
-					_renderResponse.createActionURL();
-
-				editUserGroupAssignmentsURL.setParameter(
-					ActionRequest.ACTION_NAME, "editUserGroupAssignments");
+					PortletURLBuilder.createActionURL(
+						_renderResponse
+					).setActionName(
+						"editUserGroupAssignments"
+					).build();
 
 				return editUserGroupAssignmentsURL.toString();
 			}
@@ -112,13 +112,15 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 		).put(
 			"selectUsersURL",
 			() -> {
-				PortletURL selectUsersURL = _renderResponse.createActionURL();
-
-				selectUsersURL.setParameter(
-					"mvcPath", "/select_user_group_users.jsp");
-				selectUsersURL.setParameter(
-					"userGroupId", String.valueOf(_userGroup.getUserGroupId()));
-				selectUsersURL.setWindowState(LiferayWindowState.POP_UP);
+				PortletURL selectUsersURL = PortletURLBuilder.createActionURL(
+					_renderResponse
+				).setMVCPath(
+					"/select_user_group_users.jsp"
+				).setParameter(
+					"userGroupId", _userGroup.getUserGroupId()
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).build();
 
 				return selectUsersURL.toString();
 			}

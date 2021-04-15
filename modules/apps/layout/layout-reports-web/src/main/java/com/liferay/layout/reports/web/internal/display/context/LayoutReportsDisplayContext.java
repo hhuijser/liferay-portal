@@ -24,6 +24,7 @@ import com.liferay.layout.reports.web.internal.configuration.LayoutReportsGoogle
 import com.liferay.layout.reports.web.internal.data.provider.LayoutReportsDataProvider;
 import com.liferay.layout.seo.kernel.LayoutSEOLink;
 import com.liferay.layout.seo.kernel.LayoutSEOLinkManager;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
@@ -203,40 +204,41 @@ public class LayoutReportsDisplayContext {
 		PortletRequest portletRequest) {
 
 		if (_isOmniAdmin()) {
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"mvcRenderCommandName",
-				"/configuration_admin/edit_configuration");
-			portletURL.setParameter("redirect", _getCompleteURL());
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest,
+					ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
+					PortletRequest.RENDER_PHASE)
+			).setMVCRenderCommandName(
+				"/configuration_admin/edit_configuration"
+			).setRedirect(
+				_getCompleteURL()
+			).setParameter(
 				"factoryPid",
-				LayoutReportsGooglePageSpeedConfiguration.class.getName());
-			portletURL.setParameter(
-				"pid",
-				LayoutReportsGooglePageSpeedConfiguration.class.getName());
+				LayoutReportsGooglePageSpeedConfiguration.class.getName()
+			).setParameter(
+				"pid", LayoutReportsGooglePageSpeedConfiguration.class.getName()
+			).build();
 
 			return portletURL.toString();
 		}
 		else if (_isCompanyAdmin()) {
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"mvcRenderCommandName",
-				"/configuration_admin/edit_configuration");
-			portletURL.setParameter("redirect", _getCompleteURL());
-			portletURL.setParameter(
+			PortletURL portletURL = PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest,
+					ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
+					PortletRequest.RENDER_PHASE)
+			).setMVCRenderCommandName(
+				"/configuration_admin/edit_configuration"
+			).setRedirect(
+				_getCompleteURL()
+			).setParameter(
 				"factoryPid",
-				LayoutReportsGooglePageSpeedCompanyConfiguration.class.
-					getName());
-			portletURL.setParameter(
+				LayoutReportsGooglePageSpeedCompanyConfiguration.class.getName()
+			).setParameter(
 				"pid",
-				LayoutReportsGooglePageSpeedCompanyConfiguration.class.
-					getName());
+				LayoutReportsGooglePageSpeedCompanyConfiguration.class.getName()
+			).build();
 
 			return portletURL.toString();
 		}

@@ -208,12 +208,12 @@ public class JournalManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
+		).setKeywords(
+			StringPool.BLANK
 		).setNavigation(
 			StringPool.BLANK
 		).setParameter(
 			"ddmStructureKey", StringPool.BLANK
-		).setKeywords(
-			StringPool.BLANK
 		).setParameter(
 			"orderByCol", StringPool.BLANK
 		).setParameter(

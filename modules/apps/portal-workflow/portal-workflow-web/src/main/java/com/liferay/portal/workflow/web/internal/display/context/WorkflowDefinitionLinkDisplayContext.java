@@ -251,10 +251,10 @@ public class WorkflowDefinitionLinkDisplayContext {
 			_liferayPortletResponse
 		).setMVCPath(
 			"/view.jsp"
-		).setParameter(
-			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
 		).setTabs1(
 			"default-configuration"
+		).setParameter(
+			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
 		).build();
 
 		String delta = ParamUtil.getString(_httpServletRequest, "delta");

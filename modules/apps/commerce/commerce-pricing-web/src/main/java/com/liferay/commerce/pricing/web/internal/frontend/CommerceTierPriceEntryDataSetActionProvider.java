@@ -120,10 +120,10 @@ public class CommerceTierPriceEntryDataSetActionProvider
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_price_list/edit_commerce_tier_price_entry"
-		).setRedirect(
-			redirect
 		).setCMD(
 			Constants.DELETE
+		).setRedirect(
+			redirect
 		).setParameter(
 			"commerceTierPriceEntryId",
 			commerceTierPriceEntry.getCommerceTierPriceEntryId()

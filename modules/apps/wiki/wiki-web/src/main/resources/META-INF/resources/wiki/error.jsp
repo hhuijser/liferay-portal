@@ -76,10 +76,10 @@ if (portletTitleBasedNavigation) {
 		"/wiki/search"
 	).setRedirect(
 		currentURL
-	).setParameter(
-		"nodeId", nodeId
 	).setKeywords(
 		title
+	).setParameter(
+		"nodeId", nodeId
 	).build();
 	%>
 

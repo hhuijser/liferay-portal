@@ -133,10 +133,10 @@ public class CommerceAccountAddressAdminDisplayContext
 			commerceAccountAdminRequestHelper.getLiferayPortletResponse()
 		).setActionName(
 			"/commerce_account_admin/edit_commerce_address"
-		).setRedirect(
-			commerceAccountAdminRequestHelper.getCurrentURL()
 		).setCMD(
 			Constants.DELETE
+		).setRedirect(
+			commerceAccountAdminRequestHelper.getCurrentURL()
 		).setParameter(
 			"commerceAddressId", commerceAddressId
 		).buildString();

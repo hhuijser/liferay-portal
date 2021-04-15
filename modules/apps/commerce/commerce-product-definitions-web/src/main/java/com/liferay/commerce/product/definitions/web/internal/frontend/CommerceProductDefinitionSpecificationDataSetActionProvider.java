@@ -124,10 +124,10 @@ public class CommerceProductDefinitionSpecificationDataSetActionProvider
 				CPPortletKeys.CP_DEFINITIONS, PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/cp_definitions/edit_cp_definition_specification_option_value"
-		).setRedirect(
-			redirect
 		).setCMD(
 			Constants.DELETE
+		).setRedirect(
+			redirect
 		).setParameter(
 			"cpDefinitionSpecificationOptionValueId",
 			cpDefinitionSpecificationOptionValueId

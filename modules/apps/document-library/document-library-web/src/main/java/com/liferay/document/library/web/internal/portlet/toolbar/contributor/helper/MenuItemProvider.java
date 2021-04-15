@@ -114,10 +114,10 @@ public class MenuItemProvider {
 				_getPortletURL(themeDisplay, portletRequest)
 			).setMVCRenderCommandName(
 				"/document_library/edit_file_entry"
-			).setRedirect(
-				PortalUtil.getCurrentURL(portletRequest)
 			).setCMD(
 				Constants.ADD
+			).setRedirect(
+				PortalUtil.getCurrentURL(portletRequest)
 			).setParameter(
 				"portletResource", portletDisplay.getId()
 			).setParameter(
@@ -358,10 +358,10 @@ public class MenuItemProvider {
 				_getPortletURL(themeDisplay, portletRequest)
 			).setMVCRenderCommandName(
 				"/document_library/edit_file_entry"
-			).setRedirect(
-				PortalUtil.getCurrentURL(portletRequest)
 			).setCMD(
 				Constants.ADD
+			).setRedirect(
+				PortalUtil.getCurrentURL(portletRequest)
 			).setParameter(
 				"portletResource", portletDisplay.getId()
 			).setParameter(

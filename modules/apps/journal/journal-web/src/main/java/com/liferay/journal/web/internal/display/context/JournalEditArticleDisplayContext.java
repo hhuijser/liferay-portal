@@ -601,6 +601,8 @@ public class JournalEditArticleDisplayContext {
 				_liferayPortletResponse
 			).setMVCPath(
 				"/edit_ddm_template.jsp"
+			).setRedirect(
+				_themeDisplay.getURLCurrent()
 			).setParameter(
 				"ddmTemplateId",
 				() -> {
@@ -612,8 +614,6 @@ public class JournalEditArticleDisplayContext {
 
 					return 0;
 				}
-			).setRedirect(
-				_themeDisplay.getURLCurrent()
 			).buildString()
 		).put(
 			"previewArticleContentTemplateURL",

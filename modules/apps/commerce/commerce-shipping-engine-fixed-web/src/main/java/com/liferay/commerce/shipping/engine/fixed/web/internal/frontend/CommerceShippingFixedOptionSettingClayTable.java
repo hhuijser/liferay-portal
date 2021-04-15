@@ -244,10 +244,10 @@ public class CommerceShippingFixedOptionSettingClayTable
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option_rel"
-		).setRedirect(
-			redirect
 		).setCMD(
 			Constants.DELETE
+		).setRedirect(
+			redirect
 		).setParameter(
 			"commerceShippingFixedOptionRelId", shippingFixedOptionSettingId
 		).buildString();

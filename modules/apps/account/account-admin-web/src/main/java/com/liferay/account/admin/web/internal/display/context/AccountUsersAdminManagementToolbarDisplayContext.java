@@ -216,14 +216,14 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
+		).setKeywords(
+			StringPool.BLANK
 		).setNavigation(
 			(String)null
 		).setParameter(
 			"accountEntriesNavigation", "all"
 		).setParameter(
 			"accountEntryIds", StringPool.BLANK
-		).setKeywords(
-			StringPool.BLANK
 		).buildString();
 	}
 

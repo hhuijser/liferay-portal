@@ -299,11 +299,11 @@ public class DLAdminDisplayContext {
 			"/document_library/search"
 		).setRedirect(
 			ParamUtil.getString(_httpServletRequest, "redirect")
+		).setKeywords(
+			ParamUtil.getString(_httpServletRequest, "keywords")
 		).setParameter(
 			"searchFolderId",
 			ParamUtil.getLong(_httpServletRequest, "searchFolderId")
-		).setKeywords(
-			ParamUtil.getString(_httpServletRequest, "keywords")
 		).build();
 	}
 

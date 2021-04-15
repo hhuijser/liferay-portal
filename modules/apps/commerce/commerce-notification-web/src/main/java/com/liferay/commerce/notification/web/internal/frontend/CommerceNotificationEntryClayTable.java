@@ -115,10 +115,10 @@ public class CommerceNotificationEntryClayTable
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_channels/edit_commerce_notification_queue_entry"
-		).setRedirect(
-			redirect
 		).setCMD(
 			"resend"
+		).setRedirect(
+			redirect
 		).setParameter(
 			"commerceNotificationQueueEntryId",
 			() -> {

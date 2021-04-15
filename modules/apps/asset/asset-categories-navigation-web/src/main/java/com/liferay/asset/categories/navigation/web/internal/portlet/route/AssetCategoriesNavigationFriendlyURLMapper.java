@@ -59,7 +59,7 @@ public class AssetCategoriesNavigationFriendlyURLMapper
 		addParametersIncludedInPath(liferayPortletURL, routeParameters);
 
 		return StringBundler.concat(
-			StringPool.SLASH, getMapping(), friendlyURLPath);
+			StringPool.SLASH, _MAPPING, friendlyURLPath);
 	}
 
 	@Override

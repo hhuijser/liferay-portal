@@ -105,7 +105,7 @@ public class AssetCategoryTreeNodeItemSelectorView
 				SELECT_ASSET_VOCABULARY_DISPLAY_CONTEXT,
 			selectAssetVocabularyDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/select_asset_vocabulary.jsp");

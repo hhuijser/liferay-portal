@@ -75,6 +75,8 @@ public class DeleteExpiredTemporaryFileEntriesPortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/document_library/edit_folder"
+			).setCMD(
+				"deleteExpiredTemporaryFileEntries"
 			).setRedirect(
 				() -> {
 					ThemeDisplay themeDisplay =
@@ -83,8 +85,6 @@ public class DeleteExpiredTemporaryFileEntriesPortletConfigurationIcon
 
 					return themeDisplay.getURLCurrent();
 				}
-			).setCMD(
-				"deleteExpiredTemporaryFileEntries"
 			).build();
 
 			Folder folder = ActionUtil.getFolder(portletRequest);

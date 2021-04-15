@@ -132,10 +132,10 @@ public class DLAdminNavigationDisplayContext {
 				_liferayPortletResponse
 			).setRedirect(
 				_currentURLObj.toString()
-			).setNavigation(
-				"file_entry_metadata_sets"
 			).setBackURL(
 				_themeDisplay.getURLCurrent()
+			).setNavigation(
+				"file_entry_metadata_sets"
 			).setParameter(
 				"groupId", _themeDisplay.getScopeGroupId()
 			).buildString());

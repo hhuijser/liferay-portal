@@ -92,10 +92,10 @@ public class ViewAccountRoleAssigneesManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setNavigation(
-			(String)null
 		).setKeywords(
 			StringPool.BLANK
+		).setNavigation(
+			(String)null
 		).buildString();
 	}
 

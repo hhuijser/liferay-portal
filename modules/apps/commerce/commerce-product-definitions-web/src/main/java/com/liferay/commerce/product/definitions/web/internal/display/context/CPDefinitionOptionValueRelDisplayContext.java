@@ -122,10 +122,10 @@ public class CPDefinitionOptionValueRelDisplayContext
 			liferayPortletResponse
 		).setActionName(
 			"/cp_definitions/edit_cp_definition_option_value_rel"
-		).setRedirect(
-			redirect
 		).setCMD(
 			"deleteSku"
+		).setRedirect(
+			redirect
 		).setParameter(
 			"cpDefinitionOptionValueRelId", getCPDefinitionOptionValueRelId()
 		).buildString();

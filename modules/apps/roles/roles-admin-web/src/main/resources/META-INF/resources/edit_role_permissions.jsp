@@ -39,14 +39,14 @@ if (Validator.isNull(redirect)) {
 		"/edit_role_permissions.jsp"
 	).setCMD(
 		Constants.VIEW
+	).setBackURL(
+		backURL
 	).setTabs1(
 		"define-permissions"
 	).setTabs2(
 		tabs2
 	).setParameter(
 		"tabs3", tabs3
-	).setBackURL(
-		backURL
 	).setParameter(
 		"roleId", role.getRoleId()
 	).buildString();

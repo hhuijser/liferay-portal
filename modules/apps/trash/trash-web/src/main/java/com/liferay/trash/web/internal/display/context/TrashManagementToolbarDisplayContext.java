@@ -116,9 +116,9 @@ public class TrashManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setNavigation(
-			StringPool.BLANK
 		).setKeywords(
+			StringPool.BLANK
+		).setNavigation(
 			StringPool.BLANK
 		).buildString();
 	}

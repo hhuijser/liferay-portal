@@ -114,10 +114,10 @@ public class CommerceTaxRateSettingDataSetActionProvider
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_tax_methods/edit_commerce_tax_fixed_rate_address_rel"
-		).setRedirect(
-			redirect
 		).setCMD(
 			Constants.DELETE
+		).setRedirect(
+			redirect
 		).setParameter(
 			"commerceTaxFixedRateAddressRelId", taxRateSettingId
 		).buildString();

@@ -152,6 +152,8 @@ public class CommerceAddressDisplayContext {
 			_liferayPortletResponse
 		).setActionName(
 			"/commerce_address_content/edit_commerce_address"
+		).setCMD(
+			Constants.DELETE
 		).setRedirect(
 			() -> {
 				ThemeDisplay themeDisplay =
@@ -160,8 +162,6 @@ public class CommerceAddressDisplayContext {
 
 				return themeDisplay.getURLCurrent();
 			}
-		).setCMD(
-			Constants.DELETE
 		).setParameter(
 			"commerceAddressId", commerceAddressId
 		).buildString();

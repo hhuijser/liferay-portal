@@ -323,10 +323,10 @@ request.setAttribute("view_user.jsp-user", user2);
 															liferayPortletResponse, searchPortletId
 														).setMVCPath(
 															"/search.jsp"
-														).setParameter(
-															"groupId", "0"
 														).setKeywords(
 															assetTag.getName()
+														).setParameter(
+															"groupId", "0"
 														).setWindowState(
 															WindowState.MAXIMIZED
 														).build();

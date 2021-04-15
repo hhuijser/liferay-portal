@@ -599,10 +599,10 @@ public class CommerceOrderEditDisplayContext {
 			_commerceOrderRequestHelper.getLiferayPortletResponse()
 		).setActionName(
 			"/commerce_order/edit_commerce_order"
-		).setRedirect(
-			_commerceOrderRequestHelper.getCurrentURL()
 		).setCMD(
 			"transition"
+		).setRedirect(
+			_commerceOrderRequestHelper.getCurrentURL()
 		).setParameter(
 			"commerceOrderId", _commerceOrder.getCommerceOrderId()
 		).build();

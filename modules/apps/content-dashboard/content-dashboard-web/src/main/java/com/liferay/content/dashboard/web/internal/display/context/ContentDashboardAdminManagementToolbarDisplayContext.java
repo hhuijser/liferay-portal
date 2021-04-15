@@ -98,6 +98,8 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		PortletURL clearResultsURL = PortletURLBuilder.create(
 			getPortletURL()
+		).setKeywords(
+			StringPool.BLANK
 		).setParameter(
 			"assetCategoryId", (String)null
 		).setParameter(
@@ -106,8 +108,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 			"authorIds", (String)null
 		).setParameter(
 			"contentDashboardItemTypePayload", (String)null
-		).setKeywords(
-			StringPool.BLANK
 		).setParameter(
 			"scopeId", (String)null
 		).setParameter(

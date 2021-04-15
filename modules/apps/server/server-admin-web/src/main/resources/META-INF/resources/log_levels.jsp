@@ -32,10 +32,10 @@ PortletURL searchURL = PortletURLBuilder.createRenderURL(
 
 PortletURL clearResultsURL = PortletURLBuilder.create(
 	PortletURLUtil.clone(searchURL, liferayPortletResponse)
-).setNavigation(
-	(String)null
 ).setKeywords(
 	StringPool.BLANK
+).setNavigation(
+	(String)null
 ).build();
 
 SearchContainer<Map.Entry<String, String>> loggerSearchContainer = new SearchContainer(liferayPortletRequest, searchURL, null, null);

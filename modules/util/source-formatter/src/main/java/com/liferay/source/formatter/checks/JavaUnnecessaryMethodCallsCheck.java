@@ -194,7 +194,9 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 
 		DetailAST previousDetailAST = methodCallDetailAST.getParent();
 
-		while (previousDetailAST.getType() != TokenTypes.METHOD_DEF) {
+		while ((previousDetailAST.getType() != TokenTypes.METHOD_DEF) &&
+			   (previousDetailAST.getType() != TokenTypes.CTOR_DEF)) {
+
 			previousDetailAST = previousDetailAST.getParent();
 		}
 

@@ -379,10 +379,10 @@ public class CommerceSubscriptionEntryDisplayContext {
 			_cpRequestHelper.getLiferayPortletResponse()
 		).setActionName(
 			"/commerce_open_order_content/edit_commerce_order"
-		).setRedirect(
-			_cpRequestHelper.getCurrentURL()
 		).setCMD(
 			ActionKeys.UPDATE
+		).setRedirect(
+			_cpRequestHelper.getCurrentURL()
 		).setParameter(
 			"commerceSubscriptionEntryId",
 			_commerceSubscriptionEntry.getCommerceSubscriptionEntryId()

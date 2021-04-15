@@ -240,10 +240,10 @@ public class CommerceShipmentDisplayContext
 						PortletRequest.ACTION_PHASE)
 				).setActionName(
 					"/commerce_shipment/edit_commerce_shipment"
-				).setRedirect(
-					PortalUtil.getCurrentURL(httpServletRequest)
 				).setCMD(
 					"transition"
+				).setRedirect(
+					PortalUtil.getCurrentURL(httpServletRequest)
 				).setParameter(
 					"commerceShipmentId", getCommerceShipmentId()
 				).setParameter(

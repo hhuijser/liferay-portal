@@ -147,10 +147,10 @@ public class CommerceNotificationTemplateClayTable
 							PortletRequest.ACTION_PHASE)
 					).setActionName(
 						"/commerce_channels/edit_commerce_notification_template"
-					).setRedirect(
-						redirect
 					).setCMD(
 						Constants.DELETE
+					).setRedirect(
+						redirect
 					).setParameter(
 						"commerceNotificationTemplateId",
 						notificationTemplate.getNotificationTemplateId()

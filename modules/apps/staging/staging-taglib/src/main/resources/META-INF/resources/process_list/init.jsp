@@ -51,14 +51,14 @@ PortletURL renderURL = PortletURLBuilder.createRenderURL(
 	liferayPortletResponse
 ).setMVCRenderCommandName(
 	mvcRenderCommandName
+).setNavigation(
+	navigation
 ).setTabs1(
 	"processes"
 ).setParameter(
 	"localPublishing", String.valueOf(localPublishing)
 ).setParameter(
 	"displayStyle", displayStyle
-).setNavigation(
-	navigation
 ).setParameter(
 	"orderByCol", orderByCol
 ).setParameter(

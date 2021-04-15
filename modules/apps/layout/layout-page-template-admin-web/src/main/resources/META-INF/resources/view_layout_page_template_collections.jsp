@@ -114,10 +114,10 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 												href="<%=
 													PortletURLBuilder.createRenderURL(
 														renderResponse
-													).setParameter(
-														"layoutPageTemplateCollectionId", layoutPageTemplateCollection.getLayoutPageTemplateCollectionId()
 													).setTabs1(
 														"page-templates"
+													).setParameter(
+														"layoutPageTemplateCollectionId", layoutPageTemplateCollection.getLayoutPageTemplateCollectionId()
 													).buildString()
 												%>"
 											>

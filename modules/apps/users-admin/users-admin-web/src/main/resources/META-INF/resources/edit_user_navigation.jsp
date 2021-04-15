@@ -53,10 +53,10 @@ if (Validator.isNull(redirect)) {
 		renderResponse
 	).setMVCRenderCommandName(
 		"/users_admin/edit_user"
-	).setParameter(
-		"p_u_i_d", selUserId
 	).setBackURL(
 		backURL
+	).setParameter(
+		"p_u_i_d", selUserId
 	).buildString();
 }
 

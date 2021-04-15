@@ -63,10 +63,10 @@ WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderRespons
 				"/wiki/search"
 			).setRedirect(
 				redirect
-			).setParameter(
-				"nodeId", nodeId
 			).setKeywords(
 				keywords
+			).setParameter(
+				"nodeId", nodeId
 			).build()
 		%>'
 	>

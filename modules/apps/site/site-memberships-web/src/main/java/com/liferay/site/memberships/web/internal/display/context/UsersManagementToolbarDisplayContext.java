@@ -197,10 +197,10 @@ public class UsersManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setNavigation(
-			"all"
 		).setKeywords(
 			StringPool.BLANK
+		).setNavigation(
+			"all"
 		).setParameter(
 			"roleId", "0"
 		).buildString();
@@ -367,10 +367,10 @@ public class UsersManagementToolbarDisplayContext
 						"/view.jsp"
 					).setRedirect(
 						themeDisplay.getURLCurrent()
-					).setTabs1(
-						"users"
 					).setNavigation(
 						"roles"
+					).setTabs1(
+						"users"
 					).setParameter(
 						"groupId", _usersDisplayContext.getGroupId()
 					).buildString());

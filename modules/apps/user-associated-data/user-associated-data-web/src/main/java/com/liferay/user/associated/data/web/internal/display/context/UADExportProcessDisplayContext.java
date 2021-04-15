@@ -148,6 +148,8 @@ public class UADExportProcessDisplayContext {
 				PortalUtil.getLiferayPortletResponse(portletResponse))
 		).setMVCRenderCommandName(
 			"/user_associated_data/view_uad_export_processes"
+		).setNavigation(
+			getNavigation()
 		).setParameter(
 			"p_u_i_d",
 			() -> {
@@ -156,8 +158,6 @@ public class UADExportProcessDisplayContext {
 
 				return selectedUser.getUserId();
 			}
-		).setNavigation(
-			getNavigation()
 		).setParameter(
 			"orderByCol", getOrderByCol()
 		).setParameter(

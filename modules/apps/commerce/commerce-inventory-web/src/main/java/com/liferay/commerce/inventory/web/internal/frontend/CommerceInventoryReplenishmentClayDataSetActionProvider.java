@@ -108,10 +108,10 @@ public class CommerceInventoryReplenishmentClayDataSetActionProvider
 				CPPortletKeys.COMMERCE_INVENTORY, PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_inventory/edit_commerce_inventory_replenishment_item"
-		).setRedirect(
-			redirect
 		).setCMD(
 			Constants.DELETE
+		).setRedirect(
+			redirect
 		).setParameter(
 			"commerceInventoryReplenishmentItemId",
 			commerceInventoryReplenishmentItemId

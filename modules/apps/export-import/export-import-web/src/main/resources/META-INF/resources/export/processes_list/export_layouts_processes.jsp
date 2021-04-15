@@ -29,14 +29,14 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	liferayPortletResponse
 ).setMVCRenderCommandName(
 	"/export_import/view_export_layouts"
+).setNavigation(
+	navigation
 ).setParameter(
 	"groupId", String.valueOf(groupId)
 ).setParameter(
 	"privateLayout", String.valueOf(privateLayout)
 ).setParameter(
 	"displayStyle", displayStyle
-).setNavigation(
-	navigation
 ).setParameter(
 	"orderByCol", orderByCol
 ).setParameter(

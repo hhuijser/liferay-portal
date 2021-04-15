@@ -64,10 +64,10 @@ public class AssignMembersPortletConfigurationIcon
 				PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/edit_password_policy_assignments.jsp"
-		).setParameter(
-			"passwordPolicyId", _getPasswordPolicyId(portletRequest)
 		).setTabs1(
 			"assignees"
+		).setParameter(
+			"passwordPolicyId", _getPasswordPolicyId(portletRequest)
 		).buildString();
 	}
 

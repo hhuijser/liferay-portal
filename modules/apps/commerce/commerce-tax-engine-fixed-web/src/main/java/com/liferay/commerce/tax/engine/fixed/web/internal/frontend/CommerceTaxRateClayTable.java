@@ -247,10 +247,10 @@ public class CommerceTaxRateClayTable
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_tax_methods/edit_commerce_tax_fixed_rate"
-		).setRedirect(
-			redirect
 		).setCMD(
 			Constants.DELETE
+		).setRedirect(
+			redirect
 		).setParameter(
 			"commerceTaxFixedRateId", taxRateId
 		).buildString();

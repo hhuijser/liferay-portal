@@ -87,10 +87,10 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 						liferayPortletResponse
 					).setActionName(
 						"/account_admin/update_account_entry_status"
-					).setParameter(
-						Constants.CMD, Constants.DEACTIVATE
-					).setParameter(
-						"navigation", getNavigation()
+					).setCMD(
+						Constants.DEACTIVATE
+					).setNavigation(
+						getNavigation()
 					).buildString());
 
 				dropdownItem.setIcon("hidden");
@@ -115,10 +115,10 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 						liferayPortletResponse
 					).setActionName(
 						"/account_admin/update_account_entry_status"
-					).setParameter(
-						Constants.CMD, Constants.RESTORE
-					).setParameter(
-						"navigation", getNavigation()
+					).setCMD(
+						Constants.RESTORE
+					).setNavigation(
+						getNavigation()
 					).buildString());
 
 				dropdownItem.setIcon("undo");
@@ -139,8 +139,8 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 						liferayPortletResponse
 					).setActionName(
 						"/account_admin/delete_account_entry"
-					).setParameter(
-						"navigation", getNavigation()
+					).setNavigation(
+						getNavigation()
 					).buildString());
 
 				dropdownItem.setIcon("times-circle");
@@ -185,10 +185,10 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
-		).setParameter(
-			"navigation", (String)null
+		).setKeywords(
+			StringPool.BLANK
+		).setNavigation(
+			(String)null
 		).setParameter(
 			"type", (String)null
 		).buildString();
@@ -231,8 +231,8 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 					"removeLabelURL",
 					PortletURLBuilder.create(
 						getPortletURL()
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);

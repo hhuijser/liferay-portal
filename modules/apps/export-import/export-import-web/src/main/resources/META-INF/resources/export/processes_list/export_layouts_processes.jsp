@@ -35,8 +35,8 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"privateLayout", String.valueOf(privateLayout)
 ).setParameter(
 	"displayStyle", displayStyle
-).setParameter(
-	"navigation", navigation
+).setNavigation(
+	navigation
 ).setParameter(
 	"orderByCol", orderByCol
 ).setParameter(

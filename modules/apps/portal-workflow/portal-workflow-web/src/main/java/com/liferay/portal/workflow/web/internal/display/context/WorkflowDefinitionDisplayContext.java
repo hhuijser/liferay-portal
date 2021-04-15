@@ -109,8 +109,8 @@ public class WorkflowDefinitionDisplayContext {
 	public String getClearResultsURL(HttpServletRequest httpServletRequest) {
 		return PortletURLBuilder.create(
 			_getPortletURL(httpServletRequest)
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

@@ -60,8 +60,8 @@ public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 					_renderResponse
 				).setMVCRenderCommandName(
 					"/layout_admin/add_layout"
-				).setParameter(
-					"backURL", ParamUtil.getString(_renderRequest, "redirect")
+				).setBackURL(
+					ParamUtil.getString(_renderRequest, "redirect")
 				).setParameter(
 					"selPlid", ParamUtil.getLong(_renderRequest, "selPlid")
 				).setParameter(

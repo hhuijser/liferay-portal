@@ -68,8 +68,8 @@ public class DDMFormAdminDataProviderTabItem implements DDMDisplayTabItem {
 				PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/view.jsp"
-		).setParameter(
-			"backURL", themeDisplay.getURLCurrent()
+		).setBackURL(
+			themeDisplay.getURLCurrent()
 		).setParameter(
 			"refererPortletName", DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN
 		).setParameter(

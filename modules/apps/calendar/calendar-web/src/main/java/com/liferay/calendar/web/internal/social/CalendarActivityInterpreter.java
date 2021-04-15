@@ -79,8 +79,8 @@ public class CalendarActivityInterpreter extends BaseSocialActivityInterpreter {
 				PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/view_calendar_booking.jsp"
-		).setParameter(
-			"backURL", serviceContext.getCurrentURL()
+		).setBackURL(
+			serviceContext.getCurrentURL()
 		).setParameter(
 			"calendarBookingId", activity.getClassPK()
 		).setWindowState(

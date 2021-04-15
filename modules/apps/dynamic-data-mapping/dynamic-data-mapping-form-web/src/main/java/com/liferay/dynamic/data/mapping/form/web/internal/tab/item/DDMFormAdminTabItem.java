@@ -73,8 +73,8 @@ public class DDMFormAdminTabItem implements DDMDisplayTabItem {
 				liferayPortletRequest,
 				DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
 				PortletRequest.RENDER_PHASE)
-		).setParameter(
-			"backURL", themeDisplay.getURLCurrent()
+		).setBackURL(
+			themeDisplay.getURLCurrent()
 		).setParameter(
 			"refererPortletName", DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN
 		).setParameter(

@@ -78,8 +78,8 @@ if (portletTitleBasedNavigation) {
 		currentURL
 	).setParameter(
 		"nodeId", nodeId
-	).setParameter(
-		"keywords", title
+	).setKeywords(
+		title
 	).build();
 	%>
 

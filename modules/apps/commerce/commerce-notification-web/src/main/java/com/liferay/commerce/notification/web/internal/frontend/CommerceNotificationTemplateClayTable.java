@@ -149,8 +149,8 @@ public class CommerceNotificationTemplateClayTable
 						"/commerce_channels/edit_commerce_notification_template"
 					).setRedirect(
 						redirect
-					).setParameter(
-						Constants.CMD, Constants.DELETE
+					).setCMD(
+						Constants.DELETE
 					).setParameter(
 						"commerceNotificationTemplateId",
 						notificationTemplate.getNotificationTemplateId()

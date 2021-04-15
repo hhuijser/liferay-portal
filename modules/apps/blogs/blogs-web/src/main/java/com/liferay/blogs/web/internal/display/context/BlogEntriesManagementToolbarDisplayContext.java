@@ -187,8 +187,8 @@ public class BlogEntriesManagementToolbarDisplayContext
 			liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/blogs/view"
-		).setParameter(
-			"navigation", navigation
+		).setNavigation(
+			navigation
 		).setParameter(
 			"orderByCol", getOrderByCol()
 		).setParameter(

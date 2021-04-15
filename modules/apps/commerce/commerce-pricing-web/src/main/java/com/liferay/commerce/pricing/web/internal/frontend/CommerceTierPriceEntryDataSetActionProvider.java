@@ -122,8 +122,8 @@ public class CommerceTierPriceEntryDataSetActionProvider
 			"/commerce_price_list/edit_commerce_tier_price_entry"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceTierPriceEntryId",
 			commerceTierPriceEntry.getCommerceTierPriceEntryId()

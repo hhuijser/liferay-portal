@@ -81,8 +81,8 @@ public class FieldSetsPortletConfigurationIcon
 				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/view.jsp"
-		).setParameter(
-			"backURL", themeDisplay.getURLCurrent()
+		).setBackURL(
+			themeDisplay.getURLCurrent()
 		).setParameter(
 			"groupId", themeDisplay.getScopeGroupId()
 		).setParameter(

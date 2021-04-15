@@ -106,8 +106,8 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 			"authorIds", (String)null
 		).setParameter(
 			"contentDashboardItemTypePayload", (String)null
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).setParameter(
 			"scopeId", (String)null
 		).setParameter(

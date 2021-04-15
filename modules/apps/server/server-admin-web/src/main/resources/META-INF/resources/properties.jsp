@@ -27,8 +27,8 @@ int delta = ParamUtil.getInteger(request, SearchContainer.DEFAULT_DELTA_PARAM, S
 			renderResponse
 		).setMVCRenderCommandName(
 			"/server_admin/view"
-		).setParameter(
-			"tabs1", tabs1
+		).setTabs1(
+			tabs1
 		).setParameter(
 			"delta", delta
 		).build()

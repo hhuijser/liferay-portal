@@ -397,8 +397,8 @@ public class JournalArticleActionDropdownItemsProvider {
 					"/select_article_translations.jsp"
 				).setRedirect(
 					_getRedirect()
-				).setParameter(
-					"backURL", _getRedirect()
+				).setBackURL(
+					_getRedirect()
 				).setParameter(
 					"articleId", _article.getArticleId()
 				).setWindowState(
@@ -628,8 +628,8 @@ public class JournalArticleActionDropdownItemsProvider {
 					_liferayPortletResponse
 				).setActionName(
 					"/journal/publish_article"
-				).setParameter(
-					"backURL", _getRedirect()
+				).setBackURL(
+					_getRedirect()
 				).setParameter(
 					"groupId", _article.getGroupId()
 				).setParameter(

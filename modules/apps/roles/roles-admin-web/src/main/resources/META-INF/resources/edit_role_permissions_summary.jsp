@@ -27,14 +27,14 @@ PortletURL permissionsAllURL = PortletURLBuilder.createRenderURL(
 	liferayPortletResponse
 ).setMVCPath(
 	"/edit_role_permissions.jsp"
-).setParameter(
-	Constants.CMD, Constants.VIEW
-).setParameter(
-	"tabs1", "define-permissions"
-).setParameter(
-	"tabs2", "roles"
-).setParameter(
-	"backURL", backURL
+).setCMD(
+	Constants.VIEW
+).setTabs1(
+	"define-permissions"
+).setTabs2(
+	"roles"
+).setBackURL(
+	backURL
 ).setParameter(
 	"roleId", String.valueOf(role.getRoleId())
 ).build();
@@ -179,12 +179,12 @@ for (int i = 0; i < results.size(); i++) {
 		"/edit_role_permissions.jsp"
 	).setRedirect(
 		permissionsAllURL.toString()
-	).setParameter(
-		Constants.CMD, Constants.EDIT
-	).setParameter(
-		"tabs1", "define-permissions"
-	).setParameter(
-		"tabs2", "roles"
+	).setCMD(
+		Constants.EDIT
+	).setTabs1(
+		"define-permissions"
+	).setTabs2(
+		"roles"
 	).setParameter(
 		"roleId", role.getRoleId()
 	).setParameter(

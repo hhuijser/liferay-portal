@@ -104,8 +104,8 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 	public String getClearResultsURL() {
 		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setParameter(
-			"navigation", _getNavigation()
+		).setNavigation(
+			_getNavigation()
 		).buildString();
 	}
 

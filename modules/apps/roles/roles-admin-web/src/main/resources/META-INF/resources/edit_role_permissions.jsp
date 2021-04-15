@@ -37,16 +37,16 @@ if (Validator.isNull(redirect)) {
 		renderResponse
 	).setMVCPath(
 		"/edit_role_permissions.jsp"
-	).setParameter(
-		Constants.CMD, Constants.VIEW
-	).setParameter(
-		"tabs1", "define-permissions"
-	).setParameter(
-		"tabs2", tabs2
+	).setCMD(
+		Constants.VIEW
+	).setTabs1(
+		"define-permissions"
+	).setTabs2(
+		tabs2
 	).setParameter(
 		"tabs3", tabs3
-	).setParameter(
-		"backURL", backURL
+	).setBackURL(
+		backURL
 	).setParameter(
 		"roleId", role.getRoleId()
 	).buildString();

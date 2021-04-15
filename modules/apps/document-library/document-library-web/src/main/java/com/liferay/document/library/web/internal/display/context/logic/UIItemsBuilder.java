@@ -312,8 +312,8 @@ public class UIItemsBuilder {
 			"compareVersionURL",
 			PortletURLBuilder.create(
 				_getRenderURL("/document_library/compare_versions", null)
-			).setParameter(
-				"backURL", _getCurrentURL()
+			).setBackURL(
+				_getCurrentURL()
 			).buildString());
 		template.put(
 			"dialogTitle",

@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.repository.RepositoryProviderUtil;
 import com.liferay.portal.kernel.repository.capabilities.TemporaryFileEntriesCapability;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -84,8 +83,8 @@ public class DeleteExpiredTemporaryFileEntriesPortletConfigurationIcon
 
 					return themeDisplay.getURLCurrent();
 				}
-			).setParameter(
-				Constants.CMD, "deleteExpiredTemporaryFileEntries"
+			).setCMD(
+				"deleteExpiredTemporaryFileEntries"
 			).build();
 
 			Folder folder = ActionUtil.getFolder(portletRequest);

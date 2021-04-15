@@ -93,10 +93,10 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 						liferayPortletResponse
 					).setActionName(
 						"/account_admin/edit_account_users"
-					).setParameter(
-						Constants.CMD, Constants.DEACTIVATE
-					).setParameter(
-						"navigation", getNavigation()
+					).setCMD(
+						Constants.DEACTIVATE
+					).setNavigation(
+						getNavigation()
 					).setParameter(
 						"accountEntriesNavigation",
 						_getAccountEntriesNavigation()
@@ -128,10 +128,10 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 						liferayPortletResponse
 					).setActionName(
 						"/account_admin/edit_account_users"
-					).setParameter(
-						Constants.CMD, Constants.RESTORE
-					).setParameter(
-						"navigation", getNavigation()
+					).setCMD(
+						Constants.RESTORE
+					).setNavigation(
+						getNavigation()
 					).setParameter(
 						"accountEntriesNavigation",
 						_getAccountEntriesNavigation()
@@ -163,10 +163,10 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 						liferayPortletResponse
 					).setActionName(
 						"/account_admin/edit_account_users"
-					).setParameter(
-						Constants.CMD, Constants.DELETE
-					).setParameter(
-						"navigation", getNavigation()
+					).setCMD(
+						Constants.DELETE
+					).setNavigation(
+						getNavigation()
 					).setParameter(
 						"accountEntriesNavigation",
 						_getAccountEntriesNavigation()
@@ -216,14 +216,14 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"navigation", (String)null
+		).setNavigation(
+			(String)null
 		).setParameter(
 			"accountEntriesNavigation", "all"
 		).setParameter(
 			"accountEntryIds", StringPool.BLANK
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -251,8 +251,7 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 						liferayPortletResponse
 					).setMVCRenderCommandName(
 						"/account_admin/add_account_user"
-					).setParameter(
-						"backURL",
+					).setBackURL(
 						String.valueOf(liferayPortletResponse.createRenderURL())
 					).buildString());
 
@@ -366,8 +365,8 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 								"removeLabelURL",
 								PortletURLBuilder.create(
 									getPortletURL()
-								).setParameter(
-									"navigation", (String)null
+								).setNavigation(
+									(String)null
 								).buildString());
 
 							labelItem.setCloseable(true);

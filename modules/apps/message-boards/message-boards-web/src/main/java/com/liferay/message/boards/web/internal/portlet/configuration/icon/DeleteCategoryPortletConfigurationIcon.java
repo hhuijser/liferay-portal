@@ -80,8 +80,7 @@ public class DeleteCategoryPortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/message_boards/edit_category"
-			).setParameter(
-				Constants.CMD,
+			).setCMD(
 				() -> {
 					ThemeDisplay themeDisplay =
 						(ThemeDisplay)portletRequest.getAttribute(

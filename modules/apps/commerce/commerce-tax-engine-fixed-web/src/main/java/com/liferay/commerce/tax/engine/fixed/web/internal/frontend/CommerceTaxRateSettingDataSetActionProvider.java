@@ -116,8 +116,8 @@ public class CommerceTaxRateSettingDataSetActionProvider
 			"/commerce_tax_methods/edit_commerce_tax_fixed_rate_address_rel"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceTaxFixedRateAddressRelId", taxRateSettingId
 		).buildString();

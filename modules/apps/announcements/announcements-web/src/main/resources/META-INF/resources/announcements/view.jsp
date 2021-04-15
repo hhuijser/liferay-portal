@@ -21,8 +21,8 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/announcements/view"
-).setParameter(
-	"tabs1", announcementsRequestHelper.getTabs1()
+).setTabs1(
+	announcementsRequestHelper.getTabs1()
 ).build();
 %>
 

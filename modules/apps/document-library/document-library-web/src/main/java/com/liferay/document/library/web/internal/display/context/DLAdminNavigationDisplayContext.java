@@ -110,8 +110,8 @@ public class DLAdminNavigationDisplayContext {
 				_liferayPortletResponse
 			).setRedirect(
 				_currentURLObj.toString()
-			).setParameter(
-				"navigation", "file_entry_types"
+			).setNavigation(
+				"file_entry_types"
 			).buildString());
 
 		navigationItem.setLabel(
@@ -132,10 +132,10 @@ public class DLAdminNavigationDisplayContext {
 				_liferayPortletResponse
 			).setRedirect(
 				_currentURLObj.toString()
-			).setParameter(
-				"navigation", "file_entry_metadata_sets"
-			).setParameter(
-				"backURL", _themeDisplay.getURLCurrent()
+			).setNavigation(
+				"file_entry_metadata_sets"
+			).setBackURL(
+				_themeDisplay.getURLCurrent()
 			).setParameter(
 				"groupId", _themeDisplay.getScopeGroupId()
 			).buildString());

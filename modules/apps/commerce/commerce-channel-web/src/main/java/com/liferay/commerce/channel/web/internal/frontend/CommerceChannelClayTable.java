@@ -144,8 +144,8 @@ public class CommerceChannelClayTable
 						PortletRequest.ACTION_PHASE)
 				).setActionName(
 					"/commerce_channels/edit_commerce_channel"
-				).setParameter(
-					Constants.CMD, Constants.DELETE
+				).setCMD(
+					Constants.DELETE
 				).build();
 
 				String redirect = ParamUtil.getString(

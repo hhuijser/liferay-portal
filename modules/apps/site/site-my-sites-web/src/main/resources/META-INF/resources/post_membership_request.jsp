@@ -22,8 +22,8 @@ String redirect = ParamUtil.getString(request, "redirect");
 if (Validator.isNull(redirect)) {
 	redirect = PortletURLBuilder.createRenderURL(
 		renderResponse
-	).setParameter(
-		"tabs1", "available-sites"
+	).setTabs1(
+		"available-sites"
 	).buildString();
 }
 

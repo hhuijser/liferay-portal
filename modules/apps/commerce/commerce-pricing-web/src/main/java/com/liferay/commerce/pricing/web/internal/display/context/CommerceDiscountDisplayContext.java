@@ -438,8 +438,8 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_discount/edit_commerce_discount"
-		).setParameter(
-			Constants.CMD, Constants.UPDATE
+		).setCMD(
+			Constants.UPDATE
 		).setParameter(
 			"commerceDiscountId", commerceDiscount.getCommerceDiscountId()
 		).setWindowState(

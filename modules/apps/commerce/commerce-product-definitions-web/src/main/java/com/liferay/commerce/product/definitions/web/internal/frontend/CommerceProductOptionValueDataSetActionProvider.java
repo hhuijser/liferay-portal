@@ -136,8 +136,8 @@ public class CommerceProductOptionValueDataSetActionProvider
 			"/cp_definitions/edit_cp_definition_option_value_rel"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"cpDefinitionOptionValueRelId", cpDefinitionOptionValueRelId
 		).build();
@@ -193,8 +193,8 @@ public class CommerceProductOptionValueDataSetActionProvider
 			"/cp_definitions/edit_cp_definition_option_value_rel"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, "updatePreselected"
+		).setCMD(
+			"updatePreselected"
 		).setParameter(
 			"cpDefinitionOptionValueRelId", cpDefinitionOptionValueRelId
 		).build();

@@ -70,8 +70,8 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 					_renderResponse
 				).setMVCRenderCommandName(
 					"/layout_admin/add_layout"
-				).setParameter(
-					"backURL", redirect
+				).setBackURL(
+					redirect
 				).setParameter(
 					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
 				).setParameter(

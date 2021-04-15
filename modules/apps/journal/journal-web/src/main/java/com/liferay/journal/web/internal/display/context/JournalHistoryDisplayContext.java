@@ -164,8 +164,8 @@ public class JournalHistoryDisplayContext {
 			"/view_article_history.jsp"
 		).setRedirect(
 			_getRedirect()
-		).setParameter(
-			"backURL", getBackURL()
+		).setBackURL(
+			getBackURL()
 		).setParameter(
 			"referringPortletResource", getReferringPortletResource()
 		).setParameter(

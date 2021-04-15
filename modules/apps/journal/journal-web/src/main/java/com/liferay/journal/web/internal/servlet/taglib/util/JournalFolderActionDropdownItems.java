@@ -329,8 +329,8 @@ public class JournalFolderActionDropdownItems {
 			_liferayPortletResponse
 		).setActionName(
 			"/journal/publish_folder"
-		).setParameter(
-			"backURL", _getRedirect()
+		).setBackURL(
+			_getRedirect()
 		).build();
 
 		if (_folder != null) {

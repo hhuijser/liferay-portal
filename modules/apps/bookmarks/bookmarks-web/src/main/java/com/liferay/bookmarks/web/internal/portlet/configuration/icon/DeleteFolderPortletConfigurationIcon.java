@@ -78,8 +78,7 @@ public class DeleteFolderPortletConfigurationIcon
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/bookmarks/edit_folder"
-		).setParameter(
-			Constants.CMD,
+		).setCMD(
 			() -> {
 				ThemeDisplay themeDisplay =
 					(ThemeDisplay)portletRequest.getAttribute(

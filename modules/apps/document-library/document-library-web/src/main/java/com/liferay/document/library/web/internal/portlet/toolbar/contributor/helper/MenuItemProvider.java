@@ -116,8 +116,8 @@ public class MenuItemProvider {
 				"/document_library/edit_file_entry"
 			).setRedirect(
 				PortalUtil.getCurrentURL(portletRequest)
-			).setParameter(
-				Constants.CMD, Constants.ADD
+			).setCMD(
+				Constants.ADD
 			).setParameter(
 				"portletResource", portletDisplay.getId()
 			).setParameter(
@@ -360,8 +360,8 @@ public class MenuItemProvider {
 				"/document_library/edit_file_entry"
 			).setRedirect(
 				PortalUtil.getCurrentURL(portletRequest)
-			).setParameter(
-				Constants.CMD, Constants.ADD
+			).setCMD(
+				Constants.ADD
 			).setParameter(
 				"portletResource", portletDisplay.getId()
 			).setParameter(

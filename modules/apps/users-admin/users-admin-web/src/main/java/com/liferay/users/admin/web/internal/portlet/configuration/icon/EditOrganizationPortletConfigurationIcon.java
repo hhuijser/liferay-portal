@@ -69,8 +69,8 @@ public class EditOrganizationPortletConfigurationIcon
 					PortletRequest.RENDER_PHASE)
 			).setMVCRenderCommandName(
 				"/users_admin/edit_organization"
-			).setParameter(
-				"backURL", _portal.getCurrentURL(portletRequest)
+			).setBackURL(
+				_portal.getCurrentURL(portletRequest)
 			).build();
 
 			Organization organization = ActionUtil.getOrganization(

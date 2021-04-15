@@ -117,8 +117,8 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -192,8 +192,8 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 			liferayPortletResponse
 		).setActionName(
 			"/layout_page_template_admin/add_layout_prototype"
-		).setParameter(
-			"backURL", _themeDisplay.getURLCurrent()
+		).setBackURL(
+			_themeDisplay.getURLCurrent()
 		).setParameter(
 			"layoutPageTemplateCollectionId",
 			_layoutPageTemplateDisplayContext.

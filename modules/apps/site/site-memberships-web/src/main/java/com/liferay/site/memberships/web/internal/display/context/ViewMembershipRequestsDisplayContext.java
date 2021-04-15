@@ -132,8 +132,8 @@ public class ViewMembershipRequestsDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/view_membership_requests.jsp"
-		).setParameter(
-			"tabs1", getTabs1()
+		).setTabs1(
+			getTabs1()
 		).setParameter(
 			"groupId",
 			() -> {

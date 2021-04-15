@@ -94,8 +94,8 @@ public class SiteVerticalCard extends BaseBaseClayCard implements VerticalCard {
 
 		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setParameter(
-			"backURL", _themeDisplay.getURLCurrent()
+		).setBackURL(
+			_themeDisplay.getURLCurrent()
 		).setParameter(
 			"groupId", _group.getGroupId()
 		).buildString();

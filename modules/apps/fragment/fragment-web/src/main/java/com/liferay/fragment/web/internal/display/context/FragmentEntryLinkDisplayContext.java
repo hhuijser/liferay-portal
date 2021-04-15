@@ -256,8 +256,8 @@ public class FragmentEntryLinkDisplayContext {
 			"/fragment/view_fragment_entry_usages"
 		).setRedirect(
 			getRedirect()
-		).setParameter(
-			"navigation", getNavigation()
+		).setNavigation(
+			getNavigation()
 		).setParameter(
 			"fragmentCollectionId", getFragmentCollectionId()
 		).setParameter(

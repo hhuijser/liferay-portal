@@ -174,8 +174,8 @@ public class PortletConfigurationPermissionsDisplayContext {
 	public String getClearResultsURL() throws Exception {
 		return PortletURLBuilder.create(
 			getIteratorURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

@@ -76,8 +76,8 @@ long emailAddressId = emailAddress.getEmailAddressId();
 		url='<%=
 			PortletURLBuilder.create(
 				PortletURLUtil.clone(portletURL, renderResponse)
-			).setParameter(
-				Constants.CMD, "makePrimary"
+			).setCMD(
+				"makePrimary"
 			).buildString()
 		%>'
 	/>
@@ -87,8 +87,8 @@ long emailAddressId = emailAddress.getEmailAddressId();
 		url="<%=
 			PortletURLBuilder.create(
 				PortletURLUtil.clone(portletURL, renderResponse)
-			).setParameter(
-				Constants.CMD, Constants.DELETE
+			).setCMD(
+				Constants.DELETE
 			).buildString()
 		%>"
 	/>

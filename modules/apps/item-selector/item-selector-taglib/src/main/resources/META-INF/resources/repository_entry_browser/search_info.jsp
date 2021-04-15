@@ -51,8 +51,8 @@
 			"folderId", DLFolderConstants.DEFAULT_PARENT_FOLDER_ID
 		).setParameter(
 			"searchFolderId", folderId
-		).setParameter(
-			"keywords", keywords
+		).setKeywords(
+			keywords
 		).build();
 		%>
 

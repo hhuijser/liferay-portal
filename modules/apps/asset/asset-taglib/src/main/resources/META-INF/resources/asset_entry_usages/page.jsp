@@ -44,8 +44,8 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 									href="<%=
 										PortletURLBuilder.create(
 											assetEntryUsagesDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "all"
+										).setNavigation(
+											"all"
 										).setParameter(
 											"resetCur", Boolean.TRUE.toString()
 										).buildString()
@@ -60,8 +60,8 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 									href="<%=
 										PortletURLBuilder.create(
 											assetEntryUsagesDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "pages"
+										).setNavigation(
+											"pages"
 										).setParameter(
 											"resetCur", Boolean.TRUE.toString()
 										).buildString()
@@ -76,8 +76,8 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 									href="<%=
 										PortletURLBuilder.create(
 											assetEntryUsagesDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "page-templates"
+										).setNavigation(
+											"page-templates"
 										).setParameter(
 											"resetCur", Boolean.TRUE.toString()
 										).buildString()
@@ -92,8 +92,8 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 									href="<%=
 										PortletURLBuilder.create(
 											assetEntryUsagesDisplayContext.getPortletURL()
-										).setParameter(
-											"navigation", "display-page-templates"
+										).setNavigation(
+											"display-page-templates"
 										).setParameter(
 											"resetCur", Boolean.TRUE.toString()
 										).buildString()

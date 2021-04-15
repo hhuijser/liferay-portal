@@ -54,10 +54,10 @@ Map<String, String[]> parameterMap = (Map<String, String[]>)settingsMap.get("par
 				renderResponse
 			).setMVCRenderCommandName(
 				"/export_import/publish_layouts"
-			).setParameter(
-				Constants.CMD, cmd
-			).setParameter(
-				"tabs1", privateLayout ? "private-pages" : "public-pages"
+			).setCMD(
+				cmd
+			).setTabs1(
+				privateLayout ? "private-pages" : "public-pages"
 			).setParameter(
 				"groupId", String.valueOf(groupDisplayContextHelper.getGroupId())
 			).setParameter(

@@ -136,8 +136,8 @@ public class FolderActionDisplayContext {
 			"/document_library/upload_multiple_file_entries"
 		).setRedirect(
 			_dlRequestHelper.getCurrentURL()
-		).setParameter(
-			"backURL", _dlRequestHelper.getCurrentURL()
+		).setBackURL(
+			_dlRequestHelper.getCurrentURL()
 		).setParameter(
 			"repositoryId", _getRepositoryId()
 		).setParameter(
@@ -169,8 +169,8 @@ public class FolderActionDisplayContext {
 			"/document_library/edit_folder"
 		).setRedirect(
 			_dlRequestHelper.getCurrentURL()
-		).setParameter(
-			Constants.CMD, "deleteExpiredTemporaryFileEntries"
+		).setCMD(
+			"deleteExpiredTemporaryFileEntries"
 		).setParameter(
 			"repositoryId", _getRepositoryId()
 		).buildString();
@@ -293,8 +293,8 @@ public class FolderActionDisplayContext {
 			_dlRequestHelper.getLiferayPortletResponse()
 		).setActionName(
 			"/document_library/publish_folder"
-		).setParameter(
-			"backURL", _dlRequestHelper.getCurrentURL()
+		).setBackURL(
+			_dlRequestHelper.getCurrentURL()
 		).setParameter(
 			"folderId", _getFolderId()
 		).buildString();

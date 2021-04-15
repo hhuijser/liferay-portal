@@ -156,8 +156,8 @@ public class LayoutPrototypeActionDropdownItemsProvider {
 						PortletRequest.RENDER_PHASE)
 				).setMVCRenderCommandName(
 					"/export_import/export_layouts"
-				).setParameter(
-					Constants.CMD, Constants.EXPORT
+				).setCMD(
+					Constants.EXPORT
 				).setParameter(
 					"groupId", _layoutPrototype.getGroupId()
 				).setParameter(
@@ -189,8 +189,8 @@ public class LayoutPrototypeActionDropdownItemsProvider {
 						PortletRequest.RENDER_PHASE)
 				).setMVCRenderCommandName(
 					"/export_import/import_layouts"
-				).setParameter(
-					Constants.CMD, Constants.IMPORT
+				).setCMD(
+					Constants.IMPORT
 				).setParameter(
 					"groupId", _layoutPrototype.getGroupId()
 				).setParameter(

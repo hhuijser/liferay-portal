@@ -84,8 +84,8 @@ public class ViewUADEntitiesManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", (String)null
+		).setKeywords(
+			(String)null
 		).buildString();
 	}
 

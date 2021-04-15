@@ -71,8 +71,7 @@ public class SelectLayoutPageTemplateEntryVerticalCard implements VerticalCard {
 					_renderResponse
 				).setMVCRenderCommandName(
 					"/layout_admin/add_layout"
-				).setParameter(
-					"backURL",
+				).setBackURL(
 					ParamUtil.getString(_httpServletRequest, "redirect")
 				).setParameter(
 					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")

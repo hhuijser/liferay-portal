@@ -116,8 +116,8 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 														renderResponse
 													).setParameter(
 														"layoutPageTemplateCollectionId", layoutPageTemplateCollection.getLayoutPageTemplateCollectionId()
-													).setParameter(
-														"tabs1", "page-templates"
+													).setTabs1(
+														"page-templates"
 													).buildString()
 												%>"
 											>

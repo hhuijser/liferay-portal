@@ -325,8 +325,8 @@ request.setAttribute("view_user.jsp-user", user2);
 															"/search.jsp"
 														).setParameter(
 															"groupId", "0"
-														).setParameter(
-															"keywords", assetTag.getName()
+														).setKeywords(
+															assetTag.getName()
 														).setWindowState(
 															WindowState.MAXIMIZED
 														).build();

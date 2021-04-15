@@ -116,10 +116,10 @@ public class TrashManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"navigation", StringPool.BLANK
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setNavigation(
+			StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -140,8 +140,8 @@ public class TrashManagementToolbarDisplayContext
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							currentURLObj, liferayPortletResponse)
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);

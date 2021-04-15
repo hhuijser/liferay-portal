@@ -117,8 +117,8 @@ public class CommerceNotificationEntryClayTable
 			"/commerce_channels/edit_commerce_notification_queue_entry"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, "resend"
+		).setCMD(
+			"resend"
 		).setParameter(
 			"commerceNotificationQueueEntryId",
 			() -> {

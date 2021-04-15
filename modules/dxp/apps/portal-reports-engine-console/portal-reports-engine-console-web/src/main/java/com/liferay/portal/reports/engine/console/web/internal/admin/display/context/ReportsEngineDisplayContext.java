@@ -88,8 +88,8 @@ public class ReportsEngineDisplayContext {
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -216,8 +216,8 @@ public class ReportsEngineDisplayContext {
 	public PortletURL getPortletURL() {
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setParameter(
-			"tabs1", _getTabs1()
+		).setTabs1(
+			_getTabs1()
 		).build();
 
 		String navigation = ParamUtil.getString(
@@ -263,8 +263,8 @@ public class ReportsEngineDisplayContext {
 	public String getSortingURL() {
 		return PortletURLBuilder.createRenderURL(
 			_reportsEngineRequestHelper.getLiferayPortletResponse()
-		).setParameter(
-			"tabs1", _getTabs1()
+		).setTabs1(
+			_getTabs1()
 		).setParameter(
 			"orderByCol", _getOrderByCol()
 		).setParameter(

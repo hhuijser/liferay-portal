@@ -184,8 +184,8 @@ public class DLFileEntryAssetRendererFactory
 				0, PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/document_library/edit_file_entry"
-		).setParameter(
-			Constants.CMD, Constants.ADD
+		).setCMD(
+			Constants.ADD
 		).setParameter(
 			"groupId", group.getGroupId()
 		).setParameter(

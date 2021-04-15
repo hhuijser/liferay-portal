@@ -98,8 +98,8 @@ public class CPSpecificationOptionDisplayContext
 	public PortletURL getPortletURL() throws PortalException {
 		return PortletURLBuilder.create(
 			super.getPortletURL()
-		).setParameter(
-			"navigation", getNavigation()
+		).setNavigation(
+			getNavigation()
 		).build();
 	}
 

@@ -114,8 +114,8 @@ public class CommerceProductDefinitionLinkDataSetActionProvider
 			"/cp_definitions/edit_cp_definition_link"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"cpDefinitionId", cpDefinitionLink.getCPDefinitionId()
 		).setParameter(

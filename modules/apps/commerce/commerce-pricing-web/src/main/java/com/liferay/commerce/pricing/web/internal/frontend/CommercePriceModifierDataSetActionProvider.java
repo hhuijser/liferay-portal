@@ -116,8 +116,8 @@ public class CommercePriceModifierDataSetActionProvider
 			"/commerce_price_list/edit_commerce_price_modifier"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commercePriceModifierId",
 			commercePriceModifier.getCommercePriceModifierId()

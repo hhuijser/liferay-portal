@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
-
 int cur = ParamUtil.getInteger(request, SearchContainer.DEFAULT_CUR_PARAM);
 
 long parentMicroblogsEntryId = ParamUtil.getLong(request, "parentMicroblogsEntryId");
@@ -31,8 +29,8 @@ PortletURL microblogsEntriesURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCPath(
 	"/microblogs/view.jsp"
-).setParameter(
-	"tabs1", tabs1
+).setTabs1(
+	ParamUtil.getString(request, "tabs1", "timeline")
 ).setParameter(
 	"cur", String.valueOf(cur)
 ).setWindowState(

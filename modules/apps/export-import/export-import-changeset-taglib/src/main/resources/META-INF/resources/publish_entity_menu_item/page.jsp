@@ -29,9 +29,7 @@
 				"/export_import_changeset/export_import_changeset"
 			).setParameter(
 				"cmd", Constants.PUBLISH
-			).setParameter(
-				"backURL", currentURL
-			).setParameter(
+			).setBackURL(currentURL).setParameter(
 				"groupId", entityGroupId
 			).setParameter(
 				"changesetUuid", changesetUuid

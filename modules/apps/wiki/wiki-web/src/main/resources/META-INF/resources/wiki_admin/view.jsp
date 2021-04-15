@@ -160,8 +160,8 @@ WikiNodesManagementToolbarDisplayContext wikiNodesManagementToolbarDisplayContex
 							"/wiki/view_pages"
 						).setRedirect(
 							currentURL
-						).setParameter(
-							"navigation", "all-pages"
+						).setNavigation(
+							"all-pages"
 						).setParameter(
 							"nodeId", node.getNodeId()
 						).build();

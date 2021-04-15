@@ -601,8 +601,8 @@ public class CommerceOrderEditDisplayContext {
 			"/commerce_order/edit_commerce_order"
 		).setRedirect(
 			_commerceOrderRequestHelper.getCurrentURL()
-		).setParameter(
-			Constants.CMD, "transition"
+		).setCMD(
+			"transition"
 		).setParameter(
 			"commerceOrderId", _commerceOrder.getCommerceOrderId()
 		).build();

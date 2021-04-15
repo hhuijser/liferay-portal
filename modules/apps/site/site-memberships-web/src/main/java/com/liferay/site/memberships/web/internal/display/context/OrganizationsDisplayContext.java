@@ -190,8 +190,8 @@ public class OrganizationsDisplayContext {
 
 				return themeDisplay.getURLCurrent();
 			}
-		).setParameter(
-			"tabs1", "organizations"
+		).setTabs1(
+			"organizations"
 		).setParameter(
 			"groupId", getGroupId()
 		).build();

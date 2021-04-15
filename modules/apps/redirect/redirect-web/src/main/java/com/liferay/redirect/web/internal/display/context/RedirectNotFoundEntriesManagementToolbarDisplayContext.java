@@ -124,8 +124,8 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
-		).setParameter(
-			"navigation", "404-urls"
+		).setNavigation(
+			"404-urls"
 		).buildString();
 	}
 

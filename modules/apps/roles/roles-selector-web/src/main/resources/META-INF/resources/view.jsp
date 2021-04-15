@@ -61,8 +61,8 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setRedirect(
 	redirect
-).setParameter(
-	"tabs1", tabs1
+).setTabs1(
+	tabs1
 ).setParameter(
 	"className", className
 ).setParameter(
@@ -173,8 +173,8 @@ String methodName = null;
 <%
 PortletURL clearResultsURL = PortletURLBuilder.create(
 	(PortletURL)request.getAttribute("edit_roles.jsp-portletURL")
-).setParameter(
-	"keywords", StringPool.BLANK
+).setKeywords(
+	StringPool.BLANK
 ).build();
 
 SearchContainer<?> searchContainer = (SearchContainer<?>)request.getAttribute("liferay-ui:search:searchContainer");

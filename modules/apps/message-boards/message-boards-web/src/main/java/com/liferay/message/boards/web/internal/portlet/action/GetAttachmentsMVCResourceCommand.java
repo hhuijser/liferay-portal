@@ -133,8 +133,8 @@ public class GetAttachmentsMVCResourceCommand extends BaseMVCResourceCommand {
 			resourceResponse
 		).setActionName(
 			"/message_boards/edit_message_attachments"
-		).setParameter(
-			Constants.CMD, _getDeleteCommand(resourceRequest)
+		).setCMD(
+			_getDeleteCommand(resourceRequest)
 		).setParameter(
 			"fileName", HtmlUtil.unescape(fileEntry.getTitle())
 		).setParameter(

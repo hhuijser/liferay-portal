@@ -126,8 +126,8 @@ public class CommerceProductDefinitionSpecificationDataSetActionProvider
 			"/cp_definitions/edit_cp_definition_specification_option_value"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"cpDefinitionSpecificationOptionValueId",
 			cpDefinitionSpecificationOptionValueId

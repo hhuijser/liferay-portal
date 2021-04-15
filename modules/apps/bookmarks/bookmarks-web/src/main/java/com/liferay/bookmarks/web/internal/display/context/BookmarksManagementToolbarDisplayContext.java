@@ -370,8 +370,8 @@ public class BookmarksManagementToolbarDisplayContext {
 
 		return PortletURLBuilder.create(
 			PortletURLUtil.clone(portletURL, _liferayPortletResponse)
-		).setParameter(
-			"navigation", (String)null
+		).setNavigation(
+			(String)null
 		).buildString();
 	}
 

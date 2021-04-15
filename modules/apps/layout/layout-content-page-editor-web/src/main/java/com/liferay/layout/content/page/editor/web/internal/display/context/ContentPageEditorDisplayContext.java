@@ -1776,8 +1776,8 @@ public class ContentPageEditorDisplayContext {
 			ParamUtil.getString(
 				PortalUtil.getOriginalServletRequest(httpServletRequest),
 				"p_l_back_url")
-		).setParameter(
-			"backURL", themeDisplay.getURLCurrent()
+		).setBackURL(
+			themeDisplay.getURLCurrent()
 		).setParameter(
 			"groupId", layout.getGroupId()
 		).setParameter(

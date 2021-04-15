@@ -83,8 +83,8 @@ public class DeletePagePortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_page"
-			).setParameter(
-				Constants.CMD, Constants.DELETE
+			).setCMD(
+				Constants.DELETE
 			).build();
 
 			if (!page.isDraft() &&
@@ -105,8 +105,8 @@ public class DeletePagePortletConfigurationIcon
 						PortletRequest.ACTION_PHASE)
 				).setMVCRenderCommandName(
 					"/wiki/view_pages"
-				).setParameter(
-					"navigation", "all-pages"
+				).setNavigation(
+					"all-pages"
 				).setParameter(
 					"nodeId", page.getNodeId()
 				).buildString());

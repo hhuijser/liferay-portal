@@ -21,8 +21,8 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "general");
 
 PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
-).setParameter(
-	"tabs1", tabs1
+).setTabs1(
+	tabs1
 ).build();
 
 String tabs1Names = "general";

@@ -110,8 +110,8 @@ public class CommerceInventoryReplenishmentClayDataSetActionProvider
 			"/commerce_inventory/edit_commerce_inventory_replenishment_item"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceInventoryReplenishmentItemId",
 			commerceInventoryReplenishmentItemId

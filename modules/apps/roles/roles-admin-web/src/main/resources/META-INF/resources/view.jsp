@@ -94,10 +94,10 @@ PortletURL portletURL = viewRolesManagementToolbarDisplayContext.getPortletURL()
 					renderResponse
 				).setMVCPath(
 					"/edit_role.jsp"
-				).setParameter(
-					"tabs1", "details"
-				).setParameter(
-					"backURL", searchContainerPortletURL.toString()
+				).setTabs1(
+					"details"
+				).setBackURL(
+					searchContainerPortletURL.toString()
 				).setParameter(
 					"roleId", role.getRoleId()
 				).build();

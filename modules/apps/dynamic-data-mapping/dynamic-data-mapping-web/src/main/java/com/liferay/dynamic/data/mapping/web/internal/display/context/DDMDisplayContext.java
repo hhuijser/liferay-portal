@@ -179,8 +179,8 @@ public class DDMDisplayContext {
 	public String getClearResultsURL() throws PortletException {
 		return PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), _renderResponse)
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -473,8 +473,8 @@ public class DDMDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/view.jsp"
-		).setParameter(
-			"tabs1", ParamUtil.getString(_renderRequest, "tabs1", "structures")
+		).setTabs1(
+			ParamUtil.getString(_renderRequest, "tabs1", "structures")
 		).setParameter(
 			"groupId", _ddmWebRequestHelper.getScopeGroupId()
 		).buildString();
@@ -622,8 +622,8 @@ public class DDMDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/view_template.jsp"
-		).setParameter(
-			"tabs1", ParamUtil.getString(_renderRequest, "tabs1", "templates")
+		).setTabs1(
+			ParamUtil.getString(_renderRequest, "tabs1", "templates")
 		).setParameter(
 			"templateId", ParamUtil.getLong(_renderRequest, "templateId")
 		).setParameter(

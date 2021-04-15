@@ -110,8 +110,8 @@ public class KaleoFormsAdminDisplayContext {
 	public String getClearResultsURL() throws PortletException {
 		return PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), _renderResponse)
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

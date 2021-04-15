@@ -127,8 +127,8 @@ public class KaleoDesignerDisplayContext {
 			PortletURLUtil.clone(
 				getPortletURL(),
 				_kaleoDesignerRequestHelper.getLiferayPortletResponse())
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

@@ -147,8 +147,8 @@ public class UsersDisplayContext {
 
 				return themeDisplay.getURLCurrent();
 			}
-		).setParameter(
-			"tabs1", "users"
+		).setTabs1(
+			"users"
 		).setParameter(
 			"groupId", getGroupId()
 		).build();

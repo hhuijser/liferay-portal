@@ -66,8 +66,8 @@ public class FragmentCollectionResourcesDisplayContext {
 			"/fragment/view"
 		).setRedirect(
 			_fragmentDisplayContext.getRedirect()
-		).setParameter(
-			"tabs1", "resources"
+		).setTabs1(
+			"resources"
 		).setParameter(
 			"fragmentCollectionId",
 			_fragmentDisplayContext.getFragmentCollectionId()

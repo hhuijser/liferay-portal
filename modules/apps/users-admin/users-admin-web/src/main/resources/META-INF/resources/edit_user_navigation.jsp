@@ -55,8 +55,8 @@ if (Validator.isNull(redirect)) {
 		"/users_admin/edit_user"
 	).setParameter(
 		"p_u_i_d", selUserId
-	).setParameter(
-		"backURL", backURL
+	).setBackURL(
+		backURL
 	).buildString();
 }
 

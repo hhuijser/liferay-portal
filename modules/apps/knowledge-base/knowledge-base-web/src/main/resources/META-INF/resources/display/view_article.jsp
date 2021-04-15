@@ -51,8 +51,8 @@ String[] searchKeywords = (String[])renderRequest.getAttribute(KBWebKeys.KNOWLED
 						currentURL
 					).setParameter(
 						"struts_action", "/search/search"
-					).setParameter(
-						"keywords", StringUtil.merge(searchKeywords, StringPool.SPACE)
+					).setKeywords(
+						StringUtil.merge(searchKeywords, StringPool.SPACE)
 					).setPortletMode(
 						PortletMode.VIEW
 					).setWindowState(

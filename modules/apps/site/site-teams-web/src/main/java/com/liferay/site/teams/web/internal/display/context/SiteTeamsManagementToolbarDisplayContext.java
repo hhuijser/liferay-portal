@@ -90,8 +90,8 @@ public class SiteTeamsManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

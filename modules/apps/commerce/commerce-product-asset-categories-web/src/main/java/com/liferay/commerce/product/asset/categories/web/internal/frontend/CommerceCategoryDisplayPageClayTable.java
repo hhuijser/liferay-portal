@@ -203,8 +203,8 @@ public class CommerceCategoryDisplayPageClayTable
 			"/commerce_channels/edit_asset_category_cp_display_layout"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"cpDisplayLayoutId", categoryDisplayPageId
 		).buildString();

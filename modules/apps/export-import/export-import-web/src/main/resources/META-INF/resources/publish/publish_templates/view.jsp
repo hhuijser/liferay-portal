@@ -63,13 +63,13 @@ exportImportConfigurationSearchContainer.setTotal(exportImportConfigurationsCoun
 		</liferay-portlet:renderURL>
 
 		<clay:management-toolbar
-			clearResultsURL='<%=
+			clearResultsURL="<%=
 				PortletURLBuilder.create(
 					PortletURLUtil.clone(currentURLObj, renderResponse)
-				).setParameter(
-					"keywords", StringPool.BLANK
+				).setKeywords(
+					StringPool.BLANK
 				).buildString()
-			%>'
+			%>"
 			itemsTotal="<%= exportImportConfigurationsCount %>"
 			searchActionURL="<%= searchURL.toString() %>"
 			selectable="<%= false %>"

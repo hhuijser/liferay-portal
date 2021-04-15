@@ -25,8 +25,8 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/blogs/view"
-).setParameter(
-	"navigation", "images"
+).setNavigation(
+	"images"
 ).build();
 
 if (delta > 0) {

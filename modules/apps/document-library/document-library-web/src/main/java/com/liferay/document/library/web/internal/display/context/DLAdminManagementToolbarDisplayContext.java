@@ -355,8 +355,8 @@ public class DLAdminManagementToolbarDisplayContext
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
 							_currentURLObj, _liferayPortletResponse)
-					).setParameter(
-						"navigation", (String)null
+					).setNavigation(
+						(String)null
 					).buildString());
 
 				labelItem.setCloseable(true);
@@ -474,8 +474,7 @@ public class DLAdminManagementToolbarDisplayContext
 			_liferayPortletResponse
 		).setMVCRenderCommandName(
 			mvcRenderCommandName
-		).setParameter(
-			"navigation",
+		).setNavigation(
 			() -> {
 				String navigation = ParamUtil.getString(
 					_httpServletRequest, "navigation", "home");
@@ -612,8 +611,8 @@ public class DLAdminManagementToolbarDisplayContext
 						_currentURLObj, _liferayPortletResponse)
 				).setMVCRenderCommandName(
 					"/document_library/view"
-				).setParameter(
-					"navigation", "home"
+				).setNavigation(
+					"home"
 				).setParameter(
 					"browseBy", (String)null
 				).setParameter(
@@ -634,8 +633,8 @@ public class DLAdminManagementToolbarDisplayContext
 						_currentURLObj, _liferayPortletResponse)
 				).setMVCRenderCommandName(
 					"/document_library/view"
-				).setParameter(
-					"navigation", "recent"
+				).setNavigation(
+					"recent"
 				).build();
 
 				dropdownItem.setHref(viewRecentDocumentsURL);
@@ -653,8 +652,8 @@ public class DLAdminManagementToolbarDisplayContext
 						_currentURLObj, _liferayPortletResponse)
 				).setMVCRenderCommandName(
 					"/document_library/view"
-				).setParameter(
-					"navigation", "mine"
+				).setNavigation(
+					"mine"
 				).build();
 
 				dropdownItem.setHref(viewMyDocumentsURL);

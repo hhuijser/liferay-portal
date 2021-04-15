@@ -249,8 +249,8 @@ public class CommerceTaxRateClayTable
 			"/commerce_tax_methods/edit_commerce_tax_fixed_rate"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceTaxFixedRateId", taxRateId
 		).buildString();

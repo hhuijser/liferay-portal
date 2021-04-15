@@ -153,8 +153,8 @@ public class RankingPortletDisplayBuilder {
 	protected String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			_getPortletURL(getKeywords())
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 

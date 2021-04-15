@@ -122,8 +122,8 @@ public class CommerceInventoryItemClayDataSetActionProvider
 			"/commerce_inventory/edit_commerce_inventory_warehouse"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"sku", sku
 		).buildString();

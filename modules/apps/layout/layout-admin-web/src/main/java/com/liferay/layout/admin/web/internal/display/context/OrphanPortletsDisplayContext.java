@@ -200,8 +200,8 @@ public class OrphanPortletsDisplayContext {
 			_liferayPortletResponse
 		).setMVCPath(
 			"/orphan_portlets.jsp"
-		).setParameter(
-			"backURL", getBackURL()
+		).setBackURL(
+			getBackURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
 		).build();

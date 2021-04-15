@@ -78,8 +78,8 @@ public class DLViewFileEntryMetadataSetsManagementToolbarDisplayContext
 	public String getClearResultsURL() {
 		return PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			"keywords", StringPool.BLANK
+		).setKeywords(
+			StringPool.BLANK
 		).buildString();
 	}
 
@@ -113,8 +113,8 @@ public class DLViewFileEntryMetadataSetsManagementToolbarDisplayContext
 	public String getSearchActionURL() {
 		return PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
-		).setParameter(
-			"navigation", "file_entry_metadata_sets"
+		).setNavigation(
+			"file_entry_metadata_sets"
 		).setParameter(
 			"groupId", _dlRequestHelper.getScopeGroupId()
 		).buildString();

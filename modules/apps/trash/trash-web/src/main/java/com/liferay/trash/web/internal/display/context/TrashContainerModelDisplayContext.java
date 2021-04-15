@@ -200,8 +200,7 @@ public class TrashContainerModelDisplayContext {
 			"/view_container_model.jsp"
 		).setRedirect(
 			getRedirect()
-		).setParameter(
-			"backURL",
+		).setBackURL(
 			(String)_httpServletRequest.getAttribute(WebKeys.CURRENT_URL)
 		).setParameter(
 			"classNameId", getClassNameId()

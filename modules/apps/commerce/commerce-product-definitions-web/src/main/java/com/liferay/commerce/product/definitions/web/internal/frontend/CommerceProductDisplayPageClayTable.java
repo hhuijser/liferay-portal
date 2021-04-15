@@ -217,8 +217,8 @@ public class CommerceProductDisplayPageClayTable
 			"/commerce_channels/edit_cp_definition_cp_display_layout"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"cpDisplayLayoutId", productDisplayPageId
 		).buildString();

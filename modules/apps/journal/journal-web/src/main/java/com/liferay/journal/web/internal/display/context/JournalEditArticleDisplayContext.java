@@ -612,8 +612,8 @@ public class JournalEditArticleDisplayContext {
 
 					return 0;
 				}
-			).setParameter(
-				"redirect", _themeDisplay.getURLCurrent()
+			).setRedirect(
+				_themeDisplay.getURLCurrent()
 			).buildString()
 		).put(
 			"previewArticleContentTemplateURL",

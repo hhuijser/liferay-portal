@@ -279,8 +279,8 @@ public class LayoutPageTemplateDisplayContext {
 			_renderResponse
 		).setRedirect(
 			_themeDisplay.getURLCurrent()
-		).setParameter(
-			"tabs1", "page-templates"
+		).setTabs1(
+			"page-templates"
 		).build();
 
 		long layoutPageTemplateCollectionId =

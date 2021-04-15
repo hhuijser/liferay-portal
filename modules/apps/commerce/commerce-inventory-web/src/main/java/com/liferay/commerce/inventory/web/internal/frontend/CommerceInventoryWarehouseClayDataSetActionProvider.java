@@ -110,8 +110,8 @@ public class CommerceInventoryWarehouseClayDataSetActionProvider
 			"/commerce_inventory/edit_commerce_inventory_warehouse_item"
 		).setRedirect(
 			redirect
-		).setParameter(
-			Constants.CMD, Constants.DELETE
+		).setCMD(
+			Constants.DELETE
 		).setParameter(
 			"commerceInventoryWarehouseItemId", commerceInventoryWarehouseItemId
 		).buildString();

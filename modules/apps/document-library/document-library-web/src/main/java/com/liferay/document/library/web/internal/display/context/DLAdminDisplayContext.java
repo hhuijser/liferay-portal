@@ -302,8 +302,8 @@ public class DLAdminDisplayContext {
 		).setParameter(
 			"searchFolderId",
 			ParamUtil.getLong(_httpServletRequest, "searchFolderId")
-		).setParameter(
-			"keywords", ParamUtil.getString(_httpServletRequest, "keywords")
+		).setKeywords(
+			ParamUtil.getString(_httpServletRequest, "keywords")
 		).build();
 	}
 

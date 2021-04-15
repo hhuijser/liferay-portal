@@ -278,7 +278,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 			Document portalCustomSQLDocument)
 		throws DocumentException {
 
-		if (isPortalSource() && !isModulesFile(absolutePath)) {
+		if (_portalSource && !isModulesFile(absolutePath)) {
 			return portalCustomSQLDocument;
 		}
 
@@ -387,7 +387,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	protected String getModulesPropertiesContent(String absolutePath)
 		throws IOException {
 
-		if (!isPortalSource()) {
+		if (!_portalSource) {
 			return getPortalContent(
 				_MODULES_PROPERTIES_FILE_NAME, absolutePath);
 		}
@@ -436,7 +436,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 
 		_portalCustomSQLDocument = DocumentHelper.createDocument();
 
-		if (!isPortalSource()) {
+		if (!_portalSource) {
 			return _portalCustomSQLDocument;
 		}
 
@@ -483,7 +483,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 
 	protected File getPortalDir() {
 		File portalImplDir = SourceFormatterUtil.getFile(
-			getBaseDirName(), "portal-impl", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			_baseDirName, "portal-impl", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
 
 		if (portalImplDir == null) {
 			return null;

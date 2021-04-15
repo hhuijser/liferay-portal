@@ -36,10 +36,10 @@ public class FloatWrapper
 			return 1;
 		}
 
-		if (getValue() > floatWrapper.getValue()) {
+		if (_value > floatWrapper.getValue()) {
 			return 1;
 		}
-		else if (getValue() < floatWrapper.getValue()) {
+		else if (_value < floatWrapper.getValue()) {
 			return -1;
 		}
 

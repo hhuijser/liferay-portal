@@ -30,7 +30,7 @@ import java.util.Map;
 public class HtmlUtil {
 
 	public static String buildData(Map<String, Object> data) {
-		return getHtml().buildData(data);
+		return _html.buildData(data);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class HtmlUtil {
 	 *         <code>null</code>
 	 */
 	public static String escape(String text) {
-		return getHtml().escape(text);
+		return _html.escape(text);
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class HtmlUtil {
 	 */
 	@Deprecated
 	public static String escape(String text, int mode) {
-		return getHtml().escape(text, mode);
+		return _html.escape(text, mode);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class HtmlUtil {
 	 *         attribute value is <code>null</code>
 	 */
 	public static String escapeAttribute(String attribute) {
-		return getHtml().escapeAttribute(attribute);
+		return _html.escapeAttribute(attribute);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class HtmlUtil {
 	 *         <code>null</code>
 	 */
 	public static String escapeCSS(String css) {
-		return getHtml().escapeCSS(css);
+		return _html.escapeCSS(css);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class HtmlUtil {
 	 *         attribute is <code>null</code>
 	 */
 	public static String escapeHREF(String href) {
-		return getHtml().escapeHREF(href);
+		return _html.escapeHREF(href);
 	}
 
 	/**
@@ -106,11 +106,11 @@ public class HtmlUtil {
 	 *         JavaScript value is <code>null</code>
 	 */
 	public static String escapeJS(String js) {
-		return getHtml().escapeJS(js);
+		return _html.escapeJS(js);
 	}
 
 	public static String escapeJSLink(String link) {
-		return getHtml().escapeJSLink(link);
+		return _html.escapeJSLink(link);
 	}
 
 	/**
@@ -121,15 +121,15 @@ public class HtmlUtil {
 	 *         <code>null</code>
 	 */
 	public static String escapeURL(String url) {
-		return getHtml().escapeURL(url);
+		return _html.escapeURL(url);
 	}
 
 	public static String escapeXPath(String xPath) {
-		return getHtml().escapeXPath(xPath);
+		return _html.escapeXPath(xPath);
 	}
 
 	public static String escapeXPathAttribute(String xPathAttribute) {
-		return getHtml().escapeXPathAttribute(xPathAttribute);
+		return _html.escapeXPathAttribute(xPathAttribute);
 	}
 
 	/**
@@ -146,15 +146,15 @@ public class HtmlUtil {
 	 *         HTML input is <code>null</code>
 	 */
 	public static String extractText(String html) {
-		return getHtml().extractText(html);
+		return _html.extractText(html);
 	}
 
 	public static String fromInputSafe(String text) {
-		return getHtml().fromInputSafe(text);
+		return _html.fromInputSafe(text);
 	}
 
 	public static String getAUICompatibleId(String html) {
-		return getHtml().getAUICompatibleId(html);
+		return _html.getAUICompatibleId(html);
 	}
 
 	public static Html getHtml() {
@@ -178,7 +178,7 @@ public class HtmlUtil {
 	 *         <code>null</code>
 	 */
 	public static String render(String html) {
-		return getHtml().render(html);
+		return _html.render(html);
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class HtmlUtil {
 	 *         <code>null</code>
 	 */
 	public static String replaceNewLine(String html) {
-		return getHtml().replaceNewLine(html);
+		return _html.replaceNewLine(html);
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class HtmlUtil {
 	 *         <code>null</code> if the text is <code>null</code>
 	 */
 	public static String stripBetween(String text, String tag) {
-		return getHtml().stripBetween(text, tag);
+		return _html.stripBetween(text, tag);
 	}
 
 	/**
@@ -221,11 +221,11 @@ public class HtmlUtil {
 	 *         if the text is <code>null</code>
 	 */
 	public static String stripComments(String text) {
-		return getHtml().stripComments(text);
+		return _html.stripComments(text);
 	}
 
 	public static String stripHtml(String text) {
-		return getHtml().stripHtml(text);
+		return _html.stripHtml(text);
 	}
 
 	/**
@@ -241,19 +241,19 @@ public class HtmlUtil {
 	 *         value, or <code>null</code> if the text is <code>null</code>
 	 */
 	public static String toInputSafe(String text) {
-		return getHtml().toInputSafe(text);
+		return _html.toInputSafe(text);
 	}
 
 	public static String unescape(String text) {
-		return getHtml().unescape(text);
+		return _html.unescape(text);
 	}
 
 	public static String unescapeCDATA(String text) {
-		return getHtml().unescapeCDATA(text);
+		return _html.unescapeCDATA(text);
 	}
 
 	public static String wordBreak(String text, int columns) {
-		return getHtml().wordBreak(text, columns);
+		return _html.wordBreak(text, columns);
 	}
 
 	public void setHtml(Html html) {

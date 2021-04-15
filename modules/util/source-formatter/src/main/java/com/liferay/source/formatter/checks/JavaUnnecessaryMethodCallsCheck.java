@@ -197,6 +197,15 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 		while ((previousDetailAST.getType() != TokenTypes.METHOD_DEF) &&
 			   (previousDetailAST.getType() != TokenTypes.CTOR_DEF)) {
 
+			if ((previousDetailAST.getType() == TokenTypes.VARIABLE_DEF) &&
+				(previousDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE) ||
+				 previousDetailAST.branchContains(
+					 TokenTypes.LITERAL_PROTECTED) ||
+				 previousDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC))) {
+
+				break;
+			}
+
 			previousDetailAST = previousDetailAST.getParent();
 		}
 

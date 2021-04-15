@@ -315,12 +315,6 @@ if (portletTitleBasedNavigation && !dlViewEntriesDisplayContext.isRootFolder() &
 
 							<%
 							row.setCssClass("card-page-item card-page-item-directory");
-
-							PortletURL rowURL = liferayPortletResponse.createRenderURL();
-
-							rowURL.setParameter("mvcRenderCommandName", "/document_library/view_folder");
-							rowURL.setParameter("redirect", currentURL);
-							rowURL.setParameter("folderId", String.valueOf(curFolder.getFolderId()));
 							%>
 
 							<liferay-ui:search-container-column-text
@@ -332,7 +326,17 @@ if (portletTitleBasedNavigation && !dlViewEntriesDisplayContext.isRootFolder() &
 									resultRow="<%= row %>"
 									rowChecker="<%= searchContainer.getRowChecker() %>"
 									text="<%= curFolder.getName() %>"
-									url="<%= rowURL.toString() %>"
+									url='<%=
+										PortletURLBuilder.createRenderURL(
+											liferayPortletResponse
+										).setMVCRenderCommandName(
+											"/document_library/view_folder"
+										).setRedirect(
+											currentURL
+										).setParameter(
+											"folderId", curFolder.getFolderId()
+										).buildString()
+									%>'
 								>
 									<liferay-frontend:horizontal-card-col>
 										<liferay-frontend:horizontal-card-icon
@@ -350,15 +354,6 @@ if (portletTitleBasedNavigation && !dlViewEntriesDisplayContext.isRootFolder() &
 
 								<c:choose>
 									<c:when test='<%= curEntryColumn.equals("name") %>'>
-
-										<%
-										PortletURL rowURL = liferayPortletResponse.createRenderURL();
-
-										rowURL.setParameter("mvcRenderCommandName", "/document_library/view_folder");
-										rowURL.setParameter("redirect", currentURL);
-										rowURL.setParameter("folderId", String.valueOf(curFolder.getFolderId()));
-										%>
-
 										<liferay-ui:search-container-column-text
 											cssClass="table-cell-expand table-cell-minw-200 table-title"
 											name="name"
@@ -369,7 +364,21 @@ if (portletTitleBasedNavigation && !dlViewEntriesDisplayContext.isRootFolder() &
 												icon='<%= curFolder.isMountPoint() ? "repository" : "folder" %>'
 											/>
 
-											<aui:a href="<%= rowURL.toString() %>"><%= HtmlUtil.escape(curFolder.getName()) %></aui:a>
+											<aui:a
+												href='<%=
+													PortletURLBuilder.createRenderURL(
+														liferayPortletResponse
+													).setMVCRenderCommandName(
+														"/document_library/view_folder"
+													).setRedirect(
+														currentURL
+													).setParameter(
+														"folderId", curFolder.getFolderId()
+													).buildString()
+												%>'
+											>
+												<%= HtmlUtil.escape(curFolder.getName()) %>
+											</aui:a>
 										</liferay-ui:search-container-column-text>
 									</c:when>
 									<c:when test='<%= curEntryColumn.equals("description") %>'>

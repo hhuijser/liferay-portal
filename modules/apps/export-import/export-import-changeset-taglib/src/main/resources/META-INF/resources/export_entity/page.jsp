@@ -26,8 +26,8 @@
 				"exportImportEntity"
 			).setMVCRenderCommandName(
 				"exportImportEntity"
-			).setParameter(
-				"cmd", Constants.EXPORT
+			).setCMD(
+				Constants.EXPORT
 			).setParameter(
 				"classNameId", classNameId
 			).setParameter(

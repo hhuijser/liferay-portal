@@ -39,10 +39,10 @@ scopeGroup = themeDisplay.getScopeGroup();
 		"exportImportEntity"
 	).setMVCRenderCommandName(
 		"exportImportEntity"
-	).setBackURL(
-		themeDisplay.getURLCurrent()
 	).setCMD(
 		cmd
+	).setBackURL(
+		themeDisplay.getURLCurrent()
 	).setParameter(
 		"portletId", portletDisplay.getId()
 	).build();

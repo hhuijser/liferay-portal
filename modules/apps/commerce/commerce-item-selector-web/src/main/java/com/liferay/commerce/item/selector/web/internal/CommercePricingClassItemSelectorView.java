@@ -91,7 +91,7 @@ public class CommercePricingClassItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commercePricingClassItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher(

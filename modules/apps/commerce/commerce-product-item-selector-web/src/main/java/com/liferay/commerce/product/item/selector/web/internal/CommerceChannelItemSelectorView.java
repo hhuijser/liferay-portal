@@ -92,7 +92,7 @@ public class CommerceChannelItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commerceChannelItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/channel_item_selector.jsp");

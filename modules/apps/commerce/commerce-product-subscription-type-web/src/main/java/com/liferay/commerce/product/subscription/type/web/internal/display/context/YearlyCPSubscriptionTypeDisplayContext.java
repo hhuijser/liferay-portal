@@ -74,7 +74,7 @@ public class YearlyCPSubscriptionTypeDisplayContext {
 			return 1;
 		}
 
-		if (isPayment()) {
+		if (_payment) {
 			return GetterUtil.getInteger(
 				subscriptionTypeSettingsUnicodeProperties.get("monthDay"));
 		}
@@ -107,7 +107,7 @@ public class YearlyCPSubscriptionTypeDisplayContext {
 			return 0;
 		}
 
-		if (isPayment()) {
+		if (_payment) {
 			return GetterUtil.getInteger(
 				subscriptionTypeSettingsUnicodeProperties.get("deliveryMonth"));
 		}
@@ -125,7 +125,7 @@ public class YearlyCPSubscriptionTypeDisplayContext {
 			return CPSubscriptionTypeConstants.MODE_ORDER_DATE;
 		}
 
-		if (isPayment()) {
+		if (_payment) {
 			return GetterUtil.getInteger(
 				subscriptionTypeSettingsUnicodeProperties.get("yearlyMode"));
 		}

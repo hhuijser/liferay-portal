@@ -182,7 +182,7 @@ public class CommerceOrderEditDisplayContext {
 	}
 
 	public String getCommerceChannelName() throws PortalException {
-		CommerceOrder commerceOrder = getCommerceOrder();
+		CommerceOrder commerceOrder = _commerceOrder;
 
 		CommerceChannel commerceChannel =
 			_commerceChannelLocalService.getCommerceChannelByOrderGroupId(

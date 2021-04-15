@@ -91,7 +91,7 @@ public class CommerceCountryItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commerceCountryItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/country_item_selector.jsp");

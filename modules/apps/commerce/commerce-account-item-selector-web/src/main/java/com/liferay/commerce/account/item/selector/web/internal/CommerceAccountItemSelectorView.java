@@ -93,7 +93,7 @@ public class CommerceAccountItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commerceAccountItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/account_item_selector.jsp");

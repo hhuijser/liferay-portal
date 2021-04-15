@@ -90,7 +90,7 @@ public class CPOptionItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			cpOptionItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/option_item_selector.jsp");

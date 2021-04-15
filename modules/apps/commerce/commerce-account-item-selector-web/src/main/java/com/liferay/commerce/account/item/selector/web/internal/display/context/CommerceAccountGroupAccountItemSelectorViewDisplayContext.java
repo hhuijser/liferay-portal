@@ -96,7 +96,7 @@ public class CommerceAccountGroupAccountItemSelectorViewDisplayContext {
 		_searchContainer = new SearchContainer<>(
 			_commerceAccountItemSelectorRequestHelper.
 				getLiferayPortletRequest(),
-			getPortletURL(), null, null);
+			_portletURL, null, null);
 
 		_searchContainer.setEmptyResultsMessage("there-are-no-accounts");
 

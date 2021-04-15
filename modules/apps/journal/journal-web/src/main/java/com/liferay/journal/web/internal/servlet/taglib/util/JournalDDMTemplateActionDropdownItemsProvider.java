@@ -114,10 +114,10 @@ public class JournalDDMTemplateActionDropdownItemsProvider {
 				"deleteDDMTemplateURL",
 				PortletURLBuilder.createActionURL(
 					_renderResponse
-				).setMVCPath(
-					"/view_ddm_templates.jsp"
 				).setActionName(
 					"/journal/delete_ddm_template"
+				).setMVCPath(
+					"/view_ddm_templates.jsp"
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(

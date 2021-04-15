@@ -320,7 +320,8 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			"JSONObject", "JSONUtil", "SoyContext", "TreeMapBuilder");
 
 		content = _sortMethodCallsByMethodName(
-			content, "DropdownItem", "LabelItem", "NavigationItem");
+			content, "DropdownItem", "LabelItem", "NavigationItem",
+			"SearchContext");
 
 		content = _sortMethodCallsByParameter(
 			fileName, content, "add", "ConcurrentSkipListSet", "HashSet",

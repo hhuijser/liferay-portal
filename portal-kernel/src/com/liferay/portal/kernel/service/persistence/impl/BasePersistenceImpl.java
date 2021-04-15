@@ -280,7 +280,7 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 			}
 			else {
 				result = QueryUtil.list(
-					sqlQuery, getDialect(), defaultASTNodeListener.getStart(),
+					sqlQuery, _dialect, defaultASTNodeListener.getStart(),
 					defaultASTNodeListener.getEnd());
 			}
 
@@ -575,7 +575,7 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 
 	@Override
 	public ModelListener<T>[] getListeners() {
-		return ModelListenerRegistrationUtil.getModelListeners(getModelClass());
+		return ModelListenerRegistrationUtil.getModelListeners(_modelClass);
 	}
 
 	@Override

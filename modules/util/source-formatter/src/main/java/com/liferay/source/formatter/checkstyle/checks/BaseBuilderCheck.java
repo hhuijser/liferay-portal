@@ -297,7 +297,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		while (true) {
 			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
 
-			if (nextSiblingDetailAST == null) {
+			if ((nextSiblingDetailAST == null) ||
+				hasPrecedingPlaceholder(nextSiblingDetailAST)) {
+
 				return;
 			}
 
@@ -324,8 +326,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 						return;
 					}
 
-					if (!allowNullValues() &&
-						_isNullValueExpression(childDetailAST)) {
+					if ((!allowNullValues() &&
+						 _isNullValueExpression(childDetailAST)) ||
+						containsVariableName(childDetailAST, variableName)) {
 
 						return;
 					}

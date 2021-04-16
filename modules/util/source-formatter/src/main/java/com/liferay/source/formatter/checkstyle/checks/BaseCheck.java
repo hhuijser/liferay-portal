@@ -858,22 +858,29 @@ public abstract class BaseCheck extends AbstractCheck {
 		CommonHiddenStreamToken commonHiddenStreamToken = getHiddenBefore(
 			detailAST);
 
-		if (commonHiddenStreamToken == null) {
-			DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
+		if (commonHiddenStreamToken != null) {
+			String text = commonHiddenStreamToken.getText();
 
-			if (previousSiblingDetailAST != null) {
-				commonHiddenStreamToken = getHiddenAfter(
-					previousSiblingDetailAST);
+			return text.contains("PLACEHOLDER");
+		}
+
+		DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
+
+		while (true) {
+			if (previousSiblingDetailAST == null) {
+				return false;
 			}
+
+			commonHiddenStreamToken = getHiddenAfter(previousSiblingDetailAST);
+
+			if (commonHiddenStreamToken != null) {
+				String text = commonHiddenStreamToken.getText();
+
+				return text.contains("PLACEHOLDER");
+			}
+
+			previousSiblingDetailAST = previousSiblingDetailAST.getLastChild();
 		}
-
-		if (commonHiddenStreamToken == null) {
-			return false;
-		}
-
-		String text = commonHiddenStreamToken.getText();
-
-		return text.contains("PLACEHOLDER");
 	}
 
 	protected boolean isArray(DetailAST detailAST) {

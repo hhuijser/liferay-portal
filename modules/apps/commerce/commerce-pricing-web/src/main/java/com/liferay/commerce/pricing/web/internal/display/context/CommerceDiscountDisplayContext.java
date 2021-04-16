@@ -273,10 +273,10 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 		).setParameter(
 			"commerceDiscountId", "{id}"
 		).setParameter(
-			"usePercentage", "{usePercentage}"
-		).setParameter(
 			"screenNavigationCategoryKey",
 			CommerceDiscountScreenNavigationConstants.CATEGORY_KEY_DETAILS
+		).setParameter(
+			"usePercentage", "{usePercentage}"
 		).build();
 
 		clayDataSetActionDropdownItems.add(

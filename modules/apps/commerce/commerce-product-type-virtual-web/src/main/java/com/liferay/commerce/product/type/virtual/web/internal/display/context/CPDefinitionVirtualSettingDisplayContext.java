@@ -254,17 +254,17 @@ public class CPDefinitionVirtualSettingDisplayContext
 				httpServletRequest, JournalArticle.class.getName(),
 				PortletProvider.Action.BROWSE)
 		).setParameter(
+			"eventName", "selectJournalArticle"
+		).setParameter(
 			"groupId", getScopeGroupId()
 		).setParameter(
 			"selectedGroupIds", StringUtil.merge(getSelectedGroupIds())
-		).setParameter(
-			"typeSelection", JournalArticle.class.getName()
 		).setParameter(
 			"showNonindexable", Boolean.TRUE
 		).setParameter(
 			"showScheduled", Boolean.TRUE
 		).setParameter(
-			"eventName", "selectJournalArticle"
+			"typeSelection", JournalArticle.class.getName()
 		).setPortletMode(
 			PortletMode.VIEW
 		).setWindowState(

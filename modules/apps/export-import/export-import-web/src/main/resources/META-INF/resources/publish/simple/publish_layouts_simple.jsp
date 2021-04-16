@@ -63,9 +63,9 @@ Map<String, String[]> parameterMap = (Map<String, String[]>)settingsMap.get("par
 			).setParameter(
 				"layoutSetBranchId", MapUtil.getString(parameterMap, "layoutSetBranchId")
 			).setParameter(
-				"selPlid", String.valueOf(selPlid)
-			).setParameter(
 				"privateLayout", String.valueOf(privateLayout)
+			).setParameter(
+				"selPlid", String.valueOf(selPlid)
 			).buildString()
 		%>'
 		label="switch-to-advanced-publish-process"

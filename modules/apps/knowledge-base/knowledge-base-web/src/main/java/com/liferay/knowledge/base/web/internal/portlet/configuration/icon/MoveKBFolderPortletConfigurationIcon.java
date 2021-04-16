@@ -73,13 +73,13 @@ public class MoveKBFolderPortletConfigurationIcon
 		).setRedirect(
 			_portal.getCurrentURL(portletRequest)
 		).setParameter(
-			"resourceClassNameId", kbFolder.getClassNameId()
-		).setParameter(
-			"resourcePrimKey", kbFolder.getKbFolderId()
-		).setParameter(
 			"parentResourceClassNameId", kbFolder.getClassNameId()
 		).setParameter(
 			"parentResourcePrimKey", kbFolder.getParentKBFolderId()
+		).setParameter(
+			"resourceClassNameId", kbFolder.getClassNameId()
+		).setParameter(
+			"resourcePrimKey", kbFolder.getKbFolderId()
 		).buildString();
 	}
 

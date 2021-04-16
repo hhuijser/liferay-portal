@@ -28,9 +28,9 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setRedirect(
 	ParamUtil.getString(request, "redirect")
 ).setParameter(
-	"returnToFullPageURL", returnToFullPageURL
-).setParameter(
 	"portletResource", portletResource
+).setParameter(
+	"returnToFullPageURL", returnToFullPageURL
 ).build();
 %>
 

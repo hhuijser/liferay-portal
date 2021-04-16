@@ -171,10 +171,10 @@ public class CalendarBookingAssetRenderer
 			).setMVCPath(
 				"/view_calendar_booking.jsp"
 			).setParameter(
+				"calendarBookingId", _calendarBooking.getCalendarBookingId()
+			).setParameter(
 				"returnToFullPageURL",
 				PortalUtil.getCurrentURL(liferayPortletRequest)
-			).setParameter(
-				"calendarBookingId", _calendarBooking.getCalendarBookingId()
 			).setWindowState(
 				WindowState.MAXIMIZED
 			).buildString();

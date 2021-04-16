@@ -77,10 +77,10 @@ public class SelectBasicTemplatesNavigationCard implements NavigationCard {
 				).setBackURL(
 					redirect
 				).setParameter(
-					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
-				).setParameter(
 					"privateLayout",
 					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
+				).setParameter(
+					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
 				).setParameter(
 					"type", _type
 				).setWindowState(

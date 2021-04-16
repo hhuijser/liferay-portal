@@ -185,9 +185,9 @@ NumberFormat decimalFormat = NumberFormat.getNumberInstance(locale);
 							PortletURL portletURL = PortletURLBuilder.createRenderURL(
 								renderResponse
 							).setParameter(
-								"number", number
-							).setParameter(
 								"from", currencyConverter.getFromSymbol()
+							).setParameter(
+								"number", number
 							).setParameter(
 								"to", currencyConverter.getToSymbol()
 							).build();

@@ -395,8 +395,6 @@ public class WorkflowDefinitionLinkDisplayContext {
 		return PortletURLBuilder.createRenderURL(
 			_workflowDefinitionLinkRequestHelper.getLiferayPortletResponse()
 		).setParameter(
-			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
-		).setParameter(
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType",
@@ -410,6 +408,8 @@ public class WorkflowDefinitionLinkDisplayContext {
 
 				return "asc";
 			}
+		).setParameter(
+			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
 		).buildString();
 	}
 

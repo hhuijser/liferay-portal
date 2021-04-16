@@ -79,9 +79,9 @@ public class WikiAttachmentEditorOptionsContributor
 			).setActionName(
 				"/wiki/upload_page_attachment"
 			).setParameter(
-				"resourcePrimKey", wikiPageResourcePrimKey
-			).setParameter(
 				"mimeTypes", PropsValues.DL_FILE_ENTRY_PREVIEW_IMAGE_MIME_TYPES
+			).setParameter(
+				"resourcePrimKey", wikiPageResourcePrimKey
 			).buildString());
 	}
 

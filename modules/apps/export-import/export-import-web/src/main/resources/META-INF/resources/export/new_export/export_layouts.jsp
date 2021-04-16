@@ -75,13 +75,13 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setMVCRenderCommandName(
 	"/export_import/view_export_layouts"
 ).setParameter(
+	"displayStyle", displayStyle
+).setParameter(
 	"groupId", String.valueOf(groupId)
 ).setParameter(
 	"liveGroupId", String.valueOf(liveGroupId)
 ).setParameter(
 	"privateLayout", String.valueOf(privateLayout)
-).setParameter(
-	"displayStyle", displayStyle
 ).build();
 
 if (Validator.isBlank(backURL)) {

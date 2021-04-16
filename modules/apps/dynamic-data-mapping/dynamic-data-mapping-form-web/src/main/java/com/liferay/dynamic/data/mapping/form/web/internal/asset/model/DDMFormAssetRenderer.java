@@ -178,10 +178,10 @@ public class DDMFormAssetRenderer
 		).setRedirect(
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
+			"formInstanceId", _ddmFormInstanceRecord.getFormInstanceId()
+		).setParameter(
 			"formInstanceRecordId",
 			_ddmFormInstanceRecord.getFormInstanceRecordId()
-		).setParameter(
-			"formInstanceId", _ddmFormInstanceRecord.getFormInstanceId()
 		).build();
 	}
 

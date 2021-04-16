@@ -73,14 +73,14 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 				).setBackURL(
 					redirect
 				).setParameter(
-					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
+					"masterLayoutPlid", _layoutPageTemplateEntry.getPlid()
 				).setParameter(
 					"privateLayout",
 					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
 				).setParameter(
-					"type", LayoutConstants.TYPE_CONTENT
+					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
 				).setParameter(
-					"masterLayoutPlid", _layoutPageTemplateEntry.getPlid()
+					"type", LayoutConstants.TYPE_CONTENT
 				).setWindowState(
 					LiferayWindowState.POP_UP
 				).buildString());

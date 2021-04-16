@@ -98,9 +98,9 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 											).setRedirect(
 												currentURL
 											).setParameter(
-												"portletResource", portletDisplay.getId()
-											).setParameter(
 												"entryId", entry.getEntryId()
+											).setParameter(
+												"portletResource", portletDisplay.getId()
 											).buildString()
 										%>"
 									>

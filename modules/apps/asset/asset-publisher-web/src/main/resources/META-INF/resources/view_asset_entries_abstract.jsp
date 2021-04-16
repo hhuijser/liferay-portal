@@ -278,11 +278,11 @@ for (AssetEntry assetEntry : assetEntryResult.getAssetEntries()) {
 							).setParameter(
 								"assetEntryId", assetEntry.getEntryId()
 							).setParameter(
-								"viewMode", Constants.PRINT
+								"languageId", LanguageUtil.getLanguageId(request)
 							).setParameter(
 								"type", assetRendererFactory.getType()
 							).setParameter(
-								"languageId", LanguageUtil.getLanguageId(request)
+								"viewMode", Constants.PRINT
 							).setWindowState(
 								LiferayWindowState.POP_UP
 							).build();

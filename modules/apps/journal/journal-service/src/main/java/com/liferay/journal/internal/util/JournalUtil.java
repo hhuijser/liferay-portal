@@ -208,9 +208,9 @@ public class JournalUtil {
 			return PortletURLBuilder.createRenderURL(
 				liferayPortletResponse
 			).setParameter(
-				"groupId", groupId
-			).setParameter(
 				"folderId", folderId
+			).setParameter(
+				"groupId", groupId
 			).buildString();
 		}
 

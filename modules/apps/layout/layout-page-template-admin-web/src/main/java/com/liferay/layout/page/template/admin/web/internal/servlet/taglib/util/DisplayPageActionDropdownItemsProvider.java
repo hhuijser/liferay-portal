@@ -346,11 +346,11 @@ public class DisplayPageActionDropdownItemsProvider {
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(
-					"layoutPageTemplateEntryId",
-					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
-				).setParameter(
 					"defaultTemplate",
 					!_layoutPageTemplateEntry.isDefaultTemplate()
+				).setParameter(
+					"layoutPageTemplateEntryId",
+					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 				).buildString());
 
 			String message = StringPool.BLANK;

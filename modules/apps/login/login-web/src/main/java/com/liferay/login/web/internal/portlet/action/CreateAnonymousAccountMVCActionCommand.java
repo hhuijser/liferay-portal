@@ -195,9 +195,9 @@ public class CreateAnonymousAccountMVCActionCommand
 		).setMVCRenderCommandName(
 			"/login/login_redirect"
 		).setParameter(
-			"emailAddress", emailAddress
-		).setParameter(
 			"anonymousUser", Boolean.TRUE.toString()
+		).setParameter(
+			"emailAddress", emailAddress
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

@@ -170,9 +170,9 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 						PortletURL selectRegularRoleURL = PortletURLBuilder.create(
 							PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE)
 						).setParameter(
-							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
-						).setParameter(
 							"eventName", regularRoleEventName
+						).setParameter(
+							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
 						).setWindowState(
 							LiferayWindowState.POP_UP
 						).build();
@@ -420,15 +420,15 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 						PortletURL selectOrganizationRoleURL = PortletURLBuilder.create(
 							PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE)
 						).setParameter(
-							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
-						).setParameter(
-							"step", "1"
-						).setParameter(
-							"roleType", String.valueOf(RoleConstants.TYPE_ORGANIZATION)
+							"eventName", organizationRoleEventName
 						).setParameter(
 							"organizationIds", StringUtil.merge(organizationIds)
 						).setParameter(
-							"eventName", organizationRoleEventName
+							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
+						).setParameter(
+							"roleType", String.valueOf(RoleConstants.TYPE_ORGANIZATION)
+						).setParameter(
+							"step", "1"
 						).setWindowState(
 							LiferayWindowState.POP_UP
 						).build();
@@ -620,13 +620,13 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 									PortletURLBuilder.create(
 										PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE)
 									).setParameter(
-										"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
+										"eventName", siteRoleEventName
 									).setParameter(
-										"step", "1"
+										"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
 									).setParameter(
 										"roleType", String.valueOf(RoleConstants.TYPE_SITE)
 									).setParameter(
-										"eventName", siteRoleEventName
+										"step", "1"
 									).setWindowState(
 										LiferayWindowState.POP_UP
 									).build()

@@ -31,9 +31,9 @@
 			).setBackURL(
 				currentURL
 			).setParameter(
-				"groupId", changesetGroupId
-			).setParameter(
 				"changesetUuid", changesetUuid
+			).setParameter(
+				"groupId", changesetGroupId
 			).setParameter(
 				"portletId", portletDisplay.getId()
 			).buildString()

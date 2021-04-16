@@ -27,9 +27,9 @@ if (Validator.isNull(backURL)) {
 	).setMVCRenderCommandName(
 		"/account_admin/edit_account_entry"
 	).setParameter(
-		"screenNavigationCategoryKey", AccountScreenNavigationEntryConstants.CATEGORY_KEY_USERS
-	).setParameter(
 		"accountEntryId", accountEntryDisplay.getAccountEntryId()
+	).setParameter(
+		"screenNavigationCategoryKey", AccountScreenNavigationEntryConstants.CATEGORY_KEY_USERS
 	).buildString();
 }
 

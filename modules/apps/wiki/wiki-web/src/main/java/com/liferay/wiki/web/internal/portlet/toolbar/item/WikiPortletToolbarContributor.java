@@ -100,11 +100,11 @@ public class WikiPortletToolbarContributor
 			).setRedirect(
 				_portal.getCurrentURL(portletRequest)
 			).setParameter(
+				"editTitle", "1"
+			).setParameter(
 				"nodeId", node.getNodeId()
 			).setParameter(
 				"title", StringPool.BLANK
-			).setParameter(
-				"editTitle", "1"
 			).buildString());
 
 		menuItems.add(urlMenuItem);

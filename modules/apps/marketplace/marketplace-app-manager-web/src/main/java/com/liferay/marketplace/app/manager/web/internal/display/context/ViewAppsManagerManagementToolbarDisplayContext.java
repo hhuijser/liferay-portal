@@ -147,9 +147,9 @@ public class ViewAppsManagerManagementToolbarDisplayContext
 		).setParameter(
 			"category", getCategory()
 		).setParameter(
-			"state", getState()
-		).setParameter(
 			"orderByType", getOrderByType()
+		).setParameter(
+			"state", getState()
 		).build();
 
 		if (_searchContainer != null) {

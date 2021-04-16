@@ -137,9 +137,9 @@ public class SiteNavigationMenuAddPortletToolbarContributor
 			).setParameter(
 				"groupId", themeDisplay.getScopeGroupId()
 			).setParameter(
-				"privateLayout", layout.isPrivateLayout()
-			).setParameter(
 				"portletResource", portletDisplay.getPortletName()
+			).setParameter(
+				"privateLayout", layout.isPrivateLayout()
 			).buildString());
 
 		return urlMenuItem;

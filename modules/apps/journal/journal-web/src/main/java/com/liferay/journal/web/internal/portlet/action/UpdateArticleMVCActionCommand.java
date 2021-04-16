@@ -457,6 +457,12 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 		).setRedirect(
 			redirect
 		).setParameter(
+			"articleId", article.getArticleId()
+		).setParameter(
+			"folderId", article.getFolderId()
+		).setParameter(
+			"groupId", article.getGroupId()
+		).setParameter(
 			"portletResource",
 			ParamUtil.getString(actionRequest, "portletResource")
 		).setParameter(
@@ -464,12 +470,6 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 			ParamUtil.getString(actionRequest, "referringPortletResource")
 		).setParameter(
 			"resourcePrimKey", article.getResourcePrimKey()
-		).setParameter(
-			"groupId", article.getGroupId()
-		).setParameter(
-			"folderId", article.getFolderId()
-		).setParameter(
-			"articleId", article.getArticleId()
 		).setParameter(
 			"version", article.getVersion()
 		).build();

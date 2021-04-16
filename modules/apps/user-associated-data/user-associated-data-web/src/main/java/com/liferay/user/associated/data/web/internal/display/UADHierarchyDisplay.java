@@ -104,10 +104,10 @@ public class UADHierarchyDisplay {
 		PortletURL baseURL = PortletURLBuilder.createRenderURL(
 			renderResponse
 		).setParameter(
-			"p_u_i_d", ParamUtil.getString(httpServletRequest, "p_u_i_d")
-		).setParameter(
 			"applicationKey",
 			ParamUtil.getString(httpServletRequest, "applicationKey")
+		).setParameter(
+			"p_u_i_d", ParamUtil.getString(httpServletRequest, "p_u_i_d")
 		).build();
 
 		if (Validator.isNotNull(scope)) {
@@ -305,10 +305,10 @@ public class UADHierarchyDisplay {
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setParameter(
-			"p_u_i_d", ParamUtil.getString(actionRequest, "p_u_i_d")
-		).setParameter(
 			"applicationKey",
 			ParamUtil.getString(actionRequest, "applicationKey")
+		).setParameter(
+			"p_u_i_d", ParamUtil.getString(actionRequest, "p_u_i_d")
 		).build();
 
 		if (Validator.isNotNull(scope)) {
@@ -391,9 +391,9 @@ public class UADHierarchyDisplay {
 		).setMVCRenderCommandName(
 			"/user_associated_data/view_uad_hierarchy"
 		).setParameter(
-			"p_u_i_d", selectedUserId
-		).setParameter(
 			"applicationKey", applicationKey
+		).setParameter(
+			"p_u_i_d", selectedUserId
 		).setParameter(
 			"parentContainerClass", typeClass.getName()
 		).setParameter(

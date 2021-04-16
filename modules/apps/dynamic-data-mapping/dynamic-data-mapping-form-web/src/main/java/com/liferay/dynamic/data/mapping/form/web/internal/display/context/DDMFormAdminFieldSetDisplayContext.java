@@ -298,9 +298,9 @@ public class DDMFormAdminFieldSetDisplayContext
 		).setMVCPath(
 			"/admin/view.jsp"
 		).setParameter(
-			"groupId", getScopeGroupId()
-		).setParameter(
 			"currentTab", "element-set"
+		).setParameter(
+			"groupId", getScopeGroupId()
 		).build();
 
 		String delta = ParamUtil.getString(renderRequest, "delta");
@@ -379,9 +379,9 @@ public class DDMFormAdminFieldSetDisplayContext
 		).setMVCPath(
 			"/admin/view.jsp"
 		).setParameter(
-			"groupId", getScopeGroupId()
-		).setParameter(
 			"currentTab", "element-set"
+		).setParameter(
+			"groupId", getScopeGroupId()
 		).buildString();
 	}
 

@@ -32,15 +32,15 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setNavigation(
 	navigation
 ).setParameter(
-	"groupId", String.valueOf(groupId)
-).setParameter(
-	"privateLayout", String.valueOf(privateLayout)
-).setParameter(
 	"displayStyle", displayStyle
+).setParameter(
+	"groupId", String.valueOf(groupId)
 ).setParameter(
 	"orderByCol", orderByCol
 ).setParameter(
 	"orderByType", orderByType
+).setParameter(
+	"privateLayout", String.valueOf(privateLayout)
 ).setParameter(
 	"searchContainerId", searchContainerId
 ).build();

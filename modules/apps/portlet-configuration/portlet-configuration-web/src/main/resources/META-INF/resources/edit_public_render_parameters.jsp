@@ -50,9 +50,9 @@ Set<PublicRenderParameter> publicRenderParameters = (Set<PublicRenderParameter>)
 				).setRedirect(
 					ParamUtil.getString(request, "redirect")
 				).setParameter(
-					"returnToFullPageURL", returnToFullPageURL
-				).setParameter(
 					"portletResource", portletResource
+				).setParameter(
+					"returnToFullPageURL", returnToFullPageURL
 				).buildString()
 			%>'
 		/>

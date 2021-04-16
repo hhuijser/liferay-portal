@@ -32,9 +32,9 @@
 			).setBackURL(
 				currentURL
 			).setParameter(
-				"groupId", entityGroupId
-			).setParameter(
 				"changesetUuid", changesetUuid
+			).setParameter(
+				"groupId", entityGroupId
 			).setParameter(
 				"portletId", portletDisplay.getId()
 			).buildString()

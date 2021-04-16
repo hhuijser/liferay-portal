@@ -190,11 +190,11 @@ public class PortletDisplayTemplateDDMDisplay extends BaseDDMDisplay {
 			).setMVCPath(
 				"/view_template.jsp"
 			).setParameter(
-				"groupId", groupId
-			).setParameter(
 				"classNameId", classNameId
 			).setParameter(
 				"classPK", classPK
+			).setParameter(
+				"groupId", groupId
 			).setWindowState(
 				LiferayWindowState.POP_UP
 			).build();

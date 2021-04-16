@@ -142,11 +142,11 @@ public class EditCommerceBOMDefinitionMVCActionCommand
 		).setMVCRenderCommandName(
 			"/commerce_bom_admin/edit_commerce_bom_definition"
 		).setParameter(
-			"commerceBOMFolderId",
-			commerceBOMDefinition.getCommerceBOMFolderId()
-		).setParameter(
 			"commerceBOMDefinitionId",
 			commerceBOMDefinition.getCommerceBOMDefinitionId()
+		).setParameter(
+			"commerceBOMFolderId",
+			commerceBOMDefinition.getCommerceBOMFolderId()
 		).build();
 
 		String backURL = ParamUtil.getString(actionRequest, "backURL");

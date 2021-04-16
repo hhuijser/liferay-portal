@@ -310,14 +310,14 @@ public class TrashPortlet extends MVCPortlet {
 				).setRedirect(
 					ParamUtil.getString(actionRequest, "redirect")
 				).setParameter(
-					"trashEntryId", restoreEntryException.getTrashEntryId()
-				).setParameter(
 					"duplicateEntryId",
 					restoreEntryException.getDuplicateEntryId()
 				).setParameter(
 					"oldName", restoreEntryException.getOldName()
 				).setParameter(
 					"overridable", restoreEntryException.isOverridable()
+				).setParameter(
+					"trashEntryId", restoreEntryException.getTrashEntryId()
 				).buildString());
 
 			hideDefaultErrorMessage(actionRequest);

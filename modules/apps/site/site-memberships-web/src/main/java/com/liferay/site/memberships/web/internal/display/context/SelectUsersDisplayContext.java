@@ -133,9 +133,9 @@ public class SelectUsersDisplayContext {
 		).setMVCPath(
 			"/select_users.jsp"
 		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
 			"eventName", getEventName()
+		).setParameter(
+			"groupId", getGroupId()
 		).build();
 
 		String displayStyle = getDisplayStyle();

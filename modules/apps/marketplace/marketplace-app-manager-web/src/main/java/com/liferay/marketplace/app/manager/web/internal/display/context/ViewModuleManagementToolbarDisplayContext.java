@@ -104,13 +104,13 @@ public class ViewModuleManagementToolbarDisplayContext
 		).setParameter(
 			"app", getApp()
 		).setParameter(
-			"symbolicName", bundle.getSymbolicName()
-		).setParameter(
-			"version", bundle.getVersion()
+			"orderByType", getOrderByType()
 		).setParameter(
 			"pluginType", getPluginType()
 		).setParameter(
-			"orderByType", getOrderByType()
+			"symbolicName", bundle.getSymbolicName()
+		).setParameter(
+			"version", bundle.getVersion()
 		).build();
 
 		if (_searchContainer != null) {

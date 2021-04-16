@@ -151,6 +151,10 @@ public class UADExportProcessDisplayContext {
 		).setNavigation(
 			getNavigation()
 		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).setParameter(
 			"p_u_i_d",
 			() -> {
 				User selectedUser = PortalUtil.getSelectedUser(
@@ -158,10 +162,6 @@ public class UADExportProcessDisplayContext {
 
 				return selectedUser.getUserId();
 			}
-		).setParameter(
-			"orderByCol", getOrderByCol()
-		).setParameter(
-			"orderByType", getOrderByType()
 		).build();
 	}
 

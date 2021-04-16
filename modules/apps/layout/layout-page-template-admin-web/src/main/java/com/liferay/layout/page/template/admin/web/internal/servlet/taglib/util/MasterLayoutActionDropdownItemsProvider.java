@@ -341,11 +341,11 @@ public class MasterLayoutActionDropdownItemsProvider {
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(
+					"defaultTemplate", Boolean.FALSE.toString()
+				).setParameter(
 					"layoutPageTemplateEntryId",
 					defaultLayoutPageTemplateEntry.
 						getLayoutPageTemplateEntryId()
-				).setParameter(
-					"defaultTemplate", Boolean.FALSE.toString()
 				).buildString());
 			dropdownItem.putData(
 				"message",
@@ -377,10 +377,10 @@ public class MasterLayoutActionDropdownItemsProvider {
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(
+					"defaultTemplate", Boolean.TRUE.toString()
+				).setParameter(
 					"layoutPageTemplateEntryId",
 					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
-				).setParameter(
-					"defaultTemplate", Boolean.TRUE.toString()
 				).buildString());
 
 			String name = "Blank";

@@ -119,15 +119,15 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 			).setRedirect(
 				themeDisplay.getURLCurrent()
 			).setParameter(
-				"referringPortletResource",
-				ParamUtil.getString(
-					_httpServletRequest, "referringPortletResource")
-			).setParameter(
-				"groupId", _article.getGroupId()
+				"articleId", _article.getArticleId()
 			).setParameter(
 				"folderId", _article.getFolderId()
 			).setParameter(
-				"articleId", _article.getArticleId()
+				"groupId", _article.getGroupId()
+			).setParameter(
+				"referringPortletResource",
+				ParamUtil.getString(
+					_httpServletRequest, "referringPortletResource")
 			).setParameter(
 				"version", _article.getVersion()
 			).buildString();

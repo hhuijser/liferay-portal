@@ -246,17 +246,17 @@ public class PortletConfigurationPermissionsDisplayContext {
 		).setMVCPath(
 			"/edit_permissions.jsp"
 		).setParameter(
-			"returnToFullPageURL", _getReturnToFullPageURL()
+			"modelResource", getModelResource()
 		).setParameter(
 			"portletConfiguration", Boolean.TRUE.toString()
 		).setParameter(
 			"portletResource", _getPortletResource()
 		).setParameter(
-			"modelResource", getModelResource()
-		).setParameter(
 			"resourceGroupId", _getResourceGroupId()
 		).setParameter(
 			"resourcePrimKey", getResourcePrimKey()
+		).setParameter(
+			"returnToFullPageURL", _getReturnToFullPageURL()
 		).setParameter(
 			"roleTypes", _getRoleTypesParam()
 		).setWindowState(
@@ -649,19 +649,19 @@ public class PortletConfigurationPermissionsDisplayContext {
 			ParamUtil.getInteger(
 				_httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM)
 		).setParameter(
-			"returnToFullPageURL", _getReturnToFullPageURL()
+			"modelResource", getModelResource()
+		).setParameter(
+			"modelResourceDescription", getModelResourceDescription()
 		).setParameter(
 			"portletConfiguration", Boolean.TRUE.toString()
 		).setParameter(
 			"portletResource", _getPortletResource()
 		).setParameter(
-			"modelResource", getModelResource()
-		).setParameter(
-			"modelResourceDescription", getModelResourceDescription()
-		).setParameter(
 			"resourceGroupId", _getResourceGroupId()
 		).setParameter(
 			"resourcePrimKey", getResourcePrimKey()
+		).setParameter(
+			"returnToFullPageURL", _getReturnToFullPageURL()
 		).setParameter(
 			"roleTypes", _getRoleTypesParam()
 		).setWindowState(

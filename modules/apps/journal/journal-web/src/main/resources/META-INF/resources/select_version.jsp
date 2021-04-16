@@ -28,9 +28,9 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setRedirect(
 	currentURL
 ).setParameter(
-	"groupId", String.valueOf(groupId)
-).setParameter(
 	"articleId", articleId
+).setParameter(
+	"groupId", String.valueOf(groupId)
 ).setParameter(
 	"sourceVersion", String.valueOf(sourceVersion)
 ).build();

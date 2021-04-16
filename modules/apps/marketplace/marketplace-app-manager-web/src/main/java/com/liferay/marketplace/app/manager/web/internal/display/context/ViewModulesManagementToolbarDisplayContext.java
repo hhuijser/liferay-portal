@@ -106,9 +106,9 @@ public class ViewModulesManagementToolbarDisplayContext
 		).setParameter(
 			"app", getApp()
 		).setParameter(
-			"state", getState()
-		).setParameter(
 			"orderByType", getOrderByType()
+		).setParameter(
+			"state", getState()
 		).build();
 
 		if (_searchContainer != null) {

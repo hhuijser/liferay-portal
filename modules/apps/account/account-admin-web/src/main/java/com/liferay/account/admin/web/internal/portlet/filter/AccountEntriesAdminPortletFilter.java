@@ -112,15 +112,15 @@ public class AccountEntriesAdminPortletFilter
 				).setBackURL(
 					ParamUtil.getString(renderRequest, "backURL")
 				).setParameter(
-					"screenNavigationCategoryKey",
-					AccountScreenNavigationEntryConstants.
-						CATEGORY_KEY_DEFINE_PERMISSIONS
-				).setParameter(
 					"cur", ParamUtil.getString(renderRequest, "cur")
 				).setParameter(
 					"delta", ParamUtil.getString(renderRequest, "delta")
 				).setParameter(
 					"resetCur", ParamUtil.getString(renderRequest, "resetCur")
+				).setParameter(
+					"screenNavigationCategoryKey",
+					AccountScreenNavigationEntryConstants.
+						CATEGORY_KEY_DEFINE_PERMISSIONS
 				).build();
 
 				long roleId = ParamUtil.getLong(renderRequest, "roleId");

@@ -74,11 +74,11 @@ if (row == null) {
 				).setRedirect(
 					currentURL
 				).setParameter(
-					"portletResource", portletDisplay.getId()
-				).setParameter(
 					"folderId", folder.getFolderId()
 				).setParameter(
 					"mergeWithParentFolderDisabled", row == null
+				).setParameter(
+					"portletResource", portletDisplay.getId()
 				).buildString()
 			%>'
 		/>

@@ -1107,9 +1107,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			).setMVCPath(
 				"/contacts_center/view_resources.jsp"
 			).setParameter(
-				"userId", user.getUserId()
-			).setParameter(
 				"portalUser", Boolean.TRUE.toString()
+			).setParameter(
+				"userId", user.getUserId()
 			).setWindowState(
 				LiferayWindowState.EXCLUSIVE
 			).buildString()

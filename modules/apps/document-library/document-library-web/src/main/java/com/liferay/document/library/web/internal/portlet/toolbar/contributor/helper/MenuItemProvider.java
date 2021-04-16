@@ -119,13 +119,13 @@ public class MenuItemProvider {
 			).setRedirect(
 				PortalUtil.getCurrentURL(portletRequest)
 			).setParameter(
-				"portletResource", portletDisplay.getId()
-			).setParameter(
-				"repositoryId", _getRepositoryId(folder, themeDisplay)
+				"fileEntryTypeId", _getDefaultFileEntryTypeId(folderId)
 			).setParameter(
 				"folderId", folderId
 			).setParameter(
-				"fileEntryTypeId", _getDefaultFileEntryTypeId(folderId)
+				"portletResource", portletDisplay.getId()
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
 			).buildString());
 
 		return urlMenuItem;
@@ -163,13 +163,13 @@ public class MenuItemProvider {
 			).setRedirect(
 				PortalUtil.getCurrentURL(portletRequest)
 			).setParameter(
-				"portletResource", portletDisplay.getId()
-			).setParameter(
-				"repositoryId", _getRepositoryId(folder, themeDisplay)
+				"ignoreRootFolder", Boolean.TRUE.toString()
 			).setParameter(
 				"parentFolderId", folderId
 			).setParameter(
-				"ignoreRootFolder", Boolean.TRUE.toString()
+				"portletResource", portletDisplay.getId()
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
 			).buildString());
 
 		return urlMenuItem;
@@ -213,11 +213,11 @@ public class MenuItemProvider {
 			).setRedirect(
 				PortalUtil.getCurrentURL(portletRequest)
 			).setParameter(
+				"folderId", folderId
+			).setParameter(
 				"portletResource", portletDisplay.getId()
 			).setParameter(
 				"repositoryId", _getRepositoryId(folder, themeDisplay)
-			).setParameter(
-				"folderId", folderId
 			).buildString());
 
 		return urlMenuItem;
@@ -293,9 +293,9 @@ public class MenuItemProvider {
 			).setRedirect(
 				PortalUtil.getCurrentURL(portletRequest)
 			).setParameter(
-				"repositoryId", _getRepositoryId(folder, themeDisplay)
-			).setParameter(
 				"folderId", folderId
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
 			).buildString());
 
 		return urlMenuItem;
@@ -363,13 +363,13 @@ public class MenuItemProvider {
 			).setRedirect(
 				PortalUtil.getCurrentURL(portletRequest)
 			).setParameter(
-				"portletResource", portletDisplay.getId()
-			).setParameter(
-				"repositoryId", _getRepositoryId(folder, themeDisplay)
+				"fileEntryTypeId", fileEntryType.getFileEntryTypeId()
 			).setParameter(
 				"folderId", _getFolderId(folder)
 			).setParameter(
-				"fileEntryTypeId", fileEntryType.getFileEntryTypeId()
+				"portletResource", portletDisplay.getId()
+			).setParameter(
+				"repositoryId", _getRepositoryId(folder, themeDisplay)
 			).buildString());
 
 		return urlMenuItem;

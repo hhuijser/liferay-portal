@@ -349,6 +349,16 @@
 			<message key="start.character.invalid" value="When concatenating multiple literal strings using '+', only the first literal string can start with ''{0}''" />
 			<message key="string.combine" value="Combine the literal string ''{0}'' with ''{1}''" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.PortletURLBuilderCheck">
+			<property name="category" value="Miscellaneous" />
+			<property name="description" value="Checks that `PortletURLBuilder` is used when possible." />
+			<property name="enabled" value="false" />
+			<message key="builder.include" value="Include method call ''{0}'' ({1}) in ''{2}'' ({3})" />
+			<message key="builder.inline.1" value="Inline variable definition ''{0}'' ({1}) inside ''{2}'' ({3})" />
+			<message key="builder.inline.2" value="Inline variable definition ''{0}'' ({1}) and dependent statements ({2}) inside ''{3}'' ({4})" />
+			<message key="builder.use" value="Use ''{0}'' ({1}, {2})" />
+			<message key="builder.use.instead" value="Use ''{0}'' instead of new instance of ''{1}''" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.SemiColonCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Finds cases of unnecessary semicolon." />

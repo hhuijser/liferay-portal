@@ -63,16 +63,16 @@ public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 				).setBackURL(
 					ParamUtil.getString(_renderRequest, "redirect")
 				).setParameter(
-					"selPlid", ParamUtil.getLong(_renderRequest, "selPlid")
-				).setParameter(
-					"privateLayout",
-					ParamUtil.getBoolean(_renderRequest, "privateLayout")
-				).setParameter(
 					"layoutPageTemplateEntryId",
 					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 				).setParameter(
 					"layoutPrototypeId",
 					_layoutPageTemplateEntry.getLayoutPrototypeId()
+				).setParameter(
+					"privateLayout",
+					ParamUtil.getBoolean(_renderRequest, "privateLayout")
+				).setParameter(
+					"selPlid", ParamUtil.getLong(_renderRequest, "selPlid")
 				).setWindowState(
 					LiferayWindowState.POP_UP
 				).buildString());

@@ -167,17 +167,17 @@ public class JournalHistoryDisplayContext {
 		).setBackURL(
 			getBackURL()
 		).setParameter(
-			"referringPortletResource", getReferringPortletResource()
-		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
 			"articleId", _article.getArticleId()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
 		).setParameter(
+			"groupId", _article.getGroupId()
+		).setParameter(
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
+		).setParameter(
+			"referringPortletResource", getReferringPortletResource()
 		).build();
 	}
 

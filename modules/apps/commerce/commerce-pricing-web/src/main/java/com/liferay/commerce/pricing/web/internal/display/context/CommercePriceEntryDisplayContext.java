@@ -157,9 +157,9 @@ public class CommercePriceEntryDisplayContext
 		).setRedirect(
 			commercePricingRequestHelper.getCurrentURL()
 		).setParameter(
-			"commercePriceListId", getCommercePriceListId()
-		).setParameter(
 			"commercePriceEntryId", "{priceEntryId}"
+		).setParameter(
+			"commercePriceListId", getCommercePriceListId()
 		).build();
 
 		try {

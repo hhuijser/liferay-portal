@@ -1781,9 +1781,9 @@ public class ContentPageEditorDisplayContext {
 		).setParameter(
 			"groupId", layout.getGroupId()
 		).setParameter(
-			"selPlid", layout.getPlid()
-		).setParameter(
 			"privateLayout", layout.isPrivateLayout()
+		).setParameter(
+			"selPlid", layout.getPlid()
 		).buildString();
 	}
 

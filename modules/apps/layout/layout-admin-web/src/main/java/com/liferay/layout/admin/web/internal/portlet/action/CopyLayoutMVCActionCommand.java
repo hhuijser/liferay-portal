@@ -138,9 +138,9 @@ public class CopyLayoutMVCActionCommand extends BaseMVCActionCommand {
 			).setNavigation(
 				privateLayout ? "private-pages" : "public-pages"
 			).setParameter(
-				"selPlid", sourceLayout.getParentPlid()
-			).setParameter(
 				"privateLayout", privateLayout
+			).setParameter(
+				"selPlid", sourceLayout.getParentPlid()
 			).build();
 
 			JSONPortletResponseUtil.writeJSON(

@@ -64,11 +64,11 @@ boolean showIconsActions = themeDisplay.isSignedIn() && !layout.isLayoutPrototyp
 			).setRedirect(
 				redirectURL.toString()
 			).setParameter(
-				"struts_action", "/polls/edit_question"
-			).setParameter(
 				"referringPortletResource", portletDisplay.getId()
 			).setParameter(
 				"showHeader", Boolean.FALSE.toString()
+			).setParameter(
+				"struts_action", "/polls/edit_question"
 			).setWindowState(
 				LiferayWindowState.POP_UP
 			).buildString();
@@ -96,9 +96,9 @@ boolean showIconsActions = themeDisplay.isSignedIn() && !layout.isLayoutPrototyp
 			).setRedirect(
 				redirectURL.toString()
 			).setParameter(
-				"referringPortletResource", portletDisplay.getId()
-			).setParameter(
 				"questionId", question.getQuestionId()
+			).setParameter(
+				"referringPortletResource", portletDisplay.getId()
 			).setParameter(
 				"showHeader", Boolean.FALSE.toString()
 			).setWindowState(

@@ -77,17 +77,17 @@ public class CollectionProvidersVerticalCard extends BaseVerticalCard {
 				).setBackURL(
 					themeDisplay.getURLCurrent()
 				).setParameter(
-					"groupId", _groupId
-				).setParameter(
-					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
-				).setParameter(
-					"privateLayout",
-					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
-				).setParameter(
 					"collectionPK", _infoListProvider.getKey()
 				).setParameter(
 					"collectionType",
 					InfoListProviderItemSelectorReturnType.class.getName()
+				).setParameter(
+					"groupId", _groupId
+				).setParameter(
+					"privateLayout",
+					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
+				).setParameter(
+					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
 				).buildString());
 		}
 		catch (Exception exception) {

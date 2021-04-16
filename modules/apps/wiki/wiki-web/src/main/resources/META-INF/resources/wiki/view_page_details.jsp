@@ -332,15 +332,15 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "details
 								).setMVCRenderCommandName(
 									"/wiki/edit_page"
 								).setParameter(
-									"nodeId", wikiPage.getNodeId()
-								).setParameter(
-									"title", StringPool.BLANK
-								).setParameter(
 									"editTitle", "1"
+								).setParameter(
+									"nodeId", wikiPage.getNodeId()
 								).setParameter(
 									"templateNodeId", wikiPage.getNodeId()
 								).setParameter(
 									"templateTitle", wikiPage.getTitle()
+								).setParameter(
+									"title", StringPool.BLANK
 								).buildString()
 							%>'
 						/>

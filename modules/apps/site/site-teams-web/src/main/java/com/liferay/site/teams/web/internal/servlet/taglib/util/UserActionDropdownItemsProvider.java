@@ -70,9 +70,9 @@ public class UserActionDropdownItemsProvider {
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(
-					"teamId", _teamId
-				).setParameter(
 					"removeUserId", _user.getUserId()
+				).setParameter(
+					"teamId", _teamId
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "delete"));

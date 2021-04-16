@@ -49,9 +49,9 @@ public class JournalFeedUADDisplay extends BaseJournalFeedUADDisplay {
 		).setRedirect(
 			_portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"groupId", journalFeed.getGroupId()
-		).setParameter(
 			"feedId", journalFeed.getFeedId()
+		).setParameter(
+			"groupId", journalFeed.getGroupId()
 		).buildString();
 	}
 

@@ -184,19 +184,19 @@ public class LayoutsAdminDisplayContext {
 		).setBackURL(
 			getBackURL()
 		).setParameter(
-			"portletResource", getPortletResource()
+			"explicitCreation", Boolean.TRUE.toString()
 		).setParameter(
 			"groupId", getGroupId()
 		).setParameter(
 			"liveGroupId", getLiveGroupId()
 		).setParameter(
-			"stagingGroupId", getStagingGroupId()
+			"parentLayoutId", getParentLayoutId()
+		).setParameter(
+			"portletResource", getPortletResource()
 		).setParameter(
 			"privateLayout", isPrivateLayout()
 		).setParameter(
-			"parentLayoutId", getParentLayoutId()
-		).setParameter(
-			"explicitCreation", Boolean.TRUE.toString()
+			"stagingGroupId", getStagingGroupId()
 		).build();
 
 		String type = ParamUtil.getString(httpServletRequest, "type");
@@ -277,6 +277,8 @@ public class LayoutsAdminDisplayContext {
 		).setBackURL(
 			themeDisplay.getURLCurrent()
 		).setParameter(
+			"groupId", layout.getGroupId()
+		).setParameter(
 			"portletResource",
 			() -> {
 				PortletDisplay portletDisplay =
@@ -285,11 +287,9 @@ public class LayoutsAdminDisplayContext {
 				return portletDisplay.getId();
 			}
 		).setParameter(
-			"groupId", layout.getGroupId()
+			"privateLayout", layout.isPrivateLayout()
 		).setParameter(
 			"selPlid", layout.getPlid()
-		).setParameter(
-			"privateLayout", layout.isPrivateLayout()
 		).buildString();
 	}
 
@@ -311,9 +311,9 @@ public class LayoutsAdminDisplayContext {
 		).setMVCRenderCommandName(
 			"/layout_admin/add_layout"
 		).setParameter(
-			"sourcePlid", layout.getPlid()
-		).setParameter(
 			"privateLayout", isPrivateLayout()
+		).setParameter(
+			"sourcePlid", layout.getPlid()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).buildString();
@@ -325,17 +325,17 @@ public class LayoutsAdminDisplayContext {
 		).setActionName(
 			"/layout_admin/copy_layout"
 		).setParameter(
-			"sourcePlid", sourcePlid
+			"explicitCreation", Boolean.TRUE
 		).setParameter(
 			"groupId", getGroupId()
 		).setParameter(
 			"liveGroupId", getLiveGroupId()
 		).setParameter(
-			"stagingGroupId", getStagingGroupId()
-		).setParameter(
 			"privateLayout", isPrivateLayout()
 		).setParameter(
-			"explicitCreation", Boolean.TRUE
+			"sourcePlid", sourcePlid
+		).setParameter(
+			"stagingGroupId", getStagingGroupId()
 		).buildString();
 	}
 
@@ -348,14 +348,14 @@ public class LayoutsAdminDisplayContext {
 			PortletURLBuilder.createRenderURL(
 				_liferayPortletResponse
 			).setParameter(
-				"selPlid", layout.getParentPlid()
-			).setParameter(
 				"layoutSetBranchId", getActiveLayoutSetBranchId()
+			).setParameter(
+				"selPlid", layout.getParentPlid()
 			).buildString()
 		).setParameter(
-			"selPlid", layout.getPlid()
-		).setParameter(
 			"layoutSetBranchId", getActiveLayoutSetBranchId()
+		).setParameter(
+			"selPlid", layout.getPlid()
 		).buildString();
 	}
 
@@ -933,9 +933,9 @@ public class LayoutsAdminDisplayContext {
 			).setParameter(
 				"groupId", getSelGroupId()
 			).setParameter(
-				"selPlid", selPlid
-			).setParameter(
 				"privateLayout", privateLayout
+			).setParameter(
+				"selPlid", selPlid
 			).build();
 
 		if (Validator.isNotNull(selectedTab)) {
@@ -985,9 +985,9 @@ public class LayoutsAdminDisplayContext {
 			).setParameter(
 				"groupId", getSelGroupId()
 			).setParameter(
-				"selPlid", selPlid
-			).setParameter(
 				"privateLayout", privateLayout
+			).setParameter(
+				"selPlid", selPlid
 			).build();
 
 		if (layoutPageTemplateCollectionId > 0) {
@@ -1752,9 +1752,9 @@ public class LayoutsAdminDisplayContext {
 			PortletURLBuilder.create(
 				getPortletURL()
 			).setParameter(
-				"selPlid", plid
-			).setParameter(
 				"privateLayout", privateLayout
+			).setParameter(
+				"selPlid", plid
 			).buildString());
 
 		return breadcrumbEntry;

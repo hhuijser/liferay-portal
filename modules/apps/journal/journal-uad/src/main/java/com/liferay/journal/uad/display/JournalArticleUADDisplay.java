@@ -54,9 +54,9 @@ public class JournalArticleUADDisplay extends BaseJournalArticleUADDisplay {
 		).setRedirect(
 			_portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"groupId", journalArticle.getGroupId()
-		).setParameter(
 			"articleId", journalArticle.getArticleId()
+		).setParameter(
+			"groupId", journalArticle.getGroupId()
 		).setParameter(
 			"version", journalArticle.getVersion()
 		).buildString();

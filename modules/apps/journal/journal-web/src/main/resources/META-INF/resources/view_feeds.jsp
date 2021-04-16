@@ -64,9 +64,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "feeds"));
 				).setRedirect(
 					currentURL
 				).setParameter(
-					"groupId", feed.getGroupId()
-				).setParameter(
 					"feedId", feed.getFeedId()
+				).setParameter(
+					"groupId", feed.getGroupId()
 				).buildString();
 			}
 

@@ -30,9 +30,9 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setParameter(
 	"nodeId", String.valueOf(wikiPage.getNodeId())
 ).setParameter(
-	"title", HtmlUtil.unescape(wikiPage.getTitle())
-).setParameter(
 	"sourceVersion", String.valueOf(sourceVersion)
+).setParameter(
+	"title", HtmlUtil.unescape(wikiPage.getTitle())
 ).build();
 %>
 

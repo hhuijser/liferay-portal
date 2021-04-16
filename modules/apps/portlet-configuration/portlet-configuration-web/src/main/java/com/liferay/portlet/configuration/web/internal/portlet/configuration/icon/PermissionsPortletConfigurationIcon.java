@@ -79,9 +79,6 @@ public class PermissionsPortletConfigurationIcon
 			).setMVCPath(
 				"/edit_permissions.jsp"
 			).setParameter(
-				"returnToFullPageURL",
-				ParamUtil.getString(portletRequest, "returnToFullPageURL")
-			).setParameter(
 				"portletConfiguration", Boolean.TRUE.toString()
 			).setParameter(
 				"portletResource", portletDisplay.getId()
@@ -89,6 +86,9 @@ public class PermissionsPortletConfigurationIcon
 				"resourcePrimKey",
 				PortletPermissionUtil.getPrimaryKey(
 					themeDisplay.getPlid(), portletDisplay.getId())
+			).setParameter(
+				"returnToFullPageURL",
+				ParamUtil.getString(portletRequest, "returnToFullPageURL")
 			).setWindowState(
 				LiferayWindowState.POP_UP
 			).buildString();

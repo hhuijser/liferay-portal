@@ -101,11 +101,11 @@ public class EditSiteNavigationMenuItemParentMVCActionCommand
 		).setRedirect(
 			ParamUtil.getString(actionRequest, "redirect")
 		).setParameter(
-			"siteNavigationMenuId",
-			siteNavigationMenuItem.getSiteNavigationMenuId()
-		).setParameter(
 			"selectedSiteNavigationMenuItemId",
 			siteNavigationMenuItem.getSiteNavigationMenuItemId()
+		).setParameter(
+			"siteNavigationMenuId",
+			siteNavigationMenuItem.getSiteNavigationMenuId()
 		).buildString();
 	}
 

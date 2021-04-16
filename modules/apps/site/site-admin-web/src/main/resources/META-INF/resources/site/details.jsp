@@ -243,11 +243,11 @@ else {
 				PortletURL groupSelectorURL = PortletURLBuilder.create(
 					PortletProviderUtil.getPortletURL(request, Group.class.getName(), PortletProvider.Action.BROWSE)
 				).setParameter(
-					"includeCurrentGroup", Boolean.FALSE.toString()
+					"eventName", liferayPortletResponse.getNamespace() + "selectGroup"
 				).setParameter(
 					"groupId", group.getGroupId()
 				).setParameter(
-					"eventName", liferayPortletResponse.getNamespace() + "selectGroup"
+					"includeCurrentGroup", Boolean.FALSE.toString()
 				).setWindowState(
 					LiferayWindowState.POP_UP
 				).build();

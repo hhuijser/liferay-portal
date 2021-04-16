@@ -145,8 +145,6 @@ public class EditCommerceAccountMVCActionCommand extends BaseMVCActionCommand {
 				actionRequest, CommerceAccount.class.getName(),
 				PortletProvider.Action.VIEW)
 		).setParameter(
-			"commerceAccountId", commerceAccount.getCommerceAccountId()
-		).setParameter(
 			PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL",
 			() -> {
 				PortletURL managePortletURL = PortletProviderUtil.getPortletURL(
@@ -155,6 +153,8 @@ public class EditCommerceAccountMVCActionCommand extends BaseMVCActionCommand {
 
 				return managePortletURL.toString();
 			}
+		).setParameter(
+			"commerceAccountId", commerceAccount.getCommerceAccountId()
 		).buildString();
 	}
 

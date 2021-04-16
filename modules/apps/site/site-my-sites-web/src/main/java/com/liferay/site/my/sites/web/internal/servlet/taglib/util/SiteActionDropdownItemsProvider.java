@@ -121,9 +121,9 @@ public class SiteActionDropdownItemsProvider {
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(
-					"groupId", _group.getGroupId()
-				).setParameter(
 					"addUserIds", _themeDisplay.getUserId()
+				).setParameter(
+					"groupId", _group.getGroupId()
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "join"));

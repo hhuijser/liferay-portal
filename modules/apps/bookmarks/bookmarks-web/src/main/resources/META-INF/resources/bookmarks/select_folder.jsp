@@ -50,9 +50,9 @@ if (folder != null) {
 				).setMVCRenderCommandName(
 					"/bookmarks/select_folder"
 				).setParameter(
-					"folderId", folderId
-				).setParameter(
 					"eventName", eventName
+				).setParameter(
+					"folderId", folderId
 				).build()
 			%>'
 			total="<%= BookmarksFolderServiceUtil.getFoldersCount(scopeGroupId, folderId) %>"

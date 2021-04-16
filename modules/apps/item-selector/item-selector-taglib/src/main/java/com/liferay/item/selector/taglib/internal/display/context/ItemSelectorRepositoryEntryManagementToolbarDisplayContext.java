@@ -140,9 +140,9 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 		PortletURL currentSortingURL = PortletURLBuilder.create(
 			PortletURLUtil.clone(_getPortletURL(), _liferayPortletResponse)
 		).setParameter(
-			"orderByType", getOrderByType()
-		).setParameter(
 			"orderByCol", _getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
 		).build();
 
 		if (_repositoryEntryBrowserDisplayContext.isSearchEverywhere()) {

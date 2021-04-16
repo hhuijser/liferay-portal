@@ -97,17 +97,17 @@ if (layout != null) {
 					).setMVCPath(
 						"/edit_template.jsp"
 					).setParameter(
-						"groupId", template.getGroupId()
-					).setParameter(
-						"templateId", template.getTemplateId()
-					).setParameter(
 						"classNameId", classNameId
 					).setParameter(
 						"classPK", template.getClassPK()
 					).setParameter(
-						"type", template.getType()
+						"groupId", template.getGroupId()
 					).setParameter(
 						"structureAvailableFields", liferayPortletResponse.getNamespace() + "getAvailableFields"
+					).setParameter(
+						"templateId", template.getTemplateId()
+					).setParameter(
+						"type", template.getType()
 					).buildString();
 				}
 				%>

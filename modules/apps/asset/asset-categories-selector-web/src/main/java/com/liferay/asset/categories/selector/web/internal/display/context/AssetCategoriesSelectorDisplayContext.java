@@ -106,9 +106,9 @@ public class AssetCategoriesSelectorDisplayContext {
 		).setParameter(
 			"groupId", assetVocabulary.getGroupId()
 		).setParameter(
-			"vocabularyId", vocabularyIds[0]
-		).setParameter(
 			"itemSelectorEventName", getEventName()
+		).setParameter(
+			"vocabularyId", vocabularyIds[0]
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).buildString();

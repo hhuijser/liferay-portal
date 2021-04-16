@@ -371,16 +371,16 @@ public class DDMDisplayContext {
 		).setMVCPath(
 			"/select_template.jsp"
 		).setParameter(
-			"templateId", ParamUtil.getLong(_renderRequest, "templateId")
-		).setParameter(
 			"classNameId", getClassNameId()
 		).setParameter(
 			"classPK", ParamUtil.getLong(_renderRequest, "classPK")
 		).setParameter(
-			"resourceClassNameId", getResourceClassNameId()
-		).setParameter(
 			"eventName",
 			ParamUtil.getString(_renderRequest, "eventName", "selectTemplate")
+		).setParameter(
+			"resourceClassNameId", getResourceClassNameId()
+		).setParameter(
+			"templateId", ParamUtil.getLong(_renderRequest, "templateId")
 		).buildString();
 	}
 
@@ -500,15 +500,15 @@ public class DDMDisplayContext {
 						).setMVCPath(
 							"/edit_template.jsp"
 						).setParameter(
-							"groupId", _ddmWebRequestHelper.getScopeGroupId()
-						).setParameter(
 							"classNameId", getClassNameId()
 						).setParameter(
 							"classPK", getClassPK()
 						).setParameter(
-							"resourceClassNameId", getResourceClassNameId()
+							"groupId", _ddmWebRequestHelper.getScopeGroupId()
 						).setParameter(
 							"mode", getTemplateMode()
+						).setParameter(
+							"resourceClassNameId", getResourceClassNameId()
 						).build();
 
 					String message = "add";
@@ -625,18 +625,18 @@ public class DDMDisplayContext {
 		).setTabs1(
 			ParamUtil.getString(_renderRequest, "tabs1", "templates")
 		).setParameter(
-			"templateId", ParamUtil.getLong(_renderRequest, "templateId")
-		).setParameter(
-			"groupId", _ddmWebRequestHelper.getScopeGroupId()
-		).setParameter(
 			"classNameId", getClassNameId()
 		).setParameter(
 			"classPK", getClassPK()
 		).setParameter(
-			"resourceClassNameId", getResourceClassNameId()
-		).setParameter(
 			"eventName",
 			ParamUtil.getString(_renderRequest, "eventName", "selectTemplate")
+		).setParameter(
+			"groupId", _ddmWebRequestHelper.getScopeGroupId()
+		).setParameter(
+			"resourceClassNameId", getResourceClassNameId()
+		).setParameter(
+			"templateId", ParamUtil.getLong(_renderRequest, "templateId")
 		).buildString();
 	}
 

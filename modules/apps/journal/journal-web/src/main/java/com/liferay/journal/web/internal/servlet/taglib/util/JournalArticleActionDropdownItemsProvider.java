@@ -288,9 +288,9 @@ public class JournalArticleActionDropdownItemsProvider {
 				).setMVCPath(
 					"/select_version.jsp"
 				).setParameter(
-					"groupId", _article.getGroupId()
-				).setParameter(
 					"articleId", _article.getArticleId()
+				).setParameter(
+					"groupId", _article.getGroupId()
 				).setParameter(
 					"sourceVersion", _article.getVersion()
 				).setWindowState(
@@ -305,9 +305,9 @@ public class JournalArticleActionDropdownItemsProvider {
 				).setRedirect(
 					_getRedirect()
 				).setParameter(
-					"groupId", _article.getGroupId()
-				).setParameter(
 					"articleId", _article.getArticleId()
+				).setParameter(
+					"groupId", _article.getGroupId()
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "compare-to"));
@@ -329,13 +329,13 @@ public class JournalArticleActionDropdownItemsProvider {
 					).setRedirect(
 						_getRedirect()
 					).setParameter(
+						"autoArticleId", true
+					).setParameter(
 						"groupId", _article.getGroupId()
 					).setParameter(
 						"oldArticleId", _article.getArticleId()
 					).setParameter(
 						"version", _article.getVersion()
-					).setParameter(
-						"autoArticleId", true
 					).buildString());
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "copy"));
@@ -365,9 +365,9 @@ public class JournalArticleActionDropdownItemsProvider {
 				).setRedirect(
 					redirect
 				).setParameter(
-					"groupId", _article.getGroupId()
-				).setParameter(
 					"articleId", articleId
+				).setParameter(
+					"groupId", _article.getGroupId()
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "delete"));
@@ -452,9 +452,9 @@ public class JournalArticleActionDropdownItemsProvider {
 				).setRedirect(
 					redirect
 				).setParameter(
-					"groupId", _article.getGroupId()
-				).setParameter(
 					"articleId", articleId
+				).setParameter(
+					"groupId", _article.getGroupId()
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "expire"));
@@ -516,9 +516,9 @@ public class JournalArticleActionDropdownItemsProvider {
 				).setRedirect(
 					_getRedirect()
 				).setParameter(
-					"groupId", _article.getGroupId()
-				).setParameter(
 					"articleId", _article.getArticleId()
+				).setParameter(
+					"groupId", _article.getGroupId()
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "move-to-recycle-bin"));
@@ -631,9 +631,9 @@ public class JournalArticleActionDropdownItemsProvider {
 				).setBackURL(
 					_getRedirect()
 				).setParameter(
-					"groupId", _article.getGroupId()
-				).setParameter(
 					"articleId", _article.getArticleId()
+				).setParameter(
+					"groupId", _article.getGroupId()
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "publish-to-live"));

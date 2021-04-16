@@ -33,9 +33,9 @@
 			).setParameter(
 				"groupId", exportEntityGroupId
 			).setParameter(
-				"uuid", uuid
-			).setParameter(
 				"portletId", portletDisplay.getId()
+			).setParameter(
+				"uuid", uuid
 			).buildString()
 		%>'
 	/>

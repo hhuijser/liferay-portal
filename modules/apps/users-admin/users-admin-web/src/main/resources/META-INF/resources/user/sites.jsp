@@ -174,7 +174,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 						PortletURL groupSelectorURL = PortletURLBuilder.create(
 							PortletProviderUtil.getPortletURL(request, Group.class.getName(), PortletProvider.Action.BROWSE)
 						).setParameter(
-							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
+							"eventName", eventName
 						).setParameter(
 							"filterManageableGroups", Boolean.FALSE.toString()
 						).setParameter(
@@ -182,7 +182,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 						).setParameter(
 							"manualMembership", Boolean.TRUE.toString()
 						).setParameter(
-							"eventName", eventName
+							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
 						).setWindowState(
 							LiferayWindowState.POP_UP
 						).build();

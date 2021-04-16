@@ -186,9 +186,9 @@ for (int i = 0; i < results.size(); i++) {
 	).setTabs2(
 		"roles"
 	).setParameter(
-		"roleId", role.getRoleId()
-	).setParameter(
 		"portletResource", curPortletName
+	).setParameter(
+		"roleId", role.getRoleId()
 	).build();
 
 	StringBundler sb = new StringBundler(17);

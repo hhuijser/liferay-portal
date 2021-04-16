@@ -249,13 +249,13 @@ public class KBAdminManagementToolbarDisplayContext {
 									PortalUtil.getCurrentURL(
 										_httpServletRequest)
 								).setParameter(
+									"kbTemplateId", kbTemplate.getKbTemplateId()
+								).setParameter(
 									"parentResourceClassNameId",
 									parentResourceClassNameId
 								).setParameter(
 									"parentResourcePrimKey",
 									parentResourcePrimKey
-								).setParameter(
-									"kbTemplateId", kbTemplate.getKbTemplateId()
 								).build();
 
 							dropdownItem.setHref(addKBArticleURL);

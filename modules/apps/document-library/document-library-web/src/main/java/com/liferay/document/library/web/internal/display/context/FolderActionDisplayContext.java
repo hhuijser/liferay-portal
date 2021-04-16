@@ -88,9 +88,9 @@ public class FolderActionDisplayContext {
 		).setRedirect(
 			_dlRequestHelper.getCurrentURL()
 		).setParameter(
-			"repositoryId", _getRepositoryId()
-		).setParameter(
 			"folderId", _getFolderId()
+		).setParameter(
+			"repositoryId", _getRepositoryId()
 		).buildString();
 	}
 
@@ -107,11 +107,11 @@ public class FolderActionDisplayContext {
 		).setRedirect(
 			_dlRequestHelper.getCurrentURL()
 		).setParameter(
-			"repositoryId", _getRepositoryId()
+			"ignoreRootFolder", Boolean.TRUE.toString()
 		).setParameter(
 			"parentFolderId", _getFolderId()
 		).setParameter(
-			"ignoreRootFolder", Boolean.TRUE.toString()
+			"repositoryId", _getRepositoryId()
 		).buildString();
 	}
 
@@ -123,9 +123,9 @@ public class FolderActionDisplayContext {
 		).setRedirect(
 			_dlRequestHelper.getCurrentURL()
 		).setParameter(
-			"repositoryId", _getRepositoryId()
-		).setParameter(
 			"folderId", _getFolderId()
+		).setParameter(
+			"repositoryId", _getRepositoryId()
 		).buildString();
 	}
 
@@ -139,9 +139,9 @@ public class FolderActionDisplayContext {
 		).setBackURL(
 			_dlRequestHelper.getCurrentURL()
 		).setParameter(
-			"repositoryId", _getRepositoryId()
-		).setParameter(
 			"folderId", _getFolderId()
+		).setParameter(
+			"repositoryId", _getRepositoryId()
 		).buildString();
 	}
 

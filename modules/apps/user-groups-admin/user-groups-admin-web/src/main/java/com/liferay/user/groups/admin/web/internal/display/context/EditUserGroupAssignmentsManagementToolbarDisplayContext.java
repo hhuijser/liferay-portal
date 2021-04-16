@@ -202,9 +202,9 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 		).setRedirect(
 			ParamUtil.getString(_httpServletRequest, "redirect")
 		).setParameter(
-			"userGroupId", _userGroup.getUserGroupId()
-		).setParameter(
 			"displayStyle", _displayStyle
+		).setParameter(
+			"userGroupId", _userGroup.getUserGroupId()
 		).build();
 
 		if (Validator.isNotNull(getKeywords())) {

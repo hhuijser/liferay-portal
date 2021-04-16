@@ -124,9 +124,9 @@ public class SelectUserGroupsDisplayContext {
 		).setRedirect(
 			getRedirect()
 		).setParameter(
-			"teamId", getTeamId()
-		).setParameter(
 			"eventName", getEventName()
+		).setParameter(
+			"teamId", getTeamId()
 		).build();
 
 		String keywords = getKeywords();

@@ -44,9 +44,9 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setRedirect(
 	redirect
 ).setParameter(
-	"ruleGroupId", String.valueOf(ruleGroupId)
-).setParameter(
 	"groupId", String.valueOf(groupId)
+).setParameter(
+	"ruleGroupId", String.valueOf(ruleGroupId)
 ).build();
 
 SearchContainer<MDRRule> rulesSearchContainer = new SearchContainer(renderRequest, portletURL, null, "no-classification-rules-are-configured-for-this-device-family");

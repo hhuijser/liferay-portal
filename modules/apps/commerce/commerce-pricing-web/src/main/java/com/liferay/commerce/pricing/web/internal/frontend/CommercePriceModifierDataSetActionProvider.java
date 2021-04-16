@@ -119,11 +119,11 @@ public class CommercePriceModifierDataSetActionProvider
 		).setRedirect(
 			redirect
 		).setParameter(
-			"commercePriceModifierId",
-			commercePriceModifier.getCommercePriceModifierId()
-		).setParameter(
 			"commercePriceListId",
 			commercePriceModifier.getCommercePriceListId()
+		).setParameter(
+			"commercePriceModifierId",
+			commercePriceModifier.getCommercePriceModifierId()
 		).build();
 	}
 
@@ -141,11 +141,11 @@ public class CommercePriceModifierDataSetActionProvider
 		).setRedirect(
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
-			"commercePriceModifierId",
-			commercePriceModifier.getCommercePriceModifierId()
-		).setParameter(
 			"commercePriceListId",
 			commercePriceModifier.getCommercePriceListId()
+		).setParameter(
+			"commercePriceModifierId",
+			commercePriceModifier.getCommercePriceModifierId()
 		).build();
 
 		try {

@@ -70,12 +70,12 @@ public class AppManagerDisplayContext {
 			"moduleGroup",
 			ParamUtil.getString(_httpServletRequest, "moduleGroup")
 		).setParameter(
+			"pluginType", pluginType
+		).setParameter(
 			"symbolicName",
 			ParamUtil.getString(_httpServletRequest, "symbolicName")
 		).setParameter(
 			"version", ParamUtil.getString(_httpServletRequest, "version")
-		).setParameter(
-			"pluginType", pluginType
 		).buildString();
 	}
 

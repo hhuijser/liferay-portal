@@ -202,24 +202,24 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 				).setMVCRenderCommandName(
 					"/login/login_redirect"
 				).setParameter(
-					"emailAddress", user.getEmailAddress()
-				).setParameter(
 					"anonymousUser", Boolean.FALSE.toString()
+				).setParameter(
+					"emailAddress", user.getEmailAddress()
 				).setPortletMode(
 					PortletMode.VIEW
 				).setWindowState(
 					LiferayWindowState.POP_UP
 				).buildString()
 			).setParameter(
-				"saveLastPath", Boolean.FALSE.toString()
-			).setParameter(
-				"userId", user.getUserId()
-			).setParameter(
 				"emailAddress", user.getEmailAddress()
 			).setParameter(
 				"firstName", user.getFirstName()
 			).setParameter(
 				"lastName", user.getLastName()
+			).setParameter(
+				"saveLastPath", Boolean.FALSE.toString()
+			).setParameter(
+				"userId", user.getUserId()
 			).setPortletMode(
 				PortletMode.VIEW
 			).setWindowState(

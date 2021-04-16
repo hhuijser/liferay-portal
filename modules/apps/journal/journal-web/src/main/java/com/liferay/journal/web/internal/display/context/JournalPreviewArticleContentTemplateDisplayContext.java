@@ -171,15 +171,15 @@ public class JournalPreviewArticleContentTemplateDisplayContext {
 		).setMVCPath(
 			"/preview_article_content_template.jsp"
 		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
 			"articleId", getArticleId()
-		).setParameter(
-			"version", getVersion()
 		).setParameter(
 			"ddmTemplateId", getDDMTemplateId()
 		).setParameter(
 			"eventName", getEventName()
+		).setParameter(
+			"groupId", getGroupId()
+		).setParameter(
+			"version", getVersion()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();
@@ -191,13 +191,13 @@ public class JournalPreviewArticleContentTemplateDisplayContext {
 		).setMVCPath(
 			"/preview_article_content_template.jsp"
 		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
 			"articleId", getArticleId()
 		).setParameter(
-			"version", getVersion()
-		).setParameter(
 			"eventName", getEventName()
+		).setParameter(
+			"groupId", getGroupId()
+		).setParameter(
+			"version", getVersion()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

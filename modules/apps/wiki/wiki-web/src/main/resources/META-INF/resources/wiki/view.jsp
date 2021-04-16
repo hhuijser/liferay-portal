@@ -80,13 +80,13 @@ PortletURL addPageURL = PortletURLBuilder.createRenderURL(
 ).setRedirect(
 	currentURL
 ).setParameter(
-	"nodeId", String.valueOf(node.getNodeId())
-).setParameter(
-	"title", StringPool.BLANK
-).setParameter(
 	"editTitle", "1"
 ).setParameter(
+	"nodeId", String.valueOf(node.getNodeId())
+).setParameter(
 	"parentTitle", wikiPage.getTitle()
+).setParameter(
+	"title", StringPool.BLANK
 ).build();
 
 PortletURL editPageURL = PortletURLBuilder.createRenderURL(
@@ -320,11 +320,11 @@ if (portletTitleBasedNavigation) {
 							).setMVCRenderCommandName(
 								"/wiki/view"
 							).setParameter(
+								"followRedirect", "false"
+							).setParameter(
 								"nodeName", node.getName()
 							).setParameter(
 								"title", originalPage.getTitle()
-							).setParameter(
-								"followRedirect", "false"
 							).build();
 							%>
 

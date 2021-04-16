@@ -256,9 +256,9 @@ public class DLFileEntryAssetRenderer
 		).setActionName(
 			"/document_library/get_file"
 		).setParameter(
-			"groupId", _fileEntry.getRepositoryId()
-		).setParameter(
 			"folderId", _fileEntry.getFolderId()
+		).setParameter(
+			"groupId", _fileEntry.getRepositoryId()
 		).setParameter(
 			"title", _fileEntry.getTitle()
 		).build();

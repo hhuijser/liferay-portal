@@ -341,11 +341,11 @@ Map<String, Object> fragmentsEditorData = HashMapBuilder.<String, Object>put(
 							).setParameter(
 								"assetEntryId", assetEntry.getEntryId()
 							).setParameter(
-								"viewMode", Constants.PRINT
+								"languageId", LanguageUtil.getLanguageId(request)
 							).setParameter(
 								"type", assetRendererFactory.getType()
 							).setParameter(
-								"languageId", LanguageUtil.getLanguageId(request)
+								"viewMode", Constants.PRINT
 							).setWindowState(
 								LiferayWindowState.POP_UP
 							).build();

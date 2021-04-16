@@ -105,9 +105,9 @@ public class SelectThemeDisplayContext {
 		).setRedirect(
 			getRedirect()
 		).setParameter(
-			"themeId", getThemeId()
-		).setParameter(
 			"eventName", getEventName()
+		).setParameter(
+			"themeId", getThemeId()
 		).build();
 
 		String displayStyle = getDisplayStyle();

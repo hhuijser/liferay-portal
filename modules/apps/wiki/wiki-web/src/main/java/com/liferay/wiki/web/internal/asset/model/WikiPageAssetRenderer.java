@@ -279,11 +279,11 @@ public class WikiPageAssetRenderer
 		).setParameter(
 			"nodeId", _page.getNodeId()
 		).setParameter(
-			"title", _page.getTitle()
-		).setParameter(
 			"sourceVersion", previousVersionPage.getVersion()
 		).setParameter(
 			"targetVersion", _page.getVersion()
+		).setParameter(
+			"title", _page.getTitle()
 		).build();
 	}
 

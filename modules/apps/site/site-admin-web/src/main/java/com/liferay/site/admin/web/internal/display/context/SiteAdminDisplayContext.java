@@ -233,9 +233,9 @@ public class SiteAdminDisplayContext {
 		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
 		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
 			"displayStyle", getDisplayStyle()
+		).setParameter(
+			"groupId", getGroupId()
 		).build();
 	}
 

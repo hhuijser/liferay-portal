@@ -77,13 +77,13 @@ Map<String, Object> componentContext = journalDisplayContext.getComponentContext
 					).setRedirect(
 						currentURL
 					).setParameter(
-						"referringPortletResource", referringPortletResource
-					).setParameter(
-						"groupId", curArticle.getGroupId()
+						"articleId", curArticle.getArticleId()
 					).setParameter(
 						"folderId", curArticle.getFolderId()
 					).setParameter(
-						"articleId", curArticle.getArticleId()
+						"groupId", curArticle.getGroupId()
+					).setParameter(
+						"referringPortletResource", referringPortletResource
 					).setParameter(
 						"version", curArticle.getVersion()
 					).buildString();
@@ -285,11 +285,11 @@ Map<String, Object> componentContext = journalDisplayContext.getComponentContext
 				PortletURL rowURL = PortletURLBuilder.createRenderURL(
 					liferayPortletResponse
 				).setParameter(
-					"groupId", curFolder.getGroupId()
+					"displayStyle", journalDisplayContext.getDisplayStyle()
 				).setParameter(
 					"folderId", curFolder.getFolderId()
 				).setParameter(
-					"displayStyle", journalDisplayContext.getDisplayStyle()
+					"groupId", curFolder.getGroupId()
 				).build();
 				%>
 

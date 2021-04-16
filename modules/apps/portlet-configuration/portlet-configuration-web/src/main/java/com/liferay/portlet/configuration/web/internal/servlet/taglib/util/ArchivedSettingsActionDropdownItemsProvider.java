@@ -74,11 +74,11 @@ public class ArchivedSettingsActionDropdownItemsProvider {
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(
+					"name", _archivedSettings.getName()
+				).setParameter(
 					"portletConfiguration", Boolean.TRUE.toString()
 				).setParameter(
 					"portletResource", _getPortletResource()
-				).setParameter(
-					"name", _archivedSettings.getName()
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "delete"));
@@ -112,11 +112,11 @@ public class ArchivedSettingsActionDropdownItemsProvider {
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(
+					"name", _archivedSettings.getName()
+				).setParameter(
 					"portletConfiguration", Boolean.TRUE.toString()
 				).setParameter(
 					"portletResource", _getPortletResource()
-				).setParameter(
-					"name", _archivedSettings.getName()
 				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "apply"));

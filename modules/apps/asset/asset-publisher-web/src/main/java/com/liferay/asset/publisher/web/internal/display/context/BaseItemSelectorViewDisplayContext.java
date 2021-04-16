@@ -106,15 +106,15 @@ public abstract class BaseItemSelectorViewDisplayContext
 				portletURL,
 				PortalUtil.getLiferayPortletResponse(getPortletResponse()))
 		).setParameter(
-			"plid", ParamUtil.getLong(httpServletRequest, "plid")
-		).setParameter(
 			"groupId", ParamUtil.getLong(httpServletRequest, "groupId")
 		).setParameter(
-			"privateLayout",
-			ParamUtil.getBoolean(httpServletRequest, "privateLayout")
+			"plid", ParamUtil.getLong(httpServletRequest, "plid")
 		).setParameter(
 			"portletResource",
 			ParamUtil.getString(httpServletRequest, "portletResource")
+		).setParameter(
+			"privateLayout",
+			ParamUtil.getBoolean(httpServletRequest, "privateLayout")
 		).build();
 	}
 

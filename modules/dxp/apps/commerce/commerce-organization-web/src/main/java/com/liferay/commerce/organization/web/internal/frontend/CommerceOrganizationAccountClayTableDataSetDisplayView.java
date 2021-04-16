@@ -207,8 +207,6 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 				httpServletRequest, CommerceAccount.class.getName(),
 				PortletProvider.Action.VIEW)
 		).setParameter(
-			"commerceAccountId", commerceAccountId
-		).setParameter(
 			PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL",
 			PortletURLBuilder.create(
 				PortletProviderUtil.getPortletURL(
@@ -223,6 +221,8 @@ public class CommerceOrganizationAccountClayTableDataSetDisplayView
 				CommerceOrganizationScreenNavigationConstants.
 					CATEGORY_KEY_ORGANIZATION_ACCOUNTS
 			).buildString()
+		).setParameter(
+			"commerceAccountId", commerceAccountId
 		).buildString();
 	}
 

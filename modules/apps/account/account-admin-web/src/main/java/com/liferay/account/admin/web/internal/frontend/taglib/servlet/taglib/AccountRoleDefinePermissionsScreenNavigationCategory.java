@@ -146,11 +146,11 @@ public class AccountRoleDefinePermissionsScreenNavigationCategory
 		).setMVCRenderCommandName(
 			"/account_admin/edit_account_entry"
 		).setParameter(
-			"screenNavigationCategoryKey",
-			AccountScreenNavigationEntryConstants.CATEGORY_KEY_ROLES
-		).setParameter(
 			"accountEntryId",
 			ParamUtil.getString(httpServletRequest, "accountEntryId")
+		).setParameter(
+			"screenNavigationCategoryKey",
+			AccountScreenNavigationEntryConstants.CATEGORY_KEY_ROLES
 		).buildString();
 	}
 
@@ -162,15 +162,15 @@ public class AccountRoleDefinePermissionsScreenNavigationCategory
 		).setMVCRenderCommandName(
 			"/account_admin/edit_account_role"
 		).setParameter(
-			"screenNavigationCategoryKey",
-			AccountScreenNavigationEntryConstants.
-				CATEGORY_KEY_DEFINE_PERMISSIONS
-		).setParameter(
 			"accountEntryId",
 			ParamUtil.getString(httpServletRequest, "accountEntryId")
 		).setParameter(
 			"accountRoleId",
 			ParamUtil.getString(httpServletRequest, "accountRoleId")
+		).setParameter(
+			"screenNavigationCategoryKey",
+			AccountScreenNavigationEntryConstants.
+				CATEGORY_KEY_DEFINE_PERMISSIONS
 		).buildString();
 	}
 

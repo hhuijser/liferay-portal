@@ -59,9 +59,9 @@ List<Long> hitLayoutIds = JournalContentSearchLocalServiceUtil.getLayoutIds(layo
 		PortletURL webContentPortletURL = PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(request, journalContentSearchPortletInstanceConfiguration.targetPortletId(), PortletRequest.RENDER_PHASE)
 		).setParameter(
-			"groupId", articleGroupId
-		).setParameter(
 			"articleId", articleId
+		).setParameter(
+			"groupId", articleGroupId
 		).build();
 		%>
 

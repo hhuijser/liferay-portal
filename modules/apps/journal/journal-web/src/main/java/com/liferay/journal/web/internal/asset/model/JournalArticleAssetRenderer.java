@@ -294,9 +294,9 @@ public class JournalArticleAssetRenderer
 		).setMVCPath(
 			"/edit_article.jsp"
 		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
 			"articleId", _article.getArticleId()
+		).setParameter(
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"version", _article.getVersion()
 		).build();
@@ -376,9 +376,9 @@ public class JournalArticleAssetRenderer
 		).setMVCRenderCommandName(
 			"/journal/compare_versions"
 		).setParameter(
-			"groupId", _article.getGroupId()
-		).setParameter(
 			"articleId", _article.getArticleId()
+		).setParameter(
+			"groupId", _article.getGroupId()
 		).setParameter(
 			"sourceVersion", previousApprovedArticle.getVersion()
 		).setParameter(

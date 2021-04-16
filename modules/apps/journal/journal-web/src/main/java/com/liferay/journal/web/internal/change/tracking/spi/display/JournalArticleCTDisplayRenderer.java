@@ -91,9 +91,9 @@ public class JournalArticleCTDisplayRenderer
 		).setRedirect(
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
-			"groupId", journalArticle.getGroupId()
-		).setParameter(
 			"articleId", journalArticle.getArticleId()
+		).setParameter(
+			"groupId", journalArticle.getGroupId()
 		).setParameter(
 			"version", journalArticle.getVersion()
 		).buildString();

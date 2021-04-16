@@ -82,11 +82,11 @@ public class JournalFolderHorizontalCard extends BaseHorizontalCard {
 		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setParameter(
-			"groupId", _folder.getGroupId()
+			"displayStyle", _displayStyle
 		).setParameter(
 			"folderId", _folder.getFolderId()
 		).setParameter(
-			"displayStyle", _displayStyle
+			"groupId", _folder.getGroupId()
 		).buildString();
 	}
 

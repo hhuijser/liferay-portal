@@ -58,9 +58,9 @@ JournalArticleDisplay articleDisplay = (JournalArticleDisplay)request.getAttribu
 			).setParameter(
 				"cur", cur
 			).setParameter(
-				"type", assetRendererFactory.getType()
-			).setParameter(
 				"groupId", articleDisplay.getGroupId()
+			).setParameter(
+				"type", assetRendererFactory.getType()
 			).setParameter(
 				"urlTitle", articleDisplay.getUrlTitle()
 			).build()

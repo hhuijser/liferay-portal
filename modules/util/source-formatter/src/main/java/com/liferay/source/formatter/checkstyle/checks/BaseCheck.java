@@ -854,6 +854,28 @@ public abstract class BaseCheck extends AbstractCheck {
 		return false;
 	}
 
+	protected boolean hasPrecedingPlaceholder(DetailAST detailAST) {
+		CommonHiddenStreamToken commonHiddenStreamToken = getHiddenBefore(
+			detailAST);
+
+		if (commonHiddenStreamToken == null) {
+			DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
+
+			if (previousSiblingDetailAST != null) {
+				commonHiddenStreamToken = getHiddenAfter(
+					previousSiblingDetailAST);
+			}
+		}
+
+		if (commonHiddenStreamToken == null) {
+			return false;
+		}
+
+		String text = commonHiddenStreamToken.getText();
+
+		return text.contains("PLACEHOLDER");
+	}
+
 	protected boolean isArray(DetailAST detailAST) {
 		if (detailAST.getType() != TokenTypes.TYPE) {
 			return false;

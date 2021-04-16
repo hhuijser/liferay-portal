@@ -127,8 +127,44 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 		}
 	}
 
+	private String _getTypeName(String content, int lineNumber) {
+		int level = 0;
+
+		while (true) {
+			if (lineNumber == 0) {
+				return null;
+			}
+
+			String trimmedLine = StringUtil.trim(getLine(content, lineNumber));
+
+			if (trimmedLine.endsWith("(") && (level == 0)) {
+				if (trimmedLine.startsWith(").")) {
+					level -= getLevel(trimmedLine);
+					lineNumber--;
+
+					continue;
+				}
+
+				Matcher matcher = _typeNamePattern.matcher(trimmedLine);
+
+				if (matcher.find()) {
+					return matcher.group(2);
+				}
+
+				return null;
+			}
+
+			level -= getLevel(trimmedLine);
+			lineNumber--;
+		}
+	}
+
 	private boolean _isAllowedVariableType(
 		String content, String variableName, String[] variableTypeNames) {
+
+		if (variableName == null) {
+			return false;
+		}
 
 		if (variableTypeNames.length == 0) {
 			return true;
@@ -232,7 +268,9 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 		}
 
 		Pattern pattern = Pattern.compile(
-			"\\W(\\w+)\\.(<[\\w\\[\\]\\?<>, ]*>)?" + methodName + "\\(");
+			StringBundler.concat(
+				"(\\W(\\w+)\\.(<[\\w\\[\\]\\?<>, ]*>)?|[\n\t]\\)\\.)",
+				methodName, "\\("));
 
 		Matcher matcher = pattern.matcher(content);
 
@@ -240,9 +278,14 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			new ParameterNameComparator();
 
 		while (matcher.find()) {
-			if (!_isAllowedVariableType(
-					content, matcher.group(1), variableTypeNames)) {
+			String typeName = matcher.group(2);
 
+			if (typeName == null) {
+				typeName = _getTypeName(
+					content, getLineNumber(content, matcher.start()));
+			}
+
+			if (!_isAllowedVariableType(content, typeName, variableTypeNames)) {
 				continue;
 			}
 
@@ -318,6 +361,8 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 		content = _sortChainedMethodCalls(
 			content, "put", 2, "ConcurrentHashMapBuilder", "HashMapBuilder",
 			"JSONObject", "JSONUtil", "SoyContext", "TreeMapBuilder");
+		content = _sortChainedMethodCalls(
+			content, "setParameter", 2, "PortletURLBuilder");
 
 		content = _sortMethodCallsByMethodName(
 			content, "DropdownItem", "LabelItem", "NavigationItem",
@@ -424,6 +469,9 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 
 		return content;
 	}
+
+	private static final Pattern _typeNamePattern = Pattern.compile(
+		"(\\A|\\W)(\\w+)\\.\\w+\\(");
 
 	private class MethodCallComparator extends ParameterNameComparator {
 

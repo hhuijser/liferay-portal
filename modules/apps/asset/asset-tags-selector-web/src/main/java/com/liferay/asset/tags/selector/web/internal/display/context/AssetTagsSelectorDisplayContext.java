@@ -86,9 +86,9 @@ public class AssetTagsSelectorDisplayContext {
 		).setMVCPath(
 			_getMvcPath()
 		).setParameter(
-			"groupIds", StringUtil.merge(_getGroupIds())
-		).setParameter(
 			"eventName", getEventName()
+		).setParameter(
+			"groupIds", StringUtil.merge(_getGroupIds())
 		).setParameter(
 			"selectedTagNames", StringUtil.merge(getSelectedTagNames())
 		).build();

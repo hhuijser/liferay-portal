@@ -71,9 +71,9 @@ public class DDMFormAdminDataProviderTabItem implements DDMDisplayTabItem {
 		).setBackURL(
 			themeDisplay.getURLCurrent()
 		).setParameter(
-			"refererPortletName", DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN
-		).setParameter(
 			"groupId", themeDisplay.getScopeGroupId()
+		).setParameter(
+			"refererPortletName", DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN
 		).buildString();
 	}
 

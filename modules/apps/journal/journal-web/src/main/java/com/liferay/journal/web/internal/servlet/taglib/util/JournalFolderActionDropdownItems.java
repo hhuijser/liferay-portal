@@ -211,9 +211,9 @@ public class JournalFolderActionDropdownItems {
 			redirect = PortletURLBuilder.createRenderURL(
 				_liferayPortletResponse
 			).setParameter(
-				"groupId", _folder.getGroupId()
-			).setParameter(
 				"folderId", _folder.getParentFolderId()
+			).setParameter(
+				"groupId", _folder.getGroupId()
 			).buildString();
 		}
 
@@ -234,9 +234,9 @@ public class JournalFolderActionDropdownItems {
 		).setRedirect(
 			redirect
 		).setParameter(
-			"groupId", _folder.getGroupId()
-		).setParameter(
 			"folderId", _folder.getFolderId()
+		).setParameter(
+			"groupId", _folder.getGroupId()
 		).buildString();
 
 		return dropdownItem -> {

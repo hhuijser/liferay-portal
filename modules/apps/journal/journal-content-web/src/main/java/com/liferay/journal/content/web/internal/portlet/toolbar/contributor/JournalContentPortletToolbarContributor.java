@@ -89,11 +89,11 @@ public class JournalContentPortletToolbarContributor
 		).setRedirect(
 			_portal.getLayoutFullURL(themeDisplay)
 		).setParameter(
+			"groupId", scopeGroupId
+		).setParameter(
 			"portletResource", portletDisplay.getId()
 		).setParameter(
 			"refererPlid", plid
-		).setParameter(
-			"groupId", scopeGroupId
 		).build();
 
 		List<DDMStructure> ddmStructures =

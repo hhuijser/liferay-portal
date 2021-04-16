@@ -139,9 +139,9 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 							).setMVCRenderCommandName(
 								"/cp_definitions/edit_cp_definition_grouped_entry"
 							).setParameter(
-								"cpDefinitionId", cpDefinitionGroupedEntry.getCPDefinitionId()
-							).setParameter(
 								"cpDefinitionGroupedEntryId", cpDefinitionGroupedEntry.getCPDefinitionGroupedEntryId()
+							).setParameter(
+								"cpDefinitionId", cpDefinitionGroupedEntry.getCPDefinitionId()
 							).build();
 
 							CProduct cProduct = cpDefinitionGroupedEntry.getEntryCProduct();

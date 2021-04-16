@@ -59,9 +59,9 @@ public class AppManagerSearchResultsManagementToolbarDisplayContext
 		).setParameter(
 			"category", getCategory()
 		).setParameter(
-			"state", getState()
-		).setParameter(
 			"orderByType", getOrderByType()
+		).setParameter(
+			"state", getState()
 		).build();
 
 		if (Validator.isNotNull(getKeywords())) {

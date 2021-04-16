@@ -54,9 +54,9 @@ public class JournalFolderUADDisplay extends BaseJournalFolderUADDisplay {
 		).setRedirect(
 			_portal.getCurrentURL(liferayPortletRequest)
 		).setParameter(
-			"groupId", journalFolder.getGroupId()
-		).setParameter(
 			"folderId", journalFolder.getFolderId()
+		).setParameter(
+			"groupId", journalFolder.getGroupId()
 		).buildString();
 	}
 

@@ -377,9 +377,9 @@ public class WorkflowInstanceViewDisplayContext
 		return PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setParameter(
-			"tab", WorkflowWebKeys.WORKFLOW_TAB_INSTANCE
-		).setParameter(
 			"orderByType", getOrderByType()
+		).setParameter(
+			"tab", WorkflowWebKeys.WORKFLOW_TAB_INSTANCE
 		).build();
 	}
 

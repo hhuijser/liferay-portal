@@ -75,9 +75,9 @@ public class WikiURLHelper {
 		).setMVCRenderCommandName(
 			"/wiki/view"
 		).setParameter(
-			"title", _wikiGroupServiceConfiguration.frontPageName()
-		).setParameter(
 			"tag", StringPool.BLANK
+		).setParameter(
+			"title", _wikiGroupServiceConfiguration.frontPageName()
 		).build();
 	}
 

@@ -105,10 +105,10 @@ public class SaveStepMVCActionCommand extends BaseMVCActionCommand {
 		return PortletURLBuilder.createRenderURL(
 			_portal.getLiferayPortletResponse(actionResponse)
 		).setParameter(
+			"checkoutStepName", checkoutStepName
+		).setParameter(
 			"commerceOrderUuid",
 			ParamUtil.getString(actionRequest, "commerceOrderUuid")
-		).setParameter(
-			"checkoutStepName", checkoutStepName
 		).buildString();
 	}
 

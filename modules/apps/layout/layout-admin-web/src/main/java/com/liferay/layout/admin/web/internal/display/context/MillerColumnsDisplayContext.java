@@ -222,12 +222,12 @@ public class MillerColumnsDisplayContext {
 				PortletURLBuilder.create(
 					_layoutsAdminDisplayContext.getPortletURL()
 				).setParameter(
-					"selPlid", layout.getPlid()
-				).setParameter(
 					"layoutSetBranchId",
 					_layoutsAdminDisplayContext.getActiveLayoutSetBranchId()
 				).setParameter(
 					"privateLayout", layout.isPrivateLayout()
+				).setParameter(
+					"selPlid", layout.getPlid()
 				).buildString()
 			);
 
@@ -424,9 +424,9 @@ public class MillerColumnsDisplayContext {
 			PortletURLBuilder.create(
 				_layoutsAdminDisplayContext.getPortletURL()
 			).setParameter(
-				"selPlid", LayoutConstants.DEFAULT_PLID
-			).setParameter(
 				"privateLayout", privatePages
+			).setParameter(
+				"selPlid", LayoutConstants.DEFAULT_PLID
 			).buildString());
 
 		return pagesJSONObject;

@@ -404,9 +404,9 @@ public class JournalEditArticleDisplayContext {
 		).setRedirect(
 			getRedirect()
 		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
 			"articleId", getArticleId()
+		).setParameter(
+			"groupId", getGroupId()
 		).setParameter(
 			"version", getVersion()
 		).buildString();
@@ -622,9 +622,9 @@ public class JournalEditArticleDisplayContext {
 			).setMVCPath(
 				"/preview_article_content_template.jsp"
 			).setParameter(
-				"groupId", getGroupId()
-			).setParameter(
 				"articleId", getArticleId()
+			).setParameter(
+				"groupId", getGroupId()
 			).setParameter(
 				"version", getVersion()
 			).setWindowState(
@@ -874,9 +874,9 @@ public class JournalEditArticleDisplayContext {
 				PortletURLBuilder.createRenderURL(
 					_liferayPortletResponse
 				).setParameter(
-					"groupId", _article.getGroupId()
-				).setParameter(
 					"folderId", _article.getFolderId()
+				).setParameter(
+					"groupId", _article.getGroupId()
 				).buildString());
 		}
 

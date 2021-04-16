@@ -206,13 +206,13 @@ for (long defaultTeamId : defaultTeamIds) {
 	PortletURL selectSiteRoleURL = PortletURLBuilder.create(
 		PortletProviderUtil.getPortletURL(request, Role.class.getName(), PortletProvider.Action.BROWSE)
 	).setParameter(
-		"roleType", RoleConstants.TYPE_SITE
-	).setParameter(
-		"step", "2"
+		"eventName", liferayPortletResponse.getNamespace() + "selectSiteRole"
 	).setParameter(
 		"groupId", groupId
 	).setParameter(
-		"eventName", liferayPortletResponse.getNamespace() + "selectSiteRole"
+		"roleType", RoleConstants.TYPE_SITE
+	).setParameter(
+		"step", "2"
 	).setWindowState(
 		LiferayWindowState.POP_UP
 	).build();
@@ -242,9 +242,9 @@ for (long defaultTeamId : defaultTeamIds) {
 	PortletURL selectTeamURL = PortletURLBuilder.create(
 		PortletProviderUtil.getPortletURL(request, Team.class.getName(), PortletProvider.Action.BROWSE)
 	).setParameter(
-		"groupId", groupId
-	).setParameter(
 		"eventName", liferayPortletResponse.getNamespace() + "selectTeam"
+	).setParameter(
+		"groupId", groupId
 	).setWindowState(
 		LiferayWindowState.POP_UP
 	).build();

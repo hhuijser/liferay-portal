@@ -135,33 +135,33 @@ boolean showMissingAttributeMessage = false;
 		).setMVCRenderCommandName(
 			"/portal_settings_authentication_ldap/test_ldap_users"
 		).setParameter(
-			"ldapServerId", ldapServerId
-		).setParameter(
-			"baseProviderURL", baseProviderURL
-		).setParameter(
 			"baseDN", baseDN
 		).setParameter(
-			"principal", principal
+			"baseProviderURL", baseProviderURL
 		).setParameter(
 			"credentials", credentials
 		).setParameter(
 			"importUserSearchFilter", userFilter
 		).setParameter(
-			"userMappingScreenName", ParamUtil.getString(request, "userMappingScreenName")
+			"ldapServerId", ldapServerId
 		).setParameter(
-			"userMappingPassword", ParamUtil.getString(request, "userMappingPassword")
+			"principal", principal
 		).setParameter(
 			"userMappingEmailAddress", ParamUtil.getString(request, "userMappingEmailAddress")
 		).setParameter(
-			"userMappingFullName", ParamUtil.getString(request, "userMappingFullName")
-		).setParameter(
 			"userMappingFirstName", ParamUtil.getString(request, "userMappingFirstName")
 		).setParameter(
-			"userMappingLastName", ParamUtil.getString(request, "userMappingLastName")
+			"userMappingFullName", ParamUtil.getString(request, "userMappingFullName")
+		).setParameter(
+			"userMappingGroup", ParamUtil.getString(request, "userMappingGroup")
 		).setParameter(
 			"userMappingJobTitle", ParamUtil.getString(request, "userMappingJobTitle")
 		).setParameter(
-			"userMappingGroup", ParamUtil.getString(request, "userMappingGroup")
+			"userMappingLastName", ParamUtil.getString(request, "userMappingLastName")
+		).setParameter(
+			"userMappingPassword", ParamUtil.getString(request, "userMappingPassword")
+		).setParameter(
+			"userMappingScreenName", ParamUtil.getString(request, "userMappingScreenName")
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build()

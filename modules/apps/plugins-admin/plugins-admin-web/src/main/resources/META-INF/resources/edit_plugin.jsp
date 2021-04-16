@@ -144,9 +144,9 @@ renderResponse.setTitle(title);
 														).setTabs1(
 															"roles"
 														).setParameter(
-															"roleId", role.getRoleId()
-														).setParameter(
 															"portletResource", portlet.getPortletId()
+														).setParameter(
+															"roleId", role.getRoleId()
 														).buildString()
 													%>'
 												/>
@@ -201,9 +201,9 @@ renderResponse.setTitle(title);
 														).setTabs1(
 															"roles"
 														).setParameter(
-															"roleId", role.getRoleId()
-														).setParameter(
 															"portletResource", portlet.getPortletId()
+														).setParameter(
+															"roleId", role.getRoleId()
 														).buildString()
 													%>'
 												/>

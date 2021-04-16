@@ -142,9 +142,9 @@ public class JournalManagementToolbarDisplayContext
 			).setRedirect(
 				_themeDisplay.getURLCurrent()
 			).setParameter(
-				"groupId", _themeDisplay.getScopeGroupId()
-			).setParameter(
 				"folderId", _journalDisplayContext.getFolderId()
+			).setParameter(
+				"groupId", _themeDisplay.getScopeGroupId()
 			).buildString()
 		).put(
 			"moveArticlesAndFoldersURL",
@@ -173,10 +173,10 @@ public class JournalManagementToolbarDisplayContext
 			).setMVCPath(
 				"/view_more_menu_items.jsp"
 			).setParameter(
-				"folderId", _journalDisplayContext.getFolderId()
-			).setParameter(
 				"eventName",
 				liferayPortletResponse.getNamespace() + "selectAddMenuItem"
+			).setParameter(
+				"folderId", _journalDisplayContext.getFolderId()
 			).setWindowState(
 				LiferayWindowState.POP_UP
 			).buildString()
@@ -527,12 +527,12 @@ public class JournalManagementToolbarDisplayContext
 							).setRedirect(
 								PortalUtil.getCurrentURL(httpServletRequest)
 							).setParameter(
-								"groupId", _themeDisplay.getScopeGroupId()
+								"ddmStructureKey",
+								ddmStructure.getStructureKey()
 							).setParameter(
 								"folderId", _journalDisplayContext.getFolderId()
 							).setParameter(
-								"ddmStructureKey",
-								ddmStructure.getStructureKey()
+								"groupId", _themeDisplay.getScopeGroupId()
 							).build();
 
 						UnsafeConsumer<DropdownItem, Exception> unsafeConsumer =

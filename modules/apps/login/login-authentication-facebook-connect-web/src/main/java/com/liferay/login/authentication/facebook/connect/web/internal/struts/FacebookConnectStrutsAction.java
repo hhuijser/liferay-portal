@@ -280,15 +280,15 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 			).setRedirect(
 				ParamUtil.getString(httpServletRequest, "redirect")
 			).setParameter(
-				"saveLastPath", Boolean.FALSE.toString()
-			).setParameter(
-				"userId", user.getUserId()
-			).setParameter(
 				"emailAddress", user.getEmailAddress()
 			).setParameter(
 				"firstName", user.getFirstName()
 			).setParameter(
 				"lastName", user.getLastName()
+			).setParameter(
+				"saveLastPath", Boolean.FALSE.toString()
+			).setParameter(
+				"userId", user.getUserId()
 			).setPortletMode(
 				PortletMode.VIEW
 			).setWindowState(

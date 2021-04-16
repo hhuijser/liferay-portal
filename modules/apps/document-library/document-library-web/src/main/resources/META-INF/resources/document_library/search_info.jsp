@@ -71,11 +71,11 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 			PortletURL searchFolderURL = PortletURLBuilder.create(
 				PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse)
 			).setParameter(
-				"searchRepositoryId", scopeGroupId
-			).setParameter(
 				"folderId", folderId
 			).setParameter(
 				"searchFolderId", folderId
+			).setParameter(
+				"searchRepositoryId", scopeGroupId
 			).build();
 
 			long searchFolderId = ParamUtil.getLong(request, "searchFolderId");

@@ -254,10 +254,10 @@ public class StyleBookEntryActionDropdownItemsProvider {
 				).setRedirect(
 					_themeDisplay.getURLCurrent()
 				).setParameter(
-					"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
-				).setParameter(
 					"defaultStyleBookEntry",
 					!_styleBookEntry.isDefaultStyleBookEntry()
+				).setParameter(
+					"styleBookEntryId", _styleBookEntry.getStyleBookEntryId()
 				).buildString());
 
 			String message = StringPool.BLANK;

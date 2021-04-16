@@ -76,13 +76,13 @@ public class AddChildPagePortletConfigurationIcon
 			).setRedirect(
 				themeDisplay.getURLCurrent()
 			).setParameter(
-				"nodeId", page.getNodeId()
-			).setParameter(
-				"title", StringPool.BLANK
-			).setParameter(
 				"editTitle", "1"
 			).setParameter(
+				"nodeId", page.getNodeId()
+			).setParameter(
 				"parentTitle", page.getTitle()
+			).setParameter(
+				"title", StringPool.BLANK
 			).buildString();
 		}
 		catch (Exception exception) {

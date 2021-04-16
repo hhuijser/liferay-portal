@@ -91,8 +91,6 @@ public class PaymentProcessCheckoutStepDisplayContext {
 		return PortletURLBuilder.createRenderURL(
 			_commerceCheckoutRequestHelper.getLiferayPortletResponse()
 		).setParameter(
-			"commerceOrderUuid", _commerceOrder.getUuid()
-		).setParameter(
 			"checkoutStepName",
 			() -> {
 				CommerceCheckoutStep commerceCheckoutStep =
@@ -102,6 +100,8 @@ public class PaymentProcessCheckoutStepDisplayContext {
 
 				return commerceCheckoutStep.getName();
 			}
+		).setParameter(
+			"commerceOrderUuid", _commerceOrder.getUuid()
 		).buildString();
 	}
 

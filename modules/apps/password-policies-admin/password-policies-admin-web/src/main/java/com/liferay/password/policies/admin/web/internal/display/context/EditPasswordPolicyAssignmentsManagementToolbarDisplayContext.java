@@ -221,9 +221,9 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 		).setTabs2(
 			getTabs2()
 		).setParameter(
-			"passwordPolicyId", _passwordPolicy.getPasswordPolicyId()
-		).setParameter(
 			"displayStyle", _displayStyle
+		).setParameter(
+			"passwordPolicyId", _passwordPolicy.getPasswordPolicyId()
 		).build();
 
 		if (Validator.isNotNull(getKeywords())) {

@@ -455,13 +455,13 @@ public class DefaultWikiListPagesDisplayContext
 			).setRedirect(
 				_wikiRequestHelper.getCurrentURL()
 			).setParameter(
-				"nodeId", wikiPage.getNodeId()
-			).setParameter(
-				"title", StringPool.BLANK
-			).setParameter(
 				"editTitle", "1"
 			).setParameter(
+				"nodeId", wikiPage.getNodeId()
+			).setParameter(
 				"parentTitle", wikiPage.getTitle()
+			).setParameter(
+				"title", StringPool.BLANK
 			).buildString());
 
 		menuItems.add(urlMenuItem);
@@ -487,15 +487,15 @@ public class DefaultWikiListPagesDisplayContext
 			).setRedirect(
 				_wikiRequestHelper.getCurrentURL()
 			).setParameter(
-				"nodeId", wikiPage.getNodeId()
-			).setParameter(
-				"title", StringPool.BLANK
-			).setParameter(
 				"editTitle", "1"
+			).setParameter(
+				"nodeId", wikiPage.getNodeId()
 			).setParameter(
 				"templateNodeId", wikiPage.getNodeId()
 			).setParameter(
 				"templateTitle", HtmlUtil.unescape(wikiPage.getTitle())
+			).setParameter(
+				"title", StringPool.BLANK
 			).buildString());
 
 		menuItems.add(urlMenuItem);

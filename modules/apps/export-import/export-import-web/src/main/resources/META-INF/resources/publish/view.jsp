@@ -187,11 +187,11 @@ PortletURL simplePublishRedirectURL = PortletURLBuilder.createRenderURL(
 						).setParameter(
 							"remoteAddress", liveGroupTypeSettings.getProperty("remoteAddress")
 						).setParameter(
-							"remotePort", liveGroupTypeSettings.getProperty("remotePort")
+							"remoteGroupId", liveGroupTypeSettings.getProperty("remoteGroupId")
 						).setParameter(
 							"remotePathContext", liveGroupTypeSettings.getProperty("remotePathContext")
 						).setParameter(
-							"remoteGroupId", liveGroupTypeSettings.getProperty("remoteGroupId")
+							"remotePort", liveGroupTypeSettings.getProperty("remotePort")
 						).setParameter(
 							"secureConnection", liveGroupTypeSettings.getProperty("secureConnection")
 						).setParameter(

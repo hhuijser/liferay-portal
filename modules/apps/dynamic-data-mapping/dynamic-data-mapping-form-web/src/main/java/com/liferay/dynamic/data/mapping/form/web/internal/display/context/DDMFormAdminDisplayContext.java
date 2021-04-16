@@ -1624,10 +1624,10 @@ public class DDMFormAdminDisplayContext {
 			).setBackURL(
 				formAdminRequestHelper.getCurrentURL()
 			).setParameter(
+				"groupId", formAdminRequestHelper.getScopeGroupId()
+			).setParameter(
 				"refererPortletName",
 				DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN
-			).setParameter(
-				"groupId", formAdminRequestHelper.getScopeGroupId()
 			).setParameter(
 				"showBackIcon", Boolean.FALSE.toString()
 			).buildString());

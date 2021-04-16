@@ -71,22 +71,22 @@ public class SelectLayoutMasterLayoutVerticalCard implements VerticalCard {
 				).setRedirect(
 					ParamUtil.getString(_httpServletRequest, "redirect")
 				).setParameter(
-					"groupId", ParamUtil.getLong(_httpServletRequest, "groupId")
-				).setParameter(
-					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
-				).setParameter(
-					"privateLayout",
-					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
-				).setParameter(
-					"type", LayoutConstants.TYPE_COLLECTION
-				).setParameter(
 					"collectionPK",
 					ParamUtil.getString(_httpServletRequest, "collectionPK")
 				).setParameter(
 					"collectionType",
 					ParamUtil.getString(_httpServletRequest, "collectionType")
 				).setParameter(
+					"groupId", ParamUtil.getLong(_httpServletRequest, "groupId")
+				).setParameter(
 					"masterLayoutPlid", _layoutPageTemplateEntry.getPlid()
+				).setParameter(
+					"privateLayout",
+					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
+				).setParameter(
+					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
+				).setParameter(
+					"type", LayoutConstants.TYPE_COLLECTION
 				).setWindowState(
 					LiferayWindowState.POP_UP
 				).buildString());

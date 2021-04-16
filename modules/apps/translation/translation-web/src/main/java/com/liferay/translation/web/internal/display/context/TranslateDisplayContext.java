@@ -243,11 +243,11 @@ public class TranslateDisplayContext {
 		).setActionName(
 			"/translation/update_translation"
 		).setParameter(
-			"groupId", _getGroupId()
-		).setParameter(
 			"classNameId", PortalUtil.getClassNameId(_className)
 		).setParameter(
 			"classPK", _classPK
+		).setParameter(
+			"groupId", _getGroupId()
 		).build();
 	}
 

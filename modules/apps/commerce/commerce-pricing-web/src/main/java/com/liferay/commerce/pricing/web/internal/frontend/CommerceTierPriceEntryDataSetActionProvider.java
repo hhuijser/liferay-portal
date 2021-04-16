@@ -125,12 +125,12 @@ public class CommerceTierPriceEntryDataSetActionProvider
 		).setRedirect(
 			redirect
 		).setParameter(
-			"commerceTierPriceEntryId",
-			commerceTierPriceEntry.getCommerceTierPriceEntryId()
-		).setParameter(
 			"commercePriceEntryId", commercePriceEntry.getCommercePriceEntryId()
 		).setParameter(
 			"commercePriceListId", commercePriceEntry.getCommercePriceListId()
+		).setParameter(
+			"commerceTierPriceEntryId",
+			commerceTierPriceEntry.getCommerceTierPriceEntryId()
 		).build();
 
 		try {
@@ -160,12 +160,12 @@ public class CommerceTierPriceEntryDataSetActionProvider
 		).setRedirect(
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
-			"commerceTierPriceEntryId",
-			commerceTierPriceEntry.getCommerceTierPriceEntryId()
-		).setParameter(
 			"commercePriceEntryId", commercePriceEntry.getCommercePriceEntryId()
 		).setParameter(
 			"commercePriceListId", commercePriceEntry.getCommercePriceListId()
+		).setParameter(
+			"commerceTierPriceEntryId",
+			commerceTierPriceEntry.getCommerceTierPriceEntryId()
 		).build();
 
 		try {

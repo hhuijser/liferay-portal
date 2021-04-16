@@ -518,9 +518,9 @@ public class JournalRSSHelper {
 			PortletURLFactoryUtil.create(
 				resourceRequest, portletId, plid, PortletRequest.RENDER_PHASE)
 		).setParameter(
-			"groupId", article.getGroupId()
-		).setParameter(
 			"articleId", article.getArticleId()
+		).setParameter(
+			"groupId", article.getGroupId()
 		).buildString();
 	}
 

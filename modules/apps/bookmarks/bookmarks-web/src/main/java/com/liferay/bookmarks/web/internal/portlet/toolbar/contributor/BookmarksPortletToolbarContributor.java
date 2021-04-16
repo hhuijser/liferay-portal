@@ -104,6 +104,8 @@ public class BookmarksPortletToolbarContributor
 			).setRedirect(
 				_portal.getCurrentURL(portletRequest)
 			).setParameter(
+				"folderId", folderId
+			).setParameter(
 				"portletResource",
 				() -> {
 					PortletDisplay portletDisplay =
@@ -111,8 +113,6 @@ public class BookmarksPortletToolbarContributor
 
 					return portletDisplay.getId();
 				}
-			).setParameter(
-				"folderId", folderId
 			).buildString());
 
 		menuItems.add(urlMenuItem);
@@ -150,6 +150,8 @@ public class BookmarksPortletToolbarContributor
 			).setRedirect(
 				_portal.getCurrentURL(portletRequest)
 			).setParameter(
+				"parentFolderId", folderId
+			).setParameter(
 				"portletResource",
 				() -> {
 					PortletDisplay portletDisplay =
@@ -157,8 +159,6 @@ public class BookmarksPortletToolbarContributor
 
 					return portletDisplay.getId();
 				}
-			).setParameter(
-				"parentFolderId", folderId
 			).buildString());
 
 		menuItems.add(urlMenuItem);

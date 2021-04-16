@@ -187,10 +187,6 @@ public class DLFileEntryAssetRendererFactory
 		).setCMD(
 			Constants.ADD
 		).setParameter(
-			"groupId", group.getGroupId()
-		).setParameter(
-			"folderId", DLFolderConstants.DEFAULT_PARENT_FOLDER_ID
-		).setParameter(
 			"fileEntryTypeId",
 			() -> {
 				long fileEntryTypeId =
@@ -202,6 +198,10 @@ public class DLFileEntryAssetRendererFactory
 
 				return fileEntryTypeId;
 			}
+		).setParameter(
+			"folderId", DLFolderConstants.DEFAULT_PARENT_FOLDER_ID
+		).setParameter(
+			"groupId", group.getGroupId()
 		).setParameter(
 			"showMountFolder", Boolean.FALSE.toString()
 		).setParameter(

@@ -348,6 +348,8 @@ public class ViewTreeManagementToolbarDisplayContext {
 		).setMVCRenderCommandName(
 			"/users_admin/view"
 		).setParameter(
+			"displayStyle", _displayStyle
+		).setParameter(
 			"organizationId", _organization.getOrganizationId()
 		).setParameter(
 			"toolbarItem",
@@ -357,8 +359,6 @@ public class ViewTreeManagementToolbarDisplayContext {
 			"usersListView",
 			GetterUtil.getString(
 				_httpServletRequest.getAttribute("view.jsp-usersListView"))
-		).setParameter(
-			"displayStyle", _displayStyle
 		).build();
 
 		String[] keywords = ParamUtil.getStringValues(

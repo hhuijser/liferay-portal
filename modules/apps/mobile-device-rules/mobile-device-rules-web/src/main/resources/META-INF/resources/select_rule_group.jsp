@@ -28,9 +28,9 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setMVCPath(
 	"/select_rule_group.jsp"
 ).setParameter(
-	"groupId", String.valueOf(groupId)
-).setParameter(
 	"eventName", eventName
+).setParameter(
+	"groupId", String.valueOf(groupId)
 ).build();
 
 RuleGroupSearch ruleGroupSearch = new RuleGroupSearch(liferayPortletRequest, portletURL);

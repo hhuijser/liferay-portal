@@ -87,9 +87,9 @@ public class UserActionDropdownItemsProvider {
 		).setMVCPath(
 			"/users_roles.jsp"
 		).setParameter(
-			"p_u_i_d", _user.getUserId()
-		).setParameter(
 			"groupId", _themeDisplay.getSiteGroupIdOrLiveGroupId()
+		).setParameter(
+			"p_u_i_d", _user.getUserId()
 		).build();
 
 		Group group = _themeDisplay.getScopeGroup();

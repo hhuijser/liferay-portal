@@ -63,10 +63,10 @@ public class SelectSiteInitializerVerticalCard implements VerticalCard {
 			).setMVCPath(
 				"/select_layout_set_prototype_entry.jsp"
 			).setParameter(
+				"creationType", _siteInitializerItem.getType()
+			).setParameter(
 				"parentGroupId",
 				ParamUtil.getLong(_httpServletRequest, "parentGroupId")
-			).setParameter(
-				"creationType", _siteInitializerItem.getType()
 			).setParameter(
 				"siteInitializerKey",
 				_siteInitializerItem.getSiteInitializerKey()

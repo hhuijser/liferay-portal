@@ -136,11 +136,11 @@ public class SelectRolesDisplayContext {
 		).setMVCPath(
 			"/select_site_role.jsp"
 		).setParameter(
+			"eventName", getEventName()
+		).setParameter(
 			"groupId", getGroupId()
 		).setParameter(
 			"roleType", getRoleType()
-		).setParameter(
-			"eventName", getEventName()
 		).build();
 
 		String displayStyle = getDisplayStyle();

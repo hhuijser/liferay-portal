@@ -253,12 +253,12 @@ public class AssetCategoriesManagementToolbarDisplayContext
 				httpServletRequest, AssetCategory.class.getName(),
 				PortletProvider.Action.BROWSE)
 		).setParameter(
-			"vocabularyIds", _assetCategoriesDisplayContext.getVocabularyId()
-		).setParameter(
 			"eventName",
 			liferayPortletResponse.getNamespace() + "selectCategory"
 		).setParameter(
 			"singleSelect", Boolean.TRUE.toString()
+		).setParameter(
+			"vocabularyIds", _assetCategoriesDisplayContext.getVocabularyId()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).buildString();

@@ -159,11 +159,11 @@ public class KBArticleAssetEntriesUtil {
 				PortletURLFactoryUtil.create(
 					httpServletRequest, portletId, PortletRequest.RENDER_PHASE)
 			).setParameter(
-				"struts_action", "/journal_content/view"
+				"articleId", journalArticle.getArticleId()
 			).setParameter(
 				"groupId", journalArticle.getGroupId()
 			).setParameter(
-				"articleId", journalArticle.getArticleId()
+				"struts_action", "/journal_content/view"
 			).build();
 		}
 		else if (className.equals(KBArticle.class.getName())) {
@@ -183,9 +183,9 @@ public class KBArticleAssetEntriesUtil {
 				PortletURLFactoryUtil.create(
 					httpServletRequest, portletId, PortletRequest.RENDER_PHASE)
 			).setParameter(
-				"struts_action", "/message_boards/view_message"
-			).setParameter(
 				"messageId", classPK
+			).setParameter(
+				"struts_action", "/message_boards/view_message"
 			).build();
 		}
 		else if (className.equals(WikiPage.class.getName())) {
@@ -195,9 +195,9 @@ public class KBArticleAssetEntriesUtil {
 				PortletURLFactoryUtil.create(
 					httpServletRequest, portletId, PortletRequest.RENDER_PHASE)
 			).setParameter(
-				"struts_action", "/wiki/view"
-			).setParameter(
 				"nodeId", wikiPage.getNodeId()
+			).setParameter(
+				"struts_action", "/wiki/view"
 			).setParameter(
 				"title", wikiPage.getTitle()
 			).build();

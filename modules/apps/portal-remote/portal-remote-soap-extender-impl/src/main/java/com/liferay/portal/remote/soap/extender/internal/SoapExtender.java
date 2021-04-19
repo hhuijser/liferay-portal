@@ -65,7 +65,7 @@ public class SoapExtender {
 
 	protected void addBusDependencies(org.apache.felix.dm.Component component) {
 		SoapExtenderConfiguration soapExtenderConfiguration =
-			getSoapExtenderConfiguration();
+			_soapExtenderConfiguration;
 
 		String[] contextPaths = soapExtenderConfiguration.contextPaths();
 
@@ -87,7 +87,7 @@ public class SoapExtender {
 		org.apache.felix.dm.Component component) {
 
 		SoapExtenderConfiguration soapExtenderConfiguration =
-			getSoapExtenderConfiguration();
+			_soapExtenderConfiguration;
 
 		String[] jaxWsHandlerFilterStrings =
 			soapExtenderConfiguration.jaxWsHandlerFilterStrings();
@@ -107,7 +107,7 @@ public class SoapExtender {
 		org.apache.felix.dm.Component component) {
 
 		SoapExtenderConfiguration soapExtenderConfiguration =
-			getSoapExtenderConfiguration();
+			_soapExtenderConfiguration;
 
 		String[] jaxWsServiceFilterStrings =
 			soapExtenderConfiguration.jaxWsServiceFilterStrings();

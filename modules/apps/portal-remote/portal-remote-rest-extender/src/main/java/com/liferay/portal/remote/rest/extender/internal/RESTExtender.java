@@ -75,7 +75,7 @@ public class RESTExtender {
 
 	protected void addBusDependencies() {
 		RestExtenderConfiguration restExtenderConfiguration =
-			getRestExtenderConfiguration();
+			_restExtenderConfiguration;
 
 		String[] contextPaths = restExtenderConfiguration.contextPaths();
 
@@ -99,7 +99,7 @@ public class RESTExtender {
 
 	protected void addJaxRsApplicationDependencies() {
 		RestExtenderConfiguration restExtenderConfiguration =
-			getRestExtenderConfiguration();
+			_restExtenderConfiguration;
 
 		String[] jaxRsApplicationFilterStrings =
 			restExtenderConfiguration.jaxRsApplicationFilterStrings();
@@ -123,7 +123,7 @@ public class RESTExtender {
 
 	protected void addJaxRsProviderServiceDependencies() {
 		RestExtenderConfiguration soapExtenderConfiguration =
-			getRestExtenderConfiguration();
+			_restExtenderConfiguration;
 
 		String[] jaxRsProviderFilterStrings =
 			soapExtenderConfiguration.jaxRsProviderFilterStrings();
@@ -145,7 +145,7 @@ public class RESTExtender {
 
 	protected void addJaxRsServiceDependencies() {
 		RestExtenderConfiguration soapExtenderConfiguration =
-			getRestExtenderConfiguration();
+			_restExtenderConfiguration;
 
 		String[] jaxRsServiceFilterStrings =
 			soapExtenderConfiguration.jaxRsServiceFilterStrings();

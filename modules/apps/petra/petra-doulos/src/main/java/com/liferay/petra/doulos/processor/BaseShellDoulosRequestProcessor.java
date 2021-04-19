@@ -47,7 +47,7 @@ public abstract class BaseShellDoulosRequestProcessor
 		ConcurrentLinkedHashMap.Builder<String, ShellStatus> builder =
 			new ConcurrentLinkedHashMap.Builder<String, ShellStatus>();
 
-		builder.maximumWeightedCapacity(getShellStatusesSize());
+		builder.maximumWeightedCapacity(_SHELL_STATUSES_SIZE);
 
 		_shellStatuses = builder.build();
 
@@ -64,7 +64,7 @@ public abstract class BaseShellDoulosRequestProcessor
 					_log.info("Waiting for background thread to destroy");
 				}
 
-				Thread.sleep(getThreadDestroyInterval());
+				Thread.sleep(_THREAD_DESTROY_INTERVAL);
 			}
 			catch (InterruptedException interruptedException) {
 				_log.error(interruptedException, interruptedException);
@@ -229,11 +229,9 @@ public abstract class BaseShellDoulosRequestProcessor
 			}
 
 			if (shellStatus != null) {
-				long expiredTime = getExpiredTime();
+				long expiredTime = _EXPIRED_TIME;
 
-				if ((expiredTime > 0) &&
-					(shellStatus.time < getExpiredTime())) {
-
+				if ((expiredTime > 0) && (shellStatus.time < _EXPIRED_TIME)) {
 					removeShellStatus(key, shellStatus);
 
 					shellStatus = null;
@@ -305,7 +303,7 @@ public abstract class BaseShellDoulosRequestProcessor
 
 				if (shellStatus == null) {
 					try {
-						Thread.sleep(getThreadExecuteInterval());
+						Thread.sleep(_THREAD_EXECUTE_INTERVAL);
 					}
 					catch (InterruptedException interruptedException) {
 						_log.error(

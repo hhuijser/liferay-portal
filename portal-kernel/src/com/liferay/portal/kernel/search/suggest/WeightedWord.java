@@ -26,10 +26,10 @@ public class WeightedWord implements Comparable<WeightedWord> {
 
 	@Override
 	public int compareTo(WeightedWord weightedWord) {
-		if (getWeight() < weightedWord.getWeight()) {
+		if (_weight < weightedWord.getWeight()) {
 			return -1;
 		}
-		else if (getWeight() == weightedWord.getWeight()) {
+		else if (_weight == weightedWord.getWeight()) {
 			return 0;
 		}
 

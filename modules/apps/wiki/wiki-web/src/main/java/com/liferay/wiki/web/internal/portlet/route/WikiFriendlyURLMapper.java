@@ -59,7 +59,7 @@ public class WikiFriendlyURLMapper extends DefaultFriendlyURLMapper {
 		addParametersIncludedInPath(liferayPortletURL, routeParameters);
 
 		return StringBundler.concat(
-			StringPool.SLASH, getMapping(), friendlyURLPath);
+			StringPool.SLASH, _MAPPING, friendlyURLPath);
 	}
 
 	@Override

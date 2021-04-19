@@ -55,7 +55,7 @@ public abstract class URLNode extends ASTNode {
 	}
 
 	public boolean isAbsoluteLink() {
-		for (String supportedProtocol : getSupportedProtocols()) {
+		for (String supportedProtocol : _supportedProtocols) {
 			if (_link.startsWith(supportedProtocol)) {
 				return true;
 			}

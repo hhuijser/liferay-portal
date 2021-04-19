@@ -98,7 +98,7 @@ public class WikiPageItemSelectorView
 				WIKI_PAGE_ITEM_SELECTOR_VIEW_DISPLAY_CONTEXT,
 			wikiPageItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher(

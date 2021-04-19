@@ -95,7 +95,7 @@ public class DefaultWorkflowInstance implements Serializable, WorkflowInstance {
 
 	@Override
 	public boolean isComplete() {
-		if (getEndDate() != null) {
+		if (_endDate != null) {
 			return true;
 		}
 

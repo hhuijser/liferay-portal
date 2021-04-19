@@ -74,13 +74,13 @@ public class BeanFilterImpl implements BeanFilter {
 	public Dictionary<String, Object> toDictionary() {
 		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
 
-		Set<String> lifecycles = getLifecycles();
+		Set<String> lifecycles = _lifecycles;
 
 		if (!lifecycles.isEmpty()) {
 			dictionary.put("filter.lifecycles", lifecycles);
 		}
 
-		Map<String, String> initParams = getInitParams();
+		Map<String, String> initParams = _initParams;
 
 		for (Map.Entry<String, String> entry : initParams.entrySet()) {
 			String value = entry.getValue();
@@ -91,7 +91,7 @@ public class BeanFilterImpl implements BeanFilter {
 			}
 		}
 
-		dictionary.put("service.ranking:Integer", getOrdinal());
+		dictionary.put("service.ranking:Integer", _ordinal);
 
 		return dictionary;
 	}

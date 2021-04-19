@@ -103,7 +103,7 @@ public class CommentAssetRenderer
 	@Override
 	public String getPortletId() {
 		AssetRendererFactory<WorkflowableComment> assetRendererFactory =
-			getAssetRendererFactory();
+			_assetRendererFactory;
 
 		return assetRendererFactory.getPortletId();
 	}
@@ -171,7 +171,7 @@ public class CommentAssetRenderer
 		throws Exception {
 
 		AssetRendererFactory<WorkflowableComment> assetRendererFactory =
-			getAssetRendererFactory();
+			_assetRendererFactory;
 
 		return PortletURLBuilder.create(
 			assetRendererFactory.getURLView(liferayPortletResponse, windowState)

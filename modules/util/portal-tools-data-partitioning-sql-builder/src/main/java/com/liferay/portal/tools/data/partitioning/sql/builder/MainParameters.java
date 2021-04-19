@@ -61,13 +61,12 @@ public class MainParameters {
 		if ((_catalogName == null) || _catalogName.isEmpty()) {
 			return new ExportContext(
 				_getCompanyIds(), _outputDirName,
-				PropsReader.read(getPropertiesFileName()), _schemaName,
-				_writeFile);
+				PropsReader.read(_propertiesFileName), _schemaName, _writeFile);
 		}
 
 		return new ExportContext(
 			_catalogName, _getCompanyIds(), _outputDirName,
-			PropsReader.read(getPropertiesFileName()), _schemaName, _writeFile);
+			PropsReader.read(_propertiesFileName), _schemaName, _writeFile);
 	}
 
 	private List<Long> _getCompanyIds() {

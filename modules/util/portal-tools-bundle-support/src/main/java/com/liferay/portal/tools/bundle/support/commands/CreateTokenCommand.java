@@ -43,7 +43,7 @@ public class CreateTokenCommand implements Command {
 
 	@Override
 	public void execute() throws Exception {
-		if (_tokenFile.exists() && !isForce()) {
+		if (_tokenFile.exists() && !_force) {
 			System.out.println(
 				"The liferay.com download token already exists.");
 

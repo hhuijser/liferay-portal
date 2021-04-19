@@ -79,7 +79,7 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 	}
 
 	public int getFollowingLineAction() {
-		ParsedJavaTerm nextParsedJavaTerm = getNextParsedJavaTerm();
+		ParsedJavaTerm nextParsedJavaTerm = _nextParsedJavaTerm;
 
 		if (nextParsedJavaTerm == null) {
 			return NO_ACTION_REQUIRED;
@@ -144,7 +144,7 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 	}
 
 	public int getPrecedingLineAction() {
-		ParsedJavaTerm previousParsedJavaTerm = getPreviousParsedJavaTerm();
+		ParsedJavaTerm previousParsedJavaTerm = _previousParsedJavaTerm;
 
 		if (_precedingCommentToken != null) {
 			if (previousParsedJavaTerm == null) {
@@ -387,7 +387,7 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		}
 
 		if (className.equals(JavaClassCall.class.getName())) {
-			ParsedJavaTerm previousParsedJavaTerm = getPreviousParsedJavaTerm();
+			ParsedJavaTerm previousParsedJavaTerm = _previousParsedJavaTerm;
 
 			String previousClassName = previousParsedJavaTerm.getClassName();
 
@@ -433,7 +433,7 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 			return SINGLE_LINE_BREAK_REQUIRED;
 		}
 
-		ParsedJavaTerm nextParsedJavaTerm = getNextParsedJavaTerm();
+		ParsedJavaTerm nextParsedJavaTerm = _nextParsedJavaTerm;
 
 		String trimmedNextJavaTermContent = StringUtil.trim(
 			nextParsedJavaTerm.getContent());

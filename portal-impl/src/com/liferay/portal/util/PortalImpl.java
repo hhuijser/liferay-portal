@@ -2043,7 +2043,7 @@ public class PortalImpl implements Portal {
 		}
 
 		if (Validator.isNull(currentURL)) {
-			currentURL = getPathMain();
+			currentURL = _pathMain;
 		}
 
 		httpServletRequest.setAttribute(WebKeys.CURRENT_URL, currentURL);
@@ -2692,7 +2692,7 @@ public class PortalImpl implements Portal {
 
 	@Override
 	public String getLayoutActualURL(Layout layout) {
-		return getLayoutActualURL(layout, getPathMain());
+		return getLayoutActualURL(layout, _pathMain);
 	}
 
 	@Override
@@ -3013,14 +3013,14 @@ public class PortalImpl implements Portal {
 
 		if (layout.isPrivateLayout()) {
 			if (group.isUser()) {
-				sb.append(getPathFriendlyURLPrivateUser());
+				sb.append(_pathFriendlyURLPrivateUser);
 			}
 			else {
-				sb.append(getPathFriendlyURLPrivateGroup());
+				sb.append(_pathFriendlyURLPrivateGroup);
 			}
 		}
 		else {
-			sb.append(getPathFriendlyURLPublic());
+			sb.append(_pathFriendlyURLPublic);
 		}
 
 		sb.append(group.getFriendlyURL());
@@ -3081,14 +3081,14 @@ public class PortalImpl implements Portal {
 				virtualHostname, portalPort, secureConnection);
 
 			if (virtualHostname.contains(portalDomain)) {
-				return virtualHostname.concat(getPathContext());
+				return virtualHostname.concat(_pathContext);
 			}
 		}
 
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(portalURL);
-		sb.append(getPathContext());
+		sb.append(_pathContext);
 
 		Group group = layoutSet.getGroup();
 
@@ -3608,7 +3608,7 @@ public class PortalImpl implements Portal {
 			requestURI = originalHttpServletRequest.getRequestURI();
 		}
 
-		String contextPath = getPathContext();
+		String contextPath = _pathContext;
 
 		if (Validator.isNotNull(contextPath) &&
 			requestURI.startsWith(contextPath)) {
@@ -5049,7 +5049,7 @@ public class PortalImpl implements Portal {
 		StringBundler sb = new StringBundler(7);
 
 		sb.append(portalURL);
-		sb.append(getPathFriendlyURLPrivateGroup());
+		sb.append(_pathFriendlyURLPrivateGroup);
 
 		if ((group != null) && !group.isControlPanel()) {
 			sb.append(group.getFriendlyURL());

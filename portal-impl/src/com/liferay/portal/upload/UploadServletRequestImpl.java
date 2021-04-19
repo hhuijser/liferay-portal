@@ -701,7 +701,7 @@ public class UploadServletRequestImpl
 				return 1;
 			}
 
-			if (getFileItemsSize() >= groupedFileItems.getFileItemsSize()) {
+			if (_fileItemsSize >= groupedFileItems.getFileItemsSize()) {
 				return 1;
 			}
 

@@ -729,7 +729,7 @@ public abstract class LiferayConverter {
 
 		outputIStreamCoder.setSampleFormat(sampleFormat);
 
-		outputIStreamCoder.setSampleRate(getAudioSampleRate());
+		outputIStreamCoder.setSampleRate(AUDIO_SAMPLE_RATE_DEFAULT);
 
 		iAudioResamplers[index] = createIAudioResampler(
 			inputIStreamCoder, outputIStreamCoder);

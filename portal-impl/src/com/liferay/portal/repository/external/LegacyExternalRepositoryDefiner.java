@@ -56,7 +56,7 @@ public class LegacyExternalRepositoryDefiner extends BaseRepositoryDefiner {
 			}
 
 			BaseRepository baseRepository =
-				ExternalRepositoryFactoryUtil.getInstance(getClassName());
+				ExternalRepositoryFactoryUtil.getInstance(_className);
 
 			@SuppressWarnings("deprecation")
 			String[][] supportedParameters =

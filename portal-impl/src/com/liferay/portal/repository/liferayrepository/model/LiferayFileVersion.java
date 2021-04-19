@@ -375,7 +375,7 @@ public class LiferayFileVersion extends LiferayModel implements FileVersion {
 
 	@Override
 	public FileVersion toEscapedModel() {
-		if (isEscapedModel()) {
+		if (_escapedModel) {
 			return this;
 		}
 
@@ -389,7 +389,7 @@ public class LiferayFileVersion extends LiferayModel implements FileVersion {
 
 	@Override
 	public FileVersion toUnescapedModel() {
-		if (isEscapedModel()) {
+		if (_escapedModel) {
 			return new LiferayFileVersion(
 				_dlFileVersion.toUnescapedModel(), true);
 		}

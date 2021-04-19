@@ -36,10 +36,10 @@ public class BooleanWrapper
 			return 1;
 		}
 
-		if (getValue() && !booleanWrapper.getValue()) {
+		if (_value && !booleanWrapper.getValue()) {
 			return 1;
 		}
-		else if (!getValue() && booleanWrapper.getValue()) {
+		else if (!_value && booleanWrapper.getValue()) {
 			return -1;
 		}
 

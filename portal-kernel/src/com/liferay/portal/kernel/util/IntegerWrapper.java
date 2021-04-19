@@ -36,10 +36,10 @@ public class IntegerWrapper
 			return 1;
 		}
 
-		if (getValue() > integerWrapper.getValue()) {
+		if (_value > integerWrapper.getValue()) {
 			return 1;
 		}
-		else if (getValue() < integerWrapper.getValue()) {
+		else if (_value < integerWrapper.getValue()) {
 			return -1;
 		}
 

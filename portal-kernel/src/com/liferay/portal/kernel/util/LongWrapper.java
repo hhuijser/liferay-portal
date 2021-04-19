@@ -36,10 +36,10 @@ public class LongWrapper
 			return 1;
 		}
 
-		if (getValue() > longWrapper.getValue()) {
+		if (_value > longWrapper.getValue()) {
 			return 1;
 		}
-		else if (getValue() < longWrapper.getValue()) {
+		else if (_value < longWrapper.getValue()) {
 			return -1;
 		}
 

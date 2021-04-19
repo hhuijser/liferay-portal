@@ -36,10 +36,10 @@ public class DoubleWrapper
 			return 1;
 		}
 
-		if (getValue() > doubleWrapper.getValue()) {
+		if (_value > doubleWrapper.getValue()) {
 			return 1;
 		}
-		else if (getValue() < doubleWrapper.getValue()) {
+		else if (_value < doubleWrapper.getValue()) {
 			return -1;
 		}
 

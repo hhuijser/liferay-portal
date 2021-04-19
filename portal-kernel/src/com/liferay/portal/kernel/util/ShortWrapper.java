@@ -36,10 +36,10 @@ public class ShortWrapper
 			return 1;
 		}
 
-		if (getValue() > shortWrapper.getValue()) {
+		if (_value > shortWrapper.getValue()) {
 			return 1;
 		}
-		else if (getValue() < shortWrapper.getValue()) {
+		else if (_value < shortWrapper.getValue()) {
 			return -1;
 		}
 

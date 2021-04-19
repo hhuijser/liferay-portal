@@ -90,7 +90,7 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 			_cmisRepository, _uuid, _fileEntryId, _document, _lockManager);
 
 		cmisFileEntry.setCompanyId(getCompanyId());
-		cmisFileEntry.setFileEntryId(getFileEntryId());
+		cmisFileEntry.setFileEntryId(_fileEntryId);
 		cmisFileEntry.setGroupId(getGroupId());
 
 		try {
@@ -102,7 +102,7 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 			}
 		}
 
-		cmisFileEntry.setPrimaryKey(getPrimaryKey());
+		cmisFileEntry.setPrimaryKey(_fileEntryId);
 
 		return cmisFileEntry;
 	}
@@ -192,7 +192,7 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 
 		throw new NoSuchFileVersionException(
 			StringBundler.concat(
-				"No CMIS file version with {fileEntryId=", getFileEntryId(),
+				"No CMIS file version with {fileEntryId=", _fileEntryId,
 				", version=", version, "}"));
 	}
 
@@ -242,7 +242,7 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 
 		throw new NoSuchFileVersionException(
 			StringBundler.concat(
-				"No CMIS file version with {fileEntryId=", getFileEntryId(),
+				"No CMIS file version with {fileEntryId=", _fileEntryId,
 				", version=", version, "}"));
 	}
 
@@ -462,7 +462,7 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return getPrimaryKey();
+		return _fileEntryId;
 	}
 
 	@Override
@@ -751,7 +751,7 @@ public class CMISFileEntry extends CMISModel implements FileEntry {
 		}
 		catch (PortalException portalException) {
 			throw new SystemException(
-				"Unable to get repository for file entry " + getFileEntryId(),
+				"Unable to get repository for file entry " + _fileEntryId,
 				portalException);
 		}
 	}

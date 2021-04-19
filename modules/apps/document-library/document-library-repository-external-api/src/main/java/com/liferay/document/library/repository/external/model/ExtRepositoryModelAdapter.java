@@ -74,7 +74,7 @@ public abstract class ExtRepositoryModelAdapter<T>
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(
-			getCompanyId(), getModelClassName(), getPrimaryKey());
+			getCompanyId(), getModelClassName(), _extRepositoryObjectId);
 	}
 
 	public ExtRepositoryModel getExtRepositoryModel() {
@@ -110,7 +110,7 @@ public abstract class ExtRepositoryModelAdapter<T>
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return getPrimaryKey();
+		return _extRepositoryObjectId;
 	}
 
 	public long getRepositoryId() {

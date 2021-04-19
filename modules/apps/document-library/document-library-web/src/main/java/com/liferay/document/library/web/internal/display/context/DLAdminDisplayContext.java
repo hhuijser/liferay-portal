@@ -252,7 +252,7 @@ public class DLAdminDisplayContext {
 			return _repositoryId;
 		}
 
-		Folder folder = getFolder();
+		Folder folder = _folder;
 
 		if (folder != null) {
 			_repositoryId = folder.getRepositoryId();
@@ -330,7 +330,7 @@ public class DLAdminDisplayContext {
 				WebKeys.DOCUMENT_LIBRARY_FOLDER);
 
 			if (_folder == null) {
-				_folderId = getRootFolderId();
+				_folderId = _rootFolderId;
 			}
 			else {
 				_folderId = _folder.getFolderId();
@@ -435,7 +435,7 @@ public class DLAdminDisplayContext {
 
 		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
 
-		long folderId = getFolderId();
+		long folderId = _folderId;
 
 		if (folderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			portletURL.setParameter(

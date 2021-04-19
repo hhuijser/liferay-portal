@@ -84,7 +84,7 @@ public class BaseWebDAVTestCase {
 			headers = new HashMap<>();
 		}
 
-		headers.put(HttpHeaders.USER_AGENT, getUserAgent());
+		headers.put(HttpHeaders.USER_AGENT, _DEFAULT_USER_AGENT);
 
 		try {
 			throw new Exception();

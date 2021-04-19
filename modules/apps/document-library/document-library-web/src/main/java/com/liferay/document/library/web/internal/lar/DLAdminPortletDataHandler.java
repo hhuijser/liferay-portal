@@ -145,7 +145,7 @@ public class DLAdminPortletDataHandler extends BasePortletDataHandler {
 				NAMESPACE, "document-types", true, false, null,
 				DLFileEntryType.class.getName()),
 			new PortletDataHandlerBoolean(
-				getNamespace(), "metadata", true, false, null,
+				NAMESPACE, "metadata", true, false, null,
 				DDMStructure.class.getName(),
 				DLFileEntryMetadata.class.getName()),
 			new PortletDataHandlerBoolean(

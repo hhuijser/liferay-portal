@@ -298,8 +298,8 @@ public class DLFileEntryTrashHandlerTest
 
 		FileEntry fileEntry = DLAppTestUtil.addFileEntryWithWorkflow(
 			TestPropsValues.getUserId(), groupId, folderId,
-			RandomTestUtil.randomString() + ".txt", getSearchKeywords(),
-			approved, serviceContext);
+			RandomTestUtil.randomString() + ".txt", _FILE_ENTRY_TITLE, approved,
+			serviceContext);
 
 		return (DLFileEntry)fileEntry.getModel();
 	}

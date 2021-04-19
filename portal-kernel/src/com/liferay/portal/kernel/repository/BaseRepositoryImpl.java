@@ -136,7 +136,7 @@ public abstract class BaseRepositoryImpl
 		throw new IllegalArgumentException(
 			String.format(
 				"Capability %s is not supported by repository %s",
-				capabilityClass.getName(), getRepositoryId()));
+				capabilityClass.getName(), _repositoryId));
 	}
 
 	public long getCompanyId() {
@@ -462,7 +462,7 @@ public abstract class BaseRepositoryImpl
 		throws PortalException {
 
 		return repositoryEntryLocalService.getRepositoryEntry(
-			PrincipalThreadLocal.getUserId(), getGroupId(), getRepositoryId(),
+			PrincipalThreadLocal.getUserId(), _groupId, _repositoryId,
 			objectId);
 	}
 

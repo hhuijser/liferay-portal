@@ -34,7 +34,7 @@ public class RuntimePageUtil {
 			TemplateResource templateResource)
 		throws Exception {
 
-		return getRuntimePage().getProcessedTemplate(
+		return _runtimePage.getProcessedTemplate(
 			httpServletRequest, httpServletResponse, portletId,
 			templateResource);
 	}
@@ -49,7 +49,7 @@ public class RuntimePageUtil {
 			TemplateResource templateResource)
 		throws Exception {
 
-		getRuntimePage().processCustomizationSettings(
+		_runtimePage.processCustomizationSettings(
 			httpServletRequest, httpServletResponse, templateResource);
 	}
 
@@ -59,7 +59,7 @@ public class RuntimePageUtil {
 			TemplateResource templateResource, String langType)
 		throws Exception {
 
-		getRuntimePage().processCustomizationSettings(
+		_runtimePage.processCustomizationSettings(
 			httpServletRequest, httpServletResponse, templateResource,
 			langType);
 	}
@@ -70,7 +70,7 @@ public class RuntimePageUtil {
 			TemplateResource templateResource)
 		throws Exception {
 
-		getRuntimePage().processTemplate(
+		_runtimePage.processTemplate(
 			httpServletRequest, httpServletResponse, portletId,
 			templateResource);
 	}
@@ -81,7 +81,7 @@ public class RuntimePageUtil {
 			TemplateResource templateResource, String langType)
 		throws Exception {
 
-		getRuntimePage().processTemplate(
+		_runtimePage.processTemplate(
 			httpServletRequest, httpServletResponse, portletId,
 			templateResource, langType);
 	}
@@ -92,7 +92,7 @@ public class RuntimePageUtil {
 			TemplateResource templateResource)
 		throws Exception {
 
-		getRuntimePage().processTemplate(
+		_runtimePage.processTemplate(
 			httpServletRequest, httpServletResponse, templateResource);
 	}
 
@@ -102,7 +102,7 @@ public class RuntimePageUtil {
 			TemplateResource templateResource, String langType)
 		throws Exception {
 
-		getRuntimePage().processTemplate(
+		_runtimePage.processTemplate(
 			httpServletRequest, httpServletResponse, templateResource,
 			langType);
 	}
@@ -112,7 +112,7 @@ public class RuntimePageUtil {
 			HttpServletResponse httpServletResponse, String content)
 		throws Exception {
 
-		return getRuntimePage().processXML(
+		return _runtimePage.processXML(
 			httpServletRequest, httpServletResponse, content);
 	}
 
@@ -121,7 +121,7 @@ public class RuntimePageUtil {
 			RuntimeLogic runtimeLogic)
 		throws Exception {
 
-		return getRuntimePage().processXML(
+		return _runtimePage.processXML(
 			httpServletRequest, content, runtimeLogic);
 	}
 

@@ -88,8 +88,7 @@ public class PortalPreferencesImpl
 	@Override
 	public PortalPreferencesImpl clone() {
 		return new PortalPreferencesImpl(
-			getOwnerId(), getOwnerType(), new HashMap<>(getPreferences()),
-			isSignedIn());
+			_ownerId, _ownerType, new HashMap<>(getPreferences()), _signedIn);
 	}
 
 	@Override
@@ -105,8 +104,8 @@ public class PortalPreferencesImpl
 		PortalPreferencesImpl portalPreferencesImpl =
 			(PortalPreferencesImpl)object;
 
-		if ((getOwnerId() == portalPreferencesImpl.getOwnerId()) &&
-			(getOwnerType() == portalPreferencesImpl.getOwnerType()) &&
+		if ((_ownerId == portalPreferencesImpl.getOwnerId()) &&
+			(_ownerType == portalPreferencesImpl.getOwnerType()) &&
 			Objects.equals(
 				getPreferences(), portalPreferencesImpl.getPreferences())) {
 
@@ -200,9 +199,9 @@ public class PortalPreferencesImpl
 
 	@Override
 	public int hashCode() {
-		int hashCode = HashUtil.hash(0, getOwnerId());
+		int hashCode = HashUtil.hash(0, _ownerId);
 
-		hashCode = HashUtil.hash(hashCode, getOwnerType());
+		hashCode = HashUtil.hash(hashCode, _ownerType);
 		hashCode = HashUtil.hash(hashCode, getPreferences());
 
 		return hashCode;
@@ -395,7 +394,7 @@ public class PortalPreferencesImpl
 	public void store() throws IOException {
 		try {
 			PortalPreferencesLocalServiceUtil.updatePreferences(
-				getOwnerId(), getOwnerType(), this);
+				_ownerId, _ownerType, this);
 		}
 		catch (Throwable throwable) {
 			throw new IOException(throwable);
@@ -550,8 +549,7 @@ public class PortalPreferencesImpl
 
 	private Map<PortalPreferenceKey, String[]> _reloadPreferenceMap() {
 		com.liferay.portal.kernel.model.PortalPreferences portalPreferences =
-			PortalPreferencesUtil.fetchByO_O(
-				getOwnerId(), getOwnerType(), false);
+			PortalPreferencesUtil.fetchByO_O(_ownerId, _ownerType, false);
 
 		if (portalPreferences == null) {
 			return null;

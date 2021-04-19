@@ -72,7 +72,7 @@ public class Preference implements Cloneable, Serializable {
 		StringBundler sb = new StringBundler(6 + ((_values.length * 2) - 1));
 
 		sb.append("{name=");
-		sb.append(getName());
+		sb.append(_name);
 		sb.append(", readOnly=");
 		sb.append(_readOnly);
 		sb.append(", values=[");

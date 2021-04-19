@@ -95,8 +95,8 @@ public class PortletBagImpl implements PortletBag {
 	@Override
 	public Object clone() {
 		return new PortletBagImpl(
-			getPortletName(), getServletContext(), getPortletInstance(),
-			getResourceBundleBaseName(), getFriendlyURLMapperTracker(), null);
+			_portletName, _servletContext, _portletInstance,
+			_resourceBundleBaseName, _friendlyURLMapperTracker, null);
 	}
 
 	@Override
@@ -340,7 +340,7 @@ public class PortletBagImpl implements PortletBag {
 					StringBundler sb = new StringBundler(5);
 
 					sb.append("(resource.bundle.base.name=");
-					sb.append(getResourceBundleBaseName());
+					sb.append(_resourceBundleBaseName);
 					sb.append(")(servlet.context.name=");
 					sb.append(_servletContext.getServletContextName());
 					sb.append(")");

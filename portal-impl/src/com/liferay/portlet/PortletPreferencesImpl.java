@@ -76,8 +76,8 @@ public class PortletPreferencesImpl
 	@Override
 	public Object clone() {
 		return new PortletPreferencesImpl(
-			getCompanyId(), getOwnerId(), getOwnerType(), _plid, _portletId,
-			getOriginalXML(), getOriginalPreferences());
+			_companyId, _ownerId, _ownerType, _plid, _portletId, _originalXML,
+			_originalPreferences);
 	}
 
 	@Override
@@ -93,12 +93,11 @@ public class PortletPreferencesImpl
 		PortletPreferencesImpl portletPreferencesImpl =
 			(PortletPreferencesImpl)object;
 
-		if ((getCompanyId() == portletPreferencesImpl.getCompanyId()) &&
-			(getOwnerId() == portletPreferencesImpl.getOwnerId()) &&
-			(getOwnerType() == portletPreferencesImpl.getOwnerType()) &&
-			(getPlid() == portletPreferencesImpl.getPlid()) &&
-			Objects.equals(
-				getPortletId(), portletPreferencesImpl.getPortletId()) &&
+		if ((_companyId == portletPreferencesImpl.getCompanyId()) &&
+			(_ownerId == portletPreferencesImpl.getOwnerId()) &&
+			(_ownerType == portletPreferencesImpl.getOwnerType()) &&
+			(_plid == portletPreferencesImpl.getPlid()) &&
+			Objects.equals(_portletId, portletPreferencesImpl.getPortletId()) &&
 			Objects.equals(
 				getPreferences(), portletPreferencesImpl.getPreferences())) {
 
@@ -204,12 +203,12 @@ public class PortletPreferencesImpl
 
 	@Override
 	public int hashCode() {
-		int hashCode = HashUtil.hash(0, getCompanyId());
+		int hashCode = HashUtil.hash(0, _companyId);
 
-		hashCode = HashUtil.hash(hashCode, getOwnerId());
-		hashCode = HashUtil.hash(hashCode, getOwnerType());
-		hashCode = HashUtil.hash(hashCode, getPlid());
-		hashCode = HashUtil.hash(hashCode, getPortletId());
+		hashCode = HashUtil.hash(hashCode, _ownerId);
+		hashCode = HashUtil.hash(hashCode, _ownerType);
+		hashCode = HashUtil.hash(hashCode, _plid);
+		hashCode = HashUtil.hash(hashCode, _portletId);
 		hashCode = HashUtil.hash(hashCode, getPreferences());
 
 		return hashCode;
@@ -338,7 +337,7 @@ public class PortletPreferencesImpl
 			}
 
 			PortletPreferencesLocalServiceUtil.updatePreferences(
-				getOwnerId(), getOwnerType(), _plid, _portletId, this);
+				_ownerId, _ownerType, _plid, _portletId, this);
 		}
 		catch (SystemException systemException) {
 			throw new IOException(systemException);

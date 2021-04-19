@@ -1494,7 +1494,7 @@ public class PortletURLImpl
 						renderParameterName);
 				}
 				else if (_lifecycle.equals(PortletRequest.RENDER_PHASE)) {
-					PortletRequest portletRequest = getPortletRequest();
+					PortletRequest portletRequest = _portletRequest;
 
 					if (portletRequest != null) {
 						LiferayRenderParameters renderParameters =

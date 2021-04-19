@@ -99,8 +99,7 @@ public class LiferayPortlet extends GenericPortlet {
 					actionRequest,
 					portletId.concat(
 						SessionMessages.KEY_SUFFIX_FORCE_SEND_REDIRECT)) &&
-				(isEmptySessionMessages(actionRequest) ||
-				 isAlwaysSendRedirect())) {
+				(isEmptySessionMessages(actionRequest) || alwaysSendRedirect)) {
 
 				sendRedirect(actionRequest, actionResponse);
 			}

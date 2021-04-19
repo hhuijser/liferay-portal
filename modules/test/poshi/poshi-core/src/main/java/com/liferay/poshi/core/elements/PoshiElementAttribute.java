@@ -88,7 +88,7 @@ public class PoshiElementAttribute
 
 	@Override
 	public void validatePoshiScript() throws PoshiScriptParserException {
-		if (Validator.isNull(getPoshiScript())) {
+		if (Validator.isNull(_poshiScript)) {
 			return;
 		}
 

@@ -48,7 +48,7 @@ public class LoggerElement {
 	public LoggerElement copy() {
 		LoggerElement loggerElement = new LoggerElement();
 
-		List<LoggerElement> childLoggerElements = loggerElements();
+		List<LoggerElement> childLoggerElements = _childLoggerElements;
 
 		for (LoggerElement childLoggerElement : childLoggerElements) {
 			loggerElement.addChildLoggerElement(childLoggerElement.copy());
@@ -61,9 +61,9 @@ public class LoggerElement {
 				attributeName, getAttributeValue(attributeName));
 		}
 
-		loggerElement.setClassName(getClassName());
-		loggerElement.setName(getName());
-		loggerElement.setText(getText());
+		loggerElement.setClassName(_className);
+		loggerElement.setName(_name);
+		loggerElement.setText(_text);
 
 		return loggerElement;
 	}

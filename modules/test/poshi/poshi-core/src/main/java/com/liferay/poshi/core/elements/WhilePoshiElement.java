@@ -75,7 +75,7 @@ public class WhilePoshiElement extends IfPoshiElement {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(getPoshiScriptKeyword());
+		sb.append(_ELEMENT_NAME);
 		sb.append(" (");
 
 		List<Element> equalsPoshiElement = elements("equals");

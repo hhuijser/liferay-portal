@@ -106,9 +106,9 @@ public class PoshiScriptParserException extends Exception {
 	}
 
 	public String getErrorSnippet() {
-		PoshiElement rootPoshiElement = getRootPoshiElement(getPoshiNode());
+		PoshiElement rootPoshiElement = getRootPoshiElement(_poshiNode);
 
-		int errorLineNumber = getErrorLineNumber();
+		int errorLineNumber = _errorLineNumber;
 
 		int startingLineNumber = Math.max(
 			errorLineNumber - _ERROR_SNIPPET_PREFIX_SIZE, 1);
@@ -169,9 +169,9 @@ public class PoshiScriptParserException extends Exception {
 
 		sb.append(super.getMessage());
 		sb.append(" at:\n");
-		sb.append(getFilePath());
+		sb.append(_filePath);
 		sb.append(":");
-		sb.append(getErrorLineNumber());
+		sb.append(_errorLineNumber);
 		sb.append("\n");
 		sb.append(getErrorSnippet());
 

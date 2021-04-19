@@ -201,7 +201,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		WebDriver webDriver = WebDriverUtil.getWebDriver();
 
 		String sourceDirFilePath = LiferaySeleniumUtil.getSourceDirFilePath(
-			getTestDependenciesDirName());
+			_TEST_DEPENDENCIES_DIR_NAME);
 
 		File file = new File(sourceDirFilePath + "/axe.min.js");
 
@@ -2907,7 +2907,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 		keyboard.keyUp(Key.CTRL);
 
-		String fileName = getOutputDirName() + "/" + value;
+		String fileName = _OUTPUT_DIR_NAME + "/" + value;
 
 		fileName = FileUtil.fixFilePath(fileName);
 
@@ -3226,7 +3226,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		throws Exception {
 
 		String filePath =
-			FileUtil.getSeparator() + getTestDependenciesDirName() +
+			FileUtil.getSeparator() + _TEST_DEPENDENCIES_DIR_NAME +
 				FileUtil.getSeparator() + value;
 
 		filePath = LiferaySeleniumUtil.getSourceDirFilePath(filePath);
@@ -3238,8 +3238,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 			if (file.isDirectory()) {
 				String archiveFilePath =
-					getOutputDirName() + FileUtil.getSeparator() +
-						file.getName();
+					_OUTPUT_DIR_NAME + FileUtil.getSeparator() + file.getName();
 
 				archiveFilePath = FileUtil.getCanonicalPath(archiveFilePath);
 
@@ -3265,7 +3264,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 	@Override
 	public void uploadTempFile(String location, String value) {
-		String filePath = getOutputDirName() + FileUtil.getSeparator() + value;
+		String filePath = _OUTPUT_DIR_NAME + FileUtil.getSeparator() + value;
 
 		filePath = FileUtil.fixFilePath(filePath);
 
@@ -3520,7 +3519,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 					targetLocator.window(windowHandle);
 
 					if (targetWindowTitle.equals(getTitle())) {
-						targetLocator.window(getDefaultWindowHandle());
+						targetLocator.window(_defaultWindowHandle);
 
 						return;
 					}
@@ -3901,7 +3900,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 	protected ImageTarget getImageTarget(String image) throws Exception {
 		String filePath =
-			FileUtil.getSeparator() + getSikuliImagesDirName() + image;
+			FileUtil.getSeparator() + _SIKULI_IMAGES_DIR_NAME + image;
 
 		File file = new File(
 			LiferaySeleniumUtil.getSourceDirFilePath(filePath));
@@ -4529,10 +4528,10 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		OcularConfiguration ocularConfiguration = Ocular.config();
 
 		ocularConfiguration = ocularConfiguration.snapshotPath(
-			Paths.get(".", getOcularSnapImageDirName()));
+			Paths.get(".", _OCULAR_SNAP_IMAGE_DIR_NAME));
 
 		ocularConfiguration.resultPath(
-			Paths.get(".", getOcularResultImageDirName()));
+			Paths.get(".", _OCULAR_RESULT_IMAGE_DIR_NAME));
 
 		ocularConfiguration.globalSimilarity(99);
 

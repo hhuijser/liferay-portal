@@ -249,7 +249,7 @@ public class PoshiContext {
 
 	public static String getNamespaceFromFilePath(String filePath) {
 		if (Validator.isNull(filePath)) {
-			return getDefaultNamespace();
+			return _DEFAULT_NAMESPACE;
 		}
 
 		for (Map.Entry<String, String> entry : _filePaths.entrySet()) {
@@ -264,7 +264,7 @@ public class PoshiContext {
 			}
 		}
 
-		return getDefaultNamespace();
+		return _DEFAULT_NAMESPACE;
 	}
 
 	public static List<String> getNamespaces() {

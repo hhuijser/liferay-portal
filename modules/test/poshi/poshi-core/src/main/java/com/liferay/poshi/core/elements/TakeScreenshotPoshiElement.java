@@ -89,7 +89,7 @@ public class TakeScreenshotPoshiElement extends PoshiElement {
 
 		sb.append("\n\n");
 		sb.append(getPad());
-		sb.append(getBlockName());
+		sb.append(_POSHI_SCRIPT_KEYWORD);
 		sb.append("();");
 
 		return sb.toString();

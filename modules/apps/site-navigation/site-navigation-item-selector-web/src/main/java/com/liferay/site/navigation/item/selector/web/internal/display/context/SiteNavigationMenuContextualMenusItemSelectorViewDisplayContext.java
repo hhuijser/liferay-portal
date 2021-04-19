@@ -51,7 +51,7 @@ public class SiteNavigationMenuContextualMenusItemSelectorViewDisplayContext {
 			"containerId",
 			liferayPortletResponse.getNamespace() + "contextualMenuSelector"
 		).put(
-			"eventName", getItemSelectedEventName()
+			"eventName", _itemSelectedEventName
 		).put(
 			"returnType",
 			SiteNavigationMenuItemSelectorReturnType.class.toString()

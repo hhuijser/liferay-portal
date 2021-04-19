@@ -84,7 +84,7 @@ public class SelectSiteNavigationMenuItemSelectorView
 			PortletURL portletURL, String itemSelectedEventName, boolean search)
 		throws IOException, ServletException {
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher(

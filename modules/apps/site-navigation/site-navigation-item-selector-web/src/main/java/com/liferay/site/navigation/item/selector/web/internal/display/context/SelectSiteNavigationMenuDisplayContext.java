@@ -106,7 +106,7 @@ public class SelectSiteNavigationMenuDisplayContext {
 			liferayPortletResponse.getNamespace() +
 				"siteNavigationMenuLevelSelector"
 		).put(
-			"eventName", getItemSelectedEventName()
+			"eventName", _itemSelectedEventName
 		).put(
 			"returnType",
 			SiteNavigationMenuItemSelectorReturnType.class.toString()

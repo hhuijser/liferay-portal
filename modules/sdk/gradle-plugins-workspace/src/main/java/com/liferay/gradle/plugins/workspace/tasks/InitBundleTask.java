@@ -128,7 +128,7 @@ public class InitBundleTask extends JavaExec {
 		args.add("--liferay");
 		args.add(FileUtil.getAbsolutePath(getDestinationDir()));
 
-		FileCollection providedModules = getProvidedModules();
+		FileCollection providedModules = _providedModules;
 
 		if (!providedModules.isEmpty()) {
 			StringBuilder sb = new StringBuilder();

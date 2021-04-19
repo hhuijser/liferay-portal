@@ -57,7 +57,7 @@ public class BuildSoyTask extends SourceTask {
 		}
 
 		_withClasspath(
-			getClasspath(),
+			_classpath,
 			new Callable<Void>() {
 
 				@Override

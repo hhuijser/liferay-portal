@@ -104,7 +104,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 
 	@Override
 	public void apply(Project project) {
-		if (isDefaultRepositoryEnabled()) {
+		if (_defaultRepositoryEnabled) {
 			GradleUtil.addDefaultRepositories(project);
 		}
 
@@ -127,7 +127,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 
 				extraPropertiesExtension.set(
 					JspCDefaultsPlugin.COMPILE_JSP_INCLUDE_PROPERTY_NAME,
-					isJspPrecompileEnabled());
+					_jspPrecompileEnabled);
 			}
 
 			GradleUtil.applyPlugin(project, LiferayOSGiPlugin.class);

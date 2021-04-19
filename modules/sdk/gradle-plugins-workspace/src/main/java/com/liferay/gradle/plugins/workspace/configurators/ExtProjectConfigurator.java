@@ -93,7 +93,7 @@ public class ExtProjectConfigurator extends BaseProjectConfigurator {
 
 		_applyPlugins(project, extPlugin);
 
-		if (isDefaultRepositoryEnabled()) {
+		if (_defaultRepositoryEnabled) {
 			GradleUtil.addDefaultRepositories(project);
 		}
 

@@ -290,7 +290,7 @@ public class TranspileJSTask extends ExecuteNodeScriptTask {
 		completeArgs.add("--moduleName");
 		completeArgs.add(getModuleName());
 
-		SourceMaps sourceMaps = getSourceMaps();
+		SourceMaps sourceMaps = _sourceMaps;
 
 		if (sourceMaps != SourceMaps.ENABLED) {
 			completeArgs.add("--source-maps");
@@ -316,7 +316,7 @@ public class TranspileJSTask extends ExecuteNodeScriptTask {
 		completeArgs.add("--soySrc");
 		completeArgs.addAll(getSoySrcIncludes());
 
-		if (isSoySkipMetalGeneration()) {
+		if (_soySkipMetalGeneration) {
 			completeArgs.add("--soySkipMetalGeneration");
 		}
 

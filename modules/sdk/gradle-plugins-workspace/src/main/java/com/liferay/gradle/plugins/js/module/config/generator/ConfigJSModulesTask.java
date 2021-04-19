@@ -316,21 +316,21 @@ public class ConfigJSModulesTask
 			completeArgs.add(moduleFormat);
 		}
 
-		boolean ignorePath = isIgnorePath();
+		boolean ignorePath = _ignorePath;
 
 		if (ignorePath) {
 			completeArgs.add("--ignorePath");
 			completeArgs.add(String.valueOf(ignorePath));
 		}
 
-		boolean keepFileExtension = isKeepFileExtension();
+		boolean keepFileExtension = _keepFileExtension;
 
 		if (keepFileExtension) {
 			completeArgs.add("--keepExtension");
 			completeArgs.add(String.valueOf(keepFileExtension));
 		}
 
-		boolean lowerCase = isLowerCase();
+		boolean lowerCase = _lowerCase;
 
 		if (lowerCase) {
 			completeArgs.add("--lowerCase");

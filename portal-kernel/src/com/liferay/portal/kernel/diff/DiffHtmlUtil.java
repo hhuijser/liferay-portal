@@ -28,7 +28,7 @@ import java.io.Reader;
 public class DiffHtmlUtil {
 
 	public static String diff(Reader source, Reader target) throws Exception {
-		return getDiffHtml().diff(source, target);
+		return _diffHtml.diff(source, target);
 	}
 
 	public static DiffHtml getDiffHtml() {
@@ -36,7 +36,7 @@ public class DiffHtmlUtil {
 	}
 
 	public static String replaceStyles(String html) {
-		return getDiffHtml().replaceStyles(html);
+		return _diffHtml.replaceStyles(html);
 	}
 
 	public void setDiffHtml(DiffHtml diffHtml) {

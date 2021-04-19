@@ -91,7 +91,7 @@ public class CPSpecificationOptionItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			cpSpecificationOptionItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher(

@@ -90,7 +90,7 @@ public class CPInstanceItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			cpInstanceItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/instance_item_selector.jsp");

@@ -60,7 +60,7 @@ public class BaseCommerceContext implements CommerceContext {
 		_commerceOrderService = commerceOrderService;
 
 		try {
-			if (getCommerceChannelGroupId() > 0) {
+			if (_channelGroupId > 0) {
 				_commerceAccountGroupServiceConfiguration =
 					configurationProvider.getConfiguration(
 						CommerceAccountGroupServiceConfiguration.class,

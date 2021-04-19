@@ -91,7 +91,7 @@ public class SimpleSiteItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			simpleSiteItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/site_item_selector.jsp");

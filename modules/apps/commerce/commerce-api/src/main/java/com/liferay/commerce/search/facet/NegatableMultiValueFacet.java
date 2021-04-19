@@ -43,7 +43,7 @@ public class NegatableMultiValueFacet extends MultiValueFacet {
 		BooleanClause<Filter> booleanClause =
 			super.doGetFacetFilterBooleanClause();
 
-		if (isNegated()) {
+		if (_negated) {
 			booleanClause = BooleanClauseFactoryUtil.createFilter(
 				booleanClause.getClause(), BooleanClauseOccur.MUST_NOT);
 		}

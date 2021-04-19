@@ -49,7 +49,7 @@ public class CommerceDiscountValidatorResult implements Serializable {
 	}
 
 	public boolean hasMessageResult() {
-		if (Validator.isNotNull(getMessage())) {
+		if (Validator.isNotNull(_message)) {
 			return true;
 		}
 

@@ -96,7 +96,7 @@ public class CommerceInventoryWarehouseItemSelectorView
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			commerceInventoryWarehouseItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/warehouse_item_selector.jsp");

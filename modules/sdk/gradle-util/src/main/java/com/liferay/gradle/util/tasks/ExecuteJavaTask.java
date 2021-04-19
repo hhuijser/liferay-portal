@@ -116,9 +116,9 @@ public abstract class ExecuteJavaTask extends DefaultTask {
 		final List<String> jvmArgs = getJvmArgs();
 		final Logger logger = getLogger();
 
-		WorkerExecutor workerExecutor = getWorkerExecutor();
+		WorkerExecutor workerExecutor = _workerExecutor;
 
-		if (isFork() || ((jvmArgs != null) && !jvmArgs.isEmpty())) {
+		if (_fork || ((jvmArgs != null) && !jvmArgs.isEmpty())) {
 			return workerExecutor.processIsolation(
 				new Action<ProcessWorkerSpec>() {
 
@@ -139,7 +139,7 @@ public abstract class ExecuteJavaTask extends DefaultTask {
 										jvm.getInheritableEnvironmentVariables(
 											System.getenv()));
 
-									javaForkOptions.setDebug(debugForkedJVM());
+									javaForkOptions.setDebug(_debugForkedJVM);
 								}
 
 							});

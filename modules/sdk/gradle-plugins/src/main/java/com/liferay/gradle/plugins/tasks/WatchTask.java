@@ -490,7 +490,7 @@ public class WatchTask extends DefaultTask {
 			_installedAttributes.put(bundleDir, attributes);
 		}
 
-		FileCollection fileCollection = getFragments();
+		FileCollection fileCollection = _fragmentsFileCollection;
 
 		boolean installedFragment = false;
 

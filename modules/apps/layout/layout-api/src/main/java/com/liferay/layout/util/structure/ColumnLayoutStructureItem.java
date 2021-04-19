@@ -96,7 +96,7 @@ public class ColumnLayoutStructureItem extends LayoutStructureItem {
 	 */
 	@Deprecated
 	public Map<String, JSONObject> getViewportSizeConfigurations() {
-		return getViewportConfigurations();
+		return _viewportConfigurations;
 	}
 
 	@Override

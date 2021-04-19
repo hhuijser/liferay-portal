@@ -32,7 +32,7 @@ public class LayoutClassedModelUsagesAdminTag extends IncludeTag {
 	@Override
 	public int doStartTag() throws JspException {
 		LayoutClassedModelUsagesTaglibUtil.recordLayoutClassedModelUsage(
-			getClassName(), getClassPK());
+			_className, _classPK);
 
 		request.setAttribute(
 			ContentPageEditorWebKeys.FRAGMENT_COLLECTION_CONTRIBUTOR_TRACKER,

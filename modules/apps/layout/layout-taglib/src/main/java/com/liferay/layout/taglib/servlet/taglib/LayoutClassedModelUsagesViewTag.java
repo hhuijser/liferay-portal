@@ -30,7 +30,7 @@ public class LayoutClassedModelUsagesViewTag<R> extends IncludeTag {
 	@Override
 	public int doStartTag() throws JspException {
 		LayoutClassedModelUsagesTaglibUtil.recordLayoutClassedModelUsage(
-			getClassName(), getClassPK());
+			_className, _classPK);
 
 		return super.doStartTag();
 	}

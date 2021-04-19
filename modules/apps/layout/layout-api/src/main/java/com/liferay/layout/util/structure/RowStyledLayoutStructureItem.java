@@ -160,7 +160,7 @@ public class RowStyledLayoutStructureItem extends StyledLayoutStructureItem {
 	 */
 	@Deprecated
 	public Map<String, JSONObject> getViewportSizeConfigurations() {
-		return getViewportConfigurations();
+		return _viewportConfigurations;
 	}
 
 	@Override

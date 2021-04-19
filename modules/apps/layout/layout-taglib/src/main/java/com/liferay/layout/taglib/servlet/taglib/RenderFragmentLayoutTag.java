@@ -209,7 +209,7 @@ public class RenderFragmentLayoutTag extends IncludeTag {
 	}
 
 	private long _getPlid(HttpServletRequest httpServletRequest) {
-		long plid = getPlid();
+		long plid = _plid;
 
 		if (plid > 0) {
 			return plid;

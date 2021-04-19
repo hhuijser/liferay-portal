@@ -429,7 +429,7 @@ public class LayoutStructure {
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, getMainItemId());
+		return HashUtil.hash(0, _mainItemId);
 	}
 
 	public void markLayoutStructureItemForDeletion(

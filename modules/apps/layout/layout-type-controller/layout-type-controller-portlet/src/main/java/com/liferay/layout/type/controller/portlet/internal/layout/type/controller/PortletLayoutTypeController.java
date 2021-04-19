@@ -67,7 +67,7 @@ public class PortletLayoutTypeController extends BaseLayoutTypeControllerImpl {
 		RequestDispatcher requestDispatcher =
 			TransferHeadersHelperUtil.getTransferHeadersRequestDispatcher(
 				DirectRequestDispatcherFactoryUtil.getRequestDispatcher(
-					servletContext, getEditPage()));
+					servletContext, _EDIT_PAGE));
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
@@ -92,7 +92,7 @@ public class PortletLayoutTypeController extends BaseLayoutTypeControllerImpl {
 		RequestDispatcher requestDispatcher =
 			TransferHeadersHelperUtil.getTransferHeadersRequestDispatcher(
 				DirectRequestDispatcherFactoryUtil.getRequestDispatcher(
-					servletContext, getViewPage()));
+					servletContext, _VIEW_PAGE));
 
 		HttpServletRequest originalHttpServletRequest =
 			_portal.getOriginalServletRequest(httpServletRequest);

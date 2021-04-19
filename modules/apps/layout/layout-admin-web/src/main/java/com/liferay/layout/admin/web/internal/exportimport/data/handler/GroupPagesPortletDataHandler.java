@@ -78,7 +78,7 @@ public class GroupPagesPortletDataHandler extends BasePortletDataHandler {
 	@Override
 	public boolean validateSchemaVersion(String schemaVersion) {
 		return _portletDataHandlerHelper.validateSchemaVersion(
-			schemaVersion, getSchemaVersion());
+			schemaVersion, SCHEMA_VERSION);
 	}
 
 	@Activate

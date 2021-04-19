@@ -618,7 +618,7 @@ public class RenderLayoutStructureDisplayContext {
 	}
 
 	public List<String> getMainChildrenItemIds() {
-		LayoutStructure layoutStructure = getLayoutStructure();
+		LayoutStructure layoutStructure = _layoutStructure;
 
 		LayoutStructureItem layoutStructureItem =
 			layoutStructure.getLayoutStructureItem(_getMainItemId());

@@ -161,7 +161,7 @@ public class DisplayPageLayoutTypeController
 			FragmentActionKeys.FRAGMENT_RENDERER_CONTROLLER,
 			_fragmentRendererController);
 
-		String page = getViewPage();
+		String page = _VIEW_PAGE;
 
 		if (layoutMode.equals(Constants.EDIT)) {
 			page = _EDIT_PAGE;

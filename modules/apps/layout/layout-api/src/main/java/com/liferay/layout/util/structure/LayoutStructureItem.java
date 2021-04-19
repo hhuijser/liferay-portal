@@ -120,7 +120,7 @@ public abstract class LayoutStructureItem {
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, getItemId());
+		return HashUtil.hash(0, _itemId);
 	}
 
 	public void setChildrenItemIds(List<String> childrenItemIds) {
@@ -137,13 +137,13 @@ public abstract class LayoutStructureItem {
 
 	public JSONObject toJSONObject() {
 		return JSONUtil.put(
-			"children", JSONFactoryUtil.createJSONArray(getChildrenItemIds())
+			"children", JSONFactoryUtil.createJSONArray(_childrenItemIds)
 		).put(
 			"config", getItemConfigJSONObject()
 		).put(
-			"itemId", getItemId()
+			"itemId", _itemId
 		).put(
-			"parentId", getParentItemId()
+			"parentId", _parentItemId
 		).put(
 			"type", getItemType()
 		);

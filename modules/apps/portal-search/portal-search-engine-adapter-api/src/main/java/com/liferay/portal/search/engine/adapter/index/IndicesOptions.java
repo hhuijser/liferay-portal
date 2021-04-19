@@ -33,21 +33,21 @@ public class IndicesOptions {
 
 		IndicesOptions indicesOptions = (IndicesOptions)object;
 
-		if (indicesOptions.isAllowNoIndices() != isAllowNoIndices()) {
+		if (indicesOptions._allowNoIndices != _allowNoIndices) {
 			return false;
 		}
 
 		if (indicesOptions.isExpandToClosedIndices() !=
-				isExpandToClosedIndices()) {
+				_expandToClosedIndices) {
 
 			return false;
 		}
 
-		if (indicesOptions.isExpandToOpenIndices() != isExpandToOpenIndices()) {
+		if (indicesOptions._expandToOpenIndices != _expandToOpenIndices) {
 			return false;
 		}
 
-		if (indicesOptions.isIgnoreUnavailable() != isIgnoreUnavailable()) {
+		if (indicesOptions._ignoreUnavailable != _ignoreUnavailable) {
 			return false;
 		}
 

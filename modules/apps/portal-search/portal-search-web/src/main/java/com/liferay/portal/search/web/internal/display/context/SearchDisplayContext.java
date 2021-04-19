@@ -310,7 +310,7 @@ public class SearchDisplayContext {
 	}
 
 	public String[] getQueryTerms() {
-		Hits hits = getHits();
+		Hits hits = _hits;
 
 		return hits.getQueryTerms();
 	}

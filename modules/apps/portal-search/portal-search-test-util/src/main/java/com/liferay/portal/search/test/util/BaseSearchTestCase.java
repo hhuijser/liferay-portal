@@ -1063,7 +1063,7 @@ public abstract class BaseSearchTestCase {
 
 			int baseModelsCount = initialBaseModelsSearchCount;
 
-			if (addBaseModelPermission && !isCheckBaseModelPermission()) {
+			if (addBaseModelPermission && !CHECK_BASE_MODEL_PERMISSION) {
 				baseModelsCount++;
 			}
 

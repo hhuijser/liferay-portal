@@ -59,7 +59,7 @@ public class ElasticsearchSearchEngineFixture implements SearchEngineFixture {
 
 	@Override
 	public SearchEngine getSearchEngine() {
-		return getElasticsearchSearchEngine();
+		return _elasticsearchSearchEngine;
 	}
 
 	@Override

@@ -16,7 +16,7 @@ package com.liferay.layout.admin.web.internal.frontend.taglib.form.navigator;
 
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorEntry;
 import com.liferay.frontend.taglib.form.navigator.constants.FormNavigatorConstants;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.util.PropsValues;
 
 import java.util.Dictionary;
@@ -66,9 +66,10 @@ public class LayoutSetJavaScriptFormNavigatorEntry
 			return;
 		}
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("form.navigator.entry.order", 200);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"form.navigator.entry.order", 200
+			).build();
 
 		_serviceRegistration = bundleContext.registerService(
 			(Class<FormNavigatorEntry<?>>)(Class<?>)FormNavigatorEntry.class,

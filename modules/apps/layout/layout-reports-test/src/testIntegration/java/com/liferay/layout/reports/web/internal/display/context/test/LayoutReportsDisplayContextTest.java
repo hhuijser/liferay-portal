@@ -48,6 +48,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -104,12 +105,11 @@ public class LayoutReportsDisplayContextTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.layout.reports.web.internal.configuration." +
 						"LayoutReportsGooglePageSpeedConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("apiKey", RandomTestUtil.randomString());
-							put("enabled", true);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"apiKey", RandomTestUtil.randomString()
+					).put(
+						"enabled", true
+					).build())) {
 
 			Layout layout = LayoutTestUtil.addLayout(_group.getGroupId());
 
@@ -180,12 +180,11 @@ public class LayoutReportsDisplayContextTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.layout.reports.web.internal.configuration." +
 						"LayoutReportsGooglePageSpeedConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("apiKey", StringPool.BLANK);
-							put("enabled", true);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"apiKey", StringPool.BLANK
+					).put(
+						"enabled", true
+					).build())) {
 
 			UnicodeProperties unicodeProperties =
 				_group.getTypeSettingsProperties();
@@ -237,12 +236,11 @@ public class LayoutReportsDisplayContextTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.layout.reports.web.internal.configuration." +
 						"LayoutReportsGooglePageSpeedConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("apiKey", RandomTestUtil.randomString());
-							put("enabled", true);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"apiKey", RandomTestUtil.randomString()
+					).put(
+						"enabled", true
+					).build())) {
 
 			Layout layout = LayoutTestUtil.addLayout(_group);
 
@@ -332,12 +330,11 @@ public class LayoutReportsDisplayContextTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.layout.reports.web.internal.configuration." +
 						"LayoutReportsGooglePageSpeedConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("apiKey", StringPool.BLANK);
-							put("enabled", true);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"apiKey", StringPool.BLANK
+					).put(
+						"enabled", true
+					).build())) {
 
 			Layout layout = LayoutTestUtil.addLayout(_group.getGroupId());
 

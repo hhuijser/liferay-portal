@@ -74,7 +74,7 @@ public class DDMDataProviderPortlet extends MVCPortlet {
 			new DDMDataProviderDisplayContext(
 				renderRequest, renderResponse, _ddmDataProviderDisplayTracker,
 				_ddmDataProviderInstanceService, _ddmDataProviderTracker,
-				_ddmFormRenderer, getDDMFormValuesDeserializer(),
+				_ddmFormRenderer, _jsonDDMFormValuesDeserializer,
 				_userLocalService);
 
 		renderRequest.setAttribute(

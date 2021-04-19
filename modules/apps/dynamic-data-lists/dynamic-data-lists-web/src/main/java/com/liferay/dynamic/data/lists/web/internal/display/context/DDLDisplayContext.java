@@ -241,17 +241,15 @@ public class DDLDisplayContext {
 					_ddlWebConfiguration.defaultDisplayView());
 			}
 			else if (ArrayUtil.contains(
-						getDisplayViews(), _ddlRecordDisplayStyle)) {
+						_DISPLAY_VIEWS, _ddlRecordDisplayStyle)) {
 
 				portalPreferences.setValue(
 					DDLPortletKeys.DYNAMIC_DATA_LISTS, "display-style",
 					_ddlRecordDisplayStyle);
 			}
 
-			if (!ArrayUtil.contains(
-					getDisplayViews(), _ddlRecordDisplayStyle)) {
-
-				_ddlRecordDisplayStyle = getDisplayViews()[0];
+			if (!ArrayUtil.contains(_DISPLAY_VIEWS, _ddlRecordDisplayStyle)) {
+				_ddlRecordDisplayStyle = _DISPLAY_VIEWS[0];
 			}
 		}
 
@@ -489,11 +487,11 @@ public class DDLDisplayContext {
 
 		return new ViewTypeItemList(portletURL, getDisplayStyle()) {
 			{
-				if (ArrayUtil.contains(getDisplayViews(), "descriptive")) {
+				if (ArrayUtil.contains(_DISPLAY_VIEWS, "descriptive")) {
 					addListViewTypeItem();
 				}
 
-				if (ArrayUtil.contains(getDisplayViews(), "list")) {
+				if (ArrayUtil.contains(_DISPLAY_VIEWS, "list")) {
 					addTableViewTypeItem();
 				}
 			}

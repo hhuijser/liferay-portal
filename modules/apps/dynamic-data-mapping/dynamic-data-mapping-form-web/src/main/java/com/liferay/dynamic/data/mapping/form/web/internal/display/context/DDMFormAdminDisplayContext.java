@@ -499,7 +499,7 @@ public class DDMFormAdminDisplayContext {
 	public String getDisplayStyle() {
 		if (_displayStyle == null) {
 			_displayStyle = getDisplayStyle(
-				renderRequest, _ddmFormWebConfiguration, getDisplayViews());
+				renderRequest, _ddmFormWebConfiguration, _DISPLAY_VIEWS);
 		}
 
 		return _displayStyle;
@@ -1101,7 +1101,7 @@ public class DDMFormAdminDisplayContext {
 
 		return new ViewTypeItemList(portletURL, getDisplayStyle()) {
 			{
-				String[] viewTypes = getDisplayViews();
+				String[] viewTypes = _DISPLAY_VIEWS;
 
 				for (String viewType : viewTypes) {
 					if (viewType.equals("descriptive")) {

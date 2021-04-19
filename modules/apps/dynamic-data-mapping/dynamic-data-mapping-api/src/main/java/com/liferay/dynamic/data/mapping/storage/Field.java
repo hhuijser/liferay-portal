@@ -163,7 +163,7 @@ public class Field implements Serializable {
 	}
 
 	public Serializable getValue() {
-		return getValue(getDefaultLocale());
+		return getValue(_defaultLocale);
 	}
 
 	public Serializable getValue(Locale locale) {
@@ -307,7 +307,7 @@ public class Field implements Serializable {
 		Set<Locale> availableLocales = getAvailableLocales();
 
 		if (!availableLocales.contains(locale)) {
-			locale = getDefaultLocale();
+			locale = _defaultLocale;
 		}
 
 		if (locale == null) {

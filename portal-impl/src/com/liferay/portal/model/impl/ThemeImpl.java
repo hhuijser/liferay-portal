@@ -85,7 +85,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 	@Override
 	public int compareTo(Theme theme) {
-		return getName().compareTo(theme.getName());
+		return _name.compareTo(theme.getName());
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 		Theme theme = (Theme)object;
 
-		if (getThemeId().equals(theme.getThemeId())) {
+		if (_themeId.equals(theme.getThemeId())) {
 			return true;
 		}
 
@@ -139,11 +139,11 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 	@Override
 	public String getContextPath() {
-		if (!isWARFile()) {
+		if (!_warFile) {
 			return PortalUtil.getPathContext();
 		}
 
-		String servletContextName = getServletContextName();
+		String servletContextName = _servletContextName;
 
 		if (ServletContextPool.containsKey(servletContextName)) {
 			ServletContext servletContext = ServletContextPool.get(
@@ -224,7 +224,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 	@Override
 	public String getPluginId() {
-		return getThemeId();
+		return _themeId;
 	}
 
 	@Override
@@ -339,13 +339,13 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 	public String getStaticResourcePath() {
 		String proxyPath = PortalUtil.getPathProxy();
 
-		String virtualPath = getVirtualPath();
+		String virtualPath = _virtualPath;
 
 		if (Validator.isNotNull(virtualPath)) {
 			return proxyPath.concat(virtualPath);
 		}
 
-		if (isWARFile()) {
+		if (_warFile) {
 			return getContextPath();
 		}
 
@@ -432,7 +432,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 	@Override
 	public boolean isCompanyAvailable(long companyId) {
-		return isAvailable(getThemeCompanyLimit(), companyId);
+		return isAvailable(_themeCompanyLimit, companyId);
 	}
 
 	@Override
@@ -442,7 +442,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 	@Override
 	public boolean isGroupAvailable(long groupId) {
-		return isAvailable(getThemeGroupLimit(), groupId);
+		return isAvailable(_themeGroupLimit, groupId);
 	}
 
 	@Override
@@ -618,7 +618,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Check if theme ", getThemeId(), " is available for ", id));
+					"Check if theme ", _themeId, " is available for ", id));
 		}
 
 		if (limit != null) {
@@ -678,7 +678,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Theme ", getThemeId(), " is ", !available ? "NOT " : "",
+					"Theme ", _themeId, " is ", !available ? "NOT " : "",
 					"available for ", id));
 		}
 
@@ -690,7 +690,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 		StringBundler sb = new StringBundler(11);
 
-		String themeContextName = GetterUtil.getString(getServletContextName());
+		String themeContextName = GetterUtil.getString(_servletContextName);
 
 		sb.append(themeContextName);
 
@@ -705,7 +705,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 		}
 
 		sb.append(getFreeMarkerTemplateLoader());
-		sb.append(getTemplatesPath());
+		sb.append(_templatesPath);
 
 		if (Validator.isNotNull(servletContextName) &&
 			!path.startsWith(StringPool.SLASH.concat(servletContextName))) {

@@ -619,7 +619,7 @@ public class LayoutTypePortletImpl
 			return false;
 		}
 
-		if (isCustomizable() && isCustomizedView()) {
+		if (isCustomizable() && _customizedView) {
 			LayoutTypePortletImpl defaultLayoutTypePortletImpl =
 				getDefaultLayoutTypePortletImpl();
 
@@ -779,8 +779,8 @@ public class LayoutTypePortletImpl
 			return false;
 		}
 
-		if ((isCustomizedView() && !isColumnCustomizable(columnId)) ||
-			(!isCustomizedView() && !hasUpdatePermission())) {
+		if ((_customizedView && !isColumnCustomizable(columnId)) ||
+			(!_customizedView && !_updatePermission)) {
 
 			return true;
 		}
@@ -801,7 +801,7 @@ public class LayoutTypePortletImpl
 
 	@Override
 	public boolean isDefaultUpdated() {
-		if (!isCustomizedView() || !hasUserPreferences()) {
+		if (!_customizedView || !hasUserPreferences()) {
 			return false;
 		}
 
@@ -1675,7 +1675,7 @@ public class LayoutTypePortletImpl
 	}
 
 	protected LayoutTypePortletImpl getDefaultLayoutTypePortletImpl() {
-		if (!isCustomizedView()) {
+		if (!_customizedView) {
 			return this;
 		}
 

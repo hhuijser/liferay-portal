@@ -57,7 +57,7 @@ public class PortletDecoratorImpl implements PortletDecorator {
 
 		PortletDecorator portletDecorator = (PortletDecorator)object;
 
-		if (getPortletDecoratorId().equals(
+		if (_portletDecoratorId.equals(
 				portletDecorator.getPortletDecoratorId())) {
 
 			return true;

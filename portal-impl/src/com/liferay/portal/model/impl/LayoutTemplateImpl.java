@@ -71,9 +71,7 @@ public class LayoutTemplateImpl
 			return false;
 		}
 
-		if (getLayoutTemplateId().equals(
-				layoutTemplate.getLayoutTemplateId())) {
-
+		if (_layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId())) {
 			return true;
 		}
 
@@ -92,11 +90,11 @@ public class LayoutTemplateImpl
 
 	@Override
 	public String getContextPath() {
-		if (!isWARFile()) {
+		if (!_warFile) {
 			return PortalUtil.getPathContext();
 		}
 
-		String servletContextName = getServletContextName();
+		String servletContextName = _servletContextName;
 
 		if (ServletContextPool.containsKey(servletContextName)) {
 			ServletContext servletContext = ServletContextPool.get(
@@ -132,7 +130,7 @@ public class LayoutTemplateImpl
 
 	@Override
 	public String getPluginId() {
-		return getLayoutTemplateId();
+		return _layoutTemplateId;
 	}
 
 	@Override
@@ -154,7 +152,7 @@ public class LayoutTemplateImpl
 	public String getStaticResourcePath() {
 		String contextPath = getContextPath();
 
-		if (!isWARFile()) {
+		if (!_warFile) {
 			return contextPath;
 		}
 
@@ -185,7 +183,7 @@ public class LayoutTemplateImpl
 				_log.debug(
 					StringBundler.concat(
 						"Cannot get latest content for ", _servletContextName,
-						" ", getTemplatePath(),
+						" ", _templatePath,
 						" because the servlet context is null"));
 			}
 
@@ -196,11 +194,11 @@ public class LayoutTemplateImpl
 			_log.debug(
 				StringBundler.concat(
 					"Getting latest content for ", _servletContextName, " ",
-					getTemplatePath()));
+					_templatePath));
 		}
 
 		String content = StreamUtil.toString(
-			_servletContext.getResourceAsStream(getTemplatePath()));
+			_servletContext.getResourceAsStream(_templatePath));
 
 		setContent(content);
 

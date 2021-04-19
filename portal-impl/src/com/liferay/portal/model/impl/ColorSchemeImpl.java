@@ -63,7 +63,7 @@ public class ColorSchemeImpl implements ColorScheme {
 
 		ColorScheme colorScheme = (ColorScheme)object;
 
-		if (getColorSchemeId().equals(colorScheme.getColorSchemeId())) {
+		if (_colorSchemeId.equals(colorScheme.getColorSchemeId())) {
 			return true;
 		}
 

@@ -75,7 +75,7 @@ public class GitRemote {
 	@Override
 	public String toString() {
 		return JenkinsResultsParserUtil.combine(
-			getName(), " (", getRemoteURL(), ")");
+			_name, " (", _fetchRemoteURL, ")");
 	}
 
 	protected GitRemote(

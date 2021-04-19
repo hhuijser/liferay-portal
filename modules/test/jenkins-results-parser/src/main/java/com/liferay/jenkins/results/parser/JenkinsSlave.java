@@ -79,7 +79,7 @@ public class JenkinsSlave implements JenkinsNode<JenkinsSlave> {
 	}
 
 	public String getComputerURL() {
-		String name = getName();
+		String name = _name;
 
 		if (name.equals("master")) {
 			name = "(" + name + ")";
@@ -135,7 +135,7 @@ public class JenkinsSlave implements JenkinsNode<JenkinsSlave> {
 	}
 
 	public boolean isReachable() {
-		return JenkinsResultsParserUtil.isReachable(getName());
+		return JenkinsResultsParserUtil.isReachable(_name);
 	}
 
 	public void takeSlavesOffline(String offlineReason) {
@@ -148,7 +148,7 @@ public class JenkinsSlave implements JenkinsNode<JenkinsSlave> {
 
 	@Override
 	public String toString() {
-		return getName();
+		return _name;
 	}
 
 	public void update() {

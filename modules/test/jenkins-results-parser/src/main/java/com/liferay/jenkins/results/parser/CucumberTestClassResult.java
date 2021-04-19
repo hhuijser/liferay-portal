@@ -47,7 +47,7 @@ public class CucumberTestClassResult implements TestClassResult {
 	}
 
 	public CucumberTestResult getCucumberTestResult(String testName) {
-		for (TestResult testResult : getTestResults()) {
+		for (TestResult testResult : _testResults) {
 			if (testName.equals(testResult.getTestName())) {
 				return (CucumberTestResult)testResult;
 			}
@@ -77,7 +77,7 @@ public class CucumberTestClassResult implements TestClassResult {
 	}
 
 	public TestResult getTestResult(String testName) {
-		for (TestResult testResult : getTestResults()) {
+		for (TestResult testResult : _testResults) {
 			if (testName.equals(testResult.getTestName())) {
 				return testResult;
 			}
@@ -93,7 +93,7 @@ public class CucumberTestClassResult implements TestClassResult {
 
 	@Override
 	public boolean isFailing() {
-		for (TestResult testResult : getTestResults()) {
+		for (TestResult testResult : _testResults) {
 			if (testResult.isFailing()) {
 				return true;
 			}

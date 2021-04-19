@@ -4563,13 +4563,17 @@ public class JenkinsResultsParserUtil {
 		"https://(release|test).liferay.com/([0-9]+)/");
 	private static final Pattern _remoteURLAuthorityPattern2 = Pattern.compile(
 		"https://(test-[0-9]+-[0-9]+).liferay.com/");
-	private static final File _sshDir = new File(getUserHomeDir(), ".ssh") {
+
+	private static final File _sshDir = new File(
+		JenkinsResultsParserUtil._userHomeDir, ".ssh") {
+
 		{
 			if (!exists()) {
 				mkdirs();
 			}
 		}
 	};
+
 	private static final Set<String> _timeStamps = new HashSet<>();
 	private static final Pattern _topLevelBuildURLPattern = Pattern.compile(
 		"http(?:|s):\\/\\/test-(?<cohortNumber>[\\d]{1})-" +

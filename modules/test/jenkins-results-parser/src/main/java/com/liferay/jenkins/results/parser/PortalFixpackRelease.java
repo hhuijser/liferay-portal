@@ -105,7 +105,7 @@ public class PortalFixpackRelease {
 	public String getHTMLReport() {
 		StringBuilder sb = new StringBuilder();
 
-		String urlString = String.valueOf(getPortalFixpackURL());
+		String urlString = String.valueOf(_portalFixpackURL);
 
 		sb.append("<ul>");
 

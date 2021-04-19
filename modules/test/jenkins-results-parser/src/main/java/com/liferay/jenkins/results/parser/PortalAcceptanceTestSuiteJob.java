@@ -173,7 +173,7 @@ public abstract class PortalAcceptanceTestSuiteJob
 	protected Set<String> getRawDependentBatchNames() {
 		String dependentBatchNames = JenkinsResultsParserUtil.getProperty(
 			getJobProperties(), "test.batch.names.smoke", getBranchName(),
-			getTestSuiteName());
+			_testSuiteName);
 
 		if ((dependentBatchNames == null) || dependentBatchNames.isEmpty()) {
 			return new HashSet<>();

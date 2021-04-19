@@ -630,7 +630,7 @@ public class AutoCloseUtil {
 			if (debug) {
 				System.out.println(
 					JenkinsResultsParserUtil.combine(
-						"Evaluating auto-close rule ", toString(), "."));
+						"Evaluating auto-close rule ", ruleData, "."));
 			}
 
 			try {
@@ -679,7 +679,7 @@ public class AutoCloseUtil {
 
 				if (downstreamBuilds.isEmpty()) {
 					if (debug) {
-						System.out.println(toString() + " has PASSED.");
+						System.out.println(ruleData + " has PASSED.");
 					}
 
 					return Collections.emptyList();
@@ -705,7 +705,7 @@ public class AutoCloseUtil {
 				if (debug) {
 					System.out.println(
 						JenkinsResultsParserUtil.combine(
-							toString(), " fail limit is ",
+							ruleData, " fail limit is ",
 							String.valueOf(failLimit)));
 				}
 
@@ -737,7 +737,7 @@ public class AutoCloseUtil {
 							JenkinsResultsParserUtil.combine(
 								"Found ",
 								String.valueOf(failedDownstreamBuilds.size()),
-								" matching failed builds.\n", toString(),
+								" matching failed builds.\n", ruleData,
 								" has FAILED."));
 					}
 
@@ -749,7 +749,7 @@ public class AutoCloseUtil {
 						JenkinsResultsParserUtil.combine(
 							"Found ",
 							String.valueOf(failedDownstreamBuilds.size()),
-							" matching failed builds.\n", toString(),
+							" matching failed builds.\n", ruleData,
 							" has PASSED."));
 				}
 
@@ -759,7 +759,7 @@ public class AutoCloseUtil {
 				if (debug) {
 					System.out.println(
 						JenkinsResultsParserUtil.combine(
-							"Finished evaluating rule ", toString(), "\n"));
+							"Finished evaluating rule ", ruleData, "\n"));
 				}
 			}
 		}

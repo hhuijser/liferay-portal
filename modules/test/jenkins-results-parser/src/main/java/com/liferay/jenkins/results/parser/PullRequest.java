@@ -119,7 +119,7 @@ public class PullRequest {
 			System.out.println(
 				JenkinsResultsParserUtil.combine(
 					"GitHubRemoteGitRepository.Label ", label.getName(),
-					" does not exist in ", getGitHubRemoteGitRepositoryName()));
+					" does not exist in ", _gitHubRemoteGitRepositoryName));
 
 			return false;
 		}
@@ -129,7 +129,7 @@ public class PullRequest {
 		jsonArray.put(label.getName());
 
 		String gitHubApiUrl = JenkinsResultsParserUtil.getGitHubApiUrl(
-			getGitHubRemoteGitRepositoryName(), getOwnerUsername(),
+			_gitHubRemoteGitRepositoryName, _ownerUsername,
 			"issues/" + getNumber() + "/labels");
 
 		try {
@@ -193,7 +193,7 @@ public class PullRequest {
 		_comments = new ArrayList<>();
 
 		String gitHubApiUrl = JenkinsResultsParserUtil.getGitHubApiUrl(
-			getGitHubRemoteGitRepositoryName(), getOwnerUsername(),
+			_gitHubRemoteGitRepositoryName, _ownerUsername,
 			"issues/" + getNumber() + "/comments?per_page=100&page=");
 
 		for (int pageNumber = 1;
@@ -260,8 +260,7 @@ public class PullRequest {
 
 		String filesURL = JenkinsResultsParserUtil.combine(
 			"https://api.github.com/repos/", getReceiverUsername(), "/",
-			getGitHubRemoteGitRepositoryName(), "/pulls/", getNumber(),
-			"/files");
+			_gitHubRemoteGitRepositoryName, "/pulls/", getNumber(), "/files");
 
 		try {
 			JSONArray filesJSONArray = JenkinsResultsParserUtil.toJSONArray(
@@ -319,7 +318,7 @@ public class PullRequest {
 				(GitHubRemoteGitRepository)
 					GitRepositoryFactory.getRemoteGitRepository(
 						"github.com", _gitHubRemoteGitRepositoryName,
-						getOwnerUsername());
+						_ownerUsername);
 		}
 
 		return _gitHubRemoteGitRepository;
@@ -330,7 +329,7 @@ public class PullRequest {
 	}
 
 	public String getGitRepositoryName() {
-		return getGitHubRemoteGitRepositoryName();
+		return _gitHubRemoteGitRepositoryName;
 	}
 
 	public String getHtmlURL() {
@@ -404,7 +403,7 @@ public class PullRequest {
 	public String getSenderRemoteURL() {
 		return JenkinsResultsParserUtil.combine(
 			"git@github.com:", getSenderUsername(), "/",
-			getGitHubRemoteGitRepositoryName());
+			_gitHubRemoteGitRepositoryName);
 	}
 
 	public String getSenderSHA() {
@@ -477,7 +476,7 @@ public class PullRequest {
 		if (_liferayRemoteGitBranch == null) {
 			_liferayRemoteGitBranch = GitUtil.getRemoteGitBranch(
 				getUpstreamRemoteGitBranchName(), new File("."),
-				"git@github.com:liferay/" + getGitRepositoryName());
+				"git@github.com:liferay/" + _gitHubRemoteGitRepositoryName);
 		}
 
 		return _liferayRemoteGitBranch;
@@ -597,7 +596,7 @@ public class PullRequest {
 			"issues/", getNumber(), "/labels/", labelName);
 
 		String gitHubApiUrl = JenkinsResultsParserUtil.getGitHubApiUrl(
-			getGitHubRemoteGitRepositoryName(), getOwnerUsername(), path);
+			_gitHubRemoteGitRepositoryName, _ownerUsername, path);
 
 		try {
 			JenkinsResultsParserUtil.toString(
@@ -691,8 +690,7 @@ public class PullRequest {
 
 		if ((senderSHA != null) && senderSHA.matches("[0-9a-f]{7,40}")) {
 			gitHubRemoteGitCommit = GitCommitFactory.newGitHubRemoteGitCommit(
-				getOwnerUsername(), getGitHubRemoteGitRepositoryName(),
-				senderSHA);
+				_ownerUsername, _gitHubRemoteGitRepositoryName, senderSHA);
 		}
 
 		GitHubRemoteGitCommit.Status status =
@@ -892,7 +890,7 @@ public class PullRequest {
 
 					_gitHubRemoteGitCommits.add(
 						GitCommitFactory.newGitHubRemoteGitCommit(
-							getOwnerUsername(), getGitRepositoryName(),
+							_ownerUsername, _gitHubRemoteGitRepositoryName,
 							commitJSONObject.getString("sha"),
 							commitJSONObject));
 				}

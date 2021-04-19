@@ -92,7 +92,7 @@ public class TestrayRun {
 
 		@Override
 		public String toString() {
-			return getName() + "=" + getValue();
+			return _name + "=" + _value;
 		}
 
 		private final String _name;

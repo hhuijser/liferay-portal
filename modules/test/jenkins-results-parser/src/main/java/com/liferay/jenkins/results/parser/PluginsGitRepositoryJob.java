@@ -45,7 +45,7 @@ public abstract class PluginsGitRepositoryJob
 			return gitWorkingDirectory;
 		}
 
-		String pluginsBranchName = getBranchName();
+		String pluginsBranchName = _branchName;
 
 		String workingDirectoryPath = getBuildPropertyValue(
 			JenkinsResultsParserUtil.combine(
@@ -79,7 +79,7 @@ public abstract class PluginsGitRepositoryJob
 
 		String portalBranchName = getBuildPropertyValue(
 			JenkinsResultsParserUtil.combine(
-				"plugins.portal.branch.name[", getBranchName(), "]"));
+				"plugins.portal.branch.name[", _branchName, "]"));
 
 		File portalGitRepositoryDir = new File(
 			getBuildPropertyValue(

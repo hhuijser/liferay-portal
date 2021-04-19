@@ -73,7 +73,7 @@ public class PluginsMarketplaceAppJob
 		return getSetFromString(
 			JenkinsResultsParserUtil.getProperty(
 				getJobProperties(), "test.batch.names", getJobName(),
-				getTestSuiteName()));
+				_appType));
 	}
 
 	private final String _appType;

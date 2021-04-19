@@ -233,7 +233,7 @@ public class GitWorkingDirectory {
 	}
 
 	public void checkoutUpstreamLocalGitBranch() {
-		if (!Objects.equals(getCurrentBranchName(), getUpstreamBranchName())) {
+		if (!Objects.equals(getCurrentBranchName(), _upstreamBranchName)) {
 			checkoutLocalGitBranch(getUpstreamLocalGitBranch());
 		}
 	}
@@ -276,7 +276,7 @@ public class GitWorkingDirectory {
 			localGitBranchNames.size());
 
 		String pattern = JenkinsResultsParserUtil.combine(
-			".*", Pattern.quote(getUpstreamBranchName()), "-temp", ".*");
+			".*", Pattern.quote(_upstreamBranchName), "-temp", ".*");
 
 		for (String localGitBranchName : localGitBranchNames) {
 			if (localGitBranchName.matches(pattern)) {
@@ -912,8 +912,7 @@ public class GitWorkingDirectory {
 
 				if (matcher.find()) {
 					File badRefFile = new File(
-						getWorkingDirectory(),
-						".git/" + matcher.group("badRef"));
+						_workingDirectory, ".git/" + matcher.group("badRef"));
 
 					badRefFile.delete();
 				}
@@ -1201,7 +1200,7 @@ public class GitWorkingDirectory {
 	public File getJavaFileFromFullClassName(String fullClassName) {
 		if (_javaDirPaths == null) {
 			List<File> javaFiles = JenkinsResultsParserUtil.findFiles(
-				getWorkingDirectory(), ".*\\.java");
+				_workingDirectory, ".*\\.java");
 
 			_javaDirPaths = new HashSet<>();
 
@@ -1252,7 +1251,7 @@ public class GitWorkingDirectory {
 	public LocalGitBranch getLocalGitBranch(
 		String branchName, boolean required) {
 
-		if (branchName.equals(getUpstreamBranchName())) {
+		if (branchName.equals(_upstreamBranchName)) {
 			return getUpstreamLocalGitBranch();
 		}
 
@@ -1264,11 +1263,11 @@ public class GitWorkingDirectory {
 	}
 
 	public List<LocalGitBranch> getLocalGitBranches(String branchName) {
-		String upstreamBranchName = getUpstreamBranchName();
+		String upstreamBranchName = _upstreamBranchName;
 
 		LocalGitRepository localGitRepository =
 			GitRepositoryFactory.getLocalGitRepository(
-				getGitRepositoryName(), upstreamBranchName);
+				_gitRepositoryName, upstreamBranchName);
 
 		if (branchName != null) {
 			try {
@@ -1335,7 +1334,7 @@ public class GitWorkingDirectory {
 
 		return getModifiedDirsList(
 			checkUnstagedFiles, excludesPathMatchers, includesPathMatchers,
-			getWorkingDirectory());
+			_workingDirectory);
 	}
 
 	public List<File> getModifiedDirsList(
@@ -1376,7 +1375,7 @@ public class GitWorkingDirectory {
 		sb.append(
 			_getMergeBaseCommitSHA(
 				currentLocalGitBranch,
-				getLocalGitBranch(getUpstreamBranchName(), true)));
+				getLocalGitBranch(_upstreamBranchName, true)));
 
 		if (!checkUnstagedFiles) {
 			sb.append(" ");
@@ -1674,7 +1673,7 @@ public class GitWorkingDirectory {
 		String remoteGitRefName, String remoteURL, boolean required) {
 
 		List<RemoteGitRef> remoteGitRefs = GitUtil.getRemoteGitRefs(
-			remoteGitRefName, getWorkingDirectory(), remoteURL);
+			remoteGitRefName, _workingDirectory, remoteURL);
 
 		for (RemoteGitRef remoteGitRef : remoteGitRefs) {
 			if (remoteGitRefName.equals(remoteGitRef.getName())) {
@@ -1705,14 +1704,14 @@ public class GitWorkingDirectory {
 			gitRemote = addGitRemote(
 				true, "upstream",
 				JenkinsResultsParserUtil.combine(
-					"git@github.com:liferay/", getGitRepositoryName(), ".git"));
+					"git@github.com:liferay/", _gitRepositoryName, ".git"));
 		}
 
 		return gitRemote;
 	}
 
 	public LocalGitBranch getUpstreamLocalGitBranch() {
-		String upstreamBranchName = getUpstreamBranchName();
+		String upstreamBranchName = _upstreamBranchName;
 
 		if (localGitBranchExists(upstreamBranchName)) {
 			return _getLocalGitBranch(upstreamBranchName, true);
@@ -1746,9 +1745,9 @@ public class GitWorkingDirectory {
 
 	public RemoteGitBranch getUpstreamRemoteGitBranch() {
 		return getRemoteGitBranch(
-			getUpstreamBranchName(),
+			_upstreamBranchName,
 			JenkinsResultsParserUtil.combine(
-				"git@github.com:liferay/", getGitRepositoryName()));
+				"git@github.com:liferay/", _gitRepositoryName));
 	}
 
 	public File getWorkingDirectory() {
@@ -2151,7 +2150,7 @@ public class GitWorkingDirectory {
 	protected Map<String, String> getLocalGitBranchesShaMap() {
 		String command = JenkinsResultsParserUtil.combine(
 			"git ls-remote -h ",
-			JenkinsResultsParserUtil.getCanonicalPath(getWorkingDirectory()));
+			JenkinsResultsParserUtil.getCanonicalPath(_workingDirectory));
 
 		GitUtil.ExecutionResult executionResult = executeBashCommands(
 			GitUtil.RETRIES_SIZE_MAX, GitUtil.MILLIS_RETRY_DELAY,
@@ -2311,7 +2310,7 @@ public class GitWorkingDirectory {
 		GitRemote gitRemote = getUpstreamGitRemote();
 
 		String privateGitRepositoryName = GitUtil.getPrivateRepositoryName(
-			getGitRepositoryName());
+			_gitRepositoryName);
 
 		RemoteGitRepository remoteGitRepository =
 			GitRepositoryFactory.getRemoteGitRepository(
@@ -2325,7 +2324,7 @@ public class GitWorkingDirectory {
 		GitRemote gitRemote = getUpstreamGitRemote();
 
 		String publicGitRepositoryName = GitUtil.getPublicRepositoryName(
-			getGitRepositoryName());
+			_gitRepositoryName);
 
 		RemoteGitRepository remoteGitRepository =
 			GitRepositoryFactory.getRemoteGitRepository(
@@ -2504,7 +2503,7 @@ public class GitWorkingDirectory {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
 					"Unable to find required branch ", branchName, " from ",
-					String.valueOf(getWorkingDirectory())));
+					String.valueOf(_workingDirectory)));
 		}
 
 		return null;

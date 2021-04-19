@@ -83,7 +83,7 @@ public abstract class BaseBuildRunner<T extends BuildData, S extends Workspace>
 
 		_previousBuildJSONObjects = new ArrayList<>();
 
-		BuildData buildData = getBuildData();
+		BuildData buildData = _buildData;
 
 		try {
 			JSONObject jsonObject = JenkinsResultsParserUtil.toJSONObject(
@@ -226,9 +226,9 @@ public abstract class BaseBuildRunner<T extends BuildData, S extends Workspace>
 			initWorkspace();
 		}
 
-		_workspace.setBuildData(getBuildData());
+		_workspace.setBuildData(_buildData);
 
-		_workspace.setJob(getJob());
+		_workspace.setJob(_job);
 
 		_workspace.setUp();
 	}

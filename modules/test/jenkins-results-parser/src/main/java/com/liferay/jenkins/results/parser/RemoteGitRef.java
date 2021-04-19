@@ -32,7 +32,7 @@ public class RemoteGitRef
 	}
 
 	public String getRemoteURL() {
-		RemoteGitRepository remoteRepository = getRemoteGitRepository();
+		RemoteGitRepository remoteRepository = _remoteGitRepository;
 
 		return remoteRepository.getRemoteURL();
 	}
@@ -42,7 +42,7 @@ public class RemoteGitRef
 	}
 
 	public String getUsername() {
-		RemoteGitRepository remoteGitRepository = getRemoteGitRepository();
+		RemoteGitRepository remoteGitRepository = _remoteGitRepository;
 
 		return remoteGitRepository.getUsername();
 	}

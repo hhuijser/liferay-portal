@@ -89,7 +89,7 @@ public class TestrayImporter {
 
 		Element rootElement = document.addElement("div");
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		Dom4JUtil.addToElement(
 			rootElement,
@@ -192,7 +192,7 @@ public class TestrayImporter {
 	}
 
 	public PortalFixpackRelease getPortalFixpackRelease() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (!(topLevelBuild instanceof PortalFixpackReleaseBuild)) {
 			return null;
@@ -205,7 +205,7 @@ public class TestrayImporter {
 	}
 
 	public PortalHotfixRelease getPortalHotfixRelease() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (!(topLevelBuild instanceof PortalHotfixReleaseBuild)) {
 			return null;
@@ -218,7 +218,7 @@ public class TestrayImporter {
 	}
 
 	public PortalRelease getPortalRelease() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (!(topLevelBuild instanceof PortalReleaseBuild)) {
 			return null;
@@ -231,7 +231,7 @@ public class TestrayImporter {
 	}
 
 	public PullRequest getPullRequest() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (!(topLevelBuild instanceof PullRequestBuild)) {
 			return null;
@@ -350,7 +350,7 @@ public class TestrayImporter {
 	}
 
 	public Date getTestrayBuildDate() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		Build controllerBuild = topLevelBuild.getControllerBuild();
 
@@ -388,7 +388,7 @@ public class TestrayImporter {
 			sb.append(";\n");
 		}
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (topLevelBuild instanceof PortalBranchInformationBuild) {
 			PortalBranchInformationBuild portalBranchInformationBuild =
@@ -449,7 +449,7 @@ public class TestrayImporter {
 	}
 
 	public String getTestrayBuildSHA() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (topLevelBuild instanceof PortalBranchInformationBuild) {
 			PortalBranchInformationBuild portalBranchInformationBuild =
@@ -999,14 +999,14 @@ public class TestrayImporter {
 
 					testrayCaseResults.add(
 						TestrayFactory.newTestrayCaseResult(
-							testrayBuild, getTopLevelBuild(),
-							axisTestClassGroup, testClass));
+							testrayBuild, _topLevelBuild, axisTestClassGroup,
+							testClass));
 				}
 			}
 			else {
 				testrayCaseResults.add(
 					TestrayFactory.newTestrayCaseResult(
-						testrayBuild, getTopLevelBuild(), axisTestClassGroup,
+						testrayBuild, _topLevelBuild, axisTestClassGroup,
 						null));
 			}
 
@@ -1089,7 +1089,7 @@ public class TestrayImporter {
 
 			TestrayServer testrayServer = testrayBuild.getTestrayServer();
 
-			TopLevelBuild topLevelBuild = getTopLevelBuild();
+			TopLevelBuild topLevelBuild = _topLevelBuild;
 
 			JenkinsMaster jenkinsMaster = topLevelBuild.getJenkinsMaster();
 
@@ -1118,7 +1118,7 @@ public class TestrayImporter {
 							start)));
 		}
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		JenkinsMaster jenkinsMaster = topLevelBuild.getJenkinsMaster();
 
@@ -1527,7 +1527,7 @@ public class TestrayImporter {
 	private String _getSlackBody(File testBaseDir) {
 		Job job = getJob();
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		String slackBody = JenkinsResultsParserUtil.getProperty(
 			job.getJobProperties(), "testray.slack.body",
@@ -1553,7 +1553,7 @@ public class TestrayImporter {
 	private String _getSlackChannels(File testBaseDir) {
 		Job job = getJob();
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		String slackChannels = JenkinsResultsParserUtil.getProperty(
 			job.getJobProperties(), "testray.slack.channels",
@@ -1569,7 +1569,7 @@ public class TestrayImporter {
 	private String _getSlackIconEmoji(File testBaseDir) {
 		Job job = getJob();
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		String slackIconEmoji = JenkinsResultsParserUtil.getProperty(
 			job.getJobProperties(), "testray.slack.icon.emoji",
@@ -1585,7 +1585,7 @@ public class TestrayImporter {
 	private String _getSlackSubject(File testBaseDir) {
 		Job job = getJob();
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		String slackSubject = JenkinsResultsParserUtil.getProperty(
 			job.getJobProperties(), "testray.slack.subject",
@@ -1603,7 +1603,7 @@ public class TestrayImporter {
 	private String _getSlackUsername(File testBaseDir) {
 		Job job = getJob();
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		String slackUsername = JenkinsResultsParserUtil.getProperty(
 			job.getJobProperties(), "testray.slack.username",
@@ -2091,7 +2091,7 @@ public class TestrayImporter {
 	private void _setupProfileDXP() {
 		boolean setupProfileDXP = false;
 
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		String branchName = topLevelBuild.getBranchName();
 		String jobName = topLevelBuild.getJobName();

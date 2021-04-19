@@ -126,7 +126,7 @@ public abstract class BasePortalReleaseJob
 			getSetFromString(
 				JenkinsResultsParserUtil.getProperty(
 					jobProperties, "test.batch.names", false, _portalBranchName,
-					getTestSuiteName())));
+					_testSuiteName)));
 
 		BuildProfile buildProfile = getBuildProfile();
 
@@ -134,7 +134,7 @@ public abstract class BasePortalReleaseJob
 			getSetFromString(
 				JenkinsResultsParserUtil.getProperty(
 					jobProperties, "test.batch.names", false, _portalBranchName,
-					buildProfile.toString(), getTestSuiteName())));
+					buildProfile.toString(), _testSuiteName)));
 
 		return batchNames;
 	}
@@ -146,7 +146,7 @@ public abstract class BasePortalReleaseJob
 			getSetFromString(
 				JenkinsResultsParserUtil.getProperty(
 					getJobProperties(), "test.batch.names.smoke", false,
-					_portalBranchName, getTestSuiteName())));
+					_portalBranchName, _testSuiteName)));
 
 		BuildProfile buildProfile = getBuildProfile();
 
@@ -155,7 +155,7 @@ public abstract class BasePortalReleaseJob
 				JenkinsResultsParserUtil.getProperty(
 					getJobProperties(), "test.batch.names.smoke", false,
 					_portalBranchName, buildProfile.toString(),
-					getTestSuiteName())));
+					_testSuiteName)));
 
 		return dependentBatchNames;
 	}

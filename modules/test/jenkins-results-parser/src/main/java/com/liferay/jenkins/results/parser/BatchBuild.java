@@ -419,7 +419,7 @@ public class BatchBuild extends BaseBuild {
 	@Override
 	protected Element getFailureMessageElement() {
 		for (FailureMessageGenerator failureMessageGenerator :
-				getFailureMessageGenerators()) {
+				_FAILURE_MESSAGE_GENERATORS) {
 
 			Element failureMessage = failureMessageGenerator.getMessageElement(
 				this);
@@ -531,7 +531,7 @@ public class BatchBuild extends BaseBuild {
 		"((\\d+)\\.?(\\d+?)).*");
 
 	private String _getSpiraPropertyNameFromBatchName(String propertyType) {
-		String batchName = getBatchName();
+		String batchName = this.batchName;
 
 		if ((batchName == null) || batchName.isEmpty()) {
 			return null;

@@ -180,7 +180,7 @@ public class JenkinsPerformanceDataUtil {
 
 		@Override
 		public int compareTo(Result result) {
-			return -1 * Float.compare(getDuration(), result.getDuration());
+			return -1 * Float.compare(_duration, result.getDuration());
 		}
 
 		public String getAxis() {

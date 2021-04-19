@@ -366,8 +366,8 @@ public class TestHistoryMap
 		public JSONArray toDurationJSONArray() {
 			JSONArray jsonArray = new JSONArray();
 
-			jsonArray.put(getName());
-			jsonArray.put(getBatchName());
+			jsonArray.put(_name);
+			jsonArray.put(_batchName);
 
 			JSONArray durationJSONArray = new JSONArray();
 			JSONArray statusesJSONArray = new JSONArray();
@@ -403,8 +403,8 @@ public class TestHistoryMap
 		public JSONArray toStatusJSONArray() {
 			JSONArray jsonArray = new JSONArray();
 
-			jsonArray.put(getName());
-			jsonArray.put(getBatchName());
+			jsonArray.put(_name);
+			jsonArray.put(_batchName);
 
 			JSONArray statusesJSONArray = new JSONArray();
 

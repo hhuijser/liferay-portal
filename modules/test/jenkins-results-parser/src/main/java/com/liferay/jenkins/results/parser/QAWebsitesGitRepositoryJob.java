@@ -99,7 +99,7 @@ public class QAWebsitesGitRepositoryJob
 		}
 
 		String qaWebsitesDirPath = JenkinsResultsParserUtil.getProperty(
-			buildProperties, "qa.websites.dir", getBranchName());
+			buildProperties, "qa.websites.dir", _upstreamBranchName);
 
 		if (JenkinsResultsParserUtil.isNullOrEmpty(qaWebsitesDirPath)) {
 			throw new RuntimeException(
@@ -126,7 +126,7 @@ public class QAWebsitesGitRepositoryJob
 		}
 
 		String qaWebsitesRepository = JenkinsResultsParserUtil.getProperty(
-			buildProperties, "qa.websites.repository", getBranchName());
+			buildProperties, "qa.websites.repository", _upstreamBranchName);
 
 		if (JenkinsResultsParserUtil.isNullOrEmpty(qaWebsitesRepository)) {
 			throw new RuntimeException("Could not find QA Websites repository");

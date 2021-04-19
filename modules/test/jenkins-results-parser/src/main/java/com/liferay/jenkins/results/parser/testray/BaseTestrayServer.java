@@ -113,8 +113,7 @@ public abstract class BaseTestrayServer implements TestrayServer {
 		while (true) {
 			try {
 				String projectAPIURL = JenkinsResultsParserUtil.combine(
-					String.valueOf(getURL()),
-					"/home/-/testray/projects.json?cur=",
+					String.valueOf(_url), "/home/-/testray/projects.json?cur=",
 					String.valueOf(current), "&delta=", String.valueOf(_DELTA),
 					"&orderByCol=testrayProjectId");
 

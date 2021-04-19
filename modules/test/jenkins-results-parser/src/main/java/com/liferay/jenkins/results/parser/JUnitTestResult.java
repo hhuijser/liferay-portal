@@ -42,8 +42,7 @@ public class JUnitTestResult extends BaseTestResult {
 
 	@Override
 	public String getDisplayName() {
-		return JenkinsResultsParserUtil.combine(
-			getClassName(), ".", getTestName());
+		return JenkinsResultsParserUtil.combine(_className, ".", _testName);
 	}
 
 	@Override
@@ -70,7 +69,7 @@ public class JUnitTestResult extends BaseTestResult {
 			Dom4JUtil.getNewAnchorElement(
 				getTestReportURL(), getDisplayName()));
 
-		String errorStackTrace = getErrorStackTrace();
+		String errorStackTrace = _errorStackTrace;
 
 		if ((errorStackTrace != null) && !errorStackTrace.isEmpty()) {
 			String trimmedStackTrace = StringUtils.abbreviate(
@@ -85,7 +84,7 @@ public class JUnitTestResult extends BaseTestResult {
 
 	@Override
 	public String getPackageName() {
-		String className = getClassName();
+		String className = _className;
 
 		int x = className.lastIndexOf(".");
 
@@ -98,7 +97,7 @@ public class JUnitTestResult extends BaseTestResult {
 
 	@Override
 	public String getSimpleClassName() {
-		String className = getClassName();
+		String className = _className;
 
 		int x = className.lastIndexOf(".");
 
@@ -241,7 +240,7 @@ public class JUnitTestResult extends BaseTestResult {
 	}
 
 	protected String getEncodedTestName() {
-		StringBuilder sb = new StringBuilder(getTestName());
+		StringBuilder sb = new StringBuilder(_testName);
 
 		for (int i = 0; i < sb.length(); i++) {
 			char c = sb.charAt(i);

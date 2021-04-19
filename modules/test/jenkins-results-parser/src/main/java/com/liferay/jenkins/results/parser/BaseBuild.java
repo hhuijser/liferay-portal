@@ -189,9 +189,9 @@ public abstract class BaseBuild implements Build {
 
 		sb.append(_jenkinsMaster.getName());
 		sb.append("/");
-		sb.append(getJobName());
+		sb.append(jobName);
 		sb.append("/");
-		sb.append(getBuildNumber());
+		sb.append(_buildNumber);
 
 		return sb.toString();
 	}
@@ -346,7 +346,7 @@ public abstract class BaseBuild implements Build {
 			return Job.BuildProfile.PORTAL;
 		}
 
-		String branchName = getBranchName();
+		String branchName = this.branchName;
 
 		if (!branchName.equals("master") && !branchName.startsWith("ee-")) {
 			return Job.BuildProfile.DXP;
@@ -481,7 +481,7 @@ public abstract class BaseBuild implements Build {
 		sb.append("[\\/]+job[\\/]+");
 
 		String jobNameRegexLiteral = JenkinsResultsParserUtil.getRegexLiteral(
-			getJobName());
+			jobName);
 
 		jobNameRegexLiteral = jobNameRegexLiteral.replace("\\(", "(\\(|%28)");
 		jobNameRegexLiteral = jobNameRegexLiteral.replace("\\)", "(\\)|%29)");
@@ -489,7 +489,7 @@ public abstract class BaseBuild implements Build {
 		sb.append(jobNameRegexLiteral);
 
 		sb.append("[\\/]+");
-		sb.append(getBuildNumber());
+		sb.append(_buildNumber);
 		sb.append("[\\/]*");
 
 		return sb.toString();
@@ -537,7 +537,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public int getDepth() {
-		Build parentBuild = getParentBuild();
+		Build parentBuild = _parentBuild;
 
 		if (parentBuild == null) {
 			return 0;
@@ -550,7 +550,7 @@ public abstract class BaseBuild implements Build {
 	public String getDisplayName() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(getJobName());
+		sb.append(jobName);
 
 		String jobVariant = getParameterValue("JOB_VARIANT");
 
@@ -680,9 +680,9 @@ public abstract class BaseBuild implements Build {
 	}
 
 	public Element getGitHubMessageElement(boolean showCommonFailuresCount) {
-		String status = getStatus();
+		String status = _status;
 
-		if (!status.equals("completed") && (getParentBuild() != null)) {
+		if (!status.equals("completed") && (_parentBuild != null)) {
 			return null;
 		}
 
@@ -1191,7 +1191,7 @@ public abstract class BaseBuild implements Build {
 		sb.append(jobName);
 		sb.append("\"");
 
-		String status = getStatus();
+		String status = _status;
 
 		if (status.equals("completed")) {
 			sb.append(" completed at ");
@@ -1371,7 +1371,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public String getTestSuiteName() {
-		Build parentBuild = getParentBuild();
+		Build parentBuild = _parentBuild;
 
 		if (parentBuild == null) {
 			return "default";
@@ -1514,7 +1514,7 @@ public abstract class BaseBuild implements Build {
 	@Override
 	public boolean hasGenericCIFailure() {
 		for (FailureMessageGenerator failureMessageGenerator :
-				getFailureMessageGenerators()) {
+				_FAILURE_MESSAGE_GENERATORS) {
 
 			Element failureMessage = failureMessageGenerator.getMessageElement(
 				this);
@@ -1566,7 +1566,7 @@ public abstract class BaseBuild implements Build {
 	@Override
 	public boolean isCompleted() {
 		String result = getResult();
-		String status = getStatus();
+		String status = _status;
 
 		if ((result == null) || (status == null)) {
 			return false;
@@ -1616,7 +1616,7 @@ public abstract class BaseBuild implements Build {
 			return;
 		}
 
-		Build parentBuild = getParentBuild();
+		Build parentBuild = _parentBuild;
 
 		String parentBuildStatus = parentBuild.getStatus();
 
@@ -1693,7 +1693,7 @@ public abstract class BaseBuild implements Build {
 			Matcher.quoteReplacement(
 				"${dependencies.url}/" + getArchivePath()));
 
-		Build parentBuild = getParentBuild();
+		Build parentBuild = _parentBuild;
 
 		while (parentBuild != null) {
 			text = text.replaceAll(
@@ -1757,7 +1757,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public synchronized void update() {
-		String status = getStatus();
+		String status = _status;
 
 		if ((status.equals("completed") &&
 			 (isBuildModified() || hasModifiedDownstreamBuilds())) ||
@@ -2134,7 +2134,7 @@ public abstract class BaseBuild implements Build {
 				return compareToValue;
 			}
 
-			Long duration = getDuration();
+			Long duration = _duration;
 			Long stopWatchRecordDuration = stopWatchRecord.getDuration();
 
 			if ((duration == null) && (stopWatchRecordDuration != null)) {
@@ -2182,9 +2182,9 @@ public abstract class BaseBuild implements Build {
 		}
 
 		public String getShortName() {
-			String shortName = getName();
+			String shortName = _name;
 
-			StopWatchRecord parentStopWatchRecord = getParentStopWatchRecord();
+			StopWatchRecord parentStopWatchRecord = _parentStopWatchRecord;
 
 			if (parentStopWatchRecord == null) {
 				return shortName;
@@ -2202,14 +2202,14 @@ public abstract class BaseBuild implements Build {
 				return false;
 			}
 
-			Long duration = getDuration();
+			Long duration = _duration;
 			Long stopWatchRecordDuration = stopWatchRecord.getDuration();
 
 			if ((duration != null) && (stopWatchRecordDuration == null)) {
 				return false;
 			}
 
-			Long startTimestamp = getStartTimestamp();
+			Long startTimestamp = _startTimestamp;
 			Long stopWatchRecordStartTimestamp =
 				stopWatchRecord.getStartTimestamp();
 
@@ -2237,11 +2237,11 @@ public abstract class BaseBuild implements Build {
 		@Override
 		public String toString() {
 			return JenkinsResultsParserUtil.combine(
-				getName(), " started at ",
+				_name, " started at ",
 				JenkinsResultsParserUtil.toDateString(
-					new Date(getStartTimestamp())),
+					new Date(_startTimestamp)),
 				" and ran for ",
-				JenkinsResultsParserUtil.toDurationString(getDuration()), ".");
+				JenkinsResultsParserUtil.toDurationString(_duration), ".");
 		}
 
 		protected Element getExpanderAnchorElement(String namespace) {
@@ -2255,12 +2255,12 @@ public abstract class BaseBuild implements Build {
 			expanderAnchorElement.addAttribute(
 				"id",
 				JenkinsResultsParserUtil.combine(
-					namespace, "-expander-anchor-", getName()));
+					namespace, "-expander-anchor-", _name));
 			expanderAnchorElement.addAttribute(
 				"onClick",
 				JenkinsResultsParserUtil.combine(
 					"return toggleStopWatchRecordExpander(\'", namespace,
-					"\', \'", getName(), "\')"));
+					"\', \'", _name, "\')"));
 			expanderAnchorElement.addAttribute(
 				"style",
 				"font-family: monospace, monospace; text-decoration: none");
@@ -2278,7 +2278,7 @@ public abstract class BaseBuild implements Build {
 			}
 
 			buildInfoElement.addAttribute(
-				"id", baseBuildHashCode + "-" + getName());
+				"id", baseBuildHashCode + "-" + _name);
 			buildInfoElement.addAttribute("style", "display: none");
 
 			Element expanderAnchorElement = getExpanderAnchorElement(
@@ -2305,16 +2305,16 @@ public abstract class BaseBuild implements Build {
 			Dom4JUtil.getNewElement(
 				"td", buildInfoElement,
 				_baseBuild.toJenkinsReportDateString(
-					new Date(getStartTimestamp()),
+					new Date(_startTimestamp),
 					_baseBuild.getJenkinsReportTimeZoneName()));
 
-			if (getDuration() == null) {
+			if (_duration == null) {
 				Dom4JUtil.getNewElement("td", buildInfoElement, "&nbsp;");
 			}
 			else {
 				Dom4JUtil.getNewElement(
 					"td", buildInfoElement,
-					JenkinsResultsParserUtil.toDurationString(getDuration()));
+					JenkinsResultsParserUtil.toDurationString(_duration));
 			}
 
 			Dom4JUtil.getNewElement("td", buildInfoElement, "&nbsp;");
@@ -2669,7 +2669,7 @@ public abstract class BaseBuild implements Build {
 
 	protected String getBuildMessage() {
 		if (jobName != null) {
-			String status = getStatus();
+			String status = _status;
 
 			StringBuilder sb = new StringBuilder();
 
@@ -2826,7 +2826,7 @@ public abstract class BaseBuild implements Build {
 
 	protected Element getFailureMessageElement() {
 		for (FailureMessageGenerator failureMessageGenerator :
-				getFailureMessageGenerators()) {
+				_FAILURE_MESSAGE_GENERATORS) {
 
 			Element failureMessage = failureMessageGenerator.getMessageElement(
 				this);
@@ -2931,7 +2931,7 @@ public abstract class BaseBuild implements Build {
 				buildInfoElement,
 				Dom4JUtil.getNewElement(
 					cellElementTagName, null, "",
-					getJenkinsReportTimeZoneName()));
+					_NAME_JENKINS_REPORT_TIME_ZONE));
 		}
 		else {
 			Dom4JUtil.addToElement(
@@ -2939,7 +2939,7 @@ public abstract class BaseBuild implements Build {
 				Dom4JUtil.getNewElement(
 					cellElementTagName, null,
 					toJenkinsReportDateString(
-						new Date(startTime), getJenkinsReportTimeZoneName())));
+						new Date(startTime), _NAME_JENKINS_REPORT_TIME_ZONE)));
 		}
 
 		Dom4JUtil.addToElement(
@@ -2948,7 +2948,7 @@ public abstract class BaseBuild implements Build {
 				cellElementTagName, null,
 				JenkinsResultsParserUtil.toDurationString(getDuration())));
 
-		String status = getStatus();
+		String status = _status;
 
 		if (status != null) {
 			status = StringUtils.upperCase(status);
@@ -2975,9 +2975,9 @@ public abstract class BaseBuild implements Build {
 
 		List<Element> tableRowElements = new ArrayList<>();
 
-		if ((getParentBuild() != null) &&
+		if ((_parentBuild != null) &&
 			((result == null) || result.equals(getResult())) &&
-			((status == null) || status.equals(getStatus()))) {
+			((status == null) || status.equals(_status))) {
 
 			tableRowElements.add(getJenkinsReportTableRowElement());
 
@@ -3469,7 +3469,7 @@ public abstract class BaseBuild implements Build {
 	}
 
 	protected void reset() {
-		badBuildNumbers.add(getBuildNumber());
+		badBuildNumbers.add(_buildNumber);
 
 		setResult(null);
 
@@ -3504,7 +3504,7 @@ public abstract class BaseBuild implements Build {
 				"Unable to decode " + buildURL, unsupportedEncodingException);
 		}
 
-		Build parentBuild = getParentBuild();
+		Build parentBuild = _parentBuild;
 
 		try {
 			if (parentBuild != null) {
@@ -3523,12 +3523,12 @@ public abstract class BaseBuild implements Build {
 			fromArchive = false;
 		}
 
-		MultiPattern buildURLMultiPattern = getBuildURLMultiPattern();
+		MultiPattern buildURLMultiPattern = _buildURLMultiPattern;
 
 		Matcher matcher = buildURLMultiPattern.find(buildURL);
 
 		if (matcher == null) {
-			Pattern archiveBuildURLPattern = getArchiveBuildURLPattern();
+			Pattern archiveBuildURLPattern = _archiveBuildURLPattern;
 
 			matcher = archiveBuildURLPattern.matcher(buildURL);
 

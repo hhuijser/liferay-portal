@@ -50,10 +50,6 @@ public class ScriptingUtil {
 		return _scripting.getSupportedLanguages();
 	}
 
-	private Scripting _getScripting() {
-		return _scripting;
-	}
-
 	private static volatile Scripting _scripting =
 		ServiceProxyFactory.newServiceTrackedInstance(
 			Scripting.class, ScriptingUtil.class, "_scripting", false);

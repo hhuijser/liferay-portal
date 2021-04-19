@@ -27,7 +27,7 @@ public class GreetingBuilderImpl implements GreetingBuilder {
 
 	@Override
 	public String getHello() {
-		return "Hello " + getName();
+		return "Hello " + _name;
 	}
 
 	@Override

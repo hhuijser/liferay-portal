@@ -24,7 +24,7 @@ public class GreetingBuilder {
 	}
 
 	public String getHello() {
-		return "Hello " + getName();
+		return "Hello " + _name;
 	}
 
 	public String getName() {

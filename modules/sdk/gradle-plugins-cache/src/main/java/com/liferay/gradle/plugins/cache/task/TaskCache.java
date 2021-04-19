@@ -115,15 +115,15 @@ public class TaskCache implements PatternFilterable {
 	}
 
 	public String getRefreshDigestTaskName() {
-		return "refresh" + StringUtil.capitalize(getName()) + "Digest";
+		return "refresh" + StringUtil.capitalize(_name) + "Digest";
 	}
 
 	public String getRestoreCacheTaskName() {
-		return "restore" + StringUtil.capitalize(getName()) + "Cache";
+		return "restore" + StringUtil.capitalize(_name) + "Cache";
 	}
 
 	public String getSaveCacheTaskName() {
-		return "save" + StringUtil.capitalize(getName()) + "Cache";
+		return "save" + StringUtil.capitalize(_name) + "Cache";
 	}
 
 	public Set<Object> getSkippedTaskDependencies() {

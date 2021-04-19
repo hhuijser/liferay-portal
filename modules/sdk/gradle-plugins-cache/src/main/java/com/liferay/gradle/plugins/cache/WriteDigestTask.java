@@ -39,7 +39,7 @@ public class WriteDigestTask extends SourceTask {
 
 	public String getDigest() {
 		return FileUtil.getDigest(
-			getProject(), getSource(), isExcludeIgnoredFiles());
+			getProject(), getSource(), _excludeIgnoredFiles);
 	}
 
 	@OutputFile

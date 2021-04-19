@@ -288,7 +288,7 @@ public class BuildChangeLogTask extends DefaultTask {
 		}
 
 		String prefix = message.substring(0, index);
-		Set<String> ticketIdPrefixes = getTicketIdPrefixes();
+		Set<String> ticketIdPrefixes = _ticketIdPrefixes;
 
 		if (!ticketIdPrefixes.contains(prefix)) {
 			return null;

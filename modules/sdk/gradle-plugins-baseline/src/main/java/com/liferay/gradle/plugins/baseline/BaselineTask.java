@@ -91,20 +91,19 @@ public class BaselineTask extends DefaultTask implements VerificationTask {
 					Property<Boolean> forceCalculatedVersionProperty =
 						baselineWorkParameters.getForceCalculatedVersion();
 
-					forceCalculatedVersionProperty.set(
-						isForceCalculatedVersion());
+					forceCalculatedVersionProperty.set(_forceCalculatedVersion);
 
 					Property<Boolean> ignoreExcessiveVersionIncreasesProperty =
 						baselineWorkParameters.
 							getIgnoreExcessiveVersionIncreases();
 
 					ignoreExcessiveVersionIncreasesProperty.set(
-						isIgnoreExcessiveVersionIncreases());
+						_ignoreExcessiveVersionIncreases);
 
 					Property<Boolean> ignoreFailuresProperty =
 						baselineWorkParameters.getIgnoreFailures();
 
-					ignoreFailuresProperty.set(getIgnoreFailures());
+					ignoreFailuresProperty.set(_ignoreFailures);
 
 					RegularFileProperty logFileRegularFileProperty =
 						baselineWorkParameters.getLogFile();
@@ -124,13 +123,13 @@ public class BaselineTask extends DefaultTask implements VerificationTask {
 					Property<Boolean> reportDiffProperty =
 						baselineWorkParameters.getReportDiff();
 
-					reportDiffProperty.set(isReportDiff());
+					reportDiffProperty.set(_reportDiff);
 
 					Property<Boolean> reportOnlyDirtyPackagesProperty =
 						baselineWorkParameters.getReportOnlyDirtyPackages();
 
 					reportOnlyDirtyPackagesProperty.set(
-						isReportOnlyDirtyPackages());
+						_reportOnlyDirtyPackages);
 
 					DirectoryProperty sourceDirDirectoryProperty =
 						baselineWorkParameters.getSourceDir();
@@ -260,7 +259,7 @@ public class BaselineTask extends DefaultTask implements VerificationTask {
 			return _oldJarFile;
 		}
 
-		Configuration baselineConfiguration = getBaselineConfiguration();
+		Configuration baselineConfiguration = _baselineConfiguration;
 
 		_oldJarFile = baselineConfiguration.getSingleFile();
 

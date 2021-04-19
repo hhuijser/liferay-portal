@@ -30,14 +30,14 @@ import java.util.Map;
 public class RawMetadataProcessorUtil {
 
 	public static Map<String, Field[]> getFields() {
-		return getRawMetadataProcessor().getFields();
+		return _rawMetadataProcessor.getFields();
 	}
 
 	public static Map<String, DDMFormValues> getRawMetadataMap(
 			String extension, String mimeType, File file)
 		throws PortalException {
 
-		return getRawMetadataProcessor().getRawMetadataMap(
+		return _rawMetadataProcessor.getRawMetadataMap(
 			extension, mimeType, file);
 	}
 
@@ -45,7 +45,7 @@ public class RawMetadataProcessorUtil {
 			String extension, String mimeType, InputStream inputStream)
 		throws PortalException {
 
-		return getRawMetadataProcessor().getRawMetadataMap(
+		return _rawMetadataProcessor.getRawMetadataMap(
 			extension, mimeType, inputStream);
 	}
 

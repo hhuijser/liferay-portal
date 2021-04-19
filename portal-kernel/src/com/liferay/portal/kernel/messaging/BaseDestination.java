@@ -191,7 +191,7 @@ public abstract class BaseDestination implements Destination {
 				_destinationEventListeners) {
 
 			destinationEventListener.messageListenerRegistered(
-				getName(), messageListener);
+				name, messageListener);
 		}
 	}
 
@@ -199,7 +199,7 @@ public abstract class BaseDestination implements Destination {
 		MessageListener messageListener) {
 
 		for (DestinationEventListener listener : _destinationEventListeners) {
-			listener.messageListenerUnregistered(getName(), messageListener);
+			listener.messageListenerUnregistered(name, messageListener);
 		}
 	}
 

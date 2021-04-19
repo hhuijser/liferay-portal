@@ -58,10 +58,6 @@ public class ClusterExecutorUtil {
 		_clusterExecutor.removeClusterEventListener(clusterEventListener);
 	}
 
-	private ClusterExecutor _getClusterExecutor() {
-		return _clusterExecutor;
-	}
-
 	private static volatile ClusterExecutor _clusterExecutor =
 		ServiceProxyFactory.newServiceTrackedInstance(
 			ClusterExecutor.class, ClusterExecutorUtil.class,

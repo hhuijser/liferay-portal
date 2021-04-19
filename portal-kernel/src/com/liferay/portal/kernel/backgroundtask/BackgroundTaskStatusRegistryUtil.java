@@ -42,10 +42,6 @@ public class BackgroundTaskStatusRegistryUtil {
 			backgroundTaskId);
 	}
 
-	private BackgroundTaskStatusRegistry _getBackgroundTaskStatusRegistry() {
-		return _backgroundTaskStatusRegistry;
-	}
-
 	private static volatile BackgroundTaskStatusRegistry
 		_backgroundTaskStatusRegistry =
 			ServiceProxyFactory.newServiceTrackedInstance(

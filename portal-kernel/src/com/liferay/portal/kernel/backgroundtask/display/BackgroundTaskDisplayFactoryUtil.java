@@ -36,10 +36,6 @@ public class BackgroundTaskDisplayFactoryUtil {
 			backgroundTaskId);
 	}
 
-	private BackgroundTaskDisplayFactory _getBackgroundTaskDisplayFactory() {
-		return _backgroundTaskDisplayFactory;
-	}
-
 	private static volatile BackgroundTaskDisplayFactory
 		_backgroundTaskDisplayFactory =
 			ServiceProxyFactory.newServiceTrackedInstance(

@@ -64,7 +64,7 @@ public class SearchContainerColumnIconTag<R> extends SearchContainerColumnTag {
 				(HttpServletRequest)pageContext.getRequest());
 			iconSearchEntry.setResponse(
 				(HttpServletResponse)pageContext.getResponse());
-			iconSearchEntry.setToggleRowChecker(isToggleRowChecker());
+			iconSearchEntry.setToggleRowChecker(_toggleRowChecker);
 
 			ServletContext servletContext = ServletContextPool.get(
 				PortalUtil.getServletContextName());

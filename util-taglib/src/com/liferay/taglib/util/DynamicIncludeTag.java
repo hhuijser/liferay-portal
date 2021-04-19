@@ -30,14 +30,14 @@ public class DynamicIncludeTag extends TagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		DynamicIncludeUtil.include(
-			getRequest(), getResponse(), getKey(), _ascendingPriority);
+			getRequest(), getResponse(), _key, _ascendingPriority);
 
 		return super.doEndTag();
 	}
 
 	@Override
 	public int doStartTag() {
-		if (!DynamicIncludeUtil.hasDynamicInclude(getKey())) {
+		if (!DynamicIncludeUtil.hasDynamicInclude(_key)) {
 			return SKIP_BODY;
 		}
 

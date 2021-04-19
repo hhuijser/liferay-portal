@@ -65,7 +65,7 @@ public class IncludeTag extends AttributesTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			String page = getPage();
+			String page = _page;
 
 			if (Validator.isNull(page)) {
 				page = getEndPage();
@@ -82,7 +82,7 @@ public class IncludeTag extends AttributesTagSupport {
 			if (!FileAvailabilityUtil.isAvailable(getServletContext(), page)) {
 				logUnavailablePage(page);
 
-				return processEndTag();
+				return EVAL_PAGE;
 			}
 
 			doInclude(page, false);
@@ -113,7 +113,7 @@ public class IncludeTag extends AttributesTagSupport {
 			if (!FileAvailabilityUtil.isAvailable(getServletContext(), page)) {
 				logUnavailablePage(page);
 
-				return processStartTag();
+				return EVAL_BODY_INCLUDE;
 			}
 
 			doInclude(page, true);
@@ -155,7 +155,7 @@ public class IncludeTag extends AttributesTagSupport {
 	protected void callSetAttributes() {
 		HttpServletRequest httpServletRequest = getOriginalServletRequest();
 
-		if (isCleanUpSetAttributes()) {
+		if (_CLEAN_UP_SET_ATTRIBUTES) {
 			if (_setAttributeNames == null) {
 				_setAttributeNames = new HashSet<>();
 			}
@@ -185,7 +185,7 @@ public class IncludeTag extends AttributesTagSupport {
 	}
 
 	protected void cleanUpSetAttributes() {
-		if (isCleanUpSetAttributes()) {
+		if (_CLEAN_UP_SET_ATTRIBUTES) {
 			for (String name : _setAttributeNames) {
 				_trackedRequest.removeAttribute(name);
 			}

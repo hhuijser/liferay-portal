@@ -136,7 +136,7 @@ public class UserPortraitTag extends IncludeTag {
 	public int processEndTag() throws Exception {
 		JspWriter jspWriter = pageContext.getOut();
 
-		User user = getUser();
+		User user = _user;
 
 		HttpServletRequest httpServletRequest = getRequest();
 

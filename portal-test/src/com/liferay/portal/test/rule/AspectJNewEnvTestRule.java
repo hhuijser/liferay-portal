@@ -179,7 +179,7 @@ public class AspectJNewEnvTestRule extends NewEnvTestRule {
 
 		@Override
 		public Serializable call() throws ProcessException {
-			attachProcess("Attached " + toString());
+			attachProcess("Attached " + _toString);
 
 			String[] aspectClassNames = StringUtil.split(
 				System.getProperty("aspectClasses"));

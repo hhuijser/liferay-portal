@@ -98,7 +98,7 @@ public class WrapPortletTag
 			ThemeUtil.include(
 				getServletContext(), httpServletRequest,
 				PipingServletResponse.createPipingServletResponse(pageContext),
-				getPage(), theme);
+				_page, theme);
 
 			return EVAL_PAGE;
 		}

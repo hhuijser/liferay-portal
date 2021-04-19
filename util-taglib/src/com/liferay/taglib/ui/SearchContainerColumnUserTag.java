@@ -88,7 +88,7 @@ public class SearchContainerColumnUserTag<R> extends SearchContainerColumnTag {
 
 			userSearchEntry.setServletContext(servletContext);
 
-			userSearchEntry.setShowDetails(isShowDetails());
+			userSearchEntry.setShowDetails(_showDetails);
 			userSearchEntry.setUserId(_userId);
 			userSearchEntry.setValign(getValign());
 

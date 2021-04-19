@@ -61,7 +61,7 @@ public class BaseBodyTagSupport extends TagSupport {
 				clazz.getName() + " must implement " + BodyTag.class.getName());
 		}
 
-		BodyContent bodyContent = getBodyContent();
+		BodyContent bodyContent = this.bodyContent;
 
 		if (bodyContent instanceof BodyContentWrapper) {
 			BodyContentWrapper bodyContentWrapper =

@@ -92,9 +92,9 @@ public class SearchContainerColumnTextTag<R>
 			textSearchEntry.setColspan(getColspan());
 			textSearchEntry.setCssClass(getCssClass());
 			textSearchEntry.setHref(String.valueOf(getHref()));
-			textSearchEntry.setName(getValue());
-			textSearchEntry.setTarget(getTarget());
-			textSearchEntry.setTitle(getTitle());
+			textSearchEntry.setName(_value);
+			textSearchEntry.setTarget(_target);
+			textSearchEntry.setTitle(_title);
 			textSearchEntry.setTruncate(getTruncate());
 			textSearchEntry.setValign(getValign());
 

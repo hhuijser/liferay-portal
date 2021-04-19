@@ -81,7 +81,7 @@ public class SectionTag extends IncludeTag {
 			pageContext.setAttribute("sectionScroll", sectionScroll);
 			pageContext.setAttribute("sectionSelected", _sectionSelected);
 
-			include(getStartPage(), true);
+			include(_START_PAGE, true);
 
 			if (!_tabsTag.isRefresh() || _sectionSelected.booleanValue()) {
 				return EVAL_BODY_INCLUDE;

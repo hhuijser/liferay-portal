@@ -37,7 +37,7 @@ public class WhenTag extends ConditionalTagSupport {
 			return SKIP_BODY;
 		}
 
-		if (condition()) {
+		if (_test) {
 			chooseTag.markRan();
 
 			return EVAL_BODY_INCLUDE;

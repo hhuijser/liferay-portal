@@ -285,7 +285,7 @@ public class SearchContainerRowTag<R>
 	protected void processRow() {
 		Object model = _results.get(_rowIndex);
 
-		if (isEscapedModel()) {
+		if (_escapedModel) {
 			if (model instanceof BaseModel) {
 				BaseModel<?> baseModel = (BaseModel<?>)model;
 
@@ -303,7 +303,7 @@ public class SearchContainerRowTag<R>
 		if (Validator.isNull(_keyProperty)) {
 			primaryKey = String.valueOf(model);
 		}
-		else if (isStringKey()) {
+		else if (_stringKey) {
 			primaryKey = BeanPropertiesUtil.getStringSilent(
 				model, _keyProperty);
 		}

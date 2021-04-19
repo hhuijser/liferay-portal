@@ -111,7 +111,7 @@ public class SearchIteratorTag<R> extends SearchPaginatorTag<R> {
 		super.setAttributes(httpServletRequest);
 
 		httpServletRequest.setAttribute(
-			"liferay-ui:search-iterator:displayStyle", getDisplayStyle());
+			"liferay-ui:search-iterator:displayStyle", _displayStyle);
 		httpServletRequest.setAttribute(
 			"liferay-ui:search-iterator:fixedHeader",
 			String.valueOf(_fixedHeader));
@@ -123,7 +123,7 @@ public class SearchIteratorTag<R> extends SearchPaginatorTag<R> {
 			"liferay-ui:search-iterator:resultRowSplitter", _resultRowSplitter);
 		httpServletRequest.setAttribute(
 			"liferay-ui:search-iterator:searchResultCssClass",
-			getSearchResultCssClass());
+			_searchResultCssClass);
 	}
 
 	private String _displayStyle = DEFAULT_DISPLAY_STYLE;

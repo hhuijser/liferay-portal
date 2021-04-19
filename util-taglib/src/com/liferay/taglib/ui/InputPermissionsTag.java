@@ -72,7 +72,7 @@ public class InputPermissionsTag extends IncludeTag {
 	@Override
 	public int doEndTag() throws JspException {
 		try {
-			doTag(getPage(), _formName, _modelName, _reverse, pageContext);
+			doTag(_PAGE, _formName, _modelName, _reverse, pageContext);
 
 			return EVAL_PAGE;
 		}

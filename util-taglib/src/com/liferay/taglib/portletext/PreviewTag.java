@@ -67,7 +67,7 @@ public class PreviewTag extends IncludeTag {
 	public int doEndTag() throws JspException {
 		try {
 			doTag(
-				getPage(), _portletName, _queryString, _showBorders, _width,
+				_PAGE, _portletName, _queryString, _showBorders, _width,
 				getServletContext(), getRequest(),
 				PipingServletResponse.createPipingServletResponse(pageContext));
 

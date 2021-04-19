@@ -53,7 +53,7 @@ public class TextSearchEntry extends SearchEntry {
 	}
 
 	public String getName(HttpServletRequest httpServletRequest) {
-		return getName();
+		return _name;
 	}
 
 	public String getTarget() {

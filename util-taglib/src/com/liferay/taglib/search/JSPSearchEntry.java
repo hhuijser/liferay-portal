@@ -66,7 +66,7 @@ public class JSPSearchEntry extends SearchEntry {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		httpServletRequest.setAttribute(WebKeys.SEARCH_ENTRY_HREF, getHref());
+		httpServletRequest.setAttribute(WebKeys.SEARCH_ENTRY_HREF, _href);
 
 		if (_servletContext != null) {
 			RequestDispatcher requestDispatcher =

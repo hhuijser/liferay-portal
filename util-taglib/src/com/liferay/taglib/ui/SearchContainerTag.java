@@ -95,8 +95,8 @@ public class SearchContainerTag<R> extends ParamAndPropertyAncestorTagImpl {
 						JavaConstants.JAVAX_PORTLET_REQUEST);
 
 				_searchContainer = new SearchContainer<>(
-					portletRequest, _displayTerms, _searchTerms, getCurParam(),
-					getDelta(), _iteratorURL, null, _emptyResultsMessage);
+					portletRequest, _displayTerms, _searchTerms, _curParam,
+					_delta, _iteratorURL, null, _emptyResultsMessage);
 			}
 
 			if (Validator.isNotNull(_cssClass)) {

@@ -55,15 +55,14 @@ public abstract class BasePortletRequestWhitelist
 	public boolean isPortletInvocationWhitelisted(
 		long companyId, String portletId, String strutsAction) {
 
-		Set<String> whitelist = getPortletInvocationWhitelist();
+		Set<String> whitelist = _portletInvocationWhitelist;
 
 		if (whitelist.contains(portletId)) {
 			return true;
 		}
 
 		if (Validator.isNotNull(strutsAction)) {
-			Set<String> whitelistActions =
-				getPortletInvocationWhitelistActions();
+			Set<String> whitelistActions = _portletInvocationWhitelistActions;
 
 			if (whitelistActions.contains(strutsAction) &&
 				isValidStrutsAction(companyId, portletId, strutsAction)) {

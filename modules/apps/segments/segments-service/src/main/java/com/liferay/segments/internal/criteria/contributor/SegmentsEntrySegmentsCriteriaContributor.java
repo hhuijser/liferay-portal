@@ -53,7 +53,7 @@ public class SegmentsEntrySegmentsCriteriaContributor
 		Criteria criteria, String filterString,
 		Criteria.Conjunction conjunction) {
 
-		criteria.addCriterion(getKey(), getType(), filterString, conjunction);
+		criteria.addCriterion(KEY, getType(), filterString, conjunction);
 		criteria.addFilter(getType(), filterString, conjunction);
 
 		// Contribute to model filter to support preview

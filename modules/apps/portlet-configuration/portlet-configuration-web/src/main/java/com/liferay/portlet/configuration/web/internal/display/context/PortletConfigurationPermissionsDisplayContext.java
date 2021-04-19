@@ -304,7 +304,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 			boolean portletActions = Validator.isNull(getModelResource());
 
 			ResourceLocalServiceUtil.addResources(
-				themeDisplay.getCompanyId(), getGroupId(), 0, getSelResource(),
+				themeDisplay.getCompanyId(), _groupId, 0, getSelResource(),
 				getResourcePrimKey(), portletActions, true, true);
 		}
 

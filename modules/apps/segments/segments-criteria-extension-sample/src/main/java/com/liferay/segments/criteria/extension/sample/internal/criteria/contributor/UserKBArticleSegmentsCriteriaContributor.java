@@ -62,7 +62,7 @@ public class UserKBArticleSegmentsCriteriaContributor
 		Criteria criteria, String filterString,
 		Criteria.Conjunction conjunction) {
 
-		criteria.addCriterion(getKey(), getType(), filterString, conjunction);
+		criteria.addCriterion(KEY, getType(), filterString, conjunction);
 
 		long companyId = CompanyThreadLocal.getCompanyId();
 		String newFilterString = null;

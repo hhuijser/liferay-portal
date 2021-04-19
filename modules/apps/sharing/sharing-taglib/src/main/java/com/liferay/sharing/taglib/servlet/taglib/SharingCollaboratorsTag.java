@@ -83,13 +83,13 @@ public class SharingCollaboratorsTag extends BaseSharingTag {
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 		Map<String, Object> data = new HashMap<>();
 
-		long classNameId = PortalUtil.getClassNameId(getClassName());
+		long classNameId = PortalUtil.getClassNameId(_className);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		boolean canManageCollaborators = _canManageCollaborators(
-			classNameId, getClassPK(), themeDisplay);
+			classNameId, _classPK, themeDisplay);
 
 		if (canManageCollaborators) {
 			SharingJavaScriptFactory sharingJavaScriptFactory =
@@ -101,14 +101,14 @@ public class SharingCollaboratorsTag extends BaseSharingTag {
 		}
 
 		data.put("classNameId", classNameId);
-		data.put("classPK", getClassPK());
+		data.put("classPK", _classPK);
 
 		ResourceURL collaboratorsResourceURL = PortletURLFactoryUtil.create(
 			request, SharingPortletKeys.SHARING, PortletRequest.RESOURCE_PHASE);
 
-		collaboratorsResourceURL.setParameter("className", getClassName());
+		collaboratorsResourceURL.setParameter("className", _className);
 		collaboratorsResourceURL.setParameter(
-			"classPK", String.valueOf(getClassPK()));
+			"classPK", String.valueOf(_classPK));
 
 		collaboratorsResourceURL.setResourceID("/sharing/collaborators");
 
@@ -118,7 +118,7 @@ public class SharingCollaboratorsTag extends BaseSharingTag {
 		data.put(
 			"initialData",
 			CollaboratorsUtil.getCollaboratorsJSONObject(
-				classNameId, getClassPK(), themeDisplay));
+				classNameId, _classPK, themeDisplay));
 
 		httpServletRequest.setAttribute(
 			"liferay-sharing:collaborators:data", data);

@@ -77,7 +77,7 @@ public class DummyFolder implements Serializable, StagedGroupedModel {
 
 		long primaryKey = dummyFolder.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (_id == primaryKey) {
 			return true;
 		}
 
@@ -97,7 +97,7 @@ public class DummyFolder implements Serializable, StagedGroupedModel {
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(
-			getCompanyId(), DummyFolder.class.getName(), getPrimaryKey());
+			_companyId, DummyFolder.class.getName(), _id);
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public class DummyFolder implements Serializable, StagedGroupedModel {
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return (int)_id;
 	}
 
 	@Override

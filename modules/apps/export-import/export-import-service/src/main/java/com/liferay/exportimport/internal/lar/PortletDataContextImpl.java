@@ -368,12 +368,12 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public void addPortalPermissions() {
-		addPermissions(PortletKeys.PORTAL, getCompanyId());
+		addPermissions(PortletKeys.PORTAL, _companyId);
 	}
 
 	@Override
 	public void addPortletPermissions(String resourceName) {
-		addPermissions(resourceName, getGroupId());
+		addPermissions(resourceName, _groupId);
 	}
 
 	@Override
@@ -462,7 +462,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		try {
-			ZipWriter zipWriter = getZipWriter();
+			ZipWriter zipWriter = _zipWriter;
 
 			zipWriter.addEntry(path, bytes);
 		}
@@ -486,7 +486,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		try {
-			ZipWriter zipWriter = getZipWriter();
+			ZipWriter zipWriter = _zipWriter;
 
 			zipWriter.addEntry(path, inputStream);
 		}
@@ -510,7 +510,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		try {
-			ZipWriter zipWriter = getZipWriter();
+			ZipWriter zipWriter = _zipWriter;
 
 			zipWriter.addEntry(path, toXML(object));
 		}
@@ -534,7 +534,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		try {
-			ZipWriter zipWriter = getZipWriter();
+			ZipWriter zipWriter = _zipWriter;
 
 			zipWriter.addEntry(path, s);
 		}
@@ -673,17 +673,17 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 		if (!useDefaultValue) {
 			return MapUtil.getBoolean(
-				getParameterMap(),
+				_parameterMap,
 				PortletDataHandlerControl.getNamespacedControlName(
 					namespace, name));
 		}
 
 		boolean defaultValue = MapUtil.getBoolean(
-			getParameterMap(),
-			PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT, true);
+			_parameterMap, PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
+			true);
 
 		return MapUtil.getBoolean(
-			getParameterMap(),
+			_parameterMap,
 			PortletDataHandlerControl.getNamespacedControlName(namespace, name),
 			defaultValue);
 	}
@@ -1084,7 +1084,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public Element getReferenceElement(String className, Serializable classPK) {
-		Element parentElement = getImportDataRootElement();
+		Element parentElement = _importDataRootElement;
 
 		List<Element> referenceElements = getReferenceElements(
 			parentElement, className, 0, null, classPK, null);
@@ -1175,7 +1175,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return null;
 		}
 
-		return getZipReader().getEntryAsByteArray(path);
+		return _zipReader.getEntryAsByteArray(path);
 	}
 
 	@Override
@@ -1184,7 +1184,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return null;
 		}
 
-		return getZipReader().getEntryAsInputStream(path);
+		return _zipReader.getEntryAsInputStream(path);
 	}
 
 	@Override
@@ -1218,7 +1218,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return null;
 		}
 
-		return getZipReader().getEntryAsString(path);
+		return _zipReader.getEntryAsString(path);
 	}
 
 	@Override
@@ -1227,7 +1227,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return null;
 		}
 
-		return getZipReader().getFolderEntries(path);
+		return _zipReader.getFolderEntries(path);
 	}
 
 	@Override
@@ -1427,8 +1427,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 				continue;
 			}
 
-			if (isPrivateLayout() &&
-				resourceName.equals(Layout.class.getName()) &&
+			if (_privateLayout && resourceName.equals(Layout.class.getName()) &&
 				roleName.equals(RoleConstants.GUEST) &&
 				!_isGroupLayoutSetPrototype()) {
 
@@ -1452,23 +1451,22 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public void importPortalPermissions() throws PortalException {
-		importPermissions(
-			PortletKeys.PORTAL, getSourceCompanyId(), getCompanyId());
+		importPermissions(PortletKeys.PORTAL, _sourceCompanyId, _companyId);
 	}
 
 	@Override
 	public void importPortletPermissions(String resourceName)
 		throws PortalException {
 
-		importPermissions(resourceName, getSourceGroupId(), getScopeGroupId());
+		importPermissions(resourceName, _sourceGroupId, _scopeGroupId);
 	}
 
 	@Override
 	public boolean isCompanyStagedGroupedModel(
 		StagedGroupedModel stagedGroupedModel) {
 
-		if ((stagedGroupedModel.getGroupId() == getCompanyGroupId()) &&
-			(getGroupId() != getCompanyGroupId())) {
+		if ((stagedGroupedModel.getGroupId() == _companyGroupId) &&
+			(_groupId != _companyGroupId)) {
 
 			return true;
 		}
@@ -1504,7 +1502,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		Group group = null;
 
 		try {
-			group = GroupLocalServiceUtil.getGroup(getGroupId());
+			group = GroupLocalServiceUtil.getGroup(_groupId);
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
@@ -1861,8 +1859,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 		// Theme display
 
-		serviceContext.setCompanyId(getCompanyId());
-		serviceContext.setScopeGroupId(getScopeGroupId());
+		serviceContext.setCompanyId(_companyId);
+		serviceContext.setScopeGroupId(_scopeGroupId);
 
 		// Dates
 
@@ -1969,7 +1967,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		String referenceType, boolean missing) {
 
 		if (!missing) {
-			Element originalImportDataRootElement = getImportDataRootElement();
+			Element originalImportDataRootElement = _importDataRootElement;
 
 			try {
 				setImportDataRootElement(element);
@@ -2624,7 +2622,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			try {
 				workflowDefinition =
 					WorkflowDefinitionManagerUtil.getLatestWorkflowDefinition(
-						getCompanyId(), displayName);
+						_companyId, displayName);
 			}
 			catch (WorkflowException workflowException) {
 				if (_log.isDebugEnabled()) {
@@ -2653,8 +2651,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 			if ((workflowDefinition != null) &&
 				!WorkflowDefinitionLinkLocalServiceUtil.
 					hasWorkflowDefinitionLink(
-						getCompanyId(), getScopeGroupId(), className,
-						newPrimaryKey, typePK)) {
+						_companyId, _scopeGroupId, className, newPrimaryKey,
+						typePK)) {
 
 				PermissionChecker permissionChecker =
 					PermissionThreadLocal.getPermissionChecker();
@@ -2662,8 +2660,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 				try {
 					WorkflowDefinitionLinkLocalServiceUtil.
 						addWorkflowDefinitionLink(
-							permissionChecker.getUserId(), getCompanyId(),
-							getScopeGroupId(), className, newPrimaryKey, typePK,
+							permissionChecker.getUserId(), _companyId,
+							_scopeGroupId, className, newPrimaryKey, typePK,
 							workflowDefinition.getName(),
 							workflowDefinition.getVersion());
 				}
@@ -2676,7 +2674,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	}
 
 	private boolean _isGroupLayoutSetPrototype() throws PortalException {
-		Group group = GroupLocalServiceUtil.getGroup(getGroupId());
+		Group group = GroupLocalServiceUtil.getGroup(_groupId);
 
 		if (group.isLayoutSetPrototype()) {
 			return true;

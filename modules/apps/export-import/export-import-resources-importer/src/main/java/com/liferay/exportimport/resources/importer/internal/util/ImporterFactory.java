@@ -201,8 +201,8 @@ public class ImporterFactory {
 
 	protected FileSystemImporter getFileSystemImporter() {
 		return new FileSystemImporter(
-			_assetTagLocalService, getDDMFormJSONDeserializer(),
-			getDDMFormXSDDeserializer(), _ddmStructureLocalService,
+			_assetTagLocalService, _jsonDDMFormDeserializer,
+			_xsdDDMFormDeserializer, _ddmStructureLocalService,
 			_ddmTemplateLocalService, _ddmxml, _dlAppLocalService,
 			_dlFileEntryLocalService, _dlFolderLocalService,
 			_indexStatusManager, _indexerRegistry, _journalArticleLocalService,
@@ -221,8 +221,8 @@ public class ImporterFactory {
 
 	protected ResourceImporter getResourceImporter() {
 		return new ResourceImporter(
-			_assetTagLocalService, getDDMFormJSONDeserializer(),
-			getDDMFormXSDDeserializer(), _ddmStructureLocalService,
+			_assetTagLocalService, _jsonDDMFormDeserializer,
+			_xsdDDMFormDeserializer, _ddmStructureLocalService,
 			_ddmTemplateLocalService, _ddmxml, _dlAppLocalService,
 			_dlFileEntryLocalService, _dlFolderLocalService,
 			_indexStatusManager, _indexerRegistry, _journalArticleLocalService,

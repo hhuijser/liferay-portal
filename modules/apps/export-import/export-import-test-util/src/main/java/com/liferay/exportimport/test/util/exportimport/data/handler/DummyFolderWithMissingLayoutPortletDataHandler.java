@@ -63,7 +63,7 @@ public class DummyFolderWithMissingLayoutPortletDataHandler
 	@Override
 	public boolean validateSchemaVersion(String schemaVersion) {
 		return _portletDataHandlerHelper.validateSchemaVersion(
-			schemaVersion, getSchemaVersion());
+			schemaVersion, SCHEMA_VERSION);
 	}
 
 	@Activate

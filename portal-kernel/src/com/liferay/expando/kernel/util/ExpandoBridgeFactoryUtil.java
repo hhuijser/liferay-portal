@@ -25,13 +25,13 @@ public class ExpandoBridgeFactoryUtil {
 	public static ExpandoBridge getExpandoBridge(
 		long companyId, String className) {
 
-		return getExpandoBridgeFactory().getExpandoBridge(companyId, className);
+		return _expandoBridgeFactory.getExpandoBridge(companyId, className);
 	}
 
 	public static ExpandoBridge getExpandoBridge(
 		long companyId, String className, long classPK) {
 
-		return getExpandoBridgeFactory().getExpandoBridge(
+		return _expandoBridgeFactory.getExpandoBridge(
 			companyId, className, classPK);
 	}
 

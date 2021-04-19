@@ -101,7 +101,7 @@ public class UserItemSelectorViewDisplayContext {
 			return _searchContainer;
 		}
 
-		_searchContainer = new UserSearch(_portletRequest, getPortletURL());
+		_searchContainer = new UserSearch(_portletRequest, _portletURL);
 
 		_searchContainer.setEmptyResultsMessage("no-users-were-found");
 

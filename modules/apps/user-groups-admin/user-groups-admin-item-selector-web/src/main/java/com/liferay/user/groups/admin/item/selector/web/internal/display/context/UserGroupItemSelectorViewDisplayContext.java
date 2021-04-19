@@ -83,7 +83,7 @@ public class UserGroupItemSelectorViewDisplayContext {
 			return _searchContainer;
 		}
 
-		_searchContainer = new UserGroupSearch(_renderRequest, getPortletURL());
+		_searchContainer = new UserGroupSearch(_renderRequest, _portletURL);
 
 		OrderByComparator<UserGroup> orderByComparator =
 			_usersAdmin.getUserGroupOrderByComparator(

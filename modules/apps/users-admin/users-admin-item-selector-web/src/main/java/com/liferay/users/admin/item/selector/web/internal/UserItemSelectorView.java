@@ -89,7 +89,7 @@ public class UserItemSelectorView
 				USER_ITEM_SELECTOR_VIEW_DISPLAY_CONTEXT,
 			userItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/user_item_selector.jsp");

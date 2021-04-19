@@ -92,7 +92,7 @@ public class UserGroupItemSelectorView
 				USER_GROUP_ITEM_SELECTOR_DISPLAY_CONTEXT,
 			userGroupItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher(

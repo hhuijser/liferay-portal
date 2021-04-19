@@ -28,7 +28,7 @@ public class UADApplicationSummaryDisplay {
 	}
 
 	public boolean hasItems() {
-		if (getCount() > 0) {
+		if (_count > 0) {
 			return true;
 		}
 

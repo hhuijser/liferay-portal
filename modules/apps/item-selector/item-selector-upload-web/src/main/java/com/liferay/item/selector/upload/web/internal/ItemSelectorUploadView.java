@@ -79,7 +79,7 @@ public class ItemSelectorUploadView
 			PortletURL portletURL, String itemSelectedEventName, boolean search)
 		throws IOException, ServletException {
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/upload.jsp");

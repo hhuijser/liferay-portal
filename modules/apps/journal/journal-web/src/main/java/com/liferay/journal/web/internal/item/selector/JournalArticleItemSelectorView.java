@@ -113,7 +113,7 @@ public class JournalArticleItemSelectorView
 				JOURNAL_ARTICLE_ITEM_SELECTOR_VIEW_DISPLAY_CONTEXT,
 			journalItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher(

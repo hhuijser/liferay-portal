@@ -214,7 +214,7 @@ public class JournalTemplateHandler extends BaseDDMTemplateHandler {
 			templateVariableGroup.addFieldVariable(
 				label, getFieldVariableClass(),
 				fieldNameVariableName.getValue(), tip, dataType, repeatable,
-				getTemplateVariableCodeHandler());
+				_templateVariableCodeHandler);
 		}
 
 		return templateVariableGroup;

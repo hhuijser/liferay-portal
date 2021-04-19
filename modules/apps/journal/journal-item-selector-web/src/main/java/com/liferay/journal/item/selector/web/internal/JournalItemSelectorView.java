@@ -98,7 +98,7 @@ public class JournalItemSelectorView
 				JOURNAL_ITEM_SELECTOR_VIEW_DISPLAY_CONTEXT,
 			journalItemSelectorViewDisplayContext);
 
-		ServletContext servletContext = getServletContext();
+		ServletContext servletContext = _servletContext;
 
 		RequestDispatcher requestDispatcher =
 			servletContext.getRequestDispatcher("/journal_images.jsp");

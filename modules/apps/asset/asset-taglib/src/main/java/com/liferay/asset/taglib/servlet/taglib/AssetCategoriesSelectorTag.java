@@ -329,7 +329,7 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 			AssetVocabulary vocabulary = vocabularies.get(i);
 
 			if (!ArrayUtil.contains(
-					getVisibilityTypes(), vocabulary.getVisibilityType())) {
+					_visibilityTypes, vocabulary.getVisibilityType())) {
 
 				continue;
 			}

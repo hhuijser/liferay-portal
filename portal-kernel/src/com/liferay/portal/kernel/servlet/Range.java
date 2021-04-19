@@ -55,11 +55,11 @@ public class Range {
 		StringBundler sb = new StringBundler(6);
 
 		sb.append("bytes ");
-		sb.append(getStart());
+		sb.append(_start);
 		sb.append(StringPool.DASH);
-		sb.append(getEnd());
+		sb.append(_end);
 		sb.append(StringPool.SLASH);
-		sb.append(getTotal());
+		sb.append(_total);
 
 		return sb.toString();
 	}

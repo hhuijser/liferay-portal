@@ -109,12 +109,12 @@ public abstract class BaseUpgradeTableImpl extends Table {
 
 			populateTable(targetConnection);
 
-			String[] indexesSQL = getIndexesSQL();
+			String[] indexesSQL = _indexesSQL;
 
 			boolean dropIndexes = false;
 
 			for (String indexSQL : indexesSQL) {
-				if (!isAllowUniqueIndexes() &&
+				if (!_allowUniqueIndexes &&
 					indexSQL.contains("create unique index")) {
 
 					indexSQL = StringUtil.replace(

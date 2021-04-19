@@ -78,7 +78,7 @@ public class UpgradeModules extends UpgradeProcess {
 		throws IOException, SQLException {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			for (String[] convertedLegacyModule : getConvertedLegacyModules()) {
+			for (String[] convertedLegacyModule : _CONVERTED_LEGACY_MODULES) {
 				String oldServletContextName = convertedLegacyModule[0];
 				String newServletContextName = convertedLegacyModule[1];
 
@@ -108,7 +108,7 @@ public class UpgradeModules extends UpgradeProcess {
 
 	protected void updateExtractedModules() throws SQLException {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			addRelease(getBundleSymbolicNames());
+			addRelease(_BUNDLE_SYMBOLIC_NAMES);
 		}
 	}
 

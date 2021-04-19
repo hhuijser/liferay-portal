@@ -41,43 +41,43 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 	protected void doUpgrade() throws UpgradeException {
 		try {
 			upgradeTable(
-				"ClassName_", "value", getClassNames(), WildcardMode.SURROUND,
+				"ClassName_", "value", _CLASS_NAMES, WildcardMode.SURROUND,
 				true);
 			upgradeTable(
-				"Counter", "name", getClassNames(), WildcardMode.SURROUND);
+				"Counter", "name", _CLASS_NAMES, WildcardMode.SURROUND);
 			upgradeTable(
-				"Lock_", "className", getClassNames(), WildcardMode.SURROUND);
+				"Lock_", "className", _CLASS_NAMES, WildcardMode.SURROUND);
 			upgradeTable(
-				"ResourceAction", "name", getClassNames(),
-				WildcardMode.SURROUND, true);
+				"ResourceAction", "name", _CLASS_NAMES, WildcardMode.SURROUND,
+				true);
 			upgradeTable(
-				"ResourcePermission", "name", getClassNames(),
+				"ResourcePermission", "name", _CLASS_NAMES,
 				WildcardMode.SURROUND);
 			upgradeLongTextTable(
 				"UserNotificationEvent", "payload", "userNotificationEventId",
-				getClassNames(), WildcardMode.SURROUND);
+				_CLASS_NAMES, WildcardMode.SURROUND);
 
 			upgradeTable(
-				"ListType", "type_", getClassNames(), WildcardMode.TRAILING);
+				"ListType", "type_", _CLASS_NAMES, WildcardMode.TRAILING);
 			upgradeTable(
-				"ResourceAction", "name", getResourceNames(),
-				WildcardMode.LEADING, true);
+				"ResourceAction", "name", _RESOURCE_NAMES, WildcardMode.LEADING,
+				true);
 			upgradeTable(
-				"ResourcePermission", "name", getResourceNames(),
+				"ResourcePermission", "name", _RESOURCE_NAMES,
 				WildcardMode.LEADING);
 			upgradeLongTextTable(
 				"UserNotificationEvent", "payload", "userNotificationEventId",
-				getResourceNames(), WildcardMode.LEADING);
+				_RESOURCE_NAMES, WildcardMode.LEADING);
 
 			DBInspector dbInspector = new DBInspector(connection);
 
 			if (dbInspector.hasTable("ResourceBlock")) {
 				upgradeTable(
-					"ResourceBlock", "name", getClassNames(),
+					"ResourceBlock", "name", _CLASS_NAMES,
 					WildcardMode.SURROUND);
 
 				upgradeTable(
-					"ResourceBlock", "name", getResourceNames(),
+					"ResourceBlock", "name", _RESOURCE_NAMES,
 					WildcardMode.LEADING);
 			}
 		}

@@ -230,7 +230,7 @@ public class Table {
 	public String getExportedData(ResultSet rs) throws Exception {
 		StringBuilder sb = new StringBuilder();
 
-		Object[][] columns = getColumns();
+		Object[][] columns = _columns;
 
 		for (int i = 0; i < columns.length; i++) {
 			boolean last = false;
@@ -277,7 +277,7 @@ public class Table {
 	}
 
 	public String getInsertTableName() throws Exception {
-		String createSQL = getCreateSQL();
+		String createSQL = _createSQL;
 
 		if (Validator.isNotNull(createSQL)) {
 			String createSQLLowerCase = StringUtil.toLowerCase(createSQL);
@@ -508,7 +508,7 @@ public class Table {
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				String[] values = StringUtil.split(line);
 
-				Object[][] columns = getColumns();
+				Object[][] columns = _columns;
 
 				if (values.length != columns.length) {
 					throw new UpgradeException(
@@ -517,7 +517,7 @@ public class Table {
 							"schema. Attempted to insert row ", line, "."));
 				}
 
-				int[] order = getOrder();
+				int[] order = _order;
 
 				for (int i = 0; i < order.length; i++) {
 					int pos = order[i];
@@ -532,7 +532,7 @@ public class Table {
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug(getTableName() + " table populated with data");
+			_log.debug(_tableName + " table populated with data");
 		}
 	}
 
@@ -540,7 +540,7 @@ public class Table {
 		throws Exception {
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Updating rows for " + getTableName());
+			_log.debug("Updating rows for " + _tableName);
 		}
 
 		if (batch) {

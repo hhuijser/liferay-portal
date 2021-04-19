@@ -27,7 +27,7 @@ public class UpgradeWorkflow extends UpgradeProcess {
 
 	protected void deleteOrphaned() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			for (String[] orphanedAttachedModel : getOrphanedAttachedModels()) {
+			for (String[] orphanedAttachedModel : _ORPHANED_ATTACHED_MODELS) {
 				String tableName = orphanedAttachedModel[0];
 				String columnName = orphanedAttachedModel[1];
 

@@ -56,7 +56,7 @@ public class StopTestableTomcatTask
 	public void stopAppServer() throws Exception {
 		super.stopAppServer();
 
-		if (isDeleteTestModules()) {
+		if (_deleteTestModules) {
 			_deleteTestModules();
 		}
 	}

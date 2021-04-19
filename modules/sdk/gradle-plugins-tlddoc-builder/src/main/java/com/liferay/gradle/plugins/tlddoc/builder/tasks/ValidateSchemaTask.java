@@ -107,15 +107,15 @@ public class ValidateSchemaTask extends SourceTask {
 			args.put("classname", xmlParserClassName);
 		}
 
-		FileCollection xmlParserClasspath = getXMLParserClasspath();
+		FileCollection xmlParserClasspath = _xmlParserClasspath;
 
 		if ((xmlParserClasspath != null) && !xmlParserClasspath.isEmpty()) {
 			args.put("classpath", xmlParserClasspath.getAsPath());
 		}
 
-		args.put("disableDTD", isDTDDisabled());
-		args.put("fullchecking", isFullChecking());
-		args.put("lenient", isLenient());
+		args.put("disableDTD", _dtdDisabled);
+		args.put("fullchecking", _fullChecking);
+		args.put("lenient", _lenient);
 
 		Closure<Void> closure = new Closure<Void>(antBuilder) {
 

@@ -50,7 +50,7 @@ public class FormatTLDTask extends JavaExec {
 	protected List<String> getCompleteArgs() {
 		List<String> args = new ArrayList<>(getArgs());
 
-		args.add("tld.plugin=" + isPlugin());
+		args.add("tld.plugin=" + _plugin);
 
 		return args;
 	}

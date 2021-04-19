@@ -57,7 +57,7 @@ public class StopAppServerTask extends BaseAppServerTask {
 
 			});
 
-		long additionalWaitTime = getAdditionalWaitTime();
+		long additionalWaitTime = _additionalWaitTime;
 
 		if (additionalWaitTime > 0) {
 			Thread.sleep(additionalWaitTime);

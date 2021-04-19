@@ -24,11 +24,11 @@ public class GreetingBuilder {
 	}
 
 	public String getGoodbye() {
-		return "Goodbye " + getName();
+		return "Goodbye " + _name;
 	}
 
 	public String getHello() {
-		return "Hello " + getName();
+		return "Hello " + _name;
 	}
 
 	public String getName() {

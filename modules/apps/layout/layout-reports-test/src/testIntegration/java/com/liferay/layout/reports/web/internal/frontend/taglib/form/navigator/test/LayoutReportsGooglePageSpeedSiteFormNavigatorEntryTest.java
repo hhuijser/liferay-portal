@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
@@ -61,12 +61,11 @@ public class LayoutReportsGooglePageSpeedSiteFormNavigatorEntryTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.layout.reports.web.internal.configuration." +
 						"LayoutReportsGooglePageSpeedConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("apiKey", RandomTestUtil.randomString());
-							put("enabled", true);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"apiKey", RandomTestUtil.randomString()
+					).put(
+						"enabled", true
+					).build())) {
 
 			Assert.assertTrue(
 				_formNavigatorEntry.isVisible(
@@ -82,11 +81,9 @@ public class LayoutReportsGooglePageSpeedSiteFormNavigatorEntryTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.layout.reports.web.internal.configuration." +
 						"LayoutReportsGooglePageSpeedConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("enabled", true);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"enabled", true
+					).build())) {
 
 			try (CompanyConfigurationTemporarySwapper
 					companyConfigurationTemporarySwapper =
@@ -95,11 +92,9 @@ public class LayoutReportsGooglePageSpeedSiteFormNavigatorEntryTest {
 							"com.liferay.layout.reports.web.internal." +
 								"configuration.LayoutReportsGooglePageSpeed" +
 									"CompanyConfiguration",
-							new HashMapDictionary<String, Object>() {
-								{
-									put("enabled", false);
-								}
-							},
+							HashMapDictionaryBuilder.<String, Object>put(
+								"enabled", false
+							).build(),
 							_settingsFactory)) {
 
 				Assert.assertFalse(
@@ -115,11 +110,9 @@ public class LayoutReportsGooglePageSpeedSiteFormNavigatorEntryTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.layout.reports.web.internal.configuration." +
 						"LayoutReportsGooglePageSpeedConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("enabled", false);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"enabled", false
+					).build())) {
 
 			Assert.assertFalse(
 				_formNavigatorEntry.isVisible(
@@ -135,11 +128,9 @@ public class LayoutReportsGooglePageSpeedSiteFormNavigatorEntryTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.layout.reports.web.internal.configuration." +
 						"LayoutReportsGooglePageSpeedConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("enabled", true);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"enabled", true
+					).build())) {
 
 			try (CompanyConfigurationTemporarySwapper
 					companyConfigurationTemporarySwapper =
@@ -148,11 +139,9 @@ public class LayoutReportsGooglePageSpeedSiteFormNavigatorEntryTest {
 							"com.liferay.layout.reports.web.internal." +
 								"configuration.LayoutReportsGooglePageSpeed" +
 									"CompanyConfiguration",
-							new HashMapDictionary<String, Object>() {
-								{
-									put("enabled", true);
-								}
-							},
+							HashMapDictionaryBuilder.<String, Object>put(
+								"enabled", true
+							).build(),
 							_settingsFactory)) {
 
 				Assert.assertTrue(

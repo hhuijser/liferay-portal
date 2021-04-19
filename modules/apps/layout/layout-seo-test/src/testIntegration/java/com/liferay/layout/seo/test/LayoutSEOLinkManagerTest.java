@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -321,11 +321,9 @@ public class LayoutSEOLinkManagerTest {
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
 					_LAYOUT_SEO_CONFIGURATION_PID,
-					new HashMapDictionary<String, Object>() {
-						{
-							put("canonicalURL", canonicalURL);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"canonicalURL", canonicalURL
+					).build())) {
 
 			unsafeRunnable.run();
 		}

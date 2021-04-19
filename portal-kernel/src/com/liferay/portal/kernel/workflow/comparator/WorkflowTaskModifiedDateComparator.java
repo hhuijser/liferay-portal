@@ -58,7 +58,7 @@ public class WorkflowTaskModifiedDateComparator
 
 	@Override
 	public String getOrderBy() {
-		if (isAscending()) {
+		if (_ascending) {
 			return _orderByAsc;
 		}
 

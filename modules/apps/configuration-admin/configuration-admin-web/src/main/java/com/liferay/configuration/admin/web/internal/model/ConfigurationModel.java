@@ -232,7 +232,7 @@ public class ConfigurationModel implements ExtendedObjectClassDefinition {
 	}
 
 	public boolean hasConfiguration() {
-		if (getConfiguration() == null) {
+		if (_configuration == null) {
 			return false;
 		}
 
@@ -283,7 +283,7 @@ public class ConfigurationModel implements ExtendedObjectClassDefinition {
 	}
 
 	public boolean isCompanyFactory() {
-		if (!isFactory()) {
+		if (!_factory) {
 			return false;
 		}
 

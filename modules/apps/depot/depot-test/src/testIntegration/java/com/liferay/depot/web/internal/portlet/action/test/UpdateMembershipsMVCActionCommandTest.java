@@ -293,7 +293,7 @@ public class UpdateMembershipsMVCActionCommandTest {
 			MockHttpServletRequest mockHttpServletRequest =
 				new MockHttpServletRequest();
 
-			mockHttpServletRequest.setParameters(getParameterMap());
+			mockHttpServletRequest.setParameters(_parameters);
 
 			return mockHttpServletRequest;
 		}

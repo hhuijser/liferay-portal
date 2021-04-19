@@ -88,7 +88,7 @@ public abstract class BaseAssetRendererFactory<T>
 
 	@Override
 	public long getClassNameId() {
-		return PortalUtil.getClassNameId(getClassName());
+		return PortalUtil.getClassNameId(_className);
 	}
 
 	@Override
@@ -116,11 +116,11 @@ public abstract class BaseAssetRendererFactory<T>
 		String modelResourceNamePrefix =
 			ResourceActionsUtil.getModelResourceNamePrefix();
 
-		String key = modelResourceNamePrefix.concat(getClassName());
+		String key = modelResourceNamePrefix.concat(_className);
 
 		String value = LanguageUtil.get(locale, key, null);
 
-		String portletId = getPortletId();
+		String portletId = _portletId;
 
 		if ((value == null) && (portletId != null)) {
 			PortletBag portletBag = PortletBagPool.get(portletId);
@@ -134,7 +134,7 @@ public abstract class BaseAssetRendererFactory<T>
 		}
 
 		if (value == null) {
-			value = getClassName();
+			value = _className;
 		}
 
 		return value;
@@ -181,12 +181,12 @@ public abstract class BaseAssetRendererFactory<T>
 
 	@Override
 	public boolean isActive(long companyId) {
-		if (Validator.isNull(getPortletId())) {
+		if (Validator.isNull(_portletId)) {
 			return true;
 		}
 
 		Portlet portlet = PortletLocalServiceUtil.fetchPortletById(
-			companyId, getPortletId());
+			companyId, _portletId);
 
 		if (portlet == null) {
 			return true;

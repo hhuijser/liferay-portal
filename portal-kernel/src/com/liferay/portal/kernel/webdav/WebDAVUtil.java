@@ -74,7 +74,7 @@ public class WebDAVUtil {
 	public static final String TOKEN_PREFIX = "opaquelocktoken:";
 
 	public static void addStorage(WebDAVStorage storage) {
-		getInstance()._addStorage(storage);
+		_webDAVUtil._addStorage(storage);
 	}
 
 	public static Namespace createNamespace(String prefix, String uri) {
@@ -94,7 +94,7 @@ public class WebDAVUtil {
 	}
 
 	public static void deleteStorage(WebDAVStorage storage) {
-		getInstance()._deleteStorage(storage);
+		_webDAVUtil._deleteStorage(storage);
 	}
 
 	public static long getDepth(HttpServletRequest httpServletRequest) {
@@ -281,7 +281,7 @@ public class WebDAVUtil {
 	}
 
 	public static WebDAVStorage getStorage(String token) {
-		return getInstance()._getStorage(token);
+		return _webDAVUtil._getStorage(token);
 	}
 
 	public static String getStorageToken(Portlet portlet) {
@@ -296,7 +296,7 @@ public class WebDAVUtil {
 	}
 
 	public static Collection<String> getStorageTokens() {
-		return getInstance()._getStorageTokens();
+		return _webDAVUtil._getStorageTokens();
 	}
 
 	public static long getTimeout(HttpServletRequest httpServletRequest) {
@@ -323,7 +323,7 @@ public class WebDAVUtil {
 	}
 
 	public static boolean isOverwrite(HttpServletRequest httpServletRequest) {
-		return getInstance()._isOverwrite(httpServletRequest);
+		return _webDAVUtil._isOverwrite(httpServletRequest);
 	}
 
 	public static String stripManualCheckInRequiredPath(String url) {

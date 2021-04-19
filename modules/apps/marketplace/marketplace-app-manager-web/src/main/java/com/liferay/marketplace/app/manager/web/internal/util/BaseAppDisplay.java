@@ -57,7 +57,7 @@ public abstract class BaseAppDisplay implements AppDisplay {
 			return _suiteTitle;
 		}
 
-		List<Bundle> bundles = getBundles();
+		List<Bundle> bundles = _bundles;
 
 		if (bundles.isEmpty()) {
 			return StringPool.BLANK;
@@ -81,7 +81,7 @@ public abstract class BaseAppDisplay implements AppDisplay {
 
 	@Override
 	public int getState() {
-		List<Bundle> bundles = getBundles();
+		List<Bundle> bundles = _bundles;
 
 		if (bundles.isEmpty()) {
 			return Bundle.UNINSTALLED;

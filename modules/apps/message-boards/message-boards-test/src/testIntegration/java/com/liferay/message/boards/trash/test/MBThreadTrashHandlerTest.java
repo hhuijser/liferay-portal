@@ -280,8 +280,8 @@ public class MBThreadTrashHandlerTest
 		MBCategory category = (MBCategory)parentBaseModel;
 
 		MBMessage message = MBTestUtil.addMessageWithWorkflow(
-			category.getGroupId(), category.getCategoryId(),
-			getSearchKeywords(), getSearchKeywords(), true, serviceContext);
+			category.getGroupId(), category.getCategoryId(), _SUBJECT, _SUBJECT,
+			true, serviceContext);
 
 		return message.getThread();
 	}

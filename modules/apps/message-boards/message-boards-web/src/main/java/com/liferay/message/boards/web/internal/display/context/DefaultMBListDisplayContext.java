@@ -132,7 +132,7 @@ public class DefaultMBListDisplayContext implements MBListDisplayContext {
 			SearchContainer searchContainer)
 		throws PortalException {
 
-		if (isShowSearch()) {
+		if (_showSearch) {
 			return;
 		}
 
@@ -171,7 +171,7 @@ public class DefaultMBListDisplayContext implements MBListDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		if (isShowSearch()) {
+		if (_showSearch) {
 			long searchCategoryId = ParamUtil.getLong(
 				_httpServletRequest, "searchCategoryId");
 
@@ -211,7 +211,7 @@ public class DefaultMBListDisplayContext implements MBListDisplayContext {
 
 			searchContainer.setTotal(hits.getLength());
 		}
-		else if (isShowRecentPosts()) {
+		else if (_showRecentPosts) {
 			searchContainer.setEmptyResultsMessage("there-are-no-recent-posts");
 
 			long groupThreadsUserId = ParamUtil.getLong(
@@ -246,7 +246,7 @@ public class DefaultMBListDisplayContext implements MBListDisplayContext {
 					WorkflowConstants.STATUS_APPROVED,
 					searchContainer.getStart(), searchContainer.getEnd()));
 		}
-		else if (isShowMyPosts()) {
+		else if (_showMyPosts) {
 			searchContainer.setEmptyResultsMessage("you-do-not-have-any-posts");
 
 			if (!themeDisplay.isSignedIn()) {

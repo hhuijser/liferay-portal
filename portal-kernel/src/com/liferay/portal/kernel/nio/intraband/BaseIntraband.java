@@ -316,7 +316,7 @@ public abstract class BaseIntraband implements Intraband {
 	}
 
 	protected void ensureOpen() {
-		if (!isOpen()) {
+		if (!open) {
 			throw new ClosedIntrabandException();
 		}
 	}

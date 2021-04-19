@@ -58,14 +58,14 @@ public abstract class BaseUserNotificationHandler
 				userNotificationEvent, serviceContext);
 
 			if (userNotificationFeedEntry != null) {
-				userNotificationFeedEntry.setOpenDialog(isOpenDialog());
-				userNotificationFeedEntry.setPortletId(getPortletId());
+				userNotificationFeedEntry.setOpenDialog(_openDialog);
+				userNotificationFeedEntry.setPortletId(_portletId);
 			}
 			else {
 				Locale locale = serviceContext.getLocale();
 
 				String portletTitle = PortalUtil.getPortletTitle(
-					getPortletId(), locale);
+					_portletId, locale);
 
 				String body = StringUtil.replace(
 					_BODY_TEMPLATE_DEFAULT,
@@ -151,7 +151,7 @@ public abstract class BaseUserNotificationHandler
 			userNotificationEvent, serviceContext);
 
 		return new UserNotificationFeedEntry(
-			isActionable(), body, link, applicable);
+			_actionable, body, link, applicable);
 	}
 
 	protected String getBody(
@@ -163,7 +163,7 @@ public abstract class BaseUserNotificationHandler
 	}
 
 	protected String getBodyTemplate() throws Exception {
-		if (isActionable()) {
+		if (_actionable) {
 			StringBundler sb = new StringBundler(7);
 
 			sb.append("<div class=\"title\">[$TITLE$]</div><div ");

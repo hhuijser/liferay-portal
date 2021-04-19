@@ -144,7 +144,7 @@ public class Version implements Comparable<Version>, Serializable {
 			return result;
 		}
 
-		result = _compareAsIntegers(getBuildNumber(), version.getBuildNumber());
+		result = _compareAsIntegers(_buildNumber, version.getBuildNumber());
 
 		if (result != 0) {
 			return result;
@@ -234,13 +234,13 @@ public class Version implements Comparable<Version>, Serializable {
 				}
 
 				if (getBugFix().equals(version.getBugFix())) {
-					if (getBuildNumber().equals(StringPool.STAR) ||
-						getBuildNumber().equals(version.getBuildNumber())) {
+					if (_buildNumber.equals(StringPool.STAR) ||
+						_buildNumber.equals(version.getBuildNumber())) {
 
 						return true;
 					}
 					else if (_contains(
-								getBuildNumber(), version.getBuildNumber())) {
+								_buildNumber, version.getBuildNumber())) {
 
 						return true;
 					}

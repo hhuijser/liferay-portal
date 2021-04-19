@@ -71,7 +71,7 @@ public abstract class BaseRawMetadataProcessor implements RawMetadataProcessor {
 
 		Metadata metadata = extractMetadata(extension, mimeType, file);
 
-		return createDDMFormValuesMap(metadata, getFields());
+		return createDDMFormValuesMap(metadata, _fields);
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public abstract class BaseRawMetadataProcessor implements RawMetadataProcessor {
 
 		Metadata metadata = extractMetadata(extension, mimeType, inputStream);
 
-		return createDDMFormValuesMap(metadata, getFields());
+		return createDDMFormValuesMap(metadata, _fields);
 	}
 
 	protected DDMForm createDDMForm(Locale defaultLocale) {

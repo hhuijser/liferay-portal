@@ -137,7 +137,7 @@ public class TrafficSource {
 		jsonObject.put(
 			"helpMessage", helpMessage
 		).put(
-			"name", getName()
+			"name", _name
 		);
 
 		if (!_error) {

@@ -164,17 +164,15 @@ public class KaleoFormsAdminDisplayContext {
 				_kaleoFormsWebConfiguration.defaultDisplayView());
 		}
 		else if (ArrayUtil.contains(
-					getDisplayViews(), _kaleoFormsAdminDisplayStyle)) {
+					_DISPLAY_VIEWS, _kaleoFormsAdminDisplayStyle)) {
 
 			portalPreferences.setValue(
 				KaleoFormsPortletKeys.KALEO_FORMS_ADMIN, "display-style",
 				_kaleoFormsAdminDisplayStyle);
 		}
 
-		if (!ArrayUtil.contains(
-				getDisplayViews(), _kaleoFormsAdminDisplayStyle)) {
-
-			_kaleoFormsAdminDisplayStyle = getDisplayViews()[0];
+		if (!ArrayUtil.contains(_DISPLAY_VIEWS, _kaleoFormsAdminDisplayStyle)) {
+			_kaleoFormsAdminDisplayStyle = _DISPLAY_VIEWS[0];
 		}
 
 		return _kaleoFormsAdminDisplayStyle;

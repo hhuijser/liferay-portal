@@ -98,13 +98,13 @@ public class SearchKeyword {
 
 	public JSONObject toJSONObject() {
 		return JSONUtil.put(
-			"keyword", getKeyword()
+			"keyword", _keyword
 		).put(
-			"position", getPosition()
+			"position", _position
 		).put(
-			"searchVolume", getSearchVolume()
+			"searchVolume", _searchVolume
 		).put(
-			"traffic", Math.toIntExact(getTraffic())
+			"traffic", Math.toIntExact(_traffic)
 		);
 	}
 

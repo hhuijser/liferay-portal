@@ -97,7 +97,7 @@ public class SharepointObject {
 	}
 
 	public boolean isFile() {
-		return !isFolder();
+		return !_folder;
 	}
 
 	public boolean isFolder() {

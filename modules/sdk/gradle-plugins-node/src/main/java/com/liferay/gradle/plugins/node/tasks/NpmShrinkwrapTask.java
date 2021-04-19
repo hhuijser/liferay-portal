@@ -129,7 +129,7 @@ public class NpmShrinkwrapTask extends ExecutePackageManagerTask {
 
 		completeArgs.add("shrinkwrap");
 
-		if (isIncludeDevDependencies()) {
+		if (_includeDevDependencies) {
 			completeArgs.add("--dev");
 		}
 

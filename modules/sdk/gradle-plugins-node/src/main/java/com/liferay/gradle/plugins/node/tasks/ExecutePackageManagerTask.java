@@ -178,7 +178,7 @@ public class ExecutePackageManagerTask extends ExecuteNodeScriptTask {
 		List<String> completeArgs = super.getCompleteArgs();
 
 		completeArgs.add("--production");
-		completeArgs.add(Boolean.toString(isProduction()));
+		completeArgs.add(Boolean.toString(_production));
 
 		String registry = getRegistry();
 
@@ -188,7 +188,7 @@ public class ExecutePackageManagerTask extends ExecuteNodeScriptTask {
 		}
 
 		if (!isUseNpm()) {
-			if (isOffline()) {
+			if (_offline) {
 				completeArgs.add("--offline");
 			}
 
@@ -210,7 +210,7 @@ public class ExecutePackageManagerTask extends ExecuteNodeScriptTask {
 		}
 
 		completeArgs.add("--progress");
-		completeArgs.add(Boolean.toString(isProgress()));
+		completeArgs.add(Boolean.toString(_progress));
 
 		return completeArgs;
 	}

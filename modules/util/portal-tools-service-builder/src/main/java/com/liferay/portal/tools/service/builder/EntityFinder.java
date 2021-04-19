@@ -51,14 +51,14 @@ public class EntityFinder {
 			}
 		}
 
-		if (isCollection() && isUnique() && !hasArrayableOperator()) {
+		if (isCollection() && _unique && !hasArrayableOperator()) {
 			throw new IllegalArgumentException(
 				"A finder cannot return a Collection and be unique unless it " +
 					"has an arrayable column. See the ExpandoColumn " +
 						"service.xml declaration for an example.");
 		}
 
-		if ((!isCollection() || isUnique()) && hasCustomComparator()) {
+		if ((!isCollection() || _unique) && hasCustomComparator()) {
 			throw new IllegalArgumentException(
 				"A unique finder cannot have a custom comparator");
 		}

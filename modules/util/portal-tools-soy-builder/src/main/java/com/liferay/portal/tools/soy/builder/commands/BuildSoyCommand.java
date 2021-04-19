@@ -46,7 +46,7 @@ public class BuildSoyCommand implements Command {
 	public void execute() throws Exception {
 		final List<Path> paths = new ArrayList<>();
 
-		File dir = getDir();
+		File dir = _dir;
 
 		Files.walkFileTree(
 			dir.toPath(),

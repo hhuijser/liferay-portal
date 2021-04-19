@@ -37,7 +37,7 @@ public class WrapSoyAlloyTemplateCommand extends BaseSoyJsCommand {
 		String content = new String(
 			Files.readAllBytes(path), StandardCharsets.UTF_8);
 
-		String namespace = getNamespace();
+		String namespace = _namespace;
 
 		content = content.replace(
 			"(typeof " + namespace + " == 'undefined') { var " + namespace +
@@ -71,7 +71,7 @@ public class WrapSoyAlloyTemplateCommand extends BaseSoyJsCommand {
 	}
 
 	protected String getWrapperHeader() {
-		return "AUI.add('" + getModuleName() + "', function(A) {";
+		return "AUI.add('" + _moduleName + "', function(A) {";
 	}
 
 	@Parameter(

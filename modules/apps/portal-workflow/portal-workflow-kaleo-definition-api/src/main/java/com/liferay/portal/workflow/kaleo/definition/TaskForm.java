@@ -26,10 +26,10 @@ public class TaskForm implements Comparable<TaskForm> {
 
 	@Override
 	public int compareTo(TaskForm form) {
-		if (getPriority() > form.getPriority()) {
+		if (_priority > form.getPriority()) {
 			return 1;
 		}
-		else if (getPriority() < form.getPriority()) {
+		else if (_priority < form.getPriority()) {
 			return -1;
 		}
 

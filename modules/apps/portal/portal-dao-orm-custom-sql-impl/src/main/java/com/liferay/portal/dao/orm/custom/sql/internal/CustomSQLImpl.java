@@ -877,7 +877,7 @@ public class CustomSQLImpl implements CustomSQL {
 	}
 
 	private String _escapeWildCards(String keywords) {
-		if (!isVendorMySQL() && !isVendorOracle()) {
+		if (!_vendorMySQL && !_vendorOracle) {
 			return keywords;
 		}
 

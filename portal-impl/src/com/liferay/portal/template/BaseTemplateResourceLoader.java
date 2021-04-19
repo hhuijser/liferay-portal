@@ -106,7 +106,7 @@ public abstract class BaseTemplateResourceLoader
 
 			try {
 				if (!templateResourceParser.isTemplateResourceValid(
-						templateId, getName())) {
+						templateId, _name)) {
 
 					continue;
 				}

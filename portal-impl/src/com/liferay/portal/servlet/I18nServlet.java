@@ -284,10 +284,10 @@ public class I18nServlet extends HttpServlet {
 
 			I18nData i18nData = (I18nData)object;
 
-			if (Objects.equals(getI18nPath(), i18nData.getI18nPath()) &&
-				Objects.equals(getLanguageCode(), i18nData.getLanguageCode()) &&
-				Objects.equals(getLanguageId(), i18nData.getLanguageId()) &&
-				Objects.equals(getPath(), i18nData.getPath())) {
+			if (Objects.equals(_i18nPath, i18nData.getI18nPath()) &&
+				Objects.equals(_languageCode, i18nData.getLanguageCode()) &&
+				Objects.equals(_languageId, i18nData.getLanguageId()) &&
+				Objects.equals(_path, i18nData.getPath())) {
 
 				return true;
 			}
@@ -313,12 +313,12 @@ public class I18nServlet extends HttpServlet {
 
 		@Override
 		public int hashCode() {
-			int hash = HashUtil.hash(0, getI18nPath());
+			int hash = HashUtil.hash(0, _i18nPath);
 
-			hash = HashUtil.hash(hash, getLanguageCode());
-			hash = HashUtil.hash(hash, getLanguageId());
+			hash = HashUtil.hash(hash, _languageCode);
+			hash = HashUtil.hash(hash, _languageId);
 
-			return HashUtil.hash(hash, getPath());
+			return HashUtil.hash(hash, _path);
 		}
 
 		private final String _i18nPath;

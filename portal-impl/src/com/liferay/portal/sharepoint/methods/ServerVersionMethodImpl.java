@@ -37,7 +37,7 @@ public class ServerVersionMethodImpl extends BaseMethodImpl {
 		serverVersionTree.addChild(new Leaf("ver incr", "8117", true));
 
 		Property serverVersionProperty = new Property(
-			getMethodName(), serverVersionTree);
+			_METHOD_NAME, serverVersionTree);
 
 		_elements.add(serverVersionProperty);
 

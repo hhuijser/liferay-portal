@@ -380,7 +380,7 @@ public class ModifiableServletContextAdapter
 	}
 
 	public Map<String, ? extends FilterRegistration> getFilterRegistrations() {
-		return getFilterRegistrationImpls();
+		return _filterRegistrationImpls;
 	}
 
 	public String getInitParameter(String name) {
@@ -460,7 +460,7 @@ public class ModifiableServletContextAdapter
 	public Map<String, ? extends ServletRegistration>
 		getServletRegistrations() {
 
-		return getServletRegistrationImpls();
+		return _servletRegistrationImpls;
 	}
 
 	@Override

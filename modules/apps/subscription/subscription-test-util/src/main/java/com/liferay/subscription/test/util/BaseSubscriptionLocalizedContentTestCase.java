@@ -73,9 +73,10 @@ public abstract class BaseSubscriptionLocalizedContentTestCase
 		setBaseModelSubscriptionBodyPreferences(
 			getSubscriptionAddedBodyPreferenceName());
 
-		addSubscriptionContainerModel(getDefaultContainerModelId());
+		addSubscriptionContainerModel(PARENT_CONTAINER_MODEL_ID_DEFAULT);
 
-		addBaseModel(creatorUser.getUserId(), getDefaultContainerModelId());
+		addBaseModel(
+			creatorUser.getUserId(), PARENT_CONTAINER_MODEL_ID_DEFAULT);
 
 		List<MailMessage> messages = MailServiceTestUtil.getMailMessages(
 			"Body", GERMAN_BODY);
@@ -99,9 +100,9 @@ public abstract class BaseSubscriptionLocalizedContentTestCase
 			getSubscriptionUpdatedBodyPreferenceName());
 
 		long baseModelId = addBaseModel(
-			creatorUser.getUserId(), getDefaultContainerModelId());
+			creatorUser.getUserId(), PARENT_CONTAINER_MODEL_ID_DEFAULT);
 
-		addSubscriptionContainerModel(getDefaultContainerModelId());
+		addSubscriptionContainerModel(PARENT_CONTAINER_MODEL_ID_DEFAULT);
 
 		updateBaseModel(creatorUser.getUserId(), baseModelId);
 

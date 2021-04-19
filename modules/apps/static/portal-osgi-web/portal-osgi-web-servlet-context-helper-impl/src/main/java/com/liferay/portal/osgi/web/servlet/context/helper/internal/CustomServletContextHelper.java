@@ -317,7 +317,7 @@ public class CustomServletContextHelper
 			servletContext.log(
 				StringBundler.concat(
 					"[WAB ERROR] Attempt to load illegal path ", path, " in ",
-					toString()));
+					_string));
 
 			httpServletResponse.sendError(
 				HttpServletResponse.SC_FORBIDDEN, path);

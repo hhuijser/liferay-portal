@@ -65,7 +65,7 @@ public class PluginPackageImpl
 
 	@Override
 	public int compareTo(PluginPackage pluginPackage) {
-		return getName().compareTo(pluginPackage.getName());
+		return _name.compareTo(pluginPackage.getName());
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class PluginPackageImpl
 	@Override
 	public String getDownloadURL() {
 		RemotePluginPackageRepository remotePluginPackageRepository =
-			getRepository();
+			_repository;
 
 		if (remotePluginPackageRepository != null) {
 			Properties settings = remotePluginPackageRepository.getSettings();

@@ -92,7 +92,7 @@ public class DependencyCheckerExtension {
 			dependencyChecker.check(group, name, version);
 		}
 		catch (Exception exception) {
-			if (!isIgnoreFailures()) {
+			if (!_ignoreFailures) {
 				if (exception instanceof IOException) {
 					throw new UncheckedIOException(exception);
 				}

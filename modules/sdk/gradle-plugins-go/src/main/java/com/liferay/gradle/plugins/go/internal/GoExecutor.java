@@ -75,7 +75,7 @@ public class GoExecutor {
 
 		workingDir.mkdirs();
 
-		if (isUseGradleExec()) {
+		if (_useGradleExec) {
 			_executeGradleExec();
 		}
 		else {
@@ -197,7 +197,7 @@ public class GoExecutor {
 		}
 		else {
 			commandLine.add(_getExecutable());
-			commandLine.addAll(GradleUtil.toStringList(getArgs()));
+			commandLine.addAll(GradleUtil.toStringList(_args));
 		}
 
 		return commandLine;
@@ -257,7 +257,7 @@ public class GoExecutor {
 			sb.append('"');
 		}
 
-		List<String> args = GradleUtil.toStringList(getArgs());
+		List<String> args = GradleUtil.toStringList(_args);
 
 		for (String arg : args) {
 			sb.append(" \"");
@@ -367,9 +367,9 @@ public class GoExecutor {
 	}
 
 	private void _updateEnvironment(Map<String, String> environment) {
-		GUtil.addToMap(environment, getEnvironment());
+		GUtil.addToMap(environment, _environment);
 
-		if (isInheritProxy()) {
+		if (_inheritProxy) {
 			_setNonproxyHosts(environment);
 			_setProxy(environment, "http");
 			_setProxy(environment, "https");

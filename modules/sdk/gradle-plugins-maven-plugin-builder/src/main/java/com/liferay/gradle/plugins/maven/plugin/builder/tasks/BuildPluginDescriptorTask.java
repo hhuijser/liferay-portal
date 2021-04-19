@@ -112,7 +112,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 		File preparedSourceDir = null;
 
 		try {
-			if (isUseSetterComments()) {
+			if (_useSetterComments) {
 				preparedSourceDir = new File(
 					getTemporaryDir(), "prepared-source");
 
@@ -344,7 +344,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 
 		Logger logger = getLogger();
 
-		Set<String> forcedExclusions = getForcedExclusions();
+		Set<String> forcedExclusions = _forcedExclusions;
 
 		ResolvedConfiguration resolvedConfiguration =
 			configuration.getResolvedConfiguration();
@@ -485,8 +485,8 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 
 					javaExecSpec.args("plugin:descriptor");
 
-					javaExecSpec.setClasspath(getMavenEmbedderClasspath());
-					javaExecSpec.setDebug(isMavenDebug());
+					javaExecSpec.setClasspath(_mavenEmbedderClasspath);
+					javaExecSpec.setDebug(_mavenDebug);
 					javaExecSpec.setMain(getMavenEmbedderMainClassName());
 
 					javaExecSpec.systemProperty(
@@ -601,7 +601,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 		projectElement.appendChild(dependenciesElement);
 
 		Map<String, String> pomConfigurationScopeMappings =
-			getConfigurationScopeMappings();
+			_configurationScopeMappings;
 
 		for (Map.Entry<String, String> entry :
 				pomConfigurationScopeMappings.entrySet()) {
@@ -615,7 +615,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 
 		// Repositories
 
-		Map<String, Object> pomRepositories = getPomRepositories();
+		Map<String, Object> pomRepositories = _pomRepositories;
 
 		if (!pomRepositories.isEmpty()) {
 			Element repositoriesElement = document.createElement(
@@ -809,7 +809,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 	}
 
 	private void _readdForcedExclusions() throws Exception {
-		Set<String> forcedExclusions = getForcedExclusions();
+		Set<String> forcedExclusions = _forcedExclusions;
 
 		if (forcedExclusions.isEmpty()) {
 			return;

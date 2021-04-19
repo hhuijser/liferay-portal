@@ -51,9 +51,8 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 			prepareContext(context);
 
 			ComponentDescriptor componentDescriptor = new ComponentDescriptor(
-				getTemplateNamespace(), getModule(), getComponentId(),
-				_dependencies, isWrapper(), isRenderJavaScript(),
-				isPositionInLine());
+				_templateNamespace, getModule(), _componentId, _dependencies,
+				isWrapper(), isRenderJavaScript(), isPositionInLine());
 
 			SoyComponentRenderer soyComponentRenderer =
 				SoyComponentRendererProvider.getSoyComponentRenderer();

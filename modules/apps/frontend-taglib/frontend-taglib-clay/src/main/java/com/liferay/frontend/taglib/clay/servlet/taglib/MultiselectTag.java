@@ -245,7 +245,7 @@ public class MultiselectTag extends BaseContainerTag {
 		jspWriter.write("input-group-item\">");
 
 		List<MultiselectItem> selectedMultiselectItems =
-			getSelectedMultiselectItems();
+			_selectedMultiselectItems;
 
 		if (!ListUtil.isEmpty(selectedMultiselectItems)) {
 			MultiselectLocator multiselectLocator = getMultiselectLocator();

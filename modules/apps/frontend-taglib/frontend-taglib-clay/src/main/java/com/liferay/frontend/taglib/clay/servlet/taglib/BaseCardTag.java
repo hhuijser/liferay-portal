@@ -253,7 +253,7 @@ public class BaseCardTag extends BaseContainerTag {
 		props.put("inputValue", getInputValue());
 		props.put("selectable", isSelectable());
 		props.put("selected", isSelected());
-		props.put("symbol", getIcon());
+		props.put("symbol", _icon);
 
 		return super.prepareProps(props);
 	}

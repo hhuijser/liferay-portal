@@ -43,13 +43,13 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 	public int doEndTag() throws JspException {
 		JspWriter jspWriter = pageContext.getOut();
 
-		Map<String, Object> props = getProps();
+		Map<String, Object> props = _props;
 
 		try {
 			prepareProps(props);
 
 			ComponentDescriptor componentDescriptor = new ComponentDescriptor(
-				getModule(), getComponentId(), null, isPositionInLine());
+				getModule(), _componentId, null, isPositionInLine());
 
 			ReactRenderer reactRenderer = ServicesProvider.getReactRenderer();
 
@@ -125,7 +125,7 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 	 */
 	@Deprecated
 	protected Map<String, Object> getData() {
-		return getProps();
+		return _props;
 	}
 
 	protected String getNamespace() {

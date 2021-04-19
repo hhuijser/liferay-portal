@@ -88,7 +88,7 @@ public class InstallCacheTask extends DefaultTask {
 
 	@OutputDirectory
 	public File getCacheDestinationDir() {
-		CacheFormat cacheFormat = getCacheFormat();
+		CacheFormat cacheFormat = _cacheFormat;
 
 		String groupDirName = getArtifactGroup();
 
@@ -182,7 +182,7 @@ public class InstallCacheTask extends DefaultTask {
 	}
 
 	private void _installCache(String extension) throws IOException {
-		CacheFormat cacheFormat = getCacheFormat();
+		CacheFormat cacheFormat = _cacheFormat;
 
 		File file = new File(
 			getMavenInputDir(),

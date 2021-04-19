@@ -151,9 +151,9 @@ public class WriteFindBugsProjectTask extends DefaultTask {
 			bufferedWriter.write(System.lineSeparator());
 
 			_writeFileElements(
-				bufferedWriter, "AuxClasspathEntry", getAuxClasspath());
-			_writeFileElements(bufferedWriter, "Jar", getClasspath());
-			_writeFileElements(bufferedWriter, "SrcDir", getSrcDirs());
+				bufferedWriter, "AuxClasspathEntry", _auxClasspath);
+			_writeFileElements(bufferedWriter, "Jar", _classpath);
+			_writeFileElements(bufferedWriter, "SrcDir", _srcDirs);
 
 			bufferedWriter.write("</Project>");
 		}

@@ -234,7 +234,7 @@ public class WriteArtifactPublishCommandsTask extends DefaultTask {
 		_writeArtifactPublishCommandsStep2();
 		_writeArtifactPublishCommandsStep3();
 
-		if (isFirstOnly()) {
+		if (_firstOnly) {
 			throw new GradleException();
 		}
 	}
@@ -367,11 +367,11 @@ public class WriteArtifactPublishCommandsTask extends DefaultTask {
 		sb.append(' ');
 		sb.append(task.getPath());
 
-		if (isGradleDaemon()) {
+		if (_gradleDaemon) {
 			sb.append(" --daemon");
 		}
 
-		if (isForcedCache() &&
+		if (_forcedCache &&
 			!BaselinePlugin.BASELINE_TASK_NAME.equals(task.getName())) {
 
 			sb.append(" -Dforced.cache.enabled=true");

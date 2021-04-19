@@ -160,7 +160,7 @@ public abstract class AlloyPortlet extends GenericPortlet {
 
 		if (Validator.isNull(controllerPath)) {
 			Map<String, String> defaultRouteParameters =
-				getDefaultRouteParameters();
+				_defaultRouteParameters;
 
 			controllerPath = defaultRouteParameters.get("controller");
 		}

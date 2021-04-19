@@ -87,7 +87,7 @@ public class AccountUserDisplay {
 		HttpServletRequest httpServletRequest) {
 
 		List<AccountEntryUserRel> accountEntryUserRels =
-			_getAccountEntryUserRels(getUserId());
+			_getAccountEntryUserRels(_userId);
 
 		if (ListUtil.isEmpty(accountEntryUserRels)) {
 			return LanguageUtil.get(httpServletRequest, "no-assigned-account");
@@ -120,7 +120,7 @@ public class AccountUserDisplay {
 
 		List<AccountRole> accountRoles =
 			AccountRoleLocalServiceUtil.getAccountRoles(
-				accountEntryId, getUserId());
+				accountEntryId, _userId);
 
 		List<String> accountRoleNames = TransformUtil.transform(
 			accountRoles,
@@ -164,7 +164,7 @@ public class AccountUserDisplay {
 
 	public String getValidDomainsString() {
 		List<Set<String>> accountEntryDomains = Stream.of(
-			_getAccountEntryUserRels(getUserId())
+			_getAccountEntryUserRels(_userId)
 		).flatMap(
 			List::stream
 		).map(
@@ -213,7 +213,7 @@ public class AccountUserDisplay {
 		}
 
 		List<AccountEntryUserRel> accountEntryUserRels =
-			_getAccountEntryUserRels(getUserId());
+			_getAccountEntryUserRels(_userId);
 
 		if (accountEntryUserRels.isEmpty()) {
 			return false;

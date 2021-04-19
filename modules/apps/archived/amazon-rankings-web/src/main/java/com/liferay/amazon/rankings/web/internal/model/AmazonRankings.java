@@ -58,14 +58,14 @@ public class AmazonRankings
 			return -1;
 		}
 
-		if (getSalesRank() > amazonRankings.getSalesRank()) {
+		if (_salesRank > amazonRankings.getSalesRank()) {
 			return 1;
 		}
-		else if (getSalesRank() < amazonRankings.getSalesRank()) {
+		else if (_salesRank < amazonRankings.getSalesRank()) {
 			return -1;
 		}
 
-		return getReleaseDate().compareTo(amazonRankings.getReleaseDate());
+		return _releaseDate.compareTo(amazonRankings.getReleaseDate());
 	}
 
 	public String[] getAuthors() {

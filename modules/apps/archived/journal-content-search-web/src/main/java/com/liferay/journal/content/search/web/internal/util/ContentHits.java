@@ -57,7 +57,7 @@ public class ContentHits {
 					groupId, privateLayout, articleId);
 
 			if ((layoutIdsCount > 0) ||
-				(!isShowListed() && (articleGroupId == groupId))) {
+				(!_showListed && (articleGroupId == groupId))) {
 
 				docs.add(hits.doc(i));
 				scores.add(hits.score(i));

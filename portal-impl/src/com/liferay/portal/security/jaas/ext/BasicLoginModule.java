@@ -52,14 +52,14 @@ public class BasicLoginModule implements LoginModule {
 
 	@Override
 	public boolean commit() throws LoginException {
-		Principal principal = getPrincipal();
+		Principal principal = _principal;
 
 		if (principal != null) {
-			Subject subject = getSubject();
+			Subject subject = _subject;
 
 			Set<Principal> principals = subject.getPrincipals();
 
-			principals.add(getPrincipal());
+			principals.add(_principal);
 
 			return true;
 		}
@@ -101,7 +101,7 @@ public class BasicLoginModule implements LoginModule {
 
 	@Override
 	public boolean logout() {
-		Subject subject = getSubject();
+		Subject subject = _subject;
 
 		Set<Principal> principals = subject.getPrincipals();
 

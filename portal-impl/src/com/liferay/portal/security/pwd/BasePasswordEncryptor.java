@@ -31,7 +31,7 @@ public abstract class BasePasswordEncryptor implements PasswordEncryptor {
 		throws PwdEncryptorException {
 
 		return encrypt(
-			getDefaultPasswordAlgorithmType(), plainTextPassword,
+			_PASSWORDS_ENCRYPTION_ALGORITHM, plainTextPassword,
 			encryptedPassword);
 	}
 

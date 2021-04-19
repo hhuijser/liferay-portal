@@ -173,7 +173,7 @@ public class ResourceActionsImpl implements ResourceActions {
 
 		for (String className : classNames) {
 			sb.append(className);
-			sb.append(getCompositeModelNameSeparator());
+			sb.append(_COMPOSITE_MODEL_NAME_SEPARATOR);
 		}
 
 		sb.setIndex(sb.index() - 1);
@@ -214,7 +214,7 @@ public class ResourceActionsImpl implements ResourceActions {
 	public String getModelResource(
 		HttpServletRequest httpServletRequest, String name) {
 
-		String key = getModelResourceNamePrefix() + name;
+		String key = _MODEL_RESOURCE_NAME_PREFIX + name;
 
 		String value = LanguageUtil.get(httpServletRequest, key, null);
 
@@ -231,7 +231,7 @@ public class ResourceActionsImpl implements ResourceActions {
 
 	@Override
 	public String getModelResource(Locale locale, String name) {
-		String key = getModelResourceNamePrefix() + name;
+		String key = _MODEL_RESOURCE_NAME_PREFIX + name;
 
 		String value = LanguageUtil.get(locale, key, null);
 

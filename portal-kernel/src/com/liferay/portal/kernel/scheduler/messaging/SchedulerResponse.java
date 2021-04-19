@@ -99,7 +99,7 @@ public class SchedulerResponse implements Serializable {
 		sb.append(", jobName=");
 		sb.append(getJobName());
 		sb.append(", storageType=");
-		sb.append(getStorageType());
+		sb.append(_storageType);
 		sb.append("}");
 
 		return sb.toString();

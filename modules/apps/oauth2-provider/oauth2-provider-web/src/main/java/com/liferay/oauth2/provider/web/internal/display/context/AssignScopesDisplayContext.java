@@ -401,7 +401,7 @@ public class AssignScopesDisplayContext
 		@Override
 		public String toString() {
 			return StringBundler.concat(
-				"[", StringUtil.merge(getScopeAliases()), "][",
+				"[", StringUtil.merge(_scopeAliases), "][",
 				StringUtil.merge(getGlobalScopeAliases()), "]");
 		}
 

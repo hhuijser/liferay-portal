@@ -206,7 +206,7 @@ public class LiferayReader implements Reader<IndexedRecord> {
 
 		_currentTimestamp = Instant.now();
 
-		LiferaySource liferaySource = (LiferaySource)getCurrentSource();
+		LiferaySource liferaySource = (LiferaySource)_liferaySource;
 
 		if (_logger.isDebugEnabled()) {
 			_logger.debug(

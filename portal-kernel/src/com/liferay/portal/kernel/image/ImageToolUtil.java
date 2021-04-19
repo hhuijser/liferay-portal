@@ -52,7 +52,7 @@ public class ImageToolUtil {
 	public static Future<RenderedImage> convertCMYKtoRGB(
 		byte[] bytes, String type) {
 
-		return getImageTool().convertCMYKtoRGB(bytes, type);
+		return _imageTool.convertCMYKtoRGB(bytes, type);
 	}
 
 	/**
@@ -65,13 +65,13 @@ public class ImageToolUtil {
 	public static BufferedImage convertImageType(
 		BufferedImage sourceImage, int type) {
 
-		return getImageTool().convertImageType(sourceImage, type);
+		return _imageTool.convertImageType(sourceImage, type);
 	}
 
 	public static RenderedImage crop(
 		RenderedImage renderedImage, int height, int width, int x, int y) {
 
-		return getImageTool().crop(renderedImage, height, width, x, y);
+		return _imageTool.crop(renderedImage, height, width, x, y);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class ImageToolUtil {
 			RenderedImage renderedImage, OutputStream outputStream)
 		throws IOException {
 
-		getImageTool().encodeGIF(renderedImage, outputStream);
+		_imageTool.encodeGIF(renderedImage, outputStream);
 	}
 
 	/**
@@ -99,15 +99,15 @@ public class ImageToolUtil {
 			RenderedImage renderedImage, OutputStream outputStream)
 		throws IOException {
 
-		getImageTool().encodeWBMP(renderedImage, outputStream);
+		_imageTool.encodeWBMP(renderedImage, outputStream);
 	}
 
 	public static RenderedImage flipHorizontal(RenderedImage renderedImage) {
-		return getImageTool().flipHorizontal(renderedImage);
+		return _imageTool.flipHorizontal(renderedImage);
 	}
 
 	public static RenderedImage flipVertical(RenderedImage renderedImage) {
-		return getImageTool().flipVertical(renderedImage);
+		return _imageTool.flipVertical(renderedImage);
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class ImageToolUtil {
 	 * @return the converted image
 	 */
 	public static BufferedImage getBufferedImage(RenderedImage renderedImage) {
-		return getImageTool().getBufferedImage(renderedImage);
+		return _imageTool.getBufferedImage(renderedImage);
 	}
 
 	/**
@@ -133,55 +133,55 @@ public class ImageToolUtil {
 			RenderedImage renderedImage, String contentType)
 		throws IOException {
 
-		return getImageTool().getBytes(renderedImage, contentType);
+		return _imageTool.getBytes(renderedImage, contentType);
 	}
 
 	public static Image getDefaultCompanyLogo() {
-		return getImageTool().getDefaultCompanyLogo();
+		return _imageTool.getDefaultCompanyLogo();
 	}
 
 	public static Image getDefaultOrganizationLogo() {
-		return getImageTool().getDefaultOrganizationLogo();
+		return _imageTool.getDefaultOrganizationLogo();
 	}
 
 	public static Image getDefaultSpacer() {
-		return getImageTool().getDefaultSpacer();
+		return _imageTool.getDefaultSpacer();
 	}
 
 	public static Image getDefaultUserFemalePortrait() {
-		return getImageTool().getDefaultUserFemalePortrait();
+		return _imageTool.getDefaultUserFemalePortrait();
 	}
 
 	public static Image getDefaultUserMalePortrait() {
-		return getImageTool().getDefaultUserMalePortrait();
+		return _imageTool.getDefaultUserMalePortrait();
 	}
 
 	public static Image getDefaultUserPortrait() {
-		return getImageTool().getDefaultUserPortrait();
+		return _imageTool.getDefaultUserPortrait();
 	}
 
 	public static Image getImage(byte[] bytes)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().getImage(bytes);
+		return _imageTool.getImage(bytes);
 	}
 
 	public static Image getImage(File file)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().getImage(file);
+		return _imageTool.getImage(file);
 	}
 
 	public static Image getImage(InputStream inputStream)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().getImage(inputStream);
+		return _imageTool.getImage(inputStream);
 	}
 
 	public static Image getImage(InputStream inputStream, boolean cleanUpStream)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().getImage(inputStream, cleanUpStream);
+		return _imageTool.getImage(inputStream, cleanUpStream);
 	}
 
 	public static ImageTool getImageTool() {
@@ -189,7 +189,7 @@ public class ImageToolUtil {
 	}
 
 	public static boolean isNullOrDefaultSpacer(byte[] bytes) {
-		return getImageTool().isNullOrDefaultSpacer(bytes);
+		return _imageTool.isNullOrDefaultSpacer(bytes);
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class ImageToolUtil {
 	public static ImageBag read(byte[] bytes)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().read(bytes);
+		return _imageTool.read(bytes);
 	}
 
 	/**
@@ -225,19 +225,19 @@ public class ImageToolUtil {
 	public static ImageBag read(File file)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().read(file);
+		return _imageTool.read(file);
 	}
 
 	public static ImageBag read(InputStream inputStream)
 		throws ImageResolutionException, IOException {
 
-		return getImageTool().read(inputStream);
+		return _imageTool.read(inputStream);
 	}
 
 	public static RenderedImage rotate(
 		RenderedImage renderedImage, int degrees) {
 
-		return getImageTool().rotate(renderedImage, degrees);
+		return _imageTool.rotate(renderedImage, degrees);
 	}
 
 	/**
@@ -249,7 +249,7 @@ public class ImageToolUtil {
 	 * @return the scaled image
 	 */
 	public static RenderedImage scale(RenderedImage renderedImage, int width) {
-		return getImageTool().scale(renderedImage, width);
+		return _imageTool.scale(renderedImage, width);
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class ImageToolUtil {
 	public static RenderedImage scale(
 		RenderedImage renderedImage, int maxHeight, int maxWidth) {
 
-		return getImageTool().scale(renderedImage, maxHeight, maxWidth);
+		return _imageTool.scale(renderedImage, maxHeight, maxWidth);
 	}
 
 	/**
@@ -282,7 +282,7 @@ public class ImageToolUtil {
 			OutputStream outputStream)
 		throws IOException {
 
-		getImageTool().write(renderedImage, contentType, outputStream);
+		_imageTool.write(renderedImage, contentType, outputStream);
 	}
 
 	public void setImageTool(ImageTool imageTool) {

@@ -36,7 +36,7 @@ public class JSONWebServiceActionsManagerUtil {
 			HttpServletRequest httpServletRequest)
 		throws NoSuchJSONWebServiceException {
 
-		return getJSONWebServiceActionsManager().getJSONWebServiceAction(
+		return _jsonWebServiceActionsManager.getJSONWebServiceAction(
 			httpServletRequest);
 	}
 
@@ -45,14 +45,14 @@ public class JSONWebServiceActionsManagerUtil {
 			Map<String, Object> parameterMap)
 		throws NoSuchJSONWebServiceException {
 
-		return getJSONWebServiceActionsManager().getJSONWebServiceAction(
+		return _jsonWebServiceActionsManager.getJSONWebServiceAction(
 			httpServletRequest, path, method, parameterMap);
 	}
 
 	public static JSONWebServiceActionMapping getJSONWebServiceActionMapping(
 		String signature) {
 
-		return getJSONWebServiceActionsManager().getJSONWebServiceActionMapping(
+		return _jsonWebServiceActionsManager.getJSONWebServiceActionMapping(
 			signature);
 	}
 
@@ -64,7 +64,7 @@ public class JSONWebServiceActionsManagerUtil {
 	}
 
 	public static int getJSONWebServiceActionsCount(String contextName) {
-		return getJSONWebServiceActionsManager().getJSONWebServiceActionsCount(
+		return _jsonWebServiceActionsManager.getJSONWebServiceActionsCount(
 			contextName);
 	}
 
@@ -75,14 +75,14 @@ public class JSONWebServiceActionsManagerUtil {
 	}
 
 	public static JSONWebServiceNaming getJSONWebServiceNaming() {
-		return getJSONWebServiceActionsManager().getJSONWebServiceNaming();
+		return _jsonWebServiceActionsManager.getJSONWebServiceNaming();
 	}
 
 	public static void registerJSONWebServiceAction(
 		String contextName, String contextPath, Class<?> actionClass,
 		Method actionMethod, String path, String method) {
 
-		getJSONWebServiceActionsManager().registerJSONWebServiceAction(
+		_jsonWebServiceActionsManager.registerJSONWebServiceAction(
 			contextName, contextPath, actionClass, actionMethod, path, method);
 	}
 
@@ -90,28 +90,28 @@ public class JSONWebServiceActionsManagerUtil {
 		String contextName, String contextPath, Object actionObject,
 		Class<?> actionClass, Method actionMethod, String path, String method) {
 
-		getJSONWebServiceActionsManager().registerJSONWebServiceAction(
+		_jsonWebServiceActionsManager.registerJSONWebServiceAction(
 			contextName, contextPath, actionObject, actionClass, actionMethod,
 			path, method);
 	}
 
 	public static int registerServletContext(ServletContext servletContext) {
-		return getJSONWebServiceActionsManager().registerServletContext(
+		return _jsonWebServiceActionsManager.registerServletContext(
 			servletContext);
 	}
 
 	public static int unregisterJSONWebServiceActions(Object actionObject) {
-		return getJSONWebServiceActionsManager().
-			unregisterJSONWebServiceActions(actionObject);
+		return _jsonWebServiceActionsManager.unregisterJSONWebServiceActions(
+			actionObject);
 	}
 
 	public static int unregisterJSONWebServiceActions(String contextPath) {
-		return getJSONWebServiceActionsManager().
-			unregisterJSONWebServiceActions(contextPath);
+		return _jsonWebServiceActionsManager.unregisterJSONWebServiceActions(
+			contextPath);
 	}
 
 	public static int unregisterServletContext(ServletContext servletContext) {
-		return getJSONWebServiceActionsManager().unregisterServletContext(
+		return _jsonWebServiceActionsManager.unregisterServletContext(
 			servletContext);
 	}
 

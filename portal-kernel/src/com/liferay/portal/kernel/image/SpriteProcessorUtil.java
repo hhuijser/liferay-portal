@@ -35,7 +35,7 @@ public class SpriteProcessorUtil {
 			int maxWidth, int maxSize)
 		throws IOException {
 
-		return getSpriteProcessor().generate(
+		return _spriteProcessor.generate(
 			servletContext, imageURLs, spriteRootDirName, spriteFileName,
 			spritePropertiesFileName, rootPath, maxHeight, maxWidth, maxSize);
 	}

@@ -231,10 +231,6 @@ public class CucumberScenarioResult implements Serializable {
 			_document = document;
 		}
 
-		private Document _getDocument() {
-			return _document;
-		}
-
 		private void readObject(ObjectInputStream objectInputStream)
 			throws ClassNotFoundException, IOException {
 
@@ -298,10 +294,6 @@ public class CucumberScenarioResult implements Serializable {
 		return duration;
 	}
 
-	private Document _getBackgroundDocument() {
-		return _backgroundDocument;
-	}
-
 	private long _getDuration(Document document) {
 		Element element = (Element)Dom4JUtil.getNodeByXPath(
 			document,
@@ -350,10 +342,6 @@ public class CucumberScenarioResult implements Serializable {
 		}
 
 		return node.getText();
-	}
-
-	private Document _getScenarioDocument() {
-		return _scenarioDocument;
 	}
 
 	private String _getStatus(Document document) {

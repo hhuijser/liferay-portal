@@ -43,7 +43,6 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -57,7 +56,6 @@ import com.liferay.portal.util.PrefsPropsImpl;
 
 import java.io.ByteArrayOutputStream;
 
-import java.util.Dictionary;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -161,11 +159,6 @@ public class GetTrafficSourcesMVCResourceCommandTest {
 						)
 					).toString()
 				).build()));
-
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"trafficSourcesEnabled", true
-			).build();
 
 		try {
 			MockContextUtil.testWithMockContext(

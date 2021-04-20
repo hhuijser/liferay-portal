@@ -129,7 +129,8 @@ public class AnnotationsAndHttpPrefixApplicationClientTest
 				HashMapDictionaryBuilder.<String, Object>put(
 					"osgi.jaxrs.name",
 					new String[] {
-						"com.liferay.oauth2.provider.internal.test.TestApplication",
+						"com.liferay.oauth2.provider.internal.test." +
+							"TestApplication",
 						"com.liferay.oauth2.provider.internal.test." +
 							"TestAnnotatedApplication"
 					}

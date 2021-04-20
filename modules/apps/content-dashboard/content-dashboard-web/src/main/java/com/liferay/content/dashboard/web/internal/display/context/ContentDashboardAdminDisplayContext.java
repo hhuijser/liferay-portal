@@ -66,7 +66,6 @@ import java.util.stream.Stream;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionURL;
-import javax.portlet.PortletURL;
 import javax.portlet.WindowStateException;
 
 /**
@@ -214,32 +213,32 @@ public class ContentDashboardAdminDisplayContext {
 			setDesiredItemSelectorReturnTypes(
 				Collections.singletonList(new UUIDItemSelectorReturnType()));
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_itemSelector.getItemSelectorURL(
-				requestBackedPortletURLFactory,
-				_liferayPortletResponse.getNamespace() +
-					"selectedContentDashboardItemTypeItem",
-				contentDashboardItemTypeItemSelectorCriterion)
-		).setParameter(
-			"checkedContentDashboardItemTypes",
-			() -> {
-				List<? extends ContentDashboardItemType>
-					contentDashboardItemTypes = getContentDashboardItemTypes();
+		return String.valueOf(
+			PortletURLBuilder.create(
+				_itemSelector.getItemSelectorURL(
+					requestBackedPortletURLFactory,
+					_liferayPortletResponse.getNamespace() +
+						"selectedContentDashboardItemTypeItem",
+					contentDashboardItemTypeItemSelectorCriterion)
+			).setParameter(
+				"checkedContentDashboardItemTypes",
+				() -> {
+					List<? extends ContentDashboardItemType>
+						contentDashboardItemTypes =
+							getContentDashboardItemTypes();
 
-				Stream<? extends ContentDashboardItemType> stream =
-					contentDashboardItemTypes.stream();
+					Stream<? extends ContentDashboardItemType> stream =
+						contentDashboardItemTypes.stream();
 
-				return stream.map(
-					contentDashboardItemType ->
-						contentDashboardItemType.toJSONString(
-							_portal.getLocale(_liferayPortletRequest))
-				).toArray(
-					String[]::new
-				);
-			}
-		).build();
-
-		return String.valueOf(portletURL);
+					return stream.map(
+						contentDashboardItemType ->
+							contentDashboardItemType.toJSONString(
+								_portal.getLocale(_liferayPortletRequest))
+					).toArray(
+						String[]::new
+					);
+				}
+			).build());
 	}
 
 	public List<? extends ContentDashboardItemType>

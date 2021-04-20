@@ -96,25 +96,24 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 
 	@Override
 	public String getClearResultsURL() {
-		PortletURL clearResultsURL = PortletURLBuilder.create(
-			getPortletURL()
-		).setKeywords(
-			StringPool.BLANK
-		).setParameter(
-			"assetCategoryId", (String)null
-		).setParameter(
-			"assetTagId", (String)null
-		).setParameter(
-			"authorIds", (String)null
-		).setParameter(
-			"contentDashboardItemTypePayload", (String)null
-		).setParameter(
-			"scopeId", (String)null
-		).setParameter(
-			"status", WorkflowConstants.STATUS_ANY
-		).build();
-
-		return String.valueOf(clearResultsURL);
+		return String.valueOf(
+			PortletURLBuilder.create(
+				getPortletURL()
+			).setKeywords(
+				StringPool.BLANK
+			).setParameter(
+				"assetCategoryId", (String)null
+			).setParameter(
+				"assetTagId", (String)null
+			).setParameter(
+				"authorIds", (String)null
+			).setParameter(
+				"contentDashboardItemTypePayload", (String)null
+			).setParameter(
+				"scopeId", (String)null
+			).setParameter(
+				"status", WorkflowConstants.STATUS_ANY
+			).build());
 	}
 
 	@Override
@@ -595,13 +594,12 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 
 				dropdownItem.setActive(authorIds.isEmpty());
 
-				PortletURL portletURL = PortletURLBuilder.create(
-					getPortletURL()
-				).setParameter(
-					"authorIds", (String)null
-				).build();
-
-				dropdownItem.setHref(portletURL);
+				dropdownItem.setHref(
+					PortletURLBuilder.create(
+						getPortletURL()
+					).setParameter(
+						"authorIds", (String)null
+					).build());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "all"));
@@ -642,13 +640,14 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 					"dialogTitle",
 					LanguageUtil.get(httpServletRequest, "select-author"));
 
-				PortletURL portletURL = PortletURLBuilder.create(
-					getPortletURL()
-				).setParameter(
-					"authorIds", (String)null
-				).build();
-
-				dropdownItem.putData("redirectURL", String.valueOf(portletURL));
+				dropdownItem.putData(
+					"redirectURL",
+					String.valueOf(
+						PortletURLBuilder.create(
+							getPortletURL()
+						).setParameter(
+							"authorIds", (String)null
+						).build()));
 
 				dropdownItem.putData(
 					"selectAuthorURL",
@@ -678,13 +677,14 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 					"dialogTitle",
 					LanguageUtil.get(httpServletRequest, "select-categories"));
 
-				PortletURL portletURL = PortletURLBuilder.create(
-					getPortletURL()
-				).setParameter(
-					"assetCategoryId", (String)null
-				).build();
-
-				dropdownItem.putData("redirectURL", String.valueOf(portletURL));
+				dropdownItem.putData(
+					"redirectURL",
+					String.valueOf(
+						PortletURLBuilder.create(
+							getPortletURL()
+						).setParameter(
+							"assetCategoryId", (String)null
+						).build()));
 
 				dropdownItem.putData(
 					"selectAssetCategoryURL",
@@ -709,13 +709,14 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 					LanguageUtil.get(
 						httpServletRequest, "select-site-or-asset-library"));
 
-				PortletURL portletURL = PortletURLBuilder.create(
-					getPortletURL()
-				).setParameter(
-					"scopeId", (String)null
-				).build();
-
-				dropdownItem.putData("redirectURL", String.valueOf(portletURL));
+				dropdownItem.putData(
+					"redirectURL",
+					String.valueOf(
+						PortletURLBuilder.create(
+							getPortletURL()
+						).setParameter(
+							"scopeId", (String)null
+						).build()));
 
 				dropdownItem.putData(
 					"selectScopeURL",
@@ -747,13 +748,14 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 					"dialogTitle",
 					LanguageUtil.get(httpServletRequest, "select-subtype"));
 
-				PortletURL portletURL = PortletURLBuilder.create(
-					getPortletURL()
-				).setParameter(
-					"contentDashboardItemTypePayload", (String)null
-				).build();
-
-				dropdownItem.putData("redirectURL", String.valueOf(portletURL));
+				dropdownItem.putData(
+					"redirectURL",
+					String.valueOf(
+						PortletURLBuilder.create(
+							getPortletURL()
+						).setParameter(
+							"contentDashboardItemTypePayload", (String)null
+						).build()));
 
 				dropdownItem.putData(
 					"selectContentDashboardItemTypeURL",
@@ -775,13 +777,14 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 					"dialogTitle",
 					LanguageUtil.get(httpServletRequest, "select-tags"));
 
-				PortletURL portletURL = PortletURLBuilder.create(
-					getPortletURL()
-				).setParameter(
-					"assetTagId", (String)null
-				).build();
-
-				dropdownItem.putData("redirectURL", String.valueOf(portletURL));
+				dropdownItem.putData(
+					"redirectURL",
+					String.valueOf(
+						PortletURLBuilder.create(
+							getPortletURL()
+						).setParameter(
+							"assetTagId", (String)null
+						).build()));
 
 				dropdownItem.putData(
 					"selectTagURL", String.valueOf(_getAssetTagSelectorURL()));

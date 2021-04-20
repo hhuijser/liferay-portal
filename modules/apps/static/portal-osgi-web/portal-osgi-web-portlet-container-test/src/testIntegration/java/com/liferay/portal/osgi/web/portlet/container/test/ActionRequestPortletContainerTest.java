@@ -41,7 +41,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.util.Collections;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 
@@ -72,13 +71,11 @@ public class ActionRequestPortletContainerTest
 
 	@Test
 	public void testAuthTokenCheckEnabled() throws Exception {
-		HashMapDictionary<String, Object> properties =
+		registerService(
+			AuthToken.class, new DisabledSessionAuthToken(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				"service.ranking", Integer.MAX_VALUE
-			).build();
-
-		registerService(
-			AuthToken.class, new DisabledSessionAuthToken(), properties);
+			).build());
 
 		setUpPortlet(
 			testPortlet, new HashMapDictionary<String, Object>(),
@@ -98,13 +95,12 @@ public class ActionRequestPortletContainerTest
 
 	@Test
 	public void testAuthTokenIgnoreOrigins() throws Exception {
-		Dictionary<String, Object> properties =
+		registerService(
+			Object.class, new Object(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				PropsKeys.AUTH_TOKEN_IGNORE_ORIGINS,
 				SecurityPortletContainerWrapper.class.getName()
-			).build();
-
-		registerService(Object.class, new Object(), properties);
+			).build());
 
 		setUpPortlet(
 			testPortlet, new HashMapDictionary<String, Object>(),
@@ -124,12 +120,11 @@ public class ActionRequestPortletContainerTest
 
 	@Test
 	public void testAuthTokenIgnorePortlets() throws Exception {
-		Dictionary<String, Object> properties =
+		registerService(
+			Object.class, new Object(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				PropsKeys.AUTH_TOKEN_IGNORE_PORTLETS, TEST_PORTLET_ID
-			).build();
-
-		registerService(Object.class, new Object(), properties);
+			).build());
 
 		setUpPortlet(
 			testPortlet, new HashMapDictionary<String, Object>(),
@@ -149,13 +144,13 @@ public class ActionRequestPortletContainerTest
 
 	@Test
 	public void testInitParam() throws Exception {
-		Dictionary<String, Object> properties =
+		setUpPortlet(
+			testPortlet,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"javax.portlet.init-param.check-auth-token",
 				Boolean.FALSE.toString()
-			).build();
-
-		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID);
+			).build(),
+			TEST_PORTLET_ID);
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			PortletContainerTestUtil.getHttpServletRequest(group, layout),
@@ -244,14 +239,11 @@ public class ActionRequestPortletContainerTest
 
 	@Test
 	public void testPortalAuthenticationTokenSecret() throws Exception {
-		HashMapDictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"service.ranking", Integer.MAX_VALUE
-			).build();
-
 		registerService(
 			AuthTokenWhitelist.class, new TestSharedSecretTokenWhitelist(),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"service.ranking", Integer.MAX_VALUE
+			).build());
 
 		setUpPortlet(
 			testPortlet, new HashMapDictionary<String, Object>(),
@@ -276,14 +268,14 @@ public class ActionRequestPortletContainerTest
 
 	@Test
 	public void testStrutsAction() throws Exception {
-		Dictionary<String, Object> properties =
+		setUpPortlet(
+			testPortlet,
 			HashMapDictionaryBuilder.<String, Object>put(
 				PropsKeys.AUTH_TOKEN_IGNORE_ACTIONS, "/test/portlet/1"
 			).put(
 				"com.liferay.portlet.struts-path", "test/portlet"
-			).build();
-
-		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID);
+			).build(),
+			TEST_PORTLET_ID);
 
 		PortletContainerTestUtil.Response response =
 			PortletContainerTestUtil.request(

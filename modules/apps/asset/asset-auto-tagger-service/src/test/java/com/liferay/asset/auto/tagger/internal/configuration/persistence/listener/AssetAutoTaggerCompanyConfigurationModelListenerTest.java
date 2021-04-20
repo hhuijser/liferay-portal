@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
-import java.util.Dictionary;
 import java.util.Locale;
 
 import org.junit.Before;
@@ -64,26 +63,22 @@ public class AssetAutoTaggerCompanyConfigurationModelListenerTest {
 			"_assetAutoTaggerConfigurationFactory",
 			_assetAutoTaggerConfigurationFactory);
 
-		Dictionary<String, Object> properties =
+		_assetAutoTaggerCompanyConfigurationModelListener.onBeforeSave(
+			RandomTestUtil.randomString(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				"maximumNumberOfTagsPerAsset", 11
-			).build();
-
-		_assetAutoTaggerCompanyConfigurationModelListener.onBeforeSave(
-			RandomTestUtil.randomString(), properties);
+			).build());
 	}
 
 	@Test(expected = ConfigurationModelListenerException.class)
 	public void testMaximumNumberOfTagsPerAssetNegative()
 		throws ConfigurationModelListenerException {
 
-		Dictionary<String, Object> properties =
+		_assetAutoTaggerCompanyConfigurationModelListener.onBeforeSave(
+			RandomTestUtil.randomString(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				"maximumNumberOfTagsPerAsset", -1
-			).build();
-
-		_assetAutoTaggerCompanyConfigurationModelListener.onBeforeSave(
-			RandomTestUtil.randomString(), properties);
+			).build());
 	}
 
 	private void _setUpAssetAutoTaggerCompanyConfigurationModelListener() {

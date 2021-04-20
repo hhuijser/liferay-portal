@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -83,12 +82,9 @@ public class AppPortlet extends MVCPortlet {
 	public Dictionary<String, Object> getProperties(
 		Map<String, Object> customProperties) {
 
-		HashMapDictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				customProperties
-			).build();
-
-		return properties;
+		return HashMapDictionaryBuilder.<String, Object>put(
+			customProperties
+		).build();
 	}
 
 	@Override

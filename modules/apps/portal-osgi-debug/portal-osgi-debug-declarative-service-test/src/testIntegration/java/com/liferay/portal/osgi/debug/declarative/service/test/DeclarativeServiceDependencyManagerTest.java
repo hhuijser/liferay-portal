@@ -226,12 +226,10 @@ public class DeclarativeServiceDependencyManagerTest {
 
 			});
 
-		Dictionary<String, Object> properties =
+		_unsatisfiedComponentScannerConfiguration.update(
 			HashMapDictionaryBuilder.<String, Object>put(
 				"unsatisfiedComponentScanningInterval", 1
-			).build();
-
-		_unsatisfiedComponentScannerConfiguration.update(properties);
+			).build());
 
 		countDownLatch.await();
 

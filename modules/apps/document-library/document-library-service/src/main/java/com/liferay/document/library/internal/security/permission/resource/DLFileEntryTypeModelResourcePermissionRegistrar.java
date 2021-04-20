@@ -26,8 +26,6 @@ import com.liferay.portal.kernel.security.permission.resource.StagedModelPermiss
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portlet.documentlibrary.constants.DLConstants;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -43,11 +41,6 @@ public class DLFileEntryTypeModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", DLFileEntryType.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<DLFileEntryType>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -59,7 +52,9 @@ public class DLFileEntryTypeModelResourcePermissionRegistrar {
 					new StagedModelPermissionLogic<>(
 						_stagingPermission, DLPortletKeys.DOCUMENT_LIBRARY,
 						DLFileEntryTypeModel::getFileEntryTypeId))),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", DLFileEntryType.class.getName()
+			).build());
 	}
 
 	@Deactivate

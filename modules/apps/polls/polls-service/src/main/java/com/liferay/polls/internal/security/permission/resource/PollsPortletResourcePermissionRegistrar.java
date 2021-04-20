@@ -22,8 +22,6 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 import com.liferay.portal.kernel.security.permission.resource.StagedPortletPermissionLogic;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -39,18 +37,15 @@ public class PollsPortletResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"resource.name", PollsConstants.RESOURCE_NAME
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			PortletResourcePermission.class,
 			PortletResourcePermissionFactory.create(
 				PollsConstants.RESOURCE_NAME,
 				new StagedPortletPermissionLogic(
 					_stagingPermission, PollsPortletKeys.POLLS)),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"resource.name", PollsConstants.RESOURCE_NAME
+			).build());
 	}
 
 	@Deactivate

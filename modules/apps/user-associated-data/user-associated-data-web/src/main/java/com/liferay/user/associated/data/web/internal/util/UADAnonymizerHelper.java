@@ -149,14 +149,12 @@ public class UADAnonymizerHelper {
 					AnonymousUserConfiguration.class.getName(),
 					StringPool.QUESTION);
 
-			Dictionary<String, Object> properties =
+			configuration.update(
 				HashMapDictionaryBuilder.<String, Object>put(
 					"companyId", companyId
 				).put(
 					"userId", anonymousUser.getUserId()
-				).build();
-
-			configuration.update(properties);
+				).build());
 
 			return anonymousUser;
 		}

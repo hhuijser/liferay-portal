@@ -543,15 +543,12 @@ public class FileInstallDeployTest {
 
 		CountDownLatch countDownLatch = new CountDownLatch(2);
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				Constants.SERVICE_PID, _CONFIGURATION_PID
-			).build();
-
 		ServiceRegistration<ManagedService> serviceRegistration =
 			_bundleContext.registerService(
 				ManagedService.class, props -> countDownLatch.countDown(),
-				properties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					Constants.SERVICE_PID, _CONFIGURATION_PID
+				).build());
 
 		try {
 			runnable.run();

@@ -26,8 +26,6 @@ import com.liferay.portal.security.audit.AuditRouterProxyBean;
 
 import java.lang.reflect.InvocationHandler;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -67,13 +65,11 @@ public class AuditRouterProxyBeanConfigurator {
 			beanClass.getClassLoader(), beanClass.getInterfaces(),
 			invocationHandler);
 
-		Dictionary<String, Object> schedulerEngineDictionary =
+		_auditRouterSesrviceRegistration = bundleContext.registerService(
+			AuditRouter.class, auditRouter,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"audit.router.proxy", Boolean.TRUE
-			).build();
-
-		_auditRouterSesrviceRegistration = bundleContext.registerService(
-			AuditRouter.class, auditRouter, schedulerEngineDictionary);
+			).build());
 	}
 
 	@Deactivate

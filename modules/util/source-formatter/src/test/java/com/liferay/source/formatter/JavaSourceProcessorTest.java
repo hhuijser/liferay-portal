@@ -449,6 +449,20 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testUnnecessaryMethodCalls() throws Exception {
+		test(
+			"UnnecessaryMethodCalls.testjava",
+			new String[] {
+				"Use 'webCachePool' instead of calling method 'getWebCachePool'",
+				"Use 'webCachePool' instead of calling method 'getWebCachePool'",
+				"Use 'this.name' instead of calling method 'getName'",
+				"Use 'webCachePool' instead of calling method 'getWebCachePool'",
+				"Use 'webCachePool_1' instead of calling method 'getWebCachePool'"
+			},
+			new Integer[] {35, 43, 51, 61, 79});
+	}
+
+	@Test
 	public void testUnusedImport() throws Exception {
 		test("UnusedImport.testjava");
 	}

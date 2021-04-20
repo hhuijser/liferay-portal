@@ -492,7 +492,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		synchronized (BaseSourceProcessor.class) {
 			Checker checker = new Checker(
 				configuration, checkstyleLogger, checkstyleLogger,
-				getSourceFormatterSuppressions());
+				_sourceFormatterSuppressions);
 
 			if (object instanceof File[]) {
 				checker.process(Arrays.asList((File[])object));
@@ -663,7 +663,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 		List<SourceCheck> sourceChecks = SourceChecksUtil.getSourceChecks(
 			_sourceFormatterConfiguration, clazz.getSimpleName(),
-			getPropertiesMap(), _sourceFormatterArgs.getCheckNames(),
+			_propertiesMap, _sourceFormatterArgs.getCheckNames(),
 			_sourceFormatterArgs.getCheckCategoryNames(),
 			_sourceFormatterArgs.getSkipCheckNames(), _portalSource,
 			_subrepository, _containsModuleFile(fileNames));

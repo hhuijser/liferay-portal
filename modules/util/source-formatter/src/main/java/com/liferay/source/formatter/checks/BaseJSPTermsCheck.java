@@ -56,7 +56,7 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 
 		dependentfileNames.add(fileName);
 
-		Map<String, String> contentsMap = getContentsMap();
+		Map<String, String> contentsMap = _contentsMap;
 
 		dependentfileNames = JSPSourceUtil.addIncludedAndReferencedFileNames(
 			dependentfileNames, new HashSet<String>(), contentsMap,

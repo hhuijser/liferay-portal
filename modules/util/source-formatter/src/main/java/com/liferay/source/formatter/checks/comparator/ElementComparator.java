@@ -56,7 +56,7 @@ public class ElementComparator extends NaturalOrderStringComparator {
 	}
 
 	public String getElementName(Element element) {
-		return element.attributeValue(getNameAttribute());
+		return element.attributeValue(_nameAttribute);
 	}
 
 	protected String getNameAttribute() {
@@ -64,7 +64,7 @@ public class ElementComparator extends NaturalOrderStringComparator {
 	}
 
 	protected String getTagValue(Element element) {
-		return getTagValue(element, getNameAttribute());
+		return getTagValue(element, _nameAttribute);
 	}
 
 	protected String getTagValue(Element element, String tagName) {

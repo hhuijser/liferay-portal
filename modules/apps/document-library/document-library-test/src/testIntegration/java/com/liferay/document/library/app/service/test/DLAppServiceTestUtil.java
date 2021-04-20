@@ -38,7 +38,7 @@ import com.liferay.portal.kernel.test.constants.TestDataConstants;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.security.permission.DoAsUserThread;
 
 import java.util.Dictionary;
@@ -84,9 +84,10 @@ public class DLAppServiceTestUtil {
 			getConfigurationTemporarySwapper(String key, Object value)
 		throws Exception {
 
-		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
-
-		dictionary.put(key, value);
+		Dictionary<String, Object> dictionary =
+			HashMapDictionaryBuilder.<String, Object>put(
+				key, value
+			).build();
 
 		return new ConfigurationTemporarySwapper(
 			DL_CONFIGURATION_PID, dictionary);

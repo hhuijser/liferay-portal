@@ -19,7 +19,7 @@ import com.liferay.petra.function.UnsafeRunnable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.util.PropsValues;
@@ -543,9 +543,10 @@ public class FileInstallDeployTest {
 
 		CountDownLatch countDownLatch = new CountDownLatch(2);
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(Constants.SERVICE_PID, _CONFIGURATION_PID);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				Constants.SERVICE_PID, _CONFIGURATION_PID
+			).build();
 
 		ServiceRegistration<ManagedService> serviceRegistration =
 			_bundleContext.registerService(

@@ -20,7 +20,7 @@ import com.liferay.oauth2.provider.internal.test.TestHeadHandlingApplication;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.test.log.LogCapture;
 import com.liferay.portal.test.log.LoggerTestUtil;
@@ -150,9 +150,10 @@ public class HttpMethodApplicationClientTest extends BaseClientTestCase {
 			registerJaxRsApplication(
 				new TestHeadHandlingApplication(), "methods-with-head", null);
 
-			Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-			properties.put("ignore.missing.scopes", "");
+			Dictionary<String, Object> properties =
+				HashMapDictionaryBuilder.<String, Object>put(
+					"ignore.missing.scopes", ""
+				).build();
 
 			registerJaxRsApplication(
 				new TestApplication(),

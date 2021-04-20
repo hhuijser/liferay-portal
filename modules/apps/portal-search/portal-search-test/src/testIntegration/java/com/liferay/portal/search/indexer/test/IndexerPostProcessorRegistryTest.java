@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.search.IndexerPostProcessor;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.search.test.util.SearchTestRule;
 import com.liferay.portal.search.test.util.TestIndexer;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -306,9 +307,10 @@ public class IndexerPostProcessorRegistryTest {
 		IndexerPostProcessor indexerPostProcessor =
 			new BaseIndexerPostProcessor();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("indexer.class.name", indexerClassName);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"indexer.class.name", indexerClassName
+			).build();
 
 		ServiceRegistration<?> serviceRegistration =
 			bundleContext.registerService(

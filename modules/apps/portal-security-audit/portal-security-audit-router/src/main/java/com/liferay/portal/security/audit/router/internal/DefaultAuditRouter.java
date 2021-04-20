@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.audit.AuditMessageProcessor;
@@ -118,10 +118,9 @@ public class DefaultAuditRouter implements AuditRouter {
 		proxyMessageListener.setMessageBus(_messageBus);
 
 		Dictionary<String, Object> proxyMessageListenerProperties =
-			new HashMapDictionary<>();
-
-		proxyMessageListenerProperties.put(
-			"destination.name", DestinationNames.AUDIT);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"destination.name", DestinationNames.AUDIT
+			).build();
 
 		_serviceRegistration = bundleContext.registerService(
 			ProxyMessageListener.class, proxyMessageListener,

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.util.PropsValues;
 
@@ -84,11 +85,11 @@ public class ApplicationContextServicePublisherUtil {
 
 		Bundle bundle = bundleContext.getBundle();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			"org.springframework.context.service.name",
-			bundle.getSymbolicName());
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"org.springframework.context.service.name",
+				bundle.getSymbolicName()
+			).build();
 
 		ServiceRegistration<ApplicationContext> serviceRegistration =
 			bundleContext.registerService(
@@ -161,10 +162,11 @@ public class ApplicationContextServicePublisherUtil {
 		Bundle bundle = bundleContext.getBundle();
 
 		HashMapDictionary<String, Object> properties =
-			new HashMapDictionary<>();
-
-		properties.put("bean.id", beanName);
-		properties.put("origin.bundle.symbolic.name", bundle.getSymbolicName());
+			HashMapDictionaryBuilder.<String, Object>put(
+				"bean.id", beanName
+			).put(
+				"origin.bundle.symbolic.name", bundle.getSymbolicName()
+			).build();
 
 		if (osgiBeanProperties != null) {
 			properties.putAll(

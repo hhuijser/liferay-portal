@@ -18,7 +18,7 @@ import com.liferay.portal.configuration.persistence.ReloadablePersistenceManager
 import com.liferay.portal.configuration.persistence.internal.ConfigurationPersistenceManager;
 import com.liferay.portal.configuration.persistence.internal.upgrade.ConfigurationUpgradeStepFactoryImpl;
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
 import java.util.Collection;
 import java.util.Dictionary;
@@ -61,12 +61,13 @@ public class ConfigurationPersistenceImplBundleActivator
 
 		_configurationPersistenceManager.start();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			PersistenceManager.PROPERTY_NAME,
-			ConfigurationPersistenceManager.class.getName());
-		properties.put(Constants.SERVICE_RANKING, Integer.MAX_VALUE - 1000);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				PersistenceManager.PROPERTY_NAME,
+				ConfigurationPersistenceManager.class.getName()
+			).put(
+				Constants.SERVICE_RANKING, Integer.MAX_VALUE - 1000
+			).build();
 
 		_configurationPersistenceManagerServiceRegistration =
 			bundleContext.registerService(

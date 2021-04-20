@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener;
 import com.liferay.portal.kernel.resource.ResourceRetriever;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.rules.engine.Fact;
@@ -209,10 +209,9 @@ public class RulesEngineImpl implements RulesEngine {
 		proxyMessageListener.setMessageBus(_messageBus);
 
 		Dictionary<String, Object> proxyMessageListenerProperties =
-			new HashMapDictionary<>();
-
-		proxyMessageListenerProperties.put(
-			"destination.name", RulesEngineConstants.DESTINATION_NAME);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"destination.name", RulesEngineConstants.DESTINATION_NAME
+			).build();
 
 		BundleContext bundleContext = componentContext.getBundleContext();
 

@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.SecureRandomUtil;
 import com.liferay.portal.kernel.util.CookieKeys;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
 
 import java.net.URI;
@@ -350,14 +350,14 @@ public class AuthorizationCodeGrantServiceRegistrator {
 		authorizationCodeGrantService.setSubjectCreator(_subjectCreator);
 
 		Dictionary<String, Object> authorizationCodeGrantProperties =
-			new HashMapDictionary<>();
-
-		authorizationCodeGrantProperties.put(
-			"osgi.jaxrs.application.select",
-			"(osgi.jaxrs.name=Liferay.OAuth2.Application)");
-		authorizationCodeGrantProperties.put(
-			"osgi.jaxrs.name", "Liferay.Authorization.Code.Grant.Service");
-		authorizationCodeGrantProperties.put("osgi.jaxrs.resource", true);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"osgi.jaxrs.application.select",
+				"(osgi.jaxrs.name=Liferay.OAuth2.Application)"
+			).put(
+				"osgi.jaxrs.name", "Liferay.Authorization.Code.Grant.Service"
+			).put(
+				"osgi.jaxrs.resource", true
+			).build();
 
 		_serviceRegistration = bundleContext.registerService(
 			Object.class, authorizationCodeGrantService,

@@ -55,7 +55,7 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -133,9 +133,10 @@ public class FragmentEntryLinkLocalServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("propagateChanges", false);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"propagateChanges", false
+			).build();
 
 		_configurationProvider.saveCompanyConfiguration(
 			FragmentServiceConfiguration.class, _group.getCompanyId(),
@@ -510,9 +511,10 @@ public class FragmentEntryLinkLocalServiceTest {
 	public void testUpdateFragmentEntryLinkWithoutPropagation()
 		throws Exception {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("propagateChanges", false);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"propagateChanges", false
+			).build();
 
 		_configurationProvider.saveCompanyConfiguration(
 			FragmentServiceConfiguration.class, _group.getCompanyId(),
@@ -567,9 +569,10 @@ public class FragmentEntryLinkLocalServiceTest {
 
 	@Test
 	public void testUpdateFragmentEntryLinkWithPropagation() throws Exception {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("propagateChanges", true);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"propagateChanges", true
+			).build();
 
 		_configurationProvider.saveCompanyConfiguration(
 			FragmentServiceConfiguration.class, _group.getCompanyId(),
@@ -796,9 +799,10 @@ public class FragmentEntryLinkLocalServiceTest {
 	private void _setFreeMarkerEnabled(boolean freeMarkerEnabled)
 		throws Exception {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("enable.freemarker", freeMarkerEnabled);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"enable.freemarker", freeMarkerEnabled
+			).build();
 
 		_configurationProvider.saveCompanyConfiguration(
 			_configurationBeanDeclaration.getConfigurationBeanClass(),

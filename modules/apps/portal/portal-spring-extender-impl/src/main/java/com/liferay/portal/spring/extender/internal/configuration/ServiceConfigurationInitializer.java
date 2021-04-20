@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.security.permission.ResourceActions;
 import com.liferay.portal.kernel.service.ServiceComponentLocalService;
 import com.liferay.portal.kernel.service.configuration.ServiceComponentConfiguration;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -152,11 +152,12 @@ public class ServiceConfigurationInitializer {
 	private void _registerConfiguration(
 		BundleContext bundleContext, Configuration configuration, String name) {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("name", name);
-		properties.put(
-			"origin.bundle.symbolic.name", _bundle.getSymbolicName());
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"name", name
+			).put(
+				"origin.bundle.symbolic.name", _bundle.getSymbolicName()
+			).build();
 
 		_serviceRegistrations.add(
 			bundleContext.registerService(

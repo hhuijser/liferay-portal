@@ -16,7 +16,7 @@ package com.liferay.portal.lpkg.deployer.internal;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.URLCodec;
 
 import java.io.IOException;
@@ -63,10 +63,10 @@ public class BytesURLProtocolSupport {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			URLConstants.URL_HANDLER_PROTOCOL, new String[] {"bytes"});
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				URLConstants.URL_HANDLER_PROTOCOL, new String[] {"bytes"}
+			).build();
 
 		bundleContext.registerService(
 			URLStreamHandlerService.class.getName(),

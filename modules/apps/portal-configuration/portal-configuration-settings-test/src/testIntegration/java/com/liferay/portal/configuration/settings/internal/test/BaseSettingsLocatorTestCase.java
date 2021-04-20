@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.rule.Inject;
@@ -161,11 +161,12 @@ public abstract class BaseSettingsLocatorTestCase {
 	protected String saveConfiguration(String configurationPid)
 		throws Exception {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
 		String value = RandomTestUtil.randomString();
 
-		properties.put(SettingsLocatorTestConstants.TEST_KEY, value);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				SettingsLocatorTestConstants.TEST_KEY, value
+			).build();
 
 		ConfigurationTestUtil.saveConfiguration(configurationPid, properties);
 
@@ -188,9 +189,10 @@ public abstract class BaseSettingsLocatorTestCase {
 			Serializable propertyValue)
 		throws Exception {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(scope.getPropertyKey(), scopePK);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				scope.getPropertyKey(), scopePK
+			).build();
 
 		if (Validator.isNotNull(propertyKey) &&
 			Validator.isNotNull(propertyValue)) {

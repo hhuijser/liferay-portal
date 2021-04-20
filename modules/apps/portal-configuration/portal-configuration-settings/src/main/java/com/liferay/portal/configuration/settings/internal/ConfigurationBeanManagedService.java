@@ -17,6 +17,7 @@ package com.liferay.portal.configuration.settings.internal;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.configuration.settings.internal.util.ConfigurationPidUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
 import java.security.AccessController;
 import java.security.PrivilegedAction;
@@ -53,9 +54,10 @@ public class ConfigurationBeanManagedService implements ManagedService {
 	}
 
 	public void register() {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(Constants.SERVICE_PID, _configurationPid);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				Constants.SERVICE_PID, _configurationPid
+			).build();
 
 		_managedServiceServiceRegistration = _bundleContext.registerService(
 			ManagedService.class, this, properties);

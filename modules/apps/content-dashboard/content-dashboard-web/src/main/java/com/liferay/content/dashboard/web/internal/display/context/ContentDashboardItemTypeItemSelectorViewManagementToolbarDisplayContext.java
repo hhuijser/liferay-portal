@@ -44,12 +44,11 @@ public class
 
 	@Override
 	public String getClearResultsURL() {
-		return String.valueOf(
-			PortletURLBuilder.create(
-				getPortletURL()
-			).setKeywords(
-				StringPool.BLANK
-			).build());
+		return PortletURLBuilder.create(
+			getPortletURL()
+		).setKeywords(
+			StringPool.BLANK
+		).buildString();
 	}
 
 	@Override

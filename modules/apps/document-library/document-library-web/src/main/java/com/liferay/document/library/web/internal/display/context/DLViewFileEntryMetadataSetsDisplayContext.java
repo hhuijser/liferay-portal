@@ -101,13 +101,12 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 
 		renderURL.setParameter(
 			"redirect",
-			String.valueOf(
-				PortletURLBuilder.create(
-					PortletURLUtil.getCurrent(
-						_liferayPortletRequest, _liferayPortletResponse)
-				).setNavigation(
-					"file_entry_metadata_sets"
-				).build()));
+			PortletURLBuilder.create(
+				PortletURLUtil.getCurrent(
+					_liferayPortletRequest, _liferayPortletResponse)
+			).setNavigation(
+				"file_entry_metadata_sets"
+			).buildString());
 
 		renderURL.setParameter(
 			"ddmStructureId", String.valueOf(ddmStructure.getStructureId()));

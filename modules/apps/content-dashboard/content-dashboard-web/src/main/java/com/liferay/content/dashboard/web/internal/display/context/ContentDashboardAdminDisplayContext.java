@@ -213,32 +213,30 @@ public class ContentDashboardAdminDisplayContext {
 			setDesiredItemSelectorReturnTypes(
 				Collections.singletonList(new UUIDItemSelectorReturnType()));
 
-		return String.valueOf(
-			PortletURLBuilder.create(
-				_itemSelector.getItemSelectorURL(
-					requestBackedPortletURLFactory,
-					_liferayPortletResponse.getNamespace() +
-						"selectedContentDashboardItemTypeItem",
-					contentDashboardItemTypeItemSelectorCriterion)
-			).setParameter(
-				"checkedContentDashboardItemTypes",
-				() -> {
-					List<? extends ContentDashboardItemType>
-						contentDashboardItemTypes =
-							getContentDashboardItemTypes();
+		return PortletURLBuilder.create(
+			_itemSelector.getItemSelectorURL(
+				requestBackedPortletURLFactory,
+				_liferayPortletResponse.getNamespace() +
+					"selectedContentDashboardItemTypeItem",
+				contentDashboardItemTypeItemSelectorCriterion)
+		).setParameter(
+			"checkedContentDashboardItemTypes",
+			() -> {
+				List<? extends ContentDashboardItemType>
+					contentDashboardItemTypes = getContentDashboardItemTypes();
 
-					Stream<? extends ContentDashboardItemType> stream =
-						contentDashboardItemTypes.stream();
+				Stream<? extends ContentDashboardItemType> stream =
+					contentDashboardItemTypes.stream();
 
-					return stream.map(
-						contentDashboardItemType ->
-							contentDashboardItemType.toJSONString(
-								_portal.getLocale(_liferayPortletRequest))
-					).toArray(
-						String[]::new
-					);
-				}
-			).build());
+				return stream.map(
+					contentDashboardItemType ->
+						contentDashboardItemType.toJSONString(
+							_portal.getLocale(_liferayPortletRequest))
+				).toArray(
+					String[]::new
+				);
+			}
+		).buildString();
 	}
 
 	public List<? extends ContentDashboardItemType>

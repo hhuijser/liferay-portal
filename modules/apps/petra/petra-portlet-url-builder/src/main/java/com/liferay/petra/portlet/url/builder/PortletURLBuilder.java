@@ -14,6 +14,7 @@
 
 package com.liferay.petra.portlet.url.builder;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.Constants;
@@ -201,7 +202,7 @@ public class PortletURLBuilder {
 
 		@Override
 		public AfterActionNameStep setActionName(String value) {
-			setParameter(ActionRequest.ACTION_NAME, value);
+			_setParameter(ActionRequest.ACTION_NAME, value, false);
 
 			return this;
 		}
@@ -210,14 +211,15 @@ public class PortletURLBuilder {
 		public AfterActionNameStep setActionName(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter(ActionRequest.ACTION_NAME, valueUnsafeSupplier);
+			_setParameter(
+				ActionRequest.ACTION_NAME, valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterBackURLStep setBackURL(String value) {
-			setParameter("backURL", value);
+			_setParameter("backURL", value, false);
 
 			return this;
 		}
@@ -226,14 +228,14 @@ public class PortletURLBuilder {
 		public AfterBackURLStep setBackURL(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter("backURL", valueUnsafeSupplier);
+			_setParameter("backURL", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterCMDStep setCMD(String value) {
-			setParameter(Constants.CMD, value);
+			_setParameter(Constants.CMD, value, false);
 
 			return this;
 		}
@@ -242,14 +244,14 @@ public class PortletURLBuilder {
 		public AfterCMDStep setCMD(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter(Constants.CMD, valueUnsafeSupplier);
+			_setParameter(Constants.CMD, valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterKeywordsStep setKeywords(String value) {
-			setParameter("keywords", value);
+			_setParameter("keywords", value, false);
 
 			return this;
 		}
@@ -258,14 +260,14 @@ public class PortletURLBuilder {
 		public AfterKeywordsStep setKeywords(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter("keywords", valueUnsafeSupplier);
+			_setParameter("keywords", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterMVCPathStep setMVCPath(String value) {
-			setParameter("mvcPath", value);
+			_setParameter("mvcPath", value, false);
 
 			return this;
 		}
@@ -274,7 +276,7 @@ public class PortletURLBuilder {
 		public AfterMVCPathStep setMVCPath(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter("mvcPath", valueUnsafeSupplier);
+			_setParameter("mvcPath", valueUnsafeSupplier, false);
 
 			return this;
 		}
@@ -283,7 +285,7 @@ public class PortletURLBuilder {
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
 			String value) {
 
-			setParameter("mvcRenderCommandName", value);
+			_setParameter("mvcRenderCommandName", value, false);
 
 			return this;
 		}
@@ -292,14 +294,14 @@ public class PortletURLBuilder {
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter("mvcRenderCommandName", valueUnsafeSupplier);
+			_setParameter("mvcRenderCommandName", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterNavigationStep setNavigation(String value) {
-			setParameter("navigation", value);
+			_setParameter("navigation", value, false);
 
 			return this;
 		}
@@ -308,28 +310,28 @@ public class PortletURLBuilder {
 		public AfterNavigationStep setNavigation(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter("navigation", valueUnsafeSupplier);
+			_setParameter("navigation", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
-		public AfterParameterStep setParameter(String name, Object value) {
-			setParameter(name, String.valueOf(value));
+		public AfterParameterStep setParameter(String key, Object value) {
+			_setParameter(key, String.valueOf(value), true);
 
 			return this;
 		}
 
 		@Override
-		public AfterParameterStep setParameter(String name, String value) {
-			_portletURL.setParameter(name, value);
+		public AfterParameterStep setParameter(String key, String value) {
+			_setParameter(key, value, true);
 
 			return this;
 		}
 
 		@Override
-		public AfterParameterStep setParameter(String name, String... values) {
-			_portletURL.setParameter(name, values);
+		public AfterParameterStep setParameter(String key, String... values) {
+			_portletURL.setParameter(key, values);
 
 			return this;
 		}
@@ -338,23 +340,7 @@ public class PortletURLBuilder {
 		public AfterParameterStep setParameter(
 			String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			try {
-				Object value = valueUnsafeSupplier.get();
-
-				if (value == null) {
-					return this;
-				}
-
-				if (value instanceof String[]) {
-					setParameter(key, (String[])value);
-				}
-				else {
-					setParameter(key, String.valueOf(value));
-				}
-			}
-			catch (Exception exception) {
-				throw new RuntimeException(exception);
-			}
+			_setParameter(key, valueUnsafeSupplier, true);
 
 			return this;
 		}
@@ -382,7 +368,7 @@ public class PortletURLBuilder {
 
 		@Override
 		public AfterRedirectStep setRedirect(String value) {
-			setParameter("redirect", value);
+			_setParameter("redirect", value, false);
 
 			return this;
 		}
@@ -391,7 +377,7 @@ public class PortletURLBuilder {
 		public AfterRedirectStep setRedirect(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter("redirect", valueUnsafeSupplier);
+			_setParameter("redirect", valueUnsafeSupplier, false);
 
 			return this;
 		}
@@ -410,7 +396,7 @@ public class PortletURLBuilder {
 
 		@Override
 		public AfterTabs1Step setTabs1(String value) {
-			setParameter("tabs1", value);
+			_setParameter("tabs1", value, false);
 
 			return this;
 		}
@@ -419,14 +405,14 @@ public class PortletURLBuilder {
 		public AfterTabs1Step setTabs1(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter("tabs1", valueUnsafeSupplier);
+			_setParameter("tabs1", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterTabs2Step setTabs2(String value) {
-			setParameter("tabs2", value);
+			_setParameter("tabs2", value, false);
 
 			return this;
 		}
@@ -435,7 +421,7 @@ public class PortletURLBuilder {
 		public AfterTabs2Step setTabs2(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			setParameter("tabs2", valueUnsafeSupplier);
+			_setParameter("tabs2", valueUnsafeSupplier, false);
 
 			return this;
 		}
@@ -451,6 +437,69 @@ public class PortletURLBuilder {
 
 			return this;
 		}
+
+		private void _setParameter(
+			String key, String value, boolean validateKey) {
+
+			if (validateKey) {
+				_validateKey(key);
+			}
+
+			_portletURL.setParameter(key, value);
+		}
+
+		private void _setParameter(
+			String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier,
+			boolean validateKey) {
+
+			if (validateKey) {
+				_validateKey(key);
+			}
+
+			try {
+				Object value = valueUnsafeSupplier.get();
+
+				if (value == null) {
+					return;
+				}
+
+				if (value instanceof String[]) {
+					_portletURL.setParameter(key, (String[])value);
+				}
+				else {
+					_portletURL.setParameter(key, String.valueOf(value));
+				}
+			}
+			catch (Exception exception) {
+				throw new RuntimeException(exception);
+			}
+		}
+
+		private void _validateKey(String key) {
+			if (key == null) {
+				return;
+			}
+
+			for (String[] reservedKeywordArray : _RESERVED_KEYWORDS) {
+				String reservedKey = reservedKeywordArray[0];
+
+				if (key.equals(reservedKey)) {
+					throw new RuntimeException(
+						StringBundler.concat(
+							"Use method '", reservedKeywordArray[1],
+							"' when setting value for '", reservedKey, "'"));
+				}
+			}
+		}
+
+		private static final String[][] _RESERVED_KEYWORDS = {
+			{ActionRequest.ACTION_NAME, "setActionName"},
+			{Constants.CMD, "setCMD"}, {"backURL", "setBackURL"},
+			{"keywords", "setKeywords"}, {"mvcPath", "setMVCPath"},
+			{"mvcRenderCommandName", "setMVCRenderCommandName"},
+			{"navigation", "setNavigation"}, {"redirect", "setRedirect"},
+			{"tabs1", "setTabs1"}, {"tabs2", "setTabs2"}
+		};
 
 		private final PortletURL _portletURL;
 
@@ -603,11 +652,11 @@ public class PortletURLBuilder {
 
 	public interface ParameterStep {
 
-		public AfterParameterStep setParameter(String name, Object value);
+		public AfterParameterStep setParameter(String key, Object value);
 
-		public AfterParameterStep setParameter(String name, String value);
+		public AfterParameterStep setParameter(String key, String value);
 
-		public AfterParameterStep setParameter(String name, String... values);
+		public AfterParameterStep setParameter(String key, String... values);
 
 		public AfterParameterStep setParameter(
 			String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier);

@@ -1861,7 +1861,8 @@ public class PortalImpl implements Portal {
 				PortletURLFactoryUtil.create(
 					httpServletRequest, PortletKeys.LOGIN, plid,
 					PortletRequest.RENDER_PHASE)
-			).setMVCRenderCommandName(
+			).setParameter(
+				"mvcRenderCommandName",
 				"/login/create_account"
 			).setParameter(
 				"saveLastPath", Boolean.FALSE.toString()

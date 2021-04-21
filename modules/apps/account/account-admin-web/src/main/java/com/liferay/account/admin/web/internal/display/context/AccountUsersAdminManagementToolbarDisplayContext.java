@@ -95,8 +95,6 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 						"/account_admin/edit_account_users"
 					).setCMD(
 						Constants.DEACTIVATE
-					).setNavigation(
-						getNavigation()
 					).setParameter(
 						"accountEntriesNavigation",
 						_getAccountEntriesNavigation()
@@ -104,6 +102,9 @@ public class AccountUsersAdminManagementToolbarDisplayContext
 						"accountEntryIds",
 						ParamUtil.getString(
 							httpServletRequest, "accountEntryIds")
+					).setParameter(
+						"navigation",
+						getNavigation()
 					).buildString());
 
 				dropdownItem.setIcon("hidden");

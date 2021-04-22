@@ -20,6 +20,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.URLCodec;
@@ -113,11 +114,12 @@ public class ResourceRequestPortletContainerTest
 
 		TestPortlet testTargetPortlet = new TestPortlet();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			"com.liferay.portlet.add-default-resource", Boolean.TRUE);
-		properties.put("com.liferay.portlet.system", Boolean.TRUE);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"com.liferay.portlet.add-default-resource", Boolean.TRUE
+			).put(
+				"com.liferay.portlet.system", Boolean.TRUE
+			).build();
 
 		final String testTargetPortletId = "testTargetPortletId";
 

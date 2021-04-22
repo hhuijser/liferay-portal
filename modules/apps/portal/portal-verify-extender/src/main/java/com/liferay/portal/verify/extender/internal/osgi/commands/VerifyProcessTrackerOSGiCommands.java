@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.model.ReleaseConstants;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.NotificationThreadLocal;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 import com.liferay.portal.output.stream.container.OutputStreamContainer;
@@ -399,9 +399,9 @@ public class VerifyProcessTrackerOSGiCommands {
 	}
 
 	private void _registerMarkerObject(String verifyProcessName) {
-		Dictionary<String, String> dictionary = new HashMapDictionary<>();
-
-		dictionary.put("verify.process.name", verifyProcessName);
+		Dictionary<String, String> dictionary = HashMapDictionaryBuilder.put(
+			"verify.process.name", verifyProcessName
+		).build();
 
 		ServiceRegistration<Object> serviceRegistration =
 			_bundleContext.registerService(

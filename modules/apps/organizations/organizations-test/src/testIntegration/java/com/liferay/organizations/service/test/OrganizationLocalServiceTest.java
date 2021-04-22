@@ -45,7 +45,7 @@ import com.liferay.portal.kernel.test.util.OrganizationTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.search.test.util.SearchTestRule;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -871,11 +871,9 @@ public class OrganizationLocalServiceTest {
 				ConfigurationTestUtil.createFactoryConfiguration(
 					"com.liferay.organizations.internal.configuration." +
 						"OrganizationTypeConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("name", organizationType);
-						}
-					}));
+					HashMapDictionaryBuilder.<String, Object>put(
+						"name", organizationType
+					).build()));
 
 			_organizations.add(
 				OrganizationTestUtil.addOrganization(organizationType));

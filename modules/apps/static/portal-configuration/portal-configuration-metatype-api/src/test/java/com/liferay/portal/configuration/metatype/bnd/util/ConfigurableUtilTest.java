@@ -20,7 +20,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.test.aspects.ReflectionUtilAdvice;
 import com.liferay.portal.test.rule.AdviseWith;
@@ -117,9 +117,9 @@ public class ConfigurableUtilTest {
 
 		// Test dictionary
 
-		Dictionary<String, String> dictionary = new HashMapDictionary<>();
-
-		dictionary.put("testReqiredString", "testReqiredString1");
+		Dictionary<String, String> dictionary = HashMapDictionaryBuilder.put(
+			"testReqiredString", "testReqiredString1"
+		).build();
 
 		_assertTestConfiguration(
 			ConfigurableUtil.createConfigurable(
@@ -179,9 +179,9 @@ public class ConfigurableUtilTest {
 				"_testReqiredString",
 			"\"testReqiredString3\"");
 
-		Dictionary<String, String> dictionary = new HashMapDictionary<>();
-
-		dictionary.put("testReqiredString", "testReqiredString1");
+		Dictionary<String, String> dictionary = HashMapDictionaryBuilder.put(
+			"testReqiredString", "testReqiredString1"
+		).build();
 
 		_assertTestConfiguration(
 			ConfigurableUtil.createConfigurable(

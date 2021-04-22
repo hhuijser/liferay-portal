@@ -18,7 +18,7 @@ import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
 import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalService;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.settings.portlet.action.PortalSettingsFormContributor;
 
 import java.util.Dictionary;
@@ -137,12 +137,13 @@ public class PortalSettingsContributorServiceTrackerCustomizer
 	protected ServiceRegistration<MVCActionCommand> registerMVCActionCommand(
 		String mvcActionCommandName, MVCActionCommand mvcActionCommand) {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			"javax.portlet.name",
-			ConfigurationAdminPortletKeys.INSTANCE_SETTINGS);
-		properties.put("mvc.command.name", mvcActionCommandName);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"javax.portlet.name",
+				ConfigurationAdminPortletKeys.INSTANCE_SETTINGS
+			).put(
+				"mvc.command.name", mvcActionCommandName
+			).build();
 
 		return _bundleContext.registerService(
 			MVCActionCommand.class, mvcActionCommand, properties);

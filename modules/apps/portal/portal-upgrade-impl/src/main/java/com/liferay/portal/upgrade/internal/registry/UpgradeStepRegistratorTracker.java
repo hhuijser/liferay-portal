@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.output.stream.container.constants.OutputStreamContainerConstants;
 import com.liferay.portal.upgrade.internal.executor.SwappedLogExecutor;
 import com.liferay.portal.upgrade.internal.executor.UpgradeExecutor;
@@ -157,19 +157,19 @@ public class UpgradeStepRegistratorTracker {
 
 				for (UpgradeInfo upgradeInfo : upgradeInfos) {
 					Dictionary<String, Object> properties =
-						new HashMapDictionary<>();
-
-					properties.put(
-						"build.number", upgradeInfo.getBuildNumber());
-					properties.put(
-						"upgrade.bundle.symbolic.name", bundleSymbolicName);
-					properties.put("upgrade.db.type", "any");
-					properties.put(
-						"upgrade.from.schema.version",
-						upgradeInfo.getFromSchemaVersionString());
-					properties.put(
-						"upgrade.to.schema.version",
-						upgradeInfo.getToSchemaVersionString());
+						HashMapDictionaryBuilder.<String, Object>put(
+							"build.number", upgradeInfo.getBuildNumber()
+						).put(
+							"upgrade.bundle.symbolic.name", bundleSymbolicName
+						).put(
+							"upgrade.db.type", "any"
+						).put(
+							"upgrade.from.schema.version",
+							upgradeInfo.getFromSchemaVersionString()
+						).put(
+							"upgrade.to.schema.version",
+							upgradeInfo.getToSchemaVersionString()
+						).build();
 
 					ServiceRegistration<UpgradeStep> serviceRegistration =
 						_bundleContext.registerService(

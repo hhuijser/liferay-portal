@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.PortletServlet;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.osgi.web.servlet.JSPServletFactory;
@@ -301,23 +302,21 @@ public class ServletContextHelperRegistrationImpl
 	}
 
 	protected ServiceRegistration<?> createDefaultServlet() {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			_servletContextName);
-
 		String prefix = "/META-INF/resources";
 
 		if (_wabShapedBundle) {
 			prefix = "/";
 		}
 
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PREFIX, prefix);
-
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PATTERN, "/*");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+				_servletContextName
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PREFIX, prefix
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PATTERN, "/*"
+			).build();
 
 		return _bundleContext.registerService(
 			Object.class, new Object(), properties);
@@ -359,17 +358,17 @@ public class ServletContextHelperRegistrationImpl
 			return null;
 		}
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			_servletContextName);
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-			PortletServlet.class.getName());
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
-			"/portlet-servlet/*");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+				_servletContextName
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
+				PortletServlet.class.getName()
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
+				"/portlet-servlet/*"
+			).build();
 
 		return _bundleContext.registerService(
 			Servlet.class,
@@ -474,13 +473,16 @@ public class ServletContextHelperRegistrationImpl
 		ServletContext servletContext =
 			_customServletContextHelper.getServletContext();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			"osgi.web.contextname", servletContext.getServletContextName());
-		properties.put("osgi.web.contextpath", servletContext.getContextPath());
-		properties.put("osgi.web.symbolicname", _bundle.getSymbolicName());
-		properties.put("osgi.web.version", _bundle.getVersion());
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"osgi.web.contextname", servletContext.getServletContextName()
+			).put(
+				"osgi.web.contextpath", servletContext.getContextPath()
+			).put(
+				"osgi.web.symbolicname", _bundle.getSymbolicName()
+			).put(
+				"osgi.web.version", _bundle.getVersion()
+			).build();
 
 		_servletContextRegistration = _bundleContext.registerService(
 			ServletContext.class, servletContext, properties);

@@ -38,7 +38,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.odata.entity.BooleanEntityField;
 import com.liferay.portal.odata.entity.DateTimeEntityField;
@@ -311,11 +311,9 @@ public class OrganizationExpandoColumnModelListener
 			EntityModel.class,
 			new OrganizationEntityModel(
 				new ArrayList<>(organizationEntityFieldsMap.values())),
-			new HashMapDictionary<String, Object>() {
-				{
-					put("entity.model.name", OrganizationEntityModel.NAME);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"entity.model.name", OrganizationEntityModel.NAME
+			).build());
 	}
 
 	private void _unregister(

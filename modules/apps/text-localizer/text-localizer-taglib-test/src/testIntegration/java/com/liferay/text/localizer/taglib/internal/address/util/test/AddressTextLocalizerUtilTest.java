@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.text.localizer.address.AddressTextLocalizer;
 import com.liferay.text.localizer.taglib.servlet.taglib.AddressDisplayTag;
@@ -163,9 +163,9 @@ public class AddressTextLocalizerUtilTest {
 	private ServiceRegistration<?> _registerAddressTextLocalizer(
 		AddressTextLocalizer addressTextLocalizer, String countryA2) {
 
-		Dictionary<String, String> dictionary = new HashMapDictionary<>();
-
-		dictionary.put("country", countryA2);
+		Dictionary<String, String> dictionary = HashMapDictionaryBuilder.put(
+			"country", countryA2
+		).build();
 
 		return _bundleContext.registerService(
 			AddressTextLocalizer.class.getName(), addressTextLocalizer,

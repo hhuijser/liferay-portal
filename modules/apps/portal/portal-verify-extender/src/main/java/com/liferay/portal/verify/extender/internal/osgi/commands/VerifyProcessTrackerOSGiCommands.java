@@ -44,7 +44,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -399,13 +398,12 @@ public class VerifyProcessTrackerOSGiCommands {
 	}
 
 	private void _registerMarkerObject(String verifyProcessName) {
-		Dictionary<String, String> dictionary = HashMapDictionaryBuilder.put(
-			"verify.process.name", verifyProcessName
-		).build();
-
 		ServiceRegistration<Object> serviceRegistration =
 			_bundleContext.registerService(
-				Object.class, new Object(), dictionary);
+				Object.class, new Object(),
+				HashMapDictionaryBuilder.put(
+					"verify.process.name", verifyProcessName
+				).build());
 
 		_serviceRegistrations.put(verifyProcessName, serviceRegistration);
 	}

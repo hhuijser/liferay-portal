@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -43,11 +41,6 @@ public class CommerceVirtualOrderItemModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", CommerceVirtualOrderItem.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<CommerceVirtualOrderItem>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -60,7 +53,9 @@ public class CommerceVirtualOrderItemModelResourcePermissionRegistrar {
 				(modelResourcePermission, consumer) -> consumer.accept(
 					new CommerceVirtualOrderItemModelResourcePermissionLogic(
 						_commerceOrderModelResourcePermission))),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", CommerceVirtualOrderItem.class.getName()
+			).build());
 	}
 
 	@Deactivate

@@ -135,16 +135,13 @@ public class MFASetupUserAccountCheckerTracker {
 		private Dictionary<String, Object> _buildProperties(
 			ServiceReference<Object> serviceReference) {
 
-			Dictionary<String, Object> dictionary =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"screen.navigation.entry.order",
-					GetterUtil.getInteger(
-						serviceReference.getProperty(
-							"user.account.screen.navigation.entry.order"),
-						Integer.MAX_VALUE)
-				).build();
-
-			return dictionary;
+			return HashMapDictionaryBuilder.<String, Object>put(
+				"screen.navigation.entry.order",
+				GetterUtil.getInteger(
+					serviceReference.getProperty(
+						"user.account.screen.navigation.entry.order"),
+					Integer.MAX_VALUE)
+			).build();
 		}
 
 	}

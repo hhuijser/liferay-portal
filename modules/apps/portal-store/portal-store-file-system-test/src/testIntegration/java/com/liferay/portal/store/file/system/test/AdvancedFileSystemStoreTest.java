@@ -27,8 +27,6 @@ import com.liferay.portal.store.test.util.BaseStoreTestCase;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Dictionary;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -60,12 +58,11 @@ public class AdvancedFileSystemStoreTest extends BaseStoreTestCase {
 				"AdvancedFileSystemStoreConfiguration",
 			StringPool.QUESTION);
 
-		Dictionary<String, Object> properties =
+		ConfigurationTestUtil.saveConfiguration(
+			_configuration,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"rootDir", _rootDir
-			).build();
-
-		ConfigurationTestUtil.saveConfiguration(_configuration, properties);
+			).build());
 	}
 
 	@AfterClass

@@ -18,7 +18,6 @@ import com.liferay.oauth2.provider.rest.internal.endpoint.liferay.LiferayOAuthDa
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
 
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -67,7 +66,8 @@ public class LiferayAccessTokenServiceRegistrator {
 		liferayAccessTokenService.setDataProvider(_liferayOAuthDataProvider);
 		liferayAccessTokenService.setGrantHandlers(_accessTokenGrantHandlers);
 
-		Dictionary<String, Object> liferayAccessTokenServiceProperties =
+		_serviceRegistration = bundleContext.registerService(
+			Object.class, liferayAccessTokenService,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"osgi.jaxrs.application.select",
 				"(osgi.jaxrs.name=Liferay.OAuth2.Application)"
@@ -75,11 +75,7 @@ public class LiferayAccessTokenServiceRegistrator {
 				"osgi.jaxrs.name", "Liferay.Access.Token.Service."
 			).put(
 				"osgi.jaxrs.resource", true
-			).build();
-
-		_serviceRegistration = bundleContext.registerService(
-			Object.class, liferayAccessTokenService,
-			liferayAccessTokenServiceProperties);
+			).build());
 	}
 
 	@Deactivate

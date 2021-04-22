@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.product.navigation.personal.menu.configuration.PersonalMenuConfiguration;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.Constants;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -53,12 +51,10 @@ public class PersonalMenuConfigurationUpgradeProcess extends UpgradeProcess {
 		Configuration configuration = _configurationAdmin.getConfiguration(
 			PersonalMenuConfiguration.class.getName(), StringPool.QUESTION);
 
-		Dictionary<String, Object> properties =
+		configuration.update(
 			HashMapDictionaryBuilder.<String, Object>put(
 				"personalApplicationsLookAndFeel", "my-dashboard"
-			).build();
-
-		configuration.update(properties);
+			).build());
 	}
 
 	private final ConfigurationAdmin _configurationAdmin;

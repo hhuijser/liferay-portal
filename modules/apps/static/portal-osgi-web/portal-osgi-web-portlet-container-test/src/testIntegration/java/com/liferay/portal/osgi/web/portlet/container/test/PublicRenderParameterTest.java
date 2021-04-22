@@ -40,7 +40,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.util.Dictionary;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.portlet.PortletRequest;
@@ -93,7 +92,8 @@ public class PublicRenderParameterTest extends BasePortletContainerTestCase {
 
 		};
 
-		Dictionary<String, Object> properties =
+		setUpPortlet(
+			testPortlet,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"com.liferay.portlet.application-type",
 				new String[] {
@@ -102,9 +102,8 @@ public class PublicRenderParameterTest extends BasePortletContainerTestCase {
 				}
 			).put(
 				"javax.portlet.supported-public-render-parameter", prpName
-			).build();
-
-		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID, false);
+			).build(),
+			TEST_PORTLET_ID, false);
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			TestPropsValues.getCompanyId(), TEST_PORTLET_ID);
@@ -181,12 +180,12 @@ public class PublicRenderParameterTest extends BasePortletContainerTestCase {
 
 		};
 
-		Dictionary<String, Object> properties =
+		setUpPortlet(
+			testPortlet,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"javax.portlet.supported-public-render-parameter", prpName
-			).build();
-
-		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID);
+			).build(),
+			TEST_PORTLET_ID);
 
 		String portletURLString = PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(

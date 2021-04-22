@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 
 import java.lang.reflect.InvocationHandler;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -64,15 +62,12 @@ public class SchedulerEngineProxyBeanConfigurator {
 				beanClass.getClassLoader(), beanClass.getInterfaces(),
 				invocationHandler);
 
-		Dictionary<String, Object> schedulerEngineDictionary =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"scheduler.engine.proxy.bean", Boolean.TRUE
-			).build();
-
 		_schedulerEngineProxyBeanServiceRegistration =
 			bundleContext.registerService(
 				SchedulerEngine.class, schedulerEngine,
-				schedulerEngineDictionary);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"scheduler.engine.proxy.bean", Boolean.TRUE
+				).build());
 	}
 
 	@Deactivate

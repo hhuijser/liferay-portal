@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -83,31 +82,28 @@ public class AppPortlet extends MVCPortlet {
 	public Dictionary<String, Object> getProperties(
 		Map<String, Object> customProperties) {
 
-		HashMapDictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"com.liferay.portlet.add-default-resource", true
-			).put(
-				"com.liferay.portlet.display-category", "category.hidden"
-			).put(
-				"com.liferay.portlet.header-portlet-css", "/css/main.css"
-			).put(
-				"com.liferay.portlet.use-default-template", true
-			).put(
-				"javax.portlet.display-name", _appName
-			).put(
-				"javax.portlet.name", _portletName
-			).put(
-				"javax.portlet.init-param.template-path", "/META-INF/resources/"
-			).put(
-				"javax.portlet.init-param.view-template", _viewTemplate
-			).put(
-				"javax.portlet.security-role-ref",
-				"administrator,guest,power-user,user"
-			).putAll(
-				customProperties
-			).build();
-
-		return properties;
+		return HashMapDictionaryBuilder.<String, Object>put(
+			"com.liferay.portlet.add-default-resource", true
+		).put(
+			"com.liferay.portlet.display-category", "category.hidden"
+		).put(
+			"com.liferay.portlet.header-portlet-css", "/css/main.css"
+		).put(
+			"com.liferay.portlet.use-default-template", true
+		).put(
+			"javax.portlet.display-name", _appName
+		).put(
+			"javax.portlet.name", _portletName
+		).put(
+			"javax.portlet.init-param.template-path", "/META-INF/resources/"
+		).put(
+			"javax.portlet.init-param.view-template", _viewTemplate
+		).put(
+			"javax.portlet.security-role-ref",
+			"administrator,guest,power-user,user"
+		).putAll(
+			customProperties
+		).build();
 	}
 
 	@Override

@@ -25,8 +25,6 @@ import com.liferay.segments.constants.SegmentsActionKeys;
 import com.liferay.segments.constants.SegmentsConstants;
 import com.liferay.segments.constants.SegmentsPortletKeys;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -42,18 +40,15 @@ public class SegmentsPortletResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"resource.name", SegmentsConstants.RESOURCE_NAME
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			PortletResourcePermission.class,
 			PortletResourcePermissionFactory.create(
 				SegmentsConstants.RESOURCE_NAME,
 				new StagedPortletPermissionLogic(
 					_stagingPermission, SegmentsPortletKeys.SEGMENTS)),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"resource.name", SegmentsConstants.RESOURCE_NAME
+			).build());
 	}
 
 	@Deactivate

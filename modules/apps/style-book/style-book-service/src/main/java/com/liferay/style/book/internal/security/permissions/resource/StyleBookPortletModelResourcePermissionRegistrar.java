@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.style.book.constants.StyleBookConstants;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -35,16 +33,13 @@ public class StyleBookPortletModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"resource.name", StyleBookConstants.RESOURCE_NAME
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			PortletResourcePermission.class,
 			PortletResourcePermissionFactory.create(
 				StyleBookConstants.RESOURCE_NAME),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"resource.name", StyleBookConstants.RESOURCE_NAME
+			).build());
 	}
 
 	@Deactivate

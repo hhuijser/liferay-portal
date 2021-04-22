@@ -54,13 +54,11 @@ public class ConfigurationBeanManagedService implements ManagedService {
 	}
 
 	public void register() {
-		Dictionary<String, Object> properties =
+		_managedServiceServiceRegistration = _bundleContext.registerService(
+			ManagedService.class, this,
 			HashMapDictionaryBuilder.<String, Object>put(
 				Constants.SERVICE_PID, _configurationPid
-			).build();
-
-		_managedServiceServiceRegistration = _bundleContext.registerService(
-			ManagedService.class, this, properties);
+			).build());
 	}
 
 	public void unregister() {

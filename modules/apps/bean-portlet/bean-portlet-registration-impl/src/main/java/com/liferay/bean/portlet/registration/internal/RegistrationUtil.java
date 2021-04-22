@@ -152,17 +152,15 @@ public class RegistrationUtil {
 			new ClassResourceBundleLoader(
 				resourceBundle, servletContext.getClassLoader());
 
-		Dictionary<String, Object> properties =
+		return bundleContext.registerService(
+			ResourceBundleLoader.class, resourceBundleLoader,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"resource.bundle.base.name", resourceBundle
 			).put(
 				"service.ranking", Integer.MIN_VALUE
 			).put(
 				"servlet.context.name", servletContext.getServletContextName()
-			).build();
-
-		return bundleContext.registerService(
-			ResourceBundleLoader.class, resourceBundleLoader, properties);
+			).build());
 	}
 
 	private static String _getPortletId(

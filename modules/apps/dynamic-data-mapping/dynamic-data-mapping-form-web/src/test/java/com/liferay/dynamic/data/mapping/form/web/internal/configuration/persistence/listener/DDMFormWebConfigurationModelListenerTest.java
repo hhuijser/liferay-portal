@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.util.PropsImpl;
 
-import java.util.Dictionary;
 import java.util.Locale;
 
 import org.junit.Before;
@@ -51,12 +50,11 @@ public class DDMFormWebConfigurationModelListenerTest extends PowerMockito {
 	public void testNegativeAutosaveIntervalShouldThrowException()
 		throws ConfigurationModelListenerException {
 
-		Dictionary<String, Object> properties =
+		_ddmFormWebConfigurationModelListener.onBeforeSave(
+			null,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"autosaveInterval", "-1"
-			).build();
-
-		_ddmFormWebConfigurationModelListener.onBeforeSave(null, properties);
+			).build());
 	}
 
 	private void _setUpDDMFormWebConfigurationModelListener() {

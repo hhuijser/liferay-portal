@@ -120,15 +120,12 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 					"oauth2.scope.checker.type", "annotations"
 				).build();
 
-			Dictionary<String, Object> scopeMapperProperties =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"osgi.jaxrs.name", TestApplication.class.getName()
-				).build();
-
 			createFactoryConfiguration(
 				"com.liferay.oauth2.provider.scope.internal.configuration." +
 					"ConfigurableScopeMapperConfiguration",
-				scopeMapperProperties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"osgi.jaxrs.name", TestApplication.class.getName()
+				).build());
 
 			registerJaxRsApplication(
 				new TestAnnotatedApplication(), "annotated",

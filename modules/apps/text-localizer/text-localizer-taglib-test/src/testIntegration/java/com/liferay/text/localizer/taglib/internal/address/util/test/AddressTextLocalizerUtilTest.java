@@ -30,8 +30,6 @@ import com.liferay.text.localizer.taglib.servlet.taglib.AddressDisplayTag;
 
 import java.lang.reflect.Method;
 
-import java.util.Dictionary;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -163,13 +161,11 @@ public class AddressTextLocalizerUtilTest {
 	private ServiceRegistration<?> _registerAddressTextLocalizer(
 		AddressTextLocalizer addressTextLocalizer, String countryA2) {
 
-		Dictionary<String, String> dictionary = HashMapDictionaryBuilder.put(
-			"country", countryA2
-		).build();
-
 		return _bundleContext.registerService(
 			AddressTextLocalizer.class.getName(), addressTextLocalizer,
-			dictionary);
+			HashMapDictionaryBuilder.put(
+				"country", countryA2
+			).build());
 	}
 
 	private static BundleContext _bundleContext;

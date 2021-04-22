@@ -162,14 +162,12 @@ public class ConfigurationTestUtil {
 			updateCountDownLatch.countDown();
 		};
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				Constants.SERVICE_PID, markerPID
-			).build();
-
 		ServiceRegistration<ManagedService> managedServiceServiceRegistration =
 			_bundleContext.registerService(
-				ManagedService.class, managedService, properties);
+				ManagedService.class, managedService,
+				HashMapDictionaryBuilder.<String, Object>put(
+					Constants.SERVICE_PID, markerPID
+				).build());
 
 		try {
 			if (dictionary == null) {

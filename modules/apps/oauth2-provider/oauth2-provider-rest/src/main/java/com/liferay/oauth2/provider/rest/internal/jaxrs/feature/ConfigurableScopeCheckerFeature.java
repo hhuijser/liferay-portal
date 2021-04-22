@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -165,15 +164,12 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 	protected Dictionary<String, Object> buildProperties(
 		Configuration configuration) {
 
-		HashMapDictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				(Map<String, Object>)configuration.getProperty(
-					"osgi.jaxrs.application.serviceProperties")
-			).put(
-				Constants.SERVICE_RANKING, Integer.MIN_VALUE
-			).build();
-
-		return properties;
+		return HashMapDictionaryBuilder.<String, Object>put(
+			(Map<String, Object>)configuration.getProperty(
+				"osgi.jaxrs.application.serviceProperties")
+		).put(
+			Constants.SERVICE_RANKING, Integer.MIN_VALUE
+		).build();
 	}
 
 	@Deactivate

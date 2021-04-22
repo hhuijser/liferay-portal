@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaTerm;
@@ -48,8 +49,13 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
-		String className = javaClass.getName();
 		String packageName = javaClass.getPackageName();
+
+		if (Validator.isNull(packageName)) {
+			return fileContent;
+		}
+
+		String className = javaClass.getName();
 
 		_checkTypo(fileName, className, packageName, 1);
 

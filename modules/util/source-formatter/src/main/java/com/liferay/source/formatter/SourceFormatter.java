@@ -534,7 +534,7 @@ public class SourceFormatter {
 
 		for (String recentChangesFileName : recentChangesFileNames) {
 			if (!buildPropertiesAdded &&
-				recentChangesFileName.contains("/modules/")) {
+				recentChangesFileName.endsWith(".lfrbuild-portal")) {
 
 				File file = new File(
 					_sourceFormatterArgs.getBaseDirName() + "build.properties");

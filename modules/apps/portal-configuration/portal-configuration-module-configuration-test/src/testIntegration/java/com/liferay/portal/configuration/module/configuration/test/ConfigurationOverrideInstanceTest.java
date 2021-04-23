@@ -31,8 +31,6 @@ import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Dictionary;
-
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -58,13 +56,11 @@ public class ConfigurationOverrideInstanceTest {
 
 		boolean rssEnabled = _isRssEnabled();
 
-		Dictionary<String, Object> properties =
+		ConfigurationTestUtil.saveConfiguration(
+			BlogsGroupServiceConfiguration.class.getName(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				"enableRss", !rssEnabled
-			).build();
-
-		ConfigurationTestUtil.saveConfiguration(
-			BlogsGroupServiceConfiguration.class.getName(), properties);
+			).build());
 
 		Assert.assertEquals(!rssEnabled, _isRssEnabled());
 	}

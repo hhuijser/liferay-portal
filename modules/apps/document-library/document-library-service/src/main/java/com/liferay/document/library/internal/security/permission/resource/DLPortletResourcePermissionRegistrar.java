@@ -22,8 +22,6 @@ import com.liferay.portal.kernel.security.permission.resource.StagedPortletPermi
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portlet.documentlibrary.constants.DLConstants;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -39,18 +37,15 @@ public class DLPortletResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"resource.name", DLConstants.RESOURCE_NAME
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			PortletResourcePermission.class,
 			PortletResourcePermissionFactory.create(
 				DLConstants.RESOURCE_NAME,
 				new StagedPortletPermissionLogic(
 					_stagingPermission, DLPortletKeys.DOCUMENT_LIBRARY_ADMIN)),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"resource.name", DLConstants.RESOURCE_NAME
+			).build());
 	}
 
 	@Deactivate

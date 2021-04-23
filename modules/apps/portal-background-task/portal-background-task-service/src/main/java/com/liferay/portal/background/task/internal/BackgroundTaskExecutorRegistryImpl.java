@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.backgroundtask.BackgroundTaskExecutor;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskExecutorRegistry;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,16 +48,13 @@ public class BackgroundTaskExecutorRegistryImpl
 		String backgroundTaskExecutorClassName,
 		BackgroundTaskExecutor backgroundTaskExecutor) {
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"background.task.executor.class.name",
-				backgroundTaskExecutorClassName
-			).build();
-
 		ServiceRegistration<BackgroundTaskExecutor> serviceRegistration =
 			_bundleContext.registerService(
 				BackgroundTaskExecutor.class, backgroundTaskExecutor,
-				properties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"background.task.executor.class.name",
+					backgroundTaskExecutorClassName
+				).build());
 
 		_serviceRegistrations.put(
 			backgroundTaskExecutorClassName, serviceRegistration);

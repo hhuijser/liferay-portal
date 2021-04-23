@@ -163,12 +163,11 @@ public abstract class BaseSettingsLocatorTestCase {
 
 		String value = RandomTestUtil.randomString();
 
-		Dictionary<String, Object> properties =
+		ConfigurationTestUtil.saveConfiguration(
+			configurationPid,
 			HashMapDictionaryBuilder.<String, Object>put(
 				SettingsLocatorTestConstants.TEST_KEY, value
-			).build();
-
-		ConfigurationTestUtil.saveConfiguration(configurationPid, properties);
+			).build());
 
 		_configurationPids.add(configurationPid);
 

@@ -69,7 +69,6 @@ import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -113,14 +112,6 @@ public class AnalyticsCloudPortalInstanceLifecycleListener
 					sapEntryObjectArray[0], "OAUTH2_", StringPool.BLANK));
 		}
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"osgi.jaxrs.name",
-				OAuth2ProviderShortcutConstants.APPLICATION_NAME
-			).put(
-				"sap.scope.finder", true
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			new String[] {
 				ApplicationDescriptor.class.getName(),
@@ -128,7 +119,12 @@ public class AnalyticsCloudPortalInstanceLifecycleListener
 				ScopeFinder.class.getName(), ScopeMapper.class.getName()
 			},
 			new OAuth2ProviderShortcutScopeFinder(_sapEntryLocalService),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"osgi.jaxrs.name",
+				OAuth2ProviderShortcutConstants.APPLICATION_NAME
+			).put(
+				"sap.scope.finder", true
+			).build());
 	}
 
 	@Deactivate

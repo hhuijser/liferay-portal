@@ -28,8 +28,6 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.util.PropsValues;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -45,11 +43,6 @@ public class KBFolderModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", KBFolder.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<KBFolder>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -63,7 +56,9 @@ public class KBFolderModelResourcePermissionRegistrar {
 								modelResourcePermission));
 					}
 				}),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", KBFolder.class.getName()
+			).build());
 	}
 
 	@Deactivate

@@ -29,7 +29,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Dictionary;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
@@ -115,15 +114,13 @@ public class RefreshTokenTest extends BaseClientTestCase {
 
 			User user = UserTestUtil.getAdminUser(defaultCompanyId);
 
-			Dictionary<String, Object> properties =
+			registerJaxRsApplication(
+				new TestAnnotatedApplication(), "annotated",
 				HashMapDictionaryBuilder.<String, Object>put(
 					"auth.verifier.guest.allowed", false
 				).put(
 					"oauth2.scope.checker.type", "annotations"
-				).build();
-
-			registerJaxRsApplication(
-				new TestAnnotatedApplication(), "annotated", properties);
+				).build());
 
 			createOAuth2Application(
 				defaultCompanyId, user, "oauthTestApplication",

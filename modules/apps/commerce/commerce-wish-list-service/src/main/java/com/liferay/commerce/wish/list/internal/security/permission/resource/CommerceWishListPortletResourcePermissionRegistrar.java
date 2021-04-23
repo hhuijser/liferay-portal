@@ -22,8 +22,6 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 import com.liferay.portal.kernel.security.permission.resource.StagedPortletPermissionLogic;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -42,11 +40,6 @@ public class CommerceWishListPortletResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"resource.name", CommerceWishListConstants.RESOURCE_NAME
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			PortletResourcePermission.class,
 			PortletResourcePermissionFactory.create(
@@ -54,7 +47,9 @@ public class CommerceWishListPortletResourcePermissionRegistrar {
 				new StagedPortletPermissionLogic(
 					_stagingPermission,
 					CommerceWishListPortletKeys.COMMERCE_WISH_LIST_CONTENT)),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"resource.name", CommerceWishListConstants.RESOURCE_NAME
+			).build());
 	}
 
 	@Deactivate

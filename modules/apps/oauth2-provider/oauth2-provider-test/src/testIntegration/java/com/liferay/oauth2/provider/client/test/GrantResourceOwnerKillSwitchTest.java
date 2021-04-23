@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Dictionary;
-
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -70,13 +68,11 @@ public class GrantResourceOwnerKillSwitchTest extends BaseClientTestCase {
 
 			User user = UserTestUtil.getAdminUser(defaultCompanyId);
 
-			Dictionary<String, Object> properties =
+			registerJaxRsApplication(
+				new TestAnnotatedApplication(), "annotated",
 				HashMapDictionaryBuilder.<String, Object>put(
 					"oauth2.scope.checker.type", "annotations"
-				).build();
-
-			registerJaxRsApplication(
-				new TestAnnotatedApplication(), "annotated", properties);
+				).build());
 
 			createOAuth2Application(
 				defaultCompanyId, user, "oauthTestApplication");

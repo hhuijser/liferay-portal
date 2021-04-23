@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -213,16 +212,13 @@ public class PortletRegistryImpl implements PortletRegistry {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		Dictionary<String, Object> aliasRegistrationProperties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"com.liferay.fragment.entry.processor.portlet.alias", alias
-			).build();
-
 		bundleContext.registerService(
 			PortletAliasRegistration.class,
 			new PortletAliasRegistration() {
 			},
-			aliasRegistrationProperties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"com.liferay.fragment.entry.processor.portlet.alias", alias
+			).build());
 	}
 
 	protected void unsetPortlet(

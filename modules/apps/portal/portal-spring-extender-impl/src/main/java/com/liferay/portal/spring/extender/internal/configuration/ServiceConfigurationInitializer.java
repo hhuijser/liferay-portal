@@ -30,7 +30,6 @@ import com.liferay.portal.spring.extender.internal.loader.ModuleResourceLoader;
 import com.liferay.portal.util.PropsValues;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Properties;
 
@@ -152,16 +151,14 @@ public class ServiceConfigurationInitializer {
 	private void _registerConfiguration(
 		BundleContext bundleContext, Configuration configuration, String name) {
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"name", name
-			).put(
-				"origin.bundle.symbolic.name", _bundle.getSymbolicName()
-			).build();
-
 		_serviceRegistrations.add(
 			bundleContext.registerService(
-				Configuration.class, configuration, properties));
+				Configuration.class, configuration,
+				HashMapDictionaryBuilder.<String, Object>put(
+					"name", name
+				).put(
+					"origin.bundle.symbolic.name", _bundle.getSymbolicName()
+				).build()));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

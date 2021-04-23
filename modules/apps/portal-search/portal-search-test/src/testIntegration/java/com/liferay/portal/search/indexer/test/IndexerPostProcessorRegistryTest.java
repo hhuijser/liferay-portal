@@ -34,7 +34,6 @@ import com.liferay.portal.search.test.util.TestIndexer;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Arrays;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -307,14 +306,12 @@ public class IndexerPostProcessorRegistryTest {
 		IndexerPostProcessor indexerPostProcessor =
 			new BaseIndexerPostProcessor();
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"indexer.class.name", indexerClassName
-			).build();
-
 		ServiceRegistration<?> serviceRegistration =
 			bundleContext.registerService(
-				IndexerPostProcessor.class, indexerPostProcessor, properties);
+				IndexerPostProcessor.class, indexerPostProcessor,
+				HashMapDictionaryBuilder.<String, Object>put(
+					"indexer.class.name", indexerClassName
+				).build());
 
 		try {
 			IndexerRegistryUtil.register(indexer);

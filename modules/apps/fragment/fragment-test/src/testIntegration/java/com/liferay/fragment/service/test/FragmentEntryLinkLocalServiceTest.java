@@ -66,7 +66,6 @@ import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.io.InputStream;
 
-import java.util.Dictionary;
 import java.util.List;
 
 import org.junit.After;
@@ -133,14 +132,11 @@ public class FragmentEntryLinkLocalServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"propagateChanges", false
-			).build();
-
 		_configurationProvider.saveCompanyConfiguration(
 			FragmentServiceConfiguration.class, _group.getCompanyId(),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"propagateChanges", false
+			).build());
 
 		_setFreeMarkerEnabled(true);
 	}
@@ -511,14 +507,11 @@ public class FragmentEntryLinkLocalServiceTest {
 	public void testUpdateFragmentEntryLinkWithoutPropagation()
 		throws Exception {
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"propagateChanges", false
-			).build();
-
 		_configurationProvider.saveCompanyConfiguration(
 			FragmentServiceConfiguration.class, _group.getCompanyId(),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"propagateChanges", false
+			).build());
 
 		String configuration = _read("configuration-light.json");
 
@@ -569,14 +562,11 @@ public class FragmentEntryLinkLocalServiceTest {
 
 	@Test
 	public void testUpdateFragmentEntryLinkWithPropagation() throws Exception {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"propagateChanges", true
-			).build();
-
 		_configurationProvider.saveCompanyConfiguration(
 			FragmentServiceConfiguration.class, _group.getCompanyId(),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"propagateChanges", true
+			).build());
 
 		FragmentEntry fragmentEntry =
 			_fragmentEntryLocalService.addFragmentEntry(
@@ -799,14 +789,12 @@ public class FragmentEntryLinkLocalServiceTest {
 	private void _setFreeMarkerEnabled(boolean freeMarkerEnabled)
 		throws Exception {
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"enable.freemarker", freeMarkerEnabled
-			).build();
-
 		_configurationProvider.saveCompanyConfiguration(
 			_configurationBeanDeclaration.getConfigurationBeanClass(),
-			_group.getCompanyId(), properties);
+			_group.getCompanyId(),
+			HashMapDictionaryBuilder.<String, Object>put(
+				"enable.freemarker", freeMarkerEnabled
+			).build());
 
 		Thread.sleep(200);
 	}

@@ -129,13 +129,10 @@ public class MFAConfigurationVisibilityController
 	}
 
 	private Dictionary<String, Object> _getProperties() {
-		Dictionary<String, Object> dictionary =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"configuration.pid",
-				new ArrayList<>(_mfaVisibilityConfigurationPids)
-			).build();
-
-		return dictionary;
+		return HashMapDictionaryBuilder.<String, Object>put(
+			"configuration.pid",
+			new ArrayList<>(_mfaVisibilityConfigurationPids)
+		).build();
 	}
 
 	private void _update() {

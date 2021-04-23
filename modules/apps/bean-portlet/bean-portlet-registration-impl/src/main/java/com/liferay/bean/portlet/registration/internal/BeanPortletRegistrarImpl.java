@@ -50,7 +50,6 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -261,21 +260,19 @@ public class BeanPortletRegistrarImpl implements BeanPortletRegistrar {
 			}
 		}
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-				servletContext.getServletContextName()
-			).put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-				PortletServlet.class.getName()
-			).put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
-				"/portlet-servlet/*"
-			).build();
-
 		serviceRegistrations.add(
 			bundleContext.registerService(
-				Servlet.class, new PortletServlet(), properties));
+				Servlet.class, new PortletServlet(),
+				HashMapDictionaryBuilder.<String, Object>put(
+					HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+					servletContext.getServletContextName()
+				).put(
+					HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
+					PortletServlet.class.getName()
+				).put(
+					HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
+					"/portlet-servlet/*"
+				).build()));
 
 		Set<String> portletNames = descriptorDisplayCategories.keySet();
 

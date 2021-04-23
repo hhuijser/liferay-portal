@@ -28,7 +28,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Dictionary;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
@@ -150,14 +149,12 @@ public class HttpMethodApplicationClientTest extends BaseClientTestCase {
 			registerJaxRsApplication(
 				new TestHeadHandlingApplication(), "methods-with-head", null);
 
-			Dictionary<String, Object> properties =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"ignore.missing.scopes", ""
-				).build();
-
 			registerJaxRsApplication(
 				new TestApplication(),
-				"methods-with-ignore-missing-scopes-empty", properties);
+				"methods-with-ignore-missing-scopes-empty",
+				HashMapDictionaryBuilder.<String, Object>put(
+					"ignore.missing.scopes", ""
+				).build());
 
 			createOAuth2Application(
 				defaultCompanyId, user, "oauthTestApplicationAfter",

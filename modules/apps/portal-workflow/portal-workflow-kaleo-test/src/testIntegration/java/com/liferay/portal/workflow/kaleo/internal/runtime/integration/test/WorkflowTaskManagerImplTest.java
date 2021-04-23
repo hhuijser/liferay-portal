@@ -130,7 +130,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -185,12 +184,11 @@ public class WorkflowTaskManagerImplTest {
 				"WorkflowDefinitionConfiguration",
 			StringPool.QUESTION);
 
-		Dictionary<String, Object> properties =
+		ConfigurationTestUtil.saveConfiguration(
+			_configuration,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"company.administrator.can.publish", true
-			).build();
-
-		ConfigurationTestUtil.saveConfiguration(_configuration, properties);
+			).build());
 	}
 
 	@AfterClass

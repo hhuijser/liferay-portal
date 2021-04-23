@@ -276,13 +276,12 @@ public class ConfigurationModelListenerTest {
 	private ServiceRegistration<?> _registerConfigurationModelListener(
 		ConfigurationModelListener configurationModelListener, String pid) {
 
-		Dictionary<String, String> properties = HashMapDictionaryBuilder.put(
-			"model.class.name", pid
-		).build();
-
 		return _bundleContext.registerService(
 			ConfigurationModelListener.class.getName(),
-			configurationModelListener, properties);
+			configurationModelListener,
+			HashMapDictionaryBuilder.put(
+				"model.class.name", pid
+			).build());
 	}
 
 	private static final String _TEST_KEY = StringUtil.randomString(20);

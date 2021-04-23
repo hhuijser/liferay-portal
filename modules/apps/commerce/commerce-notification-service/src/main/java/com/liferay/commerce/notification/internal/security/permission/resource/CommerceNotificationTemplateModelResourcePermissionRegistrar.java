@@ -26,8 +26,6 @@ import com.liferay.portal.kernel.security.permission.resource.StagedModelPermiss
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.workflow.permission.WorkflowPermission;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -46,11 +44,6 @@ public class CommerceNotificationTemplateModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", CommerceNotificationTemplate.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<CommerceNotificationTemplate>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -65,7 +58,9 @@ public class CommerceNotificationTemplateModelResourcePermissionRegistrar {
 						_stagingPermission, CPPortletKeys.COMMERCE_CHANNELS,
 						CommerceNotificationTemplate::
 							getCommerceNotificationTemplateId))),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", CommerceNotificationTemplate.class.getName()
+			).build());
 	}
 
 	@Deactivate

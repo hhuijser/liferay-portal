@@ -18,8 +18,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
-
 import javax.servlet.Filter;
 
 import org.osgi.framework.BundleContext;
@@ -38,7 +36,8 @@ public class InitFilterTracker {
 	protected void activate(BundleContext bundleContext) {
 		InitFilter initFilter = new InitFilter();
 
-		Dictionary<String, Object> properties =
+		_serviceRegistration = bundleContext.registerService(
+			Filter.class, initFilter,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"dispatcher", new String[] {"FORWARD", "REQUEST"}
 			).put(
@@ -47,10 +46,7 @@ public class InitFilterTracker {
 				"servlet-filter-name", "Init Filter"
 			).put(
 				"url-pattern", "/*"
-			).build();
-
-		_serviceRegistration = bundleContext.registerService(
-			Filter.class, initFilter, properties);
+			).build());
 
 		initFilter.setServiceRegistration(_serviceRegistration);
 	}

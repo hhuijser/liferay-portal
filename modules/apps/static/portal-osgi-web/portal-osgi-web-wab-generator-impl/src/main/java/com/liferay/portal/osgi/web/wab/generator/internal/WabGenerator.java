@@ -38,7 +38,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
@@ -226,14 +225,12 @@ public class WabGenerator
 
 		ClassLoader classLoader = clazz.getClassLoader();
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				URLConstants.URL_HANDLER_PROTOCOL, new String[] {"webbundle"}
-			).build();
-
 		bundleContext.registerService(
 			URLStreamHandlerService.class.getName(),
-			new WabURLStreamHandlerService(classLoader, this), properties);
+			new WabURLStreamHandlerService(classLoader, this),
+			HashMapDictionaryBuilder.<String, Object>put(
+				URLConstants.URL_HANDLER_PROTOCOL, new String[] {"webbundle"}
+			).build());
 	}
 
 	/**

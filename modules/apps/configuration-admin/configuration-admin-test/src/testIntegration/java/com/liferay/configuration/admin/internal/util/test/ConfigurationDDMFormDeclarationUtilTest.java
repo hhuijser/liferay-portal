@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
 import java.lang.reflect.Method;
 
-import java.util.Dictionary;
 import java.util.Objects;
 
 import org.junit.After;
@@ -107,14 +106,12 @@ public class ConfigurationDDMFormDeclarationUtilTest {
 			ConfigurationDDMFormDeclaration configurationDDMFormDeclaration,
 			String configurationPid) {
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"configurationPid", configurationPid
-			).build();
-
 		return _bundleContext.registerService(
 			ConfigurationDDMFormDeclaration.class,
-			configurationDDMFormDeclaration, properties);
+			configurationDDMFormDeclaration,
+			HashMapDictionaryBuilder.<String, Object>put(
+				"configurationPid", configurationPid
+			).build());
 	}
 
 	private Bundle _bundle;

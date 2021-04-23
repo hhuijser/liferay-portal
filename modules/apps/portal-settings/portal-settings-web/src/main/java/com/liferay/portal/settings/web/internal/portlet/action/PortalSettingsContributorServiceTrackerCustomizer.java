@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.service.PortletPreferencesLocalService;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.settings.portlet.action.PortalSettingsFormContributor;
 
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Optional;
@@ -137,16 +136,14 @@ public class PortalSettingsContributorServiceTrackerCustomizer
 	protected ServiceRegistration<MVCActionCommand> registerMVCActionCommand(
 		String mvcActionCommandName, MVCActionCommand mvcActionCommand) {
 
-		Dictionary<String, Object> properties =
+		return _bundleContext.registerService(
+			MVCActionCommand.class, mvcActionCommand,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"javax.portlet.name",
 				ConfigurationAdminPortletKeys.INSTANCE_SETTINGS
 			).put(
 				"mvc.command.name", mvcActionCommandName
-			).build();
-
-		return _bundleContext.registerService(
-			MVCActionCommand.class, mvcActionCommand, properties);
+			).build());
 	}
 
 	protected void unregister(

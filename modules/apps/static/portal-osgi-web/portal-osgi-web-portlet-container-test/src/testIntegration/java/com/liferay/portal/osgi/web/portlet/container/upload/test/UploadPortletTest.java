@@ -44,7 +44,6 @@ import com.liferay.upload.UniqueFileNameProvider;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.util.Dictionary;
 import java.util.Map;
 
 import javax.portlet.Portlet;
@@ -169,22 +168,21 @@ public class UploadPortletTest extends BasePortletContainerTestCase {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"javax.portlet.name", TestUploadPortlet.PORTLET_NAME
-			).put(
-				"mvc.command.name", TestUploadPortlet.MVC_COMMAND_NAME
-			).build();
-
 		ServiceRegistration<MVCActionCommand> serviceRegistration =
 			bundleContext.registerService(
-				MVCActionCommand.class, mvcActionCommand, properties);
+				MVCActionCommand.class, mvcActionCommand,
+				HashMapDictionaryBuilder.<String, Object>put(
+					"javax.portlet.name", TestUploadPortlet.PORTLET_NAME
+				).put(
+					"mvc.command.name", TestUploadPortlet.MVC_COMMAND_NAME
+				).build());
 
 		serviceRegistrations.add(serviceRegistration);
 	}
 
 	protected void registerMVCPortlet(Portlet portlet) throws Exception {
-		Dictionary<String, Object> properties =
+		setUpPortlet(
+			portlet,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"com.liferay.portlet.private-request-attributes",
 				Boolean.FALSE.toString()
@@ -221,9 +219,8 @@ public class UploadPortletTest extends BasePortletContainerTestCase {
 				"javax.portlet.security-role-ref", "guest,power-user,user"
 			).put(
 				"javax.portlet.supports.mime-type", "text/html"
-			).build();
-
-		setUpPortlet(portlet, properties, TestUploadPortlet.PORTLET_NAME);
+			).build(),
+			TestUploadPortlet.PORTLET_NAME);
 	}
 
 	protected void setUp(

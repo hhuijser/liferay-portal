@@ -22,8 +22,6 @@ import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.workflow.kaleo.forms.constants.KaleoFormsConstants;
 import com.liferay.portal.workflow.kaleo.forms.constants.KaleoFormsPortletKeys;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -39,11 +37,6 @@ public class KaleoFormsPortletResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"resource.name", KaleoFormsConstants.RESOURCE_NAME
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			PortletResourcePermission.class,
 			PortletResourcePermissionFactory.create(
@@ -51,7 +44,9 @@ public class KaleoFormsPortletResourcePermissionRegistrar {
 				new StagedPortletPermissionLogic(
 					_stagingPermission,
 					KaleoFormsPortletKeys.KALEO_FORMS_ADMIN)),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"resource.name", KaleoFormsConstants.RESOURCE_NAME
+			).build());
 	}
 
 	@Deactivate

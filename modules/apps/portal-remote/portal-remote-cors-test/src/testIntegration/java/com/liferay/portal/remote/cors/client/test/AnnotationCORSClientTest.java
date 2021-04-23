@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Dictionary;
-
 import javax.ws.rs.HttpMethod;
 
 import org.junit.Before;
@@ -42,12 +40,11 @@ public class AnnotationCORSClientTest extends BaseCORSClientTestCase {
 
 	@Before
 	public void setUp() {
-		Dictionary<String, Object> properties =
+		registerJaxRsApplication(
+			new CORSTestApplication(), "test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				"liferay.cors.annotation", true
-			).build();
-
-		registerJaxRsApplication(new CORSTestApplication(), "test", properties);
+			).build());
 	}
 
 	@Test

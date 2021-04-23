@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Arrays;
-import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.function.Function;
 
@@ -116,13 +115,11 @@ public class NarrowDownScopeClientTest extends BaseClientTestCase {
 
 			User user = UserTestUtil.getAdminUser(defaultCompanyId);
 
-			Dictionary<String, Object> properties =
+			registerJaxRsApplication(
+				new TestApplication(), "methods",
 				HashMapDictionaryBuilder.<String, Object>put(
 					"oauth2.test.application", true
-				).build();
-
-			registerJaxRsApplication(
-				new TestApplication(), "methods", properties);
+				).build());
 
 			createOAuth2Application(
 				defaultCompanyId, user, "oauthTestApplication",

@@ -86,7 +86,6 @@ import com.liferay.portletmvc4spring.test.mock.web.portlet.MockPortletRequest;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -129,13 +128,11 @@ public class AssetPublisherExportImportTest
 				"AssetPublisherWebConfiguration",
 			StringPool.QUESTION);
 
-		Dictionary<String, Object> properties =
+		ConfigurationTestUtil.saveConfiguration(
+			_assetPublisherWebConfiguration,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"dynamicExportEnabled", true
-			).build();
-
-		ConfigurationTestUtil.saveConfiguration(
-			_assetPublisherWebConfiguration, properties);
+			).build());
 	}
 
 	@AfterClass

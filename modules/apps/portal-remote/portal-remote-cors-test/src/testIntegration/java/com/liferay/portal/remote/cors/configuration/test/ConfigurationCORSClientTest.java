@@ -26,8 +26,6 @@ import com.liferay.portal.remote.cors.configuration.PortalCORSConfiguration;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Dictionary;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -86,12 +84,11 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 			_companyId, "/o/cors-app/instance/only/path/*",
 			"http://www.google.com");
 
-		Dictionary<String, Object> properties =
+		registerJaxRsApplication(
+			new CORSTestApplication(), "",
 			HashMapDictionaryBuilder.<String, Object>put(
 				"osgi.jaxrs.name", "test-cors-2"
-			).build();
-
-		registerJaxRsApplication(new CORSTestApplication(), "", properties);
+			).build());
 
 		assertJaxRSUrl(
 			"/cors-app/instance/only/path/whatever", "GET", false, true,
@@ -109,12 +106,11 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 			_companyId, "/o/cors-app/overwritten/path/*",
 			"http://www.liferay.com");
 
-		Dictionary<String, Object> properties =
+		registerJaxRsApplication(
+			new CORSTestApplication(), "",
 			HashMapDictionaryBuilder.<String, Object>put(
 				"osgi.jaxrs.name", "test-cors-3"
-			).build();
-
-		registerJaxRsApplication(new CORSTestApplication(), "", properties);
+			).build());
 
 		assertJaxRSUrl(
 			"/cors-app/overwritten/path/whatever", "GET", false, false,
@@ -128,7 +124,8 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 			long companyId, String urlPattern, String allowedOrigin)
 		throws Exception {
 
-		Dictionary<String, Object> properties =
+		createFactoryConfiguration(
+			PortalCORSConfiguration.class.getName(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				"companyId", companyId
 			).put(
@@ -141,10 +138,7 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 					"Access-Control-Allow-Methods: *",
 					"Access-Control-Allow-Origin: " + allowedOrigin
 				}
-			).build();
-
-		createFactoryConfiguration(
-			PortalCORSConfiguration.class.getName(), properties);
+			).build());
 	}
 
 	private long _companyId;

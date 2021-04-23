@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.security.service.access.policy.model.SAPEntry;
 import com.liferay.portal.security.service.access.policy.service.SAPEntryLocalService;
@@ -82,12 +83,14 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 						_buildScopeDescriptorProperties(companyId));
 				});
 
-			Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-			properties.put("companyId", String.valueOf(companyId));
-			properties.put(
-				"osgi.jaxrs.name", OAuth2JSONWSConstants.APPLICATION_NAME);
-			properties.put("sap.scope.finder", Boolean.TRUE);
+			Dictionary<String, Object> properties =
+				HashMapDictionaryBuilder.<String, Object>put(
+					"companyId", String.valueOf(companyId)
+				).put(
+					"osgi.jaxrs.name", OAuth2JSONWSConstants.APPLICATION_NAME
+				).put(
+					"sap.scope.finder", Boolean.TRUE
+				).build();
 
 			_scopeFinderServiceRegistrations.compute(
 				companyId,
@@ -239,11 +242,11 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 		long companyId) {
 
 		HashMapDictionary<String, Object> properties =
-			new HashMapDictionary<>();
-
-		properties.put("companyId", String.valueOf(companyId));
-		properties.put(
-			"osgi.jaxrs.name", _jaxRsApplicationNames.toArray(new String[0]));
+			HashMapDictionaryBuilder.<String, Object>put(
+				"companyId", String.valueOf(companyId)
+			).put(
+				"osgi.jaxrs.name", _jaxRsApplicationNames.toArray(new String[0])
+			).build();
 
 		return properties;
 	}

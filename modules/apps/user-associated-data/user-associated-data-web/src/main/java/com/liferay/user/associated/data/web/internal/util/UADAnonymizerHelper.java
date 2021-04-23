@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -149,10 +149,12 @@ public class UADAnonymizerHelper {
 					AnonymousUserConfiguration.class.getName(),
 					StringPool.QUESTION);
 
-			Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-			properties.put("companyId", companyId);
-			properties.put("userId", anonymousUser.getUserId());
+			Dictionary<String, Object> properties =
+				HashMapDictionaryBuilder.<String, Object>put(
+					"companyId", companyId
+				).put(
+					"userId", anonymousUser.getUserId()
+				).build();
 
 			configuration.update(properties);
 

@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.security.auth.verifier.AuthVerifier;
 import com.liferay.portal.kernel.security.auth.verifier.AuthVerifierResult;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.log.LogCapture;
@@ -80,176 +80,169 @@ public class AuthVerifierTest {
 
 		_bundleContext = bundle.getBundleContext();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-no-allowed");
-		properties.put("auth.verifier.guest.allowed", false);
-		properties.put(
-			"auth-verifier-guest-allowed-test-servlet-context-helper", true);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-no-allowed"
+			).put(
+				"auth.verifier.guest.allowed", false
+			).put(
+				"auth-verifier-guest-allowed-test-servlet-context-helper", true
+			).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-guest-allowed-false-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-allowed");
-		properties.put("auth.verifier.guest.allowed", true);
-		properties.put(
-			"auth-verifier-guest-allowed-test-servlet-context-helper", true);
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-allowed"
+		).put(
+			"auth.verifier.guest.allowed", true
+		).put(
+			"auth-verifier-guest-allowed-test-servlet-context-helper", true
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-guest-allowed-true-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-default");
-		properties.put(
-			"auth-verifier-guest-allowed-test-servlet-context-helper", true);
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-default"
+		).put(
+			"auth-verifier-guest-allowed-test-servlet-context-helper", true
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-guest-allowed-default-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-			"cxf-servlet");
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME, "cxf-servlet"
+		).put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
-			"/guestAllowed");
-		properties.put(
+			"/guestAllowed"
+		).put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			"(auth-verifier-guest-allowed-test-servlet-context-helper=true)");
+			"(auth-verifier-guest-allowed-test-servlet-context-helper=true)"
+		).build();
 
 		_registerServlet(properties, GuestAllowedHttpServlet::new);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(JaxrsWhiteboardConstants.JAX_RS_NAME, "filter-enabled");
-		properties.put("auth.verifier.guest.allowed", true);
-		properties.put(
-			"auth-verifier-tracker-test-servlet-context-helper", true);
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			JaxrsWhiteboardConstants.JAX_RS_NAME, "filter-enabled"
+		).put(
+			"auth.verifier.guest.allowed", true
+		).put(
+			"auth-verifier-tracker-test-servlet-context-helper", true
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-filter-tracker-enabled-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
-			"auth-verifier-tracker-test-servlet-context-helper", true);
-		properties.put("liferay.auth.verifier", false);
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			"auth-verifier-tracker-test-servlet-context-helper", true
+		).put(
+			"liferay.auth.verifier", false
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-filter-tracker-disabled-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
-			"auth-verifier-tracker-test-servlet-context-helper", true);
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			"auth-verifier-tracker-test-servlet-context-helper", true
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-filter-tracker-default-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			"(auth-verifier-tracker-test-servlet-context-helper=true)");
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-			"cxf-servlet");
-		properties.put(
+			"(auth-verifier-tracker-test-servlet-context-helper=true)"
+		).put(
+			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME, "cxf-servlet"
+		).put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
-			"/remoteUser");
+			"/remoteUser"
+		).build();
 
 		_registerServlet(properties, RemoteUserHttpServlet::new);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(JaxrsWhiteboardConstants.JAX_RS_NAME, "filter-enabled");
-		properties.put(
-			"auth-verifier-tracker-test-servlet-context-helper", true);
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			JaxrsWhiteboardConstants.JAX_RS_NAME, "filter-enabled"
+		).put(
+			"auth-verifier-tracker-test-servlet-context-helper", true
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-filter-tracker-remote-access-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-			"cxf-servlet");
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME, "cxf-servlet"
+		).put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
-			"/remoteAccess");
-		properties.put(
+			"/remoteAccess"
+		).put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			"auth-verifier-filter-tracker-remote-access-test");
+			"auth-verifier-filter-tracker-remote-access-test"
+		).build();
 
 		_registerServlet(properties, RemoteAccessHttpServlet::new);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
 			JaxrsWhiteboardConstants.JAX_RS_NAME,
-			"auth-verifier-filter-override-matched");
-		properties.put("auth.verifier.guest.allowed", true);
-		properties.put(
-			"auth-verifier-matched-test-auth-verifier-filter-helper", true);
-		properties.put(
+			"auth-verifier-filter-override-matched"
+		).put(
+			"auth.verifier.guest.allowed", true
+		).put(
+			"auth-verifier-matched-test-auth-verifier-filter-helper", true
+		).put(
 			"auth.verifier.auth.verifier.AuthVerifierTest$TestAuthVerifier." +
 				"urls.includes",
-			"*");
+			"*"
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-filter-override-matched-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
 			JaxrsWhiteboardConstants.JAX_RS_NAME,
-			"auth-verifier-filter-override-not-matched");
-		properties.put("auth.verifier.guest.allowed", true);
-		properties.put(
-			"auth-verifier-matched-test-auth-verifier-filter-helper", true);
-		properties.put(
+			"auth-verifier-filter-override-not-matched"
+		).put(
+			"auth.verifier.guest.allowed", true
+		).put(
+			"auth-verifier-matched-test-auth-verifier-filter-helper", true
+		).put(
 			"auth.verifier.auth.verifier.AuthVerifierTest$TestAuthVerifier." +
 				"urls.includes",
-			"/wrongPath");
+			"/wrongPath"
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-filter-override-not-matched-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
 			JaxrsWhiteboardConstants.JAX_RS_NAME,
-			"auth-verifier-filter-override-missing");
-		properties.put("auth.verifier.guest.allowed", true);
-		properties.put(
-			"auth-verifier-matched-test-auth-verifier-filter-helper", true);
+			"auth-verifier-filter-override-missing"
+		).put(
+			"auth.verifier.guest.allowed", true
+		).put(
+			"auth-verifier-matched-test-auth-verifier-filter-helper", true
+		).build();
 
 		_registerServletContextHelper(
 			"auth-verifier-filter-override-missing-test", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-			"cxf-servlet");
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN, "/*");
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME, "cxf-servlet"
+		).put(
+			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN, "/*"
+		).put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			"(auth-verifier-matched-test-auth-verifier-filter-helper=true)");
+			"(auth-verifier-matched-test-auth-verifier-filter-helper=true)"
+		).build();
 
 		_registerServlet(properties, AuthVerifierMatchedHttpServlet::new);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
 			"auth.verifier.AuthVerifierTest$TestAuthVerifier.urls.includes",
-			"/authVerifierMatched,/attemptMatchRelativeToContextPath");
+			"/authVerifierMatched,/attemptMatchRelativeToContextPath"
+		).build();
 
 		_registerAuthVerifier(new TestAuthVerifier(), properties);
 	}

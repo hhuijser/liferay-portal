@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.resource.bundle.AggregateResourceBundleLoader;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoader;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 
@@ -343,11 +343,11 @@ public class FragmentCollectionContributorTrackerImpl
 			_fragmentEntries.putAll(
 				_getFragmentEntries(fragmentCollectionContributor));
 
-			Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-			properties.put(
-				"fragment.collection.key",
-				serviceReference.getProperty("fragment.collection.key"));
+			Dictionary<String, Object> properties =
+				HashMapDictionaryBuilder.<String, Object>put(
+					"fragment.collection.key",
+					serviceReference.getProperty("fragment.collection.key")
+				).build();
 
 			_bundleContext.registerService(
 				FragmentCollectionContributorRegistration.class,

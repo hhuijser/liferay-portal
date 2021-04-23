@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -97,13 +97,13 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration1 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, emoticonsEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.config.key", _CONFIG_KEY);
-						put("editor.name", _EDITOR_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.config.key", _CONFIG_KEY
+				).put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor textFormatEditorConfigContributor =
 			new TextFormatEditorConfigContributor();
@@ -112,13 +112,13 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				textFormatEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-						put("javax.portlet.name", _PORTLET_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"javax.portlet.name", _PORTLET_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -148,12 +148,11 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration1 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, emoticonsEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.config.key", _CONFIG_KEY);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.config.key", _CONFIG_KEY
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor tablesEditorConfigContributor =
 			new TablesEditorConfigContributor();
@@ -161,12 +160,11 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration2 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, tablesEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("javax.portlet.name", _PORTLET_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"javax.portlet.name", _PORTLET_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -194,12 +192,11 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration1 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, tablesEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor textFormatEditorConfigContributor =
 			new TextFormatEditorConfigContributor();
@@ -208,11 +205,9 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				textFormatEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -243,12 +238,11 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				textFormatEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor imageEditorConfigContributor =
 			new ImageEditorConfigContributor();
@@ -256,12 +250,11 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration2 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, imageEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME_2);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME_2
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -295,12 +288,11 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				textFormatEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor videoEditorVideoConfigContributor =
 			new VideoEditorConfigContributor();
@@ -309,12 +301,11 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				videoEditorVideoConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-						put("service.ranking", 2000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"service.ranking", 2000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -344,14 +335,15 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				textFormatEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.config.key", _CONFIG_KEY);
-						put("editor.name", _EDITOR_NAME);
-						put("javax.portlet.name", _PORTLET_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.config.key", _CONFIG_KEY
+				).put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"javax.portlet.name", _PORTLET_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor emoticonsEditorConfigContributor =
 			new EmoticonsEditorConfigContributor();
@@ -359,13 +351,13 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration2 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, emoticonsEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.config.key", _CONFIG_KEY);
-						put("javax.portlet.name", _PORTLET_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.config.key", _CONFIG_KEY
+				).put(
+					"javax.portlet.name", _PORTLET_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -395,13 +387,13 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration1 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, emoticonsEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.config.key", _CONFIG_KEY);
-						put("javax.portlet.name", _PORTLET_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.config.key", _CONFIG_KEY
+				).put(
+					"javax.portlet.name", _PORTLET_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor textFormatEditorConfigContributor =
 			new TextFormatEditorConfigContributor();
@@ -410,13 +402,13 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				textFormatEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.config.key", _CONFIG_KEY);
-						put("editor.name", _EDITOR_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.config.key", _CONFIG_KEY
+				).put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -447,13 +439,13 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				textFormatEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-						put("javax.portlet.name", _PORTLET_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"javax.portlet.name", _PORTLET_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor emoticonsEditorConfigContributor =
 			new EmoticonsEditorConfigContributor();
@@ -461,12 +453,11 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration2 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, emoticonsEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.config.key", _CONFIG_KEY);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.config.key", _CONFIG_KEY
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -496,12 +487,11 @@ public class EditorConfigContributorTest {
 		_editorConfigContributorServiceRegistration1 =
 			_bundleContext.registerService(
 				EditorConfigContributor.class, tablesEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("javax.portlet.name", _PORTLET_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"javax.portlet.name", _PORTLET_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfigContributor textFormatEditorConfigContributor =
 			new TextFormatEditorConfigContributor();
@@ -510,12 +500,11 @@ public class EditorConfigContributorTest {
 			_bundleContext.registerService(
 				EditorConfigContributor.class,
 				textFormatEditorConfigContributor,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-						put("service.ranking", 1000);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).put(
+					"service.ranking", 1000
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(

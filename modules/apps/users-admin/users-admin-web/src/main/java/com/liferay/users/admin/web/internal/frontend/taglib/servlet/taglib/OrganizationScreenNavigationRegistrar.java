@@ -18,7 +18,7 @@ import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.service.OrganizationService;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.users.admin.constants.UserScreenNavigationEntryConstants;
 
 import java.util.ArrayList;
@@ -166,12 +166,11 @@ public class OrganizationScreenNavigationRegistrar {
 		_serviceRegistrations.add(
 			_bundleContext.registerService(
 				clazz, serviceObject,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("screen.navigation.category.order", order);
-						put("screen.navigation.entry.order", order);
-					}
-				}));
+				HashMapDictionaryBuilder.<String, Object>put(
+					"screen.navigation.category.order", order
+				).put(
+					"screen.navigation.entry.order", order
+				).build()));
 	}
 
 	private BundleContext _bundleContext;

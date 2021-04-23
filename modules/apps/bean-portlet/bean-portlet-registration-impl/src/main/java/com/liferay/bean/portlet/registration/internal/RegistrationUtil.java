@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.PortletConstants;
 import com.liferay.portal.kernel.resource.bundle.ClassResourceBundleLoader;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoader;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -152,12 +152,14 @@ public class RegistrationUtil {
 			new ClassResourceBundleLoader(
 				resourceBundle, servletContext.getClassLoader());
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("resource.bundle.base.name", resourceBundle);
-		properties.put("service.ranking", Integer.MIN_VALUE);
-		properties.put(
-			"servlet.context.name", servletContext.getServletContextName());
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"resource.bundle.base.name", resourceBundle
+			).put(
+				"service.ranking", Integer.MIN_VALUE
+			).put(
+				"servlet.context.name", servletContext.getServletContextName()
+			).build();
 
 		return bundleContext.registerService(
 			ResourceBundleLoader.class, resourceBundleLoader, properties);

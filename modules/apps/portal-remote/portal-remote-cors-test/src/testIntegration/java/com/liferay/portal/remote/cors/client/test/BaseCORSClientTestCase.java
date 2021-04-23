@@ -24,6 +24,7 @@ import com.liferay.petra.process.local.LocalProcessExecutor;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
@@ -166,10 +167,9 @@ public abstract class BaseCORSClientTestCase {
 		CountDownLatch countDownLatch = new CountDownLatch(1);
 
 		Dictionary<String, Object> registrationProperties =
-			new HashMapDictionary<>();
-
-		registrationProperties.put(
-			Constants.SERVICE_PID, configurationClassName);
+			HashMapDictionaryBuilder.<String, Object>put(
+				Constants.SERVICE_PID, configurationClassName
+			).build();
 
 		ServiceRegistration<ManagedServiceFactory> serviceRegistration =
 			_bundleContext.registerService(

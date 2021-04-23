@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletJSONUtil;
 import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -214,10 +214,9 @@ public class PortletRegistryImpl implements PortletRegistry {
 		BundleContext bundleContext = bundle.getBundleContext();
 
 		Dictionary<String, Object> aliasRegistrationProperties =
-			new HashMapDictionary<>();
-
-		aliasRegistrationProperties.put(
-			"com.liferay.fragment.entry.processor.portlet.alias", alias);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"com.liferay.fragment.entry.processor.portlet.alias", alias
+			).build();
 
 		bundleContext.registerService(
 			PortletAliasRegistration.class,

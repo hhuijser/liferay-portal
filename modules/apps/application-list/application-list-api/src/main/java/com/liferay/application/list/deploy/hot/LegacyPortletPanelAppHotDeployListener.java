@@ -162,8 +162,10 @@ public class LegacyPortletPanelAppHotDeployListener
 
 			Dictionary<String, Object> properties =
 				HashMapDictionaryBuilder.<String, Object>put(
-					"panel.app.portlet.id", getPortletId(
-							hotDeployEvent.getServletContextName(), portletElement.elementText("portlet-name"))
+					"panel.app.portlet.id",
+					getPortletId(
+						hotDeployEvent.getServletContextName(),
+						portletElement.elementText("portlet-name"))
 				).put(
 					"panel.category.key", controlPanelEntryCategory
 				).build();

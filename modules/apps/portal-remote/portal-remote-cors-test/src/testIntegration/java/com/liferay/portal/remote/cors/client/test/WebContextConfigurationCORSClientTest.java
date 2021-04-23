@@ -16,7 +16,7 @@ package com.liferay.portal.remote.cors.client.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.remote.cors.configuration.WebContextCORSConfiguration;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -44,17 +44,17 @@ public class WebContextConfigurationCORSClientTest
 
 	@Before
 	public void setUp() {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("osgi.jaxrs.name", "test-cors");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"osgi.jaxrs.name", "test-cors"
+			).build();
 
 		registerJaxRsApplication(new CORSTestApplication(), "cors", properties);
 
-		properties = new HashMapDictionary<>();
-
-		properties.put(
+		properties = HashMapDictionaryBuilder.<String, Object>put(
 			"servlet.context.helper.select.filter",
-			"(osgi.jaxrs.name=test-cors)");
+			"(osgi.jaxrs.name=test-cors)"
+		).build();
 
 		createFactoryConfiguration(
 			WebContextCORSConfiguration.class.getName(), properties);

@@ -16,7 +16,7 @@ package com.liferay.asset.auto.tagger.internal.configuration.persistence.listene
 
 import com.liferay.portal.configuration.persistence.listener.ConfigurationModelListenerException;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Dictionary;
@@ -49,9 +49,10 @@ public class AssetAutoTaggerSystemConfigurationModelListenerTest {
 	public void testMaximumNumberOfTagsPerAssetNegative()
 		throws ConfigurationModelListenerException {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("maximumNumberOfTagsPerAsset", -1);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"maximumNumberOfTagsPerAsset", -1
+			).build();
 
 		_assetAutoTaggerSystemConfigurationModelListener.onBeforeSave(
 			RandomTestUtil.randomString(), properties);

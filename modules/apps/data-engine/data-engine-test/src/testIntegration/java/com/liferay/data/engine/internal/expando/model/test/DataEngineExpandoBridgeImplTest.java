@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
@@ -103,13 +104,10 @@ public class DataEngineExpandoBridgeImplTest {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.data.engine.internal.configuration." +
 						"DataEngineConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put(
-								"dataEngineNativeObjectClassNames",
-								new String[] {DataDefinition.class.getName()});
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"dataEngineNativeObjectClassNames",
+						new String[] {DataDefinition.class.getName()}
+					).build())) {
 
 			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
 				_company.getCompanyId(), DataDefinition.class.getName(),

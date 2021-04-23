@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 
 import java.util.Collections;
@@ -140,12 +140,11 @@ public class ProductMenuAppDeployer extends BaseAppDeployer {
 		return deployPanelApp(
 			new ProductMenuPanelApp(
 				companyId, panelCategoryKey, portletName, siteIds),
-			new HashMapDictionary<String, Object>() {
-				{
-					put("panel.app.order:Integer", 100);
-					put("panel.category.key", panelCategoryKey);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"panel.app.order:Integer", 100
+			).put(
+				"panel.category.key", panelCategoryKey
+			).build());
 	}
 
 	private ServiceRegistration<?> _deployPortlet(

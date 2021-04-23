@@ -15,7 +15,7 @@
 package com.liferay.adaptive.media.web.internal.background.task;
 
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskExecutor;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
 import java.util.Dictionary;
 import java.util.HashSet;
@@ -65,11 +65,12 @@ public class BackgroundTaskExecutorConfigurator {
 		BundleContext bundleContext,
 		BackgroundTaskExecutor backgroundTaskExecutor) {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
 		Class<?> clazz = backgroundTaskExecutor.getClass();
 
-		properties.put("background.task.executor.class.name", clazz.getName());
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"background.task.executor.class.name", clazz.getName()
+			).build();
 
 		ServiceRegistration<BackgroundTaskExecutor> serviceRegistration =
 			bundleContext.registerService(

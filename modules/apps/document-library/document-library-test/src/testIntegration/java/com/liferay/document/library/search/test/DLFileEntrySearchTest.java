@@ -60,7 +60,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -100,11 +100,9 @@ public class DLFileEntrySearchTest extends BaseSearchTestCase {
 	public static void setUpClass() throws Exception {
 		ConfigurationTestUtil.saveConfiguration(
 			DDMIndexerConfiguration.class.getName(),
-			new HashMapDictionary() {
-				{
-					put("enableLegacyDDMIndexFields", false);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"enableLegacyDDMIndexFields", false
+			).build());
 	}
 
 	@AfterClass

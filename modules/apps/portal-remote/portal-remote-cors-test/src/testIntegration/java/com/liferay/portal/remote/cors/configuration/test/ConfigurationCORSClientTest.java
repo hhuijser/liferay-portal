@@ -19,7 +19,7 @@ import com.liferay.portal.configuration.persistence.listener.ConfigurationModelL
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.remote.cors.client.test.BaseCORSClientTestCase;
 import com.liferay.portal.remote.cors.client.test.CORSTestApplication;
 import com.liferay.portal.remote.cors.configuration.PortalCORSConfiguration;
@@ -86,9 +86,10 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 			_companyId, "/o/cors-app/instance/only/path/*",
 			"http://www.google.com");
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("osgi.jaxrs.name", "test-cors-2");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"osgi.jaxrs.name", "test-cors-2"
+			).build();
 
 		registerJaxRsApplication(new CORSTestApplication(), "", properties);
 
@@ -108,9 +109,10 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 			_companyId, "/o/cors-app/overwritten/path/*",
 			"http://www.liferay.com");
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("osgi.jaxrs.name", "test-cors-3");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"osgi.jaxrs.name", "test-cors-3"
+			).build();
 
 		registerJaxRsApplication(new CORSTestApplication(), "", properties);
 
@@ -126,18 +128,20 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 			long companyId, String urlPattern, String allowedOrigin)
 		throws Exception {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("companyId", companyId);
-		properties.put("filter.mapping.url.pattern", new String[] {urlPattern});
-		properties.put(
-			"headers",
-			new String[] {
-				"Access-Control-Allow-Credentials: true",
-				"Access-Control-Allow-Headers: *",
-				"Access-Control-Allow-Methods: *",
-				"Access-Control-Allow-Origin: " + allowedOrigin
-			});
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"companyId", companyId
+			).put(
+				"filter.mapping.url.pattern", new String[] {urlPattern}
+			).put(
+				"headers",
+				new String[] {
+					"Access-Control-Allow-Credentials: true",
+					"Access-Control-Allow-Headers: *",
+					"Access-Control-Allow-Methods: *",
+					"Access-Control-Allow-Origin: " + allowedOrigin
+				}
+			).build();
 
 		createFactoryConfiguration(
 			PortalCORSConfiguration.class.getName(), properties);

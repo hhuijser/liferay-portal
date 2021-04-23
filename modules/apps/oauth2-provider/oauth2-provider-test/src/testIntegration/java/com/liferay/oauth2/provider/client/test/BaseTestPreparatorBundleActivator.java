@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.security.service.access.policy.model.SAPEntry;
 import com.liferay.portal.security.service.access.policy.service.SAPEntryLocalService;
@@ -75,10 +76,12 @@ public abstract class BaseTestPreparatorBundleActivator
 
 		autoCloseables = new ArrayList<>();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("osgi.jaxrs.name", "Default");
-		properties.put("service.ranking", Integer.MAX_VALUE);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"osgi.jaxrs.name", "Default"
+			).put(
+				"service.ranking", Integer.MAX_VALUE
+			).build();
 
 		registerPrefixHandler(
 			PrefixHandler.PASS_THROUGH_PREFIX_HANDLER, properties);
@@ -137,9 +140,9 @@ public abstract class BaseTestPreparatorBundleActivator
 		CountDownLatch countDownLatch = new CountDownLatch(1);
 
 		Dictionary<String, Object> registrationProperties =
-			new HashMapDictionary<>();
-
-		registrationProperties.put(Constants.SERVICE_PID, factoryPid);
+			HashMapDictionaryBuilder.<String, Object>put(
+				Constants.SERVICE_PID, factoryPid
+			).build();
 
 		ServiceRegistration<ManagedServiceFactory> serviceRegistration =
 			bundleContext.registerService(

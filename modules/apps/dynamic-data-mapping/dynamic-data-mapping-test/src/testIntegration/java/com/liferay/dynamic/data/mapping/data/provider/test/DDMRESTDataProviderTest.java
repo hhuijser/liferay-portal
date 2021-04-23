@@ -42,7 +42,7 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.test.util.ResourcePermissionTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -80,22 +80,18 @@ public class DDMRESTDataProviderTest {
 	public static void setUpClass() throws Exception {
 		ConfigurationTestUtil.saveConfiguration(
 			DDMDataProviderConfiguration.class.getName(),
-			new HashMapDictionary() {
-				{
-					put("accessLocalNetwork", true);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"accessLocalNetwork", true
+			).build());
 	}
 
 	@AfterClass
 	public static void tearDownClass() throws Exception {
 		ConfigurationTestUtil.saveConfiguration(
 			DDMDataProviderConfiguration.class.getName(),
-			new HashMapDictionary() {
-				{
-					put("accessLocalNetwork", false);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"accessLocalNetwork", false
+			).build());
 	}
 
 	@Before

@@ -21,7 +21,6 @@ import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgrade
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
 import java.util.Collection;
-import java.util.Dictionary;
 import java.util.Iterator;
 
 import javax.sql.DataSource;
@@ -61,21 +60,19 @@ public class ConfigurationPersistenceImplBundleActivator
 
 		_configurationPersistenceManager.start();
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				PersistenceManager.PROPERTY_NAME,
-				ConfigurationPersistenceManager.class.getName()
-			).put(
-				Constants.SERVICE_RANKING, Integer.MAX_VALUE - 1000
-			).build();
-
 		_configurationPersistenceManagerServiceRegistration =
 			bundleContext.registerService(
 				new String[] {
 					PersistenceManager.class.getName(),
 					ReloadablePersistenceManager.class.getName()
 				},
-				_configurationPersistenceManager, properties);
+				_configurationPersistenceManager,
+				HashMapDictionaryBuilder.<String, Object>put(
+					PersistenceManager.PROPERTY_NAME,
+					ConfigurationPersistenceManager.class.getName()
+				).put(
+					Constants.SERVICE_RANKING, Integer.MAX_VALUE - 1000
+				).build());
 
 		_configurationUpgradeStepFactoryRegistration =
 			bundleContext.registerService(

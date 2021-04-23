@@ -157,15 +157,13 @@ public class KaleoWorkflowMessagingConfigurator {
 		schedulerEventMessageListenerWrapper.setMessageListener(
 			_timerMessageListener);
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"destination.name", KaleoRuntimeDestinationNames.WORKFLOW_TIMER
-			).build();
-
 		_schedulerEventMessageListenerServiceRegistration =
 			_bundleContext.registerService(
 				MessageListener.class, schedulerEventMessageListenerWrapper,
-				properties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"destination.name",
+					KaleoRuntimeDestinationNames.WORKFLOW_TIMER
+				).build());
 	}
 
 	protected void registerWorkflowDefinitionLinkDestination() {

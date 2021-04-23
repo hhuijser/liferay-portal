@@ -27,7 +27,6 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -85,16 +84,13 @@ public class ApplicationContextServicePublisherUtil {
 
 		Bundle bundle = bundleContext.getBundle();
 
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"org.springframework.context.service.name",
-				bundle.getSymbolicName()
-			).build();
-
 		ServiceRegistration<ApplicationContext> serviceRegistration =
 			bundleContext.registerService(
 				ApplicationContext.class, configurableApplicationContext,
-				properties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"org.springframework.context.service.name",
+					bundle.getSymbolicName()
+				).build());
 
 		serviceRegistrations.add(serviceRegistration);
 

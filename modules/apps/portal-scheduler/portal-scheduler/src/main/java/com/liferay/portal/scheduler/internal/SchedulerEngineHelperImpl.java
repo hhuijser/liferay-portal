@@ -989,14 +989,11 @@ public class SchedulerEngineHelperImpl implements SchedulerEngineHelper {
 					return null;
 				}
 
-				Dictionary<String, Object> properties =
-					HashMapDictionaryBuilder.<String, Object>put(
-						"destination.name", destinationName
-					).build();
-
 				serviceRegistration = bundleContext.registerService(
 					MessageListener.class, schedulerEventMessageListener,
-					properties);
+					HashMapDictionaryBuilder.<String, Object>put(
+						"destination.name", destinationName
+					).build());
 
 				_messageListenerServiceRegistrations.put(
 					schedulerEntry.getEventListenerClass(),

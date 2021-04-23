@@ -30,8 +30,6 @@ import com.liferay.web.proxy.web.internal.constants.WebProxyPortletKeys;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.util.Dictionary;
-
 import javax.portlet.Portlet;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
@@ -175,7 +173,8 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 
 		PortletContext portletContext = getPortletContext();
 
-		Dictionary<String, Object> properties =
+		_serviceRegistration = bundleContext.registerService(
+			Servlet.class, new PortletBridgeServlet(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
 				portletContext.getPortletContextName()
@@ -208,10 +207,7 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
 						"mementoSessionKey",
 				portletConfig.getInitParameter("mementoSessionKey")
-			).build();
-
-		_serviceRegistration = bundleContext.registerService(
-			Servlet.class, new PortletBridgeServlet(), properties);
+			).build());
 	}
 
 	protected void printError(RenderResponse renderResponse)

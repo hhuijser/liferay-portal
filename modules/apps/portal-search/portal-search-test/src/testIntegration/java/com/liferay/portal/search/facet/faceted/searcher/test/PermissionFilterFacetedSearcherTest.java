@@ -48,7 +48,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 
@@ -183,12 +182,10 @@ public class PermissionFilterFacetedSearcherTest
 		_configuration = configurationAdmin.getConfiguration(
 			JournalServiceConfiguration.class.getName(), StringPool.QUESTION);
 
-		Dictionary<String, Object> properties =
+		_configuration.update(
 			HashMapDictionaryBuilder.<String, Object>put(
 				"articleViewPermissionsCheckEnabled", true
-			).build();
-
-		_configuration.update(properties);
+			).build());
 	}
 
 	protected void tearDownJournalServiceConfiguration() throws Exception {

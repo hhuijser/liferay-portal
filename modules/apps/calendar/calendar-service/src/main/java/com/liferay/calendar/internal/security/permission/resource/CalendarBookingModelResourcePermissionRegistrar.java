@@ -30,8 +30,6 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 import com.liferay.portal.kernel.security.permission.resource.StagedModelPermissionLogic;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -47,11 +45,6 @@ public class CalendarBookingModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", CalendarBooking.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<CalendarBooking>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -67,7 +60,9 @@ public class CalendarBookingModelResourcePermissionRegistrar {
 							_stagingPermission, CalendarPortletKeys.CALENDAR,
 							CalendarBooking::getCalendarBookingId));
 				}),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", CalendarBooking.class.getName()
+			).build());
 	}
 
 	@Deactivate

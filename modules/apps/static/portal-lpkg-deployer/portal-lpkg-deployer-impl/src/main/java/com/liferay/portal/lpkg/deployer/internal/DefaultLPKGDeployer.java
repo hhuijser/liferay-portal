@@ -56,7 +56,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -273,14 +272,12 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 	}
 
 	private void _activate(final BundleContext bundleContext) throws Exception {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				URLConstants.URL_HANDLER_PROTOCOL, new String[] {"lpkg"}
-			).build();
-
 		bundleContext.registerService(
 			URLStreamHandlerService.class.getName(),
-			new LPKGURLStreamHandlerService(_urls), properties);
+			new LPKGURLStreamHandlerService(_urls),
+			HashMapDictionaryBuilder.<String, Object>put(
+				URLConstants.URL_HANDLER_PROTOCOL, new String[] {"lpkg"}
+			).build());
 
 		_wabBundleTracker = new BundleTracker<>(
 			bundleContext, ~Bundle.UNINSTALLED,

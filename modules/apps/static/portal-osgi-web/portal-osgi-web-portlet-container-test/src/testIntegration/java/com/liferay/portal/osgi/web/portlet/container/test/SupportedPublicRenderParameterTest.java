@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Dictionary;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -48,12 +47,12 @@ public class SupportedPublicRenderParameterTest
 	public void testPortalProvidedPRP() throws Exception {
 		String prpName = "categoryId";
 
-		Dictionary<String, Object> properties =
+		setUpPortlet(
+			testPortlet,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"javax.portlet.supported-public-render-parameter", prpName
-			).build();
-
-		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID);
+			).build(),
+			TEST_PORTLET_ID);
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			TestPropsValues.getCompanyId(), TEST_PORTLET_ID);
@@ -82,13 +81,13 @@ public class SupportedPublicRenderParameterTest
 	public void testPortletProvidedPRP() throws Exception {
 		String prpName = "myprp";
 
-		Dictionary<String, Object> properties =
+		setUpPortlet(
+			testPortlet,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"javax.portlet.supported-public-render-parameter",
 				prpName + ";http://some.uri.tld/space"
-			).build();
-
-		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID);
+			).build(),
+			TEST_PORTLET_ID);
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			TestPropsValues.getCompanyId(), TEST_PORTLET_ID);

@@ -241,12 +241,11 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		Dictionary<String, Object> properties =
+		registerService(
+			LifecycleAction.class, lifecycleAction,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"key", "servlet.service.events.pre"
-			).build();
-
-		registerService(LifecycleAction.class, lifecycleAction, properties);
+			).build());
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			PortletContainerTestUtil.getHttpServletRequest(group, layout),
@@ -309,12 +308,11 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		Dictionary<String, Object> properties =
+		registerService(
+			LifecycleAction.class, lifecycleAction,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"key", "servlet.service.events.pre"
-			).build();
-
-		registerService(LifecycleAction.class, lifecycleAction, properties);
+			).build());
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			PortletContainerTestUtil.getHttpServletRequest(group, layout),
@@ -376,12 +374,11 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		Dictionary<String, Object> properties =
+		registerService(
+			LifecycleAction.class, lifecycleAction,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"key", "servlet.service.events.post"
-			).build();
-
-		registerService(LifecycleAction.class, lifecycleAction, properties);
+			).build());
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			PortletContainerTestUtil.getHttpServletRequest(group, layout),

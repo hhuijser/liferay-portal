@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.security.permission.contributor.PermissionSQLContributor;
 import com.liferay.sharing.configuration.SharingConfiguration;
 import com.liferay.sharing.configuration.SharingConfigurationFactory;
@@ -66,11 +67,9 @@ public class SharingModelResourcePermissionConfiguratorImpl
 			_modelClassNames.add(modelResourcePermission.getModelName());
 
 			_sharingPermissionSQLContributorServiceRegistration.setProperties(
-				new HashMapDictionary<String, Object>() {
-					{
-						put("model.class.name", _modelClassNames.toArray());
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"model.class.name", _modelClassNames.toArray()
+				).build());
 
 			consumer.accept(
 				new SharingModelResourcePermissionLogic<>(

@@ -37,7 +37,7 @@ import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoader;
 import com.liferay.portal.kernel.servlet.PortletServlet;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -261,17 +261,17 @@ public class BeanPortletRegistrarImpl implements BeanPortletRegistrar {
 			}
 		}
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			servletContext.getServletContextName());
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-			PortletServlet.class.getName());
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
-			"/portlet-servlet/*");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+				servletContext.getServletContextName()
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
+				PortletServlet.class.getName()
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
+				"/portlet-servlet/*"
+			).build();
 
 		serviceRegistrations.add(
 			bundleContext.registerService(

@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.security.auth.AccessControlContext;
 import com.liferay.portal.kernel.security.auth.verifier.AuthVerifierResult;
 import com.liferay.portal.kernel.security.service.access.policy.ServiceAccessPolicy;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
@@ -204,10 +204,10 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 
 		_serviceTrackers.add(serviceTracker);
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			OAuth2ProviderScopeConstants.OSGI_JAXRS_NAME, osgiJaxRsName);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				OAuth2ProviderScopeConstants.OSGI_JAXRS_NAME, osgiJaxRsName
+			).build();
 
 		_serviceRegistrations.add(
 			_bundleContext.registerService(

@@ -31,7 +31,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -110,11 +110,9 @@ public class DDMTemplateLocalServiceTest extends BaseDDMServiceTestCase {
 				new ConfigurationTemporarySwapper(
 					"com.liferay.dynamic.data.mapping.configuration." +
 						"DDMWebConfiguration",
-					new HashMapDictionary<String, Object>() {
-						{
-							put("enableTemplateCreation", false);
-						}
-					})) {
+					HashMapDictionaryBuilder.<String, Object>put(
+						"enableTemplateCreation", false
+					).build())) {
 
 			addTemplate(
 				_classNameId, 0, null, "Test Template",

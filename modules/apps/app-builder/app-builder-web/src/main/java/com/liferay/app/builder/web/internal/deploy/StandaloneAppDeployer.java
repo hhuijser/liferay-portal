@@ -31,7 +31,7 @@ import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -165,11 +165,9 @@ public class StandaloneAppDeployer extends BaseAppDeployer {
 
 		return deployLayoutTypeAccessPolicy(
 			new AppPortletLayoutTypeAccessPolicy(),
-			new HashMapDictionary<String, Object>() {
-				{
-					put("layout.type", portletName);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"layout.type", portletName
+			).build());
 	}
 
 	private ServiceRegistration<?> _deployLayoutTypeController(
@@ -199,11 +197,9 @@ public class StandaloneAppDeployer extends BaseAppDeployer {
 		return deployLayoutTypeController(
 			new AppPortletLayoutTypeController(
 				_servletContext, appName, appNameMap, portletName),
-			new HashMapDictionary<String, Object>() {
-				{
-					put("layout.type", portletName);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"layout.type", portletName
+			).build());
 	}
 
 	private String _getGroupFriendlyURL(long appId) {

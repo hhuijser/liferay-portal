@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.servlet.BufferCacheServletResponse;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.LiferayPortletUtil;
@@ -171,41 +171,44 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 	protected void doInit() {
 		BundleContext bundleContext = _componentContext.getBundleContext();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
 		PortletConfig portletConfig = getPortletConfig();
 
 		PortletContext portletContext = getPortletContext();
 
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			portletContext.getPortletContextName());
-
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-			PortletBridgeServlet.class.getName());
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN, "/pbhs/*");
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
-				"cssRegex",
-			portletConfig.getInitParameter("cssRegex"));
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
-				"ignorePostToGetRequestHeaders",
-			"content-type,content-length");
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
-				"ignoreRequestHeaders",
-			"accept-encoding,connection,keep-alive");
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
-				"jsRegex",
-			portletConfig.getInitParameter("jsRegex"));
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
-				"mementoSessionKey",
-			portletConfig.getInitParameter("mementoSessionKey"));
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+				portletContext.getPortletContextName()
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
+				PortletBridgeServlet.class.getName()
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
+				"/pbhs/*"
+			).put(
+				HttpWhiteboardConstants.
+					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX + "cssRegex",
+				portletConfig.getInitParameter("cssRegex")
+			).put(
+				HttpWhiteboardConstants.
+					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
+						"ignorePostToGetRequestHeaders",
+				"content-type,content-length"
+			).put(
+				HttpWhiteboardConstants.
+					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
+						"ignoreRequestHeaders",
+				"accept-encoding,connection,keep-alive"
+			).put(
+				HttpWhiteboardConstants.
+					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX + "jsRegex",
+				portletConfig.getInitParameter("jsRegex")
+			).put(
+				HttpWhiteboardConstants.
+					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
+						"mementoSessionKey",
+				portletConfig.getInitParameter("mementoSessionKey")
+			).build();
 
 		_serviceRegistration = bundleContext.registerService(
 			Servlet.class, new PortletBridgeServlet(), properties);

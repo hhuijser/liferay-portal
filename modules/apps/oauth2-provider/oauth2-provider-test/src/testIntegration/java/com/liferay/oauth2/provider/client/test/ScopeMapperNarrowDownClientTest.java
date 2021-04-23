@@ -20,7 +20,7 @@ import com.liferay.oauth2.provider.internal.test.TestApplication;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -116,16 +116,14 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 			User user = UserTestUtil.getAdminUser(defaultCompanyId);
 
 			Dictionary<String, Object> applicationProperties =
-				new HashMapDictionary<>();
-
-			applicationProperties.put(
-				"oauth2.scope.checker.type", "annotations");
+				HashMapDictionaryBuilder.<String, Object>put(
+					"oauth2.scope.checker.type", "annotations"
+				).build();
 
 			Dictionary<String, Object> scopeMapperProperties =
-				new HashMapDictionary<>();
-
-			scopeMapperProperties.put(
-				"osgi.jaxrs.name", TestApplication.class.getName());
+				HashMapDictionaryBuilder.<String, Object>put(
+					"osgi.jaxrs.name", TestApplication.class.getName()
+				).build();
 
 			createFactoryConfiguration(
 				"com.liferay.oauth2.provider.scope.internal.configuration." +

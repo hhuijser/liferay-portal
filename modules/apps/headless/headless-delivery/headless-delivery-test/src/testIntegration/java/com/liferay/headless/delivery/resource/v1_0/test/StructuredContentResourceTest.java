@@ -68,7 +68,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -218,12 +218,12 @@ public class StructuredContentResourceTest
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		Dictionary<String, String> properties = new HashMapDictionary<>();
-
-		properties.put(
+		Dictionary<String, String> properties = HashMapDictionaryBuilder.put(
 			"osgi.jaxrs.application.select",
-			"(osgi.jaxrs.name=Liferay.Headless.Delivery)");
-		properties.put("osgi.jaxrs.extension", "true");
+			"(osgi.jaxrs.name=Liferay.Headless.Delivery)"
+		).put(
+			"osgi.jaxrs.extension", "true"
+		).build();
 
 		ServiceRegistration<?> serviceRegistration =
 			bundleContext.registerService(

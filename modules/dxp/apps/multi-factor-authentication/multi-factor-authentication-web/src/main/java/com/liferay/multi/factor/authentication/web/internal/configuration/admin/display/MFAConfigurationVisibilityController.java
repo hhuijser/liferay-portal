@@ -20,7 +20,7 @@ import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.osgi.util.StringPlus;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
 import java.io.Serializable;
 
@@ -129,11 +129,11 @@ public class MFAConfigurationVisibilityController
 	}
 
 	private Dictionary<String, Object> _getProperties() {
-		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
-
-		dictionary.put(
-			"configuration.pid",
-			new ArrayList<>(_mfaVisibilityConfigurationPids));
+		Dictionary<String, Object> dictionary =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"configuration.pid",
+				new ArrayList<>(_mfaVisibilityConfigurationPids)
+			).build();
 
 		return dictionary;
 	}

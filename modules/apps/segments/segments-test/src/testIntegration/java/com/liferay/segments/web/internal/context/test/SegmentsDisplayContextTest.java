@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.test.portlet.MockLiferayPortletURL;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -87,9 +87,10 @@ public class SegmentsDisplayContextTest {
 
 	@Test
 	public void testIsRoleSegmentationDisabled() throws Exception {
-		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
-
-		dictionary.put("roleSegmentationEnabled", false);
+		Dictionary<String, Object> dictionary =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"roleSegmentationEnabled", false
+			).build();
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
@@ -102,9 +103,10 @@ public class SegmentsDisplayContextTest {
 
 	@Test
 	public void testIsRoleSegmentationEnabled() throws Exception {
-		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
-
-		dictionary.put("roleSegmentationEnabled", true);
+		Dictionary<String, Object> dictionary =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"roleSegmentationEnabled", true
+			).build();
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(

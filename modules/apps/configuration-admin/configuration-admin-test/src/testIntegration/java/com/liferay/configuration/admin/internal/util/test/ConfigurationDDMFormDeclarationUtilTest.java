@@ -18,7 +18,7 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.configuration.admin.definition.ConfigurationDDMFormDeclaration;
 import com.liferay.osgi.util.service.OSGiServiceUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
 import java.lang.reflect.Method;
 
@@ -107,9 +107,10 @@ public class ConfigurationDDMFormDeclarationUtilTest {
 			ConfigurationDDMFormDeclaration configurationDDMFormDeclaration,
 			String configurationPid) {
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("configurationPid", configurationPid);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"configurationPid", configurationPid
+			).build();
 
 		return _bundleContext.registerService(
 			ConfigurationDDMFormDeclaration.class,

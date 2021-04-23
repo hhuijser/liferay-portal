@@ -46,7 +46,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -152,12 +152,11 @@ public class AccountEntryUserRelLocalServiceTest {
 
 		ConfigurationTestUtil.saveConfiguration(
 			pid,
-			new HashMapDictionary() {
-				{
-					put("enableEmailDomainValidation", false);
-					put("blockedEmailDomains", "test.com");
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"enableEmailDomainValidation", false
+			).put(
+				"blockedEmailDomains", "test.com"
+			).build());
 
 		try {
 			AccountEntry accountEntry = AccountEntryTestUtil.addAccountEntry(
@@ -251,11 +250,9 @@ public class AccountEntryUserRelLocalServiceTest {
 
 		ConfigurationTestUtil.saveConfiguration(
 			pid,
-			new HashMapDictionary() {
-				{
-					put("enableEmailDomainValidation", true);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"enableEmailDomainValidation", true
+			).build());
 
 		try {
 			AccountEntry accountEntry = AccountEntryTestUtil.addAccountEntry(

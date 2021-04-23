@@ -20,7 +20,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.test.util.ConfigurationTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.store.test.util.BaseStoreTestCase;
@@ -59,9 +59,10 @@ public class FileSystemStoreTest extends BaseStoreTestCase {
 				"FileSystemStoreConfiguration",
 			StringPool.QUESTION);
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("rootDir", _rootDir);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"rootDir", _rootDir
+			).build();
 
 		ConfigurationTestUtil.saveConfiguration(_configuration, properties);
 	}

@@ -22,8 +22,6 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portlet.documentlibrary.constants.DLConstants;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -39,11 +37,6 @@ public class FileEntryModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", FileEntry.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			ModelResourcePermission.class,
 			ModelResourcePermissionFactory.create(
@@ -53,7 +46,9 @@ public class FileEntryModelResourcePermissionRegistrar {
 					(permissionChecker, name, fileEntry, actionId) ->
 						fileEntry.containsPermission(
 							permissionChecker, actionId))),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", FileEntry.class.getName()
+			).build());
 	}
 
 	@Deactivate

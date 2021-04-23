@@ -91,14 +91,12 @@ public class ScopedConfigurationManager implements ManagedServiceFactory {
 	}
 
 	public void register() {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				Constants.SERVICE_PID, _factoryPid + ".scoped"
-			).build();
-
 		_managedServiceFactoryServiceRegistration =
 			_bundleContext.registerService(
-				ManagedServiceFactory.class, this, properties);
+				ManagedServiceFactory.class, this,
+				HashMapDictionaryBuilder.<String, Object>put(
+					Constants.SERVICE_PID, _factoryPid + ".scoped"
+				).build());
 	}
 
 	public void unregister() {

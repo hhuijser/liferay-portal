@@ -29,8 +29,6 @@ import com.liferay.segments.constants.SegmentsPortletKeys;
 import com.liferay.segments.model.SegmentsExperience;
 import com.liferay.segments.service.SegmentsExperienceLocalService;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -46,11 +44,6 @@ public class SegmentsExperienceModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", SegmentsExperience.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<SegmentsExperience>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -62,7 +55,9 @@ public class SegmentsExperienceModelResourcePermissionRegistrar {
 				(modelResourcePermission, consumer) -> consumer.accept(
 					new StagedModelResourcePermissionLogic(
 						_stagingPermission))),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", SegmentsExperience.class.getName()
+			).build());
 	}
 
 	@Deactivate

@@ -16,8 +16,6 @@ package com.liferay.portal.osgi.web.servlet.jsp.compiler.test;
 
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
-
 import javax.portlet.Portlet;
 
 import org.osgi.framework.BundleActivator;
@@ -31,14 +29,13 @@ public class JspPrecompileBundleActivator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext bundleContext) {
-		Dictionary<String, String> dictionary = HashMapDictionaryBuilder.put(
-			"javax.portlet.display-name", "Jsp Precompile Portlet"
-		).put(
-			"javax.portlet.name", JspPrecompilePortlet.PORTLET_NAME
-		).build();
-
 		_serviceRegistration = bundleContext.registerService(
-			Portlet.class, new JspPrecompilePortlet(), dictionary);
+			Portlet.class, new JspPrecompilePortlet(),
+			HashMapDictionaryBuilder.put(
+				"javax.portlet.display-name", "Jsp Precompile Portlet"
+			).put(
+				"javax.portlet.name", JspPrecompilePortlet.PORTLET_NAME
+			).build());
 	}
 
 	@Override

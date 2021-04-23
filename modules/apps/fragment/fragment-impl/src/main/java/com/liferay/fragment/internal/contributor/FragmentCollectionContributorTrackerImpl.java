@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.util.MapUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -343,17 +342,14 @@ public class FragmentCollectionContributorTrackerImpl
 			_fragmentEntries.putAll(
 				_getFragmentEntries(fragmentCollectionContributor));
 
-			Dictionary<String, Object> properties =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"fragment.collection.key",
-					serviceReference.getProperty("fragment.collection.key")
-				).build();
-
 			_bundleContext.registerService(
 				FragmentCollectionContributorRegistration.class,
 				new FragmentCollectionContributorRegistration() {
 				},
-				properties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"fragment.collection.key",
+					serviceReference.getProperty("fragment.collection.key")
+				).build());
 
 			return fragmentCollectionContributor;
 		}

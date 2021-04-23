@@ -237,12 +237,10 @@ public class SpringExtenderDependencyManagerTest {
 
 			});
 
-		Dictionary<String, Object> properties =
+		_unavailableComponentScannerConfiguration.update(
 			HashMapDictionaryBuilder.<String, Object>put(
 				"unavailableComponentScanningInterval", "1"
-			).build();
-
-		_unavailableComponentScannerConfiguration.update(properties);
+			).build());
 
 		countDownLatch.await();
 

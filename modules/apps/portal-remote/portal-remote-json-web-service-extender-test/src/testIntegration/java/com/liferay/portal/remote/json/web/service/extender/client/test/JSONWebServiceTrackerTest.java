@@ -27,7 +27,6 @@ import java.io.IOException;
 
 import java.net.URL;
 
-import java.util.Dictionary;
 import java.util.Random;
 
 import org.junit.AfterClass;
@@ -61,15 +60,13 @@ public class JSONWebServiceTrackerTest {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		Dictionary<String, Object> properties =
+		_serviceRegistration = bundleContext.registerService(
+			Object.class, new TestWebService(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				"json.web.service.context.name", "test"
 			).put(
 				"json.web.service.context.path", "webservice"
-			).build();
-
-		_serviceRegistration = bundleContext.registerService(
-			Object.class, new TestWebService(), properties);
+			).build());
 	}
 
 	@AfterClass

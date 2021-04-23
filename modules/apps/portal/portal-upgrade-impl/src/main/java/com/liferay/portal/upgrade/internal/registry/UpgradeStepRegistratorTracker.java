@@ -32,7 +32,6 @@ import com.liferay.portal.util.PropsValues;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Properties;
 
@@ -156,25 +155,23 @@ public class UpgradeStepRegistratorTracker {
 					UpgradeStepRegistratorThreadLocal.setEnabled(false)) {
 
 				for (UpgradeInfo upgradeInfo : upgradeInfos) {
-					Dictionary<String, Object> properties =
-						HashMapDictionaryBuilder.<String, Object>put(
-							"build.number", upgradeInfo.getBuildNumber()
-						).put(
-							"upgrade.bundle.symbolic.name", bundleSymbolicName
-						).put(
-							"upgrade.db.type", "any"
-						).put(
-							"upgrade.from.schema.version",
-							upgradeInfo.getFromSchemaVersionString()
-						).put(
-							"upgrade.to.schema.version",
-							upgradeInfo.getToSchemaVersionString()
-						).build();
-
 					ServiceRegistration<UpgradeStep> serviceRegistration =
 						_bundleContext.registerService(
 							UpgradeStep.class, upgradeInfo.getUpgradeStep(),
-							properties);
+							HashMapDictionaryBuilder.<String, Object>put(
+								"build.number", upgradeInfo.getBuildNumber()
+							).put(
+								"upgrade.bundle.symbolic.name",
+								bundleSymbolicName
+							).put(
+								"upgrade.db.type", "any"
+							).put(
+								"upgrade.from.schema.version",
+								upgradeInfo.getFromSchemaVersionString()
+							).put(
+								"upgrade.to.schema.version",
+								upgradeInfo.getToSchemaVersionString()
+							).build());
 
 					serviceRegistrations.add(serviceRegistration);
 				}

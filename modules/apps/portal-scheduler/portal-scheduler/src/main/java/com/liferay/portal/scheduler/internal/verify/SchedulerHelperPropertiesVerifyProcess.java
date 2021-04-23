@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.scheduler.internal.configuration.SchedulerEngineHelperConfiguration;
 import com.liferay.portal.verify.VerifyProcess;
 
-import java.util.Dictionary;
-
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.annotations.Component;
@@ -61,12 +59,10 @@ public class SchedulerHelperPropertiesVerifyProcess extends VerifyProcess {
 			boolean auditMessageScheduleJob = GetterUtil.getBoolean(
 				audiMessageScheduleJobString);
 
-			Dictionary<String, Object> properties =
+			configuration.update(
 				HashMapDictionaryBuilder.<String, Object>put(
 					AUDIT_SCHEDULER_JOB_ENABLED, auditMessageScheduleJob
-				).build();
-
-			configuration.update(properties);
+				).build());
 		}
 	}
 

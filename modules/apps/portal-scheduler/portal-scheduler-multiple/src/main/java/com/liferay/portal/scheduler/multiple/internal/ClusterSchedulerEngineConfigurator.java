@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.Props;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -58,13 +56,11 @@ public class ClusterSchedulerEngineConfigurator {
 				clusterSchedulerEngine);
 		}
 
-		Dictionary<String, Object> schedulerEngineDictionary =
+		_schedulerEngineServiceRegistration = bundleContext.registerService(
+			SchedulerEngine.class, _schedulerEngine,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"scheduler.engine.proxy", Boolean.TRUE
-			).build();
-
-		_schedulerEngineServiceRegistration = bundleContext.registerService(
-			SchedulerEngine.class, _schedulerEngine, schedulerEngineDictionary);
+			).build());
 	}
 
 	@Deactivate

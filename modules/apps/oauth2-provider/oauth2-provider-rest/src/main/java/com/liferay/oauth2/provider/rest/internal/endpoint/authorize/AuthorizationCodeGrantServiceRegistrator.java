@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.MapUtil;
 
 import java.net.URI;
 
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -349,7 +348,8 @@ public class AuthorizationCodeGrantServiceRegistrator {
 			_liferayOAuthDataProvider);
 		authorizationCodeGrantService.setSubjectCreator(_subjectCreator);
 
-		Dictionary<String, Object> authorizationCodeGrantProperties =
+		_serviceRegistration = bundleContext.registerService(
+			Object.class, authorizationCodeGrantService,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"osgi.jaxrs.application.select",
 				"(osgi.jaxrs.name=Liferay.OAuth2.Application)"
@@ -357,11 +357,7 @@ public class AuthorizationCodeGrantServiceRegistrator {
 				"osgi.jaxrs.name", "Liferay.Authorization.Code.Grant.Service"
 			).put(
 				"osgi.jaxrs.resource", true
-			).build();
-
-		_serviceRegistration = bundleContext.registerService(
-			Object.class, authorizationCodeGrantService,
-			authorizationCodeGrantProperties);
+			).build());
 	}
 
 	@Deactivate

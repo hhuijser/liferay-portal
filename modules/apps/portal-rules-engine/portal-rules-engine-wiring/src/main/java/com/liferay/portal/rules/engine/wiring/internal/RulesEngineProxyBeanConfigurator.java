@@ -25,8 +25,6 @@ import com.liferay.portal.rules.engine.constants.RulesEngineConstants;
 
 import java.lang.reflect.InvocationHandler;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -67,13 +65,11 @@ public class RulesEngineProxyBeanConfigurator {
 			beanClass.getClassLoader(), beanClass.getInterfaces(),
 			invocationHandler);
 
-		Dictionary<String, Object> dictionary =
+		_serviceRegistration = bundleContext.registerService(
+			RulesEngine.class, rulesEngine,
 			HashMapDictionaryBuilder.<String, Object>put(
 				"rules.engine.proxy", Boolean.TRUE
-			).build();
-
-		_serviceRegistration = bundleContext.registerService(
-			RulesEngine.class, rulesEngine, dictionary);
+			).build());
 	}
 
 	@Deactivate

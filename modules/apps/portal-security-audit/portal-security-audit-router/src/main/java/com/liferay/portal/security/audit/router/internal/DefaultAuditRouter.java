@@ -31,7 +31,6 @@ import com.liferay.portal.security.audit.AuditMessageProcessor;
 import com.liferay.portal.security.audit.configuration.AuditConfiguration;
 import com.liferay.portal.security.audit.router.internal.constants.AuditConstants;
 
-import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -117,14 +116,11 @@ public class DefaultAuditRouter implements AuditRouter {
 		proxyMessageListener.setManager(this);
 		proxyMessageListener.setMessageBus(_messageBus);
 
-		Dictionary<String, Object> proxyMessageListenerProperties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"destination.name", DestinationNames.AUDIT
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			ProxyMessageListener.class, proxyMessageListener,
-			proxyMessageListenerProperties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"destination.name", DestinationNames.AUDIT
+			).build());
 	}
 
 	@Deactivate

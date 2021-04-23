@@ -241,14 +241,11 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 	private HashMapDictionary<String, Object> _buildScopeDescriptorProperties(
 		long companyId) {
 
-		HashMapDictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"companyId", String.valueOf(companyId)
-			).put(
-				"osgi.jaxrs.name", _jaxRsApplicationNames.toArray(new String[0])
-			).build();
-
-		return properties;
+		return HashMapDictionaryBuilder.<String, Object>put(
+			"companyId", String.valueOf(companyId)
+		).put(
+			"osgi.jaxrs.name", _jaxRsApplicationNames.toArray(new String[0])
+		).build();
 	}
 
 	private String _parseScope(SAPEntry sapEntry) {

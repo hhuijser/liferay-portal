@@ -308,7 +308,8 @@ public class ServletContextHelperRegistrationImpl
 			prefix = "/";
 		}
 
-		Dictionary<String, Object> properties =
+		return _bundleContext.registerService(
+			Object.class, new Object(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
 				_servletContextName
@@ -316,10 +317,7 @@ public class ServletContextHelperRegistrationImpl
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PREFIX, prefix
 			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PATTERN, "/*"
-			).build();
-
-		return _bundleContext.registerService(
-			Object.class, new Object(), properties);
+			).build());
 	}
 
 	protected ServiceRegistration<Servlet> createJspServlet() {
@@ -358,7 +356,10 @@ public class ServletContextHelperRegistrationImpl
 			return null;
 		}
 
-		Dictionary<String, Object> properties =
+		return _bundleContext.registerService(
+			Servlet.class,
+			new PortletServlet() {
+			},
 			HashMapDictionaryBuilder.<String, Object>put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
 				_servletContextName
@@ -368,13 +369,7 @@ public class ServletContextHelperRegistrationImpl
 			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
 				"/portlet-servlet/*"
-			).build();
-
-		return _bundleContext.registerService(
-			Servlet.class,
-			new PortletServlet() {
-			},
-			properties);
+			).build());
 	}
 
 	protected ServiceRegistration<ServletContextHelper>

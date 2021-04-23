@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.events.LifecycleEvent;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.osgi.web.portlet.container.test.util.PortletContainerTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -83,10 +84,10 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			"com.liferay.portlet.private-session-attributes", Boolean.FALSE);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"com.liferay.portlet.private-session-attributes", Boolean.FALSE
+			).build();
 
 		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID);
 
@@ -106,9 +107,9 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		properties = new HashMapDictionary<>();
-
-		properties.put("key", "servlet.service.events.pre");
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			"key", "servlet.service.events.pre"
+		).build();
 
 		registerService(LifecycleAction.class, lifecycleAction, properties);
 
@@ -150,10 +151,10 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put(
-			"com.liferay.portlet.private-session-attributes", Boolean.FALSE);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"com.liferay.portlet.private-session-attributes", Boolean.FALSE
+			).build();
 
 		setUpPortlet(testPortlet, properties, TEST_PORTLET_ID);
 
@@ -175,9 +176,9 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		properties = new HashMapDictionary<>();
-
-		properties.put("key", "servlet.service.events.post");
+		properties = HashMapDictionaryBuilder.<String, Object>put(
+			"key", "servlet.service.events.post"
+		).build();
 
 		registerService(LifecycleAction.class, lifecycleAction, properties);
 
@@ -240,9 +241,10 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("key", "servlet.service.events.pre");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"key", "servlet.service.events.pre"
+			).build();
 
 		registerService(LifecycleAction.class, lifecycleAction, properties);
 
@@ -307,9 +309,10 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("key", "servlet.service.events.pre");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"key", "servlet.service.events.pre"
+			).build();
 
 		registerService(LifecycleAction.class, lifecycleAction, properties);
 
@@ -373,9 +376,10 @@ public class SharedSessionPortletContainerTest
 
 		};
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("key", "servlet.service.events.post");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"key", "servlet.service.events.post"
+			).build();
 
 		registerService(LifecycleAction.class, lifecycleAction, properties);
 

@@ -16,7 +16,7 @@ package com.liferay.portal.init.servlet.filter.internal;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
 import java.util.Dictionary;
 
@@ -38,12 +38,16 @@ public class InitFilterTracker {
 	protected void activate(BundleContext bundleContext) {
 		InitFilter initFilter = new InitFilter();
 
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("dispatcher", new String[] {"FORWARD", "REQUEST"});
-		properties.put("servlet-context-name", "");
-		properties.put("servlet-filter-name", "Init Filter");
-		properties.put("url-pattern", "/*");
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"dispatcher", new String[] {"FORWARD", "REQUEST"}
+			).put(
+				"servlet-context-name", ""
+			).put(
+				"servlet-filter-name", "Init Filter"
+			).put(
+				"url-pattern", "/*"
+			).build();
 
 		_serviceRegistration = bundleContext.registerService(
 			Filter.class, initFilter, properties);

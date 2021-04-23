@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.messaging.proxy.MessagingProxyInvocationHandler
 import com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener;
 import com.liferay.portal.kernel.messaging.sender.SynchronousMessageSender;
 import com.liferay.portal.kernel.spring.aop.InvocationHandlerFactory;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.rules.engine.RulesEngine;
 import com.liferay.portal.rules.engine.constants.RulesEngineConstants;
@@ -67,9 +67,10 @@ public class RulesEngineProxyBeanConfigurator {
 			beanClass.getClassLoader(), beanClass.getInterfaces(),
 			invocationHandler);
 
-		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
-
-		dictionary.put("rules.engine.proxy", Boolean.TRUE);
+		Dictionary<String, Object> dictionary =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"rules.engine.proxy", Boolean.TRUE
+			).build();
 
 		_serviceRegistration = bundleContext.registerService(
 			RulesEngine.class, rulesEngine, dictionary);

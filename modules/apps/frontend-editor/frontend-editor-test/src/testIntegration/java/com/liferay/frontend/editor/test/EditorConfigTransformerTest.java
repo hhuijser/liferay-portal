@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -99,10 +99,12 @@ public class EditorConfigTransformerTest {
 
 	@Test
 	public void testEditorConfigNotTransformedWhenEditorConfigTransformerIsRegisteredToOtherEditorName() {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("editor.name", _EDITOR_NAME);
-		properties.put("service.ranking", 1000);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"editor.name", _EDITOR_NAME
+			).put(
+				"service.ranking", 1000
+			).build();
 
 		EditorConfigContributor basicHTMLEditorConfigContributor =
 			new BasicHTMLEditorConfigContributor();
@@ -126,11 +128,9 @@ public class EditorConfigTransformerTest {
 		_editorConfigTransfomerServiceRegistration =
 			_bundleContext.registerService(
 				EditorConfigTransformer.class, testEditorConfigTransformer,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _UNUSED_EDITOR_NAME);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _UNUSED_EDITOR_NAME
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -147,10 +147,12 @@ public class EditorConfigTransformerTest {
 
 	@Test
 	public void testEditorConfigNotTransformedWhenNoEditorConfigTransformerIsRegistered() {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("editor.name", _EDITOR_NAME);
-		properties.put("service.ranking", 1000);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"editor.name", _EDITOR_NAME
+			).put(
+				"service.ranking", 1000
+			).build();
 
 		EditorConfigContributor basicHTMLEditorConfigContributor =
 			new BasicHTMLEditorConfigContributor();
@@ -183,10 +185,12 @@ public class EditorConfigTransformerTest {
 
 	@Test
 	public void testEditorConfigTransformedWhenEditorConfigTransformerIsRegistered() {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("editor.name", _EDITOR_NAME);
-		properties.put("service.ranking", 1000);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"editor.name", _EDITOR_NAME
+			).put(
+				"service.ranking", 1000
+			).build();
 
 		EditorConfigContributor basicHTMLEditorConfigContributor =
 			new BasicHTMLEditorConfigContributor();
@@ -210,11 +214,9 @@ public class EditorConfigTransformerTest {
 		_editorConfigTransfomerServiceRegistration =
 			_bundleContext.registerService(
 				EditorConfigTransformer.class, testEditorConfigTransformer,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(
@@ -231,10 +233,12 @@ public class EditorConfigTransformerTest {
 
 	@Test
 	public void testEditorConfigTransformedWithMultipleEditorOptionsContributors() {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("editor.name", _EDITOR_NAME);
-		properties.put("service.ranking", 1000);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"editor.name", _EDITOR_NAME
+			).put(
+				"service.ranking", 1000
+			).build();
 
 		EditorConfigContributor basicHTMLEditorConfigContributor =
 			new BasicHTMLEditorConfigContributor();
@@ -266,11 +270,9 @@ public class EditorConfigTransformerTest {
 		_editorConfigTransfomerServiceRegistration =
 			_bundleContext.registerService(
 				EditorConfigTransformer.class, testEditorConfigTransformer,
-				new HashMapDictionary<String, Object>() {
-					{
-						put("editor.name", _EDITOR_NAME);
-					}
-				});
+				HashMapDictionaryBuilder.<String, Object>put(
+					"editor.name", _EDITOR_NAME
+				).build());
 
 		EditorConfiguration editorConfiguration =
 			_editorConfigurationFactory.getEditorConfiguration(

@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.messaging.DestinationConfiguration;
 import com.liferay.portal.kernel.messaging.DestinationFactory;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.sync.internal.configuration.SyncServiceConfigurationValues;
 import com.liferay.sync.internal.messaging.SyncMaintenanceMessageListener;
@@ -108,9 +108,9 @@ public class SyncConfigurator extends BasePortalInstanceLifecycleListener {
 			destinationConfiguration);
 
 		Dictionary<String, Object> destinationProperties =
-			new HashMapDictionary<>();
-
-		destinationProperties.put("destination.name", destination.getName());
+			HashMapDictionaryBuilder.<String, Object>put(
+				"destination.name", destination.getName()
+			).build();
 
 		return _bundleContext.registerService(
 			Destination.class, destination, destinationProperties);

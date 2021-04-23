@@ -16,7 +16,7 @@ package com.liferay.portal.remote.cors.client.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Dictionary;
@@ -42,9 +42,10 @@ public class AnnotationCORSClientTest extends BaseCORSClientTestCase {
 
 	@Before
 	public void setUp() {
-		Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-		properties.put("liferay.cors.annotation", true);
+		Dictionary<String, Object> properties =
+			HashMapDictionaryBuilder.<String, Object>put(
+				"liferay.cors.annotation", true
+			).build();
 
 		registerJaxRsApplication(new CORSTestApplication(), "test", properties);
 	}

@@ -16,7 +16,7 @@ package com.liferay.portal.scheduler.internal.verify;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.Validator;
@@ -58,13 +58,13 @@ public class SchedulerHelperPropertiesVerifyProcess extends VerifyProcess {
 				SchedulerEngineHelperConfiguration.class.getName(),
 				StringPool.QUESTION);
 
-			Dictionary<String, Object> properties = new HashMapDictionary<>();
-
 			boolean auditMessageScheduleJob = GetterUtil.getBoolean(
 				audiMessageScheduleJobString);
 
-			properties.put(
-				AUDIT_SCHEDULER_JOB_ENABLED, auditMessageScheduleJob);
+			Dictionary<String, Object> properties =
+				HashMapDictionaryBuilder.<String, Object>put(
+					AUDIT_SCHEDULER_JOB_ENABLED, auditMessageScheduleJob
+				).build();
 
 			configuration.update(properties);
 		}

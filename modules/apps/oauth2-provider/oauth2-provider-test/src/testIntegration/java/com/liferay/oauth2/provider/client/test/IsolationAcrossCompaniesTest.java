@@ -19,7 +19,7 @@ import com.liferay.oauth2.provider.internal.test.TestAnnotatedApplication;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.log.LogCapture;
 import com.liferay.portal.test.log.LoggerTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -106,16 +106,17 @@ public class IsolationAcrossCompaniesTest extends BaseClientTestCase {
 
 		@Override
 		protected void prepareTest() throws Exception {
-			Dictionary<String, Object> properties = new HashMapDictionary<>();
-
-			properties.put("oauth2.scope.checker.type", "annotations");
+			Dictionary<String, Object> properties =
+				HashMapDictionaryBuilder.<String, Object>put(
+					"oauth2.scope.checker.type", "annotations"
+				).build();
 
 			registerJaxRsApplication(
 				new TestAnnotatedApplication(), "annotated", properties);
 
-			properties = new HashMapDictionary<>();
-
-			properties.put("oauth2.scope.checker.type", "none");
+			properties = HashMapDictionaryBuilder.<String, Object>put(
+				"oauth2.scope.checker.type", "none"
+			).build();
 
 			registerJaxRsApplication(
 				new TestAnnotatedApplication(), "no-scopes", properties);

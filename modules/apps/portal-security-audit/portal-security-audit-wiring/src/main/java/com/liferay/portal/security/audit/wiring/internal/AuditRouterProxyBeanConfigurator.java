@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.messaging.proxy.MessagingProxyInvocationHandler
 import com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener;
 import com.liferay.portal.kernel.messaging.sender.SynchronousMessageSender;
 import com.liferay.portal.kernel.spring.aop.InvocationHandlerFactory;
-import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.security.audit.AuditRouterProxyBean;
 
@@ -68,9 +68,9 @@ public class AuditRouterProxyBeanConfigurator {
 			invocationHandler);
 
 		Dictionary<String, Object> schedulerEngineDictionary =
-			new HashMapDictionary<>();
-
-		schedulerEngineDictionary.put("audit.router.proxy", Boolean.TRUE);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"audit.router.proxy", Boolean.TRUE
+			).build();
 
 		_auditRouterSesrviceRegistration = bundleContext.registerService(
 			AuditRouter.class, auditRouter, schedulerEngineDictionary);

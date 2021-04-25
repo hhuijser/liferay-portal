@@ -519,7 +519,7 @@ public class SourceFormatter {
 		}
 	}
 
-	private void _addDependentFileNames() {
+	private void _addDependentFileNames() throws Exception {
 		Set<String> recentChangesFileNames =
 			_sourceFormatterArgs.getRecentChangesFileNames();
 
@@ -605,6 +605,28 @@ public class SourceFormatter {
 					_sourceFormatterArgs.getBaseDirName() +
 						"/portal-impl/src/com/liferay/portlet/social/util" +
 							"/SocialConfigurationImpl.java");
+			}
+		}
+
+		if (!buildPropertiesAdded) {
+			List<String> deletedFileNames = GitUtil.getCurrentBranchFileNames(
+				_sourceFormatterArgs.getBaseDirName(),
+				_sourceFormatterArgs.getGitWorkingBranchName(), true);
+
+			for (String deletedFileName : deletedFileNames) {
+				if (deletedFileName.endsWith(".lfrbuild-portal")) {
+					File file = new File(
+						_sourceFormatterArgs.getBaseDirName() +
+							"build.properties");
+
+					if (file.exists()) {
+						dependentFileNames.add(
+							_sourceFormatterArgs.getBaseDirName() +
+								"build.properties");
+					}
+
+					break;
+				}
 			}
 		}
 

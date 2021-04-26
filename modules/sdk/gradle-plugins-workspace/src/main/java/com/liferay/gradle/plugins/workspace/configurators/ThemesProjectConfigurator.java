@@ -73,7 +73,7 @@ public class ThemesProjectConfigurator extends BaseProjectConfigurator {
 		WorkspaceExtension workspaceExtension = GradleUtil.getExtension(
 			(ExtensionAware)project.getGradle(), WorkspaceExtension.class);
 
-		if (_javaBuild) {
+		if (isJavaBuild()) {
 			ProjectConfigurator projectConfigurator =
 				workspaceExtension.propertyMissing(
 					WarsProjectConfigurator.NAME);

@@ -194,7 +194,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 			_configureNpmProject(project);
 		}
 
-		if (_defaultRepositoryEnabled) {
+		if (isDefaultRepositoryEnabled()) {
 			GradleUtil.addDefaultRepositories(project);
 		}
 

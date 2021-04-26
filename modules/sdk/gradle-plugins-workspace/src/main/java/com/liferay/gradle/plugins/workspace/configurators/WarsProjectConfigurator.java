@@ -71,7 +71,7 @@ public class WarsProjectConfigurator extends BaseProjectConfigurator {
 
 		War war = (War)GradleUtil.getTask(project, WarPlugin.WAR_TASK_NAME);
 
-		if (_defaultRepositoryEnabled) {
+		if (isDefaultRepositoryEnabled()) {
 			GradleUtil.addDefaultRepositories(project);
 		}
 

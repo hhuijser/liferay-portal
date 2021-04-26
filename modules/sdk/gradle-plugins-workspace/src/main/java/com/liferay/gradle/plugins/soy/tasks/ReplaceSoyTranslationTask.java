@@ -62,7 +62,7 @@ public class ReplaceSoyTranslationTask extends SourceTask {
 				String variableName, String languageKey,
 				String argumentsObject) {
 
-				Closure<String> closure = _replacementClosure;
+				Closure<String> closure = getReplacementClosure();
 
 				if (closure != null) {
 					return closure.call(

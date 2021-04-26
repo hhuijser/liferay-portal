@@ -70,7 +70,7 @@ public class PluginsProjectConfigurator extends BaseProjectConfigurator {
 		super(settings);
 
 		String defaultRootDirNames = GradleUtil.getProperty(
-			settings, _DEFAULT_ROOT_DIR_PROPERTY_NAME, (String)null);
+			settings, getDefaultRootDirPropertyName(), (String)null);
 
 		if (Validator.isNotNull(defaultRootDirNames)) {
 			_defaultRootDirs = new HashSet<>();
@@ -80,7 +80,7 @@ public class PluginsProjectConfigurator extends BaseProjectConfigurator {
 			}
 		}
 		else {
-			File dir = new File(settings.getRootDir(), _DEFAULT_ROOT_DIR_NAME);
+			File dir = new File(settings.getRootDir(), getDefaultRootDirName());
 
 			_defaultRootDirs = Collections.singleton(dir);
 		}

@@ -390,11 +390,11 @@ public class Entity implements Comparable<Entity> {
 
 		interfaceNames.add("BaseModel<" + _name + ">");
 
-		if (_changeTrackingEnabled) {
+		if (isChangeTrackingEnabled()) {
 			interfaceNames.add("CTModel<" + _name + ">");
 		}
 
-		if (_containerModel) {
+		if (isContainerModel()) {
 			interfaceNames.add("ContainerModel");
 		}
 
@@ -402,7 +402,7 @@ public class Entity implements Comparable<Entity> {
 			interfaceNames.add("LocalizedModel");
 		}
 
-		if (_mvccEnabled) {
+		if (isMvccEnabled()) {
 			interfaceNames.add("MVCCModel");
 		}
 
@@ -436,7 +436,7 @@ public class Entity implements Comparable<Entity> {
 			}
 		}
 
-		if (_trashEnabled) {
+		if (isTrashEnabled()) {
 			interfaceNames.add("TrashedModel");
 		}
 
@@ -485,7 +485,7 @@ public class Entity implements Comparable<Entity> {
 			overrideColumnName.add("userUuid");
 		}
 
-		if (_changeTrackingEnabled) {
+		if (isChangeTrackingEnabled()) {
 			overrideColumnName.add("ctCollectionId");
 			overrideColumnName.add("primaryKey");
 		}
@@ -494,7 +494,7 @@ public class Entity implements Comparable<Entity> {
 			overrideColumnName.add("groupId");
 		}
 
-		if (_mvccEnabled) {
+		if (isMvccEnabled()) {
 			overrideColumnName.add("mvccVersion");
 		}
 
@@ -518,7 +518,7 @@ public class Entity implements Comparable<Entity> {
 			overrideColumnName.add("resourcePrimKey");
 		}
 
-		if (_trashEnabled) {
+		if (isTrashEnabled()) {
 			overrideColumnName.add("status");
 		}
 
@@ -571,7 +571,7 @@ public class Entity implements Comparable<Entity> {
 
 	public String getPKDBName() {
 		if (hasCompoundPK()) {
-			return _variableName + "PK";
+			return getVariableName() + "PK";
 		}
 
 		EntityColumn entityColumn = _getPKEntityColumn();
@@ -602,7 +602,7 @@ public class Entity implements Comparable<Entity> {
 
 	public String getPKVariableName() {
 		if (hasCompoundPK()) {
-			return _variableName + "PK";
+			return getVariableName() + "PK";
 		}
 
 		EntityColumn entityColumn = _getPKEntityColumn();
@@ -620,7 +620,7 @@ public class Entity implements Comparable<Entity> {
 
 	public String getPluralPKVariableName() {
 		if (hasCompoundPK()) {
-			return _variableName + "PKs";
+			return getVariableName() + "PKs";
 		}
 
 		EntityColumn entityColumn = _getPKEntityColumn();
@@ -753,7 +753,7 @@ public class Entity implements Comparable<Entity> {
 
 	public String getUADTestIntegrationOutputPath() {
 		return StringUtil.replace(
-			_uadOutputPath, new String[] {"-uad/", "/main/"},
+			getUADOutputPath(), new String[] {"-uad/", "/main/"},
 			new String[] {"-uad-test/", "/testIntegration/"});
 	}
 
@@ -806,7 +806,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean hasActionableDynamicQuery() {
-		if (hasEntityColumns() && _localService) {
+		if (hasEntityColumns() && hasLocalService()) {
 			if (hasCompoundPK()) {
 				EntityColumn entityColumn = _pkEntityColumns.get(0);
 
@@ -1181,7 +1181,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isStagedModel() {
-		if (_uuid && hasEntityColumn("companyId") &&
+		if (hasUuid() && hasEntityColumn("companyId") &&
 			hasEntityColumn("createDate", "Date") &&
 			hasEntityColumn("modifiedDate", "Date")) {
 

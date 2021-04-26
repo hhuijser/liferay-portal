@@ -32,7 +32,7 @@ public abstract class BaseSoyJsCommand implements Command {
 
 	@Override
 	public void execute() throws Exception {
-		File dir = _dir;
+		File dir = getDir();
 
 		Files.walkFileTree(
 			dir.toPath(),

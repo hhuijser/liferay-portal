@@ -115,13 +115,15 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	@Override
 	public Object clone() {
 		return new EntityColumn(
-			_serviceBuilder, _name, _pluralName, _dbName, _type, _primary,
-			_accessor, _filterPrimary, _entityName, _mappingTableName,
-			_caseSensitive, _orderByAscending, _orderColumn, _comparator,
-			_arrayableOperator, _arrayablePagination, _idType, _idParam,
-			_convertNull, _lazy, _localized, _jsonEnabled,
-			_ctColumnResolutionType, _containerModel, _parentContainerModel,
-			getUADAnonymizeFieldName(), _uadNonanonymizable);
+			_serviceBuilder, getName(), getPluralName(), getDBName(), getType(),
+			isPrimary(), isAccessor(), isFilterPrimary(), getEntityName(),
+			getMappingTableName(), isCaseSensitive(), isOrderByAscending(),
+			isOrderColumn(), getComparator(), getArrayableOperator(),
+			hasArrayablePagination(), getIdType(), getIdParam(),
+			isConvertNull(), isLazy(), isLocalized(), isJsonEnabled(),
+			getCTColumnResolutionType(), isContainerModel(),
+			isParentContainerModel(), getUADAnonymizeFieldName(),
+			isUADNonanonymizable());
 	}
 
 	@Override
@@ -244,7 +246,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	}
 
 	public String getPluralHumanName() {
-		return _serviceBuilder.formatPlural(_humanName);
+		return _serviceBuilder.formatPlural(getHumanName());
 	}
 
 	public String getPluralName() {

@@ -361,7 +361,7 @@ public class PublishNodeModuleTask extends ExecutePackageManagerTask {
 			return;
 		}
 
-		Set<String> overriddenPackageJsonKeys = _overriddenPackageJsonKeys;
+		Set<String> overriddenPackageJsonKeys = getOverriddenPackageJsonKeys();
 
 		if (!map.containsKey(key) || overriddenPackageJsonKeys.contains(key)) {
 			map.put(key, value);

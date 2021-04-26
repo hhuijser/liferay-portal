@@ -34,6 +34,10 @@ public class ReindexStatusMessageSenderUtil {
 			phase, companyId, companyIds);
 	}
 
+	private ReindexStatusMessageSender _getReindexStatusMessageSender() {
+		return _reindexStatusMessageSender;
+	}
+
 	private static volatile ReindexStatusMessageSender
 		_reindexStatusMessageSender =
 			ServiceProxyFactory.newServiceTrackedInstance(

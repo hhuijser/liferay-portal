@@ -25,17 +25,17 @@ import javax.servlet.http.HttpServletRequest;
 public class BrowserSnifferUtil {
 
 	public static boolean acceptsGzip(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.acceptsGzip(httpServletRequest);
+		return getBrowserSniffer().acceptsGzip(httpServletRequest);
 	}
 
 	public static String getBrowserId(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.getBrowserId(httpServletRequest);
+		return getBrowserSniffer().getBrowserId(httpServletRequest);
 	}
 
 	public static BrowserMetadata getBrowserMetadata(
 		HttpServletRequest httpServletRequest) {
 
-		return _browserSniffer.getBrowserMetadata(httpServletRequest);
+		return getBrowserSniffer().getBrowserMetadata(httpServletRequest);
 	}
 
 	public static BrowserSniffer getBrowserSniffer() {
@@ -43,95 +43,95 @@ public class BrowserSnifferUtil {
 	}
 
 	public static float getMajorVersion(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.getMajorVersion(httpServletRequest);
+		return getBrowserSniffer().getMajorVersion(httpServletRequest);
 	}
 
 	public static String getRevision(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.getRevision(httpServletRequest);
+		return getBrowserSniffer().getRevision(httpServletRequest);
 	}
 
 	public static String getVersion(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.getVersion(httpServletRequest);
+		return getBrowserSniffer().getVersion(httpServletRequest);
 	}
 
 	public static boolean isAir(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isAir(httpServletRequest);
+		return getBrowserSniffer().isAir(httpServletRequest);
 	}
 
 	public static boolean isAndroid(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isAndroid(httpServletRequest);
+		return getBrowserSniffer().isAndroid(httpServletRequest);
 	}
 
 	public static boolean isChrome(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isChrome(httpServletRequest);
+		return getBrowserSniffer().isChrome(httpServletRequest);
 	}
 
 	public static boolean isEdge(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isEdge(httpServletRequest);
+		return getBrowserSniffer().isEdge(httpServletRequest);
 	}
 
 	public static boolean isFirefox(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isFirefox(httpServletRequest);
+		return getBrowserSniffer().isFirefox(httpServletRequest);
 	}
 
 	public static boolean isGecko(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isGecko(httpServletRequest);
+		return getBrowserSniffer().isGecko(httpServletRequest);
 	}
 
 	public static boolean isIe(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isIe(httpServletRequest);
+		return getBrowserSniffer().isIe(httpServletRequest);
 	}
 
 	public static boolean isIeOnWin32(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isIeOnWin32(httpServletRequest);
+		return getBrowserSniffer().isIeOnWin32(httpServletRequest);
 	}
 
 	public static boolean isIeOnWin64(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isIeOnWin64(httpServletRequest);
+		return getBrowserSniffer().isIeOnWin64(httpServletRequest);
 	}
 
 	public static boolean isIphone(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isIphone(httpServletRequest);
+		return getBrowserSniffer().isIphone(httpServletRequest);
 	}
 
 	public static boolean isLinux(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isLinux(httpServletRequest);
+		return getBrowserSniffer().isLinux(httpServletRequest);
 	}
 
 	public static boolean isMac(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isMac(httpServletRequest);
+		return getBrowserSniffer().isMac(httpServletRequest);
 	}
 
 	public static boolean isMobile(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isMobile(httpServletRequest);
+		return getBrowserSniffer().isMobile(httpServletRequest);
 	}
 
 	public static boolean isMozilla(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isMozilla(httpServletRequest);
+		return getBrowserSniffer().isMozilla(httpServletRequest);
 	}
 
 	public static boolean isOpera(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isOpera(httpServletRequest);
+		return getBrowserSniffer().isOpera(httpServletRequest);
 	}
 
 	public static boolean isRtf(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isRtf(httpServletRequest);
+		return getBrowserSniffer().isRtf(httpServletRequest);
 	}
 
 	public static boolean isSafari(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isSafari(httpServletRequest);
+		return getBrowserSniffer().isSafari(httpServletRequest);
 	}
 
 	public static boolean isSun(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isSun(httpServletRequest);
+		return getBrowserSniffer().isSun(httpServletRequest);
 	}
 
 	public static boolean isWebKit(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isWebKit(httpServletRequest);
+		return getBrowserSniffer().isWebKit(httpServletRequest);
 	}
 
 	public static boolean isWindows(HttpServletRequest httpServletRequest) {
-		return _browserSniffer.isWindows(httpServletRequest);
+		return getBrowserSniffer().isWindows(httpServletRequest);
 	}
 
 	public void setBrowserSniffer(BrowserSniffer browserSniffer) {

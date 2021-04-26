@@ -100,61 +100,61 @@ public class ServiceContext implements Cloneable, Serializable {
 	public Object clone() {
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setAddGroupPermissions(_addGroupPermissions);
-		serviceContext.setAddGuestPermissions(_addGuestPermissions);
-		serviceContext.setAssetCategoryIds(_assetCategoryIds);
-		serviceContext.setAssetEntryVisible(_assetEntryVisible);
-		serviceContext.setAssetLinkEntryIds(_assetLinkEntryIds);
-		serviceContext.setAssetPriority(_assetPriority);
-		serviceContext.setAssetTagNames(_assetTagNames);
-		serviceContext.setAttributes(_attributes);
-		serviceContext.setCommand(_command);
-		serviceContext.setCompanyId(_companyId);
-		serviceContext.setCreateDate(_createDate);
-		serviceContext.setCurrentURL(_currentURL);
-		serviceContext.setExpandoBridgeAttributes(_expandoBridgeAttributes);
-		serviceContext.setFailOnPortalException(_failOnPortalException);
+		serviceContext.setAddGroupPermissions(isAddGroupPermissions());
+		serviceContext.setAddGuestPermissions(isAddGuestPermissions());
+		serviceContext.setAssetCategoryIds(getAssetCategoryIds());
+		serviceContext.setAssetEntryVisible(isAssetEntryVisible());
+		serviceContext.setAssetLinkEntryIds(getAssetLinkEntryIds());
+		serviceContext.setAssetPriority(getAssetPriority());
+		serviceContext.setAssetTagNames(getAssetTagNames());
+		serviceContext.setAttributes(getAttributes());
+		serviceContext.setCommand(getCommand());
+		serviceContext.setCompanyId(getCompanyId());
+		serviceContext.setCreateDate(getCreateDate());
+		serviceContext.setCurrentURL(getCurrentURL());
+		serviceContext.setExpandoBridgeAttributes(getExpandoBridgeAttributes());
+		serviceContext.setFailOnPortalException(isFailOnPortalException());
 
 		if (_headers != null) {
 			serviceContext.setHeaders(_headers);
 		}
 
-		serviceContext.setIndexingEnabled(_indexingEnabled);
+		serviceContext.setIndexingEnabled(isIndexingEnabled());
 		serviceContext.setLanguageId(getLanguageId());
-		serviceContext.setLayoutFullURL(_layoutFullURL);
-		serviceContext.setLayoutURL(_layoutURL);
+		serviceContext.setLayoutFullURL(getLayoutFullURL());
+		serviceContext.setLayoutURL(getLayoutURL());
 
 		if (_modelPermissions != null) {
 			serviceContext.setModelPermissions(_modelPermissions.clone());
 		}
 
-		serviceContext.setModifiedDate(_modifiedDate);
+		serviceContext.setModifiedDate(getModifiedDate());
 		serviceContext.setPathFriendlyURLPrivateGroup(
-			_pathFriendlyURLPrivateGroup);
+			getPathFriendlyURLPrivateGroup());
 		serviceContext.setPathFriendlyURLPrivateUser(
-			_pathFriendlyURLPrivateUser);
-		serviceContext.setPathFriendlyURLPublic(_pathFriendlyURLPublic);
-		serviceContext.setPathMain(_pathMain);
+			getPathFriendlyURLPrivateUser());
+		serviceContext.setPathFriendlyURLPublic(getPathFriendlyURLPublic());
+		serviceContext.setPathMain(getPathMain());
 
 		if (_plid != null) {
 			serviceContext.setPlid(_plid);
 		}
 
-		serviceContext.setPortalURL(_portalURL);
+		serviceContext.setPortalURL(getPortalURL());
 		serviceContext.setPortletPreferencesIds(getPortletPreferencesIds());
-		serviceContext.setRemoteAddr(_remoteAddr);
-		serviceContext.setRemoteHost(_remoteHost);
-		serviceContext.setRequest(_httpServletRequest);
-		serviceContext.setScopeGroupId(_scopeGroupId);
-		serviceContext.setSignedIn(_signedIn);
+		serviceContext.setRemoteAddr(getRemoteAddr());
+		serviceContext.setRemoteHost(getRemoteHost());
+		serviceContext.setRequest(getRequest());
+		serviceContext.setScopeGroupId(getScopeGroupId());
+		serviceContext.setSignedIn(isSignedIn());
 
 		if (_userDisplayURL != null) {
 			serviceContext.setUserDisplayURL(_userDisplayURL);
 		}
 
-		serviceContext.setUserId(_userId);
+		serviceContext.setUserId(getUserId());
 		serviceContext.setUuid(getUuid());
-		serviceContext.setWorkflowAction(_workflowAction);
+		serviceContext.setWorkflowAction(getWorkflowAction());
 
 		return serviceContext;
 	}
@@ -382,16 +382,16 @@ public class ServiceContext implements Cloneable, Serializable {
 	 *         context
 	 */
 	public long getGuestOrUserId() throws PortalException {
-		long userId = _userId;
+		long userId = getUserId();
 
 		if (userId > 0) {
 			return userId;
 		}
 
-		long companyId = _companyId;
+		long companyId = getCompanyId();
 
 		if (companyId > 0) {
-			return UserLocalServiceUtil.getDefaultUserId(_companyId);
+			return UserLocalServiceUtil.getDefaultUserId(getCompanyId());
 		}
 
 		return 0;

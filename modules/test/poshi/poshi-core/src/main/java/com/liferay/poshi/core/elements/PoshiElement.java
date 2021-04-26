@@ -87,7 +87,7 @@ public abstract class PoshiElement
 	}
 
 	public String getPoshiLogDescriptor() {
-		return _poshiScript;
+		return getPoshiScript();
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public abstract class PoshiElement
 
 		if (!includeAnnotation) {
 			poshiScriptLineNumber += StringUtil.count(
-				getBlockName(_poshiScript), "\n");
+				getBlockName(getPoshiScript()), "\n");
 		}
 
 		return poshiScriptLineNumber;
@@ -119,7 +119,7 @@ public abstract class PoshiElement
 			poshiElementAttribute.validatePoshiScript();
 		}
 
-		String originalPoshiScript = _poshiScript;
+		String originalPoshiScript = getPoshiScript();
 		String generatedPoshiScript = toPoshiScript();
 
 		originalPoshiScript = originalPoshiScript.replaceAll("\\s+", "");

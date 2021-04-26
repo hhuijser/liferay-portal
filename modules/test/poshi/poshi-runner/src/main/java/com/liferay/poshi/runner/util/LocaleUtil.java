@@ -78,7 +78,7 @@ public class LocaleUtil {
 	public static final Locale US = Locale.US;
 
 	public static Locale getDefault() {
-		return _localeUtil._getDefault();
+		return getInstance()._getDefault();
 	}
 
 	public static LocaleUtil getInstance() {

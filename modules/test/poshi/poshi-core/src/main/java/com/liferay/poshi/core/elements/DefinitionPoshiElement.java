@@ -38,7 +38,7 @@ public class DefinitionPoshiElement extends PoshiElement {
 	}
 
 	public PoshiElement clone(Element element, URL url) {
-		if (isElementType(_ELEMENT_NAME, element)) {
+		if (isElementType(getElementName(), element)) {
 			return new DefinitionPoshiElement(element, url);
 		}
 
@@ -65,7 +65,7 @@ public class DefinitionPoshiElement extends PoshiElement {
 
 	@Override
 	public String getFileExtension() {
-		URL url = _url;
+		URL url = getURL();
 
 		String filePath = url.getPath();
 
@@ -89,7 +89,7 @@ public class DefinitionPoshiElement extends PoshiElement {
 		if (_validPoshiXML == null) {
 			_validPoshiXML = false;
 
-			URL url = _url;
+			URL url = getURL();
 
 			PoshiNode<?, ?> poshiNode = PoshiNodeFactory.newPoshiNodeFromFile(
 				url);

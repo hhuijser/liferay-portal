@@ -135,11 +135,11 @@ public class BuildLangTask extends JavaExec {
 			"lang.dir=" + FileUtil.relativize(getLangDir(), getWorkingDir()));
 		args.add(
 			"lang.excluded.language.ids=" +
-				StringUtil.merge(_excludedLanguageIds, ","));
+				StringUtil.merge(getExcludedLanguageIds(), ","));
 		args.add("lang.file=" + getLangFileName());
-		args.add("lang.title.capitalization=" + _titleCapitalization);
+		args.add("lang.title.capitalization=" + isTitleCapitalization());
 
-		boolean translate = _translate;
+		boolean translate = isTranslate();
 
 		if (translate) {
 			String translateSubscriptionKey = getTranslateSubscriptionKey();

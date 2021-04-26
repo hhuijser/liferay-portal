@@ -440,7 +440,7 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 
 		@Override
 		public String call() throws Exception {
-			return System.getProperty(_key);
+			return System.getProperty(getSystemPropertyKey());
 		}
 
 		protected String getSystemPropertyKey() {

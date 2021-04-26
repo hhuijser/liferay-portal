@@ -122,12 +122,12 @@ public class FormatJavadocTask extends JavaExec {
 		List<String> args = new ArrayList<>(getArgs());
 
 		args.add("javadoc.author=" + getAuthor());
-		args.add("javadoc.generate.xml=" + _generateXml);
-		args.add("javadoc.init=" + _initializeMissingJavadocs);
+		args.add("javadoc.generate.xml=" + isGenerateXml());
+		args.add("javadoc.init=" + isInitializeMissingJavadocs());
 		args.add("javadoc.input.dir=./");
 		args.add("javadoc.limit=" + CollectionUtils.join(",", getLimits()));
 		args.add("javadoc.output.file.prefix=" + getOutputFilePrefix());
-		args.add("javadoc.update=" + _updateJavadocs);
+		args.add("javadoc.update=" + isUpdateJavadocs());
 
 		return args;
 	}

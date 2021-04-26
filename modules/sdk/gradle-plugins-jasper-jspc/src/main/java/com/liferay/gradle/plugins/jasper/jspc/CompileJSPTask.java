@@ -46,7 +46,7 @@ public class CompileJSPTask extends DefaultTask {
 
 	@TaskAction
 	public void compileJSP() {
-		FileCollection jspCClasspath = _jspCClasspath;
+		FileCollection jspCClasspath = getJspCClasspath();
 
 		JspC jspC = new JspC();
 

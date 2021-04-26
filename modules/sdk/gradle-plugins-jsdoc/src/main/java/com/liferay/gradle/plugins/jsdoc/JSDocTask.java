@@ -166,7 +166,7 @@ public class JSDocTask extends ExecuteNodeScriptTask {
 			completeArgs.add(_relativize(sourceDir));
 		}
 
-		TextResource configurationTextResource = _configurationTextResource;
+		TextResource configurationTextResource = getConfiguration();
 
 		if (configurationTextResource != null) {
 			completeArgs.add("--configure");

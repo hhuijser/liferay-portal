@@ -27,13 +27,13 @@ import java.util.Set;
 public class ScriptingUtil {
 
 	public static void clearCache(String language) throws ScriptingException {
-		_scripting.clearCache(language);
+		_getScripting().clearCache(language);
 	}
 
 	public static ScriptingExecutor createScriptingExecutor(
 		String language, boolean executeInSeparateThread) {
 
-		return _scripting.createScriptingExecutor(
+		return _getScripting().createScriptingExecutor(
 			language, executeInSeparateThread);
 	}
 
@@ -42,15 +42,15 @@ public class ScriptingUtil {
 			Set<String> outputNames, String language, String script)
 		throws ScriptingException {
 
-		return _scripting.eval(
+		return _getScripting().eval(
 			allowedClasses, inputObjects, outputNames, language, script);
 	}
 
 	public static Set<String> getSupportedLanguages() {
-		return _scripting.getSupportedLanguages();
+		return _getScripting().getSupportedLanguages();
 	}
 
-	private Scripting _getScripting() {
+	private static Scripting _getScripting() {
 		return _scripting;
 	}
 

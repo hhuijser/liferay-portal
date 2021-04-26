@@ -26,23 +26,23 @@ import java.util.Set;
 public class SPIRegistryUtil {
 
 	public static void addExcludedPortletId(String portletId) {
-		_spiRegistry.addExcludedPortletId(portletId);
+		getSPIRegistry().addExcludedPortletId(portletId);
 	}
 
 	public static SPI getErrorSPI() {
-		return _spiRegistry.getErrorSPI();
+		return getSPIRegistry().getErrorSPI();
 	}
 
 	public static Set<String> getExcludedPortletIds() {
-		return _spiRegistry.getExcludedPortletIds();
+		return getSPIRegistry().getExcludedPortletIds();
 	}
 
 	public static SPI getPortletSPI(String portletId) {
-		return _spiRegistry.getPortletSPI(portletId);
+		return getSPIRegistry().getPortletSPI(portletId);
 	}
 
 	public static SPI getServletContextSPI(String servletContextName) {
-		return _spiRegistry.getServletContextSPI(servletContextName);
+		return getSPIRegistry().getServletContextSPI(servletContextName);
 	}
 
 	public static SPIRegistry getSPIRegistry() {
@@ -50,21 +50,21 @@ public class SPIRegistryUtil {
 	}
 
 	public static void registerSPI(SPI spi) throws RemoteException {
-		_spiRegistry.registerSPI(spi);
+		getSPIRegistry().registerSPI(spi);
 	}
 
 	public static void removeExcludedPortletId(String portletId) {
-		_spiRegistry.removeExcludedPortletId(portletId);
+		getSPIRegistry().removeExcludedPortletId(portletId);
 	}
 
 	public static void setSPIRegistryValidator(
 		SPIRegistryValidator spiRegistryValidator) {
 
-		_spiRegistry.setSPIRegistryValidator(spiRegistryValidator);
+		getSPIRegistry().setSPIRegistryValidator(spiRegistryValidator);
 	}
 
 	public static void unregisterSPI(SPI spi) {
-		_spiRegistry.unregisterSPI(spi);
+		getSPIRegistry().unregisterSPI(spi);
 	}
 
 	public void setSPIRegistry(SPIRegistry spiRegistry) {

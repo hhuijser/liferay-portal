@@ -192,7 +192,7 @@ public class BuildCSSTask extends JavaExec {
 
 		List<File> sourceMapFiles = new ArrayList<>();
 
-		if (_generateSourceMap) {
+		if (isGenerateSourceMap()) {
 			FileCollection cssFiles = getCSSFiles();
 
 			for (File cssFile : cssFiles) {
@@ -325,7 +325,7 @@ public class BuildCSSTask extends JavaExec {
 		List<String> args = new ArrayList<>(getArgs());
 
 		args.add(
-			"--append-css-import-timestamps=" + _appendCssImportTimestamps);
+			"--append-css-import-timestamps=" + isAppendCssImportTimestamps());
 
 		String baseDir = FileUtil.getAbsolutePath(getBaseDir());
 
@@ -343,7 +343,7 @@ public class BuildCSSTask extends JavaExec {
 
 		args.add("--excludes=" + excludes);
 
-		args.add("--generate-source-map=" + _generateSourceMap);
+		args.add("--generate-source-map=" + isGenerateSourceMap());
 
 		FileCollection imports = getImports();
 

@@ -41,9 +41,9 @@ public class ReplaceContentFilterReader
 		ReplaceContentFilterReader replaceContentFilterReader =
 			new ReplaceContentFilterReader(reader);
 
-		replaceContentFilterReader.setFrom(_from);
-		replaceContentFilterReader.setResources(_resources);
-		replaceContentFilterReader.setTo(_to);
+		replaceContentFilterReader.setFrom(getFrom());
+		replaceContentFilterReader.setResources(isResources());
+		replaceContentFilterReader.setTo(getTo());
 
 		replaceContentFilterReader.setInitialized(true);
 
@@ -74,7 +74,7 @@ public class ReplaceContentFilterReader
 			if (_buffer == null) {
 				String content = _normalize(readFully());
 
-				content = content.replace(_from, _to);
+				content = content.replace(getFrom(), getTo());
 
 				_buffer = content.toCharArray();
 			}
@@ -121,10 +121,10 @@ public class ReplaceContentFilterReader
 			}
 		}
 
-		String from = _from;
-		String to = _to;
+		String from = getFrom();
+		String to = getTo();
 
-		if (_resources) {
+		if (isResources()) {
 			from = FileUtil.read(from);
 			to = FileUtil.read(to);
 		}

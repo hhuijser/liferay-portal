@@ -119,7 +119,7 @@ public class WhipTaskExtension {
 		systemProperties.put("whip.agent", getWhipAgent());
 		systemProperties.put(
 			"whip.datafile", FileUtil.getAbsolutePath(getDataFile()));
-		systemProperties.put("whip.instrument.dump", _instrumentDump);
+		systemProperties.put("whip.instrument.dump", isInstrumentDump());
 
 		return systemProperties;
 	}

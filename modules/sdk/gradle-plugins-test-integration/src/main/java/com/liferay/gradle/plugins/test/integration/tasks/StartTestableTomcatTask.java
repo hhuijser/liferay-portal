@@ -59,7 +59,7 @@ public class StartTestableTomcatTask extends StartAppServerTask {
 
 	@Override
 	public void startAppServer() throws Exception {
-		if (_deleteLiferayHome) {
+		if (isDeleteLiferayHome()) {
 			_deleteLiferayHome();
 		}
 

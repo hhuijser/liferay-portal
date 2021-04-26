@@ -457,24 +457,25 @@ public class BuildServiceTask extends JavaExec {
 		args.add("service.api.dir=" + _relativize(getApiDir()));
 		args.add(
 			"service.auto.import.default.references=" +
-				_autoImportDefaultReferences);
-		args.add("service.auto.namespace.tables=" + _autoNamespaceTables);
+				isAutoImportDefaultReferences());
+		args.add("service.auto.namespace.tables=" + isAutoNamespaceTables());
 		args.add("service.bean.locator.util=" + getBeanLocatorUtil());
-		args.add("service.build.number.increment=" + _buildNumberIncrement);
-		args.add("service.build.number=" + _buildNumber);
-		args.add("service.database.name.max.length=" + _databaseNameMaxLength);
+		args.add("service.build.number.increment=" + isBuildNumberIncrement());
+		args.add("service.build.number=" + getBuildNumber());
+		args.add(
+			"service.database.name.max.length=" + getDatabaseNameMaxLength());
 		args.add("service.hbm.file=" + _relativize(getHbmFile()));
 		args.add("service.impl.dir=" + _relativize(getImplDir()));
 		args.add(
 			"service.incubation.features=" +
-				CollectionUtils.join(",", _incubationFeatures));
+				CollectionUtils.join(",", getIncubationFeatures()));
 		args.add("service.input.file=" + _relativize(getInputFile()));
 		args.add(
 			"service.model.hints.configs=" +
 				CollectionUtils.join(",", getCompleteModelHintsConfigs()));
 		args.add(
 			"service.model.hints.file=" + _relativize(getModelHintsFile()));
-		args.add("service.osgi.module=" + _osgiModule);
+		args.add("service.osgi.module=" + isOsgiModule());
 		args.add("service.plugin.name=" + getPluginName());
 		args.add("service.props.util=" + getPropsUtil());
 		args.add(

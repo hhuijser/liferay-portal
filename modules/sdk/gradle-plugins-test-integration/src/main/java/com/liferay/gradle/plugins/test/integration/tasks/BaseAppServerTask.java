@@ -199,7 +199,7 @@ public abstract class BaseAppServerTask extends DefaultTask {
 
 		processExecutor.directory(getBinDir());
 
-		processExecutor.environment(_environment);
+		processExecutor.environment(getEnvironment());
 
 		Slf4jStream slf4jStream = Slf4jStream.ofCaller();
 
@@ -213,7 +213,7 @@ public abstract class BaseAppServerTask extends DefaultTask {
 
 		try {
 			success = GradleUtil.waitFor(
-				callable, _checkInterval, _checkTimeout);
+				callable, getCheckInterval(), getCheckTimeout());
 		}
 		catch (Exception exception) {
 			throw new GradleException(

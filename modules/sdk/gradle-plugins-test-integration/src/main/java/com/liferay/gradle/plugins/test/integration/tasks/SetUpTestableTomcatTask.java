@@ -351,7 +351,7 @@ public class SetUpTestableTomcatTask
 	}
 
 	private void _setUpLogging() throws Exception {
-		if (!_debugLogging ||
+		if (!isDebugLogging() ||
 			_contains("conf/Logging.properties", "org.apache.catalina.level")) {
 
 			return;
@@ -497,7 +497,7 @@ public class SetUpTestableTomcatTask
 					File modulesDir = new File(
 						moduleFrameworkBaseDir, "modules");
 
-					if (!_overwriteTestModules) {
+					if (!isOverwriteTestModules()) {
 						copySpec.eachFile(
 							new ExcludeExistingFileAction(modulesDir));
 					}

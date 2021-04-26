@@ -43,13 +43,13 @@ public class NodeExtension {
 
 			@Override
 			public File call() throws Exception {
-				if (!_download) {
+				if (!isDownload()) {
 					return null;
 				}
 
 				Project curProject = project;
 
-				if (_global) {
+				if (isGlobal()) {
 					curProject = curProject.getRootProject();
 				}
 

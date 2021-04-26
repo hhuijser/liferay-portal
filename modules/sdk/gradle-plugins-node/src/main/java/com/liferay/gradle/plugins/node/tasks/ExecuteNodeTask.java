@@ -67,7 +67,7 @@ public class ExecuteNodeTask extends DefaultTask {
 
 	@TaskAction
 	public void executeNode() throws Exception {
-		int npmInstallRetries = _npmInstallRetries;
+		int npmInstallRetries = getNpmInstallRetries();
 
 		NpmInstallTask npmInstallTask = GradleUtil.fetchTask(
 			getProject(), NodePlugin.NPM_INSTALL_TASK_NAME,

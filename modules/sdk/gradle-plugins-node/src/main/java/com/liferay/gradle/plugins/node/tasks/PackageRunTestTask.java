@@ -35,7 +35,7 @@ public class PackageRunTestTask
 			super.executeNode();
 		}
 		catch (Exception exception) {
-			if (_ignoreFailures) {
+			if (isIgnoreFailures()) {
 				Logger logger = getLogger();
 
 				if (logger.isWarnEnabled()) {

@@ -82,7 +82,7 @@ public class NodeExecutor {
 
 		workingDir.mkdirs();
 
-		if (_useGradleExec) {
+		if (isUseGradleExec()) {
 			return _executeGradleExec();
 		}
 
@@ -231,7 +231,7 @@ public class NodeExecutor {
 		}
 		else {
 			commandLine.add(_getExecutable());
-			commandLine.addAll(GradleUtil.toStringList(_args));
+			commandLine.addAll(GradleUtil.toStringList(getArgs()));
 		}
 
 		return commandLine;
@@ -291,7 +291,7 @@ public class NodeExecutor {
 			sb.append('"');
 		}
 
-		List<String> args = GradleUtil.toStringList(_args);
+		List<String> args = GradleUtil.toStringList(getArgs());
 
 		for (String arg : args) {
 			sb.append(" \"");
@@ -401,9 +401,9 @@ public class NodeExecutor {
 	}
 
 	private void _updateEnvironment(Map<String, String> environment) {
-		GUtil.addToMap(environment, _environment);
+		GUtil.addToMap(environment, getEnvironment());
 
-		if (_inheritProxy) {
+		if (isInheritProxy()) {
 			_setNonproxyHosts(environment);
 			_setProxy(environment, "http");
 			_setProxy(environment, "https");

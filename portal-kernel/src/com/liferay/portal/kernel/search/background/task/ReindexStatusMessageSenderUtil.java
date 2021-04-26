@@ -24,17 +24,18 @@ public class ReindexStatusMessageSenderUtil {
 	public static void sendStatusMessage(
 		String className, long count, long total) {
 
-		_reindexStatusMessageSender.sendStatusMessage(className, count, total);
+		_getReindexStatusMessageSender().sendStatusMessage(
+			className, count, total);
 	}
 
 	public static void sendStatusMessage(
 		String phase, long companyId, long[] companyIds) {
 
-		_reindexStatusMessageSender.sendStatusMessage(
+		_getReindexStatusMessageSender().sendStatusMessage(
 			phase, companyId, companyIds);
 	}
 
-	private ReindexStatusMessageSender _getReindexStatusMessageSender() {
+	private static ReindexStatusMessageSender _getReindexStatusMessageSender() {
 		return _reindexStatusMessageSender;
 	}
 

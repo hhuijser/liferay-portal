@@ -681,8 +681,9 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 		Set<String> selectedFieldNames = null;
 
-		if (!ArrayUtil.isEmpty(_defaultSelectedFieldNames)) {
-			selectedFieldNames = SetUtil.fromArray(_defaultSelectedFieldNames);
+		if (!ArrayUtil.isEmpty(getDefaultSelectedFieldNames())) {
+			selectedFieldNames = SetUtil.fromArray(
+				getDefaultSelectedFieldNames());
 
 			if (searchContext.isIncludeAttachments() ||
 				searchContext.isIncludeDiscussions()) {
@@ -692,12 +693,12 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 			}
 		}
 
-		if (!ArrayUtil.isEmpty(_defaultSelectedLocalizedFieldNames)) {
+		if (!ArrayUtil.isEmpty(getDefaultSelectedLocalizedFieldNames())) {
 			if (selectedFieldNames == null) {
 				selectedFieldNames = new HashSet<>();
 			}
 
-			if (_selectAllLocales) {
+			if (isSelectAllLocales()) {
 				addSelectedLocalizedFieldNames(
 					selectedFieldNames,
 					LocaleUtil.toLanguageIds(
@@ -988,7 +989,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 		Set<String> selectedFieldNames, String... languageIds) {
 
 		for (String defaultLocalizedSelectedFieldName :
-				_defaultSelectedLocalizedFieldNames) {
+				getDefaultSelectedLocalizedFieldNames()) {
 
 			selectedFieldNames.add(defaultLocalizedSelectedFieldName);
 
@@ -1002,7 +1003,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	}
 
 	protected void addStagingGroupKeyword(Document document, long groupId) {
-		if (!_stagingAware) {
+		if (!isStagingAware()) {
 			return;
 		}
 
@@ -1398,7 +1399,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	protected boolean isUseSearchResultPermissionFilter(
 		SearchContext searchContext) {
 
-		return _filterSearch;
+		return isFilterSearch();
 	}
 
 	protected boolean isVisible(int entryStatus, int queryStatus) {

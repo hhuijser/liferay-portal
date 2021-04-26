@@ -357,7 +357,7 @@ public class Field implements Serializable {
 	}
 
 	public boolean hasChildren() {
-		return !_fields.isEmpty();
+		return !getFields().isEmpty();
 	}
 
 	public boolean isArray() {
@@ -381,7 +381,7 @@ public class Field implements Serializable {
 	}
 
 	public boolean isNested() {
-		if (_parentField != null) {
+		if (getParentField() != null) {
 			return true;
 		}
 

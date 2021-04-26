@@ -44,6 +44,10 @@ public class TransferHeadersHelperUtil {
 		_transferHeadersHelper = transferHeadersHelper;
 	}
 
+	private TransferHeadersHelper _getTransferHeadersHelper() {
+		return _transferHeadersHelper;
+	}
+
 	private static TransferHeadersHelper _transferHeadersHelper;
 
 }

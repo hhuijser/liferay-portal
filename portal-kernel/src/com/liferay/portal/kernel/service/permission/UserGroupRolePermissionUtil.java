@@ -29,21 +29,21 @@ public class UserGroupRolePermissionUtil {
 			PermissionChecker permissionChecker, Group group, Role role)
 		throws PortalException {
 
-		_userGroupRolePermission.check(permissionChecker, group, role);
+		getUserGroupRolePermission().check(permissionChecker, group, role);
 	}
 
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, long roleId)
 		throws PortalException {
 
-		_userGroupRolePermission.check(permissionChecker, groupId, roleId);
+		getUserGroupRolePermission().check(permissionChecker, groupId, roleId);
 	}
 
 	public static boolean contains(
 			PermissionChecker permissionChecker, Group group, Role role)
 		throws PortalException {
 
-		return _userGroupRolePermission.contains(
+		return getUserGroupRolePermission().contains(
 			permissionChecker, group, role);
 	}
 
@@ -51,7 +51,7 @@ public class UserGroupRolePermissionUtil {
 			PermissionChecker permissionChecker, long groupId, long roleId)
 		throws PortalException {
 
-		return _userGroupRolePermission.contains(
+		return getUserGroupRolePermission().contains(
 			permissionChecker, groupId, roleId);
 	}
 

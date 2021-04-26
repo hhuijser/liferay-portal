@@ -28,7 +28,7 @@ public class AccountPermissionUtil {
 			String actionId)
 		throws PortalException {
 
-		_accountPermission.check(permissionChecker, account, actionId);
+		getAccountPermission().check(permissionChecker, account, actionId);
 	}
 
 	public static void check(
@@ -36,7 +36,7 @@ public class AccountPermissionUtil {
 			String actionId)
 		throws PortalException {
 
-		_accountPermission.check(permissionChecker, accountId, actionId);
+		getAccountPermission().check(permissionChecker, accountId, actionId);
 	}
 
 	public static boolean contains(
@@ -44,7 +44,7 @@ public class AccountPermissionUtil {
 			String actionId)
 		throws PortalException {
 
-		return _accountPermission.contains(
+		return getAccountPermission().contains(
 			permissionChecker, account, actionId);
 	}
 
@@ -53,7 +53,7 @@ public class AccountPermissionUtil {
 			String actionId)
 		throws PortalException {
 
-		return _accountPermission.contains(
+		return getAccountPermission().contains(
 			permissionChecker, accountId, actionId);
 	}
 

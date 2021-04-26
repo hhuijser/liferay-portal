@@ -29,7 +29,7 @@ public class LayoutPermissionUtil {
 			boolean checkViewableGroup, String actionId)
 		throws PortalException {
 
-		_layoutPermission.check(
+		getLayoutPermission().check(
 			permissionChecker, layout, checkViewableGroup, actionId);
 	}
 
@@ -37,7 +37,7 @@ public class LayoutPermissionUtil {
 			PermissionChecker permissionChecker, Layout layout, String actionId)
 		throws PortalException {
 
-		_layoutPermission.check(permissionChecker, layout, actionId);
+		getLayoutPermission().check(permissionChecker, layout, actionId);
 	}
 
 	public static void check(
@@ -45,7 +45,7 @@ public class LayoutPermissionUtil {
 			boolean privateLayout, long layoutId, String actionId)
 		throws PortalException {
 
-		_layoutPermission.check(
+		getLayoutPermission().check(
 			permissionChecker, groupId, privateLayout, layoutId, actionId);
 	}
 
@@ -53,7 +53,7 @@ public class LayoutPermissionUtil {
 			PermissionChecker permissionChecker, long plid, String actionId)
 		throws PortalException {
 
-		_layoutPermission.check(permissionChecker, plid, actionId);
+		getLayoutPermission().check(permissionChecker, plid, actionId);
 	}
 
 	public static boolean contains(
@@ -61,7 +61,7 @@ public class LayoutPermissionUtil {
 			boolean checkViewableGroup, String actionId)
 		throws PortalException {
 
-		return _layoutPermission.contains(
+		return getLayoutPermission().contains(
 			permissionChecker, layout, checkViewableGroup, actionId);
 	}
 
@@ -69,7 +69,8 @@ public class LayoutPermissionUtil {
 			PermissionChecker permissionChecker, Layout layout, String actionId)
 		throws PortalException {
 
-		return _layoutPermission.contains(permissionChecker, layout, actionId);
+		return getLayoutPermission().contains(
+			permissionChecker, layout, actionId);
 	}
 
 	public static boolean contains(
@@ -77,7 +78,7 @@ public class LayoutPermissionUtil {
 			boolean privateLayout, long layoutId, String actionId)
 		throws PortalException {
 
-		return _layoutPermission.contains(
+		return getLayoutPermission().contains(
 			permissionChecker, groupId, privateLayout, layoutId, actionId);
 	}
 
@@ -85,7 +86,8 @@ public class LayoutPermissionUtil {
 			PermissionChecker permissionChecker, long plid, String actionId)
 		throws PortalException {
 
-		return _layoutPermission.contains(permissionChecker, plid, actionId);
+		return getLayoutPermission().contains(
+			permissionChecker, plid, actionId);
 	}
 
 	public static boolean containsWithoutViewableGroup(
@@ -93,7 +95,7 @@ public class LayoutPermissionUtil {
 			boolean checkLayoutUpdateable, String actionId)
 		throws PortalException {
 
-		return _layoutPermission.containsWithoutViewableGroup(
+		return getLayoutPermission().containsWithoutViewableGroup(
 			permissionChecker, layout, checkLayoutUpdateable, actionId);
 	}
 
@@ -101,7 +103,7 @@ public class LayoutPermissionUtil {
 			PermissionChecker permissionChecker, Layout layout, String actionId)
 		throws PortalException {
 
-		return _layoutPermission.containsWithoutViewableGroup(
+		return getLayoutPermission().containsWithoutViewableGroup(
 			permissionChecker, layout, true, actionId);
 	}
 

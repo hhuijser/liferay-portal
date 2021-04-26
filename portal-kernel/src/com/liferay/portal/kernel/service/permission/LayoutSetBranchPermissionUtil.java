@@ -28,7 +28,7 @@ public class LayoutSetBranchPermissionUtil {
 			LayoutSetBranch layoutSetBranch, String actionId)
 		throws PortalException {
 
-		_layoutSetBranchPermission.check(
+		getLayoutSetBranchPermission().check(
 			permissionChecker, layoutSetBranch, actionId);
 	}
 
@@ -37,7 +37,7 @@ public class LayoutSetBranchPermissionUtil {
 			String actionId)
 		throws PortalException {
 
-		_layoutSetBranchPermission.check(
+		getLayoutSetBranchPermission().check(
 			permissionChecker, layoutSetBranchId, actionId);
 	}
 
@@ -45,7 +45,7 @@ public class LayoutSetBranchPermissionUtil {
 		PermissionChecker permissionChecker, LayoutSetBranch layoutSetBranch,
 		String actionId) {
 
-		return _layoutSetBranchPermission.contains(
+		return getLayoutSetBranchPermission().contains(
 			permissionChecker, layoutSetBranch, actionId);
 	}
 
@@ -54,7 +54,7 @@ public class LayoutSetBranchPermissionUtil {
 			String actionId)
 		throws PortalException {
 
-		return _layoutSetBranchPermission.contains(
+		return getLayoutSetBranchPermission().contains(
 			permissionChecker, layoutSetBranchId, actionId);
 	}
 

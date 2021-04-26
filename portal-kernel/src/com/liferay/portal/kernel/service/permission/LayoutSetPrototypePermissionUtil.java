@@ -27,7 +27,7 @@ public class LayoutSetPrototypePermissionUtil {
 			String actionId)
 		throws PrincipalException {
 
-		_layoutSetPrototypePermission.check(
+		getLayoutSetPrototypePermission().check(
 			permissionChecker, layoutSetPrototypeId, actionId);
 	}
 
@@ -35,7 +35,7 @@ public class LayoutSetPrototypePermissionUtil {
 		PermissionChecker permissionChecker, long layoutSetPrototypeId,
 		String actionId) {
 
-		return _layoutSetPrototypePermission.contains(
+		return getLayoutSetPrototypePermission().contains(
 			permissionChecker, layoutSetPrototypeId, actionId);
 	}
 

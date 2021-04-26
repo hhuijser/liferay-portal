@@ -27,7 +27,7 @@ public class UserPermissionUtil {
 			long[] organizationIds, String actionId)
 		throws PrincipalException {
 
-		_userPermission.check(
+		getUserPermission().check(
 			permissionChecker, userId, organizationIds, actionId);
 	}
 
@@ -35,21 +35,22 @@ public class UserPermissionUtil {
 			PermissionChecker permissionChecker, long userId, String actionId)
 		throws PrincipalException {
 
-		_userPermission.check(permissionChecker, userId, actionId);
+		getUserPermission().check(permissionChecker, userId, actionId);
 	}
 
 	public static boolean contains(
 		PermissionChecker permissionChecker, long userId,
 		long[] organizationIds, String actionId) {
 
-		return _userPermission.contains(
+		return getUserPermission().contains(
 			permissionChecker, userId, organizationIds, actionId);
 	}
 
 	public static boolean contains(
 		PermissionChecker permissionChecker, long userId, String actionId) {
 
-		return _userPermission.contains(permissionChecker, userId, actionId);
+		return getUserPermission().contains(
+			permissionChecker, userId, actionId);
 	}
 
 	public static UserPermission getUserPermission() {

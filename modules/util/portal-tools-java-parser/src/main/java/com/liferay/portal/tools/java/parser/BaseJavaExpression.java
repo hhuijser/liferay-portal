@@ -67,7 +67,7 @@ public abstract class BaseJavaExpression
 		boolean forceLineBreak) {
 
 		if (_chainedJavaExpression == null) {
-			if (!_hasSurroundingParentheses) {
+			if (!hasSurroundingParentheses()) {
 				return getString(
 					indent, prefix, suffix, maxLineLength, forceLineBreak);
 			}
@@ -79,7 +79,7 @@ public abstract class BaseJavaExpression
 
 		StringBundler sb = new StringBundler();
 
-		if (_hasSurroundingParentheses) {
+		if (hasSurroundingParentheses()) {
 			sb.append(
 				getString(
 					indent, prefix + "(", ").", maxLineLength, forceLineBreak));

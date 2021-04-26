@@ -123,7 +123,7 @@ public class InitBundleCommand extends DownloadCommand {
 
 		Path modulesPath = liferayHomeDirPath.resolve("osgi/modules");
 
-		for (File file : _providedModules) {
+		for (File file : getProvidedModules()) {
 			Path destinationPath = modulesPath.resolve(file.getName());
 
 			FileUtil.copyFile(file.toPath(), destinationPath);

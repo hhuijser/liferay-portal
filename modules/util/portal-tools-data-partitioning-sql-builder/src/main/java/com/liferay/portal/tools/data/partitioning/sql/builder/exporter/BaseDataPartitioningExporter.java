@@ -96,7 +96,7 @@ public abstract class BaseDataPartitioningExporter
 	public void write(
 		long companyId, String tableName, OutputStream outputStream) {
 
-		DataSource dataSource = _dataSource;
+		DataSource dataSource = getDataSource();
 
 		String sql = "select * from " + tableName;
 
@@ -143,7 +143,7 @@ public abstract class BaseDataPartitioningExporter
 	public void writeDelete(
 		long companyId, String tableName, OutputStream outputStream) {
 
-		DataSource dataSource = _dataSource;
+		DataSource dataSource = getDataSource();
 
 		try (Connection connection = dataSource.getConnection();
 			PreparedStatement preparedStatement = buildPreparedStatement(
@@ -193,7 +193,7 @@ public abstract class BaseDataPartitioningExporter
 	protected List<String> getTableNames(String sql) {
 		List<String> tableNames = new ArrayList<>();
 
-		DataSource dataSource = _dataSource;
+		DataSource dataSource = getDataSource();
 
 		try (Connection connection = dataSource.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(

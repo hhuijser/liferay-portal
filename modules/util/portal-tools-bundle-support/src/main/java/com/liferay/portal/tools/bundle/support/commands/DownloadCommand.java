@@ -106,7 +106,7 @@ public class DownloadCommand extends BaseCommand implements StreamLogger {
 
 	@Override
 	public void onCompleted() {
-		if (_quiet) {
+		if (isQuiet()) {
 			return;
 		}
 
@@ -115,7 +115,7 @@ public class DownloadCommand extends BaseCommand implements StreamLogger {
 
 	@Override
 	public void onProgress(long completed, long length) {
-		if (_quiet) {
+		if (isQuiet()) {
 			return;
 		}
 
@@ -135,7 +135,7 @@ public class DownloadCommand extends BaseCommand implements StreamLogger {
 
 	@Override
 	public void onStarted() {
-		if (_quiet) {
+		if (isQuiet()) {
 			return;
 		}
 
@@ -175,7 +175,7 @@ public class DownloadCommand extends BaseCommand implements StreamLogger {
 	}
 
 	protected void onProgress(String message) {
-		if (_quiet) {
+		if (isQuiet()) {
 			return;
 		}
 
@@ -191,7 +191,7 @@ public class DownloadCommand extends BaseCommand implements StreamLogger {
 	}
 
 	protected void onStarted(String message) {
-		if (_quiet) {
+		if (isQuiet()) {
 			return;
 		}
 

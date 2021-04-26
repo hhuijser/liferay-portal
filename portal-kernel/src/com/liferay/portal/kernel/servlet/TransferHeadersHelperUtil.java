@@ -27,7 +27,7 @@ public class TransferHeadersHelperUtil {
 	public static RequestDispatcher getTransferHeadersRequestDispatcher(
 		RequestDispatcher requestDispatcher) {
 
-		return _transferHeadersHelper.getTransferHeadersRequestDispatcher(
+		return _getTransferHeadersHelper().getTransferHeadersRequestDispatcher(
 			requestDispatcher);
 	}
 
@@ -35,7 +35,8 @@ public class TransferHeadersHelperUtil {
 		Map<String, Object[]> headers,
 		HttpServletResponse httpServletResponse) {
 
-		_transferHeadersHelper.transferHeaders(headers, httpServletResponse);
+		_getTransferHeadersHelper().transferHeaders(
+			headers, httpServletResponse);
 	}
 
 	public void setTransferHeadersHelper(
@@ -44,7 +45,7 @@ public class TransferHeadersHelperUtil {
 		_transferHeadersHelper = transferHeadersHelper;
 	}
 
-	private TransferHeadersHelper _getTransferHeadersHelper() {
+	private static TransferHeadersHelper _getTransferHeadersHelper() {
 		return _transferHeadersHelper;
 	}
 

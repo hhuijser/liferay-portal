@@ -28,28 +28,28 @@ public class PermissionConverterUtil {
 	public static List<Permission> convertPermissions(long roleId)
 		throws PortalException {
 
-		return _permissionConverter.convertPermissions(roleId);
+		return getPermissionConverter().convertPermissions(roleId);
 	}
 
 	public static List<Permission> convertPermissions(
 			long roleId, PermissionConversionFilter permissionConversionFilter)
 		throws PortalException {
 
-		return _permissionConverter.convertPermissions(
+		return getPermissionConverter().convertPermissions(
 			roleId, permissionConversionFilter);
 	}
 
 	public static List<Permission> convertPermissions(Role role)
 		throws PortalException {
 
-		return _permissionConverter.convertPermissions(role);
+		return getPermissionConverter().convertPermissions(role);
 	}
 
 	public static List<Permission> convertPermissions(
 			Role role, PermissionConversionFilter permissionConversionFilter)
 		throws PortalException {
 
-		return _permissionConverter.convertPermissions(
+		return getPermissionConverter().convertPermissions(
 			role, permissionConversionFilter);
 	}
 

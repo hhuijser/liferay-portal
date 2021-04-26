@@ -29,29 +29,29 @@ public class InterruptedPortletRequestWhitelistUtil {
 	}
 
 	public static Set<String> getPortletInvocationWhitelist() {
-		return _interruptedPortletRequestWhitelist.
+		return getInterruptedPortletRequestWhitelist().
 			getPortletInvocationWhitelist();
 	}
 
 	public static Set<String> getPortletInvocationWhitelistActions() {
-		return _interruptedPortletRequestWhitelist.
+		return getInterruptedPortletRequestWhitelist().
 			getPortletInvocationWhitelistActions();
 	}
 
 	public static boolean isPortletInvocationWhitelisted(
 		long companyId, String portletId, String strutsAction) {
 
-		return _interruptedPortletRequestWhitelist.
+		return getInterruptedPortletRequestWhitelist().
 			isPortletInvocationWhitelisted(companyId, portletId, strutsAction);
 	}
 
 	public static Set<String> resetPortletInvocationWhitelist() {
-		return _interruptedPortletRequestWhitelist.
+		return getInterruptedPortletRequestWhitelist().
 			resetPortletInvocationWhitelist();
 	}
 
 	public static Set<String> resetPortletInvocationWhitelistActions() {
-		return _interruptedPortletRequestWhitelist.
+		return getInterruptedPortletRequestWhitelist().
 			resetPortletInvocationWhitelistActions();
 	}
 

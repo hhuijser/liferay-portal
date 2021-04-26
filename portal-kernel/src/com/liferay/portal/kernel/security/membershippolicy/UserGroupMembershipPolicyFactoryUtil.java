@@ -20,7 +20,8 @@ package com.liferay.portal.kernel.security.membershippolicy;
 public class UserGroupMembershipPolicyFactoryUtil {
 
 	public static UserGroupMembershipPolicy getUserGroupMembershipPolicy() {
-		return _userGroupMembershipPolicyFactory.getUserGroupMembershipPolicy();
+		return getUserGroupMembershipPolicyFactory().
+			getUserGroupMembershipPolicy();
 	}
 
 	public static UserGroupMembershipPolicyFactory

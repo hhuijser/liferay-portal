@@ -37,11 +37,11 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static void check(Portlet portlet) {
-		_resourceActions.check(portlet);
+		getResourceActions().check(portlet);
 	}
 
 	public static void check(String portletName) {
-		_resourceActions.check(portletName);
+		getResourceActions().check(portletName);
 	}
 
 	/**
@@ -51,17 +51,17 @@ public class ResourceActionsUtil {
 	public static void checkAction(String name, String actionId)
 		throws NoSuchResourceActionException {
 
-		_resourceActions.checkAction(name, actionId);
+		getResourceActions().checkAction(name, actionId);
 	}
 
 	public static String getAction(
 		HttpServletRequest httpServletRequest, String action) {
 
-		return _resourceActions.getAction(httpServletRequest, action);
+		return getResourceActions().getAction(httpServletRequest, action);
 	}
 
 	public static String getAction(Locale locale, String action) {
-		return _resourceActions.getAction(locale, action);
+		return getResourceActions().getAction(locale, action);
 	}
 
 	/**
@@ -69,69 +69,70 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static String getActionNamePrefix() {
-		return _resourceActions.getActionNamePrefix();
+		return getResourceActions().getActionNamePrefix();
 	}
 
 	public static String getCompositeModelName(String... classNames) {
-		return _resourceActions.getCompositeModelName(classNames);
+		return getResourceActions().getCompositeModelName(classNames);
 	}
 
 	public static String getCompositeModelNameSeparator() {
-		return _resourceActions.getCompositeModelNameSeparator();
+		return getResourceActions().getCompositeModelNameSeparator();
 	}
 
 	public static List<String> getModelNames() {
-		return _resourceActions.getModelNames();
+		return getResourceActions().getModelNames();
 	}
 
 	public static List<String> getModelPortletResources(String name) {
-		return _resourceActions.getModelPortletResources(name);
+		return getResourceActions().getModelPortletResources(name);
 	}
 
 	public static String getModelResource(
 		HttpServletRequest httpServletRequest, String name) {
 
-		return _resourceActions.getModelResource(httpServletRequest, name);
+		return getResourceActions().getModelResource(httpServletRequest, name);
 	}
 
 	public static String getModelResource(Locale locale, String name) {
-		return _resourceActions.getModelResource(locale, name);
+		return getResourceActions().getModelResource(locale, name);
 	}
 
 	public static List<String> getModelResourceActions(String name) {
-		return _resourceActions.getModelResourceActions(name);
+		return getResourceActions().getModelResourceActions(name);
 	}
 
 	public static List<String> getModelResourceGroupDefaultActions(
 		String name) {
 
-		return _resourceActions.getModelResourceGroupDefaultActions(name);
+		return getResourceActions().getModelResourceGroupDefaultActions(name);
 	}
 
 	public static List<String> getModelResourceGuestDefaultActions(
 		String name) {
 
-		return _resourceActions.getModelResourceGuestDefaultActions(name);
+		return getResourceActions().getModelResourceGuestDefaultActions(name);
 	}
 
 	public static List<String> getModelResourceGuestUnsupportedActions(
 		String name) {
 
-		return _resourceActions.getModelResourceGuestUnsupportedActions(name);
+		return getResourceActions().getModelResourceGuestUnsupportedActions(
+			name);
 	}
 
 	public static String getModelResourceNamePrefix() {
-		return _resourceActions.getModelResourceNamePrefix();
+		return getResourceActions().getModelResourceNamePrefix();
 	}
 
 	public static List<String> getModelResourceOwnerDefaultActions(
 		String name) {
 
-		return _resourceActions.getModelResourceOwnerDefaultActions(name);
+		return getResourceActions().getModelResourceOwnerDefaultActions(name);
 	}
 
 	public static Double getModelResourceWeight(String name) {
-		return _resourceActions.getModelResourceWeight(name);
+		return getResourceActions().getModelResourceWeight(name);
 	}
 
 	/**
@@ -139,7 +140,7 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static String[] getOrganizationModelResources() {
-		return _resourceActions.getOrganizationModelResources();
+		return getResourceActions().getOrganizationModelResources();
 	}
 
 	/**
@@ -147,7 +148,7 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static String[] getPortalModelResources() {
-		return _resourceActions.getPortalModelResources();
+		return getResourceActions().getPortalModelResources();
 	}
 
 	/**
@@ -155,15 +156,15 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static String getPortletBaseResource(String portletName) {
-		return _resourceActions.getPortletBaseResource(portletName);
+		return getResourceActions().getPortletBaseResource(portletName);
 	}
 
 	public static List<String> getPortletModelResources(String portletName) {
-		return _resourceActions.getPortletModelResources(portletName);
+		return getResourceActions().getPortletModelResources(portletName);
 	}
 
 	public static List<String> getPortletNames() {
-		return _resourceActions.getPortletNames();
+		return getResourceActions().getPortletNames();
 	}
 
 	/**
@@ -171,39 +172,41 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static List<String> getPortletResourceActions(Portlet portlet) {
-		return _resourceActions.getPortletResourceActions(portlet);
+		return getResourceActions().getPortletResourceActions(portlet);
 	}
 
 	public static List<String> getPortletResourceActions(String name) {
-		return _resourceActions.getPortletResourceActions(name);
+		return getResourceActions().getPortletResourceActions(name);
 	}
 
 	public static List<String> getPortletResourceGroupDefaultActions(
 		String name) {
 
-		return _resourceActions.getPortletResourceGroupDefaultActions(name);
+		return getResourceActions().getPortletResourceGroupDefaultActions(name);
 	}
 
 	public static List<String> getPortletResourceGuestDefaultActions(
 		String name) {
 
-		return _resourceActions.getPortletResourceGuestDefaultActions(name);
+		return getResourceActions().getPortletResourceGuestDefaultActions(name);
 	}
 
 	public static List<String> getPortletResourceGuestUnsupportedActions(
 		String name) {
 
-		return _resourceActions.getPortletResourceGuestUnsupportedActions(name);
+		return getResourceActions().getPortletResourceGuestUnsupportedActions(
+			name);
 	}
 
 	public static List<String> getPortletResourceLayoutManagerActions(
 		String name) {
 
-		return _resourceActions.getPortletResourceLayoutManagerActions(name);
+		return getResourceActions().getPortletResourceLayoutManagerActions(
+			name);
 	}
 
 	public static String getPortletRootModelResource(String portletName) {
-		return _resourceActions.getPortletRootModelResource(portletName);
+		return getResourceActions().getPortletRootModelResource(portletName);
 	}
 
 	public static ResourceActions getResourceActions() {
@@ -211,13 +214,13 @@ public class ResourceActionsUtil {
 	}
 
 	public static List<String> getResourceActions(String name) {
-		return _resourceActions.getResourceActions(name);
+		return getResourceActions().getResourceActions(name);
 	}
 
 	public static List<String> getResourceActions(
 		String portletResource, String modelResource) {
 
-		return _resourceActions.getResourceActions(
+		return getResourceActions().getResourceActions(
 			portletResource, modelResource);
 	}
 
@@ -226,20 +229,20 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static List<String> getResourceGroupDefaultActions(String name) {
-		return _resourceActions.getResourceGroupDefaultActions(name);
+		return getResourceActions().getResourceGroupDefaultActions(name);
 	}
 
 	public static List<String> getResourceGuestUnsupportedActions(
 		String portletResource, String modelResource) {
 
-		return _resourceActions.getResourceGuestUnsupportedActions(
+		return getResourceActions().getResourceGuestUnsupportedActions(
 			portletResource, modelResource);
 	}
 
 	public static List<Role> getRoles(
 		long companyId, Group group, String modelResource, int[] roleTypes) {
 
-		return _resourceActions.getRoles(
+		return getResourceActions().getRoles(
 			companyId, group, modelResource, roleTypes);
 	}
 
@@ -248,7 +251,7 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static String[] getRootModelResources() {
-		return _resourceActions.getRootModelResources();
+		return getResourceActions().getRootModelResources();
 	}
 
 	/**
@@ -256,7 +259,7 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static boolean hasModelResourceActions(String name) {
-		return _resourceActions.hasModelResourceActions(name);
+		return getResourceActions().hasModelResourceActions(name);
 	}
 
 	/**
@@ -264,42 +267,43 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static boolean isOrganizationModelResource(String modelResource) {
-		return _resourceActions.isOrganizationModelResource(modelResource);
+		return getResourceActions().isOrganizationModelResource(modelResource);
 	}
 
 	public static boolean isPortalModelResource(String modelResource) {
-		return _resourceActions.isPortalModelResource(modelResource);
+		return getResourceActions().isPortalModelResource(modelResource);
 	}
 
 	public static boolean isRootModelResource(String modelResource) {
-		return _resourceActions.isRootModelResource(modelResource);
+		return getResourceActions().isRootModelResource(modelResource);
 	}
 
 	public static void populateModelResources(
 			ClassLoader classLoader, String... sources)
 		throws ResourceActionsException {
 
-		_resourceActions.populateModelResources(classLoader, sources);
+		getResourceActions().populateModelResources(classLoader, sources);
 	}
 
 	public static void populateModelResources(Document document)
 		throws ResourceActionsException {
 
-		_resourceActions.populateModelResources(document);
+		getResourceActions().populateModelResources(document);
 	}
 
 	public static void populatePortletResource(
 			Portlet portlet, ClassLoader classLoader, String... sources)
 		throws ResourceActionsException {
 
-		_resourceActions.populatePortletResource(portlet, classLoader, sources);
+		getResourceActions().populatePortletResource(
+			portlet, classLoader, sources);
 	}
 
 	public static void populatePortletResources(
 			ClassLoader classLoader, String... sources)
 		throws ResourceActionsException {
 
-		_resourceActions.populatePortletResources(classLoader, sources);
+		getResourceActions().populatePortletResources(classLoader, sources);
 	}
 
 	/**
@@ -309,7 +313,7 @@ public class ResourceActionsUtil {
 	public static void read(ClassLoader classLoader, String source)
 		throws Exception {
 
-		_resourceActions.read(classLoader, source);
+		getResourceActions().read(classLoader, source);
 	}
 
 	/**
@@ -319,7 +323,7 @@ public class ResourceActionsUtil {
 	public static void read(ClassLoader classLoader, String... sources)
 		throws Exception {
 
-		_resourceActions.read(classLoader, sources);
+		getResourceActions().read(classLoader, sources);
 	}
 
 	/**
@@ -330,7 +334,7 @@ public class ResourceActionsUtil {
 			String servletContextName, ClassLoader classLoader, String source)
 		throws Exception {
 
-		_resourceActions.read(servletContextName, classLoader, source);
+		getResourceActions().read(servletContextName, classLoader, source);
 	}
 
 	/**
@@ -342,7 +346,7 @@ public class ResourceActionsUtil {
 			String... sources)
 		throws Exception {
 
-		_resourceActions.read(servletContextName, classLoader, sources);
+		getResourceActions().read(servletContextName, classLoader, sources);
 	}
 
 	/**
@@ -352,7 +356,7 @@ public class ResourceActionsUtil {
 	public static void readAndCheck(ClassLoader classLoader, String... sources)
 		throws Exception {
 
-		_resourceActions.readAndCheck(classLoader, sources);
+		getResourceActions().readAndCheck(classLoader, sources);
 	}
 
 	/**
@@ -364,7 +368,8 @@ public class ResourceActionsUtil {
 			String... sources)
 		throws Exception {
 
-		_resourceActions.readAndCheck(servletContextName, classLoader, sources);
+		getResourceActions().readAndCheck(
+			servletContextName, classLoader, sources);
 	}
 
 	/**
@@ -372,7 +377,7 @@ public class ResourceActionsUtil {
 	 */
 	@Deprecated
 	public static void removePortletResource(String portletName) {
-		_resourceActions.removePortletResource(portletName);
+		getResourceActions().removePortletResource(portletName);
 	}
 
 	public void setResourceActions(ResourceActions resourceActions) {

@@ -23,7 +23,7 @@ package com.liferay.portal.kernel.security.auth;
 public class AuthenticatedUserUUIDStoreUtil {
 
 	public static boolean exists(String userUUID) {
-		return _authenticatedUserUUIDStore.exists(userUUID);
+		return getAuthenticatedUserUUIDStore().exists(userUUID);
 	}
 
 	public static AuthenticatedUserUUIDStore getAuthenticatedUserUUIDStore() {
@@ -31,11 +31,11 @@ public class AuthenticatedUserUUIDStoreUtil {
 	}
 
 	public static boolean register(String userUUID) {
-		return _authenticatedUserUUIDStore.register(userUUID);
+		return getAuthenticatedUserUUIDStore().register(userUUID);
 	}
 
 	public static boolean unregister(String userUUID) {
-		return _authenticatedUserUUIDStore.unregister(userUUID);
+		return getAuthenticatedUserUUIDStore().unregister(userUUID);
 	}
 
 	public void setAuthenticatedUserUUIDStore(

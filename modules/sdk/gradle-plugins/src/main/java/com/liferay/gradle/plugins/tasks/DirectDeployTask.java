@@ -82,7 +82,7 @@ public class DirectDeployTask extends BasePortalToolsTask {
 			"-Ddeployer.dest.dir=" +
 				FileUtil.getAbsolutePath(getAppServerDeployDir()));
 		jvmArgs.add("-Ddeployer.file.pattern=" + webAppFile.getName());
-		jvmArgs.add("-Ddeployer.unpack.war=" + _unpackWar);
+		jvmArgs.add("-Ddeployer.unpack.war=" + isUnpackWar());
 		jvmArgs.add(
 			"-Dexternal-properties=com/liferay/portal/tools/dependencies" +
 				"/portal-tools.properties");
@@ -112,7 +112,8 @@ public class DirectDeployTask extends BasePortalToolsTask {
 		if (webAppType.equals("portlet")) {
 			jvmArgs.add(
 				"-Ddeployer.aui.taglib.dtd=" + tldPath + "/liferay-aui.tld");
-			jvmArgs.add("-Ddeployer.custom.portlet.xml=" + _customPortletXml);
+			jvmArgs.add(
+				"-Ddeployer.custom.portlet.xml=" + isCustomPortletXml());
 			jvmArgs.add(
 				"-Ddeployer.portlet-ext.taglib.dtd=" + tldPath +
 					"/liferay-portlet-ext.tld");

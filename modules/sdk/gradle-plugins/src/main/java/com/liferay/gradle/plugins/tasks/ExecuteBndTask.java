@@ -89,7 +89,8 @@ public class ExecuteBndTask extends DefaultTask {
 			builder.setJar(new Jar("dot"));
 			builder.setProperties(properties);
 
-			FileCollection buildDirs = project.files(_classpath, _resourceDirs);
+			FileCollection buildDirs = project.files(
+				getClasspath(), getResourceDirs());
 
 			builder.setClasspath(_toArray(buildDirs));
 			builder.setProperty("project.buildpath", buildDirs.getAsPath());
@@ -98,7 +99,7 @@ public class ExecuteBndTask extends DefaultTask {
 				logger.debug("Builder Classpath: {}", buildDirs.getAsPath());
 			}
 
-			FileCollection sourceDirs = project.files(_sourceDirs);
+			FileCollection sourceDirs = project.files(getSourceDirs());
 
 			builder.setProperty("project.sourcepath", sourceDirs.getAsPath());
 			builder.setSourcepath(_toArray(sourceDirs));
@@ -149,7 +150,7 @@ public class ExecuteBndTask extends DefaultTask {
 
 			File outputFile = getOutputFile();
 
-			if (_writeManifest) {
+			if (isWriteManifest()) {
 				File outputDir = outputFile.getParentFile();
 
 				outputDir.mkdirs();

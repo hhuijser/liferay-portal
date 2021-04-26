@@ -37,7 +37,7 @@ public class BuildWSDLTask extends SourceTask {
 	public void generateOptions(Closure<?> closure) {
 		Project project = getProject();
 
-		project.configure(_generateOptions, closure);
+		project.configure(getGenerateOptions(), closure);
 	}
 
 	@Input

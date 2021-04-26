@@ -122,11 +122,11 @@ public class GenerateOptions {
 	protected List<String> getArgs() {
 		List<String> args = new ArrayList<>();
 
-		if (_backwordCompatible) {
+		if (isBackwordCompatible()) {
 			args.add("--backword-compatible");
 		}
 
-		Databinding databinding = _databinding;
+		Databinding databinding = getDatabinding();
 
 		if (databinding != null) {
 			args.add("--databinding-method");
@@ -136,19 +136,19 @@ public class GenerateOptions {
 			args.add(name.toLowerCase());
 		}
 
-		if (_flattenFiles) {
+		if (isFlattenFiles()) {
 			args.add("--flatten-files");
 		}
 
-		if (_generateAll) {
+		if (isGenerateAll()) {
 			args.add("--generate-all");
 		}
 
-		if (_noWrapped) {
+		if (isNoWrapped()) {
 			args.add("--noWrapped");
 		}
 
-		Map<?, ?> mappings = _mappings;
+		Map<?, ?> mappings = getMappings();
 
 		if (!mappings.isEmpty()) {
 			for (Map.Entry<?, ?> entry : mappings.entrySet()) {
@@ -161,11 +161,11 @@ public class GenerateOptions {
 			}
 		}
 
-		if (_serverSide) {
+		if (isServerSide()) {
 			args.add("--server-side");
 		}
 
-		if (_verbose) {
+		if (isVerbose()) {
 			args.add("--verbose");
 		}
 

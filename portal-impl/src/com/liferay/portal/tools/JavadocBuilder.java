@@ -14,6 +14,7 @@
 
 package com.liferay.portal.tools;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.petra.xml.DocUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
@@ -526,7 +527,7 @@ public class JavadocBuilder {
 	}
 
 	private String _getMethodKey(Element methodElement) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(methodElement.elementText("name"));
 		sb.append(StringPool.OPEN_PARENTHESIS);
@@ -546,7 +547,7 @@ public class JavadocBuilder {
 	}
 
 	private String _getMethodKey(JavaMethod javaMethod) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(javaMethod.getName());
 		sb.append(StringPool.OPEN_PARENTHESIS);
@@ -720,7 +721,7 @@ public class JavadocBuilder {
 			}
 		}
 
-		StringBuilder sb = new StringBuilder(oldContent.length());
+		StringBundler sb = new StringBundler(oldContent.length());
 
 		for (String line : lines) {
 			if (line != null) {
@@ -832,7 +833,7 @@ public class JavadocBuilder {
 				_getJavaFieldComment(lines, fieldElementsMap, javaField));
 		}
 
-		StringBuilder sb = new StringBuilder(oldContent.length());
+		StringBundler sb = new StringBundler(oldContent.length());
 
 		for (int lineNumber = 1; lineNumber <= lines.length; lineNumber++) {
 			String line = lines[lineNumber - 1];

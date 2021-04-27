@@ -106,7 +106,7 @@ public class GradleIndentationCheck extends BaseFileCheck {
 			return line;
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		for (int i = 0; i < expectedTabCount; i++) {
 			sb.append(StringPool.TAB);

@@ -76,7 +76,7 @@ public class JavadocUtil {
 			return className;
 		}
 
-		StringBuilder sb = new StringBuilder(bracketCount);
+		StringBundler sb = new StringBundler(bracketCount);
 
 		for (int i = 0; i < bracketCount; i++) {
 			sb.append('[');

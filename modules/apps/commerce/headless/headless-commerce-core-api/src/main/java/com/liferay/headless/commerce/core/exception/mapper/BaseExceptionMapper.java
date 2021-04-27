@@ -14,6 +14,7 @@
 
 package com.liferay.headless.commerce.core.exception.mapper;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -53,7 +54,7 @@ public abstract class BaseExceptionMapper<E extends Throwable>
 	}
 
 	protected String toJSON(String message, int status, Object... args) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append("{\"errorDescription\": \"");
 		sb.append(getErrorDescription());

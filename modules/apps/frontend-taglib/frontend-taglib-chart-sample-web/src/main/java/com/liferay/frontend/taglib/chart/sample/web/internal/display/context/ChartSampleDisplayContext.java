@@ -33,6 +33,7 @@ import com.liferay.frontend.taglib.chart.model.point.scatter.ScatterChartConfig;
 import com.liferay.frontend.taglib.chart.model.point.spline.SplineChartConfig;
 import com.liferay.frontend.taglib.chart.model.point.step.StepChartConfig;
 import com.liferay.frontend.taglib.chart.model.predictive.PredictiveChartConfig;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 
 import java.util.ArrayList;
@@ -192,7 +193,7 @@ public class ChartSampleDisplayContext {
 
 		_geomapConfig2.setColor(geomapColor);
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_portletRequest.getContextPath());
 		sb.append(StringPool.SLASH);

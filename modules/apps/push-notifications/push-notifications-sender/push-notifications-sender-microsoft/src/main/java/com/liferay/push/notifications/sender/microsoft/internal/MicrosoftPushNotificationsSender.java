@@ -15,6 +15,7 @@
 package com.liferay.push.notifications.sender.microsoft.internal;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -135,7 +136,7 @@ public class MicrosoftPushNotificationsSender
 	}
 
 	protected String getAttributes(JSONObject payloadJSONObject) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		Iterator<String> iterator = payloadJSONObject.keys();
 

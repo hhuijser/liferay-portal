@@ -22,6 +22,7 @@ import com.liferay.document.library.kernel.model.DLVersionNumberIncrease;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLAppServiceUtil;
 import com.liferay.document.library.kernel.util.DLValidatorUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -155,7 +156,7 @@ public class DLDirectoryNameAndFileNameTest {
 	@Test
 	public void testFixNameRandom() throws Exception {
 		for (String blacklistChar : PropsValues.DL_CHAR_BLACKLIST) {
-			StringBuilder sb = new StringBuilder(4);
+			StringBundler sb = new StringBundler(4);
 
 			sb.append(StringUtil.randomString(10));
 			sb.append(blacklistChar);
@@ -242,7 +243,7 @@ public class DLDirectoryNameAndFileNameTest {
 		}
 
 		for (String blacklistChar : PropsValues.DL_CHAR_BLACKLIST) {
-			StringBuilder sb = new StringBuilder(4);
+			StringBundler sb = new StringBundler(4);
 
 			sb.append(StringUtil.randomString(10));
 			sb.append(blacklistChar);

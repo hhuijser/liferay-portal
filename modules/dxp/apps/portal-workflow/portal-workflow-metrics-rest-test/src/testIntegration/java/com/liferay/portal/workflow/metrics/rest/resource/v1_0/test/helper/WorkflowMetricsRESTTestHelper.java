@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.metrics.rest.resource.v1_0.test.helper;
 
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.petra.reflect.ReflectionUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -940,7 +941,7 @@ public class WorkflowMetricsRESTTestHelper {
 	}
 
 	private String _digest(String indexNamePrefix, Serializable... parts) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		for (Serializable part : parts) {
 			sb.append(part);

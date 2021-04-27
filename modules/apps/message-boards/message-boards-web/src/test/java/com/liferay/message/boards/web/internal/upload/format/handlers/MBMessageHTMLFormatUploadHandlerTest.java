@@ -15,6 +15,7 @@
 package com.liferay.message.boards.web.internal.upload.format.handlers;
 
 import com.liferay.message.boards.web.internal.util.MBAttachmentFileEntryReference;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -122,8 +123,8 @@ public class MBMessageHTMLFormatUploadHandlerTest {
 		List<MBAttachmentFileEntryReference> fileEntryReferences =
 			new ArrayList<>();
 
-		StringBuilder originalContent = new StringBuilder();
-		StringBuilder expectedContent = new StringBuilder();
+		StringBundler originalContent = new StringBundler();
+		StringBundler expectedContent = new StringBundler();
 
 		for (int tempFileId = 0; tempFileId < 3; tempFileId++) {
 			FileEntry fileEntry = Mockito.mock(FileEntry.class);

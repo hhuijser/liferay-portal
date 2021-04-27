@@ -14,6 +14,7 @@
 
 package com.liferay.flags.internal.messaging;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
@@ -116,7 +117,7 @@ public class FlagsRequest implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append("{className=");
 		sb.append(_className);

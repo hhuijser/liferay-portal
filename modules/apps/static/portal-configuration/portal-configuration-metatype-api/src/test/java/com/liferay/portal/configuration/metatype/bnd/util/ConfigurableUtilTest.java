@@ -17,6 +17,7 @@ package com.liferay.portal.configuration.metatype.bnd.util;
 import aQute.bnd.annotation.metatype.Meta;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
@@ -275,7 +276,7 @@ public class ConfigurableUtilTest {
 	}
 
 	private void _testBigString(int length) {
-		StringBuilder stringBuilder = new StringBuilder(length);
+		StringBundler stringBuilder = new StringBundler(length);
 
 		for (int i = 0; i < length; i++) {
 			stringBuilder.append(CharPool.LOWER_CASE_A);

@@ -74,9 +74,7 @@ public abstract class BaseExceptionMapper<E extends Throwable>
 		for (int i = 0; i < (args.length - 1); i = i + 2) {
 			sb.append("\"");
 			sb.append(args[i]);
-			sb.append("\"");
-			sb.append(":");
-			sb.append("\"");
+			sb.append("\":\"");
 			sb.append(args[i + 1]);
 			sb.append("\"");
 

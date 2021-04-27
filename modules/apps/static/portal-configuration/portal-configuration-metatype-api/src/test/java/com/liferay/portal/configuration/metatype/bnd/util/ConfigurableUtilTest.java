@@ -276,13 +276,13 @@ public class ConfigurableUtilTest {
 	}
 
 	private void _testBigString(int length) {
-		StringBundler stringBuilder = new StringBundler(length);
+		StringBundler sb = new StringBundler(length);
 
 		for (int i = 0; i < length; i++) {
-			stringBuilder.append(CharPool.LOWER_CASE_A);
+			sb.append(CharPool.LOWER_CASE_A);
 		}
 
-		String bigString = stringBuilder.toString();
+		String bigString = sb.toString();
 
 		_assertTestConfiguration(
 			ConfigurableUtil.createConfigurable(

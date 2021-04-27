@@ -63,12 +63,12 @@ public class XStreamConverterRegistryUtil {
 		ServiceRegistration<XStreamConverter> serviceRegistration =
 			registry.registerService(XStreamConverter.class, xStreamConverter);
 
-		_serviceRegistrations.put(xStreamConverter, serviceRegistration);
+		_serviceRegistrationMap.put(xStreamConverter, serviceRegistration);
 	}
 
 	private void _unregister(XStreamConverter xStreamConverter) {
 		ServiceRegistration<XStreamConverter> serviceRegistration =
-			_serviceRegistrations.remove(xStreamConverter);
+			_serviceRegistrationMap.remove(xStreamConverter);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -79,7 +79,7 @@ public class XStreamConverterRegistryUtil {
 		_xStreamConverterRegistryUtil = new XStreamConverterRegistryUtil();
 
 	private final ServiceRegistrationMap<XStreamConverter>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 	private final ServiceTracker<XStreamConverter, XStreamConverter>
 		_serviceTracker;
 	private final Set<XStreamConverter> _xStreamConverters = new HashSet<>();

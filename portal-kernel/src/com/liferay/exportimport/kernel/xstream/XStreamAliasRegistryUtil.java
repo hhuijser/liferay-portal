@@ -65,14 +65,14 @@ public class XStreamAliasRegistryUtil {
 		ServiceRegistration<XStreamAlias> serviceRegistration =
 			registry.registerService(XStreamAlias.class, xStreamAlias);
 
-		_serviceRegistrations.put(xStreamAlias, serviceRegistration);
+		_serviceRegistrationMap.put(xStreamAlias, serviceRegistration);
 	}
 
 	private void _unregister(Class<?> clazz, String name) {
 		XStreamAlias xStreamAlias = new XStreamAlias(clazz, name);
 
 		ServiceRegistration<XStreamAlias> serviceRegistration =
-			_serviceRegistrations.remove(xStreamAlias);
+			_serviceRegistrationMap.remove(xStreamAlias);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -82,7 +82,7 @@ public class XStreamAliasRegistryUtil {
 	private static final XStreamAliasRegistryUtil _xStreamAliasRegistryUtil =
 		new XStreamAliasRegistryUtil();
 
-	private final ServiceRegistrationMap<XStreamAlias> _serviceRegistrations =
+	private final ServiceRegistrationMap<XStreamAlias> _serviceRegistrationMap =
 		new ServiceRegistrationMapImpl<>();
 	private final ServiceTracker<XStreamAlias, XStreamAlias> _serviceTracker;
 	private final Map<Class<?>, String> _xstreamAliases =

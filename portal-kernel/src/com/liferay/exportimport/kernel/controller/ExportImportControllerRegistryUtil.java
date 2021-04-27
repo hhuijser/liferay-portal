@@ -92,12 +92,13 @@ public class ExportImportControllerRegistryUtil {
 			registry.registerService(
 				ExportImportController.class, exportImportController);
 
-		_serviceRegistrations.put(exportImportController, serviceRegistration);
+		_serviceRegistrationMap.put(
+			exportImportController, serviceRegistration);
 	}
 
 	private void _unregister(ExportImportController exportImportController) {
 		ServiceRegistration<ExportImportController> serviceRegistration =
-			_serviceRegistrations.remove(exportImportController);
+			_serviceRegistrationMap.remove(exportImportController);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -115,7 +116,7 @@ public class ExportImportControllerRegistryUtil {
 	private final Map<String, ImportController> _importControllers =
 		new ConcurrentHashMap<>();
 	private final ServiceRegistrationMap<ExportImportController>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 	private final ServiceTracker<ExportImportController, ExportImportController>
 		_serviceTracker;
 

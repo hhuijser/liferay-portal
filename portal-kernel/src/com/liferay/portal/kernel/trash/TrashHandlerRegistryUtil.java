@@ -84,12 +84,12 @@ public class TrashHandlerRegistryUtil {
 		ServiceRegistration<TrashHandler> serviceRegistration =
 			registry.registerService(TrashHandler.class, trashHandler);
 
-		_serviceRegistrations.put(trashHandler, serviceRegistration);
+		_serviceRegistrationMap.put(trashHandler, serviceRegistration);
 	}
 
 	private void _unregister(TrashHandler trashHandler) {
 		ServiceRegistration<TrashHandler> serviceRegistration =
-			_serviceRegistrations.remove(trashHandler);
+			_serviceRegistrationMap.remove(trashHandler);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -99,7 +99,7 @@ public class TrashHandlerRegistryUtil {
 	private static final TrashHandlerRegistryUtil _trashHandlerRegistryUtil =
 		new TrashHandlerRegistryUtil();
 
-	private final ServiceRegistrationMap<TrashHandler> _serviceRegistrations =
+	private final ServiceRegistrationMap<TrashHandler> _serviceRegistrationMap =
 		new ServiceRegistrationMapImpl<>();
 	private final ServiceTracker<TrashHandler, TrashHandler> _serviceTracker;
 	private final Map<String, TrashHandler> _trashHandlers =

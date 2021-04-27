@@ -103,12 +103,13 @@ public class PermissionUpdateHandlerRegistryUtil {
 					(Class<?>)PermissionUpdateHandler.class,
 				permissionUpdateHandler);
 
-		_serviceRegistrations.put(permissionUpdateHandler, serviceRegistration);
+		_serviceRegistrationMap.put(
+			permissionUpdateHandler, serviceRegistration);
 	}
 
 	private void _unregister(PermissionUpdateHandler permissionUpdateHandler) {
 		ServiceRegistration<PermissionUpdateHandler> serviceRegistration =
-			_serviceRegistrations.remove(permissionUpdateHandler);
+			_serviceRegistrationMap.remove(permissionUpdateHandler);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -122,7 +123,7 @@ public class PermissionUpdateHandlerRegistryUtil {
 	private final Map<String, PermissionUpdateHandler>
 		_permissionUpdateHandlers = new ConcurrentHashMap<>();
 	private final ServiceRegistrationMap<PermissionUpdateHandler>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 	private final ServiceTracker
 		<PermissionUpdateHandler, PermissionUpdateHandler> _serviceTracker;
 

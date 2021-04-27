@@ -184,7 +184,7 @@ public class UserNotificationManagerUtil {
 			registry.registerService(
 				UserNotificationHandler.class, userNotificationHandler);
 
-		_userNotificationHandlerServiceRegistrations.put(
+		_userNotificationHandlerServiceRegistrationMap.put(
 			userNotificationHandler, serviceRegistration);
 	}
 
@@ -204,7 +204,7 @@ public class UserNotificationManagerUtil {
 		UserNotificationHandler userNotificationHandler) {
 
 		ServiceRegistration<UserNotificationHandler> serviceRegistration =
-			_userNotificationHandlerServiceRegistrations.get(
+			_userNotificationHandlerServiceRegistrationMap.get(
 				userNotificationHandler);
 
 		if (serviceRegistration != null) {
@@ -340,7 +340,7 @@ public class UserNotificationManagerUtil {
 	private final Map<String, Map<String, UserNotificationHandler>>
 		_userNotificationHandlers = new ConcurrentHashMap<>();
 	private final ServiceRegistrationMap<UserNotificationHandler>
-		_userNotificationHandlerServiceRegistrations =
+		_userNotificationHandlerServiceRegistrationMap =
 			new ServiceRegistrationMapImpl<>();
 	private final ServiceTracker
 		<UserNotificationHandler, UserNotificationHandler>

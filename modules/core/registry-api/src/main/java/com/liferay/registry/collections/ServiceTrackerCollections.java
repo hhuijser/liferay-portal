@@ -324,7 +324,7 @@ public class ServiceTrackerCollections {
 			ServiceRegistration<S> serviceRegistration =
 				registry.registerService(_clazz, service, properties);
 
-			_serviceRegistrations.put(service, serviceRegistration);
+			_serviceRegistrationMap.put(service, serviceRegistration);
 
 			return true;
 		}
@@ -349,7 +349,7 @@ public class ServiceTrackerCollections {
 			ServiceRegistration<S> serviceRegistration =
 				registry.registerService(_clazz, service, properties);
 
-			_serviceRegistrations.put(service, serviceRegistration);
+			_serviceRegistrationMap.put(service, serviceRegistration);
 
 			return true;
 		}
@@ -375,7 +375,7 @@ public class ServiceTrackerCollections {
 		@Override
 		public void clear() {
 			Set<Map.Entry<S, ServiceRegistration<S>>> set =
-				_serviceRegistrations.entrySet();
+				_serviceRegistrationMap.entrySet();
 
 			Iterator<Map.Entry<S, ServiceRegistration<S>>> iterator =
 				set.iterator();
@@ -453,7 +453,7 @@ public class ServiceTrackerCollections {
 		@Override
 		public boolean remove(Object service) {
 			ServiceRegistration<S> serviceRegistration =
-				_serviceRegistrations.remove(service);
+				_serviceRegistrationMap.remove(service);
 
 			if (serviceRegistration == null) {
 				return false;
@@ -579,7 +579,7 @@ public class ServiceTrackerCollections {
 		private final Class<S> _clazz;
 		private final Filter _filter;
 		private final Map<String, Object> _properties;
-		private final ServiceRegistrationMap<S> _serviceRegistrations =
+		private final ServiceRegistrationMap<S> _serviceRegistrationMap =
 			new ServiceRegistrationMapImpl<>();
 		private final List<EntryWrapper> _services =
 			new CopyOnWriteArrayList<>();

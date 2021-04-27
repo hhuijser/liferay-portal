@@ -134,12 +134,13 @@ public class StagedModelDataHandlerRegistryUtil {
 					(Class<?>)StagedModelDataHandler.class,
 				stagedModelDataHandler);
 
-		_serviceRegistrations.put(stagedModelDataHandler, serviceRegistration);
+		_serviceRegistrationMap.put(
+			stagedModelDataHandler, serviceRegistration);
 	}
 
 	private void _unregister(StagedModelDataHandler<?> stagedModelDataHandler) {
 		ServiceRegistration<StagedModelDataHandler<?>> serviceRegistration =
-			_serviceRegistrations.remove(stagedModelDataHandler);
+			_serviceRegistrationMap.remove(stagedModelDataHandler);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -151,7 +152,7 @@ public class StagedModelDataHandlerRegistryUtil {
 			new StagedModelDataHandlerRegistryUtil();
 
 	private final ServiceRegistrationMap<StagedModelDataHandler<?>>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 	private final ServiceTracker
 		<StagedModelDataHandler<?>, StagedModelDataHandler<?>> _serviceTracker;
 	private final Map<String, StagedModelDataHandler<?>>

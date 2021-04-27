@@ -56,7 +56,7 @@ public class SitemapURLProviderRegistryUtil {
 			registry.registerService(
 				SitemapURLProvider.class, sitemapURLProvider);
 
-		_serviceRegistrations.put(sitemapURLProvider, serviceRegistration);
+		_serviceRegistrationMap.put(sitemapURLProvider, serviceRegistration);
 	}
 
 	public static void unregister(
@@ -69,7 +69,7 @@ public class SitemapURLProviderRegistryUtil {
 
 	public static void unregister(SitemapURLProvider sitemapURLProvider) {
 		ServiceRegistration<SitemapURLProvider> serviceRegistration =
-			_serviceRegistrations.remove(sitemapURLProvider);
+			_serviceRegistrationMap.remove(sitemapURLProvider);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -77,7 +77,7 @@ public class SitemapURLProviderRegistryUtil {
 	}
 
 	private static final ServiceRegistrationMap<SitemapURLProvider>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 
 	private static final ServiceTrackerMap<String, SitemapURLProvider>
 		_sitemapURLProvidersServiceTrackerMap =

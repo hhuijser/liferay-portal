@@ -103,7 +103,7 @@ public class ExportImportLifecycleEventListenerRegistryUtil {
 				ExportImportLifecycleListener.class,
 				exportImportLifecycleListener);
 
-		_serviceRegistrations.put(
+		_serviceRegistrationMap.put(
 			exportImportLifecycleListener, serviceRegistration);
 	}
 
@@ -111,7 +111,7 @@ public class ExportImportLifecycleEventListenerRegistryUtil {
 		ExportImportLifecycleListener exportImportLifecycleListener) {
 
 		ServiceRegistration<ExportImportLifecycleListener> serviceRegistration =
-			_serviceRegistrations.remove(exportImportLifecycleListener);
+			_serviceRegistrationMap.remove(exportImportLifecycleListener);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -126,7 +126,7 @@ public class ExportImportLifecycleEventListenerRegistryUtil {
 		_asyncExportImportLifecycleListeners = Collections.newSetFromMap(
 			new ConcurrentHashMap<>());
 	private final ServiceRegistrationMap<ExportImportLifecycleListener>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 	private final ServiceTracker
 		<ExportImportLifecycleListener, ExportImportLifecycleListener>
 			_serviceTracker;

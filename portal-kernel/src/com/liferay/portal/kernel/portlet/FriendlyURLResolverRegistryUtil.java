@@ -71,12 +71,12 @@ public class FriendlyURLResolverRegistryUtil {
 			registry.registerService(
 				FriendlyURLResolver.class, friendlyURLResolver);
 
-		_serviceRegistrations.put(friendlyURLResolver, serviceRegistration);
+		_serviceRegistrationMap.put(friendlyURLResolver, serviceRegistration);
 	}
 
 	public static void unregister(FriendlyURLResolver friendlyURLResolver) {
 		ServiceRegistration<FriendlyURLResolver> serviceRegistration =
-			_serviceRegistrations.remove(friendlyURLResolver);
+			_serviceRegistrationMap.remove(friendlyURLResolver);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -84,7 +84,7 @@ public class FriendlyURLResolverRegistryUtil {
 	}
 
 	private static final ServiceRegistrationMap<FriendlyURLResolver>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 
 	private static final ServiceTrackerMap<String, FriendlyURLResolver>
 		_serviceTrackerMap = ServiceTrackerCollections.openSingleValueMap(

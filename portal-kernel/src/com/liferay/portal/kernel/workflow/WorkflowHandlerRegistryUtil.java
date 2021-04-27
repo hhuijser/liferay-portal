@@ -88,7 +88,7 @@ public class WorkflowHandlerRegistryUtil {
 				(Class<WorkflowHandler<?>>)(Class<?>)WorkflowHandler.class,
 				workflowHandler);
 
-		_serviceRegistrations.put(workflowHandler, serviceRegistration);
+		_serviceRegistrationMap.put(workflowHandler, serviceRegistration);
 	}
 
 	public static <T> void startWorkflowInstance(
@@ -261,7 +261,7 @@ public class WorkflowHandlerRegistryUtil {
 	@Deprecated
 	public static void unregister(WorkflowHandler<?> workflowHandler) {
 		ServiceRegistration<WorkflowHandler<?>> serviceRegistration =
-			_serviceRegistrations.remove(workflowHandler);
+			_serviceRegistrationMap.remove(workflowHandler);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -329,7 +329,7 @@ public class WorkflowHandlerRegistryUtil {
 	private static final ServiceTrackerMap<String, WorkflowHandler<?>>
 		_scopeableWorkflowHandlerServiceTrackerMap;
 	private static final ServiceRegistrationMap<WorkflowHandler<?>>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 	private static final ServiceTrackerMap<String, WorkflowHandler<?>>
 		_workflowHandlerServiceTrackerMap;
 

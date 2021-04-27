@@ -407,12 +407,12 @@ public class WebDAVUtil {
 		ServiceRegistration<WebDAVStorage> serviceRegistration =
 			registry.registerService(WebDAVStorage.class, storage);
 
-		_serviceRegistrations.put(storage, serviceRegistration);
+		_serviceRegistrationMap.put(storage, serviceRegistration);
 	}
 
 	private void _deleteStorage(WebDAVStorage storage) {
 		ServiceRegistration<WebDAVStorage> serviceRegistration =
-			_serviceRegistrations.remove(storage);
+			_serviceRegistrationMap.remove(storage);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -446,8 +446,8 @@ public class WebDAVUtil {
 
 	private static final WebDAVUtil _webDAVUtil = new WebDAVUtil();
 
-	private final ServiceRegistrationMap<WebDAVStorage> _serviceRegistrations =
-		new ServiceRegistrationMapImpl<>();
+	private final ServiceRegistrationMap<WebDAVStorage>
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 	private final ServiceTrackerMap<String, WebDAVStorage> _storages;
 
 }

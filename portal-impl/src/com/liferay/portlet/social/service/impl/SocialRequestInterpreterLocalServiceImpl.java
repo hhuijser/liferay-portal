@@ -90,7 +90,7 @@ public class SocialRequestInterpreterLocalServiceImpl
 			registry.registerService(
 				SocialRequestInterpreter.class, requestInterpreter, properties);
 
-		_serviceRegistrations.put(requestInterpreter, serviceRegistration);
+		_serviceRegistrationMap.put(requestInterpreter, serviceRegistration);
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class SocialRequestInterpreterLocalServiceImpl
 		SocialRequestInterpreter requestInterpreter) {
 
 		ServiceRegistration<SocialRequestInterpreter> serviceRegistration =
-			_serviceRegistrations.remove(requestInterpreter);
+			_serviceRegistrationMap.remove(requestInterpreter);
 
 		if (serviceRegistration != null) {
 			serviceRegistration.unregister();
@@ -290,7 +290,7 @@ public class SocialRequestInterpreterLocalServiceImpl
 	private final List<SocialRequestInterpreter> _requestInterpreters =
 		new CopyOnWriteArrayList<>();
 	private final ServiceRegistrationMap<SocialRequestInterpreter>
-		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
+		_serviceRegistrationMap = new ServiceRegistrationMapImpl<>();
 	private ServiceTracker<SocialRequestInterpreter, SocialRequestInterpreter>
 		_serviceTracker;
 

@@ -24,6 +24,7 @@ import com.liferay.commerce.product.constants.CPWebKeys;
 import com.liferay.commerce.product.data.source.CPDataSource;
 import com.liferay.commerce.product.data.source.CPDataSourceResult;
 import com.liferay.commerce.product.model.CPDefinition;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -115,7 +116,7 @@ public class UserCommerceMLRecommendationCPDataSourceImpl
 				userCommerceMLRecommendation.getRecommendedEntryClassPK();
 
 			if (_log.isTraceEnabled()) {
-				StringBuilder sb = new StringBuilder();
+				StringBundler sb = new StringBundler();
 
 				sb.append("Recommended item: ");
 				sb.append(recommendedEntryClassPK);

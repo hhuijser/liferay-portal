@@ -81,7 +81,7 @@ public class HtmlImplTest {
 
 	@Test
 	public void testEscapeExtendedASCIICharacters() {
-		StringBuilder sb = new StringBuilder(256);
+		StringBundler sb = new StringBundler(256);
 
 		for (int i = 0; i < 256; i++) {
 			if (Character.isLetterOrDigit(i)) {

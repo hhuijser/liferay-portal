@@ -310,10 +310,6 @@ public class SchedulerEngineHelperUtil {
 		_schedulerEngineHelper.update(trigger, storageType);
 	}
 
-	private SchedulerEngineHelper _getSchedulerEngineHelper() {
-		return _schedulerEngineHelper;
-	}
-
 	private static volatile SchedulerEngineHelper _schedulerEngineHelper =
 		ServiceProxyFactory.newServiceTrackedInstance(
 			SchedulerEngineHelper.class, SchedulerEngineHelperUtil.class,

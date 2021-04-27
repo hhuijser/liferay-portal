@@ -62,7 +62,7 @@ public class LayoutPrototypeUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeLayoutPrototype() throws Exception {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(6);
 
 		sb.append("insert into LayoutPageTemplateEntry (uuid_, ");
 		sb.append("layoutPageTemplateEntryId, groupId, companyId, userId, ");

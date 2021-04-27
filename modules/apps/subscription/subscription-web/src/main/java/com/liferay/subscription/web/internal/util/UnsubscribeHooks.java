@@ -178,7 +178,7 @@ public class UnsubscribeHooks {
 	}
 
 	private String _getUnsubscribeURL(User user, Ticket ticket) {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(6);
 
 		sb.append(_subscriptionSender.getContextAttribute("[$PORTAL_URL$]"));
 		sb.append(PortalUtil.getPathMain());

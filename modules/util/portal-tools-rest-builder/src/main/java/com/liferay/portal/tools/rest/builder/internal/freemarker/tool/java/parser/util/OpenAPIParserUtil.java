@@ -93,7 +93,7 @@ public class OpenAPIParserUtil {
 	public static String getArguments(
 		List<JavaMethodParameter> javaMethodParameters) {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		for (JavaMethodParameter javaMethodParameter : javaMethodParameters) {
 			sb.append(javaMethodParameter.getParameterName());
@@ -333,7 +333,7 @@ public class OpenAPIParserUtil {
 		Map<String, Schema> allSchemas = OpenAPIUtil.getAllSchemas(openAPIYAML);
 
 		for (String schemaName : allSchemas.keySet()) {
-			StringBuilder sb = new StringBuilder();
+			StringBundler sb = new StringBundler();
 
 			sb.append(configYAML.getApiPackagePath());
 			sb.append(".dto.");
@@ -370,7 +370,7 @@ public class OpenAPIParserUtil {
 			OpenAPIUtil.getGlobalEnumSchemas(openAPIYAML);
 
 		for (String schemaName : globalEnumSchemas.keySet()) {
-			StringBuilder sb = new StringBuilder();
+			StringBundler sb = new StringBundler();
 
 			sb.append(configYAML.getApiPackagePath());
 			sb.append(".constant.");
@@ -421,7 +421,7 @@ public class OpenAPIParserUtil {
 	public static String getParameter(
 		JavaMethodParameter javaMethodParameter, String parameterAnnotation) {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		if (Validator.isNotNull(parameterAnnotation)) {
 			sb.append(parameterAnnotation);

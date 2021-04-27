@@ -17,6 +17,7 @@ package com.liferay.product.navigation.site.administration.internal.menu;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.item.selector.criteria.URLItemSelectorReturnType;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.Company;
@@ -83,7 +84,7 @@ public class MySitesPersonalMenuEntry implements PersonalMenuEntry {
 			RequestBackedPortletURLFactoryUtil.create(httpServletRequest),
 			eventName, itemSelectorCriterion);
 
-		StringBuilder sb = new StringBuilder(12);
+		StringBundler sb = new StringBundler(12);
 
 		sb.append("javascript:Liferay.Util.openSelectionModal({");
 		sb.append("customSelectEvent: true, id: '");

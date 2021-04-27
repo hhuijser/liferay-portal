@@ -21,6 +21,7 @@ import com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLFolderServiceUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -96,7 +97,7 @@ public class DLFolderImpl extends DLFolderBaseImpl {
 
 	@Override
 	public String getPath() throws PortalException {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		DLFolder folder = this;
 

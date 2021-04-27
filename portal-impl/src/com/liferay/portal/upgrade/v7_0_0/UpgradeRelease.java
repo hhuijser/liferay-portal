@@ -33,7 +33,7 @@ public class UpgradeRelease extends UpgradeProcess {
 	}
 
 	protected String toSchemaVersion(String buildNumber) {
-		StringBuilder sb = new StringBuilder(2 * buildNumber.length());
+		StringBundler sb = new StringBundler(2 * buildNumber.length());
 
 		for (int i = 0; i < buildNumber.length(); i++) {
 			sb.append(buildNumber.charAt(i));

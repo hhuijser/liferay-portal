@@ -23,6 +23,7 @@ import com.liferay.dynamic.data.mapping.model.DDMFormLayout;
 import com.liferay.dynamic.data.mapping.model.DDMFormRule;
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceService;
 import com.liferay.dynamic.data.mapping.test.util.DDMFormTestUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.SetUtil;
 
@@ -133,7 +134,7 @@ public class DDMFormTemplateContextFactoryHelperTest extends PowerMockito {
 	}
 
 	protected DDMFormRule createAutoFillDDMFormRule() {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append("call(");
 		sb.append(StringPool.APOSTROPHE);

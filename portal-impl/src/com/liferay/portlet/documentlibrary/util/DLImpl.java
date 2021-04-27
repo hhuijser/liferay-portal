@@ -961,7 +961,7 @@ public class DLImpl implements DL {
 		webDavURLSB.append(group.getFriendlyURL());
 		webDavURLSB.append("/document_library");
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		if ((folder != null) &&
 			(folder.getFolderId() !=

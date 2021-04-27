@@ -16,6 +16,7 @@ package com.liferay.portal.jsonwebservice.action;
 
 import com.liferay.petra.io.StreamUtil;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONSerializable;
@@ -182,7 +183,7 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			_includes = new ArrayList<>();
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		while (statement._parentStatement != null) {
 			String statementName = statement.getName();

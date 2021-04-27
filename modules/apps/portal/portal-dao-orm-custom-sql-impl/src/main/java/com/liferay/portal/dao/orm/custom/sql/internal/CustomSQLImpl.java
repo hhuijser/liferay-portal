@@ -881,7 +881,7 @@ public class CustomSQLImpl implements CustomSQL {
 			return keywords;
 		}
 
-		StringBuilder sb = new StringBuilder(keywords);
+		StringBundler sb = new StringBundler(keywords);
 
 		for (int i = 0; i < sb.length(); ++i) {
 			char c = sb.charAt(i);

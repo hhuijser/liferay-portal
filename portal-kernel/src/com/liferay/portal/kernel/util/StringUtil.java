@@ -16,6 +16,7 @@ package com.liferay.portal.kernel.util;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 
 import java.io.IOException;
@@ -2280,7 +2281,7 @@ public class StringUtil {
 			return s;
 		}
 
-		StringBuilder sb = new StringBuilder(s.length());
+		StringBundler sb = new StringBundler(s.length());
 
 		iterate:
 		for (int i = 0; i < s.length(); i++) {
@@ -2533,7 +2534,7 @@ public class StringUtil {
 			return s;
 		}
 
-		StringBuilder sb = new StringBuilder(s.length());
+		StringBundler sb = new StringBundler(s.length());
 
 		sb.append(s);
 
@@ -4736,7 +4737,7 @@ public class StringUtil {
 
 			// Purify
 
-			StringBuilder sb = new StringBuilder(wildcard);
+			StringBundler sb = new StringBundler(wildcard);
 
 			for (int i = 0; i < sb.length(); i++) {
 				char c = sb.charAt(i);

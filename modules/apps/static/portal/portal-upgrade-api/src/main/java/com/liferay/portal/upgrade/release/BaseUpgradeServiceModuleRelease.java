@@ -15,6 +15,7 @@
 package com.liferay.portal.upgrade.release;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.model.dao.ReleaseDAO;
@@ -113,7 +114,7 @@ public abstract class BaseUpgradeServiceModuleRelease extends UpgradeProcess {
 	}
 
 	private String _toSchemaVersion(String buildNumber) {
-		StringBuilder sb = new StringBuilder(2 * buildNumber.length());
+		StringBundler sb = new StringBundler(2 * buildNumber.length());
 
 		for (int i = 0; i < buildNumber.length(); i++) {
 			sb.append(buildNumber.charAt(i));

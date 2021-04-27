@@ -573,7 +573,7 @@ public class LicenseUtil {
 					continue;
 				}
 
-				StringBuilder sb = new StringBuilder(
+				StringBundler sb = new StringBundler(
 					(hardwareAddress.length * 3) - 1);
 
 				String hexString = StringUtil.bytesToHexString(hardwareAddress);

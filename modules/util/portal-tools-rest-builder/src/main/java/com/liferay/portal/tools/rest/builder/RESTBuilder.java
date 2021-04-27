@@ -452,7 +452,7 @@ public class RESTBuilder {
 	private void _createApplicationFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/");
@@ -481,7 +481,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/");
@@ -508,7 +508,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getTestDir());
 		sb.append("/");
@@ -533,7 +533,7 @@ public class RESTBuilder {
 	private void _createClientAggregationFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -554,7 +554,7 @@ public class RESTBuilder {
 	private void _createClientBaseJSONParserFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -577,7 +577,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -604,7 +604,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -629,7 +629,7 @@ public class RESTBuilder {
 	private void _createClientFacetFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -650,7 +650,7 @@ public class RESTBuilder {
 	private void _createClientHttpInvokerFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -671,7 +671,7 @@ public class RESTBuilder {
 	private void _createClientPageFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -692,7 +692,7 @@ public class RESTBuilder {
 	private void _createClientPaginationFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -713,7 +713,7 @@ public class RESTBuilder {
 	private void _createClientPermissionFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -734,7 +734,7 @@ public class RESTBuilder {
 	private void _createClientProblemFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -757,7 +757,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -784,7 +784,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -809,7 +809,7 @@ public class RESTBuilder {
 	private void _createClientUnsafeSupplierFile(Map<String, Object> context)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getClientDir());
 		sb.append("/");
@@ -832,7 +832,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getApiDir());
 		sb.append("/");
@@ -858,7 +858,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getApiDir());
 		sb.append("/");
@@ -900,7 +900,7 @@ public class RESTBuilder {
 			Map<String, Object> context, String escapedVersion)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/");
@@ -924,7 +924,7 @@ public class RESTBuilder {
 			Map<String, Object> context, String escapedVersion)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/");
@@ -948,7 +948,7 @@ public class RESTBuilder {
 			Map<String, Object> context, String escapedVersion)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/");
@@ -972,7 +972,7 @@ public class RESTBuilder {
 			Map<String, Object> context, String escapedVersion)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/");
@@ -997,7 +997,7 @@ public class RESTBuilder {
 			String schemaPath)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/../resources/OSGI-INF/liferay/rest/");
@@ -1019,7 +1019,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/");
@@ -1046,7 +1046,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getApiDir());
 		sb.append("/");
@@ -1073,7 +1073,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getImplDir());
 		sb.append("/");
@@ -1104,7 +1104,7 @@ public class RESTBuilder {
 			String schemaName)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_configYAML.getTestDir());
 		sb.append("/");
@@ -1145,7 +1145,7 @@ public class RESTBuilder {
 			return s;
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		int startIndex =
 			s.lastIndexOf("\n", s.indexOf("application/json", index)) + 1;
@@ -1241,7 +1241,7 @@ public class RESTBuilder {
 		String licenseName = _configYAML.getLicenseName();
 		String licenseURL = _configYAML.getLicenseURL();
 
-		StringBuilder licenseSB = new StringBuilder();
+		StringBundler licenseSB = new StringBundler();
 
 		licenseSB.append("        name: \"");
 		licenseSB.append(licenseName);
@@ -1253,7 +1253,7 @@ public class RESTBuilder {
 		Info info = openAPIYAML.getInfo();
 
 		if (info == null) {
-			StringBuilder sb = new StringBuilder();
+			StringBundler sb = new StringBundler();
 
 			sb.append("info:\n");
 			sb.append(licenseSB.toString());
@@ -1322,7 +1322,7 @@ public class RESTBuilder {
 
 		fieldMap.put("license", licenseSB.toString());
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(yamlString.substring(0, yamlString.indexOf('\n', x + 1) + 1));
 
@@ -1429,7 +1429,7 @@ public class RESTBuilder {
 						z + 1, yamlString.indexOf("\n", z + 1));
 				}
 
-				StringBuilder sb = new StringBuilder();
+				StringBundler sb = new StringBundler();
 
 				sb.append(yamlString.substring(0, z + 1));
 				sb.append(leadingWhiteSpace);
@@ -1486,7 +1486,7 @@ public class RESTBuilder {
 						int z = yamlString.indexOf(
 							" " + parameterName + "\n", y);
 
-						StringBuilder sb = new StringBuilder();
+						StringBundler sb = new StringBundler();
 
 						sb.append(yamlString.substring(0, z + 1));
 						sb.append(newParameterName);
@@ -1535,7 +1535,7 @@ public class RESTBuilder {
 			text = TextFormatter.formatPlural(
 				text.substring(0, text.length() - 3));
 
-			StringBuilder sb = new StringBuilder();
+			StringBundler sb = new StringBundler();
 
 			sb.append('/');
 			sb.append(text);
@@ -1954,7 +1954,7 @@ public class RESTBuilder {
 					!Objects.equals(propertySchema.getFormat(), "double") &&
 					!Objects.equals(propertySchema.getFormat(), "float")) {
 
-					StringBuilder sb = new StringBuilder();
+					StringBundler sb = new StringBundler();
 
 					sb.append("The property \"");
 					sb.append(entry1.getKey());
@@ -1981,7 +1981,7 @@ public class RESTBuilder {
 					requiredPropertySchemaNames) {
 
 				if (!propertySchemaNames.contains(requiredPropertySchemaName)) {
-					StringBuilder sb = new StringBuilder();
+					StringBundler sb = new StringBundler();
 
 					sb.append("The required property \"");
 					sb.append(requiredPropertySchemaName);

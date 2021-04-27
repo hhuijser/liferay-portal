@@ -15,6 +15,7 @@
 package com.liferay.portal.kernel.util;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 
 import java.text.NumberFormat;
@@ -285,7 +286,7 @@ public class TextFormatter {
 	}
 
 	private static String _formatH(String s) {
-		StringBuilder sb = new StringBuilder(s.length() * 2);
+		StringBundler sb = new StringBundler(s.length() * 2);
 
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
@@ -328,7 +329,7 @@ public class TextFormatter {
 			return s = lowerCaseFirstChar.concat(s.substring(1));
 		}
 
-		StringBuilder sb = new StringBuilder(s);
+		StringBundler sb = new StringBundler(s);
 
 		for (int i = 0; i < s.length(); i++) {
 			if (((i + 1) != s.length()) &&
@@ -349,7 +350,7 @@ public class TextFormatter {
 		s = StringUtil.replace(s, CharPool.DASH, CharPool.SPACE);
 		s = StringUtil.replace(s, CharPool.UNDERLINE, CharPool.SPACE);
 
-		StringBuilder sb = new StringBuilder(StringUtil.toLowerCase(s));
+		StringBundler sb = new StringBundler(StringUtil.toLowerCase(s));
 
 		for (int i = 0; i < s.length(); i++) {
 			if ((i == 0) || (s.charAt(i - 1) == ' ')) {
@@ -384,7 +385,7 @@ public class TextFormatter {
 	}
 
 	private static String _formatM(String s) {
-		StringBuilder sb = new StringBuilder(s.length());
+		StringBundler sb = new StringBundler(s.length());
 
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
@@ -411,7 +412,7 @@ public class TextFormatter {
 	}
 
 	private static String _formatQ(String s) {
-		StringBuilder sb = new StringBuilder(StringUtil.toLowerCase(s));
+		StringBundler sb = new StringBundler(StringUtil.toLowerCase(s));
 
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);

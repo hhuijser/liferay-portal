@@ -32,7 +32,7 @@ public class UnnecessaryMethodCalls {
 	}
 
 	public void clear() {
-		getWebCachePool().clear();
+		_getWebCachePool().clear();
 	}
 
 	public void clear_1() {
@@ -40,25 +40,25 @@ public class UnnecessaryMethodCalls {
 	}
 
 	public Object get(String key, WebCacheItem webCacheItem) {
-		return getWebCachePool().get(key, webCacheItem);
-	}
-
-	public String getName() {
-		return name;
+		return _getWebCachePool().get(key, webCacheItem);
 	}
 
 	public int getNameLegth() {
-		String name = getName();
+		String name = _getName();
 
 		return name.length();
 	}
 
-	public WebCachePool getWebCachePool() {
-		return webCachePool;
+	public void remove(String key) {
+		_getWebCachePool().remove(key);
 	}
 
-	public void remove(String key) {
-		getWebCachePool().remove(key);
+	private String _getName() {
+		return name;
+	}
+
+	private WebCachePool _getWebCachePool() {
+		return webCachePool;
 	}
 
 	protected static String value = "";

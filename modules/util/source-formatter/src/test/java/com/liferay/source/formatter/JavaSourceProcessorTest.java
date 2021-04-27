@@ -453,13 +453,13 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test(
 			"UnnecessaryMethodCalls.testjava",
 			new String[] {
-				"Use 'webCachePool' instead of calling method 'getWebCachePool'",
-				"Use 'webCachePool' instead of calling method 'getWebCachePool'",
-				"Use 'this.name' instead of calling method 'getName'",
-				"Use 'webCachePool' instead of calling method 'getWebCachePool'",
+				"Use 'webCachePool' instead of calling method '_getWebCachePool'",
+				"Use 'webCachePool' instead of calling method '_getWebCachePool'",
+				"Use 'this.name' instead of calling method '_getName'",
+				"Use 'webCachePool' instead of calling method '_getWebCachePool'",
 				"Use 'webCachePool_1' instead of calling method 'getWebCachePool'"
 			},
-			new Integer[] {35, 43, 51, 61, 79});
+			new Integer[] {35, 43, 47, 53, 79});
 	}
 
 	@Test

@@ -17,6 +17,7 @@ package com.liferay.portal.osgi.web.wab.generator.internal.artifact;
 import aQute.bnd.osgi.Jar;
 import aQute.bnd.osgi.Resource;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.whip.util.ReflectionUtil;
 
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class ArtifactURLUtil {
 			contextName = symbolicName;
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(artifact.getPath());
 		sb.append("?");

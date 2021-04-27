@@ -17,6 +17,7 @@ package com.liferay.journal.internal.upgrade.v1_1_6;
 import com.liferay.asset.display.page.constants.AssetDisplayPageConstants;
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryLocalService;
 import com.liferay.journal.model.JournalArticle;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.dao.orm.common.SQLTransformer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -69,7 +70,7 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 
 		_init(company.getCompanyId());
 
-		StringBuilder sb = new StringBuilder(17);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("select JournalArticle.groupId, ");
 		sb.append("JournalArticle.resourcePrimKey, AssetEntry.classUuid from ");
@@ -177,7 +178,7 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 		_stagedGroupIds.clear();
 		_uuidsMaps.clear();
 
-		StringBuilder sb = new StringBuilder(3);
+		StringBundler sb = new StringBundler(3);
 
 		sb.append("select groupId, liveGroupId from Group_ where ");
 		sb.append("companyId = ? and liveGroupId is not null and ");

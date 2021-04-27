@@ -14,6 +14,8 @@
 
 package com.liferay.segments.asah.connector.internal.client.model;
 
+import com.liferay.petra.string.StringBundler;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -80,7 +82,7 @@ public class Individual {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder(11);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{dataSourceIndividualPKs=");
 		sb.append(_dataSourceIndividualPKs);

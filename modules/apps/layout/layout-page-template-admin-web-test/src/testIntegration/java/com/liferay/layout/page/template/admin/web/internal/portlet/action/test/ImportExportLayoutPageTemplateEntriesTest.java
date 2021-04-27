@@ -601,7 +601,7 @@ public class ImportExportLayoutPageTemplateEntriesTest {
 
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
-		StringBuilder sb = new StringBuilder(3);
+		StringBundler sb = new StringBundler(3);
 
 		sb.append(_LAYOUT_PATE_TEMPLATES_PATH + testPath);
 		sb.append(StringPool.FORWARD_SLASH + _ROOT_FOLDER);

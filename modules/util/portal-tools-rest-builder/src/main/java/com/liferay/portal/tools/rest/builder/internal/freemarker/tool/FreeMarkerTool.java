@@ -320,7 +320,7 @@ public class FreeMarkerTool {
 		List<JavaMethodSignature> javaMethodSignatures,
 		OpenAPIYAML openAPIYAML) {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append("Invoke this method with the command line:\n*\n* ");
 		sb.append("curl -H 'Content-Type: text/plain; charset=utf-8' ");
@@ -579,7 +579,7 @@ public class FreeMarkerTool {
 				continue;
 			}
 
-			StringBuilder sb = new StringBuilder();
+			StringBundler sb = new StringBundler();
 
 			sb.append(getHTTPMethod(operation));
 
@@ -670,7 +670,7 @@ public class FreeMarkerTool {
 		ConfigYAML configYAML, JavaMethodSignature javaMethodSignature,
 		OpenAPIYAML openAPIYAML) {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append("Invoke this method with the command line:\n*\n* ");
 		sb.append("curl -X '");
@@ -877,7 +877,7 @@ public class FreeMarkerTool {
 		List<JavaMethodSignature> javaMethodSignatures,
 		OpenAPIYAML openAPIYAML) {
 
-		StringBuilder sb = new StringBuilder("{\"query\": \"query {");
+		StringBundler sb = new StringBundler("{\"query\": \"query {");
 
 		sb.append(
 			getGraphQLPropertyName(javaMethodSignature, javaMethodSignatures));
@@ -1075,7 +1075,7 @@ public class FreeMarkerTool {
 	private String _getRESTBody(
 		JavaMethodSignature javaMethodSignature, OpenAPIYAML openAPIYAML) {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		Set<String> properties = new TreeSet<>();
 

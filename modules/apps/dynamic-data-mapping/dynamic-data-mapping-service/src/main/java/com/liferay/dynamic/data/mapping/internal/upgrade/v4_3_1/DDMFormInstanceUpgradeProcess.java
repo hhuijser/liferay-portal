@@ -14,6 +14,7 @@
 
 package com.liferay.dynamic.data.mapping.internal.upgrade.v4_3_1;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -38,7 +39,7 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBuilder sb = new StringBuilder(4);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append("where settings_ not like '%workflowDefinition\\\",\\\"");
 		sb.append("value\\\":\\\"[\\\\\\\\\"no-workflow\\\\\\\\\"]\\\"%' and ");

@@ -20,6 +20,7 @@ import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.spi.converter.serializer.SPIDDMFormRuleActionSerializer;
 import com.liferay.dynamic.data.mapping.spi.converter.serializer.SPIDDMFormRuleSerializerContext;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -81,7 +82,7 @@ public class CalculateDDMFormRuleActionSerializer
 
 		StringBuilder newExpressionSB = new StringBuilder();
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		for (int i = 0; i < expression.length(); i++) {
 			char token = expression.charAt(i);
@@ -110,7 +111,7 @@ public class CalculateDDMFormRuleActionSerializer
 
 				newExpressionSB.append(token);
 
-				sb = new StringBuilder();
+				sb = new StringBundler();
 
 				start = Integer.MAX_VALUE;
 				end = Integer.MIN_VALUE;

@@ -19,6 +19,7 @@ import com.liferay.mail.kernel.template.MailTemplate;
 import com.liferay.mail.kernel.template.MailTemplateContext;
 import com.liferay.mail.kernel.template.MailTemplateContextBuilder;
 import com.liferay.mail.kernel.template.MailTemplateFactoryUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Ticket;
@@ -177,7 +178,7 @@ public class UnsubscribeHooks {
 	}
 
 	private String _getUnsubscribeURL(User user, Ticket ticket) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(_subscriptionSender.getContextAttribute("[$PORTAL_URL$]"));
 		sb.append(PortalUtil.getPathMain());

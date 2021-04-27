@@ -112,7 +112,7 @@ public class CTClosureImpl implements CTClosure {
 
 			int indent = indentEntry.getValue();
 
-			StringBuilder stringBuilder = new StringBuilder(indent);
+			StringBundler stringBuilder = new StringBundler(indent);
 
 			for (int i = 0; i < indent; i++) {
 				stringBuilder.append(CharPool.TAB);

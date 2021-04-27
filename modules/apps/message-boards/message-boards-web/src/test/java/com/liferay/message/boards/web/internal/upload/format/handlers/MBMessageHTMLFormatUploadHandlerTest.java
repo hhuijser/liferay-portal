@@ -123,8 +123,8 @@ public class MBMessageHTMLFormatUploadHandlerTest {
 		List<MBAttachmentFileEntryReference> fileEntryReferences =
 			new ArrayList<>();
 
-		StringBundler originalContent = new StringBundler();
-		StringBundler expectedContent = new StringBundler();
+		StringBundler originalContentSB = new StringBundler();
+		StringBundler expectedContentSB = new StringBundler();
 
 		for (int tempFileId = 0; tempFileId < 3; tempFileId++) {
 			FileEntry fileEntry = Mockito.mock(FileEntry.class);
@@ -147,18 +147,18 @@ public class MBMessageHTMLFormatUploadHandlerTest {
 			fileEntryReferences.add(
 				new MBAttachmentFileEntryReference(tempFileId, fileEntry));
 
-			originalContent.append(curOriginalContent);
+			originalContentSB.append(curOriginalContent);
 
-			expectedContent.append("<img src=\"");
-			expectedContent.append(finalURL);
-			expectedContent.append("\" />");
+			expectedContentSB.append("<img src=\"");
+			expectedContentSB.append(finalURL);
+			expectedContentSB.append("\" />");
 		}
 
 		String finalContent =
 			_mbMessageHTMLFormatUploadHandler.replaceImageReferences(
-				originalContent.toString(), fileEntryReferences);
+				originalContentSB.toString(), fileEntryReferences);
 
-		Assert.assertEquals(expectedContent.toString(), finalContent);
+		Assert.assertEquals(expectedContentSB.toString(), finalContent);
 	}
 
 	private final MBMessageHTMLFormatUploadHandler

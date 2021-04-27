@@ -608,7 +608,9 @@ public class SourceFormatter {
 			}
 		}
 
-		if (!buildPropertiesAdded) {
+		if (!buildPropertiesAdded &&
+			_sourceFormatterArgs.isFormatCurrentBranch()) {
+
 			List<String> deletedFileNames = GitUtil.getCurrentBranchFileNames(
 				_sourceFormatterArgs.getBaseDirName(),
 				_sourceFormatterArgs.getGitWorkingBranchName(), true);

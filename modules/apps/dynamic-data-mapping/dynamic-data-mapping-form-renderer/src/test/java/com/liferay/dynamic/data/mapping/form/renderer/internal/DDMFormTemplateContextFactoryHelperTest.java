@@ -134,7 +134,7 @@ public class DDMFormTemplateContextFactoryHelperTest extends PowerMockito {
 	}
 
 	protected DDMFormRule createAutoFillDDMFormRule() {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(5);
 
 		sb.append("call(");
 		sb.append(StringPool.APOSTROPHE);

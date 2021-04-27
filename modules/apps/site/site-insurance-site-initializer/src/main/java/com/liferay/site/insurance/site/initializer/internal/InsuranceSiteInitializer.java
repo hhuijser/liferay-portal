@@ -655,7 +655,7 @@ public class InsuranceSiteInitializer implements SiteInitializer {
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
 		for (KeyValuePair pathKeyValuePair : pathKeyValuePairs) {
-			StringBundler sb = new StringBundler(3);
+			StringBundler sb = new StringBundler(2);
 
 			sb.append(
 				_PATH + StringPool.FORWARD_SLASH + pathKeyValuePair.getKey());

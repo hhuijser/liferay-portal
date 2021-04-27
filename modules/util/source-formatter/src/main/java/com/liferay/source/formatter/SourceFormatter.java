@@ -492,6 +492,19 @@ public class SourceFormatter {
 	}
 
 	private Set<String> _addDependentFileName(
+		Set<String> dependentFileNames, String fileName) {
+
+		File file = new File(_sourceFormatterArgs.getBaseDirName() + fileName);
+
+		if (file.exists()) {
+			dependentFileNames.add(
+				_sourceFormatterArgs.getBaseDirName() + fileName);
+		}
+
+		return dependentFileNames;
+	}
+
+	private Set<String> _addDependentFileName(
 		Set<String> dependentFileNames, String fileName,
 		String dependentFileName) {
 
@@ -536,14 +549,8 @@ public class SourceFormatter {
 			if (!buildPropertiesAdded &&
 				recentChangesFileName.endsWith(".lfrbuild-portal")) {
 
-				File file = new File(
-					_sourceFormatterArgs.getBaseDirName() + "build.properties");
-
-				if (file.exists()) {
-					dependentFileNames.add(
-						_sourceFormatterArgs.getBaseDirName() +
-							"build.properties");
-				}
+				dependentFileNames = _addDependentFileName(
+					dependentFileNames, "build.properties");
 
 				buildPropertiesAdded = true;
 			}
@@ -617,15 +624,8 @@ public class SourceFormatter {
 
 			for (String deletedFileName : deletedFileNames) {
 				if (deletedFileName.endsWith(".lfrbuild-portal")) {
-					File file = new File(
-						_sourceFormatterArgs.getBaseDirName() +
-							"build.properties");
-
-					if (file.exists()) {
-						dependentFileNames.add(
-							_sourceFormatterArgs.getBaseDirName() +
-								"build.properties");
-					}
+					dependentFileNames = _addDependentFileName(
+						dependentFileNames, "build.properties");
 
 					break;
 				}

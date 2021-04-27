@@ -116,6 +116,14 @@ public class UnnecessaryMethodCallCheck extends BaseCheck {
 		for (DetailAST methodDefinitionDetailAST :
 				methodDefinitionDetailASTList) {
 
+			if (!methodDefinitionDetailAST.branchContains(
+					TokenTypes.LITERAL_PRIVATE) &&
+				!methodDefinitionDetailAST.branchContains(
+					TokenTypes.LITERAL_STATIC)) {
+
+				continue;
+			}
+
 			List<DetailAST> parameterDefs = getParameterDefs(
 				methodDefinitionDetailAST);
 

@@ -320,7 +320,7 @@ public class FreeMarkerTool {
 		List<JavaMethodSignature> javaMethodSignatures,
 		OpenAPIYAML openAPIYAML) {
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(5);
 
 		sb.append("Invoke this method with the command line:\n*\n* curl -H ");
 		sb.append("'Content-Type: text/plain; charset=utf-8' -X 'POST' ");
@@ -578,7 +578,7 @@ public class FreeMarkerTool {
 				continue;
 			}
 
-			StringBundler sb = new StringBundler();
+			StringBundler sb = new StringBundler(3);
 
 			sb.append(getHTTPMethod(operation));
 
@@ -669,7 +669,7 @@ public class FreeMarkerTool {
 		ConfigYAML configYAML, JavaMethodSignature javaMethodSignature,
 		OpenAPIYAML openAPIYAML) {
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(10);
 
 		sb.append("Invoke this method with the command line:\n*\n* curl -X '");
 		sb.append(

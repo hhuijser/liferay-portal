@@ -61,7 +61,7 @@ public class StagingBarTemplateContextContributor
 			if (_stagingBarControlMenuJSPDynamicInclude.isShow(
 					httpServletRequest)) {
 
-				StringBundler sb = new StringBundler();
+				StringBundler sb = new StringBundler(5);
 
 				sb.append(
 					GetterUtil.getString(contextObjects.get("bodyCssClass")));

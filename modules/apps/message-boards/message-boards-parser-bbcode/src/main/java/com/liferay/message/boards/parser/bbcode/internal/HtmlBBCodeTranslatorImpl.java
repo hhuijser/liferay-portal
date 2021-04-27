@@ -82,7 +82,7 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 
 			String image = emoticon[0];
 
-			StringBuilder sb = new StringBuilder(6);
+			StringBundler sb = new StringBundler(6);
 
 			sb.append("<img alt=\"emoticon\" src=\"");
 			sb.append(ThemeConstants.TOKEN_THEME_IMAGES_PATH);
@@ -196,7 +196,7 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 	}
 
 	protected String escapeQuote(String quote) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		int index = 0;
 

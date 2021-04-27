@@ -14,6 +14,7 @@
 
 package com.liferay.sharepoint.soap.repository.connector.operation;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.sharepoint.soap.repository.connector.SharepointException;
 import com.liferay.sharepoint.soap.repository.connector.operation.constants.SharepointConstants;
@@ -135,7 +136,7 @@ public class QueryServiceStubResult {
 			_sb.setLength(0);
 		}
 
-		private final StringBuilder _sb = new StringBuilder();
+		private final StringBundler _sb = new StringBundler();
 
 	};
 

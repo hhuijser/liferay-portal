@@ -14,6 +14,7 @@
 
 package com.liferay.layout.admin.web.internal.template;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
 import com.liferay.portal.kernel.util.Constants;
@@ -48,7 +49,7 @@ public class LayoutEditModeTemplateContextContributor
 		if (layoutMode.equals(Constants.EDIT) ||
 			layoutMode.equals(Constants.PREVIEW)) {
 
-			StringBuilder sb = new StringBuilder(3);
+			StringBundler sb = new StringBundler(3);
 
 			sb.append(GetterUtil.getString(contextObjects.get("bodyCssClass")));
 			sb.append(StringPool.SPACE);

@@ -180,9 +180,9 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 
 		StringBundler sb = new StringBundler(3);
 
-		sb.append("select groupId, liveGroupId from Group_ where ");
-		sb.append("companyId = ? and liveGroupId is not null and ");
-		sb.append("liveGroupId != 0 and remoteStagingGroupCount = 0");
+		sb.append("select groupId, liveGroupId from Group_ where companyId = ");
+		sb.append("? and liveGroupId is not null and liveGroupId != 0 and ");
+		sb.append("remoteStagingGroupCount = 0");
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(

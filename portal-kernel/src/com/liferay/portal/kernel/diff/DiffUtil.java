@@ -41,7 +41,7 @@ public class DiffUtil {
 	 *         and the second element to changes in target
 	 */
 	public static List<DiffResult>[] diff(Reader source, Reader target) {
-		return getDiff().diff(source, target);
+		return _diff.diff(source, target);
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class DiffUtil {
 		String addedMarkerEnd, String deletedMarkerStart,
 		String deletedMarkerEnd, int margin) {
 
-		return getDiff().diff(
+		return _diff.diff(
 			source, target, addedMarkerStart, addedMarkerEnd,
 			deletedMarkerStart, deletedMarkerEnd, margin);
 	}

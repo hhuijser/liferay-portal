@@ -34,7 +34,7 @@ public class MimeTypesUtil {
 	 *         "application/octet-stream" if it is an unsupported format
 	 */
 	public static String getContentType(File file) {
-		return getMimeTypes().getContentType(file);
+		return _mimeTypes.getContentType(file);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class MimeTypesUtil {
 	 *         "application/octet-stream" if it is an unsupported format
 	 */
 	public static String getContentType(File file, String fileName) {
-		return getMimeTypes().getContentType(file, fileName);
+		return _mimeTypes.getContentType(file, fileName);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class MimeTypesUtil {
 	public static String getContentType(
 		InputStream inputStream, String fileName) {
 
-		return getMimeTypes().getContentType(inputStream, fileName);
+		return _mimeTypes.getContentType(inputStream, fileName);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class MimeTypesUtil {
 	 *         "application/octet-stream" if it is an unsupported format
 	 */
 	public static String getContentType(String fileName) {
-		return getMimeTypes().getContentType(fileName);
+		return _mimeTypes.getContentType(fileName);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class MimeTypesUtil {
 	 *         "application/octet-stream" if it is an unsupported format
 	 */
 	public static String getExtensionContentType(String extension) {
-		return getMimeTypes().getExtensionContentType(extension);
+		return _mimeTypes.getExtensionContentType(extension);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class MimeTypesUtil {
 	 *         set if it is an unknown content type
 	 */
 	public static Set<String> getExtensions(String contentType) {
-		return getMimeTypes().getExtensions(contentType);
+		return _mimeTypes.getExtensions(contentType);
 	}
 
 	public static MimeTypes getMimeTypes() {
@@ -111,7 +111,7 @@ public class MimeTypesUtil {
 	}
 
 	public static boolean isWebImage(String mimeType) {
-		return getMimeTypes().isWebImage(mimeType);
+		return _mimeTypes.isWebImage(mimeType);
 	}
 
 	public void setMimeTypes(MimeTypes mimeTypes) {

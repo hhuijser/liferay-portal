@@ -37,9 +37,8 @@ public class ModelValidatorUtil {
 		getDefaultDLFileEntryModelValidator() {
 
 		return compose(
-			getDefaultFileNameModelValidator(),
-			getDefaultFileExtensionModelValidator(),
-			getDefaultFileSizeModelValidator());
+			_defaultFileNameModelValidator, _defaultFileExtensionModelValidator,
+			_defaultFileSizeModelValidator);
 	}
 
 	public static ModelValidator<FileContentReference>

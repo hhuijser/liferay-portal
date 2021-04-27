@@ -25,19 +25,19 @@ import java.util.Set;
 public class WordsUtil {
 
 	public static List<InvalidWord> checkSpelling(String text) {
-		return getWords().checkSpelling(text);
+		return _words.checkSpelling(text);
 	}
 
 	public static List<String> getDictionaryList() {
-		return getWords().getDictionaryList();
+		return _words.getDictionaryList();
 	}
 
 	public static Set<String> getDictionarySet() {
-		return getWords().getDictionarySet();
+		return _words.getDictionarySet();
 	}
 
 	public static String getRandomWord() {
-		return getWords().getRandomWord();
+		return _words.getRandomWord();
 	}
 
 	public static Words getWords() {
@@ -45,7 +45,7 @@ public class WordsUtil {
 	}
 
 	public static boolean isDictionaryWord(String word) {
-		return getWords().isDictionaryWord(word);
+		return _words.isDictionaryWord(word);
 	}
 
 	public void setWords(Words words) {

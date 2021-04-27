@@ -35,11 +35,11 @@ import org.dom4j.Node;
 public class CucumberScenarioResult implements Serializable {
 
 	public long getBackgroundDuration() {
-		return _getDuration(_getBackgroundDocument());
+		return _getDuration(_backgroundDocument);
 	}
 
 	public String getBackgroundName() {
-		Document backgroundDocument = _getBackgroundDocument();
+		Document backgroundDocument = _backgroundDocument;
 
 		if (backgroundDocument == null) {
 			return null;
@@ -49,11 +49,11 @@ public class CucumberScenarioResult implements Serializable {
 	}
 
 	public String getBackgroundStatus() {
-		return _getStatus(_getBackgroundDocument());
+		return _getStatus(_backgroundDocument);
 	}
 
 	public List<Step> getBackgroundSteps() {
-		return _getSteps(_getBackgroundDocument());
+		return _getSteps(_backgroundDocument);
 	}
 
 	public CucumberFeatureResult getCucumberFeatureResult() {
@@ -101,21 +101,20 @@ public class CucumberScenarioResult implements Serializable {
 	}
 
 	public long getScenarioDuration() {
-		return _getDuration(_getScenarioDocument());
+		return _getDuration(_scenarioDocument);
 	}
 
 	public String getScenarioName() {
 		return JenkinsResultsParserUtil.combine(
-			_getKeyword(_getScenarioDocument()), ": ",
-			_getName(_getScenarioDocument()));
+			_getKeyword(_scenarioDocument), ": ", _getName(_scenarioDocument));
 	}
 
 	public String getScenarioStatus() {
-		return _getStatus(_getScenarioDocument());
+		return _getStatus(_scenarioDocument);
 	}
 
 	public List<Step> getScenarioSteps() {
-		return _getSteps(_getScenarioDocument());
+		return _getSteps(_scenarioDocument);
 	}
 
 	public String getStatus() {
@@ -144,7 +143,7 @@ public class CucumberScenarioResult implements Serializable {
 
 		public long getDuration() {
 			Element element = (Element)Dom4JUtil.getNodeByXPath(
-				_getDocument(),
+				_document,
 				"//div[@class='step']/div/span[contains(@class,'duration')]");
 
 			if (element == null) {
@@ -168,7 +167,7 @@ public class CucumberScenarioResult implements Serializable {
 			sb.append("/div[contains(@class,'message')]/div/a");
 
 			Element element = (Element)Dom4JUtil.getNodeByXPath(
-				_getDocument(), sb.toString());
+				_document, sb.toString());
 
 			if (element == null) {
 				return null;
@@ -190,7 +189,7 @@ public class CucumberScenarioResult implements Serializable {
 			sb.append("/div[contains(@class,'message')]/div/pre");
 
 			Element element = (Element)Dom4JUtil.getNodeByXPath(
-				_getDocument(), sb.toString());
+				_document, sb.toString());
 
 			if (element == null) {
 				return null;
@@ -201,7 +200,7 @@ public class CucumberScenarioResult implements Serializable {
 
 		public String getName() {
 			Element element = (Element)Dom4JUtil.getNodeByXPath(
-				_getDocument(), "//div[@class='step']/div/span[@class='name']");
+				_document, "//div[@class='step']/div/span[@class='name']");
 
 			if (element == null) {
 				return "";
@@ -212,7 +211,7 @@ public class CucumberScenarioResult implements Serializable {
 
 		public String getStatus() {
 			Element element = (Element)Dom4JUtil.getNodeByXPath(
-				_getDocument(),
+				_document,
 				"//div[@class='step']/div[contains(@class,'brief')]");
 
 			if (element == null) {

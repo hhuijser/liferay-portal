@@ -25,7 +25,7 @@ import java.util.Map;
 public class AutoDeployUtil {
 
 	public static AutoDeployDir getDir(String name) {
-		return getInstance()._getDir(name);
+		return _autoDeployUtil._getDir(name);
 	}
 
 	public static AutoDeployUtil getInstance() {
@@ -33,11 +33,11 @@ public class AutoDeployUtil {
 	}
 
 	public static void registerDir(AutoDeployDir autoDeployDir) {
-		getInstance()._registerDir(autoDeployDir);
+		_autoDeployUtil._registerDir(autoDeployDir);
 	}
 
 	public static void unregisterDir(String name) {
-		getInstance()._unregisterDir(name);
+		_autoDeployUtil._unregisterDir(name);
 	}
 
 	private AutoDeployUtil() {

@@ -16,6 +16,7 @@ package com.liferay.portal.vulcan.internal.jaxrs.param.converter.provider;
 
 import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.DepotEntryLocalService;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -71,7 +72,7 @@ public class SiteParamConverterProvider
 			return siteId;
 		}
 
-		StringBuilder sb = new StringBuilder(4);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append("Unable to get a valid ");
 

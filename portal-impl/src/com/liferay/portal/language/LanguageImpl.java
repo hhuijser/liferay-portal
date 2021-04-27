@@ -1882,7 +1882,7 @@ public class LanguageImpl implements Language, Serializable {
 		Format dateFormat = null;
 		Format numberFormat = null;
 		int pos = 0;
-		StringBuilder sb = new StringBuilder(
+		StringBundler sb = new StringBundler(
 			(16 * arguments.length) + pattern.length());
 
 		int start = pattern.indexOf(CharPool.OPEN_CURLY_BRACE);

@@ -535,7 +535,7 @@ public class HtmlImpl implements Html {
 			return xPath;
 		}
 
-		StringBuilder sb = new StringBuilder(xPath.length());
+		StringBundler sb = new StringBundler(xPath.length());
 
 		for (int i = 0; i < xPath.length(); i++) {
 			char c = xPath.charAt(i);
@@ -754,7 +754,7 @@ public class HtmlImpl implements Html {
 
 		text = stripComments(text);
 
-		StringBuilder sb = new StringBuilder(text.length());
+		StringBundler sb = new StringBundler(text.length());
 
 		int x = 0;
 		int y = text.indexOf("<");

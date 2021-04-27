@@ -200,7 +200,7 @@ public class RowChecker {
 			return StringPool.BLANK;
 		}
 
-		StringBuilder sb = new StringBuilder(10);
+		StringBundler sb = new StringBundler(10);
 
 		sb.append("<label><input name=\"");
 		sb.append(name);

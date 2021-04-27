@@ -14,6 +14,7 @@
 
 package com.liferay.dynamic.data.mapping.internal.upgrade.v4_3_0;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
@@ -31,7 +32,7 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBuilder sb = new StringBuilder(8);
+		StringBundler sb = new StringBundler(8);
 
 		sb.append("select DDMField.storageId, DDMField.fieldName ");
 		sb.append("from DLFileEntryType inner join DDMStructureVersion on ");

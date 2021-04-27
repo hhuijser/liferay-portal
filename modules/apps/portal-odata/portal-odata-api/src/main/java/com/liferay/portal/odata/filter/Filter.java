@@ -14,6 +14,7 @@
 
 package com.liferay.portal.odata.filter;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.odata.filter.expression.Expression;
 
 /**
@@ -65,7 +66,7 @@ public class Filter {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder(3);
+		StringBundler sb = new StringBundler(3);
 
 		sb.append("{_expression=");
 		sb.append(_expression);

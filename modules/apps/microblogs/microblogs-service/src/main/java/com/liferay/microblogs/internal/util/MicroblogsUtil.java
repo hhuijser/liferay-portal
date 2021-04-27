@@ -18,6 +18,7 @@ import com.liferay.microblogs.constants.MicroblogsEntryConstants;
 import com.liferay.microblogs.constants.MicroblogsPortletKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.NoSuchUserException;
@@ -334,7 +335,7 @@ public class MicroblogsUtil {
 		while (matcher.find()) {
 			String result = matcher.group();
 
-			StringBuilder sb = new StringBuilder(6);
+			StringBundler sb = new StringBundler(6);
 
 			sb.append("<span class=\"hashtag\">#</span>");
 			sb.append("<a class=\"hashtag-link\" href=\"");
@@ -411,7 +412,7 @@ public class MicroblogsUtil {
 			String result = matcher.group();
 
 			try {
-				StringBuilder sb = new StringBuilder(5);
+				StringBundler sb = new StringBundler(5);
 
 				sb.append("<a href=\"");
 

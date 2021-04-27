@@ -277,7 +277,7 @@ public class OpenGraphTopHeadDynamicInclude extends BaseDynamicInclude {
 	}
 
 	private String _addLinkTag(LayoutSEOLink layoutSEOLink) {
-		StringBuilder sb = new StringBuilder(10);
+		StringBundler sb = new StringBundler(10);
 
 		sb.append("<link data-senna-track=\"temporary\" ");
 		sb.append("href=\"");

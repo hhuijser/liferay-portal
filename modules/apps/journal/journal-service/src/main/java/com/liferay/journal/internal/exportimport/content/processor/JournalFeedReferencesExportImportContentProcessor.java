@@ -193,7 +193,7 @@ public class JournalFeedReferencesExportImportContentProcessor
 			return content;
 		}
 
-		StringBuilder sb = new StringBuilder(content);
+		StringBundler sb = new StringBundler(content);
 
 		String[] patterns = {_JOURNAL_FEED_FRIENDLY_URL};
 

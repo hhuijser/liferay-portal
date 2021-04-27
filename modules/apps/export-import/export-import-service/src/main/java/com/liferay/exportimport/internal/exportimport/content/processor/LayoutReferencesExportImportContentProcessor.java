@@ -226,7 +226,7 @@ public class LayoutReferencesExportImportContentProcessor
 			content = hostnameSB.toString();
 		}
 
-		StringBuilder sb = new StringBuilder(content);
+		StringBundler sb = new StringBundler(content);
 
 		String[] patterns = {"href=", "[[", "{{"};
 

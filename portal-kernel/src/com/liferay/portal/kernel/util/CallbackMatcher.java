@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.util;
 
+import com.liferay.petra.string.StringBundler;
+
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +32,7 @@ public class CallbackMatcher {
 	public String replaceMatches(CharSequence charSequence, Callback callback) {
 		Matcher matcher = _pattern.matcher(charSequence);
 
-		StringBuilder sb = new StringBuilder(charSequence);
+		StringBundler sb = new StringBundler(charSequence);
 
 		int offset = 0;
 

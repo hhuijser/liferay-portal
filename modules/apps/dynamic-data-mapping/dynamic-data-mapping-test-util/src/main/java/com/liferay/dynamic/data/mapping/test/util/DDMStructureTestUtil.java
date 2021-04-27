@@ -373,7 +373,7 @@ public class DDMStructureTestUtil {
 	}
 
 	protected static String getElementName(Element element) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(element.attributeValue("name"));
 

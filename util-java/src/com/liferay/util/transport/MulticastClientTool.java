@@ -14,6 +14,8 @@
 
 package com.liferay.util.transport;
 
+import com.liferay.petra.string.StringBundler;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +37,7 @@ public class MulticastClientTool {
 		catch (Exception exception) {
 			exception.printStackTrace();
 
-			StringBuilder sb = new StringBuilder(3);
+			StringBundler sb = new StringBundler(3);
 
 			sb.append("Usage: java -classpath util-java.jar ");
 			sb.append(MulticastClientTool.class.getName());

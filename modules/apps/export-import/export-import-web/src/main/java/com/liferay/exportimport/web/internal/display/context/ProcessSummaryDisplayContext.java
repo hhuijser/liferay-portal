@@ -15,6 +15,7 @@
 package com.liferay.exportimport.web.internal.display.context;
 
 import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -80,7 +81,7 @@ public class ProcessSummaryDisplayContext {
 			return;
 		}
 
-		StringBuilder sb = new StringBuilder(layout.getName(languageId));
+		StringBundler sb = new StringBundler(layout.getName(languageId));
 
 		while (layout.getParentLayoutId() !=
 					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {

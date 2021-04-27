@@ -501,7 +501,7 @@ public class WabProcessor {
 			Matcher matcher = _versionMavenPattern.matcher(_bundleVersion);
 
 			if (matcher.matches()) {
-				StringBuilder sb = new StringBuilder();
+				StringBundler sb = new StringBundler();
 
 				sb.append(matcher.group(1));
 				sb.append(".");

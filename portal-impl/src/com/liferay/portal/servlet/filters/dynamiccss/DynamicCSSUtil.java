@@ -93,7 +93,7 @@ public class DynamicCSSUtil {
 	protected static String propagateQueryString(
 		String content, String queryString) {
 
-		StringBuilder sb = new StringBuilder(content.length());
+		StringBundler sb = new StringBundler(content.length());
 
 		int pos = 0;
 

@@ -14,6 +14,7 @@
 
 package com.liferay.staging.bar.web.internal.template;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -60,7 +61,7 @@ public class StagingBarTemplateContextContributor
 			if (_stagingBarControlMenuJSPDynamicInclude.isShow(
 					httpServletRequest)) {
 
-				StringBuilder sb = new StringBuilder();
+				StringBundler sb = new StringBundler();
 
 				sb.append(
 					GetterUtil.getString(contextObjects.get("bodyCssClass")));

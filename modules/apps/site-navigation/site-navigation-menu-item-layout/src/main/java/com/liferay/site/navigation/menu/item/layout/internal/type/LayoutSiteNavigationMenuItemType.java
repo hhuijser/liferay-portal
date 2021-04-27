@@ -401,7 +401,7 @@ public class LayoutSiteNavigationMenuItemType
 		DynamicQuery dynamicQuery =
 			_siteNavigationMenuItemLocalService.dynamicQuery();
 
-		StringBuilder sb = new StringBuilder(5);
+		StringBundler sb = new StringBundler(5);
 
 		sb.append(StringPool.PERCENT);
 		sb.append("layoutUuid");

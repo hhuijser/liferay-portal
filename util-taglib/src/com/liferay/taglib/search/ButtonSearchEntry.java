@@ -14,6 +14,7 @@
 
 package com.liferay.taglib.search;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 
 import java.io.Writer;
@@ -41,7 +42,7 @@ public class ButtonSearchEntry extends TextSearchEntry {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append("<input type=\"button\" value=\"");
 		sb.append(getName());

@@ -16,6 +16,7 @@ package com.liferay.portal.util;
 
 import com.liferay.petra.nio.CharsetEncoderUtil;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizer;
@@ -56,7 +57,7 @@ public class FriendlyURLNormalizerImpl implements FriendlyURLNormalizer {
 					friendlyURL, CharPool.PERCENT, CharPool.POUND));
 		}
 
-		StringBuilder sb = new StringBuilder(decodedFriendlyURL.length());
+		StringBundler sb = new StringBundler(decodedFriendlyURL.length());
 
 		boolean modified = false;
 
@@ -172,7 +173,7 @@ public class FriendlyURLNormalizerImpl implements FriendlyURLNormalizer {
 
 		friendlyURL = Normalizer.normalizeToAscii(friendlyURL);
 
-		StringBuilder sb = new StringBuilder(friendlyURL.length());
+		StringBundler sb = new StringBundler(friendlyURL.length());
 
 		boolean modified = false;
 

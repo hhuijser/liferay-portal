@@ -308,7 +308,7 @@ public class SPDXBuilder {
 	}
 
 	private String _getKey(String type, Element libraryElement) {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(5);
 
 		sb.append(StringUtil.upperCase(type));
 		sb.append(StringPool.COLON);

@@ -42,7 +42,7 @@ public class BrowserTemplateContextContributor
 		Map<String, Object> contextObjects,
 		HttpServletRequest httpServletRequest) {
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(5);
 
 		sb.append(GetterUtil.getString(contextObjects.get("bodyCssClass")));
 		sb.append(StringPool.SPACE);

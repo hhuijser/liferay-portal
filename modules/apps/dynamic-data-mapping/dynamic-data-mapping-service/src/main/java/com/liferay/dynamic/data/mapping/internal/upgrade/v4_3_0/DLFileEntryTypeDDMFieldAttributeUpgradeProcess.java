@@ -32,7 +32,7 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(6);
 
 		sb.append("select DDMField.storageId, DDMField.fieldName from ");
 		sb.append("DLFileEntryType inner join DDMStructureVersion on ");

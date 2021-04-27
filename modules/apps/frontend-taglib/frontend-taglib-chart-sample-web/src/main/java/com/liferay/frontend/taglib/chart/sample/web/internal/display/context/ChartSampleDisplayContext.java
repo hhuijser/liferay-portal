@@ -193,7 +193,7 @@ public class ChartSampleDisplayContext {
 
 		_geomapConfig2.setColor(geomapColor);
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(3);
 
 		sb.append(_portletRequest.getContextPath());
 		sb.append(StringPool.SLASH);

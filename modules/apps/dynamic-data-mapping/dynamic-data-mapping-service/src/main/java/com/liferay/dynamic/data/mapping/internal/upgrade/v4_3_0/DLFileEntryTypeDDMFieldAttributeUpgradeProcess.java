@@ -34,14 +34,12 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 	protected void doUpgrade() throws Exception {
 		StringBundler sb = new StringBundler(8);
 
-		sb.append("select DDMField.storageId, DDMField.fieldName ");
-		sb.append("from DLFileEntryType inner join DDMStructureVersion on ");
+		sb.append("select DDMField.storageId, DDMField.fieldName from ");
+		sb.append("DLFileEntryType inner join DDMStructureVersion on ");
 		sb.append("DDMStructureVersion.structureId = ");
-		sb.append("DLFileEntryType.dataDefinitionId ");
-		sb.append("inner join DDMField on ");
+		sb.append("DLFileEntryType.dataDefinitionId inner join DDMField on ");
 		sb.append("DDMStructureVersion.structureVersionId = ");
-		sb.append("DDMField.structureVersionId and ");
-		sb.append("DDMField.fieldType like ? ");
+		sb.append("DDMField.structureVersionId and DDMField.fieldType like ? ");
 
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				sb.toString())) {

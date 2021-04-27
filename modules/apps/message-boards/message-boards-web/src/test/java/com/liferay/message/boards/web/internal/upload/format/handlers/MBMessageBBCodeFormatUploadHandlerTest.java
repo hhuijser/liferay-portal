@@ -149,7 +149,9 @@ public class MBMessageBBCodeFormatUploadHandlerTest {
 
 			originalContent.append(curOriginalContent);
 
-			expectedContent.append("[img]" + finalURL + "[/img]");
+			expectedContent.append("[img]");
+			expectedContent.append(finalURL);
+			expectedContent.append("[/img]");
 		}
 
 		String finalContent =

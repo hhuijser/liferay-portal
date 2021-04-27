@@ -1960,9 +1960,8 @@ public class RESTBuilder {
 					sb.append(entry1.getKey());
 					sb.append('.');
 					sb.append(entry2.getKey());
-					sb.append(
-						"\" should use \"type: integer\" instead of \"type: " +
-							"number\"");
+					sb.append("\" should use \"type: integer\" instead of ");
+					sb.append("\"type: number\"");
 
 					System.out.println(sb.toString());
 				}

@@ -149,7 +149,9 @@ public class MBMessageHTMLFormatUploadHandlerTest {
 
 			originalContent.append(curOriginalContent);
 
-			expectedContent.append("<img src=\"" + finalURL + "\" />");
+			expectedContent.append("<img src=\"");
+			expectedContent.append(finalURL);
+			expectedContent.append("\" />");
 		}
 
 		String finalContent =

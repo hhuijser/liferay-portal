@@ -123,8 +123,8 @@ public class MBMessageBBCodeFormatUploadHandlerTest {
 		List<MBAttachmentFileEntryReference> fileEntryReferences =
 			new ArrayList<>();
 
-		StringBundler originalContent = new StringBundler();
-		StringBundler expectedContent = new StringBundler();
+		StringBundler originalContentSB = new StringBundler();
+		StringBundler expectedContentSB = new StringBundler();
 
 		for (int tempFileId = 0; tempFileId < 3; tempFileId++) {
 			FileEntry fileEntry = Mockito.mock(FileEntry.class);
@@ -147,18 +147,18 @@ public class MBMessageBBCodeFormatUploadHandlerTest {
 			fileEntryReferences.add(
 				new MBAttachmentFileEntryReference(tempFileId, fileEntry));
 
-			originalContent.append(curOriginalContent);
+			originalContentSB.append(curOriginalContent);
 
-			expectedContent.append("[img]");
-			expectedContent.append(finalURL);
-			expectedContent.append("[/img]");
+			expectedContentSB.append("[img]");
+			expectedContentSB.append(finalURL);
+			expectedContentSB.append("[/img]");
 		}
 
 		String finalContent =
 			_mbMessageBBCodeFormatUploadHandler.replaceImageReferences(
-				originalContent.toString(), fileEntryReferences);
+				originalContentSB.toString(), fileEntryReferences);
 
-		Assert.assertEquals(expectedContent.toString(), finalContent);
+		Assert.assertEquals(expectedContentSB.toString(), finalContent);
 	}
 
 	private final MBMessageBBCodeFormatUploadHandler

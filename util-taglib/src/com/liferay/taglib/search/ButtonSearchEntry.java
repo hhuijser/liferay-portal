@@ -42,7 +42,7 @@ public class ButtonSearchEntry extends TextSearchEntry {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(5);
 
 		sb.append("<input type=\"button\" value=\"");
 		sb.append(getName());

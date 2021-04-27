@@ -117,7 +117,7 @@ public class FlagsRequest implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{className=");
 		sb.append(_className);

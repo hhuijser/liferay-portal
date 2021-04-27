@@ -68,7 +68,7 @@ public class ArtifactURLUtil {
 			contextName = symbolicName;
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(8);
 
 		sb.append(artifact.getPath());
 		sb.append("?");

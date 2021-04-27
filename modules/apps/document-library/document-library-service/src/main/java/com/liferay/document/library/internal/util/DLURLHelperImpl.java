@@ -369,7 +369,7 @@ public class DLURLHelperImpl implements DLURLHelper {
 		webDavURLSB.append(group.getFriendlyURL());
 		webDavURLSB.append("/document_library");
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(2);
 
 		if ((folder != null) &&
 			(folder.getFolderId() !=

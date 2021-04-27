@@ -82,7 +82,7 @@ public class Individual {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{dataSourceIndividualPKs=");
 		sb.append(_dataSourceIndividualPKs);

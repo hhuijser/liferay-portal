@@ -112,7 +112,7 @@ public class ProductInteractionCommerceMLRecommendationCPDataSourceImpl
 					getRecommendedEntryClassPK();
 
 			if (_log.isTraceEnabled()) {
-				StringBundler sb = new StringBundler();
+				StringBundler sb = new StringBundler(6);
 
 				sb.append("Recommended item: ");
 				sb.append(recommendedEntryClassPK);

@@ -2220,7 +2220,7 @@ public class StringUtil {
 				throw new IOException(
 					StringBundler.concat(
 						"Unable to open resource ", name, " in class loader ",
-						String.valueOf(classLoader)));
+						classLoader));
 			}
 
 			return read(is);

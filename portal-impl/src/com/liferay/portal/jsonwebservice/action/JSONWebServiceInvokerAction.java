@@ -183,7 +183,7 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			_includes = new ArrayList<>();
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(1);
 
 		while (statement._parentStatement != null) {
 			String statementName = statement.getName();

@@ -42,7 +42,10 @@ public class VariableNameCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
-		return new int[] {TokenTypes.PARAMETER_DEF, TokenTypes.VARIABLE_DEF};
+		return new int[] {
+			TokenTypes.PARAMETER_DEF, TokenTypes.RESOURCE,
+			TokenTypes.VARIABLE_DEF
+		};
 	}
 
 	@Override
@@ -267,6 +270,27 @@ public class VariableNameCheck extends BaseCheck {
 				detailASTSet.addAll(
 					getAllChildTokens(
 						parentDetailAST, false, TokenTypes.VARIABLE_DEF));
+			}
+			else if (parentDetailAST.getType() == TokenTypes.RESOURCES) {
+				detailASTSet.addAll(
+					getAllChildTokens(
+						parentDetailAST, false, TokenTypes.RESOURCE));
+
+				parentDetailAST = parentDetailAST.getParent();
+
+				parentDetailAST = parentDetailAST.getParent();
+
+				if (parentDetailAST.getType() == TokenTypes.LITERAL_TRY) {
+					DetailAST slistDetailAST = parentDetailAST.findFirstToken(
+						TokenTypes.SLIST);
+
+					if (slistDetailAST != null) {
+						detailASTSet.addAll(
+							getAllChildTokens(
+								slistDetailAST, false,
+								TokenTypes.VARIABLE_DEF));
+					}
+				}
 			}
 
 			parentDetailAST = getParentWithTokenType(

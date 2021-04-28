@@ -28,7 +28,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -242,16 +245,30 @@ public class VariableNameCheck extends BaseCheck {
 			return;
 		}
 
-		List<DetailAST> detailASTList = new ArrayList<>();
+		Set<DetailAST> detailASTSet = new TreeSet<>(
+			new Comparator<DetailAST>() {
+
+				@Override
+				public int compare(DetailAST detailAST1, DetailAST detailAST2) {
+					return detailAST1.getLineNo() - detailAST2.getLineNo();
+				}
+
+			});
 
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		if (parentDetailAST.getType() == TokenTypes.OBJBLOCK) {
-			detailASTList.addAll(
+			detailASTSet.addAll(
 				getAllChildTokens(
 					parentDetailAST, false, TokenTypes.VARIABLE_DEF));
 		}
 		else {
+			if (parentDetailAST.getType() == TokenTypes.SLIST) {
+				detailASTSet.addAll(
+					getAllChildTokens(
+						parentDetailAST, false, TokenTypes.VARIABLE_DEF));
+			}
+
 			parentDetailAST = getParentWithTokenType(
 				detailAST, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF);
 
@@ -259,7 +276,7 @@ public class VariableNameCheck extends BaseCheck {
 				DetailAST parametersDetailAST = parentDetailAST.findFirstToken(
 					TokenTypes.PARAMETERS);
 
-				detailASTList.addAll(
+				detailASTSet.addAll(
 					getAllChildTokens(
 						parametersDetailAST, false, TokenTypes.PARAMETER_DEF));
 
@@ -267,7 +284,7 @@ public class VariableNameCheck extends BaseCheck {
 					TokenTypes.SLIST);
 
 				if (slistDetailAST != null) {
-					detailASTList.addAll(
+					detailASTSet.addAll(
 						getAllChildTokens(
 							slistDetailAST, false, TokenTypes.VARIABLE_DEF));
 				}
@@ -285,7 +302,7 @@ public class VariableNameCheck extends BaseCheck {
 
 		String expectedVariableName = countlessVariableName + "1";
 
-		for (DetailAST curDetailAST : detailASTList) {
+		for (DetailAST curDetailAST : detailASTSet) {
 			if ((endLineNumber != -1) &&
 				(curDetailAST.getLineNo() > endLineNumber)) {
 
@@ -299,7 +316,7 @@ public class VariableNameCheck extends BaseCheck {
 
 				if (parentDetailAST.getType() == TokenTypes.FOR_EACH_CLAUSE) {
 					DetailAST curNameDetailAST = _getDetailAST(
-						detailASTList, "cur" + countlessVariableName);
+						detailASTSet, "cur" + countlessVariableName);
 
 					if (curNameDetailAST == null) {
 						log(detailAST, _MSG_INCORRECT_NAME_FOR_STATEMENT, name);
@@ -310,7 +327,7 @@ public class VariableNameCheck extends BaseCheck {
 				}
 				else {
 					DetailAST expectedVariableNameDetailAST = _getDetailAST(
-						detailASTList, expectedVariableName);
+						detailASTSet, expectedVariableName);
 
 					if (expectedVariableNameDetailAST == null) {
 						log(
@@ -667,10 +684,8 @@ public class VariableNameCheck extends BaseCheck {
 		return false;
 	}
 
-	private DetailAST _getDetailAST(
-		List<DetailAST> detailASTList, String name) {
-
-		for (DetailAST detailAST : detailASTList) {
+	private DetailAST _getDetailAST(Set<DetailAST> detailASTSet, String name) {
+		for (DetailAST detailAST : detailASTSet) {
 			if (StringUtil.equalsIgnoreCase(
 					name, _getVariableName(detailAST))) {
 

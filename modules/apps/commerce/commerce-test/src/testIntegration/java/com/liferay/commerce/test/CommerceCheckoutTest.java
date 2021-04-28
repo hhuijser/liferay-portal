@@ -190,14 +190,14 @@ public class CommerceCheckoutTest {
 					_company.getCompanyId(), _group.getGroupId(),
 					_user.getUserId());
 
-			User user = UserTestUtil.addUser(_company);
+			User user1 = UserTestUtil.addUser(_company);
 
-			serviceContext.setUserId(user.getUserId());
+			serviceContext.setUserId(user1.getUserId());
 
 			PermissionChecker permissionChecker =
-				PermissionCheckerFactoryUtil.create(user);
+				PermissionCheckerFactoryUtil.create(user1);
 
-			PrincipalThreadLocal.setName(user.getUserId());
+			PrincipalThreadLocal.setName(user1.getUserId());
 
 			PermissionThreadLocal.setPermissionChecker(permissionChecker);
 
@@ -205,7 +205,7 @@ public class CommerceCheckoutTest {
 				_commerceAccountLocalService.addCommerceAccount(
 					RandomTestUtil.randomString(),
 					CommerceAccountConstants.DEFAULT_PARENT_ACCOUNT_ID,
-					user.getEmailAddress(), StringPool.BLANK,
+					user1.getEmailAddress(), StringPool.BLANK,
 					CommerceAccountConstants.ACCOUNT_TYPE_GUEST, true, null,
 					serviceContext);
 
@@ -217,12 +217,12 @@ public class CommerceCheckoutTest {
 				CommerceOrderActionKeys.CHECKOUT_OPEN_COMMERCE_ORDERS);
 
 			CommerceAccountUserRelLocalServiceUtil.addCommerceAccountUserRel(
-				commerceAccount.getCommerceAccountId(), user.getUserId(),
+				commerceAccount.getCommerceAccountId(), user1.getUserId(),
 				new long[] {role.getRoleId()}, serviceContext);
 
 			CommerceOrder commerceOrder =
 				CommerceOrderLocalServiceUtil.addCommerceOrder(
-					user.getUserId(), _commerceChannel.getGroupId(),
+					user1.getUserId(), _commerceChannel.getGroupId(),
 					commerceAccount.getCommerceAccountId(),
 					_commerceCurrency.getCommerceCurrencyId());
 

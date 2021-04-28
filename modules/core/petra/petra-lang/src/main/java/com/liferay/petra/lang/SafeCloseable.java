@@ -15,13 +15,10 @@
 package com.liferay.petra.lang;
 
 /**
- * @author     Preston Crary
- * @deprecated As of Cavanaugh (7.4.x), replaced with {@link
- *             com.liferay.petra.lang.SafeCloseable}
+ * @author Preston Crary
  */
-@Deprecated
 @FunctionalInterface
-public interface SafeClosable extends AutoCloseable {
+public interface SafeCloseable extends AutoCloseable {
 
 	@Override
 	public void close();

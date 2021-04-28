@@ -191,11 +191,11 @@ public class ServletContextUtil {
 				classNames.add(_getClassName(rootPath, path));
 			}
 			else if (path.endsWith(_EXT_JAR)) {
-				try (JarInputStream jarFile = new JarInputStream(
+				try (JarInputStream jarInputStream = new JarInputStream(
 						servletContext.getResourceAsStream(path))) {
 
 					while (true) {
-						JarEntry jarEntry = jarFile.getNextJarEntry();
+						JarEntry jarEntry = jarInputStream.getNextJarEntry();
 
 						if (jarEntry == null) {
 							break;

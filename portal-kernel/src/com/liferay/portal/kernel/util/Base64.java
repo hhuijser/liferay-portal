@@ -53,10 +53,10 @@ public class Base64 {
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream(32000);
 
-		try (ObjectOutputStream os = new ObjectOutputStream(
+		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(
 				unsyncByteArrayOutputStream)) {
 
-			os.writeObject(object);
+			objectOutputStream.writeObject(object);
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);

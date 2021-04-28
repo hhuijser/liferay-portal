@@ -487,10 +487,10 @@ public class LibraryReferenceTest {
 
 		Properties properties = new Properties();
 
-		try (InputStream in = Files.newInputStream(
+		try (InputStream inputStream = Files.newInputStream(
 				Paths.get(_NETBEANS_PROPERTIES_FILE_NAME))) {
 
-			properties.load(in);
+			properties.load(inputStream);
 		}
 
 		Collections.addAll(

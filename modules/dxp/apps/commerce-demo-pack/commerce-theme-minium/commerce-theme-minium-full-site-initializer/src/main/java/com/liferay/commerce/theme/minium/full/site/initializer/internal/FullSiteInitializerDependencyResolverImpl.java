@@ -74,11 +74,11 @@ public class FullSiteInitializerDependencyResolverImpl
 		ClassLoader classLoader =
 			FullSiteInitializerDependencyResolverImpl.class.getClassLoader();
 
-		try (InputStream is = classLoader.getResourceAsStream(
+		try (InputStream inputStream = classLoader.getResourceAsStream(
 				_DEPENDENCIES_PATH + name)) {
 
-			if (is != null) {
-				return StringUtil.read(is);
+			if (inputStream != null) {
+				return StringUtil.read(inputStream);
 			}
 		}
 

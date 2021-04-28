@@ -129,10 +129,12 @@ public class SpringDependencyAnalyzerPluginTest {
 			String dependenciesContent)
 		throws Exception {
 
-		try (UnsyncByteArrayOutputStream ubaos =
+		try (UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 				new UnsyncByteArrayOutputStream()) {
 
-			try (ZipOutputStream zos = new ZipOutputStream(ubaos)) {
+			try (ZipOutputStream zipOutputStream = new ZipOutputStream(
+					unsyncByteArrayOutputStream)) {
+
 				if (clazz != null) {
 					String name = clazz.getName();
 
@@ -140,15 +142,16 @@ public class SpringDependencyAnalyzerPluginTest {
 
 					name = name.concat(".class");
 
-					zos.putNextEntry(new ZipEntry(name));
+					zipOutputStream.putNextEntry(new ZipEntry(name));
 
-					try (InputStream in = clazz.getResourceAsStream(
+					try (InputStream inputStream = clazz.getResourceAsStream(
 							"/" + name)) {
 
-						StreamUtil.transfer(in, zos, false);
+						StreamUtil.transfer(
+							inputStream, zipOutputStream, false);
 					}
 
-					zos.closeEntry();
+					zipOutputStream.closeEntry();
 				}
 
 				if (dependenciesContent != null) {

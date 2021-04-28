@@ -433,8 +433,10 @@ public class ImageProcessorImpl
 		try {
 			file = FileUtil.createTempFile(type);
 
-			try (FileOutputStream fos = new FileOutputStream(file)) {
-				ImageToolUtil.write(renderedImage, type, fos);
+			try (FileOutputStream fileOutputStream = new FileOutputStream(
+					file)) {
+
+				ImageToolUtil.write(renderedImage, type, fileOutputStream);
 			}
 
 			addFileToStore(

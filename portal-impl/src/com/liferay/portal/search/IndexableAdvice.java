@@ -126,7 +126,7 @@ public class IndexableAdvice extends ChainableMethodAdvice {
 			}
 		}
 
-		try (SafeClosable safeCloseable =
+		try (SafeClosable safeClosable =
 				ProxyModeThreadLocal.setWithSafeClosable(
 					IndexableThreadLocal.isForceSync())) {
 

@@ -101,8 +101,8 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 			return getContentType(fileName);
 		}
 
-		try (InputStream is = TikaInputStream.get(file)) {
-			return getContentType(is, fileName);
+		try (InputStream inputStream = TikaInputStream.get(file)) {
+			return getContentType(inputStream, fileName);
 		}
 		catch (IOException ioException) {
 			if (_log.isWarnEnabled()) {

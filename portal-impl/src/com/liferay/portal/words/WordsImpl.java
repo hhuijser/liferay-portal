@@ -96,10 +96,11 @@ public class WordsImpl implements Words {
 		static {
 			List<String> dictionaryList = new ArrayList<>();
 
-			try (InputStream is = WordsImpl.class.getResourceAsStream(
+			try (InputStream inputStream = WordsImpl.class.getResourceAsStream(
 					"dependencies/words.txt");
 				UnsyncBufferedReader unsyncBufferedReader =
-					new UnsyncBufferedReader(new InputStreamReader(is))) {
+					new UnsyncBufferedReader(
+						new InputStreamReader(inputStream))) {
 
 				String line = null;
 
@@ -135,11 +136,12 @@ public class WordsImpl implements Words {
 				};
 
 				for (String dic : dics) {
-					try (InputStream is = WordsImpl.class.getResourceAsStream(
-							"dependencies/" + dic);
+					try (InputStream inputStream =
+							WordsImpl.class.getResourceAsStream(
+								"dependencies/" + dic);
 						UnsyncBufferedReader unsyncBufferedReader =
 							new UnsyncBufferedReader(
-								new InputStreamReader(is))) {
+								new InputStreamReader(inputStream))) {
 
 						spellDictionaryHashMap.addDictionary(
 							unsyncBufferedReader);

@@ -80,9 +80,10 @@ public class DLStoreImpl implements DLStore {
 
 		Store store = _storeFactory.getStore();
 
-		try (InputStream is = new FileInputStream(file)) {
+		try (InputStream inputStream = new FileInputStream(file)) {
 			store.addFile(
-				companyId, repositoryId, fileName, Store.VERSION_DEFAULT, is);
+				companyId, repositoryId, fileName, Store.VERSION_DEFAULT,
+				inputStream);
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);
@@ -92,12 +93,12 @@ public class DLStoreImpl implements DLStore {
 	@Override
 	public void addFile(
 			long companyId, long repositoryId, String fileName,
-			boolean validateFileExtension, InputStream inputStream)
+			boolean validateFileExtension, InputStream inputStream1)
 		throws PortalException {
 
-		if (inputStream instanceof ByteArrayFileInputStream) {
+		if (inputStream1 instanceof ByteArrayFileInputStream) {
 			ByteArrayFileInputStream byteArrayFileInputStream =
-				(ByteArrayFileInputStream)inputStream;
+				(ByteArrayFileInputStream)inputStream1;
 
 			addFile(
 				companyId, repositoryId, fileName, validateFileExtension,
@@ -118,14 +119,14 @@ public class DLStoreImpl implements DLStore {
 			try {
 				tempFile = FileUtil.createTempFile();
 
-				FileUtil.write(tempFile, inputStream);
+				FileUtil.write(tempFile, inputStream1);
 
 				AntivirusScannerUtil.scan(tempFile);
 
-				try (InputStream fis = new FileInputStream(tempFile)) {
+				try (InputStream inputStream2 = new FileInputStream(tempFile)) {
 					store.addFile(
 						companyId, repositoryId, fileName,
-						Store.VERSION_DEFAULT, fis);
+						Store.VERSION_DEFAULT, inputStream2);
 				}
 			}
 			catch (IOException ioException) {
@@ -142,7 +143,7 @@ public class DLStoreImpl implements DLStore {
 			try {
 				store.addFile(
 					companyId, repositoryId, fileName, Store.VERSION_DEFAULT,
-					inputStream);
+					inputStream1);
 			}
 			catch (AccessDeniedException accessDeniedException) {
 				throw new PrincipalException(accessDeniedException);
@@ -391,8 +392,9 @@ public class DLStoreImpl implements DLStore {
 
 		Store store = _storeFactory.getStore();
 
-		try (InputStream is = new FileInputStream(file)) {
-			store.addFile(companyId, repositoryId, fileName, versionLabel, is);
+		try (InputStream inputStream = new FileInputStream(file)) {
+			store.addFile(
+				companyId, repositoryId, fileName, versionLabel, inputStream);
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);
@@ -403,15 +405,16 @@ public class DLStoreImpl implements DLStore {
 	public void updateFile(
 			long companyId, long repositoryId, String fileName,
 			String fileExtension, boolean validateFileExtension,
-			String versionLabel, String sourceFileName, InputStream inputStream)
+			String versionLabel, String sourceFileName,
+			InputStream inputStream1)
 		throws PortalException {
 
 		validate(
 			fileName, fileExtension, sourceFileName, validateFileExtension);
 
-		if (inputStream instanceof ByteArrayFileInputStream) {
+		if (inputStream1 instanceof ByteArrayFileInputStream) {
 			ByteArrayFileInputStream byteArrayFileInputStream =
-				(ByteArrayFileInputStream)inputStream;
+				(ByteArrayFileInputStream)inputStream1;
 
 			File file = byteArrayFileInputStream.getFile();
 
@@ -424,7 +427,7 @@ public class DLStoreImpl implements DLStore {
 			Store store = _storeFactory.getStore();
 
 			store.addFile(
-				companyId, repositoryId, fileName, versionLabel, inputStream);
+				companyId, repositoryId, fileName, versionLabel, inputStream1);
 
 			return;
 		}
@@ -441,13 +444,14 @@ public class DLStoreImpl implements DLStore {
 			try {
 				tempFile = FileUtil.createTempFile();
 
-				FileUtil.write(tempFile, inputStream);
+				FileUtil.write(tempFile, inputStream1);
 
 				AntivirusScannerUtil.scan(tempFile);
 
-				try (InputStream fis = new FileInputStream(tempFile)) {
+				try (InputStream inputStream = new FileInputStream(tempFile)) {
 					store.addFile(
-						companyId, repositoryId, fileName, versionLabel, fis);
+						companyId, repositoryId, fileName, versionLabel,
+						inputStream);
 				}
 			}
 			catch (IOException ioException) {
@@ -464,7 +468,7 @@ public class DLStoreImpl implements DLStore {
 			try {
 				store.addFile(
 					companyId, repositoryId, fileName, versionLabel,
-					inputStream);
+					inputStream1);
 			}
 			catch (AccessDeniedException accessDeniedException) {
 				throw new PrincipalException(accessDeniedException);

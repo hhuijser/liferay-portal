@@ -309,8 +309,11 @@ public class ZipReaderImplTest {
 			DependenciesTestUtil.getDependencyAsInputStream(
 				getClass(), _ZIP_FILE_PATH));
 
-		try (InputStream is = zipReader.getEntryAsInputStream(filePath)) {
-			Assert.assertEquals(expectedContent, StreamUtil.toString(is));
+		try (InputStream inputStream = zipReader.getEntryAsInputStream(
+				filePath)) {
+
+			Assert.assertEquals(
+				expectedContent, StreamUtil.toString(inputStream));
 		}
 
 		zipReader.close();

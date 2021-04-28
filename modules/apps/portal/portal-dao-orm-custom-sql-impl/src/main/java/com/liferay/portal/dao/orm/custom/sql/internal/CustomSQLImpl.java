@@ -921,12 +921,12 @@ public class CustomSQLImpl implements CustomSQL {
 			ClassLoader classLoader, URL sourceURL, Map<String, String> sqls)
 		throws Exception {
 
-		try (InputStream is = sourceURL.openStream()) {
+		try (InputStream inputStream = sourceURL.openStream()) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Loading " + sourceURL);
 			}
 
-			Document document = UnsecureSAXReaderUtil.read(is);
+			Document document = UnsecureSAXReaderUtil.read(inputStream);
 
 			Element rootElement = document.getRootElement();
 

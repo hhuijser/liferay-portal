@@ -78,8 +78,8 @@ public abstract class BaseUserDemoDataCreator implements UserDemoDataCreator {
 		try {
 			URL url = new URL(_RANDOM_USER_API);
 
-			try (InputStream is = url.openStream()) {
-				String json = StringUtil.read(is);
+			try (InputStream inputStream = url.openStream()) {
+				String json = StringUtil.read(inputStream);
 
 				JSONObject rootJSONObject = JSONFactoryUtil.createJSONObject(
 					json);
@@ -253,8 +253,8 @@ public abstract class BaseUserDemoDataCreator implements UserDemoDataCreator {
 	}
 
 	private byte[] _getBytes(URL url) throws IOException {
-		try (InputStream is = url.openStream()) {
-			return FileUtil.getBytes(is);
+		try (InputStream inputStream = url.openStream()) {
+			return FileUtil.getBytes(inputStream);
 		}
 	}
 

@@ -92,7 +92,7 @@ public class LPKGArtifactInstaller implements FileInstaller {
 			return null;
 		}
 
-		try (SafeClosable safeCloseable =
+		try (SafeClosable safeClosable =
 				LPKGBatchInstallThreadLocal.setBatchInstallInProcess(true)) {
 
 			_batchInstall(lpkgFiles);

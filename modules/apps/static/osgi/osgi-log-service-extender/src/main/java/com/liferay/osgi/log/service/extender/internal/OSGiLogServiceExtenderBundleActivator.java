@@ -95,8 +95,8 @@ public class OSGiLogServiceExtenderBundleActivator implements BundleActivator {
 
 				Properties properties = new Properties();
 
-				try (InputStream is = url.openStream()) {
-					properties.load(is);
+				try (InputStream inputStream = url.openStream()) {
+					properties.load(inputStream);
 				}
 
 				for (String name : properties.stringPropertyNames()) {

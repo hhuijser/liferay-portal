@@ -190,15 +190,14 @@ public class GroupByTest extends BaseGroupByTestCase {
 			indexingTestHelper -> {
 				indexingTestHelper.defineRequest(
 					searchRequestBuilder -> {
-						GroupByRequest groupByRequest =
+						GroupByRequest groupByRequest1 =
 							groupByRequestFactory.getGroupByRequest(
 								GROUP_FIELD);
-
 						GroupByRequest groupByRequest2 =
 							groupByRequestFactory.getGroupByRequest(SORT_FIELD);
 
 						searchRequestBuilder.groupByRequests(
-							groupByRequest, groupByRequest2);
+							groupByRequest1, groupByRequest2);
 					});
 
 				indexingTestHelper.search();

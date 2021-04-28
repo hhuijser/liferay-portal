@@ -54,15 +54,15 @@ public class ChannelResourceTest extends BaseChannelResourceTestCase {
 		Iterator<CommerceChannel> iterator = _commerceChannels.iterator();
 
 		while (iterator.hasNext()) {
-			CommerceChannel commerceChannel = iterator.next();
+			CommerceChannel commerceChannel1 = iterator.next();
 
-			CommerceChannel commerceChannel1 =
+			CommerceChannel commerceChannel2 =
 				CommerceChannelLocalServiceUtil.fetchCommerceChannel(
-					commerceChannel.getCommerceChannelId());
-
-			if (commerceChannel1 != null) {
-				CommerceChannelLocalServiceUtil.deleteCommerceChannel(
 					commerceChannel1.getCommerceChannelId());
+
+			if (commerceChannel2 != null) {
+				CommerceChannelLocalServiceUtil.deleteCommerceChannel(
+					commerceChannel2.getCommerceChannelId());
 			}
 
 			iterator.remove();
@@ -77,15 +77,15 @@ public class ChannelResourceTest extends BaseChannelResourceTestCase {
 		Iterator<CommerceChannel> iterator = _commerceChannels.iterator();
 
 		while (iterator.hasNext()) {
-			CommerceChannel commerceChannel = iterator.next();
+			CommerceChannel commerceChannel1 = iterator.next();
 
-			CommerceChannel commerceChannel1 =
+			CommerceChannel commerceChannel2 =
 				CommerceChannelLocalServiceUtil.fetchCommerceChannel(
-					commerceChannel.getCommerceChannelId());
-
-			if (commerceChannel1 != null) {
-				CommerceChannelLocalServiceUtil.deleteCommerceChannel(
 					commerceChannel1.getCommerceChannelId());
+
+			if (commerceChannel2 != null) {
+				CommerceChannelLocalServiceUtil.deleteCommerceChannel(
+					commerceChannel2.getCommerceChannelId());
 			}
 
 			iterator.remove();

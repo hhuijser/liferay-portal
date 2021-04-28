@@ -497,7 +497,8 @@ public class PortletURLBuilder {
 			{Constants.CMD, "setCMD"}, {"backURL", "setBackURL"},
 			{"keywords", "setKeywords"}, {"mvcPath", "setMVCPath"},
 			{"mvcRenderCommandName", "setMVCRenderCommandName"},
-			{"navigation", "setNavigation"}, {"redirect", "setRedirect"},
+			{"navigation", "setNavigation"}, {"p_p_mode", "setPortletMode"},
+			{"p_p_state", "setWindowState"}, {"redirect", "setRedirect"},
 			{"tabs1", "setTabs1"}, {"tabs2", "setTabs2"}
 		};
 

@@ -47,20 +47,20 @@ public class TestPropsUtil {
 	}
 
 	private TestPropsUtil() {
-		try (InputStream is = TestPropsUtil.class.getResourceAsStream(
+		try (InputStream inputStream = TestPropsUtil.class.getResourceAsStream(
 				"/test-portal-impl.properties")) {
 
-			_props.load(is);
+			_props.load(inputStream);
 		}
 		catch (IOException ioException) {
 			ReflectionUtil.throwException(ioException);
 		}
 
-		try (InputStream is = TestPropsUtil.class.getResourceAsStream(
+		try (InputStream inputStream = TestPropsUtil.class.getResourceAsStream(
 				"/test-portal-impl-ext.properties")) {
 
-			if (is != null) {
-				_props.load(is);
+			if (inputStream != null) {
+				_props.load(inputStream);
 			}
 		}
 		catch (IOException ioException) {

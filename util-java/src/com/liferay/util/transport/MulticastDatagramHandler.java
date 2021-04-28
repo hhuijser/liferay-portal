@@ -80,7 +80,7 @@ public class MulticastDatagramHandler implements DatagramHandler {
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream(bytes.length);
 
-		try (InputStream is = new GZIPInputStream(
+		try (InputStream inputStream = new GZIPInputStream(
 				new UnsyncByteArrayInputStream(bytes))) {
 
 			byte[] buffer = new byte[1500];
@@ -91,7 +91,7 @@ public class MulticastDatagramHandler implements DatagramHandler {
 					break;
 				}
 
-				c = is.read(buffer, 0, 1500);
+				c = inputStream.read(buffer, 0, 1500);
 
 				if (c != -1) {
 					unsyncByteArrayOutputStream.write(buffer, 0, c);

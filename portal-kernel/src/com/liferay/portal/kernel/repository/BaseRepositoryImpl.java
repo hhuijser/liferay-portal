@@ -64,10 +64,10 @@ public abstract class BaseRepositoryImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		try (InputStream is = new FileInputStream(file)) {
+		try (InputStream inputStream = new FileInputStream(file)) {
 			return addFileEntry(
 				userId, folderId, sourceFileName, mimeType, title, description,
-				changeLog, is, file.length(), serviceContext);
+				changeLog, inputStream, file.length(), serviceContext);
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);
@@ -400,10 +400,10 @@ public abstract class BaseRepositoryImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		try (InputStream is = new FileInputStream(file)) {
+		try (InputStream inputStream = new FileInputStream(file)) {
 			return updateFileEntry(
 				userId, fileEntryId, sourceFileName, mimeType, title,
-				description, changeLog, dlVersionNumberIncrease, is,
+				description, changeLog, dlVersionNumberIncrease, inputStream,
 				file.length(), serviceContext);
 		}
 		catch (IOException ioException) {

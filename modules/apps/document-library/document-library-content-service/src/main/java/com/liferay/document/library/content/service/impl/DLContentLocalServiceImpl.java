@@ -119,7 +119,7 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 
 		DLContent dlContent = null;
 
-		try (InputStream is = inputStream) {
+		try (InputStream inputStream = inputStream) {
 			long contentId = counterLocalService.increment();
 
 			dlContent = dlContentPersistence.create(contentId);
@@ -129,7 +129,7 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 			dlContent.setPath(path);
 			dlContent.setVersion(version);
 
-			OutputBlob dataOutputBlob = new OutputBlob(is, size);
+			OutputBlob dataOutputBlob = new OutputBlob(inputStream, size);
 
 			dlContent.setData(dataOutputBlob);
 

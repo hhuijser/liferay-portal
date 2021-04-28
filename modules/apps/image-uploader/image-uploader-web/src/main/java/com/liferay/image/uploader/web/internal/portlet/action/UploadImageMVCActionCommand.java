@@ -304,10 +304,10 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 			FileEntry tempFileEntry = UploadImageUtil.getTempImageFileEntry(
 				actionRequest);
 
-			try (InputStream tempImageStream =
+			try (InputStream tempImageInputStream =
 					tempFileEntry.getContentStream()) {
 
-				ImageBag imageBag = ImageToolUtil.read(tempImageStream);
+				ImageBag imageBag = ImageToolUtil.read(tempImageInputStream);
 
 				RenderedImage renderedImage = imageBag.getRenderedImage();
 

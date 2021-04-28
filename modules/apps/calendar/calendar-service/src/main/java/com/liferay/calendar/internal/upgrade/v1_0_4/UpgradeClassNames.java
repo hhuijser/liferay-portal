@@ -119,35 +119,35 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 
 	protected void deleteRelatedAssetEntries() throws UpgradeException {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement ps1 = connection.prepareStatement(
 				"select entryId from AssetEntry where classNameId = ?");
-			PreparedStatement ps1 = AutoBatchPreparedStatementUtil.autoBatch(
+			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
 				connection.prepareStatement(
 					"delete from AssetLink where entryId1 = ? or entryId2 = " +
 						"?"));
-			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
+			PreparedStatement ps3 = AutoBatchPreparedStatementUtil.autoBatch(
 				connection.prepareStatement(
 					"delete from AssetEntry where entryId = ? "))) {
 
-			ps.setLong(1, PortalUtil.getClassNameId(_CLASS_NAME_CAL_EVENT));
+			ps1.setLong(1, PortalUtil.getClassNameId(_CLASS_NAME_CAL_EVENT));
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet rs = ps1.executeQuery();
 
 			while (rs.next()) {
 				long entryId = rs.getLong("entryId");
 
-				ps1.setLong(1, entryId);
-				ps1.setLong(2, entryId);
-
-				ps1.addBatch();
-
 				ps2.setLong(1, entryId);
+				ps2.setLong(2, entryId);
+
 				ps2.addBatch();
+
+				ps3.setLong(1, entryId);
+				ps3.addBatch();
 			}
 
-			ps1.executeBatch();
-
 			ps2.executeBatch();
+
+			ps3.executeBatch();
 		}
 		catch (SQLException sqlException) {
 			throw new UpgradeException(sqlException);

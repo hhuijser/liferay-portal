@@ -37,7 +37,7 @@ public class FragmentEntryLinkEditableValuesUpgradeProcess
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select fragmentEntryLinkId,editableValues,rendererKey from " +
 					"FragmentEntryLink where rendererKey like " +
 						"'BASIC_COMPONENT%'");
@@ -46,7 +46,7 @@ public class FragmentEntryLinkEditableValuesUpgradeProcess
 					connection,
 					"update FragmentEntryLink set editableValues = ? where " +
 						"fragmentEntryLinkId = ?");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet rs = ps1.executeQuery()) {
 
 			while (rs.next()) {
 				JSONObject editablesJSONObject =

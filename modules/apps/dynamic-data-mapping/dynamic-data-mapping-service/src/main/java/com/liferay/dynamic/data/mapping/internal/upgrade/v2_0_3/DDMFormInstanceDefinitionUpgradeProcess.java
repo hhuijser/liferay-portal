@@ -37,7 +37,7 @@ public class DDMFormInstanceDefinitionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select structureId, definition from DDMStructure where " +
 					"classNameId = ?");
 			PreparedStatement ps2 =
@@ -46,9 +46,9 @@ public class DDMFormInstanceDefinitionUpgradeProcess extends UpgradeProcess {
 					"update DDMStructure set definition = ? where " +
 						"structureId = ?")) {
 
-			ps.setLong(1, PortalUtil.getClassNameId(DDMFormInstance.class));
+			ps1.setLong(1, PortalUtil.getClassNameId(DDMFormInstance.class));
 
-			try (ResultSet rs = ps.executeQuery()) {
+			try (ResultSet rs = ps1.executeQuery()) {
 				while (rs.next()) {
 					String definition = rs.getString("definition");
 

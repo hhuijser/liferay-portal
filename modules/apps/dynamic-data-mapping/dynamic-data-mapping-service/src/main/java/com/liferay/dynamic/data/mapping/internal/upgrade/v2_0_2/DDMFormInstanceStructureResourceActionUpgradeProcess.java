@@ -35,21 +35,21 @@ public class DDMFormInstanceStructureResourceActionUpgradeProcess
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement ps1 = connection.prepareStatement(
 				"delete from ResourcePermission where name = ?");
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement ps2 = connection.prepareStatement(
 				"delete from ResourceAction where name = ?")) {
 
 			String compositeModelName = _resourceActions.getCompositeModelName(
 				DDMFormInstance.class.getName(), DDMStructure.class.getName());
 
-			ps.setString(1, compositeModelName);
-
-			ps.executeUpdate();
-
 			ps1.setString(1, compositeModelName);
 
 			ps1.executeUpdate();
+
+			ps2.setString(1, compositeModelName);
+
+			ps2.executeUpdate();
 		}
 	}
 

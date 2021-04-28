@@ -56,8 +56,8 @@ public class ImagesImporterUtil {
 
 			byte[] bytes = null;
 
-			try (InputStream is = zipFile.getInputStream(zipEntry)) {
-				bytes = FileUtil.getBytes(is);
+			try (InputStream inputStream = zipFile.getInputStream(zipEntry)) {
+				bytes = FileUtil.getBytes(inputStream);
 			}
 
 			FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(

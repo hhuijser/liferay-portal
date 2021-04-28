@@ -2396,11 +2396,11 @@ public class JenkinsResultsParserUtil {
 	public static String getResourceFileContent(String resourceName)
 		throws IOException {
 
-		try (InputStream resourceStream =
+		try (InputStream resourceInputStream =
 				JenkinsResultsParserUtil.class.getResourceAsStream(
 					resourceName)) {
 
-			return readInputStream(resourceStream);
+			return readInputStream(resourceInputStream);
 		}
 	}
 

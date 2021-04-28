@@ -139,8 +139,8 @@ public class RESTBuilder {
 
 		File configFile = new File(_configDir, "rest-config.yaml");
 
-		try (InputStream is = new FileInputStream(configFile)) {
-			_configYAML = YAMLUtil.loadConfigYAML(StringUtil.read(is));
+		try (InputStream inputStream = new FileInputStream(configFile)) {
+			_configYAML = YAMLUtil.loadConfigYAML(StringUtil.read(inputStream));
 
 			if (forceClientVersionDescription != null) {
 				_configYAML.setForceClientVersionDescription(

@@ -115,11 +115,11 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 	@Override
 	public DLContent addContent(
 		long companyId, long repositoryId, String path, String version,
-		InputStream inputStream, long size) {
+		InputStream inputStream1, long size) {
 
 		DLContent dlContent = null;
 
-		try (InputStream is = inputStream) {
+		try (InputStream inputStream2 = inputStream1) {
 			long contentId = counterLocalService.increment();
 
 			dlContent = dlContentPersistence.create(contentId);
@@ -129,7 +129,7 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 			dlContent.setPath(path);
 			dlContent.setVersion(version);
 
-			OutputBlob dataOutputBlob = new OutputBlob(is, size);
+			OutputBlob dataOutputBlob = new OutputBlob(inputStream2, size);
 
 			dlContent.setData(dataOutputBlob);
 

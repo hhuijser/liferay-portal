@@ -302,7 +302,7 @@ public class CTStore implements Store {
 				return true;
 			}
 
-			try (SafeClosable safeCloseable =
+			try (SafeClosable safeClosable =
 					CTCollectionThreadLocal.setCTCollectionId(
 						CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 
@@ -363,7 +363,7 @@ public class CTStore implements Store {
 			return true;
 		}
 
-		try (SafeClosable safeCloseable =
+		try (SafeClosable safeClosable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 
@@ -378,7 +378,7 @@ public class CTStore implements Store {
 
 		try (InputStream inputStream = _store.getFileAsStream(
 				companyId, repositoryId, fileName, versionLabel);
-			SafeClosable safeCloseable =
+			SafeClosable safeClosable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 

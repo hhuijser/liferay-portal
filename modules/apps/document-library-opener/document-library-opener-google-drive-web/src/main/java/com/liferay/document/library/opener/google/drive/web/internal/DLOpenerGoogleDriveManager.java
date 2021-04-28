@@ -313,8 +313,8 @@ public class DLOpenerGoogleDriveManager
 			urlConnection.setRequestProperty(
 				"Authorization", "Bearer " + credential.getAccessToken());
 
-			try (InputStream is = urlConnection.getInputStream()) {
-				return FileUtil.createTempFile(is);
+			try (InputStream inputStream = urlConnection.getInputStream()) {
+				return FileUtil.createTempFile(inputStream);
 			}
 		}
 		catch (IOException | PortalException exception) {

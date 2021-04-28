@@ -144,8 +144,8 @@ public class CopyContributedFragmentEntryMVCActionCommand
 
 			byte[] bytes = null;
 
-			try (InputStream is = url.openStream()) {
-				bytes = FileUtil.getBytes(is);
+			try (InputStream inputStream = url.openStream()) {
+				bytes = FileUtil.getBytes(inputStream);
 			}
 
 			String shortFileName = FileUtil.getShortFileName(imagePreviewURL);

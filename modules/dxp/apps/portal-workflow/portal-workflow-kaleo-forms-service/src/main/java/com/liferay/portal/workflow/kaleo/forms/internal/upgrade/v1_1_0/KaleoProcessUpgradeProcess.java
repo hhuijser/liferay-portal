@@ -239,8 +239,8 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 		sb.append(_KALEO_PROCESS_CLASS_NAME_ID);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery();
+			PreparedStatement ps1 = connection.prepareStatement(sb.toString());
+			ResultSet rs = ps1.executeQuery();
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
@@ -278,8 +278,8 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 		sb.append(_KALEO_PROCESS_CLASS_NAME_ID);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery();
+			PreparedStatement ps1 = connection.prepareStatement(sb.toString());
+			ResultSet rs = ps1.executeQuery();
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

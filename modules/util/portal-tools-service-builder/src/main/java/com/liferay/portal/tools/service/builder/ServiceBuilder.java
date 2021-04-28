@@ -4771,10 +4771,10 @@ public class ServiceBuilder {
 	private Properties _getCompatProperties(String version) throws IOException {
 		Properties properties = new Properties();
 
-		try (InputStream is = ServiceBuilder.class.getResourceAsStream(
+		try (InputStream inputStream = ServiceBuilder.class.getResourceAsStream(
 				"dependencies/" + version + "/compatibility.properties")) {
 
-			properties.load(is);
+			properties.load(inputStream);
 		}
 
 		return properties;

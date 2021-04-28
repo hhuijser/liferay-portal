@@ -4967,9 +4967,9 @@ public class DataFactory {
 				latestSchemaVersion.toString(), ReleaseInfo.getBuildNumber(),
 				false, ReleaseConstants.TEST_STRING));
 
-		try (InputStream is = DataFactory.class.getResourceAsStream(
+		try (InputStream inputStream = DataFactory.class.getResourceAsStream(
 				"dependencies/releases.txt");
-			Reader reader = new InputStreamReader(is);
+			Reader reader = new InputStreamReader(inputStream);
 			UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(reader)) {
 

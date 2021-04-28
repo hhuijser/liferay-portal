@@ -315,8 +315,8 @@ public class DLOpenerOneDriveManager {
 				).content(
 				).buildRequest();
 
-			try (InputStream is = iDriveItemStreamRequest.get()) {
-				return FileUtil.createTempFile(is);
+			try (InputStream inputStream = iDriveItemStreamRequest.get()) {
+				return FileUtil.createTempFile(inputStream);
 			}
 		}
 		catch (GraphServiceException graphServiceException) {

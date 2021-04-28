@@ -730,8 +730,8 @@ public class LayoutPageTemplatesImporterImpl
 
 		byte[] bytes = null;
 
-		try (InputStream is = zipFile.getInputStream(zipEntry)) {
-			bytes = FileUtil.getBytes(is);
+		try (InputStream inputStream = zipFile.getInputStream(zipEntry)) {
+			bytes = FileUtil.getBytes(inputStream);
 		}
 
 		FileEntry fileEntry = _portletFileRepository.fetchPortletFileEntry(

@@ -234,8 +234,8 @@ public class UploadGoogleDriveDocumentBackgroundTaskExecutor
 	}
 
 	private File _getFileEntryFile(FileVersion fileVersion) throws Exception {
-		try (InputStream is = fileVersion.getContentStream(false)) {
-			return FileUtil.createTempFile(is);
+		try (InputStream inputStream = fileVersion.getContentStream(false)) {
+			return FileUtil.createTempFile(inputStream);
 		}
 	}
 

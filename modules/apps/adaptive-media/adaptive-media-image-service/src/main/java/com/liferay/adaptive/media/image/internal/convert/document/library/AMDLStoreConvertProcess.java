@@ -76,7 +76,7 @@ public class AMDLStoreConvertProcess implements DLStoreConvertProcess {
 							amImageEntry.getCompanyId(),
 							CompanyConstants.SYSTEM, fileVersionPath)) {
 
-					try (InputStream is = sourceStore.getFileAsStream(
+					try (InputStream inputStream = sourceStore.getFileAsStream(
 							amImageEntry.getCompanyId(),
 							CompanyConstants.SYSTEM, fileVersionPath,
 							versionLabel)) {
@@ -84,7 +84,7 @@ public class AMDLStoreConvertProcess implements DLStoreConvertProcess {
 						targetStore.addFile(
 							amImageEntry.getCompanyId(),
 							CompanyConstants.SYSTEM, fileVersionPath,
-							versionLabel, is);
+							versionLabel, inputStream);
 
 						if (delete) {
 							sourceStore.deleteFile(

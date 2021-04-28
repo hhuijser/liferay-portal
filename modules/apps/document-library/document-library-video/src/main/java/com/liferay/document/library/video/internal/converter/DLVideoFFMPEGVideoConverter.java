@@ -93,12 +93,14 @@ public class DLVideoFFMPEGVideoConverter implements VideoConverter {
 					PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_HEIGHT,
 					BufferedImage.TYPE_INT_RGB);
 
-				try (UnsyncByteArrayOutputStream baos =
+				try (UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 						new UnsyncByteArrayOutputStream()) {
 
-					ImageToolUtil.write(bufferedImage, format, baos);
+					ImageToolUtil.write(
+						bufferedImage, format, unsyncByteArrayOutputStream);
 
-					return new ByteArrayInputStream(baos.toByteArray());
+					return new ByteArrayInputStream(
+						unsyncByteArrayOutputStream.toByteArray());
 				}
 			}
 

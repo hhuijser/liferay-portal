@@ -202,9 +202,6 @@ public class DiscountAccountGroupResourceTest
 	@Override
 	@Test
 	public void testGraphQLDeleteDiscountAccountGroup() throws Exception {
-		DiscountAccountGroup discountAccountGroup = _addDiscountAccountGroup(
-			randomDiscountAccountGroup());
-
 		Assert.assertTrue(
 			JSONUtil.getValueAsBoolean(
 				invokeGraphQLMutation(
@@ -212,7 +209,14 @@ public class DiscountAccountGroupResourceTest
 						"deleteDiscountAccountGroup",
 						HashMapBuilder.<String, Object>put(
 							"discountAccountGroupId",
-							discountAccountGroup.getDiscountAccountGroupId()
+							() -> {
+								DiscountAccountGroup discountAccountGroup =
+									_addDiscountAccountGroup(
+										randomDiscountAccountGroup());
+
+								return discountAccountGroup.
+									getDiscountAccountGroupId();
+							}
 						).build())),
 				"JSONObject/data", "Object/deleteDiscountAccountGroup"));
 	}

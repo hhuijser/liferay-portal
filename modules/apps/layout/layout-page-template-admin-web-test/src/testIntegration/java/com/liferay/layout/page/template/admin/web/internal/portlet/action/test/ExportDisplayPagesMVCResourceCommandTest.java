@@ -445,15 +445,15 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 		}
 
 		if (_isDisplayPageFile(zipEntry.getName())) {
-			long classTypeId = _getClassTypeId(
-				"com.liferay.journal.model.JournalArticle");
-
 			_validateContent(
 				StringUtil.read(zipFile.getInputStream(zipEntry)),
 				"expected_display_page_template.json",
 				expectedDisplayPageTemplateNames,
 				HashMapBuilder.put(
-					"CONTENT_SUBTYPE_SUBTYPE_ID", String.valueOf(classTypeId)
+					"CONTENT_SUBTYPE_SUBTYPE_ID",
+					String.valueOf(
+						_getClassTypeId(
+							"com.liferay.journal.model.JournalArticle"))
 				).build());
 		}
 

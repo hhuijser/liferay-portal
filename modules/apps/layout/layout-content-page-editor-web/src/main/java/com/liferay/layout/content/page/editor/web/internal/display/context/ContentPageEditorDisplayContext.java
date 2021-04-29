@@ -1126,9 +1126,6 @@ public class ContentPageEditorDisplayContext {
 		for (Map.Entry<String, List<Map<String, Object>>> entry :
 				fragmentCollectionMap.entrySet()) {
 
-			FragmentRenderer fragmentRenderer =
-				fragmentCollectionFragmentRenderers.get(entry.getKey());
-
 			dynamicFragments.add(
 				HashMapBuilder.<String, Object>put(
 					"fragmentCollectionId", entry.getKey()
@@ -1136,11 +1133,17 @@ public class ContentPageEditorDisplayContext {
 					"fragmentEntries", entry.getValue()
 				).put(
 					"name",
-					LanguageUtil.get(
-						ResourceBundleUtil.getBundle(
-							themeDisplay.getLocale(),
-							fragmentRenderer.getClass()),
-						"fragment.collection.label." + entry.getKey())
+					() -> {
+						FragmentRenderer fragmentRenderer =
+							fragmentCollectionFragmentRenderers.get(
+								entry.getKey());
+
+						return LanguageUtil.get(
+							ResourceBundleUtil.getBundle(
+								themeDisplay.getLocale(),
+								fragmentRenderer.getClass()),
+							"fragment.collection.label." + entry.getKey());
+					}
 				).build());
 		}
 

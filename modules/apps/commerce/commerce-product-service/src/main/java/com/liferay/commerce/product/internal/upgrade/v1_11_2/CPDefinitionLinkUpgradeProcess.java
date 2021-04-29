@@ -33,17 +33,17 @@ public class CPDefinitionLinkUpgradeProcess extends UpgradeProcess {
 				"select CProductId from CProduct where CProductId = ?");
 			Statement s = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			ResultSet r1 = s.executeQuery(
+			ResultSet resultSet1 = s.executeQuery(
 				"select distinct CProductId from CPDefinitionLink")) {
 
-			while (r1.next()) {
-				long cProductId = r1.getLong("CProductId");
+			while (resultSet1.next()) {
+				long cProductId = resultSet1.getLong("CProductId");
 
 				preparedStatement.setLong(1, cProductId);
 
-				ResultSet r2 = preparedStatement.executeQuery();
+				ResultSet resultSet2 = preparedStatement.executeQuery();
 
-				if (!r2.next()) {
+				if (!resultSet2.next()) {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							"Removing commerce product definition link rows " +

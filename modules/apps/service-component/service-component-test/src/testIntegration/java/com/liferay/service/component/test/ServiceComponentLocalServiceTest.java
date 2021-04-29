@@ -221,8 +221,8 @@ public class ServiceComponentLocalServiceTest {
 		try {
 			_serviceComponentLocalService.verifyDB();
 
-			try (Connection conn = DataAccess.getConnection()) {
-				DatabaseMetaData metadata = conn.getMetaData();
+			try (Connection connection = DataAccess.getConnection()) {
+				DatabaseMetaData metadata = connection.getMetaData();
 
 				tableName = _normalizeTableName(metadata, _TEST_TABLE);
 

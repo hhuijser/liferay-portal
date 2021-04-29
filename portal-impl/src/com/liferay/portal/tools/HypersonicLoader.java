@@ -106,25 +106,26 @@ public class HypersonicLoader {
 		// See LEP-2927. Appending ;shutdown=true to the database connection URL
 		// guarantees that ${databaseName}.log is purged.
 
-		try (Connection con = DriverManager.getConnection(
+		try (Connection connection = DriverManager.getConnection(
 				StringBundler.concat(
 					"jdbc:hsqldb:", sqlDir, "/", databaseName,
 					";hsqldb.write_delay=false;shutdown=true"),
 				userName, password)) {
 
 			if (Validator.isNull(fileNames)) {
-				loadHypersonic(con, sqlDir + "/portal/portal-hypersonic.sql");
-				loadHypersonic(con, sqlDir + "/indexes.sql");
+				loadHypersonic(
+					connection, sqlDir + "/portal/portal-hypersonic.sql");
+				loadHypersonic(connection, sqlDir + "/indexes.sql");
 			}
 			else {
 				for (String fileName : StringUtil.split(fileNames)) {
-					loadHypersonic(con, sqlDir + "/" + fileName);
+					loadHypersonic(connection, sqlDir + "/" + fileName);
 				}
 			}
 
 			// Shutdown Hypersonic
 
-			try (Statement statement = con.createStatement()) {
+			try (Statement statement = connection.createStatement()) {
 				statement.execute("SHUTDOWN COMPACT");
 			}
 		}

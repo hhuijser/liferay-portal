@@ -93,10 +93,11 @@ public abstract class BaseUpgradeLastPublishDate extends UpgradeProcess {
 					connection.prepareStatement(
 						StringBundler.concat(
 							"select PortletPreferenceValue.smallValue from ",
-							"PortletPreferenceValue inner join PortletPreferences ",
-							"on PortletPreferences.portletPreferencesId = ",
-							"PortletPreferenceValue.portletPreferencesId where ",
-							"PortletPreferences.plid = ? and ",
+							"PortletPreferenceValue inner join ",
+							"PortletPreferences on ",
+							"PortletPreferences.portletPreferencesId = ",
+							"PortletPreferenceValue.portletPreferencesId ",
+							"where PortletPreferences.plid = ? and ",
 							"PortletPreferences.ownerType = ? and ",
 							"PortletPreferences.ownerId = ? and ",
 							"PortletPreferences.portletId = ? and ",

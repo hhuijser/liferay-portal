@@ -41,8 +41,8 @@ public class LayoutTypeSettingsUtil {
 		try (PreparedStatement selectPreparedStatement =
 				connection.prepareStatement(
 					StringBundler.concat(
-						"select plid, typeSettings from Layout where typeSettings ",
-						"like '%", portletId, "%'"));
+						"select plid, typeSettings from Layout where ",
+						"typeSettings like '%", portletId, "%'"));
 			PreparedStatement updatePreparedStatement =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(

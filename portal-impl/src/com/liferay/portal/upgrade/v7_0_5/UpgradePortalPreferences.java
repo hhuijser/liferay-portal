@@ -113,8 +113,8 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 				if (updatedDocument) {
 					try (PreparedStatement preparedStatement2 =
 							connection.prepareStatement(
-								"update PortalPreferences set preferences = ? " +
-									"where portalPreferencesId = ?")) {
+								"update PortalPreferences set preferences = " +
+									"? where portalPreferencesId = ?")) {
 
 						preparedStatement2.setString(1, document.asXML());
 						preparedStatement2.setLong(

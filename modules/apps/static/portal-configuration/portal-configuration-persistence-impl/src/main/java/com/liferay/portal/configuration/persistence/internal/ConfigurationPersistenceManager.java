@@ -397,8 +397,8 @@ public class ConfigurationPersistenceManager
 							connection.prepareStatement(
 								_db.buildSQL(
 									"insert into Configuration_ (" +
-										"configurationId, dictionary) values (?, " +
-											"?)"))) {
+										"configurationId, dictionary) values " +
+											"(?, ?)"))) {
 
 						preparedStatement2.setString(1, pid);
 						preparedStatement2.setString(

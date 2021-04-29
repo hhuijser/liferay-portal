@@ -51,8 +51,8 @@ public class AppBuilderAppUpgradeProcess extends UpgradeProcess {
 
 			try (PreparedStatement preparedStatement1 =
 					connection.prepareStatement(
-						"select appBuilderAppId, ddmStructureId, groupId from " +
-							"AppBuilderApp");
+						"select appBuilderAppId, ddmStructureId, groupId " +
+							"from AppBuilderApp");
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,

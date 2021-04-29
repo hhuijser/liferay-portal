@@ -53,11 +53,13 @@ public class UpgradeAssetCategory extends UpgradeProcess {
 		try (PreparedStatement selectPreparedStatement =
 				connection.prepareStatement(
 					StringBundler.concat(
-						"select AssetCategory.treePath, AssetCategory.categoryId ",
-						"from AssetCategory inner join AssetCategory TEMP_TABLE ",
-						"on AssetCategory.categoryId = ",
-						"TEMP_TABLE.parentCategoryId and AssetCategory.treePath ",
-						"is not null and TEMP_TABLE.treePath is null"));
+						"select AssetCategory.treePath, ",
+						"AssetCategory.categoryId from AssetCategory inner ",
+						"join AssetCategory TEMP_TABLE on ",
+						"AssetCategory.categoryId = ",
+						"TEMP_TABLE.parentCategoryId and ",
+						"AssetCategory.treePath is not null and ",
+						"TEMP_TABLE.treePath is null"));
 			PreparedStatement updatePreparedStatement =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(

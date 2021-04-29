@@ -87,9 +87,10 @@ public class ArticleSystemEventsUpgradeProcess extends UpgradeProcess {
 
 				try (PreparedStatement preparedStatement =
 						connection.prepareStatement(
-							"select articleId from JournalArticleResource where " +
-								"JournalArticleResource.uuid_ = ? and " +
-									"JournalArticleResource.groupId = ?")) {
+							StringBundler.concat(
+								"select articleId from JournalArticleResource ",
+								"where JournalArticleResource.uuid_ = ? and ",
+								"JournalArticleResource.groupId = ?"))) {
 
 					preparedStatement.setString(1, systemEvent.getClassUuid());
 					preparedStatement.setLong(2, systemEvent.getGroupId());
@@ -109,8 +110,10 @@ public class ArticleSystemEventsUpgradeProcess extends UpgradeProcess {
 
 				try (PreparedStatement preparedStatement =
 						connection.prepareStatement(
-							"select 1 from JournalArticle where groupId = ? and " +
-								"articleId = ? and version = ? and status = ?")) {
+							StringBundler.concat(
+								"select 1 from JournalArticle where groupId = ",
+								"? and articleId = ? and version = ? and ",
+								"status = ?"))) {
 
 					preparedStatement.setLong(1, systemEvent.getGroupId());
 					preparedStatement.setString(2, articleId);

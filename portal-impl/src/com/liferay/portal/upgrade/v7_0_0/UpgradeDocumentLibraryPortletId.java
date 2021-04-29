@@ -61,8 +61,10 @@ public class UpgradeDocumentLibraryPortletId
 			while (resultSet.next()) {
 				try (PreparedStatement preparedStatement2 =
 						connection.prepareStatement(
-							"delete from ResourcePermission where companyId = ? " +
-								"and name = ? and scope = ? and primKey = ?")) {
+							StringBundler.concat(
+								"delete from ResourcePermission where ",
+								"companyId = ? and name = ? and scope = ? and ",
+								"primKey = ?"))) {
 
 					preparedStatement2.setLong(
 						1, resultSet.getLong("companyId"));

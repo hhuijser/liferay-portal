@@ -156,8 +156,8 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
-						"update DLFileEntryMetadata set DDMStructureId = ? where " +
-							"DDMStructureId = ?")) {
+						"update DLFileEntryMetadata set DDMStructureId = ? " +
+							"where DDMStructureId = ?")) {
 
 				preparedStatement.setLong(1, newDDMStructureId);
 				preparedStatement.setLong(2, oldDDMStructureId);

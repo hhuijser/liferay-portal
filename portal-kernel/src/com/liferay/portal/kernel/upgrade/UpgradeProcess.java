@@ -614,8 +614,9 @@ public abstract class UpgradeProcess
 				try (PreparedStatement preparedStatement =
 						connection.prepareStatement(
 							StringBundler.concat(
-								"select name from sys.key_constraints where type ",
-								"= 'PK' and OBJECT_NAME(parent_object_id) = '",
+								"select name from sys.key_constraints where ",
+								"type = 'PK' and ",
+								"OBJECT_NAME(parent_object_id) = '",
 								normalizedTableName, "'"));
 					ResultSet resultSet = preparedStatement.executeQuery()) {
 

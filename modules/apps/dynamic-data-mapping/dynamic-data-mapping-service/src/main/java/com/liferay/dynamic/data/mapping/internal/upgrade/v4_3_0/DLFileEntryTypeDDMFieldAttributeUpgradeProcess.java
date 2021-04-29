@@ -53,8 +53,8 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(
-						"update DDMFieldAttribute set smallAttributeValue = ? " +
-							"where fieldAttributeId = ? "));
+						"update DDMFieldAttribute set smallAttributeValue = " +
+							"? where fieldAttributeId = ? "));
 
 			preparedStatement1.setString(1, "checkbox");
 

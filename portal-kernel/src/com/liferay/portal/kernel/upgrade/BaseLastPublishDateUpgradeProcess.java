@@ -54,12 +54,12 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected Date getLayoutSetLastPublishDate(long groupId) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select settings_ from LayoutSet where groupId = ?")) {
 
-			ps.setLong(1, groupId);
+			preparedStatement.setLong(1, groupId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					UnicodeProperties settingsUnicodeProperties =
 						new UnicodeProperties(true);
@@ -86,25 +86,26 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 		throws Exception {
 
 		if (!hasColumn("PortletPreferences", "preferences")) {
-			try (PreparedStatement ps = connection.prepareStatement(
-					StringBundler.concat(
-						"select PortletPreferenceValue.smallValue from ",
-						"PortletPreferenceValue inner join PortletPreferences ",
-						"on PortletPreferences.portletPreferencesId = ",
-						"PortletPreferenceValue.portletPreferencesId where ",
-						"PortletPreferences.plid = ? and ",
-						"PortletPreferences.ownerType = ? and ",
-						"PortletPreferences.ownerId = ? and ",
-						"PortletPreferences.portletId = ? and ",
-						"PortletPreferenceValue.name = ?"))) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select PortletPreferenceValue.smallValue from ",
+							"PortletPreferenceValue inner join PortletPreferences ",
+							"on PortletPreferences.portletPreferencesId = ",
+							"PortletPreferenceValue.portletPreferencesId where ",
+							"PortletPreferences.plid = ? and ",
+							"PortletPreferences.ownerType = ? and ",
+							"PortletPreferences.ownerId = ? and ",
+							"PortletPreferences.portletId = ? and ",
+							"PortletPreferenceValue.name = ?"))) {
 
-				ps.setLong(1, LayoutConstants.DEFAULT_PLID);
-				ps.setInt(2, PortletKeys.PREFS_OWNER_TYPE_GROUP);
-				ps.setLong(3, groupId);
-				ps.setString(4, portletId);
-				ps.setString(5, "last-publish-date");
+				preparedStatement.setLong(1, LayoutConstants.DEFAULT_PLID);
+				preparedStatement.setInt(2, PortletKeys.PREFS_OWNER_TYPE_GROUP);
+				preparedStatement.setLong(3, groupId);
+				preparedStatement.setString(4, portletId);
+				preparedStatement.setString(5, "last-publish-date");
 
-				try (ResultSet resultSet = ps.executeQuery()) {
+				try (ResultSet resultSet = preparedStatement.executeQuery()) {
 					while (resultSet.next()) {
 						String value = resultSet.getString("smallValue");
 
@@ -118,16 +119,16 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 			return null;
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select preferences from PortletPreferences where plid = ? " +
 					"and ownerType = ? and ownerId = ? and portletId = ?")) {
 
-			ps.setLong(1, LayoutConstants.DEFAULT_PLID);
-			ps.setInt(2, PortletKeys.PREFS_OWNER_TYPE_GROUP);
-			ps.setLong(3, groupId);
-			ps.setString(4, portletId);
+			preparedStatement.setLong(1, LayoutConstants.DEFAULT_PLID);
+			preparedStatement.setInt(2, PortletKeys.PREFS_OWNER_TYPE_GROUP);
+			preparedStatement.setLong(3, groupId);
+			preparedStatement.setString(4, portletId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					String preferences = resultSet.getString("preferences");
 
@@ -157,10 +158,10 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected List<Long> getStagedGroupIds() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select groupId from Group_ where typeSettings like " +
 					"'%staged=true%'");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			List<Long> stagedGroupIds = new ArrayList<>();
 
@@ -203,15 +204,16 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 			long groupId, String tableName, Date lastPublishDate)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"update ", tableName, " set lastPublishDate = ? where ",
 					"groupId = ?"))) {
 
-			ps.setDate(1, new java.sql.Date(lastPublishDate.getTime()));
-			ps.setLong(2, groupId);
+			preparedStatement.setDate(
+				1, new java.sql.Date(lastPublishDate.getTime()));
+			preparedStatement.setLong(2, groupId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

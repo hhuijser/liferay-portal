@@ -225,10 +225,11 @@ public class LayoutPageTemplateStructureRelUpgradeProcess
 				"select lPageTemplateStructureRelId, segmentsExperienceId, " +
 					"data_ from LayoutPageTemplateStructureRel order by " +
 						"segmentsExperienceId desc");
-			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update LayoutPageTemplateStructureRel set data_ = ? " +
-						"where lPageTemplateStructureRelId = ?"))) {
+			PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update LayoutPageTemplateStructureRel set data_ = ? " +
+							"where lPageTemplateStructureRelId = ?"))) {
 
 			while (resultSet.next()) {
 				long layoutPageTemplateStructureRelId = resultSet.getLong(
@@ -239,14 +240,15 @@ public class LayoutPageTemplateStructureRelUpgradeProcess
 
 				String data = resultSet.getString("data_");
 
-				ps.setString(1, _upgradeLayoutData(data, segmentsExperienceId));
+				preparedStatement.setString(
+					1, _upgradeLayoutData(data, segmentsExperienceId));
 
-				ps.setLong(2, layoutPageTemplateStructureRelId);
+				preparedStatement.setLong(2, layoutPageTemplateStructureRelId);
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

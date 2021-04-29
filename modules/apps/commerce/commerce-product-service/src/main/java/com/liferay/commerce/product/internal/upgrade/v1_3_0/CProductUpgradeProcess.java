@@ -55,10 +55,10 @@ public class CProductUpgradeProcess
 			"update CPDefinition set CProductId = ?, version = 1 where " +
 				"CPDefinitionId = ?";
 
-		try (PreparedStatement ps1 =
+		try (PreparedStatement preparedStatement1 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, insertCProductSQL);
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateCPDefinitionSQL);
 			Statement s = connection.createStatement(
@@ -76,30 +76,30 @@ public class CProductUpgradeProcess
 				String userName = resultSet.getString("userName");
 				long cpDefinitionId = resultSet.getLong("CPDefinitionId");
 
-				ps1.setString(1, uuid);
-				ps1.setLong(2, cProductId);
-				ps1.setLong(3, groupId);
-				ps1.setLong(4, companyId);
-				ps1.setLong(5, userId);
-				ps1.setString(6, userName);
+				preparedStatement1.setString(1, uuid);
+				preparedStatement1.setLong(2, cProductId);
+				preparedStatement1.setLong(3, groupId);
+				preparedStatement1.setLong(4, companyId);
+				preparedStatement1.setLong(5, userId);
+				preparedStatement1.setString(6, userName);
 
 				Date now = new Date(System.currentTimeMillis());
 
-				ps1.setDate(7, now);
-				ps1.setDate(8, now);
+				preparedStatement1.setDate(7, now);
+				preparedStatement1.setDate(8, now);
 
-				ps1.setLong(9, cpDefinitionId);
+				preparedStatement1.setLong(9, cpDefinitionId);
 
-				ps1.addBatch();
+				preparedStatement1.addBatch();
 
-				ps2.setLong(1, cProductId);
-				ps2.setLong(2, cpDefinitionId);
+				preparedStatement2.setLong(1, cProductId);
+				preparedStatement2.setLong(2, cpDefinitionId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps1.executeBatch();
-			ps2.executeBatch();
+			preparedStatement1.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

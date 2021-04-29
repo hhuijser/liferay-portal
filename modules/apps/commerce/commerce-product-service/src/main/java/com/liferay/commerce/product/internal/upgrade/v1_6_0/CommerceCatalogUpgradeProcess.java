@@ -76,13 +76,13 @@ public class CommerceCatalogUpgradeProcess extends UpgradeProcess {
 			"userId, userName, createDate, modifiedDate, classNameId, ",
 			"classPK, commerceChannelId) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		try (PreparedStatement ps1 =
+		try (PreparedStatement preparedStatement1 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, insertCommerceCatalogSQL);
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, insertCommerceChannelSQL);
-			PreparedStatement ps3 =
+			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, insertCommerceChannelRelSQL);
 			Statement s1 = connection.createStatement(
@@ -108,30 +108,33 @@ public class CommerceCatalogUpgradeProcess extends UpgradeProcess {
 
 				Group siteGroup = _groupLocalService.getGroup(groupId);
 
-				ps1.setLong(1, commerceCatalogId);
-				ps1.setLong(2, companyId);
-				ps1.setLong(3, userId);
-				ps1.setString(4, userName);
-				ps1.setDate(5, now);
-				ps1.setDate(6, now);
+				preparedStatement1.setLong(1, commerceCatalogId);
+				preparedStatement1.setLong(2, companyId);
+				preparedStatement1.setLong(3, userId);
+				preparedStatement1.setString(4, userName);
+				preparedStatement1.setDate(5, now);
+				preparedStatement1.setDate(6, now);
 
-				ps1.setString(7, siteGroup.getName(defaultLanguageId));
+				preparedStatement1.setString(
+					7, siteGroup.getName(defaultLanguageId));
 
-				ps1.setString(8, defaultLanguageId);
+				preparedStatement1.setString(8, defaultLanguageId);
 
-				ps1.addBatch();
+				preparedStatement1.addBatch();
 
-				ps2.setLong(1, commerceChannelId);
-				ps2.setLong(2, companyId);
-				ps2.setLong(3, userId);
-				ps2.setString(4, userName);
-				ps2.setDate(5, now);
-				ps2.setDate(6, now);
-				ps2.setString(7, siteGroup.getName(defaultLanguageId));
-				ps2.setLong(8, siteGroup.getGroupId());
-				ps2.setString(9, CommerceChannelConstants.CHANNEL_TYPE_SITE);
+				preparedStatement2.setLong(1, commerceChannelId);
+				preparedStatement2.setLong(2, companyId);
+				preparedStatement2.setLong(3, userId);
+				preparedStatement2.setString(4, userName);
+				preparedStatement2.setDate(5, now);
+				preparedStatement2.setDate(6, now);
+				preparedStatement2.setString(
+					7, siteGroup.getName(defaultLanguageId));
+				preparedStatement2.setLong(8, siteGroup.getGroupId());
+				preparedStatement2.setString(
+					9, CommerceChannelConstants.CHANNEL_TYPE_SITE);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 
 				Group catalogGroup = _groupLocalService.addGroup(
 					userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
@@ -169,19 +172,19 @@ public class CommerceCatalogUpgradeProcess extends UpgradeProcess {
 				while (cpDefinitionsResultSet.next()) {
 					long commerceChannelRelId = increment();
 
-					ps3.setLong(1, commerceChannelRelId);
+					preparedStatement3.setLong(1, commerceChannelRelId);
 
-					ps3.setLong(2, companyId);
-					ps3.setLong(3, userId);
-					ps3.setString(4, userName);
-					ps3.setDate(5, now);
-					ps3.setDate(6, now);
-					ps3.setLong(7, cpDefinitionClassNameId);
-					ps3.setLong(
+					preparedStatement3.setLong(2, companyId);
+					preparedStatement3.setLong(3, userId);
+					preparedStatement3.setString(4, userName);
+					preparedStatement3.setDate(5, now);
+					preparedStatement3.setDate(6, now);
+					preparedStatement3.setLong(7, cpDefinitionClassNameId);
+					preparedStatement3.setLong(
 						8, cpDefinitionsResultSet.getLong("cpDefinitionId"));
-					ps3.setLong(9, commerceChannelId);
+					preparedStatement3.setLong(9, commerceChannelId);
 
-					ps3.addBatch();
+					preparedStatement3.addBatch();
 				}
 
 				runSQL(
@@ -249,9 +252,9 @@ public class CommerceCatalogUpgradeProcess extends UpgradeProcess {
 						catalogGroup.getGroupId(), siteGroup.getGroupId()));
 			}
 
-			ps1.executeBatch();
-			ps2.executeBatch();
-			ps3.executeBatch();
+			preparedStatement1.executeBatch();
+			preparedStatement2.executeBatch();
+			preparedStatement3.executeBatch();
 		}
 	}
 

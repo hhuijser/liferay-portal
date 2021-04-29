@@ -142,12 +142,14 @@ public abstract class BaseLocalizedColumnUpgradeProcess extends UpgradeProcess {
 			"update ", tableName, " set ", columnName, " = ? where ",
 			columnName, " like ? and companyId = ?");
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, localizationXML);
-			ps.setString(2, originalContent);
-			ps.setLong(3, companyId);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ps.executeUpdate();
+			preparedStatement.setString(1, localizationXML);
+			preparedStatement.setString(2, originalContent);
+			preparedStatement.setLong(3, companyId);
+
+			preparedStatement.executeUpdate();
 		}
 		catch (SQLException sqlException) {
 			throw new SystemException(sqlException);

@@ -119,10 +119,10 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 		sb.append("description, languageId) values(?, ?, ?, ?, ?, ?)");
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select id_, companyId, title, description, " +
 					"defaultLanguageId from JournalArticle");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			List<UpdateJournalArticleLocalizedFieldsUpgradeCallable>
 				updateJournalArticleLocalizedFieldsUpgradeCallables =
@@ -213,12 +213,12 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 		throws Exception {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select id_, groupId, ", columnName,
 					" from JournalArticle where defaultLanguageId is null or ",
 					"defaultLanguageId = ''"));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			List<UpdateDefaultLanguageUpgradeCallable>
 				updateDefaultLanguageCallables = new ArrayList<>();
@@ -349,7 +349,7 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 			locales.addAll(titleMap.keySet());
 			locales.addAll(descriptionMap.keySet());
 
-			try (PreparedStatement ps =
+			try (PreparedStatement preparedStatement =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _sql)) {
 
@@ -377,18 +377,20 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 						localizedDescription = safeLocalizedDescription;
 					}
 
-					ps.setLong(1, _counterLocalService.increment());
-					ps.setLong(2, _companyId);
-					ps.setLong(3, _id);
-					ps.setString(4, localizedTitle);
-					ps.setString(5, localizedDescription);
-					ps.setString(6, LocaleUtil.toLanguageId(locale));
+					preparedStatement.setLong(
+						1, _counterLocalService.increment());
+					preparedStatement.setLong(2, _companyId);
+					preparedStatement.setLong(3, _id);
+					preparedStatement.setString(4, localizedTitle);
+					preparedStatement.setString(5, localizedDescription);
+					preparedStatement.setString(
+						6, LocaleUtil.toLanguageId(locale));
 
-					ps.addBatch();
+					preparedStatement.addBatch();
 				}
 
 				try {
-					ps.executeBatch();
+					preparedStatement.executeBatch();
 				}
 				catch (Exception exception) {
 					_log.error(

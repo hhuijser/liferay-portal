@@ -36,12 +36,12 @@ public class ResourceActionUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected boolean hasResourceAction(String name) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select count(*) from ResourceAction where name = ?")) {
 
-			ps.setString(1, name);
+			preparedStatement.setString(1, name);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					int count = resultSet.getInt(1);
 

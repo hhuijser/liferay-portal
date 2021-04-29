@@ -125,9 +125,9 @@ public class JournalArticleTypeUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected Set<String> getArticleTypes() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select distinct type_ from JournalArticle");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Set<String> types = new HashSet<>();
 
@@ -140,9 +140,9 @@ public class JournalArticleTypeUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected boolean hasSelectedArticleTypes() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select count(*) from JournalArticle where type_ != 'general'");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				int count = resultSet.getInt(1);
@@ -172,12 +172,12 @@ public class JournalArticleTypeUpgradeProcess extends UpgradeProcess {
 		sb.append("where JournalArticle.companyId = ? and ");
 		sb.append("tempJournalArticle.id_ is null");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			ps.setLong(1, companyId);
+			preparedStatement.setLong(1, companyId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long resourcePrimKey = resultSet.getLong("resourcePrimKey");
 

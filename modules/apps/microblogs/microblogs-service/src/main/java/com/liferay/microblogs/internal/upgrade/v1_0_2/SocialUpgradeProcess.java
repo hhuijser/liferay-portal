@@ -37,26 +37,27 @@ public class SocialUpgradeProcess extends UpgradeProcess {
 	protected void updateSocialActivity(long activityId, JSONObject jsonObject)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update SocialActivity set extraData = ? where activityId = " +
 					"?")) {
 
-			ps.setString(1, jsonObject.toString());
-			ps.setLong(2, activityId);
+			preparedStatement.setString(1, jsonObject.toString());
+			preparedStatement.setLong(2, activityId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	protected void upgradeMicroblogActivities() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select activityId, extraData from SocialActivity where " +
 					"classNameId = ?")) {
 
-			ps.setLong(1, PortalUtil.getClassNameId(MicroblogsEntry.class));
+			preparedStatement.setLong(
+				1, PortalUtil.getClassNameId(MicroblogsEntry.class));
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long activityId = resultSet.getLong("activityId");
 

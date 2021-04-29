@@ -61,7 +61,7 @@ public class LayoutClassedModelUsageUpgradeProcess extends UpgradeProcess {
 		sb.append("?, ?, ?, ?, ?)");
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps =
+			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb.toString())) {
 
@@ -77,23 +77,27 @@ public class LayoutClassedModelUsageUpgradeProcess extends UpgradeProcess {
 					continue;
 				}
 
-				ps.setLong(1, 0);
-				ps.setString(2, PortalUUIDUtil.generate());
-				ps.setLong(3, increment());
-				ps.setLong(4, assetEntryUsage.getGroupId());
-				ps.setDate(5, new Date(System.currentTimeMillis()));
-				ps.setDate(6, new Date(System.currentTimeMillis()));
-				ps.setLong(7, assetEntry.getClassNameId());
-				ps.setLong(8, assetEntry.getClassPK());
-				ps.setString(9, assetEntryUsage.getContainerKey());
-				ps.setLong(10, assetEntryUsage.getContainerType());
-				ps.setLong(11, assetEntryUsage.getPlid());
-				ps.setLong(12, assetEntryUsage.getType());
+				preparedStatement.setLong(1, 0);
+				preparedStatement.setString(2, PortalUUIDUtil.generate());
+				preparedStatement.setLong(3, increment());
+				preparedStatement.setLong(4, assetEntryUsage.getGroupId());
+				preparedStatement.setDate(
+					5, new Date(System.currentTimeMillis()));
+				preparedStatement.setDate(
+					6, new Date(System.currentTimeMillis()));
+				preparedStatement.setLong(7, assetEntry.getClassNameId());
+				preparedStatement.setLong(8, assetEntry.getClassPK());
+				preparedStatement.setString(
+					9, assetEntryUsage.getContainerKey());
+				preparedStatement.setLong(
+					10, assetEntryUsage.getContainerType());
+				preparedStatement.setLong(11, assetEntryUsage.getPlid());
+				preparedStatement.setLong(12, assetEntryUsage.getType());
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

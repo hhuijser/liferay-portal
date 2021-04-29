@@ -143,16 +143,16 @@ public class UpgradeAssetDisplayPageEntryTest {
 		String sql = sb.toString();
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql)) {
+			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
 
-			ps.setLong(1, _counterLocalService.increment());
-			ps.setLong(2, groupId);
-			ps.setLong(3, companyId);
-			ps.setLong(4, classNameId);
-			ps.setLong(5, classPK);
-			ps.setString(6, classUuid);
+			preparedStatement.setLong(1, _counterLocalService.increment());
+			preparedStatement.setLong(2, groupId);
+			preparedStatement.setLong(3, companyId);
+			preparedStatement.setLong(4, classNameId);
+			preparedStatement.setLong(5, classPK);
+			preparedStatement.setString(6, classUuid);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -172,26 +172,26 @@ public class UpgradeAssetDisplayPageEntryTest {
 		String sql = sb.toString();
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql)) {
+			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
 
-			ps.setString(1, PortalUUIDUtil.generate());
-			ps.setLong(2, _counterLocalService.increment());
-			ps.setLong(3, resourcePrimKey);
-			ps.setLong(4, groupId);
-			ps.setLong(5, companyId);
-			ps.setLong(6, TestPropsValues.getUserId());
-			ps.setString(7, null);
-			ps.setTimestamp(8, _timestamp);
-			ps.setTimestamp(9, _timestamp);
-			ps.setLong(10, 0);
-			ps.setLong(11, 0);
-			ps.setLong(12, 0);
-			ps.setString(13, "/");
-			ps.setString(14, RandomTestUtil.randomString());
-			ps.setDouble(15, version);
-			ps.setString(16, layoutUuid);
+			preparedStatement.setString(1, PortalUUIDUtil.generate());
+			preparedStatement.setLong(2, _counterLocalService.increment());
+			preparedStatement.setLong(3, resourcePrimKey);
+			preparedStatement.setLong(4, groupId);
+			preparedStatement.setLong(5, companyId);
+			preparedStatement.setLong(6, TestPropsValues.getUserId());
+			preparedStatement.setString(7, null);
+			preparedStatement.setTimestamp(8, _timestamp);
+			preparedStatement.setTimestamp(9, _timestamp);
+			preparedStatement.setLong(10, 0);
+			preparedStatement.setLong(11, 0);
+			preparedStatement.setLong(12, 0);
+			preparedStatement.setString(13, "/");
+			preparedStatement.setString(14, RandomTestUtil.randomString());
+			preparedStatement.setDouble(15, version);
+			preparedStatement.setString(16, layoutUuid);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

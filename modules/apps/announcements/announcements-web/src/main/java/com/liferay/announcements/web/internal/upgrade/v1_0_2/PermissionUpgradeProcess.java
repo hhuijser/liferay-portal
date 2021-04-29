@@ -86,20 +86,22 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setLong(1, 0);
-			ps.setLong(2, resourcePermissionId);
-			ps.setLong(3, companyId);
-			ps.setString(4, name);
-			ps.setInt(5, scope);
-			ps.setString(6, primKey);
-			ps.setLong(7, primKeyId);
-			ps.setLong(8, roleId);
-			ps.setLong(9, ownerId);
-			ps.setLong(10, actionBitwiseValue);
-			ps.setBoolean(11, true);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ps.executeUpdate();
+			preparedStatement.setLong(1, 0);
+			preparedStatement.setLong(2, resourcePermissionId);
+			preparedStatement.setLong(3, companyId);
+			preparedStatement.setString(4, name);
+			preparedStatement.setInt(5, scope);
+			preparedStatement.setString(6, primKey);
+			preparedStatement.setLong(7, primKeyId);
+			preparedStatement.setLong(8, roleId);
+			preparedStatement.setLong(9, ownerId);
+			preparedStatement.setLong(10, actionBitwiseValue);
+			preparedStatement.setBoolean(11, true);
+
+			preparedStatement.executeUpdate();
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
@@ -119,17 +121,19 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setLong(1, 0);
-			ps.setLong(2, resourceActionId);
-			ps.setString(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
+
+			preparedStatement.setLong(1, 0);
+			preparedStatement.setLong(2, resourceActionId);
+			preparedStatement.setString(
 				3,
 				"com_liferay_announcements_web_portlet_" +
 					"AnnouncementsAdminPortlet");
-			ps.setString(4, actionId);
-			ps.setLong(5, bitwiseValue);
+			preparedStatement.setString(4, actionId);
+			preparedStatement.setLong(5, bitwiseValue);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
@@ -141,12 +145,12 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 	protected void deleteResourceAction(long resourceActionId)
 		throws SQLException {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from ResourceAction where resourceActionId = ?")) {
 
-			ps.setLong(1, resourceActionId);
+			preparedStatement.setLong(1, resourceActionId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -178,14 +182,14 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 			long resourcePermissionId, long bitwiseValue)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update ResourcePermission set actionIds = ? where " +
 					"resourcePermissionId = ?")) {
 
-			ps.setLong(1, bitwiseValue);
-			ps.setLong(2, resourcePermissionId);
+			preparedStatement.setLong(1, bitwiseValue);
+			preparedStatement.setLong(2, resourcePermissionId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -215,9 +219,9 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 		sb2.append(name);
 		sb2.append("'");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet resultSet1 = ps1.executeQuery()) {
+			ResultSet resultSet1 = preparedStatement1.executeQuery()) {
 
 			if (!resultSet1.next()) {
 				if (!_ignoreMissingAddEntryResourceAction) {
@@ -233,9 +237,9 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 
 			long bitwiseValue = resultSet1.getLong("bitwiseValue");
 
-			try (PreparedStatement ps2 = connection.prepareStatement(
-					sb2.toString());
-				ResultSet resultSet = ps2.executeQuery()) {
+			try (PreparedStatement preparedStatement2 =
+					connection.prepareStatement(sb2.toString());
+				ResultSet resultSet = preparedStatement2.executeQuery()) {
 
 				while (resultSet.next()) {
 					long actionIds = resultSet.getLong("actionIds");

@@ -55,21 +55,21 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 		String oldCompositeModelName = getOldCompositeModelName(
 			ddmModelClassName);
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"update ResourcePermission set name = ? where name = ?");
-			PreparedStatement ps2 = connection.prepareStatement(
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"update ResourcePermission set primKey = ? where primKey = " +
 					"?")) {
 
-			ps1.setString(1, newCompositeModelName);
-			ps1.setString(2, oldCompositeModelName);
+			preparedStatement1.setString(1, newCompositeModelName);
+			preparedStatement1.setString(2, oldCompositeModelName);
 
-			ps1.executeUpdate();
+			preparedStatement1.executeUpdate();
 
-			ps2.setString(1, newCompositeModelName);
-			ps2.setString(2, oldCompositeModelName);
+			preparedStatement2.setString(1, newCompositeModelName);
+			preparedStatement2.setString(2, oldCompositeModelName);
 
-			ps2.executeUpdate();
+			preparedStatement2.executeUpdate();
 		}
 	}
 

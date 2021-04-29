@@ -30,14 +30,14 @@ public class UpgradeResourceAction extends UpgradeProcess {
 
 	protected void deleteDuplicateBitwiseValuesOnResource() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select name, bitwiseValue, min(resourceActionId) as " +
 					"minResourceActionId from ResourceAction group by name, " +
 						"bitwiseValue having count(resourceActionId) > 1");
-			PreparedStatement ps2 = connection.prepareStatement(
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"select resourceActionId, actionId from ResourceAction where " +
 					"name = ? and bitwiseValue = ? and resourceActionId != ?");
-			ResultSet resultSet1 = ps1.executeQuery()) {
+			ResultSet resultSet1 = preparedStatement1.executeQuery()) {
 
 			while (resultSet1.next()) {
 				String name = resultSet1.getString("name");
@@ -45,11 +45,11 @@ public class UpgradeResourceAction extends UpgradeProcess {
 				long minResourceActionId = resultSet1.getLong(
 					"minResourceActionId");
 
-				ps2.setString(1, name);
-				ps2.setLong(2, bitwiseValue);
-				ps2.setLong(3, minResourceActionId);
+				preparedStatement2.setString(1, name);
+				preparedStatement2.setLong(2, bitwiseValue);
+				preparedStatement2.setLong(3, minResourceActionId);
 
-				try (ResultSet resultSet2 = ps2.executeQuery()) {
+				try (ResultSet resultSet2 = preparedStatement2.executeQuery()) {
 					while (resultSet2.next()) {
 						if (_log.isInfoEnabled()) {
 							StringBundler sb = new StringBundler(7);
@@ -65,14 +65,14 @@ public class UpgradeResourceAction extends UpgradeProcess {
 							_log.info(sb.toString());
 						}
 
-						try (PreparedStatement ps3 =
+						try (PreparedStatement preparedStatement3 =
 								connection.prepareStatement(
 									"delete from ResourceAction where " +
 										"resourceActionId = " +
 											resultSet2.getLong(
 												"resourceActionId"))) {
 
-							ps3.execute();
+							preparedStatement3.execute();
 						}
 					}
 				}

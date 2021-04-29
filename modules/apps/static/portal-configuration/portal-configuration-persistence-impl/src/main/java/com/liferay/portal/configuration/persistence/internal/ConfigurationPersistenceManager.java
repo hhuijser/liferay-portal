@@ -382,26 +382,29 @@ public class ConfigurationPersistenceManager
 		try (Connection connection = _dataSource.getConnection()) {
 			connection.setAutoCommit(false);
 
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					_db.buildSQL(
-						"update Configuration_ set dictionary = ? where " +
-							"configurationId = ?"))) {
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(
+						_db.buildSQL(
+							"update Configuration_ set dictionary = ? where " +
+								"configurationId = ?"))) {
 
-				ps1.setString(1, unsyncByteArrayOutputStream.toString());
-				ps1.setString(2, pid);
+				preparedStatement1.setString(
+					1, unsyncByteArrayOutputStream.toString());
+				preparedStatement1.setString(2, pid);
 
-				if (ps1.executeUpdate() == 0) {
-					try (PreparedStatement ps2 = connection.prepareStatement(
-							_db.buildSQL(
-								"insert into Configuration_ (" +
-									"configurationId, dictionary) values (?, " +
-										"?)"))) {
+				if (preparedStatement1.executeUpdate() == 0) {
+					try (PreparedStatement preparedStatement2 =
+							connection.prepareStatement(
+								_db.buildSQL(
+									"insert into Configuration_ (" +
+										"configurationId, dictionary) values (?, " +
+											"?)"))) {
 
-						ps2.setString(1, pid);
-						ps2.setString(
+						preparedStatement2.setString(1, pid);
+						preparedStatement2.setString(
 							2, unsyncByteArrayOutputStream.toString());
 
-						ps2.executeUpdate();
+						preparedStatement2.executeUpdate();
 					}
 				}
 			}

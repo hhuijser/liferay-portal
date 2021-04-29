@@ -67,13 +67,14 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 		sb.append("DDMFormInstanceVersion.structureVersionId = ");
 		sb.append("DDMStructureVersion.structureVersionId");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMContent set data_ = ? where contentId = ?")) {
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					DDMForm ddmForm = DDMFormDeserializeUtil.deserialize(
 						_ddmFormDeserializer,
@@ -106,13 +107,14 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 						continue;
 					}
 
-					ps2.setString(1, newData);
-					ps2.setLong(2, resultSet.getLong("contentId"));
+					preparedStatement2.setString(1, newData);
+					preparedStatement2.setLong(
+						2, resultSet.getLong("contentId"));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

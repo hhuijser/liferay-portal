@@ -51,7 +51,7 @@ public class CPDAvailabilityEstimateUpgradeProcess
 
 		_addIndexes(CPDAvailabilityEstimateModelImpl.TABLE_NAME);
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update CPDAvailabilityEstimate set CProductId = ? where " +
 					"CPDefinitionId = ?");
 			Statement s = connection.createStatement();
@@ -65,11 +65,11 @@ public class CPDAvailabilityEstimateUpgradeProcess
 				CPDefinition cpDefinition =
 					_cpDefinitionLocalService.getCPDefinition(cpDefinitionId);
 
-				ps.setLong(1, cpDefinition.getCProductId());
+				preparedStatement.setLong(1, cpDefinition.getCProductId());
 
-				ps.setLong(2, cpDefinitionId);
+				preparedStatement.setLong(2, cpDefinitionId);
 
-				ps.execute();
+				preparedStatement.execute();
 			}
 		}
 

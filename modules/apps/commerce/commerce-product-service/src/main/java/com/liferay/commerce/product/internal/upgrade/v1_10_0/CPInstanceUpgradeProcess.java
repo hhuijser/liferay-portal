@@ -40,7 +40,7 @@ public class CPInstanceUpgradeProcess extends UpgradeProcess {
 		String updateCPInstanceSQL =
 			"update CPInstance set json = ? WHERE CPInstanceId = ?";
 
-		try (PreparedStatement ps =
+		try (PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateCPInstanceSQL);
 			Statement s1 = connection.createStatement(
@@ -101,13 +101,14 @@ public class CPInstanceUpgradeProcess extends UpgradeProcess {
 					outputJSONArray.put(outputJSONObject);
 				}
 
-				ps.setString(1, outputJSONArray.toString());
-				ps.setLong(2, resultSet1.getLong("CPInstanceId"));
+				preparedStatement.setString(1, outputJSONArray.toString());
+				preparedStatement.setLong(
+					2, resultSet1.getLong("CPInstanceId"));
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

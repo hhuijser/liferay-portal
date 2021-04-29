@@ -90,12 +90,12 @@ public class UpgradeViewCountTest {
 		upgradeCTModel.upgrade();
 
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select * from ViewCountEntry where companyId = 2 AND ",
 					"classNameId = ", _className.getClassNameId(),
 					" AND classPK = 1"));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 

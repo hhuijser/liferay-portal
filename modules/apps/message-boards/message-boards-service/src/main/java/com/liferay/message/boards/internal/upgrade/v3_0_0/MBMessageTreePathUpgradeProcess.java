@@ -74,35 +74,36 @@ public class MBMessageTreePathUpgradeProcess extends UpgradeProcess {
 
 		Map<Long, Long> relations = new HashMap<>();
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select messageId, parentMessageId from MBMessage where " +
 					"parentMessageId != 0 order by createDate desc");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				relations.put(resultSet.getLong(1), resultSet.getLong(2));
 			}
 		}
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select messageId from MBMessage where treePath is null or " +
 					"treePath = ''");
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update MBMessage set treePath = ? where messageId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long messageId = resultSet.getLong(1);
 
-				ps2.setString(1, _calculatePath(relations, messageId));
-				ps2.setLong(2, messageId);
+				preparedStatement2.setString(
+					1, _calculatePath(relations, messageId));
+				preparedStatement2.setLong(2, messageId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

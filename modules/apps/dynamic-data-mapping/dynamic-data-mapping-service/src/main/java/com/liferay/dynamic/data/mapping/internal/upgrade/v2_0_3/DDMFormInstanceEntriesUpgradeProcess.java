@@ -36,7 +36,7 @@ public class DDMFormInstanceEntriesUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select DDMContent.contentId, DDMContent.data_ from ",
 					"DDMFormInstanceRecordVersion inner join DDMFormInstance ",
@@ -44,25 +44,26 @@ public class DDMFormInstanceEntriesUpgradeProcess extends UpgradeProcess {
 					"DDMFormInstance.formInstanceId inner join DDMContent on ",
 					"DDMFormInstanceRecordVersion.storageId = DDMContent.",
 					"contentId"));
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMContent set data_ = ? where contentId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				String data = resultSet.getString("data_");
 
-				ps2.setString(1, updateFieldValuesToLocalizable(data));
+				preparedStatement2.setString(
+					1, updateFieldValuesToLocalizable(data));
 
 				long contentId = resultSet.getLong("contentId");
 
-				ps2.setLong(2, contentId);
+				preparedStatement2.setLong(2, contentId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

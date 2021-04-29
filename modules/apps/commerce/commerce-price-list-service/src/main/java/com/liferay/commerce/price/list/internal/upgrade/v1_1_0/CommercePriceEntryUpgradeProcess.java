@@ -60,7 +60,7 @@ public class CommercePriceEntryUpgradeProcess
 
 		_addIndexes(CommercePriceEntryModelImpl.TABLE_NAME);
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update CommercePriceEntry set CProductId = ?," +
 					"CPInstanceUuid = ? where CPInstanceId = ?");
 			Statement s = connection.createStatement();
@@ -77,13 +77,13 @@ public class CommercePriceEntryUpgradeProcess
 					_cpDefinitionLocalService.getCPDefinition(
 						cpInstance.getCPDefinitionId());
 
-				ps.setLong(1, cpDefinition.getCProductId());
+				preparedStatement.setLong(1, cpDefinition.getCProductId());
 
-				ps.setString(2, cpInstance.getCPInstanceUuid());
+				preparedStatement.setString(2, cpInstance.getCPInstanceUuid());
 
-				ps.setLong(3, cpInstanceId);
+				preparedStatement.setLong(3, cpInstanceId);
 
-				ps.execute();
+				preparedStatement.execute();
 			}
 		}
 

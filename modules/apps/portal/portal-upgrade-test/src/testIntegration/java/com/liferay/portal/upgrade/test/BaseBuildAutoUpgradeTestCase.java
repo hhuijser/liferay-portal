@@ -90,10 +90,10 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 	@Before
 	public void setUp() throws Exception {
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"drop table BuildAutoUpgradeTestEntity")) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 		catch (SQLException sqlException) {
 		}
@@ -111,10 +111,10 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		}
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"drop table BuildAutoUpgradeTestEntity")) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 		catch (SQLException sqlException) {
 		}
@@ -167,10 +167,10 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		_bundle.start();
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"insert into BuildAutoUpgradeTestEntity values (1, 'data')")) {
 
-			Assert.assertEquals(1, ps.executeUpdate());
+			Assert.assertEquals(1, preparedStatement.executeUpdate());
 		}
 
 		// Initial columns
@@ -186,9 +186,9 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 			"BuildAutoUpgradeTestEntity", "id_", "data_", "data2");
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select id_, data_, data2 from BuildAutoUpgradeTestEntity");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 
@@ -203,11 +203,11 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		}
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"update BuildAutoUpgradeTestEntity set data2 = 'data2' where " +
 					"id_ = 1")) {
 
-			Assert.assertEquals(1, ps.executeUpdate());
+			Assert.assertEquals(1, preparedStatement.executeUpdate());
 		}
 
 		// Remove "data_" column
@@ -218,9 +218,9 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 			"BuildAutoUpgradeTestEntity", "id_", "data2");
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select id_, data2 from BuildAutoUpgradeTestEntity");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 
@@ -238,9 +238,9 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 			"BuildAutoUpgradeTestEntity", "id_", "data_");
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select id_, data_ from BuildAutoUpgradeTestEntity");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 

@@ -52,22 +52,22 @@ public class FriendlyURLEntryUpgradeProcess extends UpgradeProcess {
 		long cProductClassNameId = _classNameLocalService.getClassNameId(
 			CProduct.class);
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select * from FriendlyURLEntry where classNameId in (",
 					String.valueOf(assetCategoryClassNameId), ",",
 					String.valueOf(cProductClassNameId), ")"));
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update FriendlyURLEntry set groupId = ? where " +
 						"friendlyURLEntryId = ?");
-			PreparedStatement ps3 =
+			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update FriendlyURLEntryLocalization set groupId = ? " +
 						"where friendlyURLEntryId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long companyId = resultSet.getLong("companyId");
@@ -95,15 +95,15 @@ public class FriendlyURLEntryUpgradeProcess extends UpgradeProcess {
 				long friendlyURLEntryId = resultSet.getLong(
 					"friendlyURLEntryId");
 
-				ps2.setLong(1, group.getGroupId());
-				ps2.setLong(2, friendlyURLEntryId);
+				preparedStatement2.setLong(1, group.getGroupId());
+				preparedStatement2.setLong(2, friendlyURLEntryId);
 
-				ps2.execute();
+				preparedStatement2.execute();
 
-				ps3.setLong(1, group.getGroupId());
-				ps3.setLong(2, friendlyURLEntryId);
+				preparedStatement3.setLong(1, group.getGroupId());
+				preparedStatement3.setLong(2, friendlyURLEntryId);
 
-				ps3.execute();
+				preparedStatement3.execute();
 			}
 		}
 	}

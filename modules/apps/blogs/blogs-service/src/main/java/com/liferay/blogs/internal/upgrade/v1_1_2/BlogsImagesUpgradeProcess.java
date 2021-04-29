@@ -63,16 +63,17 @@ public class BlogsImagesUpgradeProcess extends UpgradeProcess {
 					"smallImageId", "LONG null"));
 		}
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				SQLTransformer.transform(
 					"select entryId, groupId, companyId, userId, " +
 						"smallImageId from BlogsEntry where smallImage = " +
 							"[$TRUE$] and smallImageId != 0"));
-			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update BlogsEntry set smallImageFileEntryId = ?, " +
-						"smallImageId = 0 where entryId = ?"));
-			ResultSet resultSet = ps1.executeQuery()) {
+			PreparedStatement preparedStatement2 =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update BlogsEntry set smallImageFileEntryId = ?, " +
+							"smallImageId = 0 where entryId = ?"));
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long smallImageId = resultSet.getLong("smallImageId");
@@ -117,13 +118,14 @@ public class BlogsImagesUpgradeProcess extends UpgradeProcess {
 					blogsImagefolder.getFolderId(), bytes, fileName, mimeType,
 					true);
 
-				ps2.setLong(1, processedImageFileEntry.getFileEntryId());
-				ps2.setLong(2, entryId);
+				preparedStatement2.setLong(
+					1, processedImageFileEntry.getFileEntryId());
+				preparedStatement2.setLong(2, entryId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

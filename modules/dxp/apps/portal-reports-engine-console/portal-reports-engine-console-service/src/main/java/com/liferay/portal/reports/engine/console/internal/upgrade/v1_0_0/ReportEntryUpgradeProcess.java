@@ -72,16 +72,16 @@ public class ReportEntryUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void updateReportEntries() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select companyId, entryId, reportParameters from " +
 					"Reports_Entry")) {
 
-			try (PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						"update Reports_Entry set reportParameters = ? where " +
 							"companyId = ? and entryId = ?");
-				ResultSet resultSet = ps1.executeQuery()) {
+				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				while (resultSet.next()) {
 					String reportParameters = resultSet.getString(
@@ -96,14 +96,15 @@ public class ReportEntryUpgradeProcess extends UpgradeProcess {
 						continue;
 					}
 
-					ps2.setString(1, updatedReportParameters);
-					ps2.setLong(2, resultSet.getLong("companyId"));
-					ps2.setLong(3, resultSet.getLong("entryId"));
+					preparedStatement2.setString(1, updatedReportParameters);
+					preparedStatement2.setLong(
+						2, resultSet.getLong("companyId"));
+					preparedStatement2.setLong(3, resultSet.getLong("entryId"));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

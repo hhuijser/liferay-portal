@@ -92,10 +92,10 @@ public class KBAttachmentsUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void updateAttachments() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select kbArticleId, resourcePrimKey, groupId, companyId, " +
 					"userId, status from KBArticle");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long groupId = resultSet.getLong("groupId");

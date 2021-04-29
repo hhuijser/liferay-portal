@@ -44,7 +44,7 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 		sb.append("1");
 
 		try (Statement s = connection.createStatement();
-			PreparedStatement ps =
+			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update JournalArticle set createDate = ? where " +
@@ -56,14 +56,14 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 
 					Timestamp createDate = resultSet.getTimestamp(2);
 
-					ps.setTimestamp(1, createDate);
+					preparedStatement.setTimestamp(1, createDate);
 
-					ps.setLong(2, resourcePrimKey);
+					preparedStatement.setLong(2, resourcePrimKey);
 
-					ps.addBatch();
+					preparedStatement.addBatch();
 				}
 
-				ps.executeBatch();
+				preparedStatement.executeBatch();
 			}
 		}
 	}
@@ -83,34 +83,35 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 		sb.append("JournalArticle.resourcePrimKey and ");
 		sb.append("AssetEntry.modifiedDate != JournalArticle.modifiedDate");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update JournalArticle set modifiedDate = ? where " +
 						"resourcePrimKey = ? and version = ?")) {
 
-			ps1.setInt(1, WorkflowConstants.STATUS_APPROVED);
-			ps1.setLong(
+			preparedStatement1.setInt(1, WorkflowConstants.STATUS_APPROVED);
+			preparedStatement1.setLong(
 				2, PortalUtil.getClassNameId(_CLASS_NAME_JOURNAL_ARTICLE));
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					long resourcePrimKey = resultSet.getLong(1);
 					Double latestVersion = resultSet.getDouble(2);
 
 					Timestamp assetModifiedDate = resultSet.getTimestamp(3);
 
-					ps2.setTimestamp(1, assetModifiedDate);
+					preparedStatement2.setTimestamp(1, assetModifiedDate);
 
-					ps2.setLong(2, resourcePrimKey);
+					preparedStatement2.setLong(2, resourcePrimKey);
 
-					ps2.setDouble(3, latestVersion);
+					preparedStatement2.setDouble(3, latestVersion);
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

@@ -74,12 +74,12 @@ public class DDMFormInstanceRecordUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void deleteDDLRecord(long recordId) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from DDLRecord where recordId = ?")) {
 
-			ps.setLong(1, recordId);
+			preparedStatement.setLong(1, recordId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -103,10 +103,10 @@ public class DDMFormInstanceRecordUpgradeProcess extends UpgradeProcess {
 		sb2.append("storageId, version, lastPublishDate) values(?, ?, ?, ?, ");
 		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 =
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString())) {
 
@@ -118,22 +118,30 @@ public class DDMFormInstanceRecordUpgradeProcess extends UpgradeProcess {
 				Timestamp createDate = resultSet.getTimestamp("createDate");
 				Timestamp modifiedDate = resultSet.getTimestamp("modifiedDate");
 
-				ps2.setString(1, uuid);
-				ps2.setLong(2, recordId);
-				ps2.setLong(3, groupId);
-				ps2.setLong(4, resultSet.getLong("companyId"));
-				ps2.setLong(5, userId);
-				ps2.setString(6, resultSet.getString("userName"));
-				ps2.setLong(7, resultSet.getLong("versionUserId"));
-				ps2.setString(8, resultSet.getString("versionUserName"));
-				ps2.setTimestamp(9, createDate);
-				ps2.setTimestamp(10, modifiedDate);
+				preparedStatement2.setString(1, uuid);
+				preparedStatement2.setLong(2, recordId);
+				preparedStatement2.setLong(3, groupId);
+				preparedStatement2.setLong(4, resultSet.getLong("companyId"));
+				preparedStatement2.setLong(5, userId);
+				preparedStatement2.setString(
+					6, resultSet.getString("userName"));
+				preparedStatement2.setLong(
+					7, resultSet.getLong("versionUserId"));
+				preparedStatement2.setString(
+					8, resultSet.getString("versionUserName"));
+				preparedStatement2.setTimestamp(9, createDate);
+				preparedStatement2.setTimestamp(10, modifiedDate);
 
-				ps2.setLong(11, resultSet.getLong("recordSetId"));
-				ps2.setString(12, resultSet.getString("formInstanceVersion"));
-				ps2.setLong(13, resultSet.getLong("DDMStorageId"));
-				ps2.setString(14, resultSet.getString("version"));
-				ps2.setTimestamp(15, resultSet.getTimestamp("lastPublishDate"));
+				preparedStatement2.setLong(
+					11, resultSet.getLong("recordSetId"));
+				preparedStatement2.setString(
+					12, resultSet.getString("formInstanceVersion"));
+				preparedStatement2.setLong(
+					13, resultSet.getLong("DDMStorageId"));
+				preparedStatement2.setString(
+					14, resultSet.getString("version"));
+				preparedStatement2.setTimestamp(
+					15, resultSet.getTimestamp("lastPublishDate"));
 
 				deleteDDLRecord(recordId);
 
@@ -141,10 +149,10 @@ public class DDMFormInstanceRecordUpgradeProcess extends UpgradeProcess {
 					uuid, recordId, groupId, userId, createDate, modifiedDate,
 					resultSet.getString("formInstanceName"));
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

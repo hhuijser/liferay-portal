@@ -32,12 +32,14 @@ public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 				KaleoDefinitionTable.class,
 				new AlterTableAddColumn("scope", "VARCHAR(75) null"));
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					"update KaleoDefinition set scope = ?")) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						"update KaleoDefinition set scope = ?")) {
 
-				ps.setString(1, WorkflowDefinitionConstants.SCOPE_ALL);
+				preparedStatement.setString(
+					1, WorkflowDefinitionConstants.SCOPE_ALL);
 
-				ps.execute();
+				preparedStatement.execute();
 			}
 		}
 	}

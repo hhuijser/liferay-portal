@@ -41,11 +41,12 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 			ResultSet resultSet = s.executeQuery(
 				"select layoutPageTemplateEntryId, name from " +
 					"LayoutPageTemplateEntry");
-			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update LayoutPageTemplateEntry set " +
-						"layoutPageTemplateEntryKey = ? where " +
-							"layoutPageTemplateEntryId = ?"))) {
+			PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update LayoutPageTemplateEntry set " +
+							"layoutPageTemplateEntryKey = ? where " +
+								"layoutPageTemplateEntryId = ?"))) {
 
 			while (resultSet.next()) {
 				long layoutPageTemplateEntryId = resultSet.getLong(
@@ -53,14 +54,15 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 				String name = resultSet.getString("name");
 
-				ps.setString(1, _generateLayoutPageTemplateEntryKey(name));
+				preparedStatement.setString(
+					1, _generateLayoutPageTemplateEntryKey(name));
 
-				ps.setLong(2, layoutPageTemplateEntryId);
+				preparedStatement.setLong(2, layoutPageTemplateEntryId);
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

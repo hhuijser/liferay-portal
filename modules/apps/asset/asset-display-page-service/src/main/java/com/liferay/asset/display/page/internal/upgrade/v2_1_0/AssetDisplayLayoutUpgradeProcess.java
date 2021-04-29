@@ -139,10 +139,11 @@ public class AssetDisplayLayoutUpgradeProcess extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement s = connection.createStatement();
 			ResultSet resultSet = s.executeQuery(sb.toString());
-			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update AssetDisplayPageEntry set plid = ? where " +
-						"assetDisplayPageEntryId = ?"))) {
+			PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update AssetDisplayPageEntry set plid = ? where " +
+							"assetDisplayPageEntryId = ?"))) {
 
 			while (resultSet.next()) {
 				long classNameId = resultSet.getLong("classNameId");
@@ -160,7 +161,7 @@ public class AssetDisplayLayoutUpgradeProcess extends UpgradeProcess {
 				long layoutPageTemplateEntryId = resultSet.getLong(
 					"layoutPageTemplateEntryId");
 
-				ps.setLong(
+				preparedStatement.setLong(
 					1,
 					_getPlid(
 						assetEntry, userId, groupId, layoutPageTemplateEntryId,
@@ -169,12 +170,12 @@ public class AssetDisplayLayoutUpgradeProcess extends UpgradeProcess {
 				long assetDisplayPageEntryId = resultSet.getLong(
 					"assetDisplayPageEntryId");
 
-				ps.setLong(2, assetDisplayPageEntryId);
+				preparedStatement.setLong(2, assetDisplayPageEntryId);
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

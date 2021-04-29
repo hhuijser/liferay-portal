@@ -87,24 +87,24 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 
 		deleteStructureStructureLinks(ddmStructureId);
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from DDLRecordSet where recordSetId = ?")) {
 
-			ps.setLong(1, recordSetId);
+			preparedStatement.setLong(1, recordSetId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	protected void deleteStructureStructureLinks(long ddmStructureId)
 		throws SQLException {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from DDMStructureLink where structureId = ?")) {
 
-			ps.setLong(1, ddmStructureId);
+			preparedStatement.setLong(1, ddmStructureId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -137,10 +137,10 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 		sb2.append("version, name, description, settings_, lastPublishDate) ");
 		sb2.append("values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 =
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString())) {
 
@@ -160,22 +160,24 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 				long structureVersionId = resultSet.getLong(
 					"structureVersionId");
 
-				ps2.setString(1, PortalUUIDUtil.generate());
-				ps2.setLong(2, recordSetId);
-				ps2.setLong(3, groupId);
-				ps2.setLong(4, companyId);
-				ps2.setLong(5, userId);
-				ps2.setString(6, userName);
-				ps2.setLong(7, userId);
-				ps2.setString(8, userName);
-				ps2.setTimestamp(9, createDate);
-				ps2.setTimestamp(10, resultSet.getTimestamp("modifiedDate"));
-				ps2.setLong(11, structureId);
-				ps2.setString(12, DDMFormInstanceConstants.VERSION_DEFAULT);
-				ps2.setString(13, name);
-				ps2.setString(14, description);
-				ps2.setString(15, settings);
-				ps2.setTimestamp(16, lastPublishDate);
+				preparedStatement2.setString(1, PortalUUIDUtil.generate());
+				preparedStatement2.setLong(2, recordSetId);
+				preparedStatement2.setLong(3, groupId);
+				preparedStatement2.setLong(4, companyId);
+				preparedStatement2.setLong(5, userId);
+				preparedStatement2.setString(6, userName);
+				preparedStatement2.setLong(7, userId);
+				preparedStatement2.setString(8, userName);
+				preparedStatement2.setTimestamp(9, createDate);
+				preparedStatement2.setTimestamp(
+					10, resultSet.getTimestamp("modifiedDate"));
+				preparedStatement2.setLong(11, structureId);
+				preparedStatement2.setString(
+					12, DDMFormInstanceConstants.VERSION_DEFAULT);
+				preparedStatement2.setString(13, name);
+				preparedStatement2.setString(14, description);
+				preparedStatement2.setString(15, settings);
+				preparedStatement2.setTimestamp(16, lastPublishDate);
 
 				updateDDMStructure(structureId);
 				updateDDMStructureLink(structureId);
@@ -191,10 +193,10 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 
 				deleteDDLRecordSet(structureId, recordSetId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 
 			updateWorkflowDefinitionLink();
 		}
@@ -287,16 +289,16 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 		sb.append("update DDMStructure set classNameId = ? where structureId ");
 		sb.append("= ?");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			ps.setLong(
+			preparedStatement.setLong(
 				1,
 				_classNameLocalService.getClassNameId(
 					DDMFormInstance.class.getName()));
-			ps.setLong(2, ddmStructureId);
+			preparedStatement.setLong(2, ddmStructureId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -308,34 +310,34 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 		sb.append("update DDMStructureLink set classNameId = ? where ");
 		sb.append("structureId = ?");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			ps.setLong(
+			preparedStatement.setLong(
 				1,
 				_classNameLocalService.getClassNameId(
 					DDMFormInstance.class.getName()));
-			ps.setLong(2, ddmStructureId);
+			preparedStatement.setLong(2, ddmStructureId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	protected void updateWorkflowDefinitionLink() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update WorkflowDefinitionLink set classNameId = ? where " +
 					"classNameId = ?")) {
 
-			ps.setLong(
+			preparedStatement.setLong(
 				1,
 				_classNameLocalService.getClassNameId(
 					_CLASS_NAME_FORM_INSTANCE));
 
-			ps.setLong(
+			preparedStatement.setLong(
 				2,
 				_classNameLocalService.getClassNameId(_CLASS_NAME_RECORD_SET));
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 
@@ -355,28 +357,29 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 		sb.append("statusByUserName, statusDate) values(?, ?, ?, ?, ?, ?, ?, ");
 		sb.append("?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		try (PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb.toString())) {
 
-			ps2.setLong(1, _counterLocalService.increment());
-			ps2.setLong(2, groupId);
-			ps2.setLong(3, companyId);
-			ps2.setLong(4, userId);
-			ps2.setString(5, userName);
-			ps2.setTimestamp(6, createDate);
-			ps2.setLong(7, formInstanceId);
-			ps2.setLong(8, structureVersionId);
-			ps2.setString(9, name);
-			ps2.setString(10, description);
-			ps2.setString(11, settings);
-			ps2.setString(12, DDMFormInstanceConstants.VERSION_DEFAULT);
-			ps2.setInt(13, WorkflowConstants.STATUS_APPROVED);
-			ps2.setLong(14, userId);
-			ps2.setString(15, userName);
-			ps2.setTimestamp(16, statusDate);
+			preparedStatement2.setLong(1, _counterLocalService.increment());
+			preparedStatement2.setLong(2, groupId);
+			preparedStatement2.setLong(3, companyId);
+			preparedStatement2.setLong(4, userId);
+			preparedStatement2.setString(5, userName);
+			preparedStatement2.setTimestamp(6, createDate);
+			preparedStatement2.setLong(7, formInstanceId);
+			preparedStatement2.setLong(8, structureVersionId);
+			preparedStatement2.setString(9, name);
+			preparedStatement2.setString(10, description);
+			preparedStatement2.setString(11, settings);
+			preparedStatement2.setString(
+				12, DDMFormInstanceConstants.VERSION_DEFAULT);
+			preparedStatement2.setInt(13, WorkflowConstants.STATUS_APPROVED);
+			preparedStatement2.setLong(14, userId);
+			preparedStatement2.setString(15, userName);
+			preparedStatement2.setTimestamp(16, statusDate);
 
-			ps2.execute();
+			preparedStatement2.execute();
 		}
 	}
 

@@ -58,10 +58,12 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 	protected long getCompanyId(String sql, long primaryKey) throws Exception {
 		long companyId = 0;
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setLong(1, primaryKey);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			preparedStatement.setLong(1, primaryKey);
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					companyId = resultSet.getLong("companyId");
 				}
@@ -74,12 +76,12 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 	protected Object[] getGroup(long groupId) throws Exception {
 		Object[] group = null;
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select companyId from Group_ where groupId = ?")) {
 
-			ps.setLong(1, groupId);
+			preparedStatement.setLong(1, groupId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long companyId = resultSet.getLong("companyId");
 
@@ -94,13 +96,13 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 	protected Object[] getLayout(long plid) throws Exception {
 		Object[] layout = null;
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select groupId, companyId, privateLayout, layoutId from " +
 					"Layout where plid = ?")) {
 
-			ps.setLong(1, plid);
+			preparedStatement.setLong(1, plid);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long groupId = resultSet.getLong("groupId");
 					long companyId = resultSet.getLong("companyId");
@@ -127,13 +129,13 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 
 		Object[] layoutRevision = null;
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select groupId, companyId, privateLayout, layoutRevisionId " +
 					"from LayoutRevision where layoutRevisionId = ?")) {
 
-			ps.setLong(1, layoutRevisionId);
+			preparedStatement.setLong(1, layoutRevisionId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long groupId = resultSet.getLong("groupId");
 					long companyId = resultSet.getLong("companyId");
@@ -160,18 +162,18 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 
 		String uuid = null;
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select uuid_ from Layout where groupId = ? and " +
 					"privateLayout = ? and layoutId = ?")) {
 
 			long groupId = (Long)layout[0];
 			boolean privateLayout = (Boolean)layout[2];
 
-			ps.setLong(1, groupId);
-			ps.setBoolean(2, privateLayout);
-			ps.setLong(3, layoutId);
+			preparedStatement.setLong(1, groupId);
+			preparedStatement.setBoolean(2, privateLayout);
+			preparedStatement.setLong(3, layoutId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					uuid = resultSet.getString("uuid_");
 				}
@@ -325,18 +327,19 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 			sb.append(whereClause);
 		}
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update PortletPreferences set preferences = ? where " +
 						"portletPreferencesId = ?");
-			PreparedStatement ps3 =
+			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"delete from PortletPreferences where " +
 						"portletPreferencesId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long portletPreferencesId = resultSet.getLong(
@@ -356,22 +359,22 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 						preferences);
 
 					if (!preferences.equals(newPreferences)) {
-						ps2.setString(1, newPreferences);
-						ps2.setLong(2, portletPreferencesId);
+						preparedStatement2.setString(1, newPreferences);
+						preparedStatement2.setLong(2, portletPreferencesId);
 
-						ps2.addBatch();
+						preparedStatement2.addBatch();
 					}
 				}
 				else {
-					ps3.setLong(1, portletPreferencesId);
+					preparedStatement3.setLong(1, portletPreferencesId);
 
-					ps3.addBatch();
+					preparedStatement3.addBatch();
 				}
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 
-			ps3.executeBatch();
+			preparedStatement3.executeBatch();
 		}
 	}
 
@@ -389,12 +392,13 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 			sb.append(whereClause);
 		}
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"select portletPreferenceValueId, largeValue, name, " +
 					"readOnly, smallValue from PortletPreferenceValue where " +
 						"portletPreferencesId = ? order by index_ asc");
-			PreparedStatement ps3 =
+			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					StringBundler.concat(
@@ -403,28 +407,28 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 						"portletPreferencesId, index_, largeValue, name, ",
 						"readOnly, smallValue) values (0, ?, ?, ?, ?, ?, ?, ",
 						"?, ?, ?)"));
-			PreparedStatement ps4 =
+			PreparedStatement preparedStatement4 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update PortletPreferenceValue set largeValue = ?, " +
 						"readOnly = ?, smallValue = ? where " +
 							"portletPreferenceValueId = ?");
-			PreparedStatement ps5 =
+			PreparedStatement preparedStatement5 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"delete from PortletPreferenceValue where " +
 						"portletPreferenceValueId = ?");
-			PreparedStatement ps6 =
+			PreparedStatement preparedStatement6 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"delete from PortletPreferences where " +
 						"portletPreferencesId = ?");
-			PreparedStatement ps7 =
+			PreparedStatement preparedStatement7 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"delete from PortletPreferenceValue where " +
 						"portletPreferencesId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long portletPreferencesId = resultSet.getLong(
@@ -437,10 +441,10 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 					long ownerId = resultSet.getLong("ownerId");
 					String portletId = resultSet.getString("portletId");
 
-					ps2.setLong(1, portletPreferencesId);
+					preparedStatement2.setLong(1, portletPreferencesId);
 
 					Map<String, PreferenceValues> preferenceValuesMap =
-						_getPreferenceValuesMap(ps2);
+						_getPreferenceValuesMap(preparedStatement2);
 
 					String preferences = _toXMLString(preferenceValuesMap);
 
@@ -455,29 +459,30 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 					_upgradePortletPreferenceValues(
 						preferenceValuesMap,
 						resultSet.getLong("ctCollectionId"),
-						portletPreferencesId, companyId, newPreferences, ps3,
-						ps4, ps5);
+						portletPreferencesId, companyId, newPreferences,
+						preparedStatement3, preparedStatement4,
+						preparedStatement5);
 				}
 				else {
-					ps6.setLong(1, portletPreferencesId);
+					preparedStatement6.setLong(1, portletPreferencesId);
 
-					ps6.addBatch();
+					preparedStatement6.addBatch();
 
-					ps7.setLong(1, portletPreferencesId);
+					preparedStatement7.setLong(1, portletPreferencesId);
 
-					ps7.addBatch();
+					preparedStatement7.addBatch();
 				}
 			}
 
-			ps3.executeBatch();
+			preparedStatement3.executeBatch();
 
-			ps4.executeBatch();
+			preparedStatement4.executeBatch();
 
-			ps5.executeBatch();
+			preparedStatement5.executeBatch();
 
-			ps6.executeBatch();
+			preparedStatement6.executeBatch();
 
-			ps7.executeBatch();
+			preparedStatement7.executeBatch();
 		}
 	}
 

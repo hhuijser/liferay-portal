@@ -72,34 +72,36 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, PortalUUIDUtil.generate());
-			ps.setLong(2, fileEntryId);
-			ps.setLong(3, groupId);
-			ps.setLong(4, companyId);
-			ps.setLong(5, userId);
-			ps.setString(6, userName);
-			ps.setTimestamp(7, createDate);
-			ps.setTimestamp(8, createDate);
-			ps.setLong(9, PortalUtil.getClassNameId(className));
-			ps.setLong(10, classPK);
-			ps.setLong(11, repositoryId);
-			ps.setLong(12, folderId);
-			ps.setString(13, name);
-			ps.setString(14, extension);
-			ps.setString(15, mimeType);
-			ps.setString(16, title);
-			ps.setString(17, StringPool.BLANK);
-			ps.setString(18, StringPool.BLANK);
-			ps.setLong(19, 0);
-			ps.setString(20, "1.0");
-			ps.setLong(21, size);
-			ps.setInt(22, 0);
-			ps.setLong(23, 0);
-			ps.setLong(24, 0);
-			ps.setLong(25, 0);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ps.executeUpdate();
+			preparedStatement.setString(1, PortalUUIDUtil.generate());
+			preparedStatement.setLong(2, fileEntryId);
+			preparedStatement.setLong(3, groupId);
+			preparedStatement.setLong(4, companyId);
+			preparedStatement.setLong(5, userId);
+			preparedStatement.setString(6, userName);
+			preparedStatement.setTimestamp(7, createDate);
+			preparedStatement.setTimestamp(8, createDate);
+			preparedStatement.setLong(9, PortalUtil.getClassNameId(className));
+			preparedStatement.setLong(10, classPK);
+			preparedStatement.setLong(11, repositoryId);
+			preparedStatement.setLong(12, folderId);
+			preparedStatement.setString(13, name);
+			preparedStatement.setString(14, extension);
+			preparedStatement.setString(15, mimeType);
+			preparedStatement.setString(16, title);
+			preparedStatement.setString(17, StringPool.BLANK);
+			preparedStatement.setString(18, StringPool.BLANK);
+			preparedStatement.setLong(19, 0);
+			preparedStatement.setString(20, "1.0");
+			preparedStatement.setLong(21, size);
+			preparedStatement.setInt(22, 0);
+			preparedStatement.setLong(23, 0);
+			preparedStatement.setLong(24, 0);
+			preparedStatement.setLong(25, 0);
+
+			preparedStatement.executeUpdate();
 
 			long bitwiseValue = getBitwiseValue(
 				getBitwiseValues(
@@ -147,33 +149,35 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, PortalUUIDUtil.generate());
-			ps.setLong(2, fileVersionId);
-			ps.setLong(3, groupId);
-			ps.setLong(4, companyId);
-			ps.setLong(5, userId);
-			ps.setString(6, userName);
-			ps.setTimestamp(7, createDate);
-			ps.setTimestamp(8, createDate);
-			ps.setLong(9, repositoryId);
-			ps.setLong(10, folderId);
-			ps.setLong(11, fileEntryId);
-			ps.setString(12, extension);
-			ps.setString(13, mimeType);
-			ps.setString(14, title);
-			ps.setString(15, StringPool.BLANK);
-			ps.setString(16, StringPool.BLANK);
-			ps.setString(17, StringPool.BLANK);
-			ps.setLong(18, 0);
-			ps.setString(19, "1.0");
-			ps.setLong(20, size);
-			ps.setInt(21, 0);
-			ps.setLong(22, userId);
-			ps.setString(23, userName);
-			ps.setTimestamp(24, createDate);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ps.executeUpdate();
+			preparedStatement.setString(1, PortalUUIDUtil.generate());
+			preparedStatement.setLong(2, fileVersionId);
+			preparedStatement.setLong(3, groupId);
+			preparedStatement.setLong(4, companyId);
+			preparedStatement.setLong(5, userId);
+			preparedStatement.setString(6, userName);
+			preparedStatement.setTimestamp(7, createDate);
+			preparedStatement.setTimestamp(8, createDate);
+			preparedStatement.setLong(9, repositoryId);
+			preparedStatement.setLong(10, folderId);
+			preparedStatement.setLong(11, fileEntryId);
+			preparedStatement.setString(12, extension);
+			preparedStatement.setString(13, mimeType);
+			preparedStatement.setString(14, title);
+			preparedStatement.setString(15, StringPool.BLANK);
+			preparedStatement.setString(16, StringPool.BLANK);
+			preparedStatement.setString(17, StringPool.BLANK);
+			preparedStatement.setLong(18, 0);
+			preparedStatement.setString(19, "1.0");
+			preparedStatement.setLong(20, size);
+			preparedStatement.setInt(21, 0);
+			preparedStatement.setLong(22, userId);
+			preparedStatement.setString(23, userName);
+			preparedStatement.setTimestamp(24, createDate);
+
+			preparedStatement.executeUpdate();
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
@@ -203,30 +207,32 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, PortalUUIDUtil.generate());
-			ps.setLong(2, folderId);
-			ps.setLong(3, groupId);
-			ps.setLong(4, companyId);
-			ps.setLong(5, userId);
-			ps.setString(6, userName);
-			ps.setTimestamp(7, createDate);
-			ps.setTimestamp(8, createDate);
-			ps.setLong(9, repositoryId);
-			ps.setBoolean(10, mountPoint);
-			ps.setLong(11, parentFolderId);
-			ps.setString(12, name);
-			ps.setString(13, StringPool.BLANK);
-			ps.setTimestamp(14, createDate);
-			ps.setLong(15, 0);
-			ps.setBoolean(16, hidden);
-			ps.setBoolean(17, false);
-			ps.setLong(18, 0);
-			ps.setLong(19, userId);
-			ps.setString(20, userName);
-			ps.setTimestamp(21, createDate);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ps.executeUpdate();
+			preparedStatement.setString(1, PortalUUIDUtil.generate());
+			preparedStatement.setLong(2, folderId);
+			preparedStatement.setLong(3, groupId);
+			preparedStatement.setLong(4, companyId);
+			preparedStatement.setLong(5, userId);
+			preparedStatement.setString(6, userName);
+			preparedStatement.setTimestamp(7, createDate);
+			preparedStatement.setTimestamp(8, createDate);
+			preparedStatement.setLong(9, repositoryId);
+			preparedStatement.setBoolean(10, mountPoint);
+			preparedStatement.setLong(11, parentFolderId);
+			preparedStatement.setString(12, name);
+			preparedStatement.setString(13, StringPool.BLANK);
+			preparedStatement.setTimestamp(14, createDate);
+			preparedStatement.setLong(15, 0);
+			preparedStatement.setBoolean(16, hidden);
+			preparedStatement.setBoolean(17, false);
+			preparedStatement.setLong(18, 0);
+			preparedStatement.setLong(19, userId);
+			preparedStatement.setString(20, userName);
+			preparedStatement.setTimestamp(21, createDate);
+
+			preparedStatement.executeUpdate();
 
 			Map<String, Long> bitwiseValues = getBitwiseValues(
 				"com.liferay.portlet.documentlibrary.model.DLFolder");
@@ -288,25 +294,25 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 		sb.append("dlFolderId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
 		sb.append("?, ?)");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			ps.setString(1, PortalUUIDUtil.generate());
-			ps.setLong(2, repositoryId);
-			ps.setLong(3, groupId);
-			ps.setLong(4, companyId);
-			ps.setLong(5, userId);
-			ps.setString(6, userName);
-			ps.setTimestamp(7, createDate);
-			ps.setTimestamp(8, createDate);
-			ps.setLong(9, classNameId);
-			ps.setString(10, portletId);
-			ps.setString(11, StringPool.BLANK);
-			ps.setString(12, portletId);
-			ps.setString(13, StringPool.BLANK);
-			ps.setLong(14, folderId);
+			preparedStatement.setString(1, PortalUUIDUtil.generate());
+			preparedStatement.setLong(2, repositoryId);
+			preparedStatement.setLong(3, groupId);
+			preparedStatement.setLong(4, companyId);
+			preparedStatement.setLong(5, userId);
+			preparedStatement.setString(6, userName);
+			preparedStatement.setTimestamp(7, createDate);
+			preparedStatement.setTimestamp(8, createDate);
+			preparedStatement.setLong(9, classNameId);
+			preparedStatement.setString(10, portletId);
+			preparedStatement.setString(11, StringPool.BLANK);
+			preparedStatement.setString(12, portletId);
+			preparedStatement.setString(13, StringPool.BLANK);
+			preparedStatement.setLong(14, folderId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 
 			return repositoryId;
 		}
@@ -337,17 +343,19 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setLong(1, resourcePermissionId);
-			ps.setLong(2, companyId);
-			ps.setString(3, className);
-			ps.setInt(4, ResourceConstants.SCOPE_INDIVIDUAL);
-			ps.setLong(5, primKey);
-			ps.setLong(6, roleId);
-			ps.setLong(7, 0);
-			ps.setLong(8, actionIds);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ps.executeUpdate();
+			preparedStatement.setLong(1, resourcePermissionId);
+			preparedStatement.setLong(2, companyId);
+			preparedStatement.setString(3, className);
+			preparedStatement.setInt(4, ResourceConstants.SCOPE_INDIVIDUAL);
+			preparedStatement.setLong(5, primKey);
+			preparedStatement.setLong(6, roleId);
+			preparedStatement.setLong(7, 0);
+			preparedStatement.setLong(8, actionIds);
+
+			preparedStatement.executeUpdate();
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
@@ -397,13 +405,13 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 			return bitwiseValues;
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select actionId, bitwiseValue from ResourceAction where " +
 					"name = ?")) {
 
-			ps.setString(1, name);
+			preparedStatement.setString(1, name);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				bitwiseValues = new HashMap<>();
 
 				while (resultSet.next()) {
@@ -448,15 +456,15 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 			return -1;
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select folderId from DLFolder where repositoryId = ? and " +
 					"parentFolderId = ? and name = ?")) {
 
-			ps.setLong(1, repositoryId);
-			ps.setLong(2, parentFolderId);
-			ps.setString(3, name);
+			preparedStatement.setLong(1, repositoryId);
+			preparedStatement.setLong(2, parentFolderId);
+			preparedStatement.setString(3, name);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					return resultSet.getLong(1);
 				}
@@ -475,15 +483,15 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 			Timestamp createDate, long classNameId, String portletId)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select repositoryId from Repository where groupId = ? and " +
 					"name = ? and portletId = ?")) {
 
-			ps.setLong(1, groupId);
-			ps.setString(2, portletId);
-			ps.setString(3, portletId);
+			preparedStatement.setLong(1, groupId);
+			preparedStatement.setString(2, portletId);
+			preparedStatement.setString(3, portletId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					return resultSet.getLong(1);
 				}
@@ -504,13 +512,13 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 			return roleId;
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select roleId from Role_ where companyId = ? and name = ?")) {
 
-			ps.setLong(1, companyId);
-			ps.setString(2, name);
+			preparedStatement.setLong(1, companyId);
+			preparedStatement.setString(2, name);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					roleId = resultSet.getLong("roleId");
 				}

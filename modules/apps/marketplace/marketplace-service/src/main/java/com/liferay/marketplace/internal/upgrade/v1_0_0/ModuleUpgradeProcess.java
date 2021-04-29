@@ -49,9 +49,9 @@ public class ModuleUpgradeProcess extends UpgradeProcess {
 				"alter table Marketplace_Module add bundleVersion VARCHAR(75)");
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select moduleId, contextName from Marketplace_Module");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long moduleId = resultSet.getLong("moduleId");

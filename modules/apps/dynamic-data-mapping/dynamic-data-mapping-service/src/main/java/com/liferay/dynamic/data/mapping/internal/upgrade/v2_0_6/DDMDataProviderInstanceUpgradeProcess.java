@@ -52,27 +52,28 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 		sb.append("update DDMDataProviderInstance set definition = ? where ");
 		sb.append("dataProviderInstanceId = ?");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select * from DDMDataProviderInstance");
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb.toString());
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
-				ps2.setString(
+				preparedStatement2.setString(
 					1,
 					_updateDDMDataProviderInstance(
 						resultSet.getLong("dataProviderInstanceId"),
 						resultSet.getString("definition"),
 						resultSet.getString("uuid_")));
 
-				ps2.setLong(2, resultSet.getLong("dataProviderInstanceId"));
+				preparedStatement2.setLong(
+					2, resultSet.getLong("dataProviderInstanceId"));
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 
 			_updateDDMStructures();
 		}
@@ -281,22 +282,23 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 		sb.append("DDMDataProviderInstanceLink.structureId and ");
 		sb.append("DDMStructure.version = DDMStructureVersion.version");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMStructure set definition = ? where " +
 						"structureId = ?");
-			PreparedStatement ps3 = connection.prepareStatement(
+			PreparedStatement preparedStatement3 = connection.prepareStatement(
 				"select structureVersionId, definition from " +
 					"DDMStructureVersion where structureId = ?");
-			PreparedStatement ps4 =
+			PreparedStatement preparedStatement4 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMStructureVersion set definition = ? where " +
 						"structureVersionId = ?")) {
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					JSONObject jsonObject = _jsonFactory.createJSONObject(
 						resultSet.getString(2));
@@ -308,18 +310,20 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 					if (updated &&
 						!_updatedStructureIds.contains(structureId)) {
 
-						ps2.setString(1, jsonObject.toString());
+						preparedStatement2.setString(1, jsonObject.toString());
 
-						ps2.setLong(2, structureId);
+						preparedStatement2.setLong(2, structureId);
 
-						ps2.addBatch();
+						preparedStatement2.addBatch();
 
 						_updatedStructureIds.add(structureId);
 					}
 
-					ps3.setLong(1, structureId);
+					preparedStatement3.setLong(1, structureId);
 
-					try (ResultSet resultSet2 = ps3.executeQuery()) {
+					try (ResultSet resultSet2 =
+							preparedStatement3.executeQuery()) {
+
 						while (resultSet2.next()) {
 							jsonObject = _jsonFactory.createJSONObject(
 								resultSet2.getString("definition"));
@@ -333,11 +337,13 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 								!_updatedStructureVersionIds.contains(
 									structureVersionId)) {
 
-								ps4.setString(1, jsonObject.toString());
+								preparedStatement4.setString(
+									1, jsonObject.toString());
 
-								ps4.setLong(2, structureVersionId);
+								preparedStatement4.setLong(
+									2, structureVersionId);
 
-								ps4.addBatch();
+								preparedStatement4.addBatch();
 
 								_updatedStructureVersionIds.add(
 									structureVersionId);
@@ -346,9 +352,9 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 					}
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 
-				ps4.executeBatch();
+				preparedStatement4.executeBatch();
 			}
 		}
 	}

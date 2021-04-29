@@ -60,12 +60,12 @@ public class KaleoClassNameAndKaleoClassPKUpgradeProcess
 		sb.append(columnName);
 		sb.append(" > 0 ");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			ps.setString(1, kaleoClassName);
+			preparedStatement.setString(1, kaleoClassName);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

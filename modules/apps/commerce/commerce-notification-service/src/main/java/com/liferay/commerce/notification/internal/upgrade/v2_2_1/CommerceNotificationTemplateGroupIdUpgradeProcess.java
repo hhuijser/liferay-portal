@@ -47,7 +47,7 @@ public class CommerceNotificationTemplateGroupIdUpgradeProcess
 				"select commerceNotificationTemplateId, groupId from " +
 					"CommerceNotificationTemplate")) {
 
-			PreparedStatement ps = null;
+			PreparedStatement preparedStatement = null;
 
 			while (resultSet.next()) {
 				long groupId = resultSet.getLong("groupId");
@@ -62,14 +62,14 @@ public class CommerceNotificationTemplateGroupIdUpgradeProcess
 				long commerceNotificationTemplateId = resultSet.getLong(
 					"commerceNotificationTemplateId");
 
-				ps = connection.prepareStatement(
+				preparedStatement = connection.prepareStatement(
 					"update CommerceNotificationTemplate set groupId = ? " +
 						"where commerceNotificationTemplateId = ?");
 
-				ps.setLong(1, channelGroupId);
-				ps.setLong(2, commerceNotificationTemplateId);
+				preparedStatement.setLong(1, channelGroupId);
+				preparedStatement.setLong(2, commerceNotificationTemplateId);
 
-				ps.executeUpdate();
+				preparedStatement.executeUpdate();
 			}
 		}
 	}

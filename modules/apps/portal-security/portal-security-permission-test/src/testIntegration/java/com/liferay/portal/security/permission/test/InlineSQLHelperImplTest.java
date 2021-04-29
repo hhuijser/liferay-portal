@@ -464,9 +464,10 @@ public class InlineSQLHelperImplTest {
 
 	private void _assertValidSql(String sql) throws Exception {
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(sql)) {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 

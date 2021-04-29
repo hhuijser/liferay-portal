@@ -36,23 +36,24 @@ public class UpgradeSchema extends UpgradeProcess {
 	}
 
 	private void _copyCompanyKey() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select companyId, key_ from Company");
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"insert into CompanyInfo (companyInfoId, companyId, " +
-						"key_) values (?, ?, ?)"))) {
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"insert into CompanyInfo (companyInfoId, companyId, " +
+							"key_) values (?, ?, ?)"))) {
 
 			while (resultSet.next()) {
-				ps2.setLong(1, increment());
-				ps2.setLong(2, resultSet.getLong(1));
-				ps2.setString(3, resultSet.getString(2));
+				preparedStatement2.setLong(1, increment());
+				preparedStatement2.setLong(2, resultSet.getLong(1));
+				preparedStatement2.setString(3, resultSet.getString(2));
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

@@ -43,25 +43,25 @@ public class UpgradeListType extends UpgradeProcess {
 		sb.append("and type_ = ");
 		sb.append(StringUtil.quote(type));
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			ResultSet resultSet = ps.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
 				return;
 			}
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"insert into ListType (listTypeId, name, type_) values (?, " +
 					"?, ?)")) {
 
-			ps.setLong(1, increment(ListType.class.getName()));
-			ps.setString(2, name);
-			ps.setString(3, type);
+			preparedStatement.setLong(1, increment(ListType.class.getName()));
+			preparedStatement.setString(2, name);
+			preparedStatement.setString(3, type);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {

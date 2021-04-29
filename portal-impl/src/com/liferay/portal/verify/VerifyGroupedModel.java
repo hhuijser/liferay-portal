@@ -106,14 +106,14 @@ public class VerifyGroupedModel extends VerifyProcess {
 			long primKey)
 		throws Exception {
 
-		try (PreparedStatement ps = con.prepareStatement(
+		try (PreparedStatement preparedStatement = con.prepareStatement(
 				StringBundler.concat(
 					"select groupId from ", tableName, " where ",
 					primaryKeColumnName, " = ?"))) {
 
-			ps.setLong(1, primKey);
+			preparedStatement.setLong(1, primKey);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return resultSet.getLong("groupId");
 				}
@@ -154,8 +154,9 @@ public class VerifyGroupedModel extends VerifyProcess {
 			sb.append(" where groupId is null");
 
 			try (Connection con = DataAccess.getConnection();
-				PreparedStatement ps1 = con.prepareStatement(sb.toString());
-				ResultSet resultSet = ps1.executeQuery()) {
+				PreparedStatement preparedStatement1 = con.prepareStatement(
+					sb.toString());
+				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				sb = new StringBundler(5);
 
@@ -165,7 +166,7 @@ public class VerifyGroupedModel extends VerifyProcess {
 				sb.append(verifiableGroupedModel.getPrimaryKeyColumnName());
 				sb.append(" = ?");
 
-				try (PreparedStatement ps2 =
+				try (PreparedStatement preparedStatement2 =
 						AutoBatchPreparedStatementUtil.autoBatch(
 							con.prepareStatement(sb.toString()))) {
 
@@ -184,17 +185,17 @@ public class VerifyGroupedModel extends VerifyProcess {
 							continue;
 						}
 
-						ps2.setLong(1, groupId);
+						preparedStatement2.setLong(1, groupId);
 
 						long primKey = resultSet.getLong(
 							verifiableGroupedModel.getPrimaryKeyColumnName());
 
-						ps2.setLong(2, primKey);
+						preparedStatement2.setLong(2, primKey);
 
-						ps2.addBatch();
+						preparedStatement2.addBatch();
 					}
 
-					ps2.executeBatch();
+					preparedStatement2.executeBatch();
 				}
 			}
 		}

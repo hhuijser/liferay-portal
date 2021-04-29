@@ -46,9 +46,9 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 		sb.append(" and groupId in (select groupId from Group_ where site = ");
 		sb.append("[$FALSE$])");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(sb.toString()));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long layoutPageTemplateEntryId = resultSet.getLong(
@@ -83,9 +83,9 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 			sb.append(newName);
 			sb.append("'");
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					sb.toString());
-				ResultSet resultSet = ps.executeQuery()) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(sb.toString());
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				if (resultSet.next() && (resultSet.getInt(1) > 0)) {
 					newName = name + i;

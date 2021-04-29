@@ -121,8 +121,8 @@ public class PostgreSQLDB extends BaseDB {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet resultSet = ps.executeQuery()) {
+		try (PreparedStatement preparedStatement = con.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				String indexName = resultSet.getString("indexname");

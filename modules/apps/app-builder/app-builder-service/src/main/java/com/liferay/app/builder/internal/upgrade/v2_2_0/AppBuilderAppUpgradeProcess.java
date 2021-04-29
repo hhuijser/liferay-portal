@@ -49,28 +49,30 @@ public class AppBuilderAppUpgradeProcess extends UpgradeProcess {
 				AppBuilderAppTable.class,
 				new AlterTableAddColumn("ddlRecordSetId", "LONG"));
 
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					"select appBuilderAppId, ddmStructureId, groupId from " +
-						"AppBuilderApp");
-				PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(
+						"select appBuilderAppId, ddmStructureId, groupId from " +
+							"AppBuilderApp");
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						"update AppBuilderApp set ddlRecordSetId = ? where " +
 							"appBuilderAppId = ?");
-				ResultSet resultSet = ps1.executeQuery()) {
+				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				while (resultSet.next()) {
-					ps2.setLong(
+					preparedStatement2.setLong(
 						1,
 						_getDDLRecordSetId(
 							resultSet.getLong("ddmStructureId"),
 							resultSet.getLong("groupId")));
-					ps2.setLong(2, resultSet.getLong("appBuilderAppId"));
+					preparedStatement2.setLong(
+						2, resultSet.getLong("appBuilderAppId"));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

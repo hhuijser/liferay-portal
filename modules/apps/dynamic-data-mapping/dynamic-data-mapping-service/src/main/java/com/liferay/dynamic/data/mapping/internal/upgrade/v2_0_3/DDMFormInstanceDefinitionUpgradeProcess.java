@@ -37,32 +37,34 @@ public class DDMFormInstanceDefinitionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select structureId, definition from DDMStructure where " +
 					"classNameId = ?");
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMStructure set definition = ? where " +
 						"structureId = ?")) {
 
-			ps1.setLong(1, PortalUtil.getClassNameId(DDMFormInstance.class));
+			preparedStatement1.setLong(
+				1, PortalUtil.getClassNameId(DDMFormInstance.class));
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					String definition = resultSet.getString("definition");
 
-					ps2.setString(1, updateFieldsToLocalizable(definition));
+					preparedStatement2.setString(
+						1, updateFieldsToLocalizable(definition));
 
 					long structureId = resultSet.getLong("structureId");
 
-					ps2.setLong(2, structureId);
+					preparedStatement2.setLong(2, structureId);
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

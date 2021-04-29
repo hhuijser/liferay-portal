@@ -89,11 +89,12 @@ public class KBArticleUpgradeProcess extends UpgradeProcess {
 			String selectSQL, String updateSQL)
 		throws SQLException {
 
-		try (PreparedStatement ps1 =
+		try (PreparedStatement preparedStatement1 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateSQL);
-			PreparedStatement ps2 = connection.prepareStatement(selectSQL);
-			ResultSet resultSet = ps2.executeQuery()) {
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
+				selectSQL);
+			ResultSet resultSet = preparedStatement2.executeQuery()) {
 
 			int count = 0;
 
@@ -104,14 +105,15 @@ public class KBArticleUpgradeProcess extends UpgradeProcess {
 
 				String urlTitle = resultSet.getString(2);
 
-				ps1.setString(1, _getUniqueUrlTitle(urlTitle, count));
+				preparedStatement1.setString(
+					1, _getUniqueUrlTitle(urlTitle, count));
 
-				ps1.setLong(2, id);
+				preparedStatement1.setLong(2, id);
 
-				ps1.addBatch();
+				preparedStatement1.addBatch();
 			}
 
-			ps1.executeBatch();
+			preparedStatement1.executeBatch();
 
 			if (count > 0) {
 				return true;

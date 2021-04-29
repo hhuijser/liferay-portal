@@ -150,13 +150,14 @@ public abstract class BaseUpgradePortletPreferences
 			rightTableName, StringPool.PERIOD, rightColumnName, sb.toString());
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			try (PreparedStatement ps1 = connection.prepareStatement(sql);
-				PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(sql);
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						"update PortletPreferences set preferences = ? where " +
 							"portletPreferencesId = ?");
-				ResultSet resultSet = ps1.executeQuery()) {
+				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				while (resultSet.next()) {
 					long companyId = resultSet.getLong("companyId");
@@ -171,15 +172,15 @@ public abstract class BaseUpgradePortletPreferences
 						preferences);
 
 					if (!preferences.equals(newPreferences)) {
-						ps2.setString(1, newPreferences);
-						ps2.setLong(
+						preparedStatement2.setString(1, newPreferences);
+						preparedStatement2.setLong(
 							2, resultSet.getLong("portletPreferencesId"));
 
-						ps2.addBatch();
+						preparedStatement2.addBatch();
 					}
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

@@ -29,9 +29,9 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select id_ from Portlet where portletId = '176'");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {
 				removeDuplicatePortletPreferences();
@@ -54,10 +54,10 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 	}
 
 	protected void removeDuplicatePortletPreferences() throws SQLException {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select ownerId, ownerType, plid from PortletPreferences " +
 					"where portletId = '176'");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long ownerId = resultSet.getLong(1);
@@ -82,10 +82,10 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 	}
 
 	protected void removeDuplicateResourcePermissions() throws SQLException {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select companyId, scope, primKey, roleId from " +
 					"ResourcePermission where name = '176'");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long companyId = resultSet.getLong(1);

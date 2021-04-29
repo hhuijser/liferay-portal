@@ -37,20 +37,20 @@ public abstract class BaseUpgradeDBColumnSizeTestCase {
 	@Before
 	public void setUp() throws Exception {
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				getCreateTestTableSQL())) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"drop table TestTable")) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

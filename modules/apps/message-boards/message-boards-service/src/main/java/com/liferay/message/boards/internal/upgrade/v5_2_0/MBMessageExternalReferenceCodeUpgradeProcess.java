@@ -40,25 +40,26 @@ public class MBMessageExternalReferenceCodeUpgradeProcess
 	}
 
 	private void _populateExternalReferenceCode() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select messageId from MBMessage where externalReferenceCode " +
 					"is null or externalReferenceCode = ''");
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update MBMessage set externalReferenceCode = ? where " +
-						"messageId = ?"))) {
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update MBMessage set externalReferenceCode = ? where " +
+							"messageId = ?"))) {
 
 			while (resultSet.next()) {
 				long messageId = resultSet.getLong(1);
 
-				ps2.setString(1, String.valueOf(messageId));
-				ps2.setLong(2, messageId);
+				preparedStatement2.setString(1, String.valueOf(messageId));
+				preparedStatement2.setLong(2, messageId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

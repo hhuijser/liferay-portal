@@ -80,26 +80,26 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 		sb.append("MBDiscussion inner join MBThread on MBDiscussion.threadId ");
 		sb.append("= MBThread.threadId where MBDiscussion.groupId = 0");
 
-		try (PreparedStatement ps1 =
+		try (PreparedStatement preparedStatement1 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update MBDiscussion set groupId = ? where discussionId " +
 						"= ?");
-			PreparedStatement ps2 = connection.prepareStatement(
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				sb.toString())) {
 
-			try (ResultSet resultSet = ps2.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement2.executeQuery()) {
 				while (resultSet.next()) {
 					long groupId = resultSet.getLong(1);
 					long discussionId = resultSet.getLong(2);
 
-					ps1.setLong(1, groupId);
-					ps1.setLong(2, discussionId);
+					preparedStatement1.setLong(1, groupId);
+					preparedStatement1.setLong(2, discussionId);
 
-					ps1.addBatch();
+					preparedStatement1.addBatch();
 				}
 
-				ps1.executeBatch();
+				preparedStatement1.executeBatch();
 			}
 		}
 	}

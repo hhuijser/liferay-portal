@@ -54,8 +54,9 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 
 		try (Statement s = connection.createStatement();
 			ResultSet resultSet = s.executeQuery(sb1.toString());
-			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(sb2.toString()))) {
+			PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(sb2.toString()))) {
 
 			while (resultSet.next()) {
 				long mvccVersion = resultSet.getLong("mvccVersion");
@@ -68,24 +69,24 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 				long actionIds = resultSet.getLong("actionIds");
 				long viewActionId = resultSet.getLong("viewActionId");
 
-				ps.setLong(1, mvccVersion);
-				ps.setLong(2, increment());
-				ps.setLong(3, companyId);
-				ps.setString(
+				preparedStatement.setLong(1, mvccVersion);
+				preparedStatement.setLong(2, increment());
+				preparedStatement.setLong(3, companyId);
+				preparedStatement.setString(
 					4,
 					LayoutPageTemplateAdminPortletKeys.LAYOUT_PAGE_TEMPLATES);
-				ps.setLong(5, scope);
-				ps.setString(6, primKey);
-				ps.setString(7, primKeyId);
-				ps.setLong(8, roleId);
-				ps.setLong(9, ownerId);
-				ps.setLong(10, actionIds);
-				ps.setLong(11, viewActionId);
+				preparedStatement.setLong(5, scope);
+				preparedStatement.setString(6, primKey);
+				preparedStatement.setString(7, primKeyId);
+				preparedStatement.setLong(8, roleId);
+				preparedStatement.setLong(9, ownerId);
+				preparedStatement.setLong(10, actionIds);
+				preparedStatement.setLong(11, viewActionId);
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

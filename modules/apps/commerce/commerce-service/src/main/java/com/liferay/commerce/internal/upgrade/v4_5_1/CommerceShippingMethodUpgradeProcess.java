@@ -46,7 +46,7 @@ public class CommerceShippingMethodUpgradeProcess
 				"select commerceShippingMethodId, groupId from " +
 					"CommerceShippingMethod")) {
 
-			PreparedStatement ps = null;
+			PreparedStatement preparedStatement = null;
 
 			while (resultSet.next()) {
 				long groupId = resultSet.getLong("groupId");
@@ -61,14 +61,14 @@ public class CommerceShippingMethodUpgradeProcess
 				long commerceShippingMethodId = resultSet.getLong(
 					"commerceShippingMethodId");
 
-				ps = connection.prepareStatement(
+				preparedStatement = connection.prepareStatement(
 					"update CommerceShippingMethod set groupId = ? where " +
 						"commerceShippingMethodId = ?");
 
-				ps.setLong(1, channelGroupId);
-				ps.setLong(2, commerceShippingMethodId);
+				preparedStatement.setLong(1, channelGroupId);
+				preparedStatement.setLong(2, commerceShippingMethodId);
 
-				ps.executeUpdate();
+				preparedStatement.executeUpdate();
 			}
 		}
 	}

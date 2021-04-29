@@ -36,20 +36,20 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 			int workflowDefinitionVersion)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update KaleoProcess set workflowDefinitionName = ?, " +
 					"workflowDefinitionVersion = ? where kaleoProcessId = ?")) {
 
-			ps.setString(1, workflowDefinitioName);
-			ps.setInt(2, workflowDefinitionVersion);
-			ps.setLong(3, kaleoProcessId);
+			preparedStatement.setString(1, workflowDefinitioName);
+			preparedStatement.setInt(2, workflowDefinitionVersion);
+			preparedStatement.setLong(3, kaleoProcessId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	protected void updateWorkflowDefinition() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select classPK, workflowDefinitionName, " +
 					"workflowDefinitionVersion from WorkflowDefinitionLink " +
 						"where classNameId = ?")) {
@@ -57,9 +57,9 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 			long kaleoProcessClassNameId = PortalUtil.getClassNameId(
 				KaleoProcess.class);
 
-			ps.setLong(1, kaleoProcessClassNameId);
+			preparedStatement.setLong(1, kaleoProcessClassNameId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long kaleoProcessId = resultSet.getLong("classPK");
 					String workflowDefinitionName = resultSet.getString(

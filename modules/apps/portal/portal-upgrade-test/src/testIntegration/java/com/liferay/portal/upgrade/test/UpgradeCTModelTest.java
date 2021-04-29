@@ -91,9 +91,9 @@ public class UpgradeCTModelTest {
 		upgradeCTModel.upgrade();
 
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select * from UpgradeCTModelTest");
-			ResultSet resultSet1 = ps.executeQuery()) {
+			ResultSet resultSet1 = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet1.next());
 
@@ -150,9 +150,9 @@ public class UpgradeCTModelTest {
 		upgradeCTModel.upgrade();
 
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select * from UpgradeCTModelMappingTest");
-			ResultSet resultSet1 = ps.executeQuery()) {
+			ResultSet resultSet1 = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet1.next());
 

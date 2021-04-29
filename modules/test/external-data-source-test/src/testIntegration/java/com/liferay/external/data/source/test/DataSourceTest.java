@@ -51,10 +51,10 @@ public class DataSourceTest {
 	@Test
 	public void testUpdate() throws Exception {
 		try (Connection con = _dataSource.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"delete from TestEntity")) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 
 		long pk = RandomTestUtil.nextLong();
@@ -68,17 +68,17 @@ public class DataSourceTest {
 		DataSource portalDataSource = InfrastructureUtil.getDataSource();
 
 		try (Connection con = portalDataSource.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select * from TestEntity");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertFalse(resultSet.next());
 		}
 
 		try (Connection con = _dataSource.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select * from TestEntity");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 			Assert.assertEquals(pk, resultSet.getLong("id_"));

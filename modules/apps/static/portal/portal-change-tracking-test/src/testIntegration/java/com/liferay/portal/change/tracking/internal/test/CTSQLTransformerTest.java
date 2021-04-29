@@ -1105,12 +1105,12 @@ public class CTSQLTransformerTest {
 		PrincipalThreadLocal.setName(userId);
 
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				_getSQL(inputSQLFile, expectedOutputSQLFile, ctCollectionId))) {
 
-			preparedStatementUnsafeConsumer.accept(ps);
+			preparedStatementUnsafeConsumer.accept(preparedStatement);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				for (UnsafeConsumer<ResultSet, Exception> unsafeConsumer :
 						resultSetUnsafeConsumers) {
 
@@ -1134,8 +1134,9 @@ public class CTSQLTransformerTest {
 		throws Exception {
 
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(sql);
-			ResultSet resultSet = ps.executeQuery()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql);
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			unsafeConsumer.accept(resultSet);
 		}
@@ -1167,12 +1168,12 @@ public class CTSQLTransformerTest {
 		PrincipalThreadLocal.setName(userId);
 
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				_getSQL(inputSQLFile, expectedOutputSQLFile, ctCollectionId))) {
 
-			preparedStatementUnsafeConsumer.accept(ps);
+			preparedStatementUnsafeConsumer.accept(preparedStatement);
 
-			Assert.assertEquals(1, ps.executeUpdate());
+			Assert.assertEquals(1, preparedStatement.executeUpdate());
 		}
 		finally {
 			CompanyThreadLocal.setCompanyId(originalCompanyId);

@@ -49,8 +49,9 @@ public class LayoutPermissionsUpgradeProcess extends UpgradeProcess {
 		String sql = SQLTransformer.transform(sb.toString());
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(sql);
-			ResultSet resultSet = ps.executeQuery()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql);
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long companyId = resultSet.getLong("companyId");

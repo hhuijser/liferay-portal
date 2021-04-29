@@ -76,11 +76,11 @@ public class SQLEscapedConcatTest {
 	@Test
 	public void testConcatWithEscapedQuotes() throws Exception {
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				SQLTransformer.transform(
 					"select CONCAT('This is a \\'', data, '\\' for escaped " +
 						"quotes') from SQLConcatTest"));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 

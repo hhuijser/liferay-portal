@@ -42,7 +42,7 @@ public class CPDefinitionLinkUpgradeProcess
 			CPDefinitionLinkModelImpl.TABLE_NAME, "CPDefinitionId1",
 			"CPDefinitionId LONG");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update CPDefinitionLink set CProductId = ? where " +
 					"CPDefinitionId2 = ?");
 			Statement s = connection.createStatement();
@@ -52,11 +52,11 @@ public class CPDefinitionLinkUpgradeProcess
 			while (resultSet.next()) {
 				long cpDefinitionId2 = resultSet.getLong("CPDefinitionId2");
 
-				ps.setLong(1, _getCProductId(cpDefinitionId2));
+				preparedStatement.setLong(1, _getCProductId(cpDefinitionId2));
 
-				ps.setLong(2, cpDefinitionId2);
+				preparedStatement.setLong(2, cpDefinitionId2);
 
-				ps.execute();
+				preparedStatement.execute();
 			}
 		}
 

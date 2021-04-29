@@ -149,11 +149,12 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 				"select layoutPageTemplateEntryId, " +
 					"layoutPageTemplateEntryKey, layoutPrototypeId, name " +
 						"from LayoutPageTemplateEntry");
-			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update LayoutPageTemplateEntry set " +
-						"layoutPageTemplateEntryKey = ?, name = ? where " +
-							"layoutPageTemplateEntryId = ?"))) {
+			PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update LayoutPageTemplateEntry set " +
+							"layoutPageTemplateEntryKey = ?, name = ? where " +
+								"layoutPageTemplateEntryId = ?"))) {
 
 			while (resultSet.next()) {
 				String name = resultSet.getString("name");
@@ -168,7 +169,7 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 				String layoutPageTemplateEntryKey = _generateValidString(
 					resultSet.getString("layoutPageTemplateEntryKey"));
 
-				ps.setString(
+				preparedStatement.setString(
 					1,
 					_getUniqueColumnValue(
 						layoutPageTemplateEntryKey,
@@ -176,18 +177,19 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 				String newName = _generateValidString(name);
 
-				ps.setString(2, _getUniqueColumnValue(newName, "name"));
+				preparedStatement.setString(
+					2, _getUniqueColumnValue(newName, "name"));
 
-				ps.setLong(3, layoutPageTemplateEntryId);
+				preparedStatement.setLong(3, layoutPageTemplateEntryId);
 
 				long layoutPrototypeId = resultSet.getLong("layoutPrototypeId");
 
 				_updateLayoutPrototypeName(layoutPrototypeId, name, newName);
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

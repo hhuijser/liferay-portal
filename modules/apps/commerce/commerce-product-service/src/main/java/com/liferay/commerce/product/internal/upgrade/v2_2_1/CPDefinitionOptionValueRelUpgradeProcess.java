@@ -35,7 +35,7 @@ public class CPDefinitionOptionValueRelUpgradeProcess extends UpgradeProcess {
 			"update CPDefinitionOptionValueRel set groupId = ? WHERE " +
 				"CPDefinitionOptionRelId = ?";
 
-		try (PreparedStatement ps =
+		try (PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateCPDefinitionOptionValueRelSQL);
 			Statement s1 = connection.createStatement(
@@ -44,13 +44,14 @@ public class CPDefinitionOptionValueRelUpgradeProcess extends UpgradeProcess {
 				selectCPDefinitionOptionRelSQL)) {
 
 			while (resultSet1.next()) {
-				ps.setLong(1, resultSet1.getLong("groupId"));
-				ps.setLong(2, resultSet1.getLong("CPDefinitionOptionRelId"));
+				preparedStatement.setLong(1, resultSet1.getLong("groupId"));
+				preparedStatement.setLong(
+					2, resultSet1.getLong("CPDefinitionOptionRelId"));
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

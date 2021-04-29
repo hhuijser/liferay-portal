@@ -47,40 +47,42 @@ public class DDMStructureIndexTypeUpgradeProcess extends UpgradeProcess {
 		sb.append("select DDMStructure.definition, DDMStructure.structureId ");
 		sb.append("from DDMStructure where structureKey = ? ");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMStructure set definition = ? where " +
 						"structureId = ?");
-			PreparedStatement ps3 =
+			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMStructureVersion set definition = ? where " +
 						"structureId = ?")) {
 
-			ps1.setString(1, RawMetadataProcessor.TIKA_RAW_METADATA);
+			preparedStatement1.setString(
+				1, RawMetadataProcessor.TIKA_RAW_METADATA);
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					String newDefinition = _upgradeIndexType(
 						resultSet.getString(1));
 
-					ps2.setString(1, newDefinition);
+					preparedStatement2.setString(1, newDefinition);
 
-					ps2.setLong(2, resultSet.getLong(2));
+					preparedStatement2.setLong(2, resultSet.getLong(2));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 
-					ps3.setString(1, newDefinition);
+					preparedStatement3.setString(1, newDefinition);
 
-					ps3.setLong(2, resultSet.getLong(2));
+					preparedStatement3.setLong(2, resultSet.getLong(2));
 
-					ps3.addBatch();
+					preparedStatement3.addBatch();
 				}
 
-				ps2.executeBatch();
-				ps3.executeBatch();
+				preparedStatement2.executeBatch();
+				preparedStatement3.executeBatch();
 			}
 		}
 	}

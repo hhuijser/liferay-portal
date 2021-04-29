@@ -75,13 +75,13 @@ public abstract class BaseUpgradeServiceModuleRelease extends UpgradeProcess {
 			Connection connection, String servletContextName)
 		throws SQLException {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select buildNumber from Release_ where servletContextName = " +
 					"?")) {
 
-			ps.setString(1, servletContextName);
+			preparedStatement.setString(1, servletContextName);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return resultSet.getString("buildNumber");
 				}
@@ -96,13 +96,13 @@ public abstract class BaseUpgradeServiceModuleRelease extends UpgradeProcess {
 			return false;
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select serviceComponentId from ServiceComponent where " +
 					"buildNamespace = ?")) {
 
-			ps.setString(1, getNamespace());
+			preparedStatement.setString(1, getNamespace());
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return true;
 				}
@@ -128,15 +128,15 @@ public abstract class BaseUpgradeServiceModuleRelease extends UpgradeProcess {
 	}
 
 	private void _updateRelease(String schemaVersion) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update Release_ set servletContextName = ?, schemaVersion = " +
 					"? where servletContextName = ?")) {
 
-			ps.setString(1, getNewBundleSymbolicName());
-			ps.setString(2, schemaVersion);
-			ps.setString(3, getOldBundleSymbolicName());
+			preparedStatement.setString(1, getNewBundleSymbolicName());
+			preparedStatement.setString(2, schemaVersion);
+			preparedStatement.setString(3, getOldBundleSymbolicName());
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 

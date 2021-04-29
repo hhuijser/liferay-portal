@@ -76,10 +76,11 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement s = connection.createStatement();
 			ResultSet resultSet = s.executeQuery(sb.toString());
-			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update LayoutPageTemplateEntry set plid = ? where " +
-						"layoutPageTemplateEntryId = ?"))) {
+			PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update LayoutPageTemplateEntry set plid = ? where " +
+							"layoutPageTemplateEntryId = ?"))) {
 
 			while (resultSet.next()) {
 				long userId = resultSet.getLong("userId");
@@ -92,14 +93,14 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 					userId, groupId, name, type, layoutPrototypeId,
 					serviceContext);
 
-				ps.setLong(1, plid);
+				preparedStatement.setLong(1, plid);
 
 				long layoutPageTemplateEntryId = resultSet.getLong(
 					"layoutPageTemplateEntryId");
 
-				ps.setLong(2, layoutPageTemplateEntryId);
+				preparedStatement.setLong(2, layoutPageTemplateEntryId);
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 
 				List<FragmentEntryLink> fragmentEntryLinks =
 					_fragmentEntryLinkLocalService.getFragmentEntryLinks(
@@ -130,7 +131,7 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 				}
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

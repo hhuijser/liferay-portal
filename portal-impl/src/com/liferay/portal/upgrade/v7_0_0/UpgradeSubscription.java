@@ -47,15 +47,15 @@ public class UpgradeSubscription extends UpgradeProcess {
 	protected void addClassName(long classNameId, String className)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"insert into ClassName_ (mvccVersion, classNameId, value) " +
 					"values (?, ?, ?)")) {
 
-			ps.setLong(1, 0);
-			ps.setLong(2, classNameId);
-			ps.setString(3, className);
+			preparedStatement.setLong(1, 0);
+			preparedStatement.setLong(2, classNameId);
+			preparedStatement.setString(3, className);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -119,22 +119,26 @@ public class UpgradeSubscription extends UpgradeProcess {
 			"select ", groupIdSQLParts[1], " from ", tableName, " where ",
 			groupIdSQLParts[2], " = ?");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sql)) {
-			ps1.setLong(1, classPK);
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sql)) {
 
-			try (ResultSet resultSet1 = ps1.executeQuery()) {
+			preparedStatement1.setLong(1, classPK);
+
+			try (ResultSet resultSet1 = preparedStatement1.executeQuery()) {
 				if (resultSet1.next()) {
 					if (tableName.equals("PortletPreferences")) {
 						long plid = resultSet1.getLong("plid");
 
-						try (PreparedStatement ps2 =
+						try (PreparedStatement preparedStatement2 =
 								connection.prepareStatement(
 									"select groupId from Layout where plid = " +
 										"?")) {
 
-							ps2.setLong(1, plid);
+							preparedStatement2.setLong(1, plid);
 
-							try (ResultSet resultSet2 = ps2.executeQuery()) {
+							try (ResultSet resultSet2 =
+									preparedStatement2.executeQuery()) {
+
 								if (resultSet2.next()) {
 									return resultSet2.getLong("groupId");
 								}
@@ -152,12 +156,12 @@ public class UpgradeSubscription extends UpgradeProcess {
 	}
 
 	protected boolean hasGroup(long groupId) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select count(*) from Group_ where groupId = ?")) {
 
-			ps.setLong(1, groupId);
+			preparedStatement.setLong(1, groupId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					int count = resultSet.getInt(1);
 
@@ -189,15 +193,15 @@ public class UpgradeSubscription extends UpgradeProcess {
 
 	protected void updateSubscriptionGroupIds() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select subscriptionId, classNameId, classPK from " +
 					"Subscription");
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update Subscription set groupId = ? where " +
 						"subscriptionId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long classNameId = resultSet.getLong("classNameId");
@@ -210,17 +214,17 @@ public class UpgradeSubscription extends UpgradeProcess {
 				}
 
 				if (groupId != 0) {
-					ps2.setLong(1, groupId);
+					preparedStatement2.setLong(1, groupId);
 
 					long subscriptionId = resultSet.getLong("subscriptionId");
 
-					ps2.setLong(2, subscriptionId);
+					preparedStatement2.setLong(2, subscriptionId);
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

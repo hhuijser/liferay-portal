@@ -47,13 +47,13 @@ public class CalendarUpgradeProcess extends UpgradeProcess {
 	public void updateCalendarTimeZoneId(long calendarId, String timeZoneId)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update Calendar set timeZoneId = ? where calendarId = ?")) {
 
-			ps.setString(1, timeZoneId);
-			ps.setLong(2, calendarId);
+			preparedStatement.setString(1, timeZoneId);
+			preparedStatement.setLong(2, calendarId);
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 
@@ -67,9 +67,9 @@ public class CalendarUpgradeProcess extends UpgradeProcess {
 			sb.append("= CalendarResource.calendarResourceId inner join ");
 			sb.append("User_ on CalendarResource.userId = User_.userId");
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					sb.toString());
-				ResultSet resultSet = ps.executeQuery()) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(sb.toString());
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				long userClassNameId = PortalUtil.getClassNameId(User.class);
 

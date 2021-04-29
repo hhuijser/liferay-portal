@@ -87,10 +87,10 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 		sb1.append(PortletKeys.PREFS_OWNER_TYPE_ORGANIZATION);
 		sb1.append(" and preferences like '%reminderQueries%'");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 =
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update PortalPreferences set preferences = ? where " +
@@ -111,7 +111,7 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 					continue;
 				}
 
-				ps2.setString(
+				preparedStatement2.setString(
 					1,
 					convertDefaultReminderQueries(
 						localizedPreference, preferences));
@@ -119,12 +119,12 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 				long portalPreferencesId = resultSet.getLong(
 					"portalPreferencesId");
 
-				ps2.setLong(2, portalPreferencesId);
+				preparedStatement2.setLong(2, portalPreferencesId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

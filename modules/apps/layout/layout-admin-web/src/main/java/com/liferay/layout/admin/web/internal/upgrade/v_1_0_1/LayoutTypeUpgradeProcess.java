@@ -141,26 +141,26 @@ public class LayoutTypeUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void updateLayout(long plid, String portletId) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update Layout set typeSettings = ?, type_ = ? where plid = " +
 					"?")) {
 
-			ps.setString(1, getTypeSettings(portletId));
-			ps.setString(2, "portlet");
-			ps.setLong(3, plid);
+			preparedStatement.setString(1, getTypeSettings(portletId));
+			preparedStatement.setString(2, "portlet");
+			preparedStatement.setLong(3, plid);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	protected void updateLayouts() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select plid, groupId, companyId, typeSettings from Layout " +
 					"where type_ = ?")) {
 
-			ps.setString(1, "article");
+			preparedStatement.setString(1, "article");
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long plid = resultSet.getLong("plid");
 					long groupId = resultSet.getLong("groupId");

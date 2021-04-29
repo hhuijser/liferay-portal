@@ -52,13 +52,13 @@ public class KBFolderUpgradeProcess extends UpgradeProcess {
 	private String _findUniqueUrlTitle(Connection con, String urlTitle)
 		throws Exception {
 
-		try (PreparedStatement ps = con.prepareStatement(
+		try (PreparedStatement preparedStatement = con.prepareStatement(
 				"select count(*) from KBFolder where KBFolder.urlTitle like " +
 					"?")) {
 
-			ps.setString(1, urlTitle + "%");
+			preparedStatement.setString(1, urlTitle + "%");
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (!resultSet.next()) {
 					return urlTitle;
 				}
@@ -77,10 +77,10 @@ public class KBFolderUpgradeProcess extends UpgradeProcess {
 	private Map<Long, String> _getInitialUrlTitles(Connection con)
 		throws Exception {
 
-		try (PreparedStatement ps = con.prepareStatement(
+		try (PreparedStatement preparedStatement = con.prepareStatement(
 				"select kbFolderId, name from KBFolder where " +
 					"(KBFolder.urlTitle is null) or (KBFolder.urlTitle = '')");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Map<Long, String> urlTitles = new HashMap<>();
 
@@ -126,14 +126,14 @@ public class KBFolderUpgradeProcess extends UpgradeProcess {
 			Connection con, long kbFolderId, String urlTitle)
 		throws Exception {
 
-		try (PreparedStatement ps = con.prepareStatement(
+		try (PreparedStatement preparedStatement = con.prepareStatement(
 				"update KBFolder set KBFolder.urlTitle = ? where " +
 					"KBFolder.kbFolderId = ?")) {
 
-			ps.setString(1, urlTitle);
-			ps.setLong(2, kbFolderId);
+			preparedStatement.setString(1, urlTitle);
+			preparedStatement.setLong(2, kbFolderId);
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 

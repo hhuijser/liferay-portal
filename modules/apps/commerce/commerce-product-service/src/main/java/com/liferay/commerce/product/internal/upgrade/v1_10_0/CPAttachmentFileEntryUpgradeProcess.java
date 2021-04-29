@@ -42,7 +42,7 @@ public class CPAttachmentFileEntryUpgradeProcess extends UpgradeProcess {
 			"update CPAttachmentFileEntry set json = ? where " +
 				"CPAttachmentFileEntryId = ?";
 
-		try (PreparedStatement ps =
+		try (PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateCPAttachmentFileEntrySQL);
 			Statement s1 = connection.createStatement(
@@ -104,13 +104,14 @@ public class CPAttachmentFileEntryUpgradeProcess extends UpgradeProcess {
 					outputJSONArray.put(outputJSONObject);
 				}
 
-				ps.setString(1, outputJSONArray.toString());
-				ps.setLong(2, resultSet1.getLong("CPAttachmentFileEntryId"));
+				preparedStatement.setString(1, outputJSONArray.toString());
+				preparedStatement.setLong(
+					2, resultSet1.getLong("CPAttachmentFileEntryId"));
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

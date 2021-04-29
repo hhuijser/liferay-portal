@@ -31,12 +31,13 @@ public abstract class BaseUpgradeNoninstanceablePortlet extends UpgradeProcess {
 		throws Exception {
 
 		if (ArrayUtil.getLength(oldPortletIds) > 0) {
-			try (PreparedStatement ps = connection.prepareStatement(
-					"select portletId from Portlet where portletId = ?")) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						"select portletId from Portlet where portletId = ?")) {
 
-				ps.setString(1, oldPortletIds[0]);
+				preparedStatement.setString(1, oldPortletIds[0]);
 
-				try (ResultSet resultSet = ps.executeQuery()) {
+				try (ResultSet resultSet = preparedStatement.executeQuery()) {
 					if (resultSet.next()) {
 						portletIds = oldPortletIds;
 					}

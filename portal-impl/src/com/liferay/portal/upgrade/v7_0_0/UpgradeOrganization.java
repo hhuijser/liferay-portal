@@ -35,34 +35,34 @@ public class UpgradeOrganization extends UpgradeProcess {
 	}
 
 	protected void upgradeOrganizationLogoId() throws SQLException {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select groupId, logoId from LayoutSet where logoId > 0 and " +
 					"privateLayout = ?");
-			PreparedStatement ps2 = connection.prepareStatement(
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"select classPK from Group_ where groupId = ?");
-			PreparedStatement ps3 = connection.prepareStatement(
+			PreparedStatement preparedStatement3 = connection.prepareStatement(
 				"update Organization_ set logoId = ? where organizationId = " +
 					"?")) {
 
-			ps1.setBoolean(1, false);
+			preparedStatement1.setBoolean(1, false);
 
-			ResultSet resultSet1 = ps1.executeQuery();
+			ResultSet resultSet1 = preparedStatement1.executeQuery();
 
 			while (resultSet1.next()) {
 				long groupId = resultSet1.getLong("groupId");
 				long logoId = resultSet1.getLong("logoId");
 
-				ps2.setLong(1, groupId);
+				preparedStatement2.setLong(1, groupId);
 
-				ResultSet resultSet2 = ps2.executeQuery();
+				ResultSet resultSet2 = preparedStatement2.executeQuery();
 
 				while (resultSet2.next()) {
 					long classPK = resultSet2.getLong("classPK");
 
-					ps3.setLong(1, logoId);
-					ps3.setLong(2, classPK);
+					preparedStatement3.setLong(1, logoId);
+					preparedStatement3.setLong(2, classPK);
 
-					ps3.executeUpdate();
+					preparedStatement3.executeUpdate();
 				}
 			}
 		}

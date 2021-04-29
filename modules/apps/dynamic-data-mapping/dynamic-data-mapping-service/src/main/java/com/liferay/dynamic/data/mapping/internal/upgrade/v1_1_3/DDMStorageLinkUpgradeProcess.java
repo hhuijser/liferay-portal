@@ -35,7 +35,7 @@ public class DDMStorageLinkUpgradeProcess extends UpgradeProcess {
 				new AlterTableAddColumn("structureVersionId", "LONG"));
 		}
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select distinct DDMStorageLink.structureId, ",
 					"TEMP_TABLE.structureVersionId from DDMStorageLink inner ",
@@ -43,26 +43,27 @@ public class DDMStorageLinkUpgradeProcess extends UpgradeProcess {
 					"structureVersionId from DDMStructureVersion group by ",
 					"DDMStructureVersion.structureId) TEMP_TABLE on ",
 					"DDMStorageLink.structureId = TEMP_TABLE.structureId"));
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMStorageLink set structureVersionId = ? where " +
 						"structureId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long ddmStructureVersionId = resultSet.getLong(
 					"structureVersionId");
 
 				if (ddmStructureVersionId > 0) {
-					ps2.setLong(1, ddmStructureVersionId);
-					ps2.setLong(2, resultSet.getLong("structureId"));
+					preparedStatement2.setLong(1, ddmStructureVersionId);
+					preparedStatement2.setLong(
+						2, resultSet.getLong("structureId"));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

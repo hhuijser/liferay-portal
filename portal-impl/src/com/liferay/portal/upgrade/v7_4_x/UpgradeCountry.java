@@ -37,23 +37,24 @@ public class UpgradeCountry extends UpgradeProcess {
 		runSQLTemplate("update-7.3.0-7.4.0-country.sql", false);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					"select countryId from Country where uuid_ is null");
-				PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(
+						"select countryId from Country where uuid_ is null");
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection.prepareStatement(
 							"update Country set uuid_ = ? where countryId = " +
 								"?"));
-				ResultSet resultSet = ps1.executeQuery()) {
+				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				while (resultSet.next()) {
-					ps2.setString(1, PortalUUIDUtil.generate());
-					ps2.setLong(2, resultSet.getLong(1));
+					preparedStatement2.setString(1, PortalUUIDUtil.generate());
+					preparedStatement2.setLong(2, resultSet.getLong(1));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 
@@ -67,9 +68,9 @@ public class UpgradeCountry extends UpgradeProcess {
 			"User_.defaultUser = [$TRUE$] and Company.webId = ",
 			StringUtil.quote(PropsValues.COMPANY_DEFAULT_WEB_ID));
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(sql));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {
 				companyId = resultSet.getLong(1);

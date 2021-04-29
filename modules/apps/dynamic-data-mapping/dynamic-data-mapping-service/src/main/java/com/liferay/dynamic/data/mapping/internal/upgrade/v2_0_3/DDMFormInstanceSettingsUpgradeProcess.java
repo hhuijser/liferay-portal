@@ -83,9 +83,10 @@ public class DDMFormInstanceSettingsUpgradeProcess extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		String sql = "select formInstanceId, settings_ from DDMFormInstance";
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sql);
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sql);
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMFormInstance set settings_ = ? where " +
@@ -105,15 +106,17 @@ public class DDMFormInstanceSettingsUpgradeProcess extends UpgradeProcess {
 
 					updateSettings(settingsJSONObject);
 
-					ps2.setString(1, settingsJSONObject.toJSONString());
+					preparedStatement2.setString(
+						1, settingsJSONObject.toJSONString());
 
-					ps2.setLong(2, resultSet.getLong("formInstanceId"));
+					preparedStatement2.setLong(
+						2, resultSet.getLong("formInstanceId"));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

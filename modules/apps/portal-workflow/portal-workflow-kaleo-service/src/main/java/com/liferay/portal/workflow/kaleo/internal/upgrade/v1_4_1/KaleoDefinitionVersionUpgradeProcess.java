@@ -39,14 +39,14 @@ import java.util.List;
 public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 
 	protected void addBatch(
-			PreparedStatement ps, long kaleoDefinitionId,
+			PreparedStatement preparedStatement, long kaleoDefinitionId,
 			long kaleoDefinitionVersionId)
 		throws SQLException {
 
-		ps.setLong(1, kaleoDefinitionVersionId);
-		ps.setLong(2, kaleoDefinitionId);
+		preparedStatement.setLong(1, kaleoDefinitionVersionId);
+		preparedStatement.setLong(2, kaleoDefinitionId);
 
-		ps.addBatch();
+		preparedStatement.addBatch();
 	}
 
 	@Override
@@ -65,29 +65,29 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 		throws IOException, SQLException {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select companyId, name, MAX(version) as version from " +
 					"KaleoDefinition group by companyId, name");
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"delete from KaleoDefinition where companyId = ? and " +
 						"name = ? and version < ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long companyId = resultSet.getLong("companyId");
 				String name = resultSet.getString("name");
 				int version = resultSet.getInt("version");
 
-				ps2.setLong(1, companyId);
-				ps2.setString(2, name);
-				ps2.setInt(3, version);
+				preparedStatement2.setLong(1, companyId);
+				preparedStatement2.setString(2, name);
+				preparedStatement2.setInt(3, version);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 
@@ -118,11 +118,12 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 		List<PreparedStatement> preparedStatements = new ArrayList<>(17);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(sb1.toString());
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb1.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString());
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			for (String tableName : _TABLE_NAMES) {
 				if (hasColumn(tableName, "kaleoDefinitionId")) {
@@ -156,26 +157,27 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 
 				long kaleoDefinitionVersionId = increment();
 
-				ps2.setLong(1, kaleoDefinitionVersionId);
+				preparedStatement2.setLong(1, kaleoDefinitionVersionId);
 
-				ps2.setLong(2, groupId);
-				ps2.setLong(3, companyId);
-				ps2.setLong(4, userId);
-				ps2.setString(5, userName);
-				ps2.setLong(6, userId);
-				ps2.setString(7, userName);
-				ps2.setTimestamp(8, modifiedDate);
-				ps2.setTimestamp(9, createDate);
-				ps2.setTimestamp(10, modifiedDate);
-				ps2.setString(11, name);
-				ps2.setString(12, title);
-				ps2.setString(13, description);
-				ps2.setString(14, content);
-				ps2.setString(15, getVersion(version));
-				ps2.setLong(16, startKaleoNodeId);
-				ps2.setInt(17, WorkflowConstants.STATUS_APPROVED);
+				preparedStatement2.setLong(2, groupId);
+				preparedStatement2.setLong(3, companyId);
+				preparedStatement2.setLong(4, userId);
+				preparedStatement2.setString(5, userName);
+				preparedStatement2.setLong(6, userId);
+				preparedStatement2.setString(7, userName);
+				preparedStatement2.setTimestamp(8, modifiedDate);
+				preparedStatement2.setTimestamp(9, createDate);
+				preparedStatement2.setTimestamp(10, modifiedDate);
+				preparedStatement2.setString(11, name);
+				preparedStatement2.setString(12, title);
+				preparedStatement2.setString(13, description);
+				preparedStatement2.setString(14, content);
+				preparedStatement2.setString(15, getVersion(version));
+				preparedStatement2.setLong(16, startKaleoNodeId);
+				preparedStatement2.setInt(
+					17, WorkflowConstants.STATUS_APPROVED);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 
 				for (PreparedStatement preparedStatement : preparedStatements) {
 					addBatch(
@@ -184,7 +186,7 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 				}
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 
 			for (PreparedStatement preparedStatement : preparedStatements) {
 				preparedStatement.executeBatch();

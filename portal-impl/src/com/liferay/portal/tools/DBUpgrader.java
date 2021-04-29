@@ -207,13 +207,13 @@ public class DBUpgrader {
 		throws Exception {
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select " + columnName +
 					" from Release_ where releaseId = ?")) {
 
-			ps.setLong(1, ReleaseConstants.DEFAULT_ID);
+			preparedStatement.setLong(1, ReleaseConstants.DEFAULT_ID);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return resultSet.getInt(columnName);
 				}
@@ -251,33 +251,33 @@ public class DBUpgrader {
 
 	private static void _updateReleaseBuildInfo() throws Exception {
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"update Release_ set buildNumber = ?, buildDate = ? where " +
 					"releaseId = ?")) {
 
-			ps.setInt(1, ReleaseInfo.getParentBuildNumber());
+			preparedStatement.setInt(1, ReleaseInfo.getParentBuildNumber());
 
 			java.util.Date buildDate = ReleaseInfo.getBuildDate();
 
-			ps.setDate(2, new Date(buildDate.getTime()));
+			preparedStatement.setDate(2, new Date(buildDate.getTime()));
 
-			ps.setLong(3, ReleaseConstants.DEFAULT_ID);
+			preparedStatement.setLong(3, ReleaseConstants.DEFAULT_ID);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	private static void _updateReleaseState(int state) throws Exception {
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"update Release_ set modifiedDate = ?, state_ = ? where " +
 					"releaseId = ?")) {
 
-			ps.setDate(1, new Date(System.currentTimeMillis()));
-			ps.setInt(2, state);
-			ps.setLong(3, ReleaseConstants.DEFAULT_ID);
+			preparedStatement.setDate(1, new Date(System.currentTimeMillis()));
+			preparedStatement.setInt(2, state);
+			preparedStatement.setLong(3, ReleaseConstants.DEFAULT_ID);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

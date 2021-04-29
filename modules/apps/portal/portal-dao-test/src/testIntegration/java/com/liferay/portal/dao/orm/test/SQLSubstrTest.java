@@ -90,9 +90,10 @@ public class SQLSubstrTest {
 		sql = SQLTransformer.transform(sql);
 
 		try (Connection connection = DataAccess.getConnection();
-			PreparedStatement ps = connection.prepareStatement(sql)) {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ResultSet resultSet = ps.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 
 			Assert.assertNotNull(resultSet.next());
 

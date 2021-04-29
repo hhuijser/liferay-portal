@@ -226,8 +226,9 @@ public class UpgradeJournalArticles extends BasePortletIdUpgradeProcess {
 		sb.append(oldRootPortletId);
 		sb.append("_USER_%_INSTANCE_%'");
 
-		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet resultSet = ps.executeQuery()) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long portletPreferencesId = resultSet.getLong(

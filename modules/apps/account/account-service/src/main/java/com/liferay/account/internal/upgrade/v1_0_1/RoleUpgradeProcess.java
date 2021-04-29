@@ -45,25 +45,25 @@ public class RoleUpgradeProcess extends UpgradeProcess {
 			sb.append(" and Role_.type_ = ");
 			sb.append(RoleConstants.TYPE_PROVIDER);
 
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					sb.toString());
-				PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(sb.toString());
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection.prepareStatement(
 							"update Role_ set type_ = " +
 								RoleConstants.TYPE_ACCOUNT +
 									" where roleId = ?"))) {
 
-				try (ResultSet resultSet = ps1.executeQuery()) {
+				try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 					while (resultSet.next()) {
 						long roleId = resultSet.getLong("roleId");
 
-						ps2.setLong(1, roleId);
+						preparedStatement2.setLong(1, roleId);
 
-						ps2.addBatch();
+						preparedStatement2.addBatch();
 					}
 
-					ps2.executeBatch();
+					preparedStatement2.executeBatch();
 				}
 			}
 		}

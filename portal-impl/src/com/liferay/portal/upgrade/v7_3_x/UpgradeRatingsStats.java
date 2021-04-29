@@ -39,16 +39,16 @@ public class UpgradeRatingsStats extends UpgradeProcess {
 				new AlterTableAddColumn("modifiedDate", "DATE null"));
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				_getUpdateSQL("createDate", "min"))) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				_getUpdateSQL("modifiedDate", "max"))) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

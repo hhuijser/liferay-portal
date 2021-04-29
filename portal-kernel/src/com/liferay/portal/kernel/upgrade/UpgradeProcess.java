@@ -611,12 +611,13 @@ public abstract class UpgradeProcess
 			String primaryKeyConstraintName = null;
 
 			if (dbType == DBType.SQLSERVER) {
-				try (PreparedStatement ps = connection.prepareStatement(
-						StringBundler.concat(
-							"select name from sys.key_constraints where type ",
-							"= 'PK' and OBJECT_NAME(parent_object_id) = '",
-							normalizedTableName, "'"));
-					ResultSet resultSet = ps.executeQuery()) {
+				try (PreparedStatement preparedStatement =
+						connection.prepareStatement(
+							StringBundler.concat(
+								"select name from sys.key_constraints where type ",
+								"= 'PK' and OBJECT_NAME(parent_object_id) = '",
+								normalizedTableName, "'"));
+					ResultSet resultSet = preparedStatement.executeQuery()) {
 
 					if (resultSet.next()) {
 						primaryKeyConstraintName = resultSet.getString("name");
@@ -624,9 +625,10 @@ public abstract class UpgradeProcess
 				}
 			}
 			else {
-				try (PreparedStatement ps = connection.prepareStatement(
-						"sp_helpconstraint " + normalizedTableName);
-					ResultSet resultSet = ps.executeQuery()) {
+				try (PreparedStatement preparedStatement =
+						connection.prepareStatement(
+							"sp_helpconstraint " + normalizedTableName);
+					ResultSet resultSet = preparedStatement.executeQuery()) {
 
 					while (resultSet.next()) {
 						String definition = resultSet.getString("definition");

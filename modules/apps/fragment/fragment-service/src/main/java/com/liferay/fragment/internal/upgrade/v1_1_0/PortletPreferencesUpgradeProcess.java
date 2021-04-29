@@ -64,18 +64,20 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradePortletPreferences() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select groupId, companyId, classPK, namespace from " +
 					"FragmentEntryLink");
-			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"delete from PortletPreferences where " +
-						"portletPreferencesId = ?"));
-			PreparedStatement ps3 = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update PortletPreferences set plid = ? where " +
-						"portletPreferencesId = ?"));
-			ResultSet resultSet = ps1.executeQuery()) {
+			PreparedStatement preparedStatement2 =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"delete from PortletPreferences where " +
+							"portletPreferencesId = ?"));
+			PreparedStatement preparedStatement3 =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update PortletPreferences set plid = ? where " +
+							"portletPreferencesId = ?"));
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long groupId = resultSet.getLong("groupId");
@@ -123,30 +125,35 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 
 					if (groupPortletPreferencesId != null) {
 						if (companyPortletPreferencesId != null) {
-							ps2.setLong(1, companyPortletPreferencesId);
-							ps2.addBatch();
+							preparedStatement2.setLong(
+								1, companyPortletPreferencesId);
+							preparedStatement2.addBatch();
 						}
 
 						if (layoutPortletPreferencesId != null) {
-							ps2.setLong(1, layoutPortletPreferencesId);
-							ps2.addBatch();
+							preparedStatement2.setLong(
+								1, layoutPortletPreferencesId);
+							preparedStatement2.addBatch();
 						}
 
-						ps3.setLong(1, classPK);
-						ps3.setLong(2, groupPortletPreferencesId);
+						preparedStatement3.setLong(1, classPK);
+						preparedStatement3.setLong(
+							2, groupPortletPreferencesId);
 
-						ps3.addBatch();
+						preparedStatement3.addBatch();
 					}
 					else if (companyPortletPreferencesId != null) {
 						if (layoutPortletPreferencesId != null) {
-							ps2.setLong(1, layoutPortletPreferencesId);
-							ps2.addBatch();
+							preparedStatement2.setLong(
+								1, layoutPortletPreferencesId);
+							preparedStatement2.addBatch();
 						}
 
-						ps3.setLong(1, classPK);
-						ps3.setLong(2, companyPortletPreferencesId);
+						preparedStatement3.setLong(1, classPK);
+						preparedStatement3.setLong(
+							2, companyPortletPreferencesId);
 
-						ps3.addBatch();
+						preparedStatement3.addBatch();
 					}
 				}
 				catch (Exception exception) {
@@ -154,9 +161,9 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 				}
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 
-			ps3.executeBatch();
+			preparedStatement3.executeBatch();
 		}
 	}
 
@@ -169,8 +176,9 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 		sb.append(LayoutConstants.TYPE_CONTROL_PANEL);
 		sb.append("'");
 
-		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet resultSet = ps.executeQuery()) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				String groupKey = resultSet.getString("groupKey");
@@ -211,8 +219,9 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 		sb.append(companyControlPanelPlid);
 		sb.append(")");
 
-		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet resultSet = ps.executeQuery()) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long portletPreferencesId = resultSet.getLong(

@@ -124,13 +124,14 @@ public class UpgradeCalendarResourceTest {
 		throws SQLException {
 
 		try (Connection con = DataAccess.getConnection()) {
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select userId from CalendarResource where " +
 					"calendarResourceId = ?");
 
-			ps.setLong(1, calendarResource.getCalendarResourceId());
+			preparedStatement.setLong(
+				1, calendarResource.getCalendarResourceId());
 
-			ResultSet resultSet = ps.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 
 			resultSet.next();
 
@@ -140,12 +141,12 @@ public class UpgradeCalendarResourceTest {
 
 	protected long getCalendarUserId(Calendar calendar) throws SQLException {
 		try (Connection con = DataAccess.getConnection()) {
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select userId from Calendar where calendarId = ?");
 
-			ps.setLong(1, calendar.getCalendarId());
+			preparedStatement.setLong(1, calendar.getCalendarId());
 
-			ResultSet resultSet = ps.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 
 			resultSet.next();
 

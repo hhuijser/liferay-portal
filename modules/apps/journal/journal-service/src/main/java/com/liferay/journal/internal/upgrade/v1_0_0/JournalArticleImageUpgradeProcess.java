@@ -38,9 +38,10 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 		sb.append("(JournalArticleImage.articleImageId = Image.imageId))");
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(sb.toString())) {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sb.toString())) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -55,13 +56,13 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 
 	protected void updateJournalArticleImagesInstanceId() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select articleId, elName from JournalArticleImage where " +
 					"(elInstanceId = '' or elInstanceId is null) group by " +
 						"articleId, elName");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
-			try (PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection.prepareStatement(
 							"update JournalArticleImage set elInstanceId = ? " +
@@ -71,25 +72,25 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 					String articleId = resultSet.getString(1);
 					String elName = resultSet.getString(2);
 
-					ps2.setString(1, StringUtil.randomString(4));
-					ps2.setString(2, articleId);
-					ps2.setString(3, elName);
+					preparedStatement2.setString(1, StringUtil.randomString(4));
+					preparedStatement2.setString(2, articleId);
+					preparedStatement2.setString(3, elName);
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}
 
 	protected void updateJournalArticleImagesName() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select articleImageId, elName from JournalArticleImage");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
-			try (PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection.prepareStatement(
 							"update JournalArticleImage set elName = ? where " +
@@ -110,13 +111,14 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 						continue;
 					}
 
-					ps2.setString(1, elName.substring(0, lastIndexOf));
-					ps2.setLong(2, resultSet.getLong(1));
+					preparedStatement2.setString(
+						1, elName.substring(0, lastIndexOf));
+					preparedStatement2.setLong(2, resultSet.getLong(1));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

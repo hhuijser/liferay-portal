@@ -195,8 +195,9 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 		List<PreparedStatement> preparedStatements = new ArrayList<>(18);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(sb1.toString());
-			ResultSet resultSet = ps.executeQuery()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sb1.toString());
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			for (String tableName : _TABLE_NAMES) {
 				StringBundler sb2 = new StringBundler(4);
@@ -216,20 +217,22 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 				long kaleoDefinitionVersionId = resultSet.getLong(
 					"kaleoDefinitionVersionId");
 
-				for (PreparedStatement preparedStatement : preparedStatements) {
+				for (PreparedStatement curPreparedStatement :
+						preparedStatements) {
+
 					addBatch(
-						preparedStatement, kaleoDefinitionId,
+						curPreparedStatement, kaleoDefinitionId,
 						kaleoDefinitionVersionId);
 				}
 			}
 
-			for (PreparedStatement preparedStatement : preparedStatements) {
-				preparedStatement.executeBatch();
+			for (PreparedStatement curPreparedStatement : preparedStatements) {
+				curPreparedStatement.executeBatch();
 			}
 		}
 		finally {
-			for (PreparedStatement preparedStatement : preparedStatements) {
-				DataAccess.cleanUp(preparedStatement);
+			for (PreparedStatement curPreparedStatement : preparedStatements) {
+				DataAccess.cleanUp(curPreparedStatement);
 			}
 		}
 	}

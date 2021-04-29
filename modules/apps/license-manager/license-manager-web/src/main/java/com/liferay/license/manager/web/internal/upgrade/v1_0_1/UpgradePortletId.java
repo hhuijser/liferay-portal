@@ -64,18 +64,19 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 				int ownerType = resultSet.getInt(2);
 				long plid = resultSet.getLong(3);
 
-				try (PreparedStatement psDelete = connection.prepareStatement(
-						"delete from PortletPreferences where ownerId = ? " +
-							"and ownerType = ? and plid = ? and portletId = " +
-								"?")) {
+				try (PreparedStatement deletePreparedStatement =
+						connection.prepareStatement(
+							"delete from PortletPreferences where ownerId = ? " +
+								"and ownerType = ? and plid = ? and portletId = " +
+									"?")) {
 
-					psDelete.setLong(1, ownerId);
-					psDelete.setInt(2, ownerType);
-					psDelete.setLong(3, plid);
-					psDelete.setString(
+					deletePreparedStatement.setLong(1, ownerId);
+					deletePreparedStatement.setInt(2, ownerType);
+					deletePreparedStatement.setLong(3, plid);
+					deletePreparedStatement.setString(
 						4, LicenseManagerPortletKeys.LICENSE_MANAGER);
 
-					psDelete.executeUpdate();
+					deletePreparedStatement.executeUpdate();
 				}
 			}
 		}
@@ -93,19 +94,20 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 				String primKey = resultSet.getString(3);
 				long roleId = resultSet.getLong(4);
 
-				try (PreparedStatement psDelete = connection.prepareStatement(
-						"delete from ResourcePermission where companyId = ? " +
-							"and name = ? and scope = ? and primkey = ? and " +
-								"roleId = ?")) {
+				try (PreparedStatement deletePreparedStatement =
+						connection.prepareStatement(
+							"delete from ResourcePermission where companyId = ? " +
+								"and name = ? and scope = ? and primkey = ? and " +
+									"roleId = ?")) {
 
-					psDelete.setLong(1, companyId);
-					psDelete.setString(
+					deletePreparedStatement.setLong(1, companyId);
+					deletePreparedStatement.setString(
 						2, LicenseManagerPortletKeys.LICENSE_MANAGER);
-					psDelete.setInt(3, scope);
-					psDelete.setString(4, primKey);
-					psDelete.setLong(5, roleId);
+					deletePreparedStatement.setInt(3, scope);
+					deletePreparedStatement.setString(4, primKey);
+					deletePreparedStatement.setLong(5, roleId);
 
-					psDelete.executeUpdate();
+					deletePreparedStatement.executeUpdate();
 				}
 			}
 		}

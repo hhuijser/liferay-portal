@@ -89,13 +89,14 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 			preparedStatement.executeUpdate();
 		}
 
-		try (PreparedStatement selectPS = connection.prepareStatement(
-				"select resourceBlockId from ResourceBlock where name = ?")) {
+		try (PreparedStatement selectPreparedStatement =
+				connection.prepareStatement(
+					"select resourceBlockId from ResourceBlock where name = ?")) {
 
-			selectPS.setString(1, className);
+			selectPreparedStatement.setString(1, className);
 
-			try (ResultSet resultSet = selectPS.executeQuery();
-				PreparedStatement deletePS =
+			try (ResultSet resultSet = selectPreparedStatement.executeQuery();
+				PreparedStatement deletePreparedStatement =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						"delete from ResourceBlockPermission where " +
@@ -104,12 +105,12 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 				while (resultSet.next()) {
 					long resourceBlockId = resultSet.getLong(1);
 
-					deletePS.setLong(1, resourceBlockId);
+					deletePreparedStatement.setLong(1, resourceBlockId);
 
-					deletePS.addBatch();
+					deletePreparedStatement.addBatch();
 				}
 
-				deletePS.executeBatch();
+				deletePreparedStatement.executeBatch();
 			}
 		}
 
@@ -136,13 +137,14 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 		sb.append(RoleConstants.TYPE_REGULAR);
 		sb.append(" and ResourceTypePermission.name = ?");
 
-		try (PreparedStatement selectPS = connection.prepareStatement(
-				SQLTransformer.transform(sb.toString()))) {
+		try (PreparedStatement selectPreparedStatement =
+				connection.prepareStatement(
+					SQLTransformer.transform(sb.toString()))) {
 
-			selectPS.setString(1, className);
+			selectPreparedStatement.setString(1, className);
 
-			try (ResultSet resultSet = selectPS.executeQuery();
-				PreparedStatement insertPS =
+			try (ResultSet resultSet = selectPreparedStatement.executeQuery();
+				PreparedStatement insertPreparedStatement =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _INSERT_SQL)) {
 
@@ -152,12 +154,12 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 					long actionIds = resultSet.getLong("actionIds");
 
 					_addResourcePermissionBatch(
-						insertPS, companyId, className,
+						insertPreparedStatement, companyId, className,
 						ResourceConstants.SCOPE_COMPANY, companyId, roleId, 0,
 						actionIds);
 				}
 
-				insertPS.executeBatch();
+				insertPreparedStatement.executeBatch();
 			}
 		}
 	}
@@ -165,16 +167,17 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	private void _upgradeGroupScopePermissions(String className)
 		throws Exception {
 
-		try (PreparedStatement selectPS = connection.prepareStatement(
-				SQLTransformer.transform(
-					"select companyId, groupId, roleId, actionIds from " +
-						"ResourceTypePermission where groupId != 0 and name " +
-							"= ?"))) {
+		try (PreparedStatement selectPreparedStatement =
+				connection.prepareStatement(
+					SQLTransformer.transform(
+						"select companyId, groupId, roleId, actionIds from " +
+							"ResourceTypePermission where groupId != 0 and name " +
+								"= ?"))) {
 
-			selectPS.setString(1, className);
+			selectPreparedStatement.setString(1, className);
 
-			try (ResultSet resultSet = selectPS.executeQuery();
-				PreparedStatement insertPS =
+			try (ResultSet resultSet = selectPreparedStatement.executeQuery();
+				PreparedStatement insertPreparedStatement =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _INSERT_SQL)) {
 
@@ -185,12 +188,12 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 					long actionIds = resultSet.getLong("actionIds");
 
 					_addResourcePermissionBatch(
-						insertPS, companyId, className,
+						insertPreparedStatement, companyId, className,
 						ResourceConstants.SCOPE_GROUP, groupId, roleId, 0,
 						actionIds);
 				}
 
-				insertPS.executeBatch();
+				insertPreparedStatement.executeBatch();
 			}
 		}
 	}
@@ -209,13 +212,14 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 		sb.append(RoleConstants.TYPE_REGULAR);
 		sb.append(" and ResourceTypePermission.name = ?");
 
-		try (PreparedStatement selectPS = connection.prepareStatement(
-				SQLTransformer.transform(sb.toString()))) {
+		try (PreparedStatement selectPreparedStatement =
+				connection.prepareStatement(
+					SQLTransformer.transform(sb.toString()))) {
 
-			selectPS.setString(1, className);
+			selectPreparedStatement.setString(1, className);
 
-			try (ResultSet resultSet = selectPS.executeQuery();
-				PreparedStatement insertPS =
+			try (ResultSet resultSet = selectPreparedStatement.executeQuery();
+				PreparedStatement insertPreparedStatement =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _INSERT_SQL)) {
 
@@ -225,12 +229,12 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 					long actionIds = resultSet.getLong("actionIds");
 
 					_addResourcePermissionBatch(
-						insertPS, companyId, className,
+						insertPreparedStatement, companyId, className,
 						ResourceConstants.SCOPE_GROUP_TEMPLATE, 0, roleId, 0,
 						actionIds);
 				}
 
-				insertPS.executeBatch();
+				insertPreparedStatement.executeBatch();
 			}
 		}
 	}
@@ -269,13 +273,14 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 		sb.append("(ResourceBlockPermission.resourceBlockId = ResourceBlock.");
 		sb.append("resourceBlockId) where ResourceBlock.name = ?");
 
-		try (PreparedStatement selectPS = connection.prepareStatement(
-				SQLTransformer.transform(sb.toString()))) {
+		try (PreparedStatement selectPreparedStatement =
+				connection.prepareStatement(
+					SQLTransformer.transform(sb.toString()))) {
 
-			selectPS.setString(1, className);
+			selectPreparedStatement.setString(1, className);
 
-			try (ResultSet resultSet = selectPS.executeQuery();
-				PreparedStatement insertPS =
+			try (ResultSet resultSet = selectPreparedStatement.executeQuery();
+				PreparedStatement insertPreparedStatement =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _INSERT_SQL)) {
 
@@ -293,12 +298,12 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 					long actionIds = resultSet.getLong("actionIds");
 
 					_addResourcePermissionBatch(
-						insertPS, companyId, className,
+						insertPreparedStatement, companyId, className,
 						ResourceConstants.SCOPE_INDIVIDUAL, primKeyId, roleId,
 						userId, actionIds);
 				}
 
-				insertPS.executeBatch();
+				insertPreparedStatement.executeBatch();
 			}
 		}
 	}

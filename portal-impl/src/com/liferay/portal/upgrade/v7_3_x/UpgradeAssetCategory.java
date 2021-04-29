@@ -50,14 +50,15 @@ public class UpgradeAssetCategory extends UpgradeProcess {
 			}
 		}
 
-		try (PreparedStatement selectPS = connection.prepareStatement(
-				StringBundler.concat(
-					"select AssetCategory.treePath, AssetCategory.categoryId ",
-					"from AssetCategory inner join AssetCategory TEMP_TABLE ",
-					"on AssetCategory.categoryId = ",
-					"TEMP_TABLE.parentCategoryId and AssetCategory.treePath ",
-					"is not null and TEMP_TABLE.treePath is null"));
-			PreparedStatement updatePS =
+		try (PreparedStatement selectPreparedStatement =
+				connection.prepareStatement(
+					StringBundler.concat(
+						"select AssetCategory.treePath, AssetCategory.categoryId ",
+						"from AssetCategory inner join AssetCategory TEMP_TABLE ",
+						"on AssetCategory.categoryId = ",
+						"TEMP_TABLE.parentCategoryId and AssetCategory.treePath ",
+						"is not null and TEMP_TABLE.treePath is null"));
+			PreparedStatement updatePreparedStatement =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(
 						SQLTransformer.transform(
@@ -67,20 +68,24 @@ public class UpgradeAssetCategory extends UpgradeProcess {
 								"parentCategoryId = ?"))))) {
 
 			while (true) {
-				try (ResultSet resultSet = selectPS.executeQuery()) {
+				try (ResultSet resultSet =
+						selectPreparedStatement.executeQuery()) {
+
 					if (!resultSet.next()) {
 						return;
 					}
 
 					do {
-						updatePS.setString(1, resultSet.getString(1));
-						updatePS.setLong(2, resultSet.getLong(2));
+						updatePreparedStatement.setString(
+							1, resultSet.getString(1));
+						updatePreparedStatement.setLong(
+							2, resultSet.getLong(2));
 
-						updatePS.addBatch();
+						updatePreparedStatement.addBatch();
 					}
 					while (resultSet.next());
 
-					updatePS.executeBatch();
+					updatePreparedStatement.executeBatch();
 				}
 			}
 		}

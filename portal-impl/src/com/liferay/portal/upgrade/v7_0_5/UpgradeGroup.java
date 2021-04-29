@@ -118,8 +118,8 @@ public class UpgradeGroup extends UpgradeProcess {
 
 	private class GroupTreeModel implements TreeModel {
 
-		public GroupTreeModel(PreparedStatement ps) {
-			_ps = ps;
+		public GroupTreeModel(PreparedStatement preparedStatement) {
+			_preparedStatement = preparedStatement;
 		}
 
 		@Override
@@ -144,10 +144,10 @@ public class UpgradeGroup extends UpgradeProcess {
 		@Override
 		public void updateTreePath(String treePath) {
 			try {
-				_ps.setString(1, treePath);
-				_ps.setLong(2, _groupId);
+				_preparedStatement.setString(1, treePath);
+				_preparedStatement.setLong(2, _groupId);
 
-				_ps.addBatch();
+				_preparedStatement.addBatch();
 			}
 			catch (SQLException sqlException) {
 				_log.error(
@@ -156,7 +156,7 @@ public class UpgradeGroup extends UpgradeProcess {
 		}
 
 		private long _groupId;
-		private final PreparedStatement _ps;
+		private final PreparedStatement _preparedStatement;
 
 	}
 

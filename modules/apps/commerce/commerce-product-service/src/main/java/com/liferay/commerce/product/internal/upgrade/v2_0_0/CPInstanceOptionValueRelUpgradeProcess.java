@@ -62,28 +62,28 @@ public class CPInstanceOptionValueRelUpgradeProcess
 	private PreparedStatement _cpDefinitionOptionRelIdPreparedStatement()
 		throws SQLException {
 
-		if (_preparedStatementCPDefinitionOptionRelId != null) {
-			return _preparedStatementCPDefinitionOptionRelId;
+		if (_cpDefinitionOptionRelIdPreparedStatement != null) {
+			return _cpDefinitionOptionRelIdPreparedStatement;
 		}
 
-		_preparedStatementCPDefinitionOptionRelId = connection.prepareStatement(
+		_cpDefinitionOptionRelIdPreparedStatement = connection.prepareStatement(
 			_SELECT_CP_DEFINITION_OPTION_REL_ID);
 
-		return _preparedStatementCPDefinitionOptionRelId;
+		return _cpDefinitionOptionRelIdPreparedStatement;
 	}
 
 	private PreparedStatement _cpDefinitionOptionValueRelIdPreparedStatement()
 		throws SQLException {
 
-		if (_preparedStatementCPDefinitionOptionValueRelId != null) {
-			return _preparedStatementCPDefinitionOptionValueRelId;
+		if (_cpDefinitionOptionValueRelIdPreparedStatement != null) {
+			return _cpDefinitionOptionValueRelIdPreparedStatement;
 		}
 
-		_preparedStatementCPDefinitionOptionValueRelId =
+		_cpDefinitionOptionValueRelIdPreparedStatement =
 			connection.prepareStatement(
 				_SELECT_CP_DEFINITION_OPTION_VALUE_REL_ID);
 
-		return _preparedStatementCPDefinitionOptionValueRelId;
+		return _cpDefinitionOptionValueRelIdPreparedStatement;
 	}
 
 	private long _getCPDefinitionOptionRelId(
@@ -249,9 +249,9 @@ public class CPInstanceOptionValueRelUpgradeProcess
 		"select CPDefinitionOptionValueRelId from CPDefinitionOptionValueRel " +
 			"where CPDefinitionOptionRelId = ? and key_ = ?";
 
+	private PreparedStatement _cpDefinitionOptionRelIdPreparedStatement;
+	private PreparedStatement _cpDefinitionOptionValueRelIdPreparedStatement;
 	private final JSONFactory _jsonFactory;
 	private final PortalUUID _portalUUID;
-	private PreparedStatement _preparedStatementCPDefinitionOptionRelId;
-	private PreparedStatement _preparedStatementCPDefinitionOptionValueRelId;
 
 }

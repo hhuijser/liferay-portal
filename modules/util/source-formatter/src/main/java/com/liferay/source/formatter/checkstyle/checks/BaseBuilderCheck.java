@@ -496,61 +496,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	}
 
 	private void _checkInline(
-		DetailAST parentDetailAST,
-		Map<String, List<DetailAST>> expressionDetailASTMap,
-		String builderClassName, int startLineNumber, int endLineNumber) {
-
-		if (!isAttributeValue(_CHECK_INLINE)) {
-			return;
-		}
-
-		List<String> supportsFunctionMethodNames =
-			getSupportsFunctionMethodNames();
-
-		if (supportsFunctionMethodNames.isEmpty()) {
-			return;
-		}
-
-		int branchStatementLineNumber = -1;
-
-		List<DetailAST> branchingStatementDetailASTList = getAllChildTokens(
-			parentDetailAST.getParent(), true, TokenTypes.LITERAL_BREAK,
-			TokenTypes.LITERAL_CONTINUE, TokenTypes.LITERAL_RETURN);
-
-		for (DetailAST branchingStatementDetailAST :
-				branchingStatementDetailASTList) {
-
-			int lineNumber = branchingStatementDetailAST.getLineNo();
-
-			if (lineNumber >= startLineNumber) {
-				break;
-			}
-
-			branchStatementLineNumber = lineNumber;
-		}
-
-		List<DetailAST> variableDefinitionDetailASTList = getAllChildTokens(
-			parentDetailAST.getParent(), false, TokenTypes.VARIABLE_DEF);
-
-		for (DetailAST variableDefinitionDetailAST :
-				variableDefinitionDetailASTList) {
-
-			int lineNumber = variableDefinitionDetailAST.getLineNo();
-
-			if (lineNumber >= startLineNumber) {
-				return;
-			}
-
-			if (branchStatementLineNumber < lineNumber) {
-				_checkInline(
-					variableDefinitionDetailAST, parentDetailAST,
-					builderClassName, supportsFunctionMethodNames,
-					expressionDetailASTMap, startLineNumber, endLineNumber);
-			}
-		}
-	}
-
-	private void _checkInline(
 		DetailAST variableDefinitionDetailAST, DetailAST parentDetailAST,
 		String builderClassName, List<String> supportsFunctionMethodNames,
 		Map<String, List<DetailAST>> expressionDetailASTMap,
@@ -608,6 +553,61 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 						StringUtil.merge(dependentLineNumbers),
 						builderClassName, startLineNumber);
 				}
+			}
+		}
+	}
+
+	private void _checkInline(
+		DetailAST parentDetailAST,
+		Map<String, List<DetailAST>> expressionDetailASTMap,
+		String builderClassName, int startLineNumber, int endLineNumber) {
+
+		if (!isAttributeValue(_CHECK_INLINE)) {
+			return;
+		}
+
+		List<String> supportsFunctionMethodNames =
+			getSupportsFunctionMethodNames();
+
+		if (supportsFunctionMethodNames.isEmpty()) {
+			return;
+		}
+
+		int branchStatementLineNumber = -1;
+
+		List<DetailAST> branchingStatementDetailASTList = getAllChildTokens(
+			parentDetailAST.getParent(), true, TokenTypes.LITERAL_BREAK,
+			TokenTypes.LITERAL_CONTINUE, TokenTypes.LITERAL_RETURN);
+
+		for (DetailAST branchingStatementDetailAST :
+				branchingStatementDetailASTList) {
+
+			int lineNumber = branchingStatementDetailAST.getLineNo();
+
+			if (lineNumber >= startLineNumber) {
+				break;
+			}
+
+			branchStatementLineNumber = lineNumber;
+		}
+
+		List<DetailAST> variableDefinitionDetailASTList = getAllChildTokens(
+			parentDetailAST.getParent(), false, TokenTypes.VARIABLE_DEF);
+
+		for (DetailAST variableDefinitionDetailAST :
+				variableDefinitionDetailASTList) {
+
+			int lineNumber = variableDefinitionDetailAST.getLineNo();
+
+			if (lineNumber >= startLineNumber) {
+				return;
+			}
+
+			if (branchStatementLineNumber < lineNumber) {
+				_checkInline(
+					variableDefinitionDetailAST, parentDetailAST,
+					builderClassName, supportsFunctionMethodNames,
+					expressionDetailASTMap, startLineNumber, endLineNumber);
 			}
 		}
 	}

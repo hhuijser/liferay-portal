@@ -91,8 +91,8 @@ public abstract class UpgradeProcess
 
 		String message = "Completed upgrade process ";
 
-		try (Connection con = DataAccess.getConnection()) {
-			connection = con;
+		try (Connection connection = DataAccess.getConnection()) {
+			this.connection = connection;
 
 			if (isSkipUpgradeProcess()) {
 				return;
@@ -120,7 +120,7 @@ public abstract class UpgradeProcess
 			throw new UpgradeException(throwable);
 		}
 		finally {
-			connection = null;
+			this.connection = null;
 
 			if (_log.isInfoEnabled()) {
 				_log.info(

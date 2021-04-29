@@ -115,8 +115,8 @@ public class BaseUpgradePortletIdTest extends BasePortletIdUpgradeProcess {
 
 	@After
 	public void tearDown() throws Exception {
-		try (Connection con = DataAccess.getConnection()) {
-			connection = con;
+		try (Connection connection = DataAccess.getConnection()) {
+			this.connection = connection;
 
 			String[][] renamePortletIdsArray = getRenamePortletIdsArray();
 
@@ -131,7 +131,7 @@ public class BaseUpgradePortletIdTest extends BasePortletIdUpgradeProcess {
 			}
 		}
 		finally {
-			connection = null;
+			this.connection = null;
 		}
 
 		for (String portletId : _PORTLET_IDS) {

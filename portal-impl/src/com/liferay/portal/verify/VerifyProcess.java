@@ -62,8 +62,8 @@ public abstract class VerifyProcess extends BaseDBProcess {
 	public void verify() throws VerifyException {
 		long start = System.currentTimeMillis();
 
-		try (Connection con = DataAccess.getConnection()) {
-			connection = con;
+		try (Connection connection = DataAccess.getConnection()) {
+			this.connection = connection;
 
 			process(
 				companyId -> {
@@ -85,7 +85,7 @@ public abstract class VerifyProcess extends BaseDBProcess {
 			throw new VerifyException(exception);
 		}
 		finally {
-			connection = null;
+			this.connection = null;
 
 			if (_log.isInfoEnabled()) {
 				_log.info(

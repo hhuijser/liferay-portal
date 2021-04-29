@@ -42,15 +42,15 @@ public class AssetEntryAssetCategoryRelUpgradeProcess extends UpgradeProcess {
 	protected void addAssetEntryAssetCategoryRels() throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select entryId, categoryId from AssetEntries_AssetCategories");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			List<InsertAssetEntryAssetCategoryRelUpgradeCallable>
 				insertAssetEntryAssetCategoryRelUpgradeCallables =
 					new ArrayList<>();
 
-			while (rs.next()) {
-				long assetEntryId = rs.getLong("entryId");
-				long assetCategoryId = rs.getLong("categoryId");
+			while (resultSet.next()) {
+				long assetEntryId = resultSet.getLong("entryId");
+				long assetCategoryId = resultSet.getLong("categoryId");
 
 				InsertAssetEntryAssetCategoryRelUpgradeCallable
 					insertAssetEntryAssetCategoryRelUpgradeCallable =

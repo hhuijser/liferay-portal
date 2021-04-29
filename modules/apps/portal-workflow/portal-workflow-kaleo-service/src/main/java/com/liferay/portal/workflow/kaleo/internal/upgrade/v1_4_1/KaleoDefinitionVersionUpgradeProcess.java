@@ -73,12 +73,12 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 					connection,
 					"delete from KaleoDefinition where companyId = ? and " +
 						"name = ? and version < ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long companyId = rs.getLong("companyId");
-				String name = rs.getString("name");
-				int version = rs.getInt("version");
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong("companyId");
+				String name = resultSet.getString("name");
+				int version = resultSet.getInt("version");
 
 				ps2.setLong(1, companyId);
 				ps2.setString(2, name);
@@ -122,7 +122,7 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString());
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
 			for (String tableName : _TABLE_NAMES) {
 				if (hasColumn(tableName, "kaleoDefinitionId")) {
@@ -139,20 +139,20 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 				}
 			}
 
-			while (rs.next()) {
-				long kaleoDefinitionId = rs.getLong("kaleoDefinitionId");
-				long groupId = rs.getLong("groupId");
-				long companyId = rs.getLong("companyId");
-				long userId = rs.getLong("userId");
-				String userName = rs.getString("userName");
-				Timestamp createDate = rs.getTimestamp("createDate");
-				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
-				String name = rs.getString("name");
-				String title = rs.getString("title");
-				String description = rs.getString("description");
-				String content = rs.getString("content");
-				int version = rs.getInt("version");
-				long startKaleoNodeId = rs.getLong("startKaleoNodeId");
+			while (resultSet.next()) {
+				long kaleoDefinitionId = resultSet.getLong("kaleoDefinitionId");
+				long groupId = resultSet.getLong("groupId");
+				long companyId = resultSet.getLong("companyId");
+				long userId = resultSet.getLong("userId");
+				String userName = resultSet.getString("userName");
+				Timestamp createDate = resultSet.getTimestamp("createDate");
+				Timestamp modifiedDate = resultSet.getTimestamp("modifiedDate");
+				String name = resultSet.getString("name");
+				String title = resultSet.getString("title");
+				String description = resultSet.getString("description");
+				String content = resultSet.getString("content");
+				int version = resultSet.getInt("version");
+				long startKaleoNodeId = resultSet.getLong("startKaleoNodeId");
 
 				long kaleoDefinitionVersionId = increment();
 

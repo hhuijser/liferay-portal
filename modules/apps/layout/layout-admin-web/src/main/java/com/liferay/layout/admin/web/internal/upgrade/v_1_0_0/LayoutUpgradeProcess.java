@@ -60,10 +60,10 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, "embedded");
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long plid = rs.getLong("plid");
-					String typeSettings = rs.getString("typeSettings");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long plid = resultSet.getLong("plid");
+					String typeSettings = resultSet.getString("typeSettings");
 
 					updateLayout(plid, typeSettings);
 				}

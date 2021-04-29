@@ -88,11 +88,11 @@ public class UpgradeSocial extends UpgradeProcess {
 
 	protected long getDelta(long increment) throws Exception {
 		try (Statement s = connection.createStatement()) {
-			try (ResultSet rs = s.executeQuery(
+			try (ResultSet resultSet = s.executeQuery(
 					"select min(activityId) from SocialActivity")) {
 
-				if (rs.next()) {
-					long minActivityId = rs.getLong(1);
+				if (resultSet.next()) {
+					long minActivityId = resultSet.getLong(1);
 
 					return increment - minActivityId;
 				}
@@ -106,9 +106,9 @@ public class UpgradeSocial extends UpgradeProcess {
 		try (Statement s = connection.createStatement()) {
 			String query = "select count(activitySetId) from SocialActivitySet";
 
-			try (ResultSet rs = s.executeQuery(query)) {
-				if (rs.next()) {
-					return rs.getInt(1);
+			try (ResultSet resultSet = s.executeQuery(query)) {
+				if (resultSet.next()) {
+					return resultSet.getInt(1);
 				}
 
 				return 0;
@@ -135,18 +135,18 @@ public class UpgradeSocial extends UpgradeProcess {
 
 			long counter = 0;
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				if (rs.next()) {
-					counter = rs.getLong("currentId");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				if (resultSet.next()) {
+					counter = resultSet.getLong("currentId");
 				}
 			}
 
 			PreparedStatement ps2 = connection.prepareStatement(
 				"select max(activitySetId) from SocialActivitySet");
 
-			try (ResultSet rs = ps2.executeQuery()) {
-				if (rs.next()) {
-					return Math.max(0, rs.getLong(1) - counter);
+			try (ResultSet resultSet = ps2.executeQuery()) {
+				if (resultSet.next()) {
+					return Math.max(0, resultSet.getLong(1) - counter);
 				}
 
 				return 0;

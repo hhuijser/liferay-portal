@@ -101,11 +101,11 @@ public class UpgradeOracleTest {
 					"= '", tableName, "' and column_name = '", columnName,
 					"'"))) {
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet resultSet = ps.executeQuery();
 
-			rs.next();
+			resultSet.next();
 
-			return rs.getString(1);
+			return resultSet.getString(1);
 		}
 	}
 

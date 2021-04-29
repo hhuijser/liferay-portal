@@ -65,14 +65,14 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 					connection,
 					"update DDMContent set data_ = ? where contentId = ?")) {
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					String definition = rs.getString("definition");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					String definition = resultSet.getString("definition");
 
 					JSONObject definitionJSONObject =
 						_jsonFactory.createJSONObject(definition);
 
-					String data = rs.getString("data_");
+					String data = resultSet.getString("data_");
 
 					JSONObject dataJSONObject = _jsonFactory.createJSONObject(
 						data);
@@ -83,7 +83,7 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 
 						ps2.setString(1, dataJSONObject.toJSONString());
 
-						long contentId = rs.getLong("contentId");
+						long contentId = resultSet.getLong("contentId");
 
 						ps2.setLong(2, contentId);
 

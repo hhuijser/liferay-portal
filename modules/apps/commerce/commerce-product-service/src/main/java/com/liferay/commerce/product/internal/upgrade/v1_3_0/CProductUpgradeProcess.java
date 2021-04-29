@@ -63,18 +63,18 @@ public class CProductUpgradeProcess
 					connection, updateCPDefinitionSQL);
 			Statement s = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select cpDefinitionId, groupId, companyId, userId, userName " +
 					"from CPDefinition")) {
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				String uuid = PortalUUIDUtil.generate();
 				long cProductId = increment();
-				long groupId = rs.getLong("groupId");
-				long companyId = rs.getLong("companyId");
-				long userId = rs.getLong("userId");
-				String userName = rs.getString("userName");
-				long cpDefinitionId = rs.getLong("CPDefinitionId");
+				long groupId = resultSet.getLong("groupId");
+				long companyId = resultSet.getLong("companyId");
+				long userId = resultSet.getLong("userId");
+				String userName = resultSet.getString("userName");
+				long cpDefinitionId = resultSet.getLong("CPDefinitionId");
 
 				ps1.setString(1, uuid);
 				ps1.setLong(2, cProductId);

@@ -61,19 +61,20 @@ public class DDMStructureIndexTypeUpgradeProcess extends UpgradeProcess {
 
 			ps1.setString(1, RawMetadataProcessor.TIKA_RAW_METADATA);
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					String newDefinition = _upgradeIndexType(rs.getString(1));
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					String newDefinition = _upgradeIndexType(
+						resultSet.getString(1));
 
 					ps2.setString(1, newDefinition);
 
-					ps2.setLong(2, rs.getLong(2));
+					ps2.setLong(2, resultSet.getLong(2));
 
 					ps2.addBatch();
 
 					ps3.setString(1, newDefinition);
 
-					ps3.setLong(2, rs.getLong(2));
+					ps3.setLong(2, resultSet.getLong(2));
 
 					ps3.addBatch();
 				}

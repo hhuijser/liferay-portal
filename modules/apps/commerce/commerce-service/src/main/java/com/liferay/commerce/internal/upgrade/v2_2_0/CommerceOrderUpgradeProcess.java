@@ -79,15 +79,16 @@ public class CommerceOrderUpgradeProcess
 					connection, updateCommerceOrderSQL2);
 			Statement s = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select distinct orderOrganizationId, orderUserId from " +
 					"CommerceOrder")) {
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				long commerceAccountId = 0;
 
-				long orderOrganizationId = rs.getLong("orderOrganizationId");
-				long orderUserId = rs.getLong("orderUserId");
+				long orderOrganizationId = resultSet.getLong(
+					"orderOrganizationId");
+				long orderUserId = resultSet.getLong("orderUserId");
 
 				if (orderOrganizationId > 0) {
 					commerceAccountId = _getCommerceAccountId(
@@ -145,10 +146,10 @@ public class CommerceOrderUpgradeProcess
 				"where organizationId = " + organizationId;
 
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(sql)) {
+			ResultSet resultSet = s.executeQuery(sql)) {
 
-			if (rs.next()) {
-				return rs.getLong("commerceAccountId");
+			if (resultSet.next()) {
+				return resultSet.getLong("commerceAccountId");
 			}
 		}
 

@@ -88,10 +88,10 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 			PreparedStatement ps2 = connection.prepareStatement(
 				sb.toString())) {
 
-			try (ResultSet rs = ps2.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong(1);
-					long discussionId = rs.getLong(2);
+			try (ResultSet resultSet = ps2.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong(1);
+					long discussionId = resultSet.getLong(2);
 
 					ps1.setLong(1, groupId);
 					ps1.setLong(2, discussionId);

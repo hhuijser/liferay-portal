@@ -83,11 +83,11 @@ public class DocumentLibraryTypeContentUpgradeProcess extends UpgradeProcess {
 
 			ps1.setString(1, "%type=\"document_library\"%");
 
-			ResultSet rs1 = ps1.executeQuery();
+			ResultSet resultSet1 = ps1.executeQuery();
 
-			while (rs1.next()) {
-				String content = rs1.getString(1);
-				long id = rs1.getLong(2);
+			while (resultSet1.next()) {
+				String content = resultSet1.getString(1);
+				long id = resultSet1.getLong(2);
 
 				try (PreparedStatement ps2 =
 						AutoBatchPreparedStatementUtil.concurrentAutoBatch(

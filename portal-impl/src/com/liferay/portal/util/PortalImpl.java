@@ -1663,9 +1663,9 @@ public class PortalImpl implements Portal {
 
 				ps.setString(1, value);
 
-				try (ResultSet rs = ps.executeQuery()) {
-					if (rs.next()) {
-						return rs.getLong("classNameId");
+				try (ResultSet resultSet = ps.executeQuery()) {
+					if (resultSet.next()) {
+						return resultSet.getLong("classNameId");
 					}
 				}
 			}

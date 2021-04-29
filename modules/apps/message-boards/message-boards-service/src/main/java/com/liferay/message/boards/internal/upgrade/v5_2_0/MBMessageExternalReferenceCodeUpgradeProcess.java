@@ -43,14 +43,14 @@ public class MBMessageExternalReferenceCodeUpgradeProcess
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select messageId from MBMessage where externalReferenceCode " +
 					"is null or externalReferenceCode = ''");
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
 				connection.prepareStatement(
 					"update MBMessage set externalReferenceCode = ? where " +
 						"messageId = ?"))) {
 
-			while (rs.next()) {
-				long messageId = rs.getLong(1);
+			while (resultSet.next()) {
+				long messageId = resultSet.getLong(1);
 
 				ps2.setString(1, String.valueOf(messageId));
 				ps2.setLong(2, messageId);

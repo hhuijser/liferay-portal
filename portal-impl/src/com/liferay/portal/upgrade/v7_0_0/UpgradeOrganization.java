@@ -46,18 +46,18 @@ public class UpgradeOrganization extends UpgradeProcess {
 
 			ps1.setBoolean(1, false);
 
-			ResultSet rs1 = ps1.executeQuery();
+			ResultSet resultSet1 = ps1.executeQuery();
 
-			while (rs1.next()) {
-				long groupId = rs1.getLong("groupId");
-				long logoId = rs1.getLong("logoId");
+			while (resultSet1.next()) {
+				long groupId = resultSet1.getLong("groupId");
+				long logoId = resultSet1.getLong("logoId");
 
 				ps2.setLong(1, groupId);
 
-				ResultSet rs2 = ps2.executeQuery();
+				ResultSet resultSet2 = ps2.executeQuery();
 
-				while (rs2.next()) {
-					long classPK = rs2.getLong("classPK");
+				while (resultSet2.next()) {
+					long classPK = resultSet2.getLong("classPK");
 
 					ps3.setLong(1, logoId);
 					ps3.setLong(2, classPK);

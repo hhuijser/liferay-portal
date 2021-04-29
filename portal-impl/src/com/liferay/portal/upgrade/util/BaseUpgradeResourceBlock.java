@@ -92,15 +92,15 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 
 			selectPS.setString(1, className);
 
-			try (ResultSet rs = selectPS.executeQuery();
+			try (ResultSet resultSet = selectPS.executeQuery();
 				PreparedStatement deletePS =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						"delete from ResourceBlockPermission where " +
 							"resourceBlockId = ?")) {
 
-				while (rs.next()) {
-					long resourceBlockId = rs.getLong(1);
+				while (resultSet.next()) {
+					long resourceBlockId = resultSet.getLong(1);
 
 					deletePS.setLong(1, resourceBlockId);
 
@@ -139,15 +139,15 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 
 			selectPS.setString(1, className);
 
-			try (ResultSet rs = selectPS.executeQuery();
+			try (ResultSet resultSet = selectPS.executeQuery();
 				PreparedStatement insertPS =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _INSERT_SQL)) {
 
-				while (rs.next()) {
-					long companyId = rs.getLong("companyId");
-					long roleId = rs.getLong("roleId");
-					long actionIds = rs.getLong("actionIds");
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong("companyId");
+					long roleId = resultSet.getLong("roleId");
+					long actionIds = resultSet.getLong("actionIds");
 
 					_addResourcePermissionBatch(
 						insertPS, companyId, className,
@@ -171,16 +171,16 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 
 			selectPS.setString(1, className);
 
-			try (ResultSet rs = selectPS.executeQuery();
+			try (ResultSet resultSet = selectPS.executeQuery();
 				PreparedStatement insertPS =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _INSERT_SQL)) {
 
-				while (rs.next()) {
-					long companyId = rs.getLong("companyId");
-					long groupId = rs.getLong("groupId");
-					long roleId = rs.getLong("roleId");
-					long actionIds = rs.getLong("actionIds");
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong("companyId");
+					long groupId = resultSet.getLong("groupId");
+					long roleId = resultSet.getLong("roleId");
+					long actionIds = resultSet.getLong("actionIds");
 
 					_addResourcePermissionBatch(
 						insertPS, companyId, className,
@@ -212,15 +212,15 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 
 			selectPS.setString(1, className);
 
-			try (ResultSet rs = selectPS.executeQuery();
+			try (ResultSet resultSet = selectPS.executeQuery();
 				PreparedStatement insertPS =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _INSERT_SQL)) {
 
-				while (rs.next()) {
-					long companyId = rs.getLong("companyId");
-					long roleId = rs.getLong("roleId");
-					long actionIds = rs.getLong("actionIds");
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong("companyId");
+					long roleId = resultSet.getLong("roleId");
+					long actionIds = resultSet.getLong("actionIds");
 
 					_addResourcePermissionBatch(
 						insertPS, companyId, className,
@@ -272,23 +272,23 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 
 			selectPS.setString(1, className);
 
-			try (ResultSet rs = selectPS.executeQuery();
+			try (ResultSet resultSet = selectPS.executeQuery();
 				PreparedStatement insertPS =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, _INSERT_SQL)) {
 
-				while (rs.next()) {
-					long companyId = rs.getLong("companyId");
-					long primKeyId = rs.getLong(primaryKeyName);
-					long roleId = rs.getLong("roleId");
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong("companyId");
+					long primKeyId = resultSet.getLong(primaryKeyName);
+					long roleId = resultSet.getLong("roleId");
 
 					long userId = 0;
 
 					if (hasUserId()) {
-						userId = rs.getLong("userId");
+						userId = resultSet.getLong("userId");
 					}
 
-					long actionIds = rs.getLong("actionIds");
+					long actionIds = resultSet.getLong("actionIds");
 
 					_addResourcePermissionBatch(
 						insertPS, companyId, className,

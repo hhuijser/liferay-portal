@@ -54,9 +54,9 @@ public class RoleUpgradeProcess extends UpgradeProcess {
 								RoleConstants.TYPE_ACCOUNT +
 									" where roleId = ?"))) {
 
-				try (ResultSet rs = ps1.executeQuery()) {
-					while (rs.next()) {
-						long roleId = rs.getLong("roleId");
+				try (ResultSet resultSet = ps1.executeQuery()) {
+					while (resultSet.next()) {
+						long roleId = resultSet.getLong("roleId");
 
 						ps2.setLong(1, roleId);
 

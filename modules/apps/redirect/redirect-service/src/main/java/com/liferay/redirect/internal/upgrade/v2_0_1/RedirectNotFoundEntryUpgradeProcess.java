@@ -34,13 +34,13 @@ public class RedirectNotFoundEntryUpgradeProcess extends UpgradeProcess {
 				SQLTransformer.transform(
 					"select redirectNotFoundEntryId, companyId, hits from " +
 						"RedirectNotFoundEntry"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long redirectNotFoundEntryId = rs.getLong(
+			while (resultSet.next()) {
+				long redirectNotFoundEntryId = resultSet.getLong(
 					"redirectNotFoundEntryId");
-				long companyId = rs.getLong("companyId");
-				int hits = rs.getInt("hits");
+				long companyId = resultSet.getLong("companyId");
+				int hits = resultSet.getInt("hits");
 
 				ViewCountManagerUtil.incrementViewCount(
 					companyId,

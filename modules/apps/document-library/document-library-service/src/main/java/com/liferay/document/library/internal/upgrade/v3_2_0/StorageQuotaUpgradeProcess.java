@@ -35,11 +35,11 @@ public class StorageQuotaUpgradeProcess extends UpgradeProcess {
 					"insert into DLStorageQuota (mvccVersion, " +
 						"dlStorageQuotaId, companyId, storageSize) values " +
 							"(?, ?, ?, ?)"));
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long companyId = rs.getLong(1);
-				long storageSize = rs.getLong(2);
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong(1);
+				long storageSize = resultSet.getLong(2);
 
 				ps2.setLong(1, 0);
 				ps2.setLong(2, increment());

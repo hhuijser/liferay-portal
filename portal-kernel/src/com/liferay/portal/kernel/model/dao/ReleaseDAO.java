@@ -73,8 +73,8 @@ public class ReleaseDAO {
 
 			ps.setString(1, bundleSymbolicName);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				return rs.next();
+			try (ResultSet resultSet = ps.executeQuery()) {
+				return resultSet.next();
 			}
 		}
 	}

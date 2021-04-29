@@ -186,10 +186,10 @@ public class PortalInstances {
 
 		try (Connection con = DataAccess.getConnection();
 			PreparedStatement ps = con.prepareStatement(_GET_COMPANY_IDS);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long companyId = rs.getLong("companyId");
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong("companyId");
 
 				companyIds.add(companyId);
 			}

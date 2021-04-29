@@ -148,10 +148,10 @@ public class VerifyResourcePermissions extends VerifyProcess {
 			PreparedStatement ps = con.prepareStatement(
 				_getVerifyResourcedModelSQL(
 					true, verifiableResourcedModel, role));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			if (rs.next()) {
-				total = rs.getInt(1);
+			if (resultSet.next()) {
+				total = resultSet.getInt(1);
 			}
 		}
 
@@ -165,17 +165,17 @@ public class VerifyResourcePermissions extends VerifyProcess {
 			PreparedStatement ps = con.prepareStatement(
 				_getVerifyResourcedModelSQL(
 					false, verifiableResourcedModel, role));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			List<Future<Void>> futures = new ArrayList<>(total);
 
 			ExecutorService executorService = Executors.newWorkStealingPool();
 
 			try {
-				for (int i = 1; rs.next(); i++) {
-					long primKey = rs.getLong(
+				for (int i = 1; resultSet.next(); i++) {
+					long primKey = resultSet.getLong(
 						verifiableResourcedModel.getPrimaryKeyColumnName());
-					long userId = rs.getLong(
+					long userId = resultSet.getLong(
 						verifiableResourcedModel.getUserIdColumnName());
 
 					futures.add(

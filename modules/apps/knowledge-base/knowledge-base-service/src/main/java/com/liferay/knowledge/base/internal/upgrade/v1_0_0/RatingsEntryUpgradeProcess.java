@@ -36,9 +36,9 @@ public class RatingsEntryUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, className);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					return rs.getLong("classNameId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getLong("classNameId");
 				}
 
 				return 0;
@@ -50,11 +50,11 @@ public class RatingsEntryUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select entryId, score from RatingsEntry where classNameId = " +
 					getClassNameId(_CLASS_NAME_ARTICLE));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long entryId = rs.getLong("entryId");
-				double score = rs.getDouble("score");
+			while (resultSet.next()) {
+				long entryId = resultSet.getLong("entryId");
+				double score = resultSet.getDouble("score");
 
 				StringBundler sb = new StringBundler(4);
 

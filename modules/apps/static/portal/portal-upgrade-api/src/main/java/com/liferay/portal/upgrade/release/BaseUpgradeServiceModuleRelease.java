@@ -81,9 +81,9 @@ public abstract class BaseUpgradeServiceModuleRelease extends UpgradeProcess {
 
 			ps.setString(1, servletContextName);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					return rs.getString("buildNumber");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getString("buildNumber");
 				}
 			}
 		}
@@ -102,8 +102,8 @@ public abstract class BaseUpgradeServiceModuleRelease extends UpgradeProcess {
 
 			ps.setString(1, getNamespace());
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
 					return true;
 				}
 			}

@@ -57,29 +57,31 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 
 			ps1.setString(1, "checkbox");
 
-			try (ResultSet rs1 = ps1.executeQuery()) {
-				while (rs1.next()) {
-					ps2.setLong(1, rs1.getLong(1));
+			try (ResultSet resultSet1 = ps1.executeQuery()) {
+				while (resultSet1.next()) {
+					ps2.setLong(1, resultSet1.getLong(1));
 					ps2.setString(2, Boolean.TRUE.toString());
 					ps2.setString(3, Boolean.FALSE.toString());
 
-					try (ResultSet rs2 = ps2.executeQuery()) {
-						while (rs2.next()) {
+					try (ResultSet resultSet2 = ps2.executeQuery()) {
+						while (resultSet2.next()) {
 							if (Objects.equals(
 									Boolean.TRUE.toString(),
-									rs2.getString(2))) {
+									resultSet2.getString(2))) {
 
 								ps3.setString(
 									1,
 									Arrays.toString(
-										new String[] {rs1.getString(2)}));
+										new String[] {
+											resultSet1.getString(2)
+										}));
 							}
 							else {
 								ps3.setString(
 									1, Arrays.toString(new String[0]));
 							}
 
-							ps3.setLong(2, rs2.getLong(1));
+							ps3.setLong(2, resultSet2.getLong(1));
 
 							ps3.addBatch();
 						}

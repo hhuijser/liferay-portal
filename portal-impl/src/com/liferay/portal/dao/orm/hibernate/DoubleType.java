@@ -88,12 +88,12 @@ public class DoubleType implements CompositeUserType, Serializable {
 
 	@Override
 	public Object nullSafeGet(
-			ResultSet rs, String[] names, SessionImplementor session,
+			ResultSet resultSet, String[] names, SessionImplementor session,
 			Object owner)
 		throws SQLException {
 
 		Double value = StandardBasicTypes.DOUBLE.nullSafeGet(
-			rs, names[0], session);
+			resultSet, names[0], session);
 
 		if (value == null) {
 			return DEFAULT_VALUE;

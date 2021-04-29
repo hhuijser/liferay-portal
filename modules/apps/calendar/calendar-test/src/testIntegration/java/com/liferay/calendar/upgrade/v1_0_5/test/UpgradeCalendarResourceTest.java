@@ -130,11 +130,11 @@ public class UpgradeCalendarResourceTest {
 
 			ps.setLong(1, calendarResource.getCalendarResourceId());
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet resultSet = ps.executeQuery();
 
-			rs.next();
+			resultSet.next();
 
-			return rs.getLong(1);
+			return resultSet.getLong(1);
 		}
 	}
 
@@ -145,11 +145,11 @@ public class UpgradeCalendarResourceTest {
 
 			ps.setLong(1, calendar.getCalendarId());
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet resultSet = ps.executeQuery();
 
-			rs.next();
+			resultSet.next();
 
-			return rs.getLong(1);
+			return resultSet.getLong(1);
 		}
 	}
 

@@ -335,18 +335,18 @@ public abstract class UpgradeProcess
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
 			DBInspector dbInspector = new DBInspector(connection);
 
-			try (ResultSet rs1 = databaseMetaData.getPrimaryKeys(
+			try (ResultSet resultSet1 = databaseMetaData.getPrimaryKeys(
 					dbInspector.getCatalog(), dbInspector.getSchema(),
 					tableName);
-				ResultSet rs2 = databaseMetaData.getIndexInfo(
+				ResultSet resultSet2 = databaseMetaData.getIndexInfo(
 					dbInspector.getCatalog(), dbInspector.getSchema(),
 					dbInspector.normalizeName(tableName), false, false)) {
 
 				Set<String> primaryKeyNames = new HashSet<>();
 
-				while (rs1.next()) {
+				while (resultSet1.next()) {
 					String primaryKeyName = StringUtil.toUpperCase(
-						rs1.getString("PK_NAME"));
+						resultSet1.getString("PK_NAME"));
 
 					if (primaryKeyName != null) {
 						primaryKeyNames.add(primaryKeyName);
@@ -355,9 +355,9 @@ public abstract class UpgradeProcess
 
 				Map<String, Set<String>> columnNamesMap = new HashMap<>();
 
-				while (rs2.next()) {
+				while (resultSet2.next()) {
 					String indexName = StringUtil.toUpperCase(
-						rs2.getString("INDEX_NAME"));
+						resultSet2.getString("INDEX_NAME"));
 
 					if ((indexName == null) ||
 						primaryKeyNames.contains(indexName)) {
@@ -374,7 +374,8 @@ public abstract class UpgradeProcess
 					}
 
 					columnNames.add(
-						StringUtil.toUpperCase(rs2.getString("COLUMN_NAME")));
+						StringUtil.toUpperCase(
+							resultSet2.getString("COLUMN_NAME")));
 				}
 
 				for (Alterable alterable : alterables) {
@@ -615,23 +616,24 @@ public abstract class UpgradeProcess
 							"select name from sys.key_constraints where type ",
 							"= 'PK' and OBJECT_NAME(parent_object_id) = '",
 							normalizedTableName, "'"));
-					ResultSet rs = ps.executeQuery()) {
+					ResultSet resultSet = ps.executeQuery()) {
 
-					if (rs.next()) {
-						primaryKeyConstraintName = rs.getString("name");
+					if (resultSet.next()) {
+						primaryKeyConstraintName = resultSet.getString("name");
 					}
 				}
 			}
 			else {
 				try (PreparedStatement ps = connection.prepareStatement(
 						"sp_helpconstraint " + normalizedTableName);
-					ResultSet rs = ps.executeQuery()) {
+					ResultSet resultSet = ps.executeQuery()) {
 
-					while (rs.next()) {
-						String definition = rs.getString("definition");
+					while (resultSet.next()) {
+						String definition = resultSet.getString("definition");
 
 						if (definition.startsWith("PRIMARY KEY INDEX")) {
-							primaryKeyConstraintName = rs.getString("name");
+							primaryKeyConstraintName = resultSet.getString(
+								"name");
 
 							break;
 						}

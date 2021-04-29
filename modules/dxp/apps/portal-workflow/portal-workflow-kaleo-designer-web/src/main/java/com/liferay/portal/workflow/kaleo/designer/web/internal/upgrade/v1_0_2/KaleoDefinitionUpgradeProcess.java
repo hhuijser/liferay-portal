@@ -96,17 +96,17 @@ public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(sb1.toString());
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long groupId = rs.getLong("groupId");
-				long userId = rs.getLong("userId");
-				Timestamp createDate = rs.getTimestamp("createDate");
-				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
-				String name = rs.getString("name");
-				String title = rs.getString("title");
-				String content = rs.getString("content");
-				String version = rs.getString("version");
+			while (resultSet.next()) {
+				long groupId = resultSet.getLong("groupId");
+				long userId = resultSet.getLong("userId");
+				Timestamp createDate = resultSet.getTimestamp("createDate");
+				Timestamp modifiedDate = resultSet.getTimestamp("modifiedDate");
+				String name = resultSet.getString("name");
+				String title = resultSet.getString("title");
+				String content = resultSet.getString("content");
+				String version = resultSet.getString("version");
 
 				addKaleoDefinition(
 					groupId, userId, createDate, modifiedDate, name, title,

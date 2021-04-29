@@ -59,7 +59,7 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 				"select articleId, elName from JournalArticleImage where " +
 					"(elInstanceId = '' or elInstanceId is null) group by " +
 						"articleId, elName");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
 			try (PreparedStatement ps2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
@@ -67,9 +67,9 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 							"update JournalArticleImage set elInstanceId = ? " +
 								"where articleId = ? and elName = ?"))) {
 
-				while (rs.next()) {
-					String articleId = rs.getString(1);
-					String elName = rs.getString(2);
+				while (resultSet.next()) {
+					String articleId = resultSet.getString(1);
+					String elName = resultSet.getString(2);
 
 					ps2.setString(1, StringUtil.randomString(4));
 					ps2.setString(2, articleId);
@@ -87,7 +87,7 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(
 				"select articleImageId, elName from JournalArticleImage");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
 			try (PreparedStatement ps2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
@@ -95,8 +95,8 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 							"update JournalArticleImage set elName = ? where " +
 								"articleImageId = ?"))) {
 
-				while (rs.next()) {
-					String elName = rs.getString(2);
+				while (resultSet.next()) {
+					String elName = resultSet.getString(2);
 
 					int lastIndexOf = elName.lastIndexOf(StringPool.UNDERLINE);
 
@@ -111,7 +111,7 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 					}
 
 					ps2.setString(1, elName.substring(0, lastIndexOf));
-					ps2.setLong(2, rs.getLong(1));
+					ps2.setLong(2, resultSet.getLong(1));
 
 					ps2.addBatch();
 				}

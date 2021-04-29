@@ -67,11 +67,11 @@ public class FriendlyURLEntryUpgradeProcess extends UpgradeProcess {
 					connection,
 					"update FriendlyURLEntryLocalization set groupId = ? " +
 						"where friendlyURLEntryId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long companyId = rs.getLong("companyId");
-				long groupId = rs.getLong("groupId");
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong("companyId");
+				long groupId = resultSet.getLong("groupId");
 
 				List<Long> groupIds = _groupLocalService.getGroupIds(
 					companyId, true);
@@ -92,7 +92,8 @@ public class FriendlyURLEntryUpgradeProcess extends UpgradeProcess {
 					continue;
 				}
 
-				long friendlyURLEntryId = rs.getLong("friendlyURLEntryId");
+				long friendlyURLEntryId = resultSet.getLong(
+					"friendlyURLEntryId");
 
 				ps2.setLong(1, group.getGroupId());
 				ps2.setLong(2, friendlyURLEntryId);

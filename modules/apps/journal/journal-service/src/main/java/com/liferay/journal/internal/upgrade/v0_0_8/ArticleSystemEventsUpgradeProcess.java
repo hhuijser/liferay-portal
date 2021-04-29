@@ -93,9 +93,9 @@ public class ArticleSystemEventsUpgradeProcess extends UpgradeProcess {
 					ps.setString(1, systemEvent.getClassUuid());
 					ps.setLong(2, systemEvent.getGroupId());
 
-					try (ResultSet rs = ps.executeQuery()) {
-						if (rs.next()) {
-							articleId = rs.getString(1);
+					try (ResultSet resultSet = ps.executeQuery()) {
+						if (resultSet.next()) {
+							articleId = resultSet.getString(1);
 						}
 					}
 				}
@@ -113,8 +113,8 @@ public class ArticleSystemEventsUpgradeProcess extends UpgradeProcess {
 					ps.setDouble(3, extraDataJSONObject.getDouble("version"));
 					ps.setInt(4, WorkflowConstants.STATUS_IN_TRASH);
 
-					try (ResultSet rs = ps.executeQuery()) {
-						if (rs.next()) {
+					try (ResultSet resultSet = ps.executeQuery()) {
+						if (resultSet.next()) {
 							_systemEventLocalService.deleteSystemEvent(
 								systemEvent);
 						}

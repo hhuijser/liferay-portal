@@ -42,14 +42,14 @@ public class CommerceShippingMethodUpgradeProcess
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select commerceShippingMethodId, groupId from " +
 					"CommerceShippingMethod")) {
 
 			PreparedStatement ps = null;
 
-			while (rs.next()) {
-				long groupId = rs.getLong("groupId");
+			while (resultSet.next()) {
+				long groupId = resultSet.getLong("groupId");
 
 				long channelGroupId = _getCommerceChannelGroupIdBySiteGroupId(
 					groupId);
@@ -58,7 +58,7 @@ public class CommerceShippingMethodUpgradeProcess
 					continue;
 				}
 
-				long commerceShippingMethodId = rs.getLong(
+				long commerceShippingMethodId = resultSet.getLong(
 					"commerceShippingMethodId");
 
 				ps = connection.prepareStatement(
@@ -85,10 +85,10 @@ public class CommerceShippingMethodUpgradeProcess
 		try (Statement s = connection.createStatement()) {
 			s.setMaxRows(1);
 
-			try (ResultSet rs = s.executeQuery(sql)) {
-				if (rs.next()) {
-					companyId = rs.getLong("companyId");
-					commerceChannelId = rs.getLong("commerceChannelId");
+			try (ResultSet resultSet = s.executeQuery(sql)) {
+				if (resultSet.next()) {
+					companyId = resultSet.getLong("companyId");
+					commerceChannelId = resultSet.getLong("commerceChannelId");
 				}
 			}
 		}

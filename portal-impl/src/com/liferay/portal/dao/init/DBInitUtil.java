@@ -106,9 +106,9 @@ public class DBInitUtil {
 				"select mvccVersion, schemaVersion, buildNumber, state_ from " +
 					"Release_ where releaseId = " +
 						ReleaseConstants.DEFAULT_ID);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			if (!rs.next()) {
+			if (!resultSet.next()) {
 				_addReleaseInfo(connection);
 
 				StartupHelperUtil.setDbNew(true);
@@ -156,8 +156,8 @@ public class DBInitUtil {
 			ps.setLong(1, ReleaseConstants.DEFAULT_ID);
 			ps.setString(2, testString);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next() && (rs.getInt(1) > 0)) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next() && (resultSet.getInt(1) > 0)) {
 					return true;
 				}
 			}

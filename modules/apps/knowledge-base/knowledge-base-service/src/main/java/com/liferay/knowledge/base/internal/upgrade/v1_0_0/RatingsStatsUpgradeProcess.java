@@ -36,9 +36,9 @@ public class RatingsStatsUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, className);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					return rs.getLong("classNameId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getLong("classNameId");
 				}
 
 				return 0;
@@ -51,12 +51,12 @@ public class RatingsStatsUpgradeProcess extends UpgradeProcess {
 				"select statsId, totalScore, averageScore from RatingsStats " +
 					"where classNameId = " +
 						getClassNameId(_CLASS_NAME_ARTICLE));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long statsId = rs.getLong("statsId");
-				double totalScore = rs.getDouble("totalScore");
-				double averageScore = rs.getDouble("averageScore");
+			while (resultSet.next()) {
+				long statsId = resultSet.getLong("statsId");
+				double totalScore = resultSet.getDouble("totalScore");
+				double averageScore = resultSet.getDouble("averageScore");
 
 				StringBundler sb = new StringBundler(6);
 

@@ -217,9 +217,9 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet rs1 = ps1.executeQuery()) {
+			ResultSet resultSet1 = ps1.executeQuery()) {
 
-			if (!rs1.next()) {
+			if (!resultSet1.next()) {
 				if (!_ignoreMissingAddEntryResourceAction) {
 					_log.error(
 						StringBundler.concat(
@@ -231,25 +231,25 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 				return;
 			}
 
-			long bitwiseValue = rs1.getLong("bitwiseValue");
+			long bitwiseValue = resultSet1.getLong("bitwiseValue");
 
 			try (PreparedStatement ps2 = connection.prepareStatement(
 					sb2.toString());
-				ResultSet rs = ps2.executeQuery()) {
+				ResultSet resultSet = ps2.executeQuery()) {
 
-				while (rs.next()) {
-					long actionIds = rs.getLong("actionIds");
+				while (resultSet.next()) {
+					long actionIds = resultSet.getLong("actionIds");
 
 					if ((bitwiseValue & actionIds) == 0) {
 						continue;
 					}
 
-					long resourcePermissionId = rs.getLong(
+					long resourcePermissionId = resultSet.getLong(
 						"resourcePermissionId");
-					long companyId = rs.getLong("companyId");
-					int scope = rs.getInt("scope");
-					String primKey = rs.getString("primKey");
-					long primKeyId = rs.getLong("primKeyId");
+					long companyId = resultSet.getLong("companyId");
+					int scope = resultSet.getInt("scope");
+					String primKey = resultSet.getString("primKey");
+					long primKeyId = resultSet.getLong("primKeyId");
 
 					updateResourcePermission(
 						resourcePermissionId, actionIds - bitwiseValue);
@@ -265,14 +265,14 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 						}
 					}
 
-					long roleId = rs.getLong("roleId");
+					long roleId = resultSet.getLong("roleId");
 
 					addAnnouncementsAdminViewResourcePermission(
 						companyId, scope, primKey, primKeyId, roleId);
 				}
 			}
 
-			long resourceActionId = rs1.getLong("resourceActionId");
+			long resourceActionId = resultSet1.getLong("resourceActionId");
 
 			deleteResourceAction(resourceActionId);
 		}

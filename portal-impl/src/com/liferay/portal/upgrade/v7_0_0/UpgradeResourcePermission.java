@@ -55,21 +55,21 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 
 			try (PreparedStatement ps1 = connection.prepareStatement(
 					"select distinct name from ResourcePermission");
-				ResultSet rs1 = ps1.executeQuery();
+				ResultSet resultSet1 = ps1.executeQuery();
 				PreparedStatement ps2 = connection.prepareStatement(
 					"select distinct primKey from ResourcePermission where " +
 						"name = ?")) {
 
-				while (rs1.next()) {
+				while (resultSet1.next()) {
 					List<String> primKeys = new ArrayList<>();
 
-					String name = rs1.getString("name");
+					String name = resultSet1.getString("name");
 
 					ps2.setString(1, name);
 
-					try (ResultSet rs2 = ps2.executeQuery()) {
-						while (rs2.next()) {
-							String primKey = rs2.getString("primKey");
+					try (ResultSet resultSet2 = ps2.executeQuery()) {
+						while (resultSet2.next()) {
+							String primKey = resultSet2.getString("primKey");
 
 							if ((GetterUtil.getLong(primKey) <= 0) &&
 								!primKey.contains(

@@ -104,11 +104,12 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 			List<SaveAssetDisplayPageEntryUpgradeCallable>
 				saveAssetDisplayPageEntryUpgradeCallables = new ArrayList<>();
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
-					long resourcePrimKey = rs.getLong("resourcePrimKey");
-					String journalArticleUuid = rs.getString("classUuid");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
+					long resourcePrimKey = resultSet.getLong("resourcePrimKey");
+					String journalArticleUuid = resultSet.getString(
+						"classUuid");
 
 					SaveAssetDisplayPageEntryUpgradeCallable
 						saveAssetDisplayPageEntryUpgradeCallable =
@@ -189,10 +190,10 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, companyId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
-					long liveGroupId = rs.getLong("liveGroupId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
+					long liveGroupId = resultSet.getLong("liveGroupId");
 
 					_liveGroupIdsMap.put(groupId, liveGroupId);
 

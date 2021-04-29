@@ -82,15 +82,15 @@ public class KaleoTaskInstanceTokenUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setLong(1, kaleoInstanceTokenId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					String type = rs.getString("type_");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					String type = resultSet.getString("type_");
 
 					if (!type.equals(NodeType.TASK.toString())) {
 						return kaleoInstanceTokenId;
 					}
 
-					long parentKaleoInstanceTokenId = rs.getLong(
+					long parentKaleoInstanceTokenId = resultSet.getLong(
 						"kaleoInstanceTokenId");
 
 					_kaleoInstanceTokenIds.add(kaleoInstanceTokenId);
@@ -108,10 +108,10 @@ public class KaleoTaskInstanceTokenUpgradeProcess extends UpgradeProcess {
 			PreparedStatement ps = connection.prepareStatement(
 				"select kaleoTaskInstanceTokenId, kaleoInstanceTokenId from " +
 					"KaleoTaskInstanceToken");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long oldKaleoInstanceTokenId = rs.getLong(
+			while (resultSet.next()) {
+				long oldKaleoInstanceTokenId = resultSet.getLong(
 					"kaleoInstanceTokenId");
 
 				long newKaleoInstanceTokenId = getKaleoInstanceTokenId(
@@ -128,7 +128,7 @@ public class KaleoTaskInstanceTokenUpgradeProcess extends UpgradeProcess {
 				sb.append(newKaleoInstanceTokenId);
 				sb.append(" where kaleoTaskInstanceTokenId = ");
 
-				long kaleoTaskInstanceTokenId = rs.getLong(
+				long kaleoTaskInstanceTokenId = resultSet.getLong(
 					"kaleoTaskInstanceTokenId");
 
 				sb.append(kaleoTaskInstanceTokenId);

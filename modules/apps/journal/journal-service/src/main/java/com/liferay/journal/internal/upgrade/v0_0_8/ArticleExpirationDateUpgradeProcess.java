@@ -71,14 +71,14 @@ public class ArticleExpirationDateUpgradeProcess extends UpgradeProcess {
 
 			try (PreparedStatement ps = connection.prepareStatement(
 					sb.toString());
-				ResultSet rs = ps.executeQuery()) {
+				ResultSet resultSet = ps.executeQuery()) {
 
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
-					String articleId = rs.getString("articleId");
-					Timestamp expirationDate = rs.getTimestamp(
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
+					String articleId = resultSet.getString("articleId");
+					Timestamp expirationDate = resultSet.getTimestamp(
 						"expirationDate");
-					int status = rs.getInt("status");
+					int status = resultSet.getInt("status");
 
 					updateExpirationDate(
 						groupId, articleId, expirationDate, status);

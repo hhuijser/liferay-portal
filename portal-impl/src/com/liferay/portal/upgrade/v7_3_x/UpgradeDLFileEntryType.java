@@ -48,23 +48,25 @@ public class UpgradeDLFileEntryType extends UpgradeProcess {
 				connection.prepareStatement(
 					"update DLFileEntryType set dataDefinitionId = ? where " +
 						"fileEntryTypeId = ? "));
-			ResultSet rs1 = ps1.executeQuery()) {
+			ResultSet resultSet1 = ps1.executeQuery()) {
 
 			long classNameId = PortalUtil.getClassNameId(
 				DLFileEntryMetadata.class);
 
-			while (rs1.next()) {
-				ps2.setLong(1, rs1.getLong(3));
+			while (resultSet1.next()) {
+				ps2.setLong(1, resultSet1.getLong(3));
 				ps2.setLong(2, classNameId);
-				ps2.setString(3, DLUtil.getDDMStructureKey(rs1.getString(1)));
 				ps2.setString(
-					4, DLUtil.getDeprecatedDDMStructureKey(rs1.getLong(2)));
-				ps2.setString(5, rs1.getString(4));
+					3, DLUtil.getDDMStructureKey(resultSet1.getString(1)));
+				ps2.setString(
+					4,
+					DLUtil.getDeprecatedDDMStructureKey(resultSet1.getLong(2)));
+				ps2.setString(5, resultSet1.getString(4));
 
-				try (ResultSet rs2 = ps2.executeQuery()) {
-					if (rs2.next()) {
-						ps3.setLong(1, rs2.getLong(1));
-						ps3.setLong(2, rs1.getLong(2));
+				try (ResultSet resultSet2 = ps2.executeQuery()) {
+					if (resultSet2.next()) {
+						ps3.setLong(1, resultSet2.getLong(1));
+						ps3.setLong(2, resultSet1.getLong(2));
 
 						ps3.addBatch();
 					}

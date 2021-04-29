@@ -36,15 +36,15 @@ public class RecordGroupUpgradeProcess extends UpgradeProcess {
 		sb.append("DDLRecord.groupId != DDLRecordSet.groupId");
 
 		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDLRecord set groupId = ? where recordId = ?")) {
 
-			while (rs.next()) {
-				long groupId = rs.getLong("groupId");
-				long recordId = rs.getLong("recordId");
+			while (resultSet.next()) {
+				long groupId = resultSet.getLong("groupId");
+				long recordId = resultSet.getLong("recordId");
 
 				ps2.setLong(1, groupId);
 				ps2.setLong(2, recordId);

@@ -156,15 +156,15 @@ public abstract class BaseUpgradePortletPreferences
 						connection,
 						"update PortletPreferences set preferences = ? where " +
 							"portletPreferencesId = ?");
-				ResultSet rs = ps1.executeQuery()) {
+				ResultSet resultSet = ps1.executeQuery()) {
 
-				while (rs.next()) {
-					long companyId = rs.getLong("companyId");
-					long ownerId = rs.getLong("ownerId");
-					long plid = rs.getLong("plid");
-					String portletId = rs.getString("portletId");
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong("companyId");
+					long ownerId = resultSet.getLong("ownerId");
+					long plid = resultSet.getLong("plid");
+					String portletId = resultSet.getString("portletId");
 					String preferences = GetterUtil.getString(
-						rs.getString("preferences"));
+						resultSet.getString("preferences"));
 
 					String newPreferences = upgradePreferences(
 						companyId, ownerId, ownerType, plid, portletId,
@@ -172,7 +172,8 @@ public abstract class BaseUpgradePortletPreferences
 
 					if (!preferences.equals(newPreferences)) {
 						ps2.setString(1, newPreferences);
-						ps2.setLong(2, rs.getLong("portletPreferencesId"));
+						ps2.setLong(
+							2, resultSet.getLong("portletPreferencesId"));
 
 						ps2.addBatch();
 					}

@@ -138,15 +138,15 @@ public class AssetDisplayLayoutUpgradeProcess extends UpgradeProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(sb.toString());
+			ResultSet resultSet = s.executeQuery(sb.toString());
 			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
 				connection.prepareStatement(
 					"update AssetDisplayPageEntry set plid = ? where " +
 						"assetDisplayPageEntryId = ?"))) {
 
-			while (rs.next()) {
-				long classNameId = rs.getLong("classNameId");
-				long classPK = rs.getLong("classPK");
+			while (resultSet.next()) {
+				long classNameId = resultSet.getLong("classNameId");
+				long classPK = resultSet.getLong("classPK");
 
 				AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
 					classNameId, classPK);
@@ -155,9 +155,9 @@ public class AssetDisplayLayoutUpgradeProcess extends UpgradeProcess {
 					continue;
 				}
 
-				long userId = rs.getLong("userId");
-				long groupId = rs.getLong("groupId");
-				long layoutPageTemplateEntryId = rs.getLong(
+				long userId = resultSet.getLong("userId");
+				long groupId = resultSet.getLong("groupId");
+				long layoutPageTemplateEntryId = resultSet.getLong(
 					"layoutPageTemplateEntryId");
 
 				ps.setLong(
@@ -166,7 +166,7 @@ public class AssetDisplayLayoutUpgradeProcess extends UpgradeProcess {
 						assetEntry, userId, groupId, layoutPageTemplateEntryId,
 						serviceContext));
 
-				long assetDisplayPageEntryId = rs.getLong(
+				long assetDisplayPageEntryId = resultSet.getLong(
 					"assetDisplayPageEntryId");
 
 				ps.setLong(2, assetDisplayPageEntryId);

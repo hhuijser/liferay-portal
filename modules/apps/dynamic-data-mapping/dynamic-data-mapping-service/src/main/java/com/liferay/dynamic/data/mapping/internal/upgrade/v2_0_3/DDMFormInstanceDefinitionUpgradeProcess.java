@@ -48,13 +48,13 @@ public class DDMFormInstanceDefinitionUpgradeProcess extends UpgradeProcess {
 
 			ps1.setLong(1, PortalUtil.getClassNameId(DDMFormInstance.class));
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					String definition = rs.getString("definition");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					String definition = resultSet.getString("definition");
 
 					ps2.setString(1, updateFieldsToLocalizable(definition));
 
-					long structureId = rs.getLong("structureId");
+					long structureId = resultSet.getLong("structureId");
 
 					ps2.setLong(2, structureId);
 

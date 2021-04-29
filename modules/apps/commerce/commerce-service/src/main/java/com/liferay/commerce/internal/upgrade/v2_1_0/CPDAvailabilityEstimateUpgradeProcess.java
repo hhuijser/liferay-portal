@@ -55,12 +55,12 @@ public class CPDAvailabilityEstimateUpgradeProcess
 				"update CPDAvailabilityEstimate set CProductId = ? where " +
 					"CPDefinitionId = ?");
 			Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select distinct CPDefinitionId from " +
 					"CPDAvailabilityEstimate")) {
 
-			while (rs.next()) {
-				long cpDefinitionId = rs.getLong("CPDefinitionId");
+			while (resultSet.next()) {
+				long cpDefinitionId = resultSet.getLong("CPDefinitionId");
 
 				CPDefinition cpDefinition =
 					_cpDefinitionLocalService.getCPDefinition(cpDefinitionId);
@@ -112,11 +112,11 @@ public class CPDAvailabilityEstimateUpgradeProcess
 
 		DatabaseMetaData metadata = connection.getMetaData();
 
-		try (ResultSet rs = metadata.getIndexInfo(
+		try (ResultSet resultSet = metadata.getIndexInfo(
 				null, null, tableName, false, false)) {
 
-			while (rs.next()) {
-				String curIndexName = rs.getString("index_name");
+			while (resultSet.next()) {
+				String curIndexName = resultSet.getString("index_name");
 
 				if (Objects.equals(indexName, curIndexName)) {
 					return true;

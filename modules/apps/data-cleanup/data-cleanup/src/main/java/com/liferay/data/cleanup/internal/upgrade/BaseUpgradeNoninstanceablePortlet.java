@@ -36,8 +36,8 @@ public abstract class BaseUpgradeNoninstanceablePortlet extends UpgradeProcess {
 
 				ps.setString(1, oldPortletIds[0]);
 
-				try (ResultSet rs = ps.executeQuery()) {
-					if (rs.next()) {
+				try (ResultSet resultSet = ps.executeQuery()) {
+					if (resultSet.next()) {
 						portletIds = oldPortletIds;
 					}
 				}

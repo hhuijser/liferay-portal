@@ -49,11 +49,11 @@ public class DDMStructureLayoutUpgradeProcess extends UpgradeProcess {
 						"structureLayoutKey = ? where structureLayoutId = ",
 						"?"))) {
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
 					ps2.setLong(1, classNameId);
 					ps2.setString(2, String.valueOf(increment()));
-					ps2.setLong(3, rs.getLong(1));
+					ps2.setLong(3, resultSet.getLong(1));
 
 					ps2.addBatch();
 				}

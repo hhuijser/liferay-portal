@@ -32,17 +32,18 @@ public class CommerceRegionUpgradeProcess extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (Statement selectStatement = connection.createStatement()) {
-			ResultSet rs = selectStatement.executeQuery(
+			ResultSet resultSet = selectStatement.executeQuery(
 				"select * from CommerceRegion order by commerceRegionId asc");
 
-			while (rs.next()) {
-				boolean active = rs.getBoolean("active_");
-				String code = rs.getString("code_");
-				long commerceCountryId = rs.getLong("commerceCountryId");
-				long commerceRegionId = rs.getLong("commerceRegionId");
-				Date lastPublishDate = rs.getTimestamp("lastPublishDate");
-				String name = rs.getString("name");
-				Double priority = rs.getDouble("priority");
+			while (resultSet.next()) {
+				boolean active = resultSet.getBoolean("active_");
+				String code = resultSet.getString("code_");
+				long commerceCountryId = resultSet.getLong("commerceCountryId");
+				long commerceRegionId = resultSet.getLong("commerceRegionId");
+				Date lastPublishDate = resultSet.getTimestamp(
+					"lastPublishDate");
+				String name = resultSet.getString("name");
+				Double priority = resultSet.getDouble("priority");
 
 				Region region = RegionLocalServiceUtil.fetchRegion(
 					commerceCountryId, code);
@@ -53,11 +54,13 @@ public class CommerceRegionUpgradeProcess extends UpgradeProcess {
 				}
 				else {
 					region = _addRegion(
-						commerceRegionId, rs.getLong("companyId"),
-						rs.getLong("userId"), rs.getString("userName"),
-						rs.getTimestamp("createDate"),
-						rs.getTimestamp("modifiedDate"), commerceCountryId,
-						active, name, priority, code, lastPublishDate);
+						commerceRegionId, resultSet.getLong("companyId"),
+						resultSet.getLong("userId"),
+						resultSet.getString("userName"),
+						resultSet.getTimestamp("createDate"),
+						resultSet.getTimestamp("modifiedDate"),
+						commerceCountryId, active, name, priority, code,
+						lastPublishDate);
 				}
 
 				if (region.getRegionId() != commerceRegionId) {

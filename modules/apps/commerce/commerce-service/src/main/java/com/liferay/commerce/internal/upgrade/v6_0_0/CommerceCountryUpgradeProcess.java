@@ -34,12 +34,12 @@ public class CommerceCountryUpgradeProcess extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (Statement selectStatement = connection.createStatement()) {
-			ResultSet rs = selectStatement.executeQuery(
+			ResultSet resultSet = selectStatement.executeQuery(
 				"select * from CommerceCountry where twoLettersISOCode is " +
 					"null or threeLettersISOCode is null or numericISOCode = " +
 						"0");
 
-			if (rs.next()) {
+			if (resultSet.next()) {
 				throw new UpgradeException(
 					"Unable to migrate data in CommerceCountry to Country " +
 						"because it contains countries with missing ISO codes");
@@ -47,24 +47,26 @@ public class CommerceCountryUpgradeProcess extends UpgradeProcess {
 		}
 
 		try (Statement selectStatement = connection.createStatement()) {
-			ResultSet rs = selectStatement.executeQuery(
+			ResultSet resultSet = selectStatement.executeQuery(
 				"select * from CommerceCountry order by commerceCountryId asc");
 
-			while (rs.next()) {
-				String a2 = rs.getString("twoLettersISOCode");
-				String a3 = rs.getString("threeLettersISOCode");
-				boolean active = rs.getBoolean("active_");
-				boolean billingAllowed = rs.getBoolean("billingAllowed");
-				boolean channelFilterEnabled = rs.getBoolean(
+			while (resultSet.next()) {
+				String a2 = resultSet.getString("twoLettersISOCode");
+				String a3 = resultSet.getString("threeLettersISOCode");
+				boolean active = resultSet.getBoolean("active_");
+				boolean billingAllowed = resultSet.getBoolean("billingAllowed");
+				boolean channelFilterEnabled = resultSet.getBoolean(
 					"channelFilterEnabled");
-				long commerceCountryId = rs.getLong("commerceCountryId");
-				long companyId = rs.getLong("companyId");
-				Date lastPublishDate = rs.getTimestamp("lastPublishDate");
-				String name = rs.getString("name");
-				String numericISOCode = rs.getString("numericISOCode");
-				Double priority = rs.getDouble("priority");
-				boolean shippingAllowed = rs.getBoolean("shippingAllowed");
-				boolean subjectToVAT = rs.getBoolean("subjectToVAT");
+				long commerceCountryId = resultSet.getLong("commerceCountryId");
+				long companyId = resultSet.getLong("companyId");
+				Date lastPublishDate = resultSet.getTimestamp(
+					"lastPublishDate");
+				String name = resultSet.getString("name");
+				String numericISOCode = resultSet.getString("numericISOCode");
+				Double priority = resultSet.getDouble("priority");
+				boolean shippingAllowed = resultSet.getBoolean(
+					"shippingAllowed");
+				boolean subjectToVAT = resultSet.getBoolean("subjectToVAT");
 
 				Country country = CountryLocalServiceUtil.fetchCountryByA2(
 					companyId, a2);
@@ -77,9 +79,11 @@ public class CommerceCountryUpgradeProcess extends UpgradeProcess {
 				}
 				else {
 					country = _addCountry(
-						commerceCountryId, companyId, rs.getLong("userId"),
-						rs.getString("userName"), rs.getTimestamp("createDate"),
-						rs.getTimestamp("modifiedDate"), a2, a3, active,
+						commerceCountryId, companyId,
+						resultSet.getLong("userId"),
+						resultSet.getString("userName"),
+						resultSet.getTimestamp("createDate"),
+						resultSet.getTimestamp("modifiedDate"), a2, a3, active,
 						billingAllowed, channelFilterEnabled, name,
 						numericISOCode, priority, shippingAllowed, subjectToVAT,
 						lastPublishDate);

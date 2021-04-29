@@ -101,11 +101,11 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 		sb1.append("= LatestVersion.latestVersion");
 
 		try (Statement statement1 = connection.createStatement();
-			ResultSet rs1 = statement1.executeQuery(sb1.toString())) {
+			ResultSet resultSet1 = statement1.executeQuery(sb1.toString())) {
 
-			while (rs1.next()) {
-				long id = rs1.getLong(1);
-				long resourcePrimKey = rs1.getLong(2);
+			while (resultSet1.next()) {
+				long id = resultSet1.getLong(1);
+				long resourcePrimKey = resultSet1.getLong(2);
 
 				StringBundler sb2 = new StringBundler(15);
 
@@ -128,11 +128,12 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 				Map<String, String> urlTitleMap = new HashMap<>();
 
 				try (Statement statement2 = connection.createStatement();
-					ResultSet rs2 = statement2.executeQuery(sb2.toString())) {
+					ResultSet resultSet2 = statement2.executeQuery(
+						sb2.toString())) {
 
-					while (rs2.next()) {
-						String title = rs2.getString(1);
-						String languageId = rs2.getString(2);
+					while (resultSet2.next()) {
+						String title = resultSet2.getString(1);
+						String languageId = resultSet2.getString(2);
 
 						urlTitleMap.put(languageId, title);
 					}
@@ -145,8 +146,8 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 						resourcePrimKey);
 
 					if (friendlyURLEntryId != -1) {
-						long groupId = rs1.getLong(3);
-						long companyId = rs1.getLong(4);
+						long groupId = resultSet1.getLong(3);
+						long companyId = resultSet1.getLong(4);
 
 						urlTitleMap = _sortUrlTitleMap(groupId, urlTitleMap);
 
@@ -185,10 +186,10 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 		sb.append(friendlyURLEntryId);
 
 		try (Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery(sb.toString())) {
+			ResultSet resultSet = statement.executeQuery(sb.toString())) {
 
-			if (rs.next()) {
-				return rs.getLong(1);
+			if (resultSet.next()) {
+				return resultSet.getLong(1);
 			}
 		}
 
@@ -207,10 +208,10 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 		sb.append(resourcePrimKey);
 
 		try (Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery(sb.toString())) {
+			ResultSet resultSet = statement.executeQuery(sb.toString())) {
 
-			if (rs.next()) {
-				return rs.getLong(1);
+			if (resultSet.next()) {
+				return resultSet.getLong(1);
 			}
 		}
 
@@ -236,10 +237,10 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 		sb.append(_CLASS_NAME_ID);
 
 		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			if (rs.next()) {
-				count = rs.getInt(1);
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
 			}
 		}
 

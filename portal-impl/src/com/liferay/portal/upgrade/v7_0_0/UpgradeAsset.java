@@ -89,9 +89,9 @@ public class UpgradeAsset extends UpgradeProcess {
 
 			ps.setString(1, structureKey);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					return rs.getLong("structureId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getLong("structureId");
 				}
 
 				return 0;
@@ -137,12 +137,12 @@ public class UpgradeAsset extends UpgradeProcess {
 					connection,
 					"update AssetVocabulary set settings_ = ? where " +
 						"vocabularyId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long vocabularyId = rs.getLong("vocabularyId");
+			while (resultSet.next()) {
+				long vocabularyId = resultSet.getLong("vocabularyId");
 
-				String settings = rs.getString("settings_");
+				String settings = resultSet.getString("settings_");
 
 				ps2.setString(1, upgradeVocabularySettings(settings));
 

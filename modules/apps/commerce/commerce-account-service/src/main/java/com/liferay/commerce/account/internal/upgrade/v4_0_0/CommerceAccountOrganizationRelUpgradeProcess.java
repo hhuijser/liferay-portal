@@ -36,14 +36,14 @@ public class CommerceAccountOrganizationRelUpgradeProcess
 				"commerceAccountId asc, organizationId asc";
 
 		try (Statement selectStatement = connection.createStatement()) {
-			ResultSet rs = selectStatement.executeQuery(
+			ResultSet resultSet = selectStatement.executeQuery(
 				selectCommerceAccountOrganizationRel);
 
-			while (rs.next()) {
-				long accountEntryId = rs.getLong("commerceAccountId");
-				long organizationId = rs.getLong("organizationId");
+			while (resultSet.next()) {
+				long accountEntryId = resultSet.getLong("commerceAccountId");
+				long organizationId = resultSet.getLong("organizationId");
 
-				CompanyThreadLocal.setCompanyId(rs.getLong("companyId"));
+				CompanyThreadLocal.setCompanyId(resultSet.getLong("companyId"));
 
 				AccountEntryOrganizationRelLocalServiceUtil.
 					addAccountEntryOrganizationRel(

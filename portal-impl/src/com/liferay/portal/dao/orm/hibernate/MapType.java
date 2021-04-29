@@ -88,12 +88,12 @@ public class MapType implements CompositeUserType, Serializable {
 
 	@Override
 	public Object nullSafeGet(
-			ResultSet rs, String[] names, SessionImplementor session,
+			ResultSet resultSet, String[] names, SessionImplementor session,
 			Object owner)
 		throws SQLException {
 
 		String json = (String)StandardBasicTypes.STRING.nullSafeGet(
-			rs, names, session, owner);
+			resultSet, names, session, owner);
 
 		try {
 			return _jsonFactory.deserialize(json);

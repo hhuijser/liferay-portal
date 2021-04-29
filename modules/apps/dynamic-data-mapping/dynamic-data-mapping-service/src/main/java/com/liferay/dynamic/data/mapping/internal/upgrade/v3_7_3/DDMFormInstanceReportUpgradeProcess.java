@@ -105,10 +105,10 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 				"select formInstanceId, groupId, companyId, createDate from " +
 					"DDMFormInstance")) {
 
-			ResultSet rs1 = ps1.executeQuery();
+			ResultSet resultSet1 = ps1.executeQuery();
 
-			while (rs1.next()) {
-				long formInstanceId = rs1.getLong("formInstanceId");
+			while (resultSet1.next()) {
+				long formInstanceId = resultSet1.getLong("formInstanceId");
 
 				JSONObject dataJSONObject = _jsonFactory.createJSONObject();
 
@@ -118,17 +118,17 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 					ps2.setLong(1, formInstanceId);
 					ps2.setInt(2, WorkflowConstants.STATUS_APPROVED);
 
-					ResultSet rs2 = ps2.executeQuery();
+					ResultSet resultSet2 = ps2.executeQuery();
 
-					while (rs2.next()) {
+					while (resultSet2.next()) {
 						dataJSONObject = _processDDMFormValues(
 							dataJSONObject,
 							_getDDMFormValues(
-								rs2.getString("data_"),
+								resultSet2.getString("data_"),
 								DDMFormDeserializeUtil.deserialize(
 									_ddmFormDeserializer,
-									rs2.getString("definition"))),
-							rs2.getLong("formInstanceRecordId"));
+									resultSet2.getString("definition"))),
+							resultSet2.getLong("formInstanceRecordId"));
 
 						dataJSONObject.put(
 							"totalItems",
@@ -136,11 +136,11 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 					}
 				}
 
-				long groupId = rs1.getLong("groupId");
+				long groupId = resultSet1.getLong("groupId");
 
-				long companyId = rs1.getLong("companyId");
+				long companyId = resultSet1.getLong("companyId");
 
-				Timestamp createDate = rs1.getTimestamp("createDate");
+				Timestamp createDate = resultSet1.getTimestamp("createDate");
 
 				try (PreparedStatement ps3 =
 						AutoBatchPreparedStatementUtil.concurrentAutoBatch(

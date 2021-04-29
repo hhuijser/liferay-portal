@@ -61,11 +61,11 @@ public class DDMFormFieldValidationUpgradeProcess extends UpgradeProcess {
 				PortalUtil.getClassNameId(
 					"com.liferay.dynamic.data.mapping.model.DDMFormInstance"));
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					long structureId = rs.getLong("structureId");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					long structureId = resultSet.getLong("structureId");
 
-					String definition = rs.getString("definition");
+					String definition = resultSet.getString("definition");
 
 					JSONObject jsonObject1 = _jsonFactory.createJSONObject(
 						definition);
@@ -82,9 +82,9 @@ public class DDMFormFieldValidationUpgradeProcess extends UpgradeProcess {
 
 					ps3.setLong(1, structureId);
 
-					try (ResultSet rs2 = ps3.executeQuery()) {
-						while (rs2.next()) {
-							definition = rs2.getString("definition");
+					try (ResultSet resultSet2 = ps3.executeQuery()) {
+						while (resultSet2.next()) {
+							definition = resultSet2.getString("definition");
 
 							JSONObject jsonObject2 =
 								_jsonFactory.createJSONObject(definition);
@@ -94,7 +94,7 @@ public class DDMFormFieldValidationUpgradeProcess extends UpgradeProcess {
 
 								ps4.setString(1, jsonObject2.toJSONString());
 
-								long structureVersionId = rs2.getLong(
+								long structureVersionId = resultSet2.getLong(
 									"structureVersionId");
 
 								ps4.setLong(2, structureVersionId);

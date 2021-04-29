@@ -135,12 +135,12 @@ public class CPInstanceOptionValueRelUpgradeProcess
 					connection, insertCPInstanceOptionValueRelSQL);
 			Statement s = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select CPInstanceId, groupId, companyId, userId, userName, " +
 					"CPDefinitionId, json from CPInstance")) {
 
-			while (rs.next()) {
-				_queueInsertCPInstanceOptionValueRelCommands(ps, rs);
+			while (resultSet.next()) {
+				_queueInsertCPInstanceOptionValueRelCommands(ps, resultSet);
 			}
 
 			ps.executeBatch();
@@ -165,19 +165,19 @@ public class CPInstanceOptionValueRelUpgradeProcess
 	}
 
 	private void _queueInsertCPInstanceOptionValueRelCommands(
-			PreparedStatement ps, ResultSet rs)
+			PreparedStatement ps, ResultSet resultSet)
 		throws JSONException, SQLException {
 
-		long groupId = rs.getLong("groupId");
-		long companyId = rs.getLong("companyId");
-		long userId = rs.getLong("userId");
+		long groupId = resultSet.getLong("groupId");
+		long companyId = resultSet.getLong("companyId");
+		long userId = resultSet.getLong("userId");
 
-		String userName = rs.getString("userName");
+		String userName = resultSet.getString("userName");
 
-		long cpInstanceId = rs.getLong("CPInstanceId");
-		long cpDefinitionId = rs.getLong("CPDefinitionId");
+		long cpInstanceId = resultSet.getLong("CPInstanceId");
+		long cpDefinitionId = resultSet.getLong("CPDefinitionId");
 
-		String json = rs.getString("json");
+		String json = resultSet.getString("json");
 
 		Map<String, String> processedCPInstanceOptions = new HashMap<>();
 

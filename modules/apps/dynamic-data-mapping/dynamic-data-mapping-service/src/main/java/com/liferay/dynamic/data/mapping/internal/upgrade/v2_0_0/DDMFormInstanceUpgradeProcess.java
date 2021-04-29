@@ -139,24 +139,26 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString())) {
 
-			while (rs.next()) {
-				long recordSetId = rs.getLong("recordSetId");
-				long structureId = rs.getLong("DDMStructureId");
-				long groupId = rs.getLong("groupId");
-				long companyId = rs.getLong("companyId");
-				long userId = rs.getLong("userId");
-				String userName = rs.getString("userName");
-				Timestamp createDate = rs.getTimestamp("createDate");
-				String name = rs.getString("name");
-				String description = rs.getString("description");
-				String settings = rs.getString("settings_");
-				Timestamp lastPublishDate = rs.getTimestamp("lastPublishDate");
-				long structureVersionId = rs.getLong("structureVersionId");
+			while (resultSet.next()) {
+				long recordSetId = resultSet.getLong("recordSetId");
+				long structureId = resultSet.getLong("DDMStructureId");
+				long groupId = resultSet.getLong("groupId");
+				long companyId = resultSet.getLong("companyId");
+				long userId = resultSet.getLong("userId");
+				String userName = resultSet.getString("userName");
+				Timestamp createDate = resultSet.getTimestamp("createDate");
+				String name = resultSet.getString("name");
+				String description = resultSet.getString("description");
+				String settings = resultSet.getString("settings_");
+				Timestamp lastPublishDate = resultSet.getTimestamp(
+					"lastPublishDate");
+				long structureVersionId = resultSet.getLong(
+					"structureVersionId");
 
 				ps2.setString(1, PortalUUIDUtil.generate());
 				ps2.setLong(2, recordSetId);
@@ -167,7 +169,7 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 				ps2.setLong(7, userId);
 				ps2.setString(8, userName);
 				ps2.setTimestamp(9, createDate);
-				ps2.setTimestamp(10, rs.getTimestamp("modifiedDate"));
+				ps2.setTimestamp(10, resultSet.getTimestamp("modifiedDate"));
 				ps2.setLong(11, structureId);
 				ps2.setString(12, DDMFormInstanceConstants.VERSION_DEFAULT);
 				ps2.setString(13, name);

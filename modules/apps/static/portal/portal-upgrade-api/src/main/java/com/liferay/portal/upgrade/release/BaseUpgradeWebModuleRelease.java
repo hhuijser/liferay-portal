@@ -80,8 +80,8 @@ public abstract class BaseUpgradeWebModuleRelease extends UpgradeProcess {
 				ps.setString(i + 1, portletIds[i]);
 			}
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
 					return true;
 				}
 

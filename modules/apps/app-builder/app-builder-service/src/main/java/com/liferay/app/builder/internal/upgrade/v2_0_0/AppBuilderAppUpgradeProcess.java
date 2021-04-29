@@ -40,12 +40,12 @@ public class AppBuilderAppUpgradeProcess extends UpgradeProcess {
 						connection,
 						"update AppBuilderApp set active_ = ? where " +
 							"appBuilderAppId = ?");
-				ResultSet rs = ps1.executeQuery()) {
+				ResultSet resultSet = ps1.executeQuery()) {
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					ps2.setBoolean(
-						1, (rs.getInt("status") == 0) ? true : false);
-					ps2.setLong(2, rs.getLong("appBuilderAppId"));
+						1, (resultSet.getInt("status") == 0) ? true : false);
+					ps2.setLong(2, resultSet.getLong("appBuilderAppId"));
 
 					ps2.addBatch();
 				}

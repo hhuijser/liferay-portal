@@ -57,16 +57,16 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				sb.toString())) {
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long layoutPageTemplateStructureId = rs.getLong(
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long layoutPageTemplateStructureId = resultSet.getLong(
 						"layoutPageTemplateStructureId");
-					long groupId = rs.getLong("groupId");
-					long companyId = rs.getLong("companyId");
-					long userId = rs.getLong("userId");
-					String userName = rs.getString("userName");
-					Timestamp createDate = rs.getTimestamp("createDate");
-					String data = rs.getString("data_");
+					long groupId = resultSet.getLong("groupId");
+					long companyId = resultSet.getLong("companyId");
+					long userId = resultSet.getLong("userId");
+					String userName = resultSet.getString("userName");
+					Timestamp createDate = resultSet.getTimestamp("createDate");
+					String data = resultSet.getString("data_");
 
 					_updateLayoutPageTemplateStructureRels(
 						groupId, companyId, userId, userName, createDate,

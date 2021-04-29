@@ -44,11 +44,11 @@ public class BaseKaleoUpgradeTableListener extends BaseUpgradeTableListener {
 				StringBundler.concat(
 					"select ", keyColumnName, ", ", valueColumnName, " from ",
 					tableName));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long key = rs.getLong(keyColumnName);
-				long value = rs.getLong(valueColumnName);
+			while (resultSet.next()) {
+				long key = resultSet.getLong(keyColumnName);
+				long value = resultSet.getLong(valueColumnName);
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(

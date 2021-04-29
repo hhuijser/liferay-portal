@@ -89,14 +89,14 @@ public class IntegerType implements CompositeUserType, Serializable {
 
 	@Override
 	public Object nullSafeGet(
-		ResultSet rs, String[] names, SessionImplementor session,
+		ResultSet resultSet, String[] names, SessionImplementor session,
 		Object owner) {
 
 		Integer value = null;
 
 		try {
 			value = StandardBasicTypes.INTEGER.nullSafeGet(
-				rs, names[0], session);
+				resultSet, names[0], session);
 		}
 		catch (SQLException sqlException) {
 		}

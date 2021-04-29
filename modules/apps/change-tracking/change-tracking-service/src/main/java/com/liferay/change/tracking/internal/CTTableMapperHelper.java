@@ -164,11 +164,11 @@ public class CTTableMapperHelper {
 
 			ps.setBoolean(1, false);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
 					entries.add(
 						new AbstractMap.SimpleImmutableEntry<>(
-							rs.getLong(1), rs.getLong(2)));
+							resultSet.getLong(1), resultSet.getLong(2)));
 				}
 			}
 		}

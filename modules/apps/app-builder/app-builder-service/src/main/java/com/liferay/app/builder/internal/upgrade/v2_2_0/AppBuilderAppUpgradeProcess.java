@@ -57,15 +57,15 @@ public class AppBuilderAppUpgradeProcess extends UpgradeProcess {
 						connection,
 						"update AppBuilderApp set ddlRecordSetId = ? where " +
 							"appBuilderAppId = ?");
-				ResultSet rs = ps1.executeQuery()) {
+				ResultSet resultSet = ps1.executeQuery()) {
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					ps2.setLong(
 						1,
 						_getDDLRecordSetId(
-							rs.getLong("ddmStructureId"),
-							rs.getLong("groupId")));
-					ps2.setLong(2, rs.getLong("appBuilderAppId"));
+							resultSet.getLong("ddmStructureId"),
+							resultSet.getLong("groupId")));
+					ps2.setLong(2, resultSet.getLong("appBuilderAppId"));
 
 					ps2.addBatch();
 				}

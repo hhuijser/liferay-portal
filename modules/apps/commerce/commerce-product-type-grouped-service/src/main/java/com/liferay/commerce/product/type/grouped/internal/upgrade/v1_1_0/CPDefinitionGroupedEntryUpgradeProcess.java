@@ -42,11 +42,12 @@ public class CPDefinitionGroupedEntryUpgradeProcess extends UpgradeProcess {
 				"update CPDefinitionGroupedEntry set entryCProductId = ? " +
 					"where entryCPDefinitionId = ?");
 			Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select * from CPDefinitionGroupedEntry")) {
 
-			while (rs.next()) {
-				long entryCPDefinitionId = rs.getLong("entryCPDefinitionId");
+			while (resultSet.next()) {
+				long entryCPDefinitionId = resultSet.getLong(
+					"entryCPDefinitionId");
 
 				ps.setLong(1, _getCProductId(entryCPDefinitionId));
 
@@ -114,12 +115,12 @@ public class CPDefinitionGroupedEntryUpgradeProcess extends UpgradeProcess {
 
 	private long _getCProductId(long cpDefinitionId) throws Exception {
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select CProductId from CPDefinition where CPDefinitionId = " +
 					cpDefinitionId)) {
 
-			if (rs.next()) {
-				return rs.getLong("CProductId");
+			if (resultSet.next()) {
+				return resultSet.getLong("CProductId");
 			}
 		}
 

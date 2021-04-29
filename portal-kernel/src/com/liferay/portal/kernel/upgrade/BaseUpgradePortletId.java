@@ -198,10 +198,10 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sql2);
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				String typeSettings = rs.getString("typeSettings");
+			while (resultSet.next()) {
+				String typeSettings = resultSet.getString("typeSettings");
 
 				String newTypeSettings = getNewTypeSettings(
 					typeSettings, oldStagedPortletId,
@@ -210,7 +210,7 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 				if (!Objects.equals(typeSettings, newTypeSettings)) {
 					ps2.setString(1, newTypeSettings);
 
-					ps2.setLong(2, rs.getLong("groupId"));
+					ps2.setLong(2, resultSet.getLong("groupId"));
 
 					ps2.addBatch();
 				}
@@ -398,10 +398,10 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select typeSettings from Layout where plid = " + plid);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				String typeSettings = rs.getString("typeSettings");
+			while (resultSet.next()) {
+				String typeSettings = resultSet.getString("typeSettings");
 
 				String newTypeSettings = StringUtil.replace(
 					typeSettings, oldPortletId, newPortletId);
@@ -454,10 +454,10 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sql2);
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				String typeSettings = rs.getString("typeSettings");
+			while (resultSet.next()) {
+				String typeSettings = resultSet.getString("typeSettings");
 
 				String newTypeSettings = getNewTypeSettings(
 					typeSettings, oldRootPortletId, newRootPortletId,
@@ -466,7 +466,7 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 				if (!Objects.equals(typeSettings, newTypeSettings)) {
 					ps2.setString(1, newTypeSettings);
 
-					ps2.setLong(2, rs.getLong("layoutRevisionId"));
+					ps2.setLong(2, resultSet.getLong("layoutRevisionId"));
 
 					ps2.addBatch();
 				}
@@ -490,10 +490,10 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sql2);
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				String typeSettings = rs.getString("typeSettings");
+			while (resultSet.next()) {
+				String typeSettings = resultSet.getString("typeSettings");
 
 				String newTypeSettings = getNewTypeSettings(
 					typeSettings, oldRootPortletId, newRootPortletId,
@@ -502,7 +502,7 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 				if (!Objects.equals(typeSettings, newTypeSettings)) {
 					ps2.setString(1, newTypeSettings);
 
-					ps2.setLong(2, rs.getLong("plid"));
+					ps2.setLong(2, resultSet.getLong("plid"));
 
 					ps2.addBatch();
 				}
@@ -567,10 +567,10 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select actionId from ResourceAction where name = '" + newName +
 					"'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				actionIds.add(rs.getString("actionId"));
+			while (resultSet.next()) {
+				actionIds.add(resultSet.getString("actionId"));
 			}
 		}
 

@@ -137,9 +137,9 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 			ps.setLong(1, groupClassNameId);
 			ps.setLong(2, defaultUserId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long calendarId = rs.getLong(1);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long calendarId = resultSet.getLong(1);
 
 					updateCalendarUserId(calendarId, adminUserId);
 				}

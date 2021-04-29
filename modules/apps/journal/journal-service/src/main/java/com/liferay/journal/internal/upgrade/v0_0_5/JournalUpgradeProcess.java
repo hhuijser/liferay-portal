@@ -183,13 +183,13 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 				ps.setLong(
 					2, PortalUtil.getClassNameId(DDMStructure.class.getName()));
 
-				try (ResultSet rs = ps.executeQuery()) {
+				try (ResultSet resultSet = ps.executeQuery()) {
 					Map<Long, List<Long>> ddmStructureIdsMap = new HashMap<>();
 
-					while (rs.next()) {
-						long structureId = rs.getLong("structureId");
+					while (resultSet.next()) {
+						long structureId = resultSet.getLong("structureId");
 
-						long id = rs.getLong("id_");
+						long id = resultSet.getLong("id_");
 
 						List<Long> ddmStructureIds = ddmStructureIdsMap.get(id);
 
@@ -230,10 +230,10 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 
 				ps.setLong(1, ddmStructureClassNameId);
 
-				try (ResultSet rs = ps.executeQuery()) {
-					while (rs.next()) {
-						long templateId = rs.getLong("templateId");
-						long id = rs.getLong("id_");
+				try (ResultSet resultSet = ps.executeQuery()) {
+					while (resultSet.next()) {
+						long templateId = resultSet.getLong("templateId");
+						long id = resultSet.getLong("id_");
 
 						_ddmTemplateLinkLocalService.addTemplateLink(
 							journalArticleClassNameId, id, templateId);
@@ -356,9 +356,9 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setLong(1, articleId);
 
-				try (ResultSet rs = ps.executeQuery()) {
-					if (rs.next()) {
-						String content = rs.getString("content");
+				try (ResultSet resultSet = ps.executeQuery()) {
+					if (resultSet.next()) {
+						String content = resultSet.getString("content");
 
 						Document document = SAXReaderUtil.read(content);
 
@@ -570,18 +570,18 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select id_, groupId, content, DDMStructureKey from " +
 					"JournalArticle where companyId = " + companyId);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			String name = addBasicWebContentStructureAndTemplate(companyId);
 
-			while (rs.next()) {
-				long id = rs.getLong("id_");
-				String content = rs.getString("content");
+			while (resultSet.next()) {
+				long id = resultSet.getLong("id_");
+				String content = resultSet.getString("content");
 
-				String ddmStructureKey = rs.getString("DDMStructureKey");
+				String ddmStructureKey = resultSet.getString("DDMStructureKey");
 
 				if (Validator.isNull(ddmStructureKey)) {
-					long groupId = rs.getLong("groupId");
+					long groupId = resultSet.getLong("groupId");
 
 					content = convertStaticContentToDynamic(groupId, content);
 

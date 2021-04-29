@@ -51,12 +51,12 @@ public class UrlSubjectUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, urlSubject + "%");
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (!rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (!resultSet.next()) {
 					return urlSubject;
 				}
 
-				int mbMessageCount = rs.getInt(1);
+				int mbMessageCount = resultSet.getInt(1);
 
 				if (mbMessageCount == 0) {
 					return urlSubject;
@@ -91,15 +91,15 @@ public class UrlSubjectUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select messageId, subject from MBMessage where (urlSubject " +
 					"is null) or (urlSubject = '')");
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
 				connection.prepareStatement(
 					"update MBMessage set urlSubject = ? where messageId = " +
 						"?"))) {
 
-			while (rs.next()) {
-				long messageId = rs.getLong(1);
-				String subject = rs.getString(2);
+			while (resultSet.next()) {
+				long messageId = resultSet.getLong(1);
+				String subject = resultSet.getString(2);
 
 				String uniqueUrlSubject = _findUniqueUrlSubject(
 					connection, _getUrlSubject(messageId, subject));

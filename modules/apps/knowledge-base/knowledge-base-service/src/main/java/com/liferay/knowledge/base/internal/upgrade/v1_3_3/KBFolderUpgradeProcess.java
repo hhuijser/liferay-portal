@@ -58,12 +58,12 @@ public class KBFolderUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, urlTitle + "%");
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (!rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (!resultSet.next()) {
 					return urlTitle;
 				}
 
-				int kbFolderCount = rs.getInt(1);
+				int kbFolderCount = resultSet.getInt(1);
 
 				if (kbFolderCount == 0) {
 					return urlTitle;
@@ -80,13 +80,13 @@ public class KBFolderUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps = con.prepareStatement(
 				"select kbFolderId, name from KBFolder where " +
 					"(KBFolder.urlTitle is null) or (KBFolder.urlTitle = '')");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			Map<Long, String> urlTitles = new HashMap<>();
 
-			while (rs.next()) {
-				long kbFolderId = rs.getLong(1);
-				String name = rs.getString(2);
+			while (resultSet.next()) {
+				long kbFolderId = resultSet.getLong(1);
+				String name = resultSet.getString(2);
 
 				String urlTitle = _getUrlTitle(kbFolderId, name);
 

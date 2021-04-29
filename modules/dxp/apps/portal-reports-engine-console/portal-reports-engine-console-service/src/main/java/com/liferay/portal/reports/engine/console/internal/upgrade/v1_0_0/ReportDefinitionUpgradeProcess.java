@@ -52,10 +52,11 @@ public class ReportDefinitionUpgradeProcess extends UpgradeProcess {
 						connection,
 						"update Reports_Definition set reportParameters = ? " +
 							"where companyId = ? and definitionId = ?");
-				ResultSet rs = ps1.executeQuery()) {
+				ResultSet resultSet = ps1.executeQuery()) {
 
-				while (rs.next()) {
-					String reportParameters = rs.getString("reportParameters");
+				while (resultSet.next()) {
+					String reportParameters = resultSet.getString(
+						"reportParameters");
 
 					String updatedReportParameters = updateReportParameters(
 						reportParameters);
@@ -69,8 +70,8 @@ public class ReportDefinitionUpgradeProcess extends UpgradeProcess {
 					ps2.setString(1, updatedReportParameters);
 
 					ps2.setString(1, reportParameters);
-					ps2.setLong(2, rs.getLong("companyId"));
-					ps2.setLong(3, rs.getLong("definitionId"));
+					ps2.setLong(2, resultSet.getLong("companyId"));
+					ps2.setLong(3, resultSet.getLong("definitionId"));
 
 					ps2.addBatch();
 				}

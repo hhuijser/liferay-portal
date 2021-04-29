@@ -73,16 +73,16 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 			PreparedStatement updatePreparedStatement)
 		throws JSONException, SQLException {
 
-		try (ResultSet rs = selectPreparedStatement.executeQuery()) {
-			while (rs.next()) {
+		try (ResultSet resultSet = selectPreparedStatement.executeQuery()) {
+			while (resultSet.next()) {
 				JSONObject settingsJSONObject = _jsonFactory.createJSONObject(
-					rs.getString("settings_"));
+					resultSet.getString("settings_"));
 
 				if (_upgradeSettings(settingsJSONObject)) {
 					updatePreparedStatement.setString(
 						1, settingsJSONObject.toJSONString());
 					updatePreparedStatement.setLong(
-						2, rs.getLong(idColumnName));
+						2, resultSet.getLong(idColumnName));
 
 					updatePreparedStatement.addBatch();
 				}

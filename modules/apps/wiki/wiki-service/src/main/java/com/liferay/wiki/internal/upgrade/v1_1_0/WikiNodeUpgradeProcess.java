@@ -36,16 +36,16 @@ public class WikiNodeUpgradeProcess extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(
 				"select nodeId, name from WikiNode");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				String name = rs.getString("name");
+			while (resultSet.next()) {
+				String name = resultSet.getString("name");
 
 				if (!Validator.isNumber(name)) {
 					continue;
 				}
 
-				long nodeId = rs.getLong("nodeId");
+				long nodeId = resultSet.getLong("nodeId");
 
 				runSQL(
 					StringBundler.concat(

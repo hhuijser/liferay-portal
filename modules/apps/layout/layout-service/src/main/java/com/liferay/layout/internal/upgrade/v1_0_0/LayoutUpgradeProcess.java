@@ -47,10 +47,10 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 			ps1.setString(2, LayoutConstants.TYPE_CONTENT);
 			ps1.setBoolean(3, true);
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					long plid = rs.getLong("plid");
-					String typeSettings = rs.getString("typeSettings");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					long plid = resultSet.getLong("plid");
+					String typeSettings = resultSet.getString("typeSettings");
 
 					UnicodeProperties unicodeProperties =
 						new UnicodeProperties();

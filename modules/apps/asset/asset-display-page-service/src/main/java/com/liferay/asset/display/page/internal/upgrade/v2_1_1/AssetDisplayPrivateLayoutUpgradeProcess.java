@@ -70,8 +70,8 @@ public class AssetDisplayPrivateLayoutUpgradeProcess extends UpgradeProcess {
 		ps.setString(4, friendlyURL);
 
 		for (int i = 1;; i++) {
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
 					friendlyURL = initialFriendlyURL + StringPool.DASH + i;
 
 					ps.setString(4, friendlyURL);
@@ -104,12 +104,12 @@ public class AssetDisplayPrivateLayoutUpgradeProcess extends UpgradeProcess {
 			ps1.setBoolean(1, true);
 			ps1.setString(2, LayoutConstants.TYPE_ASSET_DISPLAY);
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					long ctCollectionId = rs.getLong("ctCollectionId");
-					long groupId = rs.getLong("groupId");
-					String friendlyURL = rs.getString("friendlyURL");
-					long plid = rs.getLong("plid");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					long ctCollectionId = resultSet.getLong("ctCollectionId");
+					long groupId = resultSet.getLong("groupId");
+					String friendlyURL = resultSet.getString("friendlyURL");
+					long plid = resultSet.getLong("plid");
 
 					_addResources(groupId, plid);
 

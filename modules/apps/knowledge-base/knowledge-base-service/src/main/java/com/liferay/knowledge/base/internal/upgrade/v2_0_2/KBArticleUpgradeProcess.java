@@ -93,16 +93,16 @@ public class KBArticleUpgradeProcess extends UpgradeProcess {
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateSQL);
 			PreparedStatement ps2 = connection.prepareStatement(selectSQL);
-			ResultSet rs = ps2.executeQuery()) {
+			ResultSet resultSet = ps2.executeQuery()) {
 
 			int count = 0;
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				count++;
 
-				long id = rs.getLong(1);
+				long id = resultSet.getLong(1);
 
-				String urlTitle = rs.getString(2);
+				String urlTitle = resultSet.getString(2);
 
 				ps1.setString(1, _getUniqueUrlTitle(urlTitle, count));
 

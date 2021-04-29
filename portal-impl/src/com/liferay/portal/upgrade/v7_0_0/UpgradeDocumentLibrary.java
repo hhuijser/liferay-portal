@@ -137,9 +137,9 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			ps.setString(4, title);
 			ps.setString(5, fileName);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					int count = rs.getInt(1);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					int count = resultSet.getInt(1);
 
 					if (count > 0) {
 						return true;
@@ -179,13 +179,13 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(
 				"select * from DLFileEntryTypes_DDMStructures");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			long classNameId = PortalUtil.getClassNameId(DLFileEntryType.class);
 
-			while (rs.next()) {
-				long structureId = rs.getLong("structureId");
-				long fileEntryTypeId = rs.getLong("fileEntryTypeId");
+			while (resultSet.next()) {
+				long structureId = resultSet.getLong("structureId");
+				long fileEntryTypeId = resultSet.getLong("fileEntryTypeId");
 
 				addDDMStructureLink(
 					increment(), classNameId, fileEntryTypeId, structureId);
@@ -203,10 +203,10 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 			ps.setLong(1, PortalUtil.getClassNameId(Company.class));
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long companyId = rs.getLong(1);
-					long groupId = rs.getLong(2);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong(1);
+					long groupId = resultSet.getLong(2);
 
 					updateFileEntryTypeNamesAndDescriptions(companyId, groupId);
 				}
@@ -256,16 +256,16 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			ps.setLong(1, groupId);
 			ps.setString(2, dlFileEntryTypeKey);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (!rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (!resultSet.next()) {
 					return;
 				}
 
-				long fileEntryTypeId = rs.getLong(1);
-				String name = rs.getString(2);
-				String description = rs.getString(3);
+				long fileEntryTypeId = resultSet.getLong(1);
+				String name = resultSet.getString(2);
+				String description = resultSet.getString(3);
 
-				if (rs.next()) {
+				if (resultSet.next()) {
 					throw new IllegalStateException(
 						String.format(
 							"Found more than one row in table " +
@@ -411,12 +411,12 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select groupId, folderId, fileName from DLFileEntry group " +
 					"by groupId, folderId, fileName having count(*) > 1");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long groupId = rs.getLong("groupId");
-				long folderId = rs.getLong("folderId");
-				String fileName = rs.getString("fileName");
+			while (resultSet.next()) {
+				long groupId = resultSet.getLong("groupId");
+				long folderId = resultSet.getLong("folderId");
+				String fileName = resultSet.getString("fileName");
 
 				_fixDuplicateFileEntryFileNames(groupId, folderId, fileName);
 			}
@@ -448,17 +448,18 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			ps1.setLong(2, folderId);
 			ps1.setString(3, fileName);
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				rs.next();
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				resultSet.next();
 
 				int i = 1;
 
-				while (rs.next()) {
-					long fileEntryId = rs.getLong("fileEntryId");
+				while (resultSet.next()) {
+					long fileEntryId = resultSet.getLong("fileEntryId");
 					String extension = GetterUtil.getString(
-						rs.getString("extension"));
-					String title = GetterUtil.getString(rs.getString("title"));
-					String version = rs.getString("version");
+						resultSet.getString("extension"));
+					String title = GetterUtil.getString(
+						resultSet.getString("title"));
+					String version = resultSet.getString("version");
 
 					String uniqueFileName = null;
 
@@ -553,14 +554,15 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 				connection.prepareStatement(
 					"update " + tableName +
 						" set fileName = ? where fileEntryId = ?"));
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long fileEntryId = rs.getLong("fileEntryId");
+			while (resultSet.next()) {
+				long fileEntryId = resultSet.getLong("fileEntryId");
 
 				String extension = GetterUtil.getString(
-					rs.getString("extension"));
-				String title = GetterUtil.getString(rs.getString("title"));
+					resultSet.getString("extension"));
+				String title = GetterUtil.getString(
+					resultSet.getString("title"));
 
 				String fileName = DLUtil.getSanitizedFileName(title, extension);
 

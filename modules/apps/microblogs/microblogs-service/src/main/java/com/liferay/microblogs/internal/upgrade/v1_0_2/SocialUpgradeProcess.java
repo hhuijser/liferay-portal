@@ -56,11 +56,11 @@ public class SocialUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, PortalUtil.getClassNameId(MicroblogsEntry.class));
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long activityId = rs.getLong("activityId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long activityId = resultSet.getLong("activityId");
 
-					String extraData = rs.getString("extraData");
+					String extraData = resultSet.getString("extraData");
 
 					JSONObject extraDataJSONObject =
 						JSONFactoryUtil.createJSONObject(extraData);

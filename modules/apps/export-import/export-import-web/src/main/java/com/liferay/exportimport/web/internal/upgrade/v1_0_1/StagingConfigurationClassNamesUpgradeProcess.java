@@ -56,11 +56,11 @@ public class StagingConfigurationClassNamesUpgradeProcess
 						"where liveGroupId = 0 and site = [$TRUE$] and " +
 							"typeSettings like '%staged=true%'"))) {
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
-					long companyId = rs.getLong("companyId");
-					String typeSettings = rs.getString("typeSettings");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
+					long companyId = resultSet.getLong("companyId");
+					String typeSettings = resultSet.getString("typeSettings");
 
 					_updateStagingConfiguration(
 						groupId, companyId, typeSettings);
@@ -83,9 +83,9 @@ public class StagingConfigurationClassNamesUpgradeProcess
 
 			Set<String> allPortletIds = new HashSet<>();
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					String portletId = rs.getString("portletId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					String portletId = resultSet.getString("portletId");
 
 					allPortletIds.add(portletId);
 				}

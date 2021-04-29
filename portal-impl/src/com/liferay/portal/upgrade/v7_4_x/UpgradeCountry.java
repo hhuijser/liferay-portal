@@ -44,11 +44,11 @@ public class UpgradeCountry extends UpgradeProcess {
 						connection.prepareStatement(
 							"update Country set uuid_ = ? where countryId = " +
 								"?"));
-				ResultSet rs = ps1.executeQuery()) {
+				ResultSet resultSet = ps1.executeQuery()) {
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					ps2.setString(1, PortalUUIDUtil.generate());
-					ps2.setLong(2, rs.getLong(1));
+					ps2.setLong(2, resultSet.getLong(1));
 
 					ps2.addBatch();
 				}
@@ -69,12 +69,12 @@ public class UpgradeCountry extends UpgradeProcess {
 
 		try (PreparedStatement ps = connection.prepareStatement(
 				SQLTransformer.transform(sql));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			if (rs.next()) {
-				companyId = rs.getLong(1);
-				userId = rs.getLong(2);
-				languageId = rs.getString(3);
+			if (resultSet.next()) {
+				companyId = resultSet.getLong(1);
+				userId = resultSet.getLong(2);
+				languageId = resultSet.getString(3);
 			}
 		}
 

@@ -171,12 +171,12 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString());
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				Timestamp createDate = rs.getTimestamp("createDate");
-				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
-				int status = rs.getInt("status");
+			while (resultSet.next()) {
+				Timestamp createDate = resultSet.getTimestamp("createDate");
+				Timestamp modifiedDate = resultSet.getTimestamp("modifiedDate");
+				int status = resultSet.getInt("status");
 
 				String event = StringPool.BLANK;
 
@@ -188,26 +188,26 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				}
 
 				ps2.setLong(1, _counterLocalService.increment());
-				ps2.setLong(2, rs.getLong("companyId"));
-				ps2.setLong(3, rs.getLong("userId"));
-				ps2.setString(4, rs.getString("userName"));
+				ps2.setLong(2, resultSet.getLong("companyId"));
+				ps2.setLong(3, resultSet.getLong("userId"));
+				ps2.setString(4, resultSet.getString("userName"));
 				ps2.setLong(5, createDate.getTime());
 				ps2.setLong(6, modifiedDate.getTime());
 				ps2.setLong(7, groupId);
-				ps2.setLong(8, rs.getLong("parentFolderId"));
-				ps2.setString(9, rs.getString("treePath"));
-				ps2.setString(10, rs.getString("name"));
-				ps2.setString(11, rs.getString("extension"));
-				ps2.setString(12, rs.getString("mimeType"));
-				ps2.setString(13, rs.getString("description"));
-				ps2.setString(14, rs.getString("changeLog"));
-				ps2.setString(15, rs.getString("version"));
-				ps2.setLong(16, rs.getLong("versionId"));
-				ps2.setLong(17, rs.getLong("size_"));
+				ps2.setLong(8, resultSet.getLong("parentFolderId"));
+				ps2.setString(9, resultSet.getString("treePath"));
+				ps2.setString(10, resultSet.getString("name"));
+				ps2.setString(11, resultSet.getString("extension"));
+				ps2.setString(12, resultSet.getString("mimeType"));
+				ps2.setString(13, resultSet.getString("description"));
+				ps2.setString(14, resultSet.getString("changeLog"));
+				ps2.setString(15, resultSet.getString("version"));
+				ps2.setLong(16, resultSet.getLong("versionId"));
+				ps2.setLong(17, resultSet.getLong("size_"));
 				ps2.setString(18, event);
-				ps2.setString(19, rs.getString("type"));
-				ps2.setLong(20, rs.getLong("typePK"));
-				ps2.setString(21, rs.getString("typeUuid"));
+				ps2.setString(19, resultSet.getString("type"));
+				ps2.setLong(20, resultSet.getLong("typePK"));
+				ps2.setString(21, resultSet.getString("typeUuid"));
 
 				ps2.addBatch();
 			}
@@ -235,13 +235,13 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 						"update SyncDLObject set lockExpirationDate = ?, ",
 						"lockUserId = ?, lockUserName = ? where typePK = ? ",
 						"and repositoryId = ", groupId));
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				ps2.setTimestamp(1, rs.getTimestamp("expirationDate"));
-				ps2.setLong(2, rs.getLong("userId"));
-				ps2.setString(3, rs.getString("userName"));
-				ps2.setLong(4, rs.getLong("fileEntryId"));
+			while (resultSet.next()) {
+				ps2.setTimestamp(1, resultSet.getTimestamp("expirationDate"));
+				ps2.setLong(2, resultSet.getLong("userId"));
+				ps2.setString(3, resultSet.getString("userName"));
+				ps2.setLong(4, resultSet.getLong("fileEntryId"));
 
 				ps2.addBatch();
 			}
@@ -280,10 +280,10 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 					connection,
 					"update SyncDLObject set extraSettings = ? where typePK " +
 						"= ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				String name = rs.getString("name");
+			while (resultSet.next()) {
+				String name = resultSet.getString("name");
 
 				if (!ArrayUtil.contains(
 						SyncServiceConfigurationValues.
@@ -298,7 +298,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 				ps2.setString(1, extraSettingsJSONObject.toString());
 
-				ps2.setLong(2, rs.getLong("folderId"));
+				ps2.setLong(2, resultSet.getLong("folderId"));
 
 				ps2.addBatch();
 			}

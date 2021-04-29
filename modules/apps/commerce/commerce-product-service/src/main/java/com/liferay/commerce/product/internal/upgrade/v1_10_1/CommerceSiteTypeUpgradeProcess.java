@@ -51,11 +51,11 @@ public class CommerceSiteTypeUpgradeProcess extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select siteGroupId from CommerceChannel")) {
 
-			while (rs.next()) {
-				long groupId = rs.getLong("siteGroupId");
+			while (resultSet.next()) {
+				long groupId = resultSet.getLong("siteGroupId");
 
 				Settings settings = _settingsFactory.getSettings(
 					new GroupServiceSettingsLocator(
@@ -96,10 +96,10 @@ public class CommerceSiteTypeUpgradeProcess extends UpgradeProcess {
 		try (Statement s = connection.createStatement()) {
 			s.setMaxRows(1);
 
-			try (ResultSet rs = s.executeQuery(sql)) {
-				if (rs.next()) {
-					companyId = rs.getLong("companyId");
-					commerceChannelId = rs.getLong("commerceChannelId");
+			try (ResultSet resultSet = s.executeQuery(sql)) {
+				if (resultSet.next()) {
+					companyId = resultSet.getLong("companyId");
+					commerceChannelId = resultSet.getLong("commerceChannelId");
 				}
 			}
 		}

@@ -109,10 +109,11 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, structureId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
 					ddmForm = DDMFormDeserializeUtil.deserialize(
-						_ddmFormDeserializer, rs.getString("definition"));
+						_ddmFormDeserializer,
+						resultSet.getString("definition"));
 
 					_ddmForms.put(structureId, ddmForm);
 
@@ -141,9 +142,10 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, structureId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					long parentStructureId = rs.getLong("parentStructureId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					long parentStructureId = resultSet.getLong(
+						"parentStructureId");
 
 					fullHierarchyDDMForm = getDDMForm(structureId);
 
@@ -246,12 +248,12 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMContent set data_= ? where contentId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				String data = rs.getString("data_");
+			while (resultSet.next()) {
+				String data = resultSet.getString("data_");
 
-				long ddmStructureId = rs.getLong("structureId");
+				long ddmStructureId = resultSet.getLong("structureId");
 
 				DDMForm ddmForm = getFullHierarchyDDMForm(ddmStructureId);
 
@@ -266,7 +268,7 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 					DDMFormValuesSerializeUtil.serialize(
 						ddmFormValues, _ddmFormValuesSerializer));
 
-				long contentId = rs.getLong("contentId");
+				long contentId = resultSet.getLong("contentId");
 
 				ps2.setLong(2, contentId);
 
@@ -294,9 +296,9 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 					"update DDMStructureVersion set definition = ? where " +
 						"structureVersionId = ?")) {
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					long ddmStructureId = rs.getLong("structureId");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					long ddmStructureId = resultSet.getLong("structureId");
 
 					DDMForm ddmForm = getDDMForm(ddmStructureId);
 
@@ -313,11 +315,11 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 
 					ps3.setLong(1, ddmStructureId);
 
-					try (ResultSet rs2 = ps3.executeQuery()) {
-						while (rs2.next()) {
+					try (ResultSet resultSet2 = ps3.executeQuery()) {
+						while (resultSet2.next()) {
 							ddmForm = DDMFormDeserializeUtil.deserialize(
 								_ddmFormDeserializer,
-								rs2.getString("definition"));
+								resultSet2.getString("definition"));
 
 							updateDDMFormFields(ddmForm);
 
@@ -326,7 +328,7 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 								DDMFormSerializeUtil.serialize(
 									ddmForm, _ddmFormSerializer));
 
-							long structureVersionId = rs2.getLong(
+							long structureVersionId = resultSet2.getLong(
 								"structureVersionId");
 
 							ps4.setLong(2, structureVersionId);

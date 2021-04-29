@@ -76,16 +76,16 @@ public class ImageTypeContentUpgradeProcess extends UpgradeProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement statement = connection.createStatement();
-			ResultSet rs1 = statement.executeQuery(sb.toString())) {
+			ResultSet resultSet1 = statement.executeQuery(sb.toString())) {
 
-			while (rs1.next()) {
-				long articleImageId = rs1.getLong(1);
-				long groupId = rs1.getLong(2);
-				long companyId = rs1.getLong(3);
-				long resourcePrimKey = rs1.getLong(4);
+			while (resultSet1.next()) {
+				long articleImageId = resultSet1.getLong(1);
+				long groupId = resultSet1.getLong(2);
+				long companyId = resultSet1.getLong(3);
+				long resourcePrimKey = resultSet1.getLong(4);
 
 				long userId = PortalUtil.getValidUserId(
-					companyId, rs1.getLong(5));
+					companyId, resultSet1.getLong(5));
 
 				long folderId = _journalArticleImageUpgradeHelper.getFolderId(
 					userId, groupId, resourcePrimKey);

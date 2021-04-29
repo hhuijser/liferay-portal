@@ -227,10 +227,11 @@ public class UpgradeJournalArticles extends BasePortletIdUpgradeProcess {
 		sb.append("_USER_%_INSTANCE_%'");
 
 		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long portletPreferencesId = rs.getLong("portletPreferencesId");
+			while (resultSet.next()) {
+				long portletPreferencesId = resultSet.getLong(
+					"portletPreferencesId");
 
 				com.liferay.portal.kernel.model.PortletPreferences
 					portletPreferences =

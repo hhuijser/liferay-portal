@@ -87,10 +87,10 @@ public class ImageTypeContentAttributesUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, Long.valueOf(articleImageId));
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet resultSet = ps.executeQuery();
 
-			if (rs.next()) {
-				return rs.getString(1);
+			if (resultSet.next()) {
+				return resultSet.getString(1);
 			}
 
 			return StringPool.BLANK;
@@ -105,11 +105,11 @@ public class ImageTypeContentAttributesUpgradeProcess extends UpgradeProcess {
 
 			ps1.setString(1, "%type=\"image\"%");
 
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 
-			while (rs.next()) {
-				String content = rs.getString(1);
-				long id = rs.getLong(2);
+			while (resultSet.next()) {
+				String content = resultSet.getString(1);
+				long id = resultSet.getLong(2);
 
 				String newContent = addImageContentAttributes(content);
 

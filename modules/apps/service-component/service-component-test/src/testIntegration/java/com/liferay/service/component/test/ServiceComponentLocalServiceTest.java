@@ -226,10 +226,10 @@ public class ServiceComponentLocalServiceTest {
 
 				tableName = _normalizeTableName(metadata, _TEST_TABLE);
 
-				try (ResultSet rs = metadata.getTables(
+				try (ResultSet resultSet = metadata.getTables(
 						null, null, tableName, new String[] {"TABLE"})) {
 
-					Assert.assertEquals(expected, rs.next());
+					Assert.assertEquals(expected, resultSet.next());
 				}
 			}
 		}

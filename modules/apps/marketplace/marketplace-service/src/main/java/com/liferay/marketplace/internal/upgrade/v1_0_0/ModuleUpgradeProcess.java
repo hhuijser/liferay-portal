@@ -51,11 +51,11 @@ public class ModuleUpgradeProcess extends UpgradeProcess {
 
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select moduleId, contextName from Marketplace_Module");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long moduleId = rs.getLong("moduleId");
-				String contextName = rs.getString("contextName");
+			while (resultSet.next()) {
+				long moduleId = resultSet.getLong("moduleId");
+				String contextName = resultSet.getString("contextName");
 
 				String newContextName = null;
 

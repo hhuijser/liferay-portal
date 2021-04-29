@@ -44,11 +44,11 @@ public class CPDefinitionOptionRelUpgradeProcess
 					connection, updateCPDefinitionOptionRelSQL);
 			Statement s = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = s.executeQuery(selectCPOptionSQL)) {
+			ResultSet resultSet = s.executeQuery(selectCPOptionSQL)) {
 
-			while (rs.next()) {
-				ps.setString(1, rs.getString("key_"));
-				ps.setLong(2, rs.getLong("CPOptionId"));
+			while (resultSet.next()) {
+				ps.setString(1, resultSet.getString("key_"));
+				ps.setLong(2, resultSet.getLong("CPOptionId"));
 
 				ps.addBatch();
 			}

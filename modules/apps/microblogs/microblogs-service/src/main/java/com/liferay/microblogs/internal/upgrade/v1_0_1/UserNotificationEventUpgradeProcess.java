@@ -57,9 +57,9 @@ public class UserNotificationEventUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, MicroblogsPortletKeys.MICROBLOGS);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					String payload = rs.getString("payload");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					String payload = resultSet.getString("payload");
 
 					JSONObject payloadJSONObject =
 						JSONFactoryUtil.createJSONObject(payload);
@@ -71,7 +71,7 @@ public class UserNotificationEventUpgradeProcess extends UpgradeProcess {
 						return;
 					}
 
-					long userNotificationEventId = rs.getLong(
+					long userNotificationEventId = resultSet.getLong(
 						"userNotificationEventId");
 
 					payloadJSONObject.put(

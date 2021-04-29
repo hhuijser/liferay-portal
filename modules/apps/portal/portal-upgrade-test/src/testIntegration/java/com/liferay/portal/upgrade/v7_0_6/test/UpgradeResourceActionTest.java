@@ -112,13 +112,13 @@ public class UpgradeResourceActionTest {
 			ps.setString(1, name);
 			ps.setString(2, actionId);
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet resultSet = ps.executeQuery();
 
 			if (expectsNull) {
-				Assert.assertFalse(rs.next());
+				Assert.assertFalse(resultSet.next());
 			}
 			else {
-				Assert.assertTrue(rs.next());
+				Assert.assertTrue(resultSet.next());
 			}
 		}
 	}

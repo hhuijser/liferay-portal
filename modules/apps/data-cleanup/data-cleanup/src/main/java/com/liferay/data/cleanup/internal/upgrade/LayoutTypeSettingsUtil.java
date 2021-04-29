@@ -46,11 +46,11 @@ public class LayoutTypeSettingsUtil {
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(
 						"update Layout set typeSettings = ? where plid = ?"));
-			ResultSet rs = selectPS.executeQuery()) {
+			ResultSet resultSet = selectPS.executeQuery()) {
 
-			while (rs.next()) {
-				long plid = rs.getLong(1);
-				String typeSettings = rs.getString(2);
+			while (resultSet.next()) {
+				long plid = resultSet.getLong(1);
+				String typeSettings = resultSet.getString(2);
 
 				UnicodeProperties unicodeProperties = new UnicodeProperties(
 					true);

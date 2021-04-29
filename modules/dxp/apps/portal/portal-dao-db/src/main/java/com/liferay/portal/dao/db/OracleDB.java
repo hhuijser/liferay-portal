@@ -74,12 +74,12 @@ public class OracleDB extends BaseDB {
 		String sql = sb.toString();
 
 		try (PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				String indexName = rs.getString("index_name");
-				String tableName = rs.getString("table_name");
-				String uniqueness = rs.getString("uniqueness");
+			while (resultSet.next()) {
+				String indexName = resultSet.getString("index_name");
+				String tableName = resultSet.getString("table_name");
+				String uniqueness = resultSet.getString("uniqueness");
 
 				boolean unique = true;
 

@@ -50,11 +50,11 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 					"update JournalArticle set createDate = ? where " +
 						"resourcePrimKey = ?")) {
 
-			try (ResultSet rs = s.executeQuery(sb.toString())) {
-				while (rs.next()) {
-					long resourcePrimKey = rs.getLong(1);
+			try (ResultSet resultSet = s.executeQuery(sb.toString())) {
+				while (resultSet.next()) {
+					long resourcePrimKey = resultSet.getLong(1);
 
-					Timestamp createDate = rs.getTimestamp(2);
+					Timestamp createDate = resultSet.getTimestamp(2);
 
 					ps.setTimestamp(1, createDate);
 
@@ -94,12 +94,12 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 			ps1.setLong(
 				2, PortalUtil.getClassNameId(_CLASS_NAME_JOURNAL_ARTICLE));
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					long resourcePrimKey = rs.getLong(1);
-					Double latestVersion = rs.getDouble(2);
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					long resourcePrimKey = resultSet.getLong(1);
+					Double latestVersion = resultSet.getDouble(2);
 
-					Timestamp assetModifiedDate = rs.getTimestamp(3);
+					Timestamp assetModifiedDate = resultSet.getTimestamp(3);
 
 					ps2.setTimestamp(1, assetModifiedDate);
 

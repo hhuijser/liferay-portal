@@ -67,18 +67,18 @@ public class UpgradeAssetCategory extends UpgradeProcess {
 								"parentCategoryId = ?"))))) {
 
 			while (true) {
-				try (ResultSet rs = selectPS.executeQuery()) {
-					if (!rs.next()) {
+				try (ResultSet resultSet = selectPS.executeQuery()) {
+					if (!resultSet.next()) {
 						return;
 					}
 
 					do {
-						updatePS.setString(1, rs.getString(1));
-						updatePS.setLong(2, rs.getLong(2));
+						updatePS.setString(1, resultSet.getString(1));
+						updatePS.setLong(2, resultSet.getLong(2));
 
 						updatePS.addBatch();
 					}
-					while (rs.next());
+					while (resultSet.next());
 
 					updatePS.executeBatch();
 				}

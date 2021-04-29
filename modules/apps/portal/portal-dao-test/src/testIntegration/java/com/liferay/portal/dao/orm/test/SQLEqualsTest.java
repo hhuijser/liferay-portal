@@ -204,11 +204,11 @@ public class SQLEqualsTest {
 
 		try (Connection con = DataAccess.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(sql, rs.next());
-			Assert.assertEquals(sql, expectedPK, rs.getLong(1));
-			Assert.assertFalse(sql, rs.next());
+			Assert.assertTrue(sql, resultSet.next());
+			Assert.assertEquals(sql, expectedPK, resultSet.getLong(1));
+			Assert.assertFalse(sql, resultSet.next());
 		}
 	}
 

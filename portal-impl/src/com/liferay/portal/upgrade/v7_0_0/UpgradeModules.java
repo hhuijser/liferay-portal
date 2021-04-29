@@ -64,8 +64,8 @@ public class UpgradeModules extends UpgradeProcess {
 
 			ps.setString(1, buildNamespace);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
 					return true;
 				}
 			}
@@ -88,8 +88,8 @@ public class UpgradeModules extends UpgradeProcess {
 
 					ps.setString(1, oldServletContextName);
 
-					try (ResultSet rs = ps.executeQuery()) {
-						if (!rs.next()) {
+					try (ResultSet resultSet = ps.executeQuery()) {
+						if (!resultSet.next()) {
 							String buildNamespace = convertedLegacyModule[2];
 
 							if (hasServiceComponent(buildNamespace)) {

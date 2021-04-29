@@ -48,14 +48,14 @@ public class DDMFormInstanceEntriesUpgradeProcess extends UpgradeProcess {
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMContent set data_ = ? where contentId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				String data = rs.getString("data_");
+			while (resultSet.next()) {
+				String data = resultSet.getString("data_");
 
 				ps2.setString(1, updateFieldValuesToLocalizable(data));
 
-				long contentId = rs.getLong("contentId");
+				long contentId = resultSet.getLong("contentId");
 
 				ps2.setLong(2, contentId);
 

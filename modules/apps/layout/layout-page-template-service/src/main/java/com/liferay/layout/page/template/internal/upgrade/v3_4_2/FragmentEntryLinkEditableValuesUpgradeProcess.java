@@ -36,12 +36,12 @@ public class FragmentEntryLinkEditableValuesUpgradeProcess
 			PreparedStatement ps2 = connection.prepareStatement(
 				"update FragmentEntryLink set editableValues = ? where " +
 					"fragmentEntryLinkId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				JSONObject editablesJSONObject =
 					JSONFactoryUtil.createJSONObject(
-						rs.getString("editableValues"));
+						resultSet.getString("editableValues"));
 
 				JSONObject configurationJSONObject =
 					editablesJSONObject.getJSONObject(
@@ -59,7 +59,7 @@ public class FragmentEntryLinkEditableValuesUpgradeProcess
 				}
 
 				ps2.setString(1, editablesJSONObject.toString());
-				ps2.setLong(2, rs.getLong("fragmentEntryLinkId"));
+				ps2.setLong(2, resultSet.getLong("fragmentEntryLinkId"));
 
 				ps2.addBatch();
 			}

@@ -48,14 +48,14 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 		try (PreparedStatement ps = connection.prepareStatement(
 				SQLTransformer.transform(sb.toString()));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long layoutPageTemplateEntryId = rs.getLong(
+			while (resultSet.next()) {
+				long layoutPageTemplateEntryId = resultSet.getLong(
 					"layoutPageTemplateEntryId");
-				long companyId = rs.getLong("companyId");
-				String name = rs.getString("name");
-				long layoutPrototypeId = rs.getLong("layoutPrototypeId");
+				long companyId = resultSet.getLong("companyId");
+				String name = resultSet.getString("name");
+				long layoutPrototypeId = resultSet.getLong("layoutPrototypeId");
 
 				_updateLayoutPageTemplateEntry(
 					layoutPageTemplateEntryId, companyId, name,
@@ -85,9 +85,9 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 			try (PreparedStatement ps = connection.prepareStatement(
 					sb.toString());
-				ResultSet rs = ps.executeQuery()) {
+				ResultSet resultSet = ps.executeQuery()) {
 
-				if (rs.next() && (rs.getInt(1) > 0)) {
+				if (resultSet.next() && (resultSet.getInt(1) > 0)) {
 					newName = name + i;
 				}
 				else {

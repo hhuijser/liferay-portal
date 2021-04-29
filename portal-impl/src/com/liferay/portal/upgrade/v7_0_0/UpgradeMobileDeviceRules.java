@@ -40,12 +40,12 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 	public long getActionIds(String className) throws Exception {
 		long actionIds = 0;
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select bitwiseValue from ResourceAction where name = ?")) {
 
-			ps.setString(1, className);
+			preparedStatement.setString(1, className);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long bitwiseValue = resultSet.getLong(1);
 
@@ -63,14 +63,14 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 		String roleName = RoleConstants.OWNER;
 		int roleType = RoleConstants.TYPE_REGULAR;
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select companyId, roleId from Role_ where name = ? and " +
 					"type_ = ?")) {
 
-			ps.setString(1, roleName);
-			ps.setInt(2, roleType);
+			preparedStatement.setString(1, roleName);
+			preparedStatement.setInt(2, roleType);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long companyId = resultSet.getLong(1);
 					long roleId = resultSet.getLong(2);
@@ -93,25 +93,26 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 		sb.append("MDRRuleGroupInstance.ruleGroupId where ");
 		sb.append("MDRRuleGroupInstance.companyId = 0");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update MDRRuleGroupInstance set companyId = ? where " +
 						"ruleGroupInstanceId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long companyId = resultSet.getLong(1);
 				long ruleGroupInstanceId = resultSet.getLong(2);
 
-				ps2.setLong(1, companyId);
-				ps2.setLong(2, ruleGroupInstanceId);
+				preparedStatement2.setLong(1, companyId);
+				preparedStatement2.setLong(2, ruleGroupInstanceId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 
@@ -142,33 +143,35 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 
 		long actionIds = getActionIds(_CLASS_NAME);
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb1.toString());
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString());
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long companyId = resultSet.getLong(1);
 				long ruleGroupInstanceId = resultSet.getLong(2);
 				long userId = resultSet.getLong(3);
 
-				ps2.setLong(1, increment(ResourcePermission.class.getName()));
-				ps2.setLong(2, companyId);
-				ps2.setString(3, _CLASS_NAME);
-				ps2.setInt(4, 4);
-				ps2.setString(5, String.valueOf(ruleGroupInstanceId));
-				ps2.setLong(6, ruleGroupInstanceId);
-				ps2.setLong(7, ownerRoleIds.get(companyId));
-				ps2.setLong(8, userId);
-				ps2.setLong(9, actionIds);
-				ps2.setBoolean(10, true);
+				preparedStatement2.setLong(
+					1, increment(ResourcePermission.class.getName()));
+				preparedStatement2.setLong(2, companyId);
+				preparedStatement2.setString(3, _CLASS_NAME);
+				preparedStatement2.setInt(4, 4);
+				preparedStatement2.setString(
+					5, String.valueOf(ruleGroupInstanceId));
+				preparedStatement2.setLong(6, ruleGroupInstanceId);
+				preparedStatement2.setLong(7, ownerRoleIds.get(companyId));
+				preparedStatement2.setLong(8, userId);
+				preparedStatement2.setLong(9, actionIds);
+				preparedStatement2.setBoolean(10, true);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

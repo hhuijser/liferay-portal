@@ -133,7 +133,7 @@ public class CommerceOrderItemUpgradeProcess
 			"CommerceOrderItem.commerceOrderId and CommerceOrder.orderStatus ",
 			"= 2");
 
-		try (PreparedStatement ps1 =
+		try (PreparedStatement preparedStatement1 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateCommerceOrderItemSQL);
 			Statement s = connection.createStatement(
@@ -196,29 +196,30 @@ public class CommerceOrderItemUpgradeProcess
 
 				long commerceOrderItemId = resultSet.getLong(31);
 
-				ps1.setBoolean(1, shippable);
-				ps1.setBoolean(2, freeShipping);
-				ps1.setBoolean(3, shipSeparately);
-				ps1.setDouble(4, shippingExtraPrice);
-				ps1.setDouble(5, width);
-				ps1.setDouble(6, height);
-				ps1.setDouble(7, depth);
-				ps1.setDouble(8, weight);
-				ps1.setInt(9, subscriptionLength);
-				ps1.setString(10, subscriptionType);
-				ps1.setString(11, subscriptionTypeSettings);
-				ps1.setLong(12, maxSubscriptionCycles);
-				ps1.setInt(13, deliverySubscriptionLength);
-				ps1.setString(14, deliverySubscriptionType);
-				ps1.setString(15, deliverySubscriptionTypeSettings);
-				ps1.setLong(16, deliveryMaxSubscriptionCycles);
-				ps1.setLong(17, cpInstanceId);
-				ps1.setLong(18, commerceOrderItemId);
+				preparedStatement1.setBoolean(1, shippable);
+				preparedStatement1.setBoolean(2, freeShipping);
+				preparedStatement1.setBoolean(3, shipSeparately);
+				preparedStatement1.setDouble(4, shippingExtraPrice);
+				preparedStatement1.setDouble(5, width);
+				preparedStatement1.setDouble(6, height);
+				preparedStatement1.setDouble(7, depth);
+				preparedStatement1.setDouble(8, weight);
+				preparedStatement1.setInt(9, subscriptionLength);
+				preparedStatement1.setString(10, subscriptionType);
+				preparedStatement1.setString(11, subscriptionTypeSettings);
+				preparedStatement1.setLong(12, maxSubscriptionCycles);
+				preparedStatement1.setInt(13, deliverySubscriptionLength);
+				preparedStatement1.setString(14, deliverySubscriptionType);
+				preparedStatement1.setString(
+					15, deliverySubscriptionTypeSettings);
+				preparedStatement1.setLong(16, deliveryMaxSubscriptionCycles);
+				preparedStatement1.setLong(17, cpInstanceId);
+				preparedStatement1.setLong(18, commerceOrderItemId);
 
-				ps1.addBatch();
+				preparedStatement1.addBatch();
 			}
 
-			ps1.executeBatch();
+			preparedStatement1.executeBatch();
 		}
 	}
 

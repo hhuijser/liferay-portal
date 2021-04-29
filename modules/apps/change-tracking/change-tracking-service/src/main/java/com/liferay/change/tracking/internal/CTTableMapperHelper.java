@@ -50,12 +50,13 @@ public class CTTableMapperHelper {
 				Connection connection = CurrentConnectionUtil.getConnection(
 					ctPersistence.getDataSource());
 
-				try (PreparedStatement ps = connection.prepareStatement(
-						StringBundler.concat(
-							"delete from ", _tableName,
-							" where ctCollectionId = ", ctCollectionId))) {
+				try (PreparedStatement preparedStatement =
+						connection.prepareStatement(
+							StringBundler.concat(
+								"delete from ", _tableName,
+								" where ctCollectionId = ", ctCollectionId))) {
 
-					ps.executeUpdate();
+					preparedStatement.executeUpdate();
 				}
 
 				return null;
@@ -102,26 +103,28 @@ public class CTTableMapperHelper {
 				Connection connection = CurrentConnectionUtil.getConnection(
 					ctPersistence.getDataSource());
 
-				try (PreparedStatement ps = connection.prepareStatement(
-						StringBundler.concat(
-							"insert into ", _tableName, " (companyId, ",
-							_leftColumnName, ", ", _rightColumnName,
-							", ctCollectionId, ctChangeType) select ",
-							"t1.companyId, t1.", _leftColumnName, ", t1.",
-							_rightColumnName, ", ", toCTCollectionId,
-							" as ctCollectionId, ? as ctChangeType from ",
-							_tableName, " t1 where t1.ctCollectionId = ",
-							fromCTCollectionId, " and t1.ctChangeType = ?"))) {
+				try (PreparedStatement preparedStatement =
+						connection.prepareStatement(
+							StringBundler.concat(
+								"insert into ", _tableName, " (companyId, ",
+								_leftColumnName, ", ", _rightColumnName,
+								", ctCollectionId, ctChangeType) select ",
+								"t1.companyId, t1.", _leftColumnName, ", t1.",
+								_rightColumnName, ", ", toCTCollectionId,
+								" as ctCollectionId, ? as ctChangeType from ",
+								_tableName, " t1 where t1.ctCollectionId = ",
+								fromCTCollectionId,
+								" and t1.ctChangeType = ?"))) {
 
-					ps.setBoolean(1, true);
-					ps.setBoolean(2, false);
+					preparedStatement.setBoolean(1, true);
+					preparedStatement.setBoolean(2, false);
 
-					ps.executeUpdate();
+					preparedStatement.executeUpdate();
 
-					ps.setBoolean(1, false);
-					ps.setBoolean(2, true);
+					preparedStatement.setBoolean(1, false);
+					preparedStatement.setBoolean(2, true);
 
-					ps.executeUpdate();
+					preparedStatement.executeUpdate();
 				}
 
 				return null;
@@ -156,15 +159,15 @@ public class CTTableMapperHelper {
 
 		List<Map.Entry<Long, Long>> entries = new ArrayList<>();
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select ", _leftColumnName, ", ", _rightColumnName,
 					" from ", _tableName, " where ctCollectionId = ",
 					ctCollectionId, " and ctChangeType = ?"))) {
 
-			ps.setBoolean(1, false);
+			preparedStatement.setBoolean(1, false);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					entries.add(
 						new AbstractMap.SimpleImmutableEntry<>(
@@ -195,14 +198,14 @@ public class CTTableMapperHelper {
 
 			sb.setStringAt("))", sb.index() - 1);
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					sb.toString())) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(sb.toString())) {
 
-				count += ps.executeUpdate();
+				count += preparedStatement.executeUpdate();
 			}
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"insert into ", _tableName, " (companyId, ",
 					_leftColumnName, ", ", _rightColumnName,
@@ -215,9 +218,9 @@ public class CTTableMapperHelper {
 					" where t1.ctCollectionId = ", ctCollectionId,
 					" and t1.ctChangeType = ?"))) {
 
-			ps.setBoolean(1, true);
+			preparedStatement.setBoolean(1, true);
 
-			count += ps.executeUpdate();
+			count += preparedStatement.executeUpdate();
 		}
 
 		return count;

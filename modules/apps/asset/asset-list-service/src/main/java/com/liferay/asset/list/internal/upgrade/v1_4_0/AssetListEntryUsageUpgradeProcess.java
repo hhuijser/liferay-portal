@@ -46,7 +46,7 @@ public class AssetListEntryUsageUpgradeProcess extends UpgradeProcess {
 			new AlterTableAddColumn("type_", "INTEGER"));
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				SQLTransformer.transform(
 					StringBundler.concat(
 						"update AssetListEntryUsage set classNameId = ?, ",
@@ -54,11 +54,14 @@ public class AssetListEntryUsageUpgradeProcess extends UpgradeProcess {
 						"CAST_TEXT(assetListEntryId), plid = classPK, type_ = ",
 						"?")))) {
 
-			ps1.setLong(1, PortalUtil.getClassNameId(AssetListEntry.class));
-			ps1.setLong(2, PortalUtil.getClassNameId(Portlet.class));
-			ps1.setInt(3, AssetListEntryUsageConstants.TYPE_LAYOUT);
+			preparedStatement1.setLong(
+				1, PortalUtil.getClassNameId(AssetListEntry.class));
+			preparedStatement1.setLong(
+				2, PortalUtil.getClassNameId(Portlet.class));
+			preparedStatement1.setInt(
+				3, AssetListEntryUsageConstants.TYPE_LAYOUT);
 
-			ps1.execute();
+			preparedStatement1.execute();
 		}
 	}
 

@@ -31,12 +31,12 @@ public class RatingsStatsUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected long getClassNameId(String className) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select classNameId from ClassName_ where value = ?")) {
 
-			ps.setString(1, className);
+			preparedStatement.setString(1, className);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return resultSet.getLong("classNameId");
 				}
@@ -47,11 +47,11 @@ public class RatingsStatsUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void updateRatingsStats() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select statsId, totalScore, averageScore from RatingsStats " +
 					"where classNameId = " +
 						getClassNameId(_CLASS_NAME_ARTICLE));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long statsId = resultSet.getLong("statsId");

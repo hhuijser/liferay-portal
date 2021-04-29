@@ -189,10 +189,11 @@ public class DBPartitionUtil {
 		throws SQLException {
 
 		if (_DATABASE_PARTITION_ENABLED) {
-			try (PreparedStatement ps = connection.prepareStatement(
-					"select companyId from Company where webId = '" +
-						PropsValues.COMPANY_DEFAULT_WEB_ID + "'");
-				ResultSet resultSet = ps.executeQuery()) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						"select companyId from Company where webId = '" +
+							PropsValues.COMPANY_DEFAULT_WEB_ID + "'");
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				if (resultSet.next()) {
 					_defaultCompanyId = resultSet.getLong(1);

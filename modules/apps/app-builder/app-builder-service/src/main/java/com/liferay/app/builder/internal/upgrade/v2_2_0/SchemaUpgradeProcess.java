@@ -51,32 +51,42 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 			sb.append("ddlRecordSetId, ddmStructureId, ddmStructureLayoutId, ");
 			sb.append("version) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					"select AppBuilderApp.* from AppBuilderApp");
-				ResultSet resultSet = ps1.executeQuery();
-				PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(
+						"select AppBuilderApp.* from AppBuilderApp");
+				ResultSet resultSet = preparedStatement1.executeQuery();
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, sb.toString())) {
 
 				while (resultSet.next()) {
-					ps2.setString(1, PortalUUIDUtil.generate());
-					ps2.setLong(2, _counterLocalService.increment());
-					ps2.setLong(3, resultSet.getLong("groupId"));
-					ps2.setLong(4, resultSet.getLong("companyId"));
-					ps2.setLong(5, resultSet.getLong("userId"));
-					ps2.setString(6, resultSet.getString("userName"));
-					ps2.setTimestamp(7, resultSet.getTimestamp("createDate"));
-					ps2.setTimestamp(8, resultSet.getTimestamp("modifiedDate"));
-					ps2.setLong(9, resultSet.getLong("appBuilderAppId"));
-					ps2.setLong(10, resultSet.getLong("ddlRecordSetId"));
-					ps2.setLong(11, resultSet.getLong("ddmStructureId"));
-					ps2.setLong(12, resultSet.getLong("ddmStructureLayoutId"));
-					ps2.setString(13, "1.0");
+					preparedStatement2.setString(1, PortalUUIDUtil.generate());
+					preparedStatement2.setLong(
+						2, _counterLocalService.increment());
+					preparedStatement2.setLong(3, resultSet.getLong("groupId"));
+					preparedStatement2.setLong(
+						4, resultSet.getLong("companyId"));
+					preparedStatement2.setLong(5, resultSet.getLong("userId"));
+					preparedStatement2.setString(
+						6, resultSet.getString("userName"));
+					preparedStatement2.setTimestamp(
+						7, resultSet.getTimestamp("createDate"));
+					preparedStatement2.setTimestamp(
+						8, resultSet.getTimestamp("modifiedDate"));
+					preparedStatement2.setLong(
+						9, resultSet.getLong("appBuilderAppId"));
+					preparedStatement2.setLong(
+						10, resultSet.getLong("ddlRecordSetId"));
+					preparedStatement2.setLong(
+						11, resultSet.getLong("ddmStructureId"));
+					preparedStatement2.setLong(
+						12, resultSet.getLong("ddmStructureLayoutId"));
+					preparedStatement2.setString(13, "1.0");
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

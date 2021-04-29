@@ -59,8 +59,9 @@ public class KaleoProcessTemplateLinkUpgradeProcess extends UpgradeProcess {
 		sb.append(kaleoProcessClassNameId);
 		sb.append("))");
 
-		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet resultSet = ps.executeQuery()) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long kaleoProcessLinkId = resultSet.getLong("kaleoProcessId");
@@ -88,8 +89,9 @@ public class KaleoProcessTemplateLinkUpgradeProcess extends UpgradeProcess {
 		sb.append(kaleoProcessLinkClassNameId);
 		sb.append("))");
 
-		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet resultSet = ps.executeQuery()) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long kaleoProcessLinkId = resultSet.getLong(

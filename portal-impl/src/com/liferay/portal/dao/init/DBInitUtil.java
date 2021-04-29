@@ -74,7 +74,7 @@ public class DBInitUtil {
 	private static void _addReleaseInfo(Connection connection)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"insert into Release_ (releaseId, createDate, ",
 					"modifiedDate, servletContextName, schemaVersion, ",
@@ -83,30 +83,31 @@ public class DBInitUtil {
 
 			Date now = new Date(System.currentTimeMillis());
 
-			ps.setDate(1, now);
-			ps.setDate(2, now);
+			preparedStatement.setDate(1, now);
+			preparedStatement.setDate(2, now);
 
-			ps.setString(3, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
+			preparedStatement.setString(
+				3, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
 			Version latestSchemaVersion =
 				PortalUpgradeProcess.getLatestSchemaVersion();
 
-			ps.setString(4, latestSchemaVersion.toString());
+			preparedStatement.setString(4, latestSchemaVersion.toString());
 
-			ps.setInt(5, ReleaseInfo.getBuildNumber());
-			ps.setBoolean(6, false);
-			ps.setString(7, ReleaseConstants.TEST_STRING);
+			preparedStatement.setInt(5, ReleaseInfo.getBuildNumber());
+			preparedStatement.setBoolean(6, false);
+			preparedStatement.setString(7, ReleaseConstants.TEST_STRING);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	private static boolean _checkDefaultRelease(Connection connection) {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select mvccVersion, schemaVersion, buildNumber, state_ from " +
 					"Release_ where releaseId = " +
 						ReleaseConstants.DEFAULT_ID);
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (!resultSet.next()) {
 				_addReleaseInfo(connection);
@@ -149,14 +150,14 @@ public class DBInitUtil {
 			Connection connection, String testString)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select count(*) from Release_ where releaseId = ? and " +
 					"testString = ?")) {
 
-			ps.setLong(1, ReleaseConstants.DEFAULT_ID);
-			ps.setString(2, testString);
+			preparedStatement.setLong(1, ReleaseConstants.DEFAULT_ID);
+			preparedStatement.setString(2, testString);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next() && (resultSet.getInt(1) > 0)) {
 					return true;
 				}

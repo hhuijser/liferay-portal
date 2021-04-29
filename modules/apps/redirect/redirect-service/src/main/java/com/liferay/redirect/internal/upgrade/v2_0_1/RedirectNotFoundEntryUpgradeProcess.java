@@ -30,11 +30,11 @@ public class RedirectNotFoundEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(
 					"select redirectNotFoundEntryId, companyId, hits from " +
 						"RedirectNotFoundEntry"));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long redirectNotFoundEntryId = resultSet.getLong(

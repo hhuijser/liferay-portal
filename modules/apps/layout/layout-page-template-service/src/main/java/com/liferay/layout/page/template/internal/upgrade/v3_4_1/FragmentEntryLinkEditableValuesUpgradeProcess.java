@@ -37,16 +37,16 @@ public class FragmentEntryLinkEditableValuesUpgradeProcess
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select fragmentEntryLinkId,editableValues,rendererKey from " +
 					"FragmentEntryLink where rendererKey like " +
 						"'BASIC_COMPONENT%'");
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update FragmentEntryLink set editableValues = ? where " +
 						"fragmentEntryLinkId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				JSONObject editablesJSONObject =
@@ -92,13 +92,14 @@ public class FragmentEntryLinkEditableValuesUpgradeProcess
 					}
 				}
 
-				ps2.setString(1, editablesJSONObject.toString());
-				ps2.setLong(2, resultSet.getLong("fragmentEntryLinkId"));
+				preparedStatement2.setString(1, editablesJSONObject.toString());
+				preparedStatement2.setLong(
+					2, resultSet.getLong("fragmentEntryLinkId"));
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

@@ -29,12 +29,12 @@ public class DDMFormInstanceRecordVersionUpgradeProcess extends UpgradeProcess {
 	protected void deleteDDLRecordVersion(long recordVersionId)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from DDLRecordVersion where recordVersionId = ?")) {
 
-			ps.setLong(1, recordVersionId);
+			preparedStatement.setLong(1, recordVersionId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
@@ -58,39 +58,48 @@ public class DDMFormInstanceRecordVersionUpgradeProcess extends UpgradeProcess {
 		sb2.append("storageId) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
 		sb2.append("?, ?)");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 =
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString())) {
 
 			while (resultSet.next()) {
 				long recordVersionId = resultSet.getLong("recordVersionId");
 
-				ps2.setLong(1, recordVersionId);
+				preparedStatement2.setLong(1, recordVersionId);
 
-				ps2.setLong(2, resultSet.getLong("formInstanceGroupId"));
-				ps2.setLong(3, resultSet.getLong("companyId"));
-				ps2.setLong(4, resultSet.getLong("userId"));
-				ps2.setString(5, resultSet.getString("userName"));
-				ps2.setTimestamp(6, resultSet.getTimestamp("createDate"));
-				ps2.setLong(7, resultSet.getLong("recordSetId"));
-				ps2.setString(8, resultSet.getString("formInstanceVersion"));
-				ps2.setLong(9, resultSet.getLong("recordId"));
-				ps2.setString(10, resultSet.getString("version"));
-				ps2.setInt(11, resultSet.getInt("status"));
-				ps2.setLong(12, resultSet.getLong("statusByUserId"));
-				ps2.setString(13, resultSet.getString("statusByUserName"));
-				ps2.setTimestamp(14, resultSet.getTimestamp("statusDate"));
-				ps2.setLong(15, resultSet.getLong("DDMStorageId"));
+				preparedStatement2.setLong(
+					2, resultSet.getLong("formInstanceGroupId"));
+				preparedStatement2.setLong(3, resultSet.getLong("companyId"));
+				preparedStatement2.setLong(4, resultSet.getLong("userId"));
+				preparedStatement2.setString(
+					5, resultSet.getString("userName"));
+				preparedStatement2.setTimestamp(
+					6, resultSet.getTimestamp("createDate"));
+				preparedStatement2.setLong(7, resultSet.getLong("recordSetId"));
+				preparedStatement2.setString(
+					8, resultSet.getString("formInstanceVersion"));
+				preparedStatement2.setLong(9, resultSet.getLong("recordId"));
+				preparedStatement2.setString(
+					10, resultSet.getString("version"));
+				preparedStatement2.setInt(11, resultSet.getInt("status"));
+				preparedStatement2.setLong(
+					12, resultSet.getLong("statusByUserId"));
+				preparedStatement2.setString(
+					13, resultSet.getString("statusByUserName"));
+				preparedStatement2.setTimestamp(
+					14, resultSet.getTimestamp("statusDate"));
+				preparedStatement2.setLong(
+					15, resultSet.getLong("DDMStorageId"));
 
 				deleteDDLRecordVersion(recordVersionId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

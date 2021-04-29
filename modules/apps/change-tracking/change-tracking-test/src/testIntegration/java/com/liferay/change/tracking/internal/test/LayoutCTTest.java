@@ -126,10 +126,10 @@ public class LayoutCTTest {
 		_ctCollectionLocalService.deleteCTCollection(_ctCollection);
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select * from Layout where ctCollectionId = " +
 					_ctCollection.getCtCollectionId());
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertFalse(resultSet.next());
 		}
@@ -154,10 +154,10 @@ public class LayoutCTTest {
 		_ctCollectionLocalService.deleteCTCollection(_ctCollection);
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select * from Layout where ctCollectionId = " +
 					_ctCollection.getCtCollectionId());
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertFalse(resultSet.next());
 		}
@@ -183,10 +183,10 @@ public class LayoutCTTest {
 		_ctCollectionLocalService.deleteCTCollection(_ctCollection);
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select * from Layout where ctCollectionId = " +
 					_ctCollection.getCtCollectionId());
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertFalse(resultSet.next());
 		}
@@ -214,10 +214,10 @@ public class LayoutCTTest {
 		_ctCollectionLocalService.deleteCTCollection(_ctCollection);
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select * from Layout where ctCollectionId = " +
 					_ctCollection.getCtCollectionId());
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertFalse(resultSet.next());
 		}
@@ -416,7 +416,7 @@ public class LayoutCTTest {
 			_ctCollection.getUserId(), _ctCollection.getCtCollectionId());
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				StringBundler.concat(
 					"select changeType from CTEntry inner join Layout on ",
 					"CTEntry.modelClassNameId = ",
@@ -427,7 +427,7 @@ public class LayoutCTTest {
 					"CTEntry.ctCollectionId = ",
 					_ctCollection.getCtCollectionId(),
 					" order by ctEntryId ASC"));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 
@@ -439,7 +439,7 @@ public class LayoutCTTest {
 		}
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				StringBundler.concat(
 					"select changeType from CTEntry inner join Layout on ",
 					"CTEntry.modelClassNameId = ",
@@ -451,7 +451,7 @@ public class LayoutCTTest {
 					" and Layout.ctCollectionId = ",
 					CTConstants.CT_COLLECTION_ID_PRODUCTION,
 					" order by ctEntryId ASC"));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 
@@ -923,10 +923,10 @@ public class LayoutCTTest {
 			Layout layout = LayoutTestUtil.addLayout(_group);
 
 			try (Connection con = DataAccess.getConnection();
-				PreparedStatement ps = con.prepareStatement(
+				PreparedStatement preparedStatement = con.prepareStatement(
 					"select ctCollectionId from Layout where plid = " +
 						layout.getPlid());
-				ResultSet resultSet = ps.executeQuery()) {
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				Assert.assertTrue(resultSet.next());
 
@@ -947,9 +947,9 @@ public class LayoutCTTest {
 			Assert.assertNull(ctEntry);
 
 			try (Connection con = DataAccess.getConnection();
-				PreparedStatement ps = con.prepareStatement(
+				PreparedStatement preparedStatement = con.prepareStatement(
 					"select * from Layout where plid = " + layout.getPlid());
-				ResultSet resultSet = ps.executeQuery()) {
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				Assert.assertFalse(resultSet.next());
 			}
@@ -969,10 +969,10 @@ public class LayoutCTTest {
 			layout = _layoutLocalService.updateLayout(layout);
 
 			try (Connection con = DataAccess.getConnection();
-				PreparedStatement ps = con.prepareStatement(
+				PreparedStatement preparedStatement = con.prepareStatement(
 					"select COUNT(*) from Layout where plid = " +
 						layout.getPlid());
-				ResultSet resultSet = ps.executeQuery()) {
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				Assert.assertTrue(resultSet.next());
 
@@ -994,10 +994,10 @@ public class LayoutCTTest {
 				CTConstants.CT_CHANGE_TYPE_DELETION, ctEntry.getChangeType());
 
 			try (Connection con = DataAccess.getConnection();
-				PreparedStatement ps = con.prepareStatement(
+				PreparedStatement preparedStatement = con.prepareStatement(
 					"select ctCollectionId from Layout where plid = " +
 						layout.getPlid());
-				ResultSet resultSet = ps.executeQuery()) {
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				Assert.assertTrue(resultSet.next());
 

@@ -95,8 +95,9 @@ public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 		sb1.append("kaleoDefinitionId is null");
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(sb1.toString());
-			ResultSet resultSet = ps1.executeQuery()) {
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb1.toString());
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long groupId = resultSet.getLong("groupId");

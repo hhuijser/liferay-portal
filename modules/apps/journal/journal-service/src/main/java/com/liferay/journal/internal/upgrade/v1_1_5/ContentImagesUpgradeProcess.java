@@ -155,13 +155,13 @@ public class ContentImagesUpgradeProcess extends UpgradeProcess {
 
 	protected void updateContentImages() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select id_, resourcePrimKey, groupId, companyId, userId, " +
 					"content from JournalArticle where content like ?")) {
 
-			ps1.setString(1, "%type=\"image\"%");
+			preparedStatement1.setString(1, "%type=\"image\"%");
 
-			ResultSet resultSet1 = ps1.executeQuery();
+			ResultSet resultSet1 = preparedStatement1.executeQuery();
 
 			while (resultSet1.next()) {
 				long id = resultSet1.getLong(1);
@@ -175,16 +175,16 @@ public class ContentImagesUpgradeProcess extends UpgradeProcess {
 				String newContent = convertTypeImageElements(
 					userId, groupId, companyId, content, resourcePrimKey);
 
-				try (PreparedStatement ps2 =
+				try (PreparedStatement preparedStatement2 =
 						AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 							connection,
 							"update JournalArticle set content = ? where id_ " +
 								"= ?")) {
 
-					ps2.setString(1, newContent);
-					ps2.setLong(2, id);
+					preparedStatement2.setString(1, newContent);
+					preparedStatement2.setLong(2, id);
 
-					ps2.executeUpdate();
+					preparedStatement2.executeUpdate();
 				}
 			}
 		}

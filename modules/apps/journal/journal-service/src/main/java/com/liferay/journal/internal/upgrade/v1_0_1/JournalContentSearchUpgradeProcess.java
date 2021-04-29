@@ -32,19 +32,19 @@ public class JournalContentSearchUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradePortletId() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select * from JournalContentSearch where portletId like " +
 					"'56%'");
-			PreparedStatement ps2 = connection.prepareStatement(
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"select contentSearchId from JournalContentSearch where " +
 					"groupId = ? AND privateLayout = ? AND layoutId = ? AND " +
 						"portletId = ? AND articleId = ?");
-			PreparedStatement ps3 =
+			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update JournalContentSearch set portletId = ? where " +
 						"contentSearchId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long contentSearchId = resultSet.getLong("contentSearchId");
@@ -57,33 +57,33 @@ public class JournalContentSearchUpgradeProcess extends UpgradeProcess {
 				String newPortletId = StringUtil.replaceFirst(
 					portletId, _OLD_ROOT_PORTLET_ID, _NEW_ROOT_PORTLET_ID);
 
-				ps2.setLong(1, groupId);
+				preparedStatement2.setLong(1, groupId);
 
-				ps2.setBoolean(2, privateLayout);
+				preparedStatement2.setBoolean(2, privateLayout);
 
-				ps2.setLong(3, layoutId);
+				preparedStatement2.setLong(3, layoutId);
 
-				ps2.setString(4, newPortletId);
+				preparedStatement2.setString(4, newPortletId);
 
-				ps2.setString(5, articleId);
+				preparedStatement2.setString(5, articleId);
 
-				try (ResultSet resultSet2 = ps2.executeQuery()) {
+				try (ResultSet resultSet2 = preparedStatement2.executeQuery()) {
 					if (resultSet2.next()) {
 						runSQL(
 							"delete from JournalContentSearch where " +
 								"contentSearchId = " + contentSearchId);
 					}
 					else {
-						ps3.setString(1, newPortletId);
+						preparedStatement3.setString(1, newPortletId);
 
-						ps3.setLong(2, contentSearchId);
+						preparedStatement3.setLong(2, contentSearchId);
 
-						ps3.addBatch();
+						preparedStatement3.addBatch();
 					}
 				}
 			}
 
-			ps3.executeBatch();
+			preparedStatement3.executeBatch();
 		}
 	}
 

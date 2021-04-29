@@ -47,21 +47,22 @@ public class CPAttachmentFileEntryUpgradeProcess extends UpgradeProcess {
 			"select CPDefinition.groupId, CPDefinitionId from CPDefinition " +
 				"inner join CPAttachmentFileEntry on CPDefinitionId = classPK";
 
-		try (PreparedStatement ps =
+		try (PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateCPAttachmentFileEntrySQL);
 			Statement s = connection.createStatement();
 			ResultSet resultSet = s.executeQuery(selectCPDefinitionSQL)) {
 
 			while (resultSet.next()) {
-				ps.setLong(1, resultSet.getLong("groupId"));
-				ps.setLong(2, classNameId);
-				ps.setLong(3, resultSet.getLong("CPDefinitionId"));
+				preparedStatement.setLong(1, resultSet.getLong("groupId"));
+				preparedStatement.setLong(2, classNameId);
+				preparedStatement.setLong(
+					3, resultSet.getLong("CPDefinitionId"));
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

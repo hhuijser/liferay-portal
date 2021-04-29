@@ -41,13 +41,14 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 	public static Version getCurrentSchemaVersion(Connection connection)
 		throws SQLException {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select schemaVersion from Release_ where servletContextName " +
 					"= ?")) {
 
-			ps.setString(1, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
+			preparedStatement.setString(
+				1, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					String schemaVersion = resultSet.getString("schemaVersion");
 
@@ -151,28 +152,30 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 	protected void updateSchemaVersion(Version newSchemaVersion)
 		throws SQLException {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update Release_ set schemaVersion = ? where " +
 					"servletContextName = ?")) {
 
-			ps.setString(1, newSchemaVersion.toString());
-			ps.setString(2, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
+			preparedStatement.setString(1, newSchemaVersion.toString());
+			preparedStatement.setString(
+				2, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 
 	private void _initializeSchemaVersion(Connection connection)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update Release_ set schemaVersion = ? where " +
 					"servletContextName = ? and buildNumber < 7100")) {
 
-			ps.setString(1, _initialSchemaVersion.toString());
-			ps.setString(2, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
+			preparedStatement.setString(1, _initialSchemaVersion.toString());
+			preparedStatement.setString(
+				2, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 

@@ -37,14 +37,14 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 		long fileEntryClassNameId = PortalUtil.getClassNameId(
 			FileEntry.class.getName());
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update AssetDisplayPageEntry set classNameId = ? where " +
 					"classNameId = ?")) {
 
-			ps.setLong(1, fileEntryClassNameId);
-			ps.setLong(2, dlFileEntryClassNameId);
+			preparedStatement.setLong(1, fileEntryClassNameId);
+			preparedStatement.setLong(2, dlFileEntryClassNameId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

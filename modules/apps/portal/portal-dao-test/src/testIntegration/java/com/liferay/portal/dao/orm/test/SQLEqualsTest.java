@@ -65,7 +65,7 @@ public class SQLEqualsTest {
 				"VARCHAR(75) null);"));
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				SQLTransformer.transform(
 					StringBundler.concat(
 						"insert into SQLEqualsTest (pk, typeBlob, ",
@@ -79,16 +79,16 @@ public class SQLEqualsTest {
 				con.setAutoCommit(false);
 
 				_insert(
-					ps, 1, "test", false, 5 * Time.DAY, 6.0D, 7, 8L, "String",
-					"Text", "VarChar");
+					preparedStatement, 1, "test", false, 5 * Time.DAY, 6.0D, 7,
+					8L, "String", "Text", "VarChar");
 
 				_insert(
-					ps, 2, "test", false, 5 * Time.DAY, 6.0D, 7, 8L, "String",
-					"Text", "VarChar");
+					preparedStatement, 2, "test", false, 5 * Time.DAY, 6.0D, 7,
+					8L, "String", "Text", "VarChar");
 
 				_insert(
-					ps, 3, "test 2", true, 6 * Time.DAY, 7.0D, 8, 9L,
-					"String 2", "Text 2", "VarChar 2");
+					preparedStatement, 3, "test 2", true, 6 * Time.DAY, 7.0D, 8,
+					9L, "String 2", "Text 2", "VarChar 2");
 
 				con.commit();
 			}
@@ -133,26 +133,27 @@ public class SQLEqualsTest {
 	}
 
 	private static void _insert(
-			PreparedStatement ps, int pk, String typeBlob, boolean typeBoolean,
-			long typeDate, double typeDouble, int typeInteger, long typeLong,
-			String typeString, String typeText, String typeVarchar)
+			PreparedStatement preparedStatement, int pk, String typeBlob,
+			boolean typeBoolean, long typeDate, double typeDouble,
+			int typeInteger, long typeLong, String typeString, String typeText,
+			String typeVarchar)
 		throws Exception {
 
-		ps.setLong(1, pk);
-		ps.setBlob(
+		preparedStatement.setLong(1, pk);
+		preparedStatement.setBlob(
 			2,
 			new UnsyncByteArrayInputStream(
 				typeBlob.getBytes(StandardCharsets.US_ASCII)));
-		ps.setBoolean(3, typeBoolean);
-		ps.setDate(4, new Date(typeDate));
-		ps.setDouble(5, typeDouble);
-		ps.setInt(6, typeInteger);
-		ps.setLong(7, typeLong);
-		ps.setString(8, typeString);
-		ps.setString(9, typeText);
-		ps.setString(10, typeVarchar);
+		preparedStatement.setBoolean(3, typeBoolean);
+		preparedStatement.setDate(4, new Date(typeDate));
+		preparedStatement.setDouble(5, typeDouble);
+		preparedStatement.setInt(6, typeInteger);
+		preparedStatement.setLong(7, typeLong);
+		preparedStatement.setString(8, typeString);
+		preparedStatement.setString(9, typeText);
+		preparedStatement.setString(10, typeVarchar);
 
-		ps.executeUpdate();
+		preparedStatement.executeUpdate();
 	}
 
 	private void _assert(String columnName, long expectedPK, String compare)
@@ -203,8 +204,8 @@ public class SQLEqualsTest {
 		String sql = SQLTransformer.transform(sb.toString());
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet resultSet = ps.executeQuery()) {
+			PreparedStatement preparedStatement = con.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(sql, resultSet.next());
 			Assert.assertEquals(sql, expectedPK, resultSet.getLong(1));

@@ -38,24 +38,25 @@ public class DepotEntryGroupRelUpgradeProcess extends UpgradeProcess {
 			new AlterTableAddColumn("uuid_", "VARCHAR(75) null"));
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					"select depotEntryGroupRelId from DepotEntryGroupRel");
-				PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(
+						"select depotEntryGroupRelId from DepotEntryGroupRel");
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection.prepareStatement(
 							"update DepotEntryGroupRel set groupId = " +
 								"toGroupId, uuid_ = ? where " +
 									"depotEntryGroupRelId = ?"));
-				ResultSet resultSet = ps1.executeQuery()) {
+				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				while (resultSet.next()) {
-					ps2.setString(1, PortalUUIDUtil.generate());
-					ps2.setLong(2, resultSet.getLong(1));
+					preparedStatement2.setString(1, PortalUUIDUtil.generate());
+					preparedStatement2.setLong(2, resultSet.getLong(1));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

@@ -28,12 +28,12 @@ public class KaleoNotificationRecipientUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update KaleoNotificationRecipient set recipientClassName = " +
 					"'ADDRESS' where recipientClassName is null or " +
 						"recipientClassName = ''")) {
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 		catch (SQLException sqlException) {
 			if (_log.isDebugEnabled()) {

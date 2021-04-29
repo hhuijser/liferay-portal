@@ -52,13 +52,13 @@ public class ResourcePermissionsUpgradeProcess extends UpgradeProcess {
 	protected void updateResourcePermissions(
 		String oldClassName, String newClassName) {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update ResourcePermission set name = ? where name = ?")) {
 
-			ps.setString(1, newClassName);
-			ps.setString(2, oldClassName);
+			preparedStatement.setString(1, newClassName);
+			preparedStatement.setString(2, oldClassName);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 		catch (SQLException sqlException) {
 			if (_log.isWarnEnabled()) {

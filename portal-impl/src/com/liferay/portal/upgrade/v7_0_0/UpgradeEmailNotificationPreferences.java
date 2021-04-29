@@ -76,26 +76,28 @@ public class UpgradeEmailNotificationPreferences extends UpgradeProcess {
 					_log.debug(exception, exception);
 				}
 
-				try (PreparedStatement ps1 = connection.prepareStatement(
-						StringBundler.concat(
-							"select portalPreferencesId, preferences from ",
-							"PortalPreferences where preferences like '%",
-							oldValue, "%'"));
-					PreparedStatement ps2 = connection.prepareStatement(
-						"update PortalPreferences set preferences = ? where " +
-							"portalPreferencesId = ?");
-					ResultSet resultSet = ps1.executeQuery()) {
+				try (PreparedStatement preparedStatement1 =
+						connection.prepareStatement(
+							StringBundler.concat(
+								"select portalPreferencesId, preferences from ",
+								"PortalPreferences where preferences like '%",
+								oldValue, "%'"));
+					PreparedStatement preparedStatement2 =
+						connection.prepareStatement(
+							"update PortalPreferences set preferences = ? where " +
+								"portalPreferencesId = ?");
+					ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 					while (resultSet.next()) {
-						ps2.setString(
+						preparedStatement2.setString(
 							1,
 							StringUtil.replace(
 								resultSet.getString("preferences"), oldValue,
 								newValue));
-						ps2.setLong(
+						preparedStatement2.setLong(
 							2, resultSet.getLong("portalPreferencesId"));
 
-						ps2.executeUpdate();
+						preparedStatement2.executeUpdate();
 					}
 				}
 			}

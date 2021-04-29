@@ -145,10 +145,10 @@ public class VerifyResourcePermissions extends VerifyProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer(
 				verifiableResourcedModel.getTableName());
 			Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				_getVerifyResourcedModelSQL(
 					true, verifiableResourcedModel, role));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {
 				total = resultSet.getInt(1);
@@ -162,10 +162,10 @@ public class VerifyResourcePermissions extends VerifyProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer(
 				verifiableResourcedModel.getTableName());
 			Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				_getVerifyResourcedModelSQL(
 					false, verifiableResourcedModel, role));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			List<Future<Void>> futures = new ArrayList<>(total);
 

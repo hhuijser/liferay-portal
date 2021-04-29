@@ -45,26 +45,29 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 		sb.append("settings_ like '%workflowDefinition\\\",\\\"value\\\":\\\"");
 		sb.append("[\\\\\\\\\"%@%\\\\\\\\\"]\\\"%'");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select formInstanceId, settings_ from DDMFormInstance " +
 					sb.toString());
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMFormInstance set settings_ = ? where " +
 						"formInstanceId = ?");
-			PreparedStatement ps3 = connection.prepareStatement(
+			PreparedStatement preparedStatement3 = connection.prepareStatement(
 				"select formInstanceVersionId, settings_ from " +
 					"DDMFormInstanceVersion " + sb.toString());
-			PreparedStatement ps4 =
+			PreparedStatement preparedStatement4 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMFormInstanceVersion set settings_ = ? where " +
 						"formInstanceVersionId = ?")) {
 
-			_executePreparedStatements("formInstanceId", ps1, ps2);
+			_executePreparedStatements(
+				"formInstanceId", preparedStatement1, preparedStatement2);
 
-			_executePreparedStatements("formInstanceVersionId", ps3, ps4);
+			_executePreparedStatements(
+				"formInstanceVersionId", preparedStatement3,
+				preparedStatement4);
 		}
 	}
 

@@ -55,7 +55,7 @@ public class CommerceOrderItemUpgradeProcess
 
 		_addIndexes(CommerceOrderItemModelImpl.TABLE_NAME);
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update CommerceOrderItem set CProductId = ? where " +
 					"CPInstanceId = ?");
 			Statement s = connection.createStatement();
@@ -72,11 +72,11 @@ public class CommerceOrderItemUpgradeProcess
 					_cpDefinitionLocalService.getCPDefinition(
 						cpInstance.getCPDefinitionId());
 
-				ps.setLong(1, cpDefinition.getCProductId());
+				preparedStatement.setLong(1, cpDefinition.getCProductId());
 
-				ps.setLong(2, cpInstanceId);
+				preparedStatement.setLong(2, cpInstanceId);
 
-				ps.execute();
+				preparedStatement.execute();
 			}
 		}
 	}

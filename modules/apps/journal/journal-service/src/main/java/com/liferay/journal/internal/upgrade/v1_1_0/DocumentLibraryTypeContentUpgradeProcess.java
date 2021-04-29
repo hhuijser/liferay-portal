@@ -77,28 +77,28 @@ public class DocumentLibraryTypeContentUpgradeProcess extends UpgradeProcess {
 
 	protected void updateContent() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select content, id_ from JournalArticle where content like " +
 					"?")) {
 
-			ps1.setString(1, "%type=\"document_library\"%");
+			preparedStatement1.setString(1, "%type=\"document_library\"%");
 
-			ResultSet resultSet1 = ps1.executeQuery();
+			ResultSet resultSet1 = preparedStatement1.executeQuery();
 
 			while (resultSet1.next()) {
 				String content = resultSet1.getString(1);
 				long id = resultSet1.getLong(2);
 
-				try (PreparedStatement ps2 =
+				try (PreparedStatement preparedStatement2 =
 						AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 							connection,
 							"update JournalArticle set content = ? where id_ " +
 								"= ?")) {
 
-					ps2.setString(1, convertContent(content));
-					ps2.setLong(2, id);
+					preparedStatement2.setString(1, convertContent(content));
+					preparedStatement2.setLong(2, id);
 
-					ps2.executeUpdate();
+					preparedStatement2.executeUpdate();
 				}
 			}
 		}

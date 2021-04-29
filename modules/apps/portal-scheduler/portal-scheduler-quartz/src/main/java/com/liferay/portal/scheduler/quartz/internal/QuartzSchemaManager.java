@@ -44,9 +44,9 @@ public class QuartzSchemaManager {
 	@Activate
 	protected void activate() {
 		try (Connection con = _dataSource.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				"select count(*) from QUARTZ_JOB_DETAILS");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {
 				return;

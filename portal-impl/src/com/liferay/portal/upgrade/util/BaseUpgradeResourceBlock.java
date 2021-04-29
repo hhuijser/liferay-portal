@@ -59,32 +59,34 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	protected abstract boolean hasUserId();
 
 	private void _addResourcePermissionBatch(
-			PreparedStatement ps, long companyId, String name, int scope,
-			long primKeyId, long roleId, long ownerId, long actionIds)
+			PreparedStatement preparedStatement, long companyId, String name,
+			int scope, long primKeyId, long roleId, long ownerId,
+			long actionIds)
 		throws SQLException {
 
-		ps.setLong(1, 0L);
-		ps.setLong(2, increment(ResourcePermission.class.getName()));
-		ps.setLong(3, companyId);
-		ps.setString(4, name);
-		ps.setInt(5, scope);
-		ps.setString(6, String.valueOf(primKeyId));
-		ps.setLong(7, primKeyId);
-		ps.setLong(8, roleId);
-		ps.setLong(9, ownerId);
-		ps.setLong(10, actionIds);
-		ps.setBoolean(11, (actionIds % 2) == 1);
+		preparedStatement.setLong(1, 0L);
+		preparedStatement.setLong(
+			2, increment(ResourcePermission.class.getName()));
+		preparedStatement.setLong(3, companyId);
+		preparedStatement.setString(4, name);
+		preparedStatement.setInt(5, scope);
+		preparedStatement.setString(6, String.valueOf(primKeyId));
+		preparedStatement.setLong(7, primKeyId);
+		preparedStatement.setLong(8, roleId);
+		preparedStatement.setLong(9, ownerId);
+		preparedStatement.setLong(10, actionIds);
+		preparedStatement.setBoolean(11, (actionIds % 2) == 1);
 
-		ps.addBatch();
+		preparedStatement.addBatch();
 	}
 
 	private void _removeResourceBlocks(String className) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from ResourceTypePermission where name = ?")) {
 
-			ps.setString(1, className);
+			preparedStatement.setString(1, className);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 
 		try (PreparedStatement selectPS = connection.prepareStatement(
@@ -111,12 +113,12 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 			}
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from ResourceBlock where name = ?")) {
 
-			ps.setString(1, className);
+			preparedStatement.setString(1, className);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

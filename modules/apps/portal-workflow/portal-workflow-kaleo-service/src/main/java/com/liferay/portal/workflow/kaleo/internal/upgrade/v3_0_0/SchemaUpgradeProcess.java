@@ -51,14 +51,14 @@ import java.util.List;
 public class SchemaUpgradeProcess extends UpgradeProcess {
 
 	protected void addBatch(
-			PreparedStatement ps, long kaleoDefinitionId,
+			PreparedStatement preparedStatement, long kaleoDefinitionId,
 			long kaleoDefinitionVersionId)
 		throws SQLException {
 
-		ps.setLong(1, kaleoDefinitionId);
-		ps.setLong(2, kaleoDefinitionVersionId);
+		preparedStatement.setLong(1, kaleoDefinitionId);
+		preparedStatement.setLong(2, kaleoDefinitionVersionId);
 
-		ps.addBatch();
+		preparedStatement.addBatch();
 	}
 
 	protected void addKaleoDefinitionId() throws Exception {

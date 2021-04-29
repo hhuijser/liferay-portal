@@ -99,23 +99,26 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 			String updateSQL, String[] name)
 		throws SQLException {
 
-		try (PreparedStatement ps1 = connection.prepareStatement(selectSQL);
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(updateSQL))) {
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				selectSQL);
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(updateSQL))) {
 
 			while (resultSet.next()) {
-				ps2.setString(
+				preparedStatement2.setString(
 					1,
 					StringUtil.replace(
 						resultSet.getString(columnName), name[0], name[1]));
 
-				ps2.setLong(2, resultSet.getLong(primaryKeyColumnName));
+				preparedStatement2.setLong(
+					2, resultSet.getLong(primaryKeyColumnName));
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

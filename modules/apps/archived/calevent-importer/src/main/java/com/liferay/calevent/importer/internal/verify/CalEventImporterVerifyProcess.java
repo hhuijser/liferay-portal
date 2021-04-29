@@ -146,10 +146,10 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			sb.append("repeating, recurrence, remindBy, firstReminder, ");
 			sb.append("secondReminder from CalEvent");
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					sb.toString())) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(sb.toString())) {
 
-				ResultSet resultSet = ps.executeQuery();
+				ResultSet resultSet = preparedStatement.executeQuery();
 
 				while (resultSet.next()) {
 					String uuid = resultSet.getString("uuid_");
@@ -961,12 +961,12 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			sb.append("repeating, recurrence, remindBy, firstReminder, ");
 			sb.append("secondReminder from CalEvent where eventId = ?");
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					sb.toString())) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(sb.toString())) {
 
-				ps.setLong(1, calEventId);
+				preparedStatement.setLong(1, calEventId);
 
-				ResultSet resultSet = ps.executeQuery();
+				ResultSet resultSet = preparedStatement.executeQuery();
 
 				if (resultSet.next()) {
 					String uuid = resultSet.getString("uuid_");
@@ -1328,14 +1328,16 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setLong(1, entryId1);
-			ps.setLong(2, entryId2);
-			ps.setLong(3, entryId1);
-			ps.setLong(4, entryId2);
-			ps.setInt(5, type);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ResultSet resultSet = ps.executeQuery();
+			preparedStatement.setLong(1, entryId1);
+			preparedStatement.setLong(2, entryId2);
+			preparedStatement.setLong(3, entryId1);
+			preparedStatement.setLong(4, entryId2);
+			preparedStatement.setInt(5, type);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
 
 			resultSet.next();
 

@@ -58,13 +58,13 @@ public class ArticleAssetsUpgradeProcess extends UpgradeProcess {
 	protected void updateDefaultDraftArticleAssets(long companyId)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select resourcePrimKey, indexable from JournalArticle ",
 					"where companyId = ", companyId, " and version = ",
 					JournalArticleConstants.VERSION_DEFAULT, " and status = ",
 					WorkflowConstants.STATUS_DRAFT));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long resourcePrimKey = resultSet.getLong("resourcePrimKey");

@@ -183,10 +183,10 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 		throws PortalException, SQLException {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select * from KaleoDraftDefinition order by version, " +
 					"draftVersion");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long companyId = resultSet.getLong("companyId");

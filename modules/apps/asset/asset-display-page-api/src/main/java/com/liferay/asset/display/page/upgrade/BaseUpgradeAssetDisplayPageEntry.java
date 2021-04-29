@@ -57,45 +57,49 @@ public abstract class BaseUpgradeAssetDisplayPageEntry extends UpgradeProcess {
 		sb2.append("classPK, layoutPageTemplateEntryId, type_, plid) values( ");
 		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb1.toString());
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString())) {
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					Timestamp now = new Timestamp(System.currentTimeMillis());
 
-					ps2.setString(1, PortalUUIDUtil.generate());
-					ps2.setLong(2, increment());
-					ps2.setLong(3, resultSet.getLong("groupId"));
-					ps2.setLong(4, resultSet.getLong("companyId"));
-					ps2.setLong(5, 0);
-					ps2.setString(6, null);
-					ps2.setTimestamp(7, now);
-					ps2.setTimestamp(8, now);
-					ps2.setLong(9, modelClassNameId);
-					ps2.setLong(10, resultSet.getLong(pkColumnName));
-					ps2.setLong(11, 0);
-					ps2.setLong(12, AssetDisplayPageConstants.TYPE_NONE);
-					ps2.setLong(13, 0);
+					preparedStatement2.setString(1, PortalUUIDUtil.generate());
+					preparedStatement2.setLong(2, increment());
+					preparedStatement2.setLong(3, resultSet.getLong("groupId"));
+					preparedStatement2.setLong(
+						4, resultSet.getLong("companyId"));
+					preparedStatement2.setLong(5, 0);
+					preparedStatement2.setString(6, null);
+					preparedStatement2.setTimestamp(7, now);
+					preparedStatement2.setTimestamp(8, now);
+					preparedStatement2.setLong(9, modelClassNameId);
+					preparedStatement2.setLong(
+						10, resultSet.getLong(pkColumnName));
+					preparedStatement2.setLong(11, 0);
+					preparedStatement2.setLong(
+						12, AssetDisplayPageConstants.TYPE_NONE);
+					preparedStatement2.setLong(13, 0);
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from AssetDisplayPageEntry where classNameId = ? and " +
 					"type_ = ?")) {
 
-			ps.setLong(1, modelClassNameId);
-			ps.setLong(2, AssetDisplayPageConstants.TYPE_DEFAULT);
+			preparedStatement.setLong(1, modelClassNameId);
+			preparedStatement.setLong(
+				2, AssetDisplayPageConstants.TYPE_DEFAULT);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

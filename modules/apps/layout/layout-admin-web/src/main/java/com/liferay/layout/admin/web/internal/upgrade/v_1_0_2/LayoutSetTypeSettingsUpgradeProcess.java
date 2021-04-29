@@ -58,11 +58,11 @@ public class LayoutSetTypeSettingsUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void updateRobots() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select groupId, typeSettings from Group_ where typeSettings " +
 					"like '%robots.txt%'")) {
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long groupId = resultSet.getLong("groupId");
 					String typeSettings = resultSet.getString("typeSettings");

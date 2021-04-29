@@ -32,12 +32,14 @@ public class AppBuilderAppUpgradeProcess extends UpgradeProcess {
 				AppBuilderAppTable.class,
 				new AlterTableAddColumn("scope", "VARCHAR(75) null"));
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					"update AppBuilderApp set scope = ?")) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						"update AppBuilderApp set scope = ?")) {
 
-				ps.setString(1, AppBuilderAppConstants.SCOPE_STANDARD);
+				preparedStatement.setString(
+					1, AppBuilderAppConstants.SCOPE_STANDARD);
 
-				ps.execute();
+				preparedStatement.execute();
 			}
 		}
 	}

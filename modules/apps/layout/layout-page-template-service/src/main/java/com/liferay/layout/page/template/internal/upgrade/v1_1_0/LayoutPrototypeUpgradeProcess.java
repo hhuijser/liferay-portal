@@ -72,7 +72,7 @@ public class LayoutPrototypeUpgradeProcess extends UpgradeProcess {
 		sb.append("?, ?, ?, ?, ?, ?)");
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps =
+			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb.toString())) {
 
@@ -109,29 +109,30 @@ public class LayoutPrototypeUpgradeProcess extends UpgradeProcess {
 
 				existingNames.add(name);
 
-				ps.setString(1, layoutPrototype.getUuid());
-				ps.setLong(2, increment());
-				ps.setLong(3, company.getGroupId());
-				ps.setLong(4, layoutPrototype.getCompanyId());
-				ps.setLong(5, layoutPrototype.getUserId());
-				ps.setString(6, layoutPrototype.getUserName());
+				preparedStatement.setString(1, layoutPrototype.getUuid());
+				preparedStatement.setLong(2, increment());
+				preparedStatement.setLong(3, company.getGroupId());
+				preparedStatement.setLong(4, layoutPrototype.getCompanyId());
+				preparedStatement.setLong(5, layoutPrototype.getUserId());
+				preparedStatement.setString(6, layoutPrototype.getUserName());
 
 				Date date = new Date(System.currentTimeMillis());
 
-				ps.setDate(7, date);
-				ps.setDate(8, date);
+				preparedStatement.setDate(7, date);
+				preparedStatement.setDate(8, date);
 
-				ps.setLong(9, 0);
-				ps.setString(10, name);
-				ps.setInt(
+				preparedStatement.setLong(9, 0);
+				preparedStatement.setString(10, name);
+				preparedStatement.setInt(
 					11, LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE);
-				ps.setLong(12, layoutPrototype.getLayoutPrototypeId());
-				ps.setInt(13, WorkflowConstants.STATUS_APPROVED);
+				preparedStatement.setLong(
+					12, layoutPrototype.getLayoutPrototypeId());
+				preparedStatement.setInt(13, WorkflowConstants.STATUS_APPROVED);
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 	}
 

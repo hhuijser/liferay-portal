@@ -102,7 +102,7 @@ public class StringType implements CompositeUserType, Serializable {
 
 	@Override
 	public void nullSafeSet(
-			PreparedStatement ps, Object target, int index,
+			PreparedStatement preparedStatement, Object target, int index,
 			SessionImplementor session)
 		throws SQLException {
 
@@ -114,7 +114,8 @@ public class StringType implements CompositeUserType, Serializable {
 			}
 		}
 
-		StandardBasicTypes.STRING.nullSafeSet(ps, target, index, session);
+		StandardBasicTypes.STRING.nullSafeSet(
+			preparedStatement, target, index, session);
 	}
 
 	@Override

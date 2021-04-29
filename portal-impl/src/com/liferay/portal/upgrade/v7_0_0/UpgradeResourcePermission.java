@@ -53,21 +53,25 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 				"update ResourcePermission set viewActionId = [$TRUE$] where " +
 					"MOD(actionIds, 2) = 1");
 
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					"select distinct name from ResourcePermission");
-				ResultSet resultSet1 = ps1.executeQuery();
-				PreparedStatement ps2 = connection.prepareStatement(
-					"select distinct primKey from ResourcePermission where " +
-						"name = ?")) {
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(
+						"select distinct name from ResourcePermission");
+				ResultSet resultSet1 = preparedStatement1.executeQuery();
+				PreparedStatement preparedStatement2 =
+					connection.prepareStatement(
+						"select distinct primKey from ResourcePermission where " +
+							"name = ?")) {
 
 				while (resultSet1.next()) {
 					List<String> primKeys = new ArrayList<>();
 
 					String name = resultSet1.getString("name");
 
-					ps2.setString(1, name);
+					preparedStatement2.setString(1, name);
 
-					try (ResultSet resultSet2 = ps2.executeQuery()) {
+					try (ResultSet resultSet2 =
+							preparedStatement2.executeQuery()) {
+
 						while (resultSet2.next()) {
 							String primKey = resultSet2.getString("primKey");
 
@@ -121,18 +125,18 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 	private void _updatePrimKeyIds(String sql, String name, String[] primKeys)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(sql))) {
 
-			ps.setString(1, name);
+			preparedStatement.setString(1, name);
 
 			for (int i = 0; i < primKeys.length; i++) {
 				String primKey = primKeys[i];
 
-				ps.setString(i + 2, primKey);
+				preparedStatement.setString(i + 2, primKey);
 			}
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

@@ -47,7 +47,7 @@ public class CommercePaymentMethodGroupRelUpgradeProcess
 				"select CPaymentMethodGroupRelId, groupId from " +
 					"CommercePaymentMethodGroupRel")) {
 
-			PreparedStatement ps = null;
+			PreparedStatement preparedStatement = null;
 
 			while (resultSet.next()) {
 				long groupId = resultSet.getLong("groupId");
@@ -62,14 +62,14 @@ public class CommercePaymentMethodGroupRelUpgradeProcess
 				long cPaymentMethodGroupRelId = resultSet.getLong(
 					"CPaymentMethodGroupRelId");
 
-				ps = connection.prepareStatement(
+				preparedStatement = connection.prepareStatement(
 					"update CommercePaymentMethodGroupRel set groupId = ? " +
 						"where CPaymentMethodGroupRelId = ?");
 
-				ps.setLong(1, channelGroupId);
-				ps.setLong(2, cPaymentMethodGroupRelId);
+				preparedStatement.setLong(1, channelGroupId);
+				preparedStatement.setLong(2, cPaymentMethodGroupRelId);
 
-				ps.executeUpdate();
+				preparedStatement.executeUpdate();
 			}
 		}
 	}

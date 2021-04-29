@@ -68,16 +68,16 @@ public class UserNotificationEventUpgradeProcess extends UpgradeProcess {
 
 	protected void updateUserNotificationEvents() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select userNotificationEventId, payload, actionRequired " +
 					"from UserNotificationEvent where payload like " +
 						"'%actionRequired%'");
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update UserNotificationEvent set payload = ?, " +
 						"actionRequired = ? where userNotificationEventId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			runSQL("update UserNotificationEvent set delivered = TRUE");
 
@@ -100,15 +100,15 @@ public class UserNotificationEventUpgradeProcess extends UpgradeProcess {
 
 				jsonObject.remove("actionRequired");
 
-				ps2.setString(1, jsonObject.toString());
+				preparedStatement2.setString(1, jsonObject.toString());
 
-				ps2.setBoolean(2, actionRequired);
-				ps2.setLong(3, userNotificationEventId);
+				preparedStatement2.setBoolean(2, actionRequired);
+				preparedStatement2.setLong(3, userNotificationEventId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

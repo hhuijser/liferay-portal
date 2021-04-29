@@ -72,15 +72,15 @@ public abstract class BaseUpgradeWebModuleRelease extends UpgradeProcess {
 
 		sb.append(CharPool.CLOSE_PARENTHESIS);
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select portletId from Portlet where portletId in " +
 					sb.toString())) {
 
 			for (int i = 0; i < portletIds.length; i++) {
-				ps.setString(i + 1, portletIds[i]);
+				preparedStatement.setString(i + 1, portletIds[i]);
 			}
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return true;
 				}

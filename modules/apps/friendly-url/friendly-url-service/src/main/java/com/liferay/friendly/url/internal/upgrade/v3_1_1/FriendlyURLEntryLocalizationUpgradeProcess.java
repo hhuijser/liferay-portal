@@ -64,21 +64,21 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 		sb.append("groupId, classNameId, classPK) values (?, ?, ?, ?, ?, ?, ");
 		sb.append("?, ?, ?, ?)");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			ps.setLong(1, 0);
-			ps.setLong(2, ctCollectionId);
-			ps.setLong(3, friendlyURLEntryLocalizationId);
-			ps.setLong(4, companyId);
-			ps.setLong(5, friendlyURLEntryId);
-			ps.setString(6, languageId);
-			ps.setString(7, uniqueURLTitle);
-			ps.setLong(8, groupId);
-			ps.setLong(9, _CLASS_NAME_ID);
-			ps.setLong(10, classPK);
+			preparedStatement.setLong(1, 0);
+			preparedStatement.setLong(2, ctCollectionId);
+			preparedStatement.setLong(3, friendlyURLEntryLocalizationId);
+			preparedStatement.setLong(4, companyId);
+			preparedStatement.setLong(5, friendlyURLEntryId);
+			preparedStatement.setString(6, languageId);
+			preparedStatement.setString(7, uniqueURLTitle);
+			preparedStatement.setLong(8, groupId);
+			preparedStatement.setLong(9, _CLASS_NAME_ID);
+			preparedStatement.setLong(10, classPK);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
@@ -236,8 +236,9 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 		sb.append(" and classNameId = ");
 		sb.append(_CLASS_NAME_ID);
 
-		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet resultSet = ps.executeQuery()) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {
 				count = resultSet.getInt(1);

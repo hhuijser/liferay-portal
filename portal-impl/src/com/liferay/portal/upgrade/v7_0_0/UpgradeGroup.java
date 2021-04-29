@@ -47,10 +47,10 @@ public class UpgradeGroup extends UpgradeProcess {
 	protected void updateGlobalGroupName() throws Exception {
 		List<Long> companyIds = new ArrayList<>();
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select companyId from Company")) {
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long companyId = resultSet.getLong("companyId");
 
@@ -74,14 +74,15 @@ public class UpgradeGroup extends UpgradeProcess {
 			String nameXML = LocalizationUtil.getXml(
 				localizedValuesMap, "global");
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					"update Group_ set name = ? where companyId = ? and " +
-						"friendlyURL = '/global'")) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						"update Group_ set name = ? where companyId = ? and " +
+							"friendlyURL = '/global'")) {
 
-				ps.setString(1, nameXML);
-				ps.setLong(2, companyId);
+				preparedStatement.setString(1, nameXML);
+				preparedStatement.setLong(2, companyId);
 
-				ps.executeUpdate();
+				preparedStatement.executeUpdate();
 			}
 		}
 	}

@@ -111,9 +111,9 @@ public class SQLConcatTest {
 
 	private void _assertConcat(String query, String expected) throws Exception {
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			PreparedStatement preparedStatement = con.prepareStatement(
 				SQLTransformer.transform(query));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(resultSet.next());
 

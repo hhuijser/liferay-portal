@@ -149,9 +149,9 @@ public class DBInspector {
 	}
 
 	public boolean hasRows(String tableName) {
-		try (PreparedStatement ps = _connection.prepareStatement(
+		try (PreparedStatement preparedStatement = _connection.prepareStatement(
 				"select count(*) from " + tableName);
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				int count = resultSet.getInt(1);

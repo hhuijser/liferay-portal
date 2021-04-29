@@ -48,7 +48,7 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select contentId, data_, DDMStructureVersion.definition ",
 					"from DDMContent join DDMFormInstanceRecordVersion on  ",
@@ -60,12 +60,12 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 					"DDMStructureVersion on DDMStructureVersion.",
 					"structureVersionId = DDMFormInstanceVersion.",
 					"structureVersionId"));
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMContent set data_ = ? where contentId = ?")) {
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					String definition = resultSet.getString("definition");
 
@@ -81,18 +81,19 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 							dataJSONObject.getJSONArray("fieldValues"),
 							definitionJSONObject.getJSONArray("fields"))) {
 
-						ps2.setString(1, dataJSONObject.toJSONString());
+						preparedStatement2.setString(
+							1, dataJSONObject.toJSONString());
 
 						long contentId = resultSet.getLong("contentId");
 
-						ps2.setLong(2, contentId);
+						preparedStatement2.setLong(2, contentId);
 
-						ps2.addBatch();
+						preparedStatement2.addBatch();
 					}
 				}
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

@@ -53,7 +53,7 @@ public class CPAttachmentFileEntryGroupUpgradeProcess extends UpgradeProcess {
 				"update CPAttachmentFileEntry set groupId = ? where " +
 					"classNameId = ? and classPK = ?";
 
-			try (PreparedStatement ps =
+			try (PreparedStatement preparedStatement =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, updateCPAttachmentFileEntrySQL)) {
 
@@ -77,14 +77,14 @@ public class CPAttachmentFileEntryGroupUpgradeProcess extends UpgradeProcess {
 						continue;
 					}
 
-					ps.setLong(1, groupId);
-					ps.setLong(2, classNameId);
-					ps.setLong(3, classPK);
+					preparedStatement.setLong(1, groupId);
+					preparedStatement.setLong(2, classNameId);
+					preparedStatement.setLong(3, classPK);
 
-					ps.addBatch();
+					preparedStatement.addBatch();
 				}
 
-				ps.executeBatch();
+				preparedStatement.executeBatch();
 			}
 		}
 	}

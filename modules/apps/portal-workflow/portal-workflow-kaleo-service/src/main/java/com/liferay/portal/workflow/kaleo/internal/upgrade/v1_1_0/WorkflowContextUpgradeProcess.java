@@ -67,12 +67,12 @@ public class WorkflowContextUpgradeProcess extends UpgradeProcess {
 		throws Exception {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer(tableName);
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select ", fieldName, ", workflowContext from ", tableName,
 					" where workflowContext is not null and workflowContext ",
 					"not like '%serializable%'"));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			JSONSerializer jsonSerializer = getJSONSerializer();
 
@@ -110,15 +110,15 @@ public class WorkflowContextUpgradeProcess extends UpgradeProcess {
 			String workflowContext)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"update ", tableName, " set workflowContext = ? where ",
 					primaryKeyName, " = ?"))) {
 
-			ps.setString(1, workflowContext);
-			ps.setLong(2, primaryKeyValue);
+			preparedStatement.setString(1, workflowContext);
+			preparedStatement.setLong(2, primaryKeyValue);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

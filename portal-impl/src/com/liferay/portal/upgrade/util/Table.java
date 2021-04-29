@@ -168,8 +168,9 @@ public class Table {
 
 		try (UnsyncBufferedWriter unsyncBufferedWriter =
 				new UnsyncBufferedWriter(new FileWriter(tempFileName));
-			PreparedStatement ps = getSelectPreparedStatement(con);
-			ResultSet resultSet = ps.executeQuery()) {
+			PreparedStatement preparedStatement = getSelectPreparedStatement(
+				con);
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				String data = null;
@@ -502,8 +503,9 @@ public class Table {
 			return;
 		}
 
-		try (PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
-				con.prepareStatement(getInsertSQL()));
+		try (PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					con.prepareStatement(getInsertSQL()));
 			UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(new FileReader(_tempFileName))) {
 
@@ -526,13 +528,15 @@ public class Table {
 				for (int i = 0; i < order.length; i++) {
 					int pos = order[i];
 
-					setColumn(ps, i, (Integer)columns[pos][1], values[pos]);
+					setColumn(
+						preparedStatement, i, (Integer)columns[pos][1],
+						values[pos]);
 				}
 
-				ps.addBatch();
+				preparedStatement.addBatch();
 			}
 
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 
 		if (_log.isDebugEnabled()) {
@@ -540,7 +544,8 @@ public class Table {
 		}
 	}
 
-	public void populateTableRows(PreparedStatement ps, boolean batch)
+	public void populateTableRows(
+			PreparedStatement preparedStatement, boolean batch)
 		throws Exception {
 
 		if (_log.isDebugEnabled()) {
@@ -548,13 +553,13 @@ public class Table {
 		}
 
 		if (batch) {
-			ps.executeBatch();
+			preparedStatement.executeBatch();
 		}
 		else {
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 
-		ps.close();
+		preparedStatement.close();
 	}
 
 	/**
@@ -683,12 +688,12 @@ public class Table {
 		String sql = sb.toString();
 
 		try (Connection con = DataAccess.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql)) {
+			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
 
-			ps.setString(1, newValue);
-			ps.setString(2, oldValue);
+			preparedStatement.setString(1, newValue);
+			preparedStatement.setString(2, oldValue);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 		catch (SQLException sqlException) {
 			_log.error(sqlException, sqlException);

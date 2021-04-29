@@ -83,13 +83,13 @@ public class UpgradeAsset extends UpgradeProcess {
 	}
 
 	protected long getDDMStructureId(String structureKey) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select structureId from DDMStructure where structureKey = " +
 					"?")) {
 
-			ps.setString(1, structureKey);
+			preparedStatement.setString(1, structureKey);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return resultSet.getLong("structureId");
 				}
@@ -117,41 +117,42 @@ public class UpgradeAsset extends UpgradeProcess {
 			"com.liferay.journal.model.JournalArticle");
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb.toString())) {
 
-			ps1.setBoolean(1, false);
-			ps1.setLong(2, classNameId);
-			ps1.setBoolean(3, false);
+			preparedStatement1.setBoolean(1, false);
+			preparedStatement1.setLong(2, classNameId);
+			preparedStatement1.setBoolean(3, false);
 
-			ps1.execute();
+			preparedStatement1.execute();
 		}
 	}
 
 	protected void updateAssetVocabularies() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select vocabularyId, settings_ from AssetVocabulary");
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update AssetVocabulary set settings_ = ? where " +
 						"vocabularyId = ?");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
 				long vocabularyId = resultSet.getLong("vocabularyId");
 
 				String settings = resultSet.getString("settings_");
 
-				ps2.setString(1, upgradeVocabularySettings(settings));
+				preparedStatement2.setString(
+					1, upgradeVocabularySettings(settings));
 
-				ps2.setLong(2, vocabularyId);
+				preparedStatement2.setLong(2, vocabularyId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

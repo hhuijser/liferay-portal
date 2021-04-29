@@ -43,14 +43,15 @@ public class DataProviderInstanceUpgradeProcess extends UpgradeProcess {
 		sb.append("DDMDataProviderInstance.dataProviderInstanceId from ");
 		sb.append("DDMDataProviderInstance");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMDataProviderInstance set definition = ? where " +
 						"dataProviderInstanceId = ?")) {
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					String definition = resultSet.getString(1);
 					long dataProviderInstanceId = resultSet.getLong(2);
@@ -58,14 +59,14 @@ public class DataProviderInstanceUpgradeProcess extends UpgradeProcess {
 					String newDefinition =
 						upgradeDataProviderInstanceDefinition(definition);
 
-					ps2.setString(1, newDefinition);
+					preparedStatement2.setString(1, newDefinition);
 
-					ps2.setLong(2, dataProviderInstanceId);
+					preparedStatement2.setLong(2, dataProviderInstanceId);
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

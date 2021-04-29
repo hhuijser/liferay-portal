@@ -81,13 +81,13 @@ public class ImageTypeContentAttributesUpgradeProcess extends UpgradeProcess {
 	protected String getImageInstanceId(String articleImageId)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select elInstanceId from JournalArticleImage where " +
 					"articleImageId = ?")) {
 
-			ps.setLong(1, Long.valueOf(articleImageId));
+			preparedStatement.setLong(1, Long.valueOf(articleImageId));
 
-			ResultSet resultSet = ps.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
 				return resultSet.getString(1);
@@ -99,13 +99,13 @@ public class ImageTypeContentAttributesUpgradeProcess extends UpgradeProcess {
 
 	protected void updateContentImages() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select content, id_ from JournalArticle where content like " +
 					"?")) {
 
-			ps1.setString(1, "%type=\"image\"%");
+			preparedStatement1.setString(1, "%type=\"image\"%");
 
-			ResultSet resultSet = ps1.executeQuery();
+			ResultSet resultSet = preparedStatement1.executeQuery();
 
 			while (resultSet.next()) {
 				String content = resultSet.getString(1);
@@ -113,16 +113,16 @@ public class ImageTypeContentAttributesUpgradeProcess extends UpgradeProcess {
 
 				String newContent = addImageContentAttributes(content);
 
-				try (PreparedStatement ps =
+				try (PreparedStatement preparedStatement =
 						AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 							connection,
 							"update JournalArticle set content = ? where id_ " +
 								"= ?")) {
 
-					ps.setString(1, newContent);
-					ps.setLong(2, id);
+					preparedStatement.setString(1, newContent);
+					preparedStatement.setLong(2, id);
 
-					ps.executeUpdate();
+					preparedStatement.executeUpdate();
 				}
 			}
 		}

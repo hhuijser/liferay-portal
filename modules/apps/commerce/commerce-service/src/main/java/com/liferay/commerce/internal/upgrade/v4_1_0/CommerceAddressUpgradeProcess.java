@@ -53,24 +53,26 @@ public class CommerceAddressUpgradeProcess
 			CommerceAddressImpl.class, CommerceAddressImpl.TABLE_NAME, "type_",
 			"INTEGER");
 
-		PreparedStatement ps = null;
+		PreparedStatement preparedStatement = null;
 
 		if (hasColumn(CommerceAddressModelImpl.TABLE_NAME, "defaultBilling")) {
-			ps = connection.prepareStatement(
+			preparedStatement = connection.prepareStatement(
 				"update CommerceAccount set defaultBillingAddressId = ? " +
 					"where commerceAccountId = ?");
 
 			updateCommerceAccountAndSetType(
-				ps, getCommerceAddressResultSet("defaultBilling"));
+				preparedStatement,
+				getCommerceAddressResultSet("defaultBilling"));
 		}
 
 		if (hasColumn(CommerceAddressModelImpl.TABLE_NAME, "defaultShipping")) {
-			ps = connection.prepareStatement(
+			preparedStatement = connection.prepareStatement(
 				"update CommerceAccount set defaultShippingAddressId = ? " +
 					"where commerceAccountId = ?");
 
 			updateCommerceAccountAndSetType(
-				ps, getCommerceAddressResultSet("defaultShipping"));
+				preparedStatement,
+				getCommerceAddressResultSet("defaultShipping"));
 		}
 	}
 
@@ -80,26 +82,26 @@ public class CommerceAddressUpgradeProcess
 		long commerceAccountClassNameId = _classNameLocalService.getClassNameId(
 			CommerceAccount.class);
 
-		PreparedStatement ps = null;
+		PreparedStatement preparedStatement = null;
 
 		if (type.equals("defaultBilling")) {
-			ps = connection.prepareStatement(
+			preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(
 					"select commerceAddressId, classPK, defaultBilling, " +
 						"defaultShipping from CommerceAddress where " +
 							"classNameId = ? and defaultBilling = [$TRUE$]"));
 		}
 		else {
-			ps = connection.prepareStatement(
+			preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(
 					"select commerceAddressId, classPK, defaultBilling, " +
 						"defaultShipping from CommerceAddress where " +
 							"classNameId = ? and defaultShipping = [$TRUE$]"));
 		}
 
-		ps.setLong(1, commerceAccountClassNameId);
+		preparedStatement.setLong(1, commerceAccountClassNameId);
 
-		return ps.executeQuery();
+		return preparedStatement.executeQuery();
 	}
 
 	protected void setType(
@@ -107,7 +109,7 @@ public class CommerceAddressUpgradeProcess
 			long commerceAddressId)
 		throws Exception {
 
-		PreparedStatement ps = connection.prepareStatement(
+		PreparedStatement preparedStatement = connection.prepareStatement(
 			"update CommerceAddress set type_ = ? where commerceAddressId = ?");
 
 		int type = CommerceAddressConstants.ADDRESS_TYPE_SHIPPING;
@@ -119,28 +121,28 @@ public class CommerceAddressUpgradeProcess
 			type = CommerceAddressConstants.ADDRESS_TYPE_SHIPPING;
 		}
 
-		ps.setInt(1, type);
-		ps.setLong(2, commerceAddressId);
+		preparedStatement.setInt(1, type);
+		preparedStatement.setLong(2, commerceAddressId);
 
-		ps.addBatch();
+		preparedStatement.addBatch();
 	}
 
 	protected void updateCommerceAccountAndSetType(
-			PreparedStatement ps, ResultSet resultSet)
+			PreparedStatement preparedStatement, ResultSet resultSet)
 		throws Exception {
 
 		while (resultSet.next()) {
 			long commerceAddressId = resultSet.getLong("commerceAddressId");
 
-			ps.setLong(1, commerceAddressId);
+			preparedStatement.setLong(1, commerceAddressId);
 
-			ps.setLong(2, resultSet.getLong("classPK"));
+			preparedStatement.setLong(2, resultSet.getLong("classPK"));
 
 			setType(
 				resultSet.getBoolean("defaultBilling"),
 				resultSet.getBoolean("defaultShipping"), commerceAddressId);
 
-			ps.addBatch();
+			preparedStatement.addBatch();
 		}
 	}
 

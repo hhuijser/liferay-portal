@@ -54,22 +54,23 @@ public class AutocompleteDDMTextFieldSettingUpgradeProcess
 		sb.append("DDMFormInstance.structureId = DDMStructure.structureId ");
 		sb.append("where DDMStructure.definition like '%\"type\":\"text\"%'");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			PreparedStatement ps2 =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMStructure set definition = ? where " +
 						"structureId = ?");
-			PreparedStatement ps3 = connection.prepareStatement(
+			PreparedStatement preparedStatement3 = connection.prepareStatement(
 				"select structureVersionId, definition from " +
 					"DDMStructureVersion where structureId = ?");
-			PreparedStatement ps4 =
+			PreparedStatement preparedStatement4 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update DDMStructureVersion set definition = ? where " +
 						"structureVersionId = ?")) {
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {
 					String definition = resultSet.getString(2);
 
@@ -80,17 +81,19 @@ public class AutocompleteDDMTextFieldSettingUpgradeProcess
 						continue;
 					}
 
-					ps2.setString(1, newDefinition);
+					preparedStatement2.setString(1, newDefinition);
 
 					long structureId = resultSet.getLong(1);
 
-					ps2.setLong(2, structureId);
+					preparedStatement2.setLong(2, structureId);
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 
-					ps3.setLong(1, structureId);
+					preparedStatement3.setLong(1, structureId);
 
-					try (ResultSet resultSet2 = ps3.executeQuery()) {
+					try (ResultSet resultSet2 =
+							preparedStatement3.executeQuery()) {
+
 						while (resultSet2.next()) {
 							definition = resultSet2.getString("definition");
 
@@ -101,21 +104,21 @@ public class AutocompleteDDMTextFieldSettingUpgradeProcess
 								continue;
 							}
 
-							ps4.setString(1, newDefinition);
+							preparedStatement4.setString(1, newDefinition);
 
 							long structureVersionId = resultSet2.getLong(
 								"structureVersionId");
 
-							ps4.setLong(2, structureVersionId);
+							preparedStatement4.setLong(2, structureVersionId);
 
-							ps4.addBatch();
+							preparedStatement4.addBatch();
 						}
 					}
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 
-				ps4.executeBatch();
+				preparedStatement4.executeBatch();
 			}
 		}
 	}

@@ -27,10 +27,10 @@ public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select kaleoDefinitionId, content from KaleoDefinition " +
 					"where content like '%WorkflowConstants.toStatus(%'");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long kaleoDefinitionId = resultSet.getLong(1);
@@ -49,14 +49,14 @@ public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 	protected void updateContent(long kaleoDefinitionId, String content)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update KaleoDefinition set content = ? where " +
 					"kaleoDefinitionId = ?")) {
 
-			ps.setString(1, content);
-			ps.setLong(2, kaleoDefinitionId);
+			preparedStatement.setString(1, content);
+			preparedStatement.setLong(2, kaleoDefinitionId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

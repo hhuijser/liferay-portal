@@ -109,21 +109,23 @@ public class BlogsServiceUpgrade implements UpgradeStepRegistrator {
 		_getUpgradeDiscussionSubscriptionClassNameUnsafeBiFunction() {
 
 		return (className, connection) -> {
-			try (PreparedStatement ps = connection.prepareStatement(
-					SQLTransformer.transform(
-						StringBundler.concat(
-							"update Subscription set classNameId = ? where ",
-							"classNameId = ? and classPK not in (select ",
-							"groupId from Group_ where site = [$TRUE$])")))) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						SQLTransformer.transform(
+							StringBundler.concat(
+								"update Subscription set classNameId = ? where ",
+								"classNameId = ? and classPK not in (select ",
+								"groupId from Group_ where site = [$TRUE$])")))) {
 
-				ps.setLong(
+				preparedStatement.setLong(
 					1,
 					_classNameLocalService.getClassNameId(
 						MBDiscussion.class.getName() + StringPool.UNDERLINE +
 							BlogsEntry.class.getName()));
-				ps.setLong(2, _classNameLocalService.getClassNameId(className));
+				preparedStatement.setLong(
+					2, _classNameLocalService.getClassNameId(className));
 
-				ps.executeUpdate();
+				preparedStatement.executeUpdate();
 			}
 
 			return true;

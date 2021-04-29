@@ -109,13 +109,13 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 	protected void updateCalendarUserId(long calendarId, long userId)
 		throws SQLException {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update Calendar set userId = ? where calendarId = ?")) {
 
-			ps.setLong(1, userId);
-			ps.setLong(2, calendarId);
+			preparedStatement.setLong(1, userId);
+			preparedStatement.setLong(2, calendarId);
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 
@@ -131,13 +131,13 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 		sb.append("CalendarResource.classNameId = ? and ");
 		sb.append("CalendarResource.userId = ?");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			ps.setLong(1, groupClassNameId);
-			ps.setLong(2, defaultUserId);
+			preparedStatement.setLong(1, groupClassNameId);
+			preparedStatement.setLong(2, defaultUserId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long calendarId = resultSet.getLong(1);
 
@@ -151,15 +151,15 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 			long groupClassNameId, long defaultUserId, long companyAdminUserId)
 		throws SQLException {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update CalendarResource set userId = ? where userId = ? and " +
 					"classNameId = ?")) {
 
-			ps.setLong(1, companyAdminUserId);
-			ps.setLong(2, defaultUserId);
-			ps.setLong(3, groupClassNameId);
+			preparedStatement.setLong(1, companyAdminUserId);
+			preparedStatement.setLong(2, defaultUserId);
+			preparedStatement.setLong(3, groupClassNameId);
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 

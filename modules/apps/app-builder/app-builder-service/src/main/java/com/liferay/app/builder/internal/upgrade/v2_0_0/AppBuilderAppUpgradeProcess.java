@@ -33,24 +33,26 @@ public class AppBuilderAppUpgradeProcess extends UpgradeProcess {
 				AppBuilderAppTable.class,
 				new AlterTableAddColumn("active_", "BOOLEAN"));
 
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					"select appBuilderAppId, status from AppBuilderApp");
-				PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(
+						"select appBuilderAppId, status from AppBuilderApp");
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						"update AppBuilderApp set active_ = ? where " +
 							"appBuilderAppId = ?");
-				ResultSet resultSet = ps1.executeQuery()) {
+				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				while (resultSet.next()) {
-					ps2.setBoolean(
+					preparedStatement2.setBoolean(
 						1, (resultSet.getInt("status") == 0) ? true : false);
-					ps2.setLong(2, resultSet.getLong("appBuilderAppId"));
+					preparedStatement2.setLong(
+						2, resultSet.getLong("appBuilderAppId"));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 

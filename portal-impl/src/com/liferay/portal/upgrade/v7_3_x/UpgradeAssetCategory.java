@@ -38,14 +38,14 @@ public class UpgradeAssetCategory extends UpgradeProcess {
 				new AlterTableAddColumn("treePath", "STRING null"));
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(
 					StringBundler.concat(
 						"update AssetCategory set treePath = CONCAT('/', ",
 						"CAST_TEXT(categoryId), '/') where treePath is null ",
 						"and parentCategoryId = 0")))) {
 
-			if (ps.executeUpdate() == 0) {
+			if (preparedStatement.executeUpdate() == 0) {
 				return;
 			}
 		}

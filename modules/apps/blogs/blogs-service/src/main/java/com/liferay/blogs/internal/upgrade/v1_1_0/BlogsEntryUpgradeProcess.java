@@ -37,10 +37,10 @@ public class BlogsEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select groupId, entryId, urlTitle from BlogsEntry")) {
 
-			ResultSet resultSet = ps1.executeQuery();
+			ResultSet resultSet = preparedStatement1.executeQuery();
 
 			while (resultSet.next()) {
 				long groupId = resultSet.getLong(1);

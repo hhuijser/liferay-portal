@@ -146,8 +146,9 @@ public class DB2DB extends BaseDB {
 		sb.append(StringUtil.toUpperCase(tableName));
 		sb.append("')) where reorg_pending = 'Y'");
 
-		try (PreparedStatement ps = con.prepareStatement(sb.toString());
-			ResultSet resultSet = ps.executeQuery()) {
+		try (PreparedStatement preparedStatement = con.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {
 				int numReorgRecAlters = resultSet.getInt(1);

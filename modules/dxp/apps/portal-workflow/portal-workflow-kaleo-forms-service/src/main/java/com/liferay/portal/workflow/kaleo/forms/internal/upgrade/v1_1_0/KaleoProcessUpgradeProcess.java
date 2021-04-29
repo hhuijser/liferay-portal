@@ -239,9 +239,10 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 		sb.append(_KALEO_PROCESS_CLASS_NAME_ID);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update KaleoProcess set DDMTemplateId = ? where " +
@@ -257,14 +258,15 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 				updateDDLRecordSet(
 					ddlRecordSetId, getNewDDMStructureId(ddmStructureId));
 
-				ps2.setLong(1, getNewDDMTemplateId(ddmTemplateId));
+				preparedStatement2.setLong(
+					1, getNewDDMTemplateId(ddmTemplateId));
 
-				ps2.setLong(2, kaleoProcessId);
+				preparedStatement2.setLong(2, kaleoProcessId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 
@@ -278,9 +280,10 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 		sb.append(_KALEO_PROCESS_CLASS_NAME_ID);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(sb.toString());
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 =
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
+				sb.toString());
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update KaleoProcessLink set DDMTemplateId = ? where " +
@@ -292,14 +295,15 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 
 				long ddmTemplateId = resultSet.getLong("DDMTemplateId");
 
-				ps2.setLong(1, getNewDDMTemplateId(ddmTemplateId));
+				preparedStatement2.setLong(
+					1, getNewDDMTemplateId(ddmTemplateId));
 
-				ps2.setLong(2, kaleoProcessLinkId);
+				preparedStatement2.setLong(2, kaleoProcessLinkId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

@@ -102,13 +102,13 @@ public class ContentTargetingUpgradeProcess extends UpgradeProcess {
 	protected String getCriteria(long userSegmentId) throws Exception {
 		Criteria criteria = new Criteria();
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select companyId, ruleKey, typeSettings from " +
 					"CT_RuleInstance where userSegmentId = ?")) {
 
-			ps.setLong(1, userSegmentId);
+			preparedStatement.setLong(1, userSegmentId);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					String ruleKey = resultSet.getString("ruleKey");
 
@@ -138,9 +138,9 @@ public class ContentTargetingUpgradeProcess extends UpgradeProcess {
 
 	protected void upgradeContentTargetingUserSegments() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select * from CT_UserSegment");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			ServiceContext serviceContext = new ServiceContext();
 

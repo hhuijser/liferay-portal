@@ -38,26 +38,26 @@ public class UserNotificationEventUpgradeProcess extends UpgradeProcess {
 			long userNotificationEventId, JSONObject jsonObject)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update UserNotificationEvent set payload = ? where " +
 					"userNotificationEventId = ?")) {
 
-			ps.setString(1, jsonObject.toString());
-			ps.setLong(2, userNotificationEventId);
+			preparedStatement.setString(1, jsonObject.toString());
+			preparedStatement.setLong(2, userNotificationEventId);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 
 	protected void upgradeNotifications() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select userNotificationEventId, payload from " +
 					"UserNotificationEvent where type_ = ?")) {
 
-			ps.setString(1, MicroblogsPortletKeys.MICROBLOGS);
+			preparedStatement.setString(1, MicroblogsPortletKeys.MICROBLOGS);
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					String payload = resultSet.getString("payload");
 

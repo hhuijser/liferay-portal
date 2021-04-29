@@ -29,7 +29,7 @@ public class CPDefinitionLinkUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select CProductId from CProduct where CProductId = ?");
 			Statement s = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
@@ -39,9 +39,9 @@ public class CPDefinitionLinkUpgradeProcess extends UpgradeProcess {
 			while (r1.next()) {
 				long cProductId = r1.getLong("CProductId");
 
-				ps.setLong(1, cProductId);
+				preparedStatement.setLong(1, cProductId);
 
-				ResultSet r2 = ps.executeQuery();
+				ResultSet r2 = preparedStatement.executeQuery();
 
 				if (!r2.next()) {
 					if (_log.isDebugEnabled()) {

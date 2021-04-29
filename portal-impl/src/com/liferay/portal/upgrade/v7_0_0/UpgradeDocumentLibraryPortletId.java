@@ -30,43 +30,48 @@ public class UpgradeDocumentLibraryPortletId
 	extends BasePortletIdUpgradeProcess {
 
 	protected void deleteDuplicateResourceActions() throws SQLException {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select actionId from ResourceAction where name = '" +
 					_PORTLET_ID_DOCUMENT_LIBRARY + "'");
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
-				try (PreparedStatement ps2 = connection.prepareStatement(
-						"delete from ResourceAction where name = ? and " +
-							"actionId = ?")) {
+				try (PreparedStatement preparedStatement2 =
+						connection.prepareStatement(
+							"delete from ResourceAction where name = ? and " +
+								"actionId = ?")) {
 
-					ps2.setString(1, _PORTLET_ID_DL_DISPLAY);
-					ps2.setString(2, resultSet.getString("actionId"));
+					preparedStatement2.setString(1, _PORTLET_ID_DL_DISPLAY);
+					preparedStatement2.setString(
+						2, resultSet.getString("actionId"));
 
-					ps2.execute();
+					preparedStatement2.execute();
 				}
 			}
 		}
 	}
 
 	protected void deleteDuplicateResourcePermissions() throws SQLException {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select companyId, scope, primKey from ResourcePermission ",
 					"where name = '", _PORTLET_ID_DOCUMENT_LIBRARY, "'"));
-			ResultSet resultSet = ps1.executeQuery()) {
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
-				try (PreparedStatement ps2 = connection.prepareStatement(
-						"delete from ResourcePermission where companyId = ? " +
-							"and name = ? and scope = ? and primKey = ?")) {
+				try (PreparedStatement preparedStatement2 =
+						connection.prepareStatement(
+							"delete from ResourcePermission where companyId = ? " +
+								"and name = ? and scope = ? and primKey = ?")) {
 
-					ps2.setLong(1, resultSet.getLong("companyId"));
-					ps2.setString(2, _PORTLET_ID_DL_DISPLAY);
-					ps2.setInt(3, resultSet.getInt("scope"));
-					ps2.setString(4, resultSet.getString("primKey"));
+					preparedStatement2.setLong(
+						1, resultSet.getLong("companyId"));
+					preparedStatement2.setString(2, _PORTLET_ID_DL_DISPLAY);
+					preparedStatement2.setInt(3, resultSet.getInt("scope"));
+					preparedStatement2.setString(
+						4, resultSet.getString("primKey"));
 
-					ps2.execute();
+					preparedStatement2.execute();
 				}
 			}
 		}

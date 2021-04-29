@@ -145,9 +145,10 @@ public abstract class BaseUpgradeCompanyId extends UpgradeProcess {
 
 			List<Long> companyIds = new ArrayList<>();
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					"select companyId from Company");
-				ResultSet resultSet = ps.executeQuery()) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						"select companyId from Company");
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				while (resultSet.next()) {
 					long companyId = resultSet.getLong(1);

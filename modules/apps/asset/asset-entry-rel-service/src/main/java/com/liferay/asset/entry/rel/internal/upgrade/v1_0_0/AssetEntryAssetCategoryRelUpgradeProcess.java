@@ -40,9 +40,9 @@ import java.util.concurrent.Future;
 public class AssetEntryAssetCategoryRelUpgradeProcess extends UpgradeProcess {
 
 	protected void addAssetEntryAssetCategoryRels() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select entryId, categoryId from AssetEntries_AssetCategories");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			List<InsertAssetEntryAssetCategoryRelUpgradeCallable>
 				insertAssetEntryAssetCategoryRelUpgradeCallables =

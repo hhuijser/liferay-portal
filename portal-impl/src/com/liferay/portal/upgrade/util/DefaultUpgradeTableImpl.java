@@ -95,7 +95,8 @@ public class DefaultUpgradeTableImpl
 
 	@Override
 	public void setColumn(
-			PreparedStatement ps, int index, Integer type, String value)
+			PreparedStatement preparedStatement, int index, Integer type,
+			String value)
 		throws Exception {
 
 		if (_upgradeColumns[index] != null) {
@@ -107,7 +108,7 @@ public class DefaultUpgradeTableImpl
 			}
 		}
 
-		super.setColumn(ps, index, type, value);
+		super.setColumn(preparedStatement, index, type, value);
 	}
 
 	protected DefaultUpgradeTableImpl(

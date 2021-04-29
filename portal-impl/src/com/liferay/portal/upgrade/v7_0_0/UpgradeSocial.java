@@ -44,16 +44,16 @@ public class UpgradeSocial extends UpgradeProcess {
 	}
 
 	protected void deleteOrphanedSocialRequests() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from SocialRequest where classNameId = ? and classPK " +
 					"not in (select groupId from Group_)")) {
 
-			ps.setLong(
+			preparedStatement.setLong(
 				1,
 				PortalUtil.getClassNameId(
 					"com.liferay.portal.kernel.model.Group"));
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 
@@ -117,34 +117,34 @@ public class UpgradeSocial extends UpgradeProcess {
 	}
 
 	protected void updateSocialActivities(long delta) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update SocialActivity set activitySetId = (activityId + ?) " +
 					"where mirrorActivityId = 0")) {
 
-			ps.setLong(1, delta);
+			preparedStatement.setLong(1, delta);
 
-			ps.execute();
+			preparedStatement.execute();
 		}
 	}
 
 	private long _getCounterIncrement() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select currentId from Counter where name = ?")) {
 
-			ps1.setString(1, Counter.class.getName());
+			preparedStatement1.setString(1, Counter.class.getName());
 
 			long counter = 0;
 
-			try (ResultSet resultSet = ps1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				if (resultSet.next()) {
 					counter = resultSet.getLong("currentId");
 				}
 			}
 
-			PreparedStatement ps2 = connection.prepareStatement(
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"select max(activitySetId) from SocialActivitySet");
 
-			try (ResultSet resultSet = ps2.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement2.executeQuery()) {
 				if (resultSet.next()) {
 					return Math.max(0, resultSet.getLong(1) - counter);
 				}

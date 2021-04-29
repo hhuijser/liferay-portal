@@ -76,10 +76,10 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 		sb.append(LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE);
 		sb.append(")");
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString())) {
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
 					long layoutPageTemplateEntryId = resultSet.getLong(
 						"layoutPageTemplateEntryId");
@@ -156,20 +156,22 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, PortalUUIDUtil.generate());
-			ps.setLong(2, increment());
-			ps.setLong(3, groupId);
-			ps.setLong(4, companyId);
-			ps.setLong(5, userId);
-			ps.setString(6, userName);
-			ps.setTimestamp(7, createDate);
-			ps.setTimestamp(8, createDate);
-			ps.setLong(9, classNameId);
-			ps.setLong(10, classPK);
-			ps.setString(11, jsonObject.toString());
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			ps.executeUpdate();
+			preparedStatement.setString(1, PortalUUIDUtil.generate());
+			preparedStatement.setLong(2, increment());
+			preparedStatement.setLong(3, groupId);
+			preparedStatement.setLong(4, companyId);
+			preparedStatement.setLong(5, userId);
+			preparedStatement.setString(6, userName);
+			preparedStatement.setTimestamp(7, createDate);
+			preparedStatement.setTimestamp(8, createDate);
+			preparedStatement.setLong(9, classNameId);
+			preparedStatement.setLong(10, classPK);
+			preparedStatement.setString(11, jsonObject.toString());
+
+			preparedStatement.executeUpdate();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

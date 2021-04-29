@@ -230,11 +230,11 @@ public class UpgradeResourceBlockTest extends BaseUpgradeResourceBlock {
 	private void _assertRowsRemoved(String tableName, String primaryKeyName)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select * from ", tableName, " where ", primaryKeyName,
 					" < 0"));
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertFalse(resultSet.next());
 		}
@@ -274,11 +274,11 @@ public class UpgradeResourceBlockTest extends BaseUpgradeResourceBlock {
 
 		doUpgrade();
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select * from ResourcePermission where name = '" +
 					UpgradeResourceBlockTest.class.getName() +
 						"' order by scope");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			_assertResourcePermission(
 				resultSet, ResourceConstants.SCOPE_COMPANY, _COMPANY_ID,

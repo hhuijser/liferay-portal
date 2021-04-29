@@ -79,10 +79,12 @@ public class KaleoTaskInstanceTokenUpgradeProcess extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setLong(1, kaleoInstanceTokenId);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			preparedStatement.setLong(1, kaleoInstanceTokenId);
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					String type = resultSet.getString("type_");
 
@@ -105,10 +107,10 @@ public class KaleoTaskInstanceTokenUpgradeProcess extends UpgradeProcess {
 
 	protected void updateKaleoTaskInstanceTokens() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select kaleoTaskInstanceTokenId, kaleoInstanceTokenId from " +
 					"KaleoTaskInstanceToken");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long oldKaleoInstanceTokenId = resultSet.getLong(

@@ -46,12 +46,12 @@ public class UrlSubjectUpgradeProcess extends UpgradeProcess {
 	private String _findUniqueUrlSubject(Connection con, String urlSubject)
 		throws SQLException {
 
-		try (PreparedStatement ps = con.prepareStatement(
+		try (PreparedStatement preparedStatement = con.prepareStatement(
 				"select count(*) from MBMessage where urlSubject like ?")) {
 
-			ps.setString(1, urlSubject + "%");
+			preparedStatement.setString(1, urlSubject + "%");
 
-			try (ResultSet resultSet = ps.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (!resultSet.next()) {
 					return urlSubject;
 				}
@@ -88,14 +88,15 @@ public class UrlSubjectUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _populateUrlSubject() throws Exception {
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select messageId, subject from MBMessage where (urlSubject " +
 					"is null) or (urlSubject = '')");
-			ResultSet resultSet = ps1.executeQuery();
-			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update MBMessage set urlSubject = ? where messageId = " +
-						"?"))) {
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update MBMessage set urlSubject = ? where messageId = " +
+							"?"))) {
 
 			while (resultSet.next()) {
 				long messageId = resultSet.getLong(1);
@@ -104,14 +105,14 @@ public class UrlSubjectUpgradeProcess extends UpgradeProcess {
 				String uniqueUrlSubject = _findUniqueUrlSubject(
 					connection, _getUrlSubject(messageId, subject));
 
-				ps2.setString(1, uniqueUrlSubject);
+				preparedStatement2.setString(1, uniqueUrlSubject);
 
-				ps2.setLong(2, messageId);
+				preparedStatement2.setLong(2, messageId);
 
-				ps2.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			ps2.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 

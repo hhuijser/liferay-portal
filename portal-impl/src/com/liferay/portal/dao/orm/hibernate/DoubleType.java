@@ -104,7 +104,7 @@ public class DoubleType implements CompositeUserType, Serializable {
 
 	@Override
 	public void nullSafeSet(
-			PreparedStatement ps, Object target, int index,
+			PreparedStatement preparedStatement, Object target, int index,
 			SessionImplementor session)
 		throws SQLException {
 
@@ -112,7 +112,7 @@ public class DoubleType implements CompositeUserType, Serializable {
 			target = DEFAULT_VALUE;
 		}
 
-		ps.setDouble(index, (Double)target);
+		preparedStatement.setDouble(index, (Double)target);
 	}
 
 	@Override

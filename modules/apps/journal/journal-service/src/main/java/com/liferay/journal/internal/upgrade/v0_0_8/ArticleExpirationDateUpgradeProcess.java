@@ -69,9 +69,9 @@ public class ArticleExpirationDateUpgradeProcess extends UpgradeProcess {
 			sb.append(WorkflowConstants.STATUS_APPROVED);
 			sb.append(")");
 
-			try (PreparedStatement ps = connection.prepareStatement(
-					sb.toString());
-				ResultSet resultSet = ps.executeQuery()) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(sb.toString());
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				while (resultSet.next()) {
 					long groupId = resultSet.getLong("groupId");
@@ -92,16 +92,16 @@ public class ArticleExpirationDateUpgradeProcess extends UpgradeProcess {
 			int status)
 		throws Exception {
 
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update JournalArticle set expirationDate = ? where groupId " +
 					"= ? and articleId = ? and status = ?")) {
 
-			ps.setTimestamp(1, expirationDate);
-			ps.setLong(2, groupId);
-			ps.setString(3, articleId);
-			ps.setInt(4, status);
+			preparedStatement.setTimestamp(1, expirationDate);
+			preparedStatement.setLong(2, groupId);
+			preparedStatement.setString(3, articleId);
+			preparedStatement.setInt(4, status);
 
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
 		}
 	}
 

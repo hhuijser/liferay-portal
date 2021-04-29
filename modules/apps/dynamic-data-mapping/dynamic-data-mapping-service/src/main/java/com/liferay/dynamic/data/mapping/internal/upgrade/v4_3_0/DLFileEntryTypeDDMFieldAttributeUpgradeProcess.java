@@ -42,34 +42,37 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 		sb.append("DDMField.structureVersionId and ");
 		sb.append("DDMField.fieldType like ? ");
 
-		try (PreparedStatement ps1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sb.toString())) {
 
-			PreparedStatement ps2 = connection.prepareStatement(
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"select fieldAttributeId, smallAttributeValue from " +
 					"DDMFieldAttribute where storageId = ? and " +
 						"smallAttributeValue in (? , ?) ");
 
-			PreparedStatement ps3 = AutoBatchPreparedStatementUtil.autoBatch(
-				connection.prepareStatement(
-					"update DDMFieldAttribute set smallAttributeValue = ? " +
-						"where fieldAttributeId = ? "));
+			PreparedStatement preparedStatement3 =
+				AutoBatchPreparedStatementUtil.autoBatch(
+					connection.prepareStatement(
+						"update DDMFieldAttribute set smallAttributeValue = ? " +
+							"where fieldAttributeId = ? "));
 
-			ps1.setString(1, "checkbox");
+			preparedStatement1.setString(1, "checkbox");
 
-			try (ResultSet resultSet1 = ps1.executeQuery()) {
+			try (ResultSet resultSet1 = preparedStatement1.executeQuery()) {
 				while (resultSet1.next()) {
-					ps2.setLong(1, resultSet1.getLong(1));
-					ps2.setString(2, Boolean.TRUE.toString());
-					ps2.setString(3, Boolean.FALSE.toString());
+					preparedStatement2.setLong(1, resultSet1.getLong(1));
+					preparedStatement2.setString(2, Boolean.TRUE.toString());
+					preparedStatement2.setString(3, Boolean.FALSE.toString());
 
-					try (ResultSet resultSet2 = ps2.executeQuery()) {
+					try (ResultSet resultSet2 =
+							preparedStatement2.executeQuery()) {
+
 						while (resultSet2.next()) {
 							if (Objects.equals(
 									Boolean.TRUE.toString(),
 									resultSet2.getString(2))) {
 
-								ps3.setString(
+								preparedStatement3.setString(
 									1,
 									Arrays.toString(
 										new String[] {
@@ -77,18 +80,19 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 										}));
 							}
 							else {
-								ps3.setString(
+								preparedStatement3.setString(
 									1, Arrays.toString(new String[0]));
 							}
 
-							ps3.setLong(2, resultSet2.getLong(1));
+							preparedStatement3.setLong(
+								2, resultSet2.getLong(1));
 
-							ps3.addBatch();
+							preparedStatement3.addBatch();
 						}
 					}
 				}
 
-				ps3.executeBatch();
+				preparedStatement3.executeBatch();
 			}
 		}
 	}

@@ -1658,12 +1658,12 @@ public class PortalImpl implements Portal {
 				return ClassNameLocalServiceUtil.getClassNameId(value);
 			}
 
-			try (PreparedStatement ps = con.prepareStatement(
+			try (PreparedStatement preparedStatement = con.prepareStatement(
 					"select classNameId from ClassName_ where value = ?")) {
 
-				ps.setString(1, value);
+				preparedStatement.setString(1, value);
 
-				try (ResultSet resultSet = ps.executeQuery()) {
+				try (ResultSet resultSet = preparedStatement.executeQuery()) {
 					if (resultSet.next()) {
 						return resultSet.getLong("classNameId");
 					}

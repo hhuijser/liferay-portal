@@ -33,11 +33,11 @@ public class DLFileEntryTypeUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select fileEntryTypeId, companyId, userId from " +
 					"DLFileEntryType where fileEntryTypeKey in ('IMAGE " +
 						"GALLERY IMAGE', 'Image Gallery Image')");
-			ResultSet resultSet = ps.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
 				long fileEntryTypeId = resultSet.getLong("fileEntryTypeId");

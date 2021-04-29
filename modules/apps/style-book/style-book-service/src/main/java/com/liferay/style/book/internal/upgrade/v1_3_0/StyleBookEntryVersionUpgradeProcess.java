@@ -40,23 +40,24 @@ public class StyleBookEntryVersionUpgradeProcess extends UpgradeProcess {
 			new AlterTableAddColumn("modifiedDate", "DATE null"));
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			try (PreparedStatement ps1 = connection.prepareStatement(
-					"select styleBookEntryId from StyleBookEntry");
-				PreparedStatement ps2 =
+			try (PreparedStatement preparedStatement1 =
+					connection.prepareStatement(
+						"select styleBookEntryId from StyleBookEntry");
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection.prepareStatement(
 							"update StyleBookEntryVersion set uuid_ = ? " +
 								"where styleBookEntryId = ?"));
-				ResultSet resultSet = ps1.executeQuery()) {
+				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				while (resultSet.next()) {
-					ps2.setString(1, PortalUUIDUtil.generate());
-					ps2.setLong(2, resultSet.getLong(1));
+					preparedStatement2.setString(1, PortalUUIDUtil.generate());
+					preparedStatement2.setLong(2, resultSet.getLong(1));
 
-					ps2.addBatch();
+					preparedStatement2.addBatch();
 				}
 
-				ps2.executeBatch();
+				preparedStatement2.executeBatch();
 			}
 		}
 	}

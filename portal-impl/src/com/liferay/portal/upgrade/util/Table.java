@@ -143,12 +143,12 @@ public class Table {
 	}
 
 	public void generateTempFile() throws Exception {
-		try (Connection con = DataAccess.getConnection()) {
-			generateTempFile(con);
+		try (Connection connection = DataAccess.getConnection()) {
+			generateTempFile(connection);
 		}
 	}
 
-	public void generateTempFile(Connection con) throws Exception {
+	public void generateTempFile(Connection connection) throws Exception {
 		boolean empty = true;
 
 		String tempFileName = String.valueOf(
@@ -169,7 +169,7 @@ public class Table {
 		try (UnsyncBufferedWriter unsyncBufferedWriter =
 				new UnsyncBufferedWriter(new FileWriter(tempFileName));
 			PreparedStatement preparedStatement = getSelectPreparedStatement(
-				con);
+				connection);
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -304,10 +304,10 @@ public class Table {
 		return _order;
 	}
 
-	public PreparedStatement getSelectPreparedStatement(Connection con)
+	public PreparedStatement getSelectPreparedStatement(Connection connection)
 		throws Exception {
 
-		return con.prepareStatement(getSelectSQL());
+		return connection.prepareStatement(getSelectSQL());
 	}
 
 	public String getSelectSQL() throws Exception {
@@ -493,19 +493,19 @@ public class Table {
 	}
 
 	public void populateTable() throws Exception {
-		try (Connection con = DataAccess.getConnection()) {
-			populateTable(con);
+		try (Connection connection = DataAccess.getConnection()) {
+			populateTable(connection);
 		}
 	}
 
-	public void populateTable(Connection con) throws Exception {
+	public void populateTable(Connection connection) throws Exception {
 		if (_tempFileName == null) {
 			return;
 		}
 
 		try (PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.autoBatch(
-					con.prepareStatement(getInsertSQL()));
+					connection.prepareStatement(getInsertSQL()));
 			UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(new FileReader(_tempFileName))) {
 
@@ -687,8 +687,9 @@ public class Table {
 
 		String sql = sb.toString();
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
 			preparedStatement.setString(1, newValue);
 			preparedStatement.setString(2, oldValue);

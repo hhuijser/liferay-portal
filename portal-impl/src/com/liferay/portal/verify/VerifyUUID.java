@@ -82,12 +82,13 @@ public class VerifyUUID extends VerifyProcess {
 		if (db.isSupportsNewUuidFunction()) {
 			try (LoggingTimer loggingTimer = new LoggingTimer(
 					verifiableUUIDModel.getTableName());
-				Connection con = DataAccess.getConnection();
-				PreparedStatement preparedStatement = con.prepareStatement(
-					StringBundler.concat(
-						"update ", verifiableUUIDModel.getTableName(),
-						" set uuid_ = ", db.getNewUuidFunctionName(),
-						" where uuid_ is null or uuid_ = ''"))) {
+				Connection connection = DataAccess.getConnection();
+				PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						StringBundler.concat(
+							"update ", verifiableUUIDModel.getTableName(),
+							" set uuid_ = ", db.getNewUuidFunctionName(),
+							" where uuid_ is null or uuid_ = ''"))) {
 
 				preparedStatement.executeUpdate();
 
@@ -105,8 +106,8 @@ public class VerifyUUID extends VerifyProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer(
 				verifiableUUIDModel.getTableName());
-			Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement1 = con.prepareStatement(
+			Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select ", verifiableUUIDModel.getPrimaryKeyColumnName(),
 					" from ", verifiableUUIDModel.getTableName(),
@@ -114,7 +115,7 @@ public class VerifyUUID extends VerifyProcess {
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
-					con.prepareStatement(sb.toString()))) {
+					connection.prepareStatement(sb.toString()))) {
 
 			while (resultSet.next()) {
 				long pk = resultSet.getLong(

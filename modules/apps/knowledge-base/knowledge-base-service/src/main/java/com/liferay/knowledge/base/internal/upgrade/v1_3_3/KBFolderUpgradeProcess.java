@@ -49,10 +49,10 @@ public class KBFolderUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	private String _findUniqueUrlTitle(Connection con, String urlTitle)
+	private String _findUniqueUrlTitle(Connection connection, String urlTitle)
 		throws Exception {
 
-		try (PreparedStatement preparedStatement = con.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select count(*) from KBFolder where KBFolder.urlTitle like " +
 					"?")) {
 
@@ -74,10 +74,10 @@ public class KBFolderUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	private Map<Long, String> _getInitialUrlTitles(Connection con)
+	private Map<Long, String> _getInitialUrlTitles(Connection connection)
 		throws Exception {
 
-		try (PreparedStatement preparedStatement = con.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select kbFolderId, name from KBFolder where " +
 					"(KBFolder.urlTitle is null) or (KBFolder.urlTitle = '')");
 			ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -123,10 +123,10 @@ public class KBFolderUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _updateKBFolder(
-			Connection con, long kbFolderId, String urlTitle)
+			Connection connection, long kbFolderId, String urlTitle)
 		throws Exception {
 
-		try (PreparedStatement preparedStatement = con.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"update KBFolder set KBFolder.urlTitle = ? where " +
 					"KBFolder.kbFolderId = ?")) {
 

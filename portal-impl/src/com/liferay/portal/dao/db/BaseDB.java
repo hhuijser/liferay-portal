@@ -70,7 +70,8 @@ public abstract class BaseDB implements DB {
 
 	@Override
 	public void addIndexes(
-			Connection con, String indexesSQL, Set<String> validIndexNames)
+			Connection connection, String indexesSQL,
+			Set<String> validIndexNames)
 		throws IOException {
 
 		if (_log.isInfoEnabled()) {
@@ -102,7 +103,7 @@ public abstract class BaseDB implements DB {
 				}
 
 				try {
-					runSQL(con, sql);
+					runSQL(connection, sql);
 				}
 				catch (Exception exception) {
 					if (_log.isWarnEnabled()) {
@@ -151,12 +152,12 @@ public abstract class BaseDB implements DB {
 	}
 
 	@Override
-	public List<Index> getIndexes(Connection con) throws SQLException {
+	public List<Index> getIndexes(Connection connection) throws SQLException {
 		Set<Index> indexes = new HashSet<>();
 
-		DatabaseMetaData databaseMetaData = con.getMetaData();
+		DatabaseMetaData databaseMetaData = connection.getMetaData();
 
-		DBInspector dbInspector = new DBInspector(con);
+		DBInspector dbInspector = new DBInspector(connection);
 
 		String catalog = dbInspector.getCatalog();
 		String schema = dbInspector.getSchema();
@@ -307,17 +308,17 @@ public abstract class BaseDB implements DB {
 	}
 
 	@Override
-	public void runSQL(Connection con, String sql)
+	public void runSQL(Connection connection, String sql)
 		throws IOException, SQLException {
 
-		runSQL(con, new String[] {sql});
+		runSQL(connection, new String[] {sql});
 	}
 
 	@Override
-	public void runSQL(Connection con, String[] sqls)
+	public void runSQL(Connection connection, String[] sqls)
 		throws IOException, SQLException {
 
-		try (Statement s = con.createStatement()) {
+		try (Statement s = connection.createStatement()) {
 			for (String sql : sqls) {
 				sql = buildSQL(sql);
 
@@ -377,8 +378,8 @@ public abstract class BaseDB implements DB {
 
 	@Override
 	public void runSQL(String[] sqls) throws IOException, SQLException {
-		try (Connection con = DataAccess.getConnection()) {
-			runSQL(con, sqls);
+		try (Connection connection = DataAccess.getConnection()) {
+			runSQL(connection, sqls);
 		}
 	}
 
@@ -604,16 +605,17 @@ public abstract class BaseDB implements DB {
 
 	@Override
 	public void updateIndexes(
-			Connection con, String tablesSQL, String indexesSQL,
+			Connection connection, String tablesSQL, String indexesSQL,
 			boolean dropIndexes)
 		throws IOException, SQLException {
 
-		List<Index> indexes = getIndexes(con);
+		List<Index> indexes = getIndexes(connection);
 
 		Set<String> validIndexNames = null;
 
 		if (dropIndexes) {
-			validIndexNames = dropIndexes(con, tablesSQL, indexesSQL, indexes);
+			validIndexNames = dropIndexes(
+				connection, tablesSQL, indexesSQL, indexes);
 		}
 		else {
 			validIndexNames = new HashSet<>();
@@ -627,7 +629,7 @@ public abstract class BaseDB implements DB {
 
 		indexesSQL = _applyMaxStringIndexLengthLimitation(indexesSQL);
 
-		addIndexes(con, indexesSQL, validIndexNames);
+		addIndexes(connection, indexesSQL, validIndexNames);
 	}
 
 	protected BaseDB(DBType dbType, int majorVersion, int minorVersion) {
@@ -687,7 +689,7 @@ public abstract class BaseDB implements DB {
 	}
 
 	protected Set<String> dropIndexes(
-			Connection con, String tablesSQL, String indexesSQL,
+			Connection connection, String tablesSQL, String indexesSQL,
 			List<Index> indexes)
 		throws IOException, SQLException {
 
@@ -765,7 +767,7 @@ public abstract class BaseDB implements DB {
 				_log.info(sql);
 			}
 
-			runSQL(con, sql);
+			runSQL(connection, sql);
 		}
 
 		return validIndexNames;

@@ -102,11 +102,11 @@ public class VerifyGroupedModel extends VerifyProcess {
 	}
 
 	protected long getGroupId(
-			Connection con, String tableName, String primaryKeColumnName,
+			Connection connection, String tableName, String primaryKeColumnName,
 			long primKey)
 		throws Exception {
 
-		try (PreparedStatement preparedStatement = con.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select groupId from ", tableName, " where ",
 					primaryKeColumnName, " = ?"))) {
@@ -153,9 +153,9 @@ public class VerifyGroupedModel extends VerifyProcess {
 			sb.append(verifiableGroupedModel.getTableName());
 			sb.append(" where groupId is null");
 
-			try (Connection con = DataAccess.getConnection();
-				PreparedStatement preparedStatement1 = con.prepareStatement(
-					sb.toString());
+			try (Connection connection = DataAccess.getConnection();
+				PreparedStatement preparedStatement1 =
+					connection.prepareStatement(sb.toString());
 				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				sb = new StringBundler(5);
@@ -168,7 +168,7 @@ public class VerifyGroupedModel extends VerifyProcess {
 
 				try (PreparedStatement preparedStatement2 =
 						AutoBatchPreparedStatementUtil.autoBatch(
-							con.prepareStatement(sb.toString()))) {
+							connection.prepareStatement(sb.toString()))) {
 
 					while (resultSet.next()) {
 						long relatedPrimKey = resultSet.getLong(
@@ -176,7 +176,8 @@ public class VerifyGroupedModel extends VerifyProcess {
 								getRelatedPrimaryKeyColumnName());
 
 						long groupId = getGroupId(
-							con, verifiableGroupedModel.getRelatedTableName(),
+							connection,
+							verifiableGroupedModel.getRelatedTableName(),
 							verifiableGroupedModel.
 								getRelatedPrimaryKeyColumnName(),
 							relatedPrimKey);

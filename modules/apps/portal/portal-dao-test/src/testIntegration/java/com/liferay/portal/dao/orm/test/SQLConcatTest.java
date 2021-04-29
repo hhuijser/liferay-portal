@@ -110,8 +110,8 @@ public class SQLConcatTest {
 	}
 
 	private void _assertConcat(String query, String expected) throws Exception {
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(query));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 

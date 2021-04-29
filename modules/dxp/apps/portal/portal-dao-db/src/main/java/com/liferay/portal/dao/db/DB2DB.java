@@ -96,12 +96,12 @@ public class DB2DB extends BaseDB {
 	}
 
 	@Override
-	public void runSQL(Connection con, String[] templates)
+	public void runSQL(Connection connection, String[] templates)
 		throws IOException, SQLException {
 
-		super.runSQL(con, templates);
+		super.runSQL(connection, templates);
 
-		reorgTables(con, templates);
+		reorgTables(connection, templates);
 	}
 
 	@Override
@@ -134,7 +134,8 @@ public class DB2DB extends BaseDB {
 		return _DB2;
 	}
 
-	protected boolean isRequiresReorgTable(Connection con, String tableName)
+	protected boolean isRequiresReorgTable(
+			Connection connection, String tableName)
 		throws SQLException {
 
 		boolean reorgTableRequired = false;
@@ -146,7 +147,7 @@ public class DB2DB extends BaseDB {
 		sb.append(StringUtil.toUpperCase(tableName));
 		sb.append("')) where reorg_pending = 'Y'");
 
-		try (PreparedStatement preparedStatement = con.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sb.toString());
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -162,14 +163,14 @@ public class DB2DB extends BaseDB {
 		return reorgTableRequired;
 	}
 
-	protected void reorgTable(Connection con, String tableName)
+	protected void reorgTable(Connection connection, String tableName)
 		throws SQLException {
 
-		if (!isRequiresReorgTable(con, tableName)) {
+		if (!isRequiresReorgTable(connection, tableName)) {
 			return;
 		}
 
-		try (CallableStatement callableStatement = con.prepareCall(
+		try (CallableStatement callableStatement = connection.prepareCall(
 				"call sysproc.admin_cmd(?)")) {
 
 			callableStatement.setString(1, "reorg table " + tableName);
@@ -178,7 +179,7 @@ public class DB2DB extends BaseDB {
 		}
 	}
 
-	protected void reorgTables(Connection con, String[] templates)
+	protected void reorgTables(Connection connection, String[] templates)
 		throws SQLException {
 
 		Set<String> tableNames = new HashSet<>();
@@ -201,7 +202,7 @@ public class DB2DB extends BaseDB {
 		}
 
 		for (String tableName : tableNames) {
-			reorgTable(con, tableName);
+			reorgTable(connection, tableName);
 		}
 	}
 

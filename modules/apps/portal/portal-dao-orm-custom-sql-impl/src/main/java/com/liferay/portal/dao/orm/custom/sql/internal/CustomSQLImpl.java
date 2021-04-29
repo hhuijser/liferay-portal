@@ -718,7 +718,7 @@ public class CustomSQLImpl implements CustomSQL {
 		String functionIsNull = _portal.getCustomSQLFunctionIsNull();
 		String functionIsNotNull = _portal.getCustomSQLFunctionIsNotNull();
 
-		try (Connection con = DataAccess.getConnection()) {
+		try (Connection connection = DataAccess.getConnection()) {
 			if (Validator.isNotNull(functionIsNull) &&
 				Validator.isNotNull(functionIsNotNull)) {
 
@@ -733,8 +733,8 @@ public class CustomSQLImpl implements CustomSQL {
 							functionIsNotNull);
 				}
 			}
-			else if (con != null) {
-				DatabaseMetaData metaData = con.getMetaData();
+			else if (connection != null) {
+				DatabaseMetaData metaData = connection.getMetaData();
 
 				String dbName = GetterUtil.getString(
 					metaData.getDatabaseProductName());

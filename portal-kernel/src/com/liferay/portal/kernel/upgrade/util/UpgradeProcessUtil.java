@@ -48,8 +48,8 @@ public class UpgradeProcessUtil {
 			return languageId;
 		}
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select languageId from User_ where companyId = ? and " +
 					"defaultUser = ?")) {
 

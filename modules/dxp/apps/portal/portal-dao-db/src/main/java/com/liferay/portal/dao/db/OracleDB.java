@@ -62,7 +62,7 @@ public class OracleDB extends BaseDB {
 	}
 
 	@Override
-	public List<Index> getIndexes(Connection con) throws SQLException {
+	public List<Index> getIndexes(Connection connection) throws SQLException {
 		List<Index> indexes = new ArrayList<>();
 
 		StringBundler sb = new StringBundler(3);
@@ -73,7 +73,8 @@ public class OracleDB extends BaseDB {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement preparedStatement = con.prepareStatement(sql);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql);
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -151,8 +152,8 @@ public class OracleDB extends BaseDB {
 	protected boolean isNullable(String tableName, String columnName)
 		throws SQLException {
 
-		try (Connection con = DataAccess.getConnection()) {
-			DBInspector dbInspector = new DBInspector(con);
+		try (Connection connection = DataAccess.getConnection()) {
+			DBInspector dbInspector = new DBInspector(connection);
 
 			return dbInspector.isNullable(tableName, columnName);
 		}

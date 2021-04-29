@@ -142,8 +142,9 @@ public class UpgradeAssetDisplayPageEntryTest {
 
 		String sql = sb.toString();
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
 			preparedStatement.setLong(1, _counterLocalService.increment());
 			preparedStatement.setLong(2, groupId);
@@ -171,8 +172,9 @@ public class UpgradeAssetDisplayPageEntryTest {
 
 		String sql = sb.toString();
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
 			preparedStatement.setString(1, PortalUUIDUtil.generate());
 			preparedStatement.setLong(2, _counterLocalService.increment());

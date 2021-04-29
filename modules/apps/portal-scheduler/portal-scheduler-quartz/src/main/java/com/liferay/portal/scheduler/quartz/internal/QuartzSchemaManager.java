@@ -43,8 +43,8 @@ public class QuartzSchemaManager {
 
 	@Activate
 	protected void activate() {
-		try (Connection con = _dataSource.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+		try (Connection connection = _dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select count(*) from QUARTZ_JOB_DETAILS");
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -58,15 +58,15 @@ public class QuartzSchemaManager {
 			}
 		}
 
-		try (Connection con = _dataSource.getConnection()) {
-			_populateSchema(con);
+		try (Connection connection = _dataSource.getConnection()) {
+			_populateSchema(connection);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
 		}
 	}
 
-	private void _populateSchema(Connection con) throws Exception {
+	private void _populateSchema(Connection connection) throws Exception {
 		Class<?> clazz = getClass();
 
 		ClassLoader classLoader = clazz.getClassLoader();
@@ -83,22 +83,22 @@ public class QuartzSchemaManager {
 
 		DB db = DBManagerUtil.getDB();
 
-		boolean autoCommit = con.getAutoCommit();
+		boolean autoCommit = connection.getAutoCommit();
 
 		try {
-			con.setAutoCommit(false);
+			connection.setAutoCommit(false);
 
-			db.runSQLTemplateString(con, template, false);
+			db.runSQLTemplateString(connection, template, false);
 
-			con.commit();
+			connection.commit();
 		}
 		catch (Exception exception) {
-			con.rollback();
+			connection.rollback();
 
 			throw exception;
 		}
 		finally {
-			con.setAutoCommit(autoCommit);
+			connection.setAutoCommit(autoCommit);
 		}
 	}
 

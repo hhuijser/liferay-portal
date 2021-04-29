@@ -47,7 +47,8 @@ public interface DB {
 	public static final int DEFAULT = 1;
 
 	public void addIndexes(
-			Connection con, String indexesSQL, Set<String> validIndexNames)
+			Connection connection, String indexesSQL,
+			Set<String> validIndexNames)
 		throws IOException;
 
 	/**
@@ -75,7 +76,7 @@ public interface DB {
 
 	public DBType getDBType();
 
-	public List<Index> getIndexes(Connection con) throws SQLException;
+	public List<Index> getIndexes(Connection connection) throws SQLException;
 
 	public int getMajorVersion();
 
@@ -141,18 +142,19 @@ public interface DB {
 	public void process(UnsafeConsumer<Long, Exception> unsafeConsumer)
 		throws Exception;
 
-	public default void runSQL(Connection con, DBTypeToSQLMap dbTypeToSQLMap)
+	public default void runSQL(
+			Connection connection, DBTypeToSQLMap dbTypeToSQLMap)
 		throws IOException, SQLException {
 
 		String sql = dbTypeToSQLMap.get(getDBType());
 
-		runSQL(con, new String[] {sql});
+		runSQL(connection, new String[] {sql});
 	}
 
-	public void runSQL(Connection con, String sql)
+	public void runSQL(Connection connection, String sql)
 		throws IOException, SQLException;
 
-	public void runSQL(Connection con, String[] sqls)
+	public void runSQL(Connection connection, String[] sqls)
 		throws IOException, SQLException;
 
 	public default void runSQL(DBTypeToSQLMap dbTypeToSQLMap)
@@ -213,7 +215,7 @@ public interface DB {
 		boolean supportsStringCaseSensitiveQuery);
 
 	public void updateIndexes(
-			Connection con, String tablesSQL, String indexesSQL,
+			Connection connection, String tablesSQL, String indexesSQL,
 			boolean dropStaleIndexes)
 		throws IOException, SQLException;
 

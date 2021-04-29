@@ -124,8 +124,8 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(
-						"delete from AssetLink where entryId1 = ? or entryId2 = " +
-							"?"));
+						"delete from AssetLink where entryId1 = ? or " +
+							"entryId2 = ?"));
 			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(

@@ -15,6 +15,7 @@
 package com.liferay.license.manager.web.internal.upgrade.v1_0_1;
 
 import com.liferay.license.manager.web.internal.constants.LicenseManagerPortletKeys;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 
 import java.sql.PreparedStatement;
@@ -66,9 +67,10 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 
 				try (PreparedStatement deletePreparedStatement =
 						connection.prepareStatement(
-							"delete from PortletPreferences where ownerId = ? " +
-								"and ownerType = ? and plid = ? and portletId = " +
-									"?")) {
+							StringBundler.concat(
+								"delete from PortletPreferences where ownerId ",
+								"= ? and ownerType = ? and plid = ? and ",
+								"portletId = ?"))) {
 
 					deletePreparedStatement.setLong(1, ownerId);
 					deletePreparedStatement.setInt(2, ownerType);
@@ -96,9 +98,10 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 
 				try (PreparedStatement deletePreparedStatement =
 						connection.prepareStatement(
-							"delete from ResourcePermission where companyId = ? " +
-								"and name = ? and scope = ? and primkey = ? and " +
-									"roleId = ?")) {
+							StringBundler.concat(
+								"delete from ResourcePermission where ",
+								"companyId = ? and name = ? and scope = ? and ",
+								"primkey = ? and roleId = ?"))) {
 
 					deletePreparedStatement.setLong(1, companyId);
 					deletePreparedStatement.setString(

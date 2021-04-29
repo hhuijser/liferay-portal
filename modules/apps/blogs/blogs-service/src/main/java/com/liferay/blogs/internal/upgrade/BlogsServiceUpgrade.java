@@ -113,9 +113,10 @@ public class BlogsServiceUpgrade implements UpgradeStepRegistrator {
 					connection.prepareStatement(
 						SQLTransformer.transform(
 							StringBundler.concat(
-								"update Subscription set classNameId = ? where ",
-								"classNameId = ? and classPK not in (select ",
-								"groupId from Group_ where site = [$TRUE$])")))) {
+								"update Subscription set classNameId = ? ",
+								"where classNameId = ? and classPK not in ",
+								"(select groupId from Group_ where site = ",
+								"[$TRUE$])")))) {
 
 				preparedStatement.setLong(
 					1,

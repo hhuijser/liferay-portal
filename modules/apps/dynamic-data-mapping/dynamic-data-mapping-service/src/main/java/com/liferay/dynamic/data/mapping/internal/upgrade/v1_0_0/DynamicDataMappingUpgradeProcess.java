@@ -1516,8 +1516,8 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 					connection.prepareStatement(sb.toString());
 				PreparedStatement preparedStatement2 =
 					connection.prepareStatement(
-						"select companyId, data_ from DDMContent where contentId " +
-							"= ? and data_ like '<%'");
+						"select companyId, data_ from DDMContent where " +
+							"contentId = ? and data_ like '<%'");
 				PreparedStatement preparedStatement3 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,

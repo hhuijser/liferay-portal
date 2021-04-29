@@ -38,8 +38,8 @@ public abstract class BaseRepositoryUpgradeProcess extends UpgradeProcess {
 
 				try (PreparedStatement preparedStatement =
 						connection.prepareStatement(
-							"update Repository set portletId = ?, name = ? where " +
-								"portletId = ?")) {
+							"update Repository set portletId = ?, name = ? " +
+								"where portletId = ?")) {
 
 					preparedStatement.setString(1, newPortletName);
 					preparedStatement.setString(2, newPortletName);

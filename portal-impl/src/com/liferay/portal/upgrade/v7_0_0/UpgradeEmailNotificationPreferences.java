@@ -84,8 +84,8 @@ public class UpgradeEmailNotificationPreferences extends UpgradeProcess {
 								oldValue, "%'"));
 					PreparedStatement preparedStatement2 =
 						connection.prepareStatement(
-							"update PortalPreferences set preferences = ? where " +
-								"portalPreferencesId = ?");
+							"update PortalPreferences set preferences = ? " +
+								"where portalPreferencesId = ?");
 					ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 					while (resultSet.next()) {

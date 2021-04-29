@@ -91,7 +91,8 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 
 		try (PreparedStatement selectPreparedStatement =
 				connection.prepareStatement(
-					"select resourceBlockId from ResourceBlock where name = ?")) {
+					"select resourceBlockId from ResourceBlock where name = " +
+						"?")) {
 
 			selectPreparedStatement.setString(1, className);
 
@@ -171,8 +172,8 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 				connection.prepareStatement(
 					SQLTransformer.transform(
 						"select companyId, groupId, roleId, actionIds from " +
-							"ResourceTypePermission where groupId != 0 and name " +
-								"= ?"))) {
+							"ResourceTypePermission where groupId != 0 and " +
+								"name = ?"))) {
 
 			selectPreparedStatement.setString(1, className);
 

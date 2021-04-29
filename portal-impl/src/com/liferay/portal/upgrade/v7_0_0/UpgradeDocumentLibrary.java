@@ -398,8 +398,8 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
-						"update Repository set classNameId = ? where classNameId " +
-							"= ?")) {
+						"update Repository set classNameId = ? where " +
+							"classNameId = ?")) {
 
 				preparedStatement.setLong(1, portletRepositoryClassNameId);
 				preparedStatement.setLong(2, liferayRepositoryClassNameId);
@@ -439,8 +439,8 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(
-						"update DLFileEntry set fileName = ?, title = ? where " +
-							"fileEntryId = ?"));
+						"update DLFileEntry set fileName = ?, title = ? " +
+							"where fileEntryId = ?"));
 			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

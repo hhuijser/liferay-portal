@@ -47,8 +47,8 @@ public class MBMessageExternalReferenceCodeUpgradeProcess
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(
-						"update MBMessage set externalReferenceCode = ? where " +
-							"messageId = ?"))) {
+						"update MBMessage set externalReferenceCode = ? " +
+							"where messageId = ?"))) {
 
 			while (resultSet.next()) {
 				long messageId = resultSet.getLong(1);
